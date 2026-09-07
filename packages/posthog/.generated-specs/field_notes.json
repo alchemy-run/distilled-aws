@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.field_notes#FieldNotesListRequestFieldNoteStatus": {
+    "com.posthog.field_notes#ListFieldNotesRequestFieldNoteStatus": {
       "type": "enum",
       "members": {
         "ACKNOWLEDGED": {
@@ -47,7 +48,7 @@
       },
       "traits": {}
     },
-    "com.posthog.field_notes#FieldNotesListRequest": {
+    "com.posthog.field_notes#ListFieldNotesRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -59,7 +60,7 @@
           }
         },
         "field_note_status": {
-          "target": "com.posthog.field_notes#FieldNotesListRequestFieldNoteStatus",
+          "target": "com.posthog.field_notes#ListFieldNotesRequestFieldNoteStatus",
           "traits": {
             "smithy.api#httpQuery": "field_note_status",
             "smithy.api#documentation": "Filter to field notes in this lifecycle state (e.g. `pending` for unaddressed feedback)."
@@ -446,10 +447,10 @@
       },
       "traits": {}
     },
-    "com.posthog.field_notes#FieldNotesList": {
+    "com.posthog.field_notes#ListFieldNotes": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.field_notes#FieldNotesListRequest"
+        "target": "com.posthog.field_notes#ListFieldNotesRequest"
       },
       "output": {
         "target": "com.posthog.field_notes#PaginatedFieldNoteList"
@@ -463,7 +464,7 @@
         "smithy.api#documentation": "Create, read, update, and resolve toolbar field notes — UI feedback a user\npoints at on their own site, surfaced to coding agents over MCP."
       }
     },
-    "com.posthog.field_notes#FieldNotesCreateRequestElementContextMap": {
+    "com.posthog.field_notes#CreateFieldNoteRequestElementContextMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -475,7 +476,7 @@
         "smithy.api#documentation": "Structured element metadata (inferred selectors, attributes, component hints)."
       }
     },
-    "com.posthog.field_notes#FieldNotesCreateRequestViewport": {
+    "com.posthog.field_notes#CreateFieldNoteRequestViewport": {
       "type": "structure",
       "members": {
         "width": {
@@ -495,7 +496,7 @@
         "smithy.api#documentation": "Viewport size when the field note was made, as {width, height}."
       }
     },
-    "com.posthog.field_notes#FieldNotesCreateRequest": {
+    "com.posthog.field_notes#CreateFieldNoteRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -569,13 +570,13 @@
           }
         },
         "element_context": {
-          "target": "com.posthog.field_notes#FieldNotesCreateRequestElementContextMap",
+          "target": "com.posthog.field_notes#CreateFieldNoteRequestElementContextMap",
           "traits": {
             "smithy.api#documentation": "Structured element metadata (inferred selectors, attributes, component hints)."
           }
         },
         "viewport": {
-          "target": "com.posthog.field_notes#FieldNotesCreateRequestViewport",
+          "target": "com.posthog.field_notes#CreateFieldNoteRequestViewport",
           "traits": {
             "smithy.api#documentation": "Viewport size when the field note was made, as {width, height}.",
             "com.distilled.openapi#nullable": {}
@@ -593,10 +594,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.field_notes#FieldNotesCreate": {
+    "com.posthog.field_notes#CreateFieldNote": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.field_notes#FieldNotesCreateRequest"
+        "target": "com.posthog.field_notes#CreateFieldNoteRequest"
       },
       "output": {
         "target": "com.posthog.field_notes#FieldNote"
@@ -610,7 +611,7 @@
         "smithy.api#documentation": "Create, read, update, and resolve toolbar field notes — UI feedback a user\npoints at on their own site, surfaced to coding agents over MCP."
       }
     },
-    "com.posthog.field_notes#FieldNotesRetrieveRequest": {
+    "com.posthog.field_notes#GetFieldNoteRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -634,10 +635,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.field_notes#FieldNotesRetrieve": {
+    "com.posthog.field_notes#GetFieldNote": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.field_notes#FieldNotesRetrieveRequest"
+        "target": "com.posthog.field_notes#GetFieldNoteRequest"
       },
       "output": {
         "target": "com.posthog.field_notes#FieldNote"
@@ -651,7 +652,7 @@
         "smithy.api#documentation": "Create, read, update, and resolve toolbar field notes — UI feedback a user\npoints at on their own site, surfaced to coding agents over MCP."
       }
     },
-    "com.posthog.field_notes#FieldNotesUpdateRequestElementContextMap": {
+    "com.posthog.field_notes#UpdateFieldNoteRequestElementContextMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -663,7 +664,7 @@
         "smithy.api#documentation": "Structured element metadata (inferred selectors, attributes, component hints)."
       }
     },
-    "com.posthog.field_notes#FieldNotesUpdateRequestViewport": {
+    "com.posthog.field_notes#UpdateFieldNoteRequestViewport": {
       "type": "structure",
       "members": {
         "width": {
@@ -683,7 +684,7 @@
         "smithy.api#documentation": "Viewport size when the field note was made, as {width, height}."
       }
     },
-    "com.posthog.field_notes#FieldNotesUpdateRequest": {
+    "com.posthog.field_notes#UpdateFieldNoteRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -765,13 +766,13 @@
           }
         },
         "element_context": {
-          "target": "com.posthog.field_notes#FieldNotesUpdateRequestElementContextMap",
+          "target": "com.posthog.field_notes#UpdateFieldNoteRequestElementContextMap",
           "traits": {
             "smithy.api#documentation": "Structured element metadata (inferred selectors, attributes, component hints)."
           }
         },
         "viewport": {
-          "target": "com.posthog.field_notes#FieldNotesUpdateRequestViewport",
+          "target": "com.posthog.field_notes#UpdateFieldNoteRequestViewport",
           "traits": {
             "smithy.api#documentation": "Viewport size when the field note was made, as {width, height}.",
             "com.distilled.openapi#nullable": {}
@@ -789,10 +790,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.field_notes#FieldNotesUpdate": {
+    "com.posthog.field_notes#UpdateFieldNote": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.field_notes#FieldNotesUpdateRequest"
+        "target": "com.posthog.field_notes#UpdateFieldNoteRequest"
       },
       "output": {
         "target": "com.posthog.field_notes#FieldNote"
@@ -806,7 +807,7 @@
         "smithy.api#documentation": "Create, read, update, and resolve toolbar field notes — UI feedback a user\npoints at on their own site, surfaced to coding agents over MCP."
       }
     },
-    "com.posthog.field_notes#FieldNotesPartialUpdateRequestElementContextMap": {
+    "com.posthog.field_notes#UpdateFieldNotesPartialRequestElementContextMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -818,7 +819,7 @@
         "smithy.api#documentation": "Structured element metadata (inferred selectors, attributes, component hints)."
       }
     },
-    "com.posthog.field_notes#FieldNotesPartialUpdateRequestViewport": {
+    "com.posthog.field_notes#UpdateFieldNotesPartialRequestViewport": {
       "type": "structure",
       "members": {
         "width": {
@@ -838,7 +839,7 @@
         "smithy.api#documentation": "Viewport size when the field note was made, as {width, height}."
       }
     },
-    "com.posthog.field_notes#FieldNotesPartialUpdateRequest": {
+    "com.posthog.field_notes#UpdateFieldNotesPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -916,13 +917,13 @@
           }
         },
         "element_context": {
-          "target": "com.posthog.field_notes#FieldNotesPartialUpdateRequestElementContextMap",
+          "target": "com.posthog.field_notes#UpdateFieldNotesPartialRequestElementContextMap",
           "traits": {
             "smithy.api#documentation": "Structured element metadata (inferred selectors, attributes, component hints)."
           }
         },
         "viewport": {
-          "target": "com.posthog.field_notes#FieldNotesPartialUpdateRequestViewport",
+          "target": "com.posthog.field_notes#UpdateFieldNotesPartialRequestViewport",
           "traits": {
             "smithy.api#documentation": "Viewport size when the field note was made, as {width, height}.",
             "com.distilled.openapi#nullable": {}
@@ -940,10 +941,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.field_notes#FieldNotesPartialUpdate": {
+    "com.posthog.field_notes#UpdateFieldNotesPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.field_notes#FieldNotesPartialUpdateRequest"
+        "target": "com.posthog.field_notes#UpdateFieldNotesPartialRequest"
       },
       "output": {
         "target": "com.posthog.field_notes#FieldNote"
@@ -1003,19 +1004,19 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.field_notes#FieldNotesList"
+          "target": "com.posthog.field_notes#ListFieldNotes"
         },
         {
-          "target": "com.posthog.field_notes#FieldNotesCreate"
+          "target": "com.posthog.field_notes#CreateFieldNote"
         },
         {
-          "target": "com.posthog.field_notes#FieldNotesRetrieve"
+          "target": "com.posthog.field_notes#GetFieldNote"
         },
         {
-          "target": "com.posthog.field_notes#FieldNotesUpdate"
+          "target": "com.posthog.field_notes#UpdateFieldNote"
         },
         {
-          "target": "com.posthog.field_notes#FieldNotesPartialUpdate"
+          "target": "com.posthog.field_notes#UpdateFieldNotesPartial"
         },
         {
           "target": "com.posthog.field_notes#FieldNotesDestroy"

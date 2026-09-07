@@ -188,6 +188,16 @@ export const CreateFileRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateFileRequest",
 }) as any as S.Schema<CreateFileRequest>;
 
+export interface GetFileRequest {
+  /** The unique identifier of the file, prefixed `file_`. */
+  id: string;
+}
+export const GetFileRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/files/{id}", code: 200 })),
+).annotate({ identifier: "GetFileRequest" }) as any as S.Schema<GetFileRequest>;
+
 export type ListFilesRequestFileIdsList = Array<string>;
 export const ListFilesRequestFileIdsList = /*@__PURE__*/ S.Array(
   S.String,
@@ -264,18 +274,6 @@ export const ListFilesResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListFilesResponse",
 }) as any as S.Schema<ListFilesResponse>;
 
-export interface RetrieveFileRequest {
-  /** The unique identifier of the file, prefixed `file_`. */
-  id: string;
-}
-export const RetrieveFileRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/files/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveFileRequest",
-}) as any as S.Schema<RetrieveFileRequest>;
-
 export type CompleteFileError = BadRequest | NotFound | Conflict | WhopOpError;
 /** Complete File Multipart Upload Assembles the parts of a multipart upload after every part has been PUT to its presigned URL. Pass the `multipart_upload_id` from Create File and each part's `ETag` response header. */
 export const completeFile: API.OperationMethod<
@@ -306,6 +304,21 @@ export const createFile: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetFileError = NotFound | WhopOpError;
+/** Retrieve File Retrieves a file you uploaded — poll it after uploading the bytes to see `upload_status` become `ready`. Only the creator can retrieve a file this way; a file attached to another resource is read through that resource. */
+export const getFile: API.OperationMethod<
+  GetFileRequest,
+  File,
+  GetFileError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetFileRequest,
+  output: File,
+  errors: [NotFound],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListFilesError = BadRequest | WhopOpError;
 /** List Files Returns the files with the given IDs, newest first — fetch a batch in one request instead of retrieving each file individually. Only files you created are returned; IDs that do not exist, or that another credential created, are omitted. A request for up to 100 IDs answers in a single page by default; a larger batch pages at up to 100 files per response — follow `page_info` with the same `file_ids` to walk the rest. */
 export const listFiles: API.PaginatedOperationMethod<
@@ -332,18 +345,3 @@ export const listFiles: API.PaginatedOperationMethod<
   }),
   paginateRelay,
 ) as any;
-
-export type RetrieveFileError = NotFound | WhopOpError;
-/** Retrieve File Retrieves a file you uploaded — poll it after uploading the bytes to see `upload_status` become `ready`. Only the creator can retrieve a file this way; a file attached to another resource is read through that resource. */
-export const retrieveFile: API.OperationMethod<
-  RetrieveFileRequest,
-  File,
-  RetrieveFileError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveFileRequest,
-  output: File,
-  errors: [NotFound],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));

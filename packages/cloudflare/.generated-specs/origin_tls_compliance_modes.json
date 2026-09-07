@@ -14,10 +14,129 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "keyDictionary": {
+      "modifiedOn": "modified_on"
+    },
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.cloudflare.origin_tls_compliance_modes#DeleteRequest": {
+    "com.cloudflare.origin_tls_compliance_modes#DeleteResponseId": {
+      "type": "enum",
+      "members": {
+        "ORIGIN_TLS_COMPLIANCE_MODES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "origin_tls_compliance_modes"
+          }
+        }
+      }
+    },
+    "com.cloudflare.origin_tls_compliance_modes#EditRequestValueList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.origin_tls_compliance_modes#EditResponseId": {
+      "type": "enum",
+      "members": {
+        "ORIGIN_TLS_COMPLIANCE_MODES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "origin_tls_compliance_modes"
+          }
+        }
+      }
+    },
+    "com.cloudflare.origin_tls_compliance_modes#EditResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.origin_tls_compliance_modes#GetResponseId": {
+      "type": "enum",
+      "members": {
+        "ORIGIN_TLS_COMPLIANCE_MODES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "origin_tls_compliance_modes"
+          }
+        }
+      }
+    },
+    "com.cloudflare.origin_tls_compliance_modes#GetResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.origin_tls_compliance_modes#UpdateRequestValueList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.origin_tls_compliance_modes#UpdateResponseId": {
+      "type": "enum",
+      "members": {
+        "ORIGIN_TLS_COMPLIANCE_MODES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "origin_tls_compliance_modes"
+          }
+        }
+      }
+    },
+    "com.cloudflare.origin_tls_compliance_modes#UpdateResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.origin_tls_compliance_modes#OriginTlsComplianceModes": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.origin_tls_compliance_modes#DeleteOriginTlsComplianceMode"
+        },
+        {
+          "target": "com.cloudflare.origin_tls_compliance_modes#GetOriginTlsComplianceMode"
+        },
+        {
+          "target": "com.cloudflare.origin_tls_compliance_modes#PatchOriginTlsComplianceMode"
+        },
+        {
+          "target": "com.cloudflare.origin_tls_compliance_modes#PutOriginTlsComplianceMode"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare OriginTlsComplianceModes",
+        "smithy.api#documentation": "Cloudflare API — origin_tls_compliance_modes resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    },
+    "com.cloudflare.origin_tls_compliance_modes#DeleteOriginTlsComplianceMode": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.origin_tls_compliance_modes#DeleteOriginTlsComplianceModeRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.origin_tls_compliance_modes#DeleteOriginTlsComplianceModeResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/zones/{zone_id}/settings/origin_tls_compliance_modes",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete the Origin TLS Compliance Modes setting for the zone, removing any configured compliance constraint. After deletion, Cloudflare's default behavior applies (no compliance filtering of the key-exchange algorithm list sent to the origin).",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.origin_tls_compliance_modes#DeleteOriginTlsComplianceModeRequest": {
       "type": "structure",
       "members": {
         "zone_id": {
@@ -33,18 +152,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.origin_tls_compliance_modes#DeleteResponseId": {
-      "type": "enum",
-      "members": {
-        "ORIGIN_TLS_COMPLIANCE_MODES": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "origin_tls_compliance_modes"
-          }
-        }
-      }
-    },
-    "com.cloudflare.origin_tls_compliance_modes#DeleteResponse": {
+    "com.cloudflare.origin_tls_compliance_modes#DeleteOriginTlsComplianceModeResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -73,124 +181,25 @@
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     },
-    "com.cloudflare.origin_tls_compliance_modes#Delete": {
+    "com.cloudflare.origin_tls_compliance_modes#GetOriginTlsComplianceMode": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.origin_tls_compliance_modes#DeleteRequest"
+        "target": "com.cloudflare.origin_tls_compliance_modes#GetOriginTlsComplianceModeRequest"
       },
       "output": {
-        "target": "com.cloudflare.origin_tls_compliance_modes#DeleteResponse"
+        "target": "com.cloudflare.origin_tls_compliance_modes#GetOriginTlsComplianceModeResponse"
       },
       "traits": {
         "smithy.api#http": {
-          "method": "DELETE",
+          "method": "GET",
           "uri": "/zones/{zone_id}/settings/origin_tls_compliance_modes",
           "code": 200
         },
-        "smithy.api#documentation": "Delete the Origin TLS Compliance Modes setting for the zone, removing any configured compliance constraint. After deletion, Cloudflare's default behavior applies (no compliance filtering of the key-exchange algorithm list sent to the origin).",
-        "smithy.api#idempotent": {}
+        "smithy.api#documentation": "Origin TLS Compliance Modes constrains the set of TLS key-exchange algorithms Cloudflare may use when establishing the TLS connection to the zone's origin. The value is a list of named compliance modes (currently `fips` and `pqh`). Multiple modes are combined as the intersection of their permitted algorithm lists. An empty list (or no rule configured) means no compliance constraint is applied.",
+        "smithy.api#readonly": {}
       }
     },
-    "com.cloudflare.origin_tls_compliance_modes#EditRequestValueList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
-      }
-    },
-    "com.cloudflare.origin_tls_compliance_modes#EditRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "value": {
-          "target": "com.cloudflare.origin_tls_compliance_modes#EditRequestValueList",
-          "traits": {
-            "smithy.api#documentation": "List of TLS compliance modes that constrain the key-exchange algorithms Cloudflare may use when establishing the TLS connection to the zone's origin. Currently supported values are `fips` (FIPS-approved curves) and `pqh` (post-quantum hybrid). Future modes (e.g. `cnsa2`) may be added; clients should treat unknown values as opaque strings. Multiple modes are combined as the intersection of their permitted algorithm lists; selections whose intersection is empty are rejected. An empty list clears the constraint.",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.origin_tls_compliance_modes#EditResponseId": {
-      "type": "enum",
-      "members": {
-        "ORIGIN_TLS_COMPLIANCE_MODES": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "origin_tls_compliance_modes"
-          }
-        }
-      }
-    },
-    "com.cloudflare.origin_tls_compliance_modes#EditResponseValueList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
-      }
-    },
-    "com.cloudflare.origin_tls_compliance_modes#EditResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "com.cloudflare.origin_tls_compliance_modes#EditResponseId",
-          "traits": {
-            "smithy.api#documentation": "The identifier of the caching setting.",
-            "smithy.api#required": {}
-          }
-        },
-        "editable": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether the setting is editable.",
-            "smithy.api#required": {}
-          }
-        },
-        "value": {
-          "target": "com.cloudflare.origin_tls_compliance_modes#EditResponseValueList",
-          "traits": {
-            "smithy.api#documentation": "List of TLS compliance modes that constrain the key-exchange algorithms Cloudflare may use when establishing the TLS connection to the zone's origin. Currently supported values are `fips` (FIPS-approved curves) and `pqh` (post-quantum hybrid). Future modes (e.g. `cnsa2`) may be added; clients should treat unknown values as opaque strings. Multiple modes are combined as the intersection of their permitted algorithm lists; selections whose intersection is empty are rejected. An empty list clears the constraint.",
-            "smithy.api#required": {}
-          }
-        },
-        "modified_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Last time this setting was modified."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.origin_tls_compliance_modes#Edit": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.origin_tls_compliance_modes#EditRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.origin_tls_compliance_modes#EditResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PATCH",
-          "uri": "/zones/{zone_id}/settings/origin_tls_compliance_modes",
-          "code": 200
-        },
-        "smithy.api#documentation": "Update the set of TLS compliance modes for the zone. PATCH performs a full replace of the modes list, not a merge — the request body is treated as the complete new list, and any modes not present in it are removed. (To remove a single mode from an existing configuration, send the updated list without it.) The request body must be of the form `{\"value\": [\"fips\", \"pqh\"]}`. Currently supported modes are `fips` and `pqh`; an empty list clears the constraint. Future modes (e.g. `cnsa2`) may be added; clients should treat unknown values as opaque strings. Invalid mode values are rejected with a 4xx response."
-      }
-    },
-    "com.cloudflare.origin_tls_compliance_modes#GetRequest": {
+    "com.cloudflare.origin_tls_compliance_modes#GetOriginTlsComplianceModeRequest": {
       "type": "structure",
       "members": {
         "zone_id": {
@@ -206,24 +215,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.origin_tls_compliance_modes#GetResponseId": {
-      "type": "enum",
-      "members": {
-        "ORIGIN_TLS_COMPLIANCE_MODES": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "origin_tls_compliance_modes"
-          }
-        }
-      }
-    },
-    "com.cloudflare.origin_tls_compliance_modes#GetResponseValueList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
-      }
-    },
-    "com.cloudflare.origin_tls_compliance_modes#GetResponse": {
+    "com.cloudflare.origin_tls_compliance_modes#GetOriginTlsComplianceModeResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -259,31 +251,101 @@
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     },
-    "com.cloudflare.origin_tls_compliance_modes#Get": {
+    "com.cloudflare.origin_tls_compliance_modes#PatchOriginTlsComplianceMode": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.origin_tls_compliance_modes#GetRequest"
+        "target": "com.cloudflare.origin_tls_compliance_modes#PatchOriginTlsComplianceModeRequest"
       },
       "output": {
-        "target": "com.cloudflare.origin_tls_compliance_modes#GetResponse"
+        "target": "com.cloudflare.origin_tls_compliance_modes#PatchOriginTlsComplianceModeResponse"
       },
       "traits": {
         "smithy.api#http": {
-          "method": "GET",
+          "method": "PATCH",
           "uri": "/zones/{zone_id}/settings/origin_tls_compliance_modes",
           "code": 200
         },
-        "smithy.api#documentation": "Origin TLS Compliance Modes constrains the set of TLS key-exchange algorithms Cloudflare may use when establishing the TLS connection to the zone's origin. The value is a list of named compliance modes (currently `fips` and `pqh`). Multiple modes are combined as the intersection of their permitted algorithm lists. An empty list (or no rule configured) means no compliance constraint is applied.",
-        "smithy.api#readonly": {}
+        "smithy.api#documentation": "Update the set of TLS compliance modes for the zone. PATCH performs a full replace of the modes list, not a merge — the request body is treated as the complete new list, and any modes not present in it are removed. (To remove a single mode from an existing configuration, send the updated list without it.) The request body must be of the form `{\"value\": [\"fips\", \"pqh\"]}`. Currently supported modes are `fips` and `pqh`; an empty list clears the constraint. Future modes (e.g. `cnsa2`) may be added; clients should treat unknown values as opaque strings. Invalid mode values are rejected with a 4xx response."
       }
     },
-    "com.cloudflare.origin_tls_compliance_modes#UpdateRequestValueList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
+    "com.cloudflare.origin_tls_compliance_modes#PatchOriginTlsComplianceModeRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "com.cloudflare.origin_tls_compliance_modes#EditRequestValueList",
+          "traits": {
+            "smithy.api#documentation": "List of TLS compliance modes that constrain the key-exchange algorithms Cloudflare may use when establishing the TLS connection to the zone's origin. Currently supported values are `fips` (FIPS-approved curves) and `pqh` (post-quantum hybrid). Future modes (e.g. `cnsa2`) may be added; clients should treat unknown values as opaque strings. Multiple modes are combined as the intersection of their permitted algorithm lists; selections whose intersection is empty are rejected. An empty list clears the constraint.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
       }
     },
-    "com.cloudflare.origin_tls_compliance_modes#UpdateRequest": {
+    "com.cloudflare.origin_tls_compliance_modes#PatchOriginTlsComplianceModeResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "com.cloudflare.origin_tls_compliance_modes#EditResponseId",
+          "traits": {
+            "smithy.api#documentation": "The identifier of the caching setting.",
+            "smithy.api#required": {}
+          }
+        },
+        "editable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the setting is editable.",
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "com.cloudflare.origin_tls_compliance_modes#EditResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "List of TLS compliance modes that constrain the key-exchange algorithms Cloudflare may use when establishing the TLS connection to the zone's origin. Currently supported values are `fips` (FIPS-approved curves) and `pqh` (post-quantum hybrid). Future modes (e.g. `cnsa2`) may be added; clients should treat unknown values as opaque strings. Multiple modes are combined as the intersection of their permitted algorithm lists; selections whose intersection is empty are rejected. An empty list clears the constraint.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last time this setting was modified."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.origin_tls_compliance_modes#PutOriginTlsComplianceMode": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.origin_tls_compliance_modes#PutOriginTlsComplianceModeRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.origin_tls_compliance_modes#PutOriginTlsComplianceModeResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/zones/{zone_id}/settings/origin_tls_compliance_modes",
+          "code": 200
+        },
+        "smithy.api#documentation": "Replace the entire set of TLS compliance modes for the zone with the list provided in the request body. PUT performs a full replace, not a merge — any modes not present in the request body are removed. The request body must be of the form `{\"value\": [\"fips\", \"pqh\"]}`. Currently supported modes are `fips` and `pqh`; an empty list clears the constraint. Future modes (e.g. `cnsa2`) may be added; clients should treat unknown values as opaque strings. Invalid mode values are rejected with a 4xx response.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.origin_tls_compliance_modes#PutOriginTlsComplianceModeRequest": {
       "type": "structure",
       "members": {
         "zone_id": {
@@ -306,24 +368,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.origin_tls_compliance_modes#UpdateResponseId": {
-      "type": "enum",
-      "members": {
-        "ORIGIN_TLS_COMPLIANCE_MODES": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "origin_tls_compliance_modes"
-          }
-        }
-      }
-    },
-    "com.cloudflare.origin_tls_compliance_modes#UpdateResponseValueList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
-      }
-    },
-    "com.cloudflare.origin_tls_compliance_modes#UpdateResponse": {
+    "com.cloudflare.origin_tls_compliance_modes#PutOriginTlsComplianceModeResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -357,47 +402,6 @@
       "traits": {
         "smithy.api#output": {},
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.origin_tls_compliance_modes#Update": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.origin_tls_compliance_modes#UpdateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.origin_tls_compliance_modes#UpdateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PUT",
-          "uri": "/zones/{zone_id}/settings/origin_tls_compliance_modes",
-          "code": 200
-        },
-        "smithy.api#documentation": "Replace the entire set of TLS compliance modes for the zone with the list provided in the request body. PUT performs a full replace, not a merge — any modes not present in the request body are removed. The request body must be of the form `{\"value\": [\"fips\", \"pqh\"]}`. Currently supported modes are `fips` and `pqh`; an empty list clears the constraint. Future modes (e.g. `cnsa2`) may be added; clients should treat unknown values as opaque strings. Invalid mode values are rejected with a 4xx response.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.origin_tls_compliance_modes#OriginTlsComplianceModes": {
-      "type": "service",
-      "version": "4.0",
-      "operations": [
-        {
-          "target": "com.cloudflare.origin_tls_compliance_modes#Delete"
-        },
-        {
-          "target": "com.cloudflare.origin_tls_compliance_modes#Edit"
-        },
-        {
-          "target": "com.cloudflare.origin_tls_compliance_modes#Get"
-        },
-        {
-          "target": "com.cloudflare.origin_tls_compliance_modes#Update"
-        }
-      ],
-      "traits": {
-        "com.cloudflare.protocols#v4Json": {},
-        "smithy.api#title": "Cloudflare OriginTlsComplianceModes",
-        "smithy.api#documentation": "Cloudflare API — origin_tls_compliance_modes resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
       }
     }
   }

@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.powerbiprivatelinks#PrivateEndpointConnectionsDelete": {
+    "com.azure.powerbiprivatelinks#DeletePrivateEndpointConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.powerbiprivatelinks#PrivateEndpointConnectionsDeleteRequest"
+        "target": "com.azure.powerbiprivatelinks#DeletePrivateEndpointConnectionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -36,7 +37,7 @@
         "com.distilled.openapi#apiVersion": "2020-06-01"
       }
     },
-    "com.azure.powerbiprivatelinks#PrivateEndpointConnectionsDeleteRequest": {
+    "com.azure.powerbiprivatelinks#DeletePrivateEndpointConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -76,10 +77,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.powerbiprivatelinks#PrivateEndpointConnectionsCreate": {
+    "com.azure.powerbiprivatelinks#CreatePrivateEndpointConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.powerbiprivatelinks#PrivateEndpointConnectionsCreateRequest"
+        "target": "com.azure.powerbiprivatelinks#CreatePrivateEndpointConnectionRequest"
       },
       "output": {
         "target": "com.azure.powerbiprivatelinks#PrivateEndpointConnection"
@@ -377,7 +378,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.powerbiprivatelinks#PrivateEndpointConnectionsCreateRequest": {
+    "com.azure.powerbiprivatelinks#CreatePrivateEndpointConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -423,10 +424,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.powerbiprivatelinks#PrivateEndpointConnectionsGet": {
+    "com.azure.powerbiprivatelinks#GetPrivateEndpointConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.powerbiprivatelinks#PrivateEndpointConnectionsGetRequest"
+        "target": "com.azure.powerbiprivatelinks#GetPrivateEndpointConnectionRequest"
       },
       "output": {
         "target": "com.azure.powerbiprivatelinks#PrivateEndpointConnection"
@@ -442,7 +443,7 @@
         "com.distilled.openapi#apiVersion": "2020-06-01"
       }
     },
-    "com.azure.powerbiprivatelinks#PrivateEndpointConnectionsGetRequest": {
+    "com.azure.powerbiprivatelinks#GetPrivateEndpointConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -482,10 +483,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.powerbiprivatelinks#PrivateEndpointConnectionsListByResource": {
+    "com.azure.powerbiprivatelinks#ListPrivateEndpointConnectionByResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.powerbiprivatelinks#PrivateEndpointConnectionsListByResourceRequest"
+        "target": "com.azure.powerbiprivatelinks#ListPrivateEndpointConnectionByResourceRequest"
       },
       "output": {
         "target": "com.azure.powerbiprivatelinks#PrivateEndpointConnectionListResult"
@@ -530,7 +531,7 @@
         "smithy.api#documentation": "Specifies the name of the private endpoint connection."
       }
     },
-    "com.azure.powerbiprivatelinks#PrivateEndpointConnectionsListByResourceRequest": {
+    "com.azure.powerbiprivatelinks#ListPrivateEndpointConnectionByResourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -562,10 +563,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.powerbiprivatelinks#PrivateLinkResourcesGet": {
+    "com.azure.powerbiprivatelinks#GetPrivateLinkResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.powerbiprivatelinks#PrivateLinkResourcesGetRequest"
+        "target": "com.azure.powerbiprivatelinks#GetPrivateLinkResourceRequest"
       },
       "output": {
         "target": "com.azure.powerbiprivatelinks#PrivateLinkResource"
@@ -657,7 +658,7 @@
         "smithy.api#documentation": "The private link resource required member names."
       }
     },
-    "com.azure.powerbiprivatelinks#PrivateLinkResourcesGetRequest": {
+    "com.azure.powerbiprivatelinks#GetPrivateLinkResourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -697,10 +698,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.powerbiprivatelinks#PrivateLinkResourcesListByResource": {
+    "com.azure.powerbiprivatelinks#ListPrivateLinkResourceByResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.powerbiprivatelinks#PrivateLinkResourcesListByResourceRequest"
+        "target": "com.azure.powerbiprivatelinks#ListPrivateLinkResourceByResourceRequest"
       },
       "output": {
         "target": "com.azure.powerbiprivatelinks#PrivateLinkResourcesListResult"
@@ -745,7 +746,7 @@
         "smithy.api#documentation": "A collection of private endpoint connection resources."
       }
     },
-    "com.azure.powerbiprivatelinks#PrivateLinkResourcesListByResourceRequest": {
+    "com.azure.powerbiprivatelinks#ListPrivateLinkResourceByResourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -777,10 +778,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.powerbiprivatelinks#PowerBIResourcesDelete": {
+    "com.azure.powerbiprivatelinks#DeletePowerBIResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.powerbiprivatelinks#PowerBIResourcesDeleteRequest"
+        "target": "com.azure.powerbiprivatelinks#DeletePowerBIResourceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -796,7 +797,7 @@
         "com.distilled.openapi#apiVersion": "2020-06-01"
       }
     },
-    "com.azure.powerbiprivatelinks#PowerBIResourcesDeleteRequest": {
+    "com.azure.powerbiprivatelinks#DeletePowerBIResourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -828,10 +829,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.powerbiprivatelinks#PowerBIResourcesUpdate": {
+    "com.azure.powerbiprivatelinks#UpdatePowerBIResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.powerbiprivatelinks#PowerBIResourcesUpdateRequest"
+        "target": "com.azure.powerbiprivatelinks#UpdatePowerBIResourceRequest"
       },
       "output": {
         "target": "com.azure.powerbiprivatelinks#TenantResource"
@@ -1042,7 +1043,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.powerbiprivatelinks#PowerBIResourcesUpdateRequest": {
+    "com.azure.powerbiprivatelinks#UpdatePowerBIResourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1082,7 +1083,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.powerbiprivatelinks#PowerBIResourcesUpdateRequestTagsMap",
+          "target": "com.azure.powerbiprivatelinks#UpdatePowerBIResourceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Specifies the tags of the resource."
           }
@@ -1092,7 +1093,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.powerbiprivatelinks#PowerBIResourcesUpdateRequestTagsMap": {
+    "com.azure.powerbiprivatelinks#UpdatePowerBIResourceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1143,10 +1144,10 @@
       },
       "traits": {}
     },
-    "com.azure.powerbiprivatelinks#PowerBIResourcesCreate": {
+    "com.azure.powerbiprivatelinks#CreatePowerBIResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.powerbiprivatelinks#PowerBIResourcesCreateRequest"
+        "target": "com.azure.powerbiprivatelinks#CreatePowerBIResourceRequest"
       },
       "output": {
         "target": "com.azure.powerbiprivatelinks#TenantResource"
@@ -1162,7 +1163,7 @@
         "com.distilled.openapi#apiVersion": "2020-06-01"
       }
     },
-    "com.azure.powerbiprivatelinks#PowerBIResourcesCreateRequest": {
+    "com.azure.powerbiprivatelinks#CreatePowerBIResourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1202,7 +1203,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.powerbiprivatelinks#PowerBIResourcesCreateRequestTagsMap",
+          "target": "com.azure.powerbiprivatelinks#CreatePowerBIResourceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Specifies the tags of the resource."
           }
@@ -1212,7 +1213,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.powerbiprivatelinks#PowerBIResourcesCreateRequestTagsMap": {
+    "com.azure.powerbiprivatelinks#CreatePowerBIResourceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1224,13 +1225,13 @@
         "smithy.api#documentation": "Specifies the tags of the resource."
       }
     },
-    "com.azure.powerbiprivatelinks#PowerBIResourcesListByResourceName": {
+    "com.azure.powerbiprivatelinks#ListPowerBIResourceByResourceName": {
       "type": "operation",
       "input": {
-        "target": "com.azure.powerbiprivatelinks#PowerBIResourcesListByResourceNameRequest"
+        "target": "com.azure.powerbiprivatelinks#ListPowerBIResourceByResourceNameRequest"
       },
       "output": {
-        "target": "com.azure.powerbiprivatelinks#PowerBIResourcesListByResourceNameResponse"
+        "target": "com.azure.powerbiprivatelinks#ListPowerBIResourceByResourceNameResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1243,11 +1244,11 @@
         "com.distilled.openapi#apiVersion": "2020-06-01"
       }
     },
-    "com.azure.powerbiprivatelinks#PowerBIResourcesListByResourceNameResponse": {
+    "com.azure.powerbiprivatelinks#ListPowerBIResourceByResourceNameResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.azure.powerbiprivatelinks#PowerBIResourcesListByResourceNameResponseBodyList",
+          "target": "com.azure.powerbiprivatelinks#ListPowerBIResourceByResourceNameResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -1258,14 +1259,14 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.powerbiprivatelinks#PowerBIResourcesListByResourceNameResponseBodyList": {
+    "com.azure.powerbiprivatelinks#ListPowerBIResourceByResourceNameResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.azure.powerbiprivatelinks#TenantResource"
       },
       "traits": {}
     },
-    "com.azure.powerbiprivatelinks#PowerBIResourcesListByResourceNameRequest": {
+    "com.azure.powerbiprivatelinks#ListPowerBIResourceByResourceNameRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1297,13 +1298,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.powerbiprivatelinks#PrivateLinkServicesListByResourceGroup": {
+    "com.azure.powerbiprivatelinks#ListPrivateLinkServiceByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.powerbiprivatelinks#PrivateLinkServicesListByResourceGroupRequest"
+        "target": "com.azure.powerbiprivatelinks#ListPrivateLinkServiceByResourceGroupRequest"
       },
       "output": {
-        "target": "com.azure.powerbiprivatelinks#PrivateLinkServicesListByResourceGroupResponse"
+        "target": "com.azure.powerbiprivatelinks#ListPrivateLinkServiceByResourceGroupResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1316,11 +1317,11 @@
         "com.distilled.openapi#apiVersion": "2020-06-01"
       }
     },
-    "com.azure.powerbiprivatelinks#PrivateLinkServicesListByResourceGroupResponse": {
+    "com.azure.powerbiprivatelinks#ListPrivateLinkServiceByResourceGroupResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.azure.powerbiprivatelinks#PrivateLinkServicesListByResourceGroupResponseBodyList",
+          "target": "com.azure.powerbiprivatelinks#ListPrivateLinkServiceByResourceGroupResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -1331,14 +1332,14 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.powerbiprivatelinks#PrivateLinkServicesListByResourceGroupResponseBodyList": {
+    "com.azure.powerbiprivatelinks#ListPrivateLinkServiceByResourceGroupResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.azure.powerbiprivatelinks#TenantResource"
       },
       "traits": {}
     },
-    "com.azure.powerbiprivatelinks#PrivateLinkServicesListByResourceGroupRequest": {
+    "com.azure.powerbiprivatelinks#ListPrivateLinkServiceByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1362,10 +1363,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.powerbiprivatelinks#PrivateLinkServiceResourceOperationResultsGet": {
+    "com.azure.powerbiprivatelinks#GetPrivateLinkServiceResourceOperationResult": {
       "type": "operation",
       "input": {
-        "target": "com.azure.powerbiprivatelinks#PrivateLinkServiceResourceOperationResultsGetRequest"
+        "target": "com.azure.powerbiprivatelinks#GetPrivateLinkServiceResourceOperationResultRequest"
       },
       "output": {
         "target": "com.azure.powerbiprivatelinks#AsyncOperationDetail"
@@ -1555,7 +1556,7 @@
         "smithy.api#documentation": "The error details."
       }
     },
-    "com.azure.powerbiprivatelinks#PrivateLinkServiceResourceOperationResultsGetRequest": {
+    "com.azure.powerbiprivatelinks#GetPrivateLinkServiceResourceOperationResultRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1579,13 +1580,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.powerbiprivatelinks#PrivateLinkServicesForPowerBIListBySubscriptionId": {
+    "com.azure.powerbiprivatelinks#ListPrivateLinkServicesForPowerBIBySubscriptionId": {
       "type": "operation",
       "input": {
-        "target": "com.azure.powerbiprivatelinks#PrivateLinkServicesForPowerBIListBySubscriptionIdRequest"
+        "target": "com.azure.powerbiprivatelinks#ListPrivateLinkServicesForPowerBIBySubscriptionIdRequest"
       },
       "output": {
-        "target": "com.azure.powerbiprivatelinks#PrivateLinkServicesForPowerBIListBySubscriptionIdResponse"
+        "target": "com.azure.powerbiprivatelinks#ListPrivateLinkServicesForPowerBIBySubscriptionIdResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1598,11 +1599,11 @@
         "com.distilled.openapi#apiVersion": "2020-06-01"
       }
     },
-    "com.azure.powerbiprivatelinks#PrivateLinkServicesForPowerBIListBySubscriptionIdResponse": {
+    "com.azure.powerbiprivatelinks#ListPrivateLinkServicesForPowerBIBySubscriptionIdResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.azure.powerbiprivatelinks#PrivateLinkServicesForPowerBIListBySubscriptionIdResponseBodyList",
+          "target": "com.azure.powerbiprivatelinks#ListPrivateLinkServicesForPowerBIBySubscriptionIdResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -1613,14 +1614,14 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.powerbiprivatelinks#PrivateLinkServicesForPowerBIListBySubscriptionIdResponseBodyList": {
+    "com.azure.powerbiprivatelinks#ListPrivateLinkServicesForPowerBIBySubscriptionIdResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.azure.powerbiprivatelinks#TenantResource"
       },
       "traits": {}
     },
-    "com.azure.powerbiprivatelinks#PrivateLinkServicesForPowerBIListBySubscriptionIdRequest": {
+    "com.azure.powerbiprivatelinks#ListPrivateLinkServicesForPowerBIBySubscriptionIdRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1636,13 +1637,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.powerbiprivatelinks#OperationsList": {
+    "com.azure.powerbiprivatelinks#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.azure.powerbiprivatelinks#OperationsListResponse"
+        "target": "com.azure.powerbiprivatelinks#ListOperationsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1655,11 +1656,11 @@
         "com.distilled.openapi#apiVersion": "2020-06-01"
       }
     },
-    "com.azure.powerbiprivatelinks#OperationsListResponse": {
+    "com.azure.powerbiprivatelinks#ListOperationsResponse": {
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.powerbiprivatelinks#OperationsListResponseValueList",
+          "target": "com.azure.powerbiprivatelinks#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -1675,7 +1676,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.powerbiprivatelinks#OperationsListResponseValueList": {
+    "com.azure.powerbiprivatelinks#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.powerbiprivatelinks#Operation"
@@ -1799,46 +1800,46 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.powerbiprivatelinks#PrivateEndpointConnectionsDelete"
+          "target": "com.azure.powerbiprivatelinks#DeletePrivateEndpointConnection"
         },
         {
-          "target": "com.azure.powerbiprivatelinks#PrivateEndpointConnectionsCreate"
+          "target": "com.azure.powerbiprivatelinks#CreatePrivateEndpointConnection"
         },
         {
-          "target": "com.azure.powerbiprivatelinks#PrivateEndpointConnectionsGet"
+          "target": "com.azure.powerbiprivatelinks#GetPrivateEndpointConnection"
         },
         {
-          "target": "com.azure.powerbiprivatelinks#PrivateEndpointConnectionsListByResource"
+          "target": "com.azure.powerbiprivatelinks#ListPrivateEndpointConnectionByResource"
         },
         {
-          "target": "com.azure.powerbiprivatelinks#PrivateLinkResourcesGet"
+          "target": "com.azure.powerbiprivatelinks#GetPrivateLinkResource"
         },
         {
-          "target": "com.azure.powerbiprivatelinks#PrivateLinkResourcesListByResource"
+          "target": "com.azure.powerbiprivatelinks#ListPrivateLinkResourceByResource"
         },
         {
-          "target": "com.azure.powerbiprivatelinks#PowerBIResourcesDelete"
+          "target": "com.azure.powerbiprivatelinks#DeletePowerBIResource"
         },
         {
-          "target": "com.azure.powerbiprivatelinks#PowerBIResourcesUpdate"
+          "target": "com.azure.powerbiprivatelinks#UpdatePowerBIResource"
         },
         {
-          "target": "com.azure.powerbiprivatelinks#PowerBIResourcesCreate"
+          "target": "com.azure.powerbiprivatelinks#CreatePowerBIResource"
         },
         {
-          "target": "com.azure.powerbiprivatelinks#PowerBIResourcesListByResourceName"
+          "target": "com.azure.powerbiprivatelinks#ListPowerBIResourceByResourceName"
         },
         {
-          "target": "com.azure.powerbiprivatelinks#PrivateLinkServicesListByResourceGroup"
+          "target": "com.azure.powerbiprivatelinks#ListPrivateLinkServiceByResourceGroup"
         },
         {
-          "target": "com.azure.powerbiprivatelinks#PrivateLinkServiceResourceOperationResultsGet"
+          "target": "com.azure.powerbiprivatelinks#GetPrivateLinkServiceResourceOperationResult"
         },
         {
-          "target": "com.azure.powerbiprivatelinks#PrivateLinkServicesForPowerBIListBySubscriptionId"
+          "target": "com.azure.powerbiprivatelinks#ListPrivateLinkServicesForPowerBIBySubscriptionId"
         },
         {
-          "target": "com.azure.powerbiprivatelinks#OperationsList"
+          "target": "com.azure.powerbiprivatelinks#ListOperations"
         }
       ],
       "traits": {

@@ -97,6 +97,7 @@
     "fmt": "oxfmt --write src",
     "lint": "oxlint --fix src",
     "check": "tsc && oxlint src && oxfmt --check src",
+    "convert": "bun run scripts/convert.ts",
     "generate": "bun run scripts/generate.ts",
     "specs:fetch": "git submodule update --force --init --depth=1 specs/spec-mirror-aws",
     "specs:update": "git submodule update --remote --force --depth=1 specs/spec-mirror-aws"

@@ -58,580 +58,6 @@ export class UnprocessableEntity
     [{ status: 422 }],
   ) {}
 
-export type ApiInsightsGetRouteStatsByActorRequestActorType =
-  | "installation"
-  | "classic_pat"
-  | "fine_grained_pat"
-  | "oauth_app"
-  | "github_app_user_to_server";
-export const ApiInsightsGetRouteStatsByActorRequestActorType =
-  /*@__PURE__*/ S.String;
-
-export type ApiInsightsGetRouteStatsByActorRequestDirection = "asc" | "desc";
-export const ApiInsightsGetRouteStatsByActorRequestDirection =
-  /*@__PURE__*/ S.String;
-
-export type ApiInsightsGetRouteStatsByActorRequestSortItem =
-  | "last_rate_limited_timestamp"
-  | "last_request_timestamp"
-  | "rate_limited_request_count"
-  | "http_method"
-  | "api_route"
-  | "total_request_count";
-export const ApiInsightsGetRouteStatsByActorRequestSortItem =
-  /*@__PURE__*/ S.String;
-
-export type ApiInsightsGetRouteStatsByActorRequestSortList = Array<
-  ApiInsightsGetRouteStatsByActorRequestSortItem | (string & {})
->;
-export const ApiInsightsGetRouteStatsByActorRequestSortList =
-  /*@__PURE__*/ S.Array(
-    ApiInsightsGetRouteStatsByActorRequestSortItem,
-  ) as any as S.Schema<ApiInsightsGetRouteStatsByActorRequestSortList>;
-
-export interface ApiInsightsGetRouteStatsByActorRequest {
-  /** The organization name. The name is not case sensitive. */
-  org: string;
-  /** The type of the actor */
-  actor_type: ApiInsightsGetRouteStatsByActorRequestActorType | (string & {});
-  /** The ID of the actor */
-  actor_id: number;
-  /** The minimum timestamp to query for stats. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
-  min_timestamp: string;
-  /** The maximum timestamp to query for stats. Defaults to the time 30 days ago. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
-  max_timestamp?: string;
-  /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
-  page?: number;
-  /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
-  per_page?: number;
-  /** The direction to sort the results by. */
-  direction?: ApiInsightsGetRouteStatsByActorRequestDirection | (string & {});
-  /** The property to sort the results by. */
-  sort?: ApiInsightsGetRouteStatsByActorRequestSortList;
-  /** Providing a substring will filter results where the API route contains the substring. This is a case-insensitive search. */
-  api_route_substring?: string;
-}
-export const ApiInsightsGetRouteStatsByActorRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      org: S.String.pipe(T.Label()),
-      actor_type: ApiInsightsGetRouteStatsByActorRequestActorType.pipe(
-        T.Label(),
-      ),
-      actor_id: S.Number.pipe(T.Label()),
-      min_timestamp: S.String.pipe(T.Query()),
-      max_timestamp: S.optional(S.String.pipe(T.Query())),
-      page: S.optional(S.Number.pipe(T.Query())),
-      per_page: S.optional(S.Number.pipe(T.Query())),
-      direction: S.optional(
-        ApiInsightsGetRouteStatsByActorRequestDirection.pipe(T.Query()),
-      ),
-      sort: S.optional(
-        ApiInsightsGetRouteStatsByActorRequestSortList.pipe(T.Query()),
-      ),
-      api_route_substring: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/orgs/{org}/insights/api/route-stats/{actor_type}/{actor_id}",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "ApiInsightsGetRouteStatsByActorRequest",
-}) as any as S.Schema<ApiInsightsGetRouteStatsByActorRequest>;
-
-export interface ApiInsightsRouteStatsItem {
-  /** The HTTP method */
-  http_method?: string;
-  /** The API path's route template */
-  api_route?: string;
-  /** The total number of requests within the queried time period */
-  total_request_count?: number;
-  /** The total number of requests that were rate limited within the queried time period */
-  rate_limited_request_count?: number;
-  last_rate_limited_timestamp?: string | null;
-  last_request_timestamp?: string;
-}
-export const ApiInsightsRouteStatsItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    http_method: S.optional(S.String),
-    api_route: S.optional(S.String),
-    total_request_count: S.optional(S.Number),
-    rate_limited_request_count: S.optional(S.Number),
-    last_rate_limited_timestamp: S.optional(S.NullOr(S.String)),
-    last_request_timestamp: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ApiInsightsRouteStatsItem",
-}) as any as S.Schema<ApiInsightsRouteStatsItem>;
-
-/** API Insights usage route stats for an actor */
-export type ApiInsightsRouteStats = Array<ApiInsightsRouteStatsItem>;
-export const ApiInsightsRouteStats = /*@__PURE__*/ S.Array(
-  ApiInsightsRouteStatsItem,
-) as any as S.Schema<ApiInsightsRouteStats>;
-
-export type ApiInsightsGetRouteStatsByActorResponse = ApiInsightsRouteStats;
-export const ApiInsightsGetRouteStatsByActorResponse = /*@__PURE__*/ S.suspend(
-  () => ApiInsightsRouteStats.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "ApiInsightsGetRouteStatsByActorResponse",
-}) as any as S.Schema<ApiInsightsGetRouteStatsByActorResponse>;
-
-export type ApiInsightsGetSubjectStatsRequestDirection = "asc" | "desc";
-export const ApiInsightsGetSubjectStatsRequestDirection =
-  /*@__PURE__*/ S.String;
-
-export type ApiInsightsGetSubjectStatsRequestSortItem =
-  | "last_rate_limited_timestamp"
-  | "last_request_timestamp"
-  | "rate_limited_request_count"
-  | "subject_name"
-  | "total_request_count";
-export const ApiInsightsGetSubjectStatsRequestSortItem = /*@__PURE__*/ S.String;
-
-export type ApiInsightsGetSubjectStatsRequestSortList = Array<
-  ApiInsightsGetSubjectStatsRequestSortItem | (string & {})
->;
-export const ApiInsightsGetSubjectStatsRequestSortList = /*@__PURE__*/ S.Array(
-  ApiInsightsGetSubjectStatsRequestSortItem,
-) as any as S.Schema<ApiInsightsGetSubjectStatsRequestSortList>;
-
-export interface ApiInsightsGetSubjectStatsRequest {
-  /** The organization name. The name is not case sensitive. */
-  org: string;
-  /** The minimum timestamp to query for stats. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
-  min_timestamp: string;
-  /** The maximum timestamp to query for stats. Defaults to the time 30 days ago. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
-  max_timestamp?: string;
-  /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
-  page?: number;
-  /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
-  per_page?: number;
-  /** The direction to sort the results by. */
-  direction?: ApiInsightsGetSubjectStatsRequestDirection | (string & {});
-  /** The property to sort the results by. */
-  sort?: ApiInsightsGetSubjectStatsRequestSortList;
-  /** Providing a substring will filter results where the subject name contains the substring. This is a case-insensitive search. */
-  subject_name_substring?: string;
-}
-export const ApiInsightsGetSubjectStatsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    org: S.String.pipe(T.Label()),
-    min_timestamp: S.String.pipe(T.Query()),
-    max_timestamp: S.optional(S.String.pipe(T.Query())),
-    page: S.optional(S.Number.pipe(T.Query())),
-    per_page: S.optional(S.Number.pipe(T.Query())),
-    direction: S.optional(
-      ApiInsightsGetSubjectStatsRequestDirection.pipe(T.Query()),
-    ),
-    sort: S.optional(ApiInsightsGetSubjectStatsRequestSortList.pipe(T.Query())),
-    subject_name_substring: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/orgs/{org}/insights/api/subject-stats",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ApiInsightsGetSubjectStatsRequest",
-}) as any as S.Schema<ApiInsightsGetSubjectStatsRequest>;
-
-export interface ApiInsightsSubjectStatsItem {
-  subject_type?: string;
-  subject_name?: string;
-  subject_id?: number;
-  total_request_count?: number;
-  rate_limited_request_count?: number;
-  last_rate_limited_timestamp?: string | null;
-  last_request_timestamp?: string;
-}
-export const ApiInsightsSubjectStatsItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subject_type: S.optional(S.String),
-    subject_name: S.optional(S.String),
-    subject_id: S.optional(S.Number),
-    total_request_count: S.optional(S.Number),
-    rate_limited_request_count: S.optional(S.Number),
-    last_rate_limited_timestamp: S.optional(S.NullOr(S.String)),
-    last_request_timestamp: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ApiInsightsSubjectStatsItem",
-}) as any as S.Schema<ApiInsightsSubjectStatsItem>;
-
-/** API Insights usage subject stats for an organization */
-export type ApiInsightsSubjectStats = Array<ApiInsightsSubjectStatsItem>;
-export const ApiInsightsSubjectStats = /*@__PURE__*/ S.Array(
-  ApiInsightsSubjectStatsItem,
-) as any as S.Schema<ApiInsightsSubjectStats>;
-
-export type ApiInsightsGetSubjectStatsResponse = ApiInsightsSubjectStats;
-export const ApiInsightsGetSubjectStatsResponse = /*@__PURE__*/ S.suspend(() =>
-  ApiInsightsSubjectStats.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "ApiInsightsGetSubjectStatsResponse",
-}) as any as S.Schema<ApiInsightsGetSubjectStatsResponse>;
-
-export interface ApiInsightsGetSummaryStatsRequest {
-  /** The organization name. The name is not case sensitive. */
-  org: string;
-  /** The minimum timestamp to query for stats. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
-  min_timestamp: string;
-  /** The maximum timestamp to query for stats. Defaults to the time 30 days ago. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
-  max_timestamp?: string;
-}
-export const ApiInsightsGetSummaryStatsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    org: S.String.pipe(T.Label()),
-    min_timestamp: S.String.pipe(T.Query()),
-    max_timestamp: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/orgs/{org}/insights/api/summary-stats",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ApiInsightsGetSummaryStatsRequest",
-}) as any as S.Schema<ApiInsightsGetSummaryStatsRequest>;
-
-/** API Insights usage summary stats for an organization */
-export interface ApiInsightsSummaryStats {
-  /** The total number of requests within the queried time period */
-  total_request_count?: number;
-  /** The total number of requests that were rate limited within the queried time period */
-  rate_limited_request_count?: number;
-}
-export const ApiInsightsSummaryStats = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    total_request_count: S.optional(S.Number),
-    rate_limited_request_count: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "ApiInsightsSummaryStats",
-}) as any as S.Schema<ApiInsightsSummaryStats>;
-
-export type ApiInsightsGetSummaryStatsByActorRequestActorType =
-  | "installation"
-  | "classic_pat"
-  | "fine_grained_pat"
-  | "oauth_app"
-  | "github_app_user_to_server";
-export const ApiInsightsGetSummaryStatsByActorRequestActorType =
-  /*@__PURE__*/ S.String;
-
-export interface ApiInsightsGetSummaryStatsByActorRequest {
-  /** The organization name. The name is not case sensitive. */
-  org: string;
-  /** The type of the actor */
-  actor_type: ApiInsightsGetSummaryStatsByActorRequestActorType | (string & {});
-  /** The ID of the actor */
-  actor_id: number;
-  /** The minimum timestamp to query for stats. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
-  min_timestamp: string;
-  /** The maximum timestamp to query for stats. Defaults to the time 30 days ago. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
-  max_timestamp?: string;
-}
-export const ApiInsightsGetSummaryStatsByActorRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      org: S.String.pipe(T.Label()),
-      actor_type: ApiInsightsGetSummaryStatsByActorRequestActorType.pipe(
-        T.Label(),
-      ),
-      actor_id: S.Number.pipe(T.Label()),
-      min_timestamp: S.String.pipe(T.Query()),
-      max_timestamp: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/orgs/{org}/insights/api/summary-stats/{actor_type}/{actor_id}",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "ApiInsightsGetSummaryStatsByActorRequest",
-}) as any as S.Schema<ApiInsightsGetSummaryStatsByActorRequest>;
-
-export interface ApiInsightsGetSummaryStatsByUserRequest {
-  /** The organization name. The name is not case sensitive. */
-  org: string;
-  /** The ID of the user to query for stats */
-  user_id: string;
-  /** The minimum timestamp to query for stats. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
-  min_timestamp: string;
-  /** The maximum timestamp to query for stats. Defaults to the time 30 days ago. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
-  max_timestamp?: string;
-}
-export const ApiInsightsGetSummaryStatsByUserRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      org: S.String.pipe(T.Label()),
-      user_id: S.String.pipe(T.Label()),
-      min_timestamp: S.String.pipe(T.Query()),
-      max_timestamp: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/orgs/{org}/insights/api/summary-stats/users/{user_id}",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "ApiInsightsGetSummaryStatsByUserRequest",
-}) as any as S.Schema<ApiInsightsGetSummaryStatsByUserRequest>;
-
-export interface ApiInsightsGetTimeStatsRequest {
-  /** The organization name. The name is not case sensitive. */
-  org: string;
-  /** The minimum timestamp to query for stats. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
-  min_timestamp: string;
-  /** The maximum timestamp to query for stats. Defaults to the time 30 days ago. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
-  max_timestamp?: string;
-  /** The increment of time used to breakdown the query results (5m, 10m, 1h, etc.) */
-  timestamp_increment: string;
-}
-export const ApiInsightsGetTimeStatsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    org: S.String.pipe(T.Label()),
-    min_timestamp: S.String.pipe(T.Query()),
-    max_timestamp: S.optional(S.String.pipe(T.Query())),
-    timestamp_increment: S.String.pipe(T.Query()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/orgs/{org}/insights/api/time-stats",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ApiInsightsGetTimeStatsRequest",
-}) as any as S.Schema<ApiInsightsGetTimeStatsRequest>;
-
-export interface ApiInsightsTimeStatsItem {
-  timestamp?: string;
-  total_request_count?: number;
-  rate_limited_request_count?: number;
-}
-export const ApiInsightsTimeStatsItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    timestamp: S.optional(S.String),
-    total_request_count: S.optional(S.Number),
-    rate_limited_request_count: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "ApiInsightsTimeStatsItem",
-}) as any as S.Schema<ApiInsightsTimeStatsItem>;
-
-/** API Insights usage time stats for an organization */
-export type ApiInsightsTimeStats = Array<ApiInsightsTimeStatsItem>;
-export const ApiInsightsTimeStats = /*@__PURE__*/ S.Array(
-  ApiInsightsTimeStatsItem,
-) as any as S.Schema<ApiInsightsTimeStats>;
-
-export type ApiInsightsGetTimeStatsResponse = ApiInsightsTimeStats;
-export const ApiInsightsGetTimeStatsResponse = /*@__PURE__*/ S.suspend(() =>
-  ApiInsightsTimeStats.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "ApiInsightsGetTimeStatsResponse",
-}) as any as S.Schema<ApiInsightsGetTimeStatsResponse>;
-
-export type ApiInsightsGetTimeStatsByActorRequestActorType =
-  | "installation"
-  | "classic_pat"
-  | "fine_grained_pat"
-  | "oauth_app"
-  | "github_app_user_to_server";
-export const ApiInsightsGetTimeStatsByActorRequestActorType =
-  /*@__PURE__*/ S.String;
-
-export interface ApiInsightsGetTimeStatsByActorRequest {
-  /** The organization name. The name is not case sensitive. */
-  org: string;
-  /** The type of the actor */
-  actor_type: ApiInsightsGetTimeStatsByActorRequestActorType | (string & {});
-  /** The ID of the actor */
-  actor_id: number;
-  /** The minimum timestamp to query for stats. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
-  min_timestamp: string;
-  /** The maximum timestamp to query for stats. Defaults to the time 30 days ago. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
-  max_timestamp?: string;
-  /** The increment of time used to breakdown the query results (5m, 10m, 1h, etc.) */
-  timestamp_increment: string;
-}
-export const ApiInsightsGetTimeStatsByActorRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      org: S.String.pipe(T.Label()),
-      actor_type: ApiInsightsGetTimeStatsByActorRequestActorType.pipe(
-        T.Label(),
-      ),
-      actor_id: S.Number.pipe(T.Label()),
-      min_timestamp: S.String.pipe(T.Query()),
-      max_timestamp: S.optional(S.String.pipe(T.Query())),
-      timestamp_increment: S.String.pipe(T.Query()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/orgs/{org}/insights/api/time-stats/{actor_type}/{actor_id}",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "ApiInsightsGetTimeStatsByActorRequest",
-}) as any as S.Schema<ApiInsightsGetTimeStatsByActorRequest>;
-
-export type ApiInsightsGetTimeStatsByActorResponse = ApiInsightsTimeStats;
-export const ApiInsightsGetTimeStatsByActorResponse = /*@__PURE__*/ S.suspend(
-  () => ApiInsightsTimeStats.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "ApiInsightsGetTimeStatsByActorResponse",
-}) as any as S.Schema<ApiInsightsGetTimeStatsByActorResponse>;
-
-export interface ApiInsightsGetTimeStatsByUserRequest {
-  /** The organization name. The name is not case sensitive. */
-  org: string;
-  /** The ID of the user to query for stats */
-  user_id: string;
-  /** The minimum timestamp to query for stats. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
-  min_timestamp: string;
-  /** The maximum timestamp to query for stats. Defaults to the time 30 days ago. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
-  max_timestamp?: string;
-  /** The increment of time used to breakdown the query results (5m, 10m, 1h, etc.) */
-  timestamp_increment: string;
-}
-export const ApiInsightsGetTimeStatsByUserRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      org: S.String.pipe(T.Label()),
-      user_id: S.String.pipe(T.Label()),
-      min_timestamp: S.String.pipe(T.Query()),
-      max_timestamp: S.optional(S.String.pipe(T.Query())),
-      timestamp_increment: S.String.pipe(T.Query()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/orgs/{org}/insights/api/time-stats/users/{user_id}",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "ApiInsightsGetTimeStatsByUserRequest",
-}) as any as S.Schema<ApiInsightsGetTimeStatsByUserRequest>;
-
-export type ApiInsightsGetTimeStatsByUserResponse = ApiInsightsTimeStats;
-export const ApiInsightsGetTimeStatsByUserResponse = /*@__PURE__*/ S.suspend(
-  () => ApiInsightsTimeStats.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "ApiInsightsGetTimeStatsByUserResponse",
-}) as any as S.Schema<ApiInsightsGetTimeStatsByUserResponse>;
-
-export type ApiInsightsGetUserStatsRequestDirection = "asc" | "desc";
-export const ApiInsightsGetUserStatsRequestDirection = /*@__PURE__*/ S.String;
-
-export type ApiInsightsGetUserStatsRequestSortItem =
-  | "last_rate_limited_timestamp"
-  | "last_request_timestamp"
-  | "rate_limited_request_count"
-  | "subject_name"
-  | "total_request_count";
-export const ApiInsightsGetUserStatsRequestSortItem = /*@__PURE__*/ S.String;
-
-export type ApiInsightsGetUserStatsRequestSortList = Array<
-  ApiInsightsGetUserStatsRequestSortItem | (string & {})
->;
-export const ApiInsightsGetUserStatsRequestSortList = /*@__PURE__*/ S.Array(
-  ApiInsightsGetUserStatsRequestSortItem,
-) as any as S.Schema<ApiInsightsGetUserStatsRequestSortList>;
-
-export interface ApiInsightsGetUserStatsRequest {
-  /** The organization name. The name is not case sensitive. */
-  org: string;
-  /** The ID of the user to query for stats */
-  user_id: string;
-  /** The minimum timestamp to query for stats. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
-  min_timestamp: string;
-  /** The maximum timestamp to query for stats. Defaults to the time 30 days ago. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
-  max_timestamp?: string;
-  /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
-  page?: number;
-  /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
-  per_page?: number;
-  /** The direction to sort the results by. */
-  direction?: ApiInsightsGetUserStatsRequestDirection | (string & {});
-  /** The property to sort the results by. */
-  sort?: ApiInsightsGetUserStatsRequestSortList;
-  /** Providing a substring will filter results where the actor name contains the substring. This is a case-insensitive search. */
-  actor_name_substring?: string;
-}
-export const ApiInsightsGetUserStatsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    org: S.String.pipe(T.Label()),
-    user_id: S.String.pipe(T.Label()),
-    min_timestamp: S.String.pipe(T.Query()),
-    max_timestamp: S.optional(S.String.pipe(T.Query())),
-    page: S.optional(S.Number.pipe(T.Query())),
-    per_page: S.optional(S.Number.pipe(T.Query())),
-    direction: S.optional(
-      ApiInsightsGetUserStatsRequestDirection.pipe(T.Query()),
-    ),
-    sort: S.optional(ApiInsightsGetUserStatsRequestSortList.pipe(T.Query())),
-    actor_name_substring: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/orgs/{org}/insights/api/user-stats/{user_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ApiInsightsGetUserStatsRequest",
-}) as any as S.Schema<ApiInsightsGetUserStatsRequest>;
-
-export interface ApiInsightsUserStatsItem {
-  actor_type?: string;
-  actor_name?: string;
-  actor_id?: number;
-  integration_id?: number | null;
-  oauth_application_id?: number | null;
-  total_request_count?: number;
-  rate_limited_request_count?: number;
-  last_rate_limited_timestamp?: string | null;
-  last_request_timestamp?: string;
-}
-export const ApiInsightsUserStatsItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    actor_type: S.optional(S.String),
-    actor_name: S.optional(S.String),
-    actor_id: S.optional(S.Number),
-    integration_id: S.optional(S.NullOr(S.Number)),
-    oauth_application_id: S.optional(S.NullOr(S.Number)),
-    total_request_count: S.optional(S.Number),
-    rate_limited_request_count: S.optional(S.Number),
-    last_rate_limited_timestamp: S.optional(S.NullOr(S.String)),
-    last_request_timestamp: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ApiInsightsUserStatsItem",
-}) as any as S.Schema<ApiInsightsUserStatsItem>;
-
-/** API Insights usage stats for a user */
-export type ApiInsightsUserStats = Array<ApiInsightsUserStatsItem>;
-export const ApiInsightsUserStats = /*@__PURE__*/ S.Array(
-  ApiInsightsUserStatsItem,
-) as any as S.Schema<ApiInsightsUserStats>;
-
-export type ApiInsightsGetUserStatsResponse = ApiInsightsUserStats;
-export const ApiInsightsGetUserStatsResponse = /*@__PURE__*/ S.suspend(() =>
-  ApiInsightsUserStats.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "ApiInsightsGetUserStatsResponse",
-}) as any as S.Schema<ApiInsightsGetUserStatsResponse>;
-
 export interface AssignTeamToOrgRoleRequest {
   /** The organization name. The name is not case sensitive. */
   org: string;
@@ -717,6 +143,54 @@ export const BlockUserResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "BlockUserResponse",
 }) as any as S.Schema<BlockUserResponse>;
+
+/** Unique identifiers of the requests for access via fine-grained personal access token. Must be formed of between 1 and 100 `pat_request_id` values. */
+export type BulkReviewPatGrantRequestsInRequestPatRequestIdsList =
+  Array<number>;
+export const BulkReviewPatGrantRequestsInRequestPatRequestIdsList =
+  /*@__PURE__*/ S.Array(
+    S.Number,
+  ) as any as S.Schema<BulkReviewPatGrantRequestsInRequestPatRequestIdsList>;
+
+/** Action to apply to the requests. */
+export type BulkReviewPatGrantRequestsInRequestAction = "approve" | "deny";
+export const BulkReviewPatGrantRequestsInRequestAction = /*@__PURE__*/ S.String;
+
+export interface BulkReviewPatGrantRequestsInRequest {
+  /** The organization name. The name is not case sensitive. */
+  org: string;
+  /** Unique identifiers of the requests for access via fine-grained personal access token. Must be formed of between 1 and 100 `pat_request_id` values. */
+  pat_request_ids?: BulkReviewPatGrantRequestsInRequestPatRequestIdsList;
+  /** Action to apply to the requests. */
+  action: BulkReviewPatGrantRequestsInRequestAction | (string & {});
+  /** Reason for approving or denying the requests. Max 1024 characters. */
+  reason?: string | null;
+}
+export const BulkReviewPatGrantRequestsInRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    org: S.String.pipe(T.Label()),
+    pat_request_ids: S.optional(
+      BulkReviewPatGrantRequestsInRequestPatRequestIdsList,
+    ),
+    action: BulkReviewPatGrantRequestsInRequestAction,
+    reason: S.optional(S.NullOr(S.String)),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/orgs/{org}/personal-access-token-requests",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "BulkReviewPatGrantRequestsInRequest",
+}) as any as S.Schema<BulkReviewPatGrantRequestsInRequest>;
+
+export interface BulkReviewPatGrantRequestsInResponse {}
+export const BulkReviewPatGrantRequestsInResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "BulkReviewPatGrantRequestsInResponse",
+}) as any as S.Schema<BulkReviewPatGrantRequestsInResponse>;
 
 export interface CancelInvitationRequest {
   /** The organization name. The name is not case sensitive. */
@@ -2682,6 +2156,576 @@ export const OrganizationFull = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "OrganizationFull",
 }) as any as S.Schema<OrganizationFull>;
+
+export type GetApiInsightRouteStatsByActorRequestActorType =
+  | "installation"
+  | "classic_pat"
+  | "fine_grained_pat"
+  | "oauth_app"
+  | "github_app_user_to_server";
+export const GetApiInsightRouteStatsByActorRequestActorType =
+  /*@__PURE__*/ S.String;
+
+export type GetApiInsightRouteStatsByActorRequestDirection = "asc" | "desc";
+export const GetApiInsightRouteStatsByActorRequestDirection =
+  /*@__PURE__*/ S.String;
+
+export type GetApiInsightRouteStatsByActorRequestSortItem =
+  | "last_rate_limited_timestamp"
+  | "last_request_timestamp"
+  | "rate_limited_request_count"
+  | "http_method"
+  | "api_route"
+  | "total_request_count";
+export const GetApiInsightRouteStatsByActorRequestSortItem =
+  /*@__PURE__*/ S.String;
+
+export type GetApiInsightRouteStatsByActorRequestSortList = Array<
+  GetApiInsightRouteStatsByActorRequestSortItem | (string & {})
+>;
+export const GetApiInsightRouteStatsByActorRequestSortList =
+  /*@__PURE__*/ S.Array(
+    GetApiInsightRouteStatsByActorRequestSortItem,
+  ) as any as S.Schema<GetApiInsightRouteStatsByActorRequestSortList>;
+
+export interface GetApiInsightRouteStatsByActorRequest {
+  /** The organization name. The name is not case sensitive. */
+  org: string;
+  /** The type of the actor */
+  actor_type: GetApiInsightRouteStatsByActorRequestActorType | (string & {});
+  /** The ID of the actor */
+  actor_id: number;
+  /** The minimum timestamp to query for stats. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
+  min_timestamp: string;
+  /** The maximum timestamp to query for stats. Defaults to the time 30 days ago. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
+  max_timestamp?: string;
+  /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
+  page?: number;
+  /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
+  per_page?: number;
+  /** The direction to sort the results by. */
+  direction?: GetApiInsightRouteStatsByActorRequestDirection | (string & {});
+  /** The property to sort the results by. */
+  sort?: GetApiInsightRouteStatsByActorRequestSortList;
+  /** Providing a substring will filter results where the API route contains the substring. This is a case-insensitive search. */
+  api_route_substring?: string;
+}
+export const GetApiInsightRouteStatsByActorRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      org: S.String.pipe(T.Label()),
+      actor_type: GetApiInsightRouteStatsByActorRequestActorType.pipe(
+        T.Label(),
+      ),
+      actor_id: S.Number.pipe(T.Label()),
+      min_timestamp: S.String.pipe(T.Query()),
+      max_timestamp: S.optional(S.String.pipe(T.Query())),
+      page: S.optional(S.Number.pipe(T.Query())),
+      per_page: S.optional(S.Number.pipe(T.Query())),
+      direction: S.optional(
+        GetApiInsightRouteStatsByActorRequestDirection.pipe(T.Query()),
+      ),
+      sort: S.optional(
+        GetApiInsightRouteStatsByActorRequestSortList.pipe(T.Query()),
+      ),
+      api_route_substring: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/orgs/{org}/insights/api/route-stats/{actor_type}/{actor_id}",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "GetApiInsightRouteStatsByActorRequest",
+}) as any as S.Schema<GetApiInsightRouteStatsByActorRequest>;
+
+export interface ApiInsightsRouteStatsItem {
+  /** The HTTP method */
+  http_method?: string;
+  /** The API path's route template */
+  api_route?: string;
+  /** The total number of requests within the queried time period */
+  total_request_count?: number;
+  /** The total number of requests that were rate limited within the queried time period */
+  rate_limited_request_count?: number;
+  last_rate_limited_timestamp?: string | null;
+  last_request_timestamp?: string;
+}
+export const ApiInsightsRouteStatsItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    http_method: S.optional(S.String),
+    api_route: S.optional(S.String),
+    total_request_count: S.optional(S.Number),
+    rate_limited_request_count: S.optional(S.Number),
+    last_rate_limited_timestamp: S.optional(S.NullOr(S.String)),
+    last_request_timestamp: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ApiInsightsRouteStatsItem",
+}) as any as S.Schema<ApiInsightsRouteStatsItem>;
+
+/** API Insights usage route stats for an actor */
+export type ApiInsightsRouteStats = Array<ApiInsightsRouteStatsItem>;
+export const ApiInsightsRouteStats = /*@__PURE__*/ S.Array(
+  ApiInsightsRouteStatsItem,
+) as any as S.Schema<ApiInsightsRouteStats>;
+
+export type GetApiInsightRouteStatsByActorResponse = ApiInsightsRouteStats;
+export const GetApiInsightRouteStatsByActorResponse = /*@__PURE__*/ S.suspend(
+  () => ApiInsightsRouteStats.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "GetApiInsightRouteStatsByActorResponse",
+}) as any as S.Schema<GetApiInsightRouteStatsByActorResponse>;
+
+export type GetApiInsightSubjectStatsRequestDirection = "asc" | "desc";
+export const GetApiInsightSubjectStatsRequestDirection = /*@__PURE__*/ S.String;
+
+export type GetApiInsightSubjectStatsRequestSortItem =
+  | "last_rate_limited_timestamp"
+  | "last_request_timestamp"
+  | "rate_limited_request_count"
+  | "subject_name"
+  | "total_request_count";
+export const GetApiInsightSubjectStatsRequestSortItem = /*@__PURE__*/ S.String;
+
+export type GetApiInsightSubjectStatsRequestSortList = Array<
+  GetApiInsightSubjectStatsRequestSortItem | (string & {})
+>;
+export const GetApiInsightSubjectStatsRequestSortList = /*@__PURE__*/ S.Array(
+  GetApiInsightSubjectStatsRequestSortItem,
+) as any as S.Schema<GetApiInsightSubjectStatsRequestSortList>;
+
+export interface GetApiInsightSubjectStatsRequest {
+  /** The organization name. The name is not case sensitive. */
+  org: string;
+  /** The minimum timestamp to query for stats. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
+  min_timestamp: string;
+  /** The maximum timestamp to query for stats. Defaults to the time 30 days ago. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
+  max_timestamp?: string;
+  /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
+  page?: number;
+  /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
+  per_page?: number;
+  /** The direction to sort the results by. */
+  direction?: GetApiInsightSubjectStatsRequestDirection | (string & {});
+  /** The property to sort the results by. */
+  sort?: GetApiInsightSubjectStatsRequestSortList;
+  /** Providing a substring will filter results where the subject name contains the substring. This is a case-insensitive search. */
+  subject_name_substring?: string;
+}
+export const GetApiInsightSubjectStatsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    org: S.String.pipe(T.Label()),
+    min_timestamp: S.String.pipe(T.Query()),
+    max_timestamp: S.optional(S.String.pipe(T.Query())),
+    page: S.optional(S.Number.pipe(T.Query())),
+    per_page: S.optional(S.Number.pipe(T.Query())),
+    direction: S.optional(
+      GetApiInsightSubjectStatsRequestDirection.pipe(T.Query()),
+    ),
+    sort: S.optional(GetApiInsightSubjectStatsRequestSortList.pipe(T.Query())),
+    subject_name_substring: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/orgs/{org}/insights/api/subject-stats",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetApiInsightSubjectStatsRequest",
+}) as any as S.Schema<GetApiInsightSubjectStatsRequest>;
+
+export interface ApiInsightsSubjectStatsItem {
+  subject_type?: string;
+  subject_name?: string;
+  subject_id?: number;
+  total_request_count?: number;
+  rate_limited_request_count?: number;
+  last_rate_limited_timestamp?: string | null;
+  last_request_timestamp?: string;
+}
+export const ApiInsightsSubjectStatsItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subject_type: S.optional(S.String),
+    subject_name: S.optional(S.String),
+    subject_id: S.optional(S.Number),
+    total_request_count: S.optional(S.Number),
+    rate_limited_request_count: S.optional(S.Number),
+    last_rate_limited_timestamp: S.optional(S.NullOr(S.String)),
+    last_request_timestamp: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ApiInsightsSubjectStatsItem",
+}) as any as S.Schema<ApiInsightsSubjectStatsItem>;
+
+/** API Insights usage subject stats for an organization */
+export type ApiInsightsSubjectStats = Array<ApiInsightsSubjectStatsItem>;
+export const ApiInsightsSubjectStats = /*@__PURE__*/ S.Array(
+  ApiInsightsSubjectStatsItem,
+) as any as S.Schema<ApiInsightsSubjectStats>;
+
+export type GetApiInsightSubjectStatsResponse = ApiInsightsSubjectStats;
+export const GetApiInsightSubjectStatsResponse = /*@__PURE__*/ S.suspend(() =>
+  ApiInsightsSubjectStats.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "GetApiInsightSubjectStatsResponse",
+}) as any as S.Schema<GetApiInsightSubjectStatsResponse>;
+
+export interface GetApiInsightSummaryStatsRequest {
+  /** The organization name. The name is not case sensitive. */
+  org: string;
+  /** The minimum timestamp to query for stats. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
+  min_timestamp: string;
+  /** The maximum timestamp to query for stats. Defaults to the time 30 days ago. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
+  max_timestamp?: string;
+}
+export const GetApiInsightSummaryStatsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    org: S.String.pipe(T.Label()),
+    min_timestamp: S.String.pipe(T.Query()),
+    max_timestamp: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/orgs/{org}/insights/api/summary-stats",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetApiInsightSummaryStatsRequest",
+}) as any as S.Schema<GetApiInsightSummaryStatsRequest>;
+
+/** API Insights usage summary stats for an organization */
+export interface ApiInsightsSummaryStats {
+  /** The total number of requests within the queried time period */
+  total_request_count?: number;
+  /** The total number of requests that were rate limited within the queried time period */
+  rate_limited_request_count?: number;
+}
+export const ApiInsightsSummaryStats = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    total_request_count: S.optional(S.Number),
+    rate_limited_request_count: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "ApiInsightsSummaryStats",
+}) as any as S.Schema<ApiInsightsSummaryStats>;
+
+export type GetApiInsightSummaryStatsByActorRequestActorType =
+  | "installation"
+  | "classic_pat"
+  | "fine_grained_pat"
+  | "oauth_app"
+  | "github_app_user_to_server";
+export const GetApiInsightSummaryStatsByActorRequestActorType =
+  /*@__PURE__*/ S.String;
+
+export interface GetApiInsightSummaryStatsByActorRequest {
+  /** The organization name. The name is not case sensitive. */
+  org: string;
+  /** The type of the actor */
+  actor_type: GetApiInsightSummaryStatsByActorRequestActorType | (string & {});
+  /** The ID of the actor */
+  actor_id: number;
+  /** The minimum timestamp to query for stats. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
+  min_timestamp: string;
+  /** The maximum timestamp to query for stats. Defaults to the time 30 days ago. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
+  max_timestamp?: string;
+}
+export const GetApiInsightSummaryStatsByActorRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      org: S.String.pipe(T.Label()),
+      actor_type: GetApiInsightSummaryStatsByActorRequestActorType.pipe(
+        T.Label(),
+      ),
+      actor_id: S.Number.pipe(T.Label()),
+      min_timestamp: S.String.pipe(T.Query()),
+      max_timestamp: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/orgs/{org}/insights/api/summary-stats/{actor_type}/{actor_id}",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "GetApiInsightSummaryStatsByActorRequest",
+}) as any as S.Schema<GetApiInsightSummaryStatsByActorRequest>;
+
+export interface GetApiInsightSummaryStatsByUserRequest {
+  /** The organization name. The name is not case sensitive. */
+  org: string;
+  /** The ID of the user to query for stats */
+  user_id: string;
+  /** The minimum timestamp to query for stats. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
+  min_timestamp: string;
+  /** The maximum timestamp to query for stats. Defaults to the time 30 days ago. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
+  max_timestamp?: string;
+}
+export const GetApiInsightSummaryStatsByUserRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      org: S.String.pipe(T.Label()),
+      user_id: S.String.pipe(T.Label()),
+      min_timestamp: S.String.pipe(T.Query()),
+      max_timestamp: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/orgs/{org}/insights/api/summary-stats/users/{user_id}",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "GetApiInsightSummaryStatsByUserRequest",
+}) as any as S.Schema<GetApiInsightSummaryStatsByUserRequest>;
+
+export interface GetApiInsightTimeStatsRequest {
+  /** The organization name. The name is not case sensitive. */
+  org: string;
+  /** The minimum timestamp to query for stats. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
+  min_timestamp: string;
+  /** The maximum timestamp to query for stats. Defaults to the time 30 days ago. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
+  max_timestamp?: string;
+  /** The increment of time used to breakdown the query results (5m, 10m, 1h, etc.) */
+  timestamp_increment: string;
+}
+export const GetApiInsightTimeStatsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    org: S.String.pipe(T.Label()),
+    min_timestamp: S.String.pipe(T.Query()),
+    max_timestamp: S.optional(S.String.pipe(T.Query())),
+    timestamp_increment: S.String.pipe(T.Query()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/orgs/{org}/insights/api/time-stats",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetApiInsightTimeStatsRequest",
+}) as any as S.Schema<GetApiInsightTimeStatsRequest>;
+
+export interface ApiInsightsTimeStatsItem {
+  timestamp?: string;
+  total_request_count?: number;
+  rate_limited_request_count?: number;
+}
+export const ApiInsightsTimeStatsItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    timestamp: S.optional(S.String),
+    total_request_count: S.optional(S.Number),
+    rate_limited_request_count: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "ApiInsightsTimeStatsItem",
+}) as any as S.Schema<ApiInsightsTimeStatsItem>;
+
+/** API Insights usage time stats for an organization */
+export type ApiInsightsTimeStats = Array<ApiInsightsTimeStatsItem>;
+export const ApiInsightsTimeStats = /*@__PURE__*/ S.Array(
+  ApiInsightsTimeStatsItem,
+) as any as S.Schema<ApiInsightsTimeStats>;
+
+export type GetApiInsightTimeStatsResponse = ApiInsightsTimeStats;
+export const GetApiInsightTimeStatsResponse = /*@__PURE__*/ S.suspend(() =>
+  ApiInsightsTimeStats.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "GetApiInsightTimeStatsResponse",
+}) as any as S.Schema<GetApiInsightTimeStatsResponse>;
+
+export type GetApiInsightTimeStatsByActorRequestActorType =
+  | "installation"
+  | "classic_pat"
+  | "fine_grained_pat"
+  | "oauth_app"
+  | "github_app_user_to_server";
+export const GetApiInsightTimeStatsByActorRequestActorType =
+  /*@__PURE__*/ S.String;
+
+export interface GetApiInsightTimeStatsByActorRequest {
+  /** The organization name. The name is not case sensitive. */
+  org: string;
+  /** The type of the actor */
+  actor_type: GetApiInsightTimeStatsByActorRequestActorType | (string & {});
+  /** The ID of the actor */
+  actor_id: number;
+  /** The minimum timestamp to query for stats. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
+  min_timestamp: string;
+  /** The maximum timestamp to query for stats. Defaults to the time 30 days ago. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
+  max_timestamp?: string;
+  /** The increment of time used to breakdown the query results (5m, 10m, 1h, etc.) */
+  timestamp_increment: string;
+}
+export const GetApiInsightTimeStatsByActorRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      org: S.String.pipe(T.Label()),
+      actor_type: GetApiInsightTimeStatsByActorRequestActorType.pipe(T.Label()),
+      actor_id: S.Number.pipe(T.Label()),
+      min_timestamp: S.String.pipe(T.Query()),
+      max_timestamp: S.optional(S.String.pipe(T.Query())),
+      timestamp_increment: S.String.pipe(T.Query()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/orgs/{org}/insights/api/time-stats/{actor_type}/{actor_id}",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "GetApiInsightTimeStatsByActorRequest",
+}) as any as S.Schema<GetApiInsightTimeStatsByActorRequest>;
+
+export type GetApiInsightTimeStatsByActorResponse = ApiInsightsTimeStats;
+export const GetApiInsightTimeStatsByActorResponse = /*@__PURE__*/ S.suspend(
+  () => ApiInsightsTimeStats.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "GetApiInsightTimeStatsByActorResponse",
+}) as any as S.Schema<GetApiInsightTimeStatsByActorResponse>;
+
+export interface GetApiInsightTimeStatsByUserRequest {
+  /** The organization name. The name is not case sensitive. */
+  org: string;
+  /** The ID of the user to query for stats */
+  user_id: string;
+  /** The minimum timestamp to query for stats. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
+  min_timestamp: string;
+  /** The maximum timestamp to query for stats. Defaults to the time 30 days ago. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
+  max_timestamp?: string;
+  /** The increment of time used to breakdown the query results (5m, 10m, 1h, etc.) */
+  timestamp_increment: string;
+}
+export const GetApiInsightTimeStatsByUserRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    org: S.String.pipe(T.Label()),
+    user_id: S.String.pipe(T.Label()),
+    min_timestamp: S.String.pipe(T.Query()),
+    max_timestamp: S.optional(S.String.pipe(T.Query())),
+    timestamp_increment: S.String.pipe(T.Query()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/orgs/{org}/insights/api/time-stats/users/{user_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetApiInsightTimeStatsByUserRequest",
+}) as any as S.Schema<GetApiInsightTimeStatsByUserRequest>;
+
+export type GetApiInsightTimeStatsByUserResponse = ApiInsightsTimeStats;
+export const GetApiInsightTimeStatsByUserResponse = /*@__PURE__*/ S.suspend(
+  () => ApiInsightsTimeStats.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "GetApiInsightTimeStatsByUserResponse",
+}) as any as S.Schema<GetApiInsightTimeStatsByUserResponse>;
+
+export type GetApiInsightUserStatsRequestDirection = "asc" | "desc";
+export const GetApiInsightUserStatsRequestDirection = /*@__PURE__*/ S.String;
+
+export type GetApiInsightUserStatsRequestSortItem =
+  | "last_rate_limited_timestamp"
+  | "last_request_timestamp"
+  | "rate_limited_request_count"
+  | "subject_name"
+  | "total_request_count";
+export const GetApiInsightUserStatsRequestSortItem = /*@__PURE__*/ S.String;
+
+export type GetApiInsightUserStatsRequestSortList = Array<
+  GetApiInsightUserStatsRequestSortItem | (string & {})
+>;
+export const GetApiInsightUserStatsRequestSortList = /*@__PURE__*/ S.Array(
+  GetApiInsightUserStatsRequestSortItem,
+) as any as S.Schema<GetApiInsightUserStatsRequestSortList>;
+
+export interface GetApiInsightUserStatsRequest {
+  /** The organization name. The name is not case sensitive. */
+  org: string;
+  /** The ID of the user to query for stats */
+  user_id: string;
+  /** The minimum timestamp to query for stats. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
+  min_timestamp: string;
+  /** The maximum timestamp to query for stats. Defaults to the time 30 days ago. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
+  max_timestamp?: string;
+  /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
+  page?: number;
+  /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
+  per_page?: number;
+  /** The direction to sort the results by. */
+  direction?: GetApiInsightUserStatsRequestDirection | (string & {});
+  /** The property to sort the results by. */
+  sort?: GetApiInsightUserStatsRequestSortList;
+  /** Providing a substring will filter results where the actor name contains the substring. This is a case-insensitive search. */
+  actor_name_substring?: string;
+}
+export const GetApiInsightUserStatsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    org: S.String.pipe(T.Label()),
+    user_id: S.String.pipe(T.Label()),
+    min_timestamp: S.String.pipe(T.Query()),
+    max_timestamp: S.optional(S.String.pipe(T.Query())),
+    page: S.optional(S.Number.pipe(T.Query())),
+    per_page: S.optional(S.Number.pipe(T.Query())),
+    direction: S.optional(
+      GetApiInsightUserStatsRequestDirection.pipe(T.Query()),
+    ),
+    sort: S.optional(GetApiInsightUserStatsRequestSortList.pipe(T.Query())),
+    actor_name_substring: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/orgs/{org}/insights/api/user-stats/{user_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetApiInsightUserStatsRequest",
+}) as any as S.Schema<GetApiInsightUserStatsRequest>;
+
+export interface ApiInsightsUserStatsItem {
+  actor_type?: string;
+  actor_name?: string;
+  actor_id?: number;
+  integration_id?: number | null;
+  oauth_application_id?: number | null;
+  total_request_count?: number;
+  rate_limited_request_count?: number;
+  last_rate_limited_timestamp?: string | null;
+  last_request_timestamp?: string;
+}
+export const ApiInsightsUserStatsItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    actor_type: S.optional(S.String),
+    actor_name: S.optional(S.String),
+    actor_id: S.optional(S.Number),
+    integration_id: S.optional(S.NullOr(S.Number)),
+    oauth_application_id: S.optional(S.NullOr(S.Number)),
+    total_request_count: S.optional(S.Number),
+    rate_limited_request_count: S.optional(S.Number),
+    last_rate_limited_timestamp: S.optional(S.NullOr(S.String)),
+    last_request_timestamp: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ApiInsightsUserStatsItem",
+}) as any as S.Schema<ApiInsightsUserStatsItem>;
+
+/** API Insights usage stats for a user */
+export type ApiInsightsUserStats = Array<ApiInsightsUserStatsItem>;
+export const ApiInsightsUserStats = /*@__PURE__*/ S.Array(
+  ApiInsightsUserStatsItem,
+) as any as S.Schema<ApiInsightsUserStats>;
+
+export type GetApiInsightUserStatsResponse = ApiInsightsUserStats;
+export const GetApiInsightUserStatsResponse = /*@__PURE__*/ S.suspend(() =>
+  ApiInsightsUserStats.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "GetApiInsightUserStatsResponse",
+}) as any as S.Schema<GetApiInsightUserStatsResponse>;
 
 export interface GetClusterDeploymentRecordsJobRequest {
   /** The organization name. The name is not case sensitive. */
@@ -6588,54 +6632,6 @@ export const ReviewPatGrantRequestResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ReviewPatGrantRequestResponse",
 }) as any as S.Schema<ReviewPatGrantRequestResponse>;
 
-/** Unique identifiers of the requests for access via fine-grained personal access token. Must be formed of between 1 and 100 `pat_request_id` values. */
-export type ReviewPatGrantRequestsInBulkRequestPatRequestIdsList =
-  Array<number>;
-export const ReviewPatGrantRequestsInBulkRequestPatRequestIdsList =
-  /*@__PURE__*/ S.Array(
-    S.Number,
-  ) as any as S.Schema<ReviewPatGrantRequestsInBulkRequestPatRequestIdsList>;
-
-/** Action to apply to the requests. */
-export type ReviewPatGrantRequestsInBulkRequestAction = "approve" | "deny";
-export const ReviewPatGrantRequestsInBulkRequestAction = /*@__PURE__*/ S.String;
-
-export interface ReviewPatGrantRequestsInBulkRequest {
-  /** The organization name. The name is not case sensitive. */
-  org: string;
-  /** Unique identifiers of the requests for access via fine-grained personal access token. Must be formed of between 1 and 100 `pat_request_id` values. */
-  pat_request_ids?: ReviewPatGrantRequestsInBulkRequestPatRequestIdsList;
-  /** Action to apply to the requests. */
-  action: ReviewPatGrantRequestsInBulkRequestAction | (string & {});
-  /** Reason for approving or denying the requests. Max 1024 characters. */
-  reason?: string | null;
-}
-export const ReviewPatGrantRequestsInBulkRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    org: S.String.pipe(T.Label()),
-    pat_request_ids: S.optional(
-      ReviewPatGrantRequestsInBulkRequestPatRequestIdsList,
-    ),
-    action: ReviewPatGrantRequestsInBulkRequestAction,
-    reason: S.optional(S.NullOr(S.String)),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/orgs/{org}/personal-access-token-requests",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ReviewPatGrantRequestsInBulkRequest",
-}) as any as S.Schema<ReviewPatGrantRequestsInBulkRequest>;
-
-export interface ReviewPatGrantRequestsInBulkResponse {}
-export const ReviewPatGrantRequestsInBulkResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "ReviewPatGrantRequestsInBulkResponse",
-}) as any as S.Schema<ReviewPatGrantRequestsInBulkResponse>;
-
 export interface RevokeAllOrgRolesTeamRequest {
   /** The organization name. The name is not case sensitive. */
   org: string;
@@ -7510,141 +7506,6 @@ export const UpdateWebhookConfigForOrgRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateWebhookConfigForOrgRequest",
 }) as any as S.Schema<UpdateWebhookConfigForOrgRequest>;
 
-export type ApiInsightsGetRouteStatsByActorError = GithubOpError;
-/** Get route stats by actor Get API request count statistics for an actor broken down by route within a specified time frame. Under normal conditions, you can expect API data to appear within 4–6 hours after making a request. During incidents or periods of unusually high volume, it may take longer to show up. */
-export const apiInsightsGetRouteStatsByActor: API.OperationMethod<
-  ApiInsightsGetRouteStatsByActorRequest,
-  ApiInsightsGetRouteStatsByActorResponse,
-  ApiInsightsGetRouteStatsByActorError,
-  GithubOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApiInsightsGetRouteStatsByActorRequest,
-  output: ApiInsightsGetRouteStatsByActorResponse,
-  errors: [],
-  protocol: GithubProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApiInsightsGetSubjectStatsError = GithubOpError;
-/** Get subject stats Get API request statistics for all subjects within an organization within a specified time frame. Subjects can be users or GitHub Apps. Under normal conditions, you can expect API data to appear within 4–6 hours after making a request. During incidents or periods of unusually high volume, it may take longer to show up. */
-export const apiInsightsGetSubjectStats: API.OperationMethod<
-  ApiInsightsGetSubjectStatsRequest,
-  ApiInsightsGetSubjectStatsResponse,
-  ApiInsightsGetSubjectStatsError,
-  GithubOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApiInsightsGetSubjectStatsRequest,
-  output: ApiInsightsGetSubjectStatsResponse,
-  errors: [],
-  protocol: GithubProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApiInsightsGetSummaryStatsError = GithubOpError;
-/** Get summary stats Get overall statistics of API requests made within an organization by all users and apps within a specified time frame. Under normal conditions, you can expect API data to appear within 4–6 hours after making a request. During incidents or periods of unusually high volume, it may take longer to show up. */
-export const apiInsightsGetSummaryStats: API.OperationMethod<
-  ApiInsightsGetSummaryStatsRequest,
-  ApiInsightsSummaryStats,
-  ApiInsightsGetSummaryStatsError,
-  GithubOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApiInsightsGetSummaryStatsRequest,
-  output: ApiInsightsSummaryStats,
-  errors: [],
-  protocol: GithubProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApiInsightsGetSummaryStatsByActorError = GithubOpError;
-/** Get summary stats by actor Get overall statistics of API requests within the organization made by a specific actor. Actors can be GitHub App installations, OAuth apps or other tokens on behalf of a user. Under normal conditions, you can expect API data to appear within 4–6 hours after making a request. During incidents or periods of unusually high volume, it may take longer to show up. */
-export const apiInsightsGetSummaryStatsByActor: API.OperationMethod<
-  ApiInsightsGetSummaryStatsByActorRequest,
-  ApiInsightsSummaryStats,
-  ApiInsightsGetSummaryStatsByActorError,
-  GithubOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApiInsightsGetSummaryStatsByActorRequest,
-  output: ApiInsightsSummaryStats,
-  errors: [],
-  protocol: GithubProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApiInsightsGetSummaryStatsByUserError = GithubOpError;
-/** Get summary stats by user Get overall statistics of API requests within the organization for a user. Under normal conditions, you can expect API data to appear within 4–6 hours after making a request. During incidents or periods of unusually high volume, it may take longer to show up. */
-export const apiInsightsGetSummaryStatsByUser: API.OperationMethod<
-  ApiInsightsGetSummaryStatsByUserRequest,
-  ApiInsightsSummaryStats,
-  ApiInsightsGetSummaryStatsByUserError,
-  GithubOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApiInsightsGetSummaryStatsByUserRequest,
-  output: ApiInsightsSummaryStats,
-  errors: [],
-  protocol: GithubProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApiInsightsGetTimeStatsError = GithubOpError;
-/** Get time stats Get the number of API requests and rate-limited requests made within an organization over a specified time period. Under normal conditions, you can expect API data to appear within 4–6 hours after making a request. During incidents or periods of unusually high volume, it may take longer to show up. */
-export const apiInsightsGetTimeStats: API.OperationMethod<
-  ApiInsightsGetTimeStatsRequest,
-  ApiInsightsGetTimeStatsResponse,
-  ApiInsightsGetTimeStatsError,
-  GithubOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApiInsightsGetTimeStatsRequest,
-  output: ApiInsightsGetTimeStatsResponse,
-  errors: [],
-  protocol: GithubProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApiInsightsGetTimeStatsByActorError = GithubOpError;
-/** Get time stats by actor Get the number of API requests and rate-limited requests made within an organization by a specific actor within a specified time period. Under normal conditions, you can expect API data to appear within 4–6 hours after making a request. During incidents or periods of unusually high volume, it may take longer to show up. */
-export const apiInsightsGetTimeStatsByActor: API.OperationMethod<
-  ApiInsightsGetTimeStatsByActorRequest,
-  ApiInsightsGetTimeStatsByActorResponse,
-  ApiInsightsGetTimeStatsByActorError,
-  GithubOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApiInsightsGetTimeStatsByActorRequest,
-  output: ApiInsightsGetTimeStatsByActorResponse,
-  errors: [],
-  protocol: GithubProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApiInsightsGetTimeStatsByUserError = GithubOpError;
-/** Get time stats by user Get the number of API requests and rate-limited requests made within an organization by a specific user over a specified time period. Under normal conditions, you can expect API data to appear within 4–6 hours after making a request. During incidents or periods of unusually high volume, it may take longer to show up. */
-export const apiInsightsGetTimeStatsByUser: API.OperationMethod<
-  ApiInsightsGetTimeStatsByUserRequest,
-  ApiInsightsGetTimeStatsByUserResponse,
-  ApiInsightsGetTimeStatsByUserError,
-  GithubOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApiInsightsGetTimeStatsByUserRequest,
-  output: ApiInsightsGetTimeStatsByUserResponse,
-  errors: [],
-  protocol: GithubProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApiInsightsGetUserStatsError = GithubOpError;
-/** Get user stats Get API usage statistics within an organization for a user broken down by the type of access. Under normal conditions, you can expect API data to appear within 4–6 hours after making a request. During incidents or periods of unusually high volume, it may take longer to show up. */
-export const apiInsightsGetUserStats: API.OperationMethod<
-  ApiInsightsGetUserStatsRequest,
-  ApiInsightsGetUserStatsResponse,
-  ApiInsightsGetUserStatsError,
-  GithubOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApiInsightsGetUserStatsRequest,
-  output: ApiInsightsGetUserStatsResponse,
-  errors: [],
-  protocol: GithubProtocol,
-  retry: Retry.Retry,
-}));
-
 export type AssignTeamToOrgRoleError =
   | NotFound
   | UnprocessableEntity
@@ -7692,6 +7553,25 @@ export const blockUser: API.OperationMethod<
   input: BlockUserRequest,
   output: BlockUserResponse,
   errors: [UnprocessableEntity],
+  protocol: GithubProtocol,
+  retry: Retry.Retry,
+}));
+
+export type BulkReviewPatGrantRequestsInError =
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | GithubOpError;
+/** Review requests to access organization resources with fine-grained personal access tokens Approves or denies multiple pending requests to access organization resources via a fine-grained personal access token. Only GitHub Apps can use this endpoint. */
+export const bulkReviewPatGrantRequestsIn: API.OperationMethod<
+  BulkReviewPatGrantRequestsInRequest,
+  BulkReviewPatGrantRequestsInResponse,
+  BulkReviewPatGrantRequestsInError,
+  GithubOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BulkReviewPatGrantRequestsInRequest,
+  output: BulkReviewPatGrantRequestsInResponse,
+  errors: [Forbidden, NotFound, UnprocessableEntity],
   protocol: GithubProtocol,
   retry: Retry.Retry,
 }));
@@ -8183,6 +8063,141 @@ export const get: API.OperationMethod<
   input: GetRequest,
   output: OrganizationFull,
   errors: [NotFound],
+  protocol: GithubProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetApiInsightRouteStatsByActorError = GithubOpError;
+/** Get route stats by actor Get API request count statistics for an actor broken down by route within a specified time frame. Under normal conditions, you can expect API data to appear within 4–6 hours after making a request. During incidents or periods of unusually high volume, it may take longer to show up. */
+export const getApiInsightRouteStatsByActor: API.OperationMethod<
+  GetApiInsightRouteStatsByActorRequest,
+  GetApiInsightRouteStatsByActorResponse,
+  GetApiInsightRouteStatsByActorError,
+  GithubOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetApiInsightRouteStatsByActorRequest,
+  output: GetApiInsightRouteStatsByActorResponse,
+  errors: [],
+  protocol: GithubProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetApiInsightSubjectStatsError = GithubOpError;
+/** Get subject stats Get API request statistics for all subjects within an organization within a specified time frame. Subjects can be users or GitHub Apps. Under normal conditions, you can expect API data to appear within 4–6 hours after making a request. During incidents or periods of unusually high volume, it may take longer to show up. */
+export const getApiInsightSubjectStats: API.OperationMethod<
+  GetApiInsightSubjectStatsRequest,
+  GetApiInsightSubjectStatsResponse,
+  GetApiInsightSubjectStatsError,
+  GithubOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetApiInsightSubjectStatsRequest,
+  output: GetApiInsightSubjectStatsResponse,
+  errors: [],
+  protocol: GithubProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetApiInsightSummaryStatsError = GithubOpError;
+/** Get summary stats Get overall statistics of API requests made within an organization by all users and apps within a specified time frame. Under normal conditions, you can expect API data to appear within 4–6 hours after making a request. During incidents or periods of unusually high volume, it may take longer to show up. */
+export const getApiInsightSummaryStats: API.OperationMethod<
+  GetApiInsightSummaryStatsRequest,
+  ApiInsightsSummaryStats,
+  GetApiInsightSummaryStatsError,
+  GithubOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetApiInsightSummaryStatsRequest,
+  output: ApiInsightsSummaryStats,
+  errors: [],
+  protocol: GithubProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetApiInsightSummaryStatsByActorError = GithubOpError;
+/** Get summary stats by actor Get overall statistics of API requests within the organization made by a specific actor. Actors can be GitHub App installations, OAuth apps or other tokens on behalf of a user. Under normal conditions, you can expect API data to appear within 4–6 hours after making a request. During incidents or periods of unusually high volume, it may take longer to show up. */
+export const getApiInsightSummaryStatsByActor: API.OperationMethod<
+  GetApiInsightSummaryStatsByActorRequest,
+  ApiInsightsSummaryStats,
+  GetApiInsightSummaryStatsByActorError,
+  GithubOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetApiInsightSummaryStatsByActorRequest,
+  output: ApiInsightsSummaryStats,
+  errors: [],
+  protocol: GithubProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetApiInsightSummaryStatsByUserError = GithubOpError;
+/** Get summary stats by user Get overall statistics of API requests within the organization for a user. Under normal conditions, you can expect API data to appear within 4–6 hours after making a request. During incidents or periods of unusually high volume, it may take longer to show up. */
+export const getApiInsightSummaryStatsByUser: API.OperationMethod<
+  GetApiInsightSummaryStatsByUserRequest,
+  ApiInsightsSummaryStats,
+  GetApiInsightSummaryStatsByUserError,
+  GithubOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetApiInsightSummaryStatsByUserRequest,
+  output: ApiInsightsSummaryStats,
+  errors: [],
+  protocol: GithubProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetApiInsightTimeStatsError = GithubOpError;
+/** Get time stats Get the number of API requests and rate-limited requests made within an organization over a specified time period. Under normal conditions, you can expect API data to appear within 4–6 hours after making a request. During incidents or periods of unusually high volume, it may take longer to show up. */
+export const getApiInsightTimeStats: API.OperationMethod<
+  GetApiInsightTimeStatsRequest,
+  GetApiInsightTimeStatsResponse,
+  GetApiInsightTimeStatsError,
+  GithubOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetApiInsightTimeStatsRequest,
+  output: GetApiInsightTimeStatsResponse,
+  errors: [],
+  protocol: GithubProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetApiInsightTimeStatsByActorError = GithubOpError;
+/** Get time stats by actor Get the number of API requests and rate-limited requests made within an organization by a specific actor within a specified time period. Under normal conditions, you can expect API data to appear within 4–6 hours after making a request. During incidents or periods of unusually high volume, it may take longer to show up. */
+export const getApiInsightTimeStatsByActor: API.OperationMethod<
+  GetApiInsightTimeStatsByActorRequest,
+  GetApiInsightTimeStatsByActorResponse,
+  GetApiInsightTimeStatsByActorError,
+  GithubOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetApiInsightTimeStatsByActorRequest,
+  output: GetApiInsightTimeStatsByActorResponse,
+  errors: [],
+  protocol: GithubProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetApiInsightTimeStatsByUserError = GithubOpError;
+/** Get time stats by user Get the number of API requests and rate-limited requests made within an organization by a specific user over a specified time period. Under normal conditions, you can expect API data to appear within 4–6 hours after making a request. During incidents or periods of unusually high volume, it may take longer to show up. */
+export const getApiInsightTimeStatsByUser: API.OperationMethod<
+  GetApiInsightTimeStatsByUserRequest,
+  GetApiInsightTimeStatsByUserResponse,
+  GetApiInsightTimeStatsByUserError,
+  GithubOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetApiInsightTimeStatsByUserRequest,
+  output: GetApiInsightTimeStatsByUserResponse,
+  errors: [],
+  protocol: GithubProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetApiInsightUserStatsError = GithubOpError;
+/** Get user stats Get API usage statistics within an organization for a user broken down by the type of access. Under normal conditions, you can expect API data to appear within 4–6 hours after making a request. During incidents or periods of unusually high volume, it may take longer to show up. */
+export const getApiInsightUserStats: API.OperationMethod<
+  GetApiInsightUserStatsRequest,
+  GetApiInsightUserStatsResponse,
+  GetApiInsightUserStatsError,
+  GithubOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetApiInsightUserStatsRequest,
+  output: GetApiInsightUserStatsResponse,
+  errors: [],
   protocol: GithubProtocol,
   retry: Retry.Retry,
 }));
@@ -8913,25 +8928,6 @@ export const reviewPatGrantRequest: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ReviewPatGrantRequestRequest,
   output: ReviewPatGrantRequestResponse,
-  errors: [Forbidden, NotFound, UnprocessableEntity],
-  protocol: GithubProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ReviewPatGrantRequestsInBulkError =
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | GithubOpError;
-/** Review requests to access organization resources with fine-grained personal access tokens Approves or denies multiple pending requests to access organization resources via a fine-grained personal access token. Only GitHub Apps can use this endpoint. */
-export const reviewPatGrantRequestsInBulk: API.OperationMethod<
-  ReviewPatGrantRequestsInBulkRequest,
-  ReviewPatGrantRequestsInBulkResponse,
-  ReviewPatGrantRequestsInBulkError,
-  GithubOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReviewPatGrantRequestsInBulkRequest,
-  output: ReviewPatGrantRequestsInBulkResponse,
   errors: [Forbidden, NotFound, UnprocessableEntity],
   protocol: GithubProtocol,
   retry: Retry.Retry,

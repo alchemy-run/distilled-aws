@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.machinelearning#WorkspacesList": {
+    "com.azure.machinelearning#ListWorkspaces": {
       "type": "operation",
       "input": {
-        "target": "com.azure.machinelearning#WorkspacesListRequest"
+        "target": "com.azure.machinelearning#ListWorkspacesRequest"
       },
       "output": {
         "target": "com.azure.machinelearning#WorkspaceListResult"
@@ -294,7 +295,7 @@
         "smithy.api#documentation": "The tags of the resource."
       }
     },
-    "com.azure.machinelearning#WorkspacesListRequest": {
+    "com.azure.machinelearning#ListWorkspacesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -310,10 +311,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.machinelearning#WorkspacesListByResourceGroup": {
+    "com.azure.machinelearning#ListWorkspaceByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.machinelearning#WorkspacesListByResourceGroupRequest"
+        "target": "com.azure.machinelearning#ListWorkspaceByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.machinelearning#WorkspaceListResult"
@@ -329,7 +330,7 @@
         "com.distilled.openapi#apiVersion": "2019-10-01"
       }
     },
-    "com.azure.machinelearning#WorkspacesListByResourceGroupRequest": {
+    "com.azure.machinelearning#ListWorkspaceByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -353,10 +354,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.machinelearning#WorkspacesListWorkspaceKeys": {
+    "com.azure.machinelearning#ListWorkspaceWorkspaceKeys": {
       "type": "operation",
       "input": {
-        "target": "com.azure.machinelearning#WorkspacesListWorkspaceKeysRequest"
+        "target": "com.azure.machinelearning#ListWorkspaceWorkspaceKeysRequest"
       },
       "output": {
         "target": "com.azure.machinelearning#WorkspaceKeysResponse"
@@ -392,7 +393,7 @@
         "smithy.api#documentation": "Workspace authorization keys for a workspace."
       }
     },
-    "com.azure.machinelearning#WorkspacesListWorkspaceKeysRequest": {
+    "com.azure.machinelearning#ListWorkspaceWorkspaceKeysRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -475,10 +476,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.machinelearning#WorkspacesDelete": {
+    "com.azure.machinelearning#DeleteWorkspace": {
       "type": "operation",
       "input": {
-        "target": "com.azure.machinelearning#WorkspacesDeleteRequest"
+        "target": "com.azure.machinelearning#DeleteWorkspaceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -494,7 +495,7 @@
         "com.distilled.openapi#apiVersion": "2019-10-01"
       }
     },
-    "com.azure.machinelearning#WorkspacesDeleteRequest": {
+    "com.azure.machinelearning#DeleteWorkspaceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -526,13 +527,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.machinelearning#WorkspacesUpdate": {
+    "com.azure.machinelearning#UpdateWorkspace": {
       "type": "operation",
       "input": {
-        "target": "com.azure.machinelearning#WorkspacesUpdateRequest"
+        "target": "com.azure.machinelearning#UpdateWorkspaceRequest"
       },
       "output": {
-        "target": "com.azure.machinelearning#WorkspacesUpdateResponse"
+        "target": "com.azure.machinelearning#UpdateWorkspaceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -545,7 +546,7 @@
         "com.distilled.openapi#apiVersion": "2019-10-01"
       }
     },
-    "com.azure.machinelearning#WorkspacesUpdateResponse": {
+    "com.azure.machinelearning#UpdateWorkspaceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -574,7 +575,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.machinelearning#WorkspacesUpdateResponseTagsMap",
+          "target": "com.azure.machinelearning#UpdateWorkspaceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -596,7 +597,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.machinelearning#WorkspacesUpdateResponseTagsMap": {
+    "com.azure.machinelearning#UpdateWorkspaceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -608,7 +609,7 @@
         "smithy.api#documentation": "The tags of the resource."
       }
     },
-    "com.azure.machinelearning#WorkspacesUpdateRequest": {
+    "com.azure.machinelearning#UpdateWorkspaceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -636,7 +637,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.machinelearning#WorkspacesUpdateRequestTagsMap",
+          "target": "com.azure.machinelearning#UpdateWorkspaceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags for the machine learning workspace."
           }
@@ -728,7 +729,7 @@
         "smithy.api#documentation": "The current state of workspace resource."
       }
     },
-    "com.azure.machinelearning#WorkspacesUpdateRequestTagsMap": {
+    "com.azure.machinelearning#UpdateWorkspaceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -919,13 +920,13 @@
         "smithy.api#documentation": "The tags of the resource."
       }
     },
-    "com.azure.machinelearning#WorkspacesGet": {
+    "com.azure.machinelearning#GetWorkspace": {
       "type": "operation",
       "input": {
-        "target": "com.azure.machinelearning#WorkspacesGetRequest"
+        "target": "com.azure.machinelearning#GetWorkspaceRequest"
       },
       "output": {
-        "target": "com.azure.machinelearning#WorkspacesGetResponse"
+        "target": "com.azure.machinelearning#GetWorkspaceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -938,7 +939,7 @@
         "com.distilled.openapi#apiVersion": "2019-10-01"
       }
     },
-    "com.azure.machinelearning#WorkspacesGetResponse": {
+    "com.azure.machinelearning#GetWorkspaceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -967,7 +968,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.machinelearning#WorkspacesGetResponseTagsMap",
+          "target": "com.azure.machinelearning#GetWorkspaceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -989,7 +990,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.machinelearning#WorkspacesGetResponseTagsMap": {
+    "com.azure.machinelearning#GetWorkspaceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1001,7 +1002,7 @@
         "smithy.api#documentation": "The tags of the resource."
       }
     },
-    "com.azure.machinelearning#WorkspacesGetRequest": {
+    "com.azure.machinelearning#GetWorkspaceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1033,7 +1034,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.machinelearning#OperationsList": {
+    "com.azure.machinelearning#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -1132,31 +1133,31 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.machinelearning#WorkspacesList"
+          "target": "com.azure.machinelearning#ListWorkspaces"
         },
         {
-          "target": "com.azure.machinelearning#WorkspacesListByResourceGroup"
+          "target": "com.azure.machinelearning#ListWorkspaceByResourceGroup"
         },
         {
-          "target": "com.azure.machinelearning#WorkspacesListWorkspaceKeys"
+          "target": "com.azure.machinelearning#ListWorkspaceWorkspaceKeys"
         },
         {
           "target": "com.azure.machinelearning#WorkspacesResyncStorageKeys"
         },
         {
-          "target": "com.azure.machinelearning#WorkspacesDelete"
+          "target": "com.azure.machinelearning#DeleteWorkspace"
         },
         {
-          "target": "com.azure.machinelearning#WorkspacesUpdate"
+          "target": "com.azure.machinelearning#UpdateWorkspace"
         },
         {
           "target": "com.azure.machinelearning#WorkspacesCreateOrUpdate"
         },
         {
-          "target": "com.azure.machinelearning#WorkspacesGet"
+          "target": "com.azure.machinelearning#GetWorkspace"
         },
         {
-          "target": "com.azure.machinelearning#OperationsList"
+          "target": "com.azure.machinelearning#ListOperations"
         }
       ],
       "traits": {

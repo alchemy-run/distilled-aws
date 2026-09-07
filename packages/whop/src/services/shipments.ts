@@ -160,6 +160,18 @@ export const Shipment = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Shipment" }) as any as S.Schema<Shipment>;
 
+export interface GetShipmentRequest {
+  /** The shipment id (`ship_`), or the payment id (`pay_`) it fulfills. */
+  id: string;
+}
+export const GetShipmentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/shipments/{id}", code: 200 })),
+).annotate({
+  identifier: "GetShipmentRequest",
+}) as any as S.Schema<GetShipmentRequest>;
+
 export type ListShipmentsRequestStatus =
   | "unknown"
   | "pre_transit"
@@ -261,18 +273,6 @@ export const ListShipmentsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListShipmentsResponse",
 }) as any as S.Schema<ListShipmentsResponse>;
 
-export interface RetrieveShipmentRequest {
-  /** The shipment id (`ship_`), or the payment id (`pay_`) it fulfills. */
-  id: string;
-}
-export const RetrieveShipmentRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/shipments/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveShipmentRequest",
-}) as any as S.Schema<RetrieveShipmentRequest>;
-
 export interface UpdateShipmentRequest {
   /** The shipment id (`ship_`), or the payment id (`pay_`) it fulfills. */
   id: string;
@@ -307,6 +307,21 @@ export const createShipment: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetShipmentError = Forbidden | NotFound | WhopOpError;
+/** Retrieve Shipment Retrieves a shipment by its id, or by the payment id it fulfills. */
+export const getShipment: API.OperationMethod<
+  GetShipmentRequest,
+  Shipment,
+  GetShipmentError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetShipmentRequest,
+  output: Shipment,
+  errors: [Forbidden, NotFound],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListShipmentsError =
   | BadRequest
   | Forbidden
@@ -337,21 +352,6 @@ export const listShipments: API.PaginatedOperationMethod<
   }),
   paginateRelay,
 ) as any;
-
-export type RetrieveShipmentError = Forbidden | NotFound | WhopOpError;
-/** Retrieve Shipment Retrieves a shipment by its id, or by the payment id it fulfills. */
-export const retrieveShipment: API.OperationMethod<
-  RetrieveShipmentRequest,
-  Shipment,
-  RetrieveShipmentError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveShipmentRequest,
-  output: Shipment,
-  errors: [Forbidden, NotFound],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
 
 export type UpdateShipmentError =
   | BadRequest

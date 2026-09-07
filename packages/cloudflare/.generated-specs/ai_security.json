@@ -14,129 +14,10 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.cloudflare.ai_security#GetRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Defines the zone.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.ai_security#GetResponse": {
-      "type": "structure",
-      "members": {
-        "enabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether AI Security for Apps is enabled on the zone."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.ai_security#Get": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.ai_security#GetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.ai_security#GetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/ai-security/settings",
-          "code": 200
-        },
-        "smithy.api#documentation": "Get whether AI Security for Apps is enabled or disabled for a zone.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.ai_security#UpdateRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Defines the zone.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "enabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether AI Security for Apps is enabled on the zone."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.ai_security#UpdateResponse": {
-      "type": "structure",
-      "members": {
-        "enabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether AI Security for Apps is enabled on the zone."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.ai_security#Update": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.ai_security#UpdateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.ai_security#UpdateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PUT",
-          "uri": "/zones/{zone_id}/ai-security/settings",
-          "code": 200
-        },
-        "smithy.api#documentation": "Enable or disable AI Security for Apps for a zone. Changes can take up to a minute to propagate to the zone.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.ai_security#CustomTopicsGetRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Defines the zone.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.ai_security#CustomTopicsGetResponseTopicsItem": {
       "type": "structure",
       "members": {
@@ -160,39 +41,6 @@
       "type": "list",
       "member": {
         "target": "com.cloudflare.ai_security#CustomTopicsGetResponseTopicsItem"
-      }
-    },
-    "com.cloudflare.ai_security#CustomTopicsGetResponse": {
-      "type": "structure",
-      "members": {
-        "topics": {
-          "target": "com.cloudflare.ai_security#CustomTopicsGetResponseTopicsList",
-          "traits": {
-            "smithy.api#documentation": "Custom topic categories for AI Security for Apps content detection."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.ai_security#CustomTopicsGet": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.ai_security#CustomTopicsGetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.ai_security#CustomTopicsGetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/ai-security/custom-topics",
-          "code": 200
-        },
-        "smithy.api#documentation": "Get the AI Security for Apps custom topic categories for a zone.",
-        "smithy.api#readonly": {}
       }
     },
     "com.cloudflare.ai_security#CustomTopicsUpdateRequestTopicsItem": {
@@ -220,28 +68,6 @@
         "target": "com.cloudflare.ai_security#CustomTopicsUpdateRequestTopicsItem"
       }
     },
-    "com.cloudflare.ai_security#CustomTopicsUpdateRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Defines the zone.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "topics": {
-          "target": "com.cloudflare.ai_security#CustomTopicsUpdateRequestTopicsList",
-          "traits": {
-            "smithy.api#documentation": "Custom topic categories for AI Security for Apps content detection."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.ai_security#CustomTopicsUpdateResponseTopicsItem": {
       "type": "structure",
       "members": {
@@ -267,7 +93,330 @@
         "target": "com.cloudflare.ai_security#CustomTopicsUpdateResponseTopicsItem"
       }
     },
-    "com.cloudflare.ai_security#CustomTopicsUpdateResponse": {
+    "com.cloudflare.ai_security#AiSecurity": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.ai_security#GetAiSecurity"
+        },
+        {
+          "target": "com.cloudflare.ai_security#GetCustomTopic"
+        },
+        {
+          "target": "com.cloudflare.ai_security#PutAiSecurity"
+        },
+        {
+          "target": "com.cloudflare.ai_security#PutCustomTopic"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare AiSecurity",
+        "smithy.api#documentation": "Cloudflare API — ai_security resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    },
+    "com.cloudflare.ai_security#AiSecurityNotEntitled": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 13101,
+            "message": {
+              "includes": "not entitled"
+            }
+          }
+        ]
+      }
+    },
+    "com.cloudflare.ai_security#Forbidden": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.cloudflare.ai_security#ZoneNotAuthorized": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 10000,
+            "message": {
+              "includes": "Authentication error"
+            }
+          }
+        ]
+      }
+    },
+    "com.cloudflare.ai_security#GetAiSecurity": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ai_security#GetAiSecurityRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ai_security#GetAiSecurityResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/ai-security/settings",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get whether AI Security for Apps is enabled or disabled for a zone.",
+        "smithy.api#readonly": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.ai_security#AiSecurityNotEntitled"
+        },
+        {
+          "target": "com.cloudflare.ai_security#ZoneNotAuthorized"
+        },
+        {
+          "target": "com.cloudflare.ai_security#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.ai_security#GetAiSecurityRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defines the zone.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ai_security#GetAiSecurityResponse": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether AI Security for Apps is enabled on the zone."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.ai_security#GetCustomTopic": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ai_security#GetCustomTopicRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ai_security#GetCustomTopicResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/ai-security/custom-topics",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get the AI Security for Apps custom topic categories for a zone.",
+        "smithy.api#readonly": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.ai_security#AiSecurityNotEntitled"
+        },
+        {
+          "target": "com.cloudflare.ai_security#ZoneNotAuthorized"
+        },
+        {
+          "target": "com.cloudflare.ai_security#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.ai_security#GetCustomTopicRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defines the zone.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ai_security#GetCustomTopicResponse": {
+      "type": "structure",
+      "members": {
+        "topics": {
+          "target": "com.cloudflare.ai_security#CustomTopicsGetResponseTopicsList",
+          "traits": {
+            "smithy.api#documentation": "Custom topic categories for AI Security for Apps content detection."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.ai_security#PutAiSecurity": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ai_security#PutAiSecurityRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ai_security#PutAiSecurityResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/zones/{zone_id}/ai-security/settings",
+          "code": 200
+        },
+        "smithy.api#documentation": "Enable or disable AI Security for Apps for a zone. Changes can take up to a minute to propagate to the zone.",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.ai_security#AiSecurityNotEntitled"
+        },
+        {
+          "target": "com.cloudflare.ai_security#ZoneNotAuthorized"
+        },
+        {
+          "target": "com.cloudflare.ai_security#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.ai_security#PutAiSecurityRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defines the zone.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether AI Security for Apps is enabled on the zone."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ai_security#PutAiSecurityResponse": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether AI Security for Apps is enabled on the zone."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.ai_security#PutCustomTopic": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ai_security#PutCustomTopicRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ai_security#PutCustomTopicResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/zones/{zone_id}/ai-security/custom-topics",
+          "code": 200
+        },
+        "smithy.api#documentation": "Set the AI Security for Apps custom topic categories for a zone. A maximum of 20 custom topics can be configured per zone. Each topic label must be 2–20 characters using only lowercase letters (a–z), digits (0–9), and hyphens. Each topic description must be 2–50 printable ASCII characters. Changes can take up to a minute to propagate to the zone.",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.ai_security#AiSecurityNotEntitled"
+        },
+        {
+          "target": "com.cloudflare.ai_security#ZoneNotAuthorized"
+        },
+        {
+          "target": "com.cloudflare.ai_security#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.ai_security#PutCustomTopicRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defines the zone.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "topics": {
+          "target": "com.cloudflare.ai_security#CustomTopicsUpdateRequestTopicsList",
+          "traits": {
+            "smithy.api#documentation": "Custom topic categories for AI Security for Apps content detection."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ai_security#PutCustomTopicResponse": {
       "type": "structure",
       "members": {
         "topics": {
@@ -280,47 +429,6 @@
       "traits": {
         "smithy.api#output": {},
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.ai_security#CustomTopicsUpdate": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.ai_security#CustomTopicsUpdateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.ai_security#CustomTopicsUpdateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PUT",
-          "uri": "/zones/{zone_id}/ai-security/custom-topics",
-          "code": 200
-        },
-        "smithy.api#documentation": "Set the AI Security for Apps custom topic categories for a zone. A maximum of 20 custom topics can be configured per zone. Each topic label must be 2–20 characters using only lowercase letters (a–z), digits (0–9), and hyphens. Each topic description must be 2–50 printable ASCII characters. Changes can take up to a minute to propagate to the zone.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.ai_security#AiSecurity": {
-      "type": "service",
-      "version": "4.0",
-      "operations": [
-        {
-          "target": "com.cloudflare.ai_security#Get"
-        },
-        {
-          "target": "com.cloudflare.ai_security#Update"
-        },
-        {
-          "target": "com.cloudflare.ai_security#CustomTopicsGet"
-        },
-        {
-          "target": "com.cloudflare.ai_security#CustomTopicsUpdate"
-        }
-      ],
-      "traits": {
-        "com.cloudflare.protocols#v4Json": {},
-        "smithy.api#title": "Cloudflare AiSecurity",
-        "smithy.api#documentation": "Cloudflare API — ai_security resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
       }
     }
   }

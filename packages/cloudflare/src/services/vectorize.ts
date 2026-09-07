@@ -490,50 +490,6 @@ export const GetIndexResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetIndexResponse",
 }) as any as S.Schema<GetIndexResponse>;
 
-export interface InfoIndexRequest {
-  /** Identifier */
-  accountId: string;
-  indexName: string;
-}
-export const InfoIndexRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountId: S.String.pipe(T.Label("account_id")),
-    indexName: S.String.pipe(T.Label("index_name")),
-  })
-    .pipe(
-      T.Http({
-        method: "GET",
-        uri: "/accounts/{account_id}/vectorize/v2/indexes/{index_name}/info",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "InfoIndexRequest",
-}) as any as S.Schema<InfoIndexRequest>;
-
-/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
-export interface InfoIndexResponse {
-  /** Specifies the number of dimensions for the index */
-  dimensions?: number | null;
-  /** Specifies the timestamp the last mutation batch was processed as an ISO8601 string. */
-  processedUpToDatetime?: string | null;
-  /** The unique identifier for the async mutation operation containing the changeset. */
-  processedUpToMutation?: string | null;
-  /** Specifies the number of vectors present in the index */
-  vectorCount?: number | null;
-}
-export const InfoIndexResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    dimensions: S.optional(S.NullOr(S.Number)),
-    processedUpToDatetime: S.optional(S.NullOr(S.String)),
-    processedUpToMutation: S.optional(S.NullOr(S.String)),
-    vectorCount: S.optional(S.NullOr(S.Number)),
-  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "InfoIndexResponse",
-}) as any as S.Schema<InfoIndexResponse>;
-
 export type IndexesInsertRequestUnparsableBehavior = "error" | "discard";
 export const IndexesInsertRequestUnparsableBehavior = /*@__PURE__*/ S.String;
 
@@ -735,6 +691,143 @@ export const ListIndexMetadataIndexesResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListIndexMetadataIndexesResponse",
 }) as any as S.Schema<ListIndexMetadataIndexesResponse>;
 
+export interface ListInfoRequest {
+  /** Identifier */
+  accountId: string;
+  indexName: string;
+}
+export const ListInfoRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountId: S.String.pipe(T.Label("account_id")),
+    indexName: S.String.pipe(T.Label("index_name")),
+  })
+    .pipe(
+      T.Http({
+        method: "GET",
+        uri: "/accounts/{account_id}/vectorize/v2/indexes/{index_name}/info",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "ListInfoRequest",
+}) as any as S.Schema<ListInfoRequest>;
+
+/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
+export interface ListInfoResponse {
+  /** Specifies the number of dimensions for the index */
+  dimensions?: number | null;
+  /** Specifies the timestamp the last mutation batch was processed as an ISO8601 string. */
+  processedUpToDatetime?: string | null;
+  /** The unique identifier for the async mutation operation containing the changeset. */
+  processedUpToMutation?: string | null;
+  /** Specifies the number of vectors present in the index */
+  vectorCount?: number | null;
+}
+export const ListInfoResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    dimensions: S.optional(S.NullOr(S.Number)),
+    processedUpToDatetime: S.optional(S.NullOr(S.String)),
+    processedUpToMutation: S.optional(S.NullOr(S.String)),
+    vectorCount: S.optional(S.NullOr(S.Number)),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "ListInfoResponse",
+}) as any as S.Schema<ListInfoResponse>;
+
+export type IndexesQueryRequestVectorList = Array<number>;
+export const IndexesQueryRequestVectorList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<IndexesQueryRequestVectorList>;
+
+export type IndexesQueryRequestReturnMetadata = "none" | "indexed" | "all";
+export const IndexesQueryRequestReturnMetadata = /*@__PURE__*/ S.String;
+
+export interface ListQueryRequest {
+  /** Identifier */
+  accountId: string;
+  indexName: string;
+  /** The search vector that will be used to find the nearest neighbors. */
+  vector: IndexesQueryRequestVectorList;
+  /** A metadata filter expression used to limit nearest neighbor results. */
+  filter?: unknown;
+  /** Whether to return no metadata, indexed metadata or all metadata associated with the closest vectors. */
+  returnMetadata?: IndexesQueryRequestReturnMetadata | (string & {});
+  /** Whether to return the values associated with the closest vectors. */
+  returnValues?: boolean;
+  /** The number of nearest neighbors to find. */
+  topK?: number;
+}
+export const ListQueryRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountId: S.String.pipe(T.Label("account_id")),
+    indexName: S.String.pipe(T.Label("index_name")),
+    vector: IndexesQueryRequestVectorList,
+    filter: S.optional(S.Unknown),
+    returnMetadata: S.optional(IndexesQueryRequestReturnMetadata),
+    returnValues: S.optional(S.Boolean),
+    topK: S.optional(S.Number),
+  })
+    .pipe(
+      T.Http({
+        method: "POST",
+        uri: "/accounts/{account_id}/vectorize/v2/indexes/{index_name}/query",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "ListQueryRequest",
+}) as any as S.Schema<ListQueryRequest>;
+
+export type IndexesQueryResponseMatchesItemValuesList = Array<number>;
+export const IndexesQueryResponseMatchesItemValuesList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<IndexesQueryResponseMatchesItemValuesList>;
+
+export interface IndexesQueryResponseMatchesItem {
+  /** Identifier for a Vector */
+  id?: string | null;
+  metadata?: unknown | null;
+  namespace?: string | null;
+  /** The score of the vector according to the index's distance metric */
+  score?: number | null;
+  values?: IndexesQueryResponseMatchesItemValuesList | null;
+}
+export const IndexesQueryResponseMatchesItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.NullOr(S.String)),
+    metadata: S.optional(S.NullOr(S.Unknown)),
+    namespace: S.optional(S.NullOr(S.String)),
+    score: S.optional(S.NullOr(S.Number)),
+    values: S.optional(S.NullOr(IndexesQueryResponseMatchesItemValuesList)),
+  }),
+).annotate({
+  identifier: "IndexesQueryResponseMatchesItem",
+}) as any as S.Schema<IndexesQueryResponseMatchesItem>;
+
+export type IndexesQueryResponseMatchesList =
+  Array<IndexesQueryResponseMatchesItem>;
+export const IndexesQueryResponseMatchesList = /*@__PURE__*/ S.Array(
+  IndexesQueryResponseMatchesItem,
+) as any as S.Schema<IndexesQueryResponseMatchesList>;
+
+/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
+export interface ListQueryResponse {
+  /** Specifies the count of vectors returned by the search */
+  count?: number | null;
+  /** Array of vectors matched by the search */
+  matches?: IndexesQueryResponseMatchesList | null;
+}
+export const ListQueryResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    count: S.optional(S.NullOr(S.Number)),
+    matches: S.optional(S.NullOr(IndexesQueryResponseMatchesList)),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "ListQueryResponse",
+}) as any as S.Schema<ListQueryResponse>;
+
 export interface ListVectorsIndexRequest {
   /** Identifier */
   accountId: string;
@@ -809,99 +902,6 @@ export const ListVectorsIndexResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListVectorsIndexResponse",
 }) as any as S.Schema<ListVectorsIndexResponse>;
-
-export type IndexesQueryRequestVectorList = Array<number>;
-export const IndexesQueryRequestVectorList = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<IndexesQueryRequestVectorList>;
-
-export type IndexesQueryRequestReturnMetadata = "none" | "indexed" | "all";
-export const IndexesQueryRequestReturnMetadata = /*@__PURE__*/ S.String;
-
-export interface QueryIndexRequest {
-  /** Identifier */
-  accountId: string;
-  indexName: string;
-  /** The search vector that will be used to find the nearest neighbors. */
-  vector: IndexesQueryRequestVectorList;
-  /** A metadata filter expression used to limit nearest neighbor results. */
-  filter?: unknown;
-  /** Whether to return no metadata, indexed metadata or all metadata associated with the closest vectors. */
-  returnMetadata?: IndexesQueryRequestReturnMetadata | (string & {});
-  /** Whether to return the values associated with the closest vectors. */
-  returnValues?: boolean;
-  /** The number of nearest neighbors to find. */
-  topK?: number;
-}
-export const QueryIndexRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountId: S.String.pipe(T.Label("account_id")),
-    indexName: S.String.pipe(T.Label("index_name")),
-    vector: IndexesQueryRequestVectorList,
-    filter: S.optional(S.Unknown),
-    returnMetadata: S.optional(IndexesQueryRequestReturnMetadata),
-    returnValues: S.optional(S.Boolean),
-    topK: S.optional(S.Number),
-  })
-    .pipe(
-      T.Http({
-        method: "POST",
-        uri: "/accounts/{account_id}/vectorize/v2/indexes/{index_name}/query",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "QueryIndexRequest",
-}) as any as S.Schema<QueryIndexRequest>;
-
-export type IndexesQueryResponseMatchesItemValuesList = Array<number>;
-export const IndexesQueryResponseMatchesItemValuesList = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<IndexesQueryResponseMatchesItemValuesList>;
-
-export interface IndexesQueryResponseMatchesItem {
-  /** Identifier for a Vector */
-  id?: string | null;
-  metadata?: unknown | null;
-  namespace?: string | null;
-  /** The score of the vector according to the index's distance metric */
-  score?: number | null;
-  values?: IndexesQueryResponseMatchesItemValuesList | null;
-}
-export const IndexesQueryResponseMatchesItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.NullOr(S.String)),
-    metadata: S.optional(S.NullOr(S.Unknown)),
-    namespace: S.optional(S.NullOr(S.String)),
-    score: S.optional(S.NullOr(S.Number)),
-    values: S.optional(S.NullOr(IndexesQueryResponseMatchesItemValuesList)),
-  }),
-).annotate({
-  identifier: "IndexesQueryResponseMatchesItem",
-}) as any as S.Schema<IndexesQueryResponseMatchesItem>;
-
-export type IndexesQueryResponseMatchesList =
-  Array<IndexesQueryResponseMatchesItem>;
-export const IndexesQueryResponseMatchesList = /*@__PURE__*/ S.Array(
-  IndexesQueryResponseMatchesItem,
-) as any as S.Schema<IndexesQueryResponseMatchesList>;
-
-/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
-export interface QueryIndexResponse {
-  /** Specifies the count of vectors returned by the search */
-  count?: number | null;
-  /** Array of vectors matched by the search */
-  matches?: IndexesQueryResponseMatchesList | null;
-}
-export const QueryIndexResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    count: S.optional(S.NullOr(S.Number)),
-    matches: S.optional(S.NullOr(IndexesQueryResponseMatchesList)),
-  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "QueryIndexResponse",
-}) as any as S.Schema<QueryIndexResponse>;
 
 export type IndexesUpsertRequestUnparsableBehavior = "error" | "discard";
 export const IndexesUpsertRequestUnparsableBehavior = /*@__PURE__*/ S.String;
@@ -1087,21 +1087,6 @@ export const getIndex: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type InfoIndexError = CloudflareOpError;
-/** Get information about a vectorize index. */
-export const infoIndex: API.OperationMethod<
-  InfoIndexRequest,
-  InfoIndexResponse,
-  InfoIndexError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: InfoIndexRequest,
-  output: InfoIndexResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
 export type InsertIndexError = CloudflareOpError;
 /** Inserts vectors into the specified index and returns a mutation id corresponding to the vectors enqueued for insertion. */
 export const insertIndex: API.OperationMethod<
@@ -1152,6 +1137,36 @@ export const listIndexMetadataIndexes: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ListInfoError = CloudflareOpError;
+/** Get information about a vectorize index. */
+export const listInfo: API.OperationMethod<
+  ListInfoRequest,
+  ListInfoResponse,
+  ListInfoError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListInfoRequest,
+  output: ListInfoResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListQueryError = CloudflareOpError;
+/** Finds vectors closest to a given vector in an index. */
+export const listQuery: API.OperationMethod<
+  ListQueryRequest,
+  ListQueryResponse,
+  ListQueryError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListQueryRequest,
+  output: ListQueryResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListVectorsIndexError = CloudflareOpError;
 /** Returns a paginated list of vector identifiers from the specified index. */
 export const listVectorsIndex: API.OperationMethod<
@@ -1162,21 +1177,6 @@ export const listVectorsIndex: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListVectorsIndexRequest,
   output: ListVectorsIndexResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type QueryIndexError = CloudflareOpError;
-/** Finds vectors closest to a given vector in an index. */
-export const queryIndex: API.OperationMethod<
-  QueryIndexRequest,
-  QueryIndexResponse,
-  QueryIndexError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: QueryIndexRequest,
-  output: QueryIndexResponse,
   errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,

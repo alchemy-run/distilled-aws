@@ -4,47 +4,84 @@
     "service": "apigateway",
     "version": "v1beta",
     "title": "API Gateway API",
-    "baseUrl": "https://apigateway.googleapis.com/"
+    "baseUrl": "https://apigateway.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.gcp.apigateway_v1beta#ApigatewayOperationMetadataDiagnostic": {
+    "com.gcp.apigateway_v1beta#ApigatewayPolicy": {
       "type": "structure",
       "members": {
-        "location": {
-          "target": "smithy.api#String",
+        "version": {
+          "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "Location of the diagnostic."
+            "smithy.api#documentation": "Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
           }
         },
-        "message": {
+        "bindings": {
+          "target": "com.gcp.apigateway_v1beta#ApigatewayBindingList",
+          "traits": {
+            "smithy.api#documentation": "Associates a list of `members`, or principals, with a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one principal. The `bindings` in a `Policy` can refer to up to 1,500 principals; up to 250 of these principals can be Google groups. Each occurrence of a principal counts towards these limits. For example, if the `bindings` grant 50 different roles to `user:alice@example.com`, and not to any other principal, then you can add another 1,450 principals to the `bindings` in the `Policy`."
+          }
+        },
+        "etag": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The diagnostic message."
+            "smithy.api#documentation": "`etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy. **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost."
+          }
+        },
+        "auditConfigs": {
+          "target": "com.gcp.apigateway_v1beta#ApigatewayAuditConfigList",
+          "traits": {
+            "smithy.api#documentation": "Specifies cloud audit logging configuration for this policy."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Diagnostic information from configuration processing."
+        "smithy.api#documentation": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/)."
       }
     },
-    "com.gcp.apigateway_v1beta#ApigatewayAuditLogConfig": {
+    "com.gcp.apigateway_v1beta#ApigatewayBindingList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.apigateway_v1beta#ApigatewayBinding"
+      }
+    },
+    "com.gcp.apigateway_v1beta#ApigatewayAuditConfigList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.apigateway_v1beta#ApigatewayAuditConfig"
+      }
+    },
+    "com.gcp.apigateway_v1beta#ApigatewayListApiConfigsResponse": {
       "type": "structure",
       "members": {
-        "exemptedMembers": {
-          "target": "com.gcp.apigateway_v1beta#StringList",
+        "nextPageToken": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members."
+            "smithy.api#documentation": "Next page token."
           }
         },
-        "logType": {
-          "target": "com.gcp.apigateway_v1beta#ApigatewayAuditLogConfigLogTypeEnum",
+        "apiConfigs": {
+          "target": "com.gcp.apigateway_v1beta#ApigatewayApiConfigList",
           "traits": {
-            "smithy.api#documentation": "The log type that this config enables."
+            "smithy.api#documentation": "API Configs."
+          }
+        },
+        "unreachableLocations": {
+          "target": "com.gcp.apigateway_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Locations that could not be reached."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Provides the configuration for logging a type of permissions. Example: { \"audit_log_configs\": [ { \"log_type\": \"DATA_READ\", \"exempted_members\": [ \"user:jose@example.com\" ] }, { \"log_type\": \"DATA_WRITE\" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging."
+        "smithy.api#documentation": "Response message for ApiGatewayService.ListApiConfigs"
+      }
+    },
+    "com.gcp.apigateway_v1beta#ApigatewayApiConfigList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.apigateway_v1beta#ApigatewayApiConfig"
       }
     },
     "com.gcp.apigateway_v1beta#StringList": {
@@ -53,86 +90,178 @@
         "target": "smithy.api#String"
       }
     },
-    "com.gcp.apigateway_v1beta#ApigatewayAuditLogConfigLogTypeEnum": {
-      "type": "enum",
-      "members": {
-        "LOG_TYPE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "LOG_TYPE_UNSPECIFIED"
-          }
-        },
-        "ADMIN_READ": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ADMIN_READ"
-          }
-        },
-        "DATA_WRITE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DATA_WRITE"
-          }
-        },
-        "DATA_READ": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DATA_READ"
-          }
-        }
-      }
-    },
-    "com.gcp.apigateway_v1beta#ApigatewayApiConfigFile": {
+    "com.gcp.apigateway_v1beta#ApigatewayLocation": {
       "type": "structure",
       "members": {
-        "path": {
+        "displayName": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The file path (full or relative path). This is typically the path of the file when it is uploaded."
+            "smithy.api#documentation": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\"."
           }
         },
-        "contents": {
+        "labels": {
+          "target": "com.gcp.apigateway_v1beta#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}"
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.apigateway_v1beta#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata. For example the available capacity at the given location."
+          }
+        },
+        "locationId": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The bytes that constitute the file."
+            "smithy.api#documentation": "The canonical id for this location. For example: `\"us-east1\"`."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`"
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "A lightweight description of a file."
+        "smithy.api#documentation": "A resource that represents a Google Cloud location."
+      }
+    },
+    "com.gcp.apigateway_v1beta#StringMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.apigateway_v1beta#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.apigateway_v1beta#ApigatewayGateway": {
+      "type": "structure",
+      "members": {
+        "state": {
+          "target": "com.gcp.apigateway_v1beta#ApigatewayGatewayStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The current state of the Gateway."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Display name."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Resource name of the Gateway. Format: projects/{project}/locations/{location}/gateways/{gateway}"
+          }
+        },
+        "defaultHostname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The default API Gateway host name of the form `{gateway_id}-{hash}.{region_code}.gateway.dev`."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Created time."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Updated time."
+          }
+        },
+        "apiConfig": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Resource name of the API Config for this Gateway. Format: projects/{project}/locations/global/apis/{api}/configs/{apiConfig}"
+          }
+        },
+        "labels": {
+          "target": "com.gcp.apigateway_v1beta#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. Resource labels to represent user-provided metadata. Refer to cloud documentation on labels for more details. https://cloud.google.com/compute/docs/labeling-resources"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A Gateway is an API-aware HTTP proxy. It performs API-Method and/or API-Consumer specific actions based on an API Config such as authentication, policy enforcement, and backend selection."
+      }
+    },
+    "com.gcp.apigateway_v1beta#ApigatewayGatewayStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CREATING"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTIVE"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETING"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UPDATING"
+          }
+        }
       }
     },
     "com.gcp.apigateway_v1beta#ApigatewayOperationMetadata": {
       "type": "structure",
       "members": {
-        "requestedCancellation": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`."
-          }
-        },
-        "statusMessage": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Human-readable status of the operation, if any."
-          }
-        },
         "endTime": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Output only. The time the operation finished running."
           }
         },
-        "verb": {
+        "target": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. Name of the verb executed by the operation."
+            "smithy.api#documentation": "Output only. Server-defined resource path for the target of the operation."
           }
         },
-        "diagnostics": {
-          "target": "com.gcp.apigateway_v1beta#ApigatewayOperationMetadataDiagnosticList",
+        "requestedCancellation": {
+          "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "Output only. Diagnostics generated during processing of configuration source files."
+            "smithy.api#documentation": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`."
           }
         },
         "createTime": {
@@ -147,10 +276,22 @@
             "smithy.api#documentation": "Output only. API version used to start the operation."
           }
         },
-        "target": {
+        "statusMessage": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. Server-defined resource path for the target of the operation."
+            "smithy.api#documentation": "Output only. Human-readable status of the operation, if any."
+          }
+        },
+        "verb": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Name of the verb executed by the operation."
+          }
+        },
+        "diagnostics": {
+          "target": "com.gcp.apigateway_v1beta#ApigatewayOperationMetadataDiagnosticList",
+          "traits": {
+            "smithy.api#documentation": "Output only. Diagnostics generated during processing of configuration source files."
           }
         }
       },
@@ -164,51 +305,20 @@
         "target": "com.gcp.apigateway_v1beta#ApigatewayOperationMetadataDiagnostic"
       }
     },
-    "com.gcp.apigateway_v1beta#ApigatewayListGatewaysResponse": {
+    "com.gcp.apigateway_v1beta#ApigatewayCancelOperationRequest": {
       "type": "structure",
-      "members": {
-        "unreachableLocations": {
-          "target": "com.gcp.apigateway_v1beta#StringList",
-          "traits": {
-            "smithy.api#documentation": "Locations that could not be reached."
-          }
-        },
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Next page token."
-          }
-        },
-        "gateways": {
-          "target": "com.gcp.apigateway_v1beta#ApigatewayGatewayList",
-          "traits": {
-            "smithy.api#documentation": "Gateways."
-          }
-        }
-      },
+      "members": {},
       "traits": {
-        "smithy.api#documentation": "Response message for ApiGatewayService.ListGateways"
+        "smithy.api#documentation": "The request message for Operations.CancelOperation."
       }
     },
-    "com.gcp.apigateway_v1beta#ApigatewayGatewayList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.apigateway_v1beta#ApigatewayGateway"
-      }
-    },
-    "com.gcp.apigateway_v1beta#ApigatewayListOperationsResponse": {
+    "com.gcp.apigateway_v1beta#ApigatewayListLocationsResponse": {
       "type": "structure",
       "members": {
-        "unreachable": {
-          "target": "com.gcp.apigateway_v1beta#StringList",
+        "locations": {
+          "target": "com.gcp.apigateway_v1beta#ApigatewayLocationList",
           "traits": {
-            "smithy.api#documentation": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations."
-          }
-        },
-        "operations": {
-          "target": "com.gcp.apigateway_v1beta#ApigatewayOperationList",
-          "traits": {
-            "smithy.api#documentation": "A list of operations that matches the specified filter in the request."
+            "smithy.api#documentation": "A list of locations that matches the specified filter in the request."
           }
         },
         "nextPageToken": {
@@ -219,80 +329,208 @@
         }
       },
       "traits": {
-        "smithy.api#documentation": "The response message for Operations.ListOperations."
+        "smithy.api#documentation": "The response message for Locations.ListLocations."
       }
     },
-    "com.gcp.apigateway_v1beta#ApigatewayOperationList": {
+    "com.gcp.apigateway_v1beta#ApigatewayLocationList": {
       "type": "list",
       "member": {
-        "target": "com.gcp.apigateway_v1beta#ApigatewayOperation"
+        "target": "com.gcp.apigateway_v1beta#ApigatewayLocation"
       }
     },
-    "com.gcp.apigateway_v1beta#ApigatewayApiConfigGrpcServiceDefinition": {
+    "com.gcp.apigateway_v1beta#ApigatewayListApisResponse": {
       "type": "structure",
       "members": {
-        "fileDescriptorSet": {
-          "target": "com.gcp.apigateway_v1beta#ApigatewayApiConfigFile",
+        "apis": {
+          "target": "com.gcp.apigateway_v1beta#ApigatewayApiList",
           "traits": {
-            "smithy.api#documentation": "Input only. File descriptor set, generated by protoc. To generate, use protoc with imports and source info included. For an example test.proto file, the following command would put the value in a new file named out.pb. $ protoc --include_imports --include_source_info test.proto -o out.pb"
+            "smithy.api#documentation": "APIs."
           }
         },
-        "source": {
-          "target": "com.gcp.apigateway_v1beta#ApigatewayApiConfigFileList",
-          "traits": {
-            "smithy.api#documentation": "Optional. Uncompiled proto files associated with the descriptor set, used for display purposes (server-side compilation is not supported). These should match the inputs to 'protoc' command used to generate file_descriptor_set."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A gRPC service definition."
-      }
-    },
-    "com.gcp.apigateway_v1beta#ApigatewayApiConfigFileList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.apigateway_v1beta#ApigatewayApiConfigFile"
-      }
-    },
-    "com.gcp.apigateway_v1beta#ApigatewayBinding": {
-      "type": "structure",
-      "members": {
-        "role": {
+        "nextPageToken": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles)."
+            "smithy.api#documentation": "Next page token."
           }
         },
-        "condition": {
-          "target": "com.gcp.apigateway_v1beta#ApigatewayExpr",
-          "traits": {
-            "smithy.api#documentation": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
-          }
-        },
-        "members": {
+        "unreachableLocations": {
           "target": "com.gcp.apigateway_v1beta#StringList",
           "traits": {
-            "smithy.api#documentation": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workforce identity pool. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/group/{group_id}`: All workforce identities in a group. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All workforce identities with a specific attribute value. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/*`: All identities in a workforce identity pool. * `principal://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workload identity pool. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/group/{group_id}`: A workload identity pool group. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All identities in a workload identity pool with a certain attribute. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/*`: All identities in a workload identity pool. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `deleted:principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: Deleted single identity in a workforce identity pool. For example, `deleted:principal://iam.googleapis.com/locations/global/workforcePools/my-pool-id/subject/my-subject-attribute-value`."
+            "smithy.api#documentation": "Locations that could not be reached."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Associates `members`, or principals, with a `role`."
+        "smithy.api#documentation": "Response message for ApiGatewayService.ListApis"
+      }
+    },
+    "com.gcp.apigateway_v1beta#ApigatewayApiList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.apigateway_v1beta#ApigatewayApi"
+      }
+    },
+    "com.gcp.apigateway_v1beta#ApigatewayApiConfigOpenApiDocument": {
+      "type": "structure",
+      "members": {
+        "document": {
+          "target": "com.gcp.apigateway_v1beta#ApigatewayApiConfigFile",
+          "traits": {
+            "smithy.api#documentation": "The OpenAPI Specification document file."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An OpenAPI Specification Document describing an API."
+      }
+    },
+    "com.gcp.apigateway_v1beta#ApigatewayGatewayConfig": {
+      "type": "structure",
+      "members": {
+        "backendConfig": {
+          "target": "com.gcp.apigateway_v1beta#ApigatewayBackendConfig",
+          "traits": {
+            "smithy.api#documentation": "Required. Backend settings that are applied to all backends of the Gateway."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration settings for Gateways."
+      }
+    },
+    "com.gcp.apigateway_v1beta#ApigatewayExpr": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI."
+          }
+        },
+        "expression": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Textual representation of an expression in Common Expression Language syntax."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: \"Summary size limit\" description: \"Determines if a summary is less than 100 chars\" expression: \"document.summary.size() < 100\" Example (Equality): title: \"Requestor is owner\" description: \"Determines if requestor is the document owner\" expression: \"document.owner == request.auth.claims.email\" Example (Logic): title: \"Public documents\" description: \"Determine whether the document should be publicly visible\" expression: \"document.type != 'private' && document.type != 'internal'\" Example (Data Manipulation): title: \"Notification string\" description: \"Create a notification string with a timestamp.\" expression: \"'New message received at ' + string(document.create_time)\" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information."
+      }
+    },
+    "com.gcp.apigateway_v1beta#ApigatewayTestIamPermissionsResponse": {
+      "type": "structure",
+      "members": {
+        "permissions": {
+          "target": "com.gcp.apigateway_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "A subset of `TestPermissionsRequest.permissions` that the caller is allowed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for `TestIamPermissions` method."
+      }
+    },
+    "com.gcp.apigateway_v1beta#ApigatewayOperation": {
+      "type": "structure",
+      "members": {
+        "done": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+          }
+        },
+        "error": {
+          "target": "com.gcp.apigateway_v1beta#ApigatewayStatus",
+          "traits": {
+            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.apigateway_v1beta#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
+          }
+        },
+        "response": {
+          "target": "com.gcp.apigateway_v1beta#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
       }
     },
     "com.gcp.apigateway_v1beta#ApigatewayApiConfig": {
       "type": "structure",
       "members": {
-        "updateTime": {
+        "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. Updated time."
+            "smithy.api#documentation": "Output only. Resource name of the API Config. Format: projects/{project}/locations/global/apis/{api}/configs/{api_config}"
           }
         },
         "labels": {
           "target": "com.gcp.apigateway_v1beta#StringMap",
           "traits": {
             "smithy.api#documentation": "Optional. Resource labels to represent user-provided metadata. Refer to cloud documentation on labels for more details. https://cloud.google.com/compute/docs/labeling-resources"
+          }
+        },
+        "gatewayServiceAccount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable. The Google Cloud IAM Service Account that Gateways serving this config should use to authenticate to other services. This may either be the Service Account's email (`{ACCOUNT_ID}@{PROJECT}.iam.gserviceaccount.com`) or its full resource name (`projects/{PROJECT}/accounts/{UNIQUE_ID}`). This is most often used when the service is a GCP resource such as a Cloud Run Service or an IAP-secured service."
+          }
+        },
+        "managedServiceConfigs": {
+          "target": "com.gcp.apigateway_v1beta#ApigatewayApiConfigFileList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Service Configuration files. At least one must be included when using gRPC service definitions. See https://cloud.google.com/endpoints/docs/grpc/grpc-service-config#service_configuration_overview for the expected file contents. If multiple files are specified, the files are merged with the following rules: * All singular scalar fields are merged using \"last one wins\" semantics in the order of the files uploaded. * Repeated fields are concatenated. * Singular embedded messages are merged using these rules for nested fields."
+          }
+        },
+        "state": {
+          "target": "com.gcp.apigateway_v1beta#ApigatewayApiConfigStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. State of the API Config."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Created time."
+          }
+        },
+        "grpcServices": {
+          "target": "com.gcp.apigateway_v1beta#ApigatewayApiConfigGrpcServiceDefinitionList",
+          "traits": {
+            "smithy.api#documentation": "Optional. gRPC service definition files. If specified, openapi_documents must not be included."
+          }
+        },
+        "openapiDocuments": {
+          "target": "com.gcp.apigateway_v1beta#ApigatewayApiConfigOpenApiDocumentList",
+          "traits": {
+            "smithy.api#documentation": "Optional. OpenAPI specification documents. If specified, grpc_services and managed_service_configs must not be included."
           }
         },
         "displayName": {
@@ -307,22 +545,10 @@
             "smithy.api#documentation": "Immutable. Gateway specific configuration."
           }
         },
-        "managedServiceConfigs": {
-          "target": "com.gcp.apigateway_v1beta#ApigatewayApiConfigFileList",
-          "traits": {
-            "smithy.api#documentation": "Optional. Service Configuration files. At least one must be included when using gRPC service definitions. See https://cloud.google.com/endpoints/docs/grpc/grpc-service-config#service_configuration_overview for the expected file contents. If multiple files are specified, the files are merged with the following rules: * All singular scalar fields are merged using \"last one wins\" semantics in the order of the files uploaded. * Repeated fields are concatenated. * Singular embedded messages are merged using these rules for nested fields."
-          }
-        },
-        "createTime": {
+        "updateTime": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. Created time."
-          }
-        },
-        "gatewayServiceAccount": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Immutable. The Google Cloud IAM Service Account that Gateways serving this config should use to authenticate to other services. This may either be the Service Account's email (`{ACCOUNT_ID}@{PROJECT}.iam.gserviceaccount.com`) or its full resource name (`projects/{PROJECT}/accounts/{UNIQUE_ID}`). This is most often used when the service is a GCP resource such as a Cloud Run Service or an IAP-secured service."
+            "smithy.api#documentation": "Output only. Updated time."
           }
         },
         "serviceConfigId": {
@@ -330,43 +556,16 @@
           "traits": {
             "smithy.api#documentation": "Output only. The ID of the associated Service Config ( https://cloud.google.com/service-infrastructure/docs/glossary#config)."
           }
-        },
-        "state": {
-          "target": "com.gcp.apigateway_v1beta#ApigatewayApiConfigStateEnum",
-          "traits": {
-            "smithy.api#documentation": "Output only. State of the API Config."
-          }
-        },
-        "grpcServices": {
-          "target": "com.gcp.apigateway_v1beta#ApigatewayApiConfigGrpcServiceDefinitionList",
-          "traits": {
-            "smithy.api#documentation": "Optional. gRPC service definition files. If specified, openapi_documents must not be included."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Resource name of the API Config. Format: projects/{project}/locations/global/apis/{api}/configs/{api_config}"
-          }
-        },
-        "openapiDocuments": {
-          "target": "com.gcp.apigateway_v1beta#ApigatewayApiConfigOpenApiDocumentList",
-          "traits": {
-            "smithy.api#documentation": "Optional. OpenAPI specification documents. If specified, grpc_services and managed_service_configs must not be included."
-          }
         }
       },
       "traits": {
         "smithy.api#documentation": "An API Configuration is a combination of settings for both the Managed Service and Gateways serving this API Config."
       }
     },
-    "com.gcp.apigateway_v1beta#StringMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "smithy.api#String"
+    "com.gcp.apigateway_v1beta#ApigatewayApiConfigFileList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.apigateway_v1beta#ApigatewayApiConfigFile"
       }
     },
     "com.gcp.apigateway_v1beta#ApigatewayApiConfigStateEnum": {
@@ -428,36 +627,158 @@
         "target": "com.gcp.apigateway_v1beta#ApigatewayApiConfigOpenApiDocument"
       }
     },
-    "com.gcp.apigateway_v1beta#ApigatewayExpr": {
+    "com.gcp.apigateway_v1beta#ApigatewayListGatewaysResponse": {
       "type": "structure",
       "members": {
-        "location": {
-          "target": "smithy.api#String",
+        "unreachableLocations": {
+          "target": "com.gcp.apigateway_v1beta#StringList",
           "traits": {
-            "smithy.api#documentation": "Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file."
+            "smithy.api#documentation": "Locations that could not be reached."
           }
         },
-        "expression": {
+        "nextPageToken": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Textual representation of an expression in Common Expression Language syntax."
+            "smithy.api#documentation": "Next page token."
           }
         },
-        "title": {
-          "target": "smithy.api#String",
+        "gateways": {
+          "target": "com.gcp.apigateway_v1beta#ApigatewayGatewayList",
           "traits": {
-            "smithy.api#documentation": "Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression."
-          }
-        },
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI."
+            "smithy.api#documentation": "Gateways."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: \"Summary size limit\" description: \"Determines if a summary is less than 100 chars\" expression: \"document.summary.size() < 100\" Example (Equality): title: \"Requestor is owner\" description: \"Determines if requestor is the document owner\" expression: \"document.owner == request.auth.claims.email\" Example (Logic): title: \"Public documents\" description: \"Determine whether the document should be publicly visible\" expression: \"document.type != 'private' && document.type != 'internal'\" Example (Data Manipulation): title: \"Notification string\" description: \"Create a notification string with a timestamp.\" expression: \"'New message received at ' + string(document.create_time)\" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information."
+        "smithy.api#documentation": "Response message for ApiGatewayService.ListGateways"
+      }
+    },
+    "com.gcp.apigateway_v1beta#ApigatewayGatewayList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.apigateway_v1beta#ApigatewayGateway"
+      }
+    },
+    "com.gcp.apigateway_v1beta#ApigatewayAuditLogConfig": {
+      "type": "structure",
+      "members": {
+        "logType": {
+          "target": "com.gcp.apigateway_v1beta#ApigatewayAuditLogConfigLogTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The log type that this config enables."
+          }
+        },
+        "exemptedMembers": {
+          "target": "com.gcp.apigateway_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provides the configuration for logging a type of permissions. Example: { \"audit_log_configs\": [ { \"log_type\": \"DATA_READ\", \"exempted_members\": [ \"user:jose@example.com\" ] }, { \"log_type\": \"DATA_WRITE\" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging."
+      }
+    },
+    "com.gcp.apigateway_v1beta#ApigatewayAuditLogConfigLogTypeEnum": {
+      "type": "enum",
+      "members": {
+        "LOG_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOG_TYPE_UNSPECIFIED"
+          }
+        },
+        "ADMIN_READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADMIN_READ"
+          }
+        },
+        "DATA_WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_WRITE"
+          }
+        },
+        "DATA_READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_READ"
+          }
+        }
+      }
+    },
+    "com.gcp.apigateway_v1beta#ApigatewayListOperationsResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard List next-page token."
+          }
+        },
+        "unreachable": {
+          "target": "com.gcp.apigateway_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations."
+          }
+        },
+        "operations": {
+          "target": "com.gcp.apigateway_v1beta#ApigatewayOperationList",
+          "traits": {
+            "smithy.api#documentation": "A list of operations that matches the specified filter in the request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for Operations.ListOperations."
+      }
+    },
+    "com.gcp.apigateway_v1beta#ApigatewayOperationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.apigateway_v1beta#ApigatewayOperation"
+      }
+    },
+    "com.gcp.apigateway_v1beta#ApigatewayBackendConfig": {
+      "type": "structure",
+      "members": {
+        "googleServiceAccount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Google Cloud IAM service account used to sign OIDC tokens for backends that have authentication configured (https://cloud.google.com/service-infrastructure/docs/service-management/reference/rest/v1/services.configs#backend). This may either be the Service Account's email (i.e. \"{ACCOUNT_ID}@{PROJECT}.iam.gserviceaccount.com\") or its full resource name (i.e. \"projects/{PROJECT}/accounts/{UNIQUE_ID}\"). This is most often used when the backend is a GCP resource such as a Cloud Run Service or an IAP-secured service. Note that this token is always sent as an authorization header bearer token. The audience of the OIDC token is configured in the associated Service Config in the BackendRule option (https://github.com/googleapis/googleapis/blob/master/google/api/backend.proto#L125)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration for all backends."
+      }
+    },
+    "com.gcp.apigateway_v1beta#Empty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.apigateway_v1beta#ApigatewayApiConfigGrpcServiceDefinition": {
+      "type": "structure",
+      "members": {
+        "fileDescriptorSet": {
+          "target": "com.gcp.apigateway_v1beta#ApigatewayApiConfigFile",
+          "traits": {
+            "smithy.api#documentation": "Input only. File descriptor set, generated by protoc. To generate, use protoc with imports and source info included. For an example test.proto file, the following command would put the value in a new file named out.pb. $ protoc --include_imports --include_source_info test.proto -o out.pb"
+          }
+        },
+        "source": {
+          "target": "com.gcp.apigateway_v1beta#ApigatewayApiConfigFileList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Uncompiled proto files associated with the descriptor set, used for display purposes (server-side compilation is not supported). These should match the inputs to 'protoc' command used to generate file_descriptor_set."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A gRPC service definition."
       }
     },
     "com.gcp.apigateway_v1beta#ApigatewayAuditConfig": {
@@ -486,6 +807,40 @@
         "target": "com.gcp.apigateway_v1beta#ApigatewayAuditLogConfig"
       }
     },
+    "com.gcp.apigateway_v1beta#ApigatewayTestIamPermissionsRequest": {
+      "type": "structure",
+      "members": {
+        "permissions": {
+          "target": "com.gcp.apigateway_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "The set of permissions to check for the `resource`. Permissions with wildcards (such as `*` or `storage.*`) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request message for `TestIamPermissions` method."
+      }
+    },
+    "com.gcp.apigateway_v1beta#ApigatewayApiConfigFile": {
+      "type": "structure",
+      "members": {
+        "contents": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The bytes that constitute the file."
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The file path (full or relative path). This is typically the path of the file when it is uploaded."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A lightweight description of a file."
+      }
+    },
     "com.gcp.apigateway_v1beta#ApigatewayApi": {
       "type": "structure",
       "members": {
@@ -501,6 +856,12 @@
             "smithy.api#documentation": "Output only. Updated time."
           }
         },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Display name."
+          }
+        },
         "labels": {
           "target": "com.gcp.apigateway_v1beta#StringMap",
           "traits": {
@@ -513,22 +874,16 @@
             "smithy.api#documentation": "Output only. State of the API."
           }
         },
-        "displayName": {
+        "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. Display name."
+            "smithy.api#documentation": "Output only. Resource name of the API. Format: projects/{project}/locations/global/apis/{api}"
           }
         },
         "managedService": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Optional. Immutable. The name of a Google Managed Service ( https://cloud.google.com/service-infrastructure/docs/glossary#managed). If not specified, a new Service will automatically be created in the same project as this API."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Resource name of the API. Format: projects/{project}/locations/global/apis/{api}"
           }
         }
       },
@@ -577,343 +932,59 @@
         }
       }
     },
-    "com.gcp.apigateway_v1beta#ApigatewayGateway": {
-      "type": "structure",
-      "members": {
-        "state": {
-          "target": "com.gcp.apigateway_v1beta#ApigatewayGatewayStateEnum",
-          "traits": {
-            "smithy.api#documentation": "Output only. The current state of the Gateway."
-          }
-        },
-        "apiConfig": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Resource name of the API Config for this Gateway. Format: projects/{project}/locations/global/apis/{api}/configs/{apiConfig}"
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Resource name of the Gateway. Format: projects/{project}/locations/{location}/gateways/{gateway}"
-          }
-        },
-        "createTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Created time."
-          }
-        },
-        "updateTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Updated time."
-          }
-        },
-        "labels": {
-          "target": "com.gcp.apigateway_v1beta#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Optional. Resource labels to represent user-provided metadata. Refer to cloud documentation on labels for more details. https://cloud.google.com/compute/docs/labeling-resources"
-          }
-        },
-        "displayName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Display name."
-          }
-        },
-        "defaultHostname": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The default API Gateway host name of the form `{gateway_id}-{hash}.{region_code}.gateway.dev`."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A Gateway is an API-aware HTTP proxy. It performs API-Method and/or API-Consumer specific actions based on an API Config such as authentication, policy enforcement, and backend selection."
-      }
-    },
-    "com.gcp.apigateway_v1beta#ApigatewayGatewayStateEnum": {
-      "type": "enum",
-      "members": {
-        "STATE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "STATE_UNSPECIFIED"
-          }
-        },
-        "CREATING": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CREATING"
-          }
-        },
-        "ACTIVE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ACTIVE"
-          }
-        },
-        "FAILED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "FAILED"
-          }
-        },
-        "DELETING": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DELETING"
-          }
-        },
-        "UPDATING": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "UPDATING"
-          }
-        }
-      }
-    },
-    "com.gcp.apigateway_v1beta#ApigatewayListLocationsResponse": {
-      "type": "structure",
-      "members": {
-        "locations": {
-          "target": "com.gcp.apigateway_v1beta#ApigatewayLocationList",
-          "traits": {
-            "smithy.api#documentation": "A list of locations that matches the specified filter in the request."
-          }
-        },
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The standard List next-page token."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The response message for Locations.ListLocations."
-      }
-    },
-    "com.gcp.apigateway_v1beta#ApigatewayLocationList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.apigateway_v1beta#ApigatewayLocation"
-      }
-    },
-    "com.gcp.apigateway_v1beta#ApigatewaySetIamPolicyRequest": {
-      "type": "structure",
-      "members": {
-        "policy": {
-          "target": "com.gcp.apigateway_v1beta#ApigatewayPolicy",
-          "traits": {
-            "smithy.api#documentation": "REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Google Cloud services (such as Projects) might reject them."
-          }
-        },
-        "updateMask": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: \"bindings, etag\"`"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Request message for `SetIamPolicy` method."
-      }
-    },
-    "com.gcp.apigateway_v1beta#Empty": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
-      }
-    },
-    "com.gcp.apigateway_v1beta#ApigatewayCancelOperationRequest": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "The request message for Operations.CancelOperation."
-      }
-    },
-    "com.gcp.apigateway_v1beta#ApigatewayListApiConfigsResponse": {
-      "type": "structure",
-      "members": {
-        "unreachableLocations": {
-          "target": "com.gcp.apigateway_v1beta#StringList",
-          "traits": {
-            "smithy.api#documentation": "Locations that could not be reached."
-          }
-        },
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Next page token."
-          }
-        },
-        "apiConfigs": {
-          "target": "com.gcp.apigateway_v1beta#ApigatewayApiConfigList",
-          "traits": {
-            "smithy.api#documentation": "API Configs."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response message for ApiGatewayService.ListApiConfigs"
-      }
-    },
-    "com.gcp.apigateway_v1beta#ApigatewayApiConfigList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.apigateway_v1beta#ApigatewayApiConfig"
-      }
-    },
-    "com.gcp.apigateway_v1beta#ApigatewayOperation": {
-      "type": "structure",
-      "members": {
-        "metadata": {
-          "target": "com.gcp.apigateway_v1beta#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
-          }
-        },
-        "response": {
-          "target": "com.gcp.apigateway_v1beta#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
-          }
-        },
-        "done": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
-          }
-        },
-        "error": {
-          "target": "com.gcp.apigateway_v1beta#ApigatewayStatus",
-          "traits": {
-            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
-      }
-    },
-    "com.gcp.apigateway_v1beta#DocumentMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "smithy.api#Document"
-      }
-    },
-    "com.gcp.apigateway_v1beta#ApigatewayBackendConfig": {
-      "type": "structure",
-      "members": {
-        "googleServiceAccount": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Google Cloud IAM service account used to sign OIDC tokens for backends that have authentication configured (https://cloud.google.com/service-infrastructure/docs/service-management/reference/rest/v1/services.configs#backend). This may either be the Service Account's email (i.e. \"{ACCOUNT_ID}@{PROJECT}.iam.gserviceaccount.com\") or its full resource name (i.e. \"projects/{PROJECT}/accounts/{UNIQUE_ID}\"). This is most often used when the backend is a GCP resource such as a Cloud Run Service or an IAP-secured service. Note that this token is always sent as an authorization header bearer token. The audience of the OIDC token is configured in the associated Service Config in the BackendRule option (https://github.com/googleapis/googleapis/blob/master/google/api/backend.proto#L125)."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Configuration for all backends."
-      }
-    },
-    "com.gcp.apigateway_v1beta#ApigatewayTestIamPermissionsResponse": {
-      "type": "structure",
-      "members": {
-        "permissions": {
-          "target": "com.gcp.apigateway_v1beta#StringList",
-          "traits": {
-            "smithy.api#documentation": "A subset of `TestPermissionsRequest.permissions` that the caller is allowed."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response message for `TestIamPermissions` method."
-      }
-    },
-    "com.gcp.apigateway_v1beta#ApigatewayGatewayConfig": {
-      "type": "structure",
-      "members": {
-        "backendConfig": {
-          "target": "com.gcp.apigateway_v1beta#ApigatewayBackendConfig",
-          "traits": {
-            "smithy.api#documentation": "Required. Backend settings that are applied to all backends of the Gateway."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Configuration settings for Gateways."
-      }
-    },
-    "com.gcp.apigateway_v1beta#ApigatewayLocation": {
-      "type": "structure",
-      "members": {
-        "locationId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The canonical id for this location. For example: `\"us-east1\"`."
-          }
-        },
-        "labels": {
-          "target": "com.gcp.apigateway_v1beta#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}"
-          }
-        },
-        "metadata": {
-          "target": "com.gcp.apigateway_v1beta#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "Service-specific metadata. For example the available capacity at the given location."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`"
-          }
-        },
-        "displayName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\"."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A resource that represents a Google Cloud location."
-      }
-    },
-    "com.gcp.apigateway_v1beta#ApigatewayApiConfigOpenApiDocument": {
-      "type": "structure",
-      "members": {
-        "document": {
-          "target": "com.gcp.apigateway_v1beta#ApigatewayApiConfigFile",
-          "traits": {
-            "smithy.api#documentation": "The OpenAPI Specification document file."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "An OpenAPI Specification Document describing an API."
-      }
-    },
-    "com.gcp.apigateway_v1beta#ApigatewayStatus": {
+    "com.gcp.apigateway_v1beta#ApigatewayOperationMetadataDiagnostic": {
       "type": "structure",
       "members": {
         "message": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+            "smithy.api#documentation": "The diagnostic message."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Location of the diagnostic."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Diagnostic information from configuration processing."
+      }
+    },
+    "com.gcp.apigateway_v1beta#ApigatewayBinding": {
+      "type": "structure",
+      "members": {
+        "condition": {
+          "target": "com.gcp.apigateway_v1beta#ApigatewayExpr",
+          "traits": {
+            "smithy.api#documentation": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
+          }
+        },
+        "members": {
+          "target": "com.gcp.apigateway_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workforce identity pool. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/group/{group_id}`: All workforce identities in a group. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All workforce identities with a specific attribute value. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/*`: All identities in a workforce identity pool. * `principal://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workload identity pool. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/group/{group_id}`: A workload identity pool group. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All identities in a workload identity pool with a certain attribute. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/*`: All identities in a workload identity pool. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `deleted:principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: Deleted single identity in a workforce identity pool. For example, `deleted:principal://iam.googleapis.com/locations/global/workforcePools/my-pool-id/subject/my-subject-attribute-value`."
+          }
+        },
+        "role": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Associates `members`, or principals, with a `role`."
+      }
+    },
+    "com.gcp.apigateway_v1beta#ApigatewayStatus": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
           }
         },
         "details": {
@@ -922,10 +993,10 @@
             "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
           }
         },
-        "code": {
-          "target": "smithy.api#Integer",
+        "message": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
+            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
           }
         }
       },
@@ -939,104 +1010,34 @@
         "target": "com.gcp.apigateway_v1beta#DocumentMap"
       }
     },
-    "com.gcp.apigateway_v1beta#ApigatewayPolicy": {
+    "com.gcp.apigateway_v1beta#ApigatewaySetIamPolicyRequest": {
       "type": "structure",
       "members": {
-        "auditConfigs": {
-          "target": "com.gcp.apigateway_v1beta#ApigatewayAuditConfigList",
-          "traits": {
-            "smithy.api#documentation": "Specifies cloud audit logging configuration for this policy."
-          }
-        },
-        "bindings": {
-          "target": "com.gcp.apigateway_v1beta#ApigatewayBindingList",
-          "traits": {
-            "smithy.api#documentation": "Associates a list of `members`, or principals, with a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one principal. The `bindings` in a `Policy` can refer to up to 1,500 principals; up to 250 of these principals can be Google groups. Each occurrence of a principal counts towards these limits. For example, if the `bindings` grant 50 different roles to `user:alice@example.com`, and not to any other principal, then you can add another 1,450 principals to the `bindings` in the `Policy`."
-          }
-        },
-        "version": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
-          }
-        },
-        "etag": {
+        "updateMask": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "`etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy. **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/)."
-      }
-    },
-    "com.gcp.apigateway_v1beta#ApigatewayAuditConfigList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.apigateway_v1beta#ApigatewayAuditConfig"
-      }
-    },
-    "com.gcp.apigateway_v1beta#ApigatewayBindingList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.apigateway_v1beta#ApigatewayBinding"
-      }
-    },
-    "com.gcp.apigateway_v1beta#ApigatewayListApisResponse": {
-      "type": "structure",
-      "members": {
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Next page token."
+            "smithy.api#documentation": "OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: \"bindings, etag\"`"
           }
         },
-        "apis": {
-          "target": "com.gcp.apigateway_v1beta#ApigatewayApiList",
+        "policy": {
+          "target": "com.gcp.apigateway_v1beta#ApigatewayPolicy",
           "traits": {
-            "smithy.api#documentation": "APIs."
-          }
-        },
-        "unreachableLocations": {
-          "target": "com.gcp.apigateway_v1beta#StringList",
-          "traits": {
-            "smithy.api#documentation": "Locations that could not be reached."
+            "smithy.api#documentation": "REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Google Cloud services (such as Projects) might reject them."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Response message for ApiGatewayService.ListApis"
-      }
-    },
-    "com.gcp.apigateway_v1beta#ApigatewayApiList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.apigateway_v1beta#ApigatewayApi"
-      }
-    },
-    "com.gcp.apigateway_v1beta#ApigatewayTestIamPermissionsRequest": {
-      "type": "structure",
-      "members": {
-        "permissions": {
-          "target": "com.gcp.apigateway_v1beta#StringList",
-          "traits": {
-            "smithy.api#documentation": "The set of permissions to check for the `resource`. Permissions with wildcards (such as `*` or `storage.*`) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions)."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Request message for `TestIamPermissions` method."
+        "smithy.api#documentation": "Request message for `SetIamPolicy` method."
       }
     },
     "com.gcp.apigateway_v1beta#ListProjectsLocationsRequest": {
       "type": "structure",
       "members": {
-        "pageToken": {
-          "target": "smithy.api#String",
+        "pageSize": {
+          "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.",
-            "smithy.api#httpQuery": "pageToken"
+            "smithy.api#documentation": "The maximum number of results to return. If not set, the service selects a default.",
+            "smithy.api#httpQuery": "pageSize"
           }
         },
         "extraLocationTypes": {
@@ -1061,11 +1062,11 @@
             "smithy.api#required": {}
           }
         },
-        "pageSize": {
-          "target": "smithy.api#Integer",
+        "pageToken": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The maximum number of results to return. If not set, the service selects a default.",
-            "smithy.api#httpQuery": "pageSize"
+            "smithy.api#documentation": "A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.",
+            "smithy.api#httpQuery": "pageToken"
           }
         }
       }
@@ -1161,50 +1162,13 @@
         "smithy.api#documentation": "Gets information about a location."
       }
     },
-    "com.gcp.apigateway_v1beta#GetProjectsLocationsApisRequest": {
+    "com.gcp.apigateway_v1beta#DeleteProjectsLocationsGatewaysRequest": {
       "type": "structure",
       "members": {
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. Resource name of the form: `projects/*/locations/global/apis/*`",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.apigateway_v1beta#GetProjectsLocationsApis": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.apigateway_v1beta#GetProjectsLocationsApisRequest"
-      },
-      "output": {
-        "target": "com.gcp.apigateway_v1beta#ApigatewayApi"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.apigateway_v1beta#NotFound"
-        },
-        {
-          "target": "com.gcp.apigateway_v1beta#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1beta/{+name}"
-        },
-        "smithy.api#documentation": "Gets details of a single Api."
-      }
-    },
-    "com.gcp.apigateway_v1beta#DeleteProjectsLocationsApisRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Resource name of the form: `projects/*/locations/global/apis/*`",
+            "smithy.api#documentation": "Required. Resource name of the form: `projects/*/locations/*/gateways/*`",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
@@ -1237,6 +1201,457 @@
         ]
       }
     },
+    "com.gcp.apigateway_v1beta#DeleteProjectsLocationsGateways": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.apigateway_v1beta#DeleteProjectsLocationsGatewaysRequest"
+      },
+      "output": {
+        "target": "com.gcp.apigateway_v1beta#ApigatewayOperation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.apigateway_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.apigateway_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.apigateway_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.apigateway_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1beta/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a single Gateway."
+      }
+    },
+    "com.gcp.apigateway_v1beta#GetProjectsLocationsGatewaysRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Resource name of the form: `projects/*/locations/*/gateways/*`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.apigateway_v1beta#GetProjectsLocationsGateways": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.apigateway_v1beta#GetProjectsLocationsGatewaysRequest"
+      },
+      "output": {
+        "target": "com.gcp.apigateway_v1beta#ApigatewayGateway"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.apigateway_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.apigateway_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/{+name}"
+        },
+        "smithy.api#documentation": "Gets details of a single Gateway."
+      }
+    },
+    "com.gcp.apigateway_v1beta#GetIamPolicyProjectsLocationsGatewaysRequest": {
+      "type": "structure",
+      "members": {
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "options.requestedPolicyVersion": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+            "smithy.api#httpQuery": "options.requestedPolicyVersion"
+          }
+        }
+      }
+    },
+    "com.gcp.apigateway_v1beta#GetIamPolicyProjectsLocationsGateways": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.apigateway_v1beta#GetIamPolicyProjectsLocationsGatewaysRequest"
+      },
+      "output": {
+        "target": "com.gcp.apigateway_v1beta#ApigatewayPolicy"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.apigateway_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.apigateway_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/{+resource}:getIamPolicy"
+        },
+        "smithy.api#documentation": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set."
+      }
+    },
+    "com.gcp.apigateway_v1beta#CreateProjectsLocationsGatewaysRequest": {
+      "type": "structure",
+      "members": {
+        "gatewayId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Identifier to assign to the Gateway. Must be unique within scope of the parent resource.",
+            "smithy.api#httpQuery": "gatewayId"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Parent resource of the Gateway, of the form: `projects/*/locations/*`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.apigateway_v1beta#ApigatewayGateway",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.apigateway_v1beta#CreateProjectsLocationsGateways": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.apigateway_v1beta#CreateProjectsLocationsGatewaysRequest"
+      },
+      "output": {
+        "target": "com.gcp.apigateway_v1beta#ApigatewayOperation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.apigateway_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.apigateway_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.apigateway_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.apigateway_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta/{+parent}/gateways"
+        },
+        "smithy.api#documentation": "Creates a new Gateway in a given project and location."
+      }
+    },
+    "com.gcp.apigateway_v1beta#PatchProjectsLocationsGatewaysRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Resource name of the Gateway. Format: projects/{project}/locations/{location}/gateways/{gateway}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Field mask is used to specify the fields to be overwritten in the Gateway resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.gcp.apigateway_v1beta#ApigatewayGateway",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.apigateway_v1beta#PatchProjectsLocationsGateways": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.apigateway_v1beta#PatchProjectsLocationsGatewaysRequest"
+      },
+      "output": {
+        "target": "com.gcp.apigateway_v1beta#ApigatewayOperation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.apigateway_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.apigateway_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.apigateway_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.apigateway_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1beta/{+name}"
+        },
+        "smithy.api#documentation": "Updates the parameters of a single Gateway."
+      }
+    },
+    "com.gcp.apigateway_v1beta#SetIamPolicyProjectsLocationsGatewaysRequest": {
+      "type": "structure",
+      "members": {
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.apigateway_v1beta#ApigatewaySetIamPolicyRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.apigateway_v1beta#SetIamPolicyProjectsLocationsGateways": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.apigateway_v1beta#SetIamPolicyProjectsLocationsGatewaysRequest"
+      },
+      "output": {
+        "target": "com.gcp.apigateway_v1beta#ApigatewayPolicy"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.apigateway_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.apigateway_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.apigateway_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.apigateway_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta/{+resource}:setIamPolicy"
+        },
+        "smithy.api#documentation": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors."
+      }
+    },
+    "com.gcp.apigateway_v1beta#TestIamPermissionsProjectsLocationsGatewaysRequest": {
+      "type": "structure",
+      "members": {
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.apigateway_v1beta#ApigatewayTestIamPermissionsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.apigateway_v1beta#TestIamPermissionsProjectsLocationsGateways": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.apigateway_v1beta#TestIamPermissionsProjectsLocationsGatewaysRequest"
+      },
+      "output": {
+        "target": "com.gcp.apigateway_v1beta#ApigatewayTestIamPermissionsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.apigateway_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.apigateway_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.apigateway_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.apigateway_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta/{+resource}:testIamPermissions"
+        },
+        "smithy.api#documentation": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning."
+      }
+    },
+    "com.gcp.apigateway_v1beta#ListProjectsLocationsGatewaysRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Page size.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "orderBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Order by parameters.",
+            "smithy.api#httpQuery": "orderBy"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filter.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Parent resource of the Gateway, of the form: `projects/*/locations/*`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.apigateway_v1beta#ListProjectsLocationsGateways": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.apigateway_v1beta#ListProjectsLocationsGatewaysRequest"
+      },
+      "output": {
+        "target": "com.gcp.apigateway_v1beta#ApigatewayListGatewaysResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.apigateway_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.apigateway_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/{+parent}/gateways"
+        },
+        "smithy.api#documentation": "Lists Gateways in a given project and location.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.apigateway_v1beta#GetIamPolicyProjectsLocationsApisRequest": {
+      "type": "structure",
+      "members": {
+        "options.requestedPolicyVersion": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+            "smithy.api#httpQuery": "options.requestedPolicyVersion"
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.apigateway_v1beta#GetIamPolicyProjectsLocationsApis": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.apigateway_v1beta#GetIamPolicyProjectsLocationsApisRequest"
+      },
+      "output": {
+        "target": "com.gcp.apigateway_v1beta#ApigatewayPolicy"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.apigateway_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.apigateway_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/{+resource}:getIamPolicy"
+        },
+        "smithy.api#documentation": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set."
+      }
+    },
+    "com.gcp.apigateway_v1beta#DeleteProjectsLocationsApisRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Resource name of the form: `projects/*/locations/global/apis/*`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
     "com.gcp.apigateway_v1beta#DeleteProjectsLocationsApis": {
       "type": "operation",
       "input": {
@@ -1267,22 +1682,91 @@
         "smithy.api#documentation": "Deletes a single Api."
       }
     },
+    "com.gcp.apigateway_v1beta#ListProjectsLocationsApisRequest": {
+      "type": "structure",
+      "members": {
+        "orderBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Order by parameters.",
+            "smithy.api#httpQuery": "orderBy"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filter.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Parent resource of the API, of the form: `projects/*/locations/global`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Page size.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.gcp.apigateway_v1beta#ListProjectsLocationsApis": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.apigateway_v1beta#ListProjectsLocationsApisRequest"
+      },
+      "output": {
+        "target": "com.gcp.apigateway_v1beta#ApigatewayListApisResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.apigateway_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.apigateway_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/{+parent}/apis"
+        },
+        "smithy.api#documentation": "Lists Apis in a given project and location.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
     "com.gcp.apigateway_v1beta#PatchProjectsLocationsApisRequest": {
       "type": "structure",
       "members": {
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Field mask is used to specify the fields to be overwritten in the Api resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
         "name": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Output only. Resource name of the API. Format: projects/{project}/locations/global/apis/{api}",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
-          }
-        },
-        "updateMask": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Field mask is used to specify the fields to be overwritten in the Api resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
-            "smithy.api#httpQuery": "updateMask"
           }
         },
         "body": {
@@ -1381,104 +1865,26 @@
         "smithy.api#documentation": "Creates a new Api in a given project and location."
       }
     },
-    "com.gcp.apigateway_v1beta#TestIamPermissionsProjectsLocationsApisRequest": {
+    "com.gcp.apigateway_v1beta#GetProjectsLocationsApisRequest": {
       "type": "structure",
       "members": {
-        "resource": {
+        "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.apigateway_v1beta#ApigatewayTestIamPermissionsRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.apigateway_v1beta#TestIamPermissionsProjectsLocationsApis": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.apigateway_v1beta#TestIamPermissionsProjectsLocationsApisRequest"
-      },
-      "output": {
-        "target": "com.gcp.apigateway_v1beta#ApigatewayTestIamPermissionsResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.apigateway_v1beta#NotFound"
-        },
-        {
-          "target": "com.gcp.apigateway_v1beta#Forbidden"
-        },
-        {
-          "target": "com.gcp.apigateway_v1beta#BadRequest"
-        },
-        {
-          "target": "com.gcp.apigateway_v1beta#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1beta/{+resource}:testIamPermissions"
-        },
-        "smithy.api#documentation": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning."
-      }
-    },
-    "com.gcp.apigateway_v1beta#ListProjectsLocationsApisRequest": {
-      "type": "structure",
-      "members": {
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Page size.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "orderBy": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Order by parameters.",
-            "smithy.api#httpQuery": "orderBy"
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Page token.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Filter.",
-            "smithy.api#httpQuery": "filter"
-          }
-        },
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Parent resource of the API, of the form: `projects/*/locations/global`",
+            "smithy.api#documentation": "Required. Resource name of the form: `projects/*/locations/global/apis/*`",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
         }
       }
     },
-    "com.gcp.apigateway_v1beta#ListProjectsLocationsApis": {
+    "com.gcp.apigateway_v1beta#GetProjectsLocationsApis": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.apigateway_v1beta#ListProjectsLocationsApisRequest"
+        "target": "com.gcp.apigateway_v1beta#GetProjectsLocationsApisRequest"
       },
       "output": {
-        "target": "com.gcp.apigateway_v1beta#ApigatewayListApisResponse"
+        "target": "com.gcp.apigateway_v1beta#ApigatewayApi"
       },
       "errors": [
         {
@@ -1491,13 +1897,9 @@
       "traits": {
         "smithy.api#http": {
           "method": "GET",
-          "uri": "v1beta/{+parent}/apis"
+          "uri": "v1beta/{+name}"
         },
-        "smithy.api#documentation": "Lists Apis in a given project and location.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
+        "smithy.api#documentation": "Gets details of a single Api."
       }
     },
     "com.gcp.apigateway_v1beta#SetIamPolicyProjectsLocationsApisRequest": {
@@ -1550,33 +1952,33 @@
         "smithy.api#documentation": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors."
       }
     },
-    "com.gcp.apigateway_v1beta#GetIamPolicyProjectsLocationsApisRequest": {
+    "com.gcp.apigateway_v1beta#TestIamPermissionsProjectsLocationsApisRequest": {
       "type": "structure",
       "members": {
         "resource": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+            "smithy.api#documentation": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
         },
-        "options.requestedPolicyVersion": {
-          "target": "smithy.api#Integer",
+        "body": {
+          "target": "com.gcp.apigateway_v1beta#ApigatewayTestIamPermissionsRequest",
           "traits": {
-            "smithy.api#documentation": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
-            "smithy.api#httpQuery": "options.requestedPolicyVersion"
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
           }
         }
       }
     },
-    "com.gcp.apigateway_v1beta#GetIamPolicyProjectsLocationsApis": {
+    "com.gcp.apigateway_v1beta#TestIamPermissionsProjectsLocationsApis": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.apigateway_v1beta#GetIamPolicyProjectsLocationsApisRequest"
+        "target": "com.gcp.apigateway_v1beta#TestIamPermissionsProjectsLocationsApisRequest"
       },
       "output": {
-        "target": "com.gcp.apigateway_v1beta#ApigatewayPolicy"
+        "target": "com.gcp.apigateway_v1beta#ApigatewayTestIamPermissionsResponse"
       },
       "errors": [
         {
@@ -1584,14 +1986,63 @@
         },
         {
           "target": "com.gcp.apigateway_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.apigateway_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.apigateway_v1beta#Conflict"
         }
       ],
       "traits": {
         "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1beta/{+resource}:getIamPolicy"
+          "method": "POST",
+          "uri": "v1beta/{+resource}:testIamPermissions"
         },
-        "smithy.api#documentation": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set."
+        "smithy.api#documentation": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning."
+      }
+    },
+    "com.gcp.apigateway_v1beta#DeleteProjectsLocationsApisConfigsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Resource name of the form: `projects/*/locations/global/apis/*/configs/*`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.apigateway_v1beta#DeleteProjectsLocationsApisConfigs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.apigateway_v1beta#DeleteProjectsLocationsApisConfigsRequest"
+      },
+      "output": {
+        "target": "com.gcp.apigateway_v1beta#ApigatewayOperation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.apigateway_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.apigateway_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.apigateway_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.apigateway_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1beta/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a single ApiConfig."
       }
     },
     "com.gcp.apigateway_v1beta#GetIamPolicyProjectsLocationsApisConfigsRequest": {
@@ -1638,19 +2089,19 @@
         "smithy.api#documentation": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set."
       }
     },
-    "com.gcp.apigateway_v1beta#SetIamPolicyProjectsLocationsApisConfigsRequest": {
+    "com.gcp.apigateway_v1beta#TestIamPermissionsProjectsLocationsApisConfigsRequest": {
       "type": "structure",
       "members": {
         "resource": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+            "smithy.api#documentation": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
         },
         "body": {
-          "target": "com.gcp.apigateway_v1beta#ApigatewaySetIamPolicyRequest",
+          "target": "com.gcp.apigateway_v1beta#ApigatewayTestIamPermissionsRequest",
           "traits": {
             "smithy.api#httpPayload": {},
             "smithy.api#documentation": "Request body"
@@ -1658,13 +2109,13 @@
         }
       }
     },
-    "com.gcp.apigateway_v1beta#SetIamPolicyProjectsLocationsApisConfigs": {
+    "com.gcp.apigateway_v1beta#TestIamPermissionsProjectsLocationsApisConfigs": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.apigateway_v1beta#SetIamPolicyProjectsLocationsApisConfigsRequest"
+        "target": "com.gcp.apigateway_v1beta#TestIamPermissionsProjectsLocationsApisConfigsRequest"
       },
       "output": {
-        "target": "com.gcp.apigateway_v1beta#ApigatewayPolicy"
+        "target": "com.gcp.apigateway_v1beta#ApigatewayTestIamPermissionsResponse"
       },
       "errors": [
         {
@@ -1683,9 +2134,192 @@
       "traits": {
         "smithy.api#http": {
           "method": "POST",
-          "uri": "v1beta/{+resource}:setIamPolicy"
+          "uri": "v1beta/{+resource}:testIamPermissions"
         },
-        "smithy.api#documentation": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors."
+        "smithy.api#documentation": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning."
+      }
+    },
+    "com.gcp.apigateway_v1beta#PatchProjectsLocationsApisConfigsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Resource name of the API Config. Format: projects/{project}/locations/global/apis/{api}/configs/{api_config}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Field mask is used to specify the fields to be overwritten in the ApiConfig resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.gcp.apigateway_v1beta#ApigatewayApiConfig",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.apigateway_v1beta#PatchProjectsLocationsApisConfigs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.apigateway_v1beta#PatchProjectsLocationsApisConfigsRequest"
+      },
+      "output": {
+        "target": "com.gcp.apigateway_v1beta#ApigatewayOperation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.apigateway_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.apigateway_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.apigateway_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.apigateway_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1beta/{+name}"
+        },
+        "smithy.api#documentation": "Updates the parameters of a single ApiConfig."
+      }
+    },
+    "com.gcp.apigateway_v1beta#ListProjectsLocationsApisConfigsRequest": {
+      "type": "structure",
+      "members": {
+        "orderBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Order by parameters.",
+            "smithy.api#httpQuery": "orderBy"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filter.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Page size.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Parent resource of the API Config, of the form: `projects/*/locations/global/apis/*`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.apigateway_v1beta#ListProjectsLocationsApisConfigs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.apigateway_v1beta#ListProjectsLocationsApisConfigsRequest"
+      },
+      "output": {
+        "target": "com.gcp.apigateway_v1beta#ApigatewayListApiConfigsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.apigateway_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.apigateway_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/{+parent}/configs"
+        },
+        "smithy.api#documentation": "Lists ApiConfigs in a given project and location.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.apigateway_v1beta#CreateProjectsLocationsApisConfigsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Parent resource of the API Config, of the form: `projects/*/locations/global/apis/*`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "apiConfigId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Identifier to assign to the API Config. Must be unique within scope of the parent resource.",
+            "smithy.api#httpQuery": "apiConfigId"
+          }
+        },
+        "body": {
+          "target": "com.gcp.apigateway_v1beta#ApigatewayApiConfig",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.apigateway_v1beta#CreateProjectsLocationsApisConfigs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.apigateway_v1beta#CreateProjectsLocationsApisConfigsRequest"
+      },
+      "output": {
+        "target": "com.gcp.apigateway_v1beta#ApigatewayOperation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.apigateway_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.apigateway_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.apigateway_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.apigateway_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta/{+parent}/configs"
+        },
+        "smithy.api#documentation": "Creates a new ApiConfig in a given project and location."
       }
     },
     "com.gcp.apigateway_v1beta#GetProjectsLocationsApisConfigsViewEnum": {
@@ -1755,19 +2389,19 @@
         "smithy.api#documentation": "Gets details of a single ApiConfig."
       }
     },
-    "com.gcp.apigateway_v1beta#TestIamPermissionsProjectsLocationsApisConfigsRequest": {
+    "com.gcp.apigateway_v1beta#SetIamPolicyProjectsLocationsApisConfigsRequest": {
       "type": "structure",
       "members": {
         "resource": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+            "smithy.api#documentation": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
         },
         "body": {
-          "target": "com.gcp.apigateway_v1beta#ApigatewayTestIamPermissionsRequest",
+          "target": "com.gcp.apigateway_v1beta#ApigatewaySetIamPolicyRequest",
           "traits": {
             "smithy.api#httpPayload": {},
             "smithy.api#documentation": "Request body"
@@ -1775,13 +2409,13 @@
         }
       }
     },
-    "com.gcp.apigateway_v1beta#TestIamPermissionsProjectsLocationsApisConfigs": {
+    "com.gcp.apigateway_v1beta#SetIamPolicyProjectsLocationsApisConfigs": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.apigateway_v1beta#TestIamPermissionsProjectsLocationsApisConfigsRequest"
+        "target": "com.gcp.apigateway_v1beta#SetIamPolicyProjectsLocationsApisConfigsRequest"
       },
       "output": {
-        "target": "com.gcp.apigateway_v1beta#ApigatewayTestIamPermissionsResponse"
+        "target": "com.gcp.apigateway_v1beta#ApigatewayPolicy"
       },
       "errors": [
         {
@@ -1800,116 +2434,31 @@
       "traits": {
         "smithy.api#http": {
           "method": "POST",
-          "uri": "v1beta/{+resource}:testIamPermissions"
+          "uri": "v1beta/{+resource}:setIamPolicy"
         },
-        "smithy.api#documentation": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning."
+        "smithy.api#documentation": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors."
       }
     },
-    "com.gcp.apigateway_v1beta#CreateProjectsLocationsApisConfigsRequest": {
+    "com.gcp.apigateway_v1beta#GetProjectsLocationsOperationsRequest": {
       "type": "structure",
       "members": {
-        "apiConfigId": {
+        "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. Identifier to assign to the API Config. Must be unique within scope of the parent resource.",
-            "smithy.api#httpQuery": "apiConfigId"
-          }
-        },
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Parent resource of the API Config, of the form: `projects/*/locations/global/apis/*`",
+            "smithy.api#documentation": "The name of the operation resource.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.apigateway_v1beta#ApigatewayApiConfig",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
           }
         }
       }
     },
-    "com.gcp.apigateway_v1beta#CreateProjectsLocationsApisConfigs": {
+    "com.gcp.apigateway_v1beta#GetProjectsLocationsOperations": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.apigateway_v1beta#CreateProjectsLocationsApisConfigsRequest"
+        "target": "com.gcp.apigateway_v1beta#GetProjectsLocationsOperationsRequest"
       },
       "output": {
         "target": "com.gcp.apigateway_v1beta#ApigatewayOperation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.apigateway_v1beta#NotFound"
-        },
-        {
-          "target": "com.gcp.apigateway_v1beta#Forbidden"
-        },
-        {
-          "target": "com.gcp.apigateway_v1beta#BadRequest"
-        },
-        {
-          "target": "com.gcp.apigateway_v1beta#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1beta/{+parent}/configs"
-        },
-        "smithy.api#documentation": "Creates a new ApiConfig in a given project and location."
-      }
-    },
-    "com.gcp.apigateway_v1beta#ListProjectsLocationsApisConfigsRequest": {
-      "type": "structure",
-      "members": {
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Filter.",
-            "smithy.api#httpQuery": "filter"
-          }
-        },
-        "orderBy": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Order by parameters.",
-            "smithy.api#httpQuery": "orderBy"
-          }
-        },
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Parent resource of the API Config, of the form: `projects/*/locations/global/apis/*`",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Page size.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Page token.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        }
-      }
-    },
-    "com.gcp.apigateway_v1beta#ListProjectsLocationsApisConfigs": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.apigateway_v1beta#ListProjectsLocationsApisConfigsRequest"
-      },
-      "output": {
-        "target": "com.gcp.apigateway_v1beta#ApigatewayListApiConfigsResponse"
       },
       "errors": [
         {
@@ -1922,35 +2471,100 @@
       "traits": {
         "smithy.api#http": {
           "method": "GET",
-          "uri": "v1beta/{+parent}/configs"
+          "uri": "v1beta/{+name}"
         },
-        "smithy.api#documentation": "Lists ApiConfigs in a given project and location.",
+        "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
+      }
+    },
+    "com.gcp.apigateway_v1beta#ListProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "returnPartialSuccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+            "smithy.api#httpQuery": "returnPartialSuccess"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation's parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The standard list page size.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list filter.",
+            "smithy.api#httpQuery": "filter"
+          }
+        }
+      }
+    },
+    "com.gcp.apigateway_v1beta#ListProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.apigateway_v1beta#ListProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.apigateway_v1beta#ApigatewayListOperationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.apigateway_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.apigateway_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/{+name}/operations"
+        },
+        "smithy.api#documentation": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
         "smithy.api#paginated": {
           "inputToken": "pageToken",
           "outputToken": "nextPageToken"
         }
       }
     },
-    "com.gcp.apigateway_v1beta#DeleteProjectsLocationsApisConfigsRequest": {
+    "com.gcp.apigateway_v1beta#DeleteProjectsLocationsOperationsRequest": {
       "type": "structure",
       "members": {
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. Resource name of the form: `projects/*/locations/global/apis/*/configs/*`",
+            "smithy.api#documentation": "The name of the operation resource to be deleted.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
         }
       }
     },
-    "com.gcp.apigateway_v1beta#DeleteProjectsLocationsApisConfigs": {
+    "com.gcp.apigateway_v1beta#DeleteProjectsLocationsOperations": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.apigateway_v1beta#DeleteProjectsLocationsApisConfigsRequest"
+        "target": "com.gcp.apigateway_v1beta#DeleteProjectsLocationsOperationsRequest"
       },
       "output": {
-        "target": "com.gcp.apigateway_v1beta#ApigatewayOperation"
+        "target": "com.gcp.apigateway_v1beta#Empty"
       },
       "errors": [
         {
@@ -1971,64 +2585,7 @@
           "method": "DELETE",
           "uri": "v1beta/{+name}"
         },
-        "smithy.api#documentation": "Deletes a single ApiConfig."
-      }
-    },
-    "com.gcp.apigateway_v1beta#PatchProjectsLocationsApisConfigsRequest": {
-      "type": "structure",
-      "members": {
-        "updateMask": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Field mask is used to specify the fields to be overwritten in the ApiConfig resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
-            "smithy.api#httpQuery": "updateMask"
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Resource name of the API Config. Format: projects/{project}/locations/global/apis/{api}/configs/{api_config}",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.apigateway_v1beta#ApigatewayApiConfig",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.apigateway_v1beta#PatchProjectsLocationsApisConfigs": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.apigateway_v1beta#PatchProjectsLocationsApisConfigsRequest"
-      },
-      "output": {
-        "target": "com.gcp.apigateway_v1beta#ApigatewayOperation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.apigateway_v1beta#NotFound"
-        },
-        {
-          "target": "com.gcp.apigateway_v1beta#Forbidden"
-        },
-        {
-          "target": "com.gcp.apigateway_v1beta#BadRequest"
-        },
-        {
-          "target": "com.gcp.apigateway_v1beta#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "PATCH",
-          "uri": "v1beta/{+name}"
-        },
-        "smithy.api#documentation": "Updates the parameters of a single ApiConfig."
+        "smithy.api#documentation": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`."
       }
     },
     "com.gcp.apigateway_v1beta#CancelProjectsLocationsOperationsRequest": {
@@ -2079,562 +2636,6 @@
           "uri": "v1beta/{+name}:cancel"
         },
         "smithy.api#documentation": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`."
-      }
-    },
-    "com.gcp.apigateway_v1beta#GetProjectsLocationsOperationsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the operation resource.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.apigateway_v1beta#GetProjectsLocationsOperations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.apigateway_v1beta#GetProjectsLocationsOperationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.apigateway_v1beta#ApigatewayOperation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.apigateway_v1beta#NotFound"
-        },
-        {
-          "target": "com.gcp.apigateway_v1beta#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1beta/{+name}"
-        },
-        "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
-      }
-    },
-    "com.gcp.apigateway_v1beta#DeleteProjectsLocationsOperationsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the operation resource to be deleted.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.apigateway_v1beta#DeleteProjectsLocationsOperations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.apigateway_v1beta#DeleteProjectsLocationsOperationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.apigateway_v1beta#Empty"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.apigateway_v1beta#NotFound"
-        },
-        {
-          "target": "com.gcp.apigateway_v1beta#Forbidden"
-        },
-        {
-          "target": "com.gcp.apigateway_v1beta#BadRequest"
-        },
-        {
-          "target": "com.gcp.apigateway_v1beta#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "v1beta/{+name}"
-        },
-        "smithy.api#documentation": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`."
-      }
-    },
-    "com.gcp.apigateway_v1beta#ListProjectsLocationsOperationsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the operation's parent resource.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "returnPartialSuccess": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
-            "smithy.api#httpQuery": "returnPartialSuccess"
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The standard list page size.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The standard list filter.",
-            "smithy.api#httpQuery": "filter"
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The standard list page token.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        }
-      }
-    },
-    "com.gcp.apigateway_v1beta#ListProjectsLocationsOperations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.apigateway_v1beta#ListProjectsLocationsOperationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.apigateway_v1beta#ApigatewayListOperationsResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.apigateway_v1beta#NotFound"
-        },
-        {
-          "target": "com.gcp.apigateway_v1beta#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1beta/{+name}/operations"
-        },
-        "smithy.api#documentation": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
-      }
-    },
-    "com.gcp.apigateway_v1beta#GetIamPolicyProjectsLocationsGatewaysRequest": {
-      "type": "structure",
-      "members": {
-        "options.requestedPolicyVersion": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
-            "smithy.api#httpQuery": "options.requestedPolicyVersion"
-          }
-        },
-        "resource": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.apigateway_v1beta#GetIamPolicyProjectsLocationsGateways": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.apigateway_v1beta#GetIamPolicyProjectsLocationsGatewaysRequest"
-      },
-      "output": {
-        "target": "com.gcp.apigateway_v1beta#ApigatewayPolicy"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.apigateway_v1beta#NotFound"
-        },
-        {
-          "target": "com.gcp.apigateway_v1beta#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1beta/{+resource}:getIamPolicy"
-        },
-        "smithy.api#documentation": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set."
-      }
-    },
-    "com.gcp.apigateway_v1beta#CreateProjectsLocationsGatewaysRequest": {
-      "type": "structure",
-      "members": {
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Parent resource of the Gateway, of the form: `projects/*/locations/*`",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "gatewayId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Identifier to assign to the Gateway. Must be unique within scope of the parent resource.",
-            "smithy.api#httpQuery": "gatewayId"
-          }
-        },
-        "body": {
-          "target": "com.gcp.apigateway_v1beta#ApigatewayGateway",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.apigateway_v1beta#CreateProjectsLocationsGateways": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.apigateway_v1beta#CreateProjectsLocationsGatewaysRequest"
-      },
-      "output": {
-        "target": "com.gcp.apigateway_v1beta#ApigatewayOperation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.apigateway_v1beta#NotFound"
-        },
-        {
-          "target": "com.gcp.apigateway_v1beta#Forbidden"
-        },
-        {
-          "target": "com.gcp.apigateway_v1beta#BadRequest"
-        },
-        {
-          "target": "com.gcp.apigateway_v1beta#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1beta/{+parent}/gateways"
-        },
-        "smithy.api#documentation": "Creates a new Gateway in a given project and location."
-      }
-    },
-    "com.gcp.apigateway_v1beta#DeleteProjectsLocationsGatewaysRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Resource name of the form: `projects/*/locations/*/gateways/*`",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.apigateway_v1beta#DeleteProjectsLocationsGateways": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.apigateway_v1beta#DeleteProjectsLocationsGatewaysRequest"
-      },
-      "output": {
-        "target": "com.gcp.apigateway_v1beta#ApigatewayOperation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.apigateway_v1beta#NotFound"
-        },
-        {
-          "target": "com.gcp.apigateway_v1beta#Forbidden"
-        },
-        {
-          "target": "com.gcp.apigateway_v1beta#BadRequest"
-        },
-        {
-          "target": "com.gcp.apigateway_v1beta#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "v1beta/{+name}"
-        },
-        "smithy.api#documentation": "Deletes a single Gateway."
-      }
-    },
-    "com.gcp.apigateway_v1beta#GetProjectsLocationsGatewaysRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Resource name of the form: `projects/*/locations/*/gateways/*`",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.apigateway_v1beta#GetProjectsLocationsGateways": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.apigateway_v1beta#GetProjectsLocationsGatewaysRequest"
-      },
-      "output": {
-        "target": "com.gcp.apigateway_v1beta#ApigatewayGateway"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.apigateway_v1beta#NotFound"
-        },
-        {
-          "target": "com.gcp.apigateway_v1beta#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1beta/{+name}"
-        },
-        "smithy.api#documentation": "Gets details of a single Gateway."
-      }
-    },
-    "com.gcp.apigateway_v1beta#SetIamPolicyProjectsLocationsGatewaysRequest": {
-      "type": "structure",
-      "members": {
-        "resource": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.apigateway_v1beta#ApigatewaySetIamPolicyRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.apigateway_v1beta#SetIamPolicyProjectsLocationsGateways": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.apigateway_v1beta#SetIamPolicyProjectsLocationsGatewaysRequest"
-      },
-      "output": {
-        "target": "com.gcp.apigateway_v1beta#ApigatewayPolicy"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.apigateway_v1beta#NotFound"
-        },
-        {
-          "target": "com.gcp.apigateway_v1beta#Forbidden"
-        },
-        {
-          "target": "com.gcp.apigateway_v1beta#BadRequest"
-        },
-        {
-          "target": "com.gcp.apigateway_v1beta#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1beta/{+resource}:setIamPolicy"
-        },
-        "smithy.api#documentation": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors."
-      }
-    },
-    "com.gcp.apigateway_v1beta#ListProjectsLocationsGatewaysRequest": {
-      "type": "structure",
-      "members": {
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Page token.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Filter.",
-            "smithy.api#httpQuery": "filter"
-          }
-        },
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Parent resource of the Gateway, of the form: `projects/*/locations/*`",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "orderBy": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Order by parameters.",
-            "smithy.api#httpQuery": "orderBy"
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Page size.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        }
-      }
-    },
-    "com.gcp.apigateway_v1beta#ListProjectsLocationsGateways": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.apigateway_v1beta#ListProjectsLocationsGatewaysRequest"
-      },
-      "output": {
-        "target": "com.gcp.apigateway_v1beta#ApigatewayListGatewaysResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.apigateway_v1beta#NotFound"
-        },
-        {
-          "target": "com.gcp.apigateway_v1beta#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1beta/{+parent}/gateways"
-        },
-        "smithy.api#documentation": "Lists Gateways in a given project and location.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
-      }
-    },
-    "com.gcp.apigateway_v1beta#TestIamPermissionsProjectsLocationsGatewaysRequest": {
-      "type": "structure",
-      "members": {
-        "resource": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.apigateway_v1beta#ApigatewayTestIamPermissionsRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.apigateway_v1beta#TestIamPermissionsProjectsLocationsGateways": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.apigateway_v1beta#TestIamPermissionsProjectsLocationsGatewaysRequest"
-      },
-      "output": {
-        "target": "com.gcp.apigateway_v1beta#ApigatewayTestIamPermissionsResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.apigateway_v1beta#NotFound"
-        },
-        {
-          "target": "com.gcp.apigateway_v1beta#Forbidden"
-        },
-        {
-          "target": "com.gcp.apigateway_v1beta#BadRequest"
-        },
-        {
-          "target": "com.gcp.apigateway_v1beta#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1beta/{+resource}:testIamPermissions"
-        },
-        "smithy.api#documentation": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning."
-      }
-    },
-    "com.gcp.apigateway_v1beta#PatchProjectsLocationsGatewaysRequest": {
-      "type": "structure",
-      "members": {
-        "updateMask": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Field mask is used to specify the fields to be overwritten in the Gateway resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
-            "smithy.api#httpQuery": "updateMask"
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Resource name of the Gateway. Format: projects/{project}/locations/{location}/gateways/{gateway}",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.apigateway_v1beta#ApigatewayGateway",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.apigateway_v1beta#PatchProjectsLocationsGateways": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.apigateway_v1beta#PatchProjectsLocationsGatewaysRequest"
-      },
-      "output": {
-        "target": "com.gcp.apigateway_v1beta#ApigatewayOperation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.apigateway_v1beta#NotFound"
-        },
-        {
-          "target": "com.gcp.apigateway_v1beta#Forbidden"
-        },
-        {
-          "target": "com.gcp.apigateway_v1beta#BadRequest"
-        },
-        {
-          "target": "com.gcp.apigateway_v1beta#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "PATCH",
-          "uri": "v1beta/{+name}"
-        },
-        "smithy.api#documentation": "Updates the parameters of a single Gateway."
       }
     }
   }

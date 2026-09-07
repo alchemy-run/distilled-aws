@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.turso.api#ListDatabasesRequest": {
@@ -4680,6 +4681,11 @@
       "output": {
         "target": "com.turso.api#InviteOrganizationMemberV2Response"
       },
+      "errors": [
+        {
+          "target": "com.turso.api#BadRequest"
+        }
+      ],
       "traits": {
         "smithy.api#http": {
           "method": "POST",

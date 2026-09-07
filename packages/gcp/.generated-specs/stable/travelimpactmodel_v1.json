@@ -4,16 +4,84 @@
     "service": "travelimpactmodel",
     "version": "v1",
     "title": "Travel Impact Model API",
-    "baseUrl": "https://travelimpactmodel.googleapis.com/"
+    "baseUrl": "https://travelimpactmodel.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
+    "com.gcp.travelimpactmodel_v1#Scope3FlightEmissions": {
+      "type": "structure",
+      "members": {
+        "flight": {
+          "target": "com.gcp.travelimpactmodel_v1#Scope3FlightSegment",
+          "traits": {
+            "smithy.api#documentation": "Identifier. Matches the flight identifiers in the request."
+          }
+        },
+        "wtwEmissionsGramsPerPax": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Total flight emissions (sum of well-to-tank and tank-to-wake) per passenger based on the requested info. This is the total emissions and unless you have specific reasons for using TTW or WTT emissions, you should use this number."
+          }
+        },
+        "ttwEmissionsGramsPerPax": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Tank-to-wake flight emissions per passenger based on the requested info."
+          }
+        },
+        "wttEmissionsGramsPerPax": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Well-to-tank flight emissions per passenger based on the requested info."
+          }
+        },
+        "source": {
+          "target": "com.gcp.travelimpactmodel_v1#Scope3FlightEmissionsSourceEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. The source of the emissions data."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Scope 3 flight with emission estimates."
+      }
+    },
+    "com.gcp.travelimpactmodel_v1#Scope3FlightEmissionsSourceEnum": {
+      "type": "enum",
+      "members": {
+        "SCOPE3_DATA_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SCOPE3_DATA_TYPE_UNSPECIFIED"
+          }
+        },
+        "TIM_EMISSIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TIM_EMISSIONS"
+          }
+        },
+        "TYPICAL_FLIGHT_EMISSIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TYPICAL_FLIGHT_EMISSIONS"
+          }
+        },
+        "DISTANCE_BASED_EMISSIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISTANCE_BASED_EMISSIONS"
+          }
+        }
+      }
+    },
     "com.gcp.travelimpactmodel_v1#ModelVersion": {
       "type": "structure",
       "members": {
-        "major": {
-          "target": "smithy.api#Integer",
+        "dated": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Major versions: Major changes to methodology (e.g. adding new data sources to the model that lead to major output changes). Such changes will be infrequent and announced well in advance. Might involve API version changes, which will respect [Google Cloud API guidelines](https://cloud.google.com/endpoints/docs/openapi/versioning-an-api#backwards-incompatible)"
+            "smithy.api#documentation": "Dated versions: Model datasets are recreated with refreshed input data but no change to the algorithms regularly."
           }
         },
         "minor": {
@@ -28,344 +96,15 @@
             "smithy.api#documentation": "Patch versions: Implementation changes meant to address bugs or inaccuracies in the model implementation."
           }
         },
-        "dated": {
-          "target": "smithy.api#String",
+        "major": {
+          "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "Dated versions: Model datasets are recreated with refreshed input data but no change to the algorithms regularly."
+            "smithy.api#documentation": "Major versions: Major changes to methodology (e.g. adding new data sources to the model that lead to major output changes). Such changes will be infrequent and announced well in advance. Might involve API version changes, which will respect [Google Cloud API guidelines](https://cloud.google.com/endpoints/docs/openapi/versioning-an-api#backwards-incompatible)"
           }
         }
       },
       "traits": {
         "smithy.api#documentation": "Travel Impact Model version. For more information about the model versioning see [GitHub](https://github.com/google/travel-impact-model/#versioning)."
-      }
-    },
-    "com.gcp.travelimpactmodel_v1#EmissionsMetadata": {
-      "type": "structure",
-      "members": {
-        "easaLabelMetadata": {
-          "target": "com.gcp.travelimpactmodel_v1#EasaLabelMetadata",
-          "traits": {
-            "smithy.api#documentation": "Output only. Metadata about the EASA Flight Emissions Label. Only set when the emissions data source is EASA."
-          }
-        },
-        "timWebsiteEmissionsCalculatorUrl": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Link to the `travelimpactmodel.org` Emissions Calculator website. Example: https://travelimpactmodel.org/lookup/flight?itinerary=ZRH-BOS-LX-52-20261225."
-          }
-        },
-        "emissionsProvenance": {
-          "target": "com.gcp.travelimpactmodel_v1#EmissionsProvenance",
-          "traits": {
-            "smithy.api#documentation": "Output only. Details about the provenance of data used to calculate the emissions data, including the contributing factors with their data sources."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "All additional metadata."
-      }
-    },
-    "com.gcp.travelimpactmodel_v1#ComputeDetailedFlightEmissionsRequest": {
-      "type": "structure",
-      "members": {
-        "flights": {
-          "target": "com.gcp.travelimpactmodel_v1#FlightList",
-          "traits": {
-            "smithy.api#documentation": "Required. Direct flights to return emission estimates for."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Input definition for the ComputeDetailedFlightEmissions request."
-      }
-    },
-    "com.gcp.travelimpactmodel_v1#FlightList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.travelimpactmodel_v1#Flight"
-      }
-    },
-    "com.gcp.travelimpactmodel_v1#EmissionsBreakdown": {
-      "type": "structure",
-      "members": {
-        "wttEmissionsGramsPerPax": {
-          "target": "com.gcp.travelimpactmodel_v1#EmissionsGramsPerPax",
-          "traits": {
-            "smithy.api#documentation": "Per-passenger well-to-tank emission estimate numbers. Will not be present if emissions could not be computed. For the list of reasons why emissions could not be computed, see ComputeFlightEmissions."
-          }
-        },
-        "ttwEmissionsGramsPerPax": {
-          "target": "com.gcp.travelimpactmodel_v1#EmissionsGramsPerPax",
-          "traits": {
-            "smithy.api#documentation": "Per-passenger tank-to-wake emission estimate numbers. Will not be present if emissions could not be computed. For the list of reasons why emissions could not be computed, see ComputeFlightEmissions."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Details about the various emissions portions of the total emissions_grams_per_pax value. The value of the summed breakdowns should always equal emissions_grams_per_pax."
-      }
-    },
-    "com.gcp.travelimpactmodel_v1#FlightWithDetailedEmissions": {
-      "type": "structure",
-      "members": {
-        "flight": {
-          "target": "com.gcp.travelimpactmodel_v1#Flight",
-          "traits": {
-            "smithy.api#documentation": "Output only. Matches the flight identifiers in the request. Note: all IATA codes are capitalized."
-          }
-        },
-        "flightEmissionsDetails": {
-          "target": "com.gcp.travelimpactmodel_v1#FlightEmissionsDetails",
-          "traits": {
-            "smithy.api#documentation": "Output only. All the flight emissions data."
-          }
-        },
-        "emissionsMetadata": {
-          "target": "com.gcp.travelimpactmodel_v1#EmissionsMetadata",
-          "traits": {
-            "smithy.api#documentation": "Output only. Additional metadata about the flight emissions calculation."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Direct flight with emission estimates details."
-      }
-    },
-    "com.gcp.travelimpactmodel_v1#ComputeScope3FlightEmissionsResponse": {
-      "type": "structure",
-      "members": {
-        "flightEmissions": {
-          "target": "com.gcp.travelimpactmodel_v1#Scope3FlightEmissionsList",
-          "traits": {
-            "smithy.api#documentation": "List of flight segments with emission estimates."
-          }
-        },
-        "modelVersion": {
-          "target": "com.gcp.travelimpactmodel_v1#ModelVersion",
-          "traits": {
-            "smithy.api#documentation": "The model version under which emission estimates for all flights in this response were computed."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A list of flights with Scope 3 emission estimates."
-      }
-    },
-    "com.gcp.travelimpactmodel_v1#Scope3FlightEmissionsList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.travelimpactmodel_v1#Scope3FlightEmissions"
-      }
-    },
-    "com.gcp.travelimpactmodel_v1#Scope3FlightSegment": {
-      "type": "structure",
-      "members": {
-        "destination": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. 3-character [IATA airport code](https://www.iata.org/en/publications/directories/code-search/) for flight destination, e.g. `ICN`. This is used to match specific flight if provided alongside origin, carrier, and flight number. If there is no match, we will first try to match the flight to a typical flight between the provided origin and destination airports. Otherwise, we will use the distance-based emissions model if the flight distance is provided."
-          }
-        },
-        "carrierCode": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. 2-character [IATA carrier code](https://www.iata.org/en/publications/directories/code-search/), e.g. `KE`. This is required if specific flight matching is desired. Otherwise, this is unused for typical flight and distance-based emissions models. This could be both operating and marketing carrier code (i.e. codeshare is covered)."
-          }
-        },
-        "distanceKm": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Distance in kilometers, e.g. `2423`, from [1, 2.5e16) km. This is used to match a flight to distance-based emissions when origin and destination are not provided or there are no matching typical flights."
-          }
-        },
-        "departureDate": {
-          "target": "com.gcp.travelimpactmodel_v1#Travelimpactmodel_Date",
-          "traits": {
-            "smithy.api#documentation": "Required. Date of the flight in the time zone of the origin airport. Only year is required for typical flight and distance-based emissions models (month and day values are ignored and therefore, can be either omitted, set to 0, or set to a valid date for those cases). Correspondingly, if a specific date is not provided for TIM emissions, we will fallback to typical flight (or distance-based) emissions."
-          }
-        },
-        "origin": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. 3-character [IATA airport code](https://www.iata.org/en/publications/directories/code-search/) for flight origin, e.g. `YVR`. This is used to match specific flight if provided alongside destination, carrier, and flight number. If there is no match, we will first try to match the flight to a typical flight between the provided origin and destination airports. Otherwise, we will use the distance-based emissions model if the flight distance is provided."
-          }
-        },
-        "cabinClass": {
-          "target": "com.gcp.travelimpactmodel_v1#Scope3FlightSegmentCabinClassEnum",
-          "traits": {
-            "smithy.api#documentation": "Required. The cabin class of the flight."
-          }
-        },
-        "flightNumber": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. Up to 4-digit [flight number](https://en.wikipedia.org/wiki/Flight_number), e.g. `71`, from [1, 9999]. This is first used to match a specific flight if a flight number is specified alongside origin, destination, and carrier. If a flight number is not specified, we will first try to match the flight to a typical flight between the provided origin and destination airports. If that fails and/or origin & destination are not provided, we will use the distance-based emissions model based on the flight distance provided."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Flight parameters with which the Scope 3 emissions are fetched."
-      }
-    },
-    "com.gcp.travelimpactmodel_v1#Scope3FlightSegmentCabinClassEnum": {
-      "type": "enum",
-      "members": {
-        "CABIN_CLASS_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CABIN_CLASS_UNSPECIFIED"
-          }
-        },
-        "ECONOMY": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ECONOMY"
-          }
-        },
-        "PREMIUM_ECONOMY": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "PREMIUM_ECONOMY"
-          }
-        },
-        "BUSINESS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "BUSINESS"
-          }
-        },
-        "FIRST": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "FIRST"
-          }
-        }
-      }
-    },
-    "com.gcp.travelimpactmodel_v1#Market": {
-      "type": "structure",
-      "members": {
-        "destination": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. IATA airport code for flight destination, e.g. \"JFK\"."
-          }
-        },
-        "origin": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. IATA airport code for flight origin, e.g. \"LHR\"."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A pair of airports."
-      }
-    },
-    "com.gcp.travelimpactmodel_v1#TypicalFlightEmissions": {
-      "type": "structure",
-      "members": {
-        "market": {
-          "target": "com.gcp.travelimpactmodel_v1#Market",
-          "traits": {
-            "smithy.api#documentation": "Identifier. Matches the flight identifiers in the request. Note: all IATA codes are capitalized."
-          }
-        },
-        "emissionsGramsPerPax": {
-          "target": "com.gcp.travelimpactmodel_v1#EmissionsGramsPerPax",
-          "traits": {
-            "smithy.api#documentation": "Optional. Typical flight emissions per passenger for requested market. Will not be present if a typical emissions could not be computed. For the list of reasons why typical flight emissions could not be computed, see [GitHub](https://github.com/google/travel-impact-model/blob/main/projects/typical_flight_emissions.md#step-7-validate-dataset)."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Typical flight emission estimates for a certain market"
-      }
-    },
-    "com.gcp.travelimpactmodel_v1#ComputeTypicalFlightEmissionsResponse": {
-      "type": "structure",
-      "members": {
-        "typicalFlightEmissions": {
-          "target": "com.gcp.travelimpactmodel_v1#TypicalFlightEmissionsList",
-          "traits": {
-            "smithy.api#documentation": "Market's Typical Flight Emissions requested."
-          }
-        },
-        "modelVersion": {
-          "target": "com.gcp.travelimpactmodel_v1#ModelVersion",
-          "traits": {
-            "smithy.api#documentation": "The model version under which typical flight emission estimates for all flights in this response were computed."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The response includes the emissions but also the model version."
-      }
-    },
-    "com.gcp.travelimpactmodel_v1#TypicalFlightEmissionsList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.travelimpactmodel_v1#TypicalFlightEmissions"
-      }
-    },
-    "com.gcp.travelimpactmodel_v1#ComputeDetailedFlightEmissionsResponse": {
-      "type": "structure",
-      "members": {
-        "modelVersion": {
-          "target": "com.gcp.travelimpactmodel_v1#ModelVersion",
-          "traits": {
-            "smithy.api#documentation": "The model version under which emission estimates for all flights in this response were computed."
-          }
-        },
-        "flightsWithDetailedEmissions": {
-          "target": "com.gcp.travelimpactmodel_v1#FlightWithDetailedEmissionsList",
-          "traits": {
-            "smithy.api#documentation": "List of flight legs with emission estimates."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Output definition for the ComputeDetailedFlightEmissions response."
-      }
-    },
-    "com.gcp.travelimpactmodel_v1#FlightWithDetailedEmissionsList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.travelimpactmodel_v1#FlightWithDetailedEmissions"
-      }
-    },
-    "com.gcp.travelimpactmodel_v1#ComputeTypicalFlightEmissionsRequest": {
-      "type": "structure",
-      "members": {
-        "markets": {
-          "target": "com.gcp.travelimpactmodel_v1#MarketList",
-          "traits": {
-            "smithy.api#documentation": "Required. Request the typical flight emissions estimates for this market pair. A maximum of 1000 markets can be requested."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A list of pair of airports (markets) to request the typical emissions for."
-      }
-    },
-    "com.gcp.travelimpactmodel_v1#MarketList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.travelimpactmodel_v1#Market"
-      }
-    },
-    "com.gcp.travelimpactmodel_v1#ComputeFlightEmissionsRequest": {
-      "type": "structure",
-      "members": {
-        "flights": {
-          "target": "com.gcp.travelimpactmodel_v1#FlightList",
-          "traits": {
-            "smithy.api#documentation": "Required. Direct flights to return emission estimates for."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Input definition for the ComputeFlightEmissions request."
       }
     },
     "com.gcp.travelimpactmodel_v1#ComputeScope3FlightEmissionsRequest": {
@@ -394,63 +133,149 @@
         "target": "com.gcp.travelimpactmodel_v1#Scope3FlightSegment"
       }
     },
-    "com.gcp.travelimpactmodel_v1#EmissionsGramsPerPax": {
+    "com.gcp.travelimpactmodel_v1#Market": {
       "type": "structure",
       "members": {
-        "premiumEconomy": {
-          "target": "smithy.api#Integer",
+        "destination": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Emissions for one passenger in premium economy class in grams. This field is always computed and populated, regardless of whether the aircraft has premium economy class seats or not."
+            "smithy.api#documentation": "Required. IATA airport code for flight destination, e.g. \"JFK\"."
           }
         },
-        "economy": {
-          "target": "smithy.api#Integer",
+        "origin": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Emissions for one passenger in economy class in grams. This field is always computed and populated, regardless of whether the aircraft has economy class seats or not."
-          }
-        },
-        "business": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Emissions for one passenger in business class in grams. This field is always computed and populated, regardless of whether the aircraft has business class seats or not."
-          }
-        },
-        "first": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Emissions for one passenger in first class in grams. This field is always computed and populated, regardless of whether the aircraft has first class seats or not."
+            "smithy.api#documentation": "Required. IATA airport code for flight origin, e.g. \"LHR\"."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Grouped emissions per seating class results."
+        "smithy.api#documentation": "A pair of airports."
+      }
+    },
+    "com.gcp.travelimpactmodel_v1#EmissionsMetadata": {
+      "type": "structure",
+      "members": {
+        "easaLabelMetadata": {
+          "target": "com.gcp.travelimpactmodel_v1#EasaLabelMetadata",
+          "traits": {
+            "smithy.api#documentation": "Output only. Metadata about the EASA Flight Emissions Label. Only set when the emissions data source is EASA."
+          }
+        },
+        "timWebsiteEmissionsCalculatorUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Link to the `travelimpactmodel.org` Emissions Calculator website. Example: https://travelimpactmodel.org/lookup/flight?itinerary=ZRH-BOS-LX-52-20261225."
+          }
+        },
+        "emissionsProvenance": {
+          "target": "com.gcp.travelimpactmodel_v1#EmissionsProvenance",
+          "traits": {
+            "smithy.api#documentation": "Output only. Details about the provenance of data used to calculate the emissions data, including the contributing factors with their data sources."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "All additional metadata."
+      }
+    },
+    "com.gcp.travelimpactmodel_v1#ComputeFlightEmissionsResponse": {
+      "type": "structure",
+      "members": {
+        "modelVersion": {
+          "target": "com.gcp.travelimpactmodel_v1#ModelVersion",
+          "traits": {
+            "smithy.api#documentation": "The model version under which emission estimates for all flights in this response were computed."
+          }
+        },
+        "flightEmissions": {
+          "target": "com.gcp.travelimpactmodel_v1#FlightWithEmissionsList",
+          "traits": {
+            "smithy.api#documentation": "List of flight legs with emission estimates."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Output definition for the ComputeFlightEmissions response."
+      }
+    },
+    "com.gcp.travelimpactmodel_v1#FlightWithEmissionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.travelimpactmodel_v1#FlightWithEmissions"
+      }
+    },
+    "com.gcp.travelimpactmodel_v1#ComputeTypicalFlightEmissionsResponse": {
+      "type": "structure",
+      "members": {
+        "modelVersion": {
+          "target": "com.gcp.travelimpactmodel_v1#ModelVersion",
+          "traits": {
+            "smithy.api#documentation": "The model version under which typical flight emission estimates for all flights in this response were computed."
+          }
+        },
+        "typicalFlightEmissions": {
+          "target": "com.gcp.travelimpactmodel_v1#TypicalFlightEmissionsList",
+          "traits": {
+            "smithy.api#documentation": "Market's Typical Flight Emissions requested."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response includes the emissions but also the model version."
+      }
+    },
+    "com.gcp.travelimpactmodel_v1#TypicalFlightEmissionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.travelimpactmodel_v1#TypicalFlightEmissions"
+      }
+    },
+    "com.gcp.travelimpactmodel_v1#ComputeTypicalFlightEmissionsRequest": {
+      "type": "structure",
+      "members": {
+        "markets": {
+          "target": "com.gcp.travelimpactmodel_v1#MarketList",
+          "traits": {
+            "smithy.api#documentation": "Required. Request the typical flight emissions estimates for this market pair. A maximum of 1000 markets can be requested."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of pair of airports (markets) to request the typical emissions for."
+      }
+    },
+    "com.gcp.travelimpactmodel_v1#MarketList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.travelimpactmodel_v1#Market"
       }
     },
     "com.gcp.travelimpactmodel_v1#FlightEmissionsDetails": {
       "type": "structure",
       "members": {
-        "contrailsImpactBucket": {
-          "target": "com.gcp.travelimpactmodel_v1#FlightEmissionsDetailsContrailsImpactBucketEnum",
-          "traits": {
-            "smithy.api#documentation": "Output only. The significance of contrails warming impact compared to the total CO2e emissions impact."
-          }
-        },
-        "source": {
-          "target": "com.gcp.travelimpactmodel_v1#FlightEmissionsDetailsSourceEnum",
-          "traits": {
-            "smithy.api#documentation": "Output only. The source of the emissions data."
-          }
-        },
         "emissionsBreakdown": {
           "target": "com.gcp.travelimpactmodel_v1#EmissionsBreakdown",
           "traits": {
             "smithy.api#documentation": "Output only. Details about the various emissions portions of the total emissions_grams_per_pax value. The value of the summed breakdowns should always equal emissions_grams_per_pax."
           }
         },
+        "contrailsImpactBucket": {
+          "target": "com.gcp.travelimpactmodel_v1#FlightEmissionsDetailsContrailsImpactBucketEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The significance of contrails warming impact compared to the total CO2e emissions impact."
+          }
+        },
         "emissionsGramsPerPax": {
           "target": "com.gcp.travelimpactmodel_v1#EmissionsGramsPerPax",
           "traits": {
             "smithy.api#documentation": "Output only. Per-passenger emission estimate numbers. Will not be present if emissions could not be computed. For the list of reasons why emissions could not be computed, see ComputeDetailedFlightEmissions"
+          }
+        },
+        "source": {
+          "target": "com.gcp.travelimpactmodel_v1#FlightEmissionsDetailsSourceEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The source of the emissions data."
           }
         }
       },
@@ -510,186 +335,51 @@
         }
       }
     },
-    "com.gcp.travelimpactmodel_v1#FlightWithEmissions": {
-      "type": "structure",
-      "members": {
-        "emissionsGramsPerPax": {
-          "target": "com.gcp.travelimpactmodel_v1#EmissionsGramsPerPax",
-          "traits": {
-            "smithy.api#documentation": "Optional. Per-passenger emission estimate numbers. Will not be present if emissions could not be computed. For the list of reasons why emissions could not be computed, see ComputeFlightEmissions."
-          }
-        },
-        "source": {
-          "target": "com.gcp.travelimpactmodel_v1#FlightWithEmissionsSourceEnum",
-          "traits": {
-            "smithy.api#documentation": "Optional. The source of the emissions data."
-          }
-        },
-        "contrailsImpactBucket": {
-          "target": "com.gcp.travelimpactmodel_v1#FlightWithEmissionsContrailsImpactBucketEnum",
-          "traits": {
-            "smithy.api#documentation": "Optional. The significance of contrails warming impact compared to the total CO2e emissions impact."
-          }
-        },
-        "easaLabelMetadata": {
-          "target": "com.gcp.travelimpactmodel_v1#EasaLabelMetadata",
-          "traits": {
-            "smithy.api#documentation": "Optional. Metadata about the EASA Flight Emissions Label. Only set when the emissions data source is EASA."
-          }
-        },
-        "flight": {
-          "target": "com.gcp.travelimpactmodel_v1#Flight",
-          "traits": {
-            "smithy.api#documentation": "Identifier. Matches the flight identifiers in the request. Note: all IATA codes are capitalized."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Direct flight with emission estimates."
-      }
-    },
-    "com.gcp.travelimpactmodel_v1#FlightWithEmissionsSourceEnum": {
-      "type": "enum",
-      "members": {
-        "SOURCE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "SOURCE_UNSPECIFIED"
-          }
-        },
-        "TIM": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "TIM"
-          }
-        },
-        "EASA": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "EASA"
-          }
-        }
-      }
-    },
-    "com.gcp.travelimpactmodel_v1#FlightWithEmissionsContrailsImpactBucketEnum": {
-      "type": "enum",
-      "members": {
-        "CONTRAILS_IMPACT_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CONTRAILS_IMPACT_UNSPECIFIED"
-          }
-        },
-        "CONTRAILS_IMPACT_NEGLIGIBLE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CONTRAILS_IMPACT_NEGLIGIBLE"
-          }
-        },
-        "CONTRAILS_IMPACT_MODERATE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CONTRAILS_IMPACT_MODERATE"
-          }
-        },
-        "CONTRAILS_IMPACT_SEVERE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CONTRAILS_IMPACT_SEVERE"
-          }
-        }
-      }
-    },
-    "com.gcp.travelimpactmodel_v1#EmissionsProvenance": {
-      "type": "structure",
-      "members": {
-        "provenanceEntries": {
-          "target": "com.gcp.travelimpactmodel_v1#EmissionsProvenanceEntryList",
-          "traits": {
-            "smithy.api#documentation": "Output only. All contributing factors used to calculate emissions. Each entry type (`provenance_entry_type`) acts as a \"key\" identifying the factor, with always only one entry per entry type. The remaining fields describe that specific factor and may or may not be populated."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Information about the provenance of the data used to calculate emissions estimates, including contributing factors and their data sources. In `provenance_entries`, `provenance_entry_type` acts as the \"key\" identifying the contributing factor, and there is always only one entry per entry type. The remaining fields in each entry describe that specific entry type and may or may not be populated depending on the contributing factor and available data."
-      }
-    },
-    "com.gcp.travelimpactmodel_v1#EmissionsProvenanceEntryList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.travelimpactmodel_v1#EmissionsProvenanceEntry"
-      }
-    },
-    "com.gcp.travelimpactmodel_v1#Scope3FlightEmissions": {
-      "type": "structure",
-      "members": {
-        "flight": {
-          "target": "com.gcp.travelimpactmodel_v1#Scope3FlightSegment",
-          "traits": {
-            "smithy.api#documentation": "Identifier. Matches the flight identifiers in the request."
-          }
-        },
-        "ttwEmissionsGramsPerPax": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Tank-to-wake flight emissions per passenger based on the requested info."
-          }
-        },
-        "wttEmissionsGramsPerPax": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Well-to-tank flight emissions per passenger based on the requested info."
-          }
-        },
-        "source": {
-          "target": "com.gcp.travelimpactmodel_v1#Scope3FlightEmissionsSourceEnum",
-          "traits": {
-            "smithy.api#documentation": "Optional. The source of the emissions data."
-          }
-        },
-        "wtwEmissionsGramsPerPax": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Total flight emissions (sum of well-to-tank and tank-to-wake) per passenger based on the requested info. This is the total emissions and unless you have specific reasons for using TTW or WTT emissions, you should use this number."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Scope 3 flight with emission estimates."
-      }
-    },
-    "com.gcp.travelimpactmodel_v1#Scope3FlightEmissionsSourceEnum": {
-      "type": "enum",
-      "members": {
-        "SCOPE3_DATA_TYPE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "SCOPE3_DATA_TYPE_UNSPECIFIED"
-          }
-        },
-        "TIM_EMISSIONS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "TIM_EMISSIONS"
-          }
-        },
-        "TYPICAL_FLIGHT_EMISSIONS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "TYPICAL_FLIGHT_EMISSIONS"
-          }
-        },
-        "DISTANCE_BASED_EMISSIONS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DISTANCE_BASED_EMISSIONS"
-          }
-        }
-      }
-    },
     "com.gcp.travelimpactmodel_v1#EmissionsProvenanceEntry": {
       "type": "structure",
       "members": {
+        "sourceVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The version of the source data. For example, \"2025/04\"."
+          }
+        },
+        "estimatedFlightDistanceKm": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Output only. The estimated distance flown in CCD flight phase in kilometers value calculated using the distance adjustment factor (DAF). If not set, the estimated flight distance value is not available."
+          }
+        },
+        "distanceAdjustmentStrategy": {
+          "target": "com.gcp.travelimpactmodel_v1#EmissionsProvenanceEntryDistanceAdjustmentStrategyEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. Strategy for distance adjustment."
+          }
+        },
+        "cargoMassFractionData": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Output only. The cargo mass fraction value. If not set, the cargo mass fraction value is not available."
+          }
+        },
+        "fuelBurnEeaStrategy": {
+          "target": "com.gcp.travelimpactmodel_v1#EmissionsProvenanceEntryFuelBurnEeaStrategyEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. Strategy for EEA fuel burn."
+          }
+        },
+        "cargoMassFractionT100Strategy": {
+          "target": "com.gcp.travelimpactmodel_v1#EmissionsProvenanceEntryCargoMassFractionT100StrategyEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. Strategy for T100 cargo mass fraction."
+          }
+        },
+        "source": {
+          "target": "com.gcp.travelimpactmodel_v1#EmissionsProvenanceEntrySourceEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The source of the data."
+          }
+        },
         "seatAreaRatioIataStrategy": {
           "target": "com.gcp.travelimpactmodel_v1#EmissionsProvenanceEntrySeatAreaRatioIataStrategyEnum",
           "traits": {
@@ -702,10 +392,10 @@
             "smithy.api#documentation": "Output only. The type of the provenance entry. Acts as the \"key\" identifying the contributing factor; the remaining fields in this message describe it and may or may not be populated."
           }
         },
-        "cargoMassFractionT100Strategy": {
-          "target": "com.gcp.travelimpactmodel_v1#EmissionsProvenanceEntryCargoMassFractionT100StrategyEnum",
+        "dataCategory": {
+          "target": "com.gcp.travelimpactmodel_v1#EmissionsProvenanceEntryDataCategoryEnum",
           "traits": {
-            "smithy.api#documentation": "Output only. Strategy for T100 cargo mass fraction."
+            "smithy.api#documentation": "Output only. Data category of the data source."
           }
         },
         "loadFactorsChAviationStrategy": {
@@ -714,52 +404,10 @@
             "smithy.api#documentation": "Output only. Strategy for CH Aviation load factors."
           }
         },
-        "source": {
-          "target": "com.gcp.travelimpactmodel_v1#EmissionsProvenanceEntrySourceEnum",
-          "traits": {
-            "smithy.api#documentation": "Output only. The source of the data."
-          }
-        },
-        "sourceVersion": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The version of the source data. For example, \"2025/04\"."
-          }
-        },
-        "fuelBurnEeaStrategy": {
-          "target": "com.gcp.travelimpactmodel_v1#EmissionsProvenanceEntryFuelBurnEeaStrategyEnum",
-          "traits": {
-            "smithy.api#documentation": "Output only. Strategy for EEA fuel burn."
-          }
-        },
-        "cargoMassFractionData": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Output only. The cargo mass fraction value. If not set, the cargo mass fraction value is not available."
-          }
-        },
-        "estimatedFlightDistanceKm": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Output only. The estimated distance flown in CCD flight phase in kilometers value calculated using the distance adjustment factor (DAF). If not set, the estimated flight distance value is not available."
-          }
-        },
         "loadFactorsData": {
           "target": "smithy.api#Double",
           "traits": {
             "smithy.api#documentation": "Output only. The load factors data value. If not set, the load factors value is not available."
-          }
-        },
-        "dataCategory": {
-          "target": "com.gcp.travelimpactmodel_v1#EmissionsProvenanceEntryDataCategoryEnum",
-          "traits": {
-            "smithy.api#documentation": "Output only. Data category of the data source."
-          }
-        },
-        "distanceAdjustmentStrategy": {
-          "target": "com.gcp.travelimpactmodel_v1#EmissionsProvenanceEntryDistanceAdjustmentStrategyEnum",
-          "traits": {
-            "smithy.api#documentation": "Output only. Strategy for distance adjustment."
           }
         },
         "loadFactorsT100Strategy": {
@@ -771,6 +419,164 @@
       },
       "traits": {
         "smithy.api#documentation": "Details about a single contributing factor in emissions calculations. Each entry represents a single factor where `provenance_entry_type` acts as the key identifying the factor, and the other fields describe it and may or may not be populated."
+      }
+    },
+    "com.gcp.travelimpactmodel_v1#EmissionsProvenanceEntryDistanceAdjustmentStrategyEnum": {
+      "type": "enum",
+      "members": {
+        "STRATEGY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STRATEGY_UNSPECIFIED"
+          }
+        },
+        "ORIGIN_DESTINATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ORIGIN_DESTINATION"
+          }
+        },
+        "COUNTRY_PAIR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COUNTRY_PAIR"
+          }
+        },
+        "DEFAULT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEFAULT"
+          }
+        }
+      }
+    },
+    "com.gcp.travelimpactmodel_v1#EmissionsProvenanceEntryFuelBurnEeaStrategyEnum": {
+      "type": "enum",
+      "members": {
+        "STRATEGY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STRATEGY_UNSPECIFIED"
+          }
+        },
+        "AIRCRAFT_MAPPING_FALLBACK_WITH_CORRECTION_FACTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AIRCRAFT_MAPPING_FALLBACK_WITH_CORRECTION_FACTOR"
+          }
+        },
+        "AIRCRAFT_MAPPING_EXACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AIRCRAFT_MAPPING_EXACT"
+          }
+        },
+        "AIRCRAFT_MAPPING_FALLBACK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AIRCRAFT_MAPPING_FALLBACK"
+          }
+        }
+      }
+    },
+    "com.gcp.travelimpactmodel_v1#EmissionsProvenanceEntryCargoMassFractionT100StrategyEnum": {
+      "type": "enum",
+      "members": {
+        "STRATEGY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STRATEGY_UNSPECIFIED"
+          }
+        },
+        "CARRIER_ROUTE_AIRCRAFT_CLASS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CARRIER_ROUTE_AIRCRAFT_CLASS"
+          }
+        },
+        "ROUTE_AIRCRAFT_CLASS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ROUTE_AIRCRAFT_CLASS"
+          }
+        },
+        "DISTANCE_AIRCRAFT_CLASS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISTANCE_AIRCRAFT_CLASS"
+          }
+        },
+        "ACTUAL_CARRIER_ROUTE_YEAR_MONTH_AIRCRAFT_CLASS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTUAL_CARRIER_ROUTE_YEAR_MONTH_AIRCRAFT_CLASS"
+          }
+        }
+      }
+    },
+    "com.gcp.travelimpactmodel_v1#EmissionsProvenanceEntrySourceEnum": {
+      "type": "enum",
+      "members": {
+        "DATA_SOURCE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_SOURCE_UNSPECIFIED"
+          }
+        },
+        "EEA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EEA"
+          }
+        },
+        "T100": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "T100"
+          }
+        },
+        "CH_AVIATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CH_AVIATION"
+          }
+        },
+        "OAG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OAG"
+          }
+        },
+        "OPERATING_CARRIER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OPERATING_CARRIER"
+          }
+        },
+        "AIRCRAFT_MODEL_TYPICAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AIRCRAFT_MODEL_TYPICAL"
+          }
+        },
+        "GLOBAL_DEFAULT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GLOBAL_DEFAULT"
+          }
+        },
+        "IATA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IATA"
+          }
+        },
+        "ICL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ICL"
+          }
+        }
       }
     },
     "com.gcp.travelimpactmodel_v1#EmissionsProvenanceEntrySeatAreaRatioIataStrategyEnum": {
@@ -843,158 +649,6 @@
         }
       }
     },
-    "com.gcp.travelimpactmodel_v1#EmissionsProvenanceEntryCargoMassFractionT100StrategyEnum": {
-      "type": "enum",
-      "members": {
-        "STRATEGY_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "STRATEGY_UNSPECIFIED"
-          }
-        },
-        "CARRIER_ROUTE_AIRCRAFT_CLASS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CARRIER_ROUTE_AIRCRAFT_CLASS"
-          }
-        },
-        "ROUTE_AIRCRAFT_CLASS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ROUTE_AIRCRAFT_CLASS"
-          }
-        },
-        "DISTANCE_AIRCRAFT_CLASS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DISTANCE_AIRCRAFT_CLASS"
-          }
-        },
-        "ACTUAL_CARRIER_ROUTE_YEAR_MONTH_AIRCRAFT_CLASS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ACTUAL_CARRIER_ROUTE_YEAR_MONTH_AIRCRAFT_CLASS"
-          }
-        }
-      }
-    },
-    "com.gcp.travelimpactmodel_v1#EmissionsProvenanceEntryLoadFactorsChAviationStrategyEnum": {
-      "type": "enum",
-      "members": {
-        "STRATEGY_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "STRATEGY_UNSPECIFIED"
-          }
-        },
-        "CARRIER_MONTH": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CARRIER_MONTH"
-          }
-        },
-        "ACTUAL_CARRIER_YEAR_MONTH": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ACTUAL_CARRIER_YEAR_MONTH"
-          }
-        }
-      }
-    },
-    "com.gcp.travelimpactmodel_v1#EmissionsProvenanceEntrySourceEnum": {
-      "type": "enum",
-      "members": {
-        "DATA_SOURCE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DATA_SOURCE_UNSPECIFIED"
-          }
-        },
-        "EEA": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "EEA"
-          }
-        },
-        "T100": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "T100"
-          }
-        },
-        "CH_AVIATION": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CH_AVIATION"
-          }
-        },
-        "OAG": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "OAG"
-          }
-        },
-        "OPERATING_CARRIER": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "OPERATING_CARRIER"
-          }
-        },
-        "AIRCRAFT_MODEL_TYPICAL": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "AIRCRAFT_MODEL_TYPICAL"
-          }
-        },
-        "GLOBAL_DEFAULT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "GLOBAL_DEFAULT"
-          }
-        },
-        "IATA": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "IATA"
-          }
-        },
-        "ICL": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ICL"
-          }
-        }
-      }
-    },
-    "com.gcp.travelimpactmodel_v1#EmissionsProvenanceEntryFuelBurnEeaStrategyEnum": {
-      "type": "enum",
-      "members": {
-        "STRATEGY_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "STRATEGY_UNSPECIFIED"
-          }
-        },
-        "AIRCRAFT_MAPPING_FALLBACK_WITH_CORRECTION_FACTOR": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "AIRCRAFT_MAPPING_FALLBACK_WITH_CORRECTION_FACTOR"
-          }
-        },
-        "AIRCRAFT_MAPPING_EXACT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "AIRCRAFT_MAPPING_EXACT"
-          }
-        },
-        "AIRCRAFT_MAPPING_FALLBACK": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "AIRCRAFT_MAPPING_FALLBACK"
-          }
-        }
-      }
-    },
     "com.gcp.travelimpactmodel_v1#EmissionsProvenanceEntryDataCategoryEnum": {
       "type": "enum",
       "members": {
@@ -1024,7 +678,7 @@
         }
       }
     },
-    "com.gcp.travelimpactmodel_v1#EmissionsProvenanceEntryDistanceAdjustmentStrategyEnum": {
+    "com.gcp.travelimpactmodel_v1#EmissionsProvenanceEntryLoadFactorsChAviationStrategyEnum": {
       "type": "enum",
       "members": {
         "STRATEGY_UNSPECIFIED": {
@@ -1033,22 +687,16 @@
             "smithy.api#enumValue": "STRATEGY_UNSPECIFIED"
           }
         },
-        "ORIGIN_DESTINATION": {
+        "CARRIER_MONTH": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "ORIGIN_DESTINATION"
+            "smithy.api#enumValue": "CARRIER_MONTH"
           }
         },
-        "COUNTRY_PAIR": {
+        "ACTUAL_CARRIER_YEAR_MONTH": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "COUNTRY_PAIR"
-          }
-        },
-        "DEFAULT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DEFAULT"
+            "smithy.api#enumValue": "ACTUAL_CARRIER_YEAR_MONTH"
           }
         }
       }
@@ -1082,103 +730,157 @@
         }
       }
     },
-    "com.gcp.travelimpactmodel_v1#Flight": {
+    "com.gcp.travelimpactmodel_v1#FlightWithEmissions": {
       "type": "structure",
       "members": {
-        "destination": {
-          "target": "smithy.api#String",
+        "flight": {
+          "target": "com.gcp.travelimpactmodel_v1#Flight",
           "traits": {
-            "smithy.api#documentation": "Required. IATA airport code for flight destination, e.g. \"JFK\"."
+            "smithy.api#documentation": "Identifier. Matches the flight identifiers in the request. Note: all IATA codes are capitalized."
           }
         },
-        "flightNumber": {
-          "target": "smithy.api#Integer",
+        "contrailsImpactBucket": {
+          "target": "com.gcp.travelimpactmodel_v1#FlightWithEmissionsContrailsImpactBucketEnum",
           "traits": {
-            "smithy.api#documentation": "Required. Flight number, e.g. 324."
+            "smithy.api#documentation": "Optional. The significance of contrails warming impact compared to the total CO2e emissions impact."
           }
         },
-        "origin": {
-          "target": "smithy.api#String",
+        "easaLabelMetadata": {
+          "target": "com.gcp.travelimpactmodel_v1#EasaLabelMetadata",
           "traits": {
-            "smithy.api#documentation": "Required. IATA airport code for flight origin, e.g. \"LHR\"."
+            "smithy.api#documentation": "Optional. Metadata about the EASA Flight Emissions Label. Only set when the emissions data source is EASA."
           }
         },
-        "operatingCarrierCode": {
-          "target": "smithy.api#String",
+        "emissionsGramsPerPax": {
+          "target": "com.gcp.travelimpactmodel_v1#EmissionsGramsPerPax",
           "traits": {
-            "smithy.api#documentation": "Required. IATA carrier code, e.g. \"AA\"."
+            "smithy.api#documentation": "Optional. Per-passenger emission estimate numbers. Will not be present if emissions could not be computed. For the list of reasons why emissions could not be computed, see ComputeFlightEmissions."
           }
         },
-        "departureDate": {
-          "target": "com.gcp.travelimpactmodel_v1#Travelimpactmodel_Date",
+        "source": {
+          "target": "com.gcp.travelimpactmodel_v1#FlightWithEmissionsSourceEnum",
           "traits": {
-            "smithy.api#documentation": "Required. Date of the flight in the time zone of the origin airport. Must be a date in the present or future."
+            "smithy.api#documentation": "Optional. The source of the emissions data."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "All details related to a single request item for a direct flight emission estimates."
+        "smithy.api#documentation": "Direct flight with emission estimates."
       }
     },
-    "com.gcp.travelimpactmodel_v1#Travelimpactmodel_Date": {
+    "com.gcp.travelimpactmodel_v1#FlightWithEmissionsContrailsImpactBucketEnum": {
+      "type": "enum",
+      "members": {
+        "CONTRAILS_IMPACT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONTRAILS_IMPACT_UNSPECIFIED"
+          }
+        },
+        "CONTRAILS_IMPACT_NEGLIGIBLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONTRAILS_IMPACT_NEGLIGIBLE"
+          }
+        },
+        "CONTRAILS_IMPACT_MODERATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONTRAILS_IMPACT_MODERATE"
+          }
+        },
+        "CONTRAILS_IMPACT_SEVERE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONTRAILS_IMPACT_SEVERE"
+          }
+        }
+      }
+    },
+    "com.gcp.travelimpactmodel_v1#FlightWithEmissionsSourceEnum": {
+      "type": "enum",
+      "members": {
+        "SOURCE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SOURCE_UNSPECIFIED"
+          }
+        },
+        "TIM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TIM"
+          }
+        },
+        "EASA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EASA"
+          }
+        }
+      }
+    },
+    "com.gcp.travelimpactmodel_v1#ComputeFlightEmissionsRequest": {
       "type": "structure",
       "members": {
-        "year": {
-          "target": "smithy.api#Integer",
+        "flights": {
+          "target": "com.gcp.travelimpactmodel_v1#FlightList",
           "traits": {
-            "smithy.api#documentation": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year."
-          }
-        },
-        "month": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day."
-          }
-        },
-        "day": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant."
+            "smithy.api#documentation": "Required. Direct flights to return emission estimates for."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp"
+        "smithy.api#documentation": "Input definition for the ComputeFlightEmissions request."
       }
     },
-    "com.gcp.travelimpactmodel_v1#ComputeFlightEmissionsResponse": {
-      "type": "structure",
-      "members": {
-        "flightEmissions": {
-          "target": "com.gcp.travelimpactmodel_v1#FlightWithEmissionsList",
-          "traits": {
-            "smithy.api#documentation": "List of flight legs with emission estimates."
-          }
-        },
-        "modelVersion": {
-          "target": "com.gcp.travelimpactmodel_v1#ModelVersion",
-          "traits": {
-            "smithy.api#documentation": "The model version under which emission estimates for all flights in this response were computed."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Output definition for the ComputeFlightEmissions response."
-      }
-    },
-    "com.gcp.travelimpactmodel_v1#FlightWithEmissionsList": {
+    "com.gcp.travelimpactmodel_v1#FlightList": {
       "type": "list",
       "member": {
-        "target": "com.gcp.travelimpactmodel_v1#FlightWithEmissions"
+        "target": "com.gcp.travelimpactmodel_v1#Flight"
+      }
+    },
+    "com.gcp.travelimpactmodel_v1#EmissionsProvenance": {
+      "type": "structure",
+      "members": {
+        "provenanceEntries": {
+          "target": "com.gcp.travelimpactmodel_v1#EmissionsProvenanceEntryList",
+          "traits": {
+            "smithy.api#documentation": "Output only. All contributing factors used to calculate emissions. Each entry type (`provenance_entry_type`) acts as a \"key\" identifying the factor, with always only one entry per entry type. The remaining fields describe that specific factor and may or may not be populated."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about the provenance of the data used to calculate emissions estimates, including contributing factors and their data sources. In `provenance_entries`, `provenance_entry_type` acts as the \"key\" identifying the contributing factor, and there is always only one entry per entry type. The remaining fields in each entry describe that specific entry type and may or may not be populated depending on the contributing factor and available data."
+      }
+    },
+    "com.gcp.travelimpactmodel_v1#EmissionsProvenanceEntryList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.travelimpactmodel_v1#EmissionsProvenanceEntry"
+      }
+    },
+    "com.gcp.travelimpactmodel_v1#ComputeDetailedFlightEmissionsRequest": {
+      "type": "structure",
+      "members": {
+        "flights": {
+          "target": "com.gcp.travelimpactmodel_v1#FlightList",
+          "traits": {
+            "smithy.api#documentation": "Required. Direct flights to return emission estimates for."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Input definition for the ComputeDetailedFlightEmissions request."
       }
     },
     "com.gcp.travelimpactmodel_v1#EasaLabelMetadata": {
       "type": "structure",
       "members": {
-        "labelIssueDate": {
+        "labelExpiryDate": {
           "target": "com.gcp.travelimpactmodel_v1#Travelimpactmodel_Date",
           "traits": {
-            "smithy.api#documentation": "The date when the label was issued."
+            "smithy.api#documentation": "The date when the label expires. The label can be displayed until the end of this date."
           }
         },
         "safDiscountPercentage": {
@@ -1193,15 +895,314 @@
             "smithy.api#documentation": "Version of the label."
           }
         },
-        "labelExpiryDate": {
+        "labelIssueDate": {
           "target": "com.gcp.travelimpactmodel_v1#Travelimpactmodel_Date",
           "traits": {
-            "smithy.api#documentation": "The date when the label expires. The label can be displayed until the end of this date."
+            "smithy.api#documentation": "The date when the label was issued."
           }
         }
       },
       "traits": {
         "smithy.api#documentation": "Metadata about the EASA Flight Emissions Label."
+      }
+    },
+    "com.gcp.travelimpactmodel_v1#ComputeScope3FlightEmissionsResponse": {
+      "type": "structure",
+      "members": {
+        "modelVersion": {
+          "target": "com.gcp.travelimpactmodel_v1#ModelVersion",
+          "traits": {
+            "smithy.api#documentation": "The model version under which emission estimates for all flights in this response were computed."
+          }
+        },
+        "flightEmissions": {
+          "target": "com.gcp.travelimpactmodel_v1#Scope3FlightEmissionsList",
+          "traits": {
+            "smithy.api#documentation": "List of flight segments with emission estimates."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of flights with Scope 3 emission estimates."
+      }
+    },
+    "com.gcp.travelimpactmodel_v1#Scope3FlightEmissionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.travelimpactmodel_v1#Scope3FlightEmissions"
+      }
+    },
+    "com.gcp.travelimpactmodel_v1#TypicalFlightEmissions": {
+      "type": "structure",
+      "members": {
+        "emissionsGramsPerPax": {
+          "target": "com.gcp.travelimpactmodel_v1#EmissionsGramsPerPax",
+          "traits": {
+            "smithy.api#documentation": "Optional. Typical flight emissions per passenger for requested market. Will not be present if a typical emissions could not be computed. For the list of reasons why typical flight emissions could not be computed, see [GitHub](https://github.com/google/travel-impact-model/blob/main/projects/typical_flight_emissions.md#step-7-validate-dataset)."
+          }
+        },
+        "market": {
+          "target": "com.gcp.travelimpactmodel_v1#Market",
+          "traits": {
+            "smithy.api#documentation": "Identifier. Matches the flight identifiers in the request. Note: all IATA codes are capitalized."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Typical flight emission estimates for a certain market"
+      }
+    },
+    "com.gcp.travelimpactmodel_v1#FlightWithDetailedEmissions": {
+      "type": "structure",
+      "members": {
+        "flightEmissionsDetails": {
+          "target": "com.gcp.travelimpactmodel_v1#FlightEmissionsDetails",
+          "traits": {
+            "smithy.api#documentation": "Output only. All the flight emissions data."
+          }
+        },
+        "emissionsMetadata": {
+          "target": "com.gcp.travelimpactmodel_v1#EmissionsMetadata",
+          "traits": {
+            "smithy.api#documentation": "Output only. Additional metadata about the flight emissions calculation."
+          }
+        },
+        "flight": {
+          "target": "com.gcp.travelimpactmodel_v1#Flight",
+          "traits": {
+            "smithy.api#documentation": "Output only. Matches the flight identifiers in the request. Note: all IATA codes are capitalized."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Direct flight with emission estimates details."
+      }
+    },
+    "com.gcp.travelimpactmodel_v1#EmissionsGramsPerPax": {
+      "type": "structure",
+      "members": {
+        "premiumEconomy": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Emissions for one passenger in premium economy class in grams. This field is always computed and populated, regardless of whether the aircraft has premium economy class seats or not."
+          }
+        },
+        "business": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Emissions for one passenger in business class in grams. This field is always computed and populated, regardless of whether the aircraft has business class seats or not."
+          }
+        },
+        "first": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Emissions for one passenger in first class in grams. This field is always computed and populated, regardless of whether the aircraft has first class seats or not."
+          }
+        },
+        "economy": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Emissions for one passenger in economy class in grams. This field is always computed and populated, regardless of whether the aircraft has economy class seats or not."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Grouped emissions per seating class results."
+      }
+    },
+    "com.gcp.travelimpactmodel_v1#EmissionsBreakdown": {
+      "type": "structure",
+      "members": {
+        "ttwEmissionsGramsPerPax": {
+          "target": "com.gcp.travelimpactmodel_v1#EmissionsGramsPerPax",
+          "traits": {
+            "smithy.api#documentation": "Per-passenger tank-to-wake emission estimate numbers. Will not be present if emissions could not be computed. For the list of reasons why emissions could not be computed, see ComputeFlightEmissions."
+          }
+        },
+        "wttEmissionsGramsPerPax": {
+          "target": "com.gcp.travelimpactmodel_v1#EmissionsGramsPerPax",
+          "traits": {
+            "smithy.api#documentation": "Per-passenger well-to-tank emission estimate numbers. Will not be present if emissions could not be computed. For the list of reasons why emissions could not be computed, see ComputeFlightEmissions."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details about the various emissions portions of the total emissions_grams_per_pax value. The value of the summed breakdowns should always equal emissions_grams_per_pax."
+      }
+    },
+    "com.gcp.travelimpactmodel_v1#Travelimpactmodel_Date": {
+      "type": "structure",
+      "members": {
+        "month": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day."
+          }
+        },
+        "year": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year."
+          }
+        },
+        "day": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp"
+      }
+    },
+    "com.gcp.travelimpactmodel_v1#ComputeDetailedFlightEmissionsResponse": {
+      "type": "structure",
+      "members": {
+        "modelVersion": {
+          "target": "com.gcp.travelimpactmodel_v1#ModelVersion",
+          "traits": {
+            "smithy.api#documentation": "The model version under which emission estimates for all flights in this response were computed."
+          }
+        },
+        "flightsWithDetailedEmissions": {
+          "target": "com.gcp.travelimpactmodel_v1#FlightWithDetailedEmissionsList",
+          "traits": {
+            "smithy.api#documentation": "List of flight legs with emission estimates."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Output definition for the ComputeDetailedFlightEmissions response."
+      }
+    },
+    "com.gcp.travelimpactmodel_v1#FlightWithDetailedEmissionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.travelimpactmodel_v1#FlightWithDetailedEmissions"
+      }
+    },
+    "com.gcp.travelimpactmodel_v1#Flight": {
+      "type": "structure",
+      "members": {
+        "origin": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. IATA airport code for flight origin, e.g. \"LHR\"."
+          }
+        },
+        "operatingCarrierCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. IATA carrier code, e.g. \"AA\"."
+          }
+        },
+        "destination": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. IATA airport code for flight destination, e.g. \"JFK\"."
+          }
+        },
+        "departureDate": {
+          "target": "com.gcp.travelimpactmodel_v1#Travelimpactmodel_Date",
+          "traits": {
+            "smithy.api#documentation": "Required. Date of the flight in the time zone of the origin airport. Must be a date in the present or future."
+          }
+        },
+        "flightNumber": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Required. Flight number, e.g. 324."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "All details related to a single request item for a direct flight emission estimates."
+      }
+    },
+    "com.gcp.travelimpactmodel_v1#Scope3FlightSegment": {
+      "type": "structure",
+      "members": {
+        "distanceKm": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Distance in kilometers, e.g. `2423`, from [1, 2.5e16) km. This is used to match a flight to distance-based emissions when origin and destination are not provided or there are no matching typical flights."
+          }
+        },
+        "origin": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. 3-character [IATA airport code](https://www.iata.org/en/publications/directories/code-search/) for flight origin, e.g. `YVR`. This is used to match specific flight if provided alongside destination, carrier, and flight number. If there is no match, we will first try to match the flight to a typical flight between the provided origin and destination airports. Otherwise, we will use the distance-based emissions model if the flight distance is provided."
+          }
+        },
+        "carrierCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. 2-character [IATA carrier code](https://www.iata.org/en/publications/directories/code-search/), e.g. `KE`. This is required if specific flight matching is desired. Otherwise, this is unused for typical flight and distance-based emissions models. This could be both operating and marketing carrier code (i.e. codeshare is covered)."
+          }
+        },
+        "cabinClass": {
+          "target": "com.gcp.travelimpactmodel_v1#Scope3FlightSegmentCabinClassEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. The cabin class of the flight."
+          }
+        },
+        "flightNumber": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Up to 4-digit [flight number](https://en.wikipedia.org/wiki/Flight_number), e.g. `71`, from [1, 9999]. This is first used to match a specific flight if a flight number is specified alongside origin, destination, and carrier. If a flight number is not specified, we will first try to match the flight to a typical flight between the provided origin and destination airports. If that fails and/or origin & destination are not provided, we will use the distance-based emissions model based on the flight distance provided."
+          }
+        },
+        "departureDate": {
+          "target": "com.gcp.travelimpactmodel_v1#Travelimpactmodel_Date",
+          "traits": {
+            "smithy.api#documentation": "Required. Date of the flight in the time zone of the origin airport. Only year is required for typical flight and distance-based emissions models (month and day values are ignored and therefore, can be either omitted, set to 0, or set to a valid date for those cases). Correspondingly, if a specific date is not provided for TIM emissions, we will fallback to typical flight (or distance-based) emissions."
+          }
+        },
+        "destination": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. 3-character [IATA airport code](https://www.iata.org/en/publications/directories/code-search/) for flight destination, e.g. `ICN`. This is used to match specific flight if provided alongside origin, carrier, and flight number. If there is no match, we will first try to match the flight to a typical flight between the provided origin and destination airports. Otherwise, we will use the distance-based emissions model if the flight distance is provided."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Flight parameters with which the Scope 3 emissions are fetched."
+      }
+    },
+    "com.gcp.travelimpactmodel_v1#Scope3FlightSegmentCabinClassEnum": {
+      "type": "enum",
+      "members": {
+        "CABIN_CLASS_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CABIN_CLASS_UNSPECIFIED"
+          }
+        },
+        "ECONOMY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ECONOMY"
+          }
+        },
+        "PREMIUM_ECONOMY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PREMIUM_ECONOMY"
+          }
+        },
+        "BUSINESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BUSINESS"
+          }
+        },
+        "FIRST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FIRST"
+          }
+        }
       }
     },
     "com.gcp.travelimpactmodel_v1#ComputeDetailedFlightEmissionsFlightsRequest": {
@@ -1298,48 +1299,6 @@
         "smithy.api#documentation": "Retrieves detailed emission estimates. Detailed Flight Emissions are transparent per-passenger greenhouse gas emission estimates supplemented by comprehensive metadata detailing the calculation methodology, emissions breakdown, contrail impact, and data provenance. Details on how emission estimates are computed are in [GitHub](https://github.com/google/travel-impact-model). The response will contain all entries that match the input flight legs, in the same order. If there are no estimates available for a certain flight leg, the response will return the flight leg object with empty emission fields. The request will still be considered successful. Reasons for missing emission estimates include: * The flight is unknown to the server. * The input flight leg is missing one or more identifiers. * The flight date is in the past. * The aircraft type is not supported by the model. * Missing seat configuration. The request can contain up to 100 flight legs. If the request has more than 100 flight legs, it will fail with an INVALID_ARGUMENT error."
       }
     },
-    "com.gcp.travelimpactmodel_v1#ComputeTypicalFlightEmissionsFlightsRequest": {
-      "type": "structure",
-      "members": {
-        "body": {
-          "target": "com.gcp.travelimpactmodel_v1#ComputeTypicalFlightEmissionsRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.travelimpactmodel_v1#ComputeTypicalFlightEmissionsFlights": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.travelimpactmodel_v1#ComputeTypicalFlightEmissionsFlightsRequest"
-      },
-      "output": {
-        "target": "com.gcp.travelimpactmodel_v1#ComputeTypicalFlightEmissionsResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.travelimpactmodel_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.travelimpactmodel_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.travelimpactmodel_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.travelimpactmodel_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1/flights:computeTypicalFlightEmissions"
-        },
-        "smithy.api#documentation": "Retrieves typical flight emissions estimates between two airports, also known as a market. If there are no estimates available for a certain market, the response will return the market object with empty emission fields. The request will still be considered successful. Details on how the typical emissions estimates are computed are on [GitHub](https://github.com/google/travel-impact-model/blob/main/projects/typical_flight_emissions.md). The request can contain up to 1000 markets. If the request has more than 1000 markets, it will fail with an INVALID_ARGUMENT error."
-      }
-    },
     "com.gcp.travelimpactmodel_v1#ComputeFlightEmissionsFlightsRequest": {
       "type": "structure",
       "members": {
@@ -1422,6 +1381,48 @@
           "uri": "v1/flights:computeScope3FlightEmissions"
         },
         "smithy.api#documentation": "Retrieves GHG emissions estimates for a set of flight segments for Scope 3 reporting. The response will contain all entries that match the input Scope3FlightSegment flight segments, in the same order provided. The estimates will be computed using the following cascading logic (using the first one that is available): 1. TIM-based emissions given origin, destination, carrier, flightNumber, departureDate, and cabinClass. 2. Typical flight emissions given origin, destination, year in departureDate, and cabinClass. 3. Distance-based emissions calculated using distanceKm, year in departureDate, and cabinClass. If there is a future flight requested in this calendar year, we do not support Tier 1 emissions and will fallback to Tier 2 or 3 emissions. If the requested future flight is in not in this calendar year, we will return an empty response. We recommend that for future flights, computeFlightEmissions API is used instead. If there are no estimates available for a certain flight with any of the three methods, the response will return a Scope3FlightEmissions object with empty emission fields. The request will still be considered successful. Generally, missing emissions estimates occur when the flight is unknown to the server (e.g. no specific flight exists, or typical flight emissions are not available for the requested pair). The request will fail with an `INVALID_ARGUMENT` error if: * The request contains more than 1,000 flight legs. * The input flight leg is missing one or more identifiers. For example, missing origin/destination without a valid distance for TIM_EMISSIONS or TYPICAL_FLIGHT_EMISSIONS type matching, or missing distance for a DISTANCE_BASED_EMISSIONS type matching (if you want to fallback to distance-based emissions or want a distance-based emissions estimate, you need to specify a distance). * The flight date is before 2019 (Scope 3 data is only available for 2019 and after). * The flight distance is 0 or lower. * Missing cabin class. Because the request is processed with fallback logic, it is possible that misconfigured requests return valid emissions estimates using fallback methods. For example, if a request has the wrong flight number but specifies the origin and destination, the request will still succeed, but the returned emissions will be based solely on the typical flight emissions. Similarly, if a request is missing the origin for a typical flight emissions request, but specifies a valid distance, the request could succeed based solely on the distance-based emissions. Consequently, one should check the source of the returned emissions (source) to confirm the results are as expected."
+      }
+    },
+    "com.gcp.travelimpactmodel_v1#ComputeTypicalFlightEmissionsFlightsRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.travelimpactmodel_v1#ComputeTypicalFlightEmissionsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.travelimpactmodel_v1#ComputeTypicalFlightEmissionsFlights": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.travelimpactmodel_v1#ComputeTypicalFlightEmissionsFlightsRequest"
+      },
+      "output": {
+        "target": "com.gcp.travelimpactmodel_v1#ComputeTypicalFlightEmissionsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.travelimpactmodel_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.travelimpactmodel_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.travelimpactmodel_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.travelimpactmodel_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/flights:computeTypicalFlightEmissions"
+        },
+        "smithy.api#documentation": "Retrieves typical flight emissions estimates between two airports, also known as a market. If there are no estimates available for a certain market, the response will return the market object with empty emission fields. The request will still be considered successful. Details on how the typical emissions estimates are computed are on [GitHub](https://github.com/google/travel-impact-model/blob/main/projects/typical_flight_emissions.md). The request can contain up to 1000 markets. If the request has more than 1000 markets, it will fail with an INVALID_ARGUMENT error."
       }
     }
   }

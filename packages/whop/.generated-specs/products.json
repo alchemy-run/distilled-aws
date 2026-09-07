@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.products#ListProductsRequestPlanTypesItem": {
@@ -1304,7 +1305,7 @@
         "smithy.api#documentation": "Create Product\n\nCreates a new product for an account."
       }
     },
-    "com.whop.products#RetrieveProductRequest": {
+    "com.whop.products#GetProductRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -1320,10 +1321,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.products#RetrieveProduct": {
+    "com.whop.products#GetProduct": {
       "type": "operation",
       "input": {
-        "target": "com.whop.products#RetrieveProductRequest"
+        "target": "com.whop.products#GetProductRequest"
       },
       "output": {
         "target": "com.whop.products#Product"
@@ -1676,7 +1677,7 @@
           "target": "com.whop.products#CreateProduct"
         },
         {
-          "target": "com.whop.products#RetrieveProduct"
+          "target": "com.whop.products#GetProduct"
         },
         {
           "target": "com.whop.products#UpdateProduct"

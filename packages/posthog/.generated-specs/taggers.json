@@ -14,17 +14,18 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.taggers#TaggersListRequestIdInList": {
+    "com.posthog.taggers#ListTaggersRequestIdInList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.posthog.taggers#TaggersListRequestOrderByItem": {
+    "com.posthog.taggers#ListTaggersRequestOrderByItem": {
       "type": "enum",
       "members": {
         "CREATED_AT": {
@@ -66,14 +67,14 @@
       },
       "traits": {}
     },
-    "com.posthog.taggers#TaggersListRequestOrderByList": {
+    "com.posthog.taggers#ListTaggersRequestOrderByList": {
       "type": "list",
       "member": {
-        "target": "com.posthog.taggers#TaggersListRequestOrderByItem"
+        "target": "com.posthog.taggers#ListTaggersRequestOrderByItem"
       },
       "traits": {}
     },
-    "com.posthog.taggers#TaggersListRequest": {
+    "com.posthog.taggers#ListTaggersRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -92,7 +93,7 @@
           }
         },
         "id__in": {
-          "target": "com.posthog.taggers#TaggersListRequestIdInList",
+          "target": "com.posthog.taggers#ListTaggersRequestIdInList",
           "traits": {
             "smithy.api#httpQuery": "id__in",
             "smithy.api#documentation": "Multiple values may be separated by commas."
@@ -113,7 +114,7 @@
           }
         },
         "order_by": {
-          "target": "com.posthog.taggers#TaggersListRequestOrderByList",
+          "target": "com.posthog.taggers#ListTaggersRequestOrderByList",
           "traits": {
             "smithy.api#httpQuery": "order_by",
             "smithy.api#documentation": "Ordering\n\n* `created_at` - Created At\n* `-created_at` - Created At (descending)\n* `updated_at` - Updated At\n* `-updated_at` - Updated At (descending)\n* `name` - Name\n* `-name` - Name (descending)"
@@ -648,10 +649,10 @@
       },
       "traits": {}
     },
-    "com.posthog.taggers#TaggersList": {
+    "com.posthog.taggers#ListTaggers": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.taggers#TaggersListRequest"
+        "target": "com.posthog.taggers#ListTaggersRequest"
       },
       "output": {
         "target": "com.posthog.taggers#PaginatedTaggerList"
@@ -664,7 +665,7 @@
         }
       }
     },
-    "com.posthog.taggers#TaggersCreateRequestConditionsList": {
+    "com.posthog.taggers#CreateTaggerRequestConditionsList": {
       "type": "list",
       "member": {
         "target": "com.posthog.taggers#TaggerCondition"
@@ -700,7 +701,7 @@
       },
       "traits": {}
     },
-    "com.posthog.taggers#TaggersCreateRequest": {
+    "com.posthog.taggers#CreateTaggerRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -734,7 +735,7 @@
           }
         },
         "conditions": {
-          "target": "com.posthog.taggers#TaggersCreateRequestConditionsList",
+          "target": "com.posthog.taggers#CreateTaggerRequestConditionsList",
           "traits": {
             "smithy.api#documentation": "Conditions that scope when the tagger runs"
           }
@@ -750,10 +751,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.taggers#TaggersCreate": {
+    "com.posthog.taggers#CreateTagger": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.taggers#TaggersCreateRequest"
+        "target": "com.posthog.taggers#CreateTaggerRequest"
       },
       "output": {
         "target": "com.posthog.taggers#Tagger"
@@ -766,7 +767,7 @@
         }
       }
     },
-    "com.posthog.taggers#TaggersRetrieveRequest": {
+    "com.posthog.taggers#GetTaggerRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -790,10 +791,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.taggers#TaggersRetrieve": {
+    "com.posthog.taggers#GetTagger": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.taggers#TaggersRetrieveRequest"
+        "target": "com.posthog.taggers#GetTaggerRequest"
       },
       "output": {
         "target": "com.posthog.taggers#Tagger"
@@ -806,7 +807,7 @@
         }
       }
     },
-    "com.posthog.taggers#TaggersUpdateRequestConditionsList": {
+    "com.posthog.taggers#UpdateTaggerRequestConditionsList": {
       "type": "list",
       "member": {
         "target": "com.posthog.taggers#TaggerCondition"
@@ -815,7 +816,7 @@
         "smithy.api#documentation": "Conditions that scope when the tagger runs"
       }
     },
-    "com.posthog.taggers#TaggersUpdateRequest": {
+    "com.posthog.taggers#UpdateTaggerRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -857,7 +858,7 @@
           }
         },
         "conditions": {
-          "target": "com.posthog.taggers#TaggersUpdateRequestConditionsList",
+          "target": "com.posthog.taggers#UpdateTaggerRequestConditionsList",
           "traits": {
             "smithy.api#documentation": "Conditions that scope when the tagger runs"
           }
@@ -876,10 +877,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.taggers#TaggersUpdate": {
+    "com.posthog.taggers#UpdateTagger": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.taggers#TaggersUpdateRequest"
+        "target": "com.posthog.taggers#UpdateTaggerRequest"
       },
       "output": {
         "target": "com.posthog.taggers#Tagger"
@@ -892,7 +893,7 @@
         }
       }
     },
-    "com.posthog.taggers#TaggersPartialUpdateRequestConditionsList": {
+    "com.posthog.taggers#UpdateTaggersPartialRequestConditionsList": {
       "type": "list",
       "member": {
         "target": "com.posthog.taggers#TaggerCondition"
@@ -901,7 +902,7 @@
         "smithy.api#documentation": "Conditions that scope when the tagger runs"
       }
     },
-    "com.posthog.taggers#TaggersPartialUpdateRequest": {
+    "com.posthog.taggers#UpdateTaggersPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -939,7 +940,7 @@
           }
         },
         "conditions": {
-          "target": "com.posthog.taggers#TaggersPartialUpdateRequestConditionsList",
+          "target": "com.posthog.taggers#UpdateTaggersPartialRequestConditionsList",
           "traits": {
             "smithy.api#documentation": "Conditions that scope when the tagger runs"
           }
@@ -958,10 +959,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.taggers#TaggersPartialUpdate": {
+    "com.posthog.taggers#UpdateTaggersPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.taggers#TaggersPartialUpdateRequest"
+        "target": "com.posthog.taggers#UpdateTaggersPartialRequest"
       },
       "output": {
         "target": "com.posthog.taggers#Tagger"
@@ -1034,7 +1035,7 @@
       },
       "traits": {}
     },
-    "com.posthog.taggers#TaggersTestHogCreateRequestTagsList": {
+    "com.posthog.taggers#CreateTaggersTestHogRequestTagsList": {
       "type": "list",
       "member": {
         "target": "com.posthog.taggers#TestHogTaggerTag"
@@ -1043,7 +1044,7 @@
         "smithy.api#documentation": "Optional tag whitelist. Returned tags outside this list are filtered out."
       }
     },
-    "com.posthog.taggers#TaggersTestHogCreateRequest": {
+    "com.posthog.taggers#CreateTaggersTestHogRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1068,7 +1069,7 @@
           }
         },
         "tags": {
-          "target": "com.posthog.taggers#TaggersTestHogCreateRequestTagsList",
+          "target": "com.posthog.taggers#CreateTaggersTestHogRequestTagsList",
           "traits": {
             "smithy.api#documentation": "Optional tag whitelist. Returned tags outside this list are filtered out."
           }
@@ -1170,10 +1171,10 @@
         "smithy.api#documentation": "Per-event Hog tagger test results."
       }
     },
-    "com.posthog.taggers#TaggersTestHogCreate": {
+    "com.posthog.taggers#CreateTaggersTestHog": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.taggers#TaggersTestHogCreateRequest"
+        "target": "com.posthog.taggers#CreateTaggersTestHogRequest"
       },
       "output": {
         "target": "com.posthog.taggers#TestHogTaggerResponse"
@@ -1192,25 +1193,25 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.taggers#TaggersList"
+          "target": "com.posthog.taggers#ListTaggers"
         },
         {
-          "target": "com.posthog.taggers#TaggersCreate"
+          "target": "com.posthog.taggers#CreateTagger"
         },
         {
-          "target": "com.posthog.taggers#TaggersRetrieve"
+          "target": "com.posthog.taggers#GetTagger"
         },
         {
-          "target": "com.posthog.taggers#TaggersUpdate"
+          "target": "com.posthog.taggers#UpdateTagger"
         },
         {
-          "target": "com.posthog.taggers#TaggersPartialUpdate"
+          "target": "com.posthog.taggers#UpdateTaggersPartial"
         },
         {
           "target": "com.posthog.taggers#TaggersDestroy"
         },
         {
-          "target": "com.posthog.taggers#TaggersTestHogCreate"
+          "target": "com.posthog.taggers#CreateTaggersTestHog"
         }
       ],
       "traits": {

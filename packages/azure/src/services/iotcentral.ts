@@ -12,76 +12,6 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export interface AppsCheckNameAvailabilityRequest {
-  /** The subscription identifier. */
-  subscriptionId: string;
-  /** The name of the IoT Central application instance to check. */
-  name: string;
-  /** The type of the IoT Central resource to query. */
-  type?: string;
-}
-export const AppsCheckNameAvailabilityRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    name: S.String,
-    type: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.IoTCentral/checkNameAvailability",
-      code: 200,
-      apiVersion: "2021-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "AppsCheckNameAvailabilityRequest",
-}) as any as S.Schema<AppsCheckNameAvailabilityRequest>;
-
-/** The properties indicating whether a given IoT Central application name or subdomain is available. */
-export interface AppAvailabilityInfo {
-  /** The value which indicates whether the provided name is available. */
-  nameAvailable?: boolean;
-  /** The reason for unavailability. */
-  reason?: string;
-  /** The detailed reason message. */
-  message?: string;
-}
-export const AppAvailabilityInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nameAvailable: S.optional(S.Boolean),
-    reason: S.optional(S.String),
-    message: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AppAvailabilityInfo",
-}) as any as S.Schema<AppAvailabilityInfo>;
-
-export interface AppsCheckSubdomainAvailabilityRequest {
-  /** The subscription identifier. */
-  subscriptionId: string;
-  /** The name of the IoT Central application instance to check. */
-  name: string;
-  /** The type of the IoT Central resource to query. */
-  type?: string;
-}
-export const AppsCheckSubdomainAvailabilityRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      name: S.String,
-      type: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.IoTCentral/checkSubdomainAvailability",
-        code: 200,
-        apiVersion: "2021-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "AppsCheckSubdomainAvailabilityRequest",
-}) as any as S.Schema<AppsCheckSubdomainAvailabilityRequest>;
-
 /** The resource tags. */
 export type AppsCreateOrUpdateRequestTagsMap = {
   [key: string]: string | undefined;
@@ -268,7 +198,77 @@ export const AppsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "AppsCreateOrUpdateResponse",
 }) as any as S.Schema<AppsCreateOrUpdateResponse>;
 
-export interface AppsDeleteRequest {
+export interface CheckAppNameAvailabilityRequest {
+  /** The subscription identifier. */
+  subscriptionId: string;
+  /** The name of the IoT Central application instance to check. */
+  name: string;
+  /** The type of the IoT Central resource to query. */
+  type?: string;
+}
+export const CheckAppNameAvailabilityRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    name: S.String,
+    type: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.IoTCentral/checkNameAvailability",
+      code: 200,
+      apiVersion: "2021-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "CheckAppNameAvailabilityRequest",
+}) as any as S.Schema<CheckAppNameAvailabilityRequest>;
+
+/** The properties indicating whether a given IoT Central application name or subdomain is available. */
+export interface AppAvailabilityInfo {
+  /** The value which indicates whether the provided name is available. */
+  nameAvailable?: boolean;
+  /** The reason for unavailability. */
+  reason?: string;
+  /** The detailed reason message. */
+  message?: string;
+}
+export const AppAvailabilityInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nameAvailable: S.optional(S.Boolean),
+    reason: S.optional(S.String),
+    message: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AppAvailabilityInfo",
+}) as any as S.Schema<AppAvailabilityInfo>;
+
+export interface CheckAppSubdomainAvailabilityRequest {
+  /** The subscription identifier. */
+  subscriptionId: string;
+  /** The name of the IoT Central application instance to check. */
+  name: string;
+  /** The type of the IoT Central resource to query. */
+  type?: string;
+}
+export const CheckAppSubdomainAvailabilityRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      name: S.String,
+      type: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.IoTCentral/checkSubdomainAvailability",
+        code: 200,
+        apiVersion: "2021-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "CheckAppSubdomainAvailabilityRequest",
+}) as any as S.Schema<CheckAppSubdomainAvailabilityRequest>;
+
+export interface DeleteAppRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the IoT Central application. */
@@ -276,7 +276,7 @@ export interface AppsDeleteRequest {
   /** The ARM resource name of the IoT Central application. */
   resourceName: string;
 }
-export const AppsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteAppRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -290,17 +290,17 @@ export const AppsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "AppsDeleteRequest",
-}) as any as S.Schema<AppsDeleteRequest>;
+  identifier: "DeleteAppRequest",
+}) as any as S.Schema<DeleteAppRequest>;
 
-export interface AppsDeleteResponse {}
-export const AppsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteAppResponse {}
+export const DeleteAppResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "AppsDeleteResponse",
-}) as any as S.Schema<AppsDeleteResponse>;
+  identifier: "DeleteAppResponse",
+}) as any as S.Schema<DeleteAppResponse>;
 
-export interface AppsGetRequest {
+export interface GetAppRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the IoT Central application. */
@@ -308,7 +308,7 @@ export interface AppsGetRequest {
   /** The ARM resource name of the IoT Central application. */
   resourceName: string;
 }
-export const AppsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetAppRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -321,20 +321,20 @@ export const AppsGetRequest = /*@__PURE__*/ S.suspend(() =>
       apiVersion: "2021-06-01",
     }),
   ),
-).annotate({ identifier: "AppsGetRequest" }) as any as S.Schema<AppsGetRequest>;
+).annotate({ identifier: "GetAppRequest" }) as any as S.Schema<GetAppRequest>;
 
 /** The resource tags. */
-export type AppsGetResponseTagsMap = { [key: string]: string | undefined };
-export const AppsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetAppResponseTagsMap = { [key: string]: string | undefined };
+export const GetAppResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AppsGetResponseTagsMap>;
+) as any as S.Schema<GetAppResponseTagsMap>;
 
 /** Managed service identity (either system assigned, or none) */
-export type AppsGetResponseIdentity = AppsCreateOrUpdateResponseIdentity;
-export const AppsGetResponseIdentity = AppsCreateOrUpdateResponseIdentity;
+export type GetAppResponseIdentity = AppsCreateOrUpdateResponseIdentity;
+export const GetAppResponseIdentity = AppsCreateOrUpdateResponseIdentity;
 
-export interface AppsGetResponse {
+export interface GetAppResponse {
   /** The ARM resource identifier. */
   id?: string;
   /** The ARM resource name. */
@@ -344,7 +344,7 @@ export interface AppsGetResponse {
   /** The resource location. */
   location: string;
   /** The resource tags. */
-  tags?: AppsGetResponseTagsMap;
+  tags?: GetAppResponseTagsMap;
   /** The common properties of an IoT Central application. */
   properties?: AppProperties;
   /** A valid instance SKU. */
@@ -352,28 +352,26 @@ export interface AppsGetResponse {
   /** Managed service identity (either system assigned, or none) */
   identity?: AppsCreateOrUpdateResponseIdentity;
 }
-export const AppsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetAppResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.String,
-    tags: S.optional(AppsGetResponseTagsMap),
+    tags: S.optional(GetAppResponseTagsMap),
     properties: S.optional(AppProperties),
     sku: AppSkuInfo,
     identity: S.optional(AppsCreateOrUpdateResponseIdentity),
   }),
-).annotate({
-  identifier: "AppsGetResponse",
-}) as any as S.Schema<AppsGetResponse>;
+).annotate({ identifier: "GetAppResponse" }) as any as S.Schema<GetAppResponse>;
 
-export interface AppsListByResourceGroupRequest {
+export interface ListAppByResourceGroupRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the IoT Central application. */
   resourceGroupName: string;
 }
-export const AppsListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListAppByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -386,8 +384,8 @@ export const AppsListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "AppsListByResourceGroupRequest",
-}) as any as S.Schema<AppsListByResourceGroupRequest>;
+  identifier: "ListAppByResourceGroupRequest",
+}) as any as S.Schema<ListAppByResourceGroupRequest>;
 
 /** The resource tags. */
 export type AppTagsMap = { [key: string]: string | undefined };
@@ -452,11 +450,11 @@ export const AppListResult = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "AppListResult" }) as any as S.Schema<AppListResult>;
 
-export interface AppsListBySubscriptionRequest {
+export interface ListAppBySubscriptionRequest {
   /** The subscription identifier. */
   subscriptionId: string;
 }
-export const AppsListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListAppBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
   }).pipe(
@@ -468,14 +466,14 @@ export const AppsListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "AppsListBySubscriptionRequest",
-}) as any as S.Schema<AppsListBySubscriptionRequest>;
+  identifier: "ListAppBySubscriptionRequest",
+}) as any as S.Schema<ListAppBySubscriptionRequest>;
 
-export interface AppsListTemplatesRequest {
+export interface ListAppTemplatesRequest {
   /** The subscription identifier. */
   subscriptionId: string;
 }
-export const AppsListTemplatesRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListAppTemplatesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
   }).pipe(
@@ -487,8 +485,8 @@ export const AppsListTemplatesRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "AppsListTemplatesRequest",
-}) as any as S.Schema<AppsListTemplatesRequest>;
+  identifier: "ListAppTemplatesRequest",
+}) as any as S.Schema<ListAppTemplatesRequest>;
 
 /** IoT Central Application Template Locations. */
 export interface AppTemplateLocations {
@@ -566,100 +564,8 @@ export const AppTemplatesResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "AppTemplatesResult",
 }) as any as S.Schema<AppTemplatesResult>;
 
-/** Instance tags */
-export type AppsUpdateRequestTagsMap = { [key: string]: string | undefined };
-export const AppsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AppsUpdateRequestTagsMap>;
-
-/** Managed service identity (either system assigned, or none) */
-export type AppsUpdateRequestIdentity = AppsCreateOrUpdateRequestIdentity;
-export const AppsUpdateRequestIdentity = AppsCreateOrUpdateRequestIdentity;
-
-export interface AppsUpdateRequest {
-  /** The subscription identifier. */
-  subscriptionId: string;
-  /** The name of the resource group that contains the IoT Central application. */
-  resourceGroupName: string;
-  /** The ARM resource name of the IoT Central application. */
-  resourceName: string;
-  /** Instance tags */
-  tags?: AppsUpdateRequestTagsMap;
-  /** A valid instance SKU. */
-  sku?: AppSkuInfo;
-  /** The common properties of an IoT Central application. */
-  properties?: AppPropertiesInput;
-  /** Managed service identity (either system assigned, or none) */
-  identity?: AppsCreateOrUpdateRequestIdentity;
-}
-export const AppsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-    tags: S.optional(AppsUpdateRequestTagsMap),
-    sku: S.optional(AppSkuInfo),
-    properties: S.optional(AppPropertiesInput),
-    identity: S.optional(AppsCreateOrUpdateRequestIdentity),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTCentral/iotApps/{resourceName}",
-      code: 200,
-      apiVersion: "2021-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "AppsUpdateRequest",
-}) as any as S.Schema<AppsUpdateRequest>;
-
-/** The resource tags. */
-export type AppsUpdateResponseTagsMap = { [key: string]: string | undefined };
-export const AppsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AppsUpdateResponseTagsMap>;
-
-/** Managed service identity (either system assigned, or none) */
-export type AppsUpdateResponseIdentity = AppsCreateOrUpdateResponseIdentity;
-export const AppsUpdateResponseIdentity = AppsCreateOrUpdateResponseIdentity;
-
-export interface AppsUpdateResponse {
-  /** The ARM resource identifier. */
-  id?: string;
-  /** The ARM resource name. */
-  name?: string;
-  /** The resource type. */
-  type?: string;
-  /** The resource location. */
-  location: string;
-  /** The resource tags. */
-  tags?: AppsUpdateResponseTagsMap;
-  /** The common properties of an IoT Central application. */
-  properties?: AppProperties;
-  /** A valid instance SKU. */
-  sku: AppSkuInfo;
-  /** Managed service identity (either system assigned, or none) */
-  identity?: AppsCreateOrUpdateResponseIdentity;
-}
-export const AppsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    location: S.String,
-    tags: S.optional(AppsUpdateResponseTagsMap),
-    properties: S.optional(AppProperties),
-    sku: AppSkuInfo,
-    identity: S.optional(AppsCreateOrUpdateResponseIdentity),
-  }),
-).annotate({
-  identifier: "AppsUpdateResponse",
-}) as any as S.Schema<AppsUpdateResponse>;
-
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({
       method: "GET",
@@ -669,8 +575,8 @@ export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
 
 /** The object that represents the operation. */
 export interface OperationDisplay {
@@ -736,35 +642,97 @@ export const OperationListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "OperationListResult",
 }) as any as S.Schema<OperationListResult>;
 
-export type AppsCheckNameAvailabilityError = AzureOpError;
-/** Check if an IoT Central application name is available. */
-export const AppsCheckNameAvailability: API.OperationMethod<
-  AppsCheckNameAvailabilityRequest,
-  AppAvailabilityInfo,
-  AppsCheckNameAvailabilityError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AppsCheckNameAvailabilityRequest,
-  output: AppAvailabilityInfo,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
+/** Instance tags */
+export type UpdateAppRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateAppRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateAppRequestTagsMap>;
 
-export type AppsCheckSubdomainAvailabilityError = AzureOpError;
-/** Check if an IoT Central application subdomain is available. */
-export const AppsCheckSubdomainAvailability: API.OperationMethod<
-  AppsCheckSubdomainAvailabilityRequest,
-  AppAvailabilityInfo,
-  AppsCheckSubdomainAvailabilityError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AppsCheckSubdomainAvailabilityRequest,
-  output: AppAvailabilityInfo,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
+/** Managed service identity (either system assigned, or none) */
+export type UpdateAppRequestIdentity = AppsCreateOrUpdateRequestIdentity;
+export const UpdateAppRequestIdentity = AppsCreateOrUpdateRequestIdentity;
+
+export interface UpdateAppRequest {
+  /** The subscription identifier. */
+  subscriptionId: string;
+  /** The name of the resource group that contains the IoT Central application. */
+  resourceGroupName: string;
+  /** The ARM resource name of the IoT Central application. */
+  resourceName: string;
+  /** Instance tags */
+  tags?: UpdateAppRequestTagsMap;
+  /** A valid instance SKU. */
+  sku?: AppSkuInfo;
+  /** The common properties of an IoT Central application. */
+  properties?: AppPropertiesInput;
+  /** Managed service identity (either system assigned, or none) */
+  identity?: AppsCreateOrUpdateRequestIdentity;
+}
+export const UpdateAppRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateAppRequestTagsMap),
+    sku: S.optional(AppSkuInfo),
+    properties: S.optional(AppPropertiesInput),
+    identity: S.optional(AppsCreateOrUpdateRequestIdentity),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTCentral/iotApps/{resourceName}",
+      code: 200,
+      apiVersion: "2021-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateAppRequest",
+}) as any as S.Schema<UpdateAppRequest>;
+
+/** The resource tags. */
+export type UpdateAppResponseTagsMap = { [key: string]: string | undefined };
+export const UpdateAppResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateAppResponseTagsMap>;
+
+/** Managed service identity (either system assigned, or none) */
+export type UpdateAppResponseIdentity = AppsCreateOrUpdateResponseIdentity;
+export const UpdateAppResponseIdentity = AppsCreateOrUpdateResponseIdentity;
+
+export interface UpdateAppResponse {
+  /** The ARM resource identifier. */
+  id?: string;
+  /** The ARM resource name. */
+  name?: string;
+  /** The resource type. */
+  type?: string;
+  /** The resource location. */
+  location: string;
+  /** The resource tags. */
+  tags?: UpdateAppResponseTagsMap;
+  /** The common properties of an IoT Central application. */
+  properties?: AppProperties;
+  /** A valid instance SKU. */
+  sku: AppSkuInfo;
+  /** Managed service identity (either system assigned, or none) */
+  identity?: AppsCreateOrUpdateResponseIdentity;
+}
+export const UpdateAppResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    location: S.String,
+    tags: S.optional(UpdateAppResponseTagsMap),
+    properties: S.optional(AppProperties),
+    sku: AppSkuInfo,
+    identity: S.optional(AppsCreateOrUpdateResponseIdentity),
+  }),
+).annotate({
+  identifier: "UpdateAppResponse",
+}) as any as S.Schema<UpdateAppResponse>;
 
 export type AppsCreateOrUpdateError = AzureOpError;
 /** Create or update the metadata of an IoT Central application. The usual pattern to modify a property is to retrieve the IoT Central application metadata and security metadata, and then combine them with the modified values in a new body to update the IoT Central application. */
@@ -781,106 +749,136 @@ export const AppsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type AppsDeleteError = AzureOpError;
+export type CheckAppNameAvailabilityError = AzureOpError;
+/** Check if an IoT Central application name is available. */
+export const CheckAppNameAvailability: API.OperationMethod<
+  CheckAppNameAvailabilityRequest,
+  AppAvailabilityInfo,
+  CheckAppNameAvailabilityError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CheckAppNameAvailabilityRequest,
+  output: AppAvailabilityInfo,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CheckAppSubdomainAvailabilityError = AzureOpError;
+/** Check if an IoT Central application subdomain is available. */
+export const CheckAppSubdomainAvailability: API.OperationMethod<
+  CheckAppSubdomainAvailabilityRequest,
+  AppAvailabilityInfo,
+  CheckAppSubdomainAvailabilityError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CheckAppSubdomainAvailabilityRequest,
+  output: AppAvailabilityInfo,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteAppError = AzureOpError;
 /** Delete an IoT Central application. */
-export const AppsDelete: API.OperationMethod<
-  AppsDeleteRequest,
-  AppsDeleteResponse,
-  AppsDeleteError,
+export const DeleteApp: API.OperationMethod<
+  DeleteAppRequest,
+  DeleteAppResponse,
+  DeleteAppError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AppsDeleteRequest,
-  output: AppsDeleteResponse,
+  input: DeleteAppRequest,
+  output: DeleteAppResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type AppsGetError = AzureOpError;
+export type GetAppError = AzureOpError;
 /** Get the metadata of an IoT Central application. */
-export const AppsGet: API.OperationMethod<
-  AppsGetRequest,
-  AppsGetResponse,
-  AppsGetError,
+export const GetApp: API.OperationMethod<
+  GetAppRequest,
+  GetAppResponse,
+  GetAppError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AppsGetRequest,
-  output: AppsGetResponse,
+  input: GetAppRequest,
+  output: GetAppResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type AppsListByResourceGroupError = AzureOpError;
+export type ListAppByResourceGroupError = AzureOpError;
 /** Get all the IoT Central Applications in a resource group. */
-export const AppsListByResourceGroup: API.OperationMethod<
-  AppsListByResourceGroupRequest,
+export const ListAppByResourceGroup: API.OperationMethod<
+  ListAppByResourceGroupRequest,
   AppListResult,
-  AppsListByResourceGroupError,
+  ListAppByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AppsListByResourceGroupRequest,
+  input: ListAppByResourceGroupRequest,
   output: AppListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type AppsListBySubscriptionError = AzureOpError;
+export type ListAppBySubscriptionError = AzureOpError;
 /** Get all IoT Central Applications in a subscription. */
-export const AppsListBySubscription: API.OperationMethod<
-  AppsListBySubscriptionRequest,
+export const ListAppBySubscription: API.OperationMethod<
+  ListAppBySubscriptionRequest,
   AppListResult,
-  AppsListBySubscriptionError,
+  ListAppBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AppsListBySubscriptionRequest,
+  input: ListAppBySubscriptionRequest,
   output: AppListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type AppsListTemplatesError = AzureOpError;
+export type ListAppTemplatesError = AzureOpError;
 /** Get all available application templates. */
-export const AppsListTemplates: API.OperationMethod<
-  AppsListTemplatesRequest,
+export const ListAppTemplates: API.OperationMethod<
+  ListAppTemplatesRequest,
   AppTemplatesResult,
-  AppsListTemplatesError,
+  ListAppTemplatesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AppsListTemplatesRequest,
+  input: ListAppTemplatesRequest,
   output: AppTemplatesResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type AppsUpdateError = AzureOpError;
-/** Update the metadata of an IoT Central application. */
-export const AppsUpdate: API.OperationMethod<
-  AppsUpdateRequest,
-  AppsUpdateResponse,
-  AppsUpdateError,
+export type ListOperationsError = AzureOpError;
+/** Lists all of the available IoT Central Resource Provider operations. */
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  OperationListResult,
+  ListOperationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AppsUpdateRequest,
-  output: AppsUpdateResponse,
+  input: ListOperationsRequest,
+  output: OperationListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OperationsListError = AzureOpError;
-/** Lists all of the available IoT Central Resource Provider operations. */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationListResult,
-  OperationsListError,
+export type UpdateAppError = AzureOpError;
+/** Update the metadata of an IoT Central application. */
+export const UpdateApp: API.OperationMethod<
+  UpdateAppRequest,
+  UpdateAppResponse,
+  UpdateAppError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
-  output: OperationListResult,
+  input: UpdateAppRequest,
+  output: UpdateAppResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

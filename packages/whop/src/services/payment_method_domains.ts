@@ -138,6 +138,20 @@ export const DeletePaymentMethodDomainResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeletePaymentMethodDomainResponse",
 }) as any as S.Schema<DeletePaymentMethodDomainResponse>;
 
+export interface GetPaymentMethodDomainRequest {
+  /** The unique identifier of the payment method domain, prefixed `pmd_`. */
+  id: string;
+}
+export const GetPaymentMethodDomainRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/payment_method_domains/{id}", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetPaymentMethodDomainRequest",
+}) as any as S.Schema<GetPaymentMethodDomainRequest>;
+
 export type ListPaymentMethodDomainsRequestStatus = "pending" | "verified";
 export const ListPaymentMethodDomainsRequestStatus = /*@__PURE__*/ S.String;
 
@@ -236,20 +250,6 @@ export const ListPaymentMethodDomainsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListPaymentMethodDomainsResponse",
 }) as any as S.Schema<ListPaymentMethodDomainsResponse>;
 
-export interface RetrievePaymentMethodDomainRequest {
-  /** The unique identifier of the payment method domain, prefixed `pmd_`. */
-  id: string;
-}
-export const RetrievePaymentMethodDomainRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/payment_method_domains/{id}", code: 200 }),
-  ),
-).annotate({
-  identifier: "RetrievePaymentMethodDomainRequest",
-}) as any as S.Schema<RetrievePaymentMethodDomainRequest>;
-
 export interface VerifyPaymentMethodDomainRequest {
   /** The unique identifier of the payment method domain, prefixed `pmd_`. */
   id: string;
@@ -306,6 +306,21 @@ export const deletePaymentMethodDomain: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetPaymentMethodDomainError = Forbidden | NotFound | WhopOpError;
+/** Retrieve Payment Method Domain Retrieves a payment method domain to check its verification status. */
+export const getPaymentMethodDomain: API.OperationMethod<
+  GetPaymentMethodDomainRequest,
+  PaymentMethodDomain,
+  GetPaymentMethodDomainError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPaymentMethodDomainRequest,
+  output: PaymentMethodDomain,
+  errors: [Forbidden, NotFound],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListPaymentMethodDomainsError =
   | BadRequest
   | Forbidden
@@ -336,24 +351,6 @@ export const listPaymentMethodDomains: API.PaginatedOperationMethod<
   }),
   paginateRelay,
 ) as any;
-
-export type RetrievePaymentMethodDomainError =
-  | Forbidden
-  | NotFound
-  | WhopOpError;
-/** Retrieve Payment Method Domain Retrieves a payment method domain to check its verification status. */
-export const retrievePaymentMethodDomain: API.OperationMethod<
-  RetrievePaymentMethodDomainRequest,
-  PaymentMethodDomain,
-  RetrievePaymentMethodDomainError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrievePaymentMethodDomainRequest,
-  output: PaymentMethodDomain,
-  errors: [Forbidden, NotFound],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
 
 export type VerifyPaymentMethodDomainError =
   | BadRequest

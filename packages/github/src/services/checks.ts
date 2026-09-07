@@ -1589,37 +1589,6 @@ export const ListSuitesForRefResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListSuitesForRefResponse",
 }) as any as S.Schema<ListSuitesForRefResponse>;
 
-export interface RerequestRunRequest {
-  /** The account owner of the repository. The name is not case sensitive. */
-  owner: string;
-  /** The name of the repository without the `.git` extension. The name is not case sensitive. */
-  repo: string;
-  /** The unique identifier of the check run. */
-  check_run_id: number;
-}
-export const RerequestRunRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    owner: S.String.pipe(T.Label()),
-    repo: S.String.pipe(T.Label()),
-    check_run_id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/repos/{owner}/{repo}/check-runs/{check_run_id}/rerequest",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "RerequestRunRequest",
-}) as any as S.Schema<RerequestRunRequest>;
-
-export type RerequestRunResponse = unknown;
-export const RerequestRunResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Unknown.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "RerequestRunResponse",
-}) as any as S.Schema<RerequestRunResponse>;
-
 export interface RerequestSuiteRequest {
   /** The account owner of the repository. The name is not case sensitive. */
   owner: string;
@@ -1650,6 +1619,37 @@ export const RerequestSuiteResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "RerequestSuiteResponse",
 }) as any as S.Schema<RerequestSuiteResponse>;
+
+export interface RunRerequestRequest {
+  /** The account owner of the repository. The name is not case sensitive. */
+  owner: string;
+  /** The name of the repository without the `.git` extension. The name is not case sensitive. */
+  repo: string;
+  /** The unique identifier of the check run. */
+  check_run_id: number;
+}
+export const RunRerequestRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    owner: S.String.pipe(T.Label()),
+    repo: S.String.pipe(T.Label()),
+    check_run_id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/repos/{owner}/{repo}/check-runs/{check_run_id}/rerequest",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "RunRerequestRequest",
+}) as any as S.Schema<RunRerequestRequest>;
+
+export type RunRerequestResponse = unknown;
+export const RunRerequestResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Unknown.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "RunRerequestResponse",
+}) as any as S.Schema<RunRerequestResponse>;
 
 export interface SetSuitesPreferencesRequestAutoTriggerChecksItem {
   /** The `id` of the GitHub App. */
@@ -2037,25 +2037,6 @@ export const listSuitesForRef: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type RerequestRunError =
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | GithubOpError;
-/** Rerequest a check run Triggers GitHub to rerequest an existing check run, without pushing new code to a repository. This endpoint will trigger the [`check_run` webhook](https://docs.github.com/webhooks/event-payloads/#check_run) event with the action `rerequested`. When a check run is `rerequested`, the `status` of the check suite it belongs to is reset to `queued` and the `conclusion` is cleared. The check run itself is not updated. GitHub apps recieving the [`check_run` webhook](https://docs.github.com/webhooks/event-payloads/#check_run) with the `rerequested` action should then decide if the check run should be reset or updated and call the [update `check_run` endpoint](https://docs.github.com/rest/checks/runs#update-a-check-run) to update the check_run if desired. For more information about how to re-run GitHub Actions jobs, see "[Re-run a job from a workflow run](https://docs.github.com/rest/actions/workflow-runs#re-run-a-job-from-a-workflow-run)". */
-export const rerequestRun: API.OperationMethod<
-  RerequestRunRequest,
-  RerequestRunResponse,
-  RerequestRunError,
-  GithubOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RerequestRunRequest,
-  output: RerequestRunResponse,
-  errors: [Forbidden, NotFound, UnprocessableEntity],
-  protocol: GithubProtocol,
-  retry: Retry.Retry,
-}));
-
 export type RerequestSuiteError = GithubOpError;
 /** Rerequest a check suite Triggers GitHub to rerequest an existing check suite, without pushing new code to a repository. This endpoint will trigger the [`check_suite` webhook](https://docs.github.com/webhooks/event-payloads/#check_suite) event with the action `rerequested`. When a check suite is `rerequested`, its `status` is reset to `queued` and the `conclusion` is cleared. */
 export const rerequestSuite: API.OperationMethod<
@@ -2067,6 +2048,25 @@ export const rerequestSuite: API.OperationMethod<
   input: RerequestSuiteRequest,
   output: RerequestSuiteResponse,
   errors: [],
+  protocol: GithubProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RunRerequestError =
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | GithubOpError;
+/** Rerequest a check run Triggers GitHub to rerequest an existing check run, without pushing new code to a repository. This endpoint will trigger the [`check_run` webhook](https://docs.github.com/webhooks/event-payloads/#check_run) event with the action `rerequested`. When a check run is `rerequested`, the `status` of the check suite it belongs to is reset to `queued` and the `conclusion` is cleared. The check run itself is not updated. GitHub apps recieving the [`check_run` webhook](https://docs.github.com/webhooks/event-payloads/#check_run) with the `rerequested` action should then decide if the check run should be reset or updated and call the [update `check_run` endpoint](https://docs.github.com/rest/checks/runs#update-a-check-run) to update the check_run if desired. For more information about how to re-run GitHub Actions jobs, see "[Re-run a job from a workflow run](https://docs.github.com/rest/actions/workflow-runs#re-run-a-job-from-a-workflow-run)". */
+export const runRerequest: API.OperationMethod<
+  RunRerequestRequest,
+  RunRerequestResponse,
+  RunRerequestError,
+  GithubOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RunRerequestRequest,
+  output: RunRerequestResponse,
+  errors: [Forbidden, NotFound, UnprocessableEntity],
   protocol: GithubProtocol,
   retry: Retry.Retry,
 }));

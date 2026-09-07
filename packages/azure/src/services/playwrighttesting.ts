@@ -12,278 +12,6 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export type AccountQuotasGetRequestQuotaName =
-  | "ScalableExecution"
-  | "Reporting";
-export const AccountQuotasGetRequestQuotaName = /*@__PURE__*/ S.String;
-
-export interface AccountQuotasGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of account. */
-  accountName: string;
-  /** The Playwright service account quota name. */
-  quotaName: AccountQuotasGetRequestQuotaName | (string & {});
-}
-export const AccountQuotasGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    quotaName: AccountQuotasGetRequestQuotaName.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzurePlaywrightService/accounts/{accountName}/quotas/{quotaName}",
-      code: 200,
-      apiVersion: "2024-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "AccountQuotasGetRequest",
-}) as any as S.Schema<AccountQuotasGetRequest>;
-
-/** The type of identity that created the resource. */
-export type SystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type SystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface SystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: SystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: SystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const SystemData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createdBy: S.optional(S.String),
-    createdByType: S.optional(SystemDataCreatedByType),
-    createdAt: S.optional(S.String),
-    lastModifiedBy: S.optional(S.String),
-    lastModifiedByType: S.optional(SystemDataLastModifiedByType),
-    lastModifiedAt: S.optional(S.String),
-  }),
-).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
-
-/** The Playwright service account quota resource free-trial properties. */
-export interface AccountFreeTrialProperties {
-  /** The free-trial createdAt utcDateTime. */
-  createdAt: string;
-  /** The free-trial expiryAt utcDateTime. */
-  expiryAt: string;
-  /** The free-trial allocated limit value eg. allocated free minutes. */
-  allocatedValue: number;
-  /** The free-trial used value eg. used free minutes. */
-  usedValue: number;
-  /** The free-trial percentage used. */
-  percentageUsed: number;
-}
-export const AccountFreeTrialProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createdAt: S.String,
-    expiryAt: S.String,
-    allocatedValue: S.Number,
-    usedValue: S.Number,
-    percentageUsed: S.Number,
-  }),
-).annotate({
-  identifier: "AccountFreeTrialProperties",
-}) as any as S.Schema<AccountFreeTrialProperties>;
-
-/** The status of the current operation. */
-export type ProvisioningState =
-  | "Succeeded"
-  | "Failed"
-  | "Canceled"
-  | "Creating"
-  | "Deleting"
-  | "Accepted";
-export const ProvisioningState = /*@__PURE__*/ S.String;
-
-/** The Playwright service account quota resource properties. */
-export interface AccountQuotaProperties {
-  /** The Playwright service account quota resource free-trial properties. */
-  freeTrial?: AccountFreeTrialProperties;
-  /** The status of the last operation. */
-  provisioningState?: ProvisioningState;
-}
-export const AccountQuotaProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    freeTrial: S.optional(AccountFreeTrialProperties),
-    provisioningState: S.optional(ProvisioningState),
-  }),
-).annotate({
-  identifier: "AccountQuotaProperties",
-}) as any as S.Schema<AccountQuotaProperties>;
-
-export interface AccountQuotasGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: AccountQuotaProperties;
-}
-export const AccountQuotasGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(AccountQuotaProperties),
-  }),
-).annotate({
-  identifier: "AccountQuotasGetResponse",
-}) as any as S.Schema<AccountQuotasGetResponse>;
-
-export interface AccountQuotasListByAccountRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of account. */
-  accountName: string;
-}
-export const AccountQuotasListByAccountRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzurePlaywrightService/accounts/{accountName}/quotas",
-      code: 200,
-      apiVersion: "2024-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "AccountQuotasListByAccountRequest",
-}) as any as S.Schema<AccountQuotasListByAccountRequest>;
-
-/** A quota resource for a Playwright service account. */
-export interface AccountQuota {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: AccountQuotaProperties;
-}
-export const AccountQuota = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(AccountQuotaProperties),
-  }),
-).annotate({ identifier: "AccountQuota" }) as any as S.Schema<AccountQuota>;
-
-/** The AccountQuota items on this page */
-export type AccountQuotaListResultValueList = Array<AccountQuota>;
-export const AccountQuotaListResultValueList = /*@__PURE__*/ S.Array(
-  AccountQuota,
-) as any as S.Schema<AccountQuotaListResultValueList>;
-
-/** The response of a AccountQuota list operation. */
-export interface AccountQuotaListResult {
-  /** The AccountQuota items on this page */
-  value: AccountQuotaListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const AccountQuotaListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: AccountQuotaListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AccountQuotaListResult",
-}) as any as S.Schema<AccountQuotaListResult>;
-
-export interface AccountsCheckNameAvailabilityRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource for which availability needs to be checked. */
-  name?: string;
-  /** The resource type. */
-  type?: string;
-}
-export const AccountsCheckNameAvailabilityRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.AzurePlaywrightService/checkNameAvailability",
-        code: 200,
-        apiVersion: "2024-12-01",
-      }),
-    ),
-).annotate({
-  identifier: "AccountsCheckNameAvailabilityRequest",
-}) as any as S.Schema<AccountsCheckNameAvailabilityRequest>;
-
-/** The reason why the given name is not available. */
-export type AccountsCheckNameAvailabilityResponseReason =
-  | "Invalid"
-  | "AlreadyExists";
-export const AccountsCheckNameAvailabilityResponseReason =
-  /*@__PURE__*/ S.String;
-
-export interface AccountsCheckNameAvailabilityResponse {
-  /** Indicates if the resource name is available. */
-  nameAvailable?: boolean;
-  /** The reason why the given name is not available. */
-  reason?: AccountsCheckNameAvailabilityResponseReason;
-  /** Detailed reason why the given name is available. */
-  message?: string;
-}
-export const AccountsCheckNameAvailabilityResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      nameAvailable: S.optional(S.Boolean),
-      reason: S.optional(AccountsCheckNameAvailabilityResponseReason),
-      message: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "AccountsCheckNameAvailabilityResponse",
-}) as any as S.Schema<AccountsCheckNameAvailabilityResponse>;
-
 /** Resource tags. */
 export type AccountsCreateOrUpdateRequestTagsMap = {
   [key: string]: string | undefined;
@@ -365,6 +93,48 @@ export const AccountsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "AccountsCreateOrUpdateRequest",
 }) as any as S.Schema<AccountsCreateOrUpdateRequest>;
 
+/** The type of identity that created the resource. */
+export type SystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type SystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface SystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: SystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: SystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const SystemData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdBy: S.optional(S.String),
+    createdByType: S.optional(SystemDataCreatedByType),
+    createdAt: S.optional(S.String),
+    lastModifiedBy: S.optional(S.String),
+    lastModifiedByType: S.optional(SystemDataLastModifiedByType),
+    lastModifiedAt: S.optional(S.String),
+  }),
+).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
+
 /** Resource tags. */
 export type AccountsCreateOrUpdateResponseTagsMap = {
   [key: string]: string | undefined;
@@ -389,6 +159,16 @@ export const AccountPropertiesReporting = /*@__PURE__*/ S.String;
 /** When enabled, this feature allows the workspace to use local auth (through service access token) for executing operations. */
 export type AccountPropertiesLocalAuth = "Enabled" | "Disabled";
 export const AccountPropertiesLocalAuth = /*@__PURE__*/ S.String;
+
+/** The status of the current operation. */
+export type ProvisioningState =
+  | "Succeeded"
+  | "Failed"
+  | "Canceled"
+  | "Creating"
+  | "Deleting"
+  | "Accepted";
+export const ProvisioningState = /*@__PURE__*/ S.String;
 
 /** Account resource properties. */
 export interface AccountProperties {
@@ -448,7 +228,58 @@ export const AccountsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "AccountsCreateOrUpdateResponse",
 }) as any as S.Schema<AccountsCreateOrUpdateResponse>;
 
-export interface AccountsDeleteRequest {
+export interface CheckAccountNameAvailabilityRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource for which availability needs to be checked. */
+  name?: string;
+  /** The resource type. */
+  type?: string;
+}
+export const CheckAccountNameAvailabilityRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.AzurePlaywrightService/checkNameAvailability",
+      code: 200,
+      apiVersion: "2024-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "CheckAccountNameAvailabilityRequest",
+}) as any as S.Schema<CheckAccountNameAvailabilityRequest>;
+
+/** The reason why the given name is not available. */
+export type CheckAccountNameAvailabilityResponseReason =
+  | "Invalid"
+  | "AlreadyExists";
+export const CheckAccountNameAvailabilityResponseReason =
+  /*@__PURE__*/ S.String;
+
+export interface CheckAccountNameAvailabilityResponse {
+  /** Indicates if the resource name is available. */
+  nameAvailable?: boolean;
+  /** The reason why the given name is not available. */
+  reason?: CheckAccountNameAvailabilityResponseReason;
+  /** Detailed reason why the given name is available. */
+  message?: string;
+}
+export const CheckAccountNameAvailabilityResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      nameAvailable: S.optional(S.Boolean),
+      reason: S.optional(CheckAccountNameAvailabilityResponseReason),
+      message: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "CheckAccountNameAvailabilityResponse",
+}) as any as S.Schema<CheckAccountNameAvailabilityResponse>;
+
+export interface DeleteAccountRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -456,7 +287,7 @@ export interface AccountsDeleteRequest {
   /** Name of account. */
   accountName: string;
 }
-export const AccountsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteAccountRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -470,17 +301,17 @@ export const AccountsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "AccountsDeleteRequest",
-}) as any as S.Schema<AccountsDeleteRequest>;
+  identifier: "DeleteAccountRequest",
+}) as any as S.Schema<DeleteAccountRequest>;
 
-export interface AccountsDeleteResponse {}
-export const AccountsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteAccountResponse {}
+export const DeleteAccountResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "AccountsDeleteResponse",
-}) as any as S.Schema<AccountsDeleteResponse>;
+  identifier: "DeleteAccountResponse",
+}) as any as S.Schema<DeleteAccountResponse>;
 
-export interface AccountsGetRequest {
+export interface GetAccountRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -488,7 +319,7 @@ export interface AccountsGetRequest {
   /** Name of account. */
   accountName: string;
 }
-export const AccountsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetAccountRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -502,17 +333,17 @@ export const AccountsGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "AccountsGetRequest",
-}) as any as S.Schema<AccountsGetRequest>;
+  identifier: "GetAccountRequest",
+}) as any as S.Schema<GetAccountRequest>;
 
 /** Resource tags. */
-export type AccountsGetResponseTagsMap = { [key: string]: string | undefined };
-export const AccountsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetAccountResponseTagsMap = { [key: string]: string | undefined };
+export const GetAccountResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsGetResponseTagsMap>;
+) as any as S.Schema<GetAccountResponseTagsMap>;
 
-export interface AccountsGetResponse {
+export interface GetAccountResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -522,33 +353,234 @@ export interface AccountsGetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: AccountsGetResponseTagsMap;
+  tags?: GetAccountResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: AccountProperties;
 }
-export const AccountsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetAccountResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(AccountsGetResponseTagsMap),
+    tags: S.optional(GetAccountResponseTagsMap),
     location: S.String,
     properties: S.optional(AccountProperties),
   }),
 ).annotate({
-  identifier: "AccountsGetResponse",
-}) as any as S.Schema<AccountsGetResponse>;
+  identifier: "GetAccountResponse",
+}) as any as S.Schema<GetAccountResponse>;
 
-export interface AccountsListByResourceGroupRequest {
+export type GetAccountQuotasRequestQuotaName =
+  | "ScalableExecution"
+  | "Reporting";
+export const GetAccountQuotasRequestQuotaName = /*@__PURE__*/ S.String;
+
+export interface GetAccountQuotasRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of account. */
+  accountName: string;
+  /** The Playwright service account quota name. */
+  quotaName: GetAccountQuotasRequestQuotaName | (string & {});
+}
+export const GetAccountQuotasRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    quotaName: GetAccountQuotasRequestQuotaName.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzurePlaywrightService/accounts/{accountName}/quotas/{quotaName}",
+      code: 200,
+      apiVersion: "2024-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetAccountQuotasRequest",
+}) as any as S.Schema<GetAccountQuotasRequest>;
+
+/** The Playwright service account quota resource free-trial properties. */
+export interface AccountFreeTrialProperties {
+  /** The free-trial createdAt utcDateTime. */
+  createdAt: string;
+  /** The free-trial expiryAt utcDateTime. */
+  expiryAt: string;
+  /** The free-trial allocated limit value eg. allocated free minutes. */
+  allocatedValue: number;
+  /** The free-trial used value eg. used free minutes. */
+  usedValue: number;
+  /** The free-trial percentage used. */
+  percentageUsed: number;
+}
+export const AccountFreeTrialProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdAt: S.String,
+    expiryAt: S.String,
+    allocatedValue: S.Number,
+    usedValue: S.Number,
+    percentageUsed: S.Number,
+  }),
+).annotate({
+  identifier: "AccountFreeTrialProperties",
+}) as any as S.Schema<AccountFreeTrialProperties>;
+
+/** The Playwright service account quota resource properties. */
+export interface AccountQuotaProperties {
+  /** The Playwright service account quota resource free-trial properties. */
+  freeTrial?: AccountFreeTrialProperties;
+  /** The status of the last operation. */
+  provisioningState?: ProvisioningState;
+}
+export const AccountQuotaProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    freeTrial: S.optional(AccountFreeTrialProperties),
+    provisioningState: S.optional(ProvisioningState),
+  }),
+).annotate({
+  identifier: "AccountQuotaProperties",
+}) as any as S.Schema<AccountQuotaProperties>;
+
+export interface GetAccountQuotasResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: AccountQuotaProperties;
+}
+export const GetAccountQuotasResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(AccountQuotaProperties),
+  }),
+).annotate({
+  identifier: "GetAccountQuotasResponse",
+}) as any as S.Schema<GetAccountQuotasResponse>;
+
+export type GetQuotasRequestQuotaName = "ScalableExecution" | "Reporting";
+export const GetQuotasRequestQuotaName = /*@__PURE__*/ S.String;
+
+export interface GetQuotasRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The location of quota in ARM Normalized format like eastus, southeastasia etc. */
+  location: string;
+  /** The quota name. */
+  quotaName: GetQuotasRequestQuotaName | (string & {});
+}
+export const GetQuotasRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+    quotaName: GetQuotasRequestQuotaName.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.AzurePlaywrightService/locations/{location}/quotas/{quotaName}",
+      code: 200,
+      apiVersion: "2024-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetQuotasRequest",
+}) as any as S.Schema<GetQuotasRequest>;
+
+/** The free-trial state. */
+export type FreeTrialState =
+  | "Active"
+  | "Expired"
+  | "NotEligible"
+  | "NotRegistered";
+export const FreeTrialState = /*@__PURE__*/ S.String;
+
+/** The subscription quota resource free-trial properties. */
+export interface FreeTrialProperties {
+  /** The Playwright service account id. */
+  accountId: string;
+  /** The free-trial state. */
+  state: FreeTrialState;
+}
+export const FreeTrialProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountId: S.String,
+    state: FreeTrialState,
+  }),
+).annotate({
+  identifier: "FreeTrialProperties",
+}) as any as S.Schema<FreeTrialProperties>;
+
+/** Offering type state. */
+export type OfferingType =
+  | "NotApplicable"
+  | "PrivatePreview"
+  | "PublicPreview"
+  | "GeneralAvailability";
+export const OfferingType = /*@__PURE__*/ S.String;
+
+/** The subscription quota resource properties. */
+export interface QuotaProperties {
+  /** The subscription quota resource free-trial properties. */
+  freeTrial?: FreeTrialProperties;
+  /** Indicates the offering type for the subscription. */
+  offeringType?: OfferingType;
+  /** The status of the last operation. */
+  provisioningState?: ProvisioningState;
+}
+export const QuotaProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    freeTrial: S.optional(FreeTrialProperties),
+    offeringType: S.optional(OfferingType),
+    provisioningState: S.optional(ProvisioningState),
+  }),
+).annotate({
+  identifier: "QuotaProperties",
+}) as any as S.Schema<QuotaProperties>;
+
+export interface GetQuotasResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: QuotaProperties;
+}
+export const GetQuotasResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(QuotaProperties),
+  }),
+).annotate({
+  identifier: "GetQuotasResponse",
+}) as any as S.Schema<GetQuotasResponse>;
+
+export interface ListAccountByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
 }
-export const AccountsListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListAccountByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -561,8 +593,8 @@ export const AccountsListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "AccountsListByResourceGroupRequest",
-}) as any as S.Schema<AccountsListByResourceGroupRequest>;
+  identifier: "ListAccountByResourceGroupRequest",
+}) as any as S.Schema<ListAccountByResourceGroupRequest>;
 
 /** Resource tags. */
 export type AccountTagsMap = { [key: string]: string | undefined };
@@ -622,11 +654,11 @@ export const AccountListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "AccountListResult",
 }) as any as S.Schema<AccountListResult>;
 
-export interface AccountsListBySubscriptionRequest {
+export interface ListAccountBySubscriptionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
 }
-export const AccountsListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListAccountBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
   }).pipe(
@@ -638,85 +670,36 @@ export const AccountsListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "AccountsListBySubscriptionRequest",
-}) as any as S.Schema<AccountsListBySubscriptionRequest>;
+  identifier: "ListAccountBySubscriptionRequest",
+}) as any as S.Schema<ListAccountBySubscriptionRequest>;
 
-/** Resource tags. */
-export type AccountsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AccountsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AccountsUpdateRequestTagsMap>;
-
-/** The enablement status of a feature. */
-export type EnablementStatus = "Enabled" | "Disabled";
-export const EnablementStatus = /*@__PURE__*/ S.String;
-
-/** The updatable properties of the Account. */
-export interface AccountUpdateProperties {
-  /** This property sets the connection region for Playwright client workers to cloud-hosted browsers. If enabled, workers connect to browsers in the closest Azure region, ensuring lower latency. If disabled, workers connect to browsers in the Azure region in which the workspace was initially created. */
-  regionalAffinity?: EnablementStatus | (string & {});
-  /** When enabled, Playwright client workers can connect to cloud-hosted browsers. This can increase the number of parallel workers for a test run, significantly minimizing test completion durations. */
-  scalableExecution?: EnablementStatus | (string & {});
-  /** When enabled, this feature allows the workspace to upload and display test results, including artifacts like traces and screenshots, in the Playwright portal. This enables faster and more efficient troubleshooting. */
-  reporting?: EnablementStatus | (string & {});
-  /** When enabled, this feature allows the workspace to use local auth (through service access token) for executing operations. */
-  localAuth?: EnablementStatus | (string & {});
-}
-export const AccountUpdateProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    regionalAffinity: S.optional(EnablementStatus),
-    scalableExecution: S.optional(EnablementStatus),
-    reporting: S.optional(EnablementStatus),
-    localAuth: S.optional(EnablementStatus),
-  }),
-).annotate({
-  identifier: "AccountUpdateProperties",
-}) as any as S.Schema<AccountUpdateProperties>;
-
-export interface AccountsUpdateRequest {
+export interface ListAccountQuotasByAccountRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** Name of account. */
   accountName: string;
-  /** Resource tags. */
-  tags?: AccountsUpdateRequestTagsMap;
-  /** The resource-specific properties for this resource. */
-  properties?: AccountUpdateProperties;
 }
-export const AccountsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListAccountQuotasByAccountRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
-    tags: S.optional(AccountsUpdateRequestTagsMap),
-    properties: S.optional(AccountUpdateProperties),
   }).pipe(
     T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzurePlaywrightService/accounts/{accountName}",
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzurePlaywrightService/accounts/{accountName}/quotas",
       code: 200,
       apiVersion: "2024-12-01",
     }),
   ),
 ).annotate({
-  identifier: "AccountsUpdateRequest",
-}) as any as S.Schema<AccountsUpdateRequest>;
+  identifier: "ListAccountQuotasByAccountRequest",
+}) as any as S.Schema<ListAccountQuotasByAccountRequest>;
 
-/** Resource tags. */
-export type AccountsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AccountsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AccountsUpdateResponseTagsMap>;
-
-export interface AccountsUpdateResponse {
+/** A quota resource for a Playwright service account. */
+export interface AccountQuota {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -725,29 +708,43 @@ export interface AccountsUpdateResponse {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
-  /** Resource tags. */
-  tags?: AccountsUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
   /** The resource-specific properties for this resource. */
-  properties?: AccountProperties;
+  properties?: AccountQuotaProperties;
 }
-export const AccountsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const AccountQuota = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(AccountsUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(AccountProperties),
+    properties: S.optional(AccountQuotaProperties),
+  }),
+).annotate({ identifier: "AccountQuota" }) as any as S.Schema<AccountQuota>;
+
+/** The AccountQuota items on this page */
+export type AccountQuotaListResultValueList = Array<AccountQuota>;
+export const AccountQuotaListResultValueList = /*@__PURE__*/ S.Array(
+  AccountQuota,
+) as any as S.Schema<AccountQuotaListResultValueList>;
+
+/** The response of a AccountQuota list operation. */
+export interface AccountQuotaListResult {
+  /** The AccountQuota items on this page */
+  value: AccountQuotaListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const AccountQuotaListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: AccountQuotaListResultValueList,
+    nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "AccountsUpdateResponse",
-}) as any as S.Schema<AccountsUpdateResponse>;
+  identifier: "AccountQuotaListResult",
+}) as any as S.Schema<AccountQuotaListResult>;
 
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({
       method: "GET",
@@ -757,8 +754,8 @@ export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
 
 /** Localized display information for this particular operation. */
 export interface OperationDisplay {
@@ -814,136 +811,33 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
-export interface OperationsListResponse {
+export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
-export const OperationsListResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "OperationsListResponse",
-}) as any as S.Schema<OperationsListResponse>;
+  identifier: "ListOperationsResponse",
+}) as any as S.Schema<ListOperationsResponse>;
 
-export type QuotasGetRequestQuotaName = "ScalableExecution" | "Reporting";
-export const QuotasGetRequestQuotaName = /*@__PURE__*/ S.String;
-
-export interface QuotasGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The location of quota in ARM Normalized format like eastus, southeastasia etc. */
-  location: string;
-  /** The quota name. */
-  quotaName: QuotasGetRequestQuotaName | (string & {});
-}
-export const QuotasGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
-    quotaName: QuotasGetRequestQuotaName.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.AzurePlaywrightService/locations/{location}/quotas/{quotaName}",
-      code: 200,
-      apiVersion: "2024-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "QuotasGetRequest",
-}) as any as S.Schema<QuotasGetRequest>;
-
-/** The free-trial state. */
-export type FreeTrialState =
-  | "Active"
-  | "Expired"
-  | "NotEligible"
-  | "NotRegistered";
-export const FreeTrialState = /*@__PURE__*/ S.String;
-
-/** The subscription quota resource free-trial properties. */
-export interface FreeTrialProperties {
-  /** The Playwright service account id. */
-  accountId: string;
-  /** The free-trial state. */
-  state: FreeTrialState;
-}
-export const FreeTrialProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountId: S.String,
-    state: FreeTrialState,
-  }),
-).annotate({
-  identifier: "FreeTrialProperties",
-}) as any as S.Schema<FreeTrialProperties>;
-
-/** Offering type state. */
-export type OfferingType =
-  | "NotApplicable"
-  | "PrivatePreview"
-  | "PublicPreview"
-  | "GeneralAvailability";
-export const OfferingType = /*@__PURE__*/ S.String;
-
-/** The subscription quota resource properties. */
-export interface QuotaProperties {
-  /** The subscription quota resource free-trial properties. */
-  freeTrial?: FreeTrialProperties;
-  /** Indicates the offering type for the subscription. */
-  offeringType?: OfferingType;
-  /** The status of the last operation. */
-  provisioningState?: ProvisioningState;
-}
-export const QuotaProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    freeTrial: S.optional(FreeTrialProperties),
-    offeringType: S.optional(OfferingType),
-    provisioningState: S.optional(ProvisioningState),
-  }),
-).annotate({
-  identifier: "QuotaProperties",
-}) as any as S.Schema<QuotaProperties>;
-
-export interface QuotasGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: QuotaProperties;
-}
-export const QuotasGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(QuotaProperties),
-  }),
-).annotate({
-  identifier: "QuotasGetResponse",
-}) as any as S.Schema<QuotasGetResponse>;
-
-export interface QuotasListBySubscriptionRequest {
+export interface ListQuotasBySubscriptionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The location of quota in ARM Normalized format like eastus, southeastasia etc. */
   location: string;
 }
-export const QuotasListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListQuotasBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     location: S.String.pipe(T.Label()),
@@ -956,8 +850,8 @@ export const QuotasListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "QuotasListBySubscriptionRequest",
-}) as any as S.Schema<QuotasListBySubscriptionRequest>;
+  identifier: "ListQuotasBySubscriptionRequest",
+}) as any as S.Schema<ListQuotasBySubscriptionRequest>;
 
 /** A subscription quota resource. */
 export interface Quota {
@@ -1004,50 +898,108 @@ export const QuotaListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "QuotaListResult",
 }) as any as S.Schema<QuotaListResult>;
 
-export type AccountQuotasGetError = AzureOpError;
-/** Get quota by name for an account. */
-export const AccountQuotasGet: API.OperationMethod<
-  AccountQuotasGetRequest,
-  AccountQuotasGetResponse,
-  AccountQuotasGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountQuotasGetRequest,
-  output: AccountQuotasGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
+/** Resource tags. */
+export type UpdateAccountRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateAccountRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateAccountRequestTagsMap>;
 
-export type AccountQuotasListByAccountError = AzureOpError;
-/** List quotas for a given account. */
-export const AccountQuotasListByAccount: API.OperationMethod<
-  AccountQuotasListByAccountRequest,
-  AccountQuotaListResult,
-  AccountQuotasListByAccountError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountQuotasListByAccountRequest,
-  output: AccountQuotaListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
+/** The enablement status of a feature. */
+export type EnablementStatus = "Enabled" | "Disabled";
+export const EnablementStatus = /*@__PURE__*/ S.String;
 
-export type AccountsCheckNameAvailabilityError = AzureOpError;
-/** Adds check global name availability operation, normally used if a resource name must be globally unique. */
-export const AccountsCheckNameAvailability: API.OperationMethod<
-  AccountsCheckNameAvailabilityRequest,
-  AccountsCheckNameAvailabilityResponse,
-  AccountsCheckNameAvailabilityError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountsCheckNameAvailabilityRequest,
-  output: AccountsCheckNameAvailabilityResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
+/** The updatable properties of the Account. */
+export interface AccountUpdateProperties {
+  /** This property sets the connection region for Playwright client workers to cloud-hosted browsers. If enabled, workers connect to browsers in the closest Azure region, ensuring lower latency. If disabled, workers connect to browsers in the Azure region in which the workspace was initially created. */
+  regionalAffinity?: EnablementStatus | (string & {});
+  /** When enabled, Playwright client workers can connect to cloud-hosted browsers. This can increase the number of parallel workers for a test run, significantly minimizing test completion durations. */
+  scalableExecution?: EnablementStatus | (string & {});
+  /** When enabled, this feature allows the workspace to upload and display test results, including artifacts like traces and screenshots, in the Playwright portal. This enables faster and more efficient troubleshooting. */
+  reporting?: EnablementStatus | (string & {});
+  /** When enabled, this feature allows the workspace to use local auth (through service access token) for executing operations. */
+  localAuth?: EnablementStatus | (string & {});
+}
+export const AccountUpdateProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    regionalAffinity: S.optional(EnablementStatus),
+    scalableExecution: S.optional(EnablementStatus),
+    reporting: S.optional(EnablementStatus),
+    localAuth: S.optional(EnablementStatus),
+  }),
+).annotate({
+  identifier: "AccountUpdateProperties",
+}) as any as S.Schema<AccountUpdateProperties>;
+
+export interface UpdateAccountRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of account. */
+  accountName: string;
+  /** Resource tags. */
+  tags?: UpdateAccountRequestTagsMap;
+  /** The resource-specific properties for this resource. */
+  properties?: AccountUpdateProperties;
+}
+export const UpdateAccountRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateAccountRequestTagsMap),
+    properties: S.optional(AccountUpdateProperties),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzurePlaywrightService/accounts/{accountName}",
+      code: 200,
+      apiVersion: "2024-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateAccountRequest",
+}) as any as S.Schema<UpdateAccountRequest>;
+
+/** Resource tags. */
+export type UpdateAccountResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateAccountResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateAccountResponseTagsMap>;
+
+export interface UpdateAccountResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateAccountResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: AccountProperties;
+}
+export const UpdateAccountResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateAccountResponseTagsMap),
+    location: S.String,
+    properties: S.optional(AccountProperties),
+  }),
+).annotate({
+  identifier: "UpdateAccountResponse",
+}) as any as S.Schema<UpdateAccountResponse>;
 
 export type AccountsCreateOrUpdateError = AzureOpError;
 /** Create a Account */
@@ -1064,121 +1016,166 @@ export const AccountsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type AccountsDeleteError = AzureOpError;
+export type CheckAccountNameAvailabilityError = AzureOpError;
+/** Adds check global name availability operation, normally used if a resource name must be globally unique. */
+export const CheckAccountNameAvailability: API.OperationMethod<
+  CheckAccountNameAvailabilityRequest,
+  CheckAccountNameAvailabilityResponse,
+  CheckAccountNameAvailabilityError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CheckAccountNameAvailabilityRequest,
+  output: CheckAccountNameAvailabilityResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteAccountError = AzureOpError;
 /** Delete a Account */
-export const AccountsDelete: API.OperationMethod<
-  AccountsDeleteRequest,
-  AccountsDeleteResponse,
-  AccountsDeleteError,
+export const DeleteAccount: API.OperationMethod<
+  DeleteAccountRequest,
+  DeleteAccountResponse,
+  DeleteAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AccountsDeleteRequest,
-  output: AccountsDeleteResponse,
+  input: DeleteAccountRequest,
+  output: DeleteAccountResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type AccountsGetError = AzureOpError;
+export type GetAccountError = AzureOpError;
 /** Get a Account */
-export const AccountsGet: API.OperationMethod<
-  AccountsGetRequest,
-  AccountsGetResponse,
-  AccountsGetError,
+export const GetAccount: API.OperationMethod<
+  GetAccountRequest,
+  GetAccountResponse,
+  GetAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AccountsGetRequest,
-  output: AccountsGetResponse,
+  input: GetAccountRequest,
+  output: GetAccountResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type AccountsListByResourceGroupError = AzureOpError;
-/** List Account resources by resource group */
-export const AccountsListByResourceGroup: API.OperationMethod<
-  AccountsListByResourceGroupRequest,
-  AccountListResult,
-  AccountsListByResourceGroupError,
+export type GetAccountQuotasError = AzureOpError;
+/** Get quota by name for an account. */
+export const GetAccountQuotas: API.OperationMethod<
+  GetAccountQuotasRequest,
+  GetAccountQuotasResponse,
+  GetAccountQuotasError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AccountsListByResourceGroupRequest,
-  output: AccountListResult,
+  input: GetAccountQuotasRequest,
+  output: GetAccountQuotasResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type AccountsListBySubscriptionError = AzureOpError;
-/** List Account resources by subscription ID */
-export const AccountsListBySubscription: API.OperationMethod<
-  AccountsListBySubscriptionRequest,
-  AccountListResult,
-  AccountsListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountsListBySubscriptionRequest,
-  output: AccountListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccountsUpdateError = AzureOpError;
-/** Update a Account */
-export const AccountsUpdate: API.OperationMethod<
-  AccountsUpdateRequest,
-  AccountsUpdateResponse,
-  AccountsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountsUpdateRequest,
-  output: AccountsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OperationsListError = AzureOpError;
-/** List the operations for the provider */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationsListResponse,
-  OperationsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
-  output: OperationsListResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type QuotasGetError = AzureOpError;
+export type GetQuotasError = AzureOpError;
 /** Get subscription quota by name. */
-export const QuotasGet: API.OperationMethod<
-  QuotasGetRequest,
-  QuotasGetResponse,
-  QuotasGetError,
+export const GetQuotas: API.OperationMethod<
+  GetQuotasRequest,
+  GetQuotasResponse,
+  GetQuotasError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: QuotasGetRequest,
-  output: QuotasGetResponse,
+  input: GetQuotasRequest,
+  output: GetQuotasResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type QuotasListBySubscriptionError = AzureOpError;
-/** List quotas for a given subscription Id. */
-export const QuotasListBySubscription: API.OperationMethod<
-  QuotasListBySubscriptionRequest,
-  QuotaListResult,
-  QuotasListBySubscriptionError,
+export type ListAccountByResourceGroupError = AzureOpError;
+/** List Account resources by resource group */
+export const ListAccountByResourceGroup: API.OperationMethod<
+  ListAccountByResourceGroupRequest,
+  AccountListResult,
+  ListAccountByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: QuotasListBySubscriptionRequest,
+  input: ListAccountByResourceGroupRequest,
+  output: AccountListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAccountBySubscriptionError = AzureOpError;
+/** List Account resources by subscription ID */
+export const ListAccountBySubscription: API.OperationMethod<
+  ListAccountBySubscriptionRequest,
+  AccountListResult,
+  ListAccountBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAccountBySubscriptionRequest,
+  output: AccountListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAccountQuotasByAccountError = AzureOpError;
+/** List quotas for a given account. */
+export const ListAccountQuotasByAccount: API.OperationMethod<
+  ListAccountQuotasByAccountRequest,
+  AccountQuotaListResult,
+  ListAccountQuotasByAccountError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAccountQuotasByAccountRequest,
+  output: AccountQuotaListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOperationsError = AzureOpError;
+/** List the operations for the provider */
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  ListOperationsResponse,
+  ListOperationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOperationsRequest,
+  output: ListOperationsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListQuotasBySubscriptionError = AzureOpError;
+/** List quotas for a given subscription Id. */
+export const ListQuotasBySubscription: API.OperationMethod<
+  ListQuotasBySubscriptionRequest,
+  QuotaListResult,
+  ListQuotasBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListQuotasBySubscriptionRequest,
   output: QuotaListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateAccountError = AzureOpError;
+/** Update a Account */
+export const UpdateAccount: API.OperationMethod<
+  UpdateAccountRequest,
+  UpdateAccountResponse,
+  UpdateAccountError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateAccountRequest,
+  output: UpdateAccountResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

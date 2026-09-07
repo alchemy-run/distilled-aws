@@ -203,6 +203,18 @@ export const Export = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Export" }) as any as S.Schema<Export>;
 
+export interface GetExportRequest {
+  /** The export ID, prefixed `exprt_`. */
+  id: string;
+}
+export const GetExportRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/exports/{id}", code: 200 })),
+).annotate({
+  identifier: "GetExportRequest",
+}) as any as S.Schema<GetExportRequest>;
+
 export type ListExportsRequestResource =
   | "ad_campaigns"
   | "ad_groups"
@@ -323,18 +335,6 @@ export const ListExportsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListExportsResponse",
 }) as any as S.Schema<ListExportsResponse>;
 
-export interface RetrieveExportRequest {
-  /** The export ID, prefixed `exprt_`. */
-  id: string;
-}
-export const RetrieveExportRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/exports/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveExportRequest",
-}) as any as S.Schema<RetrieveExportRequest>;
-
 export type CreateExportError = BadRequest | Forbidden | Conflict | WhopOpError;
 /** Create Export Starts an asynchronous CSV export of a resource for an account. Returns the export in `pending`; poll `GET /exports/{id}` until `download_url` is set. */
 export const createExport: API.OperationMethod<
@@ -350,6 +350,21 @@ export const createExport: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetExportError = Forbidden | NotFound | WhopOpError;
+/** Retrieve Export Fetches an export's status and, once complete, its download link. */
+export const getExport: API.OperationMethod<
+  GetExportRequest,
+  Export,
+  GetExportError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetExportRequest,
+  output: Export,
+  errors: [Forbidden, NotFound],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListExportsError = BadRequest | Forbidden | WhopOpError;
 /** List Exports Lists the exports requested for an account, newest first. Only exports of resources the credential is allowed to export are returned. */
 export const listExports: API.OperationMethod<
@@ -361,21 +376,6 @@ export const listExports: API.OperationMethod<
   input: ListExportsRequest,
   output: ListExportsResponse,
   errors: [BadRequest, Forbidden],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveExportError = Forbidden | NotFound | WhopOpError;
-/** Retrieve Export Fetches an export's status and, once complete, its download link. */
-export const retrieveExport: API.OperationMethod<
-  RetrieveExportRequest,
-  Export,
-  RetrieveExportError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveExportRequest,
-  output: Export,
-  errors: [Forbidden, NotFound],
   protocol: WhopProtocol,
   retry: Retry.Retry,
 }));

@@ -3,8 +3,8 @@
  * generate — turn the Smithy JSON model in .generated-specs into the Discord
  * Effect SDK.
  *
- * Input:  .generated-specs/discord.json  (written by scripts/convert.ts)
- *         patches/discord/*.json         (RFC-6902 patches to the MODEL)
+ * Input:  .generated-specs/discord.json  (written by scripts/convert.ts,
+ *         already patched)
  * Output: src/services/discord.ts  +  src/services/index.ts
  *
  * The smithy→SDK compiler and CLI pipeline live in

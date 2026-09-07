@@ -12,7 +12,39 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export interface DataCollectionRuleConfigurationMetadataFetchRequest {
+export interface DeleteScheduledQueryRuleRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the rule. */
+  ruleName: string;
+}
+export const DeleteScheduledQueryRuleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    ruleName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/scheduledQueryRules/{ruleName}",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteScheduledQueryRuleRequest",
+}) as any as S.Schema<DeleteScheduledQueryRuleRequest>;
+
+export interface DeleteScheduledQueryRuleResponse {}
+export const DeleteScheduledQueryRuleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteScheduledQueryRuleResponse",
+}) as any as S.Schema<DeleteScheduledQueryRuleResponse>;
+
+export interface FetchDataCollectionRuleConfigurationMetadataRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The Azure region for the metadata request. */
@@ -24,7 +56,7 @@ export interface DataCollectionRuleConfigurationMetadataFetchRequest {
   /** When true, returns detailed stream metadata in the response. Defaults to false. */
   withStreamMetadata?: boolean;
 }
-export const DataCollectionRuleConfigurationMetadataFetchRequest =
+export const FetchDataCollectionRuleConfigurationMetadataRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -41,8 +73,8 @@ export const DataCollectionRuleConfigurationMetadataFetchRequest =
       }),
     ),
   ).annotate({
-    identifier: "DataCollectionRuleConfigurationMetadataFetchRequest",
-  }) as any as S.Schema<DataCollectionRuleConfigurationMetadataFetchRequest>;
+    identifier: "FetchDataCollectionRuleConfigurationMetadataRequest",
+  }) as any as S.Schema<FetchDataCollectionRuleConfigurationMetadataRequest>;
 
 /** List of supported destination resource types. */
 export type TelemetryTypeMetadataSupportedDestinationsList = Array<string>;
@@ -219,165 +251,163 @@ export const DataCollectionRuleConfigurationMetadataResponse =
     identifier: "DataCollectionRuleConfigurationMetadataResponse",
   }) as any as S.Schema<DataCollectionRuleConfigurationMetadataResponse>;
 
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
+export interface GetScheduledQueryRuleRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the rule. */
+  ruleName: string;
+}
+export const GetScheduledQueryRuleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    ruleName: S.String.pipe(T.Label()),
+  }).pipe(
     T.Http({
       method: "GET",
-      uri: "/providers/Microsoft.Insights/operations",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/scheduledQueryRules/{ruleName}",
       code: 200,
-      apiVersion: "2025-01-01",
+      apiVersion: "2026-03-01",
     }),
   ),
 ).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
-
-/** Localized display information for this particular operation. */
-export interface OperationDisplay {
-  /** The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring Insights" or "Microsoft Compute". */
-  provider?: string;
-  /** The localized friendly name of the resource type related to this operation. E.g. "Virtual Machines" or "Job Schedule Collections". */
-  resource?: string;
-  /** The concise, localized friendly name for the operation; suitable for dropdowns. E.g. "Create or Update Virtual Machine", "Restart Virtual Machine". */
-  operation?: string;
-  /** The short, localized friendly description of the operation; suitable for tool tips and detailed views. */
-  description?: string;
-}
-export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provider: S.optional(S.String),
-    resource: S.optional(S.String),
-    operation: S.optional(S.String),
-    description: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationDisplay",
-}) as any as S.Schema<OperationDisplay>;
-
-/** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
-export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
-
-/** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
-export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
-
-/** Details of a REST API operation, returned from the Resource Provider Operations API */
-export interface Operation {
-  /** The name of the operation, as per Resource-Based Access Control (RBAC). Examples: "Microsoft.Compute/virtualMachines/write", "Microsoft.Compute/virtualMachines/capture/action" */
-  name?: string;
-  /** Whether the operation applies to data-plane. This is "true" for data-plane operations and "false" for ARM/control-plane operations. */
-  isDataAction?: boolean;
-  /** Localized display information for this particular operation. */
-  display?: OperationDisplay;
-  /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
-  origin?: OperationOrigin;
-  /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
-  actionType?: OperationActionType;
-}
-export const Operation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    isDataAction: S.optional(S.Boolean),
-    display: S.optional(OperationDisplay),
-    origin: S.optional(OperationOrigin),
-    actionType: S.optional(OperationActionType),
-  }),
-).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
-
-/** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
-  Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
-
-export interface OperationsListResponse {
-  /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
-  /** URL to get the next set of operation list results (if there are any). */
-  nextLink?: string;
-}
-export const OperationsListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(OperationsListResponseValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationsListResponse",
-}) as any as S.Schema<OperationsListResponse>;
+  identifier: "GetScheduledQueryRuleRequest",
+}) as any as S.Schema<GetScheduledQueryRuleRequest>;
 
 /** Type of managed service identity. */
-export type IdentityInputType = "SystemAssigned" | "UserAssigned" | "None";
-export const IdentityInputType = /*@__PURE__*/ S.String;
+export type IdentityType = "SystemAssigned" | "UserAssigned" | "None";
+export const IdentityType = /*@__PURE__*/ S.String;
 
 /** User assigned identity properties. */
-export interface UserIdentityPropertiesInput {}
-export const UserIdentityPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
+export interface UserIdentityProperties {
+  /** The principal id of user assigned identity. */
+  principalId?: string;
+  /** The client id of user assigned identity. */
+  clientId?: string;
+}
+export const UserIdentityProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    principalId: S.optional(S.String),
+    clientId: S.optional(S.String),
+  }),
 ).annotate({
-  identifier: "UserIdentityPropertiesInput",
-}) as any as S.Schema<UserIdentityPropertiesInput>;
+  identifier: "UserIdentityProperties",
+}) as any as S.Schema<UserIdentityProperties>;
 
 /** The list of user identities associated with the resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'. */
-export type IdentityInputUserAssignedIdentitiesMap = {
-  [key: string]: UserIdentityPropertiesInput | undefined;
+export type IdentityUserAssignedIdentitiesMap = {
+  [key: string]: UserIdentityProperties | undefined;
 };
-export const IdentityInputUserAssignedIdentitiesMap = /*@__PURE__*/ S.Record(
+export const IdentityUserAssignedIdentitiesMap = /*@__PURE__*/ S.Record(
   S.String,
-  UserIdentityPropertiesInput,
-) as any as S.Schema<IdentityInputUserAssignedIdentitiesMap>;
+  UserIdentityProperties,
+) as any as S.Schema<IdentityUserAssignedIdentitiesMap>;
 
 /** Identity for the resource. */
-export interface IdentityInput {
+export interface Identity {
+  /** The principal ID of resource identity. */
+  principalId?: string;
+  /** The tenant ID of resource. */
+  tenantId?: string;
   /** Type of managed service identity. */
-  type: IdentityInputType | (string & {});
+  type: IdentityType;
   /** The list of user identities associated with the resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'. */
-  userAssignedIdentities?: IdentityInputUserAssignedIdentitiesMap;
+  userAssignedIdentities?: IdentityUserAssignedIdentitiesMap;
 }
-export const IdentityInput = /*@__PURE__*/ S.suspend(() =>
+export const Identity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    type: IdentityInputType,
-    userAssignedIdentities: S.optional(IdentityInputUserAssignedIdentitiesMap),
+    principalId: S.optional(S.String),
+    tenantId: S.optional(S.String),
+    type: IdentityType,
+    userAssignedIdentities: S.optional(IdentityUserAssignedIdentitiesMap),
   }),
-).annotate({ identifier: "IdentityInput" }) as any as S.Schema<IdentityInput>;
+).annotate({ identifier: "Identity" }) as any as S.Schema<Identity>;
 
 /** Resource tags. */
-export type ScheduledQueryRulesCreateOrUpdateRequestTagsMap = {
+export type ScheduledQueryRuleResourceTagsMap = {
   [key: string]: string | undefined;
 };
-export const ScheduledQueryRulesCreateOrUpdateRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<ScheduledQueryRulesCreateOrUpdateRequestTagsMap>;
+export const ScheduledQueryRuleResourceTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ScheduledQueryRuleResourceTagsMap>;
 
 /** Indicates the type of scheduled query rule. The default is LogAlert. */
-export type ScheduledQueryRulesCreateOrUpdateRequestKind =
+export type ScheduledQueryRuleResourceKind =
   | "LogAlert"
   | "SimpleLogAlert"
   | "LogToMetric";
-export const ScheduledQueryRulesCreateOrUpdateRequestKind =
+export const ScheduledQueryRuleResourceKind = /*@__PURE__*/ S.String;
+
+/** The type of identity that created the resource. */
+export type ScheduledQueryRuleResourceSystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const ScheduledQueryRuleResourceSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
+/** The type of identity that last modified the resource. */
+export type ScheduledQueryRuleResourceSystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const ScheduledQueryRuleResourceSystemDataLastModifiedByType =
+  /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface ScheduledQueryRuleResourceSystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: ScheduledQueryRuleResourceSystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: ScheduledQueryRuleResourceSystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const ScheduledQueryRuleResourceSystemData = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      createdBy: S.optional(S.String),
+      createdByType: S.optional(
+        ScheduledQueryRuleResourceSystemDataCreatedByType,
+      ),
+      createdAt: S.optional(S.String),
+      lastModifiedBy: S.optional(S.String),
+      lastModifiedByType: S.optional(
+        ScheduledQueryRuleResourceSystemDataLastModifiedByType,
+      ),
+      lastModifiedAt: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "ScheduledQueryRuleResourceSystemData",
+}) as any as S.Schema<ScheduledQueryRuleResourceSystemData>;
+
 /** Severity of the alert. Should be an integer between [0-4]. Value of 0 is severest. Relevant and required only for rules of the kind LogAlert. */
-export type ScheduledQueryRulePropertiesInputSeverity = 0 | 1 | 2 | 3 | 4;
-export const ScheduledQueryRulePropertiesInputSeverity = /*@__PURE__*/ S.Number;
+export type ScheduledQueryRulePropertiesSeverity = 0 | 1 | 2 | 3 | 4;
+export const ScheduledQueryRulePropertiesSeverity = /*@__PURE__*/ S.Number;
 
 /** The list of resource id's that this scheduled query rule is scoped to. */
-export type ScheduledQueryRulePropertiesInputScopesList = Array<string>;
-export const ScheduledQueryRulePropertiesInputScopesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ScheduledQueryRulePropertiesInputScopesList>;
+export type ScheduledQueryRulePropertiesScopesList = Array<string>;
+export const ScheduledQueryRulePropertiesScopesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ScheduledQueryRulePropertiesScopesList>;
 
 /** List of resource type of the target resource(s) on which the alert is created/updated. For example if the scope is a resource group and targetResourceTypes is Microsoft.Compute/virtualMachines, then a different alert will be fired for each virtual machine in the resource group which meet the alert criteria. Relevant only for rules of the kind LogAlert */
-export type ScheduledQueryRulePropertiesInputTargetResourceTypesList =
-  Array<string>;
-export const ScheduledQueryRulePropertiesInputTargetResourceTypesList =
+export type ScheduledQueryRulePropertiesTargetResourceTypesList = Array<string>;
+export const ScheduledQueryRulePropertiesTargetResourceTypesList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<ScheduledQueryRulePropertiesInputTargetResourceTypesList>;
+  ) as any as S.Schema<ScheduledQueryRulePropertiesTargetResourceTypesList>;
 
 /** Specifies the type of threshold criteria */
 export type ConditionCriterionType =
@@ -573,240 +603,6 @@ export const RuleResolveConfiguration = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RuleResolveConfiguration>;
 
 /** scheduled query rule Definition */
-export interface ScheduledQueryRulePropertiesInput {
-  /** The description of the scheduled query rule. */
-  description?: string;
-  /** The display name of the alert rule */
-  displayName?: string;
-  /** Severity of the alert. Should be an integer between [0-4]. Value of 0 is severest. Relevant and required only for rules of the kind LogAlert. */
-  severity?: ScheduledQueryRulePropertiesInputSeverity | (number & {});
-  /** The flag which indicates whether this scheduled query rule is enabled. Value should be true or false */
-  enabled?: boolean;
-  /** The list of resource id's that this scheduled query rule is scoped to. */
-  scopes?: ScheduledQueryRulePropertiesInputScopesList;
-  /** How often the scheduled query rule is evaluated represented in ISO 8601 duration format. Relevant and required only for rules of the kind LogAlert. */
-  evaluationFrequency?: string;
-  /** The period of time (in ISO 8601 duration format) on which the Alert query will be executed (bin size). Relevant and required only for rules of the kind LogAlert. */
-  windowSize?: string;
-  /** If specified then overrides the query time range (default is WindowSize*NumberOfEvaluationPeriods). Relevant only for rules of the kind LogAlert. */
-  overrideQueryTimeRange?: string;
-  /** List of resource type of the target resource(s) on which the alert is created/updated. For example if the scope is a resource group and targetResourceTypes is Microsoft.Compute/virtualMachines, then a different alert will be fired for each virtual machine in the resource group which meet the alert criteria. Relevant only for rules of the kind LogAlert */
-  targetResourceTypes?: ScheduledQueryRulePropertiesInputTargetResourceTypesList;
-  /** The rule criteria that defines the conditions of the scheduled query rule. */
-  criteria?: ScheduledQueryRuleCriteria;
-  /** Mute actions for the chosen period of time (in ISO 8601 duration format) after the alert is fired. Relevant only for rules of the kind LogAlert. */
-  muteActionsDuration?: string;
-  /** Actions to invoke when the alert fires. */
-  actions?: Actions;
-  /** The flag which indicates whether this scheduled query rule should be stored in the customer's storage. The default is false. Relevant only for rules of the kind LogAlert. */
-  checkWorkspaceAlertsStorageConfigured?: boolean;
-  /** The flag which indicates whether the provided query should be validated or not. The default is false. Relevant only for rules of the kind LogAlert. */
-  skipQueryValidation?: boolean;
-  /** The flag that indicates whether the alert should be automatically resolved or not. The default is true. Relevant only for rules of kinds LogAlert and SimpleLogAlert. */
-  autoMitigate?: boolean;
-  /** Defines the configuration for resolving fired alerts. Relevant only for rules of kinds LogAlert and SimpleLogAlert. */
-  resolveConfiguration?: RuleResolveConfiguration;
-}
-export const ScheduledQueryRulePropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    description: S.optional(S.String),
-    displayName: S.optional(S.String),
-    severity: S.optional(ScheduledQueryRulePropertiesInputSeverity),
-    enabled: S.optional(S.Boolean),
-    scopes: S.optional(ScheduledQueryRulePropertiesInputScopesList),
-    evaluationFrequency: S.optional(S.String),
-    windowSize: S.optional(S.String),
-    overrideQueryTimeRange: S.optional(S.String),
-    targetResourceTypes: S.optional(
-      ScheduledQueryRulePropertiesInputTargetResourceTypesList,
-    ),
-    criteria: S.optional(ScheduledQueryRuleCriteria),
-    muteActionsDuration: S.optional(S.String),
-    actions: S.optional(Actions),
-    checkWorkspaceAlertsStorageConfigured: S.optional(S.Boolean),
-    skipQueryValidation: S.optional(S.Boolean),
-    autoMitigate: S.optional(S.Boolean),
-    resolveConfiguration: S.optional(RuleResolveConfiguration),
-  }),
-).annotate({
-  identifier: "ScheduledQueryRulePropertiesInput",
-}) as any as S.Schema<ScheduledQueryRulePropertiesInput>;
-
-export interface ScheduledQueryRulesCreateOrUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the rule. */
-  ruleName: string;
-  /** The identity of the resource. */
-  identity?: IdentityInput;
-  /** Resource tags. */
-  tags?: ScheduledQueryRulesCreateOrUpdateRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Indicates the type of scheduled query rule. The default is LogAlert. */
-  kind?: ScheduledQueryRulesCreateOrUpdateRequestKind | (string & {});
-  /** The rule properties of the resource. */
-  properties: ScheduledQueryRulePropertiesInput;
-}
-export const ScheduledQueryRulesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      ruleName: S.String.pipe(T.Label()),
-      identity: S.optional(IdentityInput),
-      tags: S.optional(ScheduledQueryRulesCreateOrUpdateRequestTagsMap),
-      location: S.String,
-      kind: S.optional(ScheduledQueryRulesCreateOrUpdateRequestKind),
-      properties: ScheduledQueryRulePropertiesInput,
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/scheduledQueryRules/{ruleName}",
-        code: 200,
-        apiVersion: "2026-03-01",
-      }),
-    ),
-).annotate({
-  identifier: "ScheduledQueryRulesCreateOrUpdateRequest",
-}) as any as S.Schema<ScheduledQueryRulesCreateOrUpdateRequest>;
-
-/** Type of managed service identity. */
-export type IdentityType = "SystemAssigned" | "UserAssigned" | "None";
-export const IdentityType = /*@__PURE__*/ S.String;
-
-/** User assigned identity properties. */
-export interface UserIdentityProperties {
-  /** The principal id of user assigned identity. */
-  principalId?: string;
-  /** The client id of user assigned identity. */
-  clientId?: string;
-}
-export const UserIdentityProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    principalId: S.optional(S.String),
-    clientId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "UserIdentityProperties",
-}) as any as S.Schema<UserIdentityProperties>;
-
-/** The list of user identities associated with the resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'. */
-export type IdentityUserAssignedIdentitiesMap = {
-  [key: string]: UserIdentityProperties | undefined;
-};
-export const IdentityUserAssignedIdentitiesMap = /*@__PURE__*/ S.Record(
-  S.String,
-  UserIdentityProperties,
-) as any as S.Schema<IdentityUserAssignedIdentitiesMap>;
-
-/** Identity for the resource. */
-export interface Identity {
-  /** The principal ID of resource identity. */
-  principalId?: string;
-  /** The tenant ID of resource. */
-  tenantId?: string;
-  /** Type of managed service identity. */
-  type: IdentityType;
-  /** The list of user identities associated with the resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'. */
-  userAssignedIdentities?: IdentityUserAssignedIdentitiesMap;
-}
-export const Identity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    principalId: S.optional(S.String),
-    tenantId: S.optional(S.String),
-    type: IdentityType,
-    userAssignedIdentities: S.optional(IdentityUserAssignedIdentitiesMap),
-  }),
-).annotate({ identifier: "Identity" }) as any as S.Schema<Identity>;
-
-/** Resource tags. */
-export type ScheduledQueryRuleResourceTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ScheduledQueryRuleResourceTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ScheduledQueryRuleResourceTagsMap>;
-
-/** Indicates the type of scheduled query rule. The default is LogAlert. */
-export type ScheduledQueryRuleResourceKind =
-  | "LogAlert"
-  | "SimpleLogAlert"
-  | "LogToMetric";
-export const ScheduledQueryRuleResourceKind = /*@__PURE__*/ S.String;
-
-/** The type of identity that created the resource. */
-export type ScheduledQueryRuleResourceSystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const ScheduledQueryRuleResourceSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type ScheduledQueryRuleResourceSystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const ScheduledQueryRuleResourceSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface ScheduledQueryRuleResourceSystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: ScheduledQueryRuleResourceSystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: ScheduledQueryRuleResourceSystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const ScheduledQueryRuleResourceSystemData = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      createdBy: S.optional(S.String),
-      createdByType: S.optional(
-        ScheduledQueryRuleResourceSystemDataCreatedByType,
-      ),
-      createdAt: S.optional(S.String),
-      lastModifiedBy: S.optional(S.String),
-      lastModifiedByType: S.optional(
-        ScheduledQueryRuleResourceSystemDataLastModifiedByType,
-      ),
-      lastModifiedAt: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "ScheduledQueryRuleResourceSystemData",
-}) as any as S.Schema<ScheduledQueryRuleResourceSystemData>;
-
-/** Severity of the alert. Should be an integer between [0-4]. Value of 0 is severest. Relevant and required only for rules of the kind LogAlert. */
-export type ScheduledQueryRulePropertiesSeverity = 0 | 1 | 2 | 3 | 4;
-export const ScheduledQueryRulePropertiesSeverity = /*@__PURE__*/ S.Number;
-
-/** The list of resource id's that this scheduled query rule is scoped to. */
-export type ScheduledQueryRulePropertiesScopesList = Array<string>;
-export const ScheduledQueryRulePropertiesScopesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ScheduledQueryRulePropertiesScopesList>;
-
-/** List of resource type of the target resource(s) on which the alert is created/updated. For example if the scope is a resource group and targetResourceTypes is Microsoft.Compute/virtualMachines, then a different alert will be fired for each virtual machine in the resource group which meet the alert criteria. Relevant only for rules of the kind LogAlert */
-export type ScheduledQueryRulePropertiesTargetResourceTypesList = Array<string>;
-export const ScheduledQueryRulePropertiesTargetResourceTypesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ScheduledQueryRulePropertiesTargetResourceTypesList>;
-
-/** scheduled query rule Definition */
 export interface ScheduledQueryRuleProperties {
   /** The api-version used when creating this alert rule */
   createdWithApiVersion?: string;
@@ -915,70 +711,101 @@ export const ScheduledQueryRuleResource = /*@__PURE__*/ S.suspend(() =>
   identifier: "ScheduledQueryRuleResource",
 }) as any as S.Schema<ScheduledQueryRuleResource>;
 
-export interface ScheduledQueryRulesDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the rule. */
-  ruleName: string;
-}
-export const ScheduledQueryRulesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    ruleName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/scheduledQueryRules/{ruleName}",
-      code: 200,
-      apiVersion: "2026-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "ScheduledQueryRulesDeleteRequest",
-}) as any as S.Schema<ScheduledQueryRulesDeleteRequest>;
-
-export interface ScheduledQueryRulesDeleteResponse {}
-export const ScheduledQueryRulesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ScheduledQueryRulesDeleteResponse",
-}) as any as S.Schema<ScheduledQueryRulesDeleteResponse>;
-
-export interface ScheduledQueryRulesGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the rule. */
-  ruleName: string;
-}
-export const ScheduledQueryRulesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    ruleName: S.String.pipe(T.Label()),
-  }).pipe(
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/scheduledQueryRules/{ruleName}",
+      uri: "/providers/Microsoft.Insights/operations",
       code: 200,
-      apiVersion: "2026-03-01",
+      apiVersion: "2025-01-01",
     }),
   ),
 ).annotate({
-  identifier: "ScheduledQueryRulesGetRequest",
-}) as any as S.Schema<ScheduledQueryRulesGetRequest>;
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
 
-export interface ScheduledQueryRulesListByResourceGroupRequest {
+/** Localized display information for this particular operation. */
+export interface OperationDisplay {
+  /** The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring Insights" or "Microsoft Compute". */
+  provider?: string;
+  /** The localized friendly name of the resource type related to this operation. E.g. "Virtual Machines" or "Job Schedule Collections". */
+  resource?: string;
+  /** The concise, localized friendly name for the operation; suitable for dropdowns. E.g. "Create or Update Virtual Machine", "Restart Virtual Machine". */
+  operation?: string;
+  /** The short, localized friendly description of the operation; suitable for tool tips and detailed views. */
+  description?: string;
+}
+export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provider: S.optional(S.String),
+    resource: S.optional(S.String),
+    operation: S.optional(S.String),
+    description: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationDisplay",
+}) as any as S.Schema<OperationDisplay>;
+
+/** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
+export type OperationOrigin = "user" | "system" | "user,system";
+export const OperationOrigin = /*@__PURE__*/ S.String;
+
+/** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
+export type OperationActionType = "Internal";
+export const OperationActionType = /*@__PURE__*/ S.String;
+
+/** Details of a REST API operation, returned from the Resource Provider Operations API */
+export interface Operation {
+  /** The name of the operation, as per Resource-Based Access Control (RBAC). Examples: "Microsoft.Compute/virtualMachines/write", "Microsoft.Compute/virtualMachines/capture/action" */
+  name?: string;
+  /** Whether the operation applies to data-plane. This is "true" for data-plane operations and "false" for ARM/control-plane operations. */
+  isDataAction?: boolean;
+  /** Localized display information for this particular operation. */
+  display?: OperationDisplay;
+  /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
+  origin?: OperationOrigin;
+  /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
+  actionType?: OperationActionType;
+}
+export const Operation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    isDataAction: S.optional(S.Boolean),
+    display: S.optional(OperationDisplay),
+    origin: S.optional(OperationOrigin),
+    actionType: S.optional(OperationActionType),
+  }),
+).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
+
+/** List of operations supported by the resource provider */
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
+  Operation,
+) as any as S.Schema<ListOperationsResponseValueList>;
+
+export interface ListOperationsResponse {
+  /** List of operations supported by the resource provider */
+  value?: ListOperationsResponseValueList;
+  /** URL to get the next set of operation list results (if there are any). */
+  nextLink?: string;
+}
+export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(ListOperationsResponseValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ListOperationsResponse",
+}) as any as S.Schema<ListOperationsResponse>;
+
+export interface ListScheduledQueryRuleByResourceGroupRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
 }
-export const ScheduledQueryRulesListByResourceGroupRequest =
+export const ListScheduledQueryRuleByResourceGroupRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -992,8 +819,8 @@ export const ScheduledQueryRulesListByResourceGroupRequest =
       }),
     ),
   ).annotate({
-    identifier: "ScheduledQueryRulesListByResourceGroupRequest",
-  }) as any as S.Schema<ScheduledQueryRulesListByResourceGroupRequest>;
+    identifier: "ListScheduledQueryRuleByResourceGroupRequest",
+  }) as any as S.Schema<ListScheduledQueryRuleByResourceGroupRequest>;
 
 /** The values for the scheduled query rule resources. */
 export type ScheduledQueryRuleResourceCollectionValueList =
@@ -1020,11 +847,11 @@ export const ScheduledQueryRuleResourceCollection = /*@__PURE__*/ S.suspend(
   identifier: "ScheduledQueryRuleResourceCollection",
 }) as any as S.Schema<ScheduledQueryRuleResourceCollection>;
 
-export interface ScheduledQueryRulesListBySubscriptionRequest {
+export interface ListScheduledQueryRuleBySubscriptionRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
 }
-export const ScheduledQueryRulesListBySubscriptionRequest =
+export const ListScheduledQueryRuleBySubscriptionRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -1037,19 +864,192 @@ export const ScheduledQueryRulesListBySubscriptionRequest =
       }),
     ),
   ).annotate({
-    identifier: "ScheduledQueryRulesListBySubscriptionRequest",
-  }) as any as S.Schema<ScheduledQueryRulesListBySubscriptionRequest>;
+    identifier: "ListScheduledQueryRuleBySubscriptionRequest",
+  }) as any as S.Schema<ListScheduledQueryRuleBySubscriptionRequest>;
 
-/** Resource tags */
-export type ScheduledQueryRulesUpdateRequestTagsMap = {
+/** Type of managed service identity. */
+export type IdentityInputType = "SystemAssigned" | "UserAssigned" | "None";
+export const IdentityInputType = /*@__PURE__*/ S.String;
+
+/** User assigned identity properties. */
+export interface UserIdentityPropertiesInput {}
+export const UserIdentityPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "UserIdentityPropertiesInput",
+}) as any as S.Schema<UserIdentityPropertiesInput>;
+
+/** The list of user identities associated with the resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'. */
+export type IdentityInputUserAssignedIdentitiesMap = {
+  [key: string]: UserIdentityPropertiesInput | undefined;
+};
+export const IdentityInputUserAssignedIdentitiesMap = /*@__PURE__*/ S.Record(
+  S.String,
+  UserIdentityPropertiesInput,
+) as any as S.Schema<IdentityInputUserAssignedIdentitiesMap>;
+
+/** Identity for the resource. */
+export interface IdentityInput {
+  /** Type of managed service identity. */
+  type: IdentityInputType | (string & {});
+  /** The list of user identities associated with the resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'. */
+  userAssignedIdentities?: IdentityInputUserAssignedIdentitiesMap;
+}
+export const IdentityInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: IdentityInputType,
+    userAssignedIdentities: S.optional(IdentityInputUserAssignedIdentitiesMap),
+  }),
+).annotate({ identifier: "IdentityInput" }) as any as S.Schema<IdentityInput>;
+
+/** Resource tags. */
+export type ScheduledQueryRulesCreateOrUpdateRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ScheduledQueryRulesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ScheduledQueryRulesUpdateRequestTagsMap>;
+export const ScheduledQueryRulesCreateOrUpdateRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<ScheduledQueryRulesCreateOrUpdateRequestTagsMap>;
 
-export interface ScheduledQueryRulesUpdateRequest {
+/** Indicates the type of scheduled query rule. The default is LogAlert. */
+export type ScheduledQueryRulesCreateOrUpdateRequestKind =
+  | "LogAlert"
+  | "SimpleLogAlert"
+  | "LogToMetric";
+export const ScheduledQueryRulesCreateOrUpdateRequestKind =
+  /*@__PURE__*/ S.String;
+
+/** Severity of the alert. Should be an integer between [0-4]. Value of 0 is severest. Relevant and required only for rules of the kind LogAlert. */
+export type ScheduledQueryRulePropertiesInputSeverity = 0 | 1 | 2 | 3 | 4;
+export const ScheduledQueryRulePropertiesInputSeverity = /*@__PURE__*/ S.Number;
+
+/** The list of resource id's that this scheduled query rule is scoped to. */
+export type ScheduledQueryRulePropertiesInputScopesList = Array<string>;
+export const ScheduledQueryRulePropertiesInputScopesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ScheduledQueryRulePropertiesInputScopesList>;
+
+/** List of resource type of the target resource(s) on which the alert is created/updated. For example if the scope is a resource group and targetResourceTypes is Microsoft.Compute/virtualMachines, then a different alert will be fired for each virtual machine in the resource group which meet the alert criteria. Relevant only for rules of the kind LogAlert */
+export type ScheduledQueryRulePropertiesInputTargetResourceTypesList =
+  Array<string>;
+export const ScheduledQueryRulePropertiesInputTargetResourceTypesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ScheduledQueryRulePropertiesInputTargetResourceTypesList>;
+
+/** scheduled query rule Definition */
+export interface ScheduledQueryRulePropertiesInput {
+  /** The description of the scheduled query rule. */
+  description?: string;
+  /** The display name of the alert rule */
+  displayName?: string;
+  /** Severity of the alert. Should be an integer between [0-4]. Value of 0 is severest. Relevant and required only for rules of the kind LogAlert. */
+  severity?: ScheduledQueryRulePropertiesInputSeverity | (number & {});
+  /** The flag which indicates whether this scheduled query rule is enabled. Value should be true or false */
+  enabled?: boolean;
+  /** The list of resource id's that this scheduled query rule is scoped to. */
+  scopes?: ScheduledQueryRulePropertiesInputScopesList;
+  /** How often the scheduled query rule is evaluated represented in ISO 8601 duration format. Relevant and required only for rules of the kind LogAlert. */
+  evaluationFrequency?: string;
+  /** The period of time (in ISO 8601 duration format) on which the Alert query will be executed (bin size). Relevant and required only for rules of the kind LogAlert. */
+  windowSize?: string;
+  /** If specified then overrides the query time range (default is WindowSize*NumberOfEvaluationPeriods). Relevant only for rules of the kind LogAlert. */
+  overrideQueryTimeRange?: string;
+  /** List of resource type of the target resource(s) on which the alert is created/updated. For example if the scope is a resource group and targetResourceTypes is Microsoft.Compute/virtualMachines, then a different alert will be fired for each virtual machine in the resource group which meet the alert criteria. Relevant only for rules of the kind LogAlert */
+  targetResourceTypes?: ScheduledQueryRulePropertiesInputTargetResourceTypesList;
+  /** The rule criteria that defines the conditions of the scheduled query rule. */
+  criteria?: ScheduledQueryRuleCriteria;
+  /** Mute actions for the chosen period of time (in ISO 8601 duration format) after the alert is fired. Relevant only for rules of the kind LogAlert. */
+  muteActionsDuration?: string;
+  /** Actions to invoke when the alert fires. */
+  actions?: Actions;
+  /** The flag which indicates whether this scheduled query rule should be stored in the customer's storage. The default is false. Relevant only for rules of the kind LogAlert. */
+  checkWorkspaceAlertsStorageConfigured?: boolean;
+  /** The flag which indicates whether the provided query should be validated or not. The default is false. Relevant only for rules of the kind LogAlert. */
+  skipQueryValidation?: boolean;
+  /** The flag that indicates whether the alert should be automatically resolved or not. The default is true. Relevant only for rules of kinds LogAlert and SimpleLogAlert. */
+  autoMitigate?: boolean;
+  /** Defines the configuration for resolving fired alerts. Relevant only for rules of kinds LogAlert and SimpleLogAlert. */
+  resolveConfiguration?: RuleResolveConfiguration;
+}
+export const ScheduledQueryRulePropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    description: S.optional(S.String),
+    displayName: S.optional(S.String),
+    severity: S.optional(ScheduledQueryRulePropertiesInputSeverity),
+    enabled: S.optional(S.Boolean),
+    scopes: S.optional(ScheduledQueryRulePropertiesInputScopesList),
+    evaluationFrequency: S.optional(S.String),
+    windowSize: S.optional(S.String),
+    overrideQueryTimeRange: S.optional(S.String),
+    targetResourceTypes: S.optional(
+      ScheduledQueryRulePropertiesInputTargetResourceTypesList,
+    ),
+    criteria: S.optional(ScheduledQueryRuleCriteria),
+    muteActionsDuration: S.optional(S.String),
+    actions: S.optional(Actions),
+    checkWorkspaceAlertsStorageConfigured: S.optional(S.Boolean),
+    skipQueryValidation: S.optional(S.Boolean),
+    autoMitigate: S.optional(S.Boolean),
+    resolveConfiguration: S.optional(RuleResolveConfiguration),
+  }),
+).annotate({
+  identifier: "ScheduledQueryRulePropertiesInput",
+}) as any as S.Schema<ScheduledQueryRulePropertiesInput>;
+
+export interface ScheduledQueryRulesCreateOrUpdateRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the rule. */
+  ruleName: string;
+  /** The identity of the resource. */
+  identity?: IdentityInput;
+  /** Resource tags. */
+  tags?: ScheduledQueryRulesCreateOrUpdateRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Indicates the type of scheduled query rule. The default is LogAlert. */
+  kind?: ScheduledQueryRulesCreateOrUpdateRequestKind | (string & {});
+  /** The rule properties of the resource. */
+  properties: ScheduledQueryRulePropertiesInput;
+}
+export const ScheduledQueryRulesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      ruleName: S.String.pipe(T.Label()),
+      identity: S.optional(IdentityInput),
+      tags: S.optional(ScheduledQueryRulesCreateOrUpdateRequestTagsMap),
+      location: S.String,
+      kind: S.optional(ScheduledQueryRulesCreateOrUpdateRequestKind),
+      properties: ScheduledQueryRulePropertiesInput,
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/scheduledQueryRules/{ruleName}",
+        code: 200,
+        apiVersion: "2026-03-01",
+      }),
+    ),
+).annotate({
+  identifier: "ScheduledQueryRulesCreateOrUpdateRequest",
+}) as any as S.Schema<ScheduledQueryRulesCreateOrUpdateRequest>;
+
+/** Resource tags */
+export type UpdateScheduledQueryRuleRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateScheduledQueryRuleRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateScheduledQueryRuleRequestTagsMap>;
+
+export interface UpdateScheduledQueryRuleRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1059,17 +1059,17 @@ export interface ScheduledQueryRulesUpdateRequest {
   /** The identity of the resource. */
   identity?: IdentityInput;
   /** Resource tags */
-  tags?: ScheduledQueryRulesUpdateRequestTagsMap;
+  tags?: UpdateScheduledQueryRuleRequestTagsMap;
   /** The scheduled query rule properties of the resource. */
   properties?: ScheduledQueryRulePropertiesInput;
 }
-export const ScheduledQueryRulesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateScheduledQueryRuleRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     ruleName: S.String.pipe(T.Label()),
     identity: S.optional(IdentityInput),
-    tags: S.optional(ScheduledQueryRulesUpdateRequestTagsMap),
+    tags: S.optional(UpdateScheduledQueryRuleRequestTagsMap),
     properties: S.optional(ScheduledQueryRulePropertiesInput),
   }).pipe(
     T.Http({
@@ -1080,34 +1080,94 @@ export const ScheduledQueryRulesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ScheduledQueryRulesUpdateRequest",
-}) as any as S.Schema<ScheduledQueryRulesUpdateRequest>;
+  identifier: "UpdateScheduledQueryRuleRequest",
+}) as any as S.Schema<UpdateScheduledQueryRuleRequest>;
 
-export type DataCollectionRuleConfigurationMetadataFetchError = AzureOpError;
-/** Fetches configuration metadata for data collection rules. When withStreamMetadata is true, returns detailed stream information. */
-export const DataCollectionRuleConfigurationMetadataFetch: API.OperationMethod<
-  DataCollectionRuleConfigurationMetadataFetchRequest,
-  DataCollectionRuleConfigurationMetadataResponse,
-  DataCollectionRuleConfigurationMetadataFetchError,
+export type DeleteScheduledQueryRuleError = AzureOpError;
+/** Deletes a scheduled query rule. */
+export const DeleteScheduledQueryRule: API.OperationMethod<
+  DeleteScheduledQueryRuleRequest,
+  DeleteScheduledQueryRuleResponse,
+  DeleteScheduledQueryRuleError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DataCollectionRuleConfigurationMetadataFetchRequest,
+  input: DeleteScheduledQueryRuleRequest,
+  output: DeleteScheduledQueryRuleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type FetchDataCollectionRuleConfigurationMetadataError = AzureOpError;
+/** Fetches configuration metadata for data collection rules. When withStreamMetadata is true, returns detailed stream information. */
+export const FetchDataCollectionRuleConfigurationMetadata: API.OperationMethod<
+  FetchDataCollectionRuleConfigurationMetadataRequest,
+  DataCollectionRuleConfigurationMetadataResponse,
+  FetchDataCollectionRuleConfigurationMetadataError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: FetchDataCollectionRuleConfigurationMetadataRequest,
   output: DataCollectionRuleConfigurationMetadataResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OperationsListError = AzureOpError;
-/** List the operations for the provider */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationsListResponse,
-  OperationsListError,
+export type GetScheduledQueryRuleError = AzureOpError;
+/** Retrieve an scheduled query rule definition. */
+export const GetScheduledQueryRule: API.OperationMethod<
+  GetScheduledQueryRuleRequest,
+  ScheduledQueryRuleResource,
+  GetScheduledQueryRuleError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
-  output: OperationsListResponse,
+  input: GetScheduledQueryRuleRequest,
+  output: ScheduledQueryRuleResource,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOperationsError = AzureOpError;
+/** List the operations for the provider */
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  ListOperationsResponse,
+  ListOperationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOperationsRequest,
+  output: ListOperationsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListScheduledQueryRuleByResourceGroupError = AzureOpError;
+/** Retrieve scheduled query rule definitions in a resource group. */
+export const ListScheduledQueryRuleByResourceGroup: API.OperationMethod<
+  ListScheduledQueryRuleByResourceGroupRequest,
+  ScheduledQueryRuleResourceCollection,
+  ListScheduledQueryRuleByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListScheduledQueryRuleByResourceGroupRequest,
+  output: ScheduledQueryRuleResourceCollection,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListScheduledQueryRuleBySubscriptionError = AzureOpError;
+/** Retrieve a scheduled query rule definitions in a subscription. */
+export const ListScheduledQueryRuleBySubscription: API.OperationMethod<
+  ListScheduledQueryRuleBySubscriptionRequest,
+  ScheduledQueryRuleResourceCollection,
+  ListScheduledQueryRuleBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListScheduledQueryRuleBySubscriptionRequest,
+  output: ScheduledQueryRuleResourceCollection,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -1128,75 +1188,15 @@ export const ScheduledQueryRulesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ScheduledQueryRulesDeleteError = AzureOpError;
-/** Deletes a scheduled query rule. */
-export const ScheduledQueryRulesDelete: API.OperationMethod<
-  ScheduledQueryRulesDeleteRequest,
-  ScheduledQueryRulesDeleteResponse,
-  ScheduledQueryRulesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ScheduledQueryRulesDeleteRequest,
-  output: ScheduledQueryRulesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ScheduledQueryRulesGetError = AzureOpError;
-/** Retrieve an scheduled query rule definition. */
-export const ScheduledQueryRulesGet: API.OperationMethod<
-  ScheduledQueryRulesGetRequest,
-  ScheduledQueryRuleResource,
-  ScheduledQueryRulesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ScheduledQueryRulesGetRequest,
-  output: ScheduledQueryRuleResource,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ScheduledQueryRulesListByResourceGroupError = AzureOpError;
-/** Retrieve scheduled query rule definitions in a resource group. */
-export const ScheduledQueryRulesListByResourceGroup: API.OperationMethod<
-  ScheduledQueryRulesListByResourceGroupRequest,
-  ScheduledQueryRuleResourceCollection,
-  ScheduledQueryRulesListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ScheduledQueryRulesListByResourceGroupRequest,
-  output: ScheduledQueryRuleResourceCollection,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ScheduledQueryRulesListBySubscriptionError = AzureOpError;
-/** Retrieve a scheduled query rule definitions in a subscription. */
-export const ScheduledQueryRulesListBySubscription: API.OperationMethod<
-  ScheduledQueryRulesListBySubscriptionRequest,
-  ScheduledQueryRuleResourceCollection,
-  ScheduledQueryRulesListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ScheduledQueryRulesListBySubscriptionRequest,
-  output: ScheduledQueryRuleResourceCollection,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ScheduledQueryRulesUpdateError = AzureOpError;
+export type UpdateScheduledQueryRuleError = AzureOpError;
 /** Update a scheduled query rule. */
-export const ScheduledQueryRulesUpdate: API.OperationMethod<
-  ScheduledQueryRulesUpdateRequest,
+export const UpdateScheduledQueryRule: API.OperationMethod<
+  UpdateScheduledQueryRuleRequest,
   ScheduledQueryRuleResource,
-  ScheduledQueryRulesUpdateError,
+  UpdateScheduledQueryRuleError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ScheduledQueryRulesUpdateRequest,
+  input: UpdateScheduledQueryRuleRequest,
   output: ScheduledQueryRuleResource,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,

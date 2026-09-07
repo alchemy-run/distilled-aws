@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.forums#ListForumRequest": {
@@ -308,7 +309,7 @@
         }
       }
     },
-    "com.whop.forums#RetrieveForumRequest": {
+    "com.whop.forums#GetForumRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -396,10 +397,10 @@
         "smithy.api#documentation": "The parent experience that this forum belongs to."
       }
     },
-    "com.whop.forums#RetrieveForum": {
+    "com.whop.forums#GetForum": {
       "type": "operation",
       "input": {
-        "target": "com.whop.forums#RetrieveForumRequest"
+        "target": "com.whop.forums#GetForumRequest"
       },
       "output": {
         "target": "com.whop.forums#Forum"
@@ -593,7 +594,7 @@
           "target": "com.whop.forums#ListForum"
         },
         {
-          "target": "com.whop.forums#RetrieveForum"
+          "target": "com.whop.forums#GetForum"
         },
         {
           "target": "com.whop.forums#UpdateForum"

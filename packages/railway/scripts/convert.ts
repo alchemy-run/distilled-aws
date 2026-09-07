@@ -42,11 +42,7 @@ import {
   readIntrospection,
 } from "@distilled.cloud/core/codegen/graphql";
 import { resolveSpecPath } from "@distilled.cloud/core/codegen/spec-path";
-import {
-  applyOperation,
-  isStaleTargetError,
-  type PatchFile,
-} from "@distilled.cloud/core/json-patch";
+import { finalizeConvert } from "@distilled.cloud/core/codegen/patches";
 
 const ROOT = path.resolve(import.meta.dir, "..");
 const SCHEMA_PATH = resolveSpecPath(
@@ -168,49 +164,6 @@ if (keptShapes > 0) {
   );
 }
 
-const patchesDir = path.join(ROOT, "patches", "railway");
-const patchFiles = (() => {
-  try {
-    return fs
-      .readdirSync(patchesDir)
-      .filter((f) => f.endsWith(".patch.json") || f.endsWith(".json"))
-      .filter((f) => !f.startsWith("_"))
-      .sort((a, b) => a.localeCompare(b))
-      .map((f) => path.join(patchesDir, f));
-  } catch (e) {
-    if ((e as NodeJS.ErrnoException).code === "ENOENT") return [];
-    throw e;
-  }
-})();
-
-let staleOps = 0;
-for (const file of patchFiles) {
-  const parsed = JSON.parse(fs.readFileSync(file, "utf8")) as PatchFile;
-  for (const patchOp of parsed.patches ?? []) {
-    try {
-      applyOperation(result.model, patchOp);
-    } catch (error) {
-      const msg = error instanceof Error ? error.message : String(error);
-      if (isStaleTargetError(msg)) {
-        staleOps++;
-        console.warn(
-          `   ⚠️  stale: ${path.relative(ROOT, file)} [${patchOp.op} ${patchOp.path}]`,
-        );
-      } else {
-        throw new Error(
-          `malformed patch ${path.relative(ROOT, file)} [${patchOp.op} ${patchOp.path}]: ${msg}`,
-        );
-      }
-    }
-  }
-}
-if (patchFiles.length > 0) {
-  console.log(
-    `   applied ${patchFiles.length} Smithy patch file(s)` +
-      (staleOps ? `, ${staleOps} stale op(s) skipped` : ""),
-  );
-}
-
 fs.mkdirSync(OUT_DIR, { recursive: true });
 fs.writeFileSync(OUT_FILE, `${JSON.stringify(result.model, null, 2)}\n`);
 
@@ -219,3 +172,5 @@ console.log(
     `(${result.paginated} paginated, ${result.failed} failed, ` +
     `${result.shapeCount} shapes) → ${OUT_FILE}`,
 );
+
+await finalizeConvert({ root: ROOT });

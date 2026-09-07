@@ -14,39 +14,16 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "keyDictionary": {
+      "perPage": "per_page",
+      "resultInfo": "result_info",
+      "totalCount": "total_count",
+      "useSqlite": "use_sqlite"
+    },
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.cloudflare.durable_objects#NamespacesListRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Current page.",
-            "smithy.api#httpQuery": "page"
-          }
-        },
-        "per_page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Items per-page.",
-            "smithy.api#httpQuery": "per_page"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.durable_objects#NamespacesListResultItem": {
       "type": "structure",
       "members": {
@@ -73,40 +50,139 @@
         "target": "com.cloudflare.durable_objects#NamespacesListResultItem"
       }
     },
-    "com.cloudflare.durable_objects#NamespacesListResponse": {
+    "com.cloudflare.durable_objects#NamespacesObjectsListResultItem": {
       "type": "structure",
       "members": {
-        "result": {
-          "target": "com.cloudflare.durable_objects#NamespacesListResultList",
+        "id": {
+          "target": "smithy.api#String",
           "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+            "smithy.api#documentation": "ID of the Durable Object."
           }
+        },
+        "hasStoredData": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the Durable Object has stored data."
+          }
+        }
+      }
+    },
+    "com.cloudflare.durable_objects#NamespacesObjectsListResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.durable_objects#NamespacesObjectsListResultItem"
+      }
+    },
+    "com.cloudflare.durable_objects#DurableObjects": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.durable_objects#ListNamespaceObjects"
+        },
+        {
+          "target": "com.cloudflare.durable_objects#ListNamespaces"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare DurableObjects",
+        "smithy.api#documentation": "Cloudflare API — durable_objects resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    },
+    "com.cloudflare.durable_objects#InvalidIdentifier": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
         }
       },
       "traits": {
-        "smithy.api#output": {}
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 7003
+          }
+        ]
       }
     },
-    "com.cloudflare.durable_objects#NamespacesList": {
+    "com.cloudflare.durable_objects#MalformedParameter": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 10077
+          }
+        ]
+      }
+    },
+    "com.cloudflare.durable_objects#NamespaceNotFound": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 10066
+          }
+        ]
+      }
+    },
+    "com.cloudflare.durable_objects#ListNamespaceObjects": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.durable_objects#NamespacesListRequest"
+        "target": "com.cloudflare.durable_objects#ListNamespaceObjectsRequest"
       },
       "output": {
-        "target": "com.cloudflare.durable_objects#NamespacesListResponse"
+        "target": "com.cloudflare.durable_objects#ListNamespaceObjectsResponse"
       },
       "traits": {
         "smithy.api#http": {
           "method": "GET",
-          "uri": "/accounts/{account_id}/workers/durable_objects/namespaces",
+          "uri": "/accounts/{account_id}/workers/durable_objects/namespaces/{id}/objects",
           "code": 200
         },
-        "smithy.api#documentation": "Returns the Durable Object namespaces owned by an account.",
-        "smithy.api#readonly": {}
-      }
+        "smithy.api#documentation": "Returns the Durable Objects in a given namespace.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "resultInfo.cursors.after",
+          "items": "result"
+        }
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.durable_objects#NamespaceNotFound"
+        },
+        {
+          "target": "com.cloudflare.durable_objects#InvalidIdentifier"
+        },
+        {
+          "target": "com.cloudflare.durable_objects#MalformedParameter"
+        }
+      ]
     },
-    "com.cloudflare.durable_objects#NamespacesObjectsListRequest": {
+    "com.cloudflare.durable_objects#ListNamespaceObjectsRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -144,30 +220,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.durable_objects#NamespacesObjectsListResultItem": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "ID of the Durable Object."
-          }
-        },
-        "hasStoredData": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether the Durable Object has stored data."
-          }
-        }
-      }
-    },
-    "com.cloudflare.durable_objects#NamespacesObjectsListResultList": {
-      "type": "list",
-      "member": {
-        "target": "com.cloudflare.durable_objects#NamespacesObjectsListResultItem"
-      }
-    },
-    "com.cloudflare.durable_objects#NamespacesObjectsListResponse": {
+    "com.cloudflare.durable_objects#ListNamespaceObjectsResponse": {
       "type": "structure",
       "members": {
         "result": {
@@ -182,39 +235,79 @@
         "smithy.api#output": {}
       }
     },
-    "com.cloudflare.durable_objects#NamespacesObjectsList": {
+    "com.cloudflare.durable_objects#ListNamespaces": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.durable_objects#NamespacesObjectsListRequest"
+        "target": "com.cloudflare.durable_objects#ListNamespacesRequest"
       },
       "output": {
-        "target": "com.cloudflare.durable_objects#NamespacesObjectsListResponse"
+        "target": "com.cloudflare.durable_objects#ListNamespacesResponse"
       },
       "traits": {
         "smithy.api#http": {
           "method": "GET",
-          "uri": "/accounts/{account_id}/workers/durable_objects/namespaces/{id}/objects",
+          "uri": "/accounts/{account_id}/workers/durable_objects/namespaces",
           "code": 200
         },
-        "smithy.api#documentation": "Returns the Durable Objects in a given namespace.",
-        "smithy.api#readonly": {}
+        "smithy.api#documentation": "Returns the Durable Object namespaces owned by an account.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "page",
+          "inputToken": "page",
+          "outputToken": "resultInfo.page",
+          "items": "result",
+          "pageSize": "perPage"
+        }
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.durable_objects#InvalidIdentifier"
+        }
+      ]
+    },
+    "com.cloudflare.durable_objects#ListNamespacesRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Current page.",
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Items per-page.",
+            "smithy.api#httpQuery": "per_page"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
       }
     },
-    "com.cloudflare.durable_objects#DurableObjects": {
-      "type": "service",
-      "version": "4.0",
-      "operations": [
-        {
-          "target": "com.cloudflare.durable_objects#NamespacesList"
-        },
-        {
-          "target": "com.cloudflare.durable_objects#NamespacesObjectsList"
+    "com.cloudflare.durable_objects#ListNamespacesResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.durable_objects#NamespacesListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
         }
-      ],
+      },
       "traits": {
-        "com.cloudflare.protocols#v4Json": {},
-        "smithy.api#title": "Cloudflare DurableObjects",
-        "smithy.api#documentation": "Cloudflare API — durable_objects resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+        "smithy.api#output": {}
       }
     }
   }

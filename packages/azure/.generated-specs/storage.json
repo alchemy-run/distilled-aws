@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.storage#TableDelete": {
+    "com.azure.storage#DeleteTable": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#TableDeleteRequest"
+        "target": "com.azure.storage#DeleteTableRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -36,7 +37,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#TableDeleteRequest": {
+    "com.azure.storage#DeleteTableRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -76,13 +77,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#TableUpdate": {
+    "com.azure.storage#UpdateTable": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#TableUpdateRequest"
+        "target": "com.azure.storage#UpdateTableRequest"
       },
       "output": {
-        "target": "com.azure.storage#TableUpdateResponse"
+        "target": "com.azure.storage#UpdateTableResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -95,7 +96,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#TableUpdateResponse": {
+    "com.azure.storage#UpdateTableResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -316,7 +317,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.storage#TableUpdateRequest": {
+    "com.azure.storage#UpdateTableRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -383,13 +384,13 @@
         "smithy.api#documentation": "List of stored access policies specified on the table."
       }
     },
-    "com.azure.storage#TableCreate": {
+    "com.azure.storage#CreateTable": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#TableCreateRequest"
+        "target": "com.azure.storage#CreateTableRequest"
       },
       "output": {
-        "target": "com.azure.storage#TableCreateResponse"
+        "target": "com.azure.storage#CreateTableResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -402,7 +403,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#TableCreateResponse": {
+    "com.azure.storage#CreateTableResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -440,7 +441,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storage#TableCreateRequest": {
+    "com.azure.storage#CreateTableRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -486,13 +487,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#TableGet": {
+    "com.azure.storage#GetTable": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#TableGetRequest"
+        "target": "com.azure.storage#GetTableRequest"
       },
       "output": {
-        "target": "com.azure.storage#TableGetResponse"
+        "target": "com.azure.storage#GetTableResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -505,7 +506,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#TableGetResponse": {
+    "com.azure.storage#GetTableResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -543,7 +544,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storage#TableGetRequest": {
+    "com.azure.storage#GetTableRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -583,10 +584,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#TableList": {
+    "com.azure.storage#ListTable": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#TableListRequest"
+        "target": "com.azure.storage#ListTableRequest"
       },
       "output": {
         "target": "com.azure.storage#ListTableResource"
@@ -670,7 +671,7 @@
         "smithy.api#documentation": "Properties of the table, including Id, resource name, resource type."
       }
     },
-    "com.azure.storage#TableListRequest": {
+    "com.azure.storage#ListTableRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -702,13 +703,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#TableServicesSetServiceProperties": {
+    "com.azure.storage#SetTableServiceServiceProperties": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#TableServicesSetServicePropertiesRequest"
+        "target": "com.azure.storage#SetTableServiceServicePropertiesRequest"
       },
       "output": {
-        "target": "com.azure.storage#TableServicesSetServicePropertiesResponse"
+        "target": "com.azure.storage#SetTableServiceServicePropertiesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -721,7 +722,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#TableServicesSetServicePropertiesResponse": {
+    "com.azure.storage#SetTableServiceServicePropertiesResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -941,7 +942,7 @@
         "smithy.api#documentation": "Required if CorsRule element is present. A list of origin domains that will be allowed via CORS, or \"*\" to allow all domains"
       }
     },
-    "com.azure.storage#TableServicesSetServicePropertiesRequest": {
+    "com.azure.storage#SetTableServiceServicePropertiesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -979,13 +980,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#TableServicesGetServiceProperties": {
+    "com.azure.storage#GetTableServiceServiceProperties": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#TableServicesGetServicePropertiesRequest"
+        "target": "com.azure.storage#GetTableServiceServicePropertiesRequest"
       },
       "output": {
-        "target": "com.azure.storage#TableServicesGetServicePropertiesResponse"
+        "target": "com.azure.storage#GetTableServiceServicePropertiesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -998,7 +999,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#TableServicesGetServicePropertiesResponse": {
+    "com.azure.storage#GetTableServiceServicePropertiesResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1036,7 +1037,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storage#TableServicesGetServicePropertiesRequest": {
+    "com.azure.storage#GetTableServiceServicePropertiesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1068,10 +1069,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#TableServicesList": {
+    "com.azure.storage#ListTableServices2": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#TableServicesListRequest"
+        "target": "com.azure.storage#ListTableServicesRequest"
       },
       "output": {
         "target": "com.azure.storage#ListTableServices"
@@ -1146,7 +1147,7 @@
         "smithy.api#documentation": "The properties of a storage account’s Table service."
       }
     },
-    "com.azure.storage#TableServicesListRequest": {
+    "com.azure.storage#ListTableServicesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1178,10 +1179,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#StorageTaskAssignmentsStopAssignment": {
+    "com.azure.storage#StopStorageTaskAssignmentAssignment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#StorageTaskAssignmentsStopAssignmentRequest"
+        "target": "com.azure.storage#StopStorageTaskAssignmentAssignmentRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1197,7 +1198,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#StorageTaskAssignmentsStopAssignmentRequest": {
+    "com.azure.storage#StopStorageTaskAssignmentAssignmentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1237,10 +1238,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#StorageTaskAssignmentInstancesReportList": {
+    "com.azure.storage#ListStorageTaskAssignmentInstancesReport": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#StorageTaskAssignmentInstancesReportListRequest"
+        "target": "com.azure.storage#ListStorageTaskAssignmentInstancesReportRequest"
       },
       "output": {
         "target": "com.azure.storage#StorageTaskReportSummary"
@@ -1456,7 +1457,7 @@
         "smithy.api#documentation": "Represents the status of the execution."
       }
     },
-    "com.azure.storage#StorageTaskAssignmentInstancesReportListRequest": {
+    "com.azure.storage#ListStorageTaskAssignmentInstancesReportRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1510,10 +1511,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#StorageTaskAssignmentsDelete": {
+    "com.azure.storage#DeleteStorageTaskAssignment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#StorageTaskAssignmentsDeleteRequest"
+        "target": "com.azure.storage#DeleteStorageTaskAssignmentRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1529,7 +1530,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#StorageTaskAssignmentsDeleteRequest": {
+    "com.azure.storage#DeleteStorageTaskAssignmentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1569,13 +1570,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#StorageTaskAssignmentsUpdate": {
+    "com.azure.storage#UpdateStorageTaskAssignment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#StorageTaskAssignmentsUpdateRequest"
+        "target": "com.azure.storage#UpdateStorageTaskAssignmentRequest"
       },
       "output": {
-        "target": "com.azure.storage#StorageTaskAssignmentsUpdateResponse"
+        "target": "com.azure.storage#UpdateStorageTaskAssignmentResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1588,7 +1589,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#StorageTaskAssignmentsUpdateResponse": {
+    "com.azure.storage#UpdateStorageTaskAssignmentResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1911,7 +1912,7 @@
         "smithy.api#documentation": "Required list of object prefixes to be included for task execution"
       }
     },
-    "com.azure.storage#StorageTaskAssignmentsUpdateRequest": {
+    "com.azure.storage#UpdateStorageTaskAssignmentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2094,13 +2095,13 @@
         "smithy.api#documentation": "The trigger parameters update for the storage task assignment execution"
       }
     },
-    "com.azure.storage#StorageTaskAssignmentsCreate": {
+    "com.azure.storage#CreateStorageTaskAssignment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#StorageTaskAssignmentsCreateRequest"
+        "target": "com.azure.storage#CreateStorageTaskAssignmentRequest"
       },
       "output": {
-        "target": "com.azure.storage#StorageTaskAssignmentsCreateResponse"
+        "target": "com.azure.storage#CreateStorageTaskAssignmentResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2113,7 +2114,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#StorageTaskAssignmentsCreateResponse": {
+    "com.azure.storage#CreateStorageTaskAssignmentResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2151,7 +2152,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storage#StorageTaskAssignmentsCreateRequest": {
+    "com.azure.storage#CreateStorageTaskAssignmentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2246,13 +2247,13 @@
         "smithy.api#documentation": "Properties of the storage task assignment."
       }
     },
-    "com.azure.storage#StorageTaskAssignmentsGet": {
+    "com.azure.storage#GetStorageTaskAssignment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#StorageTaskAssignmentsGetRequest"
+        "target": "com.azure.storage#GetStorageTaskAssignmentRequest"
       },
       "output": {
-        "target": "com.azure.storage#StorageTaskAssignmentsGetResponse"
+        "target": "com.azure.storage#GetStorageTaskAssignmentResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2265,7 +2266,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#StorageTaskAssignmentsGetResponse": {
+    "com.azure.storage#GetStorageTaskAssignmentResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2303,7 +2304,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storage#StorageTaskAssignmentsGetRequest": {
+    "com.azure.storage#GetStorageTaskAssignmentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2343,10 +2344,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#StorageTaskAssignmentsList2": {
+    "com.azure.storage#ListStorageTaskAssignments": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#StorageTaskAssignmentsListRequest"
+        "target": "com.azure.storage#ListStorageTaskAssignmentsRequest"
       },
       "output": {
         "target": "com.azure.storage#StorageTaskAssignmentsList"
@@ -2430,7 +2431,7 @@
         "smithy.api#documentation": "The storage task assignment."
       }
     },
-    "com.azure.storage#StorageTaskAssignmentsListRequest": {
+    "com.azure.storage#ListStorageTaskAssignmentsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2634,10 +2635,10 @@
         "smithy.api#documentation": "The SKU name. Required for account creation; optional for update. Note that in older versions, SKU name was called accountType."
       }
     },
-    "com.azure.storage#StorageAccountsRevokeUserDelegationKeys": {
+    "com.azure.storage#RevokeStorageAccountUserDelegationKeys": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#StorageAccountsRevokeUserDelegationKeysRequest"
+        "target": "com.azure.storage#RevokeStorageAccountUserDelegationKeysRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2653,7 +2654,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#StorageAccountsRevokeUserDelegationKeysRequest": {
+    "com.azure.storage#RevokeStorageAccountUserDelegationKeysRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2685,10 +2686,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#StorageAccountsRestoreBlobRanges": {
+    "com.azure.storage#RestoreStorageAccountBlobRanges": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#StorageAccountsRestoreBlobRangesRequest"
+        "target": "com.azure.storage#RestoreStorageAccountBlobRangesRequest"
       },
       "output": {
         "target": "com.azure.storage#BlobRestoreStatus"
@@ -2815,7 +2816,7 @@
         "smithy.api#documentation": "The status of blob restore progress. Possible values are: - InProgress: Indicates that blob restore is ongoing. - Complete: Indicates that blob restore has been completed successfully. - Failed: Indicates that blob restore is failed."
       }
     },
-    "com.azure.storage#StorageAccountsRestoreBlobRangesRequest": {
+    "com.azure.storage#RestoreStorageAccountBlobRangesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2850,7 +2851,7 @@
           }
         },
         "blobRanges": {
-          "target": "com.azure.storage#StorageAccountsRestoreBlobRangesRequestBlobRangesList",
+          "target": "com.azure.storage#RestoreStorageAccountBlobRangesRequestBlobRangesList",
           "traits": {
             "smithy.api#documentation": "Blob ranges to restore.",
             "smithy.api#required": {}
@@ -2861,7 +2862,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#StorageAccountsRestoreBlobRangesRequestBlobRangesList": {
+    "com.azure.storage#RestoreStorageAccountBlobRangesRequestBlobRangesList": {
       "type": "list",
       "member": {
         "target": "com.azure.storage#BlobRestoreRange"
@@ -2870,10 +2871,10 @@
         "smithy.api#documentation": "Blob ranges to restore."
       }
     },
-    "com.azure.storage#StorageTaskAssignmentsInstancesReportList": {
+    "com.azure.storage#ListStorageTaskAssignmentsInstancesReport": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#StorageTaskAssignmentsInstancesReportListRequest"
+        "target": "com.azure.storage#ListStorageTaskAssignmentsInstancesReportRequest"
       },
       "output": {
         "target": "com.azure.storage#StorageTaskReportSummary"
@@ -2889,7 +2890,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#StorageTaskAssignmentsInstancesReportListRequest": {
+    "com.azure.storage#ListStorageTaskAssignmentsInstancesReportRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2935,10 +2936,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#StorageAccountsRegenerateKey": {
+    "com.azure.storage#RegenerateStorageAccountKey": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#StorageAccountsRegenerateKeyRequest"
+        "target": "com.azure.storage#RegenerateStorageAccountKeyRequest"
       },
       "output": {
         "target": "com.azure.storage#StorageAccountListKeysResult"
@@ -3029,7 +3030,7 @@
         "smithy.api#documentation": "Permissions for the key -- read-only or full permissions."
       }
     },
-    "com.azure.storage#StorageAccountsRegenerateKeyRequest": {
+    "com.azure.storage#RegenerateStorageAccountKeyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3068,10 +3069,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#QueueDelete": {
+    "com.azure.storage#DeleteQueue": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#QueueDeleteRequest"
+        "target": "com.azure.storage#DeleteQueueRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3087,7 +3088,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#QueueDeleteRequest": {
+    "com.azure.storage#DeleteQueueRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3127,13 +3128,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#QueueUpdate": {
+    "com.azure.storage#UpdateQueue": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#QueueUpdateRequest"
+        "target": "com.azure.storage#UpdateQueueRequest"
       },
       "output": {
-        "target": "com.azure.storage#QueueUpdateResponse"
+        "target": "com.azure.storage#UpdateQueueResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3146,7 +3147,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#QueueUpdateResponse": {
+    "com.azure.storage#UpdateQueueResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3214,7 +3215,7 @@
         "smithy.api#documentation": "A name-value pair that represents queue metadata."
       }
     },
-    "com.azure.storage#QueueUpdateRequest": {
+    "com.azure.storage#UpdateQueueRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3284,13 +3285,13 @@
         "smithy.api#documentation": "A name-value pair that represents queue metadata."
       }
     },
-    "com.azure.storage#QueueCreate": {
+    "com.azure.storage#CreateQueue": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#QueueCreateRequest"
+        "target": "com.azure.storage#CreateQueueRequest"
       },
       "output": {
-        "target": "com.azure.storage#QueueCreateResponse"
+        "target": "com.azure.storage#CreateQueueResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3303,7 +3304,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#QueueCreateResponse": {
+    "com.azure.storage#CreateQueueResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3341,7 +3342,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storage#QueueCreateRequest": {
+    "com.azure.storage#CreateQueueRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3387,13 +3388,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#QueueGet": {
+    "com.azure.storage#GetQueue": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#QueueGetRequest"
+        "target": "com.azure.storage#GetQueueRequest"
       },
       "output": {
-        "target": "com.azure.storage#QueueGetResponse"
+        "target": "com.azure.storage#GetQueueResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3406,7 +3407,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#QueueGetResponse": {
+    "com.azure.storage#GetQueueResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3444,7 +3445,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storage#QueueGetRequest": {
+    "com.azure.storage#GetQueueRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3484,10 +3485,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#QueueList": {
+    "com.azure.storage#ListQueue2": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#QueueListRequest"
+        "target": "com.azure.storage#ListQueueRequest"
       },
       "output": {
         "target": "com.azure.storage#ListQueueResource"
@@ -3593,7 +3594,7 @@
         "smithy.api#documentation": "A name-value pair that represents queue metadata."
       }
     },
-    "com.azure.storage#QueueListRequest": {
+    "com.azure.storage#ListQueueRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3639,13 +3640,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#QueueServicesSetServiceProperties": {
+    "com.azure.storage#SetQueueServiceServiceProperties": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#QueueServicesSetServicePropertiesRequest"
+        "target": "com.azure.storage#SetQueueServiceServicePropertiesRequest"
       },
       "output": {
-        "target": "com.azure.storage#QueueServicesSetServicePropertiesResponse"
+        "target": "com.azure.storage#SetQueueServiceServicePropertiesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3658,7 +3659,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#QueueServicesSetServicePropertiesResponse": {
+    "com.azure.storage#SetQueueServiceServicePropertiesResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3710,7 +3711,7 @@
         "smithy.api#documentation": "The properties of a storage account’s Queue service."
       }
     },
-    "com.azure.storage#QueueServicesSetServicePropertiesRequest": {
+    "com.azure.storage#SetQueueServiceServicePropertiesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3748,13 +3749,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#QueueServicesGetServiceProperties": {
+    "com.azure.storage#GetQueueServiceServiceProperties": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#QueueServicesGetServicePropertiesRequest"
+        "target": "com.azure.storage#GetQueueServiceServicePropertiesRequest"
       },
       "output": {
-        "target": "com.azure.storage#QueueServicesGetServicePropertiesResponse"
+        "target": "com.azure.storage#GetQueueServiceServicePropertiesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3767,7 +3768,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#QueueServicesGetServicePropertiesResponse": {
+    "com.azure.storage#GetQueueServiceServicePropertiesResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3805,7 +3806,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storage#QueueServicesGetServicePropertiesRequest": {
+    "com.azure.storage#GetQueueServiceServicePropertiesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3837,10 +3838,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#QueueServicesList": {
+    "com.azure.storage#ListQueueServices2": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#QueueServicesListRequest"
+        "target": "com.azure.storage#ListQueueServicesRequest"
       },
       "output": {
         "target": "com.azure.storage#ListQueueServices"
@@ -3915,7 +3916,7 @@
         "smithy.api#documentation": "The properties of a storage account’s Queue service."
       }
     },
-    "com.azure.storage#QueueServicesListRequest": {
+    "com.azure.storage#ListQueueServicesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3947,10 +3948,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#PrivateLinkResourcesListByStorageAccount": {
+    "com.azure.storage#ListPrivateLinkResourceByStorageAccount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#PrivateLinkResourcesListByStorageAccountRequest"
+        "target": "com.azure.storage#ListPrivateLinkResourceByStorageAccountRequest"
       },
       "output": {
         "target": "com.azure.storage#PrivateLinkResourceListResult"
@@ -4071,7 +4072,7 @@
         "smithy.api#documentation": "The private link resource required member names."
       }
     },
-    "com.azure.storage#PrivateLinkResourcesListByStorageAccountRequest": {
+    "com.azure.storage#ListPrivateLinkResourceByStorageAccountRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4103,10 +4104,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#PrivateEndpointConnectionsDelete": {
+    "com.azure.storage#DeletePrivateEndpointConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#PrivateEndpointConnectionsDeleteRequest"
+        "target": "com.azure.storage#DeletePrivateEndpointConnectionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4122,7 +4123,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#PrivateEndpointConnectionsDeleteRequest": {
+    "com.azure.storage#DeletePrivateEndpointConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4162,13 +4163,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#PrivateEndpointConnectionsPut": {
+    "com.azure.storage#PutPrivateEndpointConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#PrivateEndpointConnectionsPutRequest"
+        "target": "com.azure.storage#PutPrivateEndpointConnectionRequest"
       },
       "output": {
-        "target": "com.azure.storage#PrivateEndpointConnectionsPutResponse"
+        "target": "com.azure.storage#PutPrivateEndpointConnectionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4181,7 +4182,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#PrivateEndpointConnectionsPutResponse": {
+    "com.azure.storage#PutPrivateEndpointConnectionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4344,7 +4345,7 @@
         "smithy.api#documentation": "The Private Endpoint resource."
       }
     },
-    "com.azure.storage#PrivateEndpointConnectionsPutRequest": {
+    "com.azure.storage#PutPrivateEndpointConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4418,13 +4419,13 @@
         "smithy.api#documentation": "The Private Endpoint resource."
       }
     },
-    "com.azure.storage#PrivateEndpointConnectionsGet": {
+    "com.azure.storage#GetPrivateEndpointConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#PrivateEndpointConnectionsGetRequest"
+        "target": "com.azure.storage#GetPrivateEndpointConnectionRequest"
       },
       "output": {
-        "target": "com.azure.storage#PrivateEndpointConnectionsGetResponse"
+        "target": "com.azure.storage#GetPrivateEndpointConnectionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4437,7 +4438,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#PrivateEndpointConnectionsGetResponse": {
+    "com.azure.storage#GetPrivateEndpointConnectionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4475,7 +4476,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storage#PrivateEndpointConnectionsGetRequest": {
+    "com.azure.storage#GetPrivateEndpointConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4515,10 +4516,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#PrivateEndpointConnectionsList": {
+    "com.azure.storage#ListPrivateEndpointConnections": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#PrivateEndpointConnectionsListRequest"
+        "target": "com.azure.storage#ListPrivateEndpointConnectionsRequest"
       },
       "output": {
         "target": "com.azure.storage#PrivateEndpointConnectionListResult"
@@ -4598,7 +4599,7 @@
         "smithy.api#documentation": "The Private Endpoint Connection resource."
       }
     },
-    "com.azure.storage#PrivateEndpointConnectionsListRequest": {
+    "com.azure.storage#ListPrivateEndpointConnectionsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4630,10 +4631,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#ObjectReplicationPoliciesDelete": {
+    "com.azure.storage#DeleteObjectReplicationPolicy": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#ObjectReplicationPoliciesDeleteRequest"
+        "target": "com.azure.storage#DeleteObjectReplicationPolicyRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4649,7 +4650,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#ObjectReplicationPoliciesDeleteRequest": {
+    "com.azure.storage#DeleteObjectReplicationPolicyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5019,13 +5020,13 @@
         "smithy.api#documentation": "The storage account object replication rules."
       }
     },
-    "com.azure.storage#ObjectReplicationPoliciesGet": {
+    "com.azure.storage#GetObjectReplicationPolicy": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#ObjectReplicationPoliciesGetRequest"
+        "target": "com.azure.storage#GetObjectReplicationPolicyRequest"
       },
       "output": {
-        "target": "com.azure.storage#ObjectReplicationPoliciesGetResponse"
+        "target": "com.azure.storage#GetObjectReplicationPolicyResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5038,7 +5039,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#ObjectReplicationPoliciesGetResponse": {
+    "com.azure.storage#GetObjectReplicationPolicyResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5076,7 +5077,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storage#ObjectReplicationPoliciesGetRequest": {
+    "com.azure.storage#GetObjectReplicationPolicyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5116,10 +5117,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#ObjectReplicationPoliciesList": {
+    "com.azure.storage#ListObjectReplicationPolicies": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#ObjectReplicationPoliciesListRequest"
+        "target": "com.azure.storage#ListObjectReplicationPoliciesRequest"
       },
       "output": {
         "target": "com.azure.storage#ObjectReplicationPolicies"
@@ -5199,7 +5200,7 @@
         "smithy.api#documentation": "The replication policy between two storage accounts. Multiple rules can be defined in one policy."
       }
     },
-    "com.azure.storage#ObjectReplicationPoliciesListRequest": {
+    "com.azure.storage#ListObjectReplicationPoliciesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5290,13 +5291,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#NetworkSecurityPerimeterConfigurationsGet": {
+    "com.azure.storage#GetNetworkSecurityPerimeterConfiguration": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#NetworkSecurityPerimeterConfigurationsGetRequest"
+        "target": "com.azure.storage#GetNetworkSecurityPerimeterConfigurationRequest"
       },
       "output": {
-        "target": "com.azure.storage#NetworkSecurityPerimeterConfigurationsGetResponse"
+        "target": "com.azure.storage#GetNetworkSecurityPerimeterConfigurationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5309,7 +5310,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#NetworkSecurityPerimeterConfigurationsGetResponse": {
+    "com.azure.storage#GetNetworkSecurityPerimeterConfigurationResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5774,7 +5775,7 @@
         "smithy.api#documentation": "Provisioning state of Network Security Perimeter configuration propagation"
       }
     },
-    "com.azure.storage#NetworkSecurityPerimeterConfigurationsGetRequest": {
+    "com.azure.storage#GetNetworkSecurityPerimeterConfigurationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5814,10 +5815,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#NetworkSecurityPerimeterConfigurationsList": {
+    "com.azure.storage#ListNetworkSecurityPerimeterConfigurations": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#NetworkSecurityPerimeterConfigurationsListRequest"
+        "target": "com.azure.storage#ListNetworkSecurityPerimeterConfigurationsRequest"
       },
       "output": {
         "target": "com.azure.storage#NetworkSecurityPerimeterConfigurationList"
@@ -5901,7 +5902,7 @@
         "smithy.api#documentation": "The Network Security Perimeter configuration resource."
       }
     },
-    "com.azure.storage#NetworkSecurityPerimeterConfigurationsListRequest": {
+    "com.azure.storage#ListNetworkSecurityPerimeterConfigurationsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5933,10 +5934,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#ManagementPoliciesDelete": {
+    "com.azure.storage#DeleteManagementPolicy": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#ManagementPoliciesDeleteRequest"
+        "target": "com.azure.storage#DeleteManagementPolicyRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5952,7 +5953,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#ManagementPoliciesDeleteRequest": {
+    "com.azure.storage#DeleteManagementPolicyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5980,7 +5981,7 @@
           }
         },
         "managementPolicyName": {
-          "target": "com.azure.storage#ManagementPoliciesDeleteRequestManagementPolicyName",
+          "target": "com.azure.storage#DeleteManagementPolicyRequestManagementPolicyName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -5992,7 +5993,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#ManagementPoliciesDeleteRequestManagementPolicyName": {
+    "com.azure.storage#DeleteManagementPolicyRequestManagementPolicyName": {
       "type": "enum",
       "members": {
         "DEFAULT": {
@@ -6531,13 +6532,13 @@
       },
       "traits": {}
     },
-    "com.azure.storage#ManagementPoliciesGet": {
+    "com.azure.storage#GetManagementPolicy": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#ManagementPoliciesGetRequest"
+        "target": "com.azure.storage#GetManagementPolicyRequest"
       },
       "output": {
-        "target": "com.azure.storage#ManagementPoliciesGetResponse"
+        "target": "com.azure.storage#GetManagementPolicyResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6550,7 +6551,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#ManagementPoliciesGetResponse": {
+    "com.azure.storage#GetManagementPolicyResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -6588,7 +6589,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storage#ManagementPoliciesGetRequest": {
+    "com.azure.storage#GetManagementPolicyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6616,7 +6617,7 @@
           }
         },
         "managementPolicyName": {
-          "target": "com.azure.storage#ManagementPoliciesGetRequestManagementPolicyName",
+          "target": "com.azure.storage#GetManagementPolicyRequestManagementPolicyName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -6628,7 +6629,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#ManagementPoliciesGetRequestManagementPolicyName": {
+    "com.azure.storage#GetManagementPolicyRequestManagementPolicyName": {
       "type": "enum",
       "members": {
         "DEFAULT": {
@@ -6640,10 +6641,10 @@
       },
       "traits": {}
     },
-    "com.azure.storage#LocalUsersRegeneratePassword": {
+    "com.azure.storage#RegenerateLocalUserPassword": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#LocalUsersRegeneratePasswordRequest"
+        "target": "com.azure.storage#RegenerateLocalUserPasswordRequest"
       },
       "output": {
         "target": "com.azure.storage#LocalUserRegeneratePasswordResult"
@@ -6674,7 +6675,7 @@
         "smithy.api#documentation": "The secrets of Storage Account Local User."
       }
     },
-    "com.azure.storage#LocalUsersRegeneratePasswordRequest": {
+    "com.azure.storage#RegenerateLocalUserPasswordRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6714,10 +6715,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#LocalUsersListKeys": {
+    "com.azure.storage#ListLocalUserKeys": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#LocalUsersListKeysRequest"
+        "target": "com.azure.storage#ListLocalUserKeysRequest"
       },
       "output": {
         "target": "com.azure.storage#LocalUserKeys"
@@ -6780,7 +6781,7 @@
       },
       "traits": {}
     },
-    "com.azure.storage#LocalUsersListKeysRequest": {
+    "com.azure.storage#ListLocalUserKeysRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6820,10 +6821,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#LocalUsersDelete": {
+    "com.azure.storage#DeleteLocalUser": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#LocalUsersDeleteRequest"
+        "target": "com.azure.storage#DeleteLocalUserRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -6839,7 +6840,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#LocalUsersDeleteRequest": {
+    "com.azure.storage#DeleteLocalUserRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7211,13 +7212,13 @@
         "smithy.api#documentation": "The permission scopes of the local user."
       }
     },
-    "com.azure.storage#LocalUsersGet": {
+    "com.azure.storage#GetLocalUser": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#LocalUsersGetRequest"
+        "target": "com.azure.storage#GetLocalUserRequest"
       },
       "output": {
-        "target": "com.azure.storage#LocalUsersGetResponse"
+        "target": "com.azure.storage#GetLocalUserResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7230,7 +7231,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#LocalUsersGetResponse": {
+    "com.azure.storage#GetLocalUserResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -7268,7 +7269,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storage#LocalUsersGetRequest": {
+    "com.azure.storage#GetLocalUserRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7308,10 +7309,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#LocalUsersList": {
+    "com.azure.storage#ListLocalUsers": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#LocalUsersListRequest"
+        "target": "com.azure.storage#ListLocalUsersRequest"
       },
       "output": {
         "target": "com.azure.storage#LocalUsers"
@@ -7395,7 +7396,7 @@
         "smithy.api#documentation": "The local user associated with the storage accounts."
       }
     },
-    "com.azure.storage#LocalUsersListRequest": {
+    "com.azure.storage#ListLocalUsersRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7437,7 +7438,7 @@
           }
         },
         "_include": {
-          "target": "com.azure.storage#LocalUsersListRequestInclude",
+          "target": "com.azure.storage#ListLocalUsersRequestInclude",
           "traits": {
             "smithy.api#httpQuery": "$include",
             "smithy.api#documentation": "Optional, when specified, will list local users enabled for the specific protocol. Lists all users by default."
@@ -7448,7 +7449,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#LocalUsersListRequestInclude": {
+    "com.azure.storage#ListLocalUsersRequestInclude": {
       "type": "enum",
       "members": {
         "NFSV3": {
@@ -7460,10 +7461,10 @@
       },
       "traits": {}
     },
-    "com.azure.storage#StorageAccountsListServiceSAS": {
+    "com.azure.storage#ListStorageAccountServiceSAS": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#StorageAccountsListServiceSASRequest"
+        "target": "com.azure.storage#ListStorageAccountServiceSASRequest"
       },
       "output": {
         "target": "com.azure.storage#ListServiceSasResponse"
@@ -7493,7 +7494,7 @@
         "smithy.api#documentation": "The List service SAS credentials operation response."
       }
     },
-    "com.azure.storage#StorageAccountsListServiceSASRequest": {
+    "com.azure.storage#ListStorageAccountServiceSASRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7742,10 +7743,10 @@
         "smithy.api#documentation": "The signed services accessible with the service SAS. Possible values include: Blob (b), Container (c), File (f), Share (s)."
       }
     },
-    "com.azure.storage#StorageAccountsListKeys": {
+    "com.azure.storage#ListStorageAccountKeys": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#StorageAccountsListKeysRequest"
+        "target": "com.azure.storage#ListStorageAccountKeysRequest"
       },
       "output": {
         "target": "com.azure.storage#StorageAccountListKeysResult"
@@ -7761,7 +7762,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#StorageAccountsListKeysRequest": {
+    "com.azure.storage#ListStorageAccountKeysRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7789,7 +7790,7 @@
           }
         },
         "_expand": {
-          "target": "com.azure.storage#StorageAccountsListKeysRequestExpand",
+          "target": "com.azure.storage#ListStorageAccountKeysRequestExpand",
           "traits": {
             "smithy.api#httpQuery": "$expand",
             "smithy.api#documentation": "Specifies type of the key to be listed. Possible value is kerb."
@@ -7800,7 +7801,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#StorageAccountsListKeysRequestExpand": {
+    "com.azure.storage#ListStorageAccountKeysRequestExpand": {
       "type": "enum",
       "members": {
         "KERB": {
@@ -7812,10 +7813,10 @@
       },
       "traits": {}
     },
-    "com.azure.storage#StorageAccountsListAccountSAS": {
+    "com.azure.storage#ListStorageAccountAccountSAS": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#StorageAccountsListAccountSASRequest"
+        "target": "com.azure.storage#ListStorageAccountAccountSASRequest"
       },
       "output": {
         "target": "com.azure.storage#ListAccountSasResponse"
@@ -7845,7 +7846,7 @@
         "smithy.api#documentation": "The List SAS credentials operation response."
       }
     },
-    "com.azure.storage#StorageAccountsListAccountSASRequest": {
+    "com.azure.storage#ListStorageAccountAccountSASRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7987,10 +7988,10 @@
         "smithy.api#documentation": "The signed services accessible with the account SAS. Possible values include: Blob (b), Queue (q), Table (t), File (f)."
       }
     },
-    "com.azure.storage#BlobInventoryPoliciesDelete": {
+    "com.azure.storage#DeleteBlobInventoryPolicy": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#BlobInventoryPoliciesDeleteRequest"
+        "target": "com.azure.storage#DeleteBlobInventoryPolicyRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8006,7 +8007,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#BlobInventoryPoliciesDeleteRequest": {
+    "com.azure.storage#DeleteBlobInventoryPolicyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8034,7 +8035,7 @@
           }
         },
         "blobInventoryPolicyName": {
-          "target": "com.azure.storage#BlobInventoryPoliciesDeleteRequestBlobInventoryPolicyName",
+          "target": "com.azure.storage#DeleteBlobInventoryPolicyRequestBlobInventoryPolicyName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -8046,7 +8047,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#BlobInventoryPoliciesDeleteRequestBlobInventoryPolicyName": {
+    "com.azure.storage#DeleteBlobInventoryPolicyRequestBlobInventoryPolicyName": {
       "type": "enum",
       "members": {
         "DEFAULT": {
@@ -8543,13 +8544,13 @@
       },
       "traits": {}
     },
-    "com.azure.storage#BlobInventoryPoliciesGet": {
+    "com.azure.storage#GetBlobInventoryPolicy": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#BlobInventoryPoliciesGetRequest"
+        "target": "com.azure.storage#GetBlobInventoryPolicyRequest"
       },
       "output": {
-        "target": "com.azure.storage#BlobInventoryPoliciesGetResponse"
+        "target": "com.azure.storage#GetBlobInventoryPolicyResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8562,7 +8563,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#BlobInventoryPoliciesGetResponse": {
+    "com.azure.storage#GetBlobInventoryPolicyResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -8600,7 +8601,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storage#BlobInventoryPoliciesGetRequest": {
+    "com.azure.storage#GetBlobInventoryPolicyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8628,7 +8629,7 @@
           }
         },
         "blobInventoryPolicyName": {
-          "target": "com.azure.storage#BlobInventoryPoliciesGetRequestBlobInventoryPolicyName",
+          "target": "com.azure.storage#GetBlobInventoryPolicyRequestBlobInventoryPolicyName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -8640,7 +8641,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#BlobInventoryPoliciesGetRequestBlobInventoryPolicyName": {
+    "com.azure.storage#GetBlobInventoryPolicyRequestBlobInventoryPolicyName": {
       "type": "enum",
       "members": {
         "DEFAULT": {
@@ -8652,10 +8653,10 @@
       },
       "traits": {}
     },
-    "com.azure.storage#BlobInventoryPoliciesList": {
+    "com.azure.storage#ListBlobInventoryPolicies": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#BlobInventoryPoliciesListRequest"
+        "target": "com.azure.storage#ListBlobInventoryPoliciesRequest"
       },
       "output": {
         "target": "com.azure.storage#ListBlobInventoryPolicy"
@@ -8735,7 +8736,7 @@
         "smithy.api#documentation": "The storage account blob inventory policy."
       }
     },
-    "com.azure.storage#BlobInventoryPoliciesListRequest": {
+    "com.azure.storage#ListBlobInventoryPoliciesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8826,13 +8827,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#FileServicesGetServiceUsage": {
+    "com.azure.storage#GetFileServiceServiceUsage": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#FileServicesGetServiceUsageRequest"
+        "target": "com.azure.storage#GetFileServiceServiceUsageRequest"
       },
       "output": {
-        "target": "com.azure.storage#FileServicesGetServiceUsageResponse"
+        "target": "com.azure.storage#GetFileServiceServiceUsageResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8845,7 +8846,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#FileServicesGetServiceUsageResponse": {
+    "com.azure.storage#GetFileServiceServiceUsageResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -9119,7 +9120,7 @@
         "smithy.api#documentation": "Maximum provisioned storage, IOPS, bandwidth and number of file shares limits for the storage account."
       }
     },
-    "com.azure.storage#FileServicesGetServiceUsageRequest": {
+    "com.azure.storage#GetFileServiceServiceUsageRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9151,10 +9152,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#FileServicesListServiceUsages": {
+    "com.azure.storage#ListFileServiceServiceUsages": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#FileServicesListServiceUsagesRequest"
+        "target": "com.azure.storage#ListFileServiceServiceUsagesRequest"
       },
       "output": {
         "target": "com.azure.storage#FileServiceUsages"
@@ -9238,7 +9239,7 @@
         "smithy.api#documentation": "The usage of file service in storage account."
       }
     },
-    "com.azure.storage#FileServicesListServiceUsagesRequest": {
+    "com.azure.storage#ListFileServiceServiceUsagesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9277,10 +9278,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#FileSharesRestore": {
+    "com.azure.storage#RestoreFileShare": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#FileSharesRestoreRequest"
+        "target": "com.azure.storage#RestoreFileShareRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -9296,7 +9297,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#FileSharesRestoreRequest": {
+    "com.azure.storage#RestoreFileShareRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9498,10 +9499,10 @@
         "smithy.api#documentation": "Specifies the lease action. Can be one of the available actions."
       }
     },
-    "com.azure.storage#FileSharesDelete": {
+    "com.azure.storage#DeleteFileShare": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#FileSharesDeleteRequest"
+        "target": "com.azure.storage#DeleteFileShareRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -9517,7 +9518,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#FileSharesDeleteRequest": {
+    "com.azure.storage#DeleteFileShareRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9564,13 +9565,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#FileSharesUpdate": {
+    "com.azure.storage#UpdateFileShare": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#FileSharesUpdateRequest"
+        "target": "com.azure.storage#UpdateFileShareRequest"
       },
       "output": {
-        "target": "com.azure.storage#FileSharesUpdateResponse"
+        "target": "com.azure.storage#UpdateFileShareResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9583,7 +9584,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#FileSharesUpdateResponse": {
+    "com.azure.storage#UpdateFileShareResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -10036,7 +10037,7 @@
         "smithy.api#documentation": "A name-value pair to associate with the share as metadata."
       }
     },
-    "com.azure.storage#FileSharesUpdateRequest": {
+    "com.azure.storage#UpdateFileShareRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10165,13 +10166,13 @@
         "smithy.api#documentation": "A name-value pair to associate with the share as metadata."
       }
     },
-    "com.azure.storage#FileSharesCreate": {
+    "com.azure.storage#CreateFileShare": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#FileSharesCreateRequest"
+        "target": "com.azure.storage#CreateFileShareRequest"
       },
       "output": {
-        "target": "com.azure.storage#FileSharesCreateResponse"
+        "target": "com.azure.storage#CreateFileShareResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10184,7 +10185,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#FileSharesCreateResponse": {
+    "com.azure.storage#CreateFileShareResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -10228,7 +10229,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storage#FileSharesCreateRequest": {
+    "com.azure.storage#CreateFileShareRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10281,13 +10282,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#FileSharesGet": {
+    "com.azure.storage#GetFileShare": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#FileSharesGetRequest"
+        "target": "com.azure.storage#GetFileShareRequest"
       },
       "output": {
-        "target": "com.azure.storage#FileSharesGetResponse"
+        "target": "com.azure.storage#GetFileShareResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10300,7 +10301,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#FileSharesGetResponse": {
+    "com.azure.storage#GetFileShareResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -10344,7 +10345,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storage#FileSharesGetRequest": {
+    "com.azure.storage#GetFileShareRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10391,10 +10392,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#FileSharesList": {
+    "com.azure.storage#ListFileShares": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#FileSharesListRequest"
+        "target": "com.azure.storage#ListFileSharesRequest"
       },
       "output": {
         "target": "com.azure.storage#FileShareItems"
@@ -10484,7 +10485,7 @@
         "smithy.api#documentation": "The file share properties be listed out."
       }
     },
-    "com.azure.storage#FileSharesListRequest": {
+    "com.azure.storage#ListFileSharesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10537,13 +10538,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#FileServicesSetServiceProperties": {
+    "com.azure.storage#SetFileServiceServiceProperties": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#FileServicesSetServicePropertiesRequest"
+        "target": "com.azure.storage#SetFileServiceServicePropertiesRequest"
       },
       "output": {
-        "target": "com.azure.storage#FileServicesSetServicePropertiesResponse"
+        "target": "com.azure.storage#SetFileServiceServicePropertiesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10556,7 +10557,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#FileServicesSetServicePropertiesResponse": {
+    "com.azure.storage#SetFileServiceServicePropertiesResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -10799,7 +10800,7 @@
         "smithy.api#documentation": "The service properties for soft delete."
       }
     },
-    "com.azure.storage#FileServicesSetServicePropertiesRequest": {
+    "com.azure.storage#SetFileServiceServicePropertiesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10837,13 +10838,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#FileServicesGetServiceProperties": {
+    "com.azure.storage#GetFileServiceServiceProperties": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#FileServicesGetServicePropertiesRequest"
+        "target": "com.azure.storage#GetFileServiceServicePropertiesRequest"
       },
       "output": {
-        "target": "com.azure.storage#FileServicesGetServicePropertiesResponse"
+        "target": "com.azure.storage#GetFileServiceServicePropertiesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10856,7 +10857,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#FileServicesGetServicePropertiesResponse": {
+    "com.azure.storage#GetFileServiceServicePropertiesResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -10900,7 +10901,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storage#FileServicesGetServicePropertiesRequest": {
+    "com.azure.storage#GetFileServiceServicePropertiesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10932,10 +10933,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#FileServicesList": {
+    "com.azure.storage#ListFileServices": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#FileServicesListRequest"
+        "target": "com.azure.storage#ListFileServicesRequest"
       },
       "output": {
         "target": "com.azure.storage#FileServiceItems"
@@ -11016,7 +11017,7 @@
         "smithy.api#documentation": "The properties of File services in storage account."
       }
     },
-    "com.azure.storage#FileServicesListRequest": {
+    "com.azure.storage#ListFileServicesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11118,13 +11119,13 @@
       },
       "traits": {}
     },
-    "com.azure.storage#EncryptionScopesPatch": {
+    "com.azure.storage#PatchEncryptionScope": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#EncryptionScopesPatchRequest"
+        "target": "com.azure.storage#PatchEncryptionScopeRequest"
       },
       "output": {
-        "target": "com.azure.storage#EncryptionScopesPatchResponse"
+        "target": "com.azure.storage#PatchEncryptionScopeResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11137,7 +11138,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#EncryptionScopesPatchResponse": {
+    "com.azure.storage#PatchEncryptionScopeResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -11285,7 +11286,7 @@
         "smithy.api#documentation": "The provider for the encryption scope. Possible values (case-insensitive):  Microsoft.Storage, Microsoft.KeyVault."
       }
     },
-    "com.azure.storage#EncryptionScopesPatchRequest": {
+    "com.azure.storage#PatchEncryptionScopeRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11377,13 +11378,13 @@
         "smithy.api#documentation": "The key vault properties for the encryption scope. This is a required field if encryption scope 'source' attribute is set to 'Microsoft.KeyVault'."
       }
     },
-    "com.azure.storage#EncryptionScopesPut": {
+    "com.azure.storage#PutEncryptionScope": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#EncryptionScopesPutRequest"
+        "target": "com.azure.storage#PutEncryptionScopeRequest"
       },
       "output": {
-        "target": "com.azure.storage#EncryptionScopesPutResponse"
+        "target": "com.azure.storage#PutEncryptionScopeResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11396,7 +11397,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#EncryptionScopesPutResponse": {
+    "com.azure.storage#PutEncryptionScopeResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -11434,7 +11435,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storage#EncryptionScopesPutRequest": {
+    "com.azure.storage#PutEncryptionScopeRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11480,13 +11481,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#EncryptionScopesGet": {
+    "com.azure.storage#GetEncryptionScope": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#EncryptionScopesGetRequest"
+        "target": "com.azure.storage#GetEncryptionScopeRequest"
       },
       "output": {
-        "target": "com.azure.storage#EncryptionScopesGetResponse"
+        "target": "com.azure.storage#GetEncryptionScopeResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11499,7 +11500,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#EncryptionScopesGetResponse": {
+    "com.azure.storage#GetEncryptionScopeResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -11537,7 +11538,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storage#EncryptionScopesGetRequest": {
+    "com.azure.storage#GetEncryptionScopeRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11577,10 +11578,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#EncryptionScopesList": {
+    "com.azure.storage#ListEncryptionScopes": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#EncryptionScopesListRequest"
+        "target": "com.azure.storage#ListEncryptionScopesRequest"
       },
       "output": {
         "target": "com.azure.storage#EncryptionScopeListResult"
@@ -11664,7 +11665,7 @@
         "smithy.api#documentation": "The Encryption Scope resource."
       }
     },
-    "com.azure.storage#EncryptionScopesListRequest": {
+    "com.azure.storage#ListEncryptionScopesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11706,7 +11707,7 @@
           }
         },
         "_include": {
-          "target": "com.azure.storage#EncryptionScopesListRequestInclude",
+          "target": "com.azure.storage#ListEncryptionScopesRequestInclude",
           "traits": {
             "smithy.api#httpQuery": "$include",
             "smithy.api#documentation": "Optional, when specified, will list encryption scopes with the specific state. Defaults to All"
@@ -11717,7 +11718,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#EncryptionScopesListRequestInclude": {
+    "com.azure.storage#ListEncryptionScopesRequestInclude": {
       "type": "enum",
       "members": {
         "ALL": {
@@ -11741,10 +11742,10 @@
       },
       "traits": {}
     },
-    "com.azure.storage#DataSharesDelete": {
+    "com.azure.storage#DeleteDataShare": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#DataSharesDeleteRequest"
+        "target": "com.azure.storage#DeleteDataShareRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -11760,7 +11761,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#DataSharesDeleteRequest": {
+    "com.azure.storage#DeleteDataShareRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11800,13 +11801,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#DataSharesUpdate": {
+    "com.azure.storage#UpdateDataShare": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#DataSharesUpdateRequest"
+        "target": "com.azure.storage#UpdateDataShareRequest"
       },
       "output": {
-        "target": "com.azure.storage#DataSharesUpdateResponse"
+        "target": "com.azure.storage#UpdateDataShareResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11819,7 +11820,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#DataSharesUpdateResponse": {
+    "com.azure.storage#UpdateDataShareResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -11847,7 +11848,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.storage#DataSharesUpdateResponseTagsMap",
+          "target": "com.azure.storage#UpdateDataShareResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -12050,7 +12051,7 @@
         "smithy.api#documentation": "The permissions supported in access policies for storage data share"
       }
     },
-    "com.azure.storage#DataSharesUpdateResponseTagsMap": {
+    "com.azure.storage#UpdateDataShareResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -12062,7 +12063,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.storage#DataSharesUpdateRequest": {
+    "com.azure.storage#UpdateDataShareRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12098,7 +12099,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.storage#DataSharesUpdateRequestTagsMap",
+          "target": "com.azure.storage#UpdateDataShareRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -12158,7 +12159,7 @@
         "smithy.api#documentation": "List of access policies that specify the permission allowed to a managed identity.\nFor Create - This property is required and cannot be null. If no access policies are provided at creation time, specify an empty array.\nFor Update - This property is optional. If set to null or not passed, the existing access policies are left unchanged.\nIf provided with a non-null value, the existing access policies are replaced with the specified list."
       }
     },
-    "com.azure.storage#DataSharesUpdateRequestTagsMap": {
+    "com.azure.storage#UpdateDataShareRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -12170,13 +12171,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.storage#DataSharesCreate": {
+    "com.azure.storage#CreateDataShare": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#DataSharesCreateRequest"
+        "target": "com.azure.storage#CreateDataShareRequest"
       },
       "output": {
-        "target": "com.azure.storage#DataSharesCreateResponse"
+        "target": "com.azure.storage#CreateDataShareResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -12189,7 +12190,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#DataSharesCreateResponse": {
+    "com.azure.storage#CreateDataShareResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -12217,7 +12218,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.storage#DataSharesCreateResponseTagsMap",
+          "target": "com.azure.storage#CreateDataShareResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -12241,7 +12242,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storage#DataSharesCreateResponseTagsMap": {
+    "com.azure.storage#CreateDataShareResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -12253,7 +12254,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.storage#DataSharesCreateRequest": {
+    "com.azure.storage#CreateDataShareRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12289,7 +12290,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.storage#DataSharesCreateRequestTagsMap",
+          "target": "com.azure.storage#CreateDataShareRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -12359,7 +12360,7 @@
         "smithy.api#documentation": "List of access policies that specify the permission allowed to a managed identity.\nFor Create - This property is required and cannot be null. If no access policies are provided at creation time, specify an empty array.\nFor Update - This property is optional. If set to null or not passed, the existing access policies are left unchanged.\nIf provided with a non-null value, the existing access policies are replaced with the specified list."
       }
     },
-    "com.azure.storage#DataSharesCreateRequestTagsMap": {
+    "com.azure.storage#CreateDataShareRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -12371,13 +12372,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.storage#DataSharesGet": {
+    "com.azure.storage#GetDataShare": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#DataSharesGetRequest"
+        "target": "com.azure.storage#GetDataShareRequest"
       },
       "output": {
-        "target": "com.azure.storage#DataSharesGetResponse"
+        "target": "com.azure.storage#GetDataShareResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -12390,7 +12391,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#DataSharesGetResponse": {
+    "com.azure.storage#GetDataShareResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -12418,7 +12419,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.storage#DataSharesGetResponseTagsMap",
+          "target": "com.azure.storage#GetDataShareResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -12442,7 +12443,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storage#DataSharesGetResponseTagsMap": {
+    "com.azure.storage#GetDataShareResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -12454,7 +12455,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.storage#DataSharesGetRequest": {
+    "com.azure.storage#GetDataShareRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12494,10 +12495,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#DataSharesListByStorageAccount": {
+    "com.azure.storage#ListDataShareByStorageAccount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#DataSharesListByStorageAccountRequest"
+        "target": "com.azure.storage#ListDataShareByStorageAccountRequest"
       },
       "output": {
         "target": "com.azure.storage#DataShareListResult"
@@ -12607,7 +12608,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.storage#DataSharesListByStorageAccountRequest": {
+    "com.azure.storage#ListDataShareByStorageAccountRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12639,10 +12640,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#ConnectorsTestExistingConnection": {
+    "com.azure.storage#TestConnectorExistingConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#ConnectorsTestExistingConnectionRequest"
+        "target": "com.azure.storage#TestConnectorExistingConnectionRequest"
       },
       "output": {
         "target": "com.azure.storage#TestConnectionResponse"
@@ -12686,7 +12687,7 @@
         "smithy.api#documentation": "Test connection response properties"
       }
     },
-    "com.azure.storage#ConnectorsTestExistingConnectionRequest": {
+    "com.azure.storage#TestConnectorExistingConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12733,10 +12734,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#ConnectorsDelete": {
+    "com.azure.storage#DeleteConnector": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#ConnectorsDeleteRequest"
+        "target": "com.azure.storage#DeleteConnectorRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -12752,7 +12753,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#ConnectorsDeleteRequest": {
+    "com.azure.storage#DeleteConnectorRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12792,13 +12793,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#ConnectorsUpdate": {
+    "com.azure.storage#UpdateConnector": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#ConnectorsUpdateRequest"
+        "target": "com.azure.storage#UpdateConnectorRequest"
       },
       "output": {
-        "target": "com.azure.storage#ConnectorsUpdateResponse"
+        "target": "com.azure.storage#UpdateConnectorResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -12811,7 +12812,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#ConnectorsUpdateResponse": {
+    "com.azure.storage#UpdateConnectorResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -12839,7 +12840,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.storage#ConnectorsUpdateResponseTagsMap",
+          "target": "com.azure.storage#UpdateConnectorResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -12984,7 +12985,7 @@
         "smithy.api#documentation": "State - Active or Inactive. Whether or not the Storage Connector should start as active (default: Active)\n(While set to false on the Storage Connector, all data plane requests using this Storage Connector fail, and this Storage Connector is not billed if it would be otherwise."
       }
     },
-    "com.azure.storage#ConnectorsUpdateResponseTagsMap": {
+    "com.azure.storage#UpdateConnectorResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -12996,7 +12997,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.storage#ConnectorsUpdateRequest": {
+    "com.azure.storage#UpdateConnectorRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13032,7 +13033,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.storage#ConnectorsUpdateRequestTagsMap",
+          "target": "com.azure.storage#UpdateConnectorRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -13115,7 +13116,7 @@
         "smithy.api#documentation": "State - Active or Inactive. Whether or not the Storage Connector should start as active (default: Active)\n(While set to false on the Storage Connector, all data plane requests using this Storage Connector fail, and this Storage Connector is not billed if it would be otherwise."
       }
     },
-    "com.azure.storage#ConnectorsUpdateRequestTagsMap": {
+    "com.azure.storage#UpdateConnectorRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -13127,13 +13128,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.storage#ConnectorsCreate": {
+    "com.azure.storage#CreateConnector": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#ConnectorsCreateRequest"
+        "target": "com.azure.storage#CreateConnectorRequest"
       },
       "output": {
-        "target": "com.azure.storage#ConnectorsCreateResponse"
+        "target": "com.azure.storage#CreateConnectorResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -13146,7 +13147,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#ConnectorsCreateResponse": {
+    "com.azure.storage#CreateConnectorResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -13174,7 +13175,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.storage#ConnectorsCreateResponseTagsMap",
+          "target": "com.azure.storage#CreateConnectorResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -13198,7 +13199,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storage#ConnectorsCreateResponseTagsMap": {
+    "com.azure.storage#CreateConnectorResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -13210,7 +13211,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.storage#ConnectorsCreateRequest": {
+    "com.azure.storage#CreateConnectorRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13246,7 +13247,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.storage#ConnectorsCreateRequestTagsMap",
+          "target": "com.azure.storage#CreateConnectorRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -13330,7 +13331,7 @@
         "smithy.api#documentation": "State - Active or Inactive. Whether or not the Storage Connector should start as active (default: Active)\n(While set to false on the Storage Connector, all data plane requests using this Storage Connector fail, and this Storage Connector is not billed if it would be otherwise."
       }
     },
-    "com.azure.storage#ConnectorsCreateRequestTagsMap": {
+    "com.azure.storage#CreateConnectorRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -13342,13 +13343,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.storage#ConnectorsGet": {
+    "com.azure.storage#GetConnector": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#ConnectorsGetRequest"
+        "target": "com.azure.storage#GetConnectorRequest"
       },
       "output": {
-        "target": "com.azure.storage#ConnectorsGetResponse"
+        "target": "com.azure.storage#GetConnectorResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -13361,7 +13362,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#ConnectorsGetResponse": {
+    "com.azure.storage#GetConnectorResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -13389,7 +13390,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.storage#ConnectorsGetResponseTagsMap",
+          "target": "com.azure.storage#GetConnectorResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -13413,7 +13414,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storage#ConnectorsGetResponseTagsMap": {
+    "com.azure.storage#GetConnectorResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -13425,7 +13426,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.storage#ConnectorsGetRequest": {
+    "com.azure.storage#GetConnectorRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13465,10 +13466,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#ConnectorsListByStorageAccount": {
+    "com.azure.storage#ListConnectorByStorageAccount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#ConnectorsListByStorageAccountRequest"
+        "target": "com.azure.storage#ListConnectorByStorageAccountRequest"
       },
       "output": {
         "target": "com.azure.storage#ConnectorListResult"
@@ -13578,7 +13579,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.storage#ConnectorsListByStorageAccountRequest": {
+    "com.azure.storage#ListConnectorByStorageAccountRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13610,10 +13611,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#BlobContainersSetLegalHold": {
+    "com.azure.storage#SetBlobContainerLegalHold": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#BlobContainersSetLegalHoldRequest"
+        "target": "com.azure.storage#SetBlobContainerLegalHoldRequest"
       },
       "output": {
         "target": "com.azure.storage#LegalHold"
@@ -13665,7 +13666,7 @@
         "smithy.api#documentation": "Each tag should be 3 to 23 alphanumeric characters and is normalized to lower case at SRP."
       }
     },
-    "com.azure.storage#BlobContainersSetLegalHoldRequest": {
+    "com.azure.storage#SetBlobContainerLegalHoldRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13701,7 +13702,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.storage#BlobContainersSetLegalHoldRequestTagsList",
+          "target": "com.azure.storage#SetBlobContainerLegalHoldRequestTagsList",
           "traits": {
             "smithy.api#documentation": "Each tag should be 3 to 23 alphanumeric characters and is normalized to lower case at SRP.",
             "smithy.api#required": {}
@@ -13718,7 +13719,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#BlobContainersSetLegalHoldRequestTagsList": {
+    "com.azure.storage#SetBlobContainerLegalHoldRequestTagsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -13934,13 +13935,13 @@
         "smithy.api#documentation": "Specifies the lease action. Can be one of the available actions."
       }
     },
-    "com.azure.storage#BlobContainersLockImmutabilityPolicy": {
+    "com.azure.storage#LockBlobContainerImmutabilityPolicy": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#BlobContainersLockImmutabilityPolicyRequest"
+        "target": "com.azure.storage#LockBlobContainerImmutabilityPolicyRequest"
       },
       "output": {
-        "target": "com.azure.storage#BlobContainersLockImmutabilityPolicyResponse"
+        "target": "com.azure.storage#LockBlobContainerImmutabilityPolicyResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -13953,7 +13954,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#BlobContainersLockImmutabilityPolicyResponse": {
+    "com.azure.storage#LockBlobContainerImmutabilityPolicyResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -14050,7 +14051,7 @@
         "smithy.api#documentation": "The ImmutabilityPolicy state of a blob container, possible values include: Locked and Unlocked."
       }
     },
-    "com.azure.storage#BlobContainersLockImmutabilityPolicyRequest": {
+    "com.azure.storage#LockBlobContainerImmutabilityPolicyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -14090,13 +14091,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#BlobContainersExtendImmutabilityPolicy": {
+    "com.azure.storage#ExtendBlobContainerImmutabilityPolicy": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#BlobContainersExtendImmutabilityPolicyRequest"
+        "target": "com.azure.storage#ExtendBlobContainerImmutabilityPolicyRequest"
       },
       "output": {
-        "target": "com.azure.storage#BlobContainersExtendImmutabilityPolicyResponse"
+        "target": "com.azure.storage#ExtendBlobContainerImmutabilityPolicyResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -14109,7 +14110,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#BlobContainersExtendImmutabilityPolicyResponse": {
+    "com.azure.storage#ExtendBlobContainerImmutabilityPolicyResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -14154,7 +14155,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storage#BlobContainersExtendImmutabilityPolicyRequest": {
+    "com.azure.storage#ExtendBlobContainerImmutabilityPolicyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -14201,13 +14202,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#BlobContainersDeleteImmutabilityPolicy": {
+    "com.azure.storage#DeleteBlobContainerImmutabilityPolicy": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#BlobContainersDeleteImmutabilityPolicyRequest"
+        "target": "com.azure.storage#DeleteBlobContainerImmutabilityPolicyRequest"
       },
       "output": {
-        "target": "com.azure.storage#BlobContainersDeleteImmutabilityPolicyResponse"
+        "target": "com.azure.storage#DeleteBlobContainerImmutabilityPolicyResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -14220,7 +14221,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#BlobContainersDeleteImmutabilityPolicyResponse": {
+    "com.azure.storage#DeleteBlobContainerImmutabilityPolicyResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -14265,7 +14266,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storage#BlobContainersDeleteImmutabilityPolicyRequest": {
+    "com.azure.storage#DeleteBlobContainerImmutabilityPolicyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -14416,13 +14417,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#BlobContainersGetImmutabilityPolicy": {
+    "com.azure.storage#GetBlobContainerImmutabilityPolicy": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#BlobContainersGetImmutabilityPolicyRequest"
+        "target": "com.azure.storage#GetBlobContainerImmutabilityPolicyRequest"
       },
       "output": {
-        "target": "com.azure.storage#BlobContainersGetImmutabilityPolicyResponse"
+        "target": "com.azure.storage#GetBlobContainerImmutabilityPolicyResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -14435,7 +14436,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#BlobContainersGetImmutabilityPolicyResponse": {
+    "com.azure.storage#GetBlobContainerImmutabilityPolicyResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -14480,7 +14481,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storage#BlobContainersGetImmutabilityPolicyRequest": {
+    "com.azure.storage#GetBlobContainerImmutabilityPolicyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -14520,10 +14521,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#BlobContainersClearLegalHold": {
+    "com.azure.storage#ClearBlobContainerLegalHold": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#BlobContainersClearLegalHoldRequest"
+        "target": "com.azure.storage#ClearBlobContainerLegalHoldRequest"
       },
       "output": {
         "target": "com.azure.storage#LegalHold"
@@ -14539,7 +14540,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#BlobContainersClearLegalHoldRequest": {
+    "com.azure.storage#ClearBlobContainerLegalHoldRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -14575,7 +14576,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.storage#BlobContainersClearLegalHoldRequestTagsList",
+          "target": "com.azure.storage#ClearBlobContainerLegalHoldRequestTagsList",
           "traits": {
             "smithy.api#documentation": "Each tag should be 3 to 23 alphanumeric characters and is normalized to lower case at SRP.",
             "smithy.api#required": {}
@@ -14592,7 +14593,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#BlobContainersClearLegalHoldRequestTagsList": {
+    "com.azure.storage#ClearBlobContainerLegalHoldRequestTagsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -14601,10 +14602,10 @@
         "smithy.api#documentation": "Each tag should be 3 to 23 alphanumeric characters and is normalized to lower case at SRP."
       }
     },
-    "com.azure.storage#BlobContainersDelete": {
+    "com.azure.storage#DeleteBlobContainer": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#BlobContainersDeleteRequest"
+        "target": "com.azure.storage#DeleteBlobContainerRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -14620,7 +14621,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#BlobContainersDeleteRequest": {
+    "com.azure.storage#DeleteBlobContainerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -14660,13 +14661,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#BlobContainersUpdate": {
+    "com.azure.storage#UpdateBlobContainer": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#BlobContainersUpdateRequest"
+        "target": "com.azure.storage#UpdateBlobContainerRequest"
       },
       "output": {
-        "target": "com.azure.storage#BlobContainersUpdateResponse"
+        "target": "com.azure.storage#UpdateBlobContainerResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -14679,7 +14680,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#BlobContainersUpdateResponse": {
+    "com.azure.storage#UpdateBlobContainerResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -15139,7 +15140,7 @@
         "smithy.api#documentation": "Specifies whether data in the container may be accessed publicly and the level of access."
       }
     },
-    "com.azure.storage#BlobContainersUpdateRequest": {
+    "com.azure.storage#UpdateBlobContainerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15261,13 +15262,13 @@
         "smithy.api#documentation": "A name-value pair to associate with the container as metadata."
       }
     },
-    "com.azure.storage#BlobContainersCreate": {
+    "com.azure.storage#CreateBlobContainer": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#BlobContainersCreateRequest"
+        "target": "com.azure.storage#CreateBlobContainerRequest"
       },
       "output": {
-        "target": "com.azure.storage#BlobContainersCreateResponse"
+        "target": "com.azure.storage#CreateBlobContainerResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -15280,7 +15281,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#BlobContainersCreateResponse": {
+    "com.azure.storage#CreateBlobContainerResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -15324,7 +15325,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storage#BlobContainersCreateRequest": {
+    "com.azure.storage#CreateBlobContainerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15370,13 +15371,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#BlobContainersGet": {
+    "com.azure.storage#GetBlobContainer": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#BlobContainersGetRequest"
+        "target": "com.azure.storage#GetBlobContainerRequest"
       },
       "output": {
-        "target": "com.azure.storage#BlobContainersGetResponse"
+        "target": "com.azure.storage#GetBlobContainerResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -15389,7 +15390,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#BlobContainersGetResponse": {
+    "com.azure.storage#GetBlobContainerResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -15433,7 +15434,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storage#BlobContainersGetRequest": {
+    "com.azure.storage#GetBlobContainerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15473,10 +15474,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#BlobContainersList": {
+    "com.azure.storage#ListBlobContainers": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#BlobContainersListRequest"
+        "target": "com.azure.storage#ListBlobContainersRequest"
       },
       "output": {
         "target": "com.azure.storage#ListContainerItems"
@@ -15566,7 +15567,7 @@
         "smithy.api#documentation": "The blob container properties be listed out."
       }
     },
-    "com.azure.storage#BlobContainersListRequest": {
+    "com.azure.storage#ListBlobContainersRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15608,7 +15609,7 @@
           }
         },
         "_include": {
-          "target": "com.azure.storage#BlobContainersListRequestInclude",
+          "target": "com.azure.storage#ListBlobContainersRequestInclude",
           "traits": {
             "smithy.api#httpQuery": "$include",
             "smithy.api#documentation": "Optional, used to include the properties for soft deleted blob containers."
@@ -15619,7 +15620,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#BlobContainersListRequestInclude": {
+    "com.azure.storage#ListBlobContainersRequestInclude": {
       "type": "enum",
       "members": {
         "DELETED": {
@@ -15631,13 +15632,13 @@
       },
       "traits": {}
     },
-    "com.azure.storage#BlobServicesSetServiceProperties": {
+    "com.azure.storage#SetBlobServiceServiceProperties": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#BlobServicesSetServicePropertiesRequest"
+        "target": "com.azure.storage#SetBlobServiceServicePropertiesRequest"
       },
       "output": {
-        "target": "com.azure.storage#BlobServicesSetServicePropertiesResponse"
+        "target": "com.azure.storage#SetBlobServiceServicePropertiesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -15650,7 +15651,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#BlobServicesSetServicePropertiesResponse": {
+    "com.azure.storage#SetBlobServiceServicePropertiesResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -15904,7 +15905,7 @@
         "smithy.api#documentation": "The static website properties for blob storage."
       }
     },
-    "com.azure.storage#BlobServicesSetServicePropertiesRequest": {
+    "com.azure.storage#SetBlobServiceServicePropertiesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16031,13 +16032,13 @@
         "smithy.api#documentation": "The blob service properties for blob restore policy"
       }
     },
-    "com.azure.storage#BlobServicesGetServiceProperties": {
+    "com.azure.storage#GetBlobServiceServiceProperties": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#BlobServicesGetServicePropertiesRequest"
+        "target": "com.azure.storage#GetBlobServiceServicePropertiesRequest"
       },
       "output": {
-        "target": "com.azure.storage#BlobServicesGetServicePropertiesResponse"
+        "target": "com.azure.storage#GetBlobServiceServicePropertiesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -16050,7 +16051,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#BlobServicesGetServicePropertiesResponse": {
+    "com.azure.storage#GetBlobServiceServicePropertiesResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -16094,7 +16095,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storage#BlobServicesGetServicePropertiesRequest": {
+    "com.azure.storage#GetBlobServiceServicePropertiesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16126,10 +16127,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#BlobServicesList": {
+    "com.azure.storage#ListBlobServices": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#BlobServicesListRequest"
+        "target": "com.azure.storage#ListBlobServicesRequest"
       },
       "output": {
         "target": "com.azure.storage#BlobServiceItems"
@@ -16213,7 +16214,7 @@
         "smithy.api#documentation": "The properties of a storage account’s Blob service."
       }
     },
-    "com.azure.storage#BlobServicesListRequest": {
+    "com.azure.storage#ListBlobServicesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16245,10 +16246,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#AdvancedPlatformMetricsDelete": {
+    "com.azure.storage#DeleteAdvancedPlatformMetrics": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#AdvancedPlatformMetricsDeleteRequest"
+        "target": "com.azure.storage#DeleteAdvancedPlatformMetricsRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -16264,7 +16265,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#AdvancedPlatformMetricsDeleteRequest": {
+    "com.azure.storage#DeleteAdvancedPlatformMetricsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16292,7 +16293,7 @@
           }
         },
         "advancedPlatformMetricsRuleType": {
-          "target": "com.azure.storage#AdvancedPlatformMetricsDeleteRequestAdvancedPlatformMetricsRuleType",
+          "target": "com.azure.storage#DeleteAdvancedPlatformMetricsRequestAdvancedPlatformMetricsRuleType",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -16304,7 +16305,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#AdvancedPlatformMetricsDeleteRequestAdvancedPlatformMetricsRuleType": {
+    "com.azure.storage#DeleteAdvancedPlatformMetricsRequestAdvancedPlatformMetricsRuleType": {
       "type": "enum",
       "members": {
         "CONTAINERLEVELCAPACITYMETRICS": {
@@ -16591,13 +16592,13 @@
       },
       "traits": {}
     },
-    "com.azure.storage#AdvancedPlatformMetricsGet": {
+    "com.azure.storage#GetAdvancedPlatformMetrics": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#AdvancedPlatformMetricsGetRequest"
+        "target": "com.azure.storage#GetAdvancedPlatformMetricsRequest"
       },
       "output": {
-        "target": "com.azure.storage#AdvancedPlatformMetricsGetResponse"
+        "target": "com.azure.storage#GetAdvancedPlatformMetricsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -16610,7 +16611,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#AdvancedPlatformMetricsGetResponse": {
+    "com.azure.storage#GetAdvancedPlatformMetricsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -16648,7 +16649,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storage#AdvancedPlatformMetricsGetRequest": {
+    "com.azure.storage#GetAdvancedPlatformMetricsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16676,7 +16677,7 @@
           }
         },
         "advancedPlatformMetricsRuleType": {
-          "target": "com.azure.storage#AdvancedPlatformMetricsGetRequestAdvancedPlatformMetricsRuleType",
+          "target": "com.azure.storage#GetAdvancedPlatformMetricsRequestAdvancedPlatformMetricsRuleType",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -16688,7 +16689,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#AdvancedPlatformMetricsGetRequestAdvancedPlatformMetricsRuleType": {
+    "com.azure.storage#GetAdvancedPlatformMetricsRequestAdvancedPlatformMetricsRuleType": {
       "type": "enum",
       "members": {
         "CONTAINERLEVELCAPACITYMETRICS": {
@@ -16700,10 +16701,10 @@
       },
       "traits": {}
     },
-    "com.azure.storage#AdvancedPlatformMetricsList": {
+    "com.azure.storage#ListAdvancedPlatformMetrics": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#AdvancedPlatformMetricsListRequest"
+        "target": "com.azure.storage#ListAdvancedPlatformMetricsRequest"
       },
       "output": {
         "target": "com.azure.storage#AdvancedPlatformMetricsRuleListResult"
@@ -16787,7 +16788,7 @@
         "smithy.api#documentation": "The advanced platform metrics rule for the storage account."
       }
     },
-    "com.azure.storage#AdvancedPlatformMetricsListRequest": {
+    "com.azure.storage#ListAdvancedPlatformMetricsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16819,13 +16820,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#StorageAccountsGetCustomerInitiatedMigration": {
+    "com.azure.storage#GetStorageAccountCustomerInitiatedMigration": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#StorageAccountsGetCustomerInitiatedMigrationRequest"
+        "target": "com.azure.storage#GetStorageAccountCustomerInitiatedMigrationRequest"
       },
       "output": {
-        "target": "com.azure.storage#StorageAccountsGetCustomerInitiatedMigrationResponse"
+        "target": "com.azure.storage#GetStorageAccountCustomerInitiatedMigrationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -16838,7 +16839,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#StorageAccountsGetCustomerInitiatedMigrationResponse": {
+    "com.azure.storage#GetStorageAccountCustomerInitiatedMigrationResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -16948,7 +16949,7 @@
         "smithy.api#documentation": "Current status of migration"
       }
     },
-    "com.azure.storage#StorageAccountsGetCustomerInitiatedMigrationRequest": {
+    "com.azure.storage#GetStorageAccountCustomerInitiatedMigrationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16976,7 +16977,7 @@
           }
         },
         "migrationName": {
-          "target": "com.azure.storage#StorageAccountsGetCustomerInitiatedMigrationRequestMigrationName",
+          "target": "com.azure.storage#GetStorageAccountCustomerInitiatedMigrationRequestMigrationName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -16988,7 +16989,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#StorageAccountsGetCustomerInitiatedMigrationRequestMigrationName": {
+    "com.azure.storage#GetStorageAccountCustomerInitiatedMigrationRequestMigrationName": {
       "type": "enum",
       "members": {
         "DEFAULT": {
@@ -17000,10 +17001,10 @@
       },
       "traits": {}
     },
-    "com.azure.storage#StorageAccountsAbortHierarchicalNamespaceMigration": {
+    "com.azure.storage#AbortStorageAccountHierarchicalNamespaceMigration": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#StorageAccountsAbortHierarchicalNamespaceMigrationRequest"
+        "target": "com.azure.storage#AbortStorageAccountHierarchicalNamespaceMigrationRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -17019,7 +17020,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#StorageAccountsAbortHierarchicalNamespaceMigrationRequest": {
+    "com.azure.storage#AbortStorageAccountHierarchicalNamespaceMigrationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -17051,10 +17052,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#StorageAccountsDelete": {
+    "com.azure.storage#DeleteStorageAccount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#StorageAccountsDeleteRequest"
+        "target": "com.azure.storage#DeleteStorageAccountRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -17070,7 +17071,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#StorageAccountsDeleteRequest": {
+    "com.azure.storage#DeleteStorageAccountRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -17102,13 +17103,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#StorageAccountsUpdate": {
+    "com.azure.storage#UpdateStorageAccount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#StorageAccountsUpdateRequest"
+        "target": "com.azure.storage#UpdateStorageAccountRequest"
       },
       "output": {
-        "target": "com.azure.storage#StorageAccountsUpdateResponse"
+        "target": "com.azure.storage#UpdateStorageAccountResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -17121,7 +17122,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#StorageAccountsUpdateResponse": {
+    "com.azure.storage#UpdateStorageAccountResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -17149,7 +17150,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.storage#StorageAccountsUpdateResponseTagsMap",
+          "target": "com.azure.storage#UpdateStorageAccountResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -17192,7 +17193,7 @@
           }
         },
         "zones": {
-          "target": "com.azure.storage#StorageAccountsUpdateResponseZonesList",
+          "target": "com.azure.storage#UpdateStorageAccountResponseZonesList",
           "traits": {
             "smithy.api#documentation": "The availability zones."
           }
@@ -17242,7 +17243,7 @@
         "smithy.api#documentation": "The availability zone pinning policy for the storage account."
       }
     },
-    "com.azure.storage#StorageAccountsUpdateResponseZonesList": {
+    "com.azure.storage#UpdateStorageAccountResponseZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -19297,7 +19298,7 @@
         "smithy.api#documentation": "Gets the status of the storage account at the time the operation was called."
       }
     },
-    "com.azure.storage#StorageAccountsUpdateResponseTagsMap": {
+    "com.azure.storage#UpdateStorageAccountResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -19309,7 +19310,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.storage#StorageAccountsUpdateRequest": {
+    "com.azure.storage#UpdateStorageAccountRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -19343,7 +19344,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.storage#StorageAccountsUpdateRequestTagsMap",
+          "target": "com.azure.storage#UpdateStorageAccountRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Gets or sets a list of key value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater in length than 128 characters and a value no greater in length than 256 characters."
           }
@@ -19367,7 +19368,7 @@
           }
         },
         "zones": {
-          "target": "com.azure.storage#StorageAccountsUpdateRequestZonesList",
+          "target": "com.azure.storage#UpdateStorageAccountRequestZonesList",
           "traits": {
             "smithy.api#documentation": "Optional. Gets or sets the pinned logical availability zone for the storage account."
           }
@@ -19383,7 +19384,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#StorageAccountsUpdateRequestZonesList": {
+    "com.azure.storage#UpdateStorageAccountRequestZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -19906,7 +19907,7 @@
         "smithy.api#documentation": "UserAssignedIdentity for the resource."
       }
     },
-    "com.azure.storage#StorageAccountsUpdateRequestTagsMap": {
+    "com.azure.storage#UpdateStorageAccountRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -19918,13 +19919,13 @@
         "smithy.api#documentation": "Gets or sets a list of key value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater in length than 128 characters and a value no greater in length than 256 characters."
       }
     },
-    "com.azure.storage#StorageAccountsCreate": {
+    "com.azure.storage#CreateStorageAccount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#StorageAccountsCreateRequest"
+        "target": "com.azure.storage#CreateStorageAccountRequest"
       },
       "output": {
-        "target": "com.azure.storage#StorageAccountsCreateResponse"
+        "target": "com.azure.storage#CreateStorageAccountResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -19937,7 +19938,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#StorageAccountsCreateResponse": {
+    "com.azure.storage#CreateStorageAccountResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -19965,7 +19966,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.storage#StorageAccountsCreateResponseTagsMap",
+          "target": "com.azure.storage#CreateStorageAccountResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -20008,7 +20009,7 @@
           }
         },
         "zones": {
-          "target": "com.azure.storage#StorageAccountsCreateResponseZonesList",
+          "target": "com.azure.storage#CreateStorageAccountResponseZonesList",
           "traits": {
             "smithy.api#documentation": "The availability zones."
           }
@@ -20024,7 +20025,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storage#StorageAccountsCreateResponseZonesList": {
+    "com.azure.storage#CreateStorageAccountResponseZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -20033,7 +20034,7 @@
         "smithy.api#documentation": "The availability zones."
       }
     },
-    "com.azure.storage#StorageAccountsCreateResponseTagsMap": {
+    "com.azure.storage#CreateStorageAccountResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -20045,7 +20046,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.storage#StorageAccountsCreateRequest": {
+    "com.azure.storage#CreateStorageAccountRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -20100,7 +20101,7 @@
           }
         },
         "zones": {
-          "target": "com.azure.storage#StorageAccountsCreateRequestZonesList",
+          "target": "com.azure.storage#CreateStorageAccountRequestZonesList",
           "traits": {
             "smithy.api#documentation": "Optional. Gets or sets the pinned logical availability zone for the storage account."
           }
@@ -20112,7 +20113,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.storage#StorageAccountsCreateRequestTagsMap",
+          "target": "com.azure.storage#CreateStorageAccountRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Gets or sets a list of key value pairs that describe the resource. These tags can be used for viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key with a length no greater than 128 characters and a value with a length no greater than 256 characters."
           }
@@ -20316,7 +20317,7 @@
         "smithy.api#documentation": "The parameters used to create the storage account."
       }
     },
-    "com.azure.storage#StorageAccountsCreateRequestTagsMap": {
+    "com.azure.storage#CreateStorageAccountRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -20328,7 +20329,7 @@
         "smithy.api#documentation": "Gets or sets a list of key value pairs that describe the resource. These tags can be used for viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key with a length no greater than 128 characters and a value with a length no greater than 256 characters."
       }
     },
-    "com.azure.storage#StorageAccountsCreateRequestZonesList": {
+    "com.azure.storage#CreateStorageAccountRequestZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -20337,13 +20338,13 @@
         "smithy.api#documentation": "Optional. Gets or sets the pinned logical availability zone for the storage account."
       }
     },
-    "com.azure.storage#StorageAccountsGetProperties": {
+    "com.azure.storage#GetStorageAccountProperties": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#StorageAccountsGetPropertiesRequest"
+        "target": "com.azure.storage#GetStorageAccountPropertiesRequest"
       },
       "output": {
-        "target": "com.azure.storage#StorageAccountsGetPropertiesResponse"
+        "target": "com.azure.storage#GetStorageAccountPropertiesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -20356,7 +20357,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#StorageAccountsGetPropertiesResponse": {
+    "com.azure.storage#GetStorageAccountPropertiesResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -20384,7 +20385,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.storage#StorageAccountsGetPropertiesResponseTagsMap",
+          "target": "com.azure.storage#GetStorageAccountPropertiesResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -20427,7 +20428,7 @@
           }
         },
         "zones": {
-          "target": "com.azure.storage#StorageAccountsGetPropertiesResponseZonesList",
+          "target": "com.azure.storage#GetStorageAccountPropertiesResponseZonesList",
           "traits": {
             "smithy.api#documentation": "The availability zones."
           }
@@ -20443,7 +20444,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storage#StorageAccountsGetPropertiesResponseZonesList": {
+    "com.azure.storage#GetStorageAccountPropertiesResponseZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -20452,7 +20453,7 @@
         "smithy.api#documentation": "The availability zones."
       }
     },
-    "com.azure.storage#StorageAccountsGetPropertiesResponseTagsMap": {
+    "com.azure.storage#GetStorageAccountPropertiesResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -20464,7 +20465,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.storage#StorageAccountsGetPropertiesRequest": {
+    "com.azure.storage#GetStorageAccountPropertiesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -20492,7 +20493,7 @@
           }
         },
         "_expand": {
-          "target": "com.azure.storage#StorageAccountsGetPropertiesRequestExpand",
+          "target": "com.azure.storage#GetStorageAccountPropertiesRequestExpand",
           "traits": {
             "smithy.api#httpQuery": "$expand",
             "smithy.api#documentation": "May be used to expand the properties within account's properties. By default, data is not included when fetching properties. Currently we only support geoReplicationStats and blobRestoreStatus."
@@ -20503,7 +20504,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#StorageAccountsGetPropertiesRequestExpand": {
+    "com.azure.storage#GetStorageAccountPropertiesRequestExpand": {
       "type": "enum",
       "members": {
         "GEOREPLICATIONSTATS": {
@@ -20521,10 +20522,10 @@
       },
       "traits": {}
     },
-    "com.azure.storage#StorageAccountsListByResourceGroup": {
+    "com.azure.storage#ListStorageAccountByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#StorageAccountsListByResourceGroupRequest"
+        "target": "com.azure.storage#ListStorageAccountByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.storage#StorageAccountListResult"
@@ -20678,7 +20679,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.storage#StorageAccountsListByResourceGroupRequest": {
+    "com.azure.storage#ListStorageAccountByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -20702,10 +20703,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#ContextCacheContainersDelete": {
+    "com.azure.storage#DeleteContextCacheContainer": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#ContextCacheContainersDeleteRequest"
+        "target": "com.azure.storage#DeleteContextCacheContainerRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -20721,7 +20722,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#ContextCacheContainersDeleteRequest": {
+    "com.azure.storage#DeleteContextCacheContainerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -20761,13 +20762,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#ContextCacheContainersUpdate": {
+    "com.azure.storage#UpdateContextCacheContainer": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#ContextCacheContainersUpdateRequest"
+        "target": "com.azure.storage#UpdateContextCacheContainerRequest"
       },
       "output": {
-        "target": "com.azure.storage#ContextCacheContainersUpdateResponse"
+        "target": "com.azure.storage#UpdateContextCacheContainerResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -20780,7 +20781,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#ContextCacheContainersUpdateResponse": {
+    "com.azure.storage#UpdateContextCacheContainerResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -20923,7 +20924,7 @@
         "smithy.api#documentation": "The AI provider associated with a container."
       }
     },
-    "com.azure.storage#ContextCacheContainersUpdateRequest": {
+    "com.azure.storage#UpdateContextCacheContainerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -21128,13 +21129,13 @@
         "smithy.api#documentation": "Details of a container within a Context Cache."
       }
     },
-    "com.azure.storage#ContextCacheContainersGet": {
+    "com.azure.storage#GetContextCacheContainer": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#ContextCacheContainersGetRequest"
+        "target": "com.azure.storage#GetContextCacheContainerRequest"
       },
       "output": {
-        "target": "com.azure.storage#ContextCacheContainersGetResponse"
+        "target": "com.azure.storage#GetContextCacheContainerResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -21147,7 +21148,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#ContextCacheContainersGetResponse": {
+    "com.azure.storage#GetContextCacheContainerResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -21186,7 +21187,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storage#ContextCacheContainersGetRequest": {
+    "com.azure.storage#GetContextCacheContainerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -21226,10 +21227,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#ContextCacheContainersListByContextCache": {
+    "com.azure.storage#ListContextCacheContainerByContextCache": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#ContextCacheContainersListByContextCacheRequest"
+        "target": "com.azure.storage#ListContextCacheContainerByContextCacheRequest"
       },
       "output": {
         "target": "com.azure.storage#ContextCacheContainerListResult"
@@ -21314,7 +21315,7 @@
         "smithy.api#documentation": "A container resource within a Context Cache"
       }
     },
-    "com.azure.storage#ContextCacheContainersListByContextCacheRequest": {
+    "com.azure.storage#ListContextCacheContainerByContextCacheRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -21346,10 +21347,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#ContextCachesDelete": {
+    "com.azure.storage#DeleteContextCach": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#ContextCachesDeleteRequest"
+        "target": "com.azure.storage#DeleteContextCachRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -21365,7 +21366,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#ContextCachesDeleteRequest": {
+    "com.azure.storage#DeleteContextCachRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -21397,13 +21398,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#ContextCachesUpdate": {
+    "com.azure.storage#UpdateContextCach": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#ContextCachesUpdateRequest"
+        "target": "com.azure.storage#UpdateContextCachRequest"
       },
       "output": {
-        "target": "com.azure.storage#ContextCachesUpdateResponse"
+        "target": "com.azure.storage#UpdateContextCachResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -21416,7 +21417,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#ContextCachesUpdateResponse": {
+    "com.azure.storage#UpdateContextCachResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -21444,7 +21445,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.storage#ContextCachesUpdateResponseTagsMap",
+          "target": "com.azure.storage#UpdateContextCachResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -21464,7 +21465,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.storage#ContextCachesUpdateResponseIdentity",
+          "target": "com.azure.storage#UpdateContextCachResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
           }
@@ -21474,7 +21475,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storage#ContextCachesUpdateResponseIdentity": {
+    "com.azure.storage#UpdateContextCachResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -21697,7 +21698,7 @@
         "smithy.api#documentation": "The kind of context cache account, determining storage topology."
       }
     },
-    "com.azure.storage#ContextCachesUpdateResponseTagsMap": {
+    "com.azure.storage#UpdateContextCachResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -21709,7 +21710,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.storage#ContextCachesUpdateRequest": {
+    "com.azure.storage#UpdateContextCachRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -21737,13 +21738,13 @@
           }
         },
         "tags": {
-          "target": "com.azure.storage#ContextCachesUpdateRequestTagsMap",
+          "target": "com.azure.storage#UpdateContextCachRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
         },
         "identity": {
-          "target": "com.azure.storage#ContextCachesUpdateRequestIdentity",
+          "target": "com.azure.storage#UpdateContextCachRequestIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
           }
@@ -21779,7 +21780,7 @@
         "smithy.api#documentation": "Updatable properties of the Context Cache."
       }
     },
-    "com.azure.storage#ContextCachesUpdateRequestIdentity": {
+    "com.azure.storage#UpdateContextCachRequestIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -21793,7 +21794,7 @@
         "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
       }
     },
-    "com.azure.storage#ContextCachesUpdateRequestTagsMap": {
+    "com.azure.storage#UpdateContextCachRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -22031,13 +22032,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.storage#ContextCachesGet": {
+    "com.azure.storage#GetContextCach": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#ContextCachesGetRequest"
+        "target": "com.azure.storage#GetContextCachRequest"
       },
       "output": {
-        "target": "com.azure.storage#ContextCachesGetResponse"
+        "target": "com.azure.storage#GetContextCachResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -22050,7 +22051,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#ContextCachesGetResponse": {
+    "com.azure.storage#GetContextCachResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -22078,7 +22079,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.storage#ContextCachesGetResponseTagsMap",
+          "target": "com.azure.storage#GetContextCachResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -22098,7 +22099,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.storage#ContextCachesGetResponseIdentity",
+          "target": "com.azure.storage#GetContextCachResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
           }
@@ -22108,7 +22109,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storage#ContextCachesGetResponseIdentity": {
+    "com.azure.storage#GetContextCachResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -22134,7 +22135,7 @@
         "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
       }
     },
-    "com.azure.storage#ContextCachesGetResponseTagsMap": {
+    "com.azure.storage#GetContextCachResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -22146,7 +22147,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.storage#ContextCachesGetRequest": {
+    "com.azure.storage#GetContextCachRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -22178,10 +22179,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#ContextCachesListByResourceGroup": {
+    "com.azure.storage#ListContextCachByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#ContextCachesListByResourceGroupRequest"
+        "target": "com.azure.storage#ListContextCachByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.storage#ContextCacheListResult"
@@ -22323,7 +22324,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.storage#ContextCachesListByResourceGroupRequest": {
+    "com.azure.storage#ListContextCachByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -22347,10 +22348,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#StorageAccountsList": {
+    "com.azure.storage#ListStorageAccounts": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#StorageAccountsListRequest"
+        "target": "com.azure.storage#ListStorageAccountsRequest"
       },
       "output": {
         "target": "com.azure.storage#StorageAccountListResult"
@@ -22366,7 +22367,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#StorageAccountsListRequest": {
+    "com.azure.storage#ListStorageAccountsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -22382,10 +22383,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#SkusList": {
+    "com.azure.storage#ListSkus": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#SkusListRequest"
+        "target": "com.azure.storage#ListSkusRequest"
       },
       "output": {
         "target": "com.azure.storage#StorageSkuListResult"
@@ -22617,7 +22618,7 @@
         "smithy.api#documentation": "The set of locations that the SKU is available. This will be supported and registered Azure Geo Regions (e.g. West US, East US, Southeast Asia, etc.)."
       }
     },
-    "com.azure.storage#SkusListRequest": {
+    "com.azure.storage#ListSkusRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -22633,10 +22634,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#UsagesListByLocation": {
+    "com.azure.storage#ListUsageByLocation": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#UsagesListByLocationRequest"
+        "target": "com.azure.storage#ListUsageByLocationRequest"
       },
       "output": {
         "target": "com.azure.storage#UsageListResult"
@@ -22774,7 +22775,7 @@
         "smithy.api#documentation": "Gets the unit of measurement."
       }
     },
-    "com.azure.storage#UsagesListByLocationRequest": {
+    "com.azure.storage#ListUsageByLocationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -22798,13 +22799,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#DeletedAccountsGet": {
+    "com.azure.storage#GetDeletedAccount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#DeletedAccountsGetRequest"
+        "target": "com.azure.storage#GetDeletedAccountRequest"
       },
       "output": {
-        "target": "com.azure.storage#DeletedAccountsGetResponse"
+        "target": "com.azure.storage#GetDeletedAccountResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -22817,7 +22818,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#DeletedAccountsGetResponse": {
+    "com.azure.storage#GetDeletedAccountResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -22893,7 +22894,7 @@
         "smithy.api#documentation": "Attributes of a deleted storage account."
       }
     },
-    "com.azure.storage#DeletedAccountsGetRequest": {
+    "com.azure.storage#GetDeletedAccountRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -22925,10 +22926,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#DeletedAccountsList": {
+    "com.azure.storage#ListDeletedAccounts": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#DeletedAccountsListRequest"
+        "target": "com.azure.storage#ListDeletedAccountsRequest"
       },
       "output": {
         "target": "com.azure.storage#DeletedAccountListResult"
@@ -23012,7 +23013,7 @@
         "smithy.api#documentation": "Deleted storage account"
       }
     },
-    "com.azure.storage#DeletedAccountsListRequest": {
+    "com.azure.storage#ListDeletedAccountsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -23028,10 +23029,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#ContextCachesListBySubscription": {
+    "com.azure.storage#ListContextCachBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#ContextCachesListBySubscriptionRequest"
+        "target": "com.azure.storage#ListContextCachBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.storage#ContextCacheListResult"
@@ -23047,7 +23048,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.storage#ContextCachesListBySubscriptionRequest": {
+    "com.azure.storage#ListContextCachBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -23063,10 +23064,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#StorageAccountsCheckNameAvailability": {
+    "com.azure.storage#CheckStorageAccountNameAvailability": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storage#StorageAccountsCheckNameAvailabilityRequest"
+        "target": "com.azure.storage#CheckStorageAccountNameAvailabilityRequest"
       },
       "output": {
         "target": "com.azure.storage#CheckNameAvailabilityResult"
@@ -23128,7 +23129,7 @@
         "smithy.api#documentation": "Gets the reason that a storage account name could not be used. The Reason element is only returned if NameAvailable is false."
       }
     },
-    "com.azure.storage#StorageAccountsCheckNameAvailabilityRequest": {
+    "com.azure.storage#CheckStorageAccountNameAvailabilityRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -23147,7 +23148,7 @@
           }
         },
         "type": {
-          "target": "com.azure.storage#StorageAccountsCheckNameAvailabilityRequestType",
+          "target": "com.azure.storage#CheckStorageAccountNameAvailabilityRequestType",
           "traits": {
             "smithy.api#documentation": "The type of resource, Microsoft.Storage/storageAccounts",
             "smithy.api#required": {}
@@ -23158,7 +23159,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storage#StorageAccountsCheckNameAvailabilityRequestType": {
+    "com.azure.storage#CheckStorageAccountNameAvailabilityRequestType": {
       "type": "enum",
       "members": {
         "MICROSOFT_STORAGE_STORAGEACCOUNTS": {
@@ -23172,7 +23173,7 @@
         "smithy.api#documentation": "The type of resource, Microsoft.Storage/storageAccounts"
       }
     },
-    "com.azure.storage#OperationsList": {
+    "com.azure.storage#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -23414,262 +23415,262 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.storage#TableDelete"
+          "target": "com.azure.storage#DeleteTable"
         },
         {
-          "target": "com.azure.storage#TableUpdate"
+          "target": "com.azure.storage#UpdateTable"
         },
         {
-          "target": "com.azure.storage#TableCreate"
+          "target": "com.azure.storage#CreateTable"
         },
         {
-          "target": "com.azure.storage#TableGet"
+          "target": "com.azure.storage#GetTable"
         },
         {
-          "target": "com.azure.storage#TableList"
+          "target": "com.azure.storage#ListTable"
         },
         {
-          "target": "com.azure.storage#TableServicesSetServiceProperties"
+          "target": "com.azure.storage#SetTableServiceServiceProperties"
         },
         {
-          "target": "com.azure.storage#TableServicesGetServiceProperties"
+          "target": "com.azure.storage#GetTableServiceServiceProperties"
         },
         {
-          "target": "com.azure.storage#TableServicesList"
+          "target": "com.azure.storage#ListTableServices2"
         },
         {
-          "target": "com.azure.storage#StorageTaskAssignmentsStopAssignment"
+          "target": "com.azure.storage#StopStorageTaskAssignmentAssignment"
         },
         {
-          "target": "com.azure.storage#StorageTaskAssignmentInstancesReportList"
+          "target": "com.azure.storage#ListStorageTaskAssignmentInstancesReport"
         },
         {
-          "target": "com.azure.storage#StorageTaskAssignmentsDelete"
+          "target": "com.azure.storage#DeleteStorageTaskAssignment"
         },
         {
-          "target": "com.azure.storage#StorageTaskAssignmentsUpdate"
+          "target": "com.azure.storage#UpdateStorageTaskAssignment"
         },
         {
-          "target": "com.azure.storage#StorageTaskAssignmentsCreate"
+          "target": "com.azure.storage#CreateStorageTaskAssignment"
         },
         {
-          "target": "com.azure.storage#StorageTaskAssignmentsGet"
+          "target": "com.azure.storage#GetStorageTaskAssignment"
         },
         {
-          "target": "com.azure.storage#StorageTaskAssignmentsList2"
+          "target": "com.azure.storage#ListStorageTaskAssignments"
         },
         {
           "target": "com.azure.storage#StorageAccountsCustomerInitiatedMigration"
         },
         {
-          "target": "com.azure.storage#StorageAccountsRevokeUserDelegationKeys"
+          "target": "com.azure.storage#RevokeStorageAccountUserDelegationKeys"
         },
         {
-          "target": "com.azure.storage#StorageAccountsRestoreBlobRanges"
+          "target": "com.azure.storage#RestoreStorageAccountBlobRanges"
         },
         {
-          "target": "com.azure.storage#StorageTaskAssignmentsInstancesReportList"
+          "target": "com.azure.storage#ListStorageTaskAssignmentsInstancesReport"
         },
         {
-          "target": "com.azure.storage#StorageAccountsRegenerateKey"
+          "target": "com.azure.storage#RegenerateStorageAccountKey"
         },
         {
-          "target": "com.azure.storage#QueueDelete"
+          "target": "com.azure.storage#DeleteQueue"
         },
         {
-          "target": "com.azure.storage#QueueUpdate"
+          "target": "com.azure.storage#UpdateQueue"
         },
         {
-          "target": "com.azure.storage#QueueCreate"
+          "target": "com.azure.storage#CreateQueue"
         },
         {
-          "target": "com.azure.storage#QueueGet"
+          "target": "com.azure.storage#GetQueue"
         },
         {
-          "target": "com.azure.storage#QueueList"
+          "target": "com.azure.storage#ListQueue2"
         },
         {
-          "target": "com.azure.storage#QueueServicesSetServiceProperties"
+          "target": "com.azure.storage#SetQueueServiceServiceProperties"
         },
         {
-          "target": "com.azure.storage#QueueServicesGetServiceProperties"
+          "target": "com.azure.storage#GetQueueServiceServiceProperties"
         },
         {
-          "target": "com.azure.storage#QueueServicesList"
+          "target": "com.azure.storage#ListQueueServices2"
         },
         {
-          "target": "com.azure.storage#PrivateLinkResourcesListByStorageAccount"
+          "target": "com.azure.storage#ListPrivateLinkResourceByStorageAccount"
         },
         {
-          "target": "com.azure.storage#PrivateEndpointConnectionsDelete"
+          "target": "com.azure.storage#DeletePrivateEndpointConnection"
         },
         {
-          "target": "com.azure.storage#PrivateEndpointConnectionsPut"
+          "target": "com.azure.storage#PutPrivateEndpointConnection"
         },
         {
-          "target": "com.azure.storage#PrivateEndpointConnectionsGet"
+          "target": "com.azure.storage#GetPrivateEndpointConnection"
         },
         {
-          "target": "com.azure.storage#PrivateEndpointConnectionsList"
+          "target": "com.azure.storage#ListPrivateEndpointConnections"
         },
         {
-          "target": "com.azure.storage#ObjectReplicationPoliciesDelete"
+          "target": "com.azure.storage#DeleteObjectReplicationPolicy"
         },
         {
           "target": "com.azure.storage#ObjectReplicationPoliciesCreateOrUpdate"
         },
         {
-          "target": "com.azure.storage#ObjectReplicationPoliciesGet"
+          "target": "com.azure.storage#GetObjectReplicationPolicy"
         },
         {
-          "target": "com.azure.storage#ObjectReplicationPoliciesList"
+          "target": "com.azure.storage#ListObjectReplicationPolicies"
         },
         {
           "target": "com.azure.storage#NetworkSecurityPerimeterConfigurationsReconcile"
         },
         {
-          "target": "com.azure.storage#NetworkSecurityPerimeterConfigurationsGet"
+          "target": "com.azure.storage#GetNetworkSecurityPerimeterConfiguration"
         },
         {
-          "target": "com.azure.storage#NetworkSecurityPerimeterConfigurationsList"
+          "target": "com.azure.storage#ListNetworkSecurityPerimeterConfigurations"
         },
         {
-          "target": "com.azure.storage#ManagementPoliciesDelete"
+          "target": "com.azure.storage#DeleteManagementPolicy"
         },
         {
           "target": "com.azure.storage#ManagementPoliciesCreateOrUpdate"
         },
         {
-          "target": "com.azure.storage#ManagementPoliciesGet"
+          "target": "com.azure.storage#GetManagementPolicy"
         },
         {
-          "target": "com.azure.storage#LocalUsersRegeneratePassword"
+          "target": "com.azure.storage#RegenerateLocalUserPassword"
         },
         {
-          "target": "com.azure.storage#LocalUsersListKeys"
+          "target": "com.azure.storage#ListLocalUserKeys"
         },
         {
-          "target": "com.azure.storage#LocalUsersDelete"
+          "target": "com.azure.storage#DeleteLocalUser"
         },
         {
           "target": "com.azure.storage#LocalUsersCreateOrUpdate"
         },
         {
-          "target": "com.azure.storage#LocalUsersGet"
+          "target": "com.azure.storage#GetLocalUser"
         },
         {
-          "target": "com.azure.storage#LocalUsersList"
+          "target": "com.azure.storage#ListLocalUsers"
         },
         {
-          "target": "com.azure.storage#StorageAccountsListServiceSAS"
+          "target": "com.azure.storage#ListStorageAccountServiceSAS"
         },
         {
-          "target": "com.azure.storage#StorageAccountsListKeys"
+          "target": "com.azure.storage#ListStorageAccountKeys"
         },
         {
-          "target": "com.azure.storage#StorageAccountsListAccountSAS"
+          "target": "com.azure.storage#ListStorageAccountAccountSAS"
         },
         {
-          "target": "com.azure.storage#BlobInventoryPoliciesDelete"
+          "target": "com.azure.storage#DeleteBlobInventoryPolicy"
         },
         {
           "target": "com.azure.storage#BlobInventoryPoliciesCreateOrUpdate"
         },
         {
-          "target": "com.azure.storage#BlobInventoryPoliciesGet"
+          "target": "com.azure.storage#GetBlobInventoryPolicy"
         },
         {
-          "target": "com.azure.storage#BlobInventoryPoliciesList"
+          "target": "com.azure.storage#ListBlobInventoryPolicies"
         },
         {
           "target": "com.azure.storage#StorageAccountsHierarchicalNamespaceMigration"
         },
         {
-          "target": "com.azure.storage#FileServicesGetServiceUsage"
+          "target": "com.azure.storage#GetFileServiceServiceUsage"
         },
         {
-          "target": "com.azure.storage#FileServicesListServiceUsages"
+          "target": "com.azure.storage#ListFileServiceServiceUsages"
         },
         {
-          "target": "com.azure.storage#FileSharesRestore"
+          "target": "com.azure.storage#RestoreFileShare"
         },
         {
           "target": "com.azure.storage#FileSharesLease"
         },
         {
-          "target": "com.azure.storage#FileSharesDelete"
+          "target": "com.azure.storage#DeleteFileShare"
         },
         {
-          "target": "com.azure.storage#FileSharesUpdate"
+          "target": "com.azure.storage#UpdateFileShare"
         },
         {
-          "target": "com.azure.storage#FileSharesCreate"
+          "target": "com.azure.storage#CreateFileShare"
         },
         {
-          "target": "com.azure.storage#FileSharesGet"
+          "target": "com.azure.storage#GetFileShare"
         },
         {
-          "target": "com.azure.storage#FileSharesList"
+          "target": "com.azure.storage#ListFileShares"
         },
         {
-          "target": "com.azure.storage#FileServicesSetServiceProperties"
+          "target": "com.azure.storage#SetFileServiceServiceProperties"
         },
         {
-          "target": "com.azure.storage#FileServicesGetServiceProperties"
+          "target": "com.azure.storage#GetFileServiceServiceProperties"
         },
         {
-          "target": "com.azure.storage#FileServicesList"
+          "target": "com.azure.storage#ListFileServices"
         },
         {
           "target": "com.azure.storage#StorageAccountsFailover"
         },
         {
-          "target": "com.azure.storage#EncryptionScopesPatch"
+          "target": "com.azure.storage#PatchEncryptionScope"
         },
         {
-          "target": "com.azure.storage#EncryptionScopesPut"
+          "target": "com.azure.storage#PutEncryptionScope"
         },
         {
-          "target": "com.azure.storage#EncryptionScopesGet"
+          "target": "com.azure.storage#GetEncryptionScope"
         },
         {
-          "target": "com.azure.storage#EncryptionScopesList"
+          "target": "com.azure.storage#ListEncryptionScopes"
         },
         {
-          "target": "com.azure.storage#DataSharesDelete"
+          "target": "com.azure.storage#DeleteDataShare"
         },
         {
-          "target": "com.azure.storage#DataSharesUpdate"
+          "target": "com.azure.storage#UpdateDataShare"
         },
         {
-          "target": "com.azure.storage#DataSharesCreate"
+          "target": "com.azure.storage#CreateDataShare"
         },
         {
-          "target": "com.azure.storage#DataSharesGet"
+          "target": "com.azure.storage#GetDataShare"
         },
         {
-          "target": "com.azure.storage#DataSharesListByStorageAccount"
+          "target": "com.azure.storage#ListDataShareByStorageAccount"
         },
         {
-          "target": "com.azure.storage#ConnectorsTestExistingConnection"
+          "target": "com.azure.storage#TestConnectorExistingConnection"
         },
         {
-          "target": "com.azure.storage#ConnectorsDelete"
+          "target": "com.azure.storage#DeleteConnector"
         },
         {
-          "target": "com.azure.storage#ConnectorsUpdate"
+          "target": "com.azure.storage#UpdateConnector"
         },
         {
-          "target": "com.azure.storage#ConnectorsCreate"
+          "target": "com.azure.storage#CreateConnector"
         },
         {
-          "target": "com.azure.storage#ConnectorsGet"
+          "target": "com.azure.storage#GetConnector"
         },
         {
-          "target": "com.azure.storage#ConnectorsListByStorageAccount"
+          "target": "com.azure.storage#ListConnectorByStorageAccount"
         },
         {
-          "target": "com.azure.storage#BlobContainersSetLegalHold"
+          "target": "com.azure.storage#SetBlobContainerLegalHold"
         },
         {
           "target": "com.azure.storage#BlobContainersObjectLevelWorm"
@@ -23678,133 +23679,133 @@
           "target": "com.azure.storage#BlobContainersLease"
         },
         {
-          "target": "com.azure.storage#BlobContainersLockImmutabilityPolicy"
+          "target": "com.azure.storage#LockBlobContainerImmutabilityPolicy"
         },
         {
-          "target": "com.azure.storage#BlobContainersExtendImmutabilityPolicy"
+          "target": "com.azure.storage#ExtendBlobContainerImmutabilityPolicy"
         },
         {
-          "target": "com.azure.storage#BlobContainersDeleteImmutabilityPolicy"
+          "target": "com.azure.storage#DeleteBlobContainerImmutabilityPolicy"
         },
         {
           "target": "com.azure.storage#BlobContainersCreateOrUpdateImmutabilityPolicy"
         },
         {
-          "target": "com.azure.storage#BlobContainersGetImmutabilityPolicy"
+          "target": "com.azure.storage#GetBlobContainerImmutabilityPolicy"
         },
         {
-          "target": "com.azure.storage#BlobContainersClearLegalHold"
+          "target": "com.azure.storage#ClearBlobContainerLegalHold"
         },
         {
-          "target": "com.azure.storage#BlobContainersDelete"
+          "target": "com.azure.storage#DeleteBlobContainer"
         },
         {
-          "target": "com.azure.storage#BlobContainersUpdate"
+          "target": "com.azure.storage#UpdateBlobContainer"
         },
         {
-          "target": "com.azure.storage#BlobContainersCreate"
+          "target": "com.azure.storage#CreateBlobContainer"
         },
         {
-          "target": "com.azure.storage#BlobContainersGet"
+          "target": "com.azure.storage#GetBlobContainer"
         },
         {
-          "target": "com.azure.storage#BlobContainersList"
+          "target": "com.azure.storage#ListBlobContainers"
         },
         {
-          "target": "com.azure.storage#BlobServicesSetServiceProperties"
+          "target": "com.azure.storage#SetBlobServiceServiceProperties"
         },
         {
-          "target": "com.azure.storage#BlobServicesGetServiceProperties"
+          "target": "com.azure.storage#GetBlobServiceServiceProperties"
         },
         {
-          "target": "com.azure.storage#BlobServicesList"
+          "target": "com.azure.storage#ListBlobServices"
         },
         {
-          "target": "com.azure.storage#AdvancedPlatformMetricsDelete"
+          "target": "com.azure.storage#DeleteAdvancedPlatformMetrics"
         },
         {
           "target": "com.azure.storage#AdvancedPlatformMetricsCreateOrUpdate"
         },
         {
-          "target": "com.azure.storage#AdvancedPlatformMetricsGet"
+          "target": "com.azure.storage#GetAdvancedPlatformMetrics"
         },
         {
-          "target": "com.azure.storage#AdvancedPlatformMetricsList"
+          "target": "com.azure.storage#ListAdvancedPlatformMetrics"
         },
         {
-          "target": "com.azure.storage#StorageAccountsGetCustomerInitiatedMigration"
+          "target": "com.azure.storage#GetStorageAccountCustomerInitiatedMigration"
         },
         {
-          "target": "com.azure.storage#StorageAccountsAbortHierarchicalNamespaceMigration"
+          "target": "com.azure.storage#AbortStorageAccountHierarchicalNamespaceMigration"
         },
         {
-          "target": "com.azure.storage#StorageAccountsDelete"
+          "target": "com.azure.storage#DeleteStorageAccount"
         },
         {
-          "target": "com.azure.storage#StorageAccountsUpdate"
+          "target": "com.azure.storage#UpdateStorageAccount"
         },
         {
-          "target": "com.azure.storage#StorageAccountsCreate"
+          "target": "com.azure.storage#CreateStorageAccount"
         },
         {
-          "target": "com.azure.storage#StorageAccountsGetProperties"
+          "target": "com.azure.storage#GetStorageAccountProperties"
         },
         {
-          "target": "com.azure.storage#StorageAccountsListByResourceGroup"
+          "target": "com.azure.storage#ListStorageAccountByResourceGroup"
         },
         {
-          "target": "com.azure.storage#ContextCacheContainersDelete"
+          "target": "com.azure.storage#DeleteContextCacheContainer"
         },
         {
-          "target": "com.azure.storage#ContextCacheContainersUpdate"
+          "target": "com.azure.storage#UpdateContextCacheContainer"
         },
         {
           "target": "com.azure.storage#ContextCacheContainersCreateOrUpdate"
         },
         {
-          "target": "com.azure.storage#ContextCacheContainersGet"
+          "target": "com.azure.storage#GetContextCacheContainer"
         },
         {
-          "target": "com.azure.storage#ContextCacheContainersListByContextCache"
+          "target": "com.azure.storage#ListContextCacheContainerByContextCache"
         },
         {
-          "target": "com.azure.storage#ContextCachesDelete"
+          "target": "com.azure.storage#DeleteContextCach"
         },
         {
-          "target": "com.azure.storage#ContextCachesUpdate"
+          "target": "com.azure.storage#UpdateContextCach"
         },
         {
           "target": "com.azure.storage#ContextCachesCreateOrUpdate"
         },
         {
-          "target": "com.azure.storage#ContextCachesGet"
+          "target": "com.azure.storage#GetContextCach"
         },
         {
-          "target": "com.azure.storage#ContextCachesListByResourceGroup"
+          "target": "com.azure.storage#ListContextCachByResourceGroup"
         },
         {
-          "target": "com.azure.storage#StorageAccountsList"
+          "target": "com.azure.storage#ListStorageAccounts"
         },
         {
-          "target": "com.azure.storage#SkusList"
+          "target": "com.azure.storage#ListSkus"
         },
         {
-          "target": "com.azure.storage#UsagesListByLocation"
+          "target": "com.azure.storage#ListUsageByLocation"
         },
         {
-          "target": "com.azure.storage#DeletedAccountsGet"
+          "target": "com.azure.storage#GetDeletedAccount"
         },
         {
-          "target": "com.azure.storage#DeletedAccountsList"
+          "target": "com.azure.storage#ListDeletedAccounts"
         },
         {
-          "target": "com.azure.storage#ContextCachesListBySubscription"
+          "target": "com.azure.storage#ListContextCachBySubscription"
         },
         {
-          "target": "com.azure.storage#StorageAccountsCheckNameAvailability"
+          "target": "com.azure.storage#CheckStorageAccountNameAvailability"
         },
         {
-          "target": "com.azure.storage#OperationsList"
+          "target": "com.azure.storage#ListOperations"
         }
       ],
       "traits": {

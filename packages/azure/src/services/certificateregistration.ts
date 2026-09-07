@@ -505,421 +505,6 @@ export const AppServiceCertificateOrdersCreateOrUpdateCertificateResponse =
     identifier: "AppServiceCertificateOrdersCreateOrUpdateCertificateResponse",
   }) as any as S.Schema<AppServiceCertificateOrdersCreateOrUpdateCertificateResponse>;
 
-export interface AppServiceCertificateOrdersDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the certificate order.. */
-  certificateOrderName: string;
-}
-export const AppServiceCertificateOrdersDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      certificateOrderName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CertificateRegistration/certificateOrders/{certificateOrderName}",
-        code: 200,
-        apiVersion: "2024-11-01",
-      }),
-    ),
-).annotate({
-  identifier: "AppServiceCertificateOrdersDeleteRequest",
-}) as any as S.Schema<AppServiceCertificateOrdersDeleteRequest>;
-
-export interface AppServiceCertificateOrdersDeleteResponse {}
-export const AppServiceCertificateOrdersDeleteResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "AppServiceCertificateOrdersDeleteResponse",
-  }) as any as S.Schema<AppServiceCertificateOrdersDeleteResponse>;
-
-export interface AppServiceCertificateOrdersDeleteCertificateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the certificate order.. */
-  certificateOrderName: string;
-  /** Name of the certificate. */
-  name: string;
-}
-export const AppServiceCertificateOrdersDeleteCertificateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      certificateOrderName: S.String.pipe(T.Label()),
-      name: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CertificateRegistration/certificateOrders/{certificateOrderName}/certificates/{name}",
-        code: 200,
-        apiVersion: "2024-11-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "AppServiceCertificateOrdersDeleteCertificateRequest",
-  }) as any as S.Schema<AppServiceCertificateOrdersDeleteCertificateRequest>;
-
-export interface AppServiceCertificateOrdersDeleteCertificateResponse {}
-export const AppServiceCertificateOrdersDeleteCertificateResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "AppServiceCertificateOrdersDeleteCertificateResponse",
-  }) as any as S.Schema<AppServiceCertificateOrdersDeleteCertificateResponse>;
-
-export interface AppServiceCertificateOrdersGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the certificate order.. */
-  certificateOrderName: string;
-}
-export const AppServiceCertificateOrdersGetRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      certificateOrderName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CertificateRegistration/certificateOrders/{certificateOrderName}",
-        code: 200,
-        apiVersion: "2024-11-01",
-      }),
-    ),
-).annotate({
-  identifier: "AppServiceCertificateOrdersGetRequest",
-}) as any as S.Schema<AppServiceCertificateOrdersGetRequest>;
-
-/** Resource tags. */
-export type AppServiceCertificateOrdersGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AppServiceCertificateOrdersGetResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<AppServiceCertificateOrdersGetResponseTagsMap>;
-
-export interface AppServiceCertificateOrdersGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: AppServiceCertificateOrdersGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** AppServiceCertificateOrder resource specific properties */
-  properties?: AppServiceCertificateOrderProperties;
-  /** Kind of resource */
-  kind?: string;
-}
-export const AppServiceCertificateOrdersGetResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(AppServiceCertificateOrdersGetResponseTagsMap),
-      location: S.String,
-      properties: S.optional(AppServiceCertificateOrderProperties),
-      kind: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "AppServiceCertificateOrdersGetResponse",
-}) as any as S.Schema<AppServiceCertificateOrdersGetResponse>;
-
-export interface AppServiceCertificateOrdersGetCertificateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the certificate order.. */
-  certificateOrderName: string;
-  /** Name of the certificate. */
-  name: string;
-}
-export const AppServiceCertificateOrdersGetCertificateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      certificateOrderName: S.String.pipe(T.Label()),
-      name: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CertificateRegistration/certificateOrders/{certificateOrderName}/certificates/{name}",
-        code: 200,
-        apiVersion: "2024-11-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "AppServiceCertificateOrdersGetCertificateRequest",
-  }) as any as S.Schema<AppServiceCertificateOrdersGetCertificateRequest>;
-
-/** Resource tags. */
-export type AppServiceCertificateOrdersGetCertificateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AppServiceCertificateOrdersGetCertificateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<AppServiceCertificateOrdersGetCertificateResponseTagsMap>;
-
-export interface AppServiceCertificateOrdersGetCertificateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: AppServiceCertificateOrdersGetCertificateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Core resource properties */
-  properties?: AppServiceCertificate;
-  /** Kind of resource */
-  kind?: string;
-}
-export const AppServiceCertificateOrdersGetCertificateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(
-        AppServiceCertificateOrdersGetCertificateResponseTagsMap,
-      ),
-      location: S.String,
-      properties: S.optional(AppServiceCertificate),
-      kind: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "AppServiceCertificateOrdersGetCertificateResponse",
-  }) as any as S.Schema<AppServiceCertificateOrdersGetCertificateResponse>;
-
-export interface AppServiceCertificateOrdersListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-}
-export const AppServiceCertificateOrdersListRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CertificateRegistration/certificateOrders",
-        code: 200,
-        apiVersion: "2024-11-01",
-      }),
-    ),
-).annotate({
-  identifier: "AppServiceCertificateOrdersListRequest",
-}) as any as S.Schema<AppServiceCertificateOrdersListRequest>;
-
-/** Resource tags. */
-export type AppServiceCertificateOrderTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AppServiceCertificateOrderTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AppServiceCertificateOrderTagsMap>;
-
-/** SSL certificate purchase order. */
-export interface AppServiceCertificateOrder {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: AppServiceCertificateOrderTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** AppServiceCertificateOrder resource specific properties */
-  properties?: AppServiceCertificateOrderProperties;
-  /** Kind of resource */
-  kind?: string;
-}
-export const AppServiceCertificateOrder = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(AppServiceCertificateOrderTagsMap),
-    location: S.String,
-    properties: S.optional(AppServiceCertificateOrderProperties),
-    kind: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AppServiceCertificateOrder",
-}) as any as S.Schema<AppServiceCertificateOrder>;
-
-/** Collection of resources. */
-export type AppServiceCertificateOrderCollectionValueList =
-  Array<AppServiceCertificateOrder>;
-export const AppServiceCertificateOrderCollectionValueList =
-  /*@__PURE__*/ S.Array(
-    AppServiceCertificateOrder,
-  ) as any as S.Schema<AppServiceCertificateOrderCollectionValueList>;
-
-/** Collection of certificate orders. */
-export interface AppServiceCertificateOrderCollection {
-  /** Collection of resources. */
-  value: AppServiceCertificateOrderCollectionValueList;
-  /** Link to next page of resources. */
-  nextLink?: string;
-}
-export const AppServiceCertificateOrderCollection = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      value: AppServiceCertificateOrderCollectionValueList,
-      nextLink: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "AppServiceCertificateOrderCollection",
-}) as any as S.Schema<AppServiceCertificateOrderCollection>;
-
-export interface AppServiceCertificateOrdersListByResourceGroupRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const AppServiceCertificateOrdersListByResourceGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CertificateRegistration/certificateOrders",
-        code: 200,
-        apiVersion: "2024-11-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "AppServiceCertificateOrdersListByResourceGroupRequest",
-  }) as any as S.Schema<AppServiceCertificateOrdersListByResourceGroupRequest>;
-
-export interface AppServiceCertificateOrdersListCertificatesRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the certificate order.. */
-  certificateOrderName: string;
-}
-export const AppServiceCertificateOrdersListCertificatesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      certificateOrderName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CertificateRegistration/certificateOrders/{certificateOrderName}/certificates",
-        code: 200,
-        apiVersion: "2024-11-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "AppServiceCertificateOrdersListCertificatesRequest",
-  }) as any as S.Schema<AppServiceCertificateOrdersListCertificatesRequest>;
-
-/** Resource tags. */
-export type AppServiceCertificateResourceTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AppServiceCertificateResourceTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AppServiceCertificateResourceTagsMap>;
-
-/** Key Vault container ARM resource for a certificate that is purchased through Azure. */
-export interface AppServiceCertificateResource {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: AppServiceCertificateResourceTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Core resource properties */
-  properties?: AppServiceCertificate;
-  /** Kind of resource */
-  kind?: string;
-}
-export const AppServiceCertificateResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(AppServiceCertificateResourceTagsMap),
-    location: S.String,
-    properties: S.optional(AppServiceCertificate),
-    kind: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AppServiceCertificateResource",
-}) as any as S.Schema<AppServiceCertificateResource>;
-
-/** The AppServiceCertificateResource items on this page */
-export type AppServiceCertificateCollectionValueList =
-  Array<AppServiceCertificateResource>;
-export const AppServiceCertificateCollectionValueList = /*@__PURE__*/ S.Array(
-  AppServiceCertificateResource,
-) as any as S.Schema<AppServiceCertificateCollectionValueList>;
-
-/** Collection of certificate order certificates. */
-export interface AppServiceCertificateCollection {
-  /** The AppServiceCertificateResource items on this page */
-  value: AppServiceCertificateCollectionValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const AppServiceCertificateCollection = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: AppServiceCertificateCollectionValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AppServiceCertificateCollection",
-}) as any as S.Schema<AppServiceCertificateCollection>;
-
 /** ReissueCertificateOrderRequest resource specific properties */
 export interface ReissueCertificateOrderRequestProperties {
   /** Certificate Key Size. */
@@ -981,66 +566,75 @@ export const AppServiceCertificateOrdersReissueResponse =
     identifier: "AppServiceCertificateOrdersReissueResponse",
   }) as any as S.Schema<AppServiceCertificateOrdersReissueResponse>;
 
-/** RenewCertificateOrderRequest resource specific properties */
-export interface RenewCertificateOrderRequestProperties {
-  /** Certificate Key Size. */
-  keySize?: number;
-  /** Csr to be used for re-key operation. */
-  csr?: string;
-  /** Should we change the ASC type (from managed private key to external private key and vice versa). */
-  isPrivateKeyExternal?: boolean;
-}
-export const RenewCertificateOrderRequestProperties = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      keySize: S.optional(S.Number),
-      csr: S.optional(S.String),
-      isPrivateKeyExternal: S.optional(S.Boolean),
-    }),
-).annotate({
-  identifier: "RenewCertificateOrderRequestProperties",
-}) as any as S.Schema<RenewCertificateOrderRequestProperties>;
-
-export interface AppServiceCertificateOrdersRenewRequest {
+export interface DeleteAppServiceCertificateOrderRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** Name of the certificate order.. */
   certificateOrderName: string;
-  /** Kind of resource. */
-  kind?: string;
-  /** RenewCertificateOrderRequest resource specific properties */
-  properties?: RenewCertificateOrderRequestProperties;
 }
-export const AppServiceCertificateOrdersRenewRequest = /*@__PURE__*/ S.suspend(
+export const DeleteAppServiceCertificateOrderRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       certificateOrderName: S.String.pipe(T.Label()),
-      kind: S.optional(S.String),
-      properties: S.optional(RenewCertificateOrderRequestProperties),
     }).pipe(
       T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CertificateRegistration/certificateOrders/{certificateOrderName}/renew",
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CertificateRegistration/certificateOrders/{certificateOrderName}",
         code: 200,
         apiVersion: "2024-11-01",
       }),
     ),
 ).annotate({
-  identifier: "AppServiceCertificateOrdersRenewRequest",
-}) as any as S.Schema<AppServiceCertificateOrdersRenewRequest>;
+  identifier: "DeleteAppServiceCertificateOrderRequest",
+}) as any as S.Schema<DeleteAppServiceCertificateOrderRequest>;
 
-export interface AppServiceCertificateOrdersRenewResponse {}
-export const AppServiceCertificateOrdersRenewResponse = /*@__PURE__*/ S.suspend(
+export interface DeleteAppServiceCertificateOrderResponse {}
+export const DeleteAppServiceCertificateOrderResponse = /*@__PURE__*/ S.suspend(
   () => S.Struct({}),
 ).annotate({
-  identifier: "AppServiceCertificateOrdersRenewResponse",
-}) as any as S.Schema<AppServiceCertificateOrdersRenewResponse>;
+  identifier: "DeleteAppServiceCertificateOrderResponse",
+}) as any as S.Schema<DeleteAppServiceCertificateOrderResponse>;
 
-export interface AppServiceCertificateOrdersResendEmailRequest {
+export interface DeleteAppServiceCertificateOrderCertificateRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the certificate order.. */
+  certificateOrderName: string;
+  /** Name of the certificate. */
+  name: string;
+}
+export const DeleteAppServiceCertificateOrderCertificateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      certificateOrderName: S.String.pipe(T.Label()),
+      name: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CertificateRegistration/certificateOrders/{certificateOrderName}/certificates/{name}",
+        code: 200,
+        apiVersion: "2024-11-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "DeleteAppServiceCertificateOrderCertificateRequest",
+  }) as any as S.Schema<DeleteAppServiceCertificateOrderCertificateRequest>;
+
+export interface DeleteAppServiceCertificateOrderCertificateResponse {}
+export const DeleteAppServiceCertificateOrderCertificateResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "DeleteAppServiceCertificateOrderCertificateResponse",
+  }) as any as S.Schema<DeleteAppServiceCertificateOrderCertificateResponse>;
+
+export interface GetAppServiceCertificateOrderRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1048,66 +642,142 @@ export interface AppServiceCertificateOrdersResendEmailRequest {
   /** Name of the certificate order.. */
   certificateOrderName: string;
 }
-export const AppServiceCertificateOrdersResendEmailRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetAppServiceCertificateOrderRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       certificateOrderName: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CertificateRegistration/certificateOrders/{certificateOrderName}/resendEmail",
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CertificateRegistration/certificateOrders/{certificateOrderName}",
         code: 200,
         apiVersion: "2024-11-01",
       }),
     ),
-  ).annotate({
-    identifier: "AppServiceCertificateOrdersResendEmailRequest",
-  }) as any as S.Schema<AppServiceCertificateOrdersResendEmailRequest>;
+).annotate({
+  identifier: "GetAppServiceCertificateOrderRequest",
+}) as any as S.Schema<GetAppServiceCertificateOrderRequest>;
 
-export interface AppServiceCertificateOrdersResendEmailResponse {}
-export const AppServiceCertificateOrdersResendEmailResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "AppServiceCertificateOrdersResendEmailResponse",
-  }) as any as S.Schema<AppServiceCertificateOrdersResendEmailResponse>;
+/** Resource tags. */
+export type GetAppServiceCertificateOrderResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetAppServiceCertificateOrderResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<GetAppServiceCertificateOrderResponseTagsMap>;
 
-export interface AppServiceCertificateOrdersResendRequestEmailsRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the certificate order.. */
-  certificateOrderName: string;
-  /** Name of the object. */
+export interface GetAppServiceCertificateOrderResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
   name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetAppServiceCertificateOrderResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** AppServiceCertificateOrder resource specific properties */
+  properties?: AppServiceCertificateOrderProperties;
+  /** Kind of resource */
+  kind?: string;
 }
-export const AppServiceCertificateOrdersResendRequestEmailsRequest =
+export const GetAppServiceCertificateOrderResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(GetAppServiceCertificateOrderResponseTagsMap),
+      location: S.String,
+      properties: S.optional(AppServiceCertificateOrderProperties),
+      kind: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "GetAppServiceCertificateOrderResponse",
+}) as any as S.Schema<GetAppServiceCertificateOrderResponse>;
+
+export interface GetAppServiceCertificateOrderCertificateRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the certificate order.. */
+  certificateOrderName: string;
+  /** Name of the certificate. */
+  name: string;
+}
+export const GetAppServiceCertificateOrderCertificateRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       certificateOrderName: S.String.pipe(T.Label()),
-      name: S.optional(S.String),
+      name: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CertificateRegistration/certificateOrders/{certificateOrderName}/resendRequestEmails",
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CertificateRegistration/certificateOrders/{certificateOrderName}/certificates/{name}",
         code: 200,
         apiVersion: "2024-11-01",
       }),
     ),
   ).annotate({
-    identifier: "AppServiceCertificateOrdersResendRequestEmailsRequest",
-  }) as any as S.Schema<AppServiceCertificateOrdersResendRequestEmailsRequest>;
+    identifier: "GetAppServiceCertificateOrderCertificateRequest",
+  }) as any as S.Schema<GetAppServiceCertificateOrderCertificateRequest>;
 
-export interface AppServiceCertificateOrdersResendRequestEmailsResponse {}
-export const AppServiceCertificateOrdersResendRequestEmailsResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "AppServiceCertificateOrdersResendRequestEmailsResponse",
-  }) as any as S.Schema<AppServiceCertificateOrdersResendRequestEmailsResponse>;
+/** Resource tags. */
+export type GetAppServiceCertificateOrderCertificateResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetAppServiceCertificateOrderCertificateResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<GetAppServiceCertificateOrderCertificateResponseTagsMap>;
 
-export interface AppServiceCertificateOrdersRetrieveCertificateActionsRequest {
+export interface GetAppServiceCertificateOrderCertificateResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetAppServiceCertificateOrderCertificateResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Core resource properties */
+  properties?: AppServiceCertificate;
+  /** Kind of resource */
+  kind?: string;
+}
+export const GetAppServiceCertificateOrderCertificateResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(GetAppServiceCertificateOrderCertificateResponseTagsMap),
+      location: S.String,
+      properties: S.optional(AppServiceCertificate),
+      kind: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "GetAppServiceCertificateOrderCertificateResponse",
+  }) as any as S.Schema<GetAppServiceCertificateOrderCertificateResponse>;
+
+export interface GetAppServiceCertificateOrderCertificateActionsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1115,7 +785,7 @@ export interface AppServiceCertificateOrdersRetrieveCertificateActionsRequest {
   /** Name of the certificate order.. */
   name: string;
 }
-export const AppServiceCertificateOrdersRetrieveCertificateActionsRequest =
+export const GetAppServiceCertificateOrderCertificateActionsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -1130,8 +800,8 @@ export const AppServiceCertificateOrdersRetrieveCertificateActionsRequest =
       }),
     ),
   ).annotate({
-    identifier: "AppServiceCertificateOrdersRetrieveCertificateActionsRequest",
-  }) as any as S.Schema<AppServiceCertificateOrdersRetrieveCertificateActionsRequest>;
+    identifier: "GetAppServiceCertificateOrderCertificateActionsRequest",
+  }) as any as S.Schema<GetAppServiceCertificateOrderCertificateActionsRequest>;
 
 /** Action type. */
 export type CertificateOrderActionType =
@@ -1167,25 +837,25 @@ export const CertificateOrderAction = /*@__PURE__*/ S.suspend(() =>
   identifier: "CertificateOrderAction",
 }) as any as S.Schema<CertificateOrderAction>;
 
-export type AppServiceCertificateOrdersRetrieveCertificateActionsResponseBodyList =
+export type GetAppServiceCertificateOrderCertificateActionsResponseBodyList =
   Array<CertificateOrderAction>;
-export const AppServiceCertificateOrdersRetrieveCertificateActionsResponseBodyList =
+export const GetAppServiceCertificateOrderCertificateActionsResponseBodyList =
   /*@__PURE__*/ S.Array(
     CertificateOrderAction,
-  ) as any as S.Schema<AppServiceCertificateOrdersRetrieveCertificateActionsResponseBodyList>;
+  ) as any as S.Schema<GetAppServiceCertificateOrderCertificateActionsResponseBodyList>;
 
-export type AppServiceCertificateOrdersRetrieveCertificateActionsResponse =
-  AppServiceCertificateOrdersRetrieveCertificateActionsResponseBodyList;
-export const AppServiceCertificateOrdersRetrieveCertificateActionsResponse =
+export type GetAppServiceCertificateOrderCertificateActionsResponse =
+  GetAppServiceCertificateOrderCertificateActionsResponseBodyList;
+export const GetAppServiceCertificateOrderCertificateActionsResponse =
   /*@__PURE__*/ S.suspend(() =>
-    AppServiceCertificateOrdersRetrieveCertificateActionsResponseBodyList.pipe(
+    GetAppServiceCertificateOrderCertificateActionsResponseBodyList.pipe(
       T.RawResponseRoot(),
     ),
   ).annotate({
-    identifier: "AppServiceCertificateOrdersRetrieveCertificateActionsResponse",
-  }) as any as S.Schema<AppServiceCertificateOrdersRetrieveCertificateActionsResponse>;
+    identifier: "GetAppServiceCertificateOrderCertificateActionsResponse",
+  }) as any as S.Schema<GetAppServiceCertificateOrderCertificateActionsResponse>;
 
-export interface AppServiceCertificateOrdersRetrieveCertificateEmailHistoryRequest {
+export interface GetAppServiceCertificateOrderCertificateEmailHistoryRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1193,7 +863,7 @@ export interface AppServiceCertificateOrdersRetrieveCertificateEmailHistoryReque
   /** Name of the certificate order.. */
   name: string;
 }
-export const AppServiceCertificateOrdersRetrieveCertificateEmailHistoryRequest =
+export const GetAppServiceCertificateOrderCertificateEmailHistoryRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -1208,9 +878,8 @@ export const AppServiceCertificateOrdersRetrieveCertificateEmailHistoryRequest =
       }),
     ),
   ).annotate({
-    identifier:
-      "AppServiceCertificateOrdersRetrieveCertificateEmailHistoryRequest",
-  }) as any as S.Schema<AppServiceCertificateOrdersRetrieveCertificateEmailHistoryRequest>;
+    identifier: "GetAppServiceCertificateOrderCertificateEmailHistoryRequest",
+  }) as any as S.Schema<GetAppServiceCertificateOrderCertificateEmailHistoryRequest>;
 
 /** SSL certificate email. */
 export interface CertificateEmail {
@@ -1228,26 +897,25 @@ export const CertificateEmail = /*@__PURE__*/ S.suspend(() =>
   identifier: "CertificateEmail",
 }) as any as S.Schema<CertificateEmail>;
 
-export type AppServiceCertificateOrdersRetrieveCertificateEmailHistoryResponseBodyList =
+export type GetAppServiceCertificateOrderCertificateEmailHistoryResponseBodyList =
   Array<CertificateEmail>;
-export const AppServiceCertificateOrdersRetrieveCertificateEmailHistoryResponseBodyList =
+export const GetAppServiceCertificateOrderCertificateEmailHistoryResponseBodyList =
   /*@__PURE__*/ S.Array(
     CertificateEmail,
-  ) as any as S.Schema<AppServiceCertificateOrdersRetrieveCertificateEmailHistoryResponseBodyList>;
+  ) as any as S.Schema<GetAppServiceCertificateOrderCertificateEmailHistoryResponseBodyList>;
 
-export type AppServiceCertificateOrdersRetrieveCertificateEmailHistoryResponse =
-  AppServiceCertificateOrdersRetrieveCertificateEmailHistoryResponseBodyList;
-export const AppServiceCertificateOrdersRetrieveCertificateEmailHistoryResponse =
+export type GetAppServiceCertificateOrderCertificateEmailHistoryResponse =
+  GetAppServiceCertificateOrderCertificateEmailHistoryResponseBodyList;
+export const GetAppServiceCertificateOrderCertificateEmailHistoryResponse =
   /*@__PURE__*/ S.suspend(() =>
-    AppServiceCertificateOrdersRetrieveCertificateEmailHistoryResponseBodyList.pipe(
+    GetAppServiceCertificateOrderCertificateEmailHistoryResponseBodyList.pipe(
       T.RawResponseRoot(),
     ),
   ).annotate({
-    identifier:
-      "AppServiceCertificateOrdersRetrieveCertificateEmailHistoryResponse",
-  }) as any as S.Schema<AppServiceCertificateOrdersRetrieveCertificateEmailHistoryResponse>;
+    identifier: "GetAppServiceCertificateOrderCertificateEmailHistoryResponse",
+  }) as any as S.Schema<GetAppServiceCertificateOrderCertificateEmailHistoryResponse>;
 
-export interface AppServiceCertificateOrdersRetrieveSiteSealRequest {
+export interface GetAppServiceCertificateOrderSiteSealRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1259,7 +927,7 @@ export interface AppServiceCertificateOrdersRetrieveSiteSealRequest {
   /** Locale of site seal. */
   locale?: string;
 }
-export const AppServiceCertificateOrdersRetrieveSiteSealRequest =
+export const GetAppServiceCertificateOrderSiteSealRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -1276,8 +944,8 @@ export const AppServiceCertificateOrdersRetrieveSiteSealRequest =
       }),
     ),
   ).annotate({
-    identifier: "AppServiceCertificateOrdersRetrieveSiteSealRequest",
-  }) as any as S.Schema<AppServiceCertificateOrdersRetrieveSiteSealRequest>;
+    identifier: "GetAppServiceCertificateOrderSiteSealRequest",
+  }) as any as S.Schema<GetAppServiceCertificateOrderSiteSealRequest>;
 
 /** Site seal */
 export interface SiteSeal {
@@ -1290,291 +958,7 @@ export const SiteSeal = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "SiteSeal" }) as any as S.Schema<SiteSeal>;
 
-/** State of the Key Vault secret. */
-export type AppServiceCertificateOrderPatchResourcePropertiesInputCertificatesMap =
-  { [key: string]: AppServiceCertificate | undefined };
-export const AppServiceCertificateOrderPatchResourcePropertiesInputCertificatesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    AppServiceCertificate,
-  ) as any as S.Schema<AppServiceCertificateOrderPatchResourcePropertiesInputCertificatesMap>;
-
-/** AppServiceCertificateOrderPatchResource resource specific properties */
-export interface AppServiceCertificateOrderPatchResourcePropertiesInput {
-  /** State of the Key Vault secret. */
-  certificates?: AppServiceCertificateOrderPatchResourcePropertiesInputCertificatesMap;
-  /** Certificate distinguished name. */
-  distinguishedName?: string;
-  /** Duration in years (must be 1). */
-  validityInYears?: number;
-  /** Certificate key size. */
-  keySize?: number;
-  /** Certificate product type. */
-  productType: CertificateProductType | (string & {});
-  /** <code>true</code> if the certificate should be automatically renewed when it expires; otherwise, <code>false</code>. */
-  autoRenew?: boolean;
-  /** Last CSR that was created for this order. */
-  csr?: string;
-}
-export const AppServiceCertificateOrderPatchResourcePropertiesInput =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      certificates: S.optional(
-        AppServiceCertificateOrderPatchResourcePropertiesInputCertificatesMap,
-      ),
-      distinguishedName: S.optional(S.String),
-      validityInYears: S.optional(S.Number),
-      keySize: S.optional(S.Number),
-      productType: CertificateProductType,
-      autoRenew: S.optional(S.Boolean),
-      csr: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "AppServiceCertificateOrderPatchResourcePropertiesInput",
-  }) as any as S.Schema<AppServiceCertificateOrderPatchResourcePropertiesInput>;
-
-export interface AppServiceCertificateOrdersUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the certificate order.. */
-  certificateOrderName: string;
-  /** Kind of resource. */
-  kind?: string;
-  /** AppServiceCertificateOrderPatchResource resource specific properties */
-  properties?: AppServiceCertificateOrderPatchResourcePropertiesInput;
-}
-export const AppServiceCertificateOrdersUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      certificateOrderName: S.String.pipe(T.Label()),
-      kind: S.optional(S.String),
-      properties: S.optional(
-        AppServiceCertificateOrderPatchResourcePropertiesInput,
-      ),
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CertificateRegistration/certificateOrders/{certificateOrderName}",
-        code: 200,
-        apiVersion: "2024-11-01",
-      }),
-    ),
-).annotate({
-  identifier: "AppServiceCertificateOrdersUpdateRequest",
-}) as any as S.Schema<AppServiceCertificateOrdersUpdateRequest>;
-
-/** Resource tags. */
-export type AppServiceCertificateOrdersUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AppServiceCertificateOrdersUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<AppServiceCertificateOrdersUpdateResponseTagsMap>;
-
-export interface AppServiceCertificateOrdersUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: AppServiceCertificateOrdersUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** AppServiceCertificateOrder resource specific properties */
-  properties?: AppServiceCertificateOrderProperties;
-  /** Kind of resource */
-  kind?: string;
-}
-export const AppServiceCertificateOrdersUpdateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(AppServiceCertificateOrdersUpdateResponseTagsMap),
-      location: S.String,
-      properties: S.optional(AppServiceCertificateOrderProperties),
-      kind: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "AppServiceCertificateOrdersUpdateResponse",
-  }) as any as S.Schema<AppServiceCertificateOrdersUpdateResponse>;
-
-export interface AppServiceCertificateOrdersUpdateCertificateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the certificate order.. */
-  certificateOrderName: string;
-  /** Name of the certificate. */
-  name: string;
-  /** Kind of resource. */
-  kind?: string;
-  /** Core resource properties */
-  properties?: AppServiceCertificate;
-}
-export const AppServiceCertificateOrdersUpdateCertificateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      certificateOrderName: S.String.pipe(T.Label()),
-      name: S.String.pipe(T.Label()),
-      kind: S.optional(S.String),
-      properties: S.optional(AppServiceCertificate),
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CertificateRegistration/certificateOrders/{certificateOrderName}/certificates/{name}",
-        code: 200,
-        apiVersion: "2024-11-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "AppServiceCertificateOrdersUpdateCertificateRequest",
-  }) as any as S.Schema<AppServiceCertificateOrdersUpdateCertificateRequest>;
-
-/** Resource tags. */
-export type AppServiceCertificateOrdersUpdateCertificateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AppServiceCertificateOrdersUpdateCertificateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<AppServiceCertificateOrdersUpdateCertificateResponseTagsMap>;
-
-export interface AppServiceCertificateOrdersUpdateCertificateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: AppServiceCertificateOrdersUpdateCertificateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Core resource properties */
-  properties?: AppServiceCertificate;
-  /** Kind of resource */
-  kind?: string;
-}
-export const AppServiceCertificateOrdersUpdateCertificateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(
-        AppServiceCertificateOrdersUpdateCertificateResponseTagsMap,
-      ),
-      location: S.String,
-      properties: S.optional(AppServiceCertificate),
-      kind: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "AppServiceCertificateOrdersUpdateCertificateResponse",
-  }) as any as S.Schema<AppServiceCertificateOrdersUpdateCertificateResponse>;
-
-/** Resource tags. */
-export type AppServiceCertificateOrdersValidatePurchaseInformationRequestTagsMap =
-  { [key: string]: string | undefined };
-export const AppServiceCertificateOrdersValidatePurchaseInformationRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<AppServiceCertificateOrdersValidatePurchaseInformationRequestTagsMap>;
-
-export interface AppServiceCertificateOrdersValidatePurchaseInformationRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** Resource tags. */
-  tags?: AppServiceCertificateOrdersValidatePurchaseInformationRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** AppServiceCertificateOrder resource specific properties */
-  properties?: AppServiceCertificateOrderPropertiesInput;
-  /** Kind of resource */
-  kind?: string;
-}
-export const AppServiceCertificateOrdersValidatePurchaseInformationRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      tags: S.optional(
-        AppServiceCertificateOrdersValidatePurchaseInformationRequestTagsMap,
-      ),
-      location: S.String,
-      properties: S.optional(AppServiceCertificateOrderPropertiesInput),
-      kind: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CertificateRegistration/validateCertificateRegistrationInformation",
-        code: 200,
-        apiVersion: "2024-11-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "AppServiceCertificateOrdersValidatePurchaseInformationRequest",
-  }) as any as S.Schema<AppServiceCertificateOrdersValidatePurchaseInformationRequest>;
-
-export interface AppServiceCertificateOrdersValidatePurchaseInformationResponse {}
-export const AppServiceCertificateOrdersValidatePurchaseInformationResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier:
-      "AppServiceCertificateOrdersValidatePurchaseInformationResponse",
-  }) as any as S.Schema<AppServiceCertificateOrdersValidatePurchaseInformationResponse>;
-
-export interface AppServiceCertificateOrdersVerifyDomainOwnershipRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the certificate order.. */
-  certificateOrderName: string;
-}
-export const AppServiceCertificateOrdersVerifyDomainOwnershipRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      certificateOrderName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CertificateRegistration/certificateOrders/{certificateOrderName}/verifyDomainOwnership",
-        code: 200,
-        apiVersion: "2024-11-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "AppServiceCertificateOrdersVerifyDomainOwnershipRequest",
-  }) as any as S.Schema<AppServiceCertificateOrdersVerifyDomainOwnershipRequest>;
-
-export interface AppServiceCertificateOrdersVerifyDomainOwnershipResponse {}
-export const AppServiceCertificateOrdersVerifyDomainOwnershipResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "AppServiceCertificateOrdersVerifyDomainOwnershipResponse",
-  }) as any as S.Schema<AppServiceCertificateOrdersVerifyDomainOwnershipResponse>;
-
-export interface CertificateOrdersDiagnosticsGetAppServiceCertificateOrderDetectorResponseRequest {
+export interface GetCertificateOrdersDiagnosticAppServiceCertificateOrderDetectorResponseRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1590,7 +974,7 @@ export interface CertificateOrdersDiagnosticsGetAppServiceCertificateOrderDetect
   /** The time grain for the detector response. */
   timeGrain?: string;
 }
-export const CertificateOrdersDiagnosticsGetAppServiceCertificateOrderDetectorResponseRequest =
+export const GetCertificateOrdersDiagnosticAppServiceCertificateOrderDetectorResponseRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -1610,8 +994,8 @@ export const CertificateOrdersDiagnosticsGetAppServiceCertificateOrderDetectorRe
     ),
   ).annotate({
     identifier:
-      "CertificateOrdersDiagnosticsGetAppServiceCertificateOrderDetectorResponseRequest",
-  }) as any as S.Schema<CertificateOrdersDiagnosticsGetAppServiceCertificateOrderDetectorResponseRequest>;
+      "GetCertificateOrdersDiagnosticAppServiceCertificateOrderDetectorResponseRequest",
+  }) as any as S.Schema<GetCertificateOrdersDiagnosticAppServiceCertificateOrderDetectorResponseRequest>;
 
 /** Defines a unique Support Topic */
 export interface SupportTopic {
@@ -1966,7 +1350,7 @@ export const DetectorResponseProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "DetectorResponseProperties",
 }) as any as S.Schema<DetectorResponseProperties>;
 
-export interface CertificateOrdersDiagnosticsGetAppServiceCertificateOrderDetectorResponseResponse {
+export interface GetCertificateOrdersDiagnosticAppServiceCertificateOrderDetectorResponseResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -1980,7 +1364,7 @@ export interface CertificateOrdersDiagnosticsGetAppServiceCertificateOrderDetect
   /** Kind of resource */
   kind?: string;
 }
-export const CertificateOrdersDiagnosticsGetAppServiceCertificateOrderDetectorResponseResponse =
+export const GetCertificateOrdersDiagnosticAppServiceCertificateOrderDetectorResponseResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -1992,10 +1376,101 @@ export const CertificateOrdersDiagnosticsGetAppServiceCertificateOrderDetectorRe
     }),
   ).annotate({
     identifier:
-      "CertificateOrdersDiagnosticsGetAppServiceCertificateOrderDetectorResponseResponse",
-  }) as any as S.Schema<CertificateOrdersDiagnosticsGetAppServiceCertificateOrderDetectorResponseResponse>;
+      "GetCertificateOrdersDiagnosticAppServiceCertificateOrderDetectorResponseResponse",
+  }) as any as S.Schema<GetCertificateOrdersDiagnosticAppServiceCertificateOrderDetectorResponseResponse>;
 
-export interface CertificateOrdersDiagnosticsListAppServiceCertificateOrderDetectorResponseRequest {
+export interface ListAppServiceCertificateOrderByResourceGroupRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const ListAppServiceCertificateOrderByResourceGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CertificateRegistration/certificateOrders",
+        code: 200,
+        apiVersion: "2024-11-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListAppServiceCertificateOrderByResourceGroupRequest",
+  }) as any as S.Schema<ListAppServiceCertificateOrderByResourceGroupRequest>;
+
+/** Resource tags. */
+export type AppServiceCertificateOrderTagsMap = {
+  [key: string]: string | undefined;
+};
+export const AppServiceCertificateOrderTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<AppServiceCertificateOrderTagsMap>;
+
+/** SSL certificate purchase order. */
+export interface AppServiceCertificateOrder {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: AppServiceCertificateOrderTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** AppServiceCertificateOrder resource specific properties */
+  properties?: AppServiceCertificateOrderProperties;
+  /** Kind of resource */
+  kind?: string;
+}
+export const AppServiceCertificateOrder = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(AppServiceCertificateOrderTagsMap),
+    location: S.String,
+    properties: S.optional(AppServiceCertificateOrderProperties),
+    kind: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AppServiceCertificateOrder",
+}) as any as S.Schema<AppServiceCertificateOrder>;
+
+/** Collection of resources. */
+export type AppServiceCertificateOrderCollectionValueList =
+  Array<AppServiceCertificateOrder>;
+export const AppServiceCertificateOrderCollectionValueList =
+  /*@__PURE__*/ S.Array(
+    AppServiceCertificateOrder,
+  ) as any as S.Schema<AppServiceCertificateOrderCollectionValueList>;
+
+/** Collection of certificate orders. */
+export interface AppServiceCertificateOrderCollection {
+  /** Collection of resources. */
+  value: AppServiceCertificateOrderCollectionValueList;
+  /** Link to next page of resources. */
+  nextLink?: string;
+}
+export const AppServiceCertificateOrderCollection = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      value: AppServiceCertificateOrderCollectionValueList,
+      nextLink: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "AppServiceCertificateOrderCollection",
+}) as any as S.Schema<AppServiceCertificateOrderCollection>;
+
+export interface ListAppServiceCertificateOrderCertificatesRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2003,7 +1478,119 @@ export interface CertificateOrdersDiagnosticsListAppServiceCertificateOrderDetec
   /** Name of the certificate order.. */
   certificateOrderName: string;
 }
-export const CertificateOrdersDiagnosticsListAppServiceCertificateOrderDetectorResponseRequest =
+export const ListAppServiceCertificateOrderCertificatesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      certificateOrderName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CertificateRegistration/certificateOrders/{certificateOrderName}/certificates",
+        code: 200,
+        apiVersion: "2024-11-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListAppServiceCertificateOrderCertificatesRequest",
+  }) as any as S.Schema<ListAppServiceCertificateOrderCertificatesRequest>;
+
+/** Resource tags. */
+export type AppServiceCertificateResourceTagsMap = {
+  [key: string]: string | undefined;
+};
+export const AppServiceCertificateResourceTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<AppServiceCertificateResourceTagsMap>;
+
+/** Key Vault container ARM resource for a certificate that is purchased through Azure. */
+export interface AppServiceCertificateResource {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: AppServiceCertificateResourceTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Core resource properties */
+  properties?: AppServiceCertificate;
+  /** Kind of resource */
+  kind?: string;
+}
+export const AppServiceCertificateResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(AppServiceCertificateResourceTagsMap),
+    location: S.String,
+    properties: S.optional(AppServiceCertificate),
+    kind: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AppServiceCertificateResource",
+}) as any as S.Schema<AppServiceCertificateResource>;
+
+/** The AppServiceCertificateResource items on this page */
+export type AppServiceCertificateCollectionValueList =
+  Array<AppServiceCertificateResource>;
+export const AppServiceCertificateCollectionValueList = /*@__PURE__*/ S.Array(
+  AppServiceCertificateResource,
+) as any as S.Schema<AppServiceCertificateCollectionValueList>;
+
+/** Collection of certificate order certificates. */
+export interface AppServiceCertificateCollection {
+  /** The AppServiceCertificateResource items on this page */
+  value: AppServiceCertificateCollectionValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const AppServiceCertificateCollection = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: AppServiceCertificateCollectionValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AppServiceCertificateCollection",
+}) as any as S.Schema<AppServiceCertificateCollection>;
+
+export interface ListAppServiceCertificateOrdersRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+}
+export const ListAppServiceCertificateOrdersRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CertificateRegistration/certificateOrders",
+        code: 200,
+        apiVersion: "2024-11-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListAppServiceCertificateOrdersRequest",
+}) as any as S.Schema<ListAppServiceCertificateOrdersRequest>;
+
+export interface ListCertificateOrdersDiagnosticAppServiceCertificateOrderDetectorResponseRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the certificate order.. */
+  certificateOrderName: string;
+}
+export const ListCertificateOrdersDiagnosticAppServiceCertificateOrderDetectorResponseRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2019,8 +1606,8 @@ export const CertificateOrdersDiagnosticsListAppServiceCertificateOrderDetectorR
     ),
   ).annotate({
     identifier:
-      "CertificateOrdersDiagnosticsListAppServiceCertificateOrderDetectorResponseRequest",
-  }) as any as S.Schema<CertificateOrdersDiagnosticsListAppServiceCertificateOrderDetectorResponseRequest>;
+      "ListCertificateOrdersDiagnosticAppServiceCertificateOrderDetectorResponseRequest",
+  }) as any as S.Schema<ListCertificateOrdersDiagnosticAppServiceCertificateOrderDetectorResponseRequest>;
 
 /** Class representing Response from Detector */
 export interface DetectorResponse {
@@ -2072,8 +1659,8 @@ export const DetectorResponseCollection = /*@__PURE__*/ S.suspend(() =>
   identifier: "DetectorResponseCollection",
 }) as any as S.Schema<DetectorResponseCollection>;
 
-export interface CertificateRegistrationProviderListOperationsRequest {}
-export const CertificateRegistrationProviderListOperationsRequest =
+export interface ListCertificateRegistrationProviderOperationsRequest {}
+export const ListCertificateRegistrationProviderOperationsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({}).pipe(
       T.Http({
@@ -2084,8 +1671,8 @@ export const CertificateRegistrationProviderListOperationsRequest =
       }),
     ),
   ).annotate({
-    identifier: "CertificateRegistrationProviderListOperationsRequest",
-  }) as any as S.Schema<CertificateRegistrationProviderListOperationsRequest>;
+    identifier: "ListCertificateRegistrationProviderOperationsRequest",
+  }) as any as S.Schema<ListCertificateRegistrationProviderOperationsRequest>;
 
 /** Meta data about operation used for display in portal. */
 export interface CsmOperationDisplay {
@@ -2308,6 +1895,415 @@ export const CsmOperationCollection = /*@__PURE__*/ S.suspend(() =>
   identifier: "CsmOperationCollection",
 }) as any as S.Schema<CsmOperationCollection>;
 
+/** RenewCertificateOrderRequest resource specific properties */
+export interface RenewCertificateOrderRequestProperties {
+  /** Certificate Key Size. */
+  keySize?: number;
+  /** Csr to be used for re-key operation. */
+  csr?: string;
+  /** Should we change the ASC type (from managed private key to external private key and vice versa). */
+  isPrivateKeyExternal?: boolean;
+}
+export const RenewCertificateOrderRequestProperties = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      keySize: S.optional(S.Number),
+      csr: S.optional(S.String),
+      isPrivateKeyExternal: S.optional(S.Boolean),
+    }),
+).annotate({
+  identifier: "RenewCertificateOrderRequestProperties",
+}) as any as S.Schema<RenewCertificateOrderRequestProperties>;
+
+export interface RenewAppServiceCertificateOrderRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the certificate order.. */
+  certificateOrderName: string;
+  /** Kind of resource. */
+  kind?: string;
+  /** RenewCertificateOrderRequest resource specific properties */
+  properties?: RenewCertificateOrderRequestProperties;
+}
+export const RenewAppServiceCertificateOrderRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      certificateOrderName: S.String.pipe(T.Label()),
+      kind: S.optional(S.String),
+      properties: S.optional(RenewCertificateOrderRequestProperties),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CertificateRegistration/certificateOrders/{certificateOrderName}/renew",
+        code: 200,
+        apiVersion: "2024-11-01",
+      }),
+    ),
+).annotate({
+  identifier: "RenewAppServiceCertificateOrderRequest",
+}) as any as S.Schema<RenewAppServiceCertificateOrderRequest>;
+
+export interface RenewAppServiceCertificateOrderResponse {}
+export const RenewAppServiceCertificateOrderResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "RenewAppServiceCertificateOrderResponse",
+}) as any as S.Schema<RenewAppServiceCertificateOrderResponse>;
+
+export interface ResendAppServiceCertificateOrderEmailRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the certificate order.. */
+  certificateOrderName: string;
+}
+export const ResendAppServiceCertificateOrderEmailRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      certificateOrderName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CertificateRegistration/certificateOrders/{certificateOrderName}/resendEmail",
+        code: 200,
+        apiVersion: "2024-11-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ResendAppServiceCertificateOrderEmailRequest",
+  }) as any as S.Schema<ResendAppServiceCertificateOrderEmailRequest>;
+
+export interface ResendAppServiceCertificateOrderEmailResponse {}
+export const ResendAppServiceCertificateOrderEmailResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "ResendAppServiceCertificateOrderEmailResponse",
+  }) as any as S.Schema<ResendAppServiceCertificateOrderEmailResponse>;
+
+export interface ResendAppServiceCertificateOrderRequestEmailsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the certificate order.. */
+  certificateOrderName: string;
+  /** Name of the object. */
+  name?: string;
+}
+export const ResendAppServiceCertificateOrderRequestEmailsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      certificateOrderName: S.String.pipe(T.Label()),
+      name: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CertificateRegistration/certificateOrders/{certificateOrderName}/resendRequestEmails",
+        code: 200,
+        apiVersion: "2024-11-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ResendAppServiceCertificateOrderRequestEmailsRequest",
+  }) as any as S.Schema<ResendAppServiceCertificateOrderRequestEmailsRequest>;
+
+export interface ResendAppServiceCertificateOrderRequestEmailsResponse {}
+export const ResendAppServiceCertificateOrderRequestEmailsResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "ResendAppServiceCertificateOrderRequestEmailsResponse",
+  }) as any as S.Schema<ResendAppServiceCertificateOrderRequestEmailsResponse>;
+
+/** State of the Key Vault secret. */
+export type AppServiceCertificateOrderPatchResourcePropertiesInputCertificatesMap =
+  { [key: string]: AppServiceCertificate | undefined };
+export const AppServiceCertificateOrderPatchResourcePropertiesInputCertificatesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    AppServiceCertificate,
+  ) as any as S.Schema<AppServiceCertificateOrderPatchResourcePropertiesInputCertificatesMap>;
+
+/** AppServiceCertificateOrderPatchResource resource specific properties */
+export interface AppServiceCertificateOrderPatchResourcePropertiesInput {
+  /** State of the Key Vault secret. */
+  certificates?: AppServiceCertificateOrderPatchResourcePropertiesInputCertificatesMap;
+  /** Certificate distinguished name. */
+  distinguishedName?: string;
+  /** Duration in years (must be 1). */
+  validityInYears?: number;
+  /** Certificate key size. */
+  keySize?: number;
+  /** Certificate product type. */
+  productType: CertificateProductType | (string & {});
+  /** <code>true</code> if the certificate should be automatically renewed when it expires; otherwise, <code>false</code>. */
+  autoRenew?: boolean;
+  /** Last CSR that was created for this order. */
+  csr?: string;
+}
+export const AppServiceCertificateOrderPatchResourcePropertiesInput =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      certificates: S.optional(
+        AppServiceCertificateOrderPatchResourcePropertiesInputCertificatesMap,
+      ),
+      distinguishedName: S.optional(S.String),
+      validityInYears: S.optional(S.Number),
+      keySize: S.optional(S.Number),
+      productType: CertificateProductType,
+      autoRenew: S.optional(S.Boolean),
+      csr: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "AppServiceCertificateOrderPatchResourcePropertiesInput",
+  }) as any as S.Schema<AppServiceCertificateOrderPatchResourcePropertiesInput>;
+
+export interface UpdateAppServiceCertificateOrderRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the certificate order.. */
+  certificateOrderName: string;
+  /** Kind of resource. */
+  kind?: string;
+  /** AppServiceCertificateOrderPatchResource resource specific properties */
+  properties?: AppServiceCertificateOrderPatchResourcePropertiesInput;
+}
+export const UpdateAppServiceCertificateOrderRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      certificateOrderName: S.String.pipe(T.Label()),
+      kind: S.optional(S.String),
+      properties: S.optional(
+        AppServiceCertificateOrderPatchResourcePropertiesInput,
+      ),
+    }).pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CertificateRegistration/certificateOrders/{certificateOrderName}",
+        code: 200,
+        apiVersion: "2024-11-01",
+      }),
+    ),
+).annotate({
+  identifier: "UpdateAppServiceCertificateOrderRequest",
+}) as any as S.Schema<UpdateAppServiceCertificateOrderRequest>;
+
+/** Resource tags. */
+export type UpdateAppServiceCertificateOrderResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateAppServiceCertificateOrderResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<UpdateAppServiceCertificateOrderResponseTagsMap>;
+
+export interface UpdateAppServiceCertificateOrderResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateAppServiceCertificateOrderResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** AppServiceCertificateOrder resource specific properties */
+  properties?: AppServiceCertificateOrderProperties;
+  /** Kind of resource */
+  kind?: string;
+}
+export const UpdateAppServiceCertificateOrderResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(UpdateAppServiceCertificateOrderResponseTagsMap),
+      location: S.String,
+      properties: S.optional(AppServiceCertificateOrderProperties),
+      kind: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "UpdateAppServiceCertificateOrderResponse",
+}) as any as S.Schema<UpdateAppServiceCertificateOrderResponse>;
+
+export interface UpdateAppServiceCertificateOrderCertificateRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the certificate order.. */
+  certificateOrderName: string;
+  /** Name of the certificate. */
+  name: string;
+  /** Kind of resource. */
+  kind?: string;
+  /** Core resource properties */
+  properties?: AppServiceCertificate;
+}
+export const UpdateAppServiceCertificateOrderCertificateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      certificateOrderName: S.String.pipe(T.Label()),
+      name: S.String.pipe(T.Label()),
+      kind: S.optional(S.String),
+      properties: S.optional(AppServiceCertificate),
+    }).pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CertificateRegistration/certificateOrders/{certificateOrderName}/certificates/{name}",
+        code: 200,
+        apiVersion: "2024-11-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "UpdateAppServiceCertificateOrderCertificateRequest",
+  }) as any as S.Schema<UpdateAppServiceCertificateOrderCertificateRequest>;
+
+/** Resource tags. */
+export type UpdateAppServiceCertificateOrderCertificateResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateAppServiceCertificateOrderCertificateResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<UpdateAppServiceCertificateOrderCertificateResponseTagsMap>;
+
+export interface UpdateAppServiceCertificateOrderCertificateResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateAppServiceCertificateOrderCertificateResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Core resource properties */
+  properties?: AppServiceCertificate;
+  /** Kind of resource */
+  kind?: string;
+}
+export const UpdateAppServiceCertificateOrderCertificateResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(
+        UpdateAppServiceCertificateOrderCertificateResponseTagsMap,
+      ),
+      location: S.String,
+      properties: S.optional(AppServiceCertificate),
+      kind: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "UpdateAppServiceCertificateOrderCertificateResponse",
+  }) as any as S.Schema<UpdateAppServiceCertificateOrderCertificateResponse>;
+
+/** Resource tags. */
+export type ValidateAppServiceCertificateOrderPurchaseInformationRequestTagsMap =
+  { [key: string]: string | undefined };
+export const ValidateAppServiceCertificateOrderPurchaseInformationRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<ValidateAppServiceCertificateOrderPurchaseInformationRequestTagsMap>;
+
+export interface ValidateAppServiceCertificateOrderPurchaseInformationRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** Resource tags. */
+  tags?: ValidateAppServiceCertificateOrderPurchaseInformationRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** AppServiceCertificateOrder resource specific properties */
+  properties?: AppServiceCertificateOrderPropertiesInput;
+  /** Kind of resource */
+  kind?: string;
+}
+export const ValidateAppServiceCertificateOrderPurchaseInformationRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      tags: S.optional(
+        ValidateAppServiceCertificateOrderPurchaseInformationRequestTagsMap,
+      ),
+      location: S.String,
+      properties: S.optional(AppServiceCertificateOrderPropertiesInput),
+      kind: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CertificateRegistration/validateCertificateRegistrationInformation",
+        code: 200,
+        apiVersion: "2024-11-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ValidateAppServiceCertificateOrderPurchaseInformationRequest",
+  }) as any as S.Schema<ValidateAppServiceCertificateOrderPurchaseInformationRequest>;
+
+export interface ValidateAppServiceCertificateOrderPurchaseInformationResponse {}
+export const ValidateAppServiceCertificateOrderPurchaseInformationResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "ValidateAppServiceCertificateOrderPurchaseInformationResponse",
+  }) as any as S.Schema<ValidateAppServiceCertificateOrderPurchaseInformationResponse>;
+
+export interface VerifyAppServiceCertificateOrderDomainOwnershipRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the certificate order.. */
+  certificateOrderName: string;
+}
+export const VerifyAppServiceCertificateOrderDomainOwnershipRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      certificateOrderName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CertificateRegistration/certificateOrders/{certificateOrderName}/verifyDomainOwnership",
+        code: 200,
+        apiVersion: "2024-11-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "VerifyAppServiceCertificateOrderDomainOwnershipRequest",
+  }) as any as S.Schema<VerifyAppServiceCertificateOrderDomainOwnershipRequest>;
+
+export interface VerifyAppServiceCertificateOrderDomainOwnershipResponse {}
+export const VerifyAppServiceCertificateOrderDomainOwnershipResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "VerifyAppServiceCertificateOrderDomainOwnershipResponse",
+  }) as any as S.Schema<VerifyAppServiceCertificateOrderDomainOwnershipResponse>;
+
 export type AppServiceCertificateOrdersCreateOrUpdateError = AzureOpError;
 /** Create or update a certificate purchase order. Description for Create or update a certificate purchase order. */
 export const AppServiceCertificateOrdersCreateOrUpdate: API.OperationMethod<
@@ -2339,111 +2335,6 @@ export const AppServiceCertificateOrdersCreateOrUpdateCertificate: API.Operation
   retry: Retry.Retry,
 }));
 
-export type AppServiceCertificateOrdersDeleteError = AzureOpError;
-/** Delete an existing certificate order. Description for Delete an existing certificate order. */
-export const AppServiceCertificateOrdersDelete: API.OperationMethod<
-  AppServiceCertificateOrdersDeleteRequest,
-  AppServiceCertificateOrdersDeleteResponse,
-  AppServiceCertificateOrdersDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AppServiceCertificateOrdersDeleteRequest,
-  output: AppServiceCertificateOrdersDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AppServiceCertificateOrdersDeleteCertificateError = AzureOpError;
-/** Delete the certificate associated with a certificate order. Description for Delete the certificate associated with a certificate order. */
-export const AppServiceCertificateOrdersDeleteCertificate: API.OperationMethod<
-  AppServiceCertificateOrdersDeleteCertificateRequest,
-  AppServiceCertificateOrdersDeleteCertificateResponse,
-  AppServiceCertificateOrdersDeleteCertificateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AppServiceCertificateOrdersDeleteCertificateRequest,
-  output: AppServiceCertificateOrdersDeleteCertificateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AppServiceCertificateOrdersGetError = AzureOpError;
-/** Get a certificate order. Description for Get a certificate order. */
-export const AppServiceCertificateOrdersGet: API.OperationMethod<
-  AppServiceCertificateOrdersGetRequest,
-  AppServiceCertificateOrdersGetResponse,
-  AppServiceCertificateOrdersGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AppServiceCertificateOrdersGetRequest,
-  output: AppServiceCertificateOrdersGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AppServiceCertificateOrdersGetCertificateError = AzureOpError;
-/** Get the certificate associated with a certificate order. Description for Get the certificate associated with a certificate order. */
-export const AppServiceCertificateOrdersGetCertificate: API.OperationMethod<
-  AppServiceCertificateOrdersGetCertificateRequest,
-  AppServiceCertificateOrdersGetCertificateResponse,
-  AppServiceCertificateOrdersGetCertificateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AppServiceCertificateOrdersGetCertificateRequest,
-  output: AppServiceCertificateOrdersGetCertificateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AppServiceCertificateOrdersListError = AzureOpError;
-/** List all certificate orders in a subscription. Description for List all certificate orders in a subscription. */
-export const AppServiceCertificateOrdersList: API.OperationMethod<
-  AppServiceCertificateOrdersListRequest,
-  AppServiceCertificateOrderCollection,
-  AppServiceCertificateOrdersListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AppServiceCertificateOrdersListRequest,
-  output: AppServiceCertificateOrderCollection,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AppServiceCertificateOrdersListByResourceGroupError = AzureOpError;
-/** Get certificate orders in a resource group. Description for Get certificate orders in a resource group. */
-export const AppServiceCertificateOrdersListByResourceGroup: API.OperationMethod<
-  AppServiceCertificateOrdersListByResourceGroupRequest,
-  AppServiceCertificateOrderCollection,
-  AppServiceCertificateOrdersListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AppServiceCertificateOrdersListByResourceGroupRequest,
-  output: AppServiceCertificateOrderCollection,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AppServiceCertificateOrdersListCertificatesError = AzureOpError;
-/** List all certificates associated with a certificate order. Description for List all certificates associated with a certificate order. */
-export const AppServiceCertificateOrdersListCertificates: API.OperationMethod<
-  AppServiceCertificateOrdersListCertificatesRequest,
-  AppServiceCertificateCollection,
-  AppServiceCertificateOrdersListCertificatesError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AppServiceCertificateOrdersListCertificatesRequest,
-  output: AppServiceCertificateCollection,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type AppServiceCertificateOrdersReissueError = AzureOpError;
 /** Reissue an existing certificate order. Description for Reissue an existing certificate order. */
 export const AppServiceCertificateOrdersReissue: API.OperationMethod<
@@ -2459,205 +2350,308 @@ export const AppServiceCertificateOrdersReissue: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type AppServiceCertificateOrdersRenewError = AzureOpError;
-/** Renew an existing certificate order. Description for Renew an existing certificate order. */
-export const AppServiceCertificateOrdersRenew: API.OperationMethod<
-  AppServiceCertificateOrdersRenewRequest,
-  AppServiceCertificateOrdersRenewResponse,
-  AppServiceCertificateOrdersRenewError,
+export type DeleteAppServiceCertificateOrderError = AzureOpError;
+/** Delete an existing certificate order. Description for Delete an existing certificate order. */
+export const DeleteAppServiceCertificateOrder: API.OperationMethod<
+  DeleteAppServiceCertificateOrderRequest,
+  DeleteAppServiceCertificateOrderResponse,
+  DeleteAppServiceCertificateOrderError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AppServiceCertificateOrdersRenewRequest,
-  output: AppServiceCertificateOrdersRenewResponse,
+  input: DeleteAppServiceCertificateOrderRequest,
+  output: DeleteAppServiceCertificateOrderResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type AppServiceCertificateOrdersResendEmailError = AzureOpError;
-/** Resend certificate email. Description for Resend certificate email. */
-export const AppServiceCertificateOrdersResendEmail: API.OperationMethod<
-  AppServiceCertificateOrdersResendEmailRequest,
-  AppServiceCertificateOrdersResendEmailResponse,
-  AppServiceCertificateOrdersResendEmailError,
+export type DeleteAppServiceCertificateOrderCertificateError = AzureOpError;
+/** Delete the certificate associated with a certificate order. Description for Delete the certificate associated with a certificate order. */
+export const DeleteAppServiceCertificateOrderCertificate: API.OperationMethod<
+  DeleteAppServiceCertificateOrderCertificateRequest,
+  DeleteAppServiceCertificateOrderCertificateResponse,
+  DeleteAppServiceCertificateOrderCertificateError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AppServiceCertificateOrdersResendEmailRequest,
-  output: AppServiceCertificateOrdersResendEmailResponse,
+  input: DeleteAppServiceCertificateOrderCertificateRequest,
+  output: DeleteAppServiceCertificateOrderCertificateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type AppServiceCertificateOrdersResendRequestEmailsError = AzureOpError;
-/** Resend domain verification email to customer for this certificate order Resend domain verification ownership email containing steps on how to verify a domain for a given certificate order */
-export const AppServiceCertificateOrdersResendRequestEmails: API.OperationMethod<
-  AppServiceCertificateOrdersResendRequestEmailsRequest,
-  AppServiceCertificateOrdersResendRequestEmailsResponse,
-  AppServiceCertificateOrdersResendRequestEmailsError,
+export type GetAppServiceCertificateOrderError = AzureOpError;
+/** Get a certificate order. Description for Get a certificate order. */
+export const GetAppServiceCertificateOrder: API.OperationMethod<
+  GetAppServiceCertificateOrderRequest,
+  GetAppServiceCertificateOrderResponse,
+  GetAppServiceCertificateOrderError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AppServiceCertificateOrdersResendRequestEmailsRequest,
-  output: AppServiceCertificateOrdersResendRequestEmailsResponse,
+  input: GetAppServiceCertificateOrderRequest,
+  output: GetAppServiceCertificateOrderResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type AppServiceCertificateOrdersRetrieveCertificateActionsError =
-  AzureOpError;
+export type GetAppServiceCertificateOrderCertificateError = AzureOpError;
+/** Get the certificate associated with a certificate order. Description for Get the certificate associated with a certificate order. */
+export const GetAppServiceCertificateOrderCertificate: API.OperationMethod<
+  GetAppServiceCertificateOrderCertificateRequest,
+  GetAppServiceCertificateOrderCertificateResponse,
+  GetAppServiceCertificateOrderCertificateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAppServiceCertificateOrderCertificateRequest,
+  output: GetAppServiceCertificateOrderCertificateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAppServiceCertificateOrderCertificateActionsError = AzureOpError;
 /** Retrieve the list of certificate actions. Description for Retrieve the list of certificate actions. */
-export const AppServiceCertificateOrdersRetrieveCertificateActions: API.OperationMethod<
-  AppServiceCertificateOrdersRetrieveCertificateActionsRequest,
-  AppServiceCertificateOrdersRetrieveCertificateActionsResponse,
-  AppServiceCertificateOrdersRetrieveCertificateActionsError,
+export const GetAppServiceCertificateOrderCertificateActions: API.OperationMethod<
+  GetAppServiceCertificateOrderCertificateActionsRequest,
+  GetAppServiceCertificateOrderCertificateActionsResponse,
+  GetAppServiceCertificateOrderCertificateActionsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AppServiceCertificateOrdersRetrieveCertificateActionsRequest,
-  output: AppServiceCertificateOrdersRetrieveCertificateActionsResponse,
+  input: GetAppServiceCertificateOrderCertificateActionsRequest,
+  output: GetAppServiceCertificateOrderCertificateActionsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type AppServiceCertificateOrdersRetrieveCertificateEmailHistoryError =
+export type GetAppServiceCertificateOrderCertificateEmailHistoryError =
   AzureOpError;
 /** Retrieve email history. Description for Retrieve email history. */
-export const AppServiceCertificateOrdersRetrieveCertificateEmailHistory: API.OperationMethod<
-  AppServiceCertificateOrdersRetrieveCertificateEmailHistoryRequest,
-  AppServiceCertificateOrdersRetrieveCertificateEmailHistoryResponse,
-  AppServiceCertificateOrdersRetrieveCertificateEmailHistoryError,
+export const GetAppServiceCertificateOrderCertificateEmailHistory: API.OperationMethod<
+  GetAppServiceCertificateOrderCertificateEmailHistoryRequest,
+  GetAppServiceCertificateOrderCertificateEmailHistoryResponse,
+  GetAppServiceCertificateOrderCertificateEmailHistoryError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AppServiceCertificateOrdersRetrieveCertificateEmailHistoryRequest,
-  output: AppServiceCertificateOrdersRetrieveCertificateEmailHistoryResponse,
+  input: GetAppServiceCertificateOrderCertificateEmailHistoryRequest,
+  output: GetAppServiceCertificateOrderCertificateEmailHistoryResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type AppServiceCertificateOrdersRetrieveSiteSealError = AzureOpError;
+export type GetAppServiceCertificateOrderSiteSealError = AzureOpError;
 /** This method is used to obtain the site seal information for an issued certificate. This method is used to obtain the site seal information for an issued certificate. A site seal is a graphic that the certificate purchaser can embed on their web site to show their visitors information about their SSL certificate. If a web site visitor clicks on the site seal image, a pop-up page is displayed that contains detailed information about the SSL certificate. The site seal token is used to link the site seal graphic image to the appropriate certificate details pop-up page display when a user clicks on the site seal. The site seal images are expected to be static images and hosted by the reseller, to minimize delays for customer page load times. */
-export const AppServiceCertificateOrdersRetrieveSiteSeal: API.OperationMethod<
-  AppServiceCertificateOrdersRetrieveSiteSealRequest,
+export const GetAppServiceCertificateOrderSiteSeal: API.OperationMethod<
+  GetAppServiceCertificateOrderSiteSealRequest,
   SiteSeal,
-  AppServiceCertificateOrdersRetrieveSiteSealError,
+  GetAppServiceCertificateOrderSiteSealError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AppServiceCertificateOrdersRetrieveSiteSealRequest,
+  input: GetAppServiceCertificateOrderSiteSealRequest,
   output: SiteSeal,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type AppServiceCertificateOrdersUpdateError = AzureOpError;
-/** Create or update a certificate purchase order. Description for Create or update a certificate purchase order. */
-export const AppServiceCertificateOrdersUpdate: API.OperationMethod<
-  AppServiceCertificateOrdersUpdateRequest,
-  AppServiceCertificateOrdersUpdateResponse,
-  AppServiceCertificateOrdersUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AppServiceCertificateOrdersUpdateRequest,
-  output: AppServiceCertificateOrdersUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AppServiceCertificateOrdersUpdateCertificateError = AzureOpError;
-/** Creates or updates a certificate and associates with key vault secret. Description for Creates or updates a certificate and associates with key vault secret. */
-export const AppServiceCertificateOrdersUpdateCertificate: API.OperationMethod<
-  AppServiceCertificateOrdersUpdateCertificateRequest,
-  AppServiceCertificateOrdersUpdateCertificateResponse,
-  AppServiceCertificateOrdersUpdateCertificateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AppServiceCertificateOrdersUpdateCertificateRequest,
-  output: AppServiceCertificateOrdersUpdateCertificateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AppServiceCertificateOrdersValidatePurchaseInformationError =
-  AzureOpError;
-/** Validate information for a certificate order. Description for Validate information for a certificate order. */
-export const AppServiceCertificateOrdersValidatePurchaseInformation: API.OperationMethod<
-  AppServiceCertificateOrdersValidatePurchaseInformationRequest,
-  AppServiceCertificateOrdersValidatePurchaseInformationResponse,
-  AppServiceCertificateOrdersValidatePurchaseInformationError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AppServiceCertificateOrdersValidatePurchaseInformationRequest,
-  output: AppServiceCertificateOrdersValidatePurchaseInformationResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AppServiceCertificateOrdersVerifyDomainOwnershipError =
-  AzureOpError;
-/** Verify domain ownership for this certificate order. Description for Verify domain ownership for this certificate order. */
-export const AppServiceCertificateOrdersVerifyDomainOwnership: API.OperationMethod<
-  AppServiceCertificateOrdersVerifyDomainOwnershipRequest,
-  AppServiceCertificateOrdersVerifyDomainOwnershipResponse,
-  AppServiceCertificateOrdersVerifyDomainOwnershipError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AppServiceCertificateOrdersVerifyDomainOwnershipRequest,
-  output: AppServiceCertificateOrdersVerifyDomainOwnershipResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CertificateOrdersDiagnosticsGetAppServiceCertificateOrderDetectorResponseError =
+export type GetCertificateOrdersDiagnosticAppServiceCertificateOrderDetectorResponseError =
   AzureOpError;
 /** Microsoft.CertificateRegistration call to get a detector response from App Lens. Description for Microsoft.CertificateRegistration call to get a detector response from App Lens. */
-export const CertificateOrdersDiagnosticsGetAppServiceCertificateOrderDetectorResponse: API.OperationMethod<
-  CertificateOrdersDiagnosticsGetAppServiceCertificateOrderDetectorResponseRequest,
-  CertificateOrdersDiagnosticsGetAppServiceCertificateOrderDetectorResponseResponse,
-  CertificateOrdersDiagnosticsGetAppServiceCertificateOrderDetectorResponseError,
+export const GetCertificateOrdersDiagnosticAppServiceCertificateOrderDetectorResponse: API.OperationMethod<
+  GetCertificateOrdersDiagnosticAppServiceCertificateOrderDetectorResponseRequest,
+  GetCertificateOrdersDiagnosticAppServiceCertificateOrderDetectorResponseResponse,
+  GetCertificateOrdersDiagnosticAppServiceCertificateOrderDetectorResponseError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input:
-    CertificateOrdersDiagnosticsGetAppServiceCertificateOrderDetectorResponseRequest,
+    GetCertificateOrdersDiagnosticAppServiceCertificateOrderDetectorResponseRequest,
   output:
-    CertificateOrdersDiagnosticsGetAppServiceCertificateOrderDetectorResponseResponse,
+    GetCertificateOrdersDiagnosticAppServiceCertificateOrderDetectorResponseResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type CertificateOrdersDiagnosticsListAppServiceCertificateOrderDetectorResponseError =
+export type ListAppServiceCertificateOrderByResourceGroupError = AzureOpError;
+/** Get certificate orders in a resource group. Description for Get certificate orders in a resource group. */
+export const ListAppServiceCertificateOrderByResourceGroup: API.OperationMethod<
+  ListAppServiceCertificateOrderByResourceGroupRequest,
+  AppServiceCertificateOrderCollection,
+  ListAppServiceCertificateOrderByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAppServiceCertificateOrderByResourceGroupRequest,
+  output: AppServiceCertificateOrderCollection,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAppServiceCertificateOrderCertificatesError = AzureOpError;
+/** List all certificates associated with a certificate order. Description for List all certificates associated with a certificate order. */
+export const ListAppServiceCertificateOrderCertificates: API.OperationMethod<
+  ListAppServiceCertificateOrderCertificatesRequest,
+  AppServiceCertificateCollection,
+  ListAppServiceCertificateOrderCertificatesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAppServiceCertificateOrderCertificatesRequest,
+  output: AppServiceCertificateCollection,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAppServiceCertificateOrdersError = AzureOpError;
+/** List all certificate orders in a subscription. Description for List all certificate orders in a subscription. */
+export const ListAppServiceCertificateOrders: API.OperationMethod<
+  ListAppServiceCertificateOrdersRequest,
+  AppServiceCertificateOrderCollection,
+  ListAppServiceCertificateOrdersError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAppServiceCertificateOrdersRequest,
+  output: AppServiceCertificateOrderCollection,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListCertificateOrdersDiagnosticAppServiceCertificateOrderDetectorResponseError =
   AzureOpError;
 /** Microsoft.CertificateRegistration to get the list of detectors for this RP. Description for Microsoft.CertificateRegistration to get the list of detectors for this RP. */
-export const CertificateOrdersDiagnosticsListAppServiceCertificateOrderDetectorResponse: API.OperationMethod<
-  CertificateOrdersDiagnosticsListAppServiceCertificateOrderDetectorResponseRequest,
+export const ListCertificateOrdersDiagnosticAppServiceCertificateOrderDetectorResponse: API.OperationMethod<
+  ListCertificateOrdersDiagnosticAppServiceCertificateOrderDetectorResponseRequest,
   DetectorResponseCollection,
-  CertificateOrdersDiagnosticsListAppServiceCertificateOrderDetectorResponseError,
+  ListCertificateOrdersDiagnosticAppServiceCertificateOrderDetectorResponseError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input:
-    CertificateOrdersDiagnosticsListAppServiceCertificateOrderDetectorResponseRequest,
+    ListCertificateOrdersDiagnosticAppServiceCertificateOrderDetectorResponseRequest,
   output: DetectorResponseCollection,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type CertificateRegistrationProviderListOperationsError = AzureOpError;
+export type ListCertificateRegistrationProviderOperationsError = AzureOpError;
 /** Implements Csm operations Api to exposes the list of available Csm Apis under the resource provider Description for Implements Csm operations Api to exposes the list of available Csm Apis under the resource provider */
-export const CertificateRegistrationProviderListOperations: API.OperationMethod<
-  CertificateRegistrationProviderListOperationsRequest,
+export const ListCertificateRegistrationProviderOperations: API.OperationMethod<
+  ListCertificateRegistrationProviderOperationsRequest,
   CsmOperationCollection,
-  CertificateRegistrationProviderListOperationsError,
+  ListCertificateRegistrationProviderOperationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CertificateRegistrationProviderListOperationsRequest,
+  input: ListCertificateRegistrationProviderOperationsRequest,
   output: CsmOperationCollection,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RenewAppServiceCertificateOrderError = AzureOpError;
+/** Renew an existing certificate order. Description for Renew an existing certificate order. */
+export const RenewAppServiceCertificateOrder: API.OperationMethod<
+  RenewAppServiceCertificateOrderRequest,
+  RenewAppServiceCertificateOrderResponse,
+  RenewAppServiceCertificateOrderError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RenewAppServiceCertificateOrderRequest,
+  output: RenewAppServiceCertificateOrderResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ResendAppServiceCertificateOrderEmailError = AzureOpError;
+/** Resend certificate email. Description for Resend certificate email. */
+export const ResendAppServiceCertificateOrderEmail: API.OperationMethod<
+  ResendAppServiceCertificateOrderEmailRequest,
+  ResendAppServiceCertificateOrderEmailResponse,
+  ResendAppServiceCertificateOrderEmailError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ResendAppServiceCertificateOrderEmailRequest,
+  output: ResendAppServiceCertificateOrderEmailResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ResendAppServiceCertificateOrderRequestEmailsError = AzureOpError;
+/** Resend domain verification email to customer for this certificate order Resend domain verification ownership email containing steps on how to verify a domain for a given certificate order */
+export const ResendAppServiceCertificateOrderRequestEmails: API.OperationMethod<
+  ResendAppServiceCertificateOrderRequestEmailsRequest,
+  ResendAppServiceCertificateOrderRequestEmailsResponse,
+  ResendAppServiceCertificateOrderRequestEmailsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ResendAppServiceCertificateOrderRequestEmailsRequest,
+  output: ResendAppServiceCertificateOrderRequestEmailsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateAppServiceCertificateOrderError = AzureOpError;
+/** Create or update a certificate purchase order. Description for Create or update a certificate purchase order. */
+export const UpdateAppServiceCertificateOrder: API.OperationMethod<
+  UpdateAppServiceCertificateOrderRequest,
+  UpdateAppServiceCertificateOrderResponse,
+  UpdateAppServiceCertificateOrderError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateAppServiceCertificateOrderRequest,
+  output: UpdateAppServiceCertificateOrderResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateAppServiceCertificateOrderCertificateError = AzureOpError;
+/** Creates or updates a certificate and associates with key vault secret. Description for Creates or updates a certificate and associates with key vault secret. */
+export const UpdateAppServiceCertificateOrderCertificate: API.OperationMethod<
+  UpdateAppServiceCertificateOrderCertificateRequest,
+  UpdateAppServiceCertificateOrderCertificateResponse,
+  UpdateAppServiceCertificateOrderCertificateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateAppServiceCertificateOrderCertificateRequest,
+  output: UpdateAppServiceCertificateOrderCertificateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ValidateAppServiceCertificateOrderPurchaseInformationError =
+  AzureOpError;
+/** Validate information for a certificate order. Description for Validate information for a certificate order. */
+export const ValidateAppServiceCertificateOrderPurchaseInformation: API.OperationMethod<
+  ValidateAppServiceCertificateOrderPurchaseInformationRequest,
+  ValidateAppServiceCertificateOrderPurchaseInformationResponse,
+  ValidateAppServiceCertificateOrderPurchaseInformationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ValidateAppServiceCertificateOrderPurchaseInformationRequest,
+  output: ValidateAppServiceCertificateOrderPurchaseInformationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type VerifyAppServiceCertificateOrderDomainOwnershipError = AzureOpError;
+/** Verify domain ownership for this certificate order. Description for Verify domain ownership for this certificate order. */
+export const VerifyAppServiceCertificateOrderDomainOwnership: API.OperationMethod<
+  VerifyAppServiceCertificateOrderDomainOwnershipRequest,
+  VerifyAppServiceCertificateOrderDomainOwnershipResponse,
+  VerifyAppServiceCertificateOrderDomainOwnershipError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: VerifyAppServiceCertificateOrderDomainOwnershipRequest,
+  output: VerifyAppServiceCertificateOrderDomainOwnershipResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

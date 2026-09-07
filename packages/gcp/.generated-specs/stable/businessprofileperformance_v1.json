@@ -4,142 +4,10 @@
     "service": "businessprofileperformance",
     "version": "v1",
     "title": "Business Profile Performance API",
-    "baseUrl": "https://businessprofileperformance.googleapis.com/"
+    "baseUrl": "https://businessprofileperformance.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.gcp.businessprofileperformance_v1#MultiDailyMetricTimeSeries": {
-      "type": "structure",
-      "members": {
-        "dailyMetricTimeSeries": {
-          "target": "com.gcp.businessprofileperformance_v1#DailyMetricTimeSeriesList",
-          "traits": {
-            "smithy.api#documentation": "List of DailyMetric-TimeSeries pairs."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Represents a list of tuples of DailyMetric-DailySubEntityType-TimeSeries."
-      }
-    },
-    "com.gcp.businessprofileperformance_v1#DailyMetricTimeSeriesList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.businessprofileperformance_v1#DailyMetricTimeSeries"
-      }
-    },
-    "com.gcp.businessprofileperformance_v1#SearchKeywordCount": {
-      "type": "structure",
-      "members": {
-        "searchKeyword": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The lower-cased string that the user entered."
-          }
-        },
-        "insightsValue": {
-          "target": "com.gcp.businessprofileperformance_v1#InsightsValue",
-          "traits": {
-            "smithy.api#documentation": "One of either: 1) The sum of the number of unique users that used the keyword in a month, aggregated for each month requested. 2) A threshold that indicates that the actual value is below this threshold."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Represents a single search keyword and its value."
-      }
-    },
-    "com.gcp.businessprofileperformance_v1#DatedValue": {
-      "type": "structure",
-      "members": {
-        "value": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The value of the datapoint. This will not be present when the value is zero."
-          }
-        },
-        "date": {
-          "target": "com.gcp.businessprofileperformance_v1#Businessprofileperformance_Date",
-          "traits": {
-            "smithy.api#documentation": "The date that the datapoint corresponds to. This represents a month value if the day field is not set."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Represents a single datapoint in the timeseries, where each datapoint is a date-value pair."
-      }
-    },
-    "com.gcp.businessprofileperformance_v1#DailySubEntityType": {
-      "type": "structure",
-      "members": {
-        "timeOfDay": {
-          "target": "com.gcp.businessprofileperformance_v1#TimeOfDay",
-          "traits": {
-            "smithy.api#documentation": "Represents the time of the day in 24 hour format. Eg: 13:34:20 Currently supported DailyMetrics = NONE."
-          }
-        },
-        "dayOfWeek": {
-          "target": "com.gcp.businessprofileperformance_v1#DailySubEntityTypeDayOfWeekEnum",
-          "traits": {
-            "smithy.api#documentation": "Represents the day of the week. Eg: MONDAY. Currently supported DailyMetrics = NONE."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Represents all possible subentity types that are associated with DailyMetrics. Note: Currently, all metrics are returned as daily aggregates and sub-entity breakdowns are not supported."
-      }
-    },
-    "com.gcp.businessprofileperformance_v1#DailySubEntityTypeDayOfWeekEnum": {
-      "type": "enum",
-      "members": {
-        "DAY_OF_WEEK_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DAY_OF_WEEK_UNSPECIFIED"
-          }
-        },
-        "MONDAY": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "MONDAY"
-          }
-        },
-        "TUESDAY": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "TUESDAY"
-          }
-        },
-        "WEDNESDAY": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "WEDNESDAY"
-          }
-        },
-        "THURSDAY": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "THURSDAY"
-          }
-        },
-        "FRIDAY": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "FRIDAY"
-          }
-        },
-        "SATURDAY": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "SATURDAY"
-          }
-        },
-        "SUNDAY": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "SUNDAY"
-          }
-        }
-      }
-    },
     "com.gcp.businessprofileperformance_v1#DailyMetricTimeSeries": {
       "type": "structure",
       "members": {
@@ -243,73 +111,9 @@
         }
       }
     },
-    "com.gcp.businessprofileperformance_v1#ListSearchKeywordImpressionsMonthlyResponse": {
-      "type": "structure",
-      "members": {
-        "searchKeywordsCounts": {
-          "target": "com.gcp.businessprofileperformance_v1#SearchKeywordCountList",
-          "traits": {
-            "smithy.api#documentation": "Search terms which have been used to find a business."
-          }
-        },
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A token indicating the last paginated result returned. This can be used by succeeding requests to get the next \"page\" of keywords. It will only be present when there are more results to be returned."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Represents the response for ListSearchKeywordImpressionsMonthly."
-      }
-    },
-    "com.gcp.businessprofileperformance_v1#SearchKeywordCountList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.businessprofileperformance_v1#SearchKeywordCount"
-      }
-    },
-    "com.gcp.businessprofileperformance_v1#TimeOfDay": {
-      "type": "structure",
-      "members": {
-        "minutes": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59."
-          }
-        },
-        "seconds": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds."
-          }
-        },
-        "nanos": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999."
-          }
-        },
-        "hours": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`."
-      }
-    },
     "com.gcp.businessprofileperformance_v1#Businessprofileperformance_Date": {
       "type": "structure",
       "members": {
-        "year": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year."
-          }
-        },
         "month": {
           "target": "smithy.api#Integer",
           "traits": {
@@ -321,30 +125,48 @@
           "traits": {
             "smithy.api#documentation": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant."
           }
+        },
+        "year": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year."
+          }
         }
       },
       "traits": {
         "smithy.api#documentation": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp"
       }
     },
-    "com.gcp.businessprofileperformance_v1#FetchMultiDailyMetricsTimeSeriesResponse": {
+    "com.gcp.businessprofileperformance_v1#TimeOfDay": {
       "type": "structure",
       "members": {
-        "multiDailyMetricTimeSeries": {
-          "target": "com.gcp.businessprofileperformance_v1#MultiDailyMetricTimeSeriesList",
+        "seconds": {
+          "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "DailyMetrics and their corresponding time series."
+            "smithy.api#documentation": "Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds."
+          }
+        },
+        "hours": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time."
+          }
+        },
+        "minutes": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59."
+          }
+        },
+        "nanos": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Represents the response for FetchMultiDailyMetricsTimeSeries."
-      }
-    },
-    "com.gcp.businessprofileperformance_v1#MultiDailyMetricTimeSeriesList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.businessprofileperformance_v1#MultiDailyMetricTimeSeries"
+        "smithy.api#documentation": "Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`."
       }
     },
     "com.gcp.businessprofileperformance_v1#TimeSeries": {
@@ -367,6 +189,99 @@
         "target": "com.gcp.businessprofileperformance_v1#DatedValue"
       }
     },
+    "com.gcp.businessprofileperformance_v1#DailySubEntityType": {
+      "type": "structure",
+      "members": {
+        "dayOfWeek": {
+          "target": "com.gcp.businessprofileperformance_v1#DailySubEntityTypeDayOfWeekEnum",
+          "traits": {
+            "smithy.api#documentation": "Represents the day of the week. Eg: MONDAY. Currently supported DailyMetrics = NONE."
+          }
+        },
+        "timeOfDay": {
+          "target": "com.gcp.businessprofileperformance_v1#TimeOfDay",
+          "traits": {
+            "smithy.api#documentation": "Represents the time of the day in 24 hour format. Eg: 13:34:20 Currently supported DailyMetrics = NONE."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents all possible subentity types that are associated with DailyMetrics. Note: Currently, all metrics are returned as daily aggregates and sub-entity breakdowns are not supported."
+      }
+    },
+    "com.gcp.businessprofileperformance_v1#DailySubEntityTypeDayOfWeekEnum": {
+      "type": "enum",
+      "members": {
+        "DAY_OF_WEEK_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DAY_OF_WEEK_UNSPECIFIED"
+          }
+        },
+        "MONDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MONDAY"
+          }
+        },
+        "TUESDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TUESDAY"
+          }
+        },
+        "WEDNESDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEDNESDAY"
+          }
+        },
+        "THURSDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "THURSDAY"
+          }
+        },
+        "FRIDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FRIDAY"
+          }
+        },
+        "SATURDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SATURDAY"
+          }
+        },
+        "SUNDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUNDAY"
+          }
+        }
+      }
+    },
+    "com.gcp.businessprofileperformance_v1#SearchKeywordCount": {
+      "type": "structure",
+      "members": {
+        "searchKeyword": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The lower-cased string that the user entered."
+          }
+        },
+        "insightsValue": {
+          "target": "com.gcp.businessprofileperformance_v1#InsightsValue",
+          "traits": {
+            "smithy.api#documentation": "One of either: 1) The sum of the number of unique users that used the keyword in a month, aggregated for each month requested. 2) A threshold that indicates that the actual value is below this threshold."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a single search keyword and its value."
+      }
+    },
     "com.gcp.businessprofileperformance_v1#InsightsValue": {
       "type": "structure",
       "members": {
@@ -387,6 +302,52 @@
         "smithy.api#documentation": "Represents an insights value."
       }
     },
+    "com.gcp.businessprofileperformance_v1#DatedValue": {
+      "type": "structure",
+      "members": {
+        "date": {
+          "target": "com.gcp.businessprofileperformance_v1#Businessprofileperformance_Date",
+          "traits": {
+            "smithy.api#documentation": "The date that the datapoint corresponds to. This represents a month value if the day field is not set."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value of the datapoint. This will not be present when the value is zero."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a single datapoint in the timeseries, where each datapoint is a date-value pair."
+      }
+    },
+    "com.gcp.businessprofileperformance_v1#ListSearchKeywordImpressionsMonthlyResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token indicating the last paginated result returned. This can be used by succeeding requests to get the next \"page\" of keywords. It will only be present when there are more results to be returned."
+          }
+        },
+        "searchKeywordsCounts": {
+          "target": "com.gcp.businessprofileperformance_v1#SearchKeywordCountList",
+          "traits": {
+            "smithy.api#documentation": "Search terms which have been used to find a business."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents the response for ListSearchKeywordImpressionsMonthly."
+      }
+    },
+    "com.gcp.businessprofileperformance_v1#SearchKeywordCountList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.businessprofileperformance_v1#SearchKeywordCount"
+      }
+    },
     "com.gcp.businessprofileperformance_v1#GetDailyMetricsTimeSeriesResponse": {
       "type": "structure",
       "members": {
@@ -399,6 +360,46 @@
       },
       "traits": {
         "smithy.api#documentation": "Represents the response for GetDailyMetricsTimeSeries."
+      }
+    },
+    "com.gcp.businessprofileperformance_v1#FetchMultiDailyMetricsTimeSeriesResponse": {
+      "type": "structure",
+      "members": {
+        "multiDailyMetricTimeSeries": {
+          "target": "com.gcp.businessprofileperformance_v1#MultiDailyMetricTimeSeriesList",
+          "traits": {
+            "smithy.api#documentation": "DailyMetrics and their corresponding time series."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents the response for FetchMultiDailyMetricsTimeSeries."
+      }
+    },
+    "com.gcp.businessprofileperformance_v1#MultiDailyMetricTimeSeriesList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.businessprofileperformance_v1#MultiDailyMetricTimeSeries"
+      }
+    },
+    "com.gcp.businessprofileperformance_v1#MultiDailyMetricTimeSeries": {
+      "type": "structure",
+      "members": {
+        "dailyMetricTimeSeries": {
+          "target": "com.gcp.businessprofileperformance_v1#DailyMetricTimeSeriesList",
+          "traits": {
+            "smithy.api#documentation": "List of DailyMetric-TimeSeries pairs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a list of tuples of DailyMetric-DailySubEntityType-TimeSeries."
+      }
+    },
+    "com.gcp.businessprofileperformance_v1#DailyMetricTimeSeriesList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.businessprofileperformance_v1#DailyMetricTimeSeries"
       }
     },
     "com.gcp.businessprofileperformance_v1#FetchMultiDailyMetricsTimeSeriesLocationsDailyMetricsEnum": {
@@ -487,18 +488,18 @@
     "com.gcp.businessprofileperformance_v1#FetchMultiDailyMetricsTimeSeriesLocationsRequest": {
       "type": "structure",
       "members": {
+        "dailyRange.startDate.year": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
+            "smithy.api#httpQuery": "dailyRange.startDate.year"
+          }
+        },
         "dailyRange.endDate.year": {
           "target": "smithy.api#Integer",
           "traits": {
             "smithy.api#documentation": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
             "smithy.api#httpQuery": "dailyRange.endDate.year"
-          }
-        },
-        "dailyMetrics": {
-          "target": "com.gcp.businessprofileperformance_v1#FetchMultiDailyMetricsTimeSeriesLocationsDailyMetricsEnumList",
-          "traits": {
-            "smithy.api#documentation": "Required. The metrics to retrieve time series for.",
-            "smithy.api#httpQuery": "dailyMetrics"
           }
         },
         "location": {
@@ -509,13 +510,6 @@
             "smithy.api#required": {}
           }
         },
-        "dailyRange.startDate.day": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
-            "smithy.api#httpQuery": "dailyRange.startDate.day"
-          }
-        },
         "dailyRange.endDate.month": {
           "target": "smithy.api#Integer",
           "traits": {
@@ -523,11 +517,25 @@
             "smithy.api#httpQuery": "dailyRange.endDate.month"
           }
         },
-        "dailyRange.startDate.year": {
+        "dailyRange.endDate.day": {
           "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
-            "smithy.api#httpQuery": "dailyRange.startDate.year"
+            "smithy.api#documentation": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
+            "smithy.api#httpQuery": "dailyRange.endDate.day"
+          }
+        },
+        "dailyRange.startDate.day": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
+            "smithy.api#httpQuery": "dailyRange.startDate.day"
+          }
+        },
+        "dailyMetrics": {
+          "target": "com.gcp.businessprofileperformance_v1#FetchMultiDailyMetricsTimeSeriesLocationsDailyMetricsEnumList",
+          "traits": {
+            "smithy.api#documentation": "Required. The metrics to retrieve time series for.",
+            "smithy.api#httpQuery": "dailyMetrics"
           }
         },
         "dailyRange.startDate.month": {
@@ -535,13 +543,6 @@
           "traits": {
             "smithy.api#documentation": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
             "smithy.api#httpQuery": "dailyRange.startDate.month"
-          }
-        },
-        "dailyRange.endDate.day": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
-            "smithy.api#httpQuery": "dailyRange.endDate.day"
           }
         }
       }
@@ -594,59 +595,6 @@
           "uri": "v1/{+location}:fetchMultiDailyMetricsTimeSeries"
         },
         "smithy.api#documentation": " Returns the values for each date from a given time range that are associated with the specific daily metrics. Note: Only daily data is available. Hourly metrics are not supported. Example request: `GET https://businessprofileperformance.googleapis.com/v1/locations/12345:fetchMultiDailyMetricsTimeSeries?dailyMetrics=WEBSITE_CLICKS&dailyMetrics=CALL_CLICKS&daily_range.start_date.year=2022&daily_range.start_date.month=1&daily_range.start_date.day=1&daily_range.end_date.year=2022&daily_range.end_date.month=3&daily_range.end_date.day=31`"
-      }
-    },
-    "com.gcp.businessprofileperformance_v1#GetDailyMetricsTimeSeriesLocationsDailySubEntityType_dayOfWeekEnum": {
-      "type": "enum",
-      "members": {
-        "DAY_OF_WEEK_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DAY_OF_WEEK_UNSPECIFIED"
-          }
-        },
-        "MONDAY": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "MONDAY"
-          }
-        },
-        "TUESDAY": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "TUESDAY"
-          }
-        },
-        "WEDNESDAY": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "WEDNESDAY"
-          }
-        },
-        "THURSDAY": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "THURSDAY"
-          }
-        },
-        "FRIDAY": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "FRIDAY"
-          }
-        },
-        "SATURDAY": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "SATURDAY"
-          }
-        },
-        "SUNDAY": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "SUNDAY"
-          }
-        }
       }
     },
     "com.gcp.businessprofileperformance_v1#GetDailyMetricsTimeSeriesLocationsDailyMetricEnum": {
@@ -726,14 +674,74 @@
         }
       }
     },
+    "com.gcp.businessprofileperformance_v1#GetDailyMetricsTimeSeriesLocationsDailySubEntityType_dayOfWeekEnum": {
+      "type": "enum",
+      "members": {
+        "DAY_OF_WEEK_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DAY_OF_WEEK_UNSPECIFIED"
+          }
+        },
+        "MONDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MONDAY"
+          }
+        },
+        "TUESDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TUESDAY"
+          }
+        },
+        "WEDNESDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEDNESDAY"
+          }
+        },
+        "THURSDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "THURSDAY"
+          }
+        },
+        "FRIDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FRIDAY"
+          }
+        },
+        "SATURDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SATURDAY"
+          }
+        },
+        "SUNDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUNDAY"
+          }
+        }
+      }
+    },
     "com.gcp.businessprofileperformance_v1#GetDailyMetricsTimeSeriesLocationsRequest": {
       "type": "structure",
       "members": {
-        "dailySubEntityType.timeOfDay.minutes": {
+        "dailyRange.startDate.month": {
           "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59.",
-            "smithy.api#httpQuery": "dailySubEntityType.timeOfDay.minutes"
+            "smithy.api#documentation": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
+            "smithy.api#httpQuery": "dailyRange.startDate.month"
+          }
+        },
+        "dailyMetric": {
+          "target": "com.gcp.businessprofileperformance_v1#GetDailyMetricsTimeSeriesLocationsDailyMetricEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. The metric to retrieve time series.",
+            "smithy.api#httpQuery": "dailyMetric"
           }
         },
         "dailySubEntityType.timeOfDay.hours": {
@@ -743,11 +751,11 @@
             "smithy.api#httpQuery": "dailySubEntityType.timeOfDay.hours"
           }
         },
-        "dailyRange.startDate.year": {
+        "dailySubEntityType.timeOfDay.nanos": {
           "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
-            "smithy.api#httpQuery": "dailyRange.startDate.year"
+            "smithy.api#documentation": "Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999.",
+            "smithy.api#httpQuery": "dailySubEntityType.timeOfDay.nanos"
           }
         },
         "dailyRange.startDate.day": {
@@ -764,13 +772,6 @@
             "smithy.api#httpQuery": "dailyRange.endDate.month"
           }
         },
-        "dailyRange.startDate.month": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
-            "smithy.api#httpQuery": "dailyRange.startDate.month"
-          }
-        },
         "dailySubEntityType.dayOfWeek": {
           "target": "com.gcp.businessprofileperformance_v1#GetDailyMetricsTimeSeriesLocationsDailySubEntityType_dayOfWeekEnum",
           "traits": {
@@ -778,33 +779,18 @@
             "smithy.api#httpQuery": "dailySubEntityType.dayOfWeek"
           }
         },
-        "dailyMetric": {
-          "target": "com.gcp.businessprofileperformance_v1#GetDailyMetricsTimeSeriesLocationsDailyMetricEnum",
-          "traits": {
-            "smithy.api#documentation": "Required. The metric to retrieve time series.",
-            "smithy.api#httpQuery": "dailyMetric"
-          }
-        },
-        "dailyRange.endDate.day": {
+        "dailyRange.startDate.year": {
           "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
-            "smithy.api#httpQuery": "dailyRange.endDate.day"
+            "smithy.api#documentation": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
+            "smithy.api#httpQuery": "dailyRange.startDate.year"
           }
         },
-        "dailySubEntityType.timeOfDay.nanos": {
+        "dailySubEntityType.timeOfDay.seconds": {
           "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999.",
-            "smithy.api#httpQuery": "dailySubEntityType.timeOfDay.nanos"
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The location for which the time series should be fetched. Format: locations/{location_id} where location_id is an unobfuscated listing id.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
+            "smithy.api#documentation": "Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds.",
+            "smithy.api#httpQuery": "dailySubEntityType.timeOfDay.seconds"
           }
         },
         "dailyRange.endDate.year": {
@@ -814,11 +800,26 @@
             "smithy.api#httpQuery": "dailyRange.endDate.year"
           }
         },
-        "dailySubEntityType.timeOfDay.seconds": {
+        "dailyRange.endDate.day": {
           "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds.",
-            "smithy.api#httpQuery": "dailySubEntityType.timeOfDay.seconds"
+            "smithy.api#documentation": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
+            "smithy.api#httpQuery": "dailyRange.endDate.day"
+          }
+        },
+        "dailySubEntityType.timeOfDay.minutes": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59.",
+            "smithy.api#httpQuery": "dailySubEntityType.timeOfDay.minutes"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The location for which the time series should be fetched. Format: locations/{location_id} where location_id is an unobfuscated listing id.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
           }
         }
       }
@@ -857,13 +858,6 @@
             "smithy.api#httpQuery": "monthlyRange.endMonth.year"
           }
         },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. The number of results requested. The default page size is 100. Page size can be set to a maximum of 100.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
         "monthlyRange.startMonth.day": {
           "target": "smithy.api#Integer",
           "traits": {
@@ -871,11 +865,25 @@
             "smithy.api#httpQuery": "monthlyRange.startMonth.day"
           }
         },
-        "monthlyRange.startMonth.month": {
+        "monthlyRange.endMonth.day": {
           "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
-            "smithy.api#httpQuery": "monthlyRange.startMonth.month"
+            "smithy.api#documentation": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
+            "smithy.api#httpQuery": "monthlyRange.endMonth.day"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The number of results requested. The default page size is 100. Page size can be set to a maximum of 100.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A token indicating the next paginated result to be returned.",
+            "smithy.api#httpQuery": "pageToken"
           }
         },
         "parent": {
@@ -886,25 +894,11 @@
             "smithy.api#required": {}
           }
         },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. A token indicating the next paginated result to be returned.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "monthlyRange.endMonth.day": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
-            "smithy.api#httpQuery": "monthlyRange.endMonth.day"
-          }
-        },
-        "monthlyRange.endMonth.month": {
+        "monthlyRange.startMonth.month": {
           "target": "smithy.api#Integer",
           "traits": {
             "smithy.api#documentation": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
-            "smithy.api#httpQuery": "monthlyRange.endMonth.month"
+            "smithy.api#httpQuery": "monthlyRange.startMonth.month"
           }
         },
         "monthlyRange.startMonth.year": {
@@ -912,6 +906,13 @@
           "traits": {
             "smithy.api#documentation": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
             "smithy.api#httpQuery": "monthlyRange.startMonth.year"
+          }
+        },
+        "monthlyRange.endMonth.month": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
+            "smithy.api#httpQuery": "monthlyRange.endMonth.month"
           }
         }
       }

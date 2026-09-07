@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.computeschedule#ScheduledActionsVirtualMachinesSubmitStart": {
@@ -1616,13 +1617,13 @@
         "smithy.api#documentation": "The list of operation ids to cancel operations on"
       }
     },
-    "com.azure.computeschedule#OperationsList": {
+    "com.azure.computeschedule#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.azure.computeschedule#OperationsListResponse"
+        "target": "com.azure.computeschedule#ListOperationsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1635,11 +1636,11 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.computeschedule#OperationsListResponse": {
+    "com.azure.computeschedule#ListOperationsResponse": {
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.computeschedule#OperationsListResponseValueList",
+          "target": "com.azure.computeschedule#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -1655,7 +1656,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.computeschedule#OperationsListResponseValueList": {
+    "com.azure.computeschedule#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.computeschedule#Operation"
@@ -1812,7 +1813,7 @@
           "target": "com.azure.computeschedule#ScheduledActionsVirtualMachinesCancelOperations"
         },
         {
-          "target": "com.azure.computeschedule#OperationsList"
+          "target": "com.azure.computeschedule#ListOperations"
         }
       ],
       "traits": {

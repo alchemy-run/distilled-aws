@@ -13,6 +13,1755 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
+export interface DeleteLabRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs. */
+  labName: string;
+}
+export const DeleteLabRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    labName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}",
+      code: 200,
+      apiVersion: "2023-06-07",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteLabRequest",
+}) as any as S.Schema<DeleteLabRequest>;
+
+export interface DeleteLabResponse {}
+export const DeleteLabResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteLabResponse",
+}) as any as S.Schema<DeleteLabResponse>;
+
+export interface DeleteLabPlanRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the lab plan that uniquely identifies it within containing resource group. Used in resource URIs and in UI. */
+  labPlanName: string;
+}
+export const DeleteLabPlanRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    labPlanName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labPlans/{labPlanName}",
+      code: 200,
+      apiVersion: "2023-06-07",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteLabPlanRequest",
+}) as any as S.Schema<DeleteLabPlanRequest>;
+
+export interface DeleteLabPlanResponse {}
+export const DeleteLabPlanResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteLabPlanResponse",
+}) as any as S.Schema<DeleteLabPlanResponse>;
+
+export interface DeleteScheduleRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs. */
+  labName: string;
+  /** The name of the schedule that uniquely identifies it within containing lab. Used in resource URIs. */
+  scheduleName: string;
+}
+export const DeleteScheduleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    labName: S.String.pipe(T.Label()),
+    scheduleName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}/schedules/{scheduleName}",
+      code: 200,
+      apiVersion: "2023-06-07",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteScheduleRequest",
+}) as any as S.Schema<DeleteScheduleRequest>;
+
+export interface DeleteScheduleResponse {}
+export const DeleteScheduleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteScheduleResponse",
+}) as any as S.Schema<DeleteScheduleResponse>;
+
+export interface DeleteUserRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs. */
+  labName: string;
+  /** The name of the user that uniquely identifies it within containing lab. Used in resource URIs. */
+  userName: string;
+}
+export const DeleteUserRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    labName: S.String.pipe(T.Label()),
+    userName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}/users/{userName}",
+      code: 200,
+      apiVersion: "2023-06-07",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteUserRequest",
+}) as any as S.Schema<DeleteUserRequest>;
+
+export interface DeleteUserResponse {}
+export const DeleteUserResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteUserResponse",
+}) as any as S.Schema<DeleteUserResponse>;
+
+export interface GetImageRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the lab plan that uniquely identifies it within containing resource group. Used in resource URIs and in UI. */
+  labPlanName: string;
+  /** The image name. */
+  imageName: string;
+}
+export const GetImageRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    labPlanName: S.String.pipe(T.Label()),
+    imageName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labPlans/{labPlanName}/images/{imageName}",
+      code: 200,
+      apiVersion: "2023-06-07",
+    }),
+  ),
+).annotate({
+  identifier: "GetImageRequest",
+}) as any as S.Schema<GetImageRequest>;
+
+/** The type of identity that created the resource. */
+export type GetImageResponseSystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const GetImageResponseSystemDataCreatedByType = /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type GetImageResponseSystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const GetImageResponseSystemDataLastModifiedByType =
+  /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface GetImageResponseSystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: GetImageResponseSystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: GetImageResponseSystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const GetImageResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdBy: S.optional(S.String),
+    createdByType: S.optional(GetImageResponseSystemDataCreatedByType),
+    createdAt: S.optional(S.String),
+    lastModifiedBy: S.optional(S.String),
+    lastModifiedByType: S.optional(
+      GetImageResponseSystemDataLastModifiedByType,
+    ),
+    lastModifiedAt: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetImageResponseSystemData",
+}) as any as S.Schema<GetImageResponseSystemData>;
+
+/** Property enabled state. */
+export type ImagePropertiesEnabledState = "Enabled" | "Disabled";
+export const ImagePropertiesEnabledState = /*@__PURE__*/ S.String;
+
+/** Resource provisioning state. */
+export type ImagePropertiesProvisioningState =
+  | "Creating"
+  | "Updating"
+  | "Deleting"
+  | "Succeeded"
+  | "Failed"
+  | "Locked";
+export const ImagePropertiesProvisioningState = /*@__PURE__*/ S.String;
+
+/** The operating system type. */
+export type ImagePropertiesOsType = "Windows" | "Linux";
+export const ImagePropertiesOsType = /*@__PURE__*/ S.String;
+
+/** Property enabled state. */
+export type ImagePropertiesTermsStatus = "Enabled" | "Disabled";
+export const ImagePropertiesTermsStatus = /*@__PURE__*/ S.String;
+
+/** The available regions of the image in the shared gallery. */
+export type ImagePropertiesAvailableRegionsList = Array<string>;
+export const ImagePropertiesAvailableRegionsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ImagePropertiesAvailableRegionsList>;
+
+/** The operating system state. */
+export type ImagePropertiesOsState = "Generalized" | "Specialized";
+export const ImagePropertiesOsState = /*@__PURE__*/ S.String;
+
+/** Properties of an image resource. */
+export interface ImageProperties {
+  /** Property enabled state. */
+  enabledState: ImagePropertiesEnabledState;
+  /** Resource provisioning state. */
+  provisioningState?: ImagePropertiesProvisioningState;
+  /** The image display name. */
+  displayName?: string;
+  /** A description of the image. */
+  description?: string;
+  /** URL of the image icon. */
+  iconUrl?: string;
+  /** The image author. */
+  author?: string;
+  /** The operating system type. */
+  osType?: ImagePropertiesOsType;
+  /** The ID of marketplace plan associated with the image (optional). */
+  plan?: string;
+  /** Property enabled state. */
+  termsStatus?: ImagePropertiesTermsStatus;
+  /** The ID of an offer associated with the image. */
+  offer?: string;
+  /** The ID of the publisher of the image. */
+  publisher?: string;
+  /** The image SKU. */
+  sku?: string;
+  /** The image version. */
+  version?: string;
+  /** A URL. */
+  sharedGalleryId?: string;
+  /** The available regions of the image in the shared gallery. */
+  availableRegions?: ImagePropertiesAvailableRegionsList;
+  /** The operating system state. */
+  osState?: ImagePropertiesOsState;
+}
+export const ImageProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    enabledState: ImagePropertiesEnabledState,
+    provisioningState: S.optional(ImagePropertiesProvisioningState),
+    displayName: S.optional(S.String),
+    description: S.optional(S.String),
+    iconUrl: S.optional(S.String),
+    author: S.optional(S.String),
+    osType: S.optional(ImagePropertiesOsType),
+    plan: S.optional(S.String),
+    termsStatus: S.optional(ImagePropertiesTermsStatus),
+    offer: S.optional(S.String),
+    publisher: S.optional(S.String),
+    sku: S.optional(S.String),
+    version: S.optional(S.String),
+    sharedGalleryId: S.optional(S.String),
+    availableRegions: S.optional(ImagePropertiesAvailableRegionsList),
+    osState: S.optional(ImagePropertiesOsState),
+  }),
+).annotate({
+  identifier: "ImageProperties",
+}) as any as S.Schema<ImageProperties>;
+
+export interface GetImageResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Metadata pertaining to creation and last modification of the resource. */
+  systemData?: GetImageResponseSystemData;
+  /** Image resource properties */
+  properties: ImageProperties;
+}
+export const GetImageResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(GetImageResponseSystemData),
+    properties: ImageProperties,
+  }),
+).annotate({
+  identifier: "GetImageResponse",
+}) as any as S.Schema<GetImageResponse>;
+
+export interface GetLabRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs. */
+  labName: string;
+}
+export const GetLabRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    labName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}",
+      code: 200,
+      apiVersion: "2023-06-07",
+    }),
+  ),
+).annotate({ identifier: "GetLabRequest" }) as any as S.Schema<GetLabRequest>;
+
+/** Resource tags. */
+export type GetLabResponseTagsMap = { [key: string]: string | undefined };
+export const GetLabResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetLabResponseTagsMap>;
+
+/** The type of identity that created the resource. */
+export type GetLabResponseSystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const GetLabResponseSystemDataCreatedByType = /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type GetLabResponseSystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const GetLabResponseSystemDataLastModifiedByType =
+  /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface GetLabResponseSystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: GetLabResponseSystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: GetLabResponseSystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const GetLabResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdBy: S.optional(S.String),
+    createdByType: S.optional(GetLabResponseSystemDataCreatedByType),
+    createdAt: S.optional(S.String),
+    lastModifiedBy: S.optional(S.String),
+    lastModifiedByType: S.optional(GetLabResponseSystemDataLastModifiedByType),
+    lastModifiedAt: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetLabResponseSystemData",
+}) as any as S.Schema<GetLabResponseSystemData>;
+
+/** Property enabled state. */
+export type EnableState = "Enabled" | "Disabled";
+export const EnableState = /*@__PURE__*/ S.String;
+
+/** Defines whether to shut down VM on idle and the criteria for idle detection. */
+export type ShutdownOnIdleMode = "None" | "UserAbsence" | "LowUsage";
+export const ShutdownOnIdleMode = /*@__PURE__*/ S.String;
+
+/** Profile for how to handle shutting down virtual machines. */
+export interface LabPropertiesAutoShutdownProfile {
+  /** Whether shutdown on disconnect is enabled */
+  shutdownOnDisconnect?: EnableState;
+  /** Whether a VM will get shutdown when it hasn't been connected to after a period of time. */
+  shutdownWhenNotConnected?: EnableState;
+  /** Whether a VM will get shutdown when it has idled for a period of time. */
+  shutdownOnIdle?: ShutdownOnIdleMode;
+  /** The amount of time a VM will stay running after a user disconnects if this behavior is enabled. */
+  disconnectDelay?: string;
+  /** The amount of time a VM will stay running before it is shutdown if no connection is made and this behavior is enabled. */
+  noConnectDelay?: string;
+  /** The amount of time a VM will idle before it is shutdown if this behavior is enabled. */
+  idleDelay?: string;
+}
+export const LabPropertiesAutoShutdownProfile = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    shutdownOnDisconnect: S.optional(EnableState),
+    shutdownWhenNotConnected: S.optional(EnableState),
+    shutdownOnIdle: S.optional(ShutdownOnIdleMode),
+    disconnectDelay: S.optional(S.String),
+    noConnectDelay: S.optional(S.String),
+    idleDelay: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "LabPropertiesAutoShutdownProfile",
+}) as any as S.Schema<LabPropertiesAutoShutdownProfile>;
+
+/** A connection type for access labs and VMs (Public, Private or None). */
+export type ConnectionType = "Public" | "Private" | "None";
+export const ConnectionType = /*@__PURE__*/ S.String;
+
+/** Connection profile for how users connect to lab virtual machines. */
+export interface LabPropertiesConnectionProfile {
+  /** The enabled access level for Web Access over SSH. */
+  webSshAccess?: ConnectionType;
+  /** The enabled access level for Web Access over RDP. */
+  webRdpAccess?: ConnectionType;
+  /** The enabled access level for Client Access over SSH. */
+  clientSshAccess?: ConnectionType;
+  /** The enabled access level for Client Access over RDP. */
+  clientRdpAccess?: ConnectionType;
+}
+export const LabPropertiesConnectionProfile = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    webSshAccess: S.optional(ConnectionType),
+    webRdpAccess: S.optional(ConnectionType),
+    clientSshAccess: S.optional(ConnectionType),
+    clientRdpAccess: S.optional(ConnectionType),
+  }),
+).annotate({
+  identifier: "LabPropertiesConnectionProfile",
+}) as any as S.Schema<LabPropertiesConnectionProfile>;
+
+/** Indicates what lab virtual machines are created from. */
+export type VirtualMachineProfileCreateOption = "Image" | "TemplateVM";
+export const VirtualMachineProfileCreateOption = /*@__PURE__*/ S.String;
+
+/** Image reference information. Used in the virtual machine profile. */
+export interface ImageReference {
+  /** A URL. */
+  id?: string;
+  /** The image offer if applicable. */
+  offer?: string;
+  /** The image publisher */
+  publisher?: string;
+  /** The image SKU */
+  sku?: string;
+  /** The image version specified on creation. */
+  version?: string;
+  /** The actual version of the image after use. */
+  exactVersion?: string;
+}
+export const ImageReference = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    offer: S.optional(S.String),
+    publisher: S.optional(S.String),
+    sku: S.optional(S.String),
+    version: S.optional(S.String),
+    exactVersion: S.optional(S.String),
+  }),
+).annotate({ identifier: "ImageReference" }) as any as S.Schema<ImageReference>;
+
+/** The operating system type. */
+export type VirtualMachineProfileOsType = "Windows" | "Linux";
+export const VirtualMachineProfileOsType = /*@__PURE__*/ S.String;
+
+/** This field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT. */
+export type VirtualMachineProfileSkuTier =
+  | "Free"
+  | "Basic"
+  | "Standard"
+  | "Premium";
+export const VirtualMachineProfileSkuTier = /*@__PURE__*/ S.String;
+
+/** The resource model definition representing SKU */
+export interface VirtualMachineProfileSku {
+  /** The name of the SKU. Ex - P3. It is typically a letter+number code */
+  name: string;
+  /** This field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT. */
+  tier?: VirtualMachineProfileSkuTier;
+  /** The SKU size. When the name field is the combination of tier and some other value, this would be the standalone code. */
+  size?: string;
+  /** If the service has different generations of hardware, for the same SKU, then that can be captured here. */
+  family?: string;
+  /** If the SKU supports scale out/in then the capacity integer should be included. If scale out/in is not possible for the resource this may be omitted. */
+  capacity?: number;
+}
+export const VirtualMachineProfileSku = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    tier: S.optional(VirtualMachineProfileSkuTier),
+    size: S.optional(S.String),
+    family: S.optional(S.String),
+    capacity: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "VirtualMachineProfileSku",
+}) as any as S.Schema<VirtualMachineProfileSku>;
+
+/** Property enabled state. */
+export type VirtualMachineAdditionalCapabilitiesInstallGpuDrivers =
+  | "Enabled"
+  | "Disabled";
+export const VirtualMachineAdditionalCapabilitiesInstallGpuDrivers =
+  /*@__PURE__*/ S.String;
+
+/** The additional capabilities for a lab VM. */
+export interface VirtualMachineAdditionalCapabilities {
+  /** Property enabled state. */
+  installGpuDrivers?:
+    | VirtualMachineAdditionalCapabilitiesInstallGpuDrivers
+    | (string & {});
+}
+export const VirtualMachineAdditionalCapabilities = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      installGpuDrivers: S.optional(
+        VirtualMachineAdditionalCapabilitiesInstallGpuDrivers,
+      ),
+    }),
+).annotate({
+  identifier: "VirtualMachineAdditionalCapabilities",
+}) as any as S.Schema<VirtualMachineAdditionalCapabilities>;
+
+/** Property enabled state. */
+export type VirtualMachineProfileUseSharedPassword = "Enabled" | "Disabled";
+export const VirtualMachineProfileUseSharedPassword = /*@__PURE__*/ S.String;
+
+/** Credentials for a user on a lab VM. */
+export interface Credentials {
+  /** The username to use when signing in to lab VMs. */
+  username: string;
+  /** The password for the user. This is required for the TemplateVM createOption. */
+  password?: string | Redacted.Redacted<string>;
+}
+export const Credentials = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    username: S.String,
+    password: S.optional(S.String.pipe(T.SensitiveValue({}))),
+  }),
+).annotate({ identifier: "Credentials" }) as any as S.Schema<Credentials>;
+
+/** The base virtual machine configuration for a lab. */
+export interface VirtualMachineProfile {
+  /** Indicates what lab virtual machines are created from. */
+  createOption: VirtualMachineProfileCreateOption;
+  /** The image configuration for lab virtual machines. */
+  imageReference: ImageReference;
+  /** The operating system type. */
+  osType?: VirtualMachineProfileOsType;
+  /** The resource model definition representing SKU */
+  sku: VirtualMachineProfileSku;
+  /** Additional VM capabilities. */
+  additionalCapabilities?: VirtualMachineAdditionalCapabilities;
+  /** The initial quota alloted to each lab user. Must be a time span between 0 and 9999 hours. */
+  usageQuota: string;
+  /** Property enabled state. */
+  useSharedPassword?: VirtualMachineProfileUseSharedPassword;
+  /** Credentials for the admin user on the VM. */
+  adminUser: Credentials;
+  /** Credentials for the non-admin user on the VM, if one exists. */
+  nonAdminUser?: Credentials;
+}
+export const VirtualMachineProfile = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createOption: VirtualMachineProfileCreateOption,
+    imageReference: ImageReference,
+    osType: S.optional(VirtualMachineProfileOsType),
+    sku: VirtualMachineProfileSku,
+    additionalCapabilities: S.optional(VirtualMachineAdditionalCapabilities),
+    usageQuota: S.String,
+    useSharedPassword: S.optional(VirtualMachineProfileUseSharedPassword),
+    adminUser: Credentials,
+    nonAdminUser: S.optional(Credentials),
+  }),
+).annotate({
+  identifier: "VirtualMachineProfile",
+}) as any as S.Schema<VirtualMachineProfile>;
+
+/** Property enabled state. */
+export type SecurityProfileOpenAccess = "Enabled" | "Disabled";
+export const SecurityProfileOpenAccess = /*@__PURE__*/ S.String;
+
+/** The lab security profile. */
+export interface SecurityProfile {
+  /** The registration code for the lab. */
+  registrationCode?: string;
+  /** Property enabled state. */
+  openAccess?: SecurityProfileOpenAccess;
+}
+export const SecurityProfile = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    registrationCode: S.optional(S.String),
+    openAccess: S.optional(SecurityProfileOpenAccess),
+  }),
+).annotate({
+  identifier: "SecurityProfile",
+}) as any as S.Schema<SecurityProfile>;
+
+/** The lab user list management profile. */
+export interface RosterProfile {
+  /** The AAD group ID which this lab roster is populated from. Having this set enables AAD sync mode. */
+  activeDirectoryGroupId?: string;
+  /** The unique context identifier for the lab in the lms. */
+  ltiContextId?: string;
+  /** The base URI identifying the lms instance. */
+  lmsInstance?: string;
+  /** The unique id of the azure lab services tool in the lms. */
+  ltiClientId?: string;
+  /** The uri of the names and roles service endpoint on the lms for the class attached to this lab. */
+  ltiRosterEndpoint?: string;
+}
+export const RosterProfile = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    activeDirectoryGroupId: S.optional(S.String),
+    ltiContextId: S.optional(S.String),
+    lmsInstance: S.optional(S.String),
+    ltiClientId: S.optional(S.String),
+    ltiRosterEndpoint: S.optional(S.String),
+  }),
+).annotate({ identifier: "RosterProfile" }) as any as S.Schema<RosterProfile>;
+
+/** Resource provisioning state. */
+export type LabPropertiesProvisioningState =
+  | "Creating"
+  | "Updating"
+  | "Deleting"
+  | "Succeeded"
+  | "Failed"
+  | "Locked";
+export const LabPropertiesProvisioningState = /*@__PURE__*/ S.String;
+
+/** Profile for how to handle networking for Labs. */
+export interface LabNetworkProfile {
+  /** A URL. */
+  subnetId?: string;
+  /** A URL. */
+  loadBalancerId?: string;
+  /** A URL. */
+  publicIpId?: string;
+}
+export const LabNetworkProfile = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subnetId: S.optional(S.String),
+    loadBalancerId: S.optional(S.String),
+    publicIpId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "LabNetworkProfile",
+}) as any as S.Schema<LabNetworkProfile>;
+
+/** The state of a virtual machine. */
+export type LabState =
+  | "Draft"
+  | "Publishing"
+  | "Scaling"
+  | "Syncing"
+  | "Published";
+export const LabState = /*@__PURE__*/ S.String;
+
+/** Error details of the latest operation failure on this resource */
+export interface LabPropertiesResourceOperationError {
+  /** The datetime of when the error occured */
+  timestamp?: string;
+  /** The code that corresponds to the type of operation failure */
+  code?: string;
+  /** The operation failure message */
+  message?: string;
+  /** The operation action that failed */
+  action?: string;
+}
+export const LabPropertiesResourceOperationError = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    timestamp: S.optional(S.String),
+    code: S.optional(S.String),
+    message: S.optional(S.String),
+    action: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "LabPropertiesResourceOperationError",
+}) as any as S.Schema<LabPropertiesResourceOperationError>;
+
+/** Properties of a lab resource. */
+export interface LabProperties {
+  /** Profile for how to handle shutting down virtual machines. */
+  autoShutdownProfile: LabPropertiesAutoShutdownProfile;
+  /** Connection profile for how users connect to lab virtual machines. */
+  connectionProfile: LabPropertiesConnectionProfile;
+  /** The profile used for creating lab virtual machines. */
+  virtualMachineProfile: VirtualMachineProfile;
+  /** The lab security profile. */
+  securityProfile: SecurityProfile;
+  /** The lab user list management profile. */
+  rosterProfile?: RosterProfile;
+  /** A URL. */
+  labPlanId?: string;
+  /** The title of the lab. */
+  title?: string;
+  /** The description of the lab. */
+  description?: string;
+  /** Resource provisioning state. */
+  provisioningState?: LabPropertiesProvisioningState;
+  /** The network profile for the lab, typically applied via a lab plan. This profile cannot be modified once a lab has been created. */
+  networkProfile?: LabNetworkProfile;
+  /** The lab state. */
+  state?: LabState;
+  /** Error details of the latest operation failure on this resource */
+  resourceOperationError?: LabPropertiesResourceOperationError;
+}
+export const LabProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    autoShutdownProfile: LabPropertiesAutoShutdownProfile,
+    connectionProfile: LabPropertiesConnectionProfile,
+    virtualMachineProfile: VirtualMachineProfile,
+    securityProfile: SecurityProfile,
+    rosterProfile: S.optional(RosterProfile),
+    labPlanId: S.optional(S.String),
+    title: S.optional(S.String),
+    description: S.optional(S.String),
+    provisioningState: S.optional(LabPropertiesProvisioningState),
+    networkProfile: S.optional(LabNetworkProfile),
+    state: S.optional(LabState),
+    resourceOperationError: S.optional(LabPropertiesResourceOperationError),
+  }),
+).annotate({ identifier: "LabProperties" }) as any as S.Schema<LabProperties>;
+
+export interface GetLabResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Resource tags. */
+  tags?: GetLabResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Metadata pertaining to creation and last modification of the resource. */
+  systemData?: GetLabResponseSystemData;
+  /** Lab resource properties */
+  properties: LabProperties;
+}
+export const GetLabResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    tags: S.optional(GetLabResponseTagsMap),
+    location: S.String,
+    systemData: S.optional(GetLabResponseSystemData),
+    properties: LabProperties,
+  }),
+).annotate({ identifier: "GetLabResponse" }) as any as S.Schema<GetLabResponse>;
+
+export interface GetLabPlanRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the lab plan that uniquely identifies it within containing resource group. Used in resource URIs and in UI. */
+  labPlanName: string;
+}
+export const GetLabPlanRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    labPlanName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labPlans/{labPlanName}",
+      code: 200,
+      apiVersion: "2023-06-07",
+    }),
+  ),
+).annotate({
+  identifier: "GetLabPlanRequest",
+}) as any as S.Schema<GetLabPlanRequest>;
+
+/** Resource tags. */
+export type GetLabPlanResponseTagsMap = { [key: string]: string | undefined };
+export const GetLabPlanResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetLabPlanResponseTagsMap>;
+
+/** The type of identity that created the resource. */
+export type GetLabPlanResponseSystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const GetLabPlanResponseSystemDataCreatedByType = /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type GetLabPlanResponseSystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const GetLabPlanResponseSystemDataLastModifiedByType =
+  /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface GetLabPlanResponseSystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: GetLabPlanResponseSystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: GetLabPlanResponseSystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const GetLabPlanResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdBy: S.optional(S.String),
+    createdByType: S.optional(GetLabPlanResponseSystemDataCreatedByType),
+    createdAt: S.optional(S.String),
+    lastModifiedBy: S.optional(S.String),
+    lastModifiedByType: S.optional(
+      GetLabPlanResponseSystemDataLastModifiedByType,
+    ),
+    lastModifiedAt: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetLabPlanResponseSystemData",
+}) as any as S.Schema<GetLabPlanResponseSystemData>;
+
+/** Connection profile for how users connect to lab virtual machines. */
+export interface LabPlanPropertiesDefaultConnectionProfile {
+  /** The enabled access level for Web Access over SSH. */
+  webSshAccess?: ConnectionType | (string & {});
+  /** The enabled access level for Web Access over RDP. */
+  webRdpAccess?: ConnectionType | (string & {});
+  /** The enabled access level for Client Access over SSH. */
+  clientSshAccess?: ConnectionType | (string & {});
+  /** The enabled access level for Client Access over RDP. */
+  clientRdpAccess?: ConnectionType | (string & {});
+}
+export const LabPlanPropertiesDefaultConnectionProfile =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      webSshAccess: S.optional(ConnectionType),
+      webRdpAccess: S.optional(ConnectionType),
+      clientSshAccess: S.optional(ConnectionType),
+      clientRdpAccess: S.optional(ConnectionType),
+    }),
+  ).annotate({
+    identifier: "LabPlanPropertiesDefaultConnectionProfile",
+  }) as any as S.Schema<LabPlanPropertiesDefaultConnectionProfile>;
+
+/** Profile for how to handle shutting down virtual machines. */
+export interface LabPlanPropertiesDefaultAutoShutdownProfile {
+  /** Whether shutdown on disconnect is enabled */
+  shutdownOnDisconnect?: EnableState | (string & {});
+  /** Whether a VM will get shutdown when it hasn't been connected to after a period of time. */
+  shutdownWhenNotConnected?: EnableState | (string & {});
+  /** Whether a VM will get shutdown when it has idled for a period of time. */
+  shutdownOnIdle?: ShutdownOnIdleMode | (string & {});
+  /** The amount of time a VM will stay running after a user disconnects if this behavior is enabled. */
+  disconnectDelay?: string;
+  /** The amount of time a VM will stay running before it is shutdown if no connection is made and this behavior is enabled. */
+  noConnectDelay?: string;
+  /** The amount of time a VM will idle before it is shutdown if this behavior is enabled. */
+  idleDelay?: string;
+}
+export const LabPlanPropertiesDefaultAutoShutdownProfile =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      shutdownOnDisconnect: S.optional(EnableState),
+      shutdownWhenNotConnected: S.optional(EnableState),
+      shutdownOnIdle: S.optional(ShutdownOnIdleMode),
+      disconnectDelay: S.optional(S.String),
+      noConnectDelay: S.optional(S.String),
+      idleDelay: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "LabPlanPropertiesDefaultAutoShutdownProfile",
+  }) as any as S.Schema<LabPlanPropertiesDefaultAutoShutdownProfile>;
+
+/** Profile for how to handle networking for Lab Plans. */
+export interface LabPlanNetworkProfile {
+  /** A URL. */
+  subnetId?: string;
+}
+export const LabPlanNetworkProfile = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subnetId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "LabPlanNetworkProfile",
+}) as any as S.Schema<LabPlanNetworkProfile>;
+
+/** The allowed regions for the lab creator to use when creating labs using this lab plan. */
+export type LabPlanPropertiesAllowedRegionsList = Array<string>;
+export const LabPlanPropertiesAllowedRegionsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<LabPlanPropertiesAllowedRegionsList>;
+
+/** Support contact information and instructions. */
+export interface SupportInfo {
+  /** A URL. */
+  url?: string;
+  /** An email address. */
+  email?: string;
+  /** A phone number. */
+  phone?: string;
+  /** Support instructions. */
+  instructions?: string;
+}
+export const SupportInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    url: S.optional(S.String),
+    email: S.optional(S.String),
+    phone: S.optional(S.String),
+    instructions: S.optional(S.String),
+  }),
+).annotate({ identifier: "SupportInfo" }) as any as S.Schema<SupportInfo>;
+
+/** Resource provisioning state. */
+export type LabPlanPropertiesProvisioningState =
+  | "Creating"
+  | "Updating"
+  | "Deleting"
+  | "Succeeded"
+  | "Failed"
+  | "Locked";
+export const LabPlanPropertiesProvisioningState = /*@__PURE__*/ S.String;
+
+/** Error details of the latest operation failure on this resource */
+export type LabPlanPropertiesResourceOperationError =
+  LabPropertiesResourceOperationError;
+export const LabPlanPropertiesResourceOperationError =
+  LabPropertiesResourceOperationError;
+
+/** Lab plan resource properties */
+export interface LabPlanProperties {
+  /** Connection profile for how users connect to lab virtual machines. */
+  defaultConnectionProfile?: LabPlanPropertiesDefaultConnectionProfile;
+  /** Profile for how to handle shutting down virtual machines. */
+  defaultAutoShutdownProfile?: LabPlanPropertiesDefaultAutoShutdownProfile;
+  /** The lab plan network profile. To enforce lab network policies they must be defined here and cannot be changed when there are existing labs associated with this lab plan. */
+  defaultNetworkProfile?: LabPlanNetworkProfile;
+  /** The allowed regions for the lab creator to use when creating labs using this lab plan. */
+  allowedRegions?: LabPlanPropertiesAllowedRegionsList;
+  /** A URL. */
+  sharedGalleryId?: string;
+  /** Support contact information and instructions for users of the lab plan. This information is displayed to lab owners and virtual machine users for all labs in the lab plan. */
+  supportInfo?: SupportInfo;
+  /** A URL. */
+  linkedLmsInstance?: string;
+  /** Resource provisioning state. */
+  provisioningState?: LabPlanPropertiesProvisioningState | (string & {});
+  /** Error details of the latest operation failure on this resource */
+  resourceOperationError?: LabPropertiesResourceOperationError;
+}
+export const LabPlanProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    defaultConnectionProfile: S.optional(
+      LabPlanPropertiesDefaultConnectionProfile,
+    ),
+    defaultAutoShutdownProfile: S.optional(
+      LabPlanPropertiesDefaultAutoShutdownProfile,
+    ),
+    defaultNetworkProfile: S.optional(LabPlanNetworkProfile),
+    allowedRegions: S.optional(LabPlanPropertiesAllowedRegionsList),
+    sharedGalleryId: S.optional(S.String),
+    supportInfo: S.optional(SupportInfo),
+    linkedLmsInstance: S.optional(S.String),
+    provisioningState: S.optional(LabPlanPropertiesProvisioningState),
+    resourceOperationError: S.optional(LabPropertiesResourceOperationError),
+  }),
+).annotate({
+  identifier: "LabPlanProperties",
+}) as any as S.Schema<LabPlanProperties>;
+
+/** The identity type. */
+export type GetLabPlanResponseIdentityType = "SystemAssigned";
+export const GetLabPlanResponseIdentityType = /*@__PURE__*/ S.String;
+
+/** Identity for the resource. */
+export interface GetLabPlanResponseIdentity {
+  /** The principal ID of resource identity. */
+  principalId?: string;
+  /** The tenant ID of resource. */
+  tenantId?: string;
+  /** The identity type. */
+  type?: GetLabPlanResponseIdentityType;
+}
+export const GetLabPlanResponseIdentity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    principalId: S.optional(S.String),
+    tenantId: S.optional(S.String),
+    type: S.optional(GetLabPlanResponseIdentityType),
+  }),
+).annotate({
+  identifier: "GetLabPlanResponseIdentity",
+}) as any as S.Schema<GetLabPlanResponseIdentity>;
+
+export interface GetLabPlanResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Resource tags. */
+  tags?: GetLabPlanResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Metadata pertaining to creation and last modification of the resource. */
+  systemData?: GetLabPlanResponseSystemData;
+  /** Lab plan resource properties */
+  properties: LabPlanProperties;
+  /** Identity for the resource. */
+  identity?: GetLabPlanResponseIdentity;
+}
+export const GetLabPlanResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    tags: S.optional(GetLabPlanResponseTagsMap),
+    location: S.String,
+    systemData: S.optional(GetLabPlanResponseSystemData),
+    properties: LabPlanProperties,
+    identity: S.optional(GetLabPlanResponseIdentity),
+  }),
+).annotate({
+  identifier: "GetLabPlanResponse",
+}) as any as S.Schema<GetLabPlanResponse>;
+
+export interface GetOperationResultRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The operation result ID / name. */
+  operationResultId: string;
+}
+export const GetOperationResultRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    operationResultId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.LabServices/operationResults/{operationResultId}",
+      code: 200,
+      apiVersion: "2023-06-07",
+    }),
+  ),
+).annotate({
+  identifier: "GetOperationResultRequest",
+}) as any as S.Schema<GetOperationResultRequest>;
+
+/** The operation status */
+export type OperationResultStatus =
+  | "NotStarted"
+  | "InProgress"
+  | "Succeeded"
+  | "Failed"
+  | "Canceled";
+export const OperationResultStatus = /*@__PURE__*/ S.String;
+
+/** The error details. */
+export type ErrorDetailDetailsList = Array<ErrorDetail>;
+export const ErrorDetailDetailsList = /*@__PURE__*/ S.Array(
+  S.suspend(() => ErrorDetail),
+) as any as S.Schema<ErrorDetailDetailsList>;
+
+/** The resource management error additional info. */
+export interface ErrorAdditionalInfo {
+  /** The additional info type. */
+  type?: string;
+  /** The additional info. */
+  info?: unknown;
+}
+export const ErrorAdditionalInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.optional(S.String),
+    info: S.optional(S.Unknown),
+  }),
+).annotate({
+  identifier: "ErrorAdditionalInfo",
+}) as any as S.Schema<ErrorAdditionalInfo>;
+
+/** The error additional info. */
+export type ErrorDetailAdditionalInfoList = Array<ErrorAdditionalInfo>;
+export const ErrorDetailAdditionalInfoList = /*@__PURE__*/ S.Array(
+  ErrorAdditionalInfo,
+) as any as S.Schema<ErrorDetailAdditionalInfoList>;
+
+/** The error detail. */
+export interface ErrorDetail {
+  /** The error code. */
+  code?: string;
+  /** The error message. */
+  message?: string;
+  /** The error target. */
+  target?: string;
+  /** The error details. */
+  details?: ErrorDetailDetailsList;
+  /** The error additional info. */
+  additionalInfo?: ErrorDetailAdditionalInfoList;
+}
+export const ErrorDetail = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    code: S.optional(S.String),
+    message: S.optional(S.String),
+    target: S.optional(S.String),
+    details: S.optional(ErrorDetailDetailsList),
+    additionalInfo: S.optional(ErrorDetailAdditionalInfoList),
+  }),
+).annotate({ identifier: "ErrorDetail" }) as any as S.Schema<ErrorDetail>;
+
+/** The error details. */
+export type OperationResultErrorDetailsList = Array<ErrorDetail>;
+export const OperationResultErrorDetailsList = /*@__PURE__*/ S.Array(
+  ErrorDetail,
+) as any as S.Schema<OperationResultErrorDetailsList>;
+
+/** The error additional info. */
+export type OperationResultErrorAdditionalInfoList = Array<ErrorAdditionalInfo>;
+export const OperationResultErrorAdditionalInfoList = /*@__PURE__*/ S.Array(
+  ErrorAdditionalInfo,
+) as any as S.Schema<OperationResultErrorAdditionalInfoList>;
+
+/** The error detail. */
+export interface OperationResultError {
+  /** The error code. */
+  code?: string;
+  /** The error message. */
+  message?: string;
+  /** The error target. */
+  target?: string;
+  /** The error details. */
+  details?: OperationResultErrorDetailsList;
+  /** The error additional info. */
+  additionalInfo?: OperationResultErrorAdditionalInfoList;
+}
+export const OperationResultError = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    code: S.optional(S.String),
+    message: S.optional(S.String),
+    target: S.optional(S.String),
+    details: S.optional(OperationResultErrorDetailsList),
+    additionalInfo: S.optional(OperationResultErrorAdditionalInfoList),
+  }),
+).annotate({
+  identifier: "OperationResultError",
+}) as any as S.Schema<OperationResultError>;
+
+/** A long running operation result */
+export interface OperationResult {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The operation status */
+  status: OperationResultStatus;
+  /** Start time */
+  startTime?: string;
+  /** End time */
+  endTime?: string;
+  /** Percent completion */
+  percentComplete?: number;
+  /** The error detail. */
+  error?: OperationResultError;
+}
+export const OperationResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    status: OperationResultStatus,
+    startTime: S.optional(S.String),
+    endTime: S.optional(S.String),
+    percentComplete: S.optional(S.Number),
+    error: S.optional(OperationResultError),
+  }),
+).annotate({
+  identifier: "OperationResult",
+}) as any as S.Schema<OperationResult>;
+
+export interface GetScheduleRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs. */
+  labName: string;
+  /** The name of the schedule that uniquely identifies it within containing lab. Used in resource URIs. */
+  scheduleName: string;
+}
+export const GetScheduleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    labName: S.String.pipe(T.Label()),
+    scheduleName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}/schedules/{scheduleName}",
+      code: 200,
+      apiVersion: "2023-06-07",
+    }),
+  ),
+).annotate({
+  identifier: "GetScheduleRequest",
+}) as any as S.Schema<GetScheduleRequest>;
+
+/** The type of identity that created the resource. */
+export type GetScheduleResponseSystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const GetScheduleResponseSystemDataCreatedByType =
+  /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type GetScheduleResponseSystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const GetScheduleResponseSystemDataLastModifiedByType =
+  /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface GetScheduleResponseSystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: GetScheduleResponseSystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: GetScheduleResponseSystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const GetScheduleResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdBy: S.optional(S.String),
+    createdByType: S.optional(GetScheduleResponseSystemDataCreatedByType),
+    createdAt: S.optional(S.String),
+    lastModifiedBy: S.optional(S.String),
+    lastModifiedByType: S.optional(
+      GetScheduleResponseSystemDataLastModifiedByType,
+    ),
+    lastModifiedAt: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetScheduleResponseSystemData",
+}) as any as S.Schema<GetScheduleResponseSystemData>;
+
+/** Schedule recurrence frequencies. */
+export type RecurrenceFrequency = "Daily" | "Weekly";
+export const RecurrenceFrequency = /*@__PURE__*/ S.String;
+
+/** Days of the week. */
+export type WeekDay =
+  | "Sunday"
+  | "Monday"
+  | "Tuesday"
+  | "Wednesday"
+  | "Thursday"
+  | "Friday"
+  | "Saturday";
+export const WeekDay = /*@__PURE__*/ S.String;
+
+/** The week days the schedule runs. Used for when the Frequency is set to Weekly. */
+export type RecurrencePatternWeekDaysList = Array<WeekDay | (string & {})>;
+export const RecurrencePatternWeekDaysList = /*@__PURE__*/ S.Array(
+  WeekDay,
+) as any as S.Schema<RecurrencePatternWeekDaysList>;
+
+/** Recurrence pattern of a lab schedule. */
+export interface RecurrencePattern {
+  /** The frequency of the recurrence. */
+  frequency: RecurrenceFrequency | (string & {});
+  /** The week days the schedule runs. Used for when the Frequency is set to Weekly. */
+  weekDays?: RecurrencePatternWeekDaysList;
+  /** The interval to invoke the schedule on. For example, interval = 2 and RecurrenceFrequency.Daily will run every 2 days. When no interval is supplied, an interval of 1 is used. */
+  interval?: number;
+  /** When the recurrence will expire. This date is inclusive. */
+  expirationDate: string;
+}
+export const RecurrencePattern = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    frequency: RecurrenceFrequency,
+    weekDays: S.optional(RecurrencePatternWeekDaysList),
+    interval: S.optional(S.Number),
+    expirationDate: S.String,
+  }),
+).annotate({
+  identifier: "RecurrencePattern",
+}) as any as S.Schema<RecurrencePattern>;
+
+/** Resource provisioning state. */
+export type SchedulePropertiesProvisioningState =
+  | "Creating"
+  | "Updating"
+  | "Deleting"
+  | "Succeeded"
+  | "Failed"
+  | "Locked";
+export const SchedulePropertiesProvisioningState = /*@__PURE__*/ S.String;
+
+/** Error details of the latest operation failure on this resource */
+export type SchedulePropertiesResourceOperationError =
+  LabPropertiesResourceOperationError;
+export const SchedulePropertiesResourceOperationError =
+  LabPropertiesResourceOperationError;
+
+/** Schedule resource properties */
+export interface ScheduleProperties {
+  /** When lab user virtual machines will be started. Timestamp offsets will be ignored and timeZoneId is used instead. */
+  startAt?: string;
+  /** When lab user virtual machines will be stopped. Timestamp offsets will be ignored and timeZoneId is used instead. */
+  stopAt: string;
+  /** The recurrence pattern of the scheduled actions. */
+  recurrencePattern?: RecurrencePattern;
+  /** The IANA timezone id for the schedule. */
+  timeZoneId: string;
+  /** Notes for this schedule. */
+  notes?: string;
+  /** Resource provisioning state. */
+  provisioningState?: SchedulePropertiesProvisioningState | (string & {});
+  /** Error details of the latest operation failure on this resource */
+  resourceOperationError?: LabPropertiesResourceOperationError;
+}
+export const ScheduleProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    startAt: S.optional(S.String),
+    stopAt: S.String,
+    recurrencePattern: S.optional(RecurrencePattern),
+    timeZoneId: S.String,
+    notes: S.optional(S.String),
+    provisioningState: S.optional(SchedulePropertiesProvisioningState),
+    resourceOperationError: S.optional(LabPropertiesResourceOperationError),
+  }),
+).annotate({
+  identifier: "ScheduleProperties",
+}) as any as S.Schema<ScheduleProperties>;
+
+export interface GetScheduleResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Metadata pertaining to creation and last modification of the resource. */
+  systemData?: GetScheduleResponseSystemData;
+  /** Schedule resource properties */
+  properties: ScheduleProperties;
+}
+export const GetScheduleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(GetScheduleResponseSystemData),
+    properties: ScheduleProperties,
+  }),
+).annotate({
+  identifier: "GetScheduleResponse",
+}) as any as S.Schema<GetScheduleResponse>;
+
+export interface GetUserRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs. */
+  labName: string;
+  /** The name of the user that uniquely identifies it within containing lab. Used in resource URIs. */
+  userName: string;
+}
+export const GetUserRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    labName: S.String.pipe(T.Label()),
+    userName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}/users/{userName}",
+      code: 200,
+      apiVersion: "2023-06-07",
+    }),
+  ),
+).annotate({ identifier: "GetUserRequest" }) as any as S.Schema<GetUserRequest>;
+
+/** The type of identity that created the resource. */
+export type GetUserResponseSystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const GetUserResponseSystemDataCreatedByType = /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type GetUserResponseSystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const GetUserResponseSystemDataLastModifiedByType =
+  /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface GetUserResponseSystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: GetUserResponseSystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: GetUserResponseSystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const GetUserResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdBy: S.optional(S.String),
+    createdByType: S.optional(GetUserResponseSystemDataCreatedByType),
+    createdAt: S.optional(S.String),
+    lastModifiedBy: S.optional(S.String),
+    lastModifiedByType: S.optional(GetUserResponseSystemDataLastModifiedByType),
+    lastModifiedAt: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetUserResponseSystemData",
+}) as any as S.Schema<GetUserResponseSystemData>;
+
+/** Resource provisioning state. */
+export type UserPropertiesProvisioningState =
+  | "Creating"
+  | "Updating"
+  | "Deleting"
+  | "Succeeded"
+  | "Failed"
+  | "Locked";
+export const UserPropertiesProvisioningState = /*@__PURE__*/ S.String;
+
+/** Error details of the latest operation failure on this resource */
+export type UserPropertiesResourceOperationError =
+  LabPropertiesResourceOperationError;
+export const UserPropertiesResourceOperationError =
+  LabPropertiesResourceOperationError;
+
+/** The user lab registration state. */
+export type RegistrationState = "NotRegistered" | "Registered";
+export const RegistrationState = /*@__PURE__*/ S.String;
+
+/** The lab user invitation state. */
+export type InvitationState = "NotSent" | "Sending" | "Sent" | "Failed";
+export const InvitationState = /*@__PURE__*/ S.String;
+
+/** User resource properties */
+export interface UserProperties {
+  /** The amount of usage quota time the user gets in addition to the lab usage quota. */
+  additionalUsageQuota?: string;
+  /** Resource provisioning state. */
+  provisioningState?: UserPropertiesProvisioningState;
+  /** Error details of the latest operation failure on this resource */
+  resourceOperationError?: LabPropertiesResourceOperationError;
+  /** Display name of the user, for example user's full name. */
+  displayName?: string;
+  /** An email address. */
+  email: string;
+  /** State of the user's registration within the lab. */
+  registrationState?: RegistrationState;
+  /** State of the invitation message for the user. */
+  invitationState?: InvitationState;
+  /** Date and time when the invitation message was sent to the user. */
+  invitationSent?: string;
+  /** How long the user has used their virtual machines in this lab. */
+  totalUsage?: string;
+}
+export const UserProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    additionalUsageQuota: S.optional(S.String),
+    provisioningState: S.optional(UserPropertiesProvisioningState),
+    resourceOperationError: S.optional(LabPropertiesResourceOperationError),
+    displayName: S.optional(S.String),
+    email: S.String,
+    registrationState: S.optional(RegistrationState),
+    invitationState: S.optional(InvitationState),
+    invitationSent: S.optional(S.String),
+    totalUsage: S.optional(S.String),
+  }),
+).annotate({ identifier: "UserProperties" }) as any as S.Schema<UserProperties>;
+
+export interface GetUserResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Metadata pertaining to creation and last modification of the resource. */
+  systemData?: GetUserResponseSystemData;
+  /** User resource properties */
+  properties: UserProperties;
+}
+export const GetUserResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(GetUserResponseSystemData),
+    properties: UserProperties,
+  }),
+).annotate({
+  identifier: "GetUserResponse",
+}) as any as S.Schema<GetUserResponse>;
+
+export interface GetVirtualMachineRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs. */
+  labName: string;
+  /** The ID of the virtual machine that uniquely identifies it within the containing lab. Used in resource URIs. */
+  virtualMachineName: string;
+}
+export const GetVirtualMachineRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    labName: S.String.pipe(T.Label()),
+    virtualMachineName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}/virtualMachines/{virtualMachineName}",
+      code: 200,
+      apiVersion: "2023-06-07",
+    }),
+  ),
+).annotate({
+  identifier: "GetVirtualMachineRequest",
+}) as any as S.Schema<GetVirtualMachineRequest>;
+
+/** The type of identity that created the resource. */
+export type GetVirtualMachineResponseSystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const GetVirtualMachineResponseSystemDataCreatedByType =
+  /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type GetVirtualMachineResponseSystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const GetVirtualMachineResponseSystemDataLastModifiedByType =
+  /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface GetVirtualMachineResponseSystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: GetVirtualMachineResponseSystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: GetVirtualMachineResponseSystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const GetVirtualMachineResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdBy: S.optional(S.String),
+    createdByType: S.optional(GetVirtualMachineResponseSystemDataCreatedByType),
+    createdAt: S.optional(S.String),
+    lastModifiedBy: S.optional(S.String),
+    lastModifiedByType: S.optional(
+      GetVirtualMachineResponseSystemDataLastModifiedByType,
+    ),
+    lastModifiedAt: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetVirtualMachineResponseSystemData",
+}) as any as S.Schema<GetVirtualMachineResponseSystemData>;
+
+/** Resource provisioning state. */
+export type VirtualMachinePropertiesProvisioningState =
+  | "Creating"
+  | "Updating"
+  | "Deleting"
+  | "Succeeded"
+  | "Failed"
+  | "Locked";
+export const VirtualMachinePropertiesProvisioningState = /*@__PURE__*/ S.String;
+
+/** The state of a virtual machine. */
+export type VirtualMachineState =
+  | "Stopped"
+  | "Starting"
+  | "Running"
+  | "Stopping"
+  | "ResettingPassword"
+  | "Reimaging"
+  | "Redeploying";
+export const VirtualMachineState = /*@__PURE__*/ S.String;
+
+/** Error details of the latest operation failure on this resource */
+export type VirtualMachinePropertiesResourceOperationError =
+  LabPropertiesResourceOperationError;
+export const VirtualMachinePropertiesResourceOperationError =
+  LabPropertiesResourceOperationError;
+
+/** The connection information for the virtual machine */
+export interface VirtualMachineConnectionProfile {
+  /** The private IP address of the virtual machine. */
+  privateIpAddress?: string;
+  /** Port and host name separated by semicolon for connecting via SSH protocol to the virtual machine. */
+  sshAuthority?: string;
+  /** A URL. */
+  sshInBrowserUrl?: string;
+  /** Port and host name separated by semicolon for connecting via RDP protocol to the virtual machine. */
+  rdpAuthority?: string;
+  /** A URL. */
+  rdpInBrowserUrl?: string;
+  /** The username used to log on to the virtual machine as admin. */
+  adminUsername?: string;
+  /** The username used to log on to the virtual machine as non-admin, if one exists. */
+  nonAdminUsername?: string;
+}
+export const VirtualMachineConnectionProfile = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    privateIpAddress: S.optional(S.String),
+    sshAuthority: S.optional(S.String),
+    sshInBrowserUrl: S.optional(S.String),
+    rdpAuthority: S.optional(S.String),
+    rdpInBrowserUrl: S.optional(S.String),
+    adminUsername: S.optional(S.String),
+    nonAdminUsername: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "VirtualMachineConnectionProfile",
+}) as any as S.Schema<VirtualMachineConnectionProfile>;
+
+/** The type of the lab virtual machine. */
+export type VirtualMachineType = "User" | "Template";
+export const VirtualMachineType = /*@__PURE__*/ S.String;
+
+/** Virtual machine resource properties */
+export interface VirtualMachineProperties {
+  /** Resource provisioning state. */
+  provisioningState?: VirtualMachinePropertiesProvisioningState;
+  /** The current state of the virtual machine */
+  state?: VirtualMachineState;
+  /** Error details of the latest operation failure on this resource */
+  resourceOperationError?: LabPropertiesResourceOperationError;
+  /** Profile for information about connecting to the virtual machine. */
+  connectionProfile?: VirtualMachineConnectionProfile;
+  /** The lab user ID (not the PUID!) of who claimed the virtual machine. */
+  claimedByUserId?: string;
+  /** The type of this VM resource */
+  vmType?: VirtualMachineType;
+}
+export const VirtualMachineProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(VirtualMachinePropertiesProvisioningState),
+    state: S.optional(VirtualMachineState),
+    resourceOperationError: S.optional(LabPropertiesResourceOperationError),
+    connectionProfile: S.optional(VirtualMachineConnectionProfile),
+    claimedByUserId: S.optional(S.String),
+    vmType: S.optional(VirtualMachineType),
+  }),
+).annotate({
+  identifier: "VirtualMachineProperties",
+}) as any as S.Schema<VirtualMachineProperties>;
+
+export interface GetVirtualMachineResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Metadata pertaining to creation and last modification of the resource. */
+  systemData?: GetVirtualMachineResponseSystemData;
+  /** Virtual machine resource properties */
+  properties: VirtualMachineProperties;
+}
+export const GetVirtualMachineResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(GetVirtualMachineResponseSystemData),
+    properties: VirtualMachineProperties,
+  }),
+).annotate({
+  identifier: "GetVirtualMachineResponse",
+}) as any as S.Schema<GetVirtualMachineResponse>;
+
 /** Property enabled state. */
 export type ImagePropertiesInputEnabledState = "Enabled" | "Disabled";
 export const ImagePropertiesInputEnabledState = /*@__PURE__*/ S.String;
@@ -158,96 +1907,6 @@ export const ImagesCreateOrUpdateResponseSystemData = /*@__PURE__*/ S.suspend(
   identifier: "ImagesCreateOrUpdateResponseSystemData",
 }) as any as S.Schema<ImagesCreateOrUpdateResponseSystemData>;
 
-/** Property enabled state. */
-export type ImagePropertiesEnabledState = "Enabled" | "Disabled";
-export const ImagePropertiesEnabledState = /*@__PURE__*/ S.String;
-
-/** Resource provisioning state. */
-export type ImagePropertiesProvisioningState =
-  | "Creating"
-  | "Updating"
-  | "Deleting"
-  | "Succeeded"
-  | "Failed"
-  | "Locked";
-export const ImagePropertiesProvisioningState = /*@__PURE__*/ S.String;
-
-/** The operating system type. */
-export type ImagePropertiesOsType = "Windows" | "Linux";
-export const ImagePropertiesOsType = /*@__PURE__*/ S.String;
-
-/** Property enabled state. */
-export type ImagePropertiesTermsStatus = "Enabled" | "Disabled";
-export const ImagePropertiesTermsStatus = /*@__PURE__*/ S.String;
-
-/** The available regions of the image in the shared gallery. */
-export type ImagePropertiesAvailableRegionsList = Array<string>;
-export const ImagePropertiesAvailableRegionsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ImagePropertiesAvailableRegionsList>;
-
-/** The operating system state. */
-export type ImagePropertiesOsState = "Generalized" | "Specialized";
-export const ImagePropertiesOsState = /*@__PURE__*/ S.String;
-
-/** Properties of an image resource. */
-export interface ImageProperties {
-  /** Property enabled state. */
-  enabledState: ImagePropertiesEnabledState;
-  /** Resource provisioning state. */
-  provisioningState?: ImagePropertiesProvisioningState;
-  /** The image display name. */
-  displayName?: string;
-  /** A description of the image. */
-  description?: string;
-  /** URL of the image icon. */
-  iconUrl?: string;
-  /** The image author. */
-  author?: string;
-  /** The operating system type. */
-  osType?: ImagePropertiesOsType;
-  /** The ID of marketplace plan associated with the image (optional). */
-  plan?: string;
-  /** Property enabled state. */
-  termsStatus?: ImagePropertiesTermsStatus;
-  /** The ID of an offer associated with the image. */
-  offer?: string;
-  /** The ID of the publisher of the image. */
-  publisher?: string;
-  /** The image SKU. */
-  sku?: string;
-  /** The image version. */
-  version?: string;
-  /** A URL. */
-  sharedGalleryId?: string;
-  /** The available regions of the image in the shared gallery. */
-  availableRegions?: ImagePropertiesAvailableRegionsList;
-  /** The operating system state. */
-  osState?: ImagePropertiesOsState;
-}
-export const ImageProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    enabledState: ImagePropertiesEnabledState,
-    provisioningState: S.optional(ImagePropertiesProvisioningState),
-    displayName: S.optional(S.String),
-    description: S.optional(S.String),
-    iconUrl: S.optional(S.String),
-    author: S.optional(S.String),
-    osType: S.optional(ImagePropertiesOsType),
-    plan: S.optional(S.String),
-    termsStatus: S.optional(ImagePropertiesTermsStatus),
-    offer: S.optional(S.String),
-    publisher: S.optional(S.String),
-    sku: S.optional(S.String),
-    version: S.optional(S.String),
-    sharedGalleryId: S.optional(S.String),
-    availableRegions: S.optional(ImagePropertiesAvailableRegionsList),
-    osState: S.optional(ImagePropertiesOsState),
-  }),
-).annotate({
-  identifier: "ImageProperties",
-}) as any as S.Schema<ImageProperties>;
-
 export interface ImagesCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
@@ -272,339 +1931,43 @@ export const ImagesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ImagesCreateOrUpdateResponse",
 }) as any as S.Schema<ImagesCreateOrUpdateResponse>;
 
-export interface ImagesGetRequest {
+export interface InviteUserRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** The name of the lab plan that uniquely identifies it within containing resource group. Used in resource URIs and in UI. */
-  labPlanName: string;
-  /** The image name. */
-  imageName: string;
+  /** The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs. */
+  labName: string;
+  /** The name of the user that uniquely identifies it within containing lab. Used in resource URIs. */
+  userName: string;
+  /** Custom text for the invite email. */
+  text?: string;
 }
-export const ImagesGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const InviteUserRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
-    labPlanName: S.String.pipe(T.Label()),
-    imageName: S.String.pipe(T.Label()),
+    labName: S.String.pipe(T.Label()),
+    userName: S.String.pipe(T.Label()),
+    text: S.optional(S.String),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labPlans/{labPlanName}/images/{imageName}",
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}/users/{userName}/invite",
       code: 200,
       apiVersion: "2023-06-07",
     }),
   ),
 ).annotate({
-  identifier: "ImagesGetRequest",
-}) as any as S.Schema<ImagesGetRequest>;
+  identifier: "InviteUserRequest",
+}) as any as S.Schema<InviteUserRequest>;
 
-/** The type of identity that created the resource. */
-export type ImagesGetResponseSystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const ImagesGetResponseSystemDataCreatedByType = /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type ImagesGetResponseSystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const ImagesGetResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface ImagesGetResponseSystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: ImagesGetResponseSystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: ImagesGetResponseSystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const ImagesGetResponseSystemData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createdBy: S.optional(S.String),
-    createdByType: S.optional(ImagesGetResponseSystemDataCreatedByType),
-    createdAt: S.optional(S.String),
-    lastModifiedBy: S.optional(S.String),
-    lastModifiedByType: S.optional(
-      ImagesGetResponseSystemDataLastModifiedByType,
-    ),
-    lastModifiedAt: S.optional(S.String),
-  }),
+export interface InviteUserResponse {}
+export const InviteUserResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
 ).annotate({
-  identifier: "ImagesGetResponseSystemData",
-}) as any as S.Schema<ImagesGetResponseSystemData>;
-
-export interface ImagesGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: ImagesGetResponseSystemData;
-  /** Image resource properties */
-  properties: ImageProperties;
-}
-export const ImagesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(ImagesGetResponseSystemData),
-    properties: ImageProperties,
-  }),
-).annotate({
-  identifier: "ImagesGetResponse",
-}) as any as S.Schema<ImagesGetResponse>;
-
-export interface ImagesListByLabPlanRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the lab plan that uniquely identifies it within containing resource group. Used in resource URIs and in UI. */
-  labPlanName: string;
-  /** The filter to apply to the operation. */
-  _filter?: string;
-}
-export const ImagesListByLabPlanRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    labPlanName: S.String.pipe(T.Label()),
-    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labPlans/{labPlanName}/images",
-      code: 200,
-      apiVersion: "2023-06-07",
-    }),
-  ),
-).annotate({
-  identifier: "ImagesListByLabPlanRequest",
-}) as any as S.Schema<ImagesListByLabPlanRequest>;
-
-/** The type of identity that created the resource. */
-export type ImageSystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const ImageSystemDataCreatedByType = /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type ImageSystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const ImageSystemDataLastModifiedByType = /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface ImageSystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: ImageSystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: ImageSystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const ImageSystemData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createdBy: S.optional(S.String),
-    createdByType: S.optional(ImageSystemDataCreatedByType),
-    createdAt: S.optional(S.String),
-    lastModifiedBy: S.optional(S.String),
-    lastModifiedByType: S.optional(ImageSystemDataLastModifiedByType),
-    lastModifiedAt: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ImageSystemData",
-}) as any as S.Schema<ImageSystemData>;
-
-/** Lab services virtual machine image */
-export interface Image {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: ImageSystemData;
-  /** Image resource properties */
-  properties: ImageProperties;
-}
-export const Image = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(ImageSystemData),
-    properties: ImageProperties,
-  }),
-).annotate({ identifier: "Image" }) as any as S.Schema<Image>;
-
-/** The array page of virtual machine images. */
-export type PagedImagesValueList = Array<Image>;
-export const PagedImagesValueList = /*@__PURE__*/ S.Array(
-  Image,
-) as any as S.Schema<PagedImagesValueList>;
-
-/** Paged list of Lab services virtual machine images. */
-export interface PagedImages {
-  /** The array page of virtual machine images. */
-  value?: PagedImagesValueList;
-  /** The link to get the next page of image results. */
-  nextLink?: string;
-}
-export const PagedImages = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(PagedImagesValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "PagedImages" }) as any as S.Schema<PagedImages>;
-
-/** Property enabled state. */
-export type ImageUpdatePropertiesEnabledState = "Enabled" | "Disabled";
-export const ImageUpdatePropertiesEnabledState = /*@__PURE__*/ S.String;
-
-/** Properties of an image resource update */
-export interface ImageUpdateProperties {
-  /** Property enabled state. */
-  enabledState?: ImageUpdatePropertiesEnabledState | (string & {});
-}
-export const ImageUpdateProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    enabledState: S.optional(ImageUpdatePropertiesEnabledState),
-  }),
-).annotate({
-  identifier: "ImageUpdateProperties",
-}) as any as S.Schema<ImageUpdateProperties>;
-
-export interface ImagesUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the lab plan that uniquely identifies it within containing resource group. Used in resource URIs and in UI. */
-  labPlanName: string;
-  /** The image name. */
-  imageName: string;
-  /** Image resource properties */
-  properties?: ImageUpdateProperties;
-}
-export const ImagesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    labPlanName: S.String.pipe(T.Label()),
-    imageName: S.String.pipe(T.Label()),
-    properties: S.optional(ImageUpdateProperties),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labPlans/{labPlanName}/images/{imageName}",
-      code: 200,
-      apiVersion: "2023-06-07",
-    }),
-  ),
-).annotate({
-  identifier: "ImagesUpdateRequest",
-}) as any as S.Schema<ImagesUpdateRequest>;
-
-/** The type of identity that created the resource. */
-export type ImagesUpdateResponseSystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const ImagesUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type ImagesUpdateResponseSystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const ImagesUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface ImagesUpdateResponseSystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: ImagesUpdateResponseSystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: ImagesUpdateResponseSystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const ImagesUpdateResponseSystemData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createdBy: S.optional(S.String),
-    createdByType: S.optional(ImagesUpdateResponseSystemDataCreatedByType),
-    createdAt: S.optional(S.String),
-    lastModifiedBy: S.optional(S.String),
-    lastModifiedByType: S.optional(
-      ImagesUpdateResponseSystemDataLastModifiedByType,
-    ),
-    lastModifiedAt: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ImagesUpdateResponseSystemData",
-}) as any as S.Schema<ImagesUpdateResponseSystemData>;
-
-export interface ImagesUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: ImagesUpdateResponseSystemData;
-  /** Image resource properties */
-  properties: ImageProperties;
-}
-export const ImagesUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(ImagesUpdateResponseSystemData),
-    properties: ImageProperties,
-  }),
-).annotate({
-  identifier: "ImagesUpdateResponse",
-}) as any as S.Schema<ImagesUpdateResponse>;
+  identifier: "InviteUserResponse",
+}) as any as S.Schema<InviteUserResponse>;
 
 /** Resource tags. */
 export type LabPlansCreateOrUpdateRequestTagsMap = {
@@ -614,183 +1977,6 @@ export const LabPlansCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
 ) as any as S.Schema<LabPlansCreateOrUpdateRequestTagsMap>;
-
-/** A connection type for access labs and VMs (Public, Private or None). */
-export type ConnectionType = "Public" | "Private" | "None";
-export const ConnectionType = /*@__PURE__*/ S.String;
-
-/** Connection profile for how users connect to lab virtual machines. */
-export interface LabPlanPropertiesDefaultConnectionProfile {
-  /** The enabled access level for Web Access over SSH. */
-  webSshAccess?: ConnectionType | (string & {});
-  /** The enabled access level for Web Access over RDP. */
-  webRdpAccess?: ConnectionType | (string & {});
-  /** The enabled access level for Client Access over SSH. */
-  clientSshAccess?: ConnectionType | (string & {});
-  /** The enabled access level for Client Access over RDP. */
-  clientRdpAccess?: ConnectionType | (string & {});
-}
-export const LabPlanPropertiesDefaultConnectionProfile =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      webSshAccess: S.optional(ConnectionType),
-      webRdpAccess: S.optional(ConnectionType),
-      clientSshAccess: S.optional(ConnectionType),
-      clientRdpAccess: S.optional(ConnectionType),
-    }),
-  ).annotate({
-    identifier: "LabPlanPropertiesDefaultConnectionProfile",
-  }) as any as S.Schema<LabPlanPropertiesDefaultConnectionProfile>;
-
-/** Property enabled state. */
-export type EnableState = "Enabled" | "Disabled";
-export const EnableState = /*@__PURE__*/ S.String;
-
-/** Defines whether to shut down VM on idle and the criteria for idle detection. */
-export type ShutdownOnIdleMode = "None" | "UserAbsence" | "LowUsage";
-export const ShutdownOnIdleMode = /*@__PURE__*/ S.String;
-
-/** Profile for how to handle shutting down virtual machines. */
-export interface LabPlanPropertiesDefaultAutoShutdownProfile {
-  /** Whether shutdown on disconnect is enabled */
-  shutdownOnDisconnect?: EnableState | (string & {});
-  /** Whether a VM will get shutdown when it hasn't been connected to after a period of time. */
-  shutdownWhenNotConnected?: EnableState | (string & {});
-  /** Whether a VM will get shutdown when it has idled for a period of time. */
-  shutdownOnIdle?: ShutdownOnIdleMode | (string & {});
-  /** The amount of time a VM will stay running after a user disconnects if this behavior is enabled. */
-  disconnectDelay?: string;
-  /** The amount of time a VM will stay running before it is shutdown if no connection is made and this behavior is enabled. */
-  noConnectDelay?: string;
-  /** The amount of time a VM will idle before it is shutdown if this behavior is enabled. */
-  idleDelay?: string;
-}
-export const LabPlanPropertiesDefaultAutoShutdownProfile =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      shutdownOnDisconnect: S.optional(EnableState),
-      shutdownWhenNotConnected: S.optional(EnableState),
-      shutdownOnIdle: S.optional(ShutdownOnIdleMode),
-      disconnectDelay: S.optional(S.String),
-      noConnectDelay: S.optional(S.String),
-      idleDelay: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "LabPlanPropertiesDefaultAutoShutdownProfile",
-  }) as any as S.Schema<LabPlanPropertiesDefaultAutoShutdownProfile>;
-
-/** Profile for how to handle networking for Lab Plans. */
-export interface LabPlanNetworkProfile {
-  /** A URL. */
-  subnetId?: string;
-}
-export const LabPlanNetworkProfile = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subnetId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "LabPlanNetworkProfile",
-}) as any as S.Schema<LabPlanNetworkProfile>;
-
-/** The allowed regions for the lab creator to use when creating labs using this lab plan. */
-export type LabPlanPropertiesAllowedRegionsList = Array<string>;
-export const LabPlanPropertiesAllowedRegionsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<LabPlanPropertiesAllowedRegionsList>;
-
-/** Support contact information and instructions. */
-export interface SupportInfo {
-  /** A URL. */
-  url?: string;
-  /** An email address. */
-  email?: string;
-  /** A phone number. */
-  phone?: string;
-  /** Support instructions. */
-  instructions?: string;
-}
-export const SupportInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    url: S.optional(S.String),
-    email: S.optional(S.String),
-    phone: S.optional(S.String),
-    instructions: S.optional(S.String),
-  }),
-).annotate({ identifier: "SupportInfo" }) as any as S.Schema<SupportInfo>;
-
-/** Resource provisioning state. */
-export type LabPlanPropertiesProvisioningState =
-  | "Creating"
-  | "Updating"
-  | "Deleting"
-  | "Succeeded"
-  | "Failed"
-  | "Locked";
-export const LabPlanPropertiesProvisioningState = /*@__PURE__*/ S.String;
-
-/** Error details of the latest operation failure on this resource */
-export interface LabPlanPropertiesResourceOperationError {
-  /** The datetime of when the error occured */
-  timestamp?: string;
-  /** The code that corresponds to the type of operation failure */
-  code?: string;
-  /** The operation failure message */
-  message?: string;
-  /** The operation action that failed */
-  action?: string;
-}
-export const LabPlanPropertiesResourceOperationError = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      timestamp: S.optional(S.String),
-      code: S.optional(S.String),
-      message: S.optional(S.String),
-      action: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "LabPlanPropertiesResourceOperationError",
-}) as any as S.Schema<LabPlanPropertiesResourceOperationError>;
-
-/** Lab plan resource properties */
-export interface LabPlanProperties {
-  /** Connection profile for how users connect to lab virtual machines. */
-  defaultConnectionProfile?: LabPlanPropertiesDefaultConnectionProfile;
-  /** Profile for how to handle shutting down virtual machines. */
-  defaultAutoShutdownProfile?: LabPlanPropertiesDefaultAutoShutdownProfile;
-  /** The lab plan network profile. To enforce lab network policies they must be defined here and cannot be changed when there are existing labs associated with this lab plan. */
-  defaultNetworkProfile?: LabPlanNetworkProfile;
-  /** The allowed regions for the lab creator to use when creating labs using this lab plan. */
-  allowedRegions?: LabPlanPropertiesAllowedRegionsList;
-  /** A URL. */
-  sharedGalleryId?: string;
-  /** Support contact information and instructions for users of the lab plan. This information is displayed to lab owners and virtual machine users for all labs in the lab plan. */
-  supportInfo?: SupportInfo;
-  /** A URL. */
-  linkedLmsInstance?: string;
-  /** Resource provisioning state. */
-  provisioningState?: LabPlanPropertiesProvisioningState | (string & {});
-  /** Error details of the latest operation failure on this resource */
-  resourceOperationError?: LabPlanPropertiesResourceOperationError;
-}
-export const LabPlanProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    defaultConnectionProfile: S.optional(
-      LabPlanPropertiesDefaultConnectionProfile,
-    ),
-    defaultAutoShutdownProfile: S.optional(
-      LabPlanPropertiesDefaultAutoShutdownProfile,
-    ),
-    defaultNetworkProfile: S.optional(LabPlanNetworkProfile),
-    allowedRegions: S.optional(LabPlanPropertiesAllowedRegionsList),
-    sharedGalleryId: S.optional(S.String),
-    supportInfo: S.optional(SupportInfo),
-    linkedLmsInstance: S.optional(S.String),
-    provisioningState: S.optional(LabPlanPropertiesProvisioningState),
-    resourceOperationError: S.optional(LabPlanPropertiesResourceOperationError),
-  }),
-).annotate({
-  identifier: "LabPlanProperties",
-}) as any as S.Schema<LabPlanProperties>;
 
 /** The identity type. */
 export type LabPlansCreateOrUpdateRequestIdentityType = "SystemAssigned";
@@ -965,142 +2151,348 @@ export const LabPlansCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "LabPlansCreateOrUpdateResponse",
 }) as any as S.Schema<LabPlansCreateOrUpdateResponse>;
 
-export interface LabPlansDeleteRequest {
+export interface LabPlansSaveImageRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the lab plan that uniquely identifies it within containing resource group. Used in resource URIs and in UI. */
   labPlanName: string;
+  /** The name for the image we create. */
+  name?: string;
+  /** A URL. */
+  labVirtualMachineId?: string;
 }
-export const LabPlansDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const LabPlansSaveImageRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     labPlanName: S.String.pipe(T.Label()),
+    name: S.optional(S.String),
+    labVirtualMachineId: S.optional(S.String),
   }).pipe(
     T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labPlans/{labPlanName}",
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labPlans/{labPlanName}/saveImage",
       code: 200,
       apiVersion: "2023-06-07",
     }),
   ),
 ).annotate({
-  identifier: "LabPlansDeleteRequest",
-}) as any as S.Schema<LabPlansDeleteRequest>;
+  identifier: "LabPlansSaveImageRequest",
+}) as any as S.Schema<LabPlansSaveImageRequest>;
 
-export interface LabPlansDeleteResponse {}
-export const LabPlansDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface LabPlansSaveImageResponse {}
+export const LabPlansSaveImageResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "LabPlansDeleteResponse",
-}) as any as S.Schema<LabPlansDeleteResponse>;
+  identifier: "LabPlansSaveImageResponse",
+}) as any as S.Schema<LabPlansSaveImageResponse>;
 
-export interface LabPlansGetRequest {
+/** Resource tags. */
+export type LabsCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const LabsCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<LabsCreateOrUpdateRequestTagsMap>;
+
+/** Profile for how to handle shutting down virtual machines. */
+export type LabPropertiesInputAutoShutdownProfile =
+  LabPlanPropertiesDefaultAutoShutdownProfile;
+export const LabPropertiesInputAutoShutdownProfile =
+  LabPlanPropertiesDefaultAutoShutdownProfile;
+
+/** Connection profile for how users connect to lab virtual machines. */
+export type LabPropertiesInputConnectionProfile =
+  LabPlanPropertiesDefaultConnectionProfile;
+export const LabPropertiesInputConnectionProfile =
+  LabPlanPropertiesDefaultConnectionProfile;
+
+/** Indicates what lab virtual machines are created from. */
+export type VirtualMachineProfileInputCreateOption = "Image" | "TemplateVM";
+export const VirtualMachineProfileInputCreateOption = /*@__PURE__*/ S.String;
+
+/** Image reference information. Used in the virtual machine profile. */
+export interface ImageReferenceInput {
+  /** A URL. */
+  id?: string;
+  /** The image offer if applicable. */
+  offer?: string;
+  /** The image publisher */
+  publisher?: string;
+  /** The image SKU */
+  sku?: string;
+  /** The image version specified on creation. */
+  version?: string;
+}
+export const ImageReferenceInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    offer: S.optional(S.String),
+    publisher: S.optional(S.String),
+    sku: S.optional(S.String),
+    version: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ImageReferenceInput",
+}) as any as S.Schema<ImageReferenceInput>;
+
+/** The operating system type. */
+export type VirtualMachineProfileInputOsType = "Windows" | "Linux";
+export const VirtualMachineProfileInputOsType = /*@__PURE__*/ S.String;
+
+/** This field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT. */
+export type VirtualMachineProfileInputSkuTier =
+  | "Free"
+  | "Basic"
+  | "Standard"
+  | "Premium";
+export const VirtualMachineProfileInputSkuTier = /*@__PURE__*/ S.String;
+
+/** The resource model definition representing SKU */
+export interface VirtualMachineProfileInputSku {
+  /** The name of the SKU. Ex - P3. It is typically a letter+number code */
+  name: string;
+  /** This field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT. */
+  tier?: VirtualMachineProfileInputSkuTier | (string & {});
+  /** The SKU size. When the name field is the combination of tier and some other value, this would be the standalone code. */
+  size?: string;
+  /** If the service has different generations of hardware, for the same SKU, then that can be captured here. */
+  family?: string;
+  /** If the SKU supports scale out/in then the capacity integer should be included. If scale out/in is not possible for the resource this may be omitted. */
+  capacity?: number;
+}
+export const VirtualMachineProfileInputSku = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    tier: S.optional(VirtualMachineProfileInputSkuTier),
+    size: S.optional(S.String),
+    family: S.optional(S.String),
+    capacity: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "VirtualMachineProfileInputSku",
+}) as any as S.Schema<VirtualMachineProfileInputSku>;
+
+/** Property enabled state. */
+export type VirtualMachineProfileInputUseSharedPassword =
+  | "Enabled"
+  | "Disabled";
+export const VirtualMachineProfileInputUseSharedPassword =
+  /*@__PURE__*/ S.String;
+
+/** The base virtual machine configuration for a lab. */
+export interface VirtualMachineProfileInput {
+  /** Indicates what lab virtual machines are created from. */
+  createOption: VirtualMachineProfileInputCreateOption | (string & {});
+  /** The image configuration for lab virtual machines. */
+  imageReference: ImageReferenceInput;
+  /** The operating system type. */
+  osType?: VirtualMachineProfileInputOsType | (string & {});
+  /** The resource model definition representing SKU */
+  sku: VirtualMachineProfileInputSku;
+  /** Additional VM capabilities. */
+  additionalCapabilities?: VirtualMachineAdditionalCapabilities;
+  /** The initial quota alloted to each lab user. Must be a time span between 0 and 9999 hours. */
+  usageQuota: string;
+  /** Property enabled state. */
+  useSharedPassword?:
+    | VirtualMachineProfileInputUseSharedPassword
+    | (string & {});
+  /** Credentials for the admin user on the VM. */
+  adminUser: Credentials;
+  /** Credentials for the non-admin user on the VM, if one exists. */
+  nonAdminUser?: Credentials;
+}
+export const VirtualMachineProfileInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createOption: VirtualMachineProfileInputCreateOption,
+    imageReference: ImageReferenceInput,
+    osType: S.optional(VirtualMachineProfileInputOsType),
+    sku: VirtualMachineProfileInputSku,
+    additionalCapabilities: S.optional(VirtualMachineAdditionalCapabilities),
+    usageQuota: S.String,
+    useSharedPassword: S.optional(VirtualMachineProfileInputUseSharedPassword),
+    adminUser: Credentials,
+    nonAdminUser: S.optional(Credentials),
+  }),
+).annotate({
+  identifier: "VirtualMachineProfileInput",
+}) as any as S.Schema<VirtualMachineProfileInput>;
+
+/** Property enabled state. */
+export type SecurityProfileInputOpenAccess = "Enabled" | "Disabled";
+export const SecurityProfileInputOpenAccess = /*@__PURE__*/ S.String;
+
+/** The lab security profile. */
+export interface SecurityProfileInput {
+  /** Property enabled state. */
+  openAccess?: SecurityProfileInputOpenAccess | (string & {});
+}
+export const SecurityProfileInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    openAccess: S.optional(SecurityProfileInputOpenAccess),
+  }),
+).annotate({
+  identifier: "SecurityProfileInput",
+}) as any as S.Schema<SecurityProfileInput>;
+
+/** Resource provisioning state. */
+export type LabPropertiesInputProvisioningState =
+  | "Creating"
+  | "Updating"
+  | "Deleting"
+  | "Succeeded"
+  | "Failed"
+  | "Locked";
+export const LabPropertiesInputProvisioningState = /*@__PURE__*/ S.String;
+
+/** Error details of the latest operation failure on this resource */
+export type LabPropertiesInputResourceOperationError =
+  LabPropertiesResourceOperationError;
+export const LabPropertiesInputResourceOperationError =
+  LabPropertiesResourceOperationError;
+
+/** Properties of a lab resource. */
+export interface LabPropertiesInput {
+  /** Profile for how to handle shutting down virtual machines. */
+  autoShutdownProfile: LabPlanPropertiesDefaultAutoShutdownProfile;
+  /** Connection profile for how users connect to lab virtual machines. */
+  connectionProfile: LabPlanPropertiesDefaultConnectionProfile;
+  /** The profile used for creating lab virtual machines. */
+  virtualMachineProfile: VirtualMachineProfileInput;
+  /** The lab security profile. */
+  securityProfile: SecurityProfileInput;
+  /** The lab user list management profile. */
+  rosterProfile?: RosterProfile;
+  /** A URL. */
+  labPlanId?: string;
+  /** The title of the lab. */
+  title?: string;
+  /** The description of the lab. */
+  description?: string;
+  /** Resource provisioning state. */
+  provisioningState?: LabPropertiesInputProvisioningState | (string & {});
+  /** The network profile for the lab, typically applied via a lab plan. This profile cannot be modified once a lab has been created. */
+  networkProfile?: LabNetworkProfile;
+  /** Error details of the latest operation failure on this resource */
+  resourceOperationError?: LabPropertiesResourceOperationError;
+}
+export const LabPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    autoShutdownProfile: LabPlanPropertiesDefaultAutoShutdownProfile,
+    connectionProfile: LabPlanPropertiesDefaultConnectionProfile,
+    virtualMachineProfile: VirtualMachineProfileInput,
+    securityProfile: SecurityProfileInput,
+    rosterProfile: S.optional(RosterProfile),
+    labPlanId: S.optional(S.String),
+    title: S.optional(S.String),
+    description: S.optional(S.String),
+    provisioningState: S.optional(LabPropertiesInputProvisioningState),
+    networkProfile: S.optional(LabNetworkProfile),
+    resourceOperationError: S.optional(LabPropertiesResourceOperationError),
+  }),
+).annotate({
+  identifier: "LabPropertiesInput",
+}) as any as S.Schema<LabPropertiesInput>;
+
+export interface LabsCreateOrUpdateRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** The name of the lab plan that uniquely identifies it within containing resource group. Used in resource URIs and in UI. */
-  labPlanName: string;
+  /** The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs. */
+  labName: string;
+  /** Resource tags. */
+  tags?: LabsCreateOrUpdateRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Lab resource properties */
+  properties: LabPropertiesInput;
 }
-export const LabPlansGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const LabsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
-    labPlanName: S.String.pipe(T.Label()),
+    labName: S.String.pipe(T.Label()),
+    tags: S.optional(LabsCreateOrUpdateRequestTagsMap),
+    location: S.String,
+    properties: LabPropertiesInput,
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labPlans/{labPlanName}",
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}",
       code: 200,
       apiVersion: "2023-06-07",
     }),
   ),
 ).annotate({
-  identifier: "LabPlansGetRequest",
-}) as any as S.Schema<LabPlansGetRequest>;
+  identifier: "LabsCreateOrUpdateRequest",
+}) as any as S.Schema<LabsCreateOrUpdateRequest>;
 
 /** Resource tags. */
-export type LabPlansGetResponseTagsMap = { [key: string]: string | undefined };
-export const LabPlansGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type LabsCreateOrUpdateResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const LabsCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<LabPlansGetResponseTagsMap>;
+) as any as S.Schema<LabsCreateOrUpdateResponseTagsMap>;
 
 /** The type of identity that created the resource. */
-export type LabPlansGetResponseSystemDataCreatedByType =
+export type LabsCreateOrUpdateResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const LabPlansGetResponseSystemDataCreatedByType =
+export const LabsCreateOrUpdateResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type LabPlansGetResponseSystemDataLastModifiedByType =
+export type LabsCreateOrUpdateResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const LabPlansGetResponseSystemDataLastModifiedByType =
+export const LabsCreateOrUpdateResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface LabPlansGetResponseSystemData {
+export interface LabsCreateOrUpdateResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: LabPlansGetResponseSystemDataCreatedByType;
+  createdByType?: LabsCreateOrUpdateResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: LabPlansGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: LabsCreateOrUpdateResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const LabPlansGetResponseSystemData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createdBy: S.optional(S.String),
-    createdByType: S.optional(LabPlansGetResponseSystemDataCreatedByType),
-    createdAt: S.optional(S.String),
-    lastModifiedBy: S.optional(S.String),
-    lastModifiedByType: S.optional(
-      LabPlansGetResponseSystemDataLastModifiedByType,
-    ),
-    lastModifiedAt: S.optional(S.String),
-  }),
+export const LabsCreateOrUpdateResponseSystemData = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      createdBy: S.optional(S.String),
+      createdByType: S.optional(
+        LabsCreateOrUpdateResponseSystemDataCreatedByType,
+      ),
+      createdAt: S.optional(S.String),
+      lastModifiedBy: S.optional(S.String),
+      lastModifiedByType: S.optional(
+        LabsCreateOrUpdateResponseSystemDataLastModifiedByType,
+      ),
+      lastModifiedAt: S.optional(S.String),
+    }),
 ).annotate({
-  identifier: "LabPlansGetResponseSystemData",
-}) as any as S.Schema<LabPlansGetResponseSystemData>;
+  identifier: "LabsCreateOrUpdateResponseSystemData",
+}) as any as S.Schema<LabsCreateOrUpdateResponseSystemData>;
 
-/** The identity type. */
-export type LabPlansGetResponseIdentityType = "SystemAssigned";
-export const LabPlansGetResponseIdentityType = /*@__PURE__*/ S.String;
-
-/** Identity for the resource. */
-export interface LabPlansGetResponseIdentity {
-  /** The principal ID of resource identity. */
-  principalId?: string;
-  /** The tenant ID of resource. */
-  tenantId?: string;
-  /** The identity type. */
-  type?: LabPlansGetResponseIdentityType;
-}
-export const LabPlansGetResponseIdentity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    principalId: S.optional(S.String),
-    tenantId: S.optional(S.String),
-    type: S.optional(LabPlansGetResponseIdentityType),
-  }),
-).annotate({
-  identifier: "LabPlansGetResponseIdentity",
-}) as any as S.Schema<LabPlansGetResponseIdentity>;
-
-export interface LabPlansGetResponse {
+export interface LabsCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -1108,38 +2500,292 @@ export interface LabPlansGetResponse {
   /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
   type?: string;
   /** Resource tags. */
-  tags?: LabPlansGetResponseTagsMap;
+  tags?: LabsCreateOrUpdateResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: LabPlansGetResponseSystemData;
-  /** Lab plan resource properties */
-  properties: LabPlanProperties;
-  /** Identity for the resource. */
-  identity?: LabPlansGetResponseIdentity;
+  systemData?: LabsCreateOrUpdateResponseSystemData;
+  /** Lab resource properties */
+  properties: LabProperties;
 }
-export const LabPlansGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const LabsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(LabPlansGetResponseTagsMap),
+    tags: S.optional(LabsCreateOrUpdateResponseTagsMap),
     location: S.String,
-    systemData: S.optional(LabPlansGetResponseSystemData),
-    properties: LabPlanProperties,
-    identity: S.optional(LabPlansGetResponseIdentity),
+    systemData: S.optional(LabsCreateOrUpdateResponseSystemData),
+    properties: LabProperties,
   }),
 ).annotate({
-  identifier: "LabPlansGetResponse",
-}) as any as S.Schema<LabPlansGetResponse>;
+  identifier: "LabsCreateOrUpdateResponse",
+}) as any as S.Schema<LabsCreateOrUpdateResponse>;
 
-export interface LabPlansListByResourceGroupRequest {
+export interface ListImageByLabPlanRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the lab plan that uniquely identifies it within containing resource group. Used in resource URIs and in UI. */
+  labPlanName: string;
+  /** The filter to apply to the operation. */
+  _filter?: string;
+}
+export const ListImageByLabPlanRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    labPlanName: S.String.pipe(T.Label()),
+    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labPlans/{labPlanName}/images",
+      code: 200,
+      apiVersion: "2023-06-07",
+    }),
+  ),
+).annotate({
+  identifier: "ListImageByLabPlanRequest",
+}) as any as S.Schema<ListImageByLabPlanRequest>;
+
+/** The type of identity that created the resource. */
+export type ImageSystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const ImageSystemDataCreatedByType = /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type ImageSystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const ImageSystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface ImageSystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: ImageSystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: ImageSystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const ImageSystemData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdBy: S.optional(S.String),
+    createdByType: S.optional(ImageSystemDataCreatedByType),
+    createdAt: S.optional(S.String),
+    lastModifiedBy: S.optional(S.String),
+    lastModifiedByType: S.optional(ImageSystemDataLastModifiedByType),
+    lastModifiedAt: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ImageSystemData",
+}) as any as S.Schema<ImageSystemData>;
+
+/** Lab services virtual machine image */
+export interface Image {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Metadata pertaining to creation and last modification of the resource. */
+  systemData?: ImageSystemData;
+  /** Image resource properties */
+  properties: ImageProperties;
+}
+export const Image = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(ImageSystemData),
+    properties: ImageProperties,
+  }),
+).annotate({ identifier: "Image" }) as any as S.Schema<Image>;
+
+/** The array page of virtual machine images. */
+export type PagedImagesValueList = Array<Image>;
+export const PagedImagesValueList = /*@__PURE__*/ S.Array(
+  Image,
+) as any as S.Schema<PagedImagesValueList>;
+
+/** Paged list of Lab services virtual machine images. */
+export interface PagedImages {
+  /** The array page of virtual machine images. */
+  value?: PagedImagesValueList;
+  /** The link to get the next page of image results. */
+  nextLink?: string;
+}
+export const PagedImages = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(PagedImagesValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "PagedImages" }) as any as S.Schema<PagedImages>;
+
+export interface ListLabByResourceGroupRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
 }
-export const LabPlansListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListLabByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs",
+      code: 200,
+      apiVersion: "2023-06-07",
+    }),
+  ),
+).annotate({
+  identifier: "ListLabByResourceGroupRequest",
+}) as any as S.Schema<ListLabByResourceGroupRequest>;
+
+/** Resource tags. */
+export type LabTagsMap = { [key: string]: string | undefined };
+export const LabTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<LabTagsMap>;
+
+/** The type of identity that created the resource. */
+export type LabSystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const LabSystemDataCreatedByType = /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type LabSystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const LabSystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface LabSystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: LabSystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: LabSystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const LabSystemData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdBy: S.optional(S.String),
+    createdByType: S.optional(LabSystemDataCreatedByType),
+    createdAt: S.optional(S.String),
+    lastModifiedBy: S.optional(S.String),
+    lastModifiedByType: S.optional(LabSystemDataLastModifiedByType),
+    lastModifiedAt: S.optional(S.String),
+  }),
+).annotate({ identifier: "LabSystemData" }) as any as S.Schema<LabSystemData>;
+
+/** The lab resource. */
+export interface Lab {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Resource tags. */
+  tags?: LabTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Metadata pertaining to creation and last modification of the resource. */
+  systemData?: LabSystemData;
+  /** Lab resource properties */
+  properties: LabProperties;
+}
+export const Lab = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    tags: S.optional(LabTagsMap),
+    location: S.String,
+    systemData: S.optional(LabSystemData),
+    properties: LabProperties,
+  }),
+).annotate({ identifier: "Lab" }) as any as S.Schema<Lab>;
+
+/** The array page of lab results. */
+export type PagedLabsValueList = Array<Lab>;
+export const PagedLabsValueList = /*@__PURE__*/ S.Array(
+  Lab,
+) as any as S.Schema<PagedLabsValueList>;
+
+/** Paged list of labs. */
+export interface PagedLabs {
+  /** The array page of lab results. */
+  value?: PagedLabsValueList;
+  /** The link to get the next page of image results. */
+  nextLink?: string;
+}
+export const PagedLabs = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(PagedLabsValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "PagedLabs" }) as any as S.Schema<PagedLabs>;
+
+export interface ListLabBySubscriptionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The filter to apply to the operation. */
+  _filter?: string;
+}
+export const ListLabBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.LabServices/labs",
+      code: 200,
+      apiVersion: "2023-06-07",
+    }),
+  ),
+).annotate({
+  identifier: "ListLabBySubscriptionRequest",
+}) as any as S.Schema<ListLabBySubscriptionRequest>;
+
+export interface ListLabPlanByResourceGroupRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const ListLabPlanByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1152,8 +2798,8 @@ export const LabPlansListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "LabPlansListByResourceGroupRequest",
-}) as any as S.Schema<LabPlansListByResourceGroupRequest>;
+  identifier: "ListLabPlanByResourceGroupRequest",
+}) as any as S.Schema<ListLabPlanByResourceGroupRequest>;
 
 /** Resource tags. */
 export type LabPlanTagsMap = { [key: string]: string | undefined };
@@ -1281,13 +2927,13 @@ export const PagedLabPlans = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "PagedLabPlans" }) as any as S.Schema<PagedLabPlans>;
 
-export interface LabPlansListBySubscriptionRequest {
+export interface ListLabPlanBySubscriptionRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The filter to apply to the operation. */
   _filter?: string;
 }
-export const LabPlansListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListLabPlanBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     _filter: S.optional(S.String.pipe(T.Query("$filter"))),
@@ -1300,1595 +2946,11 @@ export const LabPlansListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "LabPlansListBySubscriptionRequest",
-}) as any as S.Schema<LabPlansListBySubscriptionRequest>;
-
-export interface LabPlansSaveImageRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the lab plan that uniquely identifies it within containing resource group. Used in resource URIs and in UI. */
-  labPlanName: string;
-  /** The name for the image we create. */
-  name?: string;
-  /** A URL. */
-  labVirtualMachineId?: string;
-}
-export const LabPlansSaveImageRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    labPlanName: S.String.pipe(T.Label()),
-    name: S.optional(S.String),
-    labVirtualMachineId: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labPlans/{labPlanName}/saveImage",
-      code: 200,
-      apiVersion: "2023-06-07",
-    }),
-  ),
-).annotate({
-  identifier: "LabPlansSaveImageRequest",
-}) as any as S.Schema<LabPlansSaveImageRequest>;
-
-export interface LabPlansSaveImageResponse {}
-export const LabPlansSaveImageResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "LabPlansSaveImageResponse",
-}) as any as S.Schema<LabPlansSaveImageResponse>;
-
-/** Resource tags. */
-export type LabPlansUpdateRequestTagsList = Array<string>;
-export const LabPlansUpdateRequestTagsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<LabPlansUpdateRequestTagsList>;
-
-/** Connection profile for how users connect to lab virtual machines. */
-export type LabPlanUpdatePropertiesDefaultConnectionProfile =
-  LabPlanPropertiesDefaultConnectionProfile;
-export const LabPlanUpdatePropertiesDefaultConnectionProfile =
-  LabPlanPropertiesDefaultConnectionProfile;
-
-/** Profile for how to handle shutting down virtual machines. */
-export type LabPlanUpdatePropertiesDefaultAutoShutdownProfile =
-  LabPlanPropertiesDefaultAutoShutdownProfile;
-export const LabPlanUpdatePropertiesDefaultAutoShutdownProfile =
-  LabPlanPropertiesDefaultAutoShutdownProfile;
-
-/** The allowed regions for the lab creator to use when creating labs using this lab plan. */
-export type LabPlanUpdatePropertiesAllowedRegionsList = Array<string>;
-export const LabPlanUpdatePropertiesAllowedRegionsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<LabPlanUpdatePropertiesAllowedRegionsList>;
-
-/** Lab plan resource properties for updates */
-export interface LabPlanUpdateProperties {
-  /** Connection profile for how users connect to lab virtual machines. */
-  defaultConnectionProfile?: LabPlanPropertiesDefaultConnectionProfile;
-  /** Profile for how to handle shutting down virtual machines. */
-  defaultAutoShutdownProfile?: LabPlanPropertiesDefaultAutoShutdownProfile;
-  /** The lab plan network profile. To enforce lab network policies they must be defined here and cannot be changed when there are existing labs associated with this lab plan. */
-  defaultNetworkProfile?: LabPlanNetworkProfile;
-  /** The allowed regions for the lab creator to use when creating labs using this lab plan. */
-  allowedRegions?: LabPlanUpdatePropertiesAllowedRegionsList;
-  /** A URL. */
-  sharedGalleryId?: string;
-  /** Support contact information and instructions for users of the lab plan. This information is displayed to lab owners and virtual machine users for all labs in the lab plan. */
-  supportInfo?: SupportInfo;
-  /** A URL. */
-  linkedLmsInstance?: string;
-}
-export const LabPlanUpdateProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    defaultConnectionProfile: S.optional(
-      LabPlanPropertiesDefaultConnectionProfile,
-    ),
-    defaultAutoShutdownProfile: S.optional(
-      LabPlanPropertiesDefaultAutoShutdownProfile,
-    ),
-    defaultNetworkProfile: S.optional(LabPlanNetworkProfile),
-    allowedRegions: S.optional(LabPlanUpdatePropertiesAllowedRegionsList),
-    sharedGalleryId: S.optional(S.String),
-    supportInfo: S.optional(SupportInfo),
-    linkedLmsInstance: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "LabPlanUpdateProperties",
-}) as any as S.Schema<LabPlanUpdateProperties>;
-
-/** The identity type. */
-export type LabPlansUpdateRequestIdentityType = "SystemAssigned";
-export const LabPlansUpdateRequestIdentityType = /*@__PURE__*/ S.String;
-
-/** Identity for the resource. */
-export interface LabPlansUpdateRequestIdentity {
-  /** The identity type. */
-  type?: LabPlansUpdateRequestIdentityType | (string & {});
-}
-export const LabPlansUpdateRequestIdentity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(LabPlansUpdateRequestIdentityType),
-  }),
-).annotate({
-  identifier: "LabPlansUpdateRequestIdentity",
-}) as any as S.Schema<LabPlansUpdateRequestIdentity>;
-
-export interface LabPlansUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the lab plan that uniquely identifies it within containing resource group. Used in resource URIs and in UI. */
-  labPlanName: string;
-  /** Resource tags. */
-  tags?: LabPlansUpdateRequestTagsList;
-  /** Lab plan resource update properties */
-  properties?: LabPlanUpdateProperties;
-  /** Identity for the resource. */
-  identity?: LabPlansUpdateRequestIdentity;
-}
-export const LabPlansUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    labPlanName: S.String.pipe(T.Label()),
-    tags: S.optional(LabPlansUpdateRequestTagsList),
-    properties: S.optional(LabPlanUpdateProperties),
-    identity: S.optional(LabPlansUpdateRequestIdentity),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labPlans/{labPlanName}",
-      code: 200,
-      apiVersion: "2023-06-07",
-    }),
-  ),
-).annotate({
-  identifier: "LabPlansUpdateRequest",
-}) as any as S.Schema<LabPlansUpdateRequest>;
-
-/** Resource tags. */
-export type LabPlansUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const LabPlansUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<LabPlansUpdateResponseTagsMap>;
-
-/** The type of identity that created the resource. */
-export type LabPlansUpdateResponseSystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const LabPlansUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type LabPlansUpdateResponseSystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const LabPlansUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface LabPlansUpdateResponseSystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: LabPlansUpdateResponseSystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: LabPlansUpdateResponseSystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const LabPlansUpdateResponseSystemData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createdBy: S.optional(S.String),
-    createdByType: S.optional(LabPlansUpdateResponseSystemDataCreatedByType),
-    createdAt: S.optional(S.String),
-    lastModifiedBy: S.optional(S.String),
-    lastModifiedByType: S.optional(
-      LabPlansUpdateResponseSystemDataLastModifiedByType,
-    ),
-    lastModifiedAt: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "LabPlansUpdateResponseSystemData",
-}) as any as S.Schema<LabPlansUpdateResponseSystemData>;
-
-/** The identity type. */
-export type LabPlansUpdateResponseIdentityType = "SystemAssigned";
-export const LabPlansUpdateResponseIdentityType = /*@__PURE__*/ S.String;
-
-/** Identity for the resource. */
-export interface LabPlansUpdateResponseIdentity {
-  /** The principal ID of resource identity. */
-  principalId?: string;
-  /** The tenant ID of resource. */
-  tenantId?: string;
-  /** The identity type. */
-  type?: LabPlansUpdateResponseIdentityType;
-}
-export const LabPlansUpdateResponseIdentity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    principalId: S.optional(S.String),
-    tenantId: S.optional(S.String),
-    type: S.optional(LabPlansUpdateResponseIdentityType),
-  }),
-).annotate({
-  identifier: "LabPlansUpdateResponseIdentity",
-}) as any as S.Schema<LabPlansUpdateResponseIdentity>;
-
-export interface LabPlansUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Resource tags. */
-  tags?: LabPlansUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: LabPlansUpdateResponseSystemData;
-  /** Lab plan resource properties */
-  properties: LabPlanProperties;
-  /** Identity for the resource. */
-  identity?: LabPlansUpdateResponseIdentity;
-}
-export const LabPlansUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    tags: S.optional(LabPlansUpdateResponseTagsMap),
-    location: S.String,
-    systemData: S.optional(LabPlansUpdateResponseSystemData),
-    properties: LabPlanProperties,
-    identity: S.optional(LabPlansUpdateResponseIdentity),
-  }),
-).annotate({
-  identifier: "LabPlansUpdateResponse",
-}) as any as S.Schema<LabPlansUpdateResponse>;
-
-/** Resource tags. */
-export type LabsCreateOrUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const LabsCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<LabsCreateOrUpdateRequestTagsMap>;
-
-/** Profile for how to handle shutting down virtual machines. */
-export type LabPropertiesInputAutoShutdownProfile =
-  LabPlanPropertiesDefaultAutoShutdownProfile;
-export const LabPropertiesInputAutoShutdownProfile =
-  LabPlanPropertiesDefaultAutoShutdownProfile;
-
-/** Connection profile for how users connect to lab virtual machines. */
-export type LabPropertiesInputConnectionProfile =
-  LabPlanPropertiesDefaultConnectionProfile;
-export const LabPropertiesInputConnectionProfile =
-  LabPlanPropertiesDefaultConnectionProfile;
-
-/** Indicates what lab virtual machines are created from. */
-export type VirtualMachineProfileInputCreateOption = "Image" | "TemplateVM";
-export const VirtualMachineProfileInputCreateOption = /*@__PURE__*/ S.String;
-
-/** Image reference information. Used in the virtual machine profile. */
-export interface ImageReferenceInput {
-  /** A URL. */
-  id?: string;
-  /** The image offer if applicable. */
-  offer?: string;
-  /** The image publisher */
-  publisher?: string;
-  /** The image SKU */
-  sku?: string;
-  /** The image version specified on creation. */
-  version?: string;
-}
-export const ImageReferenceInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    offer: S.optional(S.String),
-    publisher: S.optional(S.String),
-    sku: S.optional(S.String),
-    version: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ImageReferenceInput",
-}) as any as S.Schema<ImageReferenceInput>;
-
-/** The operating system type. */
-export type VirtualMachineProfileInputOsType = "Windows" | "Linux";
-export const VirtualMachineProfileInputOsType = /*@__PURE__*/ S.String;
-
-/** This field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT. */
-export type VirtualMachineProfileInputSkuTier =
-  | "Free"
-  | "Basic"
-  | "Standard"
-  | "Premium";
-export const VirtualMachineProfileInputSkuTier = /*@__PURE__*/ S.String;
-
-/** The resource model definition representing SKU */
-export interface VirtualMachineProfileInputSku {
-  /** The name of the SKU. Ex - P3. It is typically a letter+number code */
-  name: string;
-  /** This field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT. */
-  tier?: VirtualMachineProfileInputSkuTier | (string & {});
-  /** The SKU size. When the name field is the combination of tier and some other value, this would be the standalone code. */
-  size?: string;
-  /** If the service has different generations of hardware, for the same SKU, then that can be captured here. */
-  family?: string;
-  /** If the SKU supports scale out/in then the capacity integer should be included. If scale out/in is not possible for the resource this may be omitted. */
-  capacity?: number;
-}
-export const VirtualMachineProfileInputSku = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-    tier: S.optional(VirtualMachineProfileInputSkuTier),
-    size: S.optional(S.String),
-    family: S.optional(S.String),
-    capacity: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "VirtualMachineProfileInputSku",
-}) as any as S.Schema<VirtualMachineProfileInputSku>;
-
-/** Property enabled state. */
-export type VirtualMachineAdditionalCapabilitiesInstallGpuDrivers =
-  | "Enabled"
-  | "Disabled";
-export const VirtualMachineAdditionalCapabilitiesInstallGpuDrivers =
-  /*@__PURE__*/ S.String;
-
-/** The additional capabilities for a lab VM. */
-export interface VirtualMachineAdditionalCapabilities {
-  /** Property enabled state. */
-  installGpuDrivers?:
-    | VirtualMachineAdditionalCapabilitiesInstallGpuDrivers
-    | (string & {});
-}
-export const VirtualMachineAdditionalCapabilities = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      installGpuDrivers: S.optional(
-        VirtualMachineAdditionalCapabilitiesInstallGpuDrivers,
-      ),
-    }),
-).annotate({
-  identifier: "VirtualMachineAdditionalCapabilities",
-}) as any as S.Schema<VirtualMachineAdditionalCapabilities>;
-
-/** Property enabled state. */
-export type VirtualMachineProfileInputUseSharedPassword =
-  | "Enabled"
-  | "Disabled";
-export const VirtualMachineProfileInputUseSharedPassword =
-  /*@__PURE__*/ S.String;
-
-/** Credentials for a user on a lab VM. */
-export interface Credentials {
-  /** The username to use when signing in to lab VMs. */
-  username: string;
-  /** The password for the user. This is required for the TemplateVM createOption. */
-  password?: string | Redacted.Redacted<string>;
-}
-export const Credentials = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    username: S.String,
-    password: S.optional(S.String.pipe(T.SensitiveValue({}))),
-  }),
-).annotate({ identifier: "Credentials" }) as any as S.Schema<Credentials>;
-
-/** The base virtual machine configuration for a lab. */
-export interface VirtualMachineProfileInput {
-  /** Indicates what lab virtual machines are created from. */
-  createOption: VirtualMachineProfileInputCreateOption | (string & {});
-  /** The image configuration for lab virtual machines. */
-  imageReference: ImageReferenceInput;
-  /** The operating system type. */
-  osType?: VirtualMachineProfileInputOsType | (string & {});
-  /** The resource model definition representing SKU */
-  sku: VirtualMachineProfileInputSku;
-  /** Additional VM capabilities. */
-  additionalCapabilities?: VirtualMachineAdditionalCapabilities;
-  /** The initial quota alloted to each lab user. Must be a time span between 0 and 9999 hours. */
-  usageQuota: string;
-  /** Property enabled state. */
-  useSharedPassword?:
-    | VirtualMachineProfileInputUseSharedPassword
-    | (string & {});
-  /** Credentials for the admin user on the VM. */
-  adminUser: Credentials;
-  /** Credentials for the non-admin user on the VM, if one exists. */
-  nonAdminUser?: Credentials;
-}
-export const VirtualMachineProfileInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createOption: VirtualMachineProfileInputCreateOption,
-    imageReference: ImageReferenceInput,
-    osType: S.optional(VirtualMachineProfileInputOsType),
-    sku: VirtualMachineProfileInputSku,
-    additionalCapabilities: S.optional(VirtualMachineAdditionalCapabilities),
-    usageQuota: S.String,
-    useSharedPassword: S.optional(VirtualMachineProfileInputUseSharedPassword),
-    adminUser: Credentials,
-    nonAdminUser: S.optional(Credentials),
-  }),
-).annotate({
-  identifier: "VirtualMachineProfileInput",
-}) as any as S.Schema<VirtualMachineProfileInput>;
-
-/** Property enabled state. */
-export type SecurityProfileInputOpenAccess = "Enabled" | "Disabled";
-export const SecurityProfileInputOpenAccess = /*@__PURE__*/ S.String;
-
-/** The lab security profile. */
-export interface SecurityProfileInput {
-  /** Property enabled state. */
-  openAccess?: SecurityProfileInputOpenAccess | (string & {});
-}
-export const SecurityProfileInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    openAccess: S.optional(SecurityProfileInputOpenAccess),
-  }),
-).annotate({
-  identifier: "SecurityProfileInput",
-}) as any as S.Schema<SecurityProfileInput>;
-
-/** The lab user list management profile. */
-export interface RosterProfile {
-  /** The AAD group ID which this lab roster is populated from. Having this set enables AAD sync mode. */
-  activeDirectoryGroupId?: string;
-  /** The unique context identifier for the lab in the lms. */
-  ltiContextId?: string;
-  /** The base URI identifying the lms instance. */
-  lmsInstance?: string;
-  /** The unique id of the azure lab services tool in the lms. */
-  ltiClientId?: string;
-  /** The uri of the names and roles service endpoint on the lms for the class attached to this lab. */
-  ltiRosterEndpoint?: string;
-}
-export const RosterProfile = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    activeDirectoryGroupId: S.optional(S.String),
-    ltiContextId: S.optional(S.String),
-    lmsInstance: S.optional(S.String),
-    ltiClientId: S.optional(S.String),
-    ltiRosterEndpoint: S.optional(S.String),
-  }),
-).annotate({ identifier: "RosterProfile" }) as any as S.Schema<RosterProfile>;
-
-/** Resource provisioning state. */
-export type LabPropertiesInputProvisioningState =
-  | "Creating"
-  | "Updating"
-  | "Deleting"
-  | "Succeeded"
-  | "Failed"
-  | "Locked";
-export const LabPropertiesInputProvisioningState = /*@__PURE__*/ S.String;
-
-/** Profile for how to handle networking for Labs. */
-export interface LabNetworkProfile {
-  /** A URL. */
-  subnetId?: string;
-  /** A URL. */
-  loadBalancerId?: string;
-  /** A URL. */
-  publicIpId?: string;
-}
-export const LabNetworkProfile = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subnetId: S.optional(S.String),
-    loadBalancerId: S.optional(S.String),
-    publicIpId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "LabNetworkProfile",
-}) as any as S.Schema<LabNetworkProfile>;
-
-/** Error details of the latest operation failure on this resource */
-export type LabPropertiesInputResourceOperationError =
-  LabPlanPropertiesResourceOperationError;
-export const LabPropertiesInputResourceOperationError =
-  LabPlanPropertiesResourceOperationError;
-
-/** Properties of a lab resource. */
-export interface LabPropertiesInput {
-  /** Profile for how to handle shutting down virtual machines. */
-  autoShutdownProfile: LabPlanPropertiesDefaultAutoShutdownProfile;
-  /** Connection profile for how users connect to lab virtual machines. */
-  connectionProfile: LabPlanPropertiesDefaultConnectionProfile;
-  /** The profile used for creating lab virtual machines. */
-  virtualMachineProfile: VirtualMachineProfileInput;
-  /** The lab security profile. */
-  securityProfile: SecurityProfileInput;
-  /** The lab user list management profile. */
-  rosterProfile?: RosterProfile;
-  /** A URL. */
-  labPlanId?: string;
-  /** The title of the lab. */
-  title?: string;
-  /** The description of the lab. */
-  description?: string;
-  /** Resource provisioning state. */
-  provisioningState?: LabPropertiesInputProvisioningState | (string & {});
-  /** The network profile for the lab, typically applied via a lab plan. This profile cannot be modified once a lab has been created. */
-  networkProfile?: LabNetworkProfile;
-  /** Error details of the latest operation failure on this resource */
-  resourceOperationError?: LabPlanPropertiesResourceOperationError;
-}
-export const LabPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    autoShutdownProfile: LabPlanPropertiesDefaultAutoShutdownProfile,
-    connectionProfile: LabPlanPropertiesDefaultConnectionProfile,
-    virtualMachineProfile: VirtualMachineProfileInput,
-    securityProfile: SecurityProfileInput,
-    rosterProfile: S.optional(RosterProfile),
-    labPlanId: S.optional(S.String),
-    title: S.optional(S.String),
-    description: S.optional(S.String),
-    provisioningState: S.optional(LabPropertiesInputProvisioningState),
-    networkProfile: S.optional(LabNetworkProfile),
-    resourceOperationError: S.optional(LabPlanPropertiesResourceOperationError),
-  }),
-).annotate({
-  identifier: "LabPropertiesInput",
-}) as any as S.Schema<LabPropertiesInput>;
-
-export interface LabsCreateOrUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs. */
-  labName: string;
-  /** Resource tags. */
-  tags?: LabsCreateOrUpdateRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Lab resource properties */
-  properties: LabPropertiesInput;
-}
-export const LabsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    labName: S.String.pipe(T.Label()),
-    tags: S.optional(LabsCreateOrUpdateRequestTagsMap),
-    location: S.String,
-    properties: LabPropertiesInput,
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}",
-      code: 200,
-      apiVersion: "2023-06-07",
-    }),
-  ),
-).annotate({
-  identifier: "LabsCreateOrUpdateRequest",
-}) as any as S.Schema<LabsCreateOrUpdateRequest>;
-
-/** Resource tags. */
-export type LabsCreateOrUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const LabsCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<LabsCreateOrUpdateResponseTagsMap>;
-
-/** The type of identity that created the resource. */
-export type LabsCreateOrUpdateResponseSystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const LabsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type LabsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const LabsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface LabsCreateOrUpdateResponseSystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: LabsCreateOrUpdateResponseSystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: LabsCreateOrUpdateResponseSystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const LabsCreateOrUpdateResponseSystemData = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      createdBy: S.optional(S.String),
-      createdByType: S.optional(
-        LabsCreateOrUpdateResponseSystemDataCreatedByType,
-      ),
-      createdAt: S.optional(S.String),
-      lastModifiedBy: S.optional(S.String),
-      lastModifiedByType: S.optional(
-        LabsCreateOrUpdateResponseSystemDataLastModifiedByType,
-      ),
-      lastModifiedAt: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "LabsCreateOrUpdateResponseSystemData",
-}) as any as S.Schema<LabsCreateOrUpdateResponseSystemData>;
-
-/** Profile for how to handle shutting down virtual machines. */
-export interface LabPropertiesAutoShutdownProfile {
-  /** Whether shutdown on disconnect is enabled */
-  shutdownOnDisconnect?: EnableState;
-  /** Whether a VM will get shutdown when it hasn't been connected to after a period of time. */
-  shutdownWhenNotConnected?: EnableState;
-  /** Whether a VM will get shutdown when it has idled for a period of time. */
-  shutdownOnIdle?: ShutdownOnIdleMode;
-  /** The amount of time a VM will stay running after a user disconnects if this behavior is enabled. */
-  disconnectDelay?: string;
-  /** The amount of time a VM will stay running before it is shutdown if no connection is made and this behavior is enabled. */
-  noConnectDelay?: string;
-  /** The amount of time a VM will idle before it is shutdown if this behavior is enabled. */
-  idleDelay?: string;
-}
-export const LabPropertiesAutoShutdownProfile = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    shutdownOnDisconnect: S.optional(EnableState),
-    shutdownWhenNotConnected: S.optional(EnableState),
-    shutdownOnIdle: S.optional(ShutdownOnIdleMode),
-    disconnectDelay: S.optional(S.String),
-    noConnectDelay: S.optional(S.String),
-    idleDelay: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "LabPropertiesAutoShutdownProfile",
-}) as any as S.Schema<LabPropertiesAutoShutdownProfile>;
-
-/** Connection profile for how users connect to lab virtual machines. */
-export interface LabPropertiesConnectionProfile {
-  /** The enabled access level for Web Access over SSH. */
-  webSshAccess?: ConnectionType;
-  /** The enabled access level for Web Access over RDP. */
-  webRdpAccess?: ConnectionType;
-  /** The enabled access level for Client Access over SSH. */
-  clientSshAccess?: ConnectionType;
-  /** The enabled access level for Client Access over RDP. */
-  clientRdpAccess?: ConnectionType;
-}
-export const LabPropertiesConnectionProfile = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    webSshAccess: S.optional(ConnectionType),
-    webRdpAccess: S.optional(ConnectionType),
-    clientSshAccess: S.optional(ConnectionType),
-    clientRdpAccess: S.optional(ConnectionType),
-  }),
-).annotate({
-  identifier: "LabPropertiesConnectionProfile",
-}) as any as S.Schema<LabPropertiesConnectionProfile>;
-
-/** Indicates what lab virtual machines are created from. */
-export type VirtualMachineProfileCreateOption = "Image" | "TemplateVM";
-export const VirtualMachineProfileCreateOption = /*@__PURE__*/ S.String;
-
-/** Image reference information. Used in the virtual machine profile. */
-export interface ImageReference {
-  /** A URL. */
-  id?: string;
-  /** The image offer if applicable. */
-  offer?: string;
-  /** The image publisher */
-  publisher?: string;
-  /** The image SKU */
-  sku?: string;
-  /** The image version specified on creation. */
-  version?: string;
-  /** The actual version of the image after use. */
-  exactVersion?: string;
-}
-export const ImageReference = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    offer: S.optional(S.String),
-    publisher: S.optional(S.String),
-    sku: S.optional(S.String),
-    version: S.optional(S.String),
-    exactVersion: S.optional(S.String),
-  }),
-).annotate({ identifier: "ImageReference" }) as any as S.Schema<ImageReference>;
-
-/** The operating system type. */
-export type VirtualMachineProfileOsType = "Windows" | "Linux";
-export const VirtualMachineProfileOsType = /*@__PURE__*/ S.String;
-
-/** This field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT. */
-export type VirtualMachineProfileSkuTier =
-  | "Free"
-  | "Basic"
-  | "Standard"
-  | "Premium";
-export const VirtualMachineProfileSkuTier = /*@__PURE__*/ S.String;
-
-/** The resource model definition representing SKU */
-export interface VirtualMachineProfileSku {
-  /** The name of the SKU. Ex - P3. It is typically a letter+number code */
-  name: string;
-  /** This field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT. */
-  tier?: VirtualMachineProfileSkuTier;
-  /** The SKU size. When the name field is the combination of tier and some other value, this would be the standalone code. */
-  size?: string;
-  /** If the service has different generations of hardware, for the same SKU, then that can be captured here. */
-  family?: string;
-  /** If the SKU supports scale out/in then the capacity integer should be included. If scale out/in is not possible for the resource this may be omitted. */
-  capacity?: number;
-}
-export const VirtualMachineProfileSku = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-    tier: S.optional(VirtualMachineProfileSkuTier),
-    size: S.optional(S.String),
-    family: S.optional(S.String),
-    capacity: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "VirtualMachineProfileSku",
-}) as any as S.Schema<VirtualMachineProfileSku>;
-
-/** Property enabled state. */
-export type VirtualMachineProfileUseSharedPassword = "Enabled" | "Disabled";
-export const VirtualMachineProfileUseSharedPassword = /*@__PURE__*/ S.String;
-
-/** The base virtual machine configuration for a lab. */
-export interface VirtualMachineProfile {
-  /** Indicates what lab virtual machines are created from. */
-  createOption: VirtualMachineProfileCreateOption;
-  /** The image configuration for lab virtual machines. */
-  imageReference: ImageReference;
-  /** The operating system type. */
-  osType?: VirtualMachineProfileOsType;
-  /** The resource model definition representing SKU */
-  sku: VirtualMachineProfileSku;
-  /** Additional VM capabilities. */
-  additionalCapabilities?: VirtualMachineAdditionalCapabilities;
-  /** The initial quota alloted to each lab user. Must be a time span between 0 and 9999 hours. */
-  usageQuota: string;
-  /** Property enabled state. */
-  useSharedPassword?: VirtualMachineProfileUseSharedPassword;
-  /** Credentials for the admin user on the VM. */
-  adminUser: Credentials;
-  /** Credentials for the non-admin user on the VM, if one exists. */
-  nonAdminUser?: Credentials;
-}
-export const VirtualMachineProfile = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createOption: VirtualMachineProfileCreateOption,
-    imageReference: ImageReference,
-    osType: S.optional(VirtualMachineProfileOsType),
-    sku: VirtualMachineProfileSku,
-    additionalCapabilities: S.optional(VirtualMachineAdditionalCapabilities),
-    usageQuota: S.String,
-    useSharedPassword: S.optional(VirtualMachineProfileUseSharedPassword),
-    adminUser: Credentials,
-    nonAdminUser: S.optional(Credentials),
-  }),
-).annotate({
-  identifier: "VirtualMachineProfile",
-}) as any as S.Schema<VirtualMachineProfile>;
-
-/** Property enabled state. */
-export type SecurityProfileOpenAccess = "Enabled" | "Disabled";
-export const SecurityProfileOpenAccess = /*@__PURE__*/ S.String;
-
-/** The lab security profile. */
-export interface SecurityProfile {
-  /** The registration code for the lab. */
-  registrationCode?: string;
-  /** Property enabled state. */
-  openAccess?: SecurityProfileOpenAccess;
-}
-export const SecurityProfile = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    registrationCode: S.optional(S.String),
-    openAccess: S.optional(SecurityProfileOpenAccess),
-  }),
-).annotate({
-  identifier: "SecurityProfile",
-}) as any as S.Schema<SecurityProfile>;
-
-/** Resource provisioning state. */
-export type LabPropertiesProvisioningState =
-  | "Creating"
-  | "Updating"
-  | "Deleting"
-  | "Succeeded"
-  | "Failed"
-  | "Locked";
-export const LabPropertiesProvisioningState = /*@__PURE__*/ S.String;
-
-/** The state of a virtual machine. */
-export type LabState =
-  | "Draft"
-  | "Publishing"
-  | "Scaling"
-  | "Syncing"
-  | "Published";
-export const LabState = /*@__PURE__*/ S.String;
-
-/** Error details of the latest operation failure on this resource */
-export type LabPropertiesResourceOperationError =
-  LabPlanPropertiesResourceOperationError;
-export const LabPropertiesResourceOperationError =
-  LabPlanPropertiesResourceOperationError;
-
-/** Properties of a lab resource. */
-export interface LabProperties {
-  /** Profile for how to handle shutting down virtual machines. */
-  autoShutdownProfile: LabPropertiesAutoShutdownProfile;
-  /** Connection profile for how users connect to lab virtual machines. */
-  connectionProfile: LabPropertiesConnectionProfile;
-  /** The profile used for creating lab virtual machines. */
-  virtualMachineProfile: VirtualMachineProfile;
-  /** The lab security profile. */
-  securityProfile: SecurityProfile;
-  /** The lab user list management profile. */
-  rosterProfile?: RosterProfile;
-  /** A URL. */
-  labPlanId?: string;
-  /** The title of the lab. */
-  title?: string;
-  /** The description of the lab. */
-  description?: string;
-  /** Resource provisioning state. */
-  provisioningState?: LabPropertiesProvisioningState;
-  /** The network profile for the lab, typically applied via a lab plan. This profile cannot be modified once a lab has been created. */
-  networkProfile?: LabNetworkProfile;
-  /** The lab state. */
-  state?: LabState;
-  /** Error details of the latest operation failure on this resource */
-  resourceOperationError?: LabPlanPropertiesResourceOperationError;
-}
-export const LabProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    autoShutdownProfile: LabPropertiesAutoShutdownProfile,
-    connectionProfile: LabPropertiesConnectionProfile,
-    virtualMachineProfile: VirtualMachineProfile,
-    securityProfile: SecurityProfile,
-    rosterProfile: S.optional(RosterProfile),
-    labPlanId: S.optional(S.String),
-    title: S.optional(S.String),
-    description: S.optional(S.String),
-    provisioningState: S.optional(LabPropertiesProvisioningState),
-    networkProfile: S.optional(LabNetworkProfile),
-    state: S.optional(LabState),
-    resourceOperationError: S.optional(LabPlanPropertiesResourceOperationError),
-  }),
-).annotate({ identifier: "LabProperties" }) as any as S.Schema<LabProperties>;
-
-export interface LabsCreateOrUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Resource tags. */
-  tags?: LabsCreateOrUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: LabsCreateOrUpdateResponseSystemData;
-  /** Lab resource properties */
-  properties: LabProperties;
-}
-export const LabsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    tags: S.optional(LabsCreateOrUpdateResponseTagsMap),
-    location: S.String,
-    systemData: S.optional(LabsCreateOrUpdateResponseSystemData),
-    properties: LabProperties,
-  }),
-).annotate({
-  identifier: "LabsCreateOrUpdateResponse",
-}) as any as S.Schema<LabsCreateOrUpdateResponse>;
-
-export interface LabsDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs. */
-  labName: string;
-}
-export const LabsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    labName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}",
-      code: 200,
-      apiVersion: "2023-06-07",
-    }),
-  ),
-).annotate({
-  identifier: "LabsDeleteRequest",
-}) as any as S.Schema<LabsDeleteRequest>;
-
-export interface LabsDeleteResponse {}
-export const LabsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "LabsDeleteResponse",
-}) as any as S.Schema<LabsDeleteResponse>;
-
-export interface LabsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs. */
-  labName: string;
-}
-export const LabsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    labName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}",
-      code: 200,
-      apiVersion: "2023-06-07",
-    }),
-  ),
-).annotate({ identifier: "LabsGetRequest" }) as any as S.Schema<LabsGetRequest>;
-
-/** Resource tags. */
-export type LabsGetResponseTagsMap = { [key: string]: string | undefined };
-export const LabsGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<LabsGetResponseTagsMap>;
-
-/** The type of identity that created the resource. */
-export type LabsGetResponseSystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const LabsGetResponseSystemDataCreatedByType = /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type LabsGetResponseSystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const LabsGetResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface LabsGetResponseSystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: LabsGetResponseSystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: LabsGetResponseSystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const LabsGetResponseSystemData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createdBy: S.optional(S.String),
-    createdByType: S.optional(LabsGetResponseSystemDataCreatedByType),
-    createdAt: S.optional(S.String),
-    lastModifiedBy: S.optional(S.String),
-    lastModifiedByType: S.optional(LabsGetResponseSystemDataLastModifiedByType),
-    lastModifiedAt: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "LabsGetResponseSystemData",
-}) as any as S.Schema<LabsGetResponseSystemData>;
-
-export interface LabsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Resource tags. */
-  tags?: LabsGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: LabsGetResponseSystemData;
-  /** Lab resource properties */
-  properties: LabProperties;
-}
-export const LabsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    tags: S.optional(LabsGetResponseTagsMap),
-    location: S.String,
-    systemData: S.optional(LabsGetResponseSystemData),
-    properties: LabProperties,
-  }),
-).annotate({
-  identifier: "LabsGetResponse",
-}) as any as S.Schema<LabsGetResponse>;
-
-export interface LabsListByResourceGroupRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const LabsListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs",
-      code: 200,
-      apiVersion: "2023-06-07",
-    }),
-  ),
-).annotate({
-  identifier: "LabsListByResourceGroupRequest",
-}) as any as S.Schema<LabsListByResourceGroupRequest>;
-
-/** Resource tags. */
-export type LabTagsMap = { [key: string]: string | undefined };
-export const LabTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<LabTagsMap>;
-
-/** The type of identity that created the resource. */
-export type LabSystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const LabSystemDataCreatedByType = /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type LabSystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const LabSystemDataLastModifiedByType = /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface LabSystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: LabSystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: LabSystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const LabSystemData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createdBy: S.optional(S.String),
-    createdByType: S.optional(LabSystemDataCreatedByType),
-    createdAt: S.optional(S.String),
-    lastModifiedBy: S.optional(S.String),
-    lastModifiedByType: S.optional(LabSystemDataLastModifiedByType),
-    lastModifiedAt: S.optional(S.String),
-  }),
-).annotate({ identifier: "LabSystemData" }) as any as S.Schema<LabSystemData>;
-
-/** The lab resource. */
-export interface Lab {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Resource tags. */
-  tags?: LabTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: LabSystemData;
-  /** Lab resource properties */
-  properties: LabProperties;
-}
-export const Lab = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    tags: S.optional(LabTagsMap),
-    location: S.String,
-    systemData: S.optional(LabSystemData),
-    properties: LabProperties,
-  }),
-).annotate({ identifier: "Lab" }) as any as S.Schema<Lab>;
-
-/** The array page of lab results. */
-export type PagedLabsValueList = Array<Lab>;
-export const PagedLabsValueList = /*@__PURE__*/ S.Array(
-  Lab,
-) as any as S.Schema<PagedLabsValueList>;
-
-/** Paged list of labs. */
-export interface PagedLabs {
-  /** The array page of lab results. */
-  value?: PagedLabsValueList;
-  /** The link to get the next page of image results. */
-  nextLink?: string;
-}
-export const PagedLabs = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(PagedLabsValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "PagedLabs" }) as any as S.Schema<PagedLabs>;
-
-export interface LabsListBySubscriptionRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The filter to apply to the operation. */
-  _filter?: string;
-}
-export const LabsListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.LabServices/labs",
-      code: 200,
-      apiVersion: "2023-06-07",
-    }),
-  ),
-).annotate({
-  identifier: "LabsListBySubscriptionRequest",
-}) as any as S.Schema<LabsListBySubscriptionRequest>;
-
-export interface LabsPublishRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs. */
-  labName: string;
-}
-export const LabsPublishRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    labName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}/publish",
-      code: 200,
-      apiVersion: "2023-06-07",
-    }),
-  ),
-).annotate({
-  identifier: "LabsPublishRequest",
-}) as any as S.Schema<LabsPublishRequest>;
-
-export interface LabsPublishResponse {}
-export const LabsPublishResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "LabsPublishResponse",
-}) as any as S.Schema<LabsPublishResponse>;
-
-export interface LabsSyncGroupRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs. */
-  labName: string;
-}
-export const LabsSyncGroupRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    labName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}/syncGroup",
-      code: 200,
-      apiVersion: "2023-06-07",
-    }),
-  ),
-).annotate({
-  identifier: "LabsSyncGroupRequest",
-}) as any as S.Schema<LabsSyncGroupRequest>;
-
-export interface LabsSyncGroupResponse {}
-export const LabsSyncGroupResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "LabsSyncGroupResponse",
-}) as any as S.Schema<LabsSyncGroupResponse>;
-
-/** Resource tags. */
-export type LabsUpdateRequestTagsList = Array<string>;
-export const LabsUpdateRequestTagsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<LabsUpdateRequestTagsList>;
-
-/** Profile for how to handle shutting down virtual machines. */
-export type LabUpdatePropertiesInputAutoShutdownProfile =
-  LabPlanPropertiesDefaultAutoShutdownProfile;
-export const LabUpdatePropertiesInputAutoShutdownProfile =
-  LabPlanPropertiesDefaultAutoShutdownProfile;
-
-/** Connection profile for how users connect to lab virtual machines. */
-export type LabUpdatePropertiesInputConnectionProfile =
-  LabPlanPropertiesDefaultConnectionProfile;
-export const LabUpdatePropertiesInputConnectionProfile =
-  LabPlanPropertiesDefaultConnectionProfile;
-
-/** Properties of a lab resource used for updates. */
-export interface LabUpdatePropertiesInput {
-  /** Profile for how to handle shutting down virtual machines. */
-  autoShutdownProfile?: LabPlanPropertiesDefaultAutoShutdownProfile;
-  /** Connection profile for how users connect to lab virtual machines. */
-  connectionProfile?: LabPlanPropertiesDefaultConnectionProfile;
-  /** The profile used for creating lab virtual machines. */
-  virtualMachineProfile?: VirtualMachineProfileInput;
-  /** The lab security profile. */
-  securityProfile?: SecurityProfileInput;
-  /** The lab user list management profile. */
-  rosterProfile?: RosterProfile;
-  /** A URL. */
-  labPlanId?: string;
-  /** The title of the lab. */
-  title?: string;
-  /** The description of the lab. */
-  description?: string;
-}
-export const LabUpdatePropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    autoShutdownProfile: S.optional(
-      LabPlanPropertiesDefaultAutoShutdownProfile,
-    ),
-    connectionProfile: S.optional(LabPlanPropertiesDefaultConnectionProfile),
-    virtualMachineProfile: S.optional(VirtualMachineProfileInput),
-    securityProfile: S.optional(SecurityProfileInput),
-    rosterProfile: S.optional(RosterProfile),
-    labPlanId: S.optional(S.String),
-    title: S.optional(S.String),
-    description: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "LabUpdatePropertiesInput",
-}) as any as S.Schema<LabUpdatePropertiesInput>;
-
-export interface LabsUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs. */
-  labName: string;
-  /** Resource tags. */
-  tags?: LabsUpdateRequestTagsList;
-  /** Lab resource properties */
-  properties?: LabUpdatePropertiesInput;
-}
-export const LabsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    labName: S.String.pipe(T.Label()),
-    tags: S.optional(LabsUpdateRequestTagsList),
-    properties: S.optional(LabUpdatePropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}",
-      code: 200,
-      apiVersion: "2023-06-07",
-    }),
-  ),
-).annotate({
-  identifier: "LabsUpdateRequest",
-}) as any as S.Schema<LabsUpdateRequest>;
-
-/** Resource tags. */
-export type LabsUpdateResponseTagsMap = { [key: string]: string | undefined };
-export const LabsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<LabsUpdateResponseTagsMap>;
-
-/** The type of identity that created the resource. */
-export type LabsUpdateResponseSystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const LabsUpdateResponseSystemDataCreatedByType = /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type LabsUpdateResponseSystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const LabsUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface LabsUpdateResponseSystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: LabsUpdateResponseSystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: LabsUpdateResponseSystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const LabsUpdateResponseSystemData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createdBy: S.optional(S.String),
-    createdByType: S.optional(LabsUpdateResponseSystemDataCreatedByType),
-    createdAt: S.optional(S.String),
-    lastModifiedBy: S.optional(S.String),
-    lastModifiedByType: S.optional(
-      LabsUpdateResponseSystemDataLastModifiedByType,
-    ),
-    lastModifiedAt: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "LabsUpdateResponseSystemData",
-}) as any as S.Schema<LabsUpdateResponseSystemData>;
-
-export interface LabsUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Resource tags. */
-  tags?: LabsUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: LabsUpdateResponseSystemData;
-  /** Lab resource properties */
-  properties: LabProperties;
-}
-export const LabsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    tags: S.optional(LabsUpdateResponseTagsMap),
-    location: S.String,
-    systemData: S.optional(LabsUpdateResponseSystemData),
-    properties: LabProperties,
-  }),
-).annotate({
-  identifier: "LabsUpdateResponse",
-}) as any as S.Schema<LabsUpdateResponse>;
-
-export interface OperationResultsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The operation result ID / name. */
-  operationResultId: string;
-}
-export const OperationResultsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    operationResultId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.LabServices/operationResults/{operationResultId}",
-      code: 200,
-      apiVersion: "2023-06-07",
-    }),
-  ),
-).annotate({
-  identifier: "OperationResultsGetRequest",
-}) as any as S.Schema<OperationResultsGetRequest>;
-
-/** The operation status */
-export type OperationResultStatus =
-  | "NotStarted"
-  | "InProgress"
-  | "Succeeded"
-  | "Failed"
-  | "Canceled";
-export const OperationResultStatus = /*@__PURE__*/ S.String;
-
-/** The error details. */
-export type ErrorDetailDetailsList = Array<ErrorDetail>;
-export const ErrorDetailDetailsList = /*@__PURE__*/ S.Array(
-  S.suspend(() => ErrorDetail),
-) as any as S.Schema<ErrorDetailDetailsList>;
-
-/** The resource management error additional info. */
-export interface ErrorAdditionalInfo {
-  /** The additional info type. */
-  type?: string;
-  /** The additional info. */
-  info?: unknown;
-}
-export const ErrorAdditionalInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(S.String),
-    info: S.optional(S.Unknown),
-  }),
-).annotate({
-  identifier: "ErrorAdditionalInfo",
-}) as any as S.Schema<ErrorAdditionalInfo>;
-
-/** The error additional info. */
-export type ErrorDetailAdditionalInfoList = Array<ErrorAdditionalInfo>;
-export const ErrorDetailAdditionalInfoList = /*@__PURE__*/ S.Array(
-  ErrorAdditionalInfo,
-) as any as S.Schema<ErrorDetailAdditionalInfoList>;
-
-/** The error detail. */
-export interface ErrorDetail {
-  /** The error code. */
-  code?: string;
-  /** The error message. */
-  message?: string;
-  /** The error target. */
-  target?: string;
-  /** The error details. */
-  details?: ErrorDetailDetailsList;
-  /** The error additional info. */
-  additionalInfo?: ErrorDetailAdditionalInfoList;
-}
-export const ErrorDetail = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    code: S.optional(S.String),
-    message: S.optional(S.String),
-    target: S.optional(S.String),
-    details: S.optional(ErrorDetailDetailsList),
-    additionalInfo: S.optional(ErrorDetailAdditionalInfoList),
-  }),
-).annotate({ identifier: "ErrorDetail" }) as any as S.Schema<ErrorDetail>;
-
-/** The error details. */
-export type OperationResultErrorDetailsList = Array<ErrorDetail>;
-export const OperationResultErrorDetailsList = /*@__PURE__*/ S.Array(
-  ErrorDetail,
-) as any as S.Schema<OperationResultErrorDetailsList>;
-
-/** The error additional info. */
-export type OperationResultErrorAdditionalInfoList = Array<ErrorAdditionalInfo>;
-export const OperationResultErrorAdditionalInfoList = /*@__PURE__*/ S.Array(
-  ErrorAdditionalInfo,
-) as any as S.Schema<OperationResultErrorAdditionalInfoList>;
-
-/** The error detail. */
-export interface OperationResultError {
-  /** The error code. */
-  code?: string;
-  /** The error message. */
-  message?: string;
-  /** The error target. */
-  target?: string;
-  /** The error details. */
-  details?: OperationResultErrorDetailsList;
-  /** The error additional info. */
-  additionalInfo?: OperationResultErrorAdditionalInfoList;
-}
-export const OperationResultError = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    code: S.optional(S.String),
-    message: S.optional(S.String),
-    target: S.optional(S.String),
-    details: S.optional(OperationResultErrorDetailsList),
-    additionalInfo: S.optional(OperationResultErrorAdditionalInfoList),
-  }),
-).annotate({
-  identifier: "OperationResultError",
-}) as any as S.Schema<OperationResultError>;
-
-/** A long running operation result */
-export interface OperationResult {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The operation status */
-  status: OperationResultStatus;
-  /** Start time */
-  startTime?: string;
-  /** End time */
-  endTime?: string;
-  /** Percent completion */
-  percentComplete?: number;
-  /** The error detail. */
-  error?: OperationResultError;
-}
-export const OperationResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    status: OperationResultStatus,
-    startTime: S.optional(S.String),
-    endTime: S.optional(S.String),
-    percentComplete: S.optional(S.Number),
-    error: S.optional(OperationResultError),
-  }),
-).annotate({
-  identifier: "OperationResult",
-}) as any as S.Schema<OperationResult>;
-
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
+  identifier: "ListLabPlanBySubscriptionRequest",
+}) as any as S.Schema<ListLabPlanBySubscriptionRequest>;
+
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({
       method: "GET",
@@ -2898,8 +2960,8 @@ export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
 
 /** Localized display information for this particular operation. */
 export interface OperationDisplay {
@@ -2955,358 +3017,27 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
-export interface OperationsListResponse {
+export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
-export const OperationsListResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "OperationsListResponse",
-}) as any as S.Schema<OperationsListResponse>;
+  identifier: "ListOperationsResponse",
+}) as any as S.Schema<ListOperationsResponse>;
 
-/** Schedule recurrence frequencies. */
-export type RecurrenceFrequency = "Daily" | "Weekly";
-export const RecurrenceFrequency = /*@__PURE__*/ S.String;
-
-/** Days of the week. */
-export type WeekDay =
-  | "Sunday"
-  | "Monday"
-  | "Tuesday"
-  | "Wednesday"
-  | "Thursday"
-  | "Friday"
-  | "Saturday";
-export const WeekDay = /*@__PURE__*/ S.String;
-
-/** The week days the schedule runs. Used for when the Frequency is set to Weekly. */
-export type RecurrencePatternWeekDaysList = Array<WeekDay | (string & {})>;
-export const RecurrencePatternWeekDaysList = /*@__PURE__*/ S.Array(
-  WeekDay,
-) as any as S.Schema<RecurrencePatternWeekDaysList>;
-
-/** Recurrence pattern of a lab schedule. */
-export interface RecurrencePattern {
-  /** The frequency of the recurrence. */
-  frequency: RecurrenceFrequency | (string & {});
-  /** The week days the schedule runs. Used for when the Frequency is set to Weekly. */
-  weekDays?: RecurrencePatternWeekDaysList;
-  /** The interval to invoke the schedule on. For example, interval = 2 and RecurrenceFrequency.Daily will run every 2 days. When no interval is supplied, an interval of 1 is used. */
-  interval?: number;
-  /** When the recurrence will expire. This date is inclusive. */
-  expirationDate: string;
-}
-export const RecurrencePattern = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    frequency: RecurrenceFrequency,
-    weekDays: S.optional(RecurrencePatternWeekDaysList),
-    interval: S.optional(S.Number),
-    expirationDate: S.String,
-  }),
-).annotate({
-  identifier: "RecurrencePattern",
-}) as any as S.Schema<RecurrencePattern>;
-
-/** Resource provisioning state. */
-export type SchedulePropertiesProvisioningState =
-  | "Creating"
-  | "Updating"
-  | "Deleting"
-  | "Succeeded"
-  | "Failed"
-  | "Locked";
-export const SchedulePropertiesProvisioningState = /*@__PURE__*/ S.String;
-
-/** Error details of the latest operation failure on this resource */
-export type SchedulePropertiesResourceOperationError =
-  LabPlanPropertiesResourceOperationError;
-export const SchedulePropertiesResourceOperationError =
-  LabPlanPropertiesResourceOperationError;
-
-/** Schedule resource properties */
-export interface ScheduleProperties {
-  /** When lab user virtual machines will be started. Timestamp offsets will be ignored and timeZoneId is used instead. */
-  startAt?: string;
-  /** When lab user virtual machines will be stopped. Timestamp offsets will be ignored and timeZoneId is used instead. */
-  stopAt: string;
-  /** The recurrence pattern of the scheduled actions. */
-  recurrencePattern?: RecurrencePattern;
-  /** The IANA timezone id for the schedule. */
-  timeZoneId: string;
-  /** Notes for this schedule. */
-  notes?: string;
-  /** Resource provisioning state. */
-  provisioningState?: SchedulePropertiesProvisioningState | (string & {});
-  /** Error details of the latest operation failure on this resource */
-  resourceOperationError?: LabPlanPropertiesResourceOperationError;
-}
-export const ScheduleProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    startAt: S.optional(S.String),
-    stopAt: S.String,
-    recurrencePattern: S.optional(RecurrencePattern),
-    timeZoneId: S.String,
-    notes: S.optional(S.String),
-    provisioningState: S.optional(SchedulePropertiesProvisioningState),
-    resourceOperationError: S.optional(LabPlanPropertiesResourceOperationError),
-  }),
-).annotate({
-  identifier: "ScheduleProperties",
-}) as any as S.Schema<ScheduleProperties>;
-
-export interface SchedulesCreateOrUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs. */
-  labName: string;
-  /** The name of the schedule that uniquely identifies it within containing lab. Used in resource URIs. */
-  scheduleName: string;
-  /** Schedule resource properties */
-  properties: ScheduleProperties;
-}
-export const SchedulesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    labName: S.String.pipe(T.Label()),
-    scheduleName: S.String.pipe(T.Label()),
-    properties: ScheduleProperties,
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}/schedules/{scheduleName}",
-      code: 200,
-      apiVersion: "2023-06-07",
-    }),
-  ),
-).annotate({
-  identifier: "SchedulesCreateOrUpdateRequest",
-}) as any as S.Schema<SchedulesCreateOrUpdateRequest>;
-
-/** The type of identity that created the resource. */
-export type SchedulesCreateOrUpdateResponseSystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const SchedulesCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type SchedulesCreateOrUpdateResponseSystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const SchedulesCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface SchedulesCreateOrUpdateResponseSystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: SchedulesCreateOrUpdateResponseSystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: SchedulesCreateOrUpdateResponseSystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const SchedulesCreateOrUpdateResponseSystemData =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      createdBy: S.optional(S.String),
-      createdByType: S.optional(
-        SchedulesCreateOrUpdateResponseSystemDataCreatedByType,
-      ),
-      createdAt: S.optional(S.String),
-      lastModifiedBy: S.optional(S.String),
-      lastModifiedByType: S.optional(
-        SchedulesCreateOrUpdateResponseSystemDataLastModifiedByType,
-      ),
-      lastModifiedAt: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "SchedulesCreateOrUpdateResponseSystemData",
-  }) as any as S.Schema<SchedulesCreateOrUpdateResponseSystemData>;
-
-export interface SchedulesCreateOrUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: SchedulesCreateOrUpdateResponseSystemData;
-  /** Schedule resource properties */
-  properties: ScheduleProperties;
-}
-export const SchedulesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SchedulesCreateOrUpdateResponseSystemData),
-    properties: ScheduleProperties,
-  }),
-).annotate({
-  identifier: "SchedulesCreateOrUpdateResponse",
-}) as any as S.Schema<SchedulesCreateOrUpdateResponse>;
-
-export interface SchedulesDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs. */
-  labName: string;
-  /** The name of the schedule that uniquely identifies it within containing lab. Used in resource URIs. */
-  scheduleName: string;
-}
-export const SchedulesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    labName: S.String.pipe(T.Label()),
-    scheduleName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}/schedules/{scheduleName}",
-      code: 200,
-      apiVersion: "2023-06-07",
-    }),
-  ),
-).annotate({
-  identifier: "SchedulesDeleteRequest",
-}) as any as S.Schema<SchedulesDeleteRequest>;
-
-export interface SchedulesDeleteResponse {}
-export const SchedulesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "SchedulesDeleteResponse",
-}) as any as S.Schema<SchedulesDeleteResponse>;
-
-export interface SchedulesGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs. */
-  labName: string;
-  /** The name of the schedule that uniquely identifies it within containing lab. Used in resource URIs. */
-  scheduleName: string;
-}
-export const SchedulesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    labName: S.String.pipe(T.Label()),
-    scheduleName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}/schedules/{scheduleName}",
-      code: 200,
-      apiVersion: "2023-06-07",
-    }),
-  ),
-).annotate({
-  identifier: "SchedulesGetRequest",
-}) as any as S.Schema<SchedulesGetRequest>;
-
-/** The type of identity that created the resource. */
-export type SchedulesGetResponseSystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const SchedulesGetResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type SchedulesGetResponseSystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const SchedulesGetResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface SchedulesGetResponseSystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: SchedulesGetResponseSystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: SchedulesGetResponseSystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const SchedulesGetResponseSystemData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createdBy: S.optional(S.String),
-    createdByType: S.optional(SchedulesGetResponseSystemDataCreatedByType),
-    createdAt: S.optional(S.String),
-    lastModifiedBy: S.optional(S.String),
-    lastModifiedByType: S.optional(
-      SchedulesGetResponseSystemDataLastModifiedByType,
-    ),
-    lastModifiedAt: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SchedulesGetResponseSystemData",
-}) as any as S.Schema<SchedulesGetResponseSystemData>;
-
-export interface SchedulesGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: SchedulesGetResponseSystemData;
-  /** Schedule resource properties */
-  properties: ScheduleProperties;
-}
-export const SchedulesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SchedulesGetResponseSystemData),
-    properties: ScheduleProperties,
-  }),
-).annotate({
-  identifier: "SchedulesGetResponse",
-}) as any as S.Schema<SchedulesGetResponse>;
-
-export interface SchedulesListByLabRequest {
+export interface ListScheduleByLabRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3316,7 +3047,7 @@ export interface SchedulesListByLabRequest {
   /** The filter to apply to the operation. */
   _filter?: string;
 }
-export const SchedulesListByLabRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListScheduleByLabRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -3331,8 +3062,8 @@ export const SchedulesListByLabRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "SchedulesListByLabRequest",
-}) as any as S.Schema<SchedulesListByLabRequest>;
+  identifier: "ListScheduleByLabRequest",
+}) as any as S.Schema<ListScheduleByLabRequest>;
 
 /** The type of identity that created the resource. */
 export type ScheduleSystemDataCreatedByType =
@@ -3421,141 +3152,13 @@ export const PagedSchedules = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "PagedSchedules" }) as any as S.Schema<PagedSchedules>;
 
-/** Schedule resource properties used for updates. */
-export interface ScheduleUpdateProperties {
-  /** When lab user virtual machines will be started. Timestamp offsets will be ignored and timeZoneId is used instead. */
-  startAt?: string;
-  /** When lab user virtual machines will be stopped. Timestamp offsets will be ignored and timeZoneId is used instead. */
-  stopAt?: string;
-  /** The recurrence pattern of the scheduled actions. */
-  recurrencePattern?: RecurrencePattern;
-  /** The IANA timezone id for the schedule. */
-  timeZoneId?: string;
-  /** Notes for this schedule. */
-  notes?: string;
-}
-export const ScheduleUpdateProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    startAt: S.optional(S.String),
-    stopAt: S.optional(S.String),
-    recurrencePattern: S.optional(RecurrencePattern),
-    timeZoneId: S.optional(S.String),
-    notes: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ScheduleUpdateProperties",
-}) as any as S.Schema<ScheduleUpdateProperties>;
-
-export interface SchedulesUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs. */
-  labName: string;
-  /** The name of the schedule that uniquely identifies it within containing lab. Used in resource URIs. */
-  scheduleName: string;
-  /** Schedule resource properties */
-  properties?: ScheduleUpdateProperties;
-}
-export const SchedulesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    labName: S.String.pipe(T.Label()),
-    scheduleName: S.String.pipe(T.Label()),
-    properties: S.optional(ScheduleUpdateProperties),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}/schedules/{scheduleName}",
-      code: 200,
-      apiVersion: "2023-06-07",
-    }),
-  ),
-).annotate({
-  identifier: "SchedulesUpdateRequest",
-}) as any as S.Schema<SchedulesUpdateRequest>;
-
-/** The type of identity that created the resource. */
-export type SchedulesUpdateResponseSystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const SchedulesUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type SchedulesUpdateResponseSystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const SchedulesUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface SchedulesUpdateResponseSystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: SchedulesUpdateResponseSystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: SchedulesUpdateResponseSystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const SchedulesUpdateResponseSystemData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createdBy: S.optional(S.String),
-    createdByType: S.optional(SchedulesUpdateResponseSystemDataCreatedByType),
-    createdAt: S.optional(S.String),
-    lastModifiedBy: S.optional(S.String),
-    lastModifiedByType: S.optional(
-      SchedulesUpdateResponseSystemDataLastModifiedByType,
-    ),
-    lastModifiedAt: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SchedulesUpdateResponseSystemData",
-}) as any as S.Schema<SchedulesUpdateResponseSystemData>;
-
-export interface SchedulesUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: SchedulesUpdateResponseSystemData;
-  /** Schedule resource properties */
-  properties: ScheduleProperties;
-}
-export const SchedulesUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SchedulesUpdateResponseSystemData),
-    properties: ScheduleProperties,
-  }),
-).annotate({
-  identifier: "SchedulesUpdateResponse",
-}) as any as S.Schema<SchedulesUpdateResponse>;
-
-export interface SkusListRequest {
+export interface ListSkusRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The filter to apply to the operation. */
   _filter?: string;
 }
-export const SkusListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListSkusRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     _filter: S.optional(S.String.pipe(T.Query("$filter"))),
@@ -3568,8 +3171,8 @@ export const SkusListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "SkusListRequest",
-}) as any as S.Schema<SkusListRequest>;
+  identifier: "ListSkusRequest",
+}) as any as S.Schema<ListSkusRequest>;
 
 /** The tier of the SKU. */
 export type LabServicesSkuTier = "Standard" | "Premium";
@@ -3754,7 +3357,7 @@ export const PagedLabServicesSkus = /*@__PURE__*/ S.suspend(() =>
   identifier: "PagedLabServicesSkus",
 }) as any as S.Schema<PagedLabServicesSkus>;
 
-export interface UsagesListByLocationRequest {
+export interface ListUsageByLocationRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The location name. */
@@ -3762,7 +3365,7 @@ export interface UsagesListByLocationRequest {
   /** The filter to apply to the operation. */
   _filter?: string;
 }
-export const UsagesListByLocationRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListUsageByLocationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     location: S.String.pipe(T.Label()),
@@ -3776,8 +3379,8 @@ export const UsagesListByLocationRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UsagesListByLocationRequest",
-}) as any as S.Schema<UsagesListByLocationRequest>;
+  identifier: "ListUsageByLocationRequest",
+}) as any as S.Schema<ListUsageByLocationRequest>;
 
 /** The unit details. */
 export type UsageUnit = "Count";
@@ -3851,382 +3454,7 @@ export const ListUsagesResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListUsagesResult",
 }) as any as S.Schema<ListUsagesResult>;
 
-/** Resource provisioning state. */
-export type UserPropertiesInputProvisioningState =
-  | "Creating"
-  | "Updating"
-  | "Deleting"
-  | "Succeeded"
-  | "Failed"
-  | "Locked";
-export const UserPropertiesInputProvisioningState = /*@__PURE__*/ S.String;
-
-/** Error details of the latest operation failure on this resource */
-export type UserPropertiesInputResourceOperationError =
-  LabPlanPropertiesResourceOperationError;
-export const UserPropertiesInputResourceOperationError =
-  LabPlanPropertiesResourceOperationError;
-
-/** User resource properties */
-export interface UserPropertiesInput {
-  /** The amount of usage quota time the user gets in addition to the lab usage quota. */
-  additionalUsageQuota?: string;
-  /** Resource provisioning state. */
-  provisioningState?: UserPropertiesInputProvisioningState | (string & {});
-  /** Error details of the latest operation failure on this resource */
-  resourceOperationError?: LabPlanPropertiesResourceOperationError;
-  /** An email address. */
-  email: string;
-}
-export const UserPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    additionalUsageQuota: S.optional(S.String),
-    provisioningState: S.optional(UserPropertiesInputProvisioningState),
-    resourceOperationError: S.optional(LabPlanPropertiesResourceOperationError),
-    email: S.String,
-  }),
-).annotate({
-  identifier: "UserPropertiesInput",
-}) as any as S.Schema<UserPropertiesInput>;
-
-export interface UsersCreateOrUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs. */
-  labName: string;
-  /** The name of the user that uniquely identifies it within containing lab. Used in resource URIs. */
-  userName: string;
-  /** User resource properties */
-  properties: UserPropertiesInput;
-}
-export const UsersCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    labName: S.String.pipe(T.Label()),
-    userName: S.String.pipe(T.Label()),
-    properties: UserPropertiesInput,
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}/users/{userName}",
-      code: 200,
-      apiVersion: "2023-06-07",
-    }),
-  ),
-).annotate({
-  identifier: "UsersCreateOrUpdateRequest",
-}) as any as S.Schema<UsersCreateOrUpdateRequest>;
-
-/** The type of identity that created the resource. */
-export type UsersCreateOrUpdateResponseSystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const UsersCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type UsersCreateOrUpdateResponseSystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const UsersCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface UsersCreateOrUpdateResponseSystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: UsersCreateOrUpdateResponseSystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: UsersCreateOrUpdateResponseSystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const UsersCreateOrUpdateResponseSystemData = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      createdBy: S.optional(S.String),
-      createdByType: S.optional(
-        UsersCreateOrUpdateResponseSystemDataCreatedByType,
-      ),
-      createdAt: S.optional(S.String),
-      lastModifiedBy: S.optional(S.String),
-      lastModifiedByType: S.optional(
-        UsersCreateOrUpdateResponseSystemDataLastModifiedByType,
-      ),
-      lastModifiedAt: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "UsersCreateOrUpdateResponseSystemData",
-}) as any as S.Schema<UsersCreateOrUpdateResponseSystemData>;
-
-/** Resource provisioning state. */
-export type UserPropertiesProvisioningState =
-  | "Creating"
-  | "Updating"
-  | "Deleting"
-  | "Succeeded"
-  | "Failed"
-  | "Locked";
-export const UserPropertiesProvisioningState = /*@__PURE__*/ S.String;
-
-/** Error details of the latest operation failure on this resource */
-export type UserPropertiesResourceOperationError =
-  LabPlanPropertiesResourceOperationError;
-export const UserPropertiesResourceOperationError =
-  LabPlanPropertiesResourceOperationError;
-
-/** The user lab registration state. */
-export type RegistrationState = "NotRegistered" | "Registered";
-export const RegistrationState = /*@__PURE__*/ S.String;
-
-/** The lab user invitation state. */
-export type InvitationState = "NotSent" | "Sending" | "Sent" | "Failed";
-export const InvitationState = /*@__PURE__*/ S.String;
-
-/** User resource properties */
-export interface UserProperties {
-  /** The amount of usage quota time the user gets in addition to the lab usage quota. */
-  additionalUsageQuota?: string;
-  /** Resource provisioning state. */
-  provisioningState?: UserPropertiesProvisioningState;
-  /** Error details of the latest operation failure on this resource */
-  resourceOperationError?: LabPlanPropertiesResourceOperationError;
-  /** Display name of the user, for example user's full name. */
-  displayName?: string;
-  /** An email address. */
-  email: string;
-  /** State of the user's registration within the lab. */
-  registrationState?: RegistrationState;
-  /** State of the invitation message for the user. */
-  invitationState?: InvitationState;
-  /** Date and time when the invitation message was sent to the user. */
-  invitationSent?: string;
-  /** How long the user has used their virtual machines in this lab. */
-  totalUsage?: string;
-}
-export const UserProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    additionalUsageQuota: S.optional(S.String),
-    provisioningState: S.optional(UserPropertiesProvisioningState),
-    resourceOperationError: S.optional(LabPlanPropertiesResourceOperationError),
-    displayName: S.optional(S.String),
-    email: S.String,
-    registrationState: S.optional(RegistrationState),
-    invitationState: S.optional(InvitationState),
-    invitationSent: S.optional(S.String),
-    totalUsage: S.optional(S.String),
-  }),
-).annotate({ identifier: "UserProperties" }) as any as S.Schema<UserProperties>;
-
-export interface UsersCreateOrUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: UsersCreateOrUpdateResponseSystemData;
-  /** User resource properties */
-  properties: UserProperties;
-}
-export const UsersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(UsersCreateOrUpdateResponseSystemData),
-    properties: UserProperties,
-  }),
-).annotate({
-  identifier: "UsersCreateOrUpdateResponse",
-}) as any as S.Schema<UsersCreateOrUpdateResponse>;
-
-export interface UsersDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs. */
-  labName: string;
-  /** The name of the user that uniquely identifies it within containing lab. Used in resource URIs. */
-  userName: string;
-}
-export const UsersDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    labName: S.String.pipe(T.Label()),
-    userName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}/users/{userName}",
-      code: 200,
-      apiVersion: "2023-06-07",
-    }),
-  ),
-).annotate({
-  identifier: "UsersDeleteRequest",
-}) as any as S.Schema<UsersDeleteRequest>;
-
-export interface UsersDeleteResponse {}
-export const UsersDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "UsersDeleteResponse",
-}) as any as S.Schema<UsersDeleteResponse>;
-
-export interface UsersGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs. */
-  labName: string;
-  /** The name of the user that uniquely identifies it within containing lab. Used in resource URIs. */
-  userName: string;
-}
-export const UsersGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    labName: S.String.pipe(T.Label()),
-    userName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}/users/{userName}",
-      code: 200,
-      apiVersion: "2023-06-07",
-    }),
-  ),
-).annotate({
-  identifier: "UsersGetRequest",
-}) as any as S.Schema<UsersGetRequest>;
-
-/** The type of identity that created the resource. */
-export type UsersGetResponseSystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const UsersGetResponseSystemDataCreatedByType = /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type UsersGetResponseSystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const UsersGetResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface UsersGetResponseSystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: UsersGetResponseSystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: UsersGetResponseSystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const UsersGetResponseSystemData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createdBy: S.optional(S.String),
-    createdByType: S.optional(UsersGetResponseSystemDataCreatedByType),
-    createdAt: S.optional(S.String),
-    lastModifiedBy: S.optional(S.String),
-    lastModifiedByType: S.optional(
-      UsersGetResponseSystemDataLastModifiedByType,
-    ),
-    lastModifiedAt: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "UsersGetResponseSystemData",
-}) as any as S.Schema<UsersGetResponseSystemData>;
-
-export interface UsersGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: UsersGetResponseSystemData;
-  /** User resource properties */
-  properties: UserProperties;
-}
-export const UsersGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(UsersGetResponseSystemData),
-    properties: UserProperties,
-  }),
-).annotate({
-  identifier: "UsersGetResponse",
-}) as any as S.Schema<UsersGetResponse>;
-
-export interface UsersInviteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs. */
-  labName: string;
-  /** The name of the user that uniquely identifies it within containing lab. Used in resource URIs. */
-  userName: string;
-  /** Custom text for the invite email. */
-  text?: string;
-}
-export const UsersInviteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    labName: S.String.pipe(T.Label()),
-    userName: S.String.pipe(T.Label()),
-    text: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}/users/{userName}/invite",
-      code: 200,
-      apiVersion: "2023-06-07",
-    }),
-  ),
-).annotate({
-  identifier: "UsersInviteRequest",
-}) as any as S.Schema<UsersInviteRequest>;
-
-export interface UsersInviteResponse {}
-export const UsersInviteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "UsersInviteResponse",
-}) as any as S.Schema<UsersInviteResponse>;
-
-export interface UsersListByLabRequest {
+export interface ListUserByLabRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4236,7 +3464,7 @@ export interface UsersListByLabRequest {
   /** The filter to apply to the operation. */
   _filter?: string;
 }
-export const UsersListByLabRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListUserByLabRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -4251,8 +3479,8 @@ export const UsersListByLabRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UsersListByLabRequest",
-}) as any as S.Schema<UsersListByLabRequest>;
+  identifier: "ListUserByLabRequest",
+}) as any as S.Schema<ListUserByLabRequest>;
 
 /** The type of identity that created the resource. */
 export type UserSystemDataCreatedByType =
@@ -4339,316 +3567,7 @@ export const PagedUsers = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "PagedUsers" }) as any as S.Schema<PagedUsers>;
 
-/** User resource properties used for updates. */
-export interface UserUpdateProperties {
-  /** The amount of usage quota time the user gets in addition to the lab usage quota. */
-  additionalUsageQuota?: string;
-}
-export const UserUpdateProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    additionalUsageQuota: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "UserUpdateProperties",
-}) as any as S.Schema<UserUpdateProperties>;
-
-export interface UsersUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs. */
-  labName: string;
-  /** The name of the user that uniquely identifies it within containing lab. Used in resource URIs. */
-  userName: string;
-  /** User resource properties */
-  properties?: UserUpdateProperties;
-}
-export const UsersUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    labName: S.String.pipe(T.Label()),
-    userName: S.String.pipe(T.Label()),
-    properties: S.optional(UserUpdateProperties),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}/users/{userName}",
-      code: 200,
-      apiVersion: "2023-06-07",
-    }),
-  ),
-).annotate({
-  identifier: "UsersUpdateRequest",
-}) as any as S.Schema<UsersUpdateRequest>;
-
-/** The type of identity that created the resource. */
-export type UsersUpdateResponseSystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const UsersUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type UsersUpdateResponseSystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const UsersUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface UsersUpdateResponseSystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: UsersUpdateResponseSystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: UsersUpdateResponseSystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const UsersUpdateResponseSystemData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createdBy: S.optional(S.String),
-    createdByType: S.optional(UsersUpdateResponseSystemDataCreatedByType),
-    createdAt: S.optional(S.String),
-    lastModifiedBy: S.optional(S.String),
-    lastModifiedByType: S.optional(
-      UsersUpdateResponseSystemDataLastModifiedByType,
-    ),
-    lastModifiedAt: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "UsersUpdateResponseSystemData",
-}) as any as S.Schema<UsersUpdateResponseSystemData>;
-
-export interface UsersUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: UsersUpdateResponseSystemData;
-  /** User resource properties */
-  properties: UserProperties;
-}
-export const UsersUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(UsersUpdateResponseSystemData),
-    properties: UserProperties,
-  }),
-).annotate({
-  identifier: "UsersUpdateResponse",
-}) as any as S.Schema<UsersUpdateResponse>;
-
-export interface VirtualMachinesGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs. */
-  labName: string;
-  /** The ID of the virtual machine that uniquely identifies it within the containing lab. Used in resource URIs. */
-  virtualMachineName: string;
-}
-export const VirtualMachinesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    labName: S.String.pipe(T.Label()),
-    virtualMachineName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}/virtualMachines/{virtualMachineName}",
-      code: 200,
-      apiVersion: "2023-06-07",
-    }),
-  ),
-).annotate({
-  identifier: "VirtualMachinesGetRequest",
-}) as any as S.Schema<VirtualMachinesGetRequest>;
-
-/** The type of identity that created the resource. */
-export type VirtualMachinesGetResponseSystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const VirtualMachinesGetResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type VirtualMachinesGetResponseSystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const VirtualMachinesGetResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface VirtualMachinesGetResponseSystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: VirtualMachinesGetResponseSystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: VirtualMachinesGetResponseSystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const VirtualMachinesGetResponseSystemData = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      createdBy: S.optional(S.String),
-      createdByType: S.optional(
-        VirtualMachinesGetResponseSystemDataCreatedByType,
-      ),
-      createdAt: S.optional(S.String),
-      lastModifiedBy: S.optional(S.String),
-      lastModifiedByType: S.optional(
-        VirtualMachinesGetResponseSystemDataLastModifiedByType,
-      ),
-      lastModifiedAt: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "VirtualMachinesGetResponseSystemData",
-}) as any as S.Schema<VirtualMachinesGetResponseSystemData>;
-
-/** Resource provisioning state. */
-export type VirtualMachinePropertiesProvisioningState =
-  | "Creating"
-  | "Updating"
-  | "Deleting"
-  | "Succeeded"
-  | "Failed"
-  | "Locked";
-export const VirtualMachinePropertiesProvisioningState = /*@__PURE__*/ S.String;
-
-/** The state of a virtual machine. */
-export type VirtualMachineState =
-  | "Stopped"
-  | "Starting"
-  | "Running"
-  | "Stopping"
-  | "ResettingPassword"
-  | "Reimaging"
-  | "Redeploying";
-export const VirtualMachineState = /*@__PURE__*/ S.String;
-
-/** Error details of the latest operation failure on this resource */
-export type VirtualMachinePropertiesResourceOperationError =
-  LabPlanPropertiesResourceOperationError;
-export const VirtualMachinePropertiesResourceOperationError =
-  LabPlanPropertiesResourceOperationError;
-
-/** The connection information for the virtual machine */
-export interface VirtualMachineConnectionProfile {
-  /** The private IP address of the virtual machine. */
-  privateIpAddress?: string;
-  /** Port and host name separated by semicolon for connecting via SSH protocol to the virtual machine. */
-  sshAuthority?: string;
-  /** A URL. */
-  sshInBrowserUrl?: string;
-  /** Port and host name separated by semicolon for connecting via RDP protocol to the virtual machine. */
-  rdpAuthority?: string;
-  /** A URL. */
-  rdpInBrowserUrl?: string;
-  /** The username used to log on to the virtual machine as admin. */
-  adminUsername?: string;
-  /** The username used to log on to the virtual machine as non-admin, if one exists. */
-  nonAdminUsername?: string;
-}
-export const VirtualMachineConnectionProfile = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    privateIpAddress: S.optional(S.String),
-    sshAuthority: S.optional(S.String),
-    sshInBrowserUrl: S.optional(S.String),
-    rdpAuthority: S.optional(S.String),
-    rdpInBrowserUrl: S.optional(S.String),
-    adminUsername: S.optional(S.String),
-    nonAdminUsername: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "VirtualMachineConnectionProfile",
-}) as any as S.Schema<VirtualMachineConnectionProfile>;
-
-/** The type of the lab virtual machine. */
-export type VirtualMachineType = "User" | "Template";
-export const VirtualMachineType = /*@__PURE__*/ S.String;
-
-/** Virtual machine resource properties */
-export interface VirtualMachineProperties {
-  /** Resource provisioning state. */
-  provisioningState?: VirtualMachinePropertiesProvisioningState;
-  /** The current state of the virtual machine */
-  state?: VirtualMachineState;
-  /** Error details of the latest operation failure on this resource */
-  resourceOperationError?: LabPlanPropertiesResourceOperationError;
-  /** Profile for information about connecting to the virtual machine. */
-  connectionProfile?: VirtualMachineConnectionProfile;
-  /** The lab user ID (not the PUID!) of who claimed the virtual machine. */
-  claimedByUserId?: string;
-  /** The type of this VM resource */
-  vmType?: VirtualMachineType;
-}
-export const VirtualMachineProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisioningState: S.optional(VirtualMachinePropertiesProvisioningState),
-    state: S.optional(VirtualMachineState),
-    resourceOperationError: S.optional(LabPlanPropertiesResourceOperationError),
-    connectionProfile: S.optional(VirtualMachineConnectionProfile),
-    claimedByUserId: S.optional(S.String),
-    vmType: S.optional(VirtualMachineType),
-  }),
-).annotate({
-  identifier: "VirtualMachineProperties",
-}) as any as S.Schema<VirtualMachineProperties>;
-
-export interface VirtualMachinesGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: VirtualMachinesGetResponseSystemData;
-  /** Virtual machine resource properties */
-  properties: VirtualMachineProperties;
-}
-export const VirtualMachinesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(VirtualMachinesGetResponseSystemData),
-    properties: VirtualMachineProperties,
-  }),
-).annotate({
-  identifier: "VirtualMachinesGetResponse",
-}) as any as S.Schema<VirtualMachinesGetResponse>;
-
-export interface VirtualMachinesListByLabRequest {
+export interface ListVirtualMachineByLabRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4658,7 +3577,7 @@ export interface VirtualMachinesListByLabRequest {
   /** The filter to apply to the operation. */
   _filter?: string;
 }
-export const VirtualMachinesListByLabRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListVirtualMachineByLabRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -4673,8 +3592,8 @@ export const VirtualMachinesListByLabRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "VirtualMachinesListByLabRequest",
-}) as any as S.Schema<VirtualMachinesListByLabRequest>;
+  identifier: "ListVirtualMachineByLabRequest",
+}) as any as S.Schema<ListVirtualMachineByLabRequest>;
 
 /** The type of identity that created the resource. */
 export type VirtualMachineSystemDataCreatedByType =
@@ -4766,7 +3685,39 @@ export const PagedVirtualMachines = /*@__PURE__*/ S.suspend(() =>
   identifier: "PagedVirtualMachines",
 }) as any as S.Schema<PagedVirtualMachines>;
 
-export interface VirtualMachinesRedeployRequest {
+export interface PublishLabRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs. */
+  labName: string;
+}
+export const PublishLabRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    labName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}/publish",
+      code: 200,
+      apiVersion: "2023-06-07",
+    }),
+  ),
+).annotate({
+  identifier: "PublishLabRequest",
+}) as any as S.Schema<PublishLabRequest>;
+
+export interface PublishLabResponse {}
+export const PublishLabResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "PublishLabResponse",
+}) as any as S.Schema<PublishLabResponse>;
+
+export interface RedeployVirtualMachineRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4776,7 +3727,7 @@ export interface VirtualMachinesRedeployRequest {
   /** The ID of the virtual machine that uniquely identifies it within the containing lab. Used in resource URIs. */
   virtualMachineName: string;
 }
-export const VirtualMachinesRedeployRequest = /*@__PURE__*/ S.suspend(() =>
+export const RedeployVirtualMachineRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -4791,15 +3742,1163 @@ export const VirtualMachinesRedeployRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "VirtualMachinesRedeployRequest",
-}) as any as S.Schema<VirtualMachinesRedeployRequest>;
+  identifier: "RedeployVirtualMachineRequest",
+}) as any as S.Schema<RedeployVirtualMachineRequest>;
 
-export interface VirtualMachinesRedeployResponse {}
-export const VirtualMachinesRedeployResponse = /*@__PURE__*/ S.suspend(() =>
+export interface RedeployVirtualMachineResponse {}
+export const RedeployVirtualMachineResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "VirtualMachinesRedeployResponse",
-}) as any as S.Schema<VirtualMachinesRedeployResponse>;
+  identifier: "RedeployVirtualMachineResponse",
+}) as any as S.Schema<RedeployVirtualMachineResponse>;
+
+export interface ResetVirtualMachinePasswordRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs. */
+  labName: string;
+  /** The ID of the virtual machine that uniquely identifies it within the containing lab. Used in resource URIs. */
+  virtualMachineName: string;
+  /** The user whose password is being reset */
+  username: string;
+  /** The password */
+  password: string | Redacted.Redacted<string>;
+}
+export const ResetVirtualMachinePasswordRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    labName: S.String.pipe(T.Label()),
+    virtualMachineName: S.String.pipe(T.Label()),
+    username: S.String,
+    password: S.String.pipe(T.SensitiveValue({})),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}/virtualMachines/{virtualMachineName}/resetPassword",
+      code: 200,
+      apiVersion: "2023-06-07",
+    }),
+  ),
+).annotate({
+  identifier: "ResetVirtualMachinePasswordRequest",
+}) as any as S.Schema<ResetVirtualMachinePasswordRequest>;
+
+export interface ResetVirtualMachinePasswordResponse {}
+export const ResetVirtualMachinePasswordResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "ResetVirtualMachinePasswordResponse",
+}) as any as S.Schema<ResetVirtualMachinePasswordResponse>;
+
+export interface SchedulesCreateOrUpdateRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs. */
+  labName: string;
+  /** The name of the schedule that uniquely identifies it within containing lab. Used in resource URIs. */
+  scheduleName: string;
+  /** Schedule resource properties */
+  properties: ScheduleProperties;
+}
+export const SchedulesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    labName: S.String.pipe(T.Label()),
+    scheduleName: S.String.pipe(T.Label()),
+    properties: ScheduleProperties,
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}/schedules/{scheduleName}",
+      code: 200,
+      apiVersion: "2023-06-07",
+    }),
+  ),
+).annotate({
+  identifier: "SchedulesCreateOrUpdateRequest",
+}) as any as S.Schema<SchedulesCreateOrUpdateRequest>;
+
+/** The type of identity that created the resource. */
+export type SchedulesCreateOrUpdateResponseSystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const SchedulesCreateOrUpdateResponseSystemDataCreatedByType =
+  /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type SchedulesCreateOrUpdateResponseSystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const SchedulesCreateOrUpdateResponseSystemDataLastModifiedByType =
+  /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface SchedulesCreateOrUpdateResponseSystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: SchedulesCreateOrUpdateResponseSystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: SchedulesCreateOrUpdateResponseSystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const SchedulesCreateOrUpdateResponseSystemData =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      createdBy: S.optional(S.String),
+      createdByType: S.optional(
+        SchedulesCreateOrUpdateResponseSystemDataCreatedByType,
+      ),
+      createdAt: S.optional(S.String),
+      lastModifiedBy: S.optional(S.String),
+      lastModifiedByType: S.optional(
+        SchedulesCreateOrUpdateResponseSystemDataLastModifiedByType,
+      ),
+      lastModifiedAt: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "SchedulesCreateOrUpdateResponseSystemData",
+  }) as any as S.Schema<SchedulesCreateOrUpdateResponseSystemData>;
+
+export interface SchedulesCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Metadata pertaining to creation and last modification of the resource. */
+  systemData?: SchedulesCreateOrUpdateResponseSystemData;
+  /** Schedule resource properties */
+  properties: ScheduleProperties;
+}
+export const SchedulesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SchedulesCreateOrUpdateResponseSystemData),
+    properties: ScheduleProperties,
+  }),
+).annotate({
+  identifier: "SchedulesCreateOrUpdateResponse",
+}) as any as S.Schema<SchedulesCreateOrUpdateResponse>;
+
+export interface StartVirtualMachineRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs. */
+  labName: string;
+  /** The ID of the virtual machine that uniquely identifies it within the containing lab. Used in resource URIs. */
+  virtualMachineName: string;
+}
+export const StartVirtualMachineRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    labName: S.String.pipe(T.Label()),
+    virtualMachineName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}/virtualMachines/{virtualMachineName}/start",
+      code: 200,
+      apiVersion: "2023-06-07",
+    }),
+  ),
+).annotate({
+  identifier: "StartVirtualMachineRequest",
+}) as any as S.Schema<StartVirtualMachineRequest>;
+
+export interface StartVirtualMachineResponse {}
+export const StartVirtualMachineResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "StartVirtualMachineResponse",
+}) as any as S.Schema<StartVirtualMachineResponse>;
+
+export interface StopVirtualMachineRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs. */
+  labName: string;
+  /** The ID of the virtual machine that uniquely identifies it within the containing lab. Used in resource URIs. */
+  virtualMachineName: string;
+}
+export const StopVirtualMachineRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    labName: S.String.pipe(T.Label()),
+    virtualMachineName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}/virtualMachines/{virtualMachineName}/stop",
+      code: 200,
+      apiVersion: "2023-06-07",
+    }),
+  ),
+).annotate({
+  identifier: "StopVirtualMachineRequest",
+}) as any as S.Schema<StopVirtualMachineRequest>;
+
+export interface StopVirtualMachineResponse {}
+export const StopVirtualMachineResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "StopVirtualMachineResponse",
+}) as any as S.Schema<StopVirtualMachineResponse>;
+
+export interface SyncLabGroupRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs. */
+  labName: string;
+}
+export const SyncLabGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    labName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}/syncGroup",
+      code: 200,
+      apiVersion: "2023-06-07",
+    }),
+  ),
+).annotate({
+  identifier: "SyncLabGroupRequest",
+}) as any as S.Schema<SyncLabGroupRequest>;
+
+export interface SyncLabGroupResponse {}
+export const SyncLabGroupResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "SyncLabGroupResponse",
+}) as any as S.Schema<SyncLabGroupResponse>;
+
+/** Property enabled state. */
+export type ImageUpdatePropertiesEnabledState = "Enabled" | "Disabled";
+export const ImageUpdatePropertiesEnabledState = /*@__PURE__*/ S.String;
+
+/** Properties of an image resource update */
+export interface ImageUpdateProperties {
+  /** Property enabled state. */
+  enabledState?: ImageUpdatePropertiesEnabledState | (string & {});
+}
+export const ImageUpdateProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    enabledState: S.optional(ImageUpdatePropertiesEnabledState),
+  }),
+).annotate({
+  identifier: "ImageUpdateProperties",
+}) as any as S.Schema<ImageUpdateProperties>;
+
+export interface UpdateImageRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the lab plan that uniquely identifies it within containing resource group. Used in resource URIs and in UI. */
+  labPlanName: string;
+  /** The image name. */
+  imageName: string;
+  /** Image resource properties */
+  properties?: ImageUpdateProperties;
+}
+export const UpdateImageRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    labPlanName: S.String.pipe(T.Label()),
+    imageName: S.String.pipe(T.Label()),
+    properties: S.optional(ImageUpdateProperties),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labPlans/{labPlanName}/images/{imageName}",
+      code: 200,
+      apiVersion: "2023-06-07",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateImageRequest",
+}) as any as S.Schema<UpdateImageRequest>;
+
+/** The type of identity that created the resource. */
+export type UpdateImageResponseSystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const UpdateImageResponseSystemDataCreatedByType =
+  /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type UpdateImageResponseSystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const UpdateImageResponseSystemDataLastModifiedByType =
+  /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface UpdateImageResponseSystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: UpdateImageResponseSystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: UpdateImageResponseSystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const UpdateImageResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdBy: S.optional(S.String),
+    createdByType: S.optional(UpdateImageResponseSystemDataCreatedByType),
+    createdAt: S.optional(S.String),
+    lastModifiedBy: S.optional(S.String),
+    lastModifiedByType: S.optional(
+      UpdateImageResponseSystemDataLastModifiedByType,
+    ),
+    lastModifiedAt: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "UpdateImageResponseSystemData",
+}) as any as S.Schema<UpdateImageResponseSystemData>;
+
+export interface UpdateImageResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Metadata pertaining to creation and last modification of the resource. */
+  systemData?: UpdateImageResponseSystemData;
+  /** Image resource properties */
+  properties: ImageProperties;
+}
+export const UpdateImageResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(UpdateImageResponseSystemData),
+    properties: ImageProperties,
+  }),
+).annotate({
+  identifier: "UpdateImageResponse",
+}) as any as S.Schema<UpdateImageResponse>;
+
+/** Resource tags. */
+export type UpdateLabRequestTagsList = Array<string>;
+export const UpdateLabRequestTagsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<UpdateLabRequestTagsList>;
+
+/** Profile for how to handle shutting down virtual machines. */
+export type LabUpdatePropertiesInputAutoShutdownProfile =
+  LabPlanPropertiesDefaultAutoShutdownProfile;
+export const LabUpdatePropertiesInputAutoShutdownProfile =
+  LabPlanPropertiesDefaultAutoShutdownProfile;
+
+/** Connection profile for how users connect to lab virtual machines. */
+export type LabUpdatePropertiesInputConnectionProfile =
+  LabPlanPropertiesDefaultConnectionProfile;
+export const LabUpdatePropertiesInputConnectionProfile =
+  LabPlanPropertiesDefaultConnectionProfile;
+
+/** Properties of a lab resource used for updates. */
+export interface LabUpdatePropertiesInput {
+  /** Profile for how to handle shutting down virtual machines. */
+  autoShutdownProfile?: LabPlanPropertiesDefaultAutoShutdownProfile;
+  /** Connection profile for how users connect to lab virtual machines. */
+  connectionProfile?: LabPlanPropertiesDefaultConnectionProfile;
+  /** The profile used for creating lab virtual machines. */
+  virtualMachineProfile?: VirtualMachineProfileInput;
+  /** The lab security profile. */
+  securityProfile?: SecurityProfileInput;
+  /** The lab user list management profile. */
+  rosterProfile?: RosterProfile;
+  /** A URL. */
+  labPlanId?: string;
+  /** The title of the lab. */
+  title?: string;
+  /** The description of the lab. */
+  description?: string;
+}
+export const LabUpdatePropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    autoShutdownProfile: S.optional(
+      LabPlanPropertiesDefaultAutoShutdownProfile,
+    ),
+    connectionProfile: S.optional(LabPlanPropertiesDefaultConnectionProfile),
+    virtualMachineProfile: S.optional(VirtualMachineProfileInput),
+    securityProfile: S.optional(SecurityProfileInput),
+    rosterProfile: S.optional(RosterProfile),
+    labPlanId: S.optional(S.String),
+    title: S.optional(S.String),
+    description: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "LabUpdatePropertiesInput",
+}) as any as S.Schema<LabUpdatePropertiesInput>;
+
+export interface UpdateLabRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs. */
+  labName: string;
+  /** Resource tags. */
+  tags?: UpdateLabRequestTagsList;
+  /** Lab resource properties */
+  properties?: LabUpdatePropertiesInput;
+}
+export const UpdateLabRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    labName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateLabRequestTagsList),
+    properties: S.optional(LabUpdatePropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}",
+      code: 200,
+      apiVersion: "2023-06-07",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateLabRequest",
+}) as any as S.Schema<UpdateLabRequest>;
+
+/** Resource tags. */
+export type UpdateLabResponseTagsMap = { [key: string]: string | undefined };
+export const UpdateLabResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateLabResponseTagsMap>;
+
+/** The type of identity that created the resource. */
+export type UpdateLabResponseSystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const UpdateLabResponseSystemDataCreatedByType = /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type UpdateLabResponseSystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const UpdateLabResponseSystemDataLastModifiedByType =
+  /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface UpdateLabResponseSystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: UpdateLabResponseSystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: UpdateLabResponseSystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const UpdateLabResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdBy: S.optional(S.String),
+    createdByType: S.optional(UpdateLabResponseSystemDataCreatedByType),
+    createdAt: S.optional(S.String),
+    lastModifiedBy: S.optional(S.String),
+    lastModifiedByType: S.optional(
+      UpdateLabResponseSystemDataLastModifiedByType,
+    ),
+    lastModifiedAt: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "UpdateLabResponseSystemData",
+}) as any as S.Schema<UpdateLabResponseSystemData>;
+
+export interface UpdateLabResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Resource tags. */
+  tags?: UpdateLabResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Metadata pertaining to creation and last modification of the resource. */
+  systemData?: UpdateLabResponseSystemData;
+  /** Lab resource properties */
+  properties: LabProperties;
+}
+export const UpdateLabResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    tags: S.optional(UpdateLabResponseTagsMap),
+    location: S.String,
+    systemData: S.optional(UpdateLabResponseSystemData),
+    properties: LabProperties,
+  }),
+).annotate({
+  identifier: "UpdateLabResponse",
+}) as any as S.Schema<UpdateLabResponse>;
+
+/** Resource tags. */
+export type UpdateLabPlanRequestTagsList = Array<string>;
+export const UpdateLabPlanRequestTagsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<UpdateLabPlanRequestTagsList>;
+
+/** Connection profile for how users connect to lab virtual machines. */
+export type LabPlanUpdatePropertiesDefaultConnectionProfile =
+  LabPlanPropertiesDefaultConnectionProfile;
+export const LabPlanUpdatePropertiesDefaultConnectionProfile =
+  LabPlanPropertiesDefaultConnectionProfile;
+
+/** Profile for how to handle shutting down virtual machines. */
+export type LabPlanUpdatePropertiesDefaultAutoShutdownProfile =
+  LabPlanPropertiesDefaultAutoShutdownProfile;
+export const LabPlanUpdatePropertiesDefaultAutoShutdownProfile =
+  LabPlanPropertiesDefaultAutoShutdownProfile;
+
+/** The allowed regions for the lab creator to use when creating labs using this lab plan. */
+export type LabPlanUpdatePropertiesAllowedRegionsList = Array<string>;
+export const LabPlanUpdatePropertiesAllowedRegionsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<LabPlanUpdatePropertiesAllowedRegionsList>;
+
+/** Lab plan resource properties for updates */
+export interface LabPlanUpdateProperties {
+  /** Connection profile for how users connect to lab virtual machines. */
+  defaultConnectionProfile?: LabPlanPropertiesDefaultConnectionProfile;
+  /** Profile for how to handle shutting down virtual machines. */
+  defaultAutoShutdownProfile?: LabPlanPropertiesDefaultAutoShutdownProfile;
+  /** The lab plan network profile. To enforce lab network policies they must be defined here and cannot be changed when there are existing labs associated with this lab plan. */
+  defaultNetworkProfile?: LabPlanNetworkProfile;
+  /** The allowed regions for the lab creator to use when creating labs using this lab plan. */
+  allowedRegions?: LabPlanUpdatePropertiesAllowedRegionsList;
+  /** A URL. */
+  sharedGalleryId?: string;
+  /** Support contact information and instructions for users of the lab plan. This information is displayed to lab owners and virtual machine users for all labs in the lab plan. */
+  supportInfo?: SupportInfo;
+  /** A URL. */
+  linkedLmsInstance?: string;
+}
+export const LabPlanUpdateProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    defaultConnectionProfile: S.optional(
+      LabPlanPropertiesDefaultConnectionProfile,
+    ),
+    defaultAutoShutdownProfile: S.optional(
+      LabPlanPropertiesDefaultAutoShutdownProfile,
+    ),
+    defaultNetworkProfile: S.optional(LabPlanNetworkProfile),
+    allowedRegions: S.optional(LabPlanUpdatePropertiesAllowedRegionsList),
+    sharedGalleryId: S.optional(S.String),
+    supportInfo: S.optional(SupportInfo),
+    linkedLmsInstance: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "LabPlanUpdateProperties",
+}) as any as S.Schema<LabPlanUpdateProperties>;
+
+/** The identity type. */
+export type UpdateLabPlanRequestIdentityType = "SystemAssigned";
+export const UpdateLabPlanRequestIdentityType = /*@__PURE__*/ S.String;
+
+/** Identity for the resource. */
+export interface UpdateLabPlanRequestIdentity {
+  /** The identity type. */
+  type?: UpdateLabPlanRequestIdentityType | (string & {});
+}
+export const UpdateLabPlanRequestIdentity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.optional(UpdateLabPlanRequestIdentityType),
+  }),
+).annotate({
+  identifier: "UpdateLabPlanRequestIdentity",
+}) as any as S.Schema<UpdateLabPlanRequestIdentity>;
+
+export interface UpdateLabPlanRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the lab plan that uniquely identifies it within containing resource group. Used in resource URIs and in UI. */
+  labPlanName: string;
+  /** Resource tags. */
+  tags?: UpdateLabPlanRequestTagsList;
+  /** Lab plan resource update properties */
+  properties?: LabPlanUpdateProperties;
+  /** Identity for the resource. */
+  identity?: UpdateLabPlanRequestIdentity;
+}
+export const UpdateLabPlanRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    labPlanName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateLabPlanRequestTagsList),
+    properties: S.optional(LabPlanUpdateProperties),
+    identity: S.optional(UpdateLabPlanRequestIdentity),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labPlans/{labPlanName}",
+      code: 200,
+      apiVersion: "2023-06-07",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateLabPlanRequest",
+}) as any as S.Schema<UpdateLabPlanRequest>;
+
+/** Resource tags. */
+export type UpdateLabPlanResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateLabPlanResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateLabPlanResponseTagsMap>;
+
+/** The type of identity that created the resource. */
+export type UpdateLabPlanResponseSystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const UpdateLabPlanResponseSystemDataCreatedByType =
+  /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type UpdateLabPlanResponseSystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const UpdateLabPlanResponseSystemDataLastModifiedByType =
+  /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface UpdateLabPlanResponseSystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: UpdateLabPlanResponseSystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: UpdateLabPlanResponseSystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const UpdateLabPlanResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdBy: S.optional(S.String),
+    createdByType: S.optional(UpdateLabPlanResponseSystemDataCreatedByType),
+    createdAt: S.optional(S.String),
+    lastModifiedBy: S.optional(S.String),
+    lastModifiedByType: S.optional(
+      UpdateLabPlanResponseSystemDataLastModifiedByType,
+    ),
+    lastModifiedAt: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "UpdateLabPlanResponseSystemData",
+}) as any as S.Schema<UpdateLabPlanResponseSystemData>;
+
+/** The identity type. */
+export type UpdateLabPlanResponseIdentityType = "SystemAssigned";
+export const UpdateLabPlanResponseIdentityType = /*@__PURE__*/ S.String;
+
+/** Identity for the resource. */
+export interface UpdateLabPlanResponseIdentity {
+  /** The principal ID of resource identity. */
+  principalId?: string;
+  /** The tenant ID of resource. */
+  tenantId?: string;
+  /** The identity type. */
+  type?: UpdateLabPlanResponseIdentityType;
+}
+export const UpdateLabPlanResponseIdentity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    principalId: S.optional(S.String),
+    tenantId: S.optional(S.String),
+    type: S.optional(UpdateLabPlanResponseIdentityType),
+  }),
+).annotate({
+  identifier: "UpdateLabPlanResponseIdentity",
+}) as any as S.Schema<UpdateLabPlanResponseIdentity>;
+
+export interface UpdateLabPlanResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Resource tags. */
+  tags?: UpdateLabPlanResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Metadata pertaining to creation and last modification of the resource. */
+  systemData?: UpdateLabPlanResponseSystemData;
+  /** Lab plan resource properties */
+  properties: LabPlanProperties;
+  /** Identity for the resource. */
+  identity?: UpdateLabPlanResponseIdentity;
+}
+export const UpdateLabPlanResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    tags: S.optional(UpdateLabPlanResponseTagsMap),
+    location: S.String,
+    systemData: S.optional(UpdateLabPlanResponseSystemData),
+    properties: LabPlanProperties,
+    identity: S.optional(UpdateLabPlanResponseIdentity),
+  }),
+).annotate({
+  identifier: "UpdateLabPlanResponse",
+}) as any as S.Schema<UpdateLabPlanResponse>;
+
+/** Schedule resource properties used for updates. */
+export interface ScheduleUpdateProperties {
+  /** When lab user virtual machines will be started. Timestamp offsets will be ignored and timeZoneId is used instead. */
+  startAt?: string;
+  /** When lab user virtual machines will be stopped. Timestamp offsets will be ignored and timeZoneId is used instead. */
+  stopAt?: string;
+  /** The recurrence pattern of the scheduled actions. */
+  recurrencePattern?: RecurrencePattern;
+  /** The IANA timezone id for the schedule. */
+  timeZoneId?: string;
+  /** Notes for this schedule. */
+  notes?: string;
+}
+export const ScheduleUpdateProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    startAt: S.optional(S.String),
+    stopAt: S.optional(S.String),
+    recurrencePattern: S.optional(RecurrencePattern),
+    timeZoneId: S.optional(S.String),
+    notes: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ScheduleUpdateProperties",
+}) as any as S.Schema<ScheduleUpdateProperties>;
+
+export interface UpdateScheduleRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs. */
+  labName: string;
+  /** The name of the schedule that uniquely identifies it within containing lab. Used in resource URIs. */
+  scheduleName: string;
+  /** Schedule resource properties */
+  properties?: ScheduleUpdateProperties;
+}
+export const UpdateScheduleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    labName: S.String.pipe(T.Label()),
+    scheduleName: S.String.pipe(T.Label()),
+    properties: S.optional(ScheduleUpdateProperties),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}/schedules/{scheduleName}",
+      code: 200,
+      apiVersion: "2023-06-07",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateScheduleRequest",
+}) as any as S.Schema<UpdateScheduleRequest>;
+
+/** The type of identity that created the resource. */
+export type UpdateScheduleResponseSystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const UpdateScheduleResponseSystemDataCreatedByType =
+  /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type UpdateScheduleResponseSystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const UpdateScheduleResponseSystemDataLastModifiedByType =
+  /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface UpdateScheduleResponseSystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: UpdateScheduleResponseSystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: UpdateScheduleResponseSystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const UpdateScheduleResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdBy: S.optional(S.String),
+    createdByType: S.optional(UpdateScheduleResponseSystemDataCreatedByType),
+    createdAt: S.optional(S.String),
+    lastModifiedBy: S.optional(S.String),
+    lastModifiedByType: S.optional(
+      UpdateScheduleResponseSystemDataLastModifiedByType,
+    ),
+    lastModifiedAt: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "UpdateScheduleResponseSystemData",
+}) as any as S.Schema<UpdateScheduleResponseSystemData>;
+
+export interface UpdateScheduleResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Metadata pertaining to creation and last modification of the resource. */
+  systemData?: UpdateScheduleResponseSystemData;
+  /** Schedule resource properties */
+  properties: ScheduleProperties;
+}
+export const UpdateScheduleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(UpdateScheduleResponseSystemData),
+    properties: ScheduleProperties,
+  }),
+).annotate({
+  identifier: "UpdateScheduleResponse",
+}) as any as S.Schema<UpdateScheduleResponse>;
+
+/** User resource properties used for updates. */
+export interface UserUpdateProperties {
+  /** The amount of usage quota time the user gets in addition to the lab usage quota. */
+  additionalUsageQuota?: string;
+}
+export const UserUpdateProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    additionalUsageQuota: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "UserUpdateProperties",
+}) as any as S.Schema<UserUpdateProperties>;
+
+export interface UpdateUserRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs. */
+  labName: string;
+  /** The name of the user that uniquely identifies it within containing lab. Used in resource URIs. */
+  userName: string;
+  /** User resource properties */
+  properties?: UserUpdateProperties;
+}
+export const UpdateUserRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    labName: S.String.pipe(T.Label()),
+    userName: S.String.pipe(T.Label()),
+    properties: S.optional(UserUpdateProperties),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}/users/{userName}",
+      code: 200,
+      apiVersion: "2023-06-07",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateUserRequest",
+}) as any as S.Schema<UpdateUserRequest>;
+
+/** The type of identity that created the resource. */
+export type UpdateUserResponseSystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const UpdateUserResponseSystemDataCreatedByType = /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type UpdateUserResponseSystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const UpdateUserResponseSystemDataLastModifiedByType =
+  /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface UpdateUserResponseSystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: UpdateUserResponseSystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: UpdateUserResponseSystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const UpdateUserResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdBy: S.optional(S.String),
+    createdByType: S.optional(UpdateUserResponseSystemDataCreatedByType),
+    createdAt: S.optional(S.String),
+    lastModifiedBy: S.optional(S.String),
+    lastModifiedByType: S.optional(
+      UpdateUserResponseSystemDataLastModifiedByType,
+    ),
+    lastModifiedAt: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "UpdateUserResponseSystemData",
+}) as any as S.Schema<UpdateUserResponseSystemData>;
+
+export interface UpdateUserResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Metadata pertaining to creation and last modification of the resource. */
+  systemData?: UpdateUserResponseSystemData;
+  /** User resource properties */
+  properties: UserProperties;
+}
+export const UpdateUserResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(UpdateUserResponseSystemData),
+    properties: UserProperties,
+  }),
+).annotate({
+  identifier: "UpdateUserResponse",
+}) as any as S.Schema<UpdateUserResponse>;
+
+/** Resource provisioning state. */
+export type UserPropertiesInputProvisioningState =
+  | "Creating"
+  | "Updating"
+  | "Deleting"
+  | "Succeeded"
+  | "Failed"
+  | "Locked";
+export const UserPropertiesInputProvisioningState = /*@__PURE__*/ S.String;
+
+/** Error details of the latest operation failure on this resource */
+export type UserPropertiesInputResourceOperationError =
+  LabPropertiesResourceOperationError;
+export const UserPropertiesInputResourceOperationError =
+  LabPropertiesResourceOperationError;
+
+/** User resource properties */
+export interface UserPropertiesInput {
+  /** The amount of usage quota time the user gets in addition to the lab usage quota. */
+  additionalUsageQuota?: string;
+  /** Resource provisioning state. */
+  provisioningState?: UserPropertiesInputProvisioningState | (string & {});
+  /** Error details of the latest operation failure on this resource */
+  resourceOperationError?: LabPropertiesResourceOperationError;
+  /** An email address. */
+  email: string;
+}
+export const UserPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    additionalUsageQuota: S.optional(S.String),
+    provisioningState: S.optional(UserPropertiesInputProvisioningState),
+    resourceOperationError: S.optional(LabPropertiesResourceOperationError),
+    email: S.String,
+  }),
+).annotate({
+  identifier: "UserPropertiesInput",
+}) as any as S.Schema<UserPropertiesInput>;
+
+export interface UsersCreateOrUpdateRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs. */
+  labName: string;
+  /** The name of the user that uniquely identifies it within containing lab. Used in resource URIs. */
+  userName: string;
+  /** User resource properties */
+  properties: UserPropertiesInput;
+}
+export const UsersCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    labName: S.String.pipe(T.Label()),
+    userName: S.String.pipe(T.Label()),
+    properties: UserPropertiesInput,
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}/users/{userName}",
+      code: 200,
+      apiVersion: "2023-06-07",
+    }),
+  ),
+).annotate({
+  identifier: "UsersCreateOrUpdateRequest",
+}) as any as S.Schema<UsersCreateOrUpdateRequest>;
+
+/** The type of identity that created the resource. */
+export type UsersCreateOrUpdateResponseSystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const UsersCreateOrUpdateResponseSystemDataCreatedByType =
+  /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type UsersCreateOrUpdateResponseSystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const UsersCreateOrUpdateResponseSystemDataLastModifiedByType =
+  /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface UsersCreateOrUpdateResponseSystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: UsersCreateOrUpdateResponseSystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: UsersCreateOrUpdateResponseSystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const UsersCreateOrUpdateResponseSystemData = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      createdBy: S.optional(S.String),
+      createdByType: S.optional(
+        UsersCreateOrUpdateResponseSystemDataCreatedByType,
+      ),
+      createdAt: S.optional(S.String),
+      lastModifiedBy: S.optional(S.String),
+      lastModifiedByType: S.optional(
+        UsersCreateOrUpdateResponseSystemDataLastModifiedByType,
+      ),
+      lastModifiedAt: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "UsersCreateOrUpdateResponseSystemData",
+}) as any as S.Schema<UsersCreateOrUpdateResponseSystemData>;
+
+export interface UsersCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Metadata pertaining to creation and last modification of the resource. */
+  systemData?: UsersCreateOrUpdateResponseSystemData;
+  /** User resource properties */
+  properties: UserProperties;
+}
+export const UsersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(UsersCreateOrUpdateResponseSystemData),
+    properties: UserProperties,
+  }),
+).annotate({
+  identifier: "UsersCreateOrUpdateResponse",
+}) as any as S.Schema<UsersCreateOrUpdateResponse>;
 
 export interface VirtualMachinesReimageRequest {
   /** The ID of the target subscription. */
@@ -4836,116 +4935,170 @@ export const VirtualMachinesReimageResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "VirtualMachinesReimageResponse",
 }) as any as S.Schema<VirtualMachinesReimageResponse>;
 
-export interface VirtualMachinesResetPasswordRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs. */
-  labName: string;
-  /** The ID of the virtual machine that uniquely identifies it within the containing lab. Used in resource URIs. */
-  virtualMachineName: string;
-  /** The user whose password is being reset */
-  username: string;
-  /** The password */
-  password: string | Redacted.Redacted<string>;
-}
-export const VirtualMachinesResetPasswordRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    labName: S.String.pipe(T.Label()),
-    virtualMachineName: S.String.pipe(T.Label()),
-    username: S.String,
-    password: S.String.pipe(T.SensitiveValue({})),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}/virtualMachines/{virtualMachineName}/resetPassword",
-      code: 200,
-      apiVersion: "2023-06-07",
-    }),
-  ),
-).annotate({
-  identifier: "VirtualMachinesResetPasswordRequest",
-}) as any as S.Schema<VirtualMachinesResetPasswordRequest>;
+export type DeleteLabError = AzureOpError;
+/** Deletes a lab resource. Operation to delete a lab resource. */
+export const DeleteLab: API.OperationMethod<
+  DeleteLabRequest,
+  DeleteLabResponse,
+  DeleteLabError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteLabRequest,
+  output: DeleteLabResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-export interface VirtualMachinesResetPasswordResponse {}
-export const VirtualMachinesResetPasswordResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "VirtualMachinesResetPasswordResponse",
-}) as any as S.Schema<VirtualMachinesResetPasswordResponse>;
+export type DeleteLabPlanError = AzureOpError;
+/** Deletes a Lab Plan resource. Operation to delete a Lab Plan resource. Deleting a lab plan does not delete labs associated with a lab plan, nor does it delete shared images added to a gallery via the lab plan permission container. */
+export const DeleteLabPlan: API.OperationMethod<
+  DeleteLabPlanRequest,
+  DeleteLabPlanResponse,
+  DeleteLabPlanError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteLabPlanRequest,
+  output: DeleteLabPlanResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-export interface VirtualMachinesStartRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs. */
-  labName: string;
-  /** The ID of the virtual machine that uniquely identifies it within the containing lab. Used in resource URIs. */
-  virtualMachineName: string;
-}
-export const VirtualMachinesStartRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    labName: S.String.pipe(T.Label()),
-    virtualMachineName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}/virtualMachines/{virtualMachineName}/start",
-      code: 200,
-      apiVersion: "2023-06-07",
-    }),
-  ),
-).annotate({
-  identifier: "VirtualMachinesStartRequest",
-}) as any as S.Schema<VirtualMachinesStartRequest>;
+export type DeleteScheduleError = AzureOpError;
+/** Deletes a schedule resource. Operation to delete a schedule resource. */
+export const DeleteSchedule: API.OperationMethod<
+  DeleteScheduleRequest,
+  DeleteScheduleResponse,
+  DeleteScheduleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteScheduleRequest,
+  output: DeleteScheduleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-export interface VirtualMachinesStartResponse {}
-export const VirtualMachinesStartResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "VirtualMachinesStartResponse",
-}) as any as S.Schema<VirtualMachinesStartResponse>;
+export type DeleteUserError = AzureOpError;
+/** Deletes a user resource. Operation to delete a user resource. */
+export const DeleteUser: API.OperationMethod<
+  DeleteUserRequest,
+  DeleteUserResponse,
+  DeleteUserError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteUserRequest,
+  output: DeleteUserResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-export interface VirtualMachinesStopRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs. */
-  labName: string;
-  /** The ID of the virtual machine that uniquely identifies it within the containing lab. Used in resource URIs. */
-  virtualMachineName: string;
-}
-export const VirtualMachinesStopRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    labName: S.String.pipe(T.Label()),
-    virtualMachineName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}/virtualMachines/{virtualMachineName}/stop",
-      code: 200,
-      apiVersion: "2023-06-07",
-    }),
-  ),
-).annotate({
-  identifier: "VirtualMachinesStopRequest",
-}) as any as S.Schema<VirtualMachinesStopRequest>;
+export type GetImageError = AzureOpError;
+/** Gets an image. Gets an image resource. */
+export const GetImage: API.OperationMethod<
+  GetImageRequest,
+  GetImageResponse,
+  GetImageError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetImageRequest,
+  output: GetImageResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-export interface VirtualMachinesStopResponse {}
-export const VirtualMachinesStopResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "VirtualMachinesStopResponse",
-}) as any as S.Schema<VirtualMachinesStopResponse>;
+export type GetLabError = AzureOpError;
+/** Get a lab resource. Returns the properties of a lab resource. */
+export const GetLab: API.OperationMethod<
+  GetLabRequest,
+  GetLabResponse,
+  GetLabError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetLabRequest,
+  output: GetLabResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetLabPlanError = AzureOpError;
+/** Retrieves a Lab Plan resource. Retrieves the properties of a Lab Plan. */
+export const GetLabPlan: API.OperationMethod<
+  GetLabPlanRequest,
+  GetLabPlanResponse,
+  GetLabPlanError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetLabPlanRequest,
+  output: GetLabPlanResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetOperationResultError = AzureOpError;
+/** Get an azure operation result. Returns an azure operation result. */
+export const GetOperationResult: API.OperationMethod<
+  GetOperationResultRequest,
+  OperationResult,
+  GetOperationResultError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetOperationResultRequest,
+  output: OperationResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetScheduleError = AzureOpError;
+/** Get a lab Schedule. Returns the properties of a lab Schedule. */
+export const GetSchedule: API.OperationMethod<
+  GetScheduleRequest,
+  GetScheduleResponse,
+  GetScheduleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetScheduleRequest,
+  output: GetScheduleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetUserError = AzureOpError;
+/** Get a lab user. Returns the properties of a lab user. */
+export const GetUser: API.OperationMethod<
+  GetUserRequest,
+  GetUserResponse,
+  GetUserError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetUserRequest,
+  output: GetUserResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetVirtualMachineError = AzureOpError;
+/** Get a lab virtual machine. Returns the properties for a lab virtual machine. */
+export const GetVirtualMachine: API.OperationMethod<
+  GetVirtualMachineRequest,
+  GetVirtualMachineResponse,
+  GetVirtualMachineError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetVirtualMachineRequest,
+  output: GetVirtualMachineResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
 export type ImagesCreateOrUpdateError = AzureOpError;
 /** Updates an image via PUT. Updates an image resource via PUT. Creating new resources via PUT will not function. */
@@ -4962,46 +5115,16 @@ export const ImagesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ImagesGetError = AzureOpError;
-/** Gets an image. Gets an image resource. */
-export const ImagesGet: API.OperationMethod<
-  ImagesGetRequest,
-  ImagesGetResponse,
-  ImagesGetError,
+export type InviteUserError = AzureOpError;
+/** Invite a user to a lab. Operation to invite a user to a lab. */
+export const InviteUser: API.OperationMethod<
+  InviteUserRequest,
+  InviteUserResponse,
+  InviteUserError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ImagesGetRequest,
-  output: ImagesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ImagesListByLabPlanError = AzureOpError;
-/** Gets all images. Gets all images from galleries attached to a lab plan. */
-export const ImagesListByLabPlan: API.OperationMethod<
-  ImagesListByLabPlanRequest,
-  PagedImages,
-  ImagesListByLabPlanError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ImagesListByLabPlanRequest,
-  output: PagedImages,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ImagesUpdateError = AzureOpError;
-/** Updates an image. Updates an image resource. */
-export const ImagesUpdate: API.OperationMethod<
-  ImagesUpdateRequest,
-  ImagesUpdateResponse,
-  ImagesUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ImagesUpdateRequest,
-  output: ImagesUpdateResponse,
+  input: InviteUserRequest,
+  output: InviteUserResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -5022,66 +5145,6 @@ export const LabPlansCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type LabPlansDeleteError = AzureOpError;
-/** Deletes a Lab Plan resource. Operation to delete a Lab Plan resource. Deleting a lab plan does not delete labs associated with a lab plan, nor does it delete shared images added to a gallery via the lab plan permission container. */
-export const LabPlansDelete: API.OperationMethod<
-  LabPlansDeleteRequest,
-  LabPlansDeleteResponse,
-  LabPlansDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: LabPlansDeleteRequest,
-  output: LabPlansDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type LabPlansGetError = AzureOpError;
-/** Retrieves a Lab Plan resource. Retrieves the properties of a Lab Plan. */
-export const LabPlansGet: API.OperationMethod<
-  LabPlansGetRequest,
-  LabPlansGetResponse,
-  LabPlansGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: LabPlansGetRequest,
-  output: LabPlansGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type LabPlansListByResourceGroupError = AzureOpError;
-/** Get all lab plans for a subscription and resource group. Returns a list of all lab plans for a subscription and resource group. */
-export const LabPlansListByResourceGroup: API.OperationMethod<
-  LabPlansListByResourceGroupRequest,
-  PagedLabPlans,
-  LabPlansListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: LabPlansListByResourceGroupRequest,
-  output: PagedLabPlans,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type LabPlansListBySubscriptionError = AzureOpError;
-/** Get all lab plans for a subscription. Returns a list of all lab plans within a subscription */
-export const LabPlansListBySubscription: API.OperationMethod<
-  LabPlansListBySubscriptionRequest,
-  PagedLabPlans,
-  LabPlansListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: LabPlansListBySubscriptionRequest,
-  output: PagedLabPlans,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type LabPlansSaveImageError = AzureOpError;
 /** Save an image from a lab VM to the attached shared image gallery. Saves an image from a lab VM to the attached shared image gallery. */
 export const LabPlansSaveImage: API.OperationMethod<
@@ -5092,21 +5155,6 @@ export const LabPlansSaveImage: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: LabPlansSaveImageRequest,
   output: LabPlansSaveImageResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type LabPlansUpdateError = AzureOpError;
-/** Updates a Lab Plan resource. Operation to update a Lab Plan resource. */
-export const LabPlansUpdate: API.OperationMethod<
-  LabPlansUpdateRequest,
-  LabPlansUpdateResponse,
-  LabPlansUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: LabPlansUpdateRequest,
-  output: LabPlansUpdateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -5127,136 +5175,211 @@ export const LabsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type LabsDeleteError = AzureOpError;
-/** Deletes a lab resource. Operation to delete a lab resource. */
-export const LabsDelete: API.OperationMethod<
-  LabsDeleteRequest,
-  LabsDeleteResponse,
-  LabsDeleteError,
+export type ListImageByLabPlanError = AzureOpError;
+/** Gets all images. Gets all images from galleries attached to a lab plan. */
+export const ListImageByLabPlan: API.OperationMethod<
+  ListImageByLabPlanRequest,
+  PagedImages,
+  ListImageByLabPlanError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: LabsDeleteRequest,
-  output: LabsDeleteResponse,
+  input: ListImageByLabPlanRequest,
+  output: PagedImages,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type LabsGetError = AzureOpError;
-/** Get a lab resource. Returns the properties of a lab resource. */
-export const LabsGet: API.OperationMethod<
-  LabsGetRequest,
-  LabsGetResponse,
-  LabsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: LabsGetRequest,
-  output: LabsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type LabsListByResourceGroupError = AzureOpError;
+export type ListLabByResourceGroupError = AzureOpError;
 /** Get all labs for a subscription and resource group. Returns a list of all labs in a resource group. */
-export const LabsListByResourceGroup: API.OperationMethod<
-  LabsListByResourceGroupRequest,
+export const ListLabByResourceGroup: API.OperationMethod<
+  ListLabByResourceGroupRequest,
   PagedLabs,
-  LabsListByResourceGroupError,
+  ListLabByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: LabsListByResourceGroupRequest,
+  input: ListLabByResourceGroupRequest,
   output: PagedLabs,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type LabsListBySubscriptionError = AzureOpError;
+export type ListLabBySubscriptionError = AzureOpError;
 /** Get all labs for a subscription. Returns a list of all labs for a subscription. */
-export const LabsListBySubscription: API.OperationMethod<
-  LabsListBySubscriptionRequest,
+export const ListLabBySubscription: API.OperationMethod<
+  ListLabBySubscriptionRequest,
   PagedLabs,
-  LabsListBySubscriptionError,
+  ListLabBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: LabsListBySubscriptionRequest,
+  input: ListLabBySubscriptionRequest,
   output: PagedLabs,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type LabsPublishError = AzureOpError;
-/** Publish or re-publish a lab. Publish or re-publish a lab. This will create or update all lab resources, such as virtual machines. */
-export const LabsPublish: API.OperationMethod<
-  LabsPublishRequest,
-  LabsPublishResponse,
-  LabsPublishError,
+export type ListLabPlanByResourceGroupError = AzureOpError;
+/** Get all lab plans for a subscription and resource group. Returns a list of all lab plans for a subscription and resource group. */
+export const ListLabPlanByResourceGroup: API.OperationMethod<
+  ListLabPlanByResourceGroupRequest,
+  PagedLabPlans,
+  ListLabPlanByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: LabsPublishRequest,
-  output: LabsPublishResponse,
+  input: ListLabPlanByResourceGroupRequest,
+  output: PagedLabPlans,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type LabsSyncGroupError = AzureOpError;
-/** Manually sync the lab group. Action used to manually kick off an AAD group sync job. */
-export const LabsSyncGroup: API.OperationMethod<
-  LabsSyncGroupRequest,
-  LabsSyncGroupResponse,
-  LabsSyncGroupError,
+export type ListLabPlanBySubscriptionError = AzureOpError;
+/** Get all lab plans for a subscription. Returns a list of all lab plans within a subscription */
+export const ListLabPlanBySubscription: API.OperationMethod<
+  ListLabPlanBySubscriptionRequest,
+  PagedLabPlans,
+  ListLabPlanBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: LabsSyncGroupRequest,
-  output: LabsSyncGroupResponse,
+  input: ListLabPlanBySubscriptionRequest,
+  output: PagedLabPlans,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type LabsUpdateError = AzureOpError;
-/** Update a lab resource. Operation to update a lab resource. */
-export const LabsUpdate: API.OperationMethod<
-  LabsUpdateRequest,
-  LabsUpdateResponse,
-  LabsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: LabsUpdateRequest,
-  output: LabsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OperationResultsGetError = AzureOpError;
-/** Get an azure operation result. Returns an azure operation result. */
-export const OperationResultsGet: API.OperationMethod<
-  OperationResultsGetRequest,
-  OperationResult,
-  OperationResultsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OperationResultsGetRequest,
-  output: OperationResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OperationsListError = AzureOpError;
+export type ListOperationsError = AzureOpError;
 /** Get all operations Returns a list of all operations. */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationsListResponse,
-  OperationsListError,
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  ListOperationsResponse,
+  ListOperationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
-  output: OperationsListResponse,
+  input: ListOperationsRequest,
+  output: ListOperationsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListScheduleByLabError = AzureOpError;
+/** Get all schedules for a lab. Returns a list of all schedules for a lab. */
+export const ListScheduleByLab: API.OperationMethod<
+  ListScheduleByLabRequest,
+  PagedSchedules,
+  ListScheduleByLabError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListScheduleByLabRequest,
+  output: PagedSchedules,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSkusError = AzureOpError;
+/** Gets the Azure Lab Services resource SKUs. Returns a list of Azure Lab Services resource SKUs. */
+export const ListSkus: API.OperationMethod<
+  ListSkusRequest,
+  PagedLabServicesSkus,
+  ListSkusError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSkusRequest,
+  output: PagedLabServicesSkus,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListUsageByLocationError = AzureOpError;
+/** Gets the list of usages. Returns list of usage per SKU family for the specified subscription in the specified region. */
+export const ListUsageByLocation: API.OperationMethod<
+  ListUsageByLocationRequest,
+  ListUsagesResult,
+  ListUsageByLocationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListUsageByLocationRequest,
+  output: ListUsagesResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListUserByLabError = AzureOpError;
+/** Get all users for a lab. Returns a list of all users for a lab. */
+export const ListUserByLab: API.OperationMethod<
+  ListUserByLabRequest,
+  PagedUsers,
+  ListUserByLabError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListUserByLabRequest,
+  output: PagedUsers,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVirtualMachineByLabError = AzureOpError;
+/** Get all virtual machines for a lab. Returns a list of all virtual machines for a lab. */
+export const ListVirtualMachineByLab: API.OperationMethod<
+  ListVirtualMachineByLabRequest,
+  PagedVirtualMachines,
+  ListVirtualMachineByLabError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVirtualMachineByLabRequest,
+  output: PagedVirtualMachines,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PublishLabError = AzureOpError;
+/** Publish or re-publish a lab. Publish or re-publish a lab. This will create or update all lab resources, such as virtual machines. */
+export const PublishLab: API.OperationMethod<
+  PublishLabRequest,
+  PublishLabResponse,
+  PublishLabError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PublishLabRequest,
+  output: PublishLabResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RedeployVirtualMachineError = AzureOpError;
+/** Redeploy a lab virtual machine to a different compute node. For troubleshooting connectivity. Action to redeploy a lab virtual machine to a different compute node. For troubleshooting connectivity. */
+export const RedeployVirtualMachine: API.OperationMethod<
+  RedeployVirtualMachineRequest,
+  RedeployVirtualMachineResponse,
+  RedeployVirtualMachineError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RedeployVirtualMachineRequest,
+  output: RedeployVirtualMachineResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ResetVirtualMachinePasswordError = AzureOpError;
+/** Reset a lab virtual machine password. Resets a lab virtual machine password. */
+export const ResetVirtualMachinePassword: API.OperationMethod<
+  ResetVirtualMachinePasswordRequest,
+  ResetVirtualMachinePasswordResponse,
+  ResetVirtualMachinePasswordError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ResetVirtualMachinePasswordRequest,
+  output: ResetVirtualMachinePasswordResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -5277,91 +5400,121 @@ export const SchedulesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SchedulesDeleteError = AzureOpError;
-/** Deletes a schedule resource. Operation to delete a schedule resource. */
-export const SchedulesDelete: API.OperationMethod<
-  SchedulesDeleteRequest,
-  SchedulesDeleteResponse,
-  SchedulesDeleteError,
+export type StartVirtualMachineError = AzureOpError;
+/** Start a lab virtual machine. Action to start a lab virtual machine. */
+export const StartVirtualMachine: API.OperationMethod<
+  StartVirtualMachineRequest,
+  StartVirtualMachineResponse,
+  StartVirtualMachineError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SchedulesDeleteRequest,
-  output: SchedulesDeleteResponse,
+  input: StartVirtualMachineRequest,
+  output: StartVirtualMachineResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type SchedulesGetError = AzureOpError;
-/** Get a lab Schedule. Returns the properties of a lab Schedule. */
-export const SchedulesGet: API.OperationMethod<
-  SchedulesGetRequest,
-  SchedulesGetResponse,
-  SchedulesGetError,
+export type StopVirtualMachineError = AzureOpError;
+/** Stop a lab virtual machine. Action to stop a lab virtual machine. */
+export const StopVirtualMachine: API.OperationMethod<
+  StopVirtualMachineRequest,
+  StopVirtualMachineResponse,
+  StopVirtualMachineError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SchedulesGetRequest,
-  output: SchedulesGetResponse,
+  input: StopVirtualMachineRequest,
+  output: StopVirtualMachineResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type SchedulesListByLabError = AzureOpError;
-/** Get all schedules for a lab. Returns a list of all schedules for a lab. */
-export const SchedulesListByLab: API.OperationMethod<
-  SchedulesListByLabRequest,
-  PagedSchedules,
-  SchedulesListByLabError,
+export type SyncLabGroupError = AzureOpError;
+/** Manually sync the lab group. Action used to manually kick off an AAD group sync job. */
+export const SyncLabGroup: API.OperationMethod<
+  SyncLabGroupRequest,
+  SyncLabGroupResponse,
+  SyncLabGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SchedulesListByLabRequest,
-  output: PagedSchedules,
+  input: SyncLabGroupRequest,
+  output: SyncLabGroupResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type SchedulesUpdateError = AzureOpError;
+export type UpdateImageError = AzureOpError;
+/** Updates an image. Updates an image resource. */
+export const UpdateImage: API.OperationMethod<
+  UpdateImageRequest,
+  UpdateImageResponse,
+  UpdateImageError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateImageRequest,
+  output: UpdateImageResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateLabError = AzureOpError;
+/** Update a lab resource. Operation to update a lab resource. */
+export const UpdateLab: API.OperationMethod<
+  UpdateLabRequest,
+  UpdateLabResponse,
+  UpdateLabError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateLabRequest,
+  output: UpdateLabResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateLabPlanError = AzureOpError;
+/** Updates a Lab Plan resource. Operation to update a Lab Plan resource. */
+export const UpdateLabPlan: API.OperationMethod<
+  UpdateLabPlanRequest,
+  UpdateLabPlanResponse,
+  UpdateLabPlanError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateLabPlanRequest,
+  output: UpdateLabPlanResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateScheduleError = AzureOpError;
 /** Update a lab schedule. Operation to update a lab schedule. */
-export const SchedulesUpdate: API.OperationMethod<
-  SchedulesUpdateRequest,
-  SchedulesUpdateResponse,
-  SchedulesUpdateError,
+export const UpdateSchedule: API.OperationMethod<
+  UpdateScheduleRequest,
+  UpdateScheduleResponse,
+  UpdateScheduleError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SchedulesUpdateRequest,
-  output: SchedulesUpdateResponse,
+  input: UpdateScheduleRequest,
+  output: UpdateScheduleResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type SkusListError = AzureOpError;
-/** Gets the Azure Lab Services resource SKUs. Returns a list of Azure Lab Services resource SKUs. */
-export const SkusList: API.OperationMethod<
-  SkusListRequest,
-  PagedLabServicesSkus,
-  SkusListError,
+export type UpdateUserError = AzureOpError;
+/** Update a lab user. Operation to update a lab user. */
+export const UpdateUser: API.OperationMethod<
+  UpdateUserRequest,
+  UpdateUserResponse,
+  UpdateUserError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SkusListRequest,
-  output: PagedLabServicesSkus,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UsagesListByLocationError = AzureOpError;
-/** Gets the list of usages. Returns list of usage per SKU family for the specified subscription in the specified region. */
-export const UsagesListByLocation: API.OperationMethod<
-  UsagesListByLocationRequest,
-  ListUsagesResult,
-  UsagesListByLocationError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UsagesListByLocationRequest,
-  output: ListUsagesResult,
+  input: UpdateUserRequest,
+  output: UpdateUserResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -5382,126 +5535,6 @@ export const UsersCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UsersDeleteError = AzureOpError;
-/** Deletes a user resource. Operation to delete a user resource. */
-export const UsersDelete: API.OperationMethod<
-  UsersDeleteRequest,
-  UsersDeleteResponse,
-  UsersDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UsersDeleteRequest,
-  output: UsersDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UsersGetError = AzureOpError;
-/** Get a lab user. Returns the properties of a lab user. */
-export const UsersGet: API.OperationMethod<
-  UsersGetRequest,
-  UsersGetResponse,
-  UsersGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UsersGetRequest,
-  output: UsersGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UsersInviteError = AzureOpError;
-/** Invite a user to a lab. Operation to invite a user to a lab. */
-export const UsersInvite: API.OperationMethod<
-  UsersInviteRequest,
-  UsersInviteResponse,
-  UsersInviteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UsersInviteRequest,
-  output: UsersInviteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UsersListByLabError = AzureOpError;
-/** Get all users for a lab. Returns a list of all users for a lab. */
-export const UsersListByLab: API.OperationMethod<
-  UsersListByLabRequest,
-  PagedUsers,
-  UsersListByLabError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UsersListByLabRequest,
-  output: PagedUsers,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UsersUpdateError = AzureOpError;
-/** Update a lab user. Operation to update a lab user. */
-export const UsersUpdate: API.OperationMethod<
-  UsersUpdateRequest,
-  UsersUpdateResponse,
-  UsersUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UsersUpdateRequest,
-  output: UsersUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachinesGetError = AzureOpError;
-/** Get a lab virtual machine. Returns the properties for a lab virtual machine. */
-export const VirtualMachinesGet: API.OperationMethod<
-  VirtualMachinesGetRequest,
-  VirtualMachinesGetResponse,
-  VirtualMachinesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachinesGetRequest,
-  output: VirtualMachinesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachinesListByLabError = AzureOpError;
-/** Get all virtual machines for a lab. Returns a list of all virtual machines for a lab. */
-export const VirtualMachinesListByLab: API.OperationMethod<
-  VirtualMachinesListByLabRequest,
-  PagedVirtualMachines,
-  VirtualMachinesListByLabError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachinesListByLabRequest,
-  output: PagedVirtualMachines,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachinesRedeployError = AzureOpError;
-/** Redeploy a lab virtual machine to a different compute node. For troubleshooting connectivity. Action to redeploy a lab virtual machine to a different compute node. For troubleshooting connectivity. */
-export const VirtualMachinesRedeploy: API.OperationMethod<
-  VirtualMachinesRedeployRequest,
-  VirtualMachinesRedeployResponse,
-  VirtualMachinesRedeployError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachinesRedeployRequest,
-  output: VirtualMachinesRedeployResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type VirtualMachinesReimageError = AzureOpError;
 /** Re-image a lab virtual machine. Re-image a lab virtual machine. The virtual machine will be deleted and recreated using the latest published snapshot of the reference environment of the lab. */
 export const VirtualMachinesReimage: API.OperationMethod<
@@ -5512,51 +5545,6 @@ export const VirtualMachinesReimage: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: VirtualMachinesReimageRequest,
   output: VirtualMachinesReimageResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachinesResetPasswordError = AzureOpError;
-/** Reset a lab virtual machine password. Resets a lab virtual machine password. */
-export const VirtualMachinesResetPassword: API.OperationMethod<
-  VirtualMachinesResetPasswordRequest,
-  VirtualMachinesResetPasswordResponse,
-  VirtualMachinesResetPasswordError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachinesResetPasswordRequest,
-  output: VirtualMachinesResetPasswordResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachinesStartError = AzureOpError;
-/** Start a lab virtual machine. Action to start a lab virtual machine. */
-export const VirtualMachinesStart: API.OperationMethod<
-  VirtualMachinesStartRequest,
-  VirtualMachinesStartResponse,
-  VirtualMachinesStartError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachinesStartRequest,
-  output: VirtualMachinesStartResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachinesStopError = AzureOpError;
-/** Stop a lab virtual machine. Action to stop a lab virtual machine. */
-export const VirtualMachinesStop: API.OperationMethod<
-  VirtualMachinesStopRequest,
-  VirtualMachinesStopResponse,
-  VirtualMachinesStopError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachinesStopRequest,
-  output: VirtualMachinesStopResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

@@ -4,21 +4,34 @@
     "service": "translate",
     "version": "v3beta1",
     "title": "Cloud Translation API",
-    "baseUrl": "https://translation.googleapis.com/"
+    "baseUrl": "https://translation.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.gcp.translate_v3beta1#RefineTextResponse": {
+    "com.gcp.translate_v3beta1#DocumentTranslation": {
       "type": "structure",
       "members": {
-        "refinedTranslations": {
+        "detectedLanguageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The detected language for the input document. If the user did not provide the source language for the input document, this field will have the language code automatically detected. If the source language was passed, auto-detection of the language does not occur and this field is empty."
+          }
+        },
+        "byteStreamOutputs": {
           "target": "com.gcp.translate_v3beta1#StringList",
           "traits": {
-            "smithy.api#documentation": "The refined translations obtained from the original translations."
+            "smithy.api#documentation": "The array of translated documents. It is expected to be size 1 for now. We may produce multiple translated documents in the future for other type of file formats."
+          }
+        },
+        "mimeType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The translated document's mime type."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Response message for RefineText."
+        "smithy.api#documentation": "A translated document message."
       }
     },
     "com.gcp.translate_v3beta1#StringList": {
@@ -30,16 +43,16 @@
     "com.gcp.translate_v3beta1#ListGlossariesResponse": {
       "type": "structure",
       "members": {
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A token to retrieve a page of results. Pass this value in the [ListGlossariesRequest.page_token] field in the subsequent call to `ListGlossaries` method to retrieve the next page of results."
-          }
-        },
         "glossaries": {
           "target": "com.gcp.translate_v3beta1#GlossaryList",
           "traits": {
             "smithy.api#documentation": "The list of glossaries for a project."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token to retrieve a page of results. Pass this value in the [ListGlossariesRequest.page_token] field in the subsequent call to `ListGlossaries` method to retrieve the next page of results."
           }
         }
       },
@@ -56,12 +69,6 @@
     "com.gcp.translate_v3beta1#DetectLanguageRequest": {
       "type": "structure",
       "members": {
-        "content": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The content of the input stored as a string."
-          }
-        },
         "labels": {
           "target": "com.gcp.translate_v3beta1#StringMap",
           "traits": {
@@ -79,6 +86,12 @@
           "traits": {
             "smithy.api#documentation": "Optional. The format of the source text, for example, \"text/html\", \"text/plain\". If left blank, the MIME type defaults to \"text/html\"."
           }
+        },
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The content of the input stored as a string."
+          }
         }
       },
       "traits": {
@@ -94,44 +107,159 @@
         "target": "smithy.api#String"
       }
     },
-    "com.gcp.translate_v3beta1#BatchDocumentOutputConfig": {
-      "type": "structure",
-      "members": {
-        "gcsDestination": {
-          "target": "com.gcp.translate_v3beta1#GcsDestination",
-          "traits": {
-            "smithy.api#documentation": "Google Cloud Storage destination for output content. For every single input document (for example, gs://a/b/c.[extension]), we generate at most 2 * n output files. (n is the # of target_language_codes in the BatchTranslateDocumentRequest). While the input documents are being processed, we write/update an index file `index.csv` under `gcs_destination.output_uri_prefix` (for example, gs://translation_output/index.csv) The index file is generated/updated as new files are being translated. The format is: input_document,target_language_code,translation_output,error_output, glossary_translation_output,glossary_error_output `input_document` is one file we matched using gcs_source.input_uri. `target_language_code` is provided in the request. `translation_output` contains the translations. (details provided below) `error_output` contains the error message during processing of the file. Both translations_file and errors_file could be empty strings if we have no content to output. `glossary_translation_output` and `glossary_error_output` are the translated output/error when we apply glossaries. They could also be empty if we have no content to output. Once a row is present in index.csv, the input/output matching never changes. Callers should also expect all the content in input_file are processed and ready to be consumed (that is, no partial output file is written). Since index.csv will be keeping updated during the process, please make sure there is no custom retention policy applied on the output bucket that may avoid file updating. (https://cloud.google.com/storage/docs/bucket-lock#retention-policy) The naming format of translation output files follows (for target language code [trg]): `translation_output`: `gs://translation_output/a_b_c_[trg]_translation.[extension]` `glossary_translation_output`: `gs://translation_test/a_b_c_[trg]_glossary_translation.[extension]`. The output document will maintain the same file format as the input document. The naming format of error output files follows (for target language code [trg]): `error_output`: `gs://translation_test/a_b_c_[trg]_errors.txt` `glossary_error_output`: `gs://translation_test/a_b_c_[trg]_glossary_translation.txt` The error output is a txt file containing error details."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Output configuration for BatchTranslateDocument request."
-      }
-    },
-    "com.gcp.translate_v3beta1#DocumentInputConfig": {
+    "com.gcp.translate_v3beta1#InputConfig": {
       "type": "structure",
       "members": {
         "mimeType": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Specifies the input document's mime_type. If not specified it will be determined using the file extension for gcs_source provided files. For a file provided through bytes content the mime_type must be provided. Currently supported mime types are: - application/pdf - application/vnd.openxmlformats-officedocument.wordprocessingml.document - application/vnd.openxmlformats-officedocument.presentationml.presentation - application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-          }
-        },
-        "content": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Document's content represented as a stream of bytes."
+            "smithy.api#documentation": "Optional. Can be \"text/plain\" or \"text/html\". For `.tsv`, \"text/html\" is used if mime_type is missing. For `.html`, this field must be \"text/html\" or empty. For `.txt`, this field must be \"text/plain\" or empty."
           }
         },
         "gcsSource": {
           "target": "com.gcp.translate_v3beta1#GcsSource",
           "traits": {
-            "smithy.api#documentation": "Google Cloud Storage location. This must be a single file. For example: gs://example_bucket/example_file.pdf"
+            "smithy.api#documentation": "Required. Google Cloud Storage location for the source input. This can be a single file (for example, `gs://translation-test/input.tsv`) or a wildcard (for example, `gs://translation-test/*`). If a file extension is `.tsv`, it can contain either one or two columns. The first column (optional) is the id of the text request. If the first column is missing, we use the row number (0-based) from the input file as the ID in the output file. The second column is the actual text to be translated. We recommend each row be <= 10K Unicode codepoints, otherwise an error might be returned. Note that the input tsv must be RFC 4180 compliant. You could use https://github.com/Clever/csvlint to check potential formatting errors in your tsv file. csvlint --delimiter='\\t' your_input_file.tsv The other supported file extensions are `.txt` or `.html`, which is treated as a single large chunk of text."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "A document translation request input config."
+        "smithy.api#documentation": "Input configuration for BatchTranslateText request."
+      }
+    },
+    "com.gcp.translate_v3beta1#BatchTranslateDocumentRequest": {
+      "type": "structure",
+      "members": {
+        "pdfNativeOnly": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If true, only native pdf pages will be translated."
+          }
+        },
+        "sourceLanguageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The BCP-47 language code of the input document if known, for example, \"en-US\" or \"sr-Latn\". Supported language codes are listed in [Language Support](https://cloud.google.com/translate/docs/languages)."
+          }
+        },
+        "enableShadowRemovalNativePdf": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If true, use the text removal server to remove the shadow text on background image for native pdf translation. Shadow removal feature can only be enabled when is_translate_native_pdf_only: false && pdf_native_only: false"
+          }
+        },
+        "glossaries": {
+          "target": "com.gcp.translate_v3beta1#TranslateTextGlossaryConfigMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. Glossaries to be applied. It's keyed by target language code."
+          }
+        },
+        "formatConversions": {
+          "target": "com.gcp.translate_v3beta1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. File format conversion map to be applied to all input files. Map's key is the original mime_type. Map's value is the target mime_type of translated documents. Supported file format conversion includes: - `application/pdf` to `application/vnd.openxmlformats-officedocument.wordprocessingml.document` If nothing specified, output files will be in the same format as the original file."
+          }
+        },
+        "enableRotationCorrection": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If true, enable auto rotation correction in DVS."
+          }
+        },
+        "models": {
+          "target": "com.gcp.translate_v3beta1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. The models to use for translation. Map's key is target language code. Map's value is the model name. Value can be a built-in general model, or an AutoML Translation model. The value format depends on model type: - AutoML Translation models: `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}` - General (built-in) models: `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`, If the map is empty or a specific model is not requested for a language pair, then default google model (nmt) is used."
+          }
+        },
+        "inputConfigs": {
+          "target": "com.gcp.translate_v3beta1#BatchDocumentInputConfigList",
+          "traits": {
+            "smithy.api#documentation": "Required. Input configurations. The total number of files matched should be <= 100. The total content size to translate should be <= 100M Unicode codepoints. The files must use UTF-8 encoding."
+          }
+        },
+        "outputConfig": {
+          "target": "com.gcp.translate_v3beta1#BatchDocumentOutputConfig",
+          "traits": {
+            "smithy.api#documentation": "Required. Output configuration. If 2 input configs match to the same file (that is, same input path), we don't generate output for duplicate inputs."
+          }
+        },
+        "customizedAttribution": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. This flag is to support user customized attribution. If not provided, the default is `Machine Translated by Google`. Customized attribution should follow rules in https://cloud.google.com/translate/attribution#attribution_and_logos"
+          }
+        },
+        "targetLanguageCodes": {
+          "target": "com.gcp.translate_v3beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Required. The BCP-47 language code to use for translation of the input document. Specify up to 10 language codes here. Supported language codes are listed in [Language Support](https://cloud.google.com/translate/docs/languages)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The BatchTranslateDocument request."
+      }
+    },
+    "com.gcp.translate_v3beta1#TranslateTextGlossaryConfigMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.gcp.translate_v3beta1#TranslateTextGlossaryConfig"
+      }
+    },
+    "com.gcp.translate_v3beta1#BatchDocumentInputConfigList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.translate_v3beta1#BatchDocumentInputConfig"
+      }
+    },
+    "com.gcp.translate_v3beta1#SupportedLanguage": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human readable name of the language localized in the display language specified in the request."
+          }
+        },
+        "languageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Supported language code, generally consisting of its ISO 639-1 identifier, for example, 'en', 'ja'. In certain cases, BCP-47 codes including language and region identifiers are returned (for example, 'zh-TW' and 'zh-CN')"
+          }
+        },
+        "supportSource": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Can be used as source language."
+          }
+        },
+        "supportTarget": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Can be used as target language."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A single supported language response corresponds to information related to one supported language."
+      }
+    },
+    "com.gcp.translate_v3beta1#GcsDestination": {
+      "type": "structure",
+      "members": {
+        "outputUriPrefix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. There must be no files under 'output_uri_prefix'. 'output_uri_prefix' must end with \"/\" and start with \"gs://\", otherwise an INVALID_ARGUMENT (400) error is returned."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Google Cloud Storage location for the output content."
       }
     },
     "com.gcp.translate_v3beta1#DetectLanguageResponse": {
@@ -154,6 +282,56 @@
         "target": "com.gcp.translate_v3beta1#DetectedLanguage"
       }
     },
+    "com.gcp.translate_v3beta1#Glossary": {
+      "type": "structure",
+      "members": {
+        "languageCodesSet": {
+          "target": "com.gcp.translate_v3beta1#LanguageCodesSet",
+          "traits": {
+            "smithy.api#documentation": "Used with equivalent term set glossaries."
+          }
+        },
+        "submitTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. When CreateGlossary was called."
+          }
+        },
+        "inputConfig": {
+          "target": "com.gcp.translate_v3beta1#GlossaryInputConfig",
+          "traits": {
+            "smithy.api#documentation": "Required. Provides examples to build the glossary from. Total glossary must not exceed 10M Unicode codepoints."
+          }
+        },
+        "entryCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Output only. The number of entries defined in the glossary."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the glossary. Glossary names have the form `projects/{project-number-or-id}/locations/{location-id}/glossaries/{glossary-id}`."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. When the glossary creation was finished."
+          }
+        },
+        "languagePair": {
+          "target": "com.gcp.translate_v3beta1#LanguageCodePair",
+          "traits": {
+            "smithy.api#documentation": "Used with unidirectional glossaries."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a glossary built from user provided data."
+      }
+    },
     "com.gcp.translate_v3beta1#BatchDocumentInputConfig": {
       "type": "structure",
       "members": {
@@ -166,6 +344,13 @@
       },
       "traits": {
         "smithy.api#documentation": "Input configuration for BatchTranslateDocument request."
+      }
+    },
+    "com.gcp.translate_v3beta1#Empty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
       }
     },
     "com.gcp.translate_v3beta1#TranslateTextRequest": {
@@ -183,16 +368,22 @@
             "smithy.api#documentation": "Required. The BCP-47 language code to use for translation of the input text, set to one of the language codes listed in [Language Support](https://cloud.google.com/translate/docs/languages)."
           }
         },
-        "labels": {
-          "target": "com.gcp.translate_v3beta1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Optional. The labels with user-defined metadata for the request. Label keys and values can be no longer than 63 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter. See https://cloud.google.com/translate/docs/labels for more information."
-          }
-        },
         "sourceLanguageCode": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Optional. The BCP-47 language code of the input text if known, for example, \"en-US\" or \"sr-Latn\". Supported language codes are listed in [Language Support](https://cloud.google.com/translate/docs/languages). If the source language isn't specified, the API attempts to identify the source language automatically and returns the source language within the response."
+          }
+        },
+        "model": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The `model` type requested for this translation. The format depends on model type: - AutoML Translation models: `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}` - General (built-in) models: `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`, For global (non-regionalized) requests, use `location-id` `global`. For example, `projects/{project-number-or-id}/locations/global/models/general/nmt`. If not provided, the default Google model (NMT) will be used"
+          }
+        },
+        "labels": {
+          "target": "com.gcp.translate_v3beta1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. The labels with user-defined metadata for the request. Label keys and values can be no longer than 63 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter. See https://cloud.google.com/translate/docs/labels for more information."
           }
         },
         "glossaryConfig": {
@@ -206,173 +397,64 @@
           "traits": {
             "smithy.api#documentation": "Optional. The format of the source text, for example, \"text/html\", \"text/plain\". If left blank, the MIME type defaults to \"text/html\"."
           }
-        },
-        "model": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The `model` type requested for this translation. The format depends on model type: - AutoML Translation models: `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}` - General (built-in) models: `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`, For global (non-regionalized) requests, use `location-id` `global`. For example, `projects/{project-number-or-id}/locations/global/models/general/nmt`. If not provided, the default Google model (NMT) will be used"
-          }
         }
       },
       "traits": {
         "smithy.api#documentation": "The request message for synchronous translation."
       }
     },
-    "com.gcp.translate_v3beta1#RefinementEntry": {
+    "com.gcp.translate_v3beta1#BatchDocumentOutputConfig": {
       "type": "structure",
       "members": {
-        "sourceText": {
-          "target": "smithy.api#String",
+        "gcsDestination": {
+          "target": "com.gcp.translate_v3beta1#GcsDestination",
           "traits": {
-            "smithy.api#documentation": "Required. The source text to be refined."
-          }
-        },
-        "originalTranslation": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The original translation of the source text."
+            "smithy.api#documentation": "Google Cloud Storage destination for output content. For every single input document (for example, gs://a/b/c.[extension]), we generate at most 2 * n output files. (n is the # of target_language_codes in the BatchTranslateDocumentRequest). While the input documents are being processed, we write/update an index file `index.csv` under `gcs_destination.output_uri_prefix` (for example, gs://translation_output/index.csv) The index file is generated/updated as new files are being translated. The format is: input_document,target_language_code,translation_output,error_output, glossary_translation_output,glossary_error_output `input_document` is one file we matched using gcs_source.input_uri. `target_language_code` is provided in the request. `translation_output` contains the translations. (details provided below) `error_output` contains the error message during processing of the file. Both translations_file and errors_file could be empty strings if we have no content to output. `glossary_translation_output` and `glossary_error_output` are the translated output/error when we apply glossaries. They could also be empty if we have no content to output. Once a row is present in index.csv, the input/output matching never changes. Callers should also expect all the content in input_file are processed and ready to be consumed (that is, no partial output file is written). Since index.csv will be keeping updated during the process, please make sure there is no custom retention policy applied on the output bucket that may avoid file updating. (https://cloud.google.com/storage/docs/bucket-lock#retention-policy) The naming format of translation output files follows (for target language code [trg]): `translation_output`: `gs://translation_output/a_b_c_[trg]_translation.[extension]` `glossary_translation_output`: `gs://translation_test/a_b_c_[trg]_glossary_translation.[extension]`. The output document will maintain the same file format as the input document. The naming format of error output files follows (for target language code [trg]): `error_output`: `gs://translation_test/a_b_c_[trg]_errors.txt` `glossary_error_output`: `gs://translation_test/a_b_c_[trg]_glossary_translation.txt` The error output is a txt file containing error details."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "A single refinement entry for RefineTextRequest."
+        "smithy.api#documentation": "Output configuration for BatchTranslateDocument request."
       }
     },
-    "com.gcp.translate_v3beta1#TranslateTextGlossaryConfig": {
+    "com.gcp.translate_v3beta1#OutputConfig": {
       "type": "structure",
       "members": {
-        "glossary": {
-          "target": "smithy.api#String",
+        "gcsDestination": {
+          "target": "com.gcp.translate_v3beta1#GcsDestination",
           "traits": {
-            "smithy.api#documentation": "Required. Specifies the glossary used for this translation. Use this format: projects/*/locations/*/glossaries/*"
-          }
-        },
-        "ignoreCase": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Optional. Indicates match is case-insensitive. Default value is false if missing."
-          }
-        },
-        "contextualTranslationEnabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Optional. If set to true, the glossary will be used for contextual translation."
+            "smithy.api#documentation": "Google Cloud Storage destination for output content. For every single input file (for example, gs://a/b/c.[extension]), we generate at most 2 * n output files. (n is the # of target_language_codes in the BatchTranslateTextRequest). Output files (tsv) generated are compliant with RFC 4180 except that record delimiters are '\\n' instead of '\\r\\n'. We don't provide any way to change record delimiters. While the input files are being processed, we write/update an index file 'index.csv' under 'output_uri_prefix' (for example, gs://translation-test/index.csv) The index file is generated/updated as new files are being translated. The format is: input_file,target_language_code,translations_file,errors_file, glossary_translations_file,glossary_errors_file input_file is one file we matched using gcs_source.input_uri. target_language_code is provided in the request. translations_file contains the translations. (details provided below) errors_file contains the errors during processing of the file. (details below). Both translations_file and errors_file could be empty strings if we have no content to output. glossary_translations_file and glossary_errors_file are always empty strings if the input_file is tsv. They could also be empty if we have no content to output. Once a row is present in index.csv, the input/output matching never changes. Callers should also expect all the content in input_file are processed and ready to be consumed (that is, no partial output file is written). Since index.csv will be keeping updated during the process, please make sure there is no custom retention policy applied on the output bucket that may avoid file updating. (https://cloud.google.com/storage/docs/bucket-lock#retention-policy) The format of translations_file (for target language code 'trg') is: `gs://translation_test/a_b_c_'trg'_translations.[extension]` If the input file extension is tsv, the output has the following columns: Column 1: ID of the request provided in the input, if it's not provided in the input, then the input row number is used (0-based). Column 2: source sentence. Column 3: translation without applying a glossary. Empty string if there is an error. Column 4 (only present if a glossary is provided in the request): translation after applying the glossary. Empty string if there is an error applying the glossary. Could be same string as column 3 if there is no glossary applied. If input file extension is a txt or html, the translation is directly written to the output file. If glossary is requested, a separate glossary_translations_file has format of `gs://translation_test/a_b_c_'trg'_glossary_translations.[extension]` The format of errors file (for target language code 'trg') is: `gs://translation_test/a_b_c_'trg'_errors.[extension]` If the input file extension is tsv, errors_file contains the following: Column 1: ID of the request provided in the input, if it's not provided in the input, then the input row number is used (0-based). Column 2: source sentence. Column 3: Error detail for the translation. Could be empty. Column 4 (only present if a glossary is provided in the request): Error when applying the glossary. If the input file extension is txt or html, glossary_error_file will be generated that contains error details. glossary_error_file has format of `gs://translation_test/a_b_c_'trg'_glossary_errors.[extension]`"
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Configures which glossary should be used for a specific target language, and defines options for applying that glossary."
+        "smithy.api#documentation": "Output configuration for BatchTranslateText request."
       }
     },
-    "com.gcp.translate_v3beta1#Empty": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
-      }
-    },
-    "com.gcp.translate_v3beta1#LanguageCodesSet": {
+    "com.gcp.translate_v3beta1#Status": {
       "type": "structure",
       "members": {
-        "languageCodes": {
-          "target": "com.gcp.translate_v3beta1#StringList",
+        "details": {
+          "target": "com.gcp.translate_v3beta1#DocumentMapList",
           "traits": {
-            "smithy.api#documentation": "The BCP-47 language code(s) for terms defined in the glossary. All entries are unique. The list contains at least two entries. Expected to be an exact match for GlossaryTerm.language_code."
+            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+          }
+        },
+        "code": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Used with equivalent term set glossaries."
-      }
-    },
-    "com.gcp.translate_v3beta1#ListOperationsResponse": {
-      "type": "structure",
-      "members": {
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The standard List next-page token."
-          }
-        },
-        "unreachable": {
-          "target": "com.gcp.translate_v3beta1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations."
-          }
-        },
-        "operations": {
-          "target": "com.gcp.translate_v3beta1#OperationList",
-          "traits": {
-            "smithy.api#documentation": "A list of operations that matches the specified filter in the request."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The response message for Operations.ListOperations."
-      }
-    },
-    "com.gcp.translate_v3beta1#OperationList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.translate_v3beta1#Operation"
-      }
-    },
-    "com.gcp.translate_v3beta1#LanguageCodePair": {
-      "type": "structure",
-      "members": {
-        "sourceLanguageCode": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The BCP-47 language code of the input text, for example, \"en-US\". Expected to be an exact match for GlossaryTerm.language_code."
-          }
-        },
-        "targetLanguageCode": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The BCP-47 language code for translation output, for example, \"zh-CN\". Expected to be an exact match for GlossaryTerm.language_code."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Used with unidirectional glossaries."
-      }
-    },
-    "com.gcp.translate_v3beta1#Operation": {
-      "type": "structure",
-      "members": {
-        "metadata": {
-          "target": "com.gcp.translate_v3beta1#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
-          }
-        },
-        "done": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
-          }
-        },
-        "error": {
-          "target": "com.gcp.translate_v3beta1#Status",
-          "traits": {
-            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
-          }
-        },
-        "response": {
-          "target": "com.gcp.translate_v3beta1#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
+        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
       }
     },
     "com.gcp.translate_v3beta1#DocumentMap": {
@@ -384,174 +466,10 @@
         "target": "smithy.api#Document"
       }
     },
-    "com.gcp.translate_v3beta1#SupportedLanguages": {
-      "type": "structure",
-      "members": {
-        "languages": {
-          "target": "com.gcp.translate_v3beta1#SupportedLanguageList",
-          "traits": {
-            "smithy.api#documentation": "A list of supported language responses. This list contains an entry for each language the Translation API supports."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The response message for discovering supported languages."
-      }
-    },
-    "com.gcp.translate_v3beta1#SupportedLanguageList": {
+    "com.gcp.translate_v3beta1#DocumentMapList": {
       "type": "list",
       "member": {
-        "target": "com.gcp.translate_v3beta1#SupportedLanguage"
-      }
-    },
-    "com.gcp.translate_v3beta1#Translation": {
-      "type": "structure",
-      "members": {
-        "translatedText": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Text translated into the target language. If an error occurs during translation, this field might be excluded from the response."
-          }
-        },
-        "model": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Only present when `model` is present in the request. `model` here is normalized to have project number. For example: If the `model` requested in TranslationTextRequest is `projects/{project-id}/locations/{location-id}/models/general/nmt` then `model` here would be normalized to `projects/{project-number}/locations/{location-id}/models/general/nmt`."
-          }
-        },
-        "detectedLanguageCode": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The BCP-47 language code of source text in the initial request, detected automatically, if no source language was passed within the initial request. If the source language was passed, auto-detection of the language does not occur and this field is empty."
-          }
-        },
-        "glossaryConfig": {
-          "target": "com.gcp.translate_v3beta1#TranslateTextGlossaryConfig",
-          "traits": {
-            "smithy.api#documentation": "The `glossary_config` used for this translation."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A single translation response."
-      }
-    },
-    "com.gcp.translate_v3beta1#DocumentTranslation": {
-      "type": "structure",
-      "members": {
-        "mimeType": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The translated document's mime type."
-          }
-        },
-        "byteStreamOutputs": {
-          "target": "com.gcp.translate_v3beta1#StringList",
-          "traits": {
-            "smithy.api#documentation": "The array of translated documents. It is expected to be size 1 for now. We may produce multiple translated documents in the future for other type of file formats."
-          }
-        },
-        "detectedLanguageCode": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The detected language for the input document. If the user did not provide the source language for the input document, this field will have the language code automatically detected. If the source language was passed, auto-detection of the language does not occur and this field is empty."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A translated document message."
-      }
-    },
-    "com.gcp.translate_v3beta1#SupportedLanguage": {
-      "type": "structure",
-      "members": {
-        "supportTarget": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Can be used as target language."
-          }
-        },
-        "languageCode": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Supported language code, generally consisting of its ISO 639-1 identifier, for example, 'en', 'ja'. In certain cases, BCP-47 codes including language and region identifiers are returned (for example, 'zh-TW' and 'zh-CN')"
-          }
-        },
-        "displayName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Human readable name of the language localized in the display language specified in the request."
-          }
-        },
-        "supportSource": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Can be used as source language."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A single supported language response corresponds to information related to one supported language."
-      }
-    },
-    "com.gcp.translate_v3beta1#TranslateDocumentResponse": {
-      "type": "structure",
-      "members": {
-        "documentTranslation": {
-          "target": "com.gcp.translate_v3beta1#DocumentTranslation",
-          "traits": {
-            "smithy.api#documentation": "Translated document."
-          }
-        },
-        "glossaryConfig": {
-          "target": "com.gcp.translate_v3beta1#TranslateTextGlossaryConfig",
-          "traits": {
-            "smithy.api#documentation": "The `glossary_config` used for this translation."
-          }
-        },
-        "model": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Only present when 'model' is present in the request. 'model' is normalized to have a project number. For example: If the 'model' field in TranslateDocumentRequest is: `projects/{project-id}/locations/{location-id}/models/general/nmt` then `model` here would be normalized to `projects/{project-number}/locations/{location-id}/models/general/nmt`."
-          }
-        },
-        "glossaryDocumentTranslation": {
-          "target": "com.gcp.translate_v3beta1#DocumentTranslation",
-          "traits": {
-            "smithy.api#documentation": "The document's translation output if a glossary is provided in the request. This can be the same as [TranslateDocumentResponse.document_translation] if no glossary terms apply."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A translated document response message."
-      }
-    },
-    "com.gcp.translate_v3beta1#GcsSource": {
-      "type": "structure",
-      "members": {
-        "inputUri": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Source data URI. For example, `gs://my_bucket/my_object`."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The Google Cloud Storage location for the input content."
-      }
-    },
-    "com.gcp.translate_v3beta1#WaitOperationRequest": {
-      "type": "structure",
-      "members": {
-        "timeout": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The request message for Operations.WaitOperation."
+        "target": "com.gcp.translate_v3beta1#DocumentMap"
       }
     },
     "com.gcp.translate_v3beta1#DocumentOutputConfig": {
@@ -574,68 +492,205 @@
         "smithy.api#documentation": "A document translation request output config."
       }
     },
-    "com.gcp.translate_v3beta1#RefineTextRequest": {
+    "com.gcp.translate_v3beta1#LanguageCodesSet": {
       "type": "structure",
       "members": {
+        "languageCodes": {
+          "target": "com.gcp.translate_v3beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "The BCP-47 language code(s) for terms defined in the glossary. All entries are unique. The list contains at least two entries. Expected to be an exact match for GlossaryTerm.language_code."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Used with equivalent term set glossaries."
+      }
+    },
+    "com.gcp.translate_v3beta1#CancelOperationRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "The request message for Operations.CancelOperation."
+      }
+    },
+    "com.gcp.translate_v3beta1#ListLocationsResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard List next-page token."
+          }
+        },
+        "locations": {
+          "target": "com.gcp.translate_v3beta1#LocationList",
+          "traits": {
+            "smithy.api#documentation": "A list of locations that matches the specified filter in the request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for Locations.ListLocations."
+      }
+    },
+    "com.gcp.translate_v3beta1#LocationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.translate_v3beta1#Location"
+      }
+    },
+    "com.gcp.translate_v3beta1#ListOperationsResponse": {
+      "type": "structure",
+      "members": {
+        "unreachable": {
+          "target": "com.gcp.translate_v3beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard List next-page token."
+          }
+        },
+        "operations": {
+          "target": "com.gcp.translate_v3beta1#OperationList",
+          "traits": {
+            "smithy.api#documentation": "A list of operations that matches the specified filter in the request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for Operations.ListOperations."
+      }
+    },
+    "com.gcp.translate_v3beta1#OperationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.translate_v3beta1#Operation"
+      }
+    },
+    "com.gcp.translate_v3beta1#RefinementEntry": {
+      "type": "structure",
+      "members": {
+        "sourceText": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The source text to be refined."
+          }
+        },
+        "originalTranslation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The original translation of the source text."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A single refinement entry for RefineTextRequest."
+      }
+    },
+    "com.gcp.translate_v3beta1#GcsSource": {
+      "type": "structure",
+      "members": {
+        "inputUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Source data URI. For example, `gs://my_bucket/my_object`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Google Cloud Storage location for the input content."
+      }
+    },
+    "com.gcp.translate_v3beta1#Translation": {
+      "type": "structure",
+      "members": {
+        "translatedText": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Text translated into the target language. If an error occurs during translation, this field might be excluded from the response."
+          }
+        },
+        "glossaryConfig": {
+          "target": "com.gcp.translate_v3beta1#TranslateTextGlossaryConfig",
+          "traits": {
+            "smithy.api#documentation": "The `glossary_config` used for this translation."
+          }
+        },
+        "model": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Only present when `model` is present in the request. `model` here is normalized to have project number. For example: If the `model` requested in TranslationTextRequest is `projects/{project-id}/locations/{location-id}/models/general/nmt` then `model` here would be normalized to `projects/{project-number}/locations/{location-id}/models/general/nmt`."
+          }
+        },
+        "detectedLanguageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The BCP-47 language code of source text in the initial request, detected automatically, if no source language was passed within the initial request. If the source language was passed, auto-detection of the language does not occur and this field is empty."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A single translation response."
+      }
+    },
+    "com.gcp.translate_v3beta1#BatchTranslateTextRequest": {
+      "type": "structure",
+      "members": {
+        "targetLanguageCodes": {
+          "target": "com.gcp.translate_v3beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Required. Specify up to 10 language codes here. Supported language codes are listed in [Language Support](https://cloud.google.com/translate/docs/languages)."
+          }
+        },
+        "labels": {
+          "target": "com.gcp.translate_v3beta1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. The labels with user-defined metadata for the request. Label keys and values can be no longer than 63 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter. See https://cloud.google.com/translate/docs/labels for more information."
+          }
+        },
+        "glossaries": {
+          "target": "com.gcp.translate_v3beta1#TranslateTextGlossaryConfigMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. Glossaries to be applied for translation. It's keyed by target language code."
+          }
+        },
         "sourceLanguageCode": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. The BCP-47 language code of the source text in the request, for example, \"en-US\"."
+            "smithy.api#documentation": "Required. Source language code. Supported language codes are listed in [Language Support](https://cloud.google.com/translate/docs/languages)."
           }
         },
-        "refinementEntries": {
-          "target": "com.gcp.translate_v3beta1#RefinementEntryList",
+        "inputConfigs": {
+          "target": "com.gcp.translate_v3beta1#InputConfigList",
           "traits": {
-            "smithy.api#documentation": "Required. The source texts and original translations in the source and target languages."
+            "smithy.api#documentation": "Required. Input configurations. The total number of files matched should be <= 100. The total content size should be <= 100M Unicode codepoints. The files must use UTF-8 encoding."
           }
         },
-        "targetLanguageCode": {
-          "target": "smithy.api#String",
+        "outputConfig": {
+          "target": "com.gcp.translate_v3beta1#OutputConfig",
           "traits": {
-            "smithy.api#documentation": "Required. The BCP-47 language code for translation output, for example, \"zh-CN\"."
+            "smithy.api#documentation": "Required. Output configuration. If 2 input configs match to the same file (that is, same input path), we don't generate output for duplicate inputs."
+          }
+        },
+        "models": {
+          "target": "com.gcp.translate_v3beta1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. The models to use for translation. Map's key is target language code. Map's value is model name. Value can be a built-in general model, or an AutoML Translation model. The value format depends on model type: - AutoML Translation models: `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}` - General (built-in) models: `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`, If the map is empty or a specific model is not requested for a language pair, then default google model (nmt) is used."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Request message for RefineText."
+        "smithy.api#documentation": "The batch translation request."
       }
     },
-    "com.gcp.translate_v3beta1#RefinementEntryList": {
+    "com.gcp.translate_v3beta1#InputConfigList": {
       "type": "list",
       "member": {
-        "target": "com.gcp.translate_v3beta1#RefinementEntry"
-      }
-    },
-    "com.gcp.translate_v3beta1#Status": {
-      "type": "structure",
-      "members": {
-        "message": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
-          }
-        },
-        "details": {
-          "target": "com.gcp.translate_v3beta1#DocumentMapList",
-          "traits": {
-            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
-          }
-        },
-        "code": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
-      }
-    },
-    "com.gcp.translate_v3beta1#DocumentMapList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.translate_v3beta1#DocumentMap"
+        "target": "com.gcp.translate_v3beta1#InputConfig"
       }
     },
     "com.gcp.translate_v3beta1#TranslateTextResponse": {
@@ -661,290 +716,56 @@
         "target": "com.gcp.translate_v3beta1#Translation"
       }
     },
-    "com.gcp.translate_v3beta1#GcsDestination": {
+    "com.gcp.translate_v3beta1#DocumentInputConfig": {
       "type": "structure",
       "members": {
-        "outputUriPrefix": {
+        "gcsSource": {
+          "target": "com.gcp.translate_v3beta1#GcsSource",
+          "traits": {
+            "smithy.api#documentation": "Google Cloud Storage location. This must be a single file. For example: gs://example_bucket/example_file.pdf"
+          }
+        },
+        "content": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. There must be no files under 'output_uri_prefix'. 'output_uri_prefix' must end with \"/\" and start with \"gs://\", otherwise an INVALID_ARGUMENT (400) error is returned."
+            "smithy.api#documentation": "Document's content represented as a stream of bytes."
+          }
+        },
+        "mimeType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the input document's mime_type. If not specified it will be determined using the file extension for gcs_source provided files. For a file provided through bytes content the mime_type must be provided. Currently supported mime types are: - application/pdf - application/vnd.openxmlformats-officedocument.wordprocessingml.document - application/vnd.openxmlformats-officedocument.presentationml.presentation - application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "The Google Cloud Storage location for the output content."
+        "smithy.api#documentation": "A document translation request input config."
       }
     },
-    "com.gcp.translate_v3beta1#OutputConfig": {
+    "com.gcp.translate_v3beta1#TranslateTextGlossaryConfig": {
       "type": "structure",
       "members": {
-        "gcsDestination": {
-          "target": "com.gcp.translate_v3beta1#GcsDestination",
+        "contextualTranslationEnabled": {
+          "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "Google Cloud Storage destination for output content. For every single input file (for example, gs://a/b/c.[extension]), we generate at most 2 * n output files. (n is the # of target_language_codes in the BatchTranslateTextRequest). Output files (tsv) generated are compliant with RFC 4180 except that record delimiters are '\\n' instead of '\\r\\n'. We don't provide any way to change record delimiters. While the input files are being processed, we write/update an index file 'index.csv' under 'output_uri_prefix' (for example, gs://translation-test/index.csv) The index file is generated/updated as new files are being translated. The format is: input_file,target_language_code,translations_file,errors_file, glossary_translations_file,glossary_errors_file input_file is one file we matched using gcs_source.input_uri. target_language_code is provided in the request. translations_file contains the translations. (details provided below) errors_file contains the errors during processing of the file. (details below). Both translations_file and errors_file could be empty strings if we have no content to output. glossary_translations_file and glossary_errors_file are always empty strings if the input_file is tsv. They could also be empty if we have no content to output. Once a row is present in index.csv, the input/output matching never changes. Callers should also expect all the content in input_file are processed and ready to be consumed (that is, no partial output file is written). Since index.csv will be keeping updated during the process, please make sure there is no custom retention policy applied on the output bucket that may avoid file updating. (https://cloud.google.com/storage/docs/bucket-lock#retention-policy) The format of translations_file (for target language code 'trg') is: `gs://translation_test/a_b_c_'trg'_translations.[extension]` If the input file extension is tsv, the output has the following columns: Column 1: ID of the request provided in the input, if it's not provided in the input, then the input row number is used (0-based). Column 2: source sentence. Column 3: translation without applying a glossary. Empty string if there is an error. Column 4 (only present if a glossary is provided in the request): translation after applying the glossary. Empty string if there is an error applying the glossary. Could be same string as column 3 if there is no glossary applied. If input file extension is a txt or html, the translation is directly written to the output file. If glossary is requested, a separate glossary_translations_file has format of `gs://translation_test/a_b_c_'trg'_glossary_translations.[extension]` The format of errors file (for target language code 'trg') is: `gs://translation_test/a_b_c_'trg'_errors.[extension]` If the input file extension is tsv, errors_file contains the following: Column 1: ID of the request provided in the input, if it's not provided in the input, then the input row number is used (0-based). Column 2: source sentence. Column 3: Error detail for the translation. Could be empty. Column 4 (only present if a glossary is provided in the request): Error when applying the glossary. If the input file extension is txt or html, glossary_error_file will be generated that contains error details. glossary_error_file has format of `gs://translation_test/a_b_c_'trg'_glossary_errors.[extension]`"
+            "smithy.api#documentation": "Optional. If set to true, the glossary will be used for contextual translation."
+          }
+        },
+        "ignoreCase": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Indicates match is case-insensitive. Default value is false if missing."
+          }
+        },
+        "glossary": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Specifies the glossary used for this translation. Use this format: projects/*/locations/*/glossaries/*"
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Output configuration for BatchTranslateText request."
-      }
-    },
-    "com.gcp.translate_v3beta1#Location": {
-      "type": "structure",
-      "members": {
-        "metadata": {
-          "target": "com.gcp.translate_v3beta1#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "Service-specific metadata. For example the available capacity at the given location."
-          }
-        },
-        "labels": {
-          "target": "com.gcp.translate_v3beta1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}"
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`"
-          }
-        },
-        "locationId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The canonical id for this location. For example: `\"us-east1\"`."
-          }
-        },
-        "displayName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\"."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A resource that represents a Google Cloud location."
-      }
-    },
-    "com.gcp.translate_v3beta1#CancelOperationRequest": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "The request message for Operations.CancelOperation."
-      }
-    },
-    "com.gcp.translate_v3beta1#TranslateDocumentRequest": {
-      "type": "structure",
-      "members": {
-        "targetLanguageCode": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The BCP-47 language code to use for translation of the input document, set to one of the language codes listed in [Language Support](https://cloud.google.com/translate/docs/languages)."
-          }
-        },
-        "enableShadowRemovalNativePdf": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Optional. If true, use the text removal server to remove the shadow text on background image for native pdf translation. Shadow removal feature can only be enabled when is_translate_native_pdf_only: false && pdf_native_only: false"
-          }
-        },
-        "labels": {
-          "target": "com.gcp.translate_v3beta1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Optional. The labels with user-defined metadata for the request. Label keys and values can be no longer than 63 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter. See https://cloud.google.com/translate/docs/advanced/labels for more information."
-          }
-        },
-        "documentOutputConfig": {
-          "target": "com.gcp.translate_v3beta1#DocumentOutputConfig",
-          "traits": {
-            "smithy.api#documentation": "Optional. Output configurations. Defines if the output file should be stored within Cloud Storage as well as the desired output format. If not provided the translated file will only be returned through a byte-stream and its output mime type will be the same as the input file's mime type."
-          }
-        },
-        "customizedAttribution": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. This flag is to support user customized attribution. If not provided, the default is `Machine Translated by Google`. Customized attribution should follow rules in https://cloud.google.com/translate/attribution#attribution_and_logos"
-          }
-        },
-        "isTranslateNativePdfOnly": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Optional. is_translate_native_pdf_only field for external customers. If true, the page limit of online native pdf translation is 300 and only native pdf pages will be translated."
-          }
-        },
-        "enableRotationCorrection": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Optional. If true, enable auto rotation correction in DVS."
-          }
-        },
-        "documentInputConfig": {
-          "target": "com.gcp.translate_v3beta1#DocumentInputConfig",
-          "traits": {
-            "smithy.api#documentation": "Required. Input configurations."
-          }
-        },
-        "model": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The `model` type requested for this translation. The format depends on model type: - AutoML Translation models: `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}` - General (built-in) models: `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`, If not provided, the default Google model (NMT) will be used for translation."
-          }
-        },
-        "sourceLanguageCode": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The BCP-47 language code of the input document if known, for example, \"en-US\" or \"sr-Latn\". Supported language codes are listed in [Language Support](https://cloud.google.com/translate/docs/languages). If the source language isn't specified, the API attempts to identify the source language automatically and returns the source language within the response. Source language must be specified if the request contains a glossary or a custom model."
-          }
-        },
-        "glossaryConfig": {
-          "target": "com.gcp.translate_v3beta1#TranslateTextGlossaryConfig",
-          "traits": {
-            "smithy.api#documentation": "Optional. Glossary to be applied. The glossary must be within the same region (have the same location-id) as the model, otherwise an INVALID_ARGUMENT (400) error is returned."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A document translation request."
-      }
-    },
-    "com.gcp.translate_v3beta1#Glossary": {
-      "type": "structure",
-      "members": {
-        "languagePair": {
-          "target": "com.gcp.translate_v3beta1#LanguageCodePair",
-          "traits": {
-            "smithy.api#documentation": "Used with unidirectional glossaries."
-          }
-        },
-        "inputConfig": {
-          "target": "com.gcp.translate_v3beta1#GlossaryInputConfig",
-          "traits": {
-            "smithy.api#documentation": "Required. Provides examples to build the glossary from. Total glossary must not exceed 10M Unicode codepoints."
-          }
-        },
-        "entryCount": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Output only. The number of entries defined in the glossary."
-          }
-        },
-        "languageCodesSet": {
-          "target": "com.gcp.translate_v3beta1#LanguageCodesSet",
-          "traits": {
-            "smithy.api#documentation": "Used with equivalent term set glossaries."
-          }
-        },
-        "submitTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. When CreateGlossary was called."
-          }
-        },
-        "endTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. When the glossary creation was finished."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The resource name of the glossary. Glossary names have the form `projects/{project-number-or-id}/locations/{location-id}/glossaries/{glossary-id}`."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Represents a glossary built from user provided data."
-      }
-    },
-    "com.gcp.translate_v3beta1#BatchTranslateDocumentRequest": {
-      "type": "structure",
-      "members": {
-        "targetLanguageCodes": {
-          "target": "com.gcp.translate_v3beta1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Required. The BCP-47 language code to use for translation of the input document. Specify up to 10 language codes here. Supported language codes are listed in [Language Support](https://cloud.google.com/translate/docs/languages)."
-          }
-        },
-        "customizedAttribution": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. This flag is to support user customized attribution. If not provided, the default is `Machine Translated by Google`. Customized attribution should follow rules in https://cloud.google.com/translate/attribution#attribution_and_logos"
-          }
-        },
-        "formatConversions": {
-          "target": "com.gcp.translate_v3beta1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Optional. File format conversion map to be applied to all input files. Map's key is the original mime_type. Map's value is the target mime_type of translated documents. Supported file format conversion includes: - `application/pdf` to `application/vnd.openxmlformats-officedocument.wordprocessingml.document` If nothing specified, output files will be in the same format as the original file."
-          }
-        },
-        "pdfNativeOnly": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Optional. If true, only native pdf pages will be translated."
-          }
-        },
-        "enableRotationCorrection": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Optional. If true, enable auto rotation correction in DVS."
-          }
-        },
-        "models": {
-          "target": "com.gcp.translate_v3beta1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Optional. The models to use for translation. Map's key is target language code. Map's value is the model name. Value can be a built-in general model, or an AutoML Translation model. The value format depends on model type: - AutoML Translation models: `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}` - General (built-in) models: `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`, If the map is empty or a specific model is not requested for a language pair, then default google model (nmt) is used."
-          }
-        },
-        "glossaries": {
-          "target": "com.gcp.translate_v3beta1#TranslateTextGlossaryConfigMap",
-          "traits": {
-            "smithy.api#documentation": "Optional. Glossaries to be applied. It's keyed by target language code."
-          }
-        },
-        "sourceLanguageCode": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The BCP-47 language code of the input document if known, for example, \"en-US\" or \"sr-Latn\". Supported language codes are listed in [Language Support](https://cloud.google.com/translate/docs/languages)."
-          }
-        },
-        "inputConfigs": {
-          "target": "com.gcp.translate_v3beta1#BatchDocumentInputConfigList",
-          "traits": {
-            "smithy.api#documentation": "Required. Input configurations. The total number of files matched should be <= 100. The total content size to translate should be <= 100M Unicode codepoints. The files must use UTF-8 encoding."
-          }
-        },
-        "enableShadowRemovalNativePdf": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Optional. If true, use the text removal server to remove the shadow text on background image for native pdf translation. Shadow removal feature can only be enabled when is_translate_native_pdf_only: false && pdf_native_only: false"
-          }
-        },
-        "outputConfig": {
-          "target": "com.gcp.translate_v3beta1#BatchDocumentOutputConfig",
-          "traits": {
-            "smithy.api#documentation": "Required. Output configuration. If 2 input configs match to the same file (that is, same input path), we don't generate output for duplicate inputs."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The BatchTranslateDocument request."
-      }
-    },
-    "com.gcp.translate_v3beta1#TranslateTextGlossaryConfigMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "com.gcp.translate_v3beta1#TranslateTextGlossaryConfig"
-      }
-    },
-    "com.gcp.translate_v3beta1#BatchDocumentInputConfigList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.translate_v3beta1#BatchDocumentInputConfig"
+        "smithy.api#documentation": "Configures which glossary should be used for a specific target language, and defines options for applying that glossary."
       }
     },
     "com.gcp.translate_v3beta1#DetectedLanguage": {
@@ -967,80 +788,18 @@
         "smithy.api#documentation": "The response message for language detection."
       }
     },
-    "com.gcp.translate_v3beta1#InputConfig": {
+    "com.gcp.translate_v3beta1#RefineTextResponse": {
       "type": "structure",
       "members": {
-        "mimeType": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Can be \"text/plain\" or \"text/html\". For `.tsv`, \"text/html\" is used if mime_type is missing. For `.html`, this field must be \"text/html\" or empty. For `.txt`, this field must be \"text/plain\" or empty."
-          }
-        },
-        "gcsSource": {
-          "target": "com.gcp.translate_v3beta1#GcsSource",
-          "traits": {
-            "smithy.api#documentation": "Required. Google Cloud Storage location for the source input. This can be a single file (for example, `gs://translation-test/input.tsv`) or a wildcard (for example, `gs://translation-test/*`). If a file extension is `.tsv`, it can contain either one or two columns. The first column (optional) is the id of the text request. If the first column is missing, we use the row number (0-based) from the input file as the ID in the output file. The second column is the actual text to be translated. We recommend each row be <= 10K Unicode codepoints, otherwise an error might be returned. Note that the input tsv must be RFC 4180 compliant. You could use https://github.com/Clever/csvlint to check potential formatting errors in your tsv file. csvlint --delimiter='\\t' your_input_file.tsv The other supported file extensions are `.txt` or `.html`, which is treated as a single large chunk of text."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Input configuration for BatchTranslateText request."
-      }
-    },
-    "com.gcp.translate_v3beta1#BatchTranslateTextRequest": {
-      "type": "structure",
-      "members": {
-        "outputConfig": {
-          "target": "com.gcp.translate_v3beta1#OutputConfig",
-          "traits": {
-            "smithy.api#documentation": "Required. Output configuration. If 2 input configs match to the same file (that is, same input path), we don't generate output for duplicate inputs."
-          }
-        },
-        "sourceLanguageCode": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Source language code. Supported language codes are listed in [Language Support](https://cloud.google.com/translate/docs/languages)."
-          }
-        },
-        "models": {
-          "target": "com.gcp.translate_v3beta1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Optional. The models to use for translation. Map's key is target language code. Map's value is model name. Value can be a built-in general model, or an AutoML Translation model. The value format depends on model type: - AutoML Translation models: `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}` - General (built-in) models: `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`, If the map is empty or a specific model is not requested for a language pair, then default google model (nmt) is used."
-          }
-        },
-        "glossaries": {
-          "target": "com.gcp.translate_v3beta1#TranslateTextGlossaryConfigMap",
-          "traits": {
-            "smithy.api#documentation": "Optional. Glossaries to be applied for translation. It's keyed by target language code."
-          }
-        },
-        "labels": {
-          "target": "com.gcp.translate_v3beta1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Optional. The labels with user-defined metadata for the request. Label keys and values can be no longer than 63 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter. See https://cloud.google.com/translate/docs/labels for more information."
-          }
-        },
-        "targetLanguageCodes": {
+        "refinedTranslations": {
           "target": "com.gcp.translate_v3beta1#StringList",
           "traits": {
-            "smithy.api#documentation": "Required. Specify up to 10 language codes here. Supported language codes are listed in [Language Support](https://cloud.google.com/translate/docs/languages)."
-          }
-        },
-        "inputConfigs": {
-          "target": "com.gcp.translate_v3beta1#InputConfigList",
-          "traits": {
-            "smithy.api#documentation": "Required. Input configurations. The total number of files matched should be <= 100. The total content size should be <= 100M Unicode codepoints. The files must use UTF-8 encoding."
+            "smithy.api#documentation": "The refined translations obtained from the original translations."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "The batch translation request."
-      }
-    },
-    "com.gcp.translate_v3beta1#InputConfigList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.translate_v3beta1#InputConfig"
+        "smithy.api#documentation": "Response message for RefineText."
       }
     },
     "com.gcp.translate_v3beta1#GlossaryInputConfig": {
@@ -1057,55 +816,290 @@
         "smithy.api#documentation": "Input configuration for glossaries."
       }
     },
-    "com.gcp.translate_v3beta1#ListLocationsResponse": {
+    "com.gcp.translate_v3beta1#Operation": {
       "type": "structure",
       "members": {
-        "locations": {
-          "target": "com.gcp.translate_v3beta1#LocationList",
+        "done": {
+          "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "A list of locations that matches the specified filter in the request."
+            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
           }
         },
-        "nextPageToken": {
+        "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The standard List next-page token."
+            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+          }
+        },
+        "error": {
+          "target": "com.gcp.translate_v3beta1#Status",
+          "traits": {
+            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.translate_v3beta1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
+          }
+        },
+        "response": {
+          "target": "com.gcp.translate_v3beta1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "The response message for Locations.ListLocations."
+        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
       }
     },
-    "com.gcp.translate_v3beta1#LocationList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.translate_v3beta1#Location"
-      }
-    },
-    "com.gcp.translate_v3beta1#GetSupportedLanguagesProjectsRequest": {
+    "com.gcp.translate_v3beta1#SupportedLanguages": {
       "type": "structure",
       "members": {
-        "parent": {
-          "target": "smithy.api#String",
+        "languages": {
+          "target": "com.gcp.translate_v3beta1#SupportedLanguageList",
           "traits": {
-            "smithy.api#documentation": "Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id}` or `projects/{project-number-or-id}/locations/{location-id}`. For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`. Non-global location is required for AutoML models. Only models within the same region (have same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
+            "smithy.api#documentation": "A list of supported language responses. This list contains an entry for each language the Translation API supports."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for discovering supported languages."
+      }
+    },
+    "com.gcp.translate_v3beta1#SupportedLanguageList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.translate_v3beta1#SupportedLanguage"
+      }
+    },
+    "com.gcp.translate_v3beta1#Location": {
+      "type": "structure",
+      "members": {
+        "labels": {
+          "target": "com.gcp.translate_v3beta1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}"
           }
         },
-        "displayLanguageCode": {
+        "displayName": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. The language to use to return localized, human readable names of supported languages. If missing, then display names are not returned in a response.",
-            "smithy.api#httpQuery": "displayLanguageCode"
+            "smithy.api#documentation": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\"."
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.translate_v3beta1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata. For example the available capacity at the given location."
+          }
+        },
+        "locationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The canonical id for this location. For example: `\"us-east1\"`."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A resource that represents a Google Cloud location."
+      }
+    },
+    "com.gcp.translate_v3beta1#TranslateDocumentResponse": {
+      "type": "structure",
+      "members": {
+        "model": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Only present when 'model' is present in the request. 'model' is normalized to have a project number. For example: If the 'model' field in TranslateDocumentRequest is: `projects/{project-id}/locations/{location-id}/models/general/nmt` then `model` here would be normalized to `projects/{project-number}/locations/{location-id}/models/general/nmt`."
+          }
+        },
+        "glossaryConfig": {
+          "target": "com.gcp.translate_v3beta1#TranslateTextGlossaryConfig",
+          "traits": {
+            "smithy.api#documentation": "The `glossary_config` used for this translation."
+          }
+        },
+        "glossaryDocumentTranslation": {
+          "target": "com.gcp.translate_v3beta1#DocumentTranslation",
+          "traits": {
+            "smithy.api#documentation": "The document's translation output if a glossary is provided in the request. This can be the same as [TranslateDocumentResponse.document_translation] if no glossary terms apply."
+          }
+        },
+        "documentTranslation": {
+          "target": "com.gcp.translate_v3beta1#DocumentTranslation",
+          "traits": {
+            "smithy.api#documentation": "Translated document."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A translated document response message."
+      }
+    },
+    "com.gcp.translate_v3beta1#WaitOperationRequest": {
+      "type": "structure",
+      "members": {
+        "timeout": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The request message for Operations.WaitOperation."
+      }
+    },
+    "com.gcp.translate_v3beta1#LanguageCodePair": {
+      "type": "structure",
+      "members": {
+        "sourceLanguageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The BCP-47 language code of the input text, for example, \"en-US\". Expected to be an exact match for GlossaryTerm.language_code."
+          }
+        },
+        "targetLanguageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The BCP-47 language code for translation output, for example, \"zh-CN\". Expected to be an exact match for GlossaryTerm.language_code."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Used with unidirectional glossaries."
+      }
+    },
+    "com.gcp.translate_v3beta1#RefineTextRequest": {
+      "type": "structure",
+      "members": {
+        "targetLanguageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The BCP-47 language code for translation output, for example, \"zh-CN\"."
+          }
+        },
+        "refinementEntries": {
+          "target": "com.gcp.translate_v3beta1#RefinementEntryList",
+          "traits": {
+            "smithy.api#documentation": "Required. The source texts and original translations in the source and target languages."
+          }
+        },
+        "sourceLanguageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The BCP-47 language code of the source text in the request, for example, \"en-US\"."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request message for RefineText."
+      }
+    },
+    "com.gcp.translate_v3beta1#RefinementEntryList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.translate_v3beta1#RefinementEntry"
+      }
+    },
+    "com.gcp.translate_v3beta1#TranslateDocumentRequest": {
+      "type": "structure",
+      "members": {
+        "labels": {
+          "target": "com.gcp.translate_v3beta1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. The labels with user-defined metadata for the request. Label keys and values can be no longer than 63 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter. See https://cloud.google.com/translate/docs/advanced/labels for more information."
           }
         },
         "model": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. Get supported languages of this model. The format depends on model type: - AutoML Translation models: `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}` - General (built-in) models: `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`, Returns languages supported by the specified model. If missing, we get supported languages of Google general NMT model.",
-            "smithy.api#httpQuery": "model"
+            "smithy.api#documentation": "Optional. The `model` type requested for this translation. The format depends on model type: - AutoML Translation models: `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}` - General (built-in) models: `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`, If not provided, the default Google model (NMT) will be used for translation."
+          }
+        },
+        "documentInputConfig": {
+          "target": "com.gcp.translate_v3beta1#DocumentInputConfig",
+          "traits": {
+            "smithy.api#documentation": "Required. Input configurations."
+          }
+        },
+        "glossaryConfig": {
+          "target": "com.gcp.translate_v3beta1#TranslateTextGlossaryConfig",
+          "traits": {
+            "smithy.api#documentation": "Optional. Glossary to be applied. The glossary must be within the same region (have the same location-id) as the model, otherwise an INVALID_ARGUMENT (400) error is returned."
+          }
+        },
+        "sourceLanguageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The BCP-47 language code of the input document if known, for example, \"en-US\" or \"sr-Latn\". Supported language codes are listed in [Language Support](https://cloud.google.com/translate/docs/languages). If the source language isn't specified, the API attempts to identify the source language automatically and returns the source language within the response. Source language must be specified if the request contains a glossary or a custom model."
+          }
+        },
+        "targetLanguageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The BCP-47 language code to use for translation of the input document, set to one of the language codes listed in [Language Support](https://cloud.google.com/translate/docs/languages)."
+          }
+        },
+        "isTranslateNativePdfOnly": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. is_translate_native_pdf_only field for external customers. If true, the page limit of online native pdf translation is 300 and only native pdf pages will be translated."
+          }
+        },
+        "enableRotationCorrection": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If true, enable auto rotation correction in DVS."
+          }
+        },
+        "enableShadowRemovalNativePdf": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If true, use the text removal server to remove the shadow text on background image for native pdf translation. Shadow removal feature can only be enabled when is_translate_native_pdf_only: false && pdf_native_only: false"
+          }
+        },
+        "customizedAttribution": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. This flag is to support user customized attribution. If not provided, the default is `Machine Translated by Google`. Customized attribution should follow rules in https://cloud.google.com/translate/attribution#attribution_and_logos"
+          }
+        },
+        "documentOutputConfig": {
+          "target": "com.gcp.translate_v3beta1#DocumentOutputConfig",
+          "traits": {
+            "smithy.api#documentation": "Optional. Output configurations. Defines if the output file should be stored within Cloud Storage as well as the desired output format. If not provided the translated file will only be returned through a byte-stream and its output mime type will be the same as the input file's mime type."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A document translation request."
+      }
+    },
+    "com.gcp.translate_v3beta1#DetectLanguageProjectsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id}/locations/{location-id}` or `projects/{project-number-or-id}`. For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`. Only models within the same region (has same location-id) can be used. Otherwise an INVALID_ARGUMENT (400) error is returned.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.translate_v3beta1#DetectLanguageRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
           }
         }
       }
@@ -1134,6 +1128,89 @@
             "status": 403
           }
         ]
+      }
+    },
+    "com.gcp.translate_v3beta1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.translate_v3beta1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.translate_v3beta1#DetectLanguageProjects": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.translate_v3beta1#DetectLanguageProjectsRequest"
+      },
+      "output": {
+        "target": "com.gcp.translate_v3beta1#DetectLanguageResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.translate_v3beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.translate_v3beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.translate_v3beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.translate_v3beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v3beta1/{+parent}:detectLanguage"
+        },
+        "smithy.api#documentation": "Detects the language of text within a request."
+      }
+    },
+    "com.gcp.translate_v3beta1#GetSupportedLanguagesProjectsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id}` or `projects/{project-number-or-id}/locations/{location-id}`. For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`. Non-global location is required for AutoML models. Only models within the same region (have same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "displayLanguageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The language to use to return localized, human readable names of supported languages. If missing, then display names are not returned in a response.",
+            "smithy.api#httpQuery": "displayLanguageCode"
+          }
+        },
+        "model": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Get supported languages of this model. The format depends on model type: - AutoML Translation models: `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}` - General (built-in) models: `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`, Returns languages supported by the specified model. If missing, we get supported languages of Google general NMT model.",
+            "smithy.api#httpQuery": "model"
+          }
+        }
       }
     },
     "com.gcp.translate_v3beta1#GetSupportedLanguagesProjects": {
@@ -1180,32 +1257,6 @@
         }
       }
     },
-    "com.gcp.translate_v3beta1#BadRequest": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#error": "client",
-        "smithy.api#httpError": 400,
-        "com.gcp.protocols#errorMatchers": [
-          {
-            "status": 400
-          }
-        ]
-      }
-    },
-    "com.gcp.translate_v3beta1#Conflict": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#error": "client",
-        "smithy.api#httpError": 409,
-        "com.gcp.protocols#errorMatchers": [
-          {
-            "status": 409
-          }
-        ]
-      }
-    },
     "com.gcp.translate_v3beta1#TranslateTextProjects": {
       "type": "operation",
       "input": {
@@ -1234,162 +1285,6 @@
           "uri": "v3beta1/{+parent}:translateText"
         },
         "smithy.api#documentation": "Translates input text and returns translated text."
-      }
-    },
-    "com.gcp.translate_v3beta1#DetectLanguageProjectsRequest": {
-      "type": "structure",
-      "members": {
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id}/locations/{location-id}` or `projects/{project-number-or-id}`. For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`. Only models within the same region (has same location-id) can be used. Otherwise an INVALID_ARGUMENT (400) error is returned.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.translate_v3beta1#DetectLanguageRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.translate_v3beta1#DetectLanguageProjects": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.translate_v3beta1#DetectLanguageProjectsRequest"
-      },
-      "output": {
-        "target": "com.gcp.translate_v3beta1#DetectLanguageResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.translate_v3beta1#NotFound"
-        },
-        {
-          "target": "com.gcp.translate_v3beta1#Forbidden"
-        },
-        {
-          "target": "com.gcp.translate_v3beta1#BadRequest"
-        },
-        {
-          "target": "com.gcp.translate_v3beta1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v3beta1/{+parent}:detectLanguage"
-        },
-        "smithy.api#documentation": "Detects the language of text within a request."
-      }
-    },
-    "com.gcp.translate_v3beta1#ListProjectsLocationsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The resource that owns the locations collection, if applicable.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
-            "smithy.api#httpQuery": "filter"
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The maximum number of results to return. If not set, the service selects a default.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "extraLocationTypes": {
-          "target": "com.gcp.translate_v3beta1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.",
-            "smithy.api#httpQuery": "extraLocationTypes"
-          }
-        }
-      }
-    },
-    "com.gcp.translate_v3beta1#ListProjectsLocations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.translate_v3beta1#ListProjectsLocationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.translate_v3beta1#ListLocationsResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.translate_v3beta1#NotFound"
-        },
-        {
-          "target": "com.gcp.translate_v3beta1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v3beta1/{+name}/locations"
-        },
-        "smithy.api#documentation": "Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the ListLocationsRequest.name field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
-      }
-    },
-    "com.gcp.translate_v3beta1#GetProjectsLocationsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Resource name for the location.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.translate_v3beta1#GetProjectsLocations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.translate_v3beta1#GetProjectsLocationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.translate_v3beta1#Location"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.translate_v3beta1#NotFound"
-        },
-        {
-          "target": "com.gcp.translate_v3beta1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v3beta1/{+name}"
-        },
-        "smithy.api#documentation": "Gets information about a location."
       }
     },
     "com.gcp.translate_v3beta1#DetectLanguageProjectsLocationsRequest": {
@@ -1442,6 +1337,56 @@
         "smithy.api#documentation": "Detects the language of text within a request."
       }
     },
+    "com.gcp.translate_v3beta1#BatchTranslateTextProjectsLocationsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id}/locations/{location-id}`. The `global` location is not supported for batch translation. Only AutoML Translation models or glossaries within the same region (have the same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.translate_v3beta1#BatchTranslateTextRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.translate_v3beta1#BatchTranslateTextProjectsLocations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.translate_v3beta1#BatchTranslateTextProjectsLocationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.translate_v3beta1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.translate_v3beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.translate_v3beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.translate_v3beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.translate_v3beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v3beta1/{+parent}:batchTranslateText"
+        },
+        "smithy.api#documentation": "Translates a large volume of text in asynchronous batch mode. This function provides real-time output as the inputs are being processed. If caller cancels a request, the partial results (for an input file, it's all or nothing) may still be available on the specified output location. This call returns immediately and you can use google.longrunning.Operation.name to poll the status of the call."
+      }
+    },
     "com.gcp.translate_v3beta1#TranslateDocumentProjectsLocationsRequest": {
       "type": "structure",
       "members": {
@@ -1490,107 +1435,6 @@
           "uri": "v3beta1/{+parent}:translateDocument"
         },
         "smithy.api#documentation": "Translates documents in synchronous mode."
-      }
-    },
-    "com.gcp.translate_v3beta1#GetSupportedLanguagesProjectsLocationsRequest": {
-      "type": "structure",
-      "members": {
-        "displayLanguageCode": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The language to use to return localized, human readable names of supported languages. If missing, then display names are not returned in a response.",
-            "smithy.api#httpQuery": "displayLanguageCode"
-          }
-        },
-        "model": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Get supported languages of this model. The format depends on model type: - AutoML Translation models: `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}` - General (built-in) models: `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`, Returns languages supported by the specified model. If missing, we get supported languages of Google general NMT model.",
-            "smithy.api#httpQuery": "model"
-          }
-        },
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id}` or `projects/{project-number-or-id}/locations/{location-id}`. For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`. Non-global location is required for AutoML models. Only models within the same region (have same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.translate_v3beta1#GetSupportedLanguagesProjectsLocations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.translate_v3beta1#GetSupportedLanguagesProjectsLocationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.translate_v3beta1#SupportedLanguages"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.translate_v3beta1#NotFound"
-        },
-        {
-          "target": "com.gcp.translate_v3beta1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v3beta1/{+parent}/supportedLanguages"
-        },
-        "smithy.api#documentation": "Returns a list of supported languages for translation."
-      }
-    },
-    "com.gcp.translate_v3beta1#RefineTextProjectsLocationsRequest": {
-      "type": "structure",
-      "members": {
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id}/locations/{location-id}`. For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.translate_v3beta1#RefineTextRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.translate_v3beta1#RefineTextProjectsLocations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.translate_v3beta1#RefineTextProjectsLocationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.translate_v3beta1#RefineTextResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.translate_v3beta1#NotFound"
-        },
-        {
-          "target": "com.gcp.translate_v3beta1#Forbidden"
-        },
-        {
-          "target": "com.gcp.translate_v3beta1#BadRequest"
-        },
-        {
-          "target": "com.gcp.translate_v3beta1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v3beta1/{+parent}:refineText"
-        },
-        "smithy.api#documentation": "Refines the input translated text to improve the quality."
       }
     },
     "com.gcp.translate_v3beta1#TranslateTextProjectsLocationsRequest": {
@@ -1643,33 +1487,26 @@
         "smithy.api#documentation": "Translates input text and returns translated text."
       }
     },
-    "com.gcp.translate_v3beta1#BatchTranslateTextProjectsLocationsRequest": {
+    "com.gcp.translate_v3beta1#GetProjectsLocationsRequest": {
       "type": "structure",
       "members": {
-        "parent": {
+        "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. Location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id}/locations/{location-id}`. The `global` location is not supported for batch translation. Only AutoML Translation models or glossaries within the same region (have the same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.",
+            "smithy.api#documentation": "Resource name for the location.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.translate_v3beta1#BatchTranslateTextRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
           }
         }
       }
     },
-    "com.gcp.translate_v3beta1#BatchTranslateTextProjectsLocations": {
+    "com.gcp.translate_v3beta1#GetProjectsLocations": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.translate_v3beta1#BatchTranslateTextProjectsLocationsRequest"
+        "target": "com.gcp.translate_v3beta1#GetProjectsLocationsRequest"
       },
       "output": {
-        "target": "com.gcp.translate_v3beta1#Operation"
+        "target": "com.gcp.translate_v3beta1#Location"
       },
       "errors": [
         {
@@ -1677,20 +1514,83 @@
         },
         {
           "target": "com.gcp.translate_v3beta1#Forbidden"
-        },
-        {
-          "target": "com.gcp.translate_v3beta1#BadRequest"
-        },
-        {
-          "target": "com.gcp.translate_v3beta1#Conflict"
         }
       ],
       "traits": {
         "smithy.api#http": {
-          "method": "POST",
-          "uri": "v3beta1/{+parent}:batchTranslateText"
+          "method": "GET",
+          "uri": "v3beta1/{+name}"
         },
-        "smithy.api#documentation": "Translates a large volume of text in asynchronous batch mode. This function provides real-time output as the inputs are being processed. If caller cancels a request, the partial results (for an input file, it's all or nothing) may still be available on the specified output location. This call returns immediately and you can use google.longrunning.Operation.name to poll the status of the call."
+        "smithy.api#documentation": "Gets information about a location."
+      }
+    },
+    "com.gcp.translate_v3beta1#ListProjectsLocationsRequest": {
+      "type": "structure",
+      "members": {
+        "extraLocationTypes": {
+          "target": "com.gcp.translate_v3beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.",
+            "smithy.api#httpQuery": "extraLocationTypes"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource that owns the locations collection, if applicable.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of results to return. If not set, the service selects a default.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.translate_v3beta1#ListProjectsLocations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.translate_v3beta1#ListProjectsLocationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.translate_v3beta1#ListLocationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.translate_v3beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.translate_v3beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v3beta1/{+name}/locations"
+        },
+        "smithy.api#documentation": "Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the ListLocationsRequest.name field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
       }
     },
     "com.gcp.translate_v3beta1#BatchTranslateDocumentProjectsLocationsRequest": {
@@ -1743,54 +1643,90 @@
         "smithy.api#documentation": "Translates a large volume of document in asynchronous batch mode. This function provides real-time output as the inputs are being processed. If caller cancels a request, the partial results (for an input file, it's all or nothing) may still be available on the specified output location. This call returns immediately and you can use google.longrunning.Operation.name to poll the status of the call."
       }
     },
-    "com.gcp.translate_v3beta1#ListProjectsLocationsOperationsRequest": {
+    "com.gcp.translate_v3beta1#RefineTextProjectsLocationsRequest": {
       "type": "structure",
       "members": {
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The standard list page size.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "returnPartialSuccess": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
-            "smithy.api#httpQuery": "returnPartialSuccess"
-          }
-        },
-        "name": {
+        "parent": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The name of the operation's parent resource.",
+            "smithy.api#documentation": "Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id}/locations/{location-id}`. For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
         },
-        "filter": {
-          "target": "smithy.api#String",
+        "body": {
+          "target": "com.gcp.translate_v3beta1#RefineTextRequest",
           "traits": {
-            "smithy.api#documentation": "The standard list filter.",
-            "smithy.api#httpQuery": "filter"
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The standard list page token.",
-            "smithy.api#httpQuery": "pageToken"
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
           }
         }
       }
     },
-    "com.gcp.translate_v3beta1#ListProjectsLocationsOperations": {
+    "com.gcp.translate_v3beta1#RefineTextProjectsLocations": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.translate_v3beta1#ListProjectsLocationsOperationsRequest"
+        "target": "com.gcp.translate_v3beta1#RefineTextProjectsLocationsRequest"
       },
       "output": {
-        "target": "com.gcp.translate_v3beta1#ListOperationsResponse"
+        "target": "com.gcp.translate_v3beta1#RefineTextResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.translate_v3beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.translate_v3beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.translate_v3beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.translate_v3beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v3beta1/{+parent}:refineText"
+        },
+        "smithy.api#documentation": "Refines the input translated text to improve the quality."
+      }
+    },
+    "com.gcp.translate_v3beta1#GetSupportedLanguagesProjectsLocationsRequest": {
+      "type": "structure",
+      "members": {
+        "model": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Get supported languages of this model. The format depends on model type: - AutoML Translation models: `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}` - General (built-in) models: `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`, Returns languages supported by the specified model. If missing, we get supported languages of Google general NMT model.",
+            "smithy.api#httpQuery": "model"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id}` or `projects/{project-number-or-id}/locations/{location-id}`. For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`. Non-global location is required for AutoML models. Only models within the same region (have same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "displayLanguageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The language to use to return localized, human readable names of supported languages. If missing, then display names are not returned in a response.",
+            "smithy.api#httpQuery": "displayLanguageCode"
+          }
+        }
+      }
+    },
+    "com.gcp.translate_v3beta1#GetSupportedLanguagesProjectsLocations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.translate_v3beta1#GetSupportedLanguagesProjectsLocationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.translate_v3beta1#SupportedLanguages"
       },
       "errors": [
         {
@@ -1803,13 +1739,9 @@
       "traits": {
         "smithy.api#http": {
           "method": "GET",
-          "uri": "v3beta1/{+name}/operations"
+          "uri": "v3beta1/{+parent}/supportedLanguages"
         },
-        "smithy.api#documentation": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
+        "smithy.api#documentation": "Returns a list of supported languages for translation."
       }
     },
     "com.gcp.translate_v3beta1#DeleteProjectsLocationsOperationsRequest": {
@@ -1855,56 +1787,6 @@
         "smithy.api#documentation": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`."
       }
     },
-    "com.gcp.translate_v3beta1#WaitProjectsLocationsOperationsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the operation resource to wait on.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.translate_v3beta1#WaitOperationRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.translate_v3beta1#WaitProjectsLocationsOperations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.translate_v3beta1#WaitProjectsLocationsOperationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.translate_v3beta1#Operation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.translate_v3beta1#NotFound"
-        },
-        {
-          "target": "com.gcp.translate_v3beta1#Forbidden"
-        },
-        {
-          "target": "com.gcp.translate_v3beta1#BadRequest"
-        },
-        {
-          "target": "com.gcp.translate_v3beta1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v3beta1/{+name}:wait"
-        },
-        "smithy.api#documentation": "Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state. If the operation is already done, the latest state is immediately returned. If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used. If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis. It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done."
-      }
-    },
     "com.gcp.translate_v3beta1#GetProjectsLocationsOperationsRequest": {
       "type": "structure",
       "members": {
@@ -1940,6 +1822,75 @@
           "uri": "v3beta1/{+name}"
         },
         "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
+      }
+    },
+    "com.gcp.translate_v3beta1#ListProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "returnPartialSuccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+            "smithy.api#httpQuery": "returnPartialSuccess"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation's parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list filter.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The standard list page size.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.translate_v3beta1#ListProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.translate_v3beta1#ListProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.translate_v3beta1#ListOperationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.translate_v3beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.translate_v3beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v3beta1/{+name}/operations"
+        },
+        "smithy.api#documentation": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
       }
     },
     "com.gcp.translate_v3beta1#CancelProjectsLocationsOperationsRequest": {
@@ -1992,6 +1943,198 @@
         "smithy.api#documentation": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`."
       }
     },
+    "com.gcp.translate_v3beta1#WaitProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource to wait on.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.translate_v3beta1#WaitOperationRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.translate_v3beta1#WaitProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.translate_v3beta1#WaitProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.translate_v3beta1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.translate_v3beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.translate_v3beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.translate_v3beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.translate_v3beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v3beta1/{+name}:wait"
+        },
+        "smithy.api#documentation": "Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state. If the operation is already done, the latest state is immediately returned. If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used. If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis. It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done."
+      }
+    },
+    "com.gcp.translate_v3beta1#GetProjectsLocationsGlossariesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the glossary to retrieve.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.translate_v3beta1#GetProjectsLocationsGlossaries": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.translate_v3beta1#GetProjectsLocationsGlossariesRequest"
+      },
+      "output": {
+        "target": "com.gcp.translate_v3beta1#Glossary"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.translate_v3beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.translate_v3beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v3beta1/{+name}"
+        },
+        "smithy.api#documentation": "Gets a glossary. Returns NOT_FOUND, if the glossary doesn't exist."
+      }
+    },
+    "com.gcp.translate_v3beta1#DeleteProjectsLocationsGlossariesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the glossary to delete.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.translate_v3beta1#DeleteProjectsLocationsGlossaries": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.translate_v3beta1#DeleteProjectsLocationsGlossariesRequest"
+      },
+      "output": {
+        "target": "com.gcp.translate_v3beta1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.translate_v3beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.translate_v3beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.translate_v3beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.translate_v3beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v3beta1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a glossary, or cancels glossary construction if the glossary isn't created yet. Returns NOT_FOUND, if the glossary doesn't exist."
+      }
+    },
+    "com.gcp.translate_v3beta1#ListProjectsLocationsGlossariesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the project from which to list all of the glossaries.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Requested page size. The server may return fewer glossaries than requested. If unspecified, the server picks an appropriate default.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Filter specifying constraints of a list operation. Specify the constraint by the format of \"key=value\", where key must be \"src\" or \"tgt\", and the value must be a valid language code. For multiple restrictions, concatenate them by \"AND\" (uppercase only), such as: \"src=en-US AND tgt=zh-CN\". Notice that the exact match is used here, which means using 'en-US' and 'en' can lead to different results, which depends on the language code you used when you create the glossary. For the unidirectional glossaries, the \"src\" and \"tgt\" add restrictions on the source and target language code separately. For the equivalent term set glossaries, the \"src\" and/or \"tgt\" add restrictions on the term set. For example: \"src=en-US AND tgt=zh-CN\" will only pick the unidirectional glossaries which exactly match the source language code as \"en-US\" and the target language code \"zh-CN\", but all equivalent term set glossaries which contain \"en-US\" and \"zh-CN\" in their language set will be picked. If missing, no filtering is performed.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A token identifying a page of results the server should return. Typically, this is the value of [ListGlossariesResponse.next_page_token] returned from the previous call to `ListGlossaries` method. The first page is returned if `page_token`is empty or missing.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.translate_v3beta1#ListProjectsLocationsGlossaries": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.translate_v3beta1#ListProjectsLocationsGlossariesRequest"
+      },
+      "output": {
+        "target": "com.gcp.translate_v3beta1#ListGlossariesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.translate_v3beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.translate_v3beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v3beta1/{+parent}/glossaries"
+        },
+        "smithy.api#documentation": "Lists glossaries in a project. Returns NOT_FOUND, if the project doesn't exist.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
     "com.gcp.translate_v3beta1#CreateProjectsLocationsGlossariesRequest": {
       "type": "structure",
       "members": {
@@ -2040,148 +2183,6 @@
           "uri": "v3beta1/{+parent}/glossaries"
         },
         "smithy.api#documentation": "Creates a glossary and returns the long-running operation. Returns NOT_FOUND, if the project doesn't exist."
-      }
-    },
-    "com.gcp.translate_v3beta1#GetProjectsLocationsGlossariesRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The name of the glossary to retrieve.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.translate_v3beta1#GetProjectsLocationsGlossaries": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.translate_v3beta1#GetProjectsLocationsGlossariesRequest"
-      },
-      "output": {
-        "target": "com.gcp.translate_v3beta1#Glossary"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.translate_v3beta1#NotFound"
-        },
-        {
-          "target": "com.gcp.translate_v3beta1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v3beta1/{+name}"
-        },
-        "smithy.api#documentation": "Gets a glossary. Returns NOT_FOUND, if the glossary doesn't exist."
-      }
-    },
-    "com.gcp.translate_v3beta1#ListProjectsLocationsGlossariesRequest": {
-      "type": "structure",
-      "members": {
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The name of the project from which to list all of the glossaries.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. A token identifying a page of results the server should return. Typically, this is the value of [ListGlossariesResponse.next_page_token] returned from the previous call to `ListGlossaries` method. The first page is returned if `page_token`is empty or missing.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Filter specifying constraints of a list operation. Specify the constraint by the format of \"key=value\", where key must be \"src\" or \"tgt\", and the value must be a valid language code. For multiple restrictions, concatenate them by \"AND\" (uppercase only), such as: \"src=en-US AND tgt=zh-CN\". Notice that the exact match is used here, which means using 'en-US' and 'en' can lead to different results, which depends on the language code you used when you create the glossary. For the unidirectional glossaries, the \"src\" and \"tgt\" add restrictions on the source and target language code separately. For the equivalent term set glossaries, the \"src\" and/or \"tgt\" add restrictions on the term set. For example: \"src=en-US AND tgt=zh-CN\" will only pick the unidirectional glossaries which exactly match the source language code as \"en-US\" and the target language code \"zh-CN\", but all equivalent term set glossaries which contain \"en-US\" and \"zh-CN\" in their language set will be picked. If missing, no filtering is performed.",
-            "smithy.api#httpQuery": "filter"
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. Requested page size. The server may return fewer glossaries than requested. If unspecified, the server picks an appropriate default.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        }
-      }
-    },
-    "com.gcp.translate_v3beta1#ListProjectsLocationsGlossaries": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.translate_v3beta1#ListProjectsLocationsGlossariesRequest"
-      },
-      "output": {
-        "target": "com.gcp.translate_v3beta1#ListGlossariesResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.translate_v3beta1#NotFound"
-        },
-        {
-          "target": "com.gcp.translate_v3beta1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v3beta1/{+parent}/glossaries"
-        },
-        "smithy.api#documentation": "Lists glossaries in a project. Returns NOT_FOUND, if the project doesn't exist.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
-      }
-    },
-    "com.gcp.translate_v3beta1#DeleteProjectsLocationsGlossariesRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The name of the glossary to delete.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.translate_v3beta1#DeleteProjectsLocationsGlossaries": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.translate_v3beta1#DeleteProjectsLocationsGlossariesRequest"
-      },
-      "output": {
-        "target": "com.gcp.translate_v3beta1#Operation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.translate_v3beta1#NotFound"
-        },
-        {
-          "target": "com.gcp.translate_v3beta1#Forbidden"
-        },
-        {
-          "target": "com.gcp.translate_v3beta1#BadRequest"
-        },
-        {
-          "target": "com.gcp.translate_v3beta1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "v3beta1/{+name}"
-        },
-        "smithy.api#documentation": "Deletes a glossary, or cancels glossary construction if the glossary isn't created yet. Returns NOT_FOUND, if the glossary doesn't exist."
       }
     }
   }

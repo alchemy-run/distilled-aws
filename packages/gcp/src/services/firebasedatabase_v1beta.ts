@@ -84,20 +84,20 @@ export interface DatabaseInstance {
   type?: DatabaseInstanceTypeEnum | (string & {});
   /** Output only. The database's lifecycle state. Read-only. */
   state?: DatabaseInstanceStateEnum | (string & {});
-  /** The fully qualified resource name of the database instance, in the form: `projects/{project-number}/locations/{location-id}/instances/{database-id}`. */
-  name?: string;
   /** Output only. The resource name of the project this instance belongs to. For example: `projects/{project-number}`. */
   project?: string;
   /** Output only. Output Only. The globally unique hostname of the database. */
   databaseUrl?: string;
+  /** The fully qualified resource name of the database instance, in the form: `projects/{project-number}/locations/{location-id}/instances/{database-id}`. */
+  name?: string;
 }
 export const DatabaseInstance = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     type: S.optional(DatabaseInstanceTypeEnum),
     state: S.optional(DatabaseInstanceStateEnum),
-    name: S.optional(S.String),
     project: S.optional(S.String),
     databaseUrl: S.optional(S.String),
+    name: S.optional(S.String),
   }),
 ).annotate({
   identifier: "DatabaseInstance",
@@ -234,15 +234,15 @@ export const DatabaseInstanceList = /*@__PURE__*/ S.Array(
 
 /** The response from the ListDatabaseInstances method. */
 export interface ListDatabaseInstancesResponse {
-  /** If the result list is too large to fit in a single response, then a token is returned. If the string is empty, then this response is the last page of results. This token can be used in a subsequent call to `ListDatabaseInstances` to find the next group of database instances. Page tokens are short-lived and should not be persisted. */
-  nextPageToken?: string;
   /** List of each DatabaseInstance that is in the parent Firebase project. */
   instances?: DatabaseInstanceList;
+  /** If the result list is too large to fit in a single response, then a token is returned. If the string is empty, then this response is the last page of results. This token can be used in a subsequent call to `ListDatabaseInstances` to find the next group of database instances. Page tokens are short-lived and should not be persisted. */
+  nextPageToken?: string;
 }
 export const ListDatabaseInstancesResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    nextPageToken: S.optional(S.String),
     instances: S.optional(DatabaseInstanceList),
+    nextPageToken: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ListDatabaseInstancesResponse",

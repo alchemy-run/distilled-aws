@@ -14,193 +14,39 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "keyDictionary": {
+      "addedAt": "added_at",
+      "cryptominingScore": "cryptomining_score",
+      "dataflowScore": "dataflow_score",
+      "domainAttribute": "domain_attribute",
+      "domainReportedMalicious": "domain_reported_malicious",
+      "expiresAttribute": "expires_attribute",
+      "fetchedAt": "fetched_at",
+      "firstPageUrl": "first_page_url",
+      "firstSeenAt": "first_seen_at",
+      "httpOnlyAttribute": "http_only_attribute",
+      "jsIntegrityScore": "js_integrity_score",
+      "lastSeenAt": "last_seen_at",
+      "magecartScore": "magecart_score",
+      "maliciousDomainCategories": "malicious_domain_categories",
+      "maliciousUrlCategories": "malicious_url_categories",
+      "malwareScore": "malware_score",
+      "maxAgeAttribute": "max_age_attribute",
+      "obfuscationScore": "obfuscation_score",
+      "pageUrls": "page_urls",
+      "pathAttribute": "path_attribute",
+      "sameSiteAttribute": "same_site_attribute",
+      "secureAttribute": "secure_attribute",
+      "updatedAt": "updated_at",
+      "urlContainsCdnCgiPath": "url_contains_cdn_cgi_path",
+      "urlReportedMalicious": "url_reported_malicious",
+      "useCloudflareReportingEndpoint": "use_cloudflare_reporting_endpoint",
+      "useConnectionUrlPath": "use_connection_url_path"
+    },
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.cloudflare.page_shield#GetRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.page_shield#GetResponse": {
-      "type": "structure",
-      "members": {
-        "enabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "When true, indicates that Page Shield is enabled.",
-            "smithy.api#required": {}
-          }
-        },
-        "updated_at": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The timestamp of when Page Shield was last updated.",
-            "smithy.api#required": {}
-          }
-        },
-        "use_cloudflare_reporting_endpoint": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "When true, CSP reports will be sent to https://csp-reporting.cloudflare.com/cdn-cgi/script_monitor/report",
-            "smithy.api#required": {}
-          }
-        },
-        "use_connection_url_path": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "When true, the paths associated with connections URLs will also be analyzed.",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.page_shield#Get": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.page_shield#GetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.page_shield#GetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/page_shield",
-          "code": 200
-        },
-        "smithy.api#documentation": "Fetches the Page Shield settings.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.page_shield#UpdateRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "enabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "When true, indicates that Page Shield is enabled."
-          }
-        },
-        "use_cloudflare_reporting_endpoint": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "When true, CSP reports will be sent to https://csp-reporting.cloudflare.com/cdn-cgi/script_monitor/report"
-          }
-        },
-        "use_connection_url_path": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "When true, the paths associated with connections URLs will also be analyzed."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.page_shield#UpdateResponse": {
-      "type": "structure",
-      "members": {
-        "enabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "When true, indicates that Page Shield is enabled.",
-            "smithy.api#required": {}
-          }
-        },
-        "updated_at": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The timestamp of when Page Shield was last updated.",
-            "smithy.api#required": {}
-          }
-        },
-        "use_cloudflare_reporting_endpoint": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "When true, CSP reports will be sent to https://csp-reporting.cloudflare.com/cdn-cgi/script_monitor/report",
-            "smithy.api#required": {}
-          }
-        },
-        "use_connection_url_path": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "When true, the paths associated with connections URLs will also be analyzed.",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.page_shield#Update": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.page_shield#UpdateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.page_shield#UpdateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PUT",
-          "uri": "/zones/{zone_id}/page_shield",
-          "code": 200
-        },
-        "smithy.api#documentation": "Updates Page Shield settings.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.page_shield#ConnectionsGetRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "connection_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.page_shield#ConnectionsGetResponseMaliciousDomainCategoriesList": {
       "type": "list",
       "member": {
@@ -217,94 +63,6 @@
       "type": "list",
       "member": {
         "target": "smithy.api#String"
-      }
-    },
-    "com.cloudflare.page_shield#ConnectionsGetResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier",
-            "smithy.api#required": {}
-          }
-        },
-        "added_at": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "first_seen_at": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "host": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "last_seen_at": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "url": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "url_contains_cdn_cgi_path": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "domain_reported_malicious": {
-          "target": "smithy.api#Boolean"
-        },
-        "first_page_url": {
-          "target": "smithy.api#String"
-        },
-        "malicious_domain_categories": {
-          "target": "com.cloudflare.page_shield#ConnectionsGetResponseMaliciousDomainCategoriesList"
-        },
-        "malicious_url_categories": {
-          "target": "com.cloudflare.page_shield#ConnectionsGetResponseMaliciousUrlCategoriesList"
-        },
-        "page_urls": {
-          "target": "com.cloudflare.page_shield#ConnectionsGetResponsePageUrlsList"
-        },
-        "url_reported_malicious": {
-          "target": "smithy.api#Boolean"
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.page_shield#ConnectionsGet": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.page_shield#ConnectionsGetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.page_shield#ConnectionsGetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/page_shield/connections/{connection_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Fetches a connection detected by Page Shield by connection ID.",
-        "smithy.api#readonly": {}
       }
     },
     "com.cloudflare.page_shield#ConnectionsListRequestDirection": {
@@ -350,106 +108,6 @@
             "smithy.api#enumValue": "last_seen_at"
           }
         }
-      }
-    },
-    "com.cloudflare.page_shield#ConnectionsListRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "direction": {
-          "target": "com.cloudflare.page_shield#ConnectionsListRequestDirection",
-          "traits": {
-            "smithy.api#documentation": "The direction used to sort returned connections.",
-            "smithy.api#httpQuery": "direction"
-          }
-        },
-        "exclude_cdn_cgi": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "When true, excludes connections seen in a `/cdn-cgi` path from the returned connections. The default value is true.",
-            "smithy.api#httpQuery": "exclude_cdn_cgi"
-          }
-        },
-        "exclude_urls": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Excludes connections whose URL contains one of the URL-encoded URLs separated by commas.",
-            "smithy.api#httpQuery": "exclude_urls"
-          }
-        },
-        "export": {
-          "target": "com.cloudflare.page_shield#ConnectionsListRequestExport",
-          "traits": {
-            "smithy.api#documentation": "Export the list of connections as a file, limited to 50000 entries.",
-            "smithy.api#httpQuery": "export"
-          }
-        },
-        "hosts": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Includes connections that match one or more URL-encoded hostnames separated by commas.",
-            "smithy.api#httpQuery": "hosts"
-          }
-        },
-        "order_by": {
-          "target": "com.cloudflare.page_shield#ConnectionsListRequestOrderBy",
-          "traits": {
-            "smithy.api#documentation": "The field used to sort returned connections.",
-            "smithy.api#httpQuery": "order_by"
-          }
-        },
-        "page": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The current page number of the paginated results.",
-            "smithy.api#httpQuery": "page"
-          }
-        },
-        "page_url": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Includes connections that match one or more page URLs (separated by commas) where they were last seen",
-            "smithy.api#httpQuery": "page_url"
-          }
-        },
-        "per_page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The number of results per page.",
-            "smithy.api#httpQuery": "per_page"
-          }
-        },
-        "prioritize_malicious": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "When true, malicious connections appear first in the returned connections.",
-            "smithy.api#httpQuery": "prioritize_malicious"
-          }
-        },
-        "status": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Filters the returned connections using a comma-separated list of connection statuses. Accepted values: `active`, `infrequent`, and `inactive`. The default value is `active`.",
-            "smithy.api#httpQuery": "status"
-          }
-        },
-        "urls": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Includes connections whose URL contain one or more URL-encoded URLs separated by commas.",
-            "smithy.api#httpQuery": "urls"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.page_shield#ConnectionsListResultItemMaliciousDomainCategoriesList": {
@@ -542,63 +200,6 @@
         "target": "com.cloudflare.page_shield#ConnectionsListResultItem"
       }
     },
-    "com.cloudflare.page_shield#ConnectionsListResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.page_shield#ConnectionsListResultList",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.page_shield#ConnectionsList": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.page_shield#ConnectionsListRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.page_shield#ConnectionsListResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/page_shield/connections",
-          "code": 200
-        },
-        "smithy.api#documentation": "Lists all connections detected by Page Shield.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.page_shield#CookiesGetRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "cookie_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.page_shield#CookiesGetResponseType": {
       "type": "enum",
       "members": {
@@ -643,94 +244,6 @@
             "smithy.api#enumValue": "none"
           }
         }
-      }
-    },
-    "com.cloudflare.page_shield#CookiesGetResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier",
-            "smithy.api#required": {}
-          }
-        },
-        "first_seen_at": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "host": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "last_seen_at": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "type": {
-          "target": "com.cloudflare.page_shield#CookiesGetResponseType",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "domain_attribute": {
-          "target": "smithy.api#String"
-        },
-        "expires_attribute": {
-          "target": "smithy.api#String"
-        },
-        "http_only_attribute": {
-          "target": "smithy.api#Boolean"
-        },
-        "max_age_attribute": {
-          "target": "smithy.api#Double"
-        },
-        "page_urls": {
-          "target": "com.cloudflare.page_shield#CookiesGetResponsePageUrlsList"
-        },
-        "path_attribute": {
-          "target": "smithy.api#String"
-        },
-        "same_site_attribute": {
-          "target": "com.cloudflare.page_shield#CookiesGetResponseSameSiteAttribute"
-        },
-        "secure_attribute": {
-          "target": "smithy.api#Boolean"
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.page_shield#CookiesGet": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.page_shield#CookiesGetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.page_shield#CookiesGetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/page_shield/cookies/{cookie_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Fetches a cookie collected by Page Shield by cookie ID.",
-        "smithy.api#readonly": {}
       }
     },
     "com.cloudflare.page_shield#CookiesListRequestDirection": {
@@ -816,120 +329,6 @@
             "smithy.api#enumValue": "unknown"
           }
         }
-      }
-    },
-    "com.cloudflare.page_shield#CookiesListRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "direction": {
-          "target": "com.cloudflare.page_shield#CookiesListRequestDirection",
-          "traits": {
-            "smithy.api#documentation": "The direction used to sort returned cookies.'",
-            "smithy.api#httpQuery": "direction"
-          }
-        },
-        "domain": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Filters the returned cookies that match the specified domain attribute",
-            "smithy.api#httpQuery": "domain"
-          }
-        },
-        "export": {
-          "target": "com.cloudflare.page_shield#CookiesListRequestExport",
-          "traits": {
-            "smithy.api#documentation": "Export the list of cookies as a file, limited to 50000 entries.",
-            "smithy.api#httpQuery": "export"
-          }
-        },
-        "hosts": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Includes cookies that match one or more URL-encoded hostnames separated by commas.",
-            "smithy.api#httpQuery": "hosts"
-          }
-        },
-        "http_only": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Filters the returned cookies that are set with HttpOnly",
-            "smithy.api#httpQuery": "http_only"
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Filters the returned cookies that match the specified name.",
-            "smithy.api#httpQuery": "name"
-          }
-        },
-        "order_by": {
-          "target": "com.cloudflare.page_shield#CookiesListRequestOrderBy",
-          "traits": {
-            "smithy.api#documentation": "The field used to sort returned cookies.",
-            "smithy.api#httpQuery": "order_by"
-          }
-        },
-        "page": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The current page number of the paginated results.",
-            "smithy.api#httpQuery": "page"
-          }
-        },
-        "page_url": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Includes connections that match one or more page URLs (separated by commas) where they were last seen",
-            "smithy.api#httpQuery": "page_url"
-          }
-        },
-        "path": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Filters the returned cookies that match the specified path attribute",
-            "smithy.api#httpQuery": "path"
-          }
-        },
-        "per_page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The number of results per page.",
-            "smithy.api#httpQuery": "per_page"
-          }
-        },
-        "same_site": {
-          "target": "com.cloudflare.page_shield#CookiesListRequestSameSite",
-          "traits": {
-            "smithy.api#documentation": "Filters the returned cookies that match the specified same_site attribute",
-            "smithy.api#httpQuery": "same_site"
-          }
-        },
-        "secure": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Filters the returned cookies that are set with Secure",
-            "smithy.api#httpQuery": "secure"
-          }
-        },
-        "type": {
-          "target": "com.cloudflare.page_shield#CookiesListRequestType",
-          "traits": {
-            "smithy.api#documentation": "Filters the returned cookies that match the specified type attribute",
-            "smithy.api#httpQuery": "type"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.page_shield#CookiesListResultItemType": {
@@ -1050,39 +449,6 @@
         "target": "com.cloudflare.page_shield#CookiesListResultItem"
       }
     },
-    "com.cloudflare.page_shield#CookiesListResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.page_shield#CookiesListResultList",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.page_shield#CookiesList": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.page_shield#CookiesListRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.page_shield#CookiesListResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/page_shield/cookies",
-          "code": 200
-        },
-        "smithy.api#documentation": "Lists all cookies collected by Page Shield.",
-        "smithy.api#readonly": {}
-      }
-    },
     "com.cloudflare.page_shield#PoliciesCreateRequestAction": {
       "type": "enum",
       "members": {
@@ -1104,57 +470,6 @@
             "smithy.api#enumValue": "add_reporting_directives"
           }
         }
-      }
-    },
-    "com.cloudflare.page_shield#PoliciesCreateRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "action": {
-          "target": "com.cloudflare.page_shield#PoliciesCreateRequestAction",
-          "traits": {
-            "smithy.api#documentation": "The action to take if the expression matches",
-            "smithy.api#required": {}
-          }
-        },
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A description for the policy",
-            "smithy.api#required": {}
-          }
-        },
-        "enabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether the policy is enabled",
-            "smithy.api#required": {}
-          }
-        },
-        "expression": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The expression which must match for the policy to be applied, using the Cloudflare Firewall rule expression syntax",
-            "smithy.api#required": {}
-          }
-        },
-        "value": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The policy which will be applied",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.page_shield#PoliciesCreateResponseAction": {
@@ -1180,140 +495,6 @@
         }
       }
     },
-    "com.cloudflare.page_shield#PoliciesCreateResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier",
-            "smithy.api#required": {}
-          }
-        },
-        "action": {
-          "target": "com.cloudflare.page_shield#PoliciesCreateResponseAction",
-          "traits": {
-            "smithy.api#documentation": "The action to take if the expression matches",
-            "smithy.api#required": {}
-          }
-        },
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A description for the policy",
-            "smithy.api#required": {}
-          }
-        },
-        "enabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether the policy is enabled",
-            "smithy.api#required": {}
-          }
-        },
-        "expression": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The expression which must match for the policy to be applied, using the Cloudflare Firewall rule expression syntax",
-            "smithy.api#required": {}
-          }
-        },
-        "value": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The policy which will be applied",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.page_shield#PoliciesCreate": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.page_shield#PoliciesCreateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.page_shield#PoliciesCreateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "/zones/{zone_id}/page_shield/policies",
-          "code": 200
-        },
-        "smithy.api#documentation": "Create a Page Shield policy."
-      }
-    },
-    "com.cloudflare.page_shield#PoliciesDeleteRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "policy_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.page_shield#PoliciesDelete": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.page_shield#PoliciesDeleteRequest"
-      },
-      "output": {
-        "target": "smithy.api#Unit"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "/zones/{zone_id}/page_shield/policies/{policy_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Delete a Page Shield policy by ID.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.page_shield#PoliciesGetRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "policy_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.page_shield#PoliciesGetResponseAction": {
       "type": "enum",
       "members": {
@@ -1335,91 +516,6 @@
             "smithy.api#enumValue": "add_reporting_directives"
           }
         }
-      }
-    },
-    "com.cloudflare.page_shield#PoliciesGetResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier",
-            "smithy.api#required": {}
-          }
-        },
-        "action": {
-          "target": "com.cloudflare.page_shield#PoliciesGetResponseAction",
-          "traits": {
-            "smithy.api#documentation": "The action to take if the expression matches",
-            "smithy.api#required": {}
-          }
-        },
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A description for the policy",
-            "smithy.api#required": {}
-          }
-        },
-        "enabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether the policy is enabled",
-            "smithy.api#required": {}
-          }
-        },
-        "expression": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The expression which must match for the policy to be applied, using the Cloudflare Firewall rule expression syntax",
-            "smithy.api#required": {}
-          }
-        },
-        "value": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The policy which will be applied",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.page_shield#PoliciesGet": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.page_shield#PoliciesGetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.page_shield#PoliciesGetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/page_shield/policies/{policy_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Fetches a Page Shield policy by ID.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.page_shield#PoliciesListRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.page_shield#PoliciesListResultItemAction": {
@@ -1498,39 +594,6 @@
         "target": "com.cloudflare.page_shield#PoliciesListResultItem"
       }
     },
-    "com.cloudflare.page_shield#PoliciesListResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.page_shield#PoliciesListResultList",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.page_shield#PoliciesList": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.page_shield#PoliciesListRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.page_shield#PoliciesListResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/page_shield/policies",
-          "code": 200
-        },
-        "smithy.api#documentation": "Lists all Page Shield policies.",
-        "smithy.api#readonly": {}
-      }
-    },
     "com.cloudflare.page_shield#PoliciesUpdateRequestAction": {
       "type": "enum",
       "members": {
@@ -1554,60 +617,6 @@
         }
       }
     },
-    "com.cloudflare.page_shield#PoliciesUpdateRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "policy_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "action": {
-          "target": "com.cloudflare.page_shield#PoliciesUpdateRequestAction",
-          "traits": {
-            "smithy.api#documentation": "The action to take if the expression matches"
-          }
-        },
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A description for the policy"
-          }
-        },
-        "enabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether the policy is enabled"
-          }
-        },
-        "expression": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The expression which must match for the policy to be applied, using the Cloudflare Firewall rule expression syntax"
-          }
-        },
-        "value": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The policy which will be applied"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.page_shield#PoliciesUpdateResponseAction": {
       "type": "enum",
       "members": {
@@ -1629,99 +638,6 @@
             "smithy.api#enumValue": "add_reporting_directives"
           }
         }
-      }
-    },
-    "com.cloudflare.page_shield#PoliciesUpdateResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier",
-            "smithy.api#required": {}
-          }
-        },
-        "action": {
-          "target": "com.cloudflare.page_shield#PoliciesUpdateResponseAction",
-          "traits": {
-            "smithy.api#documentation": "The action to take if the expression matches",
-            "smithy.api#required": {}
-          }
-        },
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A description for the policy",
-            "smithy.api#required": {}
-          }
-        },
-        "enabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether the policy is enabled",
-            "smithy.api#required": {}
-          }
-        },
-        "expression": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The expression which must match for the policy to be applied, using the Cloudflare Firewall rule expression syntax",
-            "smithy.api#required": {}
-          }
-        },
-        "value": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The policy which will be applied",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.page_shield#PoliciesUpdate": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.page_shield#PoliciesUpdateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.page_shield#PoliciesUpdateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PUT",
-          "uri": "/zones/{zone_id}/page_shield/policies/{policy_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Update a Page Shield policy by ID.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.page_shield#ScriptsGetRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "script_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.page_shield#ScriptsGetResponseMaliciousDomainCategoriesList": {
@@ -1801,145 +717,6 @@
         "target": "com.cloudflare.page_shield#ScriptsGetResponseVersionsItem"
       }
     },
-    "com.cloudflare.page_shield#ScriptsGetResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier",
-            "smithy.api#required": {}
-          }
-        },
-        "added_at": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "first_seen_at": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "host": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "last_seen_at": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "url": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "url_contains_cdn_cgi_path": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "cryptomining_score": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The cryptomining score of the JavaScript content."
-          }
-        },
-        "dataflow_score": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The dataflow score of the JavaScript content. This field has been deprecated in favour of js_integrity_score."
-          }
-        },
-        "domain_reported_malicious": {
-          "target": "smithy.api#Boolean"
-        },
-        "fetched_at": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The timestamp of when the script was last fetched."
-          }
-        },
-        "first_page_url": {
-          "target": "smithy.api#String"
-        },
-        "hash": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The computed hash of the analyzed script."
-          }
-        },
-        "js_integrity_score": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The integrity score of the JavaScript content."
-          }
-        },
-        "magecart_score": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The magecart score of the JavaScript content."
-          }
-        },
-        "malicious_domain_categories": {
-          "target": "com.cloudflare.page_shield#ScriptsGetResponseMaliciousDomainCategoriesList"
-        },
-        "malicious_url_categories": {
-          "target": "com.cloudflare.page_shield#ScriptsGetResponseMaliciousUrlCategoriesList"
-        },
-        "malware_score": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The malware score of the JavaScript content."
-          }
-        },
-        "obfuscation_score": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The obfuscation score of the JavaScript content. This field has been deprecated in favour of js_integrity_score."
-          }
-        },
-        "page_urls": {
-          "target": "com.cloudflare.page_shield#ScriptsGetResponsePageUrlsList"
-        },
-        "url_reported_malicious": {
-          "target": "smithy.api#Boolean"
-        },
-        "versions": {
-          "target": "com.cloudflare.page_shield#ScriptsGetResponseVersionsList"
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.page_shield#ScriptsGet": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.page_shield#ScriptsGetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.page_shield#ScriptsGetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/page_shield/scripts/{script_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Fetches a script detected by Page Shield by script ID.",
-        "smithy.api#readonly": {}
-      }
-    },
     "com.cloudflare.page_shield#ScriptsListRequestDirection": {
       "type": "enum",
       "members": {
@@ -1983,113 +760,6 @@
             "smithy.api#enumValue": "last_seen_at"
           }
         }
-      }
-    },
-    "com.cloudflare.page_shield#ScriptsListRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "direction": {
-          "target": "com.cloudflare.page_shield#ScriptsListRequestDirection",
-          "traits": {
-            "smithy.api#documentation": "The direction used to sort returned scripts.",
-            "smithy.api#httpQuery": "direction"
-          }
-        },
-        "exclude_cdn_cgi": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "When true, excludes scripts seen in a `/cdn-cgi` path from the returned scripts. The default value is true.",
-            "smithy.api#httpQuery": "exclude_cdn_cgi"
-          }
-        },
-        "exclude_duplicates": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "When true, excludes duplicate scripts. We consider a script duplicate of another if their javascript",
-            "smithy.api#httpQuery": "exclude_duplicates"
-          }
-        },
-        "exclude_urls": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Excludes scripts whose URL contains one of the URL-encoded URLs separated by commas.",
-            "smithy.api#httpQuery": "exclude_urls"
-          }
-        },
-        "export": {
-          "target": "com.cloudflare.page_shield#ScriptsListRequestExport",
-          "traits": {
-            "smithy.api#documentation": "Export the list of scripts as a file, limited to 50000 entries.",
-            "smithy.api#httpQuery": "export"
-          }
-        },
-        "hosts": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Includes scripts that match one or more URL-encoded hostnames separated by commas.",
-            "smithy.api#httpQuery": "hosts"
-          }
-        },
-        "order_by": {
-          "target": "com.cloudflare.page_shield#ScriptsListRequestOrderBy",
-          "traits": {
-            "smithy.api#documentation": "The field used to sort returned scripts.",
-            "smithy.api#httpQuery": "order_by"
-          }
-        },
-        "page": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The current page number of the paginated results.",
-            "smithy.api#httpQuery": "page"
-          }
-        },
-        "page_url": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Includes scripts that match one or more page URLs (separated by commas) where they were last seen",
-            "smithy.api#httpQuery": "page_url"
-          }
-        },
-        "per_page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The number of results per page.",
-            "smithy.api#httpQuery": "per_page"
-          }
-        },
-        "prioritize_malicious": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "When true, malicious scripts appear first in the returned scripts.",
-            "smithy.api#httpQuery": "prioritize_malicious"
-          }
-        },
-        "status": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Filters the returned scripts using a comma-separated list of scripts statuses. Accepted values: `active`, `infrequent`, and `inactive`. The default value is `active`.",
-            "smithy.api#httpQuery": "status"
-          }
-        },
-        "urls": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Includes scripts whose URL contain one or more URL-encoded URLs separated by commas.",
-            "smithy.api#httpQuery": "urls"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.page_shield#ScriptsListResultItemMaliciousDomainCategoriesList": {
@@ -2230,7 +900,1358 @@
         "target": "com.cloudflare.page_shield#ScriptsListResultItem"
       }
     },
-    "com.cloudflare.page_shield#ScriptsListResponse": {
+    "com.cloudflare.page_shield#PageShield": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.page_shield#CreatePolicy"
+        },
+        {
+          "target": "com.cloudflare.page_shield#DeletePolicy"
+        },
+        {
+          "target": "com.cloudflare.page_shield#GetConnection"
+        },
+        {
+          "target": "com.cloudflare.page_shield#GetCooky"
+        },
+        {
+          "target": "com.cloudflare.page_shield#GetPageShield"
+        },
+        {
+          "target": "com.cloudflare.page_shield#GetPolicy"
+        },
+        {
+          "target": "com.cloudflare.page_shield#GetScript"
+        },
+        {
+          "target": "com.cloudflare.page_shield#ListConnections"
+        },
+        {
+          "target": "com.cloudflare.page_shield#ListCookies"
+        },
+        {
+          "target": "com.cloudflare.page_shield#ListPolicies"
+        },
+        {
+          "target": "com.cloudflare.page_shield#ListScripts"
+        },
+        {
+          "target": "com.cloudflare.page_shield#PutPageShield"
+        },
+        {
+          "target": "com.cloudflare.page_shield#UpdatePolicy"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare PageShield",
+        "smithy.api#documentation": "Cloudflare API — page_shield resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    },
+    "com.cloudflare.page_shield#Forbidden": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.cloudflare.page_shield#NotEntitled": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "status": 403,
+            "message": {
+              "includes": "not entitled"
+            }
+          }
+        ]
+      }
+    },
+    "com.cloudflare.page_shield#PolicyNotFound": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "status": 404,
+            "message": {
+              "includes": "Could not find Policy"
+            }
+          }
+        ]
+      }
+    },
+    "com.cloudflare.page_shield#PolicyQuotaExceeded": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "status": 400,
+            "message": {
+              "includes": "exceeded the maximum number of rules in the phase http_response_page_shield"
+            }
+          }
+        ]
+      }
+    },
+    "com.cloudflare.page_shield#CreatePolicy": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.page_shield#CreatePolicyRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.page_shield#CreatePolicyResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/zones/{zone_id}/page_shield/policies",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a Page Shield policy."
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.page_shield#PolicyQuotaExceeded"
+        },
+        {
+          "target": "com.cloudflare.page_shield#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.page_shield#CreatePolicyRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "action": {
+          "target": "com.cloudflare.page_shield#PoliciesCreateRequestAction",
+          "traits": {
+            "smithy.api#documentation": "The action to take if the expression matches",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A description for the policy",
+            "smithy.api#required": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the policy is enabled",
+            "smithy.api#required": {}
+          }
+        },
+        "expression": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The expression which must match for the policy to be applied, using the Cloudflare Firewall rule expression syntax",
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The policy which will be applied",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.page_shield#CreatePolicyResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#required": {}
+          }
+        },
+        "action": {
+          "target": "com.cloudflare.page_shield#PoliciesCreateResponseAction",
+          "traits": {
+            "smithy.api#documentation": "The action to take if the expression matches",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A description for the policy",
+            "smithy.api#required": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the policy is enabled",
+            "smithy.api#required": {}
+          }
+        },
+        "expression": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The expression which must match for the policy to be applied, using the Cloudflare Firewall rule expression syntax",
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The policy which will be applied",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.page_shield#DeletePolicy": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.page_shield#DeletePolicyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/zones/{zone_id}/page_shield/policies/{policy_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a Page Shield policy by ID.",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.page_shield#PolicyNotFound"
+        },
+        {
+          "target": "com.cloudflare.page_shield#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.page_shield#DeletePolicyRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "policy_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.page_shield#GetConnection": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.page_shield#GetConnectionRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.page_shield#GetConnectionResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/page_shield/connections/{connection_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Fetches a connection detected by Page Shield by connection ID.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.page_shield#GetConnectionRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "connection_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.page_shield#GetConnectionResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#required": {}
+          }
+        },
+        "added_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "first_seen_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "host": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "last_seen_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url_contains_cdn_cgi_path": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "domain_reported_malicious": {
+          "target": "smithy.api#Boolean"
+        },
+        "first_page_url": {
+          "target": "smithy.api#String"
+        },
+        "malicious_domain_categories": {
+          "target": "com.cloudflare.page_shield#ConnectionsGetResponseMaliciousDomainCategoriesList"
+        },
+        "malicious_url_categories": {
+          "target": "com.cloudflare.page_shield#ConnectionsGetResponseMaliciousUrlCategoriesList"
+        },
+        "page_urls": {
+          "target": "com.cloudflare.page_shield#ConnectionsGetResponsePageUrlsList"
+        },
+        "url_reported_malicious": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.page_shield#GetCooky": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.page_shield#GetCookyRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.page_shield#GetCookyResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/page_shield/cookies/{cookie_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Fetches a cookie collected by Page Shield by cookie ID.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.page_shield#GetCookyRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "cookie_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.page_shield#GetCookyResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#required": {}
+          }
+        },
+        "first_seen_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "host": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "last_seen_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.cloudflare.page_shield#CookiesGetResponseType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "domain_attribute": {
+          "target": "smithy.api#String"
+        },
+        "expires_attribute": {
+          "target": "smithy.api#String"
+        },
+        "http_only_attribute": {
+          "target": "smithy.api#Boolean"
+        },
+        "max_age_attribute": {
+          "target": "smithy.api#Double"
+        },
+        "page_urls": {
+          "target": "com.cloudflare.page_shield#CookiesGetResponsePageUrlsList"
+        },
+        "path_attribute": {
+          "target": "smithy.api#String"
+        },
+        "same_site_attribute": {
+          "target": "com.cloudflare.page_shield#CookiesGetResponseSameSiteAttribute"
+        },
+        "secure_attribute": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.page_shield#GetPageShield": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.page_shield#GetPageShieldRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.page_shield#GetPageShieldResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/page_shield",
+          "code": 200
+        },
+        "smithy.api#documentation": "Fetches the Page Shield settings.",
+        "smithy.api#readonly": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.page_shield#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.page_shield#GetPageShieldRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.page_shield#GetPageShieldResponse": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When true, indicates that Page Shield is enabled.",
+            "smithy.api#required": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of when Page Shield was last updated.",
+            "smithy.api#required": {}
+          }
+        },
+        "use_cloudflare_reporting_endpoint": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When true, CSP reports will be sent to https://csp-reporting.cloudflare.com/cdn-cgi/script_monitor/report",
+            "smithy.api#required": {}
+          }
+        },
+        "use_connection_url_path": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When true, the paths associated with connections URLs will also be analyzed.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.page_shield#GetPolicy": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.page_shield#GetPolicyRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.page_shield#GetPolicyResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/page_shield/policies/{policy_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Fetches a Page Shield policy by ID.",
+        "smithy.api#readonly": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.page_shield#PolicyNotFound"
+        },
+        {
+          "target": "com.cloudflare.page_shield#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.page_shield#GetPolicyRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "policy_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.page_shield#GetPolicyResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#required": {}
+          }
+        },
+        "action": {
+          "target": "com.cloudflare.page_shield#PoliciesGetResponseAction",
+          "traits": {
+            "smithy.api#documentation": "The action to take if the expression matches",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A description for the policy",
+            "smithy.api#required": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the policy is enabled",
+            "smithy.api#required": {}
+          }
+        },
+        "expression": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The expression which must match for the policy to be applied, using the Cloudflare Firewall rule expression syntax",
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The policy which will be applied",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.page_shield#GetScript": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.page_shield#GetScriptRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.page_shield#GetScriptResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/page_shield/scripts/{script_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Fetches a script detected by Page Shield by script ID.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.page_shield#GetScriptRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "script_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.page_shield#GetScriptResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#required": {}
+          }
+        },
+        "added_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "first_seen_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "host": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "last_seen_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url_contains_cdn_cgi_path": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "cryptomining_score": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The cryptomining score of the JavaScript content."
+          }
+        },
+        "dataflow_score": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The dataflow score of the JavaScript content. This field has been deprecated in favour of js_integrity_score."
+          }
+        },
+        "domain_reported_malicious": {
+          "target": "smithy.api#Boolean"
+        },
+        "fetched_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of when the script was last fetched."
+          }
+        },
+        "first_page_url": {
+          "target": "smithy.api#String"
+        },
+        "hash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The computed hash of the analyzed script."
+          }
+        },
+        "js_integrity_score": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The integrity score of the JavaScript content."
+          }
+        },
+        "magecart_score": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The magecart score of the JavaScript content."
+          }
+        },
+        "malicious_domain_categories": {
+          "target": "com.cloudflare.page_shield#ScriptsGetResponseMaliciousDomainCategoriesList"
+        },
+        "malicious_url_categories": {
+          "target": "com.cloudflare.page_shield#ScriptsGetResponseMaliciousUrlCategoriesList"
+        },
+        "malware_score": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The malware score of the JavaScript content."
+          }
+        },
+        "obfuscation_score": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The obfuscation score of the JavaScript content. This field has been deprecated in favour of js_integrity_score."
+          }
+        },
+        "page_urls": {
+          "target": "com.cloudflare.page_shield#ScriptsGetResponsePageUrlsList"
+        },
+        "url_reported_malicious": {
+          "target": "smithy.api#Boolean"
+        },
+        "versions": {
+          "target": "com.cloudflare.page_shield#ScriptsGetResponseVersionsList"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.page_shield#ListConnections": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.page_shield#ListConnectionsRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.page_shield#ListConnectionsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/page_shield/connections",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists all connections detected by Page Shield.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "single",
+          "items": "result"
+        }
+      }
+    },
+    "com.cloudflare.page_shield#ListConnectionsRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "direction": {
+          "target": "com.cloudflare.page_shield#ConnectionsListRequestDirection",
+          "traits": {
+            "smithy.api#documentation": "The direction used to sort returned connections.",
+            "smithy.api#httpQuery": "direction"
+          }
+        },
+        "exclude_cdn_cgi": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When true, excludes connections seen in a `/cdn-cgi` path from the returned connections. The default value is true.",
+            "smithy.api#httpQuery": "exclude_cdn_cgi"
+          }
+        },
+        "exclude_urls": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Excludes connections whose URL contains one of the URL-encoded URLs separated by commas.",
+            "smithy.api#httpQuery": "exclude_urls"
+          }
+        },
+        "export": {
+          "target": "com.cloudflare.page_shield#ConnectionsListRequestExport",
+          "traits": {
+            "smithy.api#documentation": "Export the list of connections as a file, limited to 50000 entries.",
+            "smithy.api#httpQuery": "export"
+          }
+        },
+        "hosts": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Includes connections that match one or more URL-encoded hostnames separated by commas.",
+            "smithy.api#httpQuery": "hosts"
+          }
+        },
+        "order_by": {
+          "target": "com.cloudflare.page_shield#ConnectionsListRequestOrderBy",
+          "traits": {
+            "smithy.api#documentation": "The field used to sort returned connections.",
+            "smithy.api#httpQuery": "order_by"
+          }
+        },
+        "page": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The current page number of the paginated results.",
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "page_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Includes connections that match one or more page URLs (separated by commas) where they were last seen",
+            "smithy.api#httpQuery": "page_url"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of results per page.",
+            "smithy.api#httpQuery": "per_page"
+          }
+        },
+        "prioritize_malicious": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When true, malicious connections appear first in the returned connections.",
+            "smithy.api#httpQuery": "prioritize_malicious"
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filters the returned connections using a comma-separated list of connection statuses. Accepted values: `active`, `infrequent`, and `inactive`. The default value is `active`.",
+            "smithy.api#httpQuery": "status"
+          }
+        },
+        "urls": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Includes connections whose URL contain one or more URL-encoded URLs separated by commas.",
+            "smithy.api#httpQuery": "urls"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.page_shield#ListConnectionsResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.page_shield#ConnectionsListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.page_shield#ListCookies": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.page_shield#ListCookiesRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.page_shield#ListCookiesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/page_shield/cookies",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists all cookies collected by Page Shield.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "single",
+          "items": "result"
+        }
+      }
+    },
+    "com.cloudflare.page_shield#ListCookiesRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "direction": {
+          "target": "com.cloudflare.page_shield#CookiesListRequestDirection",
+          "traits": {
+            "smithy.api#documentation": "The direction used to sort returned cookies.'",
+            "smithy.api#httpQuery": "direction"
+          }
+        },
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filters the returned cookies that match the specified domain attribute",
+            "smithy.api#httpQuery": "domain"
+          }
+        },
+        "export": {
+          "target": "com.cloudflare.page_shield#CookiesListRequestExport",
+          "traits": {
+            "smithy.api#documentation": "Export the list of cookies as a file, limited to 50000 entries.",
+            "smithy.api#httpQuery": "export"
+          }
+        },
+        "hosts": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Includes cookies that match one or more URL-encoded hostnames separated by commas.",
+            "smithy.api#httpQuery": "hosts"
+          }
+        },
+        "http_only": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Filters the returned cookies that are set with HttpOnly",
+            "smithy.api#httpQuery": "http_only"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filters the returned cookies that match the specified name.",
+            "smithy.api#httpQuery": "name"
+          }
+        },
+        "order_by": {
+          "target": "com.cloudflare.page_shield#CookiesListRequestOrderBy",
+          "traits": {
+            "smithy.api#documentation": "The field used to sort returned cookies.",
+            "smithy.api#httpQuery": "order_by"
+          }
+        },
+        "page": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The current page number of the paginated results.",
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "page_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Includes connections that match one or more page URLs (separated by commas) where they were last seen",
+            "smithy.api#httpQuery": "page_url"
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filters the returned cookies that match the specified path attribute",
+            "smithy.api#httpQuery": "path"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of results per page.",
+            "smithy.api#httpQuery": "per_page"
+          }
+        },
+        "same_site": {
+          "target": "com.cloudflare.page_shield#CookiesListRequestSameSite",
+          "traits": {
+            "smithy.api#documentation": "Filters the returned cookies that match the specified same_site attribute",
+            "smithy.api#httpQuery": "same_site"
+          }
+        },
+        "secure": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Filters the returned cookies that are set with Secure",
+            "smithy.api#httpQuery": "secure"
+          }
+        },
+        "type": {
+          "target": "com.cloudflare.page_shield#CookiesListRequestType",
+          "traits": {
+            "smithy.api#documentation": "Filters the returned cookies that match the specified type attribute",
+            "smithy.api#httpQuery": "type"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.page_shield#ListCookiesResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.page_shield#CookiesListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.page_shield#ListPolicies": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.page_shield#ListPoliciesRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.page_shield#ListPoliciesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/page_shield/policies",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists all Page Shield policies.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "single",
+          "items": "result"
+        }
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.page_shield#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.page_shield#ListPoliciesRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.page_shield#ListPoliciesResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.page_shield#PoliciesListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.page_shield#ListScripts": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.page_shield#ListScriptsRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.page_shield#ListScriptsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/page_shield/scripts",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists all scripts detected by Page Shield.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "single",
+          "items": "result"
+        }
+      }
+    },
+    "com.cloudflare.page_shield#ListScriptsRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "direction": {
+          "target": "com.cloudflare.page_shield#ScriptsListRequestDirection",
+          "traits": {
+            "smithy.api#documentation": "The direction used to sort returned scripts.",
+            "smithy.api#httpQuery": "direction"
+          }
+        },
+        "exclude_cdn_cgi": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When true, excludes scripts seen in a `/cdn-cgi` path from the returned scripts. The default value is true.",
+            "smithy.api#httpQuery": "exclude_cdn_cgi"
+          }
+        },
+        "exclude_duplicates": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When true, excludes duplicate scripts. We consider a script duplicate of another if their javascript",
+            "smithy.api#httpQuery": "exclude_duplicates"
+          }
+        },
+        "exclude_urls": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Excludes scripts whose URL contains one of the URL-encoded URLs separated by commas.",
+            "smithy.api#httpQuery": "exclude_urls"
+          }
+        },
+        "export": {
+          "target": "com.cloudflare.page_shield#ScriptsListRequestExport",
+          "traits": {
+            "smithy.api#documentation": "Export the list of scripts as a file, limited to 50000 entries.",
+            "smithy.api#httpQuery": "export"
+          }
+        },
+        "hosts": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Includes scripts that match one or more URL-encoded hostnames separated by commas.",
+            "smithy.api#httpQuery": "hosts"
+          }
+        },
+        "order_by": {
+          "target": "com.cloudflare.page_shield#ScriptsListRequestOrderBy",
+          "traits": {
+            "smithy.api#documentation": "The field used to sort returned scripts.",
+            "smithy.api#httpQuery": "order_by"
+          }
+        },
+        "page": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The current page number of the paginated results.",
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "page_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Includes scripts that match one or more page URLs (separated by commas) where they were last seen",
+            "smithy.api#httpQuery": "page_url"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of results per page.",
+            "smithy.api#httpQuery": "per_page"
+          }
+        },
+        "prioritize_malicious": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When true, malicious scripts appear first in the returned scripts.",
+            "smithy.api#httpQuery": "prioritize_malicious"
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filters the returned scripts using a comma-separated list of scripts statuses. Accepted values: `active`, `infrequent`, and `inactive`. The default value is `active`.",
+            "smithy.api#httpQuery": "status"
+          }
+        },
+        "urls": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Includes scripts whose URL contain one or more URL-encoded URLs separated by commas.",
+            "smithy.api#httpQuery": "urls"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.page_shield#ListScriptsResponse": {
       "type": "structure",
       "members": {
         "result": {
@@ -2245,72 +2266,232 @@
         "smithy.api#output": {}
       }
     },
-    "com.cloudflare.page_shield#ScriptsList": {
+    "com.cloudflare.page_shield#PutPageShield": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.page_shield#ScriptsListRequest"
+        "target": "com.cloudflare.page_shield#PutPageShieldRequest"
       },
       "output": {
-        "target": "com.cloudflare.page_shield#ScriptsListResponse"
+        "target": "com.cloudflare.page_shield#PutPageShieldResponse"
       },
       "traits": {
         "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/page_shield/scripts",
+          "method": "PUT",
+          "uri": "/zones/{zone_id}/page_shield",
           "code": 200
         },
-        "smithy.api#documentation": "Lists all scripts detected by Page Shield.",
-        "smithy.api#readonly": {}
+        "smithy.api#documentation": "Updates Page Shield settings.",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.page_shield#NotEntitled"
+        },
+        {
+          "target": "com.cloudflare.page_shield#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.page_shield#PutPageShieldRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When true, indicates that Page Shield is enabled."
+          }
+        },
+        "use_cloudflare_reporting_endpoint": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When true, CSP reports will be sent to https://csp-reporting.cloudflare.com/cdn-cgi/script_monitor/report"
+          }
+        },
+        "use_connection_url_path": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When true, the paths associated with connections URLs will also be analyzed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
       }
     },
-    "com.cloudflare.page_shield#PageShield": {
-      "type": "service",
-      "version": "4.0",
-      "operations": [
-        {
-          "target": "com.cloudflare.page_shield#Get"
+    "com.cloudflare.page_shield#PutPageShieldResponse": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When true, indicates that Page Shield is enabled.",
+            "smithy.api#required": {}
+          }
         },
-        {
-          "target": "com.cloudflare.page_shield#Update"
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of when Page Shield was last updated.",
+            "smithy.api#required": {}
+          }
         },
-        {
-          "target": "com.cloudflare.page_shield#ConnectionsGet"
+        "use_cloudflare_reporting_endpoint": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When true, CSP reports will be sent to https://csp-reporting.cloudflare.com/cdn-cgi/script_monitor/report",
+            "smithy.api#required": {}
+          }
         },
-        {
-          "target": "com.cloudflare.page_shield#ConnectionsList"
-        },
-        {
-          "target": "com.cloudflare.page_shield#CookiesGet"
-        },
-        {
-          "target": "com.cloudflare.page_shield#CookiesList"
-        },
-        {
-          "target": "com.cloudflare.page_shield#PoliciesCreate"
-        },
-        {
-          "target": "com.cloudflare.page_shield#PoliciesDelete"
-        },
-        {
-          "target": "com.cloudflare.page_shield#PoliciesGet"
-        },
-        {
-          "target": "com.cloudflare.page_shield#PoliciesList"
-        },
-        {
-          "target": "com.cloudflare.page_shield#PoliciesUpdate"
-        },
-        {
-          "target": "com.cloudflare.page_shield#ScriptsGet"
-        },
-        {
-          "target": "com.cloudflare.page_shield#ScriptsList"
+        "use_connection_url_path": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When true, the paths associated with connections URLs will also be analyzed.",
+            "smithy.api#required": {}
+          }
         }
-      ],
+      },
       "traits": {
-        "com.cloudflare.protocols#v4Json": {},
-        "smithy.api#title": "Cloudflare PageShield",
-        "smithy.api#documentation": "Cloudflare API — page_shield resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.page_shield#UpdatePolicy": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.page_shield#UpdatePolicyRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.page_shield#UpdatePolicyResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/zones/{zone_id}/page_shield/policies/{policy_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update a Page Shield policy by ID.",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.page_shield#PolicyNotFound"
+        },
+        {
+          "target": "com.cloudflare.page_shield#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.page_shield#UpdatePolicyRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "policy_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "action": {
+          "target": "com.cloudflare.page_shield#PoliciesUpdateRequestAction",
+          "traits": {
+            "smithy.api#documentation": "The action to take if the expression matches"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A description for the policy"
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the policy is enabled"
+          }
+        },
+        "expression": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The expression which must match for the policy to be applied, using the Cloudflare Firewall rule expression syntax"
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The policy which will be applied"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.page_shield#UpdatePolicyResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#required": {}
+          }
+        },
+        "action": {
+          "target": "com.cloudflare.page_shield#PoliciesUpdateResponseAction",
+          "traits": {
+            "smithy.api#documentation": "The action to take if the expression matches",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A description for the policy",
+            "smithy.api#required": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the policy is enabled",
+            "smithy.api#required": {}
+          }
+        },
+        "expression": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The expression which must match for the policy to be applied, using the Cloudflare Firewall rule expression syntax",
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The policy which will be applied",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     }
   }

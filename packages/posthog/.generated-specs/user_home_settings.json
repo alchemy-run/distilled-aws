@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.user_home_settings#UserHomeSettingsRetrieveRequest": {
+    "com.posthog.user_home_settings#GetUserHomeSettingsRequest": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -135,10 +136,10 @@
         "smithy.api#documentation": "Ordered list of pinned navigation tabs shown in the sidebar for the authenticated user within the current team. Send the full list to replace the existing pins; omit to leave them unchanged."
       }
     },
-    "com.posthog.user_home_settings#UserHomeSettingsRetrieve": {
+    "com.posthog.user_home_settings#GetUserHomeSettings": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.user_home_settings#UserHomeSettingsRetrieveRequest"
+        "target": "com.posthog.user_home_settings#GetUserHomeSettingsRequest"
       },
       "output": {
         "target": "com.posthog.user_home_settings#PinnedSceneTabs"
@@ -160,7 +161,7 @@
         "smithy.api#documentation": "Get the authenticated user's pinned sidebar tabs and configured homepage for the current team. Pass `@me` as the UUID."
       }
     },
-    "com.posthog.user_home_settings#UserHomeSettingsPartialUpdateRequestTabsList": {
+    "com.posthog.user_home_settings#UpdateUserHomeSettingsPartialRequestTabsList": {
       "type": "list",
       "member": {
         "target": "com.posthog.user_home_settings#PinnedSceneTab"
@@ -169,7 +170,7 @@
         "smithy.api#documentation": "Ordered list of pinned navigation tabs shown in the sidebar for the authenticated user within the current team. Send the full list to replace the existing pins; omit to leave them unchanged."
       }
     },
-    "com.posthog.user_home_settings#UserHomeSettingsPartialUpdateRequest": {
+    "com.posthog.user_home_settings#UpdateUserHomeSettingsPartialRequest": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -180,7 +181,7 @@
           }
         },
         "tabs": {
-          "target": "com.posthog.user_home_settings#UserHomeSettingsPartialUpdateRequestTabsList",
+          "target": "com.posthog.user_home_settings#UpdateUserHomeSettingsPartialRequestTabsList",
           "traits": {
             "smithy.api#documentation": "Ordered list of pinned navigation tabs shown in the sidebar for the authenticated user within the current team. Send the full list to replace the existing pins; omit to leave them unchanged."
           }
@@ -197,10 +198,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.user_home_settings#UserHomeSettingsPartialUpdate": {
+    "com.posthog.user_home_settings#UpdateUserHomeSettingsPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.user_home_settings#UserHomeSettingsPartialUpdateRequest"
+        "target": "com.posthog.user_home_settings#UpdateUserHomeSettingsPartialRequest"
       },
       "output": {
         "target": "com.posthog.user_home_settings#PinnedSceneTabs"
@@ -269,10 +270,10 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.user_home_settings#UserHomeSettingsRetrieve"
+          "target": "com.posthog.user_home_settings#GetUserHomeSettings"
         },
         {
-          "target": "com.posthog.user_home_settings#UserHomeSettingsPartialUpdate"
+          "target": "com.posthog.user_home_settings#UpdateUserHomeSettingsPartial"
         }
       ],
       "traits": {

@@ -12,13 +12,71 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export interface MarketplaceRegistrationDefinitionsGetRequest {
+export interface DeleteRegistrationAssignmentRequest {
+  /** The scope of the resource. */
+  scope: string;
+  /** The GUID of the registration assignment. */
+  registrationAssignmentId: string;
+}
+export const DeleteRegistrationAssignmentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    scope: S.String.pipe(T.Label()),
+    registrationAssignmentId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/{scope}/providers/Microsoft.ManagedServices/registrationAssignments/{registrationAssignmentId}",
+      code: 200,
+      apiVersion: "2022-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteRegistrationAssignmentRequest",
+}) as any as S.Schema<DeleteRegistrationAssignmentRequest>;
+
+export interface DeleteRegistrationAssignmentResponse {}
+export const DeleteRegistrationAssignmentResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteRegistrationAssignmentResponse",
+}) as any as S.Schema<DeleteRegistrationAssignmentResponse>;
+
+export interface DeleteRegistrationDefinitionRequest {
+  /** The scope of the resource. */
+  scope: string;
+  /** The GUID of the registration definition. */
+  registrationDefinitionId: string;
+}
+export const DeleteRegistrationDefinitionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    scope: S.String.pipe(T.Label()),
+    registrationDefinitionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/{scope}/providers/Microsoft.ManagedServices/registrationDefinitions/{registrationDefinitionId}",
+      code: 200,
+      apiVersion: "2022-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteRegistrationDefinitionRequest",
+}) as any as S.Schema<DeleteRegistrationDefinitionRequest>;
+
+export interface DeleteRegistrationDefinitionResponse {}
+export const DeleteRegistrationDefinitionResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteRegistrationDefinitionResponse",
+}) as any as S.Schema<DeleteRegistrationDefinitionResponse>;
+
+export interface GetMarketplaceRegistrationDefinitionRequest {
   /** The scope of the resource. */
   scope: string;
   /** The Azure Marketplace identifier. Expected formats: {publisher}.{product[-preview]}.{planName}.{version} or {publisher}.{product[-preview]}.{planName} or {publisher}.{product[-preview]} or {publisher}). */
   marketplaceIdentifier: string;
 }
-export const MarketplaceRegistrationDefinitionsGetRequest =
+export const GetMarketplaceRegistrationDefinitionRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       scope: S.String.pipe(T.Label()),
@@ -32,8 +90,8 @@ export const MarketplaceRegistrationDefinitionsGetRequest =
       }),
     ),
   ).annotate({
-    identifier: "MarketplaceRegistrationDefinitionsGetRequest",
-  }) as any as S.Schema<MarketplaceRegistrationDefinitionsGetRequest>;
+    identifier: "GetMarketplaceRegistrationDefinitionRequest",
+  }) as any as S.Schema<GetMarketplaceRegistrationDefinitionRequest>;
 
 /** The delegatedRoleDefinitionIds field is required when the roleDefinitionId refers to the User Access Administrator Role. It is the list of role definition ids which define all the permissions that the user in the authorization can assign to other principals. */
 export type AuthorizationDelegatedRoleDefinitionIdsList = Array<string>;
@@ -230,59 +288,11 @@ export const MarketplaceRegistrationDefinition = /*@__PURE__*/ S.suspend(() =>
   identifier: "MarketplaceRegistrationDefinition",
 }) as any as S.Schema<MarketplaceRegistrationDefinition>;
 
-export interface MarketplaceRegistrationDefinitionsListRequest {
-  /** The scope of the resource. */
-  scope: string;
-  /** The filter query parameter to filter managed services resources by. */
-  _filter?: string;
-}
-export const MarketplaceRegistrationDefinitionsListRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      scope: S.String.pipe(T.Label()),
-      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/{scope}/providers/Microsoft.ManagedServices/marketplaceRegistrationDefinitions",
-        code: 200,
-        apiVersion: "2022-10-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "MarketplaceRegistrationDefinitionsListRequest",
-  }) as any as S.Schema<MarketplaceRegistrationDefinitionsListRequest>;
-
-/** The list of marketplace registration definitions. */
-export type MarketplaceRegistrationDefinitionListValueList =
-  Array<MarketplaceRegistrationDefinition>;
-export const MarketplaceRegistrationDefinitionListValueList =
-  /*@__PURE__*/ S.Array(
-    MarketplaceRegistrationDefinition,
-  ) as any as S.Schema<MarketplaceRegistrationDefinitionListValueList>;
-
-/** The list of marketplace registration definitions. */
-export interface MarketplaceRegistrationDefinitionList {
-  /** The list of marketplace registration definitions. */
-  value?: MarketplaceRegistrationDefinitionListValueList;
-  /** The link to the next page of marketplace registration definitions. */
-  nextLink?: string;
-}
-export const MarketplaceRegistrationDefinitionList = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      value: S.optional(MarketplaceRegistrationDefinitionListValueList),
-      nextLink: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "MarketplaceRegistrationDefinitionList",
-}) as any as S.Schema<MarketplaceRegistrationDefinitionList>;
-
-export interface MarketplaceRegistrationDefinitionsWithoutScopeGetRequest {
+export interface GetMarketplaceRegistrationDefinitionsWithoutScopeRequest {
   /** The Azure Marketplace identifier. Expected formats: {publisher}.{product[-preview]}.{planName}.{version} or {publisher}.{product[-preview]}.{planName} or {publisher}.{product[-preview]} or {publisher}). */
   marketplaceIdentifier: string;
 }
-export const MarketplaceRegistrationDefinitionsWithoutScopeGetRequest =
+export const GetMarketplaceRegistrationDefinitionsWithoutScopeRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       marketplaceIdentifier: S.String.pipe(T.Label()),
@@ -295,154 +305,35 @@ export const MarketplaceRegistrationDefinitionsWithoutScopeGetRequest =
       }),
     ),
   ).annotate({
-    identifier: "MarketplaceRegistrationDefinitionsWithoutScopeGetRequest",
-  }) as any as S.Schema<MarketplaceRegistrationDefinitionsWithoutScopeGetRequest>;
+    identifier: "GetMarketplaceRegistrationDefinitionsWithoutScopeRequest",
+  }) as any as S.Schema<GetMarketplaceRegistrationDefinitionsWithoutScopeRequest>;
 
-export interface MarketplaceRegistrationDefinitionsWithoutScopeListRequest {
-  /** The filter query parameter to filter managed services resources by. */
-  _filter?: string;
-}
-export const MarketplaceRegistrationDefinitionsWithoutScopeListRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/providers/Microsoft.ManagedServices/marketplaceRegistrationDefinitions",
-        code: 200,
-        apiVersion: "2022-10-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "MarketplaceRegistrationDefinitionsWithoutScopeListRequest",
-  }) as any as S.Schema<MarketplaceRegistrationDefinitionsWithoutScopeListRequest>;
-
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.ManagedServices/operations",
-      code: 200,
-      apiVersion: "2022-10-01",
-    }),
-  ),
-).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
-
-/** The object that represents the operation. */
-export interface OperationDisplay {
-  /** The service provider. */
-  provider?: string;
-  /** The resource on which the operation is performed. */
-  resource?: string;
-  /** The operation type. */
-  operation?: string;
-  /** The description of the operation. */
-  description?: string;
-}
-export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provider: S.optional(S.String),
-    resource: S.optional(S.String),
-    operation: S.optional(S.String),
-    description: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationDisplay",
-}) as any as S.Schema<OperationDisplay>;
-
-/** The object that describes a single Microsoft.ManagedServices operation. */
-export interface Operation {
-  /** The operation name with the format: {provider}/{resource}/{operation} */
-  name?: string;
-  /** The object that represents the operation. */
-  display?: OperationDisplay;
-}
-export const Operation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    display: S.optional(OperationDisplay),
-  }),
-).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
-
-/** The list of Microsoft.ManagedServices operations. */
-export type OperationListValueList = Array<Operation>;
-export const OperationListValueList = /*@__PURE__*/ S.Array(
-  Operation,
-) as any as S.Schema<OperationListValueList>;
-
-/** The list of the operations. */
-export interface OperationList {
-  /** The list of Microsoft.ManagedServices operations. */
-  value?: OperationListValueList;
-}
-export const OperationList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(OperationListValueList),
-  }),
-).annotate({ identifier: "OperationList" }) as any as S.Schema<OperationList>;
-
-export interface OperationsWithScopeListRequest {
-  /** The scope of the resource. */
-  scope: string;
-}
-export const OperationsWithScopeListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    scope: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/{scope}/providers/Microsoft.ManagedServices/operations",
-      code: 200,
-      apiVersion: "2022-10-01",
-    }),
-  ),
-).annotate({
-  identifier: "OperationsWithScopeListRequest",
-}) as any as S.Schema<OperationsWithScopeListRequest>;
-
-/** The properties of the registration assignment. */
-export interface RegistrationAssignmentPropertiesInput {
-  /** The fully qualified path of the registration definition. */
-  registrationDefinitionId: string;
-}
-export const RegistrationAssignmentPropertiesInput = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      registrationDefinitionId: S.String,
-    }),
-).annotate({
-  identifier: "RegistrationAssignmentPropertiesInput",
-}) as any as S.Schema<RegistrationAssignmentPropertiesInput>;
-
-export interface RegistrationAssignmentsCreateOrUpdateRequest {
+export interface GetRegistrationAssignmentRequest {
   /** The scope of the resource. */
   scope: string;
   /** The GUID of the registration assignment. */
   registrationAssignmentId: string;
-  /** The properties of a registration assignment. */
-  properties?: RegistrationAssignmentPropertiesInput;
+  /** The flag indicating whether to return the registration definition details along with the registration assignment details. */
+  _expandRegistrationDefinition?: boolean;
 }
-export const RegistrationAssignmentsCreateOrUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      scope: S.String.pipe(T.Label()),
-      registrationAssignmentId: S.String.pipe(T.Label()),
-      properties: S.optional(RegistrationAssignmentPropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/{scope}/providers/Microsoft.ManagedServices/registrationAssignments/{registrationAssignmentId}",
-        code: 200,
-        apiVersion: "2022-10-01",
-      }),
+export const GetRegistrationAssignmentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    scope: S.String.pipe(T.Label()),
+    registrationAssignmentId: S.String.pipe(T.Label()),
+    _expandRegistrationDefinition: S.optional(
+      S.Boolean.pipe(T.Query("$expandRegistrationDefinition")),
     ),
-  ).annotate({
-    identifier: "RegistrationAssignmentsCreateOrUpdateRequest",
-  }) as any as S.Schema<RegistrationAssignmentsCreateOrUpdateRequest>;
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/{scope}/providers/Microsoft.ManagedServices/registrationAssignments/{registrationAssignmentId}",
+      code: 200,
+      apiVersion: "2022-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetRegistrationAssignmentRequest",
+}) as any as S.Schema<GetRegistrationAssignmentRequest>;
 
 /** The current provisioning state of the registration assignment. */
 export type RegistrationAssignmentPropertiesProvisioningState =
@@ -720,184 +611,27 @@ export const RegistrationAssignment = /*@__PURE__*/ S.suspend(() =>
   identifier: "RegistrationAssignment",
 }) as any as S.Schema<RegistrationAssignment>;
 
-export interface RegistrationAssignmentsDeleteRequest {
-  /** The scope of the resource. */
-  scope: string;
-  /** The GUID of the registration assignment. */
-  registrationAssignmentId: string;
-}
-export const RegistrationAssignmentsDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      scope: S.String.pipe(T.Label()),
-      registrationAssignmentId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/{scope}/providers/Microsoft.ManagedServices/registrationAssignments/{registrationAssignmentId}",
-        code: 200,
-        apiVersion: "2022-10-01",
-      }),
-    ),
-).annotate({
-  identifier: "RegistrationAssignmentsDeleteRequest",
-}) as any as S.Schema<RegistrationAssignmentsDeleteRequest>;
-
-export interface RegistrationAssignmentsDeleteResponse {}
-export const RegistrationAssignmentsDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "RegistrationAssignmentsDeleteResponse",
-}) as any as S.Schema<RegistrationAssignmentsDeleteResponse>;
-
-export interface RegistrationAssignmentsGetRequest {
-  /** The scope of the resource. */
-  scope: string;
-  /** The GUID of the registration assignment. */
-  registrationAssignmentId: string;
-  /** The flag indicating whether to return the registration definition details along with the registration assignment details. */
-  _expandRegistrationDefinition?: boolean;
-}
-export const RegistrationAssignmentsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    scope: S.String.pipe(T.Label()),
-    registrationAssignmentId: S.String.pipe(T.Label()),
-    _expandRegistrationDefinition: S.optional(
-      S.Boolean.pipe(T.Query("$expandRegistrationDefinition")),
-    ),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/{scope}/providers/Microsoft.ManagedServices/registrationAssignments/{registrationAssignmentId}",
-      code: 200,
-      apiVersion: "2022-10-01",
-    }),
-  ),
-).annotate({
-  identifier: "RegistrationAssignmentsGetRequest",
-}) as any as S.Schema<RegistrationAssignmentsGetRequest>;
-
-export interface RegistrationAssignmentsListRequest {
-  /** The scope of the resource. */
-  scope: string;
-  /** The flag indicating whether to return the registration definition details along with the registration assignment details. */
-  _expandRegistrationDefinition?: boolean;
-  /** The filter query parameter to filter managed services resources by. */
-  _filter?: string;
-}
-export const RegistrationAssignmentsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    scope: S.String.pipe(T.Label()),
-    _expandRegistrationDefinition: S.optional(
-      S.Boolean.pipe(T.Query("$expandRegistrationDefinition")),
-    ),
-    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/{scope}/providers/Microsoft.ManagedServices/registrationAssignments",
-      code: 200,
-      apiVersion: "2022-10-01",
-    }),
-  ),
-).annotate({
-  identifier: "RegistrationAssignmentsListRequest",
-}) as any as S.Schema<RegistrationAssignmentsListRequest>;
-
-/** The list of registration assignments. */
-export type RegistrationAssignmentListValueList = Array<RegistrationAssignment>;
-export const RegistrationAssignmentListValueList = /*@__PURE__*/ S.Array(
-  RegistrationAssignment,
-) as any as S.Schema<RegistrationAssignmentListValueList>;
-
-/** The list of registration assignments. */
-export interface RegistrationAssignmentList {
-  /** The list of registration assignments. */
-  value?: RegistrationAssignmentListValueList;
-  /** The link to the next page of registration assignments. */
-  nextLink?: string;
-}
-export const RegistrationAssignmentList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(RegistrationAssignmentListValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "RegistrationAssignmentList",
-}) as any as S.Schema<RegistrationAssignmentList>;
-
-/** The collection of authorization objects describing the access Azure Active Directory principals in the managedBy tenant will receive on the delegated resource in the managed tenant. */
-export type RegistrationDefinitionPropertiesInputAuthorizationsList =
-  Array<Authorization>;
-export const RegistrationDefinitionPropertiesInputAuthorizationsList =
-  /*@__PURE__*/ S.Array(
-    Authorization,
-  ) as any as S.Schema<RegistrationDefinitionPropertiesInputAuthorizationsList>;
-
-/** The collection of eligible authorization objects describing the just-in-time access Azure Active Directory principals in the managedBy tenant will receive on the delegated resource in the managed tenant. */
-export type RegistrationDefinitionPropertiesInputEligibleAuthorizationsList =
-  Array<EligibleAuthorization>;
-export const RegistrationDefinitionPropertiesInputEligibleAuthorizationsList =
-  /*@__PURE__*/ S.Array(
-    EligibleAuthorization,
-  ) as any as S.Schema<RegistrationDefinitionPropertiesInputEligibleAuthorizationsList>;
-
-/** The properties of a registration definition. */
-export interface RegistrationDefinitionPropertiesInput {
-  /** The description of the registration definition. */
-  description?: string;
-  /** The collection of authorization objects describing the access Azure Active Directory principals in the managedBy tenant will receive on the delegated resource in the managed tenant. */
-  authorizations: RegistrationDefinitionPropertiesInputAuthorizationsList;
-  /** The collection of eligible authorization objects describing the just-in-time access Azure Active Directory principals in the managedBy tenant will receive on the delegated resource in the managed tenant. */
-  eligibleAuthorizations?: RegistrationDefinitionPropertiesInputEligibleAuthorizationsList;
-  /** The name of the registration definition. */
-  registrationDefinitionName?: string;
-  /** The identifier of the managedBy tenant. */
-  managedByTenantId: string;
-}
-export const RegistrationDefinitionPropertiesInput = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      description: S.optional(S.String),
-      authorizations: RegistrationDefinitionPropertiesInputAuthorizationsList,
-      eligibleAuthorizations: S.optional(
-        RegistrationDefinitionPropertiesInputEligibleAuthorizationsList,
-      ),
-      registrationDefinitionName: S.optional(S.String),
-      managedByTenantId: S.String,
-    }),
-).annotate({
-  identifier: "RegistrationDefinitionPropertiesInput",
-}) as any as S.Schema<RegistrationDefinitionPropertiesInput>;
-
-export interface RegistrationDefinitionsCreateOrUpdateRequest {
+export interface GetRegistrationDefinitionRequest {
   /** The scope of the resource. */
   scope: string;
   /** The GUID of the registration definition. */
   registrationDefinitionId: string;
-  /** The properties of a registration definition. */
-  properties?: RegistrationDefinitionPropertiesInput;
-  /** The details for the Managed Services offer’s plan in Azure Marketplace. */
-  plan?: Plan;
 }
-export const RegistrationDefinitionsCreateOrUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      scope: S.String.pipe(T.Label()),
-      registrationDefinitionId: S.String.pipe(T.Label()),
-      properties: S.optional(RegistrationDefinitionPropertiesInput),
-      plan: S.optional(Plan),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/{scope}/providers/Microsoft.ManagedServices/registrationDefinitions/{registrationDefinitionId}",
-        code: 200,
-        apiVersion: "2022-10-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "RegistrationDefinitionsCreateOrUpdateRequest",
-  }) as any as S.Schema<RegistrationDefinitionsCreateOrUpdateRequest>;
+export const GetRegistrationDefinitionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    scope: S.String.pipe(T.Label()),
+    registrationDefinitionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/{scope}/providers/Microsoft.ManagedServices/registrationDefinitions/{registrationDefinitionId}",
+      code: 200,
+      apiVersion: "2022-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetRegistrationDefinitionRequest",
+}) as any as S.Schema<GetRegistrationDefinitionRequest>;
 
 /** The collection of authorization objects describing the access Azure Active Directory principals in the managedBy tenant will receive on the delegated resource in the managed tenant. */
 export type RegistrationDefinitionPropertiesAuthorizationsList =
@@ -1049,65 +783,216 @@ export const RegistrationDefinition = /*@__PURE__*/ S.suspend(() =>
   identifier: "RegistrationDefinition",
 }) as any as S.Schema<RegistrationDefinition>;
 
-export interface RegistrationDefinitionsDeleteRequest {
-  /** The scope of the resource. */
-  scope: string;
-  /** The GUID of the registration definition. */
-  registrationDefinitionId: string;
-}
-export const RegistrationDefinitionsDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      scope: S.String.pipe(T.Label()),
-      registrationDefinitionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/{scope}/providers/Microsoft.ManagedServices/registrationDefinitions/{registrationDefinitionId}",
-        code: 200,
-        apiVersion: "2022-10-01",
-      }),
-    ),
-).annotate({
-  identifier: "RegistrationDefinitionsDeleteRequest",
-}) as any as S.Schema<RegistrationDefinitionsDeleteRequest>;
-
-export interface RegistrationDefinitionsDeleteResponse {}
-export const RegistrationDefinitionsDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "RegistrationDefinitionsDeleteResponse",
-}) as any as S.Schema<RegistrationDefinitionsDeleteResponse>;
-
-export interface RegistrationDefinitionsGetRequest {
-  /** The scope of the resource. */
-  scope: string;
-  /** The GUID of the registration definition. */
-  registrationDefinitionId: string;
-}
-export const RegistrationDefinitionsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    scope: S.String.pipe(T.Label()),
-    registrationDefinitionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/{scope}/providers/Microsoft.ManagedServices/registrationDefinitions/{registrationDefinitionId}",
-      code: 200,
-      apiVersion: "2022-10-01",
-    }),
-  ),
-).annotate({
-  identifier: "RegistrationDefinitionsGetRequest",
-}) as any as S.Schema<RegistrationDefinitionsGetRequest>;
-
-export interface RegistrationDefinitionsListRequest {
+export interface ListMarketplaceRegistrationDefinitionsRequest {
   /** The scope of the resource. */
   scope: string;
   /** The filter query parameter to filter managed services resources by. */
   _filter?: string;
 }
-export const RegistrationDefinitionsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListMarketplaceRegistrationDefinitionsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      scope: S.String.pipe(T.Label()),
+      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/{scope}/providers/Microsoft.ManagedServices/marketplaceRegistrationDefinitions",
+        code: 200,
+        apiVersion: "2022-10-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListMarketplaceRegistrationDefinitionsRequest",
+  }) as any as S.Schema<ListMarketplaceRegistrationDefinitionsRequest>;
+
+/** The list of marketplace registration definitions. */
+export type MarketplaceRegistrationDefinitionListValueList =
+  Array<MarketplaceRegistrationDefinition>;
+export const MarketplaceRegistrationDefinitionListValueList =
+  /*@__PURE__*/ S.Array(
+    MarketplaceRegistrationDefinition,
+  ) as any as S.Schema<MarketplaceRegistrationDefinitionListValueList>;
+
+/** The list of marketplace registration definitions. */
+export interface MarketplaceRegistrationDefinitionList {
+  /** The list of marketplace registration definitions. */
+  value?: MarketplaceRegistrationDefinitionListValueList;
+  /** The link to the next page of marketplace registration definitions. */
+  nextLink?: string;
+}
+export const MarketplaceRegistrationDefinitionList = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      value: S.optional(MarketplaceRegistrationDefinitionListValueList),
+      nextLink: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "MarketplaceRegistrationDefinitionList",
+}) as any as S.Schema<MarketplaceRegistrationDefinitionList>;
+
+export interface ListMarketplaceRegistrationDefinitionsWithoutScopeRequest {
+  /** The filter query parameter to filter managed services resources by. */
+  _filter?: string;
+}
+export const ListMarketplaceRegistrationDefinitionsWithoutScopeRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/providers/Microsoft.ManagedServices/marketplaceRegistrationDefinitions",
+        code: 200,
+        apiVersion: "2022-10-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListMarketplaceRegistrationDefinitionsWithoutScopeRequest",
+  }) as any as S.Schema<ListMarketplaceRegistrationDefinitionsWithoutScopeRequest>;
+
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.ManagedServices/operations",
+      code: 200,
+      apiVersion: "2022-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
+
+/** The object that represents the operation. */
+export interface OperationDisplay {
+  /** The service provider. */
+  provider?: string;
+  /** The resource on which the operation is performed. */
+  resource?: string;
+  /** The operation type. */
+  operation?: string;
+  /** The description of the operation. */
+  description?: string;
+}
+export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provider: S.optional(S.String),
+    resource: S.optional(S.String),
+    operation: S.optional(S.String),
+    description: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationDisplay",
+}) as any as S.Schema<OperationDisplay>;
+
+/** The object that describes a single Microsoft.ManagedServices operation. */
+export interface Operation {
+  /** The operation name with the format: {provider}/{resource}/{operation} */
+  name?: string;
+  /** The object that represents the operation. */
+  display?: OperationDisplay;
+}
+export const Operation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    display: S.optional(OperationDisplay),
+  }),
+).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
+
+/** The list of Microsoft.ManagedServices operations. */
+export type OperationListValueList = Array<Operation>;
+export const OperationListValueList = /*@__PURE__*/ S.Array(
+  Operation,
+) as any as S.Schema<OperationListValueList>;
+
+/** The list of the operations. */
+export interface OperationList {
+  /** The list of Microsoft.ManagedServices operations. */
+  value?: OperationListValueList;
+}
+export const OperationList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(OperationListValueList),
+  }),
+).annotate({ identifier: "OperationList" }) as any as S.Schema<OperationList>;
+
+export interface ListOperationsWithScopeRequest {
+  /** The scope of the resource. */
+  scope: string;
+}
+export const ListOperationsWithScopeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    scope: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/{scope}/providers/Microsoft.ManagedServices/operations",
+      code: 200,
+      apiVersion: "2022-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListOperationsWithScopeRequest",
+}) as any as S.Schema<ListOperationsWithScopeRequest>;
+
+export interface ListRegistrationAssignmentsRequest {
+  /** The scope of the resource. */
+  scope: string;
+  /** The flag indicating whether to return the registration definition details along with the registration assignment details. */
+  _expandRegistrationDefinition?: boolean;
+  /** The filter query parameter to filter managed services resources by. */
+  _filter?: string;
+}
+export const ListRegistrationAssignmentsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    scope: S.String.pipe(T.Label()),
+    _expandRegistrationDefinition: S.optional(
+      S.Boolean.pipe(T.Query("$expandRegistrationDefinition")),
+    ),
+    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/{scope}/providers/Microsoft.ManagedServices/registrationAssignments",
+      code: 200,
+      apiVersion: "2022-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListRegistrationAssignmentsRequest",
+}) as any as S.Schema<ListRegistrationAssignmentsRequest>;
+
+/** The list of registration assignments. */
+export type RegistrationAssignmentListValueList = Array<RegistrationAssignment>;
+export const RegistrationAssignmentListValueList = /*@__PURE__*/ S.Array(
+  RegistrationAssignment,
+) as any as S.Schema<RegistrationAssignmentListValueList>;
+
+/** The list of registration assignments. */
+export interface RegistrationAssignmentList {
+  /** The list of registration assignments. */
+  value?: RegistrationAssignmentListValueList;
+  /** The link to the next page of registration assignments. */
+  nextLink?: string;
+}
+export const RegistrationAssignmentList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(RegistrationAssignmentListValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "RegistrationAssignmentList",
+}) as any as S.Schema<RegistrationAssignmentList>;
+
+export interface ListRegistrationDefinitionsRequest {
+  /** The scope of the resource. */
+  scope: string;
+  /** The filter query parameter to filter managed services resources by. */
+  _filter?: string;
+}
+export const ListRegistrationDefinitionsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     scope: S.String.pipe(T.Label()),
     _filter: S.optional(S.String.pipe(T.Query("$filter"))),
@@ -1120,8 +1005,8 @@ export const RegistrationDefinitionsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "RegistrationDefinitionsListRequest",
-}) as any as S.Schema<RegistrationDefinitionsListRequest>;
+  identifier: "ListRegistrationDefinitionsRequest",
+}) as any as S.Schema<ListRegistrationDefinitionsRequest>;
 
 /** The list of registration definitions. */
 export type RegistrationDefinitionListValueList = Array<RegistrationDefinition>;
@@ -1145,93 +1030,296 @@ export const RegistrationDefinitionList = /*@__PURE__*/ S.suspend(() =>
   identifier: "RegistrationDefinitionList",
 }) as any as S.Schema<RegistrationDefinitionList>;
 
-export type MarketplaceRegistrationDefinitionsGetError = AzureOpError;
-/** Get the marketplace registration definition for the marketplace identifier. */
-export const MarketplaceRegistrationDefinitionsGet: API.OperationMethod<
-  MarketplaceRegistrationDefinitionsGetRequest,
-  MarketplaceRegistrationDefinition,
-  MarketplaceRegistrationDefinitionsGetError,
+/** The properties of the registration assignment. */
+export interface RegistrationAssignmentPropertiesInput {
+  /** The fully qualified path of the registration definition. */
+  registrationDefinitionId: string;
+}
+export const RegistrationAssignmentPropertiesInput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      registrationDefinitionId: S.String,
+    }),
+).annotate({
+  identifier: "RegistrationAssignmentPropertiesInput",
+}) as any as S.Schema<RegistrationAssignmentPropertiesInput>;
+
+export interface RegistrationAssignmentsCreateOrUpdateRequest {
+  /** The scope of the resource. */
+  scope: string;
+  /** The GUID of the registration assignment. */
+  registrationAssignmentId: string;
+  /** The properties of a registration assignment. */
+  properties?: RegistrationAssignmentPropertiesInput;
+}
+export const RegistrationAssignmentsCreateOrUpdateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      scope: S.String.pipe(T.Label()),
+      registrationAssignmentId: S.String.pipe(T.Label()),
+      properties: S.optional(RegistrationAssignmentPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/{scope}/providers/Microsoft.ManagedServices/registrationAssignments/{registrationAssignmentId}",
+        code: 200,
+        apiVersion: "2022-10-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "RegistrationAssignmentsCreateOrUpdateRequest",
+  }) as any as S.Schema<RegistrationAssignmentsCreateOrUpdateRequest>;
+
+/** The collection of authorization objects describing the access Azure Active Directory principals in the managedBy tenant will receive on the delegated resource in the managed tenant. */
+export type RegistrationDefinitionPropertiesInputAuthorizationsList =
+  Array<Authorization>;
+export const RegistrationDefinitionPropertiesInputAuthorizationsList =
+  /*@__PURE__*/ S.Array(
+    Authorization,
+  ) as any as S.Schema<RegistrationDefinitionPropertiesInputAuthorizationsList>;
+
+/** The collection of eligible authorization objects describing the just-in-time access Azure Active Directory principals in the managedBy tenant will receive on the delegated resource in the managed tenant. */
+export type RegistrationDefinitionPropertiesInputEligibleAuthorizationsList =
+  Array<EligibleAuthorization>;
+export const RegistrationDefinitionPropertiesInputEligibleAuthorizationsList =
+  /*@__PURE__*/ S.Array(
+    EligibleAuthorization,
+  ) as any as S.Schema<RegistrationDefinitionPropertiesInputEligibleAuthorizationsList>;
+
+/** The properties of a registration definition. */
+export interface RegistrationDefinitionPropertiesInput {
+  /** The description of the registration definition. */
+  description?: string;
+  /** The collection of authorization objects describing the access Azure Active Directory principals in the managedBy tenant will receive on the delegated resource in the managed tenant. */
+  authorizations: RegistrationDefinitionPropertiesInputAuthorizationsList;
+  /** The collection of eligible authorization objects describing the just-in-time access Azure Active Directory principals in the managedBy tenant will receive on the delegated resource in the managed tenant. */
+  eligibleAuthorizations?: RegistrationDefinitionPropertiesInputEligibleAuthorizationsList;
+  /** The name of the registration definition. */
+  registrationDefinitionName?: string;
+  /** The identifier of the managedBy tenant. */
+  managedByTenantId: string;
+}
+export const RegistrationDefinitionPropertiesInput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      description: S.optional(S.String),
+      authorizations: RegistrationDefinitionPropertiesInputAuthorizationsList,
+      eligibleAuthorizations: S.optional(
+        RegistrationDefinitionPropertiesInputEligibleAuthorizationsList,
+      ),
+      registrationDefinitionName: S.optional(S.String),
+      managedByTenantId: S.String,
+    }),
+).annotate({
+  identifier: "RegistrationDefinitionPropertiesInput",
+}) as any as S.Schema<RegistrationDefinitionPropertiesInput>;
+
+export interface RegistrationDefinitionsCreateOrUpdateRequest {
+  /** The scope of the resource. */
+  scope: string;
+  /** The GUID of the registration definition. */
+  registrationDefinitionId: string;
+  /** The properties of a registration definition. */
+  properties?: RegistrationDefinitionPropertiesInput;
+  /** The details for the Managed Services offer’s plan in Azure Marketplace. */
+  plan?: Plan;
+}
+export const RegistrationDefinitionsCreateOrUpdateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      scope: S.String.pipe(T.Label()),
+      registrationDefinitionId: S.String.pipe(T.Label()),
+      properties: S.optional(RegistrationDefinitionPropertiesInput),
+      plan: S.optional(Plan),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/{scope}/providers/Microsoft.ManagedServices/registrationDefinitions/{registrationDefinitionId}",
+        code: 200,
+        apiVersion: "2022-10-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "RegistrationDefinitionsCreateOrUpdateRequest",
+  }) as any as S.Schema<RegistrationDefinitionsCreateOrUpdateRequest>;
+
+export type DeleteRegistrationAssignmentError = AzureOpError;
+/** Deletes the specified registration assignment. */
+export const DeleteRegistrationAssignment: API.OperationMethod<
+  DeleteRegistrationAssignmentRequest,
+  DeleteRegistrationAssignmentResponse,
+  DeleteRegistrationAssignmentError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: MarketplaceRegistrationDefinitionsGetRequest,
+  input: DeleteRegistrationAssignmentRequest,
+  output: DeleteRegistrationAssignmentResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteRegistrationDefinitionError = AzureOpError;
+/** Deletes the registration definition. */
+export const DeleteRegistrationDefinition: API.OperationMethod<
+  DeleteRegistrationDefinitionRequest,
+  DeleteRegistrationDefinitionResponse,
+  DeleteRegistrationDefinitionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteRegistrationDefinitionRequest,
+  output: DeleteRegistrationDefinitionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetMarketplaceRegistrationDefinitionError = AzureOpError;
+/** Get the marketplace registration definition for the marketplace identifier. */
+export const GetMarketplaceRegistrationDefinition: API.OperationMethod<
+  GetMarketplaceRegistrationDefinitionRequest,
+  MarketplaceRegistrationDefinition,
+  GetMarketplaceRegistrationDefinitionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetMarketplaceRegistrationDefinitionRequest,
   output: MarketplaceRegistrationDefinition,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type MarketplaceRegistrationDefinitionsListError = AzureOpError;
-/** Gets a list of the marketplace registration definitions for the marketplace identifier. */
-export const MarketplaceRegistrationDefinitionsList: API.OperationMethod<
-  MarketplaceRegistrationDefinitionsListRequest,
-  MarketplaceRegistrationDefinitionList,
-  MarketplaceRegistrationDefinitionsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MarketplaceRegistrationDefinitionsListRequest,
-  output: MarketplaceRegistrationDefinitionList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MarketplaceRegistrationDefinitionsWithoutScopeGetError =
+export type GetMarketplaceRegistrationDefinitionsWithoutScopeError =
   AzureOpError;
 /** Get the marketplace registration definition for the marketplace identifier. */
-export const MarketplaceRegistrationDefinitionsWithoutScopeGet: API.OperationMethod<
-  MarketplaceRegistrationDefinitionsWithoutScopeGetRequest,
+export const GetMarketplaceRegistrationDefinitionsWithoutScope: API.OperationMethod<
+  GetMarketplaceRegistrationDefinitionsWithoutScopeRequest,
   MarketplaceRegistrationDefinition,
-  MarketplaceRegistrationDefinitionsWithoutScopeGetError,
+  GetMarketplaceRegistrationDefinitionsWithoutScopeError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: MarketplaceRegistrationDefinitionsWithoutScopeGetRequest,
+  input: GetMarketplaceRegistrationDefinitionsWithoutScopeRequest,
   output: MarketplaceRegistrationDefinition,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type MarketplaceRegistrationDefinitionsWithoutScopeListError =
-  AzureOpError;
-/** Gets a list of the marketplace registration definitions for the marketplace identifier. */
-export const MarketplaceRegistrationDefinitionsWithoutScopeList: API.OperationMethod<
-  MarketplaceRegistrationDefinitionsWithoutScopeListRequest,
-  MarketplaceRegistrationDefinitionList,
-  MarketplaceRegistrationDefinitionsWithoutScopeListError,
+export type GetRegistrationAssignmentError = AzureOpError;
+/** Gets the details of the specified registration assignment. */
+export const GetRegistrationAssignment: API.OperationMethod<
+  GetRegistrationAssignmentRequest,
+  RegistrationAssignment,
+  GetRegistrationAssignmentError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: MarketplaceRegistrationDefinitionsWithoutScopeListRequest,
+  input: GetRegistrationAssignmentRequest,
+  output: RegistrationAssignment,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetRegistrationDefinitionError = AzureOpError;
+/** Gets the registration definition details. */
+export const GetRegistrationDefinition: API.OperationMethod<
+  GetRegistrationDefinitionRequest,
+  RegistrationDefinition,
+  GetRegistrationDefinitionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetRegistrationDefinitionRequest,
+  output: RegistrationDefinition,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListMarketplaceRegistrationDefinitionsError = AzureOpError;
+/** Gets a list of the marketplace registration definitions for the marketplace identifier. */
+export const ListMarketplaceRegistrationDefinitions: API.OperationMethod<
+  ListMarketplaceRegistrationDefinitionsRequest,
+  MarketplaceRegistrationDefinitionList,
+  ListMarketplaceRegistrationDefinitionsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListMarketplaceRegistrationDefinitionsRequest,
   output: MarketplaceRegistrationDefinitionList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OperationsListError = AzureOpError;
+export type ListMarketplaceRegistrationDefinitionsWithoutScopeError =
+  AzureOpError;
+/** Gets a list of the marketplace registration definitions for the marketplace identifier. */
+export const ListMarketplaceRegistrationDefinitionsWithoutScope: API.OperationMethod<
+  ListMarketplaceRegistrationDefinitionsWithoutScopeRequest,
+  MarketplaceRegistrationDefinitionList,
+  ListMarketplaceRegistrationDefinitionsWithoutScopeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListMarketplaceRegistrationDefinitionsWithoutScopeRequest,
+  output: MarketplaceRegistrationDefinitionList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOperationsError = AzureOpError;
 /** Gets a list of the operations. */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
   OperationList,
-  OperationsListError,
+  ListOperationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
+  input: ListOperationsRequest,
   output: OperationList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OperationsWithScopeListError = AzureOpError;
+export type ListOperationsWithScopeError = AzureOpError;
 /** Gets a list of the operations with the scope. */
-export const OperationsWithScopeList: API.OperationMethod<
-  OperationsWithScopeListRequest,
+export const ListOperationsWithScope: API.OperationMethod<
+  ListOperationsWithScopeRequest,
   OperationList,
-  OperationsWithScopeListError,
+  ListOperationsWithScopeError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsWithScopeListRequest,
+  input: ListOperationsWithScopeRequest,
   output: OperationList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListRegistrationAssignmentsError = AzureOpError;
+/** Gets a list of the registration assignments. */
+export const ListRegistrationAssignments: API.OperationMethod<
+  ListRegistrationAssignmentsRequest,
+  RegistrationAssignmentList,
+  ListRegistrationAssignmentsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListRegistrationAssignmentsRequest,
+  output: RegistrationAssignmentList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListRegistrationDefinitionsError = AzureOpError;
+/** Gets a list of the registration definitions. */
+export const ListRegistrationDefinitions: API.OperationMethod<
+  ListRegistrationDefinitionsRequest,
+  RegistrationDefinitionList,
+  ListRegistrationDefinitionsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListRegistrationDefinitionsRequest,
+  output: RegistrationDefinitionList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -1252,51 +1340,6 @@ export const RegistrationAssignmentsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type RegistrationAssignmentsDeleteError = AzureOpError;
-/** Deletes the specified registration assignment. */
-export const RegistrationAssignmentsDelete: API.OperationMethod<
-  RegistrationAssignmentsDeleteRequest,
-  RegistrationAssignmentsDeleteResponse,
-  RegistrationAssignmentsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RegistrationAssignmentsDeleteRequest,
-  output: RegistrationAssignmentsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RegistrationAssignmentsGetError = AzureOpError;
-/** Gets the details of the specified registration assignment. */
-export const RegistrationAssignmentsGet: API.OperationMethod<
-  RegistrationAssignmentsGetRequest,
-  RegistrationAssignment,
-  RegistrationAssignmentsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RegistrationAssignmentsGetRequest,
-  output: RegistrationAssignment,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RegistrationAssignmentsListError = AzureOpError;
-/** Gets a list of the registration assignments. */
-export const RegistrationAssignmentsList: API.OperationMethod<
-  RegistrationAssignmentsListRequest,
-  RegistrationAssignmentList,
-  RegistrationAssignmentsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RegistrationAssignmentsListRequest,
-  output: RegistrationAssignmentList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type RegistrationDefinitionsCreateOrUpdateError = AzureOpError;
 /** Creates or updates a registration definition. */
 export const RegistrationDefinitionsCreateOrUpdate: API.OperationMethod<
@@ -1307,51 +1350,6 @@ export const RegistrationDefinitionsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: RegistrationDefinitionsCreateOrUpdateRequest,
   output: RegistrationDefinition,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RegistrationDefinitionsDeleteError = AzureOpError;
-/** Deletes the registration definition. */
-export const RegistrationDefinitionsDelete: API.OperationMethod<
-  RegistrationDefinitionsDeleteRequest,
-  RegistrationDefinitionsDeleteResponse,
-  RegistrationDefinitionsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RegistrationDefinitionsDeleteRequest,
-  output: RegistrationDefinitionsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RegistrationDefinitionsGetError = AzureOpError;
-/** Gets the registration definition details. */
-export const RegistrationDefinitionsGet: API.OperationMethod<
-  RegistrationDefinitionsGetRequest,
-  RegistrationDefinition,
-  RegistrationDefinitionsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RegistrationDefinitionsGetRequest,
-  output: RegistrationDefinition,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RegistrationDefinitionsListError = AzureOpError;
-/** Gets a list of the registration definitions. */
-export const RegistrationDefinitionsList: API.OperationMethod<
-  RegistrationDefinitionsListRequest,
-  RegistrationDefinitionList,
-  RegistrationDefinitionsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RegistrationDefinitionsListRequest,
-  output: RegistrationDefinitionList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

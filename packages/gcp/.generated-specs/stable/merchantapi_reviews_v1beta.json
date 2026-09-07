@@ -4,263 +4,43 @@
     "service": "merchantapi",
     "version": "reviews_v1beta",
     "title": "Merchant API",
-    "baseUrl": "https://merchantapi.googleapis.com/"
+    "baseUrl": "https://merchantapi.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.gcp.merchantapi_reviews_v1beta#ProductReviewAttributes": {
+    "com.gcp.merchantapi_reviews_v1beta#ListProductReviewsResponse": {
       "type": "structure",
       "members": {
-        "reviewLink": {
-          "target": "com.gcp.merchantapi_reviews_v1beta#ReviewLink",
-          "traits": {
-            "smithy.api#documentation": "Optional. The URI of the review landing page."
-          }
-        },
-        "reviewerIsAnonymous": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Optional. Set to true if the reviewer should remain anonymous."
-          }
-        },
-        "reviewerId": {
+        "nextPageToken": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. The author of the product review. A permanent, unique identifier for the author of the review in the publisher's system."
+            "smithy.api#documentation": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
           }
         },
-        "isVerifiedPurchase": {
-          "target": "smithy.api#Boolean",
+        "productReviews": {
+          "target": "com.gcp.merchantapi_reviews_v1beta#ProductReviewList",
           "traits": {
-            "smithy.api#documentation": "Optional. Indicates whether the reviewer's purchase is verified."
-          }
-        },
-        "transactionId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. A permanent, unique identifier for the transaction associated with the review in the publisher's system. This ID can be used to indicate that multiple reviews are associated with the same transaction."
-          }
-        },
-        "brands": {
-          "target": "com.gcp.merchantapi_reviews_v1beta#StringList",
-          "traits": {
-            "smithy.api#documentation": "Optional. Contains brand names associated with a product."
-          }
-        },
-        "productNames": {
-          "target": "com.gcp.merchantapi_reviews_v1beta#StringList",
-          "traits": {
-            "smithy.api#documentation": "Optional. Descriptive name of a product."
-          }
-        },
-        "gtins": {
-          "target": "com.gcp.merchantapi_reviews_v1beta#StringList",
-          "traits": {
-            "smithy.api#documentation": "Optional. Contains GTINs (global trade item numbers) associated with a product. Sub-types of GTINs (e.g. UPC, EAN, ISBN, JAN) are supported."
-          }
-        },
-        "reviewerUsername": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The name of the reviewer of the product review."
-          }
-        },
-        "isSpam": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Optional. Indicates whether the review is marked as spam in the publisher's system."
-          }
-        },
-        "minRating": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Contains the ratings associated with the review. The minimum possible number for the rating. This should be the worst possible rating and should not be a value for no rating."
-          }
-        },
-        "isIncentivizedReview": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Optional. Indicates whether the review is incentivized."
-          }
-        },
-        "asins": {
-          "target": "com.gcp.merchantapi_reviews_v1beta#StringList",
-          "traits": {
-            "smithy.api#documentation": "Optional. Contains ASINs (Amazon Standard Identification Numbers) associated with a product."
-          }
-        },
-        "rating": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Optional. The reviewer's overall rating of the product."
-          }
-        },
-        "subclientName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The name of the subclient of the product reviews. The subclient is an identifier of the product review source. It should be equivalent to the directory provided in the file data source path."
-          }
-        },
-        "title": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The title of the review."
-          }
-        },
-        "reviewerImageLinks": {
-          "target": "com.gcp.merchantapi_reviews_v1beta#StringList",
-          "traits": {
-            "smithy.api#documentation": "Optional. A URI to an image of the reviewed product created by the review author. The URI does not have to end with an image file extension."
-          }
-        },
-        "publisherFavicon": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. A link to the company favicon of the publisher. The image dimensions should be favicon size: 16x16 pixels. The image format should be GIF, JPG or PNG."
-          }
-        },
-        "reviewTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The timestamp indicating when the review was written."
-          }
-        },
-        "reviewLanguage": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The language of the review defined by BCP-47 language code."
-          }
-        },
-        "maxRating": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The maximum possible number for the rating. The value of the max rating must be greater than the value of the min attribute."
-          }
-        },
-        "skus": {
-          "target": "com.gcp.merchantapi_reviews_v1beta#StringList",
-          "traits": {
-            "smithy.api#documentation": "Optional. Contains SKUs (stock keeping units) associated with a product. Often this matches the product Offer Id in the product feed."
-          }
-        },
-        "content": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The content of the review. If empty, the content might still get populated from pros and cons."
-          }
-        },
-        "aggregatorName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The name of the aggregator of the product reviews. A publisher may use a reviews aggregator to manage reviews and provide the feeds. This element indicates the use of an aggregator and contains information about the aggregator."
-          }
-        },
-        "pros": {
-          "target": "com.gcp.merchantapi_reviews_v1beta#StringList",
-          "traits": {
-            "smithy.api#documentation": "Optional. Contains the advantages based on the opinion of the reviewer. Omit boilerplate text like \"pro:\" unless it was written by the reviewer."
-          }
-        },
-        "publisherName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The name of the publisher of the product reviews. The information about the publisher, which may be a retailer, manufacturer, reviews service company, or any entity that publishes product reviews."
-          }
-        },
-        "collectionMethod": {
-          "target": "com.gcp.merchantapi_reviews_v1beta#ProductReviewAttributesCollectionMethodEnum",
-          "traits": {
-            "smithy.api#documentation": "Optional. The method used to collect the review."
-          }
-        },
-        "reviewCountry": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The country of the review defined by ISO 3166-1 Alpha-2 Country Code."
-          }
-        },
-        "cons": {
-          "target": "com.gcp.merchantapi_reviews_v1beta#StringList",
-          "traits": {
-            "smithy.api#documentation": "Optional. Contains the disadvantages based on the opinion of the reviewer. Omit boilerplate text like \"con:\" unless it was written by the reviewer."
-          }
-        },
-        "productLinks": {
-          "target": "com.gcp.merchantapi_reviews_v1beta#StringList",
-          "traits": {
-            "smithy.api#documentation": "Optional. The URI of the product. This URI can have the same value as the `review_link` element, if the review URI and the product URI are the same."
-          }
-        },
-        "mpns": {
-          "target": "com.gcp.merchantapi_reviews_v1beta#StringList",
-          "traits": {
-            "smithy.api#documentation": "Optional. Contains MPNs (manufacturer part numbers) associated with a product."
+            "smithy.api#documentation": "The product review."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Attributes."
+        "smithy.api#documentation": "response message for the ListProductReviews method."
       }
     },
-    "com.gcp.merchantapi_reviews_v1beta#StringList": {
+    "com.gcp.merchantapi_reviews_v1beta#ProductReviewList": {
       "type": "list",
       "member": {
-        "target": "smithy.api#String"
-      }
-    },
-    "com.gcp.merchantapi_reviews_v1beta#ProductReviewAttributesCollectionMethodEnum": {
-      "type": "enum",
-      "members": {
-        "COLLECTION_METHOD_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "COLLECTION_METHOD_UNSPECIFIED"
-          }
-        },
-        "UNSOLICITED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "UNSOLICITED"
-          }
-        },
-        "POST_FULFILLMENT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "POST_FULFILLMENT"
-          }
-        }
+        "target": "com.gcp.merchantapi_reviews_v1beta#ProductReview"
       }
     },
     "com.gcp.merchantapi_reviews_v1beta#MerchantReviewItemLevelIssue": {
       "type": "structure",
       "members": {
-        "code": {
-          "target": "smithy.api#String",
+        "severity": {
+          "target": "com.gcp.merchantapi_reviews_v1beta#MerchantReviewItemLevelIssueSeverityEnum",
           "traits": {
-            "smithy.api#documentation": "Output only. The error code of the issue."
-          }
-        },
-        "documentation": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The URL of a web page to help with resolving this issue."
-          }
-        },
-        "detail": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. A detailed issue description in English."
-          }
-        },
-        "resolution": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Whether the issue can be resolved by the merchant."
-          }
-        },
-        "attribute": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The attribute's name, if the issue is caused by a single attribute."
+            "smithy.api#documentation": "Output only. How this issue affects serving of the merchant review."
           }
         },
         "reportingContext": {
@@ -269,10 +49,10 @@
             "smithy.api#documentation": "Output only. The reporting context the issue applies to."
           }
         },
-        "severity": {
-          "target": "com.gcp.merchantapi_reviews_v1beta#MerchantReviewItemLevelIssueSeverityEnum",
+        "resolution": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. How this issue affects serving of the merchant review."
+            "smithy.api#documentation": "Output only. Whether the issue can be resolved by the merchant."
           }
         },
         "description": {
@@ -280,10 +60,57 @@
           "traits": {
             "smithy.api#documentation": "Output only. A short issue description in English."
           }
+        },
+        "documentation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The URL of a web page to help with resolving this issue."
+          }
+        },
+        "attribute": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The attribute's name, if the issue is caused by a single attribute."
+          }
+        },
+        "detail": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. A detailed issue description in English."
+          }
+        },
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The error code of the issue."
+          }
         }
       },
       "traits": {
         "smithy.api#documentation": "The ItemLevelIssue of the merchant review status."
+      }
+    },
+    "com.gcp.merchantapi_reviews_v1beta#MerchantReviewItemLevelIssueSeverityEnum": {
+      "type": "enum",
+      "members": {
+        "SEVERITY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEVERITY_UNSPECIFIED"
+          }
+        },
+        "NOT_IMPACTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_IMPACTED"
+          }
+        },
+        "DISAPPROVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISAPPROVED"
+          }
+        }
       }
     },
     "com.gcp.merchantapi_reviews_v1beta#MerchantReviewItemLevelIssueReportingContextEnum": {
@@ -408,54 +235,50 @@
           "traits": {
             "smithy.api#enumValue": "YOUTUBE_CHECKOUT"
           }
-        }
-      }
-    },
-    "com.gcp.merchantapi_reviews_v1beta#MerchantReviewItemLevelIssueSeverityEnum": {
-      "type": "enum",
-      "members": {
-        "SEVERITY_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "SEVERITY_UNSPECIFIED"
-          }
         },
-        "NOT_IMPACTED": {
+        "RENTAL_ADS": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "NOT_IMPACTED"
-          }
-        },
-        "DISAPPROVED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DISAPPROVED"
+            "smithy.api#enumValue": "RENTAL_ADS"
           }
         }
       }
     },
-    "com.gcp.merchantapi_reviews_v1beta#Empty": {
+    "com.gcp.merchantapi_reviews_v1beta#CustomAttribute": {
       "type": "structure",
-      "members": {},
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value of the attribute. If `value` is not empty, `group_values` must be empty."
+          }
+        },
+        "groupValues": {
+          "target": "com.gcp.merchantapi_reviews_v1beta#CustomAttributeList",
+          "traits": {
+            "smithy.api#documentation": "Subattributes within this attribute group. If `group_values` is not empty, `value` must be empty."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the attribute."
+          }
+        }
+      },
       "traits": {
-        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+        "smithy.api#documentation": "A message that represents custom attributes. Exactly one of `value` or `group_values` must not be empty."
       }
     },
-    "com.gcp.merchantapi_reviews_v1beta#ProductReviewStatus": {
+    "com.gcp.merchantapi_reviews_v1beta#CustomAttributeList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.merchantapi_reviews_v1beta#CustomAttribute"
+      }
+    },
+    "com.gcp.merchantapi_reviews_v1beta#MerchantReviewStatus": {
       "type": "structure",
       "members": {
-        "itemLevelIssues": {
-          "target": "com.gcp.merchantapi_reviews_v1beta#ProductReviewItemLevelIssueList",
-          "traits": {
-            "smithy.api#documentation": "Output only. A list of all issues associated with the product review."
-          }
-        },
-        "destinationStatuses": {
-          "target": "com.gcp.merchantapi_reviews_v1beta#ProductReviewDestinationStatusList",
-          "traits": {
-            "smithy.api#documentation": "Output only. The intended destinations for the product review."
-          }
-        },
         "createTime": {
           "target": "smithy.api#String",
           "traits": {
@@ -467,407 +290,140 @@
           "traits": {
             "smithy.api#documentation": "Output only. Date on which the item has been last updated, in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format."
           }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Product review status."
-      }
-    },
-    "com.gcp.merchantapi_reviews_v1beta#ProductReviewItemLevelIssueList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.merchantapi_reviews_v1beta#ProductReviewItemLevelIssue"
-      }
-    },
-    "com.gcp.merchantapi_reviews_v1beta#ProductReviewDestinationStatusList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.merchantapi_reviews_v1beta#ProductReviewDestinationStatus"
-      }
-    },
-    "com.gcp.merchantapi_reviews_v1beta#ListMerchantReviewsResponse": {
-      "type": "structure",
-      "members": {
-        "merchantReviews": {
-          "target": "com.gcp.merchantapi_reviews_v1beta#MerchantReviewList",
+        },
+        "itemLevelIssues": {
+          "target": "com.gcp.merchantapi_reviews_v1beta#MerchantReviewItemLevelIssueList",
           "traits": {
-            "smithy.api#documentation": "The merchant review."
+            "smithy.api#documentation": "Output only. A list of all issues associated with the merchant review."
           }
         },
-        "nextPageToken": {
-          "target": "smithy.api#String",
+        "destinationStatuses": {
+          "target": "com.gcp.merchantapi_reviews_v1beta#MerchantReviewDestinationStatusList",
           "traits": {
-            "smithy.api#documentation": "The token to retrieve the next page of results."
+            "smithy.api#documentation": "Output only. The intended destinations for the merchant review."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Response message for the `ListMerchantsReview` method."
+        "smithy.api#documentation": "The status of a merchant review, data validation issues, that is, information about a merchant review computed asynchronously."
       }
     },
-    "com.gcp.merchantapi_reviews_v1beta#MerchantReviewList": {
+    "com.gcp.merchantapi_reviews_v1beta#MerchantReviewItemLevelIssueList": {
       "type": "list",
       "member": {
-        "target": "com.gcp.merchantapi_reviews_v1beta#MerchantReview"
+        "target": "com.gcp.merchantapi_reviews_v1beta#MerchantReviewItemLevelIssue"
       }
     },
-    "com.gcp.merchantapi_reviews_v1beta#ProductReviewItemLevelIssue": {
+    "com.gcp.merchantapi_reviews_v1beta#MerchantReviewDestinationStatusList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.merchantapi_reviews_v1beta#MerchantReviewDestinationStatus"
+      }
+    },
+    "com.gcp.merchantapi_reviews_v1beta#ProductStatusChangeMessage": {
       "type": "structure",
       "members": {
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The product name. Format: `accounts/{account}/products/{product}`"
+          }
+        },
+        "changes": {
+          "target": "com.gcp.merchantapi_reviews_v1beta#ProductChangeList",
+          "traits": {
+            "smithy.api#documentation": "A message to describe the change that happened to the product"
+          }
+        },
+        "managingAccount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account that manages the merchant's account. can be the same as merchant id if it is standalone account. Format : `accounts/{service_provider_id}`"
+          }
+        },
+        "eventTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time at which the event was generated. If you want to order the notification messages you receive you should rely on this field not on the order of receiving the notifications."
+          }
+        },
+        "expirationTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The product expiration time. This field will not be set if the notification is sent for a product deletion event."
+          }
+        },
+        "resourceType": {
+          "target": "com.gcp.merchantapi_reviews_v1beta#ProductStatusChangeMessageResourceTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The resource that changed, in this case it will always be `Product`."
+          }
+        },
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The product id."
+          }
+        },
+        "account": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The target account that owns the entity that changed. Format : `accounts/{merchant_id}`"
+          }
+        },
         "attribute": {
-          "target": "smithy.api#String",
+          "target": "com.gcp.merchantapi_reviews_v1beta#ProductStatusChangeMessageAttributeEnum",
           "traits": {
-            "smithy.api#documentation": "Output only. The attribute's name, if the issue is caused by a single attribute."
-          }
-        },
-        "resolution": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Whether the issue can be resolved by the merchant."
-          }
-        },
-        "severity": {
-          "target": "com.gcp.merchantapi_reviews_v1beta#ProductReviewItemLevelIssueSeverityEnum",
-          "traits": {
-            "smithy.api#documentation": "Output only. How this issue affects serving of the product review."
-          }
-        },
-        "detail": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. A detailed issue description in English."
-          }
-        },
-        "documentation": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The URL of a web page to help with resolving this issue."
-          }
-        },
-        "code": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The error code of the issue."
-          }
-        },
-        "reportingContext": {
-          "target": "com.gcp.merchantapi_reviews_v1beta#ProductReviewItemLevelIssueReportingContextEnum",
-          "traits": {
-            "smithy.api#documentation": "Output only. The reporting context the issue applies to."
-          }
-        },
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. A short issue description in English."
+            "smithy.api#documentation": "The attribute in the resource that changed, in this case it will be always `Status`."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "The ItemLevelIssue of the product review status."
+        "smithy.api#documentation": "The message that the merchant will receive to notify about product status change event"
       }
     },
-    "com.gcp.merchantapi_reviews_v1beta#ProductReviewItemLevelIssueSeverityEnum": {
+    "com.gcp.merchantapi_reviews_v1beta#ProductChangeList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.merchantapi_reviews_v1beta#ProductChange"
+      }
+    },
+    "com.gcp.merchantapi_reviews_v1beta#ProductStatusChangeMessageResourceTypeEnum": {
       "type": "enum",
       "members": {
-        "SEVERITY_UNSPECIFIED": {
+        "RESOURCE_UNSPECIFIED": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "SEVERITY_UNSPECIFIED"
+            "smithy.api#enumValue": "RESOURCE_UNSPECIFIED"
           }
         },
-        "NOT_IMPACTED": {
+        "PRODUCT": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "NOT_IMPACTED"
+            "smithy.api#enumValue": "PRODUCT"
           }
         },
-        "DISAPPROVED": {
+        "ACCOUNT_SERVICE": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "DISAPPROVED"
+            "smithy.api#enumValue": "ACCOUNT_SERVICE"
           }
         }
       }
     },
-    "com.gcp.merchantapi_reviews_v1beta#ProductReviewItemLevelIssueReportingContextEnum": {
+    "com.gcp.merchantapi_reviews_v1beta#ProductStatusChangeMessageAttributeEnum": {
       "type": "enum",
       "members": {
-        "REPORTING_CONTEXT_ENUM_UNSPECIFIED": {
+        "ATTRIBUTE_UNSPECIFIED": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "REPORTING_CONTEXT_ENUM_UNSPECIFIED"
+            "smithy.api#enumValue": "ATTRIBUTE_UNSPECIFIED"
           }
         },
-        "SHOPPING_ADS": {
+        "STATUS": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "SHOPPING_ADS"
-          }
-        },
-        "DISCOVERY_ADS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DISCOVERY_ADS"
-          }
-        },
-        "DEMAND_GEN_ADS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DEMAND_GEN_ADS"
-          }
-        },
-        "DEMAND_GEN_ADS_DISCOVER_SURFACE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DEMAND_GEN_ADS_DISCOVER_SURFACE"
-          }
-        },
-        "VIDEO_ADS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "VIDEO_ADS"
-          }
-        },
-        "DISPLAY_ADS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DISPLAY_ADS"
-          }
-        },
-        "LOCAL_INVENTORY_ADS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "LOCAL_INVENTORY_ADS"
-          }
-        },
-        "VEHICLE_INVENTORY_ADS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "VEHICLE_INVENTORY_ADS"
-          }
-        },
-        "FREE_LISTINGS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "FREE_LISTINGS"
-          }
-        },
-        "FREE_LISTINGS_UCP_CHECKOUT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "FREE_LISTINGS_UCP_CHECKOUT"
-          }
-        },
-        "FREE_LOCAL_LISTINGS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "FREE_LOCAL_LISTINGS"
-          }
-        },
-        "FREE_LOCAL_VEHICLE_LISTINGS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "FREE_LOCAL_VEHICLE_LISTINGS"
-          }
-        },
-        "YOUTUBE_AFFILIATE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "YOUTUBE_AFFILIATE"
-          }
-        },
-        "YOUTUBE_SHOPPING": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "YOUTUBE_SHOPPING"
-          }
-        },
-        "CLOUD_RETAIL": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CLOUD_RETAIL"
-          }
-        },
-        "LOCAL_CLOUD_RETAIL": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "LOCAL_CLOUD_RETAIL"
-          }
-        },
-        "PRODUCT_REVIEWS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "PRODUCT_REVIEWS"
-          }
-        },
-        "MERCHANT_REVIEWS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "MERCHANT_REVIEWS"
-          }
-        },
-        "YOUTUBE_CHECKOUT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "YOUTUBE_CHECKOUT"
-          }
-        }
-      }
-    },
-    "com.gcp.merchantapi_reviews_v1beta#ProductChange": {
-      "type": "structure",
-      "members": {
-        "oldValue": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The old value of the changed resource or attribute. If empty, it means that the product was created. Will have one of these values : (`approved`, `pending`, `disapproved`, ``)"
-          }
-        },
-        "newValue": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The new value of the changed resource or attribute. If empty, it means that the product was deleted. Will have one of these values : (`approved`, `pending`, `disapproved`, ``)"
-          }
-        },
-        "reportingContext": {
-          "target": "com.gcp.merchantapi_reviews_v1beta#ProductChangeReportingContextEnum",
-          "traits": {
-            "smithy.api#documentation": "Reporting contexts that have the change (if applicable). Currently this field supports only (`SHOPPING_ADS`, `LOCAL_INVENTORY_ADS`, `YOUTUBE_SHOPPING`, `YOUTUBE_CHECKOUT`, `YOUTUBE_AFFILIATE`) from the enum value [ReportingContextEnum](/merchant/api/reference/rest/Shared.Types/ReportingContextEnum)"
-          }
-        },
-        "regionCode": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Countries that have the change (if applicable). Represented in the ISO 3166 format."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The change that happened to the product including old value, new value, country code as the region code and reporting context."
-      }
-    },
-    "com.gcp.merchantapi_reviews_v1beta#ProductChangeReportingContextEnum": {
-      "type": "enum",
-      "members": {
-        "REPORTING_CONTEXT_ENUM_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "REPORTING_CONTEXT_ENUM_UNSPECIFIED"
-          }
-        },
-        "SHOPPING_ADS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "SHOPPING_ADS"
-          }
-        },
-        "DISCOVERY_ADS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DISCOVERY_ADS"
-          }
-        },
-        "DEMAND_GEN_ADS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DEMAND_GEN_ADS"
-          }
-        },
-        "DEMAND_GEN_ADS_DISCOVER_SURFACE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DEMAND_GEN_ADS_DISCOVER_SURFACE"
-          }
-        },
-        "VIDEO_ADS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "VIDEO_ADS"
-          }
-        },
-        "DISPLAY_ADS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DISPLAY_ADS"
-          }
-        },
-        "LOCAL_INVENTORY_ADS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "LOCAL_INVENTORY_ADS"
-          }
-        },
-        "VEHICLE_INVENTORY_ADS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "VEHICLE_INVENTORY_ADS"
-          }
-        },
-        "FREE_LISTINGS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "FREE_LISTINGS"
-          }
-        },
-        "FREE_LISTINGS_UCP_CHECKOUT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "FREE_LISTINGS_UCP_CHECKOUT"
-          }
-        },
-        "FREE_LOCAL_LISTINGS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "FREE_LOCAL_LISTINGS"
-          }
-        },
-        "FREE_LOCAL_VEHICLE_LISTINGS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "FREE_LOCAL_VEHICLE_LISTINGS"
-          }
-        },
-        "YOUTUBE_AFFILIATE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "YOUTUBE_AFFILIATE"
-          }
-        },
-        "YOUTUBE_SHOPPING": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "YOUTUBE_SHOPPING"
-          }
-        },
-        "CLOUD_RETAIL": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CLOUD_RETAIL"
-          }
-        },
-        "LOCAL_CLOUD_RETAIL": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "LOCAL_CLOUD_RETAIL"
-          }
-        },
-        "PRODUCT_REVIEWS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "PRODUCT_REVIEWS"
-          }
-        },
-        "MERCHANT_REVIEWS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "MERCHANT_REVIEWS"
-          }
-        },
-        "YOUTUBE_CHECKOUT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "YOUTUBE_CHECKOUT"
+            "smithy.api#enumValue": "STATUS"
           }
         }
       }
@@ -1008,260 +564,13 @@
           "traits": {
             "smithy.api#enumValue": "YOUTUBE_CHECKOUT"
           }
-        }
-      }
-    },
-    "com.gcp.merchantapi_reviews_v1beta#MerchantReviewStatus": {
-      "type": "structure",
-      "members": {
-        "destinationStatuses": {
-          "target": "com.gcp.merchantapi_reviews_v1beta#MerchantReviewDestinationStatusList",
-          "traits": {
-            "smithy.api#documentation": "Output only. The intended destinations for the merchant review."
-          }
         },
-        "lastUpdateTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Date on which the item has been last updated, in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format."
-          }
-        },
-        "itemLevelIssues": {
-          "target": "com.gcp.merchantapi_reviews_v1beta#MerchantReviewItemLevelIssueList",
-          "traits": {
-            "smithy.api#documentation": "Output only. A list of all issues associated with the merchant review."
-          }
-        },
-        "createTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Date on which the item has been created, in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The status of a merchant review, data validation issues, that is, information about a merchant review computed asynchronously."
-      }
-    },
-    "com.gcp.merchantapi_reviews_v1beta#MerchantReviewDestinationStatusList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.merchantapi_reviews_v1beta#MerchantReviewDestinationStatus"
-      }
-    },
-    "com.gcp.merchantapi_reviews_v1beta#MerchantReviewItemLevelIssueList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.merchantapi_reviews_v1beta#MerchantReviewItemLevelIssue"
-      }
-    },
-    "com.gcp.merchantapi_reviews_v1beta#CustomAttribute": {
-      "type": "structure",
-      "members": {
-        "groupValues": {
-          "target": "com.gcp.merchantapi_reviews_v1beta#CustomAttributeList",
-          "traits": {
-            "smithy.api#documentation": "Subattributes within this attribute group. If `group_values` is not empty, `value` must be empty."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the attribute."
-          }
-        },
-        "value": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The value of the attribute. If `value` is not empty, `group_values` must be empty."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A message that represents custom attributes. Exactly one of `value` or `group_values` must not be empty."
-      }
-    },
-    "com.gcp.merchantapi_reviews_v1beta#CustomAttributeList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.merchantapi_reviews_v1beta#CustomAttribute"
-      }
-    },
-    "com.gcp.merchantapi_reviews_v1beta#MerchantReviewAttributes": {
-      "type": "structure",
-      "members": {
-        "reviewerUsername": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Display name of the review author."
-          }
-        },
-        "merchantDisplayName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Human-readable display name for the merchant."
-          }
-        },
-        "maxRating": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The maximum possible number for the rating. The value of the max rating must be greater than the value of the min rating."
-          }
-        },
-        "merchantRatingLink": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. URL to the landing page that hosts the reviews for this merchant. Do not use a redirect URL."
-          }
-        },
-        "content": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. This should be any freeform text provided by the user and should not be truncated. If multiple responses to different questions are provided, all responses should be included, with the minimal context for the responses to make sense. Context should not be provided if questions were left unanswered."
-          }
-        },
-        "collectionMethod": {
-          "target": "com.gcp.merchantapi_reviews_v1beta#MerchantReviewAttributesCollectionMethodEnum",
-          "traits": {
-            "smithy.api#documentation": "Optional. The method used to collect the review."
-          }
-        },
-        "minRating": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The minimum possible number for the rating. This should be the worst possible rating and should not be a value for no rating."
-          }
-        },
-        "merchantId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Must be unique and stable across all requests. In other words, if a request today and another 90 days ago refer to the same merchant, they must have the same id."
-          }
-        },
-        "isAnonymous": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Optional. Set to true if the reviewer should remain anonymous."
-          }
-        },
-        "rating": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Optional. The reviewer's overall rating of the merchant."
-          }
-        },
-        "reviewerId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. A permanent, unique identifier for the author of the review in the publisher's system."
-          }
-        },
-        "reviewCountry": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The country where the reviewer made the order defined by ISO 3166-1 Alpha-2 Country Code."
-          }
-        },
-        "reviewLanguage": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The language of the review defined by BCP-47 language code."
-          }
-        },
-        "reviewTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The timestamp indicating when the review was written."
-          }
-        },
-        "merchantLink": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. URL to the merchant's main website. Do not use a redirect URL for this value. In other words, the value should point directly to the merchant's site."
-          }
-        },
-        "title": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The title of the review."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Attributes."
-      }
-    },
-    "com.gcp.merchantapi_reviews_v1beta#MerchantReviewAttributesCollectionMethodEnum": {
-      "type": "enum",
-      "members": {
-        "COLLECTION_METHOD_UNSPECIFIED": {
+        "RENTAL_ADS": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "COLLECTION_METHOD_UNSPECIFIED"
-          }
-        },
-        "MERCHANT_UNSOLICITED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "MERCHANT_UNSOLICITED"
-          }
-        },
-        "POINT_OF_SALE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "POINT_OF_SALE"
-          }
-        },
-        "AFTER_FULFILLMENT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "AFTER_FULFILLMENT"
+            "smithy.api#enumValue": "RENTAL_ADS"
           }
         }
-      }
-    },
-    "com.gcp.merchantapi_reviews_v1beta#MerchantReview": {
-      "type": "structure",
-      "members": {
-        "merchantReviewStatus": {
-          "target": "com.gcp.merchantapi_reviews_v1beta#MerchantReviewStatus",
-          "traits": {
-            "smithy.api#documentation": "Output only. The status of a merchant review, data validation issues, that is, information about a merchant review computed asynchronously."
-          }
-        },
-        "customAttributes": {
-          "target": "com.gcp.merchantapi_reviews_v1beta#CustomAttributeList",
-          "traits": {
-            "smithy.api#documentation": "Optional. A list of custom (merchant-provided) attributes. It can also be used for submitting any attribute of the data specification in its generic form (for example, `{ \"name\": \"size type\", \"value\": \"regular\" }`). This is useful for submitting attributes not explicitly exposed by the API, such as experimental attributes. Maximum allowed number of characters for each custom attribute is 10240 (represents sum of characters for name and value). Maximum 2500 custom attributes can be set per product, with total size of 102.4kB. Underscores in custom attribute names are replaced by spaces upon insertion."
-          }
-        },
-        "merchantReviewAttributes": {
-          "target": "com.gcp.merchantapi_reviews_v1beta#MerchantReviewAttributes",
-          "traits": {
-            "smithy.api#documentation": "Optional. A list of merchant review attributes."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier. The name of the merchant review. Format: `\"{merchantreview.name=accounts/{account}/merchantReviews/{merchantReview}}\"`"
-          }
-        },
-        "dataSource": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The primary data source of the merchant review."
-          }
-        },
-        "merchantReviewId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The user provided merchant review ID to uniquely identify the merchant review."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A review for a merchant. For more information, see [Introduction to Merchant Review Feeds](https://developers.google.com/merchant-review-feeds)"
       }
     },
     "com.gcp.merchantapi_reviews_v1beta#ReviewLink": {
@@ -1305,76 +614,6 @@
             "smithy.api#enumValue": "GROUP"
           }
         }
-      }
-    },
-    "com.gcp.merchantapi_reviews_v1beta#ListProductReviewsResponse": {
-      "type": "structure",
-      "members": {
-        "productReviews": {
-          "target": "com.gcp.merchantapi_reviews_v1beta#ProductReviewList",
-          "traits": {
-            "smithy.api#documentation": "The product review."
-          }
-        },
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "response message for the ListProductReviews method."
-      }
-    },
-    "com.gcp.merchantapi_reviews_v1beta#ProductReviewList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.merchantapi_reviews_v1beta#ProductReview"
-      }
-    },
-    "com.gcp.merchantapi_reviews_v1beta#ProductReview": {
-      "type": "structure",
-      "members": {
-        "productReviewStatus": {
-          "target": "com.gcp.merchantapi_reviews_v1beta#ProductReviewStatus",
-          "traits": {
-            "smithy.api#documentation": "Output only. The status of a product review, data validation issues, that is, information about a product review computed asynchronously."
-          }
-        },
-        "customAttributes": {
-          "target": "com.gcp.merchantapi_reviews_v1beta#CustomAttributeList",
-          "traits": {
-            "smithy.api#documentation": "Optional. A list of custom (merchant-provided) attributes."
-          }
-        },
-        "dataSource": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The primary data source of the product review."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier. The name of the product review. Format: `\"{productreview.name=accounts/{account}/productReviews/{productReview}}\"`"
-          }
-        },
-        "productReviewAttributes": {
-          "target": "com.gcp.merchantapi_reviews_v1beta#ProductReviewAttributes",
-          "traits": {
-            "smithy.api#documentation": "Optional. A list of product review attributes."
-          }
-        },
-        "productReviewId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The permanent, unique identifier for the product review in the publisher’s system."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A review for a product. For more information, see [Introduction to Product Review Feeds](https://developers.google.com/product-review-feeds)"
       }
     },
     "com.gcp.merchantapi_reviews_v1beta#ProductReviewDestinationStatus": {
@@ -1513,140 +752,918 @@
           "traits": {
             "smithy.api#enumValue": "YOUTUBE_CHECKOUT"
           }
+        },
+        "RENTAL_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RENTAL_ADS"
+          }
         }
       }
     },
-    "com.gcp.merchantapi_reviews_v1beta#ProductStatusChangeMessage": {
+    "com.gcp.merchantapi_reviews_v1beta#ProductReviewItemLevelIssue": {
       "type": "structure",
       "members": {
-        "resourceType": {
-          "target": "com.gcp.merchantapi_reviews_v1beta#ProductStatusChangeMessageResourceTypeEnum",
+        "reportingContext": {
+          "target": "com.gcp.merchantapi_reviews_v1beta#ProductReviewItemLevelIssueReportingContextEnum",
           "traits": {
-            "smithy.api#documentation": "The resource that changed, in this case it will always be `Product`."
-          }
-        },
-        "account": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The target account that owns the entity that changed. Format : `accounts/{merchant_id}`"
-          }
-        },
-        "resourceId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The product id."
-          }
-        },
-        "changes": {
-          "target": "com.gcp.merchantapi_reviews_v1beta#ProductChangeList",
-          "traits": {
-            "smithy.api#documentation": "A message to describe the change that happened to the product"
+            "smithy.api#documentation": "Output only. The reporting context the issue applies to."
           }
         },
         "attribute": {
-          "target": "com.gcp.merchantapi_reviews_v1beta#ProductStatusChangeMessageAttributeEnum",
-          "traits": {
-            "smithy.api#documentation": "The attribute in the resource that changed, in this case it will be always `Status`."
-          }
-        },
-        "managingAccount": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The account that manages the merchant's account. can be the same as merchant id if it is standalone account. Format : `accounts/{service_provider_id}`"
+            "smithy.api#documentation": "Output only. The attribute's name, if the issue is caused by a single attribute."
           }
         },
-        "expirationTime": {
+        "description": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. The product expiration time. This field will not be set if the notification is sent for a product deletion event."
+            "smithy.api#documentation": "Output only. A short issue description in English."
           }
         },
-        "eventTime": {
-          "target": "smithy.api#String",
+        "severity": {
+          "target": "com.gcp.merchantapi_reviews_v1beta#ProductReviewItemLevelIssueSeverityEnum",
           "traits": {
-            "smithy.api#documentation": "The time at which the event was generated. If you want to order the notification messages you receive you should rely on this field not on the order of receiving the notifications."
+            "smithy.api#documentation": "Output only. How this issue affects serving of the product review."
           }
         },
-        "resource": {
+        "documentation": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The product name. Format: `accounts/{account}/products/{product}`"
+            "smithy.api#documentation": "Output only. The URL of a web page to help with resolving this issue."
+          }
+        },
+        "resolution": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Whether the issue can be resolved by the merchant."
+          }
+        },
+        "detail": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. A detailed issue description in English."
+          }
+        },
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The error code of the issue."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "The message that the merchant will receive to notify about product status change event"
+        "smithy.api#documentation": "The ItemLevelIssue of the product review status."
       }
     },
-    "com.gcp.merchantapi_reviews_v1beta#ProductStatusChangeMessageResourceTypeEnum": {
+    "com.gcp.merchantapi_reviews_v1beta#ProductReviewItemLevelIssueReportingContextEnum": {
       "type": "enum",
       "members": {
-        "RESOURCE_UNSPECIFIED": {
+        "REPORTING_CONTEXT_ENUM_UNSPECIFIED": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "RESOURCE_UNSPECIFIED"
+            "smithy.api#enumValue": "REPORTING_CONTEXT_ENUM_UNSPECIFIED"
           }
         },
-        "PRODUCT": {
+        "SHOPPING_ADS": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "PRODUCT"
+            "smithy.api#enumValue": "SHOPPING_ADS"
           }
         },
-        "ACCOUNT_SERVICE": {
+        "DISCOVERY_ADS": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "ACCOUNT_SERVICE"
+            "smithy.api#enumValue": "DISCOVERY_ADS"
+          }
+        },
+        "DEMAND_GEN_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEMAND_GEN_ADS"
+          }
+        },
+        "DEMAND_GEN_ADS_DISCOVER_SURFACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEMAND_GEN_ADS_DISCOVER_SURFACE"
+          }
+        },
+        "VIDEO_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VIDEO_ADS"
+          }
+        },
+        "DISPLAY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISPLAY_ADS"
+          }
+        },
+        "LOCAL_INVENTORY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOCAL_INVENTORY_ADS"
+          }
+        },
+        "VEHICLE_INVENTORY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VEHICLE_INVENTORY_ADS"
+          }
+        },
+        "FREE_LISTINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LISTINGS"
+          }
+        },
+        "FREE_LISTINGS_UCP_CHECKOUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LISTINGS_UCP_CHECKOUT"
+          }
+        },
+        "FREE_LOCAL_LISTINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LOCAL_LISTINGS"
+          }
+        },
+        "FREE_LOCAL_VEHICLE_LISTINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LOCAL_VEHICLE_LISTINGS"
+          }
+        },
+        "YOUTUBE_AFFILIATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YOUTUBE_AFFILIATE"
+          }
+        },
+        "YOUTUBE_SHOPPING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YOUTUBE_SHOPPING"
+          }
+        },
+        "CLOUD_RETAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLOUD_RETAIL"
+          }
+        },
+        "LOCAL_CLOUD_RETAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOCAL_CLOUD_RETAIL"
+          }
+        },
+        "PRODUCT_REVIEWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRODUCT_REVIEWS"
+          }
+        },
+        "MERCHANT_REVIEWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MERCHANT_REVIEWS"
+          }
+        },
+        "YOUTUBE_CHECKOUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YOUTUBE_CHECKOUT"
+          }
+        },
+        "RENTAL_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RENTAL_ADS"
           }
         }
       }
     },
-    "com.gcp.merchantapi_reviews_v1beta#ProductChangeList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.merchantapi_reviews_v1beta#ProductChange"
-      }
-    },
-    "com.gcp.merchantapi_reviews_v1beta#ProductStatusChangeMessageAttributeEnum": {
+    "com.gcp.merchantapi_reviews_v1beta#ProductReviewItemLevelIssueSeverityEnum": {
       "type": "enum",
       "members": {
-        "ATTRIBUTE_UNSPECIFIED": {
+        "SEVERITY_UNSPECIFIED": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "ATTRIBUTE_UNSPECIFIED"
+            "smithy.api#enumValue": "SEVERITY_UNSPECIFIED"
           }
         },
-        "STATUS": {
+        "NOT_IMPACTED": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "STATUS"
+            "smithy.api#enumValue": "NOT_IMPACTED"
+          }
+        },
+        "DISAPPROVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISAPPROVED"
           }
         }
       }
     },
-    "com.gcp.merchantapi_reviews_v1beta#InsertAccountsProductReviewsRequest": {
+    "com.gcp.merchantapi_reviews_v1beta#ProductReviewStatus": {
       "type": "structure",
       "members": {
-        "parent": {
+        "lastUpdateTime": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. The account where the product review will be inserted. Format: accounts/{account}",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
+            "smithy.api#documentation": "Output only. Date on which the item has been last updated, in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format."
+          }
+        },
+        "destinationStatuses": {
+          "target": "com.gcp.merchantapi_reviews_v1beta#ProductReviewDestinationStatusList",
+          "traits": {
+            "smithy.api#documentation": "Output only. The intended destinations for the product review."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Date on which the item has been created, in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format."
+          }
+        },
+        "itemLevelIssues": {
+          "target": "com.gcp.merchantapi_reviews_v1beta#ProductReviewItemLevelIssueList",
+          "traits": {
+            "smithy.api#documentation": "Output only. A list of all issues associated with the product review."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Product review status."
+      }
+    },
+    "com.gcp.merchantapi_reviews_v1beta#ProductReviewDestinationStatusList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.merchantapi_reviews_v1beta#ProductReviewDestinationStatus"
+      }
+    },
+    "com.gcp.merchantapi_reviews_v1beta#ProductReviewItemLevelIssueList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.merchantapi_reviews_v1beta#ProductReviewItemLevelIssue"
+      }
+    },
+    "com.gcp.merchantapi_reviews_v1beta#MerchantReviewAttributes": {
+      "type": "structure",
+      "members": {
+        "reviewLanguage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The language of the review defined by BCP-47 language code."
+          }
+        },
+        "isAnonymous": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Set to true if the reviewer should remain anonymous."
+          }
+        },
+        "collectionMethod": {
+          "target": "com.gcp.merchantapi_reviews_v1beta#MerchantReviewAttributesCollectionMethodEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. The method used to collect the review."
+          }
+        },
+        "reviewCountry": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The country where the reviewer made the order defined by ISO 3166-1 Alpha-2 Country Code."
+          }
+        },
+        "merchantRatingLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. URL to the landing page that hosts the reviews for this merchant. Do not use a redirect URL."
+          }
+        },
+        "merchantLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. URL to the merchant's main website. Do not use a redirect URL for this value. In other words, the value should point directly to the merchant's site."
+          }
+        },
+        "rating": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Optional. The reviewer's overall rating of the merchant."
+          }
+        },
+        "reviewerUsername": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Display name of the review author."
+          }
+        },
+        "merchantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Must be unique and stable across all requests. In other words, if a request today and another 90 days ago refer to the same merchant, they must have the same id."
+          }
+        },
+        "reviewTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The timestamp indicating when the review was written."
+          }
+        },
+        "maxRating": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum possible number for the rating. The value of the max rating must be greater than the value of the min rating."
+          }
+        },
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. This should be any freeform text provided by the user and should not be truncated. If multiple responses to different questions are provided, all responses should be included, with the minimal context for the responses to make sense. Context should not be provided if questions were left unanswered."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The title of the review."
+          }
+        },
+        "minRating": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The minimum possible number for the rating. This should be the worst possible rating and should not be a value for no rating."
+          }
+        },
+        "merchantDisplayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Human-readable display name for the merchant."
+          }
+        },
+        "reviewerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A permanent, unique identifier for the author of the review in the publisher's system."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Attributes."
+      }
+    },
+    "com.gcp.merchantapi_reviews_v1beta#MerchantReviewAttributesCollectionMethodEnum": {
+      "type": "enum",
+      "members": {
+        "COLLECTION_METHOD_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COLLECTION_METHOD_UNSPECIFIED"
+          }
+        },
+        "MERCHANT_UNSOLICITED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MERCHANT_UNSOLICITED"
+          }
+        },
+        "POINT_OF_SALE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POINT_OF_SALE"
+          }
+        },
+        "AFTER_FULFILLMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AFTER_FULFILLMENT"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_reviews_v1beta#ListMerchantReviewsResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The token to retrieve the next page of results."
+          }
+        },
+        "merchantReviews": {
+          "target": "com.gcp.merchantapi_reviews_v1beta#MerchantReviewList",
+          "traits": {
+            "smithy.api#documentation": "The merchant review."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for the `ListMerchantsReview` method."
+      }
+    },
+    "com.gcp.merchantapi_reviews_v1beta#MerchantReviewList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.merchantapi_reviews_v1beta#MerchantReview"
+      }
+    },
+    "com.gcp.merchantapi_reviews_v1beta#ProductChange": {
+      "type": "structure",
+      "members": {
+        "reportingContext": {
+          "target": "com.gcp.merchantapi_reviews_v1beta#ProductChangeReportingContextEnum",
+          "traits": {
+            "smithy.api#documentation": "Reporting contexts that have the change (if applicable). Currently this field supports only (`SHOPPING_ADS`, `LOCAL_INVENTORY_ADS`, `YOUTUBE_SHOPPING`, `YOUTUBE_CHECKOUT`, `YOUTUBE_AFFILIATE`) from the enum value [ReportingContextEnum](/merchant/api/reference/rest/Shared.Types/ReportingContextEnum)"
+          }
+        },
+        "oldValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The old value of the changed resource or attribute. If empty, it means that the product was created. Will have one of these values : (`approved`, `pending`, `disapproved`, ``)"
+          }
+        },
+        "newValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The new value of the changed resource or attribute. If empty, it means that the product was deleted. Will have one of these values : (`approved`, `pending`, `disapproved`, ``)"
+          }
+        },
+        "regionCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Countries that have the change (if applicable). Represented in the ISO 3166 format."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The change that happened to the product including old value, new value, country code as the region code and reporting context."
+      }
+    },
+    "com.gcp.merchantapi_reviews_v1beta#ProductChangeReportingContextEnum": {
+      "type": "enum",
+      "members": {
+        "REPORTING_CONTEXT_ENUM_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REPORTING_CONTEXT_ENUM_UNSPECIFIED"
+          }
+        },
+        "SHOPPING_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHOPPING_ADS"
+          }
+        },
+        "DISCOVERY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISCOVERY_ADS"
+          }
+        },
+        "DEMAND_GEN_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEMAND_GEN_ADS"
+          }
+        },
+        "DEMAND_GEN_ADS_DISCOVER_SURFACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEMAND_GEN_ADS_DISCOVER_SURFACE"
+          }
+        },
+        "VIDEO_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VIDEO_ADS"
+          }
+        },
+        "DISPLAY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISPLAY_ADS"
+          }
+        },
+        "LOCAL_INVENTORY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOCAL_INVENTORY_ADS"
+          }
+        },
+        "VEHICLE_INVENTORY_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VEHICLE_INVENTORY_ADS"
+          }
+        },
+        "FREE_LISTINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LISTINGS"
+          }
+        },
+        "FREE_LISTINGS_UCP_CHECKOUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LISTINGS_UCP_CHECKOUT"
+          }
+        },
+        "FREE_LOCAL_LISTINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LOCAL_LISTINGS"
+          }
+        },
+        "FREE_LOCAL_VEHICLE_LISTINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREE_LOCAL_VEHICLE_LISTINGS"
+          }
+        },
+        "YOUTUBE_AFFILIATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YOUTUBE_AFFILIATE"
+          }
+        },
+        "YOUTUBE_SHOPPING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YOUTUBE_SHOPPING"
+          }
+        },
+        "CLOUD_RETAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLOUD_RETAIL"
+          }
+        },
+        "LOCAL_CLOUD_RETAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOCAL_CLOUD_RETAIL"
+          }
+        },
+        "PRODUCT_REVIEWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRODUCT_REVIEWS"
+          }
+        },
+        "MERCHANT_REVIEWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MERCHANT_REVIEWS"
+          }
+        },
+        "YOUTUBE_CHECKOUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YOUTUBE_CHECKOUT"
+          }
+        },
+        "RENTAL_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RENTAL_ADS"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_reviews_v1beta#MerchantReview": {
+      "type": "structure",
+      "members": {
+        "customAttributes": {
+          "target": "com.gcp.merchantapi_reviews_v1beta#CustomAttributeList",
+          "traits": {
+            "smithy.api#documentation": "Optional. A list of custom (merchant-provided) attributes. It can also be used for submitting any attribute of the data specification in its generic form (for example, `{ \"name\": \"size type\", \"value\": \"regular\" }`). This is useful for submitting attributes not explicitly exposed by the API, such as experimental attributes. Maximum allowed number of characters for each custom attribute is 10240 (represents sum of characters for name and value). Maximum 2500 custom attributes can be set per product, with total size of 102.4kB. Underscores in custom attribute names are replaced by spaces upon insertion."
+          }
+        },
+        "merchantReviewAttributes": {
+          "target": "com.gcp.merchantapi_reviews_v1beta#MerchantReviewAttributes",
+          "traits": {
+            "smithy.api#documentation": "Optional. A list of merchant review attributes."
+          }
+        },
+        "merchantReviewStatus": {
+          "target": "com.gcp.merchantapi_reviews_v1beta#MerchantReviewStatus",
+          "traits": {
+            "smithy.api#documentation": "Output only. The status of a merchant review, data validation issues, that is, information about a merchant review computed asynchronously."
           }
         },
         "dataSource": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. Format: `accounts/{account}/dataSources/{datasource}`.",
-            "smithy.api#httpQuery": "dataSource"
+            "smithy.api#documentation": "Output only. The primary data source of the merchant review."
           }
         },
-        "body": {
-          "target": "com.gcp.merchantapi_reviews_v1beta#ProductReview",
+        "name": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
+            "smithy.api#documentation": "Identifier. The name of the merchant review. Format: `\"{merchantreview.name=accounts/{account}/merchantReviews/{merchantReview}}\"`"
+          }
+        },
+        "merchantReviewId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The user provided merchant review ID to uniquely identify the merchant review."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A review for a merchant. For more information, see [Introduction to Merchant Review Feeds](https://developers.google.com/merchant-review-feeds)"
+      }
+    },
+    "com.gcp.merchantapi_reviews_v1beta#ProductReviewAttributes": {
+      "type": "structure",
+      "members": {
+        "subclientName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The name of the subclient of the product reviews. The subclient is an identifier of the product review source. It should be equivalent to the directory provided in the file data source path."
+          }
+        },
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The content of the review. If empty, the content might still get populated from pros and cons."
+          }
+        },
+        "reviewerImageLinks": {
+          "target": "com.gcp.merchantapi_reviews_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. A URI to an image of the reviewed product created by the review author. The URI does not have to end with an image file extension."
+          }
+        },
+        "aggregatorName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The name of the aggregator of the product reviews. A publisher may use a reviews aggregator to manage reviews and provide the feeds. This element indicates the use of an aggregator and contains information about the aggregator."
+          }
+        },
+        "reviewLink": {
+          "target": "com.gcp.merchantapi_reviews_v1beta#ReviewLink",
+          "traits": {
+            "smithy.api#documentation": "Optional. The URI of the review landing page."
+          }
+        },
+        "reviewCountry": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The country of the review defined by ISO 3166-1 Alpha-2 Country Code."
+          }
+        },
+        "reviewerIsAnonymous": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Set to true if the reviewer should remain anonymous."
+          }
+        },
+        "maxRating": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum possible number for the rating. The value of the max rating must be greater than the value of the min attribute."
+          }
+        },
+        "reviewerUsername": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The name of the reviewer of the product review."
+          }
+        },
+        "cons": {
+          "target": "com.gcp.merchantapi_reviews_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Contains the disadvantages based on the opinion of the reviewer. Omit boilerplate text like \"con:\" unless it was written by the reviewer."
+          }
+        },
+        "collectionMethod": {
+          "target": "com.gcp.merchantapi_reviews_v1beta#ProductReviewAttributesCollectionMethodEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. The method used to collect the review."
+          }
+        },
+        "reviewLanguage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The language of the review defined by BCP-47 language code."
+          }
+        },
+        "brands": {
+          "target": "com.gcp.merchantapi_reviews_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Contains brand names associated with a product."
+          }
+        },
+        "skus": {
+          "target": "com.gcp.merchantapi_reviews_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Contains SKUs (stock keeping units) associated with a product. Often this matches the product Offer Id in the product feed."
+          }
+        },
+        "isSpam": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Indicates whether the review is marked as spam in the publisher's system."
+          }
+        },
+        "rating": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Optional. The reviewer's overall rating of the product."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The title of the review."
+          }
+        },
+        "isVerifiedPurchase": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Indicates whether the reviewer's purchase is verified."
+          }
+        },
+        "mpns": {
+          "target": "com.gcp.merchantapi_reviews_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Contains MPNs (manufacturer part numbers) associated with a product."
+          }
+        },
+        "productNames": {
+          "target": "com.gcp.merchantapi_reviews_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Descriptive name of a product."
+          }
+        },
+        "reviewTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The timestamp indicating when the review was written."
+          }
+        },
+        "asins": {
+          "target": "com.gcp.merchantapi_reviews_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Contains ASINs (Amazon Standard Identification Numbers) associated with a product."
+          }
+        },
+        "pros": {
+          "target": "com.gcp.merchantapi_reviews_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Contains the advantages based on the opinion of the reviewer. Omit boilerplate text like \"pro:\" unless it was written by the reviewer."
+          }
+        },
+        "isIncentivizedReview": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Indicates whether the review is incentivized."
+          }
+        },
+        "publisherFavicon": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A link to the company favicon of the publisher. The image dimensions should be favicon size: 16x16 pixels. The image format should be GIF, JPG or PNG."
+          }
+        },
+        "minRating": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Contains the ratings associated with the review. The minimum possible number for the rating. This should be the worst possible rating and should not be a value for no rating."
+          }
+        },
+        "gtins": {
+          "target": "com.gcp.merchantapi_reviews_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Contains GTINs (global trade item numbers) associated with a product. Sub-types of GTINs (e.g. UPC, EAN, ISBN, JAN) are supported."
+          }
+        },
+        "productLinks": {
+          "target": "com.gcp.merchantapi_reviews_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The URI of the product. This URI can have the same value as the `review_link` element, if the review URI and the product URI are the same."
+          }
+        },
+        "reviewerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The author of the product review. A permanent, unique identifier for the author of the review in the publisher's system."
+          }
+        },
+        "transactionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A permanent, unique identifier for the transaction associated with the review in the publisher's system. This ID can be used to indicate that multiple reviews are associated with the same transaction."
+          }
+        },
+        "publisherName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The name of the publisher of the product reviews. The information about the publisher, which may be a retailer, manufacturer, reviews service company, or any entity that publishes product reviews."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Attributes."
+      }
+    },
+    "com.gcp.merchantapi_reviews_v1beta#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.merchantapi_reviews_v1beta#ProductReviewAttributesCollectionMethodEnum": {
+      "type": "enum",
+      "members": {
+        "COLLECTION_METHOD_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COLLECTION_METHOD_UNSPECIFIED"
+          }
+        },
+        "UNSOLICITED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNSOLICITED"
+          }
+        },
+        "POST_FULFILLMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POST_FULFILLMENT"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_reviews_v1beta#ProductReview": {
+      "type": "structure",
+      "members": {
+        "productReviewStatus": {
+          "target": "com.gcp.merchantapi_reviews_v1beta#ProductReviewStatus",
+          "traits": {
+            "smithy.api#documentation": "Output only. The status of a product review, data validation issues, that is, information about a product review computed asynchronously."
+          }
+        },
+        "dataSource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The primary data source of the product review."
+          }
+        },
+        "customAttributes": {
+          "target": "com.gcp.merchantapi_reviews_v1beta#CustomAttributeList",
+          "traits": {
+            "smithy.api#documentation": "Optional. A list of custom (merchant-provided) attributes."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The name of the product review. Format: `\"{productreview.name=accounts/{account}/productReviews/{productReview}}\"`"
+          }
+        },
+        "productReviewAttributes": {
+          "target": "com.gcp.merchantapi_reviews_v1beta#ProductReviewAttributes",
+          "traits": {
+            "smithy.api#documentation": "Optional. A list of product review attributes."
+          }
+        },
+        "productReviewId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The permanent, unique identifier for the product review in the publisher’s system."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A review for a product. For more information, see [Introduction to Product Review Feeds](https://developers.google.com/product-review-feeds)"
+      }
+    },
+    "com.gcp.merchantapi_reviews_v1beta#Empty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.merchantapi_reviews_v1beta#DeleteAccountsMerchantReviewsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The ID of the merchant review. Format: accounts/{account}/merchantReviews/{merchantReview}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
           }
         }
       }
@@ -1701,6 +1718,212 @@
             "status": 409
           }
         ]
+      }
+    },
+    "com.gcp.merchantapi_reviews_v1beta#DeleteAccountsMerchantReviews": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.merchantapi_reviews_v1beta#DeleteAccountsMerchantReviewsRequest"
+      },
+      "output": {
+        "target": "com.gcp.merchantapi_reviews_v1beta#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.merchantapi_reviews_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.merchantapi_reviews_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.merchantapi_reviews_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.merchantapi_reviews_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "reviews/v1beta/{+name}"
+        },
+        "smithy.api#documentation": "Deletes merchant review."
+      }
+    },
+    "com.gcp.merchantapi_reviews_v1beta#InsertAccountsMerchantReviewsRequest": {
+      "type": "structure",
+      "members": {
+        "dataSource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The data source of the [merchantreview](https://support.google.com/merchants/answer/7045996?sjid=5253581244217581976-EU) Format: `accounts/{account}/dataSources/{datasource}`.",
+            "smithy.api#httpQuery": "dataSource"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The account where the merchant review will be inserted. Format: accounts/{account}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.merchantapi_reviews_v1beta#MerchantReview",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_reviews_v1beta#InsertAccountsMerchantReviews": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.merchantapi_reviews_v1beta#InsertAccountsMerchantReviewsRequest"
+      },
+      "output": {
+        "target": "com.gcp.merchantapi_reviews_v1beta#MerchantReview"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.merchantapi_reviews_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.merchantapi_reviews_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.merchantapi_reviews_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.merchantapi_reviews_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "reviews/v1beta/{+parent}/merchantReviews:insert"
+        },
+        "smithy.api#documentation": "Inserts a review for your Merchant Center account. If the review already exists, then the review is replaced with the new instance."
+      }
+    },
+    "com.gcp.merchantapi_reviews_v1beta#GetAccountsMerchantReviewsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The ID of the merchant review. Format: accounts/{account}/merchantReviews/{merchantReview}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_reviews_v1beta#GetAccountsMerchantReviews": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.merchantapi_reviews_v1beta#GetAccountsMerchantReviewsRequest"
+      },
+      "output": {
+        "target": "com.gcp.merchantapi_reviews_v1beta#MerchantReview"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.merchantapi_reviews_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.merchantapi_reviews_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "reviews/v1beta/{+name}"
+        },
+        "smithy.api#documentation": "Gets a merchant review."
+      }
+    },
+    "com.gcp.merchantapi_reviews_v1beta#ListAccountsMerchantReviewsRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A page token, received from a previous `ListMerchantReviews` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMerchantReviews` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of merchant reviews to return. The service can return fewer than this value. The maximum value is 1000; values above 1000 are coerced to 1000. If unspecified, the maximum number of reviews is returned.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The account to list merchant reviews for. Format: accounts/{account}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_reviews_v1beta#ListAccountsMerchantReviews": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.merchantapi_reviews_v1beta#ListAccountsMerchantReviewsRequest"
+      },
+      "output": {
+        "target": "com.gcp.merchantapi_reviews_v1beta#ListMerchantReviewsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.merchantapi_reviews_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.merchantapi_reviews_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "reviews/v1beta/{+parent}/merchantReviews"
+        },
+        "smithy.api#documentation": "Lists merchant reviews.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.merchantapi_reviews_v1beta#InsertAccountsProductReviewsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The account where the product review will be inserted. Format: accounts/{account}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "dataSource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Format: `accounts/{account}/dataSources/{datasource}`.",
+            "smithy.api#httpQuery": "dataSource"
+          }
+        },
+        "body": {
+          "target": "com.gcp.merchantapi_reviews_v1beta#ProductReview",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
       }
     },
     "com.gcp.merchantapi_reviews_v1beta#InsertAccountsProductReviews": {
@@ -1816,6 +2039,13 @@
     "com.gcp.merchantapi_reviews_v1beta#ListAccountsProductReviewsRequest": {
       "type": "structure",
       "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of products to return. The service may return fewer than this value.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
         "pageToken": {
           "target": "smithy.api#String",
           "traits": {
@@ -1829,13 +2059,6 @@
             "smithy.api#documentation": "Required. The account to list product reviews for. Format: accounts/{account}",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. The maximum number of products to return. The service may return fewer than this value.",
-            "smithy.api#httpQuery": "pageSize"
           }
         }
       }
@@ -1862,198 +2085,6 @@
           "uri": "reviews/v1beta/{+parent}/productReviews"
         },
         "smithy.api#documentation": "Lists product reviews.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
-      }
-    },
-    "com.gcp.merchantapi_reviews_v1beta#GetAccountsMerchantReviewsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The ID of the merchant review. Format: accounts/{account}/merchantReviews/{merchantReview}",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.merchantapi_reviews_v1beta#GetAccountsMerchantReviews": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.merchantapi_reviews_v1beta#GetAccountsMerchantReviewsRequest"
-      },
-      "output": {
-        "target": "com.gcp.merchantapi_reviews_v1beta#MerchantReview"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.merchantapi_reviews_v1beta#NotFound"
-        },
-        {
-          "target": "com.gcp.merchantapi_reviews_v1beta#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "reviews/v1beta/{+name}"
-        },
-        "smithy.api#documentation": "Gets a merchant review."
-      }
-    },
-    "com.gcp.merchantapi_reviews_v1beta#InsertAccountsMerchantReviewsRequest": {
-      "type": "structure",
-      "members": {
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The account where the merchant review will be inserted. Format: accounts/{account}",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "dataSource": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The data source of the [merchantreview](https://support.google.com/merchants/answer/7045996?sjid=5253581244217581976-EU) Format: `accounts/{account}/dataSources/{datasource}`.",
-            "smithy.api#httpQuery": "dataSource"
-          }
-        },
-        "body": {
-          "target": "com.gcp.merchantapi_reviews_v1beta#MerchantReview",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.merchantapi_reviews_v1beta#InsertAccountsMerchantReviews": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.merchantapi_reviews_v1beta#InsertAccountsMerchantReviewsRequest"
-      },
-      "output": {
-        "target": "com.gcp.merchantapi_reviews_v1beta#MerchantReview"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.merchantapi_reviews_v1beta#NotFound"
-        },
-        {
-          "target": "com.gcp.merchantapi_reviews_v1beta#Forbidden"
-        },
-        {
-          "target": "com.gcp.merchantapi_reviews_v1beta#BadRequest"
-        },
-        {
-          "target": "com.gcp.merchantapi_reviews_v1beta#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "reviews/v1beta/{+parent}/merchantReviews:insert"
-        },
-        "smithy.api#documentation": "Inserts a review for your Merchant Center account. If the review already exists, then the review is replaced with the new instance."
-      }
-    },
-    "com.gcp.merchantapi_reviews_v1beta#DeleteAccountsMerchantReviewsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The ID of the merchant review. Format: accounts/{account}/merchantReviews/{merchantReview}",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.merchantapi_reviews_v1beta#DeleteAccountsMerchantReviews": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.merchantapi_reviews_v1beta#DeleteAccountsMerchantReviewsRequest"
-      },
-      "output": {
-        "target": "com.gcp.merchantapi_reviews_v1beta#Empty"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.merchantapi_reviews_v1beta#NotFound"
-        },
-        {
-          "target": "com.gcp.merchantapi_reviews_v1beta#Forbidden"
-        },
-        {
-          "target": "com.gcp.merchantapi_reviews_v1beta#BadRequest"
-        },
-        {
-          "target": "com.gcp.merchantapi_reviews_v1beta#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "reviews/v1beta/{+name}"
-        },
-        "smithy.api#documentation": "Deletes merchant review."
-      }
-    },
-    "com.gcp.merchantapi_reviews_v1beta#ListAccountsMerchantReviewsRequest": {
-      "type": "structure",
-      "members": {
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The account to list merchant reviews for. Format: accounts/{account}",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. A page token, received from a previous `ListMerchantReviews` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMerchantReviews` must match the call that provided the page token.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. The maximum number of merchant reviews to return. The service can return fewer than this value. The maximum value is 1000; values above 1000 are coerced to 1000. If unspecified, the maximum number of reviews is returned.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        }
-      }
-    },
-    "com.gcp.merchantapi_reviews_v1beta#ListAccountsMerchantReviews": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.merchantapi_reviews_v1beta#ListAccountsMerchantReviewsRequest"
-      },
-      "output": {
-        "target": "com.gcp.merchantapi_reviews_v1beta#ListMerchantReviewsResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.merchantapi_reviews_v1beta#NotFound"
-        },
-        {
-          "target": "com.gcp.merchantapi_reviews_v1beta#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "reviews/v1beta/{+parent}/merchantReviews"
-        },
-        "smithy.api#documentation": "Lists merchant reviews.",
         "smithy.api#paginated": {
           "inputToken": "pageToken",
           "outputToken": "nextPageToken"

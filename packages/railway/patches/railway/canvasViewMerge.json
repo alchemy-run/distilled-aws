@@ -3,7 +3,7 @@
   "patches": [
     {
       "op": "replace",
-      "path": "/shapes/com.railway.api#CanvasViewMergeRequest/traits/com.railway.graphql#operation/query",
+      "path": "/shapes/com.railway.api#MergeCanvasViewRequest/traits/com.railway.graphql#operation/query",
       "value": "mutation canvasViewMerge($sourceEnvironmentId: String!, $targetEnvironmentId: String!) {\n  canvasViewMerge(sourceEnvironmentId: $sourceEnvironmentId, targetEnvironmentId: $targetEnvironmentId)\n}"
     }
   ]

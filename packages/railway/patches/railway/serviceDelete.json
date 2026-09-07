@@ -3,7 +3,7 @@
   "patches": [
     {
       "op": "replace",
-      "path": "/shapes/com.railway.api#ServiceDeleteRequest/traits/com.railway.graphql#operation/query",
+      "path": "/shapes/com.railway.api#DeleteServiceRequest/traits/com.railway.graphql#operation/query",
       "value": "mutation serviceDelete($environmentId: String, $id: String!) {\n  serviceDelete(environmentId: $environmentId, id: $id)\n}"
     }
   ]

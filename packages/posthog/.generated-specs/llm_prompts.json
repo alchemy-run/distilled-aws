@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.llm_prompts#LlmPromptsListRequestContent": {
+    "com.posthog.llm_prompts#ListLlmPromptsRequestContent": {
       "type": "enum",
       "members": {
         "FULL": {
@@ -41,7 +42,7 @@
       },
       "traits": {}
     },
-    "com.posthog.llm_prompts#LlmPromptsListRequestOrderBy": {
+    "com.posthog.llm_prompts#ListLlmPromptsRequestOrderBy": {
       "type": "enum",
       "members": {
         "NAME": {
@@ -143,7 +144,7 @@
       },
       "traits": {}
     },
-    "com.posthog.llm_prompts#LlmPromptsListRequest": {
+    "com.posthog.llm_prompts#ListLlmPromptsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -155,7 +156,7 @@
           }
         },
         "content": {
-          "target": "com.posthog.llm_prompts#LlmPromptsListRequestContent",
+          "target": "com.posthog.llm_prompts#ListLlmPromptsRequestContent",
           "traits": {
             "smithy.api#httpQuery": "content",
             "smithy.api#documentation": "Controls how much prompt content is included in the response. 'full' includes the full prompt, 'preview' includes a short prompt_preview, and 'none' omits prompt content entirely. The config field is only included with 'full'. The outline field is always included.\n\n* `full` - full\n* `preview` - preview\n* `none` - none"
@@ -183,7 +184,7 @@
           }
         },
         "order_by": {
-          "target": "com.posthog.llm_prompts#LlmPromptsListRequestOrderBy",
+          "target": "com.posthog.llm_prompts#ListLlmPromptsRequestOrderBy",
           "traits": {
             "smithy.api#httpQuery": "order_by",
             "smithy.api#documentation": "Field to sort the prompt list by. Prefix with '-' for descending order.\n\n* `name` - name\n* `-name` - -name\n* `created_at` - created_at\n* `-created_at` - -created_at\n* `updated_at` - updated_at\n* `-updated_at` - -updated_at\n* `version` - version\n* `-version` - -version\n* `latest_version` - latest_version\n* `-latest_version` - -latest_version\n* `version_count` - version_count\n* `-version_count` - -version_count\n* `first_version_created_at` - first_version_created_at\n* `-first_version_created_at` - -first_version_created_at\n* `prompt_size_bytes` - prompt_size_bytes\n* `-prompt_size_bytes` - -prompt_size_bytes"
@@ -523,10 +524,10 @@
       },
       "traits": {}
     },
-    "com.posthog.llm_prompts#LlmPromptsList": {
+    "com.posthog.llm_prompts#ListLlmPrompts": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.llm_prompts#LlmPromptsListRequest"
+        "target": "com.posthog.llm_prompts#ListLlmPromptsRequest"
       },
       "output": {
         "target": "com.posthog.llm_prompts#PaginatedLLMPromptListList"
@@ -539,7 +540,7 @@
         }
       }
     },
-    "com.posthog.llm_prompts#LlmPromptsCreateRequest": {
+    "com.posthog.llm_prompts#CreateLlmPromptRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -677,10 +678,10 @@
         "smithy.api#documentation": "Names of the labels currently pointing at this version."
       }
     },
-    "com.posthog.llm_prompts#LlmPromptsCreate": {
+    "com.posthog.llm_prompts#CreateLlmPrompt": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.llm_prompts#LlmPromptsCreateRequest"
+        "target": "com.posthog.llm_prompts#CreateLlmPromptRequest"
       },
       "output": {
         "target": "com.posthog.llm_prompts#LLMPrompt"
@@ -693,7 +694,7 @@
         }
       }
     },
-    "com.posthog.llm_prompts#LlmPromptsNameRetrieveRequestContent": {
+    "com.posthog.llm_prompts#GetLlmPromptsNameRequestContent": {
       "type": "enum",
       "members": {
         "FULL": {
@@ -717,7 +718,7 @@
       },
       "traits": {}
     },
-    "com.posthog.llm_prompts#LlmPromptsNameRetrieveRequest": {
+    "com.posthog.llm_prompts#GetLlmPromptsNameRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -736,7 +737,7 @@
           }
         },
         "content": {
-          "target": "com.posthog.llm_prompts#LlmPromptsNameRetrieveRequestContent",
+          "target": "com.posthog.llm_prompts#GetLlmPromptsNameRequestContent",
           "traits": {
             "smithy.api#httpQuery": "content",
             "smithy.api#documentation": "Controls how much prompt content is included in the response. 'full' includes the full prompt, 'preview' includes a short prompt_preview, and 'none' omits prompt content entirely. The config field is only included with 'full'. The outline field is always included.\n\n* `full` - full\n* `preview` - preview\n* `none` - none"
@@ -837,10 +838,10 @@
         "smithy.api#documentation": "Flat list of markdown headings parsed from the prompt. Useful as a lightweight table of contents."
       }
     },
-    "com.posthog.llm_prompts#LlmPromptsNameRetrieve": {
+    "com.posthog.llm_prompts#GetLlmPromptsName": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.llm_prompts#LlmPromptsNameRetrieveRequest"
+        "target": "com.posthog.llm_prompts#GetLlmPromptsNameRequest"
       },
       "output": {
         "target": "com.posthog.llm_prompts#LLMPromptPublic"
@@ -871,7 +872,7 @@
       },
       "traits": {}
     },
-    "com.posthog.llm_prompts#LlmPromptsNamePartialUpdateRequestEditsList": {
+    "com.posthog.llm_prompts#UpdateLlmPromptsNamePartialRequestEditsList": {
       "type": "list",
       "member": {
         "target": "com.posthog.llm_prompts#LLMPromptEditOperation"
@@ -880,7 +881,7 @@
         "smithy.api#documentation": "List of find/replace operations to apply to the current prompt version. Each edit's 'old' text must match exactly once. Edits are applied sequentially. Mutually exclusive with prompt."
       }
     },
-    "com.posthog.llm_prompts#LlmPromptsNamePartialUpdateRequest": {
+    "com.posthog.llm_prompts#UpdateLlmPromptsNamePartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -905,7 +906,7 @@
           }
         },
         "edits": {
-          "target": "com.posthog.llm_prompts#LlmPromptsNamePartialUpdateRequestEditsList",
+          "target": "com.posthog.llm_prompts#UpdateLlmPromptsNamePartialRequestEditsList",
           "traits": {
             "smithy.api#documentation": "List of find/replace operations to apply to the current prompt version. Each edit's 'old' text must match exactly once. Edits are applied sequentially. Mutually exclusive with prompt."
           }
@@ -934,10 +935,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.llm_prompts#LlmPromptsNamePartialUpdate": {
+    "com.posthog.llm_prompts#UpdateLlmPromptsNamePartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.llm_prompts#LlmPromptsNamePartialUpdateRequest"
+        "target": "com.posthog.llm_prompts#UpdateLlmPromptsNamePartialRequest"
       },
       "output": {
         "target": "com.posthog.llm_prompts#LLMPrompt"
@@ -1034,7 +1035,7 @@
         }
       }
     },
-    "com.posthog.llm_prompts#LlmPromptsNameLabelsUpdateRequest": {
+    "com.posthog.llm_prompts#UpdateLlmPromptsNameLabelRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1121,10 +1122,10 @@
       },
       "traits": {}
     },
-    "com.posthog.llm_prompts#LlmPromptsNameLabelsUpdate": {
+    "com.posthog.llm_prompts#UpdateLlmPromptsNameLabel": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.llm_prompts#LlmPromptsNameLabelsUpdateRequest"
+        "target": "com.posthog.llm_prompts#UpdateLlmPromptsNameLabelRequest"
       },
       "output": {
         "target": "com.posthog.llm_prompts#LLMPromptLabel"
@@ -1183,7 +1184,7 @@
         }
       }
     },
-    "com.posthog.llm_prompts#LlmPromptsResolveNameRetrieveRequest": {
+    "com.posthog.llm_prompts#GetLlmPromptsResolveNameRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1323,10 +1324,10 @@
         "smithy.api#documentation": "All labels on this prompt with the version each one currently points to, across all versions (not just the returned page)."
       }
     },
-    "com.posthog.llm_prompts#LlmPromptsResolveNameRetrieve": {
+    "com.posthog.llm_prompts#GetLlmPromptsResolveName": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.llm_prompts#LlmPromptsResolveNameRetrieveRequest"
+        "target": "com.posthog.llm_prompts#GetLlmPromptsResolveNameRequest"
       },
       "output": {
         "target": "com.posthog.llm_prompts#LLMPromptResolveResponse"
@@ -1344,16 +1345,16 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.llm_prompts#LlmPromptsList"
+          "target": "com.posthog.llm_prompts#ListLlmPrompts"
         },
         {
-          "target": "com.posthog.llm_prompts#LlmPromptsCreate"
+          "target": "com.posthog.llm_prompts#CreateLlmPrompt"
         },
         {
-          "target": "com.posthog.llm_prompts#LlmPromptsNameRetrieve"
+          "target": "com.posthog.llm_prompts#GetLlmPromptsName"
         },
         {
-          "target": "com.posthog.llm_prompts#LlmPromptsNamePartialUpdate"
+          "target": "com.posthog.llm_prompts#UpdateLlmPromptsNamePartial"
         },
         {
           "target": "com.posthog.llm_prompts#LlmPromptsNameArchiveCreate"
@@ -1362,13 +1363,13 @@
           "target": "com.posthog.llm_prompts#LlmPromptsNameDuplicateCreate"
         },
         {
-          "target": "com.posthog.llm_prompts#LlmPromptsNameLabelsUpdate"
+          "target": "com.posthog.llm_prompts#UpdateLlmPromptsNameLabel"
         },
         {
           "target": "com.posthog.llm_prompts#LlmPromptsNameLabelsDestroy"
         },
         {
-          "target": "com.posthog.llm_prompts#LlmPromptsResolveNameRetrieve"
+          "target": "com.posthog.llm_prompts#GetLlmPromptsResolveName"
         }
       ],
       "traits": {

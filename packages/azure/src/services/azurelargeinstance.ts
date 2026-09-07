@@ -12,7 +12,7 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export interface AzureLargeInstanceGetRequest {
+export interface AzureLargeInstanceShutdownRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -20,7 +20,170 @@ export interface AzureLargeInstanceGetRequest {
   /** Name of the AzureLargeInstance. */
   azureLargeInstanceName: string;
 }
-export const AzureLargeInstanceGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const AzureLargeInstanceShutdownRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    azureLargeInstanceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureLargeInstance/azureLargeInstances/{azureLargeInstanceName}/shutdown",
+      code: 200,
+      apiVersion: "2024-04-10",
+    }),
+  ),
+).annotate({
+  identifier: "AzureLargeInstanceShutdownRequest",
+}) as any as S.Schema<AzureLargeInstanceShutdownRequest>;
+
+/** The operations list. */
+export type OperationStatusResultOperationsList = Array<OperationStatusResult>;
+export const OperationStatusResultOperationsList = /*@__PURE__*/ S.Array(
+  S.suspend(() => OperationStatusResult),
+) as any as S.Schema<OperationStatusResultOperationsList>;
+
+/** The error details. */
+export type ErrorDetailDetailsList = Array<ErrorDetail>;
+export const ErrorDetailDetailsList = /*@__PURE__*/ S.Array(
+  S.suspend(() => ErrorDetail),
+) as any as S.Schema<ErrorDetailDetailsList>;
+
+/** The resource management error additional info. */
+export interface ErrorAdditionalInfo {
+  /** The additional info type. */
+  type?: string;
+  /** The additional info. */
+  info?: unknown;
+}
+export const ErrorAdditionalInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.optional(S.String),
+    info: S.optional(S.Unknown),
+  }),
+).annotate({
+  identifier: "ErrorAdditionalInfo",
+}) as any as S.Schema<ErrorAdditionalInfo>;
+
+/** The error additional info. */
+export type ErrorDetailAdditionalInfoList = Array<ErrorAdditionalInfo>;
+export const ErrorDetailAdditionalInfoList = /*@__PURE__*/ S.Array(
+  ErrorAdditionalInfo,
+) as any as S.Schema<ErrorDetailAdditionalInfoList>;
+
+/** The error detail. */
+export interface ErrorDetail {
+  /** The error code. */
+  code?: string;
+  /** The error message. */
+  message?: string;
+  /** The error target. */
+  target?: string;
+  /** The error details. */
+  details?: ErrorDetailDetailsList;
+  /** The error additional info. */
+  additionalInfo?: ErrorDetailAdditionalInfoList;
+}
+export const ErrorDetail = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    code: S.optional(S.String),
+    message: S.optional(S.String),
+    target: S.optional(S.String),
+    details: S.optional(ErrorDetailDetailsList),
+    additionalInfo: S.optional(ErrorDetailAdditionalInfoList),
+  }),
+).annotate({ identifier: "ErrorDetail" }) as any as S.Schema<ErrorDetail>;
+
+/** The current status of an async operation. */
+export interface OperationStatusResult {
+  /** Fully qualified ID for the async operation. */
+  id?: string;
+  /** Fully qualified ID of the resource against which the original async operation was started. */
+  resourceId?: string;
+  /** Name of the async operation. */
+  name?: string;
+  /** Operation status. */
+  status: string;
+  /** Percent of the operation that is complete. */
+  percentComplete?: number;
+  /** The start time of the operation. */
+  startTime?: string;
+  /** The end time of the operation. */
+  endTime?: string;
+  /** The operations list. */
+  operations?: OperationStatusResultOperationsList;
+  /** If present, details of the operation error. */
+  error?: ErrorDetail;
+}
+export const OperationStatusResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    resourceId: S.optional(S.String),
+    name: S.optional(S.String),
+    status: S.String,
+    percentComplete: S.optional(S.Number),
+    startTime: S.optional(S.String),
+    endTime: S.optional(S.String),
+    operations: S.optional(OperationStatusResultOperationsList),
+    error: S.optional(ErrorDetail),
+  }),
+).annotate({
+  identifier: "OperationStatusResult",
+}) as any as S.Schema<OperationStatusResult>;
+
+/** The operations list. */
+export type AzureLargeInstanceShutdownResponseOperationsList =
+  Array<OperationStatusResult>;
+export const AzureLargeInstanceShutdownResponseOperationsList =
+  /*@__PURE__*/ S.Array(
+    OperationStatusResult,
+  ) as any as S.Schema<AzureLargeInstanceShutdownResponseOperationsList>;
+
+export interface AzureLargeInstanceShutdownResponse {
+  /** Fully qualified ID for the async operation. */
+  id?: string;
+  /** Fully qualified ID of the resource against which the original async operation was started. */
+  resourceId?: string;
+  /** Name of the async operation. */
+  name?: string;
+  /** Operation status. */
+  status: string;
+  /** Percent of the operation that is complete. */
+  percentComplete?: number;
+  /** The start time of the operation. */
+  startTime?: string;
+  /** The end time of the operation. */
+  endTime?: string;
+  /** The operations list. */
+  operations?: AzureLargeInstanceShutdownResponseOperationsList;
+  /** If present, details of the operation error. */
+  error?: ErrorDetail;
+}
+export const AzureLargeInstanceShutdownResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    resourceId: S.optional(S.String),
+    name: S.optional(S.String),
+    status: S.String,
+    percentComplete: S.optional(S.Number),
+    startTime: S.optional(S.String),
+    endTime: S.optional(S.String),
+    operations: S.optional(AzureLargeInstanceShutdownResponseOperationsList),
+    error: S.optional(ErrorDetail),
+  }),
+).annotate({
+  identifier: "AzureLargeInstanceShutdownResponse",
+}) as any as S.Schema<AzureLargeInstanceShutdownResponse>;
+
+export interface GetAzureLargeInstanceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the AzureLargeInstance. */
+  azureLargeInstanceName: string;
+}
+export const GetAzureLargeInstanceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -34,8 +197,8 @@ export const AzureLargeInstanceGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "AzureLargeInstanceGetRequest",
-}) as any as S.Schema<AzureLargeInstanceGetRequest>;
+  identifier: "GetAzureLargeInstanceRequest",
+}) as any as S.Schema<GetAzureLargeInstanceRequest>;
 
 /** The type of identity that created the resource. */
 export type SystemDataCreatedByType =
@@ -80,13 +243,13 @@ export const SystemData = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
 
 /** Resource tags. */
-export type AzureLargeInstanceGetResponseTagsMap = {
+export type GetAzureLargeInstanceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AzureLargeInstanceGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetAzureLargeInstanceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AzureLargeInstanceGetResponseTagsMap>;
+) as any as S.Schema<GetAzureLargeInstanceResponseTagsMap>;
 
 /** Enum of the hardware options (vendor and/or their product name) for an Azure Large Instance */
 export type AzureLargeInstanceHardwareTypeNamesEnum =
@@ -307,7 +470,7 @@ export const AzureLargeInstanceProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "AzureLargeInstanceProperties",
 }) as any as S.Schema<AzureLargeInstanceProperties>;
 
-export interface AzureLargeInstanceGetResponse {
+export interface GetAzureLargeInstanceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -317,514 +480,27 @@ export interface AzureLargeInstanceGetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: AzureLargeInstanceGetResponseTagsMap;
+  tags?: GetAzureLargeInstanceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: AzureLargeInstanceProperties;
 }
-export const AzureLargeInstanceGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetAzureLargeInstanceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(AzureLargeInstanceGetResponseTagsMap),
+    tags: S.optional(GetAzureLargeInstanceResponseTagsMap),
     location: S.String,
     properties: S.optional(AzureLargeInstanceProperties),
   }),
 ).annotate({
-  identifier: "AzureLargeInstanceGetResponse",
-}) as any as S.Schema<AzureLargeInstanceGetResponse>;
+  identifier: "GetAzureLargeInstanceResponse",
+}) as any as S.Schema<GetAzureLargeInstanceResponse>;
 
-export interface AzureLargeInstanceListByResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const AzureLargeInstanceListByResourceGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureLargeInstance/azureLargeInstances",
-        code: 200,
-        apiVersion: "2024-04-10",
-      }),
-    ),
-  ).annotate({
-    identifier: "AzureLargeInstanceListByResourceGroupRequest",
-  }) as any as S.Schema<AzureLargeInstanceListByResourceGroupRequest>;
-
-/** Resource tags. */
-export type AzureLargeInstanceTagsMap = { [key: string]: string | undefined };
-export const AzureLargeInstanceTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AzureLargeInstanceTagsMap>;
-
-/** Azure Large Instance info on Azure (ARM properties and AzureLargeInstance properties) */
-export interface AzureLargeInstance {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: AzureLargeInstanceTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: AzureLargeInstanceProperties;
-}
-export const AzureLargeInstance = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(AzureLargeInstanceTagsMap),
-    location: S.String,
-    properties: S.optional(AzureLargeInstanceProperties),
-  }),
-).annotate({
-  identifier: "AzureLargeInstance",
-}) as any as S.Schema<AzureLargeInstance>;
-
-/** The AzureLargeInstance items on this page */
-export type AzureLargeInstanceListResultValueList = Array<AzureLargeInstance>;
-export const AzureLargeInstanceListResultValueList = /*@__PURE__*/ S.Array(
-  AzureLargeInstance,
-) as any as S.Schema<AzureLargeInstanceListResultValueList>;
-
-/** The response of a AzureLargeInstance list operation. */
-export interface AzureLargeInstanceListResult {
-  /** The AzureLargeInstance items on this page */
-  value: AzureLargeInstanceListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const AzureLargeInstanceListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: AzureLargeInstanceListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AzureLargeInstanceListResult",
-}) as any as S.Schema<AzureLargeInstanceListResult>;
-
-export interface AzureLargeInstanceListBySubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-}
-export const AzureLargeInstanceListBySubscriptionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.AzureLargeInstance/azureLargeInstances",
-        code: 200,
-        apiVersion: "2024-04-10",
-      }),
-    ),
-  ).annotate({
-    identifier: "AzureLargeInstanceListBySubscriptionRequest",
-  }) as any as S.Schema<AzureLargeInstanceListBySubscriptionRequest>;
-
-/** Enum of two possible values to determine if the ALI instance restart operation should forcefully terminate and halt any existing processes that may be running on the server or not. */
-export type AzureLargeInstanceForcePowerState = "active" | "inactive";
-export const AzureLargeInstanceForcePowerState = /*@__PURE__*/ S.String;
-
-export interface AzureLargeInstanceRestartRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the AzureLargeInstance. */
-  azureLargeInstanceName: string;
-  /** Whether to force restart by shutting all processes. */
-  forceState?: AzureLargeInstanceForcePowerState | (string & {});
-}
-export const AzureLargeInstanceRestartRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    azureLargeInstanceName: S.String.pipe(T.Label()),
-    forceState: S.optional(AzureLargeInstanceForcePowerState),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureLargeInstance/azureLargeInstances/{azureLargeInstanceName}/restart",
-      code: 200,
-      apiVersion: "2024-04-10",
-    }),
-  ),
-).annotate({
-  identifier: "AzureLargeInstanceRestartRequest",
-}) as any as S.Schema<AzureLargeInstanceRestartRequest>;
-
-/** The operations list. */
-export type OperationStatusResultOperationsList = Array<OperationStatusResult>;
-export const OperationStatusResultOperationsList = /*@__PURE__*/ S.Array(
-  S.suspend(() => OperationStatusResult),
-) as any as S.Schema<OperationStatusResultOperationsList>;
-
-/** The error details. */
-export type ErrorDetailDetailsList = Array<ErrorDetail>;
-export const ErrorDetailDetailsList = /*@__PURE__*/ S.Array(
-  S.suspend(() => ErrorDetail),
-) as any as S.Schema<ErrorDetailDetailsList>;
-
-/** The resource management error additional info. */
-export interface ErrorAdditionalInfo {
-  /** The additional info type. */
-  type?: string;
-  /** The additional info. */
-  info?: unknown;
-}
-export const ErrorAdditionalInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(S.String),
-    info: S.optional(S.Unknown),
-  }),
-).annotate({
-  identifier: "ErrorAdditionalInfo",
-}) as any as S.Schema<ErrorAdditionalInfo>;
-
-/** The error additional info. */
-export type ErrorDetailAdditionalInfoList = Array<ErrorAdditionalInfo>;
-export const ErrorDetailAdditionalInfoList = /*@__PURE__*/ S.Array(
-  ErrorAdditionalInfo,
-) as any as S.Schema<ErrorDetailAdditionalInfoList>;
-
-/** The error detail. */
-export interface ErrorDetail {
-  /** The error code. */
-  code?: string;
-  /** The error message. */
-  message?: string;
-  /** The error target. */
-  target?: string;
-  /** The error details. */
-  details?: ErrorDetailDetailsList;
-  /** The error additional info. */
-  additionalInfo?: ErrorDetailAdditionalInfoList;
-}
-export const ErrorDetail = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    code: S.optional(S.String),
-    message: S.optional(S.String),
-    target: S.optional(S.String),
-    details: S.optional(ErrorDetailDetailsList),
-    additionalInfo: S.optional(ErrorDetailAdditionalInfoList),
-  }),
-).annotate({ identifier: "ErrorDetail" }) as any as S.Schema<ErrorDetail>;
-
-/** The current status of an async operation. */
-export interface OperationStatusResult {
-  /** Fully qualified ID for the async operation. */
-  id?: string;
-  /** Fully qualified ID of the resource against which the original async operation was started. */
-  resourceId?: string;
-  /** Name of the async operation. */
-  name?: string;
-  /** Operation status. */
-  status: string;
-  /** Percent of the operation that is complete. */
-  percentComplete?: number;
-  /** The start time of the operation. */
-  startTime?: string;
-  /** The end time of the operation. */
-  endTime?: string;
-  /** The operations list. */
-  operations?: OperationStatusResultOperationsList;
-  /** If present, details of the operation error. */
-  error?: ErrorDetail;
-}
-export const OperationStatusResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    resourceId: S.optional(S.String),
-    name: S.optional(S.String),
-    status: S.String,
-    percentComplete: S.optional(S.Number),
-    startTime: S.optional(S.String),
-    endTime: S.optional(S.String),
-    operations: S.optional(OperationStatusResultOperationsList),
-    error: S.optional(ErrorDetail),
-  }),
-).annotate({
-  identifier: "OperationStatusResult",
-}) as any as S.Schema<OperationStatusResult>;
-
-/** The operations list. */
-export type AzureLargeInstanceRestartResponseOperationsList =
-  Array<OperationStatusResult>;
-export const AzureLargeInstanceRestartResponseOperationsList =
-  /*@__PURE__*/ S.Array(
-    OperationStatusResult,
-  ) as any as S.Schema<AzureLargeInstanceRestartResponseOperationsList>;
-
-export interface AzureLargeInstanceRestartResponse {
-  /** Fully qualified ID for the async operation. */
-  id?: string;
-  /** Fully qualified ID of the resource against which the original async operation was started. */
-  resourceId?: string;
-  /** Name of the async operation. */
-  name?: string;
-  /** Operation status. */
-  status: string;
-  /** Percent of the operation that is complete. */
-  percentComplete?: number;
-  /** The start time of the operation. */
-  startTime?: string;
-  /** The end time of the operation. */
-  endTime?: string;
-  /** The operations list. */
-  operations?: AzureLargeInstanceRestartResponseOperationsList;
-  /** If present, details of the operation error. */
-  error?: ErrorDetail;
-}
-export const AzureLargeInstanceRestartResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    resourceId: S.optional(S.String),
-    name: S.optional(S.String),
-    status: S.String,
-    percentComplete: S.optional(S.Number),
-    startTime: S.optional(S.String),
-    endTime: S.optional(S.String),
-    operations: S.optional(AzureLargeInstanceRestartResponseOperationsList),
-    error: S.optional(ErrorDetail),
-  }),
-).annotate({
-  identifier: "AzureLargeInstanceRestartResponse",
-}) as any as S.Schema<AzureLargeInstanceRestartResponse>;
-
-export interface AzureLargeInstanceShutdownRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the AzureLargeInstance. */
-  azureLargeInstanceName: string;
-}
-export const AzureLargeInstanceShutdownRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    azureLargeInstanceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureLargeInstance/azureLargeInstances/{azureLargeInstanceName}/shutdown",
-      code: 200,
-      apiVersion: "2024-04-10",
-    }),
-  ),
-).annotate({
-  identifier: "AzureLargeInstanceShutdownRequest",
-}) as any as S.Schema<AzureLargeInstanceShutdownRequest>;
-
-/** The operations list. */
-export type AzureLargeInstanceShutdownResponseOperationsList =
-  Array<OperationStatusResult>;
-export const AzureLargeInstanceShutdownResponseOperationsList =
-  /*@__PURE__*/ S.Array(
-    OperationStatusResult,
-  ) as any as S.Schema<AzureLargeInstanceShutdownResponseOperationsList>;
-
-export interface AzureLargeInstanceShutdownResponse {
-  /** Fully qualified ID for the async operation. */
-  id?: string;
-  /** Fully qualified ID of the resource against which the original async operation was started. */
-  resourceId?: string;
-  /** Name of the async operation. */
-  name?: string;
-  /** Operation status. */
-  status: string;
-  /** Percent of the operation that is complete. */
-  percentComplete?: number;
-  /** The start time of the operation. */
-  startTime?: string;
-  /** The end time of the operation. */
-  endTime?: string;
-  /** The operations list. */
-  operations?: AzureLargeInstanceShutdownResponseOperationsList;
-  /** If present, details of the operation error. */
-  error?: ErrorDetail;
-}
-export const AzureLargeInstanceShutdownResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    resourceId: S.optional(S.String),
-    name: S.optional(S.String),
-    status: S.String,
-    percentComplete: S.optional(S.Number),
-    startTime: S.optional(S.String),
-    endTime: S.optional(S.String),
-    operations: S.optional(AzureLargeInstanceShutdownResponseOperationsList),
-    error: S.optional(ErrorDetail),
-  }),
-).annotate({
-  identifier: "AzureLargeInstanceShutdownResponse",
-}) as any as S.Schema<AzureLargeInstanceShutdownResponse>;
-
-export interface AzureLargeInstanceStartRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the AzureLargeInstance. */
-  azureLargeInstanceName: string;
-}
-export const AzureLargeInstanceStartRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    azureLargeInstanceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureLargeInstance/azureLargeInstances/{azureLargeInstanceName}/start",
-      code: 200,
-      apiVersion: "2024-04-10",
-    }),
-  ),
-).annotate({
-  identifier: "AzureLargeInstanceStartRequest",
-}) as any as S.Schema<AzureLargeInstanceStartRequest>;
-
-/** The operations list. */
-export type AzureLargeInstanceStartResponseOperationsList =
-  Array<OperationStatusResult>;
-export const AzureLargeInstanceStartResponseOperationsList =
-  /*@__PURE__*/ S.Array(
-    OperationStatusResult,
-  ) as any as S.Schema<AzureLargeInstanceStartResponseOperationsList>;
-
-export interface AzureLargeInstanceStartResponse {
-  /** Fully qualified ID for the async operation. */
-  id?: string;
-  /** Fully qualified ID of the resource against which the original async operation was started. */
-  resourceId?: string;
-  /** Name of the async operation. */
-  name?: string;
-  /** Operation status. */
-  status: string;
-  /** Percent of the operation that is complete. */
-  percentComplete?: number;
-  /** The start time of the operation. */
-  startTime?: string;
-  /** The end time of the operation. */
-  endTime?: string;
-  /** The operations list. */
-  operations?: AzureLargeInstanceStartResponseOperationsList;
-  /** If present, details of the operation error. */
-  error?: ErrorDetail;
-}
-export const AzureLargeInstanceStartResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    resourceId: S.optional(S.String),
-    name: S.optional(S.String),
-    status: S.String,
-    percentComplete: S.optional(S.Number),
-    startTime: S.optional(S.String),
-    endTime: S.optional(S.String),
-    operations: S.optional(AzureLargeInstanceStartResponseOperationsList),
-    error: S.optional(ErrorDetail),
-  }),
-).annotate({
-  identifier: "AzureLargeInstanceStartResponse",
-}) as any as S.Schema<AzureLargeInstanceStartResponse>;
-
-/** Resource tags. */
-export type AzureLargeInstanceUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AzureLargeInstanceUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AzureLargeInstanceUpdateRequestTagsMap>;
-
-export interface AzureLargeInstanceUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the AzureLargeInstance. */
-  azureLargeInstanceName: string;
-  /** Resource tags. */
-  tags?: AzureLargeInstanceUpdateRequestTagsMap;
-}
-export const AzureLargeInstanceUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    azureLargeInstanceName: S.String.pipe(T.Label()),
-    tags: S.optional(AzureLargeInstanceUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureLargeInstance/azureLargeInstances/{azureLargeInstanceName}",
-      code: 200,
-      apiVersion: "2024-04-10",
-    }),
-  ),
-).annotate({
-  identifier: "AzureLargeInstanceUpdateRequest",
-}) as any as S.Schema<AzureLargeInstanceUpdateRequest>;
-
-/** Resource tags. */
-export type AzureLargeInstanceUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AzureLargeInstanceUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AzureLargeInstanceUpdateResponseTagsMap>;
-
-export interface AzureLargeInstanceUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: AzureLargeInstanceUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: AzureLargeInstanceProperties;
-}
-export const AzureLargeInstanceUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(AzureLargeInstanceUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(AzureLargeInstanceProperties),
-  }),
-).annotate({
-  identifier: "AzureLargeInstanceUpdateResponse",
-}) as any as S.Schema<AzureLargeInstanceUpdateResponse>;
-
-export interface AzureLargeStorageInstanceGetRequest {
+export interface GetAzureLargeStorageInstanceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -832,7 +508,7 @@ export interface AzureLargeStorageInstanceGetRequest {
   /** Name of the AzureLargeStorageInstance. */
   azureLargeStorageInstanceName: string;
 }
-export const AzureLargeStorageInstanceGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetAzureLargeStorageInstanceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -846,18 +522,18 @@ export const AzureLargeStorageInstanceGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "AzureLargeStorageInstanceGetRequest",
-}) as any as S.Schema<AzureLargeStorageInstanceGetRequest>;
+  identifier: "GetAzureLargeStorageInstanceRequest",
+}) as any as S.Schema<GetAzureLargeStorageInstanceRequest>;
 
 /** Resource tags. */
-export type AzureLargeStorageInstanceGetResponseTagsMap = {
+export type GetAzureLargeStorageInstanceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AzureLargeStorageInstanceGetResponseTagsMap =
+export const GetAzureLargeStorageInstanceResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<AzureLargeStorageInstanceGetResponseTagsMap>;
+  ) as any as S.Schema<GetAzureLargeStorageInstanceResponseTagsMap>;
 
 /** An enum of possible operation states for an AzureLargeStorageInstances */
 export type ProvisioningState =
@@ -934,7 +610,7 @@ export const AzureLargeStorageInstanceProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "AzureLargeStorageInstanceProperties",
 }) as any as S.Schema<AzureLargeStorageInstanceProperties>;
 
-export interface AzureLargeStorageInstanceGetResponse {
+export interface GetAzureLargeStorageInstanceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -944,34 +620,137 @@ export interface AzureLargeStorageInstanceGetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: AzureLargeStorageInstanceGetResponseTagsMap;
+  tags?: GetAzureLargeStorageInstanceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: AzureLargeStorageInstanceProperties;
 }
-export const AzureLargeStorageInstanceGetResponse = /*@__PURE__*/ S.suspend(
+export const GetAzureLargeStorageInstanceResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      tags: S.optional(AzureLargeStorageInstanceGetResponseTagsMap),
+      tags: S.optional(GetAzureLargeStorageInstanceResponseTagsMap),
       location: S.String,
       properties: S.optional(AzureLargeStorageInstanceProperties),
     }),
 ).annotate({
-  identifier: "AzureLargeStorageInstanceGetResponse",
-}) as any as S.Schema<AzureLargeStorageInstanceGetResponse>;
+  identifier: "GetAzureLargeStorageInstanceResponse",
+}) as any as S.Schema<GetAzureLargeStorageInstanceResponse>;
 
-export interface AzureLargeStorageInstanceListByResourceGroupRequest {
+export interface ListAzureLargeInstanceByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
 }
-export const AzureLargeStorageInstanceListByResourceGroupRequest =
+export const ListAzureLargeInstanceByResourceGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureLargeInstance/azureLargeInstances",
+        code: 200,
+        apiVersion: "2024-04-10",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListAzureLargeInstanceByResourceGroupRequest",
+  }) as any as S.Schema<ListAzureLargeInstanceByResourceGroupRequest>;
+
+/** Resource tags. */
+export type AzureLargeInstanceTagsMap = { [key: string]: string | undefined };
+export const AzureLargeInstanceTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<AzureLargeInstanceTagsMap>;
+
+/** Azure Large Instance info on Azure (ARM properties and AzureLargeInstance properties) */
+export interface AzureLargeInstance {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: AzureLargeInstanceTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: AzureLargeInstanceProperties;
+}
+export const AzureLargeInstance = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(AzureLargeInstanceTagsMap),
+    location: S.String,
+    properties: S.optional(AzureLargeInstanceProperties),
+  }),
+).annotate({
+  identifier: "AzureLargeInstance",
+}) as any as S.Schema<AzureLargeInstance>;
+
+/** The AzureLargeInstance items on this page */
+export type AzureLargeInstanceListResultValueList = Array<AzureLargeInstance>;
+export const AzureLargeInstanceListResultValueList = /*@__PURE__*/ S.Array(
+  AzureLargeInstance,
+) as any as S.Schema<AzureLargeInstanceListResultValueList>;
+
+/** The response of a AzureLargeInstance list operation. */
+export interface AzureLargeInstanceListResult {
+  /** The AzureLargeInstance items on this page */
+  value: AzureLargeInstanceListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const AzureLargeInstanceListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: AzureLargeInstanceListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AzureLargeInstanceListResult",
+}) as any as S.Schema<AzureLargeInstanceListResult>;
+
+export interface ListAzureLargeInstanceBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+}
+export const ListAzureLargeInstanceBySubscriptionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.AzureLargeInstance/azureLargeInstances",
+        code: 200,
+        apiVersion: "2024-04-10",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListAzureLargeInstanceBySubscriptionRequest",
+  }) as any as S.Schema<ListAzureLargeInstanceBySubscriptionRequest>;
+
+export interface ListAzureLargeStorageInstanceByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const ListAzureLargeStorageInstanceByResourceGroupRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -985,8 +764,8 @@ export const AzureLargeStorageInstanceListByResourceGroupRequest =
       }),
     ),
   ).annotate({
-    identifier: "AzureLargeStorageInstanceListByResourceGroupRequest",
-  }) as any as S.Schema<AzureLargeStorageInstanceListByResourceGroupRequest>;
+    identifier: "ListAzureLargeStorageInstanceByResourceGroupRequest",
+  }) as any as S.Schema<ListAzureLargeStorageInstanceByResourceGroupRequest>;
 
 /** Resource tags. */
 export type AzureLargeStorageInstanceTagsMap = {
@@ -1052,11 +831,11 @@ export const AzureLargeStorageInstanceListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "AzureLargeStorageInstanceListResult",
 }) as any as S.Schema<AzureLargeStorageInstanceListResult>;
 
-export interface AzureLargeStorageInstanceListBySubscriptionRequest {
+export interface ListAzureLargeStorageInstanceBySubscriptionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
 }
-export const AzureLargeStorageInstanceListBySubscriptionRequest =
+export const ListAzureLargeStorageInstanceBySubscriptionRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -1069,91 +848,11 @@ export const AzureLargeStorageInstanceListBySubscriptionRequest =
       }),
     ),
   ).annotate({
-    identifier: "AzureLargeStorageInstanceListBySubscriptionRequest",
-  }) as any as S.Schema<AzureLargeStorageInstanceListBySubscriptionRequest>;
+    identifier: "ListAzureLargeStorageInstanceBySubscriptionRequest",
+  }) as any as S.Schema<ListAzureLargeStorageInstanceBySubscriptionRequest>;
 
-/** Resource tags. */
-export type AzureLargeStorageInstanceUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AzureLargeStorageInstanceUpdateRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<AzureLargeStorageInstanceUpdateRequestTagsMap>;
-
-export interface AzureLargeStorageInstanceUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the AzureLargeStorageInstance. */
-  azureLargeStorageInstanceName: string;
-  /** Resource tags. */
-  tags?: AzureLargeStorageInstanceUpdateRequestTagsMap;
-}
-export const AzureLargeStorageInstanceUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      azureLargeStorageInstanceName: S.String.pipe(T.Label()),
-      tags: S.optional(AzureLargeStorageInstanceUpdateRequestTagsMap),
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureLargeInstance/azureLargeStorageInstances/{azureLargeStorageInstanceName}",
-        code: 200,
-        apiVersion: "2024-04-10",
-      }),
-    ),
-).annotate({
-  identifier: "AzureLargeStorageInstanceUpdateRequest",
-}) as any as S.Schema<AzureLargeStorageInstanceUpdateRequest>;
-
-/** Resource tags. */
-export type AzureLargeStorageInstanceUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AzureLargeStorageInstanceUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<AzureLargeStorageInstanceUpdateResponseTagsMap>;
-
-export interface AzureLargeStorageInstanceUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: AzureLargeStorageInstanceUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: AzureLargeStorageInstanceProperties;
-}
-export const AzureLargeStorageInstanceUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(AzureLargeStorageInstanceUpdateResponseTagsMap),
-      location: S.String,
-      properties: S.optional(AzureLargeStorageInstanceProperties),
-    }),
-).annotate({
-  identifier: "AzureLargeStorageInstanceUpdateResponse",
-}) as any as S.Schema<AzureLargeStorageInstanceUpdateResponse>;
-
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({
       method: "GET",
@@ -1163,8 +862,8 @@ export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
 
 /** Localized display information for this particular operation. */
 export interface OperationDisplay {
@@ -1220,85 +919,326 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
-export interface OperationsListResponse {
+export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
-export const OperationsListResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "OperationsListResponse",
-}) as any as S.Schema<OperationsListResponse>;
+  identifier: "ListOperationsResponse",
+}) as any as S.Schema<ListOperationsResponse>;
 
-export type AzureLargeInstanceGetError = AzureOpError;
-/** Gets an Azure Large Instance for the specified subscription, resource group, and instance name. */
-export const AzureLargeInstanceGet: API.OperationMethod<
-  AzureLargeInstanceGetRequest,
-  AzureLargeInstanceGetResponse,
-  AzureLargeInstanceGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AzureLargeInstanceGetRequest,
-  output: AzureLargeInstanceGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
+/** Enum of two possible values to determine if the ALI instance restart operation should forcefully terminate and halt any existing processes that may be running on the server or not. */
+export type AzureLargeInstanceForcePowerState = "active" | "inactive";
+export const AzureLargeInstanceForcePowerState = /*@__PURE__*/ S.String;
 
-export type AzureLargeInstanceListByResourceGroupError = AzureOpError;
-/** Gets a list of Azure Large Instances in the specified subscription and resource group. The operations returns various properties of each Azure Large Instance. */
-export const AzureLargeInstanceListByResourceGroup: API.OperationMethod<
-  AzureLargeInstanceListByResourceGroupRequest,
-  AzureLargeInstanceListResult,
-  AzureLargeInstanceListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AzureLargeInstanceListByResourceGroupRequest,
-  output: AzureLargeInstanceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
+export interface RestartAzureLargeInstanceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the AzureLargeInstance. */
+  azureLargeInstanceName: string;
+  /** Whether to force restart by shutting all processes. */
+  forceState?: AzureLargeInstanceForcePowerState | (string & {});
+}
+export const RestartAzureLargeInstanceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    azureLargeInstanceName: S.String.pipe(T.Label()),
+    forceState: S.optional(AzureLargeInstanceForcePowerState),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureLargeInstance/azureLargeInstances/{azureLargeInstanceName}/restart",
+      code: 200,
+      apiVersion: "2024-04-10",
+    }),
+  ),
+).annotate({
+  identifier: "RestartAzureLargeInstanceRequest",
+}) as any as S.Schema<RestartAzureLargeInstanceRequest>;
 
-export type AzureLargeInstanceListBySubscriptionError = AzureOpError;
-/** Gets a list of Azure Large Instances in the specified subscription. The operations returns various properties of each Azure Large Instance. */
-export const AzureLargeInstanceListBySubscription: API.OperationMethod<
-  AzureLargeInstanceListBySubscriptionRequest,
-  AzureLargeInstanceListResult,
-  AzureLargeInstanceListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AzureLargeInstanceListBySubscriptionRequest,
-  output: AzureLargeInstanceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
+/** The operations list. */
+export type RestartAzureLargeInstanceResponseOperationsList =
+  Array<OperationStatusResult>;
+export const RestartAzureLargeInstanceResponseOperationsList =
+  /*@__PURE__*/ S.Array(
+    OperationStatusResult,
+  ) as any as S.Schema<RestartAzureLargeInstanceResponseOperationsList>;
 
-export type AzureLargeInstanceRestartError = AzureOpError;
-/** The operation to restart an Azure Large Instance (only for compute instances) */
-export const AzureLargeInstanceRestart: API.OperationMethod<
-  AzureLargeInstanceRestartRequest,
-  AzureLargeInstanceRestartResponse,
-  AzureLargeInstanceRestartError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AzureLargeInstanceRestartRequest,
-  output: AzureLargeInstanceRestartResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
+export interface RestartAzureLargeInstanceResponse {
+  /** Fully qualified ID for the async operation. */
+  id?: string;
+  /** Fully qualified ID of the resource against which the original async operation was started. */
+  resourceId?: string;
+  /** Name of the async operation. */
+  name?: string;
+  /** Operation status. */
+  status: string;
+  /** Percent of the operation that is complete. */
+  percentComplete?: number;
+  /** The start time of the operation. */
+  startTime?: string;
+  /** The end time of the operation. */
+  endTime?: string;
+  /** The operations list. */
+  operations?: RestartAzureLargeInstanceResponseOperationsList;
+  /** If present, details of the operation error. */
+  error?: ErrorDetail;
+}
+export const RestartAzureLargeInstanceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    resourceId: S.optional(S.String),
+    name: S.optional(S.String),
+    status: S.String,
+    percentComplete: S.optional(S.Number),
+    startTime: S.optional(S.String),
+    endTime: S.optional(S.String),
+    operations: S.optional(RestartAzureLargeInstanceResponseOperationsList),
+    error: S.optional(ErrorDetail),
+  }),
+).annotate({
+  identifier: "RestartAzureLargeInstanceResponse",
+}) as any as S.Schema<RestartAzureLargeInstanceResponse>;
+
+export interface StartAzureLargeInstanceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the AzureLargeInstance. */
+  azureLargeInstanceName: string;
+}
+export const StartAzureLargeInstanceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    azureLargeInstanceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureLargeInstance/azureLargeInstances/{azureLargeInstanceName}/start",
+      code: 200,
+      apiVersion: "2024-04-10",
+    }),
+  ),
+).annotate({
+  identifier: "StartAzureLargeInstanceRequest",
+}) as any as S.Schema<StartAzureLargeInstanceRequest>;
+
+/** The operations list. */
+export type StartAzureLargeInstanceResponseOperationsList =
+  Array<OperationStatusResult>;
+export const StartAzureLargeInstanceResponseOperationsList =
+  /*@__PURE__*/ S.Array(
+    OperationStatusResult,
+  ) as any as S.Schema<StartAzureLargeInstanceResponseOperationsList>;
+
+export interface StartAzureLargeInstanceResponse {
+  /** Fully qualified ID for the async operation. */
+  id?: string;
+  /** Fully qualified ID of the resource against which the original async operation was started. */
+  resourceId?: string;
+  /** Name of the async operation. */
+  name?: string;
+  /** Operation status. */
+  status: string;
+  /** Percent of the operation that is complete. */
+  percentComplete?: number;
+  /** The start time of the operation. */
+  startTime?: string;
+  /** The end time of the operation. */
+  endTime?: string;
+  /** The operations list. */
+  operations?: StartAzureLargeInstanceResponseOperationsList;
+  /** If present, details of the operation error. */
+  error?: ErrorDetail;
+}
+export const StartAzureLargeInstanceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    resourceId: S.optional(S.String),
+    name: S.optional(S.String),
+    status: S.String,
+    percentComplete: S.optional(S.Number),
+    startTime: S.optional(S.String),
+    endTime: S.optional(S.String),
+    operations: S.optional(StartAzureLargeInstanceResponseOperationsList),
+    error: S.optional(ErrorDetail),
+  }),
+).annotate({
+  identifier: "StartAzureLargeInstanceResponse",
+}) as any as S.Schema<StartAzureLargeInstanceResponse>;
+
+/** Resource tags. */
+export type UpdateAzureLargeInstanceRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateAzureLargeInstanceRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateAzureLargeInstanceRequestTagsMap>;
+
+export interface UpdateAzureLargeInstanceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the AzureLargeInstance. */
+  azureLargeInstanceName: string;
+  /** Resource tags. */
+  tags?: UpdateAzureLargeInstanceRequestTagsMap;
+}
+export const UpdateAzureLargeInstanceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    azureLargeInstanceName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateAzureLargeInstanceRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureLargeInstance/azureLargeInstances/{azureLargeInstanceName}",
+      code: 200,
+      apiVersion: "2024-04-10",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateAzureLargeInstanceRequest",
+}) as any as S.Schema<UpdateAzureLargeInstanceRequest>;
+
+/** Resource tags. */
+export type UpdateAzureLargeInstanceResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateAzureLargeInstanceResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateAzureLargeInstanceResponseTagsMap>;
+
+export interface UpdateAzureLargeInstanceResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateAzureLargeInstanceResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: AzureLargeInstanceProperties;
+}
+export const UpdateAzureLargeInstanceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateAzureLargeInstanceResponseTagsMap),
+    location: S.String,
+    properties: S.optional(AzureLargeInstanceProperties),
+  }),
+).annotate({
+  identifier: "UpdateAzureLargeInstanceResponse",
+}) as any as S.Schema<UpdateAzureLargeInstanceResponse>;
+
+/** Resource tags. */
+export type UpdateAzureLargeStorageInstanceRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateAzureLargeStorageInstanceRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<UpdateAzureLargeStorageInstanceRequestTagsMap>;
+
+export interface UpdateAzureLargeStorageInstanceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the AzureLargeStorageInstance. */
+  azureLargeStorageInstanceName: string;
+  /** Resource tags. */
+  tags?: UpdateAzureLargeStorageInstanceRequestTagsMap;
+}
+export const UpdateAzureLargeStorageInstanceRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      azureLargeStorageInstanceName: S.String.pipe(T.Label()),
+      tags: S.optional(UpdateAzureLargeStorageInstanceRequestTagsMap),
+    }).pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureLargeInstance/azureLargeStorageInstances/{azureLargeStorageInstanceName}",
+        code: 200,
+        apiVersion: "2024-04-10",
+      }),
+    ),
+).annotate({
+  identifier: "UpdateAzureLargeStorageInstanceRequest",
+}) as any as S.Schema<UpdateAzureLargeStorageInstanceRequest>;
+
+/** Resource tags. */
+export type UpdateAzureLargeStorageInstanceResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateAzureLargeStorageInstanceResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<UpdateAzureLargeStorageInstanceResponseTagsMap>;
+
+export interface UpdateAzureLargeStorageInstanceResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateAzureLargeStorageInstanceResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: AzureLargeStorageInstanceProperties;
+}
+export const UpdateAzureLargeStorageInstanceResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(UpdateAzureLargeStorageInstanceResponseTagsMap),
+      location: S.String,
+      properties: S.optional(AzureLargeStorageInstanceProperties),
+    }),
+).annotate({
+  identifier: "UpdateAzureLargeStorageInstanceResponse",
+}) as any as S.Schema<UpdateAzureLargeStorageInstanceResponse>;
 
 export type AzureLargeInstanceShutdownError = AzureOpError;
 /** The operation to shutdown an Azure Large Instance (only for compute instances) */
@@ -1315,106 +1255,166 @@ export const AzureLargeInstanceShutdown: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type AzureLargeInstanceStartError = AzureOpError;
-/** The operation to start an Azure Large Instance (only for compute instances) */
-export const AzureLargeInstanceStart: API.OperationMethod<
-  AzureLargeInstanceStartRequest,
-  AzureLargeInstanceStartResponse,
-  AzureLargeInstanceStartError,
+export type GetAzureLargeInstanceError = AzureOpError;
+/** Gets an Azure Large Instance for the specified subscription, resource group, and instance name. */
+export const GetAzureLargeInstance: API.OperationMethod<
+  GetAzureLargeInstanceRequest,
+  GetAzureLargeInstanceResponse,
+  GetAzureLargeInstanceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AzureLargeInstanceStartRequest,
-  output: AzureLargeInstanceStartResponse,
+  input: GetAzureLargeInstanceRequest,
+  output: GetAzureLargeInstanceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type AzureLargeInstanceUpdateError = AzureOpError;
-/** Patches the Tags field of an Azure Large Instance for the specified subscription, resource group, and instance name. */
-export const AzureLargeInstanceUpdate: API.OperationMethod<
-  AzureLargeInstanceUpdateRequest,
-  AzureLargeInstanceUpdateResponse,
-  AzureLargeInstanceUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AzureLargeInstanceUpdateRequest,
-  output: AzureLargeInstanceUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AzureLargeStorageInstanceGetError = AzureOpError;
+export type GetAzureLargeStorageInstanceError = AzureOpError;
 /** Gets an Azure Large Storage instance for the specified subscription, resource group, and instance name. */
-export const AzureLargeStorageInstanceGet: API.OperationMethod<
-  AzureLargeStorageInstanceGetRequest,
-  AzureLargeStorageInstanceGetResponse,
-  AzureLargeStorageInstanceGetError,
+export const GetAzureLargeStorageInstance: API.OperationMethod<
+  GetAzureLargeStorageInstanceRequest,
+  GetAzureLargeStorageInstanceResponse,
+  GetAzureLargeStorageInstanceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AzureLargeStorageInstanceGetRequest,
-  output: AzureLargeStorageInstanceGetResponse,
+  input: GetAzureLargeStorageInstanceRequest,
+  output: GetAzureLargeStorageInstanceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type AzureLargeStorageInstanceListByResourceGroupError = AzureOpError;
+export type ListAzureLargeInstanceByResourceGroupError = AzureOpError;
+/** Gets a list of Azure Large Instances in the specified subscription and resource group. The operations returns various properties of each Azure Large Instance. */
+export const ListAzureLargeInstanceByResourceGroup: API.OperationMethod<
+  ListAzureLargeInstanceByResourceGroupRequest,
+  AzureLargeInstanceListResult,
+  ListAzureLargeInstanceByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAzureLargeInstanceByResourceGroupRequest,
+  output: AzureLargeInstanceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAzureLargeInstanceBySubscriptionError = AzureOpError;
+/** Gets a list of Azure Large Instances in the specified subscription. The operations returns various properties of each Azure Large Instance. */
+export const ListAzureLargeInstanceBySubscription: API.OperationMethod<
+  ListAzureLargeInstanceBySubscriptionRequest,
+  AzureLargeInstanceListResult,
+  ListAzureLargeInstanceBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAzureLargeInstanceBySubscriptionRequest,
+  output: AzureLargeInstanceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAzureLargeStorageInstanceByResourceGroupError = AzureOpError;
 /** Gets a list of AzureLargeStorageInstances in the specified subscription and resource group. The operations returns various properties of each Azure LargeStorage instance. */
-export const AzureLargeStorageInstanceListByResourceGroup: API.OperationMethod<
-  AzureLargeStorageInstanceListByResourceGroupRequest,
+export const ListAzureLargeStorageInstanceByResourceGroup: API.OperationMethod<
+  ListAzureLargeStorageInstanceByResourceGroupRequest,
   AzureLargeStorageInstanceListResult,
-  AzureLargeStorageInstanceListByResourceGroupError,
+  ListAzureLargeStorageInstanceByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AzureLargeStorageInstanceListByResourceGroupRequest,
+  input: ListAzureLargeStorageInstanceByResourceGroupRequest,
   output: AzureLargeStorageInstanceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type AzureLargeStorageInstanceListBySubscriptionError = AzureOpError;
+export type ListAzureLargeStorageInstanceBySubscriptionError = AzureOpError;
 /** Gets a list of AzureLargeStorageInstances in the specified subscription. The operations returns various properties of each Azure LargeStorage instance. */
-export const AzureLargeStorageInstanceListBySubscription: API.OperationMethod<
-  AzureLargeStorageInstanceListBySubscriptionRequest,
+export const ListAzureLargeStorageInstanceBySubscription: API.OperationMethod<
+  ListAzureLargeStorageInstanceBySubscriptionRequest,
   AzureLargeStorageInstanceListResult,
-  AzureLargeStorageInstanceListBySubscriptionError,
+  ListAzureLargeStorageInstanceBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AzureLargeStorageInstanceListBySubscriptionRequest,
+  input: ListAzureLargeStorageInstanceBySubscriptionRequest,
   output: AzureLargeStorageInstanceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type AzureLargeStorageInstanceUpdateError = AzureOpError;
-/** Patches the Tags field of a Azure Large Storage Instance for the specified subscription, resource group, and instance name. */
-export const AzureLargeStorageInstanceUpdate: API.OperationMethod<
-  AzureLargeStorageInstanceUpdateRequest,
-  AzureLargeStorageInstanceUpdateResponse,
-  AzureLargeStorageInstanceUpdateError,
+export type ListOperationsError = AzureOpError;
+/** List the operations for the provider */
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  ListOperationsResponse,
+  ListOperationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AzureLargeStorageInstanceUpdateRequest,
-  output: AzureLargeStorageInstanceUpdateResponse,
+  input: ListOperationsRequest,
+  output: ListOperationsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OperationsListError = AzureOpError;
-/** List the operations for the provider */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationsListResponse,
-  OperationsListError,
+export type RestartAzureLargeInstanceError = AzureOpError;
+/** The operation to restart an Azure Large Instance (only for compute instances) */
+export const RestartAzureLargeInstance: API.OperationMethod<
+  RestartAzureLargeInstanceRequest,
+  RestartAzureLargeInstanceResponse,
+  RestartAzureLargeInstanceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
-  output: OperationsListResponse,
+  input: RestartAzureLargeInstanceRequest,
+  output: RestartAzureLargeInstanceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type StartAzureLargeInstanceError = AzureOpError;
+/** The operation to start an Azure Large Instance (only for compute instances) */
+export const StartAzureLargeInstance: API.OperationMethod<
+  StartAzureLargeInstanceRequest,
+  StartAzureLargeInstanceResponse,
+  StartAzureLargeInstanceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: StartAzureLargeInstanceRequest,
+  output: StartAzureLargeInstanceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateAzureLargeInstanceError = AzureOpError;
+/** Patches the Tags field of an Azure Large Instance for the specified subscription, resource group, and instance name. */
+export const UpdateAzureLargeInstance: API.OperationMethod<
+  UpdateAzureLargeInstanceRequest,
+  UpdateAzureLargeInstanceResponse,
+  UpdateAzureLargeInstanceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateAzureLargeInstanceRequest,
+  output: UpdateAzureLargeInstanceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateAzureLargeStorageInstanceError = AzureOpError;
+/** Patches the Tags field of a Azure Large Storage Instance for the specified subscription, resource group, and instance name. */
+export const UpdateAzureLargeStorageInstance: API.OperationMethod<
+  UpdateAzureLargeStorageInstanceRequest,
+  UpdateAzureLargeStorageInstanceResponse,
+  UpdateAzureLargeStorageInstanceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateAzureLargeStorageInstanceRequest,
+  output: UpdateAzureLargeStorageInstanceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

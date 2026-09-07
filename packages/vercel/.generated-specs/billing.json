@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.vercel.billing#ListBillingChargesRequest": {
@@ -1093,6 +1094,93 @@
         "smithy.api#documentation": "The configuration for a credit purchase"
       }
     },
+    "com.vercel.billing#BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase6OptionsFromPlanPlanItemQuantitiesItemResourceIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource IDs associated with the current plan item quantity"
+      }
+    },
+    "com.vercel.billing#BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase6OptionsFromPlanPlanItemQuantitiesItem": {
+      "type": "structure",
+      "members": {
+        "planItemId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the current plan item to set the quantity for",
+            "smithy.api#required": {}
+          }
+        },
+        "quantity": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The nonnegative integer quantity for the current plan item",
+            "smithy.api#required": {}
+          }
+        },
+        "resourceIds": {
+          "target": "com.vercel.billing#BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase6OptionsFromPlanPlanItemQuantitiesItemResourceIdsList",
+          "traits": {
+            "smithy.api#documentation": "The resource IDs associated with the current plan item quantity"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The current plan item quantities"
+      }
+    },
+    "com.vercel.billing#BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase6OptionsFromPlanPlanItemQuantitiesList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.billing#BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase6OptionsFromPlanPlanItemQuantitiesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "The current plan item quantities"
+      }
+    },
+    "com.vercel.billing#BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase6OptionsFromPlan": {
+      "type": "structure",
+      "members": {
+        "currentCycleEndDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The end of the current plan billing cycle",
+            "smithy.api#required": {}
+          }
+        },
+        "orbSubscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Orb subscription ID currently active for the owner on the source plan",
+            "smithy.api#required": {}
+          }
+        },
+        "planId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the plan currently assigned",
+            "smithy.api#required": {}
+          }
+        },
+        "planItemQuantities": {
+          "target": "com.vercel.billing#BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase6OptionsFromPlanPlanItemQuantitiesList",
+          "traits": {
+            "smithy.api#documentation": "The current plan item quantities"
+          }
+        },
+        "rateVariantKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The rate variant currently assigned"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The current plan being replaced by this purchase"
+      }
+    },
     "com.vercel.billing#BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase6OptionsPlanItemQuantitiesItemResourceIdsList": {
       "type": "list",
       "member": {
@@ -1147,6 +1235,12 @@
           "traits": {
             "smithy.api#documentation": "The ID of the plan to subscribe to",
             "smithy.api#required": {}
+          }
+        },
+        "fromPlan": {
+          "target": "com.vercel.billing#BuyCreditsResponseBodyCase1PurchaseIntentConfigurationCase6OptionsFromPlan",
+          "traits": {
+            "smithy.api#documentation": "The current plan being replaced by this purchase"
           }
         },
         "planItemQuantities": {

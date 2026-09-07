@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.modal.queue#QueueClearRequest": {
+    "com.modal.queue#ClearQueueRequest": {
       "type": "structure",
       "members": {
         "queueId": {
@@ -34,10 +35,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.modal.queue#QueueClear": {
+    "com.modal.queue#ClearQueue": {
       "type": "operation",
       "input": {
-        "target": "com.modal.queue#QueueClearRequest"
+        "target": "com.modal.queue#ClearQueueRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -51,7 +52,7 @@
         "smithy.api#documentation": "Queues"
       }
     },
-    "com.modal.queue#QueueDeleteRequest": {
+    "com.modal.queue#DeleteQueueRequest": {
       "type": "structure",
       "members": {
         "queueId": {
@@ -62,10 +63,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.modal.queue#QueueDelete": {
+    "com.modal.queue#DeleteQueue": {
       "type": "operation",
       "input": {
-        "target": "com.modal.queue#QueueDeleteRequest"
+        "target": "com.modal.queue#DeleteQueueRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -78,7 +79,7 @@
         }
       }
     },
-    "com.modal.queue#QueueGetRequest": {
+    "com.modal.queue#GetQueueRequest": {
       "type": "structure",
       "members": {
         "queueId": {
@@ -104,7 +105,7 @@
         "target": "smithy.api#Blob"
       }
     },
-    "com.modal.queue#QueueGetResponse": {
+    "com.modal.queue#GetQueueResponse": {
       "type": "structure",
       "members": {
         "values": {
@@ -115,13 +116,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modal.queue#QueueGet": {
+    "com.modal.queue#GetQueue": {
       "type": "operation",
       "input": {
-        "target": "com.modal.queue#QueueGetRequest"
+        "target": "com.modal.queue#GetQueueRequest"
       },
       "output": {
-        "target": "com.modal.queue#QueueGetResponse"
+        "target": "com.modal.queue#GetQueueResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -375,7 +376,7 @@
         }
       }
     },
-    "com.modal.queue#QueueListRequest": {
+    "com.modal.queue#ListQueueRequest": {
       "type": "structure",
       "members": {
         "environmentName": {
@@ -395,7 +396,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.modal.queue#QueueListResponseQueueInfo": {
+    "com.modal.queue#ListQueueResponseQueueInfo": {
       "type": "structure",
       "members": {
         "name": {
@@ -421,17 +422,17 @@
         }
       }
     },
-    "com.modal.queue#QueueListResponseQueueInfoList": {
+    "com.modal.queue#ListQueueResponseQueueInfoList": {
       "type": "list",
       "member": {
-        "target": "com.modal.queue#QueueListResponseQueueInfo"
+        "target": "com.modal.queue#ListQueueResponseQueueInfo"
       }
     },
-    "com.modal.queue#QueueListResponse": {
+    "com.modal.queue#ListQueueResponse": {
       "type": "structure",
       "members": {
         "queues": {
-          "target": "com.modal.queue#QueueListResponseQueueInfoList"
+          "target": "com.modal.queue#ListQueueResponseQueueInfoList"
         },
         "environmentName": {
           "target": "smithy.api#String"
@@ -441,13 +442,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modal.queue#QueueList": {
+    "com.modal.queue#ListQueue": {
       "type": "operation",
       "input": {
-        "target": "com.modal.queue#QueueListRequest"
+        "target": "com.modal.queue#ListQueueRequest"
       },
       "output": {
-        "target": "com.modal.queue#QueueListResponse"
+        "target": "com.modal.queue#ListQueueResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -521,7 +522,7 @@
         }
       }
     },
-    "com.modal.queue#QueuePutRequest": {
+    "com.modal.queue#PutQueueRequest": {
       "type": "structure",
       "members": {
         "queueId": {
@@ -541,10 +542,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.modal.queue#QueuePut": {
+    "com.modal.queue#PutQueue": {
       "type": "operation",
       "input": {
-        "target": "com.modal.queue#QueuePutRequest"
+        "target": "com.modal.queue#PutQueueRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -562,13 +563,13 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.modal.queue#QueueClear"
+          "target": "com.modal.queue#ClearQueue"
         },
         {
-          "target": "com.modal.queue#QueueDelete"
+          "target": "com.modal.queue#DeleteQueue"
         },
         {
-          "target": "com.modal.queue#QueueGet"
+          "target": "com.modal.queue#GetQueue"
         },
         {
           "target": "com.modal.queue#QueueGetById"
@@ -583,13 +584,13 @@
           "target": "com.modal.queue#QueueLen"
         },
         {
-          "target": "com.modal.queue#QueueList"
+          "target": "com.modal.queue#ListQueue"
         },
         {
           "target": "com.modal.queue#QueueNextItems"
         },
         {
-          "target": "com.modal.queue#QueuePut"
+          "target": "com.modal.queue#PutQueue"
         }
       ],
       "traits": {

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.dm_channels#ListDmChannelRequest": {
@@ -315,7 +316,7 @@
         "smithy.api#documentation": "Create dm channel\n\n[Legacy API — https://docs.whop.com/api-reference]\n\nCreate a new DM channel between two or more users, optionally scoped to a specific company. Returns the existing channel if one already exists.\n\nRequired permissions:\n - `dms:channel:manage`"
       }
     },
-    "com.whop.dm_channels#RetrieveDmChannelRequest": {
+    "com.whop.dm_channels#GetDmChannelRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -331,10 +332,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.dm_channels#RetrieveDmChannel": {
+    "com.whop.dm_channels#GetDmChannel": {
       "type": "operation",
       "input": {
-        "target": "com.whop.dm_channels#RetrieveDmChannelRequest"
+        "target": "com.whop.dm_channels#GetDmChannelRequest"
       },
       "output": {
         "target": "com.whop.dm_channels#DmChannel"
@@ -541,7 +542,7 @@
           "target": "com.whop.dm_channels#CreateDmChannel"
         },
         {
-          "target": "com.whop.dm_channels#RetrieveDmChannel"
+          "target": "com.whop.dm_channels#GetDmChannel"
         },
         {
           "target": "com.whop.dm_channels#UpdateDmChannel"

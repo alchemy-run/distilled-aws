@@ -11,7 +11,7 @@ import * as Retry from "../retry.ts";
 
 export type { PosthogOpError, PosthogOpContext };
 
-export interface EvaluationRunsCreateRequest {
+export interface CreateEvaluationRunRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** UUID of the evaluation to run. */
@@ -25,7 +25,7 @@ export interface EvaluationRunsCreateRequest {
   /** Distinct ID of the event (optional, improves lookup performance). */
   distinct_id?: string | null;
 }
-export const EvaluationRunsCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateEvaluationRunRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     evaluation_id: S.optional(S.String),
@@ -41,34 +41,34 @@ export const EvaluationRunsCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "EvaluationRunsCreateRequest",
-}) as any as S.Schema<EvaluationRunsCreateRequest>;
+  identifier: "CreateEvaluationRunRequest",
+}) as any as S.Schema<CreateEvaluationRunRequest>;
 
-export type EvaluationRunsCreateResponseBodyMap = {
+export type CreateEvaluationRunResponseBodyMap = {
   [key: string]: unknown | undefined;
 };
-export const EvaluationRunsCreateResponseBodyMap = /*@__PURE__*/ S.Record(
+export const CreateEvaluationRunResponseBodyMap = /*@__PURE__*/ S.Record(
   S.String,
   S.Unknown,
-) as any as S.Schema<EvaluationRunsCreateResponseBodyMap>;
+) as any as S.Schema<CreateEvaluationRunResponseBodyMap>;
 
-export type EvaluationRunsCreateResponse = EvaluationRunsCreateResponseBodyMap;
-export const EvaluationRunsCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  EvaluationRunsCreateResponseBodyMap.pipe(T.RawResponseRoot()),
+export type CreateEvaluationRunResponse = CreateEvaluationRunResponseBodyMap;
+export const CreateEvaluationRunResponse = /*@__PURE__*/ S.suspend(() =>
+  CreateEvaluationRunResponseBodyMap.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "EvaluationRunsCreateResponse",
-}) as any as S.Schema<EvaluationRunsCreateResponse>;
+  identifier: "CreateEvaluationRunResponse",
+}) as any as S.Schema<CreateEvaluationRunResponse>;
 
-export type EvaluationRunsCreateError = PosthogOpError;
+export type CreateEvaluationRunError = PosthogOpError;
 /** Create a new evaluation run. This endpoint validates the request and enqueues a Temporal workflow to asynchronously execute the evaluation. */
-export const evaluationRunsCreate: API.OperationMethod<
-  EvaluationRunsCreateRequest,
-  EvaluationRunsCreateResponse,
-  EvaluationRunsCreateError,
+export const createEvaluationRun: API.OperationMethod<
+  CreateEvaluationRunRequest,
+  CreateEvaluationRunResponse,
+  CreateEvaluationRunError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EvaluationRunsCreateRequest,
-  output: EvaluationRunsCreateResponse,
+  input: CreateEvaluationRunRequest,
+  output: CreateEvaluationRunResponse,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,

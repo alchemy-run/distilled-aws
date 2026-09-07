@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.neon.api#AdvisorCategory": {
@@ -16691,6 +16692,75 @@
       },
       "traits": {}
     },
+    "com.neon.api#GrantedCredentialScope": {
+      "type": "enum",
+      "members": {
+        "STORAGE_READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "storage:read"
+          }
+        },
+        "STORAGE_WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "storage:write"
+          }
+        },
+        "AI_GATEWAY_INVOKE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ai_gateway:invoke"
+          }
+        },
+        "TELEMETRY_WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "telemetry:write"
+          }
+        },
+        "FUNCTIONS_INVOKE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "functions:invoke"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A single capability a credential actually carries, as reported by\nresponses that describe an existing credential.\n\nThis set is a superset of `CredentialScope` (the requestable set)\nbecause a credential's scopes are not limited to what this API offers:\nthe platform accepts additional scopes for customer-managed (`user`)\ncredentials, so one may exist on your branch that was not issued\nthrough this endpoint. Responses must be able to report such a\ncredential rather than fail to describe it — a client that rejected\nthe value would, on rotate, discard the replacement secret after the\nrotation had already committed. Treat unknown values as opaque.\n"
+      }
+    },
+    "com.neon.api#CredentialMetaScopesList": {
+      "type": "list",
+      "member": {
+        "target": "com.neon.api#GrantedCredentialScope"
+      },
+      "traits": {}
+    },
+    "com.neon.api#ListCredentialsResponseCredentialsList": {
+      "type": "list",
+      "member": {
+        "target": "com.neon.api#CredentialMeta"
+      },
+      "traits": {}
+    },
+    "com.neon.api#ListCredentials": {
+      "type": "operation",
+      "input": {
+        "target": "com.neon.api#ListCredentialsRequest"
+      },
+      "output": {
+        "target": "com.neon.api#ListCredentialsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/projects/{project_id}/branches/{branch_id}/credentials",
+          "code": 200
+        },
+        "smithy.api#documentation": "List credentials on the branch\n\nReturns metadata for customer-issued credentials on the branch.\nSecrets are never included.\n\n**Note**: This endpoint is currently in Beta."
+      }
+    },
     "com.neon.api#CredentialScope": {
       "type": "enum",
       "members": {
@@ -16720,38 +16790,7 @@
         }
       },
       "traits": {
-        "smithy.api#documentation": "A single capability a credential may exercise. A credential is granted\na set of these; it may only perform actions explicitly listed in its\nscopes.\n"
-      }
-    },
-    "com.neon.api#CredentialMetaScopesList": {
-      "type": "list",
-      "member": {
-        "target": "com.neon.api#CredentialScope"
-      },
-      "traits": {}
-    },
-    "com.neon.api#ListCredentialsResponseCredentialsList": {
-      "type": "list",
-      "member": {
-        "target": "com.neon.api#CredentialMeta"
-      },
-      "traits": {}
-    },
-    "com.neon.api#ListCredentials": {
-      "type": "operation",
-      "input": {
-        "target": "com.neon.api#ListCredentialsRequest"
-      },
-      "output": {
-        "target": "com.neon.api#ListCredentialsResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/projects/{project_id}/branches/{branch_id}/credentials",
-          "code": 200
-        },
-        "smithy.api#documentation": "List credentials on the branch\n\nReturns metadata for customer-issued credentials on the branch.\nSecrets are never included.\n\n**Note**: This endpoint is currently in Beta."
+        "smithy.api#documentation": "A single capability you may request when issuing a credential. A\ncredential is granted a set of these; it may only perform actions\nexplicitly listed in its scopes.\n\nThis is the *requestable* set. Responses describing an existing\ncredential use `GrantedCredentialScope`, which is deliberately wider:\na credential may have been granted a scope that this endpoint does not\noffer, and a response must be able to report it.\n"
       }
     },
     "com.neon.api#CreateCredentialRequestScopesList": {
@@ -16886,7 +16925,7 @@
     "com.neon.api#CreateCredentialResponseScopesList": {
       "type": "list",
       "member": {
-        "target": "com.neon.api#CredentialScope"
+        "target": "com.neon.api#GrantedCredentialScope"
       },
       "traits": {}
     },
@@ -16959,6 +16998,238 @@
           "code": 200
         },
         "smithy.api#documentation": "Revoke a credential\n\nSoft-deletes the credential.  Idempotent.\n\n**Note**: This endpoint is currently in Beta."
+      }
+    },
+    "com.neon.api#RevealCredentialRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Neon project ID"
+          }
+        },
+        "branch_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Neon branch ID"
+          }
+        },
+        "token_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The opaque credential id (e.g. nak_live_<32hex>)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.neon.api#CredentialSecret": {
+      "type": "structure",
+      "members": {
+        "token_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Opaque credential id (e.g. nak_live_<32hex>).",
+            "smithy.api#required": {}
+          }
+        },
+        "api_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Bearer token.",
+            "smithy.api#required": {},
+            "smithy.api#sensitive": {}
+          }
+        },
+        "s3_secret_access_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "nsk_live_<64 hex>; the AWS_SECRET_ACCESS_KEY.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The live secrets of an existing credential, recovered on demand by the\nreveal endpoint. `api_token` and `s3_secret_access_key` are the same\nvalues handed back once at issuance.\n\nThe field set is deliberately narrower than `CreateCredentialResponse`:\nit carries only what reveal can actually recover. `token_id_short`,\n`scopes`, `principal_type`, `created_at` and `expires_at` are metadata,\nnot secrets — read them from the list endpoint instead.\n\nNo `branch_id` is returned. Reveal is scoped by `(project_id,\ntoken_id)`, so the branch in the request path authorizes the call but\nis not proven to be the branch the credential was issued on. Echoing it\nback would assert an anchor this endpoint never verified. For a\ncredential's true anchor branch, read `branch_id` from the list\nendpoint, which is branch-exact.\n"
+      }
+    },
+    "com.neon.api#RevealCredential": {
+      "type": "operation",
+      "input": {
+        "target": "com.neon.api#RevealCredentialRequest"
+      },
+      "output": {
+        "target": "com.neon.api#CredentialSecret"
+      },
+      "errors": [
+        {
+          "target": "com.neon.api#NotFound"
+        },
+        {
+          "target": "com.neon.api#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/projects/{project_id}/branches/{branch_id}/credentials/{token_id}/reveal",
+          "code": 200
+        },
+        "smithy.api#documentation": "Reveal a credential's secrets\n\nReturns the live `api_token` and `s3_secret_access_key` of an existing\ncredential, so a credential whose issuance response was lost can be\nrecovered without minting a new one.\n\nThis is a POST with an explicit `/reveal` verb so the secrets never ride\na GET, where they would land in access logs, browser history and proxy\ncaches. Revoked and expired credentials return 404, as does a\n`token_id` that does not belong to this project.\n\nA credential issued before secret retrieval was supported has no\nrecoverable secret and returns 409 — rotate it to obtain one.\n\n**Note**: This endpoint is currently in Beta."
+      }
+    },
+    "com.neon.api#RotateCredentialRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Neon project ID"
+          }
+        },
+        "branch_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Neon branch ID"
+          }
+        },
+        "token_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The opaque credential id (e.g. nak_live_<32hex>)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.neon.api#RotateCredentialResponse": {
+      "type": "structure",
+      "members": {
+        "token_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Opaque credential id (e.g. nak_live_<32hex>), unchanged by the\nrotation. Doubles as the `AWS_ACCESS_KEY_ID` for SigV4.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "token_id_short": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "First 12 hex chars of token_id; safe to log.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Customer-supplied label carried on the credential. Absent when none was set at issuance."
+          }
+        },
+        "api_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The new Bearer token; returned exactly once.",
+            "smithy.api#required": {},
+            "smithy.api#sensitive": {}
+          }
+        },
+        "s3_secret_access_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The new nsk_live_<64 hex> AWS_SECRET_ACCESS_KEY; returned exactly once.",
+            "smithy.api#required": {}
+          }
+        },
+        "scopes": {
+          "target": "com.neon.api#RotateCredentialResponseScopesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "branch_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "principal_type": {
+          "target": "com.neon.api#RotateCredentialResponsePrincipalType",
+          "traits": {
+            "smithy.api#documentation": "Always `user`: only customer-managed credentials are rotatable\nthrough this endpoint.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the credential was originally issued. Rotation replaces the\nsecrets in place and does not reset this.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "expires_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the credential expires; absent means never expires. Rotation\ndoes not extend it.\n"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The replacement secret material for an existing credential, returned\nexactly once. `token_id`, `scopes`, `branch_id` and `created_at` are\nunchanged by the rotation — only `api_token` and\n`s3_secret_access_key` are new.\n"
+      }
+    },
+    "com.neon.api#RotateCredentialResponseScopesList": {
+      "type": "list",
+      "member": {
+        "target": "com.neon.api#GrantedCredentialScope"
+      },
+      "traits": {}
+    },
+    "com.neon.api#RotateCredentialResponsePrincipalType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Always `user`: only customer-managed credentials are rotatable\nthrough this endpoint.\n"
+      }
+    },
+    "com.neon.api#RotateCredential": {
+      "type": "operation",
+      "input": {
+        "target": "com.neon.api#RotateCredentialRequest"
+      },
+      "output": {
+        "target": "com.neon.api#RotateCredentialResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/projects/{project_id}/branches/{branch_id}/credentials/{token_id}/rotate",
+          "code": 200
+        },
+        "smithy.api#documentation": "Rotate a credential's secrets\n\nReplaces the secret material on an existing scoped credential in\nplace. `token_id` is preserved — it is the `AWS_ACCESS_KEY_ID` for\nS3-compatible clients, so the access key id your application already\nholds keeps working and only the secret changes. This is the analog of\nresetting a Postgres password, not of issuing a second credential.\n\nThe response carries the new `api_token` and `s3_secret_access_key`\nexactly once. Rotation is **not** idempotent: retrying after an\nambiguous timeout mints another secret and supersedes the previous\nreplacement, so a retry does not recover a lost response — it only\ninvalidates the secret you did not receive. If you lose the response,\nissue a replacement credential and revoke this one.\n\nThe old secret stops authenticating as soon as the rotation commits.\nWhere a region caches credentials on its data-plane verifiers, a\nreplica may briefly keep accepting the old secret — and rejecting the\nnew one — until its cache entry expires; where it does not, the\ncutover is immediate apart from requests already in flight. Either way\nthe changeover is not atomic across replicas, so retry an unexpected\nauthentication failure right after rotating rather than treating the\nnew secret as bad. `last_used_at` continues to report the logical\ncredential's prior usage and says nothing about whether the new secret\nhas been used yet.\n\nOnly a live, unexpired, unrevoked customer-managed (`user`) credential\non a live project and live branch is eligible. Anything else —\nincluding the platform-internal `function` and `system` credentials —\nis reported as not found, indistinguishable from an unknown\n`token_id`.\n\n**Note**: This endpoint is currently in Beta."
       }
     },
     "com.neon.api#ListProjectBranchFunctionsRequest": {
@@ -17444,6 +17715,260 @@
         },
         "smithy.api#documentation": "Deploy code to a function\n\nCreates a deployment for the function. Supply any subset of zip,\nenvironment, and runtime; omitted fields inherit the\nfunction's latest version. At least one field must be supplied. The\nfirst deployment of a function must include zip. The newest deployment\nbecomes active.\n\n**Note**: This endpoint is currently in Beta.",
         "com.distilled.openapi#contentType": "multipart"
+      }
+    },
+    "com.neon.api#ListProjectBranchCustomDomainsRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Neon project ID"
+          }
+        },
+        "branch_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Neon branch ID"
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cursor",
+            "smithy.api#documentation": "A cursor to use in pagination. A cursor defines your place in the data list. Include `response.pagination.next` in subsequent API calls to fetch next page of the list."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Specify a value from 1 to 1000 to limit number of domains in the response"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.neon.api#CustomDomain": {
+      "type": "structure",
+      "members": {
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The registered custom domain (normalized, lowercase).",
+            "smithy.api#required": {}
+          }
+        },
+        "entity_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The kind of branch entity the domain targets. Possible values:\n`function` (v1 supports only `function`). Not an `enum`: new values may\nship in later spec versions — treat any undocumented value as unknown.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "entity_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The target entity's identifier within the branch. For `function` this\nis the function slug.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "cname_target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hostname the customer must point their custom domain at with a\nCNAME record. Empty when the serving region has no custom-domains\nfront door configured. This is the activation input: point DNS here\nand the domain goes live (see `status`) once a certificate is issued\non the first request.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The domain's current validity, computed by a background check:\n`pending` (still converging — point your CNAME at `cname_target` and\nwait), `active` (live: DNS resolves to the edge, the CA is authorized,\nand routing is published), or `error` (a fixable problem — see\n`status_reason`). Not an `enum`: treat any undocumented value as\nunknown. May be absent briefly right after registration.\n"
+          }
+        },
+        "dns_status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The DNS + CAA portion of the check: `pending` (no records yet), `ok`\n(resolves to our edge and the CA is authorized), `misconfigured` (your\nCNAME does not resolve to our edge), or `caa_blocked` (your CAA records\nforbid Let's Encrypt). Not an `enum`.\n"
+          }
+        },
+        "binding_status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Whether Neon's internal routing for the domain is published:\n`pending`, `present`, or `missing`. `missing` is an internal fault\nsurfaced for support. Not an `enum`.\n"
+          }
+        },
+        "status_reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short, stable machine-readable reason for a non-active `status`\n(e.g. `cname-not-pointing-at-edge`, `caa-blocks-lets-encrypt`,\n`binding-missing`), suitable for keying an actionable hint. Empty when\nactive or pending.\n"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.neon.api#ListProjectBranchCustomDomainsResponseCustomDomainsList": {
+      "type": "list",
+      "member": {
+        "target": "com.neon.api#CustomDomain"
+      },
+      "traits": {}
+    },
+    "com.neon.api#ListProjectBranchCustomDomainsResponse": {
+      "type": "structure",
+      "members": {
+        "custom_domains": {
+          "target": "com.neon.api#ListProjectBranchCustomDomainsResponseCustomDomainsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "pagination": {
+          "target": "com.neon.api#CursorPagination"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.neon.api#ListProjectBranchCustomDomains": {
+      "type": "operation",
+      "input": {
+        "target": "com.neon.api#ListProjectBranchCustomDomainsRequest"
+      },
+      "output": {
+        "target": "com.neon.api#ListProjectBranchCustomDomainsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/projects/{project_id}/branches/{branch_id}/custom-domains",
+          "code": 200
+        },
+        "smithy.api#documentation": "List the custom domains on a branch\n\nLists all custom domains registered on the branch, across every target\nentity.\n\n**Note**: This endpoint is currently in Beta.",
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "pagination.next",
+          "items": "custom_domains"
+        }
+      }
+    },
+    "com.neon.api#RegisterProjectBranchCustomDomainRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Neon project ID"
+          }
+        },
+        "branch_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Neon branch ID"
+          }
+        },
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The custom domain to register (for example `dashboard.acme.com`).\nCase-insensitive; normalized to lowercase (a trailing root dot is\nstripped, so the 254-char bound admits a fully-qualified name whose\nnormalized form is 253 chars). Neon-managed and internal hostnames are\nrejected.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "entity_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The kind of branch entity to point the domain at. v1 supports only\n`function`; any other value is rejected with `invalid_entity_type`.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "entity_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The target entity's identifier within the branch. For `function` this\nis the function slug (which must already exist on the branch).\n",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.neon.api#RegisterProjectBranchCustomDomain": {
+      "type": "operation",
+      "input": {
+        "target": "com.neon.api#RegisterProjectBranchCustomDomainRequest"
+      },
+      "output": {
+        "target": "com.neon.api#CustomDomain"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/projects/{project_id}/branches/{branch_id}/custom-domains",
+          "code": 200
+        },
+        "smithy.api#documentation": "Register a custom domain on a branch\n\nRegisters a customer-owned domain (for example `dashboard.acme.com`) on the\nbranch and points it at a target entity, chosen by `entity_type` +\n`entity_id`. In v1 only `entity_type: function` is supported (an\nunsupported type is rejected with `400`), where `entity_id` is the function\nslug and the function must already exist on the branch (else `404`).\n\nThe response includes the `cname_target` the customer must point their\ndomain at with a CNAME record; the domain goes live only once that DNS\nresolves and a certificate is issued on the first request. A domain already\nregistered to another resource is rejected with `409` and no detail about\nthe owner. Re-registering the same domain for the same entity is idempotent.\n\n**Note**: This endpoint is currently in Beta."
+      }
+    },
+    "com.neon.api#DeleteProjectBranchCustomDomainRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Neon project ID"
+          }
+        },
+        "branch_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Neon branch ID"
+          }
+        },
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The registered custom domain (case-insensitive)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.neon.api#DeleteProjectBranchCustomDomain": {
+      "type": "operation",
+      "input": {
+        "target": "com.neon.api#DeleteProjectBranchCustomDomainRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/projects/{project_id}/branches/{branch_id}/custom-domains/{domain}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a custom domain from a branch\n\nRemoves a custom domain registered on the branch and stops routing it.\n\n**Note**: This endpoint is currently in Beta."
       }
     },
     "com.neon.api#NotFound": {
@@ -17960,6 +18485,12 @@
           "target": "com.neon.api#RevokeCredential"
         },
         {
+          "target": "com.neon.api#RevealCredential"
+        },
+        {
+          "target": "com.neon.api#RotateCredential"
+        },
+        {
           "target": "com.neon.api#ListProjectBranchFunctions"
         },
         {
@@ -17973,6 +18504,15 @@
         },
         {
           "target": "com.neon.api#CreateProjectBranchFunctionDeployment"
+        },
+        {
+          "target": "com.neon.api#ListProjectBranchCustomDomains"
+        },
+        {
+          "target": "com.neon.api#RegisterProjectBranchCustomDomain"
+        },
+        {
+          "target": "com.neon.api#DeleteProjectBranchCustomDomain"
         }
       ],
       "traits": {

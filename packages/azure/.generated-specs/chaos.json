@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.chaos#ExperimentsStart": {
+    "com.azure.chaos#StartExperiment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.chaos#ExperimentsStartRequest"
+        "target": "com.azure.chaos#StartExperimentRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -36,7 +37,7 @@
         "com.distilled.openapi#apiVersion": "2025-01-01"
       }
     },
-    "com.azure.chaos#ExperimentsStartRequest": {
+    "com.azure.chaos#StartExperimentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -419,13 +420,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.chaos#ExperimentsGetExecution": {
+    "com.azure.chaos#GetExperimentExecution": {
       "type": "operation",
       "input": {
-        "target": "com.azure.chaos#ExperimentsGetExecutionRequest"
+        "target": "com.azure.chaos#GetExperimentExecutionRequest"
       },
       "output": {
-        "target": "com.azure.chaos#ExperimentsGetExecutionResponse"
+        "target": "com.azure.chaos#GetExperimentExecutionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -438,7 +439,7 @@
         "com.distilled.openapi#apiVersion": "2025-01-01"
       }
     },
-    "com.azure.chaos#ExperimentsGetExecutionResponse": {
+    "com.azure.chaos#GetExperimentExecutionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -610,7 +611,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.chaos#ExperimentsGetExecutionRequest": {
+    "com.azure.chaos#GetExperimentExecutionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -650,10 +651,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.chaos#ExperimentsListAllExecutions": {
+    "com.azure.chaos#ListExperimentAllExecutions": {
       "type": "operation",
       "input": {
-        "target": "com.azure.chaos#ExperimentsListAllExecutionsRequest"
+        "target": "com.azure.chaos#ListExperimentAllExecutionsRequest"
       },
       "output": {
         "target": "com.azure.chaos#ExperimentExecutionListResult"
@@ -737,7 +738,7 @@
         "smithy.api#documentation": "Model that represents the execution of a Experiment."
       }
     },
-    "com.azure.chaos#ExperimentsListAllExecutionsRequest": {
+    "com.azure.chaos#ListExperimentAllExecutionsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -769,10 +770,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.chaos#ExperimentsCancel": {
+    "com.azure.chaos#CancelExperiment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.chaos#ExperimentsCancelRequest"
+        "target": "com.azure.chaos#CancelExperimentRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -788,7 +789,7 @@
         "com.distilled.openapi#apiVersion": "2025-01-01"
       }
     },
-    "com.azure.chaos#ExperimentsCancelRequest": {
+    "com.azure.chaos#CancelExperimentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -820,10 +821,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.chaos#ExperimentsDelete": {
+    "com.azure.chaos#DeleteExperiment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.chaos#ExperimentsDeleteRequest"
+        "target": "com.azure.chaos#DeleteExperimentRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -839,7 +840,7 @@
         "com.distilled.openapi#apiVersion": "2025-01-01"
       }
     },
-    "com.azure.chaos#ExperimentsDeleteRequest": {
+    "com.azure.chaos#DeleteExperimentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -871,13 +872,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.chaos#ExperimentsUpdate": {
+    "com.azure.chaos#UpdateExperiment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.chaos#ExperimentsUpdateRequest"
+        "target": "com.azure.chaos#UpdateExperimentRequest"
       },
       "output": {
-        "target": "com.azure.chaos#ExperimentsUpdateResponse"
+        "target": "com.azure.chaos#UpdateExperimentResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -890,7 +891,7 @@
         "com.distilled.openapi#apiVersion": "2025-01-01"
       }
     },
-    "com.azure.chaos#ExperimentsUpdateResponse": {
+    "com.azure.chaos#UpdateExperimentResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -918,7 +919,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.chaos#ExperimentsUpdateResponseTagsMap",
+          "target": "com.azure.chaos#UpdateExperimentResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -931,7 +932,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.chaos#ExperimentsUpdateResponseIdentity",
+          "target": "com.azure.chaos#UpdateExperimentResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -1225,7 +1226,7 @@
         "smithy.api#documentation": "Current provisioning state for a given Azure Chaos resource."
       }
     },
-    "com.azure.chaos#ExperimentsUpdateResponseIdentity": {
+    "com.azure.chaos#UpdateExperimentResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -1318,7 +1319,7 @@
         "smithy.api#documentation": "Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."
       }
     },
-    "com.azure.chaos#ExperimentsUpdateResponseTagsMap": {
+    "com.azure.chaos#UpdateExperimentResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1330,7 +1331,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.chaos#ExperimentsUpdateRequest": {
+    "com.azure.chaos#UpdateExperimentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1358,13 +1359,13 @@
           }
         },
         "tags": {
-          "target": "com.azure.chaos#ExperimentsUpdateRequestTagsMap",
+          "target": "com.azure.chaos#UpdateExperimentRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
         },
         "identity": {
-          "target": "com.azure.chaos#ExperimentsUpdateRequestIdentity",
+          "target": "com.azure.chaos#UpdateExperimentRequestIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -1374,7 +1375,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.chaos#ExperimentsUpdateRequestIdentity": {
+    "com.azure.chaos#UpdateExperimentRequestIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -1410,7 +1411,7 @@
         "smithy.api#documentation": "User assigned identity properties"
       }
     },
-    "com.azure.chaos#ExperimentsUpdateRequestTagsMap": {
+    "com.azure.chaos#UpdateExperimentRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1667,13 +1668,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.chaos#ExperimentsGet": {
+    "com.azure.chaos#GetExperiment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.chaos#ExperimentsGetRequest"
+        "target": "com.azure.chaos#GetExperimentRequest"
       },
       "output": {
-        "target": "com.azure.chaos#ExperimentsGetResponse"
+        "target": "com.azure.chaos#GetExperimentResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1686,7 +1687,7 @@
         "com.distilled.openapi#apiVersion": "2025-01-01"
       }
     },
-    "com.azure.chaos#ExperimentsGetResponse": {
+    "com.azure.chaos#GetExperimentResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1714,7 +1715,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.chaos#ExperimentsGetResponseTagsMap",
+          "target": "com.azure.chaos#GetExperimentResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1727,7 +1728,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.chaos#ExperimentsGetResponseIdentity",
+          "target": "com.azure.chaos#GetExperimentResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -1744,7 +1745,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.chaos#ExperimentsGetResponseIdentity": {
+    "com.azure.chaos#GetExperimentResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -1773,7 +1774,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.chaos#ExperimentsGetResponseTagsMap": {
+    "com.azure.chaos#GetExperimentResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1785,7 +1786,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.chaos#ExperimentsGetRequest": {
+    "com.azure.chaos#GetExperimentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1817,10 +1818,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.chaos#ExperimentsList": {
+    "com.azure.chaos#ListExperiments": {
       "type": "operation",
       "input": {
-        "target": "com.azure.chaos#ExperimentsListRequest"
+        "target": "com.azure.chaos#ListExperimentsRequest"
       },
       "output": {
         "target": "com.azure.chaos#ExperimentListResult"
@@ -1965,7 +1966,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.chaos#ExperimentsListRequest": {
+    "com.azure.chaos#ListExperimentsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2003,10 +2004,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.chaos#CapabilitiesDelete": {
+    "com.azure.chaos#DeleteCapability": {
       "type": "operation",
       "input": {
-        "target": "com.azure.chaos#CapabilitiesDeleteRequest"
+        "target": "com.azure.chaos#DeleteCapabilityRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2022,7 +2023,7 @@
         "com.distilled.openapi#apiVersion": "2025-01-01"
       }
     },
-    "com.azure.chaos#CapabilitiesDeleteRequest": {
+    "com.azure.chaos#DeleteCapabilityRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2258,13 +2259,13 @@
         "smithy.api#documentation": "Model that represents the Capability properties model."
       }
     },
-    "com.azure.chaos#CapabilitiesGet": {
+    "com.azure.chaos#GetCapability": {
       "type": "operation",
       "input": {
-        "target": "com.azure.chaos#CapabilitiesGetRequest"
+        "target": "com.azure.chaos#GetCapabilityRequest"
       },
       "output": {
-        "target": "com.azure.chaos#CapabilitiesGetResponse"
+        "target": "com.azure.chaos#GetCapabilityResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2277,7 +2278,7 @@
         "com.distilled.openapi#apiVersion": "2025-01-01"
       }
     },
-    "com.azure.chaos#CapabilitiesGetResponse": {
+    "com.azure.chaos#GetCapabilityResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2315,7 +2316,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.chaos#CapabilitiesGetRequest": {
+    "com.azure.chaos#GetCapabilityRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2379,10 +2380,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.chaos#CapabilitiesList": {
+    "com.azure.chaos#ListCapabilities": {
       "type": "operation",
       "input": {
-        "target": "com.azure.chaos#CapabilitiesListRequest"
+        "target": "com.azure.chaos#ListCapabilitiesRequest"
       },
       "output": {
         "target": "com.azure.chaos#CapabilityListResult"
@@ -2466,7 +2467,7 @@
         "smithy.api#documentation": "Model that represents a Capability resource."
       }
     },
-    "com.azure.chaos#CapabilitiesListRequest": {
+    "com.azure.chaos#ListCapabilitiesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2529,10 +2530,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.chaos#TargetsDelete": {
+    "com.azure.chaos#DeleteTarget": {
       "type": "operation",
       "input": {
-        "target": "com.azure.chaos#TargetsDeleteRequest"
+        "target": "com.azure.chaos#DeleteTargetRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2548,7 +2549,7 @@
         "com.distilled.openapi#apiVersion": "2025-01-01"
       }
     },
-    "com.azure.chaos#TargetsDeleteRequest": {
+    "com.azure.chaos#DeleteTargetRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2761,13 +2762,13 @@
         "smithy.api#documentation": "The properties of the target resource."
       }
     },
-    "com.azure.chaos#TargetsGet": {
+    "com.azure.chaos#GetTarget": {
       "type": "operation",
       "input": {
-        "target": "com.azure.chaos#TargetsGetRequest"
+        "target": "com.azure.chaos#GetTargetRequest"
       },
       "output": {
-        "target": "com.azure.chaos#TargetsGetResponse"
+        "target": "com.azure.chaos#GetTargetResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2780,7 +2781,7 @@
         "com.distilled.openapi#apiVersion": "2025-01-01"
       }
     },
-    "com.azure.chaos#TargetsGetResponse": {
+    "com.azure.chaos#GetTargetResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2808,7 +2809,7 @@
           }
         },
         "properties": {
-          "target": "com.azure.chaos#TargetsGetResponsePropertiesMap",
+          "target": "com.azure.chaos#GetTargetResponsePropertiesMap",
           "traits": {
             "smithy.api#documentation": "The properties of the target resource.",
             "smithy.api#required": {}
@@ -2825,7 +2826,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.chaos#TargetsGetResponsePropertiesMap": {
+    "com.azure.chaos#GetTargetResponsePropertiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2837,7 +2838,7 @@
         "smithy.api#documentation": "The properties of the target resource."
       }
     },
-    "com.azure.chaos#TargetsGetRequest": {
+    "com.azure.chaos#GetTargetRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2893,10 +2894,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.chaos#TargetsList": {
+    "com.azure.chaos#ListTargets": {
       "type": "operation",
       "input": {
-        "target": "com.azure.chaos#TargetsListRequest"
+        "target": "com.azure.chaos#ListTargetsRequest"
       },
       "output": {
         "target": "com.azure.chaos#TargetListResult"
@@ -2999,7 +3000,7 @@
         "smithy.api#documentation": "The properties of the target resource."
       }
     },
-    "com.azure.chaos#TargetsListRequest": {
+    "com.azure.chaos#ListTargetsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3054,13 +3055,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.chaos#CapabilityTypesGet": {
+    "com.azure.chaos#GetCapabilityType": {
       "type": "operation",
       "input": {
-        "target": "com.azure.chaos#CapabilityTypesGetRequest"
+        "target": "com.azure.chaos#GetCapabilityTypeRequest"
       },
       "output": {
-        "target": "com.azure.chaos#CapabilityTypesGetResponse"
+        "target": "com.azure.chaos#GetCapabilityTypeResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3073,7 +3074,7 @@
         "com.distilled.openapi#apiVersion": "2025-01-01"
       }
     },
-    "com.azure.chaos#CapabilityTypesGetResponse": {
+    "com.azure.chaos#GetCapabilityTypeResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3226,7 +3227,7 @@
         "smithy.api#documentation": "Control plane actions necessary to execute capability type."
       }
     },
-    "com.azure.chaos#CapabilityTypesGetRequest": {
+    "com.azure.chaos#GetCapabilityTypeRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3266,10 +3267,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.chaos#CapabilityTypesList": {
+    "com.azure.chaos#ListCapabilityTypes": {
       "type": "operation",
       "input": {
-        "target": "com.azure.chaos#CapabilityTypesListRequest"
+        "target": "com.azure.chaos#ListCapabilityTypesRequest"
       },
       "output": {
         "target": "com.azure.chaos#CapabilityTypeListResult"
@@ -3353,7 +3354,7 @@
         "smithy.api#documentation": "Model that represents a Capability Type resource."
       }
     },
-    "com.azure.chaos#CapabilityTypesListRequest": {
+    "com.azure.chaos#ListCapabilityTypesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3392,13 +3393,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.chaos#TargetTypesGet": {
+    "com.azure.chaos#GetTargetType": {
       "type": "operation",
       "input": {
-        "target": "com.azure.chaos#TargetTypesGetRequest"
+        "target": "com.azure.chaos#GetTargetTypeRequest"
       },
       "output": {
-        "target": "com.azure.chaos#TargetTypesGetResponse"
+        "target": "com.azure.chaos#GetTargetTypeResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3411,7 +3412,7 @@
         "com.distilled.openapi#apiVersion": "2025-01-01"
       }
     },
-    "com.azure.chaos#TargetTypesGetResponse": {
+    "com.azure.chaos#GetTargetTypeResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3491,7 +3492,7 @@
         "smithy.api#documentation": "List of resource types this Target Type can extend."
       }
     },
-    "com.azure.chaos#TargetTypesGetRequest": {
+    "com.azure.chaos#GetTargetTypeRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3523,10 +3524,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.chaos#TargetTypesList": {
+    "com.azure.chaos#ListTargetTypes": {
       "type": "operation",
       "input": {
-        "target": "com.azure.chaos#TargetTypesListRequest"
+        "target": "com.azure.chaos#ListTargetTypesRequest"
       },
       "output": {
         "target": "com.azure.chaos#TargetTypeListResult"
@@ -3611,7 +3612,7 @@
         "smithy.api#documentation": "Model that represents a Target Type resource."
       }
     },
-    "com.azure.chaos#TargetTypesListRequest": {
+    "com.azure.chaos#ListTargetTypesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3642,13 +3643,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.chaos#OperationStatusesGet": {
+    "com.azure.chaos#GetOperationStatus": {
       "type": "operation",
       "input": {
-        "target": "com.azure.chaos#OperationStatusesGetRequest"
+        "target": "com.azure.chaos#GetOperationStatusRequest"
       },
       "output": {
-        "target": "com.azure.chaos#OperationStatusesGetResponse"
+        "target": "com.azure.chaos#GetOperationStatusResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3661,7 +3662,7 @@
         "com.distilled.openapi#apiVersion": "2025-01-01"
       }
     },
-    "com.azure.chaos#OperationStatusesGetResponse": {
+    "com.azure.chaos#GetOperationStatusResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3708,7 +3709,7 @@
           }
         },
         "operations": {
-          "target": "com.azure.chaos#OperationStatusesGetResponseOperationsList",
+          "target": "com.azure.chaos#GetOperationStatusResponseOperationsList",
           "traits": {
             "smithy.api#documentation": "The operations list."
           }
@@ -3800,7 +3801,7 @@
         "smithy.api#documentation": "The error details."
       }
     },
-    "com.azure.chaos#OperationStatusesGetResponseOperationsList": {
+    "com.azure.chaos#GetOperationStatusResponseOperationsList": {
       "type": "list",
       "member": {
         "target": "com.azure.chaos#OperationStatusResult"
@@ -3881,7 +3882,7 @@
         "smithy.api#documentation": "The operations list."
       }
     },
-    "com.azure.chaos#OperationStatusesGetRequest": {
+    "com.azure.chaos#GetOperationStatusRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3913,10 +3914,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.chaos#ExperimentsListAll": {
+    "com.azure.chaos#ListExperimentAll": {
       "type": "operation",
       "input": {
-        "target": "com.azure.chaos#ExperimentsListAllRequest"
+        "target": "com.azure.chaos#ListExperimentAllRequest"
       },
       "output": {
         "target": "com.azure.chaos#ExperimentListResult"
@@ -3932,7 +3933,7 @@
         "com.distilled.openapi#apiVersion": "2025-01-01"
       }
     },
-    "com.azure.chaos#ExperimentsListAllRequest": {
+    "com.azure.chaos#ListExperimentAllRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3962,13 +3963,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.chaos#OperationsListAll": {
+    "com.azure.chaos#ListOperationAll": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.azure.chaos#OperationsListAllResponse"
+        "target": "com.azure.chaos#ListOperationAllResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3981,11 +3982,11 @@
         "com.distilled.openapi#apiVersion": "2025-01-01"
       }
     },
-    "com.azure.chaos#OperationsListAllResponse": {
+    "com.azure.chaos#ListOperationAllResponse": {
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.chaos#OperationsListAllResponseValueList",
+          "target": "com.azure.chaos#ListOperationAllResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -4001,7 +4002,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.chaos#OperationsListAllResponseValueList": {
+    "com.azure.chaos#ListOperationAllResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.chaos#Operation"
@@ -4125,79 +4126,79 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.chaos#ExperimentsStart"
+          "target": "com.azure.chaos#StartExperiment"
         },
         {
           "target": "com.azure.chaos#ExperimentsExecutionDetails"
         },
         {
-          "target": "com.azure.chaos#ExperimentsGetExecution"
+          "target": "com.azure.chaos#GetExperimentExecution"
         },
         {
-          "target": "com.azure.chaos#ExperimentsListAllExecutions"
+          "target": "com.azure.chaos#ListExperimentAllExecutions"
         },
         {
-          "target": "com.azure.chaos#ExperimentsCancel"
+          "target": "com.azure.chaos#CancelExperiment"
         },
         {
-          "target": "com.azure.chaos#ExperimentsDelete"
+          "target": "com.azure.chaos#DeleteExperiment"
         },
         {
-          "target": "com.azure.chaos#ExperimentsUpdate"
+          "target": "com.azure.chaos#UpdateExperiment"
         },
         {
           "target": "com.azure.chaos#ExperimentsCreateOrUpdate"
         },
         {
-          "target": "com.azure.chaos#ExperimentsGet"
+          "target": "com.azure.chaos#GetExperiment"
         },
         {
-          "target": "com.azure.chaos#ExperimentsList"
+          "target": "com.azure.chaos#ListExperiments"
         },
         {
-          "target": "com.azure.chaos#CapabilitiesDelete"
+          "target": "com.azure.chaos#DeleteCapability"
         },
         {
           "target": "com.azure.chaos#CapabilitiesCreateOrUpdate"
         },
         {
-          "target": "com.azure.chaos#CapabilitiesGet"
+          "target": "com.azure.chaos#GetCapability"
         },
         {
-          "target": "com.azure.chaos#CapabilitiesList"
+          "target": "com.azure.chaos#ListCapabilities"
         },
         {
-          "target": "com.azure.chaos#TargetsDelete"
+          "target": "com.azure.chaos#DeleteTarget"
         },
         {
           "target": "com.azure.chaos#TargetsCreateOrUpdate"
         },
         {
-          "target": "com.azure.chaos#TargetsGet"
+          "target": "com.azure.chaos#GetTarget"
         },
         {
-          "target": "com.azure.chaos#TargetsList"
+          "target": "com.azure.chaos#ListTargets"
         },
         {
-          "target": "com.azure.chaos#CapabilityTypesGet"
+          "target": "com.azure.chaos#GetCapabilityType"
         },
         {
-          "target": "com.azure.chaos#CapabilityTypesList"
+          "target": "com.azure.chaos#ListCapabilityTypes"
         },
         {
-          "target": "com.azure.chaos#TargetTypesGet"
+          "target": "com.azure.chaos#GetTargetType"
         },
         {
-          "target": "com.azure.chaos#TargetTypesList"
+          "target": "com.azure.chaos#ListTargetTypes"
         },
         {
-          "target": "com.azure.chaos#OperationStatusesGet"
+          "target": "com.azure.chaos#GetOperationStatus"
         },
         {
-          "target": "com.azure.chaos#ExperimentsListAll"
+          "target": "com.azure.chaos#ListExperimentAll"
         },
         {
-          "target": "com.azure.chaos#OperationsListAll"
+          "target": "com.azure.chaos#ListOperationAll"
         }
       ],
       "traits": {

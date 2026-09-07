@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.reminders#RemindersListRequest": {
+    "com.posthog.reminders#ListRemindersRequest": {
       "type": "structure",
       "members": {
         "limit": {
@@ -415,10 +416,10 @@
       },
       "traits": {}
     },
-    "com.posthog.reminders#RemindersList": {
+    "com.posthog.reminders#ListReminders": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.reminders#RemindersListRequest"
+        "target": "com.posthog.reminders#ListRemindersRequest"
       },
       "output": {
         "target": "com.posthog.reminders#PaginatedReminderList"
@@ -431,7 +432,7 @@
         }
       }
     },
-    "com.posthog.reminders#RemindersCreateRequestRecurrenceInterval": {
+    "com.posthog.reminders#CreateReminderRequestRecurrenceInterval": {
       "type": "union",
       "members": {
         "RecurrenceIntervalEnum": {
@@ -445,7 +446,7 @@
         "smithy.api#documentation": "For a recurring reminder: daily, weekly, monthly, or yearly.\n\n* `daily` - Daily\n* `weekly` - Weekly\n* `monthly` - Monthly\n* `yearly` - Yearly"
       }
     },
-    "com.posthog.reminders#RemindersCreateRequest": {
+    "com.posthog.reminders#CreateReminderRequest": {
       "type": "structure",
       "members": {
         "organization": {
@@ -497,7 +498,7 @@
           }
         },
         "recurrence_interval": {
-          "target": "com.posthog.reminders#RemindersCreateRequestRecurrenceInterval",
+          "target": "com.posthog.reminders#CreateReminderRequestRecurrenceInterval",
           "traits": {
             "smithy.api#documentation": "For a recurring reminder: daily, weekly, monthly, or yearly.\n\n* `daily` - Daily\n* `weekly` - Weekly\n* `monthly` - Monthly\n* `yearly` - Yearly",
             "com.distilled.openapi#nullable": {}
@@ -528,10 +529,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.reminders#RemindersCreate": {
+    "com.posthog.reminders#CreateReminder": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.reminders#RemindersCreateRequest"
+        "target": "com.posthog.reminders#CreateReminderRequest"
       },
       "output": {
         "target": "com.posthog.reminders#Reminder"
@@ -544,7 +545,7 @@
         }
       }
     },
-    "com.posthog.reminders#RemindersRetrieveRequest": {
+    "com.posthog.reminders#GetReminderRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -560,10 +561,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.reminders#RemindersRetrieve": {
+    "com.posthog.reminders#GetReminder": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.reminders#RemindersRetrieveRequest"
+        "target": "com.posthog.reminders#GetReminderRequest"
       },
       "output": {
         "target": "com.posthog.reminders#Reminder"
@@ -576,7 +577,7 @@
         }
       }
     },
-    "com.posthog.reminders#RemindersUpdateRequestRecurrenceInterval": {
+    "com.posthog.reminders#UpdateReminderRequestRecurrenceInterval": {
       "type": "union",
       "members": {
         "RecurrenceIntervalEnum": {
@@ -590,7 +591,7 @@
         "smithy.api#documentation": "For a recurring reminder: daily, weekly, monthly, or yearly.\n\n* `daily` - Daily\n* `weekly` - Weekly\n* `monthly` - Monthly\n* `yearly` - Yearly"
       }
     },
-    "com.posthog.reminders#RemindersUpdateRequest": {
+    "com.posthog.reminders#UpdateReminderRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -650,7 +651,7 @@
           }
         },
         "recurrence_interval": {
-          "target": "com.posthog.reminders#RemindersUpdateRequestRecurrenceInterval",
+          "target": "com.posthog.reminders#UpdateReminderRequestRecurrenceInterval",
           "traits": {
             "smithy.api#documentation": "For a recurring reminder: daily, weekly, monthly, or yearly.\n\n* `daily` - Daily\n* `weekly` - Weekly\n* `monthly` - Monthly\n* `yearly` - Yearly",
             "com.distilled.openapi#nullable": {}
@@ -681,10 +682,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.reminders#RemindersUpdate": {
+    "com.posthog.reminders#UpdateReminder": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.reminders#RemindersUpdateRequest"
+        "target": "com.posthog.reminders#UpdateReminderRequest"
       },
       "output": {
         "target": "com.posthog.reminders#Reminder"
@@ -697,7 +698,7 @@
         }
       }
     },
-    "com.posthog.reminders#RemindersPartialUpdateRequestRecurrenceInterval": {
+    "com.posthog.reminders#UpdateRemindersPartialRequestRecurrenceInterval": {
       "type": "union",
       "members": {
         "RecurrenceIntervalEnum": {
@@ -711,7 +712,7 @@
         "smithy.api#documentation": "For a recurring reminder: daily, weekly, monthly, or yearly.\n\n* `daily` - Daily\n* `weekly` - Weekly\n* `monthly` - Monthly\n* `yearly` - Yearly"
       }
     },
-    "com.posthog.reminders#RemindersPartialUpdateRequest": {
+    "com.posthog.reminders#UpdateRemindersPartialRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -769,7 +770,7 @@
           }
         },
         "recurrence_interval": {
-          "target": "com.posthog.reminders#RemindersPartialUpdateRequestRecurrenceInterval",
+          "target": "com.posthog.reminders#UpdateRemindersPartialRequestRecurrenceInterval",
           "traits": {
             "smithy.api#documentation": "For a recurring reminder: daily, weekly, monthly, or yearly.\n\n* `daily` - Daily\n* `weekly` - Weekly\n* `monthly` - Monthly\n* `yearly` - Yearly",
             "com.distilled.openapi#nullable": {}
@@ -800,10 +801,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.reminders#RemindersPartialUpdate": {
+    "com.posthog.reminders#UpdateRemindersPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.reminders#RemindersPartialUpdateRequest"
+        "target": "com.posthog.reminders#UpdateRemindersPartialRequest"
       },
       "output": {
         "target": "com.posthog.reminders#Reminder"
@@ -853,19 +854,19 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.reminders#RemindersList"
+          "target": "com.posthog.reminders#ListReminders"
         },
         {
-          "target": "com.posthog.reminders#RemindersCreate"
+          "target": "com.posthog.reminders#CreateReminder"
         },
         {
-          "target": "com.posthog.reminders#RemindersRetrieve"
+          "target": "com.posthog.reminders#GetReminder"
         },
         {
-          "target": "com.posthog.reminders#RemindersUpdate"
+          "target": "com.posthog.reminders#UpdateReminder"
         },
         {
-          "target": "com.posthog.reminders#RemindersPartialUpdate"
+          "target": "com.posthog.reminders#UpdateRemindersPartial"
         },
         {
           "target": "com.posthog.reminders#RemindersDestroy"

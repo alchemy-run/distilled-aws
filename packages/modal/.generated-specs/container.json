@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.modal.container#ContainerCheckpointRequest": {
@@ -140,7 +141,7 @@
         }
       }
     },
-    "com.modal.container#ContainerExecRequest": {
+    "com.modal.container#ExecContainerRequest": {
       "type": "structure",
       "members": {
         "taskId": {
@@ -188,7 +189,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.modal.container#ContainerExecResponse": {
+    "com.modal.container#ExecContainerResponse": {
       "type": "structure",
       "members": {
         "execId": {
@@ -199,13 +200,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modal.container#ContainerExec": {
+    "com.modal.container#ExecContainer": {
       "type": "operation",
       "input": {
-        "target": "com.modal.container#ContainerExecRequest"
+        "target": "com.modal.container#ExecContainerRequest"
       },
       "output": {
-        "target": "com.modal.container#ContainerExecResponse"
+        "target": "com.modal.container#ExecContainerResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -481,7 +482,7 @@
         }
       }
     },
-    "com.modal.container#ContainerFilesystemExecRequest": {
+    "com.modal.container#ExecContainerFilesystemRequest": {
       "type": "structure",
       "members": {
         "fileOpenRequest": {
@@ -531,7 +532,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.modal.container#ContainerFilesystemExecResponse": {
+    "com.modal.container#ExecContainerFilesystemResponse": {
       "type": "structure",
       "members": {
         "execId": {
@@ -548,13 +549,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modal.container#ContainerFilesystemExec": {
+    "com.modal.container#ExecContainerFilesystem": {
       "type": "operation",
       "input": {
-        "target": "com.modal.container#ContainerFilesystemExecRequest"
+        "target": "com.modal.container#ExecContainerFilesystemRequest"
       },
       "output": {
-        "target": "com.modal.container#ContainerFilesystemExecResponse"
+        "target": "com.modal.container#ExecContainerFilesystemResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -904,7 +905,7 @@
         }
       }
     },
-    "com.modal.container#ContainerStopRequest": {
+    "com.modal.container#StopContainerRequest": {
       "type": "structure",
       "members": {
         "taskId": {
@@ -918,20 +919,20 @@
         "smithy.api#input": {}
       }
     },
-    "com.modal.container#ContainerStopResponse": {
+    "com.modal.container#StopContainerResponse": {
       "type": "structure",
       "members": {},
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.modal.container#ContainerStop": {
+    "com.modal.container#StopContainer": {
       "type": "operation",
       "input": {
-        "target": "com.modal.container#ContainerStopRequest"
+        "target": "com.modal.container#StopContainerRequest"
       },
       "output": {
-        "target": "com.modal.container#ContainerStopResponse"
+        "target": "com.modal.container#StopContainerResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -949,7 +950,7 @@
           "target": "com.modal.container#ContainerCheckpoint"
         },
         {
-          "target": "com.modal.container#ContainerExec"
+          "target": "com.modal.container#ExecContainer"
         },
         {
           "target": "com.modal.container#ContainerExecPutInput"
@@ -958,7 +959,7 @@
           "target": "com.modal.container#ContainerExecWait"
         },
         {
-          "target": "com.modal.container#ContainerFilesystemExec"
+          "target": "com.modal.container#ExecContainerFilesystem"
         },
         {
           "target": "com.modal.container#ContainerHeartbeat"
@@ -976,7 +977,7 @@
           "target": "com.modal.container#ContainerServerLifecycleReady"
         },
         {
-          "target": "com.modal.container#ContainerStop"
+          "target": "com.modal.container#StopContainer"
         }
       ],
       "traits": {

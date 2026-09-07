@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.huggingface.kernels#DuplicateXetFilesRequestTargetType": {
@@ -892,6 +893,12 @@
           "traits": {
             "smithy.api#enumValue": "cpu"
           }
+        },
+        "WEBGPU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "webgpu"
+          }
         }
       },
       "traits": {}
@@ -1378,6 +1385,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "cpu"
+          }
+        },
+        "WEBGPU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "webgpu"
           }
         }
       },
@@ -1981,6 +1994,12 @@
           "traits": {
             "smithy.api#enumValue": "cpu"
           }
+        },
+        "WEBGPU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "webgpu"
+          }
         }
       },
       "traits": {}
@@ -2510,6 +2529,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "cpu"
+          }
+        },
+        "WEBGPU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "webgpu"
           }
         }
       },

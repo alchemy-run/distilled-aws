@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.adhybridhealthservice#UpdateIPAddressAggregateSettings": {
@@ -360,10 +361,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#ServiceMembersGetConnectorMetadata": {
+    "com.azure.adhybridhealthservice#GetServiceMemberConnectorMetadata": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#ServiceMembersGetConnectorMetadataRequest"
+        "target": "com.azure.adhybridhealthservice#GetServiceMemberConnectorMetadataRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#ConnectorMetadata"
@@ -437,7 +438,7 @@
         "smithy.api#documentation": "Details of the connector."
       }
     },
-    "com.azure.adhybridhealthservice#ServiceMembersGetConnectorMetadataRequest": {
+    "com.azure.adhybridhealthservice#GetServiceMemberConnectorMetadataRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -606,10 +607,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#ServicesGetTenantWhitelisting": {
+    "com.azure.adhybridhealthservice#GetServiceTenantWhitelisting": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#ServicesGetTenantWhitelistingRequest"
+        "target": "com.azure.adhybridhealthservice#GetServiceTenantWhitelistingRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#Result"
@@ -639,7 +640,7 @@
         "smithy.api#documentation": "The result for an operation."
       }
     },
-    "com.azure.adhybridhealthservice#ServicesGetTenantWhitelistingRequest": {
+    "com.azure.adhybridhealthservice#GetServiceTenantWhitelistingRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -663,10 +664,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#ServiceMembersGetServiceConfiguration": {
+    "com.azure.adhybridhealthservice#GetServiceMemberServiceConfiguration": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#ServiceMembersGetServiceConfigurationRequest"
+        "target": "com.azure.adhybridhealthservice#GetServiceMemberServiceConfigurationRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#ServiceConfiguration"
@@ -744,7 +745,7 @@
         "smithy.api#documentation": "The service configuration"
       }
     },
-    "com.azure.adhybridhealthservice#ServiceMembersGetServiceConfigurationRequest": {
+    "com.azure.adhybridhealthservice#GetServiceMemberServiceConfigurationRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -768,10 +769,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#ServiceMembersGetMetrics": {
+    "com.azure.adhybridhealthservice#GetServiceMemberMetrics": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#ServiceMembersGetMetricsRequest"
+        "target": "com.azure.adhybridhealthservice#GetServiceMemberMetricsRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#MetricSets"
@@ -854,7 +855,7 @@
         "smithy.api#documentation": "The list of the metric values."
       }
     },
-    "com.azure.adhybridhealthservice#ServiceMembersGetMetricsRequest": {
+    "com.azure.adhybridhealthservice#GetServiceMemberMetricsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -915,10 +916,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#ServiceMembersListGlobalConfiguration": {
+    "com.azure.adhybridhealthservice#ListServiceMemberGlobalConfiguration": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#ServiceMembersListGlobalConfigurationRequest"
+        "target": "com.azure.adhybridhealthservice#ListServiceMemberGlobalConfigurationRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#GlobalConfigurations"
@@ -1024,7 +1025,7 @@
         "smithy.api#documentation": "The key value pair for properties."
       }
     },
-    "com.azure.adhybridhealthservice#ServiceMembersListGlobalConfigurationRequest": {
+    "com.azure.adhybridhealthservice#ListServiceMemberGlobalConfigurationRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1164,10 +1165,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#ServiceMembersListDataFreshness": {
+    "com.azure.adhybridhealthservice#ListServiceMemberDataFreshness": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#ServiceMembersListDataFreshnessRequest"
+        "target": "com.azure.adhybridhealthservice#ListServiceMemberDataFreshnessRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#DataFreshnessDetails"
@@ -1206,7 +1207,7 @@
         "smithy.api#documentation": "The value returned by the operation."
       }
     },
-    "com.azure.adhybridhealthservice#ServiceMembersListDataFreshnessRequest": {
+    "com.azure.adhybridhealthservice#ListServiceMemberDataFreshnessRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1230,10 +1231,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#ServiceMembersDeleteData": {
+    "com.azure.adhybridhealthservice#DeleteServiceMemberData": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#ServiceMembersDeleteDataRequest"
+        "target": "com.azure.adhybridhealthservice#DeleteServiceMemberDataRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1249,7 +1250,7 @@
         "com.distilled.openapi#apiVersion": "2014-01-01"
       }
     },
-    "com.azure.adhybridhealthservice#ServiceMembersDeleteDataRequest": {
+    "com.azure.adhybridhealthservice#DeleteServiceMemberDataRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1273,10 +1274,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#ServiceMembersListCredentials": {
+    "com.azure.adhybridhealthservice#ListServiceMemberCredentials": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#ServiceMembersListCredentialsRequest"
+        "target": "com.azure.adhybridhealthservice#ListServiceMemberCredentialsRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#Credentials"
@@ -1350,7 +1351,7 @@
         "smithy.api#documentation": "The credential data."
       }
     },
-    "com.azure.adhybridhealthservice#ServiceMembersListCredentialsRequest": {
+    "com.azure.adhybridhealthservice#ListServiceMemberCredentialsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1381,10 +1382,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#ServiceMembersListConnectors": {
+    "com.azure.adhybridhealthservice#ListServiceMemberConnectors": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#ServiceMembersListConnectorsRequest"
+        "target": "com.azure.adhybridhealthservice#ListServiceMemberConnectorsRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#Connectors"
@@ -1763,7 +1764,7 @@
         "smithy.api#documentation": "The in-scope object classes."
       }
     },
-    "com.azure.adhybridhealthservice#ServiceMembersListConnectorsRequest": {
+    "com.azure.adhybridhealthservice#ListServiceMemberConnectorsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -1787,10 +1788,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#ServiceMembersListAlerts": {
+    "com.azure.adhybridhealthservice#ListServiceMemberAlerts": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#ServiceMembersListAlertsRequest"
+        "target": "com.azure.adhybridhealthservice#ListServiceMemberAlertsRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#Alerts"
@@ -2121,7 +2122,7 @@
         "smithy.api#documentation": "The alert level which indicates the severity of the alert."
       }
     },
-    "com.azure.adhybridhealthservice#ServiceMembersListAlertsRequest": {
+    "com.azure.adhybridhealthservice#ListServiceMemberAlertsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2173,10 +2174,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#ServiceMembersDelete": {
+    "com.azure.adhybridhealthservice#DeleteServiceMember": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#ServiceMembersDeleteRequest"
+        "target": "com.azure.adhybridhealthservice#DeleteServiceMemberRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2192,7 +2193,7 @@
         "com.distilled.openapi#apiVersion": "2014-01-01"
       }
     },
-    "com.azure.adhybridhealthservice#ServiceMembersDeleteRequest": {
+    "com.azure.adhybridhealthservice#DeleteServiceMemberRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2223,10 +2224,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#ServiceMembersGet": {
+    "com.azure.adhybridhealthservice#GetServiceMember": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#ServiceMembersGetRequest"
+        "target": "com.azure.adhybridhealthservice#GetServiceMemberRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#ServiceMember"
@@ -2432,7 +2433,7 @@
         "smithy.api#documentation": "The monitoring level reported by the server."
       }
     },
-    "com.azure.adhybridhealthservice#ServiceMembersGetRequest": {
+    "com.azure.adhybridhealthservice#GetServiceMemberRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2456,10 +2457,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#ServiceMembersAdd": {
+    "com.azure.adhybridhealthservice#AddServiceMember": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#ServiceMembersAddRequest"
+        "target": "com.azure.adhybridhealthservice#AddServiceMemberRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#ServiceMember"
@@ -2475,7 +2476,7 @@
         "com.distilled.openapi#apiVersion": "2014-01-01"
       }
     },
-    "com.azure.adhybridhealthservice#ServiceMembersAddRequest": {
+    "com.azure.adhybridhealthservice#AddServiceMemberRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2631,7 +2632,7 @@
           }
         },
         "serverReportedMonitoringLevel": {
-          "target": "com.azure.adhybridhealthservice#ServiceMembersAddRequestServerReportedMonitoringLevel",
+          "target": "com.azure.adhybridhealthservice#AddServiceMemberRequestServerReportedMonitoringLevel",
           "traits": {
             "smithy.api#documentation": "The monitoring level reported by the server."
           }
@@ -2647,7 +2648,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#ServiceMembersAddRequestServerReportedMonitoringLevel": {
+    "com.azure.adhybridhealthservice#AddServiceMemberRequestServerReportedMonitoringLevel": {
       "type": "enum",
       "members": {
         "PARTIAL": {
@@ -2673,10 +2674,10 @@
         "smithy.api#documentation": "The monitoring level reported by the server."
       }
     },
-    "com.azure.adhybridhealthservice#ServiceMembersList": {
+    "com.azure.adhybridhealthservice#ListServiceMembers": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#ServiceMembersListRequest"
+        "target": "com.azure.adhybridhealthservice#ListServiceMembersRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#ServiceMembers"
@@ -2733,7 +2734,7 @@
         "smithy.api#documentation": "The value returned by the operation."
       }
     },
-    "com.azure.adhybridhealthservice#ServiceMembersListRequest": {
+    "com.azure.adhybridhealthservice#ListServiceMembersRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2770,10 +2771,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#ServicesListUserBadPasswordReport": {
+    "com.azure.adhybridhealthservice#ListServiceUserBadPasswordReport": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#ServicesListUserBadPasswordReportRequest"
+        "target": "com.azure.adhybridhealthservice#ListServiceUserBadPasswordReportRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#ErrorReportUsersEntries"
@@ -2850,7 +2851,7 @@
         "smithy.api#documentation": "The bad password login attempt details."
       }
     },
-    "com.azure.adhybridhealthservice#ServicesListUserBadPasswordReportRequest": {
+    "com.azure.adhybridhealthservice#ListServiceUserBadPasswordReportRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2873,10 +2874,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#ServicesListMonitoringConfigurations": {
+    "com.azure.adhybridhealthservice#ListServiceMonitoringConfigurations": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#ServicesListMonitoringConfigurationsRequest"
+        "target": "com.azure.adhybridhealthservice#ListServiceMonitoringConfigurationsRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#Items"
@@ -2915,7 +2916,7 @@
         "smithy.api#documentation": "The value returned by the operation."
       }
     },
-    "com.azure.adhybridhealthservice#ServicesListMonitoringConfigurationsRequest": {
+    "com.azure.adhybridhealthservice#ListServiceMonitoringConfigurationsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2931,10 +2932,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#ServicesUpdateMonitoringConfiguration": {
+    "com.azure.adhybridhealthservice#UpdateServiceMonitoringConfiguration": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#ServicesUpdateMonitoringConfigurationRequest"
+        "target": "com.azure.adhybridhealthservice#UpdateServiceMonitoringConfigurationRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2950,7 +2951,7 @@
         "com.distilled.openapi#apiVersion": "2014-01-01"
       }
     },
-    "com.azure.adhybridhealthservice#ServicesUpdateMonitoringConfigurationRequest": {
+    "com.azure.adhybridhealthservice#UpdateServiceMonitoringConfigurationRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -2978,10 +2979,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#ServicesGetMetricMetadataForGroup": {
+    "com.azure.adhybridhealthservice#GetServiceMetricMetadataForGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#ServicesGetMetricMetadataForGroupRequest"
+        "target": "com.azure.adhybridhealthservice#GetServiceMetricMetadataForGroupRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#MetricSets"
@@ -2997,7 +2998,7 @@
         "com.distilled.openapi#apiVersion": "2014-01-01"
       }
     },
-    "com.azure.adhybridhealthservice#ServicesGetMetricMetadataForGroupRequest": {
+    "com.azure.adhybridhealthservice#GetServiceMetricMetadataForGroupRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3050,10 +3051,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#ServicesGetMetricMetadata": {
+    "com.azure.adhybridhealthservice#GetServiceMetricMetadata": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#ServicesGetMetricMetadataRequest"
+        "target": "com.azure.adhybridhealthservice#GetServiceMetricMetadataRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#MetricMetadata"
@@ -3178,7 +3179,7 @@
         "smithy.api#documentation": " The metric group details."
       }
     },
-    "com.azure.adhybridhealthservice#ServicesGetMetricMetadataRequest": {
+    "com.azure.adhybridhealthservice#GetServiceMetricMetadataRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3202,10 +3203,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#ServicesListMetricMetadata": {
+    "com.azure.adhybridhealthservice#ListServiceMetricMetadata": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#ServicesListMetricMetadataRequest"
+        "target": "com.azure.adhybridhealthservice#ListServiceMetricMetadataRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#MetricMetadataList"
@@ -3262,7 +3263,7 @@
         "smithy.api#documentation": "The value returned by the operation."
       }
     },
-    "com.azure.adhybridhealthservice#ServicesListMetricMetadataRequest": {
+    "com.azure.adhybridhealthservice#ListServiceMetricMetadataRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3292,10 +3293,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#ServicesListMetricsSum": {
+    "com.azure.adhybridhealthservice#ListServiceMetricsSum": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#ServicesListMetricsSumRequest"
+        "target": "com.azure.adhybridhealthservice#ListServiceMetricsSumRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#Metrics"
@@ -3352,7 +3353,7 @@
         "smithy.api#documentation": "The value returned by the operation."
       }
     },
-    "com.azure.adhybridhealthservice#ServicesListMetricsSumRequest": {
+    "com.azure.adhybridhealthservice#ListServiceMetricsSumRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3384,10 +3385,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#ServicesListMetricsAverage": {
+    "com.azure.adhybridhealthservice#ListServiceMetricsAverage": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#ServicesListMetricsAverageRequest"
+        "target": "com.azure.adhybridhealthservice#ListServiceMetricsAverageRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#Metrics"
@@ -3403,7 +3404,7 @@
         "com.distilled.openapi#apiVersion": "2014-01-01"
       }
     },
-    "com.azure.adhybridhealthservice#ServicesListMetricsAverageRequest": {
+    "com.azure.adhybridhealthservice#ListServiceMetricsAverageRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3435,10 +3436,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#ServiceGetMetrics": {
+    "com.azure.adhybridhealthservice#GetServiceMetrics": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#ServiceGetMetricsRequest"
+        "target": "com.azure.adhybridhealthservice#GetServiceMetricsRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#MetricSets"
@@ -3454,7 +3455,7 @@
         "com.distilled.openapi#apiVersion": "2014-01-01"
       }
     },
-    "com.azure.adhybridhealthservice#ServiceGetMetricsRequest": {
+    "com.azure.adhybridhealthservice#GetServiceMetricsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3507,10 +3508,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#ServicesListAlertFeedback": {
+    "com.azure.adhybridhealthservice#ListServiceAlertFeedback": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#ServicesListAlertFeedbackRequest"
+        "target": "com.azure.adhybridhealthservice#ListServiceAlertFeedbackRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#AlertFeedbacks"
@@ -3605,7 +3606,7 @@
         "smithy.api#documentation": "The alert feedback details."
       }
     },
-    "com.azure.adhybridhealthservice#ServicesListAlertFeedbackRequest": {
+    "com.azure.adhybridhealthservice#ListServiceAlertFeedbackRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -3629,10 +3630,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#ServicesAddAlertFeedback": {
+    "com.azure.adhybridhealthservice#AddServiceAlertFeedback": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#ServicesAddAlertFeedbackRequest"
+        "target": "com.azure.adhybridhealthservice#AddServiceAlertFeedbackRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#AlertFeedback"
@@ -3648,7 +3649,7 @@
         "com.distilled.openapi#apiVersion": "2014-01-01"
       }
     },
-    "com.azure.adhybridhealthservice#ServicesAddAlertFeedbackRequest": {
+    "com.azure.adhybridhealthservice#AddServiceAlertFeedbackRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4117,10 +4118,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#ServicesGetFeatureAvailibility": {
+    "com.azure.adhybridhealthservice#GetServiceFeatureAvailibility": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#ServicesGetFeatureAvailibilityRequest"
+        "target": "com.azure.adhybridhealthservice#GetServiceFeatureAvailibilityRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#Result"
@@ -4136,7 +4137,7 @@
         "com.distilled.openapi#apiVersion": "2014-01-01"
       }
     },
-    "com.azure.adhybridhealthservice#ServicesGetFeatureAvailibilityRequest": {
+    "com.azure.adhybridhealthservice#GetServiceFeatureAvailibilityRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4160,10 +4161,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#ServicesListAlerts": {
+    "com.azure.adhybridhealthservice#ListServiceAlerts": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#ServicesListAlertsRequest"
+        "target": "com.azure.adhybridhealthservice#ListServiceAlertsRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#Alerts"
@@ -4179,7 +4180,7 @@
         "com.distilled.openapi#apiVersion": "2014-01-01"
       }
     },
-    "com.azure.adhybridhealthservice#ServicesListAlertsRequest": {
+    "com.azure.adhybridhealthservice#ListServiceAlertsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4223,10 +4224,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#ServicesDelete": {
+    "com.azure.adhybridhealthservice#DeleteService": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#ServicesDeleteRequest"
+        "target": "com.azure.adhybridhealthservice#DeleteServiceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4242,7 +4243,7 @@
         "com.distilled.openapi#apiVersion": "2014-01-01"
       }
     },
-    "com.azure.adhybridhealthservice#ServicesDeleteRequest": {
+    "com.azure.adhybridhealthservice#DeleteServiceRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4265,10 +4266,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#ServicesUpdate": {
+    "com.azure.adhybridhealthservice#UpdateService": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#ServicesUpdateRequest"
+        "target": "com.azure.adhybridhealthservice#UpdateServiceRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#ServiceProperties"
@@ -4454,7 +4455,7 @@
         "smithy.api#documentation": "The list of additional emails that are configured to receive notifications about the service."
       }
     },
-    "com.azure.adhybridhealthservice#ServicesUpdateRequest": {
+    "com.azure.adhybridhealthservice#UpdateServiceRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4490,7 +4491,7 @@
           }
         },
         "customNotificationEmails": {
-          "target": "com.azure.adhybridhealthservice#ServicesUpdateRequestCustomNotificationEmailsList",
+          "target": "com.azure.adhybridhealthservice#UpdateServiceRequestCustomNotificationEmailsList",
           "traits": {
             "smithy.api#documentation": "The list of additional emails that are configured to receive notifications about the service."
           }
@@ -4556,7 +4557,7 @@
           }
         },
         "notificationEmails": {
-          "target": "com.azure.adhybridhealthservice#ServicesUpdateRequestNotificationEmailsList",
+          "target": "com.azure.adhybridhealthservice#UpdateServiceRequestNotificationEmailsList",
           "traits": {
             "smithy.api#documentation": "The list of emails to whom service notifications will be sent."
           }
@@ -4608,7 +4609,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#ServicesUpdateRequestNotificationEmailsList": {
+    "com.azure.adhybridhealthservice#UpdateServiceRequestNotificationEmailsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -4617,7 +4618,7 @@
         "smithy.api#documentation": "The list of emails to whom service notifications will be sent."
       }
     },
-    "com.azure.adhybridhealthservice#ServicesUpdateRequestCustomNotificationEmailsList": {
+    "com.azure.adhybridhealthservice#UpdateServiceRequestCustomNotificationEmailsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -4626,10 +4627,10 @@
         "smithy.api#documentation": "The list of additional emails that are configured to receive notifications about the service."
       }
     },
-    "com.azure.adhybridhealthservice#ServicesGet": {
+    "com.azure.adhybridhealthservice#GetService": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#ServicesGetRequest"
+        "target": "com.azure.adhybridhealthservice#GetServiceRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#ServiceProperties"
@@ -4645,7 +4646,7 @@
         "com.distilled.openapi#apiVersion": "2014-01-01"
       }
     },
-    "com.azure.adhybridhealthservice#ServicesGetRequest": {
+    "com.azure.adhybridhealthservice#GetServiceRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -4661,10 +4662,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#ServicesListPremium": {
+    "com.azure.adhybridhealthservice#ListServicePremium": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#ServicesListPremiumRequest"
+        "target": "com.azure.adhybridhealthservice#ListServicePremiumRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#Services"
@@ -4721,7 +4722,7 @@
         "smithy.api#documentation": "The value returned by the operation."
       }
     },
-    "com.azure.adhybridhealthservice#ServicesListPremiumRequest": {
+    "com.azure.adhybridhealthservice#ListServicePremiumRequest": {
       "type": "structure",
       "members": {
         "_filter": {
@@ -4757,10 +4758,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#ServicesAdd": {
+    "com.azure.adhybridhealthservice#AddService": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#ServicesAddRequest"
+        "target": "com.azure.adhybridhealthservice#AddServiceRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#ServiceProperties"
@@ -4776,7 +4777,7 @@
         "com.distilled.openapi#apiVersion": "2014-01-01"
       }
     },
-    "com.azure.adhybridhealthservice#ServicesAddRequest": {
+    "com.azure.adhybridhealthservice#AddServiceRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -4804,7 +4805,7 @@
           }
         },
         "customNotificationEmails": {
-          "target": "com.azure.adhybridhealthservice#ServicesAddRequestCustomNotificationEmailsList",
+          "target": "com.azure.adhybridhealthservice#AddServiceRequestCustomNotificationEmailsList",
           "traits": {
             "smithy.api#documentation": "The list of additional emails that are configured to receive notifications about the service."
           }
@@ -4870,7 +4871,7 @@
           }
         },
         "notificationEmails": {
-          "target": "com.azure.adhybridhealthservice#ServicesAddRequestNotificationEmailsList",
+          "target": "com.azure.adhybridhealthservice#AddServiceRequestNotificationEmailsList",
           "traits": {
             "smithy.api#documentation": "The list of emails to whom service notifications will be sent."
           }
@@ -4928,7 +4929,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#ServicesAddRequestNotificationEmailsList": {
+    "com.azure.adhybridhealthservice#AddServiceRequestNotificationEmailsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -4937,7 +4938,7 @@
         "smithy.api#documentation": "The list of emails to whom service notifications will be sent."
       }
     },
-    "com.azure.adhybridhealthservice#ServicesAddRequestCustomNotificationEmailsList": {
+    "com.azure.adhybridhealthservice#AddServiceRequestCustomNotificationEmailsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -4946,10 +4947,10 @@
         "smithy.api#documentation": "The list of additional emails that are configured to receive notifications about the service."
       }
     },
-    "com.azure.adhybridhealthservice#ServicesList": {
+    "com.azure.adhybridhealthservice#ListServices": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#ServicesListRequest"
+        "target": "com.azure.adhybridhealthservice#ListServicesRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#Services"
@@ -4965,7 +4966,7 @@
         "com.distilled.openapi#apiVersion": "2014-01-01"
       }
     },
-    "com.azure.adhybridhealthservice#ServicesListRequest": {
+    "com.azure.adhybridhealthservice#ListServicesRequest": {
       "type": "structure",
       "members": {
         "_filter": {
@@ -5001,7 +5002,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#ReportsGetDevOps": {
+    "com.azure.adhybridhealthservice#GetReportDevOps": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -5020,10 +5021,10 @@
         "com.distilled.openapi#apiVersion": "2014-01-01"
       }
     },
-    "com.azure.adhybridhealthservice#ConfigurationUpdate": {
+    "com.azure.adhybridhealthservice#UpdateConfiguration": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#ConfigurationUpdateRequest"
+        "target": "com.azure.adhybridhealthservice#UpdateConfigurationRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#Tenant"
@@ -5182,7 +5183,7 @@
         "smithy.api#documentation": "The list of global administrators for the tenant."
       }
     },
-    "com.azure.adhybridhealthservice#ConfigurationUpdateRequest": {
+    "com.azure.adhybridhealthservice#UpdateConfigurationRequest": {
       "type": "structure",
       "members": {
         "tenantId": {
@@ -5252,7 +5253,7 @@
           }
         },
         "globalAdminsEmail": {
-          "target": "com.azure.adhybridhealthservice#ConfigurationUpdateRequestGlobalAdminsEmailList",
+          "target": "com.azure.adhybridhealthservice#UpdateConfigurationRequestGlobalAdminsEmailList",
           "traits": {
             "smithy.api#documentation": "The list of global administrators for the tenant."
           }
@@ -5316,7 +5317,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#ConfigurationUpdateRequestGlobalAdminsEmailList": {
+    "com.azure.adhybridhealthservice#UpdateConfigurationRequestGlobalAdminsEmailList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -5325,7 +5326,7 @@
         "smithy.api#documentation": "The list of global administrators for the tenant."
       }
     },
-    "com.azure.adhybridhealthservice#ConfigurationAdd": {
+    "com.azure.adhybridhealthservice#AddConfiguration": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -5344,7 +5345,7 @@
         "com.distilled.openapi#apiVersion": "2014-01-01"
       }
     },
-    "com.azure.adhybridhealthservice#ConfigurationGet": {
+    "com.azure.adhybridhealthservice#GetConfiguration": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -5363,7 +5364,7 @@
         "com.distilled.openapi#apiVersion": "2014-01-01"
       }
     },
-    "com.azure.adhybridhealthservice#OperationsList": {
+    "com.azure.adhybridhealthservice#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -5443,10 +5444,10 @@
         "smithy.api#documentation": "The details of the operation."
       }
     },
-    "com.azure.adhybridhealthservice#AddsServicesListPremiumServices": {
+    "com.azure.adhybridhealthservice#ListAddsServicePremiumServices": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#AddsServicesListPremiumServicesRequest"
+        "target": "com.azure.adhybridhealthservice#ListAddsServicePremiumServicesRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#Services"
@@ -5462,7 +5463,7 @@
         "com.distilled.openapi#apiVersion": "2014-01-01"
       }
     },
-    "com.azure.adhybridhealthservice#AddsServicesListPremiumServicesRequest": {
+    "com.azure.adhybridhealthservice#ListAddsServicePremiumServicesRequest": {
       "type": "structure",
       "members": {
         "_filter": {
@@ -5498,10 +5499,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#AddsServiceMembersListCredentials": {
+    "com.azure.adhybridhealthservice#ListAddsServiceMemberCredentials": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#AddsServiceMembersListCredentialsRequest"
+        "target": "com.azure.adhybridhealthservice#ListAddsServiceMemberCredentialsRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#Credentials"
@@ -5517,7 +5518,7 @@
         "com.distilled.openapi#apiVersion": "2014-01-01"
       }
     },
-    "com.azure.adhybridhealthservice#AddsServiceMembersListCredentialsRequest": {
+    "com.azure.adhybridhealthservice#ListAddsServiceMemberCredentialsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -5548,10 +5549,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#AddsServicesListServerAlerts": {
+    "com.azure.adhybridhealthservice#ListAddsServiceServerAlerts": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#AddsServicesListServerAlertsRequest"
+        "target": "com.azure.adhybridhealthservice#ListAddsServiceServerAlertsRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#Alerts"
@@ -5567,7 +5568,7 @@
         "com.distilled.openapi#apiVersion": "2014-01-01"
       }
     },
-    "com.azure.adhybridhealthservice#AddsServicesListServerAlertsRequest": {
+    "com.azure.adhybridhealthservice#ListAddsServiceServerAlertsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -5619,10 +5620,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#AddsServiceMembersDelete": {
+    "com.azure.adhybridhealthservice#DeleteAddsServiceMember": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#AddsServiceMembersDeleteRequest"
+        "target": "com.azure.adhybridhealthservice#DeleteAddsServiceMemberRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5638,7 +5639,7 @@
         "com.distilled.openapi#apiVersion": "2014-01-01"
       }
     },
-    "com.azure.adhybridhealthservice#AddsServiceMembersDeleteRequest": {
+    "com.azure.adhybridhealthservice#DeleteAddsServiceMemberRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -5669,10 +5670,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#AddsServiceMembersGet": {
+    "com.azure.adhybridhealthservice#GetAddsServiceMember": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#AddsServiceMembersGetRequest"
+        "target": "com.azure.adhybridhealthservice#GetAddsServiceMemberRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#ServiceMember"
@@ -5688,7 +5689,7 @@
         "com.distilled.openapi#apiVersion": "2014-01-01"
       }
     },
-    "com.azure.adhybridhealthservice#AddsServiceMembersGetRequest": {
+    "com.azure.adhybridhealthservice#GetAddsServiceMemberRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -5712,10 +5713,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#AddsServicesServiceMembersAdd": {
+    "com.azure.adhybridhealthservice#AddAddsServicesServiceMember": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#AddsServicesServiceMembersAddRequest"
+        "target": "com.azure.adhybridhealthservice#AddAddsServicesServiceMemberRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#ServiceMember"
@@ -5731,7 +5732,7 @@
         "com.distilled.openapi#apiVersion": "2014-01-01"
       }
     },
-    "com.azure.adhybridhealthservice#AddsServicesServiceMembersAddRequest": {
+    "com.azure.adhybridhealthservice#AddAddsServicesServiceMemberRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -5887,7 +5888,7 @@
           }
         },
         "serverReportedMonitoringLevel": {
-          "target": "com.azure.adhybridhealthservice#AddsServicesServiceMembersAddRequestServerReportedMonitoringLevel",
+          "target": "com.azure.adhybridhealthservice#AddAddsServicesServiceMemberRequestServerReportedMonitoringLevel",
           "traits": {
             "smithy.api#documentation": "The monitoring level reported by the server."
           }
@@ -5903,7 +5904,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#AddsServicesServiceMembersAddRequestServerReportedMonitoringLevel": {
+    "com.azure.adhybridhealthservice#AddAddsServicesServiceMemberRequestServerReportedMonitoringLevel": {
       "type": "enum",
       "members": {
         "PARTIAL": {
@@ -5929,10 +5930,10 @@
         "smithy.api#documentation": "The monitoring level reported by the server."
       }
     },
-    "com.azure.adhybridhealthservice#AddsServicesServiceMembersList": {
+    "com.azure.adhybridhealthservice#ListAddsServicesServiceMembers": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#AddsServicesServiceMembersListRequest"
+        "target": "com.azure.adhybridhealthservice#ListAddsServicesServiceMembersRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#ServiceMembers"
@@ -5948,7 +5949,7 @@
         "com.distilled.openapi#apiVersion": "2014-01-01"
       }
     },
-    "com.azure.adhybridhealthservice#AddsServicesServiceMembersListRequest": {
+    "com.azure.adhybridhealthservice#ListAddsServicesServiceMembersRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -5985,10 +5986,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#AddsServicesListReplicationSummary": {
+    "com.azure.adhybridhealthservice#ListAddsServiceReplicationSummary": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#AddsServicesListReplicationSummaryRequest"
+        "target": "com.azure.adhybridhealthservice#ListAddsServiceReplicationSummaryRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#ReplicationSummaryList"
@@ -6172,7 +6173,7 @@
         "smithy.api#documentation": "The replication summary for the domain controller inbound neighbor."
       }
     },
-    "com.azure.adhybridhealthservice#AddsServicesListReplicationSummaryRequest": {
+    "com.azure.adhybridhealthservice#ListAddsServiceReplicationSummaryRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6207,7 +6208,7 @@
           }
         },
         "nextPartitionKey": {
-          "target": "com.azure.adhybridhealthservice#AddsServicesListReplicationSummaryRequestNextPartitionKey",
+          "target": "com.azure.adhybridhealthservice#ListAddsServiceReplicationSummaryRequestNextPartitionKey",
           "traits": {
             "smithy.api#httpQuery": "nextPartitionKey",
             "smithy.api#required": {},
@@ -6215,7 +6216,7 @@
           }
         },
         "nextRowKey": {
-          "target": "com.azure.adhybridhealthservice#AddsServicesListReplicationSummaryRequestNextRowKey",
+          "target": "com.azure.adhybridhealthservice#ListAddsServiceReplicationSummaryRequestNextRowKey",
           "traits": {
             "smithy.api#httpQuery": "nextRowKey",
             "smithy.api#required": {},
@@ -6234,7 +6235,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#AddsServicesListReplicationSummaryRequestNextRowKey": {
+    "com.azure.adhybridhealthservice#ListAddsServiceReplicationSummaryRequestNextRowKey": {
       "type": "enum",
       "members": {
         "VALUE": {
@@ -6246,7 +6247,7 @@
       },
       "traits": {}
     },
-    "com.azure.adhybridhealthservice#AddsServicesListReplicationSummaryRequestNextPartitionKey": {
+    "com.azure.adhybridhealthservice#ListAddsServiceReplicationSummaryRequestNextPartitionKey": {
       "type": "enum",
       "members": {
         "VALUE": {
@@ -6258,10 +6259,10 @@
       },
       "traits": {}
     },
-    "com.azure.adhybridhealthservice#AddsServicesReplicationStatusGet": {
+    "com.azure.adhybridhealthservice#GetAddsServicesReplicationStatus": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#AddsServicesReplicationStatusGetRequest"
+        "target": "com.azure.adhybridhealthservice#GetAddsServicesReplicationStatusRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#ReplicationStatus"
@@ -6303,7 +6304,7 @@
         "smithy.api#documentation": " Replication summary for a domain controller."
       }
     },
-    "com.azure.adhybridhealthservice#AddsServicesReplicationStatusGetRequest": {
+    "com.azure.adhybridhealthservice#GetAddsServicesReplicationStatusRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6319,10 +6320,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#AddsServicesListReplicationDetails": {
+    "com.azure.adhybridhealthservice#ListAddsServiceReplicationDetails": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#AddsServicesListReplicationDetailsRequest"
+        "target": "com.azure.adhybridhealthservice#ListAddsServiceReplicationDetailsRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#ReplicationDetailsList"
@@ -6379,7 +6380,7 @@
         "smithy.api#documentation": "The value returned by the operation."
       }
     },
-    "com.azure.adhybridhealthservice#AddsServicesListReplicationDetailsRequest": {
+    "com.azure.adhybridhealthservice#ListAddsServiceReplicationDetailsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6409,10 +6410,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#AddsServicesGetMetricMetadataForGroup": {
+    "com.azure.adhybridhealthservice#GetAddsServiceMetricMetadataForGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#AddsServicesGetMetricMetadataForGroupRequest"
+        "target": "com.azure.adhybridhealthservice#GetAddsServiceMetricMetadataForGroupRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#MetricSets"
@@ -6428,7 +6429,7 @@
         "com.distilled.openapi#apiVersion": "2014-01-01"
       }
     },
-    "com.azure.adhybridhealthservice#AddsServicesGetMetricMetadataForGroupRequest": {
+    "com.azure.adhybridhealthservice#GetAddsServiceMetricMetadataForGroupRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6481,10 +6482,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#AddsServicesGetMetricMetadata": {
+    "com.azure.adhybridhealthservice#GetAddsServiceMetricMetadata": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#AddsServicesGetMetricMetadataRequest"
+        "target": "com.azure.adhybridhealthservice#GetAddsServiceMetricMetadataRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#MetricMetadata"
@@ -6500,7 +6501,7 @@
         "com.distilled.openapi#apiVersion": "2014-01-01"
       }
     },
-    "com.azure.adhybridhealthservice#AddsServicesGetMetricMetadataRequest": {
+    "com.azure.adhybridhealthservice#GetAddsServiceMetricMetadataRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6524,10 +6525,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#AddsServicesListMetricMetadata": {
+    "com.azure.adhybridhealthservice#ListAddsServiceMetricMetadata": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#AddsServicesListMetricMetadataRequest"
+        "target": "com.azure.adhybridhealthservice#ListAddsServiceMetricMetadataRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#MetricMetadataList"
@@ -6543,7 +6544,7 @@
         "com.distilled.openapi#apiVersion": "2014-01-01"
       }
     },
-    "com.azure.adhybridhealthservice#AddsServicesListMetricMetadataRequest": {
+    "com.azure.adhybridhealthservice#ListAddsServiceMetricMetadataRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6573,10 +6574,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#AddsServicesListMetricsSum": {
+    "com.azure.adhybridhealthservice#ListAddsServiceMetricsSum": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#AddsServicesListMetricsSumRequest"
+        "target": "com.azure.adhybridhealthservice#ListAddsServiceMetricsSumRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#Metrics"
@@ -6592,7 +6593,7 @@
         "com.distilled.openapi#apiVersion": "2014-01-01"
       }
     },
-    "com.azure.adhybridhealthservice#AddsServicesListMetricsSumRequest": {
+    "com.azure.adhybridhealthservice#ListAddsServiceMetricsSumRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6624,10 +6625,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#AddsServicesListMetricsAverage": {
+    "com.azure.adhybridhealthservice#ListAddsServiceMetricsAverage": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#AddsServicesListMetricsAverageRequest"
+        "target": "com.azure.adhybridhealthservice#ListAddsServiceMetricsAverageRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#Metrics"
@@ -6643,7 +6644,7 @@
         "com.distilled.openapi#apiVersion": "2014-01-01"
       }
     },
-    "com.azure.adhybridhealthservice#AddsServicesListMetricsAverageRequest": {
+    "com.azure.adhybridhealthservice#ListAddsServiceMetricsAverageRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6675,10 +6676,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#AddsServiceGetMetrics": {
+    "com.azure.adhybridhealthservice#GetAddsServiceMetrics": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#AddsServiceGetMetricsRequest"
+        "target": "com.azure.adhybridhealthservice#GetAddsServiceMetricsRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#MetricSets"
@@ -6694,7 +6695,7 @@
         "com.distilled.openapi#apiVersion": "2014-01-01"
       }
     },
-    "com.azure.adhybridhealthservice#AddsServiceGetMetricsRequest": {
+    "com.azure.adhybridhealthservice#GetAddsServiceMetricsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6747,10 +6748,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#AddsServicesGetForestSummary": {
+    "com.azure.adhybridhealthservice#GetAddsServiceForestSummary": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#AddsServicesGetForestSummaryRequest"
+        "target": "com.azure.adhybridhealthservice#GetAddsServiceForestSummaryRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#ForestSummary"
@@ -6834,7 +6835,7 @@
         "smithy.api#documentation": "The list of domain controller names."
       }
     },
-    "com.azure.adhybridhealthservice#AddsServicesGetForestSummaryRequest": {
+    "com.azure.adhybridhealthservice#GetAddsServiceForestSummaryRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6850,10 +6851,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#AddsServicesUserPreferenceDelete": {
+    "com.azure.adhybridhealthservice#DeleteAddsServicesUserPreference": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#AddsServicesUserPreferenceDeleteRequest"
+        "target": "com.azure.adhybridhealthservice#DeleteAddsServicesUserPreferenceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -6869,7 +6870,7 @@
         "com.distilled.openapi#apiVersion": "2014-01-01"
       }
     },
-    "com.azure.adhybridhealthservice#AddsServicesUserPreferenceDeleteRequest": {
+    "com.azure.adhybridhealthservice#DeleteAddsServicesUserPreferenceRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6893,10 +6894,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#AddsServicesUserPreferenceAdd": {
+    "com.azure.adhybridhealthservice#AddAddsServicesUserPreference": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#AddsServicesUserPreferenceAddRequest"
+        "target": "com.azure.adhybridhealthservice#AddAddsServicesUserPreferenceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -6912,7 +6913,7 @@
         "com.distilled.openapi#apiVersion": "2014-01-01"
       }
     },
-    "com.azure.adhybridhealthservice#AddsServicesUserPreferenceAddRequest": {
+    "com.azure.adhybridhealthservice#AddAddsServicesUserPreferenceRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -6932,7 +6933,7 @@
           }
         },
         "metricNames": {
-          "target": "com.azure.adhybridhealthservice#AddsServicesUserPreferenceAddRequestMetricNamesList",
+          "target": "com.azure.adhybridhealthservice#AddAddsServicesUserPreferenceRequestMetricNamesList",
           "traits": {
             "smithy.api#documentation": "The name of the metric."
           }
@@ -6942,7 +6943,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#AddsServicesUserPreferenceAddRequestMetricNamesList": {
+    "com.azure.adhybridhealthservice#AddAddsServicesUserPreferenceRequestMetricNamesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -6951,10 +6952,10 @@
         "smithy.api#documentation": "The name of the metric."
       }
     },
-    "com.azure.adhybridhealthservice#AddsServicesUserPreferenceGet": {
+    "com.azure.adhybridhealthservice#GetAddsServicesUserPreference": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#AddsServicesUserPreferenceGetRequest"
+        "target": "com.azure.adhybridhealthservice#GetAddsServicesUserPreferenceRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#UserPreference"
@@ -6993,7 +6994,7 @@
         "smithy.api#documentation": "The name of the metric."
       }
     },
-    "com.azure.adhybridhealthservice#AddsServicesUserPreferenceGetRequest": {
+    "com.azure.adhybridhealthservice#GetAddsServicesUserPreferenceRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7017,10 +7018,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#AdDomainServiceMembersList": {
+    "com.azure.adhybridhealthservice#ListAdDomainServiceMembers": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#AdDomainServiceMembersListRequest"
+        "target": "com.azure.adhybridhealthservice#ListAdDomainServiceMembersRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#AddsServiceMembers"
@@ -7413,7 +7414,7 @@
         "smithy.api#documentation": "The list of ADDS roles."
       }
     },
-    "com.azure.adhybridhealthservice#AdDomainServiceMembersListRequest": {
+    "com.azure.adhybridhealthservice#ListAdDomainServiceMembersRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7447,7 +7448,7 @@
           }
         },
         "nextPartitionKey": {
-          "target": "com.azure.adhybridhealthservice#AdDomainServiceMembersListRequestNextPartitionKey",
+          "target": "com.azure.adhybridhealthservice#ListAdDomainServiceMembersRequestNextPartitionKey",
           "traits": {
             "smithy.api#httpQuery": "nextPartitionKey",
             "smithy.api#required": {},
@@ -7455,7 +7456,7 @@
           }
         },
         "nextRowKey": {
-          "target": "com.azure.adhybridhealthservice#AdDomainServiceMembersListRequestNextRowKey",
+          "target": "com.azure.adhybridhealthservice#ListAdDomainServiceMembersRequestNextRowKey",
           "traits": {
             "smithy.api#httpQuery": "nextRowKey",
             "smithy.api#required": {},
@@ -7474,7 +7475,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#AdDomainServiceMembersListRequestNextRowKey": {
+    "com.azure.adhybridhealthservice#ListAdDomainServiceMembersRequestNextRowKey": {
       "type": "enum",
       "members": {
         "VALUE": {
@@ -7486,7 +7487,7 @@
       },
       "traits": {}
     },
-    "com.azure.adhybridhealthservice#AdDomainServiceMembersListRequestNextPartitionKey": {
+    "com.azure.adhybridhealthservice#ListAdDomainServiceMembersRequestNextPartitionKey": {
       "type": "enum",
       "members": {
         "VALUE": {
@@ -7498,10 +7499,10 @@
       },
       "traits": {}
     },
-    "com.azure.adhybridhealthservice#AddsServiceMembersList": {
+    "com.azure.adhybridhealthservice#ListAddsServiceMembers": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#AddsServiceMembersListRequest"
+        "target": "com.azure.adhybridhealthservice#ListAddsServiceMembersRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#AddsServiceMembers"
@@ -7517,7 +7518,7 @@
         "com.distilled.openapi#apiVersion": "2014-01-01"
       }
     },
-    "com.azure.adhybridhealthservice#AddsServiceMembersListRequest": {
+    "com.azure.adhybridhealthservice#ListAddsServiceMembersRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7540,10 +7541,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#DimensionsListAddsDimensions": {
+    "com.azure.adhybridhealthservice#ListDimensionAddsDimensions": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#DimensionsListAddsDimensionsRequest"
+        "target": "com.azure.adhybridhealthservice#ListDimensionAddsDimensionsRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#Dimensions"
@@ -7700,7 +7701,7 @@
         "smithy.api#documentation": "The health status for the domain controller."
       }
     },
-    "com.azure.adhybridhealthservice#DimensionsListAddsDimensionsRequest": {
+    "com.azure.adhybridhealthservice#ListDimensionAddsDimensionsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7724,10 +7725,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#ConfigurationListAddsConfigurations": {
+    "com.azure.adhybridhealthservice#ListConfigurationAddsConfigurations": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#ConfigurationListAddsConfigurationsRequest"
+        "target": "com.azure.adhybridhealthservice#ListConfigurationAddsConfigurationsRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#AddsConfiguration"
@@ -7784,7 +7785,7 @@
         "smithy.api#documentation": "The value returned by the operation."
       }
     },
-    "com.azure.adhybridhealthservice#ConfigurationListAddsConfigurationsRequest": {
+    "com.azure.adhybridhealthservice#ListConfigurationAddsConfigurationsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7807,10 +7808,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#AlertsListAddsAlerts": {
+    "com.azure.adhybridhealthservice#ListAlertAddsAlerts": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#AlertsListAddsAlertsRequest"
+        "target": "com.azure.adhybridhealthservice#ListAlertAddsAlertsRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#Alerts"
@@ -7826,7 +7827,7 @@
         "com.distilled.openapi#apiVersion": "2014-01-01"
       }
     },
-    "com.azure.adhybridhealthservice#AlertsListAddsAlertsRequest": {
+    "com.azure.adhybridhealthservice#ListAlertAddsAlertsRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7870,10 +7871,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#AddsServicesDelete": {
+    "com.azure.adhybridhealthservice#DeleteAddsService": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#AddsServicesDeleteRequest"
+        "target": "com.azure.adhybridhealthservice#DeleteAddsServiceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7889,7 +7890,7 @@
         "com.distilled.openapi#apiVersion": "2014-01-01"
       }
     },
-    "com.azure.adhybridhealthservice#AddsServicesDeleteRequest": {
+    "com.azure.adhybridhealthservice#DeleteAddsServiceRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7912,10 +7913,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#AddsServicesUpdate": {
+    "com.azure.adhybridhealthservice#UpdateAddsService": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#AddsServicesUpdateRequest"
+        "target": "com.azure.adhybridhealthservice#UpdateAddsServiceRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#ServiceProperties"
@@ -7931,7 +7932,7 @@
         "com.distilled.openapi#apiVersion": "2014-01-01"
       }
     },
-    "com.azure.adhybridhealthservice#AddsServicesUpdateRequest": {
+    "com.azure.adhybridhealthservice#UpdateAddsServiceRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -7967,7 +7968,7 @@
           }
         },
         "customNotificationEmails": {
-          "target": "com.azure.adhybridhealthservice#AddsServicesUpdateRequestCustomNotificationEmailsList",
+          "target": "com.azure.adhybridhealthservice#UpdateAddsServiceRequestCustomNotificationEmailsList",
           "traits": {
             "smithy.api#documentation": "The list of additional emails that are configured to receive notifications about the service."
           }
@@ -8033,7 +8034,7 @@
           }
         },
         "notificationEmails": {
-          "target": "com.azure.adhybridhealthservice#AddsServicesUpdateRequestNotificationEmailsList",
+          "target": "com.azure.adhybridhealthservice#UpdateAddsServiceRequestNotificationEmailsList",
           "traits": {
             "smithy.api#documentation": "The list of emails to whom service notifications will be sent."
           }
@@ -8085,7 +8086,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#AddsServicesUpdateRequestNotificationEmailsList": {
+    "com.azure.adhybridhealthservice#UpdateAddsServiceRequestNotificationEmailsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -8094,7 +8095,7 @@
         "smithy.api#documentation": "The list of emails to whom service notifications will be sent."
       }
     },
-    "com.azure.adhybridhealthservice#AddsServicesUpdateRequestCustomNotificationEmailsList": {
+    "com.azure.adhybridhealthservice#UpdateAddsServiceRequestCustomNotificationEmailsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -8103,10 +8104,10 @@
         "smithy.api#documentation": "The list of additional emails that are configured to receive notifications about the service."
       }
     },
-    "com.azure.adhybridhealthservice#AddsServicesGet": {
+    "com.azure.adhybridhealthservice#GetAddsService": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#AddsServicesGetRequest"
+        "target": "com.azure.adhybridhealthservice#GetAddsServiceRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#ServiceProperties"
@@ -8122,7 +8123,7 @@
         "com.distilled.openapi#apiVersion": "2014-01-01"
       }
     },
-    "com.azure.adhybridhealthservice#AddsServicesGetRequest": {
+    "com.azure.adhybridhealthservice#GetAddsServiceRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -8138,10 +8139,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#AddsServicesAdd": {
+    "com.azure.adhybridhealthservice#AddAddsService": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#AddsServicesAddRequest"
+        "target": "com.azure.adhybridhealthservice#AddAddsServiceRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#ServiceProperties"
@@ -8157,7 +8158,7 @@
         "com.distilled.openapi#apiVersion": "2014-01-01"
       }
     },
-    "com.azure.adhybridhealthservice#AddsServicesAddRequest": {
+    "com.azure.adhybridhealthservice#AddAddsServiceRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -8185,7 +8186,7 @@
           }
         },
         "customNotificationEmails": {
-          "target": "com.azure.adhybridhealthservice#AddsServicesAddRequestCustomNotificationEmailsList",
+          "target": "com.azure.adhybridhealthservice#AddAddsServiceRequestCustomNotificationEmailsList",
           "traits": {
             "smithy.api#documentation": "The list of additional emails that are configured to receive notifications about the service."
           }
@@ -8251,7 +8252,7 @@
           }
         },
         "notificationEmails": {
-          "target": "com.azure.adhybridhealthservice#AddsServicesAddRequestNotificationEmailsList",
+          "target": "com.azure.adhybridhealthservice#AddAddsServiceRequestNotificationEmailsList",
           "traits": {
             "smithy.api#documentation": "The list of emails to whom service notifications will be sent."
           }
@@ -8309,7 +8310,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.adhybridhealthservice#AddsServicesAddRequestNotificationEmailsList": {
+    "com.azure.adhybridhealthservice#AddAddsServiceRequestNotificationEmailsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -8318,7 +8319,7 @@
         "smithy.api#documentation": "The list of emails to whom service notifications will be sent."
       }
     },
-    "com.azure.adhybridhealthservice#AddsServicesAddRequestCustomNotificationEmailsList": {
+    "com.azure.adhybridhealthservice#AddAddsServiceRequestCustomNotificationEmailsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -8327,10 +8328,10 @@
         "smithy.api#documentation": "The list of additional emails that are configured to receive notifications about the service."
       }
     },
-    "com.azure.adhybridhealthservice#AddsServicesList": {
+    "com.azure.adhybridhealthservice#ListAddsServices": {
       "type": "operation",
       "input": {
-        "target": "com.azure.adhybridhealthservice#AddsServicesListRequest"
+        "target": "com.azure.adhybridhealthservice#ListAddsServicesRequest"
       },
       "output": {
         "target": "com.azure.adhybridhealthservice#Services"
@@ -8346,7 +8347,7 @@
         "com.distilled.openapi#apiVersion": "2014-01-01"
       }
     },
-    "com.azure.adhybridhealthservice#AddsServicesListRequest": {
+    "com.azure.adhybridhealthservice#ListAddsServicesRequest": {
       "type": "structure",
       "members": {
         "_filter": {
@@ -8396,7 +8397,7 @@
           "target": "com.azure.adhybridhealthservice#ListIPAddressAggregatesByService"
         },
         {
-          "target": "com.azure.adhybridhealthservice#ServiceMembersGetConnectorMetadata"
+          "target": "com.azure.adhybridhealthservice#GetServiceMemberConnectorMetadata"
         },
         {
           "target": "com.azure.adhybridhealthservice#ServicesListCurrentRiskyIpDownloadReport"
@@ -8405,79 +8406,79 @@
           "target": "com.azure.adhybridhealthservice#ServicesListAllRiskyIpDownloadReport"
         },
         {
-          "target": "com.azure.adhybridhealthservice#ServicesGetTenantWhitelisting"
+          "target": "com.azure.adhybridhealthservice#GetServiceTenantWhitelisting"
         },
         {
-          "target": "com.azure.adhybridhealthservice#ServiceMembersGetServiceConfiguration"
+          "target": "com.azure.adhybridhealthservice#GetServiceMemberServiceConfiguration"
         },
         {
-          "target": "com.azure.adhybridhealthservice#ServiceMembersGetMetrics"
+          "target": "com.azure.adhybridhealthservice#GetServiceMemberMetrics"
         },
         {
-          "target": "com.azure.adhybridhealthservice#ServiceMembersListGlobalConfiguration"
+          "target": "com.azure.adhybridhealthservice#ListServiceMemberGlobalConfiguration"
         },
         {
           "target": "com.azure.adhybridhealthservice#ServiceMembersListExportStatus"
         },
         {
-          "target": "com.azure.adhybridhealthservice#ServiceMembersListDataFreshness"
+          "target": "com.azure.adhybridhealthservice#ListServiceMemberDataFreshness"
         },
         {
-          "target": "com.azure.adhybridhealthservice#ServiceMembersDeleteData"
+          "target": "com.azure.adhybridhealthservice#DeleteServiceMemberData"
         },
         {
-          "target": "com.azure.adhybridhealthservice#ServiceMembersListCredentials"
+          "target": "com.azure.adhybridhealthservice#ListServiceMemberCredentials"
         },
         {
-          "target": "com.azure.adhybridhealthservice#ServiceMembersListConnectors"
+          "target": "com.azure.adhybridhealthservice#ListServiceMemberConnectors"
         },
         {
-          "target": "com.azure.adhybridhealthservice#ServiceMembersListAlerts"
+          "target": "com.azure.adhybridhealthservice#ListServiceMemberAlerts"
         },
         {
-          "target": "com.azure.adhybridhealthservice#ServiceMembersDelete"
+          "target": "com.azure.adhybridhealthservice#DeleteServiceMember"
         },
         {
-          "target": "com.azure.adhybridhealthservice#ServiceMembersGet"
+          "target": "com.azure.adhybridhealthservice#GetServiceMember"
         },
         {
-          "target": "com.azure.adhybridhealthservice#ServiceMembersAdd"
+          "target": "com.azure.adhybridhealthservice#AddServiceMember"
         },
         {
-          "target": "com.azure.adhybridhealthservice#ServiceMembersList"
+          "target": "com.azure.adhybridhealthservice#ListServiceMembers"
         },
         {
-          "target": "com.azure.adhybridhealthservice#ServicesListUserBadPasswordReport"
+          "target": "com.azure.adhybridhealthservice#ListServiceUserBadPasswordReport"
         },
         {
-          "target": "com.azure.adhybridhealthservice#ServicesListMonitoringConfigurations"
+          "target": "com.azure.adhybridhealthservice#ListServiceMonitoringConfigurations"
         },
         {
-          "target": "com.azure.adhybridhealthservice#ServicesUpdateMonitoringConfiguration"
+          "target": "com.azure.adhybridhealthservice#UpdateServiceMonitoringConfiguration"
         },
         {
-          "target": "com.azure.adhybridhealthservice#ServicesGetMetricMetadataForGroup"
+          "target": "com.azure.adhybridhealthservice#GetServiceMetricMetadataForGroup"
         },
         {
-          "target": "com.azure.adhybridhealthservice#ServicesGetMetricMetadata"
+          "target": "com.azure.adhybridhealthservice#GetServiceMetricMetadata"
         },
         {
-          "target": "com.azure.adhybridhealthservice#ServicesListMetricMetadata"
+          "target": "com.azure.adhybridhealthservice#ListServiceMetricMetadata"
         },
         {
-          "target": "com.azure.adhybridhealthservice#ServicesListMetricsSum"
+          "target": "com.azure.adhybridhealthservice#ListServiceMetricsSum"
         },
         {
-          "target": "com.azure.adhybridhealthservice#ServicesListMetricsAverage"
+          "target": "com.azure.adhybridhealthservice#ListServiceMetricsAverage"
         },
         {
-          "target": "com.azure.adhybridhealthservice#ServiceGetMetrics"
+          "target": "com.azure.adhybridhealthservice#GetServiceMetrics"
         },
         {
-          "target": "com.azure.adhybridhealthservice#ServicesListAlertFeedback"
+          "target": "com.azure.adhybridhealthservice#ListServiceAlertFeedback"
         },
         {
-          "target": "com.azure.adhybridhealthservice#ServicesAddAlertFeedback"
+          "target": "com.azure.adhybridhealthservice#AddServiceAlertFeedback"
         },
         {
           "target": "com.azure.adhybridhealthservice#ServicesListExportStatus"
@@ -8489,133 +8490,133 @@
           "target": "com.azure.adhybridhealthservice#ServicesListExportErrors"
         },
         {
-          "target": "com.azure.adhybridhealthservice#ServicesGetFeatureAvailibility"
+          "target": "com.azure.adhybridhealthservice#GetServiceFeatureAvailibility"
         },
         {
-          "target": "com.azure.adhybridhealthservice#ServicesListAlerts"
+          "target": "com.azure.adhybridhealthservice#ListServiceAlerts"
         },
         {
-          "target": "com.azure.adhybridhealthservice#ServicesDelete"
+          "target": "com.azure.adhybridhealthservice#DeleteService"
         },
         {
-          "target": "com.azure.adhybridhealthservice#ServicesUpdate"
+          "target": "com.azure.adhybridhealthservice#UpdateService"
         },
         {
-          "target": "com.azure.adhybridhealthservice#ServicesGet"
+          "target": "com.azure.adhybridhealthservice#GetService"
         },
         {
-          "target": "com.azure.adhybridhealthservice#ServicesListPremium"
+          "target": "com.azure.adhybridhealthservice#ListServicePremium"
         },
         {
-          "target": "com.azure.adhybridhealthservice#ServicesAdd"
+          "target": "com.azure.adhybridhealthservice#AddService"
         },
         {
-          "target": "com.azure.adhybridhealthservice#ServicesList"
+          "target": "com.azure.adhybridhealthservice#ListServices"
         },
         {
-          "target": "com.azure.adhybridhealthservice#ReportsGetDevOps"
+          "target": "com.azure.adhybridhealthservice#GetReportDevOps"
         },
         {
-          "target": "com.azure.adhybridhealthservice#ConfigurationUpdate"
+          "target": "com.azure.adhybridhealthservice#UpdateConfiguration"
         },
         {
-          "target": "com.azure.adhybridhealthservice#ConfigurationAdd"
+          "target": "com.azure.adhybridhealthservice#AddConfiguration"
         },
         {
-          "target": "com.azure.adhybridhealthservice#ConfigurationGet"
+          "target": "com.azure.adhybridhealthservice#GetConfiguration"
         },
         {
-          "target": "com.azure.adhybridhealthservice#OperationsList"
+          "target": "com.azure.adhybridhealthservice#ListOperations"
         },
         {
-          "target": "com.azure.adhybridhealthservice#AddsServicesListPremiumServices"
+          "target": "com.azure.adhybridhealthservice#ListAddsServicePremiumServices"
         },
         {
-          "target": "com.azure.adhybridhealthservice#AddsServiceMembersListCredentials"
+          "target": "com.azure.adhybridhealthservice#ListAddsServiceMemberCredentials"
         },
         {
-          "target": "com.azure.adhybridhealthservice#AddsServicesListServerAlerts"
+          "target": "com.azure.adhybridhealthservice#ListAddsServiceServerAlerts"
         },
         {
-          "target": "com.azure.adhybridhealthservice#AddsServiceMembersDelete"
+          "target": "com.azure.adhybridhealthservice#DeleteAddsServiceMember"
         },
         {
-          "target": "com.azure.adhybridhealthservice#AddsServiceMembersGet"
+          "target": "com.azure.adhybridhealthservice#GetAddsServiceMember"
         },
         {
-          "target": "com.azure.adhybridhealthservice#AddsServicesServiceMembersAdd"
+          "target": "com.azure.adhybridhealthservice#AddAddsServicesServiceMember"
         },
         {
-          "target": "com.azure.adhybridhealthservice#AddsServicesServiceMembersList"
+          "target": "com.azure.adhybridhealthservice#ListAddsServicesServiceMembers"
         },
         {
-          "target": "com.azure.adhybridhealthservice#AddsServicesListReplicationSummary"
+          "target": "com.azure.adhybridhealthservice#ListAddsServiceReplicationSummary"
         },
         {
-          "target": "com.azure.adhybridhealthservice#AddsServicesReplicationStatusGet"
+          "target": "com.azure.adhybridhealthservice#GetAddsServicesReplicationStatus"
         },
         {
-          "target": "com.azure.adhybridhealthservice#AddsServicesListReplicationDetails"
+          "target": "com.azure.adhybridhealthservice#ListAddsServiceReplicationDetails"
         },
         {
-          "target": "com.azure.adhybridhealthservice#AddsServicesGetMetricMetadataForGroup"
+          "target": "com.azure.adhybridhealthservice#GetAddsServiceMetricMetadataForGroup"
         },
         {
-          "target": "com.azure.adhybridhealthservice#AddsServicesGetMetricMetadata"
+          "target": "com.azure.adhybridhealthservice#GetAddsServiceMetricMetadata"
         },
         {
-          "target": "com.azure.adhybridhealthservice#AddsServicesListMetricMetadata"
+          "target": "com.azure.adhybridhealthservice#ListAddsServiceMetricMetadata"
         },
         {
-          "target": "com.azure.adhybridhealthservice#AddsServicesListMetricsSum"
+          "target": "com.azure.adhybridhealthservice#ListAddsServiceMetricsSum"
         },
         {
-          "target": "com.azure.adhybridhealthservice#AddsServicesListMetricsAverage"
+          "target": "com.azure.adhybridhealthservice#ListAddsServiceMetricsAverage"
         },
         {
-          "target": "com.azure.adhybridhealthservice#AddsServiceGetMetrics"
+          "target": "com.azure.adhybridhealthservice#GetAddsServiceMetrics"
         },
         {
-          "target": "com.azure.adhybridhealthservice#AddsServicesGetForestSummary"
+          "target": "com.azure.adhybridhealthservice#GetAddsServiceForestSummary"
         },
         {
-          "target": "com.azure.adhybridhealthservice#AddsServicesUserPreferenceDelete"
+          "target": "com.azure.adhybridhealthservice#DeleteAddsServicesUserPreference"
         },
         {
-          "target": "com.azure.adhybridhealthservice#AddsServicesUserPreferenceAdd"
+          "target": "com.azure.adhybridhealthservice#AddAddsServicesUserPreference"
         },
         {
-          "target": "com.azure.adhybridhealthservice#AddsServicesUserPreferenceGet"
+          "target": "com.azure.adhybridhealthservice#GetAddsServicesUserPreference"
         },
         {
-          "target": "com.azure.adhybridhealthservice#AdDomainServiceMembersList"
+          "target": "com.azure.adhybridhealthservice#ListAdDomainServiceMembers"
         },
         {
-          "target": "com.azure.adhybridhealthservice#AddsServiceMembersList"
+          "target": "com.azure.adhybridhealthservice#ListAddsServiceMembers"
         },
         {
-          "target": "com.azure.adhybridhealthservice#DimensionsListAddsDimensions"
+          "target": "com.azure.adhybridhealthservice#ListDimensionAddsDimensions"
         },
         {
-          "target": "com.azure.adhybridhealthservice#ConfigurationListAddsConfigurations"
+          "target": "com.azure.adhybridhealthservice#ListConfigurationAddsConfigurations"
         },
         {
-          "target": "com.azure.adhybridhealthservice#AlertsListAddsAlerts"
+          "target": "com.azure.adhybridhealthservice#ListAlertAddsAlerts"
         },
         {
-          "target": "com.azure.adhybridhealthservice#AddsServicesDelete"
+          "target": "com.azure.adhybridhealthservice#DeleteAddsService"
         },
         {
-          "target": "com.azure.adhybridhealthservice#AddsServicesUpdate"
+          "target": "com.azure.adhybridhealthservice#UpdateAddsService"
         },
         {
-          "target": "com.azure.adhybridhealthservice#AddsServicesGet"
+          "target": "com.azure.adhybridhealthservice#GetAddsService"
         },
         {
-          "target": "com.azure.adhybridhealthservice#AddsServicesAdd"
+          "target": "com.azure.adhybridhealthservice#AddAddsService"
         },
         {
-          "target": "com.azure.adhybridhealthservice#AddsServicesList"
+          "target": "com.azure.adhybridhealthservice#ListAddsServices"
         }
       ],
       "traits": {

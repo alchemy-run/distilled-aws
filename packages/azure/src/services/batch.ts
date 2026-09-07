@@ -13,35 +13,7 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-/** The properties associated with the Application. */
-export interface ApplicationProperties {
-  /** The display name for the application. */
-  displayName?: string;
-  /** A value indicating whether packages within the application may be overwritten using the same version string. */
-  allowUpdates?: boolean;
-  /** The package to use if a client requests the application but does not specify a version. This property can only be set to the name of an existing package. */
-  defaultVersion?: string;
-}
-export const ApplicationProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    displayName: S.optional(S.String),
-    allowUpdates: S.optional(S.Boolean),
-    defaultVersion: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ApplicationProperties",
-}) as any as S.Schema<ApplicationProperties>;
-
-/** The tags of the resource. */
-export type ApplicationCreateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ApplicationCreateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ApplicationCreateRequestTagsMap>;
-
-export interface ApplicationCreateRequest {
+export interface ActivateApplicationPackageRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -50,30 +22,30 @@ export interface ApplicationCreateRequest {
   accountName: string;
   /** The name of the application. This must be unique within the account. */
   applicationName: string;
-  /** The properties associated with the Application. */
-  properties?: ApplicationProperties;
-  /** The tags of the resource. */
-  tags?: ApplicationCreateRequestTagsMap;
+  /** The version of the application. */
+  versionName: string;
+  /** The format of the application package binary file. */
+  format: string;
 }
-export const ApplicationCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const ActivateApplicationPackageRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
     applicationName: S.String.pipe(T.Label()),
-    properties: S.optional(ApplicationProperties),
-    tags: S.optional(ApplicationCreateRequestTagsMap),
+    versionName: S.String.pipe(T.Label()),
+    format: S.String,
   }).pipe(
     T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/applications/{applicationName}",
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/applications/{applicationName}/versions/{versionName}/activate",
       code: 200,
       apiVersion: "2025-06-01",
     }),
   ),
 ).annotate({
-  identifier: "ApplicationCreateRequest",
-}) as any as S.Schema<ApplicationCreateRequest>;
+  identifier: "ActivateApplicationPackageRequest",
+}) as any as S.Schema<ActivateApplicationPackageRequest>;
 
 /** The type of identity that created the resource. */
 export type SystemDataCreatedByType =
@@ -117,267 +89,6 @@ export const SystemData = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
 
-/** The tags of the resource. */
-export type ApplicationCreateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ApplicationCreateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ApplicationCreateResponseTagsMap>;
-
-export interface ApplicationCreateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties associated with the Application. */
-  properties?: ApplicationProperties;
-  /** The ETag of the resource, used for concurrency statements. */
-  etag?: string;
-  /** The tags of the resource. */
-  tags?: ApplicationCreateResponseTagsMap;
-}
-export const ApplicationCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ApplicationProperties),
-    etag: S.optional(S.String),
-    tags: S.optional(ApplicationCreateResponseTagsMap),
-  }),
-).annotate({
-  identifier: "ApplicationCreateResponse",
-}) as any as S.Schema<ApplicationCreateResponse>;
-
-export interface ApplicationDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** A name for the Batch account which must be unique within the region. Batch account names must be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as part of the DNS name that is used to access the Batch service in the region in which the account is created. For example: http://accountname.region.batch.azure.com/. */
-  accountName: string;
-  /** The name of the application. This must be unique within the account. */
-  applicationName: string;
-}
-export const ApplicationDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    applicationName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/applications/{applicationName}",
-      code: 200,
-      apiVersion: "2025-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ApplicationDeleteRequest",
-}) as any as S.Schema<ApplicationDeleteRequest>;
-
-export interface ApplicationDeleteResponse {}
-export const ApplicationDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ApplicationDeleteResponse",
-}) as any as S.Schema<ApplicationDeleteResponse>;
-
-export interface ApplicationGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** A name for the Batch account which must be unique within the region. Batch account names must be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as part of the DNS name that is used to access the Batch service in the region in which the account is created. For example: http://accountname.region.batch.azure.com/. */
-  accountName: string;
-  /** The name of the application. This must be unique within the account. */
-  applicationName: string;
-}
-export const ApplicationGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    applicationName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/applications/{applicationName}",
-      code: 200,
-      apiVersion: "2025-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ApplicationGetRequest",
-}) as any as S.Schema<ApplicationGetRequest>;
-
-/** The tags of the resource. */
-export type ApplicationGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ApplicationGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ApplicationGetResponseTagsMap>;
-
-export interface ApplicationGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties associated with the Application. */
-  properties?: ApplicationProperties;
-  /** The ETag of the resource, used for concurrency statements. */
-  etag?: string;
-  /** The tags of the resource. */
-  tags?: ApplicationGetResponseTagsMap;
-}
-export const ApplicationGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ApplicationProperties),
-    etag: S.optional(S.String),
-    tags: S.optional(ApplicationGetResponseTagsMap),
-  }),
-).annotate({
-  identifier: "ApplicationGetResponse",
-}) as any as S.Schema<ApplicationGetResponse>;
-
-export interface ApplicationListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** A name for the Batch account which must be unique within the region. Batch account names must be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as part of the DNS name that is used to access the Batch service in the region in which the account is created. For example: http://accountname.region.batch.azure.com/. */
-  accountName: string;
-  /** The maximum number of items to return in the response. */
-  maxresults?: number;
-}
-export const ApplicationListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    maxresults: S.optional(S.Number.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/applications",
-      code: 200,
-      apiVersion: "2025-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ApplicationListRequest",
-}) as any as S.Schema<ApplicationListRequest>;
-
-/** The tags of the resource. */
-export type ApplicationTagsMap = { [key: string]: string | undefined };
-export const ApplicationTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ApplicationTagsMap>;
-
-/** Contains information about an application in a Batch account. */
-export interface Application {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties associated with the Application. */
-  properties?: ApplicationProperties;
-  /** The ETag of the resource, used for concurrency statements. */
-  etag?: string;
-  /** The tags of the resource. */
-  tags?: ApplicationTagsMap;
-}
-export const Application = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ApplicationProperties),
-    etag: S.optional(S.String),
-    tags: S.optional(ApplicationTagsMap),
-  }),
-).annotate({ identifier: "Application" }) as any as S.Schema<Application>;
-
-/** The Application items on this page */
-export type ListApplicationsResultValueList = Array<Application>;
-export const ListApplicationsResultValueList = /*@__PURE__*/ S.Array(
-  Application,
-) as any as S.Schema<ListApplicationsResultValueList>;
-
-/** The result of performing list applications. */
-export interface ListApplicationsResult {
-  /** The Application items on this page */
-  value: ListApplicationsResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ListApplicationsResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: ListApplicationsResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ListApplicationsResult",
-}) as any as S.Schema<ListApplicationsResult>;
-
-export interface ApplicationPackageActivateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** A name for the Batch account which must be unique within the region. Batch account names must be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as part of the DNS name that is used to access the Batch service in the region in which the account is created. For example: http://accountname.region.batch.azure.com/. */
-  accountName: string;
-  /** The name of the application. This must be unique within the account. */
-  applicationName: string;
-  /** The version of the application. */
-  versionName: string;
-  /** The format of the application package binary file. */
-  format: string;
-}
-export const ApplicationPackageActivateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    applicationName: S.String.pipe(T.Label()),
-    versionName: S.String.pipe(T.Label()),
-    format: S.String,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/applications/{applicationName}/versions/{versionName}/activate",
-      code: 200,
-      apiVersion: "2025-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ApplicationPackageActivateRequest",
-}) as any as S.Schema<ApplicationPackageActivateRequest>;
-
 /** The current state of the application package. */
 export type PackageState = "Pending" | "Active";
 export const PackageState = /*@__PURE__*/ S.String;
@@ -408,15 +119,15 @@ export const ApplicationPackageProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ApplicationPackageProperties>;
 
 /** The tags of the resource. */
-export type ApplicationPackageActivateResponseTagsMap = {
+export type ActivateApplicationPackageResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ApplicationPackageActivateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const ActivateApplicationPackageResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ApplicationPackageActivateResponseTagsMap>;
+) as any as S.Schema<ActivateApplicationPackageResponseTagsMap>;
 
-export interface ApplicationPackageActivateResponse {
+export interface ActivateApplicationPackageResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -430,9 +141,9 @@ export interface ApplicationPackageActivateResponse {
   /** The ETag of the resource, used for concurrency statements. */
   etag?: string;
   /** The tags of the resource. */
-  tags?: ApplicationPackageActivateResponseTagsMap;
+  tags?: ActivateApplicationPackageResponseTagsMap;
 }
-export const ApplicationPackageActivateResponse = /*@__PURE__*/ S.suspend(() =>
+export const ActivateApplicationPackageResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -440,11 +151,200 @@ export const ApplicationPackageActivateResponse = /*@__PURE__*/ S.suspend(() =>
     systemData: S.optional(SystemData),
     properties: S.optional(ApplicationPackageProperties),
     etag: S.optional(S.String),
-    tags: S.optional(ApplicationPackageActivateResponseTagsMap),
+    tags: S.optional(ActivateApplicationPackageResponseTagsMap),
   }),
 ).annotate({
-  identifier: "ApplicationPackageActivateResponse",
-}) as any as S.Schema<ApplicationPackageActivateResponse>;
+  identifier: "ActivateApplicationPackageResponse",
+}) as any as S.Schema<ActivateApplicationPackageResponse>;
+
+export interface BatchAccountSynchronizeAutoStorageKeysRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** A name for the Batch account which must be unique within the region. Batch account names must be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as part of the DNS name that is used to access the Batch service in the region in which the account is created. For example: http://accountname.region.batch.azure.com/. */
+  accountName: string;
+}
+export const BatchAccountSynchronizeAutoStorageKeysRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/syncAutoStorageKeys",
+        code: 200,
+        apiVersion: "2025-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "BatchAccountSynchronizeAutoStorageKeysRequest",
+  }) as any as S.Schema<BatchAccountSynchronizeAutoStorageKeysRequest>;
+
+export interface BatchAccountSynchronizeAutoStorageKeysResponse {}
+export const BatchAccountSynchronizeAutoStorageKeysResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "BatchAccountSynchronizeAutoStorageKeysResponse",
+  }) as any as S.Schema<BatchAccountSynchronizeAutoStorageKeysResponse>;
+
+/** The result of the request to list operations. */
+export type ResourceType = "Microsoft.Batch/batchAccounts";
+export const ResourceType = /*@__PURE__*/ S.String;
+
+export interface CheckLocationNameAvailabilityRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The desired region for the name check. */
+  locationName: string;
+  /** The name to check for availability */
+  name: string;
+  /** The resource type. */
+  type: ResourceType | (string & {});
+}
+export const CheckLocationNameAvailabilityRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      locationName: S.String.pipe(T.Label()),
+      name: S.String,
+      type: ResourceType,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Batch/locations/{locationName}/checkNameAvailability",
+        code: 200,
+        apiVersion: "2025-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "CheckLocationNameAvailabilityRequest",
+}) as any as S.Schema<CheckLocationNameAvailabilityRequest>;
+
+/** Gets the reason that a Batch account name could not be used. The Reason element is only returned if NameAvailable is false. */
+export type NameAvailabilityReason = "Invalid" | "AlreadyExists";
+export const NameAvailabilityReason = /*@__PURE__*/ S.String;
+
+/** The CheckNameAvailability operation response. */
+export interface CheckNameAvailabilityResult {
+  /** Gets a boolean value that indicates whether the name is available for you to use. If true, the name is available. If false, the name has already been taken or invalid and cannot be used. */
+  nameAvailable?: boolean;
+  /** Gets the reason that a Batch account name could not be used. The Reason element is only returned if NameAvailable is false. */
+  reason?: NameAvailabilityReason;
+  /** Gets an error message explaining the Reason value in more detail. */
+  message?: string;
+}
+export const CheckNameAvailabilityResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nameAvailable: S.optional(S.Boolean),
+    reason: S.optional(NameAvailabilityReason),
+    message: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CheckNameAvailabilityResult",
+}) as any as S.Schema<CheckNameAvailabilityResult>;
+
+/** The properties associated with the Application. */
+export interface ApplicationProperties {
+  /** The display name for the application. */
+  displayName?: string;
+  /** A value indicating whether packages within the application may be overwritten using the same version string. */
+  allowUpdates?: boolean;
+  /** The package to use if a client requests the application but does not specify a version. This property can only be set to the name of an existing package. */
+  defaultVersion?: string;
+}
+export const ApplicationProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    displayName: S.optional(S.String),
+    allowUpdates: S.optional(S.Boolean),
+    defaultVersion: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ApplicationProperties",
+}) as any as S.Schema<ApplicationProperties>;
+
+/** The tags of the resource. */
+export type CreateApplicationRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const CreateApplicationRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<CreateApplicationRequestTagsMap>;
+
+export interface CreateApplicationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** A name for the Batch account which must be unique within the region. Batch account names must be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as part of the DNS name that is used to access the Batch service in the region in which the account is created. For example: http://accountname.region.batch.azure.com/. */
+  accountName: string;
+  /** The name of the application. This must be unique within the account. */
+  applicationName: string;
+  /** The properties associated with the Application. */
+  properties?: ApplicationProperties;
+  /** The tags of the resource. */
+  tags?: CreateApplicationRequestTagsMap;
+}
+export const CreateApplicationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    applicationName: S.String.pipe(T.Label()),
+    properties: S.optional(ApplicationProperties),
+    tags: S.optional(CreateApplicationRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/applications/{applicationName}",
+      code: 200,
+      apiVersion: "2025-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "CreateApplicationRequest",
+}) as any as S.Schema<CreateApplicationRequest>;
+
+/** The tags of the resource. */
+export type CreateApplicationResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const CreateApplicationResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<CreateApplicationResponseTagsMap>;
+
+export interface CreateApplicationResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties associated with the Application. */
+  properties?: ApplicationProperties;
+  /** The ETag of the resource, used for concurrency statements. */
+  etag?: string;
+  /** The tags of the resource. */
+  tags?: CreateApplicationResponseTagsMap;
+}
+export const CreateApplicationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ApplicationProperties),
+    etag: S.optional(S.String),
+    tags: S.optional(CreateApplicationResponseTagsMap),
+  }),
+).annotate({
+  identifier: "CreateApplicationResponse",
+}) as any as S.Schema<CreateApplicationResponse>;
 
 /** Properties of an application package */
 export interface ApplicationPackagePropertiesInput {}
@@ -455,15 +355,15 @@ export const ApplicationPackagePropertiesInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ApplicationPackagePropertiesInput>;
 
 /** The tags of the resource. */
-export type ApplicationPackageCreateRequestTagsMap = {
+export type CreateApplicationPackageRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ApplicationPackageCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateApplicationPackageRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ApplicationPackageCreateRequestTagsMap>;
+) as any as S.Schema<CreateApplicationPackageRequestTagsMap>;
 
-export interface ApplicationPackageCreateRequest {
+export interface CreateApplicationPackageRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -477,9 +377,9 @@ export interface ApplicationPackageCreateRequest {
   /** The properties associated with the Application Package. */
   properties?: ApplicationPackagePropertiesInput;
   /** The tags of the resource. */
-  tags?: ApplicationPackageCreateRequestTagsMap;
+  tags?: CreateApplicationPackageRequestTagsMap;
 }
-export const ApplicationPackageCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateApplicationPackageRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -487,7 +387,7 @@ export const ApplicationPackageCreateRequest = /*@__PURE__*/ S.suspend(() =>
     applicationName: S.String.pipe(T.Label()),
     versionName: S.String.pipe(T.Label()),
     properties: S.optional(ApplicationPackagePropertiesInput),
-    tags: S.optional(ApplicationPackageCreateRequestTagsMap),
+    tags: S.optional(CreateApplicationPackageRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PUT",
@@ -497,19 +397,19 @@ export const ApplicationPackageCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ApplicationPackageCreateRequest",
-}) as any as S.Schema<ApplicationPackageCreateRequest>;
+  identifier: "CreateApplicationPackageRequest",
+}) as any as S.Schema<CreateApplicationPackageRequest>;
 
 /** The tags of the resource. */
-export type ApplicationPackageCreateResponseTagsMap = {
+export type CreateApplicationPackageResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ApplicationPackageCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateApplicationPackageResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ApplicationPackageCreateResponseTagsMap>;
+) as any as S.Schema<CreateApplicationPackageResponseTagsMap>;
 
-export interface ApplicationPackageCreateResponse {
+export interface CreateApplicationPackageResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -523,9 +423,9 @@ export interface ApplicationPackageCreateResponse {
   /** The ETag of the resource, used for concurrency statements. */
   etag?: string;
   /** The tags of the resource. */
-  tags?: ApplicationPackageCreateResponseTagsMap;
+  tags?: CreateApplicationPackageResponseTagsMap;
 }
-export const ApplicationPackageCreateResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateApplicationPackageResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -533,301 +433,20 @@ export const ApplicationPackageCreateResponse = /*@__PURE__*/ S.suspend(() =>
     systemData: S.optional(SystemData),
     properties: S.optional(ApplicationPackageProperties),
     etag: S.optional(S.String),
-    tags: S.optional(ApplicationPackageCreateResponseTagsMap),
+    tags: S.optional(CreateApplicationPackageResponseTagsMap),
   }),
 ).annotate({
-  identifier: "ApplicationPackageCreateResponse",
-}) as any as S.Schema<ApplicationPackageCreateResponse>;
-
-export interface ApplicationPackageDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** A name for the Batch account which must be unique within the region. Batch account names must be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as part of the DNS name that is used to access the Batch service in the region in which the account is created. For example: http://accountname.region.batch.azure.com/. */
-  accountName: string;
-  /** The name of the application. This must be unique within the account. */
-  applicationName: string;
-  /** The version of the application. */
-  versionName: string;
-}
-export const ApplicationPackageDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    applicationName: S.String.pipe(T.Label()),
-    versionName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/applications/{applicationName}/versions/{versionName}",
-      code: 200,
-      apiVersion: "2025-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ApplicationPackageDeleteRequest",
-}) as any as S.Schema<ApplicationPackageDeleteRequest>;
-
-export interface ApplicationPackageDeleteResponse {}
-export const ApplicationPackageDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ApplicationPackageDeleteResponse",
-}) as any as S.Schema<ApplicationPackageDeleteResponse>;
-
-export interface ApplicationPackageGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** A name for the Batch account which must be unique within the region. Batch account names must be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as part of the DNS name that is used to access the Batch service in the region in which the account is created. For example: http://accountname.region.batch.azure.com/. */
-  accountName: string;
-  /** The name of the application. This must be unique within the account. */
-  applicationName: string;
-  /** The version of the application. */
-  versionName: string;
-}
-export const ApplicationPackageGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    applicationName: S.String.pipe(T.Label()),
-    versionName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/applications/{applicationName}/versions/{versionName}",
-      code: 200,
-      apiVersion: "2025-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ApplicationPackageGetRequest",
-}) as any as S.Schema<ApplicationPackageGetRequest>;
-
-/** The tags of the resource. */
-export type ApplicationPackageGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ApplicationPackageGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ApplicationPackageGetResponseTagsMap>;
-
-export interface ApplicationPackageGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties associated with the Application Package. */
-  properties?: ApplicationPackageProperties;
-  /** The ETag of the resource, used for concurrency statements. */
-  etag?: string;
-  /** The tags of the resource. */
-  tags?: ApplicationPackageGetResponseTagsMap;
-}
-export const ApplicationPackageGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ApplicationPackageProperties),
-    etag: S.optional(S.String),
-    tags: S.optional(ApplicationPackageGetResponseTagsMap),
-  }),
-).annotate({
-  identifier: "ApplicationPackageGetResponse",
-}) as any as S.Schema<ApplicationPackageGetResponse>;
-
-export interface ApplicationPackageListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** A name for the Batch account which must be unique within the region. Batch account names must be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as part of the DNS name that is used to access the Batch service in the region in which the account is created. For example: http://accountname.region.batch.azure.com/. */
-  accountName: string;
-  /** The name of the application. This must be unique within the account. */
-  applicationName: string;
-  /** The maximum number of items to return in the response. */
-  maxresults?: number;
-}
-export const ApplicationPackageListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    applicationName: S.String.pipe(T.Label()),
-    maxresults: S.optional(S.Number.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/applications/{applicationName}/versions",
-      code: 200,
-      apiVersion: "2025-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ApplicationPackageListRequest",
-}) as any as S.Schema<ApplicationPackageListRequest>;
-
-/** The tags of the resource. */
-export type ApplicationPackageTagsMap = { [key: string]: string | undefined };
-export const ApplicationPackageTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ApplicationPackageTagsMap>;
-
-/** An application package which represents a particular version of an application. */
-export interface ApplicationPackage {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties associated with the Application Package. */
-  properties?: ApplicationPackageProperties;
-  /** The ETag of the resource, used for concurrency statements. */
-  etag?: string;
-  /** The tags of the resource. */
-  tags?: ApplicationPackageTagsMap;
-}
-export const ApplicationPackage = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ApplicationPackageProperties),
-    etag: S.optional(S.String),
-    tags: S.optional(ApplicationPackageTagsMap),
-  }),
-).annotate({
-  identifier: "ApplicationPackage",
-}) as any as S.Schema<ApplicationPackage>;
-
-/** The ApplicationPackage items on this page */
-export type ListApplicationPackagesResultValueList = Array<ApplicationPackage>;
-export const ListApplicationPackagesResultValueList = /*@__PURE__*/ S.Array(
-  ApplicationPackage,
-) as any as S.Schema<ListApplicationPackagesResultValueList>;
-
-/** The result of performing list application packages. */
-export interface ListApplicationPackagesResult {
-  /** The ApplicationPackage items on this page */
-  value: ListApplicationPackagesResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ListApplicationPackagesResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: ListApplicationPackagesResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ListApplicationPackagesResult",
-}) as any as S.Schema<ListApplicationPackagesResult>;
-
-/** The tags of the resource. */
-export type ApplicationUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ApplicationUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ApplicationUpdateRequestTagsMap>;
-
-export interface ApplicationUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** A name for the Batch account which must be unique within the region. Batch account names must be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as part of the DNS name that is used to access the Batch service in the region in which the account is created. For example: http://accountname.region.batch.azure.com/. */
-  accountName: string;
-  /** The name of the application. This must be unique within the account. */
-  applicationName: string;
-  /** The properties associated with the Application. */
-  properties?: ApplicationProperties;
-  /** The tags of the resource. */
-  tags?: ApplicationUpdateRequestTagsMap;
-}
-export const ApplicationUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    applicationName: S.String.pipe(T.Label()),
-    properties: S.optional(ApplicationProperties),
-    tags: S.optional(ApplicationUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/applications/{applicationName}",
-      code: 200,
-      apiVersion: "2025-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ApplicationUpdateRequest",
-}) as any as S.Schema<ApplicationUpdateRequest>;
-
-/** The tags of the resource. */
-export type ApplicationUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ApplicationUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ApplicationUpdateResponseTagsMap>;
-
-export interface ApplicationUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties associated with the Application. */
-  properties?: ApplicationProperties;
-  /** The ETag of the resource, used for concurrency statements. */
-  etag?: string;
-  /** The tags of the resource. */
-  tags?: ApplicationUpdateResponseTagsMap;
-}
-export const ApplicationUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ApplicationProperties),
-    etag: S.optional(S.String),
-    tags: S.optional(ApplicationUpdateResponseTagsMap),
-  }),
-).annotate({
-  identifier: "ApplicationUpdateResponse",
-}) as any as S.Schema<ApplicationUpdateResponse>;
+  identifier: "CreateApplicationPackageResponse",
+}) as any as S.Schema<CreateApplicationPackageResponse>;
 
 /** The user-specified tags associated with the account. */
-export type BatchAccountCreateRequestTagsMap = {
+export type CreateBatchAccountRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const BatchAccountCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateBatchAccountRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<BatchAccountCreateRequestTagsMap>;
+) as any as S.Schema<CreateBatchAccountRequestTagsMap>;
 
 /** The authentication mode which the Batch service will use to manage the auto-storage account. */
 export type AutoStorageBasePropertiesAuthenticationMode =
@@ -1078,7 +697,7 @@ export const BatchAccountIdentityInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "BatchAccountIdentityInput",
 }) as any as S.Schema<BatchAccountIdentityInput>;
 
-export interface BatchAccountCreateRequest {
+export interface CreateBatchAccountRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1088,19 +707,19 @@ export interface BatchAccountCreateRequest {
   /** The region in which to create the account. */
   location: string;
   /** The user-specified tags associated with the account. */
-  tags?: BatchAccountCreateRequestTagsMap;
+  tags?: CreateBatchAccountRequestTagsMap;
   /** The properties of the Batch account. */
   properties?: BatchAccountCreateProperties;
   /** The identity of the Batch account. */
   identity?: BatchAccountIdentityInput;
 }
-export const BatchAccountCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateBatchAccountRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
     location: S.String,
-    tags: S.optional(BatchAccountCreateRequestTagsMap),
+    tags: S.optional(CreateBatchAccountRequestTagsMap),
     properties: S.optional(BatchAccountCreateProperties),
     identity: S.optional(BatchAccountIdentityInput),
   }).pipe(
@@ -1112,17 +731,17 @@ export const BatchAccountCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "BatchAccountCreateRequest",
-}) as any as S.Schema<BatchAccountCreateRequest>;
+  identifier: "CreateBatchAccountRequest",
+}) as any as S.Schema<CreateBatchAccountRequest>;
 
 /** Resource tags. */
-export type BatchAccountCreateResponseTagsMap = {
+export type CreateBatchAccountResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BatchAccountCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateBatchAccountResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<BatchAccountCreateResponseTagsMap>;
+) as any as S.Schema<CreateBatchAccountResponseTagsMap>;
 
 /** The provisioned state of the resource */
 export type ProvisioningState =
@@ -1450,7 +1069,7 @@ export const BatchAccountIdentity = /*@__PURE__*/ S.suspend(() =>
   identifier: "BatchAccountIdentity",
 }) as any as S.Schema<BatchAccountIdentity>;
 
-export interface BatchAccountCreateResponse {
+export interface CreateBatchAccountResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1460,7 +1079,7 @@ export interface BatchAccountCreateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: BatchAccountCreateResponseTagsMap;
+  tags?: CreateBatchAccountResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The properties associated with the account. */
@@ -1468,1465 +1087,20 @@ export interface BatchAccountCreateResponse {
   /** The identity of the Batch account. */
   identity?: BatchAccountIdentity;
 }
-export const BatchAccountCreateResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateBatchAccountResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(BatchAccountCreateResponseTagsMap),
+    tags: S.optional(CreateBatchAccountResponseTagsMap),
     location: S.String,
     properties: S.optional(BatchAccountProperties),
     identity: S.optional(BatchAccountIdentity),
   }),
 ).annotate({
-  identifier: "BatchAccountCreateResponse",
-}) as any as S.Schema<BatchAccountCreateResponse>;
-
-export interface BatchAccountDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** A name for the Batch account which must be unique within the region. Batch account names must be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as part of the DNS name that is used to access the Batch service in the region in which the account is created. For example: http://accountname.region.batch.azure.com/. */
-  accountName: string;
-}
-export const BatchAccountDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}",
-      code: 200,
-      apiVersion: "2025-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "BatchAccountDeleteRequest",
-}) as any as S.Schema<BatchAccountDeleteRequest>;
-
-export interface BatchAccountDeleteResponse {}
-export const BatchAccountDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "BatchAccountDeleteResponse",
-}) as any as S.Schema<BatchAccountDeleteResponse>;
-
-export interface BatchAccountGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** A name for the Batch account which must be unique within the region. Batch account names must be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as part of the DNS name that is used to access the Batch service in the region in which the account is created. For example: http://accountname.region.batch.azure.com/. */
-  accountName: string;
-}
-export const BatchAccountGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}",
-      code: 200,
-      apiVersion: "2025-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "BatchAccountGetRequest",
-}) as any as S.Schema<BatchAccountGetRequest>;
-
-/** Resource tags. */
-export type BatchAccountGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const BatchAccountGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<BatchAccountGetResponseTagsMap>;
-
-export interface BatchAccountGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: BatchAccountGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The properties associated with the account. */
-  properties?: BatchAccountProperties;
-  /** The identity of the Batch account. */
-  identity?: BatchAccountIdentity;
-}
-export const BatchAccountGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(BatchAccountGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(BatchAccountProperties),
-    identity: S.optional(BatchAccountIdentity),
-  }),
-).annotate({
-  identifier: "BatchAccountGetResponse",
-}) as any as S.Schema<BatchAccountGetResponse>;
-
-export interface BatchAccountGetDetectorRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** A name for the Batch account which must be unique within the region. Batch account names must be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as part of the DNS name that is used to access the Batch service in the region in which the account is created. For example: http://accountname.region.batch.azure.com/. */
-  accountName: string;
-  /** The name of the detector. */
-  detectorId: string;
-}
-export const BatchAccountGetDetectorRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    detectorId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/detectors/{detectorId}",
-      code: 200,
-      apiVersion: "2025-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "BatchAccountGetDetectorRequest",
-}) as any as S.Schema<BatchAccountGetDetectorRequest>;
-
-/** Detector response properties. */
-export interface DetectorResponseProperties {
-  /** A base64 encoded string that represents the content of a detector. */
-  value?: string;
-}
-export const DetectorResponseProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DetectorResponseProperties",
-}) as any as S.Schema<DetectorResponseProperties>;
-
-/** The tags of the resource. */
-export type BatchAccountGetDetectorResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const BatchAccountGetDetectorResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<BatchAccountGetDetectorResponseTagsMap>;
-
-export interface BatchAccountGetDetectorResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties associated with the detector. */
-  properties?: DetectorResponseProperties;
-  /** The ETag of the resource, used for concurrency statements. */
-  etag?: string;
-  /** The tags of the resource. */
-  tags?: BatchAccountGetDetectorResponseTagsMap;
-}
-export const BatchAccountGetDetectorResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(DetectorResponseProperties),
-    etag: S.optional(S.String),
-    tags: S.optional(BatchAccountGetDetectorResponseTagsMap),
-  }),
-).annotate({
-  identifier: "BatchAccountGetDetectorResponse",
-}) as any as S.Schema<BatchAccountGetDetectorResponse>;
-
-export interface BatchAccountGetKeysRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** A name for the Batch account which must be unique within the region. Batch account names must be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as part of the DNS name that is used to access the Batch service in the region in which the account is created. For example: http://accountname.region.batch.azure.com/. */
-  accountName: string;
-}
-export const BatchAccountGetKeysRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/listKeys",
-      code: 200,
-      apiVersion: "2025-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "BatchAccountGetKeysRequest",
-}) as any as S.Schema<BatchAccountGetKeysRequest>;
-
-/** A set of Azure Batch account keys. */
-export interface BatchAccountKeys {
-  /** The Batch account name. */
-  accountName?: string;
-  /** The primary key associated with the account. */
-  primary?: string;
-  /** The secondary key associated with the account. */
-  secondary?: string;
-}
-export const BatchAccountKeys = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountName: S.optional(S.String),
-    primary: S.optional(S.String),
-    secondary: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "BatchAccountKeys",
-}) as any as S.Schema<BatchAccountKeys>;
-
-export interface BatchAccountListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-}
-export const BatchAccountListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Batch/batchAccounts",
-      code: 200,
-      apiVersion: "2025-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "BatchAccountListRequest",
-}) as any as S.Schema<BatchAccountListRequest>;
-
-/** Resource tags. */
-export type BatchAccountTagsMap = { [key: string]: string | undefined };
-export const BatchAccountTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<BatchAccountTagsMap>;
-
-/** Contains information about an Azure Batch account. */
-export interface BatchAccount {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: BatchAccountTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The properties associated with the account. */
-  properties?: BatchAccountProperties;
-  /** The identity of the Batch account. */
-  identity?: BatchAccountIdentity;
-}
-export const BatchAccount = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(BatchAccountTagsMap),
-    location: S.String,
-    properties: S.optional(BatchAccountProperties),
-    identity: S.optional(BatchAccountIdentity),
-  }),
-).annotate({ identifier: "BatchAccount" }) as any as S.Schema<BatchAccount>;
-
-/** The BatchAccount items on this page */
-export type BatchAccountListResultValueList = Array<BatchAccount>;
-export const BatchAccountListResultValueList = /*@__PURE__*/ S.Array(
-  BatchAccount,
-) as any as S.Schema<BatchAccountListResultValueList>;
-
-/** Paged collection of BatchAccount items */
-export interface BatchAccountListResult {
-  /** The BatchAccount items on this page */
-  value: BatchAccountListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const BatchAccountListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: BatchAccountListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "BatchAccountListResult",
-}) as any as S.Schema<BatchAccountListResult>;
-
-export interface BatchAccountListByResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const BatchAccountListByResourceGroupRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts",
-        code: 200,
-        apiVersion: "2025-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "BatchAccountListByResourceGroupRequest",
-}) as any as S.Schema<BatchAccountListByResourceGroupRequest>;
-
-export interface BatchAccountListDetectorsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** A name for the Batch account which must be unique within the region. Batch account names must be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as part of the DNS name that is used to access the Batch service in the region in which the account is created. For example: http://accountname.region.batch.azure.com/. */
-  accountName: string;
-}
-export const BatchAccountListDetectorsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/detectors",
-      code: 200,
-      apiVersion: "2025-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "BatchAccountListDetectorsRequest",
-}) as any as S.Schema<BatchAccountListDetectorsRequest>;
-
-/** The tags of the resource. */
-export type DetectorResponseTagsMap = { [key: string]: string | undefined };
-export const DetectorResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DetectorResponseTagsMap>;
-
-/** Contains the information for a detector. */
-export interface DetectorResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties associated with the detector. */
-  properties?: DetectorResponseProperties;
-  /** The ETag of the resource, used for concurrency statements. */
-  etag?: string;
-  /** The tags of the resource. */
-  tags?: DetectorResponseTagsMap;
-}
-export const DetectorResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(DetectorResponseProperties),
-    etag: S.optional(S.String),
-    tags: S.optional(DetectorResponseTagsMap),
-  }),
-).annotate({
-  identifier: "DetectorResponse",
-}) as any as S.Schema<DetectorResponse>;
-
-/** The DetectorResponse items on this page */
-export type DetectorListResultValueList = Array<DetectorResponse>;
-export const DetectorListResultValueList = /*@__PURE__*/ S.Array(
-  DetectorResponse,
-) as any as S.Schema<DetectorListResultValueList>;
-
-/** Paged collection of DetectorResponse items */
-export interface DetectorListResult {
-  /** The DetectorResponse items on this page */
-  value: DetectorListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const DetectorListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: DetectorListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DetectorListResult",
-}) as any as S.Schema<DetectorListResult>;
-
-export interface BatchAccountListOutboundNetworkDependenciesEndpointsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** A name for the Batch account which must be unique within the region. Batch account names must be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as part of the DNS name that is used to access the Batch service in the region in which the account is created. For example: http://accountname.region.batch.azure.com/. */
-  accountName: string;
-}
-export const BatchAccountListOutboundNetworkDependenciesEndpointsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/outboundNetworkDependenciesEndpoints",
-        code: 200,
-        apiVersion: "2025-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "BatchAccountListOutboundNetworkDependenciesEndpointsRequest",
-  }) as any as S.Schema<BatchAccountListOutboundNetworkDependenciesEndpointsRequest>;
-
-/** Details about the connection between the Batch service and the endpoint. */
-export interface EndpointDetail {
-  /** The port an endpoint is connected to. */
-  port?: number;
-}
-export const EndpointDetail = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    port: S.optional(S.Number),
-  }),
-).annotate({ identifier: "EndpointDetail" }) as any as S.Schema<EndpointDetail>;
-
-/** The list of connection details for this endpoint. */
-export type EndpointDependencyEndpointDetailsList = Array<EndpointDetail>;
-export const EndpointDependencyEndpointDetailsList = /*@__PURE__*/ S.Array(
-  EndpointDetail,
-) as any as S.Schema<EndpointDependencyEndpointDetailsList>;
-
-/** A domain name and connection details used to access a dependency. */
-export interface EndpointDependency {
-  /** The domain name of the dependency. Domain names may be fully qualified or may contain a * wildcard. */
-  domainName?: string;
-  /** Human-readable supplemental information about the dependency and when it is applicable. */
-  description?: string;
-  /** The list of connection details for this endpoint. */
-  endpointDetails?: EndpointDependencyEndpointDetailsList;
-}
-export const EndpointDependency = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    domainName: S.optional(S.String),
-    description: S.optional(S.String),
-    endpointDetails: S.optional(EndpointDependencyEndpointDetailsList),
-  }),
-).annotate({
-  identifier: "EndpointDependency",
-}) as any as S.Schema<EndpointDependency>;
-
-/** The endpoints for this service to which the Batch service makes outbound calls. */
-export type OutboundEnvironmentEndpointEndpointsList =
-  Array<EndpointDependency>;
-export const OutboundEnvironmentEndpointEndpointsList = /*@__PURE__*/ S.Array(
-  EndpointDependency,
-) as any as S.Schema<OutboundEnvironmentEndpointEndpointsList>;
-
-/** A collection of related endpoints from the same service for which the Batch service requires outbound access. */
-export interface OutboundEnvironmentEndpoint {
-  /** The type of service that the Batch service connects to. */
-  category?: string;
-  /** The endpoints for this service to which the Batch service makes outbound calls. */
-  endpoints?: OutboundEnvironmentEndpointEndpointsList;
-}
-export const OutboundEnvironmentEndpoint = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    category: S.optional(S.String),
-    endpoints: S.optional(OutboundEnvironmentEndpointEndpointsList),
-  }),
-).annotate({
-  identifier: "OutboundEnvironmentEndpoint",
-}) as any as S.Schema<OutboundEnvironmentEndpoint>;
-
-/** The OutboundEnvironmentEndpoint items on this page */
-export type OutboundEnvironmentEndpointCollectionValueList =
-  Array<OutboundEnvironmentEndpoint>;
-export const OutboundEnvironmentEndpointCollectionValueList =
-  /*@__PURE__*/ S.Array(
-    OutboundEnvironmentEndpoint,
-  ) as any as S.Schema<OutboundEnvironmentEndpointCollectionValueList>;
-
-/** Values returned by the List operation. */
-export interface OutboundEnvironmentEndpointCollection {
-  /** The OutboundEnvironmentEndpoint items on this page */
-  value: OutboundEnvironmentEndpointCollectionValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const OutboundEnvironmentEndpointCollection = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      value: OutboundEnvironmentEndpointCollectionValueList,
-      nextLink: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "OutboundEnvironmentEndpointCollection",
-}) as any as S.Schema<OutboundEnvironmentEndpointCollection>;
-
-/** The type of account key to regenerate. */
-export type AccountKeyType = "Primary" | "Secondary";
-export const AccountKeyType = /*@__PURE__*/ S.String;
-
-export interface BatchAccountRegenerateKeyRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** A name for the Batch account which must be unique within the region. Batch account names must be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as part of the DNS name that is used to access the Batch service in the region in which the account is created. For example: http://accountname.region.batch.azure.com/. */
-  accountName: string;
-  /** The type of account key to regenerate. */
-  keyName: AccountKeyType | (string & {});
-}
-export const BatchAccountRegenerateKeyRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    keyName: AccountKeyType,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/regenerateKeys",
-      code: 200,
-      apiVersion: "2025-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "BatchAccountRegenerateKeyRequest",
-}) as any as S.Schema<BatchAccountRegenerateKeyRequest>;
-
-export interface BatchAccountSynchronizeAutoStorageKeysRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** A name for the Batch account which must be unique within the region. Batch account names must be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as part of the DNS name that is used to access the Batch service in the region in which the account is created. For example: http://accountname.region.batch.azure.com/. */
-  accountName: string;
-}
-export const BatchAccountSynchronizeAutoStorageKeysRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/syncAutoStorageKeys",
-        code: 200,
-        apiVersion: "2025-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "BatchAccountSynchronizeAutoStorageKeysRequest",
-  }) as any as S.Schema<BatchAccountSynchronizeAutoStorageKeysRequest>;
-
-export interface BatchAccountSynchronizeAutoStorageKeysResponse {}
-export const BatchAccountSynchronizeAutoStorageKeysResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "BatchAccountSynchronizeAutoStorageKeysResponse",
-  }) as any as S.Schema<BatchAccountSynchronizeAutoStorageKeysResponse>;
-
-/** The user-specified tags associated with the account. */
-export type BatchAccountUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const BatchAccountUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<BatchAccountUpdateRequestTagsMap>;
-
-/** List of allowed authentication modes for the Batch account that can be used to authenticate with the data plane. This does not affect authentication with the control plane. */
-export type BatchAccountUpdatePropertiesAllowedAuthenticationModesList = Array<
-  AuthenticationMode | (string & {})
->;
-export const BatchAccountUpdatePropertiesAllowedAuthenticationModesList =
-  /*@__PURE__*/ S.Array(
-    AuthenticationMode,
-  ) as any as S.Schema<BatchAccountUpdatePropertiesAllowedAuthenticationModesList>;
-
-/** The network access type for operating on the resources in the Batch account. */
-export type BatchAccountUpdatePropertiesPublicNetworkAccess =
-  | "Enabled"
-  | "Disabled"
-  | "SecuredByPerimeter";
-export const BatchAccountUpdatePropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
-
-/** The properties of a Batch account. */
-export interface BatchAccountUpdateProperties {
-  /** The properties related to the auto-storage account. */
-  autoStorage?: AutoStorageBaseProperties;
-  /** Configures how customer data is encrypted inside the Batch account. By default, accounts are encrypted using a Microsoft managed key. For additional control, a customer-managed key can be used instead. */
-  encryption?: EncryptionProperties;
-  /** List of allowed authentication modes for the Batch account that can be used to authenticate with the data plane. This does not affect authentication with the control plane. */
-  allowedAuthenticationModes?: BatchAccountUpdatePropertiesAllowedAuthenticationModesList | null;
-  /** The network access type for operating on the resources in the Batch account. */
-  publicNetworkAccess?:
-    | BatchAccountUpdatePropertiesPublicNetworkAccess
-    | (string & {});
-  /** The network profile only takes effect when publicNetworkAccess is enabled. */
-  networkProfile?: NetworkProfile;
-}
-export const BatchAccountUpdateProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    autoStorage: S.optional(AutoStorageBaseProperties),
-    encryption: S.optional(EncryptionProperties),
-    allowedAuthenticationModes: S.optional(
-      S.NullOr(BatchAccountUpdatePropertiesAllowedAuthenticationModesList),
-    ),
-    publicNetworkAccess: S.optional(
-      BatchAccountUpdatePropertiesPublicNetworkAccess,
-    ),
-    networkProfile: S.optional(NetworkProfile),
-  }),
-).annotate({
-  identifier: "BatchAccountUpdateProperties",
-}) as any as S.Schema<BatchAccountUpdateProperties>;
-
-export interface BatchAccountUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** A name for the Batch account which must be unique within the region. Batch account names must be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as part of the DNS name that is used to access the Batch service in the region in which the account is created. For example: http://accountname.region.batch.azure.com/. */
-  accountName: string;
-  /** The user-specified tags associated with the account. */
-  tags?: BatchAccountUpdateRequestTagsMap;
-  /** The properties of the account. */
-  properties?: BatchAccountUpdateProperties;
-  /** The identity of the Batch account. */
-  identity?: BatchAccountIdentityInput;
-}
-export const BatchAccountUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    tags: S.optional(BatchAccountUpdateRequestTagsMap),
-    properties: S.optional(BatchAccountUpdateProperties),
-    identity: S.optional(BatchAccountIdentityInput),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}",
-      code: 200,
-      apiVersion: "2025-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "BatchAccountUpdateRequest",
-}) as any as S.Schema<BatchAccountUpdateRequest>;
-
-/** Resource tags. */
-export type BatchAccountUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const BatchAccountUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<BatchAccountUpdateResponseTagsMap>;
-
-export interface BatchAccountUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: BatchAccountUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The properties associated with the account. */
-  properties?: BatchAccountProperties;
-  /** The identity of the Batch account. */
-  identity?: BatchAccountIdentity;
-}
-export const BatchAccountUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(BatchAccountUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(BatchAccountProperties),
-    identity: S.optional(BatchAccountIdentity),
-  }),
-).annotate({
-  identifier: "BatchAccountUpdateResponse",
-}) as any as S.Schema<BatchAccountUpdateResponse>;
-
-/** The result of the request to list operations. */
-export type ResourceType = "Microsoft.Batch/batchAccounts";
-export const ResourceType = /*@__PURE__*/ S.String;
-
-export interface LocationCheckNameAvailabilityRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The desired region for the name check. */
-  locationName: string;
-  /** The name to check for availability */
-  name: string;
-  /** The resource type. */
-  type: ResourceType | (string & {});
-}
-export const LocationCheckNameAvailabilityRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      locationName: S.String.pipe(T.Label()),
-      name: S.String,
-      type: ResourceType,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Batch/locations/{locationName}/checkNameAvailability",
-        code: 200,
-        apiVersion: "2025-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "LocationCheckNameAvailabilityRequest",
-}) as any as S.Schema<LocationCheckNameAvailabilityRequest>;
-
-/** Gets the reason that a Batch account name could not be used. The Reason element is only returned if NameAvailable is false. */
-export type NameAvailabilityReason = "Invalid" | "AlreadyExists";
-export const NameAvailabilityReason = /*@__PURE__*/ S.String;
-
-/** The CheckNameAvailability operation response. */
-export interface CheckNameAvailabilityResult {
-  /** Gets a boolean value that indicates whether the name is available for you to use. If true, the name is available. If false, the name has already been taken or invalid and cannot be used. */
-  nameAvailable?: boolean;
-  /** Gets the reason that a Batch account name could not be used. The Reason element is only returned if NameAvailable is false. */
-  reason?: NameAvailabilityReason;
-  /** Gets an error message explaining the Reason value in more detail. */
-  message?: string;
-}
-export const CheckNameAvailabilityResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nameAvailable: S.optional(S.Boolean),
-    reason: S.optional(NameAvailabilityReason),
-    message: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CheckNameAvailabilityResult",
-}) as any as S.Schema<CheckNameAvailabilityResult>;
-
-export interface LocationGetQuotasRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The region for which to retrieve Batch service quotas. */
-  locationName: string;
-}
-export const LocationGetQuotasRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    locationName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Batch/locations/{locationName}/quotas",
-      code: 200,
-      apiVersion: "2025-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "LocationGetQuotasRequest",
-}) as any as S.Schema<LocationGetQuotasRequest>;
-
-/** Quotas associated with a Batch region for a particular subscription. */
-export interface BatchLocationQuota {
-  /** The number of Batch accounts that may be created under the subscription in the specified region. */
-  accountQuota?: number;
-}
-export const BatchLocationQuota = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountQuota: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "BatchLocationQuota",
-}) as any as S.Schema<BatchLocationQuota>;
-
-export interface LocationListSupportedVirtualMachineSkusRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The region for which to retrieve Batch service supported SKUs. */
-  locationName: string;
-  /** The maximum number of items to return in the response. */
-  maxresults?: number;
-  /** OData filter expression. Valid properties for filtering are "familyName". */
-  _filter?: string;
-}
-export const LocationListSupportedVirtualMachineSkusRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      locationName: S.String.pipe(T.Label()),
-      maxresults: S.optional(S.Number.pipe(T.Query())),
-      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Batch/locations/{locationName}/virtualMachineSkus",
-        code: 200,
-        apiVersion: "2025-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "LocationListSupportedVirtualMachineSkusRequest",
-  }) as any as S.Schema<LocationListSupportedVirtualMachineSkusRequest>;
-
-/** A SKU capability, such as the number of cores. */
-export interface SkuCapability {
-  /** The name of the feature. */
-  name?: string;
-  /** The value of the feature. */
-  value?: string;
-}
-export const SkuCapability = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    value: S.optional(S.String),
-  }),
-).annotate({ identifier: "SkuCapability" }) as any as S.Schema<SkuCapability>;
-
-/** A collection of capabilities which this SKU supports. */
-export type SupportedSkuCapabilitiesList = Array<SkuCapability>;
-export const SupportedSkuCapabilitiesList = /*@__PURE__*/ S.Array(
-  SkuCapability,
-) as any as S.Schema<SupportedSkuCapabilitiesList>;
-
-/** Describes a Batch supported SKU. */
-export interface SupportedSku {
-  /** The name of the SKU. */
-  name?: string;
-  /** The family name of the SKU. */
-  familyName?: string;
-  /** A collection of capabilities which this SKU supports. */
-  capabilities?: SupportedSkuCapabilitiesList;
-  /** The time when Azure Batch service will retire this SKU. */
-  batchSupportEndOfLife?: string;
-}
-export const SupportedSku = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    familyName: S.optional(S.String),
-    capabilities: S.optional(SupportedSkuCapabilitiesList),
-    batchSupportEndOfLife: S.optional(S.String),
-  }),
-).annotate({ identifier: "SupportedSku" }) as any as S.Schema<SupportedSku>;
-
-/** The SupportedSku items on this page */
-export type SupportedSkusResultValueList = Array<SupportedSku>;
-export const SupportedSkusResultValueList = /*@__PURE__*/ S.Array(
-  SupportedSku,
-) as any as S.Schema<SupportedSkusResultValueList>;
-
-/** The Batch List supported SKUs operation response. */
-export interface SupportedSkusResult {
-  /** The SupportedSku items on this page */
-  value: SupportedSkusResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const SupportedSkusResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: SupportedSkusResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SupportedSkusResult",
-}) as any as S.Schema<SupportedSkusResult>;
-
-export interface NetworkSecurityPerimeterGetConfigurationRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** A name for the Batch account which must be unique within the region. Batch account names must be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as part of the DNS name that is used to access the Batch service in the region in which the account is created. For example: http://accountname.region.batch.azure.com/. */
-  accountName: string;
-  /** The name for a network security perimeter configuration */
-  networkSecurityPerimeterConfigurationName: string;
-}
-export const NetworkSecurityPerimeterGetConfigurationRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      networkSecurityPerimeterConfigurationName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/networkSecurityPerimeterConfigurations/{networkSecurityPerimeterConfigurationName}",
-        code: 200,
-        apiVersion: "2025-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "NetworkSecurityPerimeterGetConfigurationRequest",
-  }) as any as S.Schema<NetworkSecurityPerimeterGetConfigurationRequest>;
-
-/** Provisioning state of a network security perimeter configuration that is being created or updated. */
-export type NetworkSecurityPerimeterConfigurationProvisioningState =
-  | "Succeeded"
-  | "Creating"
-  | "Updating"
-  | "Deleting"
-  | "Accepted"
-  | "Failed"
-  | "Canceled";
-export const NetworkSecurityPerimeterConfigurationProvisioningState =
-  /*@__PURE__*/ S.String;
-
-/** Type of issue */
-export type ProvisioningIssuePropertiesIssueType =
-  | "Unknown"
-  | "ConfigurationPropagationFailure"
-  | "MissingPerimeterConfiguration"
-  | "MissingIdentityConfiguration";
-export const ProvisioningIssuePropertiesIssueType = /*@__PURE__*/ S.String;
-
-/** Severity of the issue. */
-export type ProvisioningIssuePropertiesSeverity = "Warning" | "Error";
-export const ProvisioningIssuePropertiesSeverity = /*@__PURE__*/ S.String;
-
-/** Fully qualified resource IDs of suggested resources that can be associated to the network security perimeter (NSP) to remediate the issue. */
-export type ProvisioningIssuePropertiesSuggestedResourceIdsList = Array<string>;
-export const ProvisioningIssuePropertiesSuggestedResourceIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ProvisioningIssuePropertiesSuggestedResourceIdsList>;
-
-/** Direction of Access Rule */
-export type AccessRuleDirection = "Inbound" | "Outbound";
-export const AccessRuleDirection = /*@__PURE__*/ S.String;
-
-/** Address prefixes in the CIDR format for inbound rules */
-export type AccessRulePropertiesAddressPrefixesList = Array<string>;
-export const AccessRulePropertiesAddressPrefixesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<AccessRulePropertiesAddressPrefixesList>;
-
-/** Subscription identifiers */
-export interface AccessRulePropertiesSubscriptionsItem {
-  /** The fully qualified Azure resource ID of the subscription e.g. ('/subscriptions/00000000-0000-0000-0000-000000000000') */
-  id?: string;
-}
-export const AccessRulePropertiesSubscriptionsItem = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "AccessRulePropertiesSubscriptionsItem",
-}) as any as S.Schema<AccessRulePropertiesSubscriptionsItem>;
-
-/** Subscriptions for inbound rules */
-export type AccessRulePropertiesSubscriptionsList =
-  Array<AccessRulePropertiesSubscriptionsItem>;
-export const AccessRulePropertiesSubscriptionsList = /*@__PURE__*/ S.Array(
-  AccessRulePropertiesSubscriptionsItem,
-) as any as S.Schema<AccessRulePropertiesSubscriptionsList>;
-
-/** Information about a network security perimeter (NSP) */
-export interface NetworkSecurityPerimeter {
-  /** Fully qualified Azure resource ID of the NSP resource */
-  id?: string;
-  /** Universal unique ID (UUID) of the network security perimeter */
-  perimeterGuid?: string;
-  /** Location of the network security perimeter */
-  location?: string;
-}
-export const NetworkSecurityPerimeter = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    perimeterGuid: S.optional(S.String),
-    location: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "NetworkSecurityPerimeter",
-}) as any as S.Schema<NetworkSecurityPerimeter>;
-
-/** Network security perimeters for inbound rules */
-export type AccessRulePropertiesNetworkSecurityPerimetersList =
-  Array<NetworkSecurityPerimeter>;
-export const AccessRulePropertiesNetworkSecurityPerimetersList =
-  /*@__PURE__*/ S.Array(
-    NetworkSecurityPerimeter,
-  ) as any as S.Schema<AccessRulePropertiesNetworkSecurityPerimetersList>;
-
-/** Fully qualified domain names (FQDN) for outbound rules */
-export type AccessRulePropertiesFullyQualifiedDomainNamesList = Array<string>;
-export const AccessRulePropertiesFullyQualifiedDomainNamesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<AccessRulePropertiesFullyQualifiedDomainNamesList>;
-
-/** Email addresses for outbound rules */
-export type AccessRulePropertiesEmailAddressesList = Array<string>;
-export const AccessRulePropertiesEmailAddressesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<AccessRulePropertiesEmailAddressesList>;
-
-/** Phone numbers for outbound rules */
-export type AccessRulePropertiesPhoneNumbersList = Array<string>;
-export const AccessRulePropertiesPhoneNumbersList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<AccessRulePropertiesPhoneNumbersList>;
-
-/** Properties of Access Rule */
-export interface AccessRuleProperties {
-  direction?: AccessRuleDirection;
-  /** Address prefixes in the CIDR format for inbound rules */
-  addressPrefixes?: AccessRulePropertiesAddressPrefixesList;
-  /** Subscriptions for inbound rules */
-  subscriptions?: AccessRulePropertiesSubscriptionsList;
-  /** Network security perimeters for inbound rules */
-  networkSecurityPerimeters?: AccessRulePropertiesNetworkSecurityPerimetersList;
-  /** Fully qualified domain names (FQDN) for outbound rules */
-  fullyQualifiedDomainNames?: AccessRulePropertiesFullyQualifiedDomainNamesList;
-  /** Email addresses for outbound rules */
-  emailAddresses?: AccessRulePropertiesEmailAddressesList;
-  /** Phone numbers for outbound rules */
-  phoneNumbers?: AccessRulePropertiesPhoneNumbersList;
-}
-export const AccessRuleProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    direction: S.optional(AccessRuleDirection),
-    addressPrefixes: S.optional(AccessRulePropertiesAddressPrefixesList),
-    subscriptions: S.optional(AccessRulePropertiesSubscriptionsList),
-    networkSecurityPerimeters: S.optional(
-      AccessRulePropertiesNetworkSecurityPerimetersList,
-    ),
-    fullyQualifiedDomainNames: S.optional(
-      AccessRulePropertiesFullyQualifiedDomainNamesList,
-    ),
-    emailAddresses: S.optional(AccessRulePropertiesEmailAddressesList),
-    phoneNumbers: S.optional(AccessRulePropertiesPhoneNumbersList),
-  }),
-).annotate({
-  identifier: "AccessRuleProperties",
-}) as any as S.Schema<AccessRuleProperties>;
-
-/** Access rule in a network security perimeter configuration profile */
-export interface AccessRule {
-  /** Name of the access rule */
-  name?: string;
-  properties?: AccessRuleProperties;
-}
-export const AccessRule = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    properties: S.optional(AccessRuleProperties),
-  }),
-).annotate({ identifier: "AccessRule" }) as any as S.Schema<AccessRule>;
-
-/** Access rules that can be added to the network security profile (NSP) to remediate the issue. */
-export type ProvisioningIssuePropertiesSuggestedAccessRulesList =
-  Array<AccessRule>;
-export const ProvisioningIssuePropertiesSuggestedAccessRulesList =
-  /*@__PURE__*/ S.Array(
-    AccessRule,
-  ) as any as S.Schema<ProvisioningIssuePropertiesSuggestedAccessRulesList>;
-
-/** Details of a provisioning issue for a network security perimeter (NSP) configuration. Resource providers should generate separate provisioning issue elements for each separate issue detected, and include a meaningful and distinctive description, as well as any appropriate suggestedResourceIds and suggestedAccessRules */
-export interface ProvisioningIssueProperties {
-  /** Type of issue */
-  issueType?: ProvisioningIssuePropertiesIssueType;
-  /** Severity of the issue. */
-  severity?: ProvisioningIssuePropertiesSeverity;
-  /** Description of the issue */
-  description?: string;
-  /** Fully qualified resource IDs of suggested resources that can be associated to the network security perimeter (NSP) to remediate the issue. */
-  suggestedResourceIds?: ProvisioningIssuePropertiesSuggestedResourceIdsList;
-  /** Access rules that can be added to the network security profile (NSP) to remediate the issue. */
-  suggestedAccessRules?: ProvisioningIssuePropertiesSuggestedAccessRulesList;
-}
-export const ProvisioningIssueProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    issueType: S.optional(ProvisioningIssuePropertiesIssueType),
-    severity: S.optional(ProvisioningIssuePropertiesSeverity),
-    description: S.optional(S.String),
-    suggestedResourceIds: S.optional(
-      ProvisioningIssuePropertiesSuggestedResourceIdsList,
-    ),
-    suggestedAccessRules: S.optional(
-      ProvisioningIssuePropertiesSuggestedAccessRulesList,
-    ),
-  }),
-).annotate({
-  identifier: "ProvisioningIssueProperties",
-}) as any as S.Schema<ProvisioningIssueProperties>;
-
-/** Describes a provisioning issue for a network security perimeter configuration */
-export interface ProvisioningIssue {
-  /** Name of the issue */
-  name?: string;
-  properties?: ProvisioningIssueProperties;
-}
-export const ProvisioningIssue = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    properties: S.optional(ProvisioningIssueProperties),
-  }),
-).annotate({
-  identifier: "ProvisioningIssue",
-}) as any as S.Schema<ProvisioningIssue>;
-
-/** List of provisioning issues, if any */
-export type NetworkSecurityPerimeterConfigurationPropertiesProvisioningIssuesList =
-  Array<ProvisioningIssue>;
-export const NetworkSecurityPerimeterConfigurationPropertiesProvisioningIssuesList =
-  /*@__PURE__*/ S.Array(
-    ProvisioningIssue,
-  ) as any as S.Schema<NetworkSecurityPerimeterConfigurationPropertiesProvisioningIssuesList>;
-
-/** Access mode of the resource association */
-export type ResourceAssociationAccessMode = "Enforced" | "Learning" | "Audit";
-export const ResourceAssociationAccessMode = /*@__PURE__*/ S.String;
-
-/** Information about resource association */
-export interface ResourceAssociation {
-  /** Name of the resource association */
-  name?: string;
-  accessMode?: ResourceAssociationAccessMode;
-}
-export const ResourceAssociation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    accessMode: S.optional(ResourceAssociationAccessMode),
-  }),
-).annotate({
-  identifier: "ResourceAssociation",
-}) as any as S.Schema<ResourceAssociation>;
-
-/** List of Access Rules */
-export type NetworkSecurityProfileAccessRulesList = Array<AccessRule>;
-export const NetworkSecurityProfileAccessRulesList = /*@__PURE__*/ S.Array(
-  AccessRule,
-) as any as S.Schema<NetworkSecurityProfileAccessRulesList>;
-
-/** List of log categories that are enabled */
-export type NetworkSecurityProfileEnabledLogCategoriesList = Array<string>;
-export const NetworkSecurityProfileEnabledLogCategoriesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<NetworkSecurityProfileEnabledLogCategoriesList>;
-
-/** Network security perimeter configuration profile */
-export interface NetworkSecurityProfile {
-  /** Name of the profile */
-  name?: string;
-  /** Current access rules version */
-  accessRulesVersion?: number;
-  /** List of Access Rules */
-  accessRules?: NetworkSecurityProfileAccessRulesList;
-  /** Current diagnostic settings version */
-  diagnosticSettingsVersion?: number;
-  /** List of log categories that are enabled */
-  enabledLogCategories?: NetworkSecurityProfileEnabledLogCategoriesList;
-}
-export const NetworkSecurityProfile = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    accessRulesVersion: S.optional(S.Number),
-    accessRules: S.optional(NetworkSecurityProfileAccessRulesList),
-    diagnosticSettingsVersion: S.optional(S.Number),
-    enabledLogCategories: S.optional(
-      NetworkSecurityProfileEnabledLogCategoriesList,
-    ),
-  }),
-).annotate({
-  identifier: "NetworkSecurityProfile",
-}) as any as S.Schema<NetworkSecurityProfile>;
-
-/** Network security configuration properties. */
-export interface NetworkSecurityPerimeterConfigurationProperties {
-  provisioningState?: NetworkSecurityPerimeterConfigurationProvisioningState;
-  /** List of provisioning issues, if any */
-  provisioningIssues?: NetworkSecurityPerimeterConfigurationPropertiesProvisioningIssuesList;
-  networkSecurityPerimeter?: NetworkSecurityPerimeter;
-  resourceAssociation?: ResourceAssociation;
-  profile?: NetworkSecurityProfile;
-}
-export const NetworkSecurityPerimeterConfigurationProperties =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      provisioningState: S.optional(
-        NetworkSecurityPerimeterConfigurationProvisioningState,
-      ),
-      provisioningIssues: S.optional(
-        NetworkSecurityPerimeterConfigurationPropertiesProvisioningIssuesList,
-      ),
-      networkSecurityPerimeter: S.optional(NetworkSecurityPerimeter),
-      resourceAssociation: S.optional(ResourceAssociation),
-      profile: S.optional(NetworkSecurityProfile),
-    }),
-  ).annotate({
-    identifier: "NetworkSecurityPerimeterConfigurationProperties",
-  }) as any as S.Schema<NetworkSecurityPerimeterConfigurationProperties>;
-
-export interface NetworkSecurityPerimeterGetConfigurationResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  properties?: NetworkSecurityPerimeterConfigurationProperties;
-}
-export const NetworkSecurityPerimeterGetConfigurationResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(NetworkSecurityPerimeterConfigurationProperties),
-    }),
-  ).annotate({
-    identifier: "NetworkSecurityPerimeterGetConfigurationResponse",
-  }) as any as S.Schema<NetworkSecurityPerimeterGetConfigurationResponse>;
-
-export interface NetworkSecurityPerimeterListConfigurationsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** A name for the Batch account which must be unique within the region. Batch account names must be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as part of the DNS name that is used to access the Batch service in the region in which the account is created. For example: http://accountname.region.batch.azure.com/. */
-  accountName: string;
-}
-export const NetworkSecurityPerimeterListConfigurationsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/networkSecurityPerimeterConfigurations",
-        code: 200,
-        apiVersion: "2025-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "NetworkSecurityPerimeterListConfigurationsRequest",
-  }) as any as S.Schema<NetworkSecurityPerimeterListConfigurationsRequest>;
-
-/** Network security perimeter (NSP) configuration resource */
-export interface NetworkSecurityPerimeterConfigurationListResultValueItem {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  properties?: NetworkSecurityPerimeterConfigurationProperties;
-}
-export const NetworkSecurityPerimeterConfigurationListResultValueItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(NetworkSecurityPerimeterConfigurationProperties),
-    }),
-  ).annotate({
-    identifier: "NetworkSecurityPerimeterConfigurationListResultValueItem",
-  }) as any as S.Schema<NetworkSecurityPerimeterConfigurationListResultValueItem>;
-
-/** The NetworkSecurityPerimeterConfiguration items on this page */
-export type NetworkSecurityPerimeterConfigurationListResultValueList =
-  Array<NetworkSecurityPerimeterConfigurationListResultValueItem>;
-export const NetworkSecurityPerimeterConfigurationListResultValueList =
-  /*@__PURE__*/ S.Array(
-    NetworkSecurityPerimeterConfigurationListResultValueItem,
-  ) as any as S.Schema<NetworkSecurityPerimeterConfigurationListResultValueList>;
-
-/** The response of a NetworkSecurityPerimeterConfiguration list operation. */
-export interface NetworkSecurityPerimeterConfigurationListResult {
-  /** The NetworkSecurityPerimeterConfiguration items on this page */
-  value: NetworkSecurityPerimeterConfigurationListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const NetworkSecurityPerimeterConfigurationListResult =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      value: NetworkSecurityPerimeterConfigurationListResultValueList,
-      nextLink: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "NetworkSecurityPerimeterConfigurationListResult",
-  }) as any as S.Schema<NetworkSecurityPerimeterConfigurationListResult>;
-
-export interface NetworkSecurityPerimeterReconcileConfigurationRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** A name for the Batch account which must be unique within the region. Batch account names must be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as part of the DNS name that is used to access the Batch service in the region in which the account is created. For example: http://accountname.region.batch.azure.com/. */
-  accountName: string;
-  /** The name for a network security perimeter configuration */
-  networkSecurityPerimeterConfigurationName: string;
-}
-export const NetworkSecurityPerimeterReconcileConfigurationRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      networkSecurityPerimeterConfigurationName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/networkSecurityPerimeterConfigurations/{networkSecurityPerimeterConfigurationName}/reconcile",
-        code: 200,
-        apiVersion: "2025-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "NetworkSecurityPerimeterReconcileConfigurationRequest",
-  }) as any as S.Schema<NetworkSecurityPerimeterReconcileConfigurationRequest>;
-
-export interface NetworkSecurityPerimeterReconcileConfigurationResponse {}
-export const NetworkSecurityPerimeterReconcileConfigurationResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "NetworkSecurityPerimeterReconcileConfigurationResponse",
-  }) as any as S.Schema<NetworkSecurityPerimeterReconcileConfigurationResponse>;
-
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.Batch/operations",
-      code: 200,
-      apiVersion: "2025-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
-
-/** The object that describes the operation. */
-export interface OperationDisplay {
-  /** Friendly name of the resource provider. */
-  provider?: string;
-  /** For example: read, write, delete, or listKeys/action */
-  operation?: string;
-  /** The resource type on which the operation is performed. */
-  resource?: string;
-  /** The friendly name of the operation */
-  description?: string;
-}
-export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provider: S.optional(S.String),
-    operation: S.optional(S.String),
-    resource: S.optional(S.String),
-    description: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationDisplay",
-}) as any as S.Schema<OperationDisplay>;
-
-/** A REST API operation */
-export interface Operation {
-  /** This is of the format {provider}/{resource}/{operation} */
-  name?: string;
-  /** Indicates whether the operation is a data action */
-  isDataAction?: boolean;
-  /** The object that describes the operation. */
-  display?: OperationDisplay;
-  /** The intended executor of the operation. */
-  origin?: string;
-  /** Properties of the operation. */
-  properties?: unknown;
-}
-export const Operation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    isDataAction: S.optional(S.Boolean),
-    display: S.optional(OperationDisplay),
-    origin: S.optional(S.String),
-    properties: S.optional(S.Unknown),
-  }),
-).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
-
-/** The Operation items on this page */
-export type OperationListResultValueList = Array<Operation>;
-export const OperationListResultValueList = /*@__PURE__*/ S.Array(
-  Operation,
-) as any as S.Schema<OperationListResultValueList>;
-
-/** Paged collection of Operation items */
-export interface OperationListResult {
-  /** The Operation items on this page */
-  value: OperationListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const OperationListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: OperationListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationListResult",
-}) as any as S.Schema<OperationListResult>;
+  identifier: "CreateBatchAccountResponse",
+}) as any as S.Schema<CreateBatchAccountResponse>;
 
 /** A reference to an Azure Virtual Machines Marketplace image or the Azure Image resource of a custom Virtual Machine. To get the list of all imageReferences verified by Azure Batch, see the 'List supported node agent SKUs' operation. */
 export interface ImageReference {
@@ -4301,13 +2475,13 @@ export const BatchPoolIdentityInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<BatchPoolIdentityInput>;
 
 /** The tags of the resource. */
-export type PoolCreateRequestTagsMap = { [key: string]: string | undefined };
-export const PoolCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type CreatePoolRequestTagsMap = { [key: string]: string | undefined };
+export const CreatePoolRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<PoolCreateRequestTagsMap>;
+) as any as S.Schema<CreatePoolRequestTagsMap>;
 
-export interface PoolCreateRequest {
+export interface CreatePoolRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4321,9 +2495,9 @@ export interface PoolCreateRequest {
   /** The type of identity used for the Batch Pool. */
   identity?: BatchPoolIdentityInput;
   /** The tags of the resource. */
-  tags?: PoolCreateRequestTagsMap;
+  tags?: CreatePoolRequestTagsMap;
 }
-export const PoolCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreatePoolRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -4331,7 +2505,7 @@ export const PoolCreateRequest = /*@__PURE__*/ S.suspend(() =>
     poolName: S.String.pipe(T.Label()),
     properties: S.optional(PoolPropertiesInput),
     identity: S.optional(BatchPoolIdentityInput),
-    tags: S.optional(PoolCreateRequestTagsMap),
+    tags: S.optional(CreatePoolRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PUT",
@@ -4341,8 +2515,8 @@ export const PoolCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "PoolCreateRequest",
-}) as any as S.Schema<PoolCreateRequest>;
+  identifier: "CreatePoolRequest",
+}) as any as S.Schema<CreatePoolRequest>;
 
 /** The current state of the pool. */
 export type PoolProvisioningState = "Succeeded" | "Deleting";
@@ -4585,13 +2759,13 @@ export const BatchPoolIdentity = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<BatchPoolIdentity>;
 
 /** The tags of the resource. */
-export type PoolCreateResponseTagsMap = { [key: string]: string | undefined };
-export const PoolCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type CreatePoolResponseTagsMap = { [key: string]: string | undefined };
+export const CreatePoolResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<PoolCreateResponseTagsMap>;
+) as any as S.Schema<CreatePoolResponseTagsMap>;
 
-export interface PoolCreateResponse {
+export interface CreatePoolResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -4607,9 +2781,9 @@ export interface PoolCreateResponse {
   /** The ETag of the resource, used for concurrency statements. */
   etag?: string;
   /** The tags of the resource. */
-  tags?: PoolCreateResponseTagsMap;
+  tags?: CreatePoolResponseTagsMap;
 }
-export const PoolCreateResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreatePoolResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -4618,13 +2792,118 @@ export const PoolCreateResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(PoolProperties),
     identity: S.optional(BatchPoolIdentity),
     etag: S.optional(S.String),
-    tags: S.optional(PoolCreateResponseTagsMap),
+    tags: S.optional(CreatePoolResponseTagsMap),
   }),
 ).annotate({
-  identifier: "PoolCreateResponse",
-}) as any as S.Schema<PoolCreateResponse>;
+  identifier: "CreatePoolResponse",
+}) as any as S.Schema<CreatePoolResponse>;
 
-export interface PoolDeleteRequest {
+export interface DeleteApplicationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** A name for the Batch account which must be unique within the region. Batch account names must be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as part of the DNS name that is used to access the Batch service in the region in which the account is created. For example: http://accountname.region.batch.azure.com/. */
+  accountName: string;
+  /** The name of the application. This must be unique within the account. */
+  applicationName: string;
+}
+export const DeleteApplicationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    applicationName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/applications/{applicationName}",
+      code: 200,
+      apiVersion: "2025-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteApplicationRequest",
+}) as any as S.Schema<DeleteApplicationRequest>;
+
+export interface DeleteApplicationResponse {}
+export const DeleteApplicationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteApplicationResponse",
+}) as any as S.Schema<DeleteApplicationResponse>;
+
+export interface DeleteApplicationPackageRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** A name for the Batch account which must be unique within the region. Batch account names must be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as part of the DNS name that is used to access the Batch service in the region in which the account is created. For example: http://accountname.region.batch.azure.com/. */
+  accountName: string;
+  /** The name of the application. This must be unique within the account. */
+  applicationName: string;
+  /** The version of the application. */
+  versionName: string;
+}
+export const DeleteApplicationPackageRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    applicationName: S.String.pipe(T.Label()),
+    versionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/applications/{applicationName}/versions/{versionName}",
+      code: 200,
+      apiVersion: "2025-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteApplicationPackageRequest",
+}) as any as S.Schema<DeleteApplicationPackageRequest>;
+
+export interface DeleteApplicationPackageResponse {}
+export const DeleteApplicationPackageResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteApplicationPackageResponse",
+}) as any as S.Schema<DeleteApplicationPackageResponse>;
+
+export interface DeleteBatchAccountRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** A name for the Batch account which must be unique within the region. Batch account names must be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as part of the DNS name that is used to access the Batch service in the region in which the account is created. For example: http://accountname.region.batch.azure.com/. */
+  accountName: string;
+}
+export const DeleteBatchAccountRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}",
+      code: 200,
+      apiVersion: "2025-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteBatchAccountRequest",
+}) as any as S.Schema<DeleteBatchAccountRequest>;
+
+export interface DeleteBatchAccountResponse {}
+export const DeleteBatchAccountResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteBatchAccountResponse",
+}) as any as S.Schema<DeleteBatchAccountResponse>;
+
+export interface DeletePoolRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4634,7 +2913,7 @@ export interface PoolDeleteRequest {
   /** The pool name. This must be unique within the account. */
   poolName: string;
 }
-export const PoolDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeletePoolRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -4649,17 +2928,53 @@ export const PoolDeleteRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "PoolDeleteRequest",
-}) as any as S.Schema<PoolDeleteRequest>;
+  identifier: "DeletePoolRequest",
+}) as any as S.Schema<DeletePoolRequest>;
 
-export interface PoolDeleteResponse {}
-export const PoolDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeletePoolResponse {}
+export const DeletePoolResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "PoolDeleteResponse",
-}) as any as S.Schema<PoolDeleteResponse>;
+  identifier: "DeletePoolResponse",
+}) as any as S.Schema<DeletePoolResponse>;
 
-export interface PoolDisableAutoScaleRequest {
+export interface DeletePrivateEndpointConnectionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** A name for the Batch account which must be unique within the region. Batch account names must be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as part of the DNS name that is used to access the Batch service in the region in which the account is created. For example: http://accountname.region.batch.azure.com/. */
+  accountName: string;
+  /** The private endpoint connection name. This must be unique within the account. */
+  privateEndpointConnectionName: string;
+}
+export const DeletePrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      privateEndpointConnectionName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/privateEndpointConnections/{privateEndpointConnectionName}",
+        code: 200,
+        apiVersion: "2025-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "DeletePrivateEndpointConnectionRequest",
+}) as any as S.Schema<DeletePrivateEndpointConnectionRequest>;
+
+export interface DeletePrivateEndpointConnectionResponse {}
+export const DeletePrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeletePrivateEndpointConnectionResponse",
+}) as any as S.Schema<DeletePrivateEndpointConnectionResponse>;
+
+export interface DisablePoolAutoScaleRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4669,7 +2984,7 @@ export interface PoolDisableAutoScaleRequest {
   /** The pool name. This must be unique within the account. */
   poolName: string;
 }
-export const PoolDisableAutoScaleRequest = /*@__PURE__*/ S.suspend(() =>
+export const DisablePoolAutoScaleRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -4684,19 +2999,19 @@ export const PoolDisableAutoScaleRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "PoolDisableAutoScaleRequest",
-}) as any as S.Schema<PoolDisableAutoScaleRequest>;
+  identifier: "DisablePoolAutoScaleRequest",
+}) as any as S.Schema<DisablePoolAutoScaleRequest>;
 
 /** The tags of the resource. */
-export type PoolDisableAutoScaleResponseTagsMap = {
+export type DisablePoolAutoScaleResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const PoolDisableAutoScaleResponseTagsMap = /*@__PURE__*/ S.Record(
+export const DisablePoolAutoScaleResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<PoolDisableAutoScaleResponseTagsMap>;
+) as any as S.Schema<DisablePoolAutoScaleResponseTagsMap>;
 
-export interface PoolDisableAutoScaleResponse {
+export interface DisablePoolAutoScaleResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -4712,9 +3027,9 @@ export interface PoolDisableAutoScaleResponse {
   /** The ETag of the resource, used for concurrency statements. */
   etag?: string;
   /** The tags of the resource. */
-  tags?: PoolDisableAutoScaleResponseTagsMap;
+  tags?: DisablePoolAutoScaleResponseTagsMap;
 }
-export const PoolDisableAutoScaleResponse = /*@__PURE__*/ S.suspend(() =>
+export const DisablePoolAutoScaleResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -4723,13 +3038,729 @@ export const PoolDisableAutoScaleResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(PoolProperties),
     identity: S.optional(BatchPoolIdentity),
     etag: S.optional(S.String),
-    tags: S.optional(PoolDisableAutoScaleResponseTagsMap),
+    tags: S.optional(DisablePoolAutoScaleResponseTagsMap),
   }),
 ).annotate({
-  identifier: "PoolDisableAutoScaleResponse",
-}) as any as S.Schema<PoolDisableAutoScaleResponse>;
+  identifier: "DisablePoolAutoScaleResponse",
+}) as any as S.Schema<DisablePoolAutoScaleResponse>;
 
-export interface PoolGetRequest {
+export interface GetApplicationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** A name for the Batch account which must be unique within the region. Batch account names must be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as part of the DNS name that is used to access the Batch service in the region in which the account is created. For example: http://accountname.region.batch.azure.com/. */
+  accountName: string;
+  /** The name of the application. This must be unique within the account. */
+  applicationName: string;
+}
+export const GetApplicationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    applicationName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/applications/{applicationName}",
+      code: 200,
+      apiVersion: "2025-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetApplicationRequest",
+}) as any as S.Schema<GetApplicationRequest>;
+
+/** The tags of the resource. */
+export type GetApplicationResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetApplicationResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetApplicationResponseTagsMap>;
+
+export interface GetApplicationResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties associated with the Application. */
+  properties?: ApplicationProperties;
+  /** The ETag of the resource, used for concurrency statements. */
+  etag?: string;
+  /** The tags of the resource. */
+  tags?: GetApplicationResponseTagsMap;
+}
+export const GetApplicationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ApplicationProperties),
+    etag: S.optional(S.String),
+    tags: S.optional(GetApplicationResponseTagsMap),
+  }),
+).annotate({
+  identifier: "GetApplicationResponse",
+}) as any as S.Schema<GetApplicationResponse>;
+
+export interface GetApplicationPackageRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** A name for the Batch account which must be unique within the region. Batch account names must be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as part of the DNS name that is used to access the Batch service in the region in which the account is created. For example: http://accountname.region.batch.azure.com/. */
+  accountName: string;
+  /** The name of the application. This must be unique within the account. */
+  applicationName: string;
+  /** The version of the application. */
+  versionName: string;
+}
+export const GetApplicationPackageRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    applicationName: S.String.pipe(T.Label()),
+    versionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/applications/{applicationName}/versions/{versionName}",
+      code: 200,
+      apiVersion: "2025-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetApplicationPackageRequest",
+}) as any as S.Schema<GetApplicationPackageRequest>;
+
+/** The tags of the resource. */
+export type GetApplicationPackageResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetApplicationPackageResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetApplicationPackageResponseTagsMap>;
+
+export interface GetApplicationPackageResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties associated with the Application Package. */
+  properties?: ApplicationPackageProperties;
+  /** The ETag of the resource, used for concurrency statements. */
+  etag?: string;
+  /** The tags of the resource. */
+  tags?: GetApplicationPackageResponseTagsMap;
+}
+export const GetApplicationPackageResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ApplicationPackageProperties),
+    etag: S.optional(S.String),
+    tags: S.optional(GetApplicationPackageResponseTagsMap),
+  }),
+).annotate({
+  identifier: "GetApplicationPackageResponse",
+}) as any as S.Schema<GetApplicationPackageResponse>;
+
+export interface GetBatchAccountRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** A name for the Batch account which must be unique within the region. Batch account names must be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as part of the DNS name that is used to access the Batch service in the region in which the account is created. For example: http://accountname.region.batch.azure.com/. */
+  accountName: string;
+}
+export const GetBatchAccountRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}",
+      code: 200,
+      apiVersion: "2025-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetBatchAccountRequest",
+}) as any as S.Schema<GetBatchAccountRequest>;
+
+/** Resource tags. */
+export type GetBatchAccountResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetBatchAccountResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetBatchAccountResponseTagsMap>;
+
+export interface GetBatchAccountResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetBatchAccountResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The properties associated with the account. */
+  properties?: BatchAccountProperties;
+  /** The identity of the Batch account. */
+  identity?: BatchAccountIdentity;
+}
+export const GetBatchAccountResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetBatchAccountResponseTagsMap),
+    location: S.String,
+    properties: S.optional(BatchAccountProperties),
+    identity: S.optional(BatchAccountIdentity),
+  }),
+).annotate({
+  identifier: "GetBatchAccountResponse",
+}) as any as S.Schema<GetBatchAccountResponse>;
+
+export interface GetBatchAccountDetectorRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** A name for the Batch account which must be unique within the region. Batch account names must be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as part of the DNS name that is used to access the Batch service in the region in which the account is created. For example: http://accountname.region.batch.azure.com/. */
+  accountName: string;
+  /** The name of the detector. */
+  detectorId: string;
+}
+export const GetBatchAccountDetectorRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    detectorId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/detectors/{detectorId}",
+      code: 200,
+      apiVersion: "2025-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetBatchAccountDetectorRequest",
+}) as any as S.Schema<GetBatchAccountDetectorRequest>;
+
+/** Detector response properties. */
+export interface DetectorResponseProperties {
+  /** A base64 encoded string that represents the content of a detector. */
+  value?: string;
+}
+export const DetectorResponseProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DetectorResponseProperties",
+}) as any as S.Schema<DetectorResponseProperties>;
+
+/** The tags of the resource. */
+export type GetBatchAccountDetectorResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetBatchAccountDetectorResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetBatchAccountDetectorResponseTagsMap>;
+
+export interface GetBatchAccountDetectorResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties associated with the detector. */
+  properties?: DetectorResponseProperties;
+  /** The ETag of the resource, used for concurrency statements. */
+  etag?: string;
+  /** The tags of the resource. */
+  tags?: GetBatchAccountDetectorResponseTagsMap;
+}
+export const GetBatchAccountDetectorResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(DetectorResponseProperties),
+    etag: S.optional(S.String),
+    tags: S.optional(GetBatchAccountDetectorResponseTagsMap),
+  }),
+).annotate({
+  identifier: "GetBatchAccountDetectorResponse",
+}) as any as S.Schema<GetBatchAccountDetectorResponse>;
+
+export interface GetBatchAccountKeysRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** A name for the Batch account which must be unique within the region. Batch account names must be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as part of the DNS name that is used to access the Batch service in the region in which the account is created. For example: http://accountname.region.batch.azure.com/. */
+  accountName: string;
+}
+export const GetBatchAccountKeysRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/listKeys",
+      code: 200,
+      apiVersion: "2025-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetBatchAccountKeysRequest",
+}) as any as S.Schema<GetBatchAccountKeysRequest>;
+
+/** A set of Azure Batch account keys. */
+export interface BatchAccountKeys {
+  /** The Batch account name. */
+  accountName?: string;
+  /** The primary key associated with the account. */
+  primary?: string;
+  /** The secondary key associated with the account. */
+  secondary?: string;
+}
+export const BatchAccountKeys = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountName: S.optional(S.String),
+    primary: S.optional(S.String),
+    secondary: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "BatchAccountKeys",
+}) as any as S.Schema<BatchAccountKeys>;
+
+export interface GetLocationQuotasRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The region for which to retrieve Batch service quotas. */
+  locationName: string;
+}
+export const GetLocationQuotasRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    locationName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Batch/locations/{locationName}/quotas",
+      code: 200,
+      apiVersion: "2025-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetLocationQuotasRequest",
+}) as any as S.Schema<GetLocationQuotasRequest>;
+
+/** Quotas associated with a Batch region for a particular subscription. */
+export interface BatchLocationQuota {
+  /** The number of Batch accounts that may be created under the subscription in the specified region. */
+  accountQuota?: number;
+}
+export const BatchLocationQuota = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountQuota: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "BatchLocationQuota",
+}) as any as S.Schema<BatchLocationQuota>;
+
+export interface GetNetworkSecurityPerimeterConfigurationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** A name for the Batch account which must be unique within the region. Batch account names must be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as part of the DNS name that is used to access the Batch service in the region in which the account is created. For example: http://accountname.region.batch.azure.com/. */
+  accountName: string;
+  /** The name for a network security perimeter configuration */
+  networkSecurityPerimeterConfigurationName: string;
+}
+export const GetNetworkSecurityPerimeterConfigurationRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      networkSecurityPerimeterConfigurationName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/networkSecurityPerimeterConfigurations/{networkSecurityPerimeterConfigurationName}",
+        code: 200,
+        apiVersion: "2025-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetNetworkSecurityPerimeterConfigurationRequest",
+  }) as any as S.Schema<GetNetworkSecurityPerimeterConfigurationRequest>;
+
+/** Provisioning state of a network security perimeter configuration that is being created or updated. */
+export type NetworkSecurityPerimeterConfigurationProvisioningState =
+  | "Succeeded"
+  | "Creating"
+  | "Updating"
+  | "Deleting"
+  | "Accepted"
+  | "Failed"
+  | "Canceled";
+export const NetworkSecurityPerimeterConfigurationProvisioningState =
+  /*@__PURE__*/ S.String;
+
+/** Type of issue */
+export type ProvisioningIssuePropertiesIssueType =
+  | "Unknown"
+  | "ConfigurationPropagationFailure"
+  | "MissingPerimeterConfiguration"
+  | "MissingIdentityConfiguration";
+export const ProvisioningIssuePropertiesIssueType = /*@__PURE__*/ S.String;
+
+/** Severity of the issue. */
+export type ProvisioningIssuePropertiesSeverity = "Warning" | "Error";
+export const ProvisioningIssuePropertiesSeverity = /*@__PURE__*/ S.String;
+
+/** Fully qualified resource IDs of suggested resources that can be associated to the network security perimeter (NSP) to remediate the issue. */
+export type ProvisioningIssuePropertiesSuggestedResourceIdsList = Array<string>;
+export const ProvisioningIssuePropertiesSuggestedResourceIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ProvisioningIssuePropertiesSuggestedResourceIdsList>;
+
+/** Direction of Access Rule */
+export type AccessRuleDirection = "Inbound" | "Outbound";
+export const AccessRuleDirection = /*@__PURE__*/ S.String;
+
+/** Address prefixes in the CIDR format for inbound rules */
+export type AccessRulePropertiesAddressPrefixesList = Array<string>;
+export const AccessRulePropertiesAddressPrefixesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<AccessRulePropertiesAddressPrefixesList>;
+
+/** Subscription identifiers */
+export interface AccessRulePropertiesSubscriptionsItem {
+  /** The fully qualified Azure resource ID of the subscription e.g. ('/subscriptions/00000000-0000-0000-0000-000000000000') */
+  id?: string;
+}
+export const AccessRulePropertiesSubscriptionsItem = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "AccessRulePropertiesSubscriptionsItem",
+}) as any as S.Schema<AccessRulePropertiesSubscriptionsItem>;
+
+/** Subscriptions for inbound rules */
+export type AccessRulePropertiesSubscriptionsList =
+  Array<AccessRulePropertiesSubscriptionsItem>;
+export const AccessRulePropertiesSubscriptionsList = /*@__PURE__*/ S.Array(
+  AccessRulePropertiesSubscriptionsItem,
+) as any as S.Schema<AccessRulePropertiesSubscriptionsList>;
+
+/** Information about a network security perimeter (NSP) */
+export interface NetworkSecurityPerimeter {
+  /** Fully qualified Azure resource ID of the NSP resource */
+  id?: string;
+  /** Universal unique ID (UUID) of the network security perimeter */
+  perimeterGuid?: string;
+  /** Location of the network security perimeter */
+  location?: string;
+}
+export const NetworkSecurityPerimeter = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    perimeterGuid: S.optional(S.String),
+    location: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "NetworkSecurityPerimeter",
+}) as any as S.Schema<NetworkSecurityPerimeter>;
+
+/** Network security perimeters for inbound rules */
+export type AccessRulePropertiesNetworkSecurityPerimetersList =
+  Array<NetworkSecurityPerimeter>;
+export const AccessRulePropertiesNetworkSecurityPerimetersList =
+  /*@__PURE__*/ S.Array(
+    NetworkSecurityPerimeter,
+  ) as any as S.Schema<AccessRulePropertiesNetworkSecurityPerimetersList>;
+
+/** Fully qualified domain names (FQDN) for outbound rules */
+export type AccessRulePropertiesFullyQualifiedDomainNamesList = Array<string>;
+export const AccessRulePropertiesFullyQualifiedDomainNamesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<AccessRulePropertiesFullyQualifiedDomainNamesList>;
+
+/** Email addresses for outbound rules */
+export type AccessRulePropertiesEmailAddressesList = Array<string>;
+export const AccessRulePropertiesEmailAddressesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<AccessRulePropertiesEmailAddressesList>;
+
+/** Phone numbers for outbound rules */
+export type AccessRulePropertiesPhoneNumbersList = Array<string>;
+export const AccessRulePropertiesPhoneNumbersList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<AccessRulePropertiesPhoneNumbersList>;
+
+/** Properties of Access Rule */
+export interface AccessRuleProperties {
+  direction?: AccessRuleDirection;
+  /** Address prefixes in the CIDR format for inbound rules */
+  addressPrefixes?: AccessRulePropertiesAddressPrefixesList;
+  /** Subscriptions for inbound rules */
+  subscriptions?: AccessRulePropertiesSubscriptionsList;
+  /** Network security perimeters for inbound rules */
+  networkSecurityPerimeters?: AccessRulePropertiesNetworkSecurityPerimetersList;
+  /** Fully qualified domain names (FQDN) for outbound rules */
+  fullyQualifiedDomainNames?: AccessRulePropertiesFullyQualifiedDomainNamesList;
+  /** Email addresses for outbound rules */
+  emailAddresses?: AccessRulePropertiesEmailAddressesList;
+  /** Phone numbers for outbound rules */
+  phoneNumbers?: AccessRulePropertiesPhoneNumbersList;
+}
+export const AccessRuleProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    direction: S.optional(AccessRuleDirection),
+    addressPrefixes: S.optional(AccessRulePropertiesAddressPrefixesList),
+    subscriptions: S.optional(AccessRulePropertiesSubscriptionsList),
+    networkSecurityPerimeters: S.optional(
+      AccessRulePropertiesNetworkSecurityPerimetersList,
+    ),
+    fullyQualifiedDomainNames: S.optional(
+      AccessRulePropertiesFullyQualifiedDomainNamesList,
+    ),
+    emailAddresses: S.optional(AccessRulePropertiesEmailAddressesList),
+    phoneNumbers: S.optional(AccessRulePropertiesPhoneNumbersList),
+  }),
+).annotate({
+  identifier: "AccessRuleProperties",
+}) as any as S.Schema<AccessRuleProperties>;
+
+/** Access rule in a network security perimeter configuration profile */
+export interface AccessRule {
+  /** Name of the access rule */
+  name?: string;
+  properties?: AccessRuleProperties;
+}
+export const AccessRule = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    properties: S.optional(AccessRuleProperties),
+  }),
+).annotate({ identifier: "AccessRule" }) as any as S.Schema<AccessRule>;
+
+/** Access rules that can be added to the network security profile (NSP) to remediate the issue. */
+export type ProvisioningIssuePropertiesSuggestedAccessRulesList =
+  Array<AccessRule>;
+export const ProvisioningIssuePropertiesSuggestedAccessRulesList =
+  /*@__PURE__*/ S.Array(
+    AccessRule,
+  ) as any as S.Schema<ProvisioningIssuePropertiesSuggestedAccessRulesList>;
+
+/** Details of a provisioning issue for a network security perimeter (NSP) configuration. Resource providers should generate separate provisioning issue elements for each separate issue detected, and include a meaningful and distinctive description, as well as any appropriate suggestedResourceIds and suggestedAccessRules */
+export interface ProvisioningIssueProperties {
+  /** Type of issue */
+  issueType?: ProvisioningIssuePropertiesIssueType;
+  /** Severity of the issue. */
+  severity?: ProvisioningIssuePropertiesSeverity;
+  /** Description of the issue */
+  description?: string;
+  /** Fully qualified resource IDs of suggested resources that can be associated to the network security perimeter (NSP) to remediate the issue. */
+  suggestedResourceIds?: ProvisioningIssuePropertiesSuggestedResourceIdsList;
+  /** Access rules that can be added to the network security profile (NSP) to remediate the issue. */
+  suggestedAccessRules?: ProvisioningIssuePropertiesSuggestedAccessRulesList;
+}
+export const ProvisioningIssueProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    issueType: S.optional(ProvisioningIssuePropertiesIssueType),
+    severity: S.optional(ProvisioningIssuePropertiesSeverity),
+    description: S.optional(S.String),
+    suggestedResourceIds: S.optional(
+      ProvisioningIssuePropertiesSuggestedResourceIdsList,
+    ),
+    suggestedAccessRules: S.optional(
+      ProvisioningIssuePropertiesSuggestedAccessRulesList,
+    ),
+  }),
+).annotate({
+  identifier: "ProvisioningIssueProperties",
+}) as any as S.Schema<ProvisioningIssueProperties>;
+
+/** Describes a provisioning issue for a network security perimeter configuration */
+export interface ProvisioningIssue {
+  /** Name of the issue */
+  name?: string;
+  properties?: ProvisioningIssueProperties;
+}
+export const ProvisioningIssue = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    properties: S.optional(ProvisioningIssueProperties),
+  }),
+).annotate({
+  identifier: "ProvisioningIssue",
+}) as any as S.Schema<ProvisioningIssue>;
+
+/** List of provisioning issues, if any */
+export type NetworkSecurityPerimeterConfigurationPropertiesProvisioningIssuesList =
+  Array<ProvisioningIssue>;
+export const NetworkSecurityPerimeterConfigurationPropertiesProvisioningIssuesList =
+  /*@__PURE__*/ S.Array(
+    ProvisioningIssue,
+  ) as any as S.Schema<NetworkSecurityPerimeterConfigurationPropertiesProvisioningIssuesList>;
+
+/** Access mode of the resource association */
+export type ResourceAssociationAccessMode = "Enforced" | "Learning" | "Audit";
+export const ResourceAssociationAccessMode = /*@__PURE__*/ S.String;
+
+/** Information about resource association */
+export interface ResourceAssociation {
+  /** Name of the resource association */
+  name?: string;
+  accessMode?: ResourceAssociationAccessMode;
+}
+export const ResourceAssociation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    accessMode: S.optional(ResourceAssociationAccessMode),
+  }),
+).annotate({
+  identifier: "ResourceAssociation",
+}) as any as S.Schema<ResourceAssociation>;
+
+/** List of Access Rules */
+export type NetworkSecurityProfileAccessRulesList = Array<AccessRule>;
+export const NetworkSecurityProfileAccessRulesList = /*@__PURE__*/ S.Array(
+  AccessRule,
+) as any as S.Schema<NetworkSecurityProfileAccessRulesList>;
+
+/** List of log categories that are enabled */
+export type NetworkSecurityProfileEnabledLogCategoriesList = Array<string>;
+export const NetworkSecurityProfileEnabledLogCategoriesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<NetworkSecurityProfileEnabledLogCategoriesList>;
+
+/** Network security perimeter configuration profile */
+export interface NetworkSecurityProfile {
+  /** Name of the profile */
+  name?: string;
+  /** Current access rules version */
+  accessRulesVersion?: number;
+  /** List of Access Rules */
+  accessRules?: NetworkSecurityProfileAccessRulesList;
+  /** Current diagnostic settings version */
+  diagnosticSettingsVersion?: number;
+  /** List of log categories that are enabled */
+  enabledLogCategories?: NetworkSecurityProfileEnabledLogCategoriesList;
+}
+export const NetworkSecurityProfile = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    accessRulesVersion: S.optional(S.Number),
+    accessRules: S.optional(NetworkSecurityProfileAccessRulesList),
+    diagnosticSettingsVersion: S.optional(S.Number),
+    enabledLogCategories: S.optional(
+      NetworkSecurityProfileEnabledLogCategoriesList,
+    ),
+  }),
+).annotate({
+  identifier: "NetworkSecurityProfile",
+}) as any as S.Schema<NetworkSecurityProfile>;
+
+/** Network security configuration properties. */
+export interface NetworkSecurityPerimeterConfigurationProperties {
+  provisioningState?: NetworkSecurityPerimeterConfigurationProvisioningState;
+  /** List of provisioning issues, if any */
+  provisioningIssues?: NetworkSecurityPerimeterConfigurationPropertiesProvisioningIssuesList;
+  networkSecurityPerimeter?: NetworkSecurityPerimeter;
+  resourceAssociation?: ResourceAssociation;
+  profile?: NetworkSecurityProfile;
+}
+export const NetworkSecurityPerimeterConfigurationProperties =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      provisioningState: S.optional(
+        NetworkSecurityPerimeterConfigurationProvisioningState,
+      ),
+      provisioningIssues: S.optional(
+        NetworkSecurityPerimeterConfigurationPropertiesProvisioningIssuesList,
+      ),
+      networkSecurityPerimeter: S.optional(NetworkSecurityPerimeter),
+      resourceAssociation: S.optional(ResourceAssociation),
+      profile: S.optional(NetworkSecurityProfile),
+    }),
+  ).annotate({
+    identifier: "NetworkSecurityPerimeterConfigurationProperties",
+  }) as any as S.Schema<NetworkSecurityPerimeterConfigurationProperties>;
+
+export interface GetNetworkSecurityPerimeterConfigurationResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  properties?: NetworkSecurityPerimeterConfigurationProperties;
+}
+export const GetNetworkSecurityPerimeterConfigurationResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(NetworkSecurityPerimeterConfigurationProperties),
+    }),
+  ).annotate({
+    identifier: "GetNetworkSecurityPerimeterConfigurationResponse",
+  }) as any as S.Schema<GetNetworkSecurityPerimeterConfigurationResponse>;
+
+export interface GetPoolRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4739,7 +3770,7 @@ export interface PoolGetRequest {
   /** The pool name. This must be unique within the account. */
   poolName: string;
 }
-export const PoolGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetPoolRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -4753,16 +3784,16 @@ export const PoolGetRequest = /*@__PURE__*/ S.suspend(() =>
       apiVersion: "2025-06-01",
     }),
   ),
-).annotate({ identifier: "PoolGetRequest" }) as any as S.Schema<PoolGetRequest>;
+).annotate({ identifier: "GetPoolRequest" }) as any as S.Schema<GetPoolRequest>;
 
 /** The tags of the resource. */
-export type PoolGetResponseTagsMap = { [key: string]: string | undefined };
-export const PoolGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetPoolResponseTagsMap = { [key: string]: string | undefined };
+export const GetPoolResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<PoolGetResponseTagsMap>;
+) as any as S.Schema<GetPoolResponseTagsMap>;
 
-export interface PoolGetResponse {
+export interface GetPoolResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -4778,9 +3809,9 @@ export interface PoolGetResponse {
   /** The ETag of the resource, used for concurrency statements. */
   etag?: string;
   /** The tags of the resource. */
-  tags?: PoolGetResponseTagsMap;
+  tags?: GetPoolResponseTagsMap;
 }
-export const PoolGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetPoolResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -4789,13 +3820,909 @@ export const PoolGetResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(PoolProperties),
     identity: S.optional(BatchPoolIdentity),
     etag: S.optional(S.String),
-    tags: S.optional(PoolGetResponseTagsMap),
+    tags: S.optional(GetPoolResponseTagsMap),
   }),
 ).annotate({
-  identifier: "PoolGetResponse",
-}) as any as S.Schema<PoolGetResponse>;
+  identifier: "GetPoolResponse",
+}) as any as S.Schema<GetPoolResponse>;
 
-export interface PoolListByBatchAccountRequest {
+export interface GetPrivateEndpointConnectionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** A name for the Batch account which must be unique within the region. Batch account names must be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as part of the DNS name that is used to access the Batch service in the region in which the account is created. For example: http://accountname.region.batch.azure.com/. */
+  accountName: string;
+  /** The private endpoint connection name. This must be unique within the account. */
+  privateEndpointConnectionName: string;
+}
+export const GetPrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    privateEndpointConnectionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/privateEndpointConnections/{privateEndpointConnectionName}",
+      code: 200,
+      apiVersion: "2025-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetPrivateEndpointConnectionRequest",
+}) as any as S.Schema<GetPrivateEndpointConnectionRequest>;
+
+/** The tags of the resource. */
+export type GetPrivateEndpointConnectionResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetPrivateEndpointConnectionResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<GetPrivateEndpointConnectionResponseTagsMap>;
+
+export interface GetPrivateEndpointConnectionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties associated with the private endpoint connection. */
+  properties?: PrivateEndpointConnectionProperties;
+  /** The ETag of the resource, used for concurrency statements. */
+  etag?: string;
+  /** The tags of the resource. */
+  tags?: GetPrivateEndpointConnectionResponseTagsMap;
+}
+export const GetPrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(PrivateEndpointConnectionProperties),
+      etag: S.optional(S.String),
+      tags: S.optional(GetPrivateEndpointConnectionResponseTagsMap),
+    }),
+).annotate({
+  identifier: "GetPrivateEndpointConnectionResponse",
+}) as any as S.Schema<GetPrivateEndpointConnectionResponse>;
+
+export interface GetPrivateLinkResourceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** A name for the Batch account which must be unique within the region. Batch account names must be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as part of the DNS name that is used to access the Batch service in the region in which the account is created. For example: http://accountname.region.batch.azure.com/. */
+  accountName: string;
+  /** The private link resource name. This must be unique within the account. */
+  privateLinkResourceName: string;
+}
+export const GetPrivateLinkResourceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    privateLinkResourceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/privateLinkResources/{privateLinkResourceName}",
+      code: 200,
+      apiVersion: "2025-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetPrivateLinkResourceRequest",
+}) as any as S.Schema<GetPrivateLinkResourceRequest>;
+
+/** The list of required members that are used to establish the private link connection. */
+export type PrivateLinkResourcePropertiesRequiredMembersList = Array<string>;
+export const PrivateLinkResourcePropertiesRequiredMembersList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredMembersList>;
+
+/** The list of required zone names for the private DNS resource name */
+export type PrivateLinkResourcePropertiesRequiredZoneNamesList = Array<string>;
+export const PrivateLinkResourcePropertiesRequiredZoneNamesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredZoneNamesList>;
+
+/** Private link resource properties. */
+export interface PrivateLinkResourceProperties {
+  /** The group id is used to establish the private link connection. */
+  groupId?: string;
+  /** The list of required members that are used to establish the private link connection. */
+  requiredMembers?: PrivateLinkResourcePropertiesRequiredMembersList;
+  /** The list of required zone names for the private DNS resource name */
+  requiredZoneNames?: PrivateLinkResourcePropertiesRequiredZoneNamesList;
+}
+export const PrivateLinkResourceProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    groupId: S.optional(S.String),
+    requiredMembers: S.optional(
+      PrivateLinkResourcePropertiesRequiredMembersList,
+    ),
+    requiredZoneNames: S.optional(
+      PrivateLinkResourcePropertiesRequiredZoneNamesList,
+    ),
+  }),
+).annotate({
+  identifier: "PrivateLinkResourceProperties",
+}) as any as S.Schema<PrivateLinkResourceProperties>;
+
+/** The tags of the resource. */
+export type GetPrivateLinkResourceResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetPrivateLinkResourceResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetPrivateLinkResourceResponseTagsMap>;
+
+export interface GetPrivateLinkResourceResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties associated with the private link resource. */
+  properties?: PrivateLinkResourceProperties;
+  /** The ETag of the resource, used for concurrency statements. */
+  etag?: string;
+  /** The tags of the resource. */
+  tags?: GetPrivateLinkResourceResponseTagsMap;
+}
+export const GetPrivateLinkResourceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(PrivateLinkResourceProperties),
+    etag: S.optional(S.String),
+    tags: S.optional(GetPrivateLinkResourceResponseTagsMap),
+  }),
+).annotate({
+  identifier: "GetPrivateLinkResourceResponse",
+}) as any as S.Schema<GetPrivateLinkResourceResponse>;
+
+export interface ListApplicationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** A name for the Batch account which must be unique within the region. Batch account names must be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as part of the DNS name that is used to access the Batch service in the region in which the account is created. For example: http://accountname.region.batch.azure.com/. */
+  accountName: string;
+  /** The maximum number of items to return in the response. */
+  maxresults?: number;
+}
+export const ListApplicationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    maxresults: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/applications",
+      code: 200,
+      apiVersion: "2025-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListApplicationRequest",
+}) as any as S.Schema<ListApplicationRequest>;
+
+/** The tags of the resource. */
+export type ApplicationTagsMap = { [key: string]: string | undefined };
+export const ApplicationTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ApplicationTagsMap>;
+
+/** Contains information about an application in a Batch account. */
+export interface Application {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties associated with the Application. */
+  properties?: ApplicationProperties;
+  /** The ETag of the resource, used for concurrency statements. */
+  etag?: string;
+  /** The tags of the resource. */
+  tags?: ApplicationTagsMap;
+}
+export const Application = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ApplicationProperties),
+    etag: S.optional(S.String),
+    tags: S.optional(ApplicationTagsMap),
+  }),
+).annotate({ identifier: "Application" }) as any as S.Schema<Application>;
+
+/** The Application items on this page */
+export type ListApplicationsResultValueList = Array<Application>;
+export const ListApplicationsResultValueList = /*@__PURE__*/ S.Array(
+  Application,
+) as any as S.Schema<ListApplicationsResultValueList>;
+
+/** The result of performing list applications. */
+export interface ListApplicationsResult {
+  /** The Application items on this page */
+  value: ListApplicationsResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ListApplicationsResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ListApplicationsResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ListApplicationsResult",
+}) as any as S.Schema<ListApplicationsResult>;
+
+export interface ListApplicationPackageRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** A name for the Batch account which must be unique within the region. Batch account names must be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as part of the DNS name that is used to access the Batch service in the region in which the account is created. For example: http://accountname.region.batch.azure.com/. */
+  accountName: string;
+  /** The name of the application. This must be unique within the account. */
+  applicationName: string;
+  /** The maximum number of items to return in the response. */
+  maxresults?: number;
+}
+export const ListApplicationPackageRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    applicationName: S.String.pipe(T.Label()),
+    maxresults: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/applications/{applicationName}/versions",
+      code: 200,
+      apiVersion: "2025-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListApplicationPackageRequest",
+}) as any as S.Schema<ListApplicationPackageRequest>;
+
+/** The tags of the resource. */
+export type ApplicationPackageTagsMap = { [key: string]: string | undefined };
+export const ApplicationPackageTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ApplicationPackageTagsMap>;
+
+/** An application package which represents a particular version of an application. */
+export interface ApplicationPackage {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties associated with the Application Package. */
+  properties?: ApplicationPackageProperties;
+  /** The ETag of the resource, used for concurrency statements. */
+  etag?: string;
+  /** The tags of the resource. */
+  tags?: ApplicationPackageTagsMap;
+}
+export const ApplicationPackage = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ApplicationPackageProperties),
+    etag: S.optional(S.String),
+    tags: S.optional(ApplicationPackageTagsMap),
+  }),
+).annotate({
+  identifier: "ApplicationPackage",
+}) as any as S.Schema<ApplicationPackage>;
+
+/** The ApplicationPackage items on this page */
+export type ListApplicationPackagesResultValueList = Array<ApplicationPackage>;
+export const ListApplicationPackagesResultValueList = /*@__PURE__*/ S.Array(
+  ApplicationPackage,
+) as any as S.Schema<ListApplicationPackagesResultValueList>;
+
+/** The result of performing list application packages. */
+export interface ListApplicationPackagesResult {
+  /** The ApplicationPackage items on this page */
+  value: ListApplicationPackagesResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ListApplicationPackagesResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ListApplicationPackagesResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ListApplicationPackagesResult",
+}) as any as S.Schema<ListApplicationPackagesResult>;
+
+export interface ListBatchAccountRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+}
+export const ListBatchAccountRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Batch/batchAccounts",
+      code: 200,
+      apiVersion: "2025-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListBatchAccountRequest",
+}) as any as S.Schema<ListBatchAccountRequest>;
+
+/** Resource tags. */
+export type BatchAccountTagsMap = { [key: string]: string | undefined };
+export const BatchAccountTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<BatchAccountTagsMap>;
+
+/** Contains information about an Azure Batch account. */
+export interface BatchAccount {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: BatchAccountTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The properties associated with the account. */
+  properties?: BatchAccountProperties;
+  /** The identity of the Batch account. */
+  identity?: BatchAccountIdentity;
+}
+export const BatchAccount = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(BatchAccountTagsMap),
+    location: S.String,
+    properties: S.optional(BatchAccountProperties),
+    identity: S.optional(BatchAccountIdentity),
+  }),
+).annotate({ identifier: "BatchAccount" }) as any as S.Schema<BatchAccount>;
+
+/** The BatchAccount items on this page */
+export type BatchAccountListResultValueList = Array<BatchAccount>;
+export const BatchAccountListResultValueList = /*@__PURE__*/ S.Array(
+  BatchAccount,
+) as any as S.Schema<BatchAccountListResultValueList>;
+
+/** Paged collection of BatchAccount items */
+export interface BatchAccountListResult {
+  /** The BatchAccount items on this page */
+  value: BatchAccountListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const BatchAccountListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: BatchAccountListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "BatchAccountListResult",
+}) as any as S.Schema<BatchAccountListResult>;
+
+export interface ListBatchAccountByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const ListBatchAccountByResourceGroupRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts",
+        code: 200,
+        apiVersion: "2025-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListBatchAccountByResourceGroupRequest",
+}) as any as S.Schema<ListBatchAccountByResourceGroupRequest>;
+
+export interface ListBatchAccountDetectorsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** A name for the Batch account which must be unique within the region. Batch account names must be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as part of the DNS name that is used to access the Batch service in the region in which the account is created. For example: http://accountname.region.batch.azure.com/. */
+  accountName: string;
+}
+export const ListBatchAccountDetectorsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/detectors",
+      code: 200,
+      apiVersion: "2025-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListBatchAccountDetectorsRequest",
+}) as any as S.Schema<ListBatchAccountDetectorsRequest>;
+
+/** The tags of the resource. */
+export type DetectorResponseTagsMap = { [key: string]: string | undefined };
+export const DetectorResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<DetectorResponseTagsMap>;
+
+/** Contains the information for a detector. */
+export interface DetectorResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties associated with the detector. */
+  properties?: DetectorResponseProperties;
+  /** The ETag of the resource, used for concurrency statements. */
+  etag?: string;
+  /** The tags of the resource. */
+  tags?: DetectorResponseTagsMap;
+}
+export const DetectorResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(DetectorResponseProperties),
+    etag: S.optional(S.String),
+    tags: S.optional(DetectorResponseTagsMap),
+  }),
+).annotate({
+  identifier: "DetectorResponse",
+}) as any as S.Schema<DetectorResponse>;
+
+/** The DetectorResponse items on this page */
+export type DetectorListResultValueList = Array<DetectorResponse>;
+export const DetectorListResultValueList = /*@__PURE__*/ S.Array(
+  DetectorResponse,
+) as any as S.Schema<DetectorListResultValueList>;
+
+/** Paged collection of DetectorResponse items */
+export interface DetectorListResult {
+  /** The DetectorResponse items on this page */
+  value: DetectorListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const DetectorListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: DetectorListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DetectorListResult",
+}) as any as S.Schema<DetectorListResult>;
+
+export interface ListBatchAccountOutboundNetworkDependenciesEndpointsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** A name for the Batch account which must be unique within the region. Batch account names must be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as part of the DNS name that is used to access the Batch service in the region in which the account is created. For example: http://accountname.region.batch.azure.com/. */
+  accountName: string;
+}
+export const ListBatchAccountOutboundNetworkDependenciesEndpointsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/outboundNetworkDependenciesEndpoints",
+        code: 200,
+        apiVersion: "2025-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListBatchAccountOutboundNetworkDependenciesEndpointsRequest",
+  }) as any as S.Schema<ListBatchAccountOutboundNetworkDependenciesEndpointsRequest>;
+
+/** Details about the connection between the Batch service and the endpoint. */
+export interface EndpointDetail {
+  /** The port an endpoint is connected to. */
+  port?: number;
+}
+export const EndpointDetail = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    port: S.optional(S.Number),
+  }),
+).annotate({ identifier: "EndpointDetail" }) as any as S.Schema<EndpointDetail>;
+
+/** The list of connection details for this endpoint. */
+export type EndpointDependencyEndpointDetailsList = Array<EndpointDetail>;
+export const EndpointDependencyEndpointDetailsList = /*@__PURE__*/ S.Array(
+  EndpointDetail,
+) as any as S.Schema<EndpointDependencyEndpointDetailsList>;
+
+/** A domain name and connection details used to access a dependency. */
+export interface EndpointDependency {
+  /** The domain name of the dependency. Domain names may be fully qualified or may contain a * wildcard. */
+  domainName?: string;
+  /** Human-readable supplemental information about the dependency and when it is applicable. */
+  description?: string;
+  /** The list of connection details for this endpoint. */
+  endpointDetails?: EndpointDependencyEndpointDetailsList;
+}
+export const EndpointDependency = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    domainName: S.optional(S.String),
+    description: S.optional(S.String),
+    endpointDetails: S.optional(EndpointDependencyEndpointDetailsList),
+  }),
+).annotate({
+  identifier: "EndpointDependency",
+}) as any as S.Schema<EndpointDependency>;
+
+/** The endpoints for this service to which the Batch service makes outbound calls. */
+export type OutboundEnvironmentEndpointEndpointsList =
+  Array<EndpointDependency>;
+export const OutboundEnvironmentEndpointEndpointsList = /*@__PURE__*/ S.Array(
+  EndpointDependency,
+) as any as S.Schema<OutboundEnvironmentEndpointEndpointsList>;
+
+/** A collection of related endpoints from the same service for which the Batch service requires outbound access. */
+export interface OutboundEnvironmentEndpoint {
+  /** The type of service that the Batch service connects to. */
+  category?: string;
+  /** The endpoints for this service to which the Batch service makes outbound calls. */
+  endpoints?: OutboundEnvironmentEndpointEndpointsList;
+}
+export const OutboundEnvironmentEndpoint = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    category: S.optional(S.String),
+    endpoints: S.optional(OutboundEnvironmentEndpointEndpointsList),
+  }),
+).annotate({
+  identifier: "OutboundEnvironmentEndpoint",
+}) as any as S.Schema<OutboundEnvironmentEndpoint>;
+
+/** The OutboundEnvironmentEndpoint items on this page */
+export type OutboundEnvironmentEndpointCollectionValueList =
+  Array<OutboundEnvironmentEndpoint>;
+export const OutboundEnvironmentEndpointCollectionValueList =
+  /*@__PURE__*/ S.Array(
+    OutboundEnvironmentEndpoint,
+  ) as any as S.Schema<OutboundEnvironmentEndpointCollectionValueList>;
+
+/** Values returned by the List operation. */
+export interface OutboundEnvironmentEndpointCollection {
+  /** The OutboundEnvironmentEndpoint items on this page */
+  value: OutboundEnvironmentEndpointCollectionValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const OutboundEnvironmentEndpointCollection = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      value: OutboundEnvironmentEndpointCollectionValueList,
+      nextLink: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "OutboundEnvironmentEndpointCollection",
+}) as any as S.Schema<OutboundEnvironmentEndpointCollection>;
+
+export interface ListLocationSupportedVirtualMachineSkusRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The region for which to retrieve Batch service supported SKUs. */
+  locationName: string;
+  /** The maximum number of items to return in the response. */
+  maxresults?: number;
+  /** OData filter expression. Valid properties for filtering are "familyName". */
+  _filter?: string;
+}
+export const ListLocationSupportedVirtualMachineSkusRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      locationName: S.String.pipe(T.Label()),
+      maxresults: S.optional(S.Number.pipe(T.Query())),
+      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Batch/locations/{locationName}/virtualMachineSkus",
+        code: 200,
+        apiVersion: "2025-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListLocationSupportedVirtualMachineSkusRequest",
+  }) as any as S.Schema<ListLocationSupportedVirtualMachineSkusRequest>;
+
+/** A SKU capability, such as the number of cores. */
+export interface SkuCapability {
+  /** The name of the feature. */
+  name?: string;
+  /** The value of the feature. */
+  value?: string;
+}
+export const SkuCapability = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    value: S.optional(S.String),
+  }),
+).annotate({ identifier: "SkuCapability" }) as any as S.Schema<SkuCapability>;
+
+/** A collection of capabilities which this SKU supports. */
+export type SupportedSkuCapabilitiesList = Array<SkuCapability>;
+export const SupportedSkuCapabilitiesList = /*@__PURE__*/ S.Array(
+  SkuCapability,
+) as any as S.Schema<SupportedSkuCapabilitiesList>;
+
+/** Describes a Batch supported SKU. */
+export interface SupportedSku {
+  /** The name of the SKU. */
+  name?: string;
+  /** The family name of the SKU. */
+  familyName?: string;
+  /** A collection of capabilities which this SKU supports. */
+  capabilities?: SupportedSkuCapabilitiesList;
+  /** The time when Azure Batch service will retire this SKU. */
+  batchSupportEndOfLife?: string;
+}
+export const SupportedSku = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    familyName: S.optional(S.String),
+    capabilities: S.optional(SupportedSkuCapabilitiesList),
+    batchSupportEndOfLife: S.optional(S.String),
+  }),
+).annotate({ identifier: "SupportedSku" }) as any as S.Schema<SupportedSku>;
+
+/** The SupportedSku items on this page */
+export type SupportedSkusResultValueList = Array<SupportedSku>;
+export const SupportedSkusResultValueList = /*@__PURE__*/ S.Array(
+  SupportedSku,
+) as any as S.Schema<SupportedSkusResultValueList>;
+
+/** The Batch List supported SKUs operation response. */
+export interface SupportedSkusResult {
+  /** The SupportedSku items on this page */
+  value: SupportedSkusResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const SupportedSkusResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: SupportedSkusResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SupportedSkusResult",
+}) as any as S.Schema<SupportedSkusResult>;
+
+export interface ListNetworkSecurityPerimeterConfigurationsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** A name for the Batch account which must be unique within the region. Batch account names must be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as part of the DNS name that is used to access the Batch service in the region in which the account is created. For example: http://accountname.region.batch.azure.com/. */
+  accountName: string;
+}
+export const ListNetworkSecurityPerimeterConfigurationsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/networkSecurityPerimeterConfigurations",
+        code: 200,
+        apiVersion: "2025-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListNetworkSecurityPerimeterConfigurationsRequest",
+  }) as any as S.Schema<ListNetworkSecurityPerimeterConfigurationsRequest>;
+
+/** Network security perimeter (NSP) configuration resource */
+export interface NetworkSecurityPerimeterConfigurationListResultValueItem {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  properties?: NetworkSecurityPerimeterConfigurationProperties;
+}
+export const NetworkSecurityPerimeterConfigurationListResultValueItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(NetworkSecurityPerimeterConfigurationProperties),
+    }),
+  ).annotate({
+    identifier: "NetworkSecurityPerimeterConfigurationListResultValueItem",
+  }) as any as S.Schema<NetworkSecurityPerimeterConfigurationListResultValueItem>;
+
+/** The NetworkSecurityPerimeterConfiguration items on this page */
+export type NetworkSecurityPerimeterConfigurationListResultValueList =
+  Array<NetworkSecurityPerimeterConfigurationListResultValueItem>;
+export const NetworkSecurityPerimeterConfigurationListResultValueList =
+  /*@__PURE__*/ S.Array(
+    NetworkSecurityPerimeterConfigurationListResultValueItem,
+  ) as any as S.Schema<NetworkSecurityPerimeterConfigurationListResultValueList>;
+
+/** The response of a NetworkSecurityPerimeterConfiguration list operation. */
+export interface NetworkSecurityPerimeterConfigurationListResult {
+  /** The NetworkSecurityPerimeterConfiguration items on this page */
+  value: NetworkSecurityPerimeterConfigurationListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const NetworkSecurityPerimeterConfigurationListResult =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      value: NetworkSecurityPerimeterConfigurationListResultValueList,
+      nextLink: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "NetworkSecurityPerimeterConfigurationListResult",
+  }) as any as S.Schema<NetworkSecurityPerimeterConfigurationListResult>;
+
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.Batch/operations",
+      code: 200,
+      apiVersion: "2025-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
+
+/** The object that describes the operation. */
+export interface OperationDisplay {
+  /** Friendly name of the resource provider. */
+  provider?: string;
+  /** For example: read, write, delete, or listKeys/action */
+  operation?: string;
+  /** The resource type on which the operation is performed. */
+  resource?: string;
+  /** The friendly name of the operation */
+  description?: string;
+}
+export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provider: S.optional(S.String),
+    operation: S.optional(S.String),
+    resource: S.optional(S.String),
+    description: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationDisplay",
+}) as any as S.Schema<OperationDisplay>;
+
+/** A REST API operation */
+export interface Operation {
+  /** This is of the format {provider}/{resource}/{operation} */
+  name?: string;
+  /** Indicates whether the operation is a data action */
+  isDataAction?: boolean;
+  /** The object that describes the operation. */
+  display?: OperationDisplay;
+  /** The intended executor of the operation. */
+  origin?: string;
+  /** Properties of the operation. */
+  properties?: unknown;
+}
+export const Operation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    isDataAction: S.optional(S.Boolean),
+    display: S.optional(OperationDisplay),
+    origin: S.optional(S.String),
+    properties: S.optional(S.Unknown),
+  }),
+).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
+
+/** The Operation items on this page */
+export type OperationListResultValueList = Array<Operation>;
+export const OperationListResultValueList = /*@__PURE__*/ S.Array(
+  Operation,
+) as any as S.Schema<OperationListResultValueList>;
+
+/** Paged collection of Operation items */
+export interface OperationListResult {
+  /** The Operation items on this page */
+  value: OperationListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const OperationListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: OperationListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationListResult",
+}) as any as S.Schema<OperationListResult>;
+
+export interface ListPoolByBatchAccountRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4809,7 +4736,7 @@ export interface PoolListByBatchAccountRequest {
   /** OData filter expression. Valid properties for filtering are: name properties/allocationState properties/allocationStateTransitionTime properties/creationTime properties/provisioningState properties/provisioningStateTransitionTime properties/lastModified properties/vmSize properties/interNodeCommunication properties/scaleSettings/autoScale properties/scaleSettings/fixedScale */
   _filter?: string;
 }
-export const PoolListByBatchAccountRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListPoolByBatchAccountRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -4826,8 +4753,8 @@ export const PoolListByBatchAccountRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "PoolListByBatchAccountRequest",
-}) as any as S.Schema<PoolListByBatchAccountRequest>;
+  identifier: "ListPoolByBatchAccountRequest",
+}) as any as S.Schema<ListPoolByBatchAccountRequest>;
 
 /** The tags of the resource. */
 export type PoolTagsMap = { [key: string]: string | undefined };
@@ -4889,6 +4816,185 @@ export const ListPoolsResult = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListPoolsResult",
 }) as any as S.Schema<ListPoolsResult>;
+
+export interface ListPrivateEndpointConnectionByBatchAccountRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** A name for the Batch account which must be unique within the region. Batch account names must be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as part of the DNS name that is used to access the Batch service in the region in which the account is created. For example: http://accountname.region.batch.azure.com/. */
+  accountName: string;
+  /** The maximum number of items to return in the response. */
+  maxresults?: number;
+}
+export const ListPrivateEndpointConnectionByBatchAccountRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      maxresults: S.optional(S.Number.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/privateEndpointConnections",
+        code: 200,
+        apiVersion: "2025-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListPrivateEndpointConnectionByBatchAccountRequest",
+  }) as any as S.Schema<ListPrivateEndpointConnectionByBatchAccountRequest>;
+
+/** The PrivateEndpointConnection items on this page */
+export type ListPrivateEndpointConnectionsResultValueList =
+  Array<PrivateEndpointConnection>;
+export const ListPrivateEndpointConnectionsResultValueList =
+  /*@__PURE__*/ S.Array(
+    PrivateEndpointConnection,
+  ) as any as S.Schema<ListPrivateEndpointConnectionsResultValueList>;
+
+/** Values returned by the List operation. */
+export interface ListPrivateEndpointConnectionsResult {
+  /** The PrivateEndpointConnection items on this page */
+  value: ListPrivateEndpointConnectionsResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ListPrivateEndpointConnectionsResult = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      value: ListPrivateEndpointConnectionsResultValueList,
+      nextLink: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "ListPrivateEndpointConnectionsResult",
+}) as any as S.Schema<ListPrivateEndpointConnectionsResult>;
+
+export interface ListPrivateLinkResourceByBatchAccountRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** A name for the Batch account which must be unique within the region. Batch account names must be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as part of the DNS name that is used to access the Batch service in the region in which the account is created. For example: http://accountname.region.batch.azure.com/. */
+  accountName: string;
+  /** The maximum number of items to return in the response. */
+  maxresults?: number;
+}
+export const ListPrivateLinkResourceByBatchAccountRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      maxresults: S.optional(S.Number.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/privateLinkResources",
+        code: 200,
+        apiVersion: "2025-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListPrivateLinkResourceByBatchAccountRequest",
+  }) as any as S.Schema<ListPrivateLinkResourceByBatchAccountRequest>;
+
+/** The tags of the resource. */
+export type PrivateLinkResourceTagsMap = { [key: string]: string | undefined };
+export const PrivateLinkResourceTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<PrivateLinkResourceTagsMap>;
+
+/** Contains information about a private link resource. */
+export interface PrivateLinkResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties associated with the private link resource. */
+  properties?: PrivateLinkResourceProperties;
+  /** The ETag of the resource, used for concurrency statements. */
+  etag?: string;
+  /** The tags of the resource. */
+  tags?: PrivateLinkResourceTagsMap;
+}
+export const PrivateLinkResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(PrivateLinkResourceProperties),
+    etag: S.optional(S.String),
+    tags: S.optional(PrivateLinkResourceTagsMap),
+  }),
+).annotate({
+  identifier: "PrivateLinkResource",
+}) as any as S.Schema<PrivateLinkResource>;
+
+/** The PrivateLinkResource items on this page */
+export type ListPrivateLinkResourcesResultValueList =
+  Array<PrivateLinkResource>;
+export const ListPrivateLinkResourcesResultValueList = /*@__PURE__*/ S.Array(
+  PrivateLinkResource,
+) as any as S.Schema<ListPrivateLinkResourcesResultValueList>;
+
+/** Values returned by the List operation. */
+export interface ListPrivateLinkResourcesResult {
+  /** The PrivateLinkResource items on this page */
+  value: ListPrivateLinkResourcesResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ListPrivateLinkResourcesResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ListPrivateLinkResourcesResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ListPrivateLinkResourcesResult",
+}) as any as S.Schema<ListPrivateLinkResourcesResult>;
+
+export interface NetworkSecurityPerimeterReconcileConfigurationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** A name for the Batch account which must be unique within the region. Batch account names must be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as part of the DNS name that is used to access the Batch service in the region in which the account is created. For example: http://accountname.region.batch.azure.com/. */
+  accountName: string;
+  /** The name for a network security perimeter configuration */
+  networkSecurityPerimeterConfigurationName: string;
+}
+export const NetworkSecurityPerimeterReconcileConfigurationRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      networkSecurityPerimeterConfigurationName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/networkSecurityPerimeterConfigurations/{networkSecurityPerimeterConfigurationName}/reconcile",
+        code: 200,
+        apiVersion: "2025-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "NetworkSecurityPerimeterReconcileConfigurationRequest",
+  }) as any as S.Schema<NetworkSecurityPerimeterReconcileConfigurationRequest>;
+
+export interface NetworkSecurityPerimeterReconcileConfigurationResponse {}
+export const NetworkSecurityPerimeterReconcileConfigurationResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "NetworkSecurityPerimeterReconcileConfigurationResponse",
+  }) as any as S.Schema<NetworkSecurityPerimeterReconcileConfigurationResponse>;
 
 export interface PoolStopResizeRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -4960,14 +5066,261 @@ export const PoolStopResizeResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "PoolStopResizeResponse",
 }) as any as S.Schema<PoolStopResizeResponse>;
 
-/** The tags of the resource. */
-export type PoolUpdateRequestTagsMap = { [key: string]: string | undefined };
-export const PoolUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<PoolUpdateRequestTagsMap>;
+/** The type of account key to regenerate. */
+export type AccountKeyType = "Primary" | "Secondary";
+export const AccountKeyType = /*@__PURE__*/ S.String;
 
-export interface PoolUpdateRequest {
+export interface RegenerateBatchAccountKeyRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** A name for the Batch account which must be unique within the region. Batch account names must be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as part of the DNS name that is used to access the Batch service in the region in which the account is created. For example: http://accountname.region.batch.azure.com/. */
+  accountName: string;
+  /** The type of account key to regenerate. */
+  keyName: AccountKeyType | (string & {});
+}
+export const RegenerateBatchAccountKeyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    keyName: AccountKeyType,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/regenerateKeys",
+      code: 200,
+      apiVersion: "2025-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "RegenerateBatchAccountKeyRequest",
+}) as any as S.Schema<RegenerateBatchAccountKeyRequest>;
+
+/** The tags of the resource. */
+export type UpdateApplicationRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateApplicationRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateApplicationRequestTagsMap>;
+
+export interface UpdateApplicationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** A name for the Batch account which must be unique within the region. Batch account names must be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as part of the DNS name that is used to access the Batch service in the region in which the account is created. For example: http://accountname.region.batch.azure.com/. */
+  accountName: string;
+  /** The name of the application. This must be unique within the account. */
+  applicationName: string;
+  /** The properties associated with the Application. */
+  properties?: ApplicationProperties;
+  /** The tags of the resource. */
+  tags?: UpdateApplicationRequestTagsMap;
+}
+export const UpdateApplicationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    applicationName: S.String.pipe(T.Label()),
+    properties: S.optional(ApplicationProperties),
+    tags: S.optional(UpdateApplicationRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/applications/{applicationName}",
+      code: 200,
+      apiVersion: "2025-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateApplicationRequest",
+}) as any as S.Schema<UpdateApplicationRequest>;
+
+/** The tags of the resource. */
+export type UpdateApplicationResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateApplicationResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateApplicationResponseTagsMap>;
+
+export interface UpdateApplicationResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties associated with the Application. */
+  properties?: ApplicationProperties;
+  /** The ETag of the resource, used for concurrency statements. */
+  etag?: string;
+  /** The tags of the resource. */
+  tags?: UpdateApplicationResponseTagsMap;
+}
+export const UpdateApplicationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ApplicationProperties),
+    etag: S.optional(S.String),
+    tags: S.optional(UpdateApplicationResponseTagsMap),
+  }),
+).annotate({
+  identifier: "UpdateApplicationResponse",
+}) as any as S.Schema<UpdateApplicationResponse>;
+
+/** The user-specified tags associated with the account. */
+export type UpdateBatchAccountRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateBatchAccountRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateBatchAccountRequestTagsMap>;
+
+/** List of allowed authentication modes for the Batch account that can be used to authenticate with the data plane. This does not affect authentication with the control plane. */
+export type BatchAccountUpdatePropertiesAllowedAuthenticationModesList = Array<
+  AuthenticationMode | (string & {})
+>;
+export const BatchAccountUpdatePropertiesAllowedAuthenticationModesList =
+  /*@__PURE__*/ S.Array(
+    AuthenticationMode,
+  ) as any as S.Schema<BatchAccountUpdatePropertiesAllowedAuthenticationModesList>;
+
+/** The network access type for operating on the resources in the Batch account. */
+export type BatchAccountUpdatePropertiesPublicNetworkAccess =
+  | "Enabled"
+  | "Disabled"
+  | "SecuredByPerimeter";
+export const BatchAccountUpdatePropertiesPublicNetworkAccess =
+  /*@__PURE__*/ S.String;
+
+/** The properties of a Batch account. */
+export interface BatchAccountUpdateProperties {
+  /** The properties related to the auto-storage account. */
+  autoStorage?: AutoStorageBaseProperties;
+  /** Configures how customer data is encrypted inside the Batch account. By default, accounts are encrypted using a Microsoft managed key. For additional control, a customer-managed key can be used instead. */
+  encryption?: EncryptionProperties;
+  /** List of allowed authentication modes for the Batch account that can be used to authenticate with the data plane. This does not affect authentication with the control plane. */
+  allowedAuthenticationModes?: BatchAccountUpdatePropertiesAllowedAuthenticationModesList | null;
+  /** The network access type for operating on the resources in the Batch account. */
+  publicNetworkAccess?:
+    | BatchAccountUpdatePropertiesPublicNetworkAccess
+    | (string & {});
+  /** The network profile only takes effect when publicNetworkAccess is enabled. */
+  networkProfile?: NetworkProfile;
+}
+export const BatchAccountUpdateProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    autoStorage: S.optional(AutoStorageBaseProperties),
+    encryption: S.optional(EncryptionProperties),
+    allowedAuthenticationModes: S.optional(
+      S.NullOr(BatchAccountUpdatePropertiesAllowedAuthenticationModesList),
+    ),
+    publicNetworkAccess: S.optional(
+      BatchAccountUpdatePropertiesPublicNetworkAccess,
+    ),
+    networkProfile: S.optional(NetworkProfile),
+  }),
+).annotate({
+  identifier: "BatchAccountUpdateProperties",
+}) as any as S.Schema<BatchAccountUpdateProperties>;
+
+export interface UpdateBatchAccountRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** A name for the Batch account which must be unique within the region. Batch account names must be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as part of the DNS name that is used to access the Batch service in the region in which the account is created. For example: http://accountname.region.batch.azure.com/. */
+  accountName: string;
+  /** The user-specified tags associated with the account. */
+  tags?: UpdateBatchAccountRequestTagsMap;
+  /** The properties of the account. */
+  properties?: BatchAccountUpdateProperties;
+  /** The identity of the Batch account. */
+  identity?: BatchAccountIdentityInput;
+}
+export const UpdateBatchAccountRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateBatchAccountRequestTagsMap),
+    properties: S.optional(BatchAccountUpdateProperties),
+    identity: S.optional(BatchAccountIdentityInput),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}",
+      code: 200,
+      apiVersion: "2025-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateBatchAccountRequest",
+}) as any as S.Schema<UpdateBatchAccountRequest>;
+
+/** Resource tags. */
+export type UpdateBatchAccountResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateBatchAccountResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateBatchAccountResponseTagsMap>;
+
+export interface UpdateBatchAccountResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateBatchAccountResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The properties associated with the account. */
+  properties?: BatchAccountProperties;
+  /** The identity of the Batch account. */
+  identity?: BatchAccountIdentity;
+}
+export const UpdateBatchAccountResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateBatchAccountResponseTagsMap),
+    location: S.String,
+    properties: S.optional(BatchAccountProperties),
+    identity: S.optional(BatchAccountIdentity),
+  }),
+).annotate({
+  identifier: "UpdateBatchAccountResponse",
+}) as any as S.Schema<UpdateBatchAccountResponse>;
+
+/** The tags of the resource. */
+export type UpdatePoolRequestTagsMap = { [key: string]: string | undefined };
+export const UpdatePoolRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdatePoolRequestTagsMap>;
+
+export interface UpdatePoolRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4981,9 +5334,9 @@ export interface PoolUpdateRequest {
   /** The type of identity used for the Batch Pool. */
   identity?: BatchPoolIdentityInput;
   /** The tags of the resource. */
-  tags?: PoolUpdateRequestTagsMap;
+  tags?: UpdatePoolRequestTagsMap;
 }
-export const PoolUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdatePoolRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -4991,7 +5344,7 @@ export const PoolUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     poolName: S.String.pipe(T.Label()),
     properties: S.optional(PoolPropertiesInput),
     identity: S.optional(BatchPoolIdentityInput),
-    tags: S.optional(PoolUpdateRequestTagsMap),
+    tags: S.optional(UpdatePoolRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -5001,17 +5354,17 @@ export const PoolUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "PoolUpdateRequest",
-}) as any as S.Schema<PoolUpdateRequest>;
+  identifier: "UpdatePoolRequest",
+}) as any as S.Schema<UpdatePoolRequest>;
 
 /** The tags of the resource. */
-export type PoolUpdateResponseTagsMap = { [key: string]: string | undefined };
-export const PoolUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type UpdatePoolResponseTagsMap = { [key: string]: string | undefined };
+export const UpdatePoolResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<PoolUpdateResponseTagsMap>;
+) as any as S.Schema<UpdatePoolResponseTagsMap>;
 
-export interface PoolUpdateResponse {
+export interface UpdatePoolResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -5027,9 +5380,9 @@ export interface PoolUpdateResponse {
   /** The ETag of the resource, used for concurrency statements. */
   etag?: string;
   /** The tags of the resource. */
-  tags?: PoolUpdateResponseTagsMap;
+  tags?: UpdatePoolResponseTagsMap;
 }
-export const PoolUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdatePoolResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -5038,170 +5391,11 @@ export const PoolUpdateResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(PoolProperties),
     identity: S.optional(BatchPoolIdentity),
     etag: S.optional(S.String),
-    tags: S.optional(PoolUpdateResponseTagsMap),
+    tags: S.optional(UpdatePoolResponseTagsMap),
   }),
 ).annotate({
-  identifier: "PoolUpdateResponse",
-}) as any as S.Schema<PoolUpdateResponse>;
-
-export interface PrivateEndpointConnectionDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** A name for the Batch account which must be unique within the region. Batch account names must be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as part of the DNS name that is used to access the Batch service in the region in which the account is created. For example: http://accountname.region.batch.azure.com/. */
-  accountName: string;
-  /** The private endpoint connection name. This must be unique within the account. */
-  privateEndpointConnectionName: string;
-}
-export const PrivateEndpointConnectionDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2025-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateEndpointConnectionDeleteRequest",
-}) as any as S.Schema<PrivateEndpointConnectionDeleteRequest>;
-
-export interface PrivateEndpointConnectionDeleteResponse {}
-export const PrivateEndpointConnectionDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "PrivateEndpointConnectionDeleteResponse",
-}) as any as S.Schema<PrivateEndpointConnectionDeleteResponse>;
-
-export interface PrivateEndpointConnectionGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** A name for the Batch account which must be unique within the region. Batch account names must be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as part of the DNS name that is used to access the Batch service in the region in which the account is created. For example: http://accountname.region.batch.azure.com/. */
-  accountName: string;
-  /** The private endpoint connection name. This must be unique within the account. */
-  privateEndpointConnectionName: string;
-}
-export const PrivateEndpointConnectionGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    privateEndpointConnectionName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/privateEndpointConnections/{privateEndpointConnectionName}",
-      code: 200,
-      apiVersion: "2025-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "PrivateEndpointConnectionGetRequest",
-}) as any as S.Schema<PrivateEndpointConnectionGetRequest>;
-
-/** The tags of the resource. */
-export type PrivateEndpointConnectionGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const PrivateEndpointConnectionGetResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<PrivateEndpointConnectionGetResponseTagsMap>;
-
-export interface PrivateEndpointConnectionGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties associated with the private endpoint connection. */
-  properties?: PrivateEndpointConnectionProperties;
-  /** The ETag of the resource, used for concurrency statements. */
-  etag?: string;
-  /** The tags of the resource. */
-  tags?: PrivateEndpointConnectionGetResponseTagsMap;
-}
-export const PrivateEndpointConnectionGetResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(PrivateEndpointConnectionProperties),
-      etag: S.optional(S.String),
-      tags: S.optional(PrivateEndpointConnectionGetResponseTagsMap),
-    }),
-).annotate({
-  identifier: "PrivateEndpointConnectionGetResponse",
-}) as any as S.Schema<PrivateEndpointConnectionGetResponse>;
-
-export interface PrivateEndpointConnectionListByBatchAccountRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** A name for the Batch account which must be unique within the region. Batch account names must be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as part of the DNS name that is used to access the Batch service in the region in which the account is created. For example: http://accountname.region.batch.azure.com/. */
-  accountName: string;
-  /** The maximum number of items to return in the response. */
-  maxresults?: number;
-}
-export const PrivateEndpointConnectionListByBatchAccountRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      maxresults: S.optional(S.Number.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/privateEndpointConnections",
-        code: 200,
-        apiVersion: "2025-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "PrivateEndpointConnectionListByBatchAccountRequest",
-  }) as any as S.Schema<PrivateEndpointConnectionListByBatchAccountRequest>;
-
-/** The PrivateEndpointConnection items on this page */
-export type ListPrivateEndpointConnectionsResultValueList =
-  Array<PrivateEndpointConnection>;
-export const ListPrivateEndpointConnectionsResultValueList =
-  /*@__PURE__*/ S.Array(
-    PrivateEndpointConnection,
-  ) as any as S.Schema<ListPrivateEndpointConnectionsResultValueList>;
-
-/** Values returned by the List operation. */
-export interface ListPrivateEndpointConnectionsResult {
-  /** The PrivateEndpointConnection items on this page */
-  value: ListPrivateEndpointConnectionsResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ListPrivateEndpointConnectionsResult = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      value: ListPrivateEndpointConnectionsResultValueList,
-      nextLink: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "ListPrivateEndpointConnectionsResult",
-}) as any as S.Schema<ListPrivateEndpointConnectionsResult>;
+  identifier: "UpdatePoolResponse",
+}) as any as S.Schema<UpdatePoolResponse>;
 
 /** The private link service connection state of the private endpoint connection */
 export interface PrivateLinkServiceConnectionStateInput {
@@ -5237,16 +5431,16 @@ export const PrivateEndpointConnectionPropertiesInput = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<PrivateEndpointConnectionPropertiesInput>;
 
 /** The tags of the resource. */
-export type PrivateEndpointConnectionUpdateRequestTagsMap = {
+export type UpdatePrivateEndpointConnectionRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const PrivateEndpointConnectionUpdateRequestTagsMap =
+export const UpdatePrivateEndpointConnectionRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<PrivateEndpointConnectionUpdateRequestTagsMap>;
+  ) as any as S.Schema<UpdatePrivateEndpointConnectionRequestTagsMap>;
 
-export interface PrivateEndpointConnectionUpdateRequest {
+export interface UpdatePrivateEndpointConnectionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5258,9 +5452,9 @@ export interface PrivateEndpointConnectionUpdateRequest {
   /** The properties associated with the private endpoint connection. */
   properties?: PrivateEndpointConnectionPropertiesInput;
   /** The tags of the resource. */
-  tags?: PrivateEndpointConnectionUpdateRequestTagsMap;
+  tags?: UpdatePrivateEndpointConnectionRequestTagsMap;
 }
-export const PrivateEndpointConnectionUpdateRequest = /*@__PURE__*/ S.suspend(
+export const UpdatePrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -5268,7 +5462,7 @@ export const PrivateEndpointConnectionUpdateRequest = /*@__PURE__*/ S.suspend(
       accountName: S.String.pipe(T.Label()),
       privateEndpointConnectionName: S.String.pipe(T.Label()),
       properties: S.optional(PrivateEndpointConnectionPropertiesInput),
-      tags: S.optional(PrivateEndpointConnectionUpdateRequestTagsMap),
+      tags: S.optional(UpdatePrivateEndpointConnectionRequestTagsMap),
     }).pipe(
       T.Http({
         method: "PATCH",
@@ -5278,20 +5472,20 @@ export const PrivateEndpointConnectionUpdateRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "PrivateEndpointConnectionUpdateRequest",
-}) as any as S.Schema<PrivateEndpointConnectionUpdateRequest>;
+  identifier: "UpdatePrivateEndpointConnectionRequest",
+}) as any as S.Schema<UpdatePrivateEndpointConnectionRequest>;
 
 /** The tags of the resource. */
-export type PrivateEndpointConnectionUpdateResponseTagsMap = {
+export type UpdatePrivateEndpointConnectionResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const PrivateEndpointConnectionUpdateResponseTagsMap =
+export const UpdatePrivateEndpointConnectionResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<PrivateEndpointConnectionUpdateResponseTagsMap>;
+  ) as any as S.Schema<UpdatePrivateEndpointConnectionResponseTagsMap>;
 
-export interface PrivateEndpointConnectionUpdateResponse {
+export interface UpdatePrivateEndpointConnectionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -5305,9 +5499,9 @@ export interface PrivateEndpointConnectionUpdateResponse {
   /** The ETag of the resource, used for concurrency statements. */
   etag?: string;
   /** The tags of the resource. */
-  tags?: PrivateEndpointConnectionUpdateResponseTagsMap;
+  tags?: UpdatePrivateEndpointConnectionResponseTagsMap;
 }
-export const PrivateEndpointConnectionUpdateResponse = /*@__PURE__*/ S.suspend(
+export const UpdatePrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -5316,502 +5510,22 @@ export const PrivateEndpointConnectionUpdateResponse = /*@__PURE__*/ S.suspend(
       systemData: S.optional(SystemData),
       properties: S.optional(PrivateEndpointConnectionProperties),
       etag: S.optional(S.String),
-      tags: S.optional(PrivateEndpointConnectionUpdateResponseTagsMap),
+      tags: S.optional(UpdatePrivateEndpointConnectionResponseTagsMap),
     }),
 ).annotate({
-  identifier: "PrivateEndpointConnectionUpdateResponse",
-}) as any as S.Schema<PrivateEndpointConnectionUpdateResponse>;
+  identifier: "UpdatePrivateEndpointConnectionResponse",
+}) as any as S.Schema<UpdatePrivateEndpointConnectionResponse>;
 
-export interface PrivateLinkResourceGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** A name for the Batch account which must be unique within the region. Batch account names must be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as part of the DNS name that is used to access the Batch service in the region in which the account is created. For example: http://accountname.region.batch.azure.com/. */
-  accountName: string;
-  /** The private link resource name. This must be unique within the account. */
-  privateLinkResourceName: string;
-}
-export const PrivateLinkResourceGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    privateLinkResourceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/privateLinkResources/{privateLinkResourceName}",
-      code: 200,
-      apiVersion: "2025-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "PrivateLinkResourceGetRequest",
-}) as any as S.Schema<PrivateLinkResourceGetRequest>;
-
-/** The list of required members that are used to establish the private link connection. */
-export type PrivateLinkResourcePropertiesRequiredMembersList = Array<string>;
-export const PrivateLinkResourcePropertiesRequiredMembersList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredMembersList>;
-
-/** The list of required zone names for the private DNS resource name */
-export type PrivateLinkResourcePropertiesRequiredZoneNamesList = Array<string>;
-export const PrivateLinkResourcePropertiesRequiredZoneNamesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredZoneNamesList>;
-
-/** Private link resource properties. */
-export interface PrivateLinkResourceProperties {
-  /** The group id is used to establish the private link connection. */
-  groupId?: string;
-  /** The list of required members that are used to establish the private link connection. */
-  requiredMembers?: PrivateLinkResourcePropertiesRequiredMembersList;
-  /** The list of required zone names for the private DNS resource name */
-  requiredZoneNames?: PrivateLinkResourcePropertiesRequiredZoneNamesList;
-}
-export const PrivateLinkResourceProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    groupId: S.optional(S.String),
-    requiredMembers: S.optional(
-      PrivateLinkResourcePropertiesRequiredMembersList,
-    ),
-    requiredZoneNames: S.optional(
-      PrivateLinkResourcePropertiesRequiredZoneNamesList,
-    ),
-  }),
-).annotate({
-  identifier: "PrivateLinkResourceProperties",
-}) as any as S.Schema<PrivateLinkResourceProperties>;
-
-/** The tags of the resource. */
-export type PrivateLinkResourceGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const PrivateLinkResourceGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<PrivateLinkResourceGetResponseTagsMap>;
-
-export interface PrivateLinkResourceGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties associated with the private link resource. */
-  properties?: PrivateLinkResourceProperties;
-  /** The ETag of the resource, used for concurrency statements. */
-  etag?: string;
-  /** The tags of the resource. */
-  tags?: PrivateLinkResourceGetResponseTagsMap;
-}
-export const PrivateLinkResourceGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(PrivateLinkResourceProperties),
-    etag: S.optional(S.String),
-    tags: S.optional(PrivateLinkResourceGetResponseTagsMap),
-  }),
-).annotate({
-  identifier: "PrivateLinkResourceGetResponse",
-}) as any as S.Schema<PrivateLinkResourceGetResponse>;
-
-export interface PrivateLinkResourceListByBatchAccountRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** A name for the Batch account which must be unique within the region. Batch account names must be between 3 and 24 characters in length and must use only numbers and lowercase letters. This name is used as part of the DNS name that is used to access the Batch service in the region in which the account is created. For example: http://accountname.region.batch.azure.com/. */
-  accountName: string;
-  /** The maximum number of items to return in the response. */
-  maxresults?: number;
-}
-export const PrivateLinkResourceListByBatchAccountRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      maxresults: S.optional(S.Number.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/privateLinkResources",
-        code: 200,
-        apiVersion: "2025-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "PrivateLinkResourceListByBatchAccountRequest",
-  }) as any as S.Schema<PrivateLinkResourceListByBatchAccountRequest>;
-
-/** The tags of the resource. */
-export type PrivateLinkResourceTagsMap = { [key: string]: string | undefined };
-export const PrivateLinkResourceTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<PrivateLinkResourceTagsMap>;
-
-/** Contains information about a private link resource. */
-export interface PrivateLinkResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties associated with the private link resource. */
-  properties?: PrivateLinkResourceProperties;
-  /** The ETag of the resource, used for concurrency statements. */
-  etag?: string;
-  /** The tags of the resource. */
-  tags?: PrivateLinkResourceTagsMap;
-}
-export const PrivateLinkResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(PrivateLinkResourceProperties),
-    etag: S.optional(S.String),
-    tags: S.optional(PrivateLinkResourceTagsMap),
-  }),
-).annotate({
-  identifier: "PrivateLinkResource",
-}) as any as S.Schema<PrivateLinkResource>;
-
-/** The PrivateLinkResource items on this page */
-export type ListPrivateLinkResourcesResultValueList =
-  Array<PrivateLinkResource>;
-export const ListPrivateLinkResourcesResultValueList = /*@__PURE__*/ S.Array(
-  PrivateLinkResource,
-) as any as S.Schema<ListPrivateLinkResourcesResultValueList>;
-
-/** Values returned by the List operation. */
-export interface ListPrivateLinkResourcesResult {
-  /** The PrivateLinkResource items on this page */
-  value: ListPrivateLinkResourcesResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ListPrivateLinkResourcesResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: ListPrivateLinkResourcesResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ListPrivateLinkResourcesResult",
-}) as any as S.Schema<ListPrivateLinkResourcesResult>;
-
-export type ApplicationCreateError = AzureOpError;
-/** Adds an application to the specified Batch account. */
-export const ApplicationCreate: API.OperationMethod<
-  ApplicationCreateRequest,
-  ApplicationCreateResponse,
-  ApplicationCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationCreateRequest,
-  output: ApplicationCreateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationDeleteError = AzureOpError;
-/** Deletes an application. */
-export const ApplicationDelete: API.OperationMethod<
-  ApplicationDeleteRequest,
-  ApplicationDeleteResponse,
-  ApplicationDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationDeleteRequest,
-  output: ApplicationDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationGetError = AzureOpError;
-/** Gets information about the specified application. */
-export const ApplicationGet: API.OperationMethod<
-  ApplicationGetRequest,
-  ApplicationGetResponse,
-  ApplicationGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationGetRequest,
-  output: ApplicationGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationListError = AzureOpError;
-/** Lists all of the applications in the specified account. */
-export const ApplicationList: API.OperationMethod<
-  ApplicationListRequest,
-  ListApplicationsResult,
-  ApplicationListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationListRequest,
-  output: ListApplicationsResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationPackageActivateError = AzureOpError;
+export type ActivateApplicationPackageError = AzureOpError;
 /** Activates the specified application package. This should be done after the `ApplicationPackage` was created and uploaded. This needs to be done before an `ApplicationPackage` can be used on Pools or Tasks. */
-export const ApplicationPackageActivate: API.OperationMethod<
-  ApplicationPackageActivateRequest,
-  ApplicationPackageActivateResponse,
-  ApplicationPackageActivateError,
+export const ActivateApplicationPackage: API.OperationMethod<
+  ActivateApplicationPackageRequest,
+  ActivateApplicationPackageResponse,
+  ActivateApplicationPackageError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationPackageActivateRequest,
-  output: ApplicationPackageActivateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationPackageCreateError = AzureOpError;
-/** Creates an application package record. The record contains a storageUrl where the package should be uploaded to. Once it is uploaded the `ApplicationPackage` needs to be activated using `ApplicationPackageActive` before it can be used. If the auto storage account was configured to use storage keys, the URL returned will contain a SAS. */
-export const ApplicationPackageCreate: API.OperationMethod<
-  ApplicationPackageCreateRequest,
-  ApplicationPackageCreateResponse,
-  ApplicationPackageCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationPackageCreateRequest,
-  output: ApplicationPackageCreateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationPackageDeleteError = AzureOpError;
-/** Deletes an application package record and its associated binary file. */
-export const ApplicationPackageDelete: API.OperationMethod<
-  ApplicationPackageDeleteRequest,
-  ApplicationPackageDeleteResponse,
-  ApplicationPackageDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationPackageDeleteRequest,
-  output: ApplicationPackageDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationPackageGetError = AzureOpError;
-/** Gets information about the specified application package. */
-export const ApplicationPackageGet: API.OperationMethod<
-  ApplicationPackageGetRequest,
-  ApplicationPackageGetResponse,
-  ApplicationPackageGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationPackageGetRequest,
-  output: ApplicationPackageGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationPackageListError = AzureOpError;
-/** Lists all of the application packages in the specified application. */
-export const ApplicationPackageList: API.OperationMethod<
-  ApplicationPackageListRequest,
-  ListApplicationPackagesResult,
-  ApplicationPackageListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationPackageListRequest,
-  output: ListApplicationPackagesResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationUpdateError = AzureOpError;
-/** Updates settings for the specified application. */
-export const ApplicationUpdate: API.OperationMethod<
-  ApplicationUpdateRequest,
-  ApplicationUpdateResponse,
-  ApplicationUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationUpdateRequest,
-  output: ApplicationUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BatchAccountCreateError = AzureOpError;
-/** Creates a new Batch account with the specified parameters. Existing accounts cannot be updated with this API and should instead be updated with the Update Batch Account API. */
-export const BatchAccountCreate: API.OperationMethod<
-  BatchAccountCreateRequest,
-  BatchAccountCreateResponse,
-  BatchAccountCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BatchAccountCreateRequest,
-  output: BatchAccountCreateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BatchAccountDeleteError = AzureOpError;
-/** Deletes the specified Batch account. */
-export const BatchAccountDelete: API.OperationMethod<
-  BatchAccountDeleteRequest,
-  BatchAccountDeleteResponse,
-  BatchAccountDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BatchAccountDeleteRequest,
-  output: BatchAccountDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BatchAccountGetError = AzureOpError;
-/** Gets information about the specified Batch account. */
-export const BatchAccountGet: API.OperationMethod<
-  BatchAccountGetRequest,
-  BatchAccountGetResponse,
-  BatchAccountGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BatchAccountGetRequest,
-  output: BatchAccountGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BatchAccountGetDetectorError = AzureOpError;
-/** Gets information about the given detector for a given Batch account. */
-export const BatchAccountGetDetector: API.OperationMethod<
-  BatchAccountGetDetectorRequest,
-  BatchAccountGetDetectorResponse,
-  BatchAccountGetDetectorError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BatchAccountGetDetectorRequest,
-  output: BatchAccountGetDetectorResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BatchAccountGetKeysError = AzureOpError;
-/** Gets the account keys for the specified Batch account. This operation applies only to Batch accounts with allowedAuthenticationModes containing 'SharedKey'. If the Batch account doesn't contain 'SharedKey' in its allowedAuthenticationMode, clients cannot use shared keys to authenticate, and must use another allowedAuthenticationModes instead. In this case, getting the keys will fail. */
-export const BatchAccountGetKeys: API.OperationMethod<
-  BatchAccountGetKeysRequest,
-  BatchAccountKeys,
-  BatchAccountGetKeysError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BatchAccountGetKeysRequest,
-  output: BatchAccountKeys,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BatchAccountListError = AzureOpError;
-/** Gets information about the Batch accounts associated with the subscription. */
-export const BatchAccountList: API.OperationMethod<
-  BatchAccountListRequest,
-  BatchAccountListResult,
-  BatchAccountListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BatchAccountListRequest,
-  output: BatchAccountListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BatchAccountListByResourceGroupError = AzureOpError;
-/** Gets information about the Batch accounts associated with the specified resource group. */
-export const BatchAccountListByResourceGroup: API.OperationMethod<
-  BatchAccountListByResourceGroupRequest,
-  BatchAccountListResult,
-  BatchAccountListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BatchAccountListByResourceGroupRequest,
-  output: BatchAccountListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BatchAccountListDetectorsError = AzureOpError;
-/** Gets information about the detectors available for a given Batch account. */
-export const BatchAccountListDetectors: API.OperationMethod<
-  BatchAccountListDetectorsRequest,
-  DetectorListResult,
-  BatchAccountListDetectorsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BatchAccountListDetectorsRequest,
-  output: DetectorListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BatchAccountListOutboundNetworkDependenciesEndpointsError =
-  AzureOpError;
-/** Lists the endpoints that a Batch Compute Node under this Batch Account may call as part of Batch service administration. If you are deploying a Pool inside of a virtual network that you specify, you must make sure your network allows outbound access to these endpoints. Failure to allow access to these endpoints may cause Batch to mark the affected nodes as unusable. For more information about creating a pool inside of a virtual network, see https://learn.microsoft.com/azure/batch/batch-virtual-network. */
-export const BatchAccountListOutboundNetworkDependenciesEndpoints: API.OperationMethod<
-  BatchAccountListOutboundNetworkDependenciesEndpointsRequest,
-  OutboundEnvironmentEndpointCollection,
-  BatchAccountListOutboundNetworkDependenciesEndpointsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BatchAccountListOutboundNetworkDependenciesEndpointsRequest,
-  output: OutboundEnvironmentEndpointCollection,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BatchAccountRegenerateKeyError = AzureOpError;
-/** Regenerates the specified account key for the Batch account. This operation applies only to Batch accounts with allowedAuthenticationModes containing 'SharedKey'. If the Batch account doesn't contain 'SharedKey' in its allowedAuthenticationMode, clients cannot use shared keys to authenticate, and must use another allowedAuthenticationModes instead. In this case, regenerating the keys will fail. */
-export const BatchAccountRegenerateKey: API.OperationMethod<
-  BatchAccountRegenerateKeyRequest,
-  BatchAccountKeys,
-  BatchAccountRegenerateKeyError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BatchAccountRegenerateKeyRequest,
-  output: BatchAccountKeys,
+  input: ActivateApplicationPackageRequest,
+  output: ActivateApplicationPackageResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -5832,91 +5546,497 @@ export const BatchAccountSynchronizeAutoStorageKeys: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type BatchAccountUpdateError = AzureOpError;
-/** Updates the properties of an existing Batch account. */
-export const BatchAccountUpdate: API.OperationMethod<
-  BatchAccountUpdateRequest,
-  BatchAccountUpdateResponse,
-  BatchAccountUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BatchAccountUpdateRequest,
-  output: BatchAccountUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type LocationCheckNameAvailabilityError = AzureOpError;
+export type CheckLocationNameAvailabilityError = AzureOpError;
 /** Checks whether the Batch account name is available in the specified region. */
-export const LocationCheckNameAvailability: API.OperationMethod<
-  LocationCheckNameAvailabilityRequest,
+export const CheckLocationNameAvailability: API.OperationMethod<
+  CheckLocationNameAvailabilityRequest,
   CheckNameAvailabilityResult,
-  LocationCheckNameAvailabilityError,
+  CheckLocationNameAvailabilityError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: LocationCheckNameAvailabilityRequest,
+  input: CheckLocationNameAvailabilityRequest,
   output: CheckNameAvailabilityResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type LocationGetQuotasError = AzureOpError;
-/** Gets the Batch service quotas for the specified subscription at the given location. */
-export const LocationGetQuotas: API.OperationMethod<
-  LocationGetQuotasRequest,
-  BatchLocationQuota,
-  LocationGetQuotasError,
+export type CreateApplicationError = AzureOpError;
+/** Adds an application to the specified Batch account. */
+export const CreateApplication: API.OperationMethod<
+  CreateApplicationRequest,
+  CreateApplicationResponse,
+  CreateApplicationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: LocationGetQuotasRequest,
+  input: CreateApplicationRequest,
+  output: CreateApplicationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateApplicationPackageError = AzureOpError;
+/** Creates an application package record. The record contains a storageUrl where the package should be uploaded to. Once it is uploaded the `ApplicationPackage` needs to be activated using `ApplicationPackageActive` before it can be used. If the auto storage account was configured to use storage keys, the URL returned will contain a SAS. */
+export const CreateApplicationPackage: API.OperationMethod<
+  CreateApplicationPackageRequest,
+  CreateApplicationPackageResponse,
+  CreateApplicationPackageError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateApplicationPackageRequest,
+  output: CreateApplicationPackageResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateBatchAccountError = AzureOpError;
+/** Creates a new Batch account with the specified parameters. Existing accounts cannot be updated with this API and should instead be updated with the Update Batch Account API. */
+export const CreateBatchAccount: API.OperationMethod<
+  CreateBatchAccountRequest,
+  CreateBatchAccountResponse,
+  CreateBatchAccountError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateBatchAccountRequest,
+  output: CreateBatchAccountResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreatePoolError = AzureOpError;
+/** Creates a new pool inside the specified account. */
+export const CreatePool: API.OperationMethod<
+  CreatePoolRequest,
+  CreatePoolResponse,
+  CreatePoolError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreatePoolRequest,
+  output: CreatePoolResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteApplicationError = AzureOpError;
+/** Deletes an application. */
+export const DeleteApplication: API.OperationMethod<
+  DeleteApplicationRequest,
+  DeleteApplicationResponse,
+  DeleteApplicationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteApplicationRequest,
+  output: DeleteApplicationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteApplicationPackageError = AzureOpError;
+/** Deletes an application package record and its associated binary file. */
+export const DeleteApplicationPackage: API.OperationMethod<
+  DeleteApplicationPackageRequest,
+  DeleteApplicationPackageResponse,
+  DeleteApplicationPackageError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteApplicationPackageRequest,
+  output: DeleteApplicationPackageResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteBatchAccountError = AzureOpError;
+/** Deletes the specified Batch account. */
+export const DeleteBatchAccount: API.OperationMethod<
+  DeleteBatchAccountRequest,
+  DeleteBatchAccountResponse,
+  DeleteBatchAccountError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteBatchAccountRequest,
+  output: DeleteBatchAccountResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeletePoolError = AzureOpError;
+/** Deletes the specified pool. */
+export const DeletePool: API.OperationMethod<
+  DeletePoolRequest,
+  DeletePoolResponse,
+  DeletePoolError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeletePoolRequest,
+  output: DeletePoolResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeletePrivateEndpointConnectionError = AzureOpError;
+/** Deletes the specified private endpoint connection. */
+export const DeletePrivateEndpointConnection: API.OperationMethod<
+  DeletePrivateEndpointConnectionRequest,
+  DeletePrivateEndpointConnectionResponse,
+  DeletePrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeletePrivateEndpointConnectionRequest,
+  output: DeletePrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DisablePoolAutoScaleError = AzureOpError;
+/** Disables automatic scaling for a pool. */
+export const DisablePoolAutoScale: API.OperationMethod<
+  DisablePoolAutoScaleRequest,
+  DisablePoolAutoScaleResponse,
+  DisablePoolAutoScaleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DisablePoolAutoScaleRequest,
+  output: DisablePoolAutoScaleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetApplicationError = AzureOpError;
+/** Gets information about the specified application. */
+export const GetApplication: API.OperationMethod<
+  GetApplicationRequest,
+  GetApplicationResponse,
+  GetApplicationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetApplicationRequest,
+  output: GetApplicationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetApplicationPackageError = AzureOpError;
+/** Gets information about the specified application package. */
+export const GetApplicationPackage: API.OperationMethod<
+  GetApplicationPackageRequest,
+  GetApplicationPackageResponse,
+  GetApplicationPackageError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetApplicationPackageRequest,
+  output: GetApplicationPackageResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBatchAccountError = AzureOpError;
+/** Gets information about the specified Batch account. */
+export const GetBatchAccount: API.OperationMethod<
+  GetBatchAccountRequest,
+  GetBatchAccountResponse,
+  GetBatchAccountError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBatchAccountRequest,
+  output: GetBatchAccountResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBatchAccountDetectorError = AzureOpError;
+/** Gets information about the given detector for a given Batch account. */
+export const GetBatchAccountDetector: API.OperationMethod<
+  GetBatchAccountDetectorRequest,
+  GetBatchAccountDetectorResponse,
+  GetBatchAccountDetectorError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBatchAccountDetectorRequest,
+  output: GetBatchAccountDetectorResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBatchAccountKeysError = AzureOpError;
+/** Gets the account keys for the specified Batch account. This operation applies only to Batch accounts with allowedAuthenticationModes containing 'SharedKey'. If the Batch account doesn't contain 'SharedKey' in its allowedAuthenticationMode, clients cannot use shared keys to authenticate, and must use another allowedAuthenticationModes instead. In this case, getting the keys will fail. */
+export const GetBatchAccountKeys: API.OperationMethod<
+  GetBatchAccountKeysRequest,
+  BatchAccountKeys,
+  GetBatchAccountKeysError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBatchAccountKeysRequest,
+  output: BatchAccountKeys,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetLocationQuotasError = AzureOpError;
+/** Gets the Batch service quotas for the specified subscription at the given location. */
+export const GetLocationQuotas: API.OperationMethod<
+  GetLocationQuotasRequest,
+  BatchLocationQuota,
+  GetLocationQuotasError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetLocationQuotasRequest,
   output: BatchLocationQuota,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type LocationListSupportedVirtualMachineSkusError = AzureOpError;
-/** Gets the list of Batch supported Virtual Machine VM sizes available at the given location. */
-export const LocationListSupportedVirtualMachineSkus: API.OperationMethod<
-  LocationListSupportedVirtualMachineSkusRequest,
-  SupportedSkusResult,
-  LocationListSupportedVirtualMachineSkusError,
+export type GetNetworkSecurityPerimeterConfigurationError = AzureOpError;
+/** Gets information about the specified NSP configuration. */
+export const GetNetworkSecurityPerimeterConfiguration: API.OperationMethod<
+  GetNetworkSecurityPerimeterConfigurationRequest,
+  GetNetworkSecurityPerimeterConfigurationResponse,
+  GetNetworkSecurityPerimeterConfigurationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: LocationListSupportedVirtualMachineSkusRequest,
+  input: GetNetworkSecurityPerimeterConfigurationRequest,
+  output: GetNetworkSecurityPerimeterConfigurationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPoolError = AzureOpError;
+/** Gets information about the specified pool. */
+export const GetPool: API.OperationMethod<
+  GetPoolRequest,
+  GetPoolResponse,
+  GetPoolError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPoolRequest,
+  output: GetPoolResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPrivateEndpointConnectionError = AzureOpError;
+/** Gets information about the specified private endpoint connection. */
+export const GetPrivateEndpointConnection: API.OperationMethod<
+  GetPrivateEndpointConnectionRequest,
+  GetPrivateEndpointConnectionResponse,
+  GetPrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPrivateEndpointConnectionRequest,
+  output: GetPrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPrivateLinkResourceError = AzureOpError;
+/** Gets information about the specified private link resource. */
+export const GetPrivateLinkResource: API.OperationMethod<
+  GetPrivateLinkResourceRequest,
+  GetPrivateLinkResourceResponse,
+  GetPrivateLinkResourceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPrivateLinkResourceRequest,
+  output: GetPrivateLinkResourceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListApplicationError = AzureOpError;
+/** Lists all of the applications in the specified account. */
+export const ListApplication: API.OperationMethod<
+  ListApplicationRequest,
+  ListApplicationsResult,
+  ListApplicationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListApplicationRequest,
+  output: ListApplicationsResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListApplicationPackageError = AzureOpError;
+/** Lists all of the application packages in the specified application. */
+export const ListApplicationPackage: API.OperationMethod<
+  ListApplicationPackageRequest,
+  ListApplicationPackagesResult,
+  ListApplicationPackageError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListApplicationPackageRequest,
+  output: ListApplicationPackagesResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListBatchAccountError = AzureOpError;
+/** Gets information about the Batch accounts associated with the subscription. */
+export const ListBatchAccount: API.OperationMethod<
+  ListBatchAccountRequest,
+  BatchAccountListResult,
+  ListBatchAccountError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListBatchAccountRequest,
+  output: BatchAccountListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListBatchAccountByResourceGroupError = AzureOpError;
+/** Gets information about the Batch accounts associated with the specified resource group. */
+export const ListBatchAccountByResourceGroup: API.OperationMethod<
+  ListBatchAccountByResourceGroupRequest,
+  BatchAccountListResult,
+  ListBatchAccountByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListBatchAccountByResourceGroupRequest,
+  output: BatchAccountListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListBatchAccountDetectorsError = AzureOpError;
+/** Gets information about the detectors available for a given Batch account. */
+export const ListBatchAccountDetectors: API.OperationMethod<
+  ListBatchAccountDetectorsRequest,
+  DetectorListResult,
+  ListBatchAccountDetectorsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListBatchAccountDetectorsRequest,
+  output: DetectorListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListBatchAccountOutboundNetworkDependenciesEndpointsError =
+  AzureOpError;
+/** Lists the endpoints that a Batch Compute Node under this Batch Account may call as part of Batch service administration. If you are deploying a Pool inside of a virtual network that you specify, you must make sure your network allows outbound access to these endpoints. Failure to allow access to these endpoints may cause Batch to mark the affected nodes as unusable. For more information about creating a pool inside of a virtual network, see https://learn.microsoft.com/azure/batch/batch-virtual-network. */
+export const ListBatchAccountOutboundNetworkDependenciesEndpoints: API.OperationMethod<
+  ListBatchAccountOutboundNetworkDependenciesEndpointsRequest,
+  OutboundEnvironmentEndpointCollection,
+  ListBatchAccountOutboundNetworkDependenciesEndpointsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListBatchAccountOutboundNetworkDependenciesEndpointsRequest,
+  output: OutboundEnvironmentEndpointCollection,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListLocationSupportedVirtualMachineSkusError = AzureOpError;
+/** Gets the list of Batch supported Virtual Machine VM sizes available at the given location. */
+export const ListLocationSupportedVirtualMachineSkus: API.OperationMethod<
+  ListLocationSupportedVirtualMachineSkusRequest,
+  SupportedSkusResult,
+  ListLocationSupportedVirtualMachineSkusError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListLocationSupportedVirtualMachineSkusRequest,
   output: SupportedSkusResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type NetworkSecurityPerimeterGetConfigurationError = AzureOpError;
-/** Gets information about the specified NSP configuration. */
-export const NetworkSecurityPerimeterGetConfiguration: API.OperationMethod<
-  NetworkSecurityPerimeterGetConfigurationRequest,
-  NetworkSecurityPerimeterGetConfigurationResponse,
-  NetworkSecurityPerimeterGetConfigurationError,
+export type ListNetworkSecurityPerimeterConfigurationsError = AzureOpError;
+/** Lists all of the NSP configurations in the specified account. */
+export const ListNetworkSecurityPerimeterConfigurations: API.OperationMethod<
+  ListNetworkSecurityPerimeterConfigurationsRequest,
+  NetworkSecurityPerimeterConfigurationListResult,
+  ListNetworkSecurityPerimeterConfigurationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: NetworkSecurityPerimeterGetConfigurationRequest,
-  output: NetworkSecurityPerimeterGetConfigurationResponse,
+  input: ListNetworkSecurityPerimeterConfigurationsRequest,
+  output: NetworkSecurityPerimeterConfigurationListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type NetworkSecurityPerimeterListConfigurationsError = AzureOpError;
-/** Lists all of the NSP configurations in the specified account. */
-export const NetworkSecurityPerimeterListConfigurations: API.OperationMethod<
-  NetworkSecurityPerimeterListConfigurationsRequest,
-  NetworkSecurityPerimeterConfigurationListResult,
-  NetworkSecurityPerimeterListConfigurationsError,
+export type ListOperationsError = AzureOpError;
+/** Lists available operations for the Microsoft.Batch provider */
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  OperationListResult,
+  ListOperationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: NetworkSecurityPerimeterListConfigurationsRequest,
-  output: NetworkSecurityPerimeterConfigurationListResult,
+  input: ListOperationsRequest,
+  output: OperationListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPoolByBatchAccountError = AzureOpError;
+/** Lists all of the pools in the specified account. */
+export const ListPoolByBatchAccount: API.OperationMethod<
+  ListPoolByBatchAccountRequest,
+  ListPoolsResult,
+  ListPoolByBatchAccountError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPoolByBatchAccountRequest,
+  output: ListPoolsResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPrivateEndpointConnectionByBatchAccountError = AzureOpError;
+/** Lists all of the private endpoint connections in the specified account. */
+export const ListPrivateEndpointConnectionByBatchAccount: API.OperationMethod<
+  ListPrivateEndpointConnectionByBatchAccountRequest,
+  ListPrivateEndpointConnectionsResult,
+  ListPrivateEndpointConnectionByBatchAccountError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPrivateEndpointConnectionByBatchAccountRequest,
+  output: ListPrivateEndpointConnectionsResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPrivateLinkResourceByBatchAccountError = AzureOpError;
+/** Lists all of the private link resources in the specified account. */
+export const ListPrivateLinkResourceByBatchAccount: API.OperationMethod<
+  ListPrivateLinkResourceByBatchAccountRequest,
+  ListPrivateLinkResourcesResult,
+  ListPrivateLinkResourceByBatchAccountError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPrivateLinkResourceByBatchAccountRequest,
+  output: ListPrivateLinkResourcesResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -5937,96 +6057,6 @@ export const NetworkSecurityPerimeterReconcileConfiguration: API.OperationMethod
   retry: Retry.Retry,
 }));
 
-export type OperationsListError = AzureOpError;
-/** Lists available operations for the Microsoft.Batch provider */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationListResult,
-  OperationsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
-  output: OperationListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PoolCreateError = AzureOpError;
-/** Creates a new pool inside the specified account. */
-export const PoolCreate: API.OperationMethod<
-  PoolCreateRequest,
-  PoolCreateResponse,
-  PoolCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PoolCreateRequest,
-  output: PoolCreateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PoolDeleteError = AzureOpError;
-/** Deletes the specified pool. */
-export const PoolDelete: API.OperationMethod<
-  PoolDeleteRequest,
-  PoolDeleteResponse,
-  PoolDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PoolDeleteRequest,
-  output: PoolDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PoolDisableAutoScaleError = AzureOpError;
-/** Disables automatic scaling for a pool. */
-export const PoolDisableAutoScale: API.OperationMethod<
-  PoolDisableAutoScaleRequest,
-  PoolDisableAutoScaleResponse,
-  PoolDisableAutoScaleError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PoolDisableAutoScaleRequest,
-  output: PoolDisableAutoScaleResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PoolGetError = AzureOpError;
-/** Gets information about the specified pool. */
-export const PoolGet: API.OperationMethod<
-  PoolGetRequest,
-  PoolGetResponse,
-  PoolGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PoolGetRequest,
-  output: PoolGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PoolListByBatchAccountError = AzureOpError;
-/** Lists all of the pools in the specified account. */
-export const PoolListByBatchAccount: API.OperationMethod<
-  PoolListByBatchAccountRequest,
-  ListPoolsResult,
-  PoolListByBatchAccountError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PoolListByBatchAccountRequest,
-  output: ListPoolsResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type PoolStopResizeError = AzureOpError;
 /** Stops an ongoing resize operation on the pool. This does not restore the pool to its previous state before the resize operation: it only stops any further changes being made, and the pool maintains its current state. After stopping, the pool stabilizes at the number of nodes it was at when the stop operation was done. During the stop operation, the pool allocation state changes first to stopping and then to steady. A resize operation need not be an explicit resize pool request; this API can also be used to halt the initial sizing of the pool when it is created. */
 export const PoolStopResize: API.OperationMethod<
@@ -6042,106 +6072,76 @@ export const PoolStopResize: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PoolUpdateError = AzureOpError;
+export type RegenerateBatchAccountKeyError = AzureOpError;
+/** Regenerates the specified account key for the Batch account. This operation applies only to Batch accounts with allowedAuthenticationModes containing 'SharedKey'. If the Batch account doesn't contain 'SharedKey' in its allowedAuthenticationMode, clients cannot use shared keys to authenticate, and must use another allowedAuthenticationModes instead. In this case, regenerating the keys will fail. */
+export const RegenerateBatchAccountKey: API.OperationMethod<
+  RegenerateBatchAccountKeyRequest,
+  BatchAccountKeys,
+  RegenerateBatchAccountKeyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RegenerateBatchAccountKeyRequest,
+  output: BatchAccountKeys,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateApplicationError = AzureOpError;
+/** Updates settings for the specified application. */
+export const UpdateApplication: API.OperationMethod<
+  UpdateApplicationRequest,
+  UpdateApplicationResponse,
+  UpdateApplicationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateApplicationRequest,
+  output: UpdateApplicationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateBatchAccountError = AzureOpError;
+/** Updates the properties of an existing Batch account. */
+export const UpdateBatchAccount: API.OperationMethod<
+  UpdateBatchAccountRequest,
+  UpdateBatchAccountResponse,
+  UpdateBatchAccountError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateBatchAccountRequest,
+  output: UpdateBatchAccountResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdatePoolError = AzureOpError;
 /** Updates the properties of an existing pool. */
-export const PoolUpdate: API.OperationMethod<
-  PoolUpdateRequest,
-  PoolUpdateResponse,
-  PoolUpdateError,
+export const UpdatePool: API.OperationMethod<
+  UpdatePoolRequest,
+  UpdatePoolResponse,
+  UpdatePoolError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PoolUpdateRequest,
-  output: PoolUpdateResponse,
+  input: UpdatePoolRequest,
+  output: UpdatePoolResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type PrivateEndpointConnectionDeleteError = AzureOpError;
-/** Deletes the specified private endpoint connection. */
-export const PrivateEndpointConnectionDelete: API.OperationMethod<
-  PrivateEndpointConnectionDeleteRequest,
-  PrivateEndpointConnectionDeleteResponse,
-  PrivateEndpointConnectionDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionDeleteRequest,
-  output: PrivateEndpointConnectionDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateEndpointConnectionGetError = AzureOpError;
-/** Gets information about the specified private endpoint connection. */
-export const PrivateEndpointConnectionGet: API.OperationMethod<
-  PrivateEndpointConnectionGetRequest,
-  PrivateEndpointConnectionGetResponse,
-  PrivateEndpointConnectionGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionGetRequest,
-  output: PrivateEndpointConnectionGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateEndpointConnectionListByBatchAccountError = AzureOpError;
-/** Lists all of the private endpoint connections in the specified account. */
-export const PrivateEndpointConnectionListByBatchAccount: API.OperationMethod<
-  PrivateEndpointConnectionListByBatchAccountRequest,
-  ListPrivateEndpointConnectionsResult,
-  PrivateEndpointConnectionListByBatchAccountError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionListByBatchAccountRequest,
-  output: ListPrivateEndpointConnectionsResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateEndpointConnectionUpdateError = AzureOpError;
+export type UpdatePrivateEndpointConnectionError = AzureOpError;
 /** Updates the properties of an existing private endpoint connection. */
-export const PrivateEndpointConnectionUpdate: API.OperationMethod<
-  PrivateEndpointConnectionUpdateRequest,
-  PrivateEndpointConnectionUpdateResponse,
-  PrivateEndpointConnectionUpdateError,
+export const UpdatePrivateEndpointConnection: API.OperationMethod<
+  UpdatePrivateEndpointConnectionRequest,
+  UpdatePrivateEndpointConnectionResponse,
+  UpdatePrivateEndpointConnectionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionUpdateRequest,
-  output: PrivateEndpointConnectionUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateLinkResourceGetError = AzureOpError;
-/** Gets information about the specified private link resource. */
-export const PrivateLinkResourceGet: API.OperationMethod<
-  PrivateLinkResourceGetRequest,
-  PrivateLinkResourceGetResponse,
-  PrivateLinkResourceGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateLinkResourceGetRequest,
-  output: PrivateLinkResourceGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateLinkResourceListByBatchAccountError = AzureOpError;
-/** Lists all of the private link resources in the specified account. */
-export const PrivateLinkResourceListByBatchAccount: API.OperationMethod<
-  PrivateLinkResourceListByBatchAccountRequest,
-  ListPrivateLinkResourcesResult,
-  PrivateLinkResourceListByBatchAccountError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateLinkResourceListByBatchAccountRequest,
-  output: ListPrivateLinkResourcesResult,
+  input: UpdatePrivateEndpointConnectionRequest,
+  output: UpdatePrivateEndpointConnectionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

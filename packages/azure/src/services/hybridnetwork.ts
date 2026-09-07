@@ -12,6 +12,123 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
+/** Reference to another resource. */
+export interface AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem {
+  /** Resource ID. */
+  id?: string;
+}
+export const AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier:
+      "AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem",
+  }) as any as S.Schema<AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem>;
+
+/** list of network fabric controllers. */
+export type AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsList =
+  Array<AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem>;
+export const AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsList =
+  /*@__PURE__*/ S.Array(
+    AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem,
+  ) as any as S.Schema<AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsList>;
+
+export interface AddArtifactStoreNetworkFabricControllerEndPointsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the publisher. */
+  publisherName: string;
+  /** The name of the artifact store. */
+  artifactStoreName: string;
+  /** list of network fabric controllers. */
+  networkFabricControllerIds?: AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsList;
+}
+export const AddArtifactStoreNetworkFabricControllerEndPointsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      publisherName: S.String.pipe(T.Label()),
+      artifactStoreName: S.String.pipe(T.Label()),
+      networkFabricControllerIds: S.optional(
+        AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsList,
+      ),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/artifactStores/{artifactStoreName}/addNetworkFabricControllerEndPoints",
+        code: 200,
+        apiVersion: "2024-04-15",
+      }),
+    ),
+  ).annotate({
+    identifier: "AddArtifactStoreNetworkFabricControllerEndPointsRequest",
+  }) as any as S.Schema<AddArtifactStoreNetworkFabricControllerEndPointsRequest>;
+
+export interface AddArtifactStoreNetworkFabricControllerEndPointsResponse {}
+export const AddArtifactStoreNetworkFabricControllerEndPointsResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "AddArtifactStoreNetworkFabricControllerEndPointsResponse",
+  }) as any as S.Schema<AddArtifactStoreNetworkFabricControllerEndPointsResponse>;
+
+/** Reference to another resource. */
+export type ApproveArtifactStorePrivateEndPointsRequestManualPrivateEndPointConnectionsItem =
+  AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
+export const ApproveArtifactStorePrivateEndPointsRequestManualPrivateEndPointConnectionsItem =
+  AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
+
+/** list of private endpoints. */
+export type ApproveArtifactStorePrivateEndPointsRequestManualPrivateEndPointConnectionsList =
+  Array<AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem>;
+export const ApproveArtifactStorePrivateEndPointsRequestManualPrivateEndPointConnectionsList =
+  /*@__PURE__*/ S.Array(
+    AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem,
+  ) as any as S.Schema<ApproveArtifactStorePrivateEndPointsRequestManualPrivateEndPointConnectionsList>;
+
+export interface ApproveArtifactStorePrivateEndPointsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the publisher. */
+  publisherName: string;
+  /** The name of the artifact store. */
+  artifactStoreName: string;
+  /** list of private endpoints. */
+  manualPrivateEndPointConnections?: ApproveArtifactStorePrivateEndPointsRequestManualPrivateEndPointConnectionsList;
+}
+export const ApproveArtifactStorePrivateEndPointsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      publisherName: S.String.pipe(T.Label()),
+      artifactStoreName: S.String.pipe(T.Label()),
+      manualPrivateEndPointConnections: S.optional(
+        ApproveArtifactStorePrivateEndPointsRequestManualPrivateEndPointConnectionsList,
+      ),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/artifactStores/{artifactStoreName}/approvePrivateEndPoints",
+        code: 200,
+        apiVersion: "2024-04-15",
+      }),
+    ),
+  ).annotate({
+    identifier: "ApproveArtifactStorePrivateEndPointsRequest",
+  }) as any as S.Schema<ApproveArtifactStorePrivateEndPointsRequest>;
+
+export interface ApproveArtifactStorePrivateEndPointsResponse {}
+export const ApproveArtifactStorePrivateEndPointsResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "ApproveArtifactStorePrivateEndPointsResponse",
+  }) as any as S.Schema<ApproveArtifactStorePrivateEndPointsResponse>;
+
 /** Resource tags. */
 export type ArtifactManifestsCreateOrUpdateRequestTagsMap = {
   [key: string]: string | undefined;
@@ -248,502 +365,6 @@ export const ArtifactManifestsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "ArtifactManifestsCreateOrUpdateResponse",
 }) as any as S.Schema<ArtifactManifestsCreateOrUpdateResponse>;
 
-export interface ArtifactManifestsDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the publisher. */
-  publisherName: string;
-  /** The name of the artifact store. */
-  artifactStoreName: string;
-  /** The name of the artifact manifest. */
-  artifactManifestName: string;
-}
-export const ArtifactManifestsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    publisherName: S.String.pipe(T.Label()),
-    artifactStoreName: S.String.pipe(T.Label()),
-    artifactManifestName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/artifactStores/{artifactStoreName}/artifactManifests/{artifactManifestName}",
-      code: 200,
-      apiVersion: "2024-04-15",
-    }),
-  ),
-).annotate({
-  identifier: "ArtifactManifestsDeleteRequest",
-}) as any as S.Schema<ArtifactManifestsDeleteRequest>;
-
-export interface ArtifactManifestsDeleteResponse {}
-export const ArtifactManifestsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ArtifactManifestsDeleteResponse",
-}) as any as S.Schema<ArtifactManifestsDeleteResponse>;
-
-export interface ArtifactManifestsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the publisher. */
-  publisherName: string;
-  /** The name of the artifact store. */
-  artifactStoreName: string;
-  /** The name of the artifact manifest. */
-  artifactManifestName: string;
-}
-export const ArtifactManifestsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    publisherName: S.String.pipe(T.Label()),
-    artifactStoreName: S.String.pipe(T.Label()),
-    artifactManifestName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/artifactStores/{artifactStoreName}/artifactManifests/{artifactManifestName}",
-      code: 200,
-      apiVersion: "2024-04-15",
-    }),
-  ),
-).annotate({
-  identifier: "ArtifactManifestsGetRequest",
-}) as any as S.Schema<ArtifactManifestsGetRequest>;
-
-/** Resource tags. */
-export type ArtifactManifestsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ArtifactManifestsGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ArtifactManifestsGetResponseTagsMap>;
-
-export interface ArtifactManifestsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ArtifactManifestsGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Artifact manifest properties. */
-  properties?: ArtifactManifestPropertiesFormat;
-}
-export const ArtifactManifestsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(ArtifactManifestsGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(ArtifactManifestPropertiesFormat),
-  }),
-).annotate({
-  identifier: "ArtifactManifestsGetResponse",
-}) as any as S.Schema<ArtifactManifestsGetResponse>;
-
-export interface ArtifactManifestsListByArtifactStoreRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the publisher. */
-  publisherName: string;
-  /** The name of the artifact store. */
-  artifactStoreName: string;
-}
-export const ArtifactManifestsListByArtifactStoreRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      publisherName: S.String.pipe(T.Label()),
-      artifactStoreName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/artifactStores/{artifactStoreName}/artifactManifests",
-        code: 200,
-        apiVersion: "2024-04-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "ArtifactManifestsListByArtifactStoreRequest",
-  }) as any as S.Schema<ArtifactManifestsListByArtifactStoreRequest>;
-
-/** Resource tags. */
-export type ArtifactManifestTagsMap = { [key: string]: string | undefined };
-export const ArtifactManifestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ArtifactManifestTagsMap>;
-
-/** Artifact manifest properties. */
-export interface ArtifactManifest {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ArtifactManifestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Artifact manifest properties. */
-  properties?: ArtifactManifestPropertiesFormat;
-}
-export const ArtifactManifest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(ArtifactManifestTagsMap),
-    location: S.String,
-    properties: S.optional(ArtifactManifestPropertiesFormat),
-  }),
-).annotate({
-  identifier: "ArtifactManifest",
-}) as any as S.Schema<ArtifactManifest>;
-
-/** A list of artifact manifests. */
-export type ArtifactManifestListResultValueList = Array<ArtifactManifest>;
-export const ArtifactManifestListResultValueList = /*@__PURE__*/ S.Array(
-  ArtifactManifest,
-) as any as S.Schema<ArtifactManifestListResultValueList>;
-
-/** A list of artifact manifests. */
-export interface ArtifactManifestListResult {
-  /** A list of artifact manifests. */
-  value?: ArtifactManifestListResultValueList;
-  /** The URI to get the next set of results. */
-  nextLink?: string;
-}
-export const ArtifactManifestListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(ArtifactManifestListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ArtifactManifestListResult",
-}) as any as S.Schema<ArtifactManifestListResult>;
-
-export interface ArtifactManifestsListCredentialRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the publisher. */
-  publisherName: string;
-  /** The name of the artifact store. */
-  artifactStoreName: string;
-  /** The name of the artifact manifest. */
-  artifactManifestName: string;
-}
-export const ArtifactManifestsListCredentialRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      publisherName: S.String.pipe(T.Label()),
-      artifactStoreName: S.String.pipe(T.Label()),
-      artifactManifestName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/artifactStores/{artifactStoreName}/artifactManifests/{artifactManifestName}/listCredential",
-        code: 200,
-        apiVersion: "2024-04-15",
-      }),
-    ),
-).annotate({
-  identifier: "ArtifactManifestsListCredentialRequest",
-}) as any as S.Schema<ArtifactManifestsListCredentialRequest>;
-
-/** The credential type. */
-export type ArtifactManifestsListCredentialResponseCredentialType =
-  | "Unknown"
-  | "AzureContainerRegistryScopedToken"
-  | "AzureStorageAccountToken";
-export const ArtifactManifestsListCredentialResponseCredentialType =
-  /*@__PURE__*/ S.String;
-
-export interface ArtifactManifestsListCredentialResponse {
-  /** The credential type. */
-  credentialType: ArtifactManifestsListCredentialResponseCredentialType;
-}
-export const ArtifactManifestsListCredentialResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      credentialType: ArtifactManifestsListCredentialResponseCredentialType,
-    }),
-).annotate({
-  identifier: "ArtifactManifestsListCredentialResponse",
-}) as any as S.Schema<ArtifactManifestsListCredentialResponse>;
-
-/** Resource tags. */
-export type ArtifactManifestsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ArtifactManifestsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ArtifactManifestsUpdateRequestTagsMap>;
-
-export interface ArtifactManifestsUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the publisher. */
-  publisherName: string;
-  /** The name of the artifact store. */
-  artifactStoreName: string;
-  /** The name of the artifact manifest. */
-  artifactManifestName: string;
-  /** Resource tags. */
-  tags?: ArtifactManifestsUpdateRequestTagsMap;
-}
-export const ArtifactManifestsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    publisherName: S.String.pipe(T.Label()),
-    artifactStoreName: S.String.pipe(T.Label()),
-    artifactManifestName: S.String.pipe(T.Label()),
-    tags: S.optional(ArtifactManifestsUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/artifactStores/{artifactStoreName}/artifactManifests/{artifactManifestName}",
-      code: 200,
-      apiVersion: "2024-04-15",
-    }),
-  ),
-).annotate({
-  identifier: "ArtifactManifestsUpdateRequest",
-}) as any as S.Schema<ArtifactManifestsUpdateRequest>;
-
-/** Resource tags. */
-export type ArtifactManifestsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ArtifactManifestsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ArtifactManifestsUpdateResponseTagsMap>;
-
-export interface ArtifactManifestsUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ArtifactManifestsUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Artifact manifest properties. */
-  properties?: ArtifactManifestPropertiesFormat;
-}
-export const ArtifactManifestsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(ArtifactManifestsUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(ArtifactManifestPropertiesFormat),
-  }),
-).annotate({
-  identifier: "ArtifactManifestsUpdateResponse",
-}) as any as S.Schema<ArtifactManifestsUpdateResponse>;
-
-export interface ArtifactManifestsUpdateStateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the publisher. */
-  publisherName: string;
-  /** The name of the artifact store. */
-  artifactStoreName: string;
-  /** The name of the artifact manifest. */
-  artifactManifestName: string;
-  /** The artifact manifest state. */
-  artifactManifestState?: ArtifactManifestState | (string & {});
-}
-export const ArtifactManifestsUpdateStateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    publisherName: S.String.pipe(T.Label()),
-    artifactStoreName: S.String.pipe(T.Label()),
-    artifactManifestName: S.String.pipe(T.Label()),
-    artifactManifestState: S.optional(ArtifactManifestState),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/artifactStores/{artifactStoreName}/artifactManifests/{artifactManifestName}/updateState",
-      code: 200,
-      apiVersion: "2024-04-15",
-    }),
-  ),
-).annotate({
-  identifier: "ArtifactManifestsUpdateStateRequest",
-}) as any as S.Schema<ArtifactManifestsUpdateStateRequest>;
-
-/** The artifact manifest updating request payload. Only the 'Uploaded' state is allowed for updates. Other states are used for internal state transitioning. */
-export interface ArtifactManifestUpdateState {
-  /** The artifact manifest state. */
-  artifactManifestState?: ArtifactManifestState;
-}
-export const ArtifactManifestUpdateState = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    artifactManifestState: S.optional(ArtifactManifestState),
-  }),
-).annotate({
-  identifier: "ArtifactManifestUpdateState",
-}) as any as S.Schema<ArtifactManifestUpdateState>;
-
-/** Reference to another resource. */
-export interface ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem {
-  /** Resource ID. */
-  id?: string;
-}
-export const ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier:
-      "ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem",
-  }) as any as S.Schema<ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem>;
-
-/** list of network fabric controllers. */
-export type ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsList =
-  Array<ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem>;
-export const ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsList =
-  /*@__PURE__*/ S.Array(
-    ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem,
-  ) as any as S.Schema<ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsList>;
-
-export interface ArtifactStoresAddNetworkFabricControllerEndPointsRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the publisher. */
-  publisherName: string;
-  /** The name of the artifact store. */
-  artifactStoreName: string;
-  /** list of network fabric controllers. */
-  networkFabricControllerIds?: ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsList;
-}
-export const ArtifactStoresAddNetworkFabricControllerEndPointsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      publisherName: S.String.pipe(T.Label()),
-      artifactStoreName: S.String.pipe(T.Label()),
-      networkFabricControllerIds: S.optional(
-        ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsList,
-      ),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/artifactStores/{artifactStoreName}/addNetworkFabricControllerEndPoints",
-        code: 200,
-        apiVersion: "2024-04-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "ArtifactStoresAddNetworkFabricControllerEndPointsRequest",
-  }) as any as S.Schema<ArtifactStoresAddNetworkFabricControllerEndPointsRequest>;
-
-export interface ArtifactStoresAddNetworkFabricControllerEndPointsResponse {}
-export const ArtifactStoresAddNetworkFabricControllerEndPointsResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "ArtifactStoresAddNetworkFabricControllerEndPointsResponse",
-  }) as any as S.Schema<ArtifactStoresAddNetworkFabricControllerEndPointsResponse>;
-
-/** Reference to another resource. */
-export type ArtifactStoresApprovePrivateEndPointsRequestManualPrivateEndPointConnectionsItem =
-  ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
-export const ArtifactStoresApprovePrivateEndPointsRequestManualPrivateEndPointConnectionsItem =
-  ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
-
-/** list of private endpoints. */
-export type ArtifactStoresApprovePrivateEndPointsRequestManualPrivateEndPointConnectionsList =
-  Array<ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem>;
-export const ArtifactStoresApprovePrivateEndPointsRequestManualPrivateEndPointConnectionsList =
-  /*@__PURE__*/ S.Array(
-    ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem,
-  ) as any as S.Schema<ArtifactStoresApprovePrivateEndPointsRequestManualPrivateEndPointConnectionsList>;
-
-export interface ArtifactStoresApprovePrivateEndPointsRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the publisher. */
-  publisherName: string;
-  /** The name of the artifact store. */
-  artifactStoreName: string;
-  /** list of private endpoints. */
-  manualPrivateEndPointConnections?: ArtifactStoresApprovePrivateEndPointsRequestManualPrivateEndPointConnectionsList;
-}
-export const ArtifactStoresApprovePrivateEndPointsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      publisherName: S.String.pipe(T.Label()),
-      artifactStoreName: S.String.pipe(T.Label()),
-      manualPrivateEndPointConnections: S.optional(
-        ArtifactStoresApprovePrivateEndPointsRequestManualPrivateEndPointConnectionsList,
-      ),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/artifactStores/{artifactStoreName}/approvePrivateEndPoints",
-        code: 200,
-        apiVersion: "2024-04-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "ArtifactStoresApprovePrivateEndPointsRequest",
-  }) as any as S.Schema<ArtifactStoresApprovePrivateEndPointsRequest>;
-
-export interface ArtifactStoresApprovePrivateEndPointsResponse {}
-export const ArtifactStoresApprovePrivateEndPointsResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "ArtifactStoresApprovePrivateEndPointsResponse",
-  }) as any as S.Schema<ArtifactStoresApprovePrivateEndPointsResponse>;
-
 /** Resource tags. */
 export type ArtifactStoresCreateOrUpdateRequestTagsMap = {
   [key: string]: string | undefined;
@@ -976,7 +597,415 @@ export const ArtifactStoresCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "ArtifactStoresCreateOrUpdateResponse",
 }) as any as S.Schema<ArtifactStoresCreateOrUpdateResponse>;
 
-export interface ArtifactStoresDeleteRequest {
+/** Resource tags. */
+export type ConfigurationGroupSchemasCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const ConfigurationGroupSchemasCreateOrUpdateRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<ConfigurationGroupSchemasCreateOrUpdateRequestTagsMap>;
+
+/** Configuration group schema properties. */
+export interface ConfigurationGroupSchemaPropertiesFormatInput {
+  /** Description of what schema can contain. */
+  description?: string;
+  /** Name and value pairs that define the configuration value. It can be a well formed escaped JSON string. */
+  schemaDefinition?: string;
+}
+export const ConfigurationGroupSchemaPropertiesFormatInput =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      description: S.optional(S.String),
+      schemaDefinition: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "ConfigurationGroupSchemaPropertiesFormatInput",
+  }) as any as S.Schema<ConfigurationGroupSchemaPropertiesFormatInput>;
+
+export interface ConfigurationGroupSchemasCreateOrUpdateRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the publisher. */
+  publisherName: string;
+  /** The name of the configuration group schema. */
+  configurationGroupSchemaName: string;
+  /** Resource tags. */
+  tags?: ConfigurationGroupSchemasCreateOrUpdateRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Configuration group schema properties. */
+  properties?: ConfigurationGroupSchemaPropertiesFormatInput;
+}
+export const ConfigurationGroupSchemasCreateOrUpdateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      publisherName: S.String.pipe(T.Label()),
+      configurationGroupSchemaName: S.String.pipe(T.Label()),
+      tags: S.optional(ConfigurationGroupSchemasCreateOrUpdateRequestTagsMap),
+      location: S.String,
+      properties: S.optional(ConfigurationGroupSchemaPropertiesFormatInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/configurationGroupSchemas/{configurationGroupSchemaName}",
+        code: 200,
+        apiVersion: "2024-04-15",
+      }),
+    ),
+  ).annotate({
+    identifier: "ConfigurationGroupSchemasCreateOrUpdateRequest",
+  }) as any as S.Schema<ConfigurationGroupSchemasCreateOrUpdateRequest>;
+
+/** Resource tags. */
+export type ConfigurationGroupSchemasCreateOrUpdateResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const ConfigurationGroupSchemasCreateOrUpdateResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<ConfigurationGroupSchemasCreateOrUpdateResponseTagsMap>;
+
+/** The current provisioning state. */
+export type ConfigurationGroupSchemaPropertiesFormatProvisioningState =
+  | "Unknown"
+  | "Succeeded"
+  | "Accepted"
+  | "Deleting"
+  | "Failed"
+  | "Canceled"
+  | "Deleted"
+  | "Converging";
+export const ConfigurationGroupSchemaPropertiesFormatProvisioningState =
+  /*@__PURE__*/ S.String;
+
+/** The configuration group schema state. */
+export type ConfigurationGroupSchemaVersionState =
+  | "Unknown"
+  | "Preview"
+  | "Active"
+  | "Deprecated";
+export const ConfigurationGroupSchemaVersionState = /*@__PURE__*/ S.String;
+
+/** Configuration group schema properties. */
+export interface ConfigurationGroupSchemaPropertiesFormat {
+  /** The current provisioning state. */
+  provisioningState?: ConfigurationGroupSchemaPropertiesFormatProvisioningState;
+  /** The configuration group schema version state. */
+  versionState?: ConfigurationGroupSchemaVersionState;
+  /** Description of what schema can contain. */
+  description?: string;
+  /** Name and value pairs that define the configuration value. It can be a well formed escaped JSON string. */
+  schemaDefinition?: string;
+}
+export const ConfigurationGroupSchemaPropertiesFormat = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      provisioningState: S.optional(
+        ConfigurationGroupSchemaPropertiesFormatProvisioningState,
+      ),
+      versionState: S.optional(ConfigurationGroupSchemaVersionState),
+      description: S.optional(S.String),
+      schemaDefinition: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "ConfigurationGroupSchemaPropertiesFormat",
+}) as any as S.Schema<ConfigurationGroupSchemaPropertiesFormat>;
+
+export interface ConfigurationGroupSchemasCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: ConfigurationGroupSchemasCreateOrUpdateResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Configuration group schema properties. */
+  properties?: ConfigurationGroupSchemaPropertiesFormat;
+}
+export const ConfigurationGroupSchemasCreateOrUpdateResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(ConfigurationGroupSchemasCreateOrUpdateResponseTagsMap),
+      location: S.String,
+      properties: S.optional(ConfigurationGroupSchemaPropertiesFormat),
+    }),
+  ).annotate({
+    identifier: "ConfigurationGroupSchemasCreateOrUpdateResponse",
+  }) as any as S.Schema<ConfigurationGroupSchemasCreateOrUpdateResponse>;
+
+/** Resource tags. */
+export type ConfigurationGroupValuesCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const ConfigurationGroupValuesCreateOrUpdateRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<ConfigurationGroupValuesCreateOrUpdateRequestTagsMap>;
+
+/** Publisher Scope. */
+export type ConfigurationGroupValuePropertiesFormatInputPublisherScope =
+  | "Unknown"
+  | "Private";
+export const ConfigurationGroupValuePropertiesFormatInputPublisherScope =
+  /*@__PURE__*/ S.String;
+
+/** The resource reference arm id type. */
+export type IdType = "Unknown" | "Open" | "Secret";
+export const IdType = /*@__PURE__*/ S.String;
+
+/** The azure resource reference which is used for deployment. */
+export interface ConfigurationGroupValuePropertiesFormatInputConfigurationGroupSchemaResourceReference {
+  /** The resource reference arm id type. */
+  idType: IdType | (string & {});
+}
+export const ConfigurationGroupValuePropertiesFormatInputConfigurationGroupSchemaResourceReference =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      idType: IdType,
+    }),
+  ).annotate({
+    identifier:
+      "ConfigurationGroupValuePropertiesFormatInputConfigurationGroupSchemaResourceReference",
+  }) as any as S.Schema<ConfigurationGroupValuePropertiesFormatInputConfigurationGroupSchemaResourceReference>;
+
+/** The secret type which indicates if secret or not. */
+export type ConfigurationGroupValueConfigurationType =
+  | "Unknown"
+  | "Secret"
+  | "Open";
+export const ConfigurationGroupValueConfigurationType = /*@__PURE__*/ S.String;
+
+/** Hybrid configuration group value properties. */
+export interface ConfigurationGroupValuePropertiesFormatInput {
+  /** Publisher Scope. */
+  publisherScope?:
+    | ConfigurationGroupValuePropertiesFormatInputPublisherScope
+    | (string & {});
+  /** The azure resource reference which is used for deployment. */
+  configurationGroupSchemaResourceReference?: ConfigurationGroupValuePropertiesFormatInputConfigurationGroupSchemaResourceReference;
+  /** The value which indicates if configuration values are secrets */
+  configurationType: ConfigurationGroupValueConfigurationType | (string & {});
+}
+export const ConfigurationGroupValuePropertiesFormatInput =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      publisherScope: S.optional(
+        ConfigurationGroupValuePropertiesFormatInputPublisherScope,
+      ),
+      configurationGroupSchemaResourceReference: S.optional(
+        ConfigurationGroupValuePropertiesFormatInputConfigurationGroupSchemaResourceReference,
+      ),
+      configurationType: ConfigurationGroupValueConfigurationType,
+    }),
+  ).annotate({
+    identifier: "ConfigurationGroupValuePropertiesFormatInput",
+  }) as any as S.Schema<ConfigurationGroupValuePropertiesFormatInput>;
+
+export interface ConfigurationGroupValuesCreateOrUpdateRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the configuration group value. */
+  configurationGroupValueName: string;
+  /** Resource tags. */
+  tags?: ConfigurationGroupValuesCreateOrUpdateRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Hybrid configuration group value properties. */
+  properties?: ConfigurationGroupValuePropertiesFormatInput;
+}
+export const ConfigurationGroupValuesCreateOrUpdateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      configurationGroupValueName: S.String.pipe(T.Label()),
+      tags: S.optional(ConfigurationGroupValuesCreateOrUpdateRequestTagsMap),
+      location: S.String,
+      properties: S.optional(ConfigurationGroupValuePropertiesFormatInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/configurationGroupValues/{configurationGroupValueName}",
+        code: 200,
+        apiVersion: "2024-04-15",
+      }),
+    ),
+  ).annotate({
+    identifier: "ConfigurationGroupValuesCreateOrUpdateRequest",
+  }) as any as S.Schema<ConfigurationGroupValuesCreateOrUpdateRequest>;
+
+/** Resource tags. */
+export type ConfigurationGroupValuesCreateOrUpdateResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const ConfigurationGroupValuesCreateOrUpdateResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<ConfigurationGroupValuesCreateOrUpdateResponseTagsMap>;
+
+/** The current provisioning state. */
+export type ConfigurationGroupValuePropertiesFormatProvisioningState =
+  | "Unknown"
+  | "Succeeded"
+  | "Accepted"
+  | "Deleting"
+  | "Failed"
+  | "Canceled"
+  | "Deleted"
+  | "Converging";
+export const ConfigurationGroupValuePropertiesFormatProvisioningState =
+  /*@__PURE__*/ S.String;
+
+/** Publisher Scope. */
+export type ConfigurationGroupValuePropertiesFormatPublisherScope =
+  | "Unknown"
+  | "Private";
+export const ConfigurationGroupValuePropertiesFormatPublisherScope =
+  /*@__PURE__*/ S.String;
+
+/** The azure resource reference which is used for deployment. */
+export interface ConfigurationGroupValuePropertiesFormatConfigurationGroupSchemaResourceReference {
+  /** The resource reference arm id type. */
+  idType: IdType;
+}
+export const ConfigurationGroupValuePropertiesFormatConfigurationGroupSchemaResourceReference =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      idType: IdType,
+    }),
+  ).annotate({
+    identifier:
+      "ConfigurationGroupValuePropertiesFormatConfigurationGroupSchemaResourceReference",
+  }) as any as S.Schema<ConfigurationGroupValuePropertiesFormatConfigurationGroupSchemaResourceReference>;
+
+/** Hybrid configuration group value properties. */
+export interface ConfigurationGroupValuePropertiesFormat {
+  /** The current provisioning state. */
+  provisioningState?: ConfigurationGroupValuePropertiesFormatProvisioningState;
+  /** The publisher name for the configuration group schema. */
+  publisherName?: string;
+  /** Publisher Scope. */
+  publisherScope?: ConfigurationGroupValuePropertiesFormatPublisherScope;
+  /** The configuration group schema name. */
+  configurationGroupSchemaName?: string;
+  /** The location of the configuration group schema offering. */
+  configurationGroupSchemaOfferingLocation?: string;
+  /** The azure resource reference which is used for deployment. */
+  configurationGroupSchemaResourceReference?: ConfigurationGroupValuePropertiesFormatConfigurationGroupSchemaResourceReference;
+  /** The value which indicates if configuration values are secrets */
+  configurationType: ConfigurationGroupValueConfigurationType;
+}
+export const ConfigurationGroupValuePropertiesFormat = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      provisioningState: S.optional(
+        ConfigurationGroupValuePropertiesFormatProvisioningState,
+      ),
+      publisherName: S.optional(S.String),
+      publisherScope: S.optional(
+        ConfigurationGroupValuePropertiesFormatPublisherScope,
+      ),
+      configurationGroupSchemaName: S.optional(S.String),
+      configurationGroupSchemaOfferingLocation: S.optional(S.String),
+      configurationGroupSchemaResourceReference: S.optional(
+        ConfigurationGroupValuePropertiesFormatConfigurationGroupSchemaResourceReference,
+      ),
+      configurationType: ConfigurationGroupValueConfigurationType,
+    }),
+).annotate({
+  identifier: "ConfigurationGroupValuePropertiesFormat",
+}) as any as S.Schema<ConfigurationGroupValuePropertiesFormat>;
+
+export interface ConfigurationGroupValuesCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: ConfigurationGroupValuesCreateOrUpdateResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Hybrid configuration group value properties. */
+  properties?: ConfigurationGroupValuePropertiesFormat;
+}
+export const ConfigurationGroupValuesCreateOrUpdateResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(ConfigurationGroupValuesCreateOrUpdateResponseTagsMap),
+      location: S.String,
+      properties: S.optional(ConfigurationGroupValuePropertiesFormat),
+    }),
+  ).annotate({
+    identifier: "ConfigurationGroupValuesCreateOrUpdateResponse",
+  }) as any as S.Schema<ConfigurationGroupValuesCreateOrUpdateResponse>;
+
+export interface DeleteArtifactManifestRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the publisher. */
+  publisherName: string;
+  /** The name of the artifact store. */
+  artifactStoreName: string;
+  /** The name of the artifact manifest. */
+  artifactManifestName: string;
+}
+export const DeleteArtifactManifestRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    publisherName: S.String.pipe(T.Label()),
+    artifactStoreName: S.String.pipe(T.Label()),
+    artifactManifestName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/artifactStores/{artifactStoreName}/artifactManifests/{artifactManifestName}",
+      code: 200,
+      apiVersion: "2024-04-15",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteArtifactManifestRequest",
+}) as any as S.Schema<DeleteArtifactManifestRequest>;
+
+export interface DeleteArtifactManifestResponse {}
+export const DeleteArtifactManifestResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteArtifactManifestResponse",
+}) as any as S.Schema<DeleteArtifactManifestResponse>;
+
+export interface DeleteArtifactStoreRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -986,7 +1015,7 @@ export interface ArtifactStoresDeleteRequest {
   /** The name of the artifact store. */
   artifactStoreName: string;
 }
-export const ArtifactStoresDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteArtifactStoreRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1001,31 +1030,31 @@ export const ArtifactStoresDeleteRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ArtifactStoresDeleteRequest",
-}) as any as S.Schema<ArtifactStoresDeleteRequest>;
+  identifier: "DeleteArtifactStoreRequest",
+}) as any as S.Schema<DeleteArtifactStoreRequest>;
 
-export interface ArtifactStoresDeleteResponse {}
-export const ArtifactStoresDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteArtifactStoreResponse {}
+export const DeleteArtifactStoreResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "ArtifactStoresDeleteResponse",
-}) as any as S.Schema<ArtifactStoresDeleteResponse>;
+  identifier: "DeleteArtifactStoreResponse",
+}) as any as S.Schema<DeleteArtifactStoreResponse>;
 
 /** Reference to another resource. */
-export type ArtifactStoresDeleteNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem =
-  ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
-export const ArtifactStoresDeleteNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem =
-  ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
+export type DeleteArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem =
+  AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
+export const DeleteArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem =
+  AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
 
 /** list of network fabric controllers. */
-export type ArtifactStoresDeleteNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsList =
-  Array<ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem>;
-export const ArtifactStoresDeleteNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsList =
+export type DeleteArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsList =
+  Array<AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem>;
+export const DeleteArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsList =
   /*@__PURE__*/ S.Array(
-    ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem,
-  ) as any as S.Schema<ArtifactStoresDeleteNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsList>;
+    AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem,
+  ) as any as S.Schema<DeleteArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsList>;
 
-export interface ArtifactStoresDeleteNetworkFabricControllerEndPointsRequest {
+export interface DeleteArtifactStoreNetworkFabricControllerEndPointsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1035,9 +1064,9 @@ export interface ArtifactStoresDeleteNetworkFabricControllerEndPointsRequest {
   /** The name of the artifact store. */
   artifactStoreName: string;
   /** list of network fabric controllers. */
-  networkFabricControllerIds?: ArtifactStoresDeleteNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsList;
+  networkFabricControllerIds?: DeleteArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsList;
 }
-export const ArtifactStoresDeleteNetworkFabricControllerEndPointsRequest =
+export const DeleteArtifactStoreNetworkFabricControllerEndPointsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -1045,7 +1074,7 @@ export const ArtifactStoresDeleteNetworkFabricControllerEndPointsRequest =
       publisherName: S.String.pipe(T.Label()),
       artifactStoreName: S.String.pipe(T.Label()),
       networkFabricControllerIds: S.optional(
-        ArtifactStoresDeleteNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsList,
+        DeleteArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsList,
       ),
     }).pipe(
       T.Http({
@@ -1056,16 +1085,501 @@ export const ArtifactStoresDeleteNetworkFabricControllerEndPointsRequest =
       }),
     ),
   ).annotate({
-    identifier: "ArtifactStoresDeleteNetworkFabricControllerEndPointsRequest",
-  }) as any as S.Schema<ArtifactStoresDeleteNetworkFabricControllerEndPointsRequest>;
+    identifier: "DeleteArtifactStoreNetworkFabricControllerEndPointsRequest",
+  }) as any as S.Schema<DeleteArtifactStoreNetworkFabricControllerEndPointsRequest>;
 
-export interface ArtifactStoresDeleteNetworkFabricControllerEndPointsResponse {}
-export const ArtifactStoresDeleteNetworkFabricControllerEndPointsResponse =
+export interface DeleteArtifactStoreNetworkFabricControllerEndPointsResponse {}
+export const DeleteArtifactStoreNetworkFabricControllerEndPointsResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "ArtifactStoresDeleteNetworkFabricControllerEndPointsResponse",
-  }) as any as S.Schema<ArtifactStoresDeleteNetworkFabricControllerEndPointsResponse>;
+    identifier: "DeleteArtifactStoreNetworkFabricControllerEndPointsResponse",
+  }) as any as S.Schema<DeleteArtifactStoreNetworkFabricControllerEndPointsResponse>;
 
-export interface ArtifactStoresGetRequest {
+export interface DeleteConfigurationGroupSchemaRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the publisher. */
+  publisherName: string;
+  /** The name of the configuration group schema. */
+  configurationGroupSchemaName: string;
+}
+export const DeleteConfigurationGroupSchemaRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      publisherName: S.String.pipe(T.Label()),
+      configurationGroupSchemaName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/configurationGroupSchemas/{configurationGroupSchemaName}",
+        code: 200,
+        apiVersion: "2024-04-15",
+      }),
+    ),
+).annotate({
+  identifier: "DeleteConfigurationGroupSchemaRequest",
+}) as any as S.Schema<DeleteConfigurationGroupSchemaRequest>;
+
+export interface DeleteConfigurationGroupSchemaResponse {}
+export const DeleteConfigurationGroupSchemaResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteConfigurationGroupSchemaResponse",
+}) as any as S.Schema<DeleteConfigurationGroupSchemaResponse>;
+
+export interface DeleteConfigurationGroupValueRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the configuration group value. */
+  configurationGroupValueName: string;
+}
+export const DeleteConfigurationGroupValueRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      configurationGroupValueName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/configurationGroupValues/{configurationGroupValueName}",
+        code: 200,
+        apiVersion: "2024-04-15",
+      }),
+    ),
+).annotate({
+  identifier: "DeleteConfigurationGroupValueRequest",
+}) as any as S.Schema<DeleteConfigurationGroupValueRequest>;
+
+export interface DeleteConfigurationGroupValueResponse {}
+export const DeleteConfigurationGroupValueResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteConfigurationGroupValueResponse",
+}) as any as S.Schema<DeleteConfigurationGroupValueResponse>;
+
+export interface DeleteNetworkFunctionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the network function. */
+  networkFunctionName: string;
+}
+export const DeleteNetworkFunctionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    networkFunctionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/networkFunctions/{networkFunctionName}",
+      code: 200,
+      apiVersion: "2024-04-15",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteNetworkFunctionRequest",
+}) as any as S.Schema<DeleteNetworkFunctionRequest>;
+
+export interface DeleteNetworkFunctionResponse {}
+export const DeleteNetworkFunctionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteNetworkFunctionResponse",
+}) as any as S.Schema<DeleteNetworkFunctionResponse>;
+
+export interface DeleteNetworkFunctionDefinitionGroupRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the publisher. */
+  publisherName: string;
+  /** The name of the network function definition group. */
+  networkFunctionDefinitionGroupName: string;
+}
+export const DeleteNetworkFunctionDefinitionGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      publisherName: S.String.pipe(T.Label()),
+      networkFunctionDefinitionGroupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/networkFunctionDefinitionGroups/{networkFunctionDefinitionGroupName}",
+        code: 200,
+        apiVersion: "2024-04-15",
+      }),
+    ),
+  ).annotate({
+    identifier: "DeleteNetworkFunctionDefinitionGroupRequest",
+  }) as any as S.Schema<DeleteNetworkFunctionDefinitionGroupRequest>;
+
+export interface DeleteNetworkFunctionDefinitionGroupResponse {}
+export const DeleteNetworkFunctionDefinitionGroupResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "DeleteNetworkFunctionDefinitionGroupResponse",
+  }) as any as S.Schema<DeleteNetworkFunctionDefinitionGroupResponse>;
+
+export interface DeleteNetworkFunctionDefinitionVersionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the publisher. */
+  publisherName: string;
+  /** The name of the network function definition group. */
+  networkFunctionDefinitionGroupName: string;
+  /** The name of the network function definition version. The name should conform to the SemVer 2.0.0 specification: https://semver.org/spec/v2.0.0.html. */
+  networkFunctionDefinitionVersionName: string;
+}
+export const DeleteNetworkFunctionDefinitionVersionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      publisherName: S.String.pipe(T.Label()),
+      networkFunctionDefinitionGroupName: S.String.pipe(T.Label()),
+      networkFunctionDefinitionVersionName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/networkFunctionDefinitionGroups/{networkFunctionDefinitionGroupName}/networkFunctionDefinitionVersions/{networkFunctionDefinitionVersionName}",
+        code: 200,
+        apiVersion: "2024-04-15",
+      }),
+    ),
+  ).annotate({
+    identifier: "DeleteNetworkFunctionDefinitionVersionRequest",
+  }) as any as S.Schema<DeleteNetworkFunctionDefinitionVersionRequest>;
+
+export interface DeleteNetworkFunctionDefinitionVersionResponse {}
+export const DeleteNetworkFunctionDefinitionVersionResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "DeleteNetworkFunctionDefinitionVersionResponse",
+  }) as any as S.Schema<DeleteNetworkFunctionDefinitionVersionResponse>;
+
+export interface DeleteNetworkServiceDesignGroupRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the publisher. */
+  publisherName: string;
+  /** The name of the network service design group. */
+  networkServiceDesignGroupName: string;
+}
+export const DeleteNetworkServiceDesignGroupRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      publisherName: S.String.pipe(T.Label()),
+      networkServiceDesignGroupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/networkServiceDesignGroups/{networkServiceDesignGroupName}",
+        code: 200,
+        apiVersion: "2024-04-15",
+      }),
+    ),
+).annotate({
+  identifier: "DeleteNetworkServiceDesignGroupRequest",
+}) as any as S.Schema<DeleteNetworkServiceDesignGroupRequest>;
+
+export interface DeleteNetworkServiceDesignGroupResponse {}
+export const DeleteNetworkServiceDesignGroupResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteNetworkServiceDesignGroupResponse",
+}) as any as S.Schema<DeleteNetworkServiceDesignGroupResponse>;
+
+export interface DeleteNetworkServiceDesignVersionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the publisher. */
+  publisherName: string;
+  /** The name of the network service design group. */
+  networkServiceDesignGroupName: string;
+  /** The name of the network service design version. The name should conform to the SemVer 2.0.0 specification: https://semver.org/spec/v2.0.0.html. */
+  networkServiceDesignVersionName: string;
+}
+export const DeleteNetworkServiceDesignVersionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      publisherName: S.String.pipe(T.Label()),
+      networkServiceDesignGroupName: S.String.pipe(T.Label()),
+      networkServiceDesignVersionName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/networkServiceDesignGroups/{networkServiceDesignGroupName}/networkServiceDesignVersions/{networkServiceDesignVersionName}",
+        code: 200,
+        apiVersion: "2024-04-15",
+      }),
+    ),
+).annotate({
+  identifier: "DeleteNetworkServiceDesignVersionRequest",
+}) as any as S.Schema<DeleteNetworkServiceDesignVersionRequest>;
+
+export interface DeleteNetworkServiceDesignVersionResponse {}
+export const DeleteNetworkServiceDesignVersionResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "DeleteNetworkServiceDesignVersionResponse",
+  }) as any as S.Schema<DeleteNetworkServiceDesignVersionResponse>;
+
+export interface DeletePublisherRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the publisher. */
+  publisherName: string;
+}
+export const DeletePublisherRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    publisherName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}",
+      code: 200,
+      apiVersion: "2024-04-15",
+    }),
+  ),
+).annotate({
+  identifier: "DeletePublisherRequest",
+}) as any as S.Schema<DeletePublisherRequest>;
+
+export interface DeletePublisherResponse {}
+export const DeletePublisherResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeletePublisherResponse",
+}) as any as S.Schema<DeletePublisherResponse>;
+
+export interface DeleteSiteRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the network service site. */
+  siteName: string;
+}
+export const DeleteSiteRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    siteName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/sites/{siteName}",
+      code: 200,
+      apiVersion: "2024-04-15",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteSiteRequest",
+}) as any as S.Schema<DeleteSiteRequest>;
+
+export interface DeleteSiteResponse {}
+export const DeleteSiteResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteSiteResponse",
+}) as any as S.Schema<DeleteSiteResponse>;
+
+export interface DeleteSiteNetworkServiceRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the site network service. */
+  siteNetworkServiceName: string;
+}
+export const DeleteSiteNetworkServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    siteNetworkServiceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/siteNetworkServices/{siteNetworkServiceName}",
+      code: 200,
+      apiVersion: "2024-04-15",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteSiteNetworkServiceRequest",
+}) as any as S.Schema<DeleteSiteNetworkServiceRequest>;
+
+export interface DeleteSiteNetworkServiceResponse {}
+export const DeleteSiteNetworkServiceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteSiteNetworkServiceResponse",
+}) as any as S.Schema<DeleteSiteNetworkServiceResponse>;
+
+/** The http method of the request. */
+export type RequestMetadataHttpMethod =
+  | "Unknown"
+  | "Post"
+  | "Put"
+  | "Get"
+  | "Patch"
+  | "Delete";
+export const RequestMetadataHttpMethod = /*@__PURE__*/ S.String;
+
+/** Request metadata of execute request post call payload. */
+export interface RequestMetadata {
+  /** The relative path of the request. */
+  relativePath: string;
+  /** The http method of the request. */
+  httpMethod: RequestMetadataHttpMethod | (string & {});
+  /** The serialized body of the request. */
+  serializedBody: string;
+  /** The api version of the request. */
+  apiVersion?: string;
+}
+export const RequestMetadata = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    relativePath: S.String,
+    httpMethod: RequestMetadataHttpMethod,
+    serializedBody: S.String,
+    apiVersion: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "RequestMetadata",
+}) as any as S.Schema<RequestMetadata>;
+
+export interface ExecuteNetworkFunctionRequestRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the network function. */
+  networkFunctionName: string;
+  /** The endpoint of service to call. */
+  serviceEndpoint: string;
+  /** The request metadata. */
+  requestMetadata: RequestMetadata;
+}
+export const ExecuteNetworkFunctionRequestRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      networkFunctionName: S.String.pipe(T.Label()),
+      serviceEndpoint: S.String,
+      requestMetadata: RequestMetadata,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/networkFunctions/{networkFunctionName}/executeRequest",
+        code: 200,
+        apiVersion: "2024-04-15",
+      }),
+    ),
+).annotate({
+  identifier: "ExecuteNetworkFunctionRequestRequest",
+}) as any as S.Schema<ExecuteNetworkFunctionRequestRequest>;
+
+export interface ExecuteNetworkFunctionRequestResponse {}
+export const ExecuteNetworkFunctionRequestResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "ExecuteNetworkFunctionRequestResponse",
+}) as any as S.Schema<ExecuteNetworkFunctionRequestResponse>;
+
+export interface GetArtifactManifestRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the publisher. */
+  publisherName: string;
+  /** The name of the artifact store. */
+  artifactStoreName: string;
+  /** The name of the artifact manifest. */
+  artifactManifestName: string;
+}
+export const GetArtifactManifestRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    publisherName: S.String.pipe(T.Label()),
+    artifactStoreName: S.String.pipe(T.Label()),
+    artifactManifestName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/artifactStores/{artifactStoreName}/artifactManifests/{artifactManifestName}",
+      code: 200,
+      apiVersion: "2024-04-15",
+    }),
+  ),
+).annotate({
+  identifier: "GetArtifactManifestRequest",
+}) as any as S.Schema<GetArtifactManifestRequest>;
+
+/** Resource tags. */
+export type GetArtifactManifestResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetArtifactManifestResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetArtifactManifestResponseTagsMap>;
+
+export interface GetArtifactManifestResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetArtifactManifestResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Artifact manifest properties. */
+  properties?: ArtifactManifestPropertiesFormat;
+}
+export const GetArtifactManifestResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetArtifactManifestResponseTagsMap),
+    location: S.String,
+    properties: S.optional(ArtifactManifestPropertiesFormat),
+  }),
+).annotate({
+  identifier: "GetArtifactManifestResponse",
+}) as any as S.Schema<GetArtifactManifestResponse>;
+
+export interface GetArtifactStoreRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1075,7 +1589,7 @@ export interface ArtifactStoresGetRequest {
   /** The name of the artifact store. */
   artifactStoreName: string;
 }
-export const ArtifactStoresGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetArtifactStoreRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1090,19 +1604,19 @@ export const ArtifactStoresGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ArtifactStoresGetRequest",
-}) as any as S.Schema<ArtifactStoresGetRequest>;
+  identifier: "GetArtifactStoreRequest",
+}) as any as S.Schema<GetArtifactStoreRequest>;
 
 /** Resource tags. */
-export type ArtifactStoresGetResponseTagsMap = {
+export type GetArtifactStoreResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ArtifactStoresGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetArtifactStoreResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ArtifactStoresGetResponseTagsMap>;
+) as any as S.Schema<GetArtifactStoreResponseTagsMap>;
 
-export interface ArtifactStoresGetResponse {
+export interface GetArtifactStoreResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -1112,414 +1626,27 @@ export interface ArtifactStoresGetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ArtifactStoresGetResponseTagsMap;
+  tags?: GetArtifactStoreResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** ArtifactStores properties. */
   properties?: ArtifactStorePropertiesFormat;
 }
-export const ArtifactStoresGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetArtifactStoreResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ArtifactStoresGetResponseTagsMap),
+    tags: S.optional(GetArtifactStoreResponseTagsMap),
     location: S.String,
     properties: S.optional(ArtifactStorePropertiesFormat),
   }),
 ).annotate({
-  identifier: "ArtifactStoresGetResponse",
-}) as any as S.Schema<ArtifactStoresGetResponse>;
+  identifier: "GetArtifactStoreResponse",
+}) as any as S.Schema<GetArtifactStoreResponse>;
 
-export interface ArtifactStoresListByPublisherRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the publisher. */
-  publisherName: string;
-}
-export const ArtifactStoresListByPublisherRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      publisherName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/artifactStores",
-        code: 200,
-        apiVersion: "2024-04-15",
-      }),
-    ),
-).annotate({
-  identifier: "ArtifactStoresListByPublisherRequest",
-}) as any as S.Schema<ArtifactStoresListByPublisherRequest>;
-
-/** Resource tags. */
-export type ArtifactStoreTagsMap = { [key: string]: string | undefined };
-export const ArtifactStoreTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ArtifactStoreTagsMap>;
-
-/** Artifact store properties. */
-export interface ArtifactStore {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ArtifactStoreTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** ArtifactStores properties. */
-  properties?: ArtifactStorePropertiesFormat;
-}
-export const ArtifactStore = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(ArtifactStoreTagsMap),
-    location: S.String,
-    properties: S.optional(ArtifactStorePropertiesFormat),
-  }),
-).annotate({ identifier: "ArtifactStore" }) as any as S.Schema<ArtifactStore>;
-
-/** A list of artifact stores. */
-export type ArtifactStoreListResultValueList = Array<ArtifactStore>;
-export const ArtifactStoreListResultValueList = /*@__PURE__*/ S.Array(
-  ArtifactStore,
-) as any as S.Schema<ArtifactStoreListResultValueList>;
-
-/** A list of artifact stores. */
-export interface ArtifactStoreListResult {
-  /** A list of artifact stores. */
-  value?: ArtifactStoreListResultValueList;
-  /** The URL to get the next set of results. */
-  nextLink?: string;
-}
-export const ArtifactStoreListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(ArtifactStoreListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ArtifactStoreListResult",
-}) as any as S.Schema<ArtifactStoreListResult>;
-
-export interface ArtifactStoresListNetworkFabricControllerPrivateEndPointsRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the publisher. */
-  publisherName: string;
-  /** The name of the artifact store. */
-  artifactStoreName: string;
-}
-export const ArtifactStoresListNetworkFabricControllerPrivateEndPointsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      publisherName: S.String.pipe(T.Label()),
-      artifactStoreName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/artifactStores/{artifactStoreName}/listNetworkFabricControllerPrivateEndPoints",
-        code: 200,
-        apiVersion: "2024-04-15",
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "ArtifactStoresListNetworkFabricControllerPrivateEndPointsRequest",
-  }) as any as S.Schema<ArtifactStoresListNetworkFabricControllerPrivateEndPointsRequest>;
-
-/** Reference to another resource. */
-export type ArtifactStoreNetworkFabricControllerEndPointsNetworkFabricControllerIdsItem =
-  ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
-export const ArtifactStoreNetworkFabricControllerEndPointsNetworkFabricControllerIdsItem =
-  ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
-
-/** list of network fabric controllers. */
-export type ArtifactStoreNetworkFabricControllerEndPointsNetworkFabricControllerIdsList =
-  Array<ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem>;
-export const ArtifactStoreNetworkFabricControllerEndPointsNetworkFabricControllerIdsList =
-  /*@__PURE__*/ S.Array(
-    ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem,
-  ) as any as S.Schema<ArtifactStoreNetworkFabricControllerEndPointsNetworkFabricControllerIdsList>;
-
-/** List of network fabric controller ids. */
-export interface ArtifactStoreNetworkFabricControllerEndPoints {
-  /** list of network fabric controllers. */
-  networkFabricControllerIds?: ArtifactStoreNetworkFabricControllerEndPointsNetworkFabricControllerIdsList;
-}
-export const ArtifactStoreNetworkFabricControllerEndPoints =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      networkFabricControllerIds: S.optional(
-        ArtifactStoreNetworkFabricControllerEndPointsNetworkFabricControllerIdsList,
-      ),
-    }),
-  ).annotate({
-    identifier: "ArtifactStoreNetworkFabricControllerEndPoints",
-  }) as any as S.Schema<ArtifactStoreNetworkFabricControllerEndPoints>;
-
-/** A list of network fabric controllers. */
-export type ArtifactStoreNetworkFabricControllerEndPointsListValueList =
-  Array<ArtifactStoreNetworkFabricControllerEndPoints>;
-export const ArtifactStoreNetworkFabricControllerEndPointsListValueList =
-  /*@__PURE__*/ S.Array(
-    ArtifactStoreNetworkFabricControllerEndPoints,
-  ) as any as S.Schema<ArtifactStoreNetworkFabricControllerEndPointsListValueList>;
-
-/** List of manual private endpoints. */
-export interface ArtifactStoreNetworkFabricControllerEndPointsList {
-  /** A list of network fabric controllers. */
-  value?: ArtifactStoreNetworkFabricControllerEndPointsListValueList;
-  /** The URI to get the next set of results. */
-  nextLink?: string;
-}
-export const ArtifactStoreNetworkFabricControllerEndPointsList =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      value: S.optional(
-        ArtifactStoreNetworkFabricControllerEndPointsListValueList,
-      ),
-      nextLink: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "ArtifactStoreNetworkFabricControllerEndPointsList",
-  }) as any as S.Schema<ArtifactStoreNetworkFabricControllerEndPointsList>;
-
-export interface ArtifactStoresListPrivateEndPointsRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the publisher. */
-  publisherName: string;
-  /** The name of the artifact store. */
-  artifactStoreName: string;
-}
-export const ArtifactStoresListPrivateEndPointsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      publisherName: S.String.pipe(T.Label()),
-      artifactStoreName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/artifactStores/{artifactStoreName}/listPrivateEndPoints",
-        code: 200,
-        apiVersion: "2024-04-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "ArtifactStoresListPrivateEndPointsRequest",
-  }) as any as S.Schema<ArtifactStoresListPrivateEndPointsRequest>;
-
-/** Reference to another resource. */
-export type ArtifactStorePrivateEndPointsFormatManualPrivateEndPointConnectionsItem =
-  ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
-export const ArtifactStorePrivateEndPointsFormatManualPrivateEndPointConnectionsItem =
-  ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
-
-/** list of private endpoints. */
-export type ArtifactStorePrivateEndPointsFormatManualPrivateEndPointConnectionsList =
-  Array<ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem>;
-export const ArtifactStorePrivateEndPointsFormatManualPrivateEndPointConnectionsList =
-  /*@__PURE__*/ S.Array(
-    ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem,
-  ) as any as S.Schema<ArtifactStorePrivateEndPointsFormatManualPrivateEndPointConnectionsList>;
-
-/** List of manual private endpoints. */
-export interface ArtifactStorePrivateEndPointsFormat {
-  /** list of private endpoints. */
-  manualPrivateEndPointConnections?: ArtifactStorePrivateEndPointsFormatManualPrivateEndPointConnectionsList;
-}
-export const ArtifactStorePrivateEndPointsFormat = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    manualPrivateEndPointConnections: S.optional(
-      ArtifactStorePrivateEndPointsFormatManualPrivateEndPointConnectionsList,
-    ),
-  }),
-).annotate({
-  identifier: "ArtifactStorePrivateEndPointsFormat",
-}) as any as S.Schema<ArtifactStorePrivateEndPointsFormat>;
-
-/** A list of private endpoints. */
-export type ArtifactStorePrivateEndPointsListResultValueList =
-  Array<ArtifactStorePrivateEndPointsFormat>;
-export const ArtifactStorePrivateEndPointsListResultValueList =
-  /*@__PURE__*/ S.Array(
-    ArtifactStorePrivateEndPointsFormat,
-  ) as any as S.Schema<ArtifactStorePrivateEndPointsListResultValueList>;
-
-/** List of manual private endpoints. */
-export interface ArtifactStorePrivateEndPointsListResult {
-  /** A list of private endpoints. */
-  value?: ArtifactStorePrivateEndPointsListResultValueList;
-  /** The URI to get the next set of results. */
-  nextLink?: string;
-}
-export const ArtifactStorePrivateEndPointsListResult = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      value: S.optional(ArtifactStorePrivateEndPointsListResultValueList),
-      nextLink: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "ArtifactStorePrivateEndPointsListResult",
-}) as any as S.Schema<ArtifactStorePrivateEndPointsListResult>;
-
-/** Reference to another resource. */
-export type ArtifactStoresRemovePrivateEndPointsRequestManualPrivateEndPointConnectionsItem =
-  ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
-export const ArtifactStoresRemovePrivateEndPointsRequestManualPrivateEndPointConnectionsItem =
-  ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
-
-/** list of private endpoints. */
-export type ArtifactStoresRemovePrivateEndPointsRequestManualPrivateEndPointConnectionsList =
-  Array<ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem>;
-export const ArtifactStoresRemovePrivateEndPointsRequestManualPrivateEndPointConnectionsList =
-  /*@__PURE__*/ S.Array(
-    ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem,
-  ) as any as S.Schema<ArtifactStoresRemovePrivateEndPointsRequestManualPrivateEndPointConnectionsList>;
-
-export interface ArtifactStoresRemovePrivateEndPointsRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the publisher. */
-  publisherName: string;
-  /** The name of the artifact store. */
-  artifactStoreName: string;
-  /** list of private endpoints. */
-  manualPrivateEndPointConnections?: ArtifactStoresRemovePrivateEndPointsRequestManualPrivateEndPointConnectionsList;
-}
-export const ArtifactStoresRemovePrivateEndPointsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      publisherName: S.String.pipe(T.Label()),
-      artifactStoreName: S.String.pipe(T.Label()),
-      manualPrivateEndPointConnections: S.optional(
-        ArtifactStoresRemovePrivateEndPointsRequestManualPrivateEndPointConnectionsList,
-      ),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/artifactStores/{artifactStoreName}/removePrivateEndPoints",
-        code: 200,
-        apiVersion: "2024-04-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "ArtifactStoresRemovePrivateEndPointsRequest",
-  }) as any as S.Schema<ArtifactStoresRemovePrivateEndPointsRequest>;
-
-export interface ArtifactStoresRemovePrivateEndPointsResponse {}
-export const ArtifactStoresRemovePrivateEndPointsResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "ArtifactStoresRemovePrivateEndPointsResponse",
-  }) as any as S.Schema<ArtifactStoresRemovePrivateEndPointsResponse>;
-
-/** Resource tags. */
-export type ArtifactStoresUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ArtifactStoresUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ArtifactStoresUpdateRequestTagsMap>;
-
-export interface ArtifactStoresUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the publisher. */
-  publisherName: string;
-  /** The name of the artifact store. */
-  artifactStoreName: string;
-  /** Resource tags. */
-  tags?: ArtifactStoresUpdateRequestTagsMap;
-}
-export const ArtifactStoresUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    publisherName: S.String.pipe(T.Label()),
-    artifactStoreName: S.String.pipe(T.Label()),
-    tags: S.optional(ArtifactStoresUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/artifactStores/{artifactStoreName}",
-      code: 200,
-      apiVersion: "2024-04-15",
-    }),
-  ),
-).annotate({
-  identifier: "ArtifactStoresUpdateRequest",
-}) as any as S.Schema<ArtifactStoresUpdateRequest>;
-
-/** Resource tags. */
-export type ArtifactStoresUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ArtifactStoresUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ArtifactStoresUpdateResponseTagsMap>;
-
-export interface ArtifactStoresUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ArtifactStoresUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** ArtifactStores properties. */
-  properties?: ArtifactStorePropertiesFormat;
-}
-export const ArtifactStoresUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(ArtifactStoresUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(ArtifactStorePropertiesFormat),
-  }),
-).annotate({
-  identifier: "ArtifactStoresUpdateResponse",
-}) as any as S.Schema<ArtifactStoresUpdateResponse>;
-
-export interface ComponentsGetRequest {
+export interface GetComponentRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1529,7 +1656,7 @@ export interface ComponentsGetRequest {
   /** The name of the component. */
   componentName: string;
 }
-export const ComponentsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetComponentRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1544,8 +1671,8 @@ export const ComponentsGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ComponentsGetRequest",
-}) as any as S.Schema<ComponentsGetRequest>;
+  identifier: "GetComponentRequest",
+}) as any as S.Schema<GetComponentRequest>;
 
 /** The current provisioning state. */
 export type ComponentPropertiesProvisioningState =
@@ -1848,7 +1975,7 @@ export const ComponentProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "ComponentProperties",
 }) as any as S.Schema<ComponentProperties>;
 
-export interface ComponentsGetResponse {
+export interface GetComponentResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -1860,7 +1987,7 @@ export interface ComponentsGetResponse {
   /** The component properties. */
   properties?: ComponentProperties;
 }
-export const ComponentsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetComponentResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -1869,10 +1996,1947 @@ export const ComponentsGetResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(ComponentProperties),
   }),
 ).annotate({
-  identifier: "ComponentsGetResponse",
-}) as any as S.Schema<ComponentsGetResponse>;
+  identifier: "GetComponentResponse",
+}) as any as S.Schema<GetComponentResponse>;
 
-export interface ComponentsListByNetworkFunctionRequest {
+export interface GetConfigurationGroupSchemaRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the publisher. */
+  publisherName: string;
+  /** The name of the configuration group schema. */
+  configurationGroupSchemaName: string;
+}
+export const GetConfigurationGroupSchemaRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    publisherName: S.String.pipe(T.Label()),
+    configurationGroupSchemaName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/configurationGroupSchemas/{configurationGroupSchemaName}",
+      code: 200,
+      apiVersion: "2024-04-15",
+    }),
+  ),
+).annotate({
+  identifier: "GetConfigurationGroupSchemaRequest",
+}) as any as S.Schema<GetConfigurationGroupSchemaRequest>;
+
+/** Resource tags. */
+export type GetConfigurationGroupSchemaResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetConfigurationGroupSchemaResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<GetConfigurationGroupSchemaResponseTagsMap>;
+
+export interface GetConfigurationGroupSchemaResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetConfigurationGroupSchemaResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Configuration group schema properties. */
+  properties?: ConfigurationGroupSchemaPropertiesFormat;
+}
+export const GetConfigurationGroupSchemaResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetConfigurationGroupSchemaResponseTagsMap),
+    location: S.String,
+    properties: S.optional(ConfigurationGroupSchemaPropertiesFormat),
+  }),
+).annotate({
+  identifier: "GetConfigurationGroupSchemaResponse",
+}) as any as S.Schema<GetConfigurationGroupSchemaResponse>;
+
+export interface GetConfigurationGroupValueRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the configuration group value. */
+  configurationGroupValueName: string;
+}
+export const GetConfigurationGroupValueRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    configurationGroupValueName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/configurationGroupValues/{configurationGroupValueName}",
+      code: 200,
+      apiVersion: "2024-04-15",
+    }),
+  ),
+).annotate({
+  identifier: "GetConfigurationGroupValueRequest",
+}) as any as S.Schema<GetConfigurationGroupValueRequest>;
+
+/** Resource tags. */
+export type GetConfigurationGroupValueResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetConfigurationGroupValueResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetConfigurationGroupValueResponseTagsMap>;
+
+export interface GetConfigurationGroupValueResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetConfigurationGroupValueResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Hybrid configuration group value properties. */
+  properties?: ConfigurationGroupValuePropertiesFormat;
+}
+export const GetConfigurationGroupValueResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetConfigurationGroupValueResponseTagsMap),
+    location: S.String,
+    properties: S.optional(ConfigurationGroupValuePropertiesFormat),
+  }),
+).annotate({
+  identifier: "GetConfigurationGroupValueResponse",
+}) as any as S.Schema<GetConfigurationGroupValueResponse>;
+
+export interface GetNetworkFunctionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the network function resource. */
+  networkFunctionName: string;
+}
+export const GetNetworkFunctionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    networkFunctionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/networkFunctions/{networkFunctionName}",
+      code: 200,
+      apiVersion: "2024-04-15",
+    }),
+  ),
+).annotate({
+  identifier: "GetNetworkFunctionRequest",
+}) as any as S.Schema<GetNetworkFunctionRequest>;
+
+/** Resource tags. */
+export type GetNetworkFunctionResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetNetworkFunctionResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetNetworkFunctionResponseTagsMap>;
+
+/** The current provisioning state. */
+export type NetworkFunctionPropertiesFormatProvisioningState =
+  | "Unknown"
+  | "Succeeded"
+  | "Accepted"
+  | "Deleting"
+  | "Failed"
+  | "Canceled"
+  | "Deleted"
+  | "Converging";
+export const NetworkFunctionPropertiesFormatProvisioningState =
+  /*@__PURE__*/ S.String;
+
+/** Publisher Scope. */
+export type NetworkFunctionPropertiesFormatPublisherScope =
+  | "Unknown"
+  | "Private";
+export const NetworkFunctionPropertiesFormatPublisherScope =
+  /*@__PURE__*/ S.String;
+
+/** The azure resource reference which is used for deployment. */
+export type NetworkFunctionPropertiesFormatNetworkFunctionDefinitionVersionResourceReference =
+  ConfigurationGroupValuePropertiesFormatConfigurationGroupSchemaResourceReference;
+export const NetworkFunctionPropertiesFormatNetworkFunctionDefinitionVersionResourceReference =
+  ConfigurationGroupValuePropertiesFormatConfigurationGroupSchemaResourceReference;
+
+/** The NFVI type. */
+export type NetworkFunctionPropertiesFormatNfviType =
+  | "Unknown"
+  | "AzureArcKubernetes"
+  | "AzureCore"
+  | "AzureOperatorNexus";
+export const NetworkFunctionPropertiesFormatNfviType = /*@__PURE__*/ S.String;
+
+/** The secret type which indicates if secret or not. */
+export type NetworkFunctionConfigurationType = "Unknown" | "Secret" | "Open";
+export const NetworkFunctionConfigurationType = /*@__PURE__*/ S.String;
+
+/** The role configuration override values from the user. */
+export type NetworkFunctionPropertiesFormatRoleOverrideValuesList =
+  Array<string>;
+export const NetworkFunctionPropertiesFormatRoleOverrideValuesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<NetworkFunctionPropertiesFormatRoleOverrideValuesList>;
+
+/** Network function properties. */
+export interface NetworkFunctionPropertiesFormat {
+  /** The current provisioning state. */
+  provisioningState?: NetworkFunctionPropertiesFormatProvisioningState;
+  /** The publisher name for the network function. */
+  publisherName?: string;
+  /** Publisher Scope. */
+  publisherScope?: NetworkFunctionPropertiesFormatPublisherScope;
+  /** The network function definition group name for the network function. */
+  networkFunctionDefinitionGroupName?: string;
+  /** The network function definition version for the network function. */
+  networkFunctionDefinitionVersion?: string;
+  /** The location of the network function definition offering. */
+  networkFunctionDefinitionOfferingLocation?: string;
+  /** The azure resource reference which is used for deployment. */
+  networkFunctionDefinitionVersionResourceReference?: ConfigurationGroupValuePropertiesFormatConfigurationGroupSchemaResourceReference;
+  /** The NFVI type. */
+  nfviType?: NetworkFunctionPropertiesFormatNfviType;
+  /** The nfviId for the network function. */
+  nfviId?: string;
+  /** Indicates if software updates are allowed during deployment. */
+  allowSoftwareUpdate?: boolean;
+  /** The value which indicates if NF values are secrets */
+  configurationType: NetworkFunctionConfigurationType;
+  /** The role configuration override values from the user. */
+  roleOverrideValues?: NetworkFunctionPropertiesFormatRoleOverrideValuesList;
+}
+export const NetworkFunctionPropertiesFormat = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(
+      NetworkFunctionPropertiesFormatProvisioningState,
+    ),
+    publisherName: S.optional(S.String),
+    publisherScope: S.optional(NetworkFunctionPropertiesFormatPublisherScope),
+    networkFunctionDefinitionGroupName: S.optional(S.String),
+    networkFunctionDefinitionVersion: S.optional(S.String),
+    networkFunctionDefinitionOfferingLocation: S.optional(S.String),
+    networkFunctionDefinitionVersionResourceReference: S.optional(
+      ConfigurationGroupValuePropertiesFormatConfigurationGroupSchemaResourceReference,
+    ),
+    nfviType: S.optional(NetworkFunctionPropertiesFormatNfviType),
+    nfviId: S.optional(S.String),
+    allowSoftwareUpdate: S.optional(S.Boolean),
+    configurationType: NetworkFunctionConfigurationType,
+    roleOverrideValues: S.optional(
+      NetworkFunctionPropertiesFormatRoleOverrideValuesList,
+    ),
+  }),
+).annotate({
+  identifier: "NetworkFunctionPropertiesFormat",
+}) as any as S.Schema<NetworkFunctionPropertiesFormat>;
+
+/** Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed). */
+export type ManagedServiceIdentityType =
+  | "None"
+  | "SystemAssigned"
+  | "UserAssigned"
+  | "SystemAssigned,UserAssigned";
+export const ManagedServiceIdentityType = /*@__PURE__*/ S.String;
+
+/** User assigned identity properties */
+export interface UserAssignedIdentity {
+  /** The principal ID of the assigned identity. */
+  principalId?: string;
+  /** The client ID of the assigned identity. */
+  clientId?: string;
+}
+export const UserAssignedIdentity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    principalId: S.optional(S.String),
+    clientId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "UserAssignedIdentity",
+}) as any as S.Schema<UserAssignedIdentity>;
+
+/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+export type UserAssignedIdentities = {
+  [key: string]: UserAssignedIdentity | undefined;
+};
+export const UserAssignedIdentities = /*@__PURE__*/ S.Record(
+  S.String,
+  UserAssignedIdentity,
+) as any as S.Schema<UserAssignedIdentities>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export interface GetNetworkFunctionResponseIdentity {
+  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  principalId?: string;
+  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  tenantId?: string;
+  type: ManagedServiceIdentityType;
+  userAssignedIdentities?: UserAssignedIdentities | null;
+}
+export const GetNetworkFunctionResponseIdentity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    principalId: S.optional(S.String),
+    tenantId: S.optional(S.String),
+    type: ManagedServiceIdentityType,
+    userAssignedIdentities: S.optional(S.NullOr(UserAssignedIdentities)),
+  }),
+).annotate({
+  identifier: "GetNetworkFunctionResponseIdentity",
+}) as any as S.Schema<GetNetworkFunctionResponseIdentity>;
+
+export interface GetNetworkFunctionResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetNetworkFunctionResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Network function properties. */
+  properties?: NetworkFunctionPropertiesFormat;
+  /** A unique read-only string that changes whenever the resource is updated. */
+  etag?: string;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: GetNetworkFunctionResponseIdentity;
+}
+export const GetNetworkFunctionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetNetworkFunctionResponseTagsMap),
+    location: S.String,
+    properties: S.optional(NetworkFunctionPropertiesFormat),
+    etag: S.optional(S.String),
+    identity: S.optional(GetNetworkFunctionResponseIdentity),
+  }),
+).annotate({
+  identifier: "GetNetworkFunctionResponse",
+}) as any as S.Schema<GetNetworkFunctionResponse>;
+
+export interface GetNetworkFunctionDefinitionGroupRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the publisher. */
+  publisherName: string;
+  /** The name of the network function definition group. */
+  networkFunctionDefinitionGroupName: string;
+}
+export const GetNetworkFunctionDefinitionGroupRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      publisherName: S.String.pipe(T.Label()),
+      networkFunctionDefinitionGroupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/networkFunctionDefinitionGroups/{networkFunctionDefinitionGroupName}",
+        code: 200,
+        apiVersion: "2024-04-15",
+      }),
+    ),
+).annotate({
+  identifier: "GetNetworkFunctionDefinitionGroupRequest",
+}) as any as S.Schema<GetNetworkFunctionDefinitionGroupRequest>;
+
+/** Resource tags. */
+export type GetNetworkFunctionDefinitionGroupResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetNetworkFunctionDefinitionGroupResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<GetNetworkFunctionDefinitionGroupResponseTagsMap>;
+
+/** The current provisioning state. */
+export type NetworkFunctionDefinitionGroupPropertiesFormatProvisioningState =
+  | "Unknown"
+  | "Succeeded"
+  | "Accepted"
+  | "Deleting"
+  | "Failed"
+  | "Canceled"
+  | "Deleted"
+  | "Converging";
+export const NetworkFunctionDefinitionGroupPropertiesFormatProvisioningState =
+  /*@__PURE__*/ S.String;
+
+/** Network function definition group properties. */
+export interface NetworkFunctionDefinitionGroupPropertiesFormat {
+  /** The current provisioning state. */
+  provisioningState?: NetworkFunctionDefinitionGroupPropertiesFormatProvisioningState;
+  /** The network function definition group description. */
+  description?: string;
+}
+export const NetworkFunctionDefinitionGroupPropertiesFormat =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      provisioningState: S.optional(
+        NetworkFunctionDefinitionGroupPropertiesFormatProvisioningState,
+      ),
+      description: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "NetworkFunctionDefinitionGroupPropertiesFormat",
+  }) as any as S.Schema<NetworkFunctionDefinitionGroupPropertiesFormat>;
+
+export interface GetNetworkFunctionDefinitionGroupResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetNetworkFunctionDefinitionGroupResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Network function definition group properties. */
+  properties?: NetworkFunctionDefinitionGroupPropertiesFormat;
+}
+export const GetNetworkFunctionDefinitionGroupResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(GetNetworkFunctionDefinitionGroupResponseTagsMap),
+      location: S.String,
+      properties: S.optional(NetworkFunctionDefinitionGroupPropertiesFormat),
+    }),
+  ).annotate({
+    identifier: "GetNetworkFunctionDefinitionGroupResponse",
+  }) as any as S.Schema<GetNetworkFunctionDefinitionGroupResponse>;
+
+export interface GetNetworkFunctionDefinitionVersionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the publisher. */
+  publisherName: string;
+  /** The name of the network function definition group. */
+  networkFunctionDefinitionGroupName: string;
+  /** The name of the network function definition version. The name should conform to the SemVer 2.0.0 specification: https://semver.org/spec/v2.0.0.html. */
+  networkFunctionDefinitionVersionName: string;
+}
+export const GetNetworkFunctionDefinitionVersionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      publisherName: S.String.pipe(T.Label()),
+      networkFunctionDefinitionGroupName: S.String.pipe(T.Label()),
+      networkFunctionDefinitionVersionName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/networkFunctionDefinitionGroups/{networkFunctionDefinitionGroupName}/networkFunctionDefinitionVersions/{networkFunctionDefinitionVersionName}",
+        code: 200,
+        apiVersion: "2024-04-15",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetNetworkFunctionDefinitionVersionRequest",
+  }) as any as S.Schema<GetNetworkFunctionDefinitionVersionRequest>;
+
+/** Resource tags. */
+export type GetNetworkFunctionDefinitionVersionResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetNetworkFunctionDefinitionVersionResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<GetNetworkFunctionDefinitionVersionResponseTagsMap>;
+
+/** The current provisioning state. */
+export type NetworkFunctionDefinitionVersionPropertiesFormatProvisioningState =
+  | "Unknown"
+  | "Succeeded"
+  | "Accepted"
+  | "Deleting"
+  | "Failed"
+  | "Canceled"
+  | "Deleted"
+  | "Converging";
+export const NetworkFunctionDefinitionVersionPropertiesFormatProvisioningState =
+  /*@__PURE__*/ S.String;
+
+/** The network function definition version state. */
+export type VersionState =
+  | "Unknown"
+  | "Preview"
+  | "Validating"
+  | "ValidationFailed"
+  | "Active"
+  | "Deprecated";
+export const VersionState = /*@__PURE__*/ S.String;
+
+/** The network function type. */
+export type NetworkFunctionDefinitionVersionPropertiesFormatNetworkFunctionType =
+  | "Unknown"
+  | "VirtualNetworkFunction"
+  | "ContainerizedNetworkFunction";
+export const NetworkFunctionDefinitionVersionPropertiesFormatNetworkFunctionType =
+  /*@__PURE__*/ S.String;
+
+/** Network function definition version properties. */
+export interface NetworkFunctionDefinitionVersionPropertiesFormat {
+  /** The current provisioning state. */
+  provisioningState?: NetworkFunctionDefinitionVersionPropertiesFormatProvisioningState;
+  /** The network function definition version state. */
+  versionState?: VersionState;
+  /** The network function definition version description. */
+  description?: string;
+  /** The deployment parameters of the network function definition version. */
+  deployParameters?: string;
+  /** The network function type. */
+  networkFunctionType: NetworkFunctionDefinitionVersionPropertiesFormatNetworkFunctionType;
+}
+export const NetworkFunctionDefinitionVersionPropertiesFormat =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      provisioningState: S.optional(
+        NetworkFunctionDefinitionVersionPropertiesFormatProvisioningState,
+      ),
+      versionState: S.optional(VersionState),
+      description: S.optional(S.String),
+      deployParameters: S.optional(S.String),
+      networkFunctionType:
+        NetworkFunctionDefinitionVersionPropertiesFormatNetworkFunctionType,
+    }),
+  ).annotate({
+    identifier: "NetworkFunctionDefinitionVersionPropertiesFormat",
+  }) as any as S.Schema<NetworkFunctionDefinitionVersionPropertiesFormat>;
+
+export interface GetNetworkFunctionDefinitionVersionResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetNetworkFunctionDefinitionVersionResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Network function definition version properties. */
+  properties?: NetworkFunctionDefinitionVersionPropertiesFormat;
+}
+export const GetNetworkFunctionDefinitionVersionResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(GetNetworkFunctionDefinitionVersionResponseTagsMap),
+      location: S.String,
+      properties: S.optional(NetworkFunctionDefinitionVersionPropertiesFormat),
+    }),
+  ).annotate({
+    identifier: "GetNetworkFunctionDefinitionVersionResponse",
+  }) as any as S.Schema<GetNetworkFunctionDefinitionVersionResponse>;
+
+export interface GetNetworkServiceDesignGroupRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the publisher. */
+  publisherName: string;
+  /** The name of the network service design group. */
+  networkServiceDesignGroupName: string;
+}
+export const GetNetworkServiceDesignGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    publisherName: S.String.pipe(T.Label()),
+    networkServiceDesignGroupName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/networkServiceDesignGroups/{networkServiceDesignGroupName}",
+      code: 200,
+      apiVersion: "2024-04-15",
+    }),
+  ),
+).annotate({
+  identifier: "GetNetworkServiceDesignGroupRequest",
+}) as any as S.Schema<GetNetworkServiceDesignGroupRequest>;
+
+/** Resource tags. */
+export type GetNetworkServiceDesignGroupResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetNetworkServiceDesignGroupResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<GetNetworkServiceDesignGroupResponseTagsMap>;
+
+/** The current provisioning state. */
+export type NetworkServiceDesignGroupPropertiesFormatProvisioningState =
+  | "Unknown"
+  | "Succeeded"
+  | "Accepted"
+  | "Deleting"
+  | "Failed"
+  | "Canceled"
+  | "Deleted"
+  | "Converging";
+export const NetworkServiceDesignGroupPropertiesFormatProvisioningState =
+  /*@__PURE__*/ S.String;
+
+/** network service design group properties. */
+export interface NetworkServiceDesignGroupPropertiesFormat {
+  /** The current provisioning state. */
+  provisioningState?: NetworkServiceDesignGroupPropertiesFormatProvisioningState;
+  /** The network service design group description. */
+  description?: string;
+}
+export const NetworkServiceDesignGroupPropertiesFormat =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      provisioningState: S.optional(
+        NetworkServiceDesignGroupPropertiesFormatProvisioningState,
+      ),
+      description: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "NetworkServiceDesignGroupPropertiesFormat",
+  }) as any as S.Schema<NetworkServiceDesignGroupPropertiesFormat>;
+
+export interface GetNetworkServiceDesignGroupResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetNetworkServiceDesignGroupResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** network service design group properties. */
+  properties?: NetworkServiceDesignGroupPropertiesFormat;
+}
+export const GetNetworkServiceDesignGroupResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(GetNetworkServiceDesignGroupResponseTagsMap),
+      location: S.String,
+      properties: S.optional(NetworkServiceDesignGroupPropertiesFormat),
+    }),
+).annotate({
+  identifier: "GetNetworkServiceDesignGroupResponse",
+}) as any as S.Schema<GetNetworkServiceDesignGroupResponse>;
+
+export interface GetNetworkServiceDesignVersionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the publisher. */
+  publisherName: string;
+  /** The name of the network service design group. */
+  networkServiceDesignGroupName: string;
+  /** The name of the network service design version. The name should conform to the SemVer 2.0.0 specification: https://semver.org/spec/v2.0.0.html. */
+  networkServiceDesignVersionName: string;
+}
+export const GetNetworkServiceDesignVersionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      publisherName: S.String.pipe(T.Label()),
+      networkServiceDesignGroupName: S.String.pipe(T.Label()),
+      networkServiceDesignVersionName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/networkServiceDesignGroups/{networkServiceDesignGroupName}/networkServiceDesignVersions/{networkServiceDesignVersionName}",
+        code: 200,
+        apiVersion: "2024-04-15",
+      }),
+    ),
+).annotate({
+  identifier: "GetNetworkServiceDesignVersionRequest",
+}) as any as S.Schema<GetNetworkServiceDesignVersionRequest>;
+
+/** Resource tags. */
+export type GetNetworkServiceDesignVersionResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetNetworkServiceDesignVersionResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<GetNetworkServiceDesignVersionResponseTagsMap>;
+
+/** The current provisioning state. */
+export type NetworkServiceDesignVersionPropertiesFormatProvisioningState =
+  | "Unknown"
+  | "Succeeded"
+  | "Accepted"
+  | "Deleting"
+  | "Failed"
+  | "Canceled"
+  | "Deleted"
+  | "Converging";
+export const NetworkServiceDesignVersionPropertiesFormatProvisioningState =
+  /*@__PURE__*/ S.String;
+
+/** The network service design version state. */
+export type NSDVersionState = "Unknown" | "Preview" | "Active" | "Deprecated";
+export const NSDVersionState = /*@__PURE__*/ S.String;
+
+/** Reference to another resource. */
+export type NetworkServiceDesignVersionPropertiesFormatConfigurationGroupSchemaReferencesValue =
+  AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
+export const NetworkServiceDesignVersionPropertiesFormatConfigurationGroupSchemaReferencesValue =
+  AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
+
+/** The configuration schemas to used to define the values. */
+export type NetworkServiceDesignVersionPropertiesFormatConfigurationGroupSchemaReferencesMap =
+  {
+    [key: string]:
+      | AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem
+      | undefined;
+  };
+export const NetworkServiceDesignVersionPropertiesFormatConfigurationGroupSchemaReferencesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem,
+  ) as any as S.Schema<NetworkServiceDesignVersionPropertiesFormatConfigurationGroupSchemaReferencesMap>;
+
+/** The nfvi details. */
+export interface NfviDetails {
+  /** The nfvi name. */
+  name?: string;
+  /** The nfvi type. */
+  type?: string;
+}
+export const NfviDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+  }),
+).annotate({ identifier: "NfviDetails" }) as any as S.Schema<NfviDetails>;
+
+/** The nfvis from the site. */
+export type NetworkServiceDesignVersionPropertiesFormatNfvisFromSiteMap = {
+  [key: string]: NfviDetails | undefined;
+};
+export const NetworkServiceDesignVersionPropertiesFormatNfvisFromSiteMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    NfviDetails,
+  ) as any as S.Schema<NetworkServiceDesignVersionPropertiesFormatNfvisFromSiteMap>;
+
+/** The resource element template type. */
+export type Type =
+  | "Unknown"
+  | "ArmResourceDefinition"
+  | "NetworkFunctionDefinition";
+export const Type = /*@__PURE__*/ S.String;
+
+/** Application installation operation dependency. */
+export type ResourceElementTemplateDependsOnProfileInstallDependsOnList =
+  Array<string>;
+export const ResourceElementTemplateDependsOnProfileInstallDependsOnList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ResourceElementTemplateDependsOnProfileInstallDependsOnList>;
+
+/** Application deletion operation dependency. */
+export type ResourceElementTemplateDependsOnProfileUninstallDependsOnList =
+  Array<string>;
+export const ResourceElementTemplateDependsOnProfileUninstallDependsOnList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ResourceElementTemplateDependsOnProfileUninstallDependsOnList>;
+
+/** Application update operation dependency. */
+export type ResourceElementTemplateDependsOnProfileUpdateDependsOnList =
+  Array<string>;
+export const ResourceElementTemplateDependsOnProfileUpdateDependsOnList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ResourceElementTemplateDependsOnProfileUpdateDependsOnList>;
+
+/** Depends on profile definition. */
+export interface ResourceElementTemplateDependsOnProfile {
+  /** Application installation operation dependency. */
+  installDependsOn?: ResourceElementTemplateDependsOnProfileInstallDependsOnList;
+  /** Application deletion operation dependency. */
+  uninstallDependsOn?: ResourceElementTemplateDependsOnProfileUninstallDependsOnList;
+  /** Application update operation dependency. */
+  updateDependsOn?: ResourceElementTemplateDependsOnProfileUpdateDependsOnList;
+}
+export const ResourceElementTemplateDependsOnProfile = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      installDependsOn: S.optional(
+        ResourceElementTemplateDependsOnProfileInstallDependsOnList,
+      ),
+      uninstallDependsOn: S.optional(
+        ResourceElementTemplateDependsOnProfileUninstallDependsOnList,
+      ),
+      updateDependsOn: S.optional(
+        ResourceElementTemplateDependsOnProfileUpdateDependsOnList,
+      ),
+    }),
+).annotate({
+  identifier: "ResourceElementTemplateDependsOnProfile",
+}) as any as S.Schema<ResourceElementTemplateDependsOnProfile>;
+
+/** The resource element template object. */
+export interface ResourceElementTemplate {
+  /** Name of the resource element template. */
+  name?: string;
+  /** The resource element template type. */
+  type: Type | (string & {});
+  /** Depends on profile definition. */
+  dependsOnProfile?: ResourceElementTemplateDependsOnProfile;
+}
+export const ResourceElementTemplate = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    type: Type,
+    dependsOnProfile: S.optional(ResourceElementTemplateDependsOnProfile),
+  }),
+).annotate({
+  identifier: "ResourceElementTemplate",
+}) as any as S.Schema<ResourceElementTemplate>;
+
+/** List of resource element template */
+export type NetworkServiceDesignVersionPropertiesFormatResourceElementTemplatesList =
+  Array<ResourceElementTemplate>;
+export const NetworkServiceDesignVersionPropertiesFormatResourceElementTemplatesList =
+  /*@__PURE__*/ S.Array(
+    ResourceElementTemplate,
+  ) as any as S.Schema<NetworkServiceDesignVersionPropertiesFormatResourceElementTemplatesList>;
+
+/** network service design version properties. */
+export interface NetworkServiceDesignVersionPropertiesFormat {
+  /** The current provisioning state. */
+  provisioningState?: NetworkServiceDesignVersionPropertiesFormatProvisioningState;
+  /** The network service design version state. */
+  versionState?: NSDVersionState;
+  /** The network service design version description. */
+  description?: string;
+  /** The configuration schemas to used to define the values. */
+  configurationGroupSchemaReferences?: NetworkServiceDesignVersionPropertiesFormatConfigurationGroupSchemaReferencesMap;
+  /** The nfvis from the site. */
+  nfvisFromSite?: NetworkServiceDesignVersionPropertiesFormatNfvisFromSiteMap;
+  /** List of resource element template */
+  resourceElementTemplates?: NetworkServiceDesignVersionPropertiesFormatResourceElementTemplatesList;
+}
+export const NetworkServiceDesignVersionPropertiesFormat =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      provisioningState: S.optional(
+        NetworkServiceDesignVersionPropertiesFormatProvisioningState,
+      ),
+      versionState: S.optional(NSDVersionState),
+      description: S.optional(S.String),
+      configurationGroupSchemaReferences: S.optional(
+        NetworkServiceDesignVersionPropertiesFormatConfigurationGroupSchemaReferencesMap,
+      ),
+      nfvisFromSite: S.optional(
+        NetworkServiceDesignVersionPropertiesFormatNfvisFromSiteMap,
+      ),
+      resourceElementTemplates: S.optional(
+        NetworkServiceDesignVersionPropertiesFormatResourceElementTemplatesList,
+      ),
+    }),
+  ).annotate({
+    identifier: "NetworkServiceDesignVersionPropertiesFormat",
+  }) as any as S.Schema<NetworkServiceDesignVersionPropertiesFormat>;
+
+export interface GetNetworkServiceDesignVersionResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetNetworkServiceDesignVersionResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** network service design version properties. */
+  properties?: NetworkServiceDesignVersionPropertiesFormat;
+}
+export const GetNetworkServiceDesignVersionResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(GetNetworkServiceDesignVersionResponseTagsMap),
+      location: S.String,
+      properties: S.optional(NetworkServiceDesignVersionPropertiesFormat),
+    }),
+).annotate({
+  identifier: "GetNetworkServiceDesignVersionResponse",
+}) as any as S.Schema<GetNetworkServiceDesignVersionResponse>;
+
+export interface GetProxyArtifactRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the publisher. */
+  publisherName: string;
+  /** The name of the artifact store. */
+  artifactStoreName: string;
+  /** The name of the artifact. */
+  artifactName: string;
+}
+export const GetProxyArtifactRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    publisherName: S.String.pipe(T.Label()),
+    artifactStoreName: S.String.pipe(T.Label()),
+    artifactName: S.String.pipe(T.Query()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/artifactStores/{artifactStoreName}/artifactVersions",
+      code: 200,
+      apiVersion: "2024-04-15",
+    }),
+  ),
+).annotate({
+  identifier: "GetProxyArtifactRequest",
+}) as any as S.Schema<GetProxyArtifactRequest>;
+
+/** The artifact type. */
+export type ProxyArtifactOverviewPropertiesValueArtifactType =
+  | "Unknown"
+  | "OCIArtifact"
+  | "VhdImageFile"
+  | "ArmTemplate"
+  | "ImageFile";
+export const ProxyArtifactOverviewPropertiesValueArtifactType =
+  /*@__PURE__*/ S.String;
+
+/** The artifact state. */
+export type ArtifactState = "Unknown" | "Preview" | "Active" | "Deprecated";
+export const ArtifactState = /*@__PURE__*/ S.String;
+
+export interface ProxyArtifactOverviewPropertiesValue {
+  /** The artifact type. */
+  artifactType?: ProxyArtifactOverviewPropertiesValueArtifactType;
+  /** The artifact version. */
+  artifactVersion?: string;
+  /** The artifact state */
+  artifactState?: ArtifactState;
+}
+export const ProxyArtifactOverviewPropertiesValue = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      artifactType: S.optional(
+        ProxyArtifactOverviewPropertiesValueArtifactType,
+      ),
+      artifactVersion: S.optional(S.String),
+      artifactState: S.optional(ArtifactState),
+    }),
+).annotate({
+  identifier: "ProxyArtifactOverviewPropertiesValue",
+}) as any as S.Schema<ProxyArtifactOverviewPropertiesValue>;
+
+/** The proxy artifact overview. */
+export interface ProxyArtifactVersionsListOverview {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Proxy Artifact overview properties. */
+  properties?: ProxyArtifactOverviewPropertiesValue;
+}
+export const ProxyArtifactVersionsListOverview = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ProxyArtifactOverviewPropertiesValue),
+  }),
+).annotate({
+  identifier: "ProxyArtifactVersionsListOverview",
+}) as any as S.Schema<ProxyArtifactVersionsListOverview>;
+
+/** A list of available proxy artifacts. */
+export type ProxyArtifactVersionsOverviewListResultValueList =
+  Array<ProxyArtifactVersionsListOverview>;
+export const ProxyArtifactVersionsOverviewListResultValueList =
+  /*@__PURE__*/ S.Array(
+    ProxyArtifactVersionsListOverview,
+  ) as any as S.Schema<ProxyArtifactVersionsOverviewListResultValueList>;
+
+/** The proxy artifact list result. */
+export interface ProxyArtifactVersionsOverviewListResult {
+  /** A list of available proxy artifacts. */
+  value?: ProxyArtifactVersionsOverviewListResultValueList;
+  /** The URL to get the next set of results. */
+  nextLink?: string;
+}
+export const ProxyArtifactVersionsOverviewListResult = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      value: S.optional(ProxyArtifactVersionsOverviewListResultValueList),
+      nextLink: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "ProxyArtifactVersionsOverviewListResult",
+}) as any as S.Schema<ProxyArtifactVersionsOverviewListResult>;
+
+export interface GetPublisherRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the publisher. */
+  publisherName: string;
+}
+export const GetPublisherRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    publisherName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}",
+      code: 200,
+      apiVersion: "2024-04-15",
+    }),
+  ),
+).annotate({
+  identifier: "GetPublisherRequest",
+}) as any as S.Schema<GetPublisherRequest>;
+
+/** Resource tags. */
+export type GetPublisherResponseTagsMap = { [key: string]: string | undefined };
+export const GetPublisherResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetPublisherResponseTagsMap>;
+
+/** The current provisioning state. */
+export type PublisherPropertiesFormatProvisioningState =
+  | "Unknown"
+  | "Succeeded"
+  | "Accepted"
+  | "Deleting"
+  | "Failed"
+  | "Canceled"
+  | "Deleted"
+  | "Converging";
+export const PublisherPropertiesFormatProvisioningState =
+  /*@__PURE__*/ S.String;
+
+/** Publisher Scope. */
+export type PublisherPropertiesFormatScope = "Unknown" | "Private";
+export const PublisherPropertiesFormatScope = /*@__PURE__*/ S.String;
+
+/** publisher properties. */
+export interface PublisherPropertiesFormat {
+  /** The current provisioning state. */
+  provisioningState?: PublisherPropertiesFormatProvisioningState;
+  /** Publisher Scope. */
+  scope?: PublisherPropertiesFormatScope;
+}
+export const PublisherPropertiesFormat = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(PublisherPropertiesFormatProvisioningState),
+    scope: S.optional(PublisherPropertiesFormatScope),
+  }),
+).annotate({
+  identifier: "PublisherPropertiesFormat",
+}) as any as S.Schema<PublisherPropertiesFormat>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export type GetPublisherResponseIdentity = GetNetworkFunctionResponseIdentity;
+export const GetPublisherResponseIdentity = GetNetworkFunctionResponseIdentity;
+
+export interface GetPublisherResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetPublisherResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Publisher properties. */
+  properties?: PublisherPropertiesFormat;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: GetNetworkFunctionResponseIdentity;
+}
+export const GetPublisherResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetPublisherResponseTagsMap),
+    location: S.String,
+    properties: S.optional(PublisherPropertiesFormat),
+    identity: S.optional(GetNetworkFunctionResponseIdentity),
+  }),
+).annotate({
+  identifier: "GetPublisherResponse",
+}) as any as S.Schema<GetPublisherResponse>;
+
+export interface GetSiteRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the network service site. */
+  siteName: string;
+}
+export const GetSiteRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    siteName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/sites/{siteName}",
+      code: 200,
+      apiVersion: "2024-04-15",
+    }),
+  ),
+).annotate({ identifier: "GetSiteRequest" }) as any as S.Schema<GetSiteRequest>;
+
+/** Resource tags. */
+export type GetSiteResponseTagsMap = { [key: string]: string | undefined };
+export const GetSiteResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetSiteResponseTagsMap>;
+
+/** The current provisioning state. */
+export type SitePropertiesFormatProvisioningState =
+  | "Unknown"
+  | "Succeeded"
+  | "Accepted"
+  | "Deleting"
+  | "Failed"
+  | "Canceled"
+  | "Deleted"
+  | "Converging";
+export const SitePropertiesFormatProvisioningState = /*@__PURE__*/ S.String;
+
+/** The NFVI type. */
+export type NFVIsNfviType =
+  | "Unknown"
+  | "AzureArcKubernetes"
+  | "AzureCore"
+  | "AzureOperatorNexus";
+export const NFVIsNfviType = /*@__PURE__*/ S.String;
+
+/** The NFVI object. */
+export interface NFVIs {
+  /** Name of the nfvi. */
+  name?: string;
+  /** The NFVI type. */
+  nfviType: NFVIsNfviType | (string & {});
+}
+export const NFVIs = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    nfviType: NFVIsNfviType,
+  }),
+).annotate({ identifier: "NFVIs" }) as any as S.Schema<NFVIs>;
+
+/** List of NFVIs */
+export type SitePropertiesFormatNfvisList = Array<NFVIs>;
+export const SitePropertiesFormatNfvisList = /*@__PURE__*/ S.Array(
+  NFVIs,
+) as any as S.Schema<SitePropertiesFormatNfvisList>;
+
+/** Reference to another resource. */
+export type SitePropertiesFormatSiteNetworkServiceReferencesItem =
+  AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
+export const SitePropertiesFormatSiteNetworkServiceReferencesItem =
+  AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
+
+/** The list of site network services on the site. */
+export type SitePropertiesFormatSiteNetworkServiceReferencesList =
+  Array<AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem>;
+export const SitePropertiesFormatSiteNetworkServiceReferencesList =
+  /*@__PURE__*/ S.Array(
+    AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem,
+  ) as any as S.Schema<SitePropertiesFormatSiteNetworkServiceReferencesList>;
+
+/** Site properties. */
+export interface SitePropertiesFormat {
+  /** The current provisioning state. */
+  provisioningState?: SitePropertiesFormatProvisioningState;
+  /** List of NFVIs */
+  nfvis?: SitePropertiesFormatNfvisList;
+  /** The list of site network services on the site. */
+  siteNetworkServiceReferences?: SitePropertiesFormatSiteNetworkServiceReferencesList;
+}
+export const SitePropertiesFormat = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(SitePropertiesFormatProvisioningState),
+    nfvis: S.optional(SitePropertiesFormatNfvisList),
+    siteNetworkServiceReferences: S.optional(
+      SitePropertiesFormatSiteNetworkServiceReferencesList,
+    ),
+  }),
+).annotate({
+  identifier: "SitePropertiesFormat",
+}) as any as S.Schema<SitePropertiesFormat>;
+
+export interface GetSiteResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetSiteResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Site properties. */
+  properties?: SitePropertiesFormat;
+}
+export const GetSiteResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetSiteResponseTagsMap),
+    location: S.String,
+    properties: S.optional(SitePropertiesFormat),
+  }),
+).annotate({
+  identifier: "GetSiteResponse",
+}) as any as S.Schema<GetSiteResponse>;
+
+export interface GetSiteNetworkServiceRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the site network service. */
+  siteNetworkServiceName: string;
+}
+export const GetSiteNetworkServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    siteNetworkServiceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/siteNetworkServices/{siteNetworkServiceName}",
+      code: 200,
+      apiVersion: "2024-04-15",
+    }),
+  ),
+).annotate({
+  identifier: "GetSiteNetworkServiceRequest",
+}) as any as S.Schema<GetSiteNetworkServiceRequest>;
+
+/** Resource tags. */
+export type GetSiteNetworkServiceResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetSiteNetworkServiceResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetSiteNetworkServiceResponseTagsMap>;
+
+/** The current provisioning state. */
+export type SiteNetworkServicePropertiesFormatProvisioningState =
+  | "Unknown"
+  | "Succeeded"
+  | "Accepted"
+  | "Deleting"
+  | "Failed"
+  | "Canceled"
+  | "Deleted"
+  | "Converging";
+export const SiteNetworkServicePropertiesFormatProvisioningState =
+  /*@__PURE__*/ S.String;
+
+/** Managed resource group configuration. */
+export interface SiteNetworkServicePropertiesFormatManagedResourceGroupConfiguration {
+  /** Managed resource group name. */
+  name?: string;
+  /** Managed resource group location. */
+  location?: string;
+}
+export const SiteNetworkServicePropertiesFormatManagedResourceGroupConfiguration =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      name: S.optional(S.String),
+      location: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier:
+      "SiteNetworkServicePropertiesFormatManagedResourceGroupConfiguration",
+  }) as any as S.Schema<SiteNetworkServicePropertiesFormatManagedResourceGroupConfiguration>;
+
+/** Reference to another resource. */
+export type SiteNetworkServicePropertiesFormatSiteReference =
+  AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
+export const SiteNetworkServicePropertiesFormatSiteReference =
+  AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
+
+/** Publisher Scope. */
+export type SiteNetworkServicePropertiesFormatPublisherScope =
+  | "Unknown"
+  | "Private";
+export const SiteNetworkServicePropertiesFormatPublisherScope =
+  /*@__PURE__*/ S.String;
+
+/** The azure resource reference which is used for deployment. */
+export type SiteNetworkServicePropertiesFormatNetworkServiceDesignVersionResourceReference =
+  ConfigurationGroupValuePropertiesFormatConfigurationGroupSchemaResourceReference;
+export const SiteNetworkServicePropertiesFormatNetworkServiceDesignVersionResourceReference =
+  ConfigurationGroupValuePropertiesFormatConfigurationGroupSchemaResourceReference;
+
+/** Reference to another resource. */
+export type SiteNetworkServicePropertiesFormatDesiredStateConfigurationGroupValueReferencesValue =
+  AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
+export const SiteNetworkServicePropertiesFormatDesiredStateConfigurationGroupValueReferencesValue =
+  AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
+
+/** The goal state of the site network service resource. This has references to the configuration group value objects that describe the desired state of the site network service. */
+export type SiteNetworkServicePropertiesFormatDesiredStateConfigurationGroupValueReferencesMap =
+  {
+    [key: string]:
+      | AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem
+      | undefined;
+  };
+export const SiteNetworkServicePropertiesFormatDesiredStateConfigurationGroupValueReferencesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem,
+  ) as any as S.Schema<SiteNetworkServicePropertiesFormatDesiredStateConfigurationGroupValueReferencesMap>;
+
+/** Reference to another resource. */
+export type SiteNetworkServicePropertiesFormatLastStateConfigurationGroupValueReferencesValue =
+  AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
+export const SiteNetworkServicePropertiesFormatLastStateConfigurationGroupValueReferencesValue =
+  AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
+
+/** The last state of the site network service resource. */
+export type SiteNetworkServicePropertiesFormatLastStateConfigurationGroupValueReferencesMap =
+  {
+    [key: string]:
+      | AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem
+      | undefined;
+  };
+export const SiteNetworkServicePropertiesFormatLastStateConfigurationGroupValueReferencesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem,
+  ) as any as S.Schema<SiteNetworkServicePropertiesFormatLastStateConfigurationGroupValueReferencesMap>;
+
+/** Site network service properties. */
+export interface SiteNetworkServicePropertiesFormat {
+  /** The current provisioning state. */
+  provisioningState?: SiteNetworkServicePropertiesFormatProvisioningState;
+  /** Managed resource group configuration. */
+  managedResourceGroupConfiguration?: SiteNetworkServicePropertiesFormatManagedResourceGroupConfiguration;
+  /** Reference to another resource. */
+  siteReference?: AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
+  /** The publisher name for the site network service. */
+  publisherName?: string;
+  /** Publisher Scope. */
+  publisherScope?: SiteNetworkServicePropertiesFormatPublisherScope;
+  /** The network service design group name for the site network service. */
+  networkServiceDesignGroupName?: string;
+  /** The network service design version for the site network service. */
+  networkServiceDesignVersionName?: string;
+  /** The location of the network service design offering. */
+  networkServiceDesignVersionOfferingLocation?: string;
+  /** The azure resource reference which is used for deployment. */
+  networkServiceDesignVersionResourceReference?: ConfigurationGroupValuePropertiesFormatConfigurationGroupSchemaResourceReference;
+  /** The goal state of the site network service resource. This has references to the configuration group value objects that describe the desired state of the site network service. */
+  desiredStateConfigurationGroupValueReferences?: SiteNetworkServicePropertiesFormatDesiredStateConfigurationGroupValueReferencesMap;
+  /** The network service design version for the site network service. */
+  lastStateNetworkServiceDesignVersionName?: string;
+  /** The last state of the site network service resource. */
+  lastStateConfigurationGroupValueReferences?: SiteNetworkServicePropertiesFormatLastStateConfigurationGroupValueReferencesMap;
+}
+export const SiteNetworkServicePropertiesFormat = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(
+      SiteNetworkServicePropertiesFormatProvisioningState,
+    ),
+    managedResourceGroupConfiguration: S.optional(
+      SiteNetworkServicePropertiesFormatManagedResourceGroupConfiguration,
+    ),
+    siteReference: S.optional(
+      AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem,
+    ),
+    publisherName: S.optional(S.String),
+    publisherScope: S.optional(
+      SiteNetworkServicePropertiesFormatPublisherScope,
+    ),
+    networkServiceDesignGroupName: S.optional(S.String),
+    networkServiceDesignVersionName: S.optional(S.String),
+    networkServiceDesignVersionOfferingLocation: S.optional(S.String),
+    networkServiceDesignVersionResourceReference: S.optional(
+      ConfigurationGroupValuePropertiesFormatConfigurationGroupSchemaResourceReference,
+    ),
+    desiredStateConfigurationGroupValueReferences: S.optional(
+      SiteNetworkServicePropertiesFormatDesiredStateConfigurationGroupValueReferencesMap,
+    ),
+    lastStateNetworkServiceDesignVersionName: S.optional(S.String),
+    lastStateConfigurationGroupValueReferences: S.optional(
+      SiteNetworkServicePropertiesFormatLastStateConfigurationGroupValueReferencesMap,
+    ),
+  }),
+).annotate({
+  identifier: "SiteNetworkServicePropertiesFormat",
+}) as any as S.Schema<SiteNetworkServicePropertiesFormat>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export type GetSiteNetworkServiceResponseIdentity =
+  GetNetworkFunctionResponseIdentity;
+export const GetSiteNetworkServiceResponseIdentity =
+  GetNetworkFunctionResponseIdentity;
+
+/** Name of this Sku */
+export type SkuName = "Basic" | "Standard";
+export const SkuName = /*@__PURE__*/ S.String;
+
+/** The SKU tier based on the SKU name. */
+export type SkuTier = "Basic" | "Standard";
+export const SkuTier = /*@__PURE__*/ S.String;
+
+/** Sku, to be associated with a SiteNetworkService. */
+export interface Sku {
+  /** Name of this Sku */
+  name: SkuName;
+  /** The SKU tier based on the SKU name. */
+  tier?: SkuTier;
+}
+export const Sku = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: SkuName,
+    tier: S.optional(SkuTier),
+  }),
+).annotate({ identifier: "Sku" }) as any as S.Schema<Sku>;
+
+export interface GetSiteNetworkServiceResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetSiteNetworkServiceResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Site network service properties. */
+  properties?: SiteNetworkServicePropertiesFormat;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: GetNetworkFunctionResponseIdentity;
+  /** Sku of the site network service. */
+  sku?: Sku;
+}
+export const GetSiteNetworkServiceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetSiteNetworkServiceResponseTagsMap),
+    location: S.String,
+    properties: S.optional(SiteNetworkServicePropertiesFormat),
+    identity: S.optional(GetNetworkFunctionResponseIdentity),
+    sku: S.optional(Sku),
+  }),
+).annotate({
+  identifier: "GetSiteNetworkServiceResponse",
+}) as any as S.Schema<GetSiteNetworkServiceResponse>;
+
+export interface ListArtifactManifestByArtifactStoreRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the publisher. */
+  publisherName: string;
+  /** The name of the artifact store. */
+  artifactStoreName: string;
+}
+export const ListArtifactManifestByArtifactStoreRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      publisherName: S.String.pipe(T.Label()),
+      artifactStoreName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/artifactStores/{artifactStoreName}/artifactManifests",
+        code: 200,
+        apiVersion: "2024-04-15",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListArtifactManifestByArtifactStoreRequest",
+  }) as any as S.Schema<ListArtifactManifestByArtifactStoreRequest>;
+
+/** Resource tags. */
+export type ArtifactManifestTagsMap = { [key: string]: string | undefined };
+export const ArtifactManifestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ArtifactManifestTagsMap>;
+
+/** Artifact manifest properties. */
+export interface ArtifactManifest {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: ArtifactManifestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Artifact manifest properties. */
+  properties?: ArtifactManifestPropertiesFormat;
+}
+export const ArtifactManifest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(ArtifactManifestTagsMap),
+    location: S.String,
+    properties: S.optional(ArtifactManifestPropertiesFormat),
+  }),
+).annotate({
+  identifier: "ArtifactManifest",
+}) as any as S.Schema<ArtifactManifest>;
+
+/** A list of artifact manifests. */
+export type ArtifactManifestListResultValueList = Array<ArtifactManifest>;
+export const ArtifactManifestListResultValueList = /*@__PURE__*/ S.Array(
+  ArtifactManifest,
+) as any as S.Schema<ArtifactManifestListResultValueList>;
+
+/** A list of artifact manifests. */
+export interface ArtifactManifestListResult {
+  /** A list of artifact manifests. */
+  value?: ArtifactManifestListResultValueList;
+  /** The URI to get the next set of results. */
+  nextLink?: string;
+}
+export const ArtifactManifestListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(ArtifactManifestListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ArtifactManifestListResult",
+}) as any as S.Schema<ArtifactManifestListResult>;
+
+export interface ListArtifactManifestCredentialRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the publisher. */
+  publisherName: string;
+  /** The name of the artifact store. */
+  artifactStoreName: string;
+  /** The name of the artifact manifest. */
+  artifactManifestName: string;
+}
+export const ListArtifactManifestCredentialRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      publisherName: S.String.pipe(T.Label()),
+      artifactStoreName: S.String.pipe(T.Label()),
+      artifactManifestName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/artifactStores/{artifactStoreName}/artifactManifests/{artifactManifestName}/listCredential",
+        code: 200,
+        apiVersion: "2024-04-15",
+      }),
+    ),
+).annotate({
+  identifier: "ListArtifactManifestCredentialRequest",
+}) as any as S.Schema<ListArtifactManifestCredentialRequest>;
+
+/** The credential type. */
+export type ListArtifactManifestCredentialResponseCredentialType =
+  | "Unknown"
+  | "AzureContainerRegistryScopedToken"
+  | "AzureStorageAccountToken";
+export const ListArtifactManifestCredentialResponseCredentialType =
+  /*@__PURE__*/ S.String;
+
+export interface ListArtifactManifestCredentialResponse {
+  /** The credential type. */
+  credentialType: ListArtifactManifestCredentialResponseCredentialType;
+}
+export const ListArtifactManifestCredentialResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      credentialType: ListArtifactManifestCredentialResponseCredentialType,
+    }),
+).annotate({
+  identifier: "ListArtifactManifestCredentialResponse",
+}) as any as S.Schema<ListArtifactManifestCredentialResponse>;
+
+export interface ListArtifactStoreByPublisherRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the publisher. */
+  publisherName: string;
+}
+export const ListArtifactStoreByPublisherRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    publisherName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/artifactStores",
+      code: 200,
+      apiVersion: "2024-04-15",
+    }),
+  ),
+).annotate({
+  identifier: "ListArtifactStoreByPublisherRequest",
+}) as any as S.Schema<ListArtifactStoreByPublisherRequest>;
+
+/** Resource tags. */
+export type ArtifactStoreTagsMap = { [key: string]: string | undefined };
+export const ArtifactStoreTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ArtifactStoreTagsMap>;
+
+/** Artifact store properties. */
+export interface ArtifactStore {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: ArtifactStoreTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** ArtifactStores properties. */
+  properties?: ArtifactStorePropertiesFormat;
+}
+export const ArtifactStore = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(ArtifactStoreTagsMap),
+    location: S.String,
+    properties: S.optional(ArtifactStorePropertiesFormat),
+  }),
+).annotate({ identifier: "ArtifactStore" }) as any as S.Schema<ArtifactStore>;
+
+/** A list of artifact stores. */
+export type ArtifactStoreListResultValueList = Array<ArtifactStore>;
+export const ArtifactStoreListResultValueList = /*@__PURE__*/ S.Array(
+  ArtifactStore,
+) as any as S.Schema<ArtifactStoreListResultValueList>;
+
+/** A list of artifact stores. */
+export interface ArtifactStoreListResult {
+  /** A list of artifact stores. */
+  value?: ArtifactStoreListResultValueList;
+  /** The URL to get the next set of results. */
+  nextLink?: string;
+}
+export const ArtifactStoreListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(ArtifactStoreListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ArtifactStoreListResult",
+}) as any as S.Schema<ArtifactStoreListResult>;
+
+export interface ListArtifactStoreNetworkFabricControllerPrivateEndPointsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the publisher. */
+  publisherName: string;
+  /** The name of the artifact store. */
+  artifactStoreName: string;
+}
+export const ListArtifactStoreNetworkFabricControllerPrivateEndPointsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      publisherName: S.String.pipe(T.Label()),
+      artifactStoreName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/artifactStores/{artifactStoreName}/listNetworkFabricControllerPrivateEndPoints",
+        code: 200,
+        apiVersion: "2024-04-15",
+      }),
+    ),
+  ).annotate({
+    identifier:
+      "ListArtifactStoreNetworkFabricControllerPrivateEndPointsRequest",
+  }) as any as S.Schema<ListArtifactStoreNetworkFabricControllerPrivateEndPointsRequest>;
+
+/** Reference to another resource. */
+export type ArtifactStoreNetworkFabricControllerEndPointsNetworkFabricControllerIdsItem =
+  AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
+export const ArtifactStoreNetworkFabricControllerEndPointsNetworkFabricControllerIdsItem =
+  AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
+
+/** list of network fabric controllers. */
+export type ArtifactStoreNetworkFabricControllerEndPointsNetworkFabricControllerIdsList =
+  Array<AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem>;
+export const ArtifactStoreNetworkFabricControllerEndPointsNetworkFabricControllerIdsList =
+  /*@__PURE__*/ S.Array(
+    AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem,
+  ) as any as S.Schema<ArtifactStoreNetworkFabricControllerEndPointsNetworkFabricControllerIdsList>;
+
+/** List of network fabric controller ids. */
+export interface ArtifactStoreNetworkFabricControllerEndPoints {
+  /** list of network fabric controllers. */
+  networkFabricControllerIds?: ArtifactStoreNetworkFabricControllerEndPointsNetworkFabricControllerIdsList;
+}
+export const ArtifactStoreNetworkFabricControllerEndPoints =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      networkFabricControllerIds: S.optional(
+        ArtifactStoreNetworkFabricControllerEndPointsNetworkFabricControllerIdsList,
+      ),
+    }),
+  ).annotate({
+    identifier: "ArtifactStoreNetworkFabricControllerEndPoints",
+  }) as any as S.Schema<ArtifactStoreNetworkFabricControllerEndPoints>;
+
+/** A list of network fabric controllers. */
+export type ArtifactStoreNetworkFabricControllerEndPointsListValueList =
+  Array<ArtifactStoreNetworkFabricControllerEndPoints>;
+export const ArtifactStoreNetworkFabricControllerEndPointsListValueList =
+  /*@__PURE__*/ S.Array(
+    ArtifactStoreNetworkFabricControllerEndPoints,
+  ) as any as S.Schema<ArtifactStoreNetworkFabricControllerEndPointsListValueList>;
+
+/** List of manual private endpoints. */
+export interface ArtifactStoreNetworkFabricControllerEndPointsList {
+  /** A list of network fabric controllers. */
+  value?: ArtifactStoreNetworkFabricControllerEndPointsListValueList;
+  /** The URI to get the next set of results. */
+  nextLink?: string;
+}
+export const ArtifactStoreNetworkFabricControllerEndPointsList =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      value: S.optional(
+        ArtifactStoreNetworkFabricControllerEndPointsListValueList,
+      ),
+      nextLink: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "ArtifactStoreNetworkFabricControllerEndPointsList",
+  }) as any as S.Schema<ArtifactStoreNetworkFabricControllerEndPointsList>;
+
+export interface ListArtifactStorePrivateEndPointsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the publisher. */
+  publisherName: string;
+  /** The name of the artifact store. */
+  artifactStoreName: string;
+}
+export const ListArtifactStorePrivateEndPointsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      publisherName: S.String.pipe(T.Label()),
+      artifactStoreName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/artifactStores/{artifactStoreName}/listPrivateEndPoints",
+        code: 200,
+        apiVersion: "2024-04-15",
+      }),
+    ),
+).annotate({
+  identifier: "ListArtifactStorePrivateEndPointsRequest",
+}) as any as S.Schema<ListArtifactStorePrivateEndPointsRequest>;
+
+/** Reference to another resource. */
+export type ArtifactStorePrivateEndPointsFormatManualPrivateEndPointConnectionsItem =
+  AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
+export const ArtifactStorePrivateEndPointsFormatManualPrivateEndPointConnectionsItem =
+  AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
+
+/** list of private endpoints. */
+export type ArtifactStorePrivateEndPointsFormatManualPrivateEndPointConnectionsList =
+  Array<AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem>;
+export const ArtifactStorePrivateEndPointsFormatManualPrivateEndPointConnectionsList =
+  /*@__PURE__*/ S.Array(
+    AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem,
+  ) as any as S.Schema<ArtifactStorePrivateEndPointsFormatManualPrivateEndPointConnectionsList>;
+
+/** List of manual private endpoints. */
+export interface ArtifactStorePrivateEndPointsFormat {
+  /** list of private endpoints. */
+  manualPrivateEndPointConnections?: ArtifactStorePrivateEndPointsFormatManualPrivateEndPointConnectionsList;
+}
+export const ArtifactStorePrivateEndPointsFormat = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    manualPrivateEndPointConnections: S.optional(
+      ArtifactStorePrivateEndPointsFormatManualPrivateEndPointConnectionsList,
+    ),
+  }),
+).annotate({
+  identifier: "ArtifactStorePrivateEndPointsFormat",
+}) as any as S.Schema<ArtifactStorePrivateEndPointsFormat>;
+
+/** A list of private endpoints. */
+export type ArtifactStorePrivateEndPointsListResultValueList =
+  Array<ArtifactStorePrivateEndPointsFormat>;
+export const ArtifactStorePrivateEndPointsListResultValueList =
+  /*@__PURE__*/ S.Array(
+    ArtifactStorePrivateEndPointsFormat,
+  ) as any as S.Schema<ArtifactStorePrivateEndPointsListResultValueList>;
+
+/** List of manual private endpoints. */
+export interface ArtifactStorePrivateEndPointsListResult {
+  /** A list of private endpoints. */
+  value?: ArtifactStorePrivateEndPointsListResultValueList;
+  /** The URI to get the next set of results. */
+  nextLink?: string;
+}
+export const ArtifactStorePrivateEndPointsListResult = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      value: S.optional(ArtifactStorePrivateEndPointsListResultValueList),
+      nextLink: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "ArtifactStorePrivateEndPointsListResult",
+}) as any as S.Schema<ArtifactStorePrivateEndPointsListResult>;
+
+export interface ListComponentByNetworkFunctionRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1880,7 +3944,7 @@ export interface ComponentsListByNetworkFunctionRequest {
   /** The name of the network function. */
   networkFunctionName: string;
 }
-export const ComponentsListByNetworkFunctionRequest = /*@__PURE__*/ S.suspend(
+export const ListComponentByNetworkFunctionRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -1895,8 +3959,8 @@ export const ComponentsListByNetworkFunctionRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ComponentsListByNetworkFunctionRequest",
-}) as any as S.Schema<ComponentsListByNetworkFunctionRequest>;
+  identifier: "ListComponentByNetworkFunctionRequest",
+}) as any as S.Schema<ListComponentByNetworkFunctionRequest>;
 
 /** The component sub resource. */
 export interface Component {
@@ -1943,264 +4007,7 @@ export const ComponentListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ComponentListResult",
 }) as any as S.Schema<ComponentListResult>;
 
-/** Resource tags. */
-export type ConfigurationGroupSchemasCreateOrUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ConfigurationGroupSchemasCreateOrUpdateRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<ConfigurationGroupSchemasCreateOrUpdateRequestTagsMap>;
-
-/** Configuration group schema properties. */
-export interface ConfigurationGroupSchemaPropertiesFormatInput {
-  /** Description of what schema can contain. */
-  description?: string;
-  /** Name and value pairs that define the configuration value. It can be a well formed escaped JSON string. */
-  schemaDefinition?: string;
-}
-export const ConfigurationGroupSchemaPropertiesFormatInput =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      description: S.optional(S.String),
-      schemaDefinition: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "ConfigurationGroupSchemaPropertiesFormatInput",
-  }) as any as S.Schema<ConfigurationGroupSchemaPropertiesFormatInput>;
-
-export interface ConfigurationGroupSchemasCreateOrUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the publisher. */
-  publisherName: string;
-  /** The name of the configuration group schema. */
-  configurationGroupSchemaName: string;
-  /** Resource tags. */
-  tags?: ConfigurationGroupSchemasCreateOrUpdateRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Configuration group schema properties. */
-  properties?: ConfigurationGroupSchemaPropertiesFormatInput;
-}
-export const ConfigurationGroupSchemasCreateOrUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      publisherName: S.String.pipe(T.Label()),
-      configurationGroupSchemaName: S.String.pipe(T.Label()),
-      tags: S.optional(ConfigurationGroupSchemasCreateOrUpdateRequestTagsMap),
-      location: S.String,
-      properties: S.optional(ConfigurationGroupSchemaPropertiesFormatInput),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/configurationGroupSchemas/{configurationGroupSchemaName}",
-        code: 200,
-        apiVersion: "2024-04-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "ConfigurationGroupSchemasCreateOrUpdateRequest",
-  }) as any as S.Schema<ConfigurationGroupSchemasCreateOrUpdateRequest>;
-
-/** Resource tags. */
-export type ConfigurationGroupSchemasCreateOrUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ConfigurationGroupSchemasCreateOrUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<ConfigurationGroupSchemasCreateOrUpdateResponseTagsMap>;
-
-/** The current provisioning state. */
-export type ConfigurationGroupSchemaPropertiesFormatProvisioningState =
-  | "Unknown"
-  | "Succeeded"
-  | "Accepted"
-  | "Deleting"
-  | "Failed"
-  | "Canceled"
-  | "Deleted"
-  | "Converging";
-export const ConfigurationGroupSchemaPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
-
-/** The configuration group schema state. */
-export type ConfigurationGroupSchemaVersionState =
-  | "Unknown"
-  | "Preview"
-  | "Active"
-  | "Deprecated";
-export const ConfigurationGroupSchemaVersionState = /*@__PURE__*/ S.String;
-
-/** Configuration group schema properties. */
-export interface ConfigurationGroupSchemaPropertiesFormat {
-  /** The current provisioning state. */
-  provisioningState?: ConfigurationGroupSchemaPropertiesFormatProvisioningState;
-  /** The configuration group schema version state. */
-  versionState?: ConfigurationGroupSchemaVersionState;
-  /** Description of what schema can contain. */
-  description?: string;
-  /** Name and value pairs that define the configuration value. It can be a well formed escaped JSON string. */
-  schemaDefinition?: string;
-}
-export const ConfigurationGroupSchemaPropertiesFormat = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      provisioningState: S.optional(
-        ConfigurationGroupSchemaPropertiesFormatProvisioningState,
-      ),
-      versionState: S.optional(ConfigurationGroupSchemaVersionState),
-      description: S.optional(S.String),
-      schemaDefinition: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "ConfigurationGroupSchemaPropertiesFormat",
-}) as any as S.Schema<ConfigurationGroupSchemaPropertiesFormat>;
-
-export interface ConfigurationGroupSchemasCreateOrUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ConfigurationGroupSchemasCreateOrUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Configuration group schema properties. */
-  properties?: ConfigurationGroupSchemaPropertiesFormat;
-}
-export const ConfigurationGroupSchemasCreateOrUpdateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(ConfigurationGroupSchemasCreateOrUpdateResponseTagsMap),
-      location: S.String,
-      properties: S.optional(ConfigurationGroupSchemaPropertiesFormat),
-    }),
-  ).annotate({
-    identifier: "ConfigurationGroupSchemasCreateOrUpdateResponse",
-  }) as any as S.Schema<ConfigurationGroupSchemasCreateOrUpdateResponse>;
-
-export interface ConfigurationGroupSchemasDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the publisher. */
-  publisherName: string;
-  /** The name of the configuration group schema. */
-  configurationGroupSchemaName: string;
-}
-export const ConfigurationGroupSchemasDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      publisherName: S.String.pipe(T.Label()),
-      configurationGroupSchemaName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/configurationGroupSchemas/{configurationGroupSchemaName}",
-        code: 200,
-        apiVersion: "2024-04-15",
-      }),
-    ),
-).annotate({
-  identifier: "ConfigurationGroupSchemasDeleteRequest",
-}) as any as S.Schema<ConfigurationGroupSchemasDeleteRequest>;
-
-export interface ConfigurationGroupSchemasDeleteResponse {}
-export const ConfigurationGroupSchemasDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "ConfigurationGroupSchemasDeleteResponse",
-}) as any as S.Schema<ConfigurationGroupSchemasDeleteResponse>;
-
-export interface ConfigurationGroupSchemasGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the publisher. */
-  publisherName: string;
-  /** The name of the configuration group schema. */
-  configurationGroupSchemaName: string;
-}
-export const ConfigurationGroupSchemasGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    publisherName: S.String.pipe(T.Label()),
-    configurationGroupSchemaName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/configurationGroupSchemas/{configurationGroupSchemaName}",
-      code: 200,
-      apiVersion: "2024-04-15",
-    }),
-  ),
-).annotate({
-  identifier: "ConfigurationGroupSchemasGetRequest",
-}) as any as S.Schema<ConfigurationGroupSchemasGetRequest>;
-
-/** Resource tags. */
-export type ConfigurationGroupSchemasGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ConfigurationGroupSchemasGetResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<ConfigurationGroupSchemasGetResponseTagsMap>;
-
-export interface ConfigurationGroupSchemasGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ConfigurationGroupSchemasGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Configuration group schema properties. */
-  properties?: ConfigurationGroupSchemaPropertiesFormat;
-}
-export const ConfigurationGroupSchemasGetResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(ConfigurationGroupSchemasGetResponseTagsMap),
-      location: S.String,
-      properties: S.optional(ConfigurationGroupSchemaPropertiesFormat),
-    }),
-).annotate({
-  identifier: "ConfigurationGroupSchemasGetResponse",
-}) as any as S.Schema<ConfigurationGroupSchemasGetResponse>;
-
-export interface ConfigurationGroupSchemasListByPublisherRequest {
+export interface ListConfigurationGroupSchemaByPublisherRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2208,7 +4015,7 @@ export interface ConfigurationGroupSchemasListByPublisherRequest {
   /** The name of the publisher. */
   publisherName: string;
 }
-export const ConfigurationGroupSchemasListByPublisherRequest =
+export const ListConfigurationGroupSchemaByPublisherRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2223,8 +4030,8 @@ export const ConfigurationGroupSchemasListByPublisherRequest =
       }),
     ),
   ).annotate({
-    identifier: "ConfigurationGroupSchemasListByPublisherRequest",
-  }) as any as S.Schema<ConfigurationGroupSchemasListByPublisherRequest>;
+    identifier: "ListConfigurationGroupSchemaByPublisherRequest",
+  }) as any as S.Schema<ListConfigurationGroupSchemaByPublisherRequest>;
 
 /** Resource tags. */
 export type ConfigurationGroupSchemaTagsMap = {
@@ -2290,458 +4097,13 @@ export const ConfigurationGroupSchemaListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ConfigurationGroupSchemaListResult",
 }) as any as S.Schema<ConfigurationGroupSchemaListResult>;
 
-/** Resource tags. */
-export type ConfigurationGroupSchemasUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ConfigurationGroupSchemasUpdateRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<ConfigurationGroupSchemasUpdateRequestTagsMap>;
-
-export interface ConfigurationGroupSchemasUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the publisher. */
-  publisherName: string;
-  /** The name of the configuration group schema. */
-  configurationGroupSchemaName: string;
-  /** Resource tags. */
-  tags?: ConfigurationGroupSchemasUpdateRequestTagsMap;
-}
-export const ConfigurationGroupSchemasUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      publisherName: S.String.pipe(T.Label()),
-      configurationGroupSchemaName: S.String.pipe(T.Label()),
-      tags: S.optional(ConfigurationGroupSchemasUpdateRequestTagsMap),
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/configurationGroupSchemas/{configurationGroupSchemaName}",
-        code: 200,
-        apiVersion: "2024-04-15",
-      }),
-    ),
-).annotate({
-  identifier: "ConfigurationGroupSchemasUpdateRequest",
-}) as any as S.Schema<ConfigurationGroupSchemasUpdateRequest>;
-
-/** Resource tags. */
-export type ConfigurationGroupSchemasUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ConfigurationGroupSchemasUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<ConfigurationGroupSchemasUpdateResponseTagsMap>;
-
-export interface ConfigurationGroupSchemasUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ConfigurationGroupSchemasUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Configuration group schema properties. */
-  properties?: ConfigurationGroupSchemaPropertiesFormat;
-}
-export const ConfigurationGroupSchemasUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(ConfigurationGroupSchemasUpdateResponseTagsMap),
-      location: S.String,
-      properties: S.optional(ConfigurationGroupSchemaPropertiesFormat),
-    }),
-).annotate({
-  identifier: "ConfigurationGroupSchemasUpdateResponse",
-}) as any as S.Schema<ConfigurationGroupSchemasUpdateResponse>;
-
-export interface ConfigurationGroupSchemasUpdateStateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the publisher. */
-  publisherName: string;
-  /** The name of the configuration group schema. */
-  configurationGroupSchemaName: string;
-  /** The configuration group schema state. */
-  versionState?: ConfigurationGroupSchemaVersionState | (string & {});
-}
-export const ConfigurationGroupSchemasUpdateStateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      publisherName: S.String.pipe(T.Label()),
-      configurationGroupSchemaName: S.String.pipe(T.Label()),
-      versionState: S.optional(ConfigurationGroupSchemaVersionState),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/configurationGroupSchemas/{configurationGroupSchemaName}/updateState",
-        code: 200,
-        apiVersion: "2024-04-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "ConfigurationGroupSchemasUpdateStateRequest",
-  }) as any as S.Schema<ConfigurationGroupSchemasUpdateStateRequest>;
-
-/** Publisher configuration group schema update request definition. */
-export interface ConfigurationGroupSchemaVersionUpdateState {
-  /** The configuration group schema state. */
-  versionState?: ConfigurationGroupSchemaVersionState;
-}
-export const ConfigurationGroupSchemaVersionUpdateState =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      versionState: S.optional(ConfigurationGroupSchemaVersionState),
-    }),
-  ).annotate({
-    identifier: "ConfigurationGroupSchemaVersionUpdateState",
-  }) as any as S.Schema<ConfigurationGroupSchemaVersionUpdateState>;
-
-/** Resource tags. */
-export type ConfigurationGroupValuesCreateOrUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ConfigurationGroupValuesCreateOrUpdateRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<ConfigurationGroupValuesCreateOrUpdateRequestTagsMap>;
-
-/** Publisher Scope. */
-export type ConfigurationGroupValuePropertiesFormatInputPublisherScope =
-  | "Unknown"
-  | "Private";
-export const ConfigurationGroupValuePropertiesFormatInputPublisherScope =
-  /*@__PURE__*/ S.String;
-
-/** The resource reference arm id type. */
-export type IdType = "Unknown" | "Open" | "Secret";
-export const IdType = /*@__PURE__*/ S.String;
-
-/** The azure resource reference which is used for deployment. */
-export interface ConfigurationGroupValuePropertiesFormatInputConfigurationGroupSchemaResourceReference {
-  /** The resource reference arm id type. */
-  idType: IdType | (string & {});
-}
-export const ConfigurationGroupValuePropertiesFormatInputConfigurationGroupSchemaResourceReference =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      idType: IdType,
-    }),
-  ).annotate({
-    identifier:
-      "ConfigurationGroupValuePropertiesFormatInputConfigurationGroupSchemaResourceReference",
-  }) as any as S.Schema<ConfigurationGroupValuePropertiesFormatInputConfigurationGroupSchemaResourceReference>;
-
-/** The secret type which indicates if secret or not. */
-export type ConfigurationGroupValueConfigurationType =
-  | "Unknown"
-  | "Secret"
-  | "Open";
-export const ConfigurationGroupValueConfigurationType = /*@__PURE__*/ S.String;
-
-/** Hybrid configuration group value properties. */
-export interface ConfigurationGroupValuePropertiesFormatInput {
-  /** Publisher Scope. */
-  publisherScope?:
-    | ConfigurationGroupValuePropertiesFormatInputPublisherScope
-    | (string & {});
-  /** The azure resource reference which is used for deployment. */
-  configurationGroupSchemaResourceReference?: ConfigurationGroupValuePropertiesFormatInputConfigurationGroupSchemaResourceReference;
-  /** The value which indicates if configuration values are secrets */
-  configurationType: ConfigurationGroupValueConfigurationType | (string & {});
-}
-export const ConfigurationGroupValuePropertiesFormatInput =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      publisherScope: S.optional(
-        ConfigurationGroupValuePropertiesFormatInputPublisherScope,
-      ),
-      configurationGroupSchemaResourceReference: S.optional(
-        ConfigurationGroupValuePropertiesFormatInputConfigurationGroupSchemaResourceReference,
-      ),
-      configurationType: ConfigurationGroupValueConfigurationType,
-    }),
-  ).annotate({
-    identifier: "ConfigurationGroupValuePropertiesFormatInput",
-  }) as any as S.Schema<ConfigurationGroupValuePropertiesFormatInput>;
-
-export interface ConfigurationGroupValuesCreateOrUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the configuration group value. */
-  configurationGroupValueName: string;
-  /** Resource tags. */
-  tags?: ConfigurationGroupValuesCreateOrUpdateRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Hybrid configuration group value properties. */
-  properties?: ConfigurationGroupValuePropertiesFormatInput;
-}
-export const ConfigurationGroupValuesCreateOrUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      configurationGroupValueName: S.String.pipe(T.Label()),
-      tags: S.optional(ConfigurationGroupValuesCreateOrUpdateRequestTagsMap),
-      location: S.String,
-      properties: S.optional(ConfigurationGroupValuePropertiesFormatInput),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/configurationGroupValues/{configurationGroupValueName}",
-        code: 200,
-        apiVersion: "2024-04-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "ConfigurationGroupValuesCreateOrUpdateRequest",
-  }) as any as S.Schema<ConfigurationGroupValuesCreateOrUpdateRequest>;
-
-/** Resource tags. */
-export type ConfigurationGroupValuesCreateOrUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ConfigurationGroupValuesCreateOrUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<ConfigurationGroupValuesCreateOrUpdateResponseTagsMap>;
-
-/** The current provisioning state. */
-export type ConfigurationGroupValuePropertiesFormatProvisioningState =
-  | "Unknown"
-  | "Succeeded"
-  | "Accepted"
-  | "Deleting"
-  | "Failed"
-  | "Canceled"
-  | "Deleted"
-  | "Converging";
-export const ConfigurationGroupValuePropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
-
-/** Publisher Scope. */
-export type ConfigurationGroupValuePropertiesFormatPublisherScope =
-  | "Unknown"
-  | "Private";
-export const ConfigurationGroupValuePropertiesFormatPublisherScope =
-  /*@__PURE__*/ S.String;
-
-/** The azure resource reference which is used for deployment. */
-export interface ConfigurationGroupValuePropertiesFormatConfigurationGroupSchemaResourceReference {
-  /** The resource reference arm id type. */
-  idType: IdType;
-}
-export const ConfigurationGroupValuePropertiesFormatConfigurationGroupSchemaResourceReference =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      idType: IdType,
-    }),
-  ).annotate({
-    identifier:
-      "ConfigurationGroupValuePropertiesFormatConfigurationGroupSchemaResourceReference",
-  }) as any as S.Schema<ConfigurationGroupValuePropertiesFormatConfigurationGroupSchemaResourceReference>;
-
-/** Hybrid configuration group value properties. */
-export interface ConfigurationGroupValuePropertiesFormat {
-  /** The current provisioning state. */
-  provisioningState?: ConfigurationGroupValuePropertiesFormatProvisioningState;
-  /** The publisher name for the configuration group schema. */
-  publisherName?: string;
-  /** Publisher Scope. */
-  publisherScope?: ConfigurationGroupValuePropertiesFormatPublisherScope;
-  /** The configuration group schema name. */
-  configurationGroupSchemaName?: string;
-  /** The location of the configuration group schema offering. */
-  configurationGroupSchemaOfferingLocation?: string;
-  /** The azure resource reference which is used for deployment. */
-  configurationGroupSchemaResourceReference?: ConfigurationGroupValuePropertiesFormatConfigurationGroupSchemaResourceReference;
-  /** The value which indicates if configuration values are secrets */
-  configurationType: ConfigurationGroupValueConfigurationType;
-}
-export const ConfigurationGroupValuePropertiesFormat = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      provisioningState: S.optional(
-        ConfigurationGroupValuePropertiesFormatProvisioningState,
-      ),
-      publisherName: S.optional(S.String),
-      publisherScope: S.optional(
-        ConfigurationGroupValuePropertiesFormatPublisherScope,
-      ),
-      configurationGroupSchemaName: S.optional(S.String),
-      configurationGroupSchemaOfferingLocation: S.optional(S.String),
-      configurationGroupSchemaResourceReference: S.optional(
-        ConfigurationGroupValuePropertiesFormatConfigurationGroupSchemaResourceReference,
-      ),
-      configurationType: ConfigurationGroupValueConfigurationType,
-    }),
-).annotate({
-  identifier: "ConfigurationGroupValuePropertiesFormat",
-}) as any as S.Schema<ConfigurationGroupValuePropertiesFormat>;
-
-export interface ConfigurationGroupValuesCreateOrUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ConfigurationGroupValuesCreateOrUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Hybrid configuration group value properties. */
-  properties?: ConfigurationGroupValuePropertiesFormat;
-}
-export const ConfigurationGroupValuesCreateOrUpdateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(ConfigurationGroupValuesCreateOrUpdateResponseTagsMap),
-      location: S.String,
-      properties: S.optional(ConfigurationGroupValuePropertiesFormat),
-    }),
-  ).annotate({
-    identifier: "ConfigurationGroupValuesCreateOrUpdateResponse",
-  }) as any as S.Schema<ConfigurationGroupValuesCreateOrUpdateResponse>;
-
-export interface ConfigurationGroupValuesDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the configuration group value. */
-  configurationGroupValueName: string;
-}
-export const ConfigurationGroupValuesDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      configurationGroupValueName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/configurationGroupValues/{configurationGroupValueName}",
-        code: 200,
-        apiVersion: "2024-04-15",
-      }),
-    ),
-).annotate({
-  identifier: "ConfigurationGroupValuesDeleteRequest",
-}) as any as S.Schema<ConfigurationGroupValuesDeleteRequest>;
-
-export interface ConfigurationGroupValuesDeleteResponse {}
-export const ConfigurationGroupValuesDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "ConfigurationGroupValuesDeleteResponse",
-}) as any as S.Schema<ConfigurationGroupValuesDeleteResponse>;
-
-export interface ConfigurationGroupValuesGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the configuration group value. */
-  configurationGroupValueName: string;
-}
-export const ConfigurationGroupValuesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    configurationGroupValueName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/configurationGroupValues/{configurationGroupValueName}",
-      code: 200,
-      apiVersion: "2024-04-15",
-    }),
-  ),
-).annotate({
-  identifier: "ConfigurationGroupValuesGetRequest",
-}) as any as S.Schema<ConfigurationGroupValuesGetRequest>;
-
-/** Resource tags. */
-export type ConfigurationGroupValuesGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ConfigurationGroupValuesGetResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<ConfigurationGroupValuesGetResponseTagsMap>;
-
-export interface ConfigurationGroupValuesGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ConfigurationGroupValuesGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Hybrid configuration group value properties. */
-  properties?: ConfigurationGroupValuePropertiesFormat;
-}
-export const ConfigurationGroupValuesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(ConfigurationGroupValuesGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(ConfigurationGroupValuePropertiesFormat),
-  }),
-).annotate({
-  identifier: "ConfigurationGroupValuesGetResponse",
-}) as any as S.Schema<ConfigurationGroupValuesGetResponse>;
-
-export interface ConfigurationGroupValuesListByResourceGroupRequest {
+export interface ListConfigurationGroupValueByResourceGroupRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
 }
-export const ConfigurationGroupValuesListByResourceGroupRequest =
+export const ListConfigurationGroupValueByResourceGroupRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2755,8 +4117,8 @@ export const ConfigurationGroupValuesListByResourceGroupRequest =
       }),
     ),
   ).annotate({
-    identifier: "ConfigurationGroupValuesListByResourceGroupRequest",
-  }) as any as S.Schema<ConfigurationGroupValuesListByResourceGroupRequest>;
+    identifier: "ListConfigurationGroupValueByResourceGroupRequest",
+  }) as any as S.Schema<ListConfigurationGroupValueByResourceGroupRequest>;
 
 /** Resource tags. */
 export type ConfigurationGroupValueTagsMap = {
@@ -2821,11 +4183,11 @@ export const ConfigurationGroupValueListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ConfigurationGroupValueListResult",
 }) as any as S.Schema<ConfigurationGroupValueListResult>;
 
-export interface ConfigurationGroupValuesListBySubscriptionRequest {
+export interface ListConfigurationGroupValueBySubscriptionRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
 }
-export const ConfigurationGroupValuesListBySubscriptionRequest =
+export const ListConfigurationGroupValueBySubscriptionRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2838,59 +4200,45 @@ export const ConfigurationGroupValuesListBySubscriptionRequest =
       }),
     ),
   ).annotate({
-    identifier: "ConfigurationGroupValuesListBySubscriptionRequest",
-  }) as any as S.Schema<ConfigurationGroupValuesListBySubscriptionRequest>;
+    identifier: "ListConfigurationGroupValueBySubscriptionRequest",
+  }) as any as S.Schema<ListConfigurationGroupValueBySubscriptionRequest>;
 
-/** Resource tags. */
-export type ConfigurationGroupValuesUpdateTagsRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ConfigurationGroupValuesUpdateTagsRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<ConfigurationGroupValuesUpdateTagsRequestTagsMap>;
-
-export interface ConfigurationGroupValuesUpdateTagsRequest {
+export interface ListNetworkFunctionByResourceGroupRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** The name of the configuration group value. */
-  configurationGroupValueName: string;
-  /** Resource tags. */
-  tags?: ConfigurationGroupValuesUpdateTagsRequestTagsMap;
 }
-export const ConfigurationGroupValuesUpdateTagsRequest =
+export const ListNetworkFunctionByResourceGroupRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
-      configurationGroupValueName: S.String.pipe(T.Label()),
-      tags: S.optional(ConfigurationGroupValuesUpdateTagsRequestTagsMap),
     }).pipe(
       T.Http({
-        method: "PATCH",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/configurationGroupValues/{configurationGroupValueName}",
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/networkFunctions",
         code: 200,
         apiVersion: "2024-04-15",
       }),
     ),
   ).annotate({
-    identifier: "ConfigurationGroupValuesUpdateTagsRequest",
-  }) as any as S.Schema<ConfigurationGroupValuesUpdateTagsRequest>;
+    identifier: "ListNetworkFunctionByResourceGroupRequest",
+  }) as any as S.Schema<ListNetworkFunctionByResourceGroupRequest>;
 
 /** Resource tags. */
-export type ConfigurationGroupValuesUpdateTagsResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ConfigurationGroupValuesUpdateTagsResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<ConfigurationGroupValuesUpdateTagsResponseTagsMap>;
+export type NetworkFunctionTagsMap = { [key: string]: string | undefined };
+export const NetworkFunctionTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<NetworkFunctionTagsMap>;
 
-export interface ConfigurationGroupValuesUpdateTagsResponse {
+/** Managed service identity (system assigned and/or user assigned identities) */
+export type NetworkFunctionIdentity = GetNetworkFunctionResponseIdentity;
+export const NetworkFunctionIdentity = GetNetworkFunctionResponseIdentity;
+
+/** Network function resource response. */
+export interface NetworkFunction {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -2900,26 +4248,918 @@ export interface ConfigurationGroupValuesUpdateTagsResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ConfigurationGroupValuesUpdateTagsResponseTagsMap;
+  tags?: NetworkFunctionTagsMap;
   /** The geo-location where the resource lives */
   location: string;
-  /** Hybrid configuration group value properties. */
-  properties?: ConfigurationGroupValuePropertiesFormat;
+  /** Network function properties. */
+  properties?: NetworkFunctionPropertiesFormat;
+  /** A unique read-only string that changes whenever the resource is updated. */
+  etag?: string;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: GetNetworkFunctionResponseIdentity;
 }
-export const ConfigurationGroupValuesUpdateTagsResponse =
+export const NetworkFunction = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(NetworkFunctionTagsMap),
+    location: S.String,
+    properties: S.optional(NetworkFunctionPropertiesFormat),
+    etag: S.optional(S.String),
+    identity: S.optional(GetNetworkFunctionResponseIdentity),
+  }),
+).annotate({
+  identifier: "NetworkFunction",
+}) as any as S.Schema<NetworkFunction>;
+
+/** A list of network function resources in a subscription or resource group. */
+export type NetworkFunctionListResultValueList = Array<NetworkFunction>;
+export const NetworkFunctionListResultValueList = /*@__PURE__*/ S.Array(
+  NetworkFunction,
+) as any as S.Schema<NetworkFunctionListResultValueList>;
+
+/** Response for network function API service call. */
+export interface NetworkFunctionListResult {
+  /** A list of network function resources in a subscription or resource group. */
+  value?: NetworkFunctionListResultValueList;
+  /** The URL to get the next set of results. */
+  nextLink?: string;
+}
+export const NetworkFunctionListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(NetworkFunctionListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "NetworkFunctionListResult",
+}) as any as S.Schema<NetworkFunctionListResult>;
+
+export interface ListNetworkFunctionBySubscriptionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+}
+export const ListNetworkFunctionBySubscriptionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.HybridNetwork/networkFunctions",
+        code: 200,
+        apiVersion: "2024-04-15",
+      }),
+    ),
+).annotate({
+  identifier: "ListNetworkFunctionBySubscriptionRequest",
+}) as any as S.Schema<ListNetworkFunctionBySubscriptionRequest>;
+
+export interface ListNetworkFunctionDefinitionGroupByPublisherRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the publisher. */
+  publisherName: string;
+}
+export const ListNetworkFunctionDefinitionGroupByPublisherRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(ConfigurationGroupValuesUpdateTagsResponseTagsMap),
-      location: S.String,
-      properties: S.optional(ConfigurationGroupValuePropertiesFormat),
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      publisherName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/networkFunctionDefinitionGroups",
+        code: 200,
+        apiVersion: "2024-04-15",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListNetworkFunctionDefinitionGroupByPublisherRequest",
+  }) as any as S.Schema<ListNetworkFunctionDefinitionGroupByPublisherRequest>;
+
+/** Resource tags. */
+export type NetworkFunctionDefinitionGroupTagsMap = {
+  [key: string]: string | undefined;
+};
+export const NetworkFunctionDefinitionGroupTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<NetworkFunctionDefinitionGroupTagsMap>;
+
+/** Network function definition group resource. */
+export interface NetworkFunctionDefinitionGroup {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: NetworkFunctionDefinitionGroupTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Network function definition group properties. */
+  properties?: NetworkFunctionDefinitionGroupPropertiesFormat;
+}
+export const NetworkFunctionDefinitionGroup = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(NetworkFunctionDefinitionGroupTagsMap),
+    location: S.String,
+    properties: S.optional(NetworkFunctionDefinitionGroupPropertiesFormat),
+  }),
+).annotate({
+  identifier: "NetworkFunctionDefinitionGroup",
+}) as any as S.Schema<NetworkFunctionDefinitionGroup>;
+
+/** A list of network function definition group. */
+export type NetworkFunctionDefinitionGroupListResultValueList =
+  Array<NetworkFunctionDefinitionGroup>;
+export const NetworkFunctionDefinitionGroupListResultValueList =
+  /*@__PURE__*/ S.Array(
+    NetworkFunctionDefinitionGroup,
+  ) as any as S.Schema<NetworkFunctionDefinitionGroupListResultValueList>;
+
+/** A list of network function definition group resources. */
+export interface NetworkFunctionDefinitionGroupListResult {
+  /** A list of network function definition group. */
+  value?: NetworkFunctionDefinitionGroupListResultValueList;
+  /** The URL to get the next set of results. */
+  nextLink?: string;
+}
+export const NetworkFunctionDefinitionGroupListResult = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      value: S.optional(NetworkFunctionDefinitionGroupListResultValueList),
+      nextLink: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "NetworkFunctionDefinitionGroupListResult",
+}) as any as S.Schema<NetworkFunctionDefinitionGroupListResult>;
+
+export interface ListNetworkFunctionDefinitionVersionByNetworkFunctionDefinitionGroupRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the publisher. */
+  publisherName: string;
+  /** The name of the network function definition group. */
+  networkFunctionDefinitionGroupName: string;
+}
+export const ListNetworkFunctionDefinitionVersionByNetworkFunctionDefinitionGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      publisherName: S.String.pipe(T.Label()),
+      networkFunctionDefinitionGroupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/networkFunctionDefinitionGroups/{networkFunctionDefinitionGroupName}/networkFunctionDefinitionVersions",
+        code: 200,
+        apiVersion: "2024-04-15",
+      }),
+    ),
+  ).annotate({
+    identifier:
+      "ListNetworkFunctionDefinitionVersionByNetworkFunctionDefinitionGroupRequest",
+  }) as any as S.Schema<ListNetworkFunctionDefinitionVersionByNetworkFunctionDefinitionGroupRequest>;
+
+/** Resource tags. */
+export type NetworkFunctionDefinitionVersionTagsMap = {
+  [key: string]: string | undefined;
+};
+export const NetworkFunctionDefinitionVersionTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<NetworkFunctionDefinitionVersionTagsMap>;
+
+/** Network function definition version. */
+export interface NetworkFunctionDefinitionVersion {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: NetworkFunctionDefinitionVersionTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Network function definition version properties. */
+  properties?: NetworkFunctionDefinitionVersionPropertiesFormat;
+}
+export const NetworkFunctionDefinitionVersion = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(NetworkFunctionDefinitionVersionTagsMap),
+    location: S.String,
+    properties: S.optional(NetworkFunctionDefinitionVersionPropertiesFormat),
+  }),
+).annotate({
+  identifier: "NetworkFunctionDefinitionVersion",
+}) as any as S.Schema<NetworkFunctionDefinitionVersion>;
+
+/** A list of network function definition versions. */
+export type NetworkFunctionDefinitionVersionListResultValueList =
+  Array<NetworkFunctionDefinitionVersion>;
+export const NetworkFunctionDefinitionVersionListResultValueList =
+  /*@__PURE__*/ S.Array(
+    NetworkFunctionDefinitionVersion,
+  ) as any as S.Schema<NetworkFunctionDefinitionVersionListResultValueList>;
+
+/** A list of network function definition versions. */
+export interface NetworkFunctionDefinitionVersionListResult {
+  /** A list of network function definition versions. */
+  value?: NetworkFunctionDefinitionVersionListResultValueList;
+  /** The URI to get the next set of results. */
+  nextLink?: string;
+}
+export const NetworkFunctionDefinitionVersionListResult =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      value: S.optional(NetworkFunctionDefinitionVersionListResultValueList),
+      nextLink: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "ConfigurationGroupValuesUpdateTagsResponse",
-  }) as any as S.Schema<ConfigurationGroupValuesUpdateTagsResponse>;
+    identifier: "NetworkFunctionDefinitionVersionListResult",
+  }) as any as S.Schema<NetworkFunctionDefinitionVersionListResult>;
+
+export interface ListNetworkServiceDesignGroupByPublisherRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the publisher. */
+  publisherName: string;
+}
+export const ListNetworkServiceDesignGroupByPublisherRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      publisherName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/networkServiceDesignGroups",
+        code: 200,
+        apiVersion: "2024-04-15",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListNetworkServiceDesignGroupByPublisherRequest",
+  }) as any as S.Schema<ListNetworkServiceDesignGroupByPublisherRequest>;
+
+/** Resource tags. */
+export type NetworkServiceDesignGroupTagsMap = {
+  [key: string]: string | undefined;
+};
+export const NetworkServiceDesignGroupTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<NetworkServiceDesignGroupTagsMap>;
+
+/** network service design group resource. */
+export interface NetworkServiceDesignGroup {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: NetworkServiceDesignGroupTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** network service design group properties. */
+  properties?: NetworkServiceDesignGroupPropertiesFormat;
+}
+export const NetworkServiceDesignGroup = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(NetworkServiceDesignGroupTagsMap),
+    location: S.String,
+    properties: S.optional(NetworkServiceDesignGroupPropertiesFormat),
+  }),
+).annotate({
+  identifier: "NetworkServiceDesignGroup",
+}) as any as S.Schema<NetworkServiceDesignGroup>;
+
+/** A list of network service design group. */
+export type NetworkServiceDesignGroupListResultValueList =
+  Array<NetworkServiceDesignGroup>;
+export const NetworkServiceDesignGroupListResultValueList =
+  /*@__PURE__*/ S.Array(
+    NetworkServiceDesignGroup,
+  ) as any as S.Schema<NetworkServiceDesignGroupListResultValueList>;
+
+/** A list of network service design group resources. */
+export interface NetworkServiceDesignGroupListResult {
+  /** A list of network service design group. */
+  value?: NetworkServiceDesignGroupListResultValueList;
+  /** The URL to get the next set of results. */
+  nextLink?: string;
+}
+export const NetworkServiceDesignGroupListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(NetworkServiceDesignGroupListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "NetworkServiceDesignGroupListResult",
+}) as any as S.Schema<NetworkServiceDesignGroupListResult>;
+
+export interface ListNetworkServiceDesignVersionByNetworkServiceDesignGroupRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the publisher. */
+  publisherName: string;
+  /** The name of the network service design group. */
+  networkServiceDesignGroupName: string;
+}
+export const ListNetworkServiceDesignVersionByNetworkServiceDesignGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      publisherName: S.String.pipe(T.Label()),
+      networkServiceDesignGroupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/networkServiceDesignGroups/{networkServiceDesignGroupName}/networkServiceDesignVersions",
+        code: 200,
+        apiVersion: "2024-04-15",
+      }),
+    ),
+  ).annotate({
+    identifier:
+      "ListNetworkServiceDesignVersionByNetworkServiceDesignGroupRequest",
+  }) as any as S.Schema<ListNetworkServiceDesignVersionByNetworkServiceDesignGroupRequest>;
+
+/** Resource tags. */
+export type NetworkServiceDesignVersionTagsMap = {
+  [key: string]: string | undefined;
+};
+export const NetworkServiceDesignVersionTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<NetworkServiceDesignVersionTagsMap>;
+
+/** network service design version. */
+export interface NetworkServiceDesignVersion {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: NetworkServiceDesignVersionTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** network service design version properties. */
+  properties?: NetworkServiceDesignVersionPropertiesFormat;
+}
+export const NetworkServiceDesignVersion = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(NetworkServiceDesignVersionTagsMap),
+    location: S.String,
+    properties: S.optional(NetworkServiceDesignVersionPropertiesFormat),
+  }),
+).annotate({
+  identifier: "NetworkServiceDesignVersion",
+}) as any as S.Schema<NetworkServiceDesignVersion>;
+
+/** A list of network service design versions. */
+export type NetworkServiceDesignVersionListResultValueList =
+  Array<NetworkServiceDesignVersion>;
+export const NetworkServiceDesignVersionListResultValueList =
+  /*@__PURE__*/ S.Array(
+    NetworkServiceDesignVersion,
+  ) as any as S.Schema<NetworkServiceDesignVersionListResultValueList>;
+
+/** A list of network service design versions. */
+export interface NetworkServiceDesignVersionListResult {
+  /** A list of network service design versions. */
+  value?: NetworkServiceDesignVersionListResultValueList;
+  /** The URI to get the next set of results. */
+  nextLink?: string;
+}
+export const NetworkServiceDesignVersionListResult = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      value: S.optional(NetworkServiceDesignVersionListResultValueList),
+      nextLink: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "NetworkServiceDesignVersionListResult",
+}) as any as S.Schema<NetworkServiceDesignVersionListResult>;
+
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.HybridNetwork/operations",
+      code: 200,
+      apiVersion: "2024-04-15",
+    }),
+  ),
+).annotate({
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
+
+/** Localized display information for this particular operation. */
+export interface OperationDisplay {
+  /** The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring Insights" or "Microsoft Compute". */
+  provider?: string;
+  /** The localized friendly name of the resource type related to this operation. E.g. "Virtual Machines" or "Job Schedule Collections". */
+  resource?: string;
+  /** The concise, localized friendly name for the operation; suitable for dropdowns. E.g. "Create or Update Virtual Machine", "Restart Virtual Machine". */
+  operation?: string;
+  /** The short, localized friendly description of the operation; suitable for tool tips and detailed views. */
+  description?: string;
+}
+export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provider: S.optional(S.String),
+    resource: S.optional(S.String),
+    operation: S.optional(S.String),
+    description: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationDisplay",
+}) as any as S.Schema<OperationDisplay>;
+
+/** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
+export type OperationOrigin = "user" | "system" | "user,system";
+export const OperationOrigin = /*@__PURE__*/ S.String;
+
+/** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
+export type OperationActionType = "Internal";
+export const OperationActionType = /*@__PURE__*/ S.String;
+
+/** Details of a REST API operation, returned from the Resource Provider Operations API */
+export interface Operation {
+  /** The name of the operation, as per Resource-Based Access Control (RBAC). Examples: "Microsoft.Compute/virtualMachines/write", "Microsoft.Compute/virtualMachines/capture/action" */
+  name?: string;
+  /** Whether the operation applies to data-plane. This is "true" for data-plane operations and "false" for ARM/control-plane operations. */
+  isDataAction?: boolean;
+  /** Localized display information for this particular operation. */
+  display?: OperationDisplay;
+  /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
+  origin?: OperationOrigin;
+  /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
+  actionType?: OperationActionType;
+}
+export const Operation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    isDataAction: S.optional(S.Boolean),
+    display: S.optional(OperationDisplay),
+    origin: S.optional(OperationOrigin),
+    actionType: S.optional(OperationActionType),
+  }),
+).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
+
+/** List of operations supported by the resource provider */
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
+  Operation,
+) as any as S.Schema<ListOperationsResponseValueList>;
+
+export interface ListOperationsResponse {
+  /** List of operations supported by the resource provider */
+  value?: ListOperationsResponseValueList;
+  /** URL to get the next set of operation list results (if there are any). */
+  nextLink?: string;
+}
+export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(ListOperationsResponseValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ListOperationsResponse",
+}) as any as S.Schema<ListOperationsResponse>;
+
+export interface ListProxyArtifactRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the publisher. */
+  publisherName: string;
+  /** The name of the artifact store. */
+  artifactStoreName: string;
+}
+export const ListProxyArtifactRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    publisherName: S.String.pipe(T.Label()),
+    artifactStoreName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/artifactStores/{artifactStoreName}/artifacts",
+      code: 200,
+      apiVersion: "2024-04-15",
+    }),
+  ),
+).annotate({
+  identifier: "ListProxyArtifactRequest",
+}) as any as S.Schema<ListProxyArtifactRequest>;
+
+/** Common fields that are returned in the response for all Azure Resource Manager resources */
+export interface Resource {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+}
+export const Resource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+  }),
+).annotate({ identifier: "Resource" }) as any as S.Schema<Resource>;
+
+/** A list of available proxy artifacts. */
+export type ProxyArtifactOverviewListResultValueList = Array<Resource>;
+export const ProxyArtifactOverviewListResultValueList = /*@__PURE__*/ S.Array(
+  Resource,
+) as any as S.Schema<ProxyArtifactOverviewListResultValueList>;
+
+/** The proxy artifact list result. */
+export interface ProxyArtifactOverviewListResult {
+  /** A list of available proxy artifacts. */
+  value?: ProxyArtifactOverviewListResultValueList;
+  /** The URL to get the next set of results. */
+  nextLink?: string;
+}
+export const ProxyArtifactOverviewListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(ProxyArtifactOverviewListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ProxyArtifactOverviewListResult",
+}) as any as S.Schema<ProxyArtifactOverviewListResult>;
+
+export interface ListPublisherByResourceGroupRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const ListPublisherByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers",
+      code: 200,
+      apiVersion: "2024-04-15",
+    }),
+  ),
+).annotate({
+  identifier: "ListPublisherByResourceGroupRequest",
+}) as any as S.Schema<ListPublisherByResourceGroupRequest>;
+
+/** Resource tags. */
+export type PublisherTagsMap = { [key: string]: string | undefined };
+export const PublisherTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<PublisherTagsMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export type PublisherIdentity = GetNetworkFunctionResponseIdentity;
+export const PublisherIdentity = GetNetworkFunctionResponseIdentity;
+
+/** publisher resource. */
+export interface Publisher {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: PublisherTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Publisher properties. */
+  properties?: PublisherPropertiesFormat;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: GetNetworkFunctionResponseIdentity;
+}
+export const Publisher = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(PublisherTagsMap),
+    location: S.String,
+    properties: S.optional(PublisherPropertiesFormat),
+    identity: S.optional(GetNetworkFunctionResponseIdentity),
+  }),
+).annotate({ identifier: "Publisher" }) as any as S.Schema<Publisher>;
+
+/** A list of publishers. */
+export type PublisherListResultValueList = Array<Publisher>;
+export const PublisherListResultValueList = /*@__PURE__*/ S.Array(
+  Publisher,
+) as any as S.Schema<PublisherListResultValueList>;
+
+/** A list of publishers. */
+export interface PublisherListResult {
+  /** A list of publishers. */
+  value?: PublisherListResultValueList;
+  /** The URL to get the next set of results. */
+  nextLink?: string;
+}
+export const PublisherListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(PublisherListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PublisherListResult",
+}) as any as S.Schema<PublisherListResult>;
+
+export interface ListPublisherBySubscriptionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+}
+export const ListPublisherBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.HybridNetwork/publishers",
+      code: 200,
+      apiVersion: "2024-04-15",
+    }),
+  ),
+).annotate({
+  identifier: "ListPublisherBySubscriptionRequest",
+}) as any as S.Schema<ListPublisherBySubscriptionRequest>;
+
+export interface ListSiteByResourceGroupRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const ListSiteByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/sites",
+      code: 200,
+      apiVersion: "2024-04-15",
+    }),
+  ),
+).annotate({
+  identifier: "ListSiteByResourceGroupRequest",
+}) as any as S.Schema<ListSiteByResourceGroupRequest>;
+
+/** Resource tags. */
+export type SiteTagsMap = { [key: string]: string | undefined };
+export const SiteTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<SiteTagsMap>;
+
+/** Site resource. */
+export interface Site {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: SiteTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Site properties. */
+  properties?: SitePropertiesFormat;
+}
+export const Site = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(SiteTagsMap),
+    location: S.String,
+    properties: S.optional(SitePropertiesFormat),
+  }),
+).annotate({ identifier: "Site" }) as any as S.Schema<Site>;
+
+/** A list of sites in a resource group. */
+export type SiteListResultValueList = Array<Site>;
+export const SiteListResultValueList = /*@__PURE__*/ S.Array(
+  Site,
+) as any as S.Schema<SiteListResultValueList>;
+
+/** Response for sites API service call. */
+export interface SiteListResult {
+  /** A list of sites in a resource group. */
+  value?: SiteListResultValueList;
+  /** The URL to get the next set of results. */
+  nextLink?: string;
+}
+export const SiteListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(SiteListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "SiteListResult" }) as any as S.Schema<SiteListResult>;
+
+export interface ListSiteBySubscriptionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+}
+export const ListSiteBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.HybridNetwork/sites",
+      code: 200,
+      apiVersion: "2024-04-15",
+    }),
+  ),
+).annotate({
+  identifier: "ListSiteBySubscriptionRequest",
+}) as any as S.Schema<ListSiteBySubscriptionRequest>;
+
+export interface ListSiteNetworkServiceByResourceGroupRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const ListSiteNetworkServiceByResourceGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/siteNetworkServices",
+        code: 200,
+        apiVersion: "2024-04-15",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListSiteNetworkServiceByResourceGroupRequest",
+  }) as any as S.Schema<ListSiteNetworkServiceByResourceGroupRequest>;
+
+/** Resource tags. */
+export type SiteNetworkServiceTagsMap = { [key: string]: string | undefined };
+export const SiteNetworkServiceTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<SiteNetworkServiceTagsMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export type SiteNetworkServiceIdentity = GetNetworkFunctionResponseIdentity;
+export const SiteNetworkServiceIdentity = GetNetworkFunctionResponseIdentity;
+
+/** Site network service resource. */
+export interface SiteNetworkService {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: SiteNetworkServiceTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Site network service properties. */
+  properties?: SiteNetworkServicePropertiesFormat;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: GetNetworkFunctionResponseIdentity;
+  /** Sku of the site network service. */
+  sku?: Sku;
+}
+export const SiteNetworkService = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(SiteNetworkServiceTagsMap),
+    location: S.String,
+    properties: S.optional(SiteNetworkServicePropertiesFormat),
+    identity: S.optional(GetNetworkFunctionResponseIdentity),
+    sku: S.optional(Sku),
+  }),
+).annotate({
+  identifier: "SiteNetworkService",
+}) as any as S.Schema<SiteNetworkService>;
+
+/** A list of site network services in a resource group. */
+export type SiteNetworkServiceListResultValueList = Array<SiteNetworkService>;
+export const SiteNetworkServiceListResultValueList = /*@__PURE__*/ S.Array(
+  SiteNetworkService,
+) as any as S.Schema<SiteNetworkServiceListResultValueList>;
+
+/** Response for site network services API service call. */
+export interface SiteNetworkServiceListResult {
+  /** A list of site network services in a resource group. */
+  value?: SiteNetworkServiceListResultValueList;
+  /** The URL to get the next set of results. */
+  nextLink?: string;
+}
+export const SiteNetworkServiceListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(SiteNetworkServiceListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SiteNetworkServiceListResult",
+}) as any as S.Schema<SiteNetworkServiceListResult>;
+
+export interface ListSiteNetworkServiceBySubscriptionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+}
+export const ListSiteNetworkServiceBySubscriptionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.HybridNetwork/siteNetworkServices",
+        code: 200,
+        apiVersion: "2024-04-15",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListSiteNetworkServiceBySubscriptionRequest",
+  }) as any as S.Schema<ListSiteNetworkServiceBySubscriptionRequest>;
 
 /** Resource tags. */
 export type NetworkFunctionDefinitionGroupsCreateOrUpdateRequestTagsMap = {
@@ -2997,38 +5237,6 @@ export const NetworkFunctionDefinitionGroupsCreateOrUpdateResponseTagsMap =
     S.String,
   ) as any as S.Schema<NetworkFunctionDefinitionGroupsCreateOrUpdateResponseTagsMap>;
 
-/** The current provisioning state. */
-export type NetworkFunctionDefinitionGroupPropertiesFormatProvisioningState =
-  | "Unknown"
-  | "Succeeded"
-  | "Accepted"
-  | "Deleting"
-  | "Failed"
-  | "Canceled"
-  | "Deleted"
-  | "Converging";
-export const NetworkFunctionDefinitionGroupPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
-
-/** Network function definition group properties. */
-export interface NetworkFunctionDefinitionGroupPropertiesFormat {
-  /** The current provisioning state. */
-  provisioningState?: NetworkFunctionDefinitionGroupPropertiesFormatProvisioningState;
-  /** The network function definition group description. */
-  description?: string;
-}
-export const NetworkFunctionDefinitionGroupPropertiesFormat =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      provisioningState: S.optional(
-        NetworkFunctionDefinitionGroupPropertiesFormatProvisioningState,
-      ),
-      description: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "NetworkFunctionDefinitionGroupPropertiesFormat",
-  }) as any as S.Schema<NetworkFunctionDefinitionGroupPropertiesFormat>;
-
 export interface NetworkFunctionDefinitionGroupsCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
@@ -3061,285 +5269,6 @@ export const NetworkFunctionDefinitionGroupsCreateOrUpdateResponse =
   ).annotate({
     identifier: "NetworkFunctionDefinitionGroupsCreateOrUpdateResponse",
   }) as any as S.Schema<NetworkFunctionDefinitionGroupsCreateOrUpdateResponse>;
-
-export interface NetworkFunctionDefinitionGroupsDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the publisher. */
-  publisherName: string;
-  /** The name of the network function definition group. */
-  networkFunctionDefinitionGroupName: string;
-}
-export const NetworkFunctionDefinitionGroupsDeleteRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      publisherName: S.String.pipe(T.Label()),
-      networkFunctionDefinitionGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/networkFunctionDefinitionGroups/{networkFunctionDefinitionGroupName}",
-        code: 200,
-        apiVersion: "2024-04-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "NetworkFunctionDefinitionGroupsDeleteRequest",
-  }) as any as S.Schema<NetworkFunctionDefinitionGroupsDeleteRequest>;
-
-export interface NetworkFunctionDefinitionGroupsDeleteResponse {}
-export const NetworkFunctionDefinitionGroupsDeleteResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "NetworkFunctionDefinitionGroupsDeleteResponse",
-  }) as any as S.Schema<NetworkFunctionDefinitionGroupsDeleteResponse>;
-
-export interface NetworkFunctionDefinitionGroupsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the publisher. */
-  publisherName: string;
-  /** The name of the network function definition group. */
-  networkFunctionDefinitionGroupName: string;
-}
-export const NetworkFunctionDefinitionGroupsGetRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      publisherName: S.String.pipe(T.Label()),
-      networkFunctionDefinitionGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/networkFunctionDefinitionGroups/{networkFunctionDefinitionGroupName}",
-        code: 200,
-        apiVersion: "2024-04-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "NetworkFunctionDefinitionGroupsGetRequest",
-  }) as any as S.Schema<NetworkFunctionDefinitionGroupsGetRequest>;
-
-/** Resource tags. */
-export type NetworkFunctionDefinitionGroupsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const NetworkFunctionDefinitionGroupsGetResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<NetworkFunctionDefinitionGroupsGetResponseTagsMap>;
-
-export interface NetworkFunctionDefinitionGroupsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: NetworkFunctionDefinitionGroupsGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Network function definition group properties. */
-  properties?: NetworkFunctionDefinitionGroupPropertiesFormat;
-}
-export const NetworkFunctionDefinitionGroupsGetResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(NetworkFunctionDefinitionGroupsGetResponseTagsMap),
-      location: S.String,
-      properties: S.optional(NetworkFunctionDefinitionGroupPropertiesFormat),
-    }),
-  ).annotate({
-    identifier: "NetworkFunctionDefinitionGroupsGetResponse",
-  }) as any as S.Schema<NetworkFunctionDefinitionGroupsGetResponse>;
-
-export interface NetworkFunctionDefinitionGroupsListByPublisherRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the publisher. */
-  publisherName: string;
-}
-export const NetworkFunctionDefinitionGroupsListByPublisherRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      publisherName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/networkFunctionDefinitionGroups",
-        code: 200,
-        apiVersion: "2024-04-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "NetworkFunctionDefinitionGroupsListByPublisherRequest",
-  }) as any as S.Schema<NetworkFunctionDefinitionGroupsListByPublisherRequest>;
-
-/** Resource tags. */
-export type NetworkFunctionDefinitionGroupTagsMap = {
-  [key: string]: string | undefined;
-};
-export const NetworkFunctionDefinitionGroupTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<NetworkFunctionDefinitionGroupTagsMap>;
-
-/** Network function definition group resource. */
-export interface NetworkFunctionDefinitionGroup {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: NetworkFunctionDefinitionGroupTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Network function definition group properties. */
-  properties?: NetworkFunctionDefinitionGroupPropertiesFormat;
-}
-export const NetworkFunctionDefinitionGroup = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(NetworkFunctionDefinitionGroupTagsMap),
-    location: S.String,
-    properties: S.optional(NetworkFunctionDefinitionGroupPropertiesFormat),
-  }),
-).annotate({
-  identifier: "NetworkFunctionDefinitionGroup",
-}) as any as S.Schema<NetworkFunctionDefinitionGroup>;
-
-/** A list of network function definition group. */
-export type NetworkFunctionDefinitionGroupListResultValueList =
-  Array<NetworkFunctionDefinitionGroup>;
-export const NetworkFunctionDefinitionGroupListResultValueList =
-  /*@__PURE__*/ S.Array(
-    NetworkFunctionDefinitionGroup,
-  ) as any as S.Schema<NetworkFunctionDefinitionGroupListResultValueList>;
-
-/** A list of network function definition group resources. */
-export interface NetworkFunctionDefinitionGroupListResult {
-  /** A list of network function definition group. */
-  value?: NetworkFunctionDefinitionGroupListResultValueList;
-  /** The URL to get the next set of results. */
-  nextLink?: string;
-}
-export const NetworkFunctionDefinitionGroupListResult = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      value: S.optional(NetworkFunctionDefinitionGroupListResultValueList),
-      nextLink: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "NetworkFunctionDefinitionGroupListResult",
-}) as any as S.Schema<NetworkFunctionDefinitionGroupListResult>;
-
-/** Resource tags. */
-export type NetworkFunctionDefinitionGroupsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const NetworkFunctionDefinitionGroupsUpdateRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<NetworkFunctionDefinitionGroupsUpdateRequestTagsMap>;
-
-export interface NetworkFunctionDefinitionGroupsUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the publisher. */
-  publisherName: string;
-  /** The name of the network function definition group. */
-  networkFunctionDefinitionGroupName: string;
-  /** Resource tags. */
-  tags?: NetworkFunctionDefinitionGroupsUpdateRequestTagsMap;
-}
-export const NetworkFunctionDefinitionGroupsUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      publisherName: S.String.pipe(T.Label()),
-      networkFunctionDefinitionGroupName: S.String.pipe(T.Label()),
-      tags: S.optional(NetworkFunctionDefinitionGroupsUpdateRequestTagsMap),
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/networkFunctionDefinitionGroups/{networkFunctionDefinitionGroupName}",
-        code: 200,
-        apiVersion: "2024-04-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "NetworkFunctionDefinitionGroupsUpdateRequest",
-  }) as any as S.Schema<NetworkFunctionDefinitionGroupsUpdateRequest>;
-
-/** Resource tags. */
-export type NetworkFunctionDefinitionGroupsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const NetworkFunctionDefinitionGroupsUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<NetworkFunctionDefinitionGroupsUpdateResponseTagsMap>;
-
-export interface NetworkFunctionDefinitionGroupsUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: NetworkFunctionDefinitionGroupsUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Network function definition group properties. */
-  properties?: NetworkFunctionDefinitionGroupPropertiesFormat;
-}
-export const NetworkFunctionDefinitionGroupsUpdateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(NetworkFunctionDefinitionGroupsUpdateResponseTagsMap),
-      location: S.String,
-      properties: S.optional(NetworkFunctionDefinitionGroupPropertiesFormat),
-    }),
-  ).annotate({
-    identifier: "NetworkFunctionDefinitionGroupsUpdateResponse",
-  }) as any as S.Schema<NetworkFunctionDefinitionGroupsUpdateResponse>;
 
 /** Resource tags. */
 export type NetworkFunctionDefinitionVersionsCreateOrUpdateRequestTagsMap = {
@@ -3437,66 +5366,6 @@ export const NetworkFunctionDefinitionVersionsCreateOrUpdateResponseTagsMap =
     S.String,
   ) as any as S.Schema<NetworkFunctionDefinitionVersionsCreateOrUpdateResponseTagsMap>;
 
-/** The current provisioning state. */
-export type NetworkFunctionDefinitionVersionPropertiesFormatProvisioningState =
-  | "Unknown"
-  | "Succeeded"
-  | "Accepted"
-  | "Deleting"
-  | "Failed"
-  | "Canceled"
-  | "Deleted"
-  | "Converging";
-export const NetworkFunctionDefinitionVersionPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
-
-/** The network function definition version state. */
-export type VersionState =
-  | "Unknown"
-  | "Preview"
-  | "Validating"
-  | "ValidationFailed"
-  | "Active"
-  | "Deprecated";
-export const VersionState = /*@__PURE__*/ S.String;
-
-/** The network function type. */
-export type NetworkFunctionDefinitionVersionPropertiesFormatNetworkFunctionType =
-  | "Unknown"
-  | "VirtualNetworkFunction"
-  | "ContainerizedNetworkFunction";
-export const NetworkFunctionDefinitionVersionPropertiesFormatNetworkFunctionType =
-  /*@__PURE__*/ S.String;
-
-/** Network function definition version properties. */
-export interface NetworkFunctionDefinitionVersionPropertiesFormat {
-  /** The current provisioning state. */
-  provisioningState?: NetworkFunctionDefinitionVersionPropertiesFormatProvisioningState;
-  /** The network function definition version state. */
-  versionState?: VersionState;
-  /** The network function definition version description. */
-  description?: string;
-  /** The deployment parameters of the network function definition version. */
-  deployParameters?: string;
-  /** The network function type. */
-  networkFunctionType: NetworkFunctionDefinitionVersionPropertiesFormatNetworkFunctionType;
-}
-export const NetworkFunctionDefinitionVersionPropertiesFormat =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      provisioningState: S.optional(
-        NetworkFunctionDefinitionVersionPropertiesFormatProvisioningState,
-      ),
-      versionState: S.optional(VersionState),
-      description: S.optional(S.String),
-      deployParameters: S.optional(S.String),
-      networkFunctionType:
-        NetworkFunctionDefinitionVersionPropertiesFormatNetworkFunctionType,
-    }),
-  ).annotate({
-    identifier: "NetworkFunctionDefinitionVersionPropertiesFormat",
-  }) as any as S.Schema<NetworkFunctionDefinitionVersionPropertiesFormat>;
-
 export interface NetworkFunctionDefinitionVersionsCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
@@ -3530,347 +5399,6 @@ export const NetworkFunctionDefinitionVersionsCreateOrUpdateResponse =
     identifier: "NetworkFunctionDefinitionVersionsCreateOrUpdateResponse",
   }) as any as S.Schema<NetworkFunctionDefinitionVersionsCreateOrUpdateResponse>;
 
-export interface NetworkFunctionDefinitionVersionsDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the publisher. */
-  publisherName: string;
-  /** The name of the network function definition group. */
-  networkFunctionDefinitionGroupName: string;
-  /** The name of the network function definition version. The name should conform to the SemVer 2.0.0 specification: https://semver.org/spec/v2.0.0.html. */
-  networkFunctionDefinitionVersionName: string;
-}
-export const NetworkFunctionDefinitionVersionsDeleteRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      publisherName: S.String.pipe(T.Label()),
-      networkFunctionDefinitionGroupName: S.String.pipe(T.Label()),
-      networkFunctionDefinitionVersionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/networkFunctionDefinitionGroups/{networkFunctionDefinitionGroupName}/networkFunctionDefinitionVersions/{networkFunctionDefinitionVersionName}",
-        code: 200,
-        apiVersion: "2024-04-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "NetworkFunctionDefinitionVersionsDeleteRequest",
-  }) as any as S.Schema<NetworkFunctionDefinitionVersionsDeleteRequest>;
-
-export interface NetworkFunctionDefinitionVersionsDeleteResponse {}
-export const NetworkFunctionDefinitionVersionsDeleteResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "NetworkFunctionDefinitionVersionsDeleteResponse",
-  }) as any as S.Schema<NetworkFunctionDefinitionVersionsDeleteResponse>;
-
-export interface NetworkFunctionDefinitionVersionsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the publisher. */
-  publisherName: string;
-  /** The name of the network function definition group. */
-  networkFunctionDefinitionGroupName: string;
-  /** The name of the network function definition version. The name should conform to the SemVer 2.0.0 specification: https://semver.org/spec/v2.0.0.html. */
-  networkFunctionDefinitionVersionName: string;
-}
-export const NetworkFunctionDefinitionVersionsGetRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      publisherName: S.String.pipe(T.Label()),
-      networkFunctionDefinitionGroupName: S.String.pipe(T.Label()),
-      networkFunctionDefinitionVersionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/networkFunctionDefinitionGroups/{networkFunctionDefinitionGroupName}/networkFunctionDefinitionVersions/{networkFunctionDefinitionVersionName}",
-        code: 200,
-        apiVersion: "2024-04-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "NetworkFunctionDefinitionVersionsGetRequest",
-  }) as any as S.Schema<NetworkFunctionDefinitionVersionsGetRequest>;
-
-/** Resource tags. */
-export type NetworkFunctionDefinitionVersionsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const NetworkFunctionDefinitionVersionsGetResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<NetworkFunctionDefinitionVersionsGetResponseTagsMap>;
-
-export interface NetworkFunctionDefinitionVersionsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: NetworkFunctionDefinitionVersionsGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Network function definition version properties. */
-  properties?: NetworkFunctionDefinitionVersionPropertiesFormat;
-}
-export const NetworkFunctionDefinitionVersionsGetResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(NetworkFunctionDefinitionVersionsGetResponseTagsMap),
-      location: S.String,
-      properties: S.optional(NetworkFunctionDefinitionVersionPropertiesFormat),
-    }),
-  ).annotate({
-    identifier: "NetworkFunctionDefinitionVersionsGetResponse",
-  }) as any as S.Schema<NetworkFunctionDefinitionVersionsGetResponse>;
-
-export interface NetworkFunctionDefinitionVersionsListByNetworkFunctionDefinitionGroupRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the publisher. */
-  publisherName: string;
-  /** The name of the network function definition group. */
-  networkFunctionDefinitionGroupName: string;
-}
-export const NetworkFunctionDefinitionVersionsListByNetworkFunctionDefinitionGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      publisherName: S.String.pipe(T.Label()),
-      networkFunctionDefinitionGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/networkFunctionDefinitionGroups/{networkFunctionDefinitionGroupName}/networkFunctionDefinitionVersions",
-        code: 200,
-        apiVersion: "2024-04-15",
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "NetworkFunctionDefinitionVersionsListByNetworkFunctionDefinitionGroupRequest",
-  }) as any as S.Schema<NetworkFunctionDefinitionVersionsListByNetworkFunctionDefinitionGroupRequest>;
-
-/** Resource tags. */
-export type NetworkFunctionDefinitionVersionTagsMap = {
-  [key: string]: string | undefined;
-};
-export const NetworkFunctionDefinitionVersionTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<NetworkFunctionDefinitionVersionTagsMap>;
-
-/** Network function definition version. */
-export interface NetworkFunctionDefinitionVersion {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: NetworkFunctionDefinitionVersionTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Network function definition version properties. */
-  properties?: NetworkFunctionDefinitionVersionPropertiesFormat;
-}
-export const NetworkFunctionDefinitionVersion = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(NetworkFunctionDefinitionVersionTagsMap),
-    location: S.String,
-    properties: S.optional(NetworkFunctionDefinitionVersionPropertiesFormat),
-  }),
-).annotate({
-  identifier: "NetworkFunctionDefinitionVersion",
-}) as any as S.Schema<NetworkFunctionDefinitionVersion>;
-
-/** A list of network function definition versions. */
-export type NetworkFunctionDefinitionVersionListResultValueList =
-  Array<NetworkFunctionDefinitionVersion>;
-export const NetworkFunctionDefinitionVersionListResultValueList =
-  /*@__PURE__*/ S.Array(
-    NetworkFunctionDefinitionVersion,
-  ) as any as S.Schema<NetworkFunctionDefinitionVersionListResultValueList>;
-
-/** A list of network function definition versions. */
-export interface NetworkFunctionDefinitionVersionListResult {
-  /** A list of network function definition versions. */
-  value?: NetworkFunctionDefinitionVersionListResultValueList;
-  /** The URI to get the next set of results. */
-  nextLink?: string;
-}
-export const NetworkFunctionDefinitionVersionListResult =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      value: S.optional(NetworkFunctionDefinitionVersionListResultValueList),
-      nextLink: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "NetworkFunctionDefinitionVersionListResult",
-  }) as any as S.Schema<NetworkFunctionDefinitionVersionListResult>;
-
-/** Resource tags. */
-export type NetworkFunctionDefinitionVersionsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const NetworkFunctionDefinitionVersionsUpdateRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<NetworkFunctionDefinitionVersionsUpdateRequestTagsMap>;
-
-export interface NetworkFunctionDefinitionVersionsUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the publisher. */
-  publisherName: string;
-  /** The name of the network function definition group. */
-  networkFunctionDefinitionGroupName: string;
-  /** The name of the network function definition version. The name should conform to the SemVer 2.0.0 specification: https://semver.org/spec/v2.0.0.html. */
-  networkFunctionDefinitionVersionName: string;
-  /** Resource tags. */
-  tags?: NetworkFunctionDefinitionVersionsUpdateRequestTagsMap;
-}
-export const NetworkFunctionDefinitionVersionsUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      publisherName: S.String.pipe(T.Label()),
-      networkFunctionDefinitionGroupName: S.String.pipe(T.Label()),
-      networkFunctionDefinitionVersionName: S.String.pipe(T.Label()),
-      tags: S.optional(NetworkFunctionDefinitionVersionsUpdateRequestTagsMap),
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/networkFunctionDefinitionGroups/{networkFunctionDefinitionGroupName}/networkFunctionDefinitionVersions/{networkFunctionDefinitionVersionName}",
-        code: 200,
-        apiVersion: "2024-04-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "NetworkFunctionDefinitionVersionsUpdateRequest",
-  }) as any as S.Schema<NetworkFunctionDefinitionVersionsUpdateRequest>;
-
-/** Resource tags. */
-export type NetworkFunctionDefinitionVersionsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const NetworkFunctionDefinitionVersionsUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<NetworkFunctionDefinitionVersionsUpdateResponseTagsMap>;
-
-export interface NetworkFunctionDefinitionVersionsUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: NetworkFunctionDefinitionVersionsUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Network function definition version properties. */
-  properties?: NetworkFunctionDefinitionVersionPropertiesFormat;
-}
-export const NetworkFunctionDefinitionVersionsUpdateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(NetworkFunctionDefinitionVersionsUpdateResponseTagsMap),
-      location: S.String,
-      properties: S.optional(NetworkFunctionDefinitionVersionPropertiesFormat),
-    }),
-  ).annotate({
-    identifier: "NetworkFunctionDefinitionVersionsUpdateResponse",
-  }) as any as S.Schema<NetworkFunctionDefinitionVersionsUpdateResponse>;
-
-export interface NetworkFunctionDefinitionVersionsUpdateStateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the publisher. */
-  publisherName: string;
-  /** The name of the network function definition group. */
-  networkFunctionDefinitionGroupName: string;
-  /** The name of the network function definition version. The name should conform to the SemVer 2.0.0 specification: https://semver.org/spec/v2.0.0.html. */
-  networkFunctionDefinitionVersionName: string;
-  /** The network function definition version state. Only the 'Active' and 'Deprecated' states are allowed for updates. Other states are used for internal state transitioning. */
-  versionState?: VersionState | (string & {});
-}
-export const NetworkFunctionDefinitionVersionsUpdateStateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      publisherName: S.String.pipe(T.Label()),
-      networkFunctionDefinitionGroupName: S.String.pipe(T.Label()),
-      networkFunctionDefinitionVersionName: S.String.pipe(T.Label()),
-      versionState: S.optional(VersionState),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/networkFunctionDefinitionGroups/{networkFunctionDefinitionGroupName}/networkFunctionDefinitionVersions/{networkFunctionDefinitionVersionName}/updateState",
-        code: 200,
-        apiVersion: "2024-04-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "NetworkFunctionDefinitionVersionsUpdateStateRequest",
-  }) as any as S.Schema<NetworkFunctionDefinitionVersionsUpdateStateRequest>;
-
-/** Publisher network function definition version update request definition. */
-export interface NetworkFunctionDefinitionVersionUpdateState {
-  /** The network function definition version state. Only the 'Active' and 'Deprecated' states are allowed for updates. Other states are used for internal state transitioning. */
-  versionState?: VersionState;
-}
-export const NetworkFunctionDefinitionVersionUpdateState =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      versionState: S.optional(VersionState),
-    }),
-  ).annotate({
-    identifier: "NetworkFunctionDefinitionVersionUpdateState",
-  }) as any as S.Schema<NetworkFunctionDefinitionVersionUpdateState>;
-
 /** Resource tags. */
 export type NetworkFunctionsCreateOrUpdateRequestTagsMap = {
   [key: string]: string | undefined;
@@ -3902,10 +5430,6 @@ export type NetworkFunctionPropertiesFormatInputNfviType =
   | "AzureOperatorNexus";
 export const NetworkFunctionPropertiesFormatInputNfviType =
   /*@__PURE__*/ S.String;
-
-/** The secret type which indicates if secret or not. */
-export type NetworkFunctionConfigurationType = "Unknown" | "Secret" | "Open";
-export const NetworkFunctionConfigurationType = /*@__PURE__*/ S.String;
 
 /** The role configuration override values from the user. */
 export type NetworkFunctionPropertiesFormatInputRoleOverrideValuesList =
@@ -3966,14 +5490,6 @@ export const NetworkFunctionPropertiesFormatInput = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "NetworkFunctionPropertiesFormatInput",
 }) as any as S.Schema<NetworkFunctionPropertiesFormatInput>;
-
-/** Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed). */
-export type ManagedServiceIdentityType =
-  | "None"
-  | "SystemAssigned"
-  | "UserAssigned"
-  | "SystemAssigned,UserAssigned";
-export const ManagedServiceIdentityType = /*@__PURE__*/ S.String;
 
 /** User assigned identity properties */
 export interface UserAssignedIdentityInput {}
@@ -4058,145 +5574,11 @@ export const NetworkFunctionsCreateOrUpdateResponseTagsMap =
     S.String,
   ) as any as S.Schema<NetworkFunctionsCreateOrUpdateResponseTagsMap>;
 
-/** The current provisioning state. */
-export type NetworkFunctionPropertiesFormatProvisioningState =
-  | "Unknown"
-  | "Succeeded"
-  | "Accepted"
-  | "Deleting"
-  | "Failed"
-  | "Canceled"
-  | "Deleted"
-  | "Converging";
-export const NetworkFunctionPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
-
-/** Publisher Scope. */
-export type NetworkFunctionPropertiesFormatPublisherScope =
-  | "Unknown"
-  | "Private";
-export const NetworkFunctionPropertiesFormatPublisherScope =
-  /*@__PURE__*/ S.String;
-
-/** The azure resource reference which is used for deployment. */
-export type NetworkFunctionPropertiesFormatNetworkFunctionDefinitionVersionResourceReference =
-  ConfigurationGroupValuePropertiesFormatConfigurationGroupSchemaResourceReference;
-export const NetworkFunctionPropertiesFormatNetworkFunctionDefinitionVersionResourceReference =
-  ConfigurationGroupValuePropertiesFormatConfigurationGroupSchemaResourceReference;
-
-/** The NFVI type. */
-export type NetworkFunctionPropertiesFormatNfviType =
-  | "Unknown"
-  | "AzureArcKubernetes"
-  | "AzureCore"
-  | "AzureOperatorNexus";
-export const NetworkFunctionPropertiesFormatNfviType = /*@__PURE__*/ S.String;
-
-/** The role configuration override values from the user. */
-export type NetworkFunctionPropertiesFormatRoleOverrideValuesList =
-  Array<string>;
-export const NetworkFunctionPropertiesFormatRoleOverrideValuesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<NetworkFunctionPropertiesFormatRoleOverrideValuesList>;
-
-/** Network function properties. */
-export interface NetworkFunctionPropertiesFormat {
-  /** The current provisioning state. */
-  provisioningState?: NetworkFunctionPropertiesFormatProvisioningState;
-  /** The publisher name for the network function. */
-  publisherName?: string;
-  /** Publisher Scope. */
-  publisherScope?: NetworkFunctionPropertiesFormatPublisherScope;
-  /** The network function definition group name for the network function. */
-  networkFunctionDefinitionGroupName?: string;
-  /** The network function definition version for the network function. */
-  networkFunctionDefinitionVersion?: string;
-  /** The location of the network function definition offering. */
-  networkFunctionDefinitionOfferingLocation?: string;
-  /** The azure resource reference which is used for deployment. */
-  networkFunctionDefinitionVersionResourceReference?: ConfigurationGroupValuePropertiesFormatConfigurationGroupSchemaResourceReference;
-  /** The NFVI type. */
-  nfviType?: NetworkFunctionPropertiesFormatNfviType;
-  /** The nfviId for the network function. */
-  nfviId?: string;
-  /** Indicates if software updates are allowed during deployment. */
-  allowSoftwareUpdate?: boolean;
-  /** The value which indicates if NF values are secrets */
-  configurationType: NetworkFunctionConfigurationType;
-  /** The role configuration override values from the user. */
-  roleOverrideValues?: NetworkFunctionPropertiesFormatRoleOverrideValuesList;
-}
-export const NetworkFunctionPropertiesFormat = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisioningState: S.optional(
-      NetworkFunctionPropertiesFormatProvisioningState,
-    ),
-    publisherName: S.optional(S.String),
-    publisherScope: S.optional(NetworkFunctionPropertiesFormatPublisherScope),
-    networkFunctionDefinitionGroupName: S.optional(S.String),
-    networkFunctionDefinitionVersion: S.optional(S.String),
-    networkFunctionDefinitionOfferingLocation: S.optional(S.String),
-    networkFunctionDefinitionVersionResourceReference: S.optional(
-      ConfigurationGroupValuePropertiesFormatConfigurationGroupSchemaResourceReference,
-    ),
-    nfviType: S.optional(NetworkFunctionPropertiesFormatNfviType),
-    nfviId: S.optional(S.String),
-    allowSoftwareUpdate: S.optional(S.Boolean),
-    configurationType: NetworkFunctionConfigurationType,
-    roleOverrideValues: S.optional(
-      NetworkFunctionPropertiesFormatRoleOverrideValuesList,
-    ),
-  }),
-).annotate({
-  identifier: "NetworkFunctionPropertiesFormat",
-}) as any as S.Schema<NetworkFunctionPropertiesFormat>;
-
-/** User assigned identity properties */
-export interface UserAssignedIdentity {
-  /** The principal ID of the assigned identity. */
-  principalId?: string;
-  /** The client ID of the assigned identity. */
-  clientId?: string;
-}
-export const UserAssignedIdentity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    principalId: S.optional(S.String),
-    clientId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "UserAssignedIdentity",
-}) as any as S.Schema<UserAssignedIdentity>;
-
-/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type UserAssignedIdentities = {
-  [key: string]: UserAssignedIdentity | undefined;
-};
-export const UserAssignedIdentities = /*@__PURE__*/ S.Record(
-  S.String,
-  UserAssignedIdentity,
-) as any as S.Schema<UserAssignedIdentities>;
-
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface NetworkFunctionsCreateOrUpdateResponseIdentity {
-  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  principalId?: string;
-  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  tenantId?: string;
-  type: ManagedServiceIdentityType;
-  userAssignedIdentities?: UserAssignedIdentities | null;
-}
+export type NetworkFunctionsCreateOrUpdateResponseIdentity =
+  GetNetworkFunctionResponseIdentity;
 export const NetworkFunctionsCreateOrUpdateResponseIdentity =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      principalId: S.optional(S.String),
-      tenantId: S.optional(S.String),
-      type: ManagedServiceIdentityType,
-      userAssignedIdentities: S.optional(S.NullOr(UserAssignedIdentities)),
-    }),
-  ).annotate({
-    identifier: "NetworkFunctionsCreateOrUpdateResponseIdentity",
-  }) as any as S.Schema<NetworkFunctionsCreateOrUpdateResponseIdentity>;
+  GetNetworkFunctionResponseIdentity;
 
 export interface NetworkFunctionsCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -4216,7 +5598,7 @@ export interface NetworkFunctionsCreateOrUpdateResponse {
   /** A unique read-only string that changes whenever the resource is updated. */
   etag?: string;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: NetworkFunctionsCreateOrUpdateResponseIdentity;
+  identity?: GetNetworkFunctionResponseIdentity;
 }
 export const NetworkFunctionsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   () =>
@@ -4229,393 +5611,11 @@ export const NetworkFunctionsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
       location: S.String,
       properties: S.optional(NetworkFunctionPropertiesFormat),
       etag: S.optional(S.String),
-      identity: S.optional(NetworkFunctionsCreateOrUpdateResponseIdentity),
+      identity: S.optional(GetNetworkFunctionResponseIdentity),
     }),
 ).annotate({
   identifier: "NetworkFunctionsCreateOrUpdateResponse",
 }) as any as S.Schema<NetworkFunctionsCreateOrUpdateResponse>;
-
-export interface NetworkFunctionsDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the network function. */
-  networkFunctionName: string;
-}
-export const NetworkFunctionsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    networkFunctionName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/networkFunctions/{networkFunctionName}",
-      code: 200,
-      apiVersion: "2024-04-15",
-    }),
-  ),
-).annotate({
-  identifier: "NetworkFunctionsDeleteRequest",
-}) as any as S.Schema<NetworkFunctionsDeleteRequest>;
-
-export interface NetworkFunctionsDeleteResponse {}
-export const NetworkFunctionsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "NetworkFunctionsDeleteResponse",
-}) as any as S.Schema<NetworkFunctionsDeleteResponse>;
-
-/** The http method of the request. */
-export type RequestMetadataHttpMethod =
-  | "Unknown"
-  | "Post"
-  | "Put"
-  | "Get"
-  | "Patch"
-  | "Delete";
-export const RequestMetadataHttpMethod = /*@__PURE__*/ S.String;
-
-/** Request metadata of execute request post call payload. */
-export interface RequestMetadata {
-  /** The relative path of the request. */
-  relativePath: string;
-  /** The http method of the request. */
-  httpMethod: RequestMetadataHttpMethod | (string & {});
-  /** The serialized body of the request. */
-  serializedBody: string;
-  /** The api version of the request. */
-  apiVersion?: string;
-}
-export const RequestMetadata = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    relativePath: S.String,
-    httpMethod: RequestMetadataHttpMethod,
-    serializedBody: S.String,
-    apiVersion: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "RequestMetadata",
-}) as any as S.Schema<RequestMetadata>;
-
-export interface NetworkFunctionsExecuteRequestRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the network function. */
-  networkFunctionName: string;
-  /** The endpoint of service to call. */
-  serviceEndpoint: string;
-  /** The request metadata. */
-  requestMetadata: RequestMetadata;
-}
-export const NetworkFunctionsExecuteRequestRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      networkFunctionName: S.String.pipe(T.Label()),
-      serviceEndpoint: S.String,
-      requestMetadata: RequestMetadata,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/networkFunctions/{networkFunctionName}/executeRequest",
-        code: 200,
-        apiVersion: "2024-04-15",
-      }),
-    ),
-).annotate({
-  identifier: "NetworkFunctionsExecuteRequestRequest",
-}) as any as S.Schema<NetworkFunctionsExecuteRequestRequest>;
-
-export interface NetworkFunctionsExecuteRequestResponse {}
-export const NetworkFunctionsExecuteRequestResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "NetworkFunctionsExecuteRequestResponse",
-}) as any as S.Schema<NetworkFunctionsExecuteRequestResponse>;
-
-export interface NetworkFunctionsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the network function resource. */
-  networkFunctionName: string;
-}
-export const NetworkFunctionsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    networkFunctionName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/networkFunctions/{networkFunctionName}",
-      code: 200,
-      apiVersion: "2024-04-15",
-    }),
-  ),
-).annotate({
-  identifier: "NetworkFunctionsGetRequest",
-}) as any as S.Schema<NetworkFunctionsGetRequest>;
-
-/** Resource tags. */
-export type NetworkFunctionsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const NetworkFunctionsGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<NetworkFunctionsGetResponseTagsMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export type NetworkFunctionsGetResponseIdentity =
-  NetworkFunctionsCreateOrUpdateResponseIdentity;
-export const NetworkFunctionsGetResponseIdentity =
-  NetworkFunctionsCreateOrUpdateResponseIdentity;
-
-export interface NetworkFunctionsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: NetworkFunctionsGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Network function properties. */
-  properties?: NetworkFunctionPropertiesFormat;
-  /** A unique read-only string that changes whenever the resource is updated. */
-  etag?: string;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: NetworkFunctionsCreateOrUpdateResponseIdentity;
-}
-export const NetworkFunctionsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(NetworkFunctionsGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(NetworkFunctionPropertiesFormat),
-    etag: S.optional(S.String),
-    identity: S.optional(NetworkFunctionsCreateOrUpdateResponseIdentity),
-  }),
-).annotate({
-  identifier: "NetworkFunctionsGetResponse",
-}) as any as S.Schema<NetworkFunctionsGetResponse>;
-
-export interface NetworkFunctionsListByResourceGroupRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const NetworkFunctionsListByResourceGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/networkFunctions",
-        code: 200,
-        apiVersion: "2024-04-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "NetworkFunctionsListByResourceGroupRequest",
-  }) as any as S.Schema<NetworkFunctionsListByResourceGroupRequest>;
-
-/** Resource tags. */
-export type NetworkFunctionTagsMap = { [key: string]: string | undefined };
-export const NetworkFunctionTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<NetworkFunctionTagsMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export type NetworkFunctionIdentity =
-  NetworkFunctionsCreateOrUpdateResponseIdentity;
-export const NetworkFunctionIdentity =
-  NetworkFunctionsCreateOrUpdateResponseIdentity;
-
-/** Network function resource response. */
-export interface NetworkFunction {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: NetworkFunctionTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Network function properties. */
-  properties?: NetworkFunctionPropertiesFormat;
-  /** A unique read-only string that changes whenever the resource is updated. */
-  etag?: string;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: NetworkFunctionsCreateOrUpdateResponseIdentity;
-}
-export const NetworkFunction = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(NetworkFunctionTagsMap),
-    location: S.String,
-    properties: S.optional(NetworkFunctionPropertiesFormat),
-    etag: S.optional(S.String),
-    identity: S.optional(NetworkFunctionsCreateOrUpdateResponseIdentity),
-  }),
-).annotate({
-  identifier: "NetworkFunction",
-}) as any as S.Schema<NetworkFunction>;
-
-/** A list of network function resources in a subscription or resource group. */
-export type NetworkFunctionListResultValueList = Array<NetworkFunction>;
-export const NetworkFunctionListResultValueList = /*@__PURE__*/ S.Array(
-  NetworkFunction,
-) as any as S.Schema<NetworkFunctionListResultValueList>;
-
-/** Response for network function API service call. */
-export interface NetworkFunctionListResult {
-  /** A list of network function resources in a subscription or resource group. */
-  value?: NetworkFunctionListResultValueList;
-  /** The URL to get the next set of results. */
-  nextLink?: string;
-}
-export const NetworkFunctionListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(NetworkFunctionListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "NetworkFunctionListResult",
-}) as any as S.Schema<NetworkFunctionListResult>;
-
-export interface NetworkFunctionsListBySubscriptionRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-}
-export const NetworkFunctionsListBySubscriptionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.HybridNetwork/networkFunctions",
-        code: 200,
-        apiVersion: "2024-04-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "NetworkFunctionsListBySubscriptionRequest",
-  }) as any as S.Schema<NetworkFunctionsListBySubscriptionRequest>;
-
-/** Resource tags. */
-export type NetworkFunctionsUpdateTagsRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const NetworkFunctionsUpdateTagsRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<NetworkFunctionsUpdateTagsRequestTagsMap>;
-
-export interface NetworkFunctionsUpdateTagsRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Resource name for the network function resource. */
-  networkFunctionName: string;
-  /** Resource tags. */
-  tags?: NetworkFunctionsUpdateTagsRequestTagsMap;
-}
-export const NetworkFunctionsUpdateTagsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    networkFunctionName: S.String.pipe(T.Label()),
-    tags: S.optional(NetworkFunctionsUpdateTagsRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/networkFunctions/{networkFunctionName}",
-      code: 200,
-      apiVersion: "2024-04-15",
-    }),
-  ),
-).annotate({
-  identifier: "NetworkFunctionsUpdateTagsRequest",
-}) as any as S.Schema<NetworkFunctionsUpdateTagsRequest>;
-
-/** Resource tags. */
-export type NetworkFunctionsUpdateTagsResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const NetworkFunctionsUpdateTagsResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<NetworkFunctionsUpdateTagsResponseTagsMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export type NetworkFunctionsUpdateTagsResponseIdentity =
-  NetworkFunctionsCreateOrUpdateResponseIdentity;
-export const NetworkFunctionsUpdateTagsResponseIdentity =
-  NetworkFunctionsCreateOrUpdateResponseIdentity;
-
-export interface NetworkFunctionsUpdateTagsResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: NetworkFunctionsUpdateTagsResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Network function properties. */
-  properties?: NetworkFunctionPropertiesFormat;
-  /** A unique read-only string that changes whenever the resource is updated. */
-  etag?: string;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: NetworkFunctionsCreateOrUpdateResponseIdentity;
-}
-export const NetworkFunctionsUpdateTagsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(NetworkFunctionsUpdateTagsResponseTagsMap),
-    location: S.String,
-    properties: S.optional(NetworkFunctionPropertiesFormat),
-    etag: S.optional(S.String),
-    identity: S.optional(NetworkFunctionsCreateOrUpdateResponseIdentity),
-  }),
-).annotate({
-  identifier: "NetworkFunctionsUpdateTagsResponse",
-}) as any as S.Schema<NetworkFunctionsUpdateTagsResponse>;
 
 /** Resource tags. */
 export type NetworkServiceDesignGroupsCreateOrUpdateRequestTagsMap = {
@@ -4689,38 +5689,6 @@ export const NetworkServiceDesignGroupsCreateOrUpdateResponseTagsMap =
     S.String,
   ) as any as S.Schema<NetworkServiceDesignGroupsCreateOrUpdateResponseTagsMap>;
 
-/** The current provisioning state. */
-export type NetworkServiceDesignGroupPropertiesFormatProvisioningState =
-  | "Unknown"
-  | "Succeeded"
-  | "Accepted"
-  | "Deleting"
-  | "Failed"
-  | "Canceled"
-  | "Deleted"
-  | "Converging";
-export const NetworkServiceDesignGroupPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
-
-/** network service design group properties. */
-export interface NetworkServiceDesignGroupPropertiesFormat {
-  /** The current provisioning state. */
-  provisioningState?: NetworkServiceDesignGroupPropertiesFormatProvisioningState;
-  /** The network service design group description. */
-  description?: string;
-}
-export const NetworkServiceDesignGroupPropertiesFormat =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      provisioningState: S.optional(
-        NetworkServiceDesignGroupPropertiesFormatProvisioningState,
-      ),
-      description: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "NetworkServiceDesignGroupPropertiesFormat",
-  }) as any as S.Schema<NetworkServiceDesignGroupPropertiesFormat>;
-
 export interface NetworkServiceDesignGroupsCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
@@ -4752,285 +5720,6 @@ export const NetworkServiceDesignGroupsCreateOrUpdateResponse =
     identifier: "NetworkServiceDesignGroupsCreateOrUpdateResponse",
   }) as any as S.Schema<NetworkServiceDesignGroupsCreateOrUpdateResponse>;
 
-export interface NetworkServiceDesignGroupsDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the publisher. */
-  publisherName: string;
-  /** The name of the network service design group. */
-  networkServiceDesignGroupName: string;
-}
-export const NetworkServiceDesignGroupsDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      publisherName: S.String.pipe(T.Label()),
-      networkServiceDesignGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/networkServiceDesignGroups/{networkServiceDesignGroupName}",
-        code: 200,
-        apiVersion: "2024-04-15",
-      }),
-    ),
-).annotate({
-  identifier: "NetworkServiceDesignGroupsDeleteRequest",
-}) as any as S.Schema<NetworkServiceDesignGroupsDeleteRequest>;
-
-export interface NetworkServiceDesignGroupsDeleteResponse {}
-export const NetworkServiceDesignGroupsDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "NetworkServiceDesignGroupsDeleteResponse",
-}) as any as S.Schema<NetworkServiceDesignGroupsDeleteResponse>;
-
-export interface NetworkServiceDesignGroupsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the publisher. */
-  publisherName: string;
-  /** The name of the network service design group. */
-  networkServiceDesignGroupName: string;
-}
-export const NetworkServiceDesignGroupsGetRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      publisherName: S.String.pipe(T.Label()),
-      networkServiceDesignGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/networkServiceDesignGroups/{networkServiceDesignGroupName}",
-        code: 200,
-        apiVersion: "2024-04-15",
-      }),
-    ),
-).annotate({
-  identifier: "NetworkServiceDesignGroupsGetRequest",
-}) as any as S.Schema<NetworkServiceDesignGroupsGetRequest>;
-
-/** Resource tags. */
-export type NetworkServiceDesignGroupsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const NetworkServiceDesignGroupsGetResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<NetworkServiceDesignGroupsGetResponseTagsMap>;
-
-export interface NetworkServiceDesignGroupsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: NetworkServiceDesignGroupsGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** network service design group properties. */
-  properties?: NetworkServiceDesignGroupPropertiesFormat;
-}
-export const NetworkServiceDesignGroupsGetResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(NetworkServiceDesignGroupsGetResponseTagsMap),
-      location: S.String,
-      properties: S.optional(NetworkServiceDesignGroupPropertiesFormat),
-    }),
-).annotate({
-  identifier: "NetworkServiceDesignGroupsGetResponse",
-}) as any as S.Schema<NetworkServiceDesignGroupsGetResponse>;
-
-export interface NetworkServiceDesignGroupsListByPublisherRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the publisher. */
-  publisherName: string;
-}
-export const NetworkServiceDesignGroupsListByPublisherRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      publisherName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/networkServiceDesignGroups",
-        code: 200,
-        apiVersion: "2024-04-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "NetworkServiceDesignGroupsListByPublisherRequest",
-  }) as any as S.Schema<NetworkServiceDesignGroupsListByPublisherRequest>;
-
-/** Resource tags. */
-export type NetworkServiceDesignGroupTagsMap = {
-  [key: string]: string | undefined;
-};
-export const NetworkServiceDesignGroupTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<NetworkServiceDesignGroupTagsMap>;
-
-/** network service design group resource. */
-export interface NetworkServiceDesignGroup {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: NetworkServiceDesignGroupTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** network service design group properties. */
-  properties?: NetworkServiceDesignGroupPropertiesFormat;
-}
-export const NetworkServiceDesignGroup = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(NetworkServiceDesignGroupTagsMap),
-    location: S.String,
-    properties: S.optional(NetworkServiceDesignGroupPropertiesFormat),
-  }),
-).annotate({
-  identifier: "NetworkServiceDesignGroup",
-}) as any as S.Schema<NetworkServiceDesignGroup>;
-
-/** A list of network service design group. */
-export type NetworkServiceDesignGroupListResultValueList =
-  Array<NetworkServiceDesignGroup>;
-export const NetworkServiceDesignGroupListResultValueList =
-  /*@__PURE__*/ S.Array(
-    NetworkServiceDesignGroup,
-  ) as any as S.Schema<NetworkServiceDesignGroupListResultValueList>;
-
-/** A list of network service design group resources. */
-export interface NetworkServiceDesignGroupListResult {
-  /** A list of network service design group. */
-  value?: NetworkServiceDesignGroupListResultValueList;
-  /** The URL to get the next set of results. */
-  nextLink?: string;
-}
-export const NetworkServiceDesignGroupListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(NetworkServiceDesignGroupListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "NetworkServiceDesignGroupListResult",
-}) as any as S.Schema<NetworkServiceDesignGroupListResult>;
-
-/** Resource tags. */
-export type NetworkServiceDesignGroupsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const NetworkServiceDesignGroupsUpdateRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<NetworkServiceDesignGroupsUpdateRequestTagsMap>;
-
-export interface NetworkServiceDesignGroupsUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the publisher. */
-  publisherName: string;
-  /** The name of the network service design group. */
-  networkServiceDesignGroupName: string;
-  /** Resource tags. */
-  tags?: NetworkServiceDesignGroupsUpdateRequestTagsMap;
-}
-export const NetworkServiceDesignGroupsUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      publisherName: S.String.pipe(T.Label()),
-      networkServiceDesignGroupName: S.String.pipe(T.Label()),
-      tags: S.optional(NetworkServiceDesignGroupsUpdateRequestTagsMap),
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/networkServiceDesignGroups/{networkServiceDesignGroupName}",
-        code: 200,
-        apiVersion: "2024-04-15",
-      }),
-    ),
-).annotate({
-  identifier: "NetworkServiceDesignGroupsUpdateRequest",
-}) as any as S.Schema<NetworkServiceDesignGroupsUpdateRequest>;
-
-/** Resource tags. */
-export type NetworkServiceDesignGroupsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const NetworkServiceDesignGroupsUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<NetworkServiceDesignGroupsUpdateResponseTagsMap>;
-
-export interface NetworkServiceDesignGroupsUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: NetworkServiceDesignGroupsUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** network service design group properties. */
-  properties?: NetworkServiceDesignGroupPropertiesFormat;
-}
-export const NetworkServiceDesignGroupsUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(NetworkServiceDesignGroupsUpdateResponseTagsMap),
-      location: S.String,
-      properties: S.optional(NetworkServiceDesignGroupPropertiesFormat),
-    }),
-).annotate({
-  identifier: "NetworkServiceDesignGroupsUpdateResponse",
-}) as any as S.Schema<NetworkServiceDesignGroupsUpdateResponse>;
-
 /** Resource tags. */
 export type NetworkServiceDesignVersionsCreateOrUpdateRequestTagsMap = {
   [key: string]: string | undefined;
@@ -5043,36 +5732,22 @@ export const NetworkServiceDesignVersionsCreateOrUpdateRequestTagsMap =
 
 /** Reference to another resource. */
 export type NetworkServiceDesignVersionPropertiesFormatInputConfigurationGroupSchemaReferencesValue =
-  ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
+  AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
 export const NetworkServiceDesignVersionPropertiesFormatInputConfigurationGroupSchemaReferencesValue =
-  ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
+  AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
 
 /** The configuration schemas to used to define the values. */
 export type NetworkServiceDesignVersionPropertiesFormatInputConfigurationGroupSchemaReferencesMap =
   {
     [key: string]:
-      | ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem
+      | AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem
       | undefined;
   };
 export const NetworkServiceDesignVersionPropertiesFormatInputConfigurationGroupSchemaReferencesMap =
   /*@__PURE__*/ S.Record(
     S.String,
-    ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem,
+    AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem,
   ) as any as S.Schema<NetworkServiceDesignVersionPropertiesFormatInputConfigurationGroupSchemaReferencesMap>;
-
-/** The nfvi details. */
-export interface NfviDetails {
-  /** The nfvi name. */
-  name?: string;
-  /** The nfvi type. */
-  type?: string;
-}
-export const NfviDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-  }),
-).annotate({ identifier: "NfviDetails" }) as any as S.Schema<NfviDetails>;
 
 /** The nfvis from the site. */
 export type NetworkServiceDesignVersionPropertiesFormatInputNfvisFromSiteMap = {
@@ -5083,82 +5758,6 @@ export const NetworkServiceDesignVersionPropertiesFormatInputNfvisFromSiteMap =
     S.String,
     NfviDetails,
   ) as any as S.Schema<NetworkServiceDesignVersionPropertiesFormatInputNfvisFromSiteMap>;
-
-/** The resource element template type. */
-export type Type =
-  | "Unknown"
-  | "ArmResourceDefinition"
-  | "NetworkFunctionDefinition";
-export const Type = /*@__PURE__*/ S.String;
-
-/** Application installation operation dependency. */
-export type ResourceElementTemplateDependsOnProfileInstallDependsOnList =
-  Array<string>;
-export const ResourceElementTemplateDependsOnProfileInstallDependsOnList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ResourceElementTemplateDependsOnProfileInstallDependsOnList>;
-
-/** Application deletion operation dependency. */
-export type ResourceElementTemplateDependsOnProfileUninstallDependsOnList =
-  Array<string>;
-export const ResourceElementTemplateDependsOnProfileUninstallDependsOnList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ResourceElementTemplateDependsOnProfileUninstallDependsOnList>;
-
-/** Application update operation dependency. */
-export type ResourceElementTemplateDependsOnProfileUpdateDependsOnList =
-  Array<string>;
-export const ResourceElementTemplateDependsOnProfileUpdateDependsOnList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ResourceElementTemplateDependsOnProfileUpdateDependsOnList>;
-
-/** Depends on profile definition. */
-export interface ResourceElementTemplateDependsOnProfile {
-  /** Application installation operation dependency. */
-  installDependsOn?: ResourceElementTemplateDependsOnProfileInstallDependsOnList;
-  /** Application deletion operation dependency. */
-  uninstallDependsOn?: ResourceElementTemplateDependsOnProfileUninstallDependsOnList;
-  /** Application update operation dependency. */
-  updateDependsOn?: ResourceElementTemplateDependsOnProfileUpdateDependsOnList;
-}
-export const ResourceElementTemplateDependsOnProfile = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      installDependsOn: S.optional(
-        ResourceElementTemplateDependsOnProfileInstallDependsOnList,
-      ),
-      uninstallDependsOn: S.optional(
-        ResourceElementTemplateDependsOnProfileUninstallDependsOnList,
-      ),
-      updateDependsOn: S.optional(
-        ResourceElementTemplateDependsOnProfileUpdateDependsOnList,
-      ),
-    }),
-).annotate({
-  identifier: "ResourceElementTemplateDependsOnProfile",
-}) as any as S.Schema<ResourceElementTemplateDependsOnProfile>;
-
-/** The resource element template object. */
-export interface ResourceElementTemplate {
-  /** Name of the resource element template. */
-  name?: string;
-  /** The resource element template type. */
-  type: Type | (string & {});
-  /** Depends on profile definition. */
-  dependsOnProfile?: ResourceElementTemplateDependsOnProfile;
-}
-export const ResourceElementTemplate = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    type: Type,
-    dependsOnProfile: S.optional(ResourceElementTemplateDependsOnProfile),
-  }),
-).annotate({
-  identifier: "ResourceElementTemplate",
-}) as any as S.Schema<ResourceElementTemplate>;
 
 /** List of resource element template */
 export type NetworkServiceDesignVersionPropertiesFormatInputResourceElementTemplatesList =
@@ -5250,97 +5849,6 @@ export const NetworkServiceDesignVersionsCreateOrUpdateResponseTagsMap =
     S.String,
   ) as any as S.Schema<NetworkServiceDesignVersionsCreateOrUpdateResponseTagsMap>;
 
-/** The current provisioning state. */
-export type NetworkServiceDesignVersionPropertiesFormatProvisioningState =
-  | "Unknown"
-  | "Succeeded"
-  | "Accepted"
-  | "Deleting"
-  | "Failed"
-  | "Canceled"
-  | "Deleted"
-  | "Converging";
-export const NetworkServiceDesignVersionPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
-
-/** The network service design version state. */
-export type NSDVersionState = "Unknown" | "Preview" | "Active" | "Deprecated";
-export const NSDVersionState = /*@__PURE__*/ S.String;
-
-/** Reference to another resource. */
-export type NetworkServiceDesignVersionPropertiesFormatConfigurationGroupSchemaReferencesValue =
-  ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
-export const NetworkServiceDesignVersionPropertiesFormatConfigurationGroupSchemaReferencesValue =
-  ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
-
-/** The configuration schemas to used to define the values. */
-export type NetworkServiceDesignVersionPropertiesFormatConfigurationGroupSchemaReferencesMap =
-  {
-    [key: string]:
-      | ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem
-      | undefined;
-  };
-export const NetworkServiceDesignVersionPropertiesFormatConfigurationGroupSchemaReferencesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem,
-  ) as any as S.Schema<NetworkServiceDesignVersionPropertiesFormatConfigurationGroupSchemaReferencesMap>;
-
-/** The nfvis from the site. */
-export type NetworkServiceDesignVersionPropertiesFormatNfvisFromSiteMap = {
-  [key: string]: NfviDetails | undefined;
-};
-export const NetworkServiceDesignVersionPropertiesFormatNfvisFromSiteMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    NfviDetails,
-  ) as any as S.Schema<NetworkServiceDesignVersionPropertiesFormatNfvisFromSiteMap>;
-
-/** List of resource element template */
-export type NetworkServiceDesignVersionPropertiesFormatResourceElementTemplatesList =
-  Array<ResourceElementTemplate>;
-export const NetworkServiceDesignVersionPropertiesFormatResourceElementTemplatesList =
-  /*@__PURE__*/ S.Array(
-    ResourceElementTemplate,
-  ) as any as S.Schema<NetworkServiceDesignVersionPropertiesFormatResourceElementTemplatesList>;
-
-/** network service design version properties. */
-export interface NetworkServiceDesignVersionPropertiesFormat {
-  /** The current provisioning state. */
-  provisioningState?: NetworkServiceDesignVersionPropertiesFormatProvisioningState;
-  /** The network service design version state. */
-  versionState?: NSDVersionState;
-  /** The network service design version description. */
-  description?: string;
-  /** The configuration schemas to used to define the values. */
-  configurationGroupSchemaReferences?: NetworkServiceDesignVersionPropertiesFormatConfigurationGroupSchemaReferencesMap;
-  /** The nfvis from the site. */
-  nfvisFromSite?: NetworkServiceDesignVersionPropertiesFormatNfvisFromSiteMap;
-  /** List of resource element template */
-  resourceElementTemplates?: NetworkServiceDesignVersionPropertiesFormatResourceElementTemplatesList;
-}
-export const NetworkServiceDesignVersionPropertiesFormat =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      provisioningState: S.optional(
-        NetworkServiceDesignVersionPropertiesFormatProvisioningState,
-      ),
-      versionState: S.optional(NSDVersionState),
-      description: S.optional(S.String),
-      configurationGroupSchemaReferences: S.optional(
-        NetworkServiceDesignVersionPropertiesFormatConfigurationGroupSchemaReferencesMap,
-      ),
-      nfvisFromSite: S.optional(
-        NetworkServiceDesignVersionPropertiesFormatNfvisFromSiteMap,
-      ),
-      resourceElementTemplates: S.optional(
-        NetworkServiceDesignVersionPropertiesFormatResourceElementTemplatesList,
-      ),
-    }),
-  ).annotate({
-    identifier: "NetworkServiceDesignVersionPropertiesFormat",
-  }) as any as S.Schema<NetworkServiceDesignVersionPropertiesFormat>;
-
 export interface NetworkServiceDesignVersionsCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
@@ -5373,695 +5881,6 @@ export const NetworkServiceDesignVersionsCreateOrUpdateResponse =
   ).annotate({
     identifier: "NetworkServiceDesignVersionsCreateOrUpdateResponse",
   }) as any as S.Schema<NetworkServiceDesignVersionsCreateOrUpdateResponse>;
-
-export interface NetworkServiceDesignVersionsDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the publisher. */
-  publisherName: string;
-  /** The name of the network service design group. */
-  networkServiceDesignGroupName: string;
-  /** The name of the network service design version. The name should conform to the SemVer 2.0.0 specification: https://semver.org/spec/v2.0.0.html. */
-  networkServiceDesignVersionName: string;
-}
-export const NetworkServiceDesignVersionsDeleteRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      publisherName: S.String.pipe(T.Label()),
-      networkServiceDesignGroupName: S.String.pipe(T.Label()),
-      networkServiceDesignVersionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/networkServiceDesignGroups/{networkServiceDesignGroupName}/networkServiceDesignVersions/{networkServiceDesignVersionName}",
-        code: 200,
-        apiVersion: "2024-04-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "NetworkServiceDesignVersionsDeleteRequest",
-  }) as any as S.Schema<NetworkServiceDesignVersionsDeleteRequest>;
-
-export interface NetworkServiceDesignVersionsDeleteResponse {}
-export const NetworkServiceDesignVersionsDeleteResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "NetworkServiceDesignVersionsDeleteResponse",
-  }) as any as S.Schema<NetworkServiceDesignVersionsDeleteResponse>;
-
-export interface NetworkServiceDesignVersionsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the publisher. */
-  publisherName: string;
-  /** The name of the network service design group. */
-  networkServiceDesignGroupName: string;
-  /** The name of the network service design version. The name should conform to the SemVer 2.0.0 specification: https://semver.org/spec/v2.0.0.html. */
-  networkServiceDesignVersionName: string;
-}
-export const NetworkServiceDesignVersionsGetRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      publisherName: S.String.pipe(T.Label()),
-      networkServiceDesignGroupName: S.String.pipe(T.Label()),
-      networkServiceDesignVersionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/networkServiceDesignGroups/{networkServiceDesignGroupName}/networkServiceDesignVersions/{networkServiceDesignVersionName}",
-        code: 200,
-        apiVersion: "2024-04-15",
-      }),
-    ),
-).annotate({
-  identifier: "NetworkServiceDesignVersionsGetRequest",
-}) as any as S.Schema<NetworkServiceDesignVersionsGetRequest>;
-
-/** Resource tags. */
-export type NetworkServiceDesignVersionsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const NetworkServiceDesignVersionsGetResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<NetworkServiceDesignVersionsGetResponseTagsMap>;
-
-export interface NetworkServiceDesignVersionsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: NetworkServiceDesignVersionsGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** network service design version properties. */
-  properties?: NetworkServiceDesignVersionPropertiesFormat;
-}
-export const NetworkServiceDesignVersionsGetResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(NetworkServiceDesignVersionsGetResponseTagsMap),
-      location: S.String,
-      properties: S.optional(NetworkServiceDesignVersionPropertiesFormat),
-    }),
-).annotate({
-  identifier: "NetworkServiceDesignVersionsGetResponse",
-}) as any as S.Schema<NetworkServiceDesignVersionsGetResponse>;
-
-export interface NetworkServiceDesignVersionsListByNetworkServiceDesignGroupRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the publisher. */
-  publisherName: string;
-  /** The name of the network service design group. */
-  networkServiceDesignGroupName: string;
-}
-export const NetworkServiceDesignVersionsListByNetworkServiceDesignGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      publisherName: S.String.pipe(T.Label()),
-      networkServiceDesignGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/networkServiceDesignGroups/{networkServiceDesignGroupName}/networkServiceDesignVersions",
-        code: 200,
-        apiVersion: "2024-04-15",
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "NetworkServiceDesignVersionsListByNetworkServiceDesignGroupRequest",
-  }) as any as S.Schema<NetworkServiceDesignVersionsListByNetworkServiceDesignGroupRequest>;
-
-/** Resource tags. */
-export type NetworkServiceDesignVersionTagsMap = {
-  [key: string]: string | undefined;
-};
-export const NetworkServiceDesignVersionTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<NetworkServiceDesignVersionTagsMap>;
-
-/** network service design version. */
-export interface NetworkServiceDesignVersion {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: NetworkServiceDesignVersionTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** network service design version properties. */
-  properties?: NetworkServiceDesignVersionPropertiesFormat;
-}
-export const NetworkServiceDesignVersion = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(NetworkServiceDesignVersionTagsMap),
-    location: S.String,
-    properties: S.optional(NetworkServiceDesignVersionPropertiesFormat),
-  }),
-).annotate({
-  identifier: "NetworkServiceDesignVersion",
-}) as any as S.Schema<NetworkServiceDesignVersion>;
-
-/** A list of network service design versions. */
-export type NetworkServiceDesignVersionListResultValueList =
-  Array<NetworkServiceDesignVersion>;
-export const NetworkServiceDesignVersionListResultValueList =
-  /*@__PURE__*/ S.Array(
-    NetworkServiceDesignVersion,
-  ) as any as S.Schema<NetworkServiceDesignVersionListResultValueList>;
-
-/** A list of network service design versions. */
-export interface NetworkServiceDesignVersionListResult {
-  /** A list of network service design versions. */
-  value?: NetworkServiceDesignVersionListResultValueList;
-  /** The URI to get the next set of results. */
-  nextLink?: string;
-}
-export const NetworkServiceDesignVersionListResult = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      value: S.optional(NetworkServiceDesignVersionListResultValueList),
-      nextLink: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "NetworkServiceDesignVersionListResult",
-}) as any as S.Schema<NetworkServiceDesignVersionListResult>;
-
-/** Resource tags. */
-export type NetworkServiceDesignVersionsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const NetworkServiceDesignVersionsUpdateRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<NetworkServiceDesignVersionsUpdateRequestTagsMap>;
-
-export interface NetworkServiceDesignVersionsUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the publisher. */
-  publisherName: string;
-  /** The name of the network service design group. */
-  networkServiceDesignGroupName: string;
-  /** The name of the network service design version. The name should conform to the SemVer 2.0.0 specification: https://semver.org/spec/v2.0.0.html. */
-  networkServiceDesignVersionName: string;
-  /** Resource tags. */
-  tags?: NetworkServiceDesignVersionsUpdateRequestTagsMap;
-}
-export const NetworkServiceDesignVersionsUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      publisherName: S.String.pipe(T.Label()),
-      networkServiceDesignGroupName: S.String.pipe(T.Label()),
-      networkServiceDesignVersionName: S.String.pipe(T.Label()),
-      tags: S.optional(NetworkServiceDesignVersionsUpdateRequestTagsMap),
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/networkServiceDesignGroups/{networkServiceDesignGroupName}/networkServiceDesignVersions/{networkServiceDesignVersionName}",
-        code: 200,
-        apiVersion: "2024-04-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "NetworkServiceDesignVersionsUpdateRequest",
-  }) as any as S.Schema<NetworkServiceDesignVersionsUpdateRequest>;
-
-/** Resource tags. */
-export type NetworkServiceDesignVersionsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const NetworkServiceDesignVersionsUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<NetworkServiceDesignVersionsUpdateResponseTagsMap>;
-
-export interface NetworkServiceDesignVersionsUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: NetworkServiceDesignVersionsUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** network service design version properties. */
-  properties?: NetworkServiceDesignVersionPropertiesFormat;
-}
-export const NetworkServiceDesignVersionsUpdateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(NetworkServiceDesignVersionsUpdateResponseTagsMap),
-      location: S.String,
-      properties: S.optional(NetworkServiceDesignVersionPropertiesFormat),
-    }),
-  ).annotate({
-    identifier: "NetworkServiceDesignVersionsUpdateResponse",
-  }) as any as S.Schema<NetworkServiceDesignVersionsUpdateResponse>;
-
-export interface NetworkServiceDesignVersionsUpdateStateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the publisher. */
-  publisherName: string;
-  /** The name of the network service design group. */
-  networkServiceDesignGroupName: string;
-  /** The name of the network service design version. The name should conform to the SemVer 2.0.0 specification: https://semver.org/spec/v2.0.0.html. */
-  networkServiceDesignVersionName: string;
-  /** The network service design version state. */
-  versionState?: NSDVersionState | (string & {});
-}
-export const NetworkServiceDesignVersionsUpdateStateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      publisherName: S.String.pipe(T.Label()),
-      networkServiceDesignGroupName: S.String.pipe(T.Label()),
-      networkServiceDesignVersionName: S.String.pipe(T.Label()),
-      versionState: S.optional(NSDVersionState),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/networkServiceDesignGroups/{networkServiceDesignGroupName}/networkServiceDesignVersions/{networkServiceDesignVersionName}/updateState",
-        code: 200,
-        apiVersion: "2024-04-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "NetworkServiceDesignVersionsUpdateStateRequest",
-  }) as any as S.Schema<NetworkServiceDesignVersionsUpdateStateRequest>;
-
-/** Publisher network service design version update request definition. */
-export interface NetworkServiceDesignVersionUpdateState {
-  /** The network service design version state. */
-  versionState?: NSDVersionState;
-}
-export const NetworkServiceDesignVersionUpdateState = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      versionState: S.optional(NSDVersionState),
-    }),
-).annotate({
-  identifier: "NetworkServiceDesignVersionUpdateState",
-}) as any as S.Schema<NetworkServiceDesignVersionUpdateState>;
-
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.HybridNetwork/operations",
-      code: 200,
-      apiVersion: "2024-04-15",
-    }),
-  ),
-).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
-
-/** Localized display information for this particular operation. */
-export interface OperationDisplay {
-  /** The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring Insights" or "Microsoft Compute". */
-  provider?: string;
-  /** The localized friendly name of the resource type related to this operation. E.g. "Virtual Machines" or "Job Schedule Collections". */
-  resource?: string;
-  /** The concise, localized friendly name for the operation; suitable for dropdowns. E.g. "Create or Update Virtual Machine", "Restart Virtual Machine". */
-  operation?: string;
-  /** The short, localized friendly description of the operation; suitable for tool tips and detailed views. */
-  description?: string;
-}
-export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provider: S.optional(S.String),
-    resource: S.optional(S.String),
-    operation: S.optional(S.String),
-    description: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationDisplay",
-}) as any as S.Schema<OperationDisplay>;
-
-/** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
-export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
-
-/** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
-export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
-
-/** Details of a REST API operation, returned from the Resource Provider Operations API */
-export interface Operation {
-  /** The name of the operation, as per Resource-Based Access Control (RBAC). Examples: "Microsoft.Compute/virtualMachines/write", "Microsoft.Compute/virtualMachines/capture/action" */
-  name?: string;
-  /** Whether the operation applies to data-plane. This is "true" for data-plane operations and "false" for ARM/control-plane operations. */
-  isDataAction?: boolean;
-  /** Localized display information for this particular operation. */
-  display?: OperationDisplay;
-  /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
-  origin?: OperationOrigin;
-  /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
-  actionType?: OperationActionType;
-}
-export const Operation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    isDataAction: S.optional(S.Boolean),
-    display: S.optional(OperationDisplay),
-    origin: S.optional(OperationOrigin),
-    actionType: S.optional(OperationActionType),
-  }),
-).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
-
-/** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
-  Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
-
-export interface OperationsListResponse {
-  /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
-  /** URL to get the next set of operation list results (if there are any). */
-  nextLink?: string;
-}
-export const OperationsListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(OperationsListResponseValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationsListResponse",
-}) as any as S.Schema<OperationsListResponse>;
-
-export interface ProxyArtifactGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the publisher. */
-  publisherName: string;
-  /** The name of the artifact store. */
-  artifactStoreName: string;
-  /** The name of the artifact. */
-  artifactName: string;
-}
-export const ProxyArtifactGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    publisherName: S.String.pipe(T.Label()),
-    artifactStoreName: S.String.pipe(T.Label()),
-    artifactName: S.String.pipe(T.Query()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/artifactStores/{artifactStoreName}/artifactVersions",
-      code: 200,
-      apiVersion: "2024-04-15",
-    }),
-  ),
-).annotate({
-  identifier: "ProxyArtifactGetRequest",
-}) as any as S.Schema<ProxyArtifactGetRequest>;
-
-/** The artifact type. */
-export type ProxyArtifactOverviewPropertiesValueArtifactType =
-  | "Unknown"
-  | "OCIArtifact"
-  | "VhdImageFile"
-  | "ArmTemplate"
-  | "ImageFile";
-export const ProxyArtifactOverviewPropertiesValueArtifactType =
-  /*@__PURE__*/ S.String;
-
-/** The artifact state. */
-export type ArtifactState = "Unknown" | "Preview" | "Active" | "Deprecated";
-export const ArtifactState = /*@__PURE__*/ S.String;
-
-export interface ProxyArtifactOverviewPropertiesValue {
-  /** The artifact type. */
-  artifactType?: ProxyArtifactOverviewPropertiesValueArtifactType;
-  /** The artifact version. */
-  artifactVersion?: string;
-  /** The artifact state */
-  artifactState?: ArtifactState;
-}
-export const ProxyArtifactOverviewPropertiesValue = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      artifactType: S.optional(
-        ProxyArtifactOverviewPropertiesValueArtifactType,
-      ),
-      artifactVersion: S.optional(S.String),
-      artifactState: S.optional(ArtifactState),
-    }),
-).annotate({
-  identifier: "ProxyArtifactOverviewPropertiesValue",
-}) as any as S.Schema<ProxyArtifactOverviewPropertiesValue>;
-
-/** The proxy artifact overview. */
-export interface ProxyArtifactVersionsListOverview {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Proxy Artifact overview properties. */
-  properties?: ProxyArtifactOverviewPropertiesValue;
-}
-export const ProxyArtifactVersionsListOverview = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ProxyArtifactOverviewPropertiesValue),
-  }),
-).annotate({
-  identifier: "ProxyArtifactVersionsListOverview",
-}) as any as S.Schema<ProxyArtifactVersionsListOverview>;
-
-/** A list of available proxy artifacts. */
-export type ProxyArtifactVersionsOverviewListResultValueList =
-  Array<ProxyArtifactVersionsListOverview>;
-export const ProxyArtifactVersionsOverviewListResultValueList =
-  /*@__PURE__*/ S.Array(
-    ProxyArtifactVersionsListOverview,
-  ) as any as S.Schema<ProxyArtifactVersionsOverviewListResultValueList>;
-
-/** The proxy artifact list result. */
-export interface ProxyArtifactVersionsOverviewListResult {
-  /** A list of available proxy artifacts. */
-  value?: ProxyArtifactVersionsOverviewListResultValueList;
-  /** The URL to get the next set of results. */
-  nextLink?: string;
-}
-export const ProxyArtifactVersionsOverviewListResult = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      value: S.optional(ProxyArtifactVersionsOverviewListResultValueList),
-      nextLink: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "ProxyArtifactVersionsOverviewListResult",
-}) as any as S.Schema<ProxyArtifactVersionsOverviewListResult>;
-
-export interface ProxyArtifactListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the publisher. */
-  publisherName: string;
-  /** The name of the artifact store. */
-  artifactStoreName: string;
-}
-export const ProxyArtifactListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    publisherName: S.String.pipe(T.Label()),
-    artifactStoreName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/artifactStores/{artifactStoreName}/artifacts",
-      code: 200,
-      apiVersion: "2024-04-15",
-    }),
-  ),
-).annotate({
-  identifier: "ProxyArtifactListRequest",
-}) as any as S.Schema<ProxyArtifactListRequest>;
-
-/** Common fields that are returned in the response for all Azure Resource Manager resources */
-export interface Resource {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-}
-export const Resource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-  }),
-).annotate({ identifier: "Resource" }) as any as S.Schema<Resource>;
-
-/** A list of available proxy artifacts. */
-export type ProxyArtifactOverviewListResultValueList = Array<Resource>;
-export const ProxyArtifactOverviewListResultValueList = /*@__PURE__*/ S.Array(
-  Resource,
-) as any as S.Schema<ProxyArtifactOverviewListResultValueList>;
-
-/** The proxy artifact list result. */
-export interface ProxyArtifactOverviewListResult {
-  /** A list of available proxy artifacts. */
-  value?: ProxyArtifactOverviewListResultValueList;
-  /** The URL to get the next set of results. */
-  nextLink?: string;
-}
-export const ProxyArtifactOverviewListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(ProxyArtifactOverviewListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ProxyArtifactOverviewListResult",
-}) as any as S.Schema<ProxyArtifactOverviewListResult>;
-
-/** The artifact update state properties. */
-export interface ArtifactChangeStateProperties {
-  /** The artifact state */
-  artifactState?: ArtifactState | (string & {});
-}
-export const ArtifactChangeStateProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    artifactState: S.optional(ArtifactState),
-  }),
-).annotate({
-  identifier: "ArtifactChangeStateProperties",
-}) as any as S.Schema<ArtifactChangeStateProperties>;
-
-export interface ProxyArtifactUpdateStateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the publisher. */
-  publisherName: string;
-  /** The name of the artifact store. */
-  artifactStoreName: string;
-  /** The name of the artifact version. */
-  artifactVersionName: string;
-  /** The name of the artifact. */
-  artifactName: string;
-  /** Artifact update state properties. */
-  properties?: ArtifactChangeStateProperties;
-}
-export const ProxyArtifactUpdateStateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    publisherName: S.String.pipe(T.Label()),
-    artifactStoreName: S.String.pipe(T.Label()),
-    artifactVersionName: S.String.pipe(T.Label()),
-    artifactName: S.String.pipe(T.Query()),
-    properties: S.optional(ArtifactChangeStateProperties),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/artifactStores/{artifactStoreName}/artifactVersions/{artifactVersionName}",
-      code: 200,
-      apiVersion: "2024-04-15",
-    }),
-  ),
-).annotate({
-  identifier: "ProxyArtifactUpdateStateRequest",
-}) as any as S.Schema<ProxyArtifactUpdateStateRequest>;
-
-export interface ProxyArtifactUpdateStateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Proxy Artifact overview properties. */
-  properties?: ProxyArtifactOverviewPropertiesValue;
-}
-export const ProxyArtifactUpdateStateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ProxyArtifactOverviewPropertiesValue),
-  }),
-).annotate({
-  identifier: "ProxyArtifactUpdateStateResponse",
-}) as any as S.Schema<ProxyArtifactUpdateStateResponse>;
 
 /** Resource tags. */
 export type PublishersCreateOrUpdateRequestTagsMap = {
@@ -6141,44 +5960,11 @@ export const PublishersCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
 ) as any as S.Schema<PublishersCreateOrUpdateResponseTagsMap>;
 
-/** The current provisioning state. */
-export type PublisherPropertiesFormatProvisioningState =
-  | "Unknown"
-  | "Succeeded"
-  | "Accepted"
-  | "Deleting"
-  | "Failed"
-  | "Canceled"
-  | "Deleted"
-  | "Converging";
-export const PublisherPropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
-
-/** Publisher Scope. */
-export type PublisherPropertiesFormatScope = "Unknown" | "Private";
-export const PublisherPropertiesFormatScope = /*@__PURE__*/ S.String;
-
-/** publisher properties. */
-export interface PublisherPropertiesFormat {
-  /** The current provisioning state. */
-  provisioningState?: PublisherPropertiesFormatProvisioningState;
-  /** Publisher Scope. */
-  scope?: PublisherPropertiesFormatScope;
-}
-export const PublisherPropertiesFormat = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisioningState: S.optional(PublisherPropertiesFormatProvisioningState),
-    scope: S.optional(PublisherPropertiesFormatScope),
-  }),
-).annotate({
-  identifier: "PublisherPropertiesFormat",
-}) as any as S.Schema<PublisherPropertiesFormat>;
-
 /** Managed service identity (system assigned and/or user assigned identities) */
 export type PublishersCreateOrUpdateResponseIdentity =
-  NetworkFunctionsCreateOrUpdateResponseIdentity;
+  GetNetworkFunctionResponseIdentity;
 export const PublishersCreateOrUpdateResponseIdentity =
-  NetworkFunctionsCreateOrUpdateResponseIdentity;
+  GetNetworkFunctionResponseIdentity;
 
 export interface PublishersCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -6196,7 +5982,7 @@ export interface PublishersCreateOrUpdateResponse {
   /** Publisher properties. */
   properties?: PublisherPropertiesFormat;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: NetworkFunctionsCreateOrUpdateResponseIdentity;
+  identity?: GetNetworkFunctionResponseIdentity;
 }
 export const PublishersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -6207,308 +5993,65 @@ export const PublishersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
     tags: S.optional(PublishersCreateOrUpdateResponseTagsMap),
     location: S.String,
     properties: S.optional(PublisherPropertiesFormat),
-    identity: S.optional(NetworkFunctionsCreateOrUpdateResponseIdentity),
+    identity: S.optional(GetNetworkFunctionResponseIdentity),
   }),
 ).annotate({
   identifier: "PublishersCreateOrUpdateResponse",
 }) as any as S.Schema<PublishersCreateOrUpdateResponse>;
 
-export interface PublishersDeleteRequest {
+/** Reference to another resource. */
+export type RemoveArtifactStorePrivateEndPointsRequestManualPrivateEndPointConnectionsItem =
+  AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
+export const RemoveArtifactStorePrivateEndPointsRequestManualPrivateEndPointConnectionsItem =
+  AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
+
+/** list of private endpoints. */
+export type RemoveArtifactStorePrivateEndPointsRequestManualPrivateEndPointConnectionsList =
+  Array<AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem>;
+export const RemoveArtifactStorePrivateEndPointsRequestManualPrivateEndPointConnectionsList =
+  /*@__PURE__*/ S.Array(
+    AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem,
+  ) as any as S.Schema<RemoveArtifactStorePrivateEndPointsRequestManualPrivateEndPointConnectionsList>;
+
+export interface RemoveArtifactStorePrivateEndPointsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the publisher. */
   publisherName: string;
+  /** The name of the artifact store. */
+  artifactStoreName: string;
+  /** list of private endpoints. */
+  manualPrivateEndPointConnections?: RemoveArtifactStorePrivateEndPointsRequestManualPrivateEndPointConnectionsList;
 }
-export const PublishersDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    publisherName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}",
-      code: 200,
-      apiVersion: "2024-04-15",
-    }),
-  ),
-).annotate({
-  identifier: "PublishersDeleteRequest",
-}) as any as S.Schema<PublishersDeleteRequest>;
-
-export interface PublishersDeleteResponse {}
-export const PublishersDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "PublishersDeleteResponse",
-}) as any as S.Schema<PublishersDeleteResponse>;
-
-export interface PublishersGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the publisher. */
-  publisherName: string;
-}
-export const PublishersGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    publisherName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}",
-      code: 200,
-      apiVersion: "2024-04-15",
-    }),
-  ),
-).annotate({
-  identifier: "PublishersGetRequest",
-}) as any as S.Schema<PublishersGetRequest>;
-
-/** Resource tags. */
-export type PublishersGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const PublishersGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<PublishersGetResponseTagsMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export type PublishersGetResponseIdentity =
-  NetworkFunctionsCreateOrUpdateResponseIdentity;
-export const PublishersGetResponseIdentity =
-  NetworkFunctionsCreateOrUpdateResponseIdentity;
-
-export interface PublishersGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: PublishersGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Publisher properties. */
-  properties?: PublisherPropertiesFormat;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: NetworkFunctionsCreateOrUpdateResponseIdentity;
-}
-export const PublishersGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(PublishersGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(PublisherPropertiesFormat),
-    identity: S.optional(NetworkFunctionsCreateOrUpdateResponseIdentity),
-  }),
-).annotate({
-  identifier: "PublishersGetResponse",
-}) as any as S.Schema<PublishersGetResponse>;
-
-export interface PublishersListByResourceGroupRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const PublishersListByResourceGroupRequest = /*@__PURE__*/ S.suspend(
-  () =>
+export const RemoveArtifactStorePrivateEndPointsRequest =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
+      publisherName: S.String.pipe(T.Label()),
+      artifactStoreName: S.String.pipe(T.Label()),
+      manualPrivateEndPointConnections: S.optional(
+        RemoveArtifactStorePrivateEndPointsRequestManualPrivateEndPointConnectionsList,
+      ),
     }).pipe(
       T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers",
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/artifactStores/{artifactStoreName}/removePrivateEndPoints",
         code: 200,
         apiVersion: "2024-04-15",
       }),
     ),
-).annotate({
-  identifier: "PublishersListByResourceGroupRequest",
-}) as any as S.Schema<PublishersListByResourceGroupRequest>;
+  ).annotate({
+    identifier: "RemoveArtifactStorePrivateEndPointsRequest",
+  }) as any as S.Schema<RemoveArtifactStorePrivateEndPointsRequest>;
 
-/** Resource tags. */
-export type PublisherTagsMap = { [key: string]: string | undefined };
-export const PublisherTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<PublisherTagsMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export type PublisherIdentity = NetworkFunctionsCreateOrUpdateResponseIdentity;
-export const PublisherIdentity = NetworkFunctionsCreateOrUpdateResponseIdentity;
-
-/** publisher resource. */
-export interface Publisher {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: PublisherTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Publisher properties. */
-  properties?: PublisherPropertiesFormat;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: NetworkFunctionsCreateOrUpdateResponseIdentity;
-}
-export const Publisher = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(PublisherTagsMap),
-    location: S.String,
-    properties: S.optional(PublisherPropertiesFormat),
-    identity: S.optional(NetworkFunctionsCreateOrUpdateResponseIdentity),
-  }),
-).annotate({ identifier: "Publisher" }) as any as S.Schema<Publisher>;
-
-/** A list of publishers. */
-export type PublisherListResultValueList = Array<Publisher>;
-export const PublisherListResultValueList = /*@__PURE__*/ S.Array(
-  Publisher,
-) as any as S.Schema<PublisherListResultValueList>;
-
-/** A list of publishers. */
-export interface PublisherListResult {
-  /** A list of publishers. */
-  value?: PublisherListResultValueList;
-  /** The URL to get the next set of results. */
-  nextLink?: string;
-}
-export const PublisherListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(PublisherListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PublisherListResult",
-}) as any as S.Schema<PublisherListResult>;
-
-export interface PublishersListBySubscriptionRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-}
-export const PublishersListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.HybridNetwork/publishers",
-      code: 200,
-      apiVersion: "2024-04-15",
-    }),
-  ),
-).annotate({
-  identifier: "PublishersListBySubscriptionRequest",
-}) as any as S.Schema<PublishersListBySubscriptionRequest>;
-
-/** Resource tags. */
-export type PublishersUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const PublishersUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<PublishersUpdateRequestTagsMap>;
-
-export interface PublishersUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the publisher. */
-  publisherName: string;
-  /** Resource tags. */
-  tags?: PublishersUpdateRequestTagsMap;
-}
-export const PublishersUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    publisherName: S.String.pipe(T.Label()),
-    tags: S.optional(PublishersUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}",
-      code: 200,
-      apiVersion: "2024-04-15",
-    }),
-  ),
-).annotate({
-  identifier: "PublishersUpdateRequest",
-}) as any as S.Schema<PublishersUpdateRequest>;
-
-/** Resource tags. */
-export type PublishersUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const PublishersUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<PublishersUpdateResponseTagsMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export type PublishersUpdateResponseIdentity =
-  NetworkFunctionsCreateOrUpdateResponseIdentity;
-export const PublishersUpdateResponseIdentity =
-  NetworkFunctionsCreateOrUpdateResponseIdentity;
-
-export interface PublishersUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: PublishersUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Publisher properties. */
-  properties?: PublisherPropertiesFormat;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: NetworkFunctionsCreateOrUpdateResponseIdentity;
-}
-export const PublishersUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(PublishersUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(PublisherPropertiesFormat),
-    identity: S.optional(NetworkFunctionsCreateOrUpdateResponseIdentity),
-  }),
-).annotate({
-  identifier: "PublishersUpdateResponse",
-}) as any as S.Schema<PublishersUpdateResponse>;
+export interface RemoveArtifactStorePrivateEndPointsResponse {}
+export const RemoveArtifactStorePrivateEndPointsResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "RemoveArtifactStorePrivateEndPointsResponse",
+  }) as any as S.Schema<RemoveArtifactStorePrivateEndPointsResponse>;
 
 /** Resource tags. */
 export type SiteNetworkServicesCreateOrUpdateRequestTagsMap = {
@@ -6521,28 +6064,16 @@ export const SiteNetworkServicesCreateOrUpdateRequestTagsMap =
   ) as any as S.Schema<SiteNetworkServicesCreateOrUpdateRequestTagsMap>;
 
 /** Managed resource group configuration. */
-export interface SiteNetworkServicePropertiesFormatInputManagedResourceGroupConfiguration {
-  /** Managed resource group name. */
-  name?: string;
-  /** Managed resource group location. */
-  location?: string;
-}
+export type SiteNetworkServicePropertiesFormatInputManagedResourceGroupConfiguration =
+  SiteNetworkServicePropertiesFormatManagedResourceGroupConfiguration;
 export const SiteNetworkServicePropertiesFormatInputManagedResourceGroupConfiguration =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      name: S.optional(S.String),
-      location: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier:
-      "SiteNetworkServicePropertiesFormatInputManagedResourceGroupConfiguration",
-  }) as any as S.Schema<SiteNetworkServicePropertiesFormatInputManagedResourceGroupConfiguration>;
+  SiteNetworkServicePropertiesFormatManagedResourceGroupConfiguration;
 
 /** Reference to another resource. */
 export type SiteNetworkServicePropertiesFormatInputSiteReference =
-  ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
+  AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
 export const SiteNetworkServicePropertiesFormatInputSiteReference =
-  ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
+  AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
 
 /** Publisher Scope. */
 export type SiteNetworkServicePropertiesFormatInputPublisherScope =
@@ -6559,29 +6090,29 @@ export const SiteNetworkServicePropertiesFormatInputNetworkServiceDesignVersionR
 
 /** Reference to another resource. */
 export type SiteNetworkServicePropertiesFormatInputDesiredStateConfigurationGroupValueReferencesValue =
-  ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
+  AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
 export const SiteNetworkServicePropertiesFormatInputDesiredStateConfigurationGroupValueReferencesValue =
-  ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
+  AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
 
 /** The goal state of the site network service resource. This has references to the configuration group value objects that describe the desired state of the site network service. */
 export type SiteNetworkServicePropertiesFormatInputDesiredStateConfigurationGroupValueReferencesMap =
   {
     [key: string]:
-      | ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem
+      | AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem
       | undefined;
   };
 export const SiteNetworkServicePropertiesFormatInputDesiredStateConfigurationGroupValueReferencesMap =
   /*@__PURE__*/ S.Record(
     S.String,
-    ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem,
+    AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem,
   ) as any as S.Schema<SiteNetworkServicePropertiesFormatInputDesiredStateConfigurationGroupValueReferencesMap>;
 
 /** Site network service properties. */
 export interface SiteNetworkServicePropertiesFormatInput {
   /** Managed resource group configuration. */
-  managedResourceGroupConfiguration?: SiteNetworkServicePropertiesFormatInputManagedResourceGroupConfiguration;
+  managedResourceGroupConfiguration?: SiteNetworkServicePropertiesFormatManagedResourceGroupConfiguration;
   /** Reference to another resource. */
-  siteReference?: ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
+  siteReference?: AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
   /** Publisher Scope. */
   publisherScope?:
     | SiteNetworkServicePropertiesFormatInputPublisherScope
@@ -6595,10 +6126,10 @@ export const SiteNetworkServicePropertiesFormatInput = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       managedResourceGroupConfiguration: S.optional(
-        SiteNetworkServicePropertiesFormatInputManagedResourceGroupConfiguration,
+        SiteNetworkServicePropertiesFormatManagedResourceGroupConfiguration,
       ),
       siteReference: S.optional(
-        ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem,
+        AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem,
       ),
       publisherScope: S.optional(
         SiteNetworkServicePropertiesFormatInputPublisherScope,
@@ -6686,169 +6217,11 @@ export const SiteNetworkServicesCreateOrUpdateResponseTagsMap =
     S.String,
   ) as any as S.Schema<SiteNetworkServicesCreateOrUpdateResponseTagsMap>;
 
-/** The current provisioning state. */
-export type SiteNetworkServicePropertiesFormatProvisioningState =
-  | "Unknown"
-  | "Succeeded"
-  | "Accepted"
-  | "Deleting"
-  | "Failed"
-  | "Canceled"
-  | "Deleted"
-  | "Converging";
-export const SiteNetworkServicePropertiesFormatProvisioningState =
-  /*@__PURE__*/ S.String;
-
-/** Managed resource group configuration. */
-export type SiteNetworkServicePropertiesFormatManagedResourceGroupConfiguration =
-  SiteNetworkServicePropertiesFormatInputManagedResourceGroupConfiguration;
-export const SiteNetworkServicePropertiesFormatManagedResourceGroupConfiguration =
-  SiteNetworkServicePropertiesFormatInputManagedResourceGroupConfiguration;
-
-/** Reference to another resource. */
-export type SiteNetworkServicePropertiesFormatSiteReference =
-  ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
-export const SiteNetworkServicePropertiesFormatSiteReference =
-  ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
-
-/** Publisher Scope. */
-export type SiteNetworkServicePropertiesFormatPublisherScope =
-  | "Unknown"
-  | "Private";
-export const SiteNetworkServicePropertiesFormatPublisherScope =
-  /*@__PURE__*/ S.String;
-
-/** The azure resource reference which is used for deployment. */
-export type SiteNetworkServicePropertiesFormatNetworkServiceDesignVersionResourceReference =
-  ConfigurationGroupValuePropertiesFormatConfigurationGroupSchemaResourceReference;
-export const SiteNetworkServicePropertiesFormatNetworkServiceDesignVersionResourceReference =
-  ConfigurationGroupValuePropertiesFormatConfigurationGroupSchemaResourceReference;
-
-/** Reference to another resource. */
-export type SiteNetworkServicePropertiesFormatDesiredStateConfigurationGroupValueReferencesValue =
-  ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
-export const SiteNetworkServicePropertiesFormatDesiredStateConfigurationGroupValueReferencesValue =
-  ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
-
-/** The goal state of the site network service resource. This has references to the configuration group value objects that describe the desired state of the site network service. */
-export type SiteNetworkServicePropertiesFormatDesiredStateConfigurationGroupValueReferencesMap =
-  {
-    [key: string]:
-      | ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem
-      | undefined;
-  };
-export const SiteNetworkServicePropertiesFormatDesiredStateConfigurationGroupValueReferencesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem,
-  ) as any as S.Schema<SiteNetworkServicePropertiesFormatDesiredStateConfigurationGroupValueReferencesMap>;
-
-/** Reference to another resource. */
-export type SiteNetworkServicePropertiesFormatLastStateConfigurationGroupValueReferencesValue =
-  ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
-export const SiteNetworkServicePropertiesFormatLastStateConfigurationGroupValueReferencesValue =
-  ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
-
-/** The last state of the site network service resource. */
-export type SiteNetworkServicePropertiesFormatLastStateConfigurationGroupValueReferencesMap =
-  {
-    [key: string]:
-      | ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem
-      | undefined;
-  };
-export const SiteNetworkServicePropertiesFormatLastStateConfigurationGroupValueReferencesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem,
-  ) as any as S.Schema<SiteNetworkServicePropertiesFormatLastStateConfigurationGroupValueReferencesMap>;
-
-/** Site network service properties. */
-export interface SiteNetworkServicePropertiesFormat {
-  /** The current provisioning state. */
-  provisioningState?: SiteNetworkServicePropertiesFormatProvisioningState;
-  /** Managed resource group configuration. */
-  managedResourceGroupConfiguration?: SiteNetworkServicePropertiesFormatInputManagedResourceGroupConfiguration;
-  /** Reference to another resource. */
-  siteReference?: ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
-  /** The publisher name for the site network service. */
-  publisherName?: string;
-  /** Publisher Scope. */
-  publisherScope?: SiteNetworkServicePropertiesFormatPublisherScope;
-  /** The network service design group name for the site network service. */
-  networkServiceDesignGroupName?: string;
-  /** The network service design version for the site network service. */
-  networkServiceDesignVersionName?: string;
-  /** The location of the network service design offering. */
-  networkServiceDesignVersionOfferingLocation?: string;
-  /** The azure resource reference which is used for deployment. */
-  networkServiceDesignVersionResourceReference?: ConfigurationGroupValuePropertiesFormatConfigurationGroupSchemaResourceReference;
-  /** The goal state of the site network service resource. This has references to the configuration group value objects that describe the desired state of the site network service. */
-  desiredStateConfigurationGroupValueReferences?: SiteNetworkServicePropertiesFormatDesiredStateConfigurationGroupValueReferencesMap;
-  /** The network service design version for the site network service. */
-  lastStateNetworkServiceDesignVersionName?: string;
-  /** The last state of the site network service resource. */
-  lastStateConfigurationGroupValueReferences?: SiteNetworkServicePropertiesFormatLastStateConfigurationGroupValueReferencesMap;
-}
-export const SiteNetworkServicePropertiesFormat = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisioningState: S.optional(
-      SiteNetworkServicePropertiesFormatProvisioningState,
-    ),
-    managedResourceGroupConfiguration: S.optional(
-      SiteNetworkServicePropertiesFormatInputManagedResourceGroupConfiguration,
-    ),
-    siteReference: S.optional(
-      ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem,
-    ),
-    publisherName: S.optional(S.String),
-    publisherScope: S.optional(
-      SiteNetworkServicePropertiesFormatPublisherScope,
-    ),
-    networkServiceDesignGroupName: S.optional(S.String),
-    networkServiceDesignVersionName: S.optional(S.String),
-    networkServiceDesignVersionOfferingLocation: S.optional(S.String),
-    networkServiceDesignVersionResourceReference: S.optional(
-      ConfigurationGroupValuePropertiesFormatConfigurationGroupSchemaResourceReference,
-    ),
-    desiredStateConfigurationGroupValueReferences: S.optional(
-      SiteNetworkServicePropertiesFormatDesiredStateConfigurationGroupValueReferencesMap,
-    ),
-    lastStateNetworkServiceDesignVersionName: S.optional(S.String),
-    lastStateConfigurationGroupValueReferences: S.optional(
-      SiteNetworkServicePropertiesFormatLastStateConfigurationGroupValueReferencesMap,
-    ),
-  }),
-).annotate({
-  identifier: "SiteNetworkServicePropertiesFormat",
-}) as any as S.Schema<SiteNetworkServicePropertiesFormat>;
-
 /** Managed service identity (system assigned and/or user assigned identities) */
 export type SiteNetworkServicesCreateOrUpdateResponseIdentity =
-  NetworkFunctionsCreateOrUpdateResponseIdentity;
+  GetNetworkFunctionResponseIdentity;
 export const SiteNetworkServicesCreateOrUpdateResponseIdentity =
-  NetworkFunctionsCreateOrUpdateResponseIdentity;
-
-/** Name of this Sku */
-export type SkuName = "Basic" | "Standard";
-export const SkuName = /*@__PURE__*/ S.String;
-
-/** The SKU tier based on the SKU name. */
-export type SkuTier = "Basic" | "Standard";
-export const SkuTier = /*@__PURE__*/ S.String;
-
-/** Sku, to be associated with a SiteNetworkService. */
-export interface Sku {
-  /** Name of this Sku */
-  name: SkuName;
-  /** The SKU tier based on the SKU name. */
-  tier?: SkuTier;
-}
-export const Sku = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: SkuName,
-    tier: S.optional(SkuTier),
-  }),
-).annotate({ identifier: "Sku" }) as any as S.Schema<Sku>;
+  GetNetworkFunctionResponseIdentity;
 
 export interface SiteNetworkServicesCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -6866,7 +6239,7 @@ export interface SiteNetworkServicesCreateOrUpdateResponse {
   /** Site network service properties. */
   properties?: SiteNetworkServicePropertiesFormat;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: NetworkFunctionsCreateOrUpdateResponseIdentity;
+  identity?: GetNetworkFunctionResponseIdentity;
   /** Sku of the site network service. */
   sku?: Sku;
 }
@@ -6880,327 +6253,12 @@ export const SiteNetworkServicesCreateOrUpdateResponse =
       tags: S.optional(SiteNetworkServicesCreateOrUpdateResponseTagsMap),
       location: S.String,
       properties: S.optional(SiteNetworkServicePropertiesFormat),
-      identity: S.optional(NetworkFunctionsCreateOrUpdateResponseIdentity),
+      identity: S.optional(GetNetworkFunctionResponseIdentity),
       sku: S.optional(Sku),
     }),
   ).annotate({
     identifier: "SiteNetworkServicesCreateOrUpdateResponse",
   }) as any as S.Schema<SiteNetworkServicesCreateOrUpdateResponse>;
-
-export interface SiteNetworkServicesDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the site network service. */
-  siteNetworkServiceName: string;
-}
-export const SiteNetworkServicesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    siteNetworkServiceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/siteNetworkServices/{siteNetworkServiceName}",
-      code: 200,
-      apiVersion: "2024-04-15",
-    }),
-  ),
-).annotate({
-  identifier: "SiteNetworkServicesDeleteRequest",
-}) as any as S.Schema<SiteNetworkServicesDeleteRequest>;
-
-export interface SiteNetworkServicesDeleteResponse {}
-export const SiteNetworkServicesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "SiteNetworkServicesDeleteResponse",
-}) as any as S.Schema<SiteNetworkServicesDeleteResponse>;
-
-export interface SiteNetworkServicesGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the site network service. */
-  siteNetworkServiceName: string;
-}
-export const SiteNetworkServicesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    siteNetworkServiceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/siteNetworkServices/{siteNetworkServiceName}",
-      code: 200,
-      apiVersion: "2024-04-15",
-    }),
-  ),
-).annotate({
-  identifier: "SiteNetworkServicesGetRequest",
-}) as any as S.Schema<SiteNetworkServicesGetRequest>;
-
-/** Resource tags. */
-export type SiteNetworkServicesGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const SiteNetworkServicesGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<SiteNetworkServicesGetResponseTagsMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export type SiteNetworkServicesGetResponseIdentity =
-  NetworkFunctionsCreateOrUpdateResponseIdentity;
-export const SiteNetworkServicesGetResponseIdentity =
-  NetworkFunctionsCreateOrUpdateResponseIdentity;
-
-export interface SiteNetworkServicesGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: SiteNetworkServicesGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Site network service properties. */
-  properties?: SiteNetworkServicePropertiesFormat;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: NetworkFunctionsCreateOrUpdateResponseIdentity;
-  /** Sku of the site network service. */
-  sku?: Sku;
-}
-export const SiteNetworkServicesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(SiteNetworkServicesGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(SiteNetworkServicePropertiesFormat),
-    identity: S.optional(NetworkFunctionsCreateOrUpdateResponseIdentity),
-    sku: S.optional(Sku),
-  }),
-).annotate({
-  identifier: "SiteNetworkServicesGetResponse",
-}) as any as S.Schema<SiteNetworkServicesGetResponse>;
-
-export interface SiteNetworkServicesListByResourceGroupRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const SiteNetworkServicesListByResourceGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/siteNetworkServices",
-        code: 200,
-        apiVersion: "2024-04-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "SiteNetworkServicesListByResourceGroupRequest",
-  }) as any as S.Schema<SiteNetworkServicesListByResourceGroupRequest>;
-
-/** Resource tags. */
-export type SiteNetworkServiceTagsMap = { [key: string]: string | undefined };
-export const SiteNetworkServiceTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<SiteNetworkServiceTagsMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export type SiteNetworkServiceIdentity =
-  NetworkFunctionsCreateOrUpdateResponseIdentity;
-export const SiteNetworkServiceIdentity =
-  NetworkFunctionsCreateOrUpdateResponseIdentity;
-
-/** Site network service resource. */
-export interface SiteNetworkService {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: SiteNetworkServiceTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Site network service properties. */
-  properties?: SiteNetworkServicePropertiesFormat;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: NetworkFunctionsCreateOrUpdateResponseIdentity;
-  /** Sku of the site network service. */
-  sku?: Sku;
-}
-export const SiteNetworkService = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(SiteNetworkServiceTagsMap),
-    location: S.String,
-    properties: S.optional(SiteNetworkServicePropertiesFormat),
-    identity: S.optional(NetworkFunctionsCreateOrUpdateResponseIdentity),
-    sku: S.optional(Sku),
-  }),
-).annotate({
-  identifier: "SiteNetworkService",
-}) as any as S.Schema<SiteNetworkService>;
-
-/** A list of site network services in a resource group. */
-export type SiteNetworkServiceListResultValueList = Array<SiteNetworkService>;
-export const SiteNetworkServiceListResultValueList = /*@__PURE__*/ S.Array(
-  SiteNetworkService,
-) as any as S.Schema<SiteNetworkServiceListResultValueList>;
-
-/** Response for site network services API service call. */
-export interface SiteNetworkServiceListResult {
-  /** A list of site network services in a resource group. */
-  value?: SiteNetworkServiceListResultValueList;
-  /** The URL to get the next set of results. */
-  nextLink?: string;
-}
-export const SiteNetworkServiceListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(SiteNetworkServiceListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SiteNetworkServiceListResult",
-}) as any as S.Schema<SiteNetworkServiceListResult>;
-
-export interface SiteNetworkServicesListBySubscriptionRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-}
-export const SiteNetworkServicesListBySubscriptionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.HybridNetwork/siteNetworkServices",
-        code: 200,
-        apiVersion: "2024-04-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "SiteNetworkServicesListBySubscriptionRequest",
-  }) as any as S.Schema<SiteNetworkServicesListBySubscriptionRequest>;
-
-/** Resource tags. */
-export type SiteNetworkServicesUpdateTagsRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const SiteNetworkServicesUpdateTagsRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<SiteNetworkServicesUpdateTagsRequestTagsMap>;
-
-export interface SiteNetworkServicesUpdateTagsRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the site network service. */
-  siteNetworkServiceName: string;
-  /** Resource tags. */
-  tags?: SiteNetworkServicesUpdateTagsRequestTagsMap;
-}
-export const SiteNetworkServicesUpdateTagsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      siteNetworkServiceName: S.String.pipe(T.Label()),
-      tags: S.optional(SiteNetworkServicesUpdateTagsRequestTagsMap),
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/siteNetworkServices/{siteNetworkServiceName}",
-        code: 200,
-        apiVersion: "2024-04-15",
-      }),
-    ),
-).annotate({
-  identifier: "SiteNetworkServicesUpdateTagsRequest",
-}) as any as S.Schema<SiteNetworkServicesUpdateTagsRequest>;
-
-/** Resource tags. */
-export type SiteNetworkServicesUpdateTagsResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const SiteNetworkServicesUpdateTagsResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<SiteNetworkServicesUpdateTagsResponseTagsMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export type SiteNetworkServicesUpdateTagsResponseIdentity =
-  NetworkFunctionsCreateOrUpdateResponseIdentity;
-export const SiteNetworkServicesUpdateTagsResponseIdentity =
-  NetworkFunctionsCreateOrUpdateResponseIdentity;
-
-export interface SiteNetworkServicesUpdateTagsResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: SiteNetworkServicesUpdateTagsResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Site network service properties. */
-  properties?: SiteNetworkServicePropertiesFormat;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: NetworkFunctionsCreateOrUpdateResponseIdentity;
-  /** Sku of the site network service. */
-  sku?: Sku;
-}
-export const SiteNetworkServicesUpdateTagsResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(SiteNetworkServicesUpdateTagsResponseTagsMap),
-      location: S.String,
-      properties: S.optional(SiteNetworkServicePropertiesFormat),
-      identity: S.optional(NetworkFunctionsCreateOrUpdateResponseIdentity),
-      sku: S.optional(Sku),
-    }),
-).annotate({
-  identifier: "SiteNetworkServicesUpdateTagsResponse",
-}) as any as S.Schema<SiteNetworkServicesUpdateTagsResponse>;
 
 /** Resource tags. */
 export type SitesCreateOrUpdateRequestTagsMap = {
@@ -7210,28 +6268,6 @@ export const SitesCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
 ) as any as S.Schema<SitesCreateOrUpdateRequestTagsMap>;
-
-/** The NFVI type. */
-export type NFVIsNfviType =
-  | "Unknown"
-  | "AzureArcKubernetes"
-  | "AzureCore"
-  | "AzureOperatorNexus";
-export const NFVIsNfviType = /*@__PURE__*/ S.String;
-
-/** The NFVI object. */
-export interface NFVIs {
-  /** Name of the nfvi. */
-  name?: string;
-  /** The NFVI type. */
-  nfviType: NFVIsNfviType | (string & {});
-}
-export const NFVIs = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    nfviType: NFVIsNfviType,
-  }),
-).annotate({ identifier: "NFVIs" }) as any as S.Schema<NFVIs>;
 
 /** List of NFVIs */
 export type SitePropertiesFormatInputNfvisList = Array<NFVIs>;
@@ -7295,59 +6331,6 @@ export const SitesCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
 ) as any as S.Schema<SitesCreateOrUpdateResponseTagsMap>;
 
-/** The current provisioning state. */
-export type SitePropertiesFormatProvisioningState =
-  | "Unknown"
-  | "Succeeded"
-  | "Accepted"
-  | "Deleting"
-  | "Failed"
-  | "Canceled"
-  | "Deleted"
-  | "Converging";
-export const SitePropertiesFormatProvisioningState = /*@__PURE__*/ S.String;
-
-/** List of NFVIs */
-export type SitePropertiesFormatNfvisList = Array<NFVIs>;
-export const SitePropertiesFormatNfvisList = /*@__PURE__*/ S.Array(
-  NFVIs,
-) as any as S.Schema<SitePropertiesFormatNfvisList>;
-
-/** Reference to another resource. */
-export type SitePropertiesFormatSiteNetworkServiceReferencesItem =
-  ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
-export const SitePropertiesFormatSiteNetworkServiceReferencesItem =
-  ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem;
-
-/** The list of site network services on the site. */
-export type SitePropertiesFormatSiteNetworkServiceReferencesList =
-  Array<ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem>;
-export const SitePropertiesFormatSiteNetworkServiceReferencesList =
-  /*@__PURE__*/ S.Array(
-    ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem,
-  ) as any as S.Schema<SitePropertiesFormatSiteNetworkServiceReferencesList>;
-
-/** Site properties. */
-export interface SitePropertiesFormat {
-  /** The current provisioning state. */
-  provisioningState?: SitePropertiesFormatProvisioningState;
-  /** List of NFVIs */
-  nfvis?: SitePropertiesFormatNfvisList;
-  /** The list of site network services on the site. */
-  siteNetworkServiceReferences?: SitePropertiesFormatSiteNetworkServiceReferencesList;
-}
-export const SitePropertiesFormat = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisioningState: S.optional(SitePropertiesFormatProvisioningState),
-    nfvis: S.optional(SitePropertiesFormatNfvisList),
-    siteNetworkServiceReferences: S.optional(
-      SitePropertiesFormatSiteNetworkServiceReferencesList,
-    ),
-  }),
-).annotate({
-  identifier: "SitePropertiesFormat",
-}) as any as S.Schema<SitePropertiesFormat>;
-
 export interface SitesCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
@@ -7378,207 +6361,1207 @@ export const SitesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "SitesCreateOrUpdateResponse",
 }) as any as S.Schema<SitesCreateOrUpdateResponse>;
 
-export interface SitesDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the network service site. */
-  siteName: string;
-}
-export const SitesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    siteName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/sites/{siteName}",
-      code: 200,
-      apiVersion: "2024-04-15",
-    }),
-  ),
-).annotate({
-  identifier: "SitesDeleteRequest",
-}) as any as S.Schema<SitesDeleteRequest>;
-
-export interface SitesDeleteResponse {}
-export const SitesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "SitesDeleteResponse",
-}) as any as S.Schema<SitesDeleteResponse>;
-
-export interface SitesGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the network service site. */
-  siteName: string;
-}
-export const SitesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    siteName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/sites/{siteName}",
-      code: 200,
-      apiVersion: "2024-04-15",
-    }),
-  ),
-).annotate({
-  identifier: "SitesGetRequest",
-}) as any as S.Schema<SitesGetRequest>;
-
 /** Resource tags. */
-export type SitesGetResponseTagsMap = { [key: string]: string | undefined };
-export const SitesGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<SitesGetResponseTagsMap>;
-
-export interface SitesGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: SitesGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Site properties. */
-  properties?: SitePropertiesFormat;
-}
-export const SitesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(SitesGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(SitePropertiesFormat),
-  }),
-).annotate({
-  identifier: "SitesGetResponse",
-}) as any as S.Schema<SitesGetResponse>;
-
-export interface SitesListByResourceGroupRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const SitesListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/sites",
-      code: 200,
-      apiVersion: "2024-04-15",
-    }),
-  ),
-).annotate({
-  identifier: "SitesListByResourceGroupRequest",
-}) as any as S.Schema<SitesListByResourceGroupRequest>;
-
-/** Resource tags. */
-export type SiteTagsMap = { [key: string]: string | undefined };
-export const SiteTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<SiteTagsMap>;
-
-/** Site resource. */
-export interface Site {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: SiteTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Site properties. */
-  properties?: SitePropertiesFormat;
-}
-export const Site = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(SiteTagsMap),
-    location: S.String,
-    properties: S.optional(SitePropertiesFormat),
-  }),
-).annotate({ identifier: "Site" }) as any as S.Schema<Site>;
-
-/** A list of sites in a resource group. */
-export type SiteListResultValueList = Array<Site>;
-export const SiteListResultValueList = /*@__PURE__*/ S.Array(
-  Site,
-) as any as S.Schema<SiteListResultValueList>;
-
-/** Response for sites API service call. */
-export interface SiteListResult {
-  /** A list of sites in a resource group. */
-  value?: SiteListResultValueList;
-  /** The URL to get the next set of results. */
-  nextLink?: string;
-}
-export const SiteListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(SiteListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "SiteListResult" }) as any as S.Schema<SiteListResult>;
-
-export interface SitesListBySubscriptionRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-}
-export const SitesListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.HybridNetwork/sites",
-      code: 200,
-      apiVersion: "2024-04-15",
-    }),
-  ),
-).annotate({
-  identifier: "SitesListBySubscriptionRequest",
-}) as any as S.Schema<SitesListBySubscriptionRequest>;
-
-/** Resource tags. */
-export type SitesUpdateTagsRequestTagsMap = {
+export type UpdateArtifactManifestRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const SitesUpdateTagsRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateArtifactManifestRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SitesUpdateTagsRequestTagsMap>;
+) as any as S.Schema<UpdateArtifactManifestRequestTagsMap>;
 
-export interface SitesUpdateTagsRequest {
+export interface UpdateArtifactManifestRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the publisher. */
+  publisherName: string;
+  /** The name of the artifact store. */
+  artifactStoreName: string;
+  /** The name of the artifact manifest. */
+  artifactManifestName: string;
+  /** Resource tags. */
+  tags?: UpdateArtifactManifestRequestTagsMap;
+}
+export const UpdateArtifactManifestRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    publisherName: S.String.pipe(T.Label()),
+    artifactStoreName: S.String.pipe(T.Label()),
+    artifactManifestName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateArtifactManifestRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/artifactStores/{artifactStoreName}/artifactManifests/{artifactManifestName}",
+      code: 200,
+      apiVersion: "2024-04-15",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateArtifactManifestRequest",
+}) as any as S.Schema<UpdateArtifactManifestRequest>;
+
+/** Resource tags. */
+export type UpdateArtifactManifestResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateArtifactManifestResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateArtifactManifestResponseTagsMap>;
+
+export interface UpdateArtifactManifestResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateArtifactManifestResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Artifact manifest properties. */
+  properties?: ArtifactManifestPropertiesFormat;
+}
+export const UpdateArtifactManifestResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateArtifactManifestResponseTagsMap),
+    location: S.String,
+    properties: S.optional(ArtifactManifestPropertiesFormat),
+  }),
+).annotate({
+  identifier: "UpdateArtifactManifestResponse",
+}) as any as S.Schema<UpdateArtifactManifestResponse>;
+
+export interface UpdateArtifactManifestStateRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the publisher. */
+  publisherName: string;
+  /** The name of the artifact store. */
+  artifactStoreName: string;
+  /** The name of the artifact manifest. */
+  artifactManifestName: string;
+  /** The artifact manifest state. */
+  artifactManifestState?: ArtifactManifestState | (string & {});
+}
+export const UpdateArtifactManifestStateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    publisherName: S.String.pipe(T.Label()),
+    artifactStoreName: S.String.pipe(T.Label()),
+    artifactManifestName: S.String.pipe(T.Label()),
+    artifactManifestState: S.optional(ArtifactManifestState),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/artifactStores/{artifactStoreName}/artifactManifests/{artifactManifestName}/updateState",
+      code: 200,
+      apiVersion: "2024-04-15",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateArtifactManifestStateRequest",
+}) as any as S.Schema<UpdateArtifactManifestStateRequest>;
+
+/** The artifact manifest updating request payload. Only the 'Uploaded' state is allowed for updates. Other states are used for internal state transitioning. */
+export interface ArtifactManifestUpdateState {
+  /** The artifact manifest state. */
+  artifactManifestState?: ArtifactManifestState;
+}
+export const ArtifactManifestUpdateState = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    artifactManifestState: S.optional(ArtifactManifestState),
+  }),
+).annotate({
+  identifier: "ArtifactManifestUpdateState",
+}) as any as S.Schema<ArtifactManifestUpdateState>;
+
+/** Resource tags. */
+export type UpdateArtifactStoreRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateArtifactStoreRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateArtifactStoreRequestTagsMap>;
+
+export interface UpdateArtifactStoreRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the publisher. */
+  publisherName: string;
+  /** The name of the artifact store. */
+  artifactStoreName: string;
+  /** Resource tags. */
+  tags?: UpdateArtifactStoreRequestTagsMap;
+}
+export const UpdateArtifactStoreRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    publisherName: S.String.pipe(T.Label()),
+    artifactStoreName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateArtifactStoreRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/artifactStores/{artifactStoreName}",
+      code: 200,
+      apiVersion: "2024-04-15",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateArtifactStoreRequest",
+}) as any as S.Schema<UpdateArtifactStoreRequest>;
+
+/** Resource tags. */
+export type UpdateArtifactStoreResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateArtifactStoreResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateArtifactStoreResponseTagsMap>;
+
+export interface UpdateArtifactStoreResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateArtifactStoreResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** ArtifactStores properties. */
+  properties?: ArtifactStorePropertiesFormat;
+}
+export const UpdateArtifactStoreResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateArtifactStoreResponseTagsMap),
+    location: S.String,
+    properties: S.optional(ArtifactStorePropertiesFormat),
+  }),
+).annotate({
+  identifier: "UpdateArtifactStoreResponse",
+}) as any as S.Schema<UpdateArtifactStoreResponse>;
+
+/** Resource tags. */
+export type UpdateConfigurationGroupSchemaRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateConfigurationGroupSchemaRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<UpdateConfigurationGroupSchemaRequestTagsMap>;
+
+export interface UpdateConfigurationGroupSchemaRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the publisher. */
+  publisherName: string;
+  /** The name of the configuration group schema. */
+  configurationGroupSchemaName: string;
+  /** Resource tags. */
+  tags?: UpdateConfigurationGroupSchemaRequestTagsMap;
+}
+export const UpdateConfigurationGroupSchemaRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      publisherName: S.String.pipe(T.Label()),
+      configurationGroupSchemaName: S.String.pipe(T.Label()),
+      tags: S.optional(UpdateConfigurationGroupSchemaRequestTagsMap),
+    }).pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/configurationGroupSchemas/{configurationGroupSchemaName}",
+        code: 200,
+        apiVersion: "2024-04-15",
+      }),
+    ),
+).annotate({
+  identifier: "UpdateConfigurationGroupSchemaRequest",
+}) as any as S.Schema<UpdateConfigurationGroupSchemaRequest>;
+
+/** Resource tags. */
+export type UpdateConfigurationGroupSchemaResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateConfigurationGroupSchemaResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<UpdateConfigurationGroupSchemaResponseTagsMap>;
+
+export interface UpdateConfigurationGroupSchemaResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateConfigurationGroupSchemaResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Configuration group schema properties. */
+  properties?: ConfigurationGroupSchemaPropertiesFormat;
+}
+export const UpdateConfigurationGroupSchemaResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(UpdateConfigurationGroupSchemaResponseTagsMap),
+      location: S.String,
+      properties: S.optional(ConfigurationGroupSchemaPropertiesFormat),
+    }),
+).annotate({
+  identifier: "UpdateConfigurationGroupSchemaResponse",
+}) as any as S.Schema<UpdateConfigurationGroupSchemaResponse>;
+
+export interface UpdateConfigurationGroupSchemaStateRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the publisher. */
+  publisherName: string;
+  /** The name of the configuration group schema. */
+  configurationGroupSchemaName: string;
+  /** The configuration group schema state. */
+  versionState?: ConfigurationGroupSchemaVersionState | (string & {});
+}
+export const UpdateConfigurationGroupSchemaStateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      publisherName: S.String.pipe(T.Label()),
+      configurationGroupSchemaName: S.String.pipe(T.Label()),
+      versionState: S.optional(ConfigurationGroupSchemaVersionState),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/configurationGroupSchemas/{configurationGroupSchemaName}/updateState",
+        code: 200,
+        apiVersion: "2024-04-15",
+      }),
+    ),
+  ).annotate({
+    identifier: "UpdateConfigurationGroupSchemaStateRequest",
+  }) as any as S.Schema<UpdateConfigurationGroupSchemaStateRequest>;
+
+/** Publisher configuration group schema update request definition. */
+export interface ConfigurationGroupSchemaVersionUpdateState {
+  /** The configuration group schema state. */
+  versionState?: ConfigurationGroupSchemaVersionState;
+}
+export const ConfigurationGroupSchemaVersionUpdateState =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      versionState: S.optional(ConfigurationGroupSchemaVersionState),
+    }),
+  ).annotate({
+    identifier: "ConfigurationGroupSchemaVersionUpdateState",
+  }) as any as S.Schema<ConfigurationGroupSchemaVersionUpdateState>;
+
+/** Resource tags. */
+export type UpdateConfigurationGroupValueTagsRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateConfigurationGroupValueTagsRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<UpdateConfigurationGroupValueTagsRequestTagsMap>;
+
+export interface UpdateConfigurationGroupValueTagsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the configuration group value. */
+  configurationGroupValueName: string;
+  /** Resource tags. */
+  tags?: UpdateConfigurationGroupValueTagsRequestTagsMap;
+}
+export const UpdateConfigurationGroupValueTagsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      configurationGroupValueName: S.String.pipe(T.Label()),
+      tags: S.optional(UpdateConfigurationGroupValueTagsRequestTagsMap),
+    }).pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/configurationGroupValues/{configurationGroupValueName}",
+        code: 200,
+        apiVersion: "2024-04-15",
+      }),
+    ),
+).annotate({
+  identifier: "UpdateConfigurationGroupValueTagsRequest",
+}) as any as S.Schema<UpdateConfigurationGroupValueTagsRequest>;
+
+/** Resource tags. */
+export type UpdateConfigurationGroupValueTagsResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateConfigurationGroupValueTagsResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<UpdateConfigurationGroupValueTagsResponseTagsMap>;
+
+export interface UpdateConfigurationGroupValueTagsResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateConfigurationGroupValueTagsResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Hybrid configuration group value properties. */
+  properties?: ConfigurationGroupValuePropertiesFormat;
+}
+export const UpdateConfigurationGroupValueTagsResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(UpdateConfigurationGroupValueTagsResponseTagsMap),
+      location: S.String,
+      properties: S.optional(ConfigurationGroupValuePropertiesFormat),
+    }),
+  ).annotate({
+    identifier: "UpdateConfigurationGroupValueTagsResponse",
+  }) as any as S.Schema<UpdateConfigurationGroupValueTagsResponse>;
+
+/** Resource tags. */
+export type UpdateNetworkFunctionDefinitionGroupRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateNetworkFunctionDefinitionGroupRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<UpdateNetworkFunctionDefinitionGroupRequestTagsMap>;
+
+export interface UpdateNetworkFunctionDefinitionGroupRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the publisher. */
+  publisherName: string;
+  /** The name of the network function definition group. */
+  networkFunctionDefinitionGroupName: string;
+  /** Resource tags. */
+  tags?: UpdateNetworkFunctionDefinitionGroupRequestTagsMap;
+}
+export const UpdateNetworkFunctionDefinitionGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      publisherName: S.String.pipe(T.Label()),
+      networkFunctionDefinitionGroupName: S.String.pipe(T.Label()),
+      tags: S.optional(UpdateNetworkFunctionDefinitionGroupRequestTagsMap),
+    }).pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/networkFunctionDefinitionGroups/{networkFunctionDefinitionGroupName}",
+        code: 200,
+        apiVersion: "2024-04-15",
+      }),
+    ),
+  ).annotate({
+    identifier: "UpdateNetworkFunctionDefinitionGroupRequest",
+  }) as any as S.Schema<UpdateNetworkFunctionDefinitionGroupRequest>;
+
+/** Resource tags. */
+export type UpdateNetworkFunctionDefinitionGroupResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateNetworkFunctionDefinitionGroupResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<UpdateNetworkFunctionDefinitionGroupResponseTagsMap>;
+
+export interface UpdateNetworkFunctionDefinitionGroupResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateNetworkFunctionDefinitionGroupResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Network function definition group properties. */
+  properties?: NetworkFunctionDefinitionGroupPropertiesFormat;
+}
+export const UpdateNetworkFunctionDefinitionGroupResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(UpdateNetworkFunctionDefinitionGroupResponseTagsMap),
+      location: S.String,
+      properties: S.optional(NetworkFunctionDefinitionGroupPropertiesFormat),
+    }),
+  ).annotate({
+    identifier: "UpdateNetworkFunctionDefinitionGroupResponse",
+  }) as any as S.Schema<UpdateNetworkFunctionDefinitionGroupResponse>;
+
+/** Resource tags. */
+export type UpdateNetworkFunctionDefinitionVersionRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateNetworkFunctionDefinitionVersionRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<UpdateNetworkFunctionDefinitionVersionRequestTagsMap>;
+
+export interface UpdateNetworkFunctionDefinitionVersionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the publisher. */
+  publisherName: string;
+  /** The name of the network function definition group. */
+  networkFunctionDefinitionGroupName: string;
+  /** The name of the network function definition version. The name should conform to the SemVer 2.0.0 specification: https://semver.org/spec/v2.0.0.html. */
+  networkFunctionDefinitionVersionName: string;
+  /** Resource tags. */
+  tags?: UpdateNetworkFunctionDefinitionVersionRequestTagsMap;
+}
+export const UpdateNetworkFunctionDefinitionVersionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      publisherName: S.String.pipe(T.Label()),
+      networkFunctionDefinitionGroupName: S.String.pipe(T.Label()),
+      networkFunctionDefinitionVersionName: S.String.pipe(T.Label()),
+      tags: S.optional(UpdateNetworkFunctionDefinitionVersionRequestTagsMap),
+    }).pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/networkFunctionDefinitionGroups/{networkFunctionDefinitionGroupName}/networkFunctionDefinitionVersions/{networkFunctionDefinitionVersionName}",
+        code: 200,
+        apiVersion: "2024-04-15",
+      }),
+    ),
+  ).annotate({
+    identifier: "UpdateNetworkFunctionDefinitionVersionRequest",
+  }) as any as S.Schema<UpdateNetworkFunctionDefinitionVersionRequest>;
+
+/** Resource tags. */
+export type UpdateNetworkFunctionDefinitionVersionResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateNetworkFunctionDefinitionVersionResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<UpdateNetworkFunctionDefinitionVersionResponseTagsMap>;
+
+export interface UpdateNetworkFunctionDefinitionVersionResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateNetworkFunctionDefinitionVersionResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Network function definition version properties. */
+  properties?: NetworkFunctionDefinitionVersionPropertiesFormat;
+}
+export const UpdateNetworkFunctionDefinitionVersionResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(UpdateNetworkFunctionDefinitionVersionResponseTagsMap),
+      location: S.String,
+      properties: S.optional(NetworkFunctionDefinitionVersionPropertiesFormat),
+    }),
+  ).annotate({
+    identifier: "UpdateNetworkFunctionDefinitionVersionResponse",
+  }) as any as S.Schema<UpdateNetworkFunctionDefinitionVersionResponse>;
+
+export interface UpdateNetworkFunctionDefinitionVersionStateRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the publisher. */
+  publisherName: string;
+  /** The name of the network function definition group. */
+  networkFunctionDefinitionGroupName: string;
+  /** The name of the network function definition version. The name should conform to the SemVer 2.0.0 specification: https://semver.org/spec/v2.0.0.html. */
+  networkFunctionDefinitionVersionName: string;
+  /** The network function definition version state. Only the 'Active' and 'Deprecated' states are allowed for updates. Other states are used for internal state transitioning. */
+  versionState?: VersionState | (string & {});
+}
+export const UpdateNetworkFunctionDefinitionVersionStateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      publisherName: S.String.pipe(T.Label()),
+      networkFunctionDefinitionGroupName: S.String.pipe(T.Label()),
+      networkFunctionDefinitionVersionName: S.String.pipe(T.Label()),
+      versionState: S.optional(VersionState),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/networkFunctionDefinitionGroups/{networkFunctionDefinitionGroupName}/networkFunctionDefinitionVersions/{networkFunctionDefinitionVersionName}/updateState",
+        code: 200,
+        apiVersion: "2024-04-15",
+      }),
+    ),
+  ).annotate({
+    identifier: "UpdateNetworkFunctionDefinitionVersionStateRequest",
+  }) as any as S.Schema<UpdateNetworkFunctionDefinitionVersionStateRequest>;
+
+/** Publisher network function definition version update request definition. */
+export interface NetworkFunctionDefinitionVersionUpdateState {
+  /** The network function definition version state. Only the 'Active' and 'Deprecated' states are allowed for updates. Other states are used for internal state transitioning. */
+  versionState?: VersionState;
+}
+export const NetworkFunctionDefinitionVersionUpdateState =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      versionState: S.optional(VersionState),
+    }),
+  ).annotate({
+    identifier: "NetworkFunctionDefinitionVersionUpdateState",
+  }) as any as S.Schema<NetworkFunctionDefinitionVersionUpdateState>;
+
+/** Resource tags. */
+export type UpdateNetworkFunctionTagsRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateNetworkFunctionTagsRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateNetworkFunctionTagsRequestTagsMap>;
+
+export interface UpdateNetworkFunctionTagsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Resource name for the network function resource. */
+  networkFunctionName: string;
+  /** Resource tags. */
+  tags?: UpdateNetworkFunctionTagsRequestTagsMap;
+}
+export const UpdateNetworkFunctionTagsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    networkFunctionName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateNetworkFunctionTagsRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/networkFunctions/{networkFunctionName}",
+      code: 200,
+      apiVersion: "2024-04-15",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateNetworkFunctionTagsRequest",
+}) as any as S.Schema<UpdateNetworkFunctionTagsRequest>;
+
+/** Resource tags. */
+export type UpdateNetworkFunctionTagsResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateNetworkFunctionTagsResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateNetworkFunctionTagsResponseTagsMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export type UpdateNetworkFunctionTagsResponseIdentity =
+  GetNetworkFunctionResponseIdentity;
+export const UpdateNetworkFunctionTagsResponseIdentity =
+  GetNetworkFunctionResponseIdentity;
+
+export interface UpdateNetworkFunctionTagsResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateNetworkFunctionTagsResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Network function properties. */
+  properties?: NetworkFunctionPropertiesFormat;
+  /** A unique read-only string that changes whenever the resource is updated. */
+  etag?: string;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: GetNetworkFunctionResponseIdentity;
+}
+export const UpdateNetworkFunctionTagsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateNetworkFunctionTagsResponseTagsMap),
+    location: S.String,
+    properties: S.optional(NetworkFunctionPropertiesFormat),
+    etag: S.optional(S.String),
+    identity: S.optional(GetNetworkFunctionResponseIdentity),
+  }),
+).annotate({
+  identifier: "UpdateNetworkFunctionTagsResponse",
+}) as any as S.Schema<UpdateNetworkFunctionTagsResponse>;
+
+/** Resource tags. */
+export type UpdateNetworkServiceDesignGroupRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateNetworkServiceDesignGroupRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<UpdateNetworkServiceDesignGroupRequestTagsMap>;
+
+export interface UpdateNetworkServiceDesignGroupRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the publisher. */
+  publisherName: string;
+  /** The name of the network service design group. */
+  networkServiceDesignGroupName: string;
+  /** Resource tags. */
+  tags?: UpdateNetworkServiceDesignGroupRequestTagsMap;
+}
+export const UpdateNetworkServiceDesignGroupRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      publisherName: S.String.pipe(T.Label()),
+      networkServiceDesignGroupName: S.String.pipe(T.Label()),
+      tags: S.optional(UpdateNetworkServiceDesignGroupRequestTagsMap),
+    }).pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/networkServiceDesignGroups/{networkServiceDesignGroupName}",
+        code: 200,
+        apiVersion: "2024-04-15",
+      }),
+    ),
+).annotate({
+  identifier: "UpdateNetworkServiceDesignGroupRequest",
+}) as any as S.Schema<UpdateNetworkServiceDesignGroupRequest>;
+
+/** Resource tags. */
+export type UpdateNetworkServiceDesignGroupResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateNetworkServiceDesignGroupResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<UpdateNetworkServiceDesignGroupResponseTagsMap>;
+
+export interface UpdateNetworkServiceDesignGroupResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateNetworkServiceDesignGroupResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** network service design group properties. */
+  properties?: NetworkServiceDesignGroupPropertiesFormat;
+}
+export const UpdateNetworkServiceDesignGroupResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(UpdateNetworkServiceDesignGroupResponseTagsMap),
+      location: S.String,
+      properties: S.optional(NetworkServiceDesignGroupPropertiesFormat),
+    }),
+).annotate({
+  identifier: "UpdateNetworkServiceDesignGroupResponse",
+}) as any as S.Schema<UpdateNetworkServiceDesignGroupResponse>;
+
+/** Resource tags. */
+export type UpdateNetworkServiceDesignVersionRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateNetworkServiceDesignVersionRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<UpdateNetworkServiceDesignVersionRequestTagsMap>;
+
+export interface UpdateNetworkServiceDesignVersionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the publisher. */
+  publisherName: string;
+  /** The name of the network service design group. */
+  networkServiceDesignGroupName: string;
+  /** The name of the network service design version. The name should conform to the SemVer 2.0.0 specification: https://semver.org/spec/v2.0.0.html. */
+  networkServiceDesignVersionName: string;
+  /** Resource tags. */
+  tags?: UpdateNetworkServiceDesignVersionRequestTagsMap;
+}
+export const UpdateNetworkServiceDesignVersionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      publisherName: S.String.pipe(T.Label()),
+      networkServiceDesignGroupName: S.String.pipe(T.Label()),
+      networkServiceDesignVersionName: S.String.pipe(T.Label()),
+      tags: S.optional(UpdateNetworkServiceDesignVersionRequestTagsMap),
+    }).pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/networkServiceDesignGroups/{networkServiceDesignGroupName}/networkServiceDesignVersions/{networkServiceDesignVersionName}",
+        code: 200,
+        apiVersion: "2024-04-15",
+      }),
+    ),
+).annotate({
+  identifier: "UpdateNetworkServiceDesignVersionRequest",
+}) as any as S.Schema<UpdateNetworkServiceDesignVersionRequest>;
+
+/** Resource tags. */
+export type UpdateNetworkServiceDesignVersionResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateNetworkServiceDesignVersionResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<UpdateNetworkServiceDesignVersionResponseTagsMap>;
+
+export interface UpdateNetworkServiceDesignVersionResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateNetworkServiceDesignVersionResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** network service design version properties. */
+  properties?: NetworkServiceDesignVersionPropertiesFormat;
+}
+export const UpdateNetworkServiceDesignVersionResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(UpdateNetworkServiceDesignVersionResponseTagsMap),
+      location: S.String,
+      properties: S.optional(NetworkServiceDesignVersionPropertiesFormat),
+    }),
+  ).annotate({
+    identifier: "UpdateNetworkServiceDesignVersionResponse",
+  }) as any as S.Schema<UpdateNetworkServiceDesignVersionResponse>;
+
+export interface UpdateNetworkServiceDesignVersionStateRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the publisher. */
+  publisherName: string;
+  /** The name of the network service design group. */
+  networkServiceDesignGroupName: string;
+  /** The name of the network service design version. The name should conform to the SemVer 2.0.0 specification: https://semver.org/spec/v2.0.0.html. */
+  networkServiceDesignVersionName: string;
+  /** The network service design version state. */
+  versionState?: NSDVersionState | (string & {});
+}
+export const UpdateNetworkServiceDesignVersionStateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      publisherName: S.String.pipe(T.Label()),
+      networkServiceDesignGroupName: S.String.pipe(T.Label()),
+      networkServiceDesignVersionName: S.String.pipe(T.Label()),
+      versionState: S.optional(NSDVersionState),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/networkServiceDesignGroups/{networkServiceDesignGroupName}/networkServiceDesignVersions/{networkServiceDesignVersionName}/updateState",
+        code: 200,
+        apiVersion: "2024-04-15",
+      }),
+    ),
+  ).annotate({
+    identifier: "UpdateNetworkServiceDesignVersionStateRequest",
+  }) as any as S.Schema<UpdateNetworkServiceDesignVersionStateRequest>;
+
+/** Publisher network service design version update request definition. */
+export interface NetworkServiceDesignVersionUpdateState {
+  /** The network service design version state. */
+  versionState?: NSDVersionState;
+}
+export const NetworkServiceDesignVersionUpdateState = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      versionState: S.optional(NSDVersionState),
+    }),
+).annotate({
+  identifier: "NetworkServiceDesignVersionUpdateState",
+}) as any as S.Schema<NetworkServiceDesignVersionUpdateState>;
+
+/** The artifact update state properties. */
+export interface ArtifactChangeStateProperties {
+  /** The artifact state */
+  artifactState?: ArtifactState | (string & {});
+}
+export const ArtifactChangeStateProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    artifactState: S.optional(ArtifactState),
+  }),
+).annotate({
+  identifier: "ArtifactChangeStateProperties",
+}) as any as S.Schema<ArtifactChangeStateProperties>;
+
+export interface UpdateProxyArtifactStateRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the publisher. */
+  publisherName: string;
+  /** The name of the artifact store. */
+  artifactStoreName: string;
+  /** The name of the artifact version. */
+  artifactVersionName: string;
+  /** The name of the artifact. */
+  artifactName: string;
+  /** Artifact update state properties. */
+  properties?: ArtifactChangeStateProperties;
+}
+export const UpdateProxyArtifactStateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    publisherName: S.String.pipe(T.Label()),
+    artifactStoreName: S.String.pipe(T.Label()),
+    artifactVersionName: S.String.pipe(T.Label()),
+    artifactName: S.String.pipe(T.Query()),
+    properties: S.optional(ArtifactChangeStateProperties),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}/artifactStores/{artifactStoreName}/artifactVersions/{artifactVersionName}",
+      code: 200,
+      apiVersion: "2024-04-15",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateProxyArtifactStateRequest",
+}) as any as S.Schema<UpdateProxyArtifactStateRequest>;
+
+export interface UpdateProxyArtifactStateResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Proxy Artifact overview properties. */
+  properties?: ProxyArtifactOverviewPropertiesValue;
+}
+export const UpdateProxyArtifactStateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ProxyArtifactOverviewPropertiesValue),
+  }),
+).annotate({
+  identifier: "UpdateProxyArtifactStateResponse",
+}) as any as S.Schema<UpdateProxyArtifactStateResponse>;
+
+/** Resource tags. */
+export type UpdatePublisherRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdatePublisherRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdatePublisherRequestTagsMap>;
+
+export interface UpdatePublisherRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the publisher. */
+  publisherName: string;
+  /** Resource tags. */
+  tags?: UpdatePublisherRequestTagsMap;
+}
+export const UpdatePublisherRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    publisherName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdatePublisherRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/publishers/{publisherName}",
+      code: 200,
+      apiVersion: "2024-04-15",
+    }),
+  ),
+).annotate({
+  identifier: "UpdatePublisherRequest",
+}) as any as S.Schema<UpdatePublisherRequest>;
+
+/** Resource tags. */
+export type UpdatePublisherResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdatePublisherResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdatePublisherResponseTagsMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export type UpdatePublisherResponseIdentity =
+  GetNetworkFunctionResponseIdentity;
+export const UpdatePublisherResponseIdentity =
+  GetNetworkFunctionResponseIdentity;
+
+export interface UpdatePublisherResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdatePublisherResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Publisher properties. */
+  properties?: PublisherPropertiesFormat;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: GetNetworkFunctionResponseIdentity;
+}
+export const UpdatePublisherResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdatePublisherResponseTagsMap),
+    location: S.String,
+    properties: S.optional(PublisherPropertiesFormat),
+    identity: S.optional(GetNetworkFunctionResponseIdentity),
+  }),
+).annotate({
+  identifier: "UpdatePublisherResponse",
+}) as any as S.Schema<UpdatePublisherResponse>;
+
+/** Resource tags. */
+export type UpdateSiteNetworkServiceTagsRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateSiteNetworkServiceTagsRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<UpdateSiteNetworkServiceTagsRequestTagsMap>;
+
+export interface UpdateSiteNetworkServiceTagsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the site network service. */
+  siteNetworkServiceName: string;
+  /** Resource tags. */
+  tags?: UpdateSiteNetworkServiceTagsRequestTagsMap;
+}
+export const UpdateSiteNetworkServiceTagsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    siteNetworkServiceName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateSiteNetworkServiceTagsRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork/siteNetworkServices/{siteNetworkServiceName}",
+      code: 200,
+      apiVersion: "2024-04-15",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateSiteNetworkServiceTagsRequest",
+}) as any as S.Schema<UpdateSiteNetworkServiceTagsRequest>;
+
+/** Resource tags. */
+export type UpdateSiteNetworkServiceTagsResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateSiteNetworkServiceTagsResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<UpdateSiteNetworkServiceTagsResponseTagsMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export type UpdateSiteNetworkServiceTagsResponseIdentity =
+  GetNetworkFunctionResponseIdentity;
+export const UpdateSiteNetworkServiceTagsResponseIdentity =
+  GetNetworkFunctionResponseIdentity;
+
+export interface UpdateSiteNetworkServiceTagsResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateSiteNetworkServiceTagsResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Site network service properties. */
+  properties?: SiteNetworkServicePropertiesFormat;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: GetNetworkFunctionResponseIdentity;
+  /** Sku of the site network service. */
+  sku?: Sku;
+}
+export const UpdateSiteNetworkServiceTagsResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(UpdateSiteNetworkServiceTagsResponseTagsMap),
+      location: S.String,
+      properties: S.optional(SiteNetworkServicePropertiesFormat),
+      identity: S.optional(GetNetworkFunctionResponseIdentity),
+      sku: S.optional(Sku),
+    }),
+).annotate({
+  identifier: "UpdateSiteNetworkServiceTagsResponse",
+}) as any as S.Schema<UpdateSiteNetworkServiceTagsResponse>;
+
+/** Resource tags. */
+export type UpdateSiteTagsRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateSiteTagsRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateSiteTagsRequestTagsMap>;
+
+export interface UpdateSiteTagsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -7586,14 +7569,14 @@ export interface SitesUpdateTagsRequest {
   /** The name of the network service site. */
   siteName: string;
   /** Resource tags. */
-  tags?: SitesUpdateTagsRequestTagsMap;
+  tags?: UpdateSiteTagsRequestTagsMap;
 }
-export const SitesUpdateTagsRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateSiteTagsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     siteName: S.String.pipe(T.Label()),
-    tags: S.optional(SitesUpdateTagsRequestTagsMap),
+    tags: S.optional(UpdateSiteTagsRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -7603,19 +7586,19 @@ export const SitesUpdateTagsRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "SitesUpdateTagsRequest",
-}) as any as S.Schema<SitesUpdateTagsRequest>;
+  identifier: "UpdateSiteTagsRequest",
+}) as any as S.Schema<UpdateSiteTagsRequest>;
 
 /** Resource tags. */
-export type SitesUpdateTagsResponseTagsMap = {
+export type UpdateSiteTagsResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const SitesUpdateTagsResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateSiteTagsResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SitesUpdateTagsResponseTagsMap>;
+) as any as S.Schema<UpdateSiteTagsResponseTagsMap>;
 
-export interface SitesUpdateTagsResponse {
+export interface UpdateSiteTagsResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -7625,25 +7608,56 @@ export interface SitesUpdateTagsResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: SitesUpdateTagsResponseTagsMap;
+  tags?: UpdateSiteTagsResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Site properties. */
   properties?: SitePropertiesFormat;
 }
-export const SitesUpdateTagsResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateSiteTagsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(SitesUpdateTagsResponseTagsMap),
+    tags: S.optional(UpdateSiteTagsResponseTagsMap),
     location: S.String,
     properties: S.optional(SitePropertiesFormat),
   }),
 ).annotate({
-  identifier: "SitesUpdateTagsResponse",
-}) as any as S.Schema<SitesUpdateTagsResponse>;
+  identifier: "UpdateSiteTagsResponse",
+}) as any as S.Schema<UpdateSiteTagsResponse>;
+
+export type AddArtifactStoreNetworkFabricControllerEndPointsError =
+  AzureOpError;
+/** Add network fabric controllers to artifact stores */
+export const AddArtifactStoreNetworkFabricControllerEndPoints: API.OperationMethod<
+  AddArtifactStoreNetworkFabricControllerEndPointsRequest,
+  AddArtifactStoreNetworkFabricControllerEndPointsResponse,
+  AddArtifactStoreNetworkFabricControllerEndPointsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: AddArtifactStoreNetworkFabricControllerEndPointsRequest,
+  output: AddArtifactStoreNetworkFabricControllerEndPointsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ApproveArtifactStorePrivateEndPointsError = AzureOpError;
+/** Approve manual private endpoints on artifact stores */
+export const ApproveArtifactStorePrivateEndPoints: API.OperationMethod<
+  ApproveArtifactStorePrivateEndPointsRequest,
+  ApproveArtifactStorePrivateEndPointsResponse,
+  ApproveArtifactStorePrivateEndPointsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ApproveArtifactStorePrivateEndPointsRequest,
+  output: ApproveArtifactStorePrivateEndPointsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
 export type ArtifactManifestsCreateOrUpdateError = AzureOpError;
 /** Creates or updates a artifact manifest. */
@@ -7655,127 +7669,6 @@ export const ArtifactManifestsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ArtifactManifestsCreateOrUpdateRequest,
   output: ArtifactManifestsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ArtifactManifestsDeleteError = AzureOpError;
-/** Deletes the specified artifact manifest. */
-export const ArtifactManifestsDelete: API.OperationMethod<
-  ArtifactManifestsDeleteRequest,
-  ArtifactManifestsDeleteResponse,
-  ArtifactManifestsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ArtifactManifestsDeleteRequest,
-  output: ArtifactManifestsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ArtifactManifestsGetError = AzureOpError;
-/** Gets information about a artifact manifest resource. */
-export const ArtifactManifestsGet: API.OperationMethod<
-  ArtifactManifestsGetRequest,
-  ArtifactManifestsGetResponse,
-  ArtifactManifestsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ArtifactManifestsGetRequest,
-  output: ArtifactManifestsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ArtifactManifestsListByArtifactStoreError = AzureOpError;
-/** Gets information about the artifact manifest. */
-export const ArtifactManifestsListByArtifactStore: API.OperationMethod<
-  ArtifactManifestsListByArtifactStoreRequest,
-  ArtifactManifestListResult,
-  ArtifactManifestsListByArtifactStoreError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ArtifactManifestsListByArtifactStoreRequest,
-  output: ArtifactManifestListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ArtifactManifestsListCredentialError = AzureOpError;
-/** List credential for publishing artifacts defined in artifact manifest. */
-export const ArtifactManifestsListCredential: API.OperationMethod<
-  ArtifactManifestsListCredentialRequest,
-  ArtifactManifestsListCredentialResponse,
-  ArtifactManifestsListCredentialError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ArtifactManifestsListCredentialRequest,
-  output: ArtifactManifestsListCredentialResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ArtifactManifestsUpdateError = AzureOpError;
-/** Updates a artifact manifest resource. */
-export const ArtifactManifestsUpdate: API.OperationMethod<
-  ArtifactManifestsUpdateRequest,
-  ArtifactManifestsUpdateResponse,
-  ArtifactManifestsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ArtifactManifestsUpdateRequest,
-  output: ArtifactManifestsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ArtifactManifestsUpdateStateError = AzureOpError;
-/** Update state for artifact manifest. */
-export const ArtifactManifestsUpdateState: API.OperationMethod<
-  ArtifactManifestsUpdateStateRequest,
-  ArtifactManifestUpdateState,
-  ArtifactManifestsUpdateStateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ArtifactManifestsUpdateStateRequest,
-  output: ArtifactManifestUpdateState,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ArtifactStoresAddNetworkFabricControllerEndPointsError =
-  AzureOpError;
-/** Add network fabric controllers to artifact stores */
-export const ArtifactStoresAddNetworkFabricControllerEndPoints: API.OperationMethod<
-  ArtifactStoresAddNetworkFabricControllerEndPointsRequest,
-  ArtifactStoresAddNetworkFabricControllerEndPointsResponse,
-  ArtifactStoresAddNetworkFabricControllerEndPointsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ArtifactStoresAddNetworkFabricControllerEndPointsRequest,
-  output: ArtifactStoresAddNetworkFabricControllerEndPointsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ArtifactStoresApprovePrivateEndPointsError = AzureOpError;
-/** Approve manual private endpoints on artifact stores */
-export const ArtifactStoresApprovePrivateEndPoints: API.OperationMethod<
-  ArtifactStoresApprovePrivateEndPointsRequest,
-  ArtifactStoresApprovePrivateEndPointsResponse,
-  ArtifactStoresApprovePrivateEndPointsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ArtifactStoresApprovePrivateEndPointsRequest,
-  output: ArtifactStoresApprovePrivateEndPointsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -7796,158 +7689,6 @@ export const ArtifactStoresCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ArtifactStoresDeleteError = AzureOpError;
-/** Deletes the specified artifact store. */
-export const ArtifactStoresDelete: API.OperationMethod<
-  ArtifactStoresDeleteRequest,
-  ArtifactStoresDeleteResponse,
-  ArtifactStoresDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ArtifactStoresDeleteRequest,
-  output: ArtifactStoresDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ArtifactStoresDeleteNetworkFabricControllerEndPointsError =
-  AzureOpError;
-/** Delete network fabric controllers on artifact stores */
-export const ArtifactStoresDeleteNetworkFabricControllerEndPoints: API.OperationMethod<
-  ArtifactStoresDeleteNetworkFabricControllerEndPointsRequest,
-  ArtifactStoresDeleteNetworkFabricControllerEndPointsResponse,
-  ArtifactStoresDeleteNetworkFabricControllerEndPointsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ArtifactStoresDeleteNetworkFabricControllerEndPointsRequest,
-  output: ArtifactStoresDeleteNetworkFabricControllerEndPointsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ArtifactStoresGetError = AzureOpError;
-/** Gets information about the specified artifact store. */
-export const ArtifactStoresGet: API.OperationMethod<
-  ArtifactStoresGetRequest,
-  ArtifactStoresGetResponse,
-  ArtifactStoresGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ArtifactStoresGetRequest,
-  output: ArtifactStoresGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ArtifactStoresListByPublisherError = AzureOpError;
-/** Gets information of the ArtifactStores under publisher. */
-export const ArtifactStoresListByPublisher: API.OperationMethod<
-  ArtifactStoresListByPublisherRequest,
-  ArtifactStoreListResult,
-  ArtifactStoresListByPublisherError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ArtifactStoresListByPublisherRequest,
-  output: ArtifactStoreListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ArtifactStoresListNetworkFabricControllerPrivateEndPointsError =
-  AzureOpError;
-/** List network fabric controllers to artifact stores */
-export const ArtifactStoresListNetworkFabricControllerPrivateEndPoints: API.OperationMethod<
-  ArtifactStoresListNetworkFabricControllerPrivateEndPointsRequest,
-  ArtifactStoreNetworkFabricControllerEndPointsList,
-  ArtifactStoresListNetworkFabricControllerPrivateEndPointsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ArtifactStoresListNetworkFabricControllerPrivateEndPointsRequest,
-  output: ArtifactStoreNetworkFabricControllerEndPointsList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ArtifactStoresListPrivateEndPointsError = AzureOpError;
-/** List manual private endpoints on artifact stores */
-export const ArtifactStoresListPrivateEndPoints: API.OperationMethod<
-  ArtifactStoresListPrivateEndPointsRequest,
-  ArtifactStorePrivateEndPointsListResult,
-  ArtifactStoresListPrivateEndPointsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ArtifactStoresListPrivateEndPointsRequest,
-  output: ArtifactStorePrivateEndPointsListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ArtifactStoresRemovePrivateEndPointsError = AzureOpError;
-/** Remove manual private endpoints on artifact stores */
-export const ArtifactStoresRemovePrivateEndPoints: API.OperationMethod<
-  ArtifactStoresRemovePrivateEndPointsRequest,
-  ArtifactStoresRemovePrivateEndPointsResponse,
-  ArtifactStoresRemovePrivateEndPointsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ArtifactStoresRemovePrivateEndPointsRequest,
-  output: ArtifactStoresRemovePrivateEndPointsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ArtifactStoresUpdateError = AzureOpError;
-/** Update artifact store resource. */
-export const ArtifactStoresUpdate: API.OperationMethod<
-  ArtifactStoresUpdateRequest,
-  ArtifactStoresUpdateResponse,
-  ArtifactStoresUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ArtifactStoresUpdateRequest,
-  output: ArtifactStoresUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ComponentsGetError = AzureOpError;
-/** Gets information about the specified application instance resource. */
-export const ComponentsGet: API.OperationMethod<
-  ComponentsGetRequest,
-  ComponentsGetResponse,
-  ComponentsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ComponentsGetRequest,
-  output: ComponentsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ComponentsListByNetworkFunctionError = AzureOpError;
-/** Lists all the component resources in a network function. */
-export const ComponentsListByNetworkFunction: API.OperationMethod<
-  ComponentsListByNetworkFunctionRequest,
-  ComponentListResult,
-  ComponentsListByNetworkFunctionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ComponentsListByNetworkFunctionRequest,
-  output: ComponentListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ConfigurationGroupSchemasCreateOrUpdateError = AzureOpError;
 /** Creates or updates a configuration group schema. */
 export const ConfigurationGroupSchemasCreateOrUpdate: API.OperationMethod<
@@ -7958,81 +7699,6 @@ export const ConfigurationGroupSchemasCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ConfigurationGroupSchemasCreateOrUpdateRequest,
   output: ConfigurationGroupSchemasCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ConfigurationGroupSchemasDeleteError = AzureOpError;
-/** Deletes a specified configuration group schema. */
-export const ConfigurationGroupSchemasDelete: API.OperationMethod<
-  ConfigurationGroupSchemasDeleteRequest,
-  ConfigurationGroupSchemasDeleteResponse,
-  ConfigurationGroupSchemasDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConfigurationGroupSchemasDeleteRequest,
-  output: ConfigurationGroupSchemasDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ConfigurationGroupSchemasGetError = AzureOpError;
-/** Gets information about the specified configuration group schema. */
-export const ConfigurationGroupSchemasGet: API.OperationMethod<
-  ConfigurationGroupSchemasGetRequest,
-  ConfigurationGroupSchemasGetResponse,
-  ConfigurationGroupSchemasGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConfigurationGroupSchemasGetRequest,
-  output: ConfigurationGroupSchemasGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ConfigurationGroupSchemasListByPublisherError = AzureOpError;
-/** Gets information of the configuration group schemas under a publisher. */
-export const ConfigurationGroupSchemasListByPublisher: API.OperationMethod<
-  ConfigurationGroupSchemasListByPublisherRequest,
-  ConfigurationGroupSchemaListResult,
-  ConfigurationGroupSchemasListByPublisherError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConfigurationGroupSchemasListByPublisherRequest,
-  output: ConfigurationGroupSchemaListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ConfigurationGroupSchemasUpdateError = AzureOpError;
-/** Updates a configuration group schema resource. */
-export const ConfigurationGroupSchemasUpdate: API.OperationMethod<
-  ConfigurationGroupSchemasUpdateRequest,
-  ConfigurationGroupSchemasUpdateResponse,
-  ConfigurationGroupSchemasUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConfigurationGroupSchemasUpdateRequest,
-  output: ConfigurationGroupSchemasUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ConfigurationGroupSchemasUpdateStateError = AzureOpError;
-/** Update configuration group schema state. */
-export const ConfigurationGroupSchemasUpdateState: API.OperationMethod<
-  ConfigurationGroupSchemasUpdateStateRequest,
-  ConfigurationGroupSchemaVersionUpdateState,
-  ConfigurationGroupSchemasUpdateStateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConfigurationGroupSchemasUpdateStateRequest,
-  output: ConfigurationGroupSchemaVersionUpdateState,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -8053,76 +7719,771 @@ export const ConfigurationGroupValuesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ConfigurationGroupValuesDeleteError = AzureOpError;
+export type DeleteArtifactManifestError = AzureOpError;
+/** Deletes the specified artifact manifest. */
+export const DeleteArtifactManifest: API.OperationMethod<
+  DeleteArtifactManifestRequest,
+  DeleteArtifactManifestResponse,
+  DeleteArtifactManifestError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteArtifactManifestRequest,
+  output: DeleteArtifactManifestResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteArtifactStoreError = AzureOpError;
+/** Deletes the specified artifact store. */
+export const DeleteArtifactStore: API.OperationMethod<
+  DeleteArtifactStoreRequest,
+  DeleteArtifactStoreResponse,
+  DeleteArtifactStoreError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteArtifactStoreRequest,
+  output: DeleteArtifactStoreResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteArtifactStoreNetworkFabricControllerEndPointsError =
+  AzureOpError;
+/** Delete network fabric controllers on artifact stores */
+export const DeleteArtifactStoreNetworkFabricControllerEndPoints: API.OperationMethod<
+  DeleteArtifactStoreNetworkFabricControllerEndPointsRequest,
+  DeleteArtifactStoreNetworkFabricControllerEndPointsResponse,
+  DeleteArtifactStoreNetworkFabricControllerEndPointsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteArtifactStoreNetworkFabricControllerEndPointsRequest,
+  output: DeleteArtifactStoreNetworkFabricControllerEndPointsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteConfigurationGroupSchemaError = AzureOpError;
+/** Deletes a specified configuration group schema. */
+export const DeleteConfigurationGroupSchema: API.OperationMethod<
+  DeleteConfigurationGroupSchemaRequest,
+  DeleteConfigurationGroupSchemaResponse,
+  DeleteConfigurationGroupSchemaError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteConfigurationGroupSchemaRequest,
+  output: DeleteConfigurationGroupSchemaResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteConfigurationGroupValueError = AzureOpError;
 /** Deletes the specified hybrid configuration group value. */
-export const ConfigurationGroupValuesDelete: API.OperationMethod<
-  ConfigurationGroupValuesDeleteRequest,
-  ConfigurationGroupValuesDeleteResponse,
-  ConfigurationGroupValuesDeleteError,
+export const DeleteConfigurationGroupValue: API.OperationMethod<
+  DeleteConfigurationGroupValueRequest,
+  DeleteConfigurationGroupValueResponse,
+  DeleteConfigurationGroupValueError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ConfigurationGroupValuesDeleteRequest,
-  output: ConfigurationGroupValuesDeleteResponse,
+  input: DeleteConfigurationGroupValueRequest,
+  output: DeleteConfigurationGroupValueResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ConfigurationGroupValuesGetError = AzureOpError;
+export type DeleteNetworkFunctionError = AzureOpError;
+/** Deletes the specified network function resource. */
+export const DeleteNetworkFunction: API.OperationMethod<
+  DeleteNetworkFunctionRequest,
+  DeleteNetworkFunctionResponse,
+  DeleteNetworkFunctionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteNetworkFunctionRequest,
+  output: DeleteNetworkFunctionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteNetworkFunctionDefinitionGroupError = AzureOpError;
+/** Deletes a specified network function definition group. */
+export const DeleteNetworkFunctionDefinitionGroup: API.OperationMethod<
+  DeleteNetworkFunctionDefinitionGroupRequest,
+  DeleteNetworkFunctionDefinitionGroupResponse,
+  DeleteNetworkFunctionDefinitionGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteNetworkFunctionDefinitionGroupRequest,
+  output: DeleteNetworkFunctionDefinitionGroupResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteNetworkFunctionDefinitionVersionError = AzureOpError;
+/** Deletes the specified network function definition version. */
+export const DeleteNetworkFunctionDefinitionVersion: API.OperationMethod<
+  DeleteNetworkFunctionDefinitionVersionRequest,
+  DeleteNetworkFunctionDefinitionVersionResponse,
+  DeleteNetworkFunctionDefinitionVersionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteNetworkFunctionDefinitionVersionRequest,
+  output: DeleteNetworkFunctionDefinitionVersionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteNetworkServiceDesignGroupError = AzureOpError;
+/** Deletes a specified network service design group. */
+export const DeleteNetworkServiceDesignGroup: API.OperationMethod<
+  DeleteNetworkServiceDesignGroupRequest,
+  DeleteNetworkServiceDesignGroupResponse,
+  DeleteNetworkServiceDesignGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteNetworkServiceDesignGroupRequest,
+  output: DeleteNetworkServiceDesignGroupResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteNetworkServiceDesignVersionError = AzureOpError;
+/** Deletes the specified network service design version. */
+export const DeleteNetworkServiceDesignVersion: API.OperationMethod<
+  DeleteNetworkServiceDesignVersionRequest,
+  DeleteNetworkServiceDesignVersionResponse,
+  DeleteNetworkServiceDesignVersionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteNetworkServiceDesignVersionRequest,
+  output: DeleteNetworkServiceDesignVersionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeletePublisherError = AzureOpError;
+/** Deletes the specified publisher. */
+export const DeletePublisher: API.OperationMethod<
+  DeletePublisherRequest,
+  DeletePublisherResponse,
+  DeletePublisherError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeletePublisherRequest,
+  output: DeletePublisherResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteSiteError = AzureOpError;
+/** Deletes the specified network site. */
+export const DeleteSite: API.OperationMethod<
+  DeleteSiteRequest,
+  DeleteSiteResponse,
+  DeleteSiteError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteSiteRequest,
+  output: DeleteSiteResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteSiteNetworkServiceError = AzureOpError;
+/** Deletes the specified site network service. */
+export const DeleteSiteNetworkService: API.OperationMethod<
+  DeleteSiteNetworkServiceRequest,
+  DeleteSiteNetworkServiceResponse,
+  DeleteSiteNetworkServiceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteSiteNetworkServiceRequest,
+  output: DeleteSiteNetworkServiceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ExecuteNetworkFunctionRequestError = AzureOpError;
+/** Execute a request to services on a containerized network function. */
+export const ExecuteNetworkFunctionRequest: API.OperationMethod<
+  ExecuteNetworkFunctionRequestRequest,
+  ExecuteNetworkFunctionRequestResponse,
+  ExecuteNetworkFunctionRequestError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ExecuteNetworkFunctionRequestRequest,
+  output: ExecuteNetworkFunctionRequestResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetArtifactManifestError = AzureOpError;
+/** Gets information about a artifact manifest resource. */
+export const GetArtifactManifest: API.OperationMethod<
+  GetArtifactManifestRequest,
+  GetArtifactManifestResponse,
+  GetArtifactManifestError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetArtifactManifestRequest,
+  output: GetArtifactManifestResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetArtifactStoreError = AzureOpError;
+/** Gets information about the specified artifact store. */
+export const GetArtifactStore: API.OperationMethod<
+  GetArtifactStoreRequest,
+  GetArtifactStoreResponse,
+  GetArtifactStoreError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetArtifactStoreRequest,
+  output: GetArtifactStoreResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetComponentError = AzureOpError;
+/** Gets information about the specified application instance resource. */
+export const GetComponent: API.OperationMethod<
+  GetComponentRequest,
+  GetComponentResponse,
+  GetComponentError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetComponentRequest,
+  output: GetComponentResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetConfigurationGroupSchemaError = AzureOpError;
+/** Gets information about the specified configuration group schema. */
+export const GetConfigurationGroupSchema: API.OperationMethod<
+  GetConfigurationGroupSchemaRequest,
+  GetConfigurationGroupSchemaResponse,
+  GetConfigurationGroupSchemaError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetConfigurationGroupSchemaRequest,
+  output: GetConfigurationGroupSchemaResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetConfigurationGroupValueError = AzureOpError;
 /** Gets information about the specified hybrid configuration group values. */
-export const ConfigurationGroupValuesGet: API.OperationMethod<
-  ConfigurationGroupValuesGetRequest,
-  ConfigurationGroupValuesGetResponse,
-  ConfigurationGroupValuesGetError,
+export const GetConfigurationGroupValue: API.OperationMethod<
+  GetConfigurationGroupValueRequest,
+  GetConfigurationGroupValueResponse,
+  GetConfigurationGroupValueError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ConfigurationGroupValuesGetRequest,
-  output: ConfigurationGroupValuesGetResponse,
+  input: GetConfigurationGroupValueRequest,
+  output: GetConfigurationGroupValueResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ConfigurationGroupValuesListByResourceGroupError = AzureOpError;
+export type GetNetworkFunctionError = AzureOpError;
+/** Gets information about the specified network function resource. */
+export const GetNetworkFunction: API.OperationMethod<
+  GetNetworkFunctionRequest,
+  GetNetworkFunctionResponse,
+  GetNetworkFunctionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetNetworkFunctionRequest,
+  output: GetNetworkFunctionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetNetworkFunctionDefinitionGroupError = AzureOpError;
+/** Gets information about the specified networkFunctionDefinition group. */
+export const GetNetworkFunctionDefinitionGroup: API.OperationMethod<
+  GetNetworkFunctionDefinitionGroupRequest,
+  GetNetworkFunctionDefinitionGroupResponse,
+  GetNetworkFunctionDefinitionGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetNetworkFunctionDefinitionGroupRequest,
+  output: GetNetworkFunctionDefinitionGroupResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetNetworkFunctionDefinitionVersionError = AzureOpError;
+/** Gets information about a network function definition version. */
+export const GetNetworkFunctionDefinitionVersion: API.OperationMethod<
+  GetNetworkFunctionDefinitionVersionRequest,
+  GetNetworkFunctionDefinitionVersionResponse,
+  GetNetworkFunctionDefinitionVersionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetNetworkFunctionDefinitionVersionRequest,
+  output: GetNetworkFunctionDefinitionVersionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetNetworkServiceDesignGroupError = AzureOpError;
+/** Gets information about the specified networkServiceDesign group. */
+export const GetNetworkServiceDesignGroup: API.OperationMethod<
+  GetNetworkServiceDesignGroupRequest,
+  GetNetworkServiceDesignGroupResponse,
+  GetNetworkServiceDesignGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetNetworkServiceDesignGroupRequest,
+  output: GetNetworkServiceDesignGroupResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetNetworkServiceDesignVersionError = AzureOpError;
+/** Gets information about a network service design version. */
+export const GetNetworkServiceDesignVersion: API.OperationMethod<
+  GetNetworkServiceDesignVersionRequest,
+  GetNetworkServiceDesignVersionResponse,
+  GetNetworkServiceDesignVersionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetNetworkServiceDesignVersionRequest,
+  output: GetNetworkServiceDesignVersionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetProxyArtifactError = AzureOpError;
+/** Get a Artifact overview information. */
+export const GetProxyArtifact: API.OperationMethod<
+  GetProxyArtifactRequest,
+  ProxyArtifactVersionsOverviewListResult,
+  GetProxyArtifactError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetProxyArtifactRequest,
+  output: ProxyArtifactVersionsOverviewListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPublisherError = AzureOpError;
+/** Gets information about the specified publisher. */
+export const GetPublisher: API.OperationMethod<
+  GetPublisherRequest,
+  GetPublisherResponse,
+  GetPublisherError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPublisherRequest,
+  output: GetPublisherResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSiteError = AzureOpError;
+/** Gets information about the specified network site. */
+export const GetSite: API.OperationMethod<
+  GetSiteRequest,
+  GetSiteResponse,
+  GetSiteError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSiteRequest,
+  output: GetSiteResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSiteNetworkServiceError = AzureOpError;
+/** Gets information about the specified site network service. */
+export const GetSiteNetworkService: API.OperationMethod<
+  GetSiteNetworkServiceRequest,
+  GetSiteNetworkServiceResponse,
+  GetSiteNetworkServiceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSiteNetworkServiceRequest,
+  output: GetSiteNetworkServiceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListArtifactManifestByArtifactStoreError = AzureOpError;
+/** Gets information about the artifact manifest. */
+export const ListArtifactManifestByArtifactStore: API.OperationMethod<
+  ListArtifactManifestByArtifactStoreRequest,
+  ArtifactManifestListResult,
+  ListArtifactManifestByArtifactStoreError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListArtifactManifestByArtifactStoreRequest,
+  output: ArtifactManifestListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListArtifactManifestCredentialError = AzureOpError;
+/** List credential for publishing artifacts defined in artifact manifest. */
+export const ListArtifactManifestCredential: API.OperationMethod<
+  ListArtifactManifestCredentialRequest,
+  ListArtifactManifestCredentialResponse,
+  ListArtifactManifestCredentialError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListArtifactManifestCredentialRequest,
+  output: ListArtifactManifestCredentialResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListArtifactStoreByPublisherError = AzureOpError;
+/** Gets information of the ArtifactStores under publisher. */
+export const ListArtifactStoreByPublisher: API.OperationMethod<
+  ListArtifactStoreByPublisherRequest,
+  ArtifactStoreListResult,
+  ListArtifactStoreByPublisherError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListArtifactStoreByPublisherRequest,
+  output: ArtifactStoreListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListArtifactStoreNetworkFabricControllerPrivateEndPointsError =
+  AzureOpError;
+/** List network fabric controllers to artifact stores */
+export const ListArtifactStoreNetworkFabricControllerPrivateEndPoints: API.OperationMethod<
+  ListArtifactStoreNetworkFabricControllerPrivateEndPointsRequest,
+  ArtifactStoreNetworkFabricControllerEndPointsList,
+  ListArtifactStoreNetworkFabricControllerPrivateEndPointsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListArtifactStoreNetworkFabricControllerPrivateEndPointsRequest,
+  output: ArtifactStoreNetworkFabricControllerEndPointsList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListArtifactStorePrivateEndPointsError = AzureOpError;
+/** List manual private endpoints on artifact stores */
+export const ListArtifactStorePrivateEndPoints: API.OperationMethod<
+  ListArtifactStorePrivateEndPointsRequest,
+  ArtifactStorePrivateEndPointsListResult,
+  ListArtifactStorePrivateEndPointsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListArtifactStorePrivateEndPointsRequest,
+  output: ArtifactStorePrivateEndPointsListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListComponentByNetworkFunctionError = AzureOpError;
+/** Lists all the component resources in a network function. */
+export const ListComponentByNetworkFunction: API.OperationMethod<
+  ListComponentByNetworkFunctionRequest,
+  ComponentListResult,
+  ListComponentByNetworkFunctionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListComponentByNetworkFunctionRequest,
+  output: ComponentListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListConfigurationGroupSchemaByPublisherError = AzureOpError;
+/** Gets information of the configuration group schemas under a publisher. */
+export const ListConfigurationGroupSchemaByPublisher: API.OperationMethod<
+  ListConfigurationGroupSchemaByPublisherRequest,
+  ConfigurationGroupSchemaListResult,
+  ListConfigurationGroupSchemaByPublisherError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListConfigurationGroupSchemaByPublisherRequest,
+  output: ConfigurationGroupSchemaListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListConfigurationGroupValueByResourceGroupError = AzureOpError;
 /** Lists all the hybrid network configurationGroupValues in a resource group. */
-export const ConfigurationGroupValuesListByResourceGroup: API.OperationMethod<
-  ConfigurationGroupValuesListByResourceGroupRequest,
+export const ListConfigurationGroupValueByResourceGroup: API.OperationMethod<
+  ListConfigurationGroupValueByResourceGroupRequest,
   ConfigurationGroupValueListResult,
-  ConfigurationGroupValuesListByResourceGroupError,
+  ListConfigurationGroupValueByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ConfigurationGroupValuesListByResourceGroupRequest,
+  input: ListConfigurationGroupValueByResourceGroupRequest,
   output: ConfigurationGroupValueListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ConfigurationGroupValuesListBySubscriptionError = AzureOpError;
+export type ListConfigurationGroupValueBySubscriptionError = AzureOpError;
 /** Lists all sites in the configuration group value in a subscription. */
-export const ConfigurationGroupValuesListBySubscription: API.OperationMethod<
-  ConfigurationGroupValuesListBySubscriptionRequest,
+export const ListConfigurationGroupValueBySubscription: API.OperationMethod<
+  ListConfigurationGroupValueBySubscriptionRequest,
   ConfigurationGroupValueListResult,
-  ConfigurationGroupValuesListBySubscriptionError,
+  ListConfigurationGroupValueBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ConfigurationGroupValuesListBySubscriptionRequest,
+  input: ListConfigurationGroupValueBySubscriptionRequest,
   output: ConfigurationGroupValueListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ConfigurationGroupValuesUpdateTagsError = AzureOpError;
-/** Updates a hybrid configuration group tags. */
-export const ConfigurationGroupValuesUpdateTags: API.OperationMethod<
-  ConfigurationGroupValuesUpdateTagsRequest,
-  ConfigurationGroupValuesUpdateTagsResponse,
-  ConfigurationGroupValuesUpdateTagsError,
+export type ListNetworkFunctionByResourceGroupError = AzureOpError;
+/** Lists all the network function resources in a resource group. */
+export const ListNetworkFunctionByResourceGroup: API.OperationMethod<
+  ListNetworkFunctionByResourceGroupRequest,
+  NetworkFunctionListResult,
+  ListNetworkFunctionByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ConfigurationGroupValuesUpdateTagsRequest,
-  output: ConfigurationGroupValuesUpdateTagsResponse,
+  input: ListNetworkFunctionByResourceGroupRequest,
+  output: NetworkFunctionListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListNetworkFunctionBySubscriptionError = AzureOpError;
+/** Lists all the network functions in a subscription. */
+export const ListNetworkFunctionBySubscription: API.OperationMethod<
+  ListNetworkFunctionBySubscriptionRequest,
+  NetworkFunctionListResult,
+  ListNetworkFunctionBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListNetworkFunctionBySubscriptionRequest,
+  output: NetworkFunctionListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListNetworkFunctionDefinitionGroupByPublisherError = AzureOpError;
+/** Gets information of the network function definition groups under a publisher. */
+export const ListNetworkFunctionDefinitionGroupByPublisher: API.OperationMethod<
+  ListNetworkFunctionDefinitionGroupByPublisherRequest,
+  NetworkFunctionDefinitionGroupListResult,
+  ListNetworkFunctionDefinitionGroupByPublisherError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListNetworkFunctionDefinitionGroupByPublisherRequest,
+  output: NetworkFunctionDefinitionGroupListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListNetworkFunctionDefinitionVersionByNetworkFunctionDefinitionGroupError =
+  AzureOpError;
+/** Gets information about a list of network function definition versions under a network function definition group. */
+export const ListNetworkFunctionDefinitionVersionByNetworkFunctionDefinitionGroup: API.OperationMethod<
+  ListNetworkFunctionDefinitionVersionByNetworkFunctionDefinitionGroupRequest,
+  NetworkFunctionDefinitionVersionListResult,
+  ListNetworkFunctionDefinitionVersionByNetworkFunctionDefinitionGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input:
+    ListNetworkFunctionDefinitionVersionByNetworkFunctionDefinitionGroupRequest,
+  output: NetworkFunctionDefinitionVersionListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListNetworkServiceDesignGroupByPublisherError = AzureOpError;
+/** Gets information of the network service design groups under a publisher. */
+export const ListNetworkServiceDesignGroupByPublisher: API.OperationMethod<
+  ListNetworkServiceDesignGroupByPublisherRequest,
+  NetworkServiceDesignGroupListResult,
+  ListNetworkServiceDesignGroupByPublisherError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListNetworkServiceDesignGroupByPublisherRequest,
+  output: NetworkServiceDesignGroupListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListNetworkServiceDesignVersionByNetworkServiceDesignGroupError =
+  AzureOpError;
+/** Gets information about a list of network service design versions under a network service design group. */
+export const ListNetworkServiceDesignVersionByNetworkServiceDesignGroup: API.OperationMethod<
+  ListNetworkServiceDesignVersionByNetworkServiceDesignGroupRequest,
+  NetworkServiceDesignVersionListResult,
+  ListNetworkServiceDesignVersionByNetworkServiceDesignGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListNetworkServiceDesignVersionByNetworkServiceDesignGroupRequest,
+  output: NetworkServiceDesignVersionListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOperationsError = AzureOpError;
+/** Gets a list of the operations. */
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  ListOperationsResponse,
+  ListOperationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOperationsRequest,
+  output: ListOperationsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListProxyArtifactError = AzureOpError;
+/** Lists all the available artifacts in the parent Artifact Store. */
+export const ListProxyArtifact: API.OperationMethod<
+  ListProxyArtifactRequest,
+  ProxyArtifactOverviewListResult,
+  ListProxyArtifactError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListProxyArtifactRequest,
+  output: ProxyArtifactOverviewListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPublisherByResourceGroupError = AzureOpError;
+/** Lists all the publishers in a resource group. */
+export const ListPublisherByResourceGroup: API.OperationMethod<
+  ListPublisherByResourceGroupRequest,
+  PublisherListResult,
+  ListPublisherByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPublisherByResourceGroupRequest,
+  output: PublisherListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPublisherBySubscriptionError = AzureOpError;
+/** Lists all the publishers in a subscription. */
+export const ListPublisherBySubscription: API.OperationMethod<
+  ListPublisherBySubscriptionRequest,
+  PublisherListResult,
+  ListPublisherBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPublisherBySubscriptionRequest,
+  output: PublisherListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSiteByResourceGroupError = AzureOpError;
+/** Lists all sites in the network service. */
+export const ListSiteByResourceGroup: API.OperationMethod<
+  ListSiteByResourceGroupRequest,
+  SiteListResult,
+  ListSiteByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSiteByResourceGroupRequest,
+  output: SiteListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSiteBySubscriptionError = AzureOpError;
+/** Lists all sites in the network service in a subscription. */
+export const ListSiteBySubscription: API.OperationMethod<
+  ListSiteBySubscriptionRequest,
+  SiteListResult,
+  ListSiteBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSiteBySubscriptionRequest,
+  output: SiteListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSiteNetworkServiceByResourceGroupError = AzureOpError;
+/** Lists all site network services. */
+export const ListSiteNetworkServiceByResourceGroup: API.OperationMethod<
+  ListSiteNetworkServiceByResourceGroupRequest,
+  SiteNetworkServiceListResult,
+  ListSiteNetworkServiceByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSiteNetworkServiceByResourceGroupRequest,
+  output: SiteNetworkServiceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSiteNetworkServiceBySubscriptionError = AzureOpError;
+/** Lists all sites in the network service in a subscription. */
+export const ListSiteNetworkServiceBySubscription: API.OperationMethod<
+  ListSiteNetworkServiceBySubscriptionRequest,
+  SiteNetworkServiceListResult,
+  ListSiteNetworkServiceBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSiteNetworkServiceBySubscriptionRequest,
+  output: SiteNetworkServiceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -8143,66 +8504,6 @@ export const NetworkFunctionDefinitionGroupsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type NetworkFunctionDefinitionGroupsDeleteError = AzureOpError;
-/** Deletes a specified network function definition group. */
-export const NetworkFunctionDefinitionGroupsDelete: API.OperationMethod<
-  NetworkFunctionDefinitionGroupsDeleteRequest,
-  NetworkFunctionDefinitionGroupsDeleteResponse,
-  NetworkFunctionDefinitionGroupsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NetworkFunctionDefinitionGroupsDeleteRequest,
-  output: NetworkFunctionDefinitionGroupsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NetworkFunctionDefinitionGroupsGetError = AzureOpError;
-/** Gets information about the specified networkFunctionDefinition group. */
-export const NetworkFunctionDefinitionGroupsGet: API.OperationMethod<
-  NetworkFunctionDefinitionGroupsGetRequest,
-  NetworkFunctionDefinitionGroupsGetResponse,
-  NetworkFunctionDefinitionGroupsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NetworkFunctionDefinitionGroupsGetRequest,
-  output: NetworkFunctionDefinitionGroupsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NetworkFunctionDefinitionGroupsListByPublisherError = AzureOpError;
-/** Gets information of the network function definition groups under a publisher. */
-export const NetworkFunctionDefinitionGroupsListByPublisher: API.OperationMethod<
-  NetworkFunctionDefinitionGroupsListByPublisherRequest,
-  NetworkFunctionDefinitionGroupListResult,
-  NetworkFunctionDefinitionGroupsListByPublisherError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NetworkFunctionDefinitionGroupsListByPublisherRequest,
-  output: NetworkFunctionDefinitionGroupListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NetworkFunctionDefinitionGroupsUpdateError = AzureOpError;
-/** Updates a network function definition group resource. */
-export const NetworkFunctionDefinitionGroupsUpdate: API.OperationMethod<
-  NetworkFunctionDefinitionGroupsUpdateRequest,
-  NetworkFunctionDefinitionGroupsUpdateResponse,
-  NetworkFunctionDefinitionGroupsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NetworkFunctionDefinitionGroupsUpdateRequest,
-  output: NetworkFunctionDefinitionGroupsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type NetworkFunctionDefinitionVersionsCreateOrUpdateError = AzureOpError;
 /** Creates or updates a network function definition version. */
 export const NetworkFunctionDefinitionVersionsCreateOrUpdate: API.OperationMethod<
@@ -8213,83 +8514,6 @@ export const NetworkFunctionDefinitionVersionsCreateOrUpdate: API.OperationMetho
 > = /*@__PURE__*/ API.make(() => ({
   input: NetworkFunctionDefinitionVersionsCreateOrUpdateRequest,
   output: NetworkFunctionDefinitionVersionsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NetworkFunctionDefinitionVersionsDeleteError = AzureOpError;
-/** Deletes the specified network function definition version. */
-export const NetworkFunctionDefinitionVersionsDelete: API.OperationMethod<
-  NetworkFunctionDefinitionVersionsDeleteRequest,
-  NetworkFunctionDefinitionVersionsDeleteResponse,
-  NetworkFunctionDefinitionVersionsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NetworkFunctionDefinitionVersionsDeleteRequest,
-  output: NetworkFunctionDefinitionVersionsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NetworkFunctionDefinitionVersionsGetError = AzureOpError;
-/** Gets information about a network function definition version. */
-export const NetworkFunctionDefinitionVersionsGet: API.OperationMethod<
-  NetworkFunctionDefinitionVersionsGetRequest,
-  NetworkFunctionDefinitionVersionsGetResponse,
-  NetworkFunctionDefinitionVersionsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NetworkFunctionDefinitionVersionsGetRequest,
-  output: NetworkFunctionDefinitionVersionsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NetworkFunctionDefinitionVersionsListByNetworkFunctionDefinitionGroupError =
-  AzureOpError;
-/** Gets information about a list of network function definition versions under a network function definition group. */
-export const NetworkFunctionDefinitionVersionsListByNetworkFunctionDefinitionGroup: API.OperationMethod<
-  NetworkFunctionDefinitionVersionsListByNetworkFunctionDefinitionGroupRequest,
-  NetworkFunctionDefinitionVersionListResult,
-  NetworkFunctionDefinitionVersionsListByNetworkFunctionDefinitionGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input:
-    NetworkFunctionDefinitionVersionsListByNetworkFunctionDefinitionGroupRequest,
-  output: NetworkFunctionDefinitionVersionListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NetworkFunctionDefinitionVersionsUpdateError = AzureOpError;
-/** Updates a network function definition version resource. */
-export const NetworkFunctionDefinitionVersionsUpdate: API.OperationMethod<
-  NetworkFunctionDefinitionVersionsUpdateRequest,
-  NetworkFunctionDefinitionVersionsUpdateResponse,
-  NetworkFunctionDefinitionVersionsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NetworkFunctionDefinitionVersionsUpdateRequest,
-  output: NetworkFunctionDefinitionVersionsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NetworkFunctionDefinitionVersionsUpdateStateError = AzureOpError;
-/** Update network function definition version state. */
-export const NetworkFunctionDefinitionVersionsUpdateState: API.OperationMethod<
-  NetworkFunctionDefinitionVersionsUpdateStateRequest,
-  NetworkFunctionDefinitionVersionUpdateState,
-  NetworkFunctionDefinitionVersionsUpdateStateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NetworkFunctionDefinitionVersionsUpdateStateRequest,
-  output: NetworkFunctionDefinitionVersionUpdateState,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -8310,96 +8534,6 @@ export const NetworkFunctionsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type NetworkFunctionsDeleteError = AzureOpError;
-/** Deletes the specified network function resource. */
-export const NetworkFunctionsDelete: API.OperationMethod<
-  NetworkFunctionsDeleteRequest,
-  NetworkFunctionsDeleteResponse,
-  NetworkFunctionsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NetworkFunctionsDeleteRequest,
-  output: NetworkFunctionsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NetworkFunctionsExecuteRequestError = AzureOpError;
-/** Execute a request to services on a containerized network function. */
-export const NetworkFunctionsExecuteRequest: API.OperationMethod<
-  NetworkFunctionsExecuteRequestRequest,
-  NetworkFunctionsExecuteRequestResponse,
-  NetworkFunctionsExecuteRequestError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NetworkFunctionsExecuteRequestRequest,
-  output: NetworkFunctionsExecuteRequestResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NetworkFunctionsGetError = AzureOpError;
-/** Gets information about the specified network function resource. */
-export const NetworkFunctionsGet: API.OperationMethod<
-  NetworkFunctionsGetRequest,
-  NetworkFunctionsGetResponse,
-  NetworkFunctionsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NetworkFunctionsGetRequest,
-  output: NetworkFunctionsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NetworkFunctionsListByResourceGroupError = AzureOpError;
-/** Lists all the network function resources in a resource group. */
-export const NetworkFunctionsListByResourceGroup: API.OperationMethod<
-  NetworkFunctionsListByResourceGroupRequest,
-  NetworkFunctionListResult,
-  NetworkFunctionsListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NetworkFunctionsListByResourceGroupRequest,
-  output: NetworkFunctionListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NetworkFunctionsListBySubscriptionError = AzureOpError;
-/** Lists all the network functions in a subscription. */
-export const NetworkFunctionsListBySubscription: API.OperationMethod<
-  NetworkFunctionsListBySubscriptionRequest,
-  NetworkFunctionListResult,
-  NetworkFunctionsListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NetworkFunctionsListBySubscriptionRequest,
-  output: NetworkFunctionListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NetworkFunctionsUpdateTagsError = AzureOpError;
-/** Updates the tags for the network function resource. */
-export const NetworkFunctionsUpdateTags: API.OperationMethod<
-  NetworkFunctionsUpdateTagsRequest,
-  NetworkFunctionsUpdateTagsResponse,
-  NetworkFunctionsUpdateTagsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NetworkFunctionsUpdateTagsRequest,
-  output: NetworkFunctionsUpdateTagsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type NetworkServiceDesignGroupsCreateOrUpdateError = AzureOpError;
 /** Creates or updates a network service design group. */
 export const NetworkServiceDesignGroupsCreateOrUpdate: API.OperationMethod<
@@ -8410,66 +8544,6 @@ export const NetworkServiceDesignGroupsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: NetworkServiceDesignGroupsCreateOrUpdateRequest,
   output: NetworkServiceDesignGroupsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NetworkServiceDesignGroupsDeleteError = AzureOpError;
-/** Deletes a specified network service design group. */
-export const NetworkServiceDesignGroupsDelete: API.OperationMethod<
-  NetworkServiceDesignGroupsDeleteRequest,
-  NetworkServiceDesignGroupsDeleteResponse,
-  NetworkServiceDesignGroupsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NetworkServiceDesignGroupsDeleteRequest,
-  output: NetworkServiceDesignGroupsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NetworkServiceDesignGroupsGetError = AzureOpError;
-/** Gets information about the specified networkServiceDesign group. */
-export const NetworkServiceDesignGroupsGet: API.OperationMethod<
-  NetworkServiceDesignGroupsGetRequest,
-  NetworkServiceDesignGroupsGetResponse,
-  NetworkServiceDesignGroupsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NetworkServiceDesignGroupsGetRequest,
-  output: NetworkServiceDesignGroupsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NetworkServiceDesignGroupsListByPublisherError = AzureOpError;
-/** Gets information of the network service design groups under a publisher. */
-export const NetworkServiceDesignGroupsListByPublisher: API.OperationMethod<
-  NetworkServiceDesignGroupsListByPublisherRequest,
-  NetworkServiceDesignGroupListResult,
-  NetworkServiceDesignGroupsListByPublisherError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NetworkServiceDesignGroupsListByPublisherRequest,
-  output: NetworkServiceDesignGroupListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NetworkServiceDesignGroupsUpdateError = AzureOpError;
-/** Updates a network service design groups resource. */
-export const NetworkServiceDesignGroupsUpdate: API.OperationMethod<
-  NetworkServiceDesignGroupsUpdateRequest,
-  NetworkServiceDesignGroupsUpdateResponse,
-  NetworkServiceDesignGroupsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NetworkServiceDesignGroupsUpdateRequest,
-  output: NetworkServiceDesignGroupsUpdateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -8490,142 +8564,6 @@ export const NetworkServiceDesignVersionsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type NetworkServiceDesignVersionsDeleteError = AzureOpError;
-/** Deletes the specified network service design version. */
-export const NetworkServiceDesignVersionsDelete: API.OperationMethod<
-  NetworkServiceDesignVersionsDeleteRequest,
-  NetworkServiceDesignVersionsDeleteResponse,
-  NetworkServiceDesignVersionsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NetworkServiceDesignVersionsDeleteRequest,
-  output: NetworkServiceDesignVersionsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NetworkServiceDesignVersionsGetError = AzureOpError;
-/** Gets information about a network service design version. */
-export const NetworkServiceDesignVersionsGet: API.OperationMethod<
-  NetworkServiceDesignVersionsGetRequest,
-  NetworkServiceDesignVersionsGetResponse,
-  NetworkServiceDesignVersionsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NetworkServiceDesignVersionsGetRequest,
-  output: NetworkServiceDesignVersionsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NetworkServiceDesignVersionsListByNetworkServiceDesignGroupError =
-  AzureOpError;
-/** Gets information about a list of network service design versions under a network service design group. */
-export const NetworkServiceDesignVersionsListByNetworkServiceDesignGroup: API.OperationMethod<
-  NetworkServiceDesignVersionsListByNetworkServiceDesignGroupRequest,
-  NetworkServiceDesignVersionListResult,
-  NetworkServiceDesignVersionsListByNetworkServiceDesignGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NetworkServiceDesignVersionsListByNetworkServiceDesignGroupRequest,
-  output: NetworkServiceDesignVersionListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NetworkServiceDesignVersionsUpdateError = AzureOpError;
-/** Updates a network service design version resource. */
-export const NetworkServiceDesignVersionsUpdate: API.OperationMethod<
-  NetworkServiceDesignVersionsUpdateRequest,
-  NetworkServiceDesignVersionsUpdateResponse,
-  NetworkServiceDesignVersionsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NetworkServiceDesignVersionsUpdateRequest,
-  output: NetworkServiceDesignVersionsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NetworkServiceDesignVersionsUpdateStateError = AzureOpError;
-/** Update network service design version state. */
-export const NetworkServiceDesignVersionsUpdateState: API.OperationMethod<
-  NetworkServiceDesignVersionsUpdateStateRequest,
-  NetworkServiceDesignVersionUpdateState,
-  NetworkServiceDesignVersionsUpdateStateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NetworkServiceDesignVersionsUpdateStateRequest,
-  output: NetworkServiceDesignVersionUpdateState,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OperationsListError = AzureOpError;
-/** Gets a list of the operations. */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationsListResponse,
-  OperationsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
-  output: OperationsListResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ProxyArtifactGetError = AzureOpError;
-/** Get a Artifact overview information. */
-export const ProxyArtifactGet: API.OperationMethod<
-  ProxyArtifactGetRequest,
-  ProxyArtifactVersionsOverviewListResult,
-  ProxyArtifactGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProxyArtifactGetRequest,
-  output: ProxyArtifactVersionsOverviewListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ProxyArtifactListError = AzureOpError;
-/** Lists all the available artifacts in the parent Artifact Store. */
-export const ProxyArtifactList: API.OperationMethod<
-  ProxyArtifactListRequest,
-  ProxyArtifactOverviewListResult,
-  ProxyArtifactListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProxyArtifactListRequest,
-  output: ProxyArtifactOverviewListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ProxyArtifactUpdateStateError = AzureOpError;
-/** Change artifact state defined in artifact store. */
-export const ProxyArtifactUpdateState: API.OperationMethod<
-  ProxyArtifactUpdateStateRequest,
-  ProxyArtifactUpdateStateResponse,
-  ProxyArtifactUpdateStateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProxyArtifactUpdateStateRequest,
-  output: ProxyArtifactUpdateStateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type PublishersCreateOrUpdateError = AzureOpError;
 /** Creates or updates a publisher. */
 export const PublishersCreateOrUpdate: API.OperationMethod<
@@ -8641,76 +8579,16 @@ export const PublishersCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PublishersDeleteError = AzureOpError;
-/** Deletes the specified publisher. */
-export const PublishersDelete: API.OperationMethod<
-  PublishersDeleteRequest,
-  PublishersDeleteResponse,
-  PublishersDeleteError,
+export type RemoveArtifactStorePrivateEndPointsError = AzureOpError;
+/** Remove manual private endpoints on artifact stores */
+export const RemoveArtifactStorePrivateEndPoints: API.OperationMethod<
+  RemoveArtifactStorePrivateEndPointsRequest,
+  RemoveArtifactStorePrivateEndPointsResponse,
+  RemoveArtifactStorePrivateEndPointsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PublishersDeleteRequest,
-  output: PublishersDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PublishersGetError = AzureOpError;
-/** Gets information about the specified publisher. */
-export const PublishersGet: API.OperationMethod<
-  PublishersGetRequest,
-  PublishersGetResponse,
-  PublishersGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PublishersGetRequest,
-  output: PublishersGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PublishersListByResourceGroupError = AzureOpError;
-/** Lists all the publishers in a resource group. */
-export const PublishersListByResourceGroup: API.OperationMethod<
-  PublishersListByResourceGroupRequest,
-  PublisherListResult,
-  PublishersListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PublishersListByResourceGroupRequest,
-  output: PublisherListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PublishersListBySubscriptionError = AzureOpError;
-/** Lists all the publishers in a subscription. */
-export const PublishersListBySubscription: API.OperationMethod<
-  PublishersListBySubscriptionRequest,
-  PublisherListResult,
-  PublishersListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PublishersListBySubscriptionRequest,
-  output: PublisherListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PublishersUpdateError = AzureOpError;
-/** Update a publisher resource. */
-export const PublishersUpdate: API.OperationMethod<
-  PublishersUpdateRequest,
-  PublishersUpdateResponse,
-  PublishersUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PublishersUpdateRequest,
-  output: PublishersUpdateResponse,
+  input: RemoveArtifactStorePrivateEndPointsRequest,
+  output: RemoveArtifactStorePrivateEndPointsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -8731,81 +8609,6 @@ export const SiteNetworkServicesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SiteNetworkServicesDeleteError = AzureOpError;
-/** Deletes the specified site network service. */
-export const SiteNetworkServicesDelete: API.OperationMethod<
-  SiteNetworkServicesDeleteRequest,
-  SiteNetworkServicesDeleteResponse,
-  SiteNetworkServicesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SiteNetworkServicesDeleteRequest,
-  output: SiteNetworkServicesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SiteNetworkServicesGetError = AzureOpError;
-/** Gets information about the specified site network service. */
-export const SiteNetworkServicesGet: API.OperationMethod<
-  SiteNetworkServicesGetRequest,
-  SiteNetworkServicesGetResponse,
-  SiteNetworkServicesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SiteNetworkServicesGetRequest,
-  output: SiteNetworkServicesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SiteNetworkServicesListByResourceGroupError = AzureOpError;
-/** Lists all site network services. */
-export const SiteNetworkServicesListByResourceGroup: API.OperationMethod<
-  SiteNetworkServicesListByResourceGroupRequest,
-  SiteNetworkServiceListResult,
-  SiteNetworkServicesListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SiteNetworkServicesListByResourceGroupRequest,
-  output: SiteNetworkServiceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SiteNetworkServicesListBySubscriptionError = AzureOpError;
-/** Lists all sites in the network service in a subscription. */
-export const SiteNetworkServicesListBySubscription: API.OperationMethod<
-  SiteNetworkServicesListBySubscriptionRequest,
-  SiteNetworkServiceListResult,
-  SiteNetworkServicesListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SiteNetworkServicesListBySubscriptionRequest,
-  output: SiteNetworkServiceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SiteNetworkServicesUpdateTagsError = AzureOpError;
-/** Updates a site update tags. */
-export const SiteNetworkServicesUpdateTags: API.OperationMethod<
-  SiteNetworkServicesUpdateTagsRequest,
-  SiteNetworkServicesUpdateTagsResponse,
-  SiteNetworkServicesUpdateTagsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SiteNetworkServicesUpdateTagsRequest,
-  output: SiteNetworkServicesUpdateTagsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type SitesCreateOrUpdateError = AzureOpError;
 /** Creates or updates a network site. */
 export const SitesCreateOrUpdate: API.OperationMethod<
@@ -8821,76 +8624,256 @@ export const SitesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SitesDeleteError = AzureOpError;
-/** Deletes the specified network site. */
-export const SitesDelete: API.OperationMethod<
-  SitesDeleteRequest,
-  SitesDeleteResponse,
-  SitesDeleteError,
+export type UpdateArtifactManifestError = AzureOpError;
+/** Updates a artifact manifest resource. */
+export const UpdateArtifactManifest: API.OperationMethod<
+  UpdateArtifactManifestRequest,
+  UpdateArtifactManifestResponse,
+  UpdateArtifactManifestError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SitesDeleteRequest,
-  output: SitesDeleteResponse,
+  input: UpdateArtifactManifestRequest,
+  output: UpdateArtifactManifestResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type SitesGetError = AzureOpError;
-/** Gets information about the specified network site. */
-export const SitesGet: API.OperationMethod<
-  SitesGetRequest,
-  SitesGetResponse,
-  SitesGetError,
+export type UpdateArtifactManifestStateError = AzureOpError;
+/** Update state for artifact manifest. */
+export const UpdateArtifactManifestState: API.OperationMethod<
+  UpdateArtifactManifestStateRequest,
+  ArtifactManifestUpdateState,
+  UpdateArtifactManifestStateError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SitesGetRequest,
-  output: SitesGetResponse,
+  input: UpdateArtifactManifestStateRequest,
+  output: ArtifactManifestUpdateState,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type SitesListByResourceGroupError = AzureOpError;
-/** Lists all sites in the network service. */
-export const SitesListByResourceGroup: API.OperationMethod<
-  SitesListByResourceGroupRequest,
-  SiteListResult,
-  SitesListByResourceGroupError,
+export type UpdateArtifactStoreError = AzureOpError;
+/** Update artifact store resource. */
+export const UpdateArtifactStore: API.OperationMethod<
+  UpdateArtifactStoreRequest,
+  UpdateArtifactStoreResponse,
+  UpdateArtifactStoreError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SitesListByResourceGroupRequest,
-  output: SiteListResult,
+  input: UpdateArtifactStoreRequest,
+  output: UpdateArtifactStoreResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type SitesListBySubscriptionError = AzureOpError;
-/** Lists all sites in the network service in a subscription. */
-export const SitesListBySubscription: API.OperationMethod<
-  SitesListBySubscriptionRequest,
-  SiteListResult,
-  SitesListBySubscriptionError,
+export type UpdateConfigurationGroupSchemaError = AzureOpError;
+/** Updates a configuration group schema resource. */
+export const UpdateConfigurationGroupSchema: API.OperationMethod<
+  UpdateConfigurationGroupSchemaRequest,
+  UpdateConfigurationGroupSchemaResponse,
+  UpdateConfigurationGroupSchemaError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SitesListBySubscriptionRequest,
-  output: SiteListResult,
+  input: UpdateConfigurationGroupSchemaRequest,
+  output: UpdateConfigurationGroupSchemaResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type SitesUpdateTagsError = AzureOpError;
+export type UpdateConfigurationGroupSchemaStateError = AzureOpError;
+/** Update configuration group schema state. */
+export const UpdateConfigurationGroupSchemaState: API.OperationMethod<
+  UpdateConfigurationGroupSchemaStateRequest,
+  ConfigurationGroupSchemaVersionUpdateState,
+  UpdateConfigurationGroupSchemaStateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateConfigurationGroupSchemaStateRequest,
+  output: ConfigurationGroupSchemaVersionUpdateState,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateConfigurationGroupValueTagsError = AzureOpError;
+/** Updates a hybrid configuration group tags. */
+export const UpdateConfigurationGroupValueTags: API.OperationMethod<
+  UpdateConfigurationGroupValueTagsRequest,
+  UpdateConfigurationGroupValueTagsResponse,
+  UpdateConfigurationGroupValueTagsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateConfigurationGroupValueTagsRequest,
+  output: UpdateConfigurationGroupValueTagsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateNetworkFunctionDefinitionGroupError = AzureOpError;
+/** Updates a network function definition group resource. */
+export const UpdateNetworkFunctionDefinitionGroup: API.OperationMethod<
+  UpdateNetworkFunctionDefinitionGroupRequest,
+  UpdateNetworkFunctionDefinitionGroupResponse,
+  UpdateNetworkFunctionDefinitionGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateNetworkFunctionDefinitionGroupRequest,
+  output: UpdateNetworkFunctionDefinitionGroupResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateNetworkFunctionDefinitionVersionError = AzureOpError;
+/** Updates a network function definition version resource. */
+export const UpdateNetworkFunctionDefinitionVersion: API.OperationMethod<
+  UpdateNetworkFunctionDefinitionVersionRequest,
+  UpdateNetworkFunctionDefinitionVersionResponse,
+  UpdateNetworkFunctionDefinitionVersionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateNetworkFunctionDefinitionVersionRequest,
+  output: UpdateNetworkFunctionDefinitionVersionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateNetworkFunctionDefinitionVersionStateError = AzureOpError;
+/** Update network function definition version state. */
+export const UpdateNetworkFunctionDefinitionVersionState: API.OperationMethod<
+  UpdateNetworkFunctionDefinitionVersionStateRequest,
+  NetworkFunctionDefinitionVersionUpdateState,
+  UpdateNetworkFunctionDefinitionVersionStateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateNetworkFunctionDefinitionVersionStateRequest,
+  output: NetworkFunctionDefinitionVersionUpdateState,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateNetworkFunctionTagsError = AzureOpError;
+/** Updates the tags for the network function resource. */
+export const UpdateNetworkFunctionTags: API.OperationMethod<
+  UpdateNetworkFunctionTagsRequest,
+  UpdateNetworkFunctionTagsResponse,
+  UpdateNetworkFunctionTagsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateNetworkFunctionTagsRequest,
+  output: UpdateNetworkFunctionTagsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateNetworkServiceDesignGroupError = AzureOpError;
+/** Updates a network service design groups resource. */
+export const UpdateNetworkServiceDesignGroup: API.OperationMethod<
+  UpdateNetworkServiceDesignGroupRequest,
+  UpdateNetworkServiceDesignGroupResponse,
+  UpdateNetworkServiceDesignGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateNetworkServiceDesignGroupRequest,
+  output: UpdateNetworkServiceDesignGroupResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateNetworkServiceDesignVersionError = AzureOpError;
+/** Updates a network service design version resource. */
+export const UpdateNetworkServiceDesignVersion: API.OperationMethod<
+  UpdateNetworkServiceDesignVersionRequest,
+  UpdateNetworkServiceDesignVersionResponse,
+  UpdateNetworkServiceDesignVersionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateNetworkServiceDesignVersionRequest,
+  output: UpdateNetworkServiceDesignVersionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateNetworkServiceDesignVersionStateError = AzureOpError;
+/** Update network service design version state. */
+export const UpdateNetworkServiceDesignVersionState: API.OperationMethod<
+  UpdateNetworkServiceDesignVersionStateRequest,
+  NetworkServiceDesignVersionUpdateState,
+  UpdateNetworkServiceDesignVersionStateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateNetworkServiceDesignVersionStateRequest,
+  output: NetworkServiceDesignVersionUpdateState,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateProxyArtifactStateError = AzureOpError;
+/** Change artifact state defined in artifact store. */
+export const UpdateProxyArtifactState: API.OperationMethod<
+  UpdateProxyArtifactStateRequest,
+  UpdateProxyArtifactStateResponse,
+  UpdateProxyArtifactStateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateProxyArtifactStateRequest,
+  output: UpdateProxyArtifactStateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdatePublisherError = AzureOpError;
+/** Update a publisher resource. */
+export const UpdatePublisher: API.OperationMethod<
+  UpdatePublisherRequest,
+  UpdatePublisherResponse,
+  UpdatePublisherError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdatePublisherRequest,
+  output: UpdatePublisherResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateSiteNetworkServiceTagsError = AzureOpError;
 /** Updates a site update tags. */
-export const SitesUpdateTags: API.OperationMethod<
-  SitesUpdateTagsRequest,
-  SitesUpdateTagsResponse,
-  SitesUpdateTagsError,
+export const UpdateSiteNetworkServiceTags: API.OperationMethod<
+  UpdateSiteNetworkServiceTagsRequest,
+  UpdateSiteNetworkServiceTagsResponse,
+  UpdateSiteNetworkServiceTagsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SitesUpdateTagsRequest,
-  output: SitesUpdateTagsResponse,
+  input: UpdateSiteNetworkServiceTagsRequest,
+  output: UpdateSiteNetworkServiceTagsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateSiteTagsError = AzureOpError;
+/** Updates a site update tags. */
+export const UpdateSiteTags: API.OperationMethod<
+  UpdateSiteTagsRequest,
+  UpdateSiteTagsResponse,
+  UpdateSiteTagsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateSiteTagsRequest,
+  output: UpdateSiteTagsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

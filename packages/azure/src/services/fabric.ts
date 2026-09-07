@@ -12,7 +12,7 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export interface FabricCapacitiesCheckNameAvailabilityRequest {
+export interface CheckFabricCapacityNameAvailabilityRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the Azure region. */
@@ -22,7 +22,7 @@ export interface FabricCapacitiesCheckNameAvailabilityRequest {
   /** The resource type. */
   type?: string;
 }
-export const FabricCapacitiesCheckNameAvailabilityRequest =
+export const CheckFabricCapacityNameAvailabilityRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -38,34 +38,66 @@ export const FabricCapacitiesCheckNameAvailabilityRequest =
       }),
     ),
   ).annotate({
-    identifier: "FabricCapacitiesCheckNameAvailabilityRequest",
-  }) as any as S.Schema<FabricCapacitiesCheckNameAvailabilityRequest>;
+    identifier: "CheckFabricCapacityNameAvailabilityRequest",
+  }) as any as S.Schema<CheckFabricCapacityNameAvailabilityRequest>;
 
 /** The reason why the given name is not available. */
-export type FabricCapacitiesCheckNameAvailabilityResponseReason =
+export type CheckFabricCapacityNameAvailabilityResponseReason =
   | "Invalid"
   | "AlreadyExists";
-export const FabricCapacitiesCheckNameAvailabilityResponseReason =
+export const CheckFabricCapacityNameAvailabilityResponseReason =
   /*@__PURE__*/ S.String;
 
-export interface FabricCapacitiesCheckNameAvailabilityResponse {
+export interface CheckFabricCapacityNameAvailabilityResponse {
   /** Indicates if the resource name is available. */
   nameAvailable?: boolean;
   /** The reason why the given name is not available. */
-  reason?: FabricCapacitiesCheckNameAvailabilityResponseReason;
+  reason?: CheckFabricCapacityNameAvailabilityResponseReason;
   /** Detailed reason why the given name is available. */
   message?: string;
 }
-export const FabricCapacitiesCheckNameAvailabilityResponse =
+export const CheckFabricCapacityNameAvailabilityResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       nameAvailable: S.optional(S.Boolean),
-      reason: S.optional(FabricCapacitiesCheckNameAvailabilityResponseReason),
+      reason: S.optional(CheckFabricCapacityNameAvailabilityResponseReason),
       message: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "FabricCapacitiesCheckNameAvailabilityResponse",
-  }) as any as S.Schema<FabricCapacitiesCheckNameAvailabilityResponse>;
+    identifier: "CheckFabricCapacityNameAvailabilityResponse",
+  }) as any as S.Schema<CheckFabricCapacityNameAvailabilityResponse>;
+
+export interface DeleteFabricCapacityRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Microsoft Fabric capacity. It must be a minimum of 3 characters, and a maximum of 63. */
+  capacityName: string;
+}
+export const DeleteFabricCapacityRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    capacityName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Fabric/capacities/{capacityName}",
+      code: 200,
+      apiVersion: "2023-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteFabricCapacityRequest",
+}) as any as S.Schema<DeleteFabricCapacityRequest>;
+
+export interface DeleteFabricCapacityResponse {}
+export const DeleteFabricCapacityResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteFabricCapacityResponse",
+}) as any as S.Schema<DeleteFabricCapacityResponse>;
 
 /** Resource tags. */
 export type FabricCapacitiesCreateOrUpdateRequestTagsMap = {
@@ -296,7 +328,7 @@ export const FabricCapacitiesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "FabricCapacitiesCreateOrUpdateResponse",
 }) as any as S.Schema<FabricCapacitiesCreateOrUpdateResponse>;
 
-export interface FabricCapacitiesDeleteRequest {
+export interface GetFabricCapacityRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -304,39 +336,7 @@ export interface FabricCapacitiesDeleteRequest {
   /** The name of the Microsoft Fabric capacity. It must be a minimum of 3 characters, and a maximum of 63. */
   capacityName: string;
 }
-export const FabricCapacitiesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    capacityName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Fabric/capacities/{capacityName}",
-      code: 200,
-      apiVersion: "2023-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "FabricCapacitiesDeleteRequest",
-}) as any as S.Schema<FabricCapacitiesDeleteRequest>;
-
-export interface FabricCapacitiesDeleteResponse {}
-export const FabricCapacitiesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "FabricCapacitiesDeleteResponse",
-}) as any as S.Schema<FabricCapacitiesDeleteResponse>;
-
-export interface FabricCapacitiesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Microsoft Fabric capacity. It must be a minimum of 3 characters, and a maximum of 63. */
-  capacityName: string;
-}
-export const FabricCapacitiesGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetFabricCapacityRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -350,19 +350,19 @@ export const FabricCapacitiesGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "FabricCapacitiesGetRequest",
-}) as any as S.Schema<FabricCapacitiesGetRequest>;
+  identifier: "GetFabricCapacityRequest",
+}) as any as S.Schema<GetFabricCapacityRequest>;
 
 /** Resource tags. */
-export type FabricCapacitiesGetResponseTagsMap = {
+export type GetFabricCapacityResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const FabricCapacitiesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetFabricCapacityResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<FabricCapacitiesGetResponseTagsMap>;
+) as any as S.Schema<GetFabricCapacityResponseTagsMap>;
 
-export interface FabricCapacitiesGetResponse {
+export interface GetFabricCapacityResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -372,7 +372,7 @@ export interface FabricCapacitiesGetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: FabricCapacitiesGetResponseTagsMap;
+  tags?: GetFabricCapacityResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -380,29 +380,29 @@ export interface FabricCapacitiesGetResponse {
   /** The SKU details */
   sku: RpSku;
 }
-export const FabricCapacitiesGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetFabricCapacityResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(FabricCapacitiesGetResponseTagsMap),
+    tags: S.optional(GetFabricCapacityResponseTagsMap),
     location: S.String,
     properties: FabricCapacityProperties,
     sku: RpSku,
   }),
 ).annotate({
-  identifier: "FabricCapacitiesGetResponse",
-}) as any as S.Schema<FabricCapacitiesGetResponse>;
+  identifier: "GetFabricCapacityResponse",
+}) as any as S.Schema<GetFabricCapacityResponse>;
 
-export interface FabricCapacitiesListByResourceGroupRequest {
+export interface ListFabricCapacityByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
 }
-export const FabricCapacitiesListByResourceGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const ListFabricCapacityByResourceGroupRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
@@ -414,9 +414,9 @@ export const FabricCapacitiesListByResourceGroupRequest =
         apiVersion: "2023-11-01",
       }),
     ),
-  ).annotate({
-    identifier: "FabricCapacitiesListByResourceGroupRequest",
-  }) as any as S.Schema<FabricCapacitiesListByResourceGroupRequest>;
+).annotate({
+  identifier: "ListFabricCapacityByResourceGroupRequest",
+}) as any as S.Schema<ListFabricCapacityByResourceGroupRequest>;
 
 /** Resource tags. */
 export type FabricCapacityTagsMap = { [key: string]: string | undefined };
@@ -479,12 +479,12 @@ export const FabricCapacityListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "FabricCapacityListResult",
 }) as any as S.Schema<FabricCapacityListResult>;
 
-export interface FabricCapacitiesListBySubscriptionRequest {
+export interface ListFabricCapacityBySubscriptionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
 }
-export const FabricCapacitiesListBySubscriptionRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const ListFabricCapacityBySubscriptionRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
     }).pipe(
@@ -495,15 +495,15 @@ export const FabricCapacitiesListBySubscriptionRequest =
         apiVersion: "2023-11-01",
       }),
     ),
-  ).annotate({
-    identifier: "FabricCapacitiesListBySubscriptionRequest",
-  }) as any as S.Schema<FabricCapacitiesListBySubscriptionRequest>;
+).annotate({
+  identifier: "ListFabricCapacityBySubscriptionRequest",
+}) as any as S.Schema<ListFabricCapacityBySubscriptionRequest>;
 
-export interface FabricCapacitiesListSkusRequest {
+export interface ListFabricCapacitySkusRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
 }
-export const FabricCapacitiesListSkusRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListFabricCapacitySkusRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
   }).pipe(
@@ -515,8 +515,8 @@ export const FabricCapacitiesListSkusRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "FabricCapacitiesListSkusRequest",
-}) as any as S.Schema<FabricCapacitiesListSkusRequest>;
+  identifier: "ListFabricCapacitySkusRequest",
+}) as any as S.Schema<ListFabricCapacitySkusRequest>;
 
 /** The list of available locations for the SKU */
 export type RpSkuDetailsForNewResourceLocationsList = Array<string>;
@@ -568,7 +568,7 @@ export const RpSkuEnumerationForNewResourceResult = /*@__PURE__*/ S.suspend(
   identifier: "RpSkuEnumerationForNewResourceResult",
 }) as any as S.Schema<RpSkuEnumerationForNewResourceResult>;
 
-export interface FabricCapacitiesListSkusForCapacityRequest {
+export interface ListFabricCapacitySkusForCapacityRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -576,8 +576,8 @@ export interface FabricCapacitiesListSkusForCapacityRequest {
   /** The name of the Microsoft Fabric capacity. It must be a minimum of 3 characters, and a maximum of 63. */
   capacityName: string;
 }
-export const FabricCapacitiesListSkusForCapacityRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const ListFabricCapacitySkusForCapacityRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
@@ -590,9 +590,9 @@ export const FabricCapacitiesListSkusForCapacityRequest =
         apiVersion: "2023-11-01",
       }),
     ),
-  ).annotate({
-    identifier: "FabricCapacitiesListSkusForCapacityRequest",
-  }) as any as S.Schema<FabricCapacitiesListSkusForCapacityRequest>;
+).annotate({
+  identifier: "ListFabricCapacitySkusForCapacityRequest",
+}) as any as S.Schema<ListFabricCapacitySkusForCapacityRequest>;
 
 /** An object that represents SKU details for existing resources */
 export interface RpSkuDetailsForExistingResource {
@@ -635,170 +635,8 @@ export const RpSkuEnumerationForExistingResourceResult =
     identifier: "RpSkuEnumerationForExistingResourceResult",
   }) as any as S.Schema<RpSkuEnumerationForExistingResourceResult>;
 
-export interface FabricCapacitiesResumeRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Microsoft Fabric capacity. It must be a minimum of 3 characters, and a maximum of 63. */
-  capacityName: string;
-}
-export const FabricCapacitiesResumeRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    capacityName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Fabric/capacities/{capacityName}/resume",
-      code: 200,
-      apiVersion: "2023-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "FabricCapacitiesResumeRequest",
-}) as any as S.Schema<FabricCapacitiesResumeRequest>;
-
-export interface FabricCapacitiesResumeResponse {}
-export const FabricCapacitiesResumeResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "FabricCapacitiesResumeResponse",
-}) as any as S.Schema<FabricCapacitiesResumeResponse>;
-
-export interface FabricCapacitiesSuspendRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Microsoft Fabric capacity. It must be a minimum of 3 characters, and a maximum of 63. */
-  capacityName: string;
-}
-export const FabricCapacitiesSuspendRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    capacityName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Fabric/capacities/{capacityName}/suspend",
-      code: 200,
-      apiVersion: "2023-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "FabricCapacitiesSuspendRequest",
-}) as any as S.Schema<FabricCapacitiesSuspendRequest>;
-
-export interface FabricCapacitiesSuspendResponse {}
-export const FabricCapacitiesSuspendResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "FabricCapacitiesSuspendResponse",
-}) as any as S.Schema<FabricCapacitiesSuspendResponse>;
-
-/** Resource tags. */
-export type FabricCapacitiesUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const FabricCapacitiesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<FabricCapacitiesUpdateRequestTagsMap>;
-
-/** The updatable properties of the FabricCapacity. */
-export interface FabricCapacityUpdateProperties {
-  /** The capacity administration */
-  administration?: CapacityAdministration;
-}
-export const FabricCapacityUpdateProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    administration: S.optional(CapacityAdministration),
-  }),
-).annotate({
-  identifier: "FabricCapacityUpdateProperties",
-}) as any as S.Schema<FabricCapacityUpdateProperties>;
-
-export interface FabricCapacitiesUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Microsoft Fabric capacity. It must be a minimum of 3 characters, and a maximum of 63. */
-  capacityName: string;
-  /** The SKU details */
-  sku?: RpSku;
-  /** Resource tags. */
-  tags?: FabricCapacitiesUpdateRequestTagsMap;
-  /** The resource-specific properties for this resource. */
-  properties?: FabricCapacityUpdateProperties;
-}
-export const FabricCapacitiesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    capacityName: S.String.pipe(T.Label()),
-    sku: S.optional(RpSku),
-    tags: S.optional(FabricCapacitiesUpdateRequestTagsMap),
-    properties: S.optional(FabricCapacityUpdateProperties),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Fabric/capacities/{capacityName}",
-      code: 200,
-      apiVersion: "2023-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "FabricCapacitiesUpdateRequest",
-}) as any as S.Schema<FabricCapacitiesUpdateRequest>;
-
-/** Resource tags. */
-export type FabricCapacitiesUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const FabricCapacitiesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<FabricCapacitiesUpdateResponseTagsMap>;
-
-export interface FabricCapacitiesUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: FabricCapacitiesUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties: FabricCapacityProperties;
-  /** The SKU details */
-  sku: RpSku;
-}
-export const FabricCapacitiesUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(FabricCapacitiesUpdateResponseTagsMap),
-    location: S.String,
-    properties: FabricCapacityProperties,
-    sku: RpSku,
-  }),
-).annotate({
-  identifier: "FabricCapacitiesUpdateResponse",
-}) as any as S.Schema<FabricCapacitiesUpdateResponse>;
-
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({
       method: "GET",
@@ -808,8 +646,8 @@ export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
 
 /** Localized display information for this particular operation. */
 export interface OperationDisplay {
@@ -865,36 +703,213 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
-export interface OperationsListResponse {
+export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
-export const OperationsListResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "OperationsListResponse",
-}) as any as S.Schema<OperationsListResponse>;
+  identifier: "ListOperationsResponse",
+}) as any as S.Schema<ListOperationsResponse>;
 
-export type FabricCapacitiesCheckNameAvailabilityError = AzureOpError;
+export interface ResumeFabricCapacityRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Microsoft Fabric capacity. It must be a minimum of 3 characters, and a maximum of 63. */
+  capacityName: string;
+}
+export const ResumeFabricCapacityRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    capacityName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Fabric/capacities/{capacityName}/resume",
+      code: 200,
+      apiVersion: "2023-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "ResumeFabricCapacityRequest",
+}) as any as S.Schema<ResumeFabricCapacityRequest>;
+
+export interface ResumeFabricCapacityResponse {}
+export const ResumeFabricCapacityResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "ResumeFabricCapacityResponse",
+}) as any as S.Schema<ResumeFabricCapacityResponse>;
+
+export interface SuspendFabricCapacityRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Microsoft Fabric capacity. It must be a minimum of 3 characters, and a maximum of 63. */
+  capacityName: string;
+}
+export const SuspendFabricCapacityRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    capacityName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Fabric/capacities/{capacityName}/suspend",
+      code: 200,
+      apiVersion: "2023-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "SuspendFabricCapacityRequest",
+}) as any as S.Schema<SuspendFabricCapacityRequest>;
+
+export interface SuspendFabricCapacityResponse {}
+export const SuspendFabricCapacityResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "SuspendFabricCapacityResponse",
+}) as any as S.Schema<SuspendFabricCapacityResponse>;
+
+/** Resource tags. */
+export type UpdateFabricCapacityRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateFabricCapacityRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateFabricCapacityRequestTagsMap>;
+
+/** The updatable properties of the FabricCapacity. */
+export interface FabricCapacityUpdateProperties {
+  /** The capacity administration */
+  administration?: CapacityAdministration;
+}
+export const FabricCapacityUpdateProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    administration: S.optional(CapacityAdministration),
+  }),
+).annotate({
+  identifier: "FabricCapacityUpdateProperties",
+}) as any as S.Schema<FabricCapacityUpdateProperties>;
+
+export interface UpdateFabricCapacityRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Microsoft Fabric capacity. It must be a minimum of 3 characters, and a maximum of 63. */
+  capacityName: string;
+  /** The SKU details */
+  sku?: RpSku;
+  /** Resource tags. */
+  tags?: UpdateFabricCapacityRequestTagsMap;
+  /** The resource-specific properties for this resource. */
+  properties?: FabricCapacityUpdateProperties;
+}
+export const UpdateFabricCapacityRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    capacityName: S.String.pipe(T.Label()),
+    sku: S.optional(RpSku),
+    tags: S.optional(UpdateFabricCapacityRequestTagsMap),
+    properties: S.optional(FabricCapacityUpdateProperties),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Fabric/capacities/{capacityName}",
+      code: 200,
+      apiVersion: "2023-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateFabricCapacityRequest",
+}) as any as S.Schema<UpdateFabricCapacityRequest>;
+
+/** Resource tags. */
+export type UpdateFabricCapacityResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateFabricCapacityResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateFabricCapacityResponseTagsMap>;
+
+export interface UpdateFabricCapacityResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateFabricCapacityResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties: FabricCapacityProperties;
+  /** The SKU details */
+  sku: RpSku;
+}
+export const UpdateFabricCapacityResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateFabricCapacityResponseTagsMap),
+    location: S.String,
+    properties: FabricCapacityProperties,
+    sku: RpSku,
+  }),
+).annotate({
+  identifier: "UpdateFabricCapacityResponse",
+}) as any as S.Schema<UpdateFabricCapacityResponse>;
+
+export type CheckFabricCapacityNameAvailabilityError = AzureOpError;
 /** Implements local CheckNameAvailability operations */
-export const FabricCapacitiesCheckNameAvailability: API.OperationMethod<
-  FabricCapacitiesCheckNameAvailabilityRequest,
-  FabricCapacitiesCheckNameAvailabilityResponse,
-  FabricCapacitiesCheckNameAvailabilityError,
+export const CheckFabricCapacityNameAvailability: API.OperationMethod<
+  CheckFabricCapacityNameAvailabilityRequest,
+  CheckFabricCapacityNameAvailabilityResponse,
+  CheckFabricCapacityNameAvailabilityError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FabricCapacitiesCheckNameAvailabilityRequest,
-  output: FabricCapacitiesCheckNameAvailabilityResponse,
+  input: CheckFabricCapacityNameAvailabilityRequest,
+  output: CheckFabricCapacityNameAvailabilityResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteFabricCapacityError = AzureOpError;
+/** Delete a FabricCapacity */
+export const DeleteFabricCapacity: API.OperationMethod<
+  DeleteFabricCapacityRequest,
+  DeleteFabricCapacityResponse,
+  DeleteFabricCapacityError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteFabricCapacityRequest,
+  output: DeleteFabricCapacityResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -915,151 +930,136 @@ export const FabricCapacitiesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type FabricCapacitiesDeleteError = AzureOpError;
-/** Delete a FabricCapacity */
-export const FabricCapacitiesDelete: API.OperationMethod<
-  FabricCapacitiesDeleteRequest,
-  FabricCapacitiesDeleteResponse,
-  FabricCapacitiesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FabricCapacitiesDeleteRequest,
-  output: FabricCapacitiesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FabricCapacitiesGetError = AzureOpError;
+export type GetFabricCapacityError = AzureOpError;
 /** Get a FabricCapacity */
-export const FabricCapacitiesGet: API.OperationMethod<
-  FabricCapacitiesGetRequest,
-  FabricCapacitiesGetResponse,
-  FabricCapacitiesGetError,
+export const GetFabricCapacity: API.OperationMethod<
+  GetFabricCapacityRequest,
+  GetFabricCapacityResponse,
+  GetFabricCapacityError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FabricCapacitiesGetRequest,
-  output: FabricCapacitiesGetResponse,
+  input: GetFabricCapacityRequest,
+  output: GetFabricCapacityResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type FabricCapacitiesListByResourceGroupError = AzureOpError;
+export type ListFabricCapacityByResourceGroupError = AzureOpError;
 /** List FabricCapacity resources by resource group */
-export const FabricCapacitiesListByResourceGroup: API.OperationMethod<
-  FabricCapacitiesListByResourceGroupRequest,
+export const ListFabricCapacityByResourceGroup: API.OperationMethod<
+  ListFabricCapacityByResourceGroupRequest,
   FabricCapacityListResult,
-  FabricCapacitiesListByResourceGroupError,
+  ListFabricCapacityByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FabricCapacitiesListByResourceGroupRequest,
+  input: ListFabricCapacityByResourceGroupRequest,
   output: FabricCapacityListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type FabricCapacitiesListBySubscriptionError = AzureOpError;
+export type ListFabricCapacityBySubscriptionError = AzureOpError;
 /** List FabricCapacity resources by subscription ID */
-export const FabricCapacitiesListBySubscription: API.OperationMethod<
-  FabricCapacitiesListBySubscriptionRequest,
+export const ListFabricCapacityBySubscription: API.OperationMethod<
+  ListFabricCapacityBySubscriptionRequest,
   FabricCapacityListResult,
-  FabricCapacitiesListBySubscriptionError,
+  ListFabricCapacityBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FabricCapacitiesListBySubscriptionRequest,
+  input: ListFabricCapacityBySubscriptionRequest,
   output: FabricCapacityListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type FabricCapacitiesListSkusError = AzureOpError;
+export type ListFabricCapacitySkusError = AzureOpError;
 /** List eligible SKUs for Microsoft Fabric resource provider */
-export const FabricCapacitiesListSkus: API.OperationMethod<
-  FabricCapacitiesListSkusRequest,
+export const ListFabricCapacitySkus: API.OperationMethod<
+  ListFabricCapacitySkusRequest,
   RpSkuEnumerationForNewResourceResult,
-  FabricCapacitiesListSkusError,
+  ListFabricCapacitySkusError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FabricCapacitiesListSkusRequest,
+  input: ListFabricCapacitySkusRequest,
   output: RpSkuEnumerationForNewResourceResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type FabricCapacitiesListSkusForCapacityError = AzureOpError;
+export type ListFabricCapacitySkusForCapacityError = AzureOpError;
 /** List eligible SKUs for a Microsoft Fabric resource */
-export const FabricCapacitiesListSkusForCapacity: API.OperationMethod<
-  FabricCapacitiesListSkusForCapacityRequest,
+export const ListFabricCapacitySkusForCapacity: API.OperationMethod<
+  ListFabricCapacitySkusForCapacityRequest,
   RpSkuEnumerationForExistingResourceResult,
-  FabricCapacitiesListSkusForCapacityError,
+  ListFabricCapacitySkusForCapacityError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FabricCapacitiesListSkusForCapacityRequest,
+  input: ListFabricCapacitySkusForCapacityRequest,
   output: RpSkuEnumerationForExistingResourceResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type FabricCapacitiesResumeError = AzureOpError;
-/** Resume operation of the specified Fabric capacity instance. */
-export const FabricCapacitiesResume: API.OperationMethod<
-  FabricCapacitiesResumeRequest,
-  FabricCapacitiesResumeResponse,
-  FabricCapacitiesResumeError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FabricCapacitiesResumeRequest,
-  output: FabricCapacitiesResumeResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FabricCapacitiesSuspendError = AzureOpError;
-/** Suspend operation of the specified Fabric capacity instance. */
-export const FabricCapacitiesSuspend: API.OperationMethod<
-  FabricCapacitiesSuspendRequest,
-  FabricCapacitiesSuspendResponse,
-  FabricCapacitiesSuspendError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FabricCapacitiesSuspendRequest,
-  output: FabricCapacitiesSuspendResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FabricCapacitiesUpdateError = AzureOpError;
-/** Update a FabricCapacity */
-export const FabricCapacitiesUpdate: API.OperationMethod<
-  FabricCapacitiesUpdateRequest,
-  FabricCapacitiesUpdateResponse,
-  FabricCapacitiesUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FabricCapacitiesUpdateRequest,
-  output: FabricCapacitiesUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OperationsListError = AzureOpError;
+export type ListOperationsError = AzureOpError;
 /** List the operations for the provider */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationsListResponse,
-  OperationsListError,
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  ListOperationsResponse,
+  ListOperationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
-  output: OperationsListResponse,
+  input: ListOperationsRequest,
+  output: ListOperationsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ResumeFabricCapacityError = AzureOpError;
+/** Resume operation of the specified Fabric capacity instance. */
+export const ResumeFabricCapacity: API.OperationMethod<
+  ResumeFabricCapacityRequest,
+  ResumeFabricCapacityResponse,
+  ResumeFabricCapacityError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ResumeFabricCapacityRequest,
+  output: ResumeFabricCapacityResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type SuspendFabricCapacityError = AzureOpError;
+/** Suspend operation of the specified Fabric capacity instance. */
+export const SuspendFabricCapacity: API.OperationMethod<
+  SuspendFabricCapacityRequest,
+  SuspendFabricCapacityResponse,
+  SuspendFabricCapacityError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: SuspendFabricCapacityRequest,
+  output: SuspendFabricCapacityResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateFabricCapacityError = AzureOpError;
+/** Update a FabricCapacity */
+export const UpdateFabricCapacity: API.OperationMethod<
+  UpdateFabricCapacityRequest,
+  UpdateFabricCapacityResponse,
+  UpdateFabricCapacityError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateFabricCapacityRequest,
+  output: UpdateFabricCapacityResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.elasticsan#VolumesDelete": {
+    "com.azure.elasticsan#DeleteVolume": {
       "type": "operation",
       "input": {
-        "target": "com.azure.elasticsan#VolumesDeleteRequest"
+        "target": "com.azure.elasticsan#DeleteVolumeRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -36,7 +37,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.elasticsan#VolumesDeleteRequest": {
+    "com.azure.elasticsan#DeleteVolumeRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -84,13 +85,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.elasticsan#VolumesUpdate": {
+    "com.azure.elasticsan#UpdateVolume": {
       "type": "operation",
       "input": {
-        "target": "com.azure.elasticsan#VolumesUpdateRequest"
+        "target": "com.azure.elasticsan#UpdateVolumeRequest"
       },
       "output": {
-        "target": "com.azure.elasticsan#VolumesUpdateResponse"
+        "target": "com.azure.elasticsan#UpdateVolumeResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -103,7 +104,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.elasticsan#VolumesUpdateResponse": {
+    "com.azure.elasticsan#UpdateVolumeResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -529,7 +530,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.elasticsan#VolumesUpdateRequest": {
+    "com.azure.elasticsan#UpdateVolumeRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -603,13 +604,13 @@
         "smithy.api#documentation": "Volume response properties."
       }
     },
-    "com.azure.elasticsan#VolumesCreate": {
+    "com.azure.elasticsan#CreateVolume": {
       "type": "operation",
       "input": {
-        "target": "com.azure.elasticsan#VolumesCreateRequest"
+        "target": "com.azure.elasticsan#CreateVolumeRequest"
       },
       "output": {
-        "target": "com.azure.elasticsan#VolumesCreateResponse"
+        "target": "com.azure.elasticsan#CreateVolumeResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -622,7 +623,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.elasticsan#VolumesCreateResponse": {
+    "com.azure.elasticsan#CreateVolumeResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -661,7 +662,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.elasticsan#VolumesCreateRequest": {
+    "com.azure.elasticsan#CreateVolumeRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -743,13 +744,13 @@
         "smithy.api#documentation": "Volume response properties."
       }
     },
-    "com.azure.elasticsan#VolumesGet": {
+    "com.azure.elasticsan#GetVolume": {
       "type": "operation",
       "input": {
-        "target": "com.azure.elasticsan#VolumesGetRequest"
+        "target": "com.azure.elasticsan#GetVolumeRequest"
       },
       "output": {
-        "target": "com.azure.elasticsan#VolumesGetResponse"
+        "target": "com.azure.elasticsan#GetVolumeResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -762,7 +763,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.elasticsan#VolumesGetResponse": {
+    "com.azure.elasticsan#GetVolumeResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -801,7 +802,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.elasticsan#VolumesGetRequest": {
+    "com.azure.elasticsan#GetVolumeRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -849,10 +850,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.elasticsan#VolumesListByVolumeGroup": {
+    "com.azure.elasticsan#ListVolumeByVolumeGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.elasticsan#VolumesListByVolumeGroupRequest"
+        "target": "com.azure.elasticsan#ListVolumeByVolumeGroupRequest"
       },
       "output": {
         "target": "com.azure.elasticsan#VolumeList"
@@ -937,7 +938,7 @@
         "smithy.api#documentation": "Response for Volume request."
       }
     },
-    "com.azure.elasticsan#VolumesListByVolumeGroupRequest": {
+    "com.azure.elasticsan#ListVolumeByVolumeGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -977,10 +978,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.elasticsan#VolumeSnapshotsDelete": {
+    "com.azure.elasticsan#DeleteVolumeSnapshot": {
       "type": "operation",
       "input": {
-        "target": "com.azure.elasticsan#VolumeSnapshotsDeleteRequest"
+        "target": "com.azure.elasticsan#DeleteVolumeSnapshotRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -996,7 +997,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.elasticsan#VolumeSnapshotsDeleteRequest": {
+    "com.azure.elasticsan#DeleteVolumeSnapshotRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1044,13 +1045,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.elasticsan#VolumeSnapshotsCreate": {
+    "com.azure.elasticsan#CreateVolumeSnapshot": {
       "type": "operation",
       "input": {
-        "target": "com.azure.elasticsan#VolumeSnapshotsCreateRequest"
+        "target": "com.azure.elasticsan#CreateVolumeSnapshotRequest"
       },
       "output": {
-        "target": "com.azure.elasticsan#VolumeSnapshotsCreateResponse"
+        "target": "com.azure.elasticsan#CreateVolumeSnapshotResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1063,7 +1064,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.elasticsan#VolumeSnapshotsCreateResponse": {
+    "com.azure.elasticsan#CreateVolumeSnapshotResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1150,7 +1151,7 @@
         "smithy.api#documentation": "Data used when creating a volume snapshot."
       }
     },
-    "com.azure.elasticsan#VolumeSnapshotsCreateRequest": {
+    "com.azure.elasticsan#CreateVolumeSnapshotRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1220,13 +1221,13 @@
         "smithy.api#documentation": "Properties for Snapshot."
       }
     },
-    "com.azure.elasticsan#VolumeSnapshotsGet": {
+    "com.azure.elasticsan#GetVolumeSnapshot": {
       "type": "operation",
       "input": {
-        "target": "com.azure.elasticsan#VolumeSnapshotsGetRequest"
+        "target": "com.azure.elasticsan#GetVolumeSnapshotRequest"
       },
       "output": {
-        "target": "com.azure.elasticsan#VolumeSnapshotsGetResponse"
+        "target": "com.azure.elasticsan#GetVolumeSnapshotResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1239,7 +1240,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.elasticsan#VolumeSnapshotsGetResponse": {
+    "com.azure.elasticsan#GetVolumeSnapshotResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1278,7 +1279,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.elasticsan#VolumeSnapshotsGetRequest": {
+    "com.azure.elasticsan#GetVolumeSnapshotRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1326,10 +1327,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.elasticsan#VolumeSnapshotsListByVolumeGroup": {
+    "com.azure.elasticsan#ListVolumeSnapshotByVolumeGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.elasticsan#VolumeSnapshotsListByVolumeGroupRequest"
+        "target": "com.azure.elasticsan#ListVolumeSnapshotByVolumeGroupRequest"
       },
       "output": {
         "target": "com.azure.elasticsan#SnapshotList"
@@ -1414,7 +1415,7 @@
         "smithy.api#documentation": "Response for Volume Snapshot request."
       }
     },
-    "com.azure.elasticsan#VolumeSnapshotsListByVolumeGroupRequest": {
+    "com.azure.elasticsan#ListVolumeSnapshotByVolumeGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1461,10 +1462,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.elasticsan#VolumesPreRestore": {
+    "com.azure.elasticsan#RestoreVolumesPre": {
       "type": "operation",
       "input": {
-        "target": "com.azure.elasticsan#VolumesPreRestoreRequest"
+        "target": "com.azure.elasticsan#RestoreVolumesPreRequest"
       },
       "output": {
         "target": "com.azure.elasticsan#PreValidationResponse"
@@ -1494,7 +1495,7 @@
         "smithy.api#documentation": "response object for pre validation api"
       }
     },
-    "com.azure.elasticsan#VolumesPreRestoreRequest": {
+    "com.azure.elasticsan#RestoreVolumesPreRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1530,7 +1531,7 @@
           }
         },
         "diskSnapshotIds": {
-          "target": "com.azure.elasticsan#VolumesPreRestoreRequestDiskSnapshotIdsList",
+          "target": "com.azure.elasticsan#RestoreVolumesPreRequestDiskSnapshotIdsList",
           "traits": {
             "smithy.api#documentation": "array of DiskSnapshot ARM IDs",
             "smithy.api#required": {}
@@ -1541,7 +1542,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.elasticsan#VolumesPreRestoreRequestDiskSnapshotIdsList": {
+    "com.azure.elasticsan#RestoreVolumesPreRequestDiskSnapshotIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -1625,10 +1626,10 @@
         "smithy.api#documentation": "array of volume names"
       }
     },
-    "com.azure.elasticsan#VolumeGroupsDelete": {
+    "com.azure.elasticsan#DeleteVolumeGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.elasticsan#VolumeGroupsDeleteRequest"
+        "target": "com.azure.elasticsan#DeleteVolumeGroupRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1644,7 +1645,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.elasticsan#VolumeGroupsDeleteRequest": {
+    "com.azure.elasticsan#DeleteVolumeGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1684,13 +1685,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.elasticsan#VolumeGroupsUpdate": {
+    "com.azure.elasticsan#UpdateVolumeGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.elasticsan#VolumeGroupsUpdateRequest"
+        "target": "com.azure.elasticsan#UpdateVolumeGroupRequest"
       },
       "output": {
-        "target": "com.azure.elasticsan#VolumeGroupsUpdateResponse"
+        "target": "com.azure.elasticsan#UpdateVolumeGroupResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1703,7 +1704,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.elasticsan#VolumeGroupsUpdateResponse": {
+    "com.azure.elasticsan#UpdateVolumeGroupResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2226,7 +2227,7 @@
         "smithy.api#documentation": "The identity type."
       }
     },
-    "com.azure.elasticsan#VolumeGroupsUpdateRequest": {
+    "com.azure.elasticsan#UpdateVolumeGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2402,13 +2403,13 @@
         "smithy.api#documentation": "UserAssignedIdentity for the resource."
       }
     },
-    "com.azure.elasticsan#VolumeGroupsCreate": {
+    "com.azure.elasticsan#CreateVolumeGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.elasticsan#VolumeGroupsCreateRequest"
+        "target": "com.azure.elasticsan#CreateVolumeGroupRequest"
       },
       "output": {
-        "target": "com.azure.elasticsan#VolumeGroupsCreateResponse"
+        "target": "com.azure.elasticsan#CreateVolumeGroupResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2421,7 +2422,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.elasticsan#VolumeGroupsCreateResponse": {
+    "com.azure.elasticsan#CreateVolumeGroupResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2465,7 +2466,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.elasticsan#VolumeGroupsCreateRequest": {
+    "com.azure.elasticsan#CreateVolumeGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2555,13 +2556,13 @@
         "smithy.api#documentation": "VolumeGroup response properties."
       }
     },
-    "com.azure.elasticsan#VolumeGroupsGet": {
+    "com.azure.elasticsan#GetVolumeGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.elasticsan#VolumeGroupsGetRequest"
+        "target": "com.azure.elasticsan#GetVolumeGroupRequest"
       },
       "output": {
-        "target": "com.azure.elasticsan#VolumeGroupsGetResponse"
+        "target": "com.azure.elasticsan#GetVolumeGroupResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2574,7 +2575,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.elasticsan#VolumeGroupsGetResponse": {
+    "com.azure.elasticsan#GetVolumeGroupResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2618,7 +2619,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.elasticsan#VolumeGroupsGetRequest": {
+    "com.azure.elasticsan#GetVolumeGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2658,10 +2659,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.elasticsan#VolumeGroupsListByElasticSan": {
+    "com.azure.elasticsan#ListVolumeGroupByElasticSan": {
       "type": "operation",
       "input": {
-        "target": "com.azure.elasticsan#VolumeGroupsListByElasticSanRequest"
+        "target": "com.azure.elasticsan#ListVolumeGroupByElasticSanRequest"
       },
       "output": {
         "target": "com.azure.elasticsan#VolumeGroupList"
@@ -2751,7 +2752,7 @@
         "smithy.api#documentation": "Response for Volume Group request."
       }
     },
-    "com.azure.elasticsan#VolumeGroupsListByElasticSanRequest": {
+    "com.azure.elasticsan#ListVolumeGroupByElasticSanRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2783,10 +2784,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.elasticsan#PrivateLinkResourcesListByElasticSan": {
+    "com.azure.elasticsan#ListPrivateLinkResourceByElasticSan": {
       "type": "operation",
       "input": {
-        "target": "com.azure.elasticsan#PrivateLinkResourcesListByElasticSanRequest"
+        "target": "com.azure.elasticsan#ListPrivateLinkResourceByElasticSanRequest"
       },
       "output": {
         "target": "com.azure.elasticsan#PrivateLinkResourceListResult"
@@ -2914,7 +2915,7 @@
         "smithy.api#documentation": "The private link resource required member names."
       }
     },
-    "com.azure.elasticsan#PrivateLinkResourcesListByElasticSanRequest": {
+    "com.azure.elasticsan#ListPrivateLinkResourceByElasticSanRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2946,10 +2947,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.elasticsan#PrivateEndpointConnectionsDelete": {
+    "com.azure.elasticsan#DeletePrivateEndpointConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.elasticsan#PrivateEndpointConnectionsDeleteRequest"
+        "target": "com.azure.elasticsan#DeletePrivateEndpointConnectionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2965,7 +2966,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.elasticsan#PrivateEndpointConnectionsDeleteRequest": {
+    "com.azure.elasticsan#DeletePrivateEndpointConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3005,13 +3006,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.elasticsan#PrivateEndpointConnectionsCreate": {
+    "com.azure.elasticsan#CreatePrivateEndpointConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.elasticsan#PrivateEndpointConnectionsCreateRequest"
+        "target": "com.azure.elasticsan#CreatePrivateEndpointConnectionRequest"
       },
       "output": {
-        "target": "com.azure.elasticsan#PrivateEndpointConnectionsCreateResponse"
+        "target": "com.azure.elasticsan#CreatePrivateEndpointConnectionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3024,7 +3025,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.elasticsan#PrivateEndpointConnectionsCreateResponse": {
+    "com.azure.elasticsan#CreatePrivateEndpointConnectionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3063,7 +3064,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.elasticsan#PrivateEndpointConnectionsCreateRequest": {
+    "com.azure.elasticsan#CreatePrivateEndpointConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3153,13 +3154,13 @@
         "smithy.api#documentation": "Response for PrivateEndpoint"
       }
     },
-    "com.azure.elasticsan#PrivateEndpointConnectionsGet": {
+    "com.azure.elasticsan#GetPrivateEndpointConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.elasticsan#PrivateEndpointConnectionsGetRequest"
+        "target": "com.azure.elasticsan#GetPrivateEndpointConnectionRequest"
       },
       "output": {
-        "target": "com.azure.elasticsan#PrivateEndpointConnectionsGetResponse"
+        "target": "com.azure.elasticsan#GetPrivateEndpointConnectionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3172,7 +3173,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.elasticsan#PrivateEndpointConnectionsGetResponse": {
+    "com.azure.elasticsan#GetPrivateEndpointConnectionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3211,7 +3212,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.elasticsan#PrivateEndpointConnectionsGetRequest": {
+    "com.azure.elasticsan#GetPrivateEndpointConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3251,10 +3252,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.elasticsan#PrivateEndpointConnectionsList": {
+    "com.azure.elasticsan#ListPrivateEndpointConnections": {
       "type": "operation",
       "input": {
-        "target": "com.azure.elasticsan#PrivateEndpointConnectionsListRequest"
+        "target": "com.azure.elasticsan#ListPrivateEndpointConnectionsRequest"
       },
       "output": {
         "target": "com.azure.elasticsan#PrivateEndpointConnectionListResult"
@@ -3300,7 +3301,7 @@
         "smithy.api#documentation": "The PrivateEndpointConnection items on this page"
       }
     },
-    "com.azure.elasticsan#PrivateEndpointConnectionsListRequest": {
+    "com.azure.elasticsan#ListPrivateEndpointConnectionsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3332,10 +3333,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.elasticsan#ElasticSansDelete": {
+    "com.azure.elasticsan#DeleteElasticSan": {
       "type": "operation",
       "input": {
-        "target": "com.azure.elasticsan#ElasticSansDeleteRequest"
+        "target": "com.azure.elasticsan#DeleteElasticSanRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3351,7 +3352,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.elasticsan#ElasticSansDeleteRequest": {
+    "com.azure.elasticsan#DeleteElasticSanRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3383,13 +3384,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.elasticsan#ElasticSansUpdate": {
+    "com.azure.elasticsan#UpdateElasticSan": {
       "type": "operation",
       "input": {
-        "target": "com.azure.elasticsan#ElasticSansUpdateRequest"
+        "target": "com.azure.elasticsan#UpdateElasticSanRequest"
       },
       "output": {
-        "target": "com.azure.elasticsan#ElasticSansUpdateResponse"
+        "target": "com.azure.elasticsan#UpdateElasticSanResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3402,7 +3403,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.elasticsan#ElasticSansUpdateResponse": {
+    "com.azure.elasticsan#UpdateElasticSanResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3430,7 +3431,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.elasticsan#ElasticSansUpdateResponseTagsMap",
+          "target": "com.azure.elasticsan#UpdateElasticSanResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3708,7 +3709,7 @@
         "smithy.api#documentation": "The sku name."
       }
     },
-    "com.azure.elasticsan#ElasticSansUpdateResponseTagsMap": {
+    "com.azure.elasticsan#UpdateElasticSanResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3720,7 +3721,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.elasticsan#ElasticSansUpdateRequest": {
+    "com.azure.elasticsan#UpdateElasticSanRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3754,7 +3755,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.elasticsan#ElasticSansUpdateRequestTagsMap",
+          "target": "com.azure.elasticsan#UpdateElasticSanRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Update tags"
           }
@@ -3764,7 +3765,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.elasticsan#ElasticSansUpdateRequestTagsMap": {
+    "com.azure.elasticsan#UpdateElasticSanRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3808,13 +3809,13 @@
         "smithy.api#documentation": "Elastic San update properties."
       }
     },
-    "com.azure.elasticsan#ElasticSansCreate": {
+    "com.azure.elasticsan#CreateElasticSan": {
       "type": "operation",
       "input": {
-        "target": "com.azure.elasticsan#ElasticSansCreateRequest"
+        "target": "com.azure.elasticsan#CreateElasticSanRequest"
       },
       "output": {
-        "target": "com.azure.elasticsan#ElasticSansCreateResponse"
+        "target": "com.azure.elasticsan#CreateElasticSanResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3827,7 +3828,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.elasticsan#ElasticSansCreateResponse": {
+    "com.azure.elasticsan#CreateElasticSanResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3855,7 +3856,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.elasticsan#ElasticSansCreateResponseTagsMap",
+          "target": "com.azure.elasticsan#CreateElasticSanResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3879,7 +3880,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.elasticsan#ElasticSansCreateResponseTagsMap": {
+    "com.azure.elasticsan#CreateElasticSanResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3891,7 +3892,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.elasticsan#ElasticSansCreateRequest": {
+    "com.azure.elasticsan#CreateElasticSanRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3919,7 +3920,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.elasticsan#ElasticSansCreateRequestTagsMap",
+          "target": "com.azure.elasticsan#CreateElasticSanRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3999,7 +4000,7 @@
         "smithy.api#documentation": "Logical zone for Elastic San resource; example: [\"1\"]."
       }
     },
-    "com.azure.elasticsan#ElasticSansCreateRequestTagsMap": {
+    "com.azure.elasticsan#CreateElasticSanRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4011,13 +4012,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.elasticsan#ElasticSansGet": {
+    "com.azure.elasticsan#GetElasticSan": {
       "type": "operation",
       "input": {
-        "target": "com.azure.elasticsan#ElasticSansGetRequest"
+        "target": "com.azure.elasticsan#GetElasticSanRequest"
       },
       "output": {
-        "target": "com.azure.elasticsan#ElasticSansGetResponse"
+        "target": "com.azure.elasticsan#GetElasticSanResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4030,7 +4031,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.elasticsan#ElasticSansGetResponse": {
+    "com.azure.elasticsan#GetElasticSanResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4058,7 +4059,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.elasticsan#ElasticSansGetResponseTagsMap",
+          "target": "com.azure.elasticsan#GetElasticSanResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4082,7 +4083,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.elasticsan#ElasticSansGetResponseTagsMap": {
+    "com.azure.elasticsan#GetElasticSanResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4094,7 +4095,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.elasticsan#ElasticSansGetRequest": {
+    "com.azure.elasticsan#GetElasticSanRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4126,10 +4127,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.elasticsan#ElasticSansListByResourceGroup": {
+    "com.azure.elasticsan#ListElasticSanByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.elasticsan#ElasticSansListByResourceGroupRequest"
+        "target": "com.azure.elasticsan#ListElasticSanByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.elasticsan#ElasticSanList"
@@ -4239,7 +4240,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.elasticsan#ElasticSansListByResourceGroupRequest": {
+    "com.azure.elasticsan#ListElasticSanByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4263,10 +4264,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.elasticsan#SkusList": {
+    "com.azure.elasticsan#ListSkus": {
       "type": "operation",
       "input": {
-        "target": "com.azure.elasticsan#SkusListRequest"
+        "target": "com.azure.elasticsan#ListSkusRequest"
       },
       "output": {
         "target": "com.azure.elasticsan#SkuInformationList"
@@ -4433,7 +4434,7 @@
         "smithy.api#documentation": "The set of locations that the SKU is available. This will be supported and registered Azure Geo Regions (e.g. West US, East US, Southeast Asia, etc.)."
       }
     },
-    "com.azure.elasticsan#SkusListRequest": {
+    "com.azure.elasticsan#ListSkusRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4456,10 +4457,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.elasticsan#ElasticSansListBySubscription": {
+    "com.azure.elasticsan#ListElasticSanBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.elasticsan#ElasticSansListBySubscriptionRequest"
+        "target": "com.azure.elasticsan#ListElasticSanBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.elasticsan#ElasticSanList"
@@ -4475,7 +4476,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.elasticsan#ElasticSansListBySubscriptionRequest": {
+    "com.azure.elasticsan#ListElasticSanBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4491,13 +4492,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.elasticsan#OperationsList": {
+    "com.azure.elasticsan#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.azure.elasticsan#OperationsListResponse"
+        "target": "com.azure.elasticsan#ListOperationsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4510,11 +4511,11 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.elasticsan#OperationsListResponse": {
+    "com.azure.elasticsan#ListOperationsResponse": {
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.elasticsan#OperationsListResponseValueList",
+          "target": "com.azure.elasticsan#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -4530,7 +4531,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.elasticsan#OperationsListResponseValueList": {
+    "com.azure.elasticsan#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.elasticsan#Operation"
@@ -4654,91 +4655,91 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.elasticsan#VolumesDelete"
+          "target": "com.azure.elasticsan#DeleteVolume"
         },
         {
-          "target": "com.azure.elasticsan#VolumesUpdate"
+          "target": "com.azure.elasticsan#UpdateVolume"
         },
         {
-          "target": "com.azure.elasticsan#VolumesCreate"
+          "target": "com.azure.elasticsan#CreateVolume"
         },
         {
-          "target": "com.azure.elasticsan#VolumesGet"
+          "target": "com.azure.elasticsan#GetVolume"
         },
         {
-          "target": "com.azure.elasticsan#VolumesListByVolumeGroup"
+          "target": "com.azure.elasticsan#ListVolumeByVolumeGroup"
         },
         {
-          "target": "com.azure.elasticsan#VolumeSnapshotsDelete"
+          "target": "com.azure.elasticsan#DeleteVolumeSnapshot"
         },
         {
-          "target": "com.azure.elasticsan#VolumeSnapshotsCreate"
+          "target": "com.azure.elasticsan#CreateVolumeSnapshot"
         },
         {
-          "target": "com.azure.elasticsan#VolumeSnapshotsGet"
+          "target": "com.azure.elasticsan#GetVolumeSnapshot"
         },
         {
-          "target": "com.azure.elasticsan#VolumeSnapshotsListByVolumeGroup"
+          "target": "com.azure.elasticsan#ListVolumeSnapshotByVolumeGroup"
         },
         {
-          "target": "com.azure.elasticsan#VolumesPreRestore"
+          "target": "com.azure.elasticsan#RestoreVolumesPre"
         },
         {
           "target": "com.azure.elasticsan#VolumesPreBackup"
         },
         {
-          "target": "com.azure.elasticsan#VolumeGroupsDelete"
+          "target": "com.azure.elasticsan#DeleteVolumeGroup"
         },
         {
-          "target": "com.azure.elasticsan#VolumeGroupsUpdate"
+          "target": "com.azure.elasticsan#UpdateVolumeGroup"
         },
         {
-          "target": "com.azure.elasticsan#VolumeGroupsCreate"
+          "target": "com.azure.elasticsan#CreateVolumeGroup"
         },
         {
-          "target": "com.azure.elasticsan#VolumeGroupsGet"
+          "target": "com.azure.elasticsan#GetVolumeGroup"
         },
         {
-          "target": "com.azure.elasticsan#VolumeGroupsListByElasticSan"
+          "target": "com.azure.elasticsan#ListVolumeGroupByElasticSan"
         },
         {
-          "target": "com.azure.elasticsan#PrivateLinkResourcesListByElasticSan"
+          "target": "com.azure.elasticsan#ListPrivateLinkResourceByElasticSan"
         },
         {
-          "target": "com.azure.elasticsan#PrivateEndpointConnectionsDelete"
+          "target": "com.azure.elasticsan#DeletePrivateEndpointConnection"
         },
         {
-          "target": "com.azure.elasticsan#PrivateEndpointConnectionsCreate"
+          "target": "com.azure.elasticsan#CreatePrivateEndpointConnection"
         },
         {
-          "target": "com.azure.elasticsan#PrivateEndpointConnectionsGet"
+          "target": "com.azure.elasticsan#GetPrivateEndpointConnection"
         },
         {
-          "target": "com.azure.elasticsan#PrivateEndpointConnectionsList"
+          "target": "com.azure.elasticsan#ListPrivateEndpointConnections"
         },
         {
-          "target": "com.azure.elasticsan#ElasticSansDelete"
+          "target": "com.azure.elasticsan#DeleteElasticSan"
         },
         {
-          "target": "com.azure.elasticsan#ElasticSansUpdate"
+          "target": "com.azure.elasticsan#UpdateElasticSan"
         },
         {
-          "target": "com.azure.elasticsan#ElasticSansCreate"
+          "target": "com.azure.elasticsan#CreateElasticSan"
         },
         {
-          "target": "com.azure.elasticsan#ElasticSansGet"
+          "target": "com.azure.elasticsan#GetElasticSan"
         },
         {
-          "target": "com.azure.elasticsan#ElasticSansListByResourceGroup"
+          "target": "com.azure.elasticsan#ListElasticSanByResourceGroup"
         },
         {
-          "target": "com.azure.elasticsan#SkusList"
+          "target": "com.azure.elasticsan#ListSkus"
         },
         {
-          "target": "com.azure.elasticsan#ElasticSansListBySubscription"
+          "target": "com.azure.elasticsan#ListElasticSanBySubscription"
         },
         {
-          "target": "com.azure.elasticsan#OperationsList"
+          "target": "com.azure.elasticsan#ListOperations"
         }
       ],
       "traits": {

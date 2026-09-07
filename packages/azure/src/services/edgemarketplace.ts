@@ -13,7 +13,7 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export interface OffersGenerateAccessTokenRequest {
+export interface GenerateOfferAccessTokenRequest {
   /** The fully qualified Azure Resource manager identifier of the resource. */
   resourceUri: string;
   /** Id of the offer */
@@ -35,7 +35,7 @@ export interface OffersGenerateAccessTokenRequest {
   /** The device sku version. */
   deviceVersion?: string;
 }
-export const OffersGenerateAccessTokenRequest = /*@__PURE__*/ S.suspend(() =>
+export const GenerateOfferAccessTokenRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     resourceUri: S.String.pipe(T.Label()),
     offerId: S.String.pipe(T.Label()),
@@ -56,8 +56,8 @@ export const OffersGenerateAccessTokenRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OffersGenerateAccessTokenRequest",
-}) as any as S.Schema<OffersGenerateAccessTokenRequest>;
+  identifier: "GenerateOfferAccessTokenRequest",
+}) as any as S.Schema<GenerateOfferAccessTokenRequest>;
 
 /** The disk access token */
 export interface DiskAccessToken {
@@ -78,13 +78,13 @@ export const DiskAccessToken = /*@__PURE__*/ S.suspend(() =>
   identifier: "DiskAccessToken",
 }) as any as S.Schema<DiskAccessToken>;
 
-export interface OffersGetRequest {
+export interface GetOfferRequest {
   /** The fully qualified Azure Resource manager identifier of the resource. */
   resourceUri: string;
   /** Id of the offer */
   offerId: string;
 }
-export const OffersGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetOfferRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     resourceUri: S.String.pipe(T.Label()),
     offerId: S.String.pipe(T.Label()),
@@ -97,8 +97,8 @@ export const OffersGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OffersGetRequest",
-}) as any as S.Schema<OffersGetRequest>;
+  identifier: "GetOfferRequest",
+}) as any as S.Schema<GetOfferRequest>;
 
 /** The type of identity that created the resource. */
 export type SystemDataCreatedByType =
@@ -407,7 +407,7 @@ export const OfferProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "OfferProperties",
 }) as any as S.Schema<OfferProperties>;
 
-export interface OffersGetResponse {
+export interface GetOfferResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -419,7 +419,7 @@ export interface OffersGetResponse {
   /** The resource-specific properties for this resource. */
   properties?: OfferProperties;
 }
-export const OffersGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetOfferResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -428,10 +428,10 @@ export const OffersGetResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(OfferProperties),
   }),
 ).annotate({
-  identifier: "OffersGetResponse",
-}) as any as S.Schema<OffersGetResponse>;
+  identifier: "GetOfferResponse",
+}) as any as S.Schema<GetOfferResponse>;
 
-export interface OffersGetAccessTokenRequest {
+export interface GetOfferAccessTokenRequest {
   /** The fully qualified Azure Resource manager identifier of the resource. */
   resourceUri: string;
   /** Id of the offer */
@@ -439,7 +439,7 @@ export interface OffersGetAccessTokenRequest {
   /** The name of the publisher. */
   requestId: string;
 }
-export const OffersGetAccessTokenRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetOfferAccessTokenRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     resourceUri: S.String.pipe(T.Label()),
     offerId: S.String.pipe(T.Label()),
@@ -453,42 +453,88 @@ export const OffersGetAccessTokenRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OffersGetAccessTokenRequest",
-}) as any as S.Schema<OffersGetAccessTokenRequest>;
+  identifier: "GetOfferAccessTokenRequest",
+}) as any as S.Schema<GetOfferAccessTokenRequest>;
 
-export interface OffersListRequest {
+export interface GetPublisherRequest {
   /** The fully qualified Azure Resource manager identifier of the resource. */
   resourceUri: string;
-  /** The number of result items to return. */
-  _top?: number;
-  /** The number of result items to skip. */
-  skip?: number;
-  /** The maximum number of result items per page. */
-  maxpagesize?: number;
-  /** Filter the result list using the given expression. */
-  _filter?: string;
-  /** Skip over when retrieving results. */
-  _skipToken?: string;
+  /** Name of the publisher */
+  publisherName: string;
 }
-export const OffersListRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetPublisherRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     resourceUri: S.String.pipe(T.Label()),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    skip: S.optional(S.Number.pipe(T.Query())),
-    maxpagesize: S.optional(S.Number.pipe(T.Query())),
-    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+    publisherName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/{resourceUri}/providers/Microsoft.EdgeMarketplace/offers",
+      uri: "/{resourceUri}/providers/Microsoft.EdgeMarketplace/publishers/{publisherName}",
       code: 200,
       apiVersion: "2024-10-01",
     }),
   ),
 ).annotate({
-  identifier: "OffersListRequest",
-}) as any as S.Schema<OffersListRequest>;
+  identifier: "GetPublisherRequest",
+}) as any as S.Schema<GetPublisherRequest>;
+
+/** Publisher properties */
+export interface PublisherProperties {
+  /** The resource provisioning state */
+  provisioningState?: AzureResourceManagerResourceProvisioningState;
+}
+export const PublisherProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(
+      AzureResourceManagerResourceProvisioningState,
+    ),
+  }),
+).annotate({
+  identifier: "PublisherProperties",
+}) as any as S.Schema<PublisherProperties>;
+
+export interface GetPublisherResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: PublisherProperties;
+}
+export const GetPublisherResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(PublisherProperties),
+  }),
+).annotate({
+  identifier: "GetPublisherResponse",
+}) as any as S.Schema<GetPublisherResponse>;
+
+export interface ListOfferBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+}
+export const ListOfferBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.EdgeMarketplace/offers",
+      code: 200,
+      apiVersion: "2024-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListOfferBySubscriptionRequest",
+}) as any as S.Schema<ListOfferBySubscriptionRequest>;
 
 /** An offer. */
 export interface Offer {
@@ -535,27 +581,42 @@ export const OfferListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "OfferListResult",
 }) as any as S.Schema<OfferListResult>;
 
-export interface OffersListBySubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
+export interface ListOffersRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  resourceUri: string;
+  /** The number of result items to return. */
+  _top?: number;
+  /** The number of result items to skip. */
+  skip?: number;
+  /** The maximum number of result items per page. */
+  maxpagesize?: number;
+  /** Filter the result list using the given expression. */
+  _filter?: string;
+  /** Skip over when retrieving results. */
+  _skipToken?: string;
 }
-export const OffersListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListOffersRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
+    resourceUri: S.String.pipe(T.Label()),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    skip: S.optional(S.Number.pipe(T.Query())),
+    maxpagesize: S.optional(S.Number.pipe(T.Query())),
+    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.EdgeMarketplace/offers",
+      uri: "/{resourceUri}/providers/Microsoft.EdgeMarketplace/offers",
       code: 200,
       apiVersion: "2024-10-01",
     }),
   ),
 ).annotate({
-  identifier: "OffersListBySubscriptionRequest",
-}) as any as S.Schema<OffersListBySubscriptionRequest>;
+  identifier: "ListOffersRequest",
+}) as any as S.Schema<ListOffersRequest>;
 
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({
       method: "GET",
@@ -565,8 +626,8 @@ export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
 
 /** Localized display information for this particular operation. */
 export interface OperationDisplay {
@@ -622,120 +683,44 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
-export interface OperationsListResponse {
+export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
-export const OperationsListResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "OperationsListResponse",
-}) as any as S.Schema<OperationsListResponse>;
+  identifier: "ListOperationsResponse",
+}) as any as S.Schema<ListOperationsResponse>;
 
-export interface PublishersGetRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  resourceUri: string;
-  /** Name of the publisher */
-  publisherName: string;
+export interface ListPublisherBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
 }
-export const PublishersGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListPublisherBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    resourceUri: S.String.pipe(T.Label()),
-    publisherName: S.String.pipe(T.Label()),
+    subscriptionId: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/{resourceUri}/providers/Microsoft.EdgeMarketplace/publishers/{publisherName}",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.EdgeMarketplace/publishers",
       code: 200,
       apiVersion: "2024-10-01",
     }),
   ),
 ).annotate({
-  identifier: "PublishersGetRequest",
-}) as any as S.Schema<PublishersGetRequest>;
-
-/** Publisher properties */
-export interface PublisherProperties {
-  /** The resource provisioning state */
-  provisioningState?: AzureResourceManagerResourceProvisioningState;
-}
-export const PublisherProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisioningState: S.optional(
-      AzureResourceManagerResourceProvisioningState,
-    ),
-  }),
-).annotate({
-  identifier: "PublisherProperties",
-}) as any as S.Schema<PublisherProperties>;
-
-export interface PublishersGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: PublisherProperties;
-}
-export const PublishersGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(PublisherProperties),
-  }),
-).annotate({
-  identifier: "PublishersGetResponse",
-}) as any as S.Schema<PublishersGetResponse>;
-
-export interface PublishersListRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  resourceUri: string;
-  /** The number of result items to return. */
-  _top?: number;
-  /** The number of result items to skip. */
-  skip?: number;
-  /** The maximum number of result items per page. */
-  maxpagesize?: number;
-  /** Filter the result list using the given expression. */
-  _filter?: string;
-  /** Skip over when retrieving results. */
-  _skipToken?: string;
-}
-export const PublishersListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceUri: S.String.pipe(T.Label()),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    skip: S.optional(S.Number.pipe(T.Query())),
-    maxpagesize: S.optional(S.Number.pipe(T.Query())),
-    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/{resourceUri}/providers/Microsoft.EdgeMarketplace/publishers",
-      code: 200,
-      apiVersion: "2024-10-01",
-    }),
-  ),
-).annotate({
-  identifier: "PublishersListRequest",
-}) as any as S.Schema<PublishersListRequest>;
+  identifier: "ListPublisherBySubscriptionRequest",
+}) as any as S.Schema<ListPublisherBySubscriptionRequest>;
 
 /** A publisher who provides offers. */
 export interface Publisher {
@@ -782,154 +767,169 @@ export const PublisherListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "PublisherListResult",
 }) as any as S.Schema<PublisherListResult>;
 
-export interface PublishersListBySubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
+export interface ListPublishersRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  resourceUri: string;
+  /** The number of result items to return. */
+  _top?: number;
+  /** The number of result items to skip. */
+  skip?: number;
+  /** The maximum number of result items per page. */
+  maxpagesize?: number;
+  /** Filter the result list using the given expression. */
+  _filter?: string;
+  /** Skip over when retrieving results. */
+  _skipToken?: string;
 }
-export const PublishersListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListPublishersRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
+    resourceUri: S.String.pipe(T.Label()),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    skip: S.optional(S.Number.pipe(T.Query())),
+    maxpagesize: S.optional(S.Number.pipe(T.Query())),
+    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.EdgeMarketplace/publishers",
+      uri: "/{resourceUri}/providers/Microsoft.EdgeMarketplace/publishers",
       code: 200,
       apiVersion: "2024-10-01",
     }),
   ),
 ).annotate({
-  identifier: "PublishersListBySubscriptionRequest",
-}) as any as S.Schema<PublishersListBySubscriptionRequest>;
+  identifier: "ListPublishersRequest",
+}) as any as S.Schema<ListPublishersRequest>;
 
-export type OffersGenerateAccessTokenError = AzureOpError;
+export type GenerateOfferAccessTokenError = AzureOpError;
 /** A long-running resource action. */
-export const OffersGenerateAccessToken: API.OperationMethod<
-  OffersGenerateAccessTokenRequest,
+export const GenerateOfferAccessToken: API.OperationMethod<
+  GenerateOfferAccessTokenRequest,
   DiskAccessToken,
-  OffersGenerateAccessTokenError,
+  GenerateOfferAccessTokenError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OffersGenerateAccessTokenRequest,
+  input: GenerateOfferAccessTokenRequest,
   output: DiskAccessToken,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OffersGetError = AzureOpError;
+export type GetOfferError = AzureOpError;
 /** Get a Offer */
-export const OffersGet: API.OperationMethod<
-  OffersGetRequest,
-  OffersGetResponse,
-  OffersGetError,
+export const GetOffer: API.OperationMethod<
+  GetOfferRequest,
+  GetOfferResponse,
+  GetOfferError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OffersGetRequest,
-  output: OffersGetResponse,
+  input: GetOfferRequest,
+  output: GetOfferResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OffersGetAccessTokenError = AzureOpError;
+export type GetOfferAccessTokenError = AzureOpError;
 /** get access token. */
-export const OffersGetAccessToken: API.OperationMethod<
-  OffersGetAccessTokenRequest,
+export const GetOfferAccessToken: API.OperationMethod<
+  GetOfferAccessTokenRequest,
   DiskAccessToken,
-  OffersGetAccessTokenError,
+  GetOfferAccessTokenError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OffersGetAccessTokenRequest,
+  input: GetOfferAccessTokenRequest,
   output: DiskAccessToken,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OffersListError = AzureOpError;
-/** List Offer resources by parent */
-export const OffersList: API.OperationMethod<
-  OffersListRequest,
-  OfferListResult,
-  OffersListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OffersListRequest,
-  output: OfferListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OffersListBySubscriptionError = AzureOpError;
-/** List Offer resources by subscription ID */
-export const OffersListBySubscription: API.OperationMethod<
-  OffersListBySubscriptionRequest,
-  OfferListResult,
-  OffersListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OffersListBySubscriptionRequest,
-  output: OfferListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OperationsListError = AzureOpError;
-/** List the operations for the provider */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationsListResponse,
-  OperationsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
-  output: OperationsListResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PublishersGetError = AzureOpError;
+export type GetPublisherError = AzureOpError;
 /** Get a Publisher */
-export const PublishersGet: API.OperationMethod<
-  PublishersGetRequest,
-  PublishersGetResponse,
-  PublishersGetError,
+export const GetPublisher: API.OperationMethod<
+  GetPublisherRequest,
+  GetPublisherResponse,
+  GetPublisherError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PublishersGetRequest,
-  output: PublishersGetResponse,
+  input: GetPublisherRequest,
+  output: GetPublisherResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type PublishersListError = AzureOpError;
-/** List Publisher resources by parent */
-export const PublishersList: API.OperationMethod<
-  PublishersListRequest,
-  PublisherListResult,
-  PublishersListError,
+export type ListOfferBySubscriptionError = AzureOpError;
+/** List Offer resources by subscription ID */
+export const ListOfferBySubscription: API.OperationMethod<
+  ListOfferBySubscriptionRequest,
+  OfferListResult,
+  ListOfferBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PublishersListRequest,
+  input: ListOfferBySubscriptionRequest,
+  output: OfferListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOffersError = AzureOpError;
+/** List Offer resources by parent */
+export const ListOffers: API.OperationMethod<
+  ListOffersRequest,
+  OfferListResult,
+  ListOffersError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOffersRequest,
+  output: OfferListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOperationsError = AzureOpError;
+/** List the operations for the provider */
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  ListOperationsResponse,
+  ListOperationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOperationsRequest,
+  output: ListOperationsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPublisherBySubscriptionError = AzureOpError;
+/** List Publisher resources by subscription ID */
+export const ListPublisherBySubscription: API.OperationMethod<
+  ListPublisherBySubscriptionRequest,
+  PublisherListResult,
+  ListPublisherBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPublisherBySubscriptionRequest,
   output: PublisherListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type PublishersListBySubscriptionError = AzureOpError;
-/** List Publisher resources by subscription ID */
-export const PublishersListBySubscription: API.OperationMethod<
-  PublishersListBySubscriptionRequest,
+export type ListPublishersError = AzureOpError;
+/** List Publisher resources by parent */
+export const ListPublishers: API.OperationMethod<
+  ListPublishersRequest,
   PublisherListResult,
-  PublishersListBySubscriptionError,
+  ListPublishersError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PublishersListBySubscriptionRequest,
+  input: ListPublishersRequest,
   output: PublisherListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,

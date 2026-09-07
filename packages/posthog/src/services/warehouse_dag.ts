@@ -11,11 +11,11 @@ import * as Retry from "../retry.ts";
 
 export type { PosthogOpError, PosthogOpContext };
 
-export interface WarehouseDagListRequest {
+export interface ListWarehouseDagRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
 }
-export const WarehouseDagListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListWarehouseDagRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
   }).pipe(
@@ -26,26 +26,26 @@ export const WarehouseDagListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "WarehouseDagListRequest",
-}) as any as S.Schema<WarehouseDagListRequest>;
+  identifier: "ListWarehouseDagRequest",
+}) as any as S.Schema<ListWarehouseDagRequest>;
 
-export interface WarehouseDagListResponse {}
-export const WarehouseDagListResponse = /*@__PURE__*/ S.suspend(() =>
+export interface ListWarehouseDagResponse {}
+export const ListWarehouseDagResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "WarehouseDagListResponse",
-}) as any as S.Schema<WarehouseDagListResponse>;
+  identifier: "ListWarehouseDagResponse",
+}) as any as S.Schema<ListWarehouseDagResponse>;
 
-export type WarehouseDagListError = PosthogOpError;
+export type ListWarehouseDagError = PosthogOpError;
 /** Return this team's DAG as a set of edges and nodes */
-export const warehouseDagList: API.OperationMethod<
-  WarehouseDagListRequest,
-  WarehouseDagListResponse,
-  WarehouseDagListError,
+export const listWarehouseDag: API.OperationMethod<
+  ListWarehouseDagRequest,
+  ListWarehouseDagResponse,
+  ListWarehouseDagError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: WarehouseDagListRequest,
-  output: WarehouseDagListResponse,
+  input: ListWarehouseDagRequest,
+  output: ListWarehouseDagResponse,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,

@@ -94,65 +94,6 @@ export class WorkerScriptNotFound
     [{ code: 2016 }],
   ) {}
 
-export type AddressesEditRequestStatus = "unverified" | "verified";
-export const AddressesEditRequestStatus = /*@__PURE__*/ S.String;
-
-export interface AddressesEditRequest {
-  /** Identifier. */
-  accountId: string;
-  /** Destination address identifier. */
-  destinationAddressIdentifier: string;
-  /** Destination address status. Non-admin callers may only set verified addresses back to unverified; setting to verified requires admin privileges. */
-  status: AddressesEditRequestStatus | (string & {});
-}
-export const AddressesEditRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountId: S.String.pipe(T.Label("account_id")),
-    destinationAddressIdentifier: S.String.pipe(
-      T.Label("destination_address_identifier"),
-    ),
-    status: AddressesEditRequestStatus,
-  })
-    .pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/accounts/{account_id}/email/routing/addresses/{destination_address_identifier}",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "AddressesEditRequest",
-}) as any as S.Schema<AddressesEditRequest>;
-
-/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
-export interface AddressesEditResponse {
-  /** Destination address identifier. */
-  id?: string | null;
-  /** The date and time the destination address has been created. */
-  created?: string | null;
-  /** The contact email address of the user. */
-  email?: string | null;
-  /** The date and time the destination address was last modified. */
-  modified?: string | null;
-  /** Destination address tag. (Deprecated, replaced by destination address identifier) */
-  tag?: string | null;
-  /** The date and time the destination address has been verified. Null means not verified yet. */
-  verified?: string | null;
-}
-export const AddressesEditResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.NullOr(S.String)),
-    created: S.optional(S.NullOr(S.String)),
-    email: S.optional(S.NullOr(S.String)),
-    modified: S.optional(S.NullOr(S.String)),
-    tag: S.optional(S.NullOr(S.String)),
-    verified: S.optional(S.NullOr(S.String)),
-  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "AddressesEditResponse",
-}) as any as S.Schema<AddressesEditResponse>;
-
 export interface CreateAddressRequest {
   /** Identifier. */
   accountId: string;
@@ -735,6 +676,65 @@ export const DisableEmailRoutingResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DisableEmailRoutingResponse",
 }) as any as S.Schema<DisableEmailRoutingResponse>;
+
+export type EditAddressRequestStatus = "unverified" | "verified";
+export const EditAddressRequestStatus = /*@__PURE__*/ S.String;
+
+export interface EditAddressRequest {
+  /** Identifier. */
+  accountId: string;
+  /** Destination address identifier. */
+  destinationAddressIdentifier: string;
+  /** Destination address status. Non-admin callers may only set verified addresses back to unverified; setting to verified requires admin privileges. */
+  status: EditAddressRequestStatus | (string & {});
+}
+export const EditAddressRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountId: S.String.pipe(T.Label("account_id")),
+    destinationAddressIdentifier: S.String.pipe(
+      T.Label("destination_address_identifier"),
+    ),
+    status: EditAddressRequestStatus,
+  })
+    .pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/accounts/{account_id}/email/routing/addresses/{destination_address_identifier}",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "EditAddressRequest",
+}) as any as S.Schema<EditAddressRequest>;
+
+/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
+export interface EditAddressResponse {
+  /** Destination address identifier. */
+  id?: string | null;
+  /** The date and time the destination address has been created. */
+  created?: string | null;
+  /** The contact email address of the user. */
+  email?: string | null;
+  /** The date and time the destination address was last modified. */
+  modified?: string | null;
+  /** Destination address tag. (Deprecated, replaced by destination address identifier) */
+  tag?: string | null;
+  /** The date and time the destination address has been verified. Null means not verified yet. */
+  verified?: string | null;
+}
+export const EditAddressResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.NullOr(S.String)),
+    created: S.optional(S.NullOr(S.String)),
+    email: S.optional(S.NullOr(S.String)),
+    modified: S.optional(S.NullOr(S.String)),
+    tag: S.optional(S.NullOr(S.String)),
+    verified: S.optional(S.NullOr(S.String)),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "EditAddressResponse",
+}) as any as S.Schema<EditAddressResponse>;
 
 export interface EnableEmailRoutingRequest {
   /** Identifier. */
@@ -1930,21 +1930,6 @@ export const UpdateRuleResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateRuleResponse",
 }) as any as S.Schema<UpdateRuleResponse>;
 
-export type AddressesEditError = CloudflareOpError;
-/** Updates the status of a specific destination address. */
-export const addressesEdit: API.OperationMethod<
-  AddressesEditRequest,
-  AddressesEditResponse,
-  AddressesEditError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AddressesEditRequest,
-  output: AddressesEditResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
 export type CreateAddressError = CloudflareOpError;
 /** Create a destination address to forward your emails to. Destination addresses need to be verified before they can be used. */
 export const createAddress: API.OperationMethod<
@@ -2054,6 +2039,21 @@ export const disableEmailRouting: API.OperationMethod<
   input: DisableEmailRoutingRequest,
   output: DisableEmailRoutingResponse,
   errors: [Forbidden, CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
+export type EditAddressError = CloudflareOpError;
+/** Updates the status of a specific destination address. */
+export const editAddress: API.OperationMethod<
+  EditAddressRequest,
+  EditAddressResponse,
+  EditAddressError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: EditAddressRequest,
+  output: EditAddressResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
 }));

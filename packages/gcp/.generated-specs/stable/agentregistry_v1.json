@@ -4,81 +4,60 @@
     "service": "agentregistry",
     "version": "v1",
     "title": "Agent Registry API",
-    "baseUrl": "https://agentregistry.googleapis.com/"
+    "baseUrl": "https://agentregistry.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.gcp.agentregistry_v1#McpServer": {
+    "com.gcp.agentregistry_v1#SearchAgentsResponse": {
       "type": "structure",
       "members": {
-        "description": {
+        "agents": {
+          "target": "com.gcp.agentregistry_v1#AgentList",
+          "traits": {
+            "smithy.api#documentation": "A list of Agents that match the `search_string`."
+          }
+        },
+        "nextPageToken": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. The description of the MCP Server."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier. The resource name of the MCP Server. Format: `projects/{project}/locations/{location}/mcpServers/{mcp_server}`."
-          }
-        },
-        "tools": {
-          "target": "com.gcp.agentregistry_v1#ToolList",
-          "traits": {
-            "smithy.api#documentation": "Output only. Tools provided by the MCP Server."
-          }
-        },
-        "createTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Create time."
-          }
-        },
-        "displayName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The display name of the MCP Server."
-          }
-        },
-        "interfaces": {
-          "target": "com.gcp.agentregistry_v1#InterfaceList",
-          "traits": {
-            "smithy.api#documentation": "Output only. The connection details for the MCP Server."
-          }
-        },
-        "updateTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Update time."
-          }
-        },
-        "attributes": {
-          "target": "com.gcp.agentregistry_v1#DocumentMapMap",
-          "traits": {
-            "smithy.api#documentation": "Output only. Attributes of the MCP Server. Valid values: * `agentregistry.googleapis.com/system/RuntimeIdentity`: {\"principal\": \"principal://...\"} - the runtime identity associated with the MCP Server. * `agentregistry.googleapis.com/system/RuntimeReference`: {\"uri\": \"//...\"} - the URI of the underlying resource hosting the MCP Server, for example, the GKE Deployment."
-          }
-        },
-        "mcpServerId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. A stable, globally unique identifier for MCP Servers."
+            "smithy.api#documentation": "If there are more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Represents an MCP (Model Context Protocol) Server."
+        "smithy.api#documentation": "Message for response to searching Agents"
       }
     },
-    "com.gcp.agentregistry_v1#ToolList": {
+    "com.gcp.agentregistry_v1#AgentList": {
       "type": "list",
       "member": {
-        "target": "com.gcp.agentregistry_v1#Tool"
+        "target": "com.gcp.agentregistry_v1#Agent"
       }
     },
-    "com.gcp.agentregistry_v1#InterfaceList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.agentregistry_v1#Interface"
+    "com.gcp.agentregistry_v1#Status": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
+          }
+        },
+        "details": {
+          "target": "com.gcp.agentregistry_v1#DocumentMapList",
+          "traits": {
+            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
       }
     },
     "com.gcp.agentregistry_v1#DocumentMap": {
@@ -90,53 +69,148 @@
         "target": "smithy.api#Document"
       }
     },
-    "com.gcp.agentregistry_v1#DocumentMapMap": {
+    "com.gcp.agentregistry_v1#DocumentMapList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.agentregistry_v1#DocumentMap"
+      }
+    },
+    "com.gcp.agentregistry_v1#Location": {
+      "type": "structure",
+      "members": {
+        "locationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The canonical id for this location. For example: `\"us-east1\"`."
+          }
+        },
+        "labels": {
+          "target": "com.gcp.agentregistry_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}"
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.agentregistry_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata. For example the available capacity at the given location."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`"
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\"."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A resource that represents a Google Cloud location."
+      }
+    },
+    "com.gcp.agentregistry_v1#StringMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "com.gcp.agentregistry_v1#DocumentMap"
+        "target": "smithy.api#String"
       }
     },
-    "com.gcp.agentregistry_v1#ListLocationsResponse": {
+    "com.gcp.agentregistry_v1#CancelOperationRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "The request message for Operations.CancelOperation."
+      }
+    },
+    "com.gcp.agentregistry_v1#Empty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.agentregistry_v1#Card": {
       "type": "structure",
       "members": {
-        "locations": {
-          "target": "com.gcp.agentregistry_v1#LocationList",
+        "type": {
+          "target": "com.gcp.agentregistry_v1#CardTypeEnum",
           "traits": {
-            "smithy.api#documentation": "A list of locations that matches the specified filter in the request."
+            "smithy.api#documentation": "Output only. The type of agent card."
           }
         },
-        "nextPageToken": {
-          "target": "smithy.api#String",
+        "content": {
+          "target": "com.gcp.agentregistry_v1#DocumentMap",
           "traits": {
-            "smithy.api#documentation": "The standard List next-page token."
+            "smithy.api#documentation": "Output only. The content of the agent card."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "The response message for Locations.ListLocations."
+        "smithy.api#documentation": "Full Agent Card payload, often obtained from the A2A Agent Card."
       }
     },
-    "com.gcp.agentregistry_v1#LocationList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.agentregistry_v1#Location"
+    "com.gcp.agentregistry_v1#CardTypeEnum": {
+      "type": "enum",
+      "members": {
+        "TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TYPE_UNSPECIFIED"
+          }
+        },
+        "A2A_AGENT_CARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "A2A_AGENT_CARD"
+          }
+        }
       }
     },
-    "com.gcp.agentregistry_v1#Target": {
+    "com.gcp.agentregistry_v1#Source": {
       "type": "structure",
       "members": {
         "identifier": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The identifier of the target Agent, MCP Server, or Endpoint. Format: * `urn:agent:{publisher}:{namespace}:{name}` * `urn:mcp:{publisher}:{namespace}:{name}` * `urn:endpoint:{publisher}:{namespace}:{name}`"
+            "smithy.api#documentation": "The identifier of the source Agent. Format: * `urn:agent:{publisher}:{namespace}:{name}`"
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "The target of the Binding."
+        "smithy.api#documentation": "The source of the Binding."
+      }
+    },
+    "com.gcp.agentregistry_v1#ListServicesResponse": {
+      "type": "structure",
+      "members": {
+        "services": {
+          "target": "com.gcp.agentregistry_v1#ServiceList",
+          "traits": {
+            "smithy.api#documentation": "The list of Service resources matching the parent and filter criteria in the request. Each Service resource follows the format: `projects/{project}/locations/{location}/services/{service}`."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token identifying a page of results the server should return. Used in page_token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message for response to listing Services"
+      }
+    },
+    "com.gcp.agentregistry_v1#ServiceList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.agentregistry_v1#Service"
       }
     },
     "com.gcp.agentregistry_v1#ListMcpServersResponse": {
@@ -165,146 +239,148 @@
         "target": "com.gcp.agentregistry_v1#McpServer"
       }
     },
-    "com.gcp.agentregistry_v1#EndpointSpec": {
+    "com.gcp.agentregistry_v1#McpServer": {
       "type": "structure",
       "members": {
-        "content": {
-          "target": "com.gcp.agentregistry_v1#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "Optional. The content of the endpoint spec. Reserved for future use."
-          }
-        },
-        "type": {
-          "target": "com.gcp.agentregistry_v1#EndpointSpecTypeEnum",
-          "traits": {
-            "smithy.api#documentation": "Required. The type of the endpoint spec content."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The spec of the endpoint."
-      }
-    },
-    "com.gcp.agentregistry_v1#EndpointSpecTypeEnum": {
-      "type": "enum",
-      "members": {
-        "TYPE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "TYPE_UNSPECIFIED"
-          }
-        },
-        "NO_SPEC": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "NO_SPEC"
-          }
-        }
-      }
-    },
-    "com.gcp.agentregistry_v1#Binding": {
-      "type": "structure",
-      "members": {
-        "target": {
-          "target": "com.gcp.agentregistry_v1#Target",
-          "traits": {
-            "smithy.api#documentation": "Required. The target Agent Registry Resource of the Binding."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Identifier. The resource name of the Binding. Format: `projects/{project}/locations/{location}/bindings/{binding}`."
-          }
-        },
-        "source": {
-          "target": "com.gcp.agentregistry_v1#Source",
-          "traits": {
-            "smithy.api#documentation": "Required. The target Agent of the Binding."
-          }
-        },
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. User-defined description of a Binding. Can have a maximum length of `2048` characters."
-          }
-        },
-        "authProviderBinding": {
-          "target": "com.gcp.agentregistry_v1#AuthProviderBinding",
-          "traits": {
-            "smithy.api#documentation": "The binding for AuthProvider."
-          }
-        },
         "displayName": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. User-defined display name for the Binding. Can have a maximum length of `63` characters."
-          }
-        },
-        "createTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Timestamp when this binding was created."
+            "smithy.api#documentation": "Output only. The display name of the MCP Server."
           }
         },
         "updateTime": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. Timestamp when this binding was last updated."
+            "smithy.api#documentation": "Output only. Update time."
           }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Represents a user-defined Binding."
-      }
-    },
-    "com.gcp.agentregistry_v1#Tool": {
-      "type": "structure",
-      "members": {
-        "description": {
+        },
+        "createTime": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. Description of what the tool does."
+            "smithy.api#documentation": "Output only. Create time."
+          }
+        },
+        "mcpServerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. A stable, globally unique identifier for MCP Servers."
+          }
+        },
+        "attributes": {
+          "target": "com.gcp.agentregistry_v1#DocumentMapMap",
+          "traits": {
+            "smithy.api#documentation": "Output only. Attributes of the MCP Server. Valid values: * `agentregistry.googleapis.com/system/RuntimeIdentity`: {\"principal\": \"principal://...\"} - the runtime identity associated with the MCP Server. * `agentregistry.googleapis.com/system/RuntimeReference`: {\"uri\": \"//...\"} - the URI of the underlying resource hosting the MCP Server, for example, the GKE Deployment."
           }
         },
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. Human-readable name of the tool."
+            "smithy.api#documentation": "Identifier. The resource name of the MCP Server. Format: `projects/{project}/locations/{location}/mcpServers/{mcp_server}`."
           }
         },
-        "annotations": {
-          "target": "com.gcp.agentregistry_v1#Annotations",
+        "tools": {
+          "target": "com.gcp.agentregistry_v1#ToolList",
           "traits": {
-            "smithy.api#documentation": "Output only. Annotations associated with the tool."
+            "smithy.api#documentation": "Output only. Tools provided by the MCP Server."
+          }
+        },
+        "interfaces": {
+          "target": "com.gcp.agentregistry_v1#InterfaceList",
+          "traits": {
+            "smithy.api#documentation": "Output only. The connection details for the MCP Server."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The description of the MCP Server."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Represents a single tool provided by an MCP Server."
+        "smithy.api#documentation": "Represents an MCP (Model Context Protocol) Server."
       }
     },
-    "com.gcp.agentregistry_v1#McpServerSpec": {
+    "com.gcp.agentregistry_v1#DocumentMapMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.gcp.agentregistry_v1#DocumentMap"
+      }
+    },
+    "com.gcp.agentregistry_v1#ToolList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.agentregistry_v1#Tool"
+      }
+    },
+    "com.gcp.agentregistry_v1#InterfaceList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.agentregistry_v1#Interface"
+      }
+    },
+    "com.gcp.agentregistry_v1#AuthProviderBinding": {
       "type": "structure",
       "members": {
-        "content": {
-          "target": "com.gcp.agentregistry_v1#DocumentMap",
+        "scopes": {
+          "target": "com.gcp.agentregistry_v1#StringList",
           "traits": {
-            "smithy.api#documentation": "Optional. The content of the MCP Server spec. This payload is validated against the schema for the specified type. The content size is limited to `10KB`."
+            "smithy.api#documentation": "Optional. The list of OAuth2 scopes of the AuthProvider."
+          }
+        },
+        "authProvider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the target AuthProvider. Format: * `projects/{project}/locations/{location}/authProviders/{auth_provider}`"
+          }
+        },
+        "continueUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The continue URI of the AuthProvider. The URI is used to reauthenticate the user and finalize the managed OAuth flow."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The AuthProvider of the Binding."
+      }
+    },
+    "com.gcp.agentregistry_v1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.agentregistry_v1#Protocol": {
+      "type": "structure",
+      "members": {
+        "protocolVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The version of the protocol, for example, the A2A Agent Card version."
           }
         },
         "type": {
-          "target": "com.gcp.agentregistry_v1#McpServerSpecTypeEnum",
+          "target": "com.gcp.agentregistry_v1#ProtocolTypeEnum",
           "traits": {
-            "smithy.api#documentation": "Required. The type of the MCP Server spec content."
+            "smithy.api#documentation": "Output only. The type of the protocol."
+          }
+        },
+        "interfaces": {
+          "target": "com.gcp.agentregistry_v1#InterfaceList",
+          "traits": {
+            "smithy.api#documentation": "Output only. The connection details for the Agent."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "The spec of the MCP Server."
+        "smithy.api#documentation": "Represents the protocol of an Agent."
       }
     },
-    "com.gcp.agentregistry_v1#McpServerSpecTypeEnum": {
+    "com.gcp.agentregistry_v1#ProtocolTypeEnum": {
       "type": "enum",
       "members": {
         "TYPE_UNSPECIFIED": {
@@ -313,16 +389,16 @@
             "smithy.api#enumValue": "TYPE_UNSPECIFIED"
           }
         },
-        "NO_SPEC": {
+        "A2A_AGENT": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "NO_SPEC"
+            "smithy.api#enumValue": "A2A_AGENT"
           }
         },
-        "TOOL_SPEC": {
+        "CUSTOM": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "TOOL_SPEC"
+            "smithy.api#enumValue": "CUSTOM"
           }
         }
       }
@@ -376,6 +452,64 @@
         }
       }
     },
+    "com.gcp.agentregistry_v1#SearchAgentsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of search results to return per page. The page size is capped at `100`, even if a larger value is specified. A negative value will result in an `INVALID_ARGUMENT` error. If unspecified or set to `0`, a default value of `20` will be used. The server may return fewer results than requested."
+          }
+        },
+        "searchString": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Search criteria used to select the Agents to return. If no search criteria is specified then all accessible Agents will be returned. Search expressions can be used to restrict results based upon searchable fields, where the operators can be used along with the suffix wildcard symbol `*`. See [instructions](https://docs.cloud.google.com/agent-registry/search-agents-and-tools) for more details. Allowed operators: `=`, `:`, `NOT`, `AND`, `OR`, and `()`. Searchable fields: | Field | `=` | `:` | `*` | Keyword Search | |--------------------|-----|-----|-----|----------------| | agentId | Yes | Yes | Yes | Included | | name | No | Yes | Yes | Included | | displayName | No | Yes | Yes | Included | | description | No | Yes | No | Included | | skills | No | Yes | No | Included | | skills.id | No | Yes | No | Included | | skills.name | No | Yes | No | Included | | skills.description | No | Yes | No | Included | | skills.tags | No | Yes | No | Included | | skills.examples | No | Yes | No | Included | Examples: * `agentId=\"urn:agent:projects-123:projects:123:locations:us-central1:reasoningEngines:1234\"` to find the agent with the specified agent ID. * `name:important` to find agents whose name contains `important` as a word. * `displayName:works*` to find agents whose display name contains words that start with `works`. * `skills.tags:test` to find agents whose skills tags contain `test`. * `planner OR booking` to find agents whose metadata contains the words `planner` or `booking`."
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. If present, retrieve the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of all other method parameters, must be identical to those in the previous call."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message for searching Agents"
+      }
+    },
+    "com.gcp.agentregistry_v1#ListOperationsResponse": {
+      "type": "structure",
+      "members": {
+        "operations": {
+          "target": "com.gcp.agentregistry_v1#OperationList",
+          "traits": {
+            "smithy.api#documentation": "A list of operations that matches the specified filter in the request."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard List next-page token."
+          }
+        },
+        "unreachable": {
+          "target": "com.gcp.agentregistry_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for Operations.ListOperations."
+      }
+    },
+    "com.gcp.agentregistry_v1#OperationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.agentregistry_v1#Operation"
+      }
+    },
     "com.gcp.agentregistry_v1#ListAgentsResponse": {
       "type": "structure",
       "members": {
@@ -396,84 +530,41 @@
         "smithy.api#documentation": "Message for response to listing Agents"
       }
     },
-    "com.gcp.agentregistry_v1#AgentList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.agentregistry_v1#Agent"
-      }
-    },
-    "com.gcp.agentregistry_v1#Protocol": {
+    "com.gcp.agentregistry_v1#SearchMcpServersRequest": {
       "type": "structure",
       "members": {
-        "type": {
-          "target": "com.gcp.agentregistry_v1#ProtocolTypeEnum",
+        "pageSize": {
+          "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "Output only. The type of the protocol."
+            "smithy.api#documentation": "Optional. The maximum number of search results to return per page. The page size is capped at `100`, even if a larger value is specified. A negative value will result in an `INVALID_ARGUMENT` error. If unspecified or set to `0`, a default value of `20` will be used. The server may return fewer results than requested."
           }
         },
-        "protocolVersion": {
+        "searchString": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. The version of the protocol, for example, the A2A Agent Card version."
+            "smithy.api#documentation": "Optional. Search criteria used to select the MCP Servers to return. If no search criteria is specified then all accessible MCP Servers will be returned. Search expressions can be used to restrict results based upon searchable fields, where the operators can be used along with the suffix wildcard symbol `*`. See [instructions](https://docs.cloud.google.com/agent-registry/search-agents-and-tools) for more details. Allowed operators: `=`, `:`, `NOT`, `AND`, `OR`, and `()`. Searchable fields: | Field | `=` | `:` | `*` | Keyword Search | |--------------------|-----|-----|-----|----------------| | mcpServerId | Yes | Yes | Yes | Included | | name | No | Yes | Yes | Included | | displayName | No | Yes | Yes | Included | Examples: * `mcpServerId=\"urn:mcp:projects-123:projects:123:locations:us-central1:agentregistry:services:service-id\"` to find the MCP Server with the specified MCP Server ID. * `name:important` to find MCP Servers whose name contains `important` as a word. * `displayName:works*` to find MCP Servers whose display name contains words that start with `works`. * `planner OR booking` to find MCP Servers whose metadata contains the words `planner` or `booking`. * `mcpServerId:service-id AND (displayName:planner OR displayName:booking)` to find MCP Servers whose MCP Server ID contains `service-id` and whose display name contains `planner` or `booking`."
           }
         },
-        "interfaces": {
-          "target": "com.gcp.agentregistry_v1#InterfaceList",
+        "pageToken": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. The connection details for the Agent."
+            "smithy.api#documentation": "Optional. If present, retrieve the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of all other method parameters, must be identical to those in the previous call."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Represents the protocol of an Agent."
-      }
-    },
-    "com.gcp.agentregistry_v1#ProtocolTypeEnum": {
-      "type": "enum",
-      "members": {
-        "TYPE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "TYPE_UNSPECIFIED"
-          }
-        },
-        "A2A_AGENT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "A2A_AGENT"
-          }
-        },
-        "CUSTOM": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CUSTOM"
-          }
-        }
-      }
-    },
-    "com.gcp.agentregistry_v1#SearchAgentsResponse": {
-      "type": "structure",
-      "members": {
-        "agents": {
-          "target": "com.gcp.agentregistry_v1#AgentList",
-          "traits": {
-            "smithy.api#documentation": "A list of Agents that match the `search_string`."
-          }
-        },
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "If there are more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Message for response to searching Agents"
+        "smithy.api#documentation": "Message for searching MCP Servers"
       }
     },
     "com.gcp.agentregistry_v1#Endpoint": {
       "type": "structure",
       "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The resource name of the Endpoint. Format: `projects/{project}/locations/{location}/endpoints/{endpoint}`."
+          }
+        },
         "displayName": {
           "target": "smithy.api#String",
           "traits": {
@@ -486,28 +577,16 @@
             "smithy.api#documentation": "Required. The connection details for the Endpoint."
           }
         },
-        "createTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Create time."
-          }
-        },
         "updateTime": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Output only. Update time."
           }
         },
-        "attributes": {
-          "target": "com.gcp.agentregistry_v1#DocumentMapMap",
-          "traits": {
-            "smithy.api#documentation": "Output only. Attributes of the Endpoint. Valid values: * `agentregistry.googleapis.com/system/RuntimeReference`: {\"uri\": \"//...\"} - the URI of the underlying resource hosting the Endpoint, for example, the GKE Deployment."
-          }
-        },
-        "endpointId": {
+        "createTime": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. A stable, globally unique identifier for Endpoint."
+            "smithy.api#documentation": "Output only. Create time."
           }
         },
         "description": {
@@ -516,10 +595,16 @@
             "smithy.api#documentation": "Output only. Description of an Endpoint."
           }
         },
-        "name": {
+        "endpointId": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Identifier. The resource name of the Endpoint. Format: `projects/{project}/locations/{location}/endpoints/{endpoint}`."
+            "smithy.api#documentation": "Output only. A stable, globally unique identifier for Endpoint."
+          }
+        },
+        "attributes": {
+          "target": "com.gcp.agentregistry_v1#DocumentMapMap",
+          "traits": {
+            "smithy.api#documentation": "Output only. Attributes of the Endpoint. Valid values: * `agentregistry.googleapis.com/system/RuntimeReference`: {\"uri\": \"//...\"} - the URI of the underlying resource hosting the Endpoint, for example, the GKE Deployment."
           }
         }
       },
@@ -527,227 +612,135 @@
         "smithy.api#documentation": "Represents an Endpoint."
       }
     },
-    "com.gcp.agentregistry_v1#AuthProviderBinding": {
-      "type": "structure",
-      "members": {
-        "scopes": {
-          "target": "com.gcp.agentregistry_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Optional. The list of OAuth2 scopes of the AuthProvider."
-          }
-        },
-        "authProvider": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The resource name of the target AuthProvider. Format: * `projects/{project}/locations/{location}/authProviders/{auth_provider}`"
-          }
-        },
-        "continueUri": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The continue URI of the AuthProvider. The URI is used to reauthenticate the user and finalize the managed OAuth flow."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The AuthProvider of the Binding."
-      }
-    },
-    "com.gcp.agentregistry_v1#StringList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
-      }
-    },
-    "com.gcp.agentregistry_v1#Agent": {
+    "com.gcp.agentregistry_v1#Binding": {
       "type": "structure",
       "members": {
         "createTime": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. Create time."
+            "smithy.api#documentation": "Output only. Timestamp when this binding was created."
           }
         },
-        "version": {
-          "target": "smithy.api#String",
+        "authProviderBinding": {
+          "target": "com.gcp.agentregistry_v1#AuthProviderBinding",
           "traits": {
-            "smithy.api#documentation": "Output only. The version of the Agent, often obtained from the A2A Agent Card. Empty if Agent Card has no version or agent is not an A2A Agent."
-          }
-        },
-        "updateTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Update time."
-          }
-        },
-        "attributes": {
-          "target": "com.gcp.agentregistry_v1#DocumentMapMap",
-          "traits": {
-            "smithy.api#documentation": "Output only. Attributes of the Agent. Valid values: * `agentregistry.googleapis.com/system/Framework`: {\"framework\": \"google-adk\"} - the agent framework used to develop the Agent. Example values: \"google-adk\", \"langchain\", \"custom\". * `agentregistry.googleapis.com/system/RuntimeIdentity`: {\"principal\": \"principal://...\"} - the runtime identity associated with the Agent. * `agentregistry.googleapis.com/system/RuntimeReference`: {\"uri\": \"//...\"} - the URI of the underlying resource hosting the Agent, for example, the Reasoning Engine URI."
-          }
-        },
-        "uid": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. A universally unique identifier for the Agent."
-          }
-        },
-        "location": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The location where agent is hosted. The value is defined by the hosting environment (i.e. cloud provider)."
-          }
-        },
-        "skills": {
-          "target": "com.gcp.agentregistry_v1#A2ASkillList",
-          "traits": {
-            "smithy.api#documentation": "Output only. Skills the agent possesses, often obtained from the A2A Agent Card."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier. The resource name of an Agent. Format: `projects/{project}/locations/{location}/agents/{agent}`."
+            "smithy.api#documentation": "The binding for AuthProvider."
           }
         },
         "description": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. The description of the Agent, often obtained from the A2A Agent Card. Empty if Agent Card has no description."
-          }
-        },
-        "card": {
-          "target": "com.gcp.agentregistry_v1#Card",
-          "traits": {
-            "smithy.api#documentation": "Output only. Full Agent Card payload, when available."
-          }
-        },
-        "agentId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. A stable, globally unique identifier for agents."
-          }
-        },
-        "protocols": {
-          "target": "com.gcp.agentregistry_v1#ProtocolList",
-          "traits": {
-            "smithy.api#documentation": "Output only. The connection details for the Agent."
-          }
-        },
-        "displayName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The display name of the agent, often obtained from the A2A Agent Card."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Represents an Agent. \"A2A\" below refers to the Agent-to-Agent protocol."
-      }
-    },
-    "com.gcp.agentregistry_v1#A2ASkillList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.agentregistry_v1#A2ASkill"
-      }
-    },
-    "com.gcp.agentregistry_v1#ProtocolList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.agentregistry_v1#Protocol"
-      }
-    },
-    "com.gcp.agentregistry_v1#Operation": {
-      "type": "structure",
-      "members": {
-        "metadata": {
-          "target": "com.gcp.agentregistry_v1#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
-          }
-        },
-        "response": {
-          "target": "com.gcp.agentregistry_v1#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
-          }
-        },
-        "error": {
-          "target": "com.gcp.agentregistry_v1#Status",
-          "traits": {
-            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
-          }
-        },
-        "done": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+            "smithy.api#documentation": "Optional. User-defined description of a Binding. Can have a maximum length of `2048` characters."
           }
         },
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
-      }
-    },
-    "com.gcp.agentregistry_v1#Status": {
-      "type": "structure",
-      "members": {
-        "details": {
-          "target": "com.gcp.agentregistry_v1#DocumentMapList",
-          "traits": {
-            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+            "smithy.api#documentation": "Required. Identifier. The resource name of the Binding. Format: `projects/{project}/locations/{location}/bindings/{binding}`."
           }
         },
-        "message": {
+        "displayName": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+            "smithy.api#documentation": "Optional. User-defined display name for the Binding. Can have a maximum length of `63` characters."
           }
         },
-        "code": {
-          "target": "smithy.api#Integer",
+        "source": {
+          "target": "com.gcp.agentregistry_v1#Source",
           "traits": {
-            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
+            "smithy.api#documentation": "Required. The target Agent of the Binding."
+          }
+        },
+        "target": {
+          "target": "com.gcp.agentregistry_v1#Target",
+          "traits": {
+            "smithy.api#documentation": "Required. The target Agent Registry Resource of the Binding."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Timestamp when this binding was last updated."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        "smithy.api#documentation": "Represents a user-defined Binding."
       }
     },
-    "com.gcp.agentregistry_v1#DocumentMapList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.agentregistry_v1#DocumentMap"
-      }
-    },
-    "com.gcp.agentregistry_v1#Card": {
+    "com.gcp.agentregistry_v1#Target": {
       "type": "structure",
       "members": {
+        "identifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identifier of the target Agent, MCP Server, or Endpoint. Format: * `urn:agent:{publisher}:{namespace}:{name}` * `urn:mcp:{publisher}:{namespace}:{name}` * `urn:endpoint:{publisher}:{namespace}:{name}`"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The target of the Binding."
+      }
+    },
+    "com.gcp.agentregistry_v1#Annotations": {
+      "type": "structure",
+      "members": {
+        "destructiveHint": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. If true, the tool may perform destructive updates to its environment. If false, the tool performs only additive updates. NOTE: This property is meaningful only when `read_only_hint == false` Default: true"
+          }
+        },
+        "idempotentHint": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. If true, calling the tool repeatedly with the same arguments will have no additional effect on its environment. NOTE: This property is meaningful only when `read_only_hint == false` Default: false"
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. A human-readable title for the tool."
+          }
+        },
+        "readOnlyHint": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. If true, the tool does not modify its environment. Default: false"
+          }
+        },
+        "openWorldHint": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. If true, this tool may interact with an \"open world\" of external entities. If false, the tool's domain of interaction is closed. For example, the world of a web search tool is open, whereas that of a memory tool is not. Default: true"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Annotations describing the characteristics and behavior of a tool or operation."
+      }
+    },
+    "com.gcp.agentregistry_v1#AgentSpec": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.gcp.agentregistry_v1#AgentSpecTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. The type of the agent spec content."
+          }
+        },
         "content": {
           "target": "com.gcp.agentregistry_v1#DocumentMap",
           "traits": {
-            "smithy.api#documentation": "Output only. The content of the agent card."
-          }
-        },
-        "type": {
-          "target": "com.gcp.agentregistry_v1#CardTypeEnum",
-          "traits": {
-            "smithy.api#documentation": "Output only. The type of agent card."
+            "smithy.api#documentation": "Optional. The content of the Agent spec in the JSON format. This payload is validated against the schema for the specified type. The content size is limited to `10KB`."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Full Agent Card payload, often obtained from the A2A Agent Card."
+        "smithy.api#documentation": "The spec of the agent."
       }
     },
-    "com.gcp.agentregistry_v1#CardTypeEnum": {
+    "com.gcp.agentregistry_v1#AgentSpecTypeEnum": {
       "type": "enum",
       "members": {
         "TYPE_UNSPECIFIED": {
@@ -756,12 +749,183 @@
             "smithy.api#enumValue": "TYPE_UNSPECIFIED"
           }
         },
+        "NO_SPEC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NO_SPEC"
+          }
+        },
         "A2A_AGENT_CARD": {
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "A2A_AGENT_CARD"
           }
         }
+      }
+    },
+    "com.gcp.agentregistry_v1#McpServerSpec": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.gcp.agentregistry_v1#McpServerSpecTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. The type of the MCP Server spec content."
+          }
+        },
+        "content": {
+          "target": "com.gcp.agentregistry_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. The content of the MCP Server spec. This payload is validated against the schema for the specified type. The content size is limited to `10KB`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The spec of the MCP Server."
+      }
+    },
+    "com.gcp.agentregistry_v1#McpServerSpecTypeEnum": {
+      "type": "enum",
+      "members": {
+        "TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TYPE_UNSPECIFIED"
+          }
+        },
+        "NO_SPEC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NO_SPEC"
+          }
+        },
+        "TOOL_SPEC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TOOL_SPEC"
+          }
+        }
+      }
+    },
+    "com.gcp.agentregistry_v1#SearchMcpServersResponse": {
+      "type": "structure",
+      "members": {
+        "mcpServers": {
+          "target": "com.gcp.agentregistry_v1#McpServerList",
+          "traits": {
+            "smithy.api#documentation": "A list of McpServers that match the `search_string`."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If there are more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message for response to searching MCP Servers"
+      }
+    },
+    "com.gcp.agentregistry_v1#ListBindingsResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token identifying a page of results the server should return. Used in page_token."
+          }
+        },
+        "bindings": {
+          "target": "com.gcp.agentregistry_v1#BindingList",
+          "traits": {
+            "smithy.api#documentation": "The list of Binding resources matching the parent and filter criteria in the request. Each Binding resource follows the format: `projects/{project}/locations/{location}/bindings/{binding}`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message for response to listing Bindings"
+      }
+    },
+    "com.gcp.agentregistry_v1#BindingList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.agentregistry_v1#Binding"
+      }
+    },
+    "com.gcp.agentregistry_v1#ListLocationsResponse": {
+      "type": "structure",
+      "members": {
+        "locations": {
+          "target": "com.gcp.agentregistry_v1#LocationList",
+          "traits": {
+            "smithy.api#documentation": "A list of locations that matches the specified filter in the request."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard List next-page token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for Locations.ListLocations."
+      }
+    },
+    "com.gcp.agentregistry_v1#LocationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.agentregistry_v1#Location"
+      }
+    },
+    "com.gcp.agentregistry_v1#OperationMetadata": {
+      "type": "structure",
+      "members": {
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Server-defined resource path for the target of the operation."
+          }
+        },
+        "requestedCancellation": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have google.longrunning.Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`."
+          }
+        },
+        "apiVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. API version used to start the operation."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time the operation finished running."
+          }
+        },
+        "statusMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Human-readable status of the operation, if any."
+          }
+        },
+        "verb": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Name of the verb executed by the operation."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time the operation was created."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents the metadata of the long-running operation."
       }
     },
     "com.gcp.agentregistry_v1#ListEndpointsResponse": {
@@ -810,89 +974,77 @@
         "smithy.api#documentation": "Message for response to fetching available Bindings."
       }
     },
-    "com.gcp.agentregistry_v1#BindingList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.agentregistry_v1#Binding"
-      }
-    },
-    "com.gcp.agentregistry_v1#SearchMcpServersRequest": {
+    "com.gcp.agentregistry_v1#Operation": {
       "type": "structure",
       "members": {
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. The maximum number of search results to return per page. The page size is capped at `100`, even if a larger value is specified. A negative value will result in an `INVALID_ARGUMENT` error. If unspecified or set to `0`, a default value of `20` will be used. The server may return fewer results than requested."
-          }
-        },
-        "pageToken": {
+        "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. If present, retrieve the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of all other method parameters, must be identical to those in the previous call."
+            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
           }
         },
-        "searchString": {
-          "target": "smithy.api#String",
+        "metadata": {
+          "target": "com.gcp.agentregistry_v1#DocumentMap",
           "traits": {
-            "smithy.api#documentation": "Optional. Search criteria used to select the MCP Servers to return. If no search criteria is specified then all accessible MCP Servers will be returned. Search expressions can be used to restrict results based upon searchable fields, where the operators can be used along with the suffix wildcard symbol `*`. See [instructions](https://docs.cloud.google.com/agent-registry/search-agents-and-tools) for more details. Allowed operators: `=`, `:`, `NOT`, `AND`, `OR`, and `()`. Searchable fields: | Field | `=` | `:` | `*` | Keyword Search | |--------------------|-----|-----|-----|----------------| | mcpServerId | Yes | Yes | Yes | Included | | name | No | Yes | Yes | Included | | displayName | No | Yes | Yes | Included | Examples: * `mcpServerId=\"urn:mcp:projects-123:projects:123:locations:us-central1:agentregistry:services:service-id\"` to find the MCP Server with the specified MCP Server ID. * `name:important` to find MCP Servers whose name contains `important` as a word. * `displayName:works*` to find MCP Servers whose display name contains words that start with `works`. * `planner OR booking` to find MCP Servers whose metadata contains the words `planner` or `booking`. * `mcpServerId:service-id AND (displayName:planner OR displayName:booking)` to find MCP Servers whose MCP Server ID contains `service-id` and whose display name contains `planner` or `booking`."
+            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
+          }
+        },
+        "response": {
+          "target": "com.gcp.agentregistry_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
+          }
+        },
+        "done": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+          }
+        },
+        "error": {
+          "target": "com.gcp.agentregistry_v1#Status",
+          "traits": {
+            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Message for searching MCP Servers"
+        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
       }
     },
-    "com.gcp.agentregistry_v1#SearchMcpServersResponse": {
+    "com.gcp.agentregistry_v1#Tool": {
       "type": "structure",
       "members": {
-        "mcpServers": {
-          "target": "com.gcp.agentregistry_v1#McpServerList",
-          "traits": {
-            "smithy.api#documentation": "A list of McpServers that match the `search_string`."
-          }
-        },
-        "nextPageToken": {
+        "description": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "If there are more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Message for response to searching MCP Servers"
-      }
-    },
-    "com.gcp.agentregistry_v1#Service": {
-      "type": "structure",
-      "members": {
-        "agentSpec": {
-          "target": "com.gcp.agentregistry_v1#AgentSpec",
-          "traits": {
-            "smithy.api#documentation": "Optional. The spec of the Agent. When `agent_spec` is set, the type of the service is Agent."
+            "smithy.api#documentation": "Output only. Description of what the tool does."
           }
         },
-        "displayName": {
-          "target": "smithy.api#String",
+        "annotations": {
+          "target": "com.gcp.agentregistry_v1#Annotations",
           "traits": {
-            "smithy.api#documentation": "Optional. User-defined display name for the Service. Can have a maximum length of `63` characters."
-          }
-        },
-        "interfaces": {
-          "target": "com.gcp.agentregistry_v1#InterfaceList",
-          "traits": {
-            "smithy.api#documentation": "Optional. The connection details for the Service."
-          }
-        },
-        "updateTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Update time."
+            "smithy.api#documentation": "Output only. Annotations associated with the tool."
           }
         },
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Identifier. The resource name of the Service. Format: `projects/{project}/locations/{location}/services/{service}`."
+            "smithy.api#documentation": "Output only. Human-readable name of the tool."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a single tool provided by an MCP Server."
+      }
+    },
+    "com.gcp.agentregistry_v1#Service": {
+      "type": "structure",
+      "members": {
+        "endpointSpec": {
+          "target": "com.gcp.agentregistry_v1#EndpointSpec",
+          "traits": {
+            "smithy.api#documentation": "Optional. The spec of the Endpoint. When `endpoint_spec` is set, the type of the service is Endpoint."
           }
         },
         "mcpServerSpec": {
@@ -913,16 +1065,40 @@
             "smithy.api#documentation": "Output only. The resource name of the resulting Agent, MCP Server, or Endpoint. Format: * `projects/{project}/locations/{location}/mcpServers/{mcp_server}` * `projects/{project}/locations/{location}/agents/{agent}` * `projects/{project}/locations/{location}/endpoints/{endpoint}`"
           }
         },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The resource name of the Service. Format: `projects/{project}/locations/{location}/services/{service}`."
+          }
+        },
+        "interfaces": {
+          "target": "com.gcp.agentregistry_v1#InterfaceList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The connection details for the Service."
+          }
+        },
         "createTime": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Output only. Create time."
           }
         },
-        "endpointSpec": {
-          "target": "com.gcp.agentregistry_v1#EndpointSpec",
+        "displayName": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. The spec of the Endpoint. When `endpoint_spec` is set, the type of the service is Endpoint."
+            "smithy.api#documentation": "Optional. User-defined display name for the Service. Can have a maximum length of `63` characters."
+          }
+        },
+        "agentSpec": {
+          "target": "com.gcp.agentregistry_v1#AgentSpec",
+          "traits": {
+            "smithy.api#documentation": "Optional. The spec of the Agent. When `agent_spec` is set, the type of the service is Agent."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Update time."
           }
         }
       },
@@ -930,92 +1106,125 @@
         "smithy.api#documentation": "Represents a user-defined Service."
       }
     },
-    "com.gcp.agentregistry_v1#Empty": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
-      }
-    },
-    "com.gcp.agentregistry_v1#Annotations": {
+    "com.gcp.agentregistry_v1#Agent": {
       "type": "structure",
       "members": {
-        "idempotentHint": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Output only. If true, calling the tool repeatedly with the same arguments will have no additional effect on its environment. NOTE: This property is meaningful only when `read_only_hint == false` Default: false"
-          }
-        },
-        "title": {
+        "version": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. A human-readable title for the tool."
+            "smithy.api#documentation": "Output only. The version of the Agent, often obtained from the A2A Agent Card. Empty if Agent Card has no version or agent is not an A2A Agent."
           }
         },
-        "openWorldHint": {
-          "target": "smithy.api#Boolean",
+        "updateTime": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. If true, this tool may interact with an \"open world\" of external entities. If false, the tool's domain of interaction is closed. For example, the world of a web search tool is open, whereas that of a memory tool is not. Default: true"
+            "smithy.api#documentation": "Output only. Update time."
           }
         },
-        "readOnlyHint": {
-          "target": "smithy.api#Boolean",
+        "displayName": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. If true, the tool does not modify its environment. Default: false"
+            "smithy.api#documentation": "Output only. The display name of the agent, often obtained from the A2A Agent Card."
           }
         },
-        "destructiveHint": {
-          "target": "smithy.api#Boolean",
+        "attributes": {
+          "target": "com.gcp.agentregistry_v1#DocumentMapMap",
           "traits": {
-            "smithy.api#documentation": "Output only. If true, the tool may perform destructive updates to its environment. If false, the tool performs only additive updates. NOTE: This property is meaningful only when `read_only_hint == false` Default: true"
+            "smithy.api#documentation": "Output only. Attributes of the Agent. Valid values: * `agentregistry.googleapis.com/system/Framework`: {\"framework\": \"google-adk\"} - the agent framework used to develop the Agent. Example values: \"google-adk\", \"langchain\", \"custom\". * `agentregistry.googleapis.com/system/RuntimeIdentity`: {\"principal\": \"principal://...\"} - the runtime identity associated with the Agent. * `agentregistry.googleapis.com/system/RuntimeReference`: {\"uri\": \"//...\"} - the URI of the underlying resource hosting the Agent, for example, the Reasoning Engine URI."
+          }
+        },
+        "skills": {
+          "target": "com.gcp.agentregistry_v1#A2ASkillList",
+          "traits": {
+            "smithy.api#documentation": "Output only. Skills the agent possesses, often obtained from the A2A Agent Card."
+          }
+        },
+        "protocols": {
+          "target": "com.gcp.agentregistry_v1#ProtocolList",
+          "traits": {
+            "smithy.api#documentation": "Output only. The connection details for the Agent."
+          }
+        },
+        "card": {
+          "target": "com.gcp.agentregistry_v1#Card",
+          "traits": {
+            "smithy.api#documentation": "Output only. Full Agent Card payload, when available."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The location where agent is hosted. The value is defined by the hosting environment (i.e. cloud provider)."
+          }
+        },
+        "agentId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. A stable, globally unique identifier for agents."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Create time."
+          }
+        },
+        "uid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. A universally unique identifier for the Agent."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The resource name of an Agent. Format: `projects/{project}/locations/{location}/agents/{agent}`."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The description of the Agent, often obtained from the A2A Agent Card. Empty if Agent Card has no description."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Annotations describing the characteristics and behavior of a tool or operation."
+        "smithy.api#documentation": "Represents an Agent. \"A2A\" below refers to the Agent-to-Agent protocol."
       }
     },
-    "com.gcp.agentregistry_v1#ListBindingsResponse": {
+    "com.gcp.agentregistry_v1#A2ASkillList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.agentregistry_v1#A2ASkill"
+      }
+    },
+    "com.gcp.agentregistry_v1#ProtocolList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.agentregistry_v1#Protocol"
+      }
+    },
+    "com.gcp.agentregistry_v1#EndpointSpec": {
       "type": "structure",
       "members": {
-        "nextPageToken": {
-          "target": "smithy.api#String",
+        "type": {
+          "target": "com.gcp.agentregistry_v1#EndpointSpecTypeEnum",
           "traits": {
-            "smithy.api#documentation": "A token identifying a page of results the server should return. Used in page_token."
+            "smithy.api#documentation": "Required. The type of the endpoint spec content."
           }
         },
-        "bindings": {
-          "target": "com.gcp.agentregistry_v1#BindingList",
-          "traits": {
-            "smithy.api#documentation": "The list of Binding resources matching the parent and filter criteria in the request. Each Binding resource follows the format: `projects/{project}/locations/{location}/bindings/{binding}`."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Message for response to listing Bindings"
-      }
-    },
-    "com.gcp.agentregistry_v1#AgentSpec": {
-      "type": "structure",
-      "members": {
         "content": {
           "target": "com.gcp.agentregistry_v1#DocumentMap",
           "traits": {
-            "smithy.api#documentation": "Optional. The content of the Agent spec in the JSON format. This payload is validated against the schema for the specified type. The content size is limited to `10KB`."
-          }
-        },
-        "type": {
-          "target": "com.gcp.agentregistry_v1#AgentSpecTypeEnum",
-          "traits": {
-            "smithy.api#documentation": "Required. The type of the agent spec content."
+            "smithy.api#documentation": "Optional. The content of the endpoint spec. Reserved for future use."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "The spec of the agent."
+        "smithy.api#documentation": "The spec of the endpoint."
       }
     },
-    "com.gcp.agentregistry_v1#AgentSpecTypeEnum": {
+    "com.gcp.agentregistry_v1#EndpointSpecTypeEnum": {
       "type": "enum",
       "members": {
         "TYPE_UNSPECIFIED": {
@@ -1029,119 +1238,16 @@
           "traits": {
             "smithy.api#enumValue": "NO_SPEC"
           }
-        },
-        "A2A_AGENT_CARD": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "A2A_AGENT_CARD"
-          }
         }
-      }
-    },
-    "com.gcp.agentregistry_v1#Location": {
-      "type": "structure",
-      "members": {
-        "displayName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\"."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`"
-          }
-        },
-        "locationId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The canonical id for this location. For example: `\"us-east1\"`."
-          }
-        },
-        "labels": {
-          "target": "com.gcp.agentregistry_v1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}"
-          }
-        },
-        "metadata": {
-          "target": "com.gcp.agentregistry_v1#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "Service-specific metadata. For example the available capacity at the given location."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A resource that represents a Google Cloud location."
-      }
-    },
-    "com.gcp.agentregistry_v1#StringMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "smithy.api#String"
-      }
-    },
-    "com.gcp.agentregistry_v1#OperationMetadata": {
-      "type": "structure",
-      "members": {
-        "statusMessage": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Human-readable status of the operation, if any."
-          }
-        },
-        "createTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The time the operation was created."
-          }
-        },
-        "apiVersion": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. API version used to start the operation."
-          }
-        },
-        "verb": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Name of the verb executed by the operation."
-          }
-        },
-        "endTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The time the operation finished running."
-          }
-        },
-        "target": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Server-defined resource path for the target of the operation."
-          }
-        },
-        "requestedCancellation": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have google.longrunning.Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Represents the metadata of the long-running operation."
       }
     },
     "com.gcp.agentregistry_v1#A2ASkill": {
       "type": "structure",
       "members": {
-        "description": {
+        "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. A more detailed description of the skill."
+            "smithy.api#documentation": "Output only. A human-readable name for the agent's skill."
           }
         },
         "tags": {
@@ -1150,132 +1256,27 @@
             "smithy.api#documentation": "Output only. Keywords describing the skill."
           }
         },
+        "examples": {
+          "target": "com.gcp.agentregistry_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Output only. Example prompts or scenarios this skill can handle."
+          }
+        },
         "id": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Output only. A unique identifier for the agent's skill."
           }
         },
-        "name": {
+        "description": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. A human-readable name for the agent's skill."
-          }
-        },
-        "examples": {
-          "target": "com.gcp.agentregistry_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Output only. Example prompts or scenarios this skill can handle."
+            "smithy.api#documentation": "Output only. A more detailed description of the skill."
           }
         }
       },
       "traits": {
         "smithy.api#documentation": "Represents the skills of an Agent."
-      }
-    },
-    "com.gcp.agentregistry_v1#ListOperationsResponse": {
-      "type": "structure",
-      "members": {
-        "unreachable": {
-          "target": "com.gcp.agentregistry_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations."
-          }
-        },
-        "operations": {
-          "target": "com.gcp.agentregistry_v1#OperationList",
-          "traits": {
-            "smithy.api#documentation": "A list of operations that matches the specified filter in the request."
-          }
-        },
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The standard List next-page token."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The response message for Operations.ListOperations."
-      }
-    },
-    "com.gcp.agentregistry_v1#OperationList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.agentregistry_v1#Operation"
-      }
-    },
-    "com.gcp.agentregistry_v1#ListServicesResponse": {
-      "type": "structure",
-      "members": {
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A token identifying a page of results the server should return. Used in page_token."
-          }
-        },
-        "services": {
-          "target": "com.gcp.agentregistry_v1#ServiceList",
-          "traits": {
-            "smithy.api#documentation": "The list of Service resources matching the parent and filter criteria in the request. Each Service resource follows the format: `projects/{project}/locations/{location}/services/{service}`."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Message for response to listing Services"
-      }
-    },
-    "com.gcp.agentregistry_v1#ServiceList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.agentregistry_v1#Service"
-      }
-    },
-    "com.gcp.agentregistry_v1#SearchAgentsRequest": {
-      "type": "structure",
-      "members": {
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. The maximum number of search results to return per page. The page size is capped at `100`, even if a larger value is specified. A negative value will result in an `INVALID_ARGUMENT` error. If unspecified or set to `0`, a default value of `20` will be used. The server may return fewer results than requested."
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. If present, retrieve the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of all other method parameters, must be identical to those in the previous call."
-          }
-        },
-        "searchString": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Search criteria used to select the Agents to return. If no search criteria is specified then all accessible Agents will be returned. Search expressions can be used to restrict results based upon searchable fields, where the operators can be used along with the suffix wildcard symbol `*`. See [instructions](https://docs.cloud.google.com/agent-registry/search-agents-and-tools) for more details. Allowed operators: `=`, `:`, `NOT`, `AND`, `OR`, and `()`. Searchable fields: | Field | `=` | `:` | `*` | Keyword Search | |--------------------|-----|-----|-----|----------------| | agentId | Yes | Yes | Yes | Included | | name | No | Yes | Yes | Included | | displayName | No | Yes | Yes | Included | | description | No | Yes | No | Included | | skills | No | Yes | No | Included | | skills.id | No | Yes | No | Included | | skills.name | No | Yes | No | Included | | skills.description | No | Yes | No | Included | | skills.tags | No | Yes | No | Included | | skills.examples | No | Yes | No | Included | Examples: * `agentId=\"urn:agent:projects-123:projects:123:locations:us-central1:reasoningEngines:1234\"` to find the agent with the specified agent ID. * `name:important` to find agents whose name contains `important` as a word. * `displayName:works*` to find agents whose display name contains words that start with `works`. * `skills.tags:test` to find agents whose skills tags contain `test`. * `planner OR booking` to find agents whose metadata contains the words `planner` or `booking`."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Message for searching Agents"
-      }
-    },
-    "com.gcp.agentregistry_v1#CancelOperationRequest": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "The request message for Operations.CancelOperation."
-      }
-    },
-    "com.gcp.agentregistry_v1#Source": {
-      "type": "structure",
-      "members": {
-        "identifier": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The identifier of the source Agent. Format: * `urn:agent:{publisher}:{namespace}:{name}`"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The source of the Binding."
       }
     },
     "com.gcp.agentregistry_v1#ListProjectsLocationsRequest": {
@@ -1289,18 +1290,18 @@
             "smithy.api#required": {}
           }
         },
-        "extraLocationTypes": {
-          "target": "com.gcp.agentregistry_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.",
-            "smithy.api#httpQuery": "extraLocationTypes"
-          }
-        },
         "pageSize": {
           "target": "smithy.api#Integer",
           "traits": {
             "smithy.api#documentation": "The maximum number of results to return. If not set, the service selects a default.",
             "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "extraLocationTypes": {
+          "target": "com.gcp.agentregistry_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.",
+            "smithy.api#httpQuery": "extraLocationTypes"
           }
         },
         "filter": {
@@ -1410,480 +1411,15 @@
         "smithy.api#documentation": "Gets information about a location."
       }
     },
-    "com.gcp.agentregistry_v1#DeleteProjectsLocationsServicesRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The name of the Service. Format: `projects/{project}/locations/{location}/services/{service}`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "requestId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
-            "smithy.api#httpQuery": "requestId"
-          }
-        }
-      }
-    },
-    "com.gcp.agentregistry_v1#BadRequest": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#error": "client",
-        "smithy.api#httpError": 400,
-        "com.gcp.protocols#errorMatchers": [
-          {
-            "status": 400
-          }
-        ]
-      }
-    },
-    "com.gcp.agentregistry_v1#Conflict": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#error": "client",
-        "smithy.api#httpError": 409,
-        "com.gcp.protocols#errorMatchers": [
-          {
-            "status": 409
-          }
-        ]
-      }
-    },
-    "com.gcp.agentregistry_v1#DeleteProjectsLocationsServices": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.agentregistry_v1#DeleteProjectsLocationsServicesRequest"
-      },
-      "output": {
-        "target": "com.gcp.agentregistry_v1#Operation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.agentregistry_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.agentregistry_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.agentregistry_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.agentregistry_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Deletes a single Service."
-      }
-    },
-    "com.gcp.agentregistry_v1#ListProjectsLocationsServicesRequest": {
-      "type": "structure",
-      "members": {
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. A token identifying a page of results the server should return.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The project and location to list services in. Expected format: `projects/{project}/locations/{location}`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. A query string used to filter the list of services returned. The filter expression must follow AIP-160 syntax. Filtering is supported on the `name`, `display_name`, `description`, and `labels` fields. Some examples: * `name = \"projects/p1/locations/l1/services/s1\"` * `display_name = \"my-service\"` * `description : \"myservice description\"` * `labels.env = \"prod\"`",
-            "smithy.api#httpQuery": "filter"
-          }
-        }
-      }
-    },
-    "com.gcp.agentregistry_v1#ListProjectsLocationsServices": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.agentregistry_v1#ListProjectsLocationsServicesRequest"
-      },
-      "output": {
-        "target": "com.gcp.agentregistry_v1#ListServicesResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.agentregistry_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.agentregistry_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+parent}/services"
-        },
-        "smithy.api#documentation": "Lists Services in a given project and location.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
-      }
-    },
-    "com.gcp.agentregistry_v1#CreateProjectsLocationsServicesRequest": {
-      "type": "structure",
-      "members": {
-        "serviceId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The ID to use for the service, which will become the final component of the service's resource name. This value should be 4-63 characters, and valid characters are `/a-z-/`.",
-            "smithy.api#httpQuery": "serviceId"
-          }
-        },
-        "requestId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
-            "smithy.api#httpQuery": "requestId"
-          }
-        },
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The project and location to create the Service in. Expected format: `projects/{project}/locations/{location}`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.agentregistry_v1#Service",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.agentregistry_v1#CreateProjectsLocationsServices": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.agentregistry_v1#CreateProjectsLocationsServicesRequest"
-      },
-      "output": {
-        "target": "com.gcp.agentregistry_v1#Operation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.agentregistry_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.agentregistry_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.agentregistry_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.agentregistry_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1/{+parent}/services"
-        },
-        "smithy.api#documentation": "Creates a new Service in a given project and location."
-      }
-    },
-    "com.gcp.agentregistry_v1#GetProjectsLocationsServicesRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The name of the Service. Format: `projects/{project}/locations/{location}/services/{service}`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.agentregistry_v1#GetProjectsLocationsServices": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.agentregistry_v1#GetProjectsLocationsServicesRequest"
-      },
-      "output": {
-        "target": "com.gcp.agentregistry_v1#Service"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.agentregistry_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.agentregistry_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Gets details of a single Service."
-      }
-    },
-    "com.gcp.agentregistry_v1#PatchProjectsLocationsServicesRequest": {
-      "type": "structure",
-      "members": {
-        "updateMask": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Field mask is used to specify the fields to be overwritten in the Service resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields present in the request will be overwritten.",
-            "smithy.api#httpQuery": "updateMask"
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier. The resource name of the Service. Format: `projects/{project}/locations/{location}/services/{service}`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "requestId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
-            "smithy.api#httpQuery": "requestId"
-          }
-        },
-        "body": {
-          "target": "com.gcp.agentregistry_v1#Service",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.agentregistry_v1#PatchProjectsLocationsServices": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.agentregistry_v1#PatchProjectsLocationsServicesRequest"
-      },
-      "output": {
-        "target": "com.gcp.agentregistry_v1#Operation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.agentregistry_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.agentregistry_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.agentregistry_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.agentregistry_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "PATCH",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Updates the parameters of a single Service."
-      }
-    },
-    "com.gcp.agentregistry_v1#ListProjectsLocationsAgentsRequest": {
-      "type": "structure",
-      "members": {
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Parent value for ListAgentsRequest",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Filtering results",
-            "smithy.api#httpQuery": "filter"
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. A token identifying a page of results the server should return.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "orderBy": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Hint for how to order the results",
-            "smithy.api#httpQuery": "orderBy"
-          }
-        }
-      }
-    },
-    "com.gcp.agentregistry_v1#ListProjectsLocationsAgents": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.agentregistry_v1#ListProjectsLocationsAgentsRequest"
-      },
-      "output": {
-        "target": "com.gcp.agentregistry_v1#ListAgentsResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.agentregistry_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.agentregistry_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+parent}/agents"
-        },
-        "smithy.api#documentation": "Lists Agents in a given project and location.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
-      }
-    },
-    "com.gcp.agentregistry_v1#GetProjectsLocationsAgentsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Name of the resource",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.agentregistry_v1#GetProjectsLocationsAgents": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.agentregistry_v1#GetProjectsLocationsAgentsRequest"
-      },
-      "output": {
-        "target": "com.gcp.agentregistry_v1#Agent"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.agentregistry_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.agentregistry_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Gets details of a single Agent."
-      }
-    },
-    "com.gcp.agentregistry_v1#SearchProjectsLocationsAgentsRequest": {
-      "type": "structure",
-      "members": {
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Parent value for SearchAgentsRequest. Format: `projects/{project}/locations/{location}`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.agentregistry_v1#SearchAgentsRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.agentregistry_v1#SearchProjectsLocationsAgents": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.agentregistry_v1#SearchProjectsLocationsAgentsRequest"
-      },
-      "output": {
-        "target": "com.gcp.agentregistry_v1#SearchAgentsResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.agentregistry_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.agentregistry_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.agentregistry_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.agentregistry_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1/{+parent}/agents:search"
-        },
-        "smithy.api#documentation": "Searches Agents in a given project and location."
-      }
-    },
     "com.gcp.agentregistry_v1#ListProjectsLocationsOperationsRequest": {
       "type": "structure",
       "members": {
-        "pageToken": {
+        "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The standard list page token.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The standard list filter.",
-            "smithy.api#httpQuery": "filter"
+            "smithy.api#documentation": "The name of the operation's parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
           }
         },
         "pageSize": {
@@ -1900,12 +1436,18 @@
             "smithy.api#httpQuery": "returnPartialSuccess"
           }
         },
-        "name": {
+        "filter": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The name of the operation's parent resource.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
+            "smithy.api#documentation": "The standard list filter.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list page token.",
+            "smithy.api#httpQuery": "pageToken"
           }
         }
       }
@@ -1936,6 +1478,82 @@
           "inputToken": "pageToken",
           "outputToken": "nextPageToken"
         }
+      }
+    },
+    "com.gcp.agentregistry_v1#CancelProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource to be cancelled.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.agentregistry_v1#CancelOperationRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.agentregistry_v1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.agentregistry_v1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.agentregistry_v1#CancelProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.agentregistry_v1#CancelProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.agentregistry_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.agentregistry_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.agentregistry_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.agentregistry_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.agentregistry_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:cancel"
+        },
+        "smithy.api#documentation": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`."
       }
     },
     "com.gcp.agentregistry_v1#GetProjectsLocationsOperationsRequest": {
@@ -2018,19 +1636,88 @@
         "smithy.api#documentation": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`."
       }
     },
-    "com.gcp.agentregistry_v1#CancelProjectsLocationsOperationsRequest": {
+    "com.gcp.agentregistry_v1#ListProjectsLocationsAgentsRequest": {
       "type": "structure",
       "members": {
-        "name": {
+        "filter": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The name of the operation resource to be cancelled.",
+            "smithy.api#documentation": "Optional. Filtering results",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A token identifying a page of results the server should return.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Parent value for ListAgentsRequest",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "orderBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Hint for how to order the results",
+            "smithy.api#httpQuery": "orderBy"
+          }
+        }
+      }
+    },
+    "com.gcp.agentregistry_v1#ListProjectsLocationsAgents": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.agentregistry_v1#ListProjectsLocationsAgentsRequest"
+      },
+      "output": {
+        "target": "com.gcp.agentregistry_v1#ListAgentsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.agentregistry_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.agentregistry_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/agents"
+        },
+        "smithy.api#documentation": "Lists Agents in a given project and location.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.agentregistry_v1#SearchProjectsLocationsAgentsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Parent value for SearchAgentsRequest. Format: `projects/{project}/locations/{location}`.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
         },
         "body": {
-          "target": "com.gcp.agentregistry_v1#CancelOperationRequest",
+          "target": "com.gcp.agentregistry_v1#SearchAgentsRequest",
           "traits": {
             "smithy.api#httpPayload": {},
             "smithy.api#documentation": "Request body"
@@ -2038,13 +1725,13 @@
         }
       }
     },
-    "com.gcp.agentregistry_v1#CancelProjectsLocationsOperations": {
+    "com.gcp.agentregistry_v1#SearchProjectsLocationsAgents": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.agentregistry_v1#CancelProjectsLocationsOperationsRequest"
+        "target": "com.gcp.agentregistry_v1#SearchProjectsLocationsAgentsRequest"
       },
       "output": {
-        "target": "com.gcp.agentregistry_v1#Empty"
+        "target": "com.gcp.agentregistry_v1#SearchAgentsResponse"
       },
       "errors": [
         {
@@ -2063,19 +1750,57 @@
       "traits": {
         "smithy.api#http": {
           "method": "POST",
-          "uri": "v1/{+name}:cancel"
+          "uri": "v1/{+parent}/agents:search"
         },
-        "smithy.api#documentation": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`."
+        "smithy.api#documentation": "Searches Agents in a given project and location."
+      }
+    },
+    "com.gcp.agentregistry_v1#GetProjectsLocationsAgentsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the resource",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.agentregistry_v1#GetProjectsLocationsAgents": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.agentregistry_v1#GetProjectsLocationsAgentsRequest"
+      },
+      "output": {
+        "target": "com.gcp.agentregistry_v1#Agent"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.agentregistry_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.agentregistry_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets details of a single Agent."
       }
     },
     "com.gcp.agentregistry_v1#ListProjectsLocationsEndpointsRequest": {
       "type": "structure",
       "members": {
-        "pageSize": {
-          "target": "smithy.api#Integer",
+        "parent": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
-            "smithy.api#httpQuery": "pageSize"
+            "smithy.api#documentation": "Required. The project and location to list endpoints in. Expected format: `projects/{project}/locations/{location}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
           }
         },
         "pageToken": {
@@ -2085,12 +1810,11 @@
             "smithy.api#httpQuery": "pageToken"
           }
         },
-        "parent": {
-          "target": "smithy.api#String",
+        "pageSize": {
+          "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "Required. The project and location to list endpoints in. Expected format: `projects/{project}/locations/{location}`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
+            "smithy.api#documentation": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+            "smithy.api#httpQuery": "pageSize"
           }
         },
         "filter": {
@@ -2167,107 +1891,6 @@
         "smithy.api#documentation": "Gets details of a single Endpoint."
       }
     },
-    "com.gcp.agentregistry_v1#PatchProjectsLocationsBindingsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Identifier. The resource name of the Binding. Format: `projects/{project}/locations/{location}/bindings/{binding}`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "requestId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
-            "smithy.api#httpQuery": "requestId"
-          }
-        },
-        "updateMask": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Field mask is used to specify the fields to be overwritten in the Binding resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields present in the request will be overwritten.",
-            "smithy.api#httpQuery": "updateMask"
-          }
-        },
-        "body": {
-          "target": "com.gcp.agentregistry_v1#Binding",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.agentregistry_v1#PatchProjectsLocationsBindings": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.agentregistry_v1#PatchProjectsLocationsBindingsRequest"
-      },
-      "output": {
-        "target": "com.gcp.agentregistry_v1#Operation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.agentregistry_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.agentregistry_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.agentregistry_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.agentregistry_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "PATCH",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Updates the parameters of a single Binding."
-      }
-    },
-    "com.gcp.agentregistry_v1#GetProjectsLocationsBindingsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The name of the Binding. Format: `projects/{project}/locations/{location}/bindings/{binding}`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.agentregistry_v1#GetProjectsLocationsBindings": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.agentregistry_v1#GetProjectsLocationsBindingsRequest"
-      },
-      "output": {
-        "target": "com.gcp.agentregistry_v1#Binding"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.agentregistry_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.agentregistry_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Gets details of a single Binding."
-      }
-    },
     "com.gcp.agentregistry_v1#CreateProjectsLocationsBindingsRequest": {
       "type": "structure",
       "members": {
@@ -2279,18 +1902,18 @@
             "smithy.api#required": {}
           }
         },
-        "requestId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
-            "smithy.api#httpQuery": "requestId"
-          }
-        },
         "bindingId": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Required. The ID to use for the binding, which will become the final component of the binding's resource name. This value should be 4-63 characters, and must conform to RFC-1034. Specifically, it must match the regular expression `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.",
             "smithy.api#httpQuery": "bindingId"
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+            "smithy.api#httpQuery": "requestId"
           }
         },
         "body": {
@@ -2332,104 +1955,14 @@
         "smithy.api#documentation": "Creates a new Binding in a given project and location."
       }
     },
-    "com.gcp.agentregistry_v1#ListProjectsLocationsBindingsRequest": {
-      "type": "structure",
-      "members": {
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. Requested page size. Server may return fewer items than requested. Page size is 500 if unspecified and is capped at `500` even if a larger value is given.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The project and location to list bindings in. Expected format: `projects/{project}/locations/{location}`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. A query string used to filter the list of bindings returned. The filter expression must follow AIP-160 syntax.",
-            "smithy.api#httpQuery": "filter"
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. A token identifying a page of results the server should return.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "orderBy": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Hint for how to order the results",
-            "smithy.api#httpQuery": "orderBy"
-          }
-        }
-      }
-    },
-    "com.gcp.agentregistry_v1#ListProjectsLocationsBindings": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.agentregistry_v1#ListProjectsLocationsBindingsRequest"
-      },
-      "output": {
-        "target": "com.gcp.agentregistry_v1#ListBindingsResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.agentregistry_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.agentregistry_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+parent}/bindings"
-        },
-        "smithy.api#documentation": "Lists Bindings in a given project and location.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
-      }
-    },
     "com.gcp.agentregistry_v1#FetchAvailableProjectsLocationsBindingsRequest": {
       "type": "structure",
       "members": {
-        "sourceIdentifier": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The identifier of the source Agent. Format: * `urn:agent:{publisher}:{namespace}:{name}`",
-            "smithy.api#httpQuery": "sourceIdentifier"
-          }
-        },
         "pageSize": {
           "target": "smithy.api#Integer",
           "traits": {
             "smithy.api#documentation": "Optional. Requested page size. Server may return fewer items than requested. Page size is 500 if unspecified and is capped at `500` even if a larger value is given.",
             "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "targetIdentifier": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The identifier of the target Agent, MCP Server, or Endpoint. Format: * `urn:agent:{publisher}:{namespace}:{name}` * `urn:mcp:{publisher}:{namespace}:{name}` * `urn:endpoint:{publisher}:{namespace}:{name}`",
-            "smithy.api#httpQuery": "targetIdentifier"
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. A token identifying a page of results the server should return.",
-            "smithy.api#httpQuery": "pageToken"
           }
         },
         "parent": {
@@ -2438,6 +1971,27 @@
             "smithy.api#documentation": "Required. The parent, in the format `projects/{project}/locations/{location}`.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
+          }
+        },
+        "sourceIdentifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identifier of the source Agent. Format: * `urn:agent:{publisher}:{namespace}:{name}`",
+            "smithy.api#httpQuery": "sourceIdentifier"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A token identifying a page of results the server should return.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "targetIdentifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The identifier of the target Agent, MCP Server, or Endpoint. Format: * `urn:agent:{publisher}:{namespace}:{name}` * `urn:mcp:{publisher}:{namespace}:{name}` * `urn:endpoint:{publisher}:{namespace}:{name}`",
+            "smithy.api#httpQuery": "targetIdentifier"
           }
         }
       }
@@ -2468,6 +2022,107 @@
           "inputToken": "pageToken",
           "outputToken": "nextPageToken"
         }
+      }
+    },
+    "com.gcp.agentregistry_v1#GetProjectsLocationsBindingsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the Binding. Format: `projects/{project}/locations/{location}/bindings/{binding}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.agentregistry_v1#GetProjectsLocationsBindings": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.agentregistry_v1#GetProjectsLocationsBindingsRequest"
+      },
+      "output": {
+        "target": "com.gcp.agentregistry_v1#Binding"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.agentregistry_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.agentregistry_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets details of a single Binding."
+      }
+    },
+    "com.gcp.agentregistry_v1#PatchProjectsLocationsBindingsRequest": {
+      "type": "structure",
+      "members": {
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Field mask is used to specify the fields to be overwritten in the Binding resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields present in the request will be overwritten.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Identifier. The resource name of the Binding. Format: `projects/{project}/locations/{location}/bindings/{binding}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+            "smithy.api#httpQuery": "requestId"
+          }
+        },
+        "body": {
+          "target": "com.gcp.agentregistry_v1#Binding",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.agentregistry_v1#PatchProjectsLocationsBindings": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.agentregistry_v1#PatchProjectsLocationsBindingsRequest"
+      },
+      "output": {
+        "target": "com.gcp.agentregistry_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.agentregistry_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.agentregistry_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.agentregistry_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.agentregistry_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Updates the parameters of a single Binding."
       }
     },
     "com.gcp.agentregistry_v1#DeleteProjectsLocationsBindingsRequest": {
@@ -2520,14 +2175,15 @@
         "smithy.api#documentation": "Deletes a single Binding."
       }
     },
-    "com.gcp.agentregistry_v1#ListProjectsLocationsMcpServersRequest": {
+    "com.gcp.agentregistry_v1#ListProjectsLocationsBindingsRequest": {
       "type": "structure",
       "members": {
-        "pageToken": {
+        "parent": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. A token identifying a page of results the server should return.",
-            "smithy.api#httpQuery": "pageToken"
+            "smithy.api#documentation": "Required. The project and location to list bindings in. Expected format: `projects/{project}/locations/{location}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
           }
         },
         "orderBy": {
@@ -2535,6 +2191,67 @@
           "traits": {
             "smithy.api#documentation": "Optional. Hint for how to order the results",
             "smithy.api#httpQuery": "orderBy"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Requested page size. Server may return fewer items than requested. Page size is 500 if unspecified and is capped at `500` even if a larger value is given.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A query string used to filter the list of bindings returned. The filter expression must follow AIP-160 syntax.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A token identifying a page of results the server should return.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.agentregistry_v1#ListProjectsLocationsBindings": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.agentregistry_v1#ListProjectsLocationsBindingsRequest"
+      },
+      "output": {
+        "target": "com.gcp.agentregistry_v1#ListBindingsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.agentregistry_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.agentregistry_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/bindings"
+        },
+        "smithy.api#documentation": "Lists Bindings in a given project and location.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.agentregistry_v1#ListProjectsLocationsMcpServersRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+            "smithy.api#httpQuery": "pageSize"
           }
         },
         "parent": {
@@ -2545,18 +2262,25 @@
             "smithy.api#required": {}
           }
         },
+        "orderBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Hint for how to order the results",
+            "smithy.api#httpQuery": "orderBy"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A token identifying a page of results the server should return.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
         "filter": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Optional. Filtering results",
             "smithy.api#httpQuery": "filter"
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
-            "smithy.api#httpQuery": "pageSize"
           }
         }
       }
@@ -2587,43 +2311,6 @@
           "inputToken": "pageToken",
           "outputToken": "nextPageToken"
         }
-      }
-    },
-    "com.gcp.agentregistry_v1#GetProjectsLocationsMcpServersRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Name of the resource",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.agentregistry_v1#GetProjectsLocationsMcpServers": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.agentregistry_v1#GetProjectsLocationsMcpServersRequest"
-      },
-      "output": {
-        "target": "com.gcp.agentregistry_v1#McpServer"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.agentregistry_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.agentregistry_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Gets details of a single McpServer."
       }
     },
     "com.gcp.agentregistry_v1#SearchProjectsLocationsMcpServersRequest": {
@@ -2674,6 +2361,320 @@
           "uri": "v1/{+parent}/mcpServers:search"
         },
         "smithy.api#documentation": "Searches McpServers in a given project and location."
+      }
+    },
+    "com.gcp.agentregistry_v1#GetProjectsLocationsMcpServersRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the resource",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.agentregistry_v1#GetProjectsLocationsMcpServers": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.agentregistry_v1#GetProjectsLocationsMcpServersRequest"
+      },
+      "output": {
+        "target": "com.gcp.agentregistry_v1#McpServer"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.agentregistry_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.agentregistry_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets details of a single McpServer."
+      }
+    },
+    "com.gcp.agentregistry_v1#ListProjectsLocationsServicesRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A token identifying a page of results the server should return.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A query string used to filter the list of services returned. The filter expression must follow AIP-160 syntax. Filtering is supported on the `name`, `display_name`, `description`, and `labels` fields. Some examples: * `name = \"projects/p1/locations/l1/services/s1\"` * `display_name = \"my-service\"` * `description : \"myservice description\"` * `labels.env = \"prod\"`",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The project and location to list services in. Expected format: `projects/{project}/locations/{location}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.agentregistry_v1#ListProjectsLocationsServices": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.agentregistry_v1#ListProjectsLocationsServicesRequest"
+      },
+      "output": {
+        "target": "com.gcp.agentregistry_v1#ListServicesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.agentregistry_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.agentregistry_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/services"
+        },
+        "smithy.api#documentation": "Lists Services in a given project and location.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.agentregistry_v1#PatchProjectsLocationsServicesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The resource name of the Service. Format: `projects/{project}/locations/{location}/services/{service}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Field mask is used to specify the fields to be overwritten in the Service resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields present in the request will be overwritten.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+            "smithy.api#httpQuery": "requestId"
+          }
+        },
+        "body": {
+          "target": "com.gcp.agentregistry_v1#Service",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.agentregistry_v1#PatchProjectsLocationsServices": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.agentregistry_v1#PatchProjectsLocationsServicesRequest"
+      },
+      "output": {
+        "target": "com.gcp.agentregistry_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.agentregistry_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.agentregistry_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.agentregistry_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.agentregistry_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Updates the parameters of a single Service."
+      }
+    },
+    "com.gcp.agentregistry_v1#DeleteProjectsLocationsServicesRequest": {
+      "type": "structure",
+      "members": {
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+            "smithy.api#httpQuery": "requestId"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the Service. Format: `projects/{project}/locations/{location}/services/{service}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.agentregistry_v1#DeleteProjectsLocationsServices": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.agentregistry_v1#DeleteProjectsLocationsServicesRequest"
+      },
+      "output": {
+        "target": "com.gcp.agentregistry_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.agentregistry_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.agentregistry_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.agentregistry_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.agentregistry_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a single Service."
+      }
+    },
+    "com.gcp.agentregistry_v1#GetProjectsLocationsServicesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the Service. Format: `projects/{project}/locations/{location}/services/{service}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.agentregistry_v1#GetProjectsLocationsServices": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.agentregistry_v1#GetProjectsLocationsServicesRequest"
+      },
+      "output": {
+        "target": "com.gcp.agentregistry_v1#Service"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.agentregistry_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.agentregistry_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets details of a single Service."
+      }
+    },
+    "com.gcp.agentregistry_v1#CreateProjectsLocationsServicesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The project and location to create the Service in. Expected format: `projects/{project}/locations/{location}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "serviceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The ID to use for the service, which will become the final component of the service's resource name. This value should be 4-63 characters, and valid characters are `/a-z-/`.",
+            "smithy.api#httpQuery": "serviceId"
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+            "smithy.api#httpQuery": "requestId"
+          }
+        },
+        "body": {
+          "target": "com.gcp.agentregistry_v1#Service",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.agentregistry_v1#CreateProjectsLocationsServices": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.agentregistry_v1#CreateProjectsLocationsServicesRequest"
+      },
+      "output": {
+        "target": "com.gcp.agentregistry_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.agentregistry_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.agentregistry_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.agentregistry_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.agentregistry_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+parent}/services"
+        },
+        "smithy.api#documentation": "Creates a new Service in a given project and location."
       }
     }
   }

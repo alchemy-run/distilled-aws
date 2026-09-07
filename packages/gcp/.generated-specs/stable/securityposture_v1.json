@@ -4,47 +4,10 @@
     "service": "securityposture",
     "version": "v1",
     "title": "Security Posture API",
-    "baseUrl": "https://securityposture.googleapis.com/"
+    "baseUrl": "https://securityposture.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.gcp.securityposture_v1#PostureDetails": {
-      "type": "structure",
-      "members": {
-        "policySet": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The identifier for the PolicySet that the relevant policy belongs to."
-          }
-        },
-        "postureRevisionId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The revision ID of the posture used in the deployment."
-          }
-        },
-        "postureDeployment": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the posture deployment, in the format `organizations/{organization}/locations/global/postureDeployments/{deployment_id}`."
-          }
-        },
-        "posture": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The posture used in the deployment, in the format `organizations/{organization}/locations/global/postures/{posture_id}`."
-          }
-        },
-        "postureDeploymentTargetResource": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The organization, folder, or project where the posture is deployed. Uses one of the following formats: * `organizations/{organization_number}` * `folders/{folder_number}` * `projects/{project_number}`"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Details of a posture deployment."
-      }
-    },
     "com.gcp.securityposture_v1#ResourceSelector": {
       "type": "structure",
       "members": {
@@ -65,95 +28,63 @@
         "target": "smithy.api#String"
       }
     },
-    "com.gcp.securityposture_v1#OperationMetadata": {
+    "com.gcp.securityposture_v1#ListPostureTemplatesResponse": {
       "type": "structure",
       "members": {
-        "createTime": {
-          "target": "smithy.api#String",
+        "postureTemplates": {
+          "target": "com.gcp.securityposture_v1#PostureTemplateList",
           "traits": {
-            "smithy.api#documentation": "Output only. The time at which the operation was created."
+            "smithy.api#documentation": "The list of PostureTemplate resources."
           }
         },
-        "apiVersion": {
+        "nextPageToken": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. The API version used to start the operation."
-          }
-        },
-        "target": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The server-defined resource path for the target of the operation."
-          }
-        },
-        "requestedCancellation": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Output only. Whether a request to cancel the operation has been received. For operations that have been cancelled successfully, the Operation.error field contains the error code CANCELLED."
-          }
-        },
-        "endTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The time at which the operation finished running."
-          }
-        },
-        "errorMessage": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. An error message. Returned when a PostureDeployment enters a failure state like UPDATE_FAILED."
-          }
-        },
-        "statusMessage": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The status of the operation, if any."
-          }
-        },
-        "verb": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The name of the action executed by the operation."
+            "smithy.api#documentation": "A pagination token. To retrieve the next page of results, call the method again with this token."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Metadata for an Operation."
+        "smithy.api#documentation": "Response message for ListPostureTemplates."
       }
     },
-    "com.gcp.securityposture_v1#GoogleCloudSecuritypostureV1PolicyRuleStringValues": {
-      "type": "structure",
-      "members": {
-        "deniedValues": {
-          "target": "com.gcp.securityposture_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "The denied values for the constraint."
-          }
-        },
-        "allowedValues": {
-          "target": "com.gcp.securityposture_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "The allowed values for the constraint."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The allowed and denied values for a list constraint. For all constraints, these fields can contain literal values. Optionally, you can add the `is:` prefix to these values. If the value contains a colon (`:`), then the `is:` prefix is required. Some constraints allow you to specify a portion of the resource hierarchy, known as a [_hierarchy subtree_](https://cloud.google.com/resource-manager/help/organization-policy/hierarchy-subtree), that the constraint applies to. To specify a hierarchy subtree, use the `under:` prefix, followed by a value with one of these formats: - `projects/{project_id}` (for example, `projects/tokyo-rain-123`) - `folders/{folder_id}` (for example, `folders/1234567890123`) - `organizations/{organization_id}` (for example, `organizations/123456789012`) A constraint's `supports_under` field indicates whether you can specify a hierarchy subtree. To learn which predefined constraints let you specify a hierarchy subtree, see the [constraints reference](https://cloud.google.com/resource-manager/help/organization-policy/constraints/reference)."
+    "com.gcp.securityposture_v1#PostureTemplateList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.securityposture_v1#PostureTemplate"
       }
     },
     "com.gcp.securityposture_v1#Violation": {
       "type": "structure",
       "members": {
-        "severity": {
-          "target": "com.gcp.securityposture_v1#ViolationSeverityEnum",
+        "violatedPosture": {
+          "target": "com.gcp.securityposture_v1#PostureDetails",
           "traits": {
-            "smithy.api#documentation": "The severity of the violation."
+            "smithy.api#documentation": "Details for the posture that was violated. This field is present only if the violated policy belongs to a deployed posture."
           }
         },
         "policyId": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "The policy that was violated."
+          }
+        },
+        "violatedAsset": {
+          "target": "com.gcp.securityposture_v1#AssetDetails",
+          "traits": {
+            "smithy.api#documentation": "Details of the Cloud Asset Inventory asset that caused the violation."
+          }
+        },
+        "nextSteps": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A description of the steps that you can take to fix the violation."
+          }
+        },
+        "severity": {
+          "target": "com.gcp.securityposture_v1#ViolationSeverityEnum",
+          "traits": {
+            "smithy.api#documentation": "The severity of the violation."
           }
         },
         "assetId": {
@@ -166,24 +97,6 @@
           "target": "com.gcp.securityposture_v1#PolicyDetails",
           "traits": {
             "smithy.api#documentation": "Details of the policy that was violated."
-          }
-        },
-        "violatedAsset": {
-          "target": "com.gcp.securityposture_v1#AssetDetails",
-          "traits": {
-            "smithy.api#documentation": "Details of the Cloud Asset Inventory asset that caused the violation."
-          }
-        },
-        "violatedPosture": {
-          "target": "com.gcp.securityposture_v1#PostureDetails",
-          "traits": {
-            "smithy.api#documentation": "Details for the posture that was violated. This field is present only if the violated policy belongs to a deployed posture."
-          }
-        },
-        "nextSteps": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A description of the steps that you can take to fix the violation."
           }
         }
       },
@@ -226,19 +139,302 @@
         }
       }
     },
+    "com.gcp.securityposture_v1#Constraint": {
+      "type": "structure",
+      "members": {
+        "orgPolicyConstraintCustom": {
+          "target": "com.gcp.securityposture_v1#OrgPolicyConstraintCustom",
+          "traits": {
+            "smithy.api#documentation": "Optional. A custom organization policy constraint."
+          }
+        },
+        "securityHealthAnalyticsCustomModule": {
+          "target": "com.gcp.securityposture_v1#SecurityHealthAnalyticsCustomModule",
+          "traits": {
+            "smithy.api#documentation": "Optional. A custom module for Security Health Analytics."
+          }
+        },
+        "securityHealthAnalyticsModule": {
+          "target": "com.gcp.securityposture_v1#SecurityHealthAnalyticsModule",
+          "traits": {
+            "smithy.api#documentation": "Optional. A built-in detector for Security Health Analytics."
+          }
+        },
+        "orgPolicyConstraint": {
+          "target": "com.gcp.securityposture_v1#OrgPolicyConstraint",
+          "traits": {
+            "smithy.api#documentation": "Optional. A predefined organization policy constraint."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata for a constraint in a Policy."
+      }
+    },
+    "com.gcp.securityposture_v1#CustomConfig": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A description of the vulnerability or misconfiguration that the custom module detects. The description appears in each finding. Provide enough information to help an investigator understand the finding. The value must be enclosed in quotation marks."
+          }
+        },
+        "severity": {
+          "target": "com.gcp.securityposture_v1#CustomConfigSeverityEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. The severity of findings generated by the custom module."
+          }
+        },
+        "predicate": {
+          "target": "com.gcp.securityposture_v1#Expr",
+          "traits": {
+            "smithy.api#documentation": "Required. The Common Expression Language (CEL) expression to evaluate. When the expression evaluates to `true` for a resource, a finding is generated."
+          }
+        },
+        "customOutput": {
+          "target": "com.gcp.securityposture_v1#CustomOutputSpec",
+          "traits": {
+            "smithy.api#documentation": "Optional. Definitions of custom source properties to include in findings."
+          }
+        },
+        "resourceSelector": {
+          "target": "com.gcp.securityposture_v1#ResourceSelector",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource types that the custom module operates on."
+          }
+        },
+        "recommendation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. An explanation of the steps that security teams can take to resolve the detected issue. The explanation appears in each finding."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A custom module configuration for Security Health Analytics. Use `CustomConfig` to create custom detectors that generate custom findings for resources that you specify."
+      }
+    },
+    "com.gcp.securityposture_v1#CustomConfigSeverityEnum": {
+      "type": "enum",
+      "members": {
+        "SEVERITY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEVERITY_UNSPECIFIED"
+          }
+        },
+        "CRITICAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CRITICAL"
+          }
+        },
+        "HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HIGH"
+          }
+        },
+        "MEDIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEDIUM"
+          }
+        },
+        "LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOW"
+          }
+        }
+      }
+    },
+    "com.gcp.securityposture_v1#ExtractPostureRequest": {
+      "type": "structure",
+      "members": {
+        "postureId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. An identifier for the posture."
+          }
+        },
+        "workload": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The organization, folder, or project from which policies are extracted. Must be within the organization defined in parent. Use one of the following formats: * `organization/{organization_number}` * `folder/{folder_number}` * `project/{project_number}`"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request message for ExtractPosture."
+      }
+    },
+    "com.gcp.securityposture_v1#Status": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
+          }
+        },
+        "details": {
+          "target": "com.gcp.securityposture_v1#DocumentMapList",
+          "traits": {
+            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+      }
+    },
+    "com.gcp.securityposture_v1#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.securityposture_v1#DocumentMapList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.securityposture_v1#DocumentMap"
+      }
+    },
+    "com.gcp.securityposture_v1#PolicyDetails": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A description of the policy."
+          }
+        },
+        "constraintType": {
+          "target": "com.gcp.securityposture_v1#PolicyDetailsConstraintTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The type of constraint that was violated."
+          }
+        },
+        "constraint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Information about the constraint that was violated. The format of this information can change at any time without prior notice. Your application must not depend on this information in any way."
+          }
+        },
+        "complianceStandards": {
+          "target": "com.gcp.securityposture_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "The compliance standards that the policy maps to. For example, `CIS-2.0 1.15`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of a policy that was violated."
+      }
+    },
+    "com.gcp.securityposture_v1#PolicyDetailsConstraintTypeEnum": {
+      "type": "enum",
+      "members": {
+        "CONSTRAINT_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONSTRAINT_TYPE_UNSPECIFIED"
+          }
+        },
+        "SECURITY_HEALTH_ANALYTICS_CUSTOM_MODULE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SECURITY_HEALTH_ANALYTICS_CUSTOM_MODULE"
+          }
+        },
+        "ORG_POLICY_CUSTOM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ORG_POLICY_CUSTOM"
+          }
+        },
+        "SECURITY_HEALTH_ANALYTICS_MODULE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SECURITY_HEALTH_ANALYTICS_MODULE"
+          }
+        },
+        "ORG_POLICY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ORG_POLICY"
+          }
+        },
+        "REGO_POLICY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REGO_POLICY"
+          }
+        }
+      }
+    },
+    "com.gcp.securityposture_v1#PolicySet": {
+      "type": "structure",
+      "members": {
+        "policies": {
+          "target": "com.gcp.securityposture_v1#PolicyList",
+          "traits": {
+            "smithy.api#documentation": "Required. The Policy resources in the policy set. Each policy must have a policy_id that's unique within the policy set."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A description of the policy set."
+          }
+        },
+        "policySetId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. An identifier for the policy set."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A group of one or more Policy resources."
+      }
+    },
+    "com.gcp.securityposture_v1#PolicyList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.securityposture_v1#Policy"
+      }
+    },
     "com.gcp.securityposture_v1#Operation": {
       "type": "structure",
       "members": {
-        "response": {
-          "target": "com.gcp.securityposture_v1#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
-          }
-        },
         "metadata": {
           "target": "com.gcp.securityposture_v1#DocumentMap",
           "traits": {
             "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
+          }
+        },
+        "done": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+          }
+        },
+        "response": {
+          "target": "com.gcp.securityposture_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
           }
         },
         "name": {
@@ -252,54 +448,39 @@
           "traits": {
             "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
           }
-        },
-        "done": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
-          }
         }
       },
       "traits": {
         "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
       }
     },
-    "com.gcp.securityposture_v1#DocumentMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "smithy.api#Document"
-      }
-    },
-    "com.gcp.securityposture_v1#ExtractPostureRequest": {
+    "com.gcp.securityposture_v1#AssetDetails": {
       "type": "structure",
       "members": {
-        "workload": {
+        "assetType": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. The organization, folder, or project from which policies are extracted. Must be within the organization defined in parent. Use one of the following formats: * `organization/{organization_number}` * `folder/{folder_number}` * `project/{project_number}`"
+            "smithy.api#documentation": "The type of Cloud Asset Inventory asset. For a list of asset types, see [Supported asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types)."
           }
         },
-        "postureId": {
+        "asset": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. An identifier for the posture."
+            "smithy.api#documentation": "Information about the Cloud Asset Inventory asset that violated a policy. The format of this information can change at any time without prior notice. Your application must not depend on this information in any way."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Request message for ExtractPosture."
+        "smithy.api#documentation": "Details of a Cloud Asset Inventory asset that caused a violation."
       }
     },
     "com.gcp.securityposture_v1#GoogleCloudSecuritypostureV1CustomConstraint": {
       "type": "structure",
       "members": {
-        "description": {
+        "displayName": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "A description of the constraint. The maximum length is 2000 characters."
+            "smithy.api#documentation": "A display name for the constraint. The maximum length is 200 characters."
           }
         },
         "actionType": {
@@ -308,16 +489,10 @@
             "smithy.api#documentation": "Whether to allow or deny the action."
           }
         },
-        "resourceTypes": {
-          "target": "com.gcp.securityposture_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Immutable. The resource type that the constraint applies to, in the format `{canonical_service_name}/{resource_type_name}`. For example, `compute.googleapis.com/Instance`."
-          }
-        },
-        "displayName": {
+        "description": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "A display name for the constraint. The maximum length is 200 characters."
+            "smithy.api#documentation": "A description of the constraint. The maximum length is 2000 characters."
           }
         },
         "name": {
@@ -326,16 +501,22 @@
             "smithy.api#documentation": "Immutable. The name of the constraint, in the format `organizations/{organization_id}/customConstraints/custom.{custom_constraint_id}`. For example, `organizations/123456789012/customConstraints/custom.createOnlyE2TypeVms`. Must contain 1 to 62 characters, excluding the prefix `organizations/{organization_id}/customConstraints/custom.`."
           }
         },
-        "condition": {
-          "target": "smithy.api#String",
+        "resourceTypes": {
+          "target": "com.gcp.securityposture_v1#StringList",
           "traits": {
-            "smithy.api#documentation": "A Common Expression Language (CEL) condition expression that must evaluate to `true` for the constraint to be enforced. The maximum length is 1000 characters. For example: + `resource.instanceName.matches('(production|test)_(.+_)?[\\d]+')`: Evaluates to `true` if the resource's `instanceName` attribute contains the following: + The prefix `production` or `test` + An underscore (`_`) + Optional: One or more characters, followed by an underscore (`_`) + One or more digits + `resource.management.auto_upgrade == true`: Evaluates to `true` if the resource's `management.auto_upgrade` attribute is `true`."
+            "smithy.api#documentation": "Immutable. The resource type that the constraint applies to, in the format `{canonical_service_name}/{resource_type_name}`. For example, `compute.googleapis.com/Instance`."
           }
         },
         "updateTime": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Output only. The last time at which the constraint was updated or created."
+          }
+        },
+        "condition": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A Common Expression Language (CEL) condition expression that must evaluate to `true` for the constraint to be enforced. The maximum length is 1000 characters. For example: + `resource.instanceName.matches('(production|test)_(.+_)?[\\d]+')`: Evaluates to `true` if the resource's `instanceName` attribute contains the following: + The prefix `production` or `test` + An underscore (`_`) + Optional: One or more characters, followed by an underscore (`_`) + One or more digits + `resource.management.auto_upgrade == true`: Evaluates to `true` if the resource's `management.auto_upgrade` attribute is `true`."
           }
         },
         "methodTypes": {
@@ -407,39 +588,7 @@
         "target": "com.gcp.securityposture_v1#GoogleCloudSecuritypostureV1CustomConstraintMethodTypesItemEnum"
       }
     },
-    "com.gcp.securityposture_v1#PolicySet": {
-      "type": "structure",
-      "members": {
-        "policySetId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. An identifier for the policy set."
-          }
-        },
-        "policies": {
-          "target": "com.gcp.securityposture_v1#PolicyList",
-          "traits": {
-            "smithy.api#documentation": "Required. The Policy resources in the policy set. Each policy must have a policy_id that's unique within the policy set."
-          }
-        },
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. A description of the policy set."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A group of one or more Policy resources."
-      }
-    },
-    "com.gcp.securityposture_v1#PolicyList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.securityposture_v1#Policy"
-      }
-    },
-    "com.gcp.securityposture_v1#ListPostureRevisionsResponse": {
+    "com.gcp.securityposture_v1#ListReportsResponse": {
       "type": "structure",
       "members": {
         "nextPageToken": {
@@ -448,15 +597,189 @@
             "smithy.api#documentation": "A pagination token. To retrieve the next page of results, call the method again with this token."
           }
         },
-        "revisions": {
-          "target": "com.gcp.securityposture_v1#PostureList",
+        "unreachable": {
+          "target": "com.gcp.securityposture_v1#StringList",
           "traits": {
-            "smithy.api#documentation": "The list of revisions for the Posture."
+            "smithy.api#documentation": "Locations that were temporarily unavailable and could not be reached."
+          }
+        },
+        "reports": {
+          "target": "com.gcp.securityposture_v1#ReportList",
+          "traits": {
+            "smithy.api#documentation": "The list of Report resources."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Response message for ListPostureRevisions."
+        "smithy.api#documentation": "Response message for ListReports."
+      }
+    },
+    "com.gcp.securityposture_v1#ReportList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.securityposture_v1#Report"
+      }
+    },
+    "com.gcp.securityposture_v1#OrgPolicyConstraint": {
+      "type": "structure",
+      "members": {
+        "cannedConstraintId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. A unique identifier for the constraint."
+          }
+        },
+        "policyRules": {
+          "target": "com.gcp.securityposture_v1#GoogleCloudSecuritypostureV1PolicyRuleList",
+          "traits": {
+            "smithy.api#documentation": "Required. The rules enforced by the constraint."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A predefined organization policy constraint."
+      }
+    },
+    "com.gcp.securityposture_v1#GoogleCloudSecuritypostureV1PolicyRuleList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.securityposture_v1#GoogleCloudSecuritypostureV1PolicyRule"
+      }
+    },
+    "com.gcp.securityposture_v1#ListOperationsResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard List next-page token."
+          }
+        },
+        "unreachable": {
+          "target": "com.gcp.securityposture_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations."
+          }
+        },
+        "operations": {
+          "target": "com.gcp.securityposture_v1#OperationList",
+          "traits": {
+            "smithy.api#documentation": "A list of operations that matches the specified filter in the request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for Operations.ListOperations."
+      }
+    },
+    "com.gcp.securityposture_v1#OperationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.securityposture_v1#Operation"
+      }
+    },
+    "com.gcp.securityposture_v1#ListLocationsResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard List next-page token."
+          }
+        },
+        "locations": {
+          "target": "com.gcp.securityposture_v1#LocationList",
+          "traits": {
+            "smithy.api#documentation": "A list of locations that matches the specified filter in the request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for Locations.ListLocations."
+      }
+    },
+    "com.gcp.securityposture_v1#LocationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.securityposture_v1#Location"
+      }
+    },
+    "com.gcp.securityposture_v1#PostureDetails": {
+      "type": "structure",
+      "members": {
+        "policySet": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identifier for the PolicySet that the relevant policy belongs to."
+          }
+        },
+        "posture": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The posture used in the deployment, in the format `organizations/{organization}/locations/global/postures/{posture_id}`."
+          }
+        },
+        "postureDeploymentTargetResource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The organization, folder, or project where the posture is deployed. Uses one of the following formats: * `organizations/{organization_number}` * `folders/{folder_number}` * `projects/{project_number}`"
+          }
+        },
+        "postureDeployment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the posture deployment, in the format `organizations/{organization}/locations/global/postureDeployments/{deployment_id}`."
+          }
+        },
+        "postureRevisionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The revision ID of the posture used in the deployment."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of a posture deployment."
+      }
+    },
+    "com.gcp.securityposture_v1#ResourceTypes": {
+      "type": "structure",
+      "members": {
+        "included": {
+          "target": "com.gcp.securityposture_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The resource types we support."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Set multiple resource types for one policy, for example: ``` resourceTypes: included: - compute.googleapis.com/Instance - compute.googleapis.com/Disk ``` Constraint definition contains an empty resource type in order to support multiple resource types in the policy. Only supports managed constraints. Method type is `GOVERN_TAGS`."
+      }
+    },
+    "com.gcp.securityposture_v1#ListPosturesResponse": {
+      "type": "structure",
+      "members": {
+        "unreachable": {
+          "target": "com.gcp.securityposture_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Locations that were temporarily unavailable and could not be reached."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A pagination token. To retrieve the next page of results, call the method again with this token."
+          }
+        },
+        "postures": {
+          "target": "com.gcp.securityposture_v1#PostureList",
+          "traits": {
+            "smithy.api#documentation": "The list of Posture resources."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for ListPostures."
       }
     },
     "com.gcp.securityposture_v1#PostureList": {
@@ -465,42 +788,133 @@
         "target": "com.gcp.securityposture_v1#Posture"
       }
     },
-    "com.gcp.securityposture_v1#Location": {
+    "com.gcp.securityposture_v1#CustomOutputSpec": {
       "type": "structure",
       "members": {
-        "name": {
-          "target": "smithy.api#String",
+        "properties": {
+          "target": "com.gcp.securityposture_v1#PropertyList",
           "traits": {
-            "smithy.api#documentation": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`"
-          }
-        },
-        "labels": {
-          "target": "com.gcp.securityposture_v1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}"
-          }
-        },
-        "locationId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The canonical id for this location. For example: `\"us-east1\"`."
-          }
-        },
-        "displayName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\"."
-          }
-        },
-        "metadata": {
-          "target": "com.gcp.securityposture_v1#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "Service-specific metadata. For example the available capacity at the given location."
+            "smithy.api#documentation": "Optional. The custom source properties that can appear in findings."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "A resource that represents a Google Cloud location."
+        "smithy.api#documentation": "Definitions of custom source properties that can appear in findings."
+      }
+    },
+    "com.gcp.securityposture_v1#PropertyList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.securityposture_v1#Property"
+      }
+    },
+    "com.gcp.securityposture_v1#Posture": {
+      "type": "structure",
+      "members": {
+        "policySets": {
+          "target": "com.gcp.securityposture_v1#PolicySetList",
+          "traits": {
+            "smithy.api#documentation": "Required. The PolicySet resources that the posture includes."
+          }
+        },
+        "revisionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Immutable. An opaque eight-character string that identifies the revision of the posture. A posture can have multiple revisions; when you deploy a posture, you deploy a specific revision of the posture."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Identifier. The name of the posture, in the format `organizations/{organization}/locations/global/postures/{posture_id}`."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time at which the posture was created."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An opaque identifier for the current version of the posture at the specified `revision_id`. To prevent concurrent updates from overwriting each other, always provide the `etag` when you update a posture. You can also provide the `etag` when you delete a posture, to help ensure that you're deleting the intended version of the posture."
+          }
+        },
+        "state": {
+          "target": "com.gcp.securityposture_v1#PostureStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. The state of the posture at the specified `revision_id`."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time at which the posture was last updated."
+          }
+        },
+        "reconciling": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Whether the posture is in the process of being updated."
+          }
+        },
+        "annotations": {
+          "target": "com.gcp.securityposture_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. The user-specified annotations for the posture. For details about the values you can use in an annotation, see [AIP-148: Standard fields](https://google.aip.dev/148#annotations)."
+          }
+        },
+        "categories": {
+          "target": "com.gcp.securityposture_v1#PostureCategoriesItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Output only. The categories that the posture belongs to, as determined by the Security Posture API."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A description of the posture."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The details of a posture."
+      }
+    },
+    "com.gcp.securityposture_v1#PolicySetList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.securityposture_v1#PolicySet"
+      }
+    },
+    "com.gcp.securityposture_v1#PostureStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "DEPRECATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEPRECATED"
+          }
+        },
+        "DRAFT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DRAFT"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTIVE"
+          }
+        }
       }
     },
     "com.gcp.securityposture_v1#StringMap": {
@@ -512,15 +926,352 @@
         "target": "smithy.api#String"
       }
     },
+    "com.gcp.securityposture_v1#PostureCategoriesItemEnum": {
+      "type": "enum",
+      "members": {
+        "CATEGORY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CATEGORY_UNSPECIFIED"
+          }
+        },
+        "AI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AI"
+          }
+        },
+        "AWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AWS"
+          }
+        },
+        "GCP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GCP"
+          }
+        },
+        "AZURE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AZURE"
+          }
+        }
+      }
+    },
+    "com.gcp.securityposture_v1#PostureCategoriesItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.securityposture_v1#PostureCategoriesItemEnum"
+      }
+    },
+    "com.gcp.securityposture_v1#CancelOperationRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "The request message for Operations.CancelOperation."
+      }
+    },
+    "com.gcp.securityposture_v1#PostureTemplate": {
+      "type": "structure",
+      "members": {
+        "categories": {
+          "target": "com.gcp.securityposture_v1#PostureTemplateCategoriesItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Output only. The categories that the posture template belongs to, as determined by the Security Posture API."
+          }
+        },
+        "revisionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. A string that identifies the revision of the posture template."
+          }
+        },
+        "policySets": {
+          "target": "com.gcp.securityposture_v1#PolicySetList",
+          "traits": {
+            "smithy.api#documentation": "Output only. The PolicySet resources that the posture template includes."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Identifier. The name of the posture template, in the format `organizations/{organization}/locations/global/postureTemplates/{posture_template}`."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. A description of the posture template."
+          }
+        },
+        "state": {
+          "target": "com.gcp.securityposture_v1#PostureTemplateStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The state of the posture template at the specified `revision_id`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The details of a posture template."
+      }
+    },
+    "com.gcp.securityposture_v1#PostureTemplateCategoriesItemEnum": {
+      "type": "enum",
+      "members": {
+        "CATEGORY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CATEGORY_UNSPECIFIED"
+          }
+        },
+        "AI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AI"
+          }
+        },
+        "AWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AWS"
+          }
+        },
+        "GCP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GCP"
+          }
+        },
+        "AZURE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AZURE"
+          }
+        }
+      }
+    },
+    "com.gcp.securityposture_v1#PostureTemplateCategoriesItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.securityposture_v1#PostureTemplateCategoriesItemEnum"
+      }
+    },
+    "com.gcp.securityposture_v1#PostureTemplateStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTIVE"
+          }
+        },
+        "DEPRECATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEPRECATED"
+          }
+        }
+      }
+    },
+    "com.gcp.securityposture_v1#GoogleCloudSecuritypostureV1PolicyRule": {
+      "type": "structure",
+      "members": {
+        "values": {
+          "target": "com.gcp.securityposture_v1#GoogleCloudSecuritypostureV1PolicyRuleStringValues",
+          "traits": {
+            "smithy.api#documentation": "The allowed and denied values for a list constraint. Valid only for list constraints."
+          }
+        },
+        "condition": {
+          "target": "com.gcp.securityposture_v1#Expr",
+          "traits": {
+            "smithy.api#documentation": "A condition that determines whether this rule is used to evaluate the policy. When set, the google.type.Expr.expression field must contain 1 to 10 subexpressions, joined by the `||` or `&&` operators. Each subexpression must use the `resource.matchTag()`, `resource.matchTagId()`, `resource.hasTagKey()`, or `resource.hasTagKeyId()` Common Expression Language (CEL) function. The `resource.matchTag()` function takes the following arguments: * `key_name`: the namespaced name of the tag key, with the organization ID and a slash (`/`) as a prefix; for example, `123456789012/environment` * `value_name`: the short name of the tag value For example: `resource.matchTag('123456789012/environment, 'prod')` The `resource.matchTagId()` function takes the following arguments: * `key_id`: the permanent ID of the tag key; for example, `tagKeys/123456789012` * `value_id`: the permanent ID of the tag value; for example, `tagValues/567890123456` For example: `resource.matchTagId('tagKeys/123456789012', 'tagValues/567890123456')` The `resource.hasTagKey()` function takes the following argument: * `key_name`: the namespaced name of the tag key, with the organization ID and a slash (`/`) as a prefix; for example, `123456789012/environment` For example: `resource.hasTagKey('123456789012/environment')` The `resource.hasTagKeyId()` function takes the following arguments: * `key_id`: the permanent ID of the tag key; for example, `tagKeys/123456789012` For example: `resource.hasTagKeyId('tagKeys/123456789012')`"
+          }
+        },
+        "parameters": {
+          "target": "com.gcp.securityposture_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. Required for managed constraints if parameters are defined. Passes parameter values when policy enforcement is enabled. Ensure that parameter value types match those defined in the constraint definition. For example: ``` { \"allowedLocations\": [\"us-east1\", \"us-west1\"], \"allowAll\": true } ```"
+          }
+        },
+        "allowAll": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to allow any value for a list constraint. Valid only for list constraints."
+          }
+        },
+        "resourceTypes": {
+          "target": "com.gcp.securityposture_v1#ResourceTypes",
+          "traits": {
+            "smithy.api#documentation": "Optional. The resource types policies can support, only used for managed constraints. Method type is `GOVERN_TAGS`."
+          }
+        },
+        "denyAll": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to deny all values for a list constraint. Valid only for list constraints."
+          }
+        },
+        "enforce": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to enforce the constraint. Valid only for boolean constraints."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A rule that defines the allowed and denied values for an organization policy constraint."
+      }
+    },
+    "com.gcp.securityposture_v1#SecurityHealthAnalyticsModule": {
+      "type": "structure",
+      "members": {
+        "moduleEnablementState": {
+          "target": "com.gcp.securityposture_v1#SecurityHealthAnalyticsModuleModuleEnablementStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Whether the detector is enabled at a specified level of the resource hierarchy."
+          }
+        },
+        "moduleName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the detector. For example, `BIGQUERY_TABLE_CMEK_DISABLED`. This field is also used as the finding category for all the asset violation findings that the detector returns."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A built-in detector for Security Health Analytics."
+      }
+    },
+    "com.gcp.securityposture_v1#SecurityHealthAnalyticsModuleModuleEnablementStateEnum": {
+      "type": "enum",
+      "members": {
+        "ENABLEMENT_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENABLEMENT_STATE_UNSPECIFIED"
+          }
+        },
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENABLED"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISABLED"
+          }
+        }
+      }
+    },
+    "com.gcp.securityposture_v1#Policy": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A description of the policy."
+          }
+        },
+        "policyId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. A user-specified identifier for the policy. In a PolicySet, each policy must have a unique identifier."
+          }
+        },
+        "complianceStandards": {
+          "target": "com.gcp.securityposture_v1#ComplianceStandardList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The compliance standards that the policy helps enforce."
+          }
+        },
+        "constraint": {
+          "target": "com.gcp.securityposture_v1#Constraint",
+          "traits": {
+            "smithy.api#documentation": "Required. The constraints that the policy includes."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The details of a policy, including the constraints that it includes."
+      }
+    },
+    "com.gcp.securityposture_v1#ComplianceStandardList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.securityposture_v1#ComplianceStandard"
+      }
+    },
+    "com.gcp.securityposture_v1#OperationMetadata": {
+      "type": "structure",
+      "members": {
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time at which the operation finished running."
+          }
+        },
+        "verb": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The name of the action executed by the operation."
+          }
+        },
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The server-defined resource path for the target of the operation."
+          }
+        },
+        "apiVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The API version used to start the operation."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time at which the operation was created."
+          }
+        },
+        "errorMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. An error message. Returned when a PostureDeployment enters a failure state like UPDATE_FAILED."
+          }
+        },
+        "requestedCancellation": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Whether a request to cancel the operation has been received. For operations that have been cancelled successfully, the Operation.error field contains the error code CANCELLED."
+          }
+        },
+        "statusMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The status of the operation, if any."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata for an Operation."
+      }
+    },
     "com.gcp.securityposture_v1#SecurityHealthAnalyticsCustomModule": {
       "type": "structure",
       "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Immutable. The unique identifier for the custom module. Contains 1 to 20 digits."
-          }
-        },
         "config": {
           "target": "com.gcp.securityposture_v1#CustomConfig",
           "traits": {
@@ -531,6 +1282,12 @@
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Optional. The display name of the custom module. This value is used as the finding category for all the asset violation findings that the custom module returns. The display name must contain between 1 and 128 alphanumeric characters or underscores, and it must start with a lowercase letter."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Immutable. The unique identifier for the custom module. Contains 1 to 20 digits."
           }
         },
         "moduleEnablementState": {
@@ -567,6 +1324,203 @@
         }
       }
     },
+    "com.gcp.securityposture_v1#OrgPolicyConstraintCustom": {
+      "type": "structure",
+      "members": {
+        "policyRules": {
+          "target": "com.gcp.securityposture_v1#GoogleCloudSecuritypostureV1PolicyRuleList",
+          "traits": {
+            "smithy.api#documentation": "Required. The rules enforced by the constraint."
+          }
+        },
+        "customConstraint": {
+          "target": "com.gcp.securityposture_v1#GoogleCloudSecuritypostureV1CustomConstraint",
+          "traits": {
+            "smithy.api#documentation": "Required. Metadata for the constraint."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A custom organization policy constraint."
+      }
+    },
+    "com.gcp.securityposture_v1#Location": {
+      "type": "structure",
+      "members": {
+        "labels": {
+          "target": "com.gcp.securityposture_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}"
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.securityposture_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata. For example the available capacity at the given location."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`"
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\"."
+          }
+        },
+        "locationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The canonical id for this location. For example: `\"us-east1\"`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A resource that represents a Google Cloud location."
+      }
+    },
+    "com.gcp.securityposture_v1#IaCValidationReport": {
+      "type": "structure",
+      "members": {
+        "note": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Additional information about the report."
+          }
+        },
+        "violations": {
+          "target": "com.gcp.securityposture_v1#ViolationList",
+          "traits": {
+            "smithy.api#documentation": "A list of every Violation found in the IaC configuration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of an infrastructure-as-code (IaC) validation report."
+      }
+    },
+    "com.gcp.securityposture_v1#ViolationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.securityposture_v1#Violation"
+      }
+    },
+    "com.gcp.securityposture_v1#IaC": {
+      "type": "structure",
+      "members": {
+        "tfPlan": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A Terraform plan file, formatted as a stringified JSON object. To learn how to generate a Terraform plan file in JSON format, see [JSON output format](https://developer.hashicorp.com/terraform/internals/json-format) in the Terraform documentation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of an infrastructure-as-code (IaC) configuration."
+      }
+    },
+    "com.gcp.securityposture_v1#GoogleCloudSecuritypostureV1PolicyRuleStringValues": {
+      "type": "structure",
+      "members": {
+        "deniedValues": {
+          "target": "com.gcp.securityposture_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "The denied values for the constraint."
+          }
+        },
+        "allowedValues": {
+          "target": "com.gcp.securityposture_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "The allowed values for the constraint."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The allowed and denied values for a list constraint. For all constraints, these fields can contain literal values. Optionally, you can add the `is:` prefix to these values. If the value contains a colon (`:`), then the `is:` prefix is required. Some constraints allow you to specify a portion of the resource hierarchy, known as a [_hierarchy subtree_](https://cloud.google.com/resource-manager/help/organization-policy/hierarchy-subtree), that the constraint applies to. To specify a hierarchy subtree, use the `under:` prefix, followed by a value with one of these formats: - `projects/{project_id}` (for example, `projects/tokyo-rain-123`) - `folders/{folder_id}` (for example, `folders/1234567890123`) - `organizations/{organization_id}` (for example, `organizations/123456789012`) A constraint's `supports_under` field indicates whether you can specify a hierarchy subtree. To learn which predefined constraints let you specify a hierarchy subtree, see the [constraints reference](https://cloud.google.com/resource-manager/help/organization-policy/constraints/reference)."
+      }
+    },
+    "com.gcp.securityposture_v1#Empty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.securityposture_v1#ListPostureRevisionsResponse": {
+      "type": "structure",
+      "members": {
+        "revisions": {
+          "target": "com.gcp.securityposture_v1#PostureList",
+          "traits": {
+            "smithy.api#documentation": "The list of revisions for the Posture."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A pagination token. To retrieve the next page of results, call the method again with this token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for ListPostureRevisions."
+      }
+    },
+    "com.gcp.securityposture_v1#ComplianceStandard": {
+      "type": "structure",
+      "members": {
+        "control": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The control in the compliance standard that the policy helps enforce. For example, `AC-3`."
+          }
+        },
+        "standard": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The compliance standard that the policy helps enforce. For example, `NIST SP 800-53`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about a compliance standard that the policy helps enforce."
+      }
+    },
+    "com.gcp.securityposture_v1#Report": {
+      "type": "structure",
+      "members": {
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time at which the report was created."
+          }
+        },
+        "iacValidationReport": {
+          "target": "com.gcp.securityposture_v1#IaCValidationReport",
+          "traits": {
+            "smithy.api#documentation": "Output only. An infrastructure-as-code (IaC) validation report."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time at which the report was last updated."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the report, in the format `organizations/{organization}/locations/global/reports/{report_id}`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of a report."
+      }
+    },
     "com.gcp.securityposture_v1#CreateIaCValidationReportRequest": {
       "type": "structure",
       "members": {
@@ -581,72 +1535,13 @@
         "smithy.api#documentation": "Request message for CreateIaCValidationReport."
       }
     },
-    "com.gcp.securityposture_v1#ListLocationsResponse": {
+    "com.gcp.securityposture_v1#ListPostureDeploymentsResponse": {
       "type": "structure",
       "members": {
-        "locations": {
-          "target": "com.gcp.securityposture_v1#LocationList",
+        "postureDeployments": {
+          "target": "com.gcp.securityposture_v1#PostureDeploymentList",
           "traits": {
-            "smithy.api#documentation": "A list of locations that matches the specified filter in the request."
-          }
-        },
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The standard List next-page token."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The response message for Locations.ListLocations."
-      }
-    },
-    "com.gcp.securityposture_v1#LocationList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.securityposture_v1#Location"
-      }
-    },
-    "com.gcp.securityposture_v1#IaCValidationReport": {
-      "type": "structure",
-      "members": {
-        "violations": {
-          "target": "com.gcp.securityposture_v1#ViolationList",
-          "traits": {
-            "smithy.api#documentation": "A list of every Violation found in the IaC configuration."
-          }
-        },
-        "note": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Additional information about the report."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Details of an infrastructure-as-code (IaC) validation report."
-      }
-    },
-    "com.gcp.securityposture_v1#ViolationList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.securityposture_v1#Violation"
-      }
-    },
-    "com.gcp.securityposture_v1#CancelOperationRequest": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "The request message for Operations.CancelOperation."
-      }
-    },
-    "com.gcp.securityposture_v1#ListReportsResponse": {
-      "type": "structure",
-      "members": {
-        "reports": {
-          "target": "com.gcp.securityposture_v1#ReportList",
-          "traits": {
-            "smithy.api#documentation": "The list of Report resources."
+            "smithy.api#documentation": "The list of PostureDeployment resources."
           }
         },
         "nextPageToken": {
@@ -663,48 +1558,82 @@
         }
       },
       "traits": {
-        "smithy.api#documentation": "Response message for ListReports."
+        "smithy.api#documentation": "Response message for ListPostureDeployments."
       }
     },
-    "com.gcp.securityposture_v1#ReportList": {
+    "com.gcp.securityposture_v1#PostureDeploymentList": {
       "type": "list",
       "member": {
-        "target": "com.gcp.securityposture_v1#Report"
-      }
-    },
-    "com.gcp.securityposture_v1#Property": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The name of the custom source property."
-          }
-        },
-        "valueExpression": {
-          "target": "com.gcp.securityposture_v1#Expr",
-          "traits": {
-            "smithy.api#documentation": "Optional. The CEL expression for the value of the custom source property. For resource properties, you can return the value of the property or a string enclosed in quotation marks."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A name-value pair used as a custom source property."
+        "target": "com.gcp.securityposture_v1#PostureDeployment"
       }
     },
     "com.gcp.securityposture_v1#PostureDeployment": {
       "type": "structure",
       "members": {
-        "description": {
-          "target": "smithy.api#String",
+        "categories": {
+          "target": "com.gcp.securityposture_v1#PostureDeploymentCategoriesItemEnumList",
           "traits": {
-            "smithy.api#documentation": "Optional. A description of the posture deployment."
+            "smithy.api#documentation": "Output only. The categories that the posture deployment belongs to, as determined by the Security Posture API."
+          }
+        },
+        "annotations": {
+          "target": "com.gcp.securityposture_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. The user-specified annotations for the posture deployment. For details about the values you can use in an annotation, see [AIP-148: Standard fields](https://google.aip.dev/148#annotations)."
           }
         },
         "reconciling": {
           "target": "smithy.api#Boolean",
           "traits": {
             "smithy.api#documentation": "Output only. Whether the posture deployment is in the process of being updated."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Identifier. The name of the posture deployment, in the format `organizations/{organization}/locations/global/postureDeployments/{deployment_id}`."
+          }
+        },
+        "targetResource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The organization, folder, or project where the posture is deployed. Uses one of the following formats: * `organizations/{organization_number}` * `folders/{folder_number}` * `projects/{project_number}`"
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time at which the posture deployment was last updated."
+          }
+        },
+        "postureRevisionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The revision ID of the posture used in the deployment."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time at which the posture deployment was created."
+          }
+        },
+        "failureMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. A description of why the posture deployment failed. Present only if the deployment is in a failed state."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A description of the posture deployment."
+          }
+        },
+        "state": {
+          "target": "com.gcp.securityposture_v1#PostureDeploymentStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The state of the posture deployment."
           }
         },
         "desiredPostureRevisionId": {
@@ -719,70 +1648,16 @@
             "smithy.api#documentation": "Output only. The posture ID that was specified for the deployment. Present only if the posture deployment is in a failed state."
           }
         },
-        "categories": {
-          "target": "com.gcp.securityposture_v1#PostureDeploymentCategoriesItemEnumList",
+        "etag": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. The categories that the posture deployment belongs to, as determined by the Security Posture API."
+            "smithy.api#documentation": "Optional. An opaque identifier for the current version of the posture deployment. To prevent concurrent updates from overwriting each other, always provide the `etag` when you update a posture deployment. You can also provide the `etag` when you delete a posture deployment, to help ensure that you're deleting the intended posture deployment."
           }
         },
         "postureId": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Required. The posture used in the deployment, in the format `organizations/{organization}/locations/global/postures/{posture_id}`."
-          }
-        },
-        "state": {
-          "target": "com.gcp.securityposture_v1#PostureDeploymentStateEnum",
-          "traits": {
-            "smithy.api#documentation": "Output only. The state of the posture deployment."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Identifier. The name of the posture deployment, in the format `organizations/{organization}/locations/global/postureDeployments/{deployment_id}`."
-          }
-        },
-        "failureMessage": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. A description of why the posture deployment failed. Present only if the deployment is in a failed state."
-          }
-        },
-        "updateTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The time at which the posture deployment was last updated."
-          }
-        },
-        "createTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The time at which the posture deployment was created."
-          }
-        },
-        "postureRevisionId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The revision ID of the posture used in the deployment."
-          }
-        },
-        "annotations": {
-          "target": "com.gcp.securityposture_v1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Optional. The user-specified annotations for the posture deployment. For details about the values you can use in an annotation, see [AIP-148: Standard fields](https://google.aip.dev/148#annotations)."
-          }
-        },
-        "targetResource": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The organization, folder, or project where the posture is deployed. Uses one of the following formats: * `organizations/{organization_number}` * `folders/{folder_number}` * `projects/{project_number}`"
-          }
-        },
-        "etag": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. An opaque identifier for the current version of the posture deployment. To prevent concurrent updates from overwriting each other, always provide the `etag` when you update a posture deployment. You can also provide the `etag` when you delete a posture deployment, to help ensure that you're deleting the intended posture deployment."
           }
         }
       },
@@ -884,459 +1759,39 @@
         }
       }
     },
-    "com.gcp.securityposture_v1#PolicyDetails": {
+    "com.gcp.securityposture_v1#Property": {
       "type": "structure",
       "members": {
-        "description": {
-          "target": "smithy.api#String",
+        "valueExpression": {
+          "target": "com.gcp.securityposture_v1#Expr",
           "traits": {
-            "smithy.api#documentation": "A description of the policy."
-          }
-        },
-        "complianceStandards": {
-          "target": "com.gcp.securityposture_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "The compliance standards that the policy maps to. For example, `CIS-2.0 1.15`."
-          }
-        },
-        "constraint": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Information about the constraint that was violated. The format of this information can change at any time without prior notice. Your application must not depend on this information in any way."
-          }
-        },
-        "constraintType": {
-          "target": "com.gcp.securityposture_v1#PolicyDetailsConstraintTypeEnum",
-          "traits": {
-            "smithy.api#documentation": "The type of constraint that was violated."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Details of a policy that was violated."
-      }
-    },
-    "com.gcp.securityposture_v1#PolicyDetailsConstraintTypeEnum": {
-      "type": "enum",
-      "members": {
-        "CONSTRAINT_TYPE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CONSTRAINT_TYPE_UNSPECIFIED"
-          }
-        },
-        "SECURITY_HEALTH_ANALYTICS_CUSTOM_MODULE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "SECURITY_HEALTH_ANALYTICS_CUSTOM_MODULE"
-          }
-        },
-        "ORG_POLICY_CUSTOM": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ORG_POLICY_CUSTOM"
-          }
-        },
-        "SECURITY_HEALTH_ANALYTICS_MODULE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "SECURITY_HEALTH_ANALYTICS_MODULE"
-          }
-        },
-        "ORG_POLICY": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ORG_POLICY"
-          }
-        },
-        "REGO_POLICY": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "REGO_POLICY"
-          }
-        }
-      }
-    },
-    "com.gcp.securityposture_v1#ListPosturesResponse": {
-      "type": "structure",
-      "members": {
-        "postures": {
-          "target": "com.gcp.securityposture_v1#PostureList",
-          "traits": {
-            "smithy.api#documentation": "The list of Posture resources."
-          }
-        },
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A pagination token. To retrieve the next page of results, call the method again with this token."
-          }
-        },
-        "unreachable": {
-          "target": "com.gcp.securityposture_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Locations that were temporarily unavailable and could not be reached."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response message for ListPostures."
-      }
-    },
-    "com.gcp.securityposture_v1#PostureTemplate": {
-      "type": "structure",
-      "members": {
-        "policySets": {
-          "target": "com.gcp.securityposture_v1#PolicySetList",
-          "traits": {
-            "smithy.api#documentation": "Output only. The PolicySet resources that the posture template includes."
-          }
-        },
-        "state": {
-          "target": "com.gcp.securityposture_v1#PostureTemplateStateEnum",
-          "traits": {
-            "smithy.api#documentation": "Output only. The state of the posture template at the specified `revision_id`."
-          }
-        },
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. A description of the posture template."
-          }
-        },
-        "categories": {
-          "target": "com.gcp.securityposture_v1#PostureTemplateCategoriesItemEnumList",
-          "traits": {
-            "smithy.api#documentation": "Output only. The categories that the posture template belongs to, as determined by the Security Posture API."
+            "smithy.api#documentation": "Optional. The CEL expression for the value of the custom source property. For resource properties, you can return the value of the property or a string enclosed in quotation marks."
           }
         },
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. Identifier. The name of the posture template, in the format `organizations/{organization}/locations/global/postureTemplates/{posture_template}`."
-          }
-        },
-        "revisionId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. A string that identifies the revision of the posture template."
+            "smithy.api#documentation": "Required. The name of the custom source property."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "The details of a posture template."
-      }
-    },
-    "com.gcp.securityposture_v1#PolicySetList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.securityposture_v1#PolicySet"
-      }
-    },
-    "com.gcp.securityposture_v1#PostureTemplateStateEnum": {
-      "type": "enum",
-      "members": {
-        "STATE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "STATE_UNSPECIFIED"
-          }
-        },
-        "ACTIVE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ACTIVE"
-          }
-        },
-        "DEPRECATED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DEPRECATED"
-          }
-        }
-      }
-    },
-    "com.gcp.securityposture_v1#PostureTemplateCategoriesItemEnum": {
-      "type": "enum",
-      "members": {
-        "CATEGORY_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CATEGORY_UNSPECIFIED"
-          }
-        },
-        "AI": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "AI"
-          }
-        },
-        "AWS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "AWS"
-          }
-        },
-        "GCP": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "GCP"
-          }
-        },
-        "AZURE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "AZURE"
-          }
-        }
-      }
-    },
-    "com.gcp.securityposture_v1#PostureTemplateCategoriesItemEnumList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.securityposture_v1#PostureTemplateCategoriesItemEnum"
-      }
-    },
-    "com.gcp.securityposture_v1#ComplianceStandard": {
-      "type": "structure",
-      "members": {
-        "standard": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The compliance standard that the policy helps enforce. For example, `NIST SP 800-53`."
-          }
-        },
-        "control": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The control in the compliance standard that the policy helps enforce. For example, `AC-3`."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Information about a compliance standard that the policy helps enforce."
-      }
-    },
-    "com.gcp.securityposture_v1#ListPostureDeploymentsResponse": {
-      "type": "structure",
-      "members": {
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A pagination token. To retrieve the next page of results, call the method again with this token."
-          }
-        },
-        "unreachable": {
-          "target": "com.gcp.securityposture_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Locations that were temporarily unavailable and could not be reached."
-          }
-        },
-        "postureDeployments": {
-          "target": "com.gcp.securityposture_v1#PostureDeploymentList",
-          "traits": {
-            "smithy.api#documentation": "The list of PostureDeployment resources."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response message for ListPostureDeployments."
-      }
-    },
-    "com.gcp.securityposture_v1#PostureDeploymentList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.securityposture_v1#PostureDeployment"
-      }
-    },
-    "com.gcp.securityposture_v1#AssetDetails": {
-      "type": "structure",
-      "members": {
-        "asset": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Information about the Cloud Asset Inventory asset that violated a policy. The format of this information can change at any time without prior notice. Your application must not depend on this information in any way."
-          }
-        },
-        "assetType": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The type of Cloud Asset Inventory asset. For a list of asset types, see [Supported asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types)."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Details of a Cloud Asset Inventory asset that caused a violation."
-      }
-    },
-    "com.gcp.securityposture_v1#Policy": {
-      "type": "structure",
-      "members": {
-        "constraint": {
-          "target": "com.gcp.securityposture_v1#Constraint",
-          "traits": {
-            "smithy.api#documentation": "Required. The constraints that the policy includes."
-          }
-        },
-        "complianceStandards": {
-          "target": "com.gcp.securityposture_v1#ComplianceStandardList",
-          "traits": {
-            "smithy.api#documentation": "Optional. The compliance standards that the policy helps enforce."
-          }
-        },
-        "policyId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. A user-specified identifier for the policy. In a PolicySet, each policy must have a unique identifier."
-          }
-        },
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. A description of the policy."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The details of a policy, including the constraints that it includes."
-      }
-    },
-    "com.gcp.securityposture_v1#ComplianceStandardList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.securityposture_v1#ComplianceStandard"
-      }
-    },
-    "com.gcp.securityposture_v1#Report": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The name of the report, in the format `organizations/{organization}/locations/global/reports/{report_id}`."
-          }
-        },
-        "createTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The time at which the report was created."
-          }
-        },
-        "updateTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The time at which the report was last updated."
-          }
-        },
-        "iacValidationReport": {
-          "target": "com.gcp.securityposture_v1#IaCValidationReport",
-          "traits": {
-            "smithy.api#documentation": "Output only. An infrastructure-as-code (IaC) validation report."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Details of a report."
-      }
-    },
-    "com.gcp.securityposture_v1#Empty": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
-      }
-    },
-    "com.gcp.securityposture_v1#Status": {
-      "type": "structure",
-      "members": {
-        "details": {
-          "target": "com.gcp.securityposture_v1#DocumentMapList",
-          "traits": {
-            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
-          }
-        },
-        "message": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
-          }
-        },
-        "code": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
-      }
-    },
-    "com.gcp.securityposture_v1#DocumentMapList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.securityposture_v1#DocumentMap"
-      }
-    },
-    "com.gcp.securityposture_v1#IaC": {
-      "type": "structure",
-      "members": {
-        "tfPlan": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. A Terraform plan file, formatted as a stringified JSON object. To learn how to generate a Terraform plan file in JSON format, see [JSON output format](https://developer.hashicorp.com/terraform/internals/json-format) in the Terraform documentation."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Details of an infrastructure-as-code (IaC) configuration."
-      }
-    },
-    "com.gcp.securityposture_v1#ListPostureTemplatesResponse": {
-      "type": "structure",
-      "members": {
-        "postureTemplates": {
-          "target": "com.gcp.securityposture_v1#PostureTemplateList",
-          "traits": {
-            "smithy.api#documentation": "The list of PostureTemplate resources."
-          }
-        },
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A pagination token. To retrieve the next page of results, call the method again with this token."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response message for ListPostureTemplates."
-      }
-    },
-    "com.gcp.securityposture_v1#PostureTemplateList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.securityposture_v1#PostureTemplate"
+        "smithy.api#documentation": "A name-value pair used as a custom source property."
       }
     },
     "com.gcp.securityposture_v1#Expr": {
       "type": "structure",
       "members": {
-        "location": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file."
-          }
-        },
-        "title": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression."
-          }
-        },
         "expression": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Textual representation of an expression in Common Expression Language syntax."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file."
           }
         },
         "description": {
@@ -1344,480 +1799,26 @@
           "traits": {
             "smithy.api#documentation": "Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI."
           }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression."
+          }
         }
       },
       "traits": {
         "smithy.api#documentation": "Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: \"Summary size limit\" description: \"Determines if a summary is less than 100 chars\" expression: \"document.summary.size() < 100\" Example (Equality): title: \"Requestor is owner\" description: \"Determines if requestor is the document owner\" expression: \"document.owner == request.auth.claims.email\" Example (Logic): title: \"Public documents\" description: \"Determine whether the document should be publicly visible\" expression: \"document.type != 'private' && document.type != 'internal'\" Example (Data Manipulation): title: \"Notification string\" description: \"Create a notification string with a timestamp.\" expression: \"'New message received at ' + string(document.create_time)\" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information."
       }
     },
-    "com.gcp.securityposture_v1#CustomOutputSpec": {
-      "type": "structure",
-      "members": {
-        "properties": {
-          "target": "com.gcp.securityposture_v1#PropertyList",
-          "traits": {
-            "smithy.api#documentation": "Optional. The custom source properties that can appear in findings."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Definitions of custom source properties that can appear in findings."
-      }
-    },
-    "com.gcp.securityposture_v1#PropertyList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.securityposture_v1#Property"
-      }
-    },
-    "com.gcp.securityposture_v1#ResourceTypes": {
-      "type": "structure",
-      "members": {
-        "included": {
-          "target": "com.gcp.securityposture_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Optional. The resource types we support."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Set multiple resource types for one policy, for example: ``` resourceTypes: included: - compute.googleapis.com/Instance - compute.googleapis.com/Disk ``` Constraint definition contains an empty resource type in order to support multiple resource types in the policy. Only supports managed constraints. Method type is `GOVERN_TAGS`."
-      }
-    },
-    "com.gcp.securityposture_v1#GoogleCloudSecuritypostureV1PolicyRule": {
-      "type": "structure",
-      "members": {
-        "condition": {
-          "target": "com.gcp.securityposture_v1#Expr",
-          "traits": {
-            "smithy.api#documentation": "A condition that determines whether this rule is used to evaluate the policy. When set, the google.type.Expr.expression field must contain 1 to 10 subexpressions, joined by the `||` or `&&` operators. Each subexpression must use the `resource.matchTag()`, `resource.matchTagId()`, `resource.hasTagKey()`, or `resource.hasTagKeyId()` Common Expression Language (CEL) function. The `resource.matchTag()` function takes the following arguments: * `key_name`: the namespaced name of the tag key, with the organization ID and a slash (`/`) as a prefix; for example, `123456789012/environment` * `value_name`: the short name of the tag value For example: `resource.matchTag('123456789012/environment, 'prod')` The `resource.matchTagId()` function takes the following arguments: * `key_id`: the permanent ID of the tag key; for example, `tagKeys/123456789012` * `value_id`: the permanent ID of the tag value; for example, `tagValues/567890123456` For example: `resource.matchTagId('tagKeys/123456789012', 'tagValues/567890123456')` The `resource.hasTagKey()` function takes the following argument: * `key_name`: the namespaced name of the tag key, with the organization ID and a slash (`/`) as a prefix; for example, `123456789012/environment` For example: `resource.hasTagKey('123456789012/environment')` The `resource.hasTagKeyId()` function takes the following arguments: * `key_id`: the permanent ID of the tag key; for example, `tagKeys/123456789012` For example: `resource.hasTagKeyId('tagKeys/123456789012')`"
-          }
-        },
-        "allowAll": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether to allow any value for a list constraint. Valid only for list constraints."
-          }
-        },
-        "values": {
-          "target": "com.gcp.securityposture_v1#GoogleCloudSecuritypostureV1PolicyRuleStringValues",
-          "traits": {
-            "smithy.api#documentation": "The allowed and denied values for a list constraint. Valid only for list constraints."
-          }
-        },
-        "enforce": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether to enforce the constraint. Valid only for boolean constraints."
-          }
-        },
-        "resourceTypes": {
-          "target": "com.gcp.securityposture_v1#ResourceTypes",
-          "traits": {
-            "smithy.api#documentation": "Optional. The resource types policies can support, only used for managed constraints. Method type is `GOVERN_TAGS`."
-          }
-        },
-        "denyAll": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether to deny all values for a list constraint. Valid only for list constraints."
-          }
-        },
-        "parameters": {
-          "target": "com.gcp.securityposture_v1#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "Optional. Required for managed constraints if parameters are defined. Passes parameter values when policy enforcement is enabled. Ensure that parameter value types match those defined in the constraint definition. For example: ``` { \"allowedLocations\": [\"us-east1\", \"us-west1\"], \"allowAll\": true } ```"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A rule that defines the allowed and denied values for an organization policy constraint."
-      }
-    },
-    "com.gcp.securityposture_v1#SecurityHealthAnalyticsModule": {
-      "type": "structure",
-      "members": {
-        "moduleName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The name of the detector. For example, `BIGQUERY_TABLE_CMEK_DISABLED`. This field is also used as the finding category for all the asset violation findings that the detector returns."
-          }
-        },
-        "moduleEnablementState": {
-          "target": "com.gcp.securityposture_v1#SecurityHealthAnalyticsModuleModuleEnablementStateEnum",
-          "traits": {
-            "smithy.api#documentation": "Whether the detector is enabled at a specified level of the resource hierarchy."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A built-in detector for Security Health Analytics."
-      }
-    },
-    "com.gcp.securityposture_v1#SecurityHealthAnalyticsModuleModuleEnablementStateEnum": {
-      "type": "enum",
-      "members": {
-        "ENABLEMENT_STATE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ENABLEMENT_STATE_UNSPECIFIED"
-          }
-        },
-        "ENABLED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ENABLED"
-          }
-        },
-        "DISABLED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DISABLED"
-          }
-        }
-      }
-    },
-    "com.gcp.securityposture_v1#OrgPolicyConstraintCustom": {
-      "type": "structure",
-      "members": {
-        "policyRules": {
-          "target": "com.gcp.securityposture_v1#GoogleCloudSecuritypostureV1PolicyRuleList",
-          "traits": {
-            "smithy.api#documentation": "Required. The rules enforced by the constraint."
-          }
-        },
-        "customConstraint": {
-          "target": "com.gcp.securityposture_v1#GoogleCloudSecuritypostureV1CustomConstraint",
-          "traits": {
-            "smithy.api#documentation": "Required. Metadata for the constraint."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A custom organization policy constraint."
-      }
-    },
-    "com.gcp.securityposture_v1#GoogleCloudSecuritypostureV1PolicyRuleList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.securityposture_v1#GoogleCloudSecuritypostureV1PolicyRule"
-      }
-    },
-    "com.gcp.securityposture_v1#Constraint": {
-      "type": "structure",
-      "members": {
-        "orgPolicyConstraint": {
-          "target": "com.gcp.securityposture_v1#OrgPolicyConstraint",
-          "traits": {
-            "smithy.api#documentation": "Optional. A predefined organization policy constraint."
-          }
-        },
-        "securityHealthAnalyticsCustomModule": {
-          "target": "com.gcp.securityposture_v1#SecurityHealthAnalyticsCustomModule",
-          "traits": {
-            "smithy.api#documentation": "Optional. A custom module for Security Health Analytics."
-          }
-        },
-        "securityHealthAnalyticsModule": {
-          "target": "com.gcp.securityposture_v1#SecurityHealthAnalyticsModule",
-          "traits": {
-            "smithy.api#documentation": "Optional. A built-in detector for Security Health Analytics."
-          }
-        },
-        "orgPolicyConstraintCustom": {
-          "target": "com.gcp.securityposture_v1#OrgPolicyConstraintCustom",
-          "traits": {
-            "smithy.api#documentation": "Optional. A custom organization policy constraint."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Metadata for a constraint in a Policy."
-      }
-    },
-    "com.gcp.securityposture_v1#OrgPolicyConstraint": {
-      "type": "structure",
-      "members": {
-        "cannedConstraintId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. A unique identifier for the constraint."
-          }
-        },
-        "policyRules": {
-          "target": "com.gcp.securityposture_v1#GoogleCloudSecuritypostureV1PolicyRuleList",
-          "traits": {
-            "smithy.api#documentation": "Required. The rules enforced by the constraint."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A predefined organization policy constraint."
-      }
-    },
-    "com.gcp.securityposture_v1#CustomConfig": {
-      "type": "structure",
-      "members": {
-        "severity": {
-          "target": "com.gcp.securityposture_v1#CustomConfigSeverityEnum",
-          "traits": {
-            "smithy.api#documentation": "Required. The severity of findings generated by the custom module."
-          }
-        },
-        "customOutput": {
-          "target": "com.gcp.securityposture_v1#CustomOutputSpec",
-          "traits": {
-            "smithy.api#documentation": "Optional. Definitions of custom source properties to include in findings."
-          }
-        },
-        "resourceSelector": {
-          "target": "com.gcp.securityposture_v1#ResourceSelector",
-          "traits": {
-            "smithy.api#documentation": "Required. The resource types that the custom module operates on."
-          }
-        },
-        "predicate": {
-          "target": "com.gcp.securityposture_v1#Expr",
-          "traits": {
-            "smithy.api#documentation": "Required. The Common Expression Language (CEL) expression to evaluate. When the expression evaluates to `true` for a resource, a finding is generated."
-          }
-        },
-        "recommendation": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. An explanation of the steps that security teams can take to resolve the detected issue. The explanation appears in each finding."
-          }
-        },
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. A description of the vulnerability or misconfiguration that the custom module detects. The description appears in each finding. Provide enough information to help an investigator understand the finding. The value must be enclosed in quotation marks."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A custom module configuration for Security Health Analytics. Use `CustomConfig` to create custom detectors that generate custom findings for resources that you specify."
-      }
-    },
-    "com.gcp.securityposture_v1#CustomConfigSeverityEnum": {
-      "type": "enum",
-      "members": {
-        "SEVERITY_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "SEVERITY_UNSPECIFIED"
-          }
-        },
-        "CRITICAL": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CRITICAL"
-          }
-        },
-        "HIGH": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "HIGH"
-          }
-        },
-        "MEDIUM": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "MEDIUM"
-          }
-        },
-        "LOW": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "LOW"
-          }
-        }
-      }
-    },
-    "com.gcp.securityposture_v1#Posture": {
-      "type": "structure",
-      "members": {
-        "createTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The time at which the posture was created."
-          }
-        },
-        "annotations": {
-          "target": "com.gcp.securityposture_v1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Optional. The user-specified annotations for the posture. For details about the values you can use in an annotation, see [AIP-148: Standard fields](https://google.aip.dev/148#annotations)."
-          }
-        },
-        "updateTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The time at which the posture was last updated."
-          }
-        },
-        "policySets": {
-          "target": "com.gcp.securityposture_v1#PolicySetList",
-          "traits": {
-            "smithy.api#documentation": "Required. The PolicySet resources that the posture includes."
-          }
-        },
-        "etag": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. An opaque identifier for the current version of the posture at the specified `revision_id`. To prevent concurrent updates from overwriting each other, always provide the `etag` when you update a posture. You can also provide the `etag` when you delete a posture, to help ensure that you're deleting the intended version of the posture."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Identifier. The name of the posture, in the format `organizations/{organization}/locations/global/postures/{posture_id}`."
-          }
-        },
-        "revisionId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Immutable. An opaque eight-character string that identifies the revision of the posture. A posture can have multiple revisions; when you deploy a posture, you deploy a specific revision of the posture."
-          }
-        },
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. A description of the posture."
-          }
-        },
-        "state": {
-          "target": "com.gcp.securityposture_v1#PostureStateEnum",
-          "traits": {
-            "smithy.api#documentation": "Required. The state of the posture at the specified `revision_id`."
-          }
-        },
-        "reconciling": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Output only. Whether the posture is in the process of being updated."
-          }
-        },
-        "categories": {
-          "target": "com.gcp.securityposture_v1#PostureCategoriesItemEnumList",
-          "traits": {
-            "smithy.api#documentation": "Output only. The categories that the posture belongs to, as determined by the Security Posture API."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The details of a posture."
-      }
-    },
-    "com.gcp.securityposture_v1#PostureStateEnum": {
-      "type": "enum",
-      "members": {
-        "STATE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "STATE_UNSPECIFIED"
-          }
-        },
-        "DEPRECATED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DEPRECATED"
-          }
-        },
-        "DRAFT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DRAFT"
-          }
-        },
-        "ACTIVE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ACTIVE"
-          }
-        }
-      }
-    },
-    "com.gcp.securityposture_v1#PostureCategoriesItemEnum": {
-      "type": "enum",
-      "members": {
-        "CATEGORY_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CATEGORY_UNSPECIFIED"
-          }
-        },
-        "AI": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "AI"
-          }
-        },
-        "AWS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "AWS"
-          }
-        },
-        "GCP": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "GCP"
-          }
-        },
-        "AZURE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "AZURE"
-          }
-        }
-      }
-    },
-    "com.gcp.securityposture_v1#PostureCategoriesItemEnumList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.securityposture_v1#PostureCategoriesItemEnum"
-      }
-    },
-    "com.gcp.securityposture_v1#ListOperationsResponse": {
-      "type": "structure",
-      "members": {
-        "operations": {
-          "target": "com.gcp.securityposture_v1#OperationList",
-          "traits": {
-            "smithy.api#documentation": "A list of operations that matches the specified filter in the request."
-          }
-        },
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The standard List next-page token."
-          }
-        },
-        "unreachable": {
-          "target": "com.gcp.securityposture_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The response message for Operations.ListOperations."
-      }
-    },
-    "com.gcp.securityposture_v1#OperationList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.securityposture_v1#Operation"
-      }
-    },
     "com.gcp.securityposture_v1#ListOrganizationsLocationsRequest": {
       "type": "structure",
       "members": {
-        "filter": {
+        "pageToken": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
-            "smithy.api#httpQuery": "filter"
+            "smithy.api#documentation": "A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.",
+            "smithy.api#httpQuery": "pageToken"
           }
         },
         "extraLocationTypes": {
@@ -1825,13 +1826,6 @@
           "traits": {
             "smithy.api#documentation": "Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.",
             "smithy.api#httpQuery": "extraLocationTypes"
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.",
-            "smithy.api#httpQuery": "pageToken"
           }
         },
         "name": {
@@ -1847,6 +1841,13 @@
           "traits": {
             "smithy.api#documentation": "The maximum number of results to return. If not set, the service selects a default.",
             "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
+            "smithy.api#httpQuery": "filter"
           }
         }
       }
@@ -1942,22 +1943,15 @@
         "smithy.api#documentation": "Gets information about a location."
       }
     },
-    "com.gcp.securityposture_v1#CreateIaCValidationReportOrganizationsLocationsReportsRequest": {
+    "com.gcp.securityposture_v1#DeleteOrganizationsLocationsOperationsRequest": {
       "type": "structure",
       "members": {
-        "parent": {
+        "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. The parent resource name, in the format `organizations/{organization}/locations/global`.",
+            "smithy.api#documentation": "The name of the operation resource to be deleted.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.securityposture_v1#CreateIaCValidationReportRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
           }
         }
       }
@@ -1988,206 +1982,13 @@
         ]
       }
     },
-    "com.gcp.securityposture_v1#CreateIaCValidationReportOrganizationsLocationsReports": {
+    "com.gcp.securityposture_v1#DeleteOrganizationsLocationsOperations": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.securityposture_v1#CreateIaCValidationReportOrganizationsLocationsReportsRequest"
+        "target": "com.gcp.securityposture_v1#DeleteOrganizationsLocationsOperationsRequest"
       },
       "output": {
-        "target": "com.gcp.securityposture_v1#Operation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.securityposture_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.securityposture_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.securityposture_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.securityposture_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1/{+parent}/reports:createIaCValidationReport"
-        },
-        "smithy.api#documentation": "Validates a specified infrastructure-as-code (IaC) configuration, and creates a Report with the validation results. Only Terraform configurations are supported. Only modified assets are validated."
-      }
-    },
-    "com.gcp.securityposture_v1#GetOrganizationsLocationsReportsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The name of the report, in the format `organizations/{organization}/locations/global/reports/{report_id}`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.securityposture_v1#GetOrganizationsLocationsReports": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.securityposture_v1#GetOrganizationsLocationsReportsRequest"
-      },
-      "output": {
-        "target": "com.gcp.securityposture_v1#Report"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.securityposture_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.securityposture_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Gets details for a Report."
-      }
-    },
-    "com.gcp.securityposture_v1#ListOrganizationsLocationsReportsRequest": {
-      "type": "structure",
-      "members": {
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. A pagination token returned from a previous request to list reports. Provide this token to retrieve the next page of results.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The parent resource name, in the format `organizations/{organization}/locations/global`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. The maximum number of reports to return. The default value is `500`. If you exceed the maximum value of `1000`, then the service uses the maximum value.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. A filter to apply to the list of reports, in the format defined in [AIP-160: Filtering](https://google.aip.dev/160).",
-            "smithy.api#httpQuery": "filter"
-          }
-        }
-      }
-    },
-    "com.gcp.securityposture_v1#ListOrganizationsLocationsReports": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.securityposture_v1#ListOrganizationsLocationsReportsRequest"
-      },
-      "output": {
-        "target": "com.gcp.securityposture_v1#ListReportsResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.securityposture_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.securityposture_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+parent}/reports"
-        },
-        "smithy.api#documentation": "Lists every Report in a given organization and location.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
-      }
-    },
-    "com.gcp.securityposture_v1#GetOrganizationsLocationsPosturesRequest": {
-      "type": "structure",
-      "members": {
-        "revisionId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The posture revision to retrieve. If not specified, the most recently updated revision is retrieved.",
-            "smithy.api#httpQuery": "revisionId"
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The name of the Posture, in the format `organizations/{organization}/locations/global/postures/{posture_id}`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.securityposture_v1#GetOrganizationsLocationsPostures": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.securityposture_v1#GetOrganizationsLocationsPosturesRequest"
-      },
-      "output": {
-        "target": "com.gcp.securityposture_v1#Posture"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.securityposture_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.securityposture_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Gets a single revision of a Posture."
-      }
-    },
-    "com.gcp.securityposture_v1#DeleteOrganizationsLocationsPosturesRequest": {
-      "type": "structure",
-      "members": {
-        "etag": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. An opaque identifier for the current version of the posture. If you provide this value, then it must match the existing value. If the values don't match, then the request fails with an ABORTED error. If you omit this value, then the posture is deleted regardless of its current `etag` value.",
-            "smithy.api#httpQuery": "etag"
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The name of the Posture, in the format `organizations/{organization}/locations/global/postures/{posture_id}`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.securityposture_v1#DeleteOrganizationsLocationsPostures": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.securityposture_v1#DeleteOrganizationsLocationsPosturesRequest"
-      },
-      "output": {
-        "target": "com.gcp.securityposture_v1#Operation"
+        "target": "com.gcp.securityposture_v1#Empty"
       },
       "errors": [
         {
@@ -2208,36 +2009,22 @@
           "method": "DELETE",
           "uri": "v1/{+name}"
         },
-        "smithy.api#documentation": "Deletes all revisions of a Posture. You can only delete a posture if none of its revisions are deployed."
+        "smithy.api#documentation": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`."
       }
     },
-    "com.gcp.securityposture_v1#PatchOrganizationsLocationsPosturesRequest": {
+    "com.gcp.securityposture_v1#CancelOrganizationsLocationsOperationsRequest": {
       "type": "structure",
       "members": {
-        "updateMask": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The fields in the Posture to update. You can update only the following fields: * Posture.description * Posture.policy_sets * Posture.state",
-            "smithy.api#httpQuery": "updateMask"
-          }
-        },
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. Identifier. The name of the posture, in the format `organizations/{organization}/locations/global/postures/{posture_id}`.",
+            "smithy.api#documentation": "The name of the operation resource to be cancelled.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
         },
-        "revisionId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The revision ID of the posture to update. If the posture revision that you update is currently deployed, then a new revision of the posture is created.",
-            "smithy.api#httpQuery": "revisionId"
-          }
-        },
         "body": {
-          "target": "com.gcp.securityposture_v1#Posture",
+          "target": "com.gcp.securityposture_v1#CancelOperationRequest",
           "traits": {
             "smithy.api#httpPayload": {},
             "smithy.api#documentation": "Request body"
@@ -2245,13 +2032,13 @@
         }
       }
     },
-    "com.gcp.securityposture_v1#PatchOrganizationsLocationsPostures": {
+    "com.gcp.securityposture_v1#CancelOrganizationsLocationsOperations": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.securityposture_v1#PatchOrganizationsLocationsPosturesRequest"
+        "target": "com.gcp.securityposture_v1#CancelOrganizationsLocationsOperationsRequest"
       },
       "output": {
-        "target": "com.gcp.securityposture_v1#Operation"
+        "target": "com.gcp.securityposture_v1#Empty"
       },
       "errors": [
         {
@@ -2269,10 +2056,116 @@
       ],
       "traits": {
         "smithy.api#http": {
-          "method": "PATCH",
+          "method": "POST",
+          "uri": "v1/{+name}:cancel"
+        },
+        "smithy.api#documentation": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`."
+      }
+    },
+    "com.gcp.securityposture_v1#ListOrganizationsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation's parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The standard list page size.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "returnPartialSuccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+            "smithy.api#httpQuery": "returnPartialSuccess"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list filter.",
+            "smithy.api#httpQuery": "filter"
+          }
+        }
+      }
+    },
+    "com.gcp.securityposture_v1#ListOrganizationsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.securityposture_v1#ListOrganizationsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.securityposture_v1#ListOperationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.securityposture_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.securityposture_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}/operations"
+        },
+        "smithy.api#documentation": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.securityposture_v1#GetOrganizationsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.securityposture_v1#GetOrganizationsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.securityposture_v1#GetOrganizationsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.securityposture_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.securityposture_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.securityposture_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
           "uri": "v1/{+name}"
         },
-        "smithy.api#documentation": "Updates a revision of an existing Posture. If the posture revision that you update is currently deployed, then a new revision of the posture is created. To prevent concurrent updates from overwriting each other, always follow the read-modify-write pattern when you update a posture: 1. Call GetPosture to get the current version of the posture. 2. Update the fields in the posture as needed. 3. Call UpdatePosture to update the posture. Ensure that your request includes the `etag` value from the GetPosture response. **Important:** If you omit the `etag` when you call UpdatePosture, then the updated posture unconditionally overwrites the existing posture."
+        "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
       }
     },
     "com.gcp.securityposture_v1#ListOrganizationsLocationsPosturesRequest": {
@@ -2283,6 +2176,13 @@
           "traits": {
             "smithy.api#documentation": "The maximum number of postures to return. The default value is `500`. If you exceed the maximum value of `1000`, then the service uses the maximum value.",
             "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A filter to apply to the list of postures, in the format defined in [AIP-160: Filtering](https://google.aip.dev/160).",
+            "smithy.api#httpQuery": "filter"
           }
         },
         "pageToken": {
@@ -2298,13 +2198,6 @@
             "smithy.api#documentation": "Required. The parent resource name, in the format `organizations/{organization}/locations/global`.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
-          }
-        },
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. A filter to apply to the list of postures, in the format defined in [AIP-160: Filtering](https://google.aip.dev/160).",
-            "smithy.api#httpQuery": "filter"
           }
         }
       }
@@ -2340,19 +2233,19 @@
     "com.gcp.securityposture_v1#ListRevisionsOrganizationsLocationsPosturesRequest": {
       "type": "structure",
       "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A pagination token from a previous request to list posture revisions. Provide this token to retrieve the next page of results.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
         "name": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Required. The name of the Posture, in the format `organizations/{organization}/locations/global/postures/{posture_id}`.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. A pagination token from a previous request to list posture revisions. Provide this token to retrieve the next page of results.",
-            "smithy.api#httpQuery": "pageToken"
           }
         },
         "pageSize": {
@@ -2449,6 +2342,100 @@
         "smithy.api#documentation": "Creates a new Posture."
       }
     },
+    "com.gcp.securityposture_v1#DeleteOrganizationsLocationsPosturesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the Posture, in the format `organizations/{organization}/locations/global/postures/{posture_id}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An opaque identifier for the current version of the posture. If you provide this value, then it must match the existing value. If the values don't match, then the request fails with an ABORTED error. If you omit this value, then the posture is deleted regardless of its current `etag` value.",
+            "smithy.api#httpQuery": "etag"
+          }
+        }
+      }
+    },
+    "com.gcp.securityposture_v1#DeleteOrganizationsLocationsPostures": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.securityposture_v1#DeleteOrganizationsLocationsPosturesRequest"
+      },
+      "output": {
+        "target": "com.gcp.securityposture_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.securityposture_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.securityposture_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.securityposture_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.securityposture_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes all revisions of a Posture. You can only delete a posture if none of its revisions are deployed."
+      }
+    },
+    "com.gcp.securityposture_v1#GetOrganizationsLocationsPosturesRequest": {
+      "type": "structure",
+      "members": {
+        "revisionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The posture revision to retrieve. If not specified, the most recently updated revision is retrieved.",
+            "smithy.api#httpQuery": "revisionId"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the Posture, in the format `organizations/{organization}/locations/global/postures/{posture_id}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.securityposture_v1#GetOrganizationsLocationsPostures": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.securityposture_v1#GetOrganizationsLocationsPosturesRequest"
+      },
+      "output": {
+        "target": "com.gcp.securityposture_v1#Posture"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.securityposture_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.securityposture_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets a single revision of a Posture."
+      }
+    },
     "com.gcp.securityposture_v1#ExtractOrganizationsLocationsPosturesRequest": {
       "type": "structure",
       "members": {
@@ -2497,6 +2484,169 @@
           "uri": "v1/{+parent}/postures:extract"
         },
         "smithy.api#documentation": "Extracts existing policies from an organization, folder, or project, and applies them to another organization, folder, or project as a Posture. If the other organization, folder, or project already has a posture, then the result of the long-running operation is an ALREADY_EXISTS error."
+      }
+    },
+    "com.gcp.securityposture_v1#PatchOrganizationsLocationsPosturesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Identifier. The name of the posture, in the format `organizations/{organization}/locations/global/postures/{posture_id}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The fields in the Posture to update. You can update only the following fields: * Posture.description * Posture.policy_sets * Posture.state",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "revisionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The revision ID of the posture to update. If the posture revision that you update is currently deployed, then a new revision of the posture is created.",
+            "smithy.api#httpQuery": "revisionId"
+          }
+        },
+        "body": {
+          "target": "com.gcp.securityposture_v1#Posture",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.securityposture_v1#PatchOrganizationsLocationsPostures": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.securityposture_v1#PatchOrganizationsLocationsPosturesRequest"
+      },
+      "output": {
+        "target": "com.gcp.securityposture_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.securityposture_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.securityposture_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.securityposture_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.securityposture_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Updates a revision of an existing Posture. If the posture revision that you update is currently deployed, then a new revision of the posture is created. To prevent concurrent updates from overwriting each other, always follow the read-modify-write pattern when you update a posture: 1. Call GetPosture to get the current version of the posture. 2. Update the fields in the posture as needed. 3. Call UpdatePosture to update the posture. Ensure that your request includes the `etag` value from the GetPosture response. **Important:** If you omit the `etag` when you call UpdatePosture, then the updated posture unconditionally overwrites the existing posture."
+      }
+    },
+    "com.gcp.securityposture_v1#GetOrganizationsLocationsPostureDeploymentsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the PostureDeployment, in the format `organizations/{organization}/locations/global/postureDeployments/{posture_deployment_id}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.securityposture_v1#GetOrganizationsLocationsPostureDeployments": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.securityposture_v1#GetOrganizationsLocationsPostureDeploymentsRequest"
+      },
+      "output": {
+        "target": "com.gcp.securityposture_v1#PostureDeployment"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.securityposture_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.securityposture_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets details for a PostureDeployment."
+      }
+    },
+    "com.gcp.securityposture_v1#ListOrganizationsLocationsPostureDeploymentsRequest": {
+      "type": "structure",
+      "members": {
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A filter to apply to the list of postures, in the format defined in [AIP-160: Filtering](https://google.aip.dev/160).",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A pagination token returned from a previous request to list posture deployments. Provide this token to retrieve the next page of results.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent resource name, in the format `organizations/{organization}/locations/global`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of posture deployments to return. The default value is `500`. If you exceed the maximum value of `1000`, then the service uses the maximum value.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.gcp.securityposture_v1#ListOrganizationsLocationsPostureDeployments": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.securityposture_v1#ListOrganizationsLocationsPostureDeploymentsRequest"
+      },
+      "output": {
+        "target": "com.gcp.securityposture_v1#ListPostureDeploymentsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.securityposture_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.securityposture_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/postureDeployments"
+        },
+        "smithy.api#documentation": "Lists every PostureDeployment in a project and location.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
       }
     },
     "com.gcp.securityposture_v1#CreateOrganizationsLocationsPostureDeploymentsRequest": {
@@ -2556,43 +2706,6 @@
         "smithy.api#documentation": "Creates a new PostureDeployment in a given project and location."
       }
     },
-    "com.gcp.securityposture_v1#GetOrganizationsLocationsPostureDeploymentsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The name of the PostureDeployment, in the format `organizations/{organization}/locations/global/postureDeployments/{posture_deployment_id}`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.securityposture_v1#GetOrganizationsLocationsPostureDeployments": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.securityposture_v1#GetOrganizationsLocationsPostureDeploymentsRequest"
-      },
-      "output": {
-        "target": "com.gcp.securityposture_v1#PostureDeployment"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.securityposture_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.securityposture_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Gets details for a PostureDeployment."
-      }
-    },
     "com.gcp.securityposture_v1#DeleteOrganizationsLocationsPostureDeploymentsRequest": {
       "type": "structure",
       "members": {
@@ -2646,19 +2759,19 @@
     "com.gcp.securityposture_v1#PatchOrganizationsLocationsPostureDeploymentsRequest": {
       "type": "structure",
       "members": {
-        "updateMask": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The fields in the PostureDeployment to update. You can update only the following fields: * PostureDeployment.posture_id * PostureDeployment.posture_revision_id",
-            "smithy.api#httpQuery": "updateMask"
-          }
-        },
         "name": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Required. Identifier. The name of the posture deployment, in the format `organizations/{organization}/locations/global/postureDeployments/{deployment_id}`.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The fields in the PostureDeployment to update. You can update only the following fields: * PostureDeployment.posture_id * PostureDeployment.posture_revision_id",
+            "smithy.api#httpQuery": "updateMask"
           }
         },
         "body": {
@@ -2698,68 +2811,6 @@
           "uri": "v1/{+name}"
         },
         "smithy.api#documentation": "Updates an existing PostureDeployment. To prevent concurrent updates from overwriting each other, always follow the read-modify-write pattern when you update a posture deployment: 1. Call GetPostureDeployment to get the current version of the deployment. 2. Update the fields in the deployment as needed. 3. Call UpdatePostureDeployment to update the deployment. Ensure that your request includes the `etag` value from the GetPostureDeployment response. **Important:** If you omit the `etag` when you call UpdatePostureDeployment, then the updated deployment unconditionally overwrites the existing deployment."
-      }
-    },
-    "com.gcp.securityposture_v1#ListOrganizationsLocationsPostureDeploymentsRequest": {
-      "type": "structure",
-      "members": {
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. A pagination token returned from a previous request to list posture deployments. Provide this token to retrieve the next page of results.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The parent resource name, in the format `organizations/{organization}/locations/global`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. A filter to apply to the list of postures, in the format defined in [AIP-160: Filtering](https://google.aip.dev/160).",
-            "smithy.api#httpQuery": "filter"
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. The maximum number of posture deployments to return. The default value is `500`. If you exceed the maximum value of `1000`, then the service uses the maximum value.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        }
-      }
-    },
-    "com.gcp.securityposture_v1#ListOrganizationsLocationsPostureDeployments": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.securityposture_v1#ListOrganizationsLocationsPostureDeploymentsRequest"
-      },
-      "output": {
-        "target": "com.gcp.securityposture_v1#ListPostureDeploymentsResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.securityposture_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.securityposture_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+parent}/postureDeployments"
-        },
-        "smithy.api#documentation": "Lists every PostureDeployment in a project and location.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
       }
     },
     "com.gcp.securityposture_v1#GetOrganizationsLocationsPostureTemplatesRequest": {
@@ -2809,20 +2860,6 @@
     "com.gcp.securityposture_v1#ListOrganizationsLocationsPostureTemplatesRequest": {
       "type": "structure",
       "members": {
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. The maximum number of posture templates to return. The default value is `500`. If you exceed the maximum value of `1000`, then the service uses the maximum value.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. A pagination token returned from a previous request to list posture templates. Provide this token to retrieve the next page of results.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
         "parent": {
           "target": "smithy.api#String",
           "traits": {
@@ -2836,6 +2873,20 @@
           "traits": {
             "smithy.api#documentation": "Optional. A filter to apply to the list of postures, in the format defined in [AIP-160: Filtering](https://google.aip.dev/160).",
             "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of posture templates to return. The default value is `500`. If you exceed the maximum value of `1000`, then the service uses the maximum value.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A pagination token returned from a previous request to list posture templates. Provide this token to retrieve the next page of results.",
+            "smithy.api#httpQuery": "pageToken"
           }
         }
       }
@@ -2868,91 +2919,47 @@
         }
       }
     },
-    "com.gcp.securityposture_v1#GetOrganizationsLocationsOperationsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the operation resource.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.securityposture_v1#GetOrganizationsLocationsOperations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.securityposture_v1#GetOrganizationsLocationsOperationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.securityposture_v1#Operation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.securityposture_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.securityposture_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
-      }
-    },
-    "com.gcp.securityposture_v1#ListOrganizationsLocationsOperationsRequest": {
+    "com.gcp.securityposture_v1#ListOrganizationsLocationsReportsRequest": {
       "type": "structure",
       "members": {
         "pageToken": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The standard list page token.",
+            "smithy.api#documentation": "Optional. A pagination token returned from a previous request to list reports. Provide this token to retrieve the next page of results.",
             "smithy.api#httpQuery": "pageToken"
           }
         },
-        "returnPartialSuccess": {
-          "target": "smithy.api#Boolean",
+        "parent": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
-            "smithy.api#httpQuery": "returnPartialSuccess"
+            "smithy.api#documentation": "Required. The parent resource name, in the format `organizations/{organization}/locations/global`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
           }
         },
         "filter": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The standard list filter.",
+            "smithy.api#documentation": "Optional. A filter to apply to the list of reports, in the format defined in [AIP-160: Filtering](https://google.aip.dev/160).",
             "smithy.api#httpQuery": "filter"
           }
         },
         "pageSize": {
           "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "The standard list page size.",
+            "smithy.api#documentation": "Optional. The maximum number of reports to return. The default value is `500`. If you exceed the maximum value of `1000`, then the service uses the maximum value.",
             "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the operation's parent resource.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
           }
         }
       }
     },
-    "com.gcp.securityposture_v1#ListOrganizationsLocationsOperations": {
+    "com.gcp.securityposture_v1#ListOrganizationsLocationsReports": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.securityposture_v1#ListOrganizationsLocationsOperationsRequest"
+        "target": "com.gcp.securityposture_v1#ListOrganizationsLocationsReportsRequest"
       },
       "output": {
-        "target": "com.gcp.securityposture_v1#ListOperationsResponse"
+        "target": "com.gcp.securityposture_v1#ListReportsResponse"
       },
       "errors": [
         {
@@ -2965,35 +2972,35 @@
       "traits": {
         "smithy.api#http": {
           "method": "GET",
-          "uri": "v1/{+name}/operations"
+          "uri": "v1/{+parent}/reports"
         },
-        "smithy.api#documentation": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+        "smithy.api#documentation": "Lists every Report in a given organization and location.",
         "smithy.api#paginated": {
           "inputToken": "pageToken",
           "outputToken": "nextPageToken"
         }
       }
     },
-    "com.gcp.securityposture_v1#DeleteOrganizationsLocationsOperationsRequest": {
+    "com.gcp.securityposture_v1#GetOrganizationsLocationsReportsRequest": {
       "type": "structure",
       "members": {
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The name of the operation resource to be deleted.",
+            "smithy.api#documentation": "Required. The name of the report, in the format `organizations/{organization}/locations/global/reports/{report_id}`.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
         }
       }
     },
-    "com.gcp.securityposture_v1#DeleteOrganizationsLocationsOperations": {
+    "com.gcp.securityposture_v1#GetOrganizationsLocationsReports": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.securityposture_v1#DeleteOrganizationsLocationsOperationsRequest"
+        "target": "com.gcp.securityposture_v1#GetOrganizationsLocationsReportsRequest"
       },
       "output": {
-        "target": "com.gcp.securityposture_v1#Empty"
+        "target": "com.gcp.securityposture_v1#Report"
       },
       "errors": [
         {
@@ -3001,35 +3008,29 @@
         },
         {
           "target": "com.gcp.securityposture_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.securityposture_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.securityposture_v1#Conflict"
         }
       ],
       "traits": {
         "smithy.api#http": {
-          "method": "DELETE",
+          "method": "GET",
           "uri": "v1/{+name}"
         },
-        "smithy.api#documentation": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`."
+        "smithy.api#documentation": "Gets details for a Report."
       }
     },
-    "com.gcp.securityposture_v1#CancelOrganizationsLocationsOperationsRequest": {
+    "com.gcp.securityposture_v1#CreateIaCValidationReportOrganizationsLocationsReportsRequest": {
       "type": "structure",
       "members": {
-        "name": {
+        "parent": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The name of the operation resource to be cancelled.",
+            "smithy.api#documentation": "Required. The parent resource name, in the format `organizations/{organization}/locations/global`.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
         },
         "body": {
-          "target": "com.gcp.securityposture_v1#CancelOperationRequest",
+          "target": "com.gcp.securityposture_v1#CreateIaCValidationReportRequest",
           "traits": {
             "smithy.api#httpPayload": {},
             "smithy.api#documentation": "Request body"
@@ -3037,13 +3038,13 @@
         }
       }
     },
-    "com.gcp.securityposture_v1#CancelOrganizationsLocationsOperations": {
+    "com.gcp.securityposture_v1#CreateIaCValidationReportOrganizationsLocationsReports": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.securityposture_v1#CancelOrganizationsLocationsOperationsRequest"
+        "target": "com.gcp.securityposture_v1#CreateIaCValidationReportOrganizationsLocationsReportsRequest"
       },
       "output": {
-        "target": "com.gcp.securityposture_v1#Empty"
+        "target": "com.gcp.securityposture_v1#Operation"
       },
       "errors": [
         {
@@ -3062,9 +3063,9 @@
       "traits": {
         "smithy.api#http": {
           "method": "POST",
-          "uri": "v1/{+name}:cancel"
+          "uri": "v1/{+parent}/reports:createIaCValidationReport"
         },
-        "smithy.api#documentation": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`."
+        "smithy.api#documentation": "Validates a specified infrastructure-as-code (IaC) configuration, and creates a Report with the validation results. Only Terraform configurations are supported. Only modified assets are validated."
       }
     }
   }

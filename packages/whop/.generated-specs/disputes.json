@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.disputes#ListDisputesRequestOrder": {
@@ -1348,7 +1349,7 @@
         }
       }
     },
-    "com.whop.disputes#RetrieveDisputeSummaryRequestGroupsItem": {
+    "com.whop.disputes#GetDisputeSummaryRequestGroupsItem": {
       "type": "enum",
       "members": {
         "STATUS": {
@@ -1366,14 +1367,14 @@
       },
       "traits": {}
     },
-    "com.whop.disputes#RetrieveDisputeSummaryRequestGroupsList": {
+    "com.whop.disputes#GetDisputeSummaryRequestGroupsList": {
       "type": "list",
       "member": {
-        "target": "com.whop.disputes#RetrieveDisputeSummaryRequestGroupsItem"
+        "target": "com.whop.disputes#GetDisputeSummaryRequestGroupsItem"
       },
       "traits": {}
     },
-    "com.whop.disputes#RetrieveDisputeSummaryRequestStatusItem": {
+    "com.whop.disputes#GetDisputeSummaryRequestStatusItem": {
       "type": "enum",
       "members": {
         "NEEDS_RESPONSE": {
@@ -1409,18 +1410,18 @@
       },
       "traits": {}
     },
-    "com.whop.disputes#RetrieveDisputeSummaryRequestStatusList": {
+    "com.whop.disputes#GetDisputeSummaryRequestStatusList": {
       "type": "list",
       "member": {
-        "target": "com.whop.disputes#RetrieveDisputeSummaryRequestStatusItem"
+        "target": "com.whop.disputes#GetDisputeSummaryRequestStatusItem"
       },
       "traits": {}
     },
-    "com.whop.disputes#RetrieveDisputeSummaryRequest": {
+    "com.whop.disputes#GetDisputeSummaryRequest": {
       "type": "structure",
       "members": {
         "groups": {
-          "target": "com.whop.disputes#RetrieveDisputeSummaryRequestGroupsList",
+          "target": "com.whop.disputes#GetDisputeSummaryRequestGroupsList",
           "traits": {
             "smithy.api#httpQuery": "groups",
             "smithy.api#documentation": "Which breakdowns to return, keyed by these names under `groups`. Repeat the parameter to ask for several; omit it for all of them."
@@ -1434,7 +1435,7 @@
           }
         },
         "status": {
-          "target": "com.whop.disputes#RetrieveDisputeSummaryRequestStatusList",
+          "target": "com.whop.disputes#GetDisputeSummaryRequestStatusList",
           "traits": {
             "smithy.api#httpQuery": "status",
             "smithy.api#documentation": "Only disputes in these statuses. Repeat the parameter to pass several. A `needs_response` dispute whose evidence deadline has passed reports and filters as `under_review` instead."
@@ -1466,7 +1467,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.disputes#RetrieveDisputeSummaryResponseGroupsCurrencyMap": {
+    "com.whop.disputes#GetDisputeSummaryResponseGroupsCurrencyMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1478,7 +1479,7 @@
         "smithy.api#documentation": "How many of the matching disputes are in each currency, keyed by three-letter ISO code. Only currencies with at least one dispute are present."
       }
     },
-    "com.whop.disputes#RetrieveDisputeSummaryResponseGroupsStatus": {
+    "com.whop.disputes#GetDisputeSummaryResponseGroupsStatus": {
       "type": "structure",
       "members": {
         "closed": {
@@ -1516,17 +1517,17 @@
         "smithy.api#documentation": "How many of the matching disputes are in each status. Every status is present, including those with a count of zero."
       }
     },
-    "com.whop.disputes#RetrieveDisputeSummaryResponseGroups": {
+    "com.whop.disputes#GetDisputeSummaryResponseGroups": {
       "type": "structure",
       "members": {
         "currency": {
-          "target": "com.whop.disputes#RetrieveDisputeSummaryResponseGroupsCurrencyMap",
+          "target": "com.whop.disputes#GetDisputeSummaryResponseGroupsCurrencyMap",
           "traits": {
             "smithy.api#documentation": "How many of the matching disputes are in each currency, keyed by three-letter ISO code. Only currencies with at least one dispute are present."
           }
         },
         "status": {
-          "target": "com.whop.disputes#RetrieveDisputeSummaryResponseGroupsStatus",
+          "target": "com.whop.disputes#GetDisputeSummaryResponseGroupsStatus",
           "traits": {
             "smithy.api#documentation": "How many of the matching disputes are in each status. Every status is present, including those with a count of zero."
           }
@@ -1536,11 +1537,11 @@
         "smithy.api#documentation": "One entry per requested breakdown, keyed by the field it groups on. A field you did not ask for is absent."
       }
     },
-    "com.whop.disputes#RetrieveDisputeSummaryResponse": {
+    "com.whop.disputes#GetDisputeSummaryResponse": {
       "type": "structure",
       "members": {
         "groups": {
-          "target": "com.whop.disputes#RetrieveDisputeSummaryResponseGroups",
+          "target": "com.whop.disputes#GetDisputeSummaryResponseGroups",
           "traits": {
             "smithy.api#documentation": "One entry per requested breakdown, keyed by the field it groups on. A field you did not ask for is absent.",
             "smithy.api#required": {}
@@ -1558,13 +1559,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.whop.disputes#RetrieveDisputeSummary": {
+    "com.whop.disputes#GetDisputeSummary": {
       "type": "operation",
       "input": {
-        "target": "com.whop.disputes#RetrieveDisputeSummaryRequest"
+        "target": "com.whop.disputes#GetDisputeSummaryRequest"
       },
       "output": {
-        "target": "com.whop.disputes#RetrieveDisputeSummaryResponse"
+        "target": "com.whop.disputes#GetDisputeSummaryResponse"
       },
       "errors": [
         {
@@ -1580,7 +1581,7 @@
         "smithy.api#documentation": "Retrieve Dispute Summary\n\nTotals up the same disputes the list returns, so you can build status tabs and totals without paging through them."
       }
     },
-    "com.whop.disputes#RetrieveDisputeRequest": {
+    "com.whop.disputes#GetDisputeRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -1596,10 +1597,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.disputes#RetrieveDispute": {
+    "com.whop.disputes#GetDispute": {
       "type": "operation",
       "input": {
-        "target": "com.whop.disputes#RetrieveDisputeRequest"
+        "target": "com.whop.disputes#GetDisputeRequest"
       },
       "output": {
         "target": "com.whop.disputes#Dispute"
@@ -4859,10 +4860,10 @@
           "target": "com.whop.disputes#ListDisputes"
         },
         {
-          "target": "com.whop.disputes#RetrieveDisputeSummary"
+          "target": "com.whop.disputes#GetDisputeSummary"
         },
         {
-          "target": "com.whop.disputes#RetrieveDispute"
+          "target": "com.whop.disputes#GetDispute"
         },
         {
           "target": "com.whop.disputes#UpdateDispute"

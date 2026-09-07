@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.dnc#DelegatedNetworkListByResourceGroup": {
+    "com.azure.dnc#ListDelegatedNetworkByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnc#DelegatedNetworkListByResourceGroupRequest"
+        "target": "com.azure.dnc#ListDelegatedNetworkByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.dnc#DelegatedControllers"
@@ -192,7 +193,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.dnc#DelegatedNetworkListByResourceGroupRequest": {
+    "com.azure.dnc#ListDelegatedNetworkByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -216,10 +217,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnc#DelegatedNetworkListBySubscription": {
+    "com.azure.dnc#ListDelegatedNetworkBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnc#DelegatedNetworkListBySubscriptionRequest"
+        "target": "com.azure.dnc#ListDelegatedNetworkBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.dnc#DelegatedControllers"
@@ -235,7 +236,7 @@
         "com.distilled.openapi#apiVersion": "2021-03-15"
       }
     },
-    "com.azure.dnc#DelegatedNetworkListBySubscriptionRequest": {
+    "com.azure.dnc#ListDelegatedNetworkBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -251,10 +252,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnc#ControllerDelete": {
+    "com.azure.dnc#DeleteController": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnc#ControllerDeleteRequest"
+        "target": "com.azure.dnc#DeleteControllerRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -270,7 +271,7 @@
         "com.distilled.openapi#apiVersion": "2021-03-15"
       }
     },
-    "com.azure.dnc#ControllerDeleteRequest": {
+    "com.azure.dnc#DeleteControllerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -302,13 +303,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnc#ControllerPatch": {
+    "com.azure.dnc#PatchController": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnc#ControllerPatchRequest"
+        "target": "com.azure.dnc#PatchControllerRequest"
       },
       "output": {
-        "target": "com.azure.dnc#ControllerPatchResponse"
+        "target": "com.azure.dnc#PatchControllerResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -321,7 +322,7 @@
         "com.distilled.openapi#apiVersion": "2021-03-15"
       }
     },
-    "com.azure.dnc#ControllerPatchResponse": {
+    "com.azure.dnc#PatchControllerResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -349,7 +350,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnc#ControllerPatchResponseTagsMap",
+          "target": "com.azure.dnc#PatchControllerResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -365,7 +366,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dnc#ControllerPatchResponseTagsMap": {
+    "com.azure.dnc#PatchControllerResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -377,7 +378,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.dnc#ControllerPatchRequest": {
+    "com.azure.dnc#PatchControllerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -405,7 +406,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnc#ControllerPatchRequestTagsMap",
+          "target": "com.azure.dnc#PatchControllerRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -415,7 +416,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnc#ControllerPatchRequestTagsMap": {
+    "com.azure.dnc#PatchControllerRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -427,13 +428,13 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.dnc#ControllerCreate": {
+    "com.azure.dnc#CreateController": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnc#ControllerCreateRequest"
+        "target": "com.azure.dnc#CreateControllerRequest"
       },
       "output": {
-        "target": "com.azure.dnc#ControllerCreateResponse"
+        "target": "com.azure.dnc#CreateControllerResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -446,7 +447,7 @@
         "com.distilled.openapi#apiVersion": "2021-03-15"
       }
     },
-    "com.azure.dnc#ControllerCreateResponse": {
+    "com.azure.dnc#CreateControllerResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -474,7 +475,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnc#ControllerCreateResponseTagsMap",
+          "target": "com.azure.dnc#CreateControllerResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -490,7 +491,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dnc#ControllerCreateResponseTagsMap": {
+    "com.azure.dnc#CreateControllerResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -502,7 +503,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.dnc#ControllerCreateRequest": {
+    "com.azure.dnc#CreateControllerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -536,7 +537,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnc#ControllerCreateRequestTagsMap",
+          "target": "com.azure.dnc#CreateControllerRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -546,7 +547,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnc#ControllerCreateRequestTagsMap": {
+    "com.azure.dnc#CreateControllerRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -558,13 +559,13 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.dnc#ControllerGetDetails": {
+    "com.azure.dnc#GetControllerDetails": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnc#ControllerGetDetailsRequest"
+        "target": "com.azure.dnc#GetControllerDetailsRequest"
       },
       "output": {
-        "target": "com.azure.dnc#ControllerGetDetailsResponse"
+        "target": "com.azure.dnc#GetControllerDetailsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -577,7 +578,7 @@
         "com.distilled.openapi#apiVersion": "2021-03-15"
       }
     },
-    "com.azure.dnc#ControllerGetDetailsResponse": {
+    "com.azure.dnc#GetControllerDetailsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -605,7 +606,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnc#ControllerGetDetailsResponseTagsMap",
+          "target": "com.azure.dnc#GetControllerDetailsResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -621,7 +622,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dnc#ControllerGetDetailsResponseTagsMap": {
+    "com.azure.dnc#GetControllerDetailsResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -633,7 +634,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.dnc#ControllerGetDetailsRequest": {
+    "com.azure.dnc#GetControllerDetailsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -665,10 +666,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnc#DelegatedSubnetServiceListByResourceGroup": {
+    "com.azure.dnc#ListDelegatedSubnetServiceByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnc#DelegatedSubnetServiceListByResourceGroupRequest"
+        "target": "com.azure.dnc#ListDelegatedSubnetServiceByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.dnc#DelegatedSubnets"
@@ -862,7 +863,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.dnc#DelegatedSubnetServiceListByResourceGroupRequest": {
+    "com.azure.dnc#ListDelegatedSubnetServiceByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -886,10 +887,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnc#DelegatedSubnetServiceListBySubscription": {
+    "com.azure.dnc#ListDelegatedSubnetServiceBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnc#DelegatedSubnetServiceListBySubscriptionRequest"
+        "target": "com.azure.dnc#ListDelegatedSubnetServiceBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.dnc#DelegatedSubnets"
@@ -905,7 +906,7 @@
         "com.distilled.openapi#apiVersion": "2021-03-15"
       }
     },
-    "com.azure.dnc#DelegatedSubnetServiceListBySubscriptionRequest": {
+    "com.azure.dnc#ListDelegatedSubnetServiceBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -921,10 +922,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnc#DelegatedSubnetServiceDeleteDetails": {
+    "com.azure.dnc#DeleteDelegatedSubnetServiceDetails": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnc#DelegatedSubnetServiceDeleteDetailsRequest"
+        "target": "com.azure.dnc#DeleteDelegatedSubnetServiceDetailsRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -940,7 +941,7 @@
         "com.distilled.openapi#apiVersion": "2021-03-15"
       }
     },
-    "com.azure.dnc#DelegatedSubnetServiceDeleteDetailsRequest": {
+    "com.azure.dnc#DeleteDelegatedSubnetServiceDetailsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -979,13 +980,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnc#DelegatedSubnetServicePatchDetails": {
+    "com.azure.dnc#PatchDelegatedSubnetServiceDetails": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnc#DelegatedSubnetServicePatchDetailsRequest"
+        "target": "com.azure.dnc#PatchDelegatedSubnetServiceDetailsRequest"
       },
       "output": {
-        "target": "com.azure.dnc#DelegatedSubnetServicePatchDetailsResponse"
+        "target": "com.azure.dnc#PatchDelegatedSubnetServiceDetailsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -998,7 +999,7 @@
         "com.distilled.openapi#apiVersion": "2021-03-15"
       }
     },
-    "com.azure.dnc#DelegatedSubnetServicePatchDetailsResponse": {
+    "com.azure.dnc#PatchDelegatedSubnetServiceDetailsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1026,7 +1027,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnc#DelegatedSubnetServicePatchDetailsResponseTagsMap",
+          "target": "com.azure.dnc#PatchDelegatedSubnetServiceDetailsResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -1042,7 +1043,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dnc#DelegatedSubnetServicePatchDetailsResponseTagsMap": {
+    "com.azure.dnc#PatchDelegatedSubnetServiceDetailsResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1054,7 +1055,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.dnc#DelegatedSubnetServicePatchDetailsRequest": {
+    "com.azure.dnc#PatchDelegatedSubnetServiceDetailsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1082,7 +1083,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnc#DelegatedSubnetServicePatchDetailsRequestTagsMap",
+          "target": "com.azure.dnc#PatchDelegatedSubnetServiceDetailsRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -1092,7 +1093,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnc#DelegatedSubnetServicePatchDetailsRequestTagsMap": {
+    "com.azure.dnc#PatchDelegatedSubnetServiceDetailsRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1104,13 +1105,13 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.dnc#DelegatedSubnetServicePutDetails": {
+    "com.azure.dnc#PutDelegatedSubnetServiceDetails": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnc#DelegatedSubnetServicePutDetailsRequest"
+        "target": "com.azure.dnc#PutDelegatedSubnetServiceDetailsRequest"
       },
       "output": {
-        "target": "com.azure.dnc#DelegatedSubnetServicePutDetailsResponse"
+        "target": "com.azure.dnc#PutDelegatedSubnetServiceDetailsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1123,7 +1124,7 @@
         "com.distilled.openapi#apiVersion": "2021-03-15"
       }
     },
-    "com.azure.dnc#DelegatedSubnetServicePutDetailsResponse": {
+    "com.azure.dnc#PutDelegatedSubnetServiceDetailsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1151,7 +1152,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnc#DelegatedSubnetServicePutDetailsResponseTagsMap",
+          "target": "com.azure.dnc#PutDelegatedSubnetServiceDetailsResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -1167,7 +1168,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dnc#DelegatedSubnetServicePutDetailsResponseTagsMap": {
+    "com.azure.dnc#PutDelegatedSubnetServiceDetailsResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1179,7 +1180,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.dnc#DelegatedSubnetServicePutDetailsRequest": {
+    "com.azure.dnc#PutDelegatedSubnetServiceDetailsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1213,7 +1214,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnc#DelegatedSubnetServicePutDetailsRequestTagsMap",
+          "target": "com.azure.dnc#PutDelegatedSubnetServiceDetailsRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -1263,7 +1264,7 @@
         "smithy.api#documentation": "controller details"
       }
     },
-    "com.azure.dnc#DelegatedSubnetServicePutDetailsRequestTagsMap": {
+    "com.azure.dnc#PutDelegatedSubnetServiceDetailsRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1275,13 +1276,13 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.dnc#DelegatedSubnetServiceGetDetails": {
+    "com.azure.dnc#GetDelegatedSubnetServiceDetails": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnc#DelegatedSubnetServiceGetDetailsRequest"
+        "target": "com.azure.dnc#GetDelegatedSubnetServiceDetailsRequest"
       },
       "output": {
-        "target": "com.azure.dnc#DelegatedSubnetServiceGetDetailsResponse"
+        "target": "com.azure.dnc#GetDelegatedSubnetServiceDetailsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1294,7 +1295,7 @@
         "com.distilled.openapi#apiVersion": "2021-03-15"
       }
     },
-    "com.azure.dnc#DelegatedSubnetServiceGetDetailsResponse": {
+    "com.azure.dnc#GetDelegatedSubnetServiceDetailsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1322,7 +1323,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnc#DelegatedSubnetServiceGetDetailsResponseTagsMap",
+          "target": "com.azure.dnc#GetDelegatedSubnetServiceDetailsResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -1338,7 +1339,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dnc#DelegatedSubnetServiceGetDetailsResponseTagsMap": {
+    "com.azure.dnc#GetDelegatedSubnetServiceDetailsResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1350,7 +1351,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.dnc#DelegatedSubnetServiceGetDetailsRequest": {
+    "com.azure.dnc#GetDelegatedSubnetServiceDetailsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1382,13 +1383,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnc#OperationsList": {
+    "com.azure.dnc#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.azure.dnc#OperationsListResponse"
+        "target": "com.azure.dnc#ListOperationsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1401,11 +1402,11 @@
         "com.distilled.openapi#apiVersion": "2021-03-15"
       }
     },
-    "com.azure.dnc#OperationsListResponse": {
+    "com.azure.dnc#ListOperationsResponse": {
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.dnc#OperationsListResponseValueList",
+          "target": "com.azure.dnc#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -1421,7 +1422,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dnc#OperationsListResponseValueList": {
+    "com.azure.dnc#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.dnc#Operation"
@@ -1540,10 +1541,10 @@
         "smithy.api#documentation": "Localized display information for this particular operation."
       }
     },
-    "com.azure.dnc#OrchestratorInstanceServiceListByResourceGroup": {
+    "com.azure.dnc#ListOrchestratorInstanceServiceByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnc#OrchestratorInstanceServiceListByResourceGroupRequest"
+        "target": "com.azure.dnc#ListOrchestratorInstanceServiceByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.dnc#Orchestrators"
@@ -1819,7 +1820,7 @@
         "smithy.api#documentation": "The kind of workbook. Choices are user and shared."
       }
     },
-    "com.azure.dnc#OrchestratorInstanceServiceListByResourceGroupRequest": {
+    "com.azure.dnc#ListOrchestratorInstanceServiceByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1843,10 +1844,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnc#OrchestratorInstanceServiceListBySubscription": {
+    "com.azure.dnc#ListOrchestratorInstanceServiceBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnc#OrchestratorInstanceServiceListBySubscriptionRequest"
+        "target": "com.azure.dnc#ListOrchestratorInstanceServiceBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.dnc#Orchestrators"
@@ -1862,7 +1863,7 @@
         "com.distilled.openapi#apiVersion": "2021-03-15"
       }
     },
-    "com.azure.dnc#OrchestratorInstanceServiceListBySubscriptionRequest": {
+    "com.azure.dnc#ListOrchestratorInstanceServiceBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1878,10 +1879,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnc#OrchestratorInstanceServiceDelete": {
+    "com.azure.dnc#DeleteOrchestratorInstanceService": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnc#OrchestratorInstanceServiceDeleteRequest"
+        "target": "com.azure.dnc#DeleteOrchestratorInstanceServiceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1897,7 +1898,7 @@
         "com.distilled.openapi#apiVersion": "2021-03-15"
       }
     },
-    "com.azure.dnc#OrchestratorInstanceServiceDeleteRequest": {
+    "com.azure.dnc#DeleteOrchestratorInstanceServiceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1936,13 +1937,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnc#OrchestratorInstanceServicePatch": {
+    "com.azure.dnc#PatchOrchestratorInstanceService": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnc#OrchestratorInstanceServicePatchRequest"
+        "target": "com.azure.dnc#PatchOrchestratorInstanceServiceRequest"
       },
       "output": {
-        "target": "com.azure.dnc#OrchestratorInstanceServicePatchResponse"
+        "target": "com.azure.dnc#PatchOrchestratorInstanceServiceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1955,7 +1956,7 @@
         "com.distilled.openapi#apiVersion": "2021-03-15"
       }
     },
-    "com.azure.dnc#OrchestratorInstanceServicePatchResponse": {
+    "com.azure.dnc#PatchOrchestratorInstanceServiceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1983,7 +1984,7 @@
           }
         },
         "kind": {
-          "target": "com.azure.dnc#OrchestratorInstanceServicePatchResponseKind",
+          "target": "com.azure.dnc#PatchOrchestratorInstanceServiceResponseKind",
           "traits": {
             "smithy.api#documentation": "The kind of workbook. Choices are user and shared.",
             "smithy.api#required": {}
@@ -1996,7 +1997,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnc#OrchestratorInstanceServicePatchResponseTagsMap",
+          "target": "com.azure.dnc#PatchOrchestratorInstanceServiceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -2012,7 +2013,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dnc#OrchestratorInstanceServicePatchResponseTagsMap": {
+    "com.azure.dnc#PatchOrchestratorInstanceServiceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2024,7 +2025,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.dnc#OrchestratorInstanceServicePatchResponseKind": {
+    "com.azure.dnc#PatchOrchestratorInstanceServiceResponseKind": {
       "type": "enum",
       "members": {
         "KUBERNETES": {
@@ -2038,7 +2039,7 @@
         "smithy.api#documentation": "The kind of workbook. Choices are user and shared."
       }
     },
-    "com.azure.dnc#OrchestratorInstanceServicePatchRequest": {
+    "com.azure.dnc#PatchOrchestratorInstanceServiceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2066,7 +2067,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnc#OrchestratorInstanceServicePatchRequestTagsMap",
+          "target": "com.azure.dnc#PatchOrchestratorInstanceServiceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -2076,7 +2077,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnc#OrchestratorInstanceServicePatchRequestTagsMap": {
+    "com.azure.dnc#PatchOrchestratorInstanceServiceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2088,13 +2089,13 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.dnc#OrchestratorInstanceServiceCreate": {
+    "com.azure.dnc#CreateOrchestratorInstanceService": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnc#OrchestratorInstanceServiceCreateRequest"
+        "target": "com.azure.dnc#CreateOrchestratorInstanceServiceRequest"
       },
       "output": {
-        "target": "com.azure.dnc#OrchestratorInstanceServiceCreateResponse"
+        "target": "com.azure.dnc#CreateOrchestratorInstanceServiceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2107,7 +2108,7 @@
         "com.distilled.openapi#apiVersion": "2021-03-15"
       }
     },
-    "com.azure.dnc#OrchestratorInstanceServiceCreateResponse": {
+    "com.azure.dnc#CreateOrchestratorInstanceServiceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2135,7 +2136,7 @@
           }
         },
         "kind": {
-          "target": "com.azure.dnc#OrchestratorInstanceServiceCreateResponseKind",
+          "target": "com.azure.dnc#CreateOrchestratorInstanceServiceResponseKind",
           "traits": {
             "smithy.api#documentation": "The kind of workbook. Choices are user and shared.",
             "smithy.api#required": {}
@@ -2148,7 +2149,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnc#OrchestratorInstanceServiceCreateResponseTagsMap",
+          "target": "com.azure.dnc#CreateOrchestratorInstanceServiceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -2164,7 +2165,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dnc#OrchestratorInstanceServiceCreateResponseTagsMap": {
+    "com.azure.dnc#CreateOrchestratorInstanceServiceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2176,7 +2177,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.dnc#OrchestratorInstanceServiceCreateResponseKind": {
+    "com.azure.dnc#CreateOrchestratorInstanceServiceResponseKind": {
       "type": "enum",
       "members": {
         "KUBERNETES": {
@@ -2190,7 +2191,7 @@
         "smithy.api#documentation": "The kind of workbook. Choices are user and shared."
       }
     },
-    "com.azure.dnc#OrchestratorInstanceServiceCreateRequest": {
+    "com.azure.dnc#CreateOrchestratorInstanceServiceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2224,7 +2225,7 @@
           }
         },
         "kind": {
-          "target": "com.azure.dnc#OrchestratorInstanceServiceCreateRequestKind",
+          "target": "com.azure.dnc#CreateOrchestratorInstanceServiceRequestKind",
           "traits": {
             "smithy.api#documentation": "The kind of workbook. Choices are user and shared.",
             "smithy.api#required": {}
@@ -2237,7 +2238,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnc#OrchestratorInstanceServiceCreateRequestTagsMap",
+          "target": "com.azure.dnc#CreateOrchestratorInstanceServiceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -2312,7 +2313,7 @@
         "smithy.api#documentation": "controller details"
       }
     },
-    "com.azure.dnc#OrchestratorInstanceServiceCreateRequestTagsMap": {
+    "com.azure.dnc#CreateOrchestratorInstanceServiceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2356,7 +2357,7 @@
         "smithy.api#documentation": "The type of identity used for orchestrator cluster. Type 'SystemAssigned' will use an implicitly created identity orchestrator clusters"
       }
     },
-    "com.azure.dnc#OrchestratorInstanceServiceCreateRequestKind": {
+    "com.azure.dnc#CreateOrchestratorInstanceServiceRequestKind": {
       "type": "enum",
       "members": {
         "KUBERNETES": {
@@ -2370,13 +2371,13 @@
         "smithy.api#documentation": "The kind of workbook. Choices are user and shared."
       }
     },
-    "com.azure.dnc#OrchestratorInstanceServiceGetDetails": {
+    "com.azure.dnc#GetOrchestratorInstanceServiceDetails": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnc#OrchestratorInstanceServiceGetDetailsRequest"
+        "target": "com.azure.dnc#GetOrchestratorInstanceServiceDetailsRequest"
       },
       "output": {
-        "target": "com.azure.dnc#OrchestratorInstanceServiceGetDetailsResponse"
+        "target": "com.azure.dnc#GetOrchestratorInstanceServiceDetailsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2389,7 +2390,7 @@
         "com.distilled.openapi#apiVersion": "2021-03-15"
       }
     },
-    "com.azure.dnc#OrchestratorInstanceServiceGetDetailsResponse": {
+    "com.azure.dnc#GetOrchestratorInstanceServiceDetailsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2417,7 +2418,7 @@
           }
         },
         "kind": {
-          "target": "com.azure.dnc#OrchestratorInstanceServiceGetDetailsResponseKind",
+          "target": "com.azure.dnc#GetOrchestratorInstanceServiceDetailsResponseKind",
           "traits": {
             "smithy.api#documentation": "The kind of workbook. Choices are user and shared.",
             "smithy.api#required": {}
@@ -2430,7 +2431,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnc#OrchestratorInstanceServiceGetDetailsResponseTagsMap",
+          "target": "com.azure.dnc#GetOrchestratorInstanceServiceDetailsResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -2446,7 +2447,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dnc#OrchestratorInstanceServiceGetDetailsResponseTagsMap": {
+    "com.azure.dnc#GetOrchestratorInstanceServiceDetailsResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2458,7 +2459,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.dnc#OrchestratorInstanceServiceGetDetailsResponseKind": {
+    "com.azure.dnc#GetOrchestratorInstanceServiceDetailsResponseKind": {
       "type": "enum",
       "members": {
         "KUBERNETES": {
@@ -2472,7 +2473,7 @@
         "smithy.api#documentation": "The kind of workbook. Choices are user and shared."
       }
     },
-    "com.azure.dnc#OrchestratorInstanceServiceGetDetailsRequest": {
+    "com.azure.dnc#GetOrchestratorInstanceServiceDetailsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2509,61 +2510,61 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.dnc#DelegatedNetworkListByResourceGroup"
+          "target": "com.azure.dnc#ListDelegatedNetworkByResourceGroup"
         },
         {
-          "target": "com.azure.dnc#DelegatedNetworkListBySubscription"
+          "target": "com.azure.dnc#ListDelegatedNetworkBySubscription"
         },
         {
-          "target": "com.azure.dnc#ControllerDelete"
+          "target": "com.azure.dnc#DeleteController"
         },
         {
-          "target": "com.azure.dnc#ControllerPatch"
+          "target": "com.azure.dnc#PatchController"
         },
         {
-          "target": "com.azure.dnc#ControllerCreate"
+          "target": "com.azure.dnc#CreateController"
         },
         {
-          "target": "com.azure.dnc#ControllerGetDetails"
+          "target": "com.azure.dnc#GetControllerDetails"
         },
         {
-          "target": "com.azure.dnc#DelegatedSubnetServiceListByResourceGroup"
+          "target": "com.azure.dnc#ListDelegatedSubnetServiceByResourceGroup"
         },
         {
-          "target": "com.azure.dnc#DelegatedSubnetServiceListBySubscription"
+          "target": "com.azure.dnc#ListDelegatedSubnetServiceBySubscription"
         },
         {
-          "target": "com.azure.dnc#DelegatedSubnetServiceDeleteDetails"
+          "target": "com.azure.dnc#DeleteDelegatedSubnetServiceDetails"
         },
         {
-          "target": "com.azure.dnc#DelegatedSubnetServicePatchDetails"
+          "target": "com.azure.dnc#PatchDelegatedSubnetServiceDetails"
         },
         {
-          "target": "com.azure.dnc#DelegatedSubnetServicePutDetails"
+          "target": "com.azure.dnc#PutDelegatedSubnetServiceDetails"
         },
         {
-          "target": "com.azure.dnc#DelegatedSubnetServiceGetDetails"
+          "target": "com.azure.dnc#GetDelegatedSubnetServiceDetails"
         },
         {
-          "target": "com.azure.dnc#OperationsList"
+          "target": "com.azure.dnc#ListOperations"
         },
         {
-          "target": "com.azure.dnc#OrchestratorInstanceServiceListByResourceGroup"
+          "target": "com.azure.dnc#ListOrchestratorInstanceServiceByResourceGroup"
         },
         {
-          "target": "com.azure.dnc#OrchestratorInstanceServiceListBySubscription"
+          "target": "com.azure.dnc#ListOrchestratorInstanceServiceBySubscription"
         },
         {
-          "target": "com.azure.dnc#OrchestratorInstanceServiceDelete"
+          "target": "com.azure.dnc#DeleteOrchestratorInstanceService"
         },
         {
-          "target": "com.azure.dnc#OrchestratorInstanceServicePatch"
+          "target": "com.azure.dnc#PatchOrchestratorInstanceService"
         },
         {
-          "target": "com.azure.dnc#OrchestratorInstanceServiceCreate"
+          "target": "com.azure.dnc#CreateOrchestratorInstanceService"
         },
         {
-          "target": "com.azure.dnc#OrchestratorInstanceServiceGetDetails"
+          "target": "com.azure.dnc#GetOrchestratorInstanceServiceDetails"
         }
       ],
       "traits": {

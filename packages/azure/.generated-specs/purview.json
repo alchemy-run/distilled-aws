@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.purview#UsagesGet": {
+    "com.azure.purview#GetUsage": {
       "type": "operation",
       "input": {
-        "target": "com.azure.purview#UsagesGetRequest"
+        "target": "com.azure.purview#GetUsageRequest"
       },
       "output": {
         "target": "com.azure.purview#UsageList"
@@ -123,7 +124,7 @@
         "smithy.api#documentation": "Quota name"
       }
     },
-    "com.azure.purview#UsagesGetRequest": {
+    "com.azure.purview#GetUsageRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -153,10 +154,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.purview#AccountsCheckNameAvailability": {
+    "com.azure.purview#CheckAccountNameAvailability": {
       "type": "operation",
       "input": {
-        "target": "com.azure.purview#AccountsCheckNameAvailabilityRequest"
+        "target": "com.azure.purview#CheckAccountNameAvailabilityRequest"
       },
       "output": {
         "target": "com.azure.purview#CheckNameAvailabilityResult"
@@ -218,7 +219,7 @@
         "smithy.api#documentation": "The reason the name is not available."
       }
     },
-    "com.azure.purview#AccountsCheckNameAvailabilityRequest": {
+    "com.azure.purview#CheckAccountNameAvailabilityRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -246,10 +247,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.purview#PrivateLinkResourcesGetByGroupId": {
+    "com.azure.purview#GetPrivateLinkResourceByGroupId": {
       "type": "operation",
       "input": {
-        "target": "com.azure.purview#PrivateLinkResourcesGetByGroupIdRequest"
+        "target": "com.azure.purview#GetPrivateLinkResourceByGroupIdRequest"
       },
       "output": {
         "target": "com.azure.purview#PrivateLinkResource"
@@ -341,7 +342,7 @@
         "smithy.api#documentation": "This translates to how many Private IPs should be created for each privately linkable resource."
       }
     },
-    "com.azure.purview#PrivateLinkResourcesGetByGroupIdRequest": {
+    "com.azure.purview#GetPrivateLinkResourceByGroupIdRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -381,10 +382,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.purview#PrivateLinkResourcesListByAccount": {
+    "com.azure.purview#ListPrivateLinkResourceByAccount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.purview#PrivateLinkResourcesListByAccountRequest"
+        "target": "com.azure.purview#ListPrivateLinkResourceByAccountRequest"
       },
       "output": {
         "target": "com.azure.purview#PrivateLinkResourceList"
@@ -430,7 +431,7 @@
         "smithy.api#documentation": "Collection of items of type results."
       }
     },
-    "com.azure.purview#PrivateLinkResourcesListByAccountRequest": {
+    "com.azure.purview#ListPrivateLinkResourceByAccountRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -462,10 +463,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.purview#PrivateEndpointConnectionsDelete": {
+    "com.azure.purview#DeletePrivateEndpointConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.purview#PrivateEndpointConnectionsDeleteRequest"
+        "target": "com.azure.purview#DeletePrivateEndpointConnectionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -481,7 +482,7 @@
         "com.distilled.openapi#apiVersion": "2021-12-01"
       }
     },
-    "com.azure.purview#PrivateEndpointConnectionsDeleteRequest": {
+    "com.azure.purview#DeletePrivateEndpointConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -856,13 +857,13 @@
         "smithy.api#documentation": "A private endpoint connection properties class."
       }
     },
-    "com.azure.purview#PrivateEndpointConnectionsGet": {
+    "com.azure.purview#GetPrivateEndpointConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.purview#PrivateEndpointConnectionsGetRequest"
+        "target": "com.azure.purview#GetPrivateEndpointConnectionRequest"
       },
       "output": {
-        "target": "com.azure.purview#PrivateEndpointConnectionsGetResponse"
+        "target": "com.azure.purview#GetPrivateEndpointConnectionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -875,7 +876,7 @@
         "com.distilled.openapi#apiVersion": "2021-12-01"
       }
     },
-    "com.azure.purview#PrivateEndpointConnectionsGetResponse": {
+    "com.azure.purview#GetPrivateEndpointConnectionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -913,7 +914,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.purview#PrivateEndpointConnectionsGetRequest": {
+    "com.azure.purview#GetPrivateEndpointConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -953,10 +954,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.purview#PrivateEndpointConnectionsListByAccount": {
+    "com.azure.purview#ListPrivateEndpointConnectionByAccount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.purview#PrivateEndpointConnectionsListByAccountRequest"
+        "target": "com.azure.purview#ListPrivateEndpointConnectionByAccountRequest"
       },
       "output": {
         "target": "com.azure.purview#PrivateEndpointConnectionList"
@@ -1040,7 +1041,7 @@
         "smithy.api#documentation": "A private endpoint connection class."
       }
     },
-    "com.azure.purview#PrivateEndpointConnectionsListByAccountRequest": {
+    "com.azure.purview#ListPrivateEndpointConnectionByAccountRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1079,7 +1080,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.purview#OperationsList": {
+    "com.azure.purview#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -1409,10 +1410,10 @@
         "smithy.api#documentation": "The response model for get operation properties"
       }
     },
-    "com.azure.purview#KafkaConfigurationsListByAccount": {
+    "com.azure.purview#ListKafkaConfigurationByAccount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.purview#KafkaConfigurationsListByAccountRequest"
+        "target": "com.azure.purview#ListKafkaConfigurationByAccountRequest"
       },
       "output": {
         "target": "com.azure.purview#KafkaConfigurationList"
@@ -1655,7 +1656,7 @@
         "smithy.api#documentation": "Identity Type."
       }
     },
-    "com.azure.purview#KafkaConfigurationsListByAccountRequest": {
+    "com.azure.purview#ListKafkaConfigurationByAccountRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1694,10 +1695,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.purview#KafkaConfigurationsDelete": {
+    "com.azure.purview#DeleteKafkaConfiguration": {
       "type": "operation",
       "input": {
-        "target": "com.azure.purview#KafkaConfigurationsDeleteRequest"
+        "target": "com.azure.purview#DeleteKafkaConfigurationRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1713,7 +1714,7 @@
         "com.distilled.openapi#apiVersion": "2021-12-01"
       }
     },
-    "com.azure.purview#KafkaConfigurationsDeleteRequest": {
+    "com.azure.purview#DeleteKafkaConfigurationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1856,13 +1857,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.purview#KafkaConfigurationsGet": {
+    "com.azure.purview#GetKafkaConfiguration": {
       "type": "operation",
       "input": {
-        "target": "com.azure.purview#KafkaConfigurationsGetRequest"
+        "target": "com.azure.purview#GetKafkaConfigurationRequest"
       },
       "output": {
-        "target": "com.azure.purview#KafkaConfigurationsGetResponse"
+        "target": "com.azure.purview#GetKafkaConfigurationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1875,7 +1876,7 @@
         "com.distilled.openapi#apiVersion": "2021-12-01"
       }
     },
-    "com.azure.purview#KafkaConfigurationsGetResponse": {
+    "com.azure.purview#GetKafkaConfigurationResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1913,7 +1914,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.purview#KafkaConfigurationsGetRequest": {
+    "com.azure.purview#GetKafkaConfigurationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1953,10 +1954,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.purview#FeaturesSubscriptionGet": {
+    "com.azure.purview#GetFeaturesSubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.purview#FeaturesSubscriptionGetRequest"
+        "target": "com.azure.purview#GetFeaturesSubscriptionRequest"
       },
       "output": {
         "target": "com.azure.purview#BatchFeatureStatus"
@@ -1998,7 +1999,7 @@
         "smithy.api#documentation": "Features with enabled status"
       }
     },
-    "com.azure.purview#FeaturesSubscriptionGetRequest": {
+    "com.azure.purview#GetFeaturesSubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2018,7 +2019,7 @@
           }
         },
         "features": {
-          "target": "com.azure.purview#FeaturesSubscriptionGetRequestFeaturesList",
+          "target": "com.azure.purview#GetFeaturesSubscriptionRequestFeaturesList",
           "traits": {
             "smithy.api#documentation": "Set of features"
           }
@@ -2028,7 +2029,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.purview#FeaturesSubscriptionGetRequestFeaturesList": {
+    "com.azure.purview#GetFeaturesSubscriptionRequestFeaturesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -2037,10 +2038,10 @@
         "smithy.api#documentation": "Set of features"
       }
     },
-    "com.azure.purview#FeaturesAccountGet": {
+    "com.azure.purview#GetFeaturesAccount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.purview#FeaturesAccountGetRequest"
+        "target": "com.azure.purview#GetFeaturesAccountRequest"
       },
       "output": {
         "target": "com.azure.purview#BatchFeatureStatus"
@@ -2056,7 +2057,7 @@
         "com.distilled.openapi#apiVersion": "2021-12-01"
       }
     },
-    "com.azure.purview#FeaturesAccountGetRequest": {
+    "com.azure.purview#GetFeaturesAccountRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2084,7 +2085,7 @@
           }
         },
         "features": {
-          "target": "com.azure.purview#FeaturesAccountGetRequestFeaturesList",
+          "target": "com.azure.purview#GetFeaturesAccountRequestFeaturesList",
           "traits": {
             "smithy.api#documentation": "Set of features"
           }
@@ -2094,7 +2095,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.purview#FeaturesAccountGetRequestFeaturesList": {
+    "com.azure.purview#GetFeaturesAccountRequestFeaturesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -2103,10 +2104,10 @@
         "smithy.api#documentation": "Set of features"
       }
     },
-    "com.azure.purview#DefaultAccountsRemove": {
+    "com.azure.purview#RemoveDefaultAccount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.purview#DefaultAccountsRemoveRequest"
+        "target": "com.azure.purview#RemoveDefaultAccountRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2122,7 +2123,7 @@
         "com.distilled.openapi#apiVersion": "2021-12-01"
       }
     },
-    "com.azure.purview#DefaultAccountsRemoveRequest": {
+    "com.azure.purview#RemoveDefaultAccountRequest": {
       "type": "structure",
       "members": {
         "scopeTenantId": {
@@ -2134,7 +2135,7 @@
           }
         },
         "scopeType": {
-          "target": "com.azure.purview#DefaultAccountsRemoveRequestScopeType",
+          "target": "com.azure.purview#RemoveDefaultAccountRequestScopeType",
           "traits": {
             "smithy.api#httpQuery": "scopeType",
             "smithy.api#required": {},
@@ -2153,7 +2154,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.purview#DefaultAccountsRemoveRequestScopeType": {
+    "com.azure.purview#RemoveDefaultAccountRequestScopeType": {
       "type": "enum",
       "members": {
         "TENANT": {
@@ -2171,10 +2172,10 @@
       },
       "traits": {}
     },
-    "com.azure.purview#DefaultAccountsSet": {
+    "com.azure.purview#SetDefaultAccount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.purview#DefaultAccountsSetRequest"
+        "target": "com.azure.purview#SetDefaultAccountRequest"
       },
       "output": {
         "target": "com.azure.purview#DefaultAccountPayload"
@@ -2254,7 +2255,7 @@
         "smithy.api#documentation": "The scope where the default account is set."
       }
     },
-    "com.azure.purview#DefaultAccountsSetRequest": {
+    "com.azure.purview#SetDefaultAccountRequest": {
       "type": "structure",
       "members": {
         "accountName": {
@@ -2282,7 +2283,7 @@
           }
         },
         "scopeType": {
-          "target": "com.azure.purview#DefaultAccountsSetRequestScopeType",
+          "target": "com.azure.purview#SetDefaultAccountRequestScopeType",
           "traits": {
             "smithy.api#documentation": "The scope where the default account is set."
           }
@@ -2298,7 +2299,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.purview#DefaultAccountsSetRequestScopeType": {
+    "com.azure.purview#SetDefaultAccountRequestScopeType": {
       "type": "enum",
       "members": {
         "TENANT": {
@@ -2318,10 +2319,10 @@
         "smithy.api#documentation": "The scope where the default account is set."
       }
     },
-    "com.azure.purview#DefaultAccountsGet": {
+    "com.azure.purview#GetDefaultAccount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.purview#DefaultAccountsGetRequest"
+        "target": "com.azure.purview#GetDefaultAccountRequest"
       },
       "output": {
         "target": "com.azure.purview#DefaultAccountPayload"
@@ -2337,7 +2338,7 @@
         "com.distilled.openapi#apiVersion": "2021-12-01"
       }
     },
-    "com.azure.purview#DefaultAccountsGetRequest": {
+    "com.azure.purview#GetDefaultAccountRequest": {
       "type": "structure",
       "members": {
         "scopeTenantId": {
@@ -2349,7 +2350,7 @@
           }
         },
         "scopeType": {
-          "target": "com.azure.purview#DefaultAccountsGetRequestScopeType",
+          "target": "com.azure.purview#GetDefaultAccountRequestScopeType",
           "traits": {
             "smithy.api#httpQuery": "scopeType",
             "smithy.api#required": {},
@@ -2368,7 +2369,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.purview#DefaultAccountsGetRequestScopeType": {
+    "com.azure.purview#GetDefaultAccountRequestScopeType": {
       "type": "enum",
       "members": {
         "TENANT": {
@@ -2386,10 +2387,10 @@
       },
       "traits": {}
     },
-    "com.azure.purview#AccountsAddRootCollectionAdmin": {
+    "com.azure.purview#AddAccountRootCollectionAdmin": {
       "type": "operation",
       "input": {
-        "target": "com.azure.purview#AccountsAddRootCollectionAdminRequest"
+        "target": "com.azure.purview#AddAccountRootCollectionAdminRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2405,7 +2406,7 @@
         "com.distilled.openapi#apiVersion": "2021-12-01"
       }
     },
-    "com.azure.purview#AccountsAddRootCollectionAdminRequest": {
+    "com.azure.purview#AddAccountRootCollectionAdminRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2443,10 +2444,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.purview#AccountsListKeys": {
+    "com.azure.purview#ListAccountKeys": {
       "type": "operation",
       "input": {
-        "target": "com.azure.purview#AccountsListKeysRequest"
+        "target": "com.azure.purview#ListAccountKeysRequest"
       },
       "output": {
         "target": "com.azure.purview#AccessKeys"
@@ -2482,7 +2483,7 @@
         "smithy.api#documentation": "The Account access keys."
       }
     },
-    "com.azure.purview#AccountsListKeysRequest": {
+    "com.azure.purview#ListAccountKeysRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2514,10 +2515,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.purview#AccountsDelete": {
+    "com.azure.purview#DeleteAccount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.purview#AccountsDeleteRequest"
+        "target": "com.azure.purview#DeleteAccountRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2533,7 +2534,7 @@
         "com.distilled.openapi#apiVersion": "2021-12-01"
       }
     },
-    "com.azure.purview#AccountsDeleteRequest": {
+    "com.azure.purview#DeleteAccountRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2565,13 +2566,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.purview#AccountsUpdate": {
+    "com.azure.purview#UpdateAccount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.purview#AccountsUpdateRequest"
+        "target": "com.azure.purview#UpdateAccountRequest"
       },
       "output": {
-        "target": "com.azure.purview#AccountsUpdateResponse"
+        "target": "com.azure.purview#UpdateAccountResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2584,7 +2585,7 @@
         "com.distilled.openapi#apiVersion": "2021-12-01"
       }
     },
-    "com.azure.purview#AccountsUpdateResponse": {
+    "com.azure.purview#UpdateAccountResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2618,7 +2619,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.purview#AccountsUpdateResponseTagsMap",
+          "target": "com.azure.purview#UpdateAccountResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags on the azure resource."
           }
@@ -3116,7 +3117,7 @@
         "smithy.api#documentation": "Gets the account status code."
       }
     },
-    "com.azure.purview#AccountsUpdateResponseTagsMap": {
+    "com.azure.purview#UpdateAccountResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3218,7 +3219,7 @@
         "smithy.api#documentation": "Identity Type"
       }
     },
-    "com.azure.purview#AccountsUpdateRequest": {
+    "com.azure.purview#UpdateAccountRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3258,7 +3259,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.purview#AccountsUpdateRequestTagsMap",
+          "target": "com.azure.purview#UpdateAccountRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags on the azure resource."
           }
@@ -3268,7 +3269,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.purview#AccountsUpdateRequestTagsMap": {
+    "com.azure.purview#UpdateAccountRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3629,13 +3630,13 @@
         "smithy.api#documentation": "Tags on the azure resource."
       }
     },
-    "com.azure.purview#AccountsGet": {
+    "com.azure.purview#GetAccount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.purview#AccountsGetRequest"
+        "target": "com.azure.purview#GetAccountRequest"
       },
       "output": {
-        "target": "com.azure.purview#AccountsGetResponse"
+        "target": "com.azure.purview#GetAccountResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3648,7 +3649,7 @@
         "com.distilled.openapi#apiVersion": "2021-12-01"
       }
     },
-    "com.azure.purview#AccountsGetResponse": {
+    "com.azure.purview#GetAccountResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3682,7 +3683,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.purview#AccountsGetResponseTagsMap",
+          "target": "com.azure.purview#GetAccountResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags on the azure resource."
           }
@@ -3710,7 +3711,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.purview#AccountsGetResponseTagsMap": {
+    "com.azure.purview#GetAccountResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3722,7 +3723,7 @@
         "smithy.api#documentation": "Tags on the azure resource."
       }
     },
-    "com.azure.purview#AccountsGetRequest": {
+    "com.azure.purview#GetAccountRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3754,10 +3755,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.purview#AccountsListBySubscription": {
+    "com.azure.purview#ListAccountBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.purview#AccountsListBySubscriptionRequest"
+        "target": "com.azure.purview#ListAccountBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.purview#AccountList"
@@ -3883,7 +3884,7 @@
         "smithy.api#documentation": "Tags on the azure resource."
       }
     },
-    "com.azure.purview#AccountsListBySubscriptionRequest": {
+    "com.azure.purview#ListAccountBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3906,10 +3907,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.purview#AccountsListByResourceGroup": {
+    "com.azure.purview#ListAccountByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.purview#AccountsListByResourceGroupRequest"
+        "target": "com.azure.purview#ListAccountByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.purview#AccountList"
@@ -3925,7 +3926,7 @@
         "com.distilled.openapi#apiVersion": "2021-12-01"
       }
     },
-    "com.azure.purview#AccountsListByResourceGroupRequest": {
+    "com.azure.purview#ListAccountByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3961,82 +3962,82 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.purview#UsagesGet"
+          "target": "com.azure.purview#GetUsage"
         },
         {
-          "target": "com.azure.purview#AccountsCheckNameAvailability"
+          "target": "com.azure.purview#CheckAccountNameAvailability"
         },
         {
-          "target": "com.azure.purview#PrivateLinkResourcesGetByGroupId"
+          "target": "com.azure.purview#GetPrivateLinkResourceByGroupId"
         },
         {
-          "target": "com.azure.purview#PrivateLinkResourcesListByAccount"
+          "target": "com.azure.purview#ListPrivateLinkResourceByAccount"
         },
         {
-          "target": "com.azure.purview#PrivateEndpointConnectionsDelete"
+          "target": "com.azure.purview#DeletePrivateEndpointConnection"
         },
         {
           "target": "com.azure.purview#PrivateEndpointConnectionsCreateOrUpdate"
         },
         {
-          "target": "com.azure.purview#PrivateEndpointConnectionsGet"
+          "target": "com.azure.purview#GetPrivateEndpointConnection"
         },
         {
-          "target": "com.azure.purview#PrivateEndpointConnectionsListByAccount"
+          "target": "com.azure.purview#ListPrivateEndpointConnectionByAccount"
         },
         {
-          "target": "com.azure.purview#OperationsList"
+          "target": "com.azure.purview#ListOperations"
         },
         {
-          "target": "com.azure.purview#KafkaConfigurationsListByAccount"
+          "target": "com.azure.purview#ListKafkaConfigurationByAccount"
         },
         {
-          "target": "com.azure.purview#KafkaConfigurationsDelete"
+          "target": "com.azure.purview#DeleteKafkaConfiguration"
         },
         {
           "target": "com.azure.purview#KafkaConfigurationsCreateOrUpdate"
         },
         {
-          "target": "com.azure.purview#KafkaConfigurationsGet"
+          "target": "com.azure.purview#GetKafkaConfiguration"
         },
         {
-          "target": "com.azure.purview#FeaturesSubscriptionGet"
+          "target": "com.azure.purview#GetFeaturesSubscription"
         },
         {
-          "target": "com.azure.purview#FeaturesAccountGet"
+          "target": "com.azure.purview#GetFeaturesAccount"
         },
         {
-          "target": "com.azure.purview#DefaultAccountsRemove"
+          "target": "com.azure.purview#RemoveDefaultAccount"
         },
         {
-          "target": "com.azure.purview#DefaultAccountsSet"
+          "target": "com.azure.purview#SetDefaultAccount"
         },
         {
-          "target": "com.azure.purview#DefaultAccountsGet"
+          "target": "com.azure.purview#GetDefaultAccount"
         },
         {
-          "target": "com.azure.purview#AccountsAddRootCollectionAdmin"
+          "target": "com.azure.purview#AddAccountRootCollectionAdmin"
         },
         {
-          "target": "com.azure.purview#AccountsListKeys"
+          "target": "com.azure.purview#ListAccountKeys"
         },
         {
-          "target": "com.azure.purview#AccountsDelete"
+          "target": "com.azure.purview#DeleteAccount"
         },
         {
-          "target": "com.azure.purview#AccountsUpdate"
+          "target": "com.azure.purview#UpdateAccount"
         },
         {
           "target": "com.azure.purview#AccountsCreateOrUpdate"
         },
         {
-          "target": "com.azure.purview#AccountsGet"
+          "target": "com.azure.purview#GetAccount"
         },
         {
-          "target": "com.azure.purview#AccountsListBySubscription"
+          "target": "com.azure.purview#ListAccountBySubscription"
         },
         {
-          "target": "com.azure.purview#AccountsListByResourceGroup"
+          "target": "com.azure.purview#ListAccountByResourceGroup"
         }
       ],
       "traits": {

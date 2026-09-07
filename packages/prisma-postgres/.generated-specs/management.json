@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.prisma.postgres#GetV1ServicesRequest": {
@@ -9796,9 +9797,7 @@
           }
         }
       },
-      "traits": {
-        "smithy.api#documentation": "Type of backup"
-      }
+      "traits": {}
     },
     "com.prisma.postgres#GetV1DatabasesByDatabaseIdBackupsResponseDataItemStatus": {
       "type": "enum",
@@ -9828,9 +9827,7 @@
           }
         }
       },
-      "traits": {
-        "smithy.api#documentation": "Status of backup instance"
-      }
+      "traits": {}
     },
     "com.prisma.postgres#GetV1DatabasesByDatabaseIdBackupsResponseDataItem": {
       "type": "structure",
@@ -9838,34 +9835,27 @@
         "id": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The unique identifier for this backup",
             "smithy.api#required": {}
           }
         },
         "backupType": {
           "target": "com.prisma.postgres#GetV1DatabasesByDatabaseIdBackupsResponseDataItemBackupType",
           "traits": {
-            "smithy.api#documentation": "Type of backup",
             "smithy.api#required": {}
           }
         },
         "createdAt": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Timestamp when the backup was created",
             "smithy.api#required": {}
           }
         },
         "size": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Total file size (in MiB) of gzipped backup files"
-          }
+          "target": "smithy.api#Double"
         },
         "status": {
           "target": "com.prisma.postgres#GetV1DatabasesByDatabaseIdBackupsResponseDataItemStatus",
           "traits": {
-            "smithy.api#documentation": "Status of backup instance",
             "smithy.api#required": {}
           }
         },
@@ -14932,10 +14922,7 @@
           }
         },
         "backupId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The unique identifier for this backup"
-          }
+          "target": "smithy.api#String"
         }
       },
       "traits": {

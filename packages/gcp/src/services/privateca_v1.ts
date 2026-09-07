@@ -85,15 +85,15 @@ export const SubordinateConfigChain = /*@__PURE__*/ S.suspend(() =>
 
 /** Describes a subordinate CA's issuers. This is either a resource name to a known issuing CertificateAuthority, or a PEM issuer certificate chain. */
 export interface SubordinateConfig {
-  /** Required. Contains the PEM certificate chain for the issuers of this CertificateAuthority, but not pem certificate for this CA itself. */
-  pemIssuerChain?: SubordinateConfigChain;
   /** Required. This can refer to a CertificateAuthority that was used to create a subordinate CertificateAuthority. This field is used for information and usability purposes only. The resource name is in the format `projects/*\/locations/*\/caPools/*\/certificateAuthorities/*`. */
   certificateAuthority?: string;
+  /** Required. Contains the PEM certificate chain for the issuers of this CertificateAuthority, but not pem certificate for this CA itself. */
+  pemIssuerChain?: SubordinateConfigChain;
 }
 export const SubordinateConfig = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    pemIssuerChain: S.optional(SubordinateConfigChain),
     certificateAuthority: S.optional(S.String),
+    pemIssuerChain: S.optional(SubordinateConfigChain),
   }),
 ).annotate({
   identifier: "SubordinateConfig",
@@ -103,16 +103,16 @@ export const SubordinateConfig = /*@__PURE__*/ S.suspend(() =>
 export interface ActivateCertificateAuthorityRequest {
   /** Required. The signed CA certificate issued from FetchCertificateAuthorityCsrResponse.pem_csr. */
   pemCaCertificate?: string;
-  /** Required. Must include information about the issuer of 'pem_ca_certificate', and any further issuers until the self-signed CA. */
-  subordinateConfig?: SubordinateConfig;
   /** Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000). */
   requestId?: string;
+  /** Required. Must include information about the issuer of 'pem_ca_certificate', and any further issuers until the self-signed CA. */
+  subordinateConfig?: SubordinateConfig;
 }
 export const ActivateCertificateAuthorityRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     pemCaCertificate: S.optional(S.String),
-    subordinateConfig: S.optional(SubordinateConfig),
     requestId: S.optional(S.String),
+    subordinateConfig: S.optional(SubordinateConfig),
   }),
 ).annotate({
   identifier: "ActivateCertificateAuthorityRequest",
@@ -153,41 +153,41 @@ export const DocumentMapList = /*@__PURE__*/ S.Array(
 
 /** The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors). */
 export interface Status {
-  /** A list of messages that carry the error details. There is a common set of message types for APIs to use. */
-  details?: DocumentMapList;
   /** The status code, which should be an enum value of google.rpc.Code. */
   code?: number;
+  /** A list of messages that carry the error details. There is a common set of message types for APIs to use. */
+  details?: DocumentMapList;
   /** A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client. */
   message?: string;
 }
 export const Status = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    details: S.optional(DocumentMapList),
     code: S.optional(S.Number),
+    details: S.optional(DocumentMapList),
     message: S.optional(S.String),
   }),
 ).annotate({ identifier: "Status" }) as any as S.Schema<Status>;
 
 /** This resource represents a long-running operation that is the result of a network API call. */
 export interface Operation {
-  /** The error result of the operation in case of failure or cancellation. */
-  error?: Status;
-  /** If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available. */
-  done?: boolean;
-  /** Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any. */
-  metadata?: DocumentMap;
   /** The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`. */
   response?: DocumentMap;
+  /** If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available. */
+  done?: boolean;
   /** The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`. */
   name?: string;
+  /** The error result of the operation in case of failure or cancellation. */
+  error?: Status;
+  /** Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any. */
+  metadata?: DocumentMap;
 }
 export const Operation = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    error: S.optional(Status),
-    done: S.optional(S.Boolean),
-    metadata: S.optional(DocumentMap),
     response: S.optional(DocumentMap),
+    done: S.optional(S.Boolean),
     name: S.optional(S.String),
+    error: S.optional(Status),
+    metadata: S.optional(DocumentMap),
   }),
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
@@ -227,64 +227,39 @@ export const Empty = /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
   identifier: "Empty",
 }) as any as S.Schema<Empty>;
 
+export type PublishingOptionsEncodingFormatEnum =
+  | "ENCODING_FORMAT_UNSPECIFIED"
+  | "PEM"
+  | "DER";
+export const PublishingOptionsEncodingFormatEnum = /*@__PURE__*/ S.String;
+
+/** Options relating to the publication of each CertificateAuthority's CA certificate and CRLs and their inclusion as extensions in issued Certificates. The options set here apply to certificates issued by any CertificateAuthority in the CaPool. */
+export interface PublishingOptions {
+  /** Optional. When true, publishes each CertificateAuthority's CA certificate and includes its URL in the "Authority Information Access" X.509 extension in all issued Certificates. If this is false, the CA certificate will not be published and the corresponding X.509 extension will not be written in issued certificates. */
+  publishCaCert?: boolean;
+  /** Optional. When true, publishes each CertificateAuthority's CRL and includes its URL in the "CRL Distribution Points" X.509 extension in all issued Certificates. If this is false, CRLs will not be published and the corresponding X.509 extension will not be written in issued certificates. CRLs will expire 7 days from their creation. However, we will rebuild daily. CRLs are also rebuilt shortly after a certificate is revoked. */
+  publishCrl?: boolean;
+  /** Optional. Specifies the encoding format of each CertificateAuthority resource's CA certificate and CRLs. If this is omitted, CA certificates and CRLs will be published in PEM. */
+  encodingFormat?: PublishingOptionsEncodingFormatEnum | (string & {});
+}
+export const PublishingOptions = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    publishCaCert: S.optional(S.Boolean),
+    publishCrl: S.optional(S.Boolean),
+    encodingFormat: S.optional(PublishingOptionsEncodingFormatEnum),
+  }),
+).annotate({
+  identifier: "PublishingOptions",
+}) as any as S.Schema<PublishingOptions>;
+
+export type CaPoolTierEnum = "TIER_UNSPECIFIED" | "ENTERPRISE" | "DEVOPS";
+export const CaPoolTierEnum = /*@__PURE__*/ S.String;
+
 export type StringMap = { [key: string]: string | undefined };
 export const StringMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
 ) as any as S.Schema<StringMap>;
-
-/** Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information. */
-export interface Expr {
-  /** Textual representation of an expression in Common Expression Language syntax. */
-  expression?: string;
-  /** Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression. */
-  title?: string;
-  /** Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file. */
-  location?: string;
-  /** Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI. */
-  description?: string;
-}
-export const Expr = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    expression: S.optional(S.String),
-    title: S.optional(S.String),
-    location: S.optional(S.String),
-    description: S.optional(S.String),
-  }),
-).annotate({ identifier: "Expr" }) as any as S.Schema<Expr>;
-
-/** Describes constraints on a Certificate's Subject and SubjectAltNames. */
-export interface CertificateIdentityConstraints {
-  /** Required. If this is true, the Subject field may be copied from a certificate request into the signed certificate. Otherwise, the requested Subject will be discarded. */
-  allowSubjectPassthrough?: boolean;
-  /** Required. If this is true, the SubjectAltNames extension may be copied from a certificate request into the signed certificate. Otherwise, the requested SubjectAltNames will be discarded. */
-  allowSubjectAltNamesPassthrough?: boolean;
-  /** Optional. A CEL expression that may be used to validate the resolved X.509 Subject and/or Subject Alternative Name before a certificate is signed. To see the full allowed syntax and some examples, see https://cloud.google.com/certificate-authority-service/docs/using-cel */
-  celExpression?: Expr;
-}
-export const CertificateIdentityConstraints = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    allowSubjectPassthrough: S.optional(S.Boolean),
-    allowSubjectAltNamesPassthrough: S.optional(S.Boolean),
-    celExpression: S.optional(Expr),
-  }),
-).annotate({
-  identifier: "CertificateIdentityConstraints",
-}) as any as S.Schema<CertificateIdentityConstraints>;
-
-/** Describes an RSA key that may be used in a Certificate issued from a CaPool. */
-export interface RsaKeyType {
-  /** Optional. The minimum allowed RSA modulus size (inclusive), in bits. If this is not set, or if set to zero, the service-level min RSA modulus size will continue to apply. */
-  minModulusSize?: string;
-  /** Optional. The maximum allowed RSA modulus size (inclusive), in bits. If this is not set, or if set to zero, the service will not enforce an explicit upper bound on RSA modulus sizes. */
-  maxModulusSize?: string;
-}
-export const RsaKeyType = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    minModulusSize: S.optional(S.String),
-    maxModulusSize: S.optional(S.String),
-  }),
-).annotate({ identifier: "RsaKeyType" }) as any as S.Schema<RsaKeyType>;
 
 export type EcKeyTypeSignatureAlgorithmEnum =
   | "EC_SIGNATURE_ALGORITHM_UNSPECIFIED"
@@ -304,17 +279,31 @@ export const EcKeyType = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "EcKeyType" }) as any as S.Schema<EcKeyType>;
 
+/** Describes an RSA key that may be used in a Certificate issued from a CaPool. */
+export interface RsaKeyType {
+  /** Optional. The minimum allowed RSA modulus size (inclusive), in bits. If this is not set, or if set to zero, the service-level min RSA modulus size will continue to apply. */
+  minModulusSize?: string;
+  /** Optional. The maximum allowed RSA modulus size (inclusive), in bits. If this is not set, or if set to zero, the service will not enforce an explicit upper bound on RSA modulus sizes. */
+  maxModulusSize?: string;
+}
+export const RsaKeyType = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    minModulusSize: S.optional(S.String),
+    maxModulusSize: S.optional(S.String),
+  }),
+).annotate({ identifier: "RsaKeyType" }) as any as S.Schema<RsaKeyType>;
+
 /** Describes a "type" of key that may be used in a Certificate issued from a CaPool. Note that a single AllowedKeyType may refer to either a fully-qualified key algorithm, such as RSA 4096, or a family of key algorithms, such as any RSA key. */
 export interface AllowedKeyType {
-  /** Represents an allowed RSA key type. */
-  rsa?: RsaKeyType;
   /** Represents an allowed Elliptic Curve key type. */
   ellipticCurve?: EcKeyType;
+  /** Represents an allowed RSA key type. */
+  rsa?: RsaKeyType;
 }
 export const AllowedKeyType = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    rsa: S.optional(RsaKeyType),
     ellipticCurve: S.optional(EcKeyType),
+    rsa: S.optional(RsaKeyType),
   }),
 ).annotate({ identifier: "AllowedKeyType" }) as any as S.Schema<AllowedKeyType>;
 
@@ -322,6 +311,247 @@ export type AllowedKeyTypeList = Array<AllowedKeyType>;
 export const AllowedKeyTypeList = /*@__PURE__*/ S.Array(
   AllowedKeyType,
 ) as any as S.Schema<AllowedKeyTypeList>;
+
+/** Describes the X.509 basic constraints extension, per [RFC 5280 section 4.2.1.9](https://tools.ietf.org/html/rfc5280#section-4.2.1.9) */
+export interface CaOptions {
+  /** Optional. Refers to the path length constraint field in the X.509 extension. For a CA certificate, this value describes the depth of subordinate CA certificates that are allowed. If this value is less than 0, the request will fail. If this value is missing, the max path length will be omitted from the certificate. */
+  maxIssuerPathLength?: number;
+  /** Optional. Refers to the "CA" boolean field in the X.509 extension. When this value is missing, the basic constraints extension will be omitted from the certificate. */
+  isCa?: boolean;
+}
+export const CaOptions = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    maxIssuerPathLength: S.optional(S.Number),
+    isCa: S.optional(S.Boolean),
+  }),
+).annotate({ identifier: "CaOptions" }) as any as S.Schema<CaOptions>;
+
+export type IntegerList = Array<number>;
+export const IntegerList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<IntegerList>;
+
+/** An ObjectId specifies an object identifier (OID). These provide context and describe types in ASN.1 messages. */
+export interface ObjectId {
+  /** Required. The parts of an OID path. The most significant parts of the path come first. */
+  objectIdPath?: IntegerList;
+}
+export const ObjectId = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    objectIdPath: S.optional(IntegerList),
+  }),
+).annotate({ identifier: "ObjectId" }) as any as S.Schema<ObjectId>;
+
+/** An X509Extension specifies an X.509 extension, which may be used in different parts of X.509 objects like certificates, CSRs, and CRLs. */
+export interface X509Extension {
+  /** Required. The value of this X.509 extension. */
+  value?: string;
+  /** Required. The OID for this X.509 extension. */
+  objectId?: ObjectId;
+  /** Optional. Indicates whether or not this extension is critical (i.e., if the client does not know how to handle this extension, the client should consider this to be an error). */
+  critical?: boolean;
+}
+export const X509Extension = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(S.String),
+    objectId: S.optional(ObjectId),
+    critical: S.optional(S.Boolean),
+  }),
+).annotate({ identifier: "X509Extension" }) as any as S.Schema<X509Extension>;
+
+export type X509ExtensionList = Array<X509Extension>;
+export const X509ExtensionList = /*@__PURE__*/ S.Array(
+  X509Extension,
+) as any as S.Schema<X509ExtensionList>;
+
+/** KeyUsage.ExtendedKeyUsageOptions has fields that correspond to certain common OIDs that could be specified as an extended key usage value. */
+export interface ExtendedKeyUsageOptions {
+  /** Corresponds to OID 1.3.6.1.5.5.7.3.8. Officially described as "Binding the hash of an object to a time". */
+  timeStamping?: boolean;
+  /** Corresponds to OID 1.3.6.1.5.5.7.3.1. Officially described as "TLS WWW server authentication", though regularly used for non-WWW TLS. */
+  serverAuth?: boolean;
+  /** Corresponds to OID 1.3.6.1.5.5.7.3.4. Officially described as "Email protection". */
+  emailProtection?: boolean;
+  /** Corresponds to OID 1.3.6.1.5.5.7.3.3. Officially described as "Signing of downloadable executable code client authentication". */
+  codeSigning?: boolean;
+  /** Corresponds to OID 1.3.6.1.5.5.7.3.9. Officially described as "Signing OCSP responses". */
+  ocspSigning?: boolean;
+  /** Corresponds to OID 1.3.6.1.5.5.7.3.2. Officially described as "TLS WWW client authentication", though regularly used for non-WWW TLS. */
+  clientAuth?: boolean;
+}
+export const ExtendedKeyUsageOptions = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    timeStamping: S.optional(S.Boolean),
+    serverAuth: S.optional(S.Boolean),
+    emailProtection: S.optional(S.Boolean),
+    codeSigning: S.optional(S.Boolean),
+    ocspSigning: S.optional(S.Boolean),
+    clientAuth: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "ExtendedKeyUsageOptions",
+}) as any as S.Schema<ExtendedKeyUsageOptions>;
+
+export type ObjectIdList = Array<ObjectId>;
+export const ObjectIdList = /*@__PURE__*/ S.Array(
+  ObjectId,
+) as any as S.Schema<ObjectIdList>;
+
+/** KeyUsage.KeyUsageOptions corresponds to the key usage values described in https://tools.ietf.org/html/rfc5280#section-4.2.1.3. */
+export interface KeyUsageOptions {
+  /** The key may be used in a key agreement protocol. */
+  keyAgreement?: boolean;
+  /** The key may be used to decipher only. */
+  decipherOnly?: boolean;
+  /** The key may be used to encipher data. */
+  dataEncipherment?: boolean;
+  /** The key may be used sign certificate revocation lists. */
+  crlSign?: boolean;
+  /** The key may be used for digital signatures. */
+  digitalSignature?: boolean;
+  /** The key may be used to encipher only. */
+  encipherOnly?: boolean;
+  /** The key may be used for cryptographic commitments. Note that this may also be referred to as "non-repudiation". */
+  contentCommitment?: boolean;
+  /** The key may be used to encipher other keys. */
+  keyEncipherment?: boolean;
+  /** The key may be used to sign certificates. */
+  certSign?: boolean;
+}
+export const KeyUsageOptions = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    keyAgreement: S.optional(S.Boolean),
+    decipherOnly: S.optional(S.Boolean),
+    dataEncipherment: S.optional(S.Boolean),
+    crlSign: S.optional(S.Boolean),
+    digitalSignature: S.optional(S.Boolean),
+    encipherOnly: S.optional(S.Boolean),
+    contentCommitment: S.optional(S.Boolean),
+    keyEncipherment: S.optional(S.Boolean),
+    certSign: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "KeyUsageOptions",
+}) as any as S.Schema<KeyUsageOptions>;
+
+/** A KeyUsage describes key usage values that may appear in an X.509 certificate. */
+export interface KeyUsage {
+  /** Detailed scenarios in which a key may be used. */
+  extendedKeyUsage?: ExtendedKeyUsageOptions;
+  /** Used to describe extended key usages that are not listed in the KeyUsage.ExtendedKeyUsageOptions message. */
+  unknownExtendedKeyUsages?: ObjectIdList;
+  /** Describes high-level ways in which a key may be used. */
+  baseKeyUsage?: KeyUsageOptions;
+}
+export const KeyUsage = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    extendedKeyUsage: S.optional(ExtendedKeyUsageOptions),
+    unknownExtendedKeyUsages: S.optional(ObjectIdList),
+    baseKeyUsage: S.optional(KeyUsageOptions),
+  }),
+).annotate({ identifier: "KeyUsage" }) as any as S.Schema<KeyUsage>;
+
+/** Describes the X.509 name constraints extension, per https://tools.ietf.org/html/rfc5280#section-4.2.1.10 */
+export interface NameConstraints {
+  /** Contains the excluded email addresses. The value can be a particular email address, a hostname to indicate all email addresses on that host or a domain with a leading period (e.g. `.example.com`) to indicate all email addresses in that domain. */
+  excludedEmailAddresses?: StringList;
+  /** Indicates whether or not the name constraints are marked critical. */
+  critical?: boolean;
+  /** Contains the excluded URIs that apply to the host part of the name. The value can be a hostname or a domain with a leading period (like `.example.com`) */
+  excludedUris?: StringList;
+  /** Contains the permitted URIs that apply to the host part of the name. The value can be a hostname or a domain with a leading period (like `.example.com`) */
+  permittedUris?: StringList;
+  /** Contains the permitted IP ranges. For IPv4 addresses, the ranges are expressed using CIDR notation as specified in RFC 4632. For IPv6 addresses, the ranges are expressed in similar encoding as IPv4 addresses. */
+  permittedIpRanges?: StringList;
+  /** Contains the excluded IP ranges. For IPv4 addresses, the ranges are expressed using CIDR notation as specified in RFC 4632. For IPv6 addresses, the ranges are expressed in similar encoding as IPv4 addresses. */
+  excludedIpRanges?: StringList;
+  /** Contains the permitted email addresses. The value can be a particular email address, a hostname to indicate all email addresses on that host or a domain with a leading period (e.g. `.example.com`) to indicate all email addresses in that domain. */
+  permittedEmailAddresses?: StringList;
+  /** Contains excluded DNS names. Any DNS name that can be constructed by simply adding zero or more labels to the left-hand side of the name satisfies the name constraint. For example, `example.com`, `www.example.com`, `www.sub.example.com` would satisfy `example.com` while `example1.com` does not. */
+  excludedDnsNames?: StringList;
+  /** Contains permitted DNS names. Any DNS name that can be constructed by simply adding zero or more labels to the left-hand side of the name satisfies the name constraint. For example, `example.com`, `www.example.com`, `www.sub.example.com` would satisfy `example.com` while `example1.com` does not. */
+  permittedDnsNames?: StringList;
+}
+export const NameConstraints = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    excludedEmailAddresses: S.optional(StringList),
+    critical: S.optional(S.Boolean),
+    excludedUris: S.optional(StringList),
+    permittedUris: S.optional(StringList),
+    permittedIpRanges: S.optional(StringList),
+    excludedIpRanges: S.optional(StringList),
+    permittedEmailAddresses: S.optional(StringList),
+    excludedDnsNames: S.optional(StringList),
+    permittedDnsNames: S.optional(StringList),
+  }),
+).annotate({
+  identifier: "NameConstraints",
+}) as any as S.Schema<NameConstraints>;
+
+/** An X509Parameters is used to describe certain fields of an X.509 certificate, such as the key usage fields, fields specific to CA certificates, certificate policy extensions and custom extensions. */
+export interface X509Parameters {
+  /** Optional. Describes options in this X509Parameters that are relevant in a CA certificate. If not specified, a default basic constraints extension with `is_ca=false` will be added for leaf certificates. */
+  caOptions?: CaOptions;
+  /** Optional. Describes custom X.509 extensions. */
+  additionalExtensions?: X509ExtensionList;
+  /** Optional. Indicates the intended use for keys that correspond to a certificate. */
+  keyUsage?: KeyUsage;
+  /** Optional. Describes Online Certificate Status Protocol (OCSP) endpoint addresses that appear in the "Authority Information Access" extension in the certificate. */
+  aiaOcspServers?: StringList;
+  /** Optional. Describes the X.509 name constraints extension. */
+  nameConstraints?: NameConstraints;
+  /** Optional. Describes the X.509 certificate policy object identifiers, per https://tools.ietf.org/html/rfc5280#section-4.2.1.4. */
+  policyIds?: ObjectIdList;
+}
+export const X509Parameters = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    caOptions: S.optional(CaOptions),
+    additionalExtensions: S.optional(X509ExtensionList),
+    keyUsage: S.optional(KeyUsage),
+    aiaOcspServers: S.optional(StringList),
+    nameConstraints: S.optional(NameConstraints),
+    policyIds: S.optional(ObjectIdList),
+  }),
+).annotate({ identifier: "X509Parameters" }) as any as S.Schema<X509Parameters>;
+
+/** Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information. */
+export interface Expr {
+  /** Textual representation of an expression in Common Expression Language syntax. */
+  expression?: string;
+  /** Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file. */
+  location?: string;
+  /** Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression. */
+  title?: string;
+  /** Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI. */
+  description?: string;
+}
+export const Expr = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    expression: S.optional(S.String),
+    location: S.optional(S.String),
+    title: S.optional(S.String),
+    description: S.optional(S.String),
+  }),
+).annotate({ identifier: "Expr" }) as any as S.Schema<Expr>;
+
+/** Describes constraints on a Certificate's Subject and SubjectAltNames. */
+export interface CertificateIdentityConstraints {
+  /** Required. If this is true, the SubjectAltNames extension may be copied from a certificate request into the signed certificate. Otherwise, the requested SubjectAltNames will be discarded. */
+  allowSubjectAltNamesPassthrough?: boolean;
+  /** Optional. A CEL expression that may be used to validate the resolved X.509 Subject and/or Subject Alternative Name before a certificate is signed. To see the full allowed syntax and some examples, see https://cloud.google.com/certificate-authority-service/docs/using-cel */
+  celExpression?: Expr;
+  /** Required. If this is true, the Subject field may be copied from a certificate request into the signed certificate. Otherwise, the requested Subject will be discarded. */
+  allowSubjectPassthrough?: boolean;
+}
+export const CertificateIdentityConstraints = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    allowSubjectAltNamesPassthrough: S.optional(S.Boolean),
+    celExpression: S.optional(Expr),
+    allowSubjectPassthrough: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "CertificateIdentityConstraints",
+}) as any as S.Schema<CertificateIdentityConstraints>;
 
 /** IssuanceModes specifies the allowed ways in which Certificates may be requested from this CaPool. */
 export interface IssuanceModes {
@@ -356,285 +586,55 @@ export const CertificateExtensionConstraintsKnownExtensionsItemEnumList =
     CertificateExtensionConstraintsKnownExtensionsItemEnum,
   ) as any as S.Schema<CertificateExtensionConstraintsKnownExtensionsItemEnumList>;
 
-export type IntegerList = Array<number>;
-export const IntegerList = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<IntegerList>;
-
-/** An ObjectId specifies an object identifier (OID). These provide context and describe types in ASN.1 messages. */
-export interface ObjectId {
-  /** Required. The parts of an OID path. The most significant parts of the path come first. */
-  objectIdPath?: IntegerList;
-}
-export const ObjectId = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    objectIdPath: S.optional(IntegerList),
-  }),
-).annotate({ identifier: "ObjectId" }) as any as S.Schema<ObjectId>;
-
-export type ObjectIdList = Array<ObjectId>;
-export const ObjectIdList = /*@__PURE__*/ S.Array(
-  ObjectId,
-) as any as S.Schema<ObjectIdList>;
-
 /** Describes a set of X.509 extensions that may be part of some certificate issuance controls. */
 export interface CertificateExtensionConstraints {
-  /** Optional. A set of named X.509 extensions. Will be combined with additional_extensions to determine the full set of X.509 extensions. */
-  knownExtensions?: CertificateExtensionConstraintsKnownExtensionsItemEnumList;
   /** Optional. A set of ObjectIds identifying custom X.509 extensions. Will be combined with known_extensions to determine the full set of X.509 extensions. */
   additionalExtensions?: ObjectIdList;
+  /** Optional. A set of named X.509 extensions. Will be combined with additional_extensions to determine the full set of X.509 extensions. */
+  knownExtensions?: CertificateExtensionConstraintsKnownExtensionsItemEnumList;
 }
 export const CertificateExtensionConstraints = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    additionalExtensions: S.optional(ObjectIdList),
     knownExtensions: S.optional(
       CertificateExtensionConstraintsKnownExtensionsItemEnumList,
     ),
-    additionalExtensions: S.optional(ObjectIdList),
   }),
 ).annotate({
   identifier: "CertificateExtensionConstraints",
 }) as any as S.Schema<CertificateExtensionConstraints>;
 
-/** KeyUsage.ExtendedKeyUsageOptions has fields that correspond to certain common OIDs that could be specified as an extended key usage value. */
-export interface ExtendedKeyUsageOptions {
-  /** Corresponds to OID 1.3.6.1.5.5.7.3.9. Officially described as "Signing OCSP responses". */
-  ocspSigning?: boolean;
-  /** Corresponds to OID 1.3.6.1.5.5.7.3.2. Officially described as "TLS WWW client authentication", though regularly used for non-WWW TLS. */
-  clientAuth?: boolean;
-  /** Corresponds to OID 1.3.6.1.5.5.7.3.4. Officially described as "Email protection". */
-  emailProtection?: boolean;
-  /** Corresponds to OID 1.3.6.1.5.5.7.3.8. Officially described as "Binding the hash of an object to a time". */
-  timeStamping?: boolean;
-  /** Corresponds to OID 1.3.6.1.5.5.7.3.3. Officially described as "Signing of downloadable executable code client authentication". */
-  codeSigning?: boolean;
-  /** Corresponds to OID 1.3.6.1.5.5.7.3.1. Officially described as "TLS WWW server authentication", though regularly used for non-WWW TLS. */
-  serverAuth?: boolean;
-}
-export const ExtendedKeyUsageOptions = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ocspSigning: S.optional(S.Boolean),
-    clientAuth: S.optional(S.Boolean),
-    emailProtection: S.optional(S.Boolean),
-    timeStamping: S.optional(S.Boolean),
-    codeSigning: S.optional(S.Boolean),
-    serverAuth: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "ExtendedKeyUsageOptions",
-}) as any as S.Schema<ExtendedKeyUsageOptions>;
-
-/** KeyUsage.KeyUsageOptions corresponds to the key usage values described in https://tools.ietf.org/html/rfc5280#section-4.2.1.3. */
-export interface KeyUsageOptions {
-  /** The key may be used in a key agreement protocol. */
-  keyAgreement?: boolean;
-  /** The key may be used to decipher only. */
-  decipherOnly?: boolean;
-  /** The key may be used for cryptographic commitments. Note that this may also be referred to as "non-repudiation". */
-  contentCommitment?: boolean;
-  /** The key may be used to sign certificates. */
-  certSign?: boolean;
-  /** The key may be used to encipher only. */
-  encipherOnly?: boolean;
-  /** The key may be used for digital signatures. */
-  digitalSignature?: boolean;
-  /** The key may be used sign certificate revocation lists. */
-  crlSign?: boolean;
-  /** The key may be used to encipher data. */
-  dataEncipherment?: boolean;
-  /** The key may be used to encipher other keys. */
-  keyEncipherment?: boolean;
-}
-export const KeyUsageOptions = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    keyAgreement: S.optional(S.Boolean),
-    decipherOnly: S.optional(S.Boolean),
-    contentCommitment: S.optional(S.Boolean),
-    certSign: S.optional(S.Boolean),
-    encipherOnly: S.optional(S.Boolean),
-    digitalSignature: S.optional(S.Boolean),
-    crlSign: S.optional(S.Boolean),
-    dataEncipherment: S.optional(S.Boolean),
-    keyEncipherment: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "KeyUsageOptions",
-}) as any as S.Schema<KeyUsageOptions>;
-
-/** A KeyUsage describes key usage values that may appear in an X.509 certificate. */
-export interface KeyUsage {
-  /** Used to describe extended key usages that are not listed in the KeyUsage.ExtendedKeyUsageOptions message. */
-  unknownExtendedKeyUsages?: ObjectIdList;
-  /** Detailed scenarios in which a key may be used. */
-  extendedKeyUsage?: ExtendedKeyUsageOptions;
-  /** Describes high-level ways in which a key may be used. */
-  baseKeyUsage?: KeyUsageOptions;
-}
-export const KeyUsage = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    unknownExtendedKeyUsages: S.optional(ObjectIdList),
-    extendedKeyUsage: S.optional(ExtendedKeyUsageOptions),
-    baseKeyUsage: S.optional(KeyUsageOptions),
-  }),
-).annotate({ identifier: "KeyUsage" }) as any as S.Schema<KeyUsage>;
-
-/** Describes the X.509 basic constraints extension, per [RFC 5280 section 4.2.1.9](https://tools.ietf.org/html/rfc5280#section-4.2.1.9) */
-export interface CaOptions {
-  /** Optional. Refers to the "CA" boolean field in the X.509 extension. When this value is missing, the basic constraints extension will be omitted from the certificate. */
-  isCa?: boolean;
-  /** Optional. Refers to the path length constraint field in the X.509 extension. For a CA certificate, this value describes the depth of subordinate CA certificates that are allowed. If this value is less than 0, the request will fail. If this value is missing, the max path length will be omitted from the certificate. */
-  maxIssuerPathLength?: number;
-}
-export const CaOptions = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    isCa: S.optional(S.Boolean),
-    maxIssuerPathLength: S.optional(S.Number),
-  }),
-).annotate({ identifier: "CaOptions" }) as any as S.Schema<CaOptions>;
-
-/** Describes the X.509 name constraints extension, per https://tools.ietf.org/html/rfc5280#section-4.2.1.10 */
-export interface NameConstraints {
-  /** Contains the permitted URIs that apply to the host part of the name. The value can be a hostname or a domain with a leading period (like `.example.com`) */
-  permittedUris?: StringList;
-  /** Contains the excluded email addresses. The value can be a particular email address, a hostname to indicate all email addresses on that host or a domain with a leading period (e.g. `.example.com`) to indicate all email addresses in that domain. */
-  excludedEmailAddresses?: StringList;
-  /** Contains the excluded URIs that apply to the host part of the name. The value can be a hostname or a domain with a leading period (like `.example.com`) */
-  excludedUris?: StringList;
-  /** Contains the permitted IP ranges. For IPv4 addresses, the ranges are expressed using CIDR notation as specified in RFC 4632. For IPv6 addresses, the ranges are expressed in similar encoding as IPv4 addresses. */
-  permittedIpRanges?: StringList;
-  /** Indicates whether or not the name constraints are marked critical. */
-  critical?: boolean;
-  /** Contains the permitted email addresses. The value can be a particular email address, a hostname to indicate all email addresses on that host or a domain with a leading period (e.g. `.example.com`) to indicate all email addresses in that domain. */
-  permittedEmailAddresses?: StringList;
-  /** Contains excluded DNS names. Any DNS name that can be constructed by simply adding zero or more labels to the left-hand side of the name satisfies the name constraint. For example, `example.com`, `www.example.com`, `www.sub.example.com` would satisfy `example.com` while `example1.com` does not. */
-  excludedDnsNames?: StringList;
-  /** Contains permitted DNS names. Any DNS name that can be constructed by simply adding zero or more labels to the left-hand side of the name satisfies the name constraint. For example, `example.com`, `www.example.com`, `www.sub.example.com` would satisfy `example.com` while `example1.com` does not. */
-  permittedDnsNames?: StringList;
-  /** Contains the excluded IP ranges. For IPv4 addresses, the ranges are expressed using CIDR notation as specified in RFC 4632. For IPv6 addresses, the ranges are expressed in similar encoding as IPv4 addresses. */
-  excludedIpRanges?: StringList;
-}
-export const NameConstraints = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    permittedUris: S.optional(StringList),
-    excludedEmailAddresses: S.optional(StringList),
-    excludedUris: S.optional(StringList),
-    permittedIpRanges: S.optional(StringList),
-    critical: S.optional(S.Boolean),
-    permittedEmailAddresses: S.optional(StringList),
-    excludedDnsNames: S.optional(StringList),
-    permittedDnsNames: S.optional(StringList),
-    excludedIpRanges: S.optional(StringList),
-  }),
-).annotate({
-  identifier: "NameConstraints",
-}) as any as S.Schema<NameConstraints>;
-
-/** An X509Extension specifies an X.509 extension, which may be used in different parts of X.509 objects like certificates, CSRs, and CRLs. */
-export interface X509Extension {
-  /** Required. The value of this X.509 extension. */
-  value?: string;
-  /** Required. The OID for this X.509 extension. */
-  objectId?: ObjectId;
-  /** Optional. Indicates whether or not this extension is critical (i.e., if the client does not know how to handle this extension, the client should consider this to be an error). */
-  critical?: boolean;
-}
-export const X509Extension = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(S.String),
-    objectId: S.optional(ObjectId),
-    critical: S.optional(S.Boolean),
-  }),
-).annotate({ identifier: "X509Extension" }) as any as S.Schema<X509Extension>;
-
-export type X509ExtensionList = Array<X509Extension>;
-export const X509ExtensionList = /*@__PURE__*/ S.Array(
-  X509Extension,
-) as any as S.Schema<X509ExtensionList>;
-
-/** An X509Parameters is used to describe certain fields of an X.509 certificate, such as the key usage fields, fields specific to CA certificates, certificate policy extensions and custom extensions. */
-export interface X509Parameters {
-  /** Optional. Indicates the intended use for keys that correspond to a certificate. */
-  keyUsage?: KeyUsage;
-  /** Optional. Describes the X.509 certificate policy object identifiers, per https://tools.ietf.org/html/rfc5280#section-4.2.1.4. */
-  policyIds?: ObjectIdList;
-  /** Optional. Describes Online Certificate Status Protocol (OCSP) endpoint addresses that appear in the "Authority Information Access" extension in the certificate. */
-  aiaOcspServers?: StringList;
-  /** Optional. Describes options in this X509Parameters that are relevant in a CA certificate. If not specified, a default basic constraints extension with `is_ca=false` will be added for leaf certificates. */
-  caOptions?: CaOptions;
-  /** Optional. Describes the X.509 name constraints extension. */
-  nameConstraints?: NameConstraints;
-  /** Optional. Describes custom X.509 extensions. */
-  additionalExtensions?: X509ExtensionList;
-}
-export const X509Parameters = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    keyUsage: S.optional(KeyUsage),
-    policyIds: S.optional(ObjectIdList),
-    aiaOcspServers: S.optional(StringList),
-    caOptions: S.optional(CaOptions),
-    nameConstraints: S.optional(NameConstraints),
-    additionalExtensions: S.optional(X509ExtensionList),
-  }),
-).annotate({ identifier: "X509Parameters" }) as any as S.Schema<X509Parameters>;
-
 /** Defines controls over all certificate issuance within a CaPool. */
 export interface IssuancePolicy {
-  /** Optional. If set, all certificates issued from this CaPool will be backdated by this duration. The 'not_before_time' will be the issuance time minus this backdate_duration, and the 'not_after_time' will be adjusted to preserve the requested lifetime. The maximum duration that a certificate can be backdated with these options is 48 hours in the past. This option cannot be set if allow_requester_specified_not_before_time is set. */
-  backdateDuration?: string;
-  /** Optional. Describes constraints on identities that may appear in Certificates issued through this CaPool. If this is omitted, then this CaPool will not add restrictions on a certificate's identity. */
-  identityConstraints?: CertificateIdentityConstraints;
   /** Optional. If any AllowedKeyType is specified, then the certificate request's public key must match one of the key types listed here. Otherwise, any key may be used. */
   allowedKeyTypes?: AllowedKeyTypeList;
-  /** Optional. If specified, then only methods allowed in the IssuanceModes may be used to issue Certificates. */
-  allowedIssuanceModes?: IssuanceModes;
-  /** Optional. Describes the set of X.509 extensions that may appear in a Certificate issued through this CaPool. If a certificate request sets extensions that don't appear in the passthrough_extensions, those extensions will be dropped. If a certificate request uses a CertificateTemplate with predefined_values that don't appear here, the certificate issuance request will fail. If this is omitted, then this CaPool will not add restrictions on a certificate's X.509 extensions. These constraints do not apply to X.509 extensions set in this CaPool's baseline_values. */
-  passthroughExtensions?: CertificateExtensionConstraints;
   /** Optional. The maximum lifetime allowed for issued Certificates. Note that if the issuing CertificateAuthority expires before a Certificate resource's requested maximum_lifetime, the effective lifetime will be explicitly truncated to match it. */
   maximumLifetime?: string;
   /** Optional. A set of X.509 values that will be applied to all certificates issued through this CaPool. If a certificate request includes conflicting values for the same properties, they will be overwritten by the values defined here. If a certificate request uses a CertificateTemplate that defines conflicting predefined_values for the same properties, the certificate issuance request will fail. */
   baselineValues?: X509Parameters;
   /** Optional. If set to true, allows requesters to specify the requested_not_before_time field when creating a Certificate. Certificates requested with this option enabled will have a 'not_before_time' equal to the value specified in the request. The 'not_after_time' will be adjusted to preserve the requested lifetime. The maximum time that a certificate can be backdated with these options is 48 hours in the past. This option cannot be set if backdate_duration is set. */
   allowRequesterSpecifiedNotBeforeTime?: boolean;
+  /** Optional. Describes constraints on identities that may appear in Certificates issued through this CaPool. If this is omitted, then this CaPool will not add restrictions on a certificate's identity. */
+  identityConstraints?: CertificateIdentityConstraints;
+  /** Optional. If specified, then only methods allowed in the IssuanceModes may be used to issue Certificates. */
+  allowedIssuanceModes?: IssuanceModes;
+  /** Optional. If set, all certificates issued from this CaPool will be backdated by this duration. The 'not_before_time' will be the issuance time minus this backdate_duration, and the 'not_after_time' will be adjusted to preserve the requested lifetime. The maximum duration that a certificate can be backdated with these options is 48 hours in the past. This option cannot be set if allow_requester_specified_not_before_time is set. */
+  backdateDuration?: string;
+  /** Optional. Describes the set of X.509 extensions that may appear in a Certificate issued through this CaPool. If a certificate request sets extensions that don't appear in the passthrough_extensions, those extensions will be dropped. If a certificate request uses a CertificateTemplate with predefined_values that don't appear here, the certificate issuance request will fail. If this is omitted, then this CaPool will not add restrictions on a certificate's X.509 extensions. These constraints do not apply to X.509 extensions set in this CaPool's baseline_values. */
+  passthroughExtensions?: CertificateExtensionConstraints;
 }
 export const IssuancePolicy = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    backdateDuration: S.optional(S.String),
-    identityConstraints: S.optional(CertificateIdentityConstraints),
     allowedKeyTypes: S.optional(AllowedKeyTypeList),
-    allowedIssuanceModes: S.optional(IssuanceModes),
-    passthroughExtensions: S.optional(CertificateExtensionConstraints),
     maximumLifetime: S.optional(S.String),
     baselineValues: S.optional(X509Parameters),
     allowRequesterSpecifiedNotBeforeTime: S.optional(S.Boolean),
+    identityConstraints: S.optional(CertificateIdentityConstraints),
+    allowedIssuanceModes: S.optional(IssuanceModes),
+    backdateDuration: S.optional(S.String),
+    passthroughExtensions: S.optional(CertificateExtensionConstraints),
   }),
 ).annotate({ identifier: "IssuancePolicy" }) as any as S.Schema<IssuancePolicy>;
-
-export type PublishingOptionsEncodingFormatEnum =
-  | "ENCODING_FORMAT_UNSPECIFIED"
-  | "PEM"
-  | "DER";
-export const PublishingOptionsEncodingFormatEnum = /*@__PURE__*/ S.String;
-
-/** Options relating to the publication of each CertificateAuthority's CA certificate and CRLs and their inclusion as extensions in issued Certificates. The options set here apply to certificates issued by any CertificateAuthority in the CaPool. */
-export interface PublishingOptions {
-  /** Optional. When true, publishes each CertificateAuthority's CRL and includes its URL in the "CRL Distribution Points" X.509 extension in all issued Certificates. If this is false, CRLs will not be published and the corresponding X.509 extension will not be written in issued certificates. CRLs will expire 7 days from their creation. However, we will rebuild daily. CRLs are also rebuilt shortly after a certificate is revoked. */
-  publishCrl?: boolean;
-  /** Optional. Specifies the encoding format of each CertificateAuthority resource's CA certificate and CRLs. If this is omitted, CA certificates and CRLs will be published in PEM. */
-  encodingFormat?: PublishingOptionsEncodingFormatEnum | (string & {});
-  /** Optional. When true, publishes each CertificateAuthority's CA certificate and includes its URL in the "Authority Information Access" X.509 extension in all issued Certificates. If this is false, the CA certificate will not be published and the corresponding X.509 extension will not be written in issued certificates. */
-  publishCaCert?: boolean;
-}
-export const PublishingOptions = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    publishCrl: S.optional(S.Boolean),
-    encodingFormat: S.optional(PublishingOptionsEncodingFormatEnum),
-    publishCaCert: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "PublishingOptions",
-}) as any as S.Schema<PublishingOptions>;
-
-export type CaPoolTierEnum = "TIER_UNSPECIFIED" | "ENTERPRISE" | "DEVOPS";
-export const CaPoolTierEnum = /*@__PURE__*/ S.String;
 
 /** The configuration used for encrypting data at rest. */
 export interface EncryptionSpec {
@@ -649,46 +649,46 @@ export const EncryptionSpec = /*@__PURE__*/ S.suspend(() =>
 
 /** A CaPool represents a group of CertificateAuthorities that form a trust anchor. A CaPool can be used to manage issuance policies for one or more CertificateAuthority resources and to rotate CA certificates in and out of the trust anchor. */
 export interface CaPool {
-  /** Optional. Labels with user-defined metadata. */
-  labels?: StringMap;
-  /** Optional. The IssuancePolicy to control how Certificates will be issued from this CaPool. */
-  issuancePolicy?: IssuancePolicy;
-  /** Identifier. The resource name for this CaPool in the format `projects/*\/locations/*\/caPools/*`. */
-  name?: string;
   /** Optional. The PublishingOptions to follow when issuing Certificates from any CertificateAuthority in this CaPool. */
   publishingOptions?: PublishingOptions;
   /** Required. Immutable. The Tier of this CaPool. */
   tier?: CaPoolTierEnum | (string & {});
+  /** Identifier. The resource name for this CaPool in the format `projects/*\/locations/*\/caPools/*`. */
+  name?: string;
+  /** Optional. Labels with user-defined metadata. */
+  labels?: StringMap;
+  /** Optional. The IssuancePolicy to control how Certificates will be issued from this CaPool. */
+  issuancePolicy?: IssuancePolicy;
   /** Optional. When EncryptionSpec is provided, the Subject, SubjectAltNames, and the PEM-encoded certificate fields will be encrypted at rest. */
   encryptionSpec?: EncryptionSpec;
 }
 export const CaPool = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    labels: S.optional(StringMap),
-    issuancePolicy: S.optional(IssuancePolicy),
-    name: S.optional(S.String),
     publishingOptions: S.optional(PublishingOptions),
     tier: S.optional(CaPoolTierEnum),
+    name: S.optional(S.String),
+    labels: S.optional(StringMap),
+    issuancePolicy: S.optional(IssuancePolicy),
     encryptionSpec: S.optional(EncryptionSpec),
   }),
 ).annotate({ identifier: "CaPool" }) as any as S.Schema<CaPool>;
 
 export interface CreateProjectsLocationsCaPoolsRequest {
-  /** Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000). */
-  requestId?: string;
   /** Required. The resource name of the location associated with the CaPool, in the format `projects/*\/locations/*`. */
   parent: string;
   /** Required. It must be unique within a location and match the regular expression `[a-zA-Z0-9_-]{1,63}` */
   caPoolId?: string;
+  /** Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000). */
+  requestId?: string;
   /** Request body */
   body?: CaPool;
 }
 export const CreateProjectsLocationsCaPoolsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      requestId: S.optional(S.String.pipe(T.Query())),
       parent: S.String.pipe(T.Label()),
       caPoolId: S.optional(S.String.pipe(T.Query())),
+      requestId: S.optional(S.String.pipe(T.Query())),
       body: S.optional(CaPool.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -701,76 +701,16 @@ export const CreateProjectsLocationsCaPoolsRequest = /*@__PURE__*/ S.suspend(
   identifier: "CreateProjectsLocationsCaPoolsRequest",
 }) as any as S.Schema<CreateProjectsLocationsCaPoolsRequest>;
 
-export type CertificateAuthorityTierEnum =
-  | "TIER_UNSPECIFIED"
-  | "ENTERPRISE"
-  | "DEVOPS";
-export const CertificateAuthorityTierEnum = /*@__PURE__*/ S.String;
-
-export type CertificateAuthorityStateEnum =
-  | "STATE_UNSPECIFIED"
-  | "ENABLED"
-  | "DISABLED"
-  | "STAGED"
-  | "AWAITING_USER_ACTIVATION"
-  | "DELETED";
-export const CertificateAuthorityStateEnum = /*@__PURE__*/ S.String;
-
-/** User-defined URLs for accessing content published by this CertificateAuthority. */
-export interface UserDefinedAccessUrls {
-  /** Optional. A list of URLs where to obtain CRL information, i.e. the DistributionPoint.fullName described by https://tools.ietf.org/html/rfc5280#section-4.2.1.13. If specified, the default Cloud Storage URLs will be omitted. */
-  crlAccessUrls?: StringList;
-  /** Optional. A list of URLs where the issuer CA certificate may be downloaded, which appears in the "Authority Information Access" extension in the certificate. If specified, the default Cloud Storage URLs will be omitted. */
-  aiaIssuingCertificateUrls?: StringList;
+/** A KeyId identifies a specific public key, usually by hashing the public key. */
+export interface KeyId {
+  /** Optional. The value of this KeyId encoded in lowercase hexadecimal. This is most likely the 160 bit SHA-1 hash of the public key. */
+  keyId?: string;
 }
-export const UserDefinedAccessUrls = /*@__PURE__*/ S.suspend(() =>
+export const KeyId = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    crlAccessUrls: S.optional(StringList),
-    aiaIssuingCertificateUrls: S.optional(StringList),
+    keyId: S.optional(S.String),
   }),
-).annotate({
-  identifier: "UserDefinedAccessUrls",
-}) as any as S.Schema<UserDefinedAccessUrls>;
-
-export type KeyVersionSpecAlgorithmEnum =
-  | "SIGN_HASH_ALGORITHM_UNSPECIFIED"
-  | "RSA_PSS_2048_SHA256"
-  | "RSA_PSS_3072_SHA256"
-  | "RSA_PSS_4096_SHA256"
-  | "RSA_PKCS1_2048_SHA256"
-  | "RSA_PKCS1_3072_SHA256"
-  | "RSA_PKCS1_4096_SHA256"
-  | "EC_P256_SHA256"
-  | "EC_P384_SHA384";
-export const KeyVersionSpecAlgorithmEnum = /*@__PURE__*/ S.String;
-
-/** A Cloud KMS key configuration that a CertificateAuthority will use. */
-export interface KeyVersionSpec {
-  /** The algorithm to use for creating a managed Cloud KMS key for a for a simplified experience. All managed keys will be have their ProtectionLevel as `HSM`. */
-  algorithm?: KeyVersionSpecAlgorithmEnum | (string & {});
-  /** The resource name for an existing Cloud KMS CryptoKeyVersion in the format `projects/*\/locations/*\/keyRings/*\/cryptoKeys/*\/cryptoKeyVersions/*`. This option enables full flexibility in the key's capabilities and properties. */
-  cloudKmsKeyVersion?: string;
-}
-export const KeyVersionSpec = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    algorithm: S.optional(KeyVersionSpecAlgorithmEnum),
-    cloudKmsKeyVersion: S.optional(S.String),
-  }),
-).annotate({ identifier: "KeyVersionSpec" }) as any as S.Schema<KeyVersionSpec>;
-
-/** URLs where a CertificateAuthority will publish content. */
-export interface AccessUrls {
-  /** The URL where this CertificateAuthority's CA certificate is published. This will only be set for CAs that have been activated. */
-  caCertificateAccessUrl?: string;
-  /** The URLs where this CertificateAuthority's CRLs are published. This will only be set for CAs that have been activated. */
-  crlAccessUrls?: StringList;
-}
-export const AccessUrls = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    caCertificateAccessUrl: S.optional(S.String),
-    crlAccessUrls: S.optional(StringList),
-  }),
-).annotate({ identifier: "AccessUrls" }) as any as S.Schema<AccessUrls>;
+).annotate({ identifier: "KeyId" }) as any as S.Schema<KeyId>;
 
 export type AttributeTypeAndValueTypeEnum =
   | "ATTRIBUTE_TYPE_UNSPECIFIED"
@@ -786,18 +726,18 @@ export const AttributeTypeAndValueTypeEnum = /*@__PURE__*/ S.String;
 
 /** AttributeTypeAndValue specifies an attribute type and value. It can use either a OID or enum value to specify the attribute type. */
 export interface AttributeTypeAndValue {
+  /** The attribute type of the attribute and value pair. */
+  type?: AttributeTypeAndValueTypeEnum | (string & {});
   /** The value for the attribute type. */
   value?: string;
   /** Object ID for an attribute type of an attribute and value pair. */
   objectId?: ObjectId;
-  /** The attribute type of the attribute and value pair. */
-  type?: AttributeTypeAndValueTypeEnum | (string & {});
 }
 export const AttributeTypeAndValue = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    type: S.optional(AttributeTypeAndValueTypeEnum),
     value: S.optional(S.String),
     objectId: S.optional(ObjectId),
-    type: S.optional(AttributeTypeAndValueTypeEnum),
   }),
 ).annotate({
   identifier: "AttributeTypeAndValue",
@@ -830,162 +770,85 @@ export const RelativeDistinguishedNameList = /*@__PURE__*/ S.Array(
 export interface Subject {
   /** The locality or city of the subject. */
   locality?: string;
-  /** The postal code of the subject. */
-  postalCode?: string;
-  /** The organizational_unit of the subject. */
-  organizationalUnit?: string;
-  /** The organization of the subject. */
-  organization?: string;
-  /** The street address of the subject. */
-  streetAddress?: string;
   /** The country code of the subject. */
   countryCode?: string;
+  /** The organization of the subject. */
+  organization?: string;
+  /** The organizational_unit of the subject. */
+  organizationalUnit?: string;
   /** This field can be used in place of the named subject fields. */
   rdnSequence?: RelativeDistinguishedNameList;
-  /** The province, territory, or regional state of the subject. */
-  province?: string;
   /** The "common name" of the subject. */
   commonName?: string;
+  /** The province, territory, or regional state of the subject. */
+  province?: string;
+  /** The postal code of the subject. */
+  postalCode?: string;
+  /** The street address of the subject. */
+  streetAddress?: string;
 }
 export const Subject = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     locality: S.optional(S.String),
-    postalCode: S.optional(S.String),
-    organizationalUnit: S.optional(S.String),
-    organization: S.optional(S.String),
-    streetAddress: S.optional(S.String),
     countryCode: S.optional(S.String),
+    organization: S.optional(S.String),
+    organizationalUnit: S.optional(S.String),
     rdnSequence: S.optional(RelativeDistinguishedNameList),
-    province: S.optional(S.String),
     commonName: S.optional(S.String),
+    province: S.optional(S.String),
+    postalCode: S.optional(S.String),
+    streetAddress: S.optional(S.String),
   }),
 ).annotate({ identifier: "Subject" }) as any as S.Schema<Subject>;
 
 /** SubjectAltNames corresponds to a more modern way of listing what the asserted identity is in a certificate (i.e., compared to the "common name" in the distinguished name). */
 export interface SubjectAltNames {
-  /** Contains additional subject alternative name values. For each custom_san, the `value` field must contain an ASN.1 encoded UTF8String. */
-  customSans?: X509ExtensionList;
-  /** Contains only valid 32-bit IPv4 addresses or RFC 4291 IPv6 addresses. */
-  ipAddresses?: StringList;
   /** Contains only valid RFC 2822 E-mail addresses. */
   emailAddresses?: StringList;
   /** Contains only valid RFC 3986 URIs. */
   uris?: StringList;
+  /** Contains additional subject alternative name values. For each custom_san, the `value` field must contain an ASN.1 encoded UTF8String. */
+  customSans?: X509ExtensionList;
   /** Contains only valid, fully-qualified host names. */
   dnsNames?: StringList;
+  /** Contains only valid 32-bit IPv4 addresses or RFC 4291 IPv6 addresses. */
+  ipAddresses?: StringList;
 }
 export const SubjectAltNames = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    customSans: S.optional(X509ExtensionList),
-    ipAddresses: S.optional(StringList),
     emailAddresses: S.optional(StringList),
     uris: S.optional(StringList),
+    customSans: S.optional(X509ExtensionList),
     dnsNames: S.optional(StringList),
+    ipAddresses: S.optional(StringList),
   }),
 ).annotate({
   identifier: "SubjectAltNames",
 }) as any as S.Schema<SubjectAltNames>;
 
-/** These values are used to create the distinguished name and subject alternative name fields in an X.509 certificate. */
-export interface SubjectConfig {
-  /** Optional. Contains distinguished name fields such as the common name, location and organization. */
-  subject?: Subject;
-  /** Optional. The subject alternative name fields. */
-  subjectAltName?: SubjectAltNames;
-}
-export const SubjectConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subject: S.optional(Subject),
-    subjectAltName: S.optional(SubjectAltNames),
-  }),
-).annotate({ identifier: "SubjectConfig" }) as any as S.Schema<SubjectConfig>;
-
-export type PublicKeyFormatEnum = "KEY_FORMAT_UNSPECIFIED" | "PEM";
-export const PublicKeyFormatEnum = /*@__PURE__*/ S.String;
-
-/** A PublicKey describes a public key. */
-export interface PublicKey {
-  /** Required. A public key. The padding and encoding must match with the `KeyFormat` value specified for the `format` field. */
-  key?: string;
-  /** Required. The format of the public key. */
-  format?: PublicKeyFormatEnum | (string & {});
-}
-export const PublicKey = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    key: S.optional(S.String),
-    format: S.optional(PublicKeyFormatEnum),
-  }),
-).annotate({ identifier: "PublicKey" }) as any as S.Schema<PublicKey>;
-
-/** A KeyId identifies a specific public key, usually by hashing the public key. */
-export interface CertificateConfigKeyId {
-  /** Required. The value of this KeyId encoded in lowercase hexadecimal. This is most likely the 160 bit SHA-1 hash of the public key. */
-  keyId?: string;
-}
-export const CertificateConfigKeyId = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    keyId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CertificateConfigKeyId",
-}) as any as S.Schema<CertificateConfigKeyId>;
-
-/** A CertificateConfig describes an X.509 certificate or CSR that is to be created, as an alternative to using ASN.1. */
-export interface CertificateConfig {
-  /** Required. Describes how some of the technical X.509 fields in a certificate should be populated. */
-  x509Config?: X509Parameters;
-  /** Required. Specifies some of the values in a certificate that are related to the subject. */
-  subjectConfig?: SubjectConfig;
-  /** Optional. The public key that corresponds to this config. This is, for example, used when issuing Certificates, but not when creating a self-signed CertificateAuthority or CertificateAuthority CSR. */
-  publicKey?: PublicKey;
-  /** Optional. When specified this provides a custom SKI to be used in the certificate. This should only be used to maintain a SKI of an existing CA originally created outside CA service, which was not generated using method (1) described in RFC 5280 section 4.2.1.2. */
-  subjectKeyId?: CertificateConfigKeyId;
-}
-export const CertificateConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    x509Config: S.optional(X509Parameters),
-    subjectConfig: S.optional(SubjectConfig),
-    publicKey: S.optional(PublicKey),
-    subjectKeyId: S.optional(CertificateConfigKeyId),
-  }),
-).annotate({
-  identifier: "CertificateConfig",
-}) as any as S.Schema<CertificateConfig>;
-
-/** A KeyId identifies a specific public key, usually by hashing the public key. */
-export interface KeyId {
-  /** Optional. The value of this KeyId encoded in lowercase hexadecimal. This is most likely the 160 bit SHA-1 hash of the public key. */
-  keyId?: string;
-}
-export const KeyId = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    keyId: S.optional(S.String),
-  }),
-).annotate({ identifier: "KeyId" }) as any as S.Schema<KeyId>;
-
 /** These values describe fields in an issued X.509 certificate such as the distinguished name, subject alternative names, serial number, and lifetime. */
 export interface SubjectDescription {
-  /** The serial number encoded in lowercase hexadecimal. */
-  hexSerialNumber?: string;
   /** The time at which the certificate becomes valid. */
   notBeforeTime?: string;
-  /** The subject alternative name fields. */
-  subjectAltName?: SubjectAltNames;
-  /** For convenience, the actual lifetime of an issued certificate. */
-  lifetime?: string;
-  /** The time after which the certificate is expired. Per RFC 5280, the validity period for a certificate is the period of time from not_before_time through not_after_time, inclusive. Corresponds to 'not_before_time' + 'lifetime' - 1 second. */
-  notAfterTime?: string;
   /** Contains distinguished name fields such as the common name, location and / organization. */
   subject?: Subject;
+  /** The time after which the certificate is expired. Per RFC 5280, the validity period for a certificate is the period of time from not_before_time through not_after_time, inclusive. Corresponds to 'not_before_time' + 'lifetime' - 1 second. */
+  notAfterTime?: string;
+  /** The serial number encoded in lowercase hexadecimal. */
+  hexSerialNumber?: string;
+  /** For convenience, the actual lifetime of an issued certificate. */
+  lifetime?: string;
+  /** The subject alternative name fields. */
+  subjectAltName?: SubjectAltNames;
 }
 export const SubjectDescription = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    hexSerialNumber: S.optional(S.String),
     notBeforeTime: S.optional(S.String),
-    subjectAltName: S.optional(SubjectAltNames),
-    lifetime: S.optional(S.String),
-    notAfterTime: S.optional(S.String),
     subject: S.optional(Subject),
+    notAfterTime: S.optional(S.String),
+    hexSerialNumber: S.optional(S.String),
+    lifetime: S.optional(S.String),
+    subjectAltName: S.optional(SubjectAltNames),
   }),
 ).annotate({
   identifier: "SubjectDescription",
@@ -1004,38 +867,55 @@ export const CertificateFingerprint = /*@__PURE__*/ S.suspend(() =>
   identifier: "CertificateFingerprint",
 }) as any as S.Schema<CertificateFingerprint>;
 
+export type PublicKeyFormatEnum = "KEY_FORMAT_UNSPECIFIED" | "PEM";
+export const PublicKeyFormatEnum = /*@__PURE__*/ S.String;
+
+/** A PublicKey describes a public key. */
+export interface PublicKey {
+  /** Required. The format of the public key. */
+  format?: PublicKeyFormatEnum | (string & {});
+  /** Required. A public key. The padding and encoding must match with the `KeyFormat` value specified for the `format` field. */
+  key?: string;
+}
+export const PublicKey = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    format: S.optional(PublicKeyFormatEnum),
+    key: S.optional(S.String),
+  }),
+).annotate({ identifier: "PublicKey" }) as any as S.Schema<PublicKey>;
+
 /** A CertificateDescription describes an X.509 certificate or CSR that has been issued, as an alternative to using ASN.1 / X.509. */
 export interface CertificateDescription {
+  /** Describes lists of issuer CA certificate URLs that appear in the "Authority Information Access" extension in the certificate. */
+  aiaIssuingCertificateUrls?: StringList;
+  /** Describes some of the technical X.509 fields in a certificate. */
+  x509Description?: X509Parameters;
+  /** Provides a means of identifiying certificates that contain a particular public key, per https://tools.ietf.org/html/rfc5280#section-4.2.1.2. */
+  subjectKeyId?: KeyId;
+  /** Describes some of the values in a certificate that are related to the subject and lifetime. */
+  subjectDescription?: SubjectDescription;
+  /** The hash of the x.509 certificate. */
+  certFingerprint?: CertificateFingerprint;
+  /** Describes a list of locations to obtain CRL information, i.e. the DistributionPoint.fullName described by https://tools.ietf.org/html/rfc5280#section-4.2.1.13 */
+  crlDistributionPoints?: StringList;
   /** Identifies the subject_key_id of the parent certificate, per https://tools.ietf.org/html/rfc5280#section-4.2.1.1 */
   authorityKeyId?: KeyId;
   /** The hash of the pre-signed certificate, which will be signed by the CA. Corresponds to the TBS Certificate in https://tools.ietf.org/html/rfc5280#section-4.1.2. The field will always be populated. */
   tbsCertificateDigest?: string;
-  /** Describes some of the values in a certificate that are related to the subject and lifetime. */
-  subjectDescription?: SubjectDescription;
-  /** Describes some of the technical X.509 fields in a certificate. */
-  x509Description?: X509Parameters;
-  /** Describes lists of issuer CA certificate URLs that appear in the "Authority Information Access" extension in the certificate. */
-  aiaIssuingCertificateUrls?: StringList;
-  /** Provides a means of identifiying certificates that contain a particular public key, per https://tools.ietf.org/html/rfc5280#section-4.2.1.2. */
-  subjectKeyId?: KeyId;
-  /** The hash of the x.509 certificate. */
-  certFingerprint?: CertificateFingerprint;
   /** The public key that corresponds to an issued certificate. */
   publicKey?: PublicKey;
-  /** Describes a list of locations to obtain CRL information, i.e. the DistributionPoint.fullName described by https://tools.ietf.org/html/rfc5280#section-4.2.1.13 */
-  crlDistributionPoints?: StringList;
 }
 export const CertificateDescription = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    aiaIssuingCertificateUrls: S.optional(StringList),
+    x509Description: S.optional(X509Parameters),
+    subjectKeyId: S.optional(KeyId),
+    subjectDescription: S.optional(SubjectDescription),
+    certFingerprint: S.optional(CertificateFingerprint),
+    crlDistributionPoints: S.optional(StringList),
     authorityKeyId: S.optional(KeyId),
     tbsCertificateDigest: S.optional(S.String),
-    subjectDescription: S.optional(SubjectDescription),
-    x509Description: S.optional(X509Parameters),
-    aiaIssuingCertificateUrls: S.optional(StringList),
-    subjectKeyId: S.optional(KeyId),
-    certFingerprint: S.optional(CertificateFingerprint),
     publicKey: S.optional(PublicKey),
-    crlDistributionPoints: S.optional(StringList),
   }),
 ).annotate({
   identifier: "CertificateDescription",
@@ -1046,98 +926,218 @@ export const CertificateDescriptionList = /*@__PURE__*/ S.Array(
   CertificateDescription,
 ) as any as S.Schema<CertificateDescriptionList>;
 
+export type KeyVersionSpecAlgorithmEnum =
+  | "SIGN_HASH_ALGORITHM_UNSPECIFIED"
+  | "RSA_PSS_2048_SHA256"
+  | "RSA_PSS_3072_SHA256"
+  | "RSA_PSS_4096_SHA256"
+  | "RSA_PKCS1_2048_SHA256"
+  | "RSA_PKCS1_3072_SHA256"
+  | "RSA_PKCS1_4096_SHA256"
+  | "EC_P256_SHA256"
+  | "EC_P384_SHA384";
+export const KeyVersionSpecAlgorithmEnum = /*@__PURE__*/ S.String;
+
+/** A Cloud KMS key configuration that a CertificateAuthority will use. */
+export interface KeyVersionSpec {
+  /** The algorithm to use for creating a managed Cloud KMS key for a for a simplified experience. All managed keys will be have their ProtectionLevel as `HSM`. */
+  algorithm?: KeyVersionSpecAlgorithmEnum | (string & {});
+  /** The resource name for an existing Cloud KMS CryptoKeyVersion in the format `projects/*\/locations/*\/keyRings/*\/cryptoKeys/*\/cryptoKeyVersions/*`. This option enables full flexibility in the key's capabilities and properties. */
+  cloudKmsKeyVersion?: string;
+}
+export const KeyVersionSpec = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    algorithm: S.optional(KeyVersionSpecAlgorithmEnum),
+    cloudKmsKeyVersion: S.optional(S.String),
+  }),
+).annotate({ identifier: "KeyVersionSpec" }) as any as S.Schema<KeyVersionSpec>;
+
 export type CertificateAuthorityTypeEnum =
   | "TYPE_UNSPECIFIED"
   | "SELF_SIGNED"
   | "SUBORDINATE";
 export const CertificateAuthorityTypeEnum = /*@__PURE__*/ S.String;
 
+/** User-defined URLs for accessing content published by this CertificateAuthority. */
+export interface UserDefinedAccessUrls {
+  /** Optional. A list of URLs where the issuer CA certificate may be downloaded, which appears in the "Authority Information Access" extension in the certificate. If specified, the default Cloud Storage URLs will be omitted. */
+  aiaIssuingCertificateUrls?: StringList;
+  /** Optional. A list of URLs where to obtain CRL information, i.e. the DistributionPoint.fullName described by https://tools.ietf.org/html/rfc5280#section-4.2.1.13. If specified, the default Cloud Storage URLs will be omitted. */
+  crlAccessUrls?: StringList;
+}
+export const UserDefinedAccessUrls = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    aiaIssuingCertificateUrls: S.optional(StringList),
+    crlAccessUrls: S.optional(StringList),
+  }),
+).annotate({
+  identifier: "UserDefinedAccessUrls",
+}) as any as S.Schema<UserDefinedAccessUrls>;
+
+export type CertificateAuthorityTierEnum =
+  | "TIER_UNSPECIFIED"
+  | "ENTERPRISE"
+  | "DEVOPS";
+export const CertificateAuthorityTierEnum = /*@__PURE__*/ S.String;
+
+/** A KeyId identifies a specific public key, usually by hashing the public key. */
+export interface CertificateConfigKeyId {
+  /** Required. The value of this KeyId encoded in lowercase hexadecimal. This is most likely the 160 bit SHA-1 hash of the public key. */
+  keyId?: string;
+}
+export const CertificateConfigKeyId = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    keyId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CertificateConfigKeyId",
+}) as any as S.Schema<CertificateConfigKeyId>;
+
+/** These values are used to create the distinguished name and subject alternative name fields in an X.509 certificate. */
+export interface SubjectConfig {
+  /** Optional. Contains distinguished name fields such as the common name, location and organization. */
+  subject?: Subject;
+  /** Optional. The subject alternative name fields. */
+  subjectAltName?: SubjectAltNames;
+}
+export const SubjectConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subject: S.optional(Subject),
+    subjectAltName: S.optional(SubjectAltNames),
+  }),
+).annotate({ identifier: "SubjectConfig" }) as any as S.Schema<SubjectConfig>;
+
+/** A CertificateConfig describes an X.509 certificate or CSR that is to be created, as an alternative to using ASN.1. */
+export interface CertificateConfig {
+  /** Optional. The public key that corresponds to this config. This is, for example, used when issuing Certificates, but not when creating a self-signed CertificateAuthority or CertificateAuthority CSR. */
+  publicKey?: PublicKey;
+  /** Optional. When specified this provides a custom SKI to be used in the certificate. This should only be used to maintain a SKI of an existing CA originally created outside CA service, which was not generated using method (1) described in RFC 5280 section 4.2.1.2. */
+  subjectKeyId?: CertificateConfigKeyId;
+  /** Required. Specifies some of the values in a certificate that are related to the subject. */
+  subjectConfig?: SubjectConfig;
+  /** Required. Describes how some of the technical X.509 fields in a certificate should be populated. */
+  x509Config?: X509Parameters;
+}
+export const CertificateConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    publicKey: S.optional(PublicKey),
+    subjectKeyId: S.optional(CertificateConfigKeyId),
+    subjectConfig: S.optional(SubjectConfig),
+    x509Config: S.optional(X509Parameters),
+  }),
+).annotate({
+  identifier: "CertificateConfig",
+}) as any as S.Schema<CertificateConfig>;
+
+export type CertificateAuthorityStateEnum =
+  | "STATE_UNSPECIFIED"
+  | "ENABLED"
+  | "DISABLED"
+  | "STAGED"
+  | "AWAITING_USER_ACTIVATION"
+  | "DELETED";
+export const CertificateAuthorityStateEnum = /*@__PURE__*/ S.String;
+
+/** URLs where a CertificateAuthority will publish content. */
+export interface AccessUrls {
+  /** The URLs where this CertificateAuthority's CRLs are published. This will only be set for CAs that have been activated. */
+  crlAccessUrls?: StringList;
+  /** The URL where this CertificateAuthority's CA certificate is published. This will only be set for CAs that have been activated. */
+  caCertificateAccessUrl?: string;
+}
+export const AccessUrls = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    crlAccessUrls: S.optional(StringList),
+    caCertificateAccessUrl: S.optional(S.String),
+  }),
+).annotate({ identifier: "AccessUrls" }) as any as S.Schema<AccessUrls>;
+
 /** A CertificateAuthority represents an individual Certificate Authority. A CertificateAuthority can be used to create Certificates. */
 export interface CertificateAuthority {
-  /** Output only. Reserved for future use. */
-  satisfiesPzs?: boolean;
-  /** Output only. This CertificateAuthority's certificate chain, including the current CertificateAuthority's certificate. Ordered such that the root issuer is the final element (consistent with RFC 5246). For a self-signed CA, this will only list the current CertificateAuthority's certificate. */
-  pemCaCertificates?: StringList;
-  /** Output only. The CaPool.Tier of the CaPool that includes this CertificateAuthority. */
-  tier?: CertificateAuthorityTierEnum | (string & {});
-  /** Output only. The time at which this CertificateAuthority was soft deleted, if it is in the DELETED state. */
-  deleteTime?: string;
-  /** Output only. The State for this CertificateAuthority. */
-  state?: CertificateAuthorityStateEnum | (string & {});
-  /** Output only. Reserved for future use. */
-  satisfiesPzi?: boolean;
+  /** Optional. Labels with user-defined metadata. */
+  labels?: StringMap;
   /** Required. Immutable. The desired lifetime of the CA certificate. Used to create the "not_before_time" and "not_after_time" fields inside an X.509 certificate. */
   lifetime?: string;
-  /** Optional. User-defined URLs for CA certificate and CRLs. The service does not publish content to these URLs. It is up to the user to mirror content to these URLs. */
-  userDefinedAccessUrls?: UserDefinedAccessUrls;
+  /** Output only. A structured description of this CertificateAuthority's CA certificate and its issuers. Ordered as self-to-root. */
+  caCertificateDescriptions?: CertificateDescriptionList;
+  /** Output only. This CertificateAuthority's certificate chain, including the current CertificateAuthority's certificate. Ordered such that the root issuer is the final element (consistent with RFC 5246). For a self-signed CA, this will only list the current CertificateAuthority's certificate. */
+  pemCaCertificates?: StringList;
   /** Output only. The time at which this CertificateAuthority was last updated. */
   updateTime?: string;
   /** Immutable. The name of a Cloud Storage bucket where this CertificateAuthority will publish content, such as the CA certificate and CRLs. This must be a bucket name, without any prefixes (such as `gs://`) or suffixes (such as `.googleapis.com`). For example, to use a bucket named `my-bucket`, you would simply specify `my-bucket`. If not specified, a managed bucket will be created. */
   gcsBucket?: string;
-  /** Identifier. The resource name for this CertificateAuthority in the format `projects/*\/locations/*\/caPools/*\/certificateAuthorities/*`. */
-  name?: string;
   /** Required. Immutable. Used when issuing certificates for this CertificateAuthority. If this CertificateAuthority is a self-signed CertificateAuthority, this key is also used to sign the self-signed CA certificate. Otherwise, it is used to sign a CSR. */
   keySpec?: KeyVersionSpec;
-  /** Optional. Labels with user-defined metadata. */
-  labels?: StringMap;
-  /** Output only. The time at which this CertificateAuthority will be permanently purged, if it is in the DELETED state. */
-  expireTime?: string;
   /** Output only. The time at which this CertificateAuthority was created. */
   createTime?: string;
-  /** Optional. If this is a subordinate CertificateAuthority, this field will be set with the subordinate configuration, which describes its issuers. This may be updated, but this CertificateAuthority must continue to validate. */
-  subordinateConfig?: SubordinateConfig;
-  /** Output only. URLs for accessing content published by this CA, such as the CA certificate and CRLs. */
-  accessUrls?: AccessUrls;
-  /** Required. Immutable. The config used to create a self-signed X.509 certificate or CSR. */
-  config?: CertificateConfig;
-  /** Output only. A structured description of this CertificateAuthority's CA certificate and its issuers. Ordered as self-to-root. */
-  caCertificateDescriptions?: CertificateDescriptionList;
+  /** Output only. Reserved for future use. */
+  satisfiesPzs?: boolean;
   /** Required. Immutable. The Type of this CertificateAuthority. */
   type?: CertificateAuthorityTypeEnum | (string & {});
+  /** Optional. If this is a subordinate CertificateAuthority, this field will be set with the subordinate configuration, which describes its issuers. This may be updated, but this CertificateAuthority must continue to validate. */
+  subordinateConfig?: SubordinateConfig;
+  /** Optional. User-defined URLs for CA certificate and CRLs. The service does not publish content to these URLs. It is up to the user to mirror content to these URLs. */
+  userDefinedAccessUrls?: UserDefinedAccessUrls;
+  /** Identifier. The resource name for this CertificateAuthority in the format `projects/*\/locations/*\/caPools/*\/certificateAuthorities/*`. */
+  name?: string;
+  /** Output only. The CaPool.Tier of the CaPool that includes this CertificateAuthority. */
+  tier?: CertificateAuthorityTierEnum | (string & {});
+  /** Output only. The time at which this CertificateAuthority will be permanently purged, if it is in the DELETED state. */
+  expireTime?: string;
+  /** Output only. Reserved for future use. */
+  satisfiesPzi?: boolean;
+  /** Required. Immutable. The config used to create a self-signed X.509 certificate or CSR. */
+  config?: CertificateConfig;
+  /** Output only. The State for this CertificateAuthority. */
+  state?: CertificateAuthorityStateEnum | (string & {});
+  /** Output only. URLs for accessing content published by this CA, such as the CA certificate and CRLs. */
+  accessUrls?: AccessUrls;
+  /** Output only. The time at which this CertificateAuthority was soft deleted, if it is in the DELETED state. */
+  deleteTime?: string;
 }
 export const CertificateAuthority = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    satisfiesPzs: S.optional(S.Boolean),
-    pemCaCertificates: S.optional(StringList),
-    tier: S.optional(CertificateAuthorityTierEnum),
-    deleteTime: S.optional(S.String),
-    state: S.optional(CertificateAuthorityStateEnum),
-    satisfiesPzi: S.optional(S.Boolean),
+    labels: S.optional(StringMap),
     lifetime: S.optional(S.String),
-    userDefinedAccessUrls: S.optional(UserDefinedAccessUrls),
+    caCertificateDescriptions: S.optional(CertificateDescriptionList),
+    pemCaCertificates: S.optional(StringList),
     updateTime: S.optional(S.String),
     gcsBucket: S.optional(S.String),
-    name: S.optional(S.String),
     keySpec: S.optional(KeyVersionSpec),
-    labels: S.optional(StringMap),
-    expireTime: S.optional(S.String),
     createTime: S.optional(S.String),
-    subordinateConfig: S.optional(SubordinateConfig),
-    accessUrls: S.optional(AccessUrls),
-    config: S.optional(CertificateConfig),
-    caCertificateDescriptions: S.optional(CertificateDescriptionList),
+    satisfiesPzs: S.optional(S.Boolean),
     type: S.optional(CertificateAuthorityTypeEnum),
+    subordinateConfig: S.optional(SubordinateConfig),
+    userDefinedAccessUrls: S.optional(UserDefinedAccessUrls),
+    name: S.optional(S.String),
+    tier: S.optional(CertificateAuthorityTierEnum),
+    expireTime: S.optional(S.String),
+    satisfiesPzi: S.optional(S.Boolean),
+    config: S.optional(CertificateConfig),
+    state: S.optional(CertificateAuthorityStateEnum),
+    accessUrls: S.optional(AccessUrls),
+    deleteTime: S.optional(S.String),
   }),
 ).annotate({
   identifier: "CertificateAuthority",
 }) as any as S.Schema<CertificateAuthority>;
 
 export interface CreateProjectsLocationsCaPoolsCertificateAuthoritiesRequest {
-  /** Required. The resource name of the CaPool associated with the CertificateAuthorities, in the format `projects/*\/locations/*\/caPools/*`. */
-  parent: string;
-  /** Required. It must be unique within a location and match the regular expression `[a-zA-Z0-9_-]{1,63}` */
-  certificateAuthorityId?: string;
   /** Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000). */
   requestId?: string;
+  /** Required. It must be unique within a location and match the regular expression `[a-zA-Z0-9_-]{1,63}` */
+  certificateAuthorityId?: string;
+  /** Required. The resource name of the CaPool associated with the CertificateAuthorities, in the format `projects/*\/locations/*\/caPools/*`. */
+  parent: string;
   /** Request body */
   body?: CertificateAuthority;
 }
 export const CreateProjectsLocationsCaPoolsCertificateAuthoritiesRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      parent: S.String.pipe(T.Label()),
-      certificateAuthorityId: S.optional(S.String.pipe(T.Query())),
       requestId: S.optional(S.String.pipe(T.Query())),
+      certificateAuthorityId: S.optional(S.String.pipe(T.Query())),
+      parent: S.String.pipe(T.Label()),
       body: S.optional(CertificateAuthority.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -1149,13 +1149,6 @@ export const CreateProjectsLocationsCaPoolsCertificateAuthoritiesRequest =
   ).annotate({
     identifier: "CreateProjectsLocationsCaPoolsCertificateAuthoritiesRequest",
   }) as any as S.Schema<CreateProjectsLocationsCaPoolsCertificateAuthoritiesRequest>;
-
-export type CertificateSubjectModeEnum =
-  | "SUBJECT_REQUEST_MODE_UNSPECIFIED"
-  | "DEFAULT"
-  | "RDN_SEQUENCE"
-  | "REFLECTED_SPIFFE";
-export const CertificateSubjectModeEnum = /*@__PURE__*/ S.String;
 
 export type RevocationDetailsRevocationStateEnum =
   | "REVOCATION_REASON_UNSPECIFIED"
@@ -1171,95 +1164,102 @@ export const RevocationDetailsRevocationStateEnum = /*@__PURE__*/ S.String;
 
 /** Describes fields that are relavent to the revocation of a Certificate. */
 export interface RevocationDetails {
-  /** Indicates why a Certificate was revoked. */
-  revocationState?: RevocationDetailsRevocationStateEnum | (string & {});
   /** The time at which this Certificate was revoked. */
   revocationTime?: string;
+  /** Indicates why a Certificate was revoked. */
+  revocationState?: RevocationDetailsRevocationStateEnum | (string & {});
 }
 export const RevocationDetails = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    revocationState: S.optional(RevocationDetailsRevocationStateEnum),
     revocationTime: S.optional(S.String),
+    revocationState: S.optional(RevocationDetailsRevocationStateEnum),
   }),
 ).annotate({
   identifier: "RevocationDetails",
 }) as any as S.Schema<RevocationDetails>;
 
+export type CertificateSubjectModeEnum =
+  | "SUBJECT_REQUEST_MODE_UNSPECIFIED"
+  | "DEFAULT"
+  | "RDN_SEQUENCE"
+  | "REFLECTED_SPIFFE";
+export const CertificateSubjectModeEnum = /*@__PURE__*/ S.String;
+
 /** A Certificate corresponds to a signed X.509 certificate issued by a CertificateAuthority. */
 export interface Certificate {
-  /** Immutable. The resource name for a CertificateTemplate used to issue this certificate, in the format `projects/*\/locations/*\/certificateTemplates/*`. If this is specified, the caller must have the necessary permission to use this template. If this is omitted, no template will be used. This template must be in the same location as the Certificate. */
-  certificateTemplate?: string;
+  /** Identifier. The resource name for this Certificate in the format `projects/*\/locations/*\/caPools/*\/certificates/*`. */
+  name?: string;
   /** Output only. The chain that may be used to verify the X.509 certificate. Expected to be in issuer-to-root order according to RFC 5246. */
   pemCertificateChain?: StringList;
-  /** Output only. The time at which this Certificate was created. */
-  createTime?: string;
-  /** Immutable. A pem-encoded X.509 certificate signing request (CSR). */
-  pemCsr?: string;
-  /** Output only. The time at which this Certificate was updated. */
-  updateTime?: string;
-  /** Immutable. A description of the certificate and key that does not require X.509 or ASN.1. */
-  config?: CertificateConfig;
-  /** Output only. The resource name of the issuing CertificateAuthority in the format `projects/*\/locations/*\/caPools/*\/certificateAuthorities/*`. */
-  issuerCertificateAuthority?: string;
-  /** Immutable. Specifies how the Certificate's identity fields are to be decided. If this is omitted, the `DEFAULT` subject mode will be used. */
-  subjectMode?: CertificateSubjectModeEnum | (string & {});
   /** Optional. Labels with user-defined metadata. */
   labels?: StringMap;
   /** Output only. A structured description of the issued X.509 certificate. */
   certificateDescription?: CertificateDescription;
-  /** Optional. The requested not_before_time of this Certificate. This field may only be set if the CaPool.IssuancePolicy.allow_requester_specified_not_before_time field is set to true for the issuing CaPool. If this field is specified, the certificate will be issued with this 'not_before_time'. If this is not specified, the 'not_before_time' will be set to the issuance time or issuance time minus backdate_duration depending on the CaPool configuration. */
-  requestedNotBeforeTime?: string;
-  /** Output only. Details regarding the revocation of this Certificate. This Certificate is considered revoked if and only if this field is present. */
-  revocationDetails?: RevocationDetails;
-  /** Identifier. The resource name for this Certificate in the format `projects/*\/locations/*\/caPools/*\/certificates/*`. */
-  name?: string;
+  /** Output only. The resource name of the issuing CertificateAuthority in the format `projects/*\/locations/*\/caPools/*\/certificateAuthorities/*`. */
+  issuerCertificateAuthority?: string;
+  /** Immutable. The resource name for a CertificateTemplate used to issue this certificate, in the format `projects/*\/locations/*\/certificateTemplates/*`. If this is specified, the caller must have the necessary permission to use this template. If this is omitted, no template will be used. This template must be in the same location as the Certificate. */
+  certificateTemplate?: string;
   /** Output only. The pem-encoded, signed X.509 certificate. */
   pemCertificate?: string;
+  /** Immutable. A description of the certificate and key that does not require X.509 or ASN.1. */
+  config?: CertificateConfig;
+  /** Immutable. A pem-encoded X.509 certificate signing request (CSR). */
+  pemCsr?: string;
+  /** Output only. Details regarding the revocation of this Certificate. This Certificate is considered revoked if and only if this field is present. */
+  revocationDetails?: RevocationDetails;
   /** Required. Immutable. The desired lifetime of a certificate. Used to create the "not_before_time" and "not_after_time" fields inside an X.509 certificate. Note that the lifetime may be truncated if it would extend past the life of any certificate authority in the issuing chain. */
   lifetime?: string;
+  /** Output only. The time at which this Certificate was updated. */
+  updateTime?: string;
+  /** Optional. The requested not_before_time of this Certificate. This field may only be set if the CaPool.IssuancePolicy.allow_requester_specified_not_before_time field is set to true for the issuing CaPool. If this field is specified, the certificate will be issued with this 'not_before_time'. If this is not specified, the 'not_before_time' will be set to the issuance time or issuance time minus backdate_duration depending on the CaPool configuration. */
+  requestedNotBeforeTime?: string;
+  /** Immutable. Specifies how the Certificate's identity fields are to be decided. If this is omitted, the `DEFAULT` subject mode will be used. */
+  subjectMode?: CertificateSubjectModeEnum | (string & {});
+  /** Output only. The time at which this Certificate was created. */
+  createTime?: string;
 }
 export const Certificate = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    certificateTemplate: S.optional(S.String),
+    name: S.optional(S.String),
     pemCertificateChain: S.optional(StringList),
-    createTime: S.optional(S.String),
-    pemCsr: S.optional(S.String),
-    updateTime: S.optional(S.String),
-    config: S.optional(CertificateConfig),
-    issuerCertificateAuthority: S.optional(S.String),
-    subjectMode: S.optional(CertificateSubjectModeEnum),
     labels: S.optional(StringMap),
     certificateDescription: S.optional(CertificateDescription),
-    requestedNotBeforeTime: S.optional(S.String),
-    revocationDetails: S.optional(RevocationDetails),
-    name: S.optional(S.String),
+    issuerCertificateAuthority: S.optional(S.String),
+    certificateTemplate: S.optional(S.String),
     pemCertificate: S.optional(S.String),
+    config: S.optional(CertificateConfig),
+    pemCsr: S.optional(S.String),
+    revocationDetails: S.optional(RevocationDetails),
     lifetime: S.optional(S.String),
+    updateTime: S.optional(S.String),
+    requestedNotBeforeTime: S.optional(S.String),
+    subjectMode: S.optional(CertificateSubjectModeEnum),
+    createTime: S.optional(S.String),
   }),
 ).annotate({ identifier: "Certificate" }) as any as S.Schema<Certificate>;
 
 export interface CreateProjectsLocationsCaPoolsCertificatesRequest {
-  /** Optional. The resource ID of the CertificateAuthority that should issue the certificate. This optional field will ignore the load-balancing scheme of the Pool and directly issue the certificate from the CA with the specified ID, contained in the same CaPool referenced by `parent`. Per-CA quota rules apply. If left empty, a CertificateAuthority will be chosen from the CaPool by the service. For example, to issue a Certificate from a Certificate Authority with resource name "projects/my-project/locations/us-central1/caPools/my-pool/certificateAuthorities/my-ca", you can set the parent to "projects/my-project/locations/us-central1/caPools/my-pool" and the issuing_certificate_authority_id to "my-ca". */
-  issuingCertificateAuthorityId?: string;
-  /** Optional. If this is true, no Certificate resource will be persisted regardless of the CaPool's tier, and the returned Certificate will not contain the pem_certificate field. */
-  validateOnly?: boolean;
   /** Required. The resource name of the CaPool associated with the Certificate, in the format `projects/*\/locations/*\/caPools/*`. */
   parent: string;
+  /** Optional. The resource ID of the CertificateAuthority that should issue the certificate. This optional field will ignore the load-balancing scheme of the Pool and directly issue the certificate from the CA with the specified ID, contained in the same CaPool referenced by `parent`. Per-CA quota rules apply. If left empty, a CertificateAuthority will be chosen from the CaPool by the service. For example, to issue a Certificate from a Certificate Authority with resource name "projects/my-project/locations/us-central1/caPools/my-pool/certificateAuthorities/my-ca", you can set the parent to "projects/my-project/locations/us-central1/caPools/my-pool" and the issuing_certificate_authority_id to "my-ca". */
+  issuingCertificateAuthorityId?: string;
   /** Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000). */
   requestId?: string;
   /** Optional. It must be unique within a location and match the regular expression `[a-zA-Z0-9_-]{1,63}`. This field is required when using a CertificateAuthority in the Enterprise CertificateAuthority.tier, but is optional and its value is ignored otherwise. */
   certificateId?: string;
+  /** Optional. If this is true, no Certificate resource will be persisted regardless of the CaPool's tier, and the returned Certificate will not contain the pem_certificate field. */
+  validateOnly?: boolean;
   /** Request body */
   body?: Certificate;
 }
 export const CreateProjectsLocationsCaPoolsCertificatesRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      issuingCertificateAuthorityId: S.optional(S.String.pipe(T.Query())),
-      validateOnly: S.optional(S.Boolean.pipe(T.Query())),
       parent: S.String.pipe(T.Label()),
+      issuingCertificateAuthorityId: S.optional(S.String.pipe(T.Query())),
       requestId: S.optional(S.String.pipe(T.Query())),
       certificateId: S.optional(S.String.pipe(T.Query())),
+      validateOnly: S.optional(S.Boolean.pipe(T.Query())),
       body: S.optional(Certificate.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -1276,55 +1276,55 @@ export const CreateProjectsLocationsCaPoolsCertificatesRequest =
 export interface CertificateTemplate {
   /** Optional. Labels with user-defined metadata. */
   labels?: StringMap;
-  /** Optional. The maximum lifetime allowed for issued Certificates that use this template. If the issuing CaPool resource's IssuancePolicy specifies a maximum_lifetime the minimum of the two durations will be the maximum lifetime for issued Certificates. Note that if the issuing CertificateAuthority expires before a Certificate's requested maximum_lifetime, the effective lifetime will be explicitly truncated to match it. */
-  maximumLifetime?: string;
+  /** Optional. A set of X.509 values that will be applied to all issued certificates that use this template. If the certificate request includes conflicting values for the same properties, they will be overwritten by the values defined here. If the issuing CaPool's IssuancePolicy defines conflicting baseline_values for the same properties, the certificate issuance request will fail. */
+  predefinedValues?: X509Parameters;
   /** Optional. Describes constraints on identities that may be appear in Certificates issued using this template. If this is omitted, then this template will not add restrictions on a certificate's identity. */
   identityConstraints?: CertificateIdentityConstraints;
   /** Identifier. The resource name for this CertificateTemplate in the format `projects/*\/locations/*\/certificateTemplates/*`. */
   name?: string;
-  /** Output only. The time at which this CertificateTemplate was updated. */
-  updateTime?: string;
-  /** Optional. Describes the set of X.509 extensions that may appear in a Certificate issued using this CertificateTemplate. If a certificate request sets extensions that don't appear in the passthrough_extensions, those extensions will be dropped. If the issuing CaPool's IssuancePolicy defines baseline_values that don't appear here, the certificate issuance request will fail. If this is omitted, then this template will not add restrictions on a certificate's X.509 extensions. These constraints do not apply to X.509 extensions set in this CertificateTemplate's predefined_values. */
-  passthroughExtensions?: CertificateExtensionConstraints;
-  /** Optional. A set of X.509 values that will be applied to all issued certificates that use this template. If the certificate request includes conflicting values for the same properties, they will be overwritten by the values defined here. If the issuing CaPool's IssuancePolicy defines conflicting baseline_values for the same properties, the certificate issuance request will fail. */
-  predefinedValues?: X509Parameters;
   /** Optional. A human-readable description of scenarios this template is intended for. */
   description?: string;
+  /** Optional. The maximum lifetime allowed for issued Certificates that use this template. If the issuing CaPool resource's IssuancePolicy specifies a maximum_lifetime the minimum of the two durations will be the maximum lifetime for issued Certificates. Note that if the issuing CertificateAuthority expires before a Certificate's requested maximum_lifetime, the effective lifetime will be explicitly truncated to match it. */
+  maximumLifetime?: string;
+  /** Optional. Describes the set of X.509 extensions that may appear in a Certificate issued using this CertificateTemplate. If a certificate request sets extensions that don't appear in the passthrough_extensions, those extensions will be dropped. If the issuing CaPool's IssuancePolicy defines baseline_values that don't appear here, the certificate issuance request will fail. If this is omitted, then this template will not add restrictions on a certificate's X.509 extensions. These constraints do not apply to X.509 extensions set in this CertificateTemplate's predefined_values. */
+  passthroughExtensions?: CertificateExtensionConstraints;
   /** Output only. The time at which this CertificateTemplate was created. */
   createTime?: string;
+  /** Output only. The time at which this CertificateTemplate was updated. */
+  updateTime?: string;
 }
 export const CertificateTemplate = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     labels: S.optional(StringMap),
-    maximumLifetime: S.optional(S.String),
+    predefinedValues: S.optional(X509Parameters),
     identityConstraints: S.optional(CertificateIdentityConstraints),
     name: S.optional(S.String),
-    updateTime: S.optional(S.String),
-    passthroughExtensions: S.optional(CertificateExtensionConstraints),
-    predefinedValues: S.optional(X509Parameters),
     description: S.optional(S.String),
+    maximumLifetime: S.optional(S.String),
+    passthroughExtensions: S.optional(CertificateExtensionConstraints),
     createTime: S.optional(S.String),
+    updateTime: S.optional(S.String),
   }),
 ).annotate({
   identifier: "CertificateTemplate",
 }) as any as S.Schema<CertificateTemplate>;
 
 export interface CreateProjectsLocationsCertificateTemplatesRequest {
+  /** Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000). */
+  requestId?: string;
   /** Required. The resource name of the location associated with the CertificateTemplate, in the format `projects/*\/locations/*`. */
   parent: string;
   /** Required. It must be unique within a location and match the regular expression `[a-zA-Z0-9_-]{1,63}` */
   certificateTemplateId?: string;
-  /** Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000). */
-  requestId?: string;
   /** Request body */
   body?: CertificateTemplate;
 }
 export const CreateProjectsLocationsCertificateTemplatesRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
+      requestId: S.optional(S.String.pipe(T.Query())),
       parent: S.String.pipe(T.Label()),
       certificateTemplateId: S.optional(S.String.pipe(T.Query())),
-      requestId: S.optional(S.String.pipe(T.Query())),
       body: S.optional(CertificateTemplate.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -1338,19 +1338,19 @@ export const CreateProjectsLocationsCertificateTemplatesRequest =
   }) as any as S.Schema<CreateProjectsLocationsCertificateTemplatesRequest>;
 
 export interface DeleteProjectsLocationsCaPoolsRequest {
-  /** Optional. This field allows this pool to be deleted even if it's being depended on by another resource. However, doing so may result in unintended and unrecoverable effects on any dependent resources since the pool will no longer be able to issue certificates. */
-  ignoreDependentResources?: boolean;
   /** Required. The resource name for this CaPool in the format `projects/*\/locations/*\/caPools/*`. */
   name: string;
   /** Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000). */
   requestId?: string;
+  /** Optional. This field allows this pool to be deleted even if it's being depended on by another resource. However, doing so may result in unintended and unrecoverable effects on any dependent resources since the pool will no longer be able to issue certificates. */
+  ignoreDependentResources?: boolean;
 }
 export const DeleteProjectsLocationsCaPoolsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      ignoreDependentResources: S.optional(S.Boolean.pipe(T.Query())),
       name: S.String.pipe(T.Label()),
       requestId: S.optional(S.String.pipe(T.Query())),
+      ignoreDependentResources: S.optional(S.Boolean.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "DELETE",
@@ -1365,23 +1365,23 @@ export const DeleteProjectsLocationsCaPoolsRequest = /*@__PURE__*/ S.suspend(
 export interface DeleteProjectsLocationsCaPoolsCertificateAuthoritiesRequest {
   /** Optional. If this flag is set, the Certificate Authority will be deleted as soon as possible without a 30-day grace period where undeletion would have been allowed. If you proceed, there will be no way to recover this CA. */
   skipGracePeriod?: boolean;
-  /** Optional. This field allows this CA to be deleted even if it's being depended on by another resource. However, doing so may result in unintended and unrecoverable effects on any dependent resources since the CA will no longer be able to issue certificates. */
-  ignoreDependentResources?: boolean;
   /** Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000). */
   requestId?: string;
-  /** Required. The resource name for this CertificateAuthority in the format `projects/*\/locations/*\/caPools/*\/certificateAuthorities/*`. */
-  name: string;
+  /** Optional. This field allows this CA to be deleted even if it's being depended on by another resource. However, doing so may result in unintended and unrecoverable effects on any dependent resources since the CA will no longer be able to issue certificates. */
+  ignoreDependentResources?: boolean;
   /** Optional. This field allows the CA to be deleted even if the CA has active certs. Active certs include both unrevoked and unexpired certs. */
   ignoreActiveCertificates?: boolean;
+  /** Required. The resource name for this CertificateAuthority in the format `projects/*\/locations/*\/caPools/*\/certificateAuthorities/*`. */
+  name: string;
 }
 export const DeleteProjectsLocationsCaPoolsCertificateAuthoritiesRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       skipGracePeriod: S.optional(S.Boolean.pipe(T.Query())),
-      ignoreDependentResources: S.optional(S.Boolean.pipe(T.Query())),
       requestId: S.optional(S.String.pipe(T.Query())),
-      name: S.String.pipe(T.Label()),
+      ignoreDependentResources: S.optional(S.Boolean.pipe(T.Query())),
       ignoreActiveCertificates: S.optional(S.Boolean.pipe(T.Query())),
+      name: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "DELETE",
@@ -1436,15 +1436,15 @@ export const DeleteProjectsLocationsOperationsRequest = /*@__PURE__*/ S.suspend(
 
 /** Request message for CertificateAuthorityService.DisableCertificateAuthority. */
 export interface DisableCertificateAuthorityRequest {
-  /** Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000). */
-  requestId?: string;
   /** Optional. This field allows this CA to be disabled even if it's being depended on by another resource. However, doing so may result in unintended and unrecoverable effects on any dependent resources since the CA will no longer be able to issue certificates. */
   ignoreDependentResources?: boolean;
+  /** Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000). */
+  requestId?: string;
 }
 export const DisableCertificateAuthorityRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    requestId: S.optional(S.String),
     ignoreDependentResources: S.optional(S.Boolean),
+    requestId: S.optional(S.String),
   }),
 ).annotate({
   identifier: "DisableCertificateAuthorityRequest",
@@ -1616,28 +1616,6 @@ export const GetIamPolicyProjectsLocationsCaPoolsRequest =
     identifier: "GetIamPolicyProjectsLocationsCaPoolsRequest",
   }) as any as S.Schema<GetIamPolicyProjectsLocationsCaPoolsRequest>;
 
-/** Associates `members`, or principals, with a `role`. */
-export interface Binding {
-  /** The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). */
-  condition?: Expr;
-  /** Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles). */
-  role?: string;
-  /** Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workforce identity pool. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/group/{group_id}`: All workforce identities in a group. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All workforce identities with a specific attribute value. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/*`: All identities in a workforce identity pool. * `principal://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workload identity pool. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/group/{group_id}`: A workload identity pool group. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All identities in a workload identity pool with a certain attribute. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/*`: All identities in a workload identity pool. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `deleted:principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: Deleted single identity in a workforce identity pool. For example, `deleted:principal://iam.googleapis.com/locations/global/workforcePools/my-pool-id/subject/my-subject-attribute-value`. */
-  members?: StringList;
-}
-export const Binding = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    condition: S.optional(Expr),
-    role: S.optional(S.String),
-    members: S.optional(StringList),
-  }),
-).annotate({ identifier: "Binding" }) as any as S.Schema<Binding>;
-
-export type BindingList = Array<Binding>;
-export const BindingList = /*@__PURE__*/ S.Array(
-  Binding,
-) as any as S.Schema<BindingList>;
-
 export type AuditLogConfigLogTypeEnum =
   | "LOG_TYPE_UNSPECIFIED"
   | "ADMIN_READ"
@@ -1647,15 +1625,15 @@ export const AuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
 
 /** Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] }, { "log_type": "DATA_WRITE" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging. */
 export interface AuditLogConfig {
-  /** Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members. */
-  exemptedMembers?: StringList;
   /** The log type that this config enables. */
   logType?: AuditLogConfigLogTypeEnum | (string & {});
+  /** Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members. */
+  exemptedMembers?: StringList;
 }
 export const AuditLogConfig = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    exemptedMembers: S.optional(StringList),
     logType: S.optional(AuditLogConfigLogTypeEnum),
+    exemptedMembers: S.optional(StringList),
   }),
 ).annotate({ identifier: "AuditLogConfig" }) as any as S.Schema<AuditLogConfig>;
 
@@ -1666,15 +1644,15 @@ export const AuditLogConfigList = /*@__PURE__*/ S.Array(
 
 /** Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] }, { "log_type": "DATA_WRITE" }, { "log_type": "ADMIN_READ" } ] }, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" }, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] } ] } ] } For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging. */
 export interface AuditConfig {
-  /** The configuration for logging of each type of permission. */
-  auditLogConfigs?: AuditLogConfigList;
   /** Specifies a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services. */
   service?: string;
+  /** The configuration for logging of each type of permission. */
+  auditLogConfigs?: AuditLogConfigList;
 }
 export const AuditConfig = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    auditLogConfigs: S.optional(AuditLogConfigList),
     service: S.optional(S.String),
+    auditLogConfigs: S.optional(AuditLogConfigList),
   }),
 ).annotate({ identifier: "AuditConfig" }) as any as S.Schema<AuditConfig>;
 
@@ -1683,37 +1661,59 @@ export const AuditConfigList = /*@__PURE__*/ S.Array(
   AuditConfig,
 ) as any as S.Schema<AuditConfigList>;
 
+/** Associates `members`, or principals, with a `role`. */
+export interface Binding {
+  /** The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). */
+  condition?: Expr;
+  /** Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workforce identity pool. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/group/{group_id}`: All workforce identities in a group. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All workforce identities with a specific attribute value. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/*`: All identities in a workforce identity pool. * `principal://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workload identity pool. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/group/{group_id}`: A workload identity pool group. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All identities in a workload identity pool with a certain attribute. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/*`: All identities in a workload identity pool. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `deleted:principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: Deleted single identity in a workforce identity pool. For example, `deleted:principal://iam.googleapis.com/locations/global/workforcePools/my-pool-id/subject/my-subject-attribute-value`. */
+  members?: StringList;
+  /** Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles). */
+  role?: string;
+}
+export const Binding = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    condition: S.optional(Expr),
+    members: S.optional(StringList),
+    role: S.optional(S.String),
+  }),
+).annotate({ identifier: "Binding" }) as any as S.Schema<Binding>;
+
+export type BindingList = Array<Binding>;
+export const BindingList = /*@__PURE__*/ S.Array(
+  Binding,
+) as any as S.Schema<BindingList>;
+
 /** An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] }, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", } } ], "etag": "BwWWja0YfJA=", "version": 3 } ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/). */
 export interface Policy {
-  /** Associates a list of `members`, or principals, with a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one principal. The `bindings` in a `Policy` can refer to up to 1,500 principals; up to 250 of these principals can be Google groups. Each occurrence of a principal counts towards these limits. For example, if the `bindings` grant 50 different roles to `user:alice@example.com`, and not to any other principal, then you can add another 1,450 principals to the `bindings` in the `Policy`. */
-  bindings?: BindingList;
-  /** `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy. **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. */
-  etag?: string;
   /** Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). */
   version?: number;
   /** Specifies cloud audit logging configuration for this policy. */
   auditConfigs?: AuditConfigList;
+  /** Associates a list of `members`, or principals, with a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one principal. The `bindings` in a `Policy` can refer to up to 1,500 principals; up to 250 of these principals can be Google groups. Each occurrence of a principal counts towards these limits. For example, if the `bindings` grant 50 different roles to `user:alice@example.com`, and not to any other principal, then you can add another 1,450 principals to the `bindings` in the `Policy`. */
+  bindings?: BindingList;
+  /** `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy. **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. */
+  etag?: string;
 }
 export const Policy = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    bindings: S.optional(BindingList),
-    etag: S.optional(S.String),
     version: S.optional(S.Number),
     auditConfigs: S.optional(AuditConfigList),
+    bindings: S.optional(BindingList),
+    etag: S.optional(S.String),
   }),
 ).annotate({ identifier: "Policy" }) as any as S.Schema<Policy>;
 
 export interface GetIamPolicyProjectsLocationsCaPoolsCertificateAuthoritiesCertificateRevocationListsRequest {
-  /** Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). */
-  "options.requestedPolicyVersion"?: number;
   /** REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field. */
   resource: string;
+  /** Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). */
+  "options.requestedPolicyVersion"?: number;
 }
 export const GetIamPolicyProjectsLocationsCaPoolsCertificateAuthoritiesCertificateRevocationListsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      "options.requestedPolicyVersion": S.optional(S.Number.pipe(T.Query())),
       resource: S.String.pipe(T.Label()),
+      "options.requestedPolicyVersion": S.optional(S.Number.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -1727,16 +1727,16 @@ export const GetIamPolicyProjectsLocationsCaPoolsCertificateAuthoritiesCertifica
   }) as any as S.Schema<GetIamPolicyProjectsLocationsCaPoolsCertificateAuthoritiesCertificateRevocationListsRequest>;
 
 export interface GetIamPolicyProjectsLocationsCertificateTemplatesRequest {
-  /** REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field. */
-  resource: string;
   /** Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). */
   "options.requestedPolicyVersion"?: number;
+  /** REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field. */
+  resource: string;
 }
 export const GetIamPolicyProjectsLocationsCertificateTemplatesRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      resource: S.String.pipe(T.Label()),
       "options.requestedPolicyVersion": S.optional(S.Number.pipe(T.Query())),
+      resource: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "GET",
@@ -1768,24 +1768,24 @@ export const GetProjectsLocationsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** A resource that represents a Google Cloud location. */
 export interface Location {
-  /** The canonical id for this location. For example: `"us-east1"`. */
-  locationId?: string;
+  /** Cross-service attributes for the location. For example {"cloud.googleapis.com/region": "us-east1"} */
+  labels?: StringMap;
   /** Resource name for the location, which may vary between implementations. For example: `"projects/example-project/locations/us-east1"` */
   name?: string;
   /** The friendly name for this location, typically a nearby city name. For example, "Tokyo". */
   displayName?: string;
+  /** The canonical id for this location. For example: `"us-east1"`. */
+  locationId?: string;
   /** Service-specific metadata. For example the available capacity at the given location. */
   metadata?: DocumentMap;
-  /** Cross-service attributes for the location. For example {"cloud.googleapis.com/region": "us-east1"} */
-  labels?: StringMap;
 }
 export const Location = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    locationId: S.optional(S.String),
+    labels: S.optional(StringMap),
     name: S.optional(S.String),
     displayName: S.optional(S.String),
+    locationId: S.optional(S.String),
     metadata: S.optional(DocumentMap),
-    labels: S.optional(StringMap),
   }),
 ).annotate({ identifier: "Location" }) as any as S.Schema<Location>;
 
@@ -1866,17 +1866,17 @@ export const RevokedCertificateRevocationReasonEnum = /*@__PURE__*/ S.String;
 
 /** Describes a revoked Certificate. */
 export interface RevokedCertificate {
-  /** The reason the Certificate was revoked. */
-  revocationReason?: RevokedCertificateRevocationReasonEnum | (string & {});
   /** The resource name for the Certificate in the format `projects/*\/locations/*\/caPools/*\/certificates/*`. */
   certificate?: string;
+  /** The reason the Certificate was revoked. */
+  revocationReason?: RevokedCertificateRevocationReasonEnum | (string & {});
   /** The serial number of the Certificate. */
   hexSerialNumber?: string;
 }
 export const RevokedCertificate = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    revocationReason: S.optional(RevokedCertificateRevocationReasonEnum),
     certificate: S.optional(S.String),
+    revocationReason: S.optional(RevokedCertificateRevocationReasonEnum),
     hexSerialNumber: S.optional(S.String),
   }),
 ).annotate({
@@ -1890,12 +1890,14 @@ export const RevokedCertificateList = /*@__PURE__*/ S.Array(
 
 /** A CertificateRevocationList corresponds to a signed X.509 certificate Revocation List (CRL). A CRL contains the serial numbers of certificates that should no longer be trusted. */
 export interface CertificateRevocationList {
+  /** Output only. The time at which this CertificateRevocationList was created. */
+  createTime?: string;
   /** Output only. The PEM-encoded X.509 CRL. */
   pemCrl?: string;
+  /** Output only. The time at which this CertificateRevocationList was updated. */
+  updateTime?: string;
   /** Output only. The State for this CertificateRevocationList. */
   state?: CertificateRevocationListStateEnum | (string & {});
-  /** Identifier. The resource name for this CertificateRevocationList in the format `projects/*\/locations/*\/caPools/*certificateAuthorities/*\/ certificateRevocationLists/*`. */
-  name?: string;
   /** Optional. Labels with user-defined metadata. */
   labels?: StringMap;
   /** Output only. The revision ID of this CertificateRevocationList. A new revision is committed whenever a new CRL is published. The format is an 8-character hexadecimal string. */
@@ -1904,25 +1906,23 @@ export interface CertificateRevocationList {
   accessUrl?: string;
   /** Output only. The CRL sequence number that appears in pem_crl. */
   sequenceNumber?: string;
-  /** Output only. The time at which this CertificateRevocationList was updated. */
-  updateTime?: string;
+  /** Identifier. The resource name for this CertificateRevocationList in the format `projects/*\/locations/*\/caPools/*certificateAuthorities/*\/ certificateRevocationLists/*`. */
+  name?: string;
   /** Output only. The revoked serial numbers that appear in pem_crl. */
   revokedCertificates?: RevokedCertificateList;
-  /** Output only. The time at which this CertificateRevocationList was created. */
-  createTime?: string;
 }
 export const CertificateRevocationList = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    createTime: S.optional(S.String),
     pemCrl: S.optional(S.String),
+    updateTime: S.optional(S.String),
     state: S.optional(CertificateRevocationListStateEnum),
-    name: S.optional(S.String),
     labels: S.optional(StringMap),
     revisionId: S.optional(S.String),
     accessUrl: S.optional(S.String),
     sequenceNumber: S.optional(S.String),
-    updateTime: S.optional(S.String),
+    name: S.optional(S.String),
     revokedCertificates: S.optional(RevokedCertificateList),
-    createTime: S.optional(S.String),
   }),
 ).annotate({
   identifier: "CertificateRevocationList",
@@ -1986,24 +1986,24 @@ export const GetProjectsLocationsOperationsRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetProjectsLocationsOperationsRequest>;
 
 export interface ListProjectsLocationsRequest {
-  /** The resource that owns the locations collection, if applicable. */
-  name: string;
   /** A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160). */
   filter?: string;
-  /** Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage. */
-  extraLocationTypes?: StringList;
-  /** A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page. */
-  pageToken?: string;
   /** The maximum number of results to return. If not set, the service selects a default. */
   pageSize?: number;
+  /** A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page. */
+  pageToken?: string;
+  /** The resource that owns the locations collection, if applicable. */
+  name: string;
+  /** Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage. */
+  extraLocationTypes?: StringList;
 }
 export const ListProjectsLocationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    name: S.String.pipe(T.Label()),
     filter: S.optional(S.String.pipe(T.Query())),
-    extraLocationTypes: S.optional(StringList.pipe(T.Query())),
-    pageToken: S.optional(S.String.pipe(T.Query())),
     pageSize: S.optional(S.Number.pipe(T.Query())),
+    pageToken: S.optional(S.String.pipe(T.Query())),
+    name: S.String.pipe(T.Label()),
+    extraLocationTypes: S.optional(StringList.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -2041,20 +2041,20 @@ export interface ListProjectsLocationsCaPoolsRequest {
   parent: string;
   /** Optional. Only include resources that match the filter in the response. */
   filter?: string;
-  /** Optional. Pagination token, returned earlier via ListCaPoolsResponse.next_page_token. */
-  pageToken?: string;
-  /** Optional. Specify how the results should be sorted. */
-  orderBy?: string;
   /** Optional. Limit on the number of CaPools to include in the response. Further CaPools can subsequently be obtained by including the ListCaPoolsResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default. */
   pageSize?: number;
+  /** Optional. Specify how the results should be sorted. */
+  orderBy?: string;
+  /** Optional. Pagination token, returned earlier via ListCaPoolsResponse.next_page_token. */
+  pageToken?: string;
 }
 export const ListProjectsLocationsCaPoolsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     parent: S.String.pipe(T.Label()),
     filter: S.optional(S.String.pipe(T.Query())),
-    pageToken: S.optional(S.String.pipe(T.Query())),
-    orderBy: S.optional(S.String.pipe(T.Query())),
     pageSize: S.optional(S.Number.pipe(T.Query())),
+    orderBy: S.optional(S.String.pipe(T.Query())),
+    pageToken: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -2073,43 +2073,43 @@ export const CaPoolList = /*@__PURE__*/ S.Array(
 
 /** Response message for CertificateAuthorityService.ListCaPools. */
 export interface ListCaPoolsResponse {
-  /** A list of locations (e.g. "us-west1") that could not be reached. */
-  unreachable?: StringList;
   /** The list of CaPools. */
   caPools?: CaPoolList;
   /** A token to retrieve next page of results. Pass this value in ListCertificateAuthoritiesRequest.page_token to retrieve the next page of results. */
   nextPageToken?: string;
+  /** A list of locations (e.g. "us-west1") that could not be reached. */
+  unreachable?: StringList;
 }
 export const ListCaPoolsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    unreachable: S.optional(StringList),
     caPools: S.optional(CaPoolList),
     nextPageToken: S.optional(S.String),
+    unreachable: S.optional(StringList),
   }),
 ).annotate({
   identifier: "ListCaPoolsResponse",
 }) as any as S.Schema<ListCaPoolsResponse>;
 
 export interface ListProjectsLocationsCaPoolsCertificateAuthoritiesRequest {
-  /** Optional. Specify how the results should be sorted. */
-  orderBy?: string;
   /** Optional. Limit on the number of CertificateAuthorities to include in the response. Further CertificateAuthorities can subsequently be obtained by including the ListCertificateAuthoritiesResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default. */
   pageSize?: number;
-  /** Optional. Pagination token, returned earlier via ListCertificateAuthoritiesResponse.next_page_token. */
-  pageToken?: string;
+  /** Optional. Specify how the results should be sorted. */
+  orderBy?: string;
   /** Required. The resource name of the CaPool associated with the CertificateAuthorities, in the format `projects/*\/locations/*\/caPools/*`. */
   parent: string;
   /** Optional. Only include resources that match the filter in the response. */
   filter?: string;
+  /** Optional. Pagination token, returned earlier via ListCertificateAuthoritiesResponse.next_page_token. */
+  pageToken?: string;
 }
 export const ListProjectsLocationsCaPoolsCertificateAuthoritiesRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      orderBy: S.optional(S.String.pipe(T.Query())),
       pageSize: S.optional(S.Number.pipe(T.Query())),
-      pageToken: S.optional(S.String.pipe(T.Query())),
+      orderBy: S.optional(S.String.pipe(T.Query())),
       parent: S.String.pipe(T.Label()),
       filter: S.optional(S.String.pipe(T.Query())),
+      pageToken: S.optional(S.String.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -2128,30 +2128,30 @@ export const CertificateAuthorityList = /*@__PURE__*/ S.Array(
 
 /** Response message for CertificateAuthorityService.ListCertificateAuthorities. */
 export interface ListCertificateAuthoritiesResponse {
-  /** A list of locations (e.g. "us-west1") that could not be reached. */
-  unreachable?: StringList;
-  /** A token to retrieve next page of results. Pass this value in ListCertificateAuthoritiesRequest.page_token to retrieve the next page of results. */
-  nextPageToken?: string;
   /** The list of CertificateAuthorities. */
   certificateAuthorities?: CertificateAuthorityList;
+  /** A token to retrieve next page of results. Pass this value in ListCertificateAuthoritiesRequest.page_token to retrieve the next page of results. */
+  nextPageToken?: string;
+  /** A list of locations (e.g. "us-west1") that could not be reached. */
+  unreachable?: StringList;
 }
 export const ListCertificateAuthoritiesResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    unreachable: S.optional(StringList),
-    nextPageToken: S.optional(S.String),
     certificateAuthorities: S.optional(CertificateAuthorityList),
+    nextPageToken: S.optional(S.String),
+    unreachable: S.optional(StringList),
   }),
 ).annotate({
   identifier: "ListCertificateAuthoritiesResponse",
 }) as any as S.Schema<ListCertificateAuthoritiesResponse>;
 
 export interface ListProjectsLocationsCaPoolsCertificateAuthoritiesCertificateRevocationListsRequest {
-  /** Optional. Specify how the results should be sorted. */
-  orderBy?: string;
-  /** Optional. Only include resources that match the filter in the response. */
-  filter?: string;
   /** Required. The resource name of the location associated with the CertificateRevocationLists, in the format `projects/*\/locations/*\/caPools/*\/certificateAuthorities/*`. */
   parent: string;
+  /** Optional. Only include resources that match the filter in the response. */
+  filter?: string;
+  /** Optional. Specify how the results should be sorted. */
+  orderBy?: string;
   /** Optional. Limit on the number of CertificateRevocationLists to include in the response. Further CertificateRevocationLists can subsequently be obtained by including the ListCertificateRevocationListsResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default. */
   pageSize?: number;
   /** Optional. Pagination token, returned earlier via ListCertificateRevocationListsResponse.next_page_token. */
@@ -2160,9 +2160,9 @@ export interface ListProjectsLocationsCaPoolsCertificateAuthoritiesCertificateRe
 export const ListProjectsLocationsCaPoolsCertificateAuthoritiesCertificateRevocationListsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      orderBy: S.optional(S.String.pipe(T.Query())),
-      filter: S.optional(S.String.pipe(T.Query())),
       parent: S.String.pipe(T.Label()),
+      filter: S.optional(S.String.pipe(T.Query())),
+      orderBy: S.optional(S.String.pipe(T.Query())),
       pageSize: S.optional(S.Number.pipe(T.Query())),
       pageToken: S.optional(S.String.pipe(T.Query())),
     }).pipe(
@@ -2240,17 +2240,17 @@ export const CertificateList = /*@__PURE__*/ S.Array(
 
 /** Response message for CertificateAuthorityService.ListCertificates. */
 export interface ListCertificatesResponse {
-  /** A token to retrieve next page of results. Pass this value in ListCertificatesRequest.page_token to retrieve the next page of results. */
-  nextPageToken?: string;
   /** The list of Certificates. */
   certificates?: CertificateList;
+  /** A token to retrieve next page of results. Pass this value in ListCertificatesRequest.page_token to retrieve the next page of results. */
+  nextPageToken?: string;
   /** A list of locations (e.g. "us-west1") that could not be reached. */
   unreachable?: StringList;
 }
 export const ListCertificatesResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    nextPageToken: S.optional(S.String),
     certificates: S.optional(CertificateList),
+    nextPageToken: S.optional(S.String),
     unreachable: S.optional(StringList),
   }),
 ).annotate({
@@ -2260,12 +2260,12 @@ export const ListCertificatesResponse = /*@__PURE__*/ S.suspend(() =>
 export interface ListProjectsLocationsCertificateTemplatesRequest {
   /** Required. The resource name of the location associated with the CertificateTemplates, in the format `projects/*\/locations/*`. */
   parent: string;
+  /** Optional. Only include resources that match the filter in the response. */
+  filter?: string;
   /** Optional. Specify how the results should be sorted. */
   orderBy?: string;
   /** Optional. Pagination token, returned earlier via ListCertificateTemplatesResponse.next_page_token. */
   pageToken?: string;
-  /** Optional. Only include resources that match the filter in the response. */
-  filter?: string;
   /** Optional. Limit on the number of CertificateTemplates to include in the response. Further CertificateTemplates can subsequently be obtained by including the ListCertificateTemplatesResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default. */
   pageSize?: number;
 }
@@ -2273,9 +2273,9 @@ export const ListProjectsLocationsCertificateTemplatesRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       parent: S.String.pipe(T.Label()),
+      filter: S.optional(S.String.pipe(T.Query())),
       orderBy: S.optional(S.String.pipe(T.Query())),
       pageToken: S.optional(S.String.pipe(T.Query())),
-      filter: S.optional(S.String.pipe(T.Query())),
       pageSize: S.optional(S.Number.pipe(T.Query())),
     }).pipe(
       T.Http({
@@ -2295,17 +2295,17 @@ export const CertificateTemplateList = /*@__PURE__*/ S.Array(
 
 /** Response message for CertificateAuthorityService.ListCertificateTemplates. */
 export interface ListCertificateTemplatesResponse {
-  /** The list of CertificateTemplates. */
-  certificateTemplates?: CertificateTemplateList;
   /** A token to retrieve next page of results. Pass this value in ListCertificateTemplatesRequest.page_token to retrieve the next page of results. */
   nextPageToken?: string;
+  /** The list of CertificateTemplates. */
+  certificateTemplates?: CertificateTemplateList;
   /** A list of locations (e.g. "us-west1") that could not be reached. */
   unreachable?: StringList;
 }
 export const ListCertificateTemplatesResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    certificateTemplates: S.optional(CertificateTemplateList),
     nextPageToken: S.optional(S.String),
+    certificateTemplates: S.optional(CertificateTemplateList),
     unreachable: S.optional(StringList),
   }),
 ).annotate({
@@ -2313,25 +2313,25 @@ export const ListCertificateTemplatesResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListCertificateTemplatesResponse>;
 
 export interface ListProjectsLocationsOperationsRequest {
-  /** The standard list page size. */
-  pageSize?: number;
   /** The standard list filter. */
   filter?: string;
+  /** The standard list page size. */
+  pageSize?: number;
   /** When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation. */
   returnPartialSuccess?: boolean;
-  /** The name of the operation's parent resource. */
-  name: string;
   /** The standard list page token. */
   pageToken?: string;
+  /** The name of the operation's parent resource. */
+  name: string;
 }
 export const ListProjectsLocationsOperationsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      pageSize: S.optional(S.Number.pipe(T.Query())),
       filter: S.optional(S.String.pipe(T.Query())),
+      pageSize: S.optional(S.Number.pipe(T.Query())),
       returnPartialSuccess: S.optional(S.Boolean.pipe(T.Query())),
-      name: S.String.pipe(T.Label()),
       pageToken: S.optional(S.String.pipe(T.Query())),
+      name: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "GET",
@@ -2350,17 +2350,17 @@ export const OperationList = /*@__PURE__*/ S.Array(
 
 /** The response message for Operations.ListOperations. */
 export interface ListOperationsResponse {
-  /** The standard List next-page token. */
-  nextPageToken?: string;
   /** A list of operations that matches the specified filter in the request. */
   operations?: OperationList;
+  /** The standard List next-page token. */
+  nextPageToken?: string;
   /** Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations. */
   unreachable?: StringList;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    nextPageToken: S.optional(S.String),
     operations: S.optional(OperationList),
+    nextPageToken: S.optional(S.String),
     unreachable: S.optional(StringList),
   }),
 ).annotate({
@@ -2370,10 +2370,10 @@ export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
 export interface PatchProjectsLocationsCaPoolsRequest {
   /** Identifier. The resource name for this CaPool in the format `projects/*\/locations/*\/caPools/*`. */
   name: string;
-  /** Required. A list of fields to be updated in this request. */
-  updateMask?: string;
   /** Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000). */
   requestId?: string;
+  /** Required. A list of fields to be updated in this request. */
+  updateMask?: string;
   /** Request body */
   body?: CaPool;
 }
@@ -2381,8 +2381,8 @@ export const PatchProjectsLocationsCaPoolsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       name: S.String.pipe(T.Label()),
-      updateMask: S.optional(S.String.pipe(T.Query())),
       requestId: S.optional(S.String.pipe(T.Query())),
+      updateMask: S.optional(S.String.pipe(T.Query())),
       body: S.optional(CaPool.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -2453,21 +2453,21 @@ export const PatchProjectsLocationsCaPoolsCertificateAuthoritiesCertificateRevoc
   }) as any as S.Schema<PatchProjectsLocationsCaPoolsCertificateAuthoritiesCertificateRevocationListsRequest>;
 
 export interface PatchProjectsLocationsCaPoolsCertificatesRequest {
-  /** Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000). */
-  requestId?: string;
   /** Required. A list of fields to be updated in this request. */
   updateMask?: string;
   /** Identifier. The resource name for this Certificate in the format `projects/*\/locations/*\/caPools/*\/certificates/*`. */
   name: string;
+  /** Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000). */
+  requestId?: string;
   /** Request body */
   body?: Certificate;
 }
 export const PatchProjectsLocationsCaPoolsCertificatesRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      requestId: S.optional(S.String.pipe(T.Query())),
       updateMask: S.optional(S.String.pipe(T.Query())),
       name: S.String.pipe(T.Label()),
+      requestId: S.optional(S.String.pipe(T.Query())),
       body: S.optional(Certificate.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -2481,10 +2481,10 @@ export const PatchProjectsLocationsCaPoolsCertificatesRequest =
   }) as any as S.Schema<PatchProjectsLocationsCaPoolsCertificatesRequest>;
 
 export interface PatchProjectsLocationsCertificateTemplatesRequest {
-  /** Identifier. The resource name for this CertificateTemplate in the format `projects/*\/locations/*\/certificateTemplates/*`. */
-  name: string;
   /** Required. A list of fields to be updated in this request. */
   updateMask?: string;
+  /** Identifier. The resource name for this CertificateTemplate in the format `projects/*\/locations/*\/certificateTemplates/*`. */
+  name: string;
   /** Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000). */
   requestId?: string;
   /** Request body */
@@ -2493,8 +2493,8 @@ export interface PatchProjectsLocationsCertificateTemplatesRequest {
 export const PatchProjectsLocationsCertificateTemplatesRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      name: S.String.pipe(T.Label()),
       updateMask: S.optional(S.String.pipe(T.Query())),
+      name: S.String.pipe(T.Label()),
       requestId: S.optional(S.String.pipe(T.Query())),
       body: S.optional(CertificateTemplate.pipe(T.HttpBody())),
     }).pipe(
@@ -2522,15 +2522,15 @@ export const RevokeCertificateRequestReasonEnum = /*@__PURE__*/ S.String;
 
 /** Request message for CertificateAuthorityService.RevokeCertificate. */
 export interface RevokeCertificateRequest {
-  /** Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000). */
-  requestId?: string;
   /** Required. The RevocationReason for revoking this certificate. */
   reason?: RevokeCertificateRequestReasonEnum | (string & {});
+  /** Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000). */
+  requestId?: string;
 }
 export const RevokeCertificateRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    requestId: S.optional(S.String),
     reason: S.optional(RevokeCertificateRequestReasonEnum),
+    requestId: S.optional(S.String),
   }),
 ).annotate({
   identifier: "RevokeCertificateRequest",

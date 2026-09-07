@@ -12,144 +12,65 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-/** Resource tags. */
-export type WorkbooksCreateOrUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const WorkbooksCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<WorkbooksCreateOrUpdateRequestTagsMap>;
-
-/** Being deprecated, please use the other tags field */
-export type WorkbookPropertiesInputTagsList = Array<string>;
-export const WorkbookPropertiesInputTagsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<WorkbookPropertiesInputTagsList>;
-
-/** Properties that contain a workbook. */
-export interface WorkbookPropertiesInput {
-  /** The user-defined name (display name) of the workbook. */
-  displayName: string;
-  /** Configuration of this particular workbook. Configuration data is a string containing valid JSON */
-  serializedData: string | null;
-  /** Workbook schema version format, like 'Notebook/1.0', which should match the workbook in serializedData */
-  version?: string;
-  /** Workbook category, as defined by the user at creation time. */
-  category: string;
-  /** Being deprecated, please use the other tags field */
-  tags?: WorkbookPropertiesInputTagsList;
-  /** ResourceId for a source resource. */
-  sourceId?: string;
-  /** The resourceId to the storage account when bring your own storage is used */
-  storageUri?: string | null;
-  /** The description of the workbook. */
-  description?: string | null;
-}
-export const WorkbookPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    displayName: S.String,
-    serializedData: S.NullOr(S.String),
-    version: S.optional(S.String),
-    category: S.String,
-    tags: S.optional(WorkbookPropertiesInputTagsList),
-    sourceId: S.optional(S.String),
-    storageUri: S.optional(S.NullOr(S.String)),
-    description: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({
-  identifier: "WorkbookPropertiesInput",
-}) as any as S.Schema<WorkbookPropertiesInput>;
-
-/** Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed). */
-export type ManagedServiceIdentityType =
-  | "None"
-  | "SystemAssigned"
-  | "UserAssigned"
-  | "SystemAssigned,UserAssigned";
-export const ManagedServiceIdentityType = /*@__PURE__*/ S.String;
-
-/** User assigned identity properties */
-export interface UserAssignedIdentityInput {}
-export const UserAssignedIdentityInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "UserAssignedIdentityInput",
-}) as any as S.Schema<UserAssignedIdentityInput>;
-
-/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type UserAssignedIdentitiesInput = {
-  [key: string]: UserAssignedIdentityInput | undefined;
-};
-export const UserAssignedIdentitiesInput = /*@__PURE__*/ S.Record(
-  S.String,
-  UserAssignedIdentityInput,
-) as any as S.Schema<UserAssignedIdentitiesInput>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export interface WorkbookResourceIdentityInput {
-  type: ManagedServiceIdentityType | (string & {});
-  userAssignedIdentities?: UserAssignedIdentitiesInput;
-}
-export const WorkbookResourceIdentityInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: ManagedServiceIdentityType,
-    userAssignedIdentities: S.optional(UserAssignedIdentitiesInput),
-  }),
-).annotate({
-  identifier: "WorkbookResourceIdentityInput",
-}) as any as S.Schema<WorkbookResourceIdentityInput>;
-
-/** The kind of workbook. Only valid value is shared. */
-export type ApplicationInsightsCommonTypesWorkbookSharedTypeKind = "shared";
-export const ApplicationInsightsCommonTypesWorkbookSharedTypeKind =
-  /*@__PURE__*/ S.String;
-
-export interface WorkbooksCreateOrUpdateRequest {
+export interface DeleteWorkbookRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the workbook resource. The value must be an UUID. */
   resourceName: string;
-  /** Azure Resource Id that will fetch all linked workbooks. */
-  sourceId?: string;
-  /** Resource tags. */
-  tags?: WorkbooksCreateOrUpdateRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Metadata describing a workbook for an Azure resource. */
-  properties?: WorkbookPropertiesInput;
-  /** Identity used for BYOS */
-  identity?: WorkbookResourceIdentityInput;
-  /** The kind of workbook. Only valid value is shared. */
-  kind?: ApplicationInsightsCommonTypesWorkbookSharedTypeKind | (string & {});
-  /** Resource etag */
-  etag?: string;
 }
-export const WorkbooksCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteWorkbookRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     resourceName: S.String.pipe(T.Label()),
-    sourceId: S.optional(S.String.pipe(T.Query())),
-    tags: S.optional(WorkbooksCreateOrUpdateRequestTagsMap),
-    location: S.String,
-    properties: S.optional(WorkbookPropertiesInput),
-    identity: S.optional(WorkbookResourceIdentityInput),
-    kind: S.optional(ApplicationInsightsCommonTypesWorkbookSharedTypeKind),
-    etag: S.optional(S.String),
   }).pipe(
     T.Http({
-      method: "PUT",
+      method: "DELETE",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/workbooks/{resourceName}",
       code: 200,
       apiVersion: "2023-06-01",
     }),
   ),
 ).annotate({
-  identifier: "WorkbooksCreateOrUpdateRequest",
-}) as any as S.Schema<WorkbooksCreateOrUpdateRequest>;
+  identifier: "DeleteWorkbookRequest",
+}) as any as S.Schema<DeleteWorkbookRequest>;
+
+export interface DeleteWorkbookResponse {}
+export const DeleteWorkbookResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteWorkbookResponse",
+}) as any as S.Schema<DeleteWorkbookResponse>;
+
+export interface GetWorkbookRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the workbook resource. The value must be an UUID. */
+  resourceName: string;
+  /** Flag indicating whether or not to return the full content for each applicable workbook. If false, only return summary content for workbooks. */
+  canFetchContent?: boolean;
+}
+export const GetWorkbookRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+    canFetchContent: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/workbooks/{resourceName}",
+      code: 200,
+      apiVersion: "2023-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetWorkbookRequest",
+}) as any as S.Schema<GetWorkbookRequest>;
 
 /** The type of identity that created the resource. */
 export type SystemDataCreatedByType =
@@ -194,13 +115,11 @@ export const SystemData = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
 
 /** Resource tags. */
-export type WorkbooksCreateOrUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const WorkbooksCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetWorkbookResponseTagsMap = { [key: string]: string | undefined };
+export const GetWorkbookResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WorkbooksCreateOrUpdateResponseTagsMap>;
+) as any as S.Schema<GetWorkbookResponseTagsMap>;
 
 /** Being deprecated, please use the other tags field */
 export type WorkbookPropertiesTagsList = Array<string>;
@@ -251,6 +170,14 @@ export const WorkbookProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "WorkbookProperties",
 }) as any as S.Schema<WorkbookProperties>;
 
+/** Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed). */
+export type ManagedServiceIdentityType =
+  | "None"
+  | "SystemAssigned"
+  | "UserAssigned"
+  | "SystemAssigned,UserAssigned";
+export const ManagedServiceIdentityType = /*@__PURE__*/ S.String;
+
 /** User assigned identity properties */
 export interface UserAssignedIdentity {
   /** The principal ID of the assigned identity. */
@@ -296,7 +223,12 @@ export const WorkbookResourceIdentity = /*@__PURE__*/ S.suspend(() =>
   identifier: "WorkbookResourceIdentity",
 }) as any as S.Schema<WorkbookResourceIdentity>;
 
-export interface WorkbooksCreateOrUpdateResponse {
+/** The kind of workbook. Only valid value is shared. */
+export type ApplicationInsightsCommonTypesWorkbookSharedTypeKind = "shared";
+export const ApplicationInsightsCommonTypesWorkbookSharedTypeKind =
+  /*@__PURE__*/ S.String;
+
+export interface GetWorkbookResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -306,7 +238,7 @@ export interface WorkbooksCreateOrUpdateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: WorkbooksCreateOrUpdateResponseTagsMap;
+  tags?: GetWorkbookResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Metadata describing a workbook for an Azure resource. */
@@ -318,13 +250,13 @@ export interface WorkbooksCreateOrUpdateResponse {
   /** Resource etag */
   etag?: string;
 }
-export const WorkbooksCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetWorkbookResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(WorkbooksCreateOrUpdateResponseTagsMap),
+    tags: S.optional(GetWorkbookResponseTagsMap),
     location: S.String,
     properties: S.optional(WorkbookProperties),
     identity: S.optional(WorkbookResourceIdentity),
@@ -332,77 +264,47 @@ export const WorkbooksCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
     etag: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "WorkbooksCreateOrUpdateResponse",
-}) as any as S.Schema<WorkbooksCreateOrUpdateResponse>;
+  identifier: "GetWorkbookResponse",
+}) as any as S.Schema<GetWorkbookResponse>;
 
-export interface WorkbooksDeleteRequest {
+export interface GetWorkbooksRevisionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the workbook resource. The value must be an UUID. */
   resourceName: string;
+  /** The id of the workbook's revision. */
+  revisionId: string;
 }
-export const WorkbooksDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetWorkbooksRevisionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     resourceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/workbooks/{resourceName}",
-      code: 200,
-      apiVersion: "2023-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "WorkbooksDeleteRequest",
-}) as any as S.Schema<WorkbooksDeleteRequest>;
-
-export interface WorkbooksDeleteResponse {}
-export const WorkbooksDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "WorkbooksDeleteResponse",
-}) as any as S.Schema<WorkbooksDeleteResponse>;
-
-export interface WorkbooksGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the workbook resource. The value must be an UUID. */
-  resourceName: string;
-  /** Flag indicating whether or not to return the full content for each applicable workbook. If false, only return summary content for workbooks. */
-  canFetchContent?: boolean;
-}
-export const WorkbooksGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-    canFetchContent: S.optional(S.Boolean.pipe(T.Query())),
+    revisionId: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/workbooks/{resourceName}",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/workbooks/{resourceName}/revisions/{revisionId}",
       code: 200,
       apiVersion: "2023-06-01",
     }),
   ),
 ).annotate({
-  identifier: "WorkbooksGetRequest",
-}) as any as S.Schema<WorkbooksGetRequest>;
+  identifier: "GetWorkbooksRevisionRequest",
+}) as any as S.Schema<GetWorkbooksRevisionRequest>;
 
 /** Resource tags. */
-export type WorkbooksGetResponseTagsMap = { [key: string]: string | undefined };
-export const WorkbooksGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetWorkbooksRevisionResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetWorkbooksRevisionResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WorkbooksGetResponseTagsMap>;
+) as any as S.Schema<GetWorkbooksRevisionResponseTagsMap>;
 
-export interface WorkbooksGetResponse {
+export interface GetWorkbooksRevisionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -412,7 +314,7 @@ export interface WorkbooksGetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: WorkbooksGetResponseTagsMap;
+  tags?: GetWorkbooksRevisionResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Metadata describing a workbook for an Azure resource. */
@@ -424,13 +326,13 @@ export interface WorkbooksGetResponse {
   /** Resource etag */
   etag?: string;
 }
-export const WorkbooksGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetWorkbooksRevisionResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(WorkbooksGetResponseTagsMap),
+    tags: S.optional(GetWorkbooksRevisionResponseTagsMap),
     location: S.String,
     properties: S.optional(WorkbookProperties),
     identity: S.optional(WorkbookResourceIdentity),
@@ -438,44 +340,43 @@ export const WorkbooksGetResponse = /*@__PURE__*/ S.suspend(() =>
     etag: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "WorkbooksGetResponse",
-}) as any as S.Schema<WorkbooksGetResponse>;
+  identifier: "GetWorkbooksRevisionResponse",
+}) as any as S.Schema<GetWorkbooksRevisionResponse>;
 
-export type WorkbooksListByResourceGroupRequestCategory =
+export type ListWorkbookByResourceGroupRequestCategory =
   | "workbook"
   | "TSG"
   | "performance"
   | "retention";
-export const WorkbooksListByResourceGroupRequestCategory =
+export const ListWorkbookByResourceGroupRequestCategory =
   /*@__PURE__*/ S.String;
 
-export type WorkbooksListByResourceGroupRequestTagsList = Array<string>;
-export const WorkbooksListByResourceGroupRequestTagsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<WorkbooksListByResourceGroupRequestTagsList>;
+export type ListWorkbookByResourceGroupRequestTagsList = Array<string>;
+export const ListWorkbookByResourceGroupRequestTagsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListWorkbookByResourceGroupRequestTagsList>;
 
-export interface WorkbooksListByResourceGroupRequest {
+export interface ListWorkbookByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** Category of workbook to return. */
-  category: WorkbooksListByResourceGroupRequestCategory | (string & {});
+  category: ListWorkbookByResourceGroupRequestCategory | (string & {});
   /** Tags presents on each workbook returned. */
-  tags?: WorkbooksListByResourceGroupRequestTagsList;
+  tags?: ListWorkbookByResourceGroupRequestTagsList;
   /** Azure Resource Id that will fetch all linked workbooks. */
   sourceId?: string;
   /** Flag indicating whether or not to return the full content for each applicable workbook. If false, only return summary content for workbooks. */
   canFetchContent?: boolean;
 }
-export const WorkbooksListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListWorkbookByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
-    category: WorkbooksListByResourceGroupRequestCategory.pipe(T.Query()),
+    category: ListWorkbookByResourceGroupRequestCategory.pipe(T.Query()),
     tags: S.optional(
-      WorkbooksListByResourceGroupRequestTagsList.pipe(T.Query()),
+      ListWorkbookByResourceGroupRequestTagsList.pipe(T.Query()),
     ),
     sourceId: S.optional(S.String.pipe(T.Query())),
     canFetchContent: S.optional(S.Boolean.pipe(T.Query())),
@@ -488,8 +389,8 @@ export const WorkbooksListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "WorkbooksListByResourceGroupRequest",
-}) as any as S.Schema<WorkbooksListByResourceGroupRequest>;
+  identifier: "ListWorkbookByResourceGroupRequest",
+}) as any as S.Schema<ListWorkbookByResourceGroupRequest>;
 
 /** Resource tags. */
 export type WorkbookTagsMap = { [key: string]: string | undefined };
@@ -558,36 +459,33 @@ export const WorkbooksListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "WorkbooksListResult",
 }) as any as S.Schema<WorkbooksListResult>;
 
-export type WorkbooksListBySubscriptionRequestCategory =
+export type ListWorkbookBySubscriptionRequestCategory =
   | "workbook"
   | "TSG"
   | "performance"
   | "retention";
-export const WorkbooksListBySubscriptionRequestCategory =
-  /*@__PURE__*/ S.String;
+export const ListWorkbookBySubscriptionRequestCategory = /*@__PURE__*/ S.String;
 
-export type WorkbooksListBySubscriptionRequestTagsList = Array<string>;
-export const WorkbooksListBySubscriptionRequestTagsList = /*@__PURE__*/ S.Array(
+export type ListWorkbookBySubscriptionRequestTagsList = Array<string>;
+export const ListWorkbookBySubscriptionRequestTagsList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<WorkbooksListBySubscriptionRequestTagsList>;
+) as any as S.Schema<ListWorkbookBySubscriptionRequestTagsList>;
 
-export interface WorkbooksListBySubscriptionRequest {
+export interface ListWorkbookBySubscriptionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** Category of workbook to return. */
-  category: WorkbooksListBySubscriptionRequestCategory | (string & {});
+  category: ListWorkbookBySubscriptionRequestCategory | (string & {});
   /** Tags presents on each workbook returned. */
-  tags?: WorkbooksListBySubscriptionRequestTagsList;
+  tags?: ListWorkbookBySubscriptionRequestTagsList;
   /** Flag indicating whether or not to return the full content for each applicable workbook. If false, only return summary content for workbooks. */
   canFetchContent?: boolean;
 }
-export const WorkbooksListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListWorkbookBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
-    category: WorkbooksListBySubscriptionRequestCategory.pipe(T.Query()),
-    tags: S.optional(
-      WorkbooksListBySubscriptionRequestTagsList.pipe(T.Query()),
-    ),
+    category: ListWorkbookBySubscriptionRequestCategory.pipe(T.Query()),
+    tags: S.optional(ListWorkbookBySubscriptionRequestTagsList.pipe(T.Query())),
     canFetchContent: S.optional(S.Boolean.pipe(T.Query())),
   }).pipe(
     T.Http({
@@ -598,86 +496,10 @@ export const WorkbooksListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "WorkbooksListBySubscriptionRequest",
-}) as any as S.Schema<WorkbooksListBySubscriptionRequest>;
+  identifier: "ListWorkbookBySubscriptionRequest",
+}) as any as S.Schema<ListWorkbookBySubscriptionRequest>;
 
-export interface WorkbooksRevisionGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the workbook resource. The value must be an UUID. */
-  resourceName: string;
-  /** The id of the workbook's revision. */
-  revisionId: string;
-}
-export const WorkbooksRevisionGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-    revisionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/workbooks/{resourceName}/revisions/{revisionId}",
-      code: 200,
-      apiVersion: "2023-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "WorkbooksRevisionGetRequest",
-}) as any as S.Schema<WorkbooksRevisionGetRequest>;
-
-/** Resource tags. */
-export type WorkbooksRevisionGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const WorkbooksRevisionGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<WorkbooksRevisionGetResponseTagsMap>;
-
-export interface WorkbooksRevisionGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: WorkbooksRevisionGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Metadata describing a workbook for an Azure resource. */
-  properties?: WorkbookProperties;
-  /** Identity used for BYOS */
-  identity?: WorkbookResourceIdentity;
-  /** The kind of workbook. Only valid value is shared. */
-  kind?: ApplicationInsightsCommonTypesWorkbookSharedTypeKind;
-  /** Resource etag */
-  etag?: string;
-}
-export const WorkbooksRevisionGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(WorkbooksRevisionGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(WorkbookProperties),
-    identity: S.optional(WorkbookResourceIdentity),
-    kind: S.optional(ApplicationInsightsCommonTypesWorkbookSharedTypeKind),
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "WorkbooksRevisionGetResponse",
-}) as any as S.Schema<WorkbooksRevisionGetResponse>;
-
-export interface WorkbooksRevisionsListRequest {
+export interface ListWorkbooksRevisionsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -685,7 +507,7 @@ export interface WorkbooksRevisionsListRequest {
   /** The name of the workbook resource. The value must be an UUID. */
   resourceName: string;
 }
-export const WorkbooksRevisionsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListWorkbooksRevisionsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -699,21 +521,21 @@ export const WorkbooksRevisionsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "WorkbooksRevisionsListRequest",
-}) as any as S.Schema<WorkbooksRevisionsListRequest>;
+  identifier: "ListWorkbooksRevisionsRequest",
+}) as any as S.Schema<ListWorkbooksRevisionsRequest>;
 
 /** The kind of workbook. Only valid value is shared. */
 export type WorkbookUpdateSharedTypeKind = "shared";
 export const WorkbookUpdateSharedTypeKind = /*@__PURE__*/ S.String;
 
 /** Resource tags. */
-export type WorkbooksUpdateRequestTagsMap = {
+export type UpdateWorkbookRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const WorkbooksUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateWorkbookRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WorkbooksUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateWorkbookRequestTagsMap>;
 
 /** A list of 0 or more tags that are associated with this workbook definition */
 export type WorkbookPropertiesUpdateParametersTagsList = Array<string>;
@@ -749,7 +571,7 @@ export const WorkbookPropertiesUpdateParameters = /*@__PURE__*/ S.suspend(() =>
   identifier: "WorkbookPropertiesUpdateParameters",
 }) as any as S.Schema<WorkbookPropertiesUpdateParameters>;
 
-export interface WorkbooksUpdateRequest {
+export interface UpdateWorkbookRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -761,18 +583,18 @@ export interface WorkbooksUpdateRequest {
   /** The kind of workbook. Only valid value is shared. */
   kind?: WorkbookUpdateSharedTypeKind | (string & {});
   /** Resource tags. */
-  tags?: WorkbooksUpdateRequestTagsMap;
+  tags?: UpdateWorkbookRequestTagsMap;
   /** Metadata describing a workbook for an Azure resource. */
   properties?: WorkbookPropertiesUpdateParameters;
 }
-export const WorkbooksUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateWorkbookRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     resourceName: S.String.pipe(T.Label()),
     sourceId: S.optional(S.String.pipe(T.Query())),
     kind: S.optional(WorkbookUpdateSharedTypeKind),
-    tags: S.optional(WorkbooksUpdateRequestTagsMap),
+    tags: S.optional(UpdateWorkbookRequestTagsMap),
     properties: S.optional(WorkbookPropertiesUpdateParameters),
   }).pipe(
     T.Http({
@@ -783,19 +605,19 @@ export const WorkbooksUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "WorkbooksUpdateRequest",
-}) as any as S.Schema<WorkbooksUpdateRequest>;
+  identifier: "UpdateWorkbookRequest",
+}) as any as S.Schema<UpdateWorkbookRequest>;
 
 /** Resource tags. */
-export type WorkbooksUpdateResponseTagsMap = {
+export type UpdateWorkbookResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const WorkbooksUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateWorkbookResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WorkbooksUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateWorkbookResponseTagsMap>;
 
-export interface WorkbooksUpdateResponse {
+export interface UpdateWorkbookResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -805,7 +627,7 @@ export interface WorkbooksUpdateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: WorkbooksUpdateResponseTagsMap;
+  tags?: UpdateWorkbookResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Metadata describing a workbook for an Azure resource. */
@@ -817,13 +639,13 @@ export interface WorkbooksUpdateResponse {
   /** Resource etag */
   etag?: string;
 }
-export const WorkbooksUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateWorkbookResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(WorkbooksUpdateResponseTagsMap),
+    tags: S.optional(UpdateWorkbookResponseTagsMap),
     location: S.String,
     properties: S.optional(WorkbookProperties),
     identity: S.optional(WorkbookResourceIdentity),
@@ -831,8 +653,287 @@ export const WorkbooksUpdateResponse = /*@__PURE__*/ S.suspend(() =>
     etag: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "WorkbooksUpdateResponse",
-}) as any as S.Schema<WorkbooksUpdateResponse>;
+  identifier: "UpdateWorkbookResponse",
+}) as any as S.Schema<UpdateWorkbookResponse>;
+
+/** Resource tags. */
+export type WorkbooksCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const WorkbooksCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<WorkbooksCreateOrUpdateRequestTagsMap>;
+
+/** Being deprecated, please use the other tags field */
+export type WorkbookPropertiesInputTagsList = Array<string>;
+export const WorkbookPropertiesInputTagsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<WorkbookPropertiesInputTagsList>;
+
+/** Properties that contain a workbook. */
+export interface WorkbookPropertiesInput {
+  /** The user-defined name (display name) of the workbook. */
+  displayName: string;
+  /** Configuration of this particular workbook. Configuration data is a string containing valid JSON */
+  serializedData: string | null;
+  /** Workbook schema version format, like 'Notebook/1.0', which should match the workbook in serializedData */
+  version?: string;
+  /** Workbook category, as defined by the user at creation time. */
+  category: string;
+  /** Being deprecated, please use the other tags field */
+  tags?: WorkbookPropertiesInputTagsList;
+  /** ResourceId for a source resource. */
+  sourceId?: string;
+  /** The resourceId to the storage account when bring your own storage is used */
+  storageUri?: string | null;
+  /** The description of the workbook. */
+  description?: string | null;
+}
+export const WorkbookPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    displayName: S.String,
+    serializedData: S.NullOr(S.String),
+    version: S.optional(S.String),
+    category: S.String,
+    tags: S.optional(WorkbookPropertiesInputTagsList),
+    sourceId: S.optional(S.String),
+    storageUri: S.optional(S.NullOr(S.String)),
+    description: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({
+  identifier: "WorkbookPropertiesInput",
+}) as any as S.Schema<WorkbookPropertiesInput>;
+
+/** User assigned identity properties */
+export interface UserAssignedIdentityInput {}
+export const UserAssignedIdentityInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "UserAssignedIdentityInput",
+}) as any as S.Schema<UserAssignedIdentityInput>;
+
+/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+export type UserAssignedIdentitiesInput = {
+  [key: string]: UserAssignedIdentityInput | undefined;
+};
+export const UserAssignedIdentitiesInput = /*@__PURE__*/ S.Record(
+  S.String,
+  UserAssignedIdentityInput,
+) as any as S.Schema<UserAssignedIdentitiesInput>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export interface WorkbookResourceIdentityInput {
+  type: ManagedServiceIdentityType | (string & {});
+  userAssignedIdentities?: UserAssignedIdentitiesInput;
+}
+export const WorkbookResourceIdentityInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: ManagedServiceIdentityType,
+    userAssignedIdentities: S.optional(UserAssignedIdentitiesInput),
+  }),
+).annotate({
+  identifier: "WorkbookResourceIdentityInput",
+}) as any as S.Schema<WorkbookResourceIdentityInput>;
+
+export interface WorkbooksCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the workbook resource. The value must be an UUID. */
+  resourceName: string;
+  /** Azure Resource Id that will fetch all linked workbooks. */
+  sourceId?: string;
+  /** Resource tags. */
+  tags?: WorkbooksCreateOrUpdateRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Metadata describing a workbook for an Azure resource. */
+  properties?: WorkbookPropertiesInput;
+  /** Identity used for BYOS */
+  identity?: WorkbookResourceIdentityInput;
+  /** The kind of workbook. Only valid value is shared. */
+  kind?: ApplicationInsightsCommonTypesWorkbookSharedTypeKind | (string & {});
+  /** Resource etag */
+  etag?: string;
+}
+export const WorkbooksCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+    sourceId: S.optional(S.String.pipe(T.Query())),
+    tags: S.optional(WorkbooksCreateOrUpdateRequestTagsMap),
+    location: S.String,
+    properties: S.optional(WorkbookPropertiesInput),
+    identity: S.optional(WorkbookResourceIdentityInput),
+    kind: S.optional(ApplicationInsightsCommonTypesWorkbookSharedTypeKind),
+    etag: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/workbooks/{resourceName}",
+      code: 200,
+      apiVersion: "2023-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "WorkbooksCreateOrUpdateRequest",
+}) as any as S.Schema<WorkbooksCreateOrUpdateRequest>;
+
+/** Resource tags. */
+export type WorkbooksCreateOrUpdateResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const WorkbooksCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<WorkbooksCreateOrUpdateResponseTagsMap>;
+
+export interface WorkbooksCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: WorkbooksCreateOrUpdateResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Metadata describing a workbook for an Azure resource. */
+  properties?: WorkbookProperties;
+  /** Identity used for BYOS */
+  identity?: WorkbookResourceIdentity;
+  /** The kind of workbook. Only valid value is shared. */
+  kind?: ApplicationInsightsCommonTypesWorkbookSharedTypeKind;
+  /** Resource etag */
+  etag?: string;
+}
+export const WorkbooksCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(WorkbooksCreateOrUpdateResponseTagsMap),
+    location: S.String,
+    properties: S.optional(WorkbookProperties),
+    identity: S.optional(WorkbookResourceIdentity),
+    kind: S.optional(ApplicationInsightsCommonTypesWorkbookSharedTypeKind),
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "WorkbooksCreateOrUpdateResponse",
+}) as any as S.Schema<WorkbooksCreateOrUpdateResponse>;
+
+export type DeleteWorkbookError = AzureOpError;
+/** Delete a workbook. */
+export const DeleteWorkbook: API.OperationMethod<
+  DeleteWorkbookRequest,
+  DeleteWorkbookResponse,
+  DeleteWorkbookError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteWorkbookRequest,
+  output: DeleteWorkbookResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWorkbookError = AzureOpError;
+/** Get a single workbook by its resourceName. */
+export const GetWorkbook: API.OperationMethod<
+  GetWorkbookRequest,
+  GetWorkbookResponse,
+  GetWorkbookError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWorkbookRequest,
+  output: GetWorkbookResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWorkbooksRevisionError = AzureOpError;
+/** Get a single workbook revision defined by its revisionId. */
+export const GetWorkbooksRevision: API.OperationMethod<
+  GetWorkbooksRevisionRequest,
+  GetWorkbooksRevisionResponse,
+  GetWorkbooksRevisionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWorkbooksRevisionRequest,
+  output: GetWorkbooksRevisionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWorkbookByResourceGroupError = AzureOpError;
+/** Get all Workbooks defined within a specified resource group and category. */
+export const ListWorkbookByResourceGroup: API.OperationMethod<
+  ListWorkbookByResourceGroupRequest,
+  WorkbooksListResult,
+  ListWorkbookByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWorkbookByResourceGroupRequest,
+  output: WorkbooksListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWorkbookBySubscriptionError = AzureOpError;
+/** Get all Workbooks defined within a specified subscription and category. */
+export const ListWorkbookBySubscription: API.OperationMethod<
+  ListWorkbookBySubscriptionRequest,
+  WorkbooksListResult,
+  ListWorkbookBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWorkbookBySubscriptionRequest,
+  output: WorkbooksListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWorkbooksRevisionsError = AzureOpError;
+/** Get the revisions for the workbook defined by its resourceName. */
+export const ListWorkbooksRevisions: API.OperationMethod<
+  ListWorkbooksRevisionsRequest,
+  WorkbooksListResult,
+  ListWorkbooksRevisionsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWorkbooksRevisionsRequest,
+  output: WorkbooksListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateWorkbookError = AzureOpError;
+/** Updates a workbook that has already been added. */
+export const UpdateWorkbook: API.OperationMethod<
+  UpdateWorkbookRequest,
+  UpdateWorkbookResponse,
+  UpdateWorkbookError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateWorkbookRequest,
+  output: UpdateWorkbookResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
 export type WorkbooksCreateOrUpdateError = AzureOpError;
 /** Create a new workbook. */
@@ -844,111 +945,6 @@ export const WorkbooksCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: WorkbooksCreateOrUpdateRequest,
   output: WorkbooksCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkbooksDeleteError = AzureOpError;
-/** Delete a workbook. */
-export const WorkbooksDelete: API.OperationMethod<
-  WorkbooksDeleteRequest,
-  WorkbooksDeleteResponse,
-  WorkbooksDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkbooksDeleteRequest,
-  output: WorkbooksDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkbooksGetError = AzureOpError;
-/** Get a single workbook by its resourceName. */
-export const WorkbooksGet: API.OperationMethod<
-  WorkbooksGetRequest,
-  WorkbooksGetResponse,
-  WorkbooksGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkbooksGetRequest,
-  output: WorkbooksGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkbooksListByResourceGroupError = AzureOpError;
-/** Get all Workbooks defined within a specified resource group and category. */
-export const WorkbooksListByResourceGroup: API.OperationMethod<
-  WorkbooksListByResourceGroupRequest,
-  WorkbooksListResult,
-  WorkbooksListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkbooksListByResourceGroupRequest,
-  output: WorkbooksListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkbooksListBySubscriptionError = AzureOpError;
-/** Get all Workbooks defined within a specified subscription and category. */
-export const WorkbooksListBySubscription: API.OperationMethod<
-  WorkbooksListBySubscriptionRequest,
-  WorkbooksListResult,
-  WorkbooksListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkbooksListBySubscriptionRequest,
-  output: WorkbooksListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkbooksRevisionGetError = AzureOpError;
-/** Get a single workbook revision defined by its revisionId. */
-export const WorkbooksRevisionGet: API.OperationMethod<
-  WorkbooksRevisionGetRequest,
-  WorkbooksRevisionGetResponse,
-  WorkbooksRevisionGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkbooksRevisionGetRequest,
-  output: WorkbooksRevisionGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkbooksRevisionsListError = AzureOpError;
-/** Get the revisions for the workbook defined by its resourceName. */
-export const WorkbooksRevisionsList: API.OperationMethod<
-  WorkbooksRevisionsListRequest,
-  WorkbooksListResult,
-  WorkbooksRevisionsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkbooksRevisionsListRequest,
-  output: WorkbooksListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkbooksUpdateError = AzureOpError;
-/** Updates a workbook that has already been added. */
-export const WorkbooksUpdate: API.OperationMethod<
-  WorkbooksUpdateRequest,
-  WorkbooksUpdateResponse,
-  WorkbooksUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkbooksUpdateRequest,
-  output: WorkbooksUpdateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

@@ -100,13 +100,6 @@ export const Empty = /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
   identifier: "Empty",
 }) as any as S.Schema<Empty>;
 
-export type AgentPoolStateEnum =
-  | "STATE_UNSPECIFIED"
-  | "CREATING"
-  | "CREATED"
-  | "DELETING";
-export const AgentPoolStateEnum = /*@__PURE__*/ S.String;
-
 /** Specifies a bandwidth limit for an agent pool. */
 export interface BandwidthLimit {
   /** Bandwidth rate in megabytes per second, distributed across all the agents in the pool. */
@@ -118,38 +111,45 @@ export const BandwidthLimit = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "BandwidthLimit" }) as any as S.Schema<BandwidthLimit>;
 
+export type AgentPoolStateEnum =
+  | "STATE_UNSPECIFIED"
+  | "CREATING"
+  | "CREATED"
+  | "DELETING";
+export const AgentPoolStateEnum = /*@__PURE__*/ S.String;
+
 /** Represents an agent pool. */
 export interface AgentPool {
+  /** Specifies the bandwidth limit details. If this field is unspecified, the default value is set as 'No Limit'. */
+  bandwidthLimit?: BandwidthLimit;
+  /** Required. Specifies a unique string that identifies the agent pool. Format: `projects/{project_id}/agentPools/{agent_pool_id}` */
+  name?: string;
   /** Specifies the client-specified AgentPool description. */
   displayName?: string;
   /** Output only. Specifies the state of the AgentPool. */
   state?: AgentPoolStateEnum | (string & {});
-  /** Required. Specifies a unique string that identifies the agent pool. Format: `projects/{project_id}/agentPools/{agent_pool_id}` */
-  name?: string;
-  /** Specifies the bandwidth limit details. If this field is unspecified, the default value is set as 'No Limit'. */
-  bandwidthLimit?: BandwidthLimit;
 }
 export const AgentPool = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    bandwidthLimit: S.optional(BandwidthLimit),
+    name: S.optional(S.String),
     displayName: S.optional(S.String),
     state: S.optional(AgentPoolStateEnum),
-    name: S.optional(S.String),
-    bandwidthLimit: S.optional(BandwidthLimit),
   }),
 ).annotate({ identifier: "AgentPool" }) as any as S.Schema<AgentPool>;
 
 export interface CreateProjectsAgentPoolsRequest {
-  /** Required. The ID of the Google Cloud project that owns the agent pool. */
-  projectId: string;
   /** Required. The ID of the agent pool to create. The `agent_pool_id` must meet the following requirements: * Length of 128 characters or less. * Not start with the string `goog`. * Start with a lowercase ASCII character, followed by: * Zero or more: lowercase Latin alphabet characters, numerals, hyphens (`-`), periods (`.`), underscores (`_`), or tildes (`~`). * One or more numerals or lowercase ASCII characters. As expressed by the regular expression: `^(?!goog)[a-z]([a-z0-9-._~]*[a-z0-9])?$`. */
   agentPoolId?: string;
+  /** Required. The ID of the Google Cloud project that owns the agent pool. */
+  projectId: string;
   /** Request body */
   body?: AgentPool;
 }
 export const CreateProjectsAgentPoolsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    projectId: S.String.pipe(T.Label()),
     agentPoolId: S.optional(S.String.pipe(T.Query())),
+    projectId: S.String.pipe(T.Label()),
     body: S.optional(AgentPool.pipe(T.HttpBody())),
   }).pipe(
     T.Http({
@@ -162,173 +162,136 @@ export const CreateProjectsAgentPoolsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateProjectsAgentPoolsRequest",
 }) as any as S.Schema<CreateProjectsAgentPoolsRequest>;
 
-/** An HttpData resource specifies a list of objects on the web to be transferred over HTTP. The information of the objects to be transferred is contained in a file referenced by a URL. The first line in the file must be `"TsvHttpData-1.0"`, which specifies the format of the file. Subsequent lines specify the information of the list of objects, one object per list entry. Each entry has the following tab-delimited fields: * **HTTP URL** — The location of the object. * **Length** — The size of the object in bytes. * **MD5** — The base64-encoded MD5 hash of the object. For an example of a valid TSV file, see [Transferring data from URLs](https://cloud.google.com/storage-transfer/docs/create-url-list). When transferring data based on a URL list, keep the following in mind: * When an object located at `http(s)://hostname:port/` is transferred to a data sink, the name of the object at the data sink is `/`. * If the specified size of an object does not match the actual size of the object fetched, the object is not transferred. * If the specified MD5 does not match the MD5 computed from the transferred bytes, the object transfer fails. * Ensure that each URL you specify is publicly accessible. For example, in Cloud Storage you can [share an object publicly] (/storage/docs/cloud-console#_sharingdata) and get a link to it. * Storage Transfer Service obeys `robots.txt` rules and requires the source HTTP server to support `Range` requests and to return a `Content-Length` header in each response. * ObjectConditions have no effect when filtering objects to transfer. */
-export interface HttpData {
-  /** Required. The URL that points to the file that stores the object list entries. This file must allow public access. The URL is either an HTTP/HTTPS address (e.g. `https://example.com/urllist.tsv`) or a Cloud Storage path (e.g. `gs://my-bucket/urllist.tsv`). */
-  listUrl?: string;
+export type LoggingConfigLogActionsItemEnum =
+  | "LOGGABLE_ACTION_UNSPECIFIED"
+  | "FIND"
+  | "DELETE"
+  | "COPY";
+export const LoggingConfigLogActionsItemEnum = /*@__PURE__*/ S.String;
+
+export type LoggingConfigLogActionsItemEnumList = Array<
+  LoggingConfigLogActionsItemEnum | (string & {})
+>;
+export const LoggingConfigLogActionsItemEnumList = /*@__PURE__*/ S.Array(
+  LoggingConfigLogActionsItemEnum,
+) as any as S.Schema<LoggingConfigLogActionsItemEnumList>;
+
+export type LoggingConfigLogActionStatesItemEnum =
+  | "LOGGABLE_ACTION_STATE_UNSPECIFIED"
+  | "SUCCEEDED"
+  | "FAILED"
+  | "SKIPPED";
+export const LoggingConfigLogActionStatesItemEnum = /*@__PURE__*/ S.String;
+
+export type LoggingConfigLogActionStatesItemEnumList = Array<
+  LoggingConfigLogActionStatesItemEnum | (string & {})
+>;
+export const LoggingConfigLogActionStatesItemEnumList = /*@__PURE__*/ S.Array(
+  LoggingConfigLogActionStatesItemEnum,
+) as any as S.Schema<LoggingConfigLogActionStatesItemEnumList>;
+
+/** Specifies the logging behavior for transfer operations. Logs can be sent to Cloud Logging for all transfer types. See [Read transfer logs](https://cloud.google.com/storage-transfer/docs/read-transfer-logs) for details. */
+export interface LoggingConfig {
+  /** Specifies the actions to be logged. If empty, no logs are generated. */
+  logActions?: LoggingConfigLogActionsItemEnumList;
+  /** For PosixFilesystem transfers, enables [file system transfer logs](https://cloud.google.com/storage-transfer/docs/on-prem-transfer-log-format) instead of, or in addition to, Cloud Logging. This option ignores [LoggableAction] and [LoggableActionState]. If these are set, Cloud Logging will also be enabled for this transfer. */
+  enableOnpremGcsTransferLogs?: boolean;
+  /** States in which `log_actions` are logged. If empty, no logs are generated. */
+  logActionStates?: LoggingConfigLogActionStatesItemEnumList;
 }
-export const HttpData = /*@__PURE__*/ S.suspend(() =>
+export const LoggingConfig = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    listUrl: S.optional(S.String),
+    logActions: S.optional(LoggingConfigLogActionsItemEnumList),
+    enableOnpremGcsTransferLogs: S.optional(S.Boolean),
+    logActionStates: S.optional(LoggingConfigLogActionStatesItemEnumList),
   }),
-).annotate({ identifier: "HttpData" }) as any as S.Schema<HttpData>;
+).annotate({ identifier: "LoggingConfig" }) as any as S.Schema<LoggingConfig>;
 
-/** A POSIX filesystem resource. */
-export interface PosixFilesystem {
-  /** Root directory path to the filesystem. */
-  rootDirectory?: string;
+/** Specifies the Event-driven transfer options. Event-driven transfers listen to an event stream to transfer updated files. */
+export interface EventStream {
+  /** Required. Specifies a unique name of the resource such as AWS SQS ARN in the form 'arn:aws:sqs:region:account_id:queue_name', or Pub/Sub subscription resource name in the form 'projects/{project}/subscriptions/{sub}'. */
+  name?: string;
+  /** Specifies the data and time at which Storage Transfer Service stops listening for events from this stream. After this time, any transfers in progress will complete, but no new transfers are initiated. */
+  eventStreamExpirationTime?: string;
+  /** Specifies the date and time that Storage Transfer Service starts listening for events from this stream. If no start time is specified or start time is in the past, Storage Transfer Service starts listening immediately. */
+  eventStreamStartTime?: string;
 }
-export const PosixFilesystem = /*@__PURE__*/ S.suspend(() =>
+export const EventStream = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    rootDirectory: S.optional(S.String),
+    name: S.optional(S.String),
+    eventStreamExpirationTime: S.optional(S.String),
+    eventStreamStartTime: S.optional(S.String),
   }),
-).annotate({
-  identifier: "PosixFilesystem",
-}) as any as S.Schema<PosixFilesystem>;
+).annotate({ identifier: "EventStream" }) as any as S.Schema<EventStream>;
 
-export type S3CompatibleMetadataAuthMethodEnum =
-  | "AUTH_METHOD_UNSPECIFIED"
-  | "AUTH_METHOD_AWS_SIGNATURE_V4"
-  | "AUTH_METHOD_AWS_SIGNATURE_V2";
-export const S3CompatibleMetadataAuthMethodEnum = /*@__PURE__*/ S.String;
+export type TransferJobStatusEnum =
+  | "STATUS_UNSPECIFIED"
+  | "ENABLED"
+  | "DISABLED"
+  | "DELETED";
+export const TransferJobStatusEnum = /*@__PURE__*/ S.String;
 
-export type S3CompatibleMetadataProtocolEnum =
-  | "NETWORK_PROTOCOL_UNSPECIFIED"
-  | "NETWORK_PROTOCOL_HTTPS"
-  | "NETWORK_PROTOCOL_HTTP";
-export const S3CompatibleMetadataProtocolEnum = /*@__PURE__*/ S.String;
-
-export type S3CompatibleMetadataRequestModelEnum =
-  | "REQUEST_MODEL_UNSPECIFIED"
-  | "REQUEST_MODEL_VIRTUAL_HOSTED_STYLE"
-  | "REQUEST_MODEL_PATH_STYLE";
-export const S3CompatibleMetadataRequestModelEnum = /*@__PURE__*/ S.String;
-
-export type S3CompatibleMetadataListApiEnum =
-  | "LIST_API_UNSPECIFIED"
-  | "LIST_OBJECTS_V2"
-  | "LIST_OBJECTS";
-export const S3CompatibleMetadataListApiEnum = /*@__PURE__*/ S.String;
-
-/** S3CompatibleMetadata contains the metadata fields that apply to the basic types of S3-compatible data providers. */
-export interface S3CompatibleMetadata {
-  /** Specifies the authentication and authorization method used by the storage service. When not specified, Transfer Service will attempt to determine right auth method to use. */
-  authMethod?: S3CompatibleMetadataAuthMethodEnum | (string & {});
-  /** Specifies the network protocol of the agent. When not specified, the default value of NetworkProtocol NETWORK_PROTOCOL_HTTPS is used. */
-  protocol?: S3CompatibleMetadataProtocolEnum | (string & {});
-  /** Specifies the API request model used to call the storage service. When not specified, the default value of RequestModel REQUEST_MODEL_VIRTUAL_HOSTED_STYLE is used. */
-  requestModel?: S3CompatibleMetadataRequestModelEnum | (string & {});
-  /** The Listing API to use for discovering objects. When not specified, Transfer Service will attempt to determine the right API to use. */
-  listApi?: S3CompatibleMetadataListApiEnum | (string & {});
+/** Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp */
+export interface Storagetransfer_Date {
+  /** Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant. */
+  day?: number;
+  /** Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day. */
+  month?: number;
+  /** Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year. */
+  year?: number;
 }
-export const S3CompatibleMetadata = /*@__PURE__*/ S.suspend(() =>
+export const Storagetransfer_Date = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    authMethod: S.optional(S3CompatibleMetadataAuthMethodEnum),
-    protocol: S.optional(S3CompatibleMetadataProtocolEnum),
-    requestModel: S.optional(S3CompatibleMetadataRequestModelEnum),
-    listApi: S.optional(S3CompatibleMetadataListApiEnum),
-  }),
-).annotate({
-  identifier: "S3CompatibleMetadata",
-}) as any as S.Schema<S3CompatibleMetadata>;
-
-/** An AwsS3CompatibleData resource. */
-export interface AwsS3CompatibleData {
-  /** A S3 compatible metadata. */
-  s3Metadata?: S3CompatibleMetadata;
-  /** Required. Specifies the endpoint of the storage service. */
-  endpoint?: string;
-  /** Specifies the region to sign requests with. This can be left blank if requests should be signed with an empty region. */
-  region?: string;
-  /** Required. Specifies the name of the bucket. */
-  bucketName?: string;
-  /** Specifies the root path to transfer objects. Must be an empty string or full path name that ends with a '/'. This field is treated as an object prefix. As such, it should generally not begin with a '/'. */
-  path?: string;
-}
-export const AwsS3CompatibleData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    s3Metadata: S.optional(S3CompatibleMetadata),
-    endpoint: S.optional(S.String),
-    region: S.optional(S.String),
-    bucketName: S.optional(S.String),
-    path: S.optional(S.String),
+    day: S.optional(S.Number),
+    month: S.optional(S.Number),
+    year: S.optional(S.Number),
   }),
 ).annotate({
-  identifier: "AwsS3CompatibleData",
-}) as any as S.Schema<AwsS3CompatibleData>;
+  identifier: "Storagetransfer_Date",
+}) as any as S.Schema<Storagetransfer_Date>;
 
-/** Specifies where the manifest is located. */
-export interface TransferManifest {
-  /** Specifies the path to the manifest in Cloud Storage. The Google-managed service account for the transfer must have `storage.objects.get` permission for this object. An example path is `gs://bucket_name/path/manifest.csv`. */
-  location?: string;
+/** Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`. */
+export interface TimeOfDay {
+  /** Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999. */
+  nanos?: number;
+  /** Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time. */
+  hours?: number;
+  /** Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds. */
+  seconds?: number;
+  /** Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59. */
+  minutes?: number;
 }
-export const TransferManifest = /*@__PURE__*/ S.suspend(() =>
+export const TimeOfDay = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    location: S.optional(S.String),
+    nanos: S.optional(S.Number),
+    hours: S.optional(S.Number),
+    seconds: S.optional(S.Number),
+    minutes: S.optional(S.Number),
   }),
-).annotate({
-  identifier: "TransferManifest",
-}) as any as S.Schema<TransferManifest>;
+).annotate({ identifier: "TimeOfDay" }) as any as S.Schema<TimeOfDay>;
 
-/** Azure credentials For information on our data retention policy for user credentials, see [User credentials](/storage-transfer/docs/data-retention#user-credentials). */
-export interface AzureCredentials {
-  /** Required. Azure shared access signature (SAS). For more information about SAS, see [Grant limited access to Azure Storage resources using shared access signatures (SAS)](https://docs.microsoft.com/en-us/azure/storage/common/storage-sas-overview). */
-  sasToken?: string;
+/** Transfers can be scheduled to recur or to run just once. */
+export interface Schedule {
+  /** The last day a transfer runs. Date boundaries are determined relative to UTC time. A job runs once per 24 hours within the following guidelines: * If `schedule_end_date` and schedule_start_date are the same and in the future relative to UTC, the transfer is executed only one time. * If `schedule_end_date` is later than `schedule_start_date` and `schedule_end_date` is in the future relative to UTC, the job runs each day at start_time_of_day through `schedule_end_date`. */
+  scheduleEndDate?: Storagetransfer_Date;
+  /** The time in UTC that a transfer job is scheduled to run. Transfers may start later than this time. If `start_time_of_day` is not specified: * One-time transfers run immediately. * Recurring transfers run immediately, and each day at midnight UTC, through schedule_end_date. If `start_time_of_day` is specified: * One-time transfers run at the specified time. * Recurring transfers run at the specified time each day, through `schedule_end_date`. */
+  startTimeOfDay?: TimeOfDay;
+  /** Required. The start date of a transfer. Date boundaries are determined relative to UTC time. If `schedule_start_date` and start_time_of_day are in the past relative to the job's creation time, the transfer starts the day after you schedule the transfer request. **Note:** When starting jobs at or near midnight UTC it is possible that a job starts later than expected. For example, if you send an outbound request on June 1 one millisecond prior to midnight UTC and the Storage Transfer Service server receives the request on June 2, then it creates a TransferJob with `schedule_start_date` set to June 2 and a `start_time_of_day` set to midnight UTC. The first scheduled TransferOperation takes place on June 3 at midnight UTC. */
+  scheduleStartDate?: Storagetransfer_Date;
+  /** Interval between the start of each scheduled TransferOperation. If unspecified, the default value is 24 hours. This value may not be less than 1 hour. */
+  repeatInterval?: string;
+  /** The time in UTC that no further transfer operations are scheduled. Combined with schedule_end_date, `end_time_of_day` specifies the end date and time for starting new transfer operations. This field must be greater than or equal to the timestamp corresponding to the combination of schedule_start_date and start_time_of_day, and is subject to the following: * If `end_time_of_day` is not set and `schedule_end_date` is set, then a default value of `23:59:59` is used for `end_time_of_day`. * If `end_time_of_day` is set and `schedule_end_date` is not set, then INVALID_ARGUMENT is returned. */
+  endTimeOfDay?: TimeOfDay;
 }
-export const AzureCredentials = /*@__PURE__*/ S.suspend(() =>
+export const Schedule = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    sasToken: S.optional(S.String),
+    scheduleEndDate: S.optional(Storagetransfer_Date),
+    startTimeOfDay: S.optional(TimeOfDay),
+    scheduleStartDate: S.optional(Storagetransfer_Date),
+    repeatInterval: S.optional(S.String),
+    endTimeOfDay: S.optional(TimeOfDay),
   }),
-).annotate({
-  identifier: "AzureCredentials",
-}) as any as S.Schema<AzureCredentials>;
-
-/** The identity of an Azure application through which Storage Transfer Service can authenticate requests using Azure workload identity federation. Storage Transfer Service can issue requests to Azure Storage through registered Azure applications, eliminating the need to pass credentials to Storage Transfer Service directly. To configure federated identity, see [Configure access to Microsoft Azure Storage](https://cloud.google.com/storage-transfer/docs/source-microsoft-azure#option_3_authenticate_using_federated_identity). */
-export interface FederatedIdentityConfig {
-  /** Required. The tenant (directory) ID of the application with federated credentials. */
-  tenantId?: string;
-  /** Required. The client (application) ID of the application with federated credentials. */
-  clientId?: string;
-}
-export const FederatedIdentityConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    tenantId: S.optional(S.String),
-    clientId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "FederatedIdentityConfig",
-}) as any as S.Schema<FederatedIdentityConfig>;
-
-/** An AzureBlobStorageData resource can be a data source, but not a data sink. An AzureBlobStorageData resource represents one Azure container. The storage account determines the [Azure endpoint](https://docs.microsoft.com/en-us/azure/storage/common/storage-create-storage-account#storage-account-endpoints). In an AzureBlobStorageData resource, a blobs's name is the [Azure Blob Storage blob's key name](https://docs.microsoft.com/en-us/rest/api/storageservices/naming-and-referencing-containers--blobs--and-metadata#blob-names). */
-export interface AzureBlobStorageData {
-  /** Required. The container to transfer from the Azure Storage account. */
-  container?: string;
-  /** Service Directory Service to be used as the endpoint for transfers from a custom VPC. Format: `projects/{project_id}/locations/{location}/namespaces/{namespace}/services/{service}` */
-  privateNetworkService?: string;
-  /** Required. The name of the Azure Storage account. */
-  storageAccount?: string;
-  /** Root path to transfer objects. Must be an empty string or full path name that ends with a '/'. This field is treated as an object prefix. As such, it should generally not begin with a '/'. */
-  path?: string;
-  /** Optional. The Resource name of a secret in Secret Manager. The Azure SAS token must be stored in Secret Manager in JSON format: { "sas_token" : "SAS_TOKEN" } GoogleServiceAccount must be granted `roles/secretmanager.secretAccessor` for the resource. See [Configure access to a source: Microsoft Azure Blob Storage] (https://cloud.google.com/storage-transfer/docs/source-microsoft-azure#secret_manager) for more information. If `credentials_secret` is specified, do not specify azure_credentials. Format: `projects/{project_number}/secrets/{secret_name}` */
-  credentialsSecret?: string;
-  /** Required. Input only. Credentials used to authenticate API requests to Azure. For information on our data retention policy for user credentials, see [User credentials](/storage-transfer/docs/data-retention#user-credentials). */
-  azureCredentials?: AzureCredentials;
-  /** Optional. Federated identity config of a user registered Azure application. If `federated_identity_config` is specified, do not specify azure_credentials or credentials_secret. */
-  federatedIdentityConfig?: FederatedIdentityConfig;
-}
-export const AzureBlobStorageData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    container: S.optional(S.String),
-    privateNetworkService: S.optional(S.String),
-    storageAccount: S.optional(S.String),
-    path: S.optional(S.String),
-    credentialsSecret: S.optional(S.String),
-    azureCredentials: S.optional(AzureCredentials),
-    federatedIdentityConfig: S.optional(FederatedIdentityConfig),
-  }),
-).annotate({
-  identifier: "AzureBlobStorageData",
-}) as any as S.Schema<AzureBlobStorageData>;
+).annotate({ identifier: "Schedule" }) as any as S.Schema<Schedule>;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(
@@ -337,61 +300,37 @@ export const StringList = /*@__PURE__*/ S.Array(
 
 /** Conditions that determine which objects are transferred. Applies only to Cloud Data Sources such as S3, Azure, and Cloud Storage. The "last modification time" refers to the time of the last change to the object's content or metadata — specifically, this is the `updated` property of Cloud Storage objects, the `LastModified` field of S3 objects, and the `Last-Modified` header of Azure blobs. For S3 objects, the `LastModified` value is the time the object begins uploading. If the object meets your "last modification time" criteria, but has not finished uploading, the object is not transferred. See [Transfer from Amazon S3 to Cloud Storage](https://cloud.google.com/storage-transfer/docs/create-transfers/agentless/s3#transfer_options) for more information. Transfers with a PosixFilesystem source or destination don't support `ObjectConditions`. */
 export interface ObjectConditions {
-  /** Ensures that objects are not transferred until a specific minimum time has elapsed after the "last modification time". When a TransferOperation begins, objects with a "last modification time" are transferred only if the elapsed time between the start_time of the `TransferOperation` and the "last modification time" of the object is equal to or greater than the value of min_time_elapsed_since_last_modification`. Objects that do not have a "last modification time" are also transferred. */
-  minTimeElapsedSinceLastModification?: string;
-  /** Ensures that objects are not transferred if a specific maximum time has elapsed since the "last modification time". When a TransferOperation begins, objects with a "last modification time" are transferred only if the elapsed time between the start_time of the `TransferOperation`and the "last modification time" of the object is less than the value of max_time_elapsed_since_last_modification`. Objects that do not have a "last modification time" are also transferred. */
-  maxTimeElapsedSinceLastModification?: string;
-  /** Optional. If specified, objects in the source matching any of the storage classes in this field will be transferred. Objects in storage classes not included in this field will be skipped. If empty, the default behavior regarding the storage classes is applied. This includes all storage classes except "GLACIER" as per default behavior. Currently, this field only supports S3 data source. For the list of valid Amazon S3 storage classnames, please refer to the AWS documentation: https://docs.aws.amazon.com/AmazonS3/latest/userguide/sc-howtoset.html */
-  includeStorageClasses?: StringList;
-  /** If you specify `exclude_prefixes`, Storage Transfer Service uses the items in the `exclude_prefixes` array to determine which objects to exclude from a transfer. Objects must not start with one of the matching `exclude_prefixes` for inclusion in a transfer. The following are requirements of `exclude_prefixes`: * Each exclude-prefix can contain any sequence of Unicode characters, to a max length of 1024 bytes when UTF8-encoded, and must not contain Carriage Return or Line Feed characters. Wildcard matching and regular expression matching are not supported. * Each exclude-prefix must omit the leading slash. For example, to exclude the object `s3://my-aws-bucket/logs/y=2015/requests.gz`, specify the exclude-prefix as `logs/y=2015/requests.gz`. * None of the exclude-prefix values can be empty, if specified. * Each exclude-prefix must exclude a distinct portion of the object namespace. No exclude-prefix may be a prefix of another exclude-prefix. * If include_prefixes is specified, then each exclude-prefix must start with the value of a path explicitly included by `include_prefixes`. The max size of `exclude_prefixes` is 1000. For more information, see [Filtering objects from transfers](/storage-transfer/docs/filtering-objects-from-transfers). */
-  excludePrefixes?: StringList;
   /** If specified, only objects with a "last modification time" on or after this timestamp and objects that don't have a "last modification time" are transferred. The `last_modified_since` and `last_modified_before` fields can be used together for chunked data processing. For example, consider a script that processes each day's worth of data at a time. For that you'd set each of the fields as follows: * `last_modified_since` to the start of the day * `last_modified_before` to the end of the day */
   lastModifiedSince?: string;
-  /** Optional. If specified, only objects matching this glob are transferred. */
-  matchGlob?: string;
-  /** If you specify `include_prefixes`, Storage Transfer Service uses the items in the `include_prefixes` array to determine which objects to include in a transfer. Objects must start with one of the matching `include_prefixes` for inclusion in the transfer. If exclude_prefixes is specified, objects must not start with any of the `exclude_prefixes` specified for inclusion in the transfer. The following are requirements of `include_prefixes`: * Each include-prefix can contain any sequence of Unicode characters, to a max length of 1024 bytes when UTF8-encoded, and must not contain Carriage Return or Line Feed characters. Wildcard matching and regular expression matching are not supported. * Each include-prefix must omit the leading slash. For example, to include the object `s3://my-aws-bucket/logs/y=2015/requests.gz`, specify the include-prefix as `logs/y=2015/requests.gz`. * None of the include-prefix values can be empty, if specified. * Each include-prefix must include a distinct portion of the object namespace. No include-prefix may be a prefix of another include-prefix. The max size of `include_prefixes` is 1000. For more information, see [Filtering objects from transfers](/storage-transfer/docs/filtering-objects-from-transfers). */
-  includePrefixes?: StringList;
   /** If specified, only objects with a "last modification time" before this timestamp and objects that don't have a "last modification time" are transferred. */
   lastModifiedBefore?: string;
+  /** If you specify `exclude_prefixes`, Storage Transfer Service uses the items in the `exclude_prefixes` array to determine which objects to exclude from a transfer. Objects must not start with one of the matching `exclude_prefixes` for inclusion in a transfer. The following are requirements of `exclude_prefixes`: * Each exclude-prefix can contain any sequence of Unicode characters, to a max length of 1024 bytes when UTF8-encoded, and must not contain Carriage Return or Line Feed characters. Wildcard matching and regular expression matching are not supported. * Each exclude-prefix must omit the leading slash. For example, to exclude the object `s3://my-aws-bucket/logs/y=2015/requests.gz`, specify the exclude-prefix as `logs/y=2015/requests.gz`. * None of the exclude-prefix values can be empty, if specified. * Each exclude-prefix must exclude a distinct portion of the object namespace. No exclude-prefix may be a prefix of another exclude-prefix. * If include_prefixes is specified, then each exclude-prefix must start with the value of a path explicitly included by `include_prefixes`. The max size of `exclude_prefixes` is 1000. For more information, see [Filtering objects from transfers](/storage-transfer/docs/filtering-objects-from-transfers). */
+  excludePrefixes?: StringList;
+  /** Optional. If specified, objects in the source matching any of the storage classes in this field will be transferred. Objects in storage classes not included in this field will be skipped. If empty, the default behavior regarding the storage classes is applied. This includes all storage classes except "GLACIER" as per default behavior. Currently, this field only supports S3 data source. For the list of valid Amazon S3 storage classnames, please refer to the AWS documentation: https://docs.aws.amazon.com/AmazonS3/latest/userguide/sc-howtoset.html */
+  includeStorageClasses?: StringList;
+  /** Optional. If specified, only objects matching this glob are transferred. */
+  matchGlob?: string;
+  /** Ensures that objects are not transferred if a specific maximum time has elapsed since the "last modification time". When a TransferOperation begins, objects with a "last modification time" are transferred only if the elapsed time between the start_time of the `TransferOperation`and the "last modification time" of the object is less than the value of max_time_elapsed_since_last_modification`. Objects that do not have a "last modification time" are also transferred. */
+  maxTimeElapsedSinceLastModification?: string;
+  /** Ensures that objects are not transferred until a specific minimum time has elapsed after the "last modification time". When a TransferOperation begins, objects with a "last modification time" are transferred only if the elapsed time between the start_time of the `TransferOperation` and the "last modification time" of the object is equal to or greater than the value of min_time_elapsed_since_last_modification`. Objects that do not have a "last modification time" are also transferred. */
+  minTimeElapsedSinceLastModification?: string;
+  /** If you specify `include_prefixes`, Storage Transfer Service uses the items in the `include_prefixes` array to determine which objects to include in a transfer. Objects must start with one of the matching `include_prefixes` for inclusion in the transfer. If exclude_prefixes is specified, objects must not start with any of the `exclude_prefixes` specified for inclusion in the transfer. The following are requirements of `include_prefixes`: * Each include-prefix can contain any sequence of Unicode characters, to a max length of 1024 bytes when UTF8-encoded, and must not contain Carriage Return or Line Feed characters. Wildcard matching and regular expression matching are not supported. * Each include-prefix must omit the leading slash. For example, to include the object `s3://my-aws-bucket/logs/y=2015/requests.gz`, specify the include-prefix as `logs/y=2015/requests.gz`. * None of the include-prefix values can be empty, if specified. * Each include-prefix must include a distinct portion of the object namespace. No include-prefix may be a prefix of another include-prefix. The max size of `include_prefixes` is 1000. For more information, see [Filtering objects from transfers](/storage-transfer/docs/filtering-objects-from-transfers). */
+  includePrefixes?: StringList;
 }
 export const ObjectConditions = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    minTimeElapsedSinceLastModification: S.optional(S.String),
-    maxTimeElapsedSinceLastModification: S.optional(S.String),
-    includeStorageClasses: S.optional(StringList),
-    excludePrefixes: S.optional(StringList),
     lastModifiedSince: S.optional(S.String),
-    matchGlob: S.optional(S.String),
-    includePrefixes: S.optional(StringList),
     lastModifiedBefore: S.optional(S.String),
+    excludePrefixes: S.optional(StringList),
+    includeStorageClasses: S.optional(StringList),
+    matchGlob: S.optional(S.String),
+    maxTimeElapsedSinceLastModification: S.optional(S.String),
+    minTimeElapsedSinceLastModification: S.optional(S.String),
+    includePrefixes: S.optional(StringList),
   }),
 ).annotate({
   identifier: "ObjectConditions",
 }) as any as S.Schema<ObjectConditions>;
-
-/** In a GcsData resource, an object's name is the Cloud Storage object's name and its "last modification time" refers to the object's `updated` property of Cloud Storage objects, which changes when the content or the metadata of the object is updated. */
-export interface GcsData {
-  /** Preview. Enables the transfer of managed folders between Cloud Storage buckets. Set this option on the gcs_data_source. If set to true: - Managed folders in the source bucket are transferred to the destination bucket. - Managed folders in the destination bucket are overwritten. Other OVERWRITE options are not supported. See [Transfer Cloud Storage managed folders](/storage-transfer/docs/managed-folders). */
-  managedFolderTransferEnabled?: boolean;
-  /** Required. Cloud Storage bucket name. Must meet [Bucket Name Requirements](/storage/docs/naming#requirements). */
-  bucketName?: string;
-  /** Root path to transfer objects. Must be an empty string or full path name that ends with a '/'. This field is treated as an object prefix. As such, it should generally not begin with a '/'. The root path value must meet [Object Name Requirements](/storage/docs/naming#objectnames). */
-  path?: string;
-}
-export const GcsData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    managedFolderTransferEnabled: S.optional(S.Boolean),
-    bucketName: S.optional(S.String),
-    path: S.optional(S.String),
-  }),
-).annotate({ identifier: "GcsData" }) as any as S.Schema<GcsData>;
-
-export type TransferOptionsOverwriteWhenEnum =
-  | "OVERWRITE_WHEN_UNSPECIFIED"
-  | "DIFFERENT"
-  | "NEVER"
-  | "ALWAYS";
-export const TransferOptionsOverwriteWhenEnum = /*@__PURE__*/ S.String;
 
 export type MetadataOptionsGidEnum =
   | "GID_UNSPECIFIED"
@@ -399,11 +338,17 @@ export type MetadataOptionsGidEnum =
   | "GID_NUMBER";
 export const MetadataOptionsGidEnum = /*@__PURE__*/ S.String;
 
-export type MetadataOptionsTimeCreatedEnum =
-  | "TIME_CREATED_UNSPECIFIED"
-  | "TIME_CREATED_SKIP"
-  | "TIME_CREATED_PRESERVE_AS_CUSTOM_TIME";
-export const MetadataOptionsTimeCreatedEnum = /*@__PURE__*/ S.String;
+export type MetadataOptionsSymlinkEnum =
+  | "SYMLINK_UNSPECIFIED"
+  | "SYMLINK_SKIP"
+  | "SYMLINK_PRESERVE";
+export const MetadataOptionsSymlinkEnum = /*@__PURE__*/ S.String;
+
+export type MetadataOptionsKmsKeyEnum =
+  | "KMS_KEY_UNSPECIFIED"
+  | "KMS_KEY_DESTINATION_BUCKET_DEFAULT"
+  | "KMS_KEY_PRESERVE";
+export const MetadataOptionsKmsKeyEnum = /*@__PURE__*/ S.String;
 
 export type MetadataOptionsStorageClassEnum =
   | "STORAGE_CLASS_UNSPECIFIED"
@@ -415,23 +360,11 @@ export type MetadataOptionsStorageClassEnum =
   | "STORAGE_CLASS_ARCHIVE";
 export const MetadataOptionsStorageClassEnum = /*@__PURE__*/ S.String;
 
-export type MetadataOptionsTemporaryHoldEnum =
-  | "TEMPORARY_HOLD_UNSPECIFIED"
-  | "TEMPORARY_HOLD_SKIP"
-  | "TEMPORARY_HOLD_PRESERVE";
-export const MetadataOptionsTemporaryHoldEnum = /*@__PURE__*/ S.String;
-
-export type MetadataOptionsSymlinkEnum =
-  | "SYMLINK_UNSPECIFIED"
-  | "SYMLINK_SKIP"
-  | "SYMLINK_PRESERVE";
-export const MetadataOptionsSymlinkEnum = /*@__PURE__*/ S.String;
-
-export type MetadataOptionsModeEnum =
-  | "MODE_UNSPECIFIED"
-  | "MODE_SKIP"
-  | "MODE_PRESERVE";
-export const MetadataOptionsModeEnum = /*@__PURE__*/ S.String;
+export type MetadataOptionsTimeCreatedEnum =
+  | "TIME_CREATED_UNSPECIFIED"
+  | "TIME_CREATED_SKIP"
+  | "TIME_CREATED_PRESERVE_AS_CUSTOM_TIME";
+export const MetadataOptionsTimeCreatedEnum = /*@__PURE__*/ S.String;
 
 export type MetadataOptionsUidEnum =
   | "UID_UNSPECIFIED"
@@ -439,189 +372,109 @@ export type MetadataOptionsUidEnum =
   | "UID_NUMBER";
 export const MetadataOptionsUidEnum = /*@__PURE__*/ S.String;
 
+export type MetadataOptionsTemporaryHoldEnum =
+  | "TEMPORARY_HOLD_UNSPECIFIED"
+  | "TEMPORARY_HOLD_SKIP"
+  | "TEMPORARY_HOLD_PRESERVE";
+export const MetadataOptionsTemporaryHoldEnum = /*@__PURE__*/ S.String;
+
+export type MetadataOptionsModeEnum =
+  | "MODE_UNSPECIFIED"
+  | "MODE_SKIP"
+  | "MODE_PRESERVE";
+export const MetadataOptionsModeEnum = /*@__PURE__*/ S.String;
+
 export type MetadataOptionsAclEnum =
   | "ACL_UNSPECIFIED"
   | "ACL_DESTINATION_BUCKET_DEFAULT"
   | "ACL_PRESERVE";
 export const MetadataOptionsAclEnum = /*@__PURE__*/ S.String;
 
-export type MetadataOptionsKmsKeyEnum =
-  | "KMS_KEY_UNSPECIFIED"
-  | "KMS_KEY_DESTINATION_BUCKET_DEFAULT"
-  | "KMS_KEY_PRESERVE";
-export const MetadataOptionsKmsKeyEnum = /*@__PURE__*/ S.String;
-
 /** Specifies the metadata options for running a transfer. */
 export interface MetadataOptions {
   /** Specifies how each file's POSIX group ID (GID) attribute should be handled by the transfer. By default, GID is not preserved. Only applicable to transfers involving POSIX file systems, and ignored for other transfers. */
   gid?: MetadataOptionsGidEnum | (string & {});
-  /** Specifies how each object's `timeCreated` metadata is preserved for transfers. If unspecified, the default behavior is the same as TIME_CREATED_SKIP. This behavior is supported for transfers to Cloud Storage buckets from Cloud Storage, Amazon S3, S3-compatible storage, and Azure sources. */
-  timeCreated?: MetadataOptionsTimeCreatedEnum | (string & {});
-  /** Specifies the storage class to set on objects being transferred to Google Cloud Storage buckets. If unspecified, the default behavior is the same as STORAGE_CLASS_DESTINATION_BUCKET_DEFAULT. */
-  storageClass?: MetadataOptionsStorageClassEnum | (string & {});
-  /** Specifies how each object's temporary hold status should be preserved for transfers between Google Cloud Storage buckets. If unspecified, the default behavior is the same as TEMPORARY_HOLD_PRESERVE. */
-  temporaryHold?: MetadataOptionsTemporaryHoldEnum | (string & {});
   /** Specifies how symlinks should be handled by the transfer. By default, symlinks are not preserved. Only applicable to transfers involving POSIX file systems, and ignored for other transfers. */
   symlink?: MetadataOptionsSymlinkEnum | (string & {});
-  /** Specifies how each file's mode attribute should be handled by the transfer. By default, mode is not preserved. Only applicable to transfers involving POSIX file systems, and ignored for other transfers. */
-  mode?: MetadataOptionsModeEnum | (string & {});
-  /** Specifies how each file's POSIX user ID (UID) attribute should be handled by the transfer. By default, UID is not preserved. Only applicable to transfers involving POSIX file systems, and ignored for other transfers. */
-  uid?: MetadataOptionsUidEnum | (string & {});
-  /** Specifies how each object's ACLs should be preserved for transfers between Google Cloud Storage buckets. If unspecified, the default behavior is the same as ACL_DESTINATION_BUCKET_DEFAULT. */
-  acl?: MetadataOptionsAclEnum | (string & {});
   /** Specifies how each object's Cloud KMS customer-managed encryption key (CMEK) is preserved for transfers between Google Cloud Storage buckets. If unspecified, the default behavior is the same as KMS_KEY_DESTINATION_BUCKET_DEFAULT. */
   kmsKey?: MetadataOptionsKmsKeyEnum | (string & {});
+  /** Specifies the storage class to set on objects being transferred to Google Cloud Storage buckets. If unspecified, the default behavior is the same as STORAGE_CLASS_DESTINATION_BUCKET_DEFAULT. */
+  storageClass?: MetadataOptionsStorageClassEnum | (string & {});
+  /** Specifies how each object's `timeCreated` metadata is preserved for transfers. If unspecified, the default behavior is the same as TIME_CREATED_SKIP. This behavior is supported for transfers to Cloud Storage buckets from Cloud Storage, Amazon S3, S3-compatible storage, and Azure sources. */
+  timeCreated?: MetadataOptionsTimeCreatedEnum | (string & {});
+  /** Specifies how each file's POSIX user ID (UID) attribute should be handled by the transfer. By default, UID is not preserved. Only applicable to transfers involving POSIX file systems, and ignored for other transfers. */
+  uid?: MetadataOptionsUidEnum | (string & {});
+  /** Specifies how each object's temporary hold status should be preserved for transfers between Google Cloud Storage buckets. If unspecified, the default behavior is the same as TEMPORARY_HOLD_PRESERVE. */
+  temporaryHold?: MetadataOptionsTemporaryHoldEnum | (string & {});
+  /** Specifies how each file's mode attribute should be handled by the transfer. By default, mode is not preserved. Only applicable to transfers involving POSIX file systems, and ignored for other transfers. */
+  mode?: MetadataOptionsModeEnum | (string & {});
+  /** Specifies how each object's ACLs should be preserved for transfers between Google Cloud Storage buckets. If unspecified, the default behavior is the same as ACL_DESTINATION_BUCKET_DEFAULT. */
+  acl?: MetadataOptionsAclEnum | (string & {});
 }
 export const MetadataOptions = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     gid: S.optional(MetadataOptionsGidEnum),
-    timeCreated: S.optional(MetadataOptionsTimeCreatedEnum),
-    storageClass: S.optional(MetadataOptionsStorageClassEnum),
-    temporaryHold: S.optional(MetadataOptionsTemporaryHoldEnum),
     symlink: S.optional(MetadataOptionsSymlinkEnum),
-    mode: S.optional(MetadataOptionsModeEnum),
-    uid: S.optional(MetadataOptionsUidEnum),
-    acl: S.optional(MetadataOptionsAclEnum),
     kmsKey: S.optional(MetadataOptionsKmsKeyEnum),
+    storageClass: S.optional(MetadataOptionsStorageClassEnum),
+    timeCreated: S.optional(MetadataOptionsTimeCreatedEnum),
+    uid: S.optional(MetadataOptionsUidEnum),
+    temporaryHold: S.optional(MetadataOptionsTemporaryHoldEnum),
+    mode: S.optional(MetadataOptionsModeEnum),
+    acl: S.optional(MetadataOptionsAclEnum),
   }),
 ).annotate({
   identifier: "MetadataOptions",
 }) as any as S.Schema<MetadataOptions>;
 
+export type TransferOptionsOverwriteWhenEnum =
+  | "OVERWRITE_WHEN_UNSPECIFIED"
+  | "DIFFERENT"
+  | "NEVER"
+  | "ALWAYS";
+export const TransferOptionsOverwriteWhenEnum = /*@__PURE__*/ S.String;
+
 /** TransferOptions define the actions to be performed on objects in a transfer. */
 export interface TransferOptions {
+  /** Whether objects that exist only in the sink should be deleted from the sink. **Note:** This option and delete_objects_from_source_after_transfer are mutually exclusive. */
+  deleteObjectsUniqueInSink?: boolean;
+  /** Represents the selected metadata options for a transfer job. */
+  metadataOptions?: MetadataOptions;
   /** When to overwrite objects that already exist in the sink. The default is that only objects that are different from the source are overwritten. If true, all objects in the sink whose name matches an object in the source are overwritten with the source object. */
   overwriteObjectsAlreadyExistingInSink?: boolean;
   /** When to overwrite objects that already exist in the sink. If not set, overwrite behavior is determined by overwrite_objects_already_existing_in_sink. */
   overwriteWhen?: TransferOptionsOverwriteWhenEnum | (string & {});
   /** Whether objects should be deleted from the source after they are transferred to the sink. **Note:** This option and delete_objects_unique_in_sink are mutually exclusive. */
   deleteObjectsFromSourceAfterTransfer?: boolean;
-  /** Represents the selected metadata options for a transfer job. */
-  metadataOptions?: MetadataOptions;
-  /** Whether objects that exist only in the sink should be deleted from the sink. **Note:** This option and delete_objects_from_source_after_transfer are mutually exclusive. */
-  deleteObjectsUniqueInSink?: boolean;
 }
 export const TransferOptions = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    deleteObjectsUniqueInSink: S.optional(S.Boolean),
+    metadataOptions: S.optional(MetadataOptions),
     overwriteObjectsAlreadyExistingInSink: S.optional(S.Boolean),
     overwriteWhen: S.optional(TransferOptionsOverwriteWhenEnum),
     deleteObjectsFromSourceAfterTransfer: S.optional(S.Boolean),
-    metadataOptions: S.optional(MetadataOptions),
-    deleteObjectsUniqueInSink: S.optional(S.Boolean),
   }),
 ).annotate({
   identifier: "TransferOptions",
 }) as any as S.Schema<TransferOptions>;
 
-/** AWS access key (see [AWS Security Credentials](https://docs.aws.amazon.com/general/latest/gr/aws-security-credentials.html)). For information on our data retention policy for user credentials, see [User credentials](/storage-transfer/docs/data-retention#user-credentials). */
-export interface AwsAccessKey {
-  /** Required. AWS access key ID. */
-  accessKeyId?: string;
-  /** Required. AWS secret access key. This field is not returned in RPC responses. */
-  secretAccessKey?: string;
-}
-export const AwsAccessKey = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accessKeyId: S.optional(S.String),
-    secretAccessKey: S.optional(S.String),
-  }),
-).annotate({ identifier: "AwsAccessKey" }) as any as S.Schema<AwsAccessKey>;
-
-/** An AwsS3Data resource can be a data source, but not a data sink. In an AwsS3Data resource, an object's name is the S3 object's key name. */
-export interface AwsS3Data {
-  /** Input only. AWS access key used to sign the API requests to the AWS S3 bucket. Permissions on the bucket must be granted to the access ID of the AWS access key. For information on our data retention policy for user credentials, see [User credentials](/storage-transfer/docs/data-retention#user-credentials). */
-  awsAccessKey?: AwsAccessKey;
-  /** Service Directory Service to be used as the endpoint for transfers from a custom VPC. Format: `projects/{project_id}/locations/{location}/namespaces/{namespace}/services/{service}` */
-  privateNetworkService?: string;
-  /** Egress bytes over a Google-managed private network. This network is shared between other users of Storage Transfer Service. */
-  managedPrivateNetwork?: boolean;
-  /** Optional. The CloudFront distribution domain name pointing to this bucket, to use when fetching. See [Transfer from S3 via CloudFront](https://cloud.google.com/storage-transfer/docs/s3-cloudfront) for more information. Format: `https://{id}.cloudfront.net` or any valid custom domain. Must begin with `https://`. */
-  cloudfrontDomain?: string;
-  /** Required. S3 Bucket name (see [Creating a bucket](https://docs.aws.amazon.com/AmazonS3/latest/dev/create-bucket-get-location-example.html)). */
+/** In a GcsData resource, an object's name is the Cloud Storage object's name and its "last modification time" refers to the object's `updated` property of Cloud Storage objects, which changes when the content or the metadata of the object is updated. */
+export interface GcsData {
+  /** Required. Cloud Storage bucket name. Must meet [Bucket Name Requirements](/storage/docs/naming#requirements). */
   bucketName?: string;
-  /** Root path to transfer objects. Must be an empty string or full path name that ends with a '/'. This field is treated as an object prefix. As such, it should generally not begin with a '/'. */
+  /** Preview. Enables the transfer of managed folders between Cloud Storage buckets. Set this option on the gcs_data_source. If set to true: - Managed folders in the source bucket are transferred to the destination bucket. - Managed folders in the destination bucket are overwritten. Other OVERWRITE options are not supported. See [Transfer Cloud Storage managed folders](/storage-transfer/docs/managed-folders). */
+  managedFolderTransferEnabled?: boolean;
+  /** Root path to transfer objects. Must be an empty string or full path name that ends with a '/'. This field is treated as an object prefix. As such, it should generally not begin with a '/'. The root path value must meet [Object Name Requirements](/storage/docs/naming#objectnames). */
   path?: string;
-  /** The Amazon Resource Name (ARN) of the role to support temporary credentials via `AssumeRoleWithWebIdentity`. For more information about ARNs, see [IAM ARNs](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns). When a role ARN is provided, Transfer Service fetches temporary credentials for the session using a `AssumeRoleWithWebIdentity` call for the provided role using the GoogleServiceAccount for this project. */
-  roleArn?: string;
-  /** Optional. The Resource name of a secret in Secret Manager. AWS credentials must be stored in Secret Manager in JSON format: { "access_key_id": "ACCESS_KEY_ID", "secret_access_key": "SECRET_ACCESS_KEY" } GoogleServiceAccount must be granted `roles/secretmanager.secretAccessor` for the resource. See [Configure access to a source: Amazon S3] (https://cloud.google.com/storage-transfer/docs/source-amazon-s3#secret_manager) for more information. If `credentials_secret` is specified, do not specify role_arn or aws_access_key. Format: `projects/{project_number}/secrets/{secret_name}` */
-  credentialsSecret?: string;
 }
-export const AwsS3Data = /*@__PURE__*/ S.suspend(() =>
+export const GcsData = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    awsAccessKey: S.optional(AwsAccessKey),
-    privateNetworkService: S.optional(S.String),
-    managedPrivateNetwork: S.optional(S.Boolean),
-    cloudfrontDomain: S.optional(S.String),
     bucketName: S.optional(S.String),
-    path: S.optional(S.String),
-    roleArn: S.optional(S.String),
-    credentialsSecret: S.optional(S.String),
-  }),
-).annotate({ identifier: "AwsS3Data" }) as any as S.Schema<AwsS3Data>;
-
-/** An HdfsData resource specifies a path within an HDFS entity (e.g. a cluster). All cluster-specific settings, such as namenodes and ports, are configured on the transfer agents servicing requests, so HdfsData only contains the root path to the data in our transfer. */
-export interface HdfsData {
-  /** Root path to transfer files. */
-  path?: string;
-}
-export const HdfsData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
+    managedFolderTransferEnabled: S.optional(S.Boolean),
     path: S.optional(S.String),
   }),
-).annotate({ identifier: "HdfsData" }) as any as S.Schema<HdfsData>;
-
-/** Configuration for running a transfer. */
-export interface TransferSpec {
-  /** Specifies the agent pool name associated with the posix data sink. When unspecified, the default name is used. */
-  sinkAgentPoolName?: string;
-  /** Optional. An HTTP URL data source. */
-  httpDataSource?: HttpData;
-  /** Optional. A POSIX Filesystem data sink. */
-  posixDataSink?: PosixFilesystem;
-  /** Optional. An AWS S3 compatible data source. */
-  awsS3CompatibleDataSource?: AwsS3CompatibleData;
-  /** A manifest file provides a list of objects to be transferred from the data source. This field points to the location of the manifest file. Otherwise, the entire source bucket is used. ObjectConditions still apply. */
-  transferManifest?: TransferManifest;
-  /** Optional. A POSIX Filesystem data source. */
-  posixDataSource?: PosixFilesystem;
-  /** Optional. An Azure Blob Storage data source. */
-  azureBlobStorageDataSource?: AzureBlobStorageData;
-  /** Specifies the agent pool name associated with the posix data source. When unspecified, the default name is used. */
-  sourceAgentPoolName?: string;
-  /** Only objects that satisfy these object conditions are included in the set of data source and data sink objects. Object conditions based on objects' "last modification time" do not exclude objects in a data sink. */
-  objectConditions?: ObjectConditions;
-  /** Optional. A Cloud Storage data sink. */
-  gcsDataSink?: GcsData;
-  /** If the option delete_objects_unique_in_sink is `true` and time-based object conditions such as 'last modification time' are specified, the request fails with an INVALID_ARGUMENT error. */
-  transferOptions?: TransferOptions;
-  /** For transfers between file systems, specifies a Cloud Storage bucket to be used as an intermediate location through which to transfer data. See [Transfer data between file systems](https://cloud.google.com/storage-transfer/docs/file-to-file) for more information. */
-  gcsIntermediateDataLocation?: GcsData;
-  /** Optional. An AWS S3 data source. */
-  awsS3DataSource?: AwsS3Data;
-  /** Optional. A Cloud Storage data source. */
-  gcsDataSource?: GcsData;
-  /** Optional. An HDFS cluster data source. */
-  hdfsDataSource?: HdfsData;
-}
-export const TransferSpec = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    sinkAgentPoolName: S.optional(S.String),
-    httpDataSource: S.optional(HttpData),
-    posixDataSink: S.optional(PosixFilesystem),
-    awsS3CompatibleDataSource: S.optional(AwsS3CompatibleData),
-    transferManifest: S.optional(TransferManifest),
-    posixDataSource: S.optional(PosixFilesystem),
-    azureBlobStorageDataSource: S.optional(AzureBlobStorageData),
-    sourceAgentPoolName: S.optional(S.String),
-    objectConditions: S.optional(ObjectConditions),
-    gcsDataSink: S.optional(GcsData),
-    transferOptions: S.optional(TransferOptions),
-    gcsIntermediateDataLocation: S.optional(GcsData),
-    awsS3DataSource: S.optional(AwsS3Data),
-    gcsDataSource: S.optional(GcsData),
-    hdfsDataSource: S.optional(HdfsData),
-  }),
-).annotate({ identifier: "TransferSpec" }) as any as S.Schema<TransferSpec>;
+).annotate({ identifier: "GcsData" }) as any as S.Schema<GcsData>;
 
 /** Specifies the configuration for a cross-bucket replication job. Cross-bucket replication copies new or updated objects from a source Cloud Storage bucket to a destination Cloud Storage bucket. Existing objects in the source bucket are not copied by a new cross-bucket replication job. */
 export interface ReplicationSpec {
@@ -629,17 +482,17 @@ export interface ReplicationSpec {
   objectConditions?: ObjectConditions;
   /** Specifies the metadata options to be applied during replication. Delete options are not supported. If a delete option is specified, the request fails with an INVALID_ARGUMENT error. */
   transferOptions?: TransferOptions;
-  /** The Cloud Storage bucket from which to replicate objects. */
-  gcsDataSource?: GcsData;
   /** The Cloud Storage bucket to which to replicate objects. */
   gcsDataSink?: GcsData;
+  /** The Cloud Storage bucket from which to replicate objects. */
+  gcsDataSource?: GcsData;
 }
 export const ReplicationSpec = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     objectConditions: S.optional(ObjectConditions),
     transferOptions: S.optional(TransferOptions),
-    gcsDataSource: S.optional(GcsData),
     gcsDataSink: S.optional(GcsData),
+    gcsDataSource: S.optional(GcsData),
   }),
 ).annotate({
   identifier: "ReplicationSpec",
@@ -669,202 +522,349 @@ export const NotificationConfigPayloadFormatEnum = /*@__PURE__*/ S.String;
 export interface NotificationConfig {
   /** Event types for which a notification is desired. If empty, send notifications for all event types. */
   eventTypes?: NotificationConfigEventTypesItemEnumList;
-  /** Required. The desired format of the notification message payloads. */
-  payloadFormat?: NotificationConfigPayloadFormatEnum | (string & {});
   /** Required. The `Topic.name` of the Pub/Sub topic to which to publish notifications. Must be of the format: `projects/{project}/topics/{topic}`. Not matching this format results in an INVALID_ARGUMENT error. */
   pubsubTopic?: string;
+  /** Required. The desired format of the notification message payloads. */
+  payloadFormat?: NotificationConfigPayloadFormatEnum | (string & {});
 }
 export const NotificationConfig = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     eventTypes: S.optional(NotificationConfigEventTypesItemEnumList),
-    payloadFormat: S.optional(NotificationConfigPayloadFormatEnum),
     pubsubTopic: S.optional(S.String),
+    payloadFormat: S.optional(NotificationConfigPayloadFormatEnum),
   }),
 ).annotate({
   identifier: "NotificationConfig",
 }) as any as S.Schema<NotificationConfig>;
 
-/** Specifies the Event-driven transfer options. Event-driven transfers listen to an event stream to transfer updated files. */
-export interface EventStream {
-  /** Specifies the date and time that Storage Transfer Service starts listening for events from this stream. If no start time is specified or start time is in the past, Storage Transfer Service starts listening immediately. */
-  eventStreamStartTime?: string;
-  /** Required. Specifies a unique name of the resource such as AWS SQS ARN in the form 'arn:aws:sqs:region:account_id:queue_name', or Pub/Sub subscription resource name in the form 'projects/{project}/subscriptions/{sub}'. */
-  name?: string;
-  /** Specifies the data and time at which Storage Transfer Service stops listening for events from this stream. After this time, any transfers in progress will complete, but no new transfers are initiated. */
-  eventStreamExpirationTime?: string;
+/** An HdfsData resource specifies a path within an HDFS entity (e.g. a cluster). All cluster-specific settings, such as namenodes and ports, are configured on the transfer agents servicing requests, so HdfsData only contains the root path to the data in our transfer. */
+export interface HdfsData {
+  /** Root path to transfer files. */
+  path?: string;
 }
-export const EventStream = /*@__PURE__*/ S.suspend(() =>
+export const HdfsData = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    eventStreamStartTime: S.optional(S.String),
-    name: S.optional(S.String),
-    eventStreamExpirationTime: S.optional(S.String),
+    path: S.optional(S.String),
   }),
-).annotate({ identifier: "EventStream" }) as any as S.Schema<EventStream>;
+).annotate({ identifier: "HdfsData" }) as any as S.Schema<HdfsData>;
 
-/** Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp */
-export interface Storagetransfer_Date {
-  /** Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant. */
-  day?: number;
-  /** Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day. */
-  month?: number;
-  /** Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year. */
-  year?: number;
+/** Azure credentials For information on our data retention policy for user credentials, see [User credentials](/storage-transfer/docs/data-retention#user-credentials). */
+export interface AzureCredentials {
+  /** Required. Azure shared access signature (SAS). For more information about SAS, see [Grant limited access to Azure Storage resources using shared access signatures (SAS)](https://docs.microsoft.com/en-us/azure/storage/common/storage-sas-overview). */
+  sasToken?: string;
 }
-export const Storagetransfer_Date = /*@__PURE__*/ S.suspend(() =>
+export const AzureCredentials = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    day: S.optional(S.Number),
-    month: S.optional(S.Number),
-    year: S.optional(S.Number),
+    sasToken: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "Storagetransfer_Date",
-}) as any as S.Schema<Storagetransfer_Date>;
+  identifier: "AzureCredentials",
+}) as any as S.Schema<AzureCredentials>;
 
-/** Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`. */
-export interface TimeOfDay {
-  /** Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59. */
-  minutes?: number;
-  /** Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999. */
-  nanos?: number;
-  /** Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time. */
-  hours?: number;
-  /** Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds. */
-  seconds?: number;
+/** The identity of an Azure application through which Storage Transfer Service can authenticate requests using Azure workload identity federation. Storage Transfer Service can issue requests to Azure Storage through registered Azure applications, eliminating the need to pass credentials to Storage Transfer Service directly. To configure federated identity, see [Configure access to Microsoft Azure Storage](https://cloud.google.com/storage-transfer/docs/source-microsoft-azure#option_3_authenticate_using_federated_identity). */
+export interface FederatedIdentityConfig {
+  /** Required. The client (application) ID of the application with federated credentials. */
+  clientId?: string;
+  /** Required. The tenant (directory) ID of the application with federated credentials. */
+  tenantId?: string;
 }
-export const TimeOfDay = /*@__PURE__*/ S.suspend(() =>
+export const FederatedIdentityConfig = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    minutes: S.optional(S.Number),
-    nanos: S.optional(S.Number),
-    hours: S.optional(S.Number),
-    seconds: S.optional(S.Number),
+    clientId: S.optional(S.String),
+    tenantId: S.optional(S.String),
   }),
-).annotate({ identifier: "TimeOfDay" }) as any as S.Schema<TimeOfDay>;
+).annotate({
+  identifier: "FederatedIdentityConfig",
+}) as any as S.Schema<FederatedIdentityConfig>;
 
-/** Transfers can be scheduled to recur or to run just once. */
-export interface Schedule {
-  /** Required. The start date of a transfer. Date boundaries are determined relative to UTC time. If `schedule_start_date` and start_time_of_day are in the past relative to the job's creation time, the transfer starts the day after you schedule the transfer request. **Note:** When starting jobs at or near midnight UTC it is possible that a job starts later than expected. For example, if you send an outbound request on June 1 one millisecond prior to midnight UTC and the Storage Transfer Service server receives the request on June 2, then it creates a TransferJob with `schedule_start_date` set to June 2 and a `start_time_of_day` set to midnight UTC. The first scheduled TransferOperation takes place on June 3 at midnight UTC. */
-  scheduleStartDate?: Storagetransfer_Date;
-  /** Interval between the start of each scheduled TransferOperation. If unspecified, the default value is 24 hours. This value may not be less than 1 hour. */
-  repeatInterval?: string;
-  /** The time in UTC that no further transfer operations are scheduled. Combined with schedule_end_date, `end_time_of_day` specifies the end date and time for starting new transfer operations. This field must be greater than or equal to the timestamp corresponding to the combination of schedule_start_date and start_time_of_day, and is subject to the following: * If `end_time_of_day` is not set and `schedule_end_date` is set, then a default value of `23:59:59` is used for `end_time_of_day`. * If `end_time_of_day` is set and `schedule_end_date` is not set, then INVALID_ARGUMENT is returned. */
-  endTimeOfDay?: TimeOfDay;
-  /** The last day a transfer runs. Date boundaries are determined relative to UTC time. A job runs once per 24 hours within the following guidelines: * If `schedule_end_date` and schedule_start_date are the same and in the future relative to UTC, the transfer is executed only one time. * If `schedule_end_date` is later than `schedule_start_date` and `schedule_end_date` is in the future relative to UTC, the job runs each day at start_time_of_day through `schedule_end_date`. */
-  scheduleEndDate?: Storagetransfer_Date;
-  /** The time in UTC that a transfer job is scheduled to run. Transfers may start later than this time. If `start_time_of_day` is not specified: * One-time transfers run immediately. * Recurring transfers run immediately, and each day at midnight UTC, through schedule_end_date. If `start_time_of_day` is specified: * One-time transfers run at the specified time. * Recurring transfers run at the specified time each day, through `schedule_end_date`. */
-  startTimeOfDay?: TimeOfDay;
+/** An AzureBlobStorageData resource can be a data source, but not a data sink. An AzureBlobStorageData resource represents one Azure container. The storage account determines the [Azure endpoint](https://docs.microsoft.com/en-us/azure/storage/common/storage-create-storage-account#storage-account-endpoints). In an AzureBlobStorageData resource, a blobs's name is the [Azure Blob Storage blob's key name](https://docs.microsoft.com/en-us/rest/api/storageservices/naming-and-referencing-containers--blobs--and-metadata#blob-names). */
+export interface AzureBlobStorageData {
+  /** Required. Input only. Credentials used to authenticate API requests to Azure. For information on our data retention policy for user credentials, see [User credentials](/storage-transfer/docs/data-retention#user-credentials). */
+  azureCredentials?: AzureCredentials;
+  /** Optional. Federated identity config of a user registered Azure application. If `federated_identity_config` is specified, do not specify azure_credentials or credentials_secret. */
+  federatedIdentityConfig?: FederatedIdentityConfig;
+  /** Required. The name of the Azure Storage account. */
+  storageAccount?: string;
+  /** Root path to transfer objects. Must be an empty string or full path name that ends with a '/'. This field is treated as an object prefix. As such, it should generally not begin with a '/'. */
+  path?: string;
+  /** Service Directory Service to be used as the endpoint for transfers from a custom VPC. Format: `projects/{project_id}/locations/{location}/namespaces/{namespace}/services/{service}` */
+  privateNetworkService?: string;
+  /** Required. The container to transfer from the Azure Storage account. */
+  container?: string;
+  /** Optional. The Resource name of a secret in Secret Manager. The Azure SAS token must be stored in Secret Manager in JSON format: { "sas_token" : "SAS_TOKEN" } GoogleServiceAccount must be granted `roles/secretmanager.secretAccessor` for the resource. See [Configure access to a source: Microsoft Azure Blob Storage] (https://cloud.google.com/storage-transfer/docs/source-microsoft-azure#secret_manager) for more information. If `credentials_secret` is specified, do not specify azure_credentials. Format: `projects/{project_number}/secrets/{secret_name}` */
+  credentialsSecret?: string;
 }
-export const Schedule = /*@__PURE__*/ S.suspend(() =>
+export const AzureBlobStorageData = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    scheduleStartDate: S.optional(Storagetransfer_Date),
-    repeatInterval: S.optional(S.String),
-    endTimeOfDay: S.optional(TimeOfDay),
-    scheduleEndDate: S.optional(Storagetransfer_Date),
-    startTimeOfDay: S.optional(TimeOfDay),
+    azureCredentials: S.optional(AzureCredentials),
+    federatedIdentityConfig: S.optional(FederatedIdentityConfig),
+    storageAccount: S.optional(S.String),
+    path: S.optional(S.String),
+    privateNetworkService: S.optional(S.String),
+    container: S.optional(S.String),
+    credentialsSecret: S.optional(S.String),
   }),
-).annotate({ identifier: "Schedule" }) as any as S.Schema<Schedule>;
+).annotate({
+  identifier: "AzureBlobStorageData",
+}) as any as S.Schema<AzureBlobStorageData>;
 
-export type TransferJobStatusEnum =
-  | "STATUS_UNSPECIFIED"
-  | "ENABLED"
-  | "DISABLED"
-  | "DELETED";
-export const TransferJobStatusEnum = /*@__PURE__*/ S.String;
-
-export type LoggingConfigLogActionStatesItemEnum =
-  | "LOGGABLE_ACTION_STATE_UNSPECIFIED"
-  | "SUCCEEDED"
-  | "FAILED"
-  | "SKIPPED";
-export const LoggingConfigLogActionStatesItemEnum = /*@__PURE__*/ S.String;
-
-export type LoggingConfigLogActionStatesItemEnumList = Array<
-  LoggingConfigLogActionStatesItemEnum | (string & {})
->;
-export const LoggingConfigLogActionStatesItemEnumList = /*@__PURE__*/ S.Array(
-  LoggingConfigLogActionStatesItemEnum,
-) as any as S.Schema<LoggingConfigLogActionStatesItemEnumList>;
-
-export type LoggingConfigLogActionsItemEnum =
-  | "LOGGABLE_ACTION_UNSPECIFIED"
-  | "FIND"
-  | "DELETE"
-  | "COPY";
-export const LoggingConfigLogActionsItemEnum = /*@__PURE__*/ S.String;
-
-export type LoggingConfigLogActionsItemEnumList = Array<
-  LoggingConfigLogActionsItemEnum | (string & {})
->;
-export const LoggingConfigLogActionsItemEnumList = /*@__PURE__*/ S.Array(
-  LoggingConfigLogActionsItemEnum,
-) as any as S.Schema<LoggingConfigLogActionsItemEnumList>;
-
-/** Specifies the logging behavior for transfer operations. Logs can be sent to Cloud Logging for all transfer types. See [Read transfer logs](https://cloud.google.com/storage-transfer/docs/read-transfer-logs) for details. */
-export interface LoggingConfig {
-  /** For PosixFilesystem transfers, enables [file system transfer logs](https://cloud.google.com/storage-transfer/docs/on-prem-transfer-log-format) instead of, or in addition to, Cloud Logging. This option ignores [LoggableAction] and [LoggableActionState]. If these are set, Cloud Logging will also be enabled for this transfer. */
-  enableOnpremGcsTransferLogs?: boolean;
-  /** States in which `log_actions` are logged. If empty, no logs are generated. */
-  logActionStates?: LoggingConfigLogActionStatesItemEnumList;
-  /** Specifies the actions to be logged. If empty, no logs are generated. */
-  logActions?: LoggingConfigLogActionsItemEnumList;
+/** A POSIX filesystem resource. */
+export interface PosixFilesystem {
+  /** Root directory path to the filesystem. */
+  rootDirectory?: string;
 }
-export const LoggingConfig = /*@__PURE__*/ S.suspend(() =>
+export const PosixFilesystem = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    enableOnpremGcsTransferLogs: S.optional(S.Boolean),
-    logActionStates: S.optional(LoggingConfigLogActionStatesItemEnumList),
-    logActions: S.optional(LoggingConfigLogActionsItemEnumList),
+    rootDirectory: S.optional(S.String),
   }),
-).annotate({ identifier: "LoggingConfig" }) as any as S.Schema<LoggingConfig>;
+).annotate({
+  identifier: "PosixFilesystem",
+}) as any as S.Schema<PosixFilesystem>;
+
+/** AWS access key (see [AWS Security Credentials](https://docs.aws.amazon.com/general/latest/gr/aws-security-credentials.html)). For information on our data retention policy for user credentials, see [User credentials](/storage-transfer/docs/data-retention#user-credentials). */
+export interface AwsAccessKey {
+  /** Required. AWS access key ID. */
+  accessKeyId?: string;
+  /** Required. AWS secret access key. This field is not returned in RPC responses. */
+  secretAccessKey?: string;
+}
+export const AwsAccessKey = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accessKeyId: S.optional(S.String),
+    secretAccessKey: S.optional(S.String),
+  }),
+).annotate({ identifier: "AwsAccessKey" }) as any as S.Schema<AwsAccessKey>;
+
+/** An AwsS3Data resource can be a data source, but not a data sink. In an AwsS3Data resource, an object's name is the S3 object's key name. */
+export interface AwsS3Data {
+  /** Optional. The Resource name of a secret in Secret Manager. AWS credentials must be stored in Secret Manager in JSON format: { "access_key_id": "ACCESS_KEY_ID", "secret_access_key": "SECRET_ACCESS_KEY" } GoogleServiceAccount must be granted `roles/secretmanager.secretAccessor` for the resource. See [Configure access to a source: Amazon S3] (https://cloud.google.com/storage-transfer/docs/source-amazon-s3#secret_manager) for more information. If `credentials_secret` is specified, do not specify role_arn or aws_access_key. Format: `projects/{project_number}/secrets/{secret_name}` */
+  credentialsSecret?: string;
+  /** The Amazon Resource Name (ARN) of the role to support temporary credentials via `AssumeRoleWithWebIdentity`. For more information about ARNs, see [IAM ARNs](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns). When a role ARN is provided, Transfer Service fetches temporary credentials for the session using a `AssumeRoleWithWebIdentity` call for the provided role using the GoogleServiceAccount for this project. */
+  roleArn?: string;
+  /** Required. S3 Bucket name (see [Creating a bucket](https://docs.aws.amazon.com/AmazonS3/latest/dev/create-bucket-get-location-example.html)). */
+  bucketName?: string;
+  /** Optional. The CloudFront distribution domain name pointing to this bucket, to use when fetching. See [Transfer from S3 via CloudFront](https://cloud.google.com/storage-transfer/docs/s3-cloudfront) for more information. Format: `https://{id}.cloudfront.net` or any valid custom domain. Must begin with `https://`. */
+  cloudfrontDomain?: string;
+  /** Input only. AWS access key used to sign the API requests to the AWS S3 bucket. Permissions on the bucket must be granted to the access ID of the AWS access key. For information on our data retention policy for user credentials, see [User credentials](/storage-transfer/docs/data-retention#user-credentials). */
+  awsAccessKey?: AwsAccessKey;
+  /** Root path to transfer objects. Must be an empty string or full path name that ends with a '/'. This field is treated as an object prefix. As such, it should generally not begin with a '/'. */
+  path?: string;
+  /** Egress bytes over a Google-managed private network. This network is shared between other users of Storage Transfer Service. */
+  managedPrivateNetwork?: boolean;
+  /** Service Directory Service to be used as the endpoint for transfers from a custom VPC. Format: `projects/{project_id}/locations/{location}/namespaces/{namespace}/services/{service}` */
+  privateNetworkService?: string;
+}
+export const AwsS3Data = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    credentialsSecret: S.optional(S.String),
+    roleArn: S.optional(S.String),
+    bucketName: S.optional(S.String),
+    cloudfrontDomain: S.optional(S.String),
+    awsAccessKey: S.optional(AwsAccessKey),
+    path: S.optional(S.String),
+    managedPrivateNetwork: S.optional(S.Boolean),
+    privateNetworkService: S.optional(S.String),
+  }),
+).annotate({ identifier: "AwsS3Data" }) as any as S.Schema<AwsS3Data>;
+
+/** An HttpData resource specifies a list of objects on the web to be transferred over HTTP. The information of the objects to be transferred is contained in a file referenced by a URL. The first line in the file must be `"TsvHttpData-1.0"`, which specifies the format of the file. Subsequent lines specify the information of the list of objects, one object per list entry. Each entry has the following tab-delimited fields: * **HTTP URL** — The location of the object. * **Length** — The size of the object in bytes. * **MD5** — The base64-encoded MD5 hash of the object. For an example of a valid TSV file, see [Transferring data from URLs](https://cloud.google.com/storage-transfer/docs/create-url-list). When transferring data based on a URL list, keep the following in mind: * When an object located at `http(s)://hostname:port/` is transferred to a data sink, the name of the object at the data sink is `/`. * If the specified size of an object does not match the actual size of the object fetched, the object is not transferred. * If the specified MD5 does not match the MD5 computed from the transferred bytes, the object transfer fails. * Ensure that each URL you specify is publicly accessible. For example, in Cloud Storage you can [share an object publicly] (/storage/docs/cloud-console#_sharingdata) and get a link to it. * Storage Transfer Service obeys `robots.txt` rules and requires the source HTTP server to support `Range` requests and to return a `Content-Length` header in each response. * ObjectConditions have no effect when filtering objects to transfer. */
+export interface HttpData {
+  /** Required. The URL that points to the file that stores the object list entries. This file must allow public access. The URL is either an HTTP/HTTPS address (e.g. `https://example.com/urllist.tsv`) or a Cloud Storage path (e.g. `gs://my-bucket/urllist.tsv`). */
+  listUrl?: string;
+}
+export const HttpData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    listUrl: S.optional(S.String),
+  }),
+).annotate({ identifier: "HttpData" }) as any as S.Schema<HttpData>;
+
+export type S3CompatibleMetadataProtocolEnum =
+  | "NETWORK_PROTOCOL_UNSPECIFIED"
+  | "NETWORK_PROTOCOL_HTTPS"
+  | "NETWORK_PROTOCOL_HTTP";
+export const S3CompatibleMetadataProtocolEnum = /*@__PURE__*/ S.String;
+
+export type S3CompatibleMetadataListApiEnum =
+  | "LIST_API_UNSPECIFIED"
+  | "LIST_OBJECTS_V2"
+  | "LIST_OBJECTS";
+export const S3CompatibleMetadataListApiEnum = /*@__PURE__*/ S.String;
+
+export type S3CompatibleMetadataAuthMethodEnum =
+  | "AUTH_METHOD_UNSPECIFIED"
+  | "AUTH_METHOD_AWS_SIGNATURE_V4"
+  | "AUTH_METHOD_AWS_SIGNATURE_V2";
+export const S3CompatibleMetadataAuthMethodEnum = /*@__PURE__*/ S.String;
+
+export type S3CompatibleMetadataRequestModelEnum =
+  | "REQUEST_MODEL_UNSPECIFIED"
+  | "REQUEST_MODEL_VIRTUAL_HOSTED_STYLE"
+  | "REQUEST_MODEL_PATH_STYLE";
+export const S3CompatibleMetadataRequestModelEnum = /*@__PURE__*/ S.String;
+
+/** S3CompatibleMetadata contains the metadata fields that apply to the basic types of S3-compatible data providers. */
+export interface S3CompatibleMetadata {
+  /** Specifies the network protocol of the agent. When not specified, the default value of NetworkProtocol NETWORK_PROTOCOL_HTTPS is used. */
+  protocol?: S3CompatibleMetadataProtocolEnum | (string & {});
+  /** The Listing API to use for discovering objects. When not specified, Transfer Service will attempt to determine the right API to use. */
+  listApi?: S3CompatibleMetadataListApiEnum | (string & {});
+  /** Specifies the authentication and authorization method used by the storage service. When not specified, Transfer Service will attempt to determine right auth method to use. */
+  authMethod?: S3CompatibleMetadataAuthMethodEnum | (string & {});
+  /** Specifies the API request model used to call the storage service. When not specified, the default value of RequestModel REQUEST_MODEL_VIRTUAL_HOSTED_STYLE is used. */
+  requestModel?: S3CompatibleMetadataRequestModelEnum | (string & {});
+}
+export const S3CompatibleMetadata = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    protocol: S.optional(S3CompatibleMetadataProtocolEnum),
+    listApi: S.optional(S3CompatibleMetadataListApiEnum),
+    authMethod: S.optional(S3CompatibleMetadataAuthMethodEnum),
+    requestModel: S.optional(S3CompatibleMetadataRequestModelEnum),
+  }),
+).annotate({
+  identifier: "S3CompatibleMetadata",
+}) as any as S.Schema<S3CompatibleMetadata>;
+
+/** An AwsS3CompatibleData resource. */
+export interface AwsS3CompatibleData {
+  /** Specifies the root path to transfer objects. Must be an empty string or full path name that ends with a '/'. This field is treated as an object prefix. As such, it should generally not begin with a '/'. */
+  path?: string;
+  /** Required. Specifies the endpoint of the storage service. */
+  endpoint?: string;
+  /** A S3 compatible metadata. */
+  s3Metadata?: S3CompatibleMetadata;
+  /** Required. Specifies the name of the bucket. */
+  bucketName?: string;
+  /** Specifies the region to sign requests with. This can be left blank if requests should be signed with an empty region. */
+  region?: string;
+}
+export const AwsS3CompatibleData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    path: S.optional(S.String),
+    endpoint: S.optional(S.String),
+    s3Metadata: S.optional(S3CompatibleMetadata),
+    bucketName: S.optional(S.String),
+    region: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AwsS3CompatibleData",
+}) as any as S.Schema<AwsS3CompatibleData>;
+
+/** Specifies where the manifest is located. */
+export interface TransferManifest {
+  /** Specifies the path to the manifest in Cloud Storage. The Google-managed service account for the transfer must have `storage.objects.get` permission for this object. An example path is `gs://bucket_name/path/manifest.csv`. */
+  location?: string;
+}
+export const TransferManifest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    location: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "TransferManifest",
+}) as any as S.Schema<TransferManifest>;
+
+/** Configuration for running a transfer. */
+export interface TransferSpec {
+  /** Optional. An HDFS cluster data source. */
+  hdfsDataSource?: HdfsData;
+  /** Specifies the agent pool name associated with the posix data source. When unspecified, the default name is used. */
+  sourceAgentPoolName?: string;
+  /** Optional. An Azure Blob Storage data source. */
+  azureBlobStorageDataSource?: AzureBlobStorageData;
+  /** If the option delete_objects_unique_in_sink is `true` and time-based object conditions such as 'last modification time' are specified, the request fails with an INVALID_ARGUMENT error. */
+  transferOptions?: TransferOptions;
+  /** Specifies the agent pool name associated with the posix data sink. When unspecified, the default name is used. */
+  sinkAgentPoolName?: string;
+  /** Optional. A POSIX Filesystem data source. */
+  posixDataSource?: PosixFilesystem;
+  /** Optional. A Cloud Storage data source. */
+  gcsDataSource?: GcsData;
+  /** For transfers between file systems, specifies a Cloud Storage bucket to be used as an intermediate location through which to transfer data. See [Transfer data between file systems](https://cloud.google.com/storage-transfer/docs/file-to-file) for more information. */
+  gcsIntermediateDataLocation?: GcsData;
+  /** Only objects that satisfy these object conditions are included in the set of data source and data sink objects. Object conditions based on objects' "last modification time" do not exclude objects in a data sink. */
+  objectConditions?: ObjectConditions;
+  /** Optional. An AWS S3 data source. */
+  awsS3DataSource?: AwsS3Data;
+  /** Optional. An HTTP URL data source. */
+  httpDataSource?: HttpData;
+  /** Optional. A POSIX Filesystem data sink. */
+  posixDataSink?: PosixFilesystem;
+  /** Optional. An AWS S3 compatible data source. */
+  awsS3CompatibleDataSource?: AwsS3CompatibleData;
+  /** A manifest file provides a list of objects to be transferred from the data source. This field points to the location of the manifest file. Otherwise, the entire source bucket is used. ObjectConditions still apply. */
+  transferManifest?: TransferManifest;
+  /** Optional. A Cloud Storage data sink. */
+  gcsDataSink?: GcsData;
+}
+export const TransferSpec = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    hdfsDataSource: S.optional(HdfsData),
+    sourceAgentPoolName: S.optional(S.String),
+    azureBlobStorageDataSource: S.optional(AzureBlobStorageData),
+    transferOptions: S.optional(TransferOptions),
+    sinkAgentPoolName: S.optional(S.String),
+    posixDataSource: S.optional(PosixFilesystem),
+    gcsDataSource: S.optional(GcsData),
+    gcsIntermediateDataLocation: S.optional(GcsData),
+    objectConditions: S.optional(ObjectConditions),
+    awsS3DataSource: S.optional(AwsS3Data),
+    httpDataSource: S.optional(HttpData),
+    posixDataSink: S.optional(PosixFilesystem),
+    awsS3CompatibleDataSource: S.optional(AwsS3CompatibleData),
+    transferManifest: S.optional(TransferManifest),
+    gcsDataSink: S.optional(GcsData),
+  }),
+).annotate({ identifier: "TransferSpec" }) as any as S.Schema<TransferSpec>;
 
 /** This resource represents the configuration of a transfer job that runs periodically. */
 export interface TransferJob {
-  /** Output only. The time that the transfer job was last modified. */
-  lastModificationTime?: string;
   /** A unique name (within the transfer project) assigned when the job is created. If this field is empty in a CreateTransferJobRequest, Storage Transfer Service assigns a unique name. Otherwise, the specified name is used as the unique name for this job. If the specified name is in use by a job, the creation request fails with an ALREADY_EXISTS error. This name must start with `"transferJobs/"` prefix and end with a letter or a number, and should be no more than 128 characters. For transfers involving PosixFilesystem, this name must start with `transferJobs/OPI` specifically. For all other transfer types, this name must not start with `transferJobs/OPI`. Non-PosixFilesystem example: `"transferJobs/^(?!OPI)[A-Za-z0-9-._~]*[A-Za-z0-9]$"` PosixFilesystem example: `"transferJobs/OPI^[A-Za-z0-9-._~]*[A-Za-z0-9]$"` Applications must not rely on the enforcement of naming requirements involving OPI. Invalid job names fail with an INVALID_ARGUMENT error. */
   name?: string;
-  /** Transfer specification. */
-  transferSpec?: TransferSpec;
-  /** Output only. The time that the transfer job was created. */
-  creationTime?: string;
-  /** A description provided by the user for the job. Its max length is 1024 bytes when Unicode-encoded. */
-  description?: string;
-  /** The ID of the Google Cloud project that owns the job. */
-  projectId?: string;
-  /** Replication specification. */
-  replicationSpec?: ReplicationSpec;
-  /** Notification configuration. */
-  notificationConfig?: NotificationConfig;
-  /** Specifies the event stream for the transfer job for event-driven transfers. When EventStream is specified, the Schedule fields are ignored. */
-  eventStream?: EventStream;
-  /** The name of the most recently started TransferOperation of this JobConfig. Present if a TransferOperation has been created for this JobConfig. */
-  latestOperationName?: string;
-  /** Optional. The user-managed service account to which to delegate service agent permissions. You can grant Cloud Storage bucket permissions to this service account instead of to the Transfer Service service agent. Either the service account email (`SERVICE_ACCOUNT_NAME@PROJECT_ID.iam.gserviceaccount.com`) or the unique ID (`123456789012345678901`) are accepted. See https://docs.cloud.google.com/storage-transfer/docs/delegate-service-agent-permissions for required permissions. */
-  serviceAccount?: string;
-  /** Specifies schedule for the transfer job. This is an optional field. When the field is not set, the job never executes a transfer, unless you invoke RunTransferJob or update the job to have a non-empty schedule. */
-  schedule?: Schedule;
-  /** Status of the job. This value MUST be specified for `CreateTransferJobRequests`. **Note:** The effect of the new job status takes place during a subsequent job run. For example, if you change the job status from ENABLED to DISABLED, and an operation spawned by the transfer is running, the status change would not affect the current operation. */
-  status?: TransferJobStatusEnum | (string & {});
-  /** Output only. The time that the transfer job was deleted. */
-  deletionTime?: string;
   /** Logging configuration. */
   loggingConfig?: LoggingConfig;
+  /** Output only. The time that the transfer job was created. */
+  creationTime?: string;
+  /** Specifies the event stream for the transfer job for event-driven transfers. When EventStream is specified, the Schedule fields are ignored. */
+  eventStream?: EventStream;
+  /** Output only. The time that the transfer job was deleted. */
+  deletionTime?: string;
+  /** Status of the job. This value MUST be specified for `CreateTransferJobRequests`. **Note:** The effect of the new job status takes place during a subsequent job run. For example, if you change the job status from ENABLED to DISABLED, and an operation spawned by the transfer is running, the status change would not affect the current operation. */
+  status?: TransferJobStatusEnum | (string & {});
+  /** Specifies schedule for the transfer job. This is an optional field. When the field is not set, the job never executes a transfer, unless you invoke RunTransferJob or update the job to have a non-empty schedule. */
+  schedule?: Schedule;
+  /** Output only. The time that the transfer job was last modified. */
+  lastModificationTime?: string;
+  /** A description provided by the user for the job. Its max length is 1024 bytes when Unicode-encoded. */
+  description?: string;
+  /** Optional. The user-managed service account to which to delegate service agent permissions. You can grant Cloud Storage bucket permissions to this service account instead of to the Transfer Service service agent. Either the service account email (`SERVICE_ACCOUNT_NAME@PROJECT_ID.iam.gserviceaccount.com`) or the unique ID (`123456789012345678901`) are accepted. See https://docs.cloud.google.com/storage-transfer/docs/delegate-service-agent-permissions for required permissions. */
+  serviceAccount?: string;
+  /** Replication specification. */
+  replicationSpec?: ReplicationSpec;
+  /** The ID of the Google Cloud project that owns the job. */
+  projectId?: string;
+  /** Notification configuration. */
+  notificationConfig?: NotificationConfig;
+  /** The name of the most recently started TransferOperation of this JobConfig. Present if a TransferOperation has been created for this JobConfig. */
+  latestOperationName?: string;
+  /** Transfer specification. */
+  transferSpec?: TransferSpec;
 }
 export const TransferJob = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    lastModificationTime: S.optional(S.String),
     name: S.optional(S.String),
-    transferSpec: S.optional(TransferSpec),
-    creationTime: S.optional(S.String),
-    description: S.optional(S.String),
-    projectId: S.optional(S.String),
-    replicationSpec: S.optional(ReplicationSpec),
-    notificationConfig: S.optional(NotificationConfig),
-    eventStream: S.optional(EventStream),
-    latestOperationName: S.optional(S.String),
-    serviceAccount: S.optional(S.String),
-    schedule: S.optional(Schedule),
-    status: S.optional(TransferJobStatusEnum),
-    deletionTime: S.optional(S.String),
     loggingConfig: S.optional(LoggingConfig),
+    creationTime: S.optional(S.String),
+    eventStream: S.optional(EventStream),
+    deletionTime: S.optional(S.String),
+    status: S.optional(TransferJobStatusEnum),
+    schedule: S.optional(Schedule),
+    lastModificationTime: S.optional(S.String),
+    description: S.optional(S.String),
+    serviceAccount: S.optional(S.String),
+    replicationSpec: S.optional(ReplicationSpec),
+    projectId: S.optional(S.String),
+    notificationConfig: S.optional(NotificationConfig),
+    latestOperationName: S.optional(S.String),
+    transferSpec: S.optional(TransferSpec),
   }),
 ).annotate({ identifier: "TransferJob" }) as any as S.Schema<TransferJob>;
 
@@ -905,15 +905,15 @@ export const DeleteProjectsAgentPoolsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteProjectsAgentPoolsRequest>;
 
 export interface DeleteTransferJobsRequest {
-  /** Required. The job to delete. */
-  jobName: string;
   /** Required. The ID of the Google Cloud project that owns the job. */
   projectId: string;
+  /** Required. The job to delete. */
+  jobName: string;
 }
 export const DeleteTransferJobsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    jobName: S.String.pipe(T.Label()),
     projectId: S.String.pipe(T.Query()),
+    jobName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "DELETE",
@@ -945,15 +945,15 @@ export const GetGoogleServiceAccountsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Google service account */
 export interface GoogleServiceAccount {
-  /** Unique identifier for the service account. */
-  subjectId?: string;
   /** Email address of the service account. */
   accountEmail?: string;
+  /** Unique identifier for the service account. */
+  subjectId?: string;
 }
 export const GoogleServiceAccount = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    subjectId: S.optional(S.String),
     accountEmail: S.optional(S.String),
+    subjectId: S.optional(S.String),
   }),
 ).annotate({
   identifier: "GoogleServiceAccount",
@@ -978,15 +978,15 @@ export const GetProjectsAgentPoolsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetProjectsAgentPoolsRequest>;
 
 export interface GetTransferJobsRequest {
-  /** Required. The job to get. */
-  jobName: string;
   /** Required. The ID of the Google Cloud project that owns the job. */
   projectId: string;
+  /** Required. The job to get. */
+  jobName: string;
 }
 export const GetTransferJobsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    jobName: S.String.pipe(T.Label()),
     projectId: S.String.pipe(T.Query()),
+    jobName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
@@ -1031,58 +1031,58 @@ export const DocumentMapList = /*@__PURE__*/ S.Array(
 export interface Status {
   /** A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client. */
   message?: string;
-  /** A list of messages that carry the error details. There is a common set of message types for APIs to use. */
-  details?: DocumentMapList;
   /** The status code, which should be an enum value of google.rpc.Code. */
   code?: number;
+  /** A list of messages that carry the error details. There is a common set of message types for APIs to use. */
+  details?: DocumentMapList;
 }
 export const Status = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     message: S.optional(S.String),
-    details: S.optional(DocumentMapList),
     code: S.optional(S.Number),
+    details: S.optional(DocumentMapList),
   }),
 ).annotate({ identifier: "Status" }) as any as S.Schema<Status>;
 
 /** This resource represents a long-running operation that is the result of a network API call. */
 export interface Operation {
+  /** The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`. */
+  response?: DocumentMap;
+  /** Represents the transfer operation object. To request a TransferOperation object, use transferOperations.get. */
+  metadata?: DocumentMap;
   /** The server-assigned unique name. The format of `name` is `transferOperations/some/unique/name`. */
   name?: string;
   /** The error result of the operation in case of failure or cancellation. */
   error?: Status;
   /** If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available. */
   done?: boolean;
-  /** The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`. */
-  response?: DocumentMap;
-  /** Represents the transfer operation object. To request a TransferOperation object, use transferOperations.get. */
-  metadata?: DocumentMap;
 }
 export const Operation = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    response: S.optional(DocumentMap),
+    metadata: S.optional(DocumentMap),
     name: S.optional(S.String),
     error: S.optional(Status),
     done: S.optional(S.Boolean),
-    response: S.optional(DocumentMap),
-    metadata: S.optional(DocumentMap),
   }),
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 export interface ListProjectsAgentPoolsRequest {
-  /** The list page size. The max allowed value is `256`. */
-  pageSize?: number;
-  /** The list page token. */
-  pageToken?: string;
   /** Required. The ID of the Google Cloud project that owns the job. */
   projectId: string;
   /** An optional list of query parameters specified as JSON text in the form of: `{"agentPoolNames":["agentpool1","agentpool2",...]}` Since `agentPoolNames` support multiple values, its values must be specified with array notation. When the filter is either empty or not provided, the list returns all agent pools for the project. */
   filter?: string;
+  /** The list page size. The max allowed value is `256`. */
+  pageSize?: number;
+  /** The list page token. */
+  pageToken?: string;
 }
 export const ListProjectsAgentPoolsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    pageSize: S.optional(S.Number.pipe(T.Query())),
-    pageToken: S.optional(S.String.pipe(T.Query())),
     projectId: S.String.pipe(T.Label()),
     filter: S.optional(S.String.pipe(T.Query())),
+    pageSize: S.optional(S.Number.pipe(T.Query())),
+    pageToken: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -1101,33 +1101,33 @@ export const AgentPoolList = /*@__PURE__*/ S.Array(
 
 /** Response from ListAgentPools. */
 export interface ListAgentPoolsResponse {
-  /** A list of agent pools. */
-  agentPools?: AgentPoolList;
   /** The list next page token. */
   nextPageToken?: string;
+  /** A list of agent pools. */
+  agentPools?: AgentPoolList;
 }
 export const ListAgentPoolsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    agentPools: S.optional(AgentPoolList),
     nextPageToken: S.optional(S.String),
+    agentPools: S.optional(AgentPoolList),
   }),
 ).annotate({
   identifier: "ListAgentPoolsResponse",
 }) as any as S.Schema<ListAgentPoolsResponse>;
 
 export interface ListTransferJobsRequest {
+  /** The list page token. */
+  pageToken?: string;
   /** Required. A list of query parameters specified as JSON text in the form of: ``` { "projectId":"my_project_id", "jobNames":["jobid1","jobid2",...], "jobStatuses":["status1","status2",...], "dataBackend":"QUERY_REPLICATION_CONFIGS", "sourceBucket":"source-bucket-name", "sinkBucket":"sink-bucket-name", } ``` The JSON formatting in the example is for display only; provide the query parameters without spaces or line breaks. * `projectId` is required. * Since `jobNames` and `jobStatuses` support multiple values, their values must be specified with array notation. `jobNames` and `jobStatuses` are optional. Valid values are case-insensitive: * ENABLED * DISABLED * DELETED * Specify `"dataBackend":"QUERY_REPLICATION_CONFIGS"` to return a list of cross-bucket replication jobs. * Limit the results to jobs from a particular bucket with `sourceBucket` and/or to a particular bucket with `sinkBucket`. */
   filter: string;
   /** The list page size. The max allowed value is 256. */
   pageSize?: number;
-  /** The list page token. */
-  pageToken?: string;
 }
 export const ListTransferJobsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    pageToken: S.optional(S.String.pipe(T.Query())),
     filter: S.String.pipe(T.Query()),
     pageSize: S.optional(S.Number.pipe(T.Query())),
-    pageToken: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -1161,23 +1161,23 @@ export const ListTransferJobsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListTransferJobsResponse>;
 
 export interface ListTransferOperationsRequest {
-  /** Required. The name of the type being listed; must be `transferOperations`. */
-  name: string;
   /** The list page token. */
   pageToken?: string;
-  /** Required. A list of query parameters specified as JSON text in the form of: `{"projectId":"my_project_id", "jobNames":["jobid1","jobid2",...], "jobNamePattern": "job_name_pattern", "operationNames":["opid1","opid2",...], "operationNamePattern": "operation_name_pattern", "minCreationTime": "min_creation_time", "maxCreationTime": "max_creation_time", "transferStatuses":["status1","status2",...]}` Since `jobNames`, `operationNames`, and `transferStatuses` support multiple values, they must be specified with array notation. `projectId` is the only argument that is required. If specified, `jobNamePattern` and `operationNamePattern` must match the full job or operation name respectively. '*' is a wildcard matching 0 or more characters. `minCreationTime` and `maxCreationTime` should be timestamps encoded as a string in the [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. The valid values for `transferStatuses` are case-insensitive: IN_PROGRESS, PAUSED, SUCCESS, FAILED, and ABORTED. */
-  filter: string;
   /** When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation. */
   returnPartialSuccess?: boolean;
+  /** Required. The name of the type being listed; must be `transferOperations`. */
+  name: string;
+  /** Required. A list of query parameters specified as JSON text in the form of: `{"projectId":"my_project_id", "jobNames":["jobid1","jobid2",...], "jobNamePattern": "job_name_pattern", "operationNames":["opid1","opid2",...], "operationNamePattern": "operation_name_pattern", "minCreationTime": "min_creation_time", "maxCreationTime": "max_creation_time", "transferStatuses":["status1","status2",...]}` Since `jobNames`, `operationNames`, and `transferStatuses` support multiple values, they must be specified with array notation. `projectId` is the only argument that is required. If specified, `jobNamePattern` and `operationNamePattern` must match the full job or operation name respectively. '*' is a wildcard matching 0 or more characters. `minCreationTime` and `maxCreationTime` should be timestamps encoded as a string in the [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. The valid values for `transferStatuses` are case-insensitive: IN_PROGRESS, PAUSED, SUCCESS, FAILED, and ABORTED. */
+  filter: string;
   /** The list page size. The max allowed value is 256. */
   pageSize?: number;
 }
 export const ListTransferOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    name: S.String.pipe(T.Label()),
     pageToken: S.optional(S.String.pipe(T.Query())),
-    filter: S.String.pipe(T.Query()),
     returnPartialSuccess: S.optional(S.Boolean.pipe(T.Query())),
+    name: S.String.pipe(T.Label()),
+    filter: S.String.pipe(T.Query()),
     pageSize: S.optional(S.Number.pipe(T.Query())),
   }).pipe(
     T.Http({
@@ -1197,18 +1197,18 @@ export const OperationList = /*@__PURE__*/ S.Array(
 
 /** The response message for Operations.ListOperations. */
 export interface ListOperationsResponse {
-  /** A list of operations that matches the specified filter in the request. */
-  operations?: OperationList;
-  /** Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations. */
-  unreachable?: StringList;
   /** The standard List next-page token. */
   nextPageToken?: string;
+  /** Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations. */
+  unreachable?: StringList;
+  /** A list of operations that matches the specified filter in the request. */
+  operations?: OperationList;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    operations: S.optional(OperationList),
-    unreachable: S.optional(StringList),
     nextPageToken: S.optional(S.String),
+    unreachable: S.optional(StringList),
+    operations: S.optional(OperationList),
   }),
 ).annotate({
   identifier: "ListOperationsResponse",
@@ -1242,16 +1242,16 @@ export const PatchProjectsAgentPoolsRequest = /*@__PURE__*/ S.suspend(() =>
 export interface UpdateTransferJobRequest {
   /** The field mask of the fields in `transferJob` that are to be updated in this request. Fields in `transferJob` that can be updated are: description, transfer_spec, notification_config, logging_config, and status. To update the `transfer_spec` of the job, a complete transfer specification must be provided. An incomplete specification missing any required fields is rejected with the error INVALID_ARGUMENT. */
   updateTransferJobFieldMask?: string;
-  /** Required. The ID of the Google Cloud project that owns the job. */
-  projectId?: string;
   /** Required. The job to update. `transferJob` is expected to specify one or more of five fields: description, transfer_spec, notification_config, logging_config, and status. An `UpdateTransferJobRequest` that specifies other fields are rejected with the error INVALID_ARGUMENT. Updating a job status to DELETED requires `storagetransfer.jobs.delete` permission. */
   transferJob?: TransferJob;
+  /** Required. The ID of the Google Cloud project that owns the job. */
+  projectId?: string;
 }
 export const UpdateTransferJobRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     updateTransferJobFieldMask: S.optional(S.String),
-    projectId: S.optional(S.String),
     transferJob: S.optional(TransferJob),
+    projectId: S.optional(S.String),
   }),
 ).annotate({
   identifier: "UpdateTransferJobRequest",

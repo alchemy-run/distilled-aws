@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.databasewatcher#TargetsDelete": {
+    "com.azure.databasewatcher#DeleteTarget": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databasewatcher#TargetsDeleteRequest"
+        "target": "com.azure.databasewatcher#DeleteTargetRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -36,7 +37,7 @@
         "com.distilled.openapi#apiVersion": "2025-01-02"
       }
     },
-    "com.azure.databasewatcher#TargetsDeleteRequest": {
+    "com.azure.databasewatcher#DeleteTargetRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -436,13 +437,13 @@
         "smithy.api#documentation": "The generic properties of a target."
       }
     },
-    "com.azure.databasewatcher#TargetsGet": {
+    "com.azure.databasewatcher#GetTarget": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databasewatcher#TargetsGetRequest"
+        "target": "com.azure.databasewatcher#GetTargetRequest"
       },
       "output": {
-        "target": "com.azure.databasewatcher#TargetsGetResponse"
+        "target": "com.azure.databasewatcher#GetTargetResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -455,7 +456,7 @@
         "com.distilled.openapi#apiVersion": "2025-01-02"
       }
     },
-    "com.azure.databasewatcher#TargetsGetResponse": {
+    "com.azure.databasewatcher#GetTargetResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -493,7 +494,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.databasewatcher#TargetsGetRequest": {
+    "com.azure.databasewatcher#GetTargetRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -533,10 +534,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databasewatcher#TargetsListByWatcher": {
+    "com.azure.databasewatcher#ListTargetByWatcher": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databasewatcher#TargetsListByWatcherRequest"
+        "target": "com.azure.databasewatcher#ListTargetByWatcherRequest"
       },
       "output": {
         "target": "com.azure.databasewatcher#TargetListResult"
@@ -620,7 +621,7 @@
         "smithy.api#documentation": "Concrete proxy resource types can be created by aliasing this type using a specific property type."
       }
     },
-    "com.azure.databasewatcher#TargetsListByWatcherRequest": {
+    "com.azure.databasewatcher#ListTargetByWatcherRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -652,13 +653,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databasewatcher#WatchersStop": {
+    "com.azure.databasewatcher#StopWatcher": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databasewatcher#WatchersStopRequest"
+        "target": "com.azure.databasewatcher#StopWatcherRequest"
       },
       "output": {
-        "target": "com.azure.databasewatcher#WatchersStopResponse"
+        "target": "com.azure.databasewatcher#StopWatcherResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -671,7 +672,7 @@
         "com.distilled.openapi#apiVersion": "2025-01-02"
       }
     },
-    "com.azure.databasewatcher#WatchersStopResponse": {
+    "com.azure.databasewatcher#StopWatcherResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -699,7 +700,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.databasewatcher#WatchersStopResponseTagsMap",
+          "target": "com.azure.databasewatcher#StopWatcherResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -718,7 +719,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.databasewatcher#WatchersStopResponseIdentity",
+          "target": "com.azure.databasewatcher#StopWatcherResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -728,7 +729,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.databasewatcher#WatchersStopResponseIdentity": {
+    "com.azure.databasewatcher#StopWatcherResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -998,7 +999,7 @@
         "smithy.api#documentation": "The type of Kusto offering."
       }
     },
-    "com.azure.databasewatcher#WatchersStopResponseTagsMap": {
+    "com.azure.databasewatcher#StopWatcherResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1010,7 +1011,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.databasewatcher#WatchersStopRequest": {
+    "com.azure.databasewatcher#StopWatcherRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1042,13 +1043,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databasewatcher#WatchersStart": {
+    "com.azure.databasewatcher#StartWatcher": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databasewatcher#WatchersStartRequest"
+        "target": "com.azure.databasewatcher#StartWatcherRequest"
       },
       "output": {
-        "target": "com.azure.databasewatcher#WatchersStartResponse"
+        "target": "com.azure.databasewatcher#StartWatcherResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1061,7 +1062,7 @@
         "com.distilled.openapi#apiVersion": "2025-01-02"
       }
     },
-    "com.azure.databasewatcher#WatchersStartResponse": {
+    "com.azure.databasewatcher#StartWatcherResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1089,7 +1090,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.databasewatcher#WatchersStartResponseTagsMap",
+          "target": "com.azure.databasewatcher#StartWatcherResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1108,7 +1109,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.databasewatcher#WatchersStartResponseIdentity",
+          "target": "com.azure.databasewatcher#StartWatcherResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -1118,7 +1119,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.databasewatcher#WatchersStartResponseIdentity": {
+    "com.azure.databasewatcher#StartWatcherResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -1147,7 +1148,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.databasewatcher#WatchersStartResponseTagsMap": {
+    "com.azure.databasewatcher#StartWatcherResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1159,7 +1160,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.databasewatcher#WatchersStartRequest": {
+    "com.azure.databasewatcher#StartWatcherRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1191,10 +1192,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databasewatcher#SharedPrivateLinkResourcesDelete": {
+    "com.azure.databasewatcher#DeleteSharedPrivateLinkResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databasewatcher#SharedPrivateLinkResourcesDeleteRequest"
+        "target": "com.azure.databasewatcher#DeleteSharedPrivateLinkResourceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1210,7 +1211,7 @@
         "com.distilled.openapi#apiVersion": "2025-01-02"
       }
     },
-    "com.azure.databasewatcher#SharedPrivateLinkResourcesDeleteRequest": {
+    "com.azure.databasewatcher#DeleteSharedPrivateLinkResourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1250,13 +1251,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databasewatcher#SharedPrivateLinkResourcesCreate": {
+    "com.azure.databasewatcher#CreateSharedPrivateLinkResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databasewatcher#SharedPrivateLinkResourcesCreateRequest"
+        "target": "com.azure.databasewatcher#CreateSharedPrivateLinkResourceRequest"
       },
       "output": {
-        "target": "com.azure.databasewatcher#SharedPrivateLinkResourcesCreateResponse"
+        "target": "com.azure.databasewatcher#CreateSharedPrivateLinkResourceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1269,7 +1270,7 @@
         "com.distilled.openapi#apiVersion": "2025-01-02"
       }
     },
-    "com.azure.databasewatcher#SharedPrivateLinkResourcesCreateResponse": {
+    "com.azure.databasewatcher#CreateSharedPrivateLinkResourceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1386,7 +1387,7 @@
         "smithy.api#documentation": "Status of the shared private link resource. Can be Pending, Approved, Rejected or Disconnected."
       }
     },
-    "com.azure.databasewatcher#SharedPrivateLinkResourcesCreateRequest": {
+    "com.azure.databasewatcher#CreateSharedPrivateLinkResourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1467,13 +1468,13 @@
         "smithy.api#documentation": "The generic properties of a Shared Private Link resource."
       }
     },
-    "com.azure.databasewatcher#SharedPrivateLinkResourcesGet": {
+    "com.azure.databasewatcher#GetSharedPrivateLinkResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databasewatcher#SharedPrivateLinkResourcesGetRequest"
+        "target": "com.azure.databasewatcher#GetSharedPrivateLinkResourceRequest"
       },
       "output": {
-        "target": "com.azure.databasewatcher#SharedPrivateLinkResourcesGetResponse"
+        "target": "com.azure.databasewatcher#GetSharedPrivateLinkResourceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1486,7 +1487,7 @@
         "com.distilled.openapi#apiVersion": "2025-01-02"
       }
     },
-    "com.azure.databasewatcher#SharedPrivateLinkResourcesGetResponse": {
+    "com.azure.databasewatcher#GetSharedPrivateLinkResourceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1524,7 +1525,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.databasewatcher#SharedPrivateLinkResourcesGetRequest": {
+    "com.azure.databasewatcher#GetSharedPrivateLinkResourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1564,10 +1565,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databasewatcher#SharedPrivateLinkResourcesListByWatcher": {
+    "com.azure.databasewatcher#ListSharedPrivateLinkResourceByWatcher": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databasewatcher#SharedPrivateLinkResourcesListByWatcherRequest"
+        "target": "com.azure.databasewatcher#ListSharedPrivateLinkResourceByWatcherRequest"
       },
       "output": {
         "target": "com.azure.databasewatcher#SharedPrivateLinkResourceListResult"
@@ -1651,7 +1652,7 @@
         "smithy.api#documentation": "Concrete proxy resource types can be created by aliasing this type using a specific property type."
       }
     },
-    "com.azure.databasewatcher#SharedPrivateLinkResourcesListByWatcherRequest": {
+    "com.azure.databasewatcher#ListSharedPrivateLinkResourceByWatcherRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1683,13 +1684,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databasewatcher#HealthValidationsStartValidation": {
+    "com.azure.databasewatcher#StartHealthValidationValidation": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databasewatcher#HealthValidationsStartValidationRequest"
+        "target": "com.azure.databasewatcher#StartHealthValidationValidationRequest"
       },
       "output": {
-        "target": "com.azure.databasewatcher#HealthValidationsStartValidationResponse"
+        "target": "com.azure.databasewatcher#StartHealthValidationValidationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1702,7 +1703,7 @@
         "com.distilled.openapi#apiVersion": "2025-01-02"
       }
     },
-    "com.azure.databasewatcher#HealthValidationsStartValidationResponse": {
+    "com.azure.databasewatcher#StartHealthValidationValidationResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1888,7 +1889,7 @@
         "smithy.api#documentation": "Health validation status."
       }
     },
-    "com.azure.databasewatcher#HealthValidationsStartValidationRequest": {
+    "com.azure.databasewatcher#StartHealthValidationValidationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1928,13 +1929,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databasewatcher#HealthValidationsGet": {
+    "com.azure.databasewatcher#GetHealthValidation": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databasewatcher#HealthValidationsGetRequest"
+        "target": "com.azure.databasewatcher#GetHealthValidationRequest"
       },
       "output": {
-        "target": "com.azure.databasewatcher#HealthValidationsGetResponse"
+        "target": "com.azure.databasewatcher#GetHealthValidationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1947,7 +1948,7 @@
         "com.distilled.openapi#apiVersion": "2025-01-02"
       }
     },
-    "com.azure.databasewatcher#HealthValidationsGetResponse": {
+    "com.azure.databasewatcher#GetHealthValidationResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1985,7 +1986,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.databasewatcher#HealthValidationsGetRequest": {
+    "com.azure.databasewatcher#GetHealthValidationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2025,10 +2026,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databasewatcher#HealthValidationsListByParent": {
+    "com.azure.databasewatcher#ListHealthValidationByParent": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databasewatcher#HealthValidationsListByParentRequest"
+        "target": "com.azure.databasewatcher#ListHealthValidationByParentRequest"
       },
       "output": {
         "target": "com.azure.databasewatcher#HealthValidationListResult"
@@ -2112,7 +2113,7 @@
         "smithy.api#documentation": "Concrete proxy resource types can be created by aliasing this type using a specific property type."
       }
     },
-    "com.azure.databasewatcher#HealthValidationsListByParentRequest": {
+    "com.azure.databasewatcher#ListHealthValidationByParentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2144,10 +2145,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databasewatcher#AlertRuleResourcesDelete": {
+    "com.azure.databasewatcher#DeleteAlertRuleResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databasewatcher#AlertRuleResourcesDeleteRequest"
+        "target": "com.azure.databasewatcher#DeleteAlertRuleResourceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2163,7 +2164,7 @@
         "com.distilled.openapi#apiVersion": "2025-01-02"
       }
     },
-    "com.azure.databasewatcher#AlertRuleResourcesDeleteRequest": {
+    "com.azure.databasewatcher#DeleteAlertRuleResourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2418,13 +2419,13 @@
         "smithy.api#documentation": "The generic properties of the alert rule proxy resource."
       }
     },
-    "com.azure.databasewatcher#AlertRuleResourcesGet": {
+    "com.azure.databasewatcher#GetAlertRuleResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databasewatcher#AlertRuleResourcesGetRequest"
+        "target": "com.azure.databasewatcher#GetAlertRuleResourceRequest"
       },
       "output": {
-        "target": "com.azure.databasewatcher#AlertRuleResourcesGetResponse"
+        "target": "com.azure.databasewatcher#GetAlertRuleResourceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2437,7 +2438,7 @@
         "com.distilled.openapi#apiVersion": "2025-01-02"
       }
     },
-    "com.azure.databasewatcher#AlertRuleResourcesGetResponse": {
+    "com.azure.databasewatcher#GetAlertRuleResourceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2475,7 +2476,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.databasewatcher#AlertRuleResourcesGetRequest": {
+    "com.azure.databasewatcher#GetAlertRuleResourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2515,10 +2516,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databasewatcher#AlertRuleResourcesListByParent": {
+    "com.azure.databasewatcher#ListAlertRuleResourceByParent": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databasewatcher#AlertRuleResourcesListByParentRequest"
+        "target": "com.azure.databasewatcher#ListAlertRuleResourceByParentRequest"
       },
       "output": {
         "target": "com.azure.databasewatcher#AlertRuleResourceListResult"
@@ -2602,7 +2603,7 @@
         "smithy.api#documentation": "Concrete proxy resource types can be created by aliasing this type using a specific property type."
       }
     },
-    "com.azure.databasewatcher#AlertRuleResourcesListByParentRequest": {
+    "com.azure.databasewatcher#ListAlertRuleResourceByParentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2634,10 +2635,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databasewatcher#WatchersDelete": {
+    "com.azure.databasewatcher#DeleteWatcher": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databasewatcher#WatchersDeleteRequest"
+        "target": "com.azure.databasewatcher#DeleteWatcherRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2653,7 +2654,7 @@
         "com.distilled.openapi#apiVersion": "2025-01-02"
       }
     },
-    "com.azure.databasewatcher#WatchersDeleteRequest": {
+    "com.azure.databasewatcher#DeleteWatcherRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2685,13 +2686,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databasewatcher#WatchersUpdate": {
+    "com.azure.databasewatcher#UpdateWatcher": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databasewatcher#WatchersUpdateRequest"
+        "target": "com.azure.databasewatcher#UpdateWatcherRequest"
       },
       "output": {
-        "target": "com.azure.databasewatcher#WatchersUpdateResponse"
+        "target": "com.azure.databasewatcher#UpdateWatcherResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2704,7 +2705,7 @@
         "com.distilled.openapi#apiVersion": "2025-01-02"
       }
     },
-    "com.azure.databasewatcher#WatchersUpdateResponse": {
+    "com.azure.databasewatcher#UpdateWatcherResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2732,7 +2733,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.databasewatcher#WatchersUpdateResponseTagsMap",
+          "target": "com.azure.databasewatcher#UpdateWatcherResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2751,7 +2752,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.databasewatcher#WatchersUpdateResponseIdentity",
+          "target": "com.azure.databasewatcher#UpdateWatcherResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -2761,7 +2762,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.databasewatcher#WatchersUpdateResponseIdentity": {
+    "com.azure.databasewatcher#UpdateWatcherResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -2790,7 +2791,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.databasewatcher#WatchersUpdateResponseTagsMap": {
+    "com.azure.databasewatcher#UpdateWatcherResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2802,7 +2803,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.databasewatcher#WatchersUpdateRequest": {
+    "com.azure.databasewatcher#UpdateWatcherRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2830,13 +2831,13 @@
           }
         },
         "identity": {
-          "target": "com.azure.databasewatcher#WatchersUpdateRequestIdentity",
+          "target": "com.azure.databasewatcher#UpdateWatcherRequestIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
         },
         "tags": {
-          "target": "com.azure.databasewatcher#WatchersUpdateRequestTagsMap",
+          "target": "com.azure.databasewatcher#UpdateWatcherRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2922,7 +2923,7 @@
         "smithy.api#documentation": "The properties of a data store."
       }
     },
-    "com.azure.databasewatcher#WatchersUpdateRequestTagsMap": {
+    "com.azure.databasewatcher#UpdateWatcherRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2934,7 +2935,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.databasewatcher#WatchersUpdateRequestIdentity": {
+    "com.azure.databasewatcher#UpdateWatcherRequestIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -3193,13 +3194,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.databasewatcher#WatchersGet": {
+    "com.azure.databasewatcher#GetWatcher": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databasewatcher#WatchersGetRequest"
+        "target": "com.azure.databasewatcher#GetWatcherRequest"
       },
       "output": {
-        "target": "com.azure.databasewatcher#WatchersGetResponse"
+        "target": "com.azure.databasewatcher#GetWatcherResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3212,7 +3213,7 @@
         "com.distilled.openapi#apiVersion": "2025-01-02"
       }
     },
-    "com.azure.databasewatcher#WatchersGetResponse": {
+    "com.azure.databasewatcher#GetWatcherResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3240,7 +3241,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.databasewatcher#WatchersGetResponseTagsMap",
+          "target": "com.azure.databasewatcher#GetWatcherResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3259,7 +3260,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.databasewatcher#WatchersGetResponseIdentity",
+          "target": "com.azure.databasewatcher#GetWatcherResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -3269,7 +3270,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.databasewatcher#WatchersGetResponseIdentity": {
+    "com.azure.databasewatcher#GetWatcherResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -3298,7 +3299,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.databasewatcher#WatchersGetResponseTagsMap": {
+    "com.azure.databasewatcher#GetWatcherResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3310,7 +3311,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.databasewatcher#WatchersGetRequest": {
+    "com.azure.databasewatcher#GetWatcherRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3342,10 +3343,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databasewatcher#WatchersListByResourceGroup": {
+    "com.azure.databasewatcher#ListWatcherByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databasewatcher#WatchersListByResourceGroupRequest"
+        "target": "com.azure.databasewatcher#ListWatcherByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.databasewatcher#WatcherListResult"
@@ -3489,7 +3490,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.databasewatcher#WatchersListByResourceGroupRequest": {
+    "com.azure.databasewatcher#ListWatcherByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3513,10 +3514,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databasewatcher#WatchersListBySubscription": {
+    "com.azure.databasewatcher#ListWatcherBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databasewatcher#WatchersListBySubscriptionRequest"
+        "target": "com.azure.databasewatcher#ListWatcherBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.databasewatcher#WatcherListResult"
@@ -3532,7 +3533,7 @@
         "com.distilled.openapi#apiVersion": "2025-01-02"
       }
     },
-    "com.azure.databasewatcher#WatchersListBySubscriptionRequest": {
+    "com.azure.databasewatcher#ListWatcherBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3548,13 +3549,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databasewatcher#OperationsList": {
+    "com.azure.databasewatcher#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.azure.databasewatcher#OperationsListResponse"
+        "target": "com.azure.databasewatcher#ListOperationsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3567,11 +3568,11 @@
         "com.distilled.openapi#apiVersion": "2025-01-02"
       }
     },
-    "com.azure.databasewatcher#OperationsListResponse": {
+    "com.azure.databasewatcher#ListOperationsResponse": {
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.databasewatcher#OperationsListResponseValueList",
+          "target": "com.azure.databasewatcher#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -3587,7 +3588,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.databasewatcher#OperationsListResponseValueList": {
+    "com.azure.databasewatcher#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.databasewatcher#Operation"
@@ -3711,76 +3712,76 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.databasewatcher#TargetsDelete"
+          "target": "com.azure.databasewatcher#DeleteTarget"
         },
         {
           "target": "com.azure.databasewatcher#TargetsCreateOrUpdate"
         },
         {
-          "target": "com.azure.databasewatcher#TargetsGet"
+          "target": "com.azure.databasewatcher#GetTarget"
         },
         {
-          "target": "com.azure.databasewatcher#TargetsListByWatcher"
+          "target": "com.azure.databasewatcher#ListTargetByWatcher"
         },
         {
-          "target": "com.azure.databasewatcher#WatchersStop"
+          "target": "com.azure.databasewatcher#StopWatcher"
         },
         {
-          "target": "com.azure.databasewatcher#WatchersStart"
+          "target": "com.azure.databasewatcher#StartWatcher"
         },
         {
-          "target": "com.azure.databasewatcher#SharedPrivateLinkResourcesDelete"
+          "target": "com.azure.databasewatcher#DeleteSharedPrivateLinkResource"
         },
         {
-          "target": "com.azure.databasewatcher#SharedPrivateLinkResourcesCreate"
+          "target": "com.azure.databasewatcher#CreateSharedPrivateLinkResource"
         },
         {
-          "target": "com.azure.databasewatcher#SharedPrivateLinkResourcesGet"
+          "target": "com.azure.databasewatcher#GetSharedPrivateLinkResource"
         },
         {
-          "target": "com.azure.databasewatcher#SharedPrivateLinkResourcesListByWatcher"
+          "target": "com.azure.databasewatcher#ListSharedPrivateLinkResourceByWatcher"
         },
         {
-          "target": "com.azure.databasewatcher#HealthValidationsStartValidation"
+          "target": "com.azure.databasewatcher#StartHealthValidationValidation"
         },
         {
-          "target": "com.azure.databasewatcher#HealthValidationsGet"
+          "target": "com.azure.databasewatcher#GetHealthValidation"
         },
         {
-          "target": "com.azure.databasewatcher#HealthValidationsListByParent"
+          "target": "com.azure.databasewatcher#ListHealthValidationByParent"
         },
         {
-          "target": "com.azure.databasewatcher#AlertRuleResourcesDelete"
+          "target": "com.azure.databasewatcher#DeleteAlertRuleResource"
         },
         {
           "target": "com.azure.databasewatcher#AlertRuleResourcesCreateOrUpdate"
         },
         {
-          "target": "com.azure.databasewatcher#AlertRuleResourcesGet"
+          "target": "com.azure.databasewatcher#GetAlertRuleResource"
         },
         {
-          "target": "com.azure.databasewatcher#AlertRuleResourcesListByParent"
+          "target": "com.azure.databasewatcher#ListAlertRuleResourceByParent"
         },
         {
-          "target": "com.azure.databasewatcher#WatchersDelete"
+          "target": "com.azure.databasewatcher#DeleteWatcher"
         },
         {
-          "target": "com.azure.databasewatcher#WatchersUpdate"
+          "target": "com.azure.databasewatcher#UpdateWatcher"
         },
         {
           "target": "com.azure.databasewatcher#WatchersCreateOrUpdate"
         },
         {
-          "target": "com.azure.databasewatcher#WatchersGet"
+          "target": "com.azure.databasewatcher#GetWatcher"
         },
         {
-          "target": "com.azure.databasewatcher#WatchersListByResourceGroup"
+          "target": "com.azure.databasewatcher#ListWatcherByResourceGroup"
         },
         {
-          "target": "com.azure.databasewatcher#WatchersListBySubscription"
+          "target": "com.azure.databasewatcher#ListWatcherBySubscription"
         },
         {
-          "target": "com.azure.databasewatcher#OperationsList"
+          "target": "com.azure.databasewatcher#ListOperations"
         }
       ],
       "traits": {

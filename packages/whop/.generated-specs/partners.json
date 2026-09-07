@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.partners#CreateReferralPartnerRequest": {
@@ -811,7 +812,7 @@
         }
       }
     },
-    "com.whop.partners#RetrievePartnerBusinessRequest": {
+    "com.whop.partners#GetPartnerBusinessRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -1456,7 +1457,7 @@
         "smithy.api#documentation": "Always optional — never blocking"
       }
     },
-    "com.whop.partners#RetrievePartnerBusinessResponseAccountRecommendedActionsList": {
+    "com.whop.partners#GetPartnerBusinessResponseAccountRecommendedActionsList": {
       "type": "list",
       "member": {
         "target": "com.whop.partners#AccountRecommendedAction"
@@ -1629,7 +1630,7 @@
         "smithy.api#documentation": "required (act now) or pending (under review)"
       }
     },
-    "com.whop.partners#RetrievePartnerBusinessResponseAccountRequiredActionsList": {
+    "com.whop.partners#GetPartnerBusinessResponseAccountRequiredActionsList": {
       "type": "list",
       "member": {
         "target": "com.whop.partners#AccountRequiredAction"
@@ -1638,7 +1639,7 @@
         "smithy.api#documentation": "Actions the referred account owner must take to unblock capabilities."
       }
     },
-    "com.whop.partners#RetrievePartnerBusinessResponseAccount": {
+    "com.whop.partners#GetPartnerBusinessResponseAccount": {
       "type": "structure",
       "members": {
         "capabilities": {
@@ -1664,7 +1665,7 @@
           }
         },
         "recommended_actions": {
-          "target": "com.whop.partners#RetrievePartnerBusinessResponseAccountRecommendedActionsList",
+          "target": "com.whop.partners#GetPartnerBusinessResponseAccountRecommendedActionsList",
           "traits": {
             "smithy.api#documentation": "Optional actions that unlock capabilities or grow the referred account.",
             "smithy.api#required": {},
@@ -1672,7 +1673,7 @@
           }
         },
         "required_actions": {
-          "target": "com.whop.partners#RetrievePartnerBusinessResponseAccountRequiredActionsList",
+          "target": "com.whop.partners#GetPartnerBusinessResponseAccountRequiredActionsList",
           "traits": {
             "smithy.api#documentation": "Actions the referred account owner must take to unblock capabilities.",
             "smithy.api#required": {},
@@ -1698,7 +1699,7 @@
         "smithy.api#documentation": "Referred account."
       }
     },
-    "com.whop.partners#RetrievePartnerBusinessResponseEarningsUsd": {
+    "com.whop.partners#GetPartnerBusinessResponseEarningsUsd": {
       "type": "structure",
       "members": {
         "completed": {
@@ -1725,7 +1726,7 @@
       },
       "traits": {}
     },
-    "com.whop.partners#RetrievePartnerBusinessResponseFirstTierPartnerProfilePicture": {
+    "com.whop.partners#GetPartnerBusinessResponseFirstTierPartnerProfilePicture": {
       "type": "structure",
       "members": {
         "url": {
@@ -1740,7 +1741,7 @@
         "smithy.api#documentation": "The user's profile picture."
       }
     },
-    "com.whop.partners#RetrievePartnerBusinessResponseFirstTierPartner": {
+    "com.whop.partners#GetPartnerBusinessResponseFirstTierPartner": {
       "type": "structure",
       "members": {
         "id": {
@@ -1759,7 +1760,7 @@
           }
         },
         "profile_picture": {
-          "target": "com.whop.partners#RetrievePartnerBusinessResponseFirstTierPartnerProfilePicture",
+          "target": "com.whop.partners#GetPartnerBusinessResponseFirstTierPartnerProfilePicture",
           "traits": {
             "smithy.api#documentation": "The user's profile picture.",
             "smithy.api#required": {}
@@ -1777,7 +1778,7 @@
         "smithy.api#documentation": "The partner who referred the business owner onto Whop (first tier). Null if there is no active first-tier partner."
       }
     },
-    "com.whop.partners#RetrievePartnerBusinessResponseMyPartnerTier": {
+    "com.whop.partners#GetPartnerBusinessResponseMyPartnerTier": {
       "type": "enum",
       "members": {
         "FIRST": {
@@ -1797,7 +1798,7 @@
         "smithy.api#documentation": "Which tier the caller earns on for this business: `first` (they referred the owner) or `second` (they referred the first-tier partner)."
       }
     },
-    "com.whop.partners#RetrievePartnerBusinessResponseObject": {
+    "com.whop.partners#GetPartnerBusinessResponseObject": {
       "type": "enum",
       "members": {
         "PARTNER_BUSINESS": {
@@ -1809,7 +1810,7 @@
       },
       "traits": {}
     },
-    "com.whop.partners#RetrievePartnerBusinessResponseOwnerProfilePicture": {
+    "com.whop.partners#GetPartnerBusinessResponseOwnerProfilePicture": {
       "type": "structure",
       "members": {
         "url": {
@@ -1824,7 +1825,7 @@
         "smithy.api#documentation": "The user's profile picture."
       }
     },
-    "com.whop.partners#RetrievePartnerBusinessResponseOwner": {
+    "com.whop.partners#GetPartnerBusinessResponseOwner": {
       "type": "structure",
       "members": {
         "id": {
@@ -1843,7 +1844,7 @@
           }
         },
         "profile_picture": {
-          "target": "com.whop.partners#RetrievePartnerBusinessResponseOwnerProfilePicture",
+          "target": "com.whop.partners#GetPartnerBusinessResponseOwnerProfilePicture",
           "traits": {
             "smithy.api#documentation": "The user's profile picture.",
             "smithy.api#required": {}
@@ -1861,7 +1862,7 @@
         "smithy.api#documentation": "The owner of the referred business."
       }
     },
-    "com.whop.partners#RetrievePartnerBusinessResponsePayoutPercentages": {
+    "com.whop.partners#GetPartnerBusinessResponsePayoutPercentages": {
       "type": "structure",
       "members": {
         "ad_spend": {
@@ -1900,7 +1901,7 @@
         "smithy.api#documentation": "The referrer's commission rate for each income source, expressed as a fraction (0.3 = 30%)."
       }
     },
-    "com.whop.partners#RetrievePartnerBusinessResponseSecondTierPartnerProfilePicture": {
+    "com.whop.partners#GetPartnerBusinessResponseSecondTierPartnerProfilePicture": {
       "type": "structure",
       "members": {
         "url": {
@@ -1915,7 +1916,7 @@
         "smithy.api#documentation": "The user's profile picture."
       }
     },
-    "com.whop.partners#RetrievePartnerBusinessResponseSecondTierPartner": {
+    "com.whop.partners#GetPartnerBusinessResponseSecondTierPartner": {
       "type": "structure",
       "members": {
         "id": {
@@ -1934,7 +1935,7 @@
           }
         },
         "profile_picture": {
-          "target": "com.whop.partners#RetrievePartnerBusinessResponseSecondTierPartnerProfilePicture",
+          "target": "com.whop.partners#GetPartnerBusinessResponseSecondTierPartnerProfilePicture",
           "traits": {
             "smithy.api#documentation": "The user's profile picture.",
             "smithy.api#required": {}
@@ -1952,7 +1953,7 @@
         "smithy.api#documentation": "The second-tier partner who earns on this business (referred the first-tier partner). Null if there is no active second-tier partner."
       }
     },
-    "com.whop.partners#RetrievePartnerBusinessResponseStatus": {
+    "com.whop.partners#GetPartnerBusinessResponseStatus": {
       "type": "enum",
       "members": {
         "ACTIVE": {
@@ -1972,7 +1973,7 @@
         "smithy.api#documentation": "Current referral status."
       }
     },
-    "com.whop.partners#RetrievePartnerBusinessResponseVolumeUsd": {
+    "com.whop.partners#GetPartnerBusinessResponseVolumeUsd": {
       "type": "structure",
       "members": {
         "attributed": {
@@ -1999,11 +2000,11 @@
       },
       "traits": {}
     },
-    "com.whop.partners#RetrievePartnerBusinessResponse": {
+    "com.whop.partners#GetPartnerBusinessResponse": {
       "type": "structure",
       "members": {
         "account": {
-          "target": "com.whop.partners#RetrievePartnerBusinessResponseAccount",
+          "target": "com.whop.partners#GetPartnerBusinessResponseAccount",
           "traits": {
             "smithy.api#documentation": "Referred account.",
             "smithy.api#required": {},
@@ -2018,13 +2019,13 @@
           }
         },
         "earnings_usd": {
-          "target": "com.whop.partners#RetrievePartnerBusinessResponseEarningsUsd",
+          "target": "com.whop.partners#GetPartnerBusinessResponseEarningsUsd",
           "traits": {
             "smithy.api#required": {}
           }
         },
         "first_tier_partner": {
-          "target": "com.whop.partners#RetrievePartnerBusinessResponseFirstTierPartner",
+          "target": "com.whop.partners#GetPartnerBusinessResponseFirstTierPartner",
           "traits": {
             "smithy.api#documentation": "The partner who referred the business owner onto Whop (first tier). Null if there is no active first-tier partner.",
             "smithy.api#required": {},
@@ -2039,20 +2040,20 @@
           }
         },
         "my_partner_tier": {
-          "target": "com.whop.partners#RetrievePartnerBusinessResponseMyPartnerTier",
+          "target": "com.whop.partners#GetPartnerBusinessResponseMyPartnerTier",
           "traits": {
             "smithy.api#documentation": "Which tier the caller earns on for this business: `first` (they referred the owner) or `second` (they referred the first-tier partner).",
             "smithy.api#required": {}
           }
         },
         "object": {
-          "target": "com.whop.partners#RetrievePartnerBusinessResponseObject",
+          "target": "com.whop.partners#GetPartnerBusinessResponseObject",
           "traits": {
             "smithy.api#required": {}
           }
         },
         "owner": {
-          "target": "com.whop.partners#RetrievePartnerBusinessResponseOwner",
+          "target": "com.whop.partners#GetPartnerBusinessResponseOwner",
           "traits": {
             "smithy.api#documentation": "The owner of the referred business.",
             "smithy.api#required": {},
@@ -2060,7 +2061,7 @@
           }
         },
         "payout_percentages": {
-          "target": "com.whop.partners#RetrievePartnerBusinessResponsePayoutPercentages",
+          "target": "com.whop.partners#GetPartnerBusinessResponsePayoutPercentages",
           "traits": {
             "smithy.api#documentation": "The referrer's commission rate for each income source, expressed as a fraction (0.3 = 30%).",
             "smithy.api#required": {}
@@ -2083,7 +2084,7 @@
           }
         },
         "second_tier_partner": {
-          "target": "com.whop.partners#RetrievePartnerBusinessResponseSecondTierPartner",
+          "target": "com.whop.partners#GetPartnerBusinessResponseSecondTierPartner",
           "traits": {
             "smithy.api#documentation": "The second-tier partner who earns on this business (referred the first-tier partner). Null if there is no active second-tier partner.",
             "smithy.api#required": {},
@@ -2091,14 +2092,14 @@
           }
         },
         "status": {
-          "target": "com.whop.partners#RetrievePartnerBusinessResponseStatus",
+          "target": "com.whop.partners#GetPartnerBusinessResponseStatus",
           "traits": {
             "smithy.api#documentation": "Current referral status.",
             "smithy.api#required": {}
           }
         },
         "volume_usd": {
-          "target": "com.whop.partners#RetrievePartnerBusinessResponseVolumeUsd",
+          "target": "com.whop.partners#GetPartnerBusinessResponseVolumeUsd",
           "traits": {
             "smithy.api#required": {}
           }
@@ -2108,13 +2109,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.whop.partners#RetrievePartnerBusiness": {
+    "com.whop.partners#GetPartnerBusiness": {
       "type": "operation",
       "input": {
-        "target": "com.whop.partners#RetrievePartnerBusinessRequest"
+        "target": "com.whop.partners#GetPartnerBusinessRequest"
       },
       "output": {
-        "target": "com.whop.partners#RetrievePartnerBusinessResponse"
+        "target": "com.whop.partners#GetPartnerBusinessResponse"
       },
       "errors": [
         {
@@ -2963,7 +2964,7 @@
         }
       }
     },
-    "com.whop.partners#RetrievePartnerLeaderboardRequestPeriod": {
+    "com.whop.partners#GetPartnerLeaderboardRequestPeriod": {
       "type": "enum",
       "members": {
         "DAY": {
@@ -2999,11 +3000,11 @@
       },
       "traits": {}
     },
-    "com.whop.partners#RetrievePartnerLeaderboardRequest": {
+    "com.whop.partners#GetPartnerLeaderboardRequest": {
       "type": "structure",
       "members": {
         "period": {
-          "target": "com.whop.partners#RetrievePartnerLeaderboardRequestPeriod",
+          "target": "com.whop.partners#GetPartnerLeaderboardRequestPeriod",
           "traits": {
             "smithy.api#httpQuery": "period",
             "smithy.api#documentation": "Time window for the rankings. `day`, `month`, and `year` count earnings since the start of the current calendar day, month, or year; `last_30_days` counts earnings over the trailing 30 days; `all_time` ranks lifetime earnings."
@@ -3014,7 +3015,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.partners#RetrievePartnerLeaderboardResponseLeadersItemUserProfilePicture": {
+    "com.whop.partners#GetPartnerLeaderboardResponseLeadersItemUserProfilePicture": {
       "type": "structure",
       "members": {
         "url": {
@@ -3029,7 +3030,7 @@
         "smithy.api#documentation": "The user's profile picture. Present only on the caller's own entry."
       }
     },
-    "com.whop.partners#RetrievePartnerLeaderboardResponseLeadersItemUser": {
+    "com.whop.partners#GetPartnerLeaderboardResponseLeadersItemUser": {
       "type": "structure",
       "members": {
         "city": {
@@ -3062,7 +3063,7 @@
           }
         },
         "profile_picture": {
-          "target": "com.whop.partners#RetrievePartnerLeaderboardResponseLeadersItemUserProfilePicture",
+          "target": "com.whop.partners#GetPartnerLeaderboardResponseLeadersItemUserProfilePicture",
           "traits": {
             "smithy.api#documentation": "The user's profile picture. Present only on the caller's own entry."
           }
@@ -3078,7 +3079,7 @@
         "smithy.api#documentation": "The ranked referrer. Identity fields (id, name, username, profile_picture) are returned only on the caller's own entry; other referrers expose coarse location only."
       }
     },
-    "com.whop.partners#RetrievePartnerLeaderboardResponseLeadersItem": {
+    "com.whop.partners#GetPartnerLeaderboardResponseLeadersItem": {
       "type": "structure",
       "members": {
         "first_referral_started_at": {
@@ -3110,7 +3111,7 @@
           }
         },
         "user": {
-          "target": "com.whop.partners#RetrievePartnerLeaderboardResponseLeadersItemUser",
+          "target": "com.whop.partners#GetPartnerLeaderboardResponseLeadersItemUser",
           "traits": {
             "smithy.api#documentation": "The ranked referrer. Identity fields (id, name, username, profile_picture) are returned only on the caller's own entry; other referrers expose coarse location only.",
             "smithy.api#required": {},
@@ -3120,16 +3121,16 @@
       },
       "traits": {}
     },
-    "com.whop.partners#RetrievePartnerLeaderboardResponseLeadersList": {
+    "com.whop.partners#GetPartnerLeaderboardResponseLeadersList": {
       "type": "list",
       "member": {
-        "target": "com.whop.partners#RetrievePartnerLeaderboardResponseLeadersItem"
+        "target": "com.whop.partners#GetPartnerLeaderboardResponseLeadersItem"
       },
       "traits": {
         "smithy.api#documentation": "The top referrers by total earnings, best first."
       }
     },
-    "com.whop.partners#RetrievePartnerLeaderboardResponseMeUserProfilePicture": {
+    "com.whop.partners#GetPartnerLeaderboardResponseMeUserProfilePicture": {
       "type": "structure",
       "members": {
         "url": {
@@ -3144,7 +3145,7 @@
         "smithy.api#documentation": "The user's profile picture. Present only on the caller's own entry."
       }
     },
-    "com.whop.partners#RetrievePartnerLeaderboardResponseMeUser": {
+    "com.whop.partners#GetPartnerLeaderboardResponseMeUser": {
       "type": "structure",
       "members": {
         "city": {
@@ -3177,7 +3178,7 @@
           }
         },
         "profile_picture": {
-          "target": "com.whop.partners#RetrievePartnerLeaderboardResponseMeUserProfilePicture",
+          "target": "com.whop.partners#GetPartnerLeaderboardResponseMeUserProfilePicture",
           "traits": {
             "smithy.api#documentation": "The user's profile picture. Present only on the caller's own entry."
           }
@@ -3193,7 +3194,7 @@
         "smithy.api#documentation": "The ranked referrer. Identity fields (id, name, username, profile_picture) are returned only on the caller's own entry; other referrers expose coarse location only."
       }
     },
-    "com.whop.partners#RetrievePartnerLeaderboardResponseMe": {
+    "com.whop.partners#GetPartnerLeaderboardResponseMe": {
       "type": "structure",
       "members": {
         "first_referral_started_at": {
@@ -3225,7 +3226,7 @@
           }
         },
         "user": {
-          "target": "com.whop.partners#RetrievePartnerLeaderboardResponseMeUser",
+          "target": "com.whop.partners#GetPartnerLeaderboardResponseMeUser",
           "traits": {
             "smithy.api#documentation": "The ranked referrer. Identity fields (id, name, username, profile_picture) are returned only on the caller's own entry; other referrers expose coarse location only.",
             "smithy.api#required": {},
@@ -3237,18 +3238,18 @@
         "smithy.api#documentation": "The caller's own standing; null when the caller has no referral earnings."
       }
     },
-    "com.whop.partners#RetrievePartnerLeaderboardResponse": {
+    "com.whop.partners#GetPartnerLeaderboardResponse": {
       "type": "structure",
       "members": {
         "leaders": {
-          "target": "com.whop.partners#RetrievePartnerLeaderboardResponseLeadersList",
+          "target": "com.whop.partners#GetPartnerLeaderboardResponseLeadersList",
           "traits": {
             "smithy.api#documentation": "The top referrers by total earnings, best first.",
             "smithy.api#required": {}
           }
         },
         "me": {
-          "target": "com.whop.partners#RetrievePartnerLeaderboardResponseMe",
+          "target": "com.whop.partners#GetPartnerLeaderboardResponseMe",
           "traits": {
             "smithy.api#documentation": "The caller's own standing; null when the caller has no referral earnings.",
             "smithy.api#required": {},
@@ -3260,13 +3261,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.whop.partners#RetrievePartnerLeaderboard": {
+    "com.whop.partners#GetPartnerLeaderboard": {
       "type": "operation",
       "input": {
-        "target": "com.whop.partners#RetrievePartnerLeaderboardRequest"
+        "target": "com.whop.partners#GetPartnerLeaderboardRequest"
       },
       "output": {
-        "target": "com.whop.partners#RetrievePartnerLeaderboardResponse"
+        "target": "com.whop.partners#GetPartnerLeaderboardResponse"
       },
       "errors": [
         {
@@ -3554,13 +3555,13 @@
           "target": "com.whop.partners#ListPartnerBusinesses"
         },
         {
-          "target": "com.whop.partners#RetrievePartnerBusiness"
+          "target": "com.whop.partners#GetPartnerBusiness"
         },
         {
           "target": "com.whop.partners#ListPartnerBusinessEarnings"
         },
         {
-          "target": "com.whop.partners#RetrievePartnerLeaderboard"
+          "target": "com.whop.partners#GetPartnerLeaderboard"
         },
         {
           "target": "com.whop.partners#ListReferredUsers"

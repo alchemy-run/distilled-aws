@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.visual_review#VisualReviewReposListRequest": {
+    "com.posthog.visual_review#ListVisualReviewReposRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -115,10 +116,10 @@
       },
       "traits": {}
     },
-    "com.posthog.visual_review#VisualReviewReposList": {
+    "com.posthog.visual_review#ListVisualReviewRepos": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.visual_review#VisualReviewReposListRequest"
+        "target": "com.posthog.visual_review#ListVisualReviewReposRequest"
       },
       "output": {
         "target": "com.posthog.visual_review#PaginatedRepoList"
@@ -143,7 +144,7 @@
         "smithy.api#documentation": "List all projects for the team."
       }
     },
-    "com.posthog.visual_review#VisualReviewReposCreateRequest": {
+    "com.posthog.visual_review#CreateVisualReviewReposRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -168,10 +169,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.visual_review#VisualReviewReposCreate": {
+    "com.posthog.visual_review#CreateVisualReviewRepos": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.visual_review#VisualReviewReposCreateRequest"
+        "target": "com.posthog.visual_review#CreateVisualReviewReposRequest"
       },
       "output": {
         "target": "com.posthog.visual_review#Repo"
@@ -196,7 +197,7 @@
         "smithy.api#documentation": "Create a new repo."
       }
     },
-    "com.posthog.visual_review#VisualReviewReposRetrieveRequest": {
+    "com.posthog.visual_review#GetVisualReviewReposRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -219,10 +220,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.visual_review#VisualReviewReposRetrieve": {
+    "com.posthog.visual_review#GetVisualReviewRepos": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.visual_review#VisualReviewReposRetrieveRequest"
+        "target": "com.posthog.visual_review#GetVisualReviewReposRequest"
       },
       "output": {
         "target": "com.posthog.visual_review#Repo"
@@ -244,7 +245,7 @@
         "smithy.api#documentation": "Get a repo by ID."
       }
     },
-    "com.posthog.visual_review#VisualReviewReposPartialUpdateRequestBaselineFilePathsMap": {
+    "com.posthog.visual_review#UpdateVisualReviewReposPartialRequestBaselineFilePathsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -254,7 +255,7 @@
       },
       "traits": {}
     },
-    "com.posthog.visual_review#VisualReviewReposPartialUpdateRequest": {
+    "com.posthog.visual_review#UpdateVisualReviewReposPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -273,7 +274,7 @@
           }
         },
         "baseline_file_paths": {
-          "target": "com.posthog.visual_review#VisualReviewReposPartialUpdateRequestBaselineFilePathsMap",
+          "target": "com.posthog.visual_review#UpdateVisualReviewReposPartialRequestBaselineFilePathsMap",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -289,10 +290,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.visual_review#VisualReviewReposPartialUpdate": {
+    "com.posthog.visual_review#UpdateVisualReviewReposPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.visual_review#VisualReviewReposPartialUpdateRequest"
+        "target": "com.posthog.visual_review#UpdateVisualReviewReposPartialRequest"
       },
       "output": {
         "target": "com.posthog.visual_review#Repo"
@@ -317,7 +318,7 @@
         "smithy.api#documentation": "Update a repo's settings."
       }
     },
-    "com.posthog.visual_review#VisualReviewReposBaselinesRetrieveRequest": {
+    "com.posthog.visual_review#GetVisualReviewReposBaselineRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -613,10 +614,10 @@
       },
       "traits": {}
     },
-    "com.posthog.visual_review#VisualReviewReposBaselinesRetrieve": {
+    "com.posthog.visual_review#GetVisualReviewReposBaseline": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.visual_review#VisualReviewReposBaselinesRetrieveRequest"
+        "target": "com.posthog.visual_review#GetVisualReviewReposBaselineRequest"
       },
       "output": {
         "target": "com.posthog.visual_review#BaselineOverview"
@@ -630,7 +631,7 @@
         "smithy.api#documentation": "Snapshots overview for a repo: every identifier with a current baseline (latest non-superseded master/main run per run_type), plus tolerate counts, active quarantine state, and a 30-day stability sparkline. Capped at 5000 entries — sets `truncated` and returns the most recently active when exceeded. Filtering / faceting / search are all done client-side; this endpoint takes no filter query params."
       }
     },
-    "com.posthog.visual_review#VisualReviewReposFlakinessRetrieveRequest": {
+    "com.posthog.visual_review#GetVisualReviewReposFlakinessRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1003,10 +1004,10 @@
         "smithy.api#documentation": "Listed identifiers per run type, so one suite's noise can be told from another's."
       }
     },
-    "com.posthog.visual_review#VisualReviewReposFlakinessRetrieve": {
+    "com.posthog.visual_review#GetVisualReviewReposFlakiness": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.visual_review#VisualReviewReposFlakinessRetrieveRequest"
+        "target": "com.posthog.visual_review#GetVisualReviewReposFlakinessRequest"
       },
       "output": {
         "target": "com.posthog.visual_review#FlakinessOverview"
@@ -1020,7 +1021,7 @@
         "smithy.api#documentation": "Snapshots in a repo whose rendering cannot be trusted: those that failed the gate or were absorbed by a toleration on a recent default-branch run, and those under an active quarantine. Everything else is omitted, so this is far smaller than the baselines universe; `totals.tracked` gives the full denominator. Each entry carries the share of the last 7 days of default-branch runs that failed the gate (`hard_rate`) and the share a toleration absorbed (`soft_rate`), plus `headroom`, the fraction of the diff threshold its worst absorbed run leaves free. Capped at 2000 entries, which sets `truncated`. Filtering, faceting and search are done client-side; this endpoint takes no filter query params."
       }
     },
-    "com.posthog.visual_review#VisualReviewReposQuarantineListRequest": {
+    "com.posthog.visual_review#ListVisualReviewReposQuarantineRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1148,10 +1149,10 @@
       },
       "traits": {}
     },
-    "com.posthog.visual_review#VisualReviewReposQuarantineList": {
+    "com.posthog.visual_review#ListVisualReviewReposQuarantine": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.visual_review#VisualReviewReposQuarantineListRequest"
+        "target": "com.posthog.visual_review#ListVisualReviewReposQuarantineRequest"
       },
       "output": {
         "target": "com.posthog.visual_review#PaginatedQuarantinedIdentifierEntryList"
@@ -1176,7 +1177,7 @@
         "smithy.api#documentation": "List quarantined identifiers. Without filter: active only. With identifier: full history."
       }
     },
-    "com.posthog.visual_review#VisualReviewReposQuarantineCreateRequest": {
+    "com.posthog.visual_review#CreateVisualReviewReposQuarantineRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1231,10 +1232,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.visual_review#VisualReviewReposQuarantineCreate": {
+    "com.posthog.visual_review#CreateVisualReviewReposQuarantine": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.visual_review#VisualReviewReposQuarantineCreateRequest"
+        "target": "com.posthog.visual_review#CreateVisualReviewReposQuarantineRequest"
       },
       "output": {
         "target": "com.posthog.visual_review#QuarantinedIdentifierEntry"
@@ -1259,7 +1260,7 @@
         "smithy.api#documentation": "Quarantine a snapshot identifier for a specific run type."
       }
     },
-    "com.posthog.visual_review#VisualReviewReposQuarantineExpireCreateRequest": {
+    "com.posthog.visual_review#CreateVisualReviewReposQuarantineExpireRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1296,10 +1297,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.visual_review#VisualReviewReposQuarantineExpireCreate": {
+    "com.posthog.visual_review#CreateVisualReviewReposQuarantineExpire": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.visual_review#VisualReviewReposQuarantineExpireCreateRequest"
+        "target": "com.posthog.visual_review#CreateVisualReviewReposQuarantineExpireRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1324,7 +1325,7 @@
         "smithy.api#documentation": "Expire all active quarantine entries for an identifier."
       }
     },
-    "com.posthog.visual_review#VisualReviewReposThumbnailsRetrieveRequest": {
+    "com.posthog.visual_review#GetVisualReviewReposThumbnailRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1361,10 +1362,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.visual_review#VisualReviewReposThumbnailsRetrieve": {
+    "com.posthog.visual_review#GetVisualReviewReposThumbnail": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.visual_review#VisualReviewReposThumbnailsRetrieveRequest"
+        "target": "com.posthog.visual_review#GetVisualReviewReposThumbnailRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1378,7 +1379,7 @@
         "smithy.api#documentation": "Serve a snapshot thumbnail by identifier. Returns WebP with ETag caching."
       }
     },
-    "com.posthog.visual_review#VisualReviewReposRunsListRequest": {
+    "com.posthog.visual_review#ListVisualReviewReposRunsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1597,10 +1598,10 @@
       },
       "traits": {}
     },
-    "com.posthog.visual_review#VisualReviewReposRunsList": {
+    "com.posthog.visual_review#ListVisualReviewReposRuns": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.visual_review#VisualReviewReposRunsListRequest"
+        "target": "com.posthog.visual_review#ListVisualReviewReposRunsRequest"
       },
       "output": {
         "target": "com.posthog.visual_review#PaginatedRunList"
@@ -1614,7 +1615,7 @@
         "smithy.api#documentation": "List runs in this repo, optionally filtered by review state and free-text search."
       }
     },
-    "com.posthog.visual_review#VisualReviewReposRunsCountsRetrieveRequest": {
+    "com.posthog.visual_review#GetVisualReviewReposRunsCountRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1655,10 +1656,10 @@
       },
       "traits": {}
     },
-    "com.posthog.visual_review#VisualReviewReposRunsCountsRetrieve": {
+    "com.posthog.visual_review#GetVisualReviewReposRunsCount": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.visual_review#VisualReviewReposRunsCountsRetrieveRequest"
+        "target": "com.posthog.visual_review#GetVisualReviewReposRunsCountRequest"
       },
       "output": {
         "target": "com.posthog.visual_review#ReviewStateCounts"
@@ -1672,7 +1673,7 @@
         "smithy.api#documentation": "Review state counts for runs in this repo."
       }
     },
-    "com.posthog.visual_review#VisualReviewReposSnapshotsListRequest": {
+    "com.posthog.visual_review#ListVisualReviewReposSnapshotsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1843,10 +1844,10 @@
       },
       "traits": {}
     },
-    "com.posthog.visual_review#VisualReviewReposSnapshotsList": {
+    "com.posthog.visual_review#ListVisualReviewReposSnapshots": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.visual_review#VisualReviewReposSnapshotsListRequest"
+        "target": "com.posthog.visual_review#ListVisualReviewReposSnapshotsRequest"
       },
       "output": {
         "target": "com.posthog.visual_review#PaginatedSnapshotHistoryEntryList"
@@ -1860,7 +1861,7 @@
         "smithy.api#documentation": "Deduped baseline timeline for a snapshot identity. Newest first."
       }
     },
-    "com.posthog.visual_review#VisualReviewRunsListRequest": {
+    "com.posthog.visual_review#ListVisualReviewRunsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1925,10 +1926,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.visual_review#VisualReviewRunsList": {
+    "com.posthog.visual_review#ListVisualReviewRuns": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.visual_review#VisualReviewRunsListRequest"
+        "target": "com.posthog.visual_review#ListVisualReviewRunsRequest"
       },
       "output": {
         "target": "com.posthog.visual_review#PaginatedRunList"
@@ -1990,14 +1991,14 @@
       },
       "traits": {}
     },
-    "com.posthog.visual_review#VisualReviewRunsCreateRequestSnapshotsList": {
+    "com.posthog.visual_review#CreateVisualReviewRunRequestSnapshotsList": {
       "type": "list",
       "member": {
         "target": "com.posthog.visual_review#SnapshotManifestItem"
       },
       "traits": {}
     },
-    "com.posthog.visual_review#VisualReviewRunsCreateRequestBaselineHashesMap": {
+    "com.posthog.visual_review#CreateVisualReviewRunRequestBaselineHashesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2007,14 +2008,14 @@
       },
       "traits": {}
     },
-    "com.posthog.visual_review#VisualReviewRunsCreateRequestRemovedIdentifiersList": {
+    "com.posthog.visual_review#CreateVisualReviewRunRequestRemovedIdentifiersList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.posthog.visual_review#VisualReviewRunsCreateRequestMetadataMap": {
+    "com.posthog.visual_review#CreateVisualReviewRunRequestMetadataMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2024,7 +2025,7 @@
       },
       "traits": {}
     },
-    "com.posthog.visual_review#VisualReviewRunsCreateRequest": {
+    "com.posthog.visual_review#CreateVisualReviewRunRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2048,7 +2049,7 @@
           "target": "smithy.api#String"
         },
         "snapshots": {
-          "target": "com.posthog.visual_review#VisualReviewRunsCreateRequestSnapshotsList"
+          "target": "com.posthog.visual_review#CreateVisualReviewRunRequestSnapshotsList"
         },
         "pr_number": {
           "target": "smithy.api#Integer",
@@ -2057,19 +2058,19 @@
           }
         },
         "baseline_hashes": {
-          "target": "com.posthog.visual_review#VisualReviewRunsCreateRequestBaselineHashesMap"
+          "target": "com.posthog.visual_review#CreateVisualReviewRunRequestBaselineHashesMap"
         },
         "unchanged_count": {
           "target": "smithy.api#Integer"
         },
         "removed_identifiers": {
-          "target": "com.posthog.visual_review#VisualReviewRunsCreateRequestRemovedIdentifiersList"
+          "target": "com.posthog.visual_review#CreateVisualReviewRunRequestRemovedIdentifiersList"
         },
         "purpose": {
           "target": "smithy.api#String"
         },
         "metadata": {
-          "target": "com.posthog.visual_review#VisualReviewRunsCreateRequestMetadataMap"
+          "target": "com.posthog.visual_review#CreateVisualReviewRunRequestMetadataMap"
         },
         "is_partial": {
           "target": "smithy.api#Boolean"
@@ -2123,10 +2124,10 @@
       },
       "traits": {}
     },
-    "com.posthog.visual_review#VisualReviewRunsCreate": {
+    "com.posthog.visual_review#CreateVisualReviewRun": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.visual_review#VisualReviewRunsCreateRequest"
+        "target": "com.posthog.visual_review#CreateVisualReviewRunRequest"
       },
       "output": {
         "target": "com.posthog.visual_review#CreateRunResult"
@@ -2151,7 +2152,7 @@
         "smithy.api#documentation": "Create a new run from a CI manifest."
       }
     },
-    "com.posthog.visual_review#VisualReviewRunsRetrieveRequest": {
+    "com.posthog.visual_review#GetVisualReviewRunRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2174,10 +2175,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.visual_review#VisualReviewRunsRetrieve": {
+    "com.posthog.visual_review#GetVisualReviewRun": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.visual_review#VisualReviewRunsRetrieveRequest"
+        "target": "com.posthog.visual_review#GetVisualReviewRunRequest"
       },
       "output": {
         "target": "com.posthog.visual_review#Run"
@@ -2377,7 +2378,7 @@
         "smithy.api#documentation": "Mark snapshots reviewed (DB only).\n\nRecords the per-snapshot \"Accept change\" decision. Does not commit the baseline\nor change the GitHub gate — call finalize to ship the run. Works on a quarantined\nsnapshot too: a quarantined NEW snapshot approved here is committed by finalize,\nwhich gives a quarantined story a baseline entry without lifting the quarantine."
       }
     },
-    "com.posthog.visual_review#VisualReviewRunsCompleteCreateRequest": {
+    "com.posthog.visual_review#CreateVisualReviewRunsCompleteRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2400,10 +2401,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.visual_review#VisualReviewRunsCompleteCreate": {
+    "com.posthog.visual_review#CreateVisualReviewRunsComplete": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.visual_review#VisualReviewRunsCompleteCreateRequest"
+        "target": "com.posthog.visual_review#CreateVisualReviewRunsCompleteRequest"
       },
       "output": {
         "target": "com.posthog.visual_review#Run"
@@ -2425,7 +2426,7 @@
         "smithy.api#documentation": "Complete a run: detect removals, verify uploads, trigger diff processing."
       }
     },
-    "com.posthog.visual_review#VisualReviewRunsFinalizeCreateRequest": {
+    "com.posthog.visual_review#CreateVisualReviewRunsFinalizeRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2484,10 +2485,10 @@
       },
       "traits": {}
     },
-    "com.posthog.visual_review#VisualReviewRunsFinalizeCreate": {
+    "com.posthog.visual_review#CreateVisualReviewRunsFinalize": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.visual_review#VisualReviewRunsFinalizeCreateRequest"
+        "target": "com.posthog.visual_review#CreateVisualReviewRunsFinalizeRequest"
       },
       "output": {
         "target": "com.posthog.visual_review#FinalizeResult"
@@ -2501,7 +2502,7 @@
         "smithy.api#documentation": "Finalize a fully-reviewed run: commit the approved baseline and green the gate.\n\nCommits exactly the snapshots approved in the DB (tolerated ones keep their baseline)\nand only succeeds once every changed/new snapshot is resolved. With approve_all=true,\nany still-pending changed/new snapshot is approved first; quarantined snapshots are\nskipped, but a quarantined NEW snapshot approved by identifier is still committed.\nWith commit_to_github=false the server returns the signed baseline YAML instead of\ncommitting it."
       }
     },
-    "com.posthog.visual_review#VisualReviewRunsRecomputeCreateRequest": {
+    "com.posthog.visual_review#CreateVisualReviewRunsRecomputeRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2548,10 +2549,10 @@
       },
       "traits": {}
     },
-    "com.posthog.visual_review#VisualReviewRunsRecomputeCreate": {
+    "com.posthog.visual_review#CreateVisualReviewRunsRecompute": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.visual_review#VisualReviewRunsRecomputeCreateRequest"
+        "target": "com.posthog.visual_review#CreateVisualReviewRunsRecomputeRequest"
       },
       "output": {
         "target": "com.posthog.visual_review#RecomputeResult"
@@ -2573,7 +2574,7 @@
         "smithy.api#documentation": "Re-evaluate quarantine and counts, update commit status, and optionally rerun the CI job."
       }
     },
-    "com.posthog.visual_review#VisualReviewRunsSnapshotHistoryListRequest": {
+    "com.posthog.visual_review#ListVisualReviewRunsSnapshotHistoryRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2618,10 +2619,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.visual_review#VisualReviewRunsSnapshotHistoryList": {
+    "com.posthog.visual_review#ListVisualReviewRunsSnapshotHistory": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.visual_review#VisualReviewRunsSnapshotHistoryListRequest"
+        "target": "com.posthog.visual_review#ListVisualReviewRunsSnapshotHistoryRequest"
       },
       "output": {
         "target": "com.posthog.visual_review#PaginatedSnapshotHistoryEntryList"
@@ -2646,7 +2647,7 @@
         "smithy.api#documentation": "Recent change history for a snapshot identifier across runs."
       }
     },
-    "com.posthog.visual_review#VisualReviewRunsSnapshotsListRequest": {
+    "com.posthog.visual_review#ListVisualReviewRunsSnapshotsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2915,10 +2916,10 @@
       },
       "traits": {}
     },
-    "com.posthog.visual_review#VisualReviewRunsSnapshotsList": {
+    "com.posthog.visual_review#ListVisualReviewRunsSnapshots": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.visual_review#VisualReviewRunsSnapshotsListRequest"
+        "target": "com.posthog.visual_review#ListVisualReviewRunsSnapshotsRequest"
       },
       "output": {
         "target": "com.posthog.visual_review#PaginatedSnapshotList"
@@ -2943,7 +2944,7 @@
         "smithy.api#documentation": "Get a run's snapshots with diff results, excluding quarantined ones by default."
       }
     },
-    "com.posthog.visual_review#VisualReviewRunsTolerateCreateRequest": {
+    "com.posthog.visual_review#CreateVisualReviewRunsTolerateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2972,10 +2973,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.visual_review#VisualReviewRunsTolerateCreate": {
+    "com.posthog.visual_review#CreateVisualReviewRunsTolerate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.visual_review#VisualReviewRunsTolerateCreateRequest"
+        "target": "com.posthog.visual_review#CreateVisualReviewRunsTolerateRequest"
       },
       "output": {
         "target": "com.posthog.visual_review#Snapshot"
@@ -3000,7 +3001,7 @@
         "smithy.api#documentation": "Mark a changed snapshot as a known tolerated alternate."
       }
     },
-    "com.posthog.visual_review#VisualReviewRunsToleratedHashesListRequest": {
+    "com.posthog.visual_review#ListVisualReviewRunsToleratedHashesRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3109,10 +3110,10 @@
       },
       "traits": {}
     },
-    "com.posthog.visual_review#VisualReviewRunsToleratedHashesList": {
+    "com.posthog.visual_review#ListVisualReviewRunsToleratedHashes": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.visual_review#VisualReviewRunsToleratedHashesListRequest"
+        "target": "com.posthog.visual_review#ListVisualReviewRunsToleratedHashesRequest"
       },
       "output": {
         "target": "com.posthog.visual_review#PaginatedToleratedHashEntryList"
@@ -3137,7 +3138,7 @@
         "smithy.api#documentation": "List known tolerated hashes for a snapshot identifier."
       }
     },
-    "com.posthog.visual_review#VisualReviewRunsCountsRetrieveRequest": {
+    "com.posthog.visual_review#GetVisualReviewRunsCountRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3153,10 +3154,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.visual_review#VisualReviewRunsCountsRetrieve": {
+    "com.posthog.visual_review#GetVisualReviewRunsCount": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.visual_review#VisualReviewRunsCountsRetrieveRequest"
+        "target": "com.posthog.visual_review#GetVisualReviewRunsCountRequest"
       },
       "output": {
         "target": "com.posthog.visual_review#ReviewStateCounts"
@@ -3222,52 +3223,52 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.visual_review#VisualReviewReposList"
+          "target": "com.posthog.visual_review#ListVisualReviewRepos"
         },
         {
-          "target": "com.posthog.visual_review#VisualReviewReposCreate"
+          "target": "com.posthog.visual_review#CreateVisualReviewRepos"
         },
         {
-          "target": "com.posthog.visual_review#VisualReviewReposRetrieve"
+          "target": "com.posthog.visual_review#GetVisualReviewRepos"
         },
         {
-          "target": "com.posthog.visual_review#VisualReviewReposPartialUpdate"
+          "target": "com.posthog.visual_review#UpdateVisualReviewReposPartial"
         },
         {
-          "target": "com.posthog.visual_review#VisualReviewReposBaselinesRetrieve"
+          "target": "com.posthog.visual_review#GetVisualReviewReposBaseline"
         },
         {
-          "target": "com.posthog.visual_review#VisualReviewReposFlakinessRetrieve"
+          "target": "com.posthog.visual_review#GetVisualReviewReposFlakiness"
         },
         {
-          "target": "com.posthog.visual_review#VisualReviewReposQuarantineList"
+          "target": "com.posthog.visual_review#ListVisualReviewReposQuarantine"
         },
         {
-          "target": "com.posthog.visual_review#VisualReviewReposQuarantineCreate"
+          "target": "com.posthog.visual_review#CreateVisualReviewReposQuarantine"
         },
         {
-          "target": "com.posthog.visual_review#VisualReviewReposQuarantineExpireCreate"
+          "target": "com.posthog.visual_review#CreateVisualReviewReposQuarantineExpire"
         },
         {
-          "target": "com.posthog.visual_review#VisualReviewReposThumbnailsRetrieve"
+          "target": "com.posthog.visual_review#GetVisualReviewReposThumbnail"
         },
         {
-          "target": "com.posthog.visual_review#VisualReviewReposRunsList"
+          "target": "com.posthog.visual_review#ListVisualReviewReposRuns"
         },
         {
-          "target": "com.posthog.visual_review#VisualReviewReposRunsCountsRetrieve"
+          "target": "com.posthog.visual_review#GetVisualReviewReposRunsCount"
         },
         {
-          "target": "com.posthog.visual_review#VisualReviewReposSnapshotsList"
+          "target": "com.posthog.visual_review#ListVisualReviewReposSnapshots"
         },
         {
-          "target": "com.posthog.visual_review#VisualReviewRunsList"
+          "target": "com.posthog.visual_review#ListVisualReviewRuns"
         },
         {
-          "target": "com.posthog.visual_review#VisualReviewRunsCreate"
+          "target": "com.posthog.visual_review#CreateVisualReviewRun"
         },
         {
-          "target": "com.posthog.visual_review#VisualReviewRunsRetrieve"
+          "target": "com.posthog.visual_review#GetVisualReviewRun"
         },
         {
           "target": "com.posthog.visual_review#VisualReviewRunsAddSnapshotsCreate"
@@ -3276,28 +3277,28 @@
           "target": "com.posthog.visual_review#VisualReviewRunsApproveCreate"
         },
         {
-          "target": "com.posthog.visual_review#VisualReviewRunsCompleteCreate"
+          "target": "com.posthog.visual_review#CreateVisualReviewRunsComplete"
         },
         {
-          "target": "com.posthog.visual_review#VisualReviewRunsFinalizeCreate"
+          "target": "com.posthog.visual_review#CreateVisualReviewRunsFinalize"
         },
         {
-          "target": "com.posthog.visual_review#VisualReviewRunsRecomputeCreate"
+          "target": "com.posthog.visual_review#CreateVisualReviewRunsRecompute"
         },
         {
-          "target": "com.posthog.visual_review#VisualReviewRunsSnapshotHistoryList"
+          "target": "com.posthog.visual_review#ListVisualReviewRunsSnapshotHistory"
         },
         {
-          "target": "com.posthog.visual_review#VisualReviewRunsSnapshotsList"
+          "target": "com.posthog.visual_review#ListVisualReviewRunsSnapshots"
         },
         {
-          "target": "com.posthog.visual_review#VisualReviewRunsTolerateCreate"
+          "target": "com.posthog.visual_review#CreateVisualReviewRunsTolerate"
         },
         {
-          "target": "com.posthog.visual_review#VisualReviewRunsToleratedHashesList"
+          "target": "com.posthog.visual_review#ListVisualReviewRunsToleratedHashes"
         },
         {
-          "target": "com.posthog.visual_review#VisualReviewRunsCountsRetrieve"
+          "target": "com.posthog.visual_review#GetVisualReviewRunsCount"
         }
       ],
       "traits": {

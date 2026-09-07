@@ -14,75 +14,98 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "keyDictionary": {
+      "createdOn": "created_on",
+      "lastUpdated": "last_updated",
+      "modifiedOn": "modified_on",
+      "perPage": "per_page",
+      "previewTarget": "preview_target",
+      "requiredTokens": "required_tokens",
+      "resultInfo": "result_info",
+      "sizeBytes": "size_bytes",
+      "totalCount": "total_count"
+    },
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.cloudflare.custom_pages#GetForAccountRequestIdentifier": {
-      "type": "enum",
-      "members": {
-        "_1000_ERRORS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "1000_errors"
-          }
+    "com.cloudflare.custom_pages#CustomPages": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.custom_pages#CreateAssetForAccount"
         },
-        "_500_ERRORS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "500_errors"
-          }
+        {
+          "target": "com.cloudflare.custom_pages#CreateAssetForZone"
         },
-        "BASIC_CHALLENGE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "basic_challenge"
-          }
+        {
+          "target": "com.cloudflare.custom_pages#DeleteAssetForAccount"
         },
-        "COUNTRY_CHALLENGE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "country_challenge"
-          }
+        {
+          "target": "com.cloudflare.custom_pages#DeleteAssetForZone"
         },
-        "IP_BLOCK": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ip_block"
-          }
+        {
+          "target": "com.cloudflare.custom_pages#GetAssetForAccount"
         },
-        "MANAGED_CHALLENGE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "managed_challenge"
-          }
+        {
+          "target": "com.cloudflare.custom_pages#GetAssetForZone"
         },
-        "RATELIMIT_BLOCK": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ratelimit_block"
-          }
+        {
+          "target": "com.cloudflare.custom_pages#GetCustomPageForAccount"
         },
-        "UNDER_ATTACK": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "under_attack"
-          }
+        {
+          "target": "com.cloudflare.custom_pages#GetCustomPageForZone"
         },
-        "WAF_BLOCK": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "waf_block"
-          }
+        {
+          "target": "com.cloudflare.custom_pages#ListAssetsForAccount"
         },
-        "WAF_CHALLENGE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "waf_challenge"
-          }
+        {
+          "target": "com.cloudflare.custom_pages#ListAssetsForZone"
+        },
+        {
+          "target": "com.cloudflare.custom_pages#ListCustomPagesForAccount"
+        },
+        {
+          "target": "com.cloudflare.custom_pages#ListCustomPagesForZone"
+        },
+        {
+          "target": "com.cloudflare.custom_pages#PutCustomPageForAccount"
+        },
+        {
+          "target": "com.cloudflare.custom_pages#PutCustomPageForZone"
+        },
+        {
+          "target": "com.cloudflare.custom_pages#UpdateAssetForAccount"
+        },
+        {
+          "target": "com.cloudflare.custom_pages#UpdateAssetForZone"
         }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare CustomPages",
+        "smithy.api#documentation": "Cloudflare API — custom_pages resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
       }
     },
-    "com.cloudflare.custom_pages#GetForAccountRequest": {
+    "com.cloudflare.custom_pages#CreateAssetForAccount": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.custom_pages#CreateAssetForAccountRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.custom_pages#CreateAssetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/custom_pages/assets",
+          "code": 200
+        },
+        "smithy.api#documentation": "Creates a new custom asset."
+      }
+    },
+    "com.cloudflare.custom_pages#CreateAssetForAccountRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -93,10 +116,119 @@
             "smithy.api#required": {}
           }
         },
-        "identifier": {
-          "target": "com.cloudflare.custom_pages#GetForAccountRequestIdentifier",
+        "description": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Error Page Types",
+            "smithy.api#documentation": "A short description of the custom asset.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique name of the custom asset. Can only contain letters (A-Z, a-z), numbers (0-9), and underscores (_).",
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL where the asset content is fetched from.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.custom_pages#CreateAssetForZone": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.custom_pages#CreateAssetForZoneRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.custom_pages#CreateAssetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/zones/{zone_id}/custom_pages/assets",
+          "code": 200
+        },
+        "smithy.api#documentation": "Creates a new custom asset."
+      }
+    },
+    "com.cloudflare.custom_pages#CreateAssetForZoneRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short description of the custom asset.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique name of the custom asset. Can only contain letters (A-Z, a-z), numbers (0-9), and underscores (_).",
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL where the asset content is fetched from.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.custom_pages#DeleteAssetForAccount": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.custom_pages#DeleteAssetForAccountRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/accounts/{account_id}/custom_pages/assets/{asset_name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Deletes an existing custom asset.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.custom_pages#DeleteAssetForAccountRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "asset_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique name of the custom asset. Can only contain letters (A-Z, a-z), numbers (0-9), and underscores (_).",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
@@ -106,75 +238,139 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.custom_pages#GetForAccountResponseRequiredTokensList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
-      }
-    },
-    "com.cloudflare.custom_pages#GetForAccountResponseState": {
-      "type": "enum",
-      "members": {
-        "DEFAULT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "default"
-          }
+    "com.cloudflare.custom_pages#DeleteAssetForZone": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.custom_pages#DeleteAssetForZoneRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/zones/{zone_id}/custom_pages/assets/{asset_name}",
+          "code": 200
         },
-        "CUSTOMIZED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "customized"
-          }
-        }
+        "smithy.api#documentation": "Deletes an existing custom asset.",
+        "smithy.api#idempotent": {}
       }
     },
-    "com.cloudflare.custom_pages#GetForAccountResponse": {
+    "com.cloudflare.custom_pages#DeleteAssetForZoneRequest": {
       "type": "structure",
       "members": {
-        "id": {
-          "target": "smithy.api#String"
-        },
-        "created_on": {
-          "target": "smithy.api#String"
-        },
-        "description": {
-          "target": "smithy.api#String"
-        },
-        "modified_on": {
-          "target": "smithy.api#String"
-        },
-        "preview_target": {
-          "target": "smithy.api#String"
-        },
-        "required_tokens": {
-          "target": "com.cloudflare.custom_pages#GetForAccountResponseRequiredTokensList"
-        },
-        "state": {
-          "target": "com.cloudflare.custom_pages#GetForAccountResponseState",
-          "traits": {
-            "smithy.api#documentation": "The custom page state."
-          }
-        },
-        "url": {
+        "zone_id": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The URL associated with the custom page."
+            "smithy.api#documentation": "The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "asset_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique name of the custom asset. Can only contain letters (A-Z, a-z), numbers (0-9), and underscores (_).",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
           }
         }
       },
       "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+        "smithy.api#input": {}
       }
     },
-    "com.cloudflare.custom_pages#GetForAccount": {
+    "com.cloudflare.custom_pages#GetAssetForAccount": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.custom_pages#GetForAccountRequest"
+        "target": "com.cloudflare.custom_pages#GetAssetForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.custom_pages#GetForAccountResponse"
+        "target": "com.cloudflare.custom_pages#GetAssetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/custom_pages/assets/{asset_name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Fetches the details of a custom asset.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.custom_pages#GetAssetForAccountRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "asset_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique name of the custom asset. Can only contain letters (A-Z, a-z), numbers (0-9), and underscores (_).",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.custom_pages#GetAssetForZone": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.custom_pages#GetAssetForZoneRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.custom_pages#GetAssetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/custom_pages/assets/{asset_name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Fetches the details of a custom asset.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.custom_pages#GetAssetForZoneRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "asset_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique name of the custom asset. Can only contain letters (A-Z, a-z), numbers (0-9), and underscores (_).",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.custom_pages#GetCustomPageForAccount": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.custom_pages#GetCustomPageForAccountRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.custom_pages#GetCustomPageResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -186,84 +382,19 @@
         "smithy.api#readonly": {}
       }
     },
-    "com.cloudflare.custom_pages#GetForZoneRequestIdentifier": {
-      "type": "enum",
-      "members": {
-        "_1000_ERRORS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "1000_errors"
-          }
-        },
-        "_500_ERRORS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "500_errors"
-          }
-        },
-        "BASIC_CHALLENGE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "basic_challenge"
-          }
-        },
-        "COUNTRY_CHALLENGE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "country_challenge"
-          }
-        },
-        "IP_BLOCK": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ip_block"
-          }
-        },
-        "MANAGED_CHALLENGE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "managed_challenge"
-          }
-        },
-        "RATELIMIT_BLOCK": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ratelimit_block"
-          }
-        },
-        "UNDER_ATTACK": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "under_attack"
-          }
-        },
-        "WAF_BLOCK": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "waf_block"
-          }
-        },
-        "WAF_CHALLENGE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "waf_challenge"
-          }
-        }
-      }
-    },
-    "com.cloudflare.custom_pages#GetForZoneRequest": {
+    "com.cloudflare.custom_pages#GetCustomPageForAccountRequest": {
       "type": "structure",
       "members": {
-        "zone_id": {
+        "account_id": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.",
+            "smithy.api#documentation": "The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
         },
         "identifier": {
-          "target": "com.cloudflare.custom_pages#GetForZoneRequestIdentifier",
+          "target": "com.cloudflare.custom_pages#GetRequestIdentifier",
           "traits": {
             "smithy.api#documentation": "Error Page Types",
             "smithy.api#httpLabel": {},
@@ -275,75 +406,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.custom_pages#GetForZoneResponseRequiredTokensList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
-      }
-    },
-    "com.cloudflare.custom_pages#GetForZoneResponseState": {
-      "type": "enum",
-      "members": {
-        "DEFAULT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "default"
-          }
-        },
-        "CUSTOMIZED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "customized"
-          }
-        }
-      }
-    },
-    "com.cloudflare.custom_pages#GetForZoneResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String"
-        },
-        "created_on": {
-          "target": "smithy.api#String"
-        },
-        "description": {
-          "target": "smithy.api#String"
-        },
-        "modified_on": {
-          "target": "smithy.api#String"
-        },
-        "preview_target": {
-          "target": "smithy.api#String"
-        },
-        "required_tokens": {
-          "target": "com.cloudflare.custom_pages#GetForZoneResponseRequiredTokensList"
-        },
-        "state": {
-          "target": "com.cloudflare.custom_pages#GetForZoneResponseState",
-          "traits": {
-            "smithy.api#documentation": "The custom page state."
-          }
-        },
-        "url": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The URL associated with the custom page."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.custom_pages#GetForZone": {
+    "com.cloudflare.custom_pages#GetCustomPageForZone": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.custom_pages#GetForZoneRequest"
+        "target": "com.cloudflare.custom_pages#GetCustomPageForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.custom_pages#GetForZoneResponse"
+        "target": "com.cloudflare.custom_pages#GetCustomPageResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -355,13 +424,21 @@
         "smithy.api#readonly": {}
       }
     },
-    "com.cloudflare.custom_pages#ListForAccountRequest": {
+    "com.cloudflare.custom_pages#GetCustomPageForZoneRequest": {
       "type": "structure",
       "members": {
-        "account_id": {
+        "zone_id": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.",
+            "smithy.api#documentation": "The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "identifier": {
+          "target": "com.cloudflare.custom_pages#GetRequestIdentifier",
+          "traits": {
+            "smithy.api#documentation": "Error Page Types",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
@@ -371,92 +448,119 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.custom_pages#ListForAccountResultItemRequiredTokensList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
-      }
-    },
-    "com.cloudflare.custom_pages#ListForAccountResultItemState": {
-      "type": "enum",
-      "members": {
-        "DEFAULT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "default"
-          }
+    "com.cloudflare.custom_pages#ListAssetsForAccount": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.custom_pages#ListAssetsForAccountRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.custom_pages#ListAssetsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/custom_pages/assets",
+          "code": 200
         },
-        "CUSTOMIZED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "customized"
-          }
+        "smithy.api#documentation": "Fetches all the custom assets.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "page",
+          "inputToken": "page",
+          "outputToken": "resultInfo.page",
+          "items": "result",
+          "pageSize": "perPage"
         }
       }
     },
-    "com.cloudflare.custom_pages#ListForAccountResultItem": {
+    "com.cloudflare.custom_pages#ListAssetsForAccountRequest": {
       "type": "structure",
       "members": {
-        "id": {
-          "target": "smithy.api#String"
-        },
-        "created_on": {
-          "target": "smithy.api#String"
-        },
-        "description": {
-          "target": "smithy.api#String"
-        },
-        "modified_on": {
-          "target": "smithy.api#String"
-        },
-        "preview_target": {
-          "target": "smithy.api#String"
-        },
-        "required_tokens": {
-          "target": "com.cloudflare.custom_pages#ListForAccountResultItemRequiredTokensList"
-        },
-        "state": {
-          "target": "com.cloudflare.custom_pages#ListForAccountResultItemState",
-          "traits": {
-            "smithy.api#documentation": "The custom page state."
-          }
-        },
-        "url": {
+        "account_id": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The URL associated with the custom page."
+            "smithy.api#documentation": "The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
           }
-        }
-      }
-    },
-    "com.cloudflare.custom_pages#ListForAccountResultList": {
-      "type": "list",
-      "member": {
-        "target": "com.cloudflare.custom_pages#ListForAccountResultItem"
-      }
-    },
-    "com.cloudflare.custom_pages#ListForAccountResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.custom_pages#ListForAccountResultList",
+        },
+        "page": {
+          "target": "smithy.api#Double",
           "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpQuery": "per_page"
           }
         }
       },
       "traits": {
-        "smithy.api#output": {}
+        "smithy.api#input": {}
       }
     },
-    "com.cloudflare.custom_pages#ListForAccount": {
+    "com.cloudflare.custom_pages#ListAssetsForZone": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.custom_pages#ListForAccountRequest"
+        "target": "com.cloudflare.custom_pages#ListAssetsForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.custom_pages#ListForAccountResponse"
+        "target": "com.cloudflare.custom_pages#ListAssetsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/custom_pages/assets",
+          "code": 200
+        },
+        "smithy.api#documentation": "Fetches all the custom assets.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "page",
+          "inputToken": "page",
+          "outputToken": "resultInfo.page",
+          "items": "result",
+          "pageSize": "perPage"
+        }
+      }
+    },
+    "com.cloudflare.custom_pages#ListAssetsForZoneRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpQuery": "per_page"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.custom_pages#ListCustomPagesForAccount": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.custom_pages#ListCustomPagesForAccountRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.custom_pages#ListCustomPagesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -465,10 +569,52 @@
           "code": 200
         },
         "smithy.api#documentation": "Fetches all the custom pages.",
-        "smithy.api#readonly": {}
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "single",
+          "items": "result"
+        }
       }
     },
-    "com.cloudflare.custom_pages#ListForZoneRequest": {
+    "com.cloudflare.custom_pages#ListCustomPagesForAccountRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.custom_pages#ListCustomPagesForZone": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.custom_pages#ListCustomPagesForZoneRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.custom_pages#ListCustomPagesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/custom_pages",
+          "code": 200
+        },
+        "smithy.api#documentation": "Fetches all the custom pages.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "single",
+          "items": "result"
+        }
+      }
+    },
+    "com.cloudflare.custom_pages#ListCustomPagesForZoneRequest": {
       "type": "structure",
       "members": {
         "zone_id": {
@@ -484,292 +630,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.custom_pages#ListForZoneResultItemRequiredTokensList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
-      }
-    },
-    "com.cloudflare.custom_pages#ListForZoneResultItemState": {
-      "type": "enum",
-      "members": {
-        "DEFAULT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "default"
-          }
-        },
-        "CUSTOMIZED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "customized"
-          }
-        }
-      }
-    },
-    "com.cloudflare.custom_pages#ListForZoneResultItem": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String"
-        },
-        "created_on": {
-          "target": "smithy.api#String"
-        },
-        "description": {
-          "target": "smithy.api#String"
-        },
-        "modified_on": {
-          "target": "smithy.api#String"
-        },
-        "preview_target": {
-          "target": "smithy.api#String"
-        },
-        "required_tokens": {
-          "target": "com.cloudflare.custom_pages#ListForZoneResultItemRequiredTokensList"
-        },
-        "state": {
-          "target": "com.cloudflare.custom_pages#ListForZoneResultItemState",
-          "traits": {
-            "smithy.api#documentation": "The custom page state."
-          }
-        },
-        "url": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The URL associated with the custom page."
-          }
-        }
-      }
-    },
-    "com.cloudflare.custom_pages#ListForZoneResultList": {
-      "type": "list",
-      "member": {
-        "target": "com.cloudflare.custom_pages#ListForZoneResultItem"
-      }
-    },
-    "com.cloudflare.custom_pages#ListForZoneResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.custom_pages#ListForZoneResultList",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.custom_pages#ListForZone": {
+    "com.cloudflare.custom_pages#PutCustomPageForAccount": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.custom_pages#ListForZoneRequest"
+        "target": "com.cloudflare.custom_pages#PutCustomPageForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.custom_pages#ListForZoneResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/custom_pages",
-          "code": 200
-        },
-        "smithy.api#documentation": "Fetches all the custom pages.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.custom_pages#UpdateForAccountRequestIdentifier": {
-      "type": "enum",
-      "members": {
-        "_1000_ERRORS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "1000_errors"
-          }
-        },
-        "_500_ERRORS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "500_errors"
-          }
-        },
-        "BASIC_CHALLENGE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "basic_challenge"
-          }
-        },
-        "COUNTRY_CHALLENGE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "country_challenge"
-          }
-        },
-        "IP_BLOCK": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ip_block"
-          }
-        },
-        "MANAGED_CHALLENGE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "managed_challenge"
-          }
-        },
-        "RATELIMIT_BLOCK": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ratelimit_block"
-          }
-        },
-        "UNDER_ATTACK": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "under_attack"
-          }
-        },
-        "WAF_BLOCK": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "waf_block"
-          }
-        },
-        "WAF_CHALLENGE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "waf_challenge"
-          }
-        }
-      }
-    },
-    "com.cloudflare.custom_pages#UpdateForAccountRequestState": {
-      "type": "enum",
-      "members": {
-        "DEFAULT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "default"
-          }
-        },
-        "CUSTOMIZED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "customized"
-          }
-        }
-      }
-    },
-    "com.cloudflare.custom_pages#UpdateForAccountRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "identifier": {
-          "target": "com.cloudflare.custom_pages#UpdateForAccountRequestIdentifier",
-          "traits": {
-            "smithy.api#documentation": "Error Page Types",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "state": {
-          "target": "com.cloudflare.custom_pages#UpdateForAccountRequestState",
-          "traits": {
-            "smithy.api#documentation": "The custom page state.",
-            "smithy.api#required": {}
-          }
-        },
-        "url": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The URL associated with the custom page.",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.custom_pages#UpdateForAccountResponseRequiredTokensList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
-      }
-    },
-    "com.cloudflare.custom_pages#UpdateForAccountResponseState": {
-      "type": "enum",
-      "members": {
-        "DEFAULT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "default"
-          }
-        },
-        "CUSTOMIZED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "customized"
-          }
-        }
-      }
-    },
-    "com.cloudflare.custom_pages#UpdateForAccountResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String"
-        },
-        "created_on": {
-          "target": "smithy.api#String"
-        },
-        "description": {
-          "target": "smithy.api#String"
-        },
-        "modified_on": {
-          "target": "smithy.api#String"
-        },
-        "preview_target": {
-          "target": "smithy.api#String"
-        },
-        "required_tokens": {
-          "target": "com.cloudflare.custom_pages#UpdateForAccountResponseRequiredTokensList"
-        },
-        "state": {
-          "target": "com.cloudflare.custom_pages#UpdateForAccountResponseState",
-          "traits": {
-            "smithy.api#documentation": "The custom page state."
-          }
-        },
-        "url": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The URL associated with the custom page."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.custom_pages#UpdateForAccount": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.custom_pages#UpdateForAccountRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.custom_pages#UpdateForAccountResponse"
+        "target": "com.cloudflare.custom_pages#PutCustomPageResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -781,7 +648,393 @@
         "smithy.api#idempotent": {}
       }
     },
-    "com.cloudflare.custom_pages#UpdateForZoneRequestIdentifier": {
+    "com.cloudflare.custom_pages#PutCustomPageForAccountRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "identifier": {
+          "target": "com.cloudflare.custom_pages#UpdateRequestIdentifier",
+          "traits": {
+            "smithy.api#documentation": "Error Page Types",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "state": {
+          "target": "com.cloudflare.custom_pages#UpdateRequestState",
+          "traits": {
+            "smithy.api#documentation": "The custom page state.",
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL associated with the custom page.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.custom_pages#PutCustomPageForZone": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.custom_pages#PutCustomPageForZoneRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.custom_pages#PutCustomPageResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/zones/{zone_id}/custom_pages/{identifier}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Updates the configuration of an existing custom page.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.custom_pages#PutCustomPageForZoneRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "identifier": {
+          "target": "com.cloudflare.custom_pages#UpdateRequestIdentifier",
+          "traits": {
+            "smithy.api#documentation": "Error Page Types",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "state": {
+          "target": "com.cloudflare.custom_pages#UpdateRequestState",
+          "traits": {
+            "smithy.api#documentation": "The custom page state.",
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL associated with the custom page.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.custom_pages#UpdateAssetForAccount": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.custom_pages#UpdateAssetForAccountRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.custom_pages#UpdateAssetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/accounts/{account_id}/custom_pages/assets/{asset_name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Updates the configuration of an existing custom asset.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.custom_pages#UpdateAssetForAccountRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "asset_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique name of the custom asset. Can only contain letters (A-Z, a-z), numbers (0-9), and underscores (_).",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short description of the custom asset.",
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL where the asset content is fetched from.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.custom_pages#UpdateAssetForZone": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.custom_pages#UpdateAssetForZoneRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.custom_pages#UpdateAssetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/zones/{zone_id}/custom_pages/assets/{asset_name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Updates the configuration of an existing custom asset.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.custom_pages#UpdateAssetForZoneRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "asset_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique name of the custom asset. Can only contain letters (A-Z, a-z), numbers (0-9), and underscores (_).",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short description of the custom asset.",
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL where the asset content is fetched from.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.custom_pages#UpdateAssetResponse": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short description of the custom asset."
+          }
+        },
+        "last_updated": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique name of the custom asset. Can only contain letters (A-Z, a-z), numbers (0-9), and underscores (_)."
+          }
+        },
+        "size_bytes": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The size of the asset content in bytes."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL where the asset content is fetched from."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.custom_pages#GetAssetResponse": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short description of the custom asset."
+          }
+        },
+        "last_updated": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique name of the custom asset. Can only contain letters (A-Z, a-z), numbers (0-9), and underscores (_)."
+          }
+        },
+        "size_bytes": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The size of the asset content in bytes."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL where the asset content is fetched from."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.custom_pages#CreateAssetResponse": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short description of the custom asset."
+          }
+        },
+        "last_updated": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique name of the custom asset. Can only contain letters (A-Z, a-z), numbers (0-9), and underscores (_)."
+          }
+        },
+        "size_bytes": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The size of the asset content in bytes."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL where the asset content is fetched from."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.custom_pages#AssetsListResultItem": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short description of the custom asset."
+          }
+        },
+        "last_updated": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique name of the custom asset. Can only contain letters (A-Z, a-z), numbers (0-9), and underscores (_)."
+          }
+        },
+        "size_bytes": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The size of the asset content in bytes."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL where the asset content is fetched from."
+          }
+        }
+      }
+    },
+    "com.cloudflare.custom_pages#UpdateResponseState": {
+      "type": "enum",
+      "members": {
+        "DEFAULT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "default"
+          }
+        },
+        "CUSTOMIZED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "customized"
+          }
+        }
+      }
+    },
+    "com.cloudflare.custom_pages#UpdateResponseRequiredTokensList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.custom_pages#UpdateRequestState": {
+      "type": "enum",
+      "members": {
+        "DEFAULT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "default"
+          }
+        },
+        "CUSTOMIZED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "customized"
+          }
+        }
+      }
+    },
+    "com.cloudflare.custom_pages#UpdateRequestIdentifier": {
       "type": "enum",
       "members": {
         "_1000_ERRORS": {
@@ -846,7 +1099,7 @@
         }
       }
     },
-    "com.cloudflare.custom_pages#UpdateForZoneRequestState": {
+    "com.cloudflare.custom_pages#ListResultItemState": {
       "type": "enum",
       "members": {
         "DEFAULT": {
@@ -863,51 +1116,13 @@
         }
       }
     },
-    "com.cloudflare.custom_pages#UpdateForZoneRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "identifier": {
-          "target": "com.cloudflare.custom_pages#UpdateForZoneRequestIdentifier",
-          "traits": {
-            "smithy.api#documentation": "Error Page Types",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "state": {
-          "target": "com.cloudflare.custom_pages#UpdateForZoneRequestState",
-          "traits": {
-            "smithy.api#documentation": "The custom page state.",
-            "smithy.api#required": {}
-          }
-        },
-        "url": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The URL associated with the custom page.",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.custom_pages#UpdateForZoneResponseRequiredTokensList": {
+    "com.cloudflare.custom_pages#ListResultItemRequiredTokensList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.custom_pages#UpdateForZoneResponseState": {
+    "com.cloudflare.custom_pages#GetResponseState": {
       "type": "enum",
       "members": {
         "DEFAULT": {
@@ -924,7 +1139,78 @@
         }
       }
     },
-    "com.cloudflare.custom_pages#UpdateForZoneResponse": {
+    "com.cloudflare.custom_pages#GetResponseRequiredTokensList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.custom_pages#GetRequestIdentifier": {
+      "type": "enum",
+      "members": {
+        "_1000_ERRORS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "1000_errors"
+          }
+        },
+        "_500_ERRORS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "500_errors"
+          }
+        },
+        "BASIC_CHALLENGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "basic_challenge"
+          }
+        },
+        "COUNTRY_CHALLENGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "country_challenge"
+          }
+        },
+        "IP_BLOCK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ip_block"
+          }
+        },
+        "MANAGED_CHALLENGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "managed_challenge"
+          }
+        },
+        "RATELIMIT_BLOCK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ratelimit_block"
+          }
+        },
+        "UNDER_ATTACK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "under_attack"
+          }
+        },
+        "WAF_BLOCK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "waf_block"
+          }
+        },
+        "WAF_CHALLENGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "waf_challenge"
+          }
+        }
+      }
+    },
+    "com.cloudflare.custom_pages#PutCustomPageResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -943,10 +1229,10 @@
           "target": "smithy.api#String"
         },
         "required_tokens": {
-          "target": "com.cloudflare.custom_pages#UpdateForZoneResponseRequiredTokensList"
+          "target": "com.cloudflare.custom_pages#UpdateResponseRequiredTokensList"
         },
         "state": {
-          "target": "com.cloudflare.custom_pages#UpdateForZoneResponseState",
+          "target": "com.cloudflare.custom_pages#UpdateResponseState",
           "traits": {
             "smithy.api#documentation": "The custom page state."
           }
@@ -963,89 +1249,37 @@
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     },
-    "com.cloudflare.custom_pages#UpdateForZone": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.custom_pages#UpdateForZoneRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.custom_pages#UpdateForZoneResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PUT",
-          "uri": "/zones/{zone_id}/custom_pages/{identifier}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Updates the configuration of an existing custom page.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.custom_pages#AssetsCreateForAccountRequest": {
+    "com.cloudflare.custom_pages#GetCustomPageResponse": {
       "type": "structure",
       "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A short description of the custom asset.",
-            "smithy.api#required": {}
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The unique name of the custom asset. Can only contain letters (A-Z, a-z), numbers (0-9), and underscores (_).",
-            "smithy.api#required": {}
-          }
-        },
-        "url": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The URL where the asset content is fetched from.",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.custom_pages#AssetsCreateForAccountResponse": {
-      "type": "structure",
-      "members": {
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A short description of the custom asset."
-          }
-        },
-        "last_updated": {
+        "id": {
           "target": "smithy.api#String"
         },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The unique name of the custom asset. Can only contain letters (A-Z, a-z), numbers (0-9), and underscores (_)."
-          }
+        "created_on": {
+          "target": "smithy.api#String"
         },
-        "size_bytes": {
-          "target": "smithy.api#Double",
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "modified_on": {
+          "target": "smithy.api#String"
+        },
+        "preview_target": {
+          "target": "smithy.api#String"
+        },
+        "required_tokens": {
+          "target": "com.cloudflare.custom_pages#GetResponseRequiredTokensList"
+        },
+        "state": {
+          "target": "com.cloudflare.custom_pages#GetResponseState",
           "traits": {
-            "smithy.api#documentation": "The size of the asset content in bytes."
+            "smithy.api#documentation": "The custom page state."
           }
         },
         "url": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The URL where the asset content is fetched from."
+            "smithy.api#documentation": "The URL associated with the custom page."
           }
         }
       },
@@ -1054,424 +1288,52 @@
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     },
-    "com.cloudflare.custom_pages#AssetsCreateForAccount": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.custom_pages#AssetsCreateForAccountRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.custom_pages#AssetsCreateForAccountResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "/accounts/{account_id}/custom_pages/assets",
-          "code": 200
-        },
-        "smithy.api#documentation": "Creates a new custom asset."
-      }
-    },
-    "com.cloudflare.custom_pages#AssetsCreateForZoneRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A short description of the custom asset.",
-            "smithy.api#required": {}
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The unique name of the custom asset. Can only contain letters (A-Z, a-z), numbers (0-9), and underscores (_).",
-            "smithy.api#required": {}
-          }
-        },
-        "url": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The URL where the asset content is fetched from.",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.custom_pages#AssetsCreateForZoneResponse": {
-      "type": "structure",
-      "members": {
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A short description of the custom asset."
-          }
-        },
-        "last_updated": {
-          "target": "smithy.api#String"
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The unique name of the custom asset. Can only contain letters (A-Z, a-z), numbers (0-9), and underscores (_)."
-          }
-        },
-        "size_bytes": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The size of the asset content in bytes."
-          }
-        },
-        "url": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The URL where the asset content is fetched from."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.custom_pages#AssetsCreateForZone": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.custom_pages#AssetsCreateForZoneRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.custom_pages#AssetsCreateForZoneResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "/zones/{zone_id}/custom_pages/assets",
-          "code": 200
-        },
-        "smithy.api#documentation": "Creates a new custom asset."
-      }
-    },
-    "com.cloudflare.custom_pages#AssetsDeleteForAccountRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "asset_name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The unique name of the custom asset. Can only contain letters (A-Z, a-z), numbers (0-9), and underscores (_).",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.custom_pages#AssetsDeleteForAccount": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.custom_pages#AssetsDeleteForAccountRequest"
-      },
-      "output": {
-        "target": "smithy.api#Unit"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "/accounts/{account_id}/custom_pages/assets/{asset_name}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Deletes an existing custom asset.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.custom_pages#AssetsDeleteForZoneRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "asset_name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The unique name of the custom asset. Can only contain letters (A-Z, a-z), numbers (0-9), and underscores (_).",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.custom_pages#AssetsDeleteForZone": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.custom_pages#AssetsDeleteForZoneRequest"
-      },
-      "output": {
-        "target": "smithy.api#Unit"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "/zones/{zone_id}/custom_pages/assets/{asset_name}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Deletes an existing custom asset.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.custom_pages#AssetsGetForAccountRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "asset_name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The unique name of the custom asset. Can only contain letters (A-Z, a-z), numbers (0-9), and underscores (_).",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.custom_pages#AssetsGetForAccountResponse": {
-      "type": "structure",
-      "members": {
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A short description of the custom asset."
-          }
-        },
-        "last_updated": {
-          "target": "smithy.api#String"
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The unique name of the custom asset. Can only contain letters (A-Z, a-z), numbers (0-9), and underscores (_)."
-          }
-        },
-        "size_bytes": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The size of the asset content in bytes."
-          }
-        },
-        "url": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The URL where the asset content is fetched from."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.custom_pages#AssetsGetForAccount": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.custom_pages#AssetsGetForAccountRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.custom_pages#AssetsGetForAccountResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/accounts/{account_id}/custom_pages/assets/{asset_name}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Fetches the details of a custom asset.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.custom_pages#AssetsGetForZoneRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "asset_name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The unique name of the custom asset. Can only contain letters (A-Z, a-z), numbers (0-9), and underscores (_).",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.custom_pages#AssetsGetForZoneResponse": {
-      "type": "structure",
-      "members": {
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A short description of the custom asset."
-          }
-        },
-        "last_updated": {
-          "target": "smithy.api#String"
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The unique name of the custom asset. Can only contain letters (A-Z, a-z), numbers (0-9), and underscores (_)."
-          }
-        },
-        "size_bytes": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The size of the asset content in bytes."
-          }
-        },
-        "url": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The URL where the asset content is fetched from."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.custom_pages#AssetsGetForZone": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.custom_pages#AssetsGetForZoneRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.custom_pages#AssetsGetForZoneResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/custom_pages/assets/{asset_name}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Fetches the details of a custom asset.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.custom_pages#AssetsListForAccountRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#httpQuery": "page"
-          }
-        },
-        "per_page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#httpQuery": "per_page"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.custom_pages#AssetsListForAccountResultItem": {
-      "type": "structure",
-      "members": {
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A short description of the custom asset."
-          }
-        },
-        "last_updated": {
-          "target": "smithy.api#String"
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The unique name of the custom asset. Can only contain letters (A-Z, a-z), numbers (0-9), and underscores (_)."
-          }
-        },
-        "size_bytes": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The size of the asset content in bytes."
-          }
-        },
-        "url": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The URL where the asset content is fetched from."
-          }
-        }
-      }
-    },
-    "com.cloudflare.custom_pages#AssetsListForAccountResultList": {
+    "com.cloudflare.custom_pages#AssetsListResultList": {
       "type": "list",
       "member": {
-        "target": "com.cloudflare.custom_pages#AssetsListForAccountResultItem"
+        "target": "com.cloudflare.custom_pages#AssetsListResultItem"
       }
     },
-    "com.cloudflare.custom_pages#AssetsListForAccountResponse": {
+    "com.cloudflare.custom_pages#ListResultItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "created_on": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "modified_on": {
+          "target": "smithy.api#String"
+        },
+        "preview_target": {
+          "target": "smithy.api#String"
+        },
+        "required_tokens": {
+          "target": "com.cloudflare.custom_pages#ListResultItemRequiredTokensList"
+        },
+        "state": {
+          "target": "com.cloudflare.custom_pages#ListResultItemState",
+          "traits": {
+            "smithy.api#documentation": "The custom page state."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL associated with the custom page."
+          }
+        }
+      }
+    },
+    "com.cloudflare.custom_pages#ListAssetsResponse": {
       "type": "structure",
       "members": {
         "result": {
-          "target": "com.cloudflare.custom_pages#AssetsListForAccountResultList",
+          "target": "com.cloudflare.custom_pages#AssetsListResultList",
           "traits": {
             "com.cloudflare.protocols#envelopePayload": {},
             "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
@@ -1482,95 +1344,17 @@
         "smithy.api#output": {}
       }
     },
-    "com.cloudflare.custom_pages#AssetsListForAccount": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.custom_pages#AssetsListForAccountRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.custom_pages#AssetsListForAccountResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/accounts/{account_id}/custom_pages/assets",
-          "code": 200
-        },
-        "smithy.api#documentation": "Fetches all the custom assets.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.custom_pages#AssetsListForZoneRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#httpQuery": "page"
-          }
-        },
-        "per_page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#httpQuery": "per_page"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.custom_pages#AssetsListForZoneResultItem": {
-      "type": "structure",
-      "members": {
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A short description of the custom asset."
-          }
-        },
-        "last_updated": {
-          "target": "smithy.api#String"
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The unique name of the custom asset. Can only contain letters (A-Z, a-z), numbers (0-9), and underscores (_)."
-          }
-        },
-        "size_bytes": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The size of the asset content in bytes."
-          }
-        },
-        "url": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The URL where the asset content is fetched from."
-          }
-        }
-      }
-    },
-    "com.cloudflare.custom_pages#AssetsListForZoneResultList": {
+    "com.cloudflare.custom_pages#ListResultList": {
       "type": "list",
       "member": {
-        "target": "com.cloudflare.custom_pages#AssetsListForZoneResultItem"
+        "target": "com.cloudflare.custom_pages#ListResultItem"
       }
     },
-    "com.cloudflare.custom_pages#AssetsListForZoneResponse": {
+    "com.cloudflare.custom_pages#ListCustomPagesResponse": {
       "type": "structure",
       "members": {
         "result": {
-          "target": "com.cloudflare.custom_pages#AssetsListForZoneResultList",
+          "target": "com.cloudflare.custom_pages#ListResultList",
           "traits": {
             "com.cloudflare.protocols#envelopePayload": {},
             "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
@@ -1579,267 +1363,6 @@
       },
       "traits": {
         "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.custom_pages#AssetsListForZone": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.custom_pages#AssetsListForZoneRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.custom_pages#AssetsListForZoneResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/custom_pages/assets",
-          "code": 200
-        },
-        "smithy.api#documentation": "Fetches all the custom assets.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.custom_pages#AssetsUpdateForAccountRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "asset_name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The unique name of the custom asset. Can only contain letters (A-Z, a-z), numbers (0-9), and underscores (_).",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A short description of the custom asset.",
-            "smithy.api#required": {}
-          }
-        },
-        "url": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The URL where the asset content is fetched from.",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.custom_pages#AssetsUpdateForAccountResponse": {
-      "type": "structure",
-      "members": {
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A short description of the custom asset."
-          }
-        },
-        "last_updated": {
-          "target": "smithy.api#String"
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The unique name of the custom asset. Can only contain letters (A-Z, a-z), numbers (0-9), and underscores (_)."
-          }
-        },
-        "size_bytes": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The size of the asset content in bytes."
-          }
-        },
-        "url": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The URL where the asset content is fetched from."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.custom_pages#AssetsUpdateForAccount": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.custom_pages#AssetsUpdateForAccountRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.custom_pages#AssetsUpdateForAccountResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PUT",
-          "uri": "/accounts/{account_id}/custom_pages/assets/{asset_name}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Updates the configuration of an existing custom asset.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.custom_pages#AssetsUpdateForZoneRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "asset_name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The unique name of the custom asset. Can only contain letters (A-Z, a-z), numbers (0-9), and underscores (_).",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A short description of the custom asset.",
-            "smithy.api#required": {}
-          }
-        },
-        "url": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The URL where the asset content is fetched from.",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.custom_pages#AssetsUpdateForZoneResponse": {
-      "type": "structure",
-      "members": {
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A short description of the custom asset."
-          }
-        },
-        "last_updated": {
-          "target": "smithy.api#String"
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The unique name of the custom asset. Can only contain letters (A-Z, a-z), numbers (0-9), and underscores (_)."
-          }
-        },
-        "size_bytes": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The size of the asset content in bytes."
-          }
-        },
-        "url": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The URL where the asset content is fetched from."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.custom_pages#AssetsUpdateForZone": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.custom_pages#AssetsUpdateForZoneRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.custom_pages#AssetsUpdateForZoneResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PUT",
-          "uri": "/zones/{zone_id}/custom_pages/assets/{asset_name}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Updates the configuration of an existing custom asset.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.custom_pages#CustomPages": {
-      "type": "service",
-      "version": "4.0",
-      "operations": [
-        {
-          "target": "com.cloudflare.custom_pages#GetForAccount"
-        },
-        {
-          "target": "com.cloudflare.custom_pages#GetForZone"
-        },
-        {
-          "target": "com.cloudflare.custom_pages#ListForAccount"
-        },
-        {
-          "target": "com.cloudflare.custom_pages#ListForZone"
-        },
-        {
-          "target": "com.cloudflare.custom_pages#UpdateForAccount"
-        },
-        {
-          "target": "com.cloudflare.custom_pages#UpdateForZone"
-        },
-        {
-          "target": "com.cloudflare.custom_pages#AssetsCreateForAccount"
-        },
-        {
-          "target": "com.cloudflare.custom_pages#AssetsCreateForZone"
-        },
-        {
-          "target": "com.cloudflare.custom_pages#AssetsDeleteForAccount"
-        },
-        {
-          "target": "com.cloudflare.custom_pages#AssetsDeleteForZone"
-        },
-        {
-          "target": "com.cloudflare.custom_pages#AssetsGetForAccount"
-        },
-        {
-          "target": "com.cloudflare.custom_pages#AssetsGetForZone"
-        },
-        {
-          "target": "com.cloudflare.custom_pages#AssetsListForAccount"
-        },
-        {
-          "target": "com.cloudflare.custom_pages#AssetsListForZone"
-        },
-        {
-          "target": "com.cloudflare.custom_pages#AssetsUpdateForAccount"
-        },
-        {
-          "target": "com.cloudflare.custom_pages#AssetsUpdateForZone"
-        }
-      ],
-      "traits": {
-        "com.cloudflare.protocols#v4Json": {},
-        "smithy.api#title": "Cloudflare CustomPages",
-        "smithy.api#documentation": "Cloudflare API — custom_pages resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
       }
     }
   }

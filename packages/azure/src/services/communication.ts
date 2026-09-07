@@ -13,7 +13,49 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export interface CommunicationServicesCheckNameAvailabilityRequest {
+/** Type of verification. */
+export type VerificationType = "Domain" | "SPF" | "DKIM" | "DKIM2" | "DMARC";
+export const VerificationType = /*@__PURE__*/ S.String;
+
+export interface CancelDomainVerificationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the EmailService resource. */
+  emailServiceName: string;
+  /** The name of the Domains resource. */
+  domainName: string;
+  /** Type of verification. */
+  verificationType: VerificationType | (string & {});
+}
+export const CancelDomainVerificationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    emailServiceName: S.String.pipe(T.Label()),
+    domainName: S.String.pipe(T.Label()),
+    verificationType: VerificationType,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication/emailServices/{emailServiceName}/domains/{domainName}/cancelVerification",
+      code: 200,
+      apiVersion: "2026-03-18",
+    }),
+  ),
+).annotate({
+  identifier: "CancelDomainVerificationRequest",
+}) as any as S.Schema<CancelDomainVerificationRequest>;
+
+export interface CancelDomainVerificationResponse {}
+export const CancelDomainVerificationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "CancelDomainVerificationResponse",
+}) as any as S.Schema<CancelDomainVerificationResponse>;
+
+export interface CheckCommunicationServiceNameAvailabilityRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource for which availability needs to be checked. */
@@ -21,7 +63,7 @@ export interface CommunicationServicesCheckNameAvailabilityRequest {
   /** The resource type. */
   type?: string;
 }
-export const CommunicationServicesCheckNameAvailabilityRequest =
+export const CheckCommunicationServiceNameAvailabilityRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -36,36 +78,36 @@ export const CommunicationServicesCheckNameAvailabilityRequest =
       }),
     ),
   ).annotate({
-    identifier: "CommunicationServicesCheckNameAvailabilityRequest",
-  }) as any as S.Schema<CommunicationServicesCheckNameAvailabilityRequest>;
+    identifier: "CheckCommunicationServiceNameAvailabilityRequest",
+  }) as any as S.Schema<CheckCommunicationServiceNameAvailabilityRequest>;
 
 /** The reason why the given name is not available. */
-export type CommunicationServicesCheckNameAvailabilityResponseReason =
+export type CheckCommunicationServiceNameAvailabilityResponseReason =
   | "Invalid"
   | "AlreadyExists";
-export const CommunicationServicesCheckNameAvailabilityResponseReason =
+export const CheckCommunicationServiceNameAvailabilityResponseReason =
   /*@__PURE__*/ S.String;
 
-export interface CommunicationServicesCheckNameAvailabilityResponse {
+export interface CheckCommunicationServiceNameAvailabilityResponse {
   /** Indicates if the resource name is available. */
   nameAvailable?: boolean;
   /** The reason why the given name is not available. */
-  reason?: CommunicationServicesCheckNameAvailabilityResponseReason;
+  reason?: CheckCommunicationServiceNameAvailabilityResponseReason;
   /** Detailed reason why the given name is available. */
   message?: string;
 }
-export const CommunicationServicesCheckNameAvailabilityResponse =
+export const CheckCommunicationServiceNameAvailabilityResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       nameAvailable: S.optional(S.Boolean),
       reason: S.optional(
-        CommunicationServicesCheckNameAvailabilityResponseReason,
+        CheckCommunicationServiceNameAvailabilityResponseReason,
       ),
       message: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "CommunicationServicesCheckNameAvailabilityResponse",
-  }) as any as S.Schema<CommunicationServicesCheckNameAvailabilityResponse>;
+    identifier: "CheckCommunicationServiceNameAvailabilityResponse",
+  }) as any as S.Schema<CheckCommunicationServiceNameAvailabilityResponse>;
 
 /** Resource tags. */
 export type CommunicationServicesCreateOrUpdateRequestTagsMap = {
@@ -393,138 +435,6 @@ export const CommunicationServicesCreateOrUpdateResponse =
     identifier: "CommunicationServicesCreateOrUpdateResponse",
   }) as any as S.Schema<CommunicationServicesCreateOrUpdateResponse>;
 
-export interface CommunicationServicesDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the CommunicationService resource. */
-  communicationServiceName: string;
-}
-export const CommunicationServicesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    communicationServiceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication/communicationServices/{communicationServiceName}",
-      code: 200,
-      apiVersion: "2026-03-18",
-    }),
-  ),
-).annotate({
-  identifier: "CommunicationServicesDeleteRequest",
-}) as any as S.Schema<CommunicationServicesDeleteRequest>;
-
-export interface CommunicationServicesDeleteResponse {}
-export const CommunicationServicesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "CommunicationServicesDeleteResponse",
-}) as any as S.Schema<CommunicationServicesDeleteResponse>;
-
-export interface CommunicationServicesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the CommunicationService resource. */
-  communicationServiceName: string;
-}
-export const CommunicationServicesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    communicationServiceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication/communicationServices/{communicationServiceName}",
-      code: 200,
-      apiVersion: "2026-03-18",
-    }),
-  ),
-).annotate({
-  identifier: "CommunicationServicesGetRequest",
-}) as any as S.Schema<CommunicationServicesGetRequest>;
-
-/** Resource tags. */
-export type CommunicationServicesGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const CommunicationServicesGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<CommunicationServicesGetResponseTagsMap>;
-
-/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type CommunicationServicesGetResponseIdentityUserAssignedIdentitiesMap =
-  { [key: string]: UserAssignedIdentity | undefined };
-export const CommunicationServicesGetResponseIdentityUserAssignedIdentitiesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    UserAssignedIdentity,
-  ) as any as S.Schema<CommunicationServicesGetResponseIdentityUserAssignedIdentitiesMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export interface CommunicationServicesGetResponseIdentity {
-  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  principalId?: string;
-  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  tenantId?: string;
-  type: ManagedServiceIdentityType;
-  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: CommunicationServicesGetResponseIdentityUserAssignedIdentitiesMap;
-}
-export const CommunicationServicesGetResponseIdentity = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      principalId: S.optional(S.String),
-      tenantId: S.optional(S.String),
-      type: ManagedServiceIdentityType,
-      userAssignedIdentities: S.optional(
-        CommunicationServicesGetResponseIdentityUserAssignedIdentitiesMap,
-      ),
-    }),
-).annotate({
-  identifier: "CommunicationServicesGetResponseIdentity",
-}) as any as S.Schema<CommunicationServicesGetResponseIdentity>;
-
-export interface CommunicationServicesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: CommunicationServicesGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The properties of the service. */
-  properties?: CommunicationServiceProperties;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: CommunicationServicesGetResponseIdentity;
-}
-export const CommunicationServicesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(CommunicationServicesGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(CommunicationServiceProperties),
-    identity: S.optional(CommunicationServicesGetResponseIdentity),
-  }),
-).annotate({
-  identifier: "CommunicationServicesGetResponse",
-}) as any as S.Schema<CommunicationServicesGetResponse>;
-
 export interface CommunicationServicesLinkNotificationHubRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -570,150 +480,7 @@ export const LinkedNotificationHub = /*@__PURE__*/ S.suspend(() =>
   identifier: "LinkedNotificationHub",
 }) as any as S.Schema<LinkedNotificationHub>;
 
-export interface CommunicationServicesListByResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const CommunicationServicesListByResourceGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication/communicationServices",
-        code: 200,
-        apiVersion: "2026-03-18",
-      }),
-    ),
-  ).annotate({
-    identifier: "CommunicationServicesListByResourceGroupRequest",
-  }) as any as S.Schema<CommunicationServicesListByResourceGroupRequest>;
-
-/** Resource tags. */
-export type CommunicationServiceResourceTagsMap = {
-  [key: string]: string | undefined;
-};
-export const CommunicationServiceResourceTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<CommunicationServiceResourceTagsMap>;
-
-/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type CommunicationServiceResourceIdentityUserAssignedIdentitiesMap = {
-  [key: string]: UserAssignedIdentity | undefined;
-};
-export const CommunicationServiceResourceIdentityUserAssignedIdentitiesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    UserAssignedIdentity,
-  ) as any as S.Schema<CommunicationServiceResourceIdentityUserAssignedIdentitiesMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export interface CommunicationServiceResourceIdentity {
-  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  principalId?: string;
-  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  tenantId?: string;
-  type: ManagedServiceIdentityType;
-  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: CommunicationServiceResourceIdentityUserAssignedIdentitiesMap;
-}
-export const CommunicationServiceResourceIdentity = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      principalId: S.optional(S.String),
-      tenantId: S.optional(S.String),
-      type: ManagedServiceIdentityType,
-      userAssignedIdentities: S.optional(
-        CommunicationServiceResourceIdentityUserAssignedIdentitiesMap,
-      ),
-    }),
-).annotate({
-  identifier: "CommunicationServiceResourceIdentity",
-}) as any as S.Schema<CommunicationServiceResourceIdentity>;
-
-/** A class representing a CommunicationService resource. */
-export interface CommunicationServiceResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: CommunicationServiceResourceTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The properties of the service. */
-  properties?: CommunicationServiceProperties;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: CommunicationServiceResourceIdentity;
-}
-export const CommunicationServiceResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(CommunicationServiceResourceTagsMap),
-    location: S.String,
-    properties: S.optional(CommunicationServiceProperties),
-    identity: S.optional(CommunicationServiceResourceIdentity),
-  }),
-).annotate({
-  identifier: "CommunicationServiceResource",
-}) as any as S.Schema<CommunicationServiceResource>;
-
-/** The CommunicationServiceResource items on this page */
-export type CommunicationServiceResourceListValueList =
-  Array<CommunicationServiceResource>;
-export const CommunicationServiceResourceListValueList = /*@__PURE__*/ S.Array(
-  CommunicationServiceResource,
-) as any as S.Schema<CommunicationServiceResourceListValueList>;
-
-/** Object that includes an array of CommunicationServices and a possible link for next set. */
-export interface CommunicationServiceResourceList {
-  /** The CommunicationServiceResource items on this page */
-  value: CommunicationServiceResourceListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const CommunicationServiceResourceList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: CommunicationServiceResourceListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CommunicationServiceResourceList",
-}) as any as S.Schema<CommunicationServiceResourceList>;
-
-export interface CommunicationServicesListBySubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-}
-export const CommunicationServicesListBySubscriptionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Communication/communicationServices",
-        code: 200,
-        apiVersion: "2026-03-18",
-      }),
-    ),
-  ).annotate({
-    identifier: "CommunicationServicesListBySubscriptionRequest",
-  }) as any as S.Schema<CommunicationServicesListBySubscriptionRequest>;
-
-export interface CommunicationServicesListKeysRequest {
+export interface DeleteCommunicationServiceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -721,262 +488,31 @@ export interface CommunicationServicesListKeysRequest {
   /** The name of the CommunicationService resource. */
   communicationServiceName: string;
 }
-export const CommunicationServicesListKeysRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      communicationServiceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication/communicationServices/{communicationServiceName}/listKeys",
-        code: 200,
-        apiVersion: "2026-03-18",
-      }),
-    ),
-).annotate({
-  identifier: "CommunicationServicesListKeysRequest",
-}) as any as S.Schema<CommunicationServicesListKeysRequest>;
-
-/** A class representing the access keys of a CommunicationService. */
-export interface CommunicationServiceKeys {
-  /** The primary access key. */
-  primaryKey?: string;
-  /** The secondary access key. */
-  secondaryKey?: string;
-  /** CommunicationService connection string constructed via the primaryKey */
-  primaryConnectionString?: string;
-  /** CommunicationService connection string constructed via the secondaryKey */
-  secondaryConnectionString?: string;
-}
-export const CommunicationServiceKeys = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    primaryKey: S.optional(S.String),
-    secondaryKey: S.optional(S.String),
-    primaryConnectionString: S.optional(S.String),
-    secondaryConnectionString: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CommunicationServiceKeys",
-}) as any as S.Schema<CommunicationServiceKeys>;
-
-/** The keyType to regenerate. Must be either 'primary' or 'secondary'(case-insensitive). */
-export type KeyType = "Primary" | "Secondary";
-export const KeyType = /*@__PURE__*/ S.String;
-
-export interface CommunicationServicesRegenerateKeyRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the CommunicationService resource. */
-  communicationServiceName: string;
-  /** The keyType to regenerate. Must be either 'primary' or 'secondary'(case-insensitive). */
-  keyType?: KeyType | (string & {});
-}
-export const CommunicationServicesRegenerateKeyRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      communicationServiceName: S.String.pipe(T.Label()),
-      keyType: S.optional(KeyType),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication/communicationServices/{communicationServiceName}/regenerateKey",
-        code: 200,
-        apiVersion: "2026-03-18",
-      }),
-    ),
-  ).annotate({
-    identifier: "CommunicationServicesRegenerateKeyRequest",
-  }) as any as S.Schema<CommunicationServicesRegenerateKeyRequest>;
-
-/** Tags of the service which is a list of key value pairs that describe the resource. */
-export type CommunicationServicesUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const CommunicationServicesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<CommunicationServicesUpdateRequestTagsMap>;
-
-/** Allow, disallow, or let network security perimeter configuration control public network access to the protected resource. Value is optional but if passed in, it must be 'Enabled', 'Disabled' or 'SecuredByPerimeter'. */
-export type CommunicationServiceUpdatePropertiesPublicNetworkAccess =
-  | "Enabled"
-  | "Disabled"
-  | "SecuredByPerimeter";
-export const CommunicationServiceUpdatePropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
-
-/** A class that describes the properties that can be updated for CommunicationService resource. */
-export interface CommunicationServiceUpdateProperties {
-  /** List of email Domain resource Ids. */
-  linkedDomains?: DomainsResourceList;
-  /** Allow, disallow, or let network security perimeter configuration control public network access to the protected resource. Value is optional but if passed in, it must be 'Enabled', 'Disabled' or 'SecuredByPerimeter'. */
-  publicNetworkAccess?:
-    | CommunicationServiceUpdatePropertiesPublicNetworkAccess
-    | (string & {});
-  /** Disable local authentication for the CommunicationService. */
-  disableLocalAuth?: boolean;
-}
-export const CommunicationServiceUpdateProperties = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      linkedDomains: S.optional(DomainsResourceList),
-      publicNetworkAccess: S.optional(
-        CommunicationServiceUpdatePropertiesPublicNetworkAccess,
-      ),
-      disableLocalAuth: S.optional(S.Boolean),
-    }),
-).annotate({
-  identifier: "CommunicationServiceUpdateProperties",
-}) as any as S.Schema<CommunicationServiceUpdateProperties>;
-
-/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type CommunicationServicesUpdateRequestIdentityUserAssignedIdentitiesMap =
-  { [key: string]: UserAssignedIdentityInput | undefined };
-export const CommunicationServicesUpdateRequestIdentityUserAssignedIdentitiesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    UserAssignedIdentityInput,
-  ) as any as S.Schema<CommunicationServicesUpdateRequestIdentityUserAssignedIdentitiesMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export interface CommunicationServicesUpdateRequestIdentity {
-  type: ManagedServiceIdentityType | (string & {});
-  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: CommunicationServicesUpdateRequestIdentityUserAssignedIdentitiesMap;
-}
-export const CommunicationServicesUpdateRequestIdentity =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: ManagedServiceIdentityType,
-      userAssignedIdentities: S.optional(
-        CommunicationServicesUpdateRequestIdentityUserAssignedIdentitiesMap,
-      ),
-    }),
-  ).annotate({
-    identifier: "CommunicationServicesUpdateRequestIdentity",
-  }) as any as S.Schema<CommunicationServicesUpdateRequestIdentity>;
-
-export interface CommunicationServicesUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the CommunicationService resource. */
-  communicationServiceName: string;
-  /** Tags of the service which is a list of key value pairs that describe the resource. */
-  tags?: CommunicationServicesUpdateRequestTagsMap;
-  /** The properties of the service. */
-  properties?: CommunicationServiceUpdateProperties;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: CommunicationServicesUpdateRequestIdentity;
-}
-export const CommunicationServicesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteCommunicationServiceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     communicationServiceName: S.String.pipe(T.Label()),
-    tags: S.optional(CommunicationServicesUpdateRequestTagsMap),
-    properties: S.optional(CommunicationServiceUpdateProperties),
-    identity: S.optional(CommunicationServicesUpdateRequestIdentity),
   }).pipe(
     T.Http({
-      method: "PATCH",
+      method: "DELETE",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication/communicationServices/{communicationServiceName}",
       code: 200,
       apiVersion: "2026-03-18",
     }),
   ),
 ).annotate({
-  identifier: "CommunicationServicesUpdateRequest",
-}) as any as S.Schema<CommunicationServicesUpdateRequest>;
+  identifier: "DeleteCommunicationServiceRequest",
+}) as any as S.Schema<DeleteCommunicationServiceRequest>;
 
-/** Resource tags. */
-export type CommunicationServicesUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const CommunicationServicesUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<CommunicationServicesUpdateResponseTagsMap>;
-
-/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type CommunicationServicesUpdateResponseIdentityUserAssignedIdentitiesMap =
-  { [key: string]: UserAssignedIdentity | undefined };
-export const CommunicationServicesUpdateResponseIdentityUserAssignedIdentitiesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    UserAssignedIdentity,
-  ) as any as S.Schema<CommunicationServicesUpdateResponseIdentityUserAssignedIdentitiesMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export interface CommunicationServicesUpdateResponseIdentity {
-  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  principalId?: string;
-  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  tenantId?: string;
-  type: ManagedServiceIdentityType;
-  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: CommunicationServicesUpdateResponseIdentityUserAssignedIdentitiesMap;
-}
-export const CommunicationServicesUpdateResponseIdentity =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      principalId: S.optional(S.String),
-      tenantId: S.optional(S.String),
-      type: ManagedServiceIdentityType,
-      userAssignedIdentities: S.optional(
-        CommunicationServicesUpdateResponseIdentityUserAssignedIdentitiesMap,
-      ),
-    }),
-  ).annotate({
-    identifier: "CommunicationServicesUpdateResponseIdentity",
-  }) as any as S.Schema<CommunicationServicesUpdateResponseIdentity>;
-
-export interface CommunicationServicesUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: CommunicationServicesUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The properties of the service. */
-  properties?: CommunicationServiceProperties;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: CommunicationServicesUpdateResponseIdentity;
-}
-export const CommunicationServicesUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(CommunicationServicesUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(CommunicationServiceProperties),
-    identity: S.optional(CommunicationServicesUpdateResponseIdentity),
-  }),
+export interface DeleteCommunicationServiceResponse {}
+export const DeleteCommunicationServiceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
 ).annotate({
-  identifier: "CommunicationServicesUpdateResponse",
-}) as any as S.Schema<CommunicationServicesUpdateResponse>;
+  identifier: "DeleteCommunicationServiceResponse",
+}) as any as S.Schema<DeleteCommunicationServiceResponse>;
 
-/** Type of verification. */
-export type VerificationType = "Domain" | "SPF" | "DKIM" | "DKIM2" | "DMARC";
-export const VerificationType = /*@__PURE__*/ S.String;
-
-export interface DomainsCancelVerificationRequest {
+export interface DeleteDomainRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -985,34 +521,215 @@ export interface DomainsCancelVerificationRequest {
   emailServiceName: string;
   /** The name of the Domains resource. */
   domainName: string;
-  /** Type of verification. */
-  verificationType: VerificationType | (string & {});
 }
-export const DomainsCancelVerificationRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteDomainRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     emailServiceName: S.String.pipe(T.Label()),
     domainName: S.String.pipe(T.Label()),
-    verificationType: VerificationType,
   }).pipe(
     T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication/emailServices/{emailServiceName}/domains/{domainName}/cancelVerification",
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication/emailServices/{emailServiceName}/domains/{domainName}",
       code: 200,
       apiVersion: "2026-03-18",
     }),
   ),
 ).annotate({
-  identifier: "DomainsCancelVerificationRequest",
-}) as any as S.Schema<DomainsCancelVerificationRequest>;
+  identifier: "DeleteDomainRequest",
+}) as any as S.Schema<DeleteDomainRequest>;
 
-export interface DomainsCancelVerificationResponse {}
-export const DomainsCancelVerificationResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteDomainResponse {}
+export const DeleteDomainResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DomainsCancelVerificationResponse",
-}) as any as S.Schema<DomainsCancelVerificationResponse>;
+  identifier: "DeleteDomainResponse",
+}) as any as S.Schema<DeleteDomainResponse>;
+
+export interface DeleteEmailServiceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the EmailService resource. */
+  emailServiceName: string;
+}
+export const DeleteEmailServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    emailServiceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication/emailServices/{emailServiceName}",
+      code: 200,
+      apiVersion: "2026-03-18",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteEmailServiceRequest",
+}) as any as S.Schema<DeleteEmailServiceRequest>;
+
+export interface DeleteEmailServiceResponse {}
+export const DeleteEmailServiceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteEmailServiceResponse",
+}) as any as S.Schema<DeleteEmailServiceResponse>;
+
+export interface DeleteSenderUsernameRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the EmailService resource. */
+  emailServiceName: string;
+  /** The name of the Domains resource. */
+  domainName: string;
+  /** The valid sender Username. */
+  senderUsername: string;
+}
+export const DeleteSenderUsernameRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    emailServiceName: S.String.pipe(T.Label()),
+    domainName: S.String.pipe(T.Label()),
+    senderUsername: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication/emailServices/{emailServiceName}/domains/{domainName}/senderUsernames/{senderUsername}",
+      code: 200,
+      apiVersion: "2026-03-18",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteSenderUsernameRequest",
+}) as any as S.Schema<DeleteSenderUsernameRequest>;
+
+export interface DeleteSenderUsernameResponse {}
+export const DeleteSenderUsernameResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteSenderUsernameResponse",
+}) as any as S.Schema<DeleteSenderUsernameResponse>;
+
+export interface DeleteSmtpUsernameRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the CommunicationService resource. */
+  communicationServiceName: string;
+  /** The name of the SmtpUsernameResource. */
+  smtpUsername: string;
+}
+export const DeleteSmtpUsernameRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    communicationServiceName: S.String.pipe(T.Label()),
+    smtpUsername: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication/communicationServices/{communicationServiceName}/smtpUsernames/{smtpUsername}",
+      code: 200,
+      apiVersion: "2026-03-18",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteSmtpUsernameRequest",
+}) as any as S.Schema<DeleteSmtpUsernameRequest>;
+
+export interface DeleteSmtpUsernameResponse {}
+export const DeleteSmtpUsernameResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteSmtpUsernameResponse",
+}) as any as S.Schema<DeleteSmtpUsernameResponse>;
+
+export interface DeleteSuppressionListRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the EmailService resource. */
+  emailServiceName: string;
+  /** The name of the Domains resource. */
+  domainName: string;
+  /** The name of the suppression list. */
+  suppressionListName: string;
+}
+export const DeleteSuppressionListRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    emailServiceName: S.String.pipe(T.Label()),
+    domainName: S.String.pipe(T.Label()),
+    suppressionListName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication/emailServices/{emailServiceName}/domains/{domainName}/suppressionLists/{suppressionListName}",
+      code: 200,
+      apiVersion: "2026-03-18",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteSuppressionListRequest",
+}) as any as S.Schema<DeleteSuppressionListRequest>;
+
+export interface DeleteSuppressionListResponse {}
+export const DeleteSuppressionListResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteSuppressionListResponse",
+}) as any as S.Schema<DeleteSuppressionListResponse>;
+
+export interface DeleteSuppressionListAddressRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the EmailService resource. */
+  emailServiceName: string;
+  /** The name of the Domains resource. */
+  domainName: string;
+  /** The name of the suppression list. */
+  suppressionListName: string;
+  /** The id of the address in a suppression list. */
+  addressId: string;
+}
+export const DeleteSuppressionListAddressRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    emailServiceName: S.String.pipe(T.Label()),
+    domainName: S.String.pipe(T.Label()),
+    suppressionListName: S.String.pipe(T.Label()),
+    addressId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication/emailServices/{emailServiceName}/domains/{domainName}/suppressionLists/{suppressionListName}/suppressionListAddresses/{addressId}",
+      code: 200,
+      apiVersion: "2026-03-18",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteSuppressionListAddressRequest",
+}) as any as S.Schema<DeleteSuppressionListAddressRequest>;
+
+export interface DeleteSuppressionListAddressResponse {}
+export const DeleteSuppressionListAddressResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteSuppressionListAddressResponse",
+}) as any as S.Schema<DeleteSuppressionListAddressResponse>;
 
 /** Resource tags. */
 export type DomainsCreateOrUpdateRequestTagsMap = {
@@ -1269,106 +986,6 @@ export const DomainsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DomainsCreateOrUpdateResponse",
 }) as any as S.Schema<DomainsCreateOrUpdateResponse>;
 
-export interface DomainsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the EmailService resource. */
-  emailServiceName: string;
-  /** The name of the Domains resource. */
-  domainName: string;
-}
-export const DomainsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    emailServiceName: S.String.pipe(T.Label()),
-    domainName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication/emailServices/{emailServiceName}/domains/{domainName}",
-      code: 200,
-      apiVersion: "2026-03-18",
-    }),
-  ),
-).annotate({
-  identifier: "DomainsDeleteRequest",
-}) as any as S.Schema<DomainsDeleteRequest>;
-
-export interface DomainsDeleteResponse {}
-export const DomainsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DomainsDeleteResponse",
-}) as any as S.Schema<DomainsDeleteResponse>;
-
-export interface DomainsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the EmailService resource. */
-  emailServiceName: string;
-  /** The name of the Domains resource. */
-  domainName: string;
-}
-export const DomainsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    emailServiceName: S.String.pipe(T.Label()),
-    domainName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication/emailServices/{emailServiceName}/domains/{domainName}",
-      code: 200,
-      apiVersion: "2026-03-18",
-    }),
-  ),
-).annotate({
-  identifier: "DomainsGetRequest",
-}) as any as S.Schema<DomainsGetRequest>;
-
-/** Resource tags. */
-export type DomainsGetResponseTagsMap = { [key: string]: string | undefined };
-export const DomainsGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DomainsGetResponseTagsMap>;
-
-export interface DomainsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: DomainsGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The properties of a Domains resource. */
-  properties?: DomainProperties;
-}
-export const DomainsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(DomainsGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(DomainProperties),
-  }),
-).annotate({
-  identifier: "DomainsGetResponse",
-}) as any as S.Schema<DomainsGetResponse>;
-
 export interface DomainsInitiateVerificationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -1406,183 +1023,6 @@ export const DomainsInitiateVerificationResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DomainsInitiateVerificationResponse",
 }) as any as S.Schema<DomainsInitiateVerificationResponse>;
-
-export interface DomainsListByEmailServiceResourceRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the EmailService resource. */
-  emailServiceName: string;
-}
-export const DomainsListByEmailServiceResourceRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      emailServiceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication/emailServices/{emailServiceName}/domains",
-        code: 200,
-        apiVersion: "2026-03-18",
-      }),
-    ),
-).annotate({
-  identifier: "DomainsListByEmailServiceResourceRequest",
-}) as any as S.Schema<DomainsListByEmailServiceResourceRequest>;
-
-/** Resource tags. */
-export type DomainResourceTagsMap = { [key: string]: string | undefined };
-export const DomainResourceTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DomainResourceTagsMap>;
-
-/** A class representing a Domains resource. */
-export interface DomainResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: DomainResourceTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The properties of a Domains resource. */
-  properties?: DomainProperties;
-}
-export const DomainResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(DomainResourceTagsMap),
-    location: S.String,
-    properties: S.optional(DomainProperties),
-  }),
-).annotate({ identifier: "DomainResource" }) as any as S.Schema<DomainResource>;
-
-/** The DomainResource items on this page */
-export type DomainResourceListValueList = Array<DomainResource>;
-export const DomainResourceListValueList = /*@__PURE__*/ S.Array(
-  DomainResource,
-) as any as S.Schema<DomainResourceListValueList>;
-
-/** Object that includes an array of Domains resource and a possible link for next set. */
-export interface DomainResourceList {
-  /** The DomainResource items on this page */
-  value: DomainResourceListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const DomainResourceList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: DomainResourceListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DomainResourceList",
-}) as any as S.Schema<DomainResourceList>;
-
-/** Tags of the service which is a list of key value pairs that describe the resource. */
-export type DomainsUpdateRequestTagsMap = { [key: string]: string | undefined };
-export const DomainsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DomainsUpdateRequestTagsMap>;
-
-/** A class that describes the updatable properties of a Domains resource. */
-export interface UpdateDomainProperties {
-  /** Describes whether user engagement tracking is enabled or disabled. */
-  userEngagementTracking?: UserEngagementTracking | (string & {});
-}
-export const UpdateDomainProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    userEngagementTracking: S.optional(UserEngagementTracking),
-  }),
-).annotate({
-  identifier: "UpdateDomainProperties",
-}) as any as S.Schema<UpdateDomainProperties>;
-
-export interface DomainsUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the EmailService resource. */
-  emailServiceName: string;
-  /** The name of the Domains resource. */
-  domainName: string;
-  /** Tags of the service which is a list of key value pairs that describe the resource. */
-  tags?: DomainsUpdateRequestTagsMap;
-  /** A class that describes the updatable properties of a Domains resource. */
-  properties?: UpdateDomainProperties;
-}
-export const DomainsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    emailServiceName: S.String.pipe(T.Label()),
-    domainName: S.String.pipe(T.Label()),
-    tags: S.optional(DomainsUpdateRequestTagsMap),
-    properties: S.optional(UpdateDomainProperties),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication/emailServices/{emailServiceName}/domains/{domainName}",
-      code: 200,
-      apiVersion: "2026-03-18",
-    }),
-  ),
-).annotate({
-  identifier: "DomainsUpdateRequest",
-}) as any as S.Schema<DomainsUpdateRequest>;
-
-/** Resource tags. */
-export type DomainsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DomainsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DomainsUpdateResponseTagsMap>;
-
-export interface DomainsUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: DomainsUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The properties of a Domains resource. */
-  properties?: DomainProperties;
-}
-export const DomainsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(DomainsUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(DomainProperties),
-  }),
-).annotate({
-  identifier: "DomainsUpdateResponse",
-}) as any as S.Schema<DomainsUpdateResponse>;
 
 /** Resource tags. */
 export type EmailServicesCreateOrUpdateRequestTagsMap = {
@@ -1696,39 +1136,173 @@ export const EmailServicesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "EmailServicesCreateOrUpdateResponse",
 }) as any as S.Schema<EmailServicesCreateOrUpdateResponse>;
 
-export interface EmailServicesDeleteRequest {
+export interface GetCommunicationServiceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** The name of the EmailService resource. */
-  emailServiceName: string;
+  /** The name of the CommunicationService resource. */
+  communicationServiceName: string;
 }
-export const EmailServicesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetCommunicationServiceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
-    emailServiceName: S.String.pipe(T.Label()),
+    communicationServiceName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication/emailServices/{emailServiceName}",
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication/communicationServices/{communicationServiceName}",
       code: 200,
       apiVersion: "2026-03-18",
     }),
   ),
 ).annotate({
-  identifier: "EmailServicesDeleteRequest",
-}) as any as S.Schema<EmailServicesDeleteRequest>;
+  identifier: "GetCommunicationServiceRequest",
+}) as any as S.Schema<GetCommunicationServiceRequest>;
 
-export interface EmailServicesDeleteResponse {}
-export const EmailServicesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
+/** Resource tags. */
+export type GetCommunicationServiceResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetCommunicationServiceResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetCommunicationServiceResponseTagsMap>;
+
+/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+export type GetCommunicationServiceResponseIdentityUserAssignedIdentitiesMap = {
+  [key: string]: UserAssignedIdentity | undefined;
+};
+export const GetCommunicationServiceResponseIdentityUserAssignedIdentitiesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    UserAssignedIdentity,
+  ) as any as S.Schema<GetCommunicationServiceResponseIdentityUserAssignedIdentitiesMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export interface GetCommunicationServiceResponseIdentity {
+  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  principalId?: string;
+  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  tenantId?: string;
+  type: ManagedServiceIdentityType;
+  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+  userAssignedIdentities?: GetCommunicationServiceResponseIdentityUserAssignedIdentitiesMap;
+}
+export const GetCommunicationServiceResponseIdentity = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      principalId: S.optional(S.String),
+      tenantId: S.optional(S.String),
+      type: ManagedServiceIdentityType,
+      userAssignedIdentities: S.optional(
+        GetCommunicationServiceResponseIdentityUserAssignedIdentitiesMap,
+      ),
+    }),
 ).annotate({
-  identifier: "EmailServicesDeleteResponse",
-}) as any as S.Schema<EmailServicesDeleteResponse>;
+  identifier: "GetCommunicationServiceResponseIdentity",
+}) as any as S.Schema<GetCommunicationServiceResponseIdentity>;
 
-export interface EmailServicesGetRequest {
+export interface GetCommunicationServiceResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetCommunicationServiceResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The properties of the service. */
+  properties?: CommunicationServiceProperties;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: GetCommunicationServiceResponseIdentity;
+}
+export const GetCommunicationServiceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetCommunicationServiceResponseTagsMap),
+    location: S.String,
+    properties: S.optional(CommunicationServiceProperties),
+    identity: S.optional(GetCommunicationServiceResponseIdentity),
+  }),
+).annotate({
+  identifier: "GetCommunicationServiceResponse",
+}) as any as S.Schema<GetCommunicationServiceResponse>;
+
+export interface GetDomainRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the EmailService resource. */
+  emailServiceName: string;
+  /** The name of the Domains resource. */
+  domainName: string;
+}
+export const GetDomainRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    emailServiceName: S.String.pipe(T.Label()),
+    domainName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication/emailServices/{emailServiceName}/domains/{domainName}",
+      code: 200,
+      apiVersion: "2026-03-18",
+    }),
+  ),
+).annotate({
+  identifier: "GetDomainRequest",
+}) as any as S.Schema<GetDomainRequest>;
+
+/** Resource tags. */
+export type GetDomainResponseTagsMap = { [key: string]: string | undefined };
+export const GetDomainResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetDomainResponseTagsMap>;
+
+export interface GetDomainResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetDomainResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The properties of a Domains resource. */
+  properties?: DomainProperties;
+}
+export const GetDomainResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetDomainResponseTagsMap),
+    location: S.String,
+    properties: S.optional(DomainProperties),
+  }),
+).annotate({
+  identifier: "GetDomainResponse",
+}) as any as S.Schema<GetDomainResponse>;
+
+export interface GetEmailServiceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1736,7 +1310,7 @@ export interface EmailServicesGetRequest {
   /** The name of the EmailService resource. */
   emailServiceName: string;
 }
-export const EmailServicesGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetEmailServiceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1750,19 +1324,19 @@ export const EmailServicesGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "EmailServicesGetRequest",
-}) as any as S.Schema<EmailServicesGetRequest>;
+  identifier: "GetEmailServiceRequest",
+}) as any as S.Schema<GetEmailServiceRequest>;
 
 /** Resource tags. */
-export type EmailServicesGetResponseTagsMap = {
+export type GetEmailServiceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const EmailServicesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetEmailServiceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<EmailServicesGetResponseTagsMap>;
+) as any as S.Schema<GetEmailServiceResponseTagsMap>;
 
-export interface EmailServicesGetResponse {
+export interface GetEmailServiceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1772,33 +1346,631 @@ export interface EmailServicesGetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: EmailServicesGetResponseTagsMap;
+  tags?: GetEmailServiceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The properties of the service. */
   properties?: EmailServiceProperties;
 }
-export const EmailServicesGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetEmailServiceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(EmailServicesGetResponseTagsMap),
+    tags: S.optional(GetEmailServiceResponseTagsMap),
     location: S.String,
     properties: S.optional(EmailServiceProperties),
   }),
 ).annotate({
-  identifier: "EmailServicesGetResponse",
-}) as any as S.Schema<EmailServicesGetResponse>;
+  identifier: "GetEmailServiceResponse",
+}) as any as S.Schema<GetEmailServiceResponse>;
 
-export interface EmailServicesListByResourceGroupRequest {
+export interface GetSenderUsernameRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the EmailService resource. */
+  emailServiceName: string;
+  /** The name of the Domains resource. */
+  domainName: string;
+  /** The valid sender Username. */
+  senderUsername: string;
+}
+export const GetSenderUsernameRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    emailServiceName: S.String.pipe(T.Label()),
+    domainName: S.String.pipe(T.Label()),
+    senderUsername: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication/emailServices/{emailServiceName}/domains/{domainName}/senderUsernames/{senderUsername}",
+      code: 200,
+      apiVersion: "2026-03-18",
+    }),
+  ),
+).annotate({
+  identifier: "GetSenderUsernameRequest",
+}) as any as S.Schema<GetSenderUsernameRequest>;
+
+/** Provisioning state of the resource. Unknown is the default state for Communication Services. */
+export type ProvisioningState =
+  | "Unknown"
+  | "Succeeded"
+  | "Failed"
+  | "Canceled"
+  | "Running"
+  | "Creating"
+  | "Updating"
+  | "Deleting"
+  | "Moving";
+export const ProvisioningState = /*@__PURE__*/ S.String;
+
+/** A class that describes the properties of a SenderUsername resource. */
+export interface SenderUsernameProperties {
+  /** The location where the SenderUsername resource data is stored at rest. */
+  dataLocation?: string;
+  /** A sender senderUsername to be used when sending emails. */
+  username: string;
+  /** The display name for the senderUsername. */
+  displayName?: string;
+  /** Provisioning state of the resource. Unknown is the default state for Communication Services. */
+  provisioningState?: ProvisioningState;
+}
+export const SenderUsernameProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    dataLocation: S.optional(S.String),
+    username: S.String,
+    displayName: S.optional(S.String),
+    provisioningState: S.optional(ProvisioningState),
+  }),
+).annotate({
+  identifier: "SenderUsernameProperties",
+}) as any as S.Schema<SenderUsernameProperties>;
+
+export interface GetSenderUsernameResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of a SenderUsername resource. */
+  properties?: SenderUsernameProperties;
+}
+export const GetSenderUsernameResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(SenderUsernameProperties),
+  }),
+).annotate({
+  identifier: "GetSenderUsernameResponse",
+}) as any as S.Schema<GetSenderUsernameResponse>;
+
+export interface GetSmtpUsernameRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the CommunicationService resource. */
+  communicationServiceName: string;
+  /** The name of the SmtpUsernameResource. */
+  smtpUsername: string;
+}
+export const GetSmtpUsernameRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    communicationServiceName: S.String.pipe(T.Label()),
+    smtpUsername: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication/communicationServices/{communicationServiceName}/smtpUsernames/{smtpUsername}",
+      code: 200,
+      apiVersion: "2026-03-18",
+    }),
+  ),
+).annotate({
+  identifier: "GetSmtpUsernameRequest",
+}) as any as S.Schema<GetSmtpUsernameRequest>;
+
+/** A class that describes the properties of a SmtpUsername resource. */
+export interface SmtpUsernameProperties {
+  /** The SMTP username. Could be free form or in the email address format. */
+  username: string;
+  /** The application Id for the linked Entra Application. */
+  entraApplicationId: string;
+  /** The tenant of the linked Entra Application. */
+  tenantId: string;
+}
+export const SmtpUsernameProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    username: S.String,
+    entraApplicationId: S.String,
+    tenantId: S.String,
+  }),
+).annotate({
+  identifier: "SmtpUsernameProperties",
+}) as any as S.Schema<SmtpUsernameProperties>;
+
+export interface GetSmtpUsernameResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of a SmtpUsername resource. */
+  properties?: SmtpUsernameProperties;
+}
+export const GetSmtpUsernameResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(SmtpUsernameProperties),
+  }),
+).annotate({
+  identifier: "GetSmtpUsernameResponse",
+}) as any as S.Schema<GetSmtpUsernameResponse>;
+
+export interface GetSuppressionListRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the EmailService resource. */
+  emailServiceName: string;
+  /** The name of the Domains resource. */
+  domainName: string;
+  /** The name of the suppression list. */
+  suppressionListName: string;
+}
+export const GetSuppressionListRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    emailServiceName: S.String.pipe(T.Label()),
+    domainName: S.String.pipe(T.Label()),
+    suppressionListName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication/emailServices/{emailServiceName}/domains/{domainName}/suppressionLists/{suppressionListName}",
+      code: 200,
+      apiVersion: "2026-03-18",
+    }),
+  ),
+).annotate({
+  identifier: "GetSuppressionListRequest",
+}) as any as S.Schema<GetSuppressionListRequest>;
+
+/** A class that describes the properties of a SuppressionList resource. */
+export interface SuppressionListProperties {
+  /** The name of the suppression list. This value must match one of the valid sender usernames of the sending domain. */
+  listName?: string;
+  /** The date the resource was last updated. */
+  lastUpdatedTimeStamp?: string;
+  /** The date the resource was created. */
+  createdTimeStamp?: string;
+  /** The location where the SuppressionListAddress data is stored at rest. This value is inherited from the parent Domains resource. */
+  dataLocation?: string;
+}
+export const SuppressionListProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    listName: S.optional(S.String),
+    lastUpdatedTimeStamp: S.optional(S.String),
+    createdTimeStamp: S.optional(S.String),
+    dataLocation: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SuppressionListProperties",
+}) as any as S.Schema<SuppressionListProperties>;
+
+export interface GetSuppressionListResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of a SuppressionList resource. */
+  properties?: SuppressionListProperties;
+}
+export const GetSuppressionListResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(SuppressionListProperties),
+  }),
+).annotate({
+  identifier: "GetSuppressionListResponse",
+}) as any as S.Schema<GetSuppressionListResponse>;
+
+export interface GetSuppressionListAddressRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the EmailService resource. */
+  emailServiceName: string;
+  /** The name of the Domains resource. */
+  domainName: string;
+  /** The name of the suppression list. */
+  suppressionListName: string;
+  /** The id of the address in a suppression list. */
+  addressId: string;
+}
+export const GetSuppressionListAddressRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    emailServiceName: S.String.pipe(T.Label()),
+    domainName: S.String.pipe(T.Label()),
+    suppressionListName: S.String.pipe(T.Label()),
+    addressId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication/emailServices/{emailServiceName}/domains/{domainName}/suppressionLists/{suppressionListName}/suppressionListAddresses/{addressId}",
+      code: 200,
+      apiVersion: "2026-03-18",
+    }),
+  ),
+).annotate({
+  identifier: "GetSuppressionListAddressRequest",
+}) as any as S.Schema<GetSuppressionListAddressRequest>;
+
+/** A class that describes the properties of a SuppressionListAddress resource. */
+export interface SuppressionListAddressProperties {
+  /** Email address of the recipient. */
+  email: string;
+  /** The first name of the email recipient. */
+  firstName?: string;
+  /** The last name of the email recipient. */
+  lastName?: string;
+  /** An optional property to provide contextual notes or a description for an address. */
+  notes?: string;
+  /** The date the address was last updated in a suppression list. */
+  lastModified?: string;
+  /** The location where the SuppressionListAddress data is stored at rest. This value is inherited from the parent Domains resource. */
+  dataLocation?: string;
+}
+export const SuppressionListAddressProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    email: S.String,
+    firstName: S.optional(S.String),
+    lastName: S.optional(S.String),
+    notes: S.optional(S.String),
+    lastModified: S.optional(S.String),
+    dataLocation: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SuppressionListAddressProperties",
+}) as any as S.Schema<SuppressionListAddressProperties>;
+
+export interface GetSuppressionListAddressResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of a SuppressionListAddress resource. */
+  properties?: SuppressionListAddressProperties;
+}
+export const GetSuppressionListAddressResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(SuppressionListAddressProperties),
+  }),
+).annotate({
+  identifier: "GetSuppressionListAddressResponse",
+}) as any as S.Schema<GetSuppressionListAddressResponse>;
+
+export interface ListCommunicationServiceByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
 }
-export const EmailServicesListByResourceGroupRequest = /*@__PURE__*/ S.suspend(
+export const ListCommunicationServiceByResourceGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication/communicationServices",
+        code: 200,
+        apiVersion: "2026-03-18",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListCommunicationServiceByResourceGroupRequest",
+  }) as any as S.Schema<ListCommunicationServiceByResourceGroupRequest>;
+
+/** Resource tags. */
+export type CommunicationServiceResourceTagsMap = {
+  [key: string]: string | undefined;
+};
+export const CommunicationServiceResourceTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<CommunicationServiceResourceTagsMap>;
+
+/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+export type CommunicationServiceResourceIdentityUserAssignedIdentitiesMap = {
+  [key: string]: UserAssignedIdentity | undefined;
+};
+export const CommunicationServiceResourceIdentityUserAssignedIdentitiesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    UserAssignedIdentity,
+  ) as any as S.Schema<CommunicationServiceResourceIdentityUserAssignedIdentitiesMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export interface CommunicationServiceResourceIdentity {
+  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  principalId?: string;
+  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  tenantId?: string;
+  type: ManagedServiceIdentityType;
+  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+  userAssignedIdentities?: CommunicationServiceResourceIdentityUserAssignedIdentitiesMap;
+}
+export const CommunicationServiceResourceIdentity = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      principalId: S.optional(S.String),
+      tenantId: S.optional(S.String),
+      type: ManagedServiceIdentityType,
+      userAssignedIdentities: S.optional(
+        CommunicationServiceResourceIdentityUserAssignedIdentitiesMap,
+      ),
+    }),
+).annotate({
+  identifier: "CommunicationServiceResourceIdentity",
+}) as any as S.Schema<CommunicationServiceResourceIdentity>;
+
+/** A class representing a CommunicationService resource. */
+export interface CommunicationServiceResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: CommunicationServiceResourceTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The properties of the service. */
+  properties?: CommunicationServiceProperties;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: CommunicationServiceResourceIdentity;
+}
+export const CommunicationServiceResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(CommunicationServiceResourceTagsMap),
+    location: S.String,
+    properties: S.optional(CommunicationServiceProperties),
+    identity: S.optional(CommunicationServiceResourceIdentity),
+  }),
+).annotate({
+  identifier: "CommunicationServiceResource",
+}) as any as S.Schema<CommunicationServiceResource>;
+
+/** The CommunicationServiceResource items on this page */
+export type CommunicationServiceResourceListValueList =
+  Array<CommunicationServiceResource>;
+export const CommunicationServiceResourceListValueList = /*@__PURE__*/ S.Array(
+  CommunicationServiceResource,
+) as any as S.Schema<CommunicationServiceResourceListValueList>;
+
+/** Object that includes an array of CommunicationServices and a possible link for next set. */
+export interface CommunicationServiceResourceList {
+  /** The CommunicationServiceResource items on this page */
+  value: CommunicationServiceResourceListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const CommunicationServiceResourceList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: CommunicationServiceResourceListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CommunicationServiceResourceList",
+}) as any as S.Schema<CommunicationServiceResourceList>;
+
+export interface ListCommunicationServiceBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+}
+export const ListCommunicationServiceBySubscriptionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Communication/communicationServices",
+        code: 200,
+        apiVersion: "2026-03-18",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListCommunicationServiceBySubscriptionRequest",
+  }) as any as S.Schema<ListCommunicationServiceBySubscriptionRequest>;
+
+export interface ListCommunicationServiceKeysRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the CommunicationService resource. */
+  communicationServiceName: string;
+}
+export const ListCommunicationServiceKeysRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    communicationServiceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication/communicationServices/{communicationServiceName}/listKeys",
+      code: 200,
+      apiVersion: "2026-03-18",
+    }),
+  ),
+).annotate({
+  identifier: "ListCommunicationServiceKeysRequest",
+}) as any as S.Schema<ListCommunicationServiceKeysRequest>;
+
+/** A class representing the access keys of a CommunicationService. */
+export interface CommunicationServiceKeys {
+  /** The primary access key. */
+  primaryKey?: string;
+  /** The secondary access key. */
+  secondaryKey?: string;
+  /** CommunicationService connection string constructed via the primaryKey */
+  primaryConnectionString?: string;
+  /** CommunicationService connection string constructed via the secondaryKey */
+  secondaryConnectionString?: string;
+}
+export const CommunicationServiceKeys = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    primaryKey: S.optional(S.String),
+    secondaryKey: S.optional(S.String),
+    primaryConnectionString: S.optional(S.String),
+    secondaryConnectionString: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CommunicationServiceKeys",
+}) as any as S.Schema<CommunicationServiceKeys>;
+
+export interface ListDomainByEmailServiceResourceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the EmailService resource. */
+  emailServiceName: string;
+}
+export const ListDomainByEmailServiceResourceRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      emailServiceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication/emailServices/{emailServiceName}/domains",
+        code: 200,
+        apiVersion: "2026-03-18",
+      }),
+    ),
+).annotate({
+  identifier: "ListDomainByEmailServiceResourceRequest",
+}) as any as S.Schema<ListDomainByEmailServiceResourceRequest>;
+
+/** Resource tags. */
+export type DomainResourceTagsMap = { [key: string]: string | undefined };
+export const DomainResourceTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<DomainResourceTagsMap>;
+
+/** A class representing a Domains resource. */
+export interface DomainResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: DomainResourceTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The properties of a Domains resource. */
+  properties?: DomainProperties;
+}
+export const DomainResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(DomainResourceTagsMap),
+    location: S.String,
+    properties: S.optional(DomainProperties),
+  }),
+).annotate({ identifier: "DomainResource" }) as any as S.Schema<DomainResource>;
+
+/** The DomainResource items on this page */
+export type DomainResourceListValueList = Array<DomainResource>;
+export const DomainResourceListValueList = /*@__PURE__*/ S.Array(
+  DomainResource,
+) as any as S.Schema<DomainResourceListValueList>;
+
+/** Object that includes an array of Domains resource and a possible link for next set. */
+export interface DomainResourceList {
+  /** The DomainResource items on this page */
+  value: DomainResourceListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const DomainResourceList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: DomainResourceListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DomainResourceList",
+}) as any as S.Schema<DomainResourceList>;
+
+export interface ListEmailServiceByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const ListEmailServiceByResourceGroupRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -1812,8 +1984,8 @@ export const EmailServicesListByResourceGroupRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "EmailServicesListByResourceGroupRequest",
-}) as any as S.Schema<EmailServicesListByResourceGroupRequest>;
+  identifier: "ListEmailServiceByResourceGroupRequest",
+}) as any as S.Schema<ListEmailServiceByResourceGroupRequest>;
 
 /** Resource tags. */
 export type EmailServiceResourceTagsMap = { [key: string]: string | undefined };
@@ -1875,11 +2047,11 @@ export const EmailServiceResourceList = /*@__PURE__*/ S.suspend(() =>
   identifier: "EmailServiceResourceList",
 }) as any as S.Schema<EmailServiceResourceList>;
 
-export interface EmailServicesListBySubscriptionRequest {
+export interface ListEmailServiceBySubscriptionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
 }
-export const EmailServicesListBySubscriptionRequest = /*@__PURE__*/ S.suspend(
+export const ListEmailServiceBySubscriptionRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -1892,14 +2064,14 @@ export const EmailServicesListBySubscriptionRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "EmailServicesListBySubscriptionRequest",
-}) as any as S.Schema<EmailServicesListBySubscriptionRequest>;
+  identifier: "ListEmailServiceBySubscriptionRequest",
+}) as any as S.Schema<ListEmailServiceBySubscriptionRequest>;
 
-export interface EmailServicesListVerifiedExchangeOnlineDomainsRequest {
+export interface ListEmailServiceVerifiedExchangeOnlineDomainsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
 }
-export const EmailServicesListVerifiedExchangeOnlineDomainsRequest =
+export const ListEmailServiceVerifiedExchangeOnlineDomainsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -1912,8 +2084,8 @@ export const EmailServicesListVerifiedExchangeOnlineDomainsRequest =
       }),
     ),
   ).annotate({
-    identifier: "EmailServicesListVerifiedExchangeOnlineDomainsRequest",
-  }) as any as S.Schema<EmailServicesListVerifiedExchangeOnlineDomainsRequest>;
+    identifier: "ListEmailServiceVerifiedExchangeOnlineDomainsRequest",
+  }) as any as S.Schema<ListEmailServiceVerifiedExchangeOnlineDomainsRequest>;
 
 /** List of FQDNs of verified domains in Exchange Online. */
 export type VerifiedExchangeOnlineDomainList = Array<string>;
@@ -1921,93 +2093,17 @@ export const VerifiedExchangeOnlineDomainList = /*@__PURE__*/ S.Array(
   S.String,
 ) as any as S.Schema<VerifiedExchangeOnlineDomainList>;
 
-export type EmailServicesListVerifiedExchangeOnlineDomainsResponse =
+export type ListEmailServiceVerifiedExchangeOnlineDomainsResponse =
   VerifiedExchangeOnlineDomainList;
-export const EmailServicesListVerifiedExchangeOnlineDomainsResponse =
+export const ListEmailServiceVerifiedExchangeOnlineDomainsResponse =
   /*@__PURE__*/ S.suspend(() =>
     VerifiedExchangeOnlineDomainList.pipe(T.RawResponseRoot()),
   ).annotate({
-    identifier: "EmailServicesListVerifiedExchangeOnlineDomainsResponse",
-  }) as any as S.Schema<EmailServicesListVerifiedExchangeOnlineDomainsResponse>;
+    identifier: "ListEmailServiceVerifiedExchangeOnlineDomainsResponse",
+  }) as any as S.Schema<ListEmailServiceVerifiedExchangeOnlineDomainsResponse>;
 
-/** Tags of the service which is a list of key value pairs that describe the resource. */
-export type EmailServicesUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const EmailServicesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<EmailServicesUpdateRequestTagsMap>;
-
-export interface EmailServicesUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the EmailService resource. */
-  emailServiceName: string;
-  /** Tags of the service which is a list of key value pairs that describe the resource. */
-  tags?: EmailServicesUpdateRequestTagsMap;
-}
-export const EmailServicesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    emailServiceName: S.String.pipe(T.Label()),
-    tags: S.optional(EmailServicesUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication/emailServices/{emailServiceName}",
-      code: 200,
-      apiVersion: "2026-03-18",
-    }),
-  ),
-).annotate({
-  identifier: "EmailServicesUpdateRequest",
-}) as any as S.Schema<EmailServicesUpdateRequest>;
-
-/** Resource tags. */
-export type EmailServicesUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const EmailServicesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<EmailServicesUpdateResponseTagsMap>;
-
-export interface EmailServicesUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: EmailServicesUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The properties of the service. */
-  properties?: EmailServiceProperties;
-}
-export const EmailServicesUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(EmailServicesUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(EmailServiceProperties),
-  }),
-).annotate({
-  identifier: "EmailServicesUpdateResponse",
-}) as any as S.Schema<EmailServicesUpdateResponse>;
-
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({
       method: "GET",
@@ -2017,8 +2113,8 @@ export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
 
 /** Localized display information for this particular operation. */
 export interface OperationDisplay {
@@ -2074,25 +2170,364 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
-export interface OperationsListResponse {
+export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
-export const OperationsListResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "OperationsListResponse",
-}) as any as S.Schema<OperationsListResponse>;
+  identifier: "ListOperationsResponse",
+}) as any as S.Schema<ListOperationsResponse>;
+
+export interface ListSenderUsernameByDomainsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the EmailService resource. */
+  emailServiceName: string;
+  /** The name of the Domains resource. */
+  domainName: string;
+}
+export const ListSenderUsernameByDomainsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    emailServiceName: S.String.pipe(T.Label()),
+    domainName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication/emailServices/{emailServiceName}/domains/{domainName}/senderUsernames",
+      code: 200,
+      apiVersion: "2026-03-18",
+    }),
+  ),
+).annotate({
+  identifier: "ListSenderUsernameByDomainsRequest",
+}) as any as S.Schema<ListSenderUsernameByDomainsRequest>;
+
+/** A class representing a SenderUsername resource. */
+export interface SenderUsernameResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of a SenderUsername resource. */
+  properties?: SenderUsernameProperties;
+}
+export const SenderUsernameResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(SenderUsernameProperties),
+  }),
+).annotate({
+  identifier: "SenderUsernameResource",
+}) as any as S.Schema<SenderUsernameResource>;
+
+/** The SenderUsernameResource items on this page */
+export type SenderUsernameResourceCollectionValueList =
+  Array<SenderUsernameResource>;
+export const SenderUsernameResourceCollectionValueList = /*@__PURE__*/ S.Array(
+  SenderUsernameResource,
+) as any as S.Schema<SenderUsernameResourceCollectionValueList>;
+
+/** A class representing a Domains SenderUsernames collection. */
+export interface SenderUsernameResourceCollection {
+  /** The SenderUsernameResource items on this page */
+  value: SenderUsernameResourceCollectionValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const SenderUsernameResourceCollection = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: SenderUsernameResourceCollectionValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SenderUsernameResourceCollection",
+}) as any as S.Schema<SenderUsernameResourceCollection>;
+
+export interface ListSmtpUsernamesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the CommunicationService resource. */
+  communicationServiceName: string;
+}
+export const ListSmtpUsernamesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    communicationServiceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication/communicationServices/{communicationServiceName}/smtpUsernames",
+      code: 200,
+      apiVersion: "2026-03-18",
+    }),
+  ),
+).annotate({
+  identifier: "ListSmtpUsernamesRequest",
+}) as any as S.Schema<ListSmtpUsernamesRequest>;
+
+/** The object describing the smtp username resource. */
+export interface SmtpUsernameResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of a SmtpUsername resource. */
+  properties?: SmtpUsernameProperties;
+}
+export const SmtpUsernameResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(SmtpUsernameProperties),
+  }),
+).annotate({
+  identifier: "SmtpUsernameResource",
+}) as any as S.Schema<SmtpUsernameResource>;
+
+/** The SmtpUsernameResource items on this page */
+export type SmtpUsernameResourceCollectionValueList =
+  Array<SmtpUsernameResource>;
+export const SmtpUsernameResourceCollectionValueList = /*@__PURE__*/ S.Array(
+  SmtpUsernameResource,
+) as any as S.Schema<SmtpUsernameResourceCollectionValueList>;
+
+/** Collection of SmtpUsername resources. Response will include a nextLink if response contains more pages. */
+export interface SmtpUsernameResourceCollection {
+  /** The SmtpUsernameResource items on this page */
+  value: SmtpUsernameResourceCollectionValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const SmtpUsernameResourceCollection = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: SmtpUsernameResourceCollectionValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SmtpUsernameResourceCollection",
+}) as any as S.Schema<SmtpUsernameResourceCollection>;
+
+export interface ListSuppressionListAddressesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the EmailService resource. */
+  emailServiceName: string;
+  /** The name of the Domains resource. */
+  domainName: string;
+  /** The name of the suppression list. */
+  suppressionListName: string;
+}
+export const ListSuppressionListAddressesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    emailServiceName: S.String.pipe(T.Label()),
+    domainName: S.String.pipe(T.Label()),
+    suppressionListName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication/emailServices/{emailServiceName}/domains/{domainName}/suppressionLists/{suppressionListName}/suppressionListAddresses",
+      code: 200,
+      apiVersion: "2026-03-18",
+    }),
+  ),
+).annotate({
+  identifier: "ListSuppressionListAddressesRequest",
+}) as any as S.Schema<ListSuppressionListAddressesRequest>;
+
+/** A object that represents a SuppressionList record. */
+export interface SuppressionListAddressResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of a SuppressionListAddress resource. */
+  properties?: SuppressionListAddressProperties;
+}
+export const SuppressionListAddressResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(SuppressionListAddressProperties),
+  }),
+).annotate({
+  identifier: "SuppressionListAddressResource",
+}) as any as S.Schema<SuppressionListAddressResource>;
+
+/** The SuppressionListAddressResource items on this page */
+export type SuppressionListAddressResourceCollectionValueList =
+  Array<SuppressionListAddressResource>;
+export const SuppressionListAddressResourceCollectionValueList =
+  /*@__PURE__*/ S.Array(
+    SuppressionListAddressResource,
+  ) as any as S.Schema<SuppressionListAddressResourceCollectionValueList>;
+
+/** Collection of addresses in a suppression list. Response will include a nextLink if response contains more pages. */
+export interface SuppressionListAddressResourceCollection {
+  /** The SuppressionListAddressResource items on this page */
+  value: SuppressionListAddressResourceCollectionValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const SuppressionListAddressResourceCollection = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      value: SuppressionListAddressResourceCollectionValueList,
+      nextLink: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "SuppressionListAddressResourceCollection",
+}) as any as S.Schema<SuppressionListAddressResourceCollection>;
+
+export interface ListSuppressionListByDomainRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the EmailService resource. */
+  emailServiceName: string;
+  /** The name of the Domains resource. */
+  domainName: string;
+}
+export const ListSuppressionListByDomainRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    emailServiceName: S.String.pipe(T.Label()),
+    domainName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication/emailServices/{emailServiceName}/domains/{domainName}/suppressionLists",
+      code: 200,
+      apiVersion: "2026-03-18",
+    }),
+  ),
+).annotate({
+  identifier: "ListSuppressionListByDomainRequest",
+}) as any as S.Schema<ListSuppressionListByDomainRequest>;
+
+/** A class representing a SuppressionList resource. */
+export interface SuppressionListResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of a SuppressionList resource. */
+  properties?: SuppressionListProperties;
+}
+export const SuppressionListResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(SuppressionListProperties),
+  }),
+).annotate({
+  identifier: "SuppressionListResource",
+}) as any as S.Schema<SuppressionListResource>;
+
+/** The SuppressionListResource items on this page */
+export type SuppressionListResourceCollectionValueList =
+  Array<SuppressionListResource>;
+export const SuppressionListResourceCollectionValueList = /*@__PURE__*/ S.Array(
+  SuppressionListResource,
+) as any as S.Schema<SuppressionListResourceCollectionValueList>;
+
+/** A class representing a Domains SuppressionListResource collection. */
+export interface SuppressionListResourceCollection {
+  /** The SuppressionListResource items on this page */
+  value: SuppressionListResourceCollectionValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const SuppressionListResourceCollection = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: SuppressionListResourceCollectionValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SuppressionListResourceCollection",
+}) as any as S.Schema<SuppressionListResourceCollection>;
+
+/** The keyType to regenerate. Must be either 'primary' or 'secondary'(case-insensitive). */
+export type KeyType = "Primary" | "Secondary";
+export const KeyType = /*@__PURE__*/ S.String;
+
+export interface RegenerateCommunicationServiceKeyRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the CommunicationService resource. */
+  communicationServiceName: string;
+  /** The keyType to regenerate. Must be either 'primary' or 'secondary'(case-insensitive). */
+  keyType?: KeyType | (string & {});
+}
+export const RegenerateCommunicationServiceKeyRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      communicationServiceName: S.String.pipe(T.Label()),
+      keyType: S.optional(KeyType),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication/communicationServices/{communicationServiceName}/regenerateKey",
+        code: 200,
+        apiVersion: "2026-03-18",
+      }),
+    ),
+).annotate({
+  identifier: "RegenerateCommunicationServiceKeyRequest",
+}) as any as S.Schema<RegenerateCommunicationServiceKeyRequest>;
 
 /** A class that describes the properties of a SenderUsername resource. */
 export interface SenderUsernamePropertiesInput {
@@ -2145,41 +2580,6 @@ export const SenderUsernamesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
   identifier: "SenderUsernamesCreateOrUpdateRequest",
 }) as any as S.Schema<SenderUsernamesCreateOrUpdateRequest>;
 
-/** Provisioning state of the resource. Unknown is the default state for Communication Services. */
-export type ProvisioningState =
-  | "Unknown"
-  | "Succeeded"
-  | "Failed"
-  | "Canceled"
-  | "Running"
-  | "Creating"
-  | "Updating"
-  | "Deleting"
-  | "Moving";
-export const ProvisioningState = /*@__PURE__*/ S.String;
-
-/** A class that describes the properties of a SenderUsername resource. */
-export interface SenderUsernameProperties {
-  /** The location where the SenderUsername resource data is stored at rest. */
-  dataLocation?: string;
-  /** A sender senderUsername to be used when sending emails. */
-  username: string;
-  /** The display name for the senderUsername. */
-  displayName?: string;
-  /** Provisioning state of the resource. Unknown is the default state for Communication Services. */
-  provisioningState?: ProvisioningState;
-}
-export const SenderUsernameProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    dataLocation: S.optional(S.String),
-    username: S.String,
-    displayName: S.optional(S.String),
-    provisioningState: S.optional(ProvisioningState),
-  }),
-).annotate({
-  identifier: "SenderUsernameProperties",
-}) as any as S.Schema<SenderUsernameProperties>;
-
 export interface SenderUsernamesCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
@@ -2204,194 +2604,6 @@ export const SenderUsernamesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "SenderUsernamesCreateOrUpdateResponse",
 }) as any as S.Schema<SenderUsernamesCreateOrUpdateResponse>;
-
-export interface SenderUsernamesDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the EmailService resource. */
-  emailServiceName: string;
-  /** The name of the Domains resource. */
-  domainName: string;
-  /** The valid sender Username. */
-  senderUsername: string;
-}
-export const SenderUsernamesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    emailServiceName: S.String.pipe(T.Label()),
-    domainName: S.String.pipe(T.Label()),
-    senderUsername: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication/emailServices/{emailServiceName}/domains/{domainName}/senderUsernames/{senderUsername}",
-      code: 200,
-      apiVersion: "2026-03-18",
-    }),
-  ),
-).annotate({
-  identifier: "SenderUsernamesDeleteRequest",
-}) as any as S.Schema<SenderUsernamesDeleteRequest>;
-
-export interface SenderUsernamesDeleteResponse {}
-export const SenderUsernamesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "SenderUsernamesDeleteResponse",
-}) as any as S.Schema<SenderUsernamesDeleteResponse>;
-
-export interface SenderUsernamesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the EmailService resource. */
-  emailServiceName: string;
-  /** The name of the Domains resource. */
-  domainName: string;
-  /** The valid sender Username. */
-  senderUsername: string;
-}
-export const SenderUsernamesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    emailServiceName: S.String.pipe(T.Label()),
-    domainName: S.String.pipe(T.Label()),
-    senderUsername: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication/emailServices/{emailServiceName}/domains/{domainName}/senderUsernames/{senderUsername}",
-      code: 200,
-      apiVersion: "2026-03-18",
-    }),
-  ),
-).annotate({
-  identifier: "SenderUsernamesGetRequest",
-}) as any as S.Schema<SenderUsernamesGetRequest>;
-
-export interface SenderUsernamesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of a SenderUsername resource. */
-  properties?: SenderUsernameProperties;
-}
-export const SenderUsernamesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(SenderUsernameProperties),
-  }),
-).annotate({
-  identifier: "SenderUsernamesGetResponse",
-}) as any as S.Schema<SenderUsernamesGetResponse>;
-
-export interface SenderUsernamesListByDomainsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the EmailService resource. */
-  emailServiceName: string;
-  /** The name of the Domains resource. */
-  domainName: string;
-}
-export const SenderUsernamesListByDomainsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    emailServiceName: S.String.pipe(T.Label()),
-    domainName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication/emailServices/{emailServiceName}/domains/{domainName}/senderUsernames",
-      code: 200,
-      apiVersion: "2026-03-18",
-    }),
-  ),
-).annotate({
-  identifier: "SenderUsernamesListByDomainsRequest",
-}) as any as S.Schema<SenderUsernamesListByDomainsRequest>;
-
-/** A class representing a SenderUsername resource. */
-export interface SenderUsernameResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of a SenderUsername resource. */
-  properties?: SenderUsernameProperties;
-}
-export const SenderUsernameResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(SenderUsernameProperties),
-  }),
-).annotate({
-  identifier: "SenderUsernameResource",
-}) as any as S.Schema<SenderUsernameResource>;
-
-/** The SenderUsernameResource items on this page */
-export type SenderUsernameResourceCollectionValueList =
-  Array<SenderUsernameResource>;
-export const SenderUsernameResourceCollectionValueList = /*@__PURE__*/ S.Array(
-  SenderUsernameResource,
-) as any as S.Schema<SenderUsernameResourceCollectionValueList>;
-
-/** A class representing a Domains SenderUsernames collection. */
-export interface SenderUsernameResourceCollection {
-  /** The SenderUsernameResource items on this page */
-  value: SenderUsernameResourceCollectionValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const SenderUsernameResourceCollection = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: SenderUsernameResourceCollectionValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SenderUsernameResourceCollection",
-}) as any as S.Schema<SenderUsernameResourceCollection>;
-
-/** A class that describes the properties of a SmtpUsername resource. */
-export interface SmtpUsernameProperties {
-  /** The SMTP username. Could be free form or in the email address format. */
-  username: string;
-  /** The application Id for the linked Entra Application. */
-  entraApplicationId: string;
-  /** The tenant of the linked Entra Application. */
-  tenantId: string;
-}
-export const SmtpUsernameProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    username: S.String,
-    entraApplicationId: S.String,
-    tenantId: S.String,
-  }),
-).annotate({
-  identifier: "SmtpUsernameProperties",
-}) as any as S.Schema<SmtpUsernameProperties>;
 
 export interface SmtpUsernamesCreateOrUpdateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -2447,166 +2659,6 @@ export const SmtpUsernamesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "SmtpUsernamesCreateOrUpdateResponse",
 }) as any as S.Schema<SmtpUsernamesCreateOrUpdateResponse>;
-
-export interface SmtpUsernamesDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the CommunicationService resource. */
-  communicationServiceName: string;
-  /** The name of the SmtpUsernameResource. */
-  smtpUsername: string;
-}
-export const SmtpUsernamesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    communicationServiceName: S.String.pipe(T.Label()),
-    smtpUsername: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication/communicationServices/{communicationServiceName}/smtpUsernames/{smtpUsername}",
-      code: 200,
-      apiVersion: "2026-03-18",
-    }),
-  ),
-).annotate({
-  identifier: "SmtpUsernamesDeleteRequest",
-}) as any as S.Schema<SmtpUsernamesDeleteRequest>;
-
-export interface SmtpUsernamesDeleteResponse {}
-export const SmtpUsernamesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "SmtpUsernamesDeleteResponse",
-}) as any as S.Schema<SmtpUsernamesDeleteResponse>;
-
-export interface SmtpUsernamesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the CommunicationService resource. */
-  communicationServiceName: string;
-  /** The name of the SmtpUsernameResource. */
-  smtpUsername: string;
-}
-export const SmtpUsernamesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    communicationServiceName: S.String.pipe(T.Label()),
-    smtpUsername: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication/communicationServices/{communicationServiceName}/smtpUsernames/{smtpUsername}",
-      code: 200,
-      apiVersion: "2026-03-18",
-    }),
-  ),
-).annotate({
-  identifier: "SmtpUsernamesGetRequest",
-}) as any as S.Schema<SmtpUsernamesGetRequest>;
-
-export interface SmtpUsernamesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of a SmtpUsername resource. */
-  properties?: SmtpUsernameProperties;
-}
-export const SmtpUsernamesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(SmtpUsernameProperties),
-  }),
-).annotate({
-  identifier: "SmtpUsernamesGetResponse",
-}) as any as S.Schema<SmtpUsernamesGetResponse>;
-
-export interface SmtpUsernamesListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the CommunicationService resource. */
-  communicationServiceName: string;
-}
-export const SmtpUsernamesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    communicationServiceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication/communicationServices/{communicationServiceName}/smtpUsernames",
-      code: 200,
-      apiVersion: "2026-03-18",
-    }),
-  ),
-).annotate({
-  identifier: "SmtpUsernamesListRequest",
-}) as any as S.Schema<SmtpUsernamesListRequest>;
-
-/** The object describing the smtp username resource. */
-export interface SmtpUsernameResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of a SmtpUsername resource. */
-  properties?: SmtpUsernameProperties;
-}
-export const SmtpUsernameResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(SmtpUsernameProperties),
-  }),
-).annotate({
-  identifier: "SmtpUsernameResource",
-}) as any as S.Schema<SmtpUsernameResource>;
-
-/** The SmtpUsernameResource items on this page */
-export type SmtpUsernameResourceCollectionValueList =
-  Array<SmtpUsernameResource>;
-export const SmtpUsernameResourceCollectionValueList = /*@__PURE__*/ S.Array(
-  SmtpUsernameResource,
-) as any as S.Schema<SmtpUsernameResourceCollectionValueList>;
-
-/** Collection of SmtpUsername resources. Response will include a nextLink if response contains more pages. */
-export interface SmtpUsernameResourceCollection {
-  /** The SmtpUsernameResource items on this page */
-  value: SmtpUsernameResourceCollectionValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const SmtpUsernameResourceCollection = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: SmtpUsernameResourceCollectionValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SmtpUsernameResourceCollection",
-}) as any as S.Schema<SmtpUsernameResourceCollection>;
 
 /** A class that describes the properties of a SuppressionListAddress resource. */
 export interface SuppressionListAddressPropertiesInput {
@@ -2669,34 +2721,6 @@ export const SuppressionListAddressesCreateOrUpdateRequest =
     identifier: "SuppressionListAddressesCreateOrUpdateRequest",
   }) as any as S.Schema<SuppressionListAddressesCreateOrUpdateRequest>;
 
-/** A class that describes the properties of a SuppressionListAddress resource. */
-export interface SuppressionListAddressProperties {
-  /** Email address of the recipient. */
-  email: string;
-  /** The first name of the email recipient. */
-  firstName?: string;
-  /** The last name of the email recipient. */
-  lastName?: string;
-  /** An optional property to provide contextual notes or a description for an address. */
-  notes?: string;
-  /** The date the address was last updated in a suppression list. */
-  lastModified?: string;
-  /** The location where the SuppressionListAddress data is stored at rest. This value is inherited from the parent Domains resource. */
-  dataLocation?: string;
-}
-export const SuppressionListAddressProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    email: S.String,
-    firstName: S.optional(S.String),
-    lastName: S.optional(S.String),
-    notes: S.optional(S.String),
-    lastModified: S.optional(S.String),
-    dataLocation: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SuppressionListAddressProperties",
-}) as any as S.Schema<SuppressionListAddressProperties>;
-
 export interface SuppressionListAddressesCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
@@ -2721,187 +2745,6 @@ export const SuppressionListAddressesCreateOrUpdateResponse =
   ).annotate({
     identifier: "SuppressionListAddressesCreateOrUpdateResponse",
   }) as any as S.Schema<SuppressionListAddressesCreateOrUpdateResponse>;
-
-export interface SuppressionListAddressesDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the EmailService resource. */
-  emailServiceName: string;
-  /** The name of the Domains resource. */
-  domainName: string;
-  /** The name of the suppression list. */
-  suppressionListName: string;
-  /** The id of the address in a suppression list. */
-  addressId: string;
-}
-export const SuppressionListAddressesDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      emailServiceName: S.String.pipe(T.Label()),
-      domainName: S.String.pipe(T.Label()),
-      suppressionListName: S.String.pipe(T.Label()),
-      addressId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication/emailServices/{emailServiceName}/domains/{domainName}/suppressionLists/{suppressionListName}/suppressionListAddresses/{addressId}",
-        code: 200,
-        apiVersion: "2026-03-18",
-      }),
-    ),
-).annotate({
-  identifier: "SuppressionListAddressesDeleteRequest",
-}) as any as S.Schema<SuppressionListAddressesDeleteRequest>;
-
-export interface SuppressionListAddressesDeleteResponse {}
-export const SuppressionListAddressesDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "SuppressionListAddressesDeleteResponse",
-}) as any as S.Schema<SuppressionListAddressesDeleteResponse>;
-
-export interface SuppressionListAddressesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the EmailService resource. */
-  emailServiceName: string;
-  /** The name of the Domains resource. */
-  domainName: string;
-  /** The name of the suppression list. */
-  suppressionListName: string;
-  /** The id of the address in a suppression list. */
-  addressId: string;
-}
-export const SuppressionListAddressesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    emailServiceName: S.String.pipe(T.Label()),
-    domainName: S.String.pipe(T.Label()),
-    suppressionListName: S.String.pipe(T.Label()),
-    addressId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication/emailServices/{emailServiceName}/domains/{domainName}/suppressionLists/{suppressionListName}/suppressionListAddresses/{addressId}",
-      code: 200,
-      apiVersion: "2026-03-18",
-    }),
-  ),
-).annotate({
-  identifier: "SuppressionListAddressesGetRequest",
-}) as any as S.Schema<SuppressionListAddressesGetRequest>;
-
-export interface SuppressionListAddressesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of a SuppressionListAddress resource. */
-  properties?: SuppressionListAddressProperties;
-}
-export const SuppressionListAddressesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(SuppressionListAddressProperties),
-  }),
-).annotate({
-  identifier: "SuppressionListAddressesGetResponse",
-}) as any as S.Schema<SuppressionListAddressesGetResponse>;
-
-export interface SuppressionListAddressesListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the EmailService resource. */
-  emailServiceName: string;
-  /** The name of the Domains resource. */
-  domainName: string;
-  /** The name of the suppression list. */
-  suppressionListName: string;
-}
-export const SuppressionListAddressesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    emailServiceName: S.String.pipe(T.Label()),
-    domainName: S.String.pipe(T.Label()),
-    suppressionListName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication/emailServices/{emailServiceName}/domains/{domainName}/suppressionLists/{suppressionListName}/suppressionListAddresses",
-      code: 200,
-      apiVersion: "2026-03-18",
-    }),
-  ),
-).annotate({
-  identifier: "SuppressionListAddressesListRequest",
-}) as any as S.Schema<SuppressionListAddressesListRequest>;
-
-/** A object that represents a SuppressionList record. */
-export interface SuppressionListAddressResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of a SuppressionListAddress resource. */
-  properties?: SuppressionListAddressProperties;
-}
-export const SuppressionListAddressResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(SuppressionListAddressProperties),
-  }),
-).annotate({
-  identifier: "SuppressionListAddressResource",
-}) as any as S.Schema<SuppressionListAddressResource>;
-
-/** The SuppressionListAddressResource items on this page */
-export type SuppressionListAddressResourceCollectionValueList =
-  Array<SuppressionListAddressResource>;
-export const SuppressionListAddressResourceCollectionValueList =
-  /*@__PURE__*/ S.Array(
-    SuppressionListAddressResource,
-  ) as any as S.Schema<SuppressionListAddressResourceCollectionValueList>;
-
-/** Collection of addresses in a suppression list. Response will include a nextLink if response contains more pages. */
-export interface SuppressionListAddressResourceCollection {
-  /** The SuppressionListAddressResource items on this page */
-  value: SuppressionListAddressResourceCollectionValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const SuppressionListAddressResourceCollection = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      value: SuppressionListAddressResourceCollectionValueList,
-      nextLink: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "SuppressionListAddressResourceCollection",
-}) as any as S.Schema<SuppressionListAddressResourceCollection>;
 
 /** A class that describes the properties of a SuppressionList resource. */
 export interface SuppressionListPropertiesInput {
@@ -2951,28 +2794,6 @@ export const SuppressionListsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
   identifier: "SuppressionListsCreateOrUpdateRequest",
 }) as any as S.Schema<SuppressionListsCreateOrUpdateRequest>;
 
-/** A class that describes the properties of a SuppressionList resource. */
-export interface SuppressionListProperties {
-  /** The name of the suppression list. This value must match one of the valid sender usernames of the sending domain. */
-  listName?: string;
-  /** The date the resource was last updated. */
-  lastUpdatedTimeStamp?: string;
-  /** The date the resource was created. */
-  createdTimeStamp?: string;
-  /** The location where the SuppressionListAddress data is stored at rest. This value is inherited from the parent Domains resource. */
-  dataLocation?: string;
-}
-export const SuppressionListProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    listName: S.optional(S.String),
-    lastUpdatedTimeStamp: S.optional(S.String),
-    createdTimeStamp: S.optional(S.String),
-    dataLocation: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SuppressionListProperties",
-}) as any as S.Schema<SuppressionListProperties>;
-
 export interface SuppressionListsCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
@@ -2998,76 +2819,151 @@ export const SuppressionListsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "SuppressionListsCreateOrUpdateResponse",
 }) as any as S.Schema<SuppressionListsCreateOrUpdateResponse>;
 
-export interface SuppressionListsDeleteRequest {
+/** Tags of the service which is a list of key value pairs that describe the resource. */
+export type UpdateCommunicationServiceRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateCommunicationServiceRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateCommunicationServiceRequestTagsMap>;
+
+/** Allow, disallow, or let network security perimeter configuration control public network access to the protected resource. Value is optional but if passed in, it must be 'Enabled', 'Disabled' or 'SecuredByPerimeter'. */
+export type CommunicationServiceUpdatePropertiesPublicNetworkAccess =
+  | "Enabled"
+  | "Disabled"
+  | "SecuredByPerimeter";
+export const CommunicationServiceUpdatePropertiesPublicNetworkAccess =
+  /*@__PURE__*/ S.String;
+
+/** A class that describes the properties that can be updated for CommunicationService resource. */
+export interface CommunicationServiceUpdateProperties {
+  /** List of email Domain resource Ids. */
+  linkedDomains?: DomainsResourceList;
+  /** Allow, disallow, or let network security perimeter configuration control public network access to the protected resource. Value is optional but if passed in, it must be 'Enabled', 'Disabled' or 'SecuredByPerimeter'. */
+  publicNetworkAccess?:
+    | CommunicationServiceUpdatePropertiesPublicNetworkAccess
+    | (string & {});
+  /** Disable local authentication for the CommunicationService. */
+  disableLocalAuth?: boolean;
+}
+export const CommunicationServiceUpdateProperties = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      linkedDomains: S.optional(DomainsResourceList),
+      publicNetworkAccess: S.optional(
+        CommunicationServiceUpdatePropertiesPublicNetworkAccess,
+      ),
+      disableLocalAuth: S.optional(S.Boolean),
+    }),
+).annotate({
+  identifier: "CommunicationServiceUpdateProperties",
+}) as any as S.Schema<CommunicationServiceUpdateProperties>;
+
+/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+export type UpdateCommunicationServiceRequestIdentityUserAssignedIdentitiesMap =
+  { [key: string]: UserAssignedIdentityInput | undefined };
+export const UpdateCommunicationServiceRequestIdentityUserAssignedIdentitiesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    UserAssignedIdentityInput,
+  ) as any as S.Schema<UpdateCommunicationServiceRequestIdentityUserAssignedIdentitiesMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export interface UpdateCommunicationServiceRequestIdentity {
+  type: ManagedServiceIdentityType | (string & {});
+  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+  userAssignedIdentities?: UpdateCommunicationServiceRequestIdentityUserAssignedIdentitiesMap;
+}
+export const UpdateCommunicationServiceRequestIdentity =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: ManagedServiceIdentityType,
+      userAssignedIdentities: S.optional(
+        UpdateCommunicationServiceRequestIdentityUserAssignedIdentitiesMap,
+      ),
+    }),
+  ).annotate({
+    identifier: "UpdateCommunicationServiceRequestIdentity",
+  }) as any as S.Schema<UpdateCommunicationServiceRequestIdentity>;
+
+export interface UpdateCommunicationServiceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** The name of the EmailService resource. */
-  emailServiceName: string;
-  /** The name of the Domains resource. */
-  domainName: string;
-  /** The name of the suppression list. */
-  suppressionListName: string;
+  /** The name of the CommunicationService resource. */
+  communicationServiceName: string;
+  /** Tags of the service which is a list of key value pairs that describe the resource. */
+  tags?: UpdateCommunicationServiceRequestTagsMap;
+  /** The properties of the service. */
+  properties?: CommunicationServiceUpdateProperties;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: UpdateCommunicationServiceRequestIdentity;
 }
-export const SuppressionListsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateCommunicationServiceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
-    emailServiceName: S.String.pipe(T.Label()),
-    domainName: S.String.pipe(T.Label()),
-    suppressionListName: S.String.pipe(T.Label()),
+    communicationServiceName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateCommunicationServiceRequestTagsMap),
+    properties: S.optional(CommunicationServiceUpdateProperties),
+    identity: S.optional(UpdateCommunicationServiceRequestIdentity),
   }).pipe(
     T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication/emailServices/{emailServiceName}/domains/{domainName}/suppressionLists/{suppressionListName}",
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication/communicationServices/{communicationServiceName}",
       code: 200,
       apiVersion: "2026-03-18",
     }),
   ),
 ).annotate({
-  identifier: "SuppressionListsDeleteRequest",
-}) as any as S.Schema<SuppressionListsDeleteRequest>;
+  identifier: "UpdateCommunicationServiceRequest",
+}) as any as S.Schema<UpdateCommunicationServiceRequest>;
 
-export interface SuppressionListsDeleteResponse {}
-export const SuppressionListsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "SuppressionListsDeleteResponse",
-}) as any as S.Schema<SuppressionListsDeleteResponse>;
+/** Resource tags. */
+export type UpdateCommunicationServiceResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateCommunicationServiceResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateCommunicationServiceResponseTagsMap>;
 
-export interface SuppressionListsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the EmailService resource. */
-  emailServiceName: string;
-  /** The name of the Domains resource. */
-  domainName: string;
-  /** The name of the suppression list. */
-  suppressionListName: string;
+/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+export type UpdateCommunicationServiceResponseIdentityUserAssignedIdentitiesMap =
+  { [key: string]: UserAssignedIdentity | undefined };
+export const UpdateCommunicationServiceResponseIdentityUserAssignedIdentitiesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    UserAssignedIdentity,
+  ) as any as S.Schema<UpdateCommunicationServiceResponseIdentityUserAssignedIdentitiesMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export interface UpdateCommunicationServiceResponseIdentity {
+  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  principalId?: string;
+  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  tenantId?: string;
+  type: ManagedServiceIdentityType;
+  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+  userAssignedIdentities?: UpdateCommunicationServiceResponseIdentityUserAssignedIdentitiesMap;
 }
-export const SuppressionListsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    emailServiceName: S.String.pipe(T.Label()),
-    domainName: S.String.pipe(T.Label()),
-    suppressionListName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication/emailServices/{emailServiceName}/domains/{domainName}/suppressionLists/{suppressionListName}",
-      code: 200,
-      apiVersion: "2026-03-18",
+export const UpdateCommunicationServiceResponseIdentity =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      principalId: S.optional(S.String),
+      tenantId: S.optional(S.String),
+      type: ManagedServiceIdentityType,
+      userAssignedIdentities: S.optional(
+        UpdateCommunicationServiceResponseIdentityUserAssignedIdentitiesMap,
+      ),
     }),
-  ),
-).annotate({
-  identifier: "SuppressionListsGetRequest",
-}) as any as S.Schema<SuppressionListsGetRequest>;
+  ).annotate({
+    identifier: "UpdateCommunicationServiceResponseIdentity",
+  }) as any as S.Schema<UpdateCommunicationServiceResponseIdentity>;
 
-export interface SuppressionListsGetResponse {
+export interface UpdateCommunicationServiceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -3076,22 +2972,51 @@ export interface SuppressionListsGetResponse {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
-  /** The properties of a SuppressionList resource. */
-  properties?: SuppressionListProperties;
+  /** Resource tags. */
+  tags?: UpdateCommunicationServiceResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The properties of the service. */
+  properties?: CommunicationServiceProperties;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: UpdateCommunicationServiceResponseIdentity;
 }
-export const SuppressionListsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateCommunicationServiceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    properties: S.optional(SuppressionListProperties),
+    tags: S.optional(UpdateCommunicationServiceResponseTagsMap),
+    location: S.String,
+    properties: S.optional(CommunicationServiceProperties),
+    identity: S.optional(UpdateCommunicationServiceResponseIdentity),
   }),
 ).annotate({
-  identifier: "SuppressionListsGetResponse",
-}) as any as S.Schema<SuppressionListsGetResponse>;
+  identifier: "UpdateCommunicationServiceResponse",
+}) as any as S.Schema<UpdateCommunicationServiceResponse>;
 
-export interface SuppressionListsListByDomainRequest {
+/** Tags of the service which is a list of key value pairs that describe the resource. */
+export type UpdateDomainRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateDomainRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateDomainRequestTagsMap>;
+
+/** A class that describes the updatable properties of a Domains resource. */
+export interface UpdateDomainProperties {
+  /** Describes whether user engagement tracking is enabled or disabled. */
+  userEngagementTracking?: UserEngagementTracking | (string & {});
+}
+export const UpdateDomainProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    userEngagementTracking: S.optional(UserEngagementTracking),
+  }),
+).annotate({
+  identifier: "UpdateDomainProperties",
+}) as any as S.Schema<UpdateDomainProperties>;
+
+export interface UpdateDomainRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3100,27 +3025,39 @@ export interface SuppressionListsListByDomainRequest {
   emailServiceName: string;
   /** The name of the Domains resource. */
   domainName: string;
+  /** Tags of the service which is a list of key value pairs that describe the resource. */
+  tags?: UpdateDomainRequestTagsMap;
+  /** A class that describes the updatable properties of a Domains resource. */
+  properties?: UpdateDomainProperties;
 }
-export const SuppressionListsListByDomainRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateDomainRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     emailServiceName: S.String.pipe(T.Label()),
     domainName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateDomainRequestTagsMap),
+    properties: S.optional(UpdateDomainProperties),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication/emailServices/{emailServiceName}/domains/{domainName}/suppressionLists",
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication/emailServices/{emailServiceName}/domains/{domainName}",
       code: 200,
       apiVersion: "2026-03-18",
     }),
   ),
 ).annotate({
-  identifier: "SuppressionListsListByDomainRequest",
-}) as any as S.Schema<SuppressionListsListByDomainRequest>;
+  identifier: "UpdateDomainRequest",
+}) as any as S.Schema<UpdateDomainRequest>;
 
-/** A class representing a SuppressionList resource. */
-export interface SuppressionListResource {
+/** Resource tags. */
+export type UpdateDomainResponseTagsMap = { [key: string]: string | undefined };
+export const UpdateDomainResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateDomainResponseTagsMap>;
+
+export interface UpdateDomainResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -3129,54 +3066,128 @@ export interface SuppressionListResource {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
-  /** The properties of a SuppressionList resource. */
-  properties?: SuppressionListProperties;
+  /** Resource tags. */
+  tags?: UpdateDomainResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The properties of a Domains resource. */
+  properties?: DomainProperties;
 }
-export const SuppressionListResource = /*@__PURE__*/ S.suspend(() =>
+export const UpdateDomainResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    properties: S.optional(SuppressionListProperties),
+    tags: S.optional(UpdateDomainResponseTagsMap),
+    location: S.String,
+    properties: S.optional(DomainProperties),
   }),
 ).annotate({
-  identifier: "SuppressionListResource",
-}) as any as S.Schema<SuppressionListResource>;
+  identifier: "UpdateDomainResponse",
+}) as any as S.Schema<UpdateDomainResponse>;
 
-/** The SuppressionListResource items on this page */
-export type SuppressionListResourceCollectionValueList =
-  Array<SuppressionListResource>;
-export const SuppressionListResourceCollectionValueList = /*@__PURE__*/ S.Array(
-  SuppressionListResource,
-) as any as S.Schema<SuppressionListResourceCollectionValueList>;
+/** Tags of the service which is a list of key value pairs that describe the resource. */
+export type UpdateEmailServiceRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateEmailServiceRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateEmailServiceRequestTagsMap>;
 
-/** A class representing a Domains SuppressionListResource collection. */
-export interface SuppressionListResourceCollection {
-  /** The SuppressionListResource items on this page */
-  value: SuppressionListResourceCollectionValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
+export interface UpdateEmailServiceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the EmailService resource. */
+  emailServiceName: string;
+  /** Tags of the service which is a list of key value pairs that describe the resource. */
+  tags?: UpdateEmailServiceRequestTagsMap;
 }
-export const SuppressionListResourceCollection = /*@__PURE__*/ S.suspend(() =>
+export const UpdateEmailServiceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: SuppressionListResourceCollectionValueList,
-    nextLink: S.optional(S.String),
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    emailServiceName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateEmailServiceRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication/emailServices/{emailServiceName}",
+      code: 200,
+      apiVersion: "2026-03-18",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateEmailServiceRequest",
+}) as any as S.Schema<UpdateEmailServiceRequest>;
+
+/** Resource tags. */
+export type UpdateEmailServiceResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateEmailServiceResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateEmailServiceResponseTagsMap>;
+
+export interface UpdateEmailServiceResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateEmailServiceResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The properties of the service. */
+  properties?: EmailServiceProperties;
+}
+export const UpdateEmailServiceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateEmailServiceResponseTagsMap),
+    location: S.String,
+    properties: S.optional(EmailServiceProperties),
   }),
 ).annotate({
-  identifier: "SuppressionListResourceCollection",
-}) as any as S.Schema<SuppressionListResourceCollection>;
+  identifier: "UpdateEmailServiceResponse",
+}) as any as S.Schema<UpdateEmailServiceResponse>;
 
-export type CommunicationServicesCheckNameAvailabilityError = AzureOpError;
-/** Check Name Availability Checks that the CommunicationService name is valid and is not already in use. */
-export const CommunicationServicesCheckNameAvailability: API.OperationMethod<
-  CommunicationServicesCheckNameAvailabilityRequest,
-  CommunicationServicesCheckNameAvailabilityResponse,
-  CommunicationServicesCheckNameAvailabilityError,
+export type CancelDomainVerificationError = AzureOpError;
+/** Cancel Verification Cancel verification of DNS record. */
+export const CancelDomainVerification: API.OperationMethod<
+  CancelDomainVerificationRequest,
+  CancelDomainVerificationResponse,
+  CancelDomainVerificationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CommunicationServicesCheckNameAvailabilityRequest,
-  output: CommunicationServicesCheckNameAvailabilityResponse,
+  input: CancelDomainVerificationRequest,
+  output: CancelDomainVerificationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CheckCommunicationServiceNameAvailabilityError = AzureOpError;
+/** Check Name Availability Checks that the CommunicationService name is valid and is not already in use. */
+export const CheckCommunicationServiceNameAvailability: API.OperationMethod<
+  CheckCommunicationServiceNameAvailabilityRequest,
+  CheckCommunicationServiceNameAvailabilityResponse,
+  CheckCommunicationServiceNameAvailabilityError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CheckCommunicationServiceNameAvailabilityRequest,
+  output: CheckCommunicationServiceNameAvailabilityResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3197,36 +3208,6 @@ export const CommunicationServicesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CommunicationServicesDeleteError = AzureOpError;
-/** Delete Operation to delete a CommunicationService. */
-export const CommunicationServicesDelete: API.OperationMethod<
-  CommunicationServicesDeleteRequest,
-  CommunicationServicesDeleteResponse,
-  CommunicationServicesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CommunicationServicesDeleteRequest,
-  output: CommunicationServicesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CommunicationServicesGetError = AzureOpError;
-/** Get Get the CommunicationService and its properties. */
-export const CommunicationServicesGet: API.OperationMethod<
-  CommunicationServicesGetRequest,
-  CommunicationServicesGetResponse,
-  CommunicationServicesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CommunicationServicesGetRequest,
-  output: CommunicationServicesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type CommunicationServicesLinkNotificationHubError = AzureOpError;
 /** Link Notification Hub Links an Azure Notification Hub to this communication service. */
 export const CommunicationServicesLinkNotificationHub: API.OperationMethod<
@@ -3242,91 +3223,106 @@ export const CommunicationServicesLinkNotificationHub: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CommunicationServicesListByResourceGroupError = AzureOpError;
-/** List By Resource Group Handles requests to list all resources in a resource group. */
-export const CommunicationServicesListByResourceGroup: API.OperationMethod<
-  CommunicationServicesListByResourceGroupRequest,
-  CommunicationServiceResourceList,
-  CommunicationServicesListByResourceGroupError,
+export type DeleteCommunicationServiceError = AzureOpError;
+/** Delete Operation to delete a CommunicationService. */
+export const DeleteCommunicationService: API.OperationMethod<
+  DeleteCommunicationServiceRequest,
+  DeleteCommunicationServiceResponse,
+  DeleteCommunicationServiceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CommunicationServicesListByResourceGroupRequest,
-  output: CommunicationServiceResourceList,
+  input: DeleteCommunicationServiceRequest,
+  output: DeleteCommunicationServiceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type CommunicationServicesListBySubscriptionError = AzureOpError;
-/** List By Subscription Handles requests to list all resources in a subscription. */
-export const CommunicationServicesListBySubscription: API.OperationMethod<
-  CommunicationServicesListBySubscriptionRequest,
-  CommunicationServiceResourceList,
-  CommunicationServicesListBySubscriptionError,
+export type DeleteDomainError = AzureOpError;
+/** Delete Operation to delete a Domains resource. */
+export const DeleteDomain: API.OperationMethod<
+  DeleteDomainRequest,
+  DeleteDomainResponse,
+  DeleteDomainError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CommunicationServicesListBySubscriptionRequest,
-  output: CommunicationServiceResourceList,
+  input: DeleteDomainRequest,
+  output: DeleteDomainResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type CommunicationServicesListKeysError = AzureOpError;
-/** List Keys Get the access keys of the CommunicationService resource. */
-export const CommunicationServicesListKeys: API.OperationMethod<
-  CommunicationServicesListKeysRequest,
-  CommunicationServiceKeys,
-  CommunicationServicesListKeysError,
+export type DeleteEmailServiceError = AzureOpError;
+/** Delete Operation to delete a EmailService. */
+export const DeleteEmailService: API.OperationMethod<
+  DeleteEmailServiceRequest,
+  DeleteEmailServiceResponse,
+  DeleteEmailServiceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CommunicationServicesListKeysRequest,
-  output: CommunicationServiceKeys,
+  input: DeleteEmailServiceRequest,
+  output: DeleteEmailServiceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type CommunicationServicesRegenerateKeyError = AzureOpError;
-/** Regenerate Key Regenerate CommunicationService access key. PrimaryKey and SecondaryKey cannot be regenerated at the same time. */
-export const CommunicationServicesRegenerateKey: API.OperationMethod<
-  CommunicationServicesRegenerateKeyRequest,
-  CommunicationServiceKeys,
-  CommunicationServicesRegenerateKeyError,
+export type DeleteSenderUsernameError = AzureOpError;
+/** Delete Operation to delete a SenderUsernames resource. */
+export const DeleteSenderUsername: API.OperationMethod<
+  DeleteSenderUsernameRequest,
+  DeleteSenderUsernameResponse,
+  DeleteSenderUsernameError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CommunicationServicesRegenerateKeyRequest,
-  output: CommunicationServiceKeys,
+  input: DeleteSenderUsernameRequest,
+  output: DeleteSenderUsernameResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type CommunicationServicesUpdateError = AzureOpError;
-/** Update Operation to update an existing CommunicationService. */
-export const CommunicationServicesUpdate: API.OperationMethod<
-  CommunicationServicesUpdateRequest,
-  CommunicationServicesUpdateResponse,
-  CommunicationServicesUpdateError,
+export type DeleteSmtpUsernameError = AzureOpError;
+/** Delete Operation to delete a single SmtpUsername resource. */
+export const DeleteSmtpUsername: API.OperationMethod<
+  DeleteSmtpUsernameRequest,
+  DeleteSmtpUsernameResponse,
+  DeleteSmtpUsernameError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CommunicationServicesUpdateRequest,
-  output: CommunicationServicesUpdateResponse,
+  input: DeleteSmtpUsernameRequest,
+  output: DeleteSmtpUsernameResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DomainsCancelVerificationError = AzureOpError;
-/** Cancel Verification Cancel verification of DNS record. */
-export const DomainsCancelVerification: API.OperationMethod<
-  DomainsCancelVerificationRequest,
-  DomainsCancelVerificationResponse,
-  DomainsCancelVerificationError,
+export type DeleteSuppressionListError = AzureOpError;
+/** Delete Delete a SuppressionList. */
+export const DeleteSuppressionList: API.OperationMethod<
+  DeleteSuppressionListRequest,
+  DeleteSuppressionListResponse,
+  DeleteSuppressionListError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DomainsCancelVerificationRequest,
-  output: DomainsCancelVerificationResponse,
+  input: DeleteSuppressionListRequest,
+  output: DeleteSuppressionListResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteSuppressionListAddressError = AzureOpError;
+/** Delete Operation to delete a single address from a suppression list. */
+export const DeleteSuppressionListAddress: API.OperationMethod<
+  DeleteSuppressionListAddressRequest,
+  DeleteSuppressionListAddressResponse,
+  DeleteSuppressionListAddressError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteSuppressionListAddressRequest,
+  output: DeleteSuppressionListAddressResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3347,36 +3343,6 @@ export const DomainsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DomainsDeleteError = AzureOpError;
-/** Delete Operation to delete a Domains resource. */
-export const DomainsDelete: API.OperationMethod<
-  DomainsDeleteRequest,
-  DomainsDeleteResponse,
-  DomainsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DomainsDeleteRequest,
-  output: DomainsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DomainsGetError = AzureOpError;
-/** Get Get the Domains resource and its properties. */
-export const DomainsGet: API.OperationMethod<
-  DomainsGetRequest,
-  DomainsGetResponse,
-  DomainsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DomainsGetRequest,
-  output: DomainsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type DomainsInitiateVerificationError = AzureOpError;
 /** Initiate Verification Initiate verification of DNS record. */
 export const DomainsInitiateVerification: API.OperationMethod<
@@ -3387,36 +3353,6 @@ export const DomainsInitiateVerification: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DomainsInitiateVerificationRequest,
   output: DomainsInitiateVerificationResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DomainsListByEmailServiceResourceError = AzureOpError;
-/** List by EmailService Handles requests to list all Domains resources under the parent EmailServices resource. */
-export const DomainsListByEmailServiceResource: API.OperationMethod<
-  DomainsListByEmailServiceResourceRequest,
-  DomainResourceList,
-  DomainsListByEmailServiceResourceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DomainsListByEmailServiceResourceRequest,
-  output: DomainResourceList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DomainsUpdateError = AzureOpError;
-/** Update Operation to update an existing Domains resource. */
-export const DomainsUpdate: API.OperationMethod<
-  DomainsUpdateRequest,
-  DomainsUpdateResponse,
-  DomainsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DomainsUpdateRequest,
-  output: DomainsUpdateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3437,106 +3373,301 @@ export const EmailServicesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type EmailServicesDeleteError = AzureOpError;
-/** Delete Operation to delete a EmailService. */
-export const EmailServicesDelete: API.OperationMethod<
-  EmailServicesDeleteRequest,
-  EmailServicesDeleteResponse,
-  EmailServicesDeleteError,
+export type GetCommunicationServiceError = AzureOpError;
+/** Get Get the CommunicationService and its properties. */
+export const GetCommunicationService: API.OperationMethod<
+  GetCommunicationServiceRequest,
+  GetCommunicationServiceResponse,
+  GetCommunicationServiceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EmailServicesDeleteRequest,
-  output: EmailServicesDeleteResponse,
+  input: GetCommunicationServiceRequest,
+  output: GetCommunicationServiceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type EmailServicesGetError = AzureOpError;
+export type GetDomainError = AzureOpError;
+/** Get Get the Domains resource and its properties. */
+export const GetDomain: API.OperationMethod<
+  GetDomainRequest,
+  GetDomainResponse,
+  GetDomainError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDomainRequest,
+  output: GetDomainResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEmailServiceError = AzureOpError;
 /** Get Get the EmailService and its properties. */
-export const EmailServicesGet: API.OperationMethod<
-  EmailServicesGetRequest,
-  EmailServicesGetResponse,
-  EmailServicesGetError,
+export const GetEmailService: API.OperationMethod<
+  GetEmailServiceRequest,
+  GetEmailServiceResponse,
+  GetEmailServiceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EmailServicesGetRequest,
-  output: EmailServicesGetResponse,
+  input: GetEmailServiceRequest,
+  output: GetEmailServiceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type EmailServicesListByResourceGroupError = AzureOpError;
+export type GetSenderUsernameError = AzureOpError;
+/** Get Get a valid sender username for a domains resource. */
+export const GetSenderUsername: API.OperationMethod<
+  GetSenderUsernameRequest,
+  GetSenderUsernameResponse,
+  GetSenderUsernameError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSenderUsernameRequest,
+  output: GetSenderUsernameResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSmtpUsernameError = AzureOpError;
+/** Get Get a SmtpUsernameResource. */
+export const GetSmtpUsername: API.OperationMethod<
+  GetSmtpUsernameRequest,
+  GetSmtpUsernameResponse,
+  GetSmtpUsernameError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSmtpUsernameRequest,
+  output: GetSmtpUsernameResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSuppressionListError = AzureOpError;
+/** Get Get a SuppressionList resource. */
+export const GetSuppressionList: API.OperationMethod<
+  GetSuppressionListRequest,
+  GetSuppressionListResponse,
+  GetSuppressionListError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSuppressionListRequest,
+  output: GetSuppressionListResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSuppressionListAddressError = AzureOpError;
+/** Get Get a SuppressionListAddress. */
+export const GetSuppressionListAddress: API.OperationMethod<
+  GetSuppressionListAddressRequest,
+  GetSuppressionListAddressResponse,
+  GetSuppressionListAddressError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSuppressionListAddressRequest,
+  output: GetSuppressionListAddressResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListCommunicationServiceByResourceGroupError = AzureOpError;
 /** List By Resource Group Handles requests to list all resources in a resource group. */
-export const EmailServicesListByResourceGroup: API.OperationMethod<
-  EmailServicesListByResourceGroupRequest,
-  EmailServiceResourceList,
-  EmailServicesListByResourceGroupError,
+export const ListCommunicationServiceByResourceGroup: API.OperationMethod<
+  ListCommunicationServiceByResourceGroupRequest,
+  CommunicationServiceResourceList,
+  ListCommunicationServiceByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EmailServicesListByResourceGroupRequest,
-  output: EmailServiceResourceList,
+  input: ListCommunicationServiceByResourceGroupRequest,
+  output: CommunicationServiceResourceList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type EmailServicesListBySubscriptionError = AzureOpError;
+export type ListCommunicationServiceBySubscriptionError = AzureOpError;
 /** List By Subscription Handles requests to list all resources in a subscription. */
-export const EmailServicesListBySubscription: API.OperationMethod<
-  EmailServicesListBySubscriptionRequest,
-  EmailServiceResourceList,
-  EmailServicesListBySubscriptionError,
+export const ListCommunicationServiceBySubscription: API.OperationMethod<
+  ListCommunicationServiceBySubscriptionRequest,
+  CommunicationServiceResourceList,
+  ListCommunicationServiceBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EmailServicesListBySubscriptionRequest,
+  input: ListCommunicationServiceBySubscriptionRequest,
+  output: CommunicationServiceResourceList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListCommunicationServiceKeysError = AzureOpError;
+/** List Keys Get the access keys of the CommunicationService resource. */
+export const ListCommunicationServiceKeys: API.OperationMethod<
+  ListCommunicationServiceKeysRequest,
+  CommunicationServiceKeys,
+  ListCommunicationServiceKeysError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListCommunicationServiceKeysRequest,
+  output: CommunicationServiceKeys,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDomainByEmailServiceResourceError = AzureOpError;
+/** List by EmailService Handles requests to list all Domains resources under the parent EmailServices resource. */
+export const ListDomainByEmailServiceResource: API.OperationMethod<
+  ListDomainByEmailServiceResourceRequest,
+  DomainResourceList,
+  ListDomainByEmailServiceResourceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDomainByEmailServiceResourceRequest,
+  output: DomainResourceList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListEmailServiceByResourceGroupError = AzureOpError;
+/** List By Resource Group Handles requests to list all resources in a resource group. */
+export const ListEmailServiceByResourceGroup: API.OperationMethod<
+  ListEmailServiceByResourceGroupRequest,
+  EmailServiceResourceList,
+  ListEmailServiceByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListEmailServiceByResourceGroupRequest,
   output: EmailServiceResourceList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type EmailServicesListVerifiedExchangeOnlineDomainsError = AzureOpError;
+export type ListEmailServiceBySubscriptionError = AzureOpError;
+/** List By Subscription Handles requests to list all resources in a subscription. */
+export const ListEmailServiceBySubscription: API.OperationMethod<
+  ListEmailServiceBySubscriptionRequest,
+  EmailServiceResourceList,
+  ListEmailServiceBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListEmailServiceBySubscriptionRequest,
+  output: EmailServiceResourceList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListEmailServiceVerifiedExchangeOnlineDomainsError = AzureOpError;
 /** List Verified Domains From Exchange Online Get a list of domains that are fully verified in Exchange Online. */
-export const EmailServicesListVerifiedExchangeOnlineDomains: API.OperationMethod<
-  EmailServicesListVerifiedExchangeOnlineDomainsRequest,
-  EmailServicesListVerifiedExchangeOnlineDomainsResponse,
-  EmailServicesListVerifiedExchangeOnlineDomainsError,
+export const ListEmailServiceVerifiedExchangeOnlineDomains: API.OperationMethod<
+  ListEmailServiceVerifiedExchangeOnlineDomainsRequest,
+  ListEmailServiceVerifiedExchangeOnlineDomainsResponse,
+  ListEmailServiceVerifiedExchangeOnlineDomainsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EmailServicesListVerifiedExchangeOnlineDomainsRequest,
-  output: EmailServicesListVerifiedExchangeOnlineDomainsResponse,
+  input: ListEmailServiceVerifiedExchangeOnlineDomainsRequest,
+  output: ListEmailServiceVerifiedExchangeOnlineDomainsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type EmailServicesUpdateError = AzureOpError;
-/** Update Operation to update an existing EmailService. */
-export const EmailServicesUpdate: API.OperationMethod<
-  EmailServicesUpdateRequest,
-  EmailServicesUpdateResponse,
-  EmailServicesUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: EmailServicesUpdateRequest,
-  output: EmailServicesUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OperationsListError = AzureOpError;
+export type ListOperationsError = AzureOpError;
 /** List Operations Lists all of the available REST API operations of the Microsoft.Communication provider. */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationsListResponse,
-  OperationsListError,
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  ListOperationsResponse,
+  ListOperationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
-  output: OperationsListResponse,
+  input: ListOperationsRequest,
+  output: ListOperationsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSenderUsernameByDomainsError = AzureOpError;
+/** ListBy_Domains List all valid sender usernames for a domains resource. */
+export const ListSenderUsernameByDomains: API.OperationMethod<
+  ListSenderUsernameByDomainsRequest,
+  SenderUsernameResourceCollection,
+  ListSenderUsernameByDomainsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSenderUsernameByDomainsRequest,
+  output: SenderUsernameResourceCollection,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSmtpUsernamesError = AzureOpError;
+/** Get Get all SmtpUsernameResources for a Communication resource. */
+export const ListSmtpUsernames: API.OperationMethod<
+  ListSmtpUsernamesRequest,
+  SmtpUsernameResourceCollection,
+  ListSmtpUsernamesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSmtpUsernamesRequest,
+  output: SmtpUsernameResourceCollection,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSuppressionListAddressesError = AzureOpError;
+/** Get Get all the addresses in a suppression list. */
+export const ListSuppressionListAddresses: API.OperationMethod<
+  ListSuppressionListAddressesRequest,
+  SuppressionListAddressResourceCollection,
+  ListSuppressionListAddressesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSuppressionListAddressesRequest,
+  output: SuppressionListAddressResourceCollection,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSuppressionListByDomainError = AzureOpError;
+/** List List all suppression lists for a domains resource. */
+export const ListSuppressionListByDomain: API.OperationMethod<
+  ListSuppressionListByDomainRequest,
+  SuppressionListResourceCollection,
+  ListSuppressionListByDomainError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSuppressionListByDomainRequest,
+  output: SuppressionListResourceCollection,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RegenerateCommunicationServiceKeyError = AzureOpError;
+/** Regenerate Key Regenerate CommunicationService access key. PrimaryKey and SecondaryKey cannot be regenerated at the same time. */
+export const RegenerateCommunicationServiceKey: API.OperationMethod<
+  RegenerateCommunicationServiceKeyRequest,
+  CommunicationServiceKeys,
+  RegenerateCommunicationServiceKeyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RegenerateCommunicationServiceKeyRequest,
+  output: CommunicationServiceKeys,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3557,51 +3688,6 @@ export const SenderUsernamesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SenderUsernamesDeleteError = AzureOpError;
-/** Delete Operation to delete a SenderUsernames resource. */
-export const SenderUsernamesDelete: API.OperationMethod<
-  SenderUsernamesDeleteRequest,
-  SenderUsernamesDeleteResponse,
-  SenderUsernamesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SenderUsernamesDeleteRequest,
-  output: SenderUsernamesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SenderUsernamesGetError = AzureOpError;
-/** Get Get a valid sender username for a domains resource. */
-export const SenderUsernamesGet: API.OperationMethod<
-  SenderUsernamesGetRequest,
-  SenderUsernamesGetResponse,
-  SenderUsernamesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SenderUsernamesGetRequest,
-  output: SenderUsernamesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SenderUsernamesListByDomainsError = AzureOpError;
-/** ListBy_Domains List all valid sender usernames for a domains resource. */
-export const SenderUsernamesListByDomains: API.OperationMethod<
-  SenderUsernamesListByDomainsRequest,
-  SenderUsernameResourceCollection,
-  SenderUsernamesListByDomainsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SenderUsernamesListByDomainsRequest,
-  output: SenderUsernameResourceCollection,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type SmtpUsernamesCreateOrUpdateError = AzureOpError;
 /** Create Or Update Create or update an SmtpUsernameResource. */
 export const SmtpUsernamesCreateOrUpdate: API.OperationMethod<
@@ -3612,51 +3698,6 @@ export const SmtpUsernamesCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: SmtpUsernamesCreateOrUpdateRequest,
   output: SmtpUsernamesCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SmtpUsernamesDeleteError = AzureOpError;
-/** Delete Operation to delete a single SmtpUsername resource. */
-export const SmtpUsernamesDelete: API.OperationMethod<
-  SmtpUsernamesDeleteRequest,
-  SmtpUsernamesDeleteResponse,
-  SmtpUsernamesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SmtpUsernamesDeleteRequest,
-  output: SmtpUsernamesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SmtpUsernamesGetError = AzureOpError;
-/** Get Get a SmtpUsernameResource. */
-export const SmtpUsernamesGet: API.OperationMethod<
-  SmtpUsernamesGetRequest,
-  SmtpUsernamesGetResponse,
-  SmtpUsernamesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SmtpUsernamesGetRequest,
-  output: SmtpUsernamesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SmtpUsernamesListError = AzureOpError;
-/** Get Get all SmtpUsernameResources for a Communication resource. */
-export const SmtpUsernamesList: API.OperationMethod<
-  SmtpUsernamesListRequest,
-  SmtpUsernameResourceCollection,
-  SmtpUsernamesListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SmtpUsernamesListRequest,
-  output: SmtpUsernameResourceCollection,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3677,51 +3718,6 @@ export const SuppressionListAddressesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SuppressionListAddressesDeleteError = AzureOpError;
-/** Delete Operation to delete a single address from a suppression list. */
-export const SuppressionListAddressesDelete: API.OperationMethod<
-  SuppressionListAddressesDeleteRequest,
-  SuppressionListAddressesDeleteResponse,
-  SuppressionListAddressesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SuppressionListAddressesDeleteRequest,
-  output: SuppressionListAddressesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SuppressionListAddressesGetError = AzureOpError;
-/** Get Get a SuppressionListAddress. */
-export const SuppressionListAddressesGet: API.OperationMethod<
-  SuppressionListAddressesGetRequest,
-  SuppressionListAddressesGetResponse,
-  SuppressionListAddressesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SuppressionListAddressesGetRequest,
-  output: SuppressionListAddressesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SuppressionListAddressesListError = AzureOpError;
-/** Get Get all the addresses in a suppression list. */
-export const SuppressionListAddressesList: API.OperationMethod<
-  SuppressionListAddressesListRequest,
-  SuppressionListAddressResourceCollection,
-  SuppressionListAddressesListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SuppressionListAddressesListRequest,
-  output: SuppressionListAddressResourceCollection,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type SuppressionListsCreateOrUpdateError = AzureOpError;
 /** Create Or Update Add a new SuppressionList resource under the parent Domains resource or update an existing SuppressionList resource. */
 export const SuppressionListsCreateOrUpdate: API.OperationMethod<
@@ -3737,46 +3733,46 @@ export const SuppressionListsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SuppressionListsDeleteError = AzureOpError;
-/** Delete Delete a SuppressionList. */
-export const SuppressionListsDelete: API.OperationMethod<
-  SuppressionListsDeleteRequest,
-  SuppressionListsDeleteResponse,
-  SuppressionListsDeleteError,
+export type UpdateCommunicationServiceError = AzureOpError;
+/** Update Operation to update an existing CommunicationService. */
+export const UpdateCommunicationService: API.OperationMethod<
+  UpdateCommunicationServiceRequest,
+  UpdateCommunicationServiceResponse,
+  UpdateCommunicationServiceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SuppressionListsDeleteRequest,
-  output: SuppressionListsDeleteResponse,
+  input: UpdateCommunicationServiceRequest,
+  output: UpdateCommunicationServiceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type SuppressionListsGetError = AzureOpError;
-/** Get Get a SuppressionList resource. */
-export const SuppressionListsGet: API.OperationMethod<
-  SuppressionListsGetRequest,
-  SuppressionListsGetResponse,
-  SuppressionListsGetError,
+export type UpdateDomainError = AzureOpError;
+/** Update Operation to update an existing Domains resource. */
+export const UpdateDomain: API.OperationMethod<
+  UpdateDomainRequest,
+  UpdateDomainResponse,
+  UpdateDomainError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SuppressionListsGetRequest,
-  output: SuppressionListsGetResponse,
+  input: UpdateDomainRequest,
+  output: UpdateDomainResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type SuppressionListsListByDomainError = AzureOpError;
-/** List List all suppression lists for a domains resource. */
-export const SuppressionListsListByDomain: API.OperationMethod<
-  SuppressionListsListByDomainRequest,
-  SuppressionListResourceCollection,
-  SuppressionListsListByDomainError,
+export type UpdateEmailServiceError = AzureOpError;
+/** Update Operation to update an existing EmailService. */
+export const UpdateEmailService: API.OperationMethod<
+  UpdateEmailServiceRequest,
+  UpdateEmailServiceResponse,
+  UpdateEmailServiceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SuppressionListsListByDomainRequest,
-  output: SuppressionListResourceCollection,
+  input: UpdateEmailServiceRequest,
+  output: UpdateEmailServiceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

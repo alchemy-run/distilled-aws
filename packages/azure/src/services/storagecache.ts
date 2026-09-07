@@ -13,41 +13,6 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export interface AmlFilesystemsArchiveRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
-  amlFilesystemName: string;
-  /** Lustre file system path to archive relative to the file system root. Specify '/' to archive all modified data. */
-  filesystemPath?: string;
-}
-export const AmlFilesystemsArchiveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    amlFilesystemName: S.String.pipe(T.Label()),
-    filesystemPath: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/amlFilesystems/{amlFilesystemName}/archive",
-      code: 200,
-      apiVersion: "2026-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "AmlFilesystemsArchiveRequest",
-}) as any as S.Schema<AmlFilesystemsArchiveRequest>;
-
-export interface AmlFilesystemsArchiveResponse {}
-export const AmlFilesystemsArchiveResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "AmlFilesystemsArchiveResponse",
-}) as any as S.Schema<AmlFilesystemsArchiveResponse>;
-
 export interface AmlFilesystemsCancelArchiveRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
@@ -743,522 +708,40 @@ export const AmlFilesystemsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "AmlFilesystemsCreateOrUpdateResponse",
 }) as any as S.Schema<AmlFilesystemsCreateOrUpdateResponse>;
 
-export interface AmlFilesystemsDeleteRequest {
+export interface ArchiveAmlFilesystemRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
   amlFilesystemName: string;
+  /** Lustre file system path to archive relative to the file system root. Specify '/' to archive all modified data. */
+  filesystemPath?: string;
 }
-export const AmlFilesystemsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const ArchiveAmlFilesystemRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     amlFilesystemName: S.String.pipe(T.Label()),
+    filesystemPath: S.optional(S.String),
   }).pipe(
     T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/amlFilesystems/{amlFilesystemName}",
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/amlFilesystems/{amlFilesystemName}/archive",
       code: 200,
       apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
-  identifier: "AmlFilesystemsDeleteRequest",
-}) as any as S.Schema<AmlFilesystemsDeleteRequest>;
+  identifier: "ArchiveAmlFilesystemRequest",
+}) as any as S.Schema<ArchiveAmlFilesystemRequest>;
 
-export interface AmlFilesystemsDeleteResponse {}
-export const AmlFilesystemsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface ArchiveAmlFilesystemResponse {}
+export const ArchiveAmlFilesystemResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "AmlFilesystemsDeleteResponse",
-}) as any as S.Schema<AmlFilesystemsDeleteResponse>;
-
-export interface AmlFilesystemsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
-  amlFilesystemName: string;
-}
-export const AmlFilesystemsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    amlFilesystemName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/amlFilesystems/{amlFilesystemName}",
-      code: 200,
-      apiVersion: "2026-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "AmlFilesystemsGetRequest",
-}) as any as S.Schema<AmlFilesystemsGetRequest>;
-
-/** Resource tags. */
-export type AmlFilesystemsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AmlFilesystemsGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AmlFilesystemsGetResponseTagsMap>;
-
-/** The availability zones. */
-export type AmlFilesystemsGetResponseZonesList = Array<string>;
-export const AmlFilesystemsGetResponseZonesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<AmlFilesystemsGetResponseZonesList>;
-
-export interface AmlFilesystemsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: AmlFilesystemsGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the AML file system. */
-  properties?: AmlFilesystemProperties;
-  /** The managed identity used by the AML file system, if configured. */
-  identity?: AmlFilesystemIdentity;
-  /** SKU for the resource. */
-  sku?: SkuName;
-  /** The availability zones. */
-  zones?: AmlFilesystemsGetResponseZonesList;
-}
-export const AmlFilesystemsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(AmlFilesystemsGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(AmlFilesystemProperties),
-    identity: S.optional(AmlFilesystemIdentity),
-    sku: S.optional(SkuName),
-    zones: S.optional(AmlFilesystemsGetResponseZonesList),
-  }),
-).annotate({
-  identifier: "AmlFilesystemsGetResponse",
-}) as any as S.Schema<AmlFilesystemsGetResponse>;
-
-export interface AmlFilesystemsListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-}
-export const AmlFilesystemsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.StorageCache/amlFilesystems",
-      code: 200,
-      apiVersion: "2026-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "AmlFilesystemsListRequest",
-}) as any as S.Schema<AmlFilesystemsListRequest>;
-
-/** Resource tags. */
-export type AmlFilesystemTagsMap = { [key: string]: string | undefined };
-export const AmlFilesystemTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AmlFilesystemTagsMap>;
-
-/** The availability zones. */
-export type AmlFilesystemZonesList = Array<string>;
-export const AmlFilesystemZonesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<AmlFilesystemZonesList>;
-
-/** An AML file system instance. Follows Azure Resource Manager standards: https://github.com/Azure/azure-resource-manager-rpc/blob/master/v1.0/resource-api-reference.md */
-export interface AmlFilesystem {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: AmlFilesystemTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the AML file system. */
-  properties?: AmlFilesystemProperties;
-  /** The managed identity used by the AML file system, if configured. */
-  identity?: AmlFilesystemIdentity;
-  /** SKU for the resource. */
-  sku?: SkuName;
-  /** The availability zones. */
-  zones?: AmlFilesystemZonesList;
-}
-export const AmlFilesystem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(AmlFilesystemTagsMap),
-    location: S.String,
-    properties: S.optional(AmlFilesystemProperties),
-    identity: S.optional(AmlFilesystemIdentity),
-    sku: S.optional(SkuName),
-    zones: S.optional(AmlFilesystemZonesList),
-  }),
-).annotate({ identifier: "AmlFilesystem" }) as any as S.Schema<AmlFilesystem>;
-
-/** List of AML file systems. */
-export type AmlFilesystemsListResultValueList = Array<AmlFilesystem>;
-export const AmlFilesystemsListResultValueList = /*@__PURE__*/ S.Array(
-  AmlFilesystem,
-) as any as S.Schema<AmlFilesystemsListResultValueList>;
-
-/** Result of the request to list AML file systems. It contains a list of AML file systems and a URL link to get the next set of results. */
-export interface AmlFilesystemsListResult {
-  /** List of AML file systems. */
-  value?: AmlFilesystemsListResultValueList;
-  /** URL to get the next set of AML file system list results, if there are any. */
-  nextLink?: string;
-}
-export const AmlFilesystemsListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(AmlFilesystemsListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AmlFilesystemsListResult",
-}) as any as S.Schema<AmlFilesystemsListResult>;
-
-export interface AmlFilesystemsListByResourceGroupRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const AmlFilesystemsListByResourceGroupRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/amlFilesystems",
-        code: 200,
-        apiVersion: "2026-08-01",
-      }),
-    ),
-).annotate({
-  identifier: "AmlFilesystemsListByResourceGroupRequest",
-}) as any as S.Schema<AmlFilesystemsListByResourceGroupRequest>;
-
-/** Resource tags. */
-export type AmlFilesystemsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AmlFilesystemsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AmlFilesystemsUpdateRequestTagsMap>;
-
-/** Start time of a 30-minute weekly maintenance window. */
-export type AmlFilesystemUpdatePropertiesMaintenanceWindow =
-  AmlFilesystemPropertiesMaintenanceWindow;
-export const AmlFilesystemUpdatePropertiesMaintenanceWindow =
-  AmlFilesystemPropertiesMaintenanceWindow;
-
-/** Properties of the AML file system. */
-export interface AmlFilesystemUpdatePropertiesInput {
-  /** Specifies encryption settings of the AML file system. */
-  encryptionSettings?: AmlFilesystemEncryptionSettings;
-  /** Start time of a 30-minute weekly maintenance window. */
-  maintenanceWindow?: AmlFilesystemPropertiesMaintenanceWindow;
-  /** Specifies root squash settings of the AML file system. */
-  rootSquashSettings?: AmlFilesystemRootSquashSettingsInput;
-}
-export const AmlFilesystemUpdatePropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    encryptionSettings: S.optional(AmlFilesystemEncryptionSettings),
-    maintenanceWindow: S.optional(AmlFilesystemPropertiesMaintenanceWindow),
-    rootSquashSettings: S.optional(AmlFilesystemRootSquashSettingsInput),
-  }),
-).annotate({
-  identifier: "AmlFilesystemUpdatePropertiesInput",
-}) as any as S.Schema<AmlFilesystemUpdatePropertiesInput>;
-
-export interface AmlFilesystemsUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
-  amlFilesystemName: string;
-  /** Resource tags. */
-  tags?: AmlFilesystemsUpdateRequestTagsMap;
-  /** Properties of the AML file system. */
-  properties?: AmlFilesystemUpdatePropertiesInput;
-}
-export const AmlFilesystemsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    amlFilesystemName: S.String.pipe(T.Label()),
-    tags: S.optional(AmlFilesystemsUpdateRequestTagsMap),
-    properties: S.optional(AmlFilesystemUpdatePropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/amlFilesystems/{amlFilesystemName}",
-      code: 200,
-      apiVersion: "2026-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "AmlFilesystemsUpdateRequest",
-}) as any as S.Schema<AmlFilesystemsUpdateRequest>;
-
-/** Resource tags. */
-export type AmlFilesystemsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AmlFilesystemsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AmlFilesystemsUpdateResponseTagsMap>;
-
-/** The availability zones. */
-export type AmlFilesystemsUpdateResponseZonesList = Array<string>;
-export const AmlFilesystemsUpdateResponseZonesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<AmlFilesystemsUpdateResponseZonesList>;
-
-export interface AmlFilesystemsUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: AmlFilesystemsUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the AML file system. */
-  properties?: AmlFilesystemProperties;
-  /** The managed identity used by the AML file system, if configured. */
-  identity?: AmlFilesystemIdentity;
-  /** SKU for the resource. */
-  sku?: SkuName;
-  /** The availability zones. */
-  zones?: AmlFilesystemsUpdateResponseZonesList;
-}
-export const AmlFilesystemsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(AmlFilesystemsUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(AmlFilesystemProperties),
-    identity: S.optional(AmlFilesystemIdentity),
-    sku: S.optional(SkuName),
-    zones: S.optional(AmlFilesystemsUpdateResponseZonesList),
-  }),
-).annotate({
-  identifier: "AmlFilesystemsUpdateResponse",
-}) as any as S.Schema<AmlFilesystemsUpdateResponse>;
-
-export interface AscOperationsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of Azure region. */
-  location: string;
-  /** The ID of an ongoing async operation. */
-  operationId: string;
-}
-export const AscOperationsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
-    operationId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.StorageCache/locations/{location}/ascOperations/{operationId}",
-      code: 200,
-      apiVersion: "2026-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "AscOperationsGetRequest",
-}) as any as S.Schema<AscOperationsGetRequest>;
-
-/** Describes the format of Error response. */
-export interface AscOperationErrorResponse {
-  /** Error code */
-  code?: string;
-  /** Error message indicating why the operation failed. */
-  message?: string;
-}
-export const AscOperationErrorResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    code: S.optional(S.String),
-    message: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AscOperationErrorResponse",
-}) as any as S.Schema<AscOperationErrorResponse>;
-
-/** Additional operation-specific output. */
-export type AscOperationPropertiesOutputMap = {
-  [key: string]: unknown | undefined;
-};
-export const AscOperationPropertiesOutputMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<AscOperationPropertiesOutputMap>;
-
-/** Additional operation-specific output. */
-export interface AscOperationProperties {
-  /** Additional operation-specific output. */
-  output?: AscOperationPropertiesOutputMap;
-}
-export const AscOperationProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    output: S.optional(AscOperationPropertiesOutputMap),
-  }),
-).annotate({
-  identifier: "AscOperationProperties",
-}) as any as S.Schema<AscOperationProperties>;
-
-/** The status of operation. */
-export interface AscOperation {
-  /** The operation Id. */
-  id?: string;
-  /** The operation name. */
-  name?: string;
-  /** The start time of the operation. */
-  startTime?: string;
-  /** The end time of the operation. */
-  endTime?: string;
-  /** The status of the operation. */
-  status?: string;
-  /** The error detail of the operation if any. */
-  error?: AscOperationErrorResponse;
-  /** Additional operation-specific properties */
-  properties?: AscOperationProperties;
-}
-export const AscOperation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    startTime: S.optional(S.String),
-    endTime: S.optional(S.String),
-    status: S.optional(S.String),
-    error: S.optional(AscOperationErrorResponse),
-    properties: S.optional(AscOperationProperties),
-  }),
-).annotate({ identifier: "AscOperation" }) as any as S.Schema<AscOperation>;
-
-export interface AscUsagesListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of Azure region. */
-  location: string;
-}
-export const AscUsagesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.StorageCache/locations/{location}/usages",
-      code: 200,
-      apiVersion: "2026-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "AscUsagesListRequest",
-}) as any as S.Schema<AscUsagesListRequest>;
-
-/** Naming information for this resource type. */
-export interface ResourceUsageName {
-  /** Canonical name for this resource type. */
-  value?: string;
-  /** Localized name for this resource type. */
-  localizedValue?: string;
-}
-export const ResourceUsageName = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(S.String),
-    localizedValue: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ResourceUsageName",
-}) as any as S.Schema<ResourceUsageName>;
-
-/** The usage and limit (quota) for a resource. */
-export interface ResourceUsage {
-  /** The limit (quota) for this resource. */
-  limit?: number;
-  /** Unit that the limit and usages are expressed in, such as 'Count'. */
-  unit?: string;
-  /** The current usage of this resource. */
-  currentValue?: number;
-  /** Naming information for this resource type. */
-  name?: ResourceUsageName;
-}
-export const ResourceUsage = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    limit: S.optional(S.Number),
-    unit: S.optional(S.String),
-    currentValue: S.optional(S.Number),
-    name: S.optional(ResourceUsageName),
-  }),
-).annotate({ identifier: "ResourceUsage" }) as any as S.Schema<ResourceUsage>;
-
-/** List of usages and limits for resources controlled by the Microsoft.StorageCache resource provider. */
-export type ResourceUsagesListResultValueList = Array<ResourceUsage>;
-export const ResourceUsagesListResultValueList = /*@__PURE__*/ S.Array(
-  ResourceUsage,
-) as any as S.Schema<ResourceUsagesListResultValueList>;
-
-/** Result of the request to list resource usages. It contains a list of resource usages & limits and a URL link to get the next set of results. */
-export interface ResourceUsagesListResult {
-  /** List of usages and limits for resources controlled by the Microsoft.StorageCache resource provider. */
-  value?: ResourceUsagesListResultValueList;
-  /** URL to get the next set of resource usage list results if there are any. */
-  nextLink?: string;
-}
-export const ResourceUsagesListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(ResourceUsagesListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ResourceUsagesListResult",
-}) as any as S.Schema<ResourceUsagesListResult>;
+  identifier: "ArchiveAmlFilesystemResponse",
+}) as any as S.Schema<ArchiveAmlFilesystemResponse>;
 
 /** Resource tags. */
 export type AutoExportJobsCreateOrUpdateRequestTagsMap = {
@@ -1485,290 +968,6 @@ export const AutoExportJobsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "AutoExportJobsCreateOrUpdateResponse",
 }) as any as S.Schema<AutoExportJobsCreateOrUpdateResponse>;
-
-export interface AutoExportJobsDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
-  amlFilesystemName: string;
-  /** Name for the auto export job. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
-  autoExportJobName: string;
-}
-export const AutoExportJobsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    amlFilesystemName: S.String.pipe(T.Label()),
-    autoExportJobName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/amlFilesystems/{amlFilesystemName}/autoExportJobs/{autoExportJobName}",
-      code: 200,
-      apiVersion: "2026-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "AutoExportJobsDeleteRequest",
-}) as any as S.Schema<AutoExportJobsDeleteRequest>;
-
-export interface AutoExportJobsDeleteResponse {}
-export const AutoExportJobsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "AutoExportJobsDeleteResponse",
-}) as any as S.Schema<AutoExportJobsDeleteResponse>;
-
-export interface AutoExportJobsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
-  amlFilesystemName: string;
-  /** Name for the auto export job. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
-  autoExportJobName: string;
-}
-export const AutoExportJobsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    amlFilesystemName: S.String.pipe(T.Label()),
-    autoExportJobName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/amlFilesystems/{amlFilesystemName}/autoExportJobs/{autoExportJobName}",
-      code: 200,
-      apiVersion: "2026-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "AutoExportJobsGetRequest",
-}) as any as S.Schema<AutoExportJobsGetRequest>;
-
-/** Resource tags. */
-export type AutoExportJobsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AutoExportJobsGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AutoExportJobsGetResponseTagsMap>;
-
-export interface AutoExportJobsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: AutoExportJobsGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the auto export job. */
-  properties?: AutoExportJobProperties;
-}
-export const AutoExportJobsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(AutoExportJobsGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(AutoExportJobProperties),
-  }),
-).annotate({
-  identifier: "AutoExportJobsGetResponse",
-}) as any as S.Schema<AutoExportJobsGetResponse>;
-
-export interface AutoExportJobsListByAmlFilesystemRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
-  amlFilesystemName: string;
-}
-export const AutoExportJobsListByAmlFilesystemRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      amlFilesystemName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/amlFilesystems/{amlFilesystemName}/autoExportJobs",
-        code: 200,
-        apiVersion: "2026-08-01",
-      }),
-    ),
-).annotate({
-  identifier: "AutoExportJobsListByAmlFilesystemRequest",
-}) as any as S.Schema<AutoExportJobsListByAmlFilesystemRequest>;
-
-/** Resource tags. */
-export type AutoExportJobTagsMap = { [key: string]: string | undefined };
-export const AutoExportJobTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AutoExportJobTagsMap>;
-
-/** An auto export job instance. Follows Azure Resource Manager standards: https://github.com/Azure/azure-resource-manager-rpc/blob/master/v1.0/resource-api-reference.md */
-export interface AutoExportJob {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: AutoExportJobTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the auto export job. */
-  properties?: AutoExportJobProperties;
-}
-export const AutoExportJob = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(AutoExportJobTagsMap),
-    location: S.String,
-    properties: S.optional(AutoExportJobProperties),
-  }),
-).annotate({ identifier: "AutoExportJob" }) as any as S.Schema<AutoExportJob>;
-
-/** List of auto export jobs. */
-export type AutoExportJobsListResultValueList = Array<AutoExportJob>;
-export const AutoExportJobsListResultValueList = /*@__PURE__*/ S.Array(
-  AutoExportJob,
-) as any as S.Schema<AutoExportJobsListResultValueList>;
-
-/** Result of the request to list auto export jobs. It contains a list of auto export jobs and a URL link to get the next set of results. */
-export interface AutoExportJobsListResult {
-  /** List of auto export jobs. */
-  value?: AutoExportJobsListResultValueList;
-  /** URL to get the next set of auto export job list results, if there are any. */
-  nextLink?: string;
-}
-export const AutoExportJobsListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(AutoExportJobsListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AutoExportJobsListResult",
-}) as any as S.Schema<AutoExportJobsListResult>;
-
-/** Resource tags. */
-export type AutoExportJobsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AutoExportJobsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AutoExportJobsUpdateRequestTagsMap>;
-
-/** The administrative status of the auto export job. Possible values: 'Enable', 'Disable'. Passing in a value of 'Disable' will disable the current active auto export job. By default it is set to 'Enable'. */
-export type AutoExportJobAdminStatus = "Enable" | "Disable";
-export const AutoExportJobAdminStatus = /*@__PURE__*/ S.String;
-
-/** Properties for updating an auto export job. */
-export interface AutoExportJobUpdateProperties {
-  /** The administrative status of the auto export job. Possible values: 'Enable', 'Disable'. Passing in a value of 'Disable' will disable the current active auto export job. By default it is set to 'Enable'. */
-  adminStatus?: AutoExportJobAdminStatus | (string & {});
-}
-export const AutoExportJobUpdateProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    adminStatus: S.optional(AutoExportJobAdminStatus),
-  }),
-).annotate({
-  identifier: "AutoExportJobUpdateProperties",
-}) as any as S.Schema<AutoExportJobUpdateProperties>;
-
-export interface AutoExportJobsUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
-  amlFilesystemName: string;
-  /** Name for the auto export job. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
-  autoExportJobName: string;
-  /** Resource tags. */
-  tags?: AutoExportJobsUpdateRequestTagsMap;
-  properties?: AutoExportJobUpdateProperties;
-}
-export const AutoExportJobsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    amlFilesystemName: S.String.pipe(T.Label()),
-    autoExportJobName: S.String.pipe(T.Label()),
-    tags: S.optional(AutoExportJobsUpdateRequestTagsMap),
-    properties: S.optional(AutoExportJobUpdateProperties),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/amlFilesystems/{amlFilesystemName}/autoExportJobs/{autoExportJobName}",
-      code: 200,
-      apiVersion: "2026-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "AutoExportJobsUpdateRequest",
-}) as any as S.Schema<AutoExportJobsUpdateRequest>;
-
-/** Resource tags. */
-export type AutoExportJobsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AutoExportJobsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AutoExportJobsUpdateResponseTagsMap>;
-
-export interface AutoExportJobsUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: AutoExportJobsUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the auto export job. */
-  properties?: AutoExportJobProperties;
-}
-export const AutoExportJobsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(AutoExportJobsUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(AutoExportJobProperties),
-  }),
-).annotate({
-  identifier: "AutoExportJobsUpdateResponse",
-}) as any as S.Schema<AutoExportJobsUpdateResponse>;
 
 /** Resource tags. */
 export type AutoImportJobsCreateOrUpdateRequestTagsMap = {
@@ -2101,290 +1300,6 @@ export const AutoImportJobsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "AutoImportJobsCreateOrUpdateResponse",
 }) as any as S.Schema<AutoImportJobsCreateOrUpdateResponse>;
-
-export interface AutoImportJobsDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
-  amlFilesystemName: string;
-  /** Name for the auto import job. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
-  autoImportJobName: string;
-}
-export const AutoImportJobsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    amlFilesystemName: S.String.pipe(T.Label()),
-    autoImportJobName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/amlFilesystems/{amlFilesystemName}/autoImportJobs/{autoImportJobName}",
-      code: 200,
-      apiVersion: "2026-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "AutoImportJobsDeleteRequest",
-}) as any as S.Schema<AutoImportJobsDeleteRequest>;
-
-export interface AutoImportJobsDeleteResponse {}
-export const AutoImportJobsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "AutoImportJobsDeleteResponse",
-}) as any as S.Schema<AutoImportJobsDeleteResponse>;
-
-export interface AutoImportJobsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
-  amlFilesystemName: string;
-  /** Name for the auto import job. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
-  autoImportJobName: string;
-}
-export const AutoImportJobsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    amlFilesystemName: S.String.pipe(T.Label()),
-    autoImportJobName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/amlFilesystems/{amlFilesystemName}/autoImportJobs/{autoImportJobName}",
-      code: 200,
-      apiVersion: "2026-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "AutoImportJobsGetRequest",
-}) as any as S.Schema<AutoImportJobsGetRequest>;
-
-/** Resource tags. */
-export type AutoImportJobsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AutoImportJobsGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AutoImportJobsGetResponseTagsMap>;
-
-export interface AutoImportJobsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: AutoImportJobsGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the auto import job. */
-  properties?: AutoImportJobProperties;
-}
-export const AutoImportJobsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(AutoImportJobsGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(AutoImportJobProperties),
-  }),
-).annotate({
-  identifier: "AutoImportJobsGetResponse",
-}) as any as S.Schema<AutoImportJobsGetResponse>;
-
-export interface AutoImportJobsListByAmlFilesystemRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
-  amlFilesystemName: string;
-}
-export const AutoImportJobsListByAmlFilesystemRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      amlFilesystemName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/amlFilesystems/{amlFilesystemName}/autoImportJobs",
-        code: 200,
-        apiVersion: "2026-08-01",
-      }),
-    ),
-).annotate({
-  identifier: "AutoImportJobsListByAmlFilesystemRequest",
-}) as any as S.Schema<AutoImportJobsListByAmlFilesystemRequest>;
-
-/** Resource tags. */
-export type AutoImportJobTagsMap = { [key: string]: string | undefined };
-export const AutoImportJobTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AutoImportJobTagsMap>;
-
-/** An auto import job instance. Follows Azure Resource Manager standards: https://github.com/Azure/azure-resource-manager-rpc/blob/master/v1.0/resource-api-reference.md */
-export interface AutoImportJob {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: AutoImportJobTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the auto import job. */
-  properties?: AutoImportJobProperties;
-}
-export const AutoImportJob = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(AutoImportJobTagsMap),
-    location: S.String,
-    properties: S.optional(AutoImportJobProperties),
-  }),
-).annotate({ identifier: "AutoImportJob" }) as any as S.Schema<AutoImportJob>;
-
-/** List of auto import jobs. */
-export type AutoImportJobsListResultValueList = Array<AutoImportJob>;
-export const AutoImportJobsListResultValueList = /*@__PURE__*/ S.Array(
-  AutoImportJob,
-) as any as S.Schema<AutoImportJobsListResultValueList>;
-
-/** Result of the request to list auto import jobs. It contains a list of auto import jobs and a URL link to get the next set of results. */
-export interface AutoImportJobsListResult {
-  /** List of auto import jobs. */
-  value?: AutoImportJobsListResultValueList;
-  /** URL to get the next set of auto import job list results, if there are any. */
-  nextLink?: string;
-}
-export const AutoImportJobsListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(AutoImportJobsListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AutoImportJobsListResult",
-}) as any as S.Schema<AutoImportJobsListResult>;
-
-/** Resource tags. */
-export type AutoImportJobsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AutoImportJobsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AutoImportJobsUpdateRequestTagsMap>;
-
-/** The administrative status of the auto import job. Possible values: 'Enable', 'Disable'. Passing in a value of 'Disable' will disable the current active auto import job. By default it is set to 'Enable'. */
-export type AutoImportJobUpdatePropertiesAdminStatus = "Enable" | "Disable";
-export const AutoImportJobUpdatePropertiesAdminStatus = /*@__PURE__*/ S.String;
-
-/** Properties for updating an auto import job. */
-export interface AutoImportJobUpdateProperties {
-  /** The administrative status of the auto import job. Possible values: 'Enable', 'Disable'. Passing in a value of 'Disable' will disable the current active auto import job. By default it is set to 'Enable'. */
-  adminStatus?: AutoImportJobUpdatePropertiesAdminStatus | (string & {});
-}
-export const AutoImportJobUpdateProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    adminStatus: S.optional(AutoImportJobUpdatePropertiesAdminStatus),
-  }),
-).annotate({
-  identifier: "AutoImportJobUpdateProperties",
-}) as any as S.Schema<AutoImportJobUpdateProperties>;
-
-export interface AutoImportJobsUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
-  amlFilesystemName: string;
-  /** Name for the auto import job. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
-  autoImportJobName: string;
-  /** Resource tags. */
-  tags?: AutoImportJobsUpdateRequestTagsMap;
-  properties?: AutoImportJobUpdateProperties;
-}
-export const AutoImportJobsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    amlFilesystemName: S.String.pipe(T.Label()),
-    autoImportJobName: S.String.pipe(T.Label()),
-    tags: S.optional(AutoImportJobsUpdateRequestTagsMap),
-    properties: S.optional(AutoImportJobUpdateProperties),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/amlFilesystems/{amlFilesystemName}/autoImportJobs/{autoImportJobName}",
-      code: 200,
-      apiVersion: "2026-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "AutoImportJobsUpdateRequest",
-}) as any as S.Schema<AutoImportJobsUpdateRequest>;
-
-/** Resource tags. */
-export type AutoImportJobsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AutoImportJobsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AutoImportJobsUpdateResponseTagsMap>;
-
-export interface AutoImportJobsUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: AutoImportJobsUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the auto import job. */
-  properties?: AutoImportJobProperties;
-}
-export const AutoImportJobsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(AutoImportJobsUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(AutoImportJobProperties),
-  }),
-).annotate({
-  identifier: "AutoImportJobsUpdateResponse",
-}) as any as S.Schema<AutoImportJobsUpdateResponse>;
 
 /** Cache Upgrade Settings. */
 export interface CacheUpgradeSettings {
@@ -3193,313 +2108,6 @@ export const CachesDebugInfoResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CachesDebugInfoResponse",
 }) as any as S.Schema<CachesDebugInfoResponse>;
 
-export interface CachesDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of cache. Length of name must not be greater than 80 and chars must be from the [-0-9a-zA-Z_] char class. */
-  cacheName: string;
-}
-export const CachesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    cacheName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}",
-      code: 200,
-      apiVersion: "2026-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "CachesDeleteRequest",
-}) as any as S.Schema<CachesDeleteRequest>;
-
-export interface CachesDeleteResponse {}
-export const CachesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "CachesDeleteResponse",
-}) as any as S.Schema<CachesDeleteResponse>;
-
-export interface CachesFlushRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of cache. Length of name must not be greater than 80 and chars must be from the [-0-9a-zA-Z_] char class. */
-  cacheName: string;
-}
-export const CachesFlushRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    cacheName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}/flush",
-      code: 200,
-      apiVersion: "2026-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "CachesFlushRequest",
-}) as any as S.Schema<CachesFlushRequest>;
-
-export interface CachesFlushResponse {}
-export const CachesFlushResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "CachesFlushResponse",
-}) as any as S.Schema<CachesFlushResponse>;
-
-export interface CachesGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of cache. Length of name must not be greater than 80 and chars must be from the [-0-9a-zA-Z_] char class. */
-  cacheName: string;
-}
-export const CachesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    cacheName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}",
-      code: 200,
-      apiVersion: "2026-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "CachesGetRequest",
-}) as any as S.Schema<CachesGetRequest>;
-
-/** Resource tags. */
-export type CachesGetResponseTagsMap = { [key: string]: string | undefined };
-export const CachesGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<CachesGetResponseTagsMap>;
-
-export interface CachesGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of the cache. */
-  properties?: CacheProperties;
-  /** Resource tags. */
-  tags?: CachesGetResponseTagsMap;
-  /** Region name string. */
-  location?: string;
-  /** The identity of the cache, if configured. */
-  identity?: CacheIdentity;
-  /** SKU for the cache. */
-  sku?: CacheSku;
-}
-export const CachesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(CacheProperties),
-    tags: S.optional(CachesGetResponseTagsMap),
-    location: S.optional(S.String),
-    identity: S.optional(CacheIdentity),
-    sku: S.optional(CacheSku),
-  }),
-).annotate({
-  identifier: "CachesGetResponse",
-}) as any as S.Schema<CachesGetResponse>;
-
-export interface CachesListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-}
-export const CachesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.StorageCache/caches",
-      code: 200,
-      apiVersion: "2026-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "CachesListRequest",
-}) as any as S.Schema<CachesListRequest>;
-
-/** Resource tags. */
-export type CacheTagsMap = { [key: string]: string | undefined };
-export const CacheTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<CacheTagsMap>;
-
-/** A cache instance. Follows Azure Resource Manager standards: https://github.com/Azure/azure-resource-manager-rpc/blob/master/v1.0/resource-api-reference.md */
-export interface Cache {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of the cache. */
-  properties?: CacheProperties;
-  /** Resource tags. */
-  tags?: CacheTagsMap;
-  /** Region name string. */
-  location?: string;
-  /** The identity of the cache, if configured. */
-  identity?: CacheIdentity;
-  /** SKU for the cache. */
-  sku?: CacheSku;
-}
-export const Cache = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(CacheProperties),
-    tags: S.optional(CacheTagsMap),
-    location: S.optional(S.String),
-    identity: S.optional(CacheIdentity),
-    sku: S.optional(CacheSku),
-  }),
-).annotate({ identifier: "Cache" }) as any as S.Schema<Cache>;
-
-/** List of caches. */
-export type CachesListResultValueList = Array<Cache>;
-export const CachesListResultValueList = /*@__PURE__*/ S.Array(
-  Cache,
-) as any as S.Schema<CachesListResultValueList>;
-
-/** Result of the request to list caches. It contains a list of caches and a URL link to get the next set of results. */
-export interface CachesListResult {
-  /** List of caches. */
-  value?: CachesListResultValueList;
-  /** URL to get the next set of cache list results, if there are any. */
-  nextLink?: string;
-}
-export const CachesListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(CachesListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CachesListResult",
-}) as any as S.Schema<CachesListResult>;
-
-export interface CachesListByResourceGroupRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const CachesListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches",
-      code: 200,
-      apiVersion: "2026-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "CachesListByResourceGroupRequest",
-}) as any as S.Schema<CachesListByResourceGroupRequest>;
-
-export interface CachesPausePrimingJobRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of cache. Length of name must not be greater than 80 and chars must be from the [-0-9a-zA-Z_] char class. */
-  cacheName: string;
-  /** The unique identifier of the priming job. */
-  primingJobId: string;
-}
-export const CachesPausePrimingJobRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    cacheName: S.String.pipe(T.Label()),
-    primingJobId: S.String,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}/pausePrimingJob",
-      code: 200,
-      apiVersion: "2026-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "CachesPausePrimingJobRequest",
-}) as any as S.Schema<CachesPausePrimingJobRequest>;
-
-export interface CachesPausePrimingJobResponse {}
-export const CachesPausePrimingJobResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "CachesPausePrimingJobResponse",
-}) as any as S.Schema<CachesPausePrimingJobResponse>;
-
-export interface CachesResumePrimingJobRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of cache. Length of name must not be greater than 80 and chars must be from the [-0-9a-zA-Z_] char class. */
-  cacheName: string;
-  /** The unique identifier of the priming job. */
-  primingJobId: string;
-}
-export const CachesResumePrimingJobRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    cacheName: S.String.pipe(T.Label()),
-    primingJobId: S.String,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}/resumePrimingJob",
-      code: 200,
-      apiVersion: "2026-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "CachesResumePrimingJobRequest",
-}) as any as S.Schema<CachesResumePrimingJobRequest>;
-
-export interface CachesResumePrimingJobResponse {}
-export const CachesResumePrimingJobResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "CachesResumePrimingJobResponse",
-}) as any as S.Schema<CachesResumePrimingJobResponse>;
-
 export type CachesSpaceAllocationRequestBodyList =
   Array<StorageTargetSpaceAllocation>;
 export const CachesSpaceAllocationRequestBodyList = /*@__PURE__*/ S.Array(
@@ -3539,233 +2147,6 @@ export const CachesSpaceAllocationResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "CachesSpaceAllocationResponse",
 }) as any as S.Schema<CachesSpaceAllocationResponse>;
-
-export interface CachesStartRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of cache. Length of name must not be greater than 80 and chars must be from the [-0-9a-zA-Z_] char class. */
-  cacheName: string;
-}
-export const CachesStartRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    cacheName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}/start",
-      code: 200,
-      apiVersion: "2026-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "CachesStartRequest",
-}) as any as S.Schema<CachesStartRequest>;
-
-export interface CachesStartResponse {}
-export const CachesStartResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "CachesStartResponse",
-}) as any as S.Schema<CachesStartResponse>;
-
-export interface CachesStartPrimingJobRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of cache. Length of name must not be greater than 80 and chars must be from the [-0-9a-zA-Z_] char class. */
-  cacheName: string;
-  /** The priming job name. */
-  primingJobName: string;
-  /** The URL for the priming manifest file to download. This file must be readable from the HPC Cache. When the file is in Azure blob storage the URL should include a Shared Access Signature (SAS) granting read permissions on the blob. */
-  primingManifestUrl: string;
-}
-export const CachesStartPrimingJobRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    cacheName: S.String.pipe(T.Label()),
-    primingJobName: S.String,
-    primingManifestUrl: S.String,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}/startPrimingJob",
-      code: 200,
-      apiVersion: "2026-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "CachesStartPrimingJobRequest",
-}) as any as S.Schema<CachesStartPrimingJobRequest>;
-
-export interface CachesStartPrimingJobResponse {}
-export const CachesStartPrimingJobResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "CachesStartPrimingJobResponse",
-}) as any as S.Schema<CachesStartPrimingJobResponse>;
-
-export interface CachesStopRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of cache. Length of name must not be greater than 80 and chars must be from the [-0-9a-zA-Z_] char class. */
-  cacheName: string;
-}
-export const CachesStopRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    cacheName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}/stop",
-      code: 200,
-      apiVersion: "2026-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "CachesStopRequest",
-}) as any as S.Schema<CachesStopRequest>;
-
-export interface CachesStopResponse {}
-export const CachesStopResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "CachesStopResponse",
-}) as any as S.Schema<CachesStopResponse>;
-
-export interface CachesStopPrimingJobRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of cache. Length of name must not be greater than 80 and chars must be from the [-0-9a-zA-Z_] char class. */
-  cacheName: string;
-  /** The unique identifier of the priming job. */
-  primingJobId: string;
-}
-export const CachesStopPrimingJobRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    cacheName: S.String.pipe(T.Label()),
-    primingJobId: S.String,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}/stopPrimingJob",
-      code: 200,
-      apiVersion: "2026-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "CachesStopPrimingJobRequest",
-}) as any as S.Schema<CachesStopPrimingJobRequest>;
-
-export interface CachesStopPrimingJobResponse {}
-export const CachesStopPrimingJobResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "CachesStopPrimingJobResponse",
-}) as any as S.Schema<CachesStopPrimingJobResponse>;
-
-/** Resource tags. */
-export type CachesUpdateRequestTagsMap = { [key: string]: string | undefined };
-export const CachesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<CachesUpdateRequestTagsMap>;
-
-export interface CachesUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of cache. Length of name must not be greater than 80 and chars must be from the [-0-9a-zA-Z_] char class. */
-  cacheName: string;
-  /** Properties of the cache. */
-  properties?: CachePropertiesInput;
-  /** Resource tags. */
-  tags?: CachesUpdateRequestTagsMap;
-  /** Region name string. */
-  location?: string;
-  /** The identity of the cache, if configured. */
-  identity?: CacheIdentityInput;
-  /** SKU for the cache. */
-  sku?: CacheSku;
-}
-export const CachesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    cacheName: S.String.pipe(T.Label()),
-    properties: S.optional(CachePropertiesInput),
-    tags: S.optional(CachesUpdateRequestTagsMap),
-    location: S.optional(S.String),
-    identity: S.optional(CacheIdentityInput),
-    sku: S.optional(CacheSku),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}",
-      code: 200,
-      apiVersion: "2026-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "CachesUpdateRequest",
-}) as any as S.Schema<CachesUpdateRequest>;
-
-/** Resource tags. */
-export type CachesUpdateResponseTagsMap = { [key: string]: string | undefined };
-export const CachesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<CachesUpdateResponseTagsMap>;
-
-export interface CachesUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of the cache. */
-  properties?: CacheProperties;
-  /** Resource tags. */
-  tags?: CachesUpdateResponseTagsMap;
-  /** Region name string. */
-  location?: string;
-  /** The identity of the cache, if configured. */
-  identity?: CacheIdentity;
-  /** SKU for the cache. */
-  sku?: CacheSku;
-}
-export const CachesUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(CacheProperties),
-    tags: S.optional(CachesUpdateResponseTagsMap),
-    location: S.optional(S.String),
-    identity: S.optional(CacheIdentity),
-    sku: S.optional(CacheSku),
-  }),
-).annotate({
-  identifier: "CachesUpdateResponse",
-}) as any as S.Schema<CachesUpdateResponse>;
 
 export interface CachesUpgradeFirmwareRequest {
   /** The ID of the target subscription. */
@@ -3836,6 +2217,283 @@ export const CheckAmlFSSubnetsResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "CheckAmlFSSubnetsResponse",
 }) as any as S.Schema<CheckAmlFSSubnetsResponse>;
+
+export interface DeleteAmlFilesystemRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
+  amlFilesystemName: string;
+}
+export const DeleteAmlFilesystemRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    amlFilesystemName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/amlFilesystems/{amlFilesystemName}",
+      code: 200,
+      apiVersion: "2026-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteAmlFilesystemRequest",
+}) as any as S.Schema<DeleteAmlFilesystemRequest>;
+
+export interface DeleteAmlFilesystemResponse {}
+export const DeleteAmlFilesystemResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteAmlFilesystemResponse",
+}) as any as S.Schema<DeleteAmlFilesystemResponse>;
+
+export interface DeleteAutoExportJobRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
+  amlFilesystemName: string;
+  /** Name for the auto export job. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
+  autoExportJobName: string;
+}
+export const DeleteAutoExportJobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    amlFilesystemName: S.String.pipe(T.Label()),
+    autoExportJobName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/amlFilesystems/{amlFilesystemName}/autoExportJobs/{autoExportJobName}",
+      code: 200,
+      apiVersion: "2026-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteAutoExportJobRequest",
+}) as any as S.Schema<DeleteAutoExportJobRequest>;
+
+export interface DeleteAutoExportJobResponse {}
+export const DeleteAutoExportJobResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteAutoExportJobResponse",
+}) as any as S.Schema<DeleteAutoExportJobResponse>;
+
+export interface DeleteAutoImportJobRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
+  amlFilesystemName: string;
+  /** Name for the auto import job. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
+  autoImportJobName: string;
+}
+export const DeleteAutoImportJobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    amlFilesystemName: S.String.pipe(T.Label()),
+    autoImportJobName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/amlFilesystems/{amlFilesystemName}/autoImportJobs/{autoImportJobName}",
+      code: 200,
+      apiVersion: "2026-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteAutoImportJobRequest",
+}) as any as S.Schema<DeleteAutoImportJobRequest>;
+
+export interface DeleteAutoImportJobResponse {}
+export const DeleteAutoImportJobResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteAutoImportJobResponse",
+}) as any as S.Schema<DeleteAutoImportJobResponse>;
+
+export interface DeleteCachRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of cache. Length of name must not be greater than 80 and chars must be from the [-0-9a-zA-Z_] char class. */
+  cacheName: string;
+}
+export const DeleteCachRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    cacheName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}",
+      code: 200,
+      apiVersion: "2026-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteCachRequest",
+}) as any as S.Schema<DeleteCachRequest>;
+
+export interface DeleteCachResponse {}
+export const DeleteCachResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteCachResponse",
+}) as any as S.Schema<DeleteCachResponse>;
+
+export interface DeleteExpansionJobRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
+  amlFilesystemName: string;
+  /** Name for the expansion job. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
+  expansionJobName: string;
+}
+export const DeleteExpansionJobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    amlFilesystemName: S.String.pipe(T.Label()),
+    expansionJobName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/amlFilesystems/{amlFilesystemName}/expansionJobs/{expansionJobName}",
+      code: 200,
+      apiVersion: "2026-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteExpansionJobRequest",
+}) as any as S.Schema<DeleteExpansionJobRequest>;
+
+export interface DeleteExpansionJobResponse {}
+export const DeleteExpansionJobResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteExpansionJobResponse",
+}) as any as S.Schema<DeleteExpansionJobResponse>;
+
+export interface DeleteImportJobRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
+  amlFilesystemName: string;
+  /** Name for the import job. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
+  importJobName: string;
+}
+export const DeleteImportJobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    amlFilesystemName: S.String.pipe(T.Label()),
+    importJobName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/amlFilesystems/{amlFilesystemName}/importJobs/{importJobName}",
+      code: 200,
+      apiVersion: "2026-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteImportJobRequest",
+}) as any as S.Schema<DeleteImportJobRequest>;
+
+export interface DeleteImportJobResponse {}
+export const DeleteImportJobResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteImportJobResponse",
+}) as any as S.Schema<DeleteImportJobResponse>;
+
+export interface DeleteRebalanceJobRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
+  amlFilesystemName: string;
+  /** Name for the rebalance job. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
+  rebalanceJobName: string;
+}
+export const DeleteRebalanceJobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    amlFilesystemName: S.String.pipe(T.Label()),
+    rebalanceJobName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/amlFilesystems/{amlFilesystemName}/rebalanceJobs/{rebalanceJobName}",
+      code: 200,
+      apiVersion: "2026-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteRebalanceJobRequest",
+}) as any as S.Schema<DeleteRebalanceJobRequest>;
+
+export interface DeleteRebalanceJobResponse {}
+export const DeleteRebalanceJobResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteRebalanceJobResponse",
+}) as any as S.Schema<DeleteRebalanceJobResponse>;
+
+export interface DeleteStorageTargetRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of cache. Length of name must not be greater than 80 and chars must be from the [-0-9a-zA-Z_] char class. */
+  cacheName: string;
+  /** Name of Storage Target. */
+  storageTargetName: string;
+  /** Boolean value requesting the force delete operation for a storage target. Force delete discards unwritten-data in the cache instead of flushing it to back-end storage. */
+  force?: string;
+}
+export const DeleteStorageTargetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    cacheName: S.String.pipe(T.Label()),
+    storageTargetName: S.String.pipe(T.Label()),
+    force: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}/storageTargets/{storageTargetName}",
+      code: 200,
+      apiVersion: "2026-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteStorageTargetRequest",
+}) as any as S.Schema<DeleteStorageTargetRequest>;
+
+export interface DeleteStorageTargetResponse {}
+export const DeleteStorageTargetResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteStorageTargetResponse",
+}) as any as S.Schema<DeleteStorageTargetResponse>;
 
 /** Resource tags. */
 export type ExpansionJobsCreateOrUpdateRequestTagsMap = {
@@ -4011,42 +2669,445 @@ export const ExpansionJobsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ExpansionJobsCreateOrUpdateResponse",
 }) as any as S.Schema<ExpansionJobsCreateOrUpdateResponse>;
 
-export interface ExpansionJobsDeleteRequest {
+export interface FlushCachRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
-  amlFilesystemName: string;
-  /** Name for the expansion job. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
-  expansionJobName: string;
+  /** Name of cache. Length of name must not be greater than 80 and chars must be from the [-0-9a-zA-Z_] char class. */
+  cacheName: string;
 }
-export const ExpansionJobsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const FlushCachRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
-    amlFilesystemName: S.String.pipe(T.Label()),
-    expansionJobName: S.String.pipe(T.Label()),
+    cacheName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/amlFilesystems/{amlFilesystemName}/expansionJobs/{expansionJobName}",
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}/flush",
       code: 200,
       apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
-  identifier: "ExpansionJobsDeleteRequest",
-}) as any as S.Schema<ExpansionJobsDeleteRequest>;
+  identifier: "FlushCachRequest",
+}) as any as S.Schema<FlushCachRequest>;
 
-export interface ExpansionJobsDeleteResponse {}
-export const ExpansionJobsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface FlushCachResponse {}
+export const FlushCachResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "ExpansionJobsDeleteResponse",
-}) as any as S.Schema<ExpansionJobsDeleteResponse>;
+  identifier: "FlushCachResponse",
+}) as any as S.Schema<FlushCachResponse>;
 
-export interface ExpansionJobsGetRequest {
+export interface FlushStorageTargetRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of cache. Length of name must not be greater than 80 and chars must be from the [-0-9a-zA-Z_] char class. */
+  cacheName: string;
+  /** Name of Storage Target. */
+  storageTargetName: string;
+}
+export const FlushStorageTargetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    cacheName: S.String.pipe(T.Label()),
+    storageTargetName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}/storageTargets/{storageTargetName}/flush",
+      code: 200,
+      apiVersion: "2026-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "FlushStorageTargetRequest",
+}) as any as S.Schema<FlushStorageTargetRequest>;
+
+export interface FlushStorageTargetResponse {}
+export const FlushStorageTargetResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "FlushStorageTargetResponse",
+}) as any as S.Schema<FlushStorageTargetResponse>;
+
+export interface GetAmlFilesystemRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
+  amlFilesystemName: string;
+}
+export const GetAmlFilesystemRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    amlFilesystemName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/amlFilesystems/{amlFilesystemName}",
+      code: 200,
+      apiVersion: "2026-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetAmlFilesystemRequest",
+}) as any as S.Schema<GetAmlFilesystemRequest>;
+
+/** Resource tags. */
+export type GetAmlFilesystemResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetAmlFilesystemResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetAmlFilesystemResponseTagsMap>;
+
+/** The availability zones. */
+export type GetAmlFilesystemResponseZonesList = Array<string>;
+export const GetAmlFilesystemResponseZonesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<GetAmlFilesystemResponseZonesList>;
+
+export interface GetAmlFilesystemResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetAmlFilesystemResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the AML file system. */
+  properties?: AmlFilesystemProperties;
+  /** The managed identity used by the AML file system, if configured. */
+  identity?: AmlFilesystemIdentity;
+  /** SKU for the resource. */
+  sku?: SkuName;
+  /** The availability zones. */
+  zones?: GetAmlFilesystemResponseZonesList;
+}
+export const GetAmlFilesystemResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetAmlFilesystemResponseTagsMap),
+    location: S.String,
+    properties: S.optional(AmlFilesystemProperties),
+    identity: S.optional(AmlFilesystemIdentity),
+    sku: S.optional(SkuName),
+    zones: S.optional(GetAmlFilesystemResponseZonesList),
+  }),
+).annotate({
+  identifier: "GetAmlFilesystemResponse",
+}) as any as S.Schema<GetAmlFilesystemResponse>;
+
+export interface GetAscOperationRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of Azure region. */
+  location: string;
+  /** The ID of an ongoing async operation. */
+  operationId: string;
+}
+export const GetAscOperationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+    operationId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.StorageCache/locations/{location}/ascOperations/{operationId}",
+      code: 200,
+      apiVersion: "2026-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetAscOperationRequest",
+}) as any as S.Schema<GetAscOperationRequest>;
+
+/** Describes the format of Error response. */
+export interface AscOperationErrorResponse {
+  /** Error code */
+  code?: string;
+  /** Error message indicating why the operation failed. */
+  message?: string;
+}
+export const AscOperationErrorResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    code: S.optional(S.String),
+    message: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AscOperationErrorResponse",
+}) as any as S.Schema<AscOperationErrorResponse>;
+
+/** Additional operation-specific output. */
+export type AscOperationPropertiesOutputMap = {
+  [key: string]: unknown | undefined;
+};
+export const AscOperationPropertiesOutputMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<AscOperationPropertiesOutputMap>;
+
+/** Additional operation-specific output. */
+export interface AscOperationProperties {
+  /** Additional operation-specific output. */
+  output?: AscOperationPropertiesOutputMap;
+}
+export const AscOperationProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    output: S.optional(AscOperationPropertiesOutputMap),
+  }),
+).annotate({
+  identifier: "AscOperationProperties",
+}) as any as S.Schema<AscOperationProperties>;
+
+/** The status of operation. */
+export interface AscOperation {
+  /** The operation Id. */
+  id?: string;
+  /** The operation name. */
+  name?: string;
+  /** The start time of the operation. */
+  startTime?: string;
+  /** The end time of the operation. */
+  endTime?: string;
+  /** The status of the operation. */
+  status?: string;
+  /** The error detail of the operation if any. */
+  error?: AscOperationErrorResponse;
+  /** Additional operation-specific properties */
+  properties?: AscOperationProperties;
+}
+export const AscOperation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    startTime: S.optional(S.String),
+    endTime: S.optional(S.String),
+    status: S.optional(S.String),
+    error: S.optional(AscOperationErrorResponse),
+    properties: S.optional(AscOperationProperties),
+  }),
+).annotate({ identifier: "AscOperation" }) as any as S.Schema<AscOperation>;
+
+export interface GetAutoExportJobRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
+  amlFilesystemName: string;
+  /** Name for the auto export job. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
+  autoExportJobName: string;
+}
+export const GetAutoExportJobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    amlFilesystemName: S.String.pipe(T.Label()),
+    autoExportJobName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/amlFilesystems/{amlFilesystemName}/autoExportJobs/{autoExportJobName}",
+      code: 200,
+      apiVersion: "2026-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetAutoExportJobRequest",
+}) as any as S.Schema<GetAutoExportJobRequest>;
+
+/** Resource tags. */
+export type GetAutoExportJobResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetAutoExportJobResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetAutoExportJobResponseTagsMap>;
+
+export interface GetAutoExportJobResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetAutoExportJobResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the auto export job. */
+  properties?: AutoExportJobProperties;
+}
+export const GetAutoExportJobResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetAutoExportJobResponseTagsMap),
+    location: S.String,
+    properties: S.optional(AutoExportJobProperties),
+  }),
+).annotate({
+  identifier: "GetAutoExportJobResponse",
+}) as any as S.Schema<GetAutoExportJobResponse>;
+
+export interface GetAutoImportJobRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
+  amlFilesystemName: string;
+  /** Name for the auto import job. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
+  autoImportJobName: string;
+}
+export const GetAutoImportJobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    amlFilesystemName: S.String.pipe(T.Label()),
+    autoImportJobName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/amlFilesystems/{amlFilesystemName}/autoImportJobs/{autoImportJobName}",
+      code: 200,
+      apiVersion: "2026-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetAutoImportJobRequest",
+}) as any as S.Schema<GetAutoImportJobRequest>;
+
+/** Resource tags. */
+export type GetAutoImportJobResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetAutoImportJobResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetAutoImportJobResponseTagsMap>;
+
+export interface GetAutoImportJobResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetAutoImportJobResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the auto import job. */
+  properties?: AutoImportJobProperties;
+}
+export const GetAutoImportJobResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetAutoImportJobResponseTagsMap),
+    location: S.String,
+    properties: S.optional(AutoImportJobProperties),
+  }),
+).annotate({
+  identifier: "GetAutoImportJobResponse",
+}) as any as S.Schema<GetAutoImportJobResponse>;
+
+export interface GetCachRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of cache. Length of name must not be greater than 80 and chars must be from the [-0-9a-zA-Z_] char class. */
+  cacheName: string;
+}
+export const GetCachRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    cacheName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}",
+      code: 200,
+      apiVersion: "2026-08-01",
+    }),
+  ),
+).annotate({ identifier: "GetCachRequest" }) as any as S.Schema<GetCachRequest>;
+
+/** Resource tags. */
+export type GetCachResponseTagsMap = { [key: string]: string | undefined };
+export const GetCachResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetCachResponseTagsMap>;
+
+export interface GetCachResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of the cache. */
+  properties?: CacheProperties;
+  /** Resource tags. */
+  tags?: GetCachResponseTagsMap;
+  /** Region name string. */
+  location?: string;
+  /** The identity of the cache, if configured. */
+  identity?: CacheIdentity;
+  /** SKU for the cache. */
+  sku?: CacheSku;
+}
+export const GetCachResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(CacheProperties),
+    tags: S.optional(GetCachResponseTagsMap),
+    location: S.optional(S.String),
+    identity: S.optional(CacheIdentity),
+    sku: S.optional(CacheSku),
+  }),
+).annotate({
+  identifier: "GetCachResponse",
+}) as any as S.Schema<GetCachResponse>;
+
+export interface GetExpansionJobRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4056,7 +3117,7 @@ export interface ExpansionJobsGetRequest {
   /** Name for the expansion job. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
   expansionJobName: string;
 }
-export const ExpansionJobsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetExpansionJobRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -4071,19 +3132,19 @@ export const ExpansionJobsGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ExpansionJobsGetRequest",
-}) as any as S.Schema<ExpansionJobsGetRequest>;
+  identifier: "GetExpansionJobRequest",
+}) as any as S.Schema<GetExpansionJobRequest>;
 
 /** Resource tags. */
-export type ExpansionJobsGetResponseTagsMap = {
+export type GetExpansionJobResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ExpansionJobsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetExpansionJobResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ExpansionJobsGetResponseTagsMap>;
+) as any as S.Schema<GetExpansionJobResponseTagsMap>;
 
-export interface ExpansionJobsGetResponse {
+export interface GetExpansionJobResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -4093,282 +3154,27 @@ export interface ExpansionJobsGetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ExpansionJobsGetResponseTagsMap;
+  tags?: GetExpansionJobResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of the expansion job. */
   properties?: ExpansionJobProperties;
 }
-export const ExpansionJobsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetExpansionJobResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ExpansionJobsGetResponseTagsMap),
+    tags: S.optional(GetExpansionJobResponseTagsMap),
     location: S.String,
     properties: S.optional(ExpansionJobProperties),
   }),
 ).annotate({
-  identifier: "ExpansionJobsGetResponse",
-}) as any as S.Schema<ExpansionJobsGetResponse>;
+  identifier: "GetExpansionJobResponse",
+}) as any as S.Schema<GetExpansionJobResponse>;
 
-export interface ExpansionJobsListByAmlFilesystemRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
-  amlFilesystemName: string;
-}
-export const ExpansionJobsListByAmlFilesystemRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      amlFilesystemName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/amlFilesystems/{amlFilesystemName}/expansionJobs",
-        code: 200,
-        apiVersion: "2026-08-01",
-      }),
-    ),
-).annotate({
-  identifier: "ExpansionJobsListByAmlFilesystemRequest",
-}) as any as S.Schema<ExpansionJobsListByAmlFilesystemRequest>;
-
-/** Resource tags. */
-export type ExpansionJobTagsMap = { [key: string]: string | undefined };
-export const ExpansionJobTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ExpansionJobTagsMap>;
-
-/** An expansion job instance. Follows Azure Resource Manager standards: https://github.com/Azure/azure-resource-manager-rpc/blob/master/v1.0/resource-api-reference.md */
-export interface ExpansionJob {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ExpansionJobTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the expansion job. */
-  properties?: ExpansionJobProperties;
-}
-export const ExpansionJob = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(ExpansionJobTagsMap),
-    location: S.String,
-    properties: S.optional(ExpansionJobProperties),
-  }),
-).annotate({ identifier: "ExpansionJob" }) as any as S.Schema<ExpansionJob>;
-
-/** List of expansion jobs. */
-export type ExpansionJobsListResultValueList = Array<ExpansionJob>;
-export const ExpansionJobsListResultValueList = /*@__PURE__*/ S.Array(
-  ExpansionJob,
-) as any as S.Schema<ExpansionJobsListResultValueList>;
-
-/** Result of the request to list expansion jobs. It contains a list of expansion jobs and a URL link to get the next set of results. */
-export interface ExpansionJobsListResult {
-  /** List of expansion jobs. */
-  value?: ExpansionJobsListResultValueList;
-  /** URL to get the next set of expansion job list results, if there are any. */
-  nextLink?: string;
-}
-export const ExpansionJobsListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(ExpansionJobsListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ExpansionJobsListResult",
-}) as any as S.Schema<ExpansionJobsListResult>;
-
-/** Resource tags. */
-export type ExpansionJobsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ExpansionJobsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ExpansionJobsUpdateRequestTagsMap>;
-
-export interface ExpansionJobsUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
-  amlFilesystemName: string;
-  /** Name for the expansion job. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
-  expansionJobName: string;
-  /** Resource tags. */
-  tags?: ExpansionJobsUpdateRequestTagsMap;
-}
-export const ExpansionJobsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    amlFilesystemName: S.String.pipe(T.Label()),
-    expansionJobName: S.String.pipe(T.Label()),
-    tags: S.optional(ExpansionJobsUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/amlFilesystems/{amlFilesystemName}/expansionJobs/{expansionJobName}",
-      code: 200,
-      apiVersion: "2026-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "ExpansionJobsUpdateRequest",
-}) as any as S.Schema<ExpansionJobsUpdateRequest>;
-
-/** Resource tags. */
-export type ExpansionJobsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ExpansionJobsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ExpansionJobsUpdateResponseTagsMap>;
-
-export interface ExpansionJobsUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ExpansionJobsUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the expansion job. */
-  properties?: ExpansionJobProperties;
-}
-export const ExpansionJobsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(ExpansionJobsUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(ExpansionJobProperties),
-  }),
-).annotate({
-  identifier: "ExpansionJobsUpdateResponse",
-}) as any as S.Schema<ExpansionJobsUpdateResponse>;
-
-export interface GetRequiredAmlFSSubnetsSizeRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The size of the AML file system, in TiB. */
-  storageCapacityTiB?: number;
-  /** SKU for the resource. */
-  sku?: SkuName;
-}
-export const GetRequiredAmlFSSubnetsSizeRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    storageCapacityTiB: S.optional(S.Number),
-    sku: S.optional(SkuName),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.StorageCache/getRequiredAmlFSSubnetsSize",
-      code: 200,
-      apiVersion: "2026-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "GetRequiredAmlFSSubnetsSizeRequest",
-}) as any as S.Schema<GetRequiredAmlFSSubnetsSizeRequest>;
-
-/** Information about the number of available IP addresses that are required for the AML file system. */
-export interface RequiredAmlFilesystemSubnetsSize {
-  /** The number of available IP addresses that are required for the AML file system. */
-  filesystemSubnetSize?: number;
-}
-export const RequiredAmlFilesystemSubnetsSize = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    filesystemSubnetSize: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "RequiredAmlFilesystemSubnetsSize",
-}) as any as S.Schema<RequiredAmlFilesystemSubnetsSize>;
-
-/** Resource tags. */
-export type ImportJobsCreateOrUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ImportJobsCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ImportJobsCreateOrUpdateRequestTagsMap>;
-
-/** The administrative status of the import job. Possible values: 'Active', 'Cancel'. Passing in a value of 'Cancel' will cancel the current active import job. By default it is set to 'Active'. */
-export type ImportJobPropertiesInputAdminStatus = "Active" | "Cancel";
-export const ImportJobPropertiesInputAdminStatus = /*@__PURE__*/ S.String;
-
-/** An array of blob paths/prefixes that get imported into the cluster namespace. It has '/' as the default value. */
-export type ImportJobPropertiesInputImportPrefixesList = Array<string>;
-export const ImportJobPropertiesInputImportPrefixesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ImportJobPropertiesInputImportPrefixesList>;
-
-/** How the import job will handle conflicts. For example, if the import job is trying to bring in a directory, but a file is at that path, how it handles it. Fail indicates that the import job should stop immediately and not do anything with the conflict. Skip indicates that it should pass over the conflict. OverwriteIfDirty causes the import job to delete and re-import the file or directory if it is a conflicting type, is dirty, or was not previously imported. OverwriteAlways extends OverwriteIfDirty to include releasing files that had been restored but were not dirty. Please reference https://learn.microsoft.com/en-us/azure/azure-managed-lustre/ for a thorough explanation of these resolution modes. */
-export type ImportJobPropertiesInputConflictResolutionMode =
-  | "Fail"
-  | "Skip"
-  | "OverwriteIfDirty"
-  | "OverwriteAlways";
-export const ImportJobPropertiesInputConflictResolutionMode =
-  /*@__PURE__*/ S.String;
-
-/** Properties of the import job. */
-export interface ImportJobPropertiesInput {
-  /** The administrative status of the import job. Possible values: 'Active', 'Cancel'. Passing in a value of 'Cancel' will cancel the current active import job. By default it is set to 'Active'. */
-  adminStatus?: ImportJobPropertiesInputAdminStatus | (string & {});
-  /** An array of blob paths/prefixes that get imported into the cluster namespace. It has '/' as the default value. */
-  importPrefixes?: ImportJobPropertiesInputImportPrefixesList;
-  /** How the import job will handle conflicts. For example, if the import job is trying to bring in a directory, but a file is at that path, how it handles it. Fail indicates that the import job should stop immediately and not do anything with the conflict. Skip indicates that it should pass over the conflict. OverwriteIfDirty causes the import job to delete and re-import the file or directory if it is a conflicting type, is dirty, or was not previously imported. OverwriteAlways extends OverwriteIfDirty to include releasing files that had been restored but were not dirty. Please reference https://learn.microsoft.com/en-us/azure/azure-managed-lustre/ for a thorough explanation of these resolution modes. */
-  conflictResolutionMode?:
-    | ImportJobPropertiesInputConflictResolutionMode
-    | (string & {});
-  /** Total non-conflict oriented errors the import job will tolerate before exiting with failure. -1 means infinite. 0 means exit immediately and is the default. */
-  maximumErrors?: number;
-}
-export const ImportJobPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    adminStatus: S.optional(ImportJobPropertiesInputAdminStatus),
-    importPrefixes: S.optional(ImportJobPropertiesInputImportPrefixesList),
-    conflictResolutionMode: S.optional(
-      ImportJobPropertiesInputConflictResolutionMode,
-    ),
-    maximumErrors: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "ImportJobPropertiesInput",
-}) as any as S.Schema<ImportJobPropertiesInput>;
-
-export interface ImportJobsCreateOrUpdateRequest {
+export interface GetImportJobRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4377,42 +3183,31 @@ export interface ImportJobsCreateOrUpdateRequest {
   amlFilesystemName: string;
   /** Name for the import job. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
   importJobName: string;
-  /** Resource tags. */
-  tags?: ImportJobsCreateOrUpdateRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the import job. */
-  properties?: ImportJobPropertiesInput;
 }
-export const ImportJobsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetImportJobRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     amlFilesystemName: S.String.pipe(T.Label()),
     importJobName: S.String.pipe(T.Label()),
-    tags: S.optional(ImportJobsCreateOrUpdateRequestTagsMap),
-    location: S.String,
-    properties: S.optional(ImportJobPropertiesInput),
   }).pipe(
     T.Http({
-      method: "PUT",
+      method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/amlFilesystems/{amlFilesystemName}/importJobs/{importJobName}",
       code: 200,
       apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
-  identifier: "ImportJobsCreateOrUpdateRequest",
-}) as any as S.Schema<ImportJobsCreateOrUpdateRequest>;
+  identifier: "GetImportJobRequest",
+}) as any as S.Schema<GetImportJobRequest>;
 
 /** Resource tags. */
-export type ImportJobsCreateOrUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ImportJobsCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetImportJobResponseTagsMap = { [key: string]: string | undefined };
+export const GetImportJobResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ImportJobsCreateOrUpdateResponseTagsMap>;
+) as any as S.Schema<GetImportJobResponseTagsMap>;
 
 /** ARM provisioning state. */
 export type ImportJobProvisioningStateType =
@@ -4540,6 +3335,525 @@ export const ImportJobProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "ImportJobProperties",
 }) as any as S.Schema<ImportJobProperties>;
 
+export interface GetImportJobResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetImportJobResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the import job. */
+  properties?: ImportJobProperties;
+}
+export const GetImportJobResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetImportJobResponseTagsMap),
+    location: S.String,
+    properties: S.optional(ImportJobProperties),
+  }),
+).annotate({
+  identifier: "GetImportJobResponse",
+}) as any as S.Schema<GetImportJobResponse>;
+
+export interface GetRebalanceJobRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
+  amlFilesystemName: string;
+  /** Name for the rebalance job. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
+  rebalanceJobName: string;
+}
+export const GetRebalanceJobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    amlFilesystemName: S.String.pipe(T.Label()),
+    rebalanceJobName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/amlFilesystems/{amlFilesystemName}/rebalanceJobs/{rebalanceJobName}",
+      code: 200,
+      apiVersion: "2026-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetRebalanceJobRequest",
+}) as any as S.Schema<GetRebalanceJobRequest>;
+
+/** ARM provisioning state for the rebalance job. */
+export type RebalanceJobPropertiesProvisioningState =
+  | "Succeeded"
+  | "Failed"
+  | "Canceled"
+  | "Creating"
+  | "Updating"
+  | "Deleting";
+export const RebalanceJobPropertiesProvisioningState = /*@__PURE__*/ S.String;
+
+/** The administrative status of the rebalance job. Active means the job is running normally. Cancel requests the job to stop. */
+export type RebalanceJobAdminStatus = "Active" | "Cancel";
+export const RebalanceJobAdminStatus = /*@__PURE__*/ S.String;
+
+/** The operational state of the rebalance job. InProgress indicates the rebalance is running on the cluster. Cancelling indicates a cancel has been requested. Canceled indicates the rebalance was cancelled. Completed indicates the rebalance finished successfully (imbalance below low watermark). Failed indicates the rebalance was unable to complete due to a fatal error. Deleting indicates the job is being cleaned up during deletion. RollingBack indicates the orchestrator is rolling back provisioned resources after a failure. */
+export type RebalanceJobStatusType =
+  | "InProgress"
+  | "Cancelling"
+  | "Canceled"
+  | "Completed"
+  | "Failed"
+  | "Deleting"
+  | "RollingBack";
+export const RebalanceJobStatusType = /*@__PURE__*/ S.String;
+
+/** The status of the rebalance job. */
+export interface RebalanceJobPropertiesStatus {
+  /** The operational state of the rebalance job. InProgress indicates the rebalance is running on the cluster. Cancelling indicates a cancel has been requested. Canceled indicates the rebalance was cancelled. Completed indicates the rebalance finished successfully. Failed indicates the rebalance was unable to complete due to a fatal error. Deleting indicates the job is being cleaned up during deletion. RollingBack indicates the orchestrator is rolling back provisioned resources after a failure. */
+  state?: RebalanceJobStatusType;
+  /** Server-defined status code for rebalance job. */
+  statusCode?: string;
+  /** Server-defined status message for rebalance job. */
+  statusMessage?: string;
+  /** The percentage of rebalance job completion. */
+  percentComplete?: number;
+  /** The balance percentage (0-100). Represents cumulative progress since the rebalance started. Reported in periodic rebalance status updates. Resets to 0 if the rebalancer node restarts. */
+  balancePercent?: number;
+  /** Estimated remaining time in seconds. Omitted during initial assessment before the rebalancer has enough data to estimate. */
+  estimatedRemainingSeconds?: number;
+  /** Total number of files migrated since the rebalance started. Counts OST-phase (data) work items. Reported in periodic rebalance status updates. Resets to 0 if the rebalancer node restarts. */
+  filesMigrated?: number;
+  /** Total number of directories migrated since the rebalance started. Counts MDT-phase (metadata) work items, reported separately from filesMigrated (OST-phase data migrations). Reported in periodic rebalance status updates. Resets to 0 if the rebalancer node restarts. */
+  dirsMigrated?: number;
+  /** Total number of bytes moved since the rebalance started. Reported in periodic rebalance status updates. Resets to 0 if the rebalancer node restarts. */
+  bytesMoved?: number;
+  /** Average files moved per second over the most recent reporting interval. */
+  filesMovedPerSecond?: number;
+  /** Average throughput in mebibytes per second (1024x1024 bytes per second) over the most recent reporting interval. */
+  throughputMiBps?: number;
+  /** Total cumulative non-skip errors since the rebalance started. Reported in periodic rebalance status updates. Resets to 0 if the rebalancer node restarts. */
+  totalErrors?: number;
+  /** Total cumulative benign skips since the rebalance started: files intentionally not migrated (for example, a lost migration lease or a stale layout), as distinct from the hard failures counted in totalErrors. Reported in periodic rebalance status updates. Resets to 0 if the rebalancer node restarts. */
+  totalSkipped?: number;
+  /** The time (in UTC) the rebalance job started. */
+  startTimeUTC?: string;
+  /** The time (in UTC) when the rebalance job completed. Only populated when the job reaches a terminal state (Completed, Failed, or Canceled). */
+  completionTimeUTC?: string;
+}
+export const RebalanceJobPropertiesStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    state: S.optional(RebalanceJobStatusType),
+    statusCode: S.optional(S.String),
+    statusMessage: S.optional(S.String),
+    percentComplete: S.optional(S.Number),
+    balancePercent: S.optional(S.Number),
+    estimatedRemainingSeconds: S.optional(S.Number),
+    filesMigrated: S.optional(S.Number),
+    dirsMigrated: S.optional(S.Number),
+    bytesMoved: S.optional(S.Number),
+    filesMovedPerSecond: S.optional(S.Number),
+    throughputMiBps: S.optional(S.Number),
+    totalErrors: S.optional(S.Number),
+    totalSkipped: S.optional(S.Number),
+    startTimeUTC: S.optional(S.String),
+    completionTimeUTC: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "RebalanceJobPropertiesStatus",
+}) as any as S.Schema<RebalanceJobPropertiesStatus>;
+
+/** Properties of the rebalance job. */
+export interface RebalanceJobProperties {
+  /** ARM provisioning state, see https://github.com/Azure/azure-resource-manager-rpc/blob/master/v1.0/Addendum.md#provisioningstate-property */
+  provisioningState?: RebalanceJobPropertiesProvisioningState;
+  /** The current administrative status of the rebalance job. 'Active' indicates the job is running normally; 'Cancel' indicates cancellation has been requested. */
+  adminStatus?: RebalanceJobAdminStatus;
+  /** Fully qualified ARM resource ID of the parent expansion job that initiated this rebalance. Populated when the rebalance was created as part of an expansion. */
+  expansionJobId?: string;
+  /** The status of the rebalance job. */
+  status?: RebalanceJobPropertiesStatus;
+}
+export const RebalanceJobProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(RebalanceJobPropertiesProvisioningState),
+    adminStatus: S.optional(RebalanceJobAdminStatus),
+    expansionJobId: S.optional(S.String),
+    status: S.optional(RebalanceJobPropertiesStatus),
+  }),
+).annotate({
+  identifier: "RebalanceJobProperties",
+}) as any as S.Schema<RebalanceJobProperties>;
+
+export interface GetRebalanceJobResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of the rebalance job. */
+  properties?: RebalanceJobProperties;
+}
+export const GetRebalanceJobResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(RebalanceJobProperties),
+  }),
+).annotate({
+  identifier: "GetRebalanceJobResponse",
+}) as any as S.Schema<GetRebalanceJobResponse>;
+
+export interface GetRequiredAmlFSSubnetsSizeRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The size of the AML file system, in TiB. */
+  storageCapacityTiB?: number;
+  /** SKU for the resource. */
+  sku?: SkuName;
+}
+export const GetRequiredAmlFSSubnetsSizeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    storageCapacityTiB: S.optional(S.Number),
+    sku: S.optional(SkuName),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.StorageCache/getRequiredAmlFSSubnetsSize",
+      code: 200,
+      apiVersion: "2026-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetRequiredAmlFSSubnetsSizeRequest",
+}) as any as S.Schema<GetRequiredAmlFSSubnetsSizeRequest>;
+
+/** Information about the number of available IP addresses that are required for the AML file system. */
+export interface RequiredAmlFilesystemSubnetsSize {
+  /** The number of available IP addresses that are required for the AML file system. */
+  filesystemSubnetSize?: number;
+}
+export const RequiredAmlFilesystemSubnetsSize = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    filesystemSubnetSize: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "RequiredAmlFilesystemSubnetsSize",
+}) as any as S.Schema<RequiredAmlFilesystemSubnetsSize>;
+
+export interface GetStorageTargetRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of cache. Length of name must not be greater than 80 and chars must be from the [-0-9a-zA-Z_] char class. */
+  cacheName: string;
+  /** Name of Storage Target. */
+  storageTargetName: string;
+}
+export const GetStorageTargetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    cacheName: S.String.pipe(T.Label()),
+    storageTargetName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}/storageTargets/{storageTargetName}",
+      code: 200,
+      apiVersion: "2026-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetStorageTargetRequest",
+}) as any as S.Schema<GetStorageTargetRequest>;
+
+/** A namespace junction. */
+export interface NamespaceJunction {
+  /** Namespace path on a cache for a Storage Target. */
+  namespacePath?: string;
+  /** Path in Storage Target to which namespacePath points. */
+  targetPath?: string;
+  /** NFS export where targetPath exists. */
+  nfsExport?: string;
+  /** Name of the access policy applied to this junction. */
+  nfsAccessPolicy?: string;
+}
+export const NamespaceJunction = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    namespacePath: S.optional(S.String),
+    targetPath: S.optional(S.String),
+    nfsExport: S.optional(S.String),
+    nfsAccessPolicy: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "NamespaceJunction",
+}) as any as S.Schema<NamespaceJunction>;
+
+/** List of cache namespace junctions to target for namespace associations. */
+export type StorageTargetPropertiesJunctionsList = Array<NamespaceJunction>;
+export const StorageTargetPropertiesJunctionsList = /*@__PURE__*/ S.Array(
+  NamespaceJunction,
+) as any as S.Schema<StorageTargetPropertiesJunctionsList>;
+
+/** Type of the Storage Target. */
+export type StorageTargetType = "nfs3" | "clfs" | "unknown" | "blobNfs";
+export const StorageTargetType = /*@__PURE__*/ S.String;
+
+/** Storage target operational state. */
+export type OperationalStateType = "Ready" | "Busy" | "Suspended" | "Flushing";
+export const OperationalStateType = /*@__PURE__*/ S.String;
+
+/** Properties pertaining to the Nfs3Target */
+export interface Nfs3Target {
+  /** IP address or host name of an NFSv3 host (e.g., 10.0.44.44). */
+  target?: string;
+  /** Identifies the StorageCache usage model to be used for this storage target. */
+  usageModel?: string;
+  /** Amount of time (in seconds) the cache waits before it checks the back-end storage for file updates. */
+  verificationTimer?: number;
+  /** Amount of time (in seconds) the cache waits after the last file change before it copies the changed file to back-end storage. */
+  writeBackTimer?: number;
+}
+export const Nfs3Target = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    target: S.optional(S.String),
+    usageModel: S.optional(S.String),
+    verificationTimer: S.optional(S.Number),
+    writeBackTimer: S.optional(S.Number),
+  }),
+).annotate({ identifier: "Nfs3Target" }) as any as S.Schema<Nfs3Target>;
+
+/** Properties pertaining to the ClfsTarget */
+export interface ClfsTarget {
+  /** Resource ID of storage container. */
+  target?: string;
+}
+export const ClfsTarget = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    target: S.optional(S.String),
+  }),
+).annotate({ identifier: "ClfsTarget" }) as any as S.Schema<ClfsTarget>;
+
+/** Dictionary of string->string pairs containing information about the Storage Target. */
+export type UnknownTargetAttributesMap = { [key: string]: string | undefined };
+export const UnknownTargetAttributesMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UnknownTargetAttributesMap>;
+
+/** Properties pertaining to the UnknownTarget */
+export interface UnknownTarget {
+  /** Dictionary of string->string pairs containing information about the Storage Target. */
+  attributes?: UnknownTargetAttributesMap;
+}
+export const UnknownTarget = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    attributes: S.optional(UnknownTargetAttributesMap),
+  }),
+).annotate({ identifier: "UnknownTarget" }) as any as S.Schema<UnknownTarget>;
+
+/** Properties pertaining to the BlobNfsTarget. */
+export interface BlobNfsTarget {
+  /** Resource ID of the storage container. */
+  target?: string;
+  /** Identifies the StorageCache usage model to be used for this storage target. */
+  usageModel?: string;
+  /** Amount of time (in seconds) the cache waits before it checks the back-end storage for file updates. */
+  verificationTimer?: number;
+  /** Amount of time (in seconds) the cache waits after the last file change before it copies the changed file to back-end storage. */
+  writeBackTimer?: number;
+}
+export const BlobNfsTarget = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    target: S.optional(S.String),
+    usageModel: S.optional(S.String),
+    verificationTimer: S.optional(S.Number),
+    writeBackTimer: S.optional(S.Number),
+  }),
+).annotate({ identifier: "BlobNfsTarget" }) as any as S.Schema<BlobNfsTarget>;
+
+/** Properties of the Storage Target. */
+export interface StorageTargetProperties {
+  /** List of cache namespace junctions to target for namespace associations. */
+  junctions?: StorageTargetPropertiesJunctionsList;
+  /** Type of the Storage Target. */
+  targetType: StorageTargetType;
+  /** ARM provisioning state, see https://github.com/Azure/azure-resource-manager-rpc/blob/master/v1.0/Addendum.md#provisioningstate-property */
+  provisioningState?: ProvisioningStateType;
+  /** Storage target operational state. */
+  state?: OperationalStateType;
+  /** Properties when targetType is nfs3. */
+  nfs3?: Nfs3Target;
+  /** Properties when targetType is clfs. */
+  clfs?: ClfsTarget;
+  /** Properties when targetType is unknown. */
+  unknown?: UnknownTarget;
+  /** Properties when targetType is blobNfs. */
+  blobNfs?: BlobNfsTarget;
+  /** The percentage of cache space allocated for this storage target */
+  allocationPercentage?: number;
+}
+export const StorageTargetProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    junctions: S.optional(StorageTargetPropertiesJunctionsList),
+    targetType: StorageTargetType,
+    provisioningState: S.optional(ProvisioningStateType),
+    state: S.optional(OperationalStateType),
+    nfs3: S.optional(Nfs3Target),
+    clfs: S.optional(ClfsTarget),
+    unknown: S.optional(UnknownTarget),
+    blobNfs: S.optional(BlobNfsTarget),
+    allocationPercentage: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "StorageTargetProperties",
+}) as any as S.Schema<StorageTargetProperties>;
+
+export interface GetStorageTargetResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** StorageTarget properties */
+  properties?: StorageTargetProperties;
+  /** Region name string. */
+  location?: string;
+}
+export const GetStorageTargetResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(StorageTargetProperties),
+    location: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetStorageTargetResponse",
+}) as any as S.Schema<GetStorageTargetResponse>;
+
+/** Resource tags. */
+export type ImportJobsCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const ImportJobsCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ImportJobsCreateOrUpdateRequestTagsMap>;
+
+/** The administrative status of the import job. Possible values: 'Active', 'Cancel'. Passing in a value of 'Cancel' will cancel the current active import job. By default it is set to 'Active'. */
+export type ImportJobPropertiesInputAdminStatus = "Active" | "Cancel";
+export const ImportJobPropertiesInputAdminStatus = /*@__PURE__*/ S.String;
+
+/** An array of blob paths/prefixes that get imported into the cluster namespace. It has '/' as the default value. */
+export type ImportJobPropertiesInputImportPrefixesList = Array<string>;
+export const ImportJobPropertiesInputImportPrefixesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ImportJobPropertiesInputImportPrefixesList>;
+
+/** How the import job will handle conflicts. For example, if the import job is trying to bring in a directory, but a file is at that path, how it handles it. Fail indicates that the import job should stop immediately and not do anything with the conflict. Skip indicates that it should pass over the conflict. OverwriteIfDirty causes the import job to delete and re-import the file or directory if it is a conflicting type, is dirty, or was not previously imported. OverwriteAlways extends OverwriteIfDirty to include releasing files that had been restored but were not dirty. Please reference https://learn.microsoft.com/en-us/azure/azure-managed-lustre/ for a thorough explanation of these resolution modes. */
+export type ImportJobPropertiesInputConflictResolutionMode =
+  | "Fail"
+  | "Skip"
+  | "OverwriteIfDirty"
+  | "OverwriteAlways";
+export const ImportJobPropertiesInputConflictResolutionMode =
+  /*@__PURE__*/ S.String;
+
+/** Properties of the import job. */
+export interface ImportJobPropertiesInput {
+  /** The administrative status of the import job. Possible values: 'Active', 'Cancel'. Passing in a value of 'Cancel' will cancel the current active import job. By default it is set to 'Active'. */
+  adminStatus?: ImportJobPropertiesInputAdminStatus | (string & {});
+  /** An array of blob paths/prefixes that get imported into the cluster namespace. It has '/' as the default value. */
+  importPrefixes?: ImportJobPropertiesInputImportPrefixesList;
+  /** How the import job will handle conflicts. For example, if the import job is trying to bring in a directory, but a file is at that path, how it handles it. Fail indicates that the import job should stop immediately and not do anything with the conflict. Skip indicates that it should pass over the conflict. OverwriteIfDirty causes the import job to delete and re-import the file or directory if it is a conflicting type, is dirty, or was not previously imported. OverwriteAlways extends OverwriteIfDirty to include releasing files that had been restored but were not dirty. Please reference https://learn.microsoft.com/en-us/azure/azure-managed-lustre/ for a thorough explanation of these resolution modes. */
+  conflictResolutionMode?:
+    | ImportJobPropertiesInputConflictResolutionMode
+    | (string & {});
+  /** Total non-conflict oriented errors the import job will tolerate before exiting with failure. -1 means infinite. 0 means exit immediately and is the default. */
+  maximumErrors?: number;
+}
+export const ImportJobPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    adminStatus: S.optional(ImportJobPropertiesInputAdminStatus),
+    importPrefixes: S.optional(ImportJobPropertiesInputImportPrefixesList),
+    conflictResolutionMode: S.optional(
+      ImportJobPropertiesInputConflictResolutionMode,
+    ),
+    maximumErrors: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "ImportJobPropertiesInput",
+}) as any as S.Schema<ImportJobPropertiesInput>;
+
+export interface ImportJobsCreateOrUpdateRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
+  amlFilesystemName: string;
+  /** Name for the import job. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
+  importJobName: string;
+  /** Resource tags. */
+  tags?: ImportJobsCreateOrUpdateRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the import job. */
+  properties?: ImportJobPropertiesInput;
+}
+export const ImportJobsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    amlFilesystemName: S.String.pipe(T.Label()),
+    importJobName: S.String.pipe(T.Label()),
+    tags: S.optional(ImportJobsCreateOrUpdateRequestTagsMap),
+    location: S.String,
+    properties: S.optional(ImportJobPropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/amlFilesystems/{amlFilesystemName}/importJobs/{importJobName}",
+      code: 200,
+      apiVersion: "2026-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "ImportJobsCreateOrUpdateRequest",
+}) as any as S.Schema<ImportJobsCreateOrUpdateRequest>;
+
+/** Resource tags. */
+export type ImportJobsCreateOrUpdateResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const ImportJobsCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ImportJobsCreateOrUpdateResponseTagsMap>;
+
 export interface ImportJobsCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
@@ -4570,79 +3884,79 @@ export const ImportJobsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ImportJobsCreateOrUpdateResponse",
 }) as any as S.Schema<ImportJobsCreateOrUpdateResponse>;
 
-export interface ImportJobsDeleteRequest {
+export interface InvalidateStorageTargetRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
-  amlFilesystemName: string;
-  /** Name for the import job. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
-  importJobName: string;
+  /** Name of cache. Length of name must not be greater than 80 and chars must be from the [-0-9a-zA-Z_] char class. */
+  cacheName: string;
+  /** Name of Storage Target. */
+  storageTargetName: string;
 }
-export const ImportJobsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const InvalidateStorageTargetRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
-    amlFilesystemName: S.String.pipe(T.Label()),
-    importJobName: S.String.pipe(T.Label()),
+    cacheName: S.String.pipe(T.Label()),
+    storageTargetName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/amlFilesystems/{amlFilesystemName}/importJobs/{importJobName}",
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}/storageTargets/{storageTargetName}/invalidate",
       code: 200,
       apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
-  identifier: "ImportJobsDeleteRequest",
-}) as any as S.Schema<ImportJobsDeleteRequest>;
+  identifier: "InvalidateStorageTargetRequest",
+}) as any as S.Schema<InvalidateStorageTargetRequest>;
 
-export interface ImportJobsDeleteResponse {}
-export const ImportJobsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface InvalidateStorageTargetResponse {}
+export const InvalidateStorageTargetResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "ImportJobsDeleteResponse",
-}) as any as S.Schema<ImportJobsDeleteResponse>;
+  identifier: "InvalidateStorageTargetResponse",
+}) as any as S.Schema<InvalidateStorageTargetResponse>;
 
-export interface ImportJobsGetRequest {
+export interface ListAmlFilesystemByResourceGroupRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
-  amlFilesystemName: string;
-  /** Name for the import job. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
-  importJobName: string;
 }
-export const ImportJobsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    amlFilesystemName: S.String.pipe(T.Label()),
-    importJobName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/amlFilesystems/{amlFilesystemName}/importJobs/{importJobName}",
-      code: 200,
-      apiVersion: "2026-08-01",
-    }),
-  ),
+export const ListAmlFilesystemByResourceGroupRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/amlFilesystems",
+        code: 200,
+        apiVersion: "2026-08-01",
+      }),
+    ),
 ).annotate({
-  identifier: "ImportJobsGetRequest",
-}) as any as S.Schema<ImportJobsGetRequest>;
+  identifier: "ListAmlFilesystemByResourceGroupRequest",
+}) as any as S.Schema<ListAmlFilesystemByResourceGroupRequest>;
 
 /** Resource tags. */
-export type ImportJobsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ImportJobsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type AmlFilesystemTagsMap = { [key: string]: string | undefined };
+export const AmlFilesystemTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ImportJobsGetResponseTagsMap>;
+) as any as S.Schema<AmlFilesystemTagsMap>;
 
-export interface ImportJobsGetResponse {
+/** The availability zones. */
+export type AmlFilesystemZonesList = Array<string>;
+export const AmlFilesystemZonesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<AmlFilesystemZonesList>;
+
+/** An AML file system instance. Follows Azure Resource Manager standards: https://github.com/Azure/azure-resource-manager-rpc/blob/master/v1.0/resource-api-reference.md */
+export interface AmlFilesystem {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -4652,27 +3966,155 @@ export interface ImportJobsGetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ImportJobsGetResponseTagsMap;
+  tags?: AmlFilesystemTagsMap;
   /** The geo-location where the resource lives */
   location: string;
-  /** Properties of the import job. */
-  properties?: ImportJobProperties;
+  /** Properties of the AML file system. */
+  properties?: AmlFilesystemProperties;
+  /** The managed identity used by the AML file system, if configured. */
+  identity?: AmlFilesystemIdentity;
+  /** SKU for the resource. */
+  sku?: SkuName;
+  /** The availability zones. */
+  zones?: AmlFilesystemZonesList;
 }
-export const ImportJobsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const AmlFilesystem = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ImportJobsGetResponseTagsMap),
+    tags: S.optional(AmlFilesystemTagsMap),
     location: S.String,
-    properties: S.optional(ImportJobProperties),
+    properties: S.optional(AmlFilesystemProperties),
+    identity: S.optional(AmlFilesystemIdentity),
+    sku: S.optional(SkuName),
+    zones: S.optional(AmlFilesystemZonesList),
+  }),
+).annotate({ identifier: "AmlFilesystem" }) as any as S.Schema<AmlFilesystem>;
+
+/** List of AML file systems. */
+export type AmlFilesystemsListResultValueList = Array<AmlFilesystem>;
+export const AmlFilesystemsListResultValueList = /*@__PURE__*/ S.Array(
+  AmlFilesystem,
+) as any as S.Schema<AmlFilesystemsListResultValueList>;
+
+/** Result of the request to list AML file systems. It contains a list of AML file systems and a URL link to get the next set of results. */
+export interface AmlFilesystemsListResult {
+  /** List of AML file systems. */
+  value?: AmlFilesystemsListResultValueList;
+  /** URL to get the next set of AML file system list results, if there are any. */
+  nextLink?: string;
+}
+export const AmlFilesystemsListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(AmlFilesystemsListResultValueList),
+    nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ImportJobsGetResponse",
-}) as any as S.Schema<ImportJobsGetResponse>;
+  identifier: "AmlFilesystemsListResult",
+}) as any as S.Schema<AmlFilesystemsListResult>;
 
-export interface ImportJobsListByAmlFilesystemRequest {
+export interface ListAmlFilesystemsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+}
+export const ListAmlFilesystemsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.StorageCache/amlFilesystems",
+      code: 200,
+      apiVersion: "2026-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListAmlFilesystemsRequest",
+}) as any as S.Schema<ListAmlFilesystemsRequest>;
+
+export interface ListAscUsagesRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of Azure region. */
+  location: string;
+}
+export const ListAscUsagesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.StorageCache/locations/{location}/usages",
+      code: 200,
+      apiVersion: "2026-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListAscUsagesRequest",
+}) as any as S.Schema<ListAscUsagesRequest>;
+
+/** Naming information for this resource type. */
+export interface ResourceUsageName {
+  /** Canonical name for this resource type. */
+  value?: string;
+  /** Localized name for this resource type. */
+  localizedValue?: string;
+}
+export const ResourceUsageName = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(S.String),
+    localizedValue: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ResourceUsageName",
+}) as any as S.Schema<ResourceUsageName>;
+
+/** The usage and limit (quota) for a resource. */
+export interface ResourceUsage {
+  /** The limit (quota) for this resource. */
+  limit?: number;
+  /** Unit that the limit and usages are expressed in, such as 'Count'. */
+  unit?: string;
+  /** The current usage of this resource. */
+  currentValue?: number;
+  /** Naming information for this resource type. */
+  name?: ResourceUsageName;
+}
+export const ResourceUsage = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    limit: S.optional(S.Number),
+    unit: S.optional(S.String),
+    currentValue: S.optional(S.Number),
+    name: S.optional(ResourceUsageName),
+  }),
+).annotate({ identifier: "ResourceUsage" }) as any as S.Schema<ResourceUsage>;
+
+/** List of usages and limits for resources controlled by the Microsoft.StorageCache resource provider. */
+export type ResourceUsagesListResultValueList = Array<ResourceUsage>;
+export const ResourceUsagesListResultValueList = /*@__PURE__*/ S.Array(
+  ResourceUsage,
+) as any as S.Schema<ResourceUsagesListResultValueList>;
+
+/** Result of the request to list resource usages. It contains a list of resource usages & limits and a URL link to get the next set of results. */
+export interface ResourceUsagesListResult {
+  /** List of usages and limits for resources controlled by the Microsoft.StorageCache resource provider. */
+  value?: ResourceUsagesListResultValueList;
+  /** URL to get the next set of resource usage list results if there are any. */
+  nextLink?: string;
+}
+export const ResourceUsagesListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(ResourceUsagesListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ResourceUsagesListResult",
+}) as any as S.Schema<ResourceUsagesListResult>;
+
+export interface ListAutoExportJobByAmlFilesystemRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4680,7 +4122,7 @@ export interface ImportJobsListByAmlFilesystemRequest {
   /** Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
   amlFilesystemName: string;
 }
-export const ImportJobsListByAmlFilesystemRequest = /*@__PURE__*/ S.suspend(
+export const ListAutoExportJobByAmlFilesystemRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -4689,14 +4131,370 @@ export const ImportJobsListByAmlFilesystemRequest = /*@__PURE__*/ S.suspend(
     }).pipe(
       T.Http({
         method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/amlFilesystems/{amlFilesystemName}/importJobs",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/amlFilesystems/{amlFilesystemName}/autoExportJobs",
         code: 200,
         apiVersion: "2026-08-01",
       }),
     ),
 ).annotate({
-  identifier: "ImportJobsListByAmlFilesystemRequest",
-}) as any as S.Schema<ImportJobsListByAmlFilesystemRequest>;
+  identifier: "ListAutoExportJobByAmlFilesystemRequest",
+}) as any as S.Schema<ListAutoExportJobByAmlFilesystemRequest>;
+
+/** Resource tags. */
+export type AutoExportJobTagsMap = { [key: string]: string | undefined };
+export const AutoExportJobTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<AutoExportJobTagsMap>;
+
+/** An auto export job instance. Follows Azure Resource Manager standards: https://github.com/Azure/azure-resource-manager-rpc/blob/master/v1.0/resource-api-reference.md */
+export interface AutoExportJob {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: AutoExportJobTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the auto export job. */
+  properties?: AutoExportJobProperties;
+}
+export const AutoExportJob = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(AutoExportJobTagsMap),
+    location: S.String,
+    properties: S.optional(AutoExportJobProperties),
+  }),
+).annotate({ identifier: "AutoExportJob" }) as any as S.Schema<AutoExportJob>;
+
+/** List of auto export jobs. */
+export type AutoExportJobsListResultValueList = Array<AutoExportJob>;
+export const AutoExportJobsListResultValueList = /*@__PURE__*/ S.Array(
+  AutoExportJob,
+) as any as S.Schema<AutoExportJobsListResultValueList>;
+
+/** Result of the request to list auto export jobs. It contains a list of auto export jobs and a URL link to get the next set of results. */
+export interface AutoExportJobsListResult {
+  /** List of auto export jobs. */
+  value?: AutoExportJobsListResultValueList;
+  /** URL to get the next set of auto export job list results, if there are any. */
+  nextLink?: string;
+}
+export const AutoExportJobsListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(AutoExportJobsListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AutoExportJobsListResult",
+}) as any as S.Schema<AutoExportJobsListResult>;
+
+export interface ListAutoImportJobByAmlFilesystemRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
+  amlFilesystemName: string;
+}
+export const ListAutoImportJobByAmlFilesystemRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      amlFilesystemName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/amlFilesystems/{amlFilesystemName}/autoImportJobs",
+        code: 200,
+        apiVersion: "2026-08-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListAutoImportJobByAmlFilesystemRequest",
+}) as any as S.Schema<ListAutoImportJobByAmlFilesystemRequest>;
+
+/** Resource tags. */
+export type AutoImportJobTagsMap = { [key: string]: string | undefined };
+export const AutoImportJobTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<AutoImportJobTagsMap>;
+
+/** An auto import job instance. Follows Azure Resource Manager standards: https://github.com/Azure/azure-resource-manager-rpc/blob/master/v1.0/resource-api-reference.md */
+export interface AutoImportJob {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: AutoImportJobTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the auto import job. */
+  properties?: AutoImportJobProperties;
+}
+export const AutoImportJob = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(AutoImportJobTagsMap),
+    location: S.String,
+    properties: S.optional(AutoImportJobProperties),
+  }),
+).annotate({ identifier: "AutoImportJob" }) as any as S.Schema<AutoImportJob>;
+
+/** List of auto import jobs. */
+export type AutoImportJobsListResultValueList = Array<AutoImportJob>;
+export const AutoImportJobsListResultValueList = /*@__PURE__*/ S.Array(
+  AutoImportJob,
+) as any as S.Schema<AutoImportJobsListResultValueList>;
+
+/** Result of the request to list auto import jobs. It contains a list of auto import jobs and a URL link to get the next set of results. */
+export interface AutoImportJobsListResult {
+  /** List of auto import jobs. */
+  value?: AutoImportJobsListResultValueList;
+  /** URL to get the next set of auto import job list results, if there are any. */
+  nextLink?: string;
+}
+export const AutoImportJobsListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(AutoImportJobsListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AutoImportJobsListResult",
+}) as any as S.Schema<AutoImportJobsListResult>;
+
+export interface ListCachByResourceGroupRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const ListCachByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches",
+      code: 200,
+      apiVersion: "2026-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListCachByResourceGroupRequest",
+}) as any as S.Schema<ListCachByResourceGroupRequest>;
+
+/** Resource tags. */
+export type CacheTagsMap = { [key: string]: string | undefined };
+export const CacheTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<CacheTagsMap>;
+
+/** A cache instance. Follows Azure Resource Manager standards: https://github.com/Azure/azure-resource-manager-rpc/blob/master/v1.0/resource-api-reference.md */
+export interface Cache {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of the cache. */
+  properties?: CacheProperties;
+  /** Resource tags. */
+  tags?: CacheTagsMap;
+  /** Region name string. */
+  location?: string;
+  /** The identity of the cache, if configured. */
+  identity?: CacheIdentity;
+  /** SKU for the cache. */
+  sku?: CacheSku;
+}
+export const Cache = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(CacheProperties),
+    tags: S.optional(CacheTagsMap),
+    location: S.optional(S.String),
+    identity: S.optional(CacheIdentity),
+    sku: S.optional(CacheSku),
+  }),
+).annotate({ identifier: "Cache" }) as any as S.Schema<Cache>;
+
+/** List of caches. */
+export type CachesListResultValueList = Array<Cache>;
+export const CachesListResultValueList = /*@__PURE__*/ S.Array(
+  Cache,
+) as any as S.Schema<CachesListResultValueList>;
+
+/** Result of the request to list caches. It contains a list of caches and a URL link to get the next set of results. */
+export interface CachesListResult {
+  /** List of caches. */
+  value?: CachesListResultValueList;
+  /** URL to get the next set of cache list results, if there are any. */
+  nextLink?: string;
+}
+export const CachesListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(CachesListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CachesListResult",
+}) as any as S.Schema<CachesListResult>;
+
+export interface ListCachesRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+}
+export const ListCachesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.StorageCache/caches",
+      code: 200,
+      apiVersion: "2026-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListCachesRequest",
+}) as any as S.Schema<ListCachesRequest>;
+
+export interface ListExpansionJobByAmlFilesystemRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
+  amlFilesystemName: string;
+}
+export const ListExpansionJobByAmlFilesystemRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      amlFilesystemName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/amlFilesystems/{amlFilesystemName}/expansionJobs",
+        code: 200,
+        apiVersion: "2026-08-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListExpansionJobByAmlFilesystemRequest",
+}) as any as S.Schema<ListExpansionJobByAmlFilesystemRequest>;
+
+/** Resource tags. */
+export type ExpansionJobTagsMap = { [key: string]: string | undefined };
+export const ExpansionJobTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ExpansionJobTagsMap>;
+
+/** An expansion job instance. Follows Azure Resource Manager standards: https://github.com/Azure/azure-resource-manager-rpc/blob/master/v1.0/resource-api-reference.md */
+export interface ExpansionJob {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: ExpansionJobTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the expansion job. */
+  properties?: ExpansionJobProperties;
+}
+export const ExpansionJob = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(ExpansionJobTagsMap),
+    location: S.String,
+    properties: S.optional(ExpansionJobProperties),
+  }),
+).annotate({ identifier: "ExpansionJob" }) as any as S.Schema<ExpansionJob>;
+
+/** List of expansion jobs. */
+export type ExpansionJobsListResultValueList = Array<ExpansionJob>;
+export const ExpansionJobsListResultValueList = /*@__PURE__*/ S.Array(
+  ExpansionJob,
+) as any as S.Schema<ExpansionJobsListResultValueList>;
+
+/** Result of the request to list expansion jobs. It contains a list of expansion jobs and a URL link to get the next set of results. */
+export interface ExpansionJobsListResult {
+  /** List of expansion jobs. */
+  value?: ExpansionJobsListResultValueList;
+  /** URL to get the next set of expansion job list results, if there are any. */
+  nextLink?: string;
+}
+export const ExpansionJobsListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(ExpansionJobsListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ExpansionJobsListResult",
+}) as any as S.Schema<ExpansionJobsListResult>;
+
+export interface ListImportJobByAmlFilesystemRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
+  amlFilesystemName: string;
+}
+export const ListImportJobByAmlFilesystemRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    amlFilesystemName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/amlFilesystems/{amlFilesystemName}/importJobs",
+      code: 200,
+      apiVersion: "2026-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListImportJobByAmlFilesystemRequest",
+}) as any as S.Schema<ListImportJobByAmlFilesystemRequest>;
 
 /** Resource tags. */
 export type ImportJobTagsMap = { [key: string]: string | undefined };
@@ -4756,106 +4554,8 @@ export const ImportJobsListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ImportJobsListResult",
 }) as any as S.Schema<ImportJobsListResult>;
 
-/** Resource tags. */
-export type ImportJobsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ImportJobsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ImportJobsUpdateRequestTagsMap>;
-
-/** The administrative status of the import job. Possible values: 'Active', 'Cancel'. Passing in a value of 'Cancel' will cancel the current active import job. By default it is set to 'Active'. */
-export type ImportJobAdminStatus = "Active" | "Cancel";
-export const ImportJobAdminStatus = /*@__PURE__*/ S.String;
-
-/** Properties for updating an import job. */
-export interface ImportJobUpdateProperties {
-  /** The administrative status of the import job. Possible values: 'Active', 'Cancel'. Passing in a value of 'Cancel' will cancel the current active import job. */
-  adminStatus?: ImportJobAdminStatus | (string & {});
-}
-export const ImportJobUpdateProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    adminStatus: S.optional(ImportJobAdminStatus),
-  }),
-).annotate({
-  identifier: "ImportJobUpdateProperties",
-}) as any as S.Schema<ImportJobUpdateProperties>;
-
-export interface ImportJobsUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
-  amlFilesystemName: string;
-  /** Name for the import job. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
-  importJobName: string;
-  /** Resource tags. */
-  tags?: ImportJobsUpdateRequestTagsMap;
-  properties?: ImportJobUpdateProperties;
-}
-export const ImportJobsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    amlFilesystemName: S.String.pipe(T.Label()),
-    importJobName: S.String.pipe(T.Label()),
-    tags: S.optional(ImportJobsUpdateRequestTagsMap),
-    properties: S.optional(ImportJobUpdateProperties),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/amlFilesystems/{amlFilesystemName}/importJobs/{importJobName}",
-      code: 200,
-      apiVersion: "2026-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "ImportJobsUpdateRequest",
-}) as any as S.Schema<ImportJobsUpdateRequest>;
-
-/** Resource tags. */
-export type ImportJobsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ImportJobsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ImportJobsUpdateResponseTagsMap>;
-
-export interface ImportJobsUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ImportJobsUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the import job. */
-  properties?: ImportJobProperties;
-}
-export const ImportJobsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(ImportJobsUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(ImportJobProperties),
-  }),
-).annotate({
-  identifier: "ImportJobsUpdateResponse",
-}) as any as S.Schema<ImportJobsUpdateResponse>;
-
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({
       method: "GET",
@@ -4865,8 +4565,8 @@ export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
 
 /** The object that represents the operation. */
 export interface ApiOperationDisplay {
@@ -5086,196 +4786,7 @@ export const ApiOperationListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ApiOperationListResult",
 }) as any as S.Schema<ApiOperationListResult>;
 
-export interface RebalanceJobsDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
-  amlFilesystemName: string;
-  /** Name for the rebalance job. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
-  rebalanceJobName: string;
-}
-export const RebalanceJobsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    amlFilesystemName: S.String.pipe(T.Label()),
-    rebalanceJobName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/amlFilesystems/{amlFilesystemName}/rebalanceJobs/{rebalanceJobName}",
-      code: 200,
-      apiVersion: "2026-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "RebalanceJobsDeleteRequest",
-}) as any as S.Schema<RebalanceJobsDeleteRequest>;
-
-export interface RebalanceJobsDeleteResponse {}
-export const RebalanceJobsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "RebalanceJobsDeleteResponse",
-}) as any as S.Schema<RebalanceJobsDeleteResponse>;
-
-export interface RebalanceJobsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
-  amlFilesystemName: string;
-  /** Name for the rebalance job. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
-  rebalanceJobName: string;
-}
-export const RebalanceJobsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    amlFilesystemName: S.String.pipe(T.Label()),
-    rebalanceJobName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/amlFilesystems/{amlFilesystemName}/rebalanceJobs/{rebalanceJobName}",
-      code: 200,
-      apiVersion: "2026-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "RebalanceJobsGetRequest",
-}) as any as S.Schema<RebalanceJobsGetRequest>;
-
-/** ARM provisioning state for the rebalance job. */
-export type RebalanceJobPropertiesProvisioningState =
-  | "Succeeded"
-  | "Failed"
-  | "Canceled"
-  | "Creating"
-  | "Updating"
-  | "Deleting";
-export const RebalanceJobPropertiesProvisioningState = /*@__PURE__*/ S.String;
-
-/** The administrative status of the rebalance job. Active means the job is running normally. Cancel requests the job to stop. */
-export type RebalanceJobAdminStatus = "Active" | "Cancel";
-export const RebalanceJobAdminStatus = /*@__PURE__*/ S.String;
-
-/** The operational state of the rebalance job. InProgress indicates the rebalance is running on the cluster. Cancelling indicates a cancel has been requested. Canceled indicates the rebalance was cancelled. Completed indicates the rebalance finished successfully (imbalance below low watermark). Failed indicates the rebalance was unable to complete due to a fatal error. Deleting indicates the job is being cleaned up during deletion. RollingBack indicates the orchestrator is rolling back provisioned resources after a failure. */
-export type RebalanceJobStatusType =
-  | "InProgress"
-  | "Cancelling"
-  | "Canceled"
-  | "Completed"
-  | "Failed"
-  | "Deleting"
-  | "RollingBack";
-export const RebalanceJobStatusType = /*@__PURE__*/ S.String;
-
-/** The status of the rebalance job. */
-export interface RebalanceJobPropertiesStatus {
-  /** The operational state of the rebalance job. InProgress indicates the rebalance is running on the cluster. Cancelling indicates a cancel has been requested. Canceled indicates the rebalance was cancelled. Completed indicates the rebalance finished successfully. Failed indicates the rebalance was unable to complete due to a fatal error. Deleting indicates the job is being cleaned up during deletion. RollingBack indicates the orchestrator is rolling back provisioned resources after a failure. */
-  state?: RebalanceJobStatusType;
-  /** Server-defined status code for rebalance job. */
-  statusCode?: string;
-  /** Server-defined status message for rebalance job. */
-  statusMessage?: string;
-  /** The percentage of rebalance job completion. */
-  percentComplete?: number;
-  /** The balance percentage (0-100). Represents cumulative progress since the rebalance started. Reported in periodic rebalance status updates. Resets to 0 if the rebalancer node restarts. */
-  balancePercent?: number;
-  /** Estimated remaining time in seconds. Omitted during initial assessment before the rebalancer has enough data to estimate. */
-  estimatedRemainingSeconds?: number;
-  /** Total number of files migrated since the rebalance started. Counts OST-phase (data) work items. Reported in periodic rebalance status updates. Resets to 0 if the rebalancer node restarts. */
-  filesMigrated?: number;
-  /** Total number of directories migrated since the rebalance started. Counts MDT-phase (metadata) work items, reported separately from filesMigrated (OST-phase data migrations). Reported in periodic rebalance status updates. Resets to 0 if the rebalancer node restarts. */
-  dirsMigrated?: number;
-  /** Total number of bytes moved since the rebalance started. Reported in periodic rebalance status updates. Resets to 0 if the rebalancer node restarts. */
-  bytesMoved?: number;
-  /** Average files moved per second over the most recent reporting interval. */
-  filesMovedPerSecond?: number;
-  /** Average throughput in mebibytes per second (1024x1024 bytes per second) over the most recent reporting interval. */
-  throughputMiBps?: number;
-  /** Total cumulative non-skip errors since the rebalance started. Reported in periodic rebalance status updates. Resets to 0 if the rebalancer node restarts. */
-  totalErrors?: number;
-  /** Total cumulative benign skips since the rebalance started: files intentionally not migrated (for example, a lost migration lease or a stale layout), as distinct from the hard failures counted in totalErrors. Reported in periodic rebalance status updates. Resets to 0 if the rebalancer node restarts. */
-  totalSkipped?: number;
-  /** The time (in UTC) the rebalance job started. */
-  startTimeUTC?: string;
-  /** The time (in UTC) when the rebalance job completed. Only populated when the job reaches a terminal state (Completed, Failed, or Canceled). */
-  completionTimeUTC?: string;
-}
-export const RebalanceJobPropertiesStatus = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    state: S.optional(RebalanceJobStatusType),
-    statusCode: S.optional(S.String),
-    statusMessage: S.optional(S.String),
-    percentComplete: S.optional(S.Number),
-    balancePercent: S.optional(S.Number),
-    estimatedRemainingSeconds: S.optional(S.Number),
-    filesMigrated: S.optional(S.Number),
-    dirsMigrated: S.optional(S.Number),
-    bytesMoved: S.optional(S.Number),
-    filesMovedPerSecond: S.optional(S.Number),
-    throughputMiBps: S.optional(S.Number),
-    totalErrors: S.optional(S.Number),
-    totalSkipped: S.optional(S.Number),
-    startTimeUTC: S.optional(S.String),
-    completionTimeUTC: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "RebalanceJobPropertiesStatus",
-}) as any as S.Schema<RebalanceJobPropertiesStatus>;
-
-/** Properties of the rebalance job. */
-export interface RebalanceJobProperties {
-  /** ARM provisioning state, see https://github.com/Azure/azure-resource-manager-rpc/blob/master/v1.0/Addendum.md#provisioningstate-property */
-  provisioningState?: RebalanceJobPropertiesProvisioningState;
-  /** The current administrative status of the rebalance job. 'Active' indicates the job is running normally; 'Cancel' indicates cancellation has been requested. */
-  adminStatus?: RebalanceJobAdminStatus;
-  /** Fully qualified ARM resource ID of the parent expansion job that initiated this rebalance. Populated when the rebalance was created as part of an expansion. */
-  expansionJobId?: string;
-  /** The status of the rebalance job. */
-  status?: RebalanceJobPropertiesStatus;
-}
-export const RebalanceJobProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisioningState: S.optional(RebalanceJobPropertiesProvisioningState),
-    adminStatus: S.optional(RebalanceJobAdminStatus),
-    expansionJobId: S.optional(S.String),
-    status: S.optional(RebalanceJobPropertiesStatus),
-  }),
-).annotate({
-  identifier: "RebalanceJobProperties",
-}) as any as S.Schema<RebalanceJobProperties>;
-
-export interface RebalanceJobsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of the rebalance job. */
-  properties?: RebalanceJobProperties;
-}
-export const RebalanceJobsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(RebalanceJobProperties),
-  }),
-).annotate({
-  identifier: "RebalanceJobsGetResponse",
-}) as any as S.Schema<RebalanceJobsGetResponse>;
-
-export interface RebalanceJobsListByAmlFilesystemRequest {
+export interface ListRebalanceJobByAmlFilesystemRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5283,7 +4794,7 @@ export interface RebalanceJobsListByAmlFilesystemRequest {
   /** Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
   amlFilesystemName: string;
 }
-export const RebalanceJobsListByAmlFilesystemRequest = /*@__PURE__*/ S.suspend(
+export const ListRebalanceJobByAmlFilesystemRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -5298,8 +4809,8 @@ export const RebalanceJobsListByAmlFilesystemRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "RebalanceJobsListByAmlFilesystemRequest",
-}) as any as S.Schema<RebalanceJobsListByAmlFilesystemRequest>;
+  identifier: "ListRebalanceJobByAmlFilesystemRequest",
+}) as any as S.Schema<ListRebalanceJobByAmlFilesystemRequest>;
 
 /** A rebalance job instance. Rebalances OST data across storage targets after a cluster expansion. Follows Azure Resource Manager standards: https://github.com/Azure/azure-resource-manager-rpc/blob/master/v1.0/resource-api-reference.md */
 export interface RebalanceJob {
@@ -5346,79 +4857,11 @@ export const RebalanceJobsListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "RebalanceJobsListResult",
 }) as any as S.Schema<RebalanceJobsListResult>;
 
-/** Properties for updating a rebalance job. */
-export interface RebalanceJobUpdateProperties {
-  /** The administrative status of the rebalance job. Passing in a value of 'Cancel' will cancel the current active rebalance job. */
-  adminStatus?: RebalanceJobAdminStatus | (string & {});
-}
-export const RebalanceJobUpdateProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    adminStatus: S.optional(RebalanceJobAdminStatus),
-  }),
-).annotate({
-  identifier: "RebalanceJobUpdateProperties",
-}) as any as S.Schema<RebalanceJobUpdateProperties>;
-
-export interface RebalanceJobsUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
-  amlFilesystemName: string;
-  /** Name for the rebalance job. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
-  rebalanceJobName: string;
-  /** Properties for the rebalance job update. */
-  properties?: RebalanceJobUpdateProperties;
-}
-export const RebalanceJobsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    amlFilesystemName: S.String.pipe(T.Label()),
-    rebalanceJobName: S.String.pipe(T.Label()),
-    properties: S.optional(RebalanceJobUpdateProperties),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/amlFilesystems/{amlFilesystemName}/rebalanceJobs/{rebalanceJobName}",
-      code: 200,
-      apiVersion: "2026-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "RebalanceJobsUpdateRequest",
-}) as any as S.Schema<RebalanceJobsUpdateRequest>;
-
-export interface RebalanceJobsUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of the rebalance job. */
-  properties?: RebalanceJobProperties;
-}
-export const RebalanceJobsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(RebalanceJobProperties),
-  }),
-).annotate({
-  identifier: "RebalanceJobsUpdateResponse",
-}) as any as S.Schema<RebalanceJobsUpdateResponse>;
-
-export interface SkusListRequest {
+export interface ListSkusRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
 }
-export const SkusListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListSkusRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
   }).pipe(
@@ -5430,8 +4873,8 @@ export const SkusListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "SkusListRequest",
-}) as any as S.Schema<SkusListRequest>;
+  identifier: "ListSkusRequest",
+}) as any as S.Schema<ListSkusRequest>;
 
 /** A resource SKU capability. */
 export interface ResourceSkuCapabilities {
@@ -5570,7 +5013,186 @@ export const ResourceSkusResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ResourceSkusResult",
 }) as any as S.Schema<ResourceSkusResult>;
 
-export interface StorageTargetFlushRequest {
+export interface ListStorageTargetByCacheRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of cache. Length of name must not be greater than 80 and chars must be from the [-0-9a-zA-Z_] char class. */
+  cacheName: string;
+}
+export const ListStorageTargetByCacheRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    cacheName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}/storageTargets",
+      code: 200,
+      apiVersion: "2026-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListStorageTargetByCacheRequest",
+}) as any as S.Schema<ListStorageTargetByCacheRequest>;
+
+/** Type of the Storage Target. */
+export interface StorageTarget {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** StorageTarget properties */
+  properties?: StorageTargetProperties;
+  /** Region name string. */
+  location?: string;
+}
+export const StorageTarget = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(StorageTargetProperties),
+    location: S.optional(S.String),
+  }),
+).annotate({ identifier: "StorageTarget" }) as any as S.Schema<StorageTarget>;
+
+/** The list of Storage Targets defined for the cache. */
+export type StorageTargetsResultValueList = Array<StorageTarget>;
+export const StorageTargetsResultValueList = /*@__PURE__*/ S.Array(
+  StorageTarget,
+) as any as S.Schema<StorageTargetsResultValueList>;
+
+/** A list of Storage Targets. */
+export interface StorageTargetsResult {
+  /** The list of Storage Targets defined for the cache. */
+  value?: StorageTargetsResultValueList;
+  /** The URI to fetch the next page of Storage Targets. */
+  nextLink?: string;
+}
+export const StorageTargetsResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(StorageTargetsResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "StorageTargetsResult",
+}) as any as S.Schema<StorageTargetsResult>;
+
+export interface ListUsageModelsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+}
+export const ListUsageModelsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.StorageCache/usageModels",
+      code: 200,
+      apiVersion: "2026-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListUsageModelsRequest",
+}) as any as S.Schema<ListUsageModelsRequest>;
+
+/** Localized information describing this usage model. */
+export interface UsageModelDisplay {
+  /** String to display for this usage model. */
+  description?: string;
+}
+export const UsageModelDisplay = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    description: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "UsageModelDisplay",
+}) as any as S.Schema<UsageModelDisplay>;
+
+/** A usage model. */
+export interface UsageModel {
+  /** Localized information describing this usage model. */
+  display?: UsageModelDisplay;
+  /** Non-localized keyword name for this usage model. */
+  modelName?: string;
+  /** The type of Storage Target to which this model is applicable (only nfs3 as of this version). */
+  targetType?: string;
+}
+export const UsageModel = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    display: S.optional(UsageModelDisplay),
+    modelName: S.optional(S.String),
+    targetType: S.optional(S.String),
+  }),
+).annotate({ identifier: "UsageModel" }) as any as S.Schema<UsageModel>;
+
+/** The list of usage models available for the subscription. */
+export type UsageModelsResultValueList = Array<UsageModel>;
+export const UsageModelsResultValueList = /*@__PURE__*/ S.Array(
+  UsageModel,
+) as any as S.Schema<UsageModelsResultValueList>;
+
+/** A list of cache usage models. */
+export interface UsageModelsResult {
+  /** The list of usage models available for the subscription. */
+  value?: UsageModelsResultValueList;
+  /** The URI to fetch the next page of cache usage models. */
+  nextLink?: string;
+}
+export const UsageModelsResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(UsageModelsResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "UsageModelsResult",
+}) as any as S.Schema<UsageModelsResult>;
+
+export interface PauseCachPrimingJobRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of cache. Length of name must not be greater than 80 and chars must be from the [-0-9a-zA-Z_] char class. */
+  cacheName: string;
+  /** The unique identifier of the priming job. */
+  primingJobId: string;
+}
+export const PauseCachPrimingJobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    cacheName: S.String.pipe(T.Label()),
+    primingJobId: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}/pausePrimingJob",
+      code: 200,
+      apiVersion: "2026-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "PauseCachPrimingJobRequest",
+}) as any as S.Schema<PauseCachPrimingJobRequest>;
+
+export interface PauseCachPrimingJobResponse {}
+export const PauseCachPrimingJobResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "PauseCachPrimingJobResponse",
+}) as any as S.Schema<PauseCachPrimingJobResponse>;
+
+export interface RefreshStorageTargetsDnsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5580,7 +5202,7 @@ export interface StorageTargetFlushRequest {
   /** Name of Storage Target. */
   storageTargetName: string;
 }
-export const StorageTargetFlushRequest = /*@__PURE__*/ S.suspend(() =>
+export const RefreshStorageTargetsDnsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -5589,23 +5211,23 @@ export const StorageTargetFlushRequest = /*@__PURE__*/ S.suspend(() =>
   }).pipe(
     T.Http({
       method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}/storageTargets/{storageTargetName}/flush",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}/storageTargets/{storageTargetName}/dnsRefresh",
       code: 200,
       apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
-  identifier: "StorageTargetFlushRequest",
-}) as any as S.Schema<StorageTargetFlushRequest>;
+  identifier: "RefreshStorageTargetsDnsRequest",
+}) as any as S.Schema<RefreshStorageTargetsDnsRequest>;
 
-export interface StorageTargetFlushResponse {}
-export const StorageTargetFlushResponse = /*@__PURE__*/ S.suspend(() =>
+export interface RefreshStorageTargetsDnsResponse {}
+export const RefreshStorageTargetsDnsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "StorageTargetFlushResponse",
-}) as any as S.Schema<StorageTargetFlushResponse>;
+  identifier: "RefreshStorageTargetsDnsResponse",
+}) as any as S.Schema<RefreshStorageTargetsDnsResponse>;
 
-export interface StorageTargetInvalidateRequest {
+export interface RestoreStorageTargetDefaultsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5615,7 +5237,7 @@ export interface StorageTargetInvalidateRequest {
   /** Name of Storage Target. */
   storageTargetName: string;
 }
-export const StorageTargetInvalidateRequest = /*@__PURE__*/ S.suspend(() =>
+export const RestoreStorageTargetDefaultsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -5624,23 +5246,58 @@ export const StorageTargetInvalidateRequest = /*@__PURE__*/ S.suspend(() =>
   }).pipe(
     T.Http({
       method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}/storageTargets/{storageTargetName}/invalidate",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}/storageTargets/{storageTargetName}/restoreDefaults",
       code: 200,
       apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
-  identifier: "StorageTargetInvalidateRequest",
-}) as any as S.Schema<StorageTargetInvalidateRequest>;
+  identifier: "RestoreStorageTargetDefaultsRequest",
+}) as any as S.Schema<RestoreStorageTargetDefaultsRequest>;
 
-export interface StorageTargetInvalidateResponse {}
-export const StorageTargetInvalidateResponse = /*@__PURE__*/ S.suspend(() =>
+export interface RestoreStorageTargetDefaultsResponse {}
+export const RestoreStorageTargetDefaultsResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "RestoreStorageTargetDefaultsResponse",
+}) as any as S.Schema<RestoreStorageTargetDefaultsResponse>;
+
+export interface ResumeCachPrimingJobRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of cache. Length of name must not be greater than 80 and chars must be from the [-0-9a-zA-Z_] char class. */
+  cacheName: string;
+  /** The unique identifier of the priming job. */
+  primingJobId: string;
+}
+export const ResumeCachPrimingJobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    cacheName: S.String.pipe(T.Label()),
+    primingJobId: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}/resumePrimingJob",
+      code: 200,
+      apiVersion: "2026-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "ResumeCachPrimingJobRequest",
+}) as any as S.Schema<ResumeCachPrimingJobRequest>;
+
+export interface ResumeCachPrimingJobResponse {}
+export const ResumeCachPrimingJobResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "StorageTargetInvalidateResponse",
-}) as any as S.Schema<StorageTargetInvalidateResponse>;
+  identifier: "ResumeCachPrimingJobResponse",
+}) as any as S.Schema<ResumeCachPrimingJobResponse>;
 
-export interface StorageTargetResumeRequest {
+export interface ResumeStorageTargetRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5650,7 +5307,7 @@ export interface StorageTargetResumeRequest {
   /** Name of Storage Target. */
   storageTargetName: string;
 }
-export const StorageTargetResumeRequest = /*@__PURE__*/ S.suspend(() =>
+export const ResumeStorageTargetRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -5665,37 +5322,152 @@ export const StorageTargetResumeRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "StorageTargetResumeRequest",
-}) as any as S.Schema<StorageTargetResumeRequest>;
+  identifier: "ResumeStorageTargetRequest",
+}) as any as S.Schema<ResumeStorageTargetRequest>;
 
-export interface StorageTargetResumeResponse {}
-export const StorageTargetResumeResponse = /*@__PURE__*/ S.suspend(() =>
+export interface ResumeStorageTargetResponse {}
+export const ResumeStorageTargetResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "StorageTargetResumeResponse",
-}) as any as S.Schema<StorageTargetResumeResponse>;
+  identifier: "ResumeStorageTargetResponse",
+}) as any as S.Schema<ResumeStorageTargetResponse>;
 
-/** A namespace junction. */
-export interface NamespaceJunction {
-  /** Namespace path on a cache for a Storage Target. */
-  namespacePath?: string;
-  /** Path in Storage Target to which namespacePath points. */
-  targetPath?: string;
-  /** NFS export where targetPath exists. */
-  nfsExport?: string;
-  /** Name of the access policy applied to this junction. */
-  nfsAccessPolicy?: string;
+export interface StartCachRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of cache. Length of name must not be greater than 80 and chars must be from the [-0-9a-zA-Z_] char class. */
+  cacheName: string;
 }
-export const NamespaceJunction = /*@__PURE__*/ S.suspend(() =>
+export const StartCachRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    namespacePath: S.optional(S.String),
-    targetPath: S.optional(S.String),
-    nfsExport: S.optional(S.String),
-    nfsAccessPolicy: S.optional(S.String),
-  }),
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    cacheName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}/start",
+      code: 200,
+      apiVersion: "2026-08-01",
+    }),
+  ),
 ).annotate({
-  identifier: "NamespaceJunction",
-}) as any as S.Schema<NamespaceJunction>;
+  identifier: "StartCachRequest",
+}) as any as S.Schema<StartCachRequest>;
+
+export interface StartCachResponse {}
+export const StartCachResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "StartCachResponse",
+}) as any as S.Schema<StartCachResponse>;
+
+export interface StartCachPrimingJobRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of cache. Length of name must not be greater than 80 and chars must be from the [-0-9a-zA-Z_] char class. */
+  cacheName: string;
+  /** The priming job name. */
+  primingJobName: string;
+  /** The URL for the priming manifest file to download. This file must be readable from the HPC Cache. When the file is in Azure blob storage the URL should include a Shared Access Signature (SAS) granting read permissions on the blob. */
+  primingManifestUrl: string;
+}
+export const StartCachPrimingJobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    cacheName: S.String.pipe(T.Label()),
+    primingJobName: S.String,
+    primingManifestUrl: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}/startPrimingJob",
+      code: 200,
+      apiVersion: "2026-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "StartCachPrimingJobRequest",
+}) as any as S.Schema<StartCachPrimingJobRequest>;
+
+export interface StartCachPrimingJobResponse {}
+export const StartCachPrimingJobResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "StartCachPrimingJobResponse",
+}) as any as S.Schema<StartCachPrimingJobResponse>;
+
+export interface StopCachRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of cache. Length of name must not be greater than 80 and chars must be from the [-0-9a-zA-Z_] char class. */
+  cacheName: string;
+}
+export const StopCachRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    cacheName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}/stop",
+      code: 200,
+      apiVersion: "2026-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "StopCachRequest",
+}) as any as S.Schema<StopCachRequest>;
+
+export interface StopCachResponse {}
+export const StopCachResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "StopCachResponse",
+}) as any as S.Schema<StopCachResponse>;
+
+export interface StopCachPrimingJobRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of cache. Length of name must not be greater than 80 and chars must be from the [-0-9a-zA-Z_] char class. */
+  cacheName: string;
+  /** The unique identifier of the priming job. */
+  primingJobId: string;
+}
+export const StopCachPrimingJobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    cacheName: S.String.pipe(T.Label()),
+    primingJobId: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}/stopPrimingJob",
+      code: 200,
+      apiVersion: "2026-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "StopCachPrimingJobRequest",
+}) as any as S.Schema<StopCachPrimingJobRequest>;
+
+export interface StopCachPrimingJobResponse {}
+export const StopCachPrimingJobResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "StopCachPrimingJobResponse",
+}) as any as S.Schema<StopCachPrimingJobResponse>;
 
 /** List of cache namespace junctions to target for namespace associations. */
 export type StorageTargetPropertiesInputJunctionsList =
@@ -5703,83 +5475,6 @@ export type StorageTargetPropertiesInputJunctionsList =
 export const StorageTargetPropertiesInputJunctionsList = /*@__PURE__*/ S.Array(
   NamespaceJunction,
 ) as any as S.Schema<StorageTargetPropertiesInputJunctionsList>;
-
-/** Type of the Storage Target. */
-export type StorageTargetType = "nfs3" | "clfs" | "unknown" | "blobNfs";
-export const StorageTargetType = /*@__PURE__*/ S.String;
-
-/** Storage target operational state. */
-export type OperationalStateType = "Ready" | "Busy" | "Suspended" | "Flushing";
-export const OperationalStateType = /*@__PURE__*/ S.String;
-
-/** Properties pertaining to the Nfs3Target */
-export interface Nfs3Target {
-  /** IP address or host name of an NFSv3 host (e.g., 10.0.44.44). */
-  target?: string;
-  /** Identifies the StorageCache usage model to be used for this storage target. */
-  usageModel?: string;
-  /** Amount of time (in seconds) the cache waits before it checks the back-end storage for file updates. */
-  verificationTimer?: number;
-  /** Amount of time (in seconds) the cache waits after the last file change before it copies the changed file to back-end storage. */
-  writeBackTimer?: number;
-}
-export const Nfs3Target = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    target: S.optional(S.String),
-    usageModel: S.optional(S.String),
-    verificationTimer: S.optional(S.Number),
-    writeBackTimer: S.optional(S.Number),
-  }),
-).annotate({ identifier: "Nfs3Target" }) as any as S.Schema<Nfs3Target>;
-
-/** Properties pertaining to the ClfsTarget */
-export interface ClfsTarget {
-  /** Resource ID of storage container. */
-  target?: string;
-}
-export const ClfsTarget = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    target: S.optional(S.String),
-  }),
-).annotate({ identifier: "ClfsTarget" }) as any as S.Schema<ClfsTarget>;
-
-/** Dictionary of string->string pairs containing information about the Storage Target. */
-export type UnknownTargetAttributesMap = { [key: string]: string | undefined };
-export const UnknownTargetAttributesMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<UnknownTargetAttributesMap>;
-
-/** Properties pertaining to the UnknownTarget */
-export interface UnknownTarget {
-  /** Dictionary of string->string pairs containing information about the Storage Target. */
-  attributes?: UnknownTargetAttributesMap;
-}
-export const UnknownTarget = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    attributes: S.optional(UnknownTargetAttributesMap),
-  }),
-).annotate({ identifier: "UnknownTarget" }) as any as S.Schema<UnknownTarget>;
-
-/** Properties pertaining to the BlobNfsTarget. */
-export interface BlobNfsTarget {
-  /** Resource ID of the storage container. */
-  target?: string;
-  /** Identifies the StorageCache usage model to be used for this storage target. */
-  usageModel?: string;
-  /** Amount of time (in seconds) the cache waits before it checks the back-end storage for file updates. */
-  verificationTimer?: number;
-  /** Amount of time (in seconds) the cache waits after the last file change before it copies the changed file to back-end storage. */
-  writeBackTimer?: number;
-}
-export const BlobNfsTarget = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    target: S.optional(S.String),
-    usageModel: S.optional(S.String),
-    verificationTimer: S.optional(S.Number),
-    writeBackTimer: S.optional(S.Number),
-  }),
-).annotate({ identifier: "BlobNfsTarget" }) as any as S.Schema<BlobNfsTarget>;
 
 /** Properties of the Storage Target. */
 export interface StorageTargetPropertiesInput {
@@ -5843,49 +5538,6 @@ export const StorageTargetsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "StorageTargetsCreateOrUpdateRequest",
 }) as any as S.Schema<StorageTargetsCreateOrUpdateRequest>;
 
-/** List of cache namespace junctions to target for namespace associations. */
-export type StorageTargetPropertiesJunctionsList = Array<NamespaceJunction>;
-export const StorageTargetPropertiesJunctionsList = /*@__PURE__*/ S.Array(
-  NamespaceJunction,
-) as any as S.Schema<StorageTargetPropertiesJunctionsList>;
-
-/** Properties of the Storage Target. */
-export interface StorageTargetProperties {
-  /** List of cache namespace junctions to target for namespace associations. */
-  junctions?: StorageTargetPropertiesJunctionsList;
-  /** Type of the Storage Target. */
-  targetType: StorageTargetType;
-  /** ARM provisioning state, see https://github.com/Azure/azure-resource-manager-rpc/blob/master/v1.0/Addendum.md#provisioningstate-property */
-  provisioningState?: ProvisioningStateType;
-  /** Storage target operational state. */
-  state?: OperationalStateType;
-  /** Properties when targetType is nfs3. */
-  nfs3?: Nfs3Target;
-  /** Properties when targetType is clfs. */
-  clfs?: ClfsTarget;
-  /** Properties when targetType is unknown. */
-  unknown?: UnknownTarget;
-  /** Properties when targetType is blobNfs. */
-  blobNfs?: BlobNfsTarget;
-  /** The percentage of cache space allocated for this storage target */
-  allocationPercentage?: number;
-}
-export const StorageTargetProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    junctions: S.optional(StorageTargetPropertiesJunctionsList),
-    targetType: StorageTargetType,
-    provisioningState: S.optional(ProvisioningStateType),
-    state: S.optional(OperationalStateType),
-    nfs3: S.optional(Nfs3Target),
-    clfs: S.optional(ClfsTarget),
-    unknown: S.optional(UnknownTarget),
-    blobNfs: S.optional(BlobNfsTarget),
-    allocationPercentage: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "StorageTargetProperties",
-}) as any as S.Schema<StorageTargetProperties>;
-
 export interface StorageTargetsCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
@@ -5914,45 +5566,7 @@ export const StorageTargetsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "StorageTargetsCreateOrUpdateResponse",
 }) as any as S.Schema<StorageTargetsCreateOrUpdateResponse>;
 
-export interface StorageTargetsDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of cache. Length of name must not be greater than 80 and chars must be from the [-0-9a-zA-Z_] char class. */
-  cacheName: string;
-  /** Name of Storage Target. */
-  storageTargetName: string;
-  /** Boolean value requesting the force delete operation for a storage target. Force delete discards unwritten-data in the cache instead of flushing it to back-end storage. */
-  force?: string;
-}
-export const StorageTargetsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    cacheName: S.String.pipe(T.Label()),
-    storageTargetName: S.String.pipe(T.Label()),
-    force: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}/storageTargets/{storageTargetName}",
-      code: 200,
-      apiVersion: "2026-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "StorageTargetsDeleteRequest",
-}) as any as S.Schema<StorageTargetsDeleteRequest>;
-
-export interface StorageTargetsDeleteResponse {}
-export const StorageTargetsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "StorageTargetsDeleteResponse",
-}) as any as S.Schema<StorageTargetsDeleteResponse>;
-
-export interface StorageTargetsDnsRefreshRequest {
+export interface SuspendStorageTargetRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5962,206 +5576,7 @@ export interface StorageTargetsDnsRefreshRequest {
   /** Name of Storage Target. */
   storageTargetName: string;
 }
-export const StorageTargetsDnsRefreshRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    cacheName: S.String.pipe(T.Label()),
-    storageTargetName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}/storageTargets/{storageTargetName}/dnsRefresh",
-      code: 200,
-      apiVersion: "2026-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "StorageTargetsDnsRefreshRequest",
-}) as any as S.Schema<StorageTargetsDnsRefreshRequest>;
-
-export interface StorageTargetsDnsRefreshResponse {}
-export const StorageTargetsDnsRefreshResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "StorageTargetsDnsRefreshResponse",
-}) as any as S.Schema<StorageTargetsDnsRefreshResponse>;
-
-export interface StorageTargetsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of cache. Length of name must not be greater than 80 and chars must be from the [-0-9a-zA-Z_] char class. */
-  cacheName: string;
-  /** Name of Storage Target. */
-  storageTargetName: string;
-}
-export const StorageTargetsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    cacheName: S.String.pipe(T.Label()),
-    storageTargetName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}/storageTargets/{storageTargetName}",
-      code: 200,
-      apiVersion: "2026-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "StorageTargetsGetRequest",
-}) as any as S.Schema<StorageTargetsGetRequest>;
-
-export interface StorageTargetsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** StorageTarget properties */
-  properties?: StorageTargetProperties;
-  /** Region name string. */
-  location?: string;
-}
-export const StorageTargetsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(StorageTargetProperties),
-    location: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "StorageTargetsGetResponse",
-}) as any as S.Schema<StorageTargetsGetResponse>;
-
-export interface StorageTargetsListByCacheRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of cache. Length of name must not be greater than 80 and chars must be from the [-0-9a-zA-Z_] char class. */
-  cacheName: string;
-}
-export const StorageTargetsListByCacheRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    cacheName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}/storageTargets",
-      code: 200,
-      apiVersion: "2026-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "StorageTargetsListByCacheRequest",
-}) as any as S.Schema<StorageTargetsListByCacheRequest>;
-
-/** Type of the Storage Target. */
-export interface StorageTarget {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** StorageTarget properties */
-  properties?: StorageTargetProperties;
-  /** Region name string. */
-  location?: string;
-}
-export const StorageTarget = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(StorageTargetProperties),
-    location: S.optional(S.String),
-  }),
-).annotate({ identifier: "StorageTarget" }) as any as S.Schema<StorageTarget>;
-
-/** The list of Storage Targets defined for the cache. */
-export type StorageTargetsResultValueList = Array<StorageTarget>;
-export const StorageTargetsResultValueList = /*@__PURE__*/ S.Array(
-  StorageTarget,
-) as any as S.Schema<StorageTargetsResultValueList>;
-
-/** A list of Storage Targets. */
-export interface StorageTargetsResult {
-  /** The list of Storage Targets defined for the cache. */
-  value?: StorageTargetsResultValueList;
-  /** The URI to fetch the next page of Storage Targets. */
-  nextLink?: string;
-}
-export const StorageTargetsResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(StorageTargetsResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "StorageTargetsResult",
-}) as any as S.Schema<StorageTargetsResult>;
-
-export interface StorageTargetsRestoreDefaultsRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of cache. Length of name must not be greater than 80 and chars must be from the [-0-9a-zA-Z_] char class. */
-  cacheName: string;
-  /** Name of Storage Target. */
-  storageTargetName: string;
-}
-export const StorageTargetsRestoreDefaultsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      cacheName: S.String.pipe(T.Label()),
-      storageTargetName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}/storageTargets/{storageTargetName}/restoreDefaults",
-        code: 200,
-        apiVersion: "2026-08-01",
-      }),
-    ),
-).annotate({
-  identifier: "StorageTargetsRestoreDefaultsRequest",
-}) as any as S.Schema<StorageTargetsRestoreDefaultsRequest>;
-
-export interface StorageTargetsRestoreDefaultsResponse {}
-export const StorageTargetsRestoreDefaultsResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "StorageTargetsRestoreDefaultsResponse",
-}) as any as S.Schema<StorageTargetsRestoreDefaultsResponse>;
-
-export interface StorageTargetSuspendRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of cache. Length of name must not be greater than 80 and chars must be from the [-0-9a-zA-Z_] char class. */
-  cacheName: string;
-  /** Name of Storage Target. */
-  storageTargetName: string;
-}
-export const StorageTargetSuspendRequest = /*@__PURE__*/ S.suspend(() =>
+export const SuspendStorageTargetRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -6176,101 +5591,665 @@ export const StorageTargetSuspendRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "StorageTargetSuspendRequest",
-}) as any as S.Schema<StorageTargetSuspendRequest>;
+  identifier: "SuspendStorageTargetRequest",
+}) as any as S.Schema<SuspendStorageTargetRequest>;
 
-export interface StorageTargetSuspendResponse {}
-export const StorageTargetSuspendResponse = /*@__PURE__*/ S.suspend(() =>
+export interface SuspendStorageTargetResponse {}
+export const SuspendStorageTargetResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "StorageTargetSuspendResponse",
-}) as any as S.Schema<StorageTargetSuspendResponse>;
+  identifier: "SuspendStorageTargetResponse",
+}) as any as S.Schema<SuspendStorageTargetResponse>;
 
-export interface UsageModelsListRequest {
+/** Resource tags. */
+export type UpdateAmlFilesystemRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateAmlFilesystemRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateAmlFilesystemRequestTagsMap>;
+
+/** Start time of a 30-minute weekly maintenance window. */
+export type AmlFilesystemUpdatePropertiesMaintenanceWindow =
+  AmlFilesystemPropertiesMaintenanceWindow;
+export const AmlFilesystemUpdatePropertiesMaintenanceWindow =
+  AmlFilesystemPropertiesMaintenanceWindow;
+
+/** Properties of the AML file system. */
+export interface AmlFilesystemUpdatePropertiesInput {
+  /** Specifies encryption settings of the AML file system. */
+  encryptionSettings?: AmlFilesystemEncryptionSettings;
+  /** Start time of a 30-minute weekly maintenance window. */
+  maintenanceWindow?: AmlFilesystemPropertiesMaintenanceWindow;
+  /** Specifies root squash settings of the AML file system. */
+  rootSquashSettings?: AmlFilesystemRootSquashSettingsInput;
+}
+export const AmlFilesystemUpdatePropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    encryptionSettings: S.optional(AmlFilesystemEncryptionSettings),
+    maintenanceWindow: S.optional(AmlFilesystemPropertiesMaintenanceWindow),
+    rootSquashSettings: S.optional(AmlFilesystemRootSquashSettingsInput),
+  }),
+).annotate({
+  identifier: "AmlFilesystemUpdatePropertiesInput",
+}) as any as S.Schema<AmlFilesystemUpdatePropertiesInput>;
+
+export interface UpdateAmlFilesystemRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
+  amlFilesystemName: string;
+  /** Resource tags. */
+  tags?: UpdateAmlFilesystemRequestTagsMap;
+  /** Properties of the AML file system. */
+  properties?: AmlFilesystemUpdatePropertiesInput;
 }
-export const UsageModelsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateAmlFilesystemRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    amlFilesystemName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateAmlFilesystemRequestTagsMap),
+    properties: S.optional(AmlFilesystemUpdatePropertiesInput),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.StorageCache/usageModels",
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/amlFilesystems/{amlFilesystemName}",
       code: 200,
       apiVersion: "2026-08-01",
     }),
   ),
 ).annotate({
-  identifier: "UsageModelsListRequest",
-}) as any as S.Schema<UsageModelsListRequest>;
+  identifier: "UpdateAmlFilesystemRequest",
+}) as any as S.Schema<UpdateAmlFilesystemRequest>;
 
-/** Localized information describing this usage model. */
-export interface UsageModelDisplay {
-  /** String to display for this usage model. */
-  description?: string;
+/** Resource tags. */
+export type UpdateAmlFilesystemResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateAmlFilesystemResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateAmlFilesystemResponseTagsMap>;
+
+/** The availability zones. */
+export type UpdateAmlFilesystemResponseZonesList = Array<string>;
+export const UpdateAmlFilesystemResponseZonesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<UpdateAmlFilesystemResponseZonesList>;
+
+export interface UpdateAmlFilesystemResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateAmlFilesystemResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the AML file system. */
+  properties?: AmlFilesystemProperties;
+  /** The managed identity used by the AML file system, if configured. */
+  identity?: AmlFilesystemIdentity;
+  /** SKU for the resource. */
+  sku?: SkuName;
+  /** The availability zones. */
+  zones?: UpdateAmlFilesystemResponseZonesList;
 }
-export const UsageModelDisplay = /*@__PURE__*/ S.suspend(() =>
+export const UpdateAmlFilesystemResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    description: S.optional(S.String),
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateAmlFilesystemResponseTagsMap),
+    location: S.String,
+    properties: S.optional(AmlFilesystemProperties),
+    identity: S.optional(AmlFilesystemIdentity),
+    sku: S.optional(SkuName),
+    zones: S.optional(UpdateAmlFilesystemResponseZonesList),
   }),
 ).annotate({
-  identifier: "UsageModelDisplay",
-}) as any as S.Schema<UsageModelDisplay>;
+  identifier: "UpdateAmlFilesystemResponse",
+}) as any as S.Schema<UpdateAmlFilesystemResponse>;
 
-/** A usage model. */
-export interface UsageModel {
-  /** Localized information describing this usage model. */
-  display?: UsageModelDisplay;
-  /** Non-localized keyword name for this usage model. */
-  modelName?: string;
-  /** The type of Storage Target to which this model is applicable (only nfs3 as of this version). */
-  targetType?: string;
+/** Resource tags. */
+export type UpdateAutoExportJobRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateAutoExportJobRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateAutoExportJobRequestTagsMap>;
+
+/** The administrative status of the auto export job. Possible values: 'Enable', 'Disable'. Passing in a value of 'Disable' will disable the current active auto export job. By default it is set to 'Enable'. */
+export type AutoExportJobAdminStatus = "Enable" | "Disable";
+export const AutoExportJobAdminStatus = /*@__PURE__*/ S.String;
+
+/** Properties for updating an auto export job. */
+export interface AutoExportJobUpdateProperties {
+  /** The administrative status of the auto export job. Possible values: 'Enable', 'Disable'. Passing in a value of 'Disable' will disable the current active auto export job. By default it is set to 'Enable'. */
+  adminStatus?: AutoExportJobAdminStatus | (string & {});
 }
-export const UsageModel = /*@__PURE__*/ S.suspend(() =>
+export const AutoExportJobUpdateProperties = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    display: S.optional(UsageModelDisplay),
-    modelName: S.optional(S.String),
-    targetType: S.optional(S.String),
-  }),
-).annotate({ identifier: "UsageModel" }) as any as S.Schema<UsageModel>;
-
-/** The list of usage models available for the subscription. */
-export type UsageModelsResultValueList = Array<UsageModel>;
-export const UsageModelsResultValueList = /*@__PURE__*/ S.Array(
-  UsageModel,
-) as any as S.Schema<UsageModelsResultValueList>;
-
-/** A list of cache usage models. */
-export interface UsageModelsResult {
-  /** The list of usage models available for the subscription. */
-  value?: UsageModelsResultValueList;
-  /** The URI to fetch the next page of cache usage models. */
-  nextLink?: string;
-}
-export const UsageModelsResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(UsageModelsResultValueList),
-    nextLink: S.optional(S.String),
+    adminStatus: S.optional(AutoExportJobAdminStatus),
   }),
 ).annotate({
-  identifier: "UsageModelsResult",
-}) as any as S.Schema<UsageModelsResult>;
+  identifier: "AutoExportJobUpdateProperties",
+}) as any as S.Schema<AutoExportJobUpdateProperties>;
 
-export type AmlFilesystemsArchiveError = AzureOpError;
-/** Archive data from the AML file system. */
-export const AmlFilesystemsArchive: API.OperationMethod<
-  AmlFilesystemsArchiveRequest,
-  AmlFilesystemsArchiveResponse,
-  AmlFilesystemsArchiveError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AmlFilesystemsArchiveRequest,
-  output: AmlFilesystemsArchiveResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
+export interface UpdateAutoExportJobRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
+  amlFilesystemName: string;
+  /** Name for the auto export job. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
+  autoExportJobName: string;
+  /** Resource tags. */
+  tags?: UpdateAutoExportJobRequestTagsMap;
+  properties?: AutoExportJobUpdateProperties;
+}
+export const UpdateAutoExportJobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    amlFilesystemName: S.String.pipe(T.Label()),
+    autoExportJobName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateAutoExportJobRequestTagsMap),
+    properties: S.optional(AutoExportJobUpdateProperties),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/amlFilesystems/{amlFilesystemName}/autoExportJobs/{autoExportJobName}",
+      code: 200,
+      apiVersion: "2026-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateAutoExportJobRequest",
+}) as any as S.Schema<UpdateAutoExportJobRequest>;
+
+/** Resource tags. */
+export type UpdateAutoExportJobResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateAutoExportJobResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateAutoExportJobResponseTagsMap>;
+
+export interface UpdateAutoExportJobResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateAutoExportJobResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the auto export job. */
+  properties?: AutoExportJobProperties;
+}
+export const UpdateAutoExportJobResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateAutoExportJobResponseTagsMap),
+    location: S.String,
+    properties: S.optional(AutoExportJobProperties),
+  }),
+).annotate({
+  identifier: "UpdateAutoExportJobResponse",
+}) as any as S.Schema<UpdateAutoExportJobResponse>;
+
+/** Resource tags. */
+export type UpdateAutoImportJobRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateAutoImportJobRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateAutoImportJobRequestTagsMap>;
+
+/** The administrative status of the auto import job. Possible values: 'Enable', 'Disable'. Passing in a value of 'Disable' will disable the current active auto import job. By default it is set to 'Enable'. */
+export type AutoImportJobUpdatePropertiesAdminStatus = "Enable" | "Disable";
+export const AutoImportJobUpdatePropertiesAdminStatus = /*@__PURE__*/ S.String;
+
+/** Properties for updating an auto import job. */
+export interface AutoImportJobUpdateProperties {
+  /** The administrative status of the auto import job. Possible values: 'Enable', 'Disable'. Passing in a value of 'Disable' will disable the current active auto import job. By default it is set to 'Enable'. */
+  adminStatus?: AutoImportJobUpdatePropertiesAdminStatus | (string & {});
+}
+export const AutoImportJobUpdateProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    adminStatus: S.optional(AutoImportJobUpdatePropertiesAdminStatus),
+  }),
+).annotate({
+  identifier: "AutoImportJobUpdateProperties",
+}) as any as S.Schema<AutoImportJobUpdateProperties>;
+
+export interface UpdateAutoImportJobRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
+  amlFilesystemName: string;
+  /** Name for the auto import job. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
+  autoImportJobName: string;
+  /** Resource tags. */
+  tags?: UpdateAutoImportJobRequestTagsMap;
+  properties?: AutoImportJobUpdateProperties;
+}
+export const UpdateAutoImportJobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    amlFilesystemName: S.String.pipe(T.Label()),
+    autoImportJobName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateAutoImportJobRequestTagsMap),
+    properties: S.optional(AutoImportJobUpdateProperties),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/amlFilesystems/{amlFilesystemName}/autoImportJobs/{autoImportJobName}",
+      code: 200,
+      apiVersion: "2026-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateAutoImportJobRequest",
+}) as any as S.Schema<UpdateAutoImportJobRequest>;
+
+/** Resource tags. */
+export type UpdateAutoImportJobResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateAutoImportJobResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateAutoImportJobResponseTagsMap>;
+
+export interface UpdateAutoImportJobResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateAutoImportJobResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the auto import job. */
+  properties?: AutoImportJobProperties;
+}
+export const UpdateAutoImportJobResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateAutoImportJobResponseTagsMap),
+    location: S.String,
+    properties: S.optional(AutoImportJobProperties),
+  }),
+).annotate({
+  identifier: "UpdateAutoImportJobResponse",
+}) as any as S.Schema<UpdateAutoImportJobResponse>;
+
+/** Resource tags. */
+export type UpdateCachRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateCachRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateCachRequestTagsMap>;
+
+export interface UpdateCachRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of cache. Length of name must not be greater than 80 and chars must be from the [-0-9a-zA-Z_] char class. */
+  cacheName: string;
+  /** Properties of the cache. */
+  properties?: CachePropertiesInput;
+  /** Resource tags. */
+  tags?: UpdateCachRequestTagsMap;
+  /** Region name string. */
+  location?: string;
+  /** The identity of the cache, if configured. */
+  identity?: CacheIdentityInput;
+  /** SKU for the cache. */
+  sku?: CacheSku;
+}
+export const UpdateCachRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    cacheName: S.String.pipe(T.Label()),
+    properties: S.optional(CachePropertiesInput),
+    tags: S.optional(UpdateCachRequestTagsMap),
+    location: S.optional(S.String),
+    identity: S.optional(CacheIdentityInput),
+    sku: S.optional(CacheSku),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/caches/{cacheName}",
+      code: 200,
+      apiVersion: "2026-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateCachRequest",
+}) as any as S.Schema<UpdateCachRequest>;
+
+/** Resource tags. */
+export type UpdateCachResponseTagsMap = { [key: string]: string | undefined };
+export const UpdateCachResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateCachResponseTagsMap>;
+
+export interface UpdateCachResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of the cache. */
+  properties?: CacheProperties;
+  /** Resource tags. */
+  tags?: UpdateCachResponseTagsMap;
+  /** Region name string. */
+  location?: string;
+  /** The identity of the cache, if configured. */
+  identity?: CacheIdentity;
+  /** SKU for the cache. */
+  sku?: CacheSku;
+}
+export const UpdateCachResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(CacheProperties),
+    tags: S.optional(UpdateCachResponseTagsMap),
+    location: S.optional(S.String),
+    identity: S.optional(CacheIdentity),
+    sku: S.optional(CacheSku),
+  }),
+).annotate({
+  identifier: "UpdateCachResponse",
+}) as any as S.Schema<UpdateCachResponse>;
+
+/** Resource tags. */
+export type UpdateExpansionJobRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateExpansionJobRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateExpansionJobRequestTagsMap>;
+
+export interface UpdateExpansionJobRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
+  amlFilesystemName: string;
+  /** Name for the expansion job. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
+  expansionJobName: string;
+  /** Resource tags. */
+  tags?: UpdateExpansionJobRequestTagsMap;
+}
+export const UpdateExpansionJobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    amlFilesystemName: S.String.pipe(T.Label()),
+    expansionJobName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateExpansionJobRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/amlFilesystems/{amlFilesystemName}/expansionJobs/{expansionJobName}",
+      code: 200,
+      apiVersion: "2026-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateExpansionJobRequest",
+}) as any as S.Schema<UpdateExpansionJobRequest>;
+
+/** Resource tags. */
+export type UpdateExpansionJobResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateExpansionJobResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateExpansionJobResponseTagsMap>;
+
+export interface UpdateExpansionJobResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateExpansionJobResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the expansion job. */
+  properties?: ExpansionJobProperties;
+}
+export const UpdateExpansionJobResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateExpansionJobResponseTagsMap),
+    location: S.String,
+    properties: S.optional(ExpansionJobProperties),
+  }),
+).annotate({
+  identifier: "UpdateExpansionJobResponse",
+}) as any as S.Schema<UpdateExpansionJobResponse>;
+
+/** Resource tags. */
+export type UpdateImportJobRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateImportJobRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateImportJobRequestTagsMap>;
+
+/** The administrative status of the import job. Possible values: 'Active', 'Cancel'. Passing in a value of 'Cancel' will cancel the current active import job. By default it is set to 'Active'. */
+export type ImportJobAdminStatus = "Active" | "Cancel";
+export const ImportJobAdminStatus = /*@__PURE__*/ S.String;
+
+/** Properties for updating an import job. */
+export interface ImportJobUpdateProperties {
+  /** The administrative status of the import job. Possible values: 'Active', 'Cancel'. Passing in a value of 'Cancel' will cancel the current active import job. */
+  adminStatus?: ImportJobAdminStatus | (string & {});
+}
+export const ImportJobUpdateProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    adminStatus: S.optional(ImportJobAdminStatus),
+  }),
+).annotate({
+  identifier: "ImportJobUpdateProperties",
+}) as any as S.Schema<ImportJobUpdateProperties>;
+
+export interface UpdateImportJobRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
+  amlFilesystemName: string;
+  /** Name for the import job. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
+  importJobName: string;
+  /** Resource tags. */
+  tags?: UpdateImportJobRequestTagsMap;
+  properties?: ImportJobUpdateProperties;
+}
+export const UpdateImportJobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    amlFilesystemName: S.String.pipe(T.Label()),
+    importJobName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateImportJobRequestTagsMap),
+    properties: S.optional(ImportJobUpdateProperties),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/amlFilesystems/{amlFilesystemName}/importJobs/{importJobName}",
+      code: 200,
+      apiVersion: "2026-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateImportJobRequest",
+}) as any as S.Schema<UpdateImportJobRequest>;
+
+/** Resource tags. */
+export type UpdateImportJobResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateImportJobResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateImportJobResponseTagsMap>;
+
+export interface UpdateImportJobResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateImportJobResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the import job. */
+  properties?: ImportJobProperties;
+}
+export const UpdateImportJobResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateImportJobResponseTagsMap),
+    location: S.String,
+    properties: S.optional(ImportJobProperties),
+  }),
+).annotate({
+  identifier: "UpdateImportJobResponse",
+}) as any as S.Schema<UpdateImportJobResponse>;
+
+/** Properties for updating a rebalance job. */
+export interface RebalanceJobUpdateProperties {
+  /** The administrative status of the rebalance job. Passing in a value of 'Cancel' will cancel the current active rebalance job. */
+  adminStatus?: RebalanceJobAdminStatus | (string & {});
+}
+export const RebalanceJobUpdateProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    adminStatus: S.optional(RebalanceJobAdminStatus),
+  }),
+).annotate({
+  identifier: "RebalanceJobUpdateProperties",
+}) as any as S.Schema<RebalanceJobUpdateProperties>;
+
+export interface UpdateRebalanceJobRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name for the AML file system. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
+  amlFilesystemName: string;
+  /** Name for the rebalance job. Allows alphanumerics, underscores, and hyphens. Start and end with alphanumeric. */
+  rebalanceJobName: string;
+  /** Properties for the rebalance job update. */
+  properties?: RebalanceJobUpdateProperties;
+}
+export const UpdateRebalanceJobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    amlFilesystemName: S.String.pipe(T.Label()),
+    rebalanceJobName: S.String.pipe(T.Label()),
+    properties: S.optional(RebalanceJobUpdateProperties),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageCache/amlFilesystems/{amlFilesystemName}/rebalanceJobs/{rebalanceJobName}",
+      code: 200,
+      apiVersion: "2026-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateRebalanceJobRequest",
+}) as any as S.Schema<UpdateRebalanceJobRequest>;
+
+export interface UpdateRebalanceJobResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of the rebalance job. */
+  properties?: RebalanceJobProperties;
+}
+export const UpdateRebalanceJobResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(RebalanceJobProperties),
+  }),
+).annotate({
+  identifier: "UpdateRebalanceJobResponse",
+}) as any as S.Schema<UpdateRebalanceJobResponse>;
 
 export type AmlFilesystemsCancelArchiveError = AzureOpError;
 /** Cancel archiving data from the AML file system. */
@@ -6302,106 +6281,16 @@ export const AmlFilesystemsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type AmlFilesystemsDeleteError = AzureOpError;
-/** Schedules an AML file system for deletion. */
-export const AmlFilesystemsDelete: API.OperationMethod<
-  AmlFilesystemsDeleteRequest,
-  AmlFilesystemsDeleteResponse,
-  AmlFilesystemsDeleteError,
+export type ArchiveAmlFilesystemError = AzureOpError;
+/** Archive data from the AML file system. */
+export const ArchiveAmlFilesystem: API.OperationMethod<
+  ArchiveAmlFilesystemRequest,
+  ArchiveAmlFilesystemResponse,
+  ArchiveAmlFilesystemError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AmlFilesystemsDeleteRequest,
-  output: AmlFilesystemsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AmlFilesystemsGetError = AzureOpError;
-/** Returns an AML file system. */
-export const AmlFilesystemsGet: API.OperationMethod<
-  AmlFilesystemsGetRequest,
-  AmlFilesystemsGetResponse,
-  AmlFilesystemsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AmlFilesystemsGetRequest,
-  output: AmlFilesystemsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AmlFilesystemsListError = AzureOpError;
-/** Returns all AML file systems the user has access to under a subscription. */
-export const AmlFilesystemsList: API.OperationMethod<
-  AmlFilesystemsListRequest,
-  AmlFilesystemsListResult,
-  AmlFilesystemsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AmlFilesystemsListRequest,
-  output: AmlFilesystemsListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AmlFilesystemsListByResourceGroupError = AzureOpError;
-/** Returns all AML file systems the user has access to under a resource group. */
-export const AmlFilesystemsListByResourceGroup: API.OperationMethod<
-  AmlFilesystemsListByResourceGroupRequest,
-  AmlFilesystemsListResult,
-  AmlFilesystemsListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AmlFilesystemsListByResourceGroupRequest,
-  output: AmlFilesystemsListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AmlFilesystemsUpdateError = AzureOpError;
-/** Update an AML file system instance. */
-export const AmlFilesystemsUpdate: API.OperationMethod<
-  AmlFilesystemsUpdateRequest,
-  AmlFilesystemsUpdateResponse,
-  AmlFilesystemsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AmlFilesystemsUpdateRequest,
-  output: AmlFilesystemsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AscOperationsGetError = AzureOpError;
-/** Gets the status of an asynchronous operation for the Azure HPC Cache */
-export const AscOperationsGet: API.OperationMethod<
-  AscOperationsGetRequest,
-  AscOperation,
-  AscOperationsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AscOperationsGetRequest,
-  output: AscOperation,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AscUsagesListError = AzureOpError;
-/** Gets the quantity used and quota limit for resources */
-export const AscUsagesList: API.OperationMethod<
-  AscUsagesListRequest,
-  ResourceUsagesListResult,
-  AscUsagesListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AscUsagesListRequest,
-  output: ResourceUsagesListResult,
+  input: ArchiveAmlFilesystemRequest,
+  output: ArchiveAmlFilesystemResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -6422,66 +6311,6 @@ export const AutoExportJobsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type AutoExportJobsDeleteError = AzureOpError;
-/** Schedules an auto export job for deletion. */
-export const AutoExportJobsDelete: API.OperationMethod<
-  AutoExportJobsDeleteRequest,
-  AutoExportJobsDeleteResponse,
-  AutoExportJobsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AutoExportJobsDeleteRequest,
-  output: AutoExportJobsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AutoExportJobsGetError = AzureOpError;
-/** Returns an auto export job. */
-export const AutoExportJobsGet: API.OperationMethod<
-  AutoExportJobsGetRequest,
-  AutoExportJobsGetResponse,
-  AutoExportJobsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AutoExportJobsGetRequest,
-  output: AutoExportJobsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AutoExportJobsListByAmlFilesystemError = AzureOpError;
-/** Returns all the auto export jobs the user has access to under an AML File System. */
-export const AutoExportJobsListByAmlFilesystem: API.OperationMethod<
-  AutoExportJobsListByAmlFilesystemRequest,
-  AutoExportJobsListResult,
-  AutoExportJobsListByAmlFilesystemError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AutoExportJobsListByAmlFilesystemRequest,
-  output: AutoExportJobsListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AutoExportJobsUpdateError = AzureOpError;
-/** Update an auto export job instance. */
-export const AutoExportJobsUpdate: API.OperationMethod<
-  AutoExportJobsUpdateRequest,
-  AutoExportJobsUpdateResponse,
-  AutoExportJobsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AutoExportJobsUpdateRequest,
-  output: AutoExportJobsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type AutoImportJobsCreateOrUpdateError = AzureOpError;
 /** Create or update an auto import job. */
 export const AutoImportJobsCreateOrUpdate: API.OperationMethod<
@@ -6492,66 +6321,6 @@ export const AutoImportJobsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: AutoImportJobsCreateOrUpdateRequest,
   output: AutoImportJobsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AutoImportJobsDeleteError = AzureOpError;
-/** Schedules an auto import job for deletion. */
-export const AutoImportJobsDelete: API.OperationMethod<
-  AutoImportJobsDeleteRequest,
-  AutoImportJobsDeleteResponse,
-  AutoImportJobsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AutoImportJobsDeleteRequest,
-  output: AutoImportJobsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AutoImportJobsGetError = AzureOpError;
-/** Returns an auto import job. */
-export const AutoImportJobsGet: API.OperationMethod<
-  AutoImportJobsGetRequest,
-  AutoImportJobsGetResponse,
-  AutoImportJobsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AutoImportJobsGetRequest,
-  output: AutoImportJobsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AutoImportJobsListByAmlFilesystemError = AzureOpError;
-/** Returns all the auto import jobs the user has access to under an AML File System. */
-export const AutoImportJobsListByAmlFilesystem: API.OperationMethod<
-  AutoImportJobsListByAmlFilesystemRequest,
-  AutoImportJobsListResult,
-  AutoImportJobsListByAmlFilesystemError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AutoImportJobsListByAmlFilesystemRequest,
-  output: AutoImportJobsListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AutoImportJobsUpdateError = AzureOpError;
-/** Update an auto import job instance. */
-export const AutoImportJobsUpdate: API.OperationMethod<
-  AutoImportJobsUpdateRequest,
-  AutoImportJobsUpdateResponse,
-  AutoImportJobsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AutoImportJobsUpdateRequest,
-  output: AutoImportJobsUpdateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -6587,111 +6356,6 @@ export const CachesDebugInfo: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CachesDeleteError = AzureOpError;
-/** Schedules a cache for deletion. */
-export const CachesDelete: API.OperationMethod<
-  CachesDeleteRequest,
-  CachesDeleteResponse,
-  CachesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CachesDeleteRequest,
-  output: CachesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CachesFlushError = AzureOpError;
-/** Tells a cache to write all dirty data to the Storage Target(s). During the flush, clients will see errors returned until the flush is complete. */
-export const CachesFlush: API.OperationMethod<
-  CachesFlushRequest,
-  CachesFlushResponse,
-  CachesFlushError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CachesFlushRequest,
-  output: CachesFlushResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CachesGetError = AzureOpError;
-/** Returns a cache. */
-export const CachesGet: API.OperationMethod<
-  CachesGetRequest,
-  CachesGetResponse,
-  CachesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CachesGetRequest,
-  output: CachesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CachesListError = AzureOpError;
-/** Returns all caches the user has access to under a subscription. */
-export const CachesList: API.OperationMethod<
-  CachesListRequest,
-  CachesListResult,
-  CachesListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CachesListRequest,
-  output: CachesListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CachesListByResourceGroupError = AzureOpError;
-/** Returns all caches the user has access to under a resource group. */
-export const CachesListByResourceGroup: API.OperationMethod<
-  CachesListByResourceGroupRequest,
-  CachesListResult,
-  CachesListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CachesListByResourceGroupRequest,
-  output: CachesListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CachesPausePrimingJobError = AzureOpError;
-/** Schedule a priming job to be paused. */
-export const CachesPausePrimingJob: API.OperationMethod<
-  CachesPausePrimingJobRequest,
-  CachesPausePrimingJobResponse,
-  CachesPausePrimingJobError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CachesPausePrimingJobRequest,
-  output: CachesPausePrimingJobResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CachesResumePrimingJobError = AzureOpError;
-/** Resumes a paused priming job. */
-export const CachesResumePrimingJob: API.OperationMethod<
-  CachesResumePrimingJobRequest,
-  CachesResumePrimingJobResponse,
-  CachesResumePrimingJobError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CachesResumePrimingJobRequest,
-  output: CachesResumePrimingJobResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type CachesSpaceAllocationError = AzureOpError;
 /** Update cache space allocation. */
 export const CachesSpaceAllocation: API.OperationMethod<
@@ -6702,81 +6366,6 @@ export const CachesSpaceAllocation: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: CachesSpaceAllocationRequest,
   output: CachesSpaceAllocationResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CachesStartError = AzureOpError;
-/** Tells a Stopped state cache to transition to Active state. */
-export const CachesStart: API.OperationMethod<
-  CachesStartRequest,
-  CachesStartResponse,
-  CachesStartError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CachesStartRequest,
-  output: CachesStartResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CachesStartPrimingJobError = AzureOpError;
-/** Create a priming job. This operation is only allowed when the cache is healthy. */
-export const CachesStartPrimingJob: API.OperationMethod<
-  CachesStartPrimingJobRequest,
-  CachesStartPrimingJobResponse,
-  CachesStartPrimingJobError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CachesStartPrimingJobRequest,
-  output: CachesStartPrimingJobResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CachesStopError = AzureOpError;
-/** Tells an Active cache to transition to Stopped state. */
-export const CachesStop: API.OperationMethod<
-  CachesStopRequest,
-  CachesStopResponse,
-  CachesStopError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CachesStopRequest,
-  output: CachesStopResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CachesStopPrimingJobError = AzureOpError;
-/** Schedule a priming job for deletion. */
-export const CachesStopPrimingJob: API.OperationMethod<
-  CachesStopPrimingJobRequest,
-  CachesStopPrimingJobResponse,
-  CachesStopPrimingJobError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CachesStopPrimingJobRequest,
-  output: CachesStopPrimingJobResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CachesUpdateError = AzureOpError;
-/** Update a cache instance. */
-export const CachesUpdate: API.OperationMethod<
-  CachesUpdateRequest,
-  CachesUpdateResponse,
-  CachesUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CachesUpdateRequest,
-  output: CachesUpdateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -6812,6 +6401,126 @@ export const CheckAmlFSSubnets: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type DeleteAmlFilesystemError = AzureOpError;
+/** Schedules an AML file system for deletion. */
+export const DeleteAmlFilesystem: API.OperationMethod<
+  DeleteAmlFilesystemRequest,
+  DeleteAmlFilesystemResponse,
+  DeleteAmlFilesystemError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteAmlFilesystemRequest,
+  output: DeleteAmlFilesystemResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteAutoExportJobError = AzureOpError;
+/** Schedules an auto export job for deletion. */
+export const DeleteAutoExportJob: API.OperationMethod<
+  DeleteAutoExportJobRequest,
+  DeleteAutoExportJobResponse,
+  DeleteAutoExportJobError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteAutoExportJobRequest,
+  output: DeleteAutoExportJobResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteAutoImportJobError = AzureOpError;
+/** Schedules an auto import job for deletion. */
+export const DeleteAutoImportJob: API.OperationMethod<
+  DeleteAutoImportJobRequest,
+  DeleteAutoImportJobResponse,
+  DeleteAutoImportJobError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteAutoImportJobRequest,
+  output: DeleteAutoImportJobResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteCachError = AzureOpError;
+/** Schedules a cache for deletion. */
+export const DeleteCach: API.OperationMethod<
+  DeleteCachRequest,
+  DeleteCachResponse,
+  DeleteCachError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteCachRequest,
+  output: DeleteCachResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteExpansionJobError = AzureOpError;
+/** Schedules an expansion job for deletion. */
+export const DeleteExpansionJob: API.OperationMethod<
+  DeleteExpansionJobRequest,
+  DeleteExpansionJobResponse,
+  DeleteExpansionJobError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteExpansionJobRequest,
+  output: DeleteExpansionJobResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteImportJobError = AzureOpError;
+/** Schedules an import job for deletion. */
+export const DeleteImportJob: API.OperationMethod<
+  DeleteImportJobRequest,
+  DeleteImportJobResponse,
+  DeleteImportJobError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteImportJobRequest,
+  output: DeleteImportJobResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteRebalanceJobError = AzureOpError;
+/** Schedules a rebalance job for deletion. */
+export const DeleteRebalanceJob: API.OperationMethod<
+  DeleteRebalanceJobRequest,
+  DeleteRebalanceJobResponse,
+  DeleteRebalanceJobError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteRebalanceJobRequest,
+  output: DeleteRebalanceJobResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteStorageTargetError = AzureOpError;
+/** Removes a Storage Target from a cache. This operation is allowed at any time, but if the cache is down or unhealthy, the actual removal of the Storage Target may be delayed until the cache is healthy again. Note that if the cache has data to flush to the Storage Target, the data will be flushed before the Storage Target will be deleted. */
+export const DeleteStorageTarget: API.OperationMethod<
+  DeleteStorageTargetRequest,
+  DeleteStorageTargetResponse,
+  DeleteStorageTargetError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteStorageTargetRequest,
+  output: DeleteStorageTargetResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ExpansionJobsCreateOrUpdateError = AzureOpError;
 /** Create or update an expansion job. */
 export const ExpansionJobsCreateOrUpdate: API.OperationMethod<
@@ -6827,61 +6536,151 @@ export const ExpansionJobsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ExpansionJobsDeleteError = AzureOpError;
-/** Schedules an expansion job for deletion. */
-export const ExpansionJobsDelete: API.OperationMethod<
-  ExpansionJobsDeleteRequest,
-  ExpansionJobsDeleteResponse,
-  ExpansionJobsDeleteError,
+export type FlushCachError = AzureOpError;
+/** Tells a cache to write all dirty data to the Storage Target(s). During the flush, clients will see errors returned until the flush is complete. */
+export const FlushCach: API.OperationMethod<
+  FlushCachRequest,
+  FlushCachResponse,
+  FlushCachError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ExpansionJobsDeleteRequest,
-  output: ExpansionJobsDeleteResponse,
+  input: FlushCachRequest,
+  output: FlushCachResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ExpansionJobsGetError = AzureOpError;
+export type FlushStorageTargetError = AzureOpError;
+/** Tells the cache to write all dirty data to the Storage Target's backend storage. Client requests to this storage target's namespace will return errors until the flush operation completes. */
+export const FlushStorageTarget: API.OperationMethod<
+  FlushStorageTargetRequest,
+  FlushStorageTargetResponse,
+  FlushStorageTargetError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: FlushStorageTargetRequest,
+  output: FlushStorageTargetResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAmlFilesystemError = AzureOpError;
+/** Returns an AML file system. */
+export const GetAmlFilesystem: API.OperationMethod<
+  GetAmlFilesystemRequest,
+  GetAmlFilesystemResponse,
+  GetAmlFilesystemError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAmlFilesystemRequest,
+  output: GetAmlFilesystemResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAscOperationError = AzureOpError;
+/** Gets the status of an asynchronous operation for the Azure HPC Cache */
+export const GetAscOperation: API.OperationMethod<
+  GetAscOperationRequest,
+  AscOperation,
+  GetAscOperationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAscOperationRequest,
+  output: AscOperation,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAutoExportJobError = AzureOpError;
+/** Returns an auto export job. */
+export const GetAutoExportJob: API.OperationMethod<
+  GetAutoExportJobRequest,
+  GetAutoExportJobResponse,
+  GetAutoExportJobError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAutoExportJobRequest,
+  output: GetAutoExportJobResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAutoImportJobError = AzureOpError;
+/** Returns an auto import job. */
+export const GetAutoImportJob: API.OperationMethod<
+  GetAutoImportJobRequest,
+  GetAutoImportJobResponse,
+  GetAutoImportJobError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAutoImportJobRequest,
+  output: GetAutoImportJobResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCachError = AzureOpError;
+/** Returns a cache. */
+export const GetCach: API.OperationMethod<
+  GetCachRequest,
+  GetCachResponse,
+  GetCachError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCachRequest,
+  output: GetCachResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetExpansionJobError = AzureOpError;
 /** Returns an expansion job. */
-export const ExpansionJobsGet: API.OperationMethod<
-  ExpansionJobsGetRequest,
-  ExpansionJobsGetResponse,
-  ExpansionJobsGetError,
+export const GetExpansionJob: API.OperationMethod<
+  GetExpansionJobRequest,
+  GetExpansionJobResponse,
+  GetExpansionJobError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ExpansionJobsGetRequest,
-  output: ExpansionJobsGetResponse,
+  input: GetExpansionJobRequest,
+  output: GetExpansionJobResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ExpansionJobsListByAmlFilesystemError = AzureOpError;
-/** Returns all the expansion jobs the user has access to under an AML File System. */
-export const ExpansionJobsListByAmlFilesystem: API.OperationMethod<
-  ExpansionJobsListByAmlFilesystemRequest,
-  ExpansionJobsListResult,
-  ExpansionJobsListByAmlFilesystemError,
+export type GetImportJobError = AzureOpError;
+/** Returns an import job. */
+export const GetImportJob: API.OperationMethod<
+  GetImportJobRequest,
+  GetImportJobResponse,
+  GetImportJobError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ExpansionJobsListByAmlFilesystemRequest,
-  output: ExpansionJobsListResult,
+  input: GetImportJobRequest,
+  output: GetImportJobResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ExpansionJobsUpdateError = AzureOpError;
-/** Update an expansion job instance. */
-export const ExpansionJobsUpdate: API.OperationMethod<
-  ExpansionJobsUpdateRequest,
-  ExpansionJobsUpdateResponse,
-  ExpansionJobsUpdateError,
+export type GetRebalanceJobError = AzureOpError;
+/** Returns a rebalance job. */
+export const GetRebalanceJob: API.OperationMethod<
+  GetRebalanceJobRequest,
+  GetRebalanceJobResponse,
+  GetRebalanceJobError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ExpansionJobsUpdateRequest,
-  output: ExpansionJobsUpdateResponse,
+  input: GetRebalanceJobRequest,
+  output: GetRebalanceJobResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -6902,6 +6701,21 @@ export const GetRequiredAmlFSSubnetsSize: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetStorageTargetError = AzureOpError;
+/** Returns a Storage Target from a cache. */
+export const GetStorageTarget: API.OperationMethod<
+  GetStorageTargetRequest,
+  GetStorageTargetResponse,
+  GetStorageTargetError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetStorageTargetRequest,
+  output: GetStorageTargetResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ImportJobsCreateOrUpdateError = AzureOpError;
 /** Create or update an import job. */
 export const ImportJobsCreateOrUpdate: API.OperationMethod<
@@ -6917,196 +6731,361 @@ export const ImportJobsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ImportJobsDeleteError = AzureOpError;
-/** Schedules an import job for deletion. */
-export const ImportJobsDelete: API.OperationMethod<
-  ImportJobsDeleteRequest,
-  ImportJobsDeleteResponse,
-  ImportJobsDeleteError,
+export type InvalidateStorageTargetError = AzureOpError;
+/** Invalidate all cached data for a storage target. Cached files are discarded and fetched from the back end on the next request. */
+export const InvalidateStorageTarget: API.OperationMethod<
+  InvalidateStorageTargetRequest,
+  InvalidateStorageTargetResponse,
+  InvalidateStorageTargetError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ImportJobsDeleteRequest,
-  output: ImportJobsDeleteResponse,
+  input: InvalidateStorageTargetRequest,
+  output: InvalidateStorageTargetResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ImportJobsGetError = AzureOpError;
-/** Returns an import job. */
-export const ImportJobsGet: API.OperationMethod<
-  ImportJobsGetRequest,
-  ImportJobsGetResponse,
-  ImportJobsGetError,
+export type ListAmlFilesystemByResourceGroupError = AzureOpError;
+/** Returns all AML file systems the user has access to under a resource group. */
+export const ListAmlFilesystemByResourceGroup: API.OperationMethod<
+  ListAmlFilesystemByResourceGroupRequest,
+  AmlFilesystemsListResult,
+  ListAmlFilesystemByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ImportJobsGetRequest,
-  output: ImportJobsGetResponse,
+  input: ListAmlFilesystemByResourceGroupRequest,
+  output: AmlFilesystemsListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ImportJobsListByAmlFilesystemError = AzureOpError;
+export type ListAmlFilesystemsError = AzureOpError;
+/** Returns all AML file systems the user has access to under a subscription. */
+export const ListAmlFilesystems: API.OperationMethod<
+  ListAmlFilesystemsRequest,
+  AmlFilesystemsListResult,
+  ListAmlFilesystemsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAmlFilesystemsRequest,
+  output: AmlFilesystemsListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAscUsagesError = AzureOpError;
+/** Gets the quantity used and quota limit for resources */
+export const ListAscUsages: API.OperationMethod<
+  ListAscUsagesRequest,
+  ResourceUsagesListResult,
+  ListAscUsagesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAscUsagesRequest,
+  output: ResourceUsagesListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAutoExportJobByAmlFilesystemError = AzureOpError;
+/** Returns all the auto export jobs the user has access to under an AML File System. */
+export const ListAutoExportJobByAmlFilesystem: API.OperationMethod<
+  ListAutoExportJobByAmlFilesystemRequest,
+  AutoExportJobsListResult,
+  ListAutoExportJobByAmlFilesystemError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAutoExportJobByAmlFilesystemRequest,
+  output: AutoExportJobsListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAutoImportJobByAmlFilesystemError = AzureOpError;
+/** Returns all the auto import jobs the user has access to under an AML File System. */
+export const ListAutoImportJobByAmlFilesystem: API.OperationMethod<
+  ListAutoImportJobByAmlFilesystemRequest,
+  AutoImportJobsListResult,
+  ListAutoImportJobByAmlFilesystemError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAutoImportJobByAmlFilesystemRequest,
+  output: AutoImportJobsListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListCachByResourceGroupError = AzureOpError;
+/** Returns all caches the user has access to under a resource group. */
+export const ListCachByResourceGroup: API.OperationMethod<
+  ListCachByResourceGroupRequest,
+  CachesListResult,
+  ListCachByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListCachByResourceGroupRequest,
+  output: CachesListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListCachesError = AzureOpError;
+/** Returns all caches the user has access to under a subscription. */
+export const ListCaches: API.OperationMethod<
+  ListCachesRequest,
+  CachesListResult,
+  ListCachesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListCachesRequest,
+  output: CachesListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListExpansionJobByAmlFilesystemError = AzureOpError;
+/** Returns all the expansion jobs the user has access to under an AML File System. */
+export const ListExpansionJobByAmlFilesystem: API.OperationMethod<
+  ListExpansionJobByAmlFilesystemRequest,
+  ExpansionJobsListResult,
+  ListExpansionJobByAmlFilesystemError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListExpansionJobByAmlFilesystemRequest,
+  output: ExpansionJobsListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListImportJobByAmlFilesystemError = AzureOpError;
 /** Returns all import jobs the user has access to under an AML File System. */
-export const ImportJobsListByAmlFilesystem: API.OperationMethod<
-  ImportJobsListByAmlFilesystemRequest,
+export const ListImportJobByAmlFilesystem: API.OperationMethod<
+  ListImportJobByAmlFilesystemRequest,
   ImportJobsListResult,
-  ImportJobsListByAmlFilesystemError,
+  ListImportJobByAmlFilesystemError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ImportJobsListByAmlFilesystemRequest,
+  input: ListImportJobByAmlFilesystemRequest,
   output: ImportJobsListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ImportJobsUpdateError = AzureOpError;
-/** Update an import job instance. */
-export const ImportJobsUpdate: API.OperationMethod<
-  ImportJobsUpdateRequest,
-  ImportJobsUpdateResponse,
-  ImportJobsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ImportJobsUpdateRequest,
-  output: ImportJobsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OperationsListError = AzureOpError;
+export type ListOperationsError = AzureOpError;
 /** Lists all of the available Resource Provider operations. */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
   ApiOperationListResult,
-  OperationsListError,
+  ListOperationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
+  input: ListOperationsRequest,
   output: ApiOperationListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type RebalanceJobsDeleteError = AzureOpError;
-/** Schedules a rebalance job for deletion. */
-export const RebalanceJobsDelete: API.OperationMethod<
-  RebalanceJobsDeleteRequest,
-  RebalanceJobsDeleteResponse,
-  RebalanceJobsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RebalanceJobsDeleteRequest,
-  output: RebalanceJobsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RebalanceJobsGetError = AzureOpError;
-/** Returns a rebalance job. */
-export const RebalanceJobsGet: API.OperationMethod<
-  RebalanceJobsGetRequest,
-  RebalanceJobsGetResponse,
-  RebalanceJobsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RebalanceJobsGetRequest,
-  output: RebalanceJobsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RebalanceJobsListByAmlFilesystemError = AzureOpError;
+export type ListRebalanceJobByAmlFilesystemError = AzureOpError;
 /** Returns all the rebalance jobs the user has access to under an AML File System. */
-export const RebalanceJobsListByAmlFilesystem: API.OperationMethod<
-  RebalanceJobsListByAmlFilesystemRequest,
+export const ListRebalanceJobByAmlFilesystem: API.OperationMethod<
+  ListRebalanceJobByAmlFilesystemRequest,
   RebalanceJobsListResult,
-  RebalanceJobsListByAmlFilesystemError,
+  ListRebalanceJobByAmlFilesystemError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RebalanceJobsListByAmlFilesystemRequest,
+  input: ListRebalanceJobByAmlFilesystemRequest,
   output: RebalanceJobsListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type RebalanceJobsUpdateError = AzureOpError;
-/** Update a rebalance job instance. */
-export const RebalanceJobsUpdate: API.OperationMethod<
-  RebalanceJobsUpdateRequest,
-  RebalanceJobsUpdateResponse,
-  RebalanceJobsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RebalanceJobsUpdateRequest,
-  output: RebalanceJobsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SkusListError = AzureOpError;
+export type ListSkusError = AzureOpError;
 /** Get the list of StorageCache.Cache SKUs available to this subscription. */
-export const SkusList: API.OperationMethod<
-  SkusListRequest,
+export const ListSkus: API.OperationMethod<
+  ListSkusRequest,
   ResourceSkusResult,
-  SkusListError,
+  ListSkusError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SkusListRequest,
+  input: ListSkusRequest,
   output: ResourceSkusResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type StorageTargetFlushError = AzureOpError;
-/** Tells the cache to write all dirty data to the Storage Target's backend storage. Client requests to this storage target's namespace will return errors until the flush operation completes. */
-export const StorageTargetFlush: API.OperationMethod<
-  StorageTargetFlushRequest,
-  StorageTargetFlushResponse,
-  StorageTargetFlushError,
+export type ListStorageTargetByCacheError = AzureOpError;
+/** Returns a list of Storage Targets for the specified cache. */
+export const ListStorageTargetByCache: API.OperationMethod<
+  ListStorageTargetByCacheRequest,
+  StorageTargetsResult,
+  ListStorageTargetByCacheError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: StorageTargetFlushRequest,
-  output: StorageTargetFlushResponse,
+  input: ListStorageTargetByCacheRequest,
+  output: StorageTargetsResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type StorageTargetInvalidateError = AzureOpError;
-/** Invalidate all cached data for a storage target. Cached files are discarded and fetched from the back end on the next request. */
-export const StorageTargetInvalidate: API.OperationMethod<
-  StorageTargetInvalidateRequest,
-  StorageTargetInvalidateResponse,
-  StorageTargetInvalidateError,
+export type ListUsageModelsError = AzureOpError;
+/** Get the list of cache usage models available to this subscription. */
+export const ListUsageModels: API.OperationMethod<
+  ListUsageModelsRequest,
+  UsageModelsResult,
+  ListUsageModelsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: StorageTargetInvalidateRequest,
-  output: StorageTargetInvalidateResponse,
+  input: ListUsageModelsRequest,
+  output: UsageModelsResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type StorageTargetResumeError = AzureOpError;
+export type PauseCachPrimingJobError = AzureOpError;
+/** Schedule a priming job to be paused. */
+export const PauseCachPrimingJob: API.OperationMethod<
+  PauseCachPrimingJobRequest,
+  PauseCachPrimingJobResponse,
+  PauseCachPrimingJobError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PauseCachPrimingJobRequest,
+  output: PauseCachPrimingJobResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RefreshStorageTargetsDnsError = AzureOpError;
+/** Tells a storage target to refresh its DNS information. */
+export const RefreshStorageTargetsDns: API.OperationMethod<
+  RefreshStorageTargetsDnsRequest,
+  RefreshStorageTargetsDnsResponse,
+  RefreshStorageTargetsDnsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RefreshStorageTargetsDnsRequest,
+  output: RefreshStorageTargetsDnsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RestoreStorageTargetDefaultsError = AzureOpError;
+/** Tells a storage target to restore its settings to their default values. */
+export const RestoreStorageTargetDefaults: API.OperationMethod<
+  RestoreStorageTargetDefaultsRequest,
+  RestoreStorageTargetDefaultsResponse,
+  RestoreStorageTargetDefaultsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RestoreStorageTargetDefaultsRequest,
+  output: RestoreStorageTargetDefaultsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ResumeCachPrimingJobError = AzureOpError;
+/** Resumes a paused priming job. */
+export const ResumeCachPrimingJob: API.OperationMethod<
+  ResumeCachPrimingJobRequest,
+  ResumeCachPrimingJobResponse,
+  ResumeCachPrimingJobError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ResumeCachPrimingJobRequest,
+  output: ResumeCachPrimingJobResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ResumeStorageTargetError = AzureOpError;
 /** Resumes client access to a previously suspended storage target. */
-export const StorageTargetResume: API.OperationMethod<
-  StorageTargetResumeRequest,
-  StorageTargetResumeResponse,
-  StorageTargetResumeError,
+export const ResumeStorageTarget: API.OperationMethod<
+  ResumeStorageTargetRequest,
+  ResumeStorageTargetResponse,
+  ResumeStorageTargetError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: StorageTargetResumeRequest,
-  output: StorageTargetResumeResponse,
+  input: ResumeStorageTargetRequest,
+  output: ResumeStorageTargetResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type StartCachError = AzureOpError;
+/** Tells a Stopped state cache to transition to Active state. */
+export const StartCach: API.OperationMethod<
+  StartCachRequest,
+  StartCachResponse,
+  StartCachError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: StartCachRequest,
+  output: StartCachResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type StartCachPrimingJobError = AzureOpError;
+/** Create a priming job. This operation is only allowed when the cache is healthy. */
+export const StartCachPrimingJob: API.OperationMethod<
+  StartCachPrimingJobRequest,
+  StartCachPrimingJobResponse,
+  StartCachPrimingJobError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: StartCachPrimingJobRequest,
+  output: StartCachPrimingJobResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type StopCachError = AzureOpError;
+/** Tells an Active cache to transition to Stopped state. */
+export const StopCach: API.OperationMethod<
+  StopCachRequest,
+  StopCachResponse,
+  StopCachError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: StopCachRequest,
+  output: StopCachResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type StopCachPrimingJobError = AzureOpError;
+/** Schedule a priming job for deletion. */
+export const StopCachPrimingJob: API.OperationMethod<
+  StopCachPrimingJobRequest,
+  StopCachPrimingJobResponse,
+  StopCachPrimingJobError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: StopCachPrimingJobRequest,
+  output: StopCachPrimingJobResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -7127,106 +7106,121 @@ export const StorageTargetsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type StorageTargetsDeleteError = AzureOpError;
-/** Removes a Storage Target from a cache. This operation is allowed at any time, but if the cache is down or unhealthy, the actual removal of the Storage Target may be delayed until the cache is healthy again. Note that if the cache has data to flush to the Storage Target, the data will be flushed before the Storage Target will be deleted. */
-export const StorageTargetsDelete: API.OperationMethod<
-  StorageTargetsDeleteRequest,
-  StorageTargetsDeleteResponse,
-  StorageTargetsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: StorageTargetsDeleteRequest,
-  output: StorageTargetsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type StorageTargetsDnsRefreshError = AzureOpError;
-/** Tells a storage target to refresh its DNS information. */
-export const StorageTargetsDnsRefresh: API.OperationMethod<
-  StorageTargetsDnsRefreshRequest,
-  StorageTargetsDnsRefreshResponse,
-  StorageTargetsDnsRefreshError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: StorageTargetsDnsRefreshRequest,
-  output: StorageTargetsDnsRefreshResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type StorageTargetsGetError = AzureOpError;
-/** Returns a Storage Target from a cache. */
-export const StorageTargetsGet: API.OperationMethod<
-  StorageTargetsGetRequest,
-  StorageTargetsGetResponse,
-  StorageTargetsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: StorageTargetsGetRequest,
-  output: StorageTargetsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type StorageTargetsListByCacheError = AzureOpError;
-/** Returns a list of Storage Targets for the specified cache. */
-export const StorageTargetsListByCache: API.OperationMethod<
-  StorageTargetsListByCacheRequest,
-  StorageTargetsResult,
-  StorageTargetsListByCacheError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: StorageTargetsListByCacheRequest,
-  output: StorageTargetsResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type StorageTargetsRestoreDefaultsError = AzureOpError;
-/** Tells a storage target to restore its settings to their default values. */
-export const StorageTargetsRestoreDefaults: API.OperationMethod<
-  StorageTargetsRestoreDefaultsRequest,
-  StorageTargetsRestoreDefaultsResponse,
-  StorageTargetsRestoreDefaultsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: StorageTargetsRestoreDefaultsRequest,
-  output: StorageTargetsRestoreDefaultsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type StorageTargetSuspendError = AzureOpError;
+export type SuspendStorageTargetError = AzureOpError;
 /** Suspends client access to a storage target. */
-export const StorageTargetSuspend: API.OperationMethod<
-  StorageTargetSuspendRequest,
-  StorageTargetSuspendResponse,
-  StorageTargetSuspendError,
+export const SuspendStorageTarget: API.OperationMethod<
+  SuspendStorageTargetRequest,
+  SuspendStorageTargetResponse,
+  SuspendStorageTargetError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: StorageTargetSuspendRequest,
-  output: StorageTargetSuspendResponse,
+  input: SuspendStorageTargetRequest,
+  output: SuspendStorageTargetResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type UsageModelsListError = AzureOpError;
-/** Get the list of cache usage models available to this subscription. */
-export const UsageModelsList: API.OperationMethod<
-  UsageModelsListRequest,
-  UsageModelsResult,
-  UsageModelsListError,
+export type UpdateAmlFilesystemError = AzureOpError;
+/** Update an AML file system instance. */
+export const UpdateAmlFilesystem: API.OperationMethod<
+  UpdateAmlFilesystemRequest,
+  UpdateAmlFilesystemResponse,
+  UpdateAmlFilesystemError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UsageModelsListRequest,
-  output: UsageModelsResult,
+  input: UpdateAmlFilesystemRequest,
+  output: UpdateAmlFilesystemResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateAutoExportJobError = AzureOpError;
+/** Update an auto export job instance. */
+export const UpdateAutoExportJob: API.OperationMethod<
+  UpdateAutoExportJobRequest,
+  UpdateAutoExportJobResponse,
+  UpdateAutoExportJobError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateAutoExportJobRequest,
+  output: UpdateAutoExportJobResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateAutoImportJobError = AzureOpError;
+/** Update an auto import job instance. */
+export const UpdateAutoImportJob: API.OperationMethod<
+  UpdateAutoImportJobRequest,
+  UpdateAutoImportJobResponse,
+  UpdateAutoImportJobError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateAutoImportJobRequest,
+  output: UpdateAutoImportJobResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateCachError = AzureOpError;
+/** Update a cache instance. */
+export const UpdateCach: API.OperationMethod<
+  UpdateCachRequest,
+  UpdateCachResponse,
+  UpdateCachError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateCachRequest,
+  output: UpdateCachResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateExpansionJobError = AzureOpError;
+/** Update an expansion job instance. */
+export const UpdateExpansionJob: API.OperationMethod<
+  UpdateExpansionJobRequest,
+  UpdateExpansionJobResponse,
+  UpdateExpansionJobError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateExpansionJobRequest,
+  output: UpdateExpansionJobResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateImportJobError = AzureOpError;
+/** Update an import job instance. */
+export const UpdateImportJob: API.OperationMethod<
+  UpdateImportJobRequest,
+  UpdateImportJobResponse,
+  UpdateImportJobError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateImportJobRequest,
+  output: UpdateImportJobResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateRebalanceJobError = AzureOpError;
+/** Update a rebalance job instance. */
+export const UpdateRebalanceJob: API.OperationMethod<
+  UpdateRebalanceJobRequest,
+  UpdateRebalanceJobResponse,
+  UpdateRebalanceJobError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateRebalanceJobRequest,
+  output: UpdateRebalanceJobResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

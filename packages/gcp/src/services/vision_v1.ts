@@ -112,6 +112,44 @@ export const StringMap = /*@__PURE__*/ S.Record(
   S.String,
 ) as any as S.Schema<StringMap>;
 
+export type FeatureTypeEnum =
+  | "TYPE_UNSPECIFIED"
+  | "FACE_DETECTION"
+  | "LANDMARK_DETECTION"
+  | "LOGO_DETECTION"
+  | "LABEL_DETECTION"
+  | "TEXT_DETECTION"
+  | "DOCUMENT_TEXT_DETECTION"
+  | "SAFE_SEARCH_DETECTION"
+  | "IMAGE_PROPERTIES"
+  | "CROP_HINTS"
+  | "WEB_DETECTION"
+  | "PRODUCT_SEARCH"
+  | "OBJECT_LOCALIZATION";
+export const FeatureTypeEnum = /*@__PURE__*/ S.String;
+
+/** The type of Google Cloud Vision API detection to perform, and the maximum number of results to return for that type. Multiple `Feature` objects can be specified in the `features` list. */
+export interface Feature {
+  /** Maximum number of results of this type. Does not apply to `TEXT_DETECTION`, `DOCUMENT_TEXT_DETECTION`, or `CROP_HINTS`. */
+  maxResults?: number;
+  /** The feature type. */
+  type?: FeatureTypeEnum | (string & {});
+  /** Model to use for the feature. Supported values: "builtin/stable" (the default if unset) and "builtin/latest". `DOCUMENT_TEXT_DETECTION` and `TEXT_DETECTION` also support "builtin/rc" for the latest release candidate. */
+  model?: string;
+}
+export const Feature = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    maxResults: S.optional(S.Number),
+    type: S.optional(FeatureTypeEnum),
+    model: S.optional(S.String),
+  }),
+).annotate({ identifier: "Feature" }) as any as S.Schema<Feature>;
+
+export type FeatureList = Array<Feature>;
+export const FeatureList = /*@__PURE__*/ S.Array(
+  Feature,
+) as any as S.Schema<FeatureList>;
+
 /** The Google Cloud Storage location where the input will be read from. */
 export interface GcsSource {
   /** Google Cloud Storage URI for the input file. This must only be a Google Cloud Storage object. Wildcards are not currently supported. */
@@ -125,38 +163,20 @@ export const GcsSource = /*@__PURE__*/ S.suspend(() =>
 
 /** The desired input location and metadata. */
 export interface InputConfig {
-  /** The type of the file. Currently only "application/pdf", "image/tiff" and "image/gif" are supported. Wildcards are not supported. */
-  mimeType?: string;
   /** The Google Cloud Storage location to read the input from. */
   gcsSource?: GcsSource;
   /** File content, represented as a stream of bytes. Note: As with all `bytes` fields, protobuffers use a pure binary representation, whereas JSON representations use base64. Currently, this field only works for BatchAnnotateFiles requests. It does not work for AsyncBatchAnnotateFiles requests. */
   content?: string;
+  /** The type of the file. Currently only "application/pdf", "image/tiff" and "image/gif" are supported. Wildcards are not supported. */
+  mimeType?: string;
 }
 export const InputConfig = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    mimeType: S.optional(S.String),
     gcsSource: S.optional(GcsSource),
     content: S.optional(S.String),
+    mimeType: S.optional(S.String),
   }),
 ).annotate({ identifier: "InputConfig" }) as any as S.Schema<InputConfig>;
-
-export type StringList = Array<string>;
-export const StringList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<StringList>;
-
-/** Parameters for web detection request. */
-export interface WebDetectionParams {
-  /** This field has no effect on results. */
-  includeGeoResults?: boolean;
-}
-export const WebDetectionParams = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    includeGeoResults: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "WebDetectionParams",
-}) as any as S.Schema<WebDetectionParams>;
 
 /** An object that represents a latitude/longitude pair. This is expressed as a pair of doubles to represent degrees latitude and degrees longitude. Unless specified otherwise, this object must conform to the WGS84 standard. Values must be within normalized ranges. */
 export interface LatLng {
@@ -186,6 +206,19 @@ export const LatLongRect = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "LatLongRect" }) as any as S.Schema<LatLongRect>;
 
+/** Parameters for web detection request. */
+export interface WebDetectionParams {
+  /** This field has no effect on results. */
+  includeGeoResults?: boolean;
+}
+export const WebDetectionParams = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    includeGeoResults: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "WebDetectionParams",
+}) as any as S.Schema<WebDetectionParams>;
+
 export type DoubleList = Array<number>;
 export const DoubleList = /*@__PURE__*/ S.Array(
   S.Number,
@@ -204,17 +237,38 @@ export const CropHintsParams = /*@__PURE__*/ S.suspend(() =>
   identifier: "CropHintsParams",
 }) as any as S.Schema<CropHintsParams>;
 
+export type StringList = Array<string>;
+export const StringList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<StringList>;
+
+/** Parameters for text detections. This is used to control TEXT_DETECTION and DOCUMENT_TEXT_DETECTION features. */
+export interface TextDetectionParams {
+  /** By default, Cloud Vision API only includes confidence score for DOCUMENT_TEXT_DETECTION result. Set the flag to true to include confidence score for TEXT_DETECTION as well. */
+  enableTextDetectionConfidenceScore?: boolean;
+  /** A list of advanced OCR options to further fine-tune OCR behavior. Current valid values are: - `legacy_layout`: a heuristics layout detection algorithm, which serves as an alternative to the current ML-based layout detection algorithm. Customers can choose the best suitable layout algorithm based on their situation. */
+  advancedOcrOptions?: StringList;
+}
+export const TextDetectionParams = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    enableTextDetectionConfidenceScore: S.optional(S.Boolean),
+    advancedOcrOptions: S.optional(StringList),
+  }),
+).annotate({
+  identifier: "TextDetectionParams",
+}) as any as S.Schema<TextDetectionParams>;
+
 /** A vertex represents a 2D point in the image. NOTE: the vertex coordinates are in the same scale as the original image. */
 export interface Vertex {
-  /** Y coordinate. */
-  y?: number;
   /** X coordinate. */
   x?: number;
+  /** Y coordinate. */
+  y?: number;
 }
 export const Vertex = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    y: S.optional(S.Number),
     x: S.optional(S.Number),
+    y: S.optional(S.Number),
   }),
 ).annotate({ identifier: "Vertex" }) as any as S.Schema<Vertex>;
 
@@ -248,10 +302,10 @@ export const BoundingPoly = /*@__PURE__*/ S.suspend(() =>
 
 /** Parameters for a product search request. */
 export interface ProductSearchParams {
-  /** The list of product categories to search in. Currently, we only consider the first category, and either "homegoods-v2", "apparel-v2", "toys-v2", "packagedgoods-v1", or "general-v1" should be specified. The legacy categories "homegoods", "apparel", and "toys" are still supported but will be deprecated. For new products, please use "homegoods-v2", "apparel-v2", or "toys-v2" for better product search accuracy. It is recommended to migrate existing products to these categories as well. */
-  productCategories?: StringList;
   /** The resource name of a ProductSet to be searched for similar images. Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`. */
   productSet?: string;
+  /** The list of product categories to search in. Currently, we only consider the first category, and either "homegoods-v2", "apparel-v2", "toys-v2", "packagedgoods-v1", or "general-v1" should be specified. The legacy categories "homegoods", "apparel", and "toys" are still supported but will be deprecated. For new products, please use "homegoods-v2", "apparel-v2", or "toys-v2" for better product search accuracy. It is recommended to migrate existing products to these categories as well. */
+  productCategories?: StringList;
   /** The bounding polygon around the area of interest in the image. If it is not specified, system discretion will be applied. */
   boundingPoly?: BoundingPoly;
   /** The filtering expression. This can be used to restrict search results based on Product labels. We currently support an AND of OR of key-value expressions, where each expression within an OR must have the same key. An '=' should be used to connect the key and value. For example, "(color = red OR color = blue) AND brand = Google" is acceptable, but "(color = red OR brand = Google)" is not acceptable. "color: red" is not acceptable because it uses a ':' instead of an '='. */
@@ -259,8 +313,8 @@ export interface ProductSearchParams {
 }
 export const ProductSearchParams = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    productCategories: S.optional(StringList),
     productSet: S.optional(S.String),
+    productCategories: S.optional(StringList),
     boundingPoly: S.optional(BoundingPoly),
     filter: S.optional(S.String),
   }),
@@ -268,85 +322,31 @@ export const ProductSearchParams = /*@__PURE__*/ S.suspend(() =>
   identifier: "ProductSearchParams",
 }) as any as S.Schema<ProductSearchParams>;
 
-/** Parameters for text detections. This is used to control TEXT_DETECTION and DOCUMENT_TEXT_DETECTION features. */
-export interface TextDetectionParams {
-  /** By default, Cloud Vision API only includes confidence score for DOCUMENT_TEXT_DETECTION result. Set the flag to true to include confidence score for TEXT_DETECTION as well. */
-  enableTextDetectionConfidenceScore?: boolean;
-  /** A list of advanced OCR options to further fine-tune OCR behavior. Current valid values are: - `legacy_layout`: a heuristics layout detection algorithm, which serves as an alternative to the current ML-based layout detection algorithm. Customers can choose the best suitable layout algorithm based on their situation. */
-  advancedOcrOptions?: StringList;
-}
-export const TextDetectionParams = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    enableTextDetectionConfidenceScore: S.optional(S.Boolean),
-    advancedOcrOptions: S.optional(StringList),
-  }),
-).annotate({
-  identifier: "TextDetectionParams",
-}) as any as S.Schema<TextDetectionParams>;
-
 /** Image context and/or feature-specific parameters. */
 export interface ImageContext {
-  /** List of languages to use for TEXT_DETECTION. In most cases, an empty value yields the best results since it enables automatic language detection. For languages based on the Latin alphabet, setting `language_hints` is not needed. In rare cases, when the language of the text in the image is known, setting a hint will help get better results (although it will be a significant hindrance if the hint is wrong). Text detection returns an error if one or more of the specified languages is not one of the [supported languages](https://cloud.google.com/vision/docs/languages). */
-  languageHints?: StringList;
-  /** Parameters for web detection. */
-  webDetectionParams?: WebDetectionParams;
   /** Not used. */
   latLongRect?: LatLongRect;
+  /** Parameters for web detection. */
+  webDetectionParams?: WebDetectionParams;
   /** Parameters for crop hints annotation request. */
   cropHintsParams?: CropHintsParams;
-  /** Parameters for product search. */
-  productSearchParams?: ProductSearchParams;
   /** Parameters for text detection and document text detection. */
   textDetectionParams?: TextDetectionParams;
+  /** List of languages to use for TEXT_DETECTION. In most cases, an empty value yields the best results since it enables automatic language detection. For languages based on the Latin alphabet, setting `language_hints` is not needed. In rare cases, when the language of the text in the image is known, setting a hint will help get better results (although it will be a significant hindrance if the hint is wrong). Text detection returns an error if one or more of the specified languages is not one of the [supported languages](https://cloud.google.com/vision/docs/languages). */
+  languageHints?: StringList;
+  /** Parameters for product search. */
+  productSearchParams?: ProductSearchParams;
 }
 export const ImageContext = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    languageHints: S.optional(StringList),
-    webDetectionParams: S.optional(WebDetectionParams),
     latLongRect: S.optional(LatLongRect),
+    webDetectionParams: S.optional(WebDetectionParams),
     cropHintsParams: S.optional(CropHintsParams),
-    productSearchParams: S.optional(ProductSearchParams),
     textDetectionParams: S.optional(TextDetectionParams),
+    languageHints: S.optional(StringList),
+    productSearchParams: S.optional(ProductSearchParams),
   }),
 ).annotate({ identifier: "ImageContext" }) as any as S.Schema<ImageContext>;
-
-export type FeatureTypeEnum =
-  | "TYPE_UNSPECIFIED"
-  | "FACE_DETECTION"
-  | "LANDMARK_DETECTION"
-  | "LOGO_DETECTION"
-  | "LABEL_DETECTION"
-  | "TEXT_DETECTION"
-  | "DOCUMENT_TEXT_DETECTION"
-  | "SAFE_SEARCH_DETECTION"
-  | "IMAGE_PROPERTIES"
-  | "CROP_HINTS"
-  | "WEB_DETECTION"
-  | "PRODUCT_SEARCH"
-  | "OBJECT_LOCALIZATION";
-export const FeatureTypeEnum = /*@__PURE__*/ S.String;
-
-/** The type of Google Cloud Vision API detection to perform, and the maximum number of results to return for that type. Multiple `Feature` objects can be specified in the `features` list. */
-export interface Feature {
-  /** The feature type. */
-  type?: FeatureTypeEnum | (string & {});
-  /** Maximum number of results of this type. Does not apply to `TEXT_DETECTION`, `DOCUMENT_TEXT_DETECTION`, or `CROP_HINTS`. */
-  maxResults?: number;
-  /** Model to use for the feature. Supported values: "builtin/stable" (the default if unset) and "builtin/latest". `DOCUMENT_TEXT_DETECTION` and `TEXT_DETECTION` also support "builtin/rc" for the latest release candidate. */
-  model?: string;
-}
-export const Feature = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(FeatureTypeEnum),
-    maxResults: S.optional(S.Number),
-    model: S.optional(S.String),
-  }),
-).annotate({ identifier: "Feature" }) as any as S.Schema<Feature>;
-
-export type FeatureList = Array<Feature>;
-export const FeatureList = /*@__PURE__*/ S.Array(
-  Feature,
-) as any as S.Schema<FeatureList>;
 
 export type IntegerList = Array<number>;
 export const IntegerList = /*@__PURE__*/ S.Array(
@@ -355,20 +355,20 @@ export const IntegerList = /*@__PURE__*/ S.Array(
 
 /** A request to annotate one single file, e.g. a PDF, TIFF or GIF file. */
 export interface AnnotateFileRequest {
+  /** Required. Requested features. */
+  features?: FeatureList;
   /** Required. Information about the input file. */
   inputConfig?: InputConfig;
   /** Additional context that may accompany the image(s) in the file. */
   imageContext?: ImageContext;
-  /** Required. Requested features. */
-  features?: FeatureList;
   /** Pages of the file to perform image annotation. Pages starts from 1, we assume the first page of the file is page 1. At most 5 pages are supported per request. Pages can be negative. Page 1 means the first page. Page 2 means the second page. Page -1 means the last page. Page -2 means the second to the last page. If the file is GIF instead of PDF or TIFF, page refers to GIF frames. If this field is empty, by default the service performs image annotation for the first 5 pages of the file. */
   pages?: IntegerList;
 }
 export const AnnotateFileRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    features: S.optional(FeatureList),
     inputConfig: S.optional(InputConfig),
     imageContext: S.optional(ImageContext),
-    features: S.optional(FeatureList),
     pages: S.optional(IntegerList),
   }),
 ).annotate({
@@ -384,16 +384,16 @@ export const AnnotateFileRequestList = /*@__PURE__*/ S.Array(
 export interface BatchAnnotateFilesRequest {
   /** Optional. The labels with user-defined metadata for the request. Label keys and values can be no longer than 63 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter. */
   labels?: StringMap;
-  /** Required. The list of file annotation requests. Right now we support only one AnnotateFileRequest in BatchAnnotateFilesRequest. */
-  requests?: AnnotateFileRequestList;
   /** Optional. Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`. */
   parent?: string;
+  /** Required. The list of file annotation requests. Right now we support only one AnnotateFileRequest in BatchAnnotateFilesRequest. */
+  requests?: AnnotateFileRequestList;
 }
 export const BatchAnnotateFilesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     labels: S.optional(StringMap),
-    requests: S.optional(AnnotateFileRequestList),
     parent: S.optional(S.String),
+    requests: S.optional(AnnotateFileRequestList),
   }),
 ).annotate({
   identifier: "BatchAnnotateFilesRequest",
@@ -416,102 +416,6 @@ export const AnnotateFilesRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "AnnotateFilesRequest",
 }) as any as S.Schema<AnnotateFilesRequest>;
-
-/** A `Property` consists of a user-supplied name/value pair. */
-export interface Property {
-  /** Name of the property. */
-  name?: string;
-  /** Value of numeric properties. */
-  uint64Value?: string;
-  /** Value of the property. */
-  value?: string;
-}
-export const Property = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    uint64Value: S.optional(S.String),
-    value: S.optional(S.String),
-  }),
-).annotate({ identifier: "Property" }) as any as S.Schema<Property>;
-
-export type PropertyList = Array<Property>;
-export const PropertyList = /*@__PURE__*/ S.Array(
-  Property,
-) as any as S.Schema<PropertyList>;
-
-/** Detected entity location information. */
-export interface LocationInfo {
-  /** lat/long location coordinates. */
-  latLng?: LatLng;
-}
-export const LocationInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    latLng: S.optional(LatLng),
-  }),
-).annotate({ identifier: "LocationInfo" }) as any as S.Schema<LocationInfo>;
-
-export type LocationInfoList = Array<LocationInfo>;
-export const LocationInfoList = /*@__PURE__*/ S.Array(
-  LocationInfo,
-) as any as S.Schema<LocationInfoList>;
-
-/** Set of detected entity features. */
-export interface EntityAnnotation {
-  /** **Deprecated. Use `score` instead.** The accuracy of the entity detection in an image. For example, for an image in which the "Eiffel Tower" entity is detected, this field represents the confidence that there is a tower in the query image. Range [0, 1]. */
-  confidence?: number;
-  /** Some entities may have optional user-supplied `Property` (name/value) fields, such a score or string that qualifies the entity. */
-  properties?: PropertyList;
-  /** Opaque entity ID. Some IDs may be available in [Google Knowledge Graph Search API](https://developers.google.com/knowledge-graph/). */
-  mid?: string;
-  /** The location information for the detected entity. Multiple `LocationInfo` elements can be present because one location may indicate the location of the scene in the image, and another location may indicate the location of the place where the image was taken. Location information is usually present for landmarks. */
-  locations?: LocationInfoList;
-  /** Overall score of the result. Range [0, 1]. */
-  score?: number;
-  /** Image region to which this entity belongs. Not produced for `LABEL_DETECTION` features. */
-  boundingPoly?: BoundingPoly;
-  /** The language code for the locale in which the entity textual `description` is expressed. */
-  locale?: string;
-  /** The relevancy of the ICA (Image Content Annotation) label to the image. For example, the relevancy of "tower" is likely higher to an image containing the detected "Eiffel Tower" than to an image containing a detected distant towering building, even though the confidence that there is a tower in each image may be the same. Range [0, 1]. */
-  topicality?: number;
-  /** Entity textual description, expressed in its `locale` language. */
-  description?: string;
-}
-export const EntityAnnotation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    confidence: S.optional(S.Number),
-    properties: S.optional(PropertyList),
-    mid: S.optional(S.String),
-    locations: S.optional(LocationInfoList),
-    score: S.optional(S.Number),
-    boundingPoly: S.optional(BoundingPoly),
-    locale: S.optional(S.String),
-    topicality: S.optional(S.Number),
-    description: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "EntityAnnotation",
-}) as any as S.Schema<EntityAnnotation>;
-
-export type EntityAnnotationList = Array<EntityAnnotation>;
-export const EntityAnnotationList = /*@__PURE__*/ S.Array(
-  EntityAnnotation,
-) as any as S.Schema<EntityAnnotationList>;
-
-/** If an image was produced from a file (e.g. a PDF), this message gives information about the source of that image. */
-export interface ImageAnnotationContext {
-  /** The URI of the file used to produce the image. */
-  uri?: string;
-  /** If the file was a PDF or TIFF, this field gives the page number within the file used to produce the image. */
-  pageNumber?: number;
-}
-export const ImageAnnotationContext = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    uri: S.optional(S.String),
-    pageNumber: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "ImageAnnotationContext",
-}) as any as S.Schema<ImageAnnotationContext>;
 
 export type DocumentMap = { [key: string]: unknown | undefined };
 export const DocumentMap = /*@__PURE__*/ S.Record(
@@ -541,6 +445,349 @@ export const Status = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Status" }) as any as S.Schema<Status>;
 
+/** Detected entity location information. */
+export interface LocationInfo {
+  /** lat/long location coordinates. */
+  latLng?: LatLng;
+}
+export const LocationInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    latLng: S.optional(LatLng),
+  }),
+).annotate({ identifier: "LocationInfo" }) as any as S.Schema<LocationInfo>;
+
+export type LocationInfoList = Array<LocationInfo>;
+export const LocationInfoList = /*@__PURE__*/ S.Array(
+  LocationInfo,
+) as any as S.Schema<LocationInfoList>;
+
+/** A `Property` consists of a user-supplied name/value pair. */
+export interface Property {
+  /** Name of the property. */
+  name?: string;
+  /** Value of the property. */
+  value?: string;
+  /** Value of numeric properties. */
+  uint64Value?: string;
+}
+export const Property = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    value: S.optional(S.String),
+    uint64Value: S.optional(S.String),
+  }),
+).annotate({ identifier: "Property" }) as any as S.Schema<Property>;
+
+export type PropertyList = Array<Property>;
+export const PropertyList = /*@__PURE__*/ S.Array(
+  Property,
+) as any as S.Schema<PropertyList>;
+
+/** Set of detected entity features. */
+export interface EntityAnnotation {
+  /** **Deprecated. Use `score` instead.** The accuracy of the entity detection in an image. For example, for an image in which the "Eiffel Tower" entity is detected, this field represents the confidence that there is a tower in the query image. Range [0, 1]. */
+  confidence?: number;
+  /** Image region to which this entity belongs. Not produced for `LABEL_DETECTION` features. */
+  boundingPoly?: BoundingPoly;
+  /** Overall score of the result. Range [0, 1]. */
+  score?: number;
+  /** The location information for the detected entity. Multiple `LocationInfo` elements can be present because one location may indicate the location of the scene in the image, and another location may indicate the location of the place where the image was taken. Location information is usually present for landmarks. */
+  locations?: LocationInfoList;
+  /** Opaque entity ID. Some IDs may be available in [Google Knowledge Graph Search API](https://developers.google.com/knowledge-graph/). */
+  mid?: string;
+  /** Entity textual description, expressed in its `locale` language. */
+  description?: string;
+  /** The relevancy of the ICA (Image Content Annotation) label to the image. For example, the relevancy of "tower" is likely higher to an image containing the detected "Eiffel Tower" than to an image containing a detected distant towering building, even though the confidence that there is a tower in each image may be the same. Range [0, 1]. */
+  topicality?: number;
+  /** Some entities may have optional user-supplied `Property` (name/value) fields, such a score or string that qualifies the entity. */
+  properties?: PropertyList;
+  /** The language code for the locale in which the entity textual `description` is expressed. */
+  locale?: string;
+}
+export const EntityAnnotation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    confidence: S.optional(S.Number),
+    boundingPoly: S.optional(BoundingPoly),
+    score: S.optional(S.Number),
+    locations: S.optional(LocationInfoList),
+    mid: S.optional(S.String),
+    description: S.optional(S.String),
+    topicality: S.optional(S.Number),
+    properties: S.optional(PropertyList),
+    locale: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "EntityAnnotation",
+}) as any as S.Schema<EntityAnnotation>;
+
+export type EntityAnnotationList = Array<EntityAnnotation>;
+export const EntityAnnotationList = /*@__PURE__*/ S.Array(
+  EntityAnnotation,
+) as any as S.Schema<EntityAnnotationList>;
+
+/** Set of detected objects with bounding boxes. */
+export interface LocalizedObjectAnnotation {
+  /** The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. */
+  languageCode?: string;
+  /** Score of the result. Range [0, 1]. */
+  score?: number;
+  /** Object ID that should align with EntityAnnotation mid. */
+  mid?: string;
+  /** Object name, expressed in its `language_code` language. */
+  name?: string;
+  /** Image region to which this object belongs. This must be populated. */
+  boundingPoly?: BoundingPoly;
+}
+export const LocalizedObjectAnnotation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    languageCode: S.optional(S.String),
+    score: S.optional(S.Number),
+    mid: S.optional(S.String),
+    name: S.optional(S.String),
+    boundingPoly: S.optional(BoundingPoly),
+  }),
+).annotate({
+  identifier: "LocalizedObjectAnnotation",
+}) as any as S.Schema<LocalizedObjectAnnotation>;
+
+export type LocalizedObjectAnnotationList = Array<LocalizedObjectAnnotation>;
+export const LocalizedObjectAnnotationList = /*@__PURE__*/ S.Array(
+  LocalizedObjectAnnotation,
+) as any as S.Schema<LocalizedObjectAnnotationList>;
+
+/** If an image was produced from a file (e.g. a PDF), this message gives information about the source of that image. */
+export interface ImageAnnotationContext {
+  /** The URI of the file used to produce the image. */
+  uri?: string;
+  /** If the file was a PDF or TIFF, this field gives the page number within the file used to produce the image. */
+  pageNumber?: number;
+}
+export const ImageAnnotationContext = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    uri: S.optional(S.String),
+    pageNumber: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "ImageAnnotationContext",
+}) as any as S.Schema<ImageAnnotationContext>;
+
+export type FaceAnnotationJoyLikelihoodEnum =
+  | "UNKNOWN"
+  | "VERY_UNLIKELY"
+  | "UNLIKELY"
+  | "POSSIBLE"
+  | "LIKELY"
+  | "VERY_LIKELY";
+export const FaceAnnotationJoyLikelihoodEnum = /*@__PURE__*/ S.String;
+
+export type FaceAnnotationHeadwearLikelihoodEnum =
+  | "UNKNOWN"
+  | "VERY_UNLIKELY"
+  | "UNLIKELY"
+  | "POSSIBLE"
+  | "LIKELY"
+  | "VERY_LIKELY";
+export const FaceAnnotationHeadwearLikelihoodEnum = /*@__PURE__*/ S.String;
+
+export type FaceAnnotationAngerLikelihoodEnum =
+  | "UNKNOWN"
+  | "VERY_UNLIKELY"
+  | "UNLIKELY"
+  | "POSSIBLE"
+  | "LIKELY"
+  | "VERY_LIKELY";
+export const FaceAnnotationAngerLikelihoodEnum = /*@__PURE__*/ S.String;
+
+export type FaceAnnotationSorrowLikelihoodEnum =
+  | "UNKNOWN"
+  | "VERY_UNLIKELY"
+  | "UNLIKELY"
+  | "POSSIBLE"
+  | "LIKELY"
+  | "VERY_LIKELY";
+export const FaceAnnotationSorrowLikelihoodEnum = /*@__PURE__*/ S.String;
+
+export type FaceAnnotationSurpriseLikelihoodEnum =
+  | "UNKNOWN"
+  | "VERY_UNLIKELY"
+  | "UNLIKELY"
+  | "POSSIBLE"
+  | "LIKELY"
+  | "VERY_LIKELY";
+export const FaceAnnotationSurpriseLikelihoodEnum = /*@__PURE__*/ S.String;
+
+/** A 3D position in the image, used primarily for Face detection landmarks. A valid Position must have both x and y coordinates. The position coordinates are in the same scale as the original image. */
+export interface Position {
+  /** Y coordinate. */
+  y?: number;
+  /** Z coordinate (or depth). */
+  z?: number;
+  /** X coordinate. */
+  x?: number;
+}
+export const Position = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    y: S.optional(S.Number),
+    z: S.optional(S.Number),
+    x: S.optional(S.Number),
+  }),
+).annotate({ identifier: "Position" }) as any as S.Schema<Position>;
+
+export type LandmarkTypeEnum =
+  | "UNKNOWN_LANDMARK"
+  | "LEFT_EYE"
+  | "RIGHT_EYE"
+  | "LEFT_OF_LEFT_EYEBROW"
+  | "RIGHT_OF_LEFT_EYEBROW"
+  | "LEFT_OF_RIGHT_EYEBROW"
+  | "RIGHT_OF_RIGHT_EYEBROW"
+  | "MIDPOINT_BETWEEN_EYES"
+  | "NOSE_TIP"
+  | "UPPER_LIP"
+  | "LOWER_LIP"
+  | "MOUTH_LEFT"
+  | "MOUTH_RIGHT"
+  | "MOUTH_CENTER"
+  | "NOSE_BOTTOM_RIGHT"
+  | "NOSE_BOTTOM_LEFT"
+  | "NOSE_BOTTOM_CENTER"
+  | "LEFT_EYE_TOP_BOUNDARY"
+  | "LEFT_EYE_RIGHT_CORNER"
+  | "LEFT_EYE_BOTTOM_BOUNDARY"
+  | "LEFT_EYE_LEFT_CORNER"
+  | "RIGHT_EYE_TOP_BOUNDARY"
+  | "RIGHT_EYE_RIGHT_CORNER"
+  | "RIGHT_EYE_BOTTOM_BOUNDARY"
+  | "RIGHT_EYE_LEFT_CORNER"
+  | "LEFT_EYEBROW_UPPER_MIDPOINT"
+  | "RIGHT_EYEBROW_UPPER_MIDPOINT"
+  | "LEFT_EAR_TRAGION"
+  | "RIGHT_EAR_TRAGION"
+  | "LEFT_EYE_PUPIL"
+  | "RIGHT_EYE_PUPIL"
+  | "FOREHEAD_GLABELLA"
+  | "CHIN_GNATHION"
+  | "CHIN_LEFT_GONION"
+  | "CHIN_RIGHT_GONION"
+  | "LEFT_CHEEK_CENTER"
+  | "RIGHT_CHEEK_CENTER";
+export const LandmarkTypeEnum = /*@__PURE__*/ S.String;
+
+/** A face-specific landmark (for example, a face feature). Landmark positions may fall outside the bounds of the image if the face is near one or more edges of the image. Therefore it is NOT guaranteed that `0 <= x < width` or `0 <= y < height`. */
+export interface Landmark {
+  /** Face landmark position. */
+  position?: Position;
+  /** Face landmark type. */
+  type?: LandmarkTypeEnum;
+}
+export const Landmark = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    position: S.optional(Position),
+    type: S.optional(LandmarkTypeEnum),
+  }),
+).annotate({ identifier: "Landmark" }) as any as S.Schema<Landmark>;
+
+export type LandmarkList = Array<Landmark>;
+export const LandmarkList = /*@__PURE__*/ S.Array(
+  Landmark,
+) as any as S.Schema<LandmarkList>;
+
+export type FaceAnnotationUnderExposedLikelihoodEnum =
+  | "UNKNOWN"
+  | "VERY_UNLIKELY"
+  | "UNLIKELY"
+  | "POSSIBLE"
+  | "LIKELY"
+  | "VERY_LIKELY";
+export const FaceAnnotationUnderExposedLikelihoodEnum = /*@__PURE__*/ S.String;
+
+export type FaceAnnotationBlurredLikelihoodEnum =
+  | "UNKNOWN"
+  | "VERY_UNLIKELY"
+  | "UNLIKELY"
+  | "POSSIBLE"
+  | "LIKELY"
+  | "VERY_LIKELY";
+export const FaceAnnotationBlurredLikelihoodEnum = /*@__PURE__*/ S.String;
+
+/** A face annotation object contains the results of face detection. */
+export interface FaceAnnotation {
+  /** Face landmarking confidence. Range [0, 1]. */
+  landmarkingConfidence?: number;
+  /** Joy likelihood. */
+  joyLikelihood?: FaceAnnotationJoyLikelihoodEnum;
+  /** The bounding polygon around the face. The coordinates of the bounding box are in the original image's scale. The bounding box is computed to "frame" the face in accordance with human expectations. It is based on the landmarker results. Note that one or more x and/or y coordinates may not be generated in the `BoundingPoly` (the polygon will be unbounded) if only a partial face appears in the image to be annotated. */
+  boundingPoly?: BoundingPoly;
+  /** The `fd_bounding_poly` bounding polygon is tighter than the `boundingPoly`, and encloses only the skin part of the face. Typically, it is used to eliminate the face from any image analysis that detects the "amount of skin" visible in an image. It is not based on the landmarker results, only on the initial face detection, hence the fd (face detection) prefix. */
+  fdBoundingPoly?: BoundingPoly;
+  /** Headwear likelihood. */
+  headwearLikelihood?: FaceAnnotationHeadwearLikelihoodEnum;
+  /** Roll angle, which indicates the amount of clockwise/anti-clockwise rotation of the face relative to the image vertical about the axis perpendicular to the face. Range [-180,180]. */
+  rollAngle?: number;
+  /** Detection confidence. Range [0, 1]. */
+  detectionConfidence?: number;
+  /** Anger likelihood. */
+  angerLikelihood?: FaceAnnotationAngerLikelihoodEnum;
+  /** Sorrow likelihood. */
+  sorrowLikelihood?: FaceAnnotationSorrowLikelihoodEnum;
+  /** Surprise likelihood. */
+  surpriseLikelihood?: FaceAnnotationSurpriseLikelihoodEnum;
+  /** Detected face landmarks. */
+  landmarks?: LandmarkList;
+  /** Under-exposed likelihood. */
+  underExposedLikelihood?: FaceAnnotationUnderExposedLikelihoodEnum;
+  /** Pitch angle, which indicates the upwards/downwards angle that the face is pointing relative to the image's horizontal plane. Range [-180,180]. */
+  tiltAngle?: number;
+  /** Blurred likelihood. */
+  blurredLikelihood?: FaceAnnotationBlurredLikelihoodEnum;
+  /** Yaw angle, which indicates the leftward/rightward angle that the face is pointing relative to the vertical plane perpendicular to the image. Range [-180,180]. */
+  panAngle?: number;
+}
+export const FaceAnnotation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    landmarkingConfidence: S.optional(S.Number),
+    joyLikelihood: S.optional(FaceAnnotationJoyLikelihoodEnum),
+    boundingPoly: S.optional(BoundingPoly),
+    fdBoundingPoly: S.optional(BoundingPoly),
+    headwearLikelihood: S.optional(FaceAnnotationHeadwearLikelihoodEnum),
+    rollAngle: S.optional(S.Number),
+    detectionConfidence: S.optional(S.Number),
+    angerLikelihood: S.optional(FaceAnnotationAngerLikelihoodEnum),
+    sorrowLikelihood: S.optional(FaceAnnotationSorrowLikelihoodEnum),
+    surpriseLikelihood: S.optional(FaceAnnotationSurpriseLikelihoodEnum),
+    landmarks: S.optional(LandmarkList),
+    underExposedLikelihood: S.optional(
+      FaceAnnotationUnderExposedLikelihoodEnum,
+    ),
+    tiltAngle: S.optional(S.Number),
+    blurredLikelihood: S.optional(FaceAnnotationBlurredLikelihoodEnum),
+    panAngle: S.optional(S.Number),
+  }),
+).annotate({ identifier: "FaceAnnotation" }) as any as S.Schema<FaceAnnotation>;
+
+export type FaceAnnotationList = Array<FaceAnnotation>;
+export const FaceAnnotationList = /*@__PURE__*/ S.Array(
+  FaceAnnotation,
+) as any as S.Schema<FaceAnnotationList>;
+
+export type SafeSearchAnnotationMedicalEnum =
+  | "UNKNOWN"
+  | "VERY_UNLIKELY"
+  | "UNLIKELY"
+  | "POSSIBLE"
+  | "LIKELY"
+  | "VERY_LIKELY";
+export const SafeSearchAnnotationMedicalEnum = /*@__PURE__*/ S.String;
+
+export type SafeSearchAnnotationRacyEnum =
+  | "UNKNOWN"
+  | "VERY_UNLIKELY"
+  | "UNLIKELY"
+  | "POSSIBLE"
+  | "LIKELY"
+  | "VERY_LIKELY";
+export const SafeSearchAnnotationRacyEnum = /*@__PURE__*/ S.String;
+
 export type SafeSearchAnnotationViolenceEnum =
   | "UNKNOWN"
   | "VERY_UNLIKELY"
@@ -559,24 +806,6 @@ export type SafeSearchAnnotationAdultEnum =
   | "VERY_LIKELY";
 export const SafeSearchAnnotationAdultEnum = /*@__PURE__*/ S.String;
 
-export type SafeSearchAnnotationRacyEnum =
-  | "UNKNOWN"
-  | "VERY_UNLIKELY"
-  | "UNLIKELY"
-  | "POSSIBLE"
-  | "LIKELY"
-  | "VERY_LIKELY";
-export const SafeSearchAnnotationRacyEnum = /*@__PURE__*/ S.String;
-
-export type SafeSearchAnnotationMedicalEnum =
-  | "UNKNOWN"
-  | "VERY_UNLIKELY"
-  | "UNLIKELY"
-  | "POSSIBLE"
-  | "LIKELY"
-  | "VERY_LIKELY";
-export const SafeSearchAnnotationMedicalEnum = /*@__PURE__*/ S.String;
-
 export type SafeSearchAnnotationSpoofEnum =
   | "UNKNOWN"
   | "VERY_UNLIKELY"
@@ -588,23 +817,23 @@ export const SafeSearchAnnotationSpoofEnum = /*@__PURE__*/ S.String;
 
 /** Set of features pertaining to the image, computed by computer vision methods over safe-search verticals (for example, adult, spoof, medical, violence). */
 export interface SafeSearchAnnotation {
+  /** Likelihood that this is a medical image. */
+  medical?: SafeSearchAnnotationMedicalEnum;
+  /** Likelihood that the request image contains racy content. Racy content may include (but is not limited to) skimpy or sheer clothing, strategically covered nudity, lewd or provocative poses, or close-ups of sensitive body areas. */
+  racy?: SafeSearchAnnotationRacyEnum;
   /** Likelihood that this image contains violent content. Violent content may include death, serious harm, or injury to individuals or groups of individuals. */
   violence?: SafeSearchAnnotationViolenceEnum;
   /** Represents the adult content likelihood for the image. Adult content may contain elements such as nudity, pornographic images or cartoons, or sexual activities. */
   adult?: SafeSearchAnnotationAdultEnum;
-  /** Likelihood that the request image contains racy content. Racy content may include (but is not limited to) skimpy or sheer clothing, strategically covered nudity, lewd or provocative poses, or close-ups of sensitive body areas. */
-  racy?: SafeSearchAnnotationRacyEnum;
-  /** Likelihood that this is a medical image. */
-  medical?: SafeSearchAnnotationMedicalEnum;
   /** Spoof likelihood. The likelihood that an modification was made to the image's canonical version to make it appear funny or offensive. */
   spoof?: SafeSearchAnnotationSpoofEnum;
 }
 export const SafeSearchAnnotation = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    medical: S.optional(SafeSearchAnnotationMedicalEnum),
+    racy: S.optional(SafeSearchAnnotationRacyEnum),
     violence: S.optional(SafeSearchAnnotationViolenceEnum),
     adult: S.optional(SafeSearchAnnotationAdultEnum),
-    racy: S.optional(SafeSearchAnnotationRacyEnum),
-    medical: S.optional(SafeSearchAnnotationMedicalEnum),
     spoof: S.optional(SafeSearchAnnotationSpoofEnum),
   }),
 ).annotate({
@@ -613,15 +842,15 @@ export const SafeSearchAnnotation = /*@__PURE__*/ S.suspend(() =>
 
 /** Detected language for a structural component. */
 export interface DetectedLanguage {
-  /** Confidence of detected language. Range [0, 1]. */
-  confidence?: number;
   /** The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. */
   languageCode?: string;
+  /** Confidence of detected language. Range [0, 1]. */
+  confidence?: number;
 }
 export const DetectedLanguage = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    confidence: S.optional(S.Number),
     languageCode: S.optional(S.String),
+    confidence: S.optional(S.Number),
   }),
 ).annotate({
   identifier: "DetectedLanguage",
@@ -669,32 +898,23 @@ export const TextProperty = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "TextProperty" }) as any as S.Schema<TextProperty>;
 
-export type BlockBlockTypeEnum =
-  | "UNKNOWN"
-  | "TEXT"
-  | "TABLE"
-  | "PICTURE"
-  | "RULER"
-  | "BARCODE";
-export const BlockBlockTypeEnum = /*@__PURE__*/ S.String;
-
 /** A single symbol representation. */
 export interface Vision_Symbol {
-  /** The bounding box for the symbol. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the 'natural' orientation. For example: * when the text is horizontal it might look like: 0----1 | | 3----2 * when it's rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3). */
-  boundingBox?: BoundingPoly;
   /** The actual UTF-8 representation of the symbol. */
   text?: string;
-  /** Confidence of the OCR results for the symbol. Range [0, 1]. */
-  confidence?: number;
+  /** The bounding box for the symbol. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the 'natural' orientation. For example: * when the text is horizontal it might look like: 0----1 | | 3----2 * when it's rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3). */
+  boundingBox?: BoundingPoly;
   /** Additional information detected for the symbol. */
   property?: TextProperty;
+  /** Confidence of the OCR results for the symbol. Range [0, 1]. */
+  confidence?: number;
 }
 export const Vision_Symbol = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    boundingBox: S.optional(BoundingPoly),
     text: S.optional(S.String),
-    confidence: S.optional(S.Number),
+    boundingBox: S.optional(BoundingPoly),
     property: S.optional(TextProperty),
+    confidence: S.optional(S.Number),
   }),
 ).annotate({ identifier: "Vision_Symbol" }) as any as S.Schema<Vision_Symbol>;
 
@@ -707,19 +927,19 @@ export const Vision_SymbolList = /*@__PURE__*/ S.Array(
 export interface Word {
   /** List of symbols in the word. The order of the symbols follows the natural reading order. */
   symbols?: Vision_SymbolList;
-  /** The bounding box for the word. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the 'natural' orientation. For example: * when the text is horizontal it might look like: 0----1 | | 3----2 * when it's rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3). */
-  boundingBox?: BoundingPoly;
-  /** Confidence of the OCR results for the word. Range [0, 1]. */
-  confidence?: number;
   /** Additional information detected for the word. */
   property?: TextProperty;
+  /** Confidence of the OCR results for the word. Range [0, 1]. */
+  confidence?: number;
+  /** The bounding box for the word. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the 'natural' orientation. For example: * when the text is horizontal it might look like: 0----1 | | 3----2 * when it's rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3). */
+  boundingBox?: BoundingPoly;
 }
 export const Word = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     symbols: S.optional(Vision_SymbolList),
-    boundingBox: S.optional(BoundingPoly),
-    confidence: S.optional(S.Number),
     property: S.optional(TextProperty),
+    confidence: S.optional(S.Number),
+    boundingBox: S.optional(BoundingPoly),
   }),
 ).annotate({ identifier: "Word" }) as any as S.Schema<Word>;
 
@@ -730,21 +950,21 @@ export const WordList = /*@__PURE__*/ S.Array(
 
 /** Structural unit of text representing a number of words in certain order. */
 export interface Paragraph {
-  /** The bounding box for the paragraph. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the 'natural' orientation. For example: * when the text is horizontal it might look like: 0----1 | | 3----2 * when it's rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3). */
-  boundingBox?: BoundingPoly;
-  /** Confidence of the OCR results for the paragraph. Range [0, 1]. */
-  confidence?: number;
   /** Additional information detected for the paragraph. */
   property?: TextProperty;
   /** List of all words in this paragraph. */
   words?: WordList;
+  /** Confidence of the OCR results for the paragraph. Range [0, 1]. */
+  confidence?: number;
+  /** The bounding box for the paragraph. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the 'natural' orientation. For example: * when the text is horizontal it might look like: 0----1 | | 3----2 * when it's rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3). */
+  boundingBox?: BoundingPoly;
 }
 export const Paragraph = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    boundingBox: S.optional(BoundingPoly),
-    confidence: S.optional(S.Number),
     property: S.optional(TextProperty),
     words: S.optional(WordList),
+    confidence: S.optional(S.Number),
+    boundingBox: S.optional(BoundingPoly),
   }),
 ).annotate({ identifier: "Paragraph" }) as any as S.Schema<Paragraph>;
 
@@ -753,26 +973,35 @@ export const ParagraphList = /*@__PURE__*/ S.Array(
   Paragraph,
 ) as any as S.Schema<ParagraphList>;
 
+export type BlockBlockTypeEnum =
+  | "UNKNOWN"
+  | "TEXT"
+  | "TABLE"
+  | "PICTURE"
+  | "RULER"
+  | "BARCODE";
+export const BlockBlockTypeEnum = /*@__PURE__*/ S.String;
+
 /** Logical element on the page. */
 export interface Block {
+  /** Additional information detected for the block. */
+  property?: TextProperty;
   /** The bounding box for the block. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the 'natural' orientation. For example: * when the text is horizontal it might look like: 0----1 | | 3----2 * when it's rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3). */
   boundingBox?: BoundingPoly;
   /** Confidence of the OCR results on the block. Range [0, 1]. */
   confidence?: number;
-  /** Additional information detected for the block. */
-  property?: TextProperty;
-  /** Detected block type (text, image etc) for this block. */
-  blockType?: BlockBlockTypeEnum;
   /** List of paragraphs in this block (if this blocks is of type text). */
   paragraphs?: ParagraphList;
+  /** Detected block type (text, image etc) for this block. */
+  blockType?: BlockBlockTypeEnum;
 }
 export const Block = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    property: S.optional(TextProperty),
     boundingBox: S.optional(BoundingPoly),
     confidence: S.optional(S.Number),
-    property: S.optional(TextProperty),
-    blockType: S.optional(BlockBlockTypeEnum),
     paragraphs: S.optional(ParagraphList),
+    blockType: S.optional(BlockBlockTypeEnum),
   }),
 ).annotate({ identifier: "Block" }) as any as S.Schema<Block>;
 
@@ -783,24 +1012,24 @@ export const BlockList = /*@__PURE__*/ S.Array(
 
 /** Detected page from OCR. */
 export interface Page {
-  /** Additional information detected on the page. */
-  property?: TextProperty;
   /** Confidence of the OCR results on the page. Range [0, 1]. */
   confidence?: number;
+  /** Additional information detected on the page. */
+  property?: TextProperty;
   /** Page height. For PDFs the unit is points. For images (including TIFFs) the unit is pixels. */
   height?: number;
-  /** List of blocks of text, images etc on this page. */
-  blocks?: BlockList;
   /** Page width. For PDFs the unit is points. For images (including TIFFs) the unit is pixels. */
   width?: number;
+  /** List of blocks of text, images etc on this page. */
+  blocks?: BlockList;
 }
 export const Page = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    property: S.optional(TextProperty),
     confidence: S.optional(S.Number),
+    property: S.optional(TextProperty),
     height: S.optional(S.Number),
-    blocks: S.optional(BlockList),
     width: S.optional(S.Number),
+    blocks: S.optional(BlockList),
   }),
 ).annotate({ identifier: "Page" }) as any as S.Schema<Page>;
 
@@ -823,549 +1052,39 @@ export const TextAnnotation = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "TextAnnotation" }) as any as S.Schema<TextAnnotation>;
 
-/** Entity deduced from similar images on the Internet. */
-export interface WebEntity {
-  /** Overall relevancy score for the entity. Not normalized and not comparable across different image queries. */
-  score?: number;
-  /** Canonical description of the entity, in English. */
-  description?: string;
-  /** Opaque entity ID. */
-  entityId?: string;
-}
-export const WebEntity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    score: S.optional(S.Number),
-    description: S.optional(S.String),
-    entityId: S.optional(S.String),
-  }),
-).annotate({ identifier: "WebEntity" }) as any as S.Schema<WebEntity>;
-
-export type WebEntityList = Array<WebEntity>;
-export const WebEntityList = /*@__PURE__*/ S.Array(
-  WebEntity,
-) as any as S.Schema<WebEntityList>;
-
-/** Metadata for online images. */
-export interface WebImage {
-  /** (Deprecated) Overall relevancy score for the image. */
-  score?: number;
-  /** The result image URL. */
-  url?: string;
-}
-export const WebImage = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    score: S.optional(S.Number),
-    url: S.optional(S.String),
-  }),
-).annotate({ identifier: "WebImage" }) as any as S.Schema<WebImage>;
-
-export type WebImageList = Array<WebImage>;
-export const WebImageList = /*@__PURE__*/ S.Array(
-  WebImage,
-) as any as S.Schema<WebImageList>;
-
-/** Metadata for web pages. */
-export interface WebPage {
-  /** The result web page URL. */
-  url?: string;
-  /** Partial matching images on the page. Those images are similar enough to share some key-point features. For example an original image will likely have partial matching for its crops. */
-  partialMatchingImages?: WebImageList;
-  /** (Deprecated) Overall relevancy score for the web page. */
-  score?: number;
-  /** Fully matching images on the page. Can include resized copies of the query image. */
-  fullMatchingImages?: WebImageList;
-  /** Title for the web page, may contain HTML markups. */
-  pageTitle?: string;
-}
-export const WebPage = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    url: S.optional(S.String),
-    partialMatchingImages: S.optional(WebImageList),
-    score: S.optional(S.Number),
-    fullMatchingImages: S.optional(WebImageList),
-    pageTitle: S.optional(S.String),
-  }),
-).annotate({ identifier: "WebPage" }) as any as S.Schema<WebPage>;
-
-export type WebPageList = Array<WebPage>;
-export const WebPageList = /*@__PURE__*/ S.Array(
-  WebPage,
-) as any as S.Schema<WebPageList>;
-
-/** Label to provide extra metadata for the web detection. */
-export interface WebLabel {
-  /** The BCP-47 language code for `label`, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. */
-  languageCode?: string;
-  /** Label for extra metadata. */
-  label?: string;
-}
-export const WebLabel = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    languageCode: S.optional(S.String),
-    label: S.optional(S.String),
-  }),
-).annotate({ identifier: "WebLabel" }) as any as S.Schema<WebLabel>;
-
-export type WebLabelList = Array<WebLabel>;
-export const WebLabelList = /*@__PURE__*/ S.Array(
-  WebLabel,
-) as any as S.Schema<WebLabelList>;
-
-/** Relevant information for the image from the Internet. */
-export interface WebDetection {
-  /** Deduced entities from similar images on the Internet. */
-  webEntities?: WebEntityList;
-  /** Web pages containing the matching images from the Internet. */
-  pagesWithMatchingImages?: WebPageList;
-  /** The visually similar image results. */
-  visuallySimilarImages?: WebImageList;
-  /** Fully matching images from the Internet. Can include resized copies of the query image. */
-  fullMatchingImages?: WebImageList;
-  /** Partial matching images from the Internet. Those images are similar enough to share some key-point features. For example an original image will likely have partial matching for its crops. */
-  partialMatchingImages?: WebImageList;
-  /** The service's best guess as to the topic of the request image. Inferred from similar images on the open web. */
-  bestGuessLabels?: WebLabelList;
-}
-export const WebDetection = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    webEntities: S.optional(WebEntityList),
-    pagesWithMatchingImages: S.optional(WebPageList),
-    visuallySimilarImages: S.optional(WebImageList),
-    fullMatchingImages: S.optional(WebImageList),
-    partialMatchingImages: S.optional(WebImageList),
-    bestGuessLabels: S.optional(WebLabelList),
-  }),
-).annotate({ identifier: "WebDetection" }) as any as S.Schema<WebDetection>;
-
-/** A product label represented as a key-value pair. */
-export interface KeyValue {
-  /** The key of the label attached to the product. Cannot be empty and cannot exceed 128 bytes. */
-  key?: string;
-  /** The value of the label attached to the product. Cannot be empty and cannot exceed 128 bytes. */
-  value?: string;
-}
-export const KeyValue = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    key: S.optional(S.String),
-    value: S.optional(S.String),
-  }),
-).annotate({ identifier: "KeyValue" }) as any as S.Schema<KeyValue>;
-
-export type KeyValueList = Array<KeyValue>;
-export const KeyValueList = /*@__PURE__*/ S.Array(
-  KeyValue,
-) as any as S.Schema<KeyValueList>;
-
-/** A Product contains ReferenceImages. */
-export interface Product {
-  /** Key-value pairs that can be attached to a product. At query time, constraints can be specified based on the product_labels. Note that integer values can be provided as strings, e.g. "1199". Only strings with integer values can match a range-based restriction which is to be supported soon. Multiple values can be assigned to the same key. One product may have up to 500 product_labels. Notice that the total number of distinct product_labels over all products in one ProductSet cannot exceed 1M, otherwise the product search pipeline will refuse to work for that ProductSet. */
-  productLabels?: KeyValueList;
-  /** The resource name of the product. Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`. This field is ignored when creating a product. */
-  name?: string;
-  /** The user-provided name for this Product. Must not be empty. Must be at most 4096 characters long. */
-  displayName?: string;
-  /** User-provided metadata to be stored with this product. Must be at most 4096 characters long. */
-  description?: string;
-  /** Immutable. The category for the product identified by the reference image. This should be one of "homegoods-v2", "apparel-v2", "toys-v2", "packagedgoods-v1" or "general-v1". The legacy categories "homegoods", "apparel", and "toys" are still supported, but these should not be used for new products. */
-  productCategory?: string;
-}
-export const Product = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    productLabels: S.optional(KeyValueList),
-    name: S.optional(S.String),
-    displayName: S.optional(S.String),
-    description: S.optional(S.String),
-    productCategory: S.optional(S.String),
-  }),
-).annotate({ identifier: "Product" }) as any as S.Schema<Product>;
-
-/** Information about a product. */
-export interface Result {
-  /** The Product. */
-  product?: Product;
-  /** A confidence level on the match, ranging from 0 (no confidence) to 1 (full confidence). */
-  score?: number;
-  /** The resource name of the image from the product that is the closest match to the query. */
-  image?: string;
-}
-export const Result = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    product: S.optional(Product),
-    score: S.optional(S.Number),
-    image: S.optional(S.String),
-  }),
-).annotate({ identifier: "Result" }) as any as S.Schema<Result>;
-
-export type ResultList = Array<Result>;
-export const ResultList = /*@__PURE__*/ S.Array(
-  Result,
-) as any as S.Schema<ResultList>;
-
-/** Prediction for what the object in the bounding box is. */
-export interface ObjectAnnotation {
-  /** Score of the result. Range [0, 1]. */
-  score?: number;
-  /** Object name, expressed in its `language_code` language. */
-  name?: string;
-  /** Object ID that should align with EntityAnnotation mid. */
-  mid?: string;
-  /** The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. */
-  languageCode?: string;
-}
-export const ObjectAnnotation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    score: S.optional(S.Number),
-    name: S.optional(S.String),
-    mid: S.optional(S.String),
-    languageCode: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ObjectAnnotation",
-}) as any as S.Schema<ObjectAnnotation>;
-
-export type ObjectAnnotationList = Array<ObjectAnnotation>;
-export const ObjectAnnotationList = /*@__PURE__*/ S.Array(
-  ObjectAnnotation,
-) as any as S.Schema<ObjectAnnotationList>;
-
-/** Information about the products similar to a single product in a query image. */
-export interface GroupedResult {
-  /** The bounding polygon around the product detected in the query image. */
-  boundingPoly?: BoundingPoly;
-  /** List of generic predictions for the object in the bounding box. */
-  objectAnnotations?: ObjectAnnotationList;
-  /** List of results, one for each product match. */
-  results?: ResultList;
-}
-export const GroupedResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    boundingPoly: S.optional(BoundingPoly),
-    objectAnnotations: S.optional(ObjectAnnotationList),
-    results: S.optional(ResultList),
-  }),
-).annotate({ identifier: "GroupedResult" }) as any as S.Schema<GroupedResult>;
-
-export type GroupedResultList = Array<GroupedResult>;
-export const GroupedResultList = /*@__PURE__*/ S.Array(
-  GroupedResult,
-) as any as S.Schema<GroupedResultList>;
-
-/** Results for a product search request. */
-export interface ProductSearchResults {
-  /** List of results, one for each product match. */
-  results?: ResultList;
-  /** Timestamp of the index which provided these results. Products added to the product set and products removed from the product set after this time are not reflected in the current results. */
-  indexTime?: string;
-  /** List of results grouped by products detected in the query image. Each entry corresponds to one bounding polygon in the query image, and contains the matching products specific to that region. There may be duplicate product matches in the union of all the per-product results. */
-  productGroupedResults?: GroupedResultList;
-}
-export const ProductSearchResults = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    results: S.optional(ResultList),
-    indexTime: S.optional(S.String),
-    productGroupedResults: S.optional(GroupedResultList),
-  }),
-).annotate({
-  identifier: "ProductSearchResults",
-}) as any as S.Schema<ProductSearchResults>;
-
-/** Set of detected objects with bounding boxes. */
-export interface LocalizedObjectAnnotation {
-  /** Object ID that should align with EntityAnnotation mid. */
-  mid?: string;
-  /** Object name, expressed in its `language_code` language. */
-  name?: string;
-  /** Score of the result. Range [0, 1]. */
-  score?: number;
-  /** Image region to which this object belongs. This must be populated. */
-  boundingPoly?: BoundingPoly;
-  /** The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. */
-  languageCode?: string;
-}
-export const LocalizedObjectAnnotation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    mid: S.optional(S.String),
-    name: S.optional(S.String),
-    score: S.optional(S.Number),
-    boundingPoly: S.optional(BoundingPoly),
-    languageCode: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "LocalizedObjectAnnotation",
-}) as any as S.Schema<LocalizedObjectAnnotation>;
-
-export type LocalizedObjectAnnotationList = Array<LocalizedObjectAnnotation>;
-export const LocalizedObjectAnnotationList = /*@__PURE__*/ S.Array(
-  LocalizedObjectAnnotation,
-) as any as S.Schema<LocalizedObjectAnnotationList>;
-
-/** Single crop hint that is used to generate a new crop when serving an image. */
-export interface CropHint {
-  /** The bounding polygon for the crop region. The coordinates of the bounding box are in the original image's scale. */
-  boundingPoly?: BoundingPoly;
-  /** Fraction of importance of this salient region with respect to the original image. */
-  importanceFraction?: number;
-  /** Confidence of this being a salient region. Range [0, 1]. */
-  confidence?: number;
-}
-export const CropHint = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    boundingPoly: S.optional(BoundingPoly),
-    importanceFraction: S.optional(S.Number),
-    confidence: S.optional(S.Number),
-  }),
-).annotate({ identifier: "CropHint" }) as any as S.Schema<CropHint>;
-
-export type CropHintList = Array<CropHint>;
-export const CropHintList = /*@__PURE__*/ S.Array(
-  CropHint,
-) as any as S.Schema<CropHintList>;
-
-/** Set of crop hints that are used to generate new crops when serving images. */
-export interface CropHintsAnnotation {
-  /** Crop hint results. */
-  cropHints?: CropHintList;
-}
-export const CropHintsAnnotation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    cropHints: S.optional(CropHintList),
-  }),
-).annotate({
-  identifier: "CropHintsAnnotation",
-}) as any as S.Schema<CropHintsAnnotation>;
-
-export type LandmarkTypeEnum =
-  | "UNKNOWN_LANDMARK"
-  | "LEFT_EYE"
-  | "RIGHT_EYE"
-  | "LEFT_OF_LEFT_EYEBROW"
-  | "RIGHT_OF_LEFT_EYEBROW"
-  | "LEFT_OF_RIGHT_EYEBROW"
-  | "RIGHT_OF_RIGHT_EYEBROW"
-  | "MIDPOINT_BETWEEN_EYES"
-  | "NOSE_TIP"
-  | "UPPER_LIP"
-  | "LOWER_LIP"
-  | "MOUTH_LEFT"
-  | "MOUTH_RIGHT"
-  | "MOUTH_CENTER"
-  | "NOSE_BOTTOM_RIGHT"
-  | "NOSE_BOTTOM_LEFT"
-  | "NOSE_BOTTOM_CENTER"
-  | "LEFT_EYE_TOP_BOUNDARY"
-  | "LEFT_EYE_RIGHT_CORNER"
-  | "LEFT_EYE_BOTTOM_BOUNDARY"
-  | "LEFT_EYE_LEFT_CORNER"
-  | "RIGHT_EYE_TOP_BOUNDARY"
-  | "RIGHT_EYE_RIGHT_CORNER"
-  | "RIGHT_EYE_BOTTOM_BOUNDARY"
-  | "RIGHT_EYE_LEFT_CORNER"
-  | "LEFT_EYEBROW_UPPER_MIDPOINT"
-  | "RIGHT_EYEBROW_UPPER_MIDPOINT"
-  | "LEFT_EAR_TRAGION"
-  | "RIGHT_EAR_TRAGION"
-  | "LEFT_EYE_PUPIL"
-  | "RIGHT_EYE_PUPIL"
-  | "FOREHEAD_GLABELLA"
-  | "CHIN_GNATHION"
-  | "CHIN_LEFT_GONION"
-  | "CHIN_RIGHT_GONION"
-  | "LEFT_CHEEK_CENTER"
-  | "RIGHT_CHEEK_CENTER";
-export const LandmarkTypeEnum = /*@__PURE__*/ S.String;
-
-/** A 3D position in the image, used primarily for Face detection landmarks. A valid Position must have both x and y coordinates. The position coordinates are in the same scale as the original image. */
-export interface Position {
-  /** X coordinate. */
-  x?: number;
-  /** Y coordinate. */
-  y?: number;
-  /** Z coordinate (or depth). */
-  z?: number;
-}
-export const Position = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    x: S.optional(S.Number),
-    y: S.optional(S.Number),
-    z: S.optional(S.Number),
-  }),
-).annotate({ identifier: "Position" }) as any as S.Schema<Position>;
-
-/** A face-specific landmark (for example, a face feature). Landmark positions may fall outside the bounds of the image if the face is near one or more edges of the image. Therefore it is NOT guaranteed that `0 <= x < width` or `0 <= y < height`. */
-export interface Landmark {
-  /** Face landmark type. */
-  type?: LandmarkTypeEnum;
-  /** Face landmark position. */
-  position?: Position;
-}
-export const Landmark = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(LandmarkTypeEnum),
-    position: S.optional(Position),
-  }),
-).annotate({ identifier: "Landmark" }) as any as S.Schema<Landmark>;
-
-export type LandmarkList = Array<Landmark>;
-export const LandmarkList = /*@__PURE__*/ S.Array(
-  Landmark,
-) as any as S.Schema<LandmarkList>;
-
-export type FaceAnnotationBlurredLikelihoodEnum =
-  | "UNKNOWN"
-  | "VERY_UNLIKELY"
-  | "UNLIKELY"
-  | "POSSIBLE"
-  | "LIKELY"
-  | "VERY_LIKELY";
-export const FaceAnnotationBlurredLikelihoodEnum = /*@__PURE__*/ S.String;
-
-export type FaceAnnotationSurpriseLikelihoodEnum =
-  | "UNKNOWN"
-  | "VERY_UNLIKELY"
-  | "UNLIKELY"
-  | "POSSIBLE"
-  | "LIKELY"
-  | "VERY_LIKELY";
-export const FaceAnnotationSurpriseLikelihoodEnum = /*@__PURE__*/ S.String;
-
-export type FaceAnnotationAngerLikelihoodEnum =
-  | "UNKNOWN"
-  | "VERY_UNLIKELY"
-  | "UNLIKELY"
-  | "POSSIBLE"
-  | "LIKELY"
-  | "VERY_LIKELY";
-export const FaceAnnotationAngerLikelihoodEnum = /*@__PURE__*/ S.String;
-
-export type FaceAnnotationSorrowLikelihoodEnum =
-  | "UNKNOWN"
-  | "VERY_UNLIKELY"
-  | "UNLIKELY"
-  | "POSSIBLE"
-  | "LIKELY"
-  | "VERY_LIKELY";
-export const FaceAnnotationSorrowLikelihoodEnum = /*@__PURE__*/ S.String;
-
-export type FaceAnnotationUnderExposedLikelihoodEnum =
-  | "UNKNOWN"
-  | "VERY_UNLIKELY"
-  | "UNLIKELY"
-  | "POSSIBLE"
-  | "LIKELY"
-  | "VERY_LIKELY";
-export const FaceAnnotationUnderExposedLikelihoodEnum = /*@__PURE__*/ S.String;
-
-export type FaceAnnotationJoyLikelihoodEnum =
-  | "UNKNOWN"
-  | "VERY_UNLIKELY"
-  | "UNLIKELY"
-  | "POSSIBLE"
-  | "LIKELY"
-  | "VERY_LIKELY";
-export const FaceAnnotationJoyLikelihoodEnum = /*@__PURE__*/ S.String;
-
-export type FaceAnnotationHeadwearLikelihoodEnum =
-  | "UNKNOWN"
-  | "VERY_UNLIKELY"
-  | "UNLIKELY"
-  | "POSSIBLE"
-  | "LIKELY"
-  | "VERY_LIKELY";
-export const FaceAnnotationHeadwearLikelihoodEnum = /*@__PURE__*/ S.String;
-
-/** A face annotation object contains the results of face detection. */
-export interface FaceAnnotation {
-  /** Detected face landmarks. */
-  landmarks?: LandmarkList;
-  /** Blurred likelihood. */
-  blurredLikelihood?: FaceAnnotationBlurredLikelihoodEnum;
-  /** Detection confidence. Range [0, 1]. */
-  detectionConfidence?: number;
-  /** Surprise likelihood. */
-  surpriseLikelihood?: FaceAnnotationSurpriseLikelihoodEnum;
-  /** Anger likelihood. */
-  angerLikelihood?: FaceAnnotationAngerLikelihoodEnum;
-  /** Face landmarking confidence. Range [0, 1]. */
-  landmarkingConfidence?: number;
-  /** Sorrow likelihood. */
-  sorrowLikelihood?: FaceAnnotationSorrowLikelihoodEnum;
-  /** Pitch angle, which indicates the upwards/downwards angle that the face is pointing relative to the image's horizontal plane. Range [-180,180]. */
-  tiltAngle?: number;
-  /** Yaw angle, which indicates the leftward/rightward angle that the face is pointing relative to the vertical plane perpendicular to the image. Range [-180,180]. */
-  panAngle?: number;
-  /** Roll angle, which indicates the amount of clockwise/anti-clockwise rotation of the face relative to the image vertical about the axis perpendicular to the face. Range [-180,180]. */
-  rollAngle?: number;
-  /** The bounding polygon around the face. The coordinates of the bounding box are in the original image's scale. The bounding box is computed to "frame" the face in accordance with human expectations. It is based on the landmarker results. Note that one or more x and/or y coordinates may not be generated in the `BoundingPoly` (the polygon will be unbounded) if only a partial face appears in the image to be annotated. */
-  boundingPoly?: BoundingPoly;
-  /** Under-exposed likelihood. */
-  underExposedLikelihood?: FaceAnnotationUnderExposedLikelihoodEnum;
-  /** Joy likelihood. */
-  joyLikelihood?: FaceAnnotationJoyLikelihoodEnum;
-  /** Headwear likelihood. */
-  headwearLikelihood?: FaceAnnotationHeadwearLikelihoodEnum;
-  /** The `fd_bounding_poly` bounding polygon is tighter than the `boundingPoly`, and encloses only the skin part of the face. Typically, it is used to eliminate the face from any image analysis that detects the "amount of skin" visible in an image. It is not based on the landmarker results, only on the initial face detection, hence the fd (face detection) prefix. */
-  fdBoundingPoly?: BoundingPoly;
-}
-export const FaceAnnotation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    landmarks: S.optional(LandmarkList),
-    blurredLikelihood: S.optional(FaceAnnotationBlurredLikelihoodEnum),
-    detectionConfidence: S.optional(S.Number),
-    surpriseLikelihood: S.optional(FaceAnnotationSurpriseLikelihoodEnum),
-    angerLikelihood: S.optional(FaceAnnotationAngerLikelihoodEnum),
-    landmarkingConfidence: S.optional(S.Number),
-    sorrowLikelihood: S.optional(FaceAnnotationSorrowLikelihoodEnum),
-    tiltAngle: S.optional(S.Number),
-    panAngle: S.optional(S.Number),
-    rollAngle: S.optional(S.Number),
-    boundingPoly: S.optional(BoundingPoly),
-    underExposedLikelihood: S.optional(
-      FaceAnnotationUnderExposedLikelihoodEnum,
-    ),
-    joyLikelihood: S.optional(FaceAnnotationJoyLikelihoodEnum),
-    headwearLikelihood: S.optional(FaceAnnotationHeadwearLikelihoodEnum),
-    fdBoundingPoly: S.optional(BoundingPoly),
-  }),
-).annotate({ identifier: "FaceAnnotation" }) as any as S.Schema<FaceAnnotation>;
-
-export type FaceAnnotationList = Array<FaceAnnotation>;
-export const FaceAnnotationList = /*@__PURE__*/ S.Array(
-  FaceAnnotation,
-) as any as S.Schema<FaceAnnotationList>;
-
 /** Represents a color in the RGBA color space. This representation is designed for simplicity of conversion to and from color representations in various languages over compactness. For example, the fields of this representation can be trivially provided to the constructor of `java.awt.Color` in Java; it can also be trivially provided to UIColor's `+colorWithRed:green:blue:alpha` method in iOS; and, with just a little work, it can be easily formatted into a CSS `rgba()` string in JavaScript. This reference page doesn't have information about the absolute color space that should be used to interpret the RGB value—for example, sRGB, Adobe RGB, DCI-P3, and BT.2020. By default, applications should assume the sRGB color space. When color equality needs to be decided, implementations, unless documented otherwise, treat two colors as equal if all their red, green, blue, and alpha values each differ by at most `1e-5`. Example (Java): import com.google.type.Color; // ... public static java.awt.Color fromProto(Color protocolor) { float alpha = protocolor.hasAlpha() ? protocolor.getAlpha().getValue() : 1.0; return new java.awt.Color( protocolor.getRed(), protocolor.getGreen(), protocolor.getBlue(), alpha); } public static Color toProto(java.awt.Color color) { float red = (float) color.getRed(); float green = (float) color.getGreen(); float blue = (float) color.getBlue(); float denominator = 255.0; Color.Builder resultBuilder = Color .newBuilder() .setRed(red / denominator) .setGreen(green / denominator) .setBlue(blue / denominator); int alpha = color.getAlpha(); if (alpha != 255) { result.setAlpha( FloatValue .newBuilder() .setValue(((float) alpha) / denominator) .build()); } return resultBuilder.build(); } // ... Example (iOS / Obj-C): // ... static UIColor* fromProto(Color* protocolor) { float red = [protocolor red]; float green = [protocolor green]; float blue = [protocolor blue]; FloatValue* alpha_wrapper = [protocolor alpha]; float alpha = 1.0; if (alpha_wrapper != nil) { alpha = [alpha_wrapper value]; } return [UIColor colorWithRed:red green:green blue:blue alpha:alpha]; } static Color* toProto(UIColor* color) { CGFloat red, green, blue, alpha; if (![color getRed:&red green:&green blue:&blue alpha:&alpha]) { return nil; } Color* result = [[Color alloc] init]; [result setRed:red]; [result setGreen:green]; [result setBlue:blue]; if (alpha <= 0.9999) { [result setAlpha:floatWrapperWithValue(alpha)]; } [result autorelease]; return result; } // ... Example (JavaScript): // ... var protoToCssColor = function(rgb_color) { var redFrac = rgb_color.red || 0.0; var greenFrac = rgb_color.green || 0.0; var blueFrac = rgb_color.blue || 0.0; var red = Math.floor(redFrac * 255); var green = Math.floor(greenFrac * 255); var blue = Math.floor(blueFrac * 255); if (!('alpha' in rgb_color)) { return rgbToCssColor(red, green, blue); } var alphaFrac = rgb_color.alpha.value || 0.0; var rgbParams = [red, green, blue].join(','); return ['rgba(', rgbParams, ',', alphaFrac, ')'].join(''); }; var rgbToCssColor = function(red, green, blue) { var rgbNumber = new Number((red << 16) | (green << 8) | blue); var hexString = rgbNumber.toString(16); var missingZeros = 6 - hexString.length; var resultBuilder = ['#']; for (var i = 0; i < missingZeros; i++) { resultBuilder.push('0'); } resultBuilder.push(hexString); return resultBuilder.join(''); }; // ... */
 export interface Color {
-  /** The amount of red in the color as a value in the interval [0, 1]. */
-  red?: number;
-  /** The fraction of this color that should be applied to the pixel. That is, the final pixel color is defined by the equation: `pixel color = alpha * (this color) + (1.0 - alpha) * (background color)` This means that a value of 1.0 corresponds to a solid color, whereas a value of 0.0 corresponds to a completely transparent color. This uses a wrapper message rather than a simple float scalar so that it is possible to distinguish between a default value and the value being unset. If omitted, this color object is rendered as a solid color (as if the alpha value had been explicitly given a value of 1.0). */
-  alpha?: number;
   /** The amount of blue in the color as a value in the interval [0, 1]. */
   blue?: number;
+  /** The amount of red in the color as a value in the interval [0, 1]. */
+  red?: number;
   /** The amount of green in the color as a value in the interval [0, 1]. */
   green?: number;
+  /** The fraction of this color that should be applied to the pixel. That is, the final pixel color is defined by the equation: `pixel color = alpha * (this color) + (1.0 - alpha) * (background color)` This means that a value of 1.0 corresponds to a solid color, whereas a value of 0.0 corresponds to a completely transparent color. This uses a wrapper message rather than a simple float scalar so that it is possible to distinguish between a default value and the value being unset. If omitted, this color object is rendered as a solid color (as if the alpha value had been explicitly given a value of 1.0). */
+  alpha?: number;
 }
 export const Color = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    red: S.optional(S.Number),
-    alpha: S.optional(S.Number),
     blue: S.optional(S.Number),
+    red: S.optional(S.Number),
     green: S.optional(S.Number),
+    alpha: S.optional(S.Number),
   }),
 ).annotate({ identifier: "Color" }) as any as S.Schema<Color>;
 
 /** Color information consists of RGB channels, score, and the fraction of the image that the color occupies in the image. */
 export interface ColorInfo {
-  /** RGB components of the color. */
-  color?: Color;
   /** The fraction of pixels the color occupies in the image. Value in range [0, 1]. */
   pixelFraction?: number;
+  /** RGB components of the color. */
+  color?: Color;
   /** Image-specific score for this color. Value in range [0, 1]. */
   score?: number;
 }
 export const ColorInfo = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    color: S.optional(Color),
     pixelFraction: S.optional(S.Number),
+    color: S.optional(Color),
     score: S.optional(S.Number),
   }),
 ).annotate({ identifier: "ColorInfo" }) as any as S.Schema<ColorInfo>;
@@ -1401,53 +1120,334 @@ export const ImageProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "ImageProperties",
 }) as any as S.Schema<ImageProperties>;
 
+/** Single crop hint that is used to generate a new crop when serving an image. */
+export interface CropHint {
+  /** Confidence of this being a salient region. Range [0, 1]. */
+  confidence?: number;
+  /** Fraction of importance of this salient region with respect to the original image. */
+  importanceFraction?: number;
+  /** The bounding polygon for the crop region. The coordinates of the bounding box are in the original image's scale. */
+  boundingPoly?: BoundingPoly;
+}
+export const CropHint = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    confidence: S.optional(S.Number),
+    importanceFraction: S.optional(S.Number),
+    boundingPoly: S.optional(BoundingPoly),
+  }),
+).annotate({ identifier: "CropHint" }) as any as S.Schema<CropHint>;
+
+export type CropHintList = Array<CropHint>;
+export const CropHintList = /*@__PURE__*/ S.Array(
+  CropHint,
+) as any as S.Schema<CropHintList>;
+
+/** Set of crop hints that are used to generate new crops when serving images. */
+export interface CropHintsAnnotation {
+  /** Crop hint results. */
+  cropHints?: CropHintList;
+}
+export const CropHintsAnnotation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    cropHints: S.optional(CropHintList),
+  }),
+).annotate({
+  identifier: "CropHintsAnnotation",
+}) as any as S.Schema<CropHintsAnnotation>;
+
+/** A product label represented as a key-value pair. */
+export interface KeyValue {
+  /** The value of the label attached to the product. Cannot be empty and cannot exceed 128 bytes. */
+  value?: string;
+  /** The key of the label attached to the product. Cannot be empty and cannot exceed 128 bytes. */
+  key?: string;
+}
+export const KeyValue = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(S.String),
+    key: S.optional(S.String),
+  }),
+).annotate({ identifier: "KeyValue" }) as any as S.Schema<KeyValue>;
+
+export type KeyValueList = Array<KeyValue>;
+export const KeyValueList = /*@__PURE__*/ S.Array(
+  KeyValue,
+) as any as S.Schema<KeyValueList>;
+
+/** A Product contains ReferenceImages. */
+export interface Product {
+  /** Key-value pairs that can be attached to a product. At query time, constraints can be specified based on the product_labels. Note that integer values can be provided as strings, e.g. "1199". Only strings with integer values can match a range-based restriction which is to be supported soon. Multiple values can be assigned to the same key. One product may have up to 500 product_labels. Notice that the total number of distinct product_labels over all products in one ProductSet cannot exceed 1M, otherwise the product search pipeline will refuse to work for that ProductSet. */
+  productLabels?: KeyValueList;
+  /** Immutable. The category for the product identified by the reference image. This should be one of "homegoods-v2", "apparel-v2", "toys-v2", "packagedgoods-v1" or "general-v1". The legacy categories "homegoods", "apparel", and "toys" are still supported, but these should not be used for new products. */
+  productCategory?: string;
+  /** The resource name of the product. Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`. This field is ignored when creating a product. */
+  name?: string;
+  /** The user-provided name for this Product. Must not be empty. Must be at most 4096 characters long. */
+  displayName?: string;
+  /** User-provided metadata to be stored with this product. Must be at most 4096 characters long. */
+  description?: string;
+}
+export const Product = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    productLabels: S.optional(KeyValueList),
+    productCategory: S.optional(S.String),
+    name: S.optional(S.String),
+    displayName: S.optional(S.String),
+    description: S.optional(S.String),
+  }),
+).annotate({ identifier: "Product" }) as any as S.Schema<Product>;
+
+/** Information about a product. */
+export interface Result {
+  /** The resource name of the image from the product that is the closest match to the query. */
+  image?: string;
+  /** The Product. */
+  product?: Product;
+  /** A confidence level on the match, ranging from 0 (no confidence) to 1 (full confidence). */
+  score?: number;
+}
+export const Result = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    image: S.optional(S.String),
+    product: S.optional(Product),
+    score: S.optional(S.Number),
+  }),
+).annotate({ identifier: "Result" }) as any as S.Schema<Result>;
+
+export type ResultList = Array<Result>;
+export const ResultList = /*@__PURE__*/ S.Array(
+  Result,
+) as any as S.Schema<ResultList>;
+
+/** Prediction for what the object in the bounding box is. */
+export interface ObjectAnnotation {
+  /** Object name, expressed in its `language_code` language. */
+  name?: string;
+  /** Object ID that should align with EntityAnnotation mid. */
+  mid?: string;
+  /** The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. */
+  languageCode?: string;
+  /** Score of the result. Range [0, 1]. */
+  score?: number;
+}
+export const ObjectAnnotation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    mid: S.optional(S.String),
+    languageCode: S.optional(S.String),
+    score: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "ObjectAnnotation",
+}) as any as S.Schema<ObjectAnnotation>;
+
+export type ObjectAnnotationList = Array<ObjectAnnotation>;
+export const ObjectAnnotationList = /*@__PURE__*/ S.Array(
+  ObjectAnnotation,
+) as any as S.Schema<ObjectAnnotationList>;
+
+/** Information about the products similar to a single product in a query image. */
+export interface GroupedResult {
+  /** The bounding polygon around the product detected in the query image. */
+  boundingPoly?: BoundingPoly;
+  /** List of generic predictions for the object in the bounding box. */
+  objectAnnotations?: ObjectAnnotationList;
+  /** List of results, one for each product match. */
+  results?: ResultList;
+}
+export const GroupedResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    boundingPoly: S.optional(BoundingPoly),
+    objectAnnotations: S.optional(ObjectAnnotationList),
+    results: S.optional(ResultList),
+  }),
+).annotate({ identifier: "GroupedResult" }) as any as S.Schema<GroupedResult>;
+
+export type GroupedResultList = Array<GroupedResult>;
+export const GroupedResultList = /*@__PURE__*/ S.Array(
+  GroupedResult,
+) as any as S.Schema<GroupedResultList>;
+
+/** Results for a product search request. */
+export interface ProductSearchResults {
+  /** Timestamp of the index which provided these results. Products added to the product set and products removed from the product set after this time are not reflected in the current results. */
+  indexTime?: string;
+  /** List of results, one for each product match. */
+  results?: ResultList;
+  /** List of results grouped by products detected in the query image. Each entry corresponds to one bounding polygon in the query image, and contains the matching products specific to that region. There may be duplicate product matches in the union of all the per-product results. */
+  productGroupedResults?: GroupedResultList;
+}
+export const ProductSearchResults = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    indexTime: S.optional(S.String),
+    results: S.optional(ResultList),
+    productGroupedResults: S.optional(GroupedResultList),
+  }),
+).annotate({
+  identifier: "ProductSearchResults",
+}) as any as S.Schema<ProductSearchResults>;
+
+/** Metadata for online images. */
+export interface WebImage {
+  /** The result image URL. */
+  url?: string;
+  /** (Deprecated) Overall relevancy score for the image. */
+  score?: number;
+}
+export const WebImage = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    url: S.optional(S.String),
+    score: S.optional(S.Number),
+  }),
+).annotate({ identifier: "WebImage" }) as any as S.Schema<WebImage>;
+
+export type WebImageList = Array<WebImage>;
+export const WebImageList = /*@__PURE__*/ S.Array(
+  WebImage,
+) as any as S.Schema<WebImageList>;
+
+/** Metadata for web pages. */
+export interface WebPage {
+  /** Fully matching images on the page. Can include resized copies of the query image. */
+  fullMatchingImages?: WebImageList;
+  /** (Deprecated) Overall relevancy score for the web page. */
+  score?: number;
+  /** The result web page URL. */
+  url?: string;
+  /** Title for the web page, may contain HTML markups. */
+  pageTitle?: string;
+  /** Partial matching images on the page. Those images are similar enough to share some key-point features. For example an original image will likely have partial matching for its crops. */
+  partialMatchingImages?: WebImageList;
+}
+export const WebPage = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    fullMatchingImages: S.optional(WebImageList),
+    score: S.optional(S.Number),
+    url: S.optional(S.String),
+    pageTitle: S.optional(S.String),
+    partialMatchingImages: S.optional(WebImageList),
+  }),
+).annotate({ identifier: "WebPage" }) as any as S.Schema<WebPage>;
+
+export type WebPageList = Array<WebPage>;
+export const WebPageList = /*@__PURE__*/ S.Array(
+  WebPage,
+) as any as S.Schema<WebPageList>;
+
+/** Entity deduced from similar images on the Internet. */
+export interface WebEntity {
+  /** Opaque entity ID. */
+  entityId?: string;
+  /** Canonical description of the entity, in English. */
+  description?: string;
+  /** Overall relevancy score for the entity. Not normalized and not comparable across different image queries. */
+  score?: number;
+}
+export const WebEntity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    entityId: S.optional(S.String),
+    description: S.optional(S.String),
+    score: S.optional(S.Number),
+  }),
+).annotate({ identifier: "WebEntity" }) as any as S.Schema<WebEntity>;
+
+export type WebEntityList = Array<WebEntity>;
+export const WebEntityList = /*@__PURE__*/ S.Array(
+  WebEntity,
+) as any as S.Schema<WebEntityList>;
+
+/** Label to provide extra metadata for the web detection. */
+export interface WebLabel {
+  /** Label for extra metadata. */
+  label?: string;
+  /** The BCP-47 language code for `label`, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. */
+  languageCode?: string;
+}
+export const WebLabel = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    label: S.optional(S.String),
+    languageCode: S.optional(S.String),
+  }),
+).annotate({ identifier: "WebLabel" }) as any as S.Schema<WebLabel>;
+
+export type WebLabelList = Array<WebLabel>;
+export const WebLabelList = /*@__PURE__*/ S.Array(
+  WebLabel,
+) as any as S.Schema<WebLabelList>;
+
+/** Relevant information for the image from the Internet. */
+export interface WebDetection {
+  /** Web pages containing the matching images from the Internet. */
+  pagesWithMatchingImages?: WebPageList;
+  /** Deduced entities from similar images on the Internet. */
+  webEntities?: WebEntityList;
+  /** Fully matching images from the Internet. Can include resized copies of the query image. */
+  fullMatchingImages?: WebImageList;
+  /** The service's best guess as to the topic of the request image. Inferred from similar images on the open web. */
+  bestGuessLabels?: WebLabelList;
+  /** Partial matching images from the Internet. Those images are similar enough to share some key-point features. For example an original image will likely have partial matching for its crops. */
+  partialMatchingImages?: WebImageList;
+  /** The visually similar image results. */
+  visuallySimilarImages?: WebImageList;
+}
+export const WebDetection = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    pagesWithMatchingImages: S.optional(WebPageList),
+    webEntities: S.optional(WebEntityList),
+    fullMatchingImages: S.optional(WebImageList),
+    bestGuessLabels: S.optional(WebLabelList),
+    partialMatchingImages: S.optional(WebImageList),
+    visuallySimilarImages: S.optional(WebImageList),
+  }),
+).annotate({ identifier: "WebDetection" }) as any as S.Schema<WebDetection>;
+
 /** Response to an image annotation request. */
 export interface AnnotateImageResponse {
-  /** If present, label detection has completed successfully. */
-  labelAnnotations?: EntityAnnotationList;
-  /** If present, landmark detection has completed successfully. */
-  landmarkAnnotations?: EntityAnnotationList;
-  /** If present, contextual information is needed to understand where this image comes from. */
-  context?: ImageAnnotationContext;
-  /** If set, represents the error message for the operation. Note that filled-in image annotations are guaranteed to be correct, even when `error` is set. */
-  error?: Status;
-  /** If present, safe-search annotation has completed successfully. */
-  safeSearchAnnotation?: SafeSearchAnnotation;
-  /** If present, text (OCR) detection or document (OCR) text detection has completed successfully. This annotation provides the structural hierarchy for the OCR detected text. */
-  fullTextAnnotation?: TextAnnotation;
-  /** If present, web detection has completed successfully. */
-  webDetection?: WebDetection;
-  /** If present, product search has completed successfully. */
-  productSearchResults?: ProductSearchResults;
-  /** If present, localized object detection has completed successfully. This will be sorted descending by confidence score. */
-  localizedObjectAnnotations?: LocalizedObjectAnnotationList;
-  /** If present, crop hints have completed successfully. */
-  cropHintsAnnotation?: CropHintsAnnotation;
-  /** If present, text (OCR) detection has completed successfully. */
-  textAnnotations?: EntityAnnotationList;
-  /** If present, face detection has completed successfully. */
-  faceAnnotations?: FaceAnnotationList;
   /** If present, logo detection has completed successfully. */
   logoAnnotations?: EntityAnnotationList;
+  /** If present, localized object detection has completed successfully. This will be sorted descending by confidence score. */
+  localizedObjectAnnotations?: LocalizedObjectAnnotationList;
+  /** If present, contextual information is needed to understand where this image comes from. */
+  context?: ImageAnnotationContext;
+  /** If present, face detection has completed successfully. */
+  faceAnnotations?: FaceAnnotationList;
+  /** If present, landmark detection has completed successfully. */
+  landmarkAnnotations?: EntityAnnotationList;
+  /** If present, text (OCR) detection has completed successfully. */
+  textAnnotations?: EntityAnnotationList;
+  /** If present, safe-search annotation has completed successfully. */
+  safeSearchAnnotation?: SafeSearchAnnotation;
+  /** If present, label detection has completed successfully. */
+  labelAnnotations?: EntityAnnotationList;
+  /** If present, text (OCR) detection or document (OCR) text detection has completed successfully. This annotation provides the structural hierarchy for the OCR detected text. */
+  fullTextAnnotation?: TextAnnotation;
+  /** If set, represents the error message for the operation. Note that filled-in image annotations are guaranteed to be correct, even when `error` is set. */
+  error?: Status;
   /** If present, image properties were extracted successfully. */
   imagePropertiesAnnotation?: ImageProperties;
+  /** If present, crop hints have completed successfully. */
+  cropHintsAnnotation?: CropHintsAnnotation;
+  /** If present, product search has completed successfully. */
+  productSearchResults?: ProductSearchResults;
+  /** If present, web detection has completed successfully. */
+  webDetection?: WebDetection;
 }
 export const AnnotateImageResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    labelAnnotations: S.optional(EntityAnnotationList),
-    landmarkAnnotations: S.optional(EntityAnnotationList),
-    context: S.optional(ImageAnnotationContext),
-    error: S.optional(Status),
-    safeSearchAnnotation: S.optional(SafeSearchAnnotation),
-    fullTextAnnotation: S.optional(TextAnnotation),
-    webDetection: S.optional(WebDetection),
-    productSearchResults: S.optional(ProductSearchResults),
-    localizedObjectAnnotations: S.optional(LocalizedObjectAnnotationList),
-    cropHintsAnnotation: S.optional(CropHintsAnnotation),
-    textAnnotations: S.optional(EntityAnnotationList),
-    faceAnnotations: S.optional(FaceAnnotationList),
     logoAnnotations: S.optional(EntityAnnotationList),
+    localizedObjectAnnotations: S.optional(LocalizedObjectAnnotationList),
+    context: S.optional(ImageAnnotationContext),
+    faceAnnotations: S.optional(FaceAnnotationList),
+    landmarkAnnotations: S.optional(EntityAnnotationList),
+    textAnnotations: S.optional(EntityAnnotationList),
+    safeSearchAnnotation: S.optional(SafeSearchAnnotation),
+    labelAnnotations: S.optional(EntityAnnotationList),
+    fullTextAnnotation: S.optional(TextAnnotation),
+    error: S.optional(Status),
     imagePropertiesAnnotation: S.optional(ImageProperties),
+    cropHintsAnnotation: S.optional(CropHintsAnnotation),
+    productSearchResults: S.optional(ProductSearchResults),
+    webDetection: S.optional(WebDetection),
   }),
 ).annotate({
   identifier: "AnnotateImageResponse",
@@ -1460,21 +1460,21 @@ export const AnnotateImageResponseList = /*@__PURE__*/ S.Array(
 
 /** Response to a single file annotation request. A file may contain one or more images, which individually have their own responses. */
 export interface AnnotateFileResponse {
+  /** If set, represents the error message for the failed request. The `responses` field will not be set in this case. */
+  error?: Status;
+  /** Individual responses to images found within the file. This field will be empty if the `error` field is set. */
+  responses?: AnnotateImageResponseList;
   /** Information about the file for which this response is generated. */
   inputConfig?: InputConfig;
   /** This field gives the total number of pages in the file. */
   totalPages?: number;
-  /** Individual responses to images found within the file. This field will be empty if the `error` field is set. */
-  responses?: AnnotateImageResponseList;
-  /** If set, represents the error message for the failed request. The `responses` field will not be set in this case. */
-  error?: Status;
 }
 export const AnnotateFileResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    error: S.optional(Status),
+    responses: S.optional(AnnotateImageResponseList),
     inputConfig: S.optional(InputConfig),
     totalPages: S.optional(S.Number),
-    responses: S.optional(AnnotateImageResponseList),
-    error: S.optional(Status),
   }),
 ).annotate({
   identifier: "AnnotateFileResponse",
@@ -1514,31 +1514,31 @@ export const ImageSource = /*@__PURE__*/ S.suspend(() =>
 
 /** Client image to perform Google Cloud Vision API tasks over. */
 export interface Image {
-  /** Google Cloud Storage image location, or publicly-accessible image URL. If both `content` and `source` are provided for an image, `content` takes precedence and is used to perform the image annotation request. */
-  source?: ImageSource;
   /** Image content, represented as a stream of bytes. Note: As with all `bytes` fields, protobuffers use a pure binary representation, whereas JSON representations use base64. Currently, this field only works for BatchAnnotateImages requests. It does not work for AsyncBatchAnnotateImages requests. */
   content?: string;
+  /** Google Cloud Storage image location, or publicly-accessible image URL. If both `content` and `source` are provided for an image, `content` takes precedence and is used to perform the image annotation request. */
+  source?: ImageSource;
 }
 export const Image = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    source: S.optional(ImageSource),
     content: S.optional(S.String),
+    source: S.optional(ImageSource),
   }),
 ).annotate({ identifier: "Image" }) as any as S.Schema<Image>;
 
 /** Request for performing Google Cloud Vision API tasks over a user-provided image, with user-requested features, and with context information. */
 export interface AnnotateImageRequest {
-  /** The image to be processed. */
-  image?: Image;
   /** Requested features. */
   features?: FeatureList;
+  /** The image to be processed. */
+  image?: Image;
   /** Additional context that may accompany the image. */
   imageContext?: ImageContext;
 }
 export const AnnotateImageRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    image: S.optional(Image),
     features: S.optional(FeatureList),
+    image: S.optional(Image),
     imageContext: S.optional(ImageContext),
   }),
 ).annotate({
@@ -1552,17 +1552,17 @@ export const AnnotateImageRequestList = /*@__PURE__*/ S.Array(
 
 /** Multiple image annotation requests are batched into a single service call. */
 export interface BatchAnnotateImagesRequest {
-  /** Optional. Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`. */
-  parent?: string;
   /** Required. Individual image annotation requests for this batch. */
   requests?: AnnotateImageRequestList;
+  /** Optional. Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`. */
+  parent?: string;
   /** Optional. The labels with user-defined metadata for the request. Label keys and values can be no longer than 63 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter. */
   labels?: StringMap;
 }
 export const BatchAnnotateImagesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    parent: S.optional(S.String),
     requests: S.optional(AnnotateImageRequestList),
+    parent: S.optional(S.String),
     labels: S.optional(StringMap),
   }),
 ).annotate({
@@ -1699,35 +1699,35 @@ export const GcsDestination = /*@__PURE__*/ S.suspend(() =>
 
 /** The desired output location and metadata. */
 export interface OutputConfig {
-  /** The Google Cloud Storage location to write the output(s) to. */
-  gcsDestination?: GcsDestination;
   /** The max number of response protos to put into each output JSON file on Google Cloud Storage. The valid range is [1, 100]. If not specified, the default value is 20. For example, for one pdf file with 100 pages, 100 response protos will be generated. If `batch_size` = 20, then 5 json files each containing 20 response protos will be written under the prefix `gcs_destination`.`uri`. Currently, batch_size only applies to GcsDestination, with potential future support for other output configurations. */
   batchSize?: number;
+  /** The Google Cloud Storage location to write the output(s) to. */
+  gcsDestination?: GcsDestination;
 }
 export const OutputConfig = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    gcsDestination: S.optional(GcsDestination),
     batchSize: S.optional(S.Number),
+    gcsDestination: S.optional(GcsDestination),
   }),
 ).annotate({ identifier: "OutputConfig" }) as any as S.Schema<OutputConfig>;
 
 /** An offline file annotation request. */
 export interface AsyncAnnotateFileRequest {
+  /** Required. Requested features. */
+  features?: FeatureList;
+  /** Required. The desired output location and metadata (e.g. format). */
+  outputConfig?: OutputConfig;
   /** Required. Information about the input file. */
   inputConfig?: InputConfig;
   /** Additional context that may accompany the image(s) in the file. */
   imageContext?: ImageContext;
-  /** Required. The desired output location and metadata (e.g. format). */
-  outputConfig?: OutputConfig;
-  /** Required. Requested features. */
-  features?: FeatureList;
 }
 export const AsyncAnnotateFileRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    features: S.optional(FeatureList),
+    outputConfig: S.optional(OutputConfig),
     inputConfig: S.optional(InputConfig),
     imageContext: S.optional(ImageContext),
-    outputConfig: S.optional(OutputConfig),
-    features: S.optional(FeatureList),
   }),
 ).annotate({
   identifier: "AsyncAnnotateFileRequest",
@@ -1742,16 +1742,16 @@ export const AsyncAnnotateFileRequestList = /*@__PURE__*/ S.Array(
 export interface AsyncBatchAnnotateFilesRequest {
   /** Optional. Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`. */
   parent?: string;
-  /** Required. Individual async file annotation requests for this batch. */
-  requests?: AsyncAnnotateFileRequestList;
   /** Optional. The labels with user-defined metadata for the request. Label keys and values can be no longer than 63 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter. */
   labels?: StringMap;
+  /** Required. Individual async file annotation requests for this batch. */
+  requests?: AsyncAnnotateFileRequestList;
 }
 export const AsyncBatchAnnotateFilesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     parent: S.optional(S.String),
-    requests: S.optional(AsyncAnnotateFileRequestList),
     labels: S.optional(StringMap),
+    requests: S.optional(AsyncAnnotateFileRequestList),
   }),
 ).annotate({
   identifier: "AsyncBatchAnnotateFilesRequest",
@@ -1781,40 +1781,40 @@ export interface Operation {
   metadata?: DocumentMap;
   /** The error result of the operation in case of failure or cancellation. */
   error?: Status;
-  /** The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`. */
-  name?: string;
   /** The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`. */
   response?: DocumentMap;
   /** If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available. */
   done?: boolean;
+  /** The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`. */
+  name?: string;
 }
 export const Operation = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     metadata: S.optional(DocumentMap),
     error: S.optional(Status),
-    name: S.optional(S.String),
     response: S.optional(DocumentMap),
     done: S.optional(S.Boolean),
+    name: S.optional(S.String),
   }),
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** Request for async image annotation for a list of images. */
 export interface AsyncBatchAnnotateImagesRequest {
-  /** Optional. Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`. */
-  parent?: string;
-  /** Required. Individual image annotation requests for this batch. */
-  requests?: AnnotateImageRequestList;
   /** Required. The desired output location and metadata (e.g. format). */
   outputConfig?: OutputConfig;
   /** Optional. The labels with user-defined metadata for the request. Label keys and values can be no longer than 63 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter. */
   labels?: StringMap;
+  /** Optional. Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`. */
+  parent?: string;
+  /** Required. Individual image annotation requests for this batch. */
+  requests?: AnnotateImageRequestList;
 }
 export const AsyncBatchAnnotateImagesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    parent: S.optional(S.String),
-    requests: S.optional(AnnotateImageRequestList),
     outputConfig: S.optional(OutputConfig),
     labels: S.optional(StringMap),
+    parent: S.optional(S.String),
+    requests: S.optional(AnnotateImageRequestList),
   }),
 ).annotate({
   identifier: "AsyncBatchAnnotateImagesRequest",
@@ -1984,19 +1984,19 @@ export const CreateProjectsLocationsProductsRequest = /*@__PURE__*/ S.suspend(
 export interface ProductSet {
   /** The resource name of the ProductSet. Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`. This field is ignored when creating a ProductSet. */
   name?: string;
+  /** Output only. If there was an error with indexing the product set, the field is populated. This field is ignored when creating a ProductSet. */
+  indexError?: Status;
   /** Output only. The time at which this ProductSet was last indexed. Query results will reflect all updates before this time. If this ProductSet has never been indexed, this timestamp is the default value "1970-01-01T00:00:00Z". This field is ignored when creating a ProductSet. */
   indexTime?: string;
   /** The user-provided name for this ProductSet. Must not be empty. Must be at most 4096 characters long. */
   displayName?: string;
-  /** Output only. If there was an error with indexing the product set, the field is populated. This field is ignored when creating a ProductSet. */
-  indexError?: Status;
 }
 export const ProductSet = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     name: S.optional(S.String),
+    indexError: S.optional(Status),
     indexTime: S.optional(S.String),
     displayName: S.optional(S.String),
-    indexError: S.optional(Status),
   }),
 ).annotate({ identifier: "ProductSet" }) as any as S.Schema<ProductSet>;
 
@@ -2338,24 +2338,24 @@ export const ImportProjectsLocationsProductSetsRequest =
   }) as any as S.Schema<ImportProjectsLocationsProductSetsRequest>;
 
 export interface ListOperationsRequest {
-  /** The standard list page size. */
-  pageSize?: number;
-  /** When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation. */
-  returnPartialSuccess?: boolean;
-  /** The name of the operation's parent resource. */
-  name: string;
-  /** The standard list page token. */
-  pageToken?: string;
   /** The standard list filter. */
   filter?: string;
+  /** When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation. */
+  returnPartialSuccess?: boolean;
+  /** The standard list page token. */
+  pageToken?: string;
+  /** The name of the operation's parent resource. */
+  name: string;
+  /** The standard list page size. */
+  pageSize?: number;
 }
 export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    pageSize: S.optional(S.Number.pipe(T.Query())),
-    returnPartialSuccess: S.optional(S.Boolean.pipe(T.Query())),
-    name: S.String.pipe(T.Label()),
-    pageToken: S.optional(S.String.pipe(T.Query())),
     filter: S.optional(S.String.pipe(T.Query())),
+    returnPartialSuccess: S.optional(S.Boolean.pipe(T.Query())),
+    pageToken: S.optional(S.String.pipe(T.Query())),
+    name: S.String.pipe(T.Label()),
+    pageSize: S.optional(S.Number.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -2392,19 +2392,19 @@ export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListOperationsResponse>;
 
 export interface ListProjectsLocationsProductsRequest {
-  /** Required. The project OR ProductSet from which Products should be listed. Format: `projects/PROJECT_ID/locations/LOC_ID` */
-  parent: string;
-  /** The maximum number of items to return. Default 10, maximum 100. */
-  pageSize?: number;
   /** The next_page_token returned from a previous List request, if any. */
   pageToken?: string;
+  /** The maximum number of items to return. Default 10, maximum 100. */
+  pageSize?: number;
+  /** Required. The project OR ProductSet from which Products should be listed. Format: `projects/PROJECT_ID/locations/LOC_ID` */
+  parent: string;
 }
 export const ListProjectsLocationsProductsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      parent: S.String.pipe(T.Label()),
-      pageSize: S.optional(S.Number.pipe(T.Query())),
       pageToken: S.optional(S.String.pipe(T.Query())),
+      pageSize: S.optional(S.Number.pipe(T.Query())),
+      parent: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "GET",
@@ -2423,15 +2423,15 @@ export const ProductList = /*@__PURE__*/ S.Array(
 
 /** Response message for the `ListProducts` method. */
 export interface ListProductsResponse {
-  /** Token to retrieve the next page of results, or empty if there are no more results in the list. */
-  nextPageToken?: string;
   /** List of products. */
   products?: ProductList;
+  /** Token to retrieve the next page of results, or empty if there are no more results in the list. */
+  nextPageToken?: string;
 }
 export const ListProductsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    nextPageToken: S.optional(S.String),
     products: S.optional(ProductList),
+    nextPageToken: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ListProductsResponse",
@@ -2469,15 +2469,15 @@ export const ProductSetList = /*@__PURE__*/ S.Array(
 
 /** Response message for the `ListProductSets` method. */
 export interface ListProductSetsResponse {
-  /** Token to retrieve the next page of results, or empty if there are no more results in the list. */
-  nextPageToken?: string;
   /** List of ProductSets. */
   productSets?: ProductSetList;
+  /** Token to retrieve the next page of results, or empty if there are no more results in the list. */
+  nextPageToken?: string;
 }
 export const ListProductSetsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    nextPageToken: S.optional(S.String),
     productSets: S.optional(ProductSetList),
+    nextPageToken: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ListProductSetsResponse",
@@ -2510,15 +2510,15 @@ export const ListProjectsLocationsProductSetsProductsRequest =
 
 /** Response message for the `ListProductsInProductSet` method. */
 export interface ListProductsInProductSetResponse {
-  /** Token to retrieve the next page of results, or empty if there are no more results in the list. */
-  nextPageToken?: string;
   /** The list of Products. */
   products?: ProductList;
+  /** Token to retrieve the next page of results, or empty if there are no more results in the list. */
+  nextPageToken?: string;
 }
 export const ListProductsInProductSetResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    nextPageToken: S.optional(S.String),
     products: S.optional(ProductList),
+    nextPageToken: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ListProductsInProductSetResponse",
@@ -2556,17 +2556,17 @@ export const ReferenceImageList = /*@__PURE__*/ S.Array(
 
 /** Response message for the `ListReferenceImages` method. */
 export interface ListReferenceImagesResponse {
-  /** The maximum number of items to return. Default 10, maximum 100. */
-  pageSize?: number;
   /** The list of reference images. */
   referenceImages?: ReferenceImageList;
+  /** The maximum number of items to return. Default 10, maximum 100. */
+  pageSize?: number;
   /** The next_page_token returned from a previous List request, if any. */
   nextPageToken?: string;
 }
 export const ListReferenceImagesResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    pageSize: S.optional(S.Number),
     referenceImages: S.optional(ReferenceImageList),
+    pageSize: S.optional(S.Number),
     nextPageToken: S.optional(S.String),
   }),
 ).annotate({

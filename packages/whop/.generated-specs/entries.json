@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.entries#Direction": {
@@ -439,7 +440,7 @@
         }
       }
     },
-    "com.whop.entries#RetrieveEntryRequest": {
+    "com.whop.entries#GetEntryRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -629,10 +630,10 @@
         "smithy.api#documentation": "The user who submitted this waitlist entry."
       }
     },
-    "com.whop.entries#RetrieveEntry": {
+    "com.whop.entries#GetEntry": {
       "type": "operation",
       "input": {
-        "target": "com.whop.entries#RetrieveEntryRequest"
+        "target": "com.whop.entries#GetEntryRequest"
       },
       "output": {
         "target": "com.whop.entries#Entry"
@@ -829,7 +830,7 @@
           "target": "com.whop.entries#ListEntry"
         },
         {
-          "target": "com.whop.entries#RetrieveEntry"
+          "target": "com.whop.entries#GetEntry"
         },
         {
           "target": "com.whop.entries#ApproveEntry"

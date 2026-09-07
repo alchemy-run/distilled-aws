@@ -12,31 +12,136 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export interface ContainsRelationshipsListByResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Filters the results by target resource type. Example: properties.metadata.targetType eq 'Microsoft.Compute/virtualMachines' */
-  _filter?: string;
+export interface DeleteDependencyOfRelationshipRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  resourceUri: string;
+  /** Name of dependencyOf relationship. */
+  name: string;
 }
-export const ContainsRelationshipsListByResourceGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const DeleteDependencyOfRelationshipRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+      resourceUri: S.String.pipe(T.Label()),
+      name: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relationships/contains",
+        method: "DELETE",
+        uri: "/{resourceUri}/providers/Microsoft.Relationships/dependencyOf/{name}",
+        code: 200,
+        apiVersion: "2026-08-01",
+      }),
+    ),
+).annotate({
+  identifier: "DeleteDependencyOfRelationshipRequest",
+}) as any as S.Schema<DeleteDependencyOfRelationshipRequest>;
+
+export interface DeleteDependencyOfRelationshipResponse {}
+export const DeleteDependencyOfRelationshipResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteDependencyOfRelationshipResponse",
+}) as any as S.Schema<DeleteDependencyOfRelationshipResponse>;
+
+export interface DeleteDependencyOfRelationshipsByServiceGroupRequest {
+  /** The name of the service group. */
+  serviceGroupName: string;
+  /** Name of dependencyOf relationship. */
+  name: string;
+}
+export const DeleteDependencyOfRelationshipsByServiceGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceGroupName: S.String.pipe(T.Label()),
+      name: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/providers/Microsoft.Management/serviceGroups/{serviceGroupName}/providers/Microsoft.Relationships/dependencyOf/{name}",
         code: 200,
         apiVersion: "2026-08-01",
       }),
     ),
   ).annotate({
-    identifier: "ContainsRelationshipsListByResourceGroupRequest",
-  }) as any as S.Schema<ContainsRelationshipsListByResourceGroupRequest>;
+    identifier: "DeleteDependencyOfRelationshipsByServiceGroupRequest",
+  }) as any as S.Schema<DeleteDependencyOfRelationshipsByServiceGroupRequest>;
+
+export interface DeleteDependencyOfRelationshipsByServiceGroupResponse {}
+export const DeleteDependencyOfRelationshipsByServiceGroupResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "DeleteDependencyOfRelationshipsByServiceGroupResponse",
+  }) as any as S.Schema<DeleteDependencyOfRelationshipsByServiceGroupResponse>;
+
+export interface DeleteServiceGroupMemberRelationshipRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  resourceUri: string;
+  /** Name of ServiceGroupMember relationship. */
+  name: string;
+}
+export const DeleteServiceGroupMemberRelationshipRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      resourceUri: S.String.pipe(T.Label()),
+      name: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/{resourceUri}/providers/Microsoft.Relationships/serviceGroupMember/{name}",
+        code: 200,
+        apiVersion: "2026-08-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "DeleteServiceGroupMemberRelationshipRequest",
+  }) as any as S.Schema<DeleteServiceGroupMemberRelationshipRequest>;
+
+export interface DeleteServiceGroupMemberRelationshipResponse {}
+export const DeleteServiceGroupMemberRelationshipResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "DeleteServiceGroupMemberRelationshipResponse",
+  }) as any as S.Schema<DeleteServiceGroupMemberRelationshipResponse>;
+
+/** dependencyOf relationship properties. */
+export interface DependencyOfRelationshipPropertiesInput {
+  /** The relationship target resource id. */
+  targetId: string;
+  /** The relationship target tenant id. */
+  targetTenant?: string;
+}
+export const DependencyOfRelationshipPropertiesInput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      targetId: S.String,
+      targetTenant: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "DependencyOfRelationshipPropertiesInput",
+}) as any as S.Schema<DependencyOfRelationshipPropertiesInput>;
+
+export interface DependencyOfRelationshipsByServiceGroupCreateOrUpdateRequest {
+  /** The name of the service group. */
+  serviceGroupName: string;
+  /** Name of dependencyOf relationship. */
+  name: string;
+  /** The resource-specific properties for this resource. */
+  properties?: DependencyOfRelationshipPropertiesInput;
+}
+export const DependencyOfRelationshipsByServiceGroupCreateOrUpdateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceGroupName: S.String.pipe(T.Label()),
+      name: S.String.pipe(T.Label()),
+      properties: S.optional(DependencyOfRelationshipPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/providers/Microsoft.Management/serviceGroups/{serviceGroupName}/providers/Microsoft.Relationships/dependencyOf/{name}",
+        code: 200,
+        apiVersion: "2026-08-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "DependencyOfRelationshipsByServiceGroupCreateOrUpdateRequest",
+  }) as any as S.Schema<DependencyOfRelationshipsByServiceGroupCreateOrUpdateRequest>;
 
 /** The type of identity that created the resource. */
 export type SystemDataCreatedByType =
@@ -131,6 +236,307 @@ export type ProvisioningState =
   | "Accepted";
 export const ProvisioningState = /*@__PURE__*/ S.String;
 
+/** dependencyOf relationship properties. */
+export interface DependencyOfRelationshipProperties {
+  /** The relationship source resource id. */
+  sourceId?: string;
+  /** The relationship target resource id. */
+  targetId: string;
+  /** The relationship target tenant id. */
+  targetTenant?: string;
+  /** Information about the origin of the relationship. */
+  originInformation?: RelationshipOriginInformation;
+  /** Metadata about the relationship. */
+  metadata?: RelationshipMetadata;
+  /** The provisioning state of the relationship. */
+  provisioningState?: ProvisioningState;
+}
+export const DependencyOfRelationshipProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    sourceId: S.optional(S.String),
+    targetId: S.String,
+    targetTenant: S.optional(S.String),
+    originInformation: S.optional(RelationshipOriginInformation),
+    metadata: S.optional(RelationshipMetadata),
+    provisioningState: S.optional(ProvisioningState),
+  }),
+).annotate({
+  identifier: "DependencyOfRelationshipProperties",
+}) as any as S.Schema<DependencyOfRelationshipProperties>;
+
+export interface DependencyOfRelationshipsByServiceGroupCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: DependencyOfRelationshipProperties;
+}
+export const DependencyOfRelationshipsByServiceGroupCreateOrUpdateResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(DependencyOfRelationshipProperties),
+    }),
+  ).annotate({
+    identifier: "DependencyOfRelationshipsByServiceGroupCreateOrUpdateResponse",
+  }) as any as S.Schema<DependencyOfRelationshipsByServiceGroupCreateOrUpdateResponse>;
+
+export interface DependencyOfRelationshipsCreateOrUpdateRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  resourceUri: string;
+  /** Name of dependencyOf relationship. */
+  name: string;
+  /** The resource-specific properties for this resource. */
+  properties?: DependencyOfRelationshipPropertiesInput;
+}
+export const DependencyOfRelationshipsCreateOrUpdateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      resourceUri: S.String.pipe(T.Label()),
+      name: S.String.pipe(T.Label()),
+      properties: S.optional(DependencyOfRelationshipPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/{resourceUri}/providers/Microsoft.Relationships/dependencyOf/{name}",
+        code: 200,
+        apiVersion: "2026-08-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "DependencyOfRelationshipsCreateOrUpdateRequest",
+  }) as any as S.Schema<DependencyOfRelationshipsCreateOrUpdateRequest>;
+
+export interface DependencyOfRelationshipsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: DependencyOfRelationshipProperties;
+}
+export const DependencyOfRelationshipsCreateOrUpdateResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(DependencyOfRelationshipProperties),
+    }),
+  ).annotate({
+    identifier: "DependencyOfRelationshipsCreateOrUpdateResponse",
+  }) as any as S.Schema<DependencyOfRelationshipsCreateOrUpdateResponse>;
+
+export interface GetDependencyOfRelationshipRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  resourceUri: string;
+  /** Name of dependencyOf relationship. */
+  name: string;
+}
+export const GetDependencyOfRelationshipRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceUri: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/{resourceUri}/providers/Microsoft.Relationships/dependencyOf/{name}",
+      code: 200,
+      apiVersion: "2026-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetDependencyOfRelationshipRequest",
+}) as any as S.Schema<GetDependencyOfRelationshipRequest>;
+
+export interface GetDependencyOfRelationshipResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: DependencyOfRelationshipProperties;
+}
+export const GetDependencyOfRelationshipResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(DependencyOfRelationshipProperties),
+  }),
+).annotate({
+  identifier: "GetDependencyOfRelationshipResponse",
+}) as any as S.Schema<GetDependencyOfRelationshipResponse>;
+
+export interface GetDependencyOfRelationshipsByServiceGroupRequest {
+  /** The name of the service group. */
+  serviceGroupName: string;
+  /** Name of dependencyOf relationship. */
+  name: string;
+}
+export const GetDependencyOfRelationshipsByServiceGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceGroupName: S.String.pipe(T.Label()),
+      name: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/providers/Microsoft.Management/serviceGroups/{serviceGroupName}/providers/Microsoft.Relationships/dependencyOf/{name}",
+        code: 200,
+        apiVersion: "2026-08-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetDependencyOfRelationshipsByServiceGroupRequest",
+  }) as any as S.Schema<GetDependencyOfRelationshipsByServiceGroupRequest>;
+
+export interface GetDependencyOfRelationshipsByServiceGroupResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: DependencyOfRelationshipProperties;
+}
+export const GetDependencyOfRelationshipsByServiceGroupResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(DependencyOfRelationshipProperties),
+    }),
+  ).annotate({
+    identifier: "GetDependencyOfRelationshipsByServiceGroupResponse",
+  }) as any as S.Schema<GetDependencyOfRelationshipsByServiceGroupResponse>;
+
+export interface GetServiceGroupMemberRelationshipRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  resourceUri: string;
+  /** Name of ServiceGroupMember relationship. */
+  name: string;
+}
+export const GetServiceGroupMemberRelationshipRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      resourceUri: S.String.pipe(T.Label()),
+      name: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/{resourceUri}/providers/Microsoft.Relationships/serviceGroupMember/{name}",
+        code: 200,
+        apiVersion: "2026-08-01",
+      }),
+    ),
+).annotate({
+  identifier: "GetServiceGroupMemberRelationshipRequest",
+}) as any as S.Schema<GetServiceGroupMemberRelationshipRequest>;
+
+/** ServiceGroupMember relationship properties. */
+export interface ServiceGroupMemberRelationshipPropertiesV2 {
+  /** The relationship source resource id. Must be a service group. */
+  sourceId: string;
+  /** The relationship target resource id. Server-derived from the scoped resource. */
+  targetId?: string;
+  /** The relationship source tenant id. */
+  sourceTenant?: string;
+  /** Information about the origin of the relationship. */
+  originInformation?: RelationshipOriginInformation;
+  /** Metadata about the relationship. */
+  metadata?: RelationshipMetadata;
+  /** The provisioning state of the relationship. */
+  provisioningState?: ProvisioningState;
+}
+export const ServiceGroupMemberRelationshipPropertiesV2 =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      sourceId: S.String,
+      targetId: S.optional(S.String),
+      sourceTenant: S.optional(S.String),
+      originInformation: S.optional(RelationshipOriginInformation),
+      metadata: S.optional(RelationshipMetadata),
+      provisioningState: S.optional(ProvisioningState),
+    }),
+  ).annotate({
+    identifier: "ServiceGroupMemberRelationshipPropertiesV2",
+  }) as any as S.Schema<ServiceGroupMemberRelationshipPropertiesV2>;
+
+export interface GetServiceGroupMemberRelationshipResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: ServiceGroupMemberRelationshipPropertiesV2;
+}
+export const GetServiceGroupMemberRelationshipResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(ServiceGroupMemberRelationshipPropertiesV2),
+    }),
+  ).annotate({
+    identifier: "GetServiceGroupMemberRelationshipResponse",
+  }) as any as S.Schema<GetServiceGroupMemberRelationshipResponse>;
+
+export interface ListContainsRelationshipByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Filters the results by target resource type. Example: properties.metadata.targetType eq 'Microsoft.Compute/virtualMachines' */
+  _filter?: string;
+}
+export const ListContainsRelationshipByResourceGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relationships/contains",
+        code: 200,
+        apiVersion: "2026-08-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListContainsRelationshipByResourceGroupRequest",
+  }) as any as S.Schema<ListContainsRelationshipByResourceGroupRequest>;
+
 /** contains relationship properties. */
 export interface ContainsRelationshipProperties {
   /** The relationship source resource id. Must be a subscription or resource group. */
@@ -207,13 +613,13 @@ export const ContainsRelationshipListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ContainsRelationshipListResult",
 }) as any as S.Schema<ContainsRelationshipListResult>;
 
-export interface ContainsRelationshipsListBySubscriptionRequest {
+export interface ListContainsRelationshipBySubscriptionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** Filters the results by target resource type. Example: properties.metadata.targetType eq 'Microsoft.Compute/virtualMachines' */
   _filter?: string;
 }
-export const ContainsRelationshipsListBySubscriptionRequest =
+export const ListContainsRelationshipBySubscriptionRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -227,187 +633,14 @@ export const ContainsRelationshipsListBySubscriptionRequest =
       }),
     ),
   ).annotate({
-    identifier: "ContainsRelationshipsListBySubscriptionRequest",
-  }) as any as S.Schema<ContainsRelationshipsListBySubscriptionRequest>;
+    identifier: "ListContainsRelationshipBySubscriptionRequest",
+  }) as any as S.Schema<ListContainsRelationshipBySubscriptionRequest>;
 
-/** dependencyOf relationship properties. */
-export interface DependencyOfRelationshipPropertiesInput {
-  /** The relationship target resource id. */
-  targetId: string;
-  /** The relationship target tenant id. */
-  targetTenant?: string;
-}
-export const DependencyOfRelationshipPropertiesInput = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      targetId: S.String,
-      targetTenant: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "DependencyOfRelationshipPropertiesInput",
-}) as any as S.Schema<DependencyOfRelationshipPropertiesInput>;
-
-export interface DependencyOfRelationshipsCreateOrUpdateRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  resourceUri: string;
-  /** Name of dependencyOf relationship. */
-  name: string;
-  /** The resource-specific properties for this resource. */
-  properties?: DependencyOfRelationshipPropertiesInput;
-}
-export const DependencyOfRelationshipsCreateOrUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      resourceUri: S.String.pipe(T.Label()),
-      name: S.String.pipe(T.Label()),
-      properties: S.optional(DependencyOfRelationshipPropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/{resourceUri}/providers/Microsoft.Relationships/dependencyOf/{name}",
-        code: 200,
-        apiVersion: "2026-08-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "DependencyOfRelationshipsCreateOrUpdateRequest",
-  }) as any as S.Schema<DependencyOfRelationshipsCreateOrUpdateRequest>;
-
-/** dependencyOf relationship properties. */
-export interface DependencyOfRelationshipProperties {
-  /** The relationship source resource id. */
-  sourceId?: string;
-  /** The relationship target resource id. */
-  targetId: string;
-  /** The relationship target tenant id. */
-  targetTenant?: string;
-  /** Information about the origin of the relationship. */
-  originInformation?: RelationshipOriginInformation;
-  /** Metadata about the relationship. */
-  metadata?: RelationshipMetadata;
-  /** The provisioning state of the relationship. */
-  provisioningState?: ProvisioningState;
-}
-export const DependencyOfRelationshipProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    sourceId: S.optional(S.String),
-    targetId: S.String,
-    targetTenant: S.optional(S.String),
-    originInformation: S.optional(RelationshipOriginInformation),
-    metadata: S.optional(RelationshipMetadata),
-    provisioningState: S.optional(ProvisioningState),
-  }),
-).annotate({
-  identifier: "DependencyOfRelationshipProperties",
-}) as any as S.Schema<DependencyOfRelationshipProperties>;
-
-export interface DependencyOfRelationshipsCreateOrUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: DependencyOfRelationshipProperties;
-}
-export const DependencyOfRelationshipsCreateOrUpdateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(DependencyOfRelationshipProperties),
-    }),
-  ).annotate({
-    identifier: "DependencyOfRelationshipsCreateOrUpdateResponse",
-  }) as any as S.Schema<DependencyOfRelationshipsCreateOrUpdateResponse>;
-
-export interface DependencyOfRelationshipsDeleteRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  resourceUri: string;
-  /** Name of dependencyOf relationship. */
-  name: string;
-}
-export const DependencyOfRelationshipsDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      resourceUri: S.String.pipe(T.Label()),
-      name: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/{resourceUri}/providers/Microsoft.Relationships/dependencyOf/{name}",
-        code: 200,
-        apiVersion: "2026-08-01",
-      }),
-    ),
-).annotate({
-  identifier: "DependencyOfRelationshipsDeleteRequest",
-}) as any as S.Schema<DependencyOfRelationshipsDeleteRequest>;
-
-export interface DependencyOfRelationshipsDeleteResponse {}
-export const DependencyOfRelationshipsDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "DependencyOfRelationshipsDeleteResponse",
-}) as any as S.Schema<DependencyOfRelationshipsDeleteResponse>;
-
-export interface DependencyOfRelationshipsGetRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  resourceUri: string;
-  /** Name of dependencyOf relationship. */
-  name: string;
-}
-export const DependencyOfRelationshipsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceUri: S.String.pipe(T.Label()),
-    name: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/{resourceUri}/providers/Microsoft.Relationships/dependencyOf/{name}",
-      code: 200,
-      apiVersion: "2026-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "DependencyOfRelationshipsGetRequest",
-}) as any as S.Schema<DependencyOfRelationshipsGetRequest>;
-
-export interface DependencyOfRelationshipsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: DependencyOfRelationshipProperties;
-}
-export const DependencyOfRelationshipsGetResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(DependencyOfRelationshipProperties),
-    }),
-).annotate({
-  identifier: "DependencyOfRelationshipsGetResponse",
-}) as any as S.Schema<DependencyOfRelationshipsGetResponse>;
-
-export interface DependencyOfRelationshipsListByParentRequest {
+export interface ListDependencyOfRelationshipByParentRequest {
   /** The fully qualified Azure Resource manager identifier of the resource. */
   resourceUri: string;
 }
-export const DependencyOfRelationshipsListByParentRequest =
+export const ListDependencyOfRelationshipByParentRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       resourceUri: S.String.pipe(T.Label()),
@@ -420,8 +653,8 @@ export const DependencyOfRelationshipsListByParentRequest =
       }),
     ),
   ).annotate({
-    identifier: "DependencyOfRelationshipsListByParentRequest",
-  }) as any as S.Schema<DependencyOfRelationshipsListByParentRequest>;
+    identifier: "ListDependencyOfRelationshipByParentRequest",
+  }) as any as S.Schema<ListDependencyOfRelationshipByParentRequest>;
 
 /** Defines a dependencyOf relationship resource. */
 export interface DependencyOfRelationship {
@@ -472,8 +705,28 @@ export const DependencyOfRelationshipListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "DependencyOfRelationshipListResult",
 }) as any as S.Schema<DependencyOfRelationshipListResult>;
 
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
+export interface ListDependencyOfRelationshipsByServiceGroupRequest {
+  /** The name of the service group. */
+  serviceGroupName: string;
+}
+export const ListDependencyOfRelationshipsByServiceGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceGroupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/providers/Microsoft.Management/serviceGroups/{serviceGroupName}/providers/Microsoft.Relationships/dependencyOf",
+        code: 200,
+        apiVersion: "2026-08-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListDependencyOfRelationshipsByServiceGroupRequest",
+  }) as any as S.Schema<ListDependencyOfRelationshipsByServiceGroupRequest>;
+
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({
       method: "GET",
@@ -483,8 +736,8 @@ export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
 
 /** Localized display information for this particular operation. */
 export interface OperationDisplay {
@@ -540,205 +793,31 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
-export interface OperationsListResponse {
+export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
-export const OperationsListResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "OperationsListResponse",
-}) as any as S.Schema<OperationsListResponse>;
+  identifier: "ListOperationsResponse",
+}) as any as S.Schema<ListOperationsResponse>;
 
-/** ServiceGroupMember relationship properties. */
-export interface ServiceGroupMemberRelationshipPropertiesV2Input {
-  /** The relationship source resource id. Must be a service group. */
-  sourceId: string;
-  /** The relationship source tenant id. */
-  sourceTenant?: string;
-}
-export const ServiceGroupMemberRelationshipPropertiesV2Input =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      sourceId: S.String,
-      sourceTenant: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "ServiceGroupMemberRelationshipPropertiesV2Input",
-  }) as any as S.Schema<ServiceGroupMemberRelationshipPropertiesV2Input>;
-
-export interface ServiceGroupMemberRelationshipsCreateOrUpdateRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  resourceUri: string;
-  /** Name of ServiceGroupMember relationship. */
-  name: string;
-  /** The resource-specific properties for this resource. */
-  properties?: ServiceGroupMemberRelationshipPropertiesV2Input;
-}
-export const ServiceGroupMemberRelationshipsCreateOrUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      resourceUri: S.String.pipe(T.Label()),
-      name: S.String.pipe(T.Label()),
-      properties: S.optional(ServiceGroupMemberRelationshipPropertiesV2Input),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/{resourceUri}/providers/Microsoft.Relationships/serviceGroupMember/{name}",
-        code: 200,
-        apiVersion: "2026-08-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ServiceGroupMemberRelationshipsCreateOrUpdateRequest",
-  }) as any as S.Schema<ServiceGroupMemberRelationshipsCreateOrUpdateRequest>;
-
-/** ServiceGroupMember relationship properties. */
-export interface ServiceGroupMemberRelationshipPropertiesV2 {
-  /** The relationship source resource id. Must be a service group. */
-  sourceId: string;
-  /** The relationship target resource id. Server-derived from the scoped resource. */
-  targetId?: string;
-  /** The relationship source tenant id. */
-  sourceTenant?: string;
-  /** Information about the origin of the relationship. */
-  originInformation?: RelationshipOriginInformation;
-  /** Metadata about the relationship. */
-  metadata?: RelationshipMetadata;
-  /** The provisioning state of the relationship. */
-  provisioningState?: ProvisioningState;
-}
-export const ServiceGroupMemberRelationshipPropertiesV2 =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      sourceId: S.String,
-      targetId: S.optional(S.String),
-      sourceTenant: S.optional(S.String),
-      originInformation: S.optional(RelationshipOriginInformation),
-      metadata: S.optional(RelationshipMetadata),
-      provisioningState: S.optional(ProvisioningState),
-    }),
-  ).annotate({
-    identifier: "ServiceGroupMemberRelationshipPropertiesV2",
-  }) as any as S.Schema<ServiceGroupMemberRelationshipPropertiesV2>;
-
-export interface ServiceGroupMemberRelationshipsCreateOrUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: ServiceGroupMemberRelationshipPropertiesV2;
-}
-export const ServiceGroupMemberRelationshipsCreateOrUpdateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(ServiceGroupMemberRelationshipPropertiesV2),
-    }),
-  ).annotate({
-    identifier: "ServiceGroupMemberRelationshipsCreateOrUpdateResponse",
-  }) as any as S.Schema<ServiceGroupMemberRelationshipsCreateOrUpdateResponse>;
-
-export interface ServiceGroupMemberRelationshipsDeleteRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  resourceUri: string;
-  /** Name of ServiceGroupMember relationship. */
-  name: string;
-}
-export const ServiceGroupMemberRelationshipsDeleteRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      resourceUri: S.String.pipe(T.Label()),
-      name: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/{resourceUri}/providers/Microsoft.Relationships/serviceGroupMember/{name}",
-        code: 200,
-        apiVersion: "2026-08-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ServiceGroupMemberRelationshipsDeleteRequest",
-  }) as any as S.Schema<ServiceGroupMemberRelationshipsDeleteRequest>;
-
-export interface ServiceGroupMemberRelationshipsDeleteResponse {}
-export const ServiceGroupMemberRelationshipsDeleteResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "ServiceGroupMemberRelationshipsDeleteResponse",
-  }) as any as S.Schema<ServiceGroupMemberRelationshipsDeleteResponse>;
-
-export interface ServiceGroupMemberRelationshipsGetRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  resourceUri: string;
-  /** Name of ServiceGroupMember relationship. */
-  name: string;
-}
-export const ServiceGroupMemberRelationshipsGetRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      resourceUri: S.String.pipe(T.Label()),
-      name: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/{resourceUri}/providers/Microsoft.Relationships/serviceGroupMember/{name}",
-        code: 200,
-        apiVersion: "2026-08-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ServiceGroupMemberRelationshipsGetRequest",
-  }) as any as S.Schema<ServiceGroupMemberRelationshipsGetRequest>;
-
-export interface ServiceGroupMemberRelationshipsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: ServiceGroupMemberRelationshipPropertiesV2;
-}
-export const ServiceGroupMemberRelationshipsGetResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(ServiceGroupMemberRelationshipPropertiesV2),
-    }),
-  ).annotate({
-    identifier: "ServiceGroupMemberRelationshipsGetResponse",
-  }) as any as S.Schema<ServiceGroupMemberRelationshipsGetResponse>;
-
-export interface ServiceGroupMemberRelationshipsListByParentRequest {
+export interface ListServiceGroupMemberRelationshipByParentRequest {
   /** The fully qualified Azure Resource manager identifier of the resource. */
   resourceUri: string;
 }
-export const ServiceGroupMemberRelationshipsListByParentRequest =
+export const ListServiceGroupMemberRelationshipByParentRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       resourceUri: S.String.pipe(T.Label()),
@@ -751,8 +830,8 @@ export const ServiceGroupMemberRelationshipsListByParentRequest =
       }),
     ),
   ).annotate({
-    identifier: "ServiceGroupMemberRelationshipsListByParentRequest",
-  }) as any as S.Schema<ServiceGroupMemberRelationshipsListByParentRequest>;
+    identifier: "ListServiceGroupMemberRelationshipByParentRequest",
+  }) as any as S.Schema<ListServiceGroupMemberRelationshipByParentRequest>;
 
 /** Defines a ServiceGroupMember relationship resource. */
 export interface ServiceGroupMemberRelationship {
@@ -804,31 +883,130 @@ export const ServiceGroupMemberRelationshipListResult = /*@__PURE__*/ S.suspend(
   identifier: "ServiceGroupMemberRelationshipListResult",
 }) as any as S.Schema<ServiceGroupMemberRelationshipListResult>;
 
-export type ContainsRelationshipsListByResourceGroupError = AzureOpError;
-/** List ContainsRelationship resources by resource group */
-export const ContainsRelationshipsListByResourceGroup: API.OperationMethod<
-  ContainsRelationshipsListByResourceGroupRequest,
-  ContainsRelationshipListResult,
-  ContainsRelationshipsListByResourceGroupError,
+/** ServiceGroupMember relationship properties. */
+export interface ServiceGroupMemberRelationshipPropertiesV2Input {
+  /** The relationship source resource id. Must be a service group. */
+  sourceId: string;
+  /** The relationship source tenant id. */
+  sourceTenant?: string;
+}
+export const ServiceGroupMemberRelationshipPropertiesV2Input =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      sourceId: S.String,
+      sourceTenant: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "ServiceGroupMemberRelationshipPropertiesV2Input",
+  }) as any as S.Schema<ServiceGroupMemberRelationshipPropertiesV2Input>;
+
+export interface ServiceGroupMemberRelationshipsCreateOrUpdateRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  resourceUri: string;
+  /** Name of ServiceGroupMember relationship. */
+  name: string;
+  /** The resource-specific properties for this resource. */
+  properties?: ServiceGroupMemberRelationshipPropertiesV2Input;
+}
+export const ServiceGroupMemberRelationshipsCreateOrUpdateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      resourceUri: S.String.pipe(T.Label()),
+      name: S.String.pipe(T.Label()),
+      properties: S.optional(ServiceGroupMemberRelationshipPropertiesV2Input),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/{resourceUri}/providers/Microsoft.Relationships/serviceGroupMember/{name}",
+        code: 200,
+        apiVersion: "2026-08-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ServiceGroupMemberRelationshipsCreateOrUpdateRequest",
+  }) as any as S.Schema<ServiceGroupMemberRelationshipsCreateOrUpdateRequest>;
+
+export interface ServiceGroupMemberRelationshipsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: ServiceGroupMemberRelationshipPropertiesV2;
+}
+export const ServiceGroupMemberRelationshipsCreateOrUpdateResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(ServiceGroupMemberRelationshipPropertiesV2),
+    }),
+  ).annotate({
+    identifier: "ServiceGroupMemberRelationshipsCreateOrUpdateResponse",
+  }) as any as S.Schema<ServiceGroupMemberRelationshipsCreateOrUpdateResponse>;
+
+export type DeleteDependencyOfRelationshipError = AzureOpError;
+/** Delete a DependencyOfRelationship */
+export const DeleteDependencyOfRelationship: API.OperationMethod<
+  DeleteDependencyOfRelationshipRequest,
+  DeleteDependencyOfRelationshipResponse,
+  DeleteDependencyOfRelationshipError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ContainsRelationshipsListByResourceGroupRequest,
-  output: ContainsRelationshipListResult,
+  input: DeleteDependencyOfRelationshipRequest,
+  output: DeleteDependencyOfRelationshipResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ContainsRelationshipsListBySubscriptionError = AzureOpError;
-/** List ContainsRelationship resources by subscription ID */
-export const ContainsRelationshipsListBySubscription: API.OperationMethod<
-  ContainsRelationshipsListBySubscriptionRequest,
-  ContainsRelationshipListResult,
-  ContainsRelationshipsListBySubscriptionError,
+export type DeleteDependencyOfRelationshipsByServiceGroupError = AzureOpError;
+/** Delete a DependencyOfRelationship */
+export const DeleteDependencyOfRelationshipsByServiceGroup: API.OperationMethod<
+  DeleteDependencyOfRelationshipsByServiceGroupRequest,
+  DeleteDependencyOfRelationshipsByServiceGroupResponse,
+  DeleteDependencyOfRelationshipsByServiceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ContainsRelationshipsListBySubscriptionRequest,
-  output: ContainsRelationshipListResult,
+  input: DeleteDependencyOfRelationshipsByServiceGroupRequest,
+  output: DeleteDependencyOfRelationshipsByServiceGroupResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteServiceGroupMemberRelationshipError = AzureOpError;
+/** Delete a ServiceGroupMemberRelationship */
+export const DeleteServiceGroupMemberRelationship: API.OperationMethod<
+  DeleteServiceGroupMemberRelationshipRequest,
+  DeleteServiceGroupMemberRelationshipResponse,
+  DeleteServiceGroupMemberRelationshipError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteServiceGroupMemberRelationshipRequest,
+  output: DeleteServiceGroupMemberRelationshipResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DependencyOfRelationshipsByServiceGroupCreateOrUpdateError =
+  AzureOpError;
+/** Create a DependencyOfRelationship */
+export const DependencyOfRelationshipsByServiceGroupCreateOrUpdate: API.OperationMethod<
+  DependencyOfRelationshipsByServiceGroupCreateOrUpdateRequest,
+  DependencyOfRelationshipsByServiceGroupCreateOrUpdateResponse,
+  DependencyOfRelationshipsByServiceGroupCreateOrUpdateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DependencyOfRelationshipsByServiceGroupCreateOrUpdateRequest,
+  output: DependencyOfRelationshipsByServiceGroupCreateOrUpdateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -849,61 +1027,136 @@ export const DependencyOfRelationshipsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DependencyOfRelationshipsDeleteError = AzureOpError;
-/** Delete a DependencyOfRelationship */
-export const DependencyOfRelationshipsDelete: API.OperationMethod<
-  DependencyOfRelationshipsDeleteRequest,
-  DependencyOfRelationshipsDeleteResponse,
-  DependencyOfRelationshipsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DependencyOfRelationshipsDeleteRequest,
-  output: DependencyOfRelationshipsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DependencyOfRelationshipsGetError = AzureOpError;
+export type GetDependencyOfRelationshipError = AzureOpError;
 /** Get a DependencyOfRelationship */
-export const DependencyOfRelationshipsGet: API.OperationMethod<
-  DependencyOfRelationshipsGetRequest,
-  DependencyOfRelationshipsGetResponse,
-  DependencyOfRelationshipsGetError,
+export const GetDependencyOfRelationship: API.OperationMethod<
+  GetDependencyOfRelationshipRequest,
+  GetDependencyOfRelationshipResponse,
+  GetDependencyOfRelationshipError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DependencyOfRelationshipsGetRequest,
-  output: DependencyOfRelationshipsGetResponse,
+  input: GetDependencyOfRelationshipRequest,
+  output: GetDependencyOfRelationshipResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DependencyOfRelationshipsListByParentError = AzureOpError;
-/** List DependencyOfRelationship resources by parent */
-export const DependencyOfRelationshipsListByParent: API.OperationMethod<
-  DependencyOfRelationshipsListByParentRequest,
-  DependencyOfRelationshipListResult,
-  DependencyOfRelationshipsListByParentError,
+export type GetDependencyOfRelationshipsByServiceGroupError = AzureOpError;
+/** Get a DependencyOfRelationship */
+export const GetDependencyOfRelationshipsByServiceGroup: API.OperationMethod<
+  GetDependencyOfRelationshipsByServiceGroupRequest,
+  GetDependencyOfRelationshipsByServiceGroupResponse,
+  GetDependencyOfRelationshipsByServiceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DependencyOfRelationshipsListByParentRequest,
+  input: GetDependencyOfRelationshipsByServiceGroupRequest,
+  output: GetDependencyOfRelationshipsByServiceGroupResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetServiceGroupMemberRelationshipError = AzureOpError;
+/** Get a ServiceGroupMemberRelationship */
+export const GetServiceGroupMemberRelationship: API.OperationMethod<
+  GetServiceGroupMemberRelationshipRequest,
+  GetServiceGroupMemberRelationshipResponse,
+  GetServiceGroupMemberRelationshipError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetServiceGroupMemberRelationshipRequest,
+  output: GetServiceGroupMemberRelationshipResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListContainsRelationshipByResourceGroupError = AzureOpError;
+/** List ContainsRelationship resources by resource group */
+export const ListContainsRelationshipByResourceGroup: API.OperationMethod<
+  ListContainsRelationshipByResourceGroupRequest,
+  ContainsRelationshipListResult,
+  ListContainsRelationshipByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListContainsRelationshipByResourceGroupRequest,
+  output: ContainsRelationshipListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListContainsRelationshipBySubscriptionError = AzureOpError;
+/** List ContainsRelationship resources by subscription ID */
+export const ListContainsRelationshipBySubscription: API.OperationMethod<
+  ListContainsRelationshipBySubscriptionRequest,
+  ContainsRelationshipListResult,
+  ListContainsRelationshipBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListContainsRelationshipBySubscriptionRequest,
+  output: ContainsRelationshipListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDependencyOfRelationshipByParentError = AzureOpError;
+/** List DependencyOfRelationship resources by parent */
+export const ListDependencyOfRelationshipByParent: API.OperationMethod<
+  ListDependencyOfRelationshipByParentRequest,
+  DependencyOfRelationshipListResult,
+  ListDependencyOfRelationshipByParentError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDependencyOfRelationshipByParentRequest,
   output: DependencyOfRelationshipListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OperationsListError = AzureOpError;
-/** List the operations for the provider */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationsListResponse,
-  OperationsListError,
+export type ListDependencyOfRelationshipsByServiceGroupError = AzureOpError;
+/** List DependencyOfRelationship resources by scope */
+export const ListDependencyOfRelationshipsByServiceGroup: API.OperationMethod<
+  ListDependencyOfRelationshipsByServiceGroupRequest,
+  DependencyOfRelationshipListResult,
+  ListDependencyOfRelationshipsByServiceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
-  output: OperationsListResponse,
+  input: ListDependencyOfRelationshipsByServiceGroupRequest,
+  output: DependencyOfRelationshipListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOperationsError = AzureOpError;
+/** List the operations for the provider */
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  ListOperationsResponse,
+  ListOperationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOperationsRequest,
+  output: ListOperationsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListServiceGroupMemberRelationshipByParentError = AzureOpError;
+/** List ServiceGroupMemberRelationship resources by parent */
+export const ListServiceGroupMemberRelationshipByParent: API.OperationMethod<
+  ListServiceGroupMemberRelationshipByParentRequest,
+  ServiceGroupMemberRelationshipListResult,
+  ListServiceGroupMemberRelationshipByParentError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListServiceGroupMemberRelationshipByParentRequest,
+  output: ServiceGroupMemberRelationshipListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -919,51 +1172,6 @@ export const ServiceGroupMemberRelationshipsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ServiceGroupMemberRelationshipsCreateOrUpdateRequest,
   output: ServiceGroupMemberRelationshipsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ServiceGroupMemberRelationshipsDeleteError = AzureOpError;
-/** Delete a ServiceGroupMemberRelationship */
-export const ServiceGroupMemberRelationshipsDelete: API.OperationMethod<
-  ServiceGroupMemberRelationshipsDeleteRequest,
-  ServiceGroupMemberRelationshipsDeleteResponse,
-  ServiceGroupMemberRelationshipsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ServiceGroupMemberRelationshipsDeleteRequest,
-  output: ServiceGroupMemberRelationshipsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ServiceGroupMemberRelationshipsGetError = AzureOpError;
-/** Get a ServiceGroupMemberRelationship */
-export const ServiceGroupMemberRelationshipsGet: API.OperationMethod<
-  ServiceGroupMemberRelationshipsGetRequest,
-  ServiceGroupMemberRelationshipsGetResponse,
-  ServiceGroupMemberRelationshipsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ServiceGroupMemberRelationshipsGetRequest,
-  output: ServiceGroupMemberRelationshipsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ServiceGroupMemberRelationshipsListByParentError = AzureOpError;
-/** List ServiceGroupMemberRelationship resources by parent */
-export const ServiceGroupMemberRelationshipsListByParent: API.OperationMethod<
-  ServiceGroupMemberRelationshipsListByParentRequest,
-  ServiceGroupMemberRelationshipListResult,
-  ServiceGroupMemberRelationshipsListByParentError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ServiceGroupMemberRelationshipsListByParentRequest,
-  output: ServiceGroupMemberRelationshipListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

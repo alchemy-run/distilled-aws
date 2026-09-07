@@ -288,6 +288,40 @@ export const GetContentScanningResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetContentScanningResponse",
 }) as any as S.Schema<GetContentScanningResponse>;
 
+export interface GetSettingsRequest {
+  /** Defines an identifier. */
+  zoneId: string;
+}
+export const GetSettingsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    zoneId: S.String.pipe(T.Label("zone_id")),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/zones/{zone_id}/content-upload-scan/settings",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetSettingsRequest",
+}) as any as S.Schema<GetSettingsRequest>;
+
+/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
+export interface GetSettingsResponse {
+  /** Defines the last modification date (ISO 8601) of the Content Scanning status. */
+  modified?: string | null;
+  /** Defines the status of Content Scanning. */
+  value?: string | null;
+}
+export const GetSettingsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    modified: S.optional(S.NullOr(S.String)),
+    value: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({
+  identifier: "GetSettingsResponse",
+}) as any as S.Schema<GetSettingsResponse>;
+
 export interface ListPayloadsRequest {
   /** Defines an identifier. */
   zoneId: string;
@@ -328,40 +362,6 @@ export const ListPayloadsResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListPayloadsResponse",
 }) as any as S.Schema<ListPayloadsResponse>;
-
-export interface SettingsGetRequest {
-  /** Defines an identifier. */
-  zoneId: string;
-}
-export const SettingsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    zoneId: S.String.pipe(T.Label("zone_id")),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/zones/{zone_id}/content-upload-scan/settings",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "SettingsGetRequest",
-}) as any as S.Schema<SettingsGetRequest>;
-
-/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
-export interface SettingsGetResponse {
-  /** Defines the last modification date (ISO 8601) of the Content Scanning status. */
-  modified?: string | null;
-  /** Defines the status of Content Scanning. */
-  value?: string | null;
-}
-export const SettingsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    modified: S.optional(S.NullOr(S.String)),
-    value: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({
-  identifier: "SettingsGetResponse",
-}) as any as S.Schema<SettingsGetResponse>;
 
 export type UpdateRequestValue = "enabled" | "disabled";
 export const UpdateRequestValue = /*@__PURE__*/ S.String;
@@ -525,6 +525,21 @@ export const getContentScanning: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetSettingsError = Forbidden | CloudflareOpError;
+/** Retrieve the current status of Content Scanning. */
+export const getSettings: API.OperationMethod<
+  GetSettingsRequest,
+  GetSettingsResponse,
+  GetSettingsError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSettingsRequest,
+  output: GetSettingsResponse,
+  errors: [Forbidden, CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListPayloadsError =
   | ContentScanningNotEnabled
   | Forbidden
@@ -552,21 +567,6 @@ export const listPayloads: API.PaginatedOperationMethod<
   }),
   cloudflarePaginate,
 ) as any;
-
-export type SettingsGetError = Forbidden | CloudflareOpError;
-/** Retrieve the current status of Content Scanning. */
-export const settingsGet: API.OperationMethod<
-  SettingsGetRequest,
-  SettingsGetResponse,
-  SettingsGetError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SettingsGetRequest,
-  output: SettingsGetResponse,
-  errors: [Forbidden, CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
 
 export type UpdateError =
   | ContentScanningNotEntitled

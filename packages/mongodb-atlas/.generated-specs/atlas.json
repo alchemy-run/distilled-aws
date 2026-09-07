@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.mongodbatlas.api#GetSystemStatusRequest": {
@@ -127494,6 +127495,24 @@
           "traits": {
             "smithy.api#enumValue": "australiaeast"
           }
+        },
+        "NORTHEUROPE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "northeurope"
+          }
+        },
+        "EASTASIA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eastasia"
+          }
+        },
+        "SOUTHEASTASIA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "southeastasia"
+          }
         }
       },
       "traits": {
@@ -127519,6 +127538,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "US_EAST4"
+          }
+        },
+        "US_WEST1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "US_WEST1"
           }
         }
       },

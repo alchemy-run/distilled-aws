@@ -49,6 +49,148 @@ export class UnprocessableEntity
     [{ status: 422 }],
   ) {}
 
+export interface GetReviewRequest {
+  /** The unique identifier of the review to retrieve. */
+  id: string;
+}
+export const GetReviewRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/reviews/{id}", code: 200 })),
+).annotate({
+  identifier: "GetReviewRequest",
+}) as any as S.Schema<GetReviewRequest>;
+
+/** Represents an image attachment */
+export interface ReviewAttachmentsItem {
+  /** Uploaded file MIME type, such as image/jpeg, video/mp4, or audio/mpeg. */
+  content_type: string | null;
+  /** The original filename of the uploaded attachment, including its file extension. */
+  filename: string | null;
+  /** Represents a unique identifier that is Base64 obfuscated. It is often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`) input value will be accepted as an ID. */
+  id: string;
+  /** A pre-optimized URL for rendering this attachment on the client. This should be used for displaying attachments in apps. */
+  url: string | null;
+}
+export const ReviewAttachmentsItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    content_type: S.NullOr(S.String),
+    filename: S.NullOr(S.String),
+    id: S.String,
+    url: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "ReviewAttachmentsItem",
+}) as any as S.Schema<ReviewAttachmentsItem>;
+
+/** A list of files and media attached to the review. */
+export type ReviewAttachmentsList = Array<ReviewAttachmentsItem>;
+export const ReviewAttachmentsList = /*@__PURE__*/ S.Array(
+  ReviewAttachmentsItem,
+) as any as S.Schema<ReviewAttachmentsList>;
+
+/** The company that this review was written for. */
+export interface ReviewCompany {
+  /** The unique identifier for the company. */
+  id: string;
+  /** URL slug for the account's store page, e.g. `pickaxe` in whop.com/pickaxe. */
+  route: string;
+  /** The display name of the company shown to customers. */
+  title: string;
+}
+export const ReviewCompany = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    route: S.String,
+    title: S.String,
+  }),
+).annotate({ identifier: "ReviewCompany" }) as any as S.Schema<ReviewCompany>;
+
+/** The product that this review was written for. */
+export interface ReviewProduct {
+  /** The unique identifier for the product. */
+  id: string;
+  /** The display name of the product shown to customers on the product page and in search results. */
+  title: string;
+}
+export const ReviewProduct = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    title: S.String,
+  }),
+).annotate({ identifier: "ReviewProduct" }) as any as S.Schema<ReviewProduct>;
+
+/** The statuses a review can have */
+export type ReviewStatus = "pending" | "published" | "removed";
+export const ReviewStatus = /*@__PURE__*/ S.String;
+
+/** The user account of the person who wrote this review. */
+export interface ReviewUser {
+  /** The unique identifier for the user. */
+  id: string;
+  /** The user's display name shown on their public profile. */
+  name: string | null;
+  /** The user's unique username shown on their public profile. */
+  username: string;
+}
+export const ReviewUser = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    name: S.NullOr(S.String),
+    username: S.String,
+  }),
+).annotate({ identifier: "ReviewUser" }) as any as S.Schema<ReviewUser>;
+
+/** A user-submitted review of a company, including a star rating and optional text feedback. */
+export interface Review {
+  /** A list of files and media attached to the review. */
+  attachments: ReviewAttachmentsList;
+  /** The company that this review was written for. */
+  company: ReviewCompany;
+  /** The datetime the review was created. */
+  created_at: string;
+  /** The body text of the review containing the user's detailed feedback. Returns an empty string if no description was provided. */
+  description: string | null;
+  /** The unique identifier for the review. */
+  id: string;
+  /** The timestamp of when the reviewer first joined the product. Null if unknown. */
+  joined_at: string | null;
+  /** Whether the reviewer paid for the product. Null if the payment status is unknown. */
+  paid_for_product: boolean | null;
+  /** The product that this review was written for. */
+  product: ReviewProduct;
+  /** The timestamp of when the review was published. Null if the review has not been published yet. */
+  published_at: string | null;
+  /** The star rating given by the reviewer, from 1 to 5. */
+  stars: number;
+  /** The current moderation status of the review. */
+  status: ReviewStatus;
+  /** A short summary title for the review. Null if the reviewer did not provide one. */
+  title: string | null;
+  /** The datetime the review was last updated. */
+  updated_at: string;
+  /** The user account of the person who wrote this review. */
+  user: ReviewUser;
+}
+export const Review = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    attachments: ReviewAttachmentsList,
+    company: ReviewCompany,
+    created_at: S.String,
+    description: S.NullOr(S.String),
+    id: S.String,
+    joined_at: S.NullOr(S.String),
+    paid_for_product: S.NullOr(S.Boolean),
+    product: ReviewProduct,
+    published_at: S.NullOr(S.String),
+    stars: S.Number,
+    status: ReviewStatus,
+    title: S.NullOr(S.String),
+    updated_at: S.String,
+    user: ReviewUser,
+  }),
+).annotate({ identifier: "Review" }) as any as S.Schema<Review>;
+
 export interface ListReviewRequest {
   after?: string;
   before?: string;
@@ -77,56 +219,18 @@ export const ListReviewRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListReviewRequest>;
 
 /** Represents an image attachment */
-export interface ReviewListItemAttachmentsItem {
-  /** Uploaded file MIME type, such as image/jpeg, video/mp4, or audio/mpeg. */
-  content_type: string | null;
-  /** The original filename of the uploaded attachment, including its file extension. */
-  filename: string | null;
-  /** Represents a unique identifier that is Base64 obfuscated. It is often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`) input value will be accepted as an ID. */
-  id: string;
-  /** A pre-optimized URL for rendering this attachment on the client. This should be used for displaying attachments in apps. */
-  url: string | null;
-}
-export const ReviewListItemAttachmentsItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    content_type: S.NullOr(S.String),
-    filename: S.NullOr(S.String),
-    id: S.String,
-    url: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "ReviewListItemAttachmentsItem",
-}) as any as S.Schema<ReviewListItemAttachmentsItem>;
+export type ReviewListItemAttachmentsItem = ReviewAttachmentsItem;
+export const ReviewListItemAttachmentsItem = ReviewAttachmentsItem;
 
 /** A list of files and media attached to the review. */
-export type ReviewListItemAttachmentsList =
-  Array<ReviewListItemAttachmentsItem>;
+export type ReviewListItemAttachmentsList = Array<ReviewAttachmentsItem>;
 export const ReviewListItemAttachmentsList = /*@__PURE__*/ S.Array(
-  ReviewListItemAttachmentsItem,
+  ReviewAttachmentsItem,
 ) as any as S.Schema<ReviewListItemAttachmentsList>;
 
-/** The statuses a review can have */
-export type ReviewStatus = "pending" | "published" | "removed";
-export const ReviewStatus = /*@__PURE__*/ S.String;
-
 /** The user account of the person who wrote this review. */
-export interface ReviewListItemUser {
-  /** The unique identifier for the user. */
-  id: string;
-  /** The user's display name shown on their public profile. */
-  name: string | null;
-  /** The user's unique username shown on their public profile. */
-  username: string;
-}
-export const ReviewListItemUser = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    name: S.NullOr(S.String),
-    username: S.String,
-  }),
-).annotate({
-  identifier: "ReviewListItemUser",
-}) as any as S.Schema<ReviewListItemUser>;
+export type ReviewListItemUser = ReviewUser;
+export const ReviewListItemUser = ReviewUser;
 
 /** A user-submitted review of a company, including a star rating and optional text feedback. */
 export interface ReviewListItem {
@@ -153,7 +257,7 @@ export interface ReviewListItem {
   /** The datetime the review was last updated. */
   updated_at: string;
   /** The user account of the person who wrote this review. */
-  user: ReviewListItemUser;
+  user: ReviewUser;
 }
 export const ReviewListItem = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -168,7 +272,7 @@ export const ReviewListItem = /*@__PURE__*/ S.suspend(() =>
     status: ReviewStatus,
     title: S.NullOr(S.String),
     updated_at: S.String,
-    user: ReviewListItemUser,
+    user: ReviewUser,
   }),
 ).annotate({ identifier: "ReviewListItem" }) as any as S.Schema<ReviewListItem>;
 
@@ -213,112 +317,25 @@ export const ListReviewResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListReviewResponse",
 }) as any as S.Schema<ListReviewResponse>;
 
-export interface RetrieveReviewRequest {
-  /** The unique identifier of the review to retrieve. */
-  id: string;
-}
-export const RetrieveReviewRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/reviews/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveReviewRequest",
-}) as any as S.Schema<RetrieveReviewRequest>;
-
-/** Represents an image attachment */
-export type ReviewAttachmentsItem = ReviewListItemAttachmentsItem;
-export const ReviewAttachmentsItem = ReviewListItemAttachmentsItem;
-
-/** A list of files and media attached to the review. */
-export type ReviewAttachmentsList = Array<ReviewListItemAttachmentsItem>;
-export const ReviewAttachmentsList = /*@__PURE__*/ S.Array(
-  ReviewListItemAttachmentsItem,
-) as any as S.Schema<ReviewAttachmentsList>;
-
-/** The company that this review was written for. */
-export interface ReviewCompany {
-  /** The unique identifier for the company. */
-  id: string;
-  /** URL slug for the account's store page, e.g. `pickaxe` in whop.com/pickaxe. */
-  route: string;
-  /** The display name of the company shown to customers. */
-  title: string;
-}
-export const ReviewCompany = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    route: S.String,
-    title: S.String,
-  }),
-).annotate({ identifier: "ReviewCompany" }) as any as S.Schema<ReviewCompany>;
-
-/** The product that this review was written for. */
-export interface ReviewProduct {
-  /** The unique identifier for the product. */
-  id: string;
-  /** The display name of the product shown to customers on the product page and in search results. */
-  title: string;
-}
-export const ReviewProduct = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    title: S.String,
-  }),
-).annotate({ identifier: "ReviewProduct" }) as any as S.Schema<ReviewProduct>;
-
-/** The user account of the person who wrote this review. */
-export type ReviewUser = ReviewListItemUser;
-export const ReviewUser = ReviewListItemUser;
-
-/** A user-submitted review of a company, including a star rating and optional text feedback. */
-export interface Review {
-  /** A list of files and media attached to the review. */
-  attachments: ReviewAttachmentsList;
-  /** The company that this review was written for. */
-  company: ReviewCompany;
-  /** The datetime the review was created. */
-  created_at: string;
-  /** The body text of the review containing the user's detailed feedback. Returns an empty string if no description was provided. */
-  description: string | null;
-  /** The unique identifier for the review. */
-  id: string;
-  /** The timestamp of when the reviewer first joined the product. Null if unknown. */
-  joined_at: string | null;
-  /** Whether the reviewer paid for the product. Null if the payment status is unknown. */
-  paid_for_product: boolean | null;
-  /** The product that this review was written for. */
-  product: ReviewProduct;
-  /** The timestamp of when the review was published. Null if the review has not been published yet. */
-  published_at: string | null;
-  /** The star rating given by the reviewer, from 1 to 5. */
-  stars: number;
-  /** The current moderation status of the review. */
-  status: ReviewStatus;
-  /** A short summary title for the review. Null if the reviewer did not provide one. */
-  title: string | null;
-  /** The datetime the review was last updated. */
-  updated_at: string;
-  /** The user account of the person who wrote this review. */
-  user: ReviewListItemUser;
-}
-export const Review = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    attachments: ReviewAttachmentsList,
-    company: ReviewCompany,
-    created_at: S.String,
-    description: S.NullOr(S.String),
-    id: S.String,
-    joined_at: S.NullOr(S.String),
-    paid_for_product: S.NullOr(S.Boolean),
-    product: ReviewProduct,
-    published_at: S.NullOr(S.String),
-    stars: S.Number,
-    status: ReviewStatus,
-    title: S.NullOr(S.String),
-    updated_at: S.String,
-    user: ReviewListItemUser,
-  }),
-).annotate({ identifier: "Review" }) as any as S.Schema<Review>;
+export type GetReviewError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | WhopOpError;
+/** Retrieve review [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing review. */
+export const getReview: API.OperationMethod<
+  GetReviewRequest,
+  Review,
+  GetReviewError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetReviewRequest,
+  output: Review,
+  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
 
 export type ListReviewError =
   | BadRequest
@@ -351,23 +368,3 @@ export const listReview: API.PaginatedOperationMethod<
   }),
   paginateRelay,
 ) as any;
-
-export type RetrieveReviewError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | WhopOpError;
-/** Retrieve review [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing review. */
-export const retrieveReview: API.OperationMethod<
-  RetrieveReviewRequest,
-  Review,
-  RetrieveReviewError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveReviewRequest,
-  output: Review,
-  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));

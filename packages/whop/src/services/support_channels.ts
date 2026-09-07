@@ -115,6 +115,18 @@ export const SupportChannel = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "SupportChannel" }) as any as S.Schema<SupportChannel>;
 
+export interface GetSupportChannelRequest {
+  /** The unique identifier of the support channel to retrieve. */
+  id: string;
+}
+export const GetSupportChannelRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/support_channels/{id}", code: 200 })),
+).annotate({
+  identifier: "GetSupportChannelRequest",
+}) as any as S.Schema<GetSupportChannelRequest>;
+
 /** The perspective to filter support channels by. */
 export type SupportChannelView = "all" | "admin" | "customer";
 export const SupportChannelView = /*@__PURE__*/ S.String;
@@ -227,18 +239,6 @@ export const ListSupportChannelResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListSupportChannelResponse",
 }) as any as S.Schema<ListSupportChannelResponse>;
 
-export interface RetrieveSupportChannelRequest {
-  /** The unique identifier of the support channel to retrieve. */
-  id: string;
-}
-export const RetrieveSupportChannelRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/support_channels/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveSupportChannelRequest",
-}) as any as S.Schema<RetrieveSupportChannelRequest>;
-
 export type CreateSupportChannelError =
   | BadRequest
   | Forbidden
@@ -253,6 +253,26 @@ export const createSupportChannel: API.OperationMethod<
   WhopOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: CreateSupportChannelRequest,
+  output: SupportChannel,
+  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSupportChannelError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | WhopOpError;
+/** Retrieve support channel [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing support channel. Required permissions: - `support_chat:read` */
+export const getSupportChannel: API.OperationMethod<
+  GetSupportChannelRequest,
+  SupportChannel,
+  GetSupportChannelError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSupportChannelRequest,
   output: SupportChannel,
   errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
   protocol: WhopProtocol,
@@ -290,23 +310,3 @@ export const listSupportChannel: API.PaginatedOperationMethod<
   }),
   paginateRelay,
 ) as any;
-
-export type RetrieveSupportChannelError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | WhopOpError;
-/** Retrieve support channel [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing support channel. Required permissions: - `support_chat:read` */
-export const retrieveSupportChannel: API.OperationMethod<
-  RetrieveSupportChannelRequest,
-  SupportChannel,
-  RetrieveSupportChannelError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveSupportChannelRequest,
-  output: SupportChannel,
-  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));

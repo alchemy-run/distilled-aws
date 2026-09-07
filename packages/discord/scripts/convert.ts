@@ -5,11 +5,12 @@
  * Input:  specs/spec-mirror-discord/specs/openapi.json  (spec submodule — the
  *         STABLE spec; `openapi_preview.json` alongside it carries unstable /
  *         experimental surface Discord explicitly says not to ship)
- * Output: .generated-specs/discord.json
+ * Output: .generated-specs/discord.json (OpenAPI + Smithy patches applied)
  *
  * The OpenAPI→Smithy converter lives in
  * `@distilled.cloud/core/codegen/openapi`; this script is Discord's pipeline
- * config. `scripts/generate.ts` compiles the model into src/services.
+ * config. Smithy patches in `patches/discord/*.json` apply after conversion.
+ * `scripts/generate.ts` compiles the already-patched model.
  *
  * Notes on the Discord spec:
  *   • Every operation declares exactly two failure responses — `429` and the

@@ -12,14 +12,139 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
+export interface ActivateEmailRegistrationEmailRequest {
+  /** Location of the activation. */
+  location: string;
+  /** Activation code for the registration */
+  activationCode?: string;
+}
+export const ActivateEmailRegistrationEmailRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      location: S.String.pipe(T.Label()),
+      activationCode: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/providers/Microsoft.DataShare/locations/{location}/activateEmail",
+        code: 200,
+        apiVersion: "2021-08-01",
+      }),
+    ),
+).annotate({
+  identifier: "ActivateEmailRegistrationEmailRequest",
+}) as any as S.Schema<ActivateEmailRegistrationEmailRequest>;
+
+/** Registration status */
+export type EmailRegistrationRegistrationStatus =
+  | "ActivationPending"
+  | "Activated"
+  | "ActivationAttemptsExhausted";
+export const EmailRegistrationRegistrationStatus = /*@__PURE__*/ S.String;
+
+/** Dto for tenant domain registration */
+export interface EmailRegistration {
+  /** Activation code for the registration */
+  activationCode?: string;
+  /** Date of the activation expiration */
+  activationExpirationDate?: string;
+  /** The email to register */
+  email?: string;
+  /** Registration status */
+  registrationStatus?: EmailRegistrationRegistrationStatus;
+  /** The tenant to register */
+  tenantId?: string;
+}
+export const EmailRegistration = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    activationCode: S.optional(S.String),
+    activationExpirationDate: S.optional(S.String),
+    email: S.optional(S.String),
+    registrationStatus: S.optional(EmailRegistrationRegistrationStatus),
+    tenantId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "EmailRegistration",
+}) as any as S.Schema<EmailRegistration>;
+
+export interface CancelShareSubscriptionSynchronizationRequest {
+  /** The subscription identifier */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The name of the share account. */
+  accountName: string;
+  /** The name of the shareSubscription. */
+  shareSubscriptionName: string;
+  /** Synchronization id */
+  synchronizationId: string;
+}
+export const CancelShareSubscriptionSynchronizationRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      shareSubscriptionName: S.String.pipe(T.Label()),
+      synchronizationId: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shareSubscriptions/{shareSubscriptionName}/cancelSynchronization",
+        code: 200,
+        apiVersion: "2021-08-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "CancelShareSubscriptionSynchronizationRequest",
+  }) as any as S.Schema<CancelShareSubscriptionSynchronizationRequest>;
+
+/** Synchronization Mode */
+export type ShareSubscriptionSynchronizationSynchronizationMode =
+  | "Incremental"
+  | "FullSync";
+export const ShareSubscriptionSynchronizationSynchronizationMode =
+  /*@__PURE__*/ S.String;
+
+/** A ShareSubscriptionSynchronization data transfer object. */
+export interface ShareSubscriptionSynchronization {
+  /** Synchronization duration */
+  durationMs?: number;
+  /** End time of synchronization */
+  endTime?: string;
+  /** message of Synchronization */
+  message?: string;
+  /** start time of synchronization */
+  startTime?: string;
+  /** Raw Status */
+  status?: string;
+  /** Synchronization id */
+  synchronizationId: string;
+  /** Synchronization Mode */
+  synchronizationMode?: ShareSubscriptionSynchronizationSynchronizationMode;
+}
+export const ShareSubscriptionSynchronization = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    durationMs: S.optional(S.Number),
+    endTime: S.optional(S.String),
+    message: S.optional(S.String),
+    startTime: S.optional(S.String),
+    status: S.optional(S.String),
+    synchronizationId: S.String,
+    synchronizationMode: S.optional(
+      ShareSubscriptionSynchronizationSynchronizationMode,
+    ),
+  }),
+).annotate({
+  identifier: "ShareSubscriptionSynchronization",
+}) as any as S.Schema<ShareSubscriptionSynchronization>;
+
 /** Tags on the azure resource. */
-export type AccountsCreateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AccountsCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type CreateAccountRequestTagsMap = { [key: string]: string | undefined };
+export const CreateAccountRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsCreateRequestTagsMap>;
+) as any as S.Schema<CreateAccountRequestTagsMap>;
 
 /** Identity Type */
 export type IdentityInputType = "SystemAssigned";
@@ -44,7 +169,7 @@ export const AccountPropertiesInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "AccountPropertiesInput",
 }) as any as S.Schema<AccountPropertiesInput>;
 
-export interface AccountsCreateRequest {
+export interface CreateAccountRequest {
   /** The subscription identifier */
   subscriptionId: string;
   /** The resource group name. */
@@ -54,19 +179,19 @@ export interface AccountsCreateRequest {
   /** Location of the azure resource. */
   location?: string;
   /** Tags on the azure resource. */
-  tags?: AccountsCreateRequestTagsMap;
+  tags?: CreateAccountRequestTagsMap;
   /** Identity Info on the Account */
   identity: IdentityInput;
   /** Properties on the account */
   properties?: AccountPropertiesInput;
 }
-export const AccountsCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateAccountRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
     location: S.optional(S.String),
-    tags: S.optional(AccountsCreateRequestTagsMap),
+    tags: S.optional(CreateAccountRequestTagsMap),
     identity: IdentityInput,
     properties: S.optional(AccountPropertiesInput),
   }).pipe(
@@ -78,8 +203,8 @@ export const AccountsCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "AccountsCreateRequest",
-}) as any as S.Schema<AccountsCreateRequest>;
+  identifier: "CreateAccountRequest",
+}) as any as S.Schema<CreateAccountRequest>;
 
 /** The type of identity that created the resource. */
 export type SystemDataCreatedByType =
@@ -124,13 +249,13 @@ export const SystemData = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
 
 /** Tags on the azure resource. */
-export type AccountsCreateResponseTagsMap = {
+export type CreateAccountResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AccountsCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateAccountResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsCreateResponseTagsMap>;
+) as any as S.Schema<CreateAccountResponseTagsMap>;
 
 /** Identity Type */
 export type IdentityType = "SystemAssigned";
@@ -184,7 +309,7 @@ export const AccountProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "AccountProperties",
 }) as any as S.Schema<AccountProperties>;
 
-export interface AccountsCreateResponse {
+export interface CreateAccountResponse {
   /** The resource id of the azure resource */
   id?: string;
   /** Name of the azure resource */
@@ -196,28 +321,750 @@ export interface AccountsCreateResponse {
   /** Location of the azure resource. */
   location?: string;
   /** Tags on the azure resource. */
-  tags?: AccountsCreateResponseTagsMap;
+  tags?: CreateAccountResponseTagsMap;
   /** Identity Info on the Account */
   identity: Identity;
   /** Properties on the account */
   properties?: AccountProperties;
 }
-export const AccountsCreateResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateAccountResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     systemData: S.optional(SystemData),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(AccountsCreateResponseTagsMap),
+    tags: S.optional(CreateAccountResponseTagsMap),
     identity: Identity,
     properties: S.optional(AccountProperties),
   }),
 ).annotate({
-  identifier: "AccountsCreateResponse",
-}) as any as S.Schema<AccountsCreateResponse>;
+  identifier: "CreateAccountResponse",
+}) as any as S.Schema<CreateAccountResponse>;
 
-export interface AccountsDeleteRequest {
+/** Kind of data set. */
+export type CreateDataSetRequestKind =
+  | "Blob"
+  | "Container"
+  | "BlobFolder"
+  | "AdlsGen2FileSystem"
+  | "AdlsGen2Folder"
+  | "AdlsGen2File"
+  | "AdlsGen1Folder"
+  | "AdlsGen1File"
+  | "KustoCluster"
+  | "KustoDatabase"
+  | "KustoTable"
+  | "SqlDBTable"
+  | "SqlDWTable"
+  | "SynapseWorkspaceSqlPoolTable";
+export const CreateDataSetRequestKind = /*@__PURE__*/ S.String;
+
+export interface CreateDataSetRequest {
+  /** The subscription identifier */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The name of the share account. */
+  accountName: string;
+  /** The name of the share to add the data set to. */
+  shareName: string;
+  /** The name of the dataSet. */
+  dataSetName: string;
+  /** Kind of data set. */
+  kind: CreateDataSetRequestKind | (string & {});
+}
+export const CreateDataSetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    shareName: S.String.pipe(T.Label()),
+    dataSetName: S.String.pipe(T.Label()),
+    kind: CreateDataSetRequestKind,
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shares/{shareName}/dataSets/{dataSetName}",
+      code: 200,
+      apiVersion: "2021-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "CreateDataSetRequest",
+}) as any as S.Schema<CreateDataSetRequest>;
+
+/** Kind of data set. */
+export type CreateDataSetResponseKind =
+  | "Blob"
+  | "Container"
+  | "BlobFolder"
+  | "AdlsGen2FileSystem"
+  | "AdlsGen2Folder"
+  | "AdlsGen2File"
+  | "AdlsGen1Folder"
+  | "AdlsGen1File"
+  | "KustoCluster"
+  | "KustoDatabase"
+  | "KustoTable"
+  | "SqlDBTable"
+  | "SqlDWTable"
+  | "SynapseWorkspaceSqlPoolTable";
+export const CreateDataSetResponseKind = /*@__PURE__*/ S.String;
+
+export interface CreateDataSetResponse {
+  /** The resource id of the azure resource */
+  id?: string;
+  /** Name of the azure resource */
+  name?: string;
+  /** System Data of the Azure resource. */
+  systemData?: SystemData;
+  /** Type of the azure resource */
+  type?: string;
+  /** Kind of data set. */
+  kind: CreateDataSetResponseKind;
+}
+export const CreateDataSetResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    type: S.optional(S.String),
+    kind: CreateDataSetResponseKind,
+  }),
+).annotate({
+  identifier: "CreateDataSetResponse",
+}) as any as S.Schema<CreateDataSetResponse>;
+
+/** Kind of data set mapping. */
+export type CreateDataSetMappingRequestKind =
+  | "Blob"
+  | "Container"
+  | "BlobFolder"
+  | "AdlsGen2FileSystem"
+  | "AdlsGen2Folder"
+  | "AdlsGen2File"
+  | "KustoCluster"
+  | "KustoDatabase"
+  | "KustoTable"
+  | "SqlDBTable"
+  | "SqlDWTable"
+  | "SynapseWorkspaceSqlPoolTable";
+export const CreateDataSetMappingRequestKind = /*@__PURE__*/ S.String;
+
+export interface CreateDataSetMappingRequest {
+  /** The subscription identifier */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The name of the share account. */
+  accountName: string;
+  /** The name of the share subscription which will hold the data set sink. */
+  shareSubscriptionName: string;
+  /** The name of the data set mapping to be created. */
+  dataSetMappingName: string;
+  /** Kind of data set mapping. */
+  kind: CreateDataSetMappingRequestKind | (string & {});
+}
+export const CreateDataSetMappingRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    shareSubscriptionName: S.String.pipe(T.Label()),
+    dataSetMappingName: S.String.pipe(T.Label()),
+    kind: CreateDataSetMappingRequestKind,
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shareSubscriptions/{shareSubscriptionName}/dataSetMappings/{dataSetMappingName}",
+      code: 200,
+      apiVersion: "2021-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "CreateDataSetMappingRequest",
+}) as any as S.Schema<CreateDataSetMappingRequest>;
+
+/** Kind of data set mapping. */
+export type CreateDataSetMappingResponseKind =
+  | "Blob"
+  | "Container"
+  | "BlobFolder"
+  | "AdlsGen2FileSystem"
+  | "AdlsGen2Folder"
+  | "AdlsGen2File"
+  | "KustoCluster"
+  | "KustoDatabase"
+  | "KustoTable"
+  | "SqlDBTable"
+  | "SqlDWTable"
+  | "SynapseWorkspaceSqlPoolTable";
+export const CreateDataSetMappingResponseKind = /*@__PURE__*/ S.String;
+
+export interface CreateDataSetMappingResponse {
+  /** The resource id of the azure resource */
+  id?: string;
+  /** Name of the azure resource */
+  name?: string;
+  /** System Data of the Azure resource. */
+  systemData?: SystemData;
+  /** Type of the azure resource */
+  type?: string;
+  /** Kind of data set mapping. */
+  kind: CreateDataSetMappingResponseKind;
+}
+export const CreateDataSetMappingResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    type: S.optional(S.String),
+    kind: CreateDataSetMappingResponseKind,
+  }),
+).annotate({
+  identifier: "CreateDataSetMappingResponse",
+}) as any as S.Schema<CreateDataSetMappingResponse>;
+
+/** Invitation property bag. */
+export interface InvitationPropertiesInput {
+  /** The expiration date for the invitation and share subscription. */
+  expirationDate?: string;
+  /** The target Azure AD Id. Can't be combined with email. */
+  targetActiveDirectoryId?: string;
+  /** The email the invitation is directed to. */
+  targetEmail?: string;
+  /** The target user or application Id that invitation is being sent to. Must be specified along TargetActiveDirectoryId. This enables sending invitations to specific users or applications in an AD tenant. */
+  targetObjectId?: string;
+}
+export const InvitationPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    expirationDate: S.optional(S.String),
+    targetActiveDirectoryId: S.optional(S.String),
+    targetEmail: S.optional(S.String),
+    targetObjectId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "InvitationPropertiesInput",
+}) as any as S.Schema<InvitationPropertiesInput>;
+
+export interface CreateInvitationRequest {
+  /** The subscription identifier */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The name of the share account. */
+  accountName: string;
+  /** The name of the share to send the invitation for. */
+  shareName: string;
+  /** The name of the invitation. */
+  invitationName: string;
+  /** Properties on the Invitation */
+  properties?: InvitationPropertiesInput;
+}
+export const CreateInvitationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    shareName: S.String.pipe(T.Label()),
+    invitationName: S.String.pipe(T.Label()),
+    properties: S.optional(InvitationPropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shares/{shareName}/invitations/{invitationName}",
+      code: 200,
+      apiVersion: "2021-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "CreateInvitationRequest",
+}) as any as S.Schema<CreateInvitationRequest>;
+
+/** The status of the invitation. */
+export type InvitationPropertiesInvitationStatus =
+  | "Pending"
+  | "Accepted"
+  | "Rejected"
+  | "Withdrawn";
+export const InvitationPropertiesInvitationStatus = /*@__PURE__*/ S.String;
+
+/** Invitation property bag. */
+export interface InvitationProperties {
+  /** The expiration date for the invitation and share subscription. */
+  expirationDate?: string;
+  /** unique invitation id */
+  invitationId?: string;
+  /** The status of the invitation. */
+  invitationStatus?: InvitationPropertiesInvitationStatus;
+  /** The time the recipient responded to the invitation. */
+  respondedAt?: string;
+  /** Gets the time at which the invitation was sent. */
+  sentAt?: string;
+  /** The target Azure AD Id. Can't be combined with email. */
+  targetActiveDirectoryId?: string;
+  /** The email the invitation is directed to. */
+  targetEmail?: string;
+  /** The target user or application Id that invitation is being sent to. Must be specified along TargetActiveDirectoryId. This enables sending invitations to specific users or applications in an AD tenant. */
+  targetObjectId?: string;
+  /** Email of the user who created the resource */
+  userEmail?: string;
+  /** Name of the user who created the resource */
+  userName?: string;
+}
+export const InvitationProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    expirationDate: S.optional(S.String),
+    invitationId: S.optional(S.String),
+    invitationStatus: S.optional(InvitationPropertiesInvitationStatus),
+    respondedAt: S.optional(S.String),
+    sentAt: S.optional(S.String),
+    targetActiveDirectoryId: S.optional(S.String),
+    targetEmail: S.optional(S.String),
+    targetObjectId: S.optional(S.String),
+    userEmail: S.optional(S.String),
+    userName: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "InvitationProperties",
+}) as any as S.Schema<InvitationProperties>;
+
+export interface CreateInvitationResponse {
+  /** The resource id of the azure resource */
+  id?: string;
+  /** Name of the azure resource */
+  name?: string;
+  /** System Data of the Azure resource. */
+  systemData?: SystemData;
+  /** Type of the azure resource */
+  type?: string;
+  /** Properties on the Invitation */
+  properties?: InvitationProperties;
+}
+export const CreateInvitationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    type: S.optional(S.String),
+    properties: S.optional(InvitationProperties),
+  }),
+).annotate({
+  identifier: "CreateInvitationResponse",
+}) as any as S.Schema<CreateInvitationResponse>;
+
+/** Share kind. */
+export type SharePropertiesInputShareKind = "CopyBased" | "InPlace";
+export const SharePropertiesInputShareKind = /*@__PURE__*/ S.String;
+
+/** Share property bag. */
+export interface SharePropertiesInput {
+  /** Share description. */
+  description?: string;
+  /** Share kind. */
+  shareKind?: SharePropertiesInputShareKind | (string & {});
+  /** Share terms. */
+  terms?: string;
+}
+export const SharePropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    description: S.optional(S.String),
+    shareKind: S.optional(SharePropertiesInputShareKind),
+    terms: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SharePropertiesInput",
+}) as any as S.Schema<SharePropertiesInput>;
+
+export interface CreateShareRequest {
+  /** The subscription identifier */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The name of the share account. */
+  accountName: string;
+  /** The name of the share. */
+  shareName: string;
+  /** Properties on the share */
+  properties?: SharePropertiesInput;
+}
+export const CreateShareRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    shareName: S.String.pipe(T.Label()),
+    properties: S.optional(SharePropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shares/{shareName}",
+      code: 200,
+      apiVersion: "2021-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "CreateShareRequest",
+}) as any as S.Schema<CreateShareRequest>;
+
+/** Gets or sets the provisioning state */
+export type SharePropertiesProvisioningState =
+  | "Succeeded"
+  | "Creating"
+  | "Deleting"
+  | "Moving"
+  | "Failed";
+export const SharePropertiesProvisioningState = /*@__PURE__*/ S.String;
+
+/** Share kind. */
+export type SharePropertiesShareKind = "CopyBased" | "InPlace";
+export const SharePropertiesShareKind = /*@__PURE__*/ S.String;
+
+/** Share property bag. */
+export interface ShareProperties {
+  /** Time at which the share was created. */
+  createdAt?: string;
+  /** Share description. */
+  description?: string;
+  /** Gets or sets the provisioning state */
+  provisioningState?: SharePropertiesProvisioningState;
+  /** Share kind. */
+  shareKind?: SharePropertiesShareKind;
+  /** Share terms. */
+  terms?: string;
+  /** Email of the user who created the resource */
+  userEmail?: string;
+  /** Name of the user who created the resource */
+  userName?: string;
+}
+export const ShareProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdAt: S.optional(S.String),
+    description: S.optional(S.String),
+    provisioningState: S.optional(SharePropertiesProvisioningState),
+    shareKind: S.optional(SharePropertiesShareKind),
+    terms: S.optional(S.String),
+    userEmail: S.optional(S.String),
+    userName: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ShareProperties",
+}) as any as S.Schema<ShareProperties>;
+
+export interface CreateShareResponse {
+  /** The resource id of the azure resource */
+  id?: string;
+  /** Name of the azure resource */
+  name?: string;
+  /** System Data of the Azure resource. */
+  systemData?: SystemData;
+  /** Type of the azure resource */
+  type?: string;
+  /** Properties on the share */
+  properties?: ShareProperties;
+}
+export const CreateShareResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    type: S.optional(S.String),
+    properties: S.optional(ShareProperties),
+  }),
+).annotate({
+  identifier: "CreateShareResponse",
+}) as any as S.Schema<CreateShareResponse>;
+
+/** Share subscription property bag. */
+export interface ShareSubscriptionPropertiesInput {
+  /** The expiration date of the share subscription. */
+  expirationDate?: string;
+  /** The invitation id. */
+  invitationId: string;
+  /** Source share location. */
+  sourceShareLocation: string;
+}
+export const ShareSubscriptionPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    expirationDate: S.optional(S.String),
+    invitationId: S.String,
+    sourceShareLocation: S.String,
+  }),
+).annotate({
+  identifier: "ShareSubscriptionPropertiesInput",
+}) as any as S.Schema<ShareSubscriptionPropertiesInput>;
+
+export interface CreateShareSubscriptionRequest {
+  /** The subscription identifier */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The name of the share account. */
+  accountName: string;
+  /** The name of the shareSubscription. */
+  shareSubscriptionName: string;
+  /** Properties on the share subscription */
+  properties: ShareSubscriptionPropertiesInput;
+}
+export const CreateShareSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    shareSubscriptionName: S.String.pipe(T.Label()),
+    properties: ShareSubscriptionPropertiesInput,
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shareSubscriptions/{shareSubscriptionName}",
+      code: 200,
+      apiVersion: "2021-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "CreateShareSubscriptionRequest",
+}) as any as S.Schema<CreateShareSubscriptionRequest>;
+
+/** Provisioning state of the share subscription */
+export type ShareSubscriptionPropertiesProvisioningState =
+  | "Succeeded"
+  | "Creating"
+  | "Deleting"
+  | "Moving"
+  | "Failed";
+export const ShareSubscriptionPropertiesProvisioningState =
+  /*@__PURE__*/ S.String;
+
+/** Kind of share */
+export type ShareSubscriptionPropertiesShareKind = "CopyBased" | "InPlace";
+export const ShareSubscriptionPropertiesShareKind = /*@__PURE__*/ S.String;
+
+/** Gets the current status of share subscription. */
+export type ShareSubscriptionPropertiesShareSubscriptionStatus =
+  | "Active"
+  | "Revoked"
+  | "SourceDeleted"
+  | "Revoking";
+export const ShareSubscriptionPropertiesShareSubscriptionStatus =
+  /*@__PURE__*/ S.String;
+
+/** Share subscription property bag. */
+export interface ShareSubscriptionProperties {
+  /** Time at which the share subscription was created. */
+  createdAt?: string;
+  /** The expiration date of the share subscription. */
+  expirationDate?: string;
+  /** The invitation id. */
+  invitationId: string;
+  /** Email of the provider who created the resource */
+  providerEmail?: string;
+  /** Name of the provider who created the resource */
+  providerName?: string;
+  /** Tenant name of the provider who created the resource */
+  providerTenantName?: string;
+  /** Provisioning state of the share subscription */
+  provisioningState?: ShareSubscriptionPropertiesProvisioningState;
+  /** Description of share */
+  shareDescription?: string;
+  /** Kind of share */
+  shareKind?: ShareSubscriptionPropertiesShareKind;
+  /** Name of the share */
+  shareName?: string;
+  /** Gets the current status of share subscription. */
+  shareSubscriptionStatus?: ShareSubscriptionPropertiesShareSubscriptionStatus;
+  /** Terms of a share */
+  shareTerms?: string;
+  /** Source share location. */
+  sourceShareLocation: string;
+  /** Email of the user who created the resource */
+  userEmail?: string;
+  /** Name of the user who created the resource */
+  userName?: string;
+}
+export const ShareSubscriptionProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdAt: S.optional(S.String),
+    expirationDate: S.optional(S.String),
+    invitationId: S.String,
+    providerEmail: S.optional(S.String),
+    providerName: S.optional(S.String),
+    providerTenantName: S.optional(S.String),
+    provisioningState: S.optional(ShareSubscriptionPropertiesProvisioningState),
+    shareDescription: S.optional(S.String),
+    shareKind: S.optional(ShareSubscriptionPropertiesShareKind),
+    shareName: S.optional(S.String),
+    shareSubscriptionStatus: S.optional(
+      ShareSubscriptionPropertiesShareSubscriptionStatus,
+    ),
+    shareTerms: S.optional(S.String),
+    sourceShareLocation: S.String,
+    userEmail: S.optional(S.String),
+    userName: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ShareSubscriptionProperties",
+}) as any as S.Schema<ShareSubscriptionProperties>;
+
+export interface CreateShareSubscriptionResponse {
+  /** The resource id of the azure resource */
+  id?: string;
+  /** Name of the azure resource */
+  name?: string;
+  /** System Data of the Azure resource. */
+  systemData?: SystemData;
+  /** Type of the azure resource */
+  type?: string;
+  /** Properties on the share subscription */
+  properties: ShareSubscriptionProperties;
+}
+export const CreateShareSubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    type: S.optional(S.String),
+    properties: ShareSubscriptionProperties,
+  }),
+).annotate({
+  identifier: "CreateShareSubscriptionResponse",
+}) as any as S.Schema<CreateShareSubscriptionResponse>;
+
+/** Kind of synchronization setting. */
+export type CreateSynchronizationSettingsRequestKind = "ScheduleBased";
+export const CreateSynchronizationSettingsRequestKind = /*@__PURE__*/ S.String;
+
+export interface CreateSynchronizationSettingsRequest {
+  /** The subscription identifier */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The name of the share account. */
+  accountName: string;
+  /** The name of the share to add the synchronization setting to. */
+  shareName: string;
+  /** The name of the synchronizationSetting. */
+  synchronizationSettingName: string;
+  /** Kind of synchronization setting. */
+  kind: CreateSynchronizationSettingsRequestKind | (string & {});
+}
+export const CreateSynchronizationSettingsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      shareName: S.String.pipe(T.Label()),
+      synchronizationSettingName: S.String.pipe(T.Label()),
+      kind: CreateSynchronizationSettingsRequestKind,
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shares/{shareName}/synchronizationSettings/{synchronizationSettingName}",
+        code: 200,
+        apiVersion: "2021-08-01",
+      }),
+    ),
+).annotate({
+  identifier: "CreateSynchronizationSettingsRequest",
+}) as any as S.Schema<CreateSynchronizationSettingsRequest>;
+
+/** Kind of synchronization setting. */
+export type CreateSynchronizationSettingsResponseKind = "ScheduleBased";
+export const CreateSynchronizationSettingsResponseKind = /*@__PURE__*/ S.String;
+
+export interface CreateSynchronizationSettingsResponse {
+  /** The resource id of the azure resource */
+  id?: string;
+  /** Name of the azure resource */
+  name?: string;
+  /** System Data of the Azure resource. */
+  systemData?: SystemData;
+  /** Type of the azure resource */
+  type?: string;
+  /** Kind of synchronization setting. */
+  kind: CreateSynchronizationSettingsResponseKind;
+}
+export const CreateSynchronizationSettingsResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      type: S.optional(S.String),
+      kind: CreateSynchronizationSettingsResponseKind,
+    }),
+).annotate({
+  identifier: "CreateSynchronizationSettingsResponse",
+}) as any as S.Schema<CreateSynchronizationSettingsResponse>;
+
+/** Kind of synchronization on trigger. */
+export type CreateTriggerRequestKind = "ScheduleBased";
+export const CreateTriggerRequestKind = /*@__PURE__*/ S.String;
+
+export interface CreateTriggerRequest {
+  /** The subscription identifier */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The name of the share account. */
+  accountName: string;
+  /** The name of the share subscription which will hold the data set sink. */
+  shareSubscriptionName: string;
+  /** The name of the trigger. */
+  triggerName: string;
+  /** Kind of synchronization on trigger. */
+  kind: CreateTriggerRequestKind | (string & {});
+}
+export const CreateTriggerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    shareSubscriptionName: S.String.pipe(T.Label()),
+    triggerName: S.String.pipe(T.Label()),
+    kind: CreateTriggerRequestKind,
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shareSubscriptions/{shareSubscriptionName}/triggers/{triggerName}",
+      code: 200,
+      apiVersion: "2021-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "CreateTriggerRequest",
+}) as any as S.Schema<CreateTriggerRequest>;
+
+/** Kind of synchronization on trigger. */
+export type CreateTriggerResponseKind = "ScheduleBased";
+export const CreateTriggerResponseKind = /*@__PURE__*/ S.String;
+
+export interface CreateTriggerResponse {
+  /** The resource id of the azure resource */
+  id?: string;
+  /** Name of the azure resource */
+  name?: string;
+  /** System Data of the Azure resource. */
+  systemData?: SystemData;
+  /** Type of the azure resource */
+  type?: string;
+  /** Kind of synchronization on trigger. */
+  kind: CreateTriggerResponseKind;
+}
+export const CreateTriggerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    type: S.optional(S.String),
+    kind: CreateTriggerResponseKind,
+  }),
+).annotate({
+  identifier: "CreateTriggerResponse",
+}) as any as S.Schema<CreateTriggerResponse>;
+
+export interface DeleteAccountRequest {
   /** The subscription identifier */
   subscriptionId: string;
   /** The resource group name. */
@@ -225,7 +1072,7 @@ export interface AccountsDeleteRequest {
   /** The name of the share account. */
   accountName: string;
 }
-export const AccountsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteAccountRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -239,8 +1086,8 @@ export const AccountsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "AccountsDeleteRequest",
-}) as any as S.Schema<AccountsDeleteRequest>;
+  identifier: "DeleteAccountRequest",
+}) as any as S.Schema<DeleteAccountRequest>;
 
 /** Nested details of the error model */
 export type DataShareErrorInfoDetailsList = Array<DataShareErrorInfo>;
@@ -302,7 +1149,240 @@ export const OperationResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "OperationResponse",
 }) as any as S.Schema<OperationResponse>;
 
-export interface AccountsGetRequest {
+export interface DeleteDataSetRequest {
+  /** The subscription identifier */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The name of the share account. */
+  accountName: string;
+  /** The name of the share. */
+  shareName: string;
+  /** The name of the dataSet. */
+  dataSetName: string;
+}
+export const DeleteDataSetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    shareName: S.String.pipe(T.Label()),
+    dataSetName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shares/{shareName}/dataSets/{dataSetName}",
+      code: 200,
+      apiVersion: "2021-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteDataSetRequest",
+}) as any as S.Schema<DeleteDataSetRequest>;
+
+export interface DeleteDataSetResponse {}
+export const DeleteDataSetResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteDataSetResponse",
+}) as any as S.Schema<DeleteDataSetResponse>;
+
+export interface DeleteDataSetMappingRequest {
+  /** The subscription identifier */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The name of the share account. */
+  accountName: string;
+  /** The name of the shareSubscription. */
+  shareSubscriptionName: string;
+  /** The name of the dataSetMapping. */
+  dataSetMappingName: string;
+}
+export const DeleteDataSetMappingRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    shareSubscriptionName: S.String.pipe(T.Label()),
+    dataSetMappingName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shareSubscriptions/{shareSubscriptionName}/dataSetMappings/{dataSetMappingName}",
+      code: 200,
+      apiVersion: "2021-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteDataSetMappingRequest",
+}) as any as S.Schema<DeleteDataSetMappingRequest>;
+
+export interface DeleteDataSetMappingResponse {}
+export const DeleteDataSetMappingResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteDataSetMappingResponse",
+}) as any as S.Schema<DeleteDataSetMappingResponse>;
+
+export interface DeleteInvitationRequest {
+  /** The subscription identifier */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The name of the share account. */
+  accountName: string;
+  /** The name of the share. */
+  shareName: string;
+  /** The name of the invitation. */
+  invitationName: string;
+}
+export const DeleteInvitationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    shareName: S.String.pipe(T.Label()),
+    invitationName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shares/{shareName}/invitations/{invitationName}",
+      code: 200,
+      apiVersion: "2021-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteInvitationRequest",
+}) as any as S.Schema<DeleteInvitationRequest>;
+
+export interface DeleteInvitationResponse {}
+export const DeleteInvitationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteInvitationResponse",
+}) as any as S.Schema<DeleteInvitationResponse>;
+
+export interface DeleteShareRequest {
+  /** The subscription identifier */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The name of the share account. */
+  accountName: string;
+  /** The name of the share. */
+  shareName: string;
+}
+export const DeleteShareRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    shareName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shares/{shareName}",
+      code: 200,
+      apiVersion: "2021-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteShareRequest",
+}) as any as S.Schema<DeleteShareRequest>;
+
+export interface DeleteShareSubscriptionRequest {
+  /** The subscription identifier */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The name of the share account. */
+  accountName: string;
+  /** The name of the shareSubscription. */
+  shareSubscriptionName: string;
+}
+export const DeleteShareSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    shareSubscriptionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shareSubscriptions/{shareSubscriptionName}",
+      code: 200,
+      apiVersion: "2021-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteShareSubscriptionRequest",
+}) as any as S.Schema<DeleteShareSubscriptionRequest>;
+
+export interface DeleteSynchronizationSettingsRequest {
+  /** The subscription identifier */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The name of the share account. */
+  accountName: string;
+  /** The name of the share. */
+  shareName: string;
+  /** The name of the synchronizationSetting . */
+  synchronizationSettingName: string;
+}
+export const DeleteSynchronizationSettingsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      shareName: S.String.pipe(T.Label()),
+      synchronizationSettingName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shares/{shareName}/synchronizationSettings/{synchronizationSettingName}",
+        code: 200,
+        apiVersion: "2021-08-01",
+      }),
+    ),
+).annotate({
+  identifier: "DeleteSynchronizationSettingsRequest",
+}) as any as S.Schema<DeleteSynchronizationSettingsRequest>;
+
+export interface DeleteTriggerRequest {
+  /** The subscription identifier */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The name of the share account. */
+  accountName: string;
+  /** The name of the shareSubscription. */
+  shareSubscriptionName: string;
+  /** The name of the trigger. */
+  triggerName: string;
+}
+export const DeleteTriggerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    shareSubscriptionName: S.String.pipe(T.Label()),
+    triggerName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shareSubscriptions/{shareSubscriptionName}/triggers/{triggerName}",
+      code: 200,
+      apiVersion: "2021-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteTriggerRequest",
+}) as any as S.Schema<DeleteTriggerRequest>;
+
+export interface GetAccountRequest {
   /** The subscription identifier */
   subscriptionId: string;
   /** The resource group name. */
@@ -310,7 +1390,7 @@ export interface AccountsGetRequest {
   /** The name of the share account. */
   accountName: string;
 }
-export const AccountsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetAccountRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -324,17 +1404,17 @@ export const AccountsGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "AccountsGetRequest",
-}) as any as S.Schema<AccountsGetRequest>;
+  identifier: "GetAccountRequest",
+}) as any as S.Schema<GetAccountRequest>;
 
 /** Tags on the azure resource. */
-export type AccountsGetResponseTagsMap = { [key: string]: string | undefined };
-export const AccountsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetAccountResponseTagsMap = { [key: string]: string | undefined };
+export const GetAccountResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsGetResponseTagsMap>;
+) as any as S.Schema<GetAccountResponseTagsMap>;
 
-export interface AccountsGetResponse {
+export interface GetAccountResponse {
   /** The resource id of the azure resource */
   id?: string;
   /** Name of the azure resource */
@@ -346,219 +1426,34 @@ export interface AccountsGetResponse {
   /** Location of the azure resource. */
   location?: string;
   /** Tags on the azure resource. */
-  tags?: AccountsGetResponseTagsMap;
+  tags?: GetAccountResponseTagsMap;
   /** Identity Info on the Account */
   identity: Identity;
   /** Properties on the account */
   properties?: AccountProperties;
 }
-export const AccountsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetAccountResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     systemData: S.optional(SystemData),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(AccountsGetResponseTagsMap),
+    tags: S.optional(GetAccountResponseTagsMap),
     identity: Identity,
     properties: S.optional(AccountProperties),
   }),
 ).annotate({
-  identifier: "AccountsGetResponse",
-}) as any as S.Schema<AccountsGetResponse>;
+  identifier: "GetAccountResponse",
+}) as any as S.Schema<GetAccountResponse>;
 
-export interface AccountsListByResourceGroupRequest {
-  /** The subscription identifier */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** Continuation token */
-  _skipToken?: string;
-}
-export const AccountsListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts",
-      code: 200,
-      apiVersion: "2021-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "AccountsListByResourceGroupRequest",
-}) as any as S.Schema<AccountsListByResourceGroupRequest>;
-
-/** Tags on the azure resource. */
-export type AccountTagsMap = { [key: string]: string | undefined };
-export const AccountTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AccountTagsMap>;
-
-/** An account data transfer object. */
-export interface Account {
-  /** The resource id of the azure resource */
-  id?: string;
-  /** Name of the azure resource */
-  name?: string;
-  /** System Data of the Azure resource. */
-  systemData?: SystemData;
-  /** Type of the azure resource */
-  type?: string;
-  /** Location of the azure resource. */
-  location?: string;
-  /** Tags on the azure resource. */
-  tags?: AccountTagsMap;
-  /** Identity Info on the Account */
-  identity: Identity;
-  /** Properties on the account */
-  properties?: AccountProperties;
-}
-export const Account = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    type: S.optional(S.String),
-    location: S.optional(S.String),
-    tags: S.optional(AccountTagsMap),
-    identity: Identity,
-    properties: S.optional(AccountProperties),
-  }),
-).annotate({ identifier: "Account" }) as any as S.Schema<Account>;
-
-/** Collection of items of type DataTransferObjects. */
-export type AccountListValueList = Array<Account>;
-export const AccountListValueList = /*@__PURE__*/ S.Array(
-  Account,
-) as any as S.Schema<AccountListValueList>;
-
-/** List response for get Accounts. */
-export interface AccountList {
-  /** The Url of next result page. */
-  nextLink?: string;
-  /** Collection of items of type DataTransferObjects. */
-  value: AccountListValueList;
-}
-export const AccountList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: AccountListValueList,
-  }),
-).annotate({ identifier: "AccountList" }) as any as S.Schema<AccountList>;
-
-export interface AccountsListBySubscriptionRequest {
-  /** The subscription identifier */
-  subscriptionId: string;
-  /** Continuation token */
-  _skipToken?: string;
-}
-export const AccountsListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DataShare/accounts",
-      code: 200,
-      apiVersion: "2021-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "AccountsListBySubscriptionRequest",
-}) as any as S.Schema<AccountsListBySubscriptionRequest>;
-
-/** Tags on the azure resource. */
-export type AccountsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AccountsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AccountsUpdateRequestTagsMap>;
-
-export interface AccountsUpdateRequest {
-  /** The subscription identifier */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The name of the share account. */
-  accountName: string;
-  /** Tags on the azure resource. */
-  tags?: AccountsUpdateRequestTagsMap;
-}
-export const AccountsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    tags: S.optional(AccountsUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}",
-      code: 200,
-      apiVersion: "2021-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "AccountsUpdateRequest",
-}) as any as S.Schema<AccountsUpdateRequest>;
-
-/** Tags on the azure resource. */
-export type AccountsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AccountsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AccountsUpdateResponseTagsMap>;
-
-export interface AccountsUpdateResponse {
-  /** The resource id of the azure resource */
-  id?: string;
-  /** Name of the azure resource */
-  name?: string;
-  /** System Data of the Azure resource. */
-  systemData?: SystemData;
-  /** Type of the azure resource */
-  type?: string;
-  /** Location of the azure resource. */
-  location?: string;
-  /** Tags on the azure resource. */
-  tags?: AccountsUpdateResponseTagsMap;
-  /** Identity Info on the Account */
-  identity: Identity;
-  /** Properties on the account */
-  properties?: AccountProperties;
-}
-export const AccountsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    type: S.optional(S.String),
-    location: S.optional(S.String),
-    tags: S.optional(AccountsUpdateResponseTagsMap),
-    identity: Identity,
-    properties: S.optional(AccountProperties),
-  }),
-).annotate({
-  identifier: "AccountsUpdateResponse",
-}) as any as S.Schema<AccountsUpdateResponse>;
-
-export interface ConsumerInvitationsGetRequest {
+export interface GetConsumerInvitationRequest {
   /** Location of the invitation */
   location: string;
   /** An invitation id */
   invitationId: string;
 }
-export const ConsumerInvitationsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetConsumerInvitationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     location: S.String.pipe(T.Label()),
     invitationId: S.String.pipe(T.Label()),
@@ -571,8 +1466,8 @@ export const ConsumerInvitationsGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ConsumerInvitationsGetRequest",
-}) as any as S.Schema<ConsumerInvitationsGetRequest>;
+  identifier: "GetConsumerInvitationRequest",
+}) as any as S.Schema<GetConsumerInvitationRequest>;
 
 /** The status of the invitation. */
 export type ConsumerInvitationPropertiesInvitationStatus =
@@ -638,7 +1533,7 @@ export const ConsumerInvitationProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "ConsumerInvitationProperties",
 }) as any as S.Schema<ConsumerInvitationProperties>;
 
-export interface ConsumerInvitationsGetResponse {
+export interface GetConsumerInvitationResponse {
   /** The resource id of the azure resource */
   id?: string;
   /** Name of the azure resource */
@@ -650,7 +1545,7 @@ export interface ConsumerInvitationsGetResponse {
   /** Properties on the account */
   properties: ConsumerInvitationProperties;
 }
-export const ConsumerInvitationsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetConsumerInvitationResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -659,15 +1554,650 @@ export const ConsumerInvitationsGetResponse = /*@__PURE__*/ S.suspend(() =>
     properties: ConsumerInvitationProperties,
   }),
 ).annotate({
-  identifier: "ConsumerInvitationsGetResponse",
-}) as any as S.Schema<ConsumerInvitationsGetResponse>;
+  identifier: "GetConsumerInvitationResponse",
+}) as any as S.Schema<GetConsumerInvitationResponse>;
 
-export interface ConsumerInvitationsListInvitationsRequest {
+export interface GetDataSetRequest {
+  /** The subscription identifier */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The name of the share account. */
+  accountName: string;
+  /** The name of the share. */
+  shareName: string;
+  /** The name of the dataSet. */
+  dataSetName: string;
+}
+export const GetDataSetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    shareName: S.String.pipe(T.Label()),
+    dataSetName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shares/{shareName}/dataSets/{dataSetName}",
+      code: 200,
+      apiVersion: "2021-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetDataSetRequest",
+}) as any as S.Schema<GetDataSetRequest>;
+
+/** Kind of data set. */
+export type GetDataSetResponseKind =
+  | "Blob"
+  | "Container"
+  | "BlobFolder"
+  | "AdlsGen2FileSystem"
+  | "AdlsGen2Folder"
+  | "AdlsGen2File"
+  | "AdlsGen1Folder"
+  | "AdlsGen1File"
+  | "KustoCluster"
+  | "KustoDatabase"
+  | "KustoTable"
+  | "SqlDBTable"
+  | "SqlDWTable"
+  | "SynapseWorkspaceSqlPoolTable";
+export const GetDataSetResponseKind = /*@__PURE__*/ S.String;
+
+export interface GetDataSetResponse {
+  /** The resource id of the azure resource */
+  id?: string;
+  /** Name of the azure resource */
+  name?: string;
+  /** System Data of the Azure resource. */
+  systemData?: SystemData;
+  /** Type of the azure resource */
+  type?: string;
+  /** Kind of data set. */
+  kind: GetDataSetResponseKind;
+}
+export const GetDataSetResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    type: S.optional(S.String),
+    kind: GetDataSetResponseKind,
+  }),
+).annotate({
+  identifier: "GetDataSetResponse",
+}) as any as S.Schema<GetDataSetResponse>;
+
+export interface GetDataSetMappingRequest {
+  /** The subscription identifier */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The name of the share account. */
+  accountName: string;
+  /** The name of the shareSubscription. */
+  shareSubscriptionName: string;
+  /** The name of the dataSetMapping. */
+  dataSetMappingName: string;
+}
+export const GetDataSetMappingRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    shareSubscriptionName: S.String.pipe(T.Label()),
+    dataSetMappingName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shareSubscriptions/{shareSubscriptionName}/dataSetMappings/{dataSetMappingName}",
+      code: 200,
+      apiVersion: "2021-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetDataSetMappingRequest",
+}) as any as S.Schema<GetDataSetMappingRequest>;
+
+/** Kind of data set mapping. */
+export type GetDataSetMappingResponseKind =
+  | "Blob"
+  | "Container"
+  | "BlobFolder"
+  | "AdlsGen2FileSystem"
+  | "AdlsGen2Folder"
+  | "AdlsGen2File"
+  | "KustoCluster"
+  | "KustoDatabase"
+  | "KustoTable"
+  | "SqlDBTable"
+  | "SqlDWTable"
+  | "SynapseWorkspaceSqlPoolTable";
+export const GetDataSetMappingResponseKind = /*@__PURE__*/ S.String;
+
+export interface GetDataSetMappingResponse {
+  /** The resource id of the azure resource */
+  id?: string;
+  /** Name of the azure resource */
+  name?: string;
+  /** System Data of the Azure resource. */
+  systemData?: SystemData;
+  /** Type of the azure resource */
+  type?: string;
+  /** Kind of data set mapping. */
+  kind: GetDataSetMappingResponseKind;
+}
+export const GetDataSetMappingResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    type: S.optional(S.String),
+    kind: GetDataSetMappingResponseKind,
+  }),
+).annotate({
+  identifier: "GetDataSetMappingResponse",
+}) as any as S.Schema<GetDataSetMappingResponse>;
+
+export interface GetInvitationRequest {
+  /** The subscription identifier */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The name of the share account. */
+  accountName: string;
+  /** The name of the share. */
+  shareName: string;
+  /** The name of the invitation. */
+  invitationName: string;
+}
+export const GetInvitationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    shareName: S.String.pipe(T.Label()),
+    invitationName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shares/{shareName}/invitations/{invitationName}",
+      code: 200,
+      apiVersion: "2021-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetInvitationRequest",
+}) as any as S.Schema<GetInvitationRequest>;
+
+export interface GetInvitationResponse {
+  /** The resource id of the azure resource */
+  id?: string;
+  /** Name of the azure resource */
+  name?: string;
+  /** System Data of the Azure resource. */
+  systemData?: SystemData;
+  /** Type of the azure resource */
+  type?: string;
+  /** Properties on the Invitation */
+  properties?: InvitationProperties;
+}
+export const GetInvitationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    type: S.optional(S.String),
+    properties: S.optional(InvitationProperties),
+  }),
+).annotate({
+  identifier: "GetInvitationResponse",
+}) as any as S.Schema<GetInvitationResponse>;
+
+export interface GetProviderShareSubscriptionByShareRequest {
+  /** The subscription identifier */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The name of the share account. */
+  accountName: string;
+  /** The name of the share. */
+  shareName: string;
+  /** To locate shareSubscription */
+  providerShareSubscriptionId: string;
+}
+export const GetProviderShareSubscriptionByShareRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      shareName: S.String.pipe(T.Label()),
+      providerShareSubscriptionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shares/{shareName}/providerShareSubscriptions/{providerShareSubscriptionId}",
+        code: 200,
+        apiVersion: "2021-08-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetProviderShareSubscriptionByShareRequest",
+  }) as any as S.Schema<GetProviderShareSubscriptionByShareRequest>;
+
+/** Gets the status of share subscription */
+export type ProviderShareSubscriptionPropertiesShareSubscriptionStatus =
+  | "Active"
+  | "Revoked"
+  | "SourceDeleted"
+  | "Revoking";
+export const ProviderShareSubscriptionPropertiesShareSubscriptionStatus =
+  /*@__PURE__*/ S.String;
+
+/** Provider share subscription properties */
+export interface ProviderShareSubscriptionProperties {
+  /** Email of the consumer who created the share subscription */
+  consumerEmail?: string;
+  /** Name of the consumer who created the share subscription */
+  consumerName?: string;
+  /** Tenant name of the consumer who created the share subscription */
+  consumerTenantName?: string;
+  /** created at */
+  createdAt?: string;
+  /** Expiration date of the share subscription in UTC format */
+  expirationDate?: string;
+  /** Email of the provider who created the share */
+  providerEmail?: string;
+  /** Name of the provider who created the share */
+  providerName?: string;
+  /** Shared at */
+  sharedAt?: string;
+  /** share Subscription Object Id */
+  shareSubscriptionObjectId?: string;
+  /** Gets the status of share subscription */
+  shareSubscriptionStatus?: ProviderShareSubscriptionPropertiesShareSubscriptionStatus;
+}
+export const ProviderShareSubscriptionProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    consumerEmail: S.optional(S.String),
+    consumerName: S.optional(S.String),
+    consumerTenantName: S.optional(S.String),
+    createdAt: S.optional(S.String),
+    expirationDate: S.optional(S.String),
+    providerEmail: S.optional(S.String),
+    providerName: S.optional(S.String),
+    sharedAt: S.optional(S.String),
+    shareSubscriptionObjectId: S.optional(S.String),
+    shareSubscriptionStatus: S.optional(
+      ProviderShareSubscriptionPropertiesShareSubscriptionStatus,
+    ),
+  }),
+).annotate({
+  identifier: "ProviderShareSubscriptionProperties",
+}) as any as S.Schema<ProviderShareSubscriptionProperties>;
+
+export interface GetProviderShareSubscriptionByShareResponse {
+  /** The resource id of the azure resource */
+  id?: string;
+  /** Name of the azure resource */
+  name?: string;
+  /** System Data of the Azure resource. */
+  systemData?: SystemData;
+  /** Type of the azure resource */
+  type?: string;
+  /** properties of providerShareSubscription */
+  properties?: ProviderShareSubscriptionProperties;
+}
+export const GetProviderShareSubscriptionByShareResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      type: S.optional(S.String),
+      properties: S.optional(ProviderShareSubscriptionProperties),
+    }),
+  ).annotate({
+    identifier: "GetProviderShareSubscriptionByShareResponse",
+  }) as any as S.Schema<GetProviderShareSubscriptionByShareResponse>;
+
+export interface GetShareRequest {
+  /** The subscription identifier */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The name of the share account. */
+  accountName: string;
+  /** The name of the share to retrieve. */
+  shareName: string;
+}
+export const GetShareRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    shareName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shares/{shareName}",
+      code: 200,
+      apiVersion: "2021-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetShareRequest",
+}) as any as S.Schema<GetShareRequest>;
+
+export interface GetShareResponse {
+  /** The resource id of the azure resource */
+  id?: string;
+  /** Name of the azure resource */
+  name?: string;
+  /** System Data of the Azure resource. */
+  systemData?: SystemData;
+  /** Type of the azure resource */
+  type?: string;
+  /** Properties on the share */
+  properties?: ShareProperties;
+}
+export const GetShareResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    type: S.optional(S.String),
+    properties: S.optional(ShareProperties),
+  }),
+).annotate({
+  identifier: "GetShareResponse",
+}) as any as S.Schema<GetShareResponse>;
+
+export interface GetShareSubscriptionRequest {
+  /** The subscription identifier */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The name of the share account. */
+  accountName: string;
+  /** The name of the shareSubscription. */
+  shareSubscriptionName: string;
+}
+export const GetShareSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    shareSubscriptionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shareSubscriptions/{shareSubscriptionName}",
+      code: 200,
+      apiVersion: "2021-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetShareSubscriptionRequest",
+}) as any as S.Schema<GetShareSubscriptionRequest>;
+
+export interface GetShareSubscriptionResponse {
+  /** The resource id of the azure resource */
+  id?: string;
+  /** Name of the azure resource */
+  name?: string;
+  /** System Data of the Azure resource. */
+  systemData?: SystemData;
+  /** Type of the azure resource */
+  type?: string;
+  /** Properties on the share subscription */
+  properties: ShareSubscriptionProperties;
+}
+export const GetShareSubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    type: S.optional(S.String),
+    properties: ShareSubscriptionProperties,
+  }),
+).annotate({
+  identifier: "GetShareSubscriptionResponse",
+}) as any as S.Schema<GetShareSubscriptionResponse>;
+
+export interface GetSynchronizationSettingsRequest {
+  /** The subscription identifier */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The name of the share account. */
+  accountName: string;
+  /** The name of the share. */
+  shareName: string;
+  /** The name of the synchronizationSetting. */
+  synchronizationSettingName: string;
+}
+export const GetSynchronizationSettingsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    shareName: S.String.pipe(T.Label()),
+    synchronizationSettingName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shares/{shareName}/synchronizationSettings/{synchronizationSettingName}",
+      code: 200,
+      apiVersion: "2021-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetSynchronizationSettingsRequest",
+}) as any as S.Schema<GetSynchronizationSettingsRequest>;
+
+/** Kind of synchronization setting. */
+export type GetSynchronizationSettingsResponseKind = "ScheduleBased";
+export const GetSynchronizationSettingsResponseKind = /*@__PURE__*/ S.String;
+
+export interface GetSynchronizationSettingsResponse {
+  /** The resource id of the azure resource */
+  id?: string;
+  /** Name of the azure resource */
+  name?: string;
+  /** System Data of the Azure resource. */
+  systemData?: SystemData;
+  /** Type of the azure resource */
+  type?: string;
+  /** Kind of synchronization setting. */
+  kind: GetSynchronizationSettingsResponseKind;
+}
+export const GetSynchronizationSettingsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    type: S.optional(S.String),
+    kind: GetSynchronizationSettingsResponseKind,
+  }),
+).annotate({
+  identifier: "GetSynchronizationSettingsResponse",
+}) as any as S.Schema<GetSynchronizationSettingsResponse>;
+
+export interface GetTriggerRequest {
+  /** The subscription identifier */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The name of the share account. */
+  accountName: string;
+  /** The name of the shareSubscription. */
+  shareSubscriptionName: string;
+  /** The name of the trigger. */
+  triggerName: string;
+}
+export const GetTriggerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    shareSubscriptionName: S.String.pipe(T.Label()),
+    triggerName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shareSubscriptions/{shareSubscriptionName}/triggers/{triggerName}",
+      code: 200,
+      apiVersion: "2021-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetTriggerRequest",
+}) as any as S.Schema<GetTriggerRequest>;
+
+/** Kind of synchronization on trigger. */
+export type GetTriggerResponseKind = "ScheduleBased";
+export const GetTriggerResponseKind = /*@__PURE__*/ S.String;
+
+export interface GetTriggerResponse {
+  /** The resource id of the azure resource */
+  id?: string;
+  /** Name of the azure resource */
+  name?: string;
+  /** System Data of the Azure resource. */
+  systemData?: SystemData;
+  /** Type of the azure resource */
+  type?: string;
+  /** Kind of synchronization on trigger. */
+  kind: GetTriggerResponseKind;
+}
+export const GetTriggerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    type: S.optional(S.String),
+    kind: GetTriggerResponseKind,
+  }),
+).annotate({
+  identifier: "GetTriggerResponse",
+}) as any as S.Schema<GetTriggerResponse>;
+
+export interface ListAccountByResourceGroupRequest {
+  /** The subscription identifier */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** Continuation token */
+  _skipToken?: string;
+}
+export const ListAccountByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts",
+      code: 200,
+      apiVersion: "2021-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListAccountByResourceGroupRequest",
+}) as any as S.Schema<ListAccountByResourceGroupRequest>;
+
+/** Tags on the azure resource. */
+export type AccountTagsMap = { [key: string]: string | undefined };
+export const AccountTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<AccountTagsMap>;
+
+/** An account data transfer object. */
+export interface Account {
+  /** The resource id of the azure resource */
+  id?: string;
+  /** Name of the azure resource */
+  name?: string;
+  /** System Data of the Azure resource. */
+  systemData?: SystemData;
+  /** Type of the azure resource */
+  type?: string;
+  /** Location of the azure resource. */
+  location?: string;
+  /** Tags on the azure resource. */
+  tags?: AccountTagsMap;
+  /** Identity Info on the Account */
+  identity: Identity;
+  /** Properties on the account */
+  properties?: AccountProperties;
+}
+export const Account = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    type: S.optional(S.String),
+    location: S.optional(S.String),
+    tags: S.optional(AccountTagsMap),
+    identity: Identity,
+    properties: S.optional(AccountProperties),
+  }),
+).annotate({ identifier: "Account" }) as any as S.Schema<Account>;
+
+/** Collection of items of type DataTransferObjects. */
+export type AccountListValueList = Array<Account>;
+export const AccountListValueList = /*@__PURE__*/ S.Array(
+  Account,
+) as any as S.Schema<AccountListValueList>;
+
+/** List response for get Accounts. */
+export interface AccountList {
+  /** The Url of next result page. */
+  nextLink?: string;
+  /** Collection of items of type DataTransferObjects. */
+  value: AccountListValueList;
+}
+export const AccountList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: AccountListValueList,
+  }),
+).annotate({ identifier: "AccountList" }) as any as S.Schema<AccountList>;
+
+export interface ListAccountBySubscriptionRequest {
+  /** The subscription identifier */
+  subscriptionId: string;
+  /** Continuation token */
+  _skipToken?: string;
+}
+export const ListAccountBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DataShare/accounts",
+      code: 200,
+      apiVersion: "2021-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListAccountBySubscriptionRequest",
+}) as any as S.Schema<ListAccountBySubscriptionRequest>;
+
+export interface ListConsumerInvitationInvitationsRequest {
   /** The continuation token */
   _skipToken?: string;
 }
-export const ConsumerInvitationsListInvitationsRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const ListConsumerInvitationInvitationsRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
     }).pipe(
@@ -678,9 +2208,9 @@ export const ConsumerInvitationsListInvitationsRequest =
         apiVersion: "2021-08-01",
       }),
     ),
-  ).annotate({
-    identifier: "ConsumerInvitationsListInvitationsRequest",
-  }) as any as S.Schema<ConsumerInvitationsListInvitationsRequest>;
+).annotate({
+  identifier: "ListConsumerInvitationInvitationsRequest",
+}) as any as S.Schema<ListConsumerInvitationInvitationsRequest>;
 
 /** A consumer Invitation data transfer object. */
 export interface ConsumerInvitation {
@@ -729,68 +2259,7 @@ export const ConsumerInvitationList = /*@__PURE__*/ S.suspend(() =>
   identifier: "ConsumerInvitationList",
 }) as any as S.Schema<ConsumerInvitationList>;
 
-/** Properties of consumer invitation */
-export interface ConsumerInvitationPropertiesInput {
-  /** Unique id of the invitation. */
-  invitationId: string;
-}
-export const ConsumerInvitationPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    invitationId: S.String,
-  }),
-).annotate({
-  identifier: "ConsumerInvitationPropertiesInput",
-}) as any as S.Schema<ConsumerInvitationPropertiesInput>;
-
-export interface ConsumerInvitationsRejectInvitationRequest {
-  /** Location of the invitation */
-  location: string;
-  /** Properties on the account */
-  properties: ConsumerInvitationPropertiesInput;
-}
-export const ConsumerInvitationsRejectInvitationRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      location: S.String.pipe(T.Label()),
-      properties: ConsumerInvitationPropertiesInput,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/providers/Microsoft.DataShare/locations/{location}/rejectInvitation",
-        code: 200,
-        apiVersion: "2021-08-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ConsumerInvitationsRejectInvitationRequest",
-  }) as any as S.Schema<ConsumerInvitationsRejectInvitationRequest>;
-
-export interface ConsumerInvitationsRejectInvitationResponse {
-  /** The resource id of the azure resource */
-  id?: string;
-  /** Name of the azure resource */
-  name?: string;
-  /** System Data of the Azure resource. */
-  systemData?: SystemData;
-  /** Type of the azure resource */
-  type?: string;
-  /** Properties on the account */
-  properties: ConsumerInvitationProperties;
-}
-export const ConsumerInvitationsRejectInvitationResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      type: S.optional(S.String),
-      properties: ConsumerInvitationProperties,
-    }),
-  ).annotate({
-    identifier: "ConsumerInvitationsRejectInvitationResponse",
-  }) as any as S.Schema<ConsumerInvitationsRejectInvitationResponse>;
-
-export interface ConsumerSourceDataSetsListByShareSubscriptionRequest {
+export interface ListConsumerSourceDataSetByShareSubscriptionRequest {
   /** The subscription identifier */
   subscriptionId: string;
   /** The resource group name. */
@@ -802,7 +2271,7 @@ export interface ConsumerSourceDataSetsListByShareSubscriptionRequest {
   /** Continuation token */
   _skipToken?: string;
 }
-export const ConsumerSourceDataSetsListByShareSubscriptionRequest =
+export const ListConsumerSourceDataSetByShareSubscriptionRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -819,8 +2288,8 @@ export const ConsumerSourceDataSetsListByShareSubscriptionRequest =
       }),
     ),
   ).annotate({
-    identifier: "ConsumerSourceDataSetsListByShareSubscriptionRequest",
-  }) as any as S.Schema<ConsumerSourceDataSetsListByShareSubscriptionRequest>;
+    identifier: "ListConsumerSourceDataSetByShareSubscriptionRequest",
+  }) as any as S.Schema<ListConsumerSourceDataSetByShareSubscriptionRequest>;
 
 /** Type of data set */
 export type ConsumerSourceDataSetPropertiesDataSetType =
@@ -913,510 +2382,7 @@ export const ConsumerSourceDataSetList = /*@__PURE__*/ S.suspend(() =>
   identifier: "ConsumerSourceDataSetList",
 }) as any as S.Schema<ConsumerSourceDataSetList>;
 
-/** Kind of data set mapping. */
-export type DataSetMappingsCreateRequestKind =
-  | "Blob"
-  | "Container"
-  | "BlobFolder"
-  | "AdlsGen2FileSystem"
-  | "AdlsGen2Folder"
-  | "AdlsGen2File"
-  | "KustoCluster"
-  | "KustoDatabase"
-  | "KustoTable"
-  | "SqlDBTable"
-  | "SqlDWTable"
-  | "SynapseWorkspaceSqlPoolTable";
-export const DataSetMappingsCreateRequestKind = /*@__PURE__*/ S.String;
-
-export interface DataSetMappingsCreateRequest {
-  /** The subscription identifier */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The name of the share account. */
-  accountName: string;
-  /** The name of the share subscription which will hold the data set sink. */
-  shareSubscriptionName: string;
-  /** The name of the data set mapping to be created. */
-  dataSetMappingName: string;
-  /** Kind of data set mapping. */
-  kind: DataSetMappingsCreateRequestKind | (string & {});
-}
-export const DataSetMappingsCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    shareSubscriptionName: S.String.pipe(T.Label()),
-    dataSetMappingName: S.String.pipe(T.Label()),
-    kind: DataSetMappingsCreateRequestKind,
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shareSubscriptions/{shareSubscriptionName}/dataSetMappings/{dataSetMappingName}",
-      code: 200,
-      apiVersion: "2021-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "DataSetMappingsCreateRequest",
-}) as any as S.Schema<DataSetMappingsCreateRequest>;
-
-/** Kind of data set mapping. */
-export type DataSetMappingsCreateResponseKind =
-  | "Blob"
-  | "Container"
-  | "BlobFolder"
-  | "AdlsGen2FileSystem"
-  | "AdlsGen2Folder"
-  | "AdlsGen2File"
-  | "KustoCluster"
-  | "KustoDatabase"
-  | "KustoTable"
-  | "SqlDBTable"
-  | "SqlDWTable"
-  | "SynapseWorkspaceSqlPoolTable";
-export const DataSetMappingsCreateResponseKind = /*@__PURE__*/ S.String;
-
-export interface DataSetMappingsCreateResponse {
-  /** The resource id of the azure resource */
-  id?: string;
-  /** Name of the azure resource */
-  name?: string;
-  /** System Data of the Azure resource. */
-  systemData?: SystemData;
-  /** Type of the azure resource */
-  type?: string;
-  /** Kind of data set mapping. */
-  kind: DataSetMappingsCreateResponseKind;
-}
-export const DataSetMappingsCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    type: S.optional(S.String),
-    kind: DataSetMappingsCreateResponseKind,
-  }),
-).annotate({
-  identifier: "DataSetMappingsCreateResponse",
-}) as any as S.Schema<DataSetMappingsCreateResponse>;
-
-export interface DataSetMappingsDeleteRequest {
-  /** The subscription identifier */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The name of the share account. */
-  accountName: string;
-  /** The name of the shareSubscription. */
-  shareSubscriptionName: string;
-  /** The name of the dataSetMapping. */
-  dataSetMappingName: string;
-}
-export const DataSetMappingsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    shareSubscriptionName: S.String.pipe(T.Label()),
-    dataSetMappingName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shareSubscriptions/{shareSubscriptionName}/dataSetMappings/{dataSetMappingName}",
-      code: 200,
-      apiVersion: "2021-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "DataSetMappingsDeleteRequest",
-}) as any as S.Schema<DataSetMappingsDeleteRequest>;
-
-export interface DataSetMappingsDeleteResponse {}
-export const DataSetMappingsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DataSetMappingsDeleteResponse",
-}) as any as S.Schema<DataSetMappingsDeleteResponse>;
-
-export interface DataSetMappingsGetRequest {
-  /** The subscription identifier */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The name of the share account. */
-  accountName: string;
-  /** The name of the shareSubscription. */
-  shareSubscriptionName: string;
-  /** The name of the dataSetMapping. */
-  dataSetMappingName: string;
-}
-export const DataSetMappingsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    shareSubscriptionName: S.String.pipe(T.Label()),
-    dataSetMappingName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shareSubscriptions/{shareSubscriptionName}/dataSetMappings/{dataSetMappingName}",
-      code: 200,
-      apiVersion: "2021-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "DataSetMappingsGetRequest",
-}) as any as S.Schema<DataSetMappingsGetRequest>;
-
-/** Kind of data set mapping. */
-export type DataSetMappingsGetResponseKind =
-  | "Blob"
-  | "Container"
-  | "BlobFolder"
-  | "AdlsGen2FileSystem"
-  | "AdlsGen2Folder"
-  | "AdlsGen2File"
-  | "KustoCluster"
-  | "KustoDatabase"
-  | "KustoTable"
-  | "SqlDBTable"
-  | "SqlDWTable"
-  | "SynapseWorkspaceSqlPoolTable";
-export const DataSetMappingsGetResponseKind = /*@__PURE__*/ S.String;
-
-export interface DataSetMappingsGetResponse {
-  /** The resource id of the azure resource */
-  id?: string;
-  /** Name of the azure resource */
-  name?: string;
-  /** System Data of the Azure resource. */
-  systemData?: SystemData;
-  /** Type of the azure resource */
-  type?: string;
-  /** Kind of data set mapping. */
-  kind: DataSetMappingsGetResponseKind;
-}
-export const DataSetMappingsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    type: S.optional(S.String),
-    kind: DataSetMappingsGetResponseKind,
-  }),
-).annotate({
-  identifier: "DataSetMappingsGetResponse",
-}) as any as S.Schema<DataSetMappingsGetResponse>;
-
-export interface DataSetMappingsListByShareSubscriptionRequest {
-  /** The subscription identifier */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The name of the share account. */
-  accountName: string;
-  /** The name of the share subscription. */
-  shareSubscriptionName: string;
-  /** Continuation token */
-  _skipToken?: string;
-  /** Filters the results using OData syntax. */
-  _filter?: string;
-  /** Sorts the results using OData syntax. */
-  _orderby?: string;
-}
-export const DataSetMappingsListByShareSubscriptionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      shareSubscriptionName: S.String.pipe(T.Label()),
-      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-      _orderby: S.optional(S.String.pipe(T.Query("$orderby"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shareSubscriptions/{shareSubscriptionName}/dataSetMappings",
-        code: 200,
-        apiVersion: "2021-08-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "DataSetMappingsListByShareSubscriptionRequest",
-  }) as any as S.Schema<DataSetMappingsListByShareSubscriptionRequest>;
-
-/** Kind of data set mapping. */
-export type DataSetMappingKind =
-  | "Blob"
-  | "Container"
-  | "BlobFolder"
-  | "AdlsGen2FileSystem"
-  | "AdlsGen2Folder"
-  | "AdlsGen2File"
-  | "KustoCluster"
-  | "KustoDatabase"
-  | "KustoTable"
-  | "SqlDBTable"
-  | "SqlDWTable"
-  | "SynapseWorkspaceSqlPoolTable";
-export const DataSetMappingKind = /*@__PURE__*/ S.String;
-
-/** A data set mapping data transfer object. */
-export interface DataSetMapping {
-  /** The resource id of the azure resource */
-  id?: string;
-  /** Name of the azure resource */
-  name?: string;
-  /** System Data of the Azure resource. */
-  systemData?: SystemData;
-  /** Type of the azure resource */
-  type?: string;
-  /** Kind of data set mapping. */
-  kind: DataSetMappingKind;
-}
-export const DataSetMapping = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    type: S.optional(S.String),
-    kind: DataSetMappingKind,
-  }),
-).annotate({ identifier: "DataSetMapping" }) as any as S.Schema<DataSetMapping>;
-
-/** Collection of items of type DataTransferObjects. */
-export type DataSetMappingListValueList = Array<DataSetMapping>;
-export const DataSetMappingListValueList = /*@__PURE__*/ S.Array(
-  DataSetMapping,
-) as any as S.Schema<DataSetMappingListValueList>;
-
-/** List response for get DataSetMappings */
-export interface DataSetMappingList {
-  /** The Url of next result page. */
-  nextLink?: string;
-  /** Collection of items of type DataTransferObjects. */
-  value: DataSetMappingListValueList;
-}
-export const DataSetMappingList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: DataSetMappingListValueList,
-  }),
-).annotate({
-  identifier: "DataSetMappingList",
-}) as any as S.Schema<DataSetMappingList>;
-
-/** Kind of data set. */
-export type DataSetsCreateRequestKind =
-  | "Blob"
-  | "Container"
-  | "BlobFolder"
-  | "AdlsGen2FileSystem"
-  | "AdlsGen2Folder"
-  | "AdlsGen2File"
-  | "AdlsGen1Folder"
-  | "AdlsGen1File"
-  | "KustoCluster"
-  | "KustoDatabase"
-  | "KustoTable"
-  | "SqlDBTable"
-  | "SqlDWTable"
-  | "SynapseWorkspaceSqlPoolTable";
-export const DataSetsCreateRequestKind = /*@__PURE__*/ S.String;
-
-export interface DataSetsCreateRequest {
-  /** The subscription identifier */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The name of the share account. */
-  accountName: string;
-  /** The name of the share to add the data set to. */
-  shareName: string;
-  /** The name of the dataSet. */
-  dataSetName: string;
-  /** Kind of data set. */
-  kind: DataSetsCreateRequestKind | (string & {});
-}
-export const DataSetsCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    shareName: S.String.pipe(T.Label()),
-    dataSetName: S.String.pipe(T.Label()),
-    kind: DataSetsCreateRequestKind,
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shares/{shareName}/dataSets/{dataSetName}",
-      code: 200,
-      apiVersion: "2021-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "DataSetsCreateRequest",
-}) as any as S.Schema<DataSetsCreateRequest>;
-
-/** Kind of data set. */
-export type DataSetsCreateResponseKind =
-  | "Blob"
-  | "Container"
-  | "BlobFolder"
-  | "AdlsGen2FileSystem"
-  | "AdlsGen2Folder"
-  | "AdlsGen2File"
-  | "AdlsGen1Folder"
-  | "AdlsGen1File"
-  | "KustoCluster"
-  | "KustoDatabase"
-  | "KustoTable"
-  | "SqlDBTable"
-  | "SqlDWTable"
-  | "SynapseWorkspaceSqlPoolTable";
-export const DataSetsCreateResponseKind = /*@__PURE__*/ S.String;
-
-export interface DataSetsCreateResponse {
-  /** The resource id of the azure resource */
-  id?: string;
-  /** Name of the azure resource */
-  name?: string;
-  /** System Data of the Azure resource. */
-  systemData?: SystemData;
-  /** Type of the azure resource */
-  type?: string;
-  /** Kind of data set. */
-  kind: DataSetsCreateResponseKind;
-}
-export const DataSetsCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    type: S.optional(S.String),
-    kind: DataSetsCreateResponseKind,
-  }),
-).annotate({
-  identifier: "DataSetsCreateResponse",
-}) as any as S.Schema<DataSetsCreateResponse>;
-
-export interface DataSetsDeleteRequest {
-  /** The subscription identifier */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The name of the share account. */
-  accountName: string;
-  /** The name of the share. */
-  shareName: string;
-  /** The name of the dataSet. */
-  dataSetName: string;
-}
-export const DataSetsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    shareName: S.String.pipe(T.Label()),
-    dataSetName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shares/{shareName}/dataSets/{dataSetName}",
-      code: 200,
-      apiVersion: "2021-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "DataSetsDeleteRequest",
-}) as any as S.Schema<DataSetsDeleteRequest>;
-
-export interface DataSetsDeleteResponse {}
-export const DataSetsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DataSetsDeleteResponse",
-}) as any as S.Schema<DataSetsDeleteResponse>;
-
-export interface DataSetsGetRequest {
-  /** The subscription identifier */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The name of the share account. */
-  accountName: string;
-  /** The name of the share. */
-  shareName: string;
-  /** The name of the dataSet. */
-  dataSetName: string;
-}
-export const DataSetsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    shareName: S.String.pipe(T.Label()),
-    dataSetName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shares/{shareName}/dataSets/{dataSetName}",
-      code: 200,
-      apiVersion: "2021-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "DataSetsGetRequest",
-}) as any as S.Schema<DataSetsGetRequest>;
-
-/** Kind of data set. */
-export type DataSetsGetResponseKind =
-  | "Blob"
-  | "Container"
-  | "BlobFolder"
-  | "AdlsGen2FileSystem"
-  | "AdlsGen2Folder"
-  | "AdlsGen2File"
-  | "AdlsGen1Folder"
-  | "AdlsGen1File"
-  | "KustoCluster"
-  | "KustoDatabase"
-  | "KustoTable"
-  | "SqlDBTable"
-  | "SqlDWTable"
-  | "SynapseWorkspaceSqlPoolTable";
-export const DataSetsGetResponseKind = /*@__PURE__*/ S.String;
-
-export interface DataSetsGetResponse {
-  /** The resource id of the azure resource */
-  id?: string;
-  /** Name of the azure resource */
-  name?: string;
-  /** System Data of the Azure resource. */
-  systemData?: SystemData;
-  /** Type of the azure resource */
-  type?: string;
-  /** Kind of data set. */
-  kind: DataSetsGetResponseKind;
-}
-export const DataSetsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    type: S.optional(S.String),
-    kind: DataSetsGetResponseKind,
-  }),
-).annotate({
-  identifier: "DataSetsGetResponse",
-}) as any as S.Schema<DataSetsGetResponse>;
-
-export interface DataSetsListByShareRequest {
+export interface ListDataSetByShareRequest {
   /** The subscription identifier */
   subscriptionId: string;
   /** The resource group name. */
@@ -1432,7 +2398,7 @@ export interface DataSetsListByShareRequest {
   /** Sorts the results using OData syntax. */
   _orderby?: string;
 }
-export const DataSetsListByShareRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListDataSetByShareRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1450,8 +2416,8 @@ export const DataSetsListByShareRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DataSetsListByShareRequest",
-}) as any as S.Schema<DataSetsListByShareRequest>;
+  identifier: "ListDataSetByShareRequest",
+}) as any as S.Schema<ListDataSetByShareRequest>;
 
 /** Kind of data set. */
 export type DataSetKind =
@@ -1514,186 +2480,62 @@ export const DataSetList = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "DataSetList" }) as any as S.Schema<DataSetList>;
 
-export interface EmailRegistrationsActivateEmailRequest {
-  /** Location of the activation. */
-  location: string;
-  /** Activation code for the registration */
-  activationCode?: string;
-}
-export const EmailRegistrationsActivateEmailRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      location: S.String.pipe(T.Label()),
-      activationCode: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/providers/Microsoft.DataShare/locations/{location}/activateEmail",
-        code: 200,
-        apiVersion: "2021-08-01",
-      }),
-    ),
-).annotate({
-  identifier: "EmailRegistrationsActivateEmailRequest",
-}) as any as S.Schema<EmailRegistrationsActivateEmailRequest>;
-
-/** Registration status */
-export type EmailRegistrationRegistrationStatus =
-  | "ActivationPending"
-  | "Activated"
-  | "ActivationAttemptsExhausted";
-export const EmailRegistrationRegistrationStatus = /*@__PURE__*/ S.String;
-
-/** Dto for tenant domain registration */
-export interface EmailRegistration {
-  /** Activation code for the registration */
-  activationCode?: string;
-  /** Date of the activation expiration */
-  activationExpirationDate?: string;
-  /** The email to register */
-  email?: string;
-  /** Registration status */
-  registrationStatus?: EmailRegistrationRegistrationStatus;
-  /** The tenant to register */
-  tenantId?: string;
-}
-export const EmailRegistration = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    activationCode: S.optional(S.String),
-    activationExpirationDate: S.optional(S.String),
-    email: S.optional(S.String),
-    registrationStatus: S.optional(EmailRegistrationRegistrationStatus),
-    tenantId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "EmailRegistration",
-}) as any as S.Schema<EmailRegistration>;
-
-export interface EmailRegistrationsRegisterEmailRequest {
-  /** Location of the registration */
-  location: string;
-}
-export const EmailRegistrationsRegisterEmailRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      location: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/providers/Microsoft.DataShare/locations/{location}/registerEmail",
-        code: 200,
-        apiVersion: "2021-08-01",
-      }),
-    ),
-).annotate({
-  identifier: "EmailRegistrationsRegisterEmailRequest",
-}) as any as S.Schema<EmailRegistrationsRegisterEmailRequest>;
-
-/** Invitation property bag. */
-export interface InvitationPropertiesInput {
-  /** The expiration date for the invitation and share subscription. */
-  expirationDate?: string;
-  /** The target Azure AD Id. Can't be combined with email. */
-  targetActiveDirectoryId?: string;
-  /** The email the invitation is directed to. */
-  targetEmail?: string;
-  /** The target user or application Id that invitation is being sent to. Must be specified along TargetActiveDirectoryId. This enables sending invitations to specific users or applications in an AD tenant. */
-  targetObjectId?: string;
-}
-export const InvitationPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    expirationDate: S.optional(S.String),
-    targetActiveDirectoryId: S.optional(S.String),
-    targetEmail: S.optional(S.String),
-    targetObjectId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "InvitationPropertiesInput",
-}) as any as S.Schema<InvitationPropertiesInput>;
-
-export interface InvitationsCreateRequest {
+export interface ListDataSetMappingByShareSubscriptionRequest {
   /** The subscription identifier */
   subscriptionId: string;
   /** The resource group name. */
   resourceGroupName: string;
   /** The name of the share account. */
   accountName: string;
-  /** The name of the share to send the invitation for. */
-  shareName: string;
-  /** The name of the invitation. */
-  invitationName: string;
-  /** Properties on the Invitation */
-  properties?: InvitationPropertiesInput;
+  /** The name of the share subscription. */
+  shareSubscriptionName: string;
+  /** Continuation token */
+  _skipToken?: string;
+  /** Filters the results using OData syntax. */
+  _filter?: string;
+  /** Sorts the results using OData syntax. */
+  _orderby?: string;
 }
-export const InvitationsCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    shareName: S.String.pipe(T.Label()),
-    invitationName: S.String.pipe(T.Label()),
-    properties: S.optional(InvitationPropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shares/{shareName}/invitations/{invitationName}",
-      code: 200,
-      apiVersion: "2021-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "InvitationsCreateRequest",
-}) as any as S.Schema<InvitationsCreateRequest>;
+export const ListDataSetMappingByShareSubscriptionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      shareSubscriptionName: S.String.pipe(T.Label()),
+      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+      _orderby: S.optional(S.String.pipe(T.Query("$orderby"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shareSubscriptions/{shareSubscriptionName}/dataSetMappings",
+        code: 200,
+        apiVersion: "2021-08-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListDataSetMappingByShareSubscriptionRequest",
+  }) as any as S.Schema<ListDataSetMappingByShareSubscriptionRequest>;
 
-/** The status of the invitation. */
-export type InvitationPropertiesInvitationStatus =
-  | "Pending"
-  | "Accepted"
-  | "Rejected"
-  | "Withdrawn";
-export const InvitationPropertiesInvitationStatus = /*@__PURE__*/ S.String;
+/** Kind of data set mapping. */
+export type DataSetMappingKind =
+  | "Blob"
+  | "Container"
+  | "BlobFolder"
+  | "AdlsGen2FileSystem"
+  | "AdlsGen2Folder"
+  | "AdlsGen2File"
+  | "KustoCluster"
+  | "KustoDatabase"
+  | "KustoTable"
+  | "SqlDBTable"
+  | "SqlDWTable"
+  | "SynapseWorkspaceSqlPoolTable";
+export const DataSetMappingKind = /*@__PURE__*/ S.String;
 
-/** Invitation property bag. */
-export interface InvitationProperties {
-  /** The expiration date for the invitation and share subscription. */
-  expirationDate?: string;
-  /** unique invitation id */
-  invitationId?: string;
-  /** The status of the invitation. */
-  invitationStatus?: InvitationPropertiesInvitationStatus;
-  /** The time the recipient responded to the invitation. */
-  respondedAt?: string;
-  /** Gets the time at which the invitation was sent. */
-  sentAt?: string;
-  /** The target Azure AD Id. Can't be combined with email. */
-  targetActiveDirectoryId?: string;
-  /** The email the invitation is directed to. */
-  targetEmail?: string;
-  /** The target user or application Id that invitation is being sent to. Must be specified along TargetActiveDirectoryId. This enables sending invitations to specific users or applications in an AD tenant. */
-  targetObjectId?: string;
-  /** Email of the user who created the resource */
-  userEmail?: string;
-  /** Name of the user who created the resource */
-  userName?: string;
-}
-export const InvitationProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    expirationDate: S.optional(S.String),
-    invitationId: S.optional(S.String),
-    invitationStatus: S.optional(InvitationPropertiesInvitationStatus),
-    respondedAt: S.optional(S.String),
-    sentAt: S.optional(S.String),
-    targetActiveDirectoryId: S.optional(S.String),
-    targetEmail: S.optional(S.String),
-    targetObjectId: S.optional(S.String),
-    userEmail: S.optional(S.String),
-    userName: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "InvitationProperties",
-}) as any as S.Schema<InvitationProperties>;
-
-export interface InvitationsCreateResponse {
+/** A data set mapping data transfer object. */
+export interface DataSetMapping {
   /** The resource id of the azure resource */
   id?: string;
   /** Name of the azure resource */
@@ -1702,115 +2544,42 @@ export interface InvitationsCreateResponse {
   systemData?: SystemData;
   /** Type of the azure resource */
   type?: string;
-  /** Properties on the Invitation */
-  properties?: InvitationProperties;
+  /** Kind of data set mapping. */
+  kind: DataSetMappingKind;
 }
-export const InvitationsCreateResponse = /*@__PURE__*/ S.suspend(() =>
+export const DataSetMapping = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     systemData: S.optional(SystemData),
     type: S.optional(S.String),
-    properties: S.optional(InvitationProperties),
+    kind: DataSetMappingKind,
+  }),
+).annotate({ identifier: "DataSetMapping" }) as any as S.Schema<DataSetMapping>;
+
+/** Collection of items of type DataTransferObjects. */
+export type DataSetMappingListValueList = Array<DataSetMapping>;
+export const DataSetMappingListValueList = /*@__PURE__*/ S.Array(
+  DataSetMapping,
+) as any as S.Schema<DataSetMappingListValueList>;
+
+/** List response for get DataSetMappings */
+export interface DataSetMappingList {
+  /** The Url of next result page. */
+  nextLink?: string;
+  /** Collection of items of type DataTransferObjects. */
+  value: DataSetMappingListValueList;
+}
+export const DataSetMappingList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: DataSetMappingListValueList,
   }),
 ).annotate({
-  identifier: "InvitationsCreateResponse",
-}) as any as S.Schema<InvitationsCreateResponse>;
+  identifier: "DataSetMappingList",
+}) as any as S.Schema<DataSetMappingList>;
 
-export interface InvitationsDeleteRequest {
-  /** The subscription identifier */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The name of the share account. */
-  accountName: string;
-  /** The name of the share. */
-  shareName: string;
-  /** The name of the invitation. */
-  invitationName: string;
-}
-export const InvitationsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    shareName: S.String.pipe(T.Label()),
-    invitationName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shares/{shareName}/invitations/{invitationName}",
-      code: 200,
-      apiVersion: "2021-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "InvitationsDeleteRequest",
-}) as any as S.Schema<InvitationsDeleteRequest>;
-
-export interface InvitationsDeleteResponse {}
-export const InvitationsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "InvitationsDeleteResponse",
-}) as any as S.Schema<InvitationsDeleteResponse>;
-
-export interface InvitationsGetRequest {
-  /** The subscription identifier */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The name of the share account. */
-  accountName: string;
-  /** The name of the share. */
-  shareName: string;
-  /** The name of the invitation. */
-  invitationName: string;
-}
-export const InvitationsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    shareName: S.String.pipe(T.Label()),
-    invitationName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shares/{shareName}/invitations/{invitationName}",
-      code: 200,
-      apiVersion: "2021-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "InvitationsGetRequest",
-}) as any as S.Schema<InvitationsGetRequest>;
-
-export interface InvitationsGetResponse {
-  /** The resource id of the azure resource */
-  id?: string;
-  /** Name of the azure resource */
-  name?: string;
-  /** System Data of the Azure resource. */
-  systemData?: SystemData;
-  /** Type of the azure resource */
-  type?: string;
-  /** Properties on the Invitation */
-  properties?: InvitationProperties;
-}
-export const InvitationsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    type: S.optional(S.String),
-    properties: S.optional(InvitationProperties),
-  }),
-).annotate({
-  identifier: "InvitationsGetResponse",
-}) as any as S.Schema<InvitationsGetResponse>;
-
-export interface InvitationsListByShareRequest {
+export interface ListInvitationByShareRequest {
   /** The subscription identifier */
   subscriptionId: string;
   /** The resource group name. */
@@ -1826,7 +2595,7 @@ export interface InvitationsListByShareRequest {
   /** Sorts the results using OData syntax. */
   _orderby?: string;
 }
-export const InvitationsListByShareRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListInvitationByShareRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1844,8 +2613,8 @@ export const InvitationsListByShareRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "InvitationsListByShareRequest",
-}) as any as S.Schema<InvitationsListByShareRequest>;
+  identifier: "ListInvitationByShareRequest",
+}) as any as S.Schema<ListInvitationByShareRequest>;
 
 /** A Invitation data transfer object. */
 export interface Invitation {
@@ -1890,8 +2659,8 @@ export const InvitationList = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "InvitationList" }) as any as S.Schema<InvitationList>;
 
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({
       method: "GET",
@@ -1901,8 +2670,8 @@ export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
 
 /** Properties on operations */
 export interface OperationModelProperties {
@@ -2124,189 +2893,7 @@ export const OperationList = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "OperationList" }) as any as S.Schema<OperationList>;
 
-/** Provider share subscription properties */
-export interface ProviderShareSubscriptionPropertiesInput {
-  /** Expiration date of the share subscription in UTC format */
-  expirationDate?: string;
-}
-export const ProviderShareSubscriptionPropertiesInput = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      expirationDate: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "ProviderShareSubscriptionPropertiesInput",
-}) as any as S.Schema<ProviderShareSubscriptionPropertiesInput>;
-
-export interface ProviderShareSubscriptionsAdjustRequest {
-  /** The subscription identifier */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The name of the share account. */
-  accountName: string;
-  /** The name of the share. */
-  shareName: string;
-  /** To locate shareSubscription */
-  providerShareSubscriptionId: string;
-  /** properties of providerShareSubscription */
-  properties?: ProviderShareSubscriptionPropertiesInput;
-}
-export const ProviderShareSubscriptionsAdjustRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      shareName: S.String.pipe(T.Label()),
-      providerShareSubscriptionId: S.String.pipe(T.Label()),
-      properties: S.optional(ProviderShareSubscriptionPropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shares/{shareName}/providerShareSubscriptions/{providerShareSubscriptionId}/adjust",
-        code: 200,
-        apiVersion: "2021-08-01",
-      }),
-    ),
-).annotate({
-  identifier: "ProviderShareSubscriptionsAdjustRequest",
-}) as any as S.Schema<ProviderShareSubscriptionsAdjustRequest>;
-
-/** Gets the status of share subscription */
-export type ProviderShareSubscriptionPropertiesShareSubscriptionStatus =
-  | "Active"
-  | "Revoked"
-  | "SourceDeleted"
-  | "Revoking";
-export const ProviderShareSubscriptionPropertiesShareSubscriptionStatus =
-  /*@__PURE__*/ S.String;
-
-/** Provider share subscription properties */
-export interface ProviderShareSubscriptionProperties {
-  /** Email of the consumer who created the share subscription */
-  consumerEmail?: string;
-  /** Name of the consumer who created the share subscription */
-  consumerName?: string;
-  /** Tenant name of the consumer who created the share subscription */
-  consumerTenantName?: string;
-  /** created at */
-  createdAt?: string;
-  /** Expiration date of the share subscription in UTC format */
-  expirationDate?: string;
-  /** Email of the provider who created the share */
-  providerEmail?: string;
-  /** Name of the provider who created the share */
-  providerName?: string;
-  /** Shared at */
-  sharedAt?: string;
-  /** share Subscription Object Id */
-  shareSubscriptionObjectId?: string;
-  /** Gets the status of share subscription */
-  shareSubscriptionStatus?: ProviderShareSubscriptionPropertiesShareSubscriptionStatus;
-}
-export const ProviderShareSubscriptionProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    consumerEmail: S.optional(S.String),
-    consumerName: S.optional(S.String),
-    consumerTenantName: S.optional(S.String),
-    createdAt: S.optional(S.String),
-    expirationDate: S.optional(S.String),
-    providerEmail: S.optional(S.String),
-    providerName: S.optional(S.String),
-    sharedAt: S.optional(S.String),
-    shareSubscriptionObjectId: S.optional(S.String),
-    shareSubscriptionStatus: S.optional(
-      ProviderShareSubscriptionPropertiesShareSubscriptionStatus,
-    ),
-  }),
-).annotate({
-  identifier: "ProviderShareSubscriptionProperties",
-}) as any as S.Schema<ProviderShareSubscriptionProperties>;
-
-export interface ProviderShareSubscriptionsAdjustResponse {
-  /** The resource id of the azure resource */
-  id?: string;
-  /** Name of the azure resource */
-  name?: string;
-  /** System Data of the Azure resource. */
-  systemData?: SystemData;
-  /** Type of the azure resource */
-  type?: string;
-  /** properties of providerShareSubscription */
-  properties?: ProviderShareSubscriptionProperties;
-}
-export const ProviderShareSubscriptionsAdjustResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      type: S.optional(S.String),
-      properties: S.optional(ProviderShareSubscriptionProperties),
-    }),
-).annotate({
-  identifier: "ProviderShareSubscriptionsAdjustResponse",
-}) as any as S.Schema<ProviderShareSubscriptionsAdjustResponse>;
-
-export interface ProviderShareSubscriptionsGetByShareRequest {
-  /** The subscription identifier */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The name of the share account. */
-  accountName: string;
-  /** The name of the share. */
-  shareName: string;
-  /** To locate shareSubscription */
-  providerShareSubscriptionId: string;
-}
-export const ProviderShareSubscriptionsGetByShareRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      shareName: S.String.pipe(T.Label()),
-      providerShareSubscriptionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shares/{shareName}/providerShareSubscriptions/{providerShareSubscriptionId}",
-        code: 200,
-        apiVersion: "2021-08-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ProviderShareSubscriptionsGetByShareRequest",
-  }) as any as S.Schema<ProviderShareSubscriptionsGetByShareRequest>;
-
-export interface ProviderShareSubscriptionsGetByShareResponse {
-  /** The resource id of the azure resource */
-  id?: string;
-  /** Name of the azure resource */
-  name?: string;
-  /** System Data of the Azure resource. */
-  systemData?: SystemData;
-  /** Type of the azure resource */
-  type?: string;
-  /** properties of providerShareSubscription */
-  properties?: ProviderShareSubscriptionProperties;
-}
-export const ProviderShareSubscriptionsGetByShareResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      type: S.optional(S.String),
-      properties: S.optional(ProviderShareSubscriptionProperties),
-    }),
-  ).annotate({
-    identifier: "ProviderShareSubscriptionsGetByShareResponse",
-  }) as any as S.Schema<ProviderShareSubscriptionsGetByShareResponse>;
-
-export interface ProviderShareSubscriptionsListByShareRequest {
+export interface ListProviderShareSubscriptionByShareRequest {
   /** The subscription identifier */
   subscriptionId: string;
   /** The resource group name. */
@@ -2318,7 +2905,7 @@ export interface ProviderShareSubscriptionsListByShareRequest {
   /** Continuation Token */
   _skipToken?: string;
 }
-export const ProviderShareSubscriptionsListByShareRequest =
+export const ListProviderShareSubscriptionByShareRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2335,8 +2922,8 @@ export const ProviderShareSubscriptionsListByShareRequest =
       }),
     ),
   ).annotate({
-    identifier: "ProviderShareSubscriptionsListByShareRequest",
-  }) as any as S.Schema<ProviderShareSubscriptionsListByShareRequest>;
+    identifier: "ListProviderShareSubscriptionByShareRequest",
+  }) as any as S.Schema<ListProviderShareSubscriptionByShareRequest>;
 
 /** A provider side share subscription data transfer object. */
 export interface ProviderShareSubscription {
@@ -2386,326 +2973,7 @@ export const ProviderShareSubscriptionList = /*@__PURE__*/ S.suspend(() =>
   identifier: "ProviderShareSubscriptionList",
 }) as any as S.Schema<ProviderShareSubscriptionList>;
 
-export interface ProviderShareSubscriptionsReinstateRequest {
-  /** The subscription identifier */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The name of the share account. */
-  accountName: string;
-  /** The name of the share. */
-  shareName: string;
-  /** To locate shareSubscription */
-  providerShareSubscriptionId: string;
-  /** properties of providerShareSubscription */
-  properties?: ProviderShareSubscriptionPropertiesInput;
-}
-export const ProviderShareSubscriptionsReinstateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      shareName: S.String.pipe(T.Label()),
-      providerShareSubscriptionId: S.String.pipe(T.Label()),
-      properties: S.optional(ProviderShareSubscriptionPropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shares/{shareName}/providerShareSubscriptions/{providerShareSubscriptionId}/reinstate",
-        code: 200,
-        apiVersion: "2021-08-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ProviderShareSubscriptionsReinstateRequest",
-  }) as any as S.Schema<ProviderShareSubscriptionsReinstateRequest>;
-
-export interface ProviderShareSubscriptionsReinstateResponse {
-  /** The resource id of the azure resource */
-  id?: string;
-  /** Name of the azure resource */
-  name?: string;
-  /** System Data of the Azure resource. */
-  systemData?: SystemData;
-  /** Type of the azure resource */
-  type?: string;
-  /** properties of providerShareSubscription */
-  properties?: ProviderShareSubscriptionProperties;
-}
-export const ProviderShareSubscriptionsReinstateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      type: S.optional(S.String),
-      properties: S.optional(ProviderShareSubscriptionProperties),
-    }),
-  ).annotate({
-    identifier: "ProviderShareSubscriptionsReinstateResponse",
-  }) as any as S.Schema<ProviderShareSubscriptionsReinstateResponse>;
-
-export interface ProviderShareSubscriptionsRevokeRequest {
-  /** The subscription identifier */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The name of the share account. */
-  accountName: string;
-  /** The name of the share. */
-  shareName: string;
-  /** To locate shareSubscription */
-  providerShareSubscriptionId: string;
-}
-export const ProviderShareSubscriptionsRevokeRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      shareName: S.String.pipe(T.Label()),
-      providerShareSubscriptionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shares/{shareName}/providerShareSubscriptions/{providerShareSubscriptionId}/revoke",
-        code: 200,
-        apiVersion: "2021-08-01",
-      }),
-    ),
-).annotate({
-  identifier: "ProviderShareSubscriptionsRevokeRequest",
-}) as any as S.Schema<ProviderShareSubscriptionsRevokeRequest>;
-
-export interface ProviderShareSubscriptionsRevokeResponse {
-  /** The resource id of the azure resource */
-  id?: string;
-  /** Name of the azure resource */
-  name?: string;
-  /** System Data of the Azure resource. */
-  systemData?: SystemData;
-  /** Type of the azure resource */
-  type?: string;
-  /** properties of providerShareSubscription */
-  properties?: ProviderShareSubscriptionProperties;
-}
-export const ProviderShareSubscriptionsRevokeResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      type: S.optional(S.String),
-      properties: S.optional(ProviderShareSubscriptionProperties),
-    }),
-).annotate({
-  identifier: "ProviderShareSubscriptionsRevokeResponse",
-}) as any as S.Schema<ProviderShareSubscriptionsRevokeResponse>;
-
-/** Share kind. */
-export type SharePropertiesInputShareKind = "CopyBased" | "InPlace";
-export const SharePropertiesInputShareKind = /*@__PURE__*/ S.String;
-
-/** Share property bag. */
-export interface SharePropertiesInput {
-  /** Share description. */
-  description?: string;
-  /** Share kind. */
-  shareKind?: SharePropertiesInputShareKind | (string & {});
-  /** Share terms. */
-  terms?: string;
-}
-export const SharePropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    description: S.optional(S.String),
-    shareKind: S.optional(SharePropertiesInputShareKind),
-    terms: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SharePropertiesInput",
-}) as any as S.Schema<SharePropertiesInput>;
-
-export interface SharesCreateRequest {
-  /** The subscription identifier */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The name of the share account. */
-  accountName: string;
-  /** The name of the share. */
-  shareName: string;
-  /** Properties on the share */
-  properties?: SharePropertiesInput;
-}
-export const SharesCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    shareName: S.String.pipe(T.Label()),
-    properties: S.optional(SharePropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shares/{shareName}",
-      code: 200,
-      apiVersion: "2021-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "SharesCreateRequest",
-}) as any as S.Schema<SharesCreateRequest>;
-
-/** Gets or sets the provisioning state */
-export type SharePropertiesProvisioningState =
-  | "Succeeded"
-  | "Creating"
-  | "Deleting"
-  | "Moving"
-  | "Failed";
-export const SharePropertiesProvisioningState = /*@__PURE__*/ S.String;
-
-/** Share kind. */
-export type SharePropertiesShareKind = "CopyBased" | "InPlace";
-export const SharePropertiesShareKind = /*@__PURE__*/ S.String;
-
-/** Share property bag. */
-export interface ShareProperties {
-  /** Time at which the share was created. */
-  createdAt?: string;
-  /** Share description. */
-  description?: string;
-  /** Gets or sets the provisioning state */
-  provisioningState?: SharePropertiesProvisioningState;
-  /** Share kind. */
-  shareKind?: SharePropertiesShareKind;
-  /** Share terms. */
-  terms?: string;
-  /** Email of the user who created the resource */
-  userEmail?: string;
-  /** Name of the user who created the resource */
-  userName?: string;
-}
-export const ShareProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createdAt: S.optional(S.String),
-    description: S.optional(S.String),
-    provisioningState: S.optional(SharePropertiesProvisioningState),
-    shareKind: S.optional(SharePropertiesShareKind),
-    terms: S.optional(S.String),
-    userEmail: S.optional(S.String),
-    userName: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ShareProperties",
-}) as any as S.Schema<ShareProperties>;
-
-export interface SharesCreateResponse {
-  /** The resource id of the azure resource */
-  id?: string;
-  /** Name of the azure resource */
-  name?: string;
-  /** System Data of the Azure resource. */
-  systemData?: SystemData;
-  /** Type of the azure resource */
-  type?: string;
-  /** Properties on the share */
-  properties?: ShareProperties;
-}
-export const SharesCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    type: S.optional(S.String),
-    properties: S.optional(ShareProperties),
-  }),
-).annotate({
-  identifier: "SharesCreateResponse",
-}) as any as S.Schema<SharesCreateResponse>;
-
-export interface SharesDeleteRequest {
-  /** The subscription identifier */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The name of the share account. */
-  accountName: string;
-  /** The name of the share. */
-  shareName: string;
-}
-export const SharesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    shareName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shares/{shareName}",
-      code: 200,
-      apiVersion: "2021-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "SharesDeleteRequest",
-}) as any as S.Schema<SharesDeleteRequest>;
-
-export interface SharesGetRequest {
-  /** The subscription identifier */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The name of the share account. */
-  accountName: string;
-  /** The name of the share to retrieve. */
-  shareName: string;
-}
-export const SharesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    shareName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shares/{shareName}",
-      code: 200,
-      apiVersion: "2021-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "SharesGetRequest",
-}) as any as S.Schema<SharesGetRequest>;
-
-export interface SharesGetResponse {
-  /** The resource id of the azure resource */
-  id?: string;
-  /** Name of the azure resource */
-  name?: string;
-  /** System Data of the Azure resource. */
-  systemData?: SystemData;
-  /** Type of the azure resource */
-  type?: string;
-  /** Properties on the share */
-  properties?: ShareProperties;
-}
-export const SharesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    type: S.optional(S.String),
-    properties: S.optional(ShareProperties),
-  }),
-).annotate({
-  identifier: "SharesGetResponse",
-}) as any as S.Schema<SharesGetResponse>;
-
-export interface SharesListByAccountRequest {
+export interface ListShareByAccountRequest {
   /** The subscription identifier */
   subscriptionId: string;
   /** The resource group name. */
@@ -2719,7 +2987,7 @@ export interface SharesListByAccountRequest {
   /** Sorts the results using OData syntax. */
   _orderby?: string;
 }
-export const SharesListByAccountRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListShareByAccountRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2736,8 +3004,8 @@ export const SharesListByAccountRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "SharesListByAccountRequest",
-}) as any as S.Schema<SharesListByAccountRequest>;
+  identifier: "ListShareByAccountRequest",
+}) as any as S.Schema<ListShareByAccountRequest>;
 
 /** A share data transfer object. */
 export interface Share {
@@ -2782,70 +3050,203 @@ export const ShareList = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "ShareList" }) as any as S.Schema<ShareList>;
 
-export interface SharesListSynchronizationDetailsRequest {
+export interface ListShareSubscriptionByAccountRequest {
   /** The subscription identifier */
   subscriptionId: string;
   /** The resource group name. */
   resourceGroupName: string;
   /** The name of the share account. */
   accountName: string;
-  /** The name of the share. */
-  shareName: string;
+  /** Continuation Token */
+  _skipToken?: string;
+  /** Filters the results using OData syntax. */
+  _filter?: string;
+  /** Sorts the results using OData syntax. */
+  _orderby?: string;
+}
+export const ListShareSubscriptionByAccountRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+      _orderby: S.optional(S.String.pipe(T.Query("$orderby"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shareSubscriptions",
+        code: 200,
+        apiVersion: "2021-08-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListShareSubscriptionByAccountRequest",
+}) as any as S.Schema<ListShareSubscriptionByAccountRequest>;
+
+/** A share subscription data transfer object. */
+export interface ShareSubscription {
+  /** The resource id of the azure resource */
+  id?: string;
+  /** Name of the azure resource */
+  name?: string;
+  /** System Data of the Azure resource. */
+  systemData?: SystemData;
+  /** Type of the azure resource */
+  type?: string;
+  /** Properties on the share subscription */
+  properties: ShareSubscriptionProperties;
+}
+export const ShareSubscription = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    type: S.optional(S.String),
+    properties: ShareSubscriptionProperties,
+  }),
+).annotate({
+  identifier: "ShareSubscription",
+}) as any as S.Schema<ShareSubscription>;
+
+/** Collection of items of type DataTransferObjects. */
+export type ShareSubscriptionListValueList = Array<ShareSubscription>;
+export const ShareSubscriptionListValueList = /*@__PURE__*/ S.Array(
+  ShareSubscription,
+) as any as S.Schema<ShareSubscriptionListValueList>;
+
+/** List response for get ShareSubscription. */
+export interface ShareSubscriptionList {
+  /** The Url of next result page. */
+  nextLink?: string;
+  /** Collection of items of type DataTransferObjects. */
+  value: ShareSubscriptionListValueList;
+}
+export const ShareSubscriptionList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: ShareSubscriptionListValueList,
+  }),
+).annotate({
+  identifier: "ShareSubscriptionList",
+}) as any as S.Schema<ShareSubscriptionList>;
+
+export interface ListShareSubscriptionSourceShareSynchronizationSettingsRequest {
+  /** The subscription identifier */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The name of the share account. */
+  accountName: string;
+  /** The name of the shareSubscription. */
+  shareSubscriptionName: string;
+  /** Continuation token */
+  _skipToken?: string;
+}
+export const ListShareSubscriptionSourceShareSynchronizationSettingsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      shareSubscriptionName: S.String.pipe(T.Label()),
+      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shareSubscriptions/{shareSubscriptionName}/listSourceShareSynchronizationSettings",
+        code: 200,
+        apiVersion: "2021-08-01",
+      }),
+    ),
+  ).annotate({
+    identifier:
+      "ListShareSubscriptionSourceShareSynchronizationSettingsRequest",
+  }) as any as S.Schema<ListShareSubscriptionSourceShareSynchronizationSettingsRequest>;
+
+/** Kind of synchronization setting on share. */
+export type SourceShareSynchronizationSettingKind = "ScheduleBased";
+export const SourceShareSynchronizationSettingKind = /*@__PURE__*/ S.String;
+
+/** A view of synchronization setting added by the provider */
+export interface SourceShareSynchronizationSetting {
+  /** Kind of synchronization setting on share. */
+  kind: SourceShareSynchronizationSettingKind;
+}
+export const SourceShareSynchronizationSetting = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    kind: SourceShareSynchronizationSettingKind,
+  }),
+).annotate({
+  identifier: "SourceShareSynchronizationSetting",
+}) as any as S.Schema<SourceShareSynchronizationSetting>;
+
+/** Collection of items of type DataTransferObjects. */
+export type SourceShareSynchronizationSettingListValueList =
+  Array<SourceShareSynchronizationSetting>;
+export const SourceShareSynchronizationSettingListValueList =
+  /*@__PURE__*/ S.Array(
+    SourceShareSynchronizationSetting,
+  ) as any as S.Schema<SourceShareSynchronizationSettingListValueList>;
+
+/** List response for get source share Synchronization settings */
+export interface SourceShareSynchronizationSettingList {
+  /** The Url of next result page. */
+  nextLink?: string;
+  /** Collection of items of type DataTransferObjects. */
+  value: SourceShareSynchronizationSettingListValueList;
+}
+export const SourceShareSynchronizationSettingList = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      nextLink: S.optional(S.String),
+      value: SourceShareSynchronizationSettingListValueList,
+    }),
+).annotate({
+  identifier: "SourceShareSynchronizationSettingList",
+}) as any as S.Schema<SourceShareSynchronizationSettingList>;
+
+export interface ListShareSubscriptionSynchronizationDetailsRequest {
+  /** The subscription identifier */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The name of the share account. */
+  accountName: string;
+  /** The name of the share subscription. */
+  shareSubscriptionName: string;
   /** Continuation token */
   _skipToken?: string;
   /** Filters the results using OData syntax. */
   _filter?: string;
   /** Sorts the results using OData syntax. */
   _orderby?: string;
-  /** Email of the user who created the synchronization */
-  consumerEmail?: string;
-  /** Name of the user who created the synchronization */
-  consumerName?: string;
-  /** Tenant name of the consumer who created the synchronization */
-  consumerTenantName?: string;
-  /** synchronization duration */
-  durationMs?: number;
-  /** End time of synchronization */
-  endTime?: string;
-  /** message of synchronization */
-  message?: string;
-  /** start time of synchronization */
-  startTime?: string;
-  /** Raw Status */
-  status?: string;
   /** Synchronization id */
-  synchronizationId?: string;
+  synchronizationId: string;
 }
-export const SharesListSynchronizationDetailsRequest = /*@__PURE__*/ S.suspend(
-  () =>
+export const ListShareSubscriptionSynchronizationDetailsRequest =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       accountName: S.String.pipe(T.Label()),
-      shareName: S.String.pipe(T.Label()),
+      shareSubscriptionName: S.String.pipe(T.Label()),
       _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
       _filter: S.optional(S.String.pipe(T.Query("$filter"))),
       _orderby: S.optional(S.String.pipe(T.Query("$orderby"))),
-      consumerEmail: S.optional(S.String),
-      consumerName: S.optional(S.String),
-      consumerTenantName: S.optional(S.String),
-      durationMs: S.optional(S.Number),
-      endTime: S.optional(S.String),
-      message: S.optional(S.String),
-      startTime: S.optional(S.String),
-      status: S.optional(S.String),
-      synchronizationId: S.optional(S.String),
+      synchronizationId: S.String,
     }).pipe(
       T.Http({
         method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shares/{shareName}/listSynchronizationDetails",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shareSubscriptions/{shareSubscriptionName}/listSynchronizationDetails",
         code: 200,
         apiVersion: "2021-08-01",
       }),
     ),
-).annotate({
-  identifier: "SharesListSynchronizationDetailsRequest",
-}) as any as S.Schema<SharesListSynchronizationDetailsRequest>;
+  ).annotate({
+    identifier: "ListShareSubscriptionSynchronizationDetailsRequest",
+  }) as any as S.Schema<ListShareSubscriptionSynchronizationDetailsRequest>;
 
 /** Type of the data set */
 export type SynchronizationDetailsDataSetType =
@@ -2942,7 +3343,135 @@ export const SynchronizationDetailsList = /*@__PURE__*/ S.suspend(() =>
   identifier: "SynchronizationDetailsList",
 }) as any as S.Schema<SynchronizationDetailsList>;
 
-export interface SharesListSynchronizationsRequest {
+export interface ListShareSubscriptionSynchronizationsRequest {
+  /** The subscription identifier */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The name of the share account. */
+  accountName: string;
+  /** The name of the share subscription. */
+  shareSubscriptionName: string;
+  /** Continuation token */
+  _skipToken?: string;
+  /** Filters the results using OData syntax. */
+  _filter?: string;
+  /** Sorts the results using OData syntax. */
+  _orderby?: string;
+}
+export const ListShareSubscriptionSynchronizationsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      shareSubscriptionName: S.String.pipe(T.Label()),
+      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+      _orderby: S.optional(S.String.pipe(T.Query("$orderby"))),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shareSubscriptions/{shareSubscriptionName}/listSynchronizations",
+        code: 200,
+        apiVersion: "2021-08-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListShareSubscriptionSynchronizationsRequest",
+  }) as any as S.Schema<ListShareSubscriptionSynchronizationsRequest>;
+
+/** Collection of items of type DataTransferObjects. */
+export type ShareSubscriptionSynchronizationListValueList =
+  Array<ShareSubscriptionSynchronization>;
+export const ShareSubscriptionSynchronizationListValueList =
+  /*@__PURE__*/ S.Array(
+    ShareSubscriptionSynchronization,
+  ) as any as S.Schema<ShareSubscriptionSynchronizationListValueList>;
+
+/** A consumer side list of share subscription synchronizations */
+export interface ShareSubscriptionSynchronizationList {
+  /** The Url of next result page. */
+  nextLink?: string;
+  /** Collection of items of type DataTransferObjects. */
+  value: ShareSubscriptionSynchronizationListValueList;
+}
+export const ShareSubscriptionSynchronizationList = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      nextLink: S.optional(S.String),
+      value: ShareSubscriptionSynchronizationListValueList,
+    }),
+).annotate({
+  identifier: "ShareSubscriptionSynchronizationList",
+}) as any as S.Schema<ShareSubscriptionSynchronizationList>;
+
+export interface ListShareSynchronizationDetailsRequest {
+  /** The subscription identifier */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The name of the share account. */
+  accountName: string;
+  /** The name of the share. */
+  shareName: string;
+  /** Continuation token */
+  _skipToken?: string;
+  /** Filters the results using OData syntax. */
+  _filter?: string;
+  /** Sorts the results using OData syntax. */
+  _orderby?: string;
+  /** Email of the user who created the synchronization */
+  consumerEmail?: string;
+  /** Name of the user who created the synchronization */
+  consumerName?: string;
+  /** Tenant name of the consumer who created the synchronization */
+  consumerTenantName?: string;
+  /** synchronization duration */
+  durationMs?: number;
+  /** End time of synchronization */
+  endTime?: string;
+  /** message of synchronization */
+  message?: string;
+  /** start time of synchronization */
+  startTime?: string;
+  /** Raw Status */
+  status?: string;
+  /** Synchronization id */
+  synchronizationId?: string;
+}
+export const ListShareSynchronizationDetailsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      shareName: S.String.pipe(T.Label()),
+      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+      _orderby: S.optional(S.String.pipe(T.Query("$orderby"))),
+      consumerEmail: S.optional(S.String),
+      consumerName: S.optional(S.String),
+      consumerTenantName: S.optional(S.String),
+      durationMs: S.optional(S.Number),
+      endTime: S.optional(S.String),
+      message: S.optional(S.String),
+      startTime: S.optional(S.String),
+      status: S.optional(S.String),
+      synchronizationId: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shares/{shareName}/listSynchronizationDetails",
+        code: 200,
+        apiVersion: "2021-08-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListShareSynchronizationDetailsRequest",
+}) as any as S.Schema<ListShareSynchronizationDetailsRequest>;
+
+export interface ListShareSynchronizationsRequest {
   /** The subscription identifier */
   subscriptionId: string;
   /** The resource group name. */
@@ -2958,7 +3487,7 @@ export interface SharesListSynchronizationsRequest {
   /** Sorts the results using OData syntax. */
   _orderby?: string;
 }
-export const SharesListSynchronizationsRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListShareSynchronizationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2976,8 +3505,8 @@ export const SharesListSynchronizationsRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "SharesListSynchronizationsRequest",
-}) as any as S.Schema<SharesListSynchronizationsRequest>;
+  identifier: "ListShareSynchronizationsRequest",
+}) as any as S.Schema<ListShareSynchronizationsRequest>;
 
 /** Synchronization mode */
 export type ShareSynchronizationSynchronizationMode =
@@ -3047,776 +3576,7 @@ export const ShareSynchronizationList = /*@__PURE__*/ S.suspend(() =>
   identifier: "ShareSynchronizationList",
 }) as any as S.Schema<ShareSynchronizationList>;
 
-export interface ShareSubscriptionsCancelSynchronizationRequest {
-  /** The subscription identifier */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The name of the share account. */
-  accountName: string;
-  /** The name of the shareSubscription. */
-  shareSubscriptionName: string;
-  /** Synchronization id */
-  synchronizationId: string;
-}
-export const ShareSubscriptionsCancelSynchronizationRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      shareSubscriptionName: S.String.pipe(T.Label()),
-      synchronizationId: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shareSubscriptions/{shareSubscriptionName}/cancelSynchronization",
-        code: 200,
-        apiVersion: "2021-08-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ShareSubscriptionsCancelSynchronizationRequest",
-  }) as any as S.Schema<ShareSubscriptionsCancelSynchronizationRequest>;
-
-/** Synchronization Mode */
-export type ShareSubscriptionSynchronizationSynchronizationMode =
-  | "Incremental"
-  | "FullSync";
-export const ShareSubscriptionSynchronizationSynchronizationMode =
-  /*@__PURE__*/ S.String;
-
-/** A ShareSubscriptionSynchronization data transfer object. */
-export interface ShareSubscriptionSynchronization {
-  /** Synchronization duration */
-  durationMs?: number;
-  /** End time of synchronization */
-  endTime?: string;
-  /** message of Synchronization */
-  message?: string;
-  /** start time of synchronization */
-  startTime?: string;
-  /** Raw Status */
-  status?: string;
-  /** Synchronization id */
-  synchronizationId: string;
-  /** Synchronization Mode */
-  synchronizationMode?: ShareSubscriptionSynchronizationSynchronizationMode;
-}
-export const ShareSubscriptionSynchronization = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    durationMs: S.optional(S.Number),
-    endTime: S.optional(S.String),
-    message: S.optional(S.String),
-    startTime: S.optional(S.String),
-    status: S.optional(S.String),
-    synchronizationId: S.String,
-    synchronizationMode: S.optional(
-      ShareSubscriptionSynchronizationSynchronizationMode,
-    ),
-  }),
-).annotate({
-  identifier: "ShareSubscriptionSynchronization",
-}) as any as S.Schema<ShareSubscriptionSynchronization>;
-
-/** Share subscription property bag. */
-export interface ShareSubscriptionPropertiesInput {
-  /** The expiration date of the share subscription. */
-  expirationDate?: string;
-  /** The invitation id. */
-  invitationId: string;
-  /** Source share location. */
-  sourceShareLocation: string;
-}
-export const ShareSubscriptionPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    expirationDate: S.optional(S.String),
-    invitationId: S.String,
-    sourceShareLocation: S.String,
-  }),
-).annotate({
-  identifier: "ShareSubscriptionPropertiesInput",
-}) as any as S.Schema<ShareSubscriptionPropertiesInput>;
-
-export interface ShareSubscriptionsCreateRequest {
-  /** The subscription identifier */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The name of the share account. */
-  accountName: string;
-  /** The name of the shareSubscription. */
-  shareSubscriptionName: string;
-  /** Properties on the share subscription */
-  properties: ShareSubscriptionPropertiesInput;
-}
-export const ShareSubscriptionsCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    shareSubscriptionName: S.String.pipe(T.Label()),
-    properties: ShareSubscriptionPropertiesInput,
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shareSubscriptions/{shareSubscriptionName}",
-      code: 200,
-      apiVersion: "2021-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "ShareSubscriptionsCreateRequest",
-}) as any as S.Schema<ShareSubscriptionsCreateRequest>;
-
-/** Provisioning state of the share subscription */
-export type ShareSubscriptionPropertiesProvisioningState =
-  | "Succeeded"
-  | "Creating"
-  | "Deleting"
-  | "Moving"
-  | "Failed";
-export const ShareSubscriptionPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
-
-/** Kind of share */
-export type ShareSubscriptionPropertiesShareKind = "CopyBased" | "InPlace";
-export const ShareSubscriptionPropertiesShareKind = /*@__PURE__*/ S.String;
-
-/** Gets the current status of share subscription. */
-export type ShareSubscriptionPropertiesShareSubscriptionStatus =
-  | "Active"
-  | "Revoked"
-  | "SourceDeleted"
-  | "Revoking";
-export const ShareSubscriptionPropertiesShareSubscriptionStatus =
-  /*@__PURE__*/ S.String;
-
-/** Share subscription property bag. */
-export interface ShareSubscriptionProperties {
-  /** Time at which the share subscription was created. */
-  createdAt?: string;
-  /** The expiration date of the share subscription. */
-  expirationDate?: string;
-  /** The invitation id. */
-  invitationId: string;
-  /** Email of the provider who created the resource */
-  providerEmail?: string;
-  /** Name of the provider who created the resource */
-  providerName?: string;
-  /** Tenant name of the provider who created the resource */
-  providerTenantName?: string;
-  /** Provisioning state of the share subscription */
-  provisioningState?: ShareSubscriptionPropertiesProvisioningState;
-  /** Description of share */
-  shareDescription?: string;
-  /** Kind of share */
-  shareKind?: ShareSubscriptionPropertiesShareKind;
-  /** Name of the share */
-  shareName?: string;
-  /** Gets the current status of share subscription. */
-  shareSubscriptionStatus?: ShareSubscriptionPropertiesShareSubscriptionStatus;
-  /** Terms of a share */
-  shareTerms?: string;
-  /** Source share location. */
-  sourceShareLocation: string;
-  /** Email of the user who created the resource */
-  userEmail?: string;
-  /** Name of the user who created the resource */
-  userName?: string;
-}
-export const ShareSubscriptionProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createdAt: S.optional(S.String),
-    expirationDate: S.optional(S.String),
-    invitationId: S.String,
-    providerEmail: S.optional(S.String),
-    providerName: S.optional(S.String),
-    providerTenantName: S.optional(S.String),
-    provisioningState: S.optional(ShareSubscriptionPropertiesProvisioningState),
-    shareDescription: S.optional(S.String),
-    shareKind: S.optional(ShareSubscriptionPropertiesShareKind),
-    shareName: S.optional(S.String),
-    shareSubscriptionStatus: S.optional(
-      ShareSubscriptionPropertiesShareSubscriptionStatus,
-    ),
-    shareTerms: S.optional(S.String),
-    sourceShareLocation: S.String,
-    userEmail: S.optional(S.String),
-    userName: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ShareSubscriptionProperties",
-}) as any as S.Schema<ShareSubscriptionProperties>;
-
-export interface ShareSubscriptionsCreateResponse {
-  /** The resource id of the azure resource */
-  id?: string;
-  /** Name of the azure resource */
-  name?: string;
-  /** System Data of the Azure resource. */
-  systemData?: SystemData;
-  /** Type of the azure resource */
-  type?: string;
-  /** Properties on the share subscription */
-  properties: ShareSubscriptionProperties;
-}
-export const ShareSubscriptionsCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    type: S.optional(S.String),
-    properties: ShareSubscriptionProperties,
-  }),
-).annotate({
-  identifier: "ShareSubscriptionsCreateResponse",
-}) as any as S.Schema<ShareSubscriptionsCreateResponse>;
-
-export interface ShareSubscriptionsDeleteRequest {
-  /** The subscription identifier */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The name of the share account. */
-  accountName: string;
-  /** The name of the shareSubscription. */
-  shareSubscriptionName: string;
-}
-export const ShareSubscriptionsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    shareSubscriptionName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shareSubscriptions/{shareSubscriptionName}",
-      code: 200,
-      apiVersion: "2021-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "ShareSubscriptionsDeleteRequest",
-}) as any as S.Schema<ShareSubscriptionsDeleteRequest>;
-
-export interface ShareSubscriptionsGetRequest {
-  /** The subscription identifier */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The name of the share account. */
-  accountName: string;
-  /** The name of the shareSubscription. */
-  shareSubscriptionName: string;
-}
-export const ShareSubscriptionsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    shareSubscriptionName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shareSubscriptions/{shareSubscriptionName}",
-      code: 200,
-      apiVersion: "2021-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "ShareSubscriptionsGetRequest",
-}) as any as S.Schema<ShareSubscriptionsGetRequest>;
-
-export interface ShareSubscriptionsGetResponse {
-  /** The resource id of the azure resource */
-  id?: string;
-  /** Name of the azure resource */
-  name?: string;
-  /** System Data of the Azure resource. */
-  systemData?: SystemData;
-  /** Type of the azure resource */
-  type?: string;
-  /** Properties on the share subscription */
-  properties: ShareSubscriptionProperties;
-}
-export const ShareSubscriptionsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    type: S.optional(S.String),
-    properties: ShareSubscriptionProperties,
-  }),
-).annotate({
-  identifier: "ShareSubscriptionsGetResponse",
-}) as any as S.Schema<ShareSubscriptionsGetResponse>;
-
-export interface ShareSubscriptionsListByAccountRequest {
-  /** The subscription identifier */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The name of the share account. */
-  accountName: string;
-  /** Continuation Token */
-  _skipToken?: string;
-  /** Filters the results using OData syntax. */
-  _filter?: string;
-  /** Sorts the results using OData syntax. */
-  _orderby?: string;
-}
-export const ShareSubscriptionsListByAccountRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-      _orderby: S.optional(S.String.pipe(T.Query("$orderby"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shareSubscriptions",
-        code: 200,
-        apiVersion: "2021-08-01",
-      }),
-    ),
-).annotate({
-  identifier: "ShareSubscriptionsListByAccountRequest",
-}) as any as S.Schema<ShareSubscriptionsListByAccountRequest>;
-
-/** A share subscription data transfer object. */
-export interface ShareSubscription {
-  /** The resource id of the azure resource */
-  id?: string;
-  /** Name of the azure resource */
-  name?: string;
-  /** System Data of the Azure resource. */
-  systemData?: SystemData;
-  /** Type of the azure resource */
-  type?: string;
-  /** Properties on the share subscription */
-  properties: ShareSubscriptionProperties;
-}
-export const ShareSubscription = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    type: S.optional(S.String),
-    properties: ShareSubscriptionProperties,
-  }),
-).annotate({
-  identifier: "ShareSubscription",
-}) as any as S.Schema<ShareSubscription>;
-
-/** Collection of items of type DataTransferObjects. */
-export type ShareSubscriptionListValueList = Array<ShareSubscription>;
-export const ShareSubscriptionListValueList = /*@__PURE__*/ S.Array(
-  ShareSubscription,
-) as any as S.Schema<ShareSubscriptionListValueList>;
-
-/** List response for get ShareSubscription. */
-export interface ShareSubscriptionList {
-  /** The Url of next result page. */
-  nextLink?: string;
-  /** Collection of items of type DataTransferObjects. */
-  value: ShareSubscriptionListValueList;
-}
-export const ShareSubscriptionList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: ShareSubscriptionListValueList,
-  }),
-).annotate({
-  identifier: "ShareSubscriptionList",
-}) as any as S.Schema<ShareSubscriptionList>;
-
-export interface ShareSubscriptionsListSourceShareSynchronizationSettingsRequest {
-  /** The subscription identifier */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The name of the share account. */
-  accountName: string;
-  /** The name of the shareSubscription. */
-  shareSubscriptionName: string;
-  /** Continuation token */
-  _skipToken?: string;
-}
-export const ShareSubscriptionsListSourceShareSynchronizationSettingsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      shareSubscriptionName: S.String.pipe(T.Label()),
-      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shareSubscriptions/{shareSubscriptionName}/listSourceShareSynchronizationSettings",
-        code: 200,
-        apiVersion: "2021-08-01",
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "ShareSubscriptionsListSourceShareSynchronizationSettingsRequest",
-  }) as any as S.Schema<ShareSubscriptionsListSourceShareSynchronizationSettingsRequest>;
-
-/** Kind of synchronization setting on share. */
-export type SourceShareSynchronizationSettingKind = "ScheduleBased";
-export const SourceShareSynchronizationSettingKind = /*@__PURE__*/ S.String;
-
-/** A view of synchronization setting added by the provider */
-export interface SourceShareSynchronizationSetting {
-  /** Kind of synchronization setting on share. */
-  kind: SourceShareSynchronizationSettingKind;
-}
-export const SourceShareSynchronizationSetting = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    kind: SourceShareSynchronizationSettingKind,
-  }),
-).annotate({
-  identifier: "SourceShareSynchronizationSetting",
-}) as any as S.Schema<SourceShareSynchronizationSetting>;
-
-/** Collection of items of type DataTransferObjects. */
-export type SourceShareSynchronizationSettingListValueList =
-  Array<SourceShareSynchronizationSetting>;
-export const SourceShareSynchronizationSettingListValueList =
-  /*@__PURE__*/ S.Array(
-    SourceShareSynchronizationSetting,
-  ) as any as S.Schema<SourceShareSynchronizationSettingListValueList>;
-
-/** List response for get source share Synchronization settings */
-export interface SourceShareSynchronizationSettingList {
-  /** The Url of next result page. */
-  nextLink?: string;
-  /** Collection of items of type DataTransferObjects. */
-  value: SourceShareSynchronizationSettingListValueList;
-}
-export const SourceShareSynchronizationSettingList = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      nextLink: S.optional(S.String),
-      value: SourceShareSynchronizationSettingListValueList,
-    }),
-).annotate({
-  identifier: "SourceShareSynchronizationSettingList",
-}) as any as S.Schema<SourceShareSynchronizationSettingList>;
-
-export interface ShareSubscriptionsListSynchronizationDetailsRequest {
-  /** The subscription identifier */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The name of the share account. */
-  accountName: string;
-  /** The name of the share subscription. */
-  shareSubscriptionName: string;
-  /** Continuation token */
-  _skipToken?: string;
-  /** Filters the results using OData syntax. */
-  _filter?: string;
-  /** Sorts the results using OData syntax. */
-  _orderby?: string;
-  /** Synchronization id */
-  synchronizationId: string;
-}
-export const ShareSubscriptionsListSynchronizationDetailsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      shareSubscriptionName: S.String.pipe(T.Label()),
-      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-      _orderby: S.optional(S.String.pipe(T.Query("$orderby"))),
-      synchronizationId: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shareSubscriptions/{shareSubscriptionName}/listSynchronizationDetails",
-        code: 200,
-        apiVersion: "2021-08-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ShareSubscriptionsListSynchronizationDetailsRequest",
-  }) as any as S.Schema<ShareSubscriptionsListSynchronizationDetailsRequest>;
-
-export interface ShareSubscriptionsListSynchronizationsRequest {
-  /** The subscription identifier */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The name of the share account. */
-  accountName: string;
-  /** The name of the share subscription. */
-  shareSubscriptionName: string;
-  /** Continuation token */
-  _skipToken?: string;
-  /** Filters the results using OData syntax. */
-  _filter?: string;
-  /** Sorts the results using OData syntax. */
-  _orderby?: string;
-}
-export const ShareSubscriptionsListSynchronizationsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      shareSubscriptionName: S.String.pipe(T.Label()),
-      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-      _orderby: S.optional(S.String.pipe(T.Query("$orderby"))),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shareSubscriptions/{shareSubscriptionName}/listSynchronizations",
-        code: 200,
-        apiVersion: "2021-08-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ShareSubscriptionsListSynchronizationsRequest",
-  }) as any as S.Schema<ShareSubscriptionsListSynchronizationsRequest>;
-
-/** Collection of items of type DataTransferObjects. */
-export type ShareSubscriptionSynchronizationListValueList =
-  Array<ShareSubscriptionSynchronization>;
-export const ShareSubscriptionSynchronizationListValueList =
-  /*@__PURE__*/ S.Array(
-    ShareSubscriptionSynchronization,
-  ) as any as S.Schema<ShareSubscriptionSynchronizationListValueList>;
-
-/** A consumer side list of share subscription synchronizations */
-export interface ShareSubscriptionSynchronizationList {
-  /** The Url of next result page. */
-  nextLink?: string;
-  /** Collection of items of type DataTransferObjects. */
-  value: ShareSubscriptionSynchronizationListValueList;
-}
-export const ShareSubscriptionSynchronizationList = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      nextLink: S.optional(S.String),
-      value: ShareSubscriptionSynchronizationListValueList,
-    }),
-).annotate({
-  identifier: "ShareSubscriptionSynchronizationList",
-}) as any as S.Schema<ShareSubscriptionSynchronizationList>;
-
-/** Mode of synchronization used in triggers and snapshot sync. Incremental by default */
-export type ShareSubscriptionsSynchronizeRequestSynchronizationMode =
-  | "Incremental"
-  | "FullSync";
-export const ShareSubscriptionsSynchronizeRequestSynchronizationMode =
-  /*@__PURE__*/ S.String;
-
-export interface ShareSubscriptionsSynchronizeRequest {
-  /** The subscription identifier */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The name of the share account. */
-  accountName: string;
-  /** The name of share subscription */
-  shareSubscriptionName: string;
-  /** Mode of synchronization used in triggers and snapshot sync. Incremental by default */
-  synchronizationMode?:
-    | ShareSubscriptionsSynchronizeRequestSynchronizationMode
-    | (string & {});
-}
-export const ShareSubscriptionsSynchronizeRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      shareSubscriptionName: S.String.pipe(T.Label()),
-      synchronizationMode: S.optional(
-        ShareSubscriptionsSynchronizeRequestSynchronizationMode,
-      ),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shareSubscriptions/{shareSubscriptionName}/synchronize",
-        code: 200,
-        apiVersion: "2021-08-01",
-      }),
-    ),
-).annotate({
-  identifier: "ShareSubscriptionsSynchronizeRequest",
-}) as any as S.Schema<ShareSubscriptionsSynchronizeRequest>;
-
-/** Kind of synchronization setting. */
-export type SynchronizationSettingsCreateRequestKind = "ScheduleBased";
-export const SynchronizationSettingsCreateRequestKind = /*@__PURE__*/ S.String;
-
-export interface SynchronizationSettingsCreateRequest {
-  /** The subscription identifier */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The name of the share account. */
-  accountName: string;
-  /** The name of the share to add the synchronization setting to. */
-  shareName: string;
-  /** The name of the synchronizationSetting. */
-  synchronizationSettingName: string;
-  /** Kind of synchronization setting. */
-  kind: SynchronizationSettingsCreateRequestKind | (string & {});
-}
-export const SynchronizationSettingsCreateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      shareName: S.String.pipe(T.Label()),
-      synchronizationSettingName: S.String.pipe(T.Label()),
-      kind: SynchronizationSettingsCreateRequestKind,
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shares/{shareName}/synchronizationSettings/{synchronizationSettingName}",
-        code: 200,
-        apiVersion: "2021-08-01",
-      }),
-    ),
-).annotate({
-  identifier: "SynchronizationSettingsCreateRequest",
-}) as any as S.Schema<SynchronizationSettingsCreateRequest>;
-
-/** Kind of synchronization setting. */
-export type SynchronizationSettingsCreateResponseKind = "ScheduleBased";
-export const SynchronizationSettingsCreateResponseKind = /*@__PURE__*/ S.String;
-
-export interface SynchronizationSettingsCreateResponse {
-  /** The resource id of the azure resource */
-  id?: string;
-  /** Name of the azure resource */
-  name?: string;
-  /** System Data of the Azure resource. */
-  systemData?: SystemData;
-  /** Type of the azure resource */
-  type?: string;
-  /** Kind of synchronization setting. */
-  kind: SynchronizationSettingsCreateResponseKind;
-}
-export const SynchronizationSettingsCreateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      type: S.optional(S.String),
-      kind: SynchronizationSettingsCreateResponseKind,
-    }),
-).annotate({
-  identifier: "SynchronizationSettingsCreateResponse",
-}) as any as S.Schema<SynchronizationSettingsCreateResponse>;
-
-export interface SynchronizationSettingsDeleteRequest {
-  /** The subscription identifier */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The name of the share account. */
-  accountName: string;
-  /** The name of the share. */
-  shareName: string;
-  /** The name of the synchronizationSetting . */
-  synchronizationSettingName: string;
-}
-export const SynchronizationSettingsDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      shareName: S.String.pipe(T.Label()),
-      synchronizationSettingName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shares/{shareName}/synchronizationSettings/{synchronizationSettingName}",
-        code: 200,
-        apiVersion: "2021-08-01",
-      }),
-    ),
-).annotate({
-  identifier: "SynchronizationSettingsDeleteRequest",
-}) as any as S.Schema<SynchronizationSettingsDeleteRequest>;
-
-export interface SynchronizationSettingsGetRequest {
-  /** The subscription identifier */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The name of the share account. */
-  accountName: string;
-  /** The name of the share. */
-  shareName: string;
-  /** The name of the synchronizationSetting. */
-  synchronizationSettingName: string;
-}
-export const SynchronizationSettingsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    shareName: S.String.pipe(T.Label()),
-    synchronizationSettingName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shares/{shareName}/synchronizationSettings/{synchronizationSettingName}",
-      code: 200,
-      apiVersion: "2021-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "SynchronizationSettingsGetRequest",
-}) as any as S.Schema<SynchronizationSettingsGetRequest>;
-
-/** Kind of synchronization setting. */
-export type SynchronizationSettingsGetResponseKind = "ScheduleBased";
-export const SynchronizationSettingsGetResponseKind = /*@__PURE__*/ S.String;
-
-export interface SynchronizationSettingsGetResponse {
-  /** The resource id of the azure resource */
-  id?: string;
-  /** Name of the azure resource */
-  name?: string;
-  /** System Data of the Azure resource. */
-  systemData?: SystemData;
-  /** Type of the azure resource */
-  type?: string;
-  /** Kind of synchronization setting. */
-  kind: SynchronizationSettingsGetResponseKind;
-}
-export const SynchronizationSettingsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    type: S.optional(S.String),
-    kind: SynchronizationSettingsGetResponseKind,
-  }),
-).annotate({
-  identifier: "SynchronizationSettingsGetResponse",
-}) as any as S.Schema<SynchronizationSettingsGetResponse>;
-
-export interface SynchronizationSettingsListByShareRequest {
+export interface ListSynchronizationSettingsByShareRequest {
   /** The subscription identifier */
   subscriptionId: string;
   /** The resource group name. */
@@ -3828,7 +3588,7 @@ export interface SynchronizationSettingsListByShareRequest {
   /** continuation token */
   _skipToken?: string;
 }
-export const SynchronizationSettingsListByShareRequest =
+export const ListSynchronizationSettingsByShareRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -3845,8 +3605,8 @@ export const SynchronizationSettingsListByShareRequest =
       }),
     ),
   ).annotate({
-    identifier: "SynchronizationSettingsListByShareRequest",
-  }) as any as S.Schema<SynchronizationSettingsListByShareRequest>;
+    identifier: "ListSynchronizationSettingsByShareRequest",
+  }) as any as S.Schema<ListSynchronizationSettingsByShareRequest>;
 
 /** Kind of synchronization setting. */
 export type SynchronizationSettingKind = "ScheduleBased";
@@ -3899,163 +3659,7 @@ export const SynchronizationSettingList = /*@__PURE__*/ S.suspend(() =>
   identifier: "SynchronizationSettingList",
 }) as any as S.Schema<SynchronizationSettingList>;
 
-/** Kind of synchronization on trigger. */
-export type TriggersCreateRequestKind = "ScheduleBased";
-export const TriggersCreateRequestKind = /*@__PURE__*/ S.String;
-
-export interface TriggersCreateRequest {
-  /** The subscription identifier */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The name of the share account. */
-  accountName: string;
-  /** The name of the share subscription which will hold the data set sink. */
-  shareSubscriptionName: string;
-  /** The name of the trigger. */
-  triggerName: string;
-  /** Kind of synchronization on trigger. */
-  kind: TriggersCreateRequestKind | (string & {});
-}
-export const TriggersCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    shareSubscriptionName: S.String.pipe(T.Label()),
-    triggerName: S.String.pipe(T.Label()),
-    kind: TriggersCreateRequestKind,
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shareSubscriptions/{shareSubscriptionName}/triggers/{triggerName}",
-      code: 200,
-      apiVersion: "2021-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "TriggersCreateRequest",
-}) as any as S.Schema<TriggersCreateRequest>;
-
-/** Kind of synchronization on trigger. */
-export type TriggersCreateResponseKind = "ScheduleBased";
-export const TriggersCreateResponseKind = /*@__PURE__*/ S.String;
-
-export interface TriggersCreateResponse {
-  /** The resource id of the azure resource */
-  id?: string;
-  /** Name of the azure resource */
-  name?: string;
-  /** System Data of the Azure resource. */
-  systemData?: SystemData;
-  /** Type of the azure resource */
-  type?: string;
-  /** Kind of synchronization on trigger. */
-  kind: TriggersCreateResponseKind;
-}
-export const TriggersCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    type: S.optional(S.String),
-    kind: TriggersCreateResponseKind,
-  }),
-).annotate({
-  identifier: "TriggersCreateResponse",
-}) as any as S.Schema<TriggersCreateResponse>;
-
-export interface TriggersDeleteRequest {
-  /** The subscription identifier */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The name of the share account. */
-  accountName: string;
-  /** The name of the shareSubscription. */
-  shareSubscriptionName: string;
-  /** The name of the trigger. */
-  triggerName: string;
-}
-export const TriggersDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    shareSubscriptionName: S.String.pipe(T.Label()),
-    triggerName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shareSubscriptions/{shareSubscriptionName}/triggers/{triggerName}",
-      code: 200,
-      apiVersion: "2021-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "TriggersDeleteRequest",
-}) as any as S.Schema<TriggersDeleteRequest>;
-
-export interface TriggersGetRequest {
-  /** The subscription identifier */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The name of the share account. */
-  accountName: string;
-  /** The name of the shareSubscription. */
-  shareSubscriptionName: string;
-  /** The name of the trigger. */
-  triggerName: string;
-}
-export const TriggersGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    shareSubscriptionName: S.String.pipe(T.Label()),
-    triggerName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shareSubscriptions/{shareSubscriptionName}/triggers/{triggerName}",
-      code: 200,
-      apiVersion: "2021-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "TriggersGetRequest",
-}) as any as S.Schema<TriggersGetRequest>;
-
-/** Kind of synchronization on trigger. */
-export type TriggersGetResponseKind = "ScheduleBased";
-export const TriggersGetResponseKind = /*@__PURE__*/ S.String;
-
-export interface TriggersGetResponse {
-  /** The resource id of the azure resource */
-  id?: string;
-  /** Name of the azure resource */
-  name?: string;
-  /** System Data of the Azure resource. */
-  systemData?: SystemData;
-  /** Type of the azure resource */
-  type?: string;
-  /** Kind of synchronization on trigger. */
-  kind: TriggersGetResponseKind;
-}
-export const TriggersGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    type: S.optional(S.String),
-    kind: TriggersGetResponseKind,
-  }),
-).annotate({
-  identifier: "TriggersGetResponse",
-}) as any as S.Schema<TriggersGetResponse>;
-
-export interface TriggersListByShareSubscriptionRequest {
+export interface ListTriggerByShareSubscriptionRequest {
   /** The subscription identifier */
   subscriptionId: string;
   /** The resource group name. */
@@ -4067,7 +3671,7 @@ export interface TriggersListByShareSubscriptionRequest {
   /** Continuation token */
   _skipToken?: string;
 }
-export const TriggersListByShareSubscriptionRequest = /*@__PURE__*/ S.suspend(
+export const ListTriggerByShareSubscriptionRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -4084,8 +3688,8 @@ export const TriggersListByShareSubscriptionRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "TriggersListByShareSubscriptionRequest",
-}) as any as S.Schema<TriggersListByShareSubscriptionRequest>;
+  identifier: "ListTriggerByShareSubscriptionRequest",
+}) as any as S.Schema<ListTriggerByShareSubscriptionRequest>;
 
 /** Kind of synchronization on trigger. */
 export type TriggerKind = "ScheduleBased";
@@ -4134,376 +3738,1084 @@ export const TriggerList = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "TriggerList" }) as any as S.Schema<TriggerList>;
 
-export type AccountsCreateError = AzureOpError;
-/** Create an account in the given resource group Create an account */
-export const AccountsCreate: API.OperationMethod<
-  AccountsCreateRequest,
-  AccountsCreateResponse,
-  AccountsCreateError,
+/** Provider share subscription properties */
+export interface ProviderShareSubscriptionPropertiesInput {
+  /** Expiration date of the share subscription in UTC format */
+  expirationDate?: string;
+}
+export const ProviderShareSubscriptionPropertiesInput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      expirationDate: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "ProviderShareSubscriptionPropertiesInput",
+}) as any as S.Schema<ProviderShareSubscriptionPropertiesInput>;
+
+export interface ProviderShareSubscriptionsAdjustRequest {
+  /** The subscription identifier */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The name of the share account. */
+  accountName: string;
+  /** The name of the share. */
+  shareName: string;
+  /** To locate shareSubscription */
+  providerShareSubscriptionId: string;
+  /** properties of providerShareSubscription */
+  properties?: ProviderShareSubscriptionPropertiesInput;
+}
+export const ProviderShareSubscriptionsAdjustRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      shareName: S.String.pipe(T.Label()),
+      providerShareSubscriptionId: S.String.pipe(T.Label()),
+      properties: S.optional(ProviderShareSubscriptionPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shares/{shareName}/providerShareSubscriptions/{providerShareSubscriptionId}/adjust",
+        code: 200,
+        apiVersion: "2021-08-01",
+      }),
+    ),
+).annotate({
+  identifier: "ProviderShareSubscriptionsAdjustRequest",
+}) as any as S.Schema<ProviderShareSubscriptionsAdjustRequest>;
+
+export interface ProviderShareSubscriptionsAdjustResponse {
+  /** The resource id of the azure resource */
+  id?: string;
+  /** Name of the azure resource */
+  name?: string;
+  /** System Data of the Azure resource. */
+  systemData?: SystemData;
+  /** Type of the azure resource */
+  type?: string;
+  /** properties of providerShareSubscription */
+  properties?: ProviderShareSubscriptionProperties;
+}
+export const ProviderShareSubscriptionsAdjustResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      type: S.optional(S.String),
+      properties: S.optional(ProviderShareSubscriptionProperties),
+    }),
+).annotate({
+  identifier: "ProviderShareSubscriptionsAdjustResponse",
+}) as any as S.Schema<ProviderShareSubscriptionsAdjustResponse>;
+
+export interface ProviderShareSubscriptionsReinstateRequest {
+  /** The subscription identifier */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The name of the share account. */
+  accountName: string;
+  /** The name of the share. */
+  shareName: string;
+  /** To locate shareSubscription */
+  providerShareSubscriptionId: string;
+  /** properties of providerShareSubscription */
+  properties?: ProviderShareSubscriptionPropertiesInput;
+}
+export const ProviderShareSubscriptionsReinstateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      shareName: S.String.pipe(T.Label()),
+      providerShareSubscriptionId: S.String.pipe(T.Label()),
+      properties: S.optional(ProviderShareSubscriptionPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shares/{shareName}/providerShareSubscriptions/{providerShareSubscriptionId}/reinstate",
+        code: 200,
+        apiVersion: "2021-08-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ProviderShareSubscriptionsReinstateRequest",
+  }) as any as S.Schema<ProviderShareSubscriptionsReinstateRequest>;
+
+export interface ProviderShareSubscriptionsReinstateResponse {
+  /** The resource id of the azure resource */
+  id?: string;
+  /** Name of the azure resource */
+  name?: string;
+  /** System Data of the Azure resource. */
+  systemData?: SystemData;
+  /** Type of the azure resource */
+  type?: string;
+  /** properties of providerShareSubscription */
+  properties?: ProviderShareSubscriptionProperties;
+}
+export const ProviderShareSubscriptionsReinstateResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      type: S.optional(S.String),
+      properties: S.optional(ProviderShareSubscriptionProperties),
+    }),
+  ).annotate({
+    identifier: "ProviderShareSubscriptionsReinstateResponse",
+  }) as any as S.Schema<ProviderShareSubscriptionsReinstateResponse>;
+
+export interface RegisterEmailRegistrationEmailRequest {
+  /** Location of the registration */
+  location: string;
+}
+export const RegisterEmailRegistrationEmailRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      location: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/providers/Microsoft.DataShare/locations/{location}/registerEmail",
+        code: 200,
+        apiVersion: "2021-08-01",
+      }),
+    ),
+).annotate({
+  identifier: "RegisterEmailRegistrationEmailRequest",
+}) as any as S.Schema<RegisterEmailRegistrationEmailRequest>;
+
+/** Properties of consumer invitation */
+export interface ConsumerInvitationPropertiesInput {
+  /** Unique id of the invitation. */
+  invitationId: string;
+}
+export const ConsumerInvitationPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    invitationId: S.String,
+  }),
+).annotate({
+  identifier: "ConsumerInvitationPropertiesInput",
+}) as any as S.Schema<ConsumerInvitationPropertiesInput>;
+
+export interface RejectConsumerInvitationInvitationRequest {
+  /** Location of the invitation */
+  location: string;
+  /** Properties on the account */
+  properties: ConsumerInvitationPropertiesInput;
+}
+export const RejectConsumerInvitationInvitationRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      location: S.String.pipe(T.Label()),
+      properties: ConsumerInvitationPropertiesInput,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/providers/Microsoft.DataShare/locations/{location}/rejectInvitation",
+        code: 200,
+        apiVersion: "2021-08-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "RejectConsumerInvitationInvitationRequest",
+  }) as any as S.Schema<RejectConsumerInvitationInvitationRequest>;
+
+export interface RejectConsumerInvitationInvitationResponse {
+  /** The resource id of the azure resource */
+  id?: string;
+  /** Name of the azure resource */
+  name?: string;
+  /** System Data of the Azure resource. */
+  systemData?: SystemData;
+  /** Type of the azure resource */
+  type?: string;
+  /** Properties on the account */
+  properties: ConsumerInvitationProperties;
+}
+export const RejectConsumerInvitationInvitationResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      type: S.optional(S.String),
+      properties: ConsumerInvitationProperties,
+    }),
+  ).annotate({
+    identifier: "RejectConsumerInvitationInvitationResponse",
+  }) as any as S.Schema<RejectConsumerInvitationInvitationResponse>;
+
+export interface RevokeProviderShareSubscriptionRequest {
+  /** The subscription identifier */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The name of the share account. */
+  accountName: string;
+  /** The name of the share. */
+  shareName: string;
+  /** To locate shareSubscription */
+  providerShareSubscriptionId: string;
+}
+export const RevokeProviderShareSubscriptionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      shareName: S.String.pipe(T.Label()),
+      providerShareSubscriptionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shares/{shareName}/providerShareSubscriptions/{providerShareSubscriptionId}/revoke",
+        code: 200,
+        apiVersion: "2021-08-01",
+      }),
+    ),
+).annotate({
+  identifier: "RevokeProviderShareSubscriptionRequest",
+}) as any as S.Schema<RevokeProviderShareSubscriptionRequest>;
+
+export interface RevokeProviderShareSubscriptionResponse {
+  /** The resource id of the azure resource */
+  id?: string;
+  /** Name of the azure resource */
+  name?: string;
+  /** System Data of the Azure resource. */
+  systemData?: SystemData;
+  /** Type of the azure resource */
+  type?: string;
+  /** properties of providerShareSubscription */
+  properties?: ProviderShareSubscriptionProperties;
+}
+export const RevokeProviderShareSubscriptionResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      type: S.optional(S.String),
+      properties: S.optional(ProviderShareSubscriptionProperties),
+    }),
+).annotate({
+  identifier: "RevokeProviderShareSubscriptionResponse",
+}) as any as S.Schema<RevokeProviderShareSubscriptionResponse>;
+
+/** Mode of synchronization used in triggers and snapshot sync. Incremental by default */
+export type ShareSubscriptionsSynchronizeRequestSynchronizationMode =
+  | "Incremental"
+  | "FullSync";
+export const ShareSubscriptionsSynchronizeRequestSynchronizationMode =
+  /*@__PURE__*/ S.String;
+
+export interface ShareSubscriptionsSynchronizeRequest {
+  /** The subscription identifier */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The name of the share account. */
+  accountName: string;
+  /** The name of share subscription */
+  shareSubscriptionName: string;
+  /** Mode of synchronization used in triggers and snapshot sync. Incremental by default */
+  synchronizationMode?:
+    | ShareSubscriptionsSynchronizeRequestSynchronizationMode
+    | (string & {});
+}
+export const ShareSubscriptionsSynchronizeRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      shareSubscriptionName: S.String.pipe(T.Label()),
+      synchronizationMode: S.optional(
+        ShareSubscriptionsSynchronizeRequestSynchronizationMode,
+      ),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}/shareSubscriptions/{shareSubscriptionName}/synchronize",
+        code: 200,
+        apiVersion: "2021-08-01",
+      }),
+    ),
+).annotate({
+  identifier: "ShareSubscriptionsSynchronizeRequest",
+}) as any as S.Schema<ShareSubscriptionsSynchronizeRequest>;
+
+/** Tags on the azure resource. */
+export type UpdateAccountRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateAccountRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateAccountRequestTagsMap>;
+
+export interface UpdateAccountRequest {
+  /** The subscription identifier */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The name of the share account. */
+  accountName: string;
+  /** Tags on the azure resource. */
+  tags?: UpdateAccountRequestTagsMap;
+}
+export const UpdateAccountRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateAccountRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataShare/accounts/{accountName}",
+      code: 200,
+      apiVersion: "2021-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateAccountRequest",
+}) as any as S.Schema<UpdateAccountRequest>;
+
+/** Tags on the azure resource. */
+export type UpdateAccountResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateAccountResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateAccountResponseTagsMap>;
+
+export interface UpdateAccountResponse {
+  /** The resource id of the azure resource */
+  id?: string;
+  /** Name of the azure resource */
+  name?: string;
+  /** System Data of the Azure resource. */
+  systemData?: SystemData;
+  /** Type of the azure resource */
+  type?: string;
+  /** Location of the azure resource. */
+  location?: string;
+  /** Tags on the azure resource. */
+  tags?: UpdateAccountResponseTagsMap;
+  /** Identity Info on the Account */
+  identity: Identity;
+  /** Properties on the account */
+  properties?: AccountProperties;
+}
+export const UpdateAccountResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    type: S.optional(S.String),
+    location: S.optional(S.String),
+    tags: S.optional(UpdateAccountResponseTagsMap),
+    identity: Identity,
+    properties: S.optional(AccountProperties),
+  }),
+).annotate({
+  identifier: "UpdateAccountResponse",
+}) as any as S.Schema<UpdateAccountResponse>;
+
+export type ActivateEmailRegistrationEmailError = AzureOpError;
+/** Activates the tenant and email combination using email code received. Activate the email registration for the current tenant */
+export const ActivateEmailRegistrationEmail: API.OperationMethod<
+  ActivateEmailRegistrationEmailRequest,
+  EmailRegistration,
+  ActivateEmailRegistrationEmailError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AccountsCreateRequest,
-  output: AccountsCreateResponse,
+  input: ActivateEmailRegistrationEmailRequest,
+  output: EmailRegistration,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type AccountsDeleteError = AzureOpError;
-/** Delete an account DeleteAccount */
-export const AccountsDelete: API.OperationMethod<
-  AccountsDeleteRequest,
-  OperationResponse,
-  AccountsDeleteError,
+export type CancelShareSubscriptionSynchronizationError = AzureOpError;
+/** Request cancellation of a data share snapshot Request to cancel a synchronization. */
+export const CancelShareSubscriptionSynchronization: API.OperationMethod<
+  CancelShareSubscriptionSynchronizationRequest,
+  ShareSubscriptionSynchronization,
+  CancelShareSubscriptionSynchronizationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AccountsDeleteRequest,
+  input: CancelShareSubscriptionSynchronizationRequest,
+  output: ShareSubscriptionSynchronization,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateAccountError = AzureOpError;
+/** Create an account in the given resource group Create an account */
+export const CreateAccount: API.OperationMethod<
+  CreateAccountRequest,
+  CreateAccountResponse,
+  CreateAccountError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateAccountRequest,
+  output: CreateAccountResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateDataSetError = AzureOpError;
+/** Adds a new data set to an existing share. Create a DataSet */
+export const CreateDataSet: API.OperationMethod<
+  CreateDataSetRequest,
+  CreateDataSetResponse,
+  CreateDataSetError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateDataSetRequest,
+  output: CreateDataSetResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateDataSetMappingError = AzureOpError;
+/** Maps a source data set in the source share to a sink data set in the share subscription. Enables copying the data set from source to destination. Create a DataSetMapping */
+export const CreateDataSetMapping: API.OperationMethod<
+  CreateDataSetMappingRequest,
+  CreateDataSetMappingResponse,
+  CreateDataSetMappingError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateDataSetMappingRequest,
+  output: CreateDataSetMappingResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateInvitationError = AzureOpError;
+/** Sends a new invitation to a recipient to access a share. Create an invitation */
+export const CreateInvitation: API.OperationMethod<
+  CreateInvitationRequest,
+  CreateInvitationResponse,
+  CreateInvitationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateInvitationRequest,
+  output: CreateInvitationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateShareError = AzureOpError;
+/** Create a share in the given account. Create a share */
+export const CreateShare: API.OperationMethod<
+  CreateShareRequest,
+  CreateShareResponse,
+  CreateShareError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateShareRequest,
+  output: CreateShareResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateShareSubscriptionError = AzureOpError;
+/** Create shareSubscription in an account. Create a shareSubscription in an account */
+export const CreateShareSubscription: API.OperationMethod<
+  CreateShareSubscriptionRequest,
+  CreateShareSubscriptionResponse,
+  CreateShareSubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateShareSubscriptionRequest,
+  output: CreateShareSubscriptionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateSynchronizationSettingsError = AzureOpError;
+/** Adds a new synchronization setting to an existing share. Create a synchronizationSetting */
+export const CreateSynchronizationSettings: API.OperationMethod<
+  CreateSynchronizationSettingsRequest,
+  CreateSynchronizationSettingsResponse,
+  CreateSynchronizationSettingsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateSynchronizationSettingsRequest,
+  output: CreateSynchronizationSettingsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateTriggerError = AzureOpError;
+/** This method creates a trigger for a share subscription Create a Trigger */
+export const CreateTrigger: API.OperationMethod<
+  CreateTriggerRequest,
+  CreateTriggerResponse,
+  CreateTriggerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateTriggerRequest,
+  output: CreateTriggerResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteAccountError = AzureOpError;
+/** Delete an account DeleteAccount */
+export const DeleteAccount: API.OperationMethod<
+  DeleteAccountRequest,
+  OperationResponse,
+  DeleteAccountError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteAccountRequest,
   output: OperationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type AccountsGetError = AzureOpError;
+export type DeleteDataSetError = AzureOpError;
+/** Delete DataSet in a share. Delete a DataSet in a share */
+export const DeleteDataSet: API.OperationMethod<
+  DeleteDataSetRequest,
+  DeleteDataSetResponse,
+  DeleteDataSetError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteDataSetRequest,
+  output: DeleteDataSetResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteDataSetMappingError = AzureOpError;
+/** Delete DataSetMapping in a shareSubscription. Delete a DataSetMapping in a shareSubscription */
+export const DeleteDataSetMapping: API.OperationMethod<
+  DeleteDataSetMappingRequest,
+  DeleteDataSetMappingResponse,
+  DeleteDataSetMappingError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteDataSetMappingRequest,
+  output: DeleteDataSetMappingResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteInvitationError = AzureOpError;
+/** Delete Invitation in a share. Delete an invitation in a share */
+export const DeleteInvitation: API.OperationMethod<
+  DeleteInvitationRequest,
+  DeleteInvitationResponse,
+  DeleteInvitationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteInvitationRequest,
+  output: DeleteInvitationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteShareError = AzureOpError;
+/** Deletes a share Delete a share */
+export const DeleteShare: API.OperationMethod<
+  DeleteShareRequest,
+  OperationResponse,
+  DeleteShareError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteShareRequest,
+  output: OperationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteShareSubscriptionError = AzureOpError;
+/** Delete shareSubscription in an account. Delete a shareSubscription in an account */
+export const DeleteShareSubscription: API.OperationMethod<
+  DeleteShareSubscriptionRequest,
+  OperationResponse,
+  DeleteShareSubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteShareSubscriptionRequest,
+  output: OperationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteSynchronizationSettingsError = AzureOpError;
+/** Delete synchronizationSetting in a share. Delete a synchronizationSetting in a share */
+export const DeleteSynchronizationSettings: API.OperationMethod<
+  DeleteSynchronizationSettingsRequest,
+  OperationResponse,
+  DeleteSynchronizationSettingsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteSynchronizationSettingsRequest,
+  output: OperationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteTriggerError = AzureOpError;
+/** Delete Trigger in a shareSubscription. Delete a Trigger in a shareSubscription */
+export const DeleteTrigger: API.OperationMethod<
+  DeleteTriggerRequest,
+  OperationResponse,
+  DeleteTriggerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteTriggerRequest,
+  output: OperationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAccountError = AzureOpError;
 /** Get an account under a resource group Get an account */
-export const AccountsGet: API.OperationMethod<
-  AccountsGetRequest,
-  AccountsGetResponse,
-  AccountsGetError,
+export const GetAccount: API.OperationMethod<
+  GetAccountRequest,
+  GetAccountResponse,
+  GetAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AccountsGetRequest,
-  output: AccountsGetResponse,
+  input: GetAccountRequest,
+  output: GetAccountResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type AccountsListByResourceGroupError = AzureOpError;
-/** List Accounts in a resource group List Accounts in ResourceGroup */
-export const AccountsListByResourceGroup: API.OperationMethod<
-  AccountsListByResourceGroupRequest,
-  AccountList,
-  AccountsListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountsListByResourceGroupRequest,
-  output: AccountList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccountsListBySubscriptionError = AzureOpError;
-/** List Accounts in a subscription List Accounts in Subscription */
-export const AccountsListBySubscription: API.OperationMethod<
-  AccountsListBySubscriptionRequest,
-  AccountList,
-  AccountsListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountsListBySubscriptionRequest,
-  output: AccountList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccountsUpdateError = AzureOpError;
-/** Patch a given account Patch an account */
-export const AccountsUpdate: API.OperationMethod<
-  AccountsUpdateRequest,
-  AccountsUpdateResponse,
-  AccountsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountsUpdateRequest,
-  output: AccountsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ConsumerInvitationsGetError = AzureOpError;
+export type GetConsumerInvitationError = AzureOpError;
 /** Gets the invitation identified by invitationId Get an invitation */
-export const ConsumerInvitationsGet: API.OperationMethod<
-  ConsumerInvitationsGetRequest,
-  ConsumerInvitationsGetResponse,
-  ConsumerInvitationsGetError,
+export const GetConsumerInvitation: API.OperationMethod<
+  GetConsumerInvitationRequest,
+  GetConsumerInvitationResponse,
+  GetConsumerInvitationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ConsumerInvitationsGetRequest,
-  output: ConsumerInvitationsGetResponse,
+  input: GetConsumerInvitationRequest,
+  output: GetConsumerInvitationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ConsumerInvitationsListInvitationsError = AzureOpError;
-/** List the invitations Lists invitations */
-export const ConsumerInvitationsListInvitations: API.OperationMethod<
-  ConsumerInvitationsListInvitationsRequest,
-  ConsumerInvitationList,
-  ConsumerInvitationsListInvitationsError,
+export type GetDataSetError = AzureOpError;
+/** Get DataSet in a share. Get a DataSet in a share */
+export const GetDataSet: API.OperationMethod<
+  GetDataSetRequest,
+  GetDataSetResponse,
+  GetDataSetError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ConsumerInvitationsListInvitationsRequest,
+  input: GetDataSetRequest,
+  output: GetDataSetResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDataSetMappingError = AzureOpError;
+/** Get DataSetMapping in a shareSubscription. Get a DataSetMapping in a shareSubscription */
+export const GetDataSetMapping: API.OperationMethod<
+  GetDataSetMappingRequest,
+  GetDataSetMappingResponse,
+  GetDataSetMappingError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDataSetMappingRequest,
+  output: GetDataSetMappingResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetInvitationError = AzureOpError;
+/** Get Invitation in a share. Get an invitation in a share */
+export const GetInvitation: API.OperationMethod<
+  GetInvitationRequest,
+  GetInvitationResponse,
+  GetInvitationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetInvitationRequest,
+  output: GetInvitationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetProviderShareSubscriptionByShareError = AzureOpError;
+/** Get share subscription in a provider share. Get share subscription in a provider share */
+export const GetProviderShareSubscriptionByShare: API.OperationMethod<
+  GetProviderShareSubscriptionByShareRequest,
+  GetProviderShareSubscriptionByShareResponse,
+  GetProviderShareSubscriptionByShareError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetProviderShareSubscriptionByShareRequest,
+  output: GetProviderShareSubscriptionByShareResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetShareError = AzureOpError;
+/** Get a specified share Get a share */
+export const GetShare: API.OperationMethod<
+  GetShareRequest,
+  GetShareResponse,
+  GetShareError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetShareRequest,
+  output: GetShareResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetShareSubscriptionError = AzureOpError;
+/** Get shareSubscription in an account. Get a shareSubscription in an account */
+export const GetShareSubscription: API.OperationMethod<
+  GetShareSubscriptionRequest,
+  GetShareSubscriptionResponse,
+  GetShareSubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetShareSubscriptionRequest,
+  output: GetShareSubscriptionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSynchronizationSettingsError = AzureOpError;
+/** Get synchronizationSetting in a share. Get a synchronizationSetting in a share */
+export const GetSynchronizationSettings: API.OperationMethod<
+  GetSynchronizationSettingsRequest,
+  GetSynchronizationSettingsResponse,
+  GetSynchronizationSettingsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSynchronizationSettingsRequest,
+  output: GetSynchronizationSettingsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTriggerError = AzureOpError;
+/** Get Trigger in a shareSubscription. Get a Trigger in a shareSubscription */
+export const GetTrigger: API.OperationMethod<
+  GetTriggerRequest,
+  GetTriggerResponse,
+  GetTriggerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTriggerRequest,
+  output: GetTriggerResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAccountByResourceGroupError = AzureOpError;
+/** List Accounts in a resource group List Accounts in ResourceGroup */
+export const ListAccountByResourceGroup: API.OperationMethod<
+  ListAccountByResourceGroupRequest,
+  AccountList,
+  ListAccountByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAccountByResourceGroupRequest,
+  output: AccountList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAccountBySubscriptionError = AzureOpError;
+/** List Accounts in a subscription List Accounts in Subscription */
+export const ListAccountBySubscription: API.OperationMethod<
+  ListAccountBySubscriptionRequest,
+  AccountList,
+  ListAccountBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAccountBySubscriptionRequest,
+  output: AccountList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListConsumerInvitationInvitationsError = AzureOpError;
+/** List the invitations Lists invitations */
+export const ListConsumerInvitationInvitations: API.OperationMethod<
+  ListConsumerInvitationInvitationsRequest,
+  ConsumerInvitationList,
+  ListConsumerInvitationInvitationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListConsumerInvitationInvitationsRequest,
   output: ConsumerInvitationList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ConsumerInvitationsRejectInvitationError = AzureOpError;
-/** Rejects the invitation identified by invitationId Reject an invitation */
-export const ConsumerInvitationsRejectInvitation: API.OperationMethod<
-  ConsumerInvitationsRejectInvitationRequest,
-  ConsumerInvitationsRejectInvitationResponse,
-  ConsumerInvitationsRejectInvitationError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConsumerInvitationsRejectInvitationRequest,
-  output: ConsumerInvitationsRejectInvitationResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ConsumerSourceDataSetsListByShareSubscriptionError = AzureOpError;
+export type ListConsumerSourceDataSetByShareSubscriptionError = AzureOpError;
 /** Get source dataSets of a shareSubscription. Get source dataSets of a shareSubscription */
-export const ConsumerSourceDataSetsListByShareSubscription: API.OperationMethod<
-  ConsumerSourceDataSetsListByShareSubscriptionRequest,
+export const ListConsumerSourceDataSetByShareSubscription: API.OperationMethod<
+  ListConsumerSourceDataSetByShareSubscriptionRequest,
   ConsumerSourceDataSetList,
-  ConsumerSourceDataSetsListByShareSubscriptionError,
+  ListConsumerSourceDataSetByShareSubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ConsumerSourceDataSetsListByShareSubscriptionRequest,
+  input: ListConsumerSourceDataSetByShareSubscriptionRequest,
   output: ConsumerSourceDataSetList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DataSetMappingsCreateError = AzureOpError;
-/** Maps a source data set in the source share to a sink data set in the share subscription. Enables copying the data set from source to destination. Create a DataSetMapping */
-export const DataSetMappingsCreate: API.OperationMethod<
-  DataSetMappingsCreateRequest,
-  DataSetMappingsCreateResponse,
-  DataSetMappingsCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DataSetMappingsCreateRequest,
-  output: DataSetMappingsCreateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DataSetMappingsDeleteError = AzureOpError;
-/** Delete DataSetMapping in a shareSubscription. Delete a DataSetMapping in a shareSubscription */
-export const DataSetMappingsDelete: API.OperationMethod<
-  DataSetMappingsDeleteRequest,
-  DataSetMappingsDeleteResponse,
-  DataSetMappingsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DataSetMappingsDeleteRequest,
-  output: DataSetMappingsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DataSetMappingsGetError = AzureOpError;
-/** Get DataSetMapping in a shareSubscription. Get a DataSetMapping in a shareSubscription */
-export const DataSetMappingsGet: API.OperationMethod<
-  DataSetMappingsGetRequest,
-  DataSetMappingsGetResponse,
-  DataSetMappingsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DataSetMappingsGetRequest,
-  output: DataSetMappingsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DataSetMappingsListByShareSubscriptionError = AzureOpError;
-/** List DataSetMappings in a share subscription. List DataSetMappings in a share subscription */
-export const DataSetMappingsListByShareSubscription: API.OperationMethod<
-  DataSetMappingsListByShareSubscriptionRequest,
-  DataSetMappingList,
-  DataSetMappingsListByShareSubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DataSetMappingsListByShareSubscriptionRequest,
-  output: DataSetMappingList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DataSetsCreateError = AzureOpError;
-/** Adds a new data set to an existing share. Create a DataSet */
-export const DataSetsCreate: API.OperationMethod<
-  DataSetsCreateRequest,
-  DataSetsCreateResponse,
-  DataSetsCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DataSetsCreateRequest,
-  output: DataSetsCreateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DataSetsDeleteError = AzureOpError;
-/** Delete DataSet in a share. Delete a DataSet in a share */
-export const DataSetsDelete: API.OperationMethod<
-  DataSetsDeleteRequest,
-  DataSetsDeleteResponse,
-  DataSetsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DataSetsDeleteRequest,
-  output: DataSetsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DataSetsGetError = AzureOpError;
-/** Get DataSet in a share. Get a DataSet in a share */
-export const DataSetsGet: API.OperationMethod<
-  DataSetsGetRequest,
-  DataSetsGetResponse,
-  DataSetsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DataSetsGetRequest,
-  output: DataSetsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DataSetsListByShareError = AzureOpError;
+export type ListDataSetByShareError = AzureOpError;
 /** List DataSets in a share. List DataSets in a share */
-export const DataSetsListByShare: API.OperationMethod<
-  DataSetsListByShareRequest,
+export const ListDataSetByShare: API.OperationMethod<
+  ListDataSetByShareRequest,
   DataSetList,
-  DataSetsListByShareError,
+  ListDataSetByShareError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DataSetsListByShareRequest,
+  input: ListDataSetByShareRequest,
   output: DataSetList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type EmailRegistrationsActivateEmailError = AzureOpError;
-/** Activates the tenant and email combination using email code received. Activate the email registration for the current tenant */
-export const EmailRegistrationsActivateEmail: API.OperationMethod<
-  EmailRegistrationsActivateEmailRequest,
-  EmailRegistration,
-  EmailRegistrationsActivateEmailError,
+export type ListDataSetMappingByShareSubscriptionError = AzureOpError;
+/** List DataSetMappings in a share subscription. List DataSetMappings in a share subscription */
+export const ListDataSetMappingByShareSubscription: API.OperationMethod<
+  ListDataSetMappingByShareSubscriptionRequest,
+  DataSetMappingList,
+  ListDataSetMappingByShareSubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EmailRegistrationsActivateEmailRequest,
-  output: EmailRegistration,
+  input: ListDataSetMappingByShareSubscriptionRequest,
+  output: DataSetMappingList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type EmailRegistrationsRegisterEmailError = AzureOpError;
-/** Registers the tenant and email combination for verification. Register an email for the current tenant */
-export const EmailRegistrationsRegisterEmail: API.OperationMethod<
-  EmailRegistrationsRegisterEmailRequest,
-  EmailRegistration,
-  EmailRegistrationsRegisterEmailError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: EmailRegistrationsRegisterEmailRequest,
-  output: EmailRegistration,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type InvitationsCreateError = AzureOpError;
-/** Sends a new invitation to a recipient to access a share. Create an invitation */
-export const InvitationsCreate: API.OperationMethod<
-  InvitationsCreateRequest,
-  InvitationsCreateResponse,
-  InvitationsCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: InvitationsCreateRequest,
-  output: InvitationsCreateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type InvitationsDeleteError = AzureOpError;
-/** Delete Invitation in a share. Delete an invitation in a share */
-export const InvitationsDelete: API.OperationMethod<
-  InvitationsDeleteRequest,
-  InvitationsDeleteResponse,
-  InvitationsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: InvitationsDeleteRequest,
-  output: InvitationsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type InvitationsGetError = AzureOpError;
-/** Get Invitation in a share. Get an invitation in a share */
-export const InvitationsGet: API.OperationMethod<
-  InvitationsGetRequest,
-  InvitationsGetResponse,
-  InvitationsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: InvitationsGetRequest,
-  output: InvitationsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type InvitationsListByShareError = AzureOpError;
+export type ListInvitationByShareError = AzureOpError;
 /** List all Invitations in a share. List invitations in a share */
-export const InvitationsListByShare: API.OperationMethod<
-  InvitationsListByShareRequest,
+export const ListInvitationByShare: API.OperationMethod<
+  ListInvitationByShareRequest,
   InvitationList,
-  InvitationsListByShareError,
+  ListInvitationByShareError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: InvitationsListByShareRequest,
+  input: ListInvitationByShareRequest,
   output: InvitationList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OperationsListError = AzureOpError;
+export type ListOperationsError = AzureOpError;
 /** Lists the available operations List of available operations */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
   OperationList,
-  OperationsListError,
+  ListOperationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
+  input: ListOperationsRequest,
   output: OperationList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListProviderShareSubscriptionByShareError = AzureOpError;
+/** List of available share subscriptions to a provider share. List share subscriptions in a provider share */
+export const ListProviderShareSubscriptionByShare: API.OperationMethod<
+  ListProviderShareSubscriptionByShareRequest,
+  ProviderShareSubscriptionList,
+  ListProviderShareSubscriptionByShareError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListProviderShareSubscriptionByShareRequest,
+  output: ProviderShareSubscriptionList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListShareByAccountError = AzureOpError;
+/** List of available shares under an account. List shares in an account */
+export const ListShareByAccount: API.OperationMethod<
+  ListShareByAccountRequest,
+  ShareList,
+  ListShareByAccountError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListShareByAccountRequest,
+  output: ShareList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListShareSubscriptionByAccountError = AzureOpError;
+/** List of available share subscriptions under an account. List share subscriptions in an account */
+export const ListShareSubscriptionByAccount: API.OperationMethod<
+  ListShareSubscriptionByAccountRequest,
+  ShareSubscriptionList,
+  ListShareSubscriptionByAccountError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListShareSubscriptionByAccountRequest,
+  output: ShareSubscriptionList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListShareSubscriptionSourceShareSynchronizationSettingsError =
+  AzureOpError;
+/** Get source share synchronization settings for a shareSubscription. Get synchronization settings set on a share */
+export const ListShareSubscriptionSourceShareSynchronizationSettings: API.OperationMethod<
+  ListShareSubscriptionSourceShareSynchronizationSettingsRequest,
+  SourceShareSynchronizationSettingList,
+  ListShareSubscriptionSourceShareSynchronizationSettingsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListShareSubscriptionSourceShareSynchronizationSettingsRequest,
+  output: SourceShareSynchronizationSettingList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListShareSubscriptionSynchronizationDetailsError = AzureOpError;
+/** List data set level details for a share subscription synchronization List synchronization details */
+export const ListShareSubscriptionSynchronizationDetails: API.OperationMethod<
+  ListShareSubscriptionSynchronizationDetailsRequest,
+  SynchronizationDetailsList,
+  ListShareSubscriptionSynchronizationDetailsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListShareSubscriptionSynchronizationDetailsRequest,
+  output: SynchronizationDetailsList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListShareSubscriptionSynchronizationsError = AzureOpError;
+/** List Synchronizations in a share subscription. List synchronizations of a share subscription */
+export const ListShareSubscriptionSynchronizations: API.OperationMethod<
+  ListShareSubscriptionSynchronizationsRequest,
+  ShareSubscriptionSynchronizationList,
+  ListShareSubscriptionSynchronizationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListShareSubscriptionSynchronizationsRequest,
+  output: ShareSubscriptionSynchronizationList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListShareSynchronizationDetailsError = AzureOpError;
+/** List data set level details for a share synchronization List synchronization details */
+export const ListShareSynchronizationDetails: API.OperationMethod<
+  ListShareSynchronizationDetailsRequest,
+  SynchronizationDetailsList,
+  ListShareSynchronizationDetailsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListShareSynchronizationDetailsRequest,
+  output: SynchronizationDetailsList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListShareSynchronizationsError = AzureOpError;
+/** List Synchronizations in a share List synchronizations of a share */
+export const ListShareSynchronizations: API.OperationMethod<
+  ListShareSynchronizationsRequest,
+  ShareSynchronizationList,
+  ListShareSynchronizationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListShareSynchronizationsRequest,
+  output: ShareSynchronizationList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSynchronizationSettingsByShareError = AzureOpError;
+/** List synchronizationSettings in a share. List synchronizationSettings in a share */
+export const ListSynchronizationSettingsByShare: API.OperationMethod<
+  ListSynchronizationSettingsByShareRequest,
+  SynchronizationSettingList,
+  ListSynchronizationSettingsByShareError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSynchronizationSettingsByShareRequest,
+  output: SynchronizationSettingList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListTriggerByShareSubscriptionError = AzureOpError;
+/** List Triggers in a share subscription. List Triggers in a share subscription */
+export const ListTriggerByShareSubscription: API.OperationMethod<
+  ListTriggerByShareSubscriptionRequest,
+  TriggerList,
+  ListTriggerByShareSubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListTriggerByShareSubscriptionRequest,
+  output: TriggerList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -4524,36 +4836,6 @@ export const ProviderShareSubscriptionsAdjust: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ProviderShareSubscriptionsGetByShareError = AzureOpError;
-/** Get share subscription in a provider share. Get share subscription in a provider share */
-export const ProviderShareSubscriptionsGetByShare: API.OperationMethod<
-  ProviderShareSubscriptionsGetByShareRequest,
-  ProviderShareSubscriptionsGetByShareResponse,
-  ProviderShareSubscriptionsGetByShareError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProviderShareSubscriptionsGetByShareRequest,
-  output: ProviderShareSubscriptionsGetByShareResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ProviderShareSubscriptionsListByShareError = AzureOpError;
-/** List of available share subscriptions to a provider share. List share subscriptions in a provider share */
-export const ProviderShareSubscriptionsListByShare: API.OperationMethod<
-  ProviderShareSubscriptionsListByShareRequest,
-  ProviderShareSubscriptionList,
-  ProviderShareSubscriptionsListByShareError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProviderShareSubscriptionsListByShareRequest,
-  output: ProviderShareSubscriptionList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ProviderShareSubscriptionsReinstateError = AzureOpError;
 /** Reinstate share subscription in a provider share. Reinstate share subscription in a provider share */
 export const ProviderShareSubscriptionsReinstate: API.OperationMethod<
@@ -4569,227 +4851,46 @@ export const ProviderShareSubscriptionsReinstate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ProviderShareSubscriptionsRevokeError = AzureOpError;
+export type RegisterEmailRegistrationEmailError = AzureOpError;
+/** Registers the tenant and email combination for verification. Register an email for the current tenant */
+export const RegisterEmailRegistrationEmail: API.OperationMethod<
+  RegisterEmailRegistrationEmailRequest,
+  EmailRegistration,
+  RegisterEmailRegistrationEmailError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RegisterEmailRegistrationEmailRequest,
+  output: EmailRegistration,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RejectConsumerInvitationInvitationError = AzureOpError;
+/** Rejects the invitation identified by invitationId Reject an invitation */
+export const RejectConsumerInvitationInvitation: API.OperationMethod<
+  RejectConsumerInvitationInvitationRequest,
+  RejectConsumerInvitationInvitationResponse,
+  RejectConsumerInvitationInvitationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RejectConsumerInvitationInvitationRequest,
+  output: RejectConsumerInvitationInvitationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RevokeProviderShareSubscriptionError = AzureOpError;
 /** Revoke share subscription in a provider share. Revoke share subscription in a provider share */
-export const ProviderShareSubscriptionsRevoke: API.OperationMethod<
-  ProviderShareSubscriptionsRevokeRequest,
-  ProviderShareSubscriptionsRevokeResponse,
-  ProviderShareSubscriptionsRevokeError,
+export const RevokeProviderShareSubscription: API.OperationMethod<
+  RevokeProviderShareSubscriptionRequest,
+  RevokeProviderShareSubscriptionResponse,
+  RevokeProviderShareSubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ProviderShareSubscriptionsRevokeRequest,
-  output: ProviderShareSubscriptionsRevokeResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SharesCreateError = AzureOpError;
-/** Create a share in the given account. Create a share */
-export const SharesCreate: API.OperationMethod<
-  SharesCreateRequest,
-  SharesCreateResponse,
-  SharesCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SharesCreateRequest,
-  output: SharesCreateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SharesDeleteError = AzureOpError;
-/** Deletes a share Delete a share */
-export const SharesDelete: API.OperationMethod<
-  SharesDeleteRequest,
-  OperationResponse,
-  SharesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SharesDeleteRequest,
-  output: OperationResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SharesGetError = AzureOpError;
-/** Get a specified share Get a share */
-export const SharesGet: API.OperationMethod<
-  SharesGetRequest,
-  SharesGetResponse,
-  SharesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SharesGetRequest,
-  output: SharesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SharesListByAccountError = AzureOpError;
-/** List of available shares under an account. List shares in an account */
-export const SharesListByAccount: API.OperationMethod<
-  SharesListByAccountRequest,
-  ShareList,
-  SharesListByAccountError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SharesListByAccountRequest,
-  output: ShareList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SharesListSynchronizationDetailsError = AzureOpError;
-/** List data set level details for a share synchronization List synchronization details */
-export const SharesListSynchronizationDetails: API.OperationMethod<
-  SharesListSynchronizationDetailsRequest,
-  SynchronizationDetailsList,
-  SharesListSynchronizationDetailsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SharesListSynchronizationDetailsRequest,
-  output: SynchronizationDetailsList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SharesListSynchronizationsError = AzureOpError;
-/** List Synchronizations in a share List synchronizations of a share */
-export const SharesListSynchronizations: API.OperationMethod<
-  SharesListSynchronizationsRequest,
-  ShareSynchronizationList,
-  SharesListSynchronizationsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SharesListSynchronizationsRequest,
-  output: ShareSynchronizationList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShareSubscriptionsCancelSynchronizationError = AzureOpError;
-/** Request cancellation of a data share snapshot Request to cancel a synchronization. */
-export const ShareSubscriptionsCancelSynchronization: API.OperationMethod<
-  ShareSubscriptionsCancelSynchronizationRequest,
-  ShareSubscriptionSynchronization,
-  ShareSubscriptionsCancelSynchronizationError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShareSubscriptionsCancelSynchronizationRequest,
-  output: ShareSubscriptionSynchronization,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShareSubscriptionsCreateError = AzureOpError;
-/** Create shareSubscription in an account. Create a shareSubscription in an account */
-export const ShareSubscriptionsCreate: API.OperationMethod<
-  ShareSubscriptionsCreateRequest,
-  ShareSubscriptionsCreateResponse,
-  ShareSubscriptionsCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShareSubscriptionsCreateRequest,
-  output: ShareSubscriptionsCreateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShareSubscriptionsDeleteError = AzureOpError;
-/** Delete shareSubscription in an account. Delete a shareSubscription in an account */
-export const ShareSubscriptionsDelete: API.OperationMethod<
-  ShareSubscriptionsDeleteRequest,
-  OperationResponse,
-  ShareSubscriptionsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShareSubscriptionsDeleteRequest,
-  output: OperationResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShareSubscriptionsGetError = AzureOpError;
-/** Get shareSubscription in an account. Get a shareSubscription in an account */
-export const ShareSubscriptionsGet: API.OperationMethod<
-  ShareSubscriptionsGetRequest,
-  ShareSubscriptionsGetResponse,
-  ShareSubscriptionsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShareSubscriptionsGetRequest,
-  output: ShareSubscriptionsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShareSubscriptionsListByAccountError = AzureOpError;
-/** List of available share subscriptions under an account. List share subscriptions in an account */
-export const ShareSubscriptionsListByAccount: API.OperationMethod<
-  ShareSubscriptionsListByAccountRequest,
-  ShareSubscriptionList,
-  ShareSubscriptionsListByAccountError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShareSubscriptionsListByAccountRequest,
-  output: ShareSubscriptionList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShareSubscriptionsListSourceShareSynchronizationSettingsError =
-  AzureOpError;
-/** Get source share synchronization settings for a shareSubscription. Get synchronization settings set on a share */
-export const ShareSubscriptionsListSourceShareSynchronizationSettings: API.OperationMethod<
-  ShareSubscriptionsListSourceShareSynchronizationSettingsRequest,
-  SourceShareSynchronizationSettingList,
-  ShareSubscriptionsListSourceShareSynchronizationSettingsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShareSubscriptionsListSourceShareSynchronizationSettingsRequest,
-  output: SourceShareSynchronizationSettingList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShareSubscriptionsListSynchronizationDetailsError = AzureOpError;
-/** List data set level details for a share subscription synchronization List synchronization details */
-export const ShareSubscriptionsListSynchronizationDetails: API.OperationMethod<
-  ShareSubscriptionsListSynchronizationDetailsRequest,
-  SynchronizationDetailsList,
-  ShareSubscriptionsListSynchronizationDetailsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShareSubscriptionsListSynchronizationDetailsRequest,
-  output: SynchronizationDetailsList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ShareSubscriptionsListSynchronizationsError = AzureOpError;
-/** List Synchronizations in a share subscription. List synchronizations of a share subscription */
-export const ShareSubscriptionsListSynchronizations: API.OperationMethod<
-  ShareSubscriptionsListSynchronizationsRequest,
-  ShareSubscriptionSynchronizationList,
-  ShareSubscriptionsListSynchronizationsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ShareSubscriptionsListSynchronizationsRequest,
-  output: ShareSubscriptionSynchronizationList,
+  input: RevokeProviderShareSubscriptionRequest,
+  output: RevokeProviderShareSubscriptionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -4810,121 +4911,16 @@ export const ShareSubscriptionsSynchronize: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SynchronizationSettingsCreateError = AzureOpError;
-/** Adds a new synchronization setting to an existing share. Create a synchronizationSetting */
-export const SynchronizationSettingsCreate: API.OperationMethod<
-  SynchronizationSettingsCreateRequest,
-  SynchronizationSettingsCreateResponse,
-  SynchronizationSettingsCreateError,
+export type UpdateAccountError = AzureOpError;
+/** Patch a given account Patch an account */
+export const UpdateAccount: API.OperationMethod<
+  UpdateAccountRequest,
+  UpdateAccountResponse,
+  UpdateAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SynchronizationSettingsCreateRequest,
-  output: SynchronizationSettingsCreateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SynchronizationSettingsDeleteError = AzureOpError;
-/** Delete synchronizationSetting in a share. Delete a synchronizationSetting in a share */
-export const SynchronizationSettingsDelete: API.OperationMethod<
-  SynchronizationSettingsDeleteRequest,
-  OperationResponse,
-  SynchronizationSettingsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SynchronizationSettingsDeleteRequest,
-  output: OperationResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SynchronizationSettingsGetError = AzureOpError;
-/** Get synchronizationSetting in a share. Get a synchronizationSetting in a share */
-export const SynchronizationSettingsGet: API.OperationMethod<
-  SynchronizationSettingsGetRequest,
-  SynchronizationSettingsGetResponse,
-  SynchronizationSettingsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SynchronizationSettingsGetRequest,
-  output: SynchronizationSettingsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SynchronizationSettingsListByShareError = AzureOpError;
-/** List synchronizationSettings in a share. List synchronizationSettings in a share */
-export const SynchronizationSettingsListByShare: API.OperationMethod<
-  SynchronizationSettingsListByShareRequest,
-  SynchronizationSettingList,
-  SynchronizationSettingsListByShareError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SynchronizationSettingsListByShareRequest,
-  output: SynchronizationSettingList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TriggersCreateError = AzureOpError;
-/** This method creates a trigger for a share subscription Create a Trigger */
-export const TriggersCreate: API.OperationMethod<
-  TriggersCreateRequest,
-  TriggersCreateResponse,
-  TriggersCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TriggersCreateRequest,
-  output: TriggersCreateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TriggersDeleteError = AzureOpError;
-/** Delete Trigger in a shareSubscription. Delete a Trigger in a shareSubscription */
-export const TriggersDelete: API.OperationMethod<
-  TriggersDeleteRequest,
-  OperationResponse,
-  TriggersDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TriggersDeleteRequest,
-  output: OperationResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TriggersGetError = AzureOpError;
-/** Get Trigger in a shareSubscription. Get a Trigger in a shareSubscription */
-export const TriggersGet: API.OperationMethod<
-  TriggersGetRequest,
-  TriggersGetResponse,
-  TriggersGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TriggersGetRequest,
-  output: TriggersGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TriggersListByShareSubscriptionError = AzureOpError;
-/** List Triggers in a share subscription. List Triggers in a share subscription */
-export const TriggersListByShareSubscription: API.OperationMethod<
-  TriggersListByShareSubscriptionRequest,
-  TriggerList,
-  TriggersListByShareSubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TriggersListByShareSubscriptionRequest,
-  output: TriggerList,
+  input: UpdateAccountRequest,
+  output: UpdateAccountResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

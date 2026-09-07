@@ -92,6 +92,107 @@ export class OrganizationNotFound
     [{ status: 404 }],
   ) {}
 
+export interface CreateMemberRequestMemberUser {
+  email: string;
+}
+export const CreateMemberRequestMemberUser = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    email: S.String,
+  }),
+).annotate({
+  identifier: "CreateMemberRequestMemberUser",
+}) as any as S.Schema<CreateMemberRequestMemberUser>;
+
+export type CreateMemberRequestMemberStatus = "active" | "canceled";
+export const CreateMemberRequestMemberStatus = /*@__PURE__*/ S.String;
+
+export interface CreateMemberRequestMember {
+  user: CreateMemberRequestMemberUser;
+  status?: CreateMemberRequestMemberStatus | (string & {});
+}
+export const CreateMemberRequestMember = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    user: CreateMemberRequestMemberUser,
+    status: S.optional(CreateMemberRequestMemberStatus),
+  }),
+).annotate({
+  identifier: "CreateMemberRequestMember",
+}) as any as S.Schema<CreateMemberRequestMember>;
+
+export interface CreateMemberRequest {
+  organizationId: string;
+  member: CreateMemberRequestMember;
+}
+export const CreateMemberRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    organizationId: S.String.pipe(T.Label("organization_id")),
+    member: CreateMemberRequestMember,
+  })
+    .pipe(
+      T.Http({
+        method: "POST",
+        uri: "/organizations/{organization_id}/members",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "CreateMemberRequest",
+}) as any as S.Schema<CreateMemberRequest>;
+
+export type CreateMemberResponseMetaMap = {
+  [key: string]: unknown | undefined;
+};
+export const CreateMemberResponseMetaMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<CreateMemberResponseMetaMap>;
+
+export type CreateMemberResponseStatus = "active" | "canceled";
+export const CreateMemberResponseStatus = /*@__PURE__*/ S.String;
+
+export interface CreateMemberResponseUser {
+  id: string;
+  email: string;
+  name: string;
+  twoFactorAuthenticationEnabled: boolean;
+}
+export const CreateMemberResponseUser = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    email: S.String,
+    name: S.String,
+    twoFactorAuthenticationEnabled: S.Boolean.pipe(
+      T.Body("two_factor_authentication_enabled"),
+    ),
+  }),
+).annotate({
+  identifier: "CreateMemberResponseUser",
+}) as any as S.Schema<CreateMemberResponseUser>;
+
+/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
+export interface CreateMemberResponse {
+  /** Organization Member ID */
+  id: string;
+  createTime: string;
+  meta: CreateMemberResponseMetaMap;
+  status: CreateMemberResponseStatus;
+  updateTime: string;
+  user: CreateMemberResponseUser;
+}
+export const CreateMemberResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    createTime: S.String.pipe(T.Body("create_time")),
+    meta: CreateMemberResponseMetaMap,
+    status: CreateMemberResponseStatus,
+    updateTime: S.String.pipe(T.Body("update_time")),
+    user: CreateMemberResponseUser,
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "CreateMemberResponse",
+}) as any as S.Schema<CreateMemberResponse>;
+
 export interface CreateRequestParent {
   id: string;
   name?: string;
@@ -223,6 +324,35 @@ export const CreateOrganizationResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "CreateOrganizationResponse",
 }) as any as S.Schema<CreateOrganizationResponse>;
+
+export interface DeleteMemberRequest {
+  organizationId: string;
+  /** Organization Member ID */
+  memberId: string;
+}
+export const DeleteMemberRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    organizationId: S.String.pipe(T.Label("organization_id")),
+    memberId: S.String.pipe(T.Label("member_id")),
+  })
+    .pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/organizations/{organization_id}/members/{member_id}",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "DeleteMemberRequest",
+}) as any as S.Schema<DeleteMemberRequest>;
+
+export interface DeleteMemberResponse {}
+export const DeleteMemberResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "DeleteMemberResponse",
+}) as any as S.Schema<DeleteMemberResponse>;
 
 export interface DeleteOrganizationRequest {
   organizationId: string;
@@ -442,6 +572,63 @@ export const GetBillingUsageResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetBillingUsageResponse",
 }) as any as S.Schema<GetBillingUsageResponse>;
 
+export interface GetMemberRequest {
+  organizationId: string;
+  /** Organization Member ID */
+  memberId: string;
+}
+export const GetMemberRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    organizationId: S.String.pipe(T.Label("organization_id")),
+    memberId: S.String.pipe(T.Label("member_id")),
+  })
+    .pipe(
+      T.Http({
+        method: "GET",
+        uri: "/organizations/{organization_id}/members/{member_id}",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "GetMemberRequest",
+}) as any as S.Schema<GetMemberRequest>;
+
+export type GetMemberResponseMetaMap = { [key: string]: unknown | undefined };
+export const GetMemberResponseMetaMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<GetMemberResponseMetaMap>;
+
+export type GetMemberResponseStatus = "active" | "canceled";
+export const GetMemberResponseStatus = /*@__PURE__*/ S.String;
+
+export type GetMemberResponseUser = CreateMemberResponseUser;
+export const GetMemberResponseUser = CreateMemberResponseUser;
+
+/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
+export interface GetMemberResponse {
+  /** Organization Member ID */
+  id: string;
+  createTime: string;
+  meta: GetMemberResponseMetaMap;
+  status: GetMemberResponseStatus;
+  updateTime: string;
+  user: CreateMemberResponseUser;
+}
+export const GetMemberResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    createTime: S.String.pipe(T.Body("create_time")),
+    meta: GetMemberResponseMetaMap,
+    status: GetMemberResponseStatus,
+    updateTime: S.String.pipe(T.Body("update_time")),
+    user: CreateMemberResponseUser,
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "GetMemberResponse",
+}) as any as S.Schema<GetMemberResponse>;
+
 export interface GetOrganizationRequest {
   organizationId: string;
 }
@@ -515,6 +702,159 @@ export const GetOrganizationResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetOrganizationResponse",
 }) as any as S.Schema<GetOrganizationResponse>;
+
+export interface GetOrganizationAccountRequestAccountPubname {
+  /** (case-insensitive) Filter the list of accounts to where the account_pubname contains */
+  contains?: string;
+  /** (case-insensitive) Filter the list of accounts to where the account_pubname ends with */
+  endsWith?: string;
+  /** (case-insensitive) Filter the list of accounts to where the account_pubname starts with */
+  startsWith?: string;
+}
+export const GetOrganizationAccountRequestAccountPubname =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      contains: S.optional(S.String),
+      endsWith: S.optional(S.String),
+      startsWith: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "GetOrganizationAccountRequestAccountPubname",
+  }) as any as S.Schema<GetOrganizationAccountRequestAccountPubname>;
+
+export type GetOrganizationAccountRequestDirection = "asc" | "desc";
+export const GetOrganizationAccountRequestDirection = /*@__PURE__*/ S.String;
+
+export interface GetOrganizationAccountRequestName {
+  /** (case-insensitive) Filter the list of accounts to where the name contains a particular */
+  contains?: string;
+  /** (case-insensitive) Filter the list of accounts to where the name ends with a particular */
+  endsWith?: string;
+  /** (case-insensitive) Filter the list of accounts to where the name starts with a */
+  startsWith?: string;
+}
+export const GetOrganizationAccountRequestName = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    contains: S.optional(S.String),
+    endsWith: S.optional(S.String),
+    startsWith: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetOrganizationAccountRequestName",
+}) as any as S.Schema<GetOrganizationAccountRequestName>;
+
+export type GetOrganizationAccountRequestOrderBy = "account_name";
+export const GetOrganizationAccountRequestOrderBy = /*@__PURE__*/ S.String;
+
+export interface GetOrganizationAccountRequest {
+  organizationId: string;
+  accountPubname?: GetOrganizationAccountRequestAccountPubname;
+  /** Sort direction for the order_by field. Valid values: `asc`, `desc`. */
+  direction?: GetOrganizationAccountRequestDirection | (string & {});
+  name?: GetOrganizationAccountRequestName;
+  /** Field to order results by. Currently supported values: `account_name`. */
+  orderBy?: GetOrganizationAccountRequestOrderBy | (string & {});
+  /** The amount of items to return. Defaults to 10. */
+  pageSize?: number;
+  /** An opaque token returned from the last list response that when */
+  pageToken?: string;
+}
+export const GetOrganizationAccountRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    organizationId: S.String.pipe(T.Label("organization_id")),
+    accountPubname: S.optional(
+      GetOrganizationAccountRequestAccountPubname.pipe(
+        T.Body("account_pubname"),
+        T.DeepQuery("account_pubname"),
+      ),
+    ),
+    direction: S.optional(
+      GetOrganizationAccountRequestDirection.pipe(T.Query()),
+    ),
+    name: S.optional(
+      GetOrganizationAccountRequestName.pipe(T.DeepQuery("name")),
+    ),
+    orderBy: S.optional(
+      GetOrganizationAccountRequestOrderBy.pipe(T.Query("order_by")),
+    ),
+    pageSize: S.optional(S.Number.pipe(T.Query("page_size"))),
+    pageToken: S.optional(S.String.pipe(T.Query("page_token"))),
+  })
+    .pipe(
+      T.Http({
+        method: "GET",
+        uri: "/organizations/{organization_id}/accounts",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "GetOrganizationAccountRequest",
+}) as any as S.Schema<GetOrganizationAccountRequest>;
+
+export interface GetOrganizationAccountResultItemSettings {
+  abuseContactEmail: string;
+  accessApprovalExpiry: string;
+  apiAccessEnabled: boolean;
+  /** Use [DNS Settings](https://developers.cloudflare.com/api/operations/dns-settings-for-an-account-list-dns-settings) instead. Deprecated. */
+  defaultNameservers: string;
+  enforceTwofactor: boolean;
+  /** Use [DNS Settings](https://developers.cloudflare.com/api/operations/dns-settings-for-an-account-list-dns-settings) instead. Deprecated. */
+  useAccountCustomNsByDefault: boolean;
+}
+export const GetOrganizationAccountResultItemSettings = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      abuseContactEmail: S.String.pipe(T.Body("abuse_contact_email")),
+      accessApprovalExpiry: S.String.pipe(T.Body("access_approval_expiry")),
+      apiAccessEnabled: S.Boolean.pipe(T.Body("api_access_enabled")),
+      defaultNameservers: S.String.pipe(T.Body("default_nameservers")),
+      enforceTwofactor: S.Boolean.pipe(T.Body("enforce_twofactor")),
+      useAccountCustomNsByDefault: S.Boolean.pipe(
+        T.Body("use_account_custom_ns_by_default"),
+      ),
+    }),
+).annotate({
+  identifier: "GetOrganizationAccountResultItemSettings",
+}) as any as S.Schema<GetOrganizationAccountResultItemSettings>;
+
+export type GetOrganizationAccountResultItemType = "standard" | "enterprise";
+export const GetOrganizationAccountResultItemType = /*@__PURE__*/ S.String;
+
+export interface GetOrganizationAccountResultItem {
+  id: string;
+  createdOn: string;
+  name: string;
+  settings: GetOrganizationAccountResultItemSettings;
+  type: GetOrganizationAccountResultItemType;
+}
+export const GetOrganizationAccountResultItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    createdOn: S.String.pipe(T.Body("created_on")),
+    name: S.String,
+    settings: GetOrganizationAccountResultItemSettings,
+    type: GetOrganizationAccountResultItemType,
+  }),
+).annotate({
+  identifier: "GetOrganizationAccountResultItem",
+}) as any as S.Schema<GetOrganizationAccountResultItem>;
+
+export type GetOrganizationAccountResultList =
+  Array<GetOrganizationAccountResultItem>;
+export const GetOrganizationAccountResultList = /*@__PURE__*/ S.Array(
+  GetOrganizationAccountResultItem,
+) as any as S.Schema<GetOrganizationAccountResultList>;
+
+export type GetOrganizationAccountResponse = GetOrganizationAccountResultList;
+export const GetOrganizationAccountResponse = /*@__PURE__*/ S.suspend(() =>
+  GetOrganizationAccountResultList.pipe(
+    T.EnvelopePayloadRoot(),
+    T.KeyDictionary(KEY_DICTIONARY),
+  ),
+).annotate({
+  identifier: "GetOrganizationAccountResponse",
+}) as any as S.Schema<GetOrganizationAccountResponse>;
 
 export interface GetOrganizationProfileRequest {
   organizationId: string;
@@ -1229,6 +1569,109 @@ export const ListLogAuditsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListLogAuditsResponse",
 }) as any as S.Schema<ListLogAuditsResponse>;
 
+export type ListMembersRequestStatus = "active" | "canceled";
+export const ListMembersRequestStatus = /*@__PURE__*/ S.String;
+
+export type ListMembersRequestStatusList = Array<
+  ListMembersRequestStatus | (string & {})
+>;
+export const ListMembersRequestStatusList = /*@__PURE__*/ S.Array(
+  ListMembersRequestStatus,
+) as any as S.Schema<ListMembersRequestStatusList>;
+
+export interface ListMembersRequestUser {
+  /** Filter the list of memberships for a specific email that ends with a substring. */
+  email?: string;
+}
+export const ListMembersRequestUser = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    email: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ListMembersRequestUser",
+}) as any as S.Schema<ListMembersRequestUser>;
+
+export interface ListMembersRequest {
+  organizationId: string;
+  /** The amount of items to return. Defaults to 10. */
+  pageSize?: number;
+  /** An opaque token returned from the last list response that when */
+  pageToken?: string;
+  /** Filter the list of memberships by membership status. */
+  status?: ListMembersRequestStatusList;
+  user?: ListMembersRequestUser;
+}
+export const ListMembersRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    organizationId: S.String.pipe(T.Label("organization_id")),
+    pageSize: S.optional(S.Number.pipe(T.Query("page_size"))),
+    pageToken: S.optional(S.String.pipe(T.Query("page_token"))),
+    status: S.optional(ListMembersRequestStatusList.pipe(T.Query())),
+    user: S.optional(ListMembersRequestUser.pipe(T.DeepQuery("user"))),
+  })
+    .pipe(
+      T.Http({
+        method: "GET",
+        uri: "/organizations/{organization_id}/members",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "ListMembersRequest",
+}) as any as S.Schema<ListMembersRequest>;
+
+export type ListMembersResultItemMetaMap = {
+  [key: string]: unknown | undefined;
+};
+export const ListMembersResultItemMetaMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<ListMembersResultItemMetaMap>;
+
+export type ListMembersResultItemStatus = "active" | "canceled";
+export const ListMembersResultItemStatus = /*@__PURE__*/ S.String;
+
+export type ListMembersResultItemUser = CreateMemberResponseUser;
+export const ListMembersResultItemUser = CreateMemberResponseUser;
+
+export interface ListMembersResultItem {
+  /** Organization Member ID */
+  id: string;
+  createTime: string;
+  meta: ListMembersResultItemMetaMap;
+  status: ListMembersResultItemStatus;
+  updateTime: string;
+  user: CreateMemberResponseUser;
+}
+export const ListMembersResultItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    createTime: S.String.pipe(T.Body("create_time")),
+    meta: ListMembersResultItemMetaMap,
+    status: ListMembersResultItemStatus,
+    updateTime: S.String.pipe(T.Body("update_time")),
+    user: CreateMemberResponseUser,
+  }),
+).annotate({
+  identifier: "ListMembersResultItem",
+}) as any as S.Schema<ListMembersResultItem>;
+
+export type ListMembersResultList = Array<ListMembersResultItem>;
+export const ListMembersResultList = /*@__PURE__*/ S.Array(
+  ListMembersResultItem,
+) as any as S.Schema<ListMembersResultList>;
+
+export type ListMembersResponse = ListMembersResultList;
+export const ListMembersResponse = /*@__PURE__*/ S.suspend(() =>
+  ListMembersResultList.pipe(
+    T.EnvelopePayloadRoot(),
+    T.KeyDictionary(KEY_DICTIONARY),
+  ),
+).annotate({
+  identifier: "ListMembersResponse",
+}) as any as S.Schema<ListMembersResponse>;
+
 export type ListRequestIdList = Array<string>;
 export const ListRequestIdList = /*@__PURE__*/ S.Array(
   S.String,
@@ -1384,449 +1827,6 @@ export const ListOrganizationsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListOrganizationsResponse",
 }) as any as S.Schema<ListOrganizationsResponse>;
 
-export interface MembersCreateRequestMemberUser {
-  email: string;
-}
-export const MembersCreateRequestMemberUser = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    email: S.String,
-  }),
-).annotate({
-  identifier: "MembersCreateRequestMemberUser",
-}) as any as S.Schema<MembersCreateRequestMemberUser>;
-
-export type MembersCreateRequestMemberStatus = "active" | "canceled";
-export const MembersCreateRequestMemberStatus = /*@__PURE__*/ S.String;
-
-export interface MembersCreateRequestMember {
-  user: MembersCreateRequestMemberUser;
-  status?: MembersCreateRequestMemberStatus | (string & {});
-}
-export const MembersCreateRequestMember = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    user: MembersCreateRequestMemberUser,
-    status: S.optional(MembersCreateRequestMemberStatus),
-  }),
-).annotate({
-  identifier: "MembersCreateRequestMember",
-}) as any as S.Schema<MembersCreateRequestMember>;
-
-export interface MembersCreateRequest {
-  organizationId: string;
-  member: MembersCreateRequestMember;
-}
-export const MembersCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    organizationId: S.String.pipe(T.Label("organization_id")),
-    member: MembersCreateRequestMember,
-  })
-    .pipe(
-      T.Http({
-        method: "POST",
-        uri: "/organizations/{organization_id}/members",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "MembersCreateRequest",
-}) as any as S.Schema<MembersCreateRequest>;
-
-export type MembersCreateResponseMetaMap = {
-  [key: string]: unknown | undefined;
-};
-export const MembersCreateResponseMetaMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<MembersCreateResponseMetaMap>;
-
-export type MembersCreateResponseStatus = "active" | "canceled";
-export const MembersCreateResponseStatus = /*@__PURE__*/ S.String;
-
-export interface MembersCreateResponseUser {
-  id: string;
-  email: string;
-  name: string;
-  twoFactorAuthenticationEnabled: boolean;
-}
-export const MembersCreateResponseUser = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    email: S.String,
-    name: S.String,
-    twoFactorAuthenticationEnabled: S.Boolean.pipe(
-      T.Body("two_factor_authentication_enabled"),
-    ),
-  }),
-).annotate({
-  identifier: "MembersCreateResponseUser",
-}) as any as S.Schema<MembersCreateResponseUser>;
-
-/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
-export interface MembersCreateResponse {
-  /** Organization Member ID */
-  id: string;
-  createTime: string;
-  meta: MembersCreateResponseMetaMap;
-  status: MembersCreateResponseStatus;
-  updateTime: string;
-  user: MembersCreateResponseUser;
-}
-export const MembersCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    createTime: S.String.pipe(T.Body("create_time")),
-    meta: MembersCreateResponseMetaMap,
-    status: MembersCreateResponseStatus,
-    updateTime: S.String.pipe(T.Body("update_time")),
-    user: MembersCreateResponseUser,
-  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "MembersCreateResponse",
-}) as any as S.Schema<MembersCreateResponse>;
-
-export interface MembersDeleteRequest {
-  organizationId: string;
-  /** Organization Member ID */
-  memberId: string;
-}
-export const MembersDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    organizationId: S.String.pipe(T.Label("organization_id")),
-    memberId: S.String.pipe(T.Label("member_id")),
-  })
-    .pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/organizations/{organization_id}/members/{member_id}",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "MembersDeleteRequest",
-}) as any as S.Schema<MembersDeleteRequest>;
-
-export interface MembersDeleteResponse {}
-export const MembersDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "MembersDeleteResponse",
-}) as any as S.Schema<MembersDeleteResponse>;
-
-export interface MembersGetRequest {
-  organizationId: string;
-  /** Organization Member ID */
-  memberId: string;
-}
-export const MembersGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    organizationId: S.String.pipe(T.Label("organization_id")),
-    memberId: S.String.pipe(T.Label("member_id")),
-  })
-    .pipe(
-      T.Http({
-        method: "GET",
-        uri: "/organizations/{organization_id}/members/{member_id}",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "MembersGetRequest",
-}) as any as S.Schema<MembersGetRequest>;
-
-export type MembersGetResponseMetaMap = { [key: string]: unknown | undefined };
-export const MembersGetResponseMetaMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<MembersGetResponseMetaMap>;
-
-export type MembersGetResponseStatus = "active" | "canceled";
-export const MembersGetResponseStatus = /*@__PURE__*/ S.String;
-
-export type MembersGetResponseUser = MembersCreateResponseUser;
-export const MembersGetResponseUser = MembersCreateResponseUser;
-
-/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
-export interface MembersGetResponse {
-  /** Organization Member ID */
-  id: string;
-  createTime: string;
-  meta: MembersGetResponseMetaMap;
-  status: MembersGetResponseStatus;
-  updateTime: string;
-  user: MembersCreateResponseUser;
-}
-export const MembersGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    createTime: S.String.pipe(T.Body("create_time")),
-    meta: MembersGetResponseMetaMap,
-    status: MembersGetResponseStatus,
-    updateTime: S.String.pipe(T.Body("update_time")),
-    user: MembersCreateResponseUser,
-  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "MembersGetResponse",
-}) as any as S.Schema<MembersGetResponse>;
-
-export type MembersListRequestStatus = "active" | "canceled";
-export const MembersListRequestStatus = /*@__PURE__*/ S.String;
-
-export type MembersListRequestStatusList = Array<
-  MembersListRequestStatus | (string & {})
->;
-export const MembersListRequestStatusList = /*@__PURE__*/ S.Array(
-  MembersListRequestStatus,
-) as any as S.Schema<MembersListRequestStatusList>;
-
-export interface MembersListRequestUser {
-  /** Filter the list of memberships for a specific email that ends with a substring. */
-  email?: string;
-}
-export const MembersListRequestUser = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    email: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "MembersListRequestUser",
-}) as any as S.Schema<MembersListRequestUser>;
-
-export interface MembersListRequest {
-  organizationId: string;
-  /** The amount of items to return. Defaults to 10. */
-  pageSize?: number;
-  /** An opaque token returned from the last list response that when */
-  pageToken?: string;
-  /** Filter the list of memberships by membership status. */
-  status?: MembersListRequestStatusList;
-  user?: MembersListRequestUser;
-}
-export const MembersListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    organizationId: S.String.pipe(T.Label("organization_id")),
-    pageSize: S.optional(S.Number.pipe(T.Query("page_size"))),
-    pageToken: S.optional(S.String.pipe(T.Query("page_token"))),
-    status: S.optional(MembersListRequestStatusList.pipe(T.Query())),
-    user: S.optional(MembersListRequestUser.pipe(T.DeepQuery("user"))),
-  })
-    .pipe(
-      T.Http({
-        method: "GET",
-        uri: "/organizations/{organization_id}/members",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "MembersListRequest",
-}) as any as S.Schema<MembersListRequest>;
-
-export type MembersListResultItemMetaMap = {
-  [key: string]: unknown | undefined;
-};
-export const MembersListResultItemMetaMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<MembersListResultItemMetaMap>;
-
-export type MembersListResultItemStatus = "active" | "canceled";
-export const MembersListResultItemStatus = /*@__PURE__*/ S.String;
-
-export type MembersListResultItemUser = MembersCreateResponseUser;
-export const MembersListResultItemUser = MembersCreateResponseUser;
-
-export interface MembersListResultItem {
-  /** Organization Member ID */
-  id: string;
-  createTime: string;
-  meta: MembersListResultItemMetaMap;
-  status: MembersListResultItemStatus;
-  updateTime: string;
-  user: MembersCreateResponseUser;
-}
-export const MembersListResultItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    createTime: S.String.pipe(T.Body("create_time")),
-    meta: MembersListResultItemMetaMap,
-    status: MembersListResultItemStatus,
-    updateTime: S.String.pipe(T.Body("update_time")),
-    user: MembersCreateResponseUser,
-  }),
-).annotate({
-  identifier: "MembersListResultItem",
-}) as any as S.Schema<MembersListResultItem>;
-
-export type MembersListResultList = Array<MembersListResultItem>;
-export const MembersListResultList = /*@__PURE__*/ S.Array(
-  MembersListResultItem,
-) as any as S.Schema<MembersListResultList>;
-
-export type MembersListResponse = MembersListResultList;
-export const MembersListResponse = /*@__PURE__*/ S.suspend(() =>
-  MembersListResultList.pipe(
-    T.EnvelopePayloadRoot(),
-    T.KeyDictionary(KEY_DICTIONARY),
-  ),
-).annotate({
-  identifier: "MembersListResponse",
-}) as any as S.Schema<MembersListResponse>;
-
-export interface OrganizationAccountsGetRequestAccountPubname {
-  /** (case-insensitive) Filter the list of accounts to where the account_pubname contains */
-  contains?: string;
-  /** (case-insensitive) Filter the list of accounts to where the account_pubname ends with */
-  endsWith?: string;
-  /** (case-insensitive) Filter the list of accounts to where the account_pubname starts with */
-  startsWith?: string;
-}
-export const OrganizationAccountsGetRequestAccountPubname =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      contains: S.optional(S.String),
-      endsWith: S.optional(S.String),
-      startsWith: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "OrganizationAccountsGetRequestAccountPubname",
-  }) as any as S.Schema<OrganizationAccountsGetRequestAccountPubname>;
-
-export type OrganizationAccountsGetRequestDirection = "asc" | "desc";
-export const OrganizationAccountsGetRequestDirection = /*@__PURE__*/ S.String;
-
-export interface OrganizationAccountsGetRequestName {
-  /** (case-insensitive) Filter the list of accounts to where the name contains a particular */
-  contains?: string;
-  /** (case-insensitive) Filter the list of accounts to where the name ends with a particular */
-  endsWith?: string;
-  /** (case-insensitive) Filter the list of accounts to where the name starts with a */
-  startsWith?: string;
-}
-export const OrganizationAccountsGetRequestName = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    contains: S.optional(S.String),
-    endsWith: S.optional(S.String),
-    startsWith: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OrganizationAccountsGetRequestName",
-}) as any as S.Schema<OrganizationAccountsGetRequestName>;
-
-export type OrganizationAccountsGetRequestOrderBy = "account_name";
-export const OrganizationAccountsGetRequestOrderBy = /*@__PURE__*/ S.String;
-
-export interface OrganizationAccountsGetRequest {
-  organizationId: string;
-  accountPubname?: OrganizationAccountsGetRequestAccountPubname;
-  /** Sort direction for the order_by field. Valid values: `asc`, `desc`. */
-  direction?: OrganizationAccountsGetRequestDirection | (string & {});
-  name?: OrganizationAccountsGetRequestName;
-  /** Field to order results by. Currently supported values: `account_name`. */
-  orderBy?: OrganizationAccountsGetRequestOrderBy | (string & {});
-  /** The amount of items to return. Defaults to 10. */
-  pageSize?: number;
-  /** An opaque token returned from the last list response that when */
-  pageToken?: string;
-}
-export const OrganizationAccountsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    organizationId: S.String.pipe(T.Label("organization_id")),
-    accountPubname: S.optional(
-      OrganizationAccountsGetRequestAccountPubname.pipe(
-        T.Body("account_pubname"),
-        T.DeepQuery("account_pubname"),
-      ),
-    ),
-    direction: S.optional(
-      OrganizationAccountsGetRequestDirection.pipe(T.Query()),
-    ),
-    name: S.optional(
-      OrganizationAccountsGetRequestName.pipe(T.DeepQuery("name")),
-    ),
-    orderBy: S.optional(
-      OrganizationAccountsGetRequestOrderBy.pipe(T.Query("order_by")),
-    ),
-    pageSize: S.optional(S.Number.pipe(T.Query("page_size"))),
-    pageToken: S.optional(S.String.pipe(T.Query("page_token"))),
-  })
-    .pipe(
-      T.Http({
-        method: "GET",
-        uri: "/organizations/{organization_id}/accounts",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "OrganizationAccountsGetRequest",
-}) as any as S.Schema<OrganizationAccountsGetRequest>;
-
-export interface OrganizationAccountsGetResultItemSettings {
-  abuseContactEmail: string;
-  accessApprovalExpiry: string;
-  apiAccessEnabled: boolean;
-  /** Use [DNS Settings](https://developers.cloudflare.com/api/operations/dns-settings-for-an-account-list-dns-settings) instead. Deprecated. */
-  defaultNameservers: string;
-  enforceTwofactor: boolean;
-  /** Use [DNS Settings](https://developers.cloudflare.com/api/operations/dns-settings-for-an-account-list-dns-settings) instead. Deprecated. */
-  useAccountCustomNsByDefault: boolean;
-}
-export const OrganizationAccountsGetResultItemSettings =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      abuseContactEmail: S.String.pipe(T.Body("abuse_contact_email")),
-      accessApprovalExpiry: S.String.pipe(T.Body("access_approval_expiry")),
-      apiAccessEnabled: S.Boolean.pipe(T.Body("api_access_enabled")),
-      defaultNameservers: S.String.pipe(T.Body("default_nameservers")),
-      enforceTwofactor: S.Boolean.pipe(T.Body("enforce_twofactor")),
-      useAccountCustomNsByDefault: S.Boolean.pipe(
-        T.Body("use_account_custom_ns_by_default"),
-      ),
-    }),
-  ).annotate({
-    identifier: "OrganizationAccountsGetResultItemSettings",
-  }) as any as S.Schema<OrganizationAccountsGetResultItemSettings>;
-
-export type OrganizationAccountsGetResultItemType = "standard" | "enterprise";
-export const OrganizationAccountsGetResultItemType = /*@__PURE__*/ S.String;
-
-export interface OrganizationAccountsGetResultItem {
-  id: string;
-  createdOn: string;
-  name: string;
-  settings: OrganizationAccountsGetResultItemSettings;
-  type: OrganizationAccountsGetResultItemType;
-}
-export const OrganizationAccountsGetResultItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    createdOn: S.String.pipe(T.Body("created_on")),
-    name: S.String,
-    settings: OrganizationAccountsGetResultItemSettings,
-    type: OrganizationAccountsGetResultItemType,
-  }),
-).annotate({
-  identifier: "OrganizationAccountsGetResultItem",
-}) as any as S.Schema<OrganizationAccountsGetResultItem>;
-
-export type OrganizationAccountsGetResultList =
-  Array<OrganizationAccountsGetResultItem>;
-export const OrganizationAccountsGetResultList = /*@__PURE__*/ S.Array(
-  OrganizationAccountsGetResultItem,
-) as any as S.Schema<OrganizationAccountsGetResultList>;
-
-export type OrganizationAccountsGetResponse = OrganizationAccountsGetResultList;
-export const OrganizationAccountsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  OrganizationAccountsGetResultList.pipe(
-    T.EnvelopePayloadRoot(),
-    T.KeyDictionary(KEY_DICTIONARY),
-  ),
-).annotate({
-  identifier: "OrganizationAccountsGetResponse",
-}) as any as S.Schema<OrganizationAccountsGetResponse>;
-
 export interface PutOrganizationProfileRequest {
   organizationId: string;
   businessAddress: string;
@@ -1951,6 +1951,21 @@ export const UpdateOrganizationResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateOrganizationResponse",
 }) as any as S.Schema<UpdateOrganizationResponse>;
 
+export type CreateMemberError = CloudflareOpError;
+/** Create a membership that grants access to a specific Organization. (Currently in Public Beta - see https://developers.cloudflare.com/fundamentals/organizations/) */
+export const createMember: API.OperationMethod<
+  CreateMemberRequest,
+  CreateMemberResponse,
+  CreateMemberError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateMemberRequest,
+  output: CreateMemberResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
 export type CreateOrganizationError = Forbidden | CloudflareOpError;
 /** Create a new organization for a user. (Currently in Public Beta - see https://developers.cloudflare.com/fundamentals/organizations/) */
 export const createOrganization: API.OperationMethod<
@@ -1962,6 +1977,21 @@ export const createOrganization: API.OperationMethod<
   input: CreateOrganizationRequest,
   output: CreateOrganizationResponse,
   errors: [Forbidden, CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteMemberError = CloudflareOpError;
+/** Delete a membership to a particular Organization. (Currently in Public Beta - see https://developers.cloudflare.com/fundamentals/organizations/) */
+export const deleteMember: API.OperationMethod<
+  DeleteMemberRequest,
+  DeleteMemberResponse,
+  DeleteMemberError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteMemberRequest,
+  output: DeleteMemberResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
 }));
@@ -2004,6 +2034,21 @@ export const getBillingUsage: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetMemberError = CloudflareOpError;
+/** Retrieve a single membership from an Organization. (Currently in Public Beta - see https://developers.cloudflare.com/fundamentals/organizations/) */
+export const getMember: API.OperationMethod<
+  GetMemberRequest,
+  GetMemberResponse,
+  GetMemberError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetMemberRequest,
+  output: GetMemberResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetOrganizationError =
   | OrganizationNotFound
   | Forbidden
@@ -2023,6 +2068,21 @@ export const getOrganization: API.OperationMethod<
     CloudflareRateLimited,
     CloudflareError,
   ],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetOrganizationAccountError = CloudflareOpError;
+/** Retrieve a list of accounts that belong to a specific organization. (Currently in Public Beta - see https://developers.cloudflare.com/fundamentals/organizations/) */
+export const getOrganizationAccount: API.OperationMethod<
+  GetOrganizationAccountRequest,
+  GetOrganizationAccountResponse,
+  GetOrganizationAccountError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetOrganizationAccountRequest,
+  output: GetOrganizationAccountResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
 }));
@@ -2075,6 +2135,21 @@ export const listLogAudits: API.PaginatedOperationMethod<
   cloudflarePaginate,
 ) as any;
 
+export type ListMembersError = CloudflareOpError;
+/** List memberships for an Organization. (Currently in Public Beta - see https://developers.cloudflare.com/fundamentals/organizations/) */
+export const listMembers: API.OperationMethod<
+  ListMembersRequest,
+  ListMembersResponse,
+  ListMembersError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListMembersRequest,
+  output: ListMembersResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListOrganizationsError = Forbidden | CloudflareOpError;
 /** Retrieve a list of organizations a particular user has access to. (Currently in Public Beta - see https://developers.cloudflare.com/fundamentals/organizations/) */
 export const listOrganizations: API.PaginatedOperationMethod<
@@ -2094,81 +2169,6 @@ export const listOrganizations: API.PaginatedOperationMethod<
   }),
   cloudflarePaginate,
 ) as any;
-
-export type MembersCreateError = CloudflareOpError;
-/** Create a membership that grants access to a specific Organization. (Currently in Public Beta - see https://developers.cloudflare.com/fundamentals/organizations/) */
-export const membersCreate: API.OperationMethod<
-  MembersCreateRequest,
-  MembersCreateResponse,
-  MembersCreateError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MembersCreateRequest,
-  output: MembersCreateResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MembersDeleteError = CloudflareOpError;
-/** Delete a membership to a particular Organization. (Currently in Public Beta - see https://developers.cloudflare.com/fundamentals/organizations/) */
-export const membersDelete: API.OperationMethod<
-  MembersDeleteRequest,
-  MembersDeleteResponse,
-  MembersDeleteError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MembersDeleteRequest,
-  output: MembersDeleteResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MembersGetError = CloudflareOpError;
-/** Retrieve a single membership from an Organization. (Currently in Public Beta - see https://developers.cloudflare.com/fundamentals/organizations/) */
-export const membersGet: API.OperationMethod<
-  MembersGetRequest,
-  MembersGetResponse,
-  MembersGetError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MembersGetRequest,
-  output: MembersGetResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MembersListError = CloudflareOpError;
-/** List memberships for an Organization. (Currently in Public Beta - see https://developers.cloudflare.com/fundamentals/organizations/) */
-export const membersList: API.OperationMethod<
-  MembersListRequest,
-  MembersListResponse,
-  MembersListError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MembersListRequest,
-  output: MembersListResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OrganizationAccountsGetError = CloudflareOpError;
-/** Retrieve a list of accounts that belong to a specific organization. (Currently in Public Beta - see https://developers.cloudflare.com/fundamentals/organizations/) */
-export const organizationAccountsGet: API.OperationMethod<
-  OrganizationAccountsGetRequest,
-  OrganizationAccountsGetResponse,
-  OrganizationAccountsGetError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OrganizationAccountsGetRequest,
-  output: OrganizationAccountsGetResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
 
 export type PutOrganizationProfileError =
   | OrganizationNotFound

@@ -243,6 +243,7 @@ export type CreateIntegrationStoreDirectResponseStoreProjectsMetadataItemFramewo
   | "ember"
   | "eve"
   | "express"
+  | "factory-eve"
   | "fastapi"
   | "fasthtml"
   | "fastify"
@@ -4626,6 +4627,8 @@ export interface GetConfigurationResponseBodyCase0 {
   disabledReason?: GetConfigurationResponseBodyCase0DisabledReason;
   /** Defines the installation type. - 'external' integrations are installed via the existing integrations flow - 'marketplace' integrations are natively installed: - when accepting the TOS of a partner during the store creation process - if undefined, assume 'external' */
   installationType?: GetConfigurationResponseBodyCase0InstallationType;
+  /** Historical parent installation from which acceptedPolicies were inherited. This is immutable provenance, not current authorization or relationship truth. */
+  acceptedPoliciesInheritedFromInstallationId?: string;
 }
 export const GetConfigurationResponseBodyCase0 = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -4656,6 +4659,7 @@ export const GetConfigurationResponseBodyCase0 = /*@__PURE__*/ S.suspend(() =>
     installationType: S.optional(
       GetConfigurationResponseBodyCase0InstallationType,
     ),
+    acceptedPoliciesInheritedFromInstallationId: S.optional(S.String),
   }),
 ).annotate({
   identifier: "GetConfigurationResponseBodyCase0",
@@ -4761,6 +4765,8 @@ export interface GetConfigurationResponseBodyCase1 {
   disabledReason?: GetConfigurationResponseBodyCase1DisabledReason;
   /** Defines the installation type. - 'external' integrations are installed via the existing integrations flow - 'marketplace' integrations are natively installed: - when accepting the TOS of a partner during the store creation process - if undefined, assume 'external' */
   installationType?: GetConfigurationResponseBodyCase1InstallationType;
+  /** Historical parent installation from which acceptedPolicies were inherited. This is immutable provenance, not current authorization or relationship truth. */
+  acceptedPoliciesInheritedFromInstallationId?: string;
 }
 export const GetConfigurationResponseBodyCase1 = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -4787,6 +4793,7 @@ export const GetConfigurationResponseBodyCase1 = /*@__PURE__*/ S.suspend(() =>
     installationType: S.optional(
       GetConfigurationResponseBodyCase1InstallationType,
     ),
+    acceptedPoliciesInheritedFromInstallationId: S.optional(S.String),
   }),
 ).annotate({
   identifier: "GetConfigurationResponseBodyCase1",
@@ -4892,6 +4899,8 @@ export interface GetConfigurationResponseBodyCase2 {
   disabledReason?: GetConfigurationResponseBodyCase2DisabledReason;
   /** Defines the installation type. - 'external' integrations are installed via the existing integrations flow - 'marketplace' integrations are natively installed: - when accepting the TOS of a partner during the store creation process - if undefined, assume 'external' */
   installationType?: GetConfigurationResponseBodyCase2InstallationType;
+  /** Historical parent installation from which acceptedPolicies were inherited. This is immutable provenance, not current authorization or relationship truth. */
+  acceptedPoliciesInheritedFromInstallationId?: string;
 }
 export const GetConfigurationResponseBodyCase2 = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -4918,6 +4927,7 @@ export const GetConfigurationResponseBodyCase2 = /*@__PURE__*/ S.suspend(() =>
     installationType: S.optional(
       GetConfigurationResponseBodyCase2InstallationType,
     ),
+    acceptedPoliciesInheritedFromInstallationId: S.optional(S.String),
   }),
 ).annotate({
   identifier: "GetConfigurationResponseBodyCase2",
@@ -8216,6 +8226,8 @@ export interface GetConfigurationsResponseBodyCase0Item {
   disabledReason?: GetConfigurationsResponseBodyCase0ItemDisabledReason;
   /** Defines the installation type. - 'external' integrations are installed via the existing integrations flow - 'marketplace' integrations are natively installed: - when accepting the TOS of a partner during the store creation process - if undefined, assume 'external' */
   installationType?: GetConfigurationsResponseBodyCase0ItemInstallationType;
+  /** Historical parent installation from which acceptedPolicies were inherited. This is immutable provenance, not current authorization or relationship truth. */
+  acceptedPoliciesInheritedFromInstallationId?: string;
 }
 export const GetConfigurationsResponseBodyCase0Item = /*@__PURE__*/ S.suspend(
   () =>
@@ -8245,6 +8257,7 @@ export const GetConfigurationsResponseBodyCase0Item = /*@__PURE__*/ S.suspend(
       installationType: S.optional(
         GetConfigurationsResponseBodyCase0ItemInstallationType,
       ),
+      acceptedPoliciesInheritedFromInstallationId: S.optional(S.String),
     }),
 ).annotate({
   identifier: "GetConfigurationsResponseBodyCase0Item",
@@ -8433,6 +8446,8 @@ export interface GetConfigurationsResponseBodyCase1Item {
   disabledReason?: GetConfigurationsResponseBodyCase1ItemDisabledReason;
   /** Defines the installation type. - 'external' integrations are installed via the existing integrations flow - 'marketplace' integrations are natively installed: - when accepting the TOS of a partner during the store creation process - if undefined, assume 'external' */
   installationType?: GetConfigurationsResponseBodyCase1ItemInstallationType;
+  /** Historical parent installation from which acceptedPolicies were inherited. This is immutable provenance, not current authorization or relationship truth. */
+  acceptedPoliciesInheritedFromInstallationId?: string;
 }
 export const GetConfigurationsResponseBodyCase1Item = /*@__PURE__*/ S.suspend(
   () =>
@@ -8463,6 +8478,7 @@ export const GetConfigurationsResponseBodyCase1Item = /*@__PURE__*/ S.suspend(
       installationType: S.optional(
         GetConfigurationsResponseBodyCase1ItemInstallationType,
       ),
+      acceptedPoliciesInheritedFromInstallationId: S.optional(S.String),
     }),
 ).annotate({
   identifier: "GetConfigurationsResponseBodyCase1Item",

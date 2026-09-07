@@ -317,6 +317,8 @@ export interface OrganizationTeamMembershipPasswordsItem {
   plain_text: Redacted.Redacted<string> | null;
   /** Whether or not the password is for a read replica */
   replica: boolean;
+  /** Whether or not the password is scoped to a read-only region */
+  read_only_region: boolean;
   /** Whether or not the password can be renewed */
   renewable: boolean;
   database_branch: OrganizationTeamMembershipPasswordsItemDatabaseBranch;
@@ -346,6 +348,7 @@ export const OrganizationTeamMembershipPasswordsItem = /*@__PURE__*/ S.suspend(
       username: S.String,
       plain_text: S.NullOr(S.String).pipe(T.SensitiveValue({})),
       replica: S.Boolean,
+      read_only_region: S.Boolean,
       renewable: S.Boolean,
       database_branch: OrganizationTeamMembershipPasswordsItemDatabaseBranch,
     }),
@@ -1117,181 +1120,224 @@ export const CancelKeyspaceResizeRequestResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CancelKeyspaceResizeRequestResponse",
 }) as any as S.Schema<CancelKeyspaceResizeRequestResponse>;
 
-export interface CheckDeployRequestStorageRequest {
-  /** The name of the deploy request's organization */
+export interface CancelWorkflowRequest {
+  /** The name of the organization the workflow belongs to */
   organization: string;
-  /** The name of the deploy request's database */
+  /** The name of the database the workflow belongs to */
   database: string;
-  /** The number of the deploy request */
+  /** The sequence number of the workflow */
   number: number;
 }
-export const CheckDeployRequestStorageRequest = /*@__PURE__*/ S.suspend(() =>
+export const CancelWorkflowRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     organization: S.String.pipe(T.Label()),
     database: S.String.pipe(T.Label()),
     number: S.Number.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/organizations/{organization}/databases/{database}/deploy-requests/{number}/storage-check",
+      method: "DELETE",
+      uri: "/organizations/{organization}/databases/{database}/workflows/{number}",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "CheckDeployRequestStorageRequest",
-}) as any as S.Schema<CheckDeployRequestStorageRequest>;
+  identifier: "CancelWorkflowRequest",
+}) as any as S.Schema<CancelWorkflowRequest>;
 
-export interface CheckDeployRequestStorageResponseStorageReportValueValue {
-  /** Current storage used in bytes */
-  used?: number;
-  /** Total storage capacity in bytes */
-  capacity?: number;
-  /** Remaining storage available in bytes */
-  remaining?: number;
-  /** Percentage of storage capacity currently used */
-  percentage_used?: number;
-  /** Estimated additional storage needed for this deployment in bytes */
-  storage_needed?: number;
-  /** Whether this shard has enough remaining storage for the deployment */
-  has_enough?: boolean;
+/** The state of the workflow */
+export type WorkflowState =
+  | "pending"
+  | "copying"
+  | "running"
+  | "stopped"
+  | "verifying_data"
+  | "verified_data"
+  | "switching_replicas"
+  | "switched_replicas"
+  | "switching_primaries"
+  | "switched_primaries"
+  | "reversing_traffic"
+  | "reversing_traffic_for_cancel"
+  | "cutting_over"
+  | "cutover"
+  | "reversed_cutover"
+  | "completed"
+  | "cancelling"
+  | "cancelled"
+  | "error";
+export const WorkflowState = /*@__PURE__*/ S.String;
+
+/** The type of the workflow */
+export type WorkflowWorkflowType = "move_tables";
+export const WorkflowWorkflowType = /*@__PURE__*/ S.String;
+
+/** The behavior when DDL changes during the workflow */
+export type WorkflowOnDdl = "IGNORE" | "STOP" | "EXEC" | "EXEC_IGNORE";
+export const WorkflowOnDdl = /*@__PURE__*/ S.String;
+
+export type WorkflowActor = OrganizationTeamMembershipActor;
+export const WorkflowActor = OrganizationTeamMembershipActor;
+
+export type WorkflowVerifyDataBy = OrganizationTeamMembershipActor;
+export const WorkflowVerifyDataBy = OrganizationTeamMembershipActor;
+
+export type WorkflowReversedBy = OrganizationTeamMembershipActor;
+export const WorkflowReversedBy = OrganizationTeamMembershipActor;
+
+export type WorkflowSwitchReplicasBy = OrganizationTeamMembershipActor;
+export const WorkflowSwitchReplicasBy = OrganizationTeamMembershipActor;
+
+export type WorkflowSwitchPrimariesBy = OrganizationTeamMembershipActor;
+export const WorkflowSwitchPrimariesBy = OrganizationTeamMembershipActor;
+
+export type WorkflowCancelledBy = OrganizationTeamMembershipActor;
+export const WorkflowCancelledBy = OrganizationTeamMembershipActor;
+
+export type WorkflowCompletedBy = OrganizationTeamMembershipActor;
+export const WorkflowCompletedBy = OrganizationTeamMembershipActor;
+
+export type WorkflowRetriedBy = OrganizationTeamMembershipActor;
+export const WorkflowRetriedBy = OrganizationTeamMembershipActor;
+
+export type WorkflowCutoverBy = OrganizationTeamMembershipActor;
+export const WorkflowCutoverBy = OrganizationTeamMembershipActor;
+
+export type WorkflowReversedCutoverBy = OrganizationTeamMembershipActor;
+export const WorkflowReversedCutoverBy = OrganizationTeamMembershipActor;
+
+export type WorkflowBranch = OrganizationTeamMembershipUserDefaultOrganization;
+export const WorkflowBranch = OrganizationTeamMembershipUserDefaultOrganization;
+
+export type WorkflowSourceKeyspace =
+  OrganizationTeamMembershipUserDefaultOrganization;
+export const WorkflowSourceKeyspace =
+  OrganizationTeamMembershipUserDefaultOrganization;
+
+export type WorkflowTargetKeyspace =
+  OrganizationTeamMembershipUserDefaultOrganization;
+export const WorkflowTargetKeyspace =
+  OrganizationTeamMembershipUserDefaultOrganization;
+
+export type WorkflowGlobalKeyspace =
+  OrganizationTeamMembershipUserDefaultOrganization;
+export const WorkflowGlobalKeyspace =
+  OrganizationTeamMembershipUserDefaultOrganization;
+
+export interface Workflow {
+  /** The ID of the workflow */
+  id: string;
+  /** The name of the workflow */
+  name: string;
+  /** The sequence number of the workflow */
+  number: number;
+  /** The state of the workflow */
+  state: WorkflowState;
+  /** When the workflow was created */
+  created_at: string;
+  /** When the workflow was last updated */
+  updated_at: string;
+  /** When the workflow was started */
+  started_at: string | null;
+  /** When the workflow was completed */
+  completed_at: string | null;
+  /** When the workflow was cancelled */
+  cancelled_at: string | null;
+  /** When the workflow was reversed */
+  reversed_at: string | null;
+  /** When the workflow was retried */
+  retried_at: string | null;
+  /** When the data copy was completed */
+  data_copy_completed_at: string | null;
+  /** When the cutover was completed */
+  cutover_at: string | null;
+  /** Whether or not the replicas have been switched */
+  replicas_switched: boolean;
+  /** Whether or not the primaries have been switched */
+  primaries_switched: boolean;
+  /** When the replicas were switched */
+  switch_replicas_at: string | null;
+  /** When the primaries were switched */
+  switch_primaries_at: string | null;
+  /** When the data was verified */
+  verify_data_at: string | null;
+  /** The type of the workflow */
+  workflow_type: WorkflowWorkflowType;
+  /** The subtype of the workflow */
+  workflow_subtype: string;
+  /** Whether or not secondary keys are deferred */
+  defer_secondary_keys: boolean;
+  /** The behavior when DDL changes during the workflow */
+  on_ddl: WorkflowOnDdl;
+  /** The errors that occurred during the workflow */
+  workflow_errors: string;
+  /** Whether or not the workflow may be retried */
+  may_retry: boolean;
+  /** Whether or not the workflow may be restarted */
+  may_restart: boolean;
+  /** Whether or not the verified data is stale */
+  verified_data_stale: boolean;
+  /** Whether or not sequence tables have been created */
+  sequence_tables_applied: boolean;
+  actor: OrganizationTeamMembershipActor;
+  verify_data_by: OrganizationTeamMembershipActor;
+  reversed_by: OrganizationTeamMembershipActor;
+  switch_replicas_by: OrganizationTeamMembershipActor;
+  switch_primaries_by: OrganizationTeamMembershipActor;
+  cancelled_by: OrganizationTeamMembershipActor;
+  completed_by: OrganizationTeamMembershipActor;
+  retried_by: OrganizationTeamMembershipActor;
+  cutover_by: OrganizationTeamMembershipActor;
+  reversed_cutover_by: OrganizationTeamMembershipActor;
+  branch: OrganizationTeamMembershipUserDefaultOrganization;
+  source_keyspace: OrganizationTeamMembershipUserDefaultOrganization;
+  target_keyspace: OrganizationTeamMembershipUserDefaultOrganization;
+  global_keyspace: OrganizationTeamMembershipUserDefaultOrganization;
 }
-export const CheckDeployRequestStorageResponseStorageReportValueValue =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      used: S.optional(S.Number),
-      capacity: S.optional(S.Number),
-      remaining: S.optional(S.Number),
-      percentage_used: S.optional(S.Number),
-      storage_needed: S.optional(S.Number),
-      has_enough: S.optional(S.Boolean),
-    }),
-  ).annotate({
-    identifier: "CheckDeployRequestStorageResponseStorageReportValueValue",
-  }) as any as S.Schema<CheckDeployRequestStorageResponseStorageReportValueValue>;
-
-/** Per-shard storage details. Keys are shard names. */
-export type CheckDeployRequestStorageResponseStorageReportValueMap = {
-  [key: string]:
-    | CheckDeployRequestStorageResponseStorageReportValueValue
-    | undefined;
-};
-export const CheckDeployRequestStorageResponseStorageReportValueMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    CheckDeployRequestStorageResponseStorageReportValueValue,
-  ) as any as S.Schema<CheckDeployRequestStorageResponseStorageReportValueMap>;
-
-/** Per-keyspace and per-shard storage report. Keys are keyspace names. */
-export type CheckDeployRequestStorageResponseStorageReportMap = {
-  [key: string]:
-    | CheckDeployRequestStorageResponseStorageReportValueMap
-    | undefined;
-};
-export const CheckDeployRequestStorageResponseStorageReportMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    CheckDeployRequestStorageResponseStorageReportValueMap,
-  ) as any as S.Schema<CheckDeployRequestStorageResponseStorageReportMap>;
-
-export interface CheckDeployRequestStorageResponse {
-  /** Whether the cluster has enough storage to safely deploy */
-  enough_storage: boolean;
-  /** Whether the target branch cluster can be upgraded for more storage */
-  upgradeable: boolean;
-  /** Total estimated bytes of additional storage needed for the deployment */
-  storage_bytes_needed: number;
-  /** Per-keyspace and per-shard storage report. Keys are keyspace names. */
-  storage_report: CheckDeployRequestStorageResponseStorageReportMap;
-}
-export const CheckDeployRequestStorageResponse = /*@__PURE__*/ S.suspend(() =>
+export const Workflow = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    enough_storage: S.Boolean,
-    upgradeable: S.Boolean,
-    storage_bytes_needed: S.Number,
-    storage_report: CheckDeployRequestStorageResponseStorageReportMap,
+    id: S.String,
+    name: S.String,
+    number: S.Number,
+    state: WorkflowState,
+    created_at: S.String,
+    updated_at: S.String,
+    started_at: S.NullOr(S.String),
+    completed_at: S.NullOr(S.String),
+    cancelled_at: S.NullOr(S.String),
+    reversed_at: S.NullOr(S.String),
+    retried_at: S.NullOr(S.String),
+    data_copy_completed_at: S.NullOr(S.String),
+    cutover_at: S.NullOr(S.String),
+    replicas_switched: S.Boolean,
+    primaries_switched: S.Boolean,
+    switch_replicas_at: S.NullOr(S.String),
+    switch_primaries_at: S.NullOr(S.String),
+    verify_data_at: S.NullOr(S.String),
+    workflow_type: WorkflowWorkflowType,
+    workflow_subtype: S.String,
+    defer_secondary_keys: S.Boolean,
+    on_ddl: WorkflowOnDdl,
+    workflow_errors: S.String,
+    may_retry: S.Boolean,
+    may_restart: S.Boolean,
+    verified_data_stale: S.Boolean,
+    sequence_tables_applied: S.Boolean,
+    actor: OrganizationTeamMembershipActor,
+    verify_data_by: OrganizationTeamMembershipActor,
+    reversed_by: OrganizationTeamMembershipActor,
+    switch_replicas_by: OrganizationTeamMembershipActor,
+    switch_primaries_by: OrganizationTeamMembershipActor,
+    cancelled_by: OrganizationTeamMembershipActor,
+    completed_by: OrganizationTeamMembershipActor,
+    retried_by: OrganizationTeamMembershipActor,
+    cutover_by: OrganizationTeamMembershipActor,
+    reversed_cutover_by: OrganizationTeamMembershipActor,
+    branch: OrganizationTeamMembershipUserDefaultOrganization,
+    source_keyspace: OrganizationTeamMembershipUserDefaultOrganization,
+    target_keyspace: OrganizationTeamMembershipUserDefaultOrganization,
+    global_keyspace: OrganizationTeamMembershipUserDefaultOrganization,
   }),
-).annotate({
-  identifier: "CheckDeployRequestStorageResponse",
-}) as any as S.Schema<CheckDeployRequestStorageResponse>;
-
-/** The deploy request will be updated to this state */
-export type CloseDeployRequestRequestState = "closed";
-export const CloseDeployRequestRequestState = /*@__PURE__*/ S.String;
-
-export interface CloseDeployRequestRequest {
-  /** The name of the deploy request's organization */
-  organization: string;
-  /** The name of the deploy request's database */
-  database: string;
-  /** The number of the deploy request */
-  number: number;
-  /** The deploy request will be updated to this state */
-  state?: CloseDeployRequestRequestState | (string & {});
-}
-export const CloseDeployRequestRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    organization: S.String.pipe(T.Label()),
-    database: S.String.pipe(T.Label()),
-    number: S.Number.pipe(T.Label()),
-    state: S.optional(CloseDeployRequestRequestState),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/organizations/{organization}/databases/{database}/deploy-requests/{number}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "CloseDeployRequestRequest",
-}) as any as S.Schema<CloseDeployRequestRequest>;
-
-export interface CompleteErroredDeployRequest {
-  /** The name of the deploy request's organization */
-  organization: string;
-  /** The name of the deploy request's database */
-  database: string;
-  /** The number of the deploy request */
-  number: number;
-}
-export const CompleteErroredDeployRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    organization: S.String.pipe(T.Label()),
-    database: S.String.pipe(T.Label()),
-    number: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/organizations/{organization}/databases/{database}/deploy-requests/{number}/complete-deploy",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "CompleteErroredDeployRequest",
-}) as any as S.Schema<CompleteErroredDeployRequest>;
-
-export interface CompleteGatedDeployRequestRequest {
-  /** The name of the deploy request's organization */
-  organization: string;
-  /** The name of the deploy request's database */
-  database: string;
-  /** The number of the deploy request */
-  number: number;
-}
-export const CompleteGatedDeployRequestRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    organization: S.String.pipe(T.Label()),
-    database: S.String.pipe(T.Label()),
-    number: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/organizations/{organization}/databases/{database}/deploy-requests/{number}/apply-deploy",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "CompleteGatedDeployRequestRequest",
-}) as any as S.Schema<CompleteGatedDeployRequestRequest>;
+).annotate({ identifier: "Workflow" }) as any as S.Schema<Workflow>;
 
 export interface CompleteRevertRequest {
   /** The name of the deploy request's organization */
@@ -1316,6 +1362,30 @@ export const CompleteRevertRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "CompleteRevertRequest",
 }) as any as S.Schema<CompleteRevertRequest>;
+
+export interface CompleteWorkflowRequest {
+  /** The name of the organization the workflow belongs to */
+  organization: string;
+  /** The name of the database the workflow belongs to */
+  database: string;
+  /** The sequence number of the workflow */
+  number: number;
+}
+export const CompleteWorkflowRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    organization: S.String.pipe(T.Label()),
+    database: S.String.pipe(T.Label()),
+    number: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/organizations/{organization}/databases/{database}/workflows/{number}/complete",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CompleteWorkflowRequest",
+}) as any as S.Schema<CompleteWorkflowRequest>;
 
 export interface ConfigureOrganizationSsoRequest {
   /** Organization name slug from `list_organizations`. Example: `acme`. */
@@ -1957,6 +2027,8 @@ export interface CreateBranchRequest {
   region?: string;
   /** Restore from a point-in-time recovery timestamp (e.g. 2023-01-01T00:00:00Z). Available only for PostgreSQL databases. */
   restore_point?: string;
+  /** For PostgreSQL backup restores and point-in-time recovery, the number of additional replicas from 0 to 8, subject to the target cluster size. 0 creates a single-node branch. If omitted, the target cluster size's minimum is used. */
+  replicas?: number;
   /** If provided, restores the last successful backup's schema and data to the new branch. Must have `restore_production_branch_backup(s)` or `restore_backup(s)` access to do this, in addition to Data Branching™ being enabled for the branch. */
   seed_data?: CreateBranchRequestSeedData | (string & {});
   /** The database cluster size. Required if a backup_id is provided (unless keyspace_cluster_sizes covers every keyspace), optional otherwise. Options: PS_10, PS_20, PS_40, ..., PS_2800 */
@@ -1981,6 +2053,7 @@ export const CreateBranchRequest = /*@__PURE__*/ S.suspend(() =>
     backup_id: S.optional(S.String),
     region: S.optional(S.String),
     restore_point: S.optional(S.String),
+    replicas: S.optional(S.Number),
     seed_data: S.optional(CreateBranchRequestSeedData),
     cluster_size: S.optional(S.String),
     keyspace_cluster_sizes: S.optional(
@@ -2727,6 +2800,8 @@ export interface DatabaseBranchKeyspace {
   shards: number;
   /** If the keyspace is sharded */
   sharded: boolean;
+  /** If the keyspace uses an external datasource */
+  external: boolean;
   /** Total number of replicas in the keyspace */
   replicas: number;
   /** Number of extra replicas in the keyspace */
@@ -2772,6 +2847,7 @@ export const DatabaseBranchKeyspace = /*@__PURE__*/ S.suspend(() =>
     name: S.String,
     shards: S.Number,
     sharded: S.Boolean,
+    external: S.Boolean,
     replicas: S.Number,
     extra_replicas: S.Number,
     created_at: S.String,
@@ -3615,6 +3691,8 @@ export interface DatabaseBranchPasswordWithSecret {
   plain_text: Redacted.Redacted<string>;
   /** Whether or not the password is for a read replica */
   replica: boolean;
+  /** Whether or not the password is scoped to a read-only region */
+  read_only_region: boolean;
   /** Whether or not the password can be renewed */
   renewable: boolean;
   database_branch: OrganizationTeamMembershipPasswordsItemDatabaseBranch;
@@ -3643,6 +3721,7 @@ export const DatabaseBranchPasswordWithSecret = /*@__PURE__*/ S.suspend(() =>
     username: S.String,
     plain_text: S.String.pipe(T.SensitiveValue({})),
     replica: S.Boolean,
+    read_only_region: S.Boolean,
     renewable: S.Boolean,
     database_branch: OrganizationTeamMembershipPasswordsItemDatabaseBranch,
   }),
@@ -4609,6 +4688,7 @@ export type DatabaseWebhookEventsItem =
   | "branch.anomaly"
   | "branch.out_of_memory"
   | "branch.primary_promoted"
+  | "branch.primary_switchover_imminent"
   | "branch.schema_recommendation"
   | "branch.sleeping"
   | "branch.start_maintenance"
@@ -4728,201 +4808,6 @@ export const CreateWorkflowRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "CreateWorkflowRequest",
 }) as any as S.Schema<CreateWorkflowRequest>;
-
-/** The state of the workflow */
-export type WorkflowState =
-  | "pending"
-  | "copying"
-  | "running"
-  | "stopped"
-  | "verifying_data"
-  | "verified_data"
-  | "switching_replicas"
-  | "switched_replicas"
-  | "switching_primaries"
-  | "switched_primaries"
-  | "reversing_traffic"
-  | "reversing_traffic_for_cancel"
-  | "cutting_over"
-  | "cutover"
-  | "reversed_cutover"
-  | "completed"
-  | "cancelling"
-  | "cancelled"
-  | "error";
-export const WorkflowState = /*@__PURE__*/ S.String;
-
-/** The type of the workflow */
-export type WorkflowWorkflowType = "move_tables";
-export const WorkflowWorkflowType = /*@__PURE__*/ S.String;
-
-/** The behavior when DDL changes during the workflow */
-export type WorkflowOnDdl = "IGNORE" | "STOP" | "EXEC" | "EXEC_IGNORE";
-export const WorkflowOnDdl = /*@__PURE__*/ S.String;
-
-export type WorkflowActor = OrganizationTeamMembershipActor;
-export const WorkflowActor = OrganizationTeamMembershipActor;
-
-export type WorkflowVerifyDataBy = OrganizationTeamMembershipActor;
-export const WorkflowVerifyDataBy = OrganizationTeamMembershipActor;
-
-export type WorkflowReversedBy = OrganizationTeamMembershipActor;
-export const WorkflowReversedBy = OrganizationTeamMembershipActor;
-
-export type WorkflowSwitchReplicasBy = OrganizationTeamMembershipActor;
-export const WorkflowSwitchReplicasBy = OrganizationTeamMembershipActor;
-
-export type WorkflowSwitchPrimariesBy = OrganizationTeamMembershipActor;
-export const WorkflowSwitchPrimariesBy = OrganizationTeamMembershipActor;
-
-export type WorkflowCancelledBy = OrganizationTeamMembershipActor;
-export const WorkflowCancelledBy = OrganizationTeamMembershipActor;
-
-export type WorkflowCompletedBy = OrganizationTeamMembershipActor;
-export const WorkflowCompletedBy = OrganizationTeamMembershipActor;
-
-export type WorkflowRetriedBy = OrganizationTeamMembershipActor;
-export const WorkflowRetriedBy = OrganizationTeamMembershipActor;
-
-export type WorkflowCutoverBy = OrganizationTeamMembershipActor;
-export const WorkflowCutoverBy = OrganizationTeamMembershipActor;
-
-export type WorkflowReversedCutoverBy = OrganizationTeamMembershipActor;
-export const WorkflowReversedCutoverBy = OrganizationTeamMembershipActor;
-
-export type WorkflowBranch = OrganizationTeamMembershipUserDefaultOrganization;
-export const WorkflowBranch = OrganizationTeamMembershipUserDefaultOrganization;
-
-export type WorkflowSourceKeyspace =
-  OrganizationTeamMembershipUserDefaultOrganization;
-export const WorkflowSourceKeyspace =
-  OrganizationTeamMembershipUserDefaultOrganization;
-
-export type WorkflowTargetKeyspace =
-  OrganizationTeamMembershipUserDefaultOrganization;
-export const WorkflowTargetKeyspace =
-  OrganizationTeamMembershipUserDefaultOrganization;
-
-export type WorkflowGlobalKeyspace =
-  OrganizationTeamMembershipUserDefaultOrganization;
-export const WorkflowGlobalKeyspace =
-  OrganizationTeamMembershipUserDefaultOrganization;
-
-export interface Workflow {
-  /** The ID of the workflow */
-  id: string;
-  /** The name of the workflow */
-  name: string;
-  /** The sequence number of the workflow */
-  number: number;
-  /** The state of the workflow */
-  state: WorkflowState;
-  /** When the workflow was created */
-  created_at: string;
-  /** When the workflow was last updated */
-  updated_at: string;
-  /** When the workflow was started */
-  started_at: string | null;
-  /** When the workflow was completed */
-  completed_at: string | null;
-  /** When the workflow was cancelled */
-  cancelled_at: string | null;
-  /** When the workflow was reversed */
-  reversed_at: string | null;
-  /** When the workflow was retried */
-  retried_at: string | null;
-  /** When the data copy was completed */
-  data_copy_completed_at: string | null;
-  /** When the cutover was completed */
-  cutover_at: string | null;
-  /** Whether or not the replicas have been switched */
-  replicas_switched: boolean;
-  /** Whether or not the primaries have been switched */
-  primaries_switched: boolean;
-  /** When the replicas were switched */
-  switch_replicas_at: string | null;
-  /** When the primaries were switched */
-  switch_primaries_at: string | null;
-  /** When the data was verified */
-  verify_data_at: string | null;
-  /** The type of the workflow */
-  workflow_type: WorkflowWorkflowType;
-  /** The subtype of the workflow */
-  workflow_subtype: string;
-  /** Whether or not secondary keys are deferred */
-  defer_secondary_keys: boolean;
-  /** The behavior when DDL changes during the workflow */
-  on_ddl: WorkflowOnDdl;
-  /** The errors that occurred during the workflow */
-  workflow_errors: string;
-  /** Whether or not the workflow may be retried */
-  may_retry: boolean;
-  /** Whether or not the workflow may be restarted */
-  may_restart: boolean;
-  /** Whether or not the verified data is stale */
-  verified_data_stale: boolean;
-  /** Whether or not sequence tables have been created */
-  sequence_tables_applied: boolean;
-  actor: OrganizationTeamMembershipActor;
-  verify_data_by: OrganizationTeamMembershipActor;
-  reversed_by: OrganizationTeamMembershipActor;
-  switch_replicas_by: OrganizationTeamMembershipActor;
-  switch_primaries_by: OrganizationTeamMembershipActor;
-  cancelled_by: OrganizationTeamMembershipActor;
-  completed_by: OrganizationTeamMembershipActor;
-  retried_by: OrganizationTeamMembershipActor;
-  cutover_by: OrganizationTeamMembershipActor;
-  reversed_cutover_by: OrganizationTeamMembershipActor;
-  branch: OrganizationTeamMembershipUserDefaultOrganization;
-  source_keyspace: OrganizationTeamMembershipUserDefaultOrganization;
-  target_keyspace: OrganizationTeamMembershipUserDefaultOrganization;
-  global_keyspace: OrganizationTeamMembershipUserDefaultOrganization;
-}
-export const Workflow = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    name: S.String,
-    number: S.Number,
-    state: WorkflowState,
-    created_at: S.String,
-    updated_at: S.String,
-    started_at: S.NullOr(S.String),
-    completed_at: S.NullOr(S.String),
-    cancelled_at: S.NullOr(S.String),
-    reversed_at: S.NullOr(S.String),
-    retried_at: S.NullOr(S.String),
-    data_copy_completed_at: S.NullOr(S.String),
-    cutover_at: S.NullOr(S.String),
-    replicas_switched: S.Boolean,
-    primaries_switched: S.Boolean,
-    switch_replicas_at: S.NullOr(S.String),
-    switch_primaries_at: S.NullOr(S.String),
-    verify_data_at: S.NullOr(S.String),
-    workflow_type: WorkflowWorkflowType,
-    workflow_subtype: S.String,
-    defer_secondary_keys: S.Boolean,
-    on_ddl: WorkflowOnDdl,
-    workflow_errors: S.String,
-    may_retry: S.Boolean,
-    may_restart: S.Boolean,
-    verified_data_stale: S.Boolean,
-    sequence_tables_applied: S.Boolean,
-    actor: OrganizationTeamMembershipActor,
-    verify_data_by: OrganizationTeamMembershipActor,
-    reversed_by: OrganizationTeamMembershipActor,
-    switch_replicas_by: OrganizationTeamMembershipActor,
-    switch_primaries_by: OrganizationTeamMembershipActor,
-    cancelled_by: OrganizationTeamMembershipActor,
-    completed_by: OrganizationTeamMembershipActor,
-    retried_by: OrganizationTeamMembershipActor,
-    cutover_by: OrganizationTeamMembershipActor,
-    reversed_cutover_by: OrganizationTeamMembershipActor,
-    branch: OrganizationTeamMembershipUserDefaultOrganization,
-    source_keyspace: OrganizationTeamMembershipUserDefaultOrganization,
-    target_keyspace: OrganizationTeamMembershipUserDefaultOrganization,
-    global_keyspace: OrganizationTeamMembershipUserDefaultOrganization,
-  }),
-).annotate({ identifier: "Workflow" }) as any as S.Schema<Workflow>;
 
 export interface DeleteBackupRequest {
   /** The name of the organization the branch belongs to */
@@ -5555,6 +5440,306 @@ export const DemoteBranchRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "DemoteBranchRequest",
 }) as any as S.Schema<DemoteBranchRequest>;
 
+export interface DeployCheckRequestStorageRequest {
+  /** The name of the deploy request's organization */
+  organization: string;
+  /** The name of the deploy request's database */
+  database: string;
+  /** The number of the deploy request */
+  number: number;
+}
+export const DeployCheckRequestStorageRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    organization: S.String.pipe(T.Label()),
+    database: S.String.pipe(T.Label()),
+    number: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/organizations/{organization}/databases/{database}/deploy-requests/{number}/storage-check",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeployCheckRequestStorageRequest",
+}) as any as S.Schema<DeployCheckRequestStorageRequest>;
+
+export interface DeployCheckRequestStorageResponseStorageReportValueValue {
+  /** Current storage used in bytes */
+  used?: number;
+  /** Total storage capacity in bytes */
+  capacity?: number;
+  /** Remaining storage available in bytes */
+  remaining?: number;
+  /** Percentage of storage capacity currently used */
+  percentage_used?: number;
+  /** Estimated additional storage needed for this deployment in bytes */
+  storage_needed?: number;
+  /** Whether this shard has enough remaining storage for the deployment */
+  has_enough?: boolean;
+  /** Whether this shard lacks storage only because a competing in-flight deployment is still copying */
+  blocked_by_in_flight?: boolean;
+}
+export const DeployCheckRequestStorageResponseStorageReportValueValue =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      used: S.optional(S.Number),
+      capacity: S.optional(S.Number),
+      remaining: S.optional(S.Number),
+      percentage_used: S.optional(S.Number),
+      storage_needed: S.optional(S.Number),
+      has_enough: S.optional(S.Boolean),
+      blocked_by_in_flight: S.optional(S.Boolean),
+    }),
+  ).annotate({
+    identifier: "DeployCheckRequestStorageResponseStorageReportValueValue",
+  }) as any as S.Schema<DeployCheckRequestStorageResponseStorageReportValueValue>;
+
+/** Per-shard storage details. Keys are shard names. */
+export type DeployCheckRequestStorageResponseStorageReportValueMap = {
+  [key: string]:
+    | DeployCheckRequestStorageResponseStorageReportValueValue
+    | undefined;
+};
+export const DeployCheckRequestStorageResponseStorageReportValueMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    DeployCheckRequestStorageResponseStorageReportValueValue,
+  ) as any as S.Schema<DeployCheckRequestStorageResponseStorageReportValueMap>;
+
+/** Per-keyspace and per-shard storage report. Keys are keyspace names. */
+export type DeployCheckRequestStorageResponseStorageReportMap = {
+  [key: string]:
+    | DeployCheckRequestStorageResponseStorageReportValueMap
+    | undefined;
+};
+export const DeployCheckRequestStorageResponseStorageReportMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    DeployCheckRequestStorageResponseStorageReportValueMap,
+  ) as any as S.Schema<DeployCheckRequestStorageResponseStorageReportMap>;
+
+export interface DeployCheckRequestStorageResponse {
+  /** Whether the cluster has enough storage to safely deploy */
+  enough_storage: boolean;
+  /** Whether the target branch cluster can be upgraded for more storage */
+  upgradeable: boolean;
+  /** Total estimated bytes of additional storage needed for the deployment */
+  storage_bytes_needed: number;
+  /** Per-keyspace and per-shard storage report. Keys are keyspace names. */
+  storage_report: DeployCheckRequestStorageResponseStorageReportMap;
+}
+export const DeployCheckRequestStorageResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    enough_storage: S.Boolean,
+    upgradeable: S.Boolean,
+    storage_bytes_needed: S.Number,
+    storage_report: DeployCheckRequestStorageResponseStorageReportMap,
+  }),
+).annotate({
+  identifier: "DeployCheckRequestStorageResponse",
+}) as any as S.Schema<DeployCheckRequestStorageResponse>;
+
+/** The deploy request will be updated to this state */
+export type DeployCloseRequestRequestState = "closed";
+export const DeployCloseRequestRequestState = /*@__PURE__*/ S.String;
+
+export interface DeployCloseRequestRequest {
+  /** The name of the deploy request's organization */
+  organization: string;
+  /** The name of the deploy request's database */
+  database: string;
+  /** The number of the deploy request */
+  number: number;
+  /** The deploy request will be updated to this state */
+  state?: DeployCloseRequestRequestState | (string & {});
+}
+export const DeployCloseRequestRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    organization: S.String.pipe(T.Label()),
+    database: S.String.pipe(T.Label()),
+    number: S.Number.pipe(T.Label()),
+    state: S.optional(DeployCloseRequestRequestState),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/organizations/{organization}/databases/{database}/deploy-requests/{number}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeployCloseRequestRequest",
+}) as any as S.Schema<DeployCloseRequestRequest>;
+
+export interface DeployCompleteErroredRequest {
+  /** The name of the deploy request's organization */
+  organization: string;
+  /** The name of the deploy request's database */
+  database: string;
+  /** The number of the deploy request */
+  number: number;
+}
+export const DeployCompleteErroredRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    organization: S.String.pipe(T.Label()),
+    database: S.String.pipe(T.Label()),
+    number: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/organizations/{organization}/databases/{database}/deploy-requests/{number}/complete-deploy",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeployCompleteErroredRequest",
+}) as any as S.Schema<DeployCompleteErroredRequest>;
+
+export interface DeployCompleteGatedRequestRequest {
+  /** The name of the deploy request's organization */
+  organization: string;
+  /** The name of the deploy request's database */
+  database: string;
+  /** The number of the deploy request */
+  number: number;
+}
+export const DeployCompleteGatedRequestRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    organization: S.String.pipe(T.Label()),
+    database: S.String.pipe(T.Label()),
+    number: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/organizations/{organization}/databases/{database}/deploy-requests/{number}/apply-deploy",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeployCompleteGatedRequestRequest",
+}) as any as S.Schema<DeployCompleteGatedRequestRequest>;
+
+export interface DeployForceCutoverRequestRequest {
+  /** The name of the deploy request's organization */
+  organization: string;
+  /** The name of the deploy request's database */
+  database: string;
+  /** The number of the deploy request */
+  number: number;
+}
+export const DeployForceCutoverRequestRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    organization: S.String.pipe(T.Label()),
+    database: S.String.pipe(T.Label()),
+    number: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/organizations/{organization}/databases/{database}/deploy-requests/{number}/force-cutover",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeployForceCutoverRequestRequest",
+}) as any as S.Schema<DeployForceCutoverRequestRequest>;
+
+export interface DeployQueueRequestRequest {
+  /** The name of the deploy request's organization */
+  organization: string;
+  /** The name of the deploy request's database */
+  database: string;
+  /** The number of the deploy request */
+  number: number;
+  /** Whether or not to deploy the request with instant DDL. Defaults to false. */
+  instant_ddl?: boolean;
+}
+export const DeployQueueRequestRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    organization: S.String.pipe(T.Label()),
+    database: S.String.pipe(T.Label()),
+    number: S.Number.pipe(T.Label()),
+    instant_ddl: S.optional(S.Boolean),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/organizations/{organization}/databases/{database}/deploy-requests/{number}/deploy",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeployQueueRequestRequest",
+}) as any as S.Schema<DeployQueueRequestRequest>;
+
+/** Whether the review is a comment or approval. Service tokens must have corresponding access (either `approve_deploy_request` or `review_deploy_request`) */
+export type DeployReviewRequestRequestState = "commented" | "approved";
+export const DeployReviewRequestRequestState = /*@__PURE__*/ S.String;
+
+export interface DeployReviewRequestRequest {
+  /** The name of the organization the deploy request belongs to */
+  organization: string;
+  /** The name of the database the deploy request belongs to */
+  database: string;
+  /** The number of the deploy request */
+  number: number;
+  /** Whether the review is a comment or approval. Service tokens must have corresponding access (either `approve_deploy_request` or `review_deploy_request`) */
+  state?: DeployReviewRequestRequestState | (string & {});
+  /** Deploy request review comments */
+  body?: string;
+}
+export const DeployReviewRequestRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    organization: S.String.pipe(T.Label()),
+    database: S.String.pipe(T.Label()),
+    number: S.Number.pipe(T.Label()),
+    state: S.optional(DeployReviewRequestRequestState),
+    body: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/organizations/{organization}/databases/{database}/deploy-requests/{number}/reviews",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeployReviewRequestRequest",
+}) as any as S.Schema<DeployReviewRequestRequest>;
+
+/** Whether the review is a comment or approval */
+export type DeployRequestReviewState = "commented" | "approved";
+export const DeployRequestReviewState = /*@__PURE__*/ S.String;
+
+export type DeployRequestReviewActor = OrganizationTeamMembershipActor;
+export const DeployRequestReviewActor = OrganizationTeamMembershipActor;
+
+export interface DeployRequestReview {
+  /** The ID of the review */
+  id: string;
+  /** The text body of the review */
+  body: string;
+  /** The HTML body of the review */
+  html_body: string;
+  /** Whether the review is a comment or approval */
+  state: DeployRequestReviewState;
+  /** When the review was created */
+  created_at: string;
+  /** When the review was last updated */
+  updated_at: string;
+  actor: OrganizationTeamMembershipActor;
+}
+export const DeployRequestReview = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    body: S.String,
+    html_body: S.String,
+    state: DeployRequestReviewState,
+    created_at: S.String,
+    updated_at: S.String,
+    actor: OrganizationTeamMembershipActor,
+  }),
+).annotate({
+  identifier: "DeployRequestReview",
+}) as any as S.Schema<DeployRequestReview>;
+
 export interface DisableOrganizationSsoRequest {
   /** Organization name slug from `list_organizations`. Example: `acme`. */
   organization: string;
@@ -5900,30 +6085,6 @@ export const EnableSafeMigrationsRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "EnableSafeMigrationsRequest",
 }) as any as S.Schema<EnableSafeMigrationsRequest>;
-
-export interface ForceCutoverDeployRequestRequest {
-  /** The name of the deploy request's organization */
-  organization: string;
-  /** The name of the deploy request's database */
-  database: string;
-  /** The number of the deploy request */
-  number: number;
-}
-export const ForceCutoverDeployRequestRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    organization: S.String.pipe(T.Label()),
-    database: S.String.pipe(T.Label()),
-    number: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/organizations/{organization}/databases/{database}/deploy-requests/{number}/force-cutover",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ForceCutoverDeployRequestRequest",
-}) as any as S.Schema<ForceCutoverDeployRequestRequest>;
 
 export interface GetBackupRequest {
   /** The name of the organization the branch belongs to */
@@ -10147,6 +10308,8 @@ export interface DatabaseBranchPassword {
   plain_text: Redacted.Redacted<string> | null;
   /** Whether or not the password is for a read replica */
   replica: boolean;
+  /** Whether or not the password is scoped to a read-only region */
+  read_only_region: boolean;
   /** Whether or not the password can be renewed */
   renewable: boolean;
   database_branch: OrganizationTeamMembershipPasswordsItemDatabaseBranch;
@@ -10173,6 +10336,7 @@ export const DatabaseBranchPassword = /*@__PURE__*/ S.suspend(() =>
     username: S.String,
     plain_text: S.NullOr(S.String).pipe(T.SensitiveValue({})),
     replica: S.Boolean,
+    read_only_region: S.Boolean,
     renewable: S.Boolean,
     database_branch: OrganizationTeamMembershipPasswordsItemDatabaseBranch,
   }),
@@ -14104,7 +14268,7 @@ export interface ClusterSizeSku {
   /** The number of CPUs */
   cpu: string;
   /** The amount of storage in bytes */
-  storage: number | null;
+  storage?: number | null;
   /** The amount of memory in bytes */
   ram: number;
   /** Whether or not the cluster SKU is Metal */
@@ -14112,11 +14276,13 @@ export interface ClusterSizeSku {
   /** Whether or not the cluster SKU is enabled for the organization */
   enabled: boolean;
   /** The provider of the cluster SKU (nil, AWS or GCP) */
-  provider: string | null;
+  provider?: string | null;
   /** The default vtgate size for the cluster SKU */
   default_vtgate: string;
   /** The default vtgate rate for the cluster SKU */
-  default_vtgate_rate: number | null;
+  default_vtgate_rate?: number | null;
+  /** The recommended Neki router size for the cluster SKU */
+  default_neki_router?: string | null;
   /** The replica rate for the cluster SKU */
   replica_rate?: number | null;
   /** The rate for the cluster SKU */
@@ -14135,13 +14301,14 @@ export const ClusterSizeSku = /*@__PURE__*/ S.suspend(() =>
     name: S.String,
     display_name: S.String,
     cpu: S.String,
-    storage: S.NullOr(S.Number),
+    storage: S.optional(S.NullOr(S.Number)),
     ram: S.Number,
     metal: S.Boolean,
     enabled: S.Boolean,
-    provider: S.NullOr(S.String),
+    provider: S.optional(S.NullOr(S.String)),
     default_vtgate: S.String,
-    default_vtgate_rate: S.NullOr(S.Number),
+    default_vtgate_rate: S.optional(S.NullOr(S.Number)),
+    default_neki_router: S.optional(S.NullOr(S.String)),
     replica_rate: S.optional(S.NullOr(S.Number)),
     rate: S.optional(S.NullOr(S.Number)),
     sort_order: S.Number,
@@ -16192,6 +16359,8 @@ export interface PaginatedDatabaseBranchKeyspaceDataItem {
   shards: number;
   /** If the keyspace is sharded */
   sharded: boolean;
+  /** If the keyspace uses an external datasource */
+  external: boolean;
   /** Total number of replicas in the keyspace */
   replicas: number;
   /** Number of extra replicas in the keyspace */
@@ -16238,6 +16407,7 @@ export const PaginatedDatabaseBranchKeyspaceDataItem = /*@__PURE__*/ S.suspend(
       name: S.String,
       shards: S.Number,
       sharded: S.Boolean,
+      external: S.Boolean,
       replicas: S.Number,
       extra_replicas: S.Number,
       created_at: S.String,
@@ -17477,6 +17647,8 @@ export interface PaginatedOrganizationTeamMembershipDataItemPasswordsItem {
   plain_text: Redacted.Redacted<string> | null;
   /** Whether or not the password is for a read replica */
   replica: boolean;
+  /** Whether or not the password is scoped to a read-only region */
+  read_only_region: boolean;
   /** Whether or not the password can be renewed */
   renewable: boolean;
   database_branch: OrganizationTeamMembershipPasswordsItemDatabaseBranch;
@@ -17508,6 +17680,7 @@ export const PaginatedOrganizationTeamMembershipDataItemPasswordsItem =
       username: S.String,
       plain_text: S.NullOr(S.String).pipe(T.SensitiveValue({})),
       replica: S.Boolean,
+      read_only_region: S.Boolean,
       renewable: S.Boolean,
       database_branch: OrganizationTeamMembershipPasswordsItemDatabaseBranch,
     }),
@@ -18052,6 +18225,8 @@ export interface PaginatedDatabaseBranchPasswordDataItem {
   plain_text: Redacted.Redacted<string> | null;
   /** Whether or not the password is for a read replica */
   replica: boolean;
+  /** Whether or not the password is scoped to a read-only region */
+  read_only_region: boolean;
   /** Whether or not the password can be renewed */
   renewable: boolean;
   database_branch: OrganizationTeamMembershipPasswordsItemDatabaseBranch;
@@ -18081,6 +18256,7 @@ export const PaginatedDatabaseBranchPasswordDataItem = /*@__PURE__*/ S.suspend(
       username: S.String,
       plain_text: S.NullOr(S.String).pipe(T.SensitiveValue({})),
       replica: S.Boolean,
+      read_only_region: S.Boolean,
       renewable: S.Boolean,
       database_branch: OrganizationTeamMembershipPasswordsItemDatabaseBranch,
     }),
@@ -19472,6 +19648,7 @@ export type PaginatedDatabaseWebhookDataItemEventsItem =
   | "branch.anomaly"
   | "branch.out_of_memory"
   | "branch.primary_promoted"
+  | "branch.primary_switchover_imminent"
   | "branch.schema_recommendation"
   | "branch.sleeping"
   | "branch.start_maintenance"
@@ -19888,33 +20065,6 @@ export const PromoteBranchRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "PromoteBranchRequest",
 }) as any as S.Schema<PromoteBranchRequest>;
 
-export interface QueueDeployRequestRequest {
-  /** The name of the deploy request's organization */
-  organization: string;
-  /** The name of the deploy request's database */
-  database: string;
-  /** The number of the deploy request */
-  number: number;
-  /** Whether or not to deploy the request with instant DDL. Defaults to false. */
-  instant_ddl?: boolean;
-}
-export const QueueDeployRequestRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    organization: S.String.pipe(T.Label()),
-    database: S.String.pipe(T.Label()),
-    number: S.Number.pipe(T.Label()),
-    instant_ddl: S.optional(S.Boolean),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/organizations/{organization}/databases/{database}/deploy-requests/{number}/deploy",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "QueueDeployRequestRequest",
-}) as any as S.Schema<QueueDeployRequestRequest>;
-
 export interface ReassignRoleObjectsRequest {
   /** Organization name slug from `list_organizations`. Example: `acme`. */
   organization: string;
@@ -20125,75 +20275,29 @@ export const ResetRoleRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ResetRoleRequest",
 }) as any as S.Schema<ResetRoleRequest>;
 
-/** Whether the review is a comment or approval. Service tokens must have corresponding access (either `approve_deploy_request` or `review_deploy_request`) */
-export type ReviewDeployRequestRequestState = "commented" | "approved";
-export const ReviewDeployRequestRequestState = /*@__PURE__*/ S.String;
-
-export interface ReviewDeployRequestRequest {
-  /** The name of the organization the deploy request belongs to */
+export interface RetryWorkflowRequest {
+  /** The name of the organization the workflow belongs to */
   organization: string;
-  /** The name of the database the deploy request belongs to */
+  /** The name of the database the workflow belongs to */
   database: string;
-  /** The number of the deploy request */
+  /** The sequence number of the workflow */
   number: number;
-  /** Whether the review is a comment or approval. Service tokens must have corresponding access (either `approve_deploy_request` or `review_deploy_request`) */
-  state?: ReviewDeployRequestRequestState | (string & {});
-  /** Deploy request review comments */
-  body?: string;
 }
-export const ReviewDeployRequestRequest = /*@__PURE__*/ S.suspend(() =>
+export const RetryWorkflowRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     organization: S.String.pipe(T.Label()),
     database: S.String.pipe(T.Label()),
     number: S.Number.pipe(T.Label()),
-    state: S.optional(ReviewDeployRequestRequestState),
-    body: S.optional(S.String),
   }).pipe(
     T.Http({
-      method: "POST",
-      uri: "/organizations/{organization}/databases/{database}/deploy-requests/{number}/reviews",
+      method: "PATCH",
+      uri: "/organizations/{organization}/databases/{database}/workflows/{number}/retry",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "ReviewDeployRequestRequest",
-}) as any as S.Schema<ReviewDeployRequestRequest>;
-
-/** Whether the review is a comment or approval */
-export type DeployRequestReviewState = "commented" | "approved";
-export const DeployRequestReviewState = /*@__PURE__*/ S.String;
-
-export type DeployRequestReviewActor = OrganizationTeamMembershipActor;
-export const DeployRequestReviewActor = OrganizationTeamMembershipActor;
-
-export interface DeployRequestReview {
-  /** The ID of the review */
-  id: string;
-  /** The text body of the review */
-  body: string;
-  /** The HTML body of the review */
-  html_body: string;
-  /** Whether the review is a comment or approval */
-  state: DeployRequestReviewState;
-  /** When the review was created */
-  created_at: string;
-  /** When the review was last updated */
-  updated_at: string;
-  actor: OrganizationTeamMembershipActor;
-}
-export const DeployRequestReview = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    body: S.String,
-    html_body: S.String,
-    state: DeployRequestReviewState,
-    created_at: S.String,
-    updated_at: S.String,
-    actor: OrganizationTeamMembershipActor,
-  }),
-).annotate({
-  identifier: "DeployRequestReview",
-}) as any as S.Schema<DeployRequestReview>;
+  identifier: "RetryWorkflowRequest",
+}) as any as S.Schema<RetryWorkflowRequest>;
 
 export interface RunBranchMaintenanceRequest {
   /** Organization name slug from `list_organizations`. Example: `acme`. */
@@ -21424,54 +21528,6 @@ export const VerifyWorkflowRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "VerifyWorkflowRequest",
 }) as any as S.Schema<VerifyWorkflowRequest>;
 
-export interface WorkflowCancelRequest {
-  /** The name of the organization the workflow belongs to */
-  organization: string;
-  /** The name of the database the workflow belongs to */
-  database: string;
-  /** The sequence number of the workflow */
-  number: number;
-}
-export const WorkflowCancelRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    organization: S.String.pipe(T.Label()),
-    database: S.String.pipe(T.Label()),
-    number: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/organizations/{organization}/databases/{database}/workflows/{number}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "WorkflowCancelRequest",
-}) as any as S.Schema<WorkflowCancelRequest>;
-
-export interface WorkflowCompleteRequest {
-  /** The name of the organization the workflow belongs to */
-  organization: string;
-  /** The name of the database the workflow belongs to */
-  database: string;
-  /** The sequence number of the workflow */
-  number: number;
-}
-export const WorkflowCompleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    organization: S.String.pipe(T.Label()),
-    database: S.String.pipe(T.Label()),
-    number: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/organizations/{organization}/databases/{database}/workflows/{number}/complete",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "WorkflowCompleteRequest",
-}) as any as S.Schema<WorkflowCompleteRequest>;
-
 export interface WorkflowCutoverRequest {
   /** The name of the organization the workflow belongs to */
   organization: string;
@@ -21495,30 +21551,6 @@ export const WorkflowCutoverRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "WorkflowCutoverRequest",
 }) as any as S.Schema<WorkflowCutoverRequest>;
-
-export interface WorkflowRetryRequest {
-  /** The name of the organization the workflow belongs to */
-  organization: string;
-  /** The name of the database the workflow belongs to */
-  database: string;
-  /** The sequence number of the workflow */
-  number: number;
-}
-export const WorkflowRetryRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    organization: S.String.pipe(T.Label()),
-    database: S.String.pipe(T.Label()),
-    number: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/organizations/{organization}/databases/{database}/workflows/{number}/retry",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "WorkflowRetryRequest",
-}) as any as S.Schema<WorkflowRetryRequest>;
 
 export interface WorkflowReverseCutoverRequest {
   /** The name of the organization the workflow belongs to */
@@ -21715,70 +21747,16 @@ export const cancelKeyspaceResizeRequest: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CheckDeployRequestStorageError =
-  | Forbidden
-  | NotFound
-  | PlanetScaleOpError;
-/** Check deploy request storage Checks whether the deploy request's target branch cluster has enough storage to safely deploy the schema changes. */
-export const checkDeployRequestStorage: API.OperationMethod<
-  CheckDeployRequestStorageRequest,
-  CheckDeployRequestStorageResponse,
-  CheckDeployRequestStorageError,
+export type CancelWorkflowError = Forbidden | NotFound | PlanetScaleOpError;
+/** Cancel a workflow */
+export const cancelWorkflow: API.OperationMethod<
+  CancelWorkflowRequest,
+  Workflow,
+  CancelWorkflowError,
   PlanetScaleOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CheckDeployRequestStorageRequest,
-  output: CheckDeployRequestStorageResponse,
-  errors: [Forbidden, NotFound, UnknownPlanetScaleError],
-  protocol: PlanetScaleProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CloseDeployRequestError = Forbidden | NotFound | PlanetScaleOpError;
-/** Close a deploy request */
-export const closeDeployRequest: API.OperationMethod<
-  CloseDeployRequestRequest,
-  DatabaseDeployRequest,
-  CloseDeployRequestError,
-  PlanetScaleOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CloseDeployRequestRequest,
-  output: DatabaseDeployRequest,
-  errors: [Forbidden, NotFound, UnknownPlanetScaleError],
-  protocol: PlanetScaleProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CompleteErroredDeployError =
-  | Forbidden
-  | NotFound
-  | PlanetScaleOpError;
-/** Complete an errored deploy */
-export const completeErroredDeploy: API.OperationMethod<
-  CompleteErroredDeployRequest,
-  DatabaseDeployRequest,
-  CompleteErroredDeployError,
-  PlanetScaleOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CompleteErroredDeployRequest,
-  output: DatabaseDeployRequest,
-  errors: [Forbidden, NotFound, UnknownPlanetScaleError],
-  protocol: PlanetScaleProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CompleteGatedDeployRequestError =
-  | Forbidden
-  | NotFound
-  | PlanetScaleOpError;
-/** Complete a gated deploy request */
-export const completeGatedDeployRequest: API.OperationMethod<
-  CompleteGatedDeployRequestRequest,
-  DatabaseDeployRequest,
-  CompleteGatedDeployRequestError,
-  PlanetScaleOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CompleteGatedDeployRequestRequest,
-  output: DatabaseDeployRequest,
+  input: CancelWorkflowRequest,
+  output: Workflow,
   errors: [Forbidden, NotFound, UnknownPlanetScaleError],
   protocol: PlanetScaleProtocol,
   retry: Retry.Retry,
@@ -21794,6 +21772,21 @@ export const completeRevert: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: CompleteRevertRequest,
   output: DatabaseDeployRequest,
+  errors: [Forbidden, NotFound, UnknownPlanetScaleError],
+  protocol: PlanetScaleProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CompleteWorkflowError = Forbidden | NotFound | PlanetScaleOpError;
+/** Complete a workflow */
+export const completeWorkflow: API.OperationMethod<
+  CompleteWorkflowRequest,
+  Workflow,
+  CompleteWorkflowError,
+  PlanetScaleOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CompleteWorkflowRequest,
+  output: Workflow,
   errors: [Forbidden, NotFound, UnknownPlanetScaleError],
   protocol: PlanetScaleProtocol,
   retry: Retry.Retry,
@@ -22542,6 +22535,126 @@ export const demoteBranch: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type DeployCheckRequestStorageError =
+  | Forbidden
+  | NotFound
+  | PlanetScaleOpError;
+/** Check deploy request storage Checks whether the deploy request's target branch cluster has enough storage to safely deploy the schema changes. */
+export const deployCheckRequestStorage: API.OperationMethod<
+  DeployCheckRequestStorageRequest,
+  DeployCheckRequestStorageResponse,
+  DeployCheckRequestStorageError,
+  PlanetScaleOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeployCheckRequestStorageRequest,
+  output: DeployCheckRequestStorageResponse,
+  errors: [Forbidden, NotFound, UnknownPlanetScaleError],
+  protocol: PlanetScaleProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeployCloseRequestError = Forbidden | NotFound | PlanetScaleOpError;
+/** Close a deploy request */
+export const deployCloseRequest: API.OperationMethod<
+  DeployCloseRequestRequest,
+  DatabaseDeployRequest,
+  DeployCloseRequestError,
+  PlanetScaleOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeployCloseRequestRequest,
+  output: DatabaseDeployRequest,
+  errors: [Forbidden, NotFound, UnknownPlanetScaleError],
+  protocol: PlanetScaleProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeployCompleteErroredError =
+  | Forbidden
+  | NotFound
+  | PlanetScaleOpError;
+/** Complete an errored deploy */
+export const deployCompleteErrored: API.OperationMethod<
+  DeployCompleteErroredRequest,
+  DatabaseDeployRequest,
+  DeployCompleteErroredError,
+  PlanetScaleOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeployCompleteErroredRequest,
+  output: DatabaseDeployRequest,
+  errors: [Forbidden, NotFound, UnknownPlanetScaleError],
+  protocol: PlanetScaleProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeployCompleteGatedRequestError =
+  | Forbidden
+  | NotFound
+  | PlanetScaleOpError;
+/** Complete a gated deploy request */
+export const deployCompleteGatedRequest: API.OperationMethod<
+  DeployCompleteGatedRequestRequest,
+  DatabaseDeployRequest,
+  DeployCompleteGatedRequestError,
+  PlanetScaleOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeployCompleteGatedRequestRequest,
+  output: DatabaseDeployRequest,
+  errors: [Forbidden, NotFound, UnknownPlanetScaleError],
+  protocol: PlanetScaleProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeployForceCutoverRequestError =
+  | Forbidden
+  | NotFound
+  | PlanetScaleOpError;
+/** Enable force cutover for a deploy request */
+export const deployForceCutoverRequest: API.OperationMethod<
+  DeployForceCutoverRequestRequest,
+  DatabaseDeployRequest,
+  DeployForceCutoverRequestError,
+  PlanetScaleOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeployForceCutoverRequestRequest,
+  output: DatabaseDeployRequest,
+  errors: [Forbidden, NotFound, UnknownPlanetScaleError],
+  protocol: PlanetScaleProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeployQueueRequestError = Forbidden | NotFound | PlanetScaleOpError;
+/** Queue a deploy request */
+export const deployQueueRequest: API.OperationMethod<
+  DeployQueueRequestRequest,
+  DatabaseDeployRequest,
+  DeployQueueRequestError,
+  PlanetScaleOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeployQueueRequestRequest,
+  output: DatabaseDeployRequest,
+  errors: [Forbidden, NotFound, UnknownPlanetScaleError],
+  protocol: PlanetScaleProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeployReviewRequestError =
+  | Forbidden
+  | NotFound
+  | PlanetScaleOpError;
+/** Review a deploy request Review a deploy request by either approving or commenting on the deploy request */
+export const deployReviewRequest: API.OperationMethod<
+  DeployReviewRequestRequest,
+  DeployRequestReview,
+  DeployReviewRequestError,
+  PlanetScaleOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeployReviewRequestRequest,
+  output: DeployRequestReview,
+  errors: [Forbidden, NotFound, UnknownPlanetScaleError],
+  protocol: PlanetScaleProtocol,
+  retry: Retry.Retry,
+}));
+
 export type DisableOrganizationSsoError =
   | Forbidden
   | NotFound
@@ -22663,24 +22776,6 @@ export const enableSafeMigrations: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: EnableSafeMigrationsRequest,
   output: DatabaseBranch,
-  errors: [Forbidden, NotFound, UnknownPlanetScaleError],
-  protocol: PlanetScaleProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ForceCutoverDeployRequestError =
-  | Forbidden
-  | NotFound
-  | PlanetScaleOpError;
-/** Enable force cutover for a deploy request */
-export const forceCutoverDeployRequest: API.OperationMethod<
-  ForceCutoverDeployRequestRequest,
-  DatabaseDeployRequest,
-  ForceCutoverDeployRequestError,
-  PlanetScaleOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ForceCutoverDeployRequestRequest,
-  output: DatabaseDeployRequest,
   errors: [Forbidden, NotFound, UnknownPlanetScaleError],
   protocol: PlanetScaleProtocol,
   retry: Retry.Retry,
@@ -25038,21 +25133,6 @@ export const promoteBranch: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type QueueDeployRequestError = Forbidden | NotFound | PlanetScaleOpError;
-/** Queue a deploy request */
-export const queueDeployRequest: API.OperationMethod<
-  QueueDeployRequestRequest,
-  DatabaseDeployRequest,
-  QueueDeployRequestError,
-  PlanetScaleOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: QueueDeployRequestRequest,
-  output: DatabaseDeployRequest,
-  errors: [Forbidden, NotFound, UnknownPlanetScaleError],
-  protocol: PlanetScaleProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ReassignRoleObjectsError =
   | Forbidden
   | NotFound
@@ -25175,19 +25255,16 @@ export const resetRole: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ReviewDeployRequestError =
-  | Forbidden
-  | NotFound
-  | PlanetScaleOpError;
-/** Review a deploy request Review a deploy request by either approving or commenting on the deploy request */
-export const reviewDeployRequest: API.OperationMethod<
-  ReviewDeployRequestRequest,
-  DeployRequestReview,
-  ReviewDeployRequestError,
+export type RetryWorkflowError = Forbidden | NotFound | PlanetScaleOpError;
+/** Retry a failed workflow */
+export const retryWorkflow: API.OperationMethod<
+  RetryWorkflowRequest,
+  Workflow,
+  RetryWorkflowError,
   PlanetScaleOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ReviewDeployRequestRequest,
-  output: DeployRequestReview,
+  input: RetryWorkflowRequest,
+  output: Workflow,
   errors: [Forbidden, NotFound, UnknownPlanetScaleError],
   protocol: PlanetScaleProtocol,
   retry: Retry.Retry,
@@ -25690,36 +25767,6 @@ export const verifyWorkflow: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type WorkflowCancelError = Forbidden | NotFound | PlanetScaleOpError;
-/** Cancel a workflow */
-export const workflowCancel: API.OperationMethod<
-  WorkflowCancelRequest,
-  Workflow,
-  WorkflowCancelError,
-  PlanetScaleOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkflowCancelRequest,
-  output: Workflow,
-  errors: [Forbidden, NotFound, UnknownPlanetScaleError],
-  protocol: PlanetScaleProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkflowCompleteError = Forbidden | NotFound | PlanetScaleOpError;
-/** Complete a workflow */
-export const workflowComplete: API.OperationMethod<
-  WorkflowCompleteRequest,
-  Workflow,
-  WorkflowCompleteError,
-  PlanetScaleOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkflowCompleteRequest,
-  output: Workflow,
-  errors: [Forbidden, NotFound, UnknownPlanetScaleError],
-  protocol: PlanetScaleProtocol,
-  retry: Retry.Retry,
-}));
-
 export type WorkflowCutoverError = Forbidden | NotFound | PlanetScaleOpError;
 /** Cutover traffic */
 export const workflowCutover: API.OperationMethod<
@@ -25729,21 +25776,6 @@ export const workflowCutover: API.OperationMethod<
   PlanetScaleOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: WorkflowCutoverRequest,
-  output: Workflow,
-  errors: [Forbidden, NotFound, UnknownPlanetScaleError],
-  protocol: PlanetScaleProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkflowRetryError = Forbidden | NotFound | PlanetScaleOpError;
-/** Retry a failed workflow */
-export const workflowRetry: API.OperationMethod<
-  WorkflowRetryRequest,
-  Workflow,
-  WorkflowRetryError,
-  PlanetScaleOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkflowRetryRequest,
   output: Workflow,
   errors: [Forbidden, NotFound, UnknownPlanetScaleError],
   protocol: PlanetScaleProtocol,
@@ -25837,16 +25869,12 @@ export type CancelKeyspaceResizeRequestInput =
   CancelKeyspaceResizeRequestRequest;
 export type CancelKeyspaceResizeRequestOutput =
   CancelKeyspaceResizeRequestResponse;
-export type CheckDeployRequestStorageInput = CheckDeployRequestStorageRequest;
-export type CheckDeployRequestStorageOutput = CheckDeployRequestStorageResponse;
-export type CloseDeployRequestInput = CloseDeployRequestRequest;
-export type CloseDeployRequestOutput = DatabaseDeployRequest;
-export type CompleteErroredDeployInput = CompleteErroredDeployRequest;
-export type CompleteErroredDeployOutput = DatabaseDeployRequest;
-export type CompleteGatedDeployRequestInput = CompleteGatedDeployRequestRequest;
-export type CompleteGatedDeployRequestOutput = DatabaseDeployRequest;
+export type CancelWorkflowInput = CancelWorkflowRequest;
+export type CancelWorkflowOutput = Workflow;
 export type CompleteRevertInput = CompleteRevertRequest;
 export type CompleteRevertOutput = DatabaseDeployRequest;
+export type CompleteWorkflowInput = CompleteWorkflowRequest;
+export type CompleteWorkflowOutput = Workflow;
 export type ConfigureOrganizationSsoInput = ConfigureOrganizationSsoRequest;
 export type ConfigureOrganizationSsoOutput = ConfigureOrganizationSsoResponse;
 export type CreateBackupInput = CreateBackupRequest;
@@ -25941,6 +25969,20 @@ export type DeleteWebhookInput = DeleteWebhookRequest;
 export type DeleteWebhookOutput = DeleteWebhookResponse;
 export type DemoteBranchInput = DemoteBranchRequest;
 export type DemoteBranchOutput = DatabaseBranch;
+export type DeployCheckRequestStorageInput = DeployCheckRequestStorageRequest;
+export type DeployCheckRequestStorageOutput = DeployCheckRequestStorageResponse;
+export type DeployCloseRequestInput = DeployCloseRequestRequest;
+export type DeployCloseRequestOutput = DatabaseDeployRequest;
+export type DeployCompleteErroredInput = DeployCompleteErroredRequest;
+export type DeployCompleteErroredOutput = DatabaseDeployRequest;
+export type DeployCompleteGatedRequestInput = DeployCompleteGatedRequestRequest;
+export type DeployCompleteGatedRequestOutput = DatabaseDeployRequest;
+export type DeployForceCutoverRequestInput = DeployForceCutoverRequestRequest;
+export type DeployForceCutoverRequestOutput = DatabaseDeployRequest;
+export type DeployQueueRequestInput = DeployQueueRequestRequest;
+export type DeployQueueRequestOutput = DatabaseDeployRequest;
+export type DeployReviewRequestInput = DeployReviewRequestRequest;
+export type DeployReviewRequestOutput = DeployRequestReview;
 export type DisableOrganizationSsoInput = DisableOrganizationSsoRequest;
 export type DisableOrganizationSsoOutput = OrganizationSsoSerializer;
 export type DisableOrganizationSsoDirectoryInput =
@@ -25959,8 +26001,6 @@ export type EnableOrganizationSsoDirectoryOutput =
   EnableOrganizationSsoDirectoryResponse;
 export type EnableSafeMigrationsInput = EnableSafeMigrationsRequest;
 export type EnableSafeMigrationsOutput = DatabaseBranch;
-export type ForceCutoverDeployRequestInput = ForceCutoverDeployRequestRequest;
-export type ForceCutoverDeployRequestOutput = DatabaseDeployRequest;
 export type GetBackupInput = GetBackupRequest;
 export type GetBackupOutput = Backup;
 export type GetBackupPolicyInput = GetBackupPolicyRequest;
@@ -26198,8 +26238,6 @@ export type ListWorkflowsInput = ListWorkflowsRequest;
 export type ListWorkflowsOutput = PaginatedWorkflow;
 export type PromoteBranchInput = PromoteBranchRequest;
 export type PromoteBranchOutput = DatabaseBranch;
-export type QueueDeployRequestInput = QueueDeployRequestRequest;
-export type QueueDeployRequestOutput = DatabaseDeployRequest;
 export type ReassignRoleObjectsInput = ReassignRoleObjectsRequest;
 export type ReassignRoleObjectsOutput = ReassignRoleObjectsResponse;
 export type RemoveOrganizationMemberInput = RemoveOrganizationMemberRequest;
@@ -26216,8 +26254,8 @@ export type ResetDefaultRoleInput = ResetDefaultRoleRequest;
 export type ResetDefaultRoleOutput = PostgresRole;
 export type ResetRoleInput = ResetRoleRequest;
 export type ResetRoleOutput = PostgresRole;
-export type ReviewDeployRequestInput = ReviewDeployRequestRequest;
-export type ReviewDeployRequestOutput = DeployRequestReview;
+export type RetryWorkflowInput = RetryWorkflowRequest;
+export type RetryWorkflowOutput = Workflow;
 export type RunBranchMaintenanceInput = RunBranchMaintenanceRequest;
 export type RunBranchMaintenanceOutput = RunBranchMaintenanceResponse;
 export type SkipRevertPeriodInput = SkipRevertPeriodRequest;
@@ -26278,14 +26316,8 @@ export type UpdateWebhookInput = UpdateWebhookRequest;
 export type UpdateWebhookOutput = DatabaseWebhook;
 export type VerifyWorkflowInput = VerifyWorkflowRequest;
 export type VerifyWorkflowOutput = Workflow;
-export type WorkflowCancelInput = WorkflowCancelRequest;
-export type WorkflowCancelOutput = Workflow;
-export type WorkflowCompleteInput = WorkflowCompleteRequest;
-export type WorkflowCompleteOutput = Workflow;
 export type WorkflowCutoverInput = WorkflowCutoverRequest;
 export type WorkflowCutoverOutput = Workflow;
-export type WorkflowRetryInput = WorkflowRetryRequest;
-export type WorkflowRetryOutput = Workflow;
 export type WorkflowReverseCutoverInput = WorkflowReverseCutoverRequest;
 export type WorkflowReverseCutoverOutput = Workflow;
 export type WorkflowReverseTrafficInput = WorkflowReverseTrafficRequest;

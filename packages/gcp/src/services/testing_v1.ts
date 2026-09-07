@@ -148,37 +148,6 @@ export const CancelTestMatrixResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CancelTestMatrixResponse",
 }) as any as S.Schema<CancelTestMatrixResponse>;
 
-/** A single Android device. */
-export interface AndroidDevice {
-  /** Required. The locale the test device used for testing. Use the TestEnvironmentDiscoveryService to get supported options. */
-  locale?: string;
-  /** Required. The id of the Android device to be used. Use the TestEnvironmentDiscoveryService to get supported options. */
-  androidModelId?: string;
-  /** Required. The id of the Android OS version to be used. Use the TestEnvironmentDiscoveryService to get supported options. */
-  androidVersionId?: string;
-  /** Required. How the device is oriented during the test. Use the TestEnvironmentDiscoveryService to get supported options. */
-  orientation?: string;
-}
-export const AndroidDevice = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    locale: S.optional(S.String),
-    androidModelId: S.optional(S.String),
-    androidVersionId: S.optional(S.String),
-    orientation: S.optional(S.String),
-  }),
-).annotate({ identifier: "AndroidDevice" }) as any as S.Schema<AndroidDevice>;
-
-export type DeviceSessionStateEnum =
-  | "SESSION_STATE_UNSPECIFIED"
-  | "REQUESTED"
-  | "PENDING"
-  | "ACTIVE"
-  | "EXPIRED"
-  | "FINISHED"
-  | "UNAVAILABLE"
-  | "ERROR";
-export const DeviceSessionStateEnum = /*@__PURE__*/ S.String;
-
 export type SessionStateEventSessionStateEnum =
   | "SESSION_STATE_UNSPECIFIED"
   | "REQUESTED"
@@ -192,18 +161,18 @@ export const SessionStateEventSessionStateEnum = /*@__PURE__*/ S.String;
 
 /** A message encapsulating a series of Session states and the time that the DeviceSession first entered those states. */
 export interface SessionStateEvent {
-  /** Output only. A human-readable message to explain the state. */
-  stateMessage?: string;
-  /** Output only. The session_state tracked by this event */
-  sessionState?: SessionStateEventSessionStateEnum | (string & {});
   /** Output only. The time that the session_state first encountered that state. */
   eventTime?: string;
+  /** Output only. The session_state tracked by this event */
+  sessionState?: SessionStateEventSessionStateEnum | (string & {});
+  /** Output only. A human-readable message to explain the state. */
+  stateMessage?: string;
 }
 export const SessionStateEvent = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    stateMessage: S.optional(S.String),
-    sessionState: S.optional(SessionStateEventSessionStateEnum),
     eventTime: S.optional(S.String),
+    sessionState: S.optional(SessionStateEventSessionStateEnum),
+    stateMessage: S.optional(S.String),
   }),
 ).annotate({
   identifier: "SessionStateEvent",
@@ -214,41 +183,72 @@ export const SessionStateEventList = /*@__PURE__*/ S.Array(
   SessionStateEvent,
 ) as any as S.Schema<SessionStateEventList>;
 
+export type DeviceSessionStateEnum =
+  | "SESSION_STATE_UNSPECIFIED"
+  | "REQUESTED"
+  | "PENDING"
+  | "ACTIVE"
+  | "EXPIRED"
+  | "FINISHED"
+  | "UNAVAILABLE"
+  | "ERROR";
+export const DeviceSessionStateEnum = /*@__PURE__*/ S.String;
+
+/** A single Android device. */
+export interface AndroidDevice {
+  /** Required. The id of the Android OS version to be used. Use the TestEnvironmentDiscoveryService to get supported options. */
+  androidVersionId?: string;
+  /** Required. How the device is oriented during the test. Use the TestEnvironmentDiscoveryService to get supported options. */
+  orientation?: string;
+  /** Required. The id of the Android device to be used. Use the TestEnvironmentDiscoveryService to get supported options. */
+  androidModelId?: string;
+  /** Required. The locale the test device used for testing. Use the TestEnvironmentDiscoveryService to get supported options. */
+  locale?: string;
+}
+export const AndroidDevice = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    androidVersionId: S.optional(S.String),
+    orientation: S.optional(S.String),
+    androidModelId: S.optional(S.String),
+    locale: S.optional(S.String),
+  }),
+).annotate({ identifier: "AndroidDevice" }) as any as S.Schema<AndroidDevice>;
+
 /** Protobuf message describing the device message, used from several RPCs. */
 export interface DeviceSession {
-  /** Required. The requested device */
-  androidDevice?: AndroidDevice;
-  /** Output only. Current state of the DeviceSession. */
-  state?: DeviceSessionStateEnum | (string & {});
   /** Output only. The historical state transitions of the session_state message including the current session state. */
   stateHistories?: SessionStateEventList;
-  /** Optional. If the device is still in use at this time, any connections will be ended and the SessionState will transition from ACTIVE to FINISHED. */
-  expireTime?: string;
   /** Output only. The timestamp that the session first became ACTIVE. */
   activeStartTime?: string;
-  /** Optional. Name of the DeviceSession, e.g. "projects/{project_id}/deviceSessions/{session_id}" */
-  name?: string;
-  /** Output only. The interval of time that this device must be interacted with before it transitions from ACTIVE to TIMEOUT_INACTIVITY. */
-  inactivityTimeout?: string;
   /** Output only. The time that the Session was created. */
   createTime?: string;
+  /** Output only. Current state of the DeviceSession. */
+  state?: DeviceSessionStateEnum | (string & {});
+  /** Output only. The interval of time that this device must be interacted with before it transitions from ACTIVE to TIMEOUT_INACTIVITY. */
+  inactivityTimeout?: string;
+  /** Required. The requested device */
+  androidDevice?: AndroidDevice;
   /** Output only. The title of the DeviceSession to be presented in the UI. */
   displayName?: string;
   /** Optional. The amount of time that a device will be initially allocated for. This can eventually be extended with the UpdateDeviceSession RPC. Default: 15 minutes. */
   ttl?: string;
+  /** Optional. Name of the DeviceSession, e.g. "projects/{project_id}/deviceSessions/{session_id}" */
+  name?: string;
+  /** Optional. If the device is still in use at this time, any connections will be ended and the SessionState will transition from ACTIVE to FINISHED. */
+  expireTime?: string;
 }
 export const DeviceSession = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    androidDevice: S.optional(AndroidDevice),
-    state: S.optional(DeviceSessionStateEnum),
     stateHistories: S.optional(SessionStateEventList),
-    expireTime: S.optional(S.String),
     activeStartTime: S.optional(S.String),
-    name: S.optional(S.String),
-    inactivityTimeout: S.optional(S.String),
     createTime: S.optional(S.String),
+    state: S.optional(DeviceSessionStateEnum),
+    inactivityTimeout: S.optional(S.String),
+    androidDevice: S.optional(AndroidDevice),
     displayName: S.optional(S.String),
     ttl: S.optional(S.String),
+    name: S.optional(S.String),
+    expireTime: S.optional(S.String),
   }),
 ).annotate({ identifier: "DeviceSession" }) as any as S.Schema<DeviceSession>;
 
@@ -273,688 +273,75 @@ export const CreateProjectsDeviceSessionsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateProjectsDeviceSessionsRequest",
 }) as any as S.Schema<CreateProjectsDeviceSessionsRequest>;
 
-/** Key-value pair of detailed information about the client which invoked the test. Examples: {'Version', '1.0'}, {'Release Track', 'BETA'}. */
-export interface ClientInfoDetail {
-  /** Required. The key of detailed client information. */
-  key?: string;
-  /** Required. The value of detailed client information. */
-  value?: string;
-}
-export const ClientInfoDetail = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    key: S.optional(S.String),
-    value: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ClientInfoDetail",
-}) as any as S.Schema<ClientInfoDetail>;
-
-export type ClientInfoDetailList = Array<ClientInfoDetail>;
-export const ClientInfoDetailList = /*@__PURE__*/ S.Array(
-  ClientInfoDetail,
-) as any as S.Schema<ClientInfoDetailList>;
-
-/** Information about the client which invoked the test. */
-export interface ClientInfo {
-  /** The list of detailed information about client. */
-  clientInfoDetails?: ClientInfoDetailList;
-  /** Required. Client name, such as gcloud. */
-  name?: string;
-}
-export const ClientInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    clientInfoDetails: S.optional(ClientInfoDetailList),
-    name: S.optional(S.String),
-  }),
-).annotate({ identifier: "ClientInfo" }) as any as S.Schema<ClientInfo>;
-
-export type IntegerList = Array<number>;
-export const IntegerList = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<IntegerList>;
-
-/** A reference to a file, used for user inputs. */
-export interface FileReference {
-  /** A path to a file in Google Cloud Storage. Example: gs://build-app-1414623860166/app%40debug-unaligned.apk These paths are expected to be url encoded (percent encoding) */
+/** A storage location within Google cloud storage (GCS). */
+export interface GoogleCloudStorage {
+  /** Required. The path to a directory in GCS that will eventually contain the results for this test. The requesting user must have write access on the bucket in the supplied path. */
   gcsPath?: string;
 }
-export const FileReference = /*@__PURE__*/ S.suspend(() =>
+export const GoogleCloudStorage = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     gcsPath: S.optional(S.String),
   }),
-).annotate({ identifier: "FileReference" }) as any as S.Schema<FileReference>;
+).annotate({
+  identifier: "GoogleCloudStorage",
+}) as any as S.Schema<GoogleCloudStorage>;
 
-/** A test of an iOS application that implements one or more game loop scenarios. This test type accepts an archived application (.ipa file) and a list of integer scenarios that will be executed on the app sequentially. */
-export interface IosTestLoop {
-  /** The list of scenarios that should be run during the test. Defaults to the single scenario 0 if unspecified. */
-  scenarios?: IntegerList;
-  /** Required. The .ipa of the application to test. */
-  appIpa?: FileReference;
-  /** Output only. The bundle id for the application under test. */
-  appBundleId?: string;
+/** Represents a tool results history resource. */
+export interface ToolResultsHistory {
+  /** Required. The cloud project that owns the tool results history. */
+  projectId?: string;
+  /** Required. A tool results history ID. */
+  historyId?: string;
 }
-export const IosTestLoop = /*@__PURE__*/ S.suspend(() =>
+export const ToolResultsHistory = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    scenarios: S.optional(IntegerList),
-    appIpa: S.optional(FileReference),
-    appBundleId: S.optional(S.String),
-  }),
-).annotate({ identifier: "IosTestLoop" }) as any as S.Schema<IosTestLoop>;
-
-export type FileReferenceList = Array<FileReference>;
-export const FileReferenceList = /*@__PURE__*/ S.Array(
-  FileReference,
-) as any as S.Schema<FileReferenceList>;
-
-/** A single dynamic feature apk. */
-export interface ApkSplits {
-  /** A list of .apk files generated by bundletool to install to the device under test as a single android app with adb install-multiple. If specified, requires one or more bundle_splits. The first split specified represents the base APK, while subsequent splits represent feature apks. */
-  bundleSplits?: FileReferenceList;
-}
-export const ApkSplits = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    bundleSplits: S.optional(FileReferenceList),
-  }),
-).annotate({ identifier: "ApkSplits" }) as any as S.Schema<ApkSplits>;
-
-/** An Android App Bundle file format, containing a BundleConfig.pb file, a base module directory, zero or more dynamic feature module directories. See https://developer.android.com/guide/app-bundle/build for guidance on building App Bundles. */
-export interface AppBundle {
-  /** .apk files generated by bundletool to install as a single android app. */
-  apks?: ApkSplits;
-  /** .aab file representing the app bundle under test. */
-  bundleLocation?: FileReference;
-}
-export const AppBundle = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    apks: S.optional(ApkSplits),
-    bundleLocation: S.optional(FileReference),
-  }),
-).annotate({ identifier: "AppBundle" }) as any as S.Schema<AppBundle>;
-
-export type StringList = Array<string>;
-export const StringList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<StringList>;
-
-/** A test of an Android Application with a Test Loop. The intent \ will be implicitly added, since Games is the only user of this api, for the time being. */
-export interface AndroidTestLoop {
-  /** The list of scenarios that should be run during the test. The default is all test loops, derived from the application's manifest. */
-  scenarios?: IntegerList;
-  /** The java package for the application under test. The default is determined by examining the application's manifest. */
-  appPackageId?: string;
-  /** A multi-apk app bundle for the application under test. */
-  appBundle?: AppBundle;
-  /** The list of scenario labels that should be run during the test. The scenario labels should map to labels defined in the application's manifest. For example, player_experience and com.google.test.loops.player_experience add all of the loops labeled in the manifest with the com.google.test.loops.player_experience name to the execution. Scenarios can also be specified in the scenarios field. */
-  scenarioLabels?: StringList;
-  /** The APK for the application under test. */
-  appApk?: FileReference;
-}
-export const AndroidTestLoop = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    scenarios: S.optional(IntegerList),
-    appPackageId: S.optional(S.String),
-    appBundle: S.optional(AppBundle),
-    scenarioLabels: S.optional(StringList),
-    appApk: S.optional(FileReference),
+    projectId: S.optional(S.String),
+    historyId: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "AndroidTestLoop",
-}) as any as S.Schema<AndroidTestLoop>;
+  identifier: "ToolResultsHistory",
+}) as any as S.Schema<ToolResultsHistory>;
 
-export type RoboDirectiveActionTypeEnum =
-  | "ACTION_TYPE_UNSPECIFIED"
-  | "SINGLE_CLICK"
-  | "ENTER_TEXT"
-  | "IGNORE";
-export const RoboDirectiveActionTypeEnum = /*@__PURE__*/ S.String;
-
-/** Directs Robo to interact with a specific UI element if it is encountered during the crawl. Currently, Robo can perform text entry or element click. */
-export interface RoboDirective {
-  /** The text that Robo is directed to set. If left empty, the directive will be treated as a CLICK on the element matching the resource_name. */
-  inputText?: string;
-  /** Required. The type of action that Robo should perform on the specified element. */
-  actionType?: RoboDirectiveActionTypeEnum | (string & {});
-  /** Required. The android resource name of the target UI element. For example, in Java: R.string.foo in xml: @string/foo Only the "foo" part is needed. Reference doc: https://developer.android.com/guide/topics/resources/accessing-resources.html */
-  resourceName?: string;
-}
-export const RoboDirective = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    inputText: S.optional(S.String),
-    actionType: S.optional(RoboDirectiveActionTypeEnum),
-    resourceName: S.optional(S.String),
-  }),
-).annotate({ identifier: "RoboDirective" }) as any as S.Schema<RoboDirective>;
-
-export type RoboDirectiveList = Array<RoboDirective>;
-export const RoboDirectiveList = /*@__PURE__*/ S.Array(
-  RoboDirective,
-) as any as S.Schema<RoboDirectiveList>;
-
-/** A starting intent specified by an action, uri, and categories. */
-export interface StartActivityIntent {
-  /** Intent categories to set on the intent. */
-  categories?: StringList;
-  /** URI for the action. */
-  uri?: string;
-  /** Action name. Required for START_ACTIVITY. */
-  action?: string;
-}
-export const StartActivityIntent = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    categories: S.optional(StringList),
-    uri: S.optional(S.String),
-    action: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "StartActivityIntent",
-}) as any as S.Schema<StartActivityIntent>;
-
-/** Skips the starting activity */
-export type NoActivityIntent = CancelDeviceSessionRequest;
-export const NoActivityIntent = CancelDeviceSessionRequest;
-
-/** Specifies an intent that starts the main launcher activity. */
-export type LauncherActivityIntent = CancelDeviceSessionRequest;
-export const LauncherActivityIntent = CancelDeviceSessionRequest;
-
-/** Message for specifying the start activities to crawl. */
-export interface RoboStartingIntent {
-  /** Timeout in seconds for each intent. */
-  timeout?: string;
-  /** An intent that starts an activity with specific details. */
-  startActivity?: StartActivityIntent;
-  /** Skips the starting activity */
-  noActivity?: CancelDeviceSessionRequest;
-  /** An intent that starts the main launcher activity. */
-  launcherActivity?: CancelDeviceSessionRequest;
-}
-export const RoboStartingIntent = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    timeout: S.optional(S.String),
-    startActivity: S.optional(StartActivityIntent),
-    noActivity: S.optional(CancelDeviceSessionRequest),
-    launcherActivity: S.optional(CancelDeviceSessionRequest),
-  }),
-).annotate({
-  identifier: "RoboStartingIntent",
-}) as any as S.Schema<RoboStartingIntent>;
-
-export type RoboStartingIntentList = Array<RoboStartingIntent>;
-export const RoboStartingIntentList = /*@__PURE__*/ S.Array(
-  RoboStartingIntent,
-) as any as S.Schema<RoboStartingIntentList>;
-
-export type AndroidRoboTestRoboModeEnum =
-  | "ROBO_MODE_UNSPECIFIED"
-  | "ROBO_VERSION_1"
-  | "ROBO_VERSION_2";
-export const AndroidRoboTestRoboModeEnum = /*@__PURE__*/ S.String;
-
-/** A test of an android application that explores the application on a virtual or physical Android Device, finding culprits and crashes as it goes. */
-export interface AndroidRoboTest {
-  /** The max number of steps Robo can execute. Default is no limit. */
-  maxSteps?: number;
-  /** The java package for the application under test. The default value is determined by examining the application's manifest. */
-  appPackageId?: string;
-  /** A set of directives Robo should apply during the crawl. This allows users to customize the crawl. For example, the username and password for a test account can be provided. */
-  roboDirectives?: RoboDirectiveList;
-  /** The APK for the application under test. */
-  appApk?: FileReference;
-  /** A JSON file with a sequence of actions Robo should perform as a prologue for the crawl. */
-  roboScript?: FileReference;
-  /** The intents used to launch the app for the crawl. If none are provided, then the main launcher activity is launched. If some are provided, then only those provided are launched (the main launcher activity must be provided explicitly). */
-  startingIntents?: RoboStartingIntentList;
-  /** The mode in which Robo should run. Most clients should allow the server to populate this field automatically. */
-  roboMode?: AndroidRoboTestRoboModeEnum | (string & {});
-  /** The max depth of the traversal stack Robo can explore. Needs to be at least 2 to make Robo explore the app beyond the first activity. Default is 50. */
-  maxDepth?: number;
-  /** A multi-apk app bundle for the application under test. */
-  appBundle?: AppBundle;
-  /** The initial activity that should be used to start the app. */
-  appInitialActivity?: string;
-}
-export const AndroidRoboTest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    maxSteps: S.optional(S.Number),
-    appPackageId: S.optional(S.String),
-    roboDirectives: S.optional(RoboDirectiveList),
-    appApk: S.optional(FileReference),
-    roboScript: S.optional(FileReference),
-    startingIntents: S.optional(RoboStartingIntentList),
-    roboMode: S.optional(AndroidRoboTestRoboModeEnum),
-    maxDepth: S.optional(S.Number),
-    appBundle: S.optional(AppBundle),
-    appInitialActivity: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AndroidRoboTest",
-}) as any as S.Schema<AndroidRoboTest>;
-
-/** A test that explores an iOS application on an iOS device. */
-export interface IosRoboTest {
-  /** An optional Roboscript to customize the crawl. See https://firebase.google.com/docs/test-lab/android/robo-scripts-reference for more information about Roboscripts. The maximum allowed file size of the roboscript is 10MiB. */
-  roboScript?: FileReference;
-  /** Required. The ipa stored at this file should be used to run the test. */
-  appIpa?: FileReference;
-  /** The bundle ID for the app-under-test. This is determined by examining the application's "Info.plist" file. */
-  appBundleId?: string;
-}
-export const IosRoboTest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    roboScript: S.optional(FileReference),
-    appIpa: S.optional(FileReference),
-    appBundleId: S.optional(S.String),
-  }),
-).annotate({ identifier: "IosRoboTest" }) as any as S.Schema<IosRoboTest>;
-
-/** A test of an iOS application that uses the XCTest framework. Xcode supports the option to "build for testing", which generates an .xctestrun file that contains a test specification (arguments, test methods, etc). This test type accepts a zip file containing the .xctestrun file and the corresponding contents of the Build/Products directory that contains all the binaries needed to run the tests. */
-export interface IosXcTest {
-  /** The Xcode version that should be used for the test. Use the TestEnvironmentDiscoveryService to get supported options. Defaults to the latest Xcode version Firebase Test Lab supports. */
-  xcodeVersion?: string;
-  /** Required. The .zip containing the .xctestrun file and the contents of the DerivedData/Build/Products directory. The .xctestrun file in this zip is ignored if the xctestrun field is specified. */
-  testsZip?: FileReference;
-  /** An .xctestrun file that will override the .xctestrun file in the tests zip. Because the .xctestrun file contains environment variables along with test methods to run and/or ignore, this can be useful for sharding tests. Default is taken from the tests zip. */
-  xctestrun?: FileReference;
-  /** The option to test special app entitlements. Setting this would re-sign the app having special entitlements with an explicit application-identifier. Currently supports testing aps-environment entitlement. */
-  testSpecialEntitlements?: boolean;
-  /** Output only. The bundle id for the application under test. */
-  appBundleId?: string;
-}
-export const IosXcTest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    xcodeVersion: S.optional(S.String),
-    testsZip: S.optional(FileReference),
-    xctestrun: S.optional(FileReference),
-    testSpecialEntitlements: S.optional(S.Boolean),
-    appBundleId: S.optional(S.String),
-  }),
-).annotate({ identifier: "IosXcTest" }) as any as S.Schema<IosXcTest>;
-
-/** A file or directory to install on the device before the test starts. */
-export interface IosDeviceFile {
-  /** The bundle id of the app where this file lives. iOS apps sandbox their own filesystem, so app files must specify which app installed on the device. */
-  bundleId?: string;
-  /** Location of the file on the device, inside the app's sandboxed filesystem */
-  devicePath?: string;
-  /** The source file */
-  content?: FileReference;
-}
-export const IosDeviceFile = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    bundleId: S.optional(S.String),
-    devicePath: S.optional(S.String),
-    content: S.optional(FileReference),
-  }),
-).annotate({ identifier: "IosDeviceFile" }) as any as S.Schema<IosDeviceFile>;
-
-export type IosDeviceFileList = Array<IosDeviceFile>;
-export const IosDeviceFileList = /*@__PURE__*/ S.Array(
-  IosDeviceFile,
-) as any as S.Schema<IosDeviceFileList>;
-
-/** A description of how to set up an iOS device prior to running the test. */
-export interface IosTestSetup {
-  /** List of files to push to the device before starting the test. */
-  pushFiles?: IosDeviceFileList;
-  /** List of directories on the device to upload to Cloud Storage at the end of the test. Directories should either be in a shared directory (such as /private/var/mobile/Media) or within an accessible directory inside the app's filesystem (such as /Documents) by specifying the bundle ID. */
-  pullDirectories?: IosDeviceFileList;
-  /** The network traffic profile used for running the test. Available network profiles can be queried by using the NETWORK_CONFIGURATION environment type when calling TestEnvironmentDiscoveryService.GetTestEnvironmentCatalog. */
-  networkProfile?: string;
-  /** iOS apps to install in addition to those being directly tested. */
-  additionalIpas?: FileReferenceList;
-}
-export const IosTestSetup = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    pushFiles: S.optional(IosDeviceFileList),
-    pullDirectories: S.optional(IosDeviceFileList),
-    networkProfile: S.optional(S.String),
-    additionalIpas: S.optional(FileReferenceList),
-  }),
-).annotate({ identifier: "IosTestSetup" }) as any as S.Schema<IosTestSetup>;
-
-/** An opaque binary blob file to install on the device before the test starts. */
-export interface ObbFile {
-  /** Required. Opaque Binary Blob (OBB) file(s) to install on the device. */
-  obb?: FileReference;
-  /** Required. OBB file name which must conform to the format as specified by Android e.g. [main|patch].0300110.com.example.android.obb which will be installed into \/Android/obb/\/ on the device. */
-  obbFileName?: string;
-}
-export const ObbFile = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    obb: S.optional(FileReference),
-    obbFileName: S.optional(S.String),
-  }),
-).annotate({ identifier: "ObbFile" }) as any as S.Schema<ObbFile>;
-
-/** A file or directory to install on the device before the test starts. */
-export interface RegularFile {
-  /** Required. The source file. */
-  content?: FileReference;
-  /** Required. Where to put the content on the device. Must be an absolute, allowlisted path. If the file exists, it will be replaced. The following device-side directories and any of their subdirectories are allowlisted: ${EXTERNAL_STORAGE}, /sdcard ${ANDROID_DATA}/local/tmp, or /data/local/tmp Specifying a path outside of these directory trees is invalid. The paths /sdcard and /data will be made available and treated as implicit path substitutions. E.g. if /sdcard on a particular device does not map to external storage, the system will replace it with the external storage path prefix for that device and copy the file there. It is strongly advised to use the Environment API in app and test code to access files on the device in a portable way. */
-  devicePath?: string;
-}
-export const RegularFile = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    content: S.optional(FileReference),
-    devicePath: S.optional(S.String),
-  }),
-).annotate({ identifier: "RegularFile" }) as any as S.Schema<RegularFile>;
-
-/** A single device file description. */
-export interface DeviceFile {
-  /** A reference to an opaque binary blob file. */
-  obbFile?: ObbFile;
-  /** A reference to a regular file. */
-  regularFile?: RegularFile;
-}
-export const DeviceFile = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    obbFile: S.optional(ObbFile),
-    regularFile: S.optional(RegularFile),
-  }),
-).annotate({ identifier: "DeviceFile" }) as any as S.Schema<DeviceFile>;
-
-export type DeviceFileList = Array<DeviceFile>;
-export const DeviceFileList = /*@__PURE__*/ S.Array(
-  DeviceFile,
-) as any as S.Schema<DeviceFileList>;
-
-/** Enables automatic Google account login. If set, the service automatically generates a Google test account and adds it to the device, before executing the test. Note that test accounts might be reused. Many applications show their full set of functionalities when an account is present on the device. Logging into the device with these generated accounts allows testing more functionalities. */
-export type GoogleAuto = CancelDeviceSessionRequest;
-export const GoogleAuto = CancelDeviceSessionRequest;
-
-/** Identifies an account and how to log into it. */
-export interface Account {
-  /** An automatic google login account. */
-  googleAuto?: CancelDeviceSessionRequest;
-}
-export const Account = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    googleAuto: S.optional(CancelDeviceSessionRequest),
-  }),
-).annotate({ identifier: "Account" }) as any as S.Schema<Account>;
-
-/** An Android package file to install. */
-export interface Apk {
-  /** The java package for the APK to be installed. Value is determined by examining the application's manifest. */
-  packageName?: string;
-  /** The path to an APK to be installed on the device before the test begins. */
-  location?: FileReference;
-}
-export const Apk = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    packageName: S.optional(S.String),
-    location: S.optional(FileReference),
-  }),
-).annotate({ identifier: "Apk" }) as any as S.Schema<Apk>;
-
-export type ApkList = Array<Apk>;
-export const ApkList = /*@__PURE__*/ S.Array(Apk) as any as S.Schema<ApkList>;
-
-export interface SystraceSetup {
-  /** Systrace duration in seconds. Should be between 1 and 30 seconds. 0 disables systrace. */
-  durationSeconds?: number;
-}
-export const SystraceSetup = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    durationSeconds: S.optional(S.Number),
-  }),
-).annotate({ identifier: "SystraceSetup" }) as any as S.Schema<SystraceSetup>;
-
-/** A key-value pair passed as an environment variable to the test. */
-export interface EnvironmentVariable {
-  /** Value for the environment variable. */
-  value?: string;
-  /** Key for the environment variable. */
-  key?: string;
-}
-export const EnvironmentVariable = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(S.String),
-    key: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "EnvironmentVariable",
-}) as any as S.Schema<EnvironmentVariable>;
-
-export type EnvironmentVariableList = Array<EnvironmentVariable>;
-export const EnvironmentVariableList = /*@__PURE__*/ S.Array(
-  EnvironmentVariable,
-) as any as S.Schema<EnvironmentVariableList>;
-
-/** A description of how to set up the Android device prior to running the test. */
-export interface TestSetup {
-  /** List of directories on the device to upload to GCS at the end of the test; they must be absolute paths under /sdcard, /storage or /data/local/tmp. Path names are restricted to characters a-z A-Z 0-9 _ - . + and / Note: The paths /sdcard and /data will be made available and treated as implicit path substitutions. E.g. if /sdcard on a particular device does not map to external storage, the system will replace it with the external storage path prefix for that device. */
-  directoriesToPull?: StringList;
-  /** List of files to push to the device before starting the test. */
-  filesToPush?: DeviceFileList;
-  /** The device will be logged in on this account for the duration of the test. */
-  account?: Account;
-  /** APKs to install in addition to those being directly tested. These will be installed after the app under test. Limited to a combined total of 100 initial setup and additional files. */
-  additionalApks?: ApkList;
-  /** Whether to prevent all runtime permissions to be granted at app install */
-  dontAutograntPermissions?: boolean;
-  /** Systrace configuration for the run. Deprecated: Systrace used Python 2 which was sunsetted on 2020-01-01. Systrace is no longer supported in the Cloud Testing API, and no Systrace file will be provided in the results. */
-  systrace?: SystraceSetup;
-  /** Optional. Initial setup APKs to install before the app under test is installed. Limited to a combined total of 100 initial setup and additional files. */
-  initialSetupApks?: ApkList;
-  /** Environment variables to set for the test (only applicable for instrumentation tests). */
-  environmentVariables?: EnvironmentVariableList;
-  /** The network traffic profile used for running the test. Available network profiles can be queried by using the NETWORK_CONFIGURATION environment type when calling TestEnvironmentDiscoveryService.GetTestEnvironmentCatalog. */
-  networkProfile?: string;
-}
-export const TestSetup = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    directoriesToPull: S.optional(StringList),
-    filesToPush: S.optional(DeviceFileList),
-    account: S.optional(Account),
-    additionalApks: S.optional(ApkList),
-    dontAutograntPermissions: S.optional(S.Boolean),
-    systrace: S.optional(SystraceSetup),
-    initialSetupApks: S.optional(ApkList),
-    environmentVariables: S.optional(EnvironmentVariableList),
-    networkProfile: S.optional(S.String),
-  }),
-).annotate({ identifier: "TestSetup" }) as any as S.Schema<TestSetup>;
-
-/** Test targets for a shard. */
-export interface TestTargetsForShard {
-  /** Group of packages, classes, and/or test methods to be run for each shard. The targets need to be specified in AndroidJUnitRunner argument format. For example, "package com.my.packages" "class com.my.package.MyClass". The number of test_targets must be greater than 0. */
-  testTargets?: StringList;
-}
-export const TestTargetsForShard = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    testTargets: S.optional(StringList),
-  }),
-).annotate({
-  identifier: "TestTargetsForShard",
-}) as any as S.Schema<TestTargetsForShard>;
-
-export type TestTargetsForShardList = Array<TestTargetsForShard>;
-export const TestTargetsForShardList = /*@__PURE__*/ S.Array(
-  TestTargetsForShard,
-) as any as S.Schema<TestTargetsForShardList>;
-
-/** Shards test cases into the specified groups of packages, classes, and/or methods. With manual sharding enabled, specifying test targets via environment_variables or in InstrumentationTest is invalid. */
-export interface ManualSharding {
-  /** Required. Group of packages, classes, and/or test methods to be run for each manually-created shard. You must specify at least one shard if this field is present. When you select one or more physical devices, the number of repeated test_targets_for_shard must be <= 50. When you select one or more ARM virtual devices, it must be <= 200. When you select only x86 virtual devices, it must be <= 500. */
-  testTargetsForShard?: TestTargetsForShardList;
-}
-export const ManualSharding = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    testTargetsForShard: S.optional(TestTargetsForShardList),
-  }),
-).annotate({ identifier: "ManualSharding" }) as any as S.Schema<ManualSharding>;
-
-/** Shards test based on previous test case timing records. */
-export interface SmartSharding {
-  /** The amount of time tests within a shard should take. Default: 300 seconds (5 minutes). The minimum allowed: 120 seconds (2 minutes). The shard count is dynamically set based on time, up to the maximum shard limit (described below). To guarantee at least one test case for each shard, the number of shards will not exceed the number of test cases. Shard duration will be exceeded if: - The maximum shard limit is reached and there is more calculated test time remaining to allocate into shards. - Any individual test is estimated to be longer than the targeted shard duration. Shard duration is not guaranteed because smart sharding uses test case history and default durations which may not be accurate. The rules for finding the test case timing records are: - If the service has processed a test case in the last 30 days, the record of the latest successful test case will be used. - For new test cases, the average duration of other known test cases will be used. - If there are no previous test case timing records available, the default test case duration is 15 seconds. Because the actual shard duration can exceed the targeted shard duration, we recommend that you set the targeted value at least 5 minutes less than the maximum allowed test timeout (45 minutes for physical devices and 60 minutes for virtual), or that you use the custom test timeout value that you set. This approach avoids cancelling the shard before all tests can finish. Note that there is a limit for maximum number of shards. When you select one or more physical devices, the number of shards must be <= 50. When you select one or more ARM virtual devices, it must be <= 200. When you select only x86 virtual devices, it must be <= 500. To guarantee at least one test case for per shard, the number of shards will not exceed the number of test cases. Each shard created counts toward daily test quota. */
-  targetedShardDuration?: string;
-}
-export const SmartSharding = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    targetedShardDuration: S.optional(S.String),
-  }),
-).annotate({ identifier: "SmartSharding" }) as any as S.Schema<SmartSharding>;
-
-/** Uniformly shards test cases given a total number of shards. For instrumentation tests, it will be translated to "-e numShard" and "-e shardIndex" AndroidJUnitRunner arguments. With uniform sharding enabled, specifying either of these sharding arguments via `environment_variables` is invalid. Based on the sharding mechanism AndroidJUnitRunner uses, there is no guarantee that test cases will be distributed uniformly across all shards. */
-export interface UniformSharding {
-  /** Required. The total number of shards to create. This must always be a positive number that is no greater than the total number of test cases. When you select one or more physical devices, the number of shards must be <= 50. When you select one or more ARM virtual devices, it must be <= 200. When you select only x86 virtual devices, it must be <= 500. */
-  numShards?: number;
-}
-export const UniformSharding = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    numShards: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "UniformSharding",
-}) as any as S.Schema<UniformSharding>;
-
-/** Options for enabling sharding. */
-export interface ShardingOption {
-  /** Shards test cases into the specified groups of packages, classes, and/or methods. */
-  manualSharding?: ManualSharding;
-  /** Shards test based on previous test case timing records. */
-  smartSharding?: SmartSharding;
-  /** Uniformly shards test cases given a total number of shards. */
-  uniformSharding?: UniformSharding;
-}
-export const ShardingOption = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    manualSharding: S.optional(ManualSharding),
-    smartSharding: S.optional(SmartSharding),
-    uniformSharding: S.optional(UniformSharding),
-  }),
-).annotate({ identifier: "ShardingOption" }) as any as S.Schema<ShardingOption>;
-
-export type AndroidInstrumentationTestOrchestratorOptionEnum =
-  | "ORCHESTRATOR_OPTION_UNSPECIFIED"
-  | "USE_ORCHESTRATOR"
-  | "DO_NOT_USE_ORCHESTRATOR";
-export const AndroidInstrumentationTestOrchestratorOptionEnum =
-  /*@__PURE__*/ S.String;
-
-/** A test of an Android application that can control an Android component independently of its normal lifecycle. Android instrumentation tests run an application APK and test APK inside the same process on a virtual or physical AndroidDevice. They also specify a test runner class, such as com.google.GoogleTestRunner, which can vary on the specific instrumentation framework chosen. See for more information on types of Android tests. */
-export interface AndroidInstrumentationTest {
-  /** The option to run tests in multiple shards in parallel. */
-  shardingOption?: ShardingOption;
-  /** The option of whether running each test within its own invocation of instrumentation with Android Test Orchestrator or not. ** Orchestrator is only compatible with AndroidJUnitRunner version 1.1 or higher! ** Orchestrator offers the following benefits: - No shared state - Crashes are isolated - Logs are scoped per test See for more information about Android Test Orchestrator. If not set, the test will be run without the orchestrator. */
-  orchestratorOption?:
-    | AndroidInstrumentationTestOrchestratorOptionEnum
-    | (string & {});
-  /** Required. The APK containing the test code to be executed. */
-  testApk?: FileReference;
-  /** A multi-apk app bundle for the application under test. */
-  appBundle?: AppBundle;
-  /** The java package for the test to be executed. The default value is determined by examining the application's manifest. */
-  testPackageId?: string;
-  /** The APK for the application under test. */
-  appApk?: FileReference;
-  /** Each target must be fully qualified with the package name or class name, in one of these formats: - "package package_name" - "class package_name.class_name" - "class package_name.class_name#method_name" If empty, all targets in the module will be run. */
-  testTargets?: StringList;
-  /** The InstrumentationTestRunner class. The default value is determined by examining the application's manifest. */
-  testRunnerClass?: string;
-  /** The java package for the application under test. The default value is determined by examining the application's manifest. */
-  appPackageId?: string;
-}
-export const AndroidInstrumentationTest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    shardingOption: S.optional(ShardingOption),
-    orchestratorOption: S.optional(
-      AndroidInstrumentationTestOrchestratorOptionEnum,
-    ),
-    testApk: S.optional(FileReference),
-    appBundle: S.optional(AppBundle),
-    testPackageId: S.optional(S.String),
-    appApk: S.optional(FileReference),
-    testTargets: S.optional(StringList),
-    testRunnerClass: S.optional(S.String),
-    appPackageId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AndroidInstrumentationTest",
-}) as any as S.Schema<AndroidInstrumentationTest>;
-
-/** A description of how to run the test. */
-export interface TestSpecification {
-  /** An iOS application with a test loop. */
-  iosTestLoop?: IosTestLoop;
-  /** Disables video recording. May reduce test latency. */
-  disableVideoRecording?: boolean;
-  /** An Android Application with a Test Loop. */
-  androidTestLoop?: AndroidTestLoop;
-  /** Max time a test execution is allowed to run before it is automatically cancelled. The default value is 5 min. */
-  testTimeout?: string;
-  /** An Android robo test. */
-  androidRoboTest?: AndroidRoboTest;
-  /** Disables performance metrics recording. May reduce test latency. */
-  disablePerformanceMetrics?: boolean;
-  /** An iOS Robo test. */
-  iosRoboTest?: IosRoboTest;
-  /** An iOS XCTest, via an .xctestrun file. */
-  iosXcTest?: IosXcTest;
-  /** Test setup requirements for iOS. */
-  iosTestSetup?: IosTestSetup;
-  /** Test setup requirements for Android e.g. files to install, bootstrap scripts. */
-  testSetup?: TestSetup;
-  /** An Android instrumentation test. */
-  androidInstrumentationTest?: AndroidInstrumentationTest;
-}
-export const TestSpecification = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    iosTestLoop: S.optional(IosTestLoop),
-    disableVideoRecording: S.optional(S.Boolean),
-    androidTestLoop: S.optional(AndroidTestLoop),
-    testTimeout: S.optional(S.String),
-    androidRoboTest: S.optional(AndroidRoboTest),
-    disablePerformanceMetrics: S.optional(S.Boolean),
-    iosRoboTest: S.optional(IosRoboTest),
-    iosXcTest: S.optional(IosXcTest),
-    iosTestSetup: S.optional(IosTestSetup),
-    testSetup: S.optional(TestSetup),
-    androidInstrumentationTest: S.optional(AndroidInstrumentationTest),
-  }),
-).annotate({
-  identifier: "TestSpecification",
-}) as any as S.Schema<TestSpecification>;
-
-/** Additional details about the progress of the running test. */
-export interface TestDetails {
-  /** Output only. Human-readable, detailed descriptions of the test's progress. For example: "Provisioning a device", "Starting Test". During the course of execution new data may be appended to the end of progress_messages. */
-  progressMessages?: StringList;
-  /** Output only. If the TestState is ERROR, then this string will contain human-readable details about the error. */
-  errorMessage?: string;
-}
-export const TestDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    progressMessages: S.optional(StringList),
-    errorMessage: S.optional(S.String),
-  }),
-).annotate({ identifier: "TestDetails" }) as any as S.Schema<TestDetails>;
-
-/** Represents a tool results step resource. This has the results of a TestExecution. */
-export interface ToolResultsStep {
+/** Represents a tool results execution resource. This has the results of a TestMatrix. */
+export interface ToolResultsExecution {
   /** Output only. A tool results history ID. */
   historyId?: string;
   /** Output only. A tool results execution ID. */
   executionId?: string;
-  /** Output only. A tool results step ID. */
-  stepId?: string;
-  /** Output only. The cloud project that owns the tool results step. */
+  /** Output only. The cloud project that owns the tool results execution. */
   projectId?: string;
 }
-export const ToolResultsStep = /*@__PURE__*/ S.suspend(() =>
+export const ToolResultsExecution = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     historyId: S.optional(S.String),
     executionId: S.optional(S.String),
-    stepId: S.optional(S.String),
     projectId: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ToolResultsStep",
-}) as any as S.Schema<ToolResultsStep>;
+  identifier: "ToolResultsExecution",
+}) as any as S.Schema<ToolResultsExecution>;
 
-export type TestExecutionStateEnum =
+/** Locations where the results of running the test are stored. */
+export interface ResultStorage {
+  /** Required. */
+  googleCloudStorage?: GoogleCloudStorage;
+  /** The tool results history that contains the tool results execution that results are written to. If not provided, the service will choose an appropriate value. */
+  toolResultsHistory?: ToolResultsHistory;
+  /** Output only. The tool results execution that results are written to. */
+  toolResultsExecution?: ToolResultsExecution;
+  /** Output only. URL to the results in the Firebase Web Console. */
+  resultsUrl?: string;
+}
+export const ResultStorage = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    googleCloudStorage: S.optional(GoogleCloudStorage),
+    toolResultsHistory: S.optional(ToolResultsHistory),
+    toolResultsExecution: S.optional(ToolResultsExecution),
+    resultsUrl: S.optional(S.String),
+  }),
+).annotate({ identifier: "ResultStorage" }) as any as S.Schema<ResultStorage>;
+
+export type TestMatrixStateEnum =
   | "TEST_STATE_UNSPECIFIED"
   | "VALIDATING"
   | "PENDING"
@@ -966,104 +353,7 @@ export type TestExecutionStateEnum =
   | "INCOMPATIBLE_ARCHITECTURE"
   | "CANCELLED"
   | "INVALID";
-export const TestExecutionStateEnum = /*@__PURE__*/ S.String;
-
-/** A single iOS device. */
-export interface IosDevice {
-  /** Required. The id of the iOS device to be used. Use the TestEnvironmentDiscoveryService to get supported options. */
-  iosModelId?: string;
-  /** Required. The locale the test device used for testing. Use the TestEnvironmentDiscoveryService to get supported options. */
-  locale?: string;
-  /** Required. How the device is oriented during the test. Use the TestEnvironmentDiscoveryService to get supported options. */
-  orientation?: string;
-  /** Required. The id of the iOS major software version to be used. Use the TestEnvironmentDiscoveryService to get supported options. */
-  iosVersionId?: string;
-}
-export const IosDevice = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    iosModelId: S.optional(S.String),
-    locale: S.optional(S.String),
-    orientation: S.optional(S.String),
-    iosVersionId: S.optional(S.String),
-  }),
-).annotate({ identifier: "IosDevice" }) as any as S.Schema<IosDevice>;
-
-/** The environment in which the test is run. */
-export interface Environment {
-  /** An iOS device which must be used with an iOS test. */
-  iosDevice?: IosDevice;
-  /** An Android device which must be used with an Android test. */
-  androidDevice?: AndroidDevice;
-}
-export const Environment = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    iosDevice: S.optional(IosDevice),
-    androidDevice: S.optional(AndroidDevice),
-  }),
-).annotate({ identifier: "Environment" }) as any as S.Schema<Environment>;
-
-/** Output only. Details about the shard. */
-export interface Shard {
-  /** Output only. The total number of shards. */
-  numShards?: number;
-  /** Output only. Test targets for each shard. Only set for manual sharding. */
-  testTargetsForShard?: TestTargetsForShard;
-  /** Output only. The index of the shard among all the shards. */
-  shardIndex?: number;
-  /** Output only. The estimated shard duration based on previous test case timing records, if available. */
-  estimatedShardDuration?: string;
-}
-export const Shard = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    numShards: S.optional(S.Number),
-    testTargetsForShard: S.optional(TestTargetsForShard),
-    shardIndex: S.optional(S.Number),
-    estimatedShardDuration: S.optional(S.String),
-  }),
-).annotate({ identifier: "Shard" }) as any as S.Schema<Shard>;
-
-/** A single test executed in a single environment. */
-export interface TestExecution {
-  /** Output only. Additional details about the running test. */
-  testDetails?: TestDetails;
-  /** Output only. Where the results for this execution are written. */
-  toolResultsStep?: ToolResultsStep;
-  /** Output only. Unique id set by the service. */
-  id?: string;
-  /** Output only. Indicates the current progress of the test execution (e.g., FINISHED). */
-  state?: TestExecutionStateEnum | (string & {});
-  /** Output only. The cloud project that owns the test execution. */
-  projectId?: string;
-  /** Output only. How the host machine(s) are configured. */
-  environment?: Environment;
-  /** Output only. Id of the containing TestMatrix. */
-  matrixId?: string;
-  /** Output only. The time this test execution was initially created. */
-  timestamp?: string;
-  /** Output only. How to run the test. */
-  testSpecification?: TestSpecification;
-  /** Output only. Details about the shard. */
-  shard?: Shard;
-}
-export const TestExecution = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    testDetails: S.optional(TestDetails),
-    toolResultsStep: S.optional(ToolResultsStep),
-    id: S.optional(S.String),
-    state: S.optional(TestExecutionStateEnum),
-    projectId: S.optional(S.String),
-    environment: S.optional(Environment),
-    matrixId: S.optional(S.String),
-    timestamp: S.optional(S.String),
-    testSpecification: S.optional(TestSpecification),
-    shard: S.optional(Shard),
-  }),
-).annotate({ identifier: "TestExecution" }) as any as S.Schema<TestExecution>;
-
-export type TestExecutionList = Array<TestExecution>;
-export const TestExecutionList = /*@__PURE__*/ S.Array(
-  TestExecution,
-) as any as S.Schema<TestExecutionList>;
+export const TestMatrixStateEnum = /*@__PURE__*/ S.String;
 
 export type TestMatrixInvalidMatrixDetailsEnum =
   | "INVALID_MATRIX_DETAILS_UNSPECIFIED"
@@ -1128,27 +418,66 @@ export const MatrixErrorDetailList = /*@__PURE__*/ S.Array(
   MatrixErrorDetail,
 ) as any as S.Schema<MatrixErrorDetailList>;
 
-export type TestMatrixStateEnum =
-  | "TEST_STATE_UNSPECIFIED"
-  | "VALIDATING"
-  | "PENDING"
-  | "RUNNING"
-  | "FINISHED"
-  | "ERROR"
-  | "UNSUPPORTED_ENVIRONMENT"
-  | "INCOMPATIBLE_ENVIRONMENT"
-  | "INCOMPATIBLE_ARCHITECTURE"
-  | "CANCELLED"
-  | "INVALID";
-export const TestMatrixStateEnum = /*@__PURE__*/ S.String;
+export type StringList = Array<string>;
+export const StringList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<StringList>;
 
-export type TestMatrixOutcomeSummaryEnum =
-  | "OUTCOME_SUMMARY_UNSPECIFIED"
-  | "SUCCESS"
-  | "FAILURE"
-  | "INCONCLUSIVE"
-  | "SKIPPED";
-export const TestMatrixOutcomeSummaryEnum = /*@__PURE__*/ S.String;
+/** A set of Android device configuration permutations is defined by the the cross-product of the given axes. Internally, the given AndroidMatrix will be expanded into a set of AndroidDevices. Only supported permutations will be instantiated. Invalid permutations (e.g., incompatible models/versions) are ignored. */
+export interface AndroidMatrix {
+  /** Required. The ids of the set of Android OS version to be used. Use the TestEnvironmentDiscoveryService to get supported options. */
+  androidVersionIds?: StringList;
+  /** Required. The set of orientations to test with. Use the TestEnvironmentDiscoveryService to get supported options. */
+  orientations?: StringList;
+  /** Required. The set of locales the test device will enable for testing. Use the TestEnvironmentDiscoveryService to get supported options. */
+  locales?: StringList;
+  /** Required. The ids of the set of Android device to be used. Use the TestEnvironmentDiscoveryService to get supported options. */
+  androidModelIds?: StringList;
+}
+export const AndroidMatrix = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    androidVersionIds: S.optional(StringList),
+    orientations: S.optional(StringList),
+    locales: S.optional(StringList),
+    androidModelIds: S.optional(StringList),
+  }),
+).annotate({ identifier: "AndroidMatrix" }) as any as S.Schema<AndroidMatrix>;
+
+/** A single iOS device. */
+export interface IosDevice {
+  /** Required. The id of the iOS device to be used. Use the TestEnvironmentDiscoveryService to get supported options. */
+  iosModelId?: string;
+  /** Required. The locale the test device used for testing. Use the TestEnvironmentDiscoveryService to get supported options. */
+  locale?: string;
+  /** Required. The id of the iOS major software version to be used. Use the TestEnvironmentDiscoveryService to get supported options. */
+  iosVersionId?: string;
+  /** Required. How the device is oriented during the test. Use the TestEnvironmentDiscoveryService to get supported options. */
+  orientation?: string;
+}
+export const IosDevice = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    iosModelId: S.optional(S.String),
+    locale: S.optional(S.String),
+    iosVersionId: S.optional(S.String),
+    orientation: S.optional(S.String),
+  }),
+).annotate({ identifier: "IosDevice" }) as any as S.Schema<IosDevice>;
+
+export type IosDeviceList_ = Array<IosDevice>;
+export const IosDeviceList_ = /*@__PURE__*/ S.Array(
+  IosDevice,
+) as any as S.Schema<IosDeviceList_>;
+
+/** A list of iOS device configurations in which the test is to be executed. */
+export interface IosDeviceList {
+  /** Required. A list of iOS devices. */
+  iosDevices?: IosDeviceList_;
+}
+export const IosDeviceList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    iosDevices: S.optional(IosDeviceList_),
+  }),
+).annotate({ identifier: "IosDeviceList" }) as any as S.Schema<IosDeviceList>;
 
 export type AndroidDeviceList_ = Array<AndroidDevice>;
 export const AndroidDeviceList_ = /*@__PURE__*/ S.Array(
@@ -1168,191 +497,862 @@ export const AndroidDeviceList = /*@__PURE__*/ S.suspend(() =>
   identifier: "AndroidDeviceList",
 }) as any as S.Schema<AndroidDeviceList>;
 
-/** A set of Android device configuration permutations is defined by the the cross-product of the given axes. Internally, the given AndroidMatrix will be expanded into a set of AndroidDevices. Only supported permutations will be instantiated. Invalid permutations (e.g., incompatible models/versions) are ignored. */
-export interface AndroidMatrix {
-  /** Required. The ids of the set of Android device to be used. Use the TestEnvironmentDiscoveryService to get supported options. */
-  androidModelIds?: StringList;
-  /** Required. The set of orientations to test with. Use the TestEnvironmentDiscoveryService to get supported options. */
-  orientations?: StringList;
-  /** Required. The ids of the set of Android OS version to be used. Use the TestEnvironmentDiscoveryService to get supported options. */
-  androidVersionIds?: StringList;
-  /** Required. The set of locales the test device will enable for testing. Use the TestEnvironmentDiscoveryService to get supported options. */
-  locales?: StringList;
-}
-export const AndroidMatrix = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    androidModelIds: S.optional(StringList),
-    orientations: S.optional(StringList),
-    androidVersionIds: S.optional(StringList),
-    locales: S.optional(StringList),
-  }),
-).annotate({ identifier: "AndroidMatrix" }) as any as S.Schema<AndroidMatrix>;
-
-export type IosDeviceList_ = Array<IosDevice>;
-export const IosDeviceList_ = /*@__PURE__*/ S.Array(
-  IosDevice,
-) as any as S.Schema<IosDeviceList_>;
-
-/** A list of iOS device configurations in which the test is to be executed. */
-export interface IosDeviceList {
-  /** Required. A list of iOS devices. */
-  iosDevices?: IosDeviceList_;
-}
-export const IosDeviceList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    iosDevices: S.optional(IosDeviceList_),
-  }),
-).annotate({ identifier: "IosDeviceList" }) as any as S.Schema<IosDeviceList>;
-
 /** The matrix of environments in which the test is to be executed. */
 export interface EnvironmentMatrix {
-  /** A list of Android devices; the test will be run only on the specified devices. */
-  androidDeviceList?: AndroidDeviceList;
   /** A matrix of Android devices. */
   androidMatrix?: AndroidMatrix;
   /** A list of iOS devices. */
   iosDeviceList?: IosDeviceList;
+  /** A list of Android devices; the test will be run only on the specified devices. */
+  androidDeviceList?: AndroidDeviceList;
 }
 export const EnvironmentMatrix = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    androidDeviceList: S.optional(AndroidDeviceList),
     androidMatrix: S.optional(AndroidMatrix),
     iosDeviceList: S.optional(IosDeviceList),
+    androidDeviceList: S.optional(AndroidDeviceList),
   }),
 ).annotate({
   identifier: "EnvironmentMatrix",
 }) as any as S.Schema<EnvironmentMatrix>;
 
-/** Represents a tool results execution resource. This has the results of a TestMatrix. */
-export interface ToolResultsExecution {
-  /** Output only. A tool results history ID. */
-  historyId?: string;
-  /** Output only. The cloud project that owns the tool results execution. */
-  projectId?: string;
-  /** Output only. A tool results execution ID. */
-  executionId?: string;
+export type TestMatrixOutcomeSummaryEnum =
+  | "OUTCOME_SUMMARY_UNSPECIFIED"
+  | "SUCCESS"
+  | "FAILURE"
+  | "INCONCLUSIVE"
+  | "SKIPPED";
+export const TestMatrixOutcomeSummaryEnum = /*@__PURE__*/ S.String;
+
+/** Test targets for a shard. */
+export interface TestTargetsForShard {
+  /** Group of packages, classes, and/or test methods to be run for each shard. The targets need to be specified in AndroidJUnitRunner argument format. For example, "package com.my.packages" "class com.my.package.MyClass". The number of test_targets must be greater than 0. */
+  testTargets?: StringList;
 }
-export const ToolResultsExecution = /*@__PURE__*/ S.suspend(() =>
+export const TestTargetsForShard = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    historyId: S.optional(S.String),
-    projectId: S.optional(S.String),
-    executionId: S.optional(S.String),
+    testTargets: S.optional(StringList),
   }),
 ).annotate({
-  identifier: "ToolResultsExecution",
-}) as any as S.Schema<ToolResultsExecution>;
+  identifier: "TestTargetsForShard",
+}) as any as S.Schema<TestTargetsForShard>;
 
-/** A storage location within Google cloud storage (GCS). */
-export interface GoogleCloudStorage {
-  /** Required. The path to a directory in GCS that will eventually contain the results for this test. The requesting user must have write access on the bucket in the supplied path. */
+/** Output only. Details about the shard. */
+export interface Shard {
+  /** Output only. The index of the shard among all the shards. */
+  shardIndex?: number;
+  /** Output only. The total number of shards. */
+  numShards?: number;
+  /** Output only. The estimated shard duration based on previous test case timing records, if available. */
+  estimatedShardDuration?: string;
+  /** Output only. Test targets for each shard. Only set for manual sharding. */
+  testTargetsForShard?: TestTargetsForShard;
+}
+export const Shard = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    shardIndex: S.optional(S.Number),
+    numShards: S.optional(S.Number),
+    estimatedShardDuration: S.optional(S.String),
+    testTargetsForShard: S.optional(TestTargetsForShard),
+  }),
+).annotate({ identifier: "Shard" }) as any as S.Schema<Shard>;
+
+export type TestExecutionStateEnum =
+  | "TEST_STATE_UNSPECIFIED"
+  | "VALIDATING"
+  | "PENDING"
+  | "RUNNING"
+  | "FINISHED"
+  | "ERROR"
+  | "UNSUPPORTED_ENVIRONMENT"
+  | "INCOMPATIBLE_ENVIRONMENT"
+  | "INCOMPATIBLE_ARCHITECTURE"
+  | "CANCELLED"
+  | "INVALID";
+export const TestExecutionStateEnum = /*@__PURE__*/ S.String;
+
+/** Additional details about the progress of the running test. */
+export interface TestDetails {
+  /** Output only. If the TestState is ERROR, then this string will contain human-readable details about the error. */
+  errorMessage?: string;
+  /** Output only. Human-readable, detailed descriptions of the test's progress. For example: "Provisioning a device", "Starting Test". During the course of execution new data may be appended to the end of progress_messages. */
+  progressMessages?: StringList;
+}
+export const TestDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    errorMessage: S.optional(S.String),
+    progressMessages: S.optional(StringList),
+  }),
+).annotate({ identifier: "TestDetails" }) as any as S.Schema<TestDetails>;
+
+/** Represents a tool results step resource. This has the results of a TestExecution. */
+export interface ToolResultsStep {
+  /** Output only. A tool results execution ID. */
+  executionId?: string;
+  /** Output only. The cloud project that owns the tool results step. */
+  projectId?: string;
+  /** Output only. A tool results step ID. */
+  stepId?: string;
+  /** Output only. A tool results history ID. */
+  historyId?: string;
+}
+export const ToolResultsStep = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    executionId: S.optional(S.String),
+    projectId: S.optional(S.String),
+    stepId: S.optional(S.String),
+    historyId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ToolResultsStep",
+}) as any as S.Schema<ToolResultsStep>;
+
+/** The environment in which the test is run. */
+export interface Environment {
+  /** An Android device which must be used with an Android test. */
+  androidDevice?: AndroidDevice;
+  /** An iOS device which must be used with an iOS test. */
+  iosDevice?: IosDevice;
+}
+export const Environment = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    androidDevice: S.optional(AndroidDevice),
+    iosDevice: S.optional(IosDevice),
+  }),
+).annotate({ identifier: "Environment" }) as any as S.Schema<Environment>;
+
+export interface SystraceSetup {
+  /** Systrace duration in seconds. Should be between 1 and 30 seconds. 0 disables systrace. */
+  durationSeconds?: number;
+}
+export const SystraceSetup = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    durationSeconds: S.optional(S.Number),
+  }),
+).annotate({ identifier: "SystraceSetup" }) as any as S.Schema<SystraceSetup>;
+
+/** A key-value pair passed as an environment variable to the test. */
+export interface EnvironmentVariable {
+  /** Key for the environment variable. */
+  key?: string;
+  /** Value for the environment variable. */
+  value?: string;
+}
+export const EnvironmentVariable = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    key: S.optional(S.String),
+    value: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "EnvironmentVariable",
+}) as any as S.Schema<EnvironmentVariable>;
+
+export type EnvironmentVariableList = Array<EnvironmentVariable>;
+export const EnvironmentVariableList = /*@__PURE__*/ S.Array(
+  EnvironmentVariable,
+) as any as S.Schema<EnvironmentVariableList>;
+
+/** Enables automatic Google account login. If set, the service automatically generates a Google test account and adds it to the device, before executing the test. Note that test accounts might be reused. Many applications show their full set of functionalities when an account is present on the device. Logging into the device with these generated accounts allows testing more functionalities. */
+export type GoogleAuto = CancelDeviceSessionRequest;
+export const GoogleAuto = CancelDeviceSessionRequest;
+
+/** Identifies an account and how to log into it. */
+export interface Account {
+  /** An automatic google login account. */
+  googleAuto?: CancelDeviceSessionRequest;
+}
+export const Account = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    googleAuto: S.optional(CancelDeviceSessionRequest),
+  }),
+).annotate({ identifier: "Account" }) as any as S.Schema<Account>;
+
+/** A reference to a file, used for user inputs. */
+export interface FileReference {
+  /** A path to a file in Google Cloud Storage. Example: gs://build-app-1414623860166/app%40debug-unaligned.apk These paths are expected to be url encoded (percent encoding) */
   gcsPath?: string;
 }
-export const GoogleCloudStorage = /*@__PURE__*/ S.suspend(() =>
+export const FileReference = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     gcsPath: S.optional(S.String),
   }),
-).annotate({
-  identifier: "GoogleCloudStorage",
-}) as any as S.Schema<GoogleCloudStorage>;
+).annotate({ identifier: "FileReference" }) as any as S.Schema<FileReference>;
 
-/** Represents a tool results history resource. */
-export interface ToolResultsHistory {
-  /** Required. The cloud project that owns the tool results history. */
+/** An Android package file to install. */
+export interface Apk {
+  /** The path to an APK to be installed on the device before the test begins. */
+  location?: FileReference;
+  /** The java package for the APK to be installed. Value is determined by examining the application's manifest. */
+  packageName?: string;
+}
+export const Apk = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    location: S.optional(FileReference),
+    packageName: S.optional(S.String),
+  }),
+).annotate({ identifier: "Apk" }) as any as S.Schema<Apk>;
+
+export type ApkList = Array<Apk>;
+export const ApkList = /*@__PURE__*/ S.Array(Apk) as any as S.Schema<ApkList>;
+
+/** An opaque binary blob file to install on the device before the test starts. */
+export interface ObbFile {
+  /** Required. OBB file name which must conform to the format as specified by Android e.g. [main|patch].0300110.com.example.android.obb which will be installed into \/Android/obb/\/ on the device. */
+  obbFileName?: string;
+  /** Required. Opaque Binary Blob (OBB) file(s) to install on the device. */
+  obb?: FileReference;
+}
+export const ObbFile = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    obbFileName: S.optional(S.String),
+    obb: S.optional(FileReference),
+  }),
+).annotate({ identifier: "ObbFile" }) as any as S.Schema<ObbFile>;
+
+/** A file or directory to install on the device before the test starts. */
+export interface RegularFile {
+  /** Required. Where to put the content on the device. Must be an absolute, allowlisted path. If the file exists, it will be replaced. The following device-side directories and any of their subdirectories are allowlisted: ${EXTERNAL_STORAGE}, /sdcard ${ANDROID_DATA}/local/tmp, or /data/local/tmp Specifying a path outside of these directory trees is invalid. The paths /sdcard and /data will be made available and treated as implicit path substitutions. E.g. if /sdcard on a particular device does not map to external storage, the system will replace it with the external storage path prefix for that device and copy the file there. It is strongly advised to use the Environment API in app and test code to access files on the device in a portable way. */
+  devicePath?: string;
+  /** Required. The source file. */
+  content?: FileReference;
+}
+export const RegularFile = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    devicePath: S.optional(S.String),
+    content: S.optional(FileReference),
+  }),
+).annotate({ identifier: "RegularFile" }) as any as S.Schema<RegularFile>;
+
+/** A single device file description. */
+export interface DeviceFile {
+  /** A reference to an opaque binary blob file. */
+  obbFile?: ObbFile;
+  /** A reference to a regular file. */
+  regularFile?: RegularFile;
+}
+export const DeviceFile = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    obbFile: S.optional(ObbFile),
+    regularFile: S.optional(RegularFile),
+  }),
+).annotate({ identifier: "DeviceFile" }) as any as S.Schema<DeviceFile>;
+
+export type DeviceFileList = Array<DeviceFile>;
+export const DeviceFileList = /*@__PURE__*/ S.Array(
+  DeviceFile,
+) as any as S.Schema<DeviceFileList>;
+
+/** A description of how to set up the Android device prior to running the test. */
+export interface TestSetup {
+  /** Systrace configuration for the run. Deprecated: Systrace used Python 2 which was sunsetted on 2020-01-01. Systrace is no longer supported in the Cloud Testing API, and no Systrace file will be provided in the results. */
+  systrace?: SystraceSetup;
+  /** Environment variables to set for the test (only applicable for instrumentation tests). */
+  environmentVariables?: EnvironmentVariableList;
+  /** The device will be logged in on this account for the duration of the test. */
+  account?: Account;
+  /** Optional. Initial setup APKs to install before the app under test is installed. Limited to a combined total of 100 initial setup and additional files. */
+  initialSetupApks?: ApkList;
+  /** List of files to push to the device before starting the test. */
+  filesToPush?: DeviceFileList;
+  /** List of directories on the device to upload to GCS at the end of the test; they must be absolute paths under /sdcard, /storage or /data/local/tmp. Path names are restricted to characters a-z A-Z 0-9 _ - . + and / Note: The paths /sdcard and /data will be made available and treated as implicit path substitutions. E.g. if /sdcard on a particular device does not map to external storage, the system will replace it with the external storage path prefix for that device. */
+  directoriesToPull?: StringList;
+  /** APKs to install in addition to those being directly tested. These will be installed after the app under test. Limited to a combined total of 100 initial setup and additional files. */
+  additionalApks?: ApkList;
+  /** Whether to prevent all runtime permissions to be granted at app install */
+  dontAutograntPermissions?: boolean;
+  /** The network traffic profile used for running the test. Available network profiles can be queried by using the NETWORK_CONFIGURATION environment type when calling TestEnvironmentDiscoveryService.GetTestEnvironmentCatalog. */
+  networkProfile?: string;
+}
+export const TestSetup = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    systrace: S.optional(SystraceSetup),
+    environmentVariables: S.optional(EnvironmentVariableList),
+    account: S.optional(Account),
+    initialSetupApks: S.optional(ApkList),
+    filesToPush: S.optional(DeviceFileList),
+    directoriesToPull: S.optional(StringList),
+    additionalApks: S.optional(ApkList),
+    dontAutograntPermissions: S.optional(S.Boolean),
+    networkProfile: S.optional(S.String),
+  }),
+).annotate({ identifier: "TestSetup" }) as any as S.Schema<TestSetup>;
+
+export type FileReferenceList = Array<FileReference>;
+export const FileReferenceList = /*@__PURE__*/ S.Array(
+  FileReference,
+) as any as S.Schema<FileReferenceList>;
+
+/** A single dynamic feature apk. */
+export interface ApkSplits {
+  /** A list of .apk files generated by bundletool to install to the device under test as a single android app with adb install-multiple. If specified, requires one or more bundle_splits. The first split specified represents the base APK, while subsequent splits represent feature apks. */
+  bundleSplits?: FileReferenceList;
+}
+export const ApkSplits = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    bundleSplits: S.optional(FileReferenceList),
+  }),
+).annotate({ identifier: "ApkSplits" }) as any as S.Schema<ApkSplits>;
+
+/** An Android App Bundle file format, containing a BundleConfig.pb file, a base module directory, zero or more dynamic feature module directories. See https://developer.android.com/guide/app-bundle/build for guidance on building App Bundles. */
+export interface AppBundle {
+  /** .aab file representing the app bundle under test. */
+  bundleLocation?: FileReference;
+  /** .apk files generated by bundletool to install as a single android app. */
+  apks?: ApkSplits;
+}
+export const AppBundle = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    bundleLocation: S.optional(FileReference),
+    apks: S.optional(ApkSplits),
+  }),
+).annotate({ identifier: "AppBundle" }) as any as S.Schema<AppBundle>;
+
+export type AndroidInstrumentationTestOrchestratorOptionEnum =
+  | "ORCHESTRATOR_OPTION_UNSPECIFIED"
+  | "USE_ORCHESTRATOR"
+  | "DO_NOT_USE_ORCHESTRATOR";
+export const AndroidInstrumentationTestOrchestratorOptionEnum =
+  /*@__PURE__*/ S.String;
+
+/** Shards test based on previous test case timing records. */
+export interface SmartSharding {
+  /** The amount of time tests within a shard should take. Default: 300 seconds (5 minutes). The minimum allowed: 120 seconds (2 minutes). The shard count is dynamically set based on time, up to the maximum shard limit (described below). To guarantee at least one test case for each shard, the number of shards will not exceed the number of test cases. Shard duration will be exceeded if: - The maximum shard limit is reached and there is more calculated test time remaining to allocate into shards. - Any individual test is estimated to be longer than the targeted shard duration. Shard duration is not guaranteed because smart sharding uses test case history and default durations which may not be accurate. The rules for finding the test case timing records are: - If the service has processed a test case in the last 30 days, the record of the latest successful test case will be used. - For new test cases, the average duration of other known test cases will be used. - If there are no previous test case timing records available, the default test case duration is 15 seconds. Because the actual shard duration can exceed the targeted shard duration, we recommend that you set the targeted value at least 5 minutes less than the maximum allowed test timeout (45 minutes for physical devices and 60 minutes for virtual), or that you use the custom test timeout value that you set. This approach avoids cancelling the shard before all tests can finish. Note that there is a limit for maximum number of shards. When you select one or more physical devices, the number of shards must be <= 50. When you select one or more ARM virtual devices, it must be <= 200. When you select only x86 virtual devices, it must be <= 500. To guarantee at least one test case for per shard, the number of shards will not exceed the number of test cases. Each shard created counts toward daily test quota. */
+  targetedShardDuration?: string;
+}
+export const SmartSharding = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    targetedShardDuration: S.optional(S.String),
+  }),
+).annotate({ identifier: "SmartSharding" }) as any as S.Schema<SmartSharding>;
+
+/** Uniformly shards test cases given a total number of shards. For instrumentation tests, it will be translated to "-e numShard" and "-e shardIndex" AndroidJUnitRunner arguments. With uniform sharding enabled, specifying either of these sharding arguments via `environment_variables` is invalid. Based on the sharding mechanism AndroidJUnitRunner uses, there is no guarantee that test cases will be distributed uniformly across all shards. */
+export interface UniformSharding {
+  /** Required. The total number of shards to create. This must always be a positive number that is no greater than the total number of test cases. When you select one or more physical devices, the number of shards must be <= 50. When you select one or more ARM virtual devices, it must be <= 200. When you select only x86 virtual devices, it must be <= 500. */
+  numShards?: number;
+}
+export const UniformSharding = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    numShards: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "UniformSharding",
+}) as any as S.Schema<UniformSharding>;
+
+export type TestTargetsForShardList = Array<TestTargetsForShard>;
+export const TestTargetsForShardList = /*@__PURE__*/ S.Array(
+  TestTargetsForShard,
+) as any as S.Schema<TestTargetsForShardList>;
+
+/** Shards test cases into the specified groups of packages, classes, and/or methods. With manual sharding enabled, specifying test targets via environment_variables or in InstrumentationTest is invalid. */
+export interface ManualSharding {
+  /** Required. Group of packages, classes, and/or test methods to be run for each manually-created shard. You must specify at least one shard if this field is present. When you select one or more physical devices, the number of repeated test_targets_for_shard must be <= 50. When you select one or more ARM virtual devices, it must be <= 200. When you select only x86 virtual devices, it must be <= 500. */
+  testTargetsForShard?: TestTargetsForShardList;
+}
+export const ManualSharding = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    testTargetsForShard: S.optional(TestTargetsForShardList),
+  }),
+).annotate({ identifier: "ManualSharding" }) as any as S.Schema<ManualSharding>;
+
+/** Options for enabling sharding. */
+export interface ShardingOption {
+  /** Shards test based on previous test case timing records. */
+  smartSharding?: SmartSharding;
+  /** Uniformly shards test cases given a total number of shards. */
+  uniformSharding?: UniformSharding;
+  /** Shards test cases into the specified groups of packages, classes, and/or methods. */
+  manualSharding?: ManualSharding;
+}
+export const ShardingOption = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    smartSharding: S.optional(SmartSharding),
+    uniformSharding: S.optional(UniformSharding),
+    manualSharding: S.optional(ManualSharding),
+  }),
+).annotate({ identifier: "ShardingOption" }) as any as S.Schema<ShardingOption>;
+
+/** A test of an Android application that can control an Android component independently of its normal lifecycle. Android instrumentation tests run an application APK and test APK inside the same process on a virtual or physical AndroidDevice. They also specify a test runner class, such as com.google.GoogleTestRunner, which can vary on the specific instrumentation framework chosen. See for more information on types of Android tests. */
+export interface AndroidInstrumentationTest {
+  /** Each target must be fully qualified with the package name or class name, in one of these formats: - "package package_name" - "class package_name.class_name" - "class package_name.class_name#method_name" If empty, all targets in the module will be run. */
+  testTargets?: StringList;
+  /** A multi-apk app bundle for the application under test. */
+  appBundle?: AppBundle;
+  /** The java package for the application under test. The default value is determined by examining the application's manifest. */
+  appPackageId?: string;
+  /** The APK for the application under test. */
+  appApk?: FileReference;
+  /** The option of whether running each test within its own invocation of instrumentation with Android Test Orchestrator or not. ** Orchestrator is only compatible with AndroidJUnitRunner version 1.1 or higher! ** Orchestrator offers the following benefits: - No shared state - Crashes are isolated - Logs are scoped per test See for more information about Android Test Orchestrator. If not set, the test will be run without the orchestrator. */
+  orchestratorOption?:
+    | AndroidInstrumentationTestOrchestratorOptionEnum
+    | (string & {});
+  /** The InstrumentationTestRunner class. The default value is determined by examining the application's manifest. */
+  testRunnerClass?: string;
+  /** The java package for the test to be executed. The default value is determined by examining the application's manifest. */
+  testPackageId?: string;
+  /** The option to run tests in multiple shards in parallel. */
+  shardingOption?: ShardingOption;
+  /** Required. The APK containing the test code to be executed. */
+  testApk?: FileReference;
+}
+export const AndroidInstrumentationTest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    testTargets: S.optional(StringList),
+    appBundle: S.optional(AppBundle),
+    appPackageId: S.optional(S.String),
+    appApk: S.optional(FileReference),
+    orchestratorOption: S.optional(
+      AndroidInstrumentationTestOrchestratorOptionEnum,
+    ),
+    testRunnerClass: S.optional(S.String),
+    testPackageId: S.optional(S.String),
+    shardingOption: S.optional(ShardingOption),
+    testApk: S.optional(FileReference),
+  }),
+).annotate({
+  identifier: "AndroidInstrumentationTest",
+}) as any as S.Schema<AndroidInstrumentationTest>;
+
+export type IntegerList = Array<number>;
+export const IntegerList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<IntegerList>;
+
+/** A test of an iOS application that implements one or more game loop scenarios. This test type accepts an archived application (.ipa file) and a list of integer scenarios that will be executed on the app sequentially. */
+export interface IosTestLoop {
+  /** The list of scenarios that should be run during the test. Defaults to the single scenario 0 if unspecified. */
+  scenarios?: IntegerList;
+  /** Required. The .ipa of the application to test. */
+  appIpa?: FileReference;
+  /** Output only. The bundle id for the application under test. */
+  appBundleId?: string;
+}
+export const IosTestLoop = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    scenarios: S.optional(IntegerList),
+    appIpa: S.optional(FileReference),
+    appBundleId: S.optional(S.String),
+  }),
+).annotate({ identifier: "IosTestLoop" }) as any as S.Schema<IosTestLoop>;
+
+/** A file or directory to install on the device before the test starts. */
+export interface IosDeviceFile {
+  /** The source file */
+  content?: FileReference;
+  /** The bundle id of the app where this file lives. iOS apps sandbox their own filesystem, so app files must specify which app installed on the device. */
+  bundleId?: string;
+  /** Location of the file on the device, inside the app's sandboxed filesystem */
+  devicePath?: string;
+}
+export const IosDeviceFile = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    content: S.optional(FileReference),
+    bundleId: S.optional(S.String),
+    devicePath: S.optional(S.String),
+  }),
+).annotate({ identifier: "IosDeviceFile" }) as any as S.Schema<IosDeviceFile>;
+
+export type IosDeviceFileList = Array<IosDeviceFile>;
+export const IosDeviceFileList = /*@__PURE__*/ S.Array(
+  IosDeviceFile,
+) as any as S.Schema<IosDeviceFileList>;
+
+/** A description of how to set up an iOS device prior to running the test. */
+export interface IosTestSetup {
+  /** List of files to push to the device before starting the test. */
+  pushFiles?: IosDeviceFileList;
+  /** iOS apps to install in addition to those being directly tested. */
+  additionalIpas?: FileReferenceList;
+  /** List of directories on the device to upload to Cloud Storage at the end of the test. Directories should either be in a shared directory (such as /private/var/mobile/Media) or within an accessible directory inside the app's filesystem (such as /Documents) by specifying the bundle ID. */
+  pullDirectories?: IosDeviceFileList;
+  /** The network traffic profile used for running the test. Available network profiles can be queried by using the NETWORK_CONFIGURATION environment type when calling TestEnvironmentDiscoveryService.GetTestEnvironmentCatalog. */
+  networkProfile?: string;
+}
+export const IosTestSetup = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    pushFiles: S.optional(IosDeviceFileList),
+    additionalIpas: S.optional(FileReferenceList),
+    pullDirectories: S.optional(IosDeviceFileList),
+    networkProfile: S.optional(S.String),
+  }),
+).annotate({ identifier: "IosTestSetup" }) as any as S.Schema<IosTestSetup>;
+
+/** A test of an Android Application with a Test Loop. The intent \ will be implicitly added, since Games is the only user of this api, for the time being. */
+export interface AndroidTestLoop {
+  /** The list of scenario labels that should be run during the test. The scenario labels should map to labels defined in the application's manifest. For example, player_experience and com.google.test.loops.player_experience add all of the loops labeled in the manifest with the com.google.test.loops.player_experience name to the execution. Scenarios can also be specified in the scenarios field. */
+  scenarioLabels?: StringList;
+  /** The java package for the application under test. The default is determined by examining the application's manifest. */
+  appPackageId?: string;
+  /** The APK for the application under test. */
+  appApk?: FileReference;
+  /** A multi-apk app bundle for the application under test. */
+  appBundle?: AppBundle;
+  /** The list of scenarios that should be run during the test. The default is all test loops, derived from the application's manifest. */
+  scenarios?: IntegerList;
+}
+export const AndroidTestLoop = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    scenarioLabels: S.optional(StringList),
+    appPackageId: S.optional(S.String),
+    appApk: S.optional(FileReference),
+    appBundle: S.optional(AppBundle),
+    scenarios: S.optional(IntegerList),
+  }),
+).annotate({
+  identifier: "AndroidTestLoop",
+}) as any as S.Schema<AndroidTestLoop>;
+
+/** A test of an iOS application that uses the XCTest framework. Xcode supports the option to "build for testing", which generates an .xctestrun file that contains a test specification (arguments, test methods, etc). This test type accepts a zip file containing the .xctestrun file and the corresponding contents of the Build/Products directory that contains all the binaries needed to run the tests. */
+export interface IosXcTest {
+  /** The Xcode version that should be used for the test. Use the TestEnvironmentDiscoveryService to get supported options. Defaults to the latest Xcode version Firebase Test Lab supports. */
+  xcodeVersion?: string;
+  /** The option to test special app entitlements. Setting this would re-sign the app having special entitlements with an explicit application-identifier. Currently supports testing aps-environment entitlement. */
+  testSpecialEntitlements?: boolean;
+  /** Output only. The bundle id for the application under test. */
+  appBundleId?: string;
+  /** Required. The .zip containing the .xctestrun file and the contents of the DerivedData/Build/Products directory. The .xctestrun file in this zip is ignored if the xctestrun field is specified. */
+  testsZip?: FileReference;
+  /** An .xctestrun file that will override the .xctestrun file in the tests zip. Because the .xctestrun file contains environment variables along with test methods to run and/or ignore, this can be useful for sharding tests. Default is taken from the tests zip. */
+  xctestrun?: FileReference;
+}
+export const IosXcTest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    xcodeVersion: S.optional(S.String),
+    testSpecialEntitlements: S.optional(S.Boolean),
+    appBundleId: S.optional(S.String),
+    testsZip: S.optional(FileReference),
+    xctestrun: S.optional(FileReference),
+  }),
+).annotate({ identifier: "IosXcTest" }) as any as S.Schema<IosXcTest>;
+
+/** A test that explores an iOS application on an iOS device. */
+export interface IosRoboTest {
+  /** The bundle ID for the app-under-test. This is determined by examining the application's "Info.plist" file. */
+  appBundleId?: string;
+  /** Required. The ipa stored at this file should be used to run the test. */
+  appIpa?: FileReference;
+  /** An optional Roboscript to customize the crawl. See https://firebase.google.com/docs/test-lab/android/robo-scripts-reference for more information about Roboscripts. The maximum allowed file size of the roboscript is 10MiB. */
+  roboScript?: FileReference;
+}
+export const IosRoboTest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    appBundleId: S.optional(S.String),
+    appIpa: S.optional(FileReference),
+    roboScript: S.optional(FileReference),
+  }),
+).annotate({ identifier: "IosRoboTest" }) as any as S.Schema<IosRoboTest>;
+
+export type AndroidRoboTestRoboModeEnum =
+  | "ROBO_MODE_UNSPECIFIED"
+  | "ROBO_VERSION_1"
+  | "ROBO_VERSION_2";
+export const AndroidRoboTestRoboModeEnum = /*@__PURE__*/ S.String;
+
+export type RoboDirectiveActionTypeEnum =
+  | "ACTION_TYPE_UNSPECIFIED"
+  | "SINGLE_CLICK"
+  | "ENTER_TEXT"
+  | "IGNORE";
+export const RoboDirectiveActionTypeEnum = /*@__PURE__*/ S.String;
+
+/** Directs Robo to interact with a specific UI element if it is encountered during the crawl. Currently, Robo can perform text entry or element click. */
+export interface RoboDirective {
+  /** Required. The android resource name of the target UI element. For example, in Java: R.string.foo in xml: @string/foo Only the "foo" part is needed. Reference doc: https://developer.android.com/guide/topics/resources/accessing-resources.html */
+  resourceName?: string;
+  /** Required. The type of action that Robo should perform on the specified element. */
+  actionType?: RoboDirectiveActionTypeEnum | (string & {});
+  /** The text that Robo is directed to set. If left empty, the directive will be treated as a CLICK on the element matching the resource_name. */
+  inputText?: string;
+}
+export const RoboDirective = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceName: S.optional(S.String),
+    actionType: S.optional(RoboDirectiveActionTypeEnum),
+    inputText: S.optional(S.String),
+  }),
+).annotate({ identifier: "RoboDirective" }) as any as S.Schema<RoboDirective>;
+
+export type RoboDirectiveList = Array<RoboDirective>;
+export const RoboDirectiveList = /*@__PURE__*/ S.Array(
+  RoboDirective,
+) as any as S.Schema<RoboDirectiveList>;
+
+/** A starting intent specified by an action, uri, and categories. */
+export interface StartActivityIntent {
+  /** URI for the action. */
+  uri?: string;
+  /** Intent categories to set on the intent. */
+  categories?: StringList;
+  /** Action name. Required for START_ACTIVITY. */
+  action?: string;
+}
+export const StartActivityIntent = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    uri: S.optional(S.String),
+    categories: S.optional(StringList),
+    action: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "StartActivityIntent",
+}) as any as S.Schema<StartActivityIntent>;
+
+/** Skips the starting activity */
+export type NoActivityIntent = CancelDeviceSessionRequest;
+export const NoActivityIntent = CancelDeviceSessionRequest;
+
+/** Specifies an intent that starts the main launcher activity. */
+export type LauncherActivityIntent = CancelDeviceSessionRequest;
+export const LauncherActivityIntent = CancelDeviceSessionRequest;
+
+/** Message for specifying the start activities to crawl. */
+export interface RoboStartingIntent {
+  /** An intent that starts an activity with specific details. */
+  startActivity?: StartActivityIntent;
+  /** Timeout in seconds for each intent. */
+  timeout?: string;
+  /** Skips the starting activity */
+  noActivity?: CancelDeviceSessionRequest;
+  /** An intent that starts the main launcher activity. */
+  launcherActivity?: CancelDeviceSessionRequest;
+}
+export const RoboStartingIntent = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    startActivity: S.optional(StartActivityIntent),
+    timeout: S.optional(S.String),
+    noActivity: S.optional(CancelDeviceSessionRequest),
+    launcherActivity: S.optional(CancelDeviceSessionRequest),
+  }),
+).annotate({
+  identifier: "RoboStartingIntent",
+}) as any as S.Schema<RoboStartingIntent>;
+
+export type RoboStartingIntentList = Array<RoboStartingIntent>;
+export const RoboStartingIntentList = /*@__PURE__*/ S.Array(
+  RoboStartingIntent,
+) as any as S.Schema<RoboStartingIntentList>;
+
+/** A test of an android application that explores the application on a virtual or physical Android Device, finding culprits and crashes as it goes. */
+export interface AndroidRoboTest {
+  /** The java package for the application under test. The default value is determined by examining the application's manifest. */
+  appPackageId?: string;
+  /** A multi-apk app bundle for the application under test. */
+  appBundle?: AppBundle;
+  /** The max number of steps Robo can execute. Default is no limit. */
+  maxSteps?: number;
+  /** A JSON file with a sequence of actions Robo should perform as a prologue for the crawl. */
+  roboScript?: FileReference;
+  /** The initial activity that should be used to start the app. */
+  appInitialActivity?: string;
+  /** The mode in which Robo should run. Most clients should allow the server to populate this field automatically. */
+  roboMode?: AndroidRoboTestRoboModeEnum | (string & {});
+  /** The max depth of the traversal stack Robo can explore. Needs to be at least 2 to make Robo explore the app beyond the first activity. Default is 50. */
+  maxDepth?: number;
+  /** A set of directives Robo should apply during the crawl. This allows users to customize the crawl. For example, the username and password for a test account can be provided. */
+  roboDirectives?: RoboDirectiveList;
+  /** The APK for the application under test. */
+  appApk?: FileReference;
+  /** The intents used to launch the app for the crawl. If none are provided, then the main launcher activity is launched. If some are provided, then only those provided are launched (the main launcher activity must be provided explicitly). */
+  startingIntents?: RoboStartingIntentList;
+}
+export const AndroidRoboTest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    appPackageId: S.optional(S.String),
+    appBundle: S.optional(AppBundle),
+    maxSteps: S.optional(S.Number),
+    roboScript: S.optional(FileReference),
+    appInitialActivity: S.optional(S.String),
+    roboMode: S.optional(AndroidRoboTestRoboModeEnum),
+    maxDepth: S.optional(S.Number),
+    roboDirectives: S.optional(RoboDirectiveList),
+    appApk: S.optional(FileReference),
+    startingIntents: S.optional(RoboStartingIntentList),
+  }),
+).annotate({
+  identifier: "AndroidRoboTest",
+}) as any as S.Schema<AndroidRoboTest>;
+
+/** A description of how to run the test. */
+export interface TestSpecification {
+  /** Test setup requirements for Android e.g. files to install, bootstrap scripts. */
+  testSetup?: TestSetup;
+  /** Max time a test execution is allowed to run before it is automatically cancelled. The default value is 5 min. */
+  testTimeout?: string;
+  /** An Android instrumentation test. */
+  androidInstrumentationTest?: AndroidInstrumentationTest;
+  /** An iOS application with a test loop. */
+  iosTestLoop?: IosTestLoop;
+  /** Test setup requirements for iOS. */
+  iosTestSetup?: IosTestSetup;
+  /** An Android Application with a Test Loop. */
+  androidTestLoop?: AndroidTestLoop;
+  /** Disables video recording. May reduce test latency. */
+  disableVideoRecording?: boolean;
+  /** An iOS XCTest, via an .xctestrun file. */
+  iosXcTest?: IosXcTest;
+  /** An iOS Robo test. */
+  iosRoboTest?: IosRoboTest;
+  /** An Android robo test. */
+  androidRoboTest?: AndroidRoboTest;
+  /** Disables performance metrics recording. May reduce test latency. */
+  disablePerformanceMetrics?: boolean;
+}
+export const TestSpecification = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    testSetup: S.optional(TestSetup),
+    testTimeout: S.optional(S.String),
+    androidInstrumentationTest: S.optional(AndroidInstrumentationTest),
+    iosTestLoop: S.optional(IosTestLoop),
+    iosTestSetup: S.optional(IosTestSetup),
+    androidTestLoop: S.optional(AndroidTestLoop),
+    disableVideoRecording: S.optional(S.Boolean),
+    iosXcTest: S.optional(IosXcTest),
+    iosRoboTest: S.optional(IosRoboTest),
+    androidRoboTest: S.optional(AndroidRoboTest),
+    disablePerformanceMetrics: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "TestSpecification",
+}) as any as S.Schema<TestSpecification>;
+
+/** A single test executed in a single environment. */
+export interface TestExecution {
+  /** Output only. Details about the shard. */
+  shard?: Shard;
+  /** Output only. Indicates the current progress of the test execution (e.g., FINISHED). */
+  state?: TestExecutionStateEnum | (string & {});
+  /** Output only. Additional details about the running test. */
+  testDetails?: TestDetails;
+  /** Output only. Where the results for this execution are written. */
+  toolResultsStep?: ToolResultsStep;
+  /** Output only. How the host machine(s) are configured. */
+  environment?: Environment;
+  /** Output only. Id of the containing TestMatrix. */
+  matrixId?: string;
+  /** Output only. Unique id set by the service. */
+  id?: string;
+  /** Output only. The cloud project that owns the test execution. */
   projectId?: string;
-  /** Required. A tool results history ID. */
-  historyId?: string;
+  /** Output only. How to run the test. */
+  testSpecification?: TestSpecification;
+  /** Output only. The time this test execution was initially created. */
+  timestamp?: string;
 }
-export const ToolResultsHistory = /*@__PURE__*/ S.suspend(() =>
+export const TestExecution = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    shard: S.optional(Shard),
+    state: S.optional(TestExecutionStateEnum),
+    testDetails: S.optional(TestDetails),
+    toolResultsStep: S.optional(ToolResultsStep),
+    environment: S.optional(Environment),
+    matrixId: S.optional(S.String),
+    id: S.optional(S.String),
     projectId: S.optional(S.String),
-    historyId: S.optional(S.String),
+    testSpecification: S.optional(TestSpecification),
+    timestamp: S.optional(S.String),
+  }),
+).annotate({ identifier: "TestExecution" }) as any as S.Schema<TestExecution>;
+
+export type TestExecutionList = Array<TestExecution>;
+export const TestExecutionList = /*@__PURE__*/ S.Array(
+  TestExecution,
+) as any as S.Schema<TestExecutionList>;
+
+/** Key-value pair of detailed information about the client which invoked the test. Examples: {'Version', '1.0'}, {'Release Track', 'BETA'}. */
+export interface ClientInfoDetail {
+  /** Required. The key of detailed client information. */
+  key?: string;
+  /** Required. The value of detailed client information. */
+  value?: string;
+}
+export const ClientInfoDetail = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    key: S.optional(S.String),
+    value: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ToolResultsHistory",
-}) as any as S.Schema<ToolResultsHistory>;
+  identifier: "ClientInfoDetail",
+}) as any as S.Schema<ClientInfoDetail>;
 
-/** Locations where the results of running the test are stored. */
-export interface ResultStorage {
-  /** Output only. The tool results execution that results are written to. */
-  toolResultsExecution?: ToolResultsExecution;
-  /** Output only. URL to the results in the Firebase Web Console. */
-  resultsUrl?: string;
-  /** Required. */
-  googleCloudStorage?: GoogleCloudStorage;
-  /** The tool results history that contains the tool results execution that results are written to. If not provided, the service will choose an appropriate value. */
-  toolResultsHistory?: ToolResultsHistory;
+export type ClientInfoDetailList = Array<ClientInfoDetail>;
+export const ClientInfoDetailList = /*@__PURE__*/ S.Array(
+  ClientInfoDetail,
+) as any as S.Schema<ClientInfoDetailList>;
+
+/** Information about the client which invoked the test. */
+export interface ClientInfo {
+  /** Required. Client name, such as gcloud. */
+  name?: string;
+  /** The list of detailed information about client. */
+  clientInfoDetails?: ClientInfoDetailList;
 }
-export const ResultStorage = /*@__PURE__*/ S.suspend(() =>
+export const ClientInfo = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    toolResultsExecution: S.optional(ToolResultsExecution),
-    resultsUrl: S.optional(S.String),
-    googleCloudStorage: S.optional(GoogleCloudStorage),
-    toolResultsHistory: S.optional(ToolResultsHistory),
+    name: S.optional(S.String),
+    clientInfoDetails: S.optional(ClientInfoDetailList),
   }),
-).annotate({ identifier: "ResultStorage" }) as any as S.Schema<ResultStorage>;
+).annotate({ identifier: "ClientInfo" }) as any as S.Schema<ClientInfo>;
 
 /** TestMatrix captures all details about a test. It contains the environment configuration, test specification, test executions and overall state and outcome. */
 export interface TestMatrix {
-  /** Information about the client which invoked the test. */
-  clientInfo?: ClientInfo;
-  /** Output only. The time this test matrix was initially created. */
-  timestamp?: string;
-  /** Required. How to run the test. */
-  testSpecification?: TestSpecification;
-  /** The cloud project that owns the test matrix. */
-  projectId?: string;
-  /** Output only. The list of test executions that the service creates for this matrix. */
-  testExecutions?: TestExecutionList;
-  /** The number of times a TestExecution should be re-attempted if one or more of its test cases fail for any reason. The maximum number of reruns allowed is 10. Default is 0, which implies no reruns. */
-  flakyTestAttempts?: number;
-  /** Output only. Unique id set by the service. */
-  testMatrixId?: string;
-  /** Output only. Describes why the matrix is considered invalid. Only useful for matrices in the INVALID state. */
-  invalidMatrixDetails?: TestMatrixInvalidMatrixDetailsEnum | (string & {});
-  /** Output only. Details about why a matrix was deemed invalid. If multiple checks can be safely performed, they will be reported but no assumptions should be made about the length of this list. */
-  extendedInvalidMatrixDetails?: MatrixErrorDetailList;
+  /** Required. Where the results for the matrix are written. */
+  resultStorage?: ResultStorage;
   /** Output only. Indicates the current progress of the test matrix. */
   state?: TestMatrixStateEnum | (string & {});
   /** If true, only a single attempt at most will be made to run each execution/shard in the matrix. Flaky test attempts are not affected. Normally, 2 or more attempts are made if a potential infrastructure issue is detected. This feature is for latency sensitive workloads. The incidence of execution failures may be significantly greater for fail-fast matrices and support is more limited because of that expectation. */
   failFast?: boolean;
-  /** Output Only. The overall outcome of the test. Only set when the test matrix state is FINISHED. */
-  outcomeSummary?: TestMatrixOutcomeSummaryEnum | (string & {});
+  /** Output only. Describes why the matrix is considered invalid. Only useful for matrices in the INVALID state. */
+  invalidMatrixDetails?: TestMatrixInvalidMatrixDetailsEnum | (string & {});
+  /** The number of times a TestExecution should be re-attempted if one or more of its test cases fail for any reason. The maximum number of reruns allowed is 10. Default is 0, which implies no reruns. */
+  flakyTestAttempts?: number;
+  /** Output only. Details about why a matrix was deemed invalid. If multiple checks can be safely performed, they will be reported but no assumptions should be made about the length of this list. */
+  extendedInvalidMatrixDetails?: MatrixErrorDetailList;
+  /** Output only. Unique id set by the service. */
+  testMatrixId?: string;
   /** Required. The devices the tests are being executed on. */
   environmentMatrix?: EnvironmentMatrix;
-  /** Required. Where the results for the matrix are written. */
-  resultStorage?: ResultStorage;
+  /** Output Only. The overall outcome of the test. Only set when the test matrix state is FINISHED. */
+  outcomeSummary?: TestMatrixOutcomeSummaryEnum | (string & {});
+  /** Output only. The time this test matrix was initially created. */
+  timestamp?: string;
+  /** Output only. The list of test executions that the service creates for this matrix. */
+  testExecutions?: TestExecutionList;
+  /** Information about the client which invoked the test. */
+  clientInfo?: ClientInfo;
+  /** The cloud project that owns the test matrix. */
+  projectId?: string;
+  /** Required. How to run the test. */
+  testSpecification?: TestSpecification;
 }
 export const TestMatrix = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    clientInfo: S.optional(ClientInfo),
-    timestamp: S.optional(S.String),
-    testSpecification: S.optional(TestSpecification),
-    projectId: S.optional(S.String),
-    testExecutions: S.optional(TestExecutionList),
-    flakyTestAttempts: S.optional(S.Number),
-    testMatrixId: S.optional(S.String),
-    invalidMatrixDetails: S.optional(TestMatrixInvalidMatrixDetailsEnum),
-    extendedInvalidMatrixDetails: S.optional(MatrixErrorDetailList),
+    resultStorage: S.optional(ResultStorage),
     state: S.optional(TestMatrixStateEnum),
     failFast: S.optional(S.Boolean),
-    outcomeSummary: S.optional(TestMatrixOutcomeSummaryEnum),
+    invalidMatrixDetails: S.optional(TestMatrixInvalidMatrixDetailsEnum),
+    flakyTestAttempts: S.optional(S.Number),
+    extendedInvalidMatrixDetails: S.optional(MatrixErrorDetailList),
+    testMatrixId: S.optional(S.String),
     environmentMatrix: S.optional(EnvironmentMatrix),
-    resultStorage: S.optional(ResultStorage),
+    outcomeSummary: S.optional(TestMatrixOutcomeSummaryEnum),
+    timestamp: S.optional(S.String),
+    testExecutions: S.optional(TestExecutionList),
+    clientInfo: S.optional(ClientInfo),
+    projectId: S.optional(S.String),
+    testSpecification: S.optional(TestSpecification),
   }),
 ).annotate({ identifier: "TestMatrix" }) as any as S.Schema<TestMatrix>;
 
 export interface CreateProjectsTestMatricesRequest {
-  /** A string id used to detect duplicated requests. Ids are automatically scoped to a project, so users should ensure the ID is unique per-project. A UUID is recommended. Optional, but strongly recommended. */
-  requestId?: string;
   /** The GCE project under which this job will run. */
   projectId: string;
+  /** A string id used to detect duplicated requests. Ids are automatically scoped to a project, so users should ensure the ID is unique per-project. A UUID is recommended. Optional, but strongly recommended. */
+  requestId?: string;
   /** Request body */
   body?: TestMatrix;
 }
 export const CreateProjectsTestMatricesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    requestId: S.optional(S.String.pipe(T.Query())),
     projectId: S.String.pipe(T.Label()),
+    requestId: S.optional(S.String.pipe(T.Query())),
     body: S.optional(TestMatrix.pipe(T.HttpBody())),
   }).pipe(
     T.Http({
@@ -1387,39 +1387,20 @@ export const GetApkDetailsApplicationDetailServiceRequest =
     identifier: "GetApkDetailsApplicationDetailServiceRequest",
   }) as any as S.Schema<GetApkDetailsApplicationDetailServiceRequest>;
 
-/** A tag within a manifest. https://developer.android.com/guide/topics/manifest/uses-feature-element.html */
-export interface UsesFeature {
-  /** The android:required value */
-  isRequired?: boolean;
-  /** The android:name value */
-  name?: string;
-}
-export const UsesFeature = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    isRequired: S.optional(S.Boolean),
-    name: S.optional(S.String),
-  }),
-).annotate({ identifier: "UsesFeature" }) as any as S.Schema<UsesFeature>;
-
-export type UsesFeatureList = Array<UsesFeature>;
-export const UsesFeatureList = /*@__PURE__*/ S.Array(
-  UsesFeature,
-) as any as S.Schema<UsesFeatureList>;
-
 /** The section of an tag. https://developer.android.com/guide/topics/manifest/intent-filter-element.html */
 export interface IntentFilter {
+  /** The android:name value of the tag. */
+  categoryNames?: StringList;
   /** The android:name value of the tag. */
   actionNames?: StringList;
   /** The android:mimeType value of the tag. */
   mimeType?: string;
-  /** The android:name value of the tag. */
-  categoryNames?: StringList;
 }
 export const IntentFilter = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    categoryNames: S.optional(StringList),
     actionNames: S.optional(StringList),
     mimeType: S.optional(S.String),
-    categoryNames: S.optional(StringList),
   }),
 ).annotate({ identifier: "IntentFilter" }) as any as S.Schema<IntentFilter>;
 
@@ -1447,17 +1428,36 @@ export const ServiceList = /*@__PURE__*/ S.Array(
   Service,
 ) as any as S.Schema<ServiceList>;
 
-/** A tag within a manifest. https://developer.android.com/guide/topics/manifest/meta-data-element.html */
-export interface Metadata {
-  /** The android:value value */
-  value?: string;
+/** A tag within a manifest. https://developer.android.com/guide/topics/manifest/uses-feature-element.html */
+export interface UsesFeature {
+  /** The android:required value */
+  isRequired?: boolean;
   /** The android:name value */
   name?: string;
 }
+export const UsesFeature = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    isRequired: S.optional(S.Boolean),
+    name: S.optional(S.String),
+  }),
+).annotate({ identifier: "UsesFeature" }) as any as S.Schema<UsesFeature>;
+
+export type UsesFeatureList = Array<UsesFeature>;
+export const UsesFeatureList = /*@__PURE__*/ S.Array(
+  UsesFeature,
+) as any as S.Schema<UsesFeatureList>;
+
+/** A tag within a manifest. https://developer.android.com/guide/topics/manifest/meta-data-element.html */
+export interface Metadata {
+  /** The android:name value */
+  name?: string;
+  /** The android:value value */
+  value?: string;
+}
 export const Metadata = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(S.String),
     name: S.optional(S.String),
+    value: S.optional(S.String),
   }),
 ).annotate({ identifier: "Metadata" }) as any as S.Schema<Metadata>;
 
@@ -1469,14 +1469,14 @@ export const MetadataList = /*@__PURE__*/ S.Array(
 /** The tag within a manifest. https://developer.android.com/guide/topics/manifest/uses-permission-element.html */
 export interface UsesPermissionTag {
   /** The android:name value */
-  name?: string;
-  /** The android:name value */
   maxSdkVersion?: number;
+  /** The android:name value */
+  name?: string;
 }
 export const UsesPermissionTag = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    name: S.optional(S.String),
     maxSdkVersion: S.optional(S.Number),
+    name: S.optional(S.String),
   }),
 ).annotate({
   identifier: "UsesPermissionTag",
@@ -1489,45 +1489,45 @@ export const UsesPermissionTagList = /*@__PURE__*/ S.Array(
 
 /** An Android app manifest. See http://developer.android.com/guide/topics/manifest/manifest-intro.html */
 export interface ApkManifest {
-  /** Maximum API level on which the application is designed to run. */
-  maxSdkVersion?: number;
-  /** User-readable name for the application. */
-  applicationLabel?: string;
-  /** Feature usage tags defined in the manifest. */
-  usesFeature?: UsesFeatureList;
-  /** Services contained in the tag. */
-  services?: ServiceList;
-  /** Minimum API level required for the application to run. */
-  minSdkVersion?: number;
-  /** Version number used internally by the app. */
-  versionCode?: string;
-  /** Version number shown to users. */
-  versionName?: string;
-  /** Meta-data tags defined in the manifest. */
-  metadata?: MetadataList;
-  /** Permissions declared to be used by the application */
-  usesPermissionTags?: UsesPermissionTagList;
+  usesPermission?: StringList;
   /** Specifies the API Level on which the application is designed to run. */
   targetSdkVersion?: number;
-  usesPermission?: StringList;
+  /** Services contained in the tag. */
+  services?: ServiceList;
+  /** Feature usage tags defined in the manifest. */
+  usesFeature?: UsesFeatureList;
+  /** Meta-data tags defined in the manifest. */
+  metadata?: MetadataList;
+  /** Version number used internally by the app. */
+  versionCode?: string;
+  /** Permissions declared to be used by the application */
+  usesPermissionTags?: UsesPermissionTagList;
+  /** Minimum API level required for the application to run. */
+  minSdkVersion?: number;
+  /** Version number shown to users. */
+  versionName?: string;
+  /** Maximum API level on which the application is designed to run. */
+  maxSdkVersion?: number;
   /** Full Java-style package name for this application, e.g. "com.example.foo". */
   packageName?: string;
+  /** User-readable name for the application. */
+  applicationLabel?: string;
   intentFilters?: IntentFilterList;
 }
 export const ApkManifest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    maxSdkVersion: S.optional(S.Number),
-    applicationLabel: S.optional(S.String),
-    usesFeature: S.optional(UsesFeatureList),
-    services: S.optional(ServiceList),
-    minSdkVersion: S.optional(S.Number),
-    versionCode: S.optional(S.String),
-    versionName: S.optional(S.String),
-    metadata: S.optional(MetadataList),
-    usesPermissionTags: S.optional(UsesPermissionTagList),
-    targetSdkVersion: S.optional(S.Number),
     usesPermission: S.optional(StringList),
+    targetSdkVersion: S.optional(S.Number),
+    services: S.optional(ServiceList),
+    usesFeature: S.optional(UsesFeatureList),
+    metadata: S.optional(MetadataList),
+    versionCode: S.optional(S.String),
+    usesPermissionTags: S.optional(UsesPermissionTagList),
+    minSdkVersion: S.optional(S.Number),
+    versionName: S.optional(S.String),
+    maxSdkVersion: S.optional(S.Number),
     packageName: S.optional(S.String),
+    applicationLabel: S.optional(S.String),
     intentFilters: S.optional(IntentFilterList),
   }),
 ).annotate({ identifier: "ApkManifest" }) as any as S.Schema<ApkManifest>;
@@ -1574,15 +1574,15 @@ export const GetProjectsDeviceSessionsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetProjectsDeviceSessionsRequest>;
 
 export interface GetProjectsTestMatricesRequest {
-  /** Cloud project that owns the test matrix. */
-  projectId: string;
   /** Unique test matrix id which was assigned by the service. */
   testMatrixId: string;
+  /** Cloud project that owns the test matrix. */
+  projectId: string;
 }
 export const GetProjectsTestMatricesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    projectId: S.String.pipe(T.Label()),
     testMatrixId: S.String.pipe(T.Label()),
+    projectId: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
@@ -1605,20 +1605,20 @@ export const GetTestEnvironmentCatalogEnvironmentTypeEnum =
   /*@__PURE__*/ S.String;
 
 export interface GetTestEnvironmentCatalogRequest {
+  /** Optional. Whether to include viewable only models in the response. This is only applicable for Android models. */
+  includeViewableModels?: boolean;
   /** For authorization, the cloud project requesting the TestEnvironmentCatalog. */
   projectId?: string;
   /** Required. The type of environment that should be listed. */
   environmentType: GetTestEnvironmentCatalogEnvironmentTypeEnum | (string & {});
-  /** Optional. Whether to include viewable only models in the response. This is only applicable for Android models. */
-  includeViewableModels?: boolean;
 }
 export const GetTestEnvironmentCatalogRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    includeViewableModels: S.optional(S.Boolean.pipe(T.Query())),
     projectId: S.optional(S.String.pipe(T.Query())),
     environmentType: GetTestEnvironmentCatalogEnvironmentTypeEnum.pipe(
       T.Label(),
     ),
-    includeViewableModels: S.optional(S.Boolean.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -1630,80 +1630,149 @@ export const GetTestEnvironmentCatalogRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetTestEnvironmentCatalogRequest",
 }) as any as S.Schema<GetTestEnvironmentCatalogRequest>;
 
-/** Screen orientation of the device. */
-export interface Orientation {
-  /** A human-friendly name for this orientation. Example: "portrait". */
-  name?: string;
-  /** The id for this orientation. Example: "portrait". */
-  id?: string;
-  /** Tags for this dimension. Example: "default". */
-  tags?: StringList;
+/** Network emulation parameters. */
+export interface TrafficRule {
+  /** Packet duplication ratio (0.0 - 1.0). */
+  packetDuplicationRatio?: number;
+  /** Packet delay, must be >= 0. */
+  delay?: string;
+  /** Bandwidth in kbits/second. */
+  bandwidth?: number;
+  /** Burst size in kbits. */
+  burst?: number;
+  /** Packet loss ratio (0.0 - 1.0). */
+  packetLossRatio?: number;
 }
-export const Orientation = /*@__PURE__*/ S.suspend(() =>
+export const TrafficRule = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    name: S.optional(S.String),
-    id: S.optional(S.String),
-    tags: S.optional(StringList),
+    packetDuplicationRatio: S.optional(S.Number),
+    delay: S.optional(S.String),
+    bandwidth: S.optional(S.Number),
+    burst: S.optional(S.Number),
+    packetLossRatio: S.optional(S.Number),
   }),
-).annotate({ identifier: "Orientation" }) as any as S.Schema<Orientation>;
+).annotate({ identifier: "TrafficRule" }) as any as S.Schema<TrafficRule>;
 
-export type OrientationList = Array<Orientation>;
-export const OrientationList = /*@__PURE__*/ S.Array(
-  Orientation,
-) as any as S.Schema<OrientationList>;
-
-/** A location/region designation for language. */
-export interface Locale {
-  /** A human-friendly string representing the region for this locale. Example: "United States". Not present for every locale. */
-  region?: string;
-  /** Tags for this dimension. Example: "default". */
-  tags?: StringList;
-  /** A human-friendly name for this language/locale. Example: "English". */
-  name?: string;
-  /** The id for this locale. Example: "en_US". */
+export interface NetworkConfiguration {
+  /** The emulation rule applying to the download traffic. */
+  downRule?: TrafficRule;
+  /** The emulation rule applying to the upload traffic. */
+  upRule?: TrafficRule;
+  /** The unique opaque id for this network traffic configuration. */
   id?: string;
 }
-export const Locale = /*@__PURE__*/ S.suspend(() =>
+export const NetworkConfiguration = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    region: S.optional(S.String),
-    tags: S.optional(StringList),
-    name: S.optional(S.String),
+    downRule: S.optional(TrafficRule),
+    upRule: S.optional(TrafficRule),
     id: S.optional(S.String),
-  }),
-).annotate({ identifier: "Locale" }) as any as S.Schema<Locale>;
-
-export type LocaleList = Array<Locale>;
-export const LocaleList = /*@__PURE__*/ S.Array(
-  Locale,
-) as any as S.Schema<LocaleList>;
-
-/** Android configuration that can be selected at the time a test is run. */
-export interface AndroidRuntimeConfiguration {
-  /** The set of available orientations. */
-  orientations?: OrientationList;
-  /** The set of available locales. */
-  locales?: LocaleList;
-}
-export const AndroidRuntimeConfiguration = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    orientations: S.optional(OrientationList),
-    locales: S.optional(LocaleList),
   }),
 ).annotate({
-  identifier: "AndroidRuntimeConfiguration",
-}) as any as S.Schema<AndroidRuntimeConfiguration>;
+  identifier: "NetworkConfiguration",
+}) as any as S.Schema<NetworkConfiguration>;
+
+export type NetworkConfigurationList = Array<NetworkConfiguration>;
+export const NetworkConfigurationList = /*@__PURE__*/ S.Array(
+  NetworkConfiguration,
+) as any as S.Schema<NetworkConfigurationList>;
+
+export interface NetworkConfigurationCatalog {
+  configurations?: NetworkConfigurationList;
+}
+export const NetworkConfigurationCatalog = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    configurations: S.optional(NetworkConfigurationList),
+  }),
+).annotate({
+  identifier: "NetworkConfigurationCatalog",
+}) as any as S.Schema<NetworkConfigurationCatalog>;
+
+export type DeviceIpBlockFormEnum =
+  | "DEVICE_FORM_UNSPECIFIED"
+  | "VIRTUAL"
+  | "PHYSICAL"
+  | "EMULATOR";
+export const DeviceIpBlockFormEnum = /*@__PURE__*/ S.String;
+
+/** Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp */
+export interface Testing_Date {
+  /** Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant. */
+  day?: number;
+  /** Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year. */
+  year?: number;
+  /** Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day. */
+  month?: number;
+}
+export const Testing_Date = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    day: S.optional(S.Number),
+    year: S.optional(S.Number),
+    month: S.optional(S.Number),
+  }),
+).annotate({ identifier: "Testing_Date" }) as any as S.Schema<Testing_Date>;
+
+/** A single device IP block */
+export interface DeviceIpBlock {
+  /** Whether this block is used by physical or virtual devices */
+  form?: DeviceIpBlockFormEnum;
+  /** An IP address block in CIDR notation eg: 34.68.194.64/29 */
+  block?: string;
+  /** The date this block was added to Firebase Test Lab */
+  addedDate?: Testing_Date;
+}
+export const DeviceIpBlock = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    form: S.optional(DeviceIpBlockFormEnum),
+    block: S.optional(S.String),
+    addedDate: S.optional(Testing_Date),
+  }),
+).annotate({ identifier: "DeviceIpBlock" }) as any as S.Schema<DeviceIpBlock>;
+
+export type DeviceIpBlockList = Array<DeviceIpBlock>;
+export const DeviceIpBlockList = /*@__PURE__*/ S.Array(
+  DeviceIpBlock,
+) as any as S.Schema<DeviceIpBlockList>;
+
+/** List of IP blocks used by the Firebase Test Lab */
+export interface DeviceIpBlockCatalog {
+  /** The device IP blocks used by Firebase Test Lab */
+  ipBlocks?: DeviceIpBlockList;
+}
+export const DeviceIpBlockCatalog = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ipBlocks: S.optional(DeviceIpBlockList),
+  }),
+).annotate({
+  identifier: "DeviceIpBlockCatalog",
+}) as any as S.Schema<DeviceIpBlockCatalog>;
+
+/** The currently provided software environment on the devices under test. */
+export interface ProvidedSoftwareCatalog {
+  /** A string representing the current version of AndroidX Test Orchestrator that is used in the environment. The package is available at https://maven.google.com/web/index.html#androidx.test:orchestrator. */
+  androidxOrchestratorVersion?: string;
+  /** Deprecated: Use AndroidX Test Orchestrator going forward. A string representing the current version of Android Test Orchestrator that is used in the environment. The package is available at https://maven.google.com/web/index.html#com.android.support.test:orchestrator. */
+  orchestratorVersion?: string;
+}
+export const ProvidedSoftwareCatalog = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    androidxOrchestratorVersion: S.optional(S.String),
+    orchestratorVersion: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ProvidedSoftwareCatalog",
+}) as any as S.Schema<ProvidedSoftwareCatalog>;
 
 /** Lab specific information for a device. */
 export interface LabInfo {
-  /** The Unicode country/region code (CLDR) of the lab where the device is hosted. E.g. "US" for United States, "CH" for Switzerland. */
-  regionCode?: string;
   /** Lab name where the device is hosted. If empty, the device is hosted in a Google owned lab. */
   name?: string;
+  /** The Unicode country/region code (CLDR) of the lab where the device is hosted. E.g. "US" for United States, "CH" for Switzerland. */
+  regionCode?: string;
 }
 export const LabInfo = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    regionCode: S.optional(S.String),
     name: S.optional(S.String),
+    regionCode: S.optional(S.String),
   }),
 ).annotate({ identifier: "LabInfo" }) as any as S.Schema<LabInfo>;
 
@@ -1737,6 +1806,14 @@ export const AndroidModelAccessDeniedReasonsItemEnumList =
     AndroidModelAccessDeniedReasonsItemEnum,
   ) as any as S.Schema<AndroidModelAccessDeniedReasonsItemEnumList>;
 
+export type PerAndroidVersionInfoDeviceCapacityEnum =
+  | "DEVICE_CAPACITY_UNSPECIFIED"
+  | "DEVICE_CAPACITY_HIGH"
+  | "DEVICE_CAPACITY_MEDIUM"
+  | "DEVICE_CAPACITY_LOW"
+  | "DEVICE_CAPACITY_NONE";
+export const PerAndroidVersionInfoDeviceCapacityEnum = /*@__PURE__*/ S.String;
+
 /** Denotes whether Direct Access is supported, and by which client versions. DirectAccessService is currently available as a preview to select developers. You can register today on behalf of you and your team at https://developer.android.com/studio/preview/android-device-streaming */
 export interface DirectAccessVersionInfo {
   /** Whether direct access is supported at all. Clients are expected to filter down the device list to only android models and versions which support Direct Access when that is the user intent. */
@@ -1753,31 +1830,23 @@ export const DirectAccessVersionInfo = /*@__PURE__*/ S.suspend(() =>
   identifier: "DirectAccessVersionInfo",
 }) as any as S.Schema<DirectAccessVersionInfo>;
 
-export type PerAndroidVersionInfoDeviceCapacityEnum =
-  | "DEVICE_CAPACITY_UNSPECIFIED"
-  | "DEVICE_CAPACITY_HIGH"
-  | "DEVICE_CAPACITY_MEDIUM"
-  | "DEVICE_CAPACITY_LOW"
-  | "DEVICE_CAPACITY_NONE";
-export const PerAndroidVersionInfoDeviceCapacityEnum = /*@__PURE__*/ S.String;
-
 /** A version-specific information of an Android model. */
 export interface PerAndroidVersionInfo {
-  /** Output only. The estimated wait time for a single interactive device session using Direct Access. */
-  interactiveDeviceAvailabilityEstimate?: string;
   /** An Android version. */
   versionId?: string;
-  /** Output only. Identifies supported clients for DirectAccess for this Android version. */
-  directAccessVersionInfo?: DirectAccessVersionInfo;
   /** The number of online devices for an Android version. */
   deviceCapacity?: PerAndroidVersionInfoDeviceCapacityEnum;
+  /** Output only. The estimated wait time for a single interactive device session using Direct Access. */
+  interactiveDeviceAvailabilityEstimate?: string;
+  /** Output only. Identifies supported clients for DirectAccess for this Android version. */
+  directAccessVersionInfo?: DirectAccessVersionInfo;
 }
 export const PerAndroidVersionInfo = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    interactiveDeviceAvailabilityEstimate: S.optional(S.String),
     versionId: S.optional(S.String),
-    directAccessVersionInfo: S.optional(DirectAccessVersionInfo),
     deviceCapacity: S.optional(PerAndroidVersionInfoDeviceCapacityEnum),
+    interactiveDeviceAvailabilityEstimate: S.optional(S.String),
+    directAccessVersionInfo: S.optional(DirectAccessVersionInfo),
   }),
 ).annotate({
   identifier: "PerAndroidVersionInfo",
@@ -1790,65 +1859,65 @@ export const PerAndroidVersionInfoList = /*@__PURE__*/ S.Array(
 
 /** A description of an Android device tests may be run on. */
 export interface AndroidModel {
-  /** The set of Android versions this device supports. */
-  supportedVersionIds?: StringList;
-  /** The name of the industrial design. This corresponds to android.os.Build.DEVICE. */
-  codename?: string;
-  /** The list of supported ABIs for this device. This corresponds to either android.os.Build.SUPPORTED_ABIS (for API level 21 and above) or android.os.Build.CPU_ABI/CPU_ABI2. The most preferred ABI is the first element in the list. Elements are optionally prefixed by "version_id:" (where version_id is the id of an AndroidVersion), denoting an ABI that is supported only on a particular version. */
-  supportedAbis?: StringList;
-  /** Output only. Lab info of this device. */
-  labInfo?: LabInfo;
-  /** Whether this device is a phone, tablet, wearable, etc. */
-  formFactor?: AndroidModelFormFactorEnum;
-  /** The human-readable marketing name for this device model. Examples: "Nexus 5", "Galaxy S5". */
-  name?: string;
-  /** Whether this device is virtual or physical. */
-  form?: AndroidModelFormEnum;
   /** URL of a thumbnail image (photo) of the device. */
   thumbnailUrl?: string;
-  /** Reasons for access denial. This model is accessible if this list is empty, otherwise the model is viewable only. */
-  accessDeniedReasons?: AndroidModelAccessDeniedReasonsItemEnumList;
-  /** True if and only if tests with this model are recorded by stitching together screenshots. See use_low_spec_video_recording in device config. */
-  lowFpsVideoRecording?: boolean;
-  /** Tags for this dimension. Examples: "default", "preview", "deprecated". */
-  tags?: StringList;
+  /** The name of the industrial design. This corresponds to android.os.Build.DEVICE. */
+  codename?: string;
+  /** Output only. Lab info of this device. */
+  labInfo?: LabInfo;
+  /** The list of supported ABIs for this device. This corresponds to either android.os.Build.SUPPORTED_ABIS (for API level 21 and above) or android.os.Build.CPU_ABI/CPU_ABI2. The most preferred ABI is the first element in the list. Elements are optionally prefixed by "version_id:" (where version_id is the id of an AndroidVersion), denoting an ABI that is supported only on a particular version. */
+  supportedAbis?: StringList;
   /** The unique opaque id for this model. Use this for invoking the TestExecutionService. */
   id?: string;
-  /** Version-specific information of an Android model. */
-  perVersionInfo?: PerAndroidVersionInfoList;
-  /** The company that this device is branded with. Example: "Google", "Samsung". */
-  brand?: string;
+  /** Tags for this dimension. Examples: "default", "preview", "deprecated". */
+  tags?: StringList;
   /** Screen size in the horizontal (X) dimension measured in pixels. */
   screenX?: number;
-  /** The manufacturer of this device. */
-  manufacturer?: string;
+  /** Whether this device is a phone, tablet, wearable, etc. */
+  formFactor?: AndroidModelFormFactorEnum;
+  /** True if and only if tests with this model are recorded by stitching together screenshots. See use_low_spec_video_recording in device config. */
+  lowFpsVideoRecording?: boolean;
+  /** The company that this device is branded with. Example: "Google", "Samsung". */
+  brand?: string;
+  /** Whether this device is virtual or physical. */
+  form?: AndroidModelFormEnum;
   /** Screen density in DPI. This corresponds to ro.sf.lcd_density */
   screenDensity?: number;
+  /** Reasons for access denial. This model is accessible if this list is empty, otherwise the model is viewable only. */
+  accessDeniedReasons?: AndroidModelAccessDeniedReasonsItemEnumList;
+  /** Version-specific information of an Android model. */
+  perVersionInfo?: PerAndroidVersionInfoList;
   /** Screen size in the vertical (Y) dimension measured in pixels. */
   screenY?: number;
+  /** The human-readable marketing name for this device model. Examples: "Nexus 5", "Galaxy S5". */
+  name?: string;
+  /** The set of Android versions this device supports. */
+  supportedVersionIds?: StringList;
+  /** The manufacturer of this device. */
+  manufacturer?: string;
 }
 export const AndroidModel = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    supportedVersionIds: S.optional(StringList),
-    codename: S.optional(S.String),
-    supportedAbis: S.optional(StringList),
-    labInfo: S.optional(LabInfo),
-    formFactor: S.optional(AndroidModelFormFactorEnum),
-    name: S.optional(S.String),
-    form: S.optional(AndroidModelFormEnum),
     thumbnailUrl: S.optional(S.String),
+    codename: S.optional(S.String),
+    labInfo: S.optional(LabInfo),
+    supportedAbis: S.optional(StringList),
+    id: S.optional(S.String),
+    tags: S.optional(StringList),
+    screenX: S.optional(S.Number),
+    formFactor: S.optional(AndroidModelFormFactorEnum),
+    lowFpsVideoRecording: S.optional(S.Boolean),
+    brand: S.optional(S.String),
+    form: S.optional(AndroidModelFormEnum),
+    screenDensity: S.optional(S.Number),
     accessDeniedReasons: S.optional(
       AndroidModelAccessDeniedReasonsItemEnumList,
     ),
-    lowFpsVideoRecording: S.optional(S.Boolean),
-    tags: S.optional(StringList),
-    id: S.optional(S.String),
     perVersionInfo: S.optional(PerAndroidVersionInfoList),
-    brand: S.optional(S.String),
-    screenX: S.optional(S.Number),
-    manufacturer: S.optional(S.String),
-    screenDensity: S.optional(S.Number),
     screenY: S.optional(S.Number),
+    name: S.optional(S.String),
+    supportedVersionIds: S.optional(StringList),
+    manufacturer: S.optional(S.String),
   }),
 ).annotate({ identifier: "AndroidModel" }) as any as S.Schema<AndroidModel>;
 
@@ -1857,63 +1926,109 @@ export const AndroidModelList = /*@__PURE__*/ S.Array(
   AndroidModel,
 ) as any as S.Schema<AndroidModelList>;
 
-/** Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp */
-export interface Testing_Date {
-  /** Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day. */
-  month?: number;
-  /** Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant. */
-  day?: number;
-  /** Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year. */
-  year?: number;
+/** A location/region designation for language. */
+export interface Locale {
+  /** The id for this locale. Example: "en_US". */
+  id?: string;
+  /** A human-friendly name for this language/locale. Example: "English". */
+  name?: string;
+  /** Tags for this dimension. Example: "default". */
+  tags?: StringList;
+  /** A human-friendly string representing the region for this locale. Example: "United States". Not present for every locale. */
+  region?: string;
 }
-export const Testing_Date = /*@__PURE__*/ S.suspend(() =>
+export const Locale = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    month: S.optional(S.Number),
-    day: S.optional(S.Number),
-    year: S.optional(S.Number),
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    tags: S.optional(StringList),
+    region: S.optional(S.String),
   }),
-).annotate({ identifier: "Testing_Date" }) as any as S.Schema<Testing_Date>;
+).annotate({ identifier: "Locale" }) as any as S.Schema<Locale>;
+
+export type LocaleList = Array<Locale>;
+export const LocaleList = /*@__PURE__*/ S.Array(
+  Locale,
+) as any as S.Schema<LocaleList>;
+
+/** Screen orientation of the device. */
+export interface Orientation {
+  /** The id for this orientation. Example: "portrait". */
+  id?: string;
+  /** Tags for this dimension. Example: "default". */
+  tags?: StringList;
+  /** A human-friendly name for this orientation. Example: "portrait". */
+  name?: string;
+}
+export const Orientation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    tags: S.optional(StringList),
+    name: S.optional(S.String),
+  }),
+).annotate({ identifier: "Orientation" }) as any as S.Schema<Orientation>;
+
+export type OrientationList = Array<Orientation>;
+export const OrientationList = /*@__PURE__*/ S.Array(
+  Orientation,
+) as any as S.Schema<OrientationList>;
+
+/** Android configuration that can be selected at the time a test is run. */
+export interface AndroidRuntimeConfiguration {
+  /** The set of available locales. */
+  locales?: LocaleList;
+  /** The set of available orientations. */
+  orientations?: OrientationList;
+}
+export const AndroidRuntimeConfiguration = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    locales: S.optional(LocaleList),
+    orientations: S.optional(OrientationList),
+  }),
+).annotate({
+  identifier: "AndroidRuntimeConfiguration",
+}) as any as S.Schema<AndroidRuntimeConfiguration>;
 
 /** Data about the relative number of devices running a given configuration of the Android platform. */
 export interface Distribution {
-  /** Output only. The time this distribution was measured. */
-  measurementTime?: string;
   /** Output only. The estimated fraction (0-1) of the total market with this configuration. */
   marketShare?: number;
+  /** Output only. The time this distribution was measured. */
+  measurementTime?: string;
 }
 export const Distribution = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    measurementTime: S.optional(S.String),
     marketShare: S.optional(S.Number),
+    measurementTime: S.optional(S.String),
   }),
 ).annotate({ identifier: "Distribution" }) as any as S.Schema<Distribution>;
 
 /** A version of the Android OS. */
 export interface AndroidVersion {
-  /** The date this Android version became available in the market. */
-  releaseDate?: Testing_Date;
-  /** Tags for this dimension. Examples: "default", "preview", "deprecated". */
-  tags?: StringList;
-  /** The API level for this Android version. Examples: 18, 19. */
-  apiLevel?: number;
-  /** Market share for this version. */
-  distribution?: Distribution;
-  /** An opaque id for this Android version. Use this id to invoke the TestExecutionService. */
-  id?: string;
-  /** A string representing this version of the Android OS. Examples: "4.3", "4.4". */
-  versionString?: string;
   /** The code name for this Android version. Examples: "JellyBean", "KitKat". */
   codeName?: string;
+  /** The date this Android version became available in the market. */
+  releaseDate?: Testing_Date;
+  /** Market share for this version. */
+  distribution?: Distribution;
+  /** A string representing this version of the Android OS. Examples: "4.3", "4.4". */
+  versionString?: string;
+  /** An opaque id for this Android version. Use this id to invoke the TestExecutionService. */
+  id?: string;
+  /** The API level for this Android version. Examples: 18, 19. */
+  apiLevel?: number;
+  /** Tags for this dimension. Examples: "default", "preview", "deprecated". */
+  tags?: StringList;
 }
 export const AndroidVersion = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    releaseDate: S.optional(Testing_Date),
-    tags: S.optional(StringList),
-    apiLevel: S.optional(S.Number),
-    distribution: S.optional(Distribution),
-    id: S.optional(S.String),
-    versionString: S.optional(S.String),
     codeName: S.optional(S.String),
+    releaseDate: S.optional(Testing_Date),
+    distribution: S.optional(Distribution),
+    versionString: S.optional(S.String),
+    id: S.optional(S.String),
+    apiLevel: S.optional(S.Number),
+    tags: S.optional(StringList),
   }),
 ).annotate({ identifier: "AndroidVersion" }) as any as S.Schema<AndroidVersion>;
 
@@ -1924,83 +2039,95 @@ export const AndroidVersionList = /*@__PURE__*/ S.Array(
 
 /** The currently supported Android devices. */
 export interface AndroidDeviceCatalog {
-  /** The set of supported runtime configurations. */
-  runtimeConfiguration?: AndroidRuntimeConfiguration;
   /** The set of supported Android device models. */
   models?: AndroidModelList;
+  /** The set of supported runtime configurations. */
+  runtimeConfiguration?: AndroidRuntimeConfiguration;
   /** The set of supported Android OS versions. */
   versions?: AndroidVersionList;
 }
 export const AndroidDeviceCatalog = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    runtimeConfiguration: S.optional(AndroidRuntimeConfiguration),
     models: S.optional(AndroidModelList),
+    runtimeConfiguration: S.optional(AndroidRuntimeConfiguration),
     versions: S.optional(AndroidVersionList),
   }),
 ).annotate({
   identifier: "AndroidDeviceCatalog",
 }) as any as S.Schema<AndroidDeviceCatalog>;
 
-/** Network emulation parameters. */
-export interface TrafficRule {
-  /** Packet duplication ratio (0.0 - 1.0). */
-  packetDuplicationRatio?: number;
-  /** Packet delay, must be >= 0. */
-  delay?: string;
-  /** Burst size in kbits. */
-  burst?: number;
-  /** Bandwidth in kbits/second. */
-  bandwidth?: number;
-  /** Packet loss ratio (0.0 - 1.0). */
-  packetLossRatio?: number;
-}
-export const TrafficRule = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    packetDuplicationRatio: S.optional(S.Number),
-    delay: S.optional(S.String),
-    burst: S.optional(S.Number),
-    bandwidth: S.optional(S.Number),
-    packetLossRatio: S.optional(S.Number),
-  }),
-).annotate({ identifier: "TrafficRule" }) as any as S.Schema<TrafficRule>;
-
-export interface NetworkConfiguration {
-  /** The emulation rule applying to the upload traffic. */
-  upRule?: TrafficRule;
-  /** The unique opaque id for this network traffic configuration. */
+/** An iOS version. */
+export interface IosVersion {
+  /** The available Xcode versions for this version. */
+  supportedXcodeVersionIds?: StringList;
+  /** An integer representing the minor iOS version. Examples: "1", "2". */
+  minorVersion?: number;
+  /** An opaque id for this iOS version. Use this id to invoke the TestExecutionService. */
   id?: string;
-  /** The emulation rule applying to the download traffic. */
-  downRule?: TrafficRule;
+  /** Tags for this dimension. Examples: "default", "preview", "deprecated". */
+  tags?: StringList;
+  /** An integer representing the major iOS version. Examples: "8", "9". */
+  majorVersion?: number;
 }
-export const NetworkConfiguration = /*@__PURE__*/ S.suspend(() =>
+export const IosVersion = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    upRule: S.optional(TrafficRule),
+    supportedXcodeVersionIds: S.optional(StringList),
+    minorVersion: S.optional(S.Number),
     id: S.optional(S.String),
-    downRule: S.optional(TrafficRule),
+    tags: S.optional(StringList),
+    majorVersion: S.optional(S.Number),
   }),
-).annotate({
-  identifier: "NetworkConfiguration",
-}) as any as S.Schema<NetworkConfiguration>;
+).annotate({ identifier: "IosVersion" }) as any as S.Schema<IosVersion>;
 
-export type NetworkConfigurationList = Array<NetworkConfiguration>;
-export const NetworkConfigurationList = /*@__PURE__*/ S.Array(
-  NetworkConfiguration,
-) as any as S.Schema<NetworkConfigurationList>;
-
-export interface NetworkConfigurationCatalog {
-  configurations?: NetworkConfigurationList;
-}
-export const NetworkConfigurationCatalog = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    configurations: S.optional(NetworkConfigurationList),
-  }),
-).annotate({
-  identifier: "NetworkConfigurationCatalog",
-}) as any as S.Schema<NetworkConfigurationCatalog>;
+export type IosVersionList = Array<IosVersion>;
+export const IosVersionList = /*@__PURE__*/ S.Array(
+  IosVersion,
+) as any as S.Schema<IosVersionList>;
 
 /** iOS configuration that can be selected at the time a test is run. */
-export type IosRuntimeConfiguration = AndroidRuntimeConfiguration;
-export const IosRuntimeConfiguration = AndroidRuntimeConfiguration;
+export interface IosRuntimeConfiguration {
+  /** The set of available orientations. */
+  orientations?: OrientationList;
+  /** The set of available locales. */
+  locales?: LocaleList;
+}
+export const IosRuntimeConfiguration = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    orientations: S.optional(OrientationList),
+    locales: S.optional(LocaleList),
+  }),
+).annotate({
+  identifier: "IosRuntimeConfiguration",
+}) as any as S.Schema<IosRuntimeConfiguration>;
+
+export type PerIosVersionInfoDeviceCapacityEnum =
+  | "DEVICE_CAPACITY_UNSPECIFIED"
+  | "DEVICE_CAPACITY_HIGH"
+  | "DEVICE_CAPACITY_MEDIUM"
+  | "DEVICE_CAPACITY_LOW"
+  | "DEVICE_CAPACITY_NONE";
+export const PerIosVersionInfoDeviceCapacityEnum = /*@__PURE__*/ S.String;
+
+/** A version-specific information of an iOS model. */
+export interface PerIosVersionInfo {
+  /** An iOS version. */
+  versionId?: string;
+  /** The number of online devices for an iOS version. */
+  deviceCapacity?: PerIosVersionInfoDeviceCapacityEnum;
+}
+export const PerIosVersionInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    versionId: S.optional(S.String),
+    deviceCapacity: S.optional(PerIosVersionInfoDeviceCapacityEnum),
+  }),
+).annotate({
+  identifier: "PerIosVersionInfo",
+}) as any as S.Schema<PerIosVersionInfo>;
+
+export type PerIosVersionInfoList = Array<PerIosVersionInfo>;
+export const PerIosVersionInfoList = /*@__PURE__*/ S.Array(
+  PerIosVersionInfo,
+) as any as S.Schema<PerIosVersionInfoList>;
 
 export type IosModelFormFactorEnum =
   | "DEVICE_FORM_FACTOR_UNSPECIFIED"
@@ -2013,70 +2140,41 @@ export type IosModelFormFactorEnum =
   | "XR";
 export const IosModelFormFactorEnum = /*@__PURE__*/ S.String;
 
-export type PerIosVersionInfoDeviceCapacityEnum =
-  | "DEVICE_CAPACITY_UNSPECIFIED"
-  | "DEVICE_CAPACITY_HIGH"
-  | "DEVICE_CAPACITY_MEDIUM"
-  | "DEVICE_CAPACITY_LOW"
-  | "DEVICE_CAPACITY_NONE";
-export const PerIosVersionInfoDeviceCapacityEnum = /*@__PURE__*/ S.String;
-
-/** A version-specific information of an iOS model. */
-export interface PerIosVersionInfo {
-  /** The number of online devices for an iOS version. */
-  deviceCapacity?: PerIosVersionInfoDeviceCapacityEnum;
-  /** An iOS version. */
-  versionId?: string;
-}
-export const PerIosVersionInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    deviceCapacity: S.optional(PerIosVersionInfoDeviceCapacityEnum),
-    versionId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PerIosVersionInfo",
-}) as any as S.Schema<PerIosVersionInfo>;
-
-export type PerIosVersionInfoList = Array<PerIosVersionInfo>;
-export const PerIosVersionInfoList = /*@__PURE__*/ S.Array(
-  PerIosVersionInfo,
-) as any as S.Schema<PerIosVersionInfoList>;
-
 /** A description of an iOS device tests may be run on. */
 export interface IosModel {
-  /** Screen density in DPI. */
-  screenDensity?: number;
-  /** The human-readable name for this device model. Examples: "iPhone 4s", "iPad Mini 2". */
-  name?: string;
   /** Screen size in the vertical (Y) dimension measured in pixels. */
   screenY?: number;
-  /** Screen size in the horizontal (X) dimension measured in pixels. */
-  screenX?: number;
-  /** Whether this device is a phone, tablet, wearable, etc. */
-  formFactor?: IosModelFormFactorEnum;
-  /** Version-specific information of an iOS model. */
-  perVersionInfo?: PerIosVersionInfoList;
-  /** The unique opaque id for this model. Use this for invoking the TestExecutionService. */
-  id?: string;
   /** Device capabilities. Copied from https://developer.apple.com/library/archive/documentation/DeviceInformation/Reference/iOSDeviceCompatibility/DeviceCompatibilityMatrix/DeviceCompatibilityMatrix.html */
   deviceCapabilities?: StringList;
-  /** Tags for this dimension. Examples: "default", "preview", "deprecated". */
-  tags?: StringList;
+  /** The unique opaque id for this model. Use this for invoking the TestExecutionService. */
+  id?: string;
+  /** Screen size in the horizontal (X) dimension measured in pixels. */
+  screenX?: number;
+  /** Version-specific information of an iOS model. */
+  perVersionInfo?: PerIosVersionInfoList;
   /** The set of iOS major software versions this device supports. */
   supportedVersionIds?: StringList;
+  /** Whether this device is a phone, tablet, wearable, etc. */
+  formFactor?: IosModelFormFactorEnum;
+  /** Screen density in DPI. */
+  screenDensity?: number;
+  /** Tags for this dimension. Examples: "default", "preview", "deprecated". */
+  tags?: StringList;
+  /** The human-readable name for this device model. Examples: "iPhone 4s", "iPad Mini 2". */
+  name?: string;
 }
 export const IosModel = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    screenDensity: S.optional(S.Number),
-    name: S.optional(S.String),
     screenY: S.optional(S.Number),
-    screenX: S.optional(S.Number),
-    formFactor: S.optional(IosModelFormFactorEnum),
-    perVersionInfo: S.optional(PerIosVersionInfoList),
-    id: S.optional(S.String),
     deviceCapabilities: S.optional(StringList),
-    tags: S.optional(StringList),
+    id: S.optional(S.String),
+    screenX: S.optional(S.Number),
+    perVersionInfo: S.optional(PerIosVersionInfoList),
     supportedVersionIds: S.optional(StringList),
+    formFactor: S.optional(IosModelFormFactorEnum),
+    screenDensity: S.optional(S.Number),
+    tags: S.optional(StringList),
+    name: S.optional(S.String),
   }),
 ).annotate({ identifier: "IosModel" }) as any as S.Schema<IosModel>;
 
@@ -2087,15 +2185,15 @@ export const IosModelList = /*@__PURE__*/ S.Array(
 
 /** An Xcode version that an iOS version is compatible with. */
 export interface XcodeVersion {
-  /** The id for this version. Example: "9.2". */
-  version?: string;
   /** Tags for this Xcode version. Example: "default". */
   tags?: StringList;
+  /** The id for this version. Example: "9.2". */
+  version?: string;
 }
 export const XcodeVersion = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    version: S.optional(S.String),
     tags: S.optional(StringList),
+    version: S.optional(S.String),
   }),
 ).annotate({ identifier: "XcodeVersion" }) as any as S.Schema<XcodeVersion>;
 
@@ -2104,155 +2202,69 @@ export const XcodeVersionList = /*@__PURE__*/ S.Array(
   XcodeVersion,
 ) as any as S.Schema<XcodeVersionList>;
 
-/** An iOS version. */
-export interface IosVersion {
-  /** An integer representing the minor iOS version. Examples: "1", "2". */
-  minorVersion?: number;
-  /** Tags for this dimension. Examples: "default", "preview", "deprecated". */
-  tags?: StringList;
-  /** An opaque id for this iOS version. Use this id to invoke the TestExecutionService. */
-  id?: string;
-  /** The available Xcode versions for this version. */
-  supportedXcodeVersionIds?: StringList;
-  /** An integer representing the major iOS version. Examples: "8", "9". */
-  majorVersion?: number;
-}
-export const IosVersion = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    minorVersion: S.optional(S.Number),
-    tags: S.optional(StringList),
-    id: S.optional(S.String),
-    supportedXcodeVersionIds: S.optional(StringList),
-    majorVersion: S.optional(S.Number),
-  }),
-).annotate({ identifier: "IosVersion" }) as any as S.Schema<IosVersion>;
-
-export type IosVersionList = Array<IosVersion>;
-export const IosVersionList = /*@__PURE__*/ S.Array(
-  IosVersion,
-) as any as S.Schema<IosVersionList>;
-
 /** The currently supported iOS devices. */
 export interface IosDeviceCatalog {
+  /** The set of supported iOS software versions. */
+  versions?: IosVersionList;
   /** The set of supported runtime configurations. */
-  runtimeConfiguration?: AndroidRuntimeConfiguration;
+  runtimeConfiguration?: IosRuntimeConfiguration;
   /** The set of supported iOS device models. */
   models?: IosModelList;
   /** The set of supported Xcode versions. */
   xcodeVersions?: XcodeVersionList;
-  /** The set of supported iOS software versions. */
-  versions?: IosVersionList;
 }
 export const IosDeviceCatalog = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    runtimeConfiguration: S.optional(AndroidRuntimeConfiguration),
+    versions: S.optional(IosVersionList),
+    runtimeConfiguration: S.optional(IosRuntimeConfiguration),
     models: S.optional(IosModelList),
     xcodeVersions: S.optional(XcodeVersionList),
-    versions: S.optional(IosVersionList),
   }),
 ).annotate({
   identifier: "IosDeviceCatalog",
 }) as any as S.Schema<IosDeviceCatalog>;
 
-export type DeviceIpBlockFormEnum =
-  | "DEVICE_FORM_UNSPECIFIED"
-  | "VIRTUAL"
-  | "PHYSICAL"
-  | "EMULATOR";
-export const DeviceIpBlockFormEnum = /*@__PURE__*/ S.String;
-
-/** A single device IP block */
-export interface DeviceIpBlock {
-  /** Whether this block is used by physical or virtual devices */
-  form?: DeviceIpBlockFormEnum;
-  /** The date this block was added to Firebase Test Lab */
-  addedDate?: Testing_Date;
-  /** An IP address block in CIDR notation eg: 34.68.194.64/29 */
-  block?: string;
-}
-export const DeviceIpBlock = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    form: S.optional(DeviceIpBlockFormEnum),
-    addedDate: S.optional(Testing_Date),
-    block: S.optional(S.String),
-  }),
-).annotate({ identifier: "DeviceIpBlock" }) as any as S.Schema<DeviceIpBlock>;
-
-export type DeviceIpBlockList = Array<DeviceIpBlock>;
-export const DeviceIpBlockList = /*@__PURE__*/ S.Array(
-  DeviceIpBlock,
-) as any as S.Schema<DeviceIpBlockList>;
-
-/** List of IP blocks used by the Firebase Test Lab */
-export interface DeviceIpBlockCatalog {
-  /** The device IP blocks used by Firebase Test Lab */
-  ipBlocks?: DeviceIpBlockList;
-}
-export const DeviceIpBlockCatalog = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ipBlocks: S.optional(DeviceIpBlockList),
-  }),
-).annotate({
-  identifier: "DeviceIpBlockCatalog",
-}) as any as S.Schema<DeviceIpBlockCatalog>;
-
-/** The currently provided software environment on the devices under test. */
-export interface ProvidedSoftwareCatalog {
-  /** Deprecated: Use AndroidX Test Orchestrator going forward. A string representing the current version of Android Test Orchestrator that is used in the environment. The package is available at https://maven.google.com/web/index.html#com.android.support.test:orchestrator. */
-  orchestratorVersion?: string;
-  /** A string representing the current version of AndroidX Test Orchestrator that is used in the environment. The package is available at https://maven.google.com/web/index.html#androidx.test:orchestrator. */
-  androidxOrchestratorVersion?: string;
-}
-export const ProvidedSoftwareCatalog = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    orchestratorVersion: S.optional(S.String),
-    androidxOrchestratorVersion: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ProvidedSoftwareCatalog",
-}) as any as S.Schema<ProvidedSoftwareCatalog>;
-
 /** A description of a test environment. */
 export interface TestEnvironmentCatalog {
-  /** Supported Android devices. */
-  androidDeviceCatalog?: AndroidDeviceCatalog;
   /** Supported network configurations. */
   networkConfigurationCatalog?: NetworkConfigurationCatalog;
-  /** Supported iOS devices. */
-  iosDeviceCatalog?: IosDeviceCatalog;
   /** The IP blocks used by devices in the test environment. */
   deviceIpBlockCatalog?: DeviceIpBlockCatalog;
   /** The software test environment provided by TestExecutionService. */
   softwareCatalog?: ProvidedSoftwareCatalog;
+  /** Supported Android devices. */
+  androidDeviceCatalog?: AndroidDeviceCatalog;
+  /** Supported iOS devices. */
+  iosDeviceCatalog?: IosDeviceCatalog;
 }
 export const TestEnvironmentCatalog = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    androidDeviceCatalog: S.optional(AndroidDeviceCatalog),
     networkConfigurationCatalog: S.optional(NetworkConfigurationCatalog),
-    iosDeviceCatalog: S.optional(IosDeviceCatalog),
     deviceIpBlockCatalog: S.optional(DeviceIpBlockCatalog),
     softwareCatalog: S.optional(ProvidedSoftwareCatalog),
+    androidDeviceCatalog: S.optional(AndroidDeviceCatalog),
+    iosDeviceCatalog: S.optional(IosDeviceCatalog),
   }),
 ).annotate({
   identifier: "TestEnvironmentCatalog",
 }) as any as S.Schema<TestEnvironmentCatalog>;
 
 export interface ListProjectsDeviceSessionsRequest {
-  /** Optional. The maximum number of DeviceSessions to return. */
-  pageSize?: number;
-  /** Optional. A continuation token for paging. */
-  pageToken?: string;
-  /** Required. The name of the parent to request, e.g. "projects/{project_id}" */
-  parent: string;
   /** Optional. If specified, responses will be filtered by the given filter. Allowed fields are: session_state. */
   filter?: string;
+  /** Optional. A continuation token for paging. */
+  pageToken?: string;
+  /** Optional. The maximum number of DeviceSessions to return. */
+  pageSize?: number;
+  /** Required. The name of the parent to request, e.g. "projects/{project_id}" */
+  parent: string;
 }
 export const ListProjectsDeviceSessionsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    pageSize: S.optional(S.Number.pipe(T.Query())),
-    pageToken: S.optional(S.String.pipe(T.Query())),
-    parent: S.String.pipe(T.Label()),
     filter: S.optional(S.String.pipe(T.Query())),
+    pageToken: S.optional(S.String.pipe(T.Query())),
+    pageSize: S.optional(S.Number.pipe(T.Query())),
+    parent: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",

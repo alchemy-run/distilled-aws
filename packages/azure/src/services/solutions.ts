@@ -450,455 +450,6 @@ export const ApplicationDefinitionsCreateOrUpdateResponse =
     identifier: "ApplicationDefinitionsCreateOrUpdateResponse",
   }) as any as S.Schema<ApplicationDefinitionsCreateOrUpdateResponse>;
 
-export interface ApplicationDefinitionsDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed application definition. */
-  applicationDefinitionName: string;
-}
-export const ApplicationDefinitionsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    applicationDefinitionName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Solutions/applicationDefinitions/{applicationDefinitionName}",
-      code: 200,
-      apiVersion: "2021-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ApplicationDefinitionsDeleteRequest",
-}) as any as S.Schema<ApplicationDefinitionsDeleteRequest>;
-
-export interface ApplicationDefinitionsDeleteResponse {}
-export const ApplicationDefinitionsDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "ApplicationDefinitionsDeleteResponse",
-}) as any as S.Schema<ApplicationDefinitionsDeleteResponse>;
-
-export interface ApplicationDefinitionsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed application definition. */
-  applicationDefinitionName: string;
-}
-export const ApplicationDefinitionsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    applicationDefinitionName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Solutions/applicationDefinitions/{applicationDefinitionName}",
-      code: 200,
-      apiVersion: "2021-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ApplicationDefinitionsGetRequest",
-}) as any as S.Schema<ApplicationDefinitionsGetRequest>;
-
-/** Resource tags */
-export type ApplicationDefinitionsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ApplicationDefinitionsGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ApplicationDefinitionsGetResponseTagsMap>;
-
-/** The type of identity that created the resource. */
-export type ApplicationDefinitionsGetResponseSystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const ApplicationDefinitionsGetResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type ApplicationDefinitionsGetResponseSystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const ApplicationDefinitionsGetResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface ApplicationDefinitionsGetResponseSystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: ApplicationDefinitionsGetResponseSystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: ApplicationDefinitionsGetResponseSystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const ApplicationDefinitionsGetResponseSystemData =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      createdBy: S.optional(S.String),
-      createdByType: S.optional(
-        ApplicationDefinitionsGetResponseSystemDataCreatedByType,
-      ),
-      createdAt: S.optional(S.String),
-      lastModifiedBy: S.optional(S.String),
-      lastModifiedByType: S.optional(
-        ApplicationDefinitionsGetResponseSystemDataLastModifiedByType,
-      ),
-      lastModifiedAt: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "ApplicationDefinitionsGetResponseSystemData",
-  }) as any as S.Schema<ApplicationDefinitionsGetResponseSystemData>;
-
-export interface ApplicationDefinitionsGetResponse {
-  /** Resource ID */
-  id?: string;
-  /** Resource name */
-  name?: string;
-  /** Resource type */
-  type?: string;
-  /** Resource location */
-  location?: string;
-  /** Resource tags */
-  tags?: ApplicationDefinitionsGetResponseTagsMap;
-  /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: ApplicationDefinitionsGetResponseSystemData;
-  /** ID of the resource that manages this resource. */
-  managedBy?: string;
-  /** The SKU of the resource. */
-  sku?: Sku;
-  /** The managed application definition properties. */
-  properties: ApplicationDefinitionProperties;
-}
-export const ApplicationDefinitionsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    location: S.optional(S.String),
-    tags: S.optional(ApplicationDefinitionsGetResponseTagsMap),
-    systemData: S.optional(ApplicationDefinitionsGetResponseSystemData),
-    managedBy: S.optional(S.String),
-    sku: S.optional(Sku),
-    properties: ApplicationDefinitionProperties,
-  }),
-).annotate({
-  identifier: "ApplicationDefinitionsGetResponse",
-}) as any as S.Schema<ApplicationDefinitionsGetResponse>;
-
-export interface ApplicationDefinitionsListByResourceGroupRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const ApplicationDefinitionsListByResourceGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Solutions/applicationDefinitions",
-        code: 200,
-        apiVersion: "2021-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ApplicationDefinitionsListByResourceGroupRequest",
-  }) as any as S.Schema<ApplicationDefinitionsListByResourceGroupRequest>;
-
-/** Resource tags */
-export type ApplicationDefinitionTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ApplicationDefinitionTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ApplicationDefinitionTagsMap>;
-
-/** The type of identity that created the resource. */
-export type ApplicationDefinitionSystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const ApplicationDefinitionSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type ApplicationDefinitionSystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const ApplicationDefinitionSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface ApplicationDefinitionSystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: ApplicationDefinitionSystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: ApplicationDefinitionSystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const ApplicationDefinitionSystemData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createdBy: S.optional(S.String),
-    createdByType: S.optional(ApplicationDefinitionSystemDataCreatedByType),
-    createdAt: S.optional(S.String),
-    lastModifiedBy: S.optional(S.String),
-    lastModifiedByType: S.optional(
-      ApplicationDefinitionSystemDataLastModifiedByType,
-    ),
-    lastModifiedAt: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ApplicationDefinitionSystemData",
-}) as any as S.Schema<ApplicationDefinitionSystemData>;
-
-/** Information about managed application definition. */
-export interface ApplicationDefinition {
-  /** Resource ID */
-  id?: string;
-  /** Resource name */
-  name?: string;
-  /** Resource type */
-  type?: string;
-  /** Resource location */
-  location?: string;
-  /** Resource tags */
-  tags?: ApplicationDefinitionTagsMap;
-  /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: ApplicationDefinitionSystemData;
-  /** ID of the resource that manages this resource. */
-  managedBy?: string;
-  /** The SKU of the resource. */
-  sku?: Sku;
-  /** The managed application definition properties. */
-  properties: ApplicationDefinitionProperties;
-}
-export const ApplicationDefinition = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    location: S.optional(S.String),
-    tags: S.optional(ApplicationDefinitionTagsMap),
-    systemData: S.optional(ApplicationDefinitionSystemData),
-    managedBy: S.optional(S.String),
-    sku: S.optional(Sku),
-    properties: ApplicationDefinitionProperties,
-  }),
-).annotate({
-  identifier: "ApplicationDefinition",
-}) as any as S.Schema<ApplicationDefinition>;
-
-/** The array of managed application definitions. */
-export type ApplicationDefinitionListResultValueList =
-  Array<ApplicationDefinition>;
-export const ApplicationDefinitionListResultValueList = /*@__PURE__*/ S.Array(
-  ApplicationDefinition,
-) as any as S.Schema<ApplicationDefinitionListResultValueList>;
-
-/** List of managed application definitions. */
-export interface ApplicationDefinitionListResult {
-  /** The array of managed application definitions. */
-  value?: ApplicationDefinitionListResultValueList;
-  /** The URL to use for getting the next set of results. */
-  nextLink?: string;
-}
-export const ApplicationDefinitionListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(ApplicationDefinitionListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ApplicationDefinitionListResult",
-}) as any as S.Schema<ApplicationDefinitionListResult>;
-
-export interface ApplicationDefinitionsListBySubscriptionRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-}
-export const ApplicationDefinitionsListBySubscriptionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Solutions/applicationDefinitions",
-        code: 200,
-        apiVersion: "2021-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ApplicationDefinitionsListBySubscriptionRequest",
-  }) as any as S.Schema<ApplicationDefinitionsListBySubscriptionRequest>;
-
-/** Application definition tags */
-export type ApplicationDefinitionsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ApplicationDefinitionsUpdateRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<ApplicationDefinitionsUpdateRequestTagsMap>;
-
-export interface ApplicationDefinitionsUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed application definition. */
-  applicationDefinitionName: string;
-  /** Application definition tags */
-  tags?: ApplicationDefinitionsUpdateRequestTagsMap;
-}
-export const ApplicationDefinitionsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    applicationDefinitionName: S.String.pipe(T.Label()),
-    tags: S.optional(ApplicationDefinitionsUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Solutions/applicationDefinitions/{applicationDefinitionName}",
-      code: 200,
-      apiVersion: "2021-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ApplicationDefinitionsUpdateRequest",
-}) as any as S.Schema<ApplicationDefinitionsUpdateRequest>;
-
-/** Resource tags */
-export type ApplicationDefinitionsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ApplicationDefinitionsUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<ApplicationDefinitionsUpdateResponseTagsMap>;
-
-/** The type of identity that created the resource. */
-export type ApplicationDefinitionsUpdateResponseSystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const ApplicationDefinitionsUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type ApplicationDefinitionsUpdateResponseSystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const ApplicationDefinitionsUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface ApplicationDefinitionsUpdateResponseSystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: ApplicationDefinitionsUpdateResponseSystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: ApplicationDefinitionsUpdateResponseSystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const ApplicationDefinitionsUpdateResponseSystemData =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      createdBy: S.optional(S.String),
-      createdByType: S.optional(
-        ApplicationDefinitionsUpdateResponseSystemDataCreatedByType,
-      ),
-      createdAt: S.optional(S.String),
-      lastModifiedBy: S.optional(S.String),
-      lastModifiedByType: S.optional(
-        ApplicationDefinitionsUpdateResponseSystemDataLastModifiedByType,
-      ),
-      lastModifiedAt: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "ApplicationDefinitionsUpdateResponseSystemData",
-  }) as any as S.Schema<ApplicationDefinitionsUpdateResponseSystemData>;
-
-export interface ApplicationDefinitionsUpdateResponse {
-  /** Resource ID */
-  id?: string;
-  /** Resource name */
-  name?: string;
-  /** Resource type */
-  type?: string;
-  /** Resource location */
-  location?: string;
-  /** Resource tags */
-  tags?: ApplicationDefinitionsUpdateResponseTagsMap;
-  /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: ApplicationDefinitionsUpdateResponseSystemData;
-  /** ID of the resource that manages this resource. */
-  managedBy?: string;
-  /** The SKU of the resource. */
-  sku?: Sku;
-  /** The managed application definition properties. */
-  properties: ApplicationDefinitionProperties;
-}
-export const ApplicationDefinitionsUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      location: S.optional(S.String),
-      tags: S.optional(ApplicationDefinitionsUpdateResponseTagsMap),
-      systemData: S.optional(ApplicationDefinitionsUpdateResponseSystemData),
-      managedBy: S.optional(S.String),
-      sku: S.optional(Sku),
-      properties: ApplicationDefinitionProperties,
-    }),
-).annotate({
-  identifier: "ApplicationDefinitionsUpdateResponse",
-}) as any as S.Schema<ApplicationDefinitionsUpdateResponse>;
-
 /** Resource tags */
 export type ApplicationsCreateOrUpdateRequestTagsMap = {
   [key: string]: string | undefined;
@@ -1591,7 +1142,7 @@ export const ApplicationsCreateOrUpdateByIdResponse = /*@__PURE__*/ S.suspend(
   identifier: "ApplicationsCreateOrUpdateByIdResponse",
 }) as any as S.Schema<ApplicationsCreateOrUpdateByIdResponse>;
 
-export interface ApplicationsDeleteRequest {
+export interface DeleteApplicationRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1599,7 +1150,7 @@ export interface ApplicationsDeleteRequest {
   /** The name of the managed application. */
   applicationName: string;
 }
-export const ApplicationsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteApplicationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1613,21 +1164,21 @@ export const ApplicationsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ApplicationsDeleteRequest",
-}) as any as S.Schema<ApplicationsDeleteRequest>;
+  identifier: "DeleteApplicationRequest",
+}) as any as S.Schema<DeleteApplicationRequest>;
 
-export interface ApplicationsDeleteResponse {}
-export const ApplicationsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteApplicationResponse {}
+export const DeleteApplicationResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "ApplicationsDeleteResponse",
-}) as any as S.Schema<ApplicationsDeleteResponse>;
+  identifier: "DeleteApplicationResponse",
+}) as any as S.Schema<DeleteApplicationResponse>;
 
-export interface ApplicationsDeleteByIdRequest {
+export interface DeleteApplicationByIdRequest {
   /** The fully qualified ID of the managed application, including the managed application name and the managed application resource type. Use the format, /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applications/{application-name} */
   applicationId: string;
 }
-export const ApplicationsDeleteByIdRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteApplicationByIdRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     applicationId: S.String.pipe(T.Label()),
   }).pipe(
@@ -1639,17 +1190,81 @@ export const ApplicationsDeleteByIdRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ApplicationsDeleteByIdRequest",
-}) as any as S.Schema<ApplicationsDeleteByIdRequest>;
+  identifier: "DeleteApplicationByIdRequest",
+}) as any as S.Schema<DeleteApplicationByIdRequest>;
 
-export interface ApplicationsDeleteByIdResponse {}
-export const ApplicationsDeleteByIdResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteApplicationByIdResponse {}
+export const DeleteApplicationByIdResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "ApplicationsDeleteByIdResponse",
-}) as any as S.Schema<ApplicationsDeleteByIdResponse>;
+  identifier: "DeleteApplicationByIdResponse",
+}) as any as S.Schema<DeleteApplicationByIdResponse>;
 
-export interface ApplicationsGetRequest {
+export interface DeleteApplicationDefinitionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed application definition. */
+  applicationDefinitionName: string;
+}
+export const DeleteApplicationDefinitionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    applicationDefinitionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Solutions/applicationDefinitions/{applicationDefinitionName}",
+      code: 200,
+      apiVersion: "2021-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteApplicationDefinitionRequest",
+}) as any as S.Schema<DeleteApplicationDefinitionRequest>;
+
+export interface DeleteApplicationDefinitionResponse {}
+export const DeleteApplicationDefinitionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteApplicationDefinitionResponse",
+}) as any as S.Schema<DeleteApplicationDefinitionResponse>;
+
+export interface DeleteJitRequestRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the JIT request. */
+  jitRequestName: string;
+}
+export const DeleteJitRequestRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    jitRequestName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Solutions/jitRequests/{jitRequestName}",
+      code: 200,
+      apiVersion: "2021-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteJitRequestRequest",
+}) as any as S.Schema<DeleteJitRequestRequest>;
+
+export interface DeleteJitRequestResponse {}
+export const DeleteJitRequestResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteJitRequestResponse",
+}) as any as S.Schema<DeleteJitRequestResponse>;
+
+export interface GetApplicationRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1657,7 +1272,7 @@ export interface ApplicationsGetRequest {
   /** The name of the managed application. */
   applicationName: string;
 }
-export const ApplicationsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetApplicationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1671,67 +1286,67 @@ export const ApplicationsGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ApplicationsGetRequest",
-}) as any as S.Schema<ApplicationsGetRequest>;
+  identifier: "GetApplicationRequest",
+}) as any as S.Schema<GetApplicationRequest>;
 
 /** Resource tags */
-export type ApplicationsGetResponseTagsMap = {
+export type GetApplicationResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ApplicationsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetApplicationResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ApplicationsGetResponseTagsMap>;
+) as any as S.Schema<GetApplicationResponseTagsMap>;
 
 /** The type of identity that created the resource. */
-export type ApplicationsGetResponseSystemDataCreatedByType =
+export type GetApplicationResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ApplicationsGetResponseSystemDataCreatedByType =
+export const GetApplicationResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type ApplicationsGetResponseSystemDataLastModifiedByType =
+export type GetApplicationResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ApplicationsGetResponseSystemDataLastModifiedByType =
+export const GetApplicationResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface ApplicationsGetResponseSystemData {
+export interface GetApplicationResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: ApplicationsGetResponseSystemDataCreatedByType;
+  createdByType?: GetApplicationResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: ApplicationsGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetApplicationResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const ApplicationsGetResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+export const GetApplicationResponseSystemData = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     createdBy: S.optional(S.String),
-    createdByType: S.optional(ApplicationsGetResponseSystemDataCreatedByType),
+    createdByType: S.optional(GetApplicationResponseSystemDataCreatedByType),
     createdAt: S.optional(S.String),
     lastModifiedBy: S.optional(S.String),
     lastModifiedByType: S.optional(
-      ApplicationsGetResponseSystemDataLastModifiedByType,
+      GetApplicationResponseSystemDataLastModifiedByType,
     ),
     lastModifiedAt: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ApplicationsGetResponseSystemData",
-}) as any as S.Schema<ApplicationsGetResponseSystemData>;
+  identifier: "GetApplicationResponseSystemData",
+}) as any as S.Schema<GetApplicationResponseSystemData>;
 
-export interface ApplicationsGetResponse {
+export interface GetApplicationResponse {
   /** Resource ID */
   id?: string;
   /** Resource name */
@@ -1741,9 +1356,9 @@ export interface ApplicationsGetResponse {
   /** Resource location */
   location?: string;
   /** Resource tags */
-  tags?: ApplicationsGetResponseTagsMap;
+  tags?: GetApplicationResponseTagsMap;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: ApplicationsGetResponseSystemData;
+  systemData?: GetApplicationResponseSystemData;
   /** ID of the resource that manages this resource. */
   managedBy?: string;
   /** The SKU of the resource. */
@@ -1757,14 +1372,14 @@ export interface ApplicationsGetResponse {
   /** The identity of the resource. */
   identity?: Identity;
 }
-export const ApplicationsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetApplicationResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(ApplicationsGetResponseTagsMap),
-    systemData: S.optional(ApplicationsGetResponseSystemData),
+    tags: S.optional(GetApplicationResponseTagsMap),
+    systemData: S.optional(GetApplicationResponseSystemData),
     managedBy: S.optional(S.String),
     sku: S.optional(Sku),
     properties: ApplicationProperties,
@@ -1773,14 +1388,14 @@ export const ApplicationsGetResponse = /*@__PURE__*/ S.suspend(() =>
     identity: S.optional(Identity),
   }),
 ).annotate({
-  identifier: "ApplicationsGetResponse",
-}) as any as S.Schema<ApplicationsGetResponse>;
+  identifier: "GetApplicationResponse",
+}) as any as S.Schema<GetApplicationResponse>;
 
-export interface ApplicationsGetByIdRequest {
+export interface GetApplicationByIdRequest {
   /** The fully qualified ID of the managed application, including the managed application name and the managed application resource type. Use the format, /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applications/{application-name} */
   applicationId: string;
 }
-export const ApplicationsGetByIdRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetApplicationByIdRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     applicationId: S.String.pipe(T.Label()),
   }).pipe(
@@ -1792,70 +1407,70 @@ export const ApplicationsGetByIdRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ApplicationsGetByIdRequest",
-}) as any as S.Schema<ApplicationsGetByIdRequest>;
+  identifier: "GetApplicationByIdRequest",
+}) as any as S.Schema<GetApplicationByIdRequest>;
 
 /** Resource tags */
-export type ApplicationsGetByIdResponseTagsMap = {
+export type GetApplicationByIdResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ApplicationsGetByIdResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetApplicationByIdResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ApplicationsGetByIdResponseTagsMap>;
+) as any as S.Schema<GetApplicationByIdResponseTagsMap>;
 
 /** The type of identity that created the resource. */
-export type ApplicationsGetByIdResponseSystemDataCreatedByType =
+export type GetApplicationByIdResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ApplicationsGetByIdResponseSystemDataCreatedByType =
+export const GetApplicationByIdResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type ApplicationsGetByIdResponseSystemDataLastModifiedByType =
+export type GetApplicationByIdResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ApplicationsGetByIdResponseSystemDataLastModifiedByType =
+export const GetApplicationByIdResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface ApplicationsGetByIdResponseSystemData {
+export interface GetApplicationByIdResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: ApplicationsGetByIdResponseSystemDataCreatedByType;
+  createdByType?: GetApplicationByIdResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: ApplicationsGetByIdResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetApplicationByIdResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const ApplicationsGetByIdResponseSystemData = /*@__PURE__*/ S.suspend(
+export const GetApplicationByIdResponseSystemData = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        ApplicationsGetByIdResponseSystemDataCreatedByType,
+        GetApplicationByIdResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        ApplicationsGetByIdResponseSystemDataLastModifiedByType,
+        GetApplicationByIdResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
 ).annotate({
-  identifier: "ApplicationsGetByIdResponseSystemData",
-}) as any as S.Schema<ApplicationsGetByIdResponseSystemData>;
+  identifier: "GetApplicationByIdResponseSystemData",
+}) as any as S.Schema<GetApplicationByIdResponseSystemData>;
 
-export interface ApplicationsGetByIdResponse {
+export interface GetApplicationByIdResponse {
   /** Resource ID */
   id?: string;
   /** Resource name */
@@ -1865,9 +1480,9 @@ export interface ApplicationsGetByIdResponse {
   /** Resource location */
   location?: string;
   /** Resource tags */
-  tags?: ApplicationsGetByIdResponseTagsMap;
+  tags?: GetApplicationByIdResponseTagsMap;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: ApplicationsGetByIdResponseSystemData;
+  systemData?: GetApplicationByIdResponseSystemData;
   /** ID of the resource that manages this resource. */
   managedBy?: string;
   /** The SKU of the resource. */
@@ -1881,14 +1496,14 @@ export interface ApplicationsGetByIdResponse {
   /** The identity of the resource. */
   identity?: Identity;
 }
-export const ApplicationsGetByIdResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetApplicationByIdResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(ApplicationsGetByIdResponseTagsMap),
-    systemData: S.optional(ApplicationsGetByIdResponseSystemData),
+    tags: S.optional(GetApplicationByIdResponseTagsMap),
+    systemData: S.optional(GetApplicationByIdResponseSystemData),
     managedBy: S.optional(S.String),
     sku: S.optional(Sku),
     properties: ApplicationProperties,
@@ -1897,10 +1512,496 @@ export const ApplicationsGetByIdResponse = /*@__PURE__*/ S.suspend(() =>
     identity: S.optional(Identity),
   }),
 ).annotate({
-  identifier: "ApplicationsGetByIdResponse",
-}) as any as S.Schema<ApplicationsGetByIdResponse>;
+  identifier: "GetApplicationByIdResponse",
+}) as any as S.Schema<GetApplicationByIdResponse>;
 
-export interface ApplicationsListAllowedUpgradePlansRequest {
+export interface GetApplicationDefinitionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed application definition. */
+  applicationDefinitionName: string;
+}
+export const GetApplicationDefinitionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    applicationDefinitionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Solutions/applicationDefinitions/{applicationDefinitionName}",
+      code: 200,
+      apiVersion: "2021-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetApplicationDefinitionRequest",
+}) as any as S.Schema<GetApplicationDefinitionRequest>;
+
+/** Resource tags */
+export type GetApplicationDefinitionResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetApplicationDefinitionResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetApplicationDefinitionResponseTagsMap>;
+
+/** The type of identity that created the resource. */
+export type GetApplicationDefinitionResponseSystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const GetApplicationDefinitionResponseSystemDataCreatedByType =
+  /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type GetApplicationDefinitionResponseSystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const GetApplicationDefinitionResponseSystemDataLastModifiedByType =
+  /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface GetApplicationDefinitionResponseSystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: GetApplicationDefinitionResponseSystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: GetApplicationDefinitionResponseSystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const GetApplicationDefinitionResponseSystemData =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      createdBy: S.optional(S.String),
+      createdByType: S.optional(
+        GetApplicationDefinitionResponseSystemDataCreatedByType,
+      ),
+      createdAt: S.optional(S.String),
+      lastModifiedBy: S.optional(S.String),
+      lastModifiedByType: S.optional(
+        GetApplicationDefinitionResponseSystemDataLastModifiedByType,
+      ),
+      lastModifiedAt: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "GetApplicationDefinitionResponseSystemData",
+  }) as any as S.Schema<GetApplicationDefinitionResponseSystemData>;
+
+export interface GetApplicationDefinitionResponse {
+  /** Resource ID */
+  id?: string;
+  /** Resource name */
+  name?: string;
+  /** Resource type */
+  type?: string;
+  /** Resource location */
+  location?: string;
+  /** Resource tags */
+  tags?: GetApplicationDefinitionResponseTagsMap;
+  /** Metadata pertaining to creation and last modification of the resource. */
+  systemData?: GetApplicationDefinitionResponseSystemData;
+  /** ID of the resource that manages this resource. */
+  managedBy?: string;
+  /** The SKU of the resource. */
+  sku?: Sku;
+  /** The managed application definition properties. */
+  properties: ApplicationDefinitionProperties;
+}
+export const GetApplicationDefinitionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    location: S.optional(S.String),
+    tags: S.optional(GetApplicationDefinitionResponseTagsMap),
+    systemData: S.optional(GetApplicationDefinitionResponseSystemData),
+    managedBy: S.optional(S.String),
+    sku: S.optional(Sku),
+    properties: ApplicationDefinitionProperties,
+  }),
+).annotate({
+  identifier: "GetApplicationDefinitionResponse",
+}) as any as S.Schema<GetApplicationDefinitionResponse>;
+
+export interface GetJitRequestRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the JIT request. */
+  jitRequestName: string;
+}
+export const GetJitRequestRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    jitRequestName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Solutions/jitRequests/{jitRequestName}",
+      code: 200,
+      apiVersion: "2021-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetJitRequestRequest",
+}) as any as S.Schema<GetJitRequestRequest>;
+
+/** Resource tags */
+export type GetJitRequestResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetJitRequestResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetJitRequestResponseTagsMap>;
+
+/** The type of identity that created the resource. */
+export type GetJitRequestResponseSystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const GetJitRequestResponseSystemDataCreatedByType =
+  /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type GetJitRequestResponseSystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const GetJitRequestResponseSystemDataLastModifiedByType =
+  /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface GetJitRequestResponseSystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: GetJitRequestResponseSystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: GetJitRequestResponseSystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const GetJitRequestResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdBy: S.optional(S.String),
+    createdByType: S.optional(GetJitRequestResponseSystemDataCreatedByType),
+    createdAt: S.optional(S.String),
+    lastModifiedBy: S.optional(S.String),
+    lastModifiedByType: S.optional(
+      GetJitRequestResponseSystemDataLastModifiedByType,
+    ),
+    lastModifiedAt: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetJitRequestResponseSystemData",
+}) as any as S.Schema<GetJitRequestResponseSystemData>;
+
+/** The JIT authorization policies. */
+export interface JitAuthorizationPolicies {
+  /** The the principal id that will be granted JIT access. */
+  principalId: string;
+  /** The role definition id that will be granted to the Principal. */
+  roleDefinitionId: string;
+}
+export const JitAuthorizationPolicies = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    principalId: S.String,
+    roleDefinitionId: S.String,
+  }),
+).annotate({
+  identifier: "JitAuthorizationPolicies",
+}) as any as S.Schema<JitAuthorizationPolicies>;
+
+/** The JIT authorization policies. */
+export type JitRequestPropertiesJitAuthorizationPoliciesList =
+  Array<JitAuthorizationPolicies>;
+export const JitRequestPropertiesJitAuthorizationPoliciesList =
+  /*@__PURE__*/ S.Array(
+    JitAuthorizationPolicies,
+  ) as any as S.Schema<JitRequestPropertiesJitAuthorizationPoliciesList>;
+
+/** The JIT request scheduling type. */
+export type JitSchedulingType = "NotSpecified" | "Once" | "Recurring";
+export const JitSchedulingType = /*@__PURE__*/ S.String;
+
+/** The JIT scheduling policies. */
+export interface JitSchedulingPolicy {
+  /** The type of JIT schedule. */
+  type: JitSchedulingType | (string & {});
+  duration: string;
+  /** The start time of the request. */
+  startTime: string;
+}
+export const JitSchedulingPolicy = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: JitSchedulingType,
+    duration: S.String,
+    startTime: S.String,
+  }),
+).annotate({
+  identifier: "JitSchedulingPolicy",
+}) as any as S.Schema<JitSchedulingPolicy>;
+
+/** The JIT request state. */
+export type JitRequestState =
+  | "NotSpecified"
+  | "Pending"
+  | "Approved"
+  | "Denied"
+  | "Failed"
+  | "Canceled"
+  | "Expired"
+  | "Timeout";
+export const JitRequestState = /*@__PURE__*/ S.String;
+
+/** Information about JIT request properties */
+export interface JitRequestProperties {
+  /** The parent application id. */
+  applicationResourceId: string;
+  /** The publisher tenant id. */
+  publisherTenantId?: string;
+  /** The JIT authorization policies. */
+  jitAuthorizationPolicies: JitRequestPropertiesJitAuthorizationPoliciesList;
+  /** The JIT request properties. */
+  jitSchedulingPolicy: JitSchedulingPolicy;
+  /** The JIT request provisioning state. */
+  provisioningState?: ProvisioningState;
+  /** The JIT request state. */
+  jitRequestState?: JitRequestState;
+  /** The client entity that created the JIT request. */
+  createdBy?: ApplicationClientDetails;
+  /** The client entity that last updated the JIT request. */
+  updatedBy?: ApplicationClientDetails;
+}
+export const JitRequestProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    applicationResourceId: S.String,
+    publisherTenantId: S.optional(S.String),
+    jitAuthorizationPolicies: JitRequestPropertiesJitAuthorizationPoliciesList,
+    jitSchedulingPolicy: JitSchedulingPolicy,
+    provisioningState: S.optional(ProvisioningState),
+    jitRequestState: S.optional(JitRequestState),
+    createdBy: S.optional(ApplicationClientDetails),
+    updatedBy: S.optional(ApplicationClientDetails),
+  }),
+).annotate({
+  identifier: "JitRequestProperties",
+}) as any as S.Schema<JitRequestProperties>;
+
+export interface GetJitRequestResponse {
+  /** Resource ID */
+  id?: string;
+  /** Resource name */
+  name?: string;
+  /** Resource type */
+  type?: string;
+  /** Resource location */
+  location?: string;
+  /** Resource tags */
+  tags?: GetJitRequestResponseTagsMap;
+  /** Metadata pertaining to creation and last modification of the resource. */
+  systemData?: GetJitRequestResponseSystemData;
+  /** The JIT request properties. */
+  properties?: JitRequestProperties;
+}
+export const GetJitRequestResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    location: S.optional(S.String),
+    tags: S.optional(GetJitRequestResponseTagsMap),
+    systemData: S.optional(GetJitRequestResponseSystemData),
+    properties: S.optional(JitRequestProperties),
+  }),
+).annotate({
+  identifier: "GetJitRequestResponse",
+}) as any as S.Schema<GetJitRequestResponse>;
+
+/** Resource tags */
+export type JitRequestsCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const JitRequestsCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<JitRequestsCreateOrUpdateRequestTagsMap>;
+
+/** The JIT authorization policies. */
+export type JitRequestPropertiesInputJitAuthorizationPoliciesList =
+  Array<JitAuthorizationPolicies>;
+export const JitRequestPropertiesInputJitAuthorizationPoliciesList =
+  /*@__PURE__*/ S.Array(
+    JitAuthorizationPolicies,
+  ) as any as S.Schema<JitRequestPropertiesInputJitAuthorizationPoliciesList>;
+
+/** Information about JIT request properties */
+export interface JitRequestPropertiesInput {
+  /** The parent application id. */
+  applicationResourceId: string;
+  /** The JIT authorization policies. */
+  jitAuthorizationPolicies: JitRequestPropertiesInputJitAuthorizationPoliciesList;
+  /** The JIT request properties. */
+  jitSchedulingPolicy: JitSchedulingPolicy;
+}
+export const JitRequestPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    applicationResourceId: S.String,
+    jitAuthorizationPolicies:
+      JitRequestPropertiesInputJitAuthorizationPoliciesList,
+    jitSchedulingPolicy: JitSchedulingPolicy,
+  }),
+).annotate({
+  identifier: "JitRequestPropertiesInput",
+}) as any as S.Schema<JitRequestPropertiesInput>;
+
+export interface JitRequestsCreateOrUpdateRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the JIT request. */
+  jitRequestName: string;
+  /** Resource location */
+  location?: string;
+  /** Resource tags */
+  tags?: JitRequestsCreateOrUpdateRequestTagsMap;
+  /** The JIT request properties. */
+  properties?: JitRequestPropertiesInput;
+}
+export const JitRequestsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    jitRequestName: S.String.pipe(T.Label()),
+    location: S.optional(S.String),
+    tags: S.optional(JitRequestsCreateOrUpdateRequestTagsMap),
+    properties: S.optional(JitRequestPropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Solutions/jitRequests/{jitRequestName}",
+      code: 200,
+      apiVersion: "2021-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "JitRequestsCreateOrUpdateRequest",
+}) as any as S.Schema<JitRequestsCreateOrUpdateRequest>;
+
+/** Resource tags */
+export type JitRequestsCreateOrUpdateResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const JitRequestsCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<JitRequestsCreateOrUpdateResponseTagsMap>;
+
+/** The type of identity that created the resource. */
+export type JitRequestsCreateOrUpdateResponseSystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const JitRequestsCreateOrUpdateResponseSystemDataCreatedByType =
+  /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type JitRequestsCreateOrUpdateResponseSystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const JitRequestsCreateOrUpdateResponseSystemDataLastModifiedByType =
+  /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface JitRequestsCreateOrUpdateResponseSystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: JitRequestsCreateOrUpdateResponseSystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: JitRequestsCreateOrUpdateResponseSystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const JitRequestsCreateOrUpdateResponseSystemData =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      createdBy: S.optional(S.String),
+      createdByType: S.optional(
+        JitRequestsCreateOrUpdateResponseSystemDataCreatedByType,
+      ),
+      createdAt: S.optional(S.String),
+      lastModifiedBy: S.optional(S.String),
+      lastModifiedByType: S.optional(
+        JitRequestsCreateOrUpdateResponseSystemDataLastModifiedByType,
+      ),
+      lastModifiedAt: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "JitRequestsCreateOrUpdateResponseSystemData",
+  }) as any as S.Schema<JitRequestsCreateOrUpdateResponseSystemData>;
+
+export interface JitRequestsCreateOrUpdateResponse {
+  /** Resource ID */
+  id?: string;
+  /** Resource name */
+  name?: string;
+  /** Resource type */
+  type?: string;
+  /** Resource location */
+  location?: string;
+  /** Resource tags */
+  tags?: JitRequestsCreateOrUpdateResponseTagsMap;
+  /** Metadata pertaining to creation and last modification of the resource. */
+  systemData?: JitRequestsCreateOrUpdateResponseSystemData;
+  /** The JIT request properties. */
+  properties?: JitRequestProperties;
+}
+export const JitRequestsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    location: S.optional(S.String),
+    tags: S.optional(JitRequestsCreateOrUpdateResponseTagsMap),
+    systemData: S.optional(JitRequestsCreateOrUpdateResponseSystemData),
+    properties: S.optional(JitRequestProperties),
+  }),
+).annotate({
+  identifier: "JitRequestsCreateOrUpdateResponse",
+}) as any as S.Schema<JitRequestsCreateOrUpdateResponse>;
+
+export interface ListApplicationAllowedUpgradePlansRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1908,7 +2009,7 @@ export interface ApplicationsListAllowedUpgradePlansRequest {
   /** The name of the managed application. */
   applicationName: string;
 }
-export const ApplicationsListAllowedUpgradePlansRequest =
+export const ListApplicationAllowedUpgradePlansRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -1923,8 +2024,8 @@ export const ApplicationsListAllowedUpgradePlansRequest =
       }),
     ),
   ).annotate({
-    identifier: "ApplicationsListAllowedUpgradePlansRequest",
-  }) as any as S.Schema<ApplicationsListAllowedUpgradePlansRequest>;
+    identifier: "ListApplicationAllowedUpgradePlansRequest",
+  }) as any as S.Schema<ListApplicationAllowedUpgradePlansRequest>;
 
 /** The array of plans. */
 export type AllowedUpgradePlansResultValueList = Array<Plan>;
@@ -1945,13 +2046,13 @@ export const AllowedUpgradePlansResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "AllowedUpgradePlansResult",
 }) as any as S.Schema<AllowedUpgradePlansResult>;
 
-export interface ApplicationsListByResourceGroupRequest {
+export interface ListApplicationByResourceGroupRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
 }
-export const ApplicationsListByResourceGroupRequest = /*@__PURE__*/ S.suspend(
+export const ListApplicationByResourceGroupRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -1965,8 +2066,8 @@ export const ApplicationsListByResourceGroupRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ApplicationsListByResourceGroupRequest",
-}) as any as S.Schema<ApplicationsListByResourceGroupRequest>;
+  identifier: "ListApplicationByResourceGroupRequest",
+}) as any as S.Schema<ListApplicationByResourceGroupRequest>;
 
 /** Resource tags */
 export type ApplicationTagsMap = { [key: string]: string | undefined };
@@ -2085,11 +2186,11 @@ export const ApplicationListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ApplicationListResult",
 }) as any as S.Schema<ApplicationListResult>;
 
-export interface ApplicationsListBySubscriptionRequest {
+export interface ListApplicationBySubscriptionRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
 }
-export const ApplicationsListBySubscriptionRequest = /*@__PURE__*/ S.suspend(
+export const ListApplicationBySubscriptionRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2102,18 +2203,178 @@ export const ApplicationsListBySubscriptionRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ApplicationsListBySubscriptionRequest",
-}) as any as S.Schema<ApplicationsListBySubscriptionRequest>;
+  identifier: "ListApplicationBySubscriptionRequest",
+}) as any as S.Schema<ListApplicationBySubscriptionRequest>;
+
+export interface ListApplicationDefinitionByResourceGroupRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const ListApplicationDefinitionByResourceGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Solutions/applicationDefinitions",
+        code: 200,
+        apiVersion: "2021-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListApplicationDefinitionByResourceGroupRequest",
+  }) as any as S.Schema<ListApplicationDefinitionByResourceGroupRequest>;
+
+/** Resource tags */
+export type ApplicationDefinitionTagsMap = {
+  [key: string]: string | undefined;
+};
+export const ApplicationDefinitionTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ApplicationDefinitionTagsMap>;
+
+/** The type of identity that created the resource. */
+export type ApplicationDefinitionSystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const ApplicationDefinitionSystemDataCreatedByType =
+  /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type ApplicationDefinitionSystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const ApplicationDefinitionSystemDataLastModifiedByType =
+  /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface ApplicationDefinitionSystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: ApplicationDefinitionSystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: ApplicationDefinitionSystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const ApplicationDefinitionSystemData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdBy: S.optional(S.String),
+    createdByType: S.optional(ApplicationDefinitionSystemDataCreatedByType),
+    createdAt: S.optional(S.String),
+    lastModifiedBy: S.optional(S.String),
+    lastModifiedByType: S.optional(
+      ApplicationDefinitionSystemDataLastModifiedByType,
+    ),
+    lastModifiedAt: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ApplicationDefinitionSystemData",
+}) as any as S.Schema<ApplicationDefinitionSystemData>;
+
+/** Information about managed application definition. */
+export interface ApplicationDefinition {
+  /** Resource ID */
+  id?: string;
+  /** Resource name */
+  name?: string;
+  /** Resource type */
+  type?: string;
+  /** Resource location */
+  location?: string;
+  /** Resource tags */
+  tags?: ApplicationDefinitionTagsMap;
+  /** Metadata pertaining to creation and last modification of the resource. */
+  systemData?: ApplicationDefinitionSystemData;
+  /** ID of the resource that manages this resource. */
+  managedBy?: string;
+  /** The SKU of the resource. */
+  sku?: Sku;
+  /** The managed application definition properties. */
+  properties: ApplicationDefinitionProperties;
+}
+export const ApplicationDefinition = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    location: S.optional(S.String),
+    tags: S.optional(ApplicationDefinitionTagsMap),
+    systemData: S.optional(ApplicationDefinitionSystemData),
+    managedBy: S.optional(S.String),
+    sku: S.optional(Sku),
+    properties: ApplicationDefinitionProperties,
+  }),
+).annotate({
+  identifier: "ApplicationDefinition",
+}) as any as S.Schema<ApplicationDefinition>;
+
+/** The array of managed application definitions. */
+export type ApplicationDefinitionListResultValueList =
+  Array<ApplicationDefinition>;
+export const ApplicationDefinitionListResultValueList = /*@__PURE__*/ S.Array(
+  ApplicationDefinition,
+) as any as S.Schema<ApplicationDefinitionListResultValueList>;
+
+/** List of managed application definitions. */
+export interface ApplicationDefinitionListResult {
+  /** The array of managed application definitions. */
+  value?: ApplicationDefinitionListResultValueList;
+  /** The URL to use for getting the next set of results. */
+  nextLink?: string;
+}
+export const ApplicationDefinitionListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(ApplicationDefinitionListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ApplicationDefinitionListResult",
+}) as any as S.Schema<ApplicationDefinitionListResult>;
+
+export interface ListApplicationDefinitionBySubscriptionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+}
+export const ListApplicationDefinitionBySubscriptionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Solutions/applicationDefinitions",
+        code: 200,
+        apiVersion: "2021-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListApplicationDefinitionBySubscriptionRequest",
+  }) as any as S.Schema<ListApplicationDefinitionBySubscriptionRequest>;
 
 /** The user assigned identities. */
-export type ApplicationsListTokensRequestUserAssignedIdentitiesList =
+export type ListApplicationTokensRequestUserAssignedIdentitiesList =
   Array<string>;
-export const ApplicationsListTokensRequestUserAssignedIdentitiesList =
+export const ListApplicationTokensRequestUserAssignedIdentitiesList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<ApplicationsListTokensRequestUserAssignedIdentitiesList>;
+  ) as any as S.Schema<ListApplicationTokensRequestUserAssignedIdentitiesList>;
 
-export interface ApplicationsListTokensRequest {
+export interface ListApplicationTokensRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2123,16 +2384,16 @@ export interface ApplicationsListTokensRequest {
   /** The authorization audience. */
   authorizationAudience?: string;
   /** The user assigned identities. */
-  userAssignedIdentities?: ApplicationsListTokensRequestUserAssignedIdentitiesList;
+  userAssignedIdentities?: ListApplicationTokensRequestUserAssignedIdentitiesList;
 }
-export const ApplicationsListTokensRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListApplicationTokensRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     applicationName: S.String.pipe(T.Label()),
     authorizationAudience: S.optional(S.String),
     userAssignedIdentities: S.optional(
-      ApplicationsListTokensRequestUserAssignedIdentitiesList,
+      ListApplicationTokensRequestUserAssignedIdentitiesList,
     ),
   }).pipe(
     T.Http({
@@ -2143,8 +2404,8 @@ export const ApplicationsListTokensRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ApplicationsListTokensRequest",
-}) as any as S.Schema<ApplicationsListTokensRequest>;
+  identifier: "ListApplicationTokensRequest",
+}) as any as S.Schema<ListApplicationTokensRequest>;
 
 /** The managed identity token for the managed app resource. */
 export interface ManagedIdentityToken {
@@ -2196,866 +2457,13 @@ export const ManagedIdentityTokenResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ManagedIdentityTokenResult",
 }) as any as S.Schema<ManagedIdentityTokenResult>;
 
-export interface ApplicationsRefreshPermissionsRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed application. */
-  applicationName: string;
-}
-export const ApplicationsRefreshPermissionsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      applicationName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Solutions/applications/{applicationName}/refreshPermissions",
-        code: 200,
-        apiVersion: "2021-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "ApplicationsRefreshPermissionsRequest",
-}) as any as S.Schema<ApplicationsRefreshPermissionsRequest>;
-
-export interface ApplicationsRefreshPermissionsResponse {}
-export const ApplicationsRefreshPermissionsResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "ApplicationsRefreshPermissionsResponse",
-}) as any as S.Schema<ApplicationsRefreshPermissionsResponse>;
-
-/** Resource tags */
-export type ApplicationsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ApplicationsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ApplicationsUpdateRequestTagsMap>;
-
-/** Plan for the managed application. */
-export interface PlanPatchable {
-  /** The plan name. */
-  name?: string;
-  /** The publisher ID. */
-  publisher?: string;
-  /** The product code. */
-  product?: string;
-  /** The promotion code. */
-  promotionCode?: string;
-  /** The plan's version. */
-  version?: string;
-}
-export const PlanPatchable = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    publisher: S.optional(S.String),
-    product: S.optional(S.String),
-    promotionCode: S.optional(S.String),
-    version: S.optional(S.String),
-  }),
-).annotate({ identifier: "PlanPatchable" }) as any as S.Schema<PlanPatchable>;
-
-export interface ApplicationsUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed application. */
-  applicationName: string;
-  /** Resource location */
-  location?: string;
-  /** Resource tags */
-  tags?: ApplicationsUpdateRequestTagsMap;
-  /** ID of the resource that manages this resource. */
-  managedBy?: string;
-  /** The SKU of the resource. */
-  sku?: Sku;
-  /** The managed application properties. */
-  properties?: ApplicationPropertiesInput;
-  /** The plan information. */
-  plan?: PlanPatchable;
-  /** The kind of the managed application. Allowed values are MarketPlace and ServiceCatalog. */
-  kind?: string;
-  /** The identity of the resource. */
-  identity?: IdentityInput;
-}
-export const ApplicationsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    applicationName: S.String.pipe(T.Label()),
-    location: S.optional(S.String),
-    tags: S.optional(ApplicationsUpdateRequestTagsMap),
-    managedBy: S.optional(S.String),
-    sku: S.optional(Sku),
-    properties: S.optional(ApplicationPropertiesInput),
-    plan: S.optional(PlanPatchable),
-    kind: S.optional(S.String),
-    identity: S.optional(IdentityInput),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Solutions/applications/{applicationName}",
-      code: 200,
-      apiVersion: "2021-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ApplicationsUpdateRequest",
-}) as any as S.Schema<ApplicationsUpdateRequest>;
-
-/** Resource tags */
-export type ApplicationsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ApplicationsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ApplicationsUpdateResponseTagsMap>;
-
-/** The type of identity that created the resource. */
-export type ApplicationsUpdateResponseSystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const ApplicationsUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type ApplicationsUpdateResponseSystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const ApplicationsUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface ApplicationsUpdateResponseSystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: ApplicationsUpdateResponseSystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: ApplicationsUpdateResponseSystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const ApplicationsUpdateResponseSystemData = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      createdBy: S.optional(S.String),
-      createdByType: S.optional(
-        ApplicationsUpdateResponseSystemDataCreatedByType,
-      ),
-      createdAt: S.optional(S.String),
-      lastModifiedBy: S.optional(S.String),
-      lastModifiedByType: S.optional(
-        ApplicationsUpdateResponseSystemDataLastModifiedByType,
-      ),
-      lastModifiedAt: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "ApplicationsUpdateResponseSystemData",
-}) as any as S.Schema<ApplicationsUpdateResponseSystemData>;
-
-export interface ApplicationsUpdateResponse {
-  /** Resource ID */
-  id?: string;
-  /** Resource name */
-  name?: string;
-  /** Resource type */
-  type?: string;
-  /** Resource location */
-  location?: string;
-  /** Resource tags */
-  tags?: ApplicationsUpdateResponseTagsMap;
-  /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: ApplicationsUpdateResponseSystemData;
-  /** ID of the resource that manages this resource. */
-  managedBy?: string;
-  /** The SKU of the resource. */
-  sku?: Sku;
-  /** The managed application properties. */
-  properties?: ApplicationProperties;
-  /** The plan information. */
-  plan?: PlanPatchable;
-  /** The kind of the managed application. Allowed values are MarketPlace and ServiceCatalog. */
-  kind?: string;
-  /** The identity of the resource. */
-  identity?: Identity;
-}
-export const ApplicationsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    location: S.optional(S.String),
-    tags: S.optional(ApplicationsUpdateResponseTagsMap),
-    systemData: S.optional(ApplicationsUpdateResponseSystemData),
-    managedBy: S.optional(S.String),
-    sku: S.optional(Sku),
-    properties: S.optional(ApplicationProperties),
-    plan: S.optional(PlanPatchable),
-    kind: S.optional(S.String),
-    identity: S.optional(Identity),
-  }),
-).annotate({
-  identifier: "ApplicationsUpdateResponse",
-}) as any as S.Schema<ApplicationsUpdateResponse>;
-
-/** The JIT request metadata. */
-export interface JitRequestMetadata {
-  /** The origin request id. */
-  originRequestId?: string;
-  /** The requestor id. */
-  requestorId?: string;
-  /** The publisher's tenant name. */
-  tenantDisplayName?: string;
-  /** The subject display name. */
-  subjectDisplayName?: string;
-}
-export const JitRequestMetadata = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    originRequestId: S.optional(S.String),
-    requestorId: S.optional(S.String),
-    tenantDisplayName: S.optional(S.String),
-    subjectDisplayName: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "JitRequestMetadata",
-}) as any as S.Schema<JitRequestMetadata>;
-
-/** The JIT status. */
-export type Status = "NotSpecified" | "Elevate" | "Remove";
-export const Status = /*@__PURE__*/ S.String;
-
-/** The sub status. */
-export type SubStatus =
-  | "NotSpecified"
-  | "Approved"
-  | "Denied"
-  | "Failed"
-  | "Expired"
-  | "Timeout";
-export const SubStatus = /*@__PURE__*/ S.String;
-
-export interface ApplicationsUpdateAccessRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed application. */
-  applicationName: string;
-  /** The approver name. */
-  approver?: string;
-  /** The JIT request metadata. */
-  metadata: JitRequestMetadata;
-  /** The JIT status. */
-  status: Status | (string & {});
-  /** The JIT status. */
-  subStatus: SubStatus | (string & {});
-}
-export const ApplicationsUpdateAccessRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    applicationName: S.String.pipe(T.Label()),
-    approver: S.optional(S.String),
-    metadata: JitRequestMetadata,
-    status: Status,
-    subStatus: SubStatus,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Solutions/applications/{applicationName}/updateAccess",
-      code: 200,
-      apiVersion: "2021-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ApplicationsUpdateAccessRequest",
-}) as any as S.Schema<ApplicationsUpdateAccessRequest>;
-
-export interface ApplicationsUpdateAccessResponse {}
-export const ApplicationsUpdateAccessResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ApplicationsUpdateAccessResponse",
-}) as any as S.Schema<ApplicationsUpdateAccessResponse>;
-
-/** Resource tags */
-export type ApplicationsUpdateByIdRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ApplicationsUpdateByIdRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ApplicationsUpdateByIdRequestTagsMap>;
-
-export interface ApplicationsUpdateByIdRequest {
-  /** The fully qualified ID of the managed application, including the managed application name and the managed application resource type. Use the format, /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applications/{application-name} */
-  applicationId: string;
-  /** Resource location */
-  location?: string;
-  /** Resource tags */
-  tags?: ApplicationsUpdateByIdRequestTagsMap;
-  /** ID of the resource that manages this resource. */
-  managedBy?: string;
-  /** The SKU of the resource. */
-  sku?: Sku;
-  /** The managed application properties. */
-  properties?: ApplicationPropertiesInput;
-  /** The plan information. */
-  plan?: PlanPatchable;
-  /** The kind of the managed application. Allowed values are MarketPlace and ServiceCatalog. */
-  kind?: string;
-  /** The identity of the resource. */
-  identity?: IdentityInput;
-}
-export const ApplicationsUpdateByIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    applicationId: S.String.pipe(T.Label()),
-    location: S.optional(S.String),
-    tags: S.optional(ApplicationsUpdateByIdRequestTagsMap),
-    managedBy: S.optional(S.String),
-    sku: S.optional(Sku),
-    properties: S.optional(ApplicationPropertiesInput),
-    plan: S.optional(PlanPatchable),
-    kind: S.optional(S.String),
-    identity: S.optional(IdentityInput),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/{applicationId}",
-      code: 200,
-      apiVersion: "2021-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ApplicationsUpdateByIdRequest",
-}) as any as S.Schema<ApplicationsUpdateByIdRequest>;
-
-/** Resource tags */
-export type ApplicationsUpdateByIdResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ApplicationsUpdateByIdResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ApplicationsUpdateByIdResponseTagsMap>;
-
-/** The type of identity that created the resource. */
-export type ApplicationsUpdateByIdResponseSystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const ApplicationsUpdateByIdResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type ApplicationsUpdateByIdResponseSystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const ApplicationsUpdateByIdResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface ApplicationsUpdateByIdResponseSystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: ApplicationsUpdateByIdResponseSystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: ApplicationsUpdateByIdResponseSystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const ApplicationsUpdateByIdResponseSystemData = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      createdBy: S.optional(S.String),
-      createdByType: S.optional(
-        ApplicationsUpdateByIdResponseSystemDataCreatedByType,
-      ),
-      createdAt: S.optional(S.String),
-      lastModifiedBy: S.optional(S.String),
-      lastModifiedByType: S.optional(
-        ApplicationsUpdateByIdResponseSystemDataLastModifiedByType,
-      ),
-      lastModifiedAt: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "ApplicationsUpdateByIdResponseSystemData",
-}) as any as S.Schema<ApplicationsUpdateByIdResponseSystemData>;
-
-export interface ApplicationsUpdateByIdResponse {
-  /** Resource ID */
-  id?: string;
-  /** Resource name */
-  name?: string;
-  /** Resource type */
-  type?: string;
-  /** Resource location */
-  location?: string;
-  /** Resource tags */
-  tags?: ApplicationsUpdateByIdResponseTagsMap;
-  /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: ApplicationsUpdateByIdResponseSystemData;
-  /** ID of the resource that manages this resource. */
-  managedBy?: string;
-  /** The SKU of the resource. */
-  sku?: Sku;
-  /** The managed application properties. */
-  properties?: ApplicationProperties;
-  /** The plan information. */
-  plan?: PlanPatchable;
-  /** The kind of the managed application. Allowed values are MarketPlace and ServiceCatalog. */
-  kind?: string;
-  /** The identity of the resource. */
-  identity?: Identity;
-}
-export const ApplicationsUpdateByIdResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    location: S.optional(S.String),
-    tags: S.optional(ApplicationsUpdateByIdResponseTagsMap),
-    systemData: S.optional(ApplicationsUpdateByIdResponseSystemData),
-    managedBy: S.optional(S.String),
-    sku: S.optional(Sku),
-    properties: S.optional(ApplicationProperties),
-    plan: S.optional(PlanPatchable),
-    kind: S.optional(S.String),
-    identity: S.optional(Identity),
-  }),
-).annotate({
-  identifier: "ApplicationsUpdateByIdResponse",
-}) as any as S.Schema<ApplicationsUpdateByIdResponse>;
-
-/** Resource tags */
-export type JitRequestsCreateOrUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const JitRequestsCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<JitRequestsCreateOrUpdateRequestTagsMap>;
-
-/** The JIT authorization policies. */
-export interface JitAuthorizationPolicies {
-  /** The the principal id that will be granted JIT access. */
-  principalId: string;
-  /** The role definition id that will be granted to the Principal. */
-  roleDefinitionId: string;
-}
-export const JitAuthorizationPolicies = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    principalId: S.String,
-    roleDefinitionId: S.String,
-  }),
-).annotate({
-  identifier: "JitAuthorizationPolicies",
-}) as any as S.Schema<JitAuthorizationPolicies>;
-
-/** The JIT authorization policies. */
-export type JitRequestPropertiesInputJitAuthorizationPoliciesList =
-  Array<JitAuthorizationPolicies>;
-export const JitRequestPropertiesInputJitAuthorizationPoliciesList =
-  /*@__PURE__*/ S.Array(
-    JitAuthorizationPolicies,
-  ) as any as S.Schema<JitRequestPropertiesInputJitAuthorizationPoliciesList>;
-
-/** The JIT request scheduling type. */
-export type JitSchedulingType = "NotSpecified" | "Once" | "Recurring";
-export const JitSchedulingType = /*@__PURE__*/ S.String;
-
-/** The JIT scheduling policies. */
-export interface JitSchedulingPolicy {
-  /** The type of JIT schedule. */
-  type: JitSchedulingType | (string & {});
-  duration: string;
-  /** The start time of the request. */
-  startTime: string;
-}
-export const JitSchedulingPolicy = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: JitSchedulingType,
-    duration: S.String,
-    startTime: S.String,
-  }),
-).annotate({
-  identifier: "JitSchedulingPolicy",
-}) as any as S.Schema<JitSchedulingPolicy>;
-
-/** Information about JIT request properties */
-export interface JitRequestPropertiesInput {
-  /** The parent application id. */
-  applicationResourceId: string;
-  /** The JIT authorization policies. */
-  jitAuthorizationPolicies: JitRequestPropertiesInputJitAuthorizationPoliciesList;
-  /** The JIT request properties. */
-  jitSchedulingPolicy: JitSchedulingPolicy;
-}
-export const JitRequestPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    applicationResourceId: S.String,
-    jitAuthorizationPolicies:
-      JitRequestPropertiesInputJitAuthorizationPoliciesList,
-    jitSchedulingPolicy: JitSchedulingPolicy,
-  }),
-).annotate({
-  identifier: "JitRequestPropertiesInput",
-}) as any as S.Schema<JitRequestPropertiesInput>;
-
-export interface JitRequestsCreateOrUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the JIT request. */
-  jitRequestName: string;
-  /** Resource location */
-  location?: string;
-  /** Resource tags */
-  tags?: JitRequestsCreateOrUpdateRequestTagsMap;
-  /** The JIT request properties. */
-  properties?: JitRequestPropertiesInput;
-}
-export const JitRequestsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    jitRequestName: S.String.pipe(T.Label()),
-    location: S.optional(S.String),
-    tags: S.optional(JitRequestsCreateOrUpdateRequestTagsMap),
-    properties: S.optional(JitRequestPropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Solutions/jitRequests/{jitRequestName}",
-      code: 200,
-      apiVersion: "2021-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "JitRequestsCreateOrUpdateRequest",
-}) as any as S.Schema<JitRequestsCreateOrUpdateRequest>;
-
-/** Resource tags */
-export type JitRequestsCreateOrUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const JitRequestsCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<JitRequestsCreateOrUpdateResponseTagsMap>;
-
-/** The type of identity that created the resource. */
-export type JitRequestsCreateOrUpdateResponseSystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const JitRequestsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type JitRequestsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const JitRequestsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface JitRequestsCreateOrUpdateResponseSystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: JitRequestsCreateOrUpdateResponseSystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: JitRequestsCreateOrUpdateResponseSystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const JitRequestsCreateOrUpdateResponseSystemData =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      createdBy: S.optional(S.String),
-      createdByType: S.optional(
-        JitRequestsCreateOrUpdateResponseSystemDataCreatedByType,
-      ),
-      createdAt: S.optional(S.String),
-      lastModifiedBy: S.optional(S.String),
-      lastModifiedByType: S.optional(
-        JitRequestsCreateOrUpdateResponseSystemDataLastModifiedByType,
-      ),
-      lastModifiedAt: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "JitRequestsCreateOrUpdateResponseSystemData",
-  }) as any as S.Schema<JitRequestsCreateOrUpdateResponseSystemData>;
-
-/** The JIT authorization policies. */
-export type JitRequestPropertiesJitAuthorizationPoliciesList =
-  Array<JitAuthorizationPolicies>;
-export const JitRequestPropertiesJitAuthorizationPoliciesList =
-  /*@__PURE__*/ S.Array(
-    JitAuthorizationPolicies,
-  ) as any as S.Schema<JitRequestPropertiesJitAuthorizationPoliciesList>;
-
-/** The JIT request state. */
-export type JitRequestState =
-  | "NotSpecified"
-  | "Pending"
-  | "Approved"
-  | "Denied"
-  | "Failed"
-  | "Canceled"
-  | "Expired"
-  | "Timeout";
-export const JitRequestState = /*@__PURE__*/ S.String;
-
-/** Information about JIT request properties */
-export interface JitRequestProperties {
-  /** The parent application id. */
-  applicationResourceId: string;
-  /** The publisher tenant id. */
-  publisherTenantId?: string;
-  /** The JIT authorization policies. */
-  jitAuthorizationPolicies: JitRequestPropertiesJitAuthorizationPoliciesList;
-  /** The JIT request properties. */
-  jitSchedulingPolicy: JitSchedulingPolicy;
-  /** The JIT request provisioning state. */
-  provisioningState?: ProvisioningState;
-  /** The JIT request state. */
-  jitRequestState?: JitRequestState;
-  /** The client entity that created the JIT request. */
-  createdBy?: ApplicationClientDetails;
-  /** The client entity that last updated the JIT request. */
-  updatedBy?: ApplicationClientDetails;
-}
-export const JitRequestProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    applicationResourceId: S.String,
-    publisherTenantId: S.optional(S.String),
-    jitAuthorizationPolicies: JitRequestPropertiesJitAuthorizationPoliciesList,
-    jitSchedulingPolicy: JitSchedulingPolicy,
-    provisioningState: S.optional(ProvisioningState),
-    jitRequestState: S.optional(JitRequestState),
-    createdBy: S.optional(ApplicationClientDetails),
-    updatedBy: S.optional(ApplicationClientDetails),
-  }),
-).annotate({
-  identifier: "JitRequestProperties",
-}) as any as S.Schema<JitRequestProperties>;
-
-export interface JitRequestsCreateOrUpdateResponse {
-  /** Resource ID */
-  id?: string;
-  /** Resource name */
-  name?: string;
-  /** Resource type */
-  type?: string;
-  /** Resource location */
-  location?: string;
-  /** Resource tags */
-  tags?: JitRequestsCreateOrUpdateResponseTagsMap;
-  /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: JitRequestsCreateOrUpdateResponseSystemData;
-  /** The JIT request properties. */
-  properties?: JitRequestProperties;
-}
-export const JitRequestsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    location: S.optional(S.String),
-    tags: S.optional(JitRequestsCreateOrUpdateResponseTagsMap),
-    systemData: S.optional(JitRequestsCreateOrUpdateResponseSystemData),
-    properties: S.optional(JitRequestProperties),
-  }),
-).annotate({
-  identifier: "JitRequestsCreateOrUpdateResponse",
-}) as any as S.Schema<JitRequestsCreateOrUpdateResponse>;
-
-export interface JitRequestsDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the JIT request. */
-  jitRequestName: string;
-}
-export const JitRequestsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    jitRequestName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Solutions/jitRequests/{jitRequestName}",
-      code: 200,
-      apiVersion: "2021-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "JitRequestsDeleteRequest",
-}) as any as S.Schema<JitRequestsDeleteRequest>;
-
-export interface JitRequestsDeleteResponse {}
-export const JitRequestsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "JitRequestsDeleteResponse",
-}) as any as S.Schema<JitRequestsDeleteResponse>;
-
-export interface JitRequestsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the JIT request. */
-  jitRequestName: string;
-}
-export const JitRequestsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    jitRequestName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Solutions/jitRequests/{jitRequestName}",
-      code: 200,
-      apiVersion: "2021-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "JitRequestsGetRequest",
-}) as any as S.Schema<JitRequestsGetRequest>;
-
-/** Resource tags */
-export type JitRequestsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const JitRequestsGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<JitRequestsGetResponseTagsMap>;
-
-/** The type of identity that created the resource. */
-export type JitRequestsGetResponseSystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const JitRequestsGetResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type JitRequestsGetResponseSystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const JitRequestsGetResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface JitRequestsGetResponseSystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: JitRequestsGetResponseSystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: JitRequestsGetResponseSystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const JitRequestsGetResponseSystemData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createdBy: S.optional(S.String),
-    createdByType: S.optional(JitRequestsGetResponseSystemDataCreatedByType),
-    createdAt: S.optional(S.String),
-    lastModifiedBy: S.optional(S.String),
-    lastModifiedByType: S.optional(
-      JitRequestsGetResponseSystemDataLastModifiedByType,
-    ),
-    lastModifiedAt: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "JitRequestsGetResponseSystemData",
-}) as any as S.Schema<JitRequestsGetResponseSystemData>;
-
-export interface JitRequestsGetResponse {
-  /** Resource ID */
-  id?: string;
-  /** Resource name */
-  name?: string;
-  /** Resource type */
-  type?: string;
-  /** Resource location */
-  location?: string;
-  /** Resource tags */
-  tags?: JitRequestsGetResponseTagsMap;
-  /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: JitRequestsGetResponseSystemData;
-  /** The JIT request properties. */
-  properties?: JitRequestProperties;
-}
-export const JitRequestsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    location: S.optional(S.String),
-    tags: S.optional(JitRequestsGetResponseTagsMap),
-    systemData: S.optional(JitRequestsGetResponseSystemData),
-    properties: S.optional(JitRequestProperties),
-  }),
-).annotate({
-  identifier: "JitRequestsGetResponse",
-}) as any as S.Schema<JitRequestsGetResponse>;
-
-export interface JitRequestsListByResourceGroupRequest {
+export interface ListJitRequestByResourceGroupRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
 }
-export const JitRequestsListByResourceGroupRequest = /*@__PURE__*/ S.suspend(
+export const ListJitRequestByResourceGroupRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -3069,8 +2477,8 @@ export const JitRequestsListByResourceGroupRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "JitRequestsListByResourceGroupRequest",
-}) as any as S.Schema<JitRequestsListByResourceGroupRequest>;
+  identifier: "ListJitRequestByResourceGroupRequest",
+}) as any as S.Schema<ListJitRequestByResourceGroupRequest>;
 
 /** Resource tags */
 export type JitRequestDefinitionTagsMap = { [key: string]: string | undefined };
@@ -3181,149 +2589,24 @@ export const JitRequestDefinitionListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "JitRequestDefinitionListResult",
 }) as any as S.Schema<JitRequestDefinitionListResult>;
 
-export interface JitRequestsListBySubscriptionRequest {
+export interface ListJitRequestBySubscriptionRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
 }
-export const JitRequestsListBySubscriptionRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Solutions/jitRequests",
-        code: 200,
-        apiVersion: "2021-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "JitRequestsListBySubscriptionRequest",
-}) as any as S.Schema<JitRequestsListBySubscriptionRequest>;
-
-/** Jit request tags */
-export type JitRequestsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const JitRequestsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<JitRequestsUpdateRequestTagsMap>;
-
-export interface JitRequestsUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the JIT request. */
-  jitRequestName: string;
-  /** Jit request tags */
-  tags?: JitRequestsUpdateRequestTagsMap;
-}
-export const JitRequestsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListJitRequestBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    jitRequestName: S.String.pipe(T.Label()),
-    tags: S.optional(JitRequestsUpdateRequestTagsMap),
   }).pipe(
     T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Solutions/jitRequests/{jitRequestName}",
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Solutions/jitRequests",
       code: 200,
       apiVersion: "2021-07-01",
     }),
   ),
 ).annotate({
-  identifier: "JitRequestsUpdateRequest",
-}) as any as S.Schema<JitRequestsUpdateRequest>;
-
-/** Resource tags */
-export type JitRequestsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const JitRequestsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<JitRequestsUpdateResponseTagsMap>;
-
-/** The type of identity that created the resource. */
-export type JitRequestsUpdateResponseSystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const JitRequestsUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type JitRequestsUpdateResponseSystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const JitRequestsUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface JitRequestsUpdateResponseSystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: JitRequestsUpdateResponseSystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: JitRequestsUpdateResponseSystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const JitRequestsUpdateResponseSystemData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createdBy: S.optional(S.String),
-    createdByType: S.optional(JitRequestsUpdateResponseSystemDataCreatedByType),
-    createdAt: S.optional(S.String),
-    lastModifiedBy: S.optional(S.String),
-    lastModifiedByType: S.optional(
-      JitRequestsUpdateResponseSystemDataLastModifiedByType,
-    ),
-    lastModifiedAt: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "JitRequestsUpdateResponseSystemData",
-}) as any as S.Schema<JitRequestsUpdateResponseSystemData>;
-
-export interface JitRequestsUpdateResponse {
-  /** Resource ID */
-  id?: string;
-  /** Resource name */
-  name?: string;
-  /** Resource type */
-  type?: string;
-  /** Resource location */
-  location?: string;
-  /** Resource tags */
-  tags?: JitRequestsUpdateResponseTagsMap;
-  /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: JitRequestsUpdateResponseSystemData;
-  /** The JIT request properties. */
-  properties?: JitRequestProperties;
-}
-export const JitRequestsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    location: S.optional(S.String),
-    tags: S.optional(JitRequestsUpdateResponseTagsMap),
-    systemData: S.optional(JitRequestsUpdateResponseSystemData),
-    properties: S.optional(JitRequestProperties),
-  }),
-).annotate({
-  identifier: "JitRequestsUpdateResponse",
-}) as any as S.Schema<JitRequestsUpdateResponse>;
+  identifier: "ListJitRequestBySubscriptionRequest",
+}) as any as S.Schema<ListJitRequestBySubscriptionRequest>;
 
 export interface ListOperationsRequest {}
 export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
@@ -3413,6 +2696,717 @@ export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListOperationsResponse",
 }) as any as S.Schema<ListOperationsResponse>;
 
+export interface RefreshApplicationPermissionsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed application. */
+  applicationName: string;
+}
+export const RefreshApplicationPermissionsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      applicationName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Solutions/applications/{applicationName}/refreshPermissions",
+        code: 200,
+        apiVersion: "2021-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "RefreshApplicationPermissionsRequest",
+}) as any as S.Schema<RefreshApplicationPermissionsRequest>;
+
+export interface RefreshApplicationPermissionsResponse {}
+export const RefreshApplicationPermissionsResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "RefreshApplicationPermissionsResponse",
+}) as any as S.Schema<RefreshApplicationPermissionsResponse>;
+
+/** Resource tags */
+export type UpdateApplicationRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateApplicationRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateApplicationRequestTagsMap>;
+
+/** Plan for the managed application. */
+export interface PlanPatchable {
+  /** The plan name. */
+  name?: string;
+  /** The publisher ID. */
+  publisher?: string;
+  /** The product code. */
+  product?: string;
+  /** The promotion code. */
+  promotionCode?: string;
+  /** The plan's version. */
+  version?: string;
+}
+export const PlanPatchable = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    publisher: S.optional(S.String),
+    product: S.optional(S.String),
+    promotionCode: S.optional(S.String),
+    version: S.optional(S.String),
+  }),
+).annotate({ identifier: "PlanPatchable" }) as any as S.Schema<PlanPatchable>;
+
+export interface UpdateApplicationRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed application. */
+  applicationName: string;
+  /** Resource location */
+  location?: string;
+  /** Resource tags */
+  tags?: UpdateApplicationRequestTagsMap;
+  /** ID of the resource that manages this resource. */
+  managedBy?: string;
+  /** The SKU of the resource. */
+  sku?: Sku;
+  /** The managed application properties. */
+  properties?: ApplicationPropertiesInput;
+  /** The plan information. */
+  plan?: PlanPatchable;
+  /** The kind of the managed application. Allowed values are MarketPlace and ServiceCatalog. */
+  kind?: string;
+  /** The identity of the resource. */
+  identity?: IdentityInput;
+}
+export const UpdateApplicationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    applicationName: S.String.pipe(T.Label()),
+    location: S.optional(S.String),
+    tags: S.optional(UpdateApplicationRequestTagsMap),
+    managedBy: S.optional(S.String),
+    sku: S.optional(Sku),
+    properties: S.optional(ApplicationPropertiesInput),
+    plan: S.optional(PlanPatchable),
+    kind: S.optional(S.String),
+    identity: S.optional(IdentityInput),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Solutions/applications/{applicationName}",
+      code: 200,
+      apiVersion: "2021-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateApplicationRequest",
+}) as any as S.Schema<UpdateApplicationRequest>;
+
+/** Resource tags */
+export type UpdateApplicationResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateApplicationResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateApplicationResponseTagsMap>;
+
+/** The type of identity that created the resource. */
+export type UpdateApplicationResponseSystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const UpdateApplicationResponseSystemDataCreatedByType =
+  /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type UpdateApplicationResponseSystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const UpdateApplicationResponseSystemDataLastModifiedByType =
+  /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface UpdateApplicationResponseSystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: UpdateApplicationResponseSystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: UpdateApplicationResponseSystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const UpdateApplicationResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdBy: S.optional(S.String),
+    createdByType: S.optional(UpdateApplicationResponseSystemDataCreatedByType),
+    createdAt: S.optional(S.String),
+    lastModifiedBy: S.optional(S.String),
+    lastModifiedByType: S.optional(
+      UpdateApplicationResponseSystemDataLastModifiedByType,
+    ),
+    lastModifiedAt: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "UpdateApplicationResponseSystemData",
+}) as any as S.Schema<UpdateApplicationResponseSystemData>;
+
+export interface UpdateApplicationResponse {
+  /** Resource ID */
+  id?: string;
+  /** Resource name */
+  name?: string;
+  /** Resource type */
+  type?: string;
+  /** Resource location */
+  location?: string;
+  /** Resource tags */
+  tags?: UpdateApplicationResponseTagsMap;
+  /** Metadata pertaining to creation and last modification of the resource. */
+  systemData?: UpdateApplicationResponseSystemData;
+  /** ID of the resource that manages this resource. */
+  managedBy?: string;
+  /** The SKU of the resource. */
+  sku?: Sku;
+  /** The managed application properties. */
+  properties?: ApplicationProperties;
+  /** The plan information. */
+  plan?: PlanPatchable;
+  /** The kind of the managed application. Allowed values are MarketPlace and ServiceCatalog. */
+  kind?: string;
+  /** The identity of the resource. */
+  identity?: Identity;
+}
+export const UpdateApplicationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    location: S.optional(S.String),
+    tags: S.optional(UpdateApplicationResponseTagsMap),
+    systemData: S.optional(UpdateApplicationResponseSystemData),
+    managedBy: S.optional(S.String),
+    sku: S.optional(Sku),
+    properties: S.optional(ApplicationProperties),
+    plan: S.optional(PlanPatchable),
+    kind: S.optional(S.String),
+    identity: S.optional(Identity),
+  }),
+).annotate({
+  identifier: "UpdateApplicationResponse",
+}) as any as S.Schema<UpdateApplicationResponse>;
+
+/** The JIT request metadata. */
+export interface JitRequestMetadata {
+  /** The origin request id. */
+  originRequestId?: string;
+  /** The requestor id. */
+  requestorId?: string;
+  /** The publisher's tenant name. */
+  tenantDisplayName?: string;
+  /** The subject display name. */
+  subjectDisplayName?: string;
+}
+export const JitRequestMetadata = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    originRequestId: S.optional(S.String),
+    requestorId: S.optional(S.String),
+    tenantDisplayName: S.optional(S.String),
+    subjectDisplayName: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "JitRequestMetadata",
+}) as any as S.Schema<JitRequestMetadata>;
+
+/** The JIT status. */
+export type Status = "NotSpecified" | "Elevate" | "Remove";
+export const Status = /*@__PURE__*/ S.String;
+
+/** The sub status. */
+export type SubStatus =
+  | "NotSpecified"
+  | "Approved"
+  | "Denied"
+  | "Failed"
+  | "Expired"
+  | "Timeout";
+export const SubStatus = /*@__PURE__*/ S.String;
+
+export interface UpdateApplicationAccessRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed application. */
+  applicationName: string;
+  /** The approver name. */
+  approver?: string;
+  /** The JIT request metadata. */
+  metadata: JitRequestMetadata;
+  /** The JIT status. */
+  status: Status | (string & {});
+  /** The JIT status. */
+  subStatus: SubStatus | (string & {});
+}
+export const UpdateApplicationAccessRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    applicationName: S.String.pipe(T.Label()),
+    approver: S.optional(S.String),
+    metadata: JitRequestMetadata,
+    status: Status,
+    subStatus: SubStatus,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Solutions/applications/{applicationName}/updateAccess",
+      code: 200,
+      apiVersion: "2021-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateApplicationAccessRequest",
+}) as any as S.Schema<UpdateApplicationAccessRequest>;
+
+export interface UpdateApplicationAccessResponse {}
+export const UpdateApplicationAccessResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "UpdateApplicationAccessResponse",
+}) as any as S.Schema<UpdateApplicationAccessResponse>;
+
+/** Resource tags */
+export type UpdateApplicationByIdRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateApplicationByIdRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateApplicationByIdRequestTagsMap>;
+
+export interface UpdateApplicationByIdRequest {
+  /** The fully qualified ID of the managed application, including the managed application name and the managed application resource type. Use the format, /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applications/{application-name} */
+  applicationId: string;
+  /** Resource location */
+  location?: string;
+  /** Resource tags */
+  tags?: UpdateApplicationByIdRequestTagsMap;
+  /** ID of the resource that manages this resource. */
+  managedBy?: string;
+  /** The SKU of the resource. */
+  sku?: Sku;
+  /** The managed application properties. */
+  properties?: ApplicationPropertiesInput;
+  /** The plan information. */
+  plan?: PlanPatchable;
+  /** The kind of the managed application. Allowed values are MarketPlace and ServiceCatalog. */
+  kind?: string;
+  /** The identity of the resource. */
+  identity?: IdentityInput;
+}
+export const UpdateApplicationByIdRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    applicationId: S.String.pipe(T.Label()),
+    location: S.optional(S.String),
+    tags: S.optional(UpdateApplicationByIdRequestTagsMap),
+    managedBy: S.optional(S.String),
+    sku: S.optional(Sku),
+    properties: S.optional(ApplicationPropertiesInput),
+    plan: S.optional(PlanPatchable),
+    kind: S.optional(S.String),
+    identity: S.optional(IdentityInput),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/{applicationId}",
+      code: 200,
+      apiVersion: "2021-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateApplicationByIdRequest",
+}) as any as S.Schema<UpdateApplicationByIdRequest>;
+
+/** Resource tags */
+export type UpdateApplicationByIdResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateApplicationByIdResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateApplicationByIdResponseTagsMap>;
+
+/** The type of identity that created the resource. */
+export type UpdateApplicationByIdResponseSystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const UpdateApplicationByIdResponseSystemDataCreatedByType =
+  /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type UpdateApplicationByIdResponseSystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const UpdateApplicationByIdResponseSystemDataLastModifiedByType =
+  /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface UpdateApplicationByIdResponseSystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: UpdateApplicationByIdResponseSystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: UpdateApplicationByIdResponseSystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const UpdateApplicationByIdResponseSystemData = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      createdBy: S.optional(S.String),
+      createdByType: S.optional(
+        UpdateApplicationByIdResponseSystemDataCreatedByType,
+      ),
+      createdAt: S.optional(S.String),
+      lastModifiedBy: S.optional(S.String),
+      lastModifiedByType: S.optional(
+        UpdateApplicationByIdResponseSystemDataLastModifiedByType,
+      ),
+      lastModifiedAt: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "UpdateApplicationByIdResponseSystemData",
+}) as any as S.Schema<UpdateApplicationByIdResponseSystemData>;
+
+export interface UpdateApplicationByIdResponse {
+  /** Resource ID */
+  id?: string;
+  /** Resource name */
+  name?: string;
+  /** Resource type */
+  type?: string;
+  /** Resource location */
+  location?: string;
+  /** Resource tags */
+  tags?: UpdateApplicationByIdResponseTagsMap;
+  /** Metadata pertaining to creation and last modification of the resource. */
+  systemData?: UpdateApplicationByIdResponseSystemData;
+  /** ID of the resource that manages this resource. */
+  managedBy?: string;
+  /** The SKU of the resource. */
+  sku?: Sku;
+  /** The managed application properties. */
+  properties?: ApplicationProperties;
+  /** The plan information. */
+  plan?: PlanPatchable;
+  /** The kind of the managed application. Allowed values are MarketPlace and ServiceCatalog. */
+  kind?: string;
+  /** The identity of the resource. */
+  identity?: Identity;
+}
+export const UpdateApplicationByIdResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    location: S.optional(S.String),
+    tags: S.optional(UpdateApplicationByIdResponseTagsMap),
+    systemData: S.optional(UpdateApplicationByIdResponseSystemData),
+    managedBy: S.optional(S.String),
+    sku: S.optional(Sku),
+    properties: S.optional(ApplicationProperties),
+    plan: S.optional(PlanPatchable),
+    kind: S.optional(S.String),
+    identity: S.optional(Identity),
+  }),
+).annotate({
+  identifier: "UpdateApplicationByIdResponse",
+}) as any as S.Schema<UpdateApplicationByIdResponse>;
+
+/** Application definition tags */
+export type UpdateApplicationDefinitionRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateApplicationDefinitionRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateApplicationDefinitionRequestTagsMap>;
+
+export interface UpdateApplicationDefinitionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed application definition. */
+  applicationDefinitionName: string;
+  /** Application definition tags */
+  tags?: UpdateApplicationDefinitionRequestTagsMap;
+}
+export const UpdateApplicationDefinitionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    applicationDefinitionName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateApplicationDefinitionRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Solutions/applicationDefinitions/{applicationDefinitionName}",
+      code: 200,
+      apiVersion: "2021-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateApplicationDefinitionRequest",
+}) as any as S.Schema<UpdateApplicationDefinitionRequest>;
+
+/** Resource tags */
+export type UpdateApplicationDefinitionResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateApplicationDefinitionResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<UpdateApplicationDefinitionResponseTagsMap>;
+
+/** The type of identity that created the resource. */
+export type UpdateApplicationDefinitionResponseSystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const UpdateApplicationDefinitionResponseSystemDataCreatedByType =
+  /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type UpdateApplicationDefinitionResponseSystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const UpdateApplicationDefinitionResponseSystemDataLastModifiedByType =
+  /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface UpdateApplicationDefinitionResponseSystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: UpdateApplicationDefinitionResponseSystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: UpdateApplicationDefinitionResponseSystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const UpdateApplicationDefinitionResponseSystemData =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      createdBy: S.optional(S.String),
+      createdByType: S.optional(
+        UpdateApplicationDefinitionResponseSystemDataCreatedByType,
+      ),
+      createdAt: S.optional(S.String),
+      lastModifiedBy: S.optional(S.String),
+      lastModifiedByType: S.optional(
+        UpdateApplicationDefinitionResponseSystemDataLastModifiedByType,
+      ),
+      lastModifiedAt: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "UpdateApplicationDefinitionResponseSystemData",
+  }) as any as S.Schema<UpdateApplicationDefinitionResponseSystemData>;
+
+export interface UpdateApplicationDefinitionResponse {
+  /** Resource ID */
+  id?: string;
+  /** Resource name */
+  name?: string;
+  /** Resource type */
+  type?: string;
+  /** Resource location */
+  location?: string;
+  /** Resource tags */
+  tags?: UpdateApplicationDefinitionResponseTagsMap;
+  /** Metadata pertaining to creation and last modification of the resource. */
+  systemData?: UpdateApplicationDefinitionResponseSystemData;
+  /** ID of the resource that manages this resource. */
+  managedBy?: string;
+  /** The SKU of the resource. */
+  sku?: Sku;
+  /** The managed application definition properties. */
+  properties: ApplicationDefinitionProperties;
+}
+export const UpdateApplicationDefinitionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    location: S.optional(S.String),
+    tags: S.optional(UpdateApplicationDefinitionResponseTagsMap),
+    systemData: S.optional(UpdateApplicationDefinitionResponseSystemData),
+    managedBy: S.optional(S.String),
+    sku: S.optional(Sku),
+    properties: ApplicationDefinitionProperties,
+  }),
+).annotate({
+  identifier: "UpdateApplicationDefinitionResponse",
+}) as any as S.Schema<UpdateApplicationDefinitionResponse>;
+
+/** Jit request tags */
+export type UpdateJitRequestRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateJitRequestRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateJitRequestRequestTagsMap>;
+
+export interface UpdateJitRequestRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the JIT request. */
+  jitRequestName: string;
+  /** Jit request tags */
+  tags?: UpdateJitRequestRequestTagsMap;
+}
+export const UpdateJitRequestRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    jitRequestName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateJitRequestRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Solutions/jitRequests/{jitRequestName}",
+      code: 200,
+      apiVersion: "2021-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateJitRequestRequest",
+}) as any as S.Schema<UpdateJitRequestRequest>;
+
+/** Resource tags */
+export type UpdateJitRequestResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateJitRequestResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateJitRequestResponseTagsMap>;
+
+/** The type of identity that created the resource. */
+export type UpdateJitRequestResponseSystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const UpdateJitRequestResponseSystemDataCreatedByType =
+  /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type UpdateJitRequestResponseSystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const UpdateJitRequestResponseSystemDataLastModifiedByType =
+  /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface UpdateJitRequestResponseSystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: UpdateJitRequestResponseSystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: UpdateJitRequestResponseSystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const UpdateJitRequestResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdBy: S.optional(S.String),
+    createdByType: S.optional(UpdateJitRequestResponseSystemDataCreatedByType),
+    createdAt: S.optional(S.String),
+    lastModifiedBy: S.optional(S.String),
+    lastModifiedByType: S.optional(
+      UpdateJitRequestResponseSystemDataLastModifiedByType,
+    ),
+    lastModifiedAt: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "UpdateJitRequestResponseSystemData",
+}) as any as S.Schema<UpdateJitRequestResponseSystemData>;
+
+export interface UpdateJitRequestResponse {
+  /** Resource ID */
+  id?: string;
+  /** Resource name */
+  name?: string;
+  /** Resource type */
+  type?: string;
+  /** Resource location */
+  location?: string;
+  /** Resource tags */
+  tags?: UpdateJitRequestResponseTagsMap;
+  /** Metadata pertaining to creation and last modification of the resource. */
+  systemData?: UpdateJitRequestResponseSystemData;
+  /** The JIT request properties. */
+  properties?: JitRequestProperties;
+}
+export const UpdateJitRequestResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    location: S.optional(S.String),
+    tags: S.optional(UpdateJitRequestResponseTagsMap),
+    systemData: S.optional(UpdateJitRequestResponseSystemData),
+    properties: S.optional(JitRequestProperties),
+  }),
+).annotate({
+  identifier: "UpdateJitRequestResponse",
+}) as any as S.Schema<UpdateJitRequestResponse>;
+
 export type ApplicationDefinitionsCreateOrUpdateError = AzureOpError;
 /** Creates or updates a managed application definition. */
 export const ApplicationDefinitionsCreateOrUpdate: API.OperationMethod<
@@ -3423,81 +3417,6 @@ export const ApplicationDefinitionsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ApplicationDefinitionsCreateOrUpdateRequest,
   output: ApplicationDefinitionsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationDefinitionsDeleteError = AzureOpError;
-/** Deletes the managed application definition. */
-export const ApplicationDefinitionsDelete: API.OperationMethod<
-  ApplicationDefinitionsDeleteRequest,
-  ApplicationDefinitionsDeleteResponse,
-  ApplicationDefinitionsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationDefinitionsDeleteRequest,
-  output: ApplicationDefinitionsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationDefinitionsGetError = AzureOpError;
-/** Gets the managed application definition. */
-export const ApplicationDefinitionsGet: API.OperationMethod<
-  ApplicationDefinitionsGetRequest,
-  ApplicationDefinitionsGetResponse,
-  ApplicationDefinitionsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationDefinitionsGetRequest,
-  output: ApplicationDefinitionsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationDefinitionsListByResourceGroupError = AzureOpError;
-/** Lists the managed application definitions in a resource group. */
-export const ApplicationDefinitionsListByResourceGroup: API.OperationMethod<
-  ApplicationDefinitionsListByResourceGroupRequest,
-  ApplicationDefinitionListResult,
-  ApplicationDefinitionsListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationDefinitionsListByResourceGroupRequest,
-  output: ApplicationDefinitionListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationDefinitionsListBySubscriptionError = AzureOpError;
-/** Lists all the application definitions within a subscription. */
-export const ApplicationDefinitionsListBySubscription: API.OperationMethod<
-  ApplicationDefinitionsListBySubscriptionRequest,
-  ApplicationDefinitionListResult,
-  ApplicationDefinitionsListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationDefinitionsListBySubscriptionRequest,
-  output: ApplicationDefinitionListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationDefinitionsUpdateError = AzureOpError;
-/** Updates the managed application definition. */
-export const ApplicationDefinitionsUpdate: API.OperationMethod<
-  ApplicationDefinitionsUpdateRequest,
-  ApplicationDefinitionsUpdateResponse,
-  ApplicationDefinitionsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationDefinitionsUpdateRequest,
-  output: ApplicationDefinitionsUpdateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3533,181 +3452,121 @@ export const ApplicationsCreateOrUpdateById: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ApplicationsDeleteError = AzureOpError;
+export type DeleteApplicationError = AzureOpError;
 /** Deletes the managed application. */
-export const ApplicationsDelete: API.OperationMethod<
-  ApplicationsDeleteRequest,
-  ApplicationsDeleteResponse,
-  ApplicationsDeleteError,
+export const DeleteApplication: API.OperationMethod<
+  DeleteApplicationRequest,
+  DeleteApplicationResponse,
+  DeleteApplicationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationsDeleteRequest,
-  output: ApplicationsDeleteResponse,
+  input: DeleteApplicationRequest,
+  output: DeleteApplicationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ApplicationsDeleteByIdError = AzureOpError;
+export type DeleteApplicationByIdError = AzureOpError;
 /** Deletes the managed application. */
-export const ApplicationsDeleteById: API.OperationMethod<
-  ApplicationsDeleteByIdRequest,
-  ApplicationsDeleteByIdResponse,
-  ApplicationsDeleteByIdError,
+export const DeleteApplicationById: API.OperationMethod<
+  DeleteApplicationByIdRequest,
+  DeleteApplicationByIdResponse,
+  DeleteApplicationByIdError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationsDeleteByIdRequest,
-  output: ApplicationsDeleteByIdResponse,
+  input: DeleteApplicationByIdRequest,
+  output: DeleteApplicationByIdResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ApplicationsGetError = AzureOpError;
+export type DeleteApplicationDefinitionError = AzureOpError;
+/** Deletes the managed application definition. */
+export const DeleteApplicationDefinition: API.OperationMethod<
+  DeleteApplicationDefinitionRequest,
+  DeleteApplicationDefinitionResponse,
+  DeleteApplicationDefinitionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteApplicationDefinitionRequest,
+  output: DeleteApplicationDefinitionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteJitRequestError = AzureOpError;
+/** Deletes the JIT request. */
+export const DeleteJitRequest: API.OperationMethod<
+  DeleteJitRequestRequest,
+  DeleteJitRequestResponse,
+  DeleteJitRequestError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteJitRequestRequest,
+  output: DeleteJitRequestResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetApplicationError = AzureOpError;
 /** Gets the managed application. */
-export const ApplicationsGet: API.OperationMethod<
-  ApplicationsGetRequest,
-  ApplicationsGetResponse,
-  ApplicationsGetError,
+export const GetApplication: API.OperationMethod<
+  GetApplicationRequest,
+  GetApplicationResponse,
+  GetApplicationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationsGetRequest,
-  output: ApplicationsGetResponse,
+  input: GetApplicationRequest,
+  output: GetApplicationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ApplicationsGetByIdError = AzureOpError;
+export type GetApplicationByIdError = AzureOpError;
 /** Gets the managed application. */
-export const ApplicationsGetById: API.OperationMethod<
-  ApplicationsGetByIdRequest,
-  ApplicationsGetByIdResponse,
-  ApplicationsGetByIdError,
+export const GetApplicationById: API.OperationMethod<
+  GetApplicationByIdRequest,
+  GetApplicationByIdResponse,
+  GetApplicationByIdError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationsGetByIdRequest,
-  output: ApplicationsGetByIdResponse,
+  input: GetApplicationByIdRequest,
+  output: GetApplicationByIdResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ApplicationsListAllowedUpgradePlansError = AzureOpError;
-/** List allowed upgrade plans for application. */
-export const ApplicationsListAllowedUpgradePlans: API.OperationMethod<
-  ApplicationsListAllowedUpgradePlansRequest,
-  AllowedUpgradePlansResult,
-  ApplicationsListAllowedUpgradePlansError,
+export type GetApplicationDefinitionError = AzureOpError;
+/** Gets the managed application definition. */
+export const GetApplicationDefinition: API.OperationMethod<
+  GetApplicationDefinitionRequest,
+  GetApplicationDefinitionResponse,
+  GetApplicationDefinitionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationsListAllowedUpgradePlansRequest,
-  output: AllowedUpgradePlansResult,
+  input: GetApplicationDefinitionRequest,
+  output: GetApplicationDefinitionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ApplicationsListByResourceGroupError = AzureOpError;
-/** Lists all the applications within a resource group. */
-export const ApplicationsListByResourceGroup: API.OperationMethod<
-  ApplicationsListByResourceGroupRequest,
-  ApplicationListResult,
-  ApplicationsListByResourceGroupError,
+export type GetJitRequestError = AzureOpError;
+/** Gets the JIT request. */
+export const GetJitRequest: API.OperationMethod<
+  GetJitRequestRequest,
+  GetJitRequestResponse,
+  GetJitRequestError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationsListByResourceGroupRequest,
-  output: ApplicationListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationsListBySubscriptionError = AzureOpError;
-/** Lists all the applications within a subscription. */
-export const ApplicationsListBySubscription: API.OperationMethod<
-  ApplicationsListBySubscriptionRequest,
-  ApplicationListResult,
-  ApplicationsListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationsListBySubscriptionRequest,
-  output: ApplicationListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationsListTokensError = AzureOpError;
-/** List tokens for application. */
-export const ApplicationsListTokens: API.OperationMethod<
-  ApplicationsListTokensRequest,
-  ManagedIdentityTokenResult,
-  ApplicationsListTokensError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationsListTokensRequest,
-  output: ManagedIdentityTokenResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationsRefreshPermissionsError = AzureOpError;
-/** Refresh Permissions for application. */
-export const ApplicationsRefreshPermissions: API.OperationMethod<
-  ApplicationsRefreshPermissionsRequest,
-  ApplicationsRefreshPermissionsResponse,
-  ApplicationsRefreshPermissionsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationsRefreshPermissionsRequest,
-  output: ApplicationsRefreshPermissionsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationsUpdateError = AzureOpError;
-/** Updates an existing managed application. */
-export const ApplicationsUpdate: API.OperationMethod<
-  ApplicationsUpdateRequest,
-  ApplicationsUpdateResponse,
-  ApplicationsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationsUpdateRequest,
-  output: ApplicationsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationsUpdateAccessError = AzureOpError;
-/** Update access for application. */
-export const ApplicationsUpdateAccess: API.OperationMethod<
-  ApplicationsUpdateAccessRequest,
-  ApplicationsUpdateAccessResponse,
-  ApplicationsUpdateAccessError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationsUpdateAccessRequest,
-  output: ApplicationsUpdateAccessResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationsUpdateByIdError = AzureOpError;
-/** Updates an existing managed application. */
-export const ApplicationsUpdateById: API.OperationMethod<
-  ApplicationsUpdateByIdRequest,
-  ApplicationsUpdateByIdResponse,
-  ApplicationsUpdateByIdError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationsUpdateByIdRequest,
-  output: ApplicationsUpdateByIdResponse,
+  input: GetJitRequestRequest,
+  output: GetJitRequestResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3728,76 +3587,121 @@ export const JitRequestsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type JitRequestsDeleteError = AzureOpError;
-/** Deletes the JIT request. */
-export const JitRequestsDelete: API.OperationMethod<
-  JitRequestsDeleteRequest,
-  JitRequestsDeleteResponse,
-  JitRequestsDeleteError,
+export type ListApplicationAllowedUpgradePlansError = AzureOpError;
+/** List allowed upgrade plans for application. */
+export const ListApplicationAllowedUpgradePlans: API.OperationMethod<
+  ListApplicationAllowedUpgradePlansRequest,
+  AllowedUpgradePlansResult,
+  ListApplicationAllowedUpgradePlansError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: JitRequestsDeleteRequest,
-  output: JitRequestsDeleteResponse,
+  input: ListApplicationAllowedUpgradePlansRequest,
+  output: AllowedUpgradePlansResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type JitRequestsGetError = AzureOpError;
-/** Gets the JIT request. */
-export const JitRequestsGet: API.OperationMethod<
-  JitRequestsGetRequest,
-  JitRequestsGetResponse,
-  JitRequestsGetError,
+export type ListApplicationByResourceGroupError = AzureOpError;
+/** Lists all the applications within a resource group. */
+export const ListApplicationByResourceGroup: API.OperationMethod<
+  ListApplicationByResourceGroupRequest,
+  ApplicationListResult,
+  ListApplicationByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: JitRequestsGetRequest,
-  output: JitRequestsGetResponse,
+  input: ListApplicationByResourceGroupRequest,
+  output: ApplicationListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type JitRequestsListByResourceGroupError = AzureOpError;
+export type ListApplicationBySubscriptionError = AzureOpError;
+/** Lists all the applications within a subscription. */
+export const ListApplicationBySubscription: API.OperationMethod<
+  ListApplicationBySubscriptionRequest,
+  ApplicationListResult,
+  ListApplicationBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListApplicationBySubscriptionRequest,
+  output: ApplicationListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListApplicationDefinitionByResourceGroupError = AzureOpError;
+/** Lists the managed application definitions in a resource group. */
+export const ListApplicationDefinitionByResourceGroup: API.OperationMethod<
+  ListApplicationDefinitionByResourceGroupRequest,
+  ApplicationDefinitionListResult,
+  ListApplicationDefinitionByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListApplicationDefinitionByResourceGroupRequest,
+  output: ApplicationDefinitionListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListApplicationDefinitionBySubscriptionError = AzureOpError;
+/** Lists all the application definitions within a subscription. */
+export const ListApplicationDefinitionBySubscription: API.OperationMethod<
+  ListApplicationDefinitionBySubscriptionRequest,
+  ApplicationDefinitionListResult,
+  ListApplicationDefinitionBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListApplicationDefinitionBySubscriptionRequest,
+  output: ApplicationDefinitionListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListApplicationTokensError = AzureOpError;
+/** List tokens for application. */
+export const ListApplicationTokens: API.OperationMethod<
+  ListApplicationTokensRequest,
+  ManagedIdentityTokenResult,
+  ListApplicationTokensError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListApplicationTokensRequest,
+  output: ManagedIdentityTokenResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListJitRequestByResourceGroupError = AzureOpError;
 /** Lists all JIT requests within the resource group. */
-export const JitRequestsListByResourceGroup: API.OperationMethod<
-  JitRequestsListByResourceGroupRequest,
+export const ListJitRequestByResourceGroup: API.OperationMethod<
+  ListJitRequestByResourceGroupRequest,
   JitRequestDefinitionListResult,
-  JitRequestsListByResourceGroupError,
+  ListJitRequestByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: JitRequestsListByResourceGroupRequest,
+  input: ListJitRequestByResourceGroupRequest,
   output: JitRequestDefinitionListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type JitRequestsListBySubscriptionError = AzureOpError;
+export type ListJitRequestBySubscriptionError = AzureOpError;
 /** Lists all JIT requests within the subscription. */
-export const JitRequestsListBySubscription: API.OperationMethod<
-  JitRequestsListBySubscriptionRequest,
+export const ListJitRequestBySubscription: API.OperationMethod<
+  ListJitRequestBySubscriptionRequest,
   JitRequestDefinitionListResult,
-  JitRequestsListBySubscriptionError,
+  ListJitRequestBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: JitRequestsListBySubscriptionRequest,
+  input: ListJitRequestBySubscriptionRequest,
   output: JitRequestDefinitionListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type JitRequestsUpdateError = AzureOpError;
-/** Updates the JIT request. */
-export const JitRequestsUpdate: API.OperationMethod<
-  JitRequestsUpdateRequest,
-  JitRequestsUpdateResponse,
-  JitRequestsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: JitRequestsUpdateRequest,
-  output: JitRequestsUpdateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3813,6 +3717,96 @@ export const ListOperations: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListOperationsRequest,
   output: ListOperationsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RefreshApplicationPermissionsError = AzureOpError;
+/** Refresh Permissions for application. */
+export const RefreshApplicationPermissions: API.OperationMethod<
+  RefreshApplicationPermissionsRequest,
+  RefreshApplicationPermissionsResponse,
+  RefreshApplicationPermissionsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RefreshApplicationPermissionsRequest,
+  output: RefreshApplicationPermissionsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateApplicationError = AzureOpError;
+/** Updates an existing managed application. */
+export const UpdateApplication: API.OperationMethod<
+  UpdateApplicationRequest,
+  UpdateApplicationResponse,
+  UpdateApplicationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateApplicationRequest,
+  output: UpdateApplicationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateApplicationAccessError = AzureOpError;
+/** Update access for application. */
+export const UpdateApplicationAccess: API.OperationMethod<
+  UpdateApplicationAccessRequest,
+  UpdateApplicationAccessResponse,
+  UpdateApplicationAccessError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateApplicationAccessRequest,
+  output: UpdateApplicationAccessResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateApplicationByIdError = AzureOpError;
+/** Updates an existing managed application. */
+export const UpdateApplicationById: API.OperationMethod<
+  UpdateApplicationByIdRequest,
+  UpdateApplicationByIdResponse,
+  UpdateApplicationByIdError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateApplicationByIdRequest,
+  output: UpdateApplicationByIdResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateApplicationDefinitionError = AzureOpError;
+/** Updates the managed application definition. */
+export const UpdateApplicationDefinition: API.OperationMethod<
+  UpdateApplicationDefinitionRequest,
+  UpdateApplicationDefinitionResponse,
+  UpdateApplicationDefinitionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateApplicationDefinitionRequest,
+  output: UpdateApplicationDefinitionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateJitRequestError = AzureOpError;
+/** Updates the JIT request. */
+export const UpdateJitRequest: API.OperationMethod<
+  UpdateJitRequestRequest,
+  UpdateJitRequestResponse,
+  UpdateJitRequestError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateJitRequestRequest,
+  output: UpdateJitRequestResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

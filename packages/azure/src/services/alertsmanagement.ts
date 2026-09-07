@@ -246,291 +246,6 @@ export const AlertProcessingRulesCreateOrUpdateResponse =
     identifier: "AlertProcessingRulesCreateOrUpdateResponse",
   }) as any as S.Schema<AlertProcessingRulesCreateOrUpdateResponse>;
 
-export interface AlertProcessingRulesDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the alert processing rule that needs to be fetched. */
-  alertProcessingRuleName: string;
-}
-export const AlertProcessingRulesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    alertProcessingRuleName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AlertsManagement/actionRules/{alertProcessingRuleName}",
-      code: 200,
-      apiVersion: "2021-08-08",
-    }),
-  ),
-).annotate({
-  identifier: "AlertProcessingRulesDeleteRequest",
-}) as any as S.Schema<AlertProcessingRulesDeleteRequest>;
-
-export interface AlertProcessingRulesDeleteResponse {}
-export const AlertProcessingRulesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "AlertProcessingRulesDeleteResponse",
-}) as any as S.Schema<AlertProcessingRulesDeleteResponse>;
-
-export interface AlertProcessingRulesGetByNameRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the alert processing rule that needs to be fetched. */
-  alertProcessingRuleName: string;
-}
-export const AlertProcessingRulesGetByNameRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      alertProcessingRuleName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AlertsManagement/actionRules/{alertProcessingRuleName}",
-        code: 200,
-        apiVersion: "2021-08-08",
-      }),
-    ),
-).annotate({
-  identifier: "AlertProcessingRulesGetByNameRequest",
-}) as any as S.Schema<AlertProcessingRulesGetByNameRequest>;
-
-/** Resource tags. */
-export type AlertProcessingRulesGetByNameResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AlertProcessingRulesGetByNameResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<AlertProcessingRulesGetByNameResponseTagsMap>;
-
-export interface AlertProcessingRulesGetByNameResponse {
-  /** Azure resource Id */
-  id?: string;
-  /** Azure resource type */
-  type?: string;
-  /** Azure resource name */
-  name?: string;
-  /** Resource tags. */
-  tags?: AlertProcessingRulesGetByNameResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Alert processing rule properties. */
-  properties?: AlertProcessingRuleProperties;
-}
-export const AlertProcessingRulesGetByNameResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      type: S.optional(S.String),
-      name: S.optional(S.String),
-      tags: S.optional(AlertProcessingRulesGetByNameResponseTagsMap),
-      location: S.String,
-      properties: S.optional(AlertProcessingRuleProperties),
-    }),
-).annotate({
-  identifier: "AlertProcessingRulesGetByNameResponse",
-}) as any as S.Schema<AlertProcessingRulesGetByNameResponse>;
-
-export interface AlertProcessingRulesListByResourceGroupRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const AlertProcessingRulesListByResourceGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AlertsManagement/actionRules",
-        code: 200,
-        apiVersion: "2021-08-08",
-      }),
-    ),
-  ).annotate({
-    identifier: "AlertProcessingRulesListByResourceGroupRequest",
-  }) as any as S.Schema<AlertProcessingRulesListByResourceGroupRequest>;
-
-/** Resource tags. */
-export type AlertProcessingRuleTagsMap = { [key: string]: string | undefined };
-export const AlertProcessingRuleTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AlertProcessingRuleTagsMap>;
-
-/** Alert processing rule object containing target scopes, conditions and scheduling logic. */
-export interface AlertProcessingRule {
-  /** Azure resource Id */
-  id?: string;
-  /** Azure resource type */
-  type?: string;
-  /** Azure resource name */
-  name?: string;
-  /** Resource tags. */
-  tags?: AlertProcessingRuleTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Alert processing rule properties. */
-  properties?: AlertProcessingRuleProperties;
-}
-export const AlertProcessingRule = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    type: S.optional(S.String),
-    name: S.optional(S.String),
-    tags: S.optional(AlertProcessingRuleTagsMap),
-    location: S.String,
-    properties: S.optional(AlertProcessingRuleProperties),
-  }),
-).annotate({
-  identifier: "AlertProcessingRule",
-}) as any as S.Schema<AlertProcessingRule>;
-
-/** The AlertProcessingRule items on this page */
-export type AlertProcessingRulesListValueList = Array<AlertProcessingRule>;
-export const AlertProcessingRulesListValueList = /*@__PURE__*/ S.Array(
-  AlertProcessingRule,
-) as any as S.Schema<AlertProcessingRulesListValueList>;
-
-/** List of alert processing rules. */
-export interface AlertProcessingRulesList {
-  /** The AlertProcessingRule items on this page */
-  value: AlertProcessingRulesListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const AlertProcessingRulesList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: AlertProcessingRulesListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AlertProcessingRulesList",
-}) as any as S.Schema<AlertProcessingRulesList>;
-
-export interface AlertProcessingRulesListBySubscriptionRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-}
-export const AlertProcessingRulesListBySubscriptionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.AlertsManagement/actionRules",
-        code: 200,
-        apiVersion: "2021-08-08",
-      }),
-    ),
-  ).annotate({
-    identifier: "AlertProcessingRulesListBySubscriptionRequest",
-  }) as any as S.Schema<AlertProcessingRulesListBySubscriptionRequest>;
-
-/** Alert processing rule properties supported by patch. */
-export interface PatchProperties {
-  /** Indicates if the given alert processing rule is enabled or disabled. */
-  enabled?: boolean;
-}
-export const PatchProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    enabled: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "PatchProperties",
-}) as any as S.Schema<PatchProperties>;
-
-/** Tags to be updated. */
-export type AlertProcessingRulesUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AlertProcessingRulesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AlertProcessingRulesUpdateRequestTagsMap>;
-
-export interface AlertProcessingRulesUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the alert processing rule that needs to be fetched. */
-  alertProcessingRuleName: string;
-  /** Properties supported by patch operation. */
-  properties?: PatchProperties;
-  /** Tags to be updated. */
-  tags?: AlertProcessingRulesUpdateRequestTagsMap;
-}
-export const AlertProcessingRulesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    alertProcessingRuleName: S.String.pipe(T.Label()),
-    properties: S.optional(PatchProperties),
-    tags: S.optional(AlertProcessingRulesUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AlertsManagement/actionRules/{alertProcessingRuleName}",
-      code: 200,
-      apiVersion: "2021-08-08",
-    }),
-  ),
-).annotate({
-  identifier: "AlertProcessingRulesUpdateRequest",
-}) as any as S.Schema<AlertProcessingRulesUpdateRequest>;
-
-/** Resource tags. */
-export type AlertProcessingRulesUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AlertProcessingRulesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AlertProcessingRulesUpdateResponseTagsMap>;
-
-export interface AlertProcessingRulesUpdateResponse {
-  /** Azure resource Id */
-  id?: string;
-  /** Azure resource type */
-  type?: string;
-  /** Azure resource name */
-  name?: string;
-  /** Resource tags. */
-  tags?: AlertProcessingRulesUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Alert processing rule properties. */
-  properties?: AlertProcessingRuleProperties;
-}
-export const AlertProcessingRulesUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    type: S.optional(S.String),
-    name: S.optional(S.String),
-    tags: S.optional(AlertProcessingRulesUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(AlertProcessingRuleProperties),
-  }),
-).annotate({
-  identifier: "AlertProcessingRulesUpdateResponse",
-}) as any as S.Schema<AlertProcessingRulesUpdateResponse>;
-
 export type AlertsChangeStateRequestNewState =
   | "New"
   | "Acknowledged"
@@ -710,7 +425,153 @@ export const AlertsChangeStateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "AlertsChangeStateResponse",
 }) as any as S.Schema<AlertsChangeStateResponse>;
 
-export type AlertsGetAllRequestMonitorService =
+export type AlertsMetaDataRequestIdentifier = "MonitorServiceList";
+export const AlertsMetaDataRequestIdentifier = /*@__PURE__*/ S.String;
+
+export interface AlertsMetaDataRequest {
+  /** Identification of the information to be retrieved by API call. */
+  identifier: AlertsMetaDataRequestIdentifier | (string & {});
+}
+export const AlertsMetaDataRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    identifier: AlertsMetaDataRequestIdentifier.pipe(T.Query()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.AlertsManagement/alertsMetaData",
+      code: 200,
+      apiVersion: "2019-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "AlertsMetaDataRequest",
+}) as any as S.Schema<AlertsMetaDataRequest>;
+
+/** Identification of the information to be retrieved by API call */
+export type AlertsMetaDataPropertiesMetadataIdentifier = "MonitorServiceList";
+export const AlertsMetaDataPropertiesMetadataIdentifier =
+  /*@__PURE__*/ S.String;
+
+/** alert meta data property bag */
+export interface AlertsMetaDataProperties {
+  /** Identification of the information to be retrieved by API call */
+  metadataIdentifier: AlertsMetaDataPropertiesMetadataIdentifier;
+}
+export const AlertsMetaDataProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    metadataIdentifier: AlertsMetaDataPropertiesMetadataIdentifier,
+  }),
+).annotate({
+  identifier: "AlertsMetaDataProperties",
+}) as any as S.Schema<AlertsMetaDataProperties>;
+
+/** alert meta data information. */
+export interface AlertsMetaData {
+  properties?: AlertsMetaDataProperties;
+}
+export const AlertsMetaData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    properties: S.optional(AlertsMetaDataProperties),
+  }),
+).annotate({ identifier: "AlertsMetaData" }) as any as S.Schema<AlertsMetaData>;
+
+export interface DeleteAlertProcessingRuleRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the alert processing rule that needs to be fetched. */
+  alertProcessingRuleName: string;
+}
+export const DeleteAlertProcessingRuleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    alertProcessingRuleName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AlertsManagement/actionRules/{alertProcessingRuleName}",
+      code: 200,
+      apiVersion: "2021-08-08",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteAlertProcessingRuleRequest",
+}) as any as S.Schema<DeleteAlertProcessingRuleRequest>;
+
+export interface DeleteAlertProcessingRuleResponse {}
+export const DeleteAlertProcessingRuleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteAlertProcessingRuleResponse",
+}) as any as S.Schema<DeleteAlertProcessingRuleResponse>;
+
+export interface DeletePrometheusRuleGroupRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the rule group. */
+  ruleGroupName: string;
+}
+export const DeletePrometheusRuleGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    ruleGroupName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AlertsManagement/prometheusRuleGroups/{ruleGroupName}",
+      code: 200,
+      apiVersion: "2023-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeletePrometheusRuleGroupRequest",
+}) as any as S.Schema<DeletePrometheusRuleGroupRequest>;
+
+export interface DeletePrometheusRuleGroupResponse {}
+export const DeletePrometheusRuleGroupResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeletePrometheusRuleGroupResponse",
+}) as any as S.Schema<DeletePrometheusRuleGroupResponse>;
+
+export interface DeleteSmartDetectorAlertRuleRequest {
+  /** The Azure subscription Id. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The name of the alert rule. */
+  alertRuleName: string;
+}
+export const DeleteSmartDetectorAlertRuleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    alertRuleName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/microsoft.alertsManagement/smartDetectorAlertRules/{alertRuleName}",
+      code: 200,
+      apiVersion: "2021-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteSmartDetectorAlertRuleRequest",
+}) as any as S.Schema<DeleteSmartDetectorAlertRuleRequest>;
+
+export interface DeleteSmartDetectorAlertRuleResponse {}
+export const DeleteSmartDetectorAlertRuleResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteSmartDetectorAlertRuleResponse",
+}) as any as S.Schema<DeleteSmartDetectorAlertRuleResponse>;
+
+export type GetAlertAllRequestMonitorService =
   | "Application Insights"
   | "ActivityLog Administrative"
   | "ActivityLog Security"
@@ -726,23 +587,23 @@ export type AlertsGetAllRequestMonitorService =
   | "VM Insights"
   | "Zabbix"
   | "Resource Health";
-export const AlertsGetAllRequestMonitorService = /*@__PURE__*/ S.String;
+export const GetAlertAllRequestMonitorService = /*@__PURE__*/ S.String;
 
-export type AlertsGetAllRequestMonitorCondition = "Fired" | "Resolved";
-export const AlertsGetAllRequestMonitorCondition = /*@__PURE__*/ S.String;
+export type GetAlertAllRequestMonitorCondition = "Fired" | "Resolved";
+export const GetAlertAllRequestMonitorCondition = /*@__PURE__*/ S.String;
 
-export type AlertsGetAllRequestSeverity =
+export type GetAlertAllRequestSeverity =
   | "Sev0"
   | "Sev1"
   | "Sev2"
   | "Sev3"
   | "Sev4";
-export const AlertsGetAllRequestSeverity = /*@__PURE__*/ S.String;
+export const GetAlertAllRequestSeverity = /*@__PURE__*/ S.String;
 
-export type AlertsGetAllRequestAlertState = "New" | "Acknowledged" | "Closed";
-export const AlertsGetAllRequestAlertState = /*@__PURE__*/ S.String;
+export type GetAlertAllRequestAlertState = "New" | "Acknowledged" | "Closed";
+export const GetAlertAllRequestAlertState = /*@__PURE__*/ S.String;
 
-export type AlertsGetAllRequestSortBy =
+export type GetAlertAllRequestSortBy =
   | "name"
   | "severity"
   | "alertState"
@@ -753,15 +614,15 @@ export type AlertsGetAllRequestSortBy =
   | "targetResourceType"
   | "startDateTime"
   | "lastModifiedDateTime";
-export const AlertsGetAllRequestSortBy = /*@__PURE__*/ S.String;
+export const GetAlertAllRequestSortBy = /*@__PURE__*/ S.String;
 
-export type AlertsGetAllRequestSortOrder = "asc" | "desc";
-export const AlertsGetAllRequestSortOrder = /*@__PURE__*/ S.String;
+export type GetAlertAllRequestSortOrder = "asc" | "desc";
+export const GetAlertAllRequestSortOrder = /*@__PURE__*/ S.String;
 
-export type AlertsGetAllRequestTimeRange = "1h" | "1d" | "7d" | "30d";
-export const AlertsGetAllRequestTimeRange = /*@__PURE__*/ S.String;
+export type GetAlertAllRequestTimeRange = "1h" | "1d" | "7d" | "30d";
+export const GetAlertAllRequestTimeRange = /*@__PURE__*/ S.String;
 
-export interface AlertsGetAllRequest {
+export interface GetAlertAllRequest {
   /** scope here is resourceId for which alert is created. */
   scope: string;
   /** Filter by target resource( which is full ARM ID) Default value is select all. */
@@ -771,13 +632,13 @@ export interface AlertsGetAllRequest {
   /** Filter by target resource group name. Default value is select all. */
   targetResourceGroup?: string;
   /** Filter by monitor service which generates the alert instance. Default value is select all. */
-  monitorService?: AlertsGetAllRequestMonitorService | (string & {});
+  monitorService?: GetAlertAllRequestMonitorService | (string & {});
   /** Filter by monitor condition which is either 'Fired' or 'Resolved'. Default value is to select all. */
-  monitorCondition?: AlertsGetAllRequestMonitorCondition | (string & {});
+  monitorCondition?: GetAlertAllRequestMonitorCondition | (string & {});
   /** Filter by severity. Default value is select all. */
-  severity?: AlertsGetAllRequestSeverity | (string & {});
+  severity?: GetAlertAllRequestSeverity | (string & {});
   /** Filter by state of the alert instance. Default value is to select all. */
-  alertState?: AlertsGetAllRequestAlertState | (string & {});
+  alertState?: GetAlertAllRequestAlertState | (string & {});
   /** Filter by specific alert rule. Default value is to select all. */
   alertRule?: string;
   /** Filter the alerts list by the Smart Group Id. Default value is none. */
@@ -789,39 +650,39 @@ export interface AlertsGetAllRequest {
   /** Determines number of alerts returned per page in response. Permissible value is between 1 to 250. When the "includeContent" filter is selected, maximum value allowed is 25. Default value is 25. */
   pageCount?: number;
   /** Sort the query results by input field, Default value is 'lastModifiedDateTime'. */
-  sortBy?: AlertsGetAllRequestSortBy | (string & {});
+  sortBy?: GetAlertAllRequestSortBy | (string & {});
   /** Sort the query results order in either ascending or descending. Default value is 'desc' for time fields and 'asc' for others. */
-  sortOrder?: AlertsGetAllRequestSortOrder | (string & {});
+  sortOrder?: GetAlertAllRequestSortOrder | (string & {});
   /** This filter allows to selection of the fields(comma separated) which would be part of the essential section. This would allow to project only the required fields rather than getting entire content. Default is to fetch all the fields in the essentials section. */
   select?: string;
   /** Filter by time range by below listed values. Default value is 1 day. */
-  timeRange?: AlertsGetAllRequestTimeRange | (string & {});
+  timeRange?: GetAlertAllRequestTimeRange | (string & {});
   /** Filter by custom time range in the format <start-time>/<end-time> where time is in (ISO-8601 format)'. Permissible values is within 30 days from query time. Either timeRange or customTimeRange could be used but not both. Default is none. */
   customTimeRange?: string;
 }
-export const AlertsGetAllRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetAlertAllRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     scope: S.String.pipe(T.Label()),
     targetResource: S.optional(S.String.pipe(T.Query())),
     targetResourceType: S.optional(S.String.pipe(T.Query())),
     targetResourceGroup: S.optional(S.String.pipe(T.Query())),
     monitorService: S.optional(
-      AlertsGetAllRequestMonitorService.pipe(T.Query()),
+      GetAlertAllRequestMonitorService.pipe(T.Query()),
     ),
     monitorCondition: S.optional(
-      AlertsGetAllRequestMonitorCondition.pipe(T.Query()),
+      GetAlertAllRequestMonitorCondition.pipe(T.Query()),
     ),
-    severity: S.optional(AlertsGetAllRequestSeverity.pipe(T.Query())),
-    alertState: S.optional(AlertsGetAllRequestAlertState.pipe(T.Query())),
+    severity: S.optional(GetAlertAllRequestSeverity.pipe(T.Query())),
+    alertState: S.optional(GetAlertAllRequestAlertState.pipe(T.Query())),
     alertRule: S.optional(S.String.pipe(T.Query())),
     smartGroupId: S.optional(S.String.pipe(T.Query())),
     includeContext: S.optional(S.Boolean.pipe(T.Query())),
     includeEgressConfig: S.optional(S.Boolean.pipe(T.Query())),
     pageCount: S.optional(S.Number.pipe(T.Query())),
-    sortBy: S.optional(AlertsGetAllRequestSortBy.pipe(T.Query())),
-    sortOrder: S.optional(AlertsGetAllRequestSortOrder.pipe(T.Query())),
+    sortBy: S.optional(GetAlertAllRequestSortBy.pipe(T.Query())),
+    sortOrder: S.optional(GetAlertAllRequestSortOrder.pipe(T.Query())),
     select: S.optional(S.String.pipe(T.Query())),
-    timeRange: S.optional(AlertsGetAllRequestTimeRange.pipe(T.Query())),
+    timeRange: S.optional(GetAlertAllRequestTimeRange.pipe(T.Query())),
     customTimeRange: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
@@ -832,8 +693,8 @@ export const AlertsGetAllRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "AlertsGetAllRequest",
-}) as any as S.Schema<AlertsGetAllRequest>;
+  identifier: "GetAlertAllRequest",
+}) as any as S.Schema<GetAlertAllRequest>;
 
 /** An alert created in alert management service. */
 export interface Alert {
@@ -874,13 +735,13 @@ export const AlertsList = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "AlertsList" }) as any as S.Schema<AlertsList>;
 
-export interface AlertsGetByIdRequest {
+export interface GetAlertByIdRequest {
   /** scope here is resourceId for which alert is created. */
   scope: string;
   /** Unique ID of an alert instance. */
   alertId: string;
 }
-export const AlertsGetByIdRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetAlertByIdRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     scope: S.String.pipe(T.Label()),
     alertId: S.String.pipe(T.Label()),
@@ -893,10 +754,10 @@ export const AlertsGetByIdRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "AlertsGetByIdRequest",
-}) as any as S.Schema<AlertsGetByIdRequest>;
+  identifier: "GetAlertByIdRequest",
+}) as any as S.Schema<GetAlertByIdRequest>;
 
-export interface AlertsGetByIdResponse {
+export interface GetAlertByIdResponse {
   /** Azure resource Id */
   id?: string;
   /** Azure resource type */
@@ -905,7 +766,7 @@ export interface AlertsGetByIdResponse {
   name?: string;
   properties?: AlertProperties;
 }
-export const AlertsGetByIdResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetAlertByIdResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     type: S.optional(S.String),
@@ -913,16 +774,16 @@ export const AlertsGetByIdResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(AlertProperties),
   }),
 ).annotate({
-  identifier: "AlertsGetByIdResponse",
-}) as any as S.Schema<AlertsGetByIdResponse>;
+  identifier: "GetAlertByIdResponse",
+}) as any as S.Schema<GetAlertByIdResponse>;
 
-export interface AlertsGetHistoryRequest {
+export interface GetAlertHistoryRequest {
   /** scope here is resourceId for which alert is created. */
   scope: string;
   /** Unique ID of an alert instance. */
   alertId: string;
 }
-export const AlertsGetHistoryRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetAlertHistoryRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     scope: S.String.pipe(T.Label()),
     alertId: S.String.pipe(T.Label()),
@@ -935,8 +796,8 @@ export const AlertsGetHistoryRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "AlertsGetHistoryRequest",
-}) as any as S.Schema<AlertsGetHistoryRequest>;
+  identifier: "GetAlertHistoryRequest",
+}) as any as S.Schema<GetAlertHistoryRequest>;
 
 /** Reason for the modification */
 export type AlertModificationItemModificationEvent =
@@ -1000,7 +861,7 @@ export const AlertModificationProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "AlertModificationProperties",
 }) as any as S.Schema<AlertModificationProperties>;
 
-export interface AlertsGetHistoryResponse {
+export interface GetAlertHistoryResponse {
   /** Azure resource Id */
   id?: string;
   /** Azure resource type */
@@ -1009,7 +870,7 @@ export interface AlertsGetHistoryResponse {
   name?: string;
   properties?: AlertModificationProperties;
 }
-export const AlertsGetHistoryResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetAlertHistoryResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     type: S.optional(S.String),
@@ -1017,19 +878,82 @@ export const AlertsGetHistoryResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(AlertModificationProperties),
   }),
 ).annotate({
-  identifier: "AlertsGetHistoryResponse",
-}) as any as S.Schema<AlertsGetHistoryResponse>;
+  identifier: "GetAlertHistoryResponse",
+}) as any as S.Schema<GetAlertHistoryResponse>;
 
-export type AlertsGetSummaryRequestGroupby =
+export interface GetAlertProcessingRuleByNameRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the alert processing rule that needs to be fetched. */
+  alertProcessingRuleName: string;
+}
+export const GetAlertProcessingRuleByNameRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    alertProcessingRuleName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AlertsManagement/actionRules/{alertProcessingRuleName}",
+      code: 200,
+      apiVersion: "2021-08-08",
+    }),
+  ),
+).annotate({
+  identifier: "GetAlertProcessingRuleByNameRequest",
+}) as any as S.Schema<GetAlertProcessingRuleByNameRequest>;
+
+/** Resource tags. */
+export type GetAlertProcessingRuleByNameResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetAlertProcessingRuleByNameResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<GetAlertProcessingRuleByNameResponseTagsMap>;
+
+export interface GetAlertProcessingRuleByNameResponse {
+  /** Azure resource Id */
+  id?: string;
+  /** Azure resource type */
+  type?: string;
+  /** Azure resource name */
+  name?: string;
+  /** Resource tags. */
+  tags?: GetAlertProcessingRuleByNameResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Alert processing rule properties. */
+  properties?: AlertProcessingRuleProperties;
+}
+export const GetAlertProcessingRuleByNameResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      type: S.optional(S.String),
+      name: S.optional(S.String),
+      tags: S.optional(GetAlertProcessingRuleByNameResponseTagsMap),
+      location: S.String,
+      properties: S.optional(AlertProcessingRuleProperties),
+    }),
+).annotate({
+  identifier: "GetAlertProcessingRuleByNameResponse",
+}) as any as S.Schema<GetAlertProcessingRuleByNameResponse>;
+
+export type GetAlertSummaryRequestGroupby =
   | "severity"
   | "alertState"
   | "monitorCondition"
   | "monitorService"
   | "signalType"
   | "alertRule";
-export const AlertsGetSummaryRequestGroupby = /*@__PURE__*/ S.String;
+export const GetAlertSummaryRequestGroupby = /*@__PURE__*/ S.String;
 
-export type AlertsGetSummaryRequestMonitorService =
+export type GetAlertSummaryRequestMonitorService =
   | "Application Insights"
   | "ActivityLog Administrative"
   | "ActivityLog Security"
@@ -1045,33 +969,33 @@ export type AlertsGetSummaryRequestMonitorService =
   | "VM Insights"
   | "Zabbix"
   | "Resource Health";
-export const AlertsGetSummaryRequestMonitorService = /*@__PURE__*/ S.String;
+export const GetAlertSummaryRequestMonitorService = /*@__PURE__*/ S.String;
 
-export type AlertsGetSummaryRequestMonitorCondition = "Fired" | "Resolved";
-export const AlertsGetSummaryRequestMonitorCondition = /*@__PURE__*/ S.String;
+export type GetAlertSummaryRequestMonitorCondition = "Fired" | "Resolved";
+export const GetAlertSummaryRequestMonitorCondition = /*@__PURE__*/ S.String;
 
-export type AlertsGetSummaryRequestSeverity =
+export type GetAlertSummaryRequestSeverity =
   | "Sev0"
   | "Sev1"
   | "Sev2"
   | "Sev3"
   | "Sev4";
-export const AlertsGetSummaryRequestSeverity = /*@__PURE__*/ S.String;
+export const GetAlertSummaryRequestSeverity = /*@__PURE__*/ S.String;
 
-export type AlertsGetSummaryRequestAlertState =
+export type GetAlertSummaryRequestAlertState =
   | "New"
   | "Acknowledged"
   | "Closed";
-export const AlertsGetSummaryRequestAlertState = /*@__PURE__*/ S.String;
+export const GetAlertSummaryRequestAlertState = /*@__PURE__*/ S.String;
 
-export type AlertsGetSummaryRequestTimeRange = "1h" | "1d" | "7d" | "30d";
-export const AlertsGetSummaryRequestTimeRange = /*@__PURE__*/ S.String;
+export type GetAlertSummaryRequestTimeRange = "1h" | "1d" | "7d" | "30d";
+export const GetAlertSummaryRequestTimeRange = /*@__PURE__*/ S.String;
 
-export interface AlertsGetSummaryRequest {
+export interface GetAlertSummaryRequest {
   /** scope here is resourceId for which alert is created. */
   scope: string;
   /** This parameter allows the result set to be grouped by input fields. For example, groupby=severity,alertstate. */
-  groupby: AlertsGetSummaryRequestGroupby | (string & {});
+  groupby: GetAlertSummaryRequestGroupby | (string & {});
   /** Include count of the SmartGroups as part of the summary. Default value is 'false'. */
   includeSmartGroupsCount?: boolean;
   /** Filter by target resource( which is full ARM ID) Default value is select all. */
@@ -1081,38 +1005,38 @@ export interface AlertsGetSummaryRequest {
   /** Filter by target resource group name. Default value is select all. */
   targetResourceGroup?: string;
   /** Filter by monitor service which generates the alert instance. Default value is select all. */
-  monitorService?: AlertsGetSummaryRequestMonitorService | (string & {});
+  monitorService?: GetAlertSummaryRequestMonitorService | (string & {});
   /** Filter by monitor condition which is either 'Fired' or 'Resolved'. Default value is to select all. */
-  monitorCondition?: AlertsGetSummaryRequestMonitorCondition | (string & {});
+  monitorCondition?: GetAlertSummaryRequestMonitorCondition | (string & {});
   /** Filter by severity. Default value is select all. */
-  severity?: AlertsGetSummaryRequestSeverity | (string & {});
+  severity?: GetAlertSummaryRequestSeverity | (string & {});
   /** Filter by state of the alert instance. Default value is to select all. */
-  alertState?: AlertsGetSummaryRequestAlertState | (string & {});
+  alertState?: GetAlertSummaryRequestAlertState | (string & {});
   /** Filter by specific alert rule. Default value is to select all. */
   alertRule?: string;
   /** Filter by time range by below listed values. Default value is 1 day. */
-  timeRange?: AlertsGetSummaryRequestTimeRange | (string & {});
+  timeRange?: GetAlertSummaryRequestTimeRange | (string & {});
   /** Filter by custom time range in the format <start-time>/<end-time> where time is in (ISO-8601 format)'. Permissible values is within 30 days from query time. Either timeRange or customTimeRange could be used but not both. Default is none. */
   customTimeRange?: string;
 }
-export const AlertsGetSummaryRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetAlertSummaryRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     scope: S.String.pipe(T.Label()),
-    groupby: AlertsGetSummaryRequestGroupby.pipe(T.Query()),
+    groupby: GetAlertSummaryRequestGroupby.pipe(T.Query()),
     includeSmartGroupsCount: S.optional(S.Boolean.pipe(T.Query())),
     targetResource: S.optional(S.String.pipe(T.Query())),
     targetResourceType: S.optional(S.String.pipe(T.Query())),
     targetResourceGroup: S.optional(S.String.pipe(T.Query())),
     monitorService: S.optional(
-      AlertsGetSummaryRequestMonitorService.pipe(T.Query()),
+      GetAlertSummaryRequestMonitorService.pipe(T.Query()),
     ),
     monitorCondition: S.optional(
-      AlertsGetSummaryRequestMonitorCondition.pipe(T.Query()),
+      GetAlertSummaryRequestMonitorCondition.pipe(T.Query()),
     ),
-    severity: S.optional(AlertsGetSummaryRequestSeverity.pipe(T.Query())),
-    alertState: S.optional(AlertsGetSummaryRequestAlertState.pipe(T.Query())),
+    severity: S.optional(GetAlertSummaryRequestSeverity.pipe(T.Query())),
+    alertState: S.optional(GetAlertSummaryRequestAlertState.pipe(T.Query())),
     alertRule: S.optional(S.String.pipe(T.Query())),
-    timeRange: S.optional(AlertsGetSummaryRequestTimeRange.pipe(T.Query())),
+    timeRange: S.optional(GetAlertSummaryRequestTimeRange.pipe(T.Query())),
     customTimeRange: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
@@ -1123,8 +1047,8 @@ export const AlertsGetSummaryRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "AlertsGetSummaryRequest",
-}) as any as S.Schema<AlertsGetSummaryRequest>;
+  identifier: "GetAlertSummaryRequest",
+}) as any as S.Schema<GetAlertSummaryRequest>;
 
 /** List of the items */
 export type AlertsSummaryGroupItemValuesList = Array<AlertsSummaryGroupItem>;
@@ -1182,7 +1106,7 @@ export const AlertsSummaryGroup = /*@__PURE__*/ S.suspend(() =>
   identifier: "AlertsSummaryGroup",
 }) as any as S.Schema<AlertsSummaryGroup>;
 
-export interface AlertsGetSummaryResponse {
+export interface GetAlertSummaryResponse {
   /** Azure resource Id */
   id?: string;
   /** Azure resource type */
@@ -1191,7 +1115,7 @@ export interface AlertsGetSummaryResponse {
   name?: string;
   properties?: AlertsSummaryGroup;
 }
-export const AlertsGetSummaryResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetAlertSummaryResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     type: S.optional(S.String),
@@ -1199,138 +1123,84 @@ export const AlertsGetSummaryResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(AlertsSummaryGroup),
   }),
 ).annotate({
-  identifier: "AlertsGetSummaryResponse",
-}) as any as S.Schema<AlertsGetSummaryResponse>;
+  identifier: "GetAlertSummaryResponse",
+}) as any as S.Schema<GetAlertSummaryResponse>;
 
-export type AlertsMetaDataRequestIdentifier = "MonitorServiceList";
-export const AlertsMetaDataRequestIdentifier = /*@__PURE__*/ S.String;
-
-export interface AlertsMetaDataRequest {
-  /** Identification of the information to be retrieved by API call. */
-  identifier: AlertsMetaDataRequestIdentifier | (string & {});
+export interface GetPrometheusRuleGroupRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the rule group. */
+  ruleGroupName: string;
 }
-export const AlertsMetaDataRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetPrometheusRuleGroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    identifier: AlertsMetaDataRequestIdentifier.pipe(T.Query()),
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    ruleGroupName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/providers/Microsoft.AlertsManagement/alertsMetaData",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AlertsManagement/prometheusRuleGroups/{ruleGroupName}",
       code: 200,
-      apiVersion: "2019-03-01",
+      apiVersion: "2023-03-01",
     }),
   ),
 ).annotate({
-  identifier: "AlertsMetaDataRequest",
-}) as any as S.Schema<AlertsMetaDataRequest>;
+  identifier: "GetPrometheusRuleGroupRequest",
+}) as any as S.Schema<GetPrometheusRuleGroupRequest>;
 
-/** Identification of the information to be retrieved by API call */
-export type AlertsMetaDataPropertiesMetadataIdentifier = "MonitorServiceList";
-export const AlertsMetaDataPropertiesMetadataIdentifier =
-  /*@__PURE__*/ S.String;
+/** The type of identity that created the resource. */
+export type SystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
 
-/** alert meta data property bag */
-export interface AlertsMetaDataProperties {
-  /** Identification of the information to be retrieved by API call */
-  metadataIdentifier: AlertsMetaDataPropertiesMetadataIdentifier;
+/** The type of identity that last modified the resource. */
+export type SystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface SystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: SystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: SystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
 }
-export const AlertsMetaDataProperties = /*@__PURE__*/ S.suspend(() =>
+export const SystemData = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    metadataIdentifier: AlertsMetaDataPropertiesMetadataIdentifier,
+    createdBy: S.optional(S.String),
+    createdByType: S.optional(SystemDataCreatedByType),
+    createdAt: S.optional(S.String),
+    lastModifiedBy: S.optional(S.String),
+    lastModifiedByType: S.optional(SystemDataLastModifiedByType),
+    lastModifiedAt: S.optional(S.String),
   }),
-).annotate({
-  identifier: "AlertsMetaDataProperties",
-}) as any as S.Schema<AlertsMetaDataProperties>;
-
-/** alert meta data information. */
-export interface AlertsMetaData {
-  properties?: AlertsMetaDataProperties;
-}
-export const AlertsMetaData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    properties: S.optional(AlertsMetaDataProperties),
-  }),
-).annotate({ identifier: "AlertsMetaData" }) as any as S.Schema<AlertsMetaData>;
-
-export interface OperationsList2Request {}
-export const OperationsList2Request = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.AlertsManagement/operations",
-      code: 200,
-      apiVersion: "2019-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "OperationsList2Request",
-}) as any as S.Schema<OperationsList2Request>;
-
-/** Properties of the operation */
-export interface OperationDisplay {
-  /** Provider name */
-  provider?: string;
-  /** Resource name */
-  resource?: string;
-  /** Operation name */
-  operation?: string;
-  /** Description of the operation */
-  description?: string;
-}
-export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provider: S.optional(S.String),
-    resource: S.optional(S.String),
-    operation: S.optional(S.String),
-    description: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationDisplay",
-}) as any as S.Schema<OperationDisplay>;
-
-/** Operation provided by provider */
-export interface Operation {
-  /** Name of the operation */
-  name?: string;
-  /** Properties of the operation */
-  display?: OperationDisplay;
-}
-export const Operation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    display: S.optional(OperationDisplay),
-  }),
-).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
-
-/** Array of operations */
-export type OperationsListValueList = Array<Operation>;
-export const OperationsListValueList = /*@__PURE__*/ S.Array(
-  Operation,
-) as any as S.Schema<OperationsListValueList>;
-
-/** Lists the operations available in the AlertsManagement RP. */
-export interface OperationsList {
-  /** URL to fetch the next set of alerts. */
-  nextLink?: string;
-  /** Array of operations */
-  value: OperationsListValueList;
-}
-export const OperationsList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: OperationsListValueList,
-  }),
-).annotate({ identifier: "OperationsList" }) as any as S.Schema<OperationsList>;
+).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
 
 /** Resource tags. */
-export type PrometheusRuleGroupsCreateOrUpdateRequestTagsMap = {
+export type GetPrometheusRuleGroupResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const PrometheusRuleGroupsCreateOrUpdateRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<PrometheusRuleGroupsCreateOrUpdateRequestTagsMap>;
+export const GetPrometheusRuleGroupResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetPrometheusRuleGroupResponseTagsMap>;
 
 /** Target Azure Monitor workspaces resource ids. This api-version is currently limited to creating with one scope. This may change in future. */
 export type PrometheusRuleGroupPropertiesScopesList = Array<string>;
@@ -1474,94 +1344,7 @@ export const PrometheusRuleGroupProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "PrometheusRuleGroupProperties",
 }) as any as S.Schema<PrometheusRuleGroupProperties>;
 
-export interface PrometheusRuleGroupsCreateOrUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the rule group. */
-  ruleGroupName: string;
-  /** Resource tags. */
-  tags?: PrometheusRuleGroupsCreateOrUpdateRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The Prometheus rule group properties of the resource. */
-  properties: PrometheusRuleGroupProperties;
-}
-export const PrometheusRuleGroupsCreateOrUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      ruleGroupName: S.String.pipe(T.Label()),
-      tags: S.optional(PrometheusRuleGroupsCreateOrUpdateRequestTagsMap),
-      location: S.String,
-      properties: PrometheusRuleGroupProperties,
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AlertsManagement/prometheusRuleGroups/{ruleGroupName}",
-        code: 200,
-        apiVersion: "2023-03-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "PrometheusRuleGroupsCreateOrUpdateRequest",
-  }) as any as S.Schema<PrometheusRuleGroupsCreateOrUpdateRequest>;
-
-/** The type of identity that created the resource. */
-export type SystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type SystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface SystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: SystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: SystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const SystemData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createdBy: S.optional(S.String),
-    createdByType: S.optional(SystemDataCreatedByType),
-    createdAt: S.optional(S.String),
-    lastModifiedBy: S.optional(S.String),
-    lastModifiedByType: S.optional(SystemDataLastModifiedByType),
-    lastModifiedAt: S.optional(S.String),
-  }),
-).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
-
-/** Resource tags. */
-export type PrometheusRuleGroupsCreateOrUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const PrometheusRuleGroupsCreateOrUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<PrometheusRuleGroupsCreateOrUpdateResponseTagsMap>;
-
-export interface PrometheusRuleGroupsCreateOrUpdateResponse {
+export interface GetPrometheusRuleGroupResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -1571,489 +1354,62 @@ export interface PrometheusRuleGroupsCreateOrUpdateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: PrometheusRuleGroupsCreateOrUpdateResponseTagsMap;
+  tags?: GetPrometheusRuleGroupResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The Prometheus rule group properties of the resource. */
   properties: PrometheusRuleGroupProperties;
 }
-export const PrometheusRuleGroupsCreateOrUpdateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(PrometheusRuleGroupsCreateOrUpdateResponseTagsMap),
-      location: S.String,
-      properties: PrometheusRuleGroupProperties,
-    }),
-  ).annotate({
-    identifier: "PrometheusRuleGroupsCreateOrUpdateResponse",
-  }) as any as S.Schema<PrometheusRuleGroupsCreateOrUpdateResponse>;
-
-export interface PrometheusRuleGroupsDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the rule group. */
-  ruleGroupName: string;
-}
-export const PrometheusRuleGroupsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    ruleGroupName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AlertsManagement/prometheusRuleGroups/{ruleGroupName}",
-      code: 200,
-      apiVersion: "2023-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "PrometheusRuleGroupsDeleteRequest",
-}) as any as S.Schema<PrometheusRuleGroupsDeleteRequest>;
-
-export interface PrometheusRuleGroupsDeleteResponse {}
-export const PrometheusRuleGroupsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "PrometheusRuleGroupsDeleteResponse",
-}) as any as S.Schema<PrometheusRuleGroupsDeleteResponse>;
-
-export interface PrometheusRuleGroupsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the rule group. */
-  ruleGroupName: string;
-}
-export const PrometheusRuleGroupsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    ruleGroupName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AlertsManagement/prometheusRuleGroups/{ruleGroupName}",
-      code: 200,
-      apiVersion: "2023-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "PrometheusRuleGroupsGetRequest",
-}) as any as S.Schema<PrometheusRuleGroupsGetRequest>;
-
-/** Resource tags. */
-export type PrometheusRuleGroupsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const PrometheusRuleGroupsGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<PrometheusRuleGroupsGetResponseTagsMap>;
-
-export interface PrometheusRuleGroupsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: PrometheusRuleGroupsGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The Prometheus rule group properties of the resource. */
-  properties: PrometheusRuleGroupProperties;
-}
-export const PrometheusRuleGroupsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetPrometheusRuleGroupResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(PrometheusRuleGroupsGetResponseTagsMap),
+    tags: S.optional(GetPrometheusRuleGroupResponseTagsMap),
     location: S.String,
     properties: PrometheusRuleGroupProperties,
   }),
 ).annotate({
-  identifier: "PrometheusRuleGroupsGetResponse",
-}) as any as S.Schema<PrometheusRuleGroupsGetResponse>;
+  identifier: "GetPrometheusRuleGroupResponse",
+}) as any as S.Schema<GetPrometheusRuleGroupResponse>;
 
-export interface PrometheusRuleGroupsListByResourceGroupRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const PrometheusRuleGroupsListByResourceGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AlertsManagement/prometheusRuleGroups",
-        code: 200,
-        apiVersion: "2023-03-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "PrometheusRuleGroupsListByResourceGroupRequest",
-  }) as any as S.Schema<PrometheusRuleGroupsListByResourceGroupRequest>;
-
-/** Resource tags. */
-export type PrometheusRuleGroupResourceTagsMap = {
-  [key: string]: string | undefined;
-};
-export const PrometheusRuleGroupResourceTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<PrometheusRuleGroupResourceTagsMap>;
-
-/** The Prometheus rule group resource. */
-export interface PrometheusRuleGroupResource {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: PrometheusRuleGroupResourceTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The Prometheus rule group properties of the resource. */
-  properties: PrometheusRuleGroupProperties;
-}
-export const PrometheusRuleGroupResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(PrometheusRuleGroupResourceTagsMap),
-    location: S.String,
-    properties: PrometheusRuleGroupProperties,
-  }),
-).annotate({
-  identifier: "PrometheusRuleGroupResource",
-}) as any as S.Schema<PrometheusRuleGroupResource>;
-
-/** the values for the alert rule resources. */
-export type PrometheusRuleGroupResourceCollectionValueList =
-  Array<PrometheusRuleGroupResource>;
-export const PrometheusRuleGroupResourceCollectionValueList =
-  /*@__PURE__*/ S.Array(
-    PrometheusRuleGroupResource,
-  ) as any as S.Schema<PrometheusRuleGroupResourceCollectionValueList>;
-
-/** Represents a collection of alert rule resources. */
-export interface PrometheusRuleGroupResourceCollection {
-  /** the values for the alert rule resources. */
-  value?: PrometheusRuleGroupResourceCollectionValueList;
-  nextLink?: string;
-}
-export const PrometheusRuleGroupResourceCollection = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      value: S.optional(PrometheusRuleGroupResourceCollectionValueList),
-      nextLink: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "PrometheusRuleGroupResourceCollection",
-}) as any as S.Schema<PrometheusRuleGroupResourceCollection>;
-
-export interface PrometheusRuleGroupsListBySubscriptionRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-}
-export const PrometheusRuleGroupsListBySubscriptionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.AlertsManagement/prometheusRuleGroups",
-        code: 200,
-        apiVersion: "2023-03-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "PrometheusRuleGroupsListBySubscriptionRequest",
-  }) as any as S.Schema<PrometheusRuleGroupsListBySubscriptionRequest>;
-
-/** Resource tags */
-export type PrometheusRuleGroupsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const PrometheusRuleGroupsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<PrometheusRuleGroupsUpdateRequestTagsMap>;
-
-export interface PrometheusRuleGroupResourcePatchParametersProperties {
-  /** the flag that indicates whether the Prometheus rule group is enabled. */
-  enabled?: boolean;
-}
-export const PrometheusRuleGroupResourcePatchParametersProperties =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      enabled: S.optional(S.Boolean),
-    }),
-  ).annotate({
-    identifier: "PrometheusRuleGroupResourcePatchParametersProperties",
-  }) as any as S.Schema<PrometheusRuleGroupResourcePatchParametersProperties>;
-
-export interface PrometheusRuleGroupsUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the rule group. */
-  ruleGroupName: string;
-  /** Resource tags */
-  tags?: PrometheusRuleGroupsUpdateRequestTagsMap;
-  properties?: PrometheusRuleGroupResourcePatchParametersProperties;
-}
-export const PrometheusRuleGroupsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    ruleGroupName: S.String.pipe(T.Label()),
-    tags: S.optional(PrometheusRuleGroupsUpdateRequestTagsMap),
-    properties: S.optional(
-      PrometheusRuleGroupResourcePatchParametersProperties,
-    ),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AlertsManagement/prometheusRuleGroups/{ruleGroupName}",
-      code: 200,
-      apiVersion: "2023-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "PrometheusRuleGroupsUpdateRequest",
-}) as any as S.Schema<PrometheusRuleGroupsUpdateRequest>;
-
-/** Resource tags. */
-export type PrometheusRuleGroupsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const PrometheusRuleGroupsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<PrometheusRuleGroupsUpdateResponseTagsMap>;
-
-export interface PrometheusRuleGroupsUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: PrometheusRuleGroupsUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The Prometheus rule group properties of the resource. */
-  properties: PrometheusRuleGroupProperties;
-}
-export const PrometheusRuleGroupsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(PrometheusRuleGroupsUpdateResponseTagsMap),
-    location: S.String,
-    properties: PrometheusRuleGroupProperties,
-  }),
-).annotate({
-  identifier: "PrometheusRuleGroupsUpdateResponse",
-}) as any as S.Schema<PrometheusRuleGroupsUpdateResponse>;
-
-/** The resource tags. */
-export type SmartDetectorAlertRulesCreateOrUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const SmartDetectorAlertRulesCreateOrUpdateRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<SmartDetectorAlertRulesCreateOrUpdateRequestTagsMap>;
-
-/** The alert rule state. */
-export type AlertRulePropertiesInputState = "Enabled" | "Disabled";
-export const AlertRulePropertiesInputState = /*@__PURE__*/ S.String;
-
-/** The alert rule severity. */
-export type AlertRulePropertiesInputSeverity =
-  | "Sev0"
-  | "Sev1"
-  | "Sev2"
-  | "Sev3"
-  | "Sev4";
-export const AlertRulePropertiesInputSeverity = /*@__PURE__*/ S.String;
-
-/** The detector's parameters.' */
-export type DetectorInputParametersMap = { [key: string]: unknown | undefined };
-export const DetectorInputParametersMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<DetectorInputParametersMap>;
-
-/** The detector information. By default this is not populated, unless it's specified in expandDetector */
-export interface DetectorInput {
-  /** The detector id. */
-  id: string;
-  /** The detector's parameters.' */
-  parameters?: DetectorInputParametersMap;
-}
-export const DetectorInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    parameters: S.optional(DetectorInputParametersMap),
-  }),
-).annotate({ identifier: "DetectorInput" }) as any as S.Schema<DetectorInput>;
-
-/** The alert rule resources scope. */
-export type AlertRulePropertiesInputScopeList = Array<string>;
-export const AlertRulePropertiesInputScopeList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<AlertRulePropertiesInputScopeList>;
-
-/** The Action Group resource IDs. */
-export type ActionGroupsInformationGroupIdsList = Array<string>;
-export const ActionGroupsInformationGroupIdsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ActionGroupsInformationGroupIdsList>;
-
-/** The Action Groups information, used by the alert rule. */
-export interface ActionGroupsInformation {
-  /** An optional custom email subject to use in email notifications. */
-  customEmailSubject?: string;
-  /** An optional custom web-hook payload to use in web-hook notifications. */
-  customWebhookPayload?: string;
-  /** The Action Group resource IDs. */
-  groupIds: ActionGroupsInformationGroupIdsList;
-}
-export const ActionGroupsInformation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    customEmailSubject: S.optional(S.String),
-    customWebhookPayload: S.optional(S.String),
-    groupIds: ActionGroupsInformationGroupIdsList,
-  }),
-).annotate({
-  identifier: "ActionGroupsInformation",
-}) as any as S.Schema<ActionGroupsInformation>;
-
-/** Optional throttling information for the alert rule. */
-export interface ThrottlingInformation {
-  /** The required duration (in ISO8601 format) to wait before notifying on the alert rule again. The time granularity must be in minutes and minimum value is 0 minutes */
-  duration?: string;
-}
-export const ThrottlingInformation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    duration: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ThrottlingInformation",
-}) as any as S.Schema<ThrottlingInformation>;
-
-/** The alert rule properties. */
-export interface AlertRulePropertiesInput {
-  /** The alert rule description. */
-  description?: string;
-  /** The alert rule state. */
-  state: AlertRulePropertiesInputState | (string & {});
-  /** The alert rule severity. */
-  severity: AlertRulePropertiesInputSeverity | (string & {});
-  /** The alert rule frequency in ISO8601 format. The time granularity must be in minutes and minimum value is 1 minute, depending on the detector. */
-  frequency: string;
-  /** The alert rule's detector. */
-  detector: DetectorInput;
-  /** The alert rule resources scope. */
-  scope: AlertRulePropertiesInputScopeList;
-  /** The alert rule actions. */
-  actionGroups: ActionGroupsInformation;
-  /** The alert rule throttling information. */
-  throttling?: ThrottlingInformation;
-}
-export const AlertRulePropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    description: S.optional(S.String),
-    state: AlertRulePropertiesInputState,
-    severity: AlertRulePropertiesInputSeverity,
-    frequency: S.String,
-    detector: DetectorInput,
-    scope: AlertRulePropertiesInputScopeList,
-    actionGroups: ActionGroupsInformation,
-    throttling: S.optional(ThrottlingInformation),
-  }),
-).annotate({
-  identifier: "AlertRulePropertiesInput",
-}) as any as S.Schema<AlertRulePropertiesInput>;
-
-export interface SmartDetectorAlertRulesCreateOrUpdateRequest {
+export interface GetSmartDetectorAlertRuleRequest {
   /** The Azure subscription Id. */
   subscriptionId: string;
   /** The name of the resource group. */
   resourceGroupName: string;
   /** The name of the alert rule. */
   alertRuleName: string;
-  /** The resource location. */
-  location?: string;
-  /** The resource tags. */
-  tags?: SmartDetectorAlertRulesCreateOrUpdateRequestTagsMap;
-  /** The properties of the alert rule. */
-  properties?: AlertRulePropertiesInput;
+  /** Indicates if Smart Detector should be expanded. */
+  expandDetector?: boolean;
 }
-export const SmartDetectorAlertRulesCreateOrUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      alertRuleName: S.String.pipe(T.Label()),
-      location: S.optional(S.String),
-      tags: S.optional(SmartDetectorAlertRulesCreateOrUpdateRequestTagsMap),
-      properties: S.optional(AlertRulePropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/microsoft.alertsManagement/smartDetectorAlertRules/{alertRuleName}",
-        code: 200,
-        apiVersion: "2021-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "SmartDetectorAlertRulesCreateOrUpdateRequest",
-  }) as any as S.Schema<SmartDetectorAlertRulesCreateOrUpdateRequest>;
+export const GetSmartDetectorAlertRuleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    alertRuleName: S.String.pipe(T.Label()),
+    expandDetector: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/microsoft.alertsManagement/smartDetectorAlertRules/{alertRuleName}",
+      code: 200,
+      apiVersion: "2021-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetSmartDetectorAlertRuleRequest",
+}) as any as S.Schema<GetSmartDetectorAlertRuleRequest>;
 
 /** The resource tags. */
-export type SmartDetectorAlertRulesCreateOrUpdateResponseTagsMap = {
+export type GetSmartDetectorAlertRuleResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const SmartDetectorAlertRulesCreateOrUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<SmartDetectorAlertRulesCreateOrUpdateResponseTagsMap>;
+export const GetSmartDetectorAlertRuleResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetSmartDetectorAlertRuleResponseTagsMap>;
 
 /** The alert rule state. */
 export type AlertRulePropertiesState = "Enabled" | "Disabled";
@@ -2172,6 +1528,44 @@ export const AlertRulePropertiesScopeList = /*@__PURE__*/ S.Array(
   S.String,
 ) as any as S.Schema<AlertRulePropertiesScopeList>;
 
+/** The Action Group resource IDs. */
+export type ActionGroupsInformationGroupIdsList = Array<string>;
+export const ActionGroupsInformationGroupIdsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ActionGroupsInformationGroupIdsList>;
+
+/** The Action Groups information, used by the alert rule. */
+export interface ActionGroupsInformation {
+  /** An optional custom email subject to use in email notifications. */
+  customEmailSubject?: string;
+  /** An optional custom web-hook payload to use in web-hook notifications. */
+  customWebhookPayload?: string;
+  /** The Action Group resource IDs. */
+  groupIds: ActionGroupsInformationGroupIdsList;
+}
+export const ActionGroupsInformation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    customEmailSubject: S.optional(S.String),
+    customWebhookPayload: S.optional(S.String),
+    groupIds: ActionGroupsInformationGroupIdsList,
+  }),
+).annotate({
+  identifier: "ActionGroupsInformation",
+}) as any as S.Schema<ActionGroupsInformation>;
+
+/** Optional throttling information for the alert rule. */
+export interface ThrottlingInformation {
+  /** The required duration (in ISO8601 format) to wait before notifying on the alert rule again. The time granularity must be in minutes and minimum value is 0 minutes */
+  duration?: string;
+}
+export const ThrottlingInformation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    duration: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ThrottlingInformation",
+}) as any as S.Schema<ThrottlingInformation>;
+
 /** The alert rule properties. */
 export interface AlertRuleProperties {
   /** The alert rule description. */
@@ -2206,7 +1600,7 @@ export const AlertRuleProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "AlertRuleProperties",
 }) as any as S.Schema<AlertRuleProperties>;
 
-export interface SmartDetectorAlertRulesCreateOrUpdateResponse {
+export interface GetSmartDetectorAlertRuleResponse {
   /** The resource ID. */
   id?: string;
   /** The resource type. */
@@ -2216,142 +1610,325 @@ export interface SmartDetectorAlertRulesCreateOrUpdateResponse {
   /** The resource location. */
   location?: string;
   /** The resource tags. */
-  tags?: SmartDetectorAlertRulesCreateOrUpdateResponseTagsMap;
+  tags?: GetSmartDetectorAlertRuleResponseTagsMap;
   /** The properties of the alert rule. */
   properties?: AlertRuleProperties;
 }
-export const SmartDetectorAlertRulesCreateOrUpdateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      type: S.optional(S.String),
-      name: S.optional(S.String),
-      location: S.optional(S.String),
-      tags: S.optional(SmartDetectorAlertRulesCreateOrUpdateResponseTagsMap),
-      properties: S.optional(AlertRuleProperties),
-    }),
-  ).annotate({
-    identifier: "SmartDetectorAlertRulesCreateOrUpdateResponse",
-  }) as any as S.Schema<SmartDetectorAlertRulesCreateOrUpdateResponse>;
-
-export interface SmartDetectorAlertRulesDeleteRequest {
-  /** The Azure subscription Id. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the alert rule. */
-  alertRuleName: string;
-}
-export const SmartDetectorAlertRulesDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      alertRuleName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/microsoft.alertsManagement/smartDetectorAlertRules/{alertRuleName}",
-        code: 200,
-        apiVersion: "2021-04-01",
-      }),
-    ),
-).annotate({
-  identifier: "SmartDetectorAlertRulesDeleteRequest",
-}) as any as S.Schema<SmartDetectorAlertRulesDeleteRequest>;
-
-export interface SmartDetectorAlertRulesDeleteResponse {}
-export const SmartDetectorAlertRulesDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "SmartDetectorAlertRulesDeleteResponse",
-}) as any as S.Schema<SmartDetectorAlertRulesDeleteResponse>;
-
-export interface SmartDetectorAlertRulesGetRequest {
-  /** The Azure subscription Id. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the alert rule. */
-  alertRuleName: string;
-  /** Indicates if Smart Detector should be expanded. */
-  expandDetector?: boolean;
-}
-export const SmartDetectorAlertRulesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    alertRuleName: S.String.pipe(T.Label()),
-    expandDetector: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/microsoft.alertsManagement/smartDetectorAlertRules/{alertRuleName}",
-      code: 200,
-      apiVersion: "2021-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "SmartDetectorAlertRulesGetRequest",
-}) as any as S.Schema<SmartDetectorAlertRulesGetRequest>;
-
-/** The resource tags. */
-export type SmartDetectorAlertRulesGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const SmartDetectorAlertRulesGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<SmartDetectorAlertRulesGetResponseTagsMap>;
-
-export interface SmartDetectorAlertRulesGetResponse {
-  /** The resource ID. */
-  id?: string;
-  /** The resource type. */
-  type?: string;
-  /** The resource name. */
-  name?: string;
-  /** The resource location. */
-  location?: string;
-  /** The resource tags. */
-  tags?: SmartDetectorAlertRulesGetResponseTagsMap;
-  /** The properties of the alert rule. */
-  properties?: AlertRuleProperties;
-}
-export const SmartDetectorAlertRulesGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetSmartDetectorAlertRuleResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     type: S.optional(S.String),
     name: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(SmartDetectorAlertRulesGetResponseTagsMap),
+    tags: S.optional(GetSmartDetectorAlertRuleResponseTagsMap),
     properties: S.optional(AlertRuleProperties),
   }),
 ).annotate({
-  identifier: "SmartDetectorAlertRulesGetResponse",
-}) as any as S.Schema<SmartDetectorAlertRulesGetResponse>;
+  identifier: "GetSmartDetectorAlertRuleResponse",
+}) as any as S.Schema<GetSmartDetectorAlertRuleResponse>;
 
-export interface SmartDetectorAlertRulesListRequest {
-  /** The Azure subscription Id. */
+export interface ListAlertProcessingRuleByResourceGroupRequest {
+  /** The ID of the target subscription. */
   subscriptionId: string;
-  /** Indicates if Smart Detector should be expanded. */
-  expandDetector?: boolean;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
 }
-export const SmartDetectorAlertRulesListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListAlertProcessingRuleByResourceGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AlertsManagement/actionRules",
+        code: 200,
+        apiVersion: "2021-08-08",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListAlertProcessingRuleByResourceGroupRequest",
+  }) as any as S.Schema<ListAlertProcessingRuleByResourceGroupRequest>;
+
+/** Resource tags. */
+export type AlertProcessingRuleTagsMap = { [key: string]: string | undefined };
+export const AlertProcessingRuleTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<AlertProcessingRuleTagsMap>;
+
+/** Alert processing rule object containing target scopes, conditions and scheduling logic. */
+export interface AlertProcessingRule {
+  /** Azure resource Id */
+  id?: string;
+  /** Azure resource type */
+  type?: string;
+  /** Azure resource name */
+  name?: string;
+  /** Resource tags. */
+  tags?: AlertProcessingRuleTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Alert processing rule properties. */
+  properties?: AlertProcessingRuleProperties;
+}
+export const AlertProcessingRule = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    expandDetector: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(
+    id: S.optional(S.String),
+    type: S.optional(S.String),
+    name: S.optional(S.String),
+    tags: S.optional(AlertProcessingRuleTagsMap),
+    location: S.String,
+    properties: S.optional(AlertProcessingRuleProperties),
+  }),
+).annotate({
+  identifier: "AlertProcessingRule",
+}) as any as S.Schema<AlertProcessingRule>;
+
+/** The AlertProcessingRule items on this page */
+export type AlertProcessingRulesListValueList = Array<AlertProcessingRule>;
+export const AlertProcessingRulesListValueList = /*@__PURE__*/ S.Array(
+  AlertProcessingRule,
+) as any as S.Schema<AlertProcessingRulesListValueList>;
+
+/** List of alert processing rules. */
+export interface AlertProcessingRulesList {
+  /** The AlertProcessingRule items on this page */
+  value: AlertProcessingRulesListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const AlertProcessingRulesList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: AlertProcessingRulesListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AlertProcessingRulesList",
+}) as any as S.Schema<AlertProcessingRulesList>;
+
+export interface ListAlertProcessingRuleBySubscriptionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+}
+export const ListAlertProcessingRuleBySubscriptionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.AlertsManagement/actionRules",
+        code: 200,
+        apiVersion: "2021-08-08",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListAlertProcessingRuleBySubscriptionRequest",
+  }) as any as S.Schema<ListAlertProcessingRuleBySubscriptionRequest>;
+
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/microsoft.alertsManagement/smartDetectorAlertRules",
+      uri: "/providers/Microsoft.AlertsManagement/operations",
       code: 200,
-      apiVersion: "2021-04-01",
+      apiVersion: "2019-03-01",
     }),
   ),
 ).annotate({
-  identifier: "SmartDetectorAlertRulesListRequest",
-}) as any as S.Schema<SmartDetectorAlertRulesListRequest>;
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
+
+/** Properties of the operation */
+export interface OperationDisplay {
+  /** Provider name */
+  provider?: string;
+  /** Resource name */
+  resource?: string;
+  /** Operation name */
+  operation?: string;
+  /** Description of the operation */
+  description?: string;
+}
+export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provider: S.optional(S.String),
+    resource: S.optional(S.String),
+    operation: S.optional(S.String),
+    description: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationDisplay",
+}) as any as S.Schema<OperationDisplay>;
+
+/** Operation provided by provider */
+export interface Operation {
+  /** Name of the operation */
+  name?: string;
+  /** Properties of the operation */
+  display?: OperationDisplay;
+}
+export const Operation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    display: S.optional(OperationDisplay),
+  }),
+).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
+
+/** Array of operations */
+export type OperationsListValueList = Array<Operation>;
+export const OperationsListValueList = /*@__PURE__*/ S.Array(
+  Operation,
+) as any as S.Schema<OperationsListValueList>;
+
+/** Lists the operations available in the AlertsManagement RP. */
+export interface OperationsList {
+  /** URL to fetch the next set of alerts. */
+  nextLink?: string;
+  /** Array of operations */
+  value: OperationsListValueList;
+}
+export const OperationsList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: OperationsListValueList,
+  }),
+).annotate({ identifier: "OperationsList" }) as any as S.Schema<OperationsList>;
+
+export interface ListPrometheusRuleGroupByResourceGroupRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const ListPrometheusRuleGroupByResourceGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AlertsManagement/prometheusRuleGroups",
+        code: 200,
+        apiVersion: "2023-03-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListPrometheusRuleGroupByResourceGroupRequest",
+  }) as any as S.Schema<ListPrometheusRuleGroupByResourceGroupRequest>;
+
+/** Resource tags. */
+export type PrometheusRuleGroupResourceTagsMap = {
+  [key: string]: string | undefined;
+};
+export const PrometheusRuleGroupResourceTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<PrometheusRuleGroupResourceTagsMap>;
+
+/** The Prometheus rule group resource. */
+export interface PrometheusRuleGroupResource {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: PrometheusRuleGroupResourceTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The Prometheus rule group properties of the resource. */
+  properties: PrometheusRuleGroupProperties;
+}
+export const PrometheusRuleGroupResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(PrometheusRuleGroupResourceTagsMap),
+    location: S.String,
+    properties: PrometheusRuleGroupProperties,
+  }),
+).annotate({
+  identifier: "PrometheusRuleGroupResource",
+}) as any as S.Schema<PrometheusRuleGroupResource>;
+
+/** the values for the alert rule resources. */
+export type PrometheusRuleGroupResourceCollectionValueList =
+  Array<PrometheusRuleGroupResource>;
+export const PrometheusRuleGroupResourceCollectionValueList =
+  /*@__PURE__*/ S.Array(
+    PrometheusRuleGroupResource,
+  ) as any as S.Schema<PrometheusRuleGroupResourceCollectionValueList>;
+
+/** Represents a collection of alert rule resources. */
+export interface PrometheusRuleGroupResourceCollection {
+  /** the values for the alert rule resources. */
+  value?: PrometheusRuleGroupResourceCollectionValueList;
+  nextLink?: string;
+}
+export const PrometheusRuleGroupResourceCollection = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      value: S.optional(PrometheusRuleGroupResourceCollectionValueList),
+      nextLink: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "PrometheusRuleGroupResourceCollection",
+}) as any as S.Schema<PrometheusRuleGroupResourceCollection>;
+
+export interface ListPrometheusRuleGroupBySubscriptionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+}
+export const ListPrometheusRuleGroupBySubscriptionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.AlertsManagement/prometheusRuleGroups",
+        code: 200,
+        apiVersion: "2023-03-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListPrometheusRuleGroupBySubscriptionRequest",
+  }) as any as S.Schema<ListPrometheusRuleGroupBySubscriptionRequest>;
+
+export interface ListSmartDetectorAlertRuleByResourceGroupRequest {
+  /** The Azure subscription Id. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** Indicates if Smart Detector should be expanded. */
+  expandDetector?: boolean;
+}
+export const ListSmartDetectorAlertRuleByResourceGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      expandDetector: S.optional(S.Boolean.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/microsoft.alertsManagement/smartDetectorAlertRules",
+        code: 200,
+        apiVersion: "2021-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListSmartDetectorAlertRuleByResourceGroupRequest",
+  }) as any as S.Schema<ListSmartDetectorAlertRuleByResourceGroupRequest>;
 
 /** The resource tags. */
 export type AlertRuleTagsMap = { [key: string]: string | undefined };
@@ -2406,41 +1983,36 @@ export const AlertRulesList = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "AlertRulesList" }) as any as S.Schema<AlertRulesList>;
 
-export interface SmartDetectorAlertRulesListByResourceGroupRequest {
+export interface ListSmartDetectorAlertRulesRequest {
   /** The Azure subscription Id. */
   subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
   /** Indicates if Smart Detector should be expanded. */
   expandDetector?: boolean;
 }
-export const SmartDetectorAlertRulesListByResourceGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      expandDetector: S.optional(S.Boolean.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/microsoft.alertsManagement/smartDetectorAlertRules",
-        code: 200,
-        apiVersion: "2021-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "SmartDetectorAlertRulesListByResourceGroupRequest",
-  }) as any as S.Schema<SmartDetectorAlertRulesListByResourceGroupRequest>;
+export const ListSmartDetectorAlertRulesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    expandDetector: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/microsoft.alertsManagement/smartDetectorAlertRules",
+      code: 200,
+      apiVersion: "2021-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListSmartDetectorAlertRulesRequest",
+}) as any as S.Schema<ListSmartDetectorAlertRulesRequest>;
 
 /** The resource tags. */
-export type SmartDetectorAlertRulesPatchRequestTagsMap = {
+export type PatchSmartDetectorAlertRuleRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const SmartDetectorAlertRulesPatchRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<SmartDetectorAlertRulesPatchRequestTagsMap>;
+export const PatchSmartDetectorAlertRuleRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<PatchSmartDetectorAlertRuleRequestTagsMap>;
 
 /** The alert rule state. */
 export type AlertRulePatchPropertiesState = "Enabled" | "Disabled";
@@ -2483,7 +2055,7 @@ export const AlertRulePatchProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "AlertRulePatchProperties",
 }) as any as S.Schema<AlertRulePatchProperties>;
 
-export interface SmartDetectorAlertRulesPatchRequest {
+export interface PatchSmartDetectorAlertRuleRequest {
   /** The Azure subscription Id. */
   subscriptionId: string;
   /** The name of the resource group. */
@@ -2491,16 +2063,16 @@ export interface SmartDetectorAlertRulesPatchRequest {
   /** The name of the alert rule. */
   alertRuleName: string;
   /** The resource tags. */
-  tags?: SmartDetectorAlertRulesPatchRequestTagsMap;
+  tags?: PatchSmartDetectorAlertRuleRequestTagsMap;
   /** The properties of the alert rule. */
   properties?: AlertRulePatchProperties;
 }
-export const SmartDetectorAlertRulesPatchRequest = /*@__PURE__*/ S.suspend(() =>
+export const PatchSmartDetectorAlertRuleRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     alertRuleName: S.String.pipe(T.Label()),
-    tags: S.optional(SmartDetectorAlertRulesPatchRequestTagsMap),
+    tags: S.optional(PatchSmartDetectorAlertRuleRequestTagsMap),
     properties: S.optional(AlertRulePatchProperties),
   }).pipe(
     T.Http({
@@ -2511,20 +2083,20 @@ export const SmartDetectorAlertRulesPatchRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "SmartDetectorAlertRulesPatchRequest",
-}) as any as S.Schema<SmartDetectorAlertRulesPatchRequest>;
+  identifier: "PatchSmartDetectorAlertRuleRequest",
+}) as any as S.Schema<PatchSmartDetectorAlertRuleRequest>;
 
 /** The resource tags. */
-export type SmartDetectorAlertRulesPatchResponseTagsMap = {
+export type PatchSmartDetectorAlertRuleResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const SmartDetectorAlertRulesPatchResponseTagsMap =
+export const PatchSmartDetectorAlertRuleResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<SmartDetectorAlertRulesPatchResponseTagsMap>;
+  ) as any as S.Schema<PatchSmartDetectorAlertRuleResponseTagsMap>;
 
-export interface SmartDetectorAlertRulesPatchResponse {
+export interface PatchSmartDetectorAlertRuleResponse {
   /** The resource ID. */
   id?: string;
   /** The resource type. */
@@ -2534,23 +2106,447 @@ export interface SmartDetectorAlertRulesPatchResponse {
   /** The resource location. */
   location?: string;
   /** The resource tags. */
-  tags?: SmartDetectorAlertRulesPatchResponseTagsMap;
+  tags?: PatchSmartDetectorAlertRuleResponseTagsMap;
   /** The properties of the alert rule. */
   properties?: AlertRuleProperties;
 }
-export const SmartDetectorAlertRulesPatchResponse = /*@__PURE__*/ S.suspend(
-  () =>
+export const PatchSmartDetectorAlertRuleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    type: S.optional(S.String),
+    name: S.optional(S.String),
+    location: S.optional(S.String),
+    tags: S.optional(PatchSmartDetectorAlertRuleResponseTagsMap),
+    properties: S.optional(AlertRuleProperties),
+  }),
+).annotate({
+  identifier: "PatchSmartDetectorAlertRuleResponse",
+}) as any as S.Schema<PatchSmartDetectorAlertRuleResponse>;
+
+/** Resource tags. */
+export type PrometheusRuleGroupsCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const PrometheusRuleGroupsCreateOrUpdateRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<PrometheusRuleGroupsCreateOrUpdateRequestTagsMap>;
+
+export interface PrometheusRuleGroupsCreateOrUpdateRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the rule group. */
+  ruleGroupName: string;
+  /** Resource tags. */
+  tags?: PrometheusRuleGroupsCreateOrUpdateRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The Prometheus rule group properties of the resource. */
+  properties: PrometheusRuleGroupProperties;
+}
+export const PrometheusRuleGroupsCreateOrUpdateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      ruleGroupName: S.String.pipe(T.Label()),
+      tags: S.optional(PrometheusRuleGroupsCreateOrUpdateRequestTagsMap),
+      location: S.String,
+      properties: PrometheusRuleGroupProperties,
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AlertsManagement/prometheusRuleGroups/{ruleGroupName}",
+        code: 200,
+        apiVersion: "2023-03-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "PrometheusRuleGroupsCreateOrUpdateRequest",
+  }) as any as S.Schema<PrometheusRuleGroupsCreateOrUpdateRequest>;
+
+/** Resource tags. */
+export type PrometheusRuleGroupsCreateOrUpdateResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const PrometheusRuleGroupsCreateOrUpdateResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<PrometheusRuleGroupsCreateOrUpdateResponseTagsMap>;
+
+export interface PrometheusRuleGroupsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: PrometheusRuleGroupsCreateOrUpdateResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The Prometheus rule group properties of the resource. */
+  properties: PrometheusRuleGroupProperties;
+}
+export const PrometheusRuleGroupsCreateOrUpdateResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(PrometheusRuleGroupsCreateOrUpdateResponseTagsMap),
+      location: S.String,
+      properties: PrometheusRuleGroupProperties,
+    }),
+  ).annotate({
+    identifier: "PrometheusRuleGroupsCreateOrUpdateResponse",
+  }) as any as S.Schema<PrometheusRuleGroupsCreateOrUpdateResponse>;
+
+/** The resource tags. */
+export type SmartDetectorAlertRulesCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const SmartDetectorAlertRulesCreateOrUpdateRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<SmartDetectorAlertRulesCreateOrUpdateRequestTagsMap>;
+
+/** The alert rule state. */
+export type AlertRulePropertiesInputState = "Enabled" | "Disabled";
+export const AlertRulePropertiesInputState = /*@__PURE__*/ S.String;
+
+/** The alert rule severity. */
+export type AlertRulePropertiesInputSeverity =
+  | "Sev0"
+  | "Sev1"
+  | "Sev2"
+  | "Sev3"
+  | "Sev4";
+export const AlertRulePropertiesInputSeverity = /*@__PURE__*/ S.String;
+
+/** The detector's parameters.' */
+export type DetectorInputParametersMap = { [key: string]: unknown | undefined };
+export const DetectorInputParametersMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<DetectorInputParametersMap>;
+
+/** The detector information. By default this is not populated, unless it's specified in expandDetector */
+export interface DetectorInput {
+  /** The detector id. */
+  id: string;
+  /** The detector's parameters.' */
+  parameters?: DetectorInputParametersMap;
+}
+export const DetectorInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    parameters: S.optional(DetectorInputParametersMap),
+  }),
+).annotate({ identifier: "DetectorInput" }) as any as S.Schema<DetectorInput>;
+
+/** The alert rule resources scope. */
+export type AlertRulePropertiesInputScopeList = Array<string>;
+export const AlertRulePropertiesInputScopeList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<AlertRulePropertiesInputScopeList>;
+
+/** The alert rule properties. */
+export interface AlertRulePropertiesInput {
+  /** The alert rule description. */
+  description?: string;
+  /** The alert rule state. */
+  state: AlertRulePropertiesInputState | (string & {});
+  /** The alert rule severity. */
+  severity: AlertRulePropertiesInputSeverity | (string & {});
+  /** The alert rule frequency in ISO8601 format. The time granularity must be in minutes and minimum value is 1 minute, depending on the detector. */
+  frequency: string;
+  /** The alert rule's detector. */
+  detector: DetectorInput;
+  /** The alert rule resources scope. */
+  scope: AlertRulePropertiesInputScopeList;
+  /** The alert rule actions. */
+  actionGroups: ActionGroupsInformation;
+  /** The alert rule throttling information. */
+  throttling?: ThrottlingInformation;
+}
+export const AlertRulePropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    description: S.optional(S.String),
+    state: AlertRulePropertiesInputState,
+    severity: AlertRulePropertiesInputSeverity,
+    frequency: S.String,
+    detector: DetectorInput,
+    scope: AlertRulePropertiesInputScopeList,
+    actionGroups: ActionGroupsInformation,
+    throttling: S.optional(ThrottlingInformation),
+  }),
+).annotate({
+  identifier: "AlertRulePropertiesInput",
+}) as any as S.Schema<AlertRulePropertiesInput>;
+
+export interface SmartDetectorAlertRulesCreateOrUpdateRequest {
+  /** The Azure subscription Id. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The name of the alert rule. */
+  alertRuleName: string;
+  /** The resource location. */
+  location?: string;
+  /** The resource tags. */
+  tags?: SmartDetectorAlertRulesCreateOrUpdateRequestTagsMap;
+  /** The properties of the alert rule. */
+  properties?: AlertRulePropertiesInput;
+}
+export const SmartDetectorAlertRulesCreateOrUpdateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      alertRuleName: S.String.pipe(T.Label()),
+      location: S.optional(S.String),
+      tags: S.optional(SmartDetectorAlertRulesCreateOrUpdateRequestTagsMap),
+      properties: S.optional(AlertRulePropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/microsoft.alertsManagement/smartDetectorAlertRules/{alertRuleName}",
+        code: 200,
+        apiVersion: "2021-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "SmartDetectorAlertRulesCreateOrUpdateRequest",
+  }) as any as S.Schema<SmartDetectorAlertRulesCreateOrUpdateRequest>;
+
+/** The resource tags. */
+export type SmartDetectorAlertRulesCreateOrUpdateResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const SmartDetectorAlertRulesCreateOrUpdateResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<SmartDetectorAlertRulesCreateOrUpdateResponseTagsMap>;
+
+export interface SmartDetectorAlertRulesCreateOrUpdateResponse {
+  /** The resource ID. */
+  id?: string;
+  /** The resource type. */
+  type?: string;
+  /** The resource name. */
+  name?: string;
+  /** The resource location. */
+  location?: string;
+  /** The resource tags. */
+  tags?: SmartDetectorAlertRulesCreateOrUpdateResponseTagsMap;
+  /** The properties of the alert rule. */
+  properties?: AlertRuleProperties;
+}
+export const SmartDetectorAlertRulesCreateOrUpdateResponse =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
       type: S.optional(S.String),
       name: S.optional(S.String),
       location: S.optional(S.String),
-      tags: S.optional(SmartDetectorAlertRulesPatchResponseTagsMap),
+      tags: S.optional(SmartDetectorAlertRulesCreateOrUpdateResponseTagsMap),
       properties: S.optional(AlertRuleProperties),
     }),
+  ).annotate({
+    identifier: "SmartDetectorAlertRulesCreateOrUpdateResponse",
+  }) as any as S.Schema<SmartDetectorAlertRulesCreateOrUpdateResponse>;
+
+/** Alert processing rule properties supported by patch. */
+export interface PatchProperties {
+  /** Indicates if the given alert processing rule is enabled or disabled. */
+  enabled?: boolean;
+}
+export const PatchProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    enabled: S.optional(S.Boolean),
+  }),
 ).annotate({
-  identifier: "SmartDetectorAlertRulesPatchResponse",
-}) as any as S.Schema<SmartDetectorAlertRulesPatchResponse>;
+  identifier: "PatchProperties",
+}) as any as S.Schema<PatchProperties>;
+
+/** Tags to be updated. */
+export type UpdateAlertProcessingRuleRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateAlertProcessingRuleRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateAlertProcessingRuleRequestTagsMap>;
+
+export interface UpdateAlertProcessingRuleRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the alert processing rule that needs to be fetched. */
+  alertProcessingRuleName: string;
+  /** Properties supported by patch operation. */
+  properties?: PatchProperties;
+  /** Tags to be updated. */
+  tags?: UpdateAlertProcessingRuleRequestTagsMap;
+}
+export const UpdateAlertProcessingRuleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    alertProcessingRuleName: S.String.pipe(T.Label()),
+    properties: S.optional(PatchProperties),
+    tags: S.optional(UpdateAlertProcessingRuleRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AlertsManagement/actionRules/{alertProcessingRuleName}",
+      code: 200,
+      apiVersion: "2021-08-08",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateAlertProcessingRuleRequest",
+}) as any as S.Schema<UpdateAlertProcessingRuleRequest>;
+
+/** Resource tags. */
+export type UpdateAlertProcessingRuleResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateAlertProcessingRuleResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateAlertProcessingRuleResponseTagsMap>;
+
+export interface UpdateAlertProcessingRuleResponse {
+  /** Azure resource Id */
+  id?: string;
+  /** Azure resource type */
+  type?: string;
+  /** Azure resource name */
+  name?: string;
+  /** Resource tags. */
+  tags?: UpdateAlertProcessingRuleResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Alert processing rule properties. */
+  properties?: AlertProcessingRuleProperties;
+}
+export const UpdateAlertProcessingRuleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    type: S.optional(S.String),
+    name: S.optional(S.String),
+    tags: S.optional(UpdateAlertProcessingRuleResponseTagsMap),
+    location: S.String,
+    properties: S.optional(AlertProcessingRuleProperties),
+  }),
+).annotate({
+  identifier: "UpdateAlertProcessingRuleResponse",
+}) as any as S.Schema<UpdateAlertProcessingRuleResponse>;
+
+/** Resource tags */
+export type UpdatePrometheusRuleGroupRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdatePrometheusRuleGroupRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdatePrometheusRuleGroupRequestTagsMap>;
+
+export interface PrometheusRuleGroupResourcePatchParametersProperties {
+  /** the flag that indicates whether the Prometheus rule group is enabled. */
+  enabled?: boolean;
+}
+export const PrometheusRuleGroupResourcePatchParametersProperties =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      enabled: S.optional(S.Boolean),
+    }),
+  ).annotate({
+    identifier: "PrometheusRuleGroupResourcePatchParametersProperties",
+  }) as any as S.Schema<PrometheusRuleGroupResourcePatchParametersProperties>;
+
+export interface UpdatePrometheusRuleGroupRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the rule group. */
+  ruleGroupName: string;
+  /** Resource tags */
+  tags?: UpdatePrometheusRuleGroupRequestTagsMap;
+  properties?: PrometheusRuleGroupResourcePatchParametersProperties;
+}
+export const UpdatePrometheusRuleGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    ruleGroupName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdatePrometheusRuleGroupRequestTagsMap),
+    properties: S.optional(
+      PrometheusRuleGroupResourcePatchParametersProperties,
+    ),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AlertsManagement/prometheusRuleGroups/{ruleGroupName}",
+      code: 200,
+      apiVersion: "2023-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdatePrometheusRuleGroupRequest",
+}) as any as S.Schema<UpdatePrometheusRuleGroupRequest>;
+
+/** Resource tags. */
+export type UpdatePrometheusRuleGroupResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdatePrometheusRuleGroupResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdatePrometheusRuleGroupResponseTagsMap>;
+
+export interface UpdatePrometheusRuleGroupResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdatePrometheusRuleGroupResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The Prometheus rule group properties of the resource. */
+  properties: PrometheusRuleGroupProperties;
+}
+export const UpdatePrometheusRuleGroupResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdatePrometheusRuleGroupResponseTagsMap),
+    location: S.String,
+    properties: PrometheusRuleGroupProperties,
+  }),
+).annotate({
+  identifier: "UpdatePrometheusRuleGroupResponse",
+}) as any as S.Schema<UpdatePrometheusRuleGroupResponse>;
 
 export type AlertProcessingRulesCreateOrUpdateError = AzureOpError;
 /** Create or update an alert processing rule. */
@@ -2562,81 +2558,6 @@ export const AlertProcessingRulesCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: AlertProcessingRulesCreateOrUpdateRequest,
   output: AlertProcessingRulesCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AlertProcessingRulesDeleteError = AzureOpError;
-/** Delete an alert processing rule. */
-export const AlertProcessingRulesDelete: API.OperationMethod<
-  AlertProcessingRulesDeleteRequest,
-  AlertProcessingRulesDeleteResponse,
-  AlertProcessingRulesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AlertProcessingRulesDeleteRequest,
-  output: AlertProcessingRulesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AlertProcessingRulesGetByNameError = AzureOpError;
-/** Get an alert processing rule by name. */
-export const AlertProcessingRulesGetByName: API.OperationMethod<
-  AlertProcessingRulesGetByNameRequest,
-  AlertProcessingRulesGetByNameResponse,
-  AlertProcessingRulesGetByNameError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AlertProcessingRulesGetByNameRequest,
-  output: AlertProcessingRulesGetByNameResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AlertProcessingRulesListByResourceGroupError = AzureOpError;
-/** List all alert processing rules in a resource group. */
-export const AlertProcessingRulesListByResourceGroup: API.OperationMethod<
-  AlertProcessingRulesListByResourceGroupRequest,
-  AlertProcessingRulesList,
-  AlertProcessingRulesListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AlertProcessingRulesListByResourceGroupRequest,
-  output: AlertProcessingRulesList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AlertProcessingRulesListBySubscriptionError = AzureOpError;
-/** List all alert processing rules in a subscription. */
-export const AlertProcessingRulesListBySubscription: API.OperationMethod<
-  AlertProcessingRulesListBySubscriptionRequest,
-  AlertProcessingRulesList,
-  AlertProcessingRulesListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AlertProcessingRulesListBySubscriptionRequest,
-  output: AlertProcessingRulesList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AlertProcessingRulesUpdateError = AzureOpError;
-/** Enable, disable, or update tags for an alert processing rule. */
-export const AlertProcessingRulesUpdate: API.OperationMethod<
-  AlertProcessingRulesUpdateRequest,
-  AlertProcessingRulesUpdateResponse,
-  AlertProcessingRulesUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AlertProcessingRulesUpdateRequest,
-  output: AlertProcessingRulesUpdateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2657,66 +2578,6 @@ export const AlertsChangeState: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type AlertsGetAllError = AzureOpError;
-/** List all existing alerts, where the results can be filtered on the basis of multiple parameters (e.g. time range). The results can then be sorted on the basis specific fields, with the default being lastModifiedDateTime. */
-export const AlertsGetAll: API.OperationMethod<
-  AlertsGetAllRequest,
-  AlertsList,
-  AlertsGetAllError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AlertsGetAllRequest,
-  output: AlertsList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AlertsGetByIdError = AzureOpError;
-/** Get a specific alert. Get information related to a specific alert. If scope is a deleted resource then please use scope as parent resource of the delete resource. For example if my alert id is '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Compute/virtualMachines/vm1/providers/Microsoft.AlertsManagement/alerts/{alertId}' and 'vm1' is deleted then if you want to get alert by id then use parent resource of scope. So in this example get alert by id call will look like this: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.AlertsManagement/alerts/{alertId}'. */
-export const AlertsGetById: API.OperationMethod<
-  AlertsGetByIdRequest,
-  AlertsGetByIdResponse,
-  AlertsGetByIdError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AlertsGetByIdRequest,
-  output: AlertsGetByIdResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AlertsGetHistoryError = AzureOpError;
-/** Get the history of an alert, which captures any monitor condition changes (Fired/Resolved), alert state changes (New/Acknowledged/Closed) and applied action rules for that particular alert. If scope is a deleted resource then please use scope as parent resource of the delete resource. For example if my alert id is '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Compute/virtualMachines/vm1/providers/Microsoft.AlertsManagement/alerts/{alertId}' and 'vm1' is deleted then if you want to get history of this particular alert then use parent resource of scope. So in this example get history call will look like this: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.AlertsManagement/alerts/{alertId}/history'. */
-export const AlertsGetHistory: API.OperationMethod<
-  AlertsGetHistoryRequest,
-  AlertsGetHistoryResponse,
-  AlertsGetHistoryError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AlertsGetHistoryRequest,
-  output: AlertsGetHistoryResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AlertsGetSummaryError = AzureOpError;
-/** Get a summarized count of your alerts grouped by various parameters (e.g. grouping by 'Severity' returns the count of alerts for each severity). */
-export const AlertsGetSummary: API.OperationMethod<
-  AlertsGetSummaryRequest,
-  AlertsGetSummaryResponse,
-  AlertsGetSummaryError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AlertsGetSummaryRequest,
-  output: AlertsGetSummaryResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type AlertsMetaData2Error = AzureOpError;
 /** List alerts meta data information based on value of identifier parameter. */
 export const AlertsMetaData2: API.OperationMethod<
@@ -2732,16 +2593,271 @@ export const AlertsMetaData2: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type OperationsList2Error = AzureOpError;
-/** List all operations available through Azure Alerts Management Resource Provider. */
-export const OperationsList2: API.OperationMethod<
-  OperationsList2Request,
-  OperationsList,
-  OperationsList2Error,
+export type DeleteAlertProcessingRuleError = AzureOpError;
+/** Delete an alert processing rule. */
+export const DeleteAlertProcessingRule: API.OperationMethod<
+  DeleteAlertProcessingRuleRequest,
+  DeleteAlertProcessingRuleResponse,
+  DeleteAlertProcessingRuleError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsList2Request,
+  input: DeleteAlertProcessingRuleRequest,
+  output: DeleteAlertProcessingRuleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeletePrometheusRuleGroupError = AzureOpError;
+/** Delete a Prometheus rule group definition. */
+export const DeletePrometheusRuleGroup: API.OperationMethod<
+  DeletePrometheusRuleGroupRequest,
+  DeletePrometheusRuleGroupResponse,
+  DeletePrometheusRuleGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeletePrometheusRuleGroupRequest,
+  output: DeletePrometheusRuleGroupResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteSmartDetectorAlertRuleError = AzureOpError;
+/** Delete an existing Smart Detector alert rule. */
+export const DeleteSmartDetectorAlertRule: API.OperationMethod<
+  DeleteSmartDetectorAlertRuleRequest,
+  DeleteSmartDetectorAlertRuleResponse,
+  DeleteSmartDetectorAlertRuleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteSmartDetectorAlertRuleRequest,
+  output: DeleteSmartDetectorAlertRuleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAlertAllError = AzureOpError;
+/** List all existing alerts, where the results can be filtered on the basis of multiple parameters (e.g. time range). The results can then be sorted on the basis specific fields, with the default being lastModifiedDateTime. */
+export const GetAlertAll: API.OperationMethod<
+  GetAlertAllRequest,
+  AlertsList,
+  GetAlertAllError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAlertAllRequest,
+  output: AlertsList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAlertByIdError = AzureOpError;
+/** Get a specific alert. Get information related to a specific alert. If scope is a deleted resource then please use scope as parent resource of the delete resource. For example if my alert id is '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Compute/virtualMachines/vm1/providers/Microsoft.AlertsManagement/alerts/{alertId}' and 'vm1' is deleted then if you want to get alert by id then use parent resource of scope. So in this example get alert by id call will look like this: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.AlertsManagement/alerts/{alertId}'. */
+export const GetAlertById: API.OperationMethod<
+  GetAlertByIdRequest,
+  GetAlertByIdResponse,
+  GetAlertByIdError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAlertByIdRequest,
+  output: GetAlertByIdResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAlertHistoryError = AzureOpError;
+/** Get the history of an alert, which captures any monitor condition changes (Fired/Resolved), alert state changes (New/Acknowledged/Closed) and applied action rules for that particular alert. If scope is a deleted resource then please use scope as parent resource of the delete resource. For example if my alert id is '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Compute/virtualMachines/vm1/providers/Microsoft.AlertsManagement/alerts/{alertId}' and 'vm1' is deleted then if you want to get history of this particular alert then use parent resource of scope. So in this example get history call will look like this: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.AlertsManagement/alerts/{alertId}/history'. */
+export const GetAlertHistory: API.OperationMethod<
+  GetAlertHistoryRequest,
+  GetAlertHistoryResponse,
+  GetAlertHistoryError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAlertHistoryRequest,
+  output: GetAlertHistoryResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAlertProcessingRuleByNameError = AzureOpError;
+/** Get an alert processing rule by name. */
+export const GetAlertProcessingRuleByName: API.OperationMethod<
+  GetAlertProcessingRuleByNameRequest,
+  GetAlertProcessingRuleByNameResponse,
+  GetAlertProcessingRuleByNameError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAlertProcessingRuleByNameRequest,
+  output: GetAlertProcessingRuleByNameResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAlertSummaryError = AzureOpError;
+/** Get a summarized count of your alerts grouped by various parameters (e.g. grouping by 'Severity' returns the count of alerts for each severity). */
+export const GetAlertSummary: API.OperationMethod<
+  GetAlertSummaryRequest,
+  GetAlertSummaryResponse,
+  GetAlertSummaryError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAlertSummaryRequest,
+  output: GetAlertSummaryResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPrometheusRuleGroupError = AzureOpError;
+/** Retrieve a Prometheus rule group definition. */
+export const GetPrometheusRuleGroup: API.OperationMethod<
+  GetPrometheusRuleGroupRequest,
+  GetPrometheusRuleGroupResponse,
+  GetPrometheusRuleGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPrometheusRuleGroupRequest,
+  output: GetPrometheusRuleGroupResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSmartDetectorAlertRuleError = AzureOpError;
+/** Get a specific Smart Detector alert rule. */
+export const GetSmartDetectorAlertRule: API.OperationMethod<
+  GetSmartDetectorAlertRuleRequest,
+  GetSmartDetectorAlertRuleResponse,
+  GetSmartDetectorAlertRuleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSmartDetectorAlertRuleRequest,
+  output: GetSmartDetectorAlertRuleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAlertProcessingRuleByResourceGroupError = AzureOpError;
+/** List all alert processing rules in a resource group. */
+export const ListAlertProcessingRuleByResourceGroup: API.OperationMethod<
+  ListAlertProcessingRuleByResourceGroupRequest,
+  AlertProcessingRulesList,
+  ListAlertProcessingRuleByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAlertProcessingRuleByResourceGroupRequest,
+  output: AlertProcessingRulesList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAlertProcessingRuleBySubscriptionError = AzureOpError;
+/** List all alert processing rules in a subscription. */
+export const ListAlertProcessingRuleBySubscription: API.OperationMethod<
+  ListAlertProcessingRuleBySubscriptionRequest,
+  AlertProcessingRulesList,
+  ListAlertProcessingRuleBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAlertProcessingRuleBySubscriptionRequest,
+  output: AlertProcessingRulesList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOperationsError = AzureOpError;
+/** List all operations available through Azure Alerts Management Resource Provider. */
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  OperationsList,
+  ListOperationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOperationsRequest,
   output: OperationsList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPrometheusRuleGroupByResourceGroupError = AzureOpError;
+/** Retrieve Prometheus rule group definitions in a resource group. */
+export const ListPrometheusRuleGroupByResourceGroup: API.OperationMethod<
+  ListPrometheusRuleGroupByResourceGroupRequest,
+  PrometheusRuleGroupResourceCollection,
+  ListPrometheusRuleGroupByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPrometheusRuleGroupByResourceGroupRequest,
+  output: PrometheusRuleGroupResourceCollection,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPrometheusRuleGroupBySubscriptionError = AzureOpError;
+/** Retrieve Prometheus all rule group definitions in a subscription. */
+export const ListPrometheusRuleGroupBySubscription: API.OperationMethod<
+  ListPrometheusRuleGroupBySubscriptionRequest,
+  PrometheusRuleGroupResourceCollection,
+  ListPrometheusRuleGroupBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPrometheusRuleGroupBySubscriptionRequest,
+  output: PrometheusRuleGroupResourceCollection,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSmartDetectorAlertRuleByResourceGroupError = AzureOpError;
+/** List all the existing Smart Detector alert rules within the subscription and resource group. */
+export const ListSmartDetectorAlertRuleByResourceGroup: API.OperationMethod<
+  ListSmartDetectorAlertRuleByResourceGroupRequest,
+  AlertRulesList,
+  ListSmartDetectorAlertRuleByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSmartDetectorAlertRuleByResourceGroupRequest,
+  output: AlertRulesList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSmartDetectorAlertRulesError = AzureOpError;
+/** List all the existing Smart Detector alert rules within the subscription. */
+export const ListSmartDetectorAlertRules: API.OperationMethod<
+  ListSmartDetectorAlertRulesRequest,
+  AlertRulesList,
+  ListSmartDetectorAlertRulesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSmartDetectorAlertRulesRequest,
+  output: AlertRulesList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PatchSmartDetectorAlertRuleError = AzureOpError;
+/** Patch a specific Smart Detector alert rule. */
+export const PatchSmartDetectorAlertRule: API.OperationMethod<
+  PatchSmartDetectorAlertRuleRequest,
+  PatchSmartDetectorAlertRuleResponse,
+  PatchSmartDetectorAlertRuleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PatchSmartDetectorAlertRuleRequest,
+  output: PatchSmartDetectorAlertRuleResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2762,81 +2878,6 @@ export const PrometheusRuleGroupsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PrometheusRuleGroupsDeleteError = AzureOpError;
-/** Delete a Prometheus rule group definition. */
-export const PrometheusRuleGroupsDelete: API.OperationMethod<
-  PrometheusRuleGroupsDeleteRequest,
-  PrometheusRuleGroupsDeleteResponse,
-  PrometheusRuleGroupsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrometheusRuleGroupsDeleteRequest,
-  output: PrometheusRuleGroupsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrometheusRuleGroupsGetError = AzureOpError;
-/** Retrieve a Prometheus rule group definition. */
-export const PrometheusRuleGroupsGet: API.OperationMethod<
-  PrometheusRuleGroupsGetRequest,
-  PrometheusRuleGroupsGetResponse,
-  PrometheusRuleGroupsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrometheusRuleGroupsGetRequest,
-  output: PrometheusRuleGroupsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrometheusRuleGroupsListByResourceGroupError = AzureOpError;
-/** Retrieve Prometheus rule group definitions in a resource group. */
-export const PrometheusRuleGroupsListByResourceGroup: API.OperationMethod<
-  PrometheusRuleGroupsListByResourceGroupRequest,
-  PrometheusRuleGroupResourceCollection,
-  PrometheusRuleGroupsListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrometheusRuleGroupsListByResourceGroupRequest,
-  output: PrometheusRuleGroupResourceCollection,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrometheusRuleGroupsListBySubscriptionError = AzureOpError;
-/** Retrieve Prometheus all rule group definitions in a subscription. */
-export const PrometheusRuleGroupsListBySubscription: API.OperationMethod<
-  PrometheusRuleGroupsListBySubscriptionRequest,
-  PrometheusRuleGroupResourceCollection,
-  PrometheusRuleGroupsListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrometheusRuleGroupsListBySubscriptionRequest,
-  output: PrometheusRuleGroupResourceCollection,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrometheusRuleGroupsUpdateError = AzureOpError;
-/** Update an Prometheus rule group definition. */
-export const PrometheusRuleGroupsUpdate: API.OperationMethod<
-  PrometheusRuleGroupsUpdateRequest,
-  PrometheusRuleGroupsUpdateResponse,
-  PrometheusRuleGroupsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrometheusRuleGroupsUpdateRequest,
-  output: PrometheusRuleGroupsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type SmartDetectorAlertRulesCreateOrUpdateError = AzureOpError;
 /** Create or update a Smart Detector alert rule. */
 export const SmartDetectorAlertRulesCreateOrUpdate: API.OperationMethod<
@@ -2852,76 +2893,31 @@ export const SmartDetectorAlertRulesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SmartDetectorAlertRulesDeleteError = AzureOpError;
-/** Delete an existing Smart Detector alert rule. */
-export const SmartDetectorAlertRulesDelete: API.OperationMethod<
-  SmartDetectorAlertRulesDeleteRequest,
-  SmartDetectorAlertRulesDeleteResponse,
-  SmartDetectorAlertRulesDeleteError,
+export type UpdateAlertProcessingRuleError = AzureOpError;
+/** Enable, disable, or update tags for an alert processing rule. */
+export const UpdateAlertProcessingRule: API.OperationMethod<
+  UpdateAlertProcessingRuleRequest,
+  UpdateAlertProcessingRuleResponse,
+  UpdateAlertProcessingRuleError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SmartDetectorAlertRulesDeleteRequest,
-  output: SmartDetectorAlertRulesDeleteResponse,
+  input: UpdateAlertProcessingRuleRequest,
+  output: UpdateAlertProcessingRuleResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type SmartDetectorAlertRulesGetError = AzureOpError;
-/** Get a specific Smart Detector alert rule. */
-export const SmartDetectorAlertRulesGet: API.OperationMethod<
-  SmartDetectorAlertRulesGetRequest,
-  SmartDetectorAlertRulesGetResponse,
-  SmartDetectorAlertRulesGetError,
+export type UpdatePrometheusRuleGroupError = AzureOpError;
+/** Update an Prometheus rule group definition. */
+export const UpdatePrometheusRuleGroup: API.OperationMethod<
+  UpdatePrometheusRuleGroupRequest,
+  UpdatePrometheusRuleGroupResponse,
+  UpdatePrometheusRuleGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SmartDetectorAlertRulesGetRequest,
-  output: SmartDetectorAlertRulesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SmartDetectorAlertRulesListError = AzureOpError;
-/** List all the existing Smart Detector alert rules within the subscription. */
-export const SmartDetectorAlertRulesList: API.OperationMethod<
-  SmartDetectorAlertRulesListRequest,
-  AlertRulesList,
-  SmartDetectorAlertRulesListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SmartDetectorAlertRulesListRequest,
-  output: AlertRulesList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SmartDetectorAlertRulesListByResourceGroupError = AzureOpError;
-/** List all the existing Smart Detector alert rules within the subscription and resource group. */
-export const SmartDetectorAlertRulesListByResourceGroup: API.OperationMethod<
-  SmartDetectorAlertRulesListByResourceGroupRequest,
-  AlertRulesList,
-  SmartDetectorAlertRulesListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SmartDetectorAlertRulesListByResourceGroupRequest,
-  output: AlertRulesList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SmartDetectorAlertRulesPatchError = AzureOpError;
-/** Patch a specific Smart Detector alert rule. */
-export const SmartDetectorAlertRulesPatch: API.OperationMethod<
-  SmartDetectorAlertRulesPatchRequest,
-  SmartDetectorAlertRulesPatchResponse,
-  SmartDetectorAlertRulesPatchError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SmartDetectorAlertRulesPatchRequest,
-  output: SmartDetectorAlertRulesPatchResponse,
+  input: UpdatePrometheusRuleGroupRequest,
+  output: UpdatePrometheusRuleGroupResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

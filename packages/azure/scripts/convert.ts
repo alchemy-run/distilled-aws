@@ -42,6 +42,7 @@ import {
   convertOpenApiToSmithy,
   type SmithyModel,
 } from "@distilled.cloud/core/codegen/openapi";
+import { finalizeConvert } from "@distilled.cloud/core/codegen/patches";
 import { resolveSpecPath } from "@distilled.cloud/core/codegen/spec-path";
 
 const rootDir = path.resolve(import.meta.dir, "..");
@@ -731,7 +732,7 @@ function foldApiVersion(model: SmithyModel): void {
 // Main
 // ============================================================================
 
-function main() {
+async function main() {
   const started = Date.now();
   console.log("🛠️  azure specs → smithy");
   console.log("   Discovering Azure REST API specs...");
@@ -892,6 +893,7 @@ function main() {
   );
   console.log(`  Elapsed: ${((Date.now() - started) / 1000).toFixed(1)}s`);
   console.log(`  Output: ${outDir}`);
+  await finalizeConvert({ root: rootDir });
 }
 
 main();

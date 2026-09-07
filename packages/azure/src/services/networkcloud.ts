@@ -342,357 +342,6 @@ export const AccessBridgesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "AccessBridgesCreateOrUpdateResponse",
 }) as any as S.Schema<AccessBridgesCreateOrUpdateResponse>;
 
-export type AccessBridgesDeleteRequestAccessBridgeName =
-  | "Bastion"
-  | "PrivateVault"
-  | "StorageDashboard";
-export const AccessBridgesDeleteRequestAccessBridgeName =
-  /*@__PURE__*/ S.String;
-
-export interface AccessBridgesDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the access bridge. */
-  accessBridgeName: AccessBridgesDeleteRequestAccessBridgeName | (string & {});
-}
-export const AccessBridgesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accessBridgeName: AccessBridgesDeleteRequestAccessBridgeName.pipe(
-      T.Label(),
-    ),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/accessBridges/{accessBridgeName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "AccessBridgesDeleteRequest",
-}) as any as S.Schema<AccessBridgesDeleteRequest>;
-
-export interface AccessBridgesDeleteResponse {}
-export const AccessBridgesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "AccessBridgesDeleteResponse",
-}) as any as S.Schema<AccessBridgesDeleteResponse>;
-
-export type AccessBridgesGetRequestAccessBridgeName =
-  | "Bastion"
-  | "PrivateVault"
-  | "StorageDashboard";
-export const AccessBridgesGetRequestAccessBridgeName = /*@__PURE__*/ S.String;
-
-export interface AccessBridgesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the access bridge. */
-  accessBridgeName: AccessBridgesGetRequestAccessBridgeName | (string & {});
-}
-export const AccessBridgesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accessBridgeName: AccessBridgesGetRequestAccessBridgeName.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/accessBridges/{accessBridgeName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "AccessBridgesGetRequest",
-}) as any as S.Schema<AccessBridgesGetRequest>;
-
-/** Resource tags. */
-export type AccessBridgesGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AccessBridgesGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AccessBridgesGetResponseTagsMap>;
-
-export interface AccessBridgesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: AccessBridgesGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: AccessBridgeProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
-}
-export const AccessBridgesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(AccessBridgesGetResponseTagsMap),
-    location: S.String,
-    properties: AccessBridgeProperties,
-    etag: S.optional(S.String),
-    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-  }),
-).annotate({
-  identifier: "AccessBridgesGetResponse",
-}) as any as S.Schema<AccessBridgesGetResponse>;
-
-export interface AccessBridgesListByResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
-  _top?: number;
-  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
-  _skipToken?: string;
-}
-export const AccessBridgesListByResourceGroupRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/accessBridges",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "AccessBridgesListByResourceGroupRequest",
-}) as any as S.Schema<AccessBridgesListByResourceGroupRequest>;
-
-/** Resource tags. */
-export type AccessBridgeTagsMap = { [key: string]: string | undefined };
-export const AccessBridgeTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AccessBridgeTagsMap>;
-
-/** AccessBridge represents a managed access bridge resource. */
-export interface AccessBridge {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: AccessBridgeTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: AccessBridgeProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
-}
-export const AccessBridge = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(AccessBridgeTagsMap),
-    location: S.String,
-    properties: AccessBridgeProperties,
-    etag: S.optional(S.String),
-    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-  }),
-).annotate({ identifier: "AccessBridge" }) as any as S.Schema<AccessBridge>;
-
-/** The AccessBridge items on this page */
-export type AccessBridgeListValueList = Array<AccessBridge>;
-export const AccessBridgeListValueList = /*@__PURE__*/ S.Array(
-  AccessBridge,
-) as any as S.Schema<AccessBridgeListValueList>;
-
-/** AccessBridgeList represents a paged list of access bridges. */
-export interface AccessBridgeList {
-  /** The AccessBridge items on this page */
-  value: AccessBridgeListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const AccessBridgeList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: AccessBridgeListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AccessBridgeList",
-}) as any as S.Schema<AccessBridgeList>;
-
-export interface AccessBridgesListBySubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
-  _top?: number;
-  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
-  _skipToken?: string;
-}
-export const AccessBridgesListBySubscriptionRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/accessBridges",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "AccessBridgesListBySubscriptionRequest",
-}) as any as S.Schema<AccessBridgesListBySubscriptionRequest>;
-
-export type AccessBridgesUpdateRequestAccessBridgeName =
-  | "Bastion"
-  | "PrivateVault"
-  | "StorageDashboard";
-export const AccessBridgesUpdateRequestAccessBridgeName =
-  /*@__PURE__*/ S.String;
-
-/** The list of security rules enforced by the access bridge. */
-export type AccessBridgePatchPropertiesSecurityRulesList =
-  Array<AccessBridgeSecurityRule>;
-export const AccessBridgePatchPropertiesSecurityRulesList =
-  /*@__PURE__*/ S.Array(
-    AccessBridgeSecurityRule,
-  ) as any as S.Schema<AccessBridgePatchPropertiesSecurityRulesList>;
-
-/** AccessBridgePatchProperties identifies the mutable properties for patch operations. */
-export interface AccessBridgePatchProperties {
-  /** The list of security rules enforced by the access bridge. */
-  securityRules?: AccessBridgePatchPropertiesSecurityRulesList;
-}
-export const AccessBridgePatchProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    securityRules: S.optional(AccessBridgePatchPropertiesSecurityRulesList),
-  }),
-).annotate({
-  identifier: "AccessBridgePatchProperties",
-}) as any as S.Schema<AccessBridgePatchProperties>;
-
-/** Resource tags. */
-export type AccessBridgesUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AccessBridgesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AccessBridgesUpdateRequestTagsMap>;
-
-export interface AccessBridgesUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the access bridge. */
-  accessBridgeName: AccessBridgesUpdateRequestAccessBridgeName | (string & {});
-  /** The list of the resource properties. */
-  properties?: AccessBridgePatchProperties;
-  /** Resource tags. */
-  tags?: AccessBridgesUpdateRequestTagsMap;
-}
-export const AccessBridgesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accessBridgeName: AccessBridgesUpdateRequestAccessBridgeName.pipe(
-      T.Label(),
-    ),
-    properties: S.optional(AccessBridgePatchProperties),
-    tags: S.optional(AccessBridgesUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/accessBridges/{accessBridgeName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "AccessBridgesUpdateRequest",
-}) as any as S.Schema<AccessBridgesUpdateRequest>;
-
-/** Resource tags. */
-export type AccessBridgesUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AccessBridgesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AccessBridgesUpdateResponseTagsMap>;
-
-export interface AccessBridgesUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: AccessBridgesUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: AccessBridgeProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
-}
-export const AccessBridgesUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(AccessBridgesUpdateResponseTagsMap),
-    location: S.String,
-    properties: AccessBridgeProperties,
-    etag: S.optional(S.String),
-    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-  }),
-).annotate({
-  identifier: "AccessBridgesUpdateResponse",
-}) as any as S.Schema<AccessBridgesUpdateResponse>;
-
 /** Resource tags. */
 export type AgentPoolsCreateOrUpdateRequestTagsMap = {
   [key: string]: string | undefined;
@@ -1158,346 +807,47 @@ export const AgentPoolsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "AgentPoolsCreateOrUpdateResponse",
 }) as any as S.Schema<AgentPoolsCreateOrUpdateResponse>;
 
-export interface AgentPoolsDeleteRequest {
+/** The indicator of which relay type the machine should be assigned to use. Platform indicates the use of a platform-dedicated relay. Public indicates the use of the standard public relay for Arc services. */
+export type AssignVirtualMachineRelayRequestRelayType = "Platform" | "Public";
+export const AssignVirtualMachineRelayRequestRelayType = /*@__PURE__*/ S.String;
+
+export interface AssignVirtualMachineRelayRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** The name of the Kubernetes cluster. */
-  kubernetesClusterName: string;
-  /** The name of the Kubernetes cluster agent pool. */
-  agentPoolName: string;
+  /** The name of the virtual machine. */
+  virtualMachineName: string;
+  /** The resourceId of the Microsoft.HybridCompute machine resource to assign relay usage. */
+  machineId: string;
+  /** The indicator of which relay type the machine should be assigned to use. Platform indicates the use of a platform-dedicated relay. Public indicates the use of the standard public relay for Arc services. */
+  relayType?: AssignVirtualMachineRelayRequestRelayType | (string & {});
 }
-export const AgentPoolsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const AssignVirtualMachineRelayRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
-    kubernetesClusterName: S.String.pipe(T.Label()),
-    agentPoolName: S.String.pipe(T.Label()),
+    virtualMachineName: S.String.pipe(T.Label()),
+    machineId: S.String,
+    relayType: S.optional(AssignVirtualMachineRelayRequestRelayType),
   }).pipe(
     T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}/agentPools/{agentPoolName}",
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/assignRelay",
       code: 200,
       apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
-  identifier: "AgentPoolsDeleteRequest",
-}) as any as S.Schema<AgentPoolsDeleteRequest>;
+  identifier: "AssignVirtualMachineRelayRequest",
+}) as any as S.Schema<AssignVirtualMachineRelayRequest>;
 
-export interface AgentPoolsDeleteResponse {}
-export const AgentPoolsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface AssignVirtualMachineRelayResponse {}
+export const AssignVirtualMachineRelayResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "AgentPoolsDeleteResponse",
-}) as any as S.Schema<AgentPoolsDeleteResponse>;
-
-export interface AgentPoolsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kubernetes cluster. */
-  kubernetesClusterName: string;
-  /** The name of the Kubernetes cluster agent pool. */
-  agentPoolName: string;
-}
-export const AgentPoolsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    kubernetesClusterName: S.String.pipe(T.Label()),
-    agentPoolName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}/agentPools/{agentPoolName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "AgentPoolsGetRequest",
-}) as any as S.Schema<AgentPoolsGetRequest>;
-
-/** Resource tags. */
-export type AgentPoolsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AgentPoolsGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AgentPoolsGetResponseTagsMap>;
-
-export interface AgentPoolsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: AgentPoolsGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: AgentPoolProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. */
-  extendedLocation?: AzureResourceManagerCommonTypesExtendedLocation;
-}
-export const AgentPoolsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(AgentPoolsGetResponseTagsMap),
-    location: S.String,
-    properties: AgentPoolProperties,
-    etag: S.optional(S.String),
-    extendedLocation: S.optional(
-      AzureResourceManagerCommonTypesExtendedLocation,
-    ),
-  }),
-).annotate({
-  identifier: "AgentPoolsGetResponse",
-}) as any as S.Schema<AgentPoolsGetResponse>;
-
-export interface AgentPoolsListByKubernetesClusterRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kubernetes cluster. */
-  kubernetesClusterName: string;
-  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
-  _top?: number;
-  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
-  _skipToken?: string;
-}
-export const AgentPoolsListByKubernetesClusterRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      kubernetesClusterName: S.String.pipe(T.Label()),
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}/agentPools",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "AgentPoolsListByKubernetesClusterRequest",
-}) as any as S.Schema<AgentPoolsListByKubernetesClusterRequest>;
-
-/** Resource tags. */
-export type AgentPoolTagsMap = { [key: string]: string | undefined };
-export const AgentPoolTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AgentPoolTagsMap>;
-
-/** AgentPool represents the agent pool of Kubernetes cluster. */
-export interface AgentPool {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: AgentPoolTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: AgentPoolProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. */
-  extendedLocation?: AzureResourceManagerCommonTypesExtendedLocation;
-}
-export const AgentPool = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(AgentPoolTagsMap),
-    location: S.String,
-    properties: AgentPoolProperties,
-    etag: S.optional(S.String),
-    extendedLocation: S.optional(
-      AzureResourceManagerCommonTypesExtendedLocation,
-    ),
-  }),
-).annotate({ identifier: "AgentPool" }) as any as S.Schema<AgentPool>;
-
-/** The AgentPool items on this page */
-export type AgentPoolListValueList = Array<AgentPool>;
-export const AgentPoolListValueList = /*@__PURE__*/ S.Array(
-  AgentPool,
-) as any as S.Schema<AgentPoolListValueList>;
-
-/** AgentPoolList represents a list of Kubernetes cluster agent pools. */
-export interface AgentPoolList {
-  /** The AgentPool items on this page */
-  value: AgentPoolListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const AgentPoolList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: AgentPoolListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "AgentPoolList" }) as any as S.Schema<AgentPoolList>;
-
-/** SshPublicKey represents the public key used to authenticate with a resource through SSH. */
-export type NodePoolAdministratorConfigurationPatchSshPublicKeysList =
-  Array<SshPublicKey>;
-export const NodePoolAdministratorConfigurationPatchSshPublicKeysList =
-  /*@__PURE__*/ S.Array(
-    SshPublicKey,
-  ) as any as S.Schema<NodePoolAdministratorConfigurationPatchSshPublicKeysList>;
-
-/** NodePoolAdministratorConfigurationPatch represents the patching capabilities for the administrator configuration. */
-export interface NodePoolAdministratorConfigurationPatch {
-  /** SshPublicKey represents the public key used to authenticate with a resource through SSH. */
-  sshPublicKeys?: NodePoolAdministratorConfigurationPatchSshPublicKeysList;
-}
-export const NodePoolAdministratorConfigurationPatch = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      sshPublicKeys: S.optional(
-        NodePoolAdministratorConfigurationPatchSshPublicKeysList,
-      ),
-    }),
-).annotate({
-  identifier: "NodePoolAdministratorConfigurationPatch",
-}) as any as S.Schema<NodePoolAdministratorConfigurationPatch>;
-
-/** AgentPoolPatchProperties represents the properties of an agent pool that can be modified. */
-export interface AgentPoolPatchProperties {
-  /** The configuration of administrator credentials for the control plane nodes. */
-  administratorConfiguration?: NodePoolAdministratorConfigurationPatch;
-  /** The number of virtual machines that use this configuration. */
-  count?: number;
-  /** The configuration of the agent pool. */
-  upgradeSettings?: AgentPoolUpgradeSettings;
-}
-export const AgentPoolPatchProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    administratorConfiguration: S.optional(
-      NodePoolAdministratorConfigurationPatch,
-    ),
-    count: S.optional(S.Number),
-    upgradeSettings: S.optional(AgentPoolUpgradeSettings),
-  }),
-).annotate({
-  identifier: "AgentPoolPatchProperties",
-}) as any as S.Schema<AgentPoolPatchProperties>;
-
-/** Resource tags. */
-export type AgentPoolsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AgentPoolsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AgentPoolsUpdateRequestTagsMap>;
-
-export interface AgentPoolsUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kubernetes cluster. */
-  kubernetesClusterName: string;
-  /** The name of the Kubernetes cluster agent pool. */
-  agentPoolName: string;
-  /** The list of the resource properties. */
-  properties?: AgentPoolPatchProperties;
-  /** Resource tags. */
-  tags?: AgentPoolsUpdateRequestTagsMap;
-}
-export const AgentPoolsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    kubernetesClusterName: S.String.pipe(T.Label()),
-    agentPoolName: S.String.pipe(T.Label()),
-    properties: S.optional(AgentPoolPatchProperties),
-    tags: S.optional(AgentPoolsUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}/agentPools/{agentPoolName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "AgentPoolsUpdateRequest",
-}) as any as S.Schema<AgentPoolsUpdateRequest>;
-
-/** Resource tags. */
-export type AgentPoolsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AgentPoolsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AgentPoolsUpdateResponseTagsMap>;
-
-export interface AgentPoolsUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: AgentPoolsUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: AgentPoolProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. */
-  extendedLocation?: AzureResourceManagerCommonTypesExtendedLocation;
-}
-export const AgentPoolsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(AgentPoolsUpdateResponseTagsMap),
-    location: S.String,
-    properties: AgentPoolProperties,
-    etag: S.optional(S.String),
-    extendedLocation: S.optional(
-      AzureResourceManagerCommonTypesExtendedLocation,
-    ),
-  }),
-).annotate({
-  identifier: "AgentPoolsUpdateResponse",
-}) as any as S.Schema<AgentPoolsUpdateResponse>;
+  identifier: "AssignVirtualMachineRelayResponse",
+}) as any as S.Schema<AssignVirtualMachineRelayResponse>;
 
 /** Resource tags. */
 export type BareMetalMachineKeySetsCreateOrUpdateRequestTagsMap = {
@@ -1783,384 +1133,6 @@ export const BareMetalMachineKeySetsCreateOrUpdateResponse =
   ).annotate({
     identifier: "BareMetalMachineKeySetsCreateOrUpdateResponse",
   }) as any as S.Schema<BareMetalMachineKeySetsCreateOrUpdateResponse>;
-
-export interface BareMetalMachineKeySetsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The name of the bare metal machine key set. */
-  bareMetalMachineKeySetName: string;
-}
-export const BareMetalMachineKeySetsDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      bareMetalMachineKeySetName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bareMetalMachineKeySets/{bareMetalMachineKeySetName}",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "BareMetalMachineKeySetsDeleteRequest",
-}) as any as S.Schema<BareMetalMachineKeySetsDeleteRequest>;
-
-export interface BareMetalMachineKeySetsDeleteResponse {}
-export const BareMetalMachineKeySetsDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "BareMetalMachineKeySetsDeleteResponse",
-}) as any as S.Schema<BareMetalMachineKeySetsDeleteResponse>;
-
-export interface BareMetalMachineKeySetsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The name of the bare metal machine key set. */
-  bareMetalMachineKeySetName: string;
-}
-export const BareMetalMachineKeySetsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    bareMetalMachineKeySetName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bareMetalMachineKeySets/{bareMetalMachineKeySetName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "BareMetalMachineKeySetsGetRequest",
-}) as any as S.Schema<BareMetalMachineKeySetsGetRequest>;
-
-/** Resource tags. */
-export type BareMetalMachineKeySetsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const BareMetalMachineKeySetsGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<BareMetalMachineKeySetsGetResponseTagsMap>;
-
-export interface BareMetalMachineKeySetsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: BareMetalMachineKeySetsGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: BareMetalMachineKeySetProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
-}
-export const BareMetalMachineKeySetsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(BareMetalMachineKeySetsGetResponseTagsMap),
-    location: S.String,
-    properties: BareMetalMachineKeySetProperties,
-    etag: S.optional(S.String),
-    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-  }),
-).annotate({
-  identifier: "BareMetalMachineKeySetsGetResponse",
-}) as any as S.Schema<BareMetalMachineKeySetsGetResponse>;
-
-export interface BareMetalMachineKeySetsListByClusterRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
-  _top?: number;
-  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
-  _skipToken?: string;
-}
-export const BareMetalMachineKeySetsListByClusterRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bareMetalMachineKeySets",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "BareMetalMachineKeySetsListByClusterRequest",
-  }) as any as S.Schema<BareMetalMachineKeySetsListByClusterRequest>;
-
-/** Resource tags. */
-export type BareMetalMachineKeySetTagsMap = {
-  [key: string]: string | undefined;
-};
-export const BareMetalMachineKeySetTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<BareMetalMachineKeySetTagsMap>;
-
-/** BareMetalMachineKeySet represents the bare metal machine key set. */
-export interface BareMetalMachineKeySet {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: BareMetalMachineKeySetTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: BareMetalMachineKeySetProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
-}
-export const BareMetalMachineKeySet = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(BareMetalMachineKeySetTagsMap),
-    location: S.String,
-    properties: BareMetalMachineKeySetProperties,
-    etag: S.optional(S.String),
-    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-  }),
-).annotate({
-  identifier: "BareMetalMachineKeySet",
-}) as any as S.Schema<BareMetalMachineKeySet>;
-
-/** The BareMetalMachineKeySet items on this page */
-export type BareMetalMachineKeySetListValueList = Array<BareMetalMachineKeySet>;
-export const BareMetalMachineKeySetListValueList = /*@__PURE__*/ S.Array(
-  BareMetalMachineKeySet,
-) as any as S.Schema<BareMetalMachineKeySetListValueList>;
-
-/** BareMetalMachineKeySetList represents a list of bare metal machine key sets. */
-export interface BareMetalMachineKeySetList {
-  /** The BareMetalMachineKeySet items on this page */
-  value: BareMetalMachineKeySetListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const BareMetalMachineKeySetList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: BareMetalMachineKeySetListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "BareMetalMachineKeySetList",
-}) as any as S.Schema<BareMetalMachineKeySetList>;
-
-/** The list of IP addresses of jump hosts with management network access from which a login will be allowed for the users. */
-export type BareMetalMachineKeySetPatchPropertiesJumpHostsAllowedList =
-  Array<string>;
-export const BareMetalMachineKeySetPatchPropertiesJumpHostsAllowedList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<BareMetalMachineKeySetPatchPropertiesJumpHostsAllowedList>;
-
-/** The unique list of permitted users. */
-export type BareMetalMachineKeySetPatchPropertiesUserListList =
-  Array<KeySetUser>;
-export const BareMetalMachineKeySetPatchPropertiesUserListList =
-  /*@__PURE__*/ S.Array(
-    KeySetUser,
-  ) as any as S.Schema<BareMetalMachineKeySetPatchPropertiesUserListList>;
-
-/** BareMetalMachineKeySetPatchProperties represents the properties of bare metal machine key set that can be patched. */
-export interface BareMetalMachineKeySetPatchProperties {
-  /** The date and time after which the users in this key set will be removed from the bare metal machines. */
-  expiration?: string;
-  /** The list of IP addresses of jump hosts with management network access from which a login will be allowed for the users. */
-  jumpHostsAllowed?: BareMetalMachineKeySetPatchPropertiesJumpHostsAllowedList;
-  /** The unique list of permitted users. */
-  userList?: BareMetalMachineKeySetPatchPropertiesUserListList;
-}
-export const BareMetalMachineKeySetPatchProperties = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      expiration: S.optional(S.String),
-      jumpHostsAllowed: S.optional(
-        BareMetalMachineKeySetPatchPropertiesJumpHostsAllowedList,
-      ),
-      userList: S.optional(BareMetalMachineKeySetPatchPropertiesUserListList),
-    }),
-).annotate({
-  identifier: "BareMetalMachineKeySetPatchProperties",
-}) as any as S.Schema<BareMetalMachineKeySetPatchProperties>;
-
-/** Resource tags. */
-export type BareMetalMachineKeySetsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const BareMetalMachineKeySetsUpdateRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<BareMetalMachineKeySetsUpdateRequestTagsMap>;
-
-export interface BareMetalMachineKeySetsUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The name of the bare metal machine key set. */
-  bareMetalMachineKeySetName: string;
-  /** The list of the resource properties. */
-  properties?: BareMetalMachineKeySetPatchProperties;
-  /** Resource tags. */
-  tags?: BareMetalMachineKeySetsUpdateRequestTagsMap;
-}
-export const BareMetalMachineKeySetsUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      bareMetalMachineKeySetName: S.String.pipe(T.Label()),
-      properties: S.optional(BareMetalMachineKeySetPatchProperties),
-      tags: S.optional(BareMetalMachineKeySetsUpdateRequestTagsMap),
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bareMetalMachineKeySets/{bareMetalMachineKeySetName}",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "BareMetalMachineKeySetsUpdateRequest",
-}) as any as S.Schema<BareMetalMachineKeySetsUpdateRequest>;
-
-/** Resource tags. */
-export type BareMetalMachineKeySetsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const BareMetalMachineKeySetsUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<BareMetalMachineKeySetsUpdateResponseTagsMap>;
-
-export interface BareMetalMachineKeySetsUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: BareMetalMachineKeySetsUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: BareMetalMachineKeySetProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
-}
-export const BareMetalMachineKeySetsUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(BareMetalMachineKeySetsUpdateResponseTagsMap),
-      location: S.String,
-      properties: BareMetalMachineKeySetProperties,
-      etag: S.optional(S.String),
-      extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-    }),
-).annotate({
-  identifier: "BareMetalMachineKeySetsUpdateResponse",
-}) as any as S.Schema<BareMetalMachineKeySetsUpdateResponse>;
-
-/** The indicator of whether to evacuate the node workload when the bare metal machine is cordoned. */
-export type BareMetalMachinesCordonRequestEvacuate = "True" | "False";
-export const BareMetalMachinesCordonRequestEvacuate = /*@__PURE__*/ S.String;
-
-export interface BareMetalMachinesCordonRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the bare metal machine. */
-  bareMetalMachineName: string;
-  /** The indicator of whether to evacuate the node workload when the bare metal machine is cordoned. */
-  evacuate?: BareMetalMachinesCordonRequestEvacuate | (string & {});
-}
-export const BareMetalMachinesCordonRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    bareMetalMachineName: S.String.pipe(T.Label()),
-    evacuate: S.optional(BareMetalMachinesCordonRequestEvacuate),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/cordon",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "BareMetalMachinesCordonRequest",
-}) as any as S.Schema<BareMetalMachinesCordonRequest>;
-
-export interface BareMetalMachinesCordonResponse {}
-export const BareMetalMachinesCordonResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "BareMetalMachinesCordonResponse",
-}) as any as S.Schema<BareMetalMachinesCordonResponse>;
 
 /** Resource tags. */
 export type BareMetalMachinesCreateOrUpdateRequestTagsMap = {
@@ -2870,229 +1842,6 @@ export const BareMetalMachinesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "BareMetalMachinesCreateOrUpdateResponse",
 }) as any as S.Schema<BareMetalMachinesCreateOrUpdateResponse>;
 
-export interface BareMetalMachinesDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the bare metal machine. */
-  bareMetalMachineName: string;
-}
-export const BareMetalMachinesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    bareMetalMachineName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "BareMetalMachinesDeleteRequest",
-}) as any as S.Schema<BareMetalMachinesDeleteRequest>;
-
-export interface BareMetalMachinesDeleteResponse {}
-export const BareMetalMachinesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "BareMetalMachinesDeleteResponse",
-}) as any as S.Schema<BareMetalMachinesDeleteResponse>;
-
-export interface BareMetalMachinesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the bare metal machine. */
-  bareMetalMachineName: string;
-}
-export const BareMetalMachinesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    bareMetalMachineName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "BareMetalMachinesGetRequest",
-}) as any as S.Schema<BareMetalMachinesGetRequest>;
-
-/** Resource tags. */
-export type BareMetalMachinesGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const BareMetalMachinesGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<BareMetalMachinesGetResponseTagsMap>;
-
-export interface BareMetalMachinesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: BareMetalMachinesGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: BareMetalMachineProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
-}
-export const BareMetalMachinesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(BareMetalMachinesGetResponseTagsMap),
-    location: S.String,
-    properties: BareMetalMachineProperties,
-    etag: S.optional(S.String),
-    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-  }),
-).annotate({
-  identifier: "BareMetalMachinesGetResponse",
-}) as any as S.Schema<BareMetalMachinesGetResponse>;
-
-export interface BareMetalMachinesListByResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
-  _top?: number;
-  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
-  _skipToken?: string;
-}
-export const BareMetalMachinesListByResourceGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "BareMetalMachinesListByResourceGroupRequest",
-  }) as any as S.Schema<BareMetalMachinesListByResourceGroupRequest>;
-
-/** Resource tags. */
-export type BareMetalMachineTagsMap = { [key: string]: string | undefined };
-export const BareMetalMachineTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<BareMetalMachineTagsMap>;
-
-/** BareMetalMachine represents the physical machine in the rack. */
-export interface BareMetalMachine {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: BareMetalMachineTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: BareMetalMachineProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
-}
-export const BareMetalMachine = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(BareMetalMachineTagsMap),
-    location: S.String,
-    properties: BareMetalMachineProperties,
-    etag: S.optional(S.String),
-    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-  }),
-).annotate({
-  identifier: "BareMetalMachine",
-}) as any as S.Schema<BareMetalMachine>;
-
-/** The BareMetalMachine items on this page */
-export type BareMetalMachineListValueList = Array<BareMetalMachine>;
-export const BareMetalMachineListValueList = /*@__PURE__*/ S.Array(
-  BareMetalMachine,
-) as any as S.Schema<BareMetalMachineListValueList>;
-
-/** BareMetalMachineList represents a list of bare metal machines. */
-export interface BareMetalMachineList {
-  /** The BareMetalMachine items on this page */
-  value: BareMetalMachineListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const BareMetalMachineList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: BareMetalMachineListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "BareMetalMachineList",
-}) as any as S.Schema<BareMetalMachineList>;
-
-export interface BareMetalMachinesListBySubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
-  _top?: number;
-  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
-  _skipToken?: string;
-}
-export const BareMetalMachinesListBySubscriptionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/bareMetalMachines",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "BareMetalMachinesListBySubscriptionRequest",
-  }) as any as S.Schema<BareMetalMachinesListBySubscriptionRequest>;
-
 /** The indicator of whether to skip the graceful OS shutdown and power off the bare metal machine immediately. */
 export type BareMetalMachinesPowerOffRequestSkipShutdown = "True" | "False";
 export const BareMetalMachinesPowerOffRequestSkipShutdown =
@@ -3172,151 +1921,6 @@ export const BareMetalMachinesReimageResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "BareMetalMachinesReimageResponse",
 }) as any as S.Schema<BareMetalMachinesReimageResponse>;
 
-/** The safeguard mode to use for the replace action, where None indicates to bypass safeguards and All indicates to utilize all safeguards. */
-export type BareMetalMachinesReplaceRequestSafeguardMode = "All" | "None";
-export const BareMetalMachinesReplaceRequestSafeguardMode =
-  /*@__PURE__*/ S.String;
-
-/** The indicator of whether to bypass clearing storage while replacing a bare metal machine. */
-export type BareMetalMachinesReplaceRequestStoragePolicy =
-  | "Preserve"
-  | "DiscardAll";
-export const BareMetalMachinesReplaceRequestStoragePolicy =
-  /*@__PURE__*/ S.String;
-
-export interface BareMetalMachinesReplaceRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the bare metal machine. */
-  bareMetalMachineName: string;
-  /** The credentials of the baseboard management controller on this bare metal machine. The password field is expected to be an Azure Key Vault key URL. Until the cluster is converted to utilize managed identity by setting the secret archive settings, the actual password value should be provided instead. */
-  bmcCredentials?: AdministrativeCredentials;
-  /** The MAC address of the BMC device. */
-  bmcMacAddress?: string;
-  /** The MAC address of a NIC connected to the PXE network. */
-  bootMacAddress?: string;
-  /** The OS-level hostname assigned to this machine. */
-  machineName?: string;
-  /** The safeguard mode to use for the replace action, where None indicates to bypass safeguards and All indicates to utilize all safeguards. */
-  safeguardMode?: BareMetalMachinesReplaceRequestSafeguardMode | (string & {});
-  /** The serial number of the bare metal machine. */
-  serialNumber?: string;
-  /** The indicator of whether to bypass clearing storage while replacing a bare metal machine. */
-  storagePolicy?: BareMetalMachinesReplaceRequestStoragePolicy | (string & {});
-}
-export const BareMetalMachinesReplaceRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    bareMetalMachineName: S.String.pipe(T.Label()),
-    bmcCredentials: S.optional(AdministrativeCredentials),
-    bmcMacAddress: S.optional(S.String),
-    bootMacAddress: S.optional(S.String),
-    machineName: S.optional(S.String),
-    safeguardMode: S.optional(BareMetalMachinesReplaceRequestSafeguardMode),
-    serialNumber: S.optional(S.String),
-    storagePolicy: S.optional(BareMetalMachinesReplaceRequestStoragePolicy),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/replace",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "BareMetalMachinesReplaceRequest",
-}) as any as S.Schema<BareMetalMachinesReplaceRequest>;
-
-export interface BareMetalMachinesReplaceResponse {}
-export const BareMetalMachinesReplaceResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "BareMetalMachinesReplaceResponse",
-}) as any as S.Schema<BareMetalMachinesReplaceResponse>;
-
-export interface BareMetalMachinesRestartRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the bare metal machine. */
-  bareMetalMachineName: string;
-}
-export const BareMetalMachinesRestartRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    bareMetalMachineName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/restart",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "BareMetalMachinesRestartRequest",
-}) as any as S.Schema<BareMetalMachinesRestartRequest>;
-
-export interface BareMetalMachinesRestartResponse {}
-export const BareMetalMachinesRestartResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "BareMetalMachinesRestartResponse",
-}) as any as S.Schema<BareMetalMachinesRestartResponse>;
-
-/** The list of string arguments that will be passed to the script in order as separate arguments. */
-export type BareMetalMachinesRunCommandRequestArgumentsList = Array<string>;
-export const BareMetalMachinesRunCommandRequestArgumentsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<BareMetalMachinesRunCommandRequestArgumentsList>;
-
-export interface BareMetalMachinesRunCommandRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the bare metal machine. */
-  bareMetalMachineName: string;
-  /** The list of string arguments that will be passed to the script in order as separate arguments. */
-  arguments?: BareMetalMachinesRunCommandRequestArgumentsList;
-  /** The maximum time the script is allowed to run. If the execution time exceeds the maximum, the script will be stopped, any output produced until then will be captured, and the exit code matching a timeout will be returned (252). */
-  limitTimeSeconds: number;
-  /** The base64 encoded script to execute on the bare metal machine. */
-  script: string;
-}
-export const BareMetalMachinesRunCommandRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    bareMetalMachineName: S.String.pipe(T.Label()),
-    arguments: S.optional(BareMetalMachinesRunCommandRequestArgumentsList),
-    limitTimeSeconds: S.Number,
-    script: S.String,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/runCommand",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "BareMetalMachinesRunCommandRequest",
-}) as any as S.Schema<BareMetalMachinesRunCommandRequest>;
-
-export interface BareMetalMachinesRunCommandResponse {}
-export const BareMetalMachinesRunCommandResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "BareMetalMachinesRunCommandResponse",
-}) as any as S.Schema<BareMetalMachinesRunCommandResponse>;
-
 /** The list of string arguments that will be passed to the script in order as separate arguments. */
 export type BareMetalMachineCommandSpecificationArgumentsList = Array<string>;
 export const BareMetalMachineCommandSpecificationArgumentsList =
@@ -3340,99 +1944,6 @@ export const BareMetalMachineCommandSpecification = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "BareMetalMachineCommandSpecification",
 }) as any as S.Schema<BareMetalMachineCommandSpecification>;
-
-/** The list of curated data extraction commands to be executed directly against the target machine. */
-export type BareMetalMachinesRunDataExtractsRequestCommandsList =
-  Array<BareMetalMachineCommandSpecification>;
-export const BareMetalMachinesRunDataExtractsRequestCommandsList =
-  /*@__PURE__*/ S.Array(
-    BareMetalMachineCommandSpecification,
-  ) as any as S.Schema<BareMetalMachinesRunDataExtractsRequestCommandsList>;
-
-export interface BareMetalMachinesRunDataExtractsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the bare metal machine. */
-  bareMetalMachineName: string;
-  /** The list of curated data extraction commands to be executed directly against the target machine. */
-  commands: BareMetalMachinesRunDataExtractsRequestCommandsList;
-  /** The maximum time the commands are allowed to run. If the execution time exceeds the maximum, the script will be stopped, any output produced until then will be captured, and the exit code matching a timeout will be returned (252). */
-  limitTimeSeconds: number;
-}
-export const BareMetalMachinesRunDataExtractsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      bareMetalMachineName: S.String.pipe(T.Label()),
-      commands: BareMetalMachinesRunDataExtractsRequestCommandsList,
-      limitTimeSeconds: S.Number,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/runDataExtracts",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "BareMetalMachinesRunDataExtractsRequest",
-}) as any as S.Schema<BareMetalMachinesRunDataExtractsRequest>;
-
-export interface BareMetalMachinesRunDataExtractsResponse {}
-export const BareMetalMachinesRunDataExtractsResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "BareMetalMachinesRunDataExtractsResponse",
-}) as any as S.Schema<BareMetalMachinesRunDataExtractsResponse>;
-
-/** The list of curated data extraction commands to be executed directly against the target machine. */
-export type BareMetalMachinesRunDataExtractsRestrictedRequestCommandsList =
-  Array<BareMetalMachineCommandSpecification>;
-export const BareMetalMachinesRunDataExtractsRestrictedRequestCommandsList =
-  /*@__PURE__*/ S.Array(
-    BareMetalMachineCommandSpecification,
-  ) as any as S.Schema<BareMetalMachinesRunDataExtractsRestrictedRequestCommandsList>;
-
-export interface BareMetalMachinesRunDataExtractsRestrictedRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the bare metal machine. */
-  bareMetalMachineName: string;
-  /** The list of curated data extraction commands to be executed directly against the target machine. */
-  commands: BareMetalMachinesRunDataExtractsRestrictedRequestCommandsList;
-  /** The maximum time the commands are allowed to run. If the execution time exceeds the maximum, the script will be stopped, any output produced until then will be captured, and the exit code matching a timeout will be returned (252). */
-  limitTimeSeconds: number;
-}
-export const BareMetalMachinesRunDataExtractsRestrictedRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      bareMetalMachineName: S.String.pipe(T.Label()),
-      commands: BareMetalMachinesRunDataExtractsRestrictedRequestCommandsList,
-      limitTimeSeconds: S.Number,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/runDataExtractsRestricted",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "BareMetalMachinesRunDataExtractsRestrictedRequest",
-  }) as any as S.Schema<BareMetalMachinesRunDataExtractsRestrictedRequest>;
-
-export interface BareMetalMachinesRunDataExtractsRestrictedResponse {}
-export const BareMetalMachinesRunDataExtractsRestrictedResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "BareMetalMachinesRunDataExtractsRestrictedResponse",
-  }) as any as S.Schema<BareMetalMachinesRunDataExtractsRestrictedResponse>;
 
 /** The list of read-only commands to be executed directly against the target machine. */
 export type BareMetalMachinesRunReadCommandsRequestCommandsList =
@@ -3480,168 +1991,6 @@ export const BareMetalMachinesRunReadCommandsResponse = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "BareMetalMachinesRunReadCommandsResponse",
 }) as any as S.Schema<BareMetalMachinesRunReadCommandsResponse>;
-
-export interface BareMetalMachinesStartRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the bare metal machine. */
-  bareMetalMachineName: string;
-}
-export const BareMetalMachinesStartRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    bareMetalMachineName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/start",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "BareMetalMachinesStartRequest",
-}) as any as S.Schema<BareMetalMachinesStartRequest>;
-
-export interface BareMetalMachinesStartResponse {}
-export const BareMetalMachinesStartResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "BareMetalMachinesStartResponse",
-}) as any as S.Schema<BareMetalMachinesStartResponse>;
-
-export interface BareMetalMachinesUncordonRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the bare metal machine. */
-  bareMetalMachineName: string;
-}
-export const BareMetalMachinesUncordonRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    bareMetalMachineName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/uncordon",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "BareMetalMachinesUncordonRequest",
-}) as any as S.Schema<BareMetalMachinesUncordonRequest>;
-
-export interface BareMetalMachinesUncordonResponse {}
-export const BareMetalMachinesUncordonResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "BareMetalMachinesUncordonResponse",
-}) as any as S.Schema<BareMetalMachinesUncordonResponse>;
-
-/** BareMetalMachinePatchProperties represents the properties of the bare metal machine that can be patched. */
-export interface BareMetalMachinePatchProperties {
-  /** The details provided by the customer during the creation of rack manifests that allows for custom data to be associated with this machine. */
-  machineDetails?: string;
-}
-export const BareMetalMachinePatchProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    machineDetails: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "BareMetalMachinePatchProperties",
-}) as any as S.Schema<BareMetalMachinePatchProperties>;
-
-/** Resource tags. */
-export type BareMetalMachinesUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const BareMetalMachinesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<BareMetalMachinesUpdateRequestTagsMap>;
-
-export interface BareMetalMachinesUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the bare metal machine. */
-  bareMetalMachineName: string;
-  /** The list of the resource properties. */
-  properties?: BareMetalMachinePatchProperties;
-  /** Resource tags. */
-  tags?: BareMetalMachinesUpdateRequestTagsMap;
-}
-export const BareMetalMachinesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    bareMetalMachineName: S.String.pipe(T.Label()),
-    properties: S.optional(BareMetalMachinePatchProperties),
-    tags: S.optional(BareMetalMachinesUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "BareMetalMachinesUpdateRequest",
-}) as any as S.Schema<BareMetalMachinesUpdateRequest>;
-
-/** Resource tags. */
-export type BareMetalMachinesUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const BareMetalMachinesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<BareMetalMachinesUpdateResponseTagsMap>;
-
-export interface BareMetalMachinesUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: BareMetalMachinesUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: BareMetalMachineProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
-}
-export const BareMetalMachinesUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(BareMetalMachinesUpdateResponseTagsMap),
-    location: S.String,
-    properties: BareMetalMachineProperties,
-    etag: S.optional(S.String),
-    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-  }),
-).annotate({
-  identifier: "BareMetalMachinesUpdateResponse",
-}) as any as S.Schema<BareMetalMachinesUpdateResponse>;
 
 /** Resource tags. */
 export type BmcKeySetsCreateOrUpdateRequestTagsMap = {
@@ -3834,317 +2183,6 @@ export const BmcKeySetsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "BmcKeySetsCreateOrUpdateResponse",
 }) as any as S.Schema<BmcKeySetsCreateOrUpdateResponse>;
-
-export interface BmcKeySetsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The name of the baseboard management controller key set. */
-  bmcKeySetName: string;
-}
-export const BmcKeySetsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    bmcKeySetName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bmcKeySets/{bmcKeySetName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "BmcKeySetsDeleteRequest",
-}) as any as S.Schema<BmcKeySetsDeleteRequest>;
-
-export interface BmcKeySetsDeleteResponse {}
-export const BmcKeySetsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "BmcKeySetsDeleteResponse",
-}) as any as S.Schema<BmcKeySetsDeleteResponse>;
-
-export interface BmcKeySetsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The name of the baseboard management controller key set. */
-  bmcKeySetName: string;
-}
-export const BmcKeySetsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    bmcKeySetName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bmcKeySets/{bmcKeySetName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "BmcKeySetsGetRequest",
-}) as any as S.Schema<BmcKeySetsGetRequest>;
-
-/** Resource tags. */
-export type BmcKeySetsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const BmcKeySetsGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<BmcKeySetsGetResponseTagsMap>;
-
-export interface BmcKeySetsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: BmcKeySetsGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: BmcKeySetProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
-}
-export const BmcKeySetsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(BmcKeySetsGetResponseTagsMap),
-    location: S.String,
-    properties: BmcKeySetProperties,
-    etag: S.optional(S.String),
-    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-  }),
-).annotate({
-  identifier: "BmcKeySetsGetResponse",
-}) as any as S.Schema<BmcKeySetsGetResponse>;
-
-export interface BmcKeySetsListByClusterRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
-  _top?: number;
-  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
-  _skipToken?: string;
-}
-export const BmcKeySetsListByClusterRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bmcKeySets",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "BmcKeySetsListByClusterRequest",
-}) as any as S.Schema<BmcKeySetsListByClusterRequest>;
-
-/** Resource tags. */
-export type BmcKeySetTagsMap = { [key: string]: string | undefined };
-export const BmcKeySetTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<BmcKeySetTagsMap>;
-
-/** BmcKeySet represents the baseboard management controller key set. */
-export interface BmcKeySet {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: BmcKeySetTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: BmcKeySetProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
-}
-export const BmcKeySet = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(BmcKeySetTagsMap),
-    location: S.String,
-    properties: BmcKeySetProperties,
-    etag: S.optional(S.String),
-    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-  }),
-).annotate({ identifier: "BmcKeySet" }) as any as S.Schema<BmcKeySet>;
-
-/** The BmcKeySet items on this page */
-export type BmcKeySetListValueList = Array<BmcKeySet>;
-export const BmcKeySetListValueList = /*@__PURE__*/ S.Array(
-  BmcKeySet,
-) as any as S.Schema<BmcKeySetListValueList>;
-
-/** BmcKeySetList represents a list of baseboard management controller key sets. */
-export interface BmcKeySetList {
-  /** The BmcKeySet items on this page */
-  value: BmcKeySetListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const BmcKeySetList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: BmcKeySetListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "BmcKeySetList" }) as any as S.Schema<BmcKeySetList>;
-
-/** The unique list of permitted users. */
-export type BmcKeySetPatchPropertiesUserListList = Array<KeySetUser>;
-export const BmcKeySetPatchPropertiesUserListList = /*@__PURE__*/ S.Array(
-  KeySetUser,
-) as any as S.Schema<BmcKeySetPatchPropertiesUserListList>;
-
-/** BmcKeySetPatchProperties represents the properties of baseboard management controller key set that are patchable. */
-export interface BmcKeySetPatchProperties {
-  /** The date and time after which the users in this key set will be removed from the baseboard management controllers. */
-  expiration?: string;
-  /** The unique list of permitted users. */
-  userList?: BmcKeySetPatchPropertiesUserListList;
-}
-export const BmcKeySetPatchProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    expiration: S.optional(S.String),
-    userList: S.optional(BmcKeySetPatchPropertiesUserListList),
-  }),
-).annotate({
-  identifier: "BmcKeySetPatchProperties",
-}) as any as S.Schema<BmcKeySetPatchProperties>;
-
-/** Resource tags. */
-export type BmcKeySetsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const BmcKeySetsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<BmcKeySetsUpdateRequestTagsMap>;
-
-export interface BmcKeySetsUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The name of the baseboard management controller key set. */
-  bmcKeySetName: string;
-  /** The list of the resource properties. */
-  properties?: BmcKeySetPatchProperties;
-  /** Resource tags. */
-  tags?: BmcKeySetsUpdateRequestTagsMap;
-}
-export const BmcKeySetsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    bmcKeySetName: S.String.pipe(T.Label()),
-    properties: S.optional(BmcKeySetPatchProperties),
-    tags: S.optional(BmcKeySetsUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bmcKeySets/{bmcKeySetName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "BmcKeySetsUpdateRequest",
-}) as any as S.Schema<BmcKeySetsUpdateRequest>;
-
-/** Resource tags. */
-export type BmcKeySetsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const BmcKeySetsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<BmcKeySetsUpdateResponseTagsMap>;
-
-export interface BmcKeySetsUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: BmcKeySetsUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: BmcKeySetProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
-}
-export const BmcKeySetsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(BmcKeySetsUpdateResponseTagsMap),
-    location: S.String,
-    properties: BmcKeySetProperties,
-    etag: S.optional(S.String),
-    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-  }),
-).annotate({
-  identifier: "BmcKeySetsUpdateResponse",
-}) as any as S.Schema<BmcKeySetsUpdateResponse>;
 
 /** Resource tags. */
 export type CloudServicesNetworksCreateOrUpdateRequestTagsMap = {
@@ -4502,373 +2540,6 @@ export const CloudServicesNetworksCreateOrUpdateResponse =
   ).annotate({
     identifier: "CloudServicesNetworksCreateOrUpdateResponse",
   }) as any as S.Schema<CloudServicesNetworksCreateOrUpdateResponse>;
-
-export interface CloudServicesNetworksDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cloud services network. */
-  cloudServicesNetworkName: string;
-}
-export const CloudServicesNetworksDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    cloudServicesNetworkName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/cloudServicesNetworks/{cloudServicesNetworkName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "CloudServicesNetworksDeleteRequest",
-}) as any as S.Schema<CloudServicesNetworksDeleteRequest>;
-
-export interface CloudServicesNetworksDeleteResponse {}
-export const CloudServicesNetworksDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "CloudServicesNetworksDeleteResponse",
-}) as any as S.Schema<CloudServicesNetworksDeleteResponse>;
-
-export interface CloudServicesNetworksGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cloud services network. */
-  cloudServicesNetworkName: string;
-}
-export const CloudServicesNetworksGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    cloudServicesNetworkName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/cloudServicesNetworks/{cloudServicesNetworkName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "CloudServicesNetworksGetRequest",
-}) as any as S.Schema<CloudServicesNetworksGetRequest>;
-
-/** Resource tags. */
-export type CloudServicesNetworksGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const CloudServicesNetworksGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<CloudServicesNetworksGetResponseTagsMap>;
-
-export interface CloudServicesNetworksGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: CloudServicesNetworksGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties?: CloudServicesNetworkProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
-}
-export const CloudServicesNetworksGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(CloudServicesNetworksGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(CloudServicesNetworkProperties),
-    etag: S.optional(S.String),
-    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-  }),
-).annotate({
-  identifier: "CloudServicesNetworksGetResponse",
-}) as any as S.Schema<CloudServicesNetworksGetResponse>;
-
-export interface CloudServicesNetworksListByResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
-  _top?: number;
-  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
-  _skipToken?: string;
-}
-export const CloudServicesNetworksListByResourceGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/cloudServicesNetworks",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "CloudServicesNetworksListByResourceGroupRequest",
-  }) as any as S.Schema<CloudServicesNetworksListByResourceGroupRequest>;
-
-/** Resource tags. */
-export type CloudServicesNetworkTagsMap = { [key: string]: string | undefined };
-export const CloudServicesNetworkTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<CloudServicesNetworkTagsMap>;
-
-/** Upon creation, the additional services that are provided by the platform will be allocated and represented in the status of this resource. All resources associated with this cloud services network will be part of the same layer 2 (L2) isolation domain. At least one service network must be created but may be reused across many virtual machines and/or Hybrid AKS clusters. */
-export interface CloudServicesNetwork {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: CloudServicesNetworkTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties?: CloudServicesNetworkProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
-}
-export const CloudServicesNetwork = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(CloudServicesNetworkTagsMap),
-    location: S.String,
-    properties: S.optional(CloudServicesNetworkProperties),
-    etag: S.optional(S.String),
-    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-  }),
-).annotate({
-  identifier: "CloudServicesNetwork",
-}) as any as S.Schema<CloudServicesNetwork>;
-
-/** The CloudServicesNetwork items on this page */
-export type CloudServicesNetworkListValueList = Array<CloudServicesNetwork>;
-export const CloudServicesNetworkListValueList = /*@__PURE__*/ S.Array(
-  CloudServicesNetwork,
-) as any as S.Schema<CloudServicesNetworkListValueList>;
-
-/** CloudServicesNetworkList represents a list of cloud services networks. */
-export interface CloudServicesNetworkList {
-  /** The CloudServicesNetwork items on this page */
-  value: CloudServicesNetworkListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const CloudServicesNetworkList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: CloudServicesNetworkListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CloudServicesNetworkList",
-}) as any as S.Schema<CloudServicesNetworkList>;
-
-export interface CloudServicesNetworksListBySubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
-  _top?: number;
-  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
-  _skipToken?: string;
-}
-export const CloudServicesNetworksListBySubscriptionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/cloudServicesNetworks",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "CloudServicesNetworksListBySubscriptionRequest",
-  }) as any as S.Schema<CloudServicesNetworksListBySubscriptionRequest>;
-
-/** The list of egress endpoints. This allows for connection from a Hybrid AKS cluster to the specified endpoint. */
-export type CloudServicesNetworkPatchPropertiesAdditionalEgressEndpointsList =
-  Array<EgressEndpoint>;
-export const CloudServicesNetworkPatchPropertiesAdditionalEgressEndpointsList =
-  /*@__PURE__*/ S.Array(
-    EgressEndpoint,
-  ) as any as S.Schema<CloudServicesNetworkPatchPropertiesAdditionalEgressEndpointsList>;
-
-/** The indicator of whether the platform default endpoints are allowed for the egress traffic. */
-export type CloudServicesNetworkEnableDefaultEgressEndpoints = "True" | "False";
-export const CloudServicesNetworkEnableDefaultEgressEndpoints =
-  /*@__PURE__*/ S.String;
-
-/** CloudServicesNetworkStorageOptionsPatch represents the patchable storage options for the cloud services network. */
-export interface CloudServicesNetworkStorageOptionsPatch {
-  /** The indicator to enable shared storage on the cloud services network. */
-  mode?: CloudServicesNetworkStorageMode | (string & {});
-  /** The requested storage allocation for the volume in Mebibytes. */
-  sizeMiB?: number;
-  /** The resource ID of the storage appliance that hosts the storage. */
-  storageApplianceId?: string;
-}
-export const CloudServicesNetworkStorageOptionsPatch = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      mode: S.optional(CloudServicesNetworkStorageMode),
-      sizeMiB: S.optional(S.Number),
-      storageApplianceId: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "CloudServicesNetworkStorageOptionsPatch",
-}) as any as S.Schema<CloudServicesNetworkStorageOptionsPatch>;
-
-/** CloudServicesNetworkPatchProperties represents the properties of the cloud services network that can be updated using a patch request. */
-export interface CloudServicesNetworkPatchProperties {
-  /** The list of egress endpoints. This allows for connection from a Hybrid AKS cluster to the specified endpoint. */
-  additionalEgressEndpoints?: CloudServicesNetworkPatchPropertiesAdditionalEgressEndpointsList;
-  /** The indicator of whether the platform default endpoints are allowed for the egress traffic. */
-  enableDefaultEgressEndpoints?:
-    | CloudServicesNetworkEnableDefaultEgressEndpoints
-    | (string & {});
-  /** The storage options for the cloud services network. */
-  storageOptions?: CloudServicesNetworkStorageOptionsPatch;
-}
-export const CloudServicesNetworkPatchProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    additionalEgressEndpoints: S.optional(
-      CloudServicesNetworkPatchPropertiesAdditionalEgressEndpointsList,
-    ),
-    enableDefaultEgressEndpoints: S.optional(
-      CloudServicesNetworkEnableDefaultEgressEndpoints,
-    ),
-    storageOptions: S.optional(CloudServicesNetworkStorageOptionsPatch),
-  }),
-).annotate({
-  identifier: "CloudServicesNetworkPatchProperties",
-}) as any as S.Schema<CloudServicesNetworkPatchProperties>;
-
-/** Resource tags. */
-export type CloudServicesNetworksUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const CloudServicesNetworksUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<CloudServicesNetworksUpdateRequestTagsMap>;
-
-export interface CloudServicesNetworksUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cloud services network. */
-  cloudServicesNetworkName: string;
-  /** The list of the resource properties. */
-  properties?: CloudServicesNetworkPatchProperties;
-  /** Resource tags. */
-  tags?: CloudServicesNetworksUpdateRequestTagsMap;
-}
-export const CloudServicesNetworksUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    cloudServicesNetworkName: S.String.pipe(T.Label()),
-    properties: S.optional(CloudServicesNetworkPatchProperties),
-    tags: S.optional(CloudServicesNetworksUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/cloudServicesNetworks/{cloudServicesNetworkName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "CloudServicesNetworksUpdateRequest",
-}) as any as S.Schema<CloudServicesNetworksUpdateRequest>;
-
-/** Resource tags. */
-export type CloudServicesNetworksUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const CloudServicesNetworksUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<CloudServicesNetworksUpdateResponseTagsMap>;
-
-export interface CloudServicesNetworksUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: CloudServicesNetworksUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties?: CloudServicesNetworkProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
-}
-export const CloudServicesNetworksUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(CloudServicesNetworksUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(CloudServicesNetworkProperties),
-    etag: S.optional(S.String),
-    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-  }),
-).annotate({
-  identifier: "CloudServicesNetworksUpdateResponse",
-}) as any as S.Schema<CloudServicesNetworksUpdateResponse>;
 
 /** Resource tags. */
 export type ClusterManagersCreateOrUpdateRequestTagsMap = {
@@ -5231,494 +2902,6 @@ export const ClusterManagersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "ClusterManagersCreateOrUpdateResponse",
 }) as any as S.Schema<ClusterManagersCreateOrUpdateResponse>;
-
-export interface ClusterManagersDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster manager. */
-  clusterManagerName: string;
-}
-export const ClusterManagersDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterManagerName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusterManagers/{clusterManagerName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ClusterManagersDeleteRequest",
-}) as any as S.Schema<ClusterManagersDeleteRequest>;
-
-export interface ClusterManagersDeleteResponse {}
-export const ClusterManagersDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ClusterManagersDeleteResponse",
-}) as any as S.Schema<ClusterManagersDeleteResponse>;
-
-export interface ClusterManagersGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster manager. */
-  clusterManagerName: string;
-}
-export const ClusterManagersGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterManagerName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusterManagers/{clusterManagerName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ClusterManagersGetRequest",
-}) as any as S.Schema<ClusterManagersGetRequest>;
-
-/** Resource tags. */
-export type ClusterManagersGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ClusterManagersGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ClusterManagersGetResponseTagsMap>;
-
-/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type ClusterManagersGetResponseIdentityUserAssignedIdentitiesMap = {
-  [key: string]: UserAssignedIdentity | undefined;
-};
-export const ClusterManagersGetResponseIdentityUserAssignedIdentitiesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    UserAssignedIdentity,
-  ) as any as S.Schema<ClusterManagersGetResponseIdentityUserAssignedIdentitiesMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export interface ClusterManagersGetResponseIdentity {
-  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  principalId?: string;
-  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  tenantId?: string;
-  type: ManagedServiceIdentityType;
-  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: ClusterManagersGetResponseIdentityUserAssignedIdentitiesMap;
-}
-export const ClusterManagersGetResponseIdentity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    principalId: S.optional(S.String),
-    tenantId: S.optional(S.String),
-    type: ManagedServiceIdentityType,
-    userAssignedIdentities: S.optional(
-      ClusterManagersGetResponseIdentityUserAssignedIdentitiesMap,
-    ),
-  }),
-).annotate({
-  identifier: "ClusterManagersGetResponseIdentity",
-}) as any as S.Schema<ClusterManagersGetResponseIdentity>;
-
-export interface ClusterManagersGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ClusterManagersGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: ClusterManagerProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: ClusterManagersGetResponseIdentity;
-  /** The kind of the cluster manager. */
-  kind?: DeploymentType;
-}
-export const ClusterManagersGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(ClusterManagersGetResponseTagsMap),
-    location: S.String,
-    properties: ClusterManagerProperties,
-    etag: S.optional(S.String),
-    identity: S.optional(ClusterManagersGetResponseIdentity),
-    kind: S.optional(DeploymentType),
-  }),
-).annotate({
-  identifier: "ClusterManagersGetResponse",
-}) as any as S.Schema<ClusterManagersGetResponse>;
-
-export interface ClusterManagersListByResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
-  _top?: number;
-  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
-  _skipToken?: string;
-}
-export const ClusterManagersListByResourceGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusterManagers",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ClusterManagersListByResourceGroupRequest",
-  }) as any as S.Schema<ClusterManagersListByResourceGroupRequest>;
-
-/** Resource tags. */
-export type ClusterManagerTagsMap = { [key: string]: string | undefined };
-export const ClusterManagerTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ClusterManagerTagsMap>;
-
-/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type ClusterManagerIdentityUserAssignedIdentitiesMap = {
-  [key: string]: UserAssignedIdentity | undefined;
-};
-export const ClusterManagerIdentityUserAssignedIdentitiesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    UserAssignedIdentity,
-  ) as any as S.Schema<ClusterManagerIdentityUserAssignedIdentitiesMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export interface ClusterManagerIdentity {
-  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  principalId?: string;
-  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  tenantId?: string;
-  type: ManagedServiceIdentityType;
-  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: ClusterManagerIdentityUserAssignedIdentitiesMap;
-}
-export const ClusterManagerIdentity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    principalId: S.optional(S.String),
-    tenantId: S.optional(S.String),
-    type: ManagedServiceIdentityType,
-    userAssignedIdentities: S.optional(
-      ClusterManagerIdentityUserAssignedIdentitiesMap,
-    ),
-  }),
-).annotate({
-  identifier: "ClusterManagerIdentity",
-}) as any as S.Schema<ClusterManagerIdentity>;
-
-/** ClusterManager represents a control-plane to manage one or more on-premises clusters. */
-export interface ClusterManager {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ClusterManagerTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: ClusterManagerProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: ClusterManagerIdentity;
-  /** The kind of the cluster manager. */
-  kind?: DeploymentType;
-}
-export const ClusterManager = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(ClusterManagerTagsMap),
-    location: S.String,
-    properties: ClusterManagerProperties,
-    etag: S.optional(S.String),
-    identity: S.optional(ClusterManagerIdentity),
-    kind: S.optional(DeploymentType),
-  }),
-).annotate({ identifier: "ClusterManager" }) as any as S.Schema<ClusterManager>;
-
-/** The ClusterManager items on this page */
-export type ClusterManagerListValueList = Array<ClusterManager>;
-export const ClusterManagerListValueList = /*@__PURE__*/ S.Array(
-  ClusterManager,
-) as any as S.Schema<ClusterManagerListValueList>;
-
-/** ClusterManagerList represents a list of cluster manager objects. */
-export interface ClusterManagerList {
-  /** The ClusterManager items on this page */
-  value: ClusterManagerListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ClusterManagerList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: ClusterManagerListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ClusterManagerList",
-}) as any as S.Schema<ClusterManagerList>;
-
-export interface ClusterManagersListBySubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
-  _top?: number;
-  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
-  _skipToken?: string;
-}
-export const ClusterManagersListBySubscriptionRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/clusterManagers",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "ClusterManagersListBySubscriptionRequest",
-}) as any as S.Schema<ClusterManagersListBySubscriptionRequest>;
-
-/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type ClusterManagersUpdateRequestIdentityUserAssignedIdentitiesMap = {
-  [key: string]: UserAssignedIdentityInput | undefined;
-};
-export const ClusterManagersUpdateRequestIdentityUserAssignedIdentitiesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    UserAssignedIdentityInput,
-  ) as any as S.Schema<ClusterManagersUpdateRequestIdentityUserAssignedIdentitiesMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export interface ClusterManagersUpdateRequestIdentity {
-  type: ManagedServiceIdentityType | (string & {});
-  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: ClusterManagersUpdateRequestIdentityUserAssignedIdentitiesMap;
-}
-export const ClusterManagersUpdateRequestIdentity = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      type: ManagedServiceIdentityType,
-      userAssignedIdentities: S.optional(
-        ClusterManagersUpdateRequestIdentityUserAssignedIdentitiesMap,
-      ),
-    }),
-).annotate({
-  identifier: "ClusterManagersUpdateRequestIdentity",
-}) as any as S.Schema<ClusterManagersUpdateRequestIdentity>;
-
-/** Resource tags. */
-export type ClusterManagersUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ClusterManagersUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ClusterManagersUpdateRequestTagsMap>;
-
-export interface ClusterManagersUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster manager. */
-  clusterManagerName: string;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: ClusterManagersUpdateRequestIdentity;
-  /** Resource tags. */
-  tags?: ClusterManagersUpdateRequestTagsMap;
-}
-export const ClusterManagersUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterManagerName: S.String.pipe(T.Label()),
-    identity: S.optional(ClusterManagersUpdateRequestIdentity),
-    tags: S.optional(ClusterManagersUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusterManagers/{clusterManagerName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ClusterManagersUpdateRequest",
-}) as any as S.Schema<ClusterManagersUpdateRequest>;
-
-/** Resource tags. */
-export type ClusterManagersUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ClusterManagersUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ClusterManagersUpdateResponseTagsMap>;
-
-/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type ClusterManagersUpdateResponseIdentityUserAssignedIdentitiesMap = {
-  [key: string]: UserAssignedIdentity | undefined;
-};
-export const ClusterManagersUpdateResponseIdentityUserAssignedIdentitiesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    UserAssignedIdentity,
-  ) as any as S.Schema<ClusterManagersUpdateResponseIdentityUserAssignedIdentitiesMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export interface ClusterManagersUpdateResponseIdentity {
-  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  principalId?: string;
-  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  tenantId?: string;
-  type: ManagedServiceIdentityType;
-  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: ClusterManagersUpdateResponseIdentityUserAssignedIdentitiesMap;
-}
-export const ClusterManagersUpdateResponseIdentity = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      principalId: S.optional(S.String),
-      tenantId: S.optional(S.String),
-      type: ManagedServiceIdentityType,
-      userAssignedIdentities: S.optional(
-        ClusterManagersUpdateResponseIdentityUserAssignedIdentitiesMap,
-      ),
-    }),
-).annotate({
-  identifier: "ClusterManagersUpdateResponseIdentity",
-}) as any as S.Schema<ClusterManagersUpdateResponseIdentity>;
-
-export interface ClusterManagersUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ClusterManagersUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: ClusterManagerProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: ClusterManagersUpdateResponseIdentity;
-  /** The kind of the cluster manager. */
-  kind?: DeploymentType;
-}
-export const ClusterManagersUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(ClusterManagersUpdateResponseTagsMap),
-    location: S.String,
-    properties: ClusterManagerProperties,
-    etag: S.optional(S.String),
-    identity: S.optional(ClusterManagersUpdateResponseIdentity),
-    kind: S.optional(DeploymentType),
-  }),
-).annotate({
-  identifier: "ClusterManagersUpdateResponse",
-}) as any as S.Schema<ClusterManagersUpdateResponse>;
-
-/** The state to set for the private endpoint connection. */
-export type RelayPrivateEndpointConnectionState = "Approved" | "Rejected";
-export const RelayPrivateEndpointConnectionState = /*@__PURE__*/ S.String;
-
-export interface ClusterManagersUpdateRelayPrivateEndpointConnectionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster manager. */
-  clusterManagerName: string;
-  /** The state to set for the private endpoint connection. */
-  connectionState: RelayPrivateEndpointConnectionState | (string & {});
-  /** The description to associate with the private endpoint connection. */
-  description?: string;
-  /** The resource ID of private endpoint to be permitted or denied connection to the relay namespace. */
-  privateEndpointResourceId: string;
-}
-export const ClusterManagersUpdateRelayPrivateEndpointConnectionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterManagerName: S.String.pipe(T.Label()),
-      connectionState: RelayPrivateEndpointConnectionState,
-      description: S.optional(S.String),
-      privateEndpointResourceId: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusterManagers/{clusterManagerName}/updateRelayPrivateEndpointConnection",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ClusterManagersUpdateRelayPrivateEndpointConnectionRequest",
-  }) as any as S.Schema<ClusterManagersUpdateRelayPrivateEndpointConnectionRequest>;
-
-export interface ClusterManagersUpdateRelayPrivateEndpointConnectionResponse {}
-export const ClusterManagersUpdateRelayPrivateEndpointConnectionResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "ClusterManagersUpdateRelayPrivateEndpointConnectionResponse",
-  }) as any as S.Schema<ClusterManagersUpdateRelayPrivateEndpointConnectionResponse>;
 
 /** The mode by which the cluster will target the next grouping of servers to continue the update. */
 export type ClustersContinueUpdateVersionRequestMachineGroupTargetingMode =
@@ -6725,189 +3908,6 @@ export const ClustersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ClustersCreateOrUpdateResponse",
 }) as any as S.Schema<ClustersCreateOrUpdateResponse>;
 
-export interface ClustersDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-}
-export const ClustersDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ClustersDeleteRequest",
-}) as any as S.Schema<ClustersDeleteRequest>;
-
-export interface ClustersDeleteResponse {}
-export const ClustersDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ClustersDeleteResponse",
-}) as any as S.Schema<ClustersDeleteResponse>;
-
-/** The names of bare metal machines in the cluster that should be skipped during environment validation. */
-export type ClustersDeployRequestSkipValidationsForMachinesList = Array<string>;
-export const ClustersDeployRequestSkipValidationsForMachinesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ClustersDeployRequestSkipValidationsForMachinesList>;
-
-export interface ClustersDeployRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The names of bare metal machines in the cluster that should be skipped during environment validation. */
-  skipValidationsForMachines?: ClustersDeployRequestSkipValidationsForMachinesList;
-}
-export const ClustersDeployRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    skipValidationsForMachines: S.optional(
-      ClustersDeployRequestSkipValidationsForMachinesList,
-    ),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/deploy",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ClustersDeployRequest",
-}) as any as S.Schema<ClustersDeployRequest>;
-
-export interface ClustersDeployResponse {}
-export const ClustersDeployResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ClustersDeployResponse",
-}) as any as S.Schema<ClustersDeployResponse>;
-
-export interface ClustersGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-}
-export const ClustersGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ClustersGetRequest",
-}) as any as S.Schema<ClustersGetRequest>;
-
-/** Resource tags. */
-export type ClustersGetResponseTagsMap = { [key: string]: string | undefined };
-export const ClustersGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ClustersGetResponseTagsMap>;
-
-/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type ClustersGetResponseIdentityUserAssignedIdentitiesMap = {
-  [key: string]: UserAssignedIdentity | undefined;
-};
-export const ClustersGetResponseIdentityUserAssignedIdentitiesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    UserAssignedIdentity,
-  ) as any as S.Schema<ClustersGetResponseIdentityUserAssignedIdentitiesMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export interface ClustersGetResponseIdentity {
-  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  principalId?: string;
-  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  tenantId?: string;
-  type: ManagedServiceIdentityType;
-  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: ClustersGetResponseIdentityUserAssignedIdentitiesMap;
-}
-export const ClustersGetResponseIdentity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    principalId: S.optional(S.String),
-    tenantId: S.optional(S.String),
-    type: ManagedServiceIdentityType,
-    userAssignedIdentities: S.optional(
-      ClustersGetResponseIdentityUserAssignedIdentitiesMap,
-    ),
-  }),
-).annotate({
-  identifier: "ClustersGetResponseIdentity",
-}) as any as S.Schema<ClustersGetResponseIdentity>;
-
-export interface ClustersGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ClustersGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: ClusterProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: ClustersGetResponseIdentity;
-  /** The type (kind) of the cluster. When specified, the value must exactly match the kind configured on the cluster manager that manages the cluster. If omitted, the service will default the value to the kind value of the cluster manager. */
-  kind?: DeploymentType;
-}
-export const ClustersGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(ClustersGetResponseTagsMap),
-    location: S.String,
-    properties: ClusterProperties,
-    etag: S.optional(S.String),
-    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-    identity: S.optional(ClustersGetResponseIdentity),
-    kind: S.optional(DeploymentType),
-  }),
-).annotate({
-  identifier: "ClustersGetResponse",
-}) as any as S.Schema<ClustersGetResponse>;
-
 /** Additional actions supplement the default non-disruptive cluster inspection. Additional actions may be disallowed if the cluster is in a deployed and running state. */
 export type ClusterInspectAdditionalAction = "ResetHardware";
 export const ClusterInspectAdditionalAction = /*@__PURE__*/ S.String;
@@ -6985,201 +3985,6 @@ export const ClustersInspectResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ClustersInspectResponse",
 }) as any as S.Schema<ClustersInspectResponse>;
 
-export interface ClustersListByResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
-  _top?: number;
-  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
-  _skipToken?: string;
-}
-export const ClustersListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ClustersListByResourceGroupRequest",
-}) as any as S.Schema<ClustersListByResourceGroupRequest>;
-
-/** Resource tags. */
-export type ClusterTagsMap = { [key: string]: string | undefined };
-export const ClusterTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ClusterTagsMap>;
-
-/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type ClusterIdentityUserAssignedIdentitiesMap = {
-  [key: string]: UserAssignedIdentity | undefined;
-};
-export const ClusterIdentityUserAssignedIdentitiesMap = /*@__PURE__*/ S.Record(
-  S.String,
-  UserAssignedIdentity,
-) as any as S.Schema<ClusterIdentityUserAssignedIdentitiesMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export interface ClusterIdentity {
-  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  principalId?: string;
-  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  tenantId?: string;
-  type: ManagedServiceIdentityType;
-  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: ClusterIdentityUserAssignedIdentitiesMap;
-}
-export const ClusterIdentity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    principalId: S.optional(S.String),
-    tenantId: S.optional(S.String),
-    type: ManagedServiceIdentityType,
-    userAssignedIdentities: S.optional(
-      ClusterIdentityUserAssignedIdentitiesMap,
-    ),
-  }),
-).annotate({
-  identifier: "ClusterIdentity",
-}) as any as S.Schema<ClusterIdentity>;
-
-/** Cluster represents the on-premises Network Cloud cluster. */
-export interface Cluster {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ClusterTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: ClusterProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: ClusterIdentity;
-  /** The type (kind) of the cluster. When specified, the value must exactly match the kind configured on the cluster manager that manages the cluster. If omitted, the service will default the value to the kind value of the cluster manager. */
-  kind?: DeploymentType;
-}
-export const Cluster = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(ClusterTagsMap),
-    location: S.String,
-    properties: ClusterProperties,
-    etag: S.optional(S.String),
-    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-    identity: S.optional(ClusterIdentity),
-    kind: S.optional(DeploymentType),
-  }),
-).annotate({ identifier: "Cluster" }) as any as S.Schema<Cluster>;
-
-/** The Cluster items on this page */
-export type ClusterListValueList = Array<Cluster>;
-export const ClusterListValueList = /*@__PURE__*/ S.Array(
-  Cluster,
-) as any as S.Schema<ClusterListValueList>;
-
-/** ClusterList represents a list of clusters. */
-export interface ClusterList {
-  /** The Cluster items on this page */
-  value: ClusterListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ClusterList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: ClusterListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "ClusterList" }) as any as S.Schema<ClusterList>;
-
-export interface ClustersListBySubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
-  _top?: number;
-  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
-  _skipToken?: string;
-}
-export const ClustersListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/clusters",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ClustersListBySubscriptionRequest",
-}) as any as S.Schema<ClustersListBySubscriptionRequest>;
-
-/** The list of credential names for the credentials to rotate. */
-export type ClustersRotateCredentialRequestCredentialsList = Array<string>;
-export const ClustersRotateCredentialRequestCredentialsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ClustersRotateCredentialRequestCredentialsList>;
-
-export interface ClustersRotateCredentialRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The list of credential names for the credentials to rotate. */
-  credentials: ClustersRotateCredentialRequestCredentialsList;
-}
-export const ClustersRotateCredentialRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    credentials: ClustersRotateCredentialRequestCredentialsList,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/rotateCredential",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ClustersRotateCredentialRequest",
-}) as any as S.Schema<ClustersRotateCredentialRequest>;
-
-export interface ClustersRotateCredentialResponse {}
-export const ClustersRotateCredentialResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ClustersRotateCredentialResponse",
-}) as any as S.Schema<ClustersRotateCredentialResponse>;
-
 /** The choice of if the scan operation should run the scan. */
 export type ClustersScanRuntimeRequestScanActivity = "Scan" | "Skip";
 export const ClustersScanRuntimeRequestScanActivity = /*@__PURE__*/ S.String;
@@ -7218,506 +4023,6 @@ export const ClustersScanRuntimeResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ClustersScanRuntimeResponse",
 }) as any as S.Schema<ClustersScanRuntimeResponse>;
-
-/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type ClustersUpdateRequestIdentityUserAssignedIdentitiesMap = {
-  [key: string]: UserAssignedIdentityInput | undefined;
-};
-export const ClustersUpdateRequestIdentityUserAssignedIdentitiesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    UserAssignedIdentityInput,
-  ) as any as S.Schema<ClustersUpdateRequestIdentityUserAssignedIdentitiesMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export interface ClustersUpdateRequestIdentity {
-  type: ManagedServiceIdentityType | (string & {});
-  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: ClustersUpdateRequestIdentityUserAssignedIdentitiesMap;
-}
-export const ClustersUpdateRequestIdentity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: ManagedServiceIdentityType,
-    userAssignedIdentities: S.optional(
-      ClustersUpdateRequestIdentityUserAssignedIdentitiesMap,
-    ),
-  }),
-).annotate({
-  identifier: "ClustersUpdateRequestIdentity",
-}) as any as S.Schema<ClustersUpdateRequestIdentity>;
-
-/** AdministrativeCredentialsPatch represents the admin credentials for the device requiring password-based authentication. */
-export interface AdministrativeCredentialsPatch {
-  /** The password of the administrator of the device used during initialization. */
-  password?: string | Redacted.Redacted<string>;
-  /** The username of the administrator of the device used during initialization. */
-  username?: string;
-}
-export const AdministrativeCredentialsPatch = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    password: S.optional(S.String.pipe(T.SensitiveValue({}))),
-    username: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AdministrativeCredentialsPatch",
-}) as any as S.Schema<AdministrativeCredentialsPatch>;
-
-/** BareMetalMachineConfigurationDataPatch represents configuration for the bare metal machine for patch operations. */
-export interface BareMetalMachineConfigurationDataPatchInput {
-  /** The credentials of the baseboard management controller on this bare metal machine. The password field is expected to be an Azure Key Vault key URL. Until the cluster is converted to utilize managed identity by setting the secret archive settings, the actual password value should be provided instead. */
-  bmcCredentials?: AdministrativeCredentialsPatch;
-  /** The MAC address of the BMC for this machine. */
-  bmcMacAddress?: string;
-  /** The MAC address associated with the PXE NIC card. */
-  bootMacAddress?: string;
-  /** The free-form additional information about the machine, e.g. an asset tag. */
-  machineDetails?: string;
-  /** The user-provided name for the bare metal machine created from this specification. If not provided, the machine name will be generated programmatically. */
-  machineName?: string;
-  /** The slot the physical machine is in the rack based on the BOM configuration. */
-  rackSlot?: number;
-  /** The serial number of the machine. Hardware suppliers may use an alternate value. For example, service tag. */
-  serialNumber?: string;
-}
-export const BareMetalMachineConfigurationDataPatchInput =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      bmcCredentials: S.optional(AdministrativeCredentialsPatch),
-      bmcMacAddress: S.optional(S.String),
-      bootMacAddress: S.optional(S.String),
-      machineDetails: S.optional(S.String),
-      machineName: S.optional(S.String),
-      rackSlot: S.optional(S.Number),
-      serialNumber: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "BareMetalMachineConfigurationDataPatchInput",
-  }) as any as S.Schema<BareMetalMachineConfigurationDataPatchInput>;
-
-/** The unordered list of bare metal machine configuration. */
-export type RackDefinitionPatchInputBareMetalMachineConfigurationDataList =
-  Array<BareMetalMachineConfigurationDataPatchInput>;
-export const RackDefinitionPatchInputBareMetalMachineConfigurationDataList =
-  /*@__PURE__*/ S.Array(
-    BareMetalMachineConfigurationDataPatchInput,
-  ) as any as S.Schema<RackDefinitionPatchInputBareMetalMachineConfigurationDataList>;
-
-/** StorageApplianceConfigurationDataPatch represents configuration for the storage application for patch operations. */
-export interface StorageApplianceConfigurationDataPatch {
-  /** The credentials of the administrative interface on this storage appliance. The password field is expected to be an Azure Key Vault key URL. Until the cluster is converted to utilize managed identity by setting the secret archive settings, the actual password value should be provided instead. */
-  adminCredentials?: AdministrativeCredentialsPatch;
-  /** The slot that storage appliance is in the rack based on the BOM configuration. */
-  rackSlot?: number;
-  /** The serial number of the appliance. */
-  serialNumber?: string;
-  /** The user-provided name for the storage appliance that will be created from this specification. */
-  storageApplianceName?: string;
-}
-export const StorageApplianceConfigurationDataPatch = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      adminCredentials: S.optional(AdministrativeCredentialsPatch),
-      rackSlot: S.optional(S.Number),
-      serialNumber: S.optional(S.String),
-      storageApplianceName: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "StorageApplianceConfigurationDataPatch",
-}) as any as S.Schema<StorageApplianceConfigurationDataPatch>;
-
-/** The list of storage appliance configuration data for this rack. */
-export type RackDefinitionPatchInputStorageApplianceConfigurationDataList =
-  Array<StorageApplianceConfigurationDataPatch>;
-export const RackDefinitionPatchInputStorageApplianceConfigurationDataList =
-  /*@__PURE__*/ S.Array(
-    StorageApplianceConfigurationDataPatch,
-  ) as any as S.Schema<RackDefinitionPatchInputStorageApplianceConfigurationDataList>;
-
-/** RackDefinitionPatch represents details regarding the rack for patch operations. */
-export interface RackDefinitionPatchInput {
-  /** The zone name used for this rack when created. Availability zones are used for workload placement. */
-  availabilityZone?: string;
-  /** The unordered list of bare metal machine configuration. */
-  bareMetalMachineConfigurationData?: RackDefinitionPatchInputBareMetalMachineConfigurationDataList;
-  /** The resource ID of the network rack that matches this rack definition. */
-  networkRackId?: string;
-  /** The free-form description of the rack's location. */
-  rackLocation?: string;
-  /** The unique identifier for the rack within Network Cloud cluster. An alternate unique alphanumeric value other than a serial number may be provided if desired. */
-  rackSerialNumber?: string;
-  /** The resource ID of the sku for the rack being added. */
-  rackSkuId?: string;
-  /** The list of storage appliance configuration data for this rack. */
-  storageApplianceConfigurationData?: RackDefinitionPatchInputStorageApplianceConfigurationDataList;
-}
-export const RackDefinitionPatchInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    availabilityZone: S.optional(S.String),
-    bareMetalMachineConfigurationData: S.optional(
-      RackDefinitionPatchInputBareMetalMachineConfigurationDataList,
-    ),
-    networkRackId: S.optional(S.String),
-    rackLocation: S.optional(S.String),
-    rackSerialNumber: S.optional(S.String),
-    rackSkuId: S.optional(S.String),
-    storageApplianceConfigurationData: S.optional(
-      RackDefinitionPatchInputStorageApplianceConfigurationDataList,
-    ),
-  }),
-).annotate({
-  identifier: "RackDefinitionPatchInput",
-}) as any as S.Schema<RackDefinitionPatchInput>;
-
-/** ServicePrincipalInformationPatch represents the details of the service principal to be used by the cluster during Arc Appliance installation for patch operations. */
-export interface ServicePrincipalInformationPatch {
-  /** The application ID, also known as client ID, of the service principal. */
-  applicationId?: string;
-  /** The password of the service principal. */
-  password?: string | Redacted.Redacted<string>;
-  /** The principal ID, also known as the object ID, of the service principal. */
-  principalId?: string;
-  /** The tenant ID, also known as the directory ID, of the tenant in which the service principal is created. */
-  tenantId?: string;
-}
-export const ServicePrincipalInformationPatch = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    applicationId: S.optional(S.String),
-    password: S.optional(S.String.pipe(T.SensitiveValue({}))),
-    principalId: S.optional(S.String),
-    tenantId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ServicePrincipalInformationPatch",
-}) as any as S.Schema<ServicePrincipalInformationPatch>;
-
-/** ValidationThresholdPatch indicates allowed machine and node hardware and deployment failures for patch operations. */
-export interface ValidationThresholdPatch {
-  /** Selection of how the type evaluation is applied to the cluster calculation. */
-  grouping?: ValidationThresholdGrouping | (string & {});
-  /** Selection of how the threshold should be evaluated. */
-  type?: ValidationThresholdType | (string & {});
-  /** The numeric threshold value. */
-  value?: number;
-}
-export const ValidationThresholdPatch = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    grouping: S.optional(ValidationThresholdGrouping),
-    type: S.optional(ValidationThresholdType),
-    value: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "ValidationThresholdPatch",
-}) as any as S.Schema<ValidationThresholdPatch>;
-
-/** The list of rack definitions for the compute racks in a multi-rack cluster, or an empty list in a single-rack cluster. */
-export type ClusterPatchPropertiesInputComputeRackDefinitionsList =
-  Array<RackDefinitionPatchInput>;
-export const ClusterPatchPropertiesInputComputeRackDefinitionsList =
-  /*@__PURE__*/ S.Array(
-    RackDefinitionPatchInput,
-  ) as any as S.Schema<ClusterPatchPropertiesInputComputeRackDefinitionsList>;
-
-/** RuntimeProtectionConfigurationPatch represents the runtime protection configuration for the cluster for patch operations. */
-export interface RuntimeProtectionConfigurationPatch {
-  /** The definition update mode for runtime protection. */
-  definitionUpdateMode?: RuntimeProtectionDefinitionUpdateMode | (string & {});
-  /** The mode of operation for runtime protection. */
-  enforcementLevel?: RuntimeProtectionEnforcementLevel | (string & {});
-}
-export const RuntimeProtectionConfigurationPatch = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    definitionUpdateMode: S.optional(RuntimeProtectionDefinitionUpdateMode),
-    enforcementLevel: S.optional(RuntimeProtectionEnforcementLevel),
-  }),
-).annotate({
-  identifier: "RuntimeProtectionConfigurationPatch",
-}) as any as S.Schema<RuntimeProtectionConfigurationPatch>;
-
-/** The indicator if the specified key vault should be used to archive the secrets of the cluster. */
-export type ClusterSecretArchiveEnabled = "True" | "False";
-export const ClusterSecretArchiveEnabled = /*@__PURE__*/ S.String;
-
-/** ClusterSecretArchivePatch configures the key vault to archive the secrets of the cluster for later retrieval for patch operations. */
-export interface ClusterSecretArchivePatch {
-  /** The resource ID of the key vault to archive the secrets of the cluster. */
-  keyVaultId?: string;
-  /** The indicator if the specified key vault should be used to archive the secrets of the cluster. */
-  useKeyVault?: ClusterSecretArchiveEnabled | (string & {});
-}
-export const ClusterSecretArchivePatch = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    keyVaultId: S.optional(S.String),
-    useKeyVault: S.optional(ClusterSecretArchiveEnabled),
-  }),
-).annotate({
-  identifier: "ClusterSecretArchivePatch",
-}) as any as S.Schema<ClusterSecretArchivePatch>;
-
-/** ClusterUpdateStrategyPatch represents the strategy for updating the cluster for patch operations. */
-export interface ClusterUpdateStrategyPatch {
-  /** The maximum number of worker nodes that can be offline within the increment of update, e.g., rack-by-rack. Limited by the maximum number of machines in the increment. Defaults to the whole increment size. */
-  maxUnavailable?: number;
-  /** The mode of operation for runtime protection. */
-  strategyType?: ClusterUpdateStrategyType | (string & {});
-  /** Selection of how the threshold should be evaluated. */
-  thresholdType?: ValidationThresholdType | (string & {});
-  /** The numeric threshold value. */
-  thresholdValue?: number;
-  /** The time to wait between the increments of update defined by the strategy. */
-  waitTimeMinutes?: number;
-}
-export const ClusterUpdateStrategyPatch = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    maxUnavailable: S.optional(S.Number),
-    strategyType: S.optional(ClusterUpdateStrategyType),
-    thresholdType: S.optional(ValidationThresholdType),
-    thresholdValue: S.optional(S.Number),
-    waitTimeMinutes: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "ClusterUpdateStrategyPatch",
-}) as any as S.Schema<ClusterUpdateStrategyPatch>;
-
-/** The mode selection for container vulnerability scanning. */
-export type VulnerabilityScanningSettingsContainerScan2 =
-  | "Disabled"
-  | "Enabled";
-export const VulnerabilityScanningSettingsContainerScan2 =
-  /*@__PURE__*/ S.String;
-
-/** VulnerabilityScanningSettingsPatch represents the settings for how security vulnerability scanning is applied to the cluster. */
-export interface VulnerabilityScanningSettingsPatch {
-  /** The mode selection for container vulnerability scanning. */
-  containerScan?: VulnerabilityScanningSettingsContainerScan2 | (string & {});
-}
-export const VulnerabilityScanningSettingsPatch = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    containerScan: S.optional(VulnerabilityScanningSettingsContainerScan2),
-  }),
-).annotate({
-  identifier: "VulnerabilityScanningSettingsPatch",
-}) as any as S.Schema<VulnerabilityScanningSettingsPatch>;
-
-/** ClusterPatchProperties represents the properties of the cluster for patching. */
-export interface ClusterPatchPropertiesInput {
-  /** The rack definition that is intended to reflect only a single rack in a single rack cluster, or an aggregator rack in a multi-rack cluster. */
-  aggregatorOrSingleRackDefinition?: RackDefinitionPatchInput;
-  /** The settings for the log analytics workspace used for output of logs from this cluster. */
-  analyticsOutputSettings?: AnalyticsOutputSettings;
-  /** The customer-provided location information to identify where the cluster resides. */
-  clusterLocation?: string;
-  /** Field Deprecated: Use managed identity to provide cluster privileges. The service principal to be used by the cluster during Arc Appliance installation. */
-  clusterServicePrincipal?: ServicePrincipalInformationPatch;
-  /** The settings for commands run in this cluster, such as bare metal machine run read only commands and data extracts. */
-  commandOutputSettings?: CommandOutputSettings;
-  /** The validation threshold indicating the allowable failures of compute machines during environment validation and deployment. */
-  computeDeploymentThreshold?: ValidationThresholdPatch;
-  /** The list of rack definitions for the compute racks in a multi-rack cluster, or an empty list in a single-rack cluster. */
-  computeRackDefinitions?: ClusterPatchPropertiesInputComputeRackDefinitionsList;
-  /** The settings for cluster runtime protection. */
-  runtimeProtectionConfiguration?: RuntimeProtectionConfigurationPatch;
-  /** The configuration for use of a key vault to store secrets for later retrieval by the operator. */
-  secretArchive?: ClusterSecretArchivePatch;
-  /** The settings for the secret archive used to hold credentials for the cluster. */
-  secretArchiveSettings?: SecretArchiveSettings;
-  /** The strategy for updating the cluster. */
-  updateStrategy?: ClusterUpdateStrategyPatch;
-  /** The settings for how security vulnerability scanning is applied to the cluster. */
-  vulnerabilityScanningSettings?: VulnerabilityScanningSettingsPatch;
-}
-export const ClusterPatchPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    aggregatorOrSingleRackDefinition: S.optional(RackDefinitionPatchInput),
-    analyticsOutputSettings: S.optional(AnalyticsOutputSettings),
-    clusterLocation: S.optional(S.String),
-    clusterServicePrincipal: S.optional(ServicePrincipalInformationPatch),
-    commandOutputSettings: S.optional(CommandOutputSettings),
-    computeDeploymentThreshold: S.optional(ValidationThresholdPatch),
-    computeRackDefinitions: S.optional(
-      ClusterPatchPropertiesInputComputeRackDefinitionsList,
-    ),
-    runtimeProtectionConfiguration: S.optional(
-      RuntimeProtectionConfigurationPatch,
-    ),
-    secretArchive: S.optional(ClusterSecretArchivePatch),
-    secretArchiveSettings: S.optional(SecretArchiveSettings),
-    updateStrategy: S.optional(ClusterUpdateStrategyPatch),
-    vulnerabilityScanningSettings: S.optional(
-      VulnerabilityScanningSettingsPatch,
-    ),
-  }),
-).annotate({
-  identifier: "ClusterPatchPropertiesInput",
-}) as any as S.Schema<ClusterPatchPropertiesInput>;
-
-/** Resource tags. */
-export type ClustersUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ClustersUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ClustersUpdateRequestTagsMap>;
-
-export interface ClustersUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: ClustersUpdateRequestIdentity;
-  /** The list of the resource properties. */
-  properties?: ClusterPatchPropertiesInput;
-  /** Resource tags. */
-  tags?: ClustersUpdateRequestTagsMap;
-}
-export const ClustersUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    identity: S.optional(ClustersUpdateRequestIdentity),
-    properties: S.optional(ClusterPatchPropertiesInput),
-    tags: S.optional(ClustersUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ClustersUpdateRequest",
-}) as any as S.Schema<ClustersUpdateRequest>;
-
-/** Resource tags. */
-export type ClustersUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ClustersUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ClustersUpdateResponseTagsMap>;
-
-/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type ClustersUpdateResponseIdentityUserAssignedIdentitiesMap = {
-  [key: string]: UserAssignedIdentity | undefined;
-};
-export const ClustersUpdateResponseIdentityUserAssignedIdentitiesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    UserAssignedIdentity,
-  ) as any as S.Schema<ClustersUpdateResponseIdentityUserAssignedIdentitiesMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export interface ClustersUpdateResponseIdentity {
-  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  principalId?: string;
-  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  tenantId?: string;
-  type: ManagedServiceIdentityType;
-  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: ClustersUpdateResponseIdentityUserAssignedIdentitiesMap;
-}
-export const ClustersUpdateResponseIdentity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    principalId: S.optional(S.String),
-    tenantId: S.optional(S.String),
-    type: ManagedServiceIdentityType,
-    userAssignedIdentities: S.optional(
-      ClustersUpdateResponseIdentityUserAssignedIdentitiesMap,
-    ),
-  }),
-).annotate({
-  identifier: "ClustersUpdateResponseIdentity",
-}) as any as S.Schema<ClustersUpdateResponseIdentity>;
-
-export interface ClustersUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ClustersUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: ClusterProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: ClustersUpdateResponseIdentity;
-  /** The type (kind) of the cluster. When specified, the value must exactly match the kind configured on the cluster manager that manages the cluster. If omitted, the service will default the value to the kind value of the cluster manager. */
-  kind?: DeploymentType;
-}
-export const ClustersUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(ClustersUpdateResponseTagsMap),
-    location: S.String,
-    properties: ClusterProperties,
-    etag: S.optional(S.String),
-    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-    identity: S.optional(ClustersUpdateResponseIdentity),
-    kind: S.optional(DeploymentType),
-  }),
-).annotate({
-  identifier: "ClustersUpdateResponse",
-}) as any as S.Schema<ClustersUpdateResponse>;
-
-/** ClusterUpdateVersionSafeguardMode represents the mode of the cluster update safeguards. */
-export type ClusterUpdateVersionSafeguardMode = "All" | "None";
-export const ClusterUpdateVersionSafeguardMode = /*@__PURE__*/ S.String;
-
-export interface ClustersUpdateVersionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** Specifies how safeguards are applied during the update version operation. Use All to run all pre‑operation validation checks. Use None to bypass safeguards. If not specified, the default is All. */
-  safeguardMode?: ClusterUpdateVersionSafeguardMode | (string & {});
-  /** The version to be applied to the cluster during update. */
-  targetClusterVersion: string;
-}
-export const ClustersUpdateVersionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    safeguardMode: S.optional(ClusterUpdateVersionSafeguardMode),
-    targetClusterVersion: S.String,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/updateVersion",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ClustersUpdateVersionRequest",
-}) as any as S.Schema<ClustersUpdateVersionRequest>;
-
-export interface ClustersUpdateVersionResponse {}
-export const ClustersUpdateVersionResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ClustersUpdateVersionResponse",
-}) as any as S.Schema<ClustersUpdateVersionResponse>;
 
 /** Resource tags. */
 export type ConsolesCreateOrUpdateRequestTagsMap = {
@@ -7883,7 +4188,317 @@ export const ConsolesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ConsolesCreateOrUpdateResponse",
 }) as any as S.Schema<ConsolesCreateOrUpdateResponse>;
 
-export interface ConsolesDeleteRequest {
+/** The indicator of whether to evacuate the node workload when the bare metal machine is cordoned. */
+export type CordonBareMetalMachineRequestEvacuate = "True" | "False";
+export const CordonBareMetalMachineRequestEvacuate = /*@__PURE__*/ S.String;
+
+export interface CordonBareMetalMachineRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the bare metal machine. */
+  bareMetalMachineName: string;
+  /** The indicator of whether to evacuate the node workload when the bare metal machine is cordoned. */
+  evacuate?: CordonBareMetalMachineRequestEvacuate | (string & {});
+}
+export const CordonBareMetalMachineRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    bareMetalMachineName: S.String.pipe(T.Label()),
+    evacuate: S.optional(CordonBareMetalMachineRequestEvacuate),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/cordon",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "CordonBareMetalMachineRequest",
+}) as any as S.Schema<CordonBareMetalMachineRequest>;
+
+export interface CordonBareMetalMachineResponse {}
+export const CordonBareMetalMachineResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "CordonBareMetalMachineResponse",
+}) as any as S.Schema<CordonBareMetalMachineResponse>;
+
+export type DeleteAccessBridgeRequestAccessBridgeName =
+  | "Bastion"
+  | "PrivateVault"
+  | "StorageDashboard";
+export const DeleteAccessBridgeRequestAccessBridgeName = /*@__PURE__*/ S.String;
+
+export interface DeleteAccessBridgeRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the access bridge. */
+  accessBridgeName: DeleteAccessBridgeRequestAccessBridgeName | (string & {});
+}
+export const DeleteAccessBridgeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accessBridgeName: DeleteAccessBridgeRequestAccessBridgeName.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/accessBridges/{accessBridgeName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteAccessBridgeRequest",
+}) as any as S.Schema<DeleteAccessBridgeRequest>;
+
+export interface DeleteAccessBridgeResponse {}
+export const DeleteAccessBridgeResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteAccessBridgeResponse",
+}) as any as S.Schema<DeleteAccessBridgeResponse>;
+
+export interface DeleteAgentPoolRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kubernetes cluster. */
+  kubernetesClusterName: string;
+  /** The name of the Kubernetes cluster agent pool. */
+  agentPoolName: string;
+}
+export const DeleteAgentPoolRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    kubernetesClusterName: S.String.pipe(T.Label()),
+    agentPoolName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}/agentPools/{agentPoolName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteAgentPoolRequest",
+}) as any as S.Schema<DeleteAgentPoolRequest>;
+
+export interface DeleteAgentPoolResponse {}
+export const DeleteAgentPoolResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteAgentPoolResponse",
+}) as any as S.Schema<DeleteAgentPoolResponse>;
+
+export interface DeleteBareMetalMachineRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the bare metal machine. */
+  bareMetalMachineName: string;
+}
+export const DeleteBareMetalMachineRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    bareMetalMachineName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteBareMetalMachineRequest",
+}) as any as S.Schema<DeleteBareMetalMachineRequest>;
+
+export interface DeleteBareMetalMachineResponse {}
+export const DeleteBareMetalMachineResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteBareMetalMachineResponse",
+}) as any as S.Schema<DeleteBareMetalMachineResponse>;
+
+export interface DeleteBareMetalMachineKeySetRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The name of the bare metal machine key set. */
+  bareMetalMachineKeySetName: string;
+}
+export const DeleteBareMetalMachineKeySetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    bareMetalMachineKeySetName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bareMetalMachineKeySets/{bareMetalMachineKeySetName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteBareMetalMachineKeySetRequest",
+}) as any as S.Schema<DeleteBareMetalMachineKeySetRequest>;
+
+export interface DeleteBareMetalMachineKeySetResponse {}
+export const DeleteBareMetalMachineKeySetResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteBareMetalMachineKeySetResponse",
+}) as any as S.Schema<DeleteBareMetalMachineKeySetResponse>;
+
+export interface DeleteBmcKeySetRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The name of the baseboard management controller key set. */
+  bmcKeySetName: string;
+}
+export const DeleteBmcKeySetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    bmcKeySetName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bmcKeySets/{bmcKeySetName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteBmcKeySetRequest",
+}) as any as S.Schema<DeleteBmcKeySetRequest>;
+
+export interface DeleteBmcKeySetResponse {}
+export const DeleteBmcKeySetResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteBmcKeySetResponse",
+}) as any as S.Schema<DeleteBmcKeySetResponse>;
+
+export interface DeleteCloudServicesNetworkRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cloud services network. */
+  cloudServicesNetworkName: string;
+}
+export const DeleteCloudServicesNetworkRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    cloudServicesNetworkName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/cloudServicesNetworks/{cloudServicesNetworkName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteCloudServicesNetworkRequest",
+}) as any as S.Schema<DeleteCloudServicesNetworkRequest>;
+
+export interface DeleteCloudServicesNetworkResponse {}
+export const DeleteCloudServicesNetworkResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteCloudServicesNetworkResponse",
+}) as any as S.Schema<DeleteCloudServicesNetworkResponse>;
+
+export interface DeleteClusterRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+}
+export const DeleteClusterRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteClusterRequest",
+}) as any as S.Schema<DeleteClusterRequest>;
+
+export interface DeleteClusterResponse {}
+export const DeleteClusterResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteClusterResponse",
+}) as any as S.Schema<DeleteClusterResponse>;
+
+export interface DeleteClusterManagerRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster manager. */
+  clusterManagerName: string;
+}
+export const DeleteClusterManagerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterManagerName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusterManagers/{clusterManagerName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteClusterManagerRequest",
+}) as any as S.Schema<DeleteClusterManagerRequest>;
+
+export interface DeleteClusterManagerResponse {}
+export const DeleteClusterManagerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteClusterManagerResponse",
+}) as any as S.Schema<DeleteClusterManagerResponse>;
+
+export interface DeleteConsoleRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -7893,7 +4508,7 @@ export interface ConsolesDeleteRequest {
   /** The name of the virtual machine console. */
   consoleName: string;
 }
-export const ConsolesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteConsoleRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -7908,500 +4523,49 @@ export const ConsolesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ConsolesDeleteRequest",
-}) as any as S.Schema<ConsolesDeleteRequest>;
+  identifier: "DeleteConsoleRequest",
+}) as any as S.Schema<DeleteConsoleRequest>;
 
-export interface ConsolesDeleteResponse {}
-export const ConsolesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteConsoleResponse {}
+export const DeleteConsoleResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "ConsolesDeleteResponse",
-}) as any as S.Schema<ConsolesDeleteResponse>;
+  identifier: "DeleteConsoleResponse",
+}) as any as S.Schema<DeleteConsoleResponse>;
 
-export interface ConsolesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the virtual machine. */
-  virtualMachineName: string;
-  /** The name of the virtual machine console. */
-  consoleName: string;
-}
-export const ConsolesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    virtualMachineName: S.String.pipe(T.Label()),
-    consoleName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/consoles/{consoleName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ConsolesGetRequest",
-}) as any as S.Schema<ConsolesGetRequest>;
-
-/** Resource tags. */
-export type ConsolesGetResponseTagsMap = { [key: string]: string | undefined };
-export const ConsolesGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ConsolesGetResponseTagsMap>;
-
-export interface ConsolesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ConsolesGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: ConsoleProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
-}
-export const ConsolesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(ConsolesGetResponseTagsMap),
-    location: S.String,
-    properties: ConsoleProperties,
-    etag: S.optional(S.String),
-    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-  }),
-).annotate({
-  identifier: "ConsolesGetResponse",
-}) as any as S.Schema<ConsolesGetResponse>;
-
-export interface ConsolesListByVirtualMachineRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the virtual machine. */
-  virtualMachineName: string;
-  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
-  _top?: number;
-  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
-  _skipToken?: string;
-}
-export const ConsolesListByVirtualMachineRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    virtualMachineName: S.String.pipe(T.Label()),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/consoles",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ConsolesListByVirtualMachineRequest",
-}) as any as S.Schema<ConsolesListByVirtualMachineRequest>;
-
-/** Resource tags. */
-export type ConsoleTagsMap = { [key: string]: string | undefined };
-export const ConsoleTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ConsoleTagsMap>;
-
-/** Console represents the console of an on-premises Network Cloud virtual machine. */
-export interface Console {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ConsoleTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: ConsoleProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
-}
-export const Console = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(ConsoleTagsMap),
-    location: S.String,
-    properties: ConsoleProperties,
-    etag: S.optional(S.String),
-    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-  }),
-).annotate({ identifier: "Console" }) as any as S.Schema<Console>;
-
-/** The Console items on this page */
-export type ConsoleListValueList = Array<Console>;
-export const ConsoleListValueList = /*@__PURE__*/ S.Array(
-  Console,
-) as any as S.Schema<ConsoleListValueList>;
-
-/** ConsoleList represents a list of virtual machine consoles. */
-export interface ConsoleList {
-  /** The Console items on this page */
-  value: ConsoleListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ConsoleList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: ConsoleListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "ConsoleList" }) as any as S.Schema<ConsoleList>;
-
-/** SshPublicKeyPatch represents the public key used to authenticate with a resource through SSH. */
-export interface SshPublicKeyPatch {
-  /** The SSH public key data. */
-  keyData?: string;
-}
-export const SshPublicKeyPatch = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    keyData: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SshPublicKeyPatch",
-}) as any as S.Schema<SshPublicKeyPatch>;
-
-/** ConsolePatchProperties represents the properties of the virtual machine console that can be patched. */
-export interface ConsolePatchProperties {
-  /** The indicator of whether the console access is enabled. */
-  enabled?: ConsoleEnabled | (string & {});
-  /** The date and time after which the key will be disallowed access. */
-  expiration?: string;
-  /** The SSH public key that will be provisioned for user access. The user is expected to have the corresponding SSH private key for logging in. */
-  sshPublicKey?: SshPublicKeyPatch;
-}
-export const ConsolePatchProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    enabled: S.optional(ConsoleEnabled),
-    expiration: S.optional(S.String),
-    sshPublicKey: S.optional(SshPublicKeyPatch),
-  }),
-).annotate({
-  identifier: "ConsolePatchProperties",
-}) as any as S.Schema<ConsolePatchProperties>;
-
-/** Resource tags. */
-export type ConsolesUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ConsolesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ConsolesUpdateRequestTagsMap>;
-
-export interface ConsolesUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the virtual machine. */
-  virtualMachineName: string;
-  /** The name of the virtual machine console. */
-  consoleName: string;
-  /** The list of the resource properties. */
-  properties?: ConsolePatchProperties;
-  /** Resource tags. */
-  tags?: ConsolesUpdateRequestTagsMap;
-}
-export const ConsolesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    virtualMachineName: S.String.pipe(T.Label()),
-    consoleName: S.String.pipe(T.Label()),
-    properties: S.optional(ConsolePatchProperties),
-    tags: S.optional(ConsolesUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/consoles/{consoleName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ConsolesUpdateRequest",
-}) as any as S.Schema<ConsolesUpdateRequest>;
-
-/** Resource tags. */
-export type ConsolesUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ConsolesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ConsolesUpdateResponseTagsMap>;
-
-export interface ConsolesUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ConsolesUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: ConsoleProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
-}
-export const ConsolesUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(ConsolesUpdateResponseTagsMap),
-    location: S.String,
-    properties: ConsoleProperties,
-    etag: S.optional(S.String),
-    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-  }),
-).annotate({
-  identifier: "ConsolesUpdateResponse",
-}) as any as S.Schema<ConsolesUpdateResponse>;
-
-/** Resource tags. */
-export type KubernetesClusterFeaturesCreateOrUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const KubernetesClusterFeaturesCreateOrUpdateRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<KubernetesClusterFeaturesCreateOrUpdateRequestTagsMap>;
-
-/** StringKeyValuePair represents a single entry in a mapping of keys to values. */
-export interface StringKeyValuePair {
-  /** The key to the mapped value. */
-  key: string;
-  /** The value of the mapping key. */
-  value: string;
-}
-export const StringKeyValuePair = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    key: S.String,
-    value: S.String,
-  }),
-).annotate({
-  identifier: "StringKeyValuePair",
-}) as any as S.Schema<StringKeyValuePair>;
-
-/** The configured options for the feature. */
-export type KubernetesClusterFeaturePropertiesInputOptionsList =
-  Array<StringKeyValuePair>;
-export const KubernetesClusterFeaturePropertiesInputOptionsList =
-  /*@__PURE__*/ S.Array(
-    StringKeyValuePair,
-  ) as any as S.Schema<KubernetesClusterFeaturePropertiesInputOptionsList>;
-
-/** KubernetesClusterFeatureProperties represents the properties of a Kubernetes cluster feature. */
-export interface KubernetesClusterFeaturePropertiesInput {
-  /** The configured options for the feature. */
-  options?: KubernetesClusterFeaturePropertiesInputOptionsList;
-}
-export const KubernetesClusterFeaturePropertiesInput = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      options: S.optional(KubernetesClusterFeaturePropertiesInputOptionsList),
-    }),
-).annotate({
-  identifier: "KubernetesClusterFeaturePropertiesInput",
-}) as any as S.Schema<KubernetesClusterFeaturePropertiesInput>;
-
-export interface KubernetesClusterFeaturesCreateOrUpdateRequest {
+export interface DeleteKubernetesClusterRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the Kubernetes cluster. */
   kubernetesClusterName: string;
-  /** The name of the feature. */
-  featureName: string;
-  /** Resource tags. */
-  tags?: KubernetesClusterFeaturesCreateOrUpdateRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties?: KubernetesClusterFeaturePropertiesInput;
 }
-export const KubernetesClusterFeaturesCreateOrUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      kubernetesClusterName: S.String.pipe(T.Label()),
-      featureName: S.String.pipe(T.Label()),
-      tags: S.optional(KubernetesClusterFeaturesCreateOrUpdateRequestTagsMap),
-      location: S.String,
-      properties: S.optional(KubernetesClusterFeaturePropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}/features/{featureName}",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "KubernetesClusterFeaturesCreateOrUpdateRequest",
-  }) as any as S.Schema<KubernetesClusterFeaturesCreateOrUpdateRequest>;
-
-/** Resource tags. */
-export type KubernetesClusterFeaturesCreateOrUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const KubernetesClusterFeaturesCreateOrUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<KubernetesClusterFeaturesCreateOrUpdateResponseTagsMap>;
-
-/** The configured options for the feature. */
-export type KubernetesClusterFeaturePropertiesOptionsList =
-  Array<StringKeyValuePair>;
-export const KubernetesClusterFeaturePropertiesOptionsList =
-  /*@__PURE__*/ S.Array(
-    StringKeyValuePair,
-  ) as any as S.Schema<KubernetesClusterFeaturePropertiesOptionsList>;
-
-/** The lifecycle indicator of the feature. */
-export type KubernetesClusterFeatureAvailabilityLifecycle =
-  | "Preview"
-  | "GenerallyAvailable";
-export const KubernetesClusterFeatureAvailabilityLifecycle =
-  /*@__PURE__*/ S.String;
-
-/** The detailed status of the feature. */
-export type KubernetesClusterFeatureDetailedStatus =
-  | "Error"
-  | "Provisioning"
-  | "Installed";
-export const KubernetesClusterFeatureDetailedStatus = /*@__PURE__*/ S.String;
-
-/** The indicator of if the feature is required or optional. Optional features may be deleted by the user, while required features are managed with the kubernetes cluster lifecycle. */
-export type KubernetesClusterFeatureRequired = "True" | "False";
-export const KubernetesClusterFeatureRequired = /*@__PURE__*/ S.String;
-
-/** The provisioning state of the Kubernetes cluster feature. */
-export type KubernetesClusterFeatureProvisioningState =
-  | "Accepted"
-  | "Canceled"
-  | "Deleting"
-  | "Failed"
-  | "Succeeded"
-  | "Updating";
-export const KubernetesClusterFeatureProvisioningState = /*@__PURE__*/ S.String;
-
-/** KubernetesClusterFeatureProperties represents the properties of a Kubernetes cluster feature. */
-export interface KubernetesClusterFeatureProperties {
-  /** The configured options for the feature. */
-  options?: KubernetesClusterFeaturePropertiesOptionsList;
-  /** The lifecycle indicator of the feature. */
-  availabilityLifecycle?: KubernetesClusterFeatureAvailabilityLifecycle;
-  /** The detailed status of the feature. */
-  detailedStatus?: KubernetesClusterFeatureDetailedStatus;
-  /** The descriptive message for the detailed status of the feature. */
-  detailedStatusMessage?: string;
-  /** The indicator of if the feature is required or optional. Optional features may be deleted by the user, while required features are managed with the kubernetes cluster lifecycle. */
-  required?: KubernetesClusterFeatureRequired;
-  /** The version of the feature. */
-  version?: string;
-  /** The provisioning state of the Kubernetes cluster feature. */
-  provisioningState?: KubernetesClusterFeatureProvisioningState;
-}
-export const KubernetesClusterFeatureProperties = /*@__PURE__*/ S.suspend(() =>
+export const DeleteKubernetesClusterRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    options: S.optional(KubernetesClusterFeaturePropertiesOptionsList),
-    availabilityLifecycle: S.optional(
-      KubernetesClusterFeatureAvailabilityLifecycle,
-    ),
-    detailedStatus: S.optional(KubernetesClusterFeatureDetailedStatus),
-    detailedStatusMessage: S.optional(S.String),
-    required: S.optional(KubernetesClusterFeatureRequired),
-    version: S.optional(S.String),
-    provisioningState: S.optional(KubernetesClusterFeatureProvisioningState),
-  }),
-).annotate({
-  identifier: "KubernetesClusterFeatureProperties",
-}) as any as S.Schema<KubernetesClusterFeatureProperties>;
-
-export interface KubernetesClusterFeaturesCreateOrUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: KubernetesClusterFeaturesCreateOrUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties?: KubernetesClusterFeatureProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const KubernetesClusterFeaturesCreateOrUpdateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(KubernetesClusterFeaturesCreateOrUpdateResponseTagsMap),
-      location: S.String,
-      properties: S.optional(KubernetesClusterFeatureProperties),
-      etag: S.optional(S.String),
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    kubernetesClusterName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}",
+      code: 200,
+      apiVersion: "2026-07-01",
     }),
-  ).annotate({
-    identifier: "KubernetesClusterFeaturesCreateOrUpdateResponse",
-  }) as any as S.Schema<KubernetesClusterFeaturesCreateOrUpdateResponse>;
+  ),
+).annotate({
+  identifier: "DeleteKubernetesClusterRequest",
+}) as any as S.Schema<DeleteKubernetesClusterRequest>;
 
-export interface KubernetesClusterFeaturesDeleteRequest {
+export interface DeleteKubernetesClusterResponse {}
+export const DeleteKubernetesClusterResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteKubernetesClusterResponse",
+}) as any as S.Schema<DeleteKubernetesClusterResponse>;
+
+export interface DeleteKubernetesClusterFeatureRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -8411,7 +4575,7 @@ export interface KubernetesClusterFeaturesDeleteRequest {
   /** The name of the feature. */
   featureName: string;
 }
-export const KubernetesClusterFeaturesDeleteRequest = /*@__PURE__*/ S.suspend(
+export const DeleteKubernetesClusterFeatureRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -8427,131 +4591,469 @@ export const KubernetesClusterFeaturesDeleteRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "KubernetesClusterFeaturesDeleteRequest",
-}) as any as S.Schema<KubernetesClusterFeaturesDeleteRequest>;
+  identifier: "DeleteKubernetesClusterFeatureRequest",
+}) as any as S.Schema<DeleteKubernetesClusterFeatureRequest>;
 
-export interface KubernetesClusterFeaturesDeleteResponse {}
-export const KubernetesClusterFeaturesDeleteResponse = /*@__PURE__*/ S.suspend(
+export interface DeleteKubernetesClusterFeatureResponse {}
+export const DeleteKubernetesClusterFeatureResponse = /*@__PURE__*/ S.suspend(
   () => S.Struct({}),
 ).annotate({
-  identifier: "KubernetesClusterFeaturesDeleteResponse",
-}) as any as S.Schema<KubernetesClusterFeaturesDeleteResponse>;
+  identifier: "DeleteKubernetesClusterFeatureResponse",
+}) as any as S.Schema<DeleteKubernetesClusterFeatureResponse>;
 
-export interface KubernetesClusterFeaturesGetRequest {
+export interface DeleteKubernetesVersionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** The name of the Kubernetes cluster. */
-  kubernetesClusterName: string;
-  /** The name of the feature. */
-  featureName: string;
+  /** The name of the Kubernetes version resource. */
+  kubernetesVersionName: string;
 }
-export const KubernetesClusterFeaturesGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteKubernetesVersionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
-    kubernetesClusterName: S.String.pipe(T.Label()),
-    featureName: S.String.pipe(T.Label()),
+    kubernetesVersionName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}/features/{featureName}",
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesVersions/{kubernetesVersionName}",
       code: 200,
       apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
-  identifier: "KubernetesClusterFeaturesGetRequest",
-}) as any as S.Schema<KubernetesClusterFeaturesGetRequest>;
+  identifier: "DeleteKubernetesVersionRequest",
+}) as any as S.Schema<DeleteKubernetesVersionRequest>;
 
-/** Resource tags. */
-export type KubernetesClusterFeaturesGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const KubernetesClusterFeaturesGetResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<KubernetesClusterFeaturesGetResponseTagsMap>;
-
-export interface KubernetesClusterFeaturesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: KubernetesClusterFeaturesGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties?: KubernetesClusterFeatureProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const KubernetesClusterFeaturesGetResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(KubernetesClusterFeaturesGetResponseTagsMap),
-      location: S.String,
-      properties: S.optional(KubernetesClusterFeatureProperties),
-      etag: S.optional(S.String),
-    }),
+export interface DeleteKubernetesVersionResponse {}
+export const DeleteKubernetesVersionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
 ).annotate({
-  identifier: "KubernetesClusterFeaturesGetResponse",
-}) as any as S.Schema<KubernetesClusterFeaturesGetResponse>;
+  identifier: "DeleteKubernetesVersionResponse",
+}) as any as S.Schema<DeleteKubernetesVersionResponse>;
 
-export interface KubernetesClusterFeaturesListByKubernetesClusterRequest {
+export interface DeleteL2NetworkRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** The name of the Kubernetes cluster. */
-  kubernetesClusterName: string;
-  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
-  _top?: number;
-  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
-  _skipToken?: string;
+  /** The name of the L2 network. */
+  l2NetworkName: string;
 }
-export const KubernetesClusterFeaturesListByKubernetesClusterRequest =
+export const DeleteL2NetworkRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    l2NetworkName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l2Networks/{l2NetworkName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteL2NetworkRequest",
+}) as any as S.Schema<DeleteL2NetworkRequest>;
+
+export interface DeleteL2NetworkResponse {}
+export const DeleteL2NetworkResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteL2NetworkResponse",
+}) as any as S.Schema<DeleteL2NetworkResponse>;
+
+export interface DeleteL3NetworkRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the L3 network. */
+  l3NetworkName: string;
+}
+export const DeleteL3NetworkRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    l3NetworkName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l3Networks/{l3NetworkName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteL3NetworkRequest",
+}) as any as S.Schema<DeleteL3NetworkRequest>;
+
+export interface DeleteL3NetworkResponse {}
+export const DeleteL3NetworkResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteL3NetworkResponse",
+}) as any as S.Schema<DeleteL3NetworkResponse>;
+
+export interface DeleteMetricsConfigurationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The name of the metrics configuration for the cluster. */
+  metricsConfigurationName: string;
+}
+export const DeleteMetricsConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    metricsConfigurationName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/metricsConfigurations/{metricsConfigurationName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteMetricsConfigurationRequest",
+}) as any as S.Schema<DeleteMetricsConfigurationRequest>;
+
+export interface DeleteMetricsConfigurationResponse {}
+export const DeleteMetricsConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteMetricsConfigurationResponse",
+}) as any as S.Schema<DeleteMetricsConfigurationResponse>;
+
+export interface DeleteRackRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the rack. */
+  rackName: string;
+}
+export const DeleteRackRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    rackName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/racks/{rackName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteRackRequest",
+}) as any as S.Schema<DeleteRackRequest>;
+
+export interface DeleteRackResponse {}
+export const DeleteRackResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteRackResponse",
+}) as any as S.Schema<DeleteRackResponse>;
+
+export interface DeleteStorageApplianceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the storage appliance. */
+  storageApplianceName: string;
+}
+export const DeleteStorageApplianceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    storageApplianceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances/{storageApplianceName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteStorageApplianceRequest",
+}) as any as S.Schema<DeleteStorageApplianceRequest>;
+
+export interface DeleteStorageApplianceResponse {}
+export const DeleteStorageApplianceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteStorageApplianceResponse",
+}) as any as S.Schema<DeleteStorageApplianceResponse>;
+
+export interface DeleteTrunkedNetworkRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the trunked network. */
+  trunkedNetworkName: string;
+}
+export const DeleteTrunkedNetworkRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    trunkedNetworkName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/trunkedNetworks/{trunkedNetworkName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteTrunkedNetworkRequest",
+}) as any as S.Schema<DeleteTrunkedNetworkRequest>;
+
+export interface DeleteTrunkedNetworkResponse {}
+export const DeleteTrunkedNetworkResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteTrunkedNetworkResponse",
+}) as any as S.Schema<DeleteTrunkedNetworkResponse>;
+
+export interface DeleteVirtualMachineRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the virtual machine. */
+  virtualMachineName: string;
+}
+export const DeleteVirtualMachineRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    virtualMachineName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteVirtualMachineRequest",
+}) as any as S.Schema<DeleteVirtualMachineRequest>;
+
+export interface DeleteVirtualMachineResponse {}
+export const DeleteVirtualMachineResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteVirtualMachineResponse",
+}) as any as S.Schema<DeleteVirtualMachineResponse>;
+
+export interface DeleteVolumeRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the volume. */
+  volumeName: string;
+}
+export const DeleteVolumeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    volumeName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/volumes/{volumeName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteVolumeRequest",
+}) as any as S.Schema<DeleteVolumeRequest>;
+
+export interface DeleteVolumeResponse {}
+export const DeleteVolumeResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteVolumeResponse",
+}) as any as S.Schema<DeleteVolumeResponse>;
+
+/** The names of bare metal machines in the cluster that should be skipped during environment validation. */
+export type DeployClusterRequestSkipValidationsForMachinesList = Array<string>;
+export const DeployClusterRequestSkipValidationsForMachinesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<DeployClusterRequestSkipValidationsForMachinesList>;
+
+export interface DeployClusterRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The names of bare metal machines in the cluster that should be skipped during environment validation. */
+  skipValidationsForMachines?: DeployClusterRequestSkipValidationsForMachinesList;
+}
+export const DeployClusterRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    skipValidationsForMachines: S.optional(
+      DeployClusterRequestSkipValidationsForMachinesList,
+    ),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/deploy",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeployClusterRequest",
+}) as any as S.Schema<DeployClusterRequest>;
+
+export interface DeployClusterResponse {}
+export const DeployClusterResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeployClusterResponse",
+}) as any as S.Schema<DeployClusterResponse>;
+
+export interface DisableStorageApplianceRemoteVendorManagementRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the storage appliance. */
+  storageApplianceName: string;
+}
+export const DisableStorageApplianceRemoteVendorManagementRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
-      kubernetesClusterName: S.String.pipe(T.Label()),
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+      storageApplianceName: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}/features",
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances/{storageApplianceName}/disableRemoteVendorManagement",
         code: 200,
         apiVersion: "2026-07-01",
       }),
     ),
   ).annotate({
-    identifier: "KubernetesClusterFeaturesListByKubernetesClusterRequest",
-  }) as any as S.Schema<KubernetesClusterFeaturesListByKubernetesClusterRequest>;
+    identifier: "DisableStorageApplianceRemoteVendorManagementRequest",
+  }) as any as S.Schema<DisableStorageApplianceRemoteVendorManagementRequest>;
+
+export interface DisableStorageApplianceRemoteVendorManagementResponse {}
+export const DisableStorageApplianceRemoteVendorManagementResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "DisableStorageApplianceRemoteVendorManagementResponse",
+  }) as any as S.Schema<DisableStorageApplianceRemoteVendorManagementResponse>;
+
+/** Field Deprecated. This field is not used and will be rejected if provided. The list of IPv4 subnets (in CIDR format), IPv6 subnets (in CIDR format), or hostnames that the storage appliance needs accessible in order to turn on the remote vendor management. */
+export type EnableStorageApplianceRemoteVendorManagementRequestSupportEndpointsList =
+  Array<string>;
+export const EnableStorageApplianceRemoteVendorManagementRequestSupportEndpointsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<EnableStorageApplianceRemoteVendorManagementRequestSupportEndpointsList>;
+
+export interface EnableStorageApplianceRemoteVendorManagementRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the storage appliance. */
+  storageApplianceName: string;
+  /** Field Deprecated. This field is not used and will be rejected if provided. The list of IPv4 subnets (in CIDR format), IPv6 subnets (in CIDR format), or hostnames that the storage appliance needs accessible in order to turn on the remote vendor management. */
+  supportEndpoints?: EnableStorageApplianceRemoteVendorManagementRequestSupportEndpointsList;
+}
+export const EnableStorageApplianceRemoteVendorManagementRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      storageApplianceName: S.String.pipe(T.Label()),
+      supportEndpoints: S.optional(
+        EnableStorageApplianceRemoteVendorManagementRequestSupportEndpointsList,
+      ),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances/{storageApplianceName}/enableRemoteVendorManagement",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "EnableStorageApplianceRemoteVendorManagementRequest",
+  }) as any as S.Schema<EnableStorageApplianceRemoteVendorManagementRequest>;
+
+export interface EnableStorageApplianceRemoteVendorManagementResponse {}
+export const EnableStorageApplianceRemoteVendorManagementResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "EnableStorageApplianceRemoteVendorManagementResponse",
+  }) as any as S.Schema<EnableStorageApplianceRemoteVendorManagementResponse>;
+
+export type GetAccessBridgeRequestAccessBridgeName =
+  | "Bastion"
+  | "PrivateVault"
+  | "StorageDashboard";
+export const GetAccessBridgeRequestAccessBridgeName = /*@__PURE__*/ S.String;
+
+export interface GetAccessBridgeRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the access bridge. */
+  accessBridgeName: GetAccessBridgeRequestAccessBridgeName | (string & {});
+}
+export const GetAccessBridgeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accessBridgeName: GetAccessBridgeRequestAccessBridgeName.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/accessBridges/{accessBridgeName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetAccessBridgeRequest",
+}) as any as S.Schema<GetAccessBridgeRequest>;
 
 /** Resource tags. */
-export type KubernetesClusterFeatureTagsMap = {
+export type GetAccessBridgeResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const KubernetesClusterFeatureTagsMap = /*@__PURE__*/ S.Record(
+export const GetAccessBridgeResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<KubernetesClusterFeatureTagsMap>;
+) as any as S.Schema<GetAccessBridgeResponseTagsMap>;
 
-/** KubernetesClusterFeature represents the feature of a Kubernetes cluster. */
-export interface KubernetesClusterFeature {
+export interface GetAccessBridgeResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -8561,130 +5063,68 @@ export interface KubernetesClusterFeature {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: KubernetesClusterFeatureTagsMap;
+  tags?: GetAccessBridgeResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The list of the resource properties. */
-  properties?: KubernetesClusterFeatureProperties;
+  properties: AccessBridgeProperties;
   /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
   etag?: string;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
 }
-export const KubernetesClusterFeature = /*@__PURE__*/ S.suspend(() =>
+export const GetAccessBridgeResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(KubernetesClusterFeatureTagsMap),
+    tags: S.optional(GetAccessBridgeResponseTagsMap),
     location: S.String,
-    properties: S.optional(KubernetesClusterFeatureProperties),
+    properties: AccessBridgeProperties,
     etag: S.optional(S.String),
+    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
   }),
 ).annotate({
-  identifier: "KubernetesClusterFeature",
-}) as any as S.Schema<KubernetesClusterFeature>;
+  identifier: "GetAccessBridgeResponse",
+}) as any as S.Schema<GetAccessBridgeResponse>;
 
-/** The KubernetesClusterFeature items on this page */
-export type KubernetesClusterFeatureListValueList =
-  Array<KubernetesClusterFeature>;
-export const KubernetesClusterFeatureListValueList = /*@__PURE__*/ S.Array(
-  KubernetesClusterFeature,
-) as any as S.Schema<KubernetesClusterFeatureListValueList>;
-
-/** KubernetesClusterFeatureList represents the list of Kubernetes cluster feature resources. */
-export interface KubernetesClusterFeatureList {
-  /** The KubernetesClusterFeature items on this page */
-  value: KubernetesClusterFeatureListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const KubernetesClusterFeatureList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: KubernetesClusterFeatureListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "KubernetesClusterFeatureList",
-}) as any as S.Schema<KubernetesClusterFeatureList>;
-
-/** The configured options for the feature. */
-export type KubernetesClusterFeaturePatchPropertiesOptionsList =
-  Array<StringKeyValuePair>;
-export const KubernetesClusterFeaturePatchPropertiesOptionsList =
-  /*@__PURE__*/ S.Array(
-    StringKeyValuePair,
-  ) as any as S.Schema<KubernetesClusterFeaturePatchPropertiesOptionsList>;
-
-/** KubernetesClusterFeaturePatchProperties represents the Kubernetes cluster feature properties for patching. */
-export interface KubernetesClusterFeaturePatchProperties {
-  /** The configured options for the feature. */
-  options?: KubernetesClusterFeaturePatchPropertiesOptionsList;
-}
-export const KubernetesClusterFeaturePatchProperties = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      options: S.optional(KubernetesClusterFeaturePatchPropertiesOptionsList),
-    }),
-).annotate({
-  identifier: "KubernetesClusterFeaturePatchProperties",
-}) as any as S.Schema<KubernetesClusterFeaturePatchProperties>;
-
-/** Resource tags. */
-export type KubernetesClusterFeaturesUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const KubernetesClusterFeaturesUpdateRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<KubernetesClusterFeaturesUpdateRequestTagsMap>;
-
-export interface KubernetesClusterFeaturesUpdateRequest {
+export interface GetAgentPoolRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the Kubernetes cluster. */
   kubernetesClusterName: string;
-  /** The name of the feature. */
-  featureName: string;
-  /** The list of the resource properties. */
-  properties?: KubernetesClusterFeaturePatchProperties;
-  /** Resource tags. */
-  tags?: KubernetesClusterFeaturesUpdateRequestTagsMap;
+  /** The name of the Kubernetes cluster agent pool. */
+  agentPoolName: string;
 }
-export const KubernetesClusterFeaturesUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      kubernetesClusterName: S.String.pipe(T.Label()),
-      featureName: S.String.pipe(T.Label()),
-      properties: S.optional(KubernetesClusterFeaturePatchProperties),
-      tags: S.optional(KubernetesClusterFeaturesUpdateRequestTagsMap),
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}/features/{featureName}",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
+export const GetAgentPoolRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    kubernetesClusterName: S.String.pipe(T.Label()),
+    agentPoolName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}/agentPools/{agentPoolName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
 ).annotate({
-  identifier: "KubernetesClusterFeaturesUpdateRequest",
-}) as any as S.Schema<KubernetesClusterFeaturesUpdateRequest>;
+  identifier: "GetAgentPoolRequest",
+}) as any as S.Schema<GetAgentPoolRequest>;
 
 /** Resource tags. */
-export type KubernetesClusterFeaturesUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const KubernetesClusterFeaturesUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<KubernetesClusterFeaturesUpdateResponseTagsMap>;
+export type GetAgentPoolResponseTagsMap = { [key: string]: string | undefined };
+export const GetAgentPoolResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetAgentPoolResponseTagsMap>;
 
-export interface KubernetesClusterFeaturesUpdateResponse {
+export interface GetAgentPoolResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -8694,39 +5134,635 @@ export interface KubernetesClusterFeaturesUpdateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: KubernetesClusterFeaturesUpdateResponseTagsMap;
+  tags?: GetAgentPoolResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The list of the resource properties. */
-  properties?: KubernetesClusterFeatureProperties;
+  properties: AgentPoolProperties;
   /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
   etag?: string;
+  /** The extended location of the resource. */
+  extendedLocation?: AzureResourceManagerCommonTypesExtendedLocation;
 }
-export const KubernetesClusterFeaturesUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(KubernetesClusterFeaturesUpdateResponseTagsMap),
-      location: S.String,
-      properties: S.optional(KubernetesClusterFeatureProperties),
-      etag: S.optional(S.String),
-    }),
+export const GetAgentPoolResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetAgentPoolResponseTagsMap),
+    location: S.String,
+    properties: AgentPoolProperties,
+    etag: S.optional(S.String),
+    extendedLocation: S.optional(
+      AzureResourceManagerCommonTypesExtendedLocation,
+    ),
+  }),
 ).annotate({
-  identifier: "KubernetesClusterFeaturesUpdateResponse",
-}) as any as S.Schema<KubernetesClusterFeaturesUpdateResponse>;
+  identifier: "GetAgentPoolResponse",
+}) as any as S.Schema<GetAgentPoolResponse>;
+
+export interface GetBareMetalMachineRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the bare metal machine. */
+  bareMetalMachineName: string;
+}
+export const GetBareMetalMachineRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    bareMetalMachineName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetBareMetalMachineRequest",
+}) as any as S.Schema<GetBareMetalMachineRequest>;
 
 /** Resource tags. */
-export type KubernetesClustersCreateOrUpdateRequestTagsMap = {
+export type GetBareMetalMachineResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const KubernetesClustersCreateOrUpdateRequestTagsMap =
+export const GetBareMetalMachineResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetBareMetalMachineResponseTagsMap>;
+
+export interface GetBareMetalMachineResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetBareMetalMachineResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: BareMetalMachineProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const GetBareMetalMachineResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetBareMetalMachineResponseTagsMap),
+    location: S.String,
+    properties: BareMetalMachineProperties,
+    etag: S.optional(S.String),
+    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+  }),
+).annotate({
+  identifier: "GetBareMetalMachineResponse",
+}) as any as S.Schema<GetBareMetalMachineResponse>;
+
+export interface GetBareMetalMachineKeySetRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The name of the bare metal machine key set. */
+  bareMetalMachineKeySetName: string;
+}
+export const GetBareMetalMachineKeySetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    bareMetalMachineKeySetName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bareMetalMachineKeySets/{bareMetalMachineKeySetName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetBareMetalMachineKeySetRequest",
+}) as any as S.Schema<GetBareMetalMachineKeySetRequest>;
+
+/** Resource tags. */
+export type GetBareMetalMachineKeySetResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetBareMetalMachineKeySetResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetBareMetalMachineKeySetResponseTagsMap>;
+
+export interface GetBareMetalMachineKeySetResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetBareMetalMachineKeySetResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: BareMetalMachineKeySetProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const GetBareMetalMachineKeySetResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetBareMetalMachineKeySetResponseTagsMap),
+    location: S.String,
+    properties: BareMetalMachineKeySetProperties,
+    etag: S.optional(S.String),
+    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+  }),
+).annotate({
+  identifier: "GetBareMetalMachineKeySetResponse",
+}) as any as S.Schema<GetBareMetalMachineKeySetResponse>;
+
+export interface GetBmcKeySetRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The name of the baseboard management controller key set. */
+  bmcKeySetName: string;
+}
+export const GetBmcKeySetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    bmcKeySetName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bmcKeySets/{bmcKeySetName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetBmcKeySetRequest",
+}) as any as S.Schema<GetBmcKeySetRequest>;
+
+/** Resource tags. */
+export type GetBmcKeySetResponseTagsMap = { [key: string]: string | undefined };
+export const GetBmcKeySetResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetBmcKeySetResponseTagsMap>;
+
+export interface GetBmcKeySetResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetBmcKeySetResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: BmcKeySetProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const GetBmcKeySetResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetBmcKeySetResponseTagsMap),
+    location: S.String,
+    properties: BmcKeySetProperties,
+    etag: S.optional(S.String),
+    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+  }),
+).annotate({
+  identifier: "GetBmcKeySetResponse",
+}) as any as S.Schema<GetBmcKeySetResponse>;
+
+export interface GetCloudServicesNetworkRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cloud services network. */
+  cloudServicesNetworkName: string;
+}
+export const GetCloudServicesNetworkRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    cloudServicesNetworkName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/cloudServicesNetworks/{cloudServicesNetworkName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetCloudServicesNetworkRequest",
+}) as any as S.Schema<GetCloudServicesNetworkRequest>;
+
+/** Resource tags. */
+export type GetCloudServicesNetworkResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetCloudServicesNetworkResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetCloudServicesNetworkResponseTagsMap>;
+
+export interface GetCloudServicesNetworkResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetCloudServicesNetworkResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties?: CloudServicesNetworkProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const GetCloudServicesNetworkResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetCloudServicesNetworkResponseTagsMap),
+    location: S.String,
+    properties: S.optional(CloudServicesNetworkProperties),
+    etag: S.optional(S.String),
+    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+  }),
+).annotate({
+  identifier: "GetCloudServicesNetworkResponse",
+}) as any as S.Schema<GetCloudServicesNetworkResponse>;
+
+export interface GetClusterRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+}
+export const GetClusterRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetClusterRequest",
+}) as any as S.Schema<GetClusterRequest>;
+
+/** Resource tags. */
+export type GetClusterResponseTagsMap = { [key: string]: string | undefined };
+export const GetClusterResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetClusterResponseTagsMap>;
+
+/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+export type GetClusterResponseIdentityUserAssignedIdentitiesMap = {
+  [key: string]: UserAssignedIdentity | undefined;
+};
+export const GetClusterResponseIdentityUserAssignedIdentitiesMap =
   /*@__PURE__*/ S.Record(
     S.String,
+    UserAssignedIdentity,
+  ) as any as S.Schema<GetClusterResponseIdentityUserAssignedIdentitiesMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export interface GetClusterResponseIdentity {
+  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  principalId?: string;
+  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  tenantId?: string;
+  type: ManagedServiceIdentityType;
+  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+  userAssignedIdentities?: GetClusterResponseIdentityUserAssignedIdentitiesMap;
+}
+export const GetClusterResponseIdentity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    principalId: S.optional(S.String),
+    tenantId: S.optional(S.String),
+    type: ManagedServiceIdentityType,
+    userAssignedIdentities: S.optional(
+      GetClusterResponseIdentityUserAssignedIdentitiesMap,
+    ),
+  }),
+).annotate({
+  identifier: "GetClusterResponseIdentity",
+}) as any as S.Schema<GetClusterResponseIdentity>;
+
+export interface GetClusterResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetClusterResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: ClusterProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: GetClusterResponseIdentity;
+  /** The type (kind) of the cluster. When specified, the value must exactly match the kind configured on the cluster manager that manages the cluster. If omitted, the service will default the value to the kind value of the cluster manager. */
+  kind?: DeploymentType;
+}
+export const GetClusterResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetClusterResponseTagsMap),
+    location: S.String,
+    properties: ClusterProperties,
+    etag: S.optional(S.String),
+    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+    identity: S.optional(GetClusterResponseIdentity),
+    kind: S.optional(DeploymentType),
+  }),
+).annotate({
+  identifier: "GetClusterResponse",
+}) as any as S.Schema<GetClusterResponse>;
+
+export interface GetClusterManagerRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster manager. */
+  clusterManagerName: string;
+}
+export const GetClusterManagerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterManagerName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusterManagers/{clusterManagerName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetClusterManagerRequest",
+}) as any as S.Schema<GetClusterManagerRequest>;
+
+/** Resource tags. */
+export type GetClusterManagerResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetClusterManagerResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetClusterManagerResponseTagsMap>;
+
+/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+export type GetClusterManagerResponseIdentityUserAssignedIdentitiesMap = {
+  [key: string]: UserAssignedIdentity | undefined;
+};
+export const GetClusterManagerResponseIdentityUserAssignedIdentitiesMap =
+  /*@__PURE__*/ S.Record(
     S.String,
-  ) as any as S.Schema<KubernetesClustersCreateOrUpdateRequestTagsMap>;
+    UserAssignedIdentity,
+  ) as any as S.Schema<GetClusterManagerResponseIdentityUserAssignedIdentitiesMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export interface GetClusterManagerResponseIdentity {
+  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  principalId?: string;
+  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  tenantId?: string;
+  type: ManagedServiceIdentityType;
+  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+  userAssignedIdentities?: GetClusterManagerResponseIdentityUserAssignedIdentitiesMap;
+}
+export const GetClusterManagerResponseIdentity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    principalId: S.optional(S.String),
+    tenantId: S.optional(S.String),
+    type: ManagedServiceIdentityType,
+    userAssignedIdentities: S.optional(
+      GetClusterManagerResponseIdentityUserAssignedIdentitiesMap,
+    ),
+  }),
+).annotate({
+  identifier: "GetClusterManagerResponseIdentity",
+}) as any as S.Schema<GetClusterManagerResponseIdentity>;
+
+export interface GetClusterManagerResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetClusterManagerResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: ClusterManagerProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: GetClusterManagerResponseIdentity;
+  /** The kind of the cluster manager. */
+  kind?: DeploymentType;
+}
+export const GetClusterManagerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetClusterManagerResponseTagsMap),
+    location: S.String,
+    properties: ClusterManagerProperties,
+    etag: S.optional(S.String),
+    identity: S.optional(GetClusterManagerResponseIdentity),
+    kind: S.optional(DeploymentType),
+  }),
+).annotate({
+  identifier: "GetClusterManagerResponse",
+}) as any as S.Schema<GetClusterManagerResponse>;
+
+export interface GetConsoleRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the virtual machine. */
+  virtualMachineName: string;
+  /** The name of the virtual machine console. */
+  consoleName: string;
+}
+export const GetConsoleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    virtualMachineName: S.String.pipe(T.Label()),
+    consoleName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/consoles/{consoleName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetConsoleRequest",
+}) as any as S.Schema<GetConsoleRequest>;
+
+/** Resource tags. */
+export type GetConsoleResponseTagsMap = { [key: string]: string | undefined };
+export const GetConsoleResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetConsoleResponseTagsMap>;
+
+export interface GetConsoleResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetConsoleResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: ConsoleProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const GetConsoleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetConsoleResponseTagsMap),
+    location: S.String,
+    properties: ConsoleProperties,
+    etag: S.optional(S.String),
+    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+  }),
+).annotate({
+  identifier: "GetConsoleResponse",
+}) as any as S.Schema<GetConsoleResponse>;
+
+export interface GetKubernetesClusterRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kubernetes cluster. */
+  kubernetesClusterName: string;
+}
+export const GetKubernetesClusterRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    kubernetesClusterName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetKubernetesClusterRequest",
+}) as any as S.Schema<GetKubernetesClusterRequest>;
+
+/** Resource tags. */
+export type GetKubernetesClusterResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetKubernetesClusterResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetKubernetesClusterResponseTagsMap>;
 
 /** The list of Azure Active Directory group object IDs that will have an administrative role on the Kubernetes cluster. */
 export type AadConfigurationAdminGroupObjectIdsList = Array<string>;
@@ -8843,12 +5879,12 @@ export const InitialAgentPoolConfiguration = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<InitialAgentPoolConfiguration>;
 
 /** The agent pools that are created with this Kubernetes cluster for running critical system services and workloads. This data in this field is only used during creation, and the field will be empty following the creation of the Kubernetes Cluster. After creation, the management of agent pools is done using the agentPools sub-resource. */
-export type KubernetesClusterPropertiesInputInitialAgentPoolConfigurationsList =
+export type KubernetesClusterPropertiesInitialAgentPoolConfigurationsList =
   Array<InitialAgentPoolConfiguration>;
-export const KubernetesClusterPropertiesInputInitialAgentPoolConfigurationsList =
+export const KubernetesClusterPropertiesInitialAgentPoolConfigurationsList =
   /*@__PURE__*/ S.Array(
     InitialAgentPoolConfiguration,
-  ) as any as S.Schema<KubernetesClusterPropertiesInputInitialAgentPoolConfigurationsList>;
+  ) as any as S.Schema<KubernetesClusterPropertiesInitialAgentPoolConfigurationsList>;
 
 /** The indicator of if this advertisement is also made to the network fabric associated with the Network Cloud Cluster. This field is ignored if fabricPeeringEnabled is set to False. */
 export type BgpAdvertisementAdvertiseToFabric = "True" | "False";
@@ -9109,96 +6145,6 @@ export const NetworkConfiguration = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "NetworkConfiguration",
 }) as any as S.Schema<NetworkConfiguration>;
-
-/** KubernetesClusterProperties represents the properties of Kubernetes cluster resource. */
-export interface KubernetesClusterPropertiesInput {
-  /** The Azure Active Directory Integration properties. */
-  aadConfiguration?: AadConfiguration;
-  /** The administrative credentials that will be applied to the control plane and agent pool nodes that do not specify their own values. */
-  administratorConfiguration?: AdministratorConfiguration;
-  /** The defining characteristics of the control plane for this Kubernetes Cluster. */
-  controlPlaneNodeConfiguration: ControlPlaneNodeConfiguration;
-  /** The agent pools that are created with this Kubernetes cluster for running critical system services and workloads. This data in this field is only used during creation, and the field will be empty following the creation of the Kubernetes Cluster. After creation, the management of agent pools is done using the agentPools sub-resource. */
-  initialAgentPoolConfigurations: KubernetesClusterPropertiesInputInitialAgentPoolConfigurationsList;
-  /** The Kubernetes version for this cluster. */
-  kubernetesVersion: string;
-  /** The configuration of the managed resource group associated with the resource. */
-  managedResourceGroupConfiguration?: ManagedResourceGroupConfiguration;
-  /** The configuration of the Kubernetes cluster networking, including the attachment of networks that span the cluster. */
-  networkConfiguration: NetworkConfiguration;
-}
-export const KubernetesClusterPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    aadConfiguration: S.optional(AadConfiguration),
-    administratorConfiguration: S.optional(AdministratorConfiguration),
-    controlPlaneNodeConfiguration: ControlPlaneNodeConfiguration,
-    initialAgentPoolConfigurations:
-      KubernetesClusterPropertiesInputInitialAgentPoolConfigurationsList,
-    kubernetesVersion: S.String,
-    managedResourceGroupConfiguration: S.optional(
-      ManagedResourceGroupConfiguration,
-    ),
-    networkConfiguration: NetworkConfiguration,
-  }),
-).annotate({
-  identifier: "KubernetesClusterPropertiesInput",
-}) as any as S.Schema<KubernetesClusterPropertiesInput>;
-
-export interface KubernetesClustersCreateOrUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kubernetes cluster. */
-  kubernetesClusterName: string;
-  /** Resource tags. */
-  tags?: KubernetesClustersCreateOrUpdateRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: KubernetesClusterPropertiesInput;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
-}
-export const KubernetesClustersCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      kubernetesClusterName: S.String.pipe(T.Label()),
-      tags: S.optional(KubernetesClustersCreateOrUpdateRequestTagsMap),
-      location: S.String,
-      properties: KubernetesClusterPropertiesInput,
-      extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "KubernetesClustersCreateOrUpdateRequest",
-}) as any as S.Schema<KubernetesClustersCreateOrUpdateRequest>;
-
-/** Resource tags. */
-export type KubernetesClustersCreateOrUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const KubernetesClustersCreateOrUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<KubernetesClustersCreateOrUpdateResponseTagsMap>;
-
-/** The agent pools that are created with this Kubernetes cluster for running critical system services and workloads. This data in this field is only used during creation, and the field will be empty following the creation of the Kubernetes Cluster. After creation, the management of agent pools is done using the agentPools sub-resource. */
-export type KubernetesClusterPropertiesInitialAgentPoolConfigurationsList =
-  Array<InitialAgentPoolConfiguration>;
-export const KubernetesClusterPropertiesInitialAgentPoolConfigurationsList =
-  /*@__PURE__*/ S.Array(
-    InitialAgentPoolConfiguration,
-  ) as any as S.Schema<KubernetesClusterPropertiesInitialAgentPoolConfigurationsList>;
 
 /** The full list of network resource IDs that are attached to this cluster, including those attached only to specific agent pools. */
 export type KubernetesClusterPropertiesAttachedNetworkIdsList = Array<string>;
@@ -9506,7 +6452,7 @@ export const KubernetesClusterProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "KubernetesClusterProperties",
 }) as any as S.Schema<KubernetesClusterProperties>;
 
-export interface KubernetesClustersCreateOrUpdateResponse {
+export interface GetKubernetesClusterResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -9516,7 +6462,7 @@ export interface KubernetesClustersCreateOrUpdateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: KubernetesClustersCreateOrUpdateResponseTagsMap;
+  tags?: GetKubernetesClusterResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The list of the resource properties. */
@@ -9526,486 +6472,211 @@ export interface KubernetesClustersCreateOrUpdateResponse {
   /** The extended location of the resource. This property is required when creating the resource. */
   extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
 }
-export const KubernetesClustersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(KubernetesClustersCreateOrUpdateResponseTagsMap),
-      location: S.String,
-      properties: KubernetesClusterProperties,
-      etag: S.optional(S.String),
-      extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-    }),
+export const GetKubernetesClusterResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetKubernetesClusterResponseTagsMap),
+    location: S.String,
+    properties: KubernetesClusterProperties,
+    etag: S.optional(S.String),
+    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+  }),
 ).annotate({
-  identifier: "KubernetesClustersCreateOrUpdateResponse",
-}) as any as S.Schema<KubernetesClustersCreateOrUpdateResponse>;
+  identifier: "GetKubernetesClusterResponse",
+}) as any as S.Schema<GetKubernetesClusterResponse>;
 
-export interface KubernetesClustersDeleteRequest {
+export interface GetKubernetesClusterFeatureRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the Kubernetes cluster. */
   kubernetesClusterName: string;
+  /** The name of the feature. */
+  featureName: string;
 }
-export const KubernetesClustersDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetKubernetesClusterFeatureRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     kubernetesClusterName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "KubernetesClustersDeleteRequest",
-}) as any as S.Schema<KubernetesClustersDeleteRequest>;
-
-export interface KubernetesClustersDeleteResponse {}
-export const KubernetesClustersDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "KubernetesClustersDeleteResponse",
-}) as any as S.Schema<KubernetesClustersDeleteResponse>;
-
-export interface KubernetesClustersGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kubernetes cluster. */
-  kubernetesClusterName: string;
-}
-export const KubernetesClustersGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    kubernetesClusterName: S.String.pipe(T.Label()),
+    featureName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}/features/{featureName}",
       code: 200,
       apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
-  identifier: "KubernetesClustersGetRequest",
-}) as any as S.Schema<KubernetesClustersGetRequest>;
+  identifier: "GetKubernetesClusterFeatureRequest",
+}) as any as S.Schema<GetKubernetesClusterFeatureRequest>;
 
 /** Resource tags. */
-export type KubernetesClustersGetResponseTagsMap = {
+export type GetKubernetesClusterFeatureResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const KubernetesClustersGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<KubernetesClustersGetResponseTagsMap>;
-
-export interface KubernetesClustersGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: KubernetesClustersGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: KubernetesClusterProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
-}
-export const KubernetesClustersGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(KubernetesClustersGetResponseTagsMap),
-    location: S.String,
-    properties: KubernetesClusterProperties,
-    etag: S.optional(S.String),
-    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-  }),
-).annotate({
-  identifier: "KubernetesClustersGetResponse",
-}) as any as S.Schema<KubernetesClustersGetResponse>;
-
-export interface KubernetesClustersListByResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
-  _top?: number;
-  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
-  _skipToken?: string;
-}
-export const KubernetesClustersListByResourceGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "KubernetesClustersListByResourceGroupRequest",
-  }) as any as S.Schema<KubernetesClustersListByResourceGroupRequest>;
-
-/** Resource tags. */
-export type KubernetesClusterTagsMap = { [key: string]: string | undefined };
-export const KubernetesClusterTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<KubernetesClusterTagsMap>;
-
-/** KubernetesCluster represents the Kubernetes cluster hosted on Network Cloud. */
-export interface KubernetesCluster {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: KubernetesClusterTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: KubernetesClusterProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
-}
-export const KubernetesCluster = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(KubernetesClusterTagsMap),
-    location: S.String,
-    properties: KubernetesClusterProperties,
-    etag: S.optional(S.String),
-    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-  }),
-).annotate({
-  identifier: "KubernetesCluster",
-}) as any as S.Schema<KubernetesCluster>;
-
-/** The KubernetesCluster items on this page */
-export type KubernetesClusterListValueList = Array<KubernetesCluster>;
-export const KubernetesClusterListValueList = /*@__PURE__*/ S.Array(
-  KubernetesCluster,
-) as any as S.Schema<KubernetesClusterListValueList>;
-
-/** KubernetesClusterList represents a list of Kubernetes clusters. */
-export interface KubernetesClusterList {
-  /** The KubernetesCluster items on this page */
-  value: KubernetesClusterListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const KubernetesClusterList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: KubernetesClusterListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "KubernetesClusterList",
-}) as any as S.Schema<KubernetesClusterList>;
-
-export interface KubernetesClustersListBySubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
-  _top?: number;
-  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
-  _skipToken?: string;
-}
-export const KubernetesClustersListBySubscriptionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/kubernetesClusters",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "KubernetesClustersListBySubscriptionRequest",
-  }) as any as S.Schema<KubernetesClustersListBySubscriptionRequest>;
-
-export interface KubernetesClustersRestartNodeRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kubernetes cluster. */
-  kubernetesClusterName: string;
-  /** The name of the node to restart. */
-  nodeName: string;
-}
-export const KubernetesClustersRestartNodeRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      kubernetesClusterName: S.String.pipe(T.Label()),
-      nodeName: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}/restartNode",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "KubernetesClustersRestartNodeRequest",
-}) as any as S.Schema<KubernetesClustersRestartNodeRequest>;
-
-export interface KubernetesClustersRestartNodeResponse {}
-export const KubernetesClustersRestartNodeResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "KubernetesClustersRestartNodeResponse",
-}) as any as S.Schema<KubernetesClustersRestartNodeResponse>;
-
-/** SshPublicKey represents the public key used to authenticate with a resource through SSH. */
-export type AdministratorConfigurationPatchSshPublicKeysList =
-  Array<SshPublicKey>;
-export const AdministratorConfigurationPatchSshPublicKeysList =
-  /*@__PURE__*/ S.Array(
-    SshPublicKey,
-  ) as any as S.Schema<AdministratorConfigurationPatchSshPublicKeysList>;
-
-/** AdministratorConfigurationPatch represents the patching capabilities for the administrator configuration. */
-export interface AdministratorConfigurationPatch {
-  /** SshPublicKey represents the public key used to authenticate with a resource through SSH. */
-  sshPublicKeys?: AdministratorConfigurationPatchSshPublicKeysList;
-}
-export const AdministratorConfigurationPatch = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    sshPublicKeys: S.optional(AdministratorConfigurationPatchSshPublicKeysList),
-  }),
-).annotate({
-  identifier: "AdministratorConfigurationPatch",
-}) as any as S.Schema<AdministratorConfigurationPatch>;
-
-/** ControlPlaneNodePatchConfiguration represents the properties of the control plane that can be patched for this Kubernetes cluster. */
-export interface ControlPlaneNodePatchConfiguration {
-  /** The configuration of administrator credentials for the control plane nodes. */
-  administratorConfiguration?: AdministratorConfigurationPatch;
-  /** The number of virtual machines that use this configuration. */
-  count?: number;
-}
-export const ControlPlaneNodePatchConfiguration = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    administratorConfiguration: S.optional(AdministratorConfigurationPatch),
-    count: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "ControlPlaneNodePatchConfiguration",
-}) as any as S.Schema<ControlPlaneNodePatchConfiguration>;
-
-/** KubernetesClusterPatchProperties represents the properties of the Kubernetes cluster that can be patched. */
-export interface KubernetesClusterPatchProperties {
-  /** The configuration of the default administrator credentials. */
-  administratorConfiguration?: AdministratorConfigurationPatch;
-  /** The defining characteristics of the control plane that can be patched for this Kubernetes cluster. */
-  controlPlaneNodeConfiguration?: ControlPlaneNodePatchConfiguration;
-  /** The Kubernetes version for this cluster. */
-  kubernetesVersion?: string;
-}
-export const KubernetesClusterPatchProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    administratorConfiguration: S.optional(AdministratorConfigurationPatch),
-    controlPlaneNodeConfiguration: S.optional(
-      ControlPlaneNodePatchConfiguration,
-    ),
-    kubernetesVersion: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "KubernetesClusterPatchProperties",
-}) as any as S.Schema<KubernetesClusterPatchProperties>;
-
-/** Resource tags. */
-export type KubernetesClustersUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const KubernetesClustersUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<KubernetesClustersUpdateRequestTagsMap>;
-
-export interface KubernetesClustersUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kubernetes cluster. */
-  kubernetesClusterName: string;
-  /** The list of the resource properties. */
-  properties?: KubernetesClusterPatchProperties;
-  /** Resource tags. */
-  tags?: KubernetesClustersUpdateRequestTagsMap;
-}
-export const KubernetesClustersUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    kubernetesClusterName: S.String.pipe(T.Label()),
-    properties: S.optional(KubernetesClusterPatchProperties),
-    tags: S.optional(KubernetesClustersUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "KubernetesClustersUpdateRequest",
-}) as any as S.Schema<KubernetesClustersUpdateRequest>;
-
-/** Resource tags. */
-export type KubernetesClustersUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const KubernetesClustersUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<KubernetesClustersUpdateResponseTagsMap>;
-
-export interface KubernetesClustersUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: KubernetesClustersUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: KubernetesClusterProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
-}
-export const KubernetesClustersUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(KubernetesClustersUpdateResponseTagsMap),
-    location: S.String,
-    properties: KubernetesClusterProperties,
-    etag: S.optional(S.String),
-    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-  }),
-).annotate({
-  identifier: "KubernetesClustersUpdateResponse",
-}) as any as S.Schema<KubernetesClustersUpdateResponse>;
-
-/** Resource tags. */
-export type KubernetesVersionsCreateOrUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const KubernetesVersionsCreateOrUpdateRequestTagsMap =
+export const GetKubernetesClusterFeatureResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<KubernetesVersionsCreateOrUpdateRequestTagsMap>;
+  ) as any as S.Schema<GetKubernetesClusterFeatureResponseTagsMap>;
 
-/** KubernetesVersionProperties contains the read-only properties describing available versions. */
-export type KubernetesVersionPropertiesInput = UserAssignedIdentityInput;
-export const KubernetesVersionPropertiesInput = UserAssignedIdentityInput;
+/** StringKeyValuePair represents a single entry in a mapping of keys to values. */
+export interface StringKeyValuePair {
+  /** The key to the mapped value. */
+  key: string;
+  /** The value of the mapping key. */
+  value: string;
+}
+export const StringKeyValuePair = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    key: S.String,
+    value: S.String,
+  }),
+).annotate({
+  identifier: "StringKeyValuePair",
+}) as any as S.Schema<StringKeyValuePair>;
 
-export interface KubernetesVersionsCreateOrUpdateRequest {
+/** The configured options for the feature. */
+export type KubernetesClusterFeaturePropertiesOptionsList =
+  Array<StringKeyValuePair>;
+export const KubernetesClusterFeaturePropertiesOptionsList =
+  /*@__PURE__*/ S.Array(
+    StringKeyValuePair,
+  ) as any as S.Schema<KubernetesClusterFeaturePropertiesOptionsList>;
+
+/** The lifecycle indicator of the feature. */
+export type KubernetesClusterFeatureAvailabilityLifecycle =
+  | "Preview"
+  | "GenerallyAvailable";
+export const KubernetesClusterFeatureAvailabilityLifecycle =
+  /*@__PURE__*/ S.String;
+
+/** The detailed status of the feature. */
+export type KubernetesClusterFeatureDetailedStatus =
+  | "Error"
+  | "Provisioning"
+  | "Installed";
+export const KubernetesClusterFeatureDetailedStatus = /*@__PURE__*/ S.String;
+
+/** The indicator of if the feature is required or optional. Optional features may be deleted by the user, while required features are managed with the kubernetes cluster lifecycle. */
+export type KubernetesClusterFeatureRequired = "True" | "False";
+export const KubernetesClusterFeatureRequired = /*@__PURE__*/ S.String;
+
+/** The provisioning state of the Kubernetes cluster feature. */
+export type KubernetesClusterFeatureProvisioningState =
+  | "Accepted"
+  | "Canceled"
+  | "Deleting"
+  | "Failed"
+  | "Succeeded"
+  | "Updating";
+export const KubernetesClusterFeatureProvisioningState = /*@__PURE__*/ S.String;
+
+/** KubernetesClusterFeatureProperties represents the properties of a Kubernetes cluster feature. */
+export interface KubernetesClusterFeatureProperties {
+  /** The configured options for the feature. */
+  options?: KubernetesClusterFeaturePropertiesOptionsList;
+  /** The lifecycle indicator of the feature. */
+  availabilityLifecycle?: KubernetesClusterFeatureAvailabilityLifecycle;
+  /** The detailed status of the feature. */
+  detailedStatus?: KubernetesClusterFeatureDetailedStatus;
+  /** The descriptive message for the detailed status of the feature. */
+  detailedStatusMessage?: string;
+  /** The indicator of if the feature is required or optional. Optional features may be deleted by the user, while required features are managed with the kubernetes cluster lifecycle. */
+  required?: KubernetesClusterFeatureRequired;
+  /** The version of the feature. */
+  version?: string;
+  /** The provisioning state of the Kubernetes cluster feature. */
+  provisioningState?: KubernetesClusterFeatureProvisioningState;
+}
+export const KubernetesClusterFeatureProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    options: S.optional(KubernetesClusterFeaturePropertiesOptionsList),
+    availabilityLifecycle: S.optional(
+      KubernetesClusterFeatureAvailabilityLifecycle,
+    ),
+    detailedStatus: S.optional(KubernetesClusterFeatureDetailedStatus),
+    detailedStatusMessage: S.optional(S.String),
+    required: S.optional(KubernetesClusterFeatureRequired),
+    version: S.optional(S.String),
+    provisioningState: S.optional(KubernetesClusterFeatureProvisioningState),
+  }),
+).annotate({
+  identifier: "KubernetesClusterFeatureProperties",
+}) as any as S.Schema<KubernetesClusterFeatureProperties>;
+
+export interface GetKubernetesClusterFeatureResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetKubernetesClusterFeatureResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties?: KubernetesClusterFeatureProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const GetKubernetesClusterFeatureResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetKubernetesClusterFeatureResponseTagsMap),
+    location: S.String,
+    properties: S.optional(KubernetesClusterFeatureProperties),
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetKubernetesClusterFeatureResponse",
+}) as any as S.Schema<GetKubernetesClusterFeatureResponse>;
+
+export interface GetKubernetesVersionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the Kubernetes version resource. */
   kubernetesVersionName: string;
-  /** Resource tags. */
-  tags?: KubernetesVersionsCreateOrUpdateRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: UserAssignedIdentityInput;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
 }
-export const KubernetesVersionsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      kubernetesVersionName: S.String.pipe(T.Label()),
-      tags: S.optional(KubernetesVersionsCreateOrUpdateRequestTagsMap),
-      location: S.String,
-      properties: UserAssignedIdentityInput,
-      extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesVersions/{kubernetesVersionName}",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
+export const GetKubernetesVersionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    kubernetesVersionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesVersions/{kubernetesVersionName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
 ).annotate({
-  identifier: "KubernetesVersionsCreateOrUpdateRequest",
-}) as any as S.Schema<KubernetesVersionsCreateOrUpdateRequest>;
+  identifier: "GetKubernetesVersionRequest",
+}) as any as S.Schema<GetKubernetesVersionRequest>;
 
 /** Resource tags. */
-export type KubernetesVersionsCreateOrUpdateResponseTagsMap = {
+export type GetKubernetesVersionResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const KubernetesVersionsCreateOrUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<KubernetesVersionsCreateOrUpdateResponseTagsMap>;
+export const GetKubernetesVersionResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetKubernetesVersionResponseTagsMap>;
 
 /** KubernetesVersionValue describes a specific Kubernetes version that can be deployed. */
 export interface KubernetesVersionValue {
@@ -10054,7 +6725,7 @@ export const KubernetesVersionProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "KubernetesVersionProperties",
 }) as any as S.Schema<KubernetesVersionProperties>;
 
-export interface KubernetesVersionsCreateOrUpdateResponse {
+export interface GetKubernetesVersionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -10064,7 +6735,7 @@ export interface KubernetesVersionsCreateOrUpdateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: KubernetesVersionsCreateOrUpdateResponseTagsMap;
+  tags?: GetKubernetesVersionResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The list of the resource properties. */
@@ -10074,413 +6745,53 @@ export interface KubernetesVersionsCreateOrUpdateResponse {
   /** The extended location of the resource. This property is required when creating the resource. */
   extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
 }
-export const KubernetesVersionsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(KubernetesVersionsCreateOrUpdateResponseTagsMap),
-      location: S.String,
-      properties: KubernetesVersionProperties,
-      etag: S.optional(S.String),
-      extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-    }),
-).annotate({
-  identifier: "KubernetesVersionsCreateOrUpdateResponse",
-}) as any as S.Schema<KubernetesVersionsCreateOrUpdateResponse>;
-
-export interface KubernetesVersionsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kubernetes version resource. */
-  kubernetesVersionName: string;
-}
-export const KubernetesVersionsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    kubernetesVersionName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesVersions/{kubernetesVersionName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "KubernetesVersionsDeleteRequest",
-}) as any as S.Schema<KubernetesVersionsDeleteRequest>;
-
-export interface KubernetesVersionsDeleteResponse {}
-export const KubernetesVersionsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "KubernetesVersionsDeleteResponse",
-}) as any as S.Schema<KubernetesVersionsDeleteResponse>;
-
-export interface KubernetesVersionsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kubernetes version resource. */
-  kubernetesVersionName: string;
-}
-export const KubernetesVersionsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    kubernetesVersionName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesVersions/{kubernetesVersionName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "KubernetesVersionsGetRequest",
-}) as any as S.Schema<KubernetesVersionsGetRequest>;
-
-/** Resource tags. */
-export type KubernetesVersionsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const KubernetesVersionsGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<KubernetesVersionsGetResponseTagsMap>;
-
-export interface KubernetesVersionsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: KubernetesVersionsGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: KubernetesVersionProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
-}
-export const KubernetesVersionsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetKubernetesVersionResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(KubernetesVersionsGetResponseTagsMap),
+    tags: S.optional(GetKubernetesVersionResponseTagsMap),
     location: S.String,
     properties: KubernetesVersionProperties,
     etag: S.optional(S.String),
     extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
   }),
 ).annotate({
-  identifier: "KubernetesVersionsGetResponse",
-}) as any as S.Schema<KubernetesVersionsGetResponse>;
+  identifier: "GetKubernetesVersionResponse",
+}) as any as S.Schema<GetKubernetesVersionResponse>;
 
-export interface KubernetesVersionsListByResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
-  _top?: number;
-  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
-  _skipToken?: string;
-}
-export const KubernetesVersionsListByResourceGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesVersions",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "KubernetesVersionsListByResourceGroupRequest",
-  }) as any as S.Schema<KubernetesVersionsListByResourceGroupRequest>;
-
-/** Resource tags. */
-export type KubernetesVersionTagsMap = { [key: string]: string | undefined };
-export const KubernetesVersionTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<KubernetesVersionTagsMap>;
-
-/** KubernetesVersion represents the available Kubernetes versions for a cluster. */
-export interface KubernetesVersion {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: KubernetesVersionTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: KubernetesVersionProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
-}
-export const KubernetesVersion = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(KubernetesVersionTagsMap),
-    location: S.String,
-    properties: KubernetesVersionProperties,
-    etag: S.optional(S.String),
-    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-  }),
-).annotate({
-  identifier: "KubernetesVersion",
-}) as any as S.Schema<KubernetesVersion>;
-
-/** The KubernetesVersion items on this page */
-export type KubernetesVersionListValueList = Array<KubernetesVersion>;
-export const KubernetesVersionListValueList = /*@__PURE__*/ S.Array(
-  KubernetesVersion,
-) as any as S.Schema<KubernetesVersionListValueList>;
-
-/** KubernetesVersionList represents a list of Kubernetes version resources. */
-export interface KubernetesVersionList {
-  /** The KubernetesVersion items on this page */
-  value: KubernetesVersionListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const KubernetesVersionList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: KubernetesVersionListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "KubernetesVersionList",
-}) as any as S.Schema<KubernetesVersionList>;
-
-export interface KubernetesVersionsListBySubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
-  _top?: number;
-  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
-  _skipToken?: string;
-}
-export const KubernetesVersionsListBySubscriptionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/kubernetesVersions",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "KubernetesVersionsListBySubscriptionRequest",
-  }) as any as S.Schema<KubernetesVersionsListBySubscriptionRequest>;
-
-/** Resource tags. */
-export type KubernetesVersionsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const KubernetesVersionsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<KubernetesVersionsUpdateRequestTagsMap>;
-
-export interface KubernetesVersionsUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kubernetes version resource. */
-  kubernetesVersionName: string;
-  /** Resource tags. */
-  tags?: KubernetesVersionsUpdateRequestTagsMap;
-}
-export const KubernetesVersionsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    kubernetesVersionName: S.String.pipe(T.Label()),
-    tags: S.optional(KubernetesVersionsUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesVersions/{kubernetesVersionName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "KubernetesVersionsUpdateRequest",
-}) as any as S.Schema<KubernetesVersionsUpdateRequest>;
-
-/** Resource tags. */
-export type KubernetesVersionsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const KubernetesVersionsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<KubernetesVersionsUpdateResponseTagsMap>;
-
-export interface KubernetesVersionsUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: KubernetesVersionsUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: KubernetesVersionProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
-}
-export const KubernetesVersionsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(KubernetesVersionsUpdateResponseTagsMap),
-    location: S.String,
-    properties: KubernetesVersionProperties,
-    etag: S.optional(S.String),
-    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-  }),
-).annotate({
-  identifier: "KubernetesVersionsUpdateResponse",
-}) as any as S.Schema<KubernetesVersionsUpdateResponse>;
-
-/** Resource tags. */
-export type L2NetworksCreateOrUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const L2NetworksCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<L2NetworksCreateOrUpdateRequestTagsMap>;
-
-/** Field Deprecated. The field was previously optional, now it will have no defined behavior and will be ignored. The network plugin type for Hybrid AKS. */
-export type L2NetworkPropertiesInputHybridAksPluginType =
-  | "DPDK"
-  | "SRIOV"
-  | "OSDevice";
-export const L2NetworkPropertiesInputHybridAksPluginType =
-  /*@__PURE__*/ S.String;
-
-/** L2NetworkProperties represents properties of the L2 network. */
-export interface L2NetworkPropertiesInput {
-  /** Field Deprecated. The field was previously optional, now it will have no defined behavior and will be ignored. The network plugin type for Hybrid AKS. */
-  hybridAksPluginType?:
-    | L2NetworkPropertiesInputHybridAksPluginType
-    | (string & {});
-  /** The default interface name for this L2 network in the virtual machine. This name can be overridden by the name supplied in the network attachment configuration of that virtual machine. */
-  interfaceName?: string;
-  /** The resource ID of the Network Fabric l2IsolationDomain. */
-  l2IsolationDomainId: string;
-}
-export const L2NetworkPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    hybridAksPluginType: S.optional(
-      L2NetworkPropertiesInputHybridAksPluginType,
-    ),
-    interfaceName: S.optional(S.String),
-    l2IsolationDomainId: S.String,
-  }),
-).annotate({
-  identifier: "L2NetworkPropertiesInput",
-}) as any as S.Schema<L2NetworkPropertiesInput>;
-
-export interface L2NetworksCreateOrUpdateRequest {
+export interface GetL2NetworkRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the L2 network. */
   l2NetworkName: string;
-  /** Resource tags. */
-  tags?: L2NetworksCreateOrUpdateRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: L2NetworkPropertiesInput;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
 }
-export const L2NetworksCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetL2NetworkRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     l2NetworkName: S.String.pipe(T.Label()),
-    tags: S.optional(L2NetworksCreateOrUpdateRequestTagsMap),
-    location: S.String,
-    properties: L2NetworkPropertiesInput,
-    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
   }).pipe(
     T.Http({
-      method: "PUT",
+      method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l2Networks/{l2NetworkName}",
       code: 200,
       apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
-  identifier: "L2NetworksCreateOrUpdateRequest",
-}) as any as S.Schema<L2NetworksCreateOrUpdateRequest>;
+  identifier: "GetL2NetworkRequest",
+}) as any as S.Schema<GetL2NetworkRequest>;
 
 /** Resource tags. */
-export type L2NetworksCreateOrUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const L2NetworksCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetL2NetworkResponseTagsMap = { [key: string]: string | undefined };
+export const GetL2NetworkResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<L2NetworksCreateOrUpdateResponseTagsMap>;
+) as any as S.Schema<GetL2NetworkResponseTagsMap>;
 
 /** Field Deprecated. The field was previously optional, now it will have no defined behavior and will be ignored. The network plugin type for Hybrid AKS. */
 export type L2NetworkPropertiesHybridAksPluginType =
@@ -10570,7 +6881,7 @@ export const L2NetworkProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "L2NetworkProperties",
 }) as any as S.Schema<L2NetworkProperties>;
 
-export interface L2NetworksCreateOrUpdateResponse {
+export interface GetL2NetworkResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -10580,7 +6891,7 @@ export interface L2NetworksCreateOrUpdateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: L2NetworksCreateOrUpdateResponseTagsMap;
+  tags?: GetL2NetworkResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The list of the resource properties. */
@@ -10590,438 +6901,53 @@ export interface L2NetworksCreateOrUpdateResponse {
   /** The extended location of the resource. This property is required when creating the resource. */
   extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
 }
-export const L2NetworksCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetL2NetworkResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(L2NetworksCreateOrUpdateResponseTagsMap),
+    tags: S.optional(GetL2NetworkResponseTagsMap),
     location: S.String,
     properties: L2NetworkProperties,
     etag: S.optional(S.String),
     extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
   }),
 ).annotate({
-  identifier: "L2NetworksCreateOrUpdateResponse",
-}) as any as S.Schema<L2NetworksCreateOrUpdateResponse>;
+  identifier: "GetL2NetworkResponse",
+}) as any as S.Schema<GetL2NetworkResponse>;
 
-export interface L2NetworksDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the L2 network. */
-  l2NetworkName: string;
-}
-export const L2NetworksDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    l2NetworkName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l2Networks/{l2NetworkName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "L2NetworksDeleteRequest",
-}) as any as S.Schema<L2NetworksDeleteRequest>;
-
-export interface L2NetworksDeleteResponse {}
-export const L2NetworksDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "L2NetworksDeleteResponse",
-}) as any as S.Schema<L2NetworksDeleteResponse>;
-
-export interface L2NetworksGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the L2 network. */
-  l2NetworkName: string;
-}
-export const L2NetworksGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    l2NetworkName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l2Networks/{l2NetworkName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "L2NetworksGetRequest",
-}) as any as S.Schema<L2NetworksGetRequest>;
-
-/** Resource tags. */
-export type L2NetworksGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const L2NetworksGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<L2NetworksGetResponseTagsMap>;
-
-export interface L2NetworksGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: L2NetworksGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: L2NetworkProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
-}
-export const L2NetworksGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(L2NetworksGetResponseTagsMap),
-    location: S.String,
-    properties: L2NetworkProperties,
-    etag: S.optional(S.String),
-    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-  }),
-).annotate({
-  identifier: "L2NetworksGetResponse",
-}) as any as S.Schema<L2NetworksGetResponse>;
-
-export interface L2NetworksListByResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
-  _top?: number;
-  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
-  _skipToken?: string;
-}
-export const L2NetworksListByResourceGroupRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l2Networks",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "L2NetworksListByResourceGroupRequest",
-}) as any as S.Schema<L2NetworksListByResourceGroupRequest>;
-
-/** Resource tags. */
-export type L2NetworkTagsMap = { [key: string]: string | undefined };
-export const L2NetworkTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<L2NetworkTagsMap>;
-
-/** L2Network represents a network that utilizes a single isolation domain set up for layer-2 resources. */
-export interface L2Network {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: L2NetworkTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: L2NetworkProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
-}
-export const L2Network = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(L2NetworkTagsMap),
-    location: S.String,
-    properties: L2NetworkProperties,
-    etag: S.optional(S.String),
-    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-  }),
-).annotate({ identifier: "L2Network" }) as any as S.Schema<L2Network>;
-
-/** The L2Network items on this page */
-export type L2NetworkListValueList = Array<L2Network>;
-export const L2NetworkListValueList = /*@__PURE__*/ S.Array(
-  L2Network,
-) as any as S.Schema<L2NetworkListValueList>;
-
-/** L2NetworkList represents a list of L2 networks. */
-export interface L2NetworkList {
-  /** The L2Network items on this page */
-  value: L2NetworkListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const L2NetworkList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: L2NetworkListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "L2NetworkList" }) as any as S.Schema<L2NetworkList>;
-
-export interface L2NetworksListBySubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
-  _top?: number;
-  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
-  _skipToken?: string;
-}
-export const L2NetworksListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/l2Networks",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "L2NetworksListBySubscriptionRequest",
-}) as any as S.Schema<L2NetworksListBySubscriptionRequest>;
-
-/** Resource tags. */
-export type L2NetworksUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const L2NetworksUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<L2NetworksUpdateRequestTagsMap>;
-
-export interface L2NetworksUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the L2 network. */
-  l2NetworkName: string;
-  /** Resource tags. */
-  tags?: L2NetworksUpdateRequestTagsMap;
-}
-export const L2NetworksUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    l2NetworkName: S.String.pipe(T.Label()),
-    tags: S.optional(L2NetworksUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l2Networks/{l2NetworkName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "L2NetworksUpdateRequest",
-}) as any as S.Schema<L2NetworksUpdateRequest>;
-
-/** Resource tags. */
-export type L2NetworksUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const L2NetworksUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<L2NetworksUpdateResponseTagsMap>;
-
-export interface L2NetworksUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: L2NetworksUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: L2NetworkProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
-}
-export const L2NetworksUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(L2NetworksUpdateResponseTagsMap),
-    location: S.String,
-    properties: L2NetworkProperties,
-    etag: S.optional(S.String),
-    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-  }),
-).annotate({
-  identifier: "L2NetworksUpdateResponse",
-}) as any as S.Schema<L2NetworksUpdateResponse>;
-
-/** Resource tags. */
-export type L3NetworksCreateOrUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const L3NetworksCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<L3NetworksCreateOrUpdateRequestTagsMap>;
-
-/** Field Deprecated. The field was previously optional, now it will have no defined behavior and will be ignored. The indicator of whether or not to disable IPAM allocation on the network attachment definition injected into the Hybrid AKS Cluster. */
-export type L3NetworkPropertiesInputHybridAksIpamEnabled = "True" | "False";
-export const L3NetworkPropertiesInputHybridAksIpamEnabled =
-  /*@__PURE__*/ S.String;
-
-/** Field Deprecated. The field was previously optional, now it will have no defined behavior and will be ignored. The network plugin type for Hybrid AKS. */
-export type L3NetworkPropertiesInputHybridAksPluginType =
-  | "DPDK"
-  | "SRIOV"
-  | "OSDevice";
-export const L3NetworkPropertiesInputHybridAksPluginType =
-  /*@__PURE__*/ S.String;
-
-/** The type of the IP address allocation, defaulted to "DualStack". */
-export type L3NetworkPropertiesInputIpAllocationType =
-  | "IPV4"
-  | "IPV6"
-  | "DualStack";
-export const L3NetworkPropertiesInputIpAllocationType = /*@__PURE__*/ S.String;
-
-/** L3NetworkProperties represents properties of the L3 network. */
-export interface L3NetworkPropertiesInput {
-  /** Field Deprecated. The field was previously optional, now it will have no defined behavior and will be ignored. The indicator of whether or not to disable IPAM allocation on the network attachment definition injected into the Hybrid AKS Cluster. */
-  hybridAksIpamEnabled?:
-    | L3NetworkPropertiesInputHybridAksIpamEnabled
-    | (string & {});
-  /** Field Deprecated. The field was previously optional, now it will have no defined behavior and will be ignored. The network plugin type for Hybrid AKS. */
-  hybridAksPluginType?:
-    | L3NetworkPropertiesInputHybridAksPluginType
-    | (string & {});
-  /** The default interface name for this L3 network in the virtual machine. This name can be overridden by the name supplied in the network attachment configuration of that virtual machine. */
-  interfaceName?: string;
-  /** The type of the IP address allocation, defaulted to "DualStack". */
-  ipAllocationType?: L3NetworkPropertiesInputIpAllocationType | (string & {});
-  /** The IPV4 prefix (CIDR) assigned to this L3 network. Required when the IP allocation type is IPV4 or DualStack. */
-  ipv4ConnectedPrefix?: string;
-  /** The IPV6 prefix (CIDR) assigned to this L3 network. Required when the IP allocation type is IPV6 or DualStack. */
-  ipv6ConnectedPrefix?: string;
-  /** The resource ID of the Network Fabric l3IsolationDomain. */
-  l3IsolationDomainId: string;
-  /** The VLAN from the l3IsolationDomain that is used for this network. */
-  vlan: number;
-}
-export const L3NetworkPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    hybridAksIpamEnabled: S.optional(
-      L3NetworkPropertiesInputHybridAksIpamEnabled,
-    ),
-    hybridAksPluginType: S.optional(
-      L3NetworkPropertiesInputHybridAksPluginType,
-    ),
-    interfaceName: S.optional(S.String),
-    ipAllocationType: S.optional(L3NetworkPropertiesInputIpAllocationType),
-    ipv4ConnectedPrefix: S.optional(S.String),
-    ipv6ConnectedPrefix: S.optional(S.String),
-    l3IsolationDomainId: S.String,
-    vlan: S.Number,
-  }),
-).annotate({
-  identifier: "L3NetworkPropertiesInput",
-}) as any as S.Schema<L3NetworkPropertiesInput>;
-
-export interface L3NetworksCreateOrUpdateRequest {
+export interface GetL3NetworkRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the L3 network. */
   l3NetworkName: string;
-  /** Resource tags. */
-  tags?: L3NetworksCreateOrUpdateRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: L3NetworkPropertiesInput;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
 }
-export const L3NetworksCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetL3NetworkRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     l3NetworkName: S.String.pipe(T.Label()),
-    tags: S.optional(L3NetworksCreateOrUpdateRequestTagsMap),
-    location: S.String,
-    properties: L3NetworkPropertiesInput,
-    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
   }).pipe(
     T.Http({
-      method: "PUT",
+      method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l3Networks/{l3NetworkName}",
       code: 200,
       apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
-  identifier: "L3NetworksCreateOrUpdateRequest",
-}) as any as S.Schema<L3NetworksCreateOrUpdateRequest>;
+  identifier: "GetL3NetworkRequest",
+}) as any as S.Schema<GetL3NetworkRequest>;
 
 /** Resource tags. */
-export type L3NetworksCreateOrUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const L3NetworksCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetL3NetworkResponseTagsMap = { [key: string]: string | undefined };
+export const GetL3NetworkResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<L3NetworksCreateOrUpdateResponseTagsMap>;
+) as any as S.Schema<GetL3NetworkResponseTagsMap>;
 
 /** Field Deprecated. The field was previously optional, now it will have no defined behavior and will be ignored. The indicator of whether or not to disable IPAM allocation on the network attachment definition injected into the Hybrid AKS Cluster. */
 export type L3NetworkPropertiesHybridAksIpamEnabled = "True" | "False";
@@ -11134,7 +7060,7 @@ export const L3NetworkProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "L3NetworkProperties",
 }) as any as S.Schema<L3NetworkProperties>;
 
-export interface L3NetworksCreateOrUpdateResponse {
+export interface GetL3NetworkResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -11144,7 +7070,7 @@ export interface L3NetworksCreateOrUpdateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: L3NetworksCreateOrUpdateResponseTagsMap;
+  tags?: GetL3NetworkResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The list of the resource properties. */
@@ -11154,360 +7080,23 @@ export interface L3NetworksCreateOrUpdateResponse {
   /** The extended location of the resource. This property is required when creating the resource. */
   extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
 }
-export const L3NetworksCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetL3NetworkResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(L3NetworksCreateOrUpdateResponseTagsMap),
+    tags: S.optional(GetL3NetworkResponseTagsMap),
     location: S.String,
     properties: L3NetworkProperties,
     etag: S.optional(S.String),
     extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
   }),
 ).annotate({
-  identifier: "L3NetworksCreateOrUpdateResponse",
-}) as any as S.Schema<L3NetworksCreateOrUpdateResponse>;
+  identifier: "GetL3NetworkResponse",
+}) as any as S.Schema<GetL3NetworkResponse>;
 
-export interface L3NetworksDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the L3 network. */
-  l3NetworkName: string;
-}
-export const L3NetworksDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    l3NetworkName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l3Networks/{l3NetworkName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "L3NetworksDeleteRequest",
-}) as any as S.Schema<L3NetworksDeleteRequest>;
-
-export interface L3NetworksDeleteResponse {}
-export const L3NetworksDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "L3NetworksDeleteResponse",
-}) as any as S.Schema<L3NetworksDeleteResponse>;
-
-export interface L3NetworksGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the L3 network. */
-  l3NetworkName: string;
-}
-export const L3NetworksGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    l3NetworkName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l3Networks/{l3NetworkName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "L3NetworksGetRequest",
-}) as any as S.Schema<L3NetworksGetRequest>;
-
-/** Resource tags. */
-export type L3NetworksGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const L3NetworksGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<L3NetworksGetResponseTagsMap>;
-
-export interface L3NetworksGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: L3NetworksGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: L3NetworkProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
-}
-export const L3NetworksGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(L3NetworksGetResponseTagsMap),
-    location: S.String,
-    properties: L3NetworkProperties,
-    etag: S.optional(S.String),
-    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-  }),
-).annotate({
-  identifier: "L3NetworksGetResponse",
-}) as any as S.Schema<L3NetworksGetResponse>;
-
-export interface L3NetworksListByResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
-  _top?: number;
-  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
-  _skipToken?: string;
-}
-export const L3NetworksListByResourceGroupRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l3Networks",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "L3NetworksListByResourceGroupRequest",
-}) as any as S.Schema<L3NetworksListByResourceGroupRequest>;
-
-/** Resource tags. */
-export type L3NetworkTagsMap = { [key: string]: string | undefined };
-export const L3NetworkTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<L3NetworkTagsMap>;
-
-/** L3Network represents a network that utilizes a single isolation domain set up for layer-3 resources. */
-export interface L3Network {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: L3NetworkTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: L3NetworkProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
-}
-export const L3Network = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(L3NetworkTagsMap),
-    location: S.String,
-    properties: L3NetworkProperties,
-    etag: S.optional(S.String),
-    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-  }),
-).annotate({ identifier: "L3Network" }) as any as S.Schema<L3Network>;
-
-/** The L3Network items on this page */
-export type L3NetworkListValueList = Array<L3Network>;
-export const L3NetworkListValueList = /*@__PURE__*/ S.Array(
-  L3Network,
-) as any as S.Schema<L3NetworkListValueList>;
-
-/** L3NetworkList represents a list of L3 networks. */
-export interface L3NetworkList {
-  /** The L3Network items on this page */
-  value: L3NetworkListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const L3NetworkList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: L3NetworkListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "L3NetworkList" }) as any as S.Schema<L3NetworkList>;
-
-export interface L3NetworksListBySubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
-  _top?: number;
-  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
-  _skipToken?: string;
-}
-export const L3NetworksListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/l3Networks",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "L3NetworksListBySubscriptionRequest",
-}) as any as S.Schema<L3NetworksListBySubscriptionRequest>;
-
-/** Resource tags. */
-export type L3NetworksUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const L3NetworksUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<L3NetworksUpdateRequestTagsMap>;
-
-export interface L3NetworksUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the L3 network. */
-  l3NetworkName: string;
-  /** Resource tags. */
-  tags?: L3NetworksUpdateRequestTagsMap;
-}
-export const L3NetworksUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    l3NetworkName: S.String.pipe(T.Label()),
-    tags: S.optional(L3NetworksUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l3Networks/{l3NetworkName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "L3NetworksUpdateRequest",
-}) as any as S.Schema<L3NetworksUpdateRequest>;
-
-/** Resource tags. */
-export type L3NetworksUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const L3NetworksUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<L3NetworksUpdateResponseTagsMap>;
-
-export interface L3NetworksUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: L3NetworksUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: L3NetworkProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
-}
-export const L3NetworksUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(L3NetworksUpdateResponseTagsMap),
-    location: S.String,
-    properties: L3NetworkProperties,
-    etag: S.optional(S.String),
-    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-  }),
-).annotate({
-  identifier: "L3NetworksUpdateResponse",
-}) as any as S.Schema<L3NetworksUpdateResponse>;
-
-/** Resource tags. */
-export type MetricsConfigurationsCreateOrUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const MetricsConfigurationsCreateOrUpdateRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<MetricsConfigurationsCreateOrUpdateRequestTagsMap>;
-
-/** The list of metric names that have been chosen to be enabled in addition to the core set of enabled metrics. */
-export type ClusterMetricsConfigurationPropertiesInputEnabledMetricsList =
-  Array<string>;
-export const ClusterMetricsConfigurationPropertiesInputEnabledMetricsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ClusterMetricsConfigurationPropertiesInputEnabledMetricsList>;
-
-/** ClusterMetricsConfigurationProperties represents the properties of metrics configuration for the cluster. */
-export interface ClusterMetricsConfigurationPropertiesInput {
-  /** The list of metric names that have been chosen to be enabled in addition to the core set of enabled metrics. */
-  enabledMetrics?: ClusterMetricsConfigurationPropertiesInputEnabledMetricsList;
-  /** The interval in minutes by which metrics will be collected. */
-  collectionInterval: number;
-}
-export const ClusterMetricsConfigurationPropertiesInput =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      enabledMetrics: S.optional(
-        ClusterMetricsConfigurationPropertiesInputEnabledMetricsList,
-      ),
-      collectionInterval: S.Number,
-    }),
-  ).annotate({
-    identifier: "ClusterMetricsConfigurationPropertiesInput",
-  }) as any as S.Schema<ClusterMetricsConfigurationPropertiesInput>;
-
-export interface MetricsConfigurationsCreateOrUpdateRequest {
+export interface GetMetricsConfigurationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -11516,47 +7105,33 @@ export interface MetricsConfigurationsCreateOrUpdateRequest {
   clusterName: string;
   /** The name of the metrics configuration for the cluster. */
   metricsConfigurationName: string;
-  /** Resource tags. */
-  tags?: MetricsConfigurationsCreateOrUpdateRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: ClusterMetricsConfigurationPropertiesInput;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
 }
-export const MetricsConfigurationsCreateOrUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      metricsConfigurationName: S.String.pipe(T.Label()),
-      tags: S.optional(MetricsConfigurationsCreateOrUpdateRequestTagsMap),
-      location: S.String,
-      properties: ClusterMetricsConfigurationPropertiesInput,
-      extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/metricsConfigurations/{metricsConfigurationName}",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "MetricsConfigurationsCreateOrUpdateRequest",
-  }) as any as S.Schema<MetricsConfigurationsCreateOrUpdateRequest>;
+export const GetMetricsConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    metricsConfigurationName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/metricsConfigurations/{metricsConfigurationName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetMetricsConfigurationRequest",
+}) as any as S.Schema<GetMetricsConfigurationRequest>;
 
 /** Resource tags. */
-export type MetricsConfigurationsCreateOrUpdateResponseTagsMap = {
+export type GetMetricsConfigurationResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const MetricsConfigurationsCreateOrUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<MetricsConfigurationsCreateOrUpdateResponseTagsMap>;
+export const GetMetricsConfigurationResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetMetricsConfigurationResponseTagsMap>;
 
 /** The list of metric names that have been chosen to be enabled in addition to the core set of enabled metrics. */
 export type ClusterMetricsConfigurationPropertiesEnabledMetricsList =
@@ -11626,7 +7201,7 @@ export const ClusterMetricsConfigurationProperties = /*@__PURE__*/ S.suspend(
   identifier: "ClusterMetricsConfigurationProperties",
 }) as any as S.Schema<ClusterMetricsConfigurationProperties>;
 
-export interface MetricsConfigurationsCreateOrUpdateResponse {
+export interface GetMetricsConfigurationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -11636,7 +7211,7 @@ export interface MetricsConfigurationsCreateOrUpdateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: MetricsConfigurationsCreateOrUpdateResponseTagsMap;
+  tags?: GetMetricsConfigurationResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The list of the resource properties. */
@@ -11646,512 +7221,51 @@ export interface MetricsConfigurationsCreateOrUpdateResponse {
   /** The extended location of the resource. This property is required when creating the resource. */
   extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
 }
-export const MetricsConfigurationsCreateOrUpdateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(MetricsConfigurationsCreateOrUpdateResponseTagsMap),
-      location: S.String,
-      properties: ClusterMetricsConfigurationProperties,
-      etag: S.optional(S.String),
-      extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-    }),
-  ).annotate({
-    identifier: "MetricsConfigurationsCreateOrUpdateResponse",
-  }) as any as S.Schema<MetricsConfigurationsCreateOrUpdateResponse>;
-
-export interface MetricsConfigurationsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The name of the metrics configuration for the cluster. */
-  metricsConfigurationName: string;
-}
-export const MetricsConfigurationsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    metricsConfigurationName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/metricsConfigurations/{metricsConfigurationName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "MetricsConfigurationsDeleteRequest",
-}) as any as S.Schema<MetricsConfigurationsDeleteRequest>;
-
-export interface MetricsConfigurationsDeleteResponse {}
-export const MetricsConfigurationsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "MetricsConfigurationsDeleteResponse",
-}) as any as S.Schema<MetricsConfigurationsDeleteResponse>;
-
-export interface MetricsConfigurationsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The name of the metrics configuration for the cluster. */
-  metricsConfigurationName: string;
-}
-export const MetricsConfigurationsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    metricsConfigurationName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/metricsConfigurations/{metricsConfigurationName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "MetricsConfigurationsGetRequest",
-}) as any as S.Schema<MetricsConfigurationsGetRequest>;
-
-/** Resource tags. */
-export type MetricsConfigurationsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const MetricsConfigurationsGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<MetricsConfigurationsGetResponseTagsMap>;
-
-export interface MetricsConfigurationsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: MetricsConfigurationsGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: ClusterMetricsConfigurationProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
-}
-export const MetricsConfigurationsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetMetricsConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(MetricsConfigurationsGetResponseTagsMap),
+    tags: S.optional(GetMetricsConfigurationResponseTagsMap),
     location: S.String,
     properties: ClusterMetricsConfigurationProperties,
     etag: S.optional(S.String),
     extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
   }),
 ).annotate({
-  identifier: "MetricsConfigurationsGetResponse",
-}) as any as S.Schema<MetricsConfigurationsGetResponse>;
+  identifier: "GetMetricsConfigurationResponse",
+}) as any as S.Schema<GetMetricsConfigurationResponse>;
 
-export interface MetricsConfigurationsListByClusterRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
-  _top?: number;
-  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
-  _skipToken?: string;
-}
-export const MetricsConfigurationsListByClusterRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/metricsConfigurations",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "MetricsConfigurationsListByClusterRequest",
-  }) as any as S.Schema<MetricsConfigurationsListByClusterRequest>;
-
-/** Resource tags. */
-export type ClusterMetricsConfigurationTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ClusterMetricsConfigurationTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ClusterMetricsConfigurationTagsMap>;
-
-/** ClusterMetricsConfiguration represents the metrics configuration of an on-premises Network Cloud cluster. */
-export interface ClusterMetricsConfiguration {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ClusterMetricsConfigurationTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: ClusterMetricsConfigurationProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
-}
-export const ClusterMetricsConfiguration = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(ClusterMetricsConfigurationTagsMap),
-    location: S.String,
-    properties: ClusterMetricsConfigurationProperties,
-    etag: S.optional(S.String),
-    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-  }),
-).annotate({
-  identifier: "ClusterMetricsConfiguration",
-}) as any as S.Schema<ClusterMetricsConfiguration>;
-
-/** The ClusterMetricsConfiguration items on this page */
-export type ClusterMetricsConfigurationListValueList =
-  Array<ClusterMetricsConfiguration>;
-export const ClusterMetricsConfigurationListValueList = /*@__PURE__*/ S.Array(
-  ClusterMetricsConfiguration,
-) as any as S.Schema<ClusterMetricsConfigurationListValueList>;
-
-/** ClusterMetricsConfigurationList represents a list of metrics configuration of the cluster. */
-export interface ClusterMetricsConfigurationList {
-  /** The ClusterMetricsConfiguration items on this page */
-  value: ClusterMetricsConfigurationListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ClusterMetricsConfigurationList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: ClusterMetricsConfigurationListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ClusterMetricsConfigurationList",
-}) as any as S.Schema<ClusterMetricsConfigurationList>;
-
-/** The list of metric names that have been chosen to be enabled in addition to the core set of enabled metrics. */
-export type ClusterMetricsConfigurationPatchPropertiesEnabledMetricsList =
-  Array<string>;
-export const ClusterMetricsConfigurationPatchPropertiesEnabledMetricsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ClusterMetricsConfigurationPatchPropertiesEnabledMetricsList>;
-
-/** ClusterMetricsConfigurationPatchProperties represents the properties of metrics configuration for the cluster for patching. */
-export interface ClusterMetricsConfigurationPatchProperties {
-  /** The interval in minutes by which metrics will be collected. */
-  collectionInterval?: number;
-  /** The list of metric names that have been chosen to be enabled in addition to the core set of enabled metrics. */
-  enabledMetrics?: ClusterMetricsConfigurationPatchPropertiesEnabledMetricsList;
-}
-export const ClusterMetricsConfigurationPatchProperties =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      collectionInterval: S.optional(S.Number),
-      enabledMetrics: S.optional(
-        ClusterMetricsConfigurationPatchPropertiesEnabledMetricsList,
-      ),
-    }),
-  ).annotate({
-    identifier: "ClusterMetricsConfigurationPatchProperties",
-  }) as any as S.Schema<ClusterMetricsConfigurationPatchProperties>;
-
-/** Resource tags. */
-export type MetricsConfigurationsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const MetricsConfigurationsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<MetricsConfigurationsUpdateRequestTagsMap>;
-
-export interface MetricsConfigurationsUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The name of the metrics configuration for the cluster. */
-  metricsConfigurationName: string;
-  /** The list of the resource properties. */
-  properties?: ClusterMetricsConfigurationPatchProperties;
-  /** Resource tags. */
-  tags?: MetricsConfigurationsUpdateRequestTagsMap;
-}
-export const MetricsConfigurationsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    metricsConfigurationName: S.String.pipe(T.Label()),
-    properties: S.optional(ClusterMetricsConfigurationPatchProperties),
-    tags: S.optional(MetricsConfigurationsUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/metricsConfigurations/{metricsConfigurationName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "MetricsConfigurationsUpdateRequest",
-}) as any as S.Schema<MetricsConfigurationsUpdateRequest>;
-
-/** Resource tags. */
-export type MetricsConfigurationsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const MetricsConfigurationsUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<MetricsConfigurationsUpdateResponseTagsMap>;
-
-export interface MetricsConfigurationsUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: MetricsConfigurationsUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: ClusterMetricsConfigurationProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
-}
-export const MetricsConfigurationsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(MetricsConfigurationsUpdateResponseTagsMap),
-    location: S.String,
-    properties: ClusterMetricsConfigurationProperties,
-    etag: S.optional(S.String),
-    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-  }),
-).annotate({
-  identifier: "MetricsConfigurationsUpdateResponse",
-}) as any as S.Schema<MetricsConfigurationsUpdateResponse>;
-
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.NetworkCloud/operations",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
-
-/** Localized display information for this particular operation. */
-export interface OperationDisplay {
-  /** The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring Insights" or "Microsoft Compute". */
-  provider?: string;
-  /** The localized friendly name of the resource type related to this operation. E.g. "Virtual Machines" or "Job Schedule Collections". */
-  resource?: string;
-  /** The concise, localized friendly name for the operation; suitable for dropdowns. E.g. "Create or Update Virtual Machine", "Restart Virtual Machine". */
-  operation?: string;
-  /** The short, localized friendly description of the operation; suitable for tool tips and detailed views. */
-  description?: string;
-}
-export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provider: S.optional(S.String),
-    resource: S.optional(S.String),
-    operation: S.optional(S.String),
-    description: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationDisplay",
-}) as any as S.Schema<OperationDisplay>;
-
-/** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
-export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
-
-/** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
-export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
-
-/** Details of a REST API operation, returned from the Resource Provider Operations API */
-export interface Operation {
-  /** The name of the operation, as per Resource-Based Access Control (RBAC). Examples: "Microsoft.Compute/virtualMachines/write", "Microsoft.Compute/virtualMachines/capture/action" */
-  name?: string;
-  /** Whether the operation applies to data-plane. This is "true" for data-plane operations and "false" for ARM/control-plane operations. */
-  isDataAction?: boolean;
-  /** Localized display information for this particular operation. */
-  display?: OperationDisplay;
-  /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
-  origin?: OperationOrigin;
-  /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
-  actionType?: OperationActionType;
-}
-export const Operation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    isDataAction: S.optional(S.Boolean),
-    display: S.optional(OperationDisplay),
-    origin: S.optional(OperationOrigin),
-    actionType: S.optional(OperationActionType),
-  }),
-).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
-
-/** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
-  Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
-
-export interface OperationsListResponse {
-  /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
-  /** URL to get the next set of operation list results (if there are any). */
-  nextLink?: string;
-}
-export const OperationsListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(OperationsListResponseValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationsListResponse",
-}) as any as S.Schema<OperationsListResponse>;
-
-/** Resource tags. */
-export type RacksCreateOrUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const RacksCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<RacksCreateOrUpdateRequestTagsMap>;
-
-/** RackProperties represents the properties of the rack. */
-export interface RackPropertiesInput {
-  /** The value that will be used for machines in this rack to represent the availability zones that can be referenced by Hybrid AKS Clusters for node arrangement. */
-  availabilityZone: string;
-  /** The free-form description of the rack location. (e.g. "DTN Datacenter, Floor 3, Isle 9, Rack 2B") */
-  rackLocation: string;
-  /** The unique identifier for the rack within Network Cloud cluster. An alternate unique alphanumeric value other than a serial number may be provided if desired. */
-  rackSerialNumber: string;
-  /** The SKU for the rack. */
-  rackSkuId: string;
-}
-export const RackPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    availabilityZone: S.String,
-    rackLocation: S.String,
-    rackSerialNumber: S.String,
-    rackSkuId: S.String,
-  }),
-).annotate({
-  identifier: "RackPropertiesInput",
-}) as any as S.Schema<RackPropertiesInput>;
-
-export interface RacksCreateOrUpdateRequest {
+export interface GetRackRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the rack. */
   rackName: string;
-  /** Resource tags. */
-  tags?: RacksCreateOrUpdateRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: RackPropertiesInput;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
 }
-export const RacksCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetRackRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     rackName: S.String.pipe(T.Label()),
-    tags: S.optional(RacksCreateOrUpdateRequestTagsMap),
-    location: S.String,
-    properties: RackPropertiesInput,
-    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
   }).pipe(
     T.Http({
-      method: "PUT",
+      method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/racks/{rackName}",
       code: 200,
       apiVersion: "2026-07-01",
     }),
   ),
-).annotate({
-  identifier: "RacksCreateOrUpdateRequest",
-}) as any as S.Schema<RacksCreateOrUpdateRequest>;
+).annotate({ identifier: "GetRackRequest" }) as any as S.Schema<GetRackRequest>;
 
 /** Resource tags. */
-export type RacksCreateOrUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const RacksCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetRackResponseTagsMap = { [key: string]: string | undefined };
+export const GetRackResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<RacksCreateOrUpdateResponseTagsMap>;
+) as any as S.Schema<GetRackResponseTagsMap>;
 
 /** The more detailed status of the rack. */
 export type RackDetailedStatus = "Error" | "Available" | "Provisioning";
@@ -12198,7 +7312,7 @@ export const RackProperties = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "RackProperties" }) as any as S.Schema<RackProperties>;
 
-export interface RacksCreateOrUpdateResponse {
+export interface GetRackResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -12208,7 +7322,7 @@ export interface RacksCreateOrUpdateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: RacksCreateOrUpdateResponseTagsMap;
+  tags?: GetRackResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The list of the resource properties. */
@@ -12218,129 +7332,29 @@ export interface RacksCreateOrUpdateResponse {
   /** The extended location of the resource. This property is required when creating the resource. */
   extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
 }
-export const RacksCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetRackResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(RacksCreateOrUpdateResponseTagsMap),
+    tags: S.optional(GetRackResponseTagsMap),
     location: S.String,
     properties: RackProperties,
     etag: S.optional(S.String),
     extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
   }),
 ).annotate({
-  identifier: "RacksCreateOrUpdateResponse",
-}) as any as S.Schema<RacksCreateOrUpdateResponse>;
+  identifier: "GetRackResponse",
+}) as any as S.Schema<GetRackResponse>;
 
-export interface RacksDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the rack. */
-  rackName: string;
-}
-export const RacksDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    rackName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/racks/{rackName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "RacksDeleteRequest",
-}) as any as S.Schema<RacksDeleteRequest>;
-
-export interface RacksDeleteResponse {}
-export const RacksDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "RacksDeleteResponse",
-}) as any as S.Schema<RacksDeleteResponse>;
-
-export interface RacksGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the rack. */
-  rackName: string;
-}
-export const RacksGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    rackName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/racks/{rackName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "RacksGetRequest",
-}) as any as S.Schema<RacksGetRequest>;
-
-/** Resource tags. */
-export type RacksGetResponseTagsMap = { [key: string]: string | undefined };
-export const RacksGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<RacksGetResponseTagsMap>;
-
-export interface RacksGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: RacksGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: RackProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
-}
-export const RacksGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(RacksGetResponseTagsMap),
-    location: S.String,
-    properties: RackProperties,
-    etag: S.optional(S.String),
-    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-  }),
-).annotate({
-  identifier: "RacksGetResponse",
-}) as any as S.Schema<RacksGetResponse>;
-
-export interface RackSkusGetRequest {
+export interface GetRackSkusRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the rack SKU. */
   rackSkuName: string;
 }
-export const RackSkusGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetRackSkusRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     rackSkuName: S.String.pipe(T.Label()),
@@ -12353,8 +7367,8 @@ export const RackSkusGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "RackSkusGetRequest",
-}) as any as S.Schema<RackSkusGetRequest>;
+  identifier: "GetRackSkusRequest",
+}) as any as S.Schema<GetRackSkusRequest>;
 
 /** The type of bootstrap protocol used. */
 export type BootstrapProtocol = "PXE";
@@ -12591,7 +7605,7 @@ export const RackSkuProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "RackSkuProperties",
 }) as any as S.Schema<RackSkuProperties>;
 
-export interface RackSkusGetResponse {
+export interface GetRackSkusResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -12603,7 +7617,7 @@ export interface RackSkusGetResponse {
   /** The list of the resource properties. */
   properties: RackSkuProperties;
 }
-export const RackSkusGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetRackSkusResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -12612,365 +7626,42 @@ export const RackSkusGetResponse = /*@__PURE__*/ S.suspend(() =>
     properties: RackSkuProperties,
   }),
 ).annotate({
-  identifier: "RackSkusGetResponse",
-}) as any as S.Schema<RackSkusGetResponse>;
+  identifier: "GetRackSkusResponse",
+}) as any as S.Schema<GetRackSkusResponse>;
 
-export interface RackSkusListBySubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-}
-export const RackSkusListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/rackSkus",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "RackSkusListBySubscriptionRequest",
-}) as any as S.Schema<RackSkusListBySubscriptionRequest>;
-
-/** RackSku represents the SKU information of the rack. */
-export interface RackSku {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The list of the resource properties. */
-  properties: RackSkuProperties;
-}
-export const RackSku = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: RackSkuProperties,
-  }),
-).annotate({ identifier: "RackSku" }) as any as S.Schema<RackSku>;
-
-/** The RackSku items on this page */
-export type RackSkuListValueList = Array<RackSku>;
-export const RackSkuListValueList = /*@__PURE__*/ S.Array(
-  RackSku,
-) as any as S.Schema<RackSkuListValueList>;
-
-/** RackSkuList represents a list of rack SKUs. */
-export interface RackSkuList {
-  /** The RackSku items on this page */
-  value: RackSkuListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const RackSkuList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: RackSkuListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "RackSkuList" }) as any as S.Schema<RackSkuList>;
-
-export interface RacksListByResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
-  _top?: number;
-  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
-  _skipToken?: string;
-}
-export const RacksListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/racks",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "RacksListByResourceGroupRequest",
-}) as any as S.Schema<RacksListByResourceGroupRequest>;
-
-/** Resource tags. */
-export type RackTagsMap = { [key: string]: string | undefined };
-export const RackTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<RackTagsMap>;
-
-/** Rack represents the hardware of the rack and is dependent upon the cluster for lifecycle. */
-export interface Rack {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: RackTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: RackProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
-}
-export const Rack = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(RackTagsMap),
-    location: S.String,
-    properties: RackProperties,
-    etag: S.optional(S.String),
-    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-  }),
-).annotate({ identifier: "Rack" }) as any as S.Schema<Rack>;
-
-/** The Rack items on this page */
-export type RackListValueList = Array<Rack>;
-export const RackListValueList = /*@__PURE__*/ S.Array(
-  Rack,
-) as any as S.Schema<RackListValueList>;
-
-/** RackList represents a list of racks. */
-export interface RackList {
-  /** The Rack items on this page */
-  value: RackListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const RackList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: RackListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "RackList" }) as any as S.Schema<RackList>;
-
-export interface RacksListBySubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
-  _top?: number;
-  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
-  _skipToken?: string;
-}
-export const RacksListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/racks",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "RacksListBySubscriptionRequest",
-}) as any as S.Schema<RacksListBySubscriptionRequest>;
-
-/** RacksPatchProperties represents the properties of the rack during patching. */
-export interface RacksPatchProperties {
-  /** The free-form description of the rack location. (e.g. "DTN Datacenter, Floor 3, Isle 9, Rack 2B") */
-  rackLocation?: string;
-  /** The globally unique identifier for the rack. */
-  rackSerialNumber?: string;
-}
-export const RacksPatchProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    rackLocation: S.optional(S.String),
-    rackSerialNumber: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "RacksPatchProperties",
-}) as any as S.Schema<RacksPatchProperties>;
-
-/** Resource tags. */
-export type RacksUpdateRequestTagsMap = { [key: string]: string | undefined };
-export const RacksUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<RacksUpdateRequestTagsMap>;
-
-export interface RacksUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the rack. */
-  rackName: string;
-  /** The list of the resource properties. */
-  properties?: RacksPatchProperties;
-  /** Resource tags. */
-  tags?: RacksUpdateRequestTagsMap;
-}
-export const RacksUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    rackName: S.String.pipe(T.Label()),
-    properties: S.optional(RacksPatchProperties),
-    tags: S.optional(RacksUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/racks/{rackName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "RacksUpdateRequest",
-}) as any as S.Schema<RacksUpdateRequest>;
-
-/** Resource tags. */
-export type RacksUpdateResponseTagsMap = { [key: string]: string | undefined };
-export const RacksUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<RacksUpdateResponseTagsMap>;
-
-export interface RacksUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: RacksUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: RackProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
-}
-export const RacksUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(RacksUpdateResponseTagsMap),
-    location: S.String,
-    properties: RackProperties,
-    etag: S.optional(S.String),
-    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-  }),
-).annotate({
-  identifier: "RacksUpdateResponse",
-}) as any as S.Schema<RacksUpdateResponse>;
-
-/** Resource tags. */
-export type StorageAppliancesCreateOrUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const StorageAppliancesCreateOrUpdateRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<StorageAppliancesCreateOrUpdateRequestTagsMap>;
-
-/** StorageApplianceProperties represents the properties of the storage appliance. */
-export interface StorageAppliancePropertiesInput {
-  /** The resource ID of the rack where this storage appliance resides. */
-  rackId: string;
-  /** The SKU for the storage appliance. */
-  storageApplianceSkuId: string;
-  /** The slot the storage appliance is in the rack based on the BOM configuration. */
-  rackSlot: number;
-  /** The serial number for the storage appliance. */
-  serialNumber: string;
-  /** The credentials of the administrative interface on this storage appliance. */
-  administratorCredentials: AdministrativeCredentials;
-}
-export const StorageAppliancePropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    rackId: S.String,
-    storageApplianceSkuId: S.String,
-    rackSlot: S.Number,
-    serialNumber: S.String,
-    administratorCredentials: AdministrativeCredentials,
-  }),
-).annotate({
-  identifier: "StorageAppliancePropertiesInput",
-}) as any as S.Schema<StorageAppliancePropertiesInput>;
-
-export interface StorageAppliancesCreateOrUpdateRequest {
+export interface GetStorageApplianceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the storage appliance. */
   storageApplianceName: string;
-  /** Resource tags. */
-  tags?: StorageAppliancesCreateOrUpdateRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: StorageAppliancePropertiesInput;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
 }
-export const StorageAppliancesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      storageApplianceName: S.String.pipe(T.Label()),
-      tags: S.optional(StorageAppliancesCreateOrUpdateRequestTagsMap),
-      location: S.String,
-      properties: StorageAppliancePropertiesInput,
-      extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances/{storageApplianceName}",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
+export const GetStorageApplianceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    storageApplianceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances/{storageApplianceName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
 ).annotate({
-  identifier: "StorageAppliancesCreateOrUpdateRequest",
-}) as any as S.Schema<StorageAppliancesCreateOrUpdateRequest>;
+  identifier: "GetStorageApplianceRequest",
+}) as any as S.Schema<GetStorageApplianceRequest>;
 
 /** Resource tags. */
-export type StorageAppliancesCreateOrUpdateResponseTagsMap = {
+export type GetStorageApplianceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const StorageAppliancesCreateOrUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<StorageAppliancesCreateOrUpdateResponseTagsMap>;
+export const GetStorageApplianceResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetStorageApplianceResponseTagsMap>;
 
 /** The detailed status of the storage appliance. */
 export type StorageApplianceDetailedStatus =
@@ -13146,7 +7837,7 @@ export const StorageApplianceProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "StorageApplianceProperties",
 }) as any as S.Schema<StorageApplianceProperties>;
 
-export interface StorageAppliancesCreateOrUpdateResponse {
+export interface GetStorageApplianceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -13156,7 +7847,7 @@ export interface StorageAppliancesCreateOrUpdateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: StorageAppliancesCreateOrUpdateResponseTagsMap;
+  tags?: GetStorageApplianceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The list of the resource properties. */
@@ -13166,596 +7857,55 @@ export interface StorageAppliancesCreateOrUpdateResponse {
   /** The extended location of the resource. This property is required when creating the resource. */
   extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
 }
-export const StorageAppliancesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(StorageAppliancesCreateOrUpdateResponseTagsMap),
-      location: S.String,
-      properties: StorageApplianceProperties,
-      etag: S.optional(S.String),
-      extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-    }),
-).annotate({
-  identifier: "StorageAppliancesCreateOrUpdateResponse",
-}) as any as S.Schema<StorageAppliancesCreateOrUpdateResponse>;
-
-export interface StorageAppliancesDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the storage appliance. */
-  storageApplianceName: string;
-}
-export const StorageAppliancesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    storageApplianceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances/{storageApplianceName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "StorageAppliancesDeleteRequest",
-}) as any as S.Schema<StorageAppliancesDeleteRequest>;
-
-export interface StorageAppliancesDeleteResponse {}
-export const StorageAppliancesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "StorageAppliancesDeleteResponse",
-}) as any as S.Schema<StorageAppliancesDeleteResponse>;
-
-export interface StorageAppliancesDisableRemoteVendorManagementRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the storage appliance. */
-  storageApplianceName: string;
-}
-export const StorageAppliancesDisableRemoteVendorManagementRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      storageApplianceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances/{storageApplianceName}/disableRemoteVendorManagement",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "StorageAppliancesDisableRemoteVendorManagementRequest",
-  }) as any as S.Schema<StorageAppliancesDisableRemoteVendorManagementRequest>;
-
-export interface StorageAppliancesDisableRemoteVendorManagementResponse {}
-export const StorageAppliancesDisableRemoteVendorManagementResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "StorageAppliancesDisableRemoteVendorManagementResponse",
-  }) as any as S.Schema<StorageAppliancesDisableRemoteVendorManagementResponse>;
-
-/** Field Deprecated. This field is not used and will be rejected if provided. The list of IPv4 subnets (in CIDR format), IPv6 subnets (in CIDR format), or hostnames that the storage appliance needs accessible in order to turn on the remote vendor management. */
-export type StorageAppliancesEnableRemoteVendorManagementRequestSupportEndpointsList =
-  Array<string>;
-export const StorageAppliancesEnableRemoteVendorManagementRequestSupportEndpointsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<StorageAppliancesEnableRemoteVendorManagementRequestSupportEndpointsList>;
-
-export interface StorageAppliancesEnableRemoteVendorManagementRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the storage appliance. */
-  storageApplianceName: string;
-  /** Field Deprecated. This field is not used and will be rejected if provided. The list of IPv4 subnets (in CIDR format), IPv6 subnets (in CIDR format), or hostnames that the storage appliance needs accessible in order to turn on the remote vendor management. */
-  supportEndpoints?: StorageAppliancesEnableRemoteVendorManagementRequestSupportEndpointsList;
-}
-export const StorageAppliancesEnableRemoteVendorManagementRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      storageApplianceName: S.String.pipe(T.Label()),
-      supportEndpoints: S.optional(
-        StorageAppliancesEnableRemoteVendorManagementRequestSupportEndpointsList,
-      ),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances/{storageApplianceName}/enableRemoteVendorManagement",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "StorageAppliancesEnableRemoteVendorManagementRequest",
-  }) as any as S.Schema<StorageAppliancesEnableRemoteVendorManagementRequest>;
-
-export interface StorageAppliancesEnableRemoteVendorManagementResponse {}
-export const StorageAppliancesEnableRemoteVendorManagementResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "StorageAppliancesEnableRemoteVendorManagementResponse",
-  }) as any as S.Schema<StorageAppliancesEnableRemoteVendorManagementResponse>;
-
-export interface StorageAppliancesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the storage appliance. */
-  storageApplianceName: string;
-}
-export const StorageAppliancesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    storageApplianceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances/{storageApplianceName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "StorageAppliancesGetRequest",
-}) as any as S.Schema<StorageAppliancesGetRequest>;
-
-/** Resource tags. */
-export type StorageAppliancesGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const StorageAppliancesGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<StorageAppliancesGetResponseTagsMap>;
-
-export interface StorageAppliancesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: StorageAppliancesGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: StorageApplianceProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
-}
-export const StorageAppliancesGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetStorageApplianceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(StorageAppliancesGetResponseTagsMap),
+    tags: S.optional(GetStorageApplianceResponseTagsMap),
     location: S.String,
     properties: StorageApplianceProperties,
     etag: S.optional(S.String),
     extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
   }),
 ).annotate({
-  identifier: "StorageAppliancesGetResponse",
-}) as any as S.Schema<StorageAppliancesGetResponse>;
+  identifier: "GetStorageApplianceResponse",
+}) as any as S.Schema<GetStorageApplianceResponse>;
 
-export interface StorageAppliancesListByResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
-  _top?: number;
-  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
-  _skipToken?: string;
-}
-export const StorageAppliancesListByResourceGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "StorageAppliancesListByResourceGroupRequest",
-  }) as any as S.Schema<StorageAppliancesListByResourceGroupRequest>;
-
-/** Resource tags. */
-export type StorageApplianceTagsMap = { [key: string]: string | undefined };
-export const StorageApplianceTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<StorageApplianceTagsMap>;
-
-/** StorageAppliance represents on-premises Network Cloud storage appliance. */
-export interface StorageAppliance {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: StorageApplianceTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: StorageApplianceProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
-}
-export const StorageAppliance = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(StorageApplianceTagsMap),
-    location: S.String,
-    properties: StorageApplianceProperties,
-    etag: S.optional(S.String),
-    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-  }),
-).annotate({
-  identifier: "StorageAppliance",
-}) as any as S.Schema<StorageAppliance>;
-
-/** The StorageAppliance items on this page */
-export type StorageApplianceListValueList = Array<StorageAppliance>;
-export const StorageApplianceListValueList = /*@__PURE__*/ S.Array(
-  StorageAppliance,
-) as any as S.Schema<StorageApplianceListValueList>;
-
-/** StorageApplianceList represents a list of storage appliances. */
-export interface StorageApplianceList {
-  /** The StorageAppliance items on this page */
-  value: StorageApplianceListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const StorageApplianceList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: StorageApplianceListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "StorageApplianceList",
-}) as any as S.Schema<StorageApplianceList>;
-
-export interface StorageAppliancesListBySubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
-  _top?: number;
-  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
-  _skipToken?: string;
-}
-export const StorageAppliancesListBySubscriptionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/storageAppliances",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "StorageAppliancesListBySubscriptionRequest",
-  }) as any as S.Schema<StorageAppliancesListBySubscriptionRequest>;
-
-/** The list of strings that will be passed to the script in order as separate arguments. */
-export type StorageApplianceCommandSpecificationArgumentsList = Array<string>;
-export const StorageApplianceCommandSpecificationArgumentsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<StorageApplianceCommandSpecificationArgumentsList>;
-
-/** StorageApplianceCommandSpecification represents the command and optional arguments to run. */
-export interface StorageApplianceCommandSpecification {
-  /** The list of strings that will be passed to the script in order as separate arguments. */
-  arguments?: StorageApplianceCommandSpecificationArgumentsList;
-  /** The command to execute. */
-  command: string;
-}
-export const StorageApplianceCommandSpecification = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      arguments: S.optional(StorageApplianceCommandSpecificationArgumentsList),
-      command: S.String,
-    }),
-).annotate({
-  identifier: "StorageApplianceCommandSpecification",
-}) as any as S.Schema<StorageApplianceCommandSpecification>;
-
-/** The list of read-only commands to be executed directly against the target storage appliance. */
-export type StorageAppliancesRunReadCommandsRequestCommandsList =
-  Array<StorageApplianceCommandSpecification>;
-export const StorageAppliancesRunReadCommandsRequestCommandsList =
-  /*@__PURE__*/ S.Array(
-    StorageApplianceCommandSpecification,
-  ) as any as S.Schema<StorageAppliancesRunReadCommandsRequestCommandsList>;
-
-export interface StorageAppliancesRunReadCommandsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the storage appliance. */
-  storageApplianceName: string;
-  /** The list of read-only commands to be executed directly against the target storage appliance. */
-  commands: StorageAppliancesRunReadCommandsRequestCommandsList;
-  /** The maximum time the commands are allowed to run. */
-  limitTimeSeconds: number;
-}
-export const StorageAppliancesRunReadCommandsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      storageApplianceName: S.String.pipe(T.Label()),
-      commands: StorageAppliancesRunReadCommandsRequestCommandsList,
-      limitTimeSeconds: S.Number,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances/{storageApplianceName}/runReadCommands",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "StorageAppliancesRunReadCommandsRequest",
-}) as any as S.Schema<StorageAppliancesRunReadCommandsRequest>;
-
-export interface StorageAppliancesRunReadCommandsResponse {}
-export const StorageAppliancesRunReadCommandsResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "StorageAppliancesRunReadCommandsResponse",
-}) as any as S.Schema<StorageAppliancesRunReadCommandsResponse>;
-
-/** StorageAppliancePatchProperties represents the properties of the storage appliance that can be patched. */
-export interface StorageAppliancePatchProperties {
-  /** The serial number for the storage appliance. */
-  serialNumber?: string;
-}
-export const StorageAppliancePatchProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serialNumber: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "StorageAppliancePatchProperties",
-}) as any as S.Schema<StorageAppliancePatchProperties>;
-
-/** Resource tags. */
-export type StorageAppliancesUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const StorageAppliancesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<StorageAppliancesUpdateRequestTagsMap>;
-
-export interface StorageAppliancesUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the storage appliance. */
-  storageApplianceName: string;
-  /** The list of the resource properties. */
-  properties?: StorageAppliancePatchProperties;
-  /** Resource tags. */
-  tags?: StorageAppliancesUpdateRequestTagsMap;
-}
-export const StorageAppliancesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    storageApplianceName: S.String.pipe(T.Label()),
-    properties: S.optional(StorageAppliancePatchProperties),
-    tags: S.optional(StorageAppliancesUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances/{storageApplianceName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "StorageAppliancesUpdateRequest",
-}) as any as S.Schema<StorageAppliancesUpdateRequest>;
-
-/** Resource tags. */
-export type StorageAppliancesUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const StorageAppliancesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<StorageAppliancesUpdateResponseTagsMap>;
-
-export interface StorageAppliancesUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: StorageAppliancesUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: StorageApplianceProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
-}
-export const StorageAppliancesUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(StorageAppliancesUpdateResponseTagsMap),
-    location: S.String,
-    properties: StorageApplianceProperties,
-    etag: S.optional(S.String),
-    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-  }),
-).annotate({
-  identifier: "StorageAppliancesUpdateResponse",
-}) as any as S.Schema<StorageAppliancesUpdateResponse>;
-
-/** Resource tags. */
-export type TrunkedNetworksCreateOrUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const TrunkedNetworksCreateOrUpdateRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<TrunkedNetworksCreateOrUpdateRequestTagsMap>;
-
-/** Field Deprecated. The field was previously optional, now it will have no defined behavior and will be ignored. The network plugin type for Hybrid AKS. */
-export type TrunkedNetworkPropertiesInputHybridAksPluginType =
-  | "DPDK"
-  | "SRIOV"
-  | "OSDevice";
-export const TrunkedNetworkPropertiesInputHybridAksPluginType =
-  /*@__PURE__*/ S.String;
-
-/** The list of resource IDs representing the Network Fabric isolation domains. It can be any combination of l2IsolationDomain and l3IsolationDomain resources. */
-export type TrunkedNetworkPropertiesInputIsolationDomainIdsList = Array<string>;
-export const TrunkedNetworkPropertiesInputIsolationDomainIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<TrunkedNetworkPropertiesInputIsolationDomainIdsList>;
-
-/** The list of vlans that are selected from the isolation domains for trunking. */
-export type TrunkedNetworkPropertiesInputVlansList = Array<number>;
-export const TrunkedNetworkPropertiesInputVlansList = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<TrunkedNetworkPropertiesInputVlansList>;
-
-/** TrunkedNetworkProperties represents properties of the trunked network. */
-export interface TrunkedNetworkPropertiesInput {
-  /** Field Deprecated. The field was previously optional, now it will have no defined behavior and will be ignored. The network plugin type for Hybrid AKS. */
-  hybridAksPluginType?:
-    | TrunkedNetworkPropertiesInputHybridAksPluginType
-    | (string & {});
-  /** The default interface name for this trunked network in the virtual machine. This name can be overridden by the name supplied in the network attachment configuration of that virtual machine. */
-  interfaceName?: string;
-  /** The list of resource IDs representing the Network Fabric isolation domains. It can be any combination of l2IsolationDomain and l3IsolationDomain resources. */
-  isolationDomainIds: TrunkedNetworkPropertiesInputIsolationDomainIdsList;
-  /** The list of vlans that are selected from the isolation domains for trunking. */
-  vlans: TrunkedNetworkPropertiesInputVlansList;
-}
-export const TrunkedNetworkPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    hybridAksPluginType: S.optional(
-      TrunkedNetworkPropertiesInputHybridAksPluginType,
-    ),
-    interfaceName: S.optional(S.String),
-    isolationDomainIds: TrunkedNetworkPropertiesInputIsolationDomainIdsList,
-    vlans: TrunkedNetworkPropertiesInputVlansList,
-  }),
-).annotate({
-  identifier: "TrunkedNetworkPropertiesInput",
-}) as any as S.Schema<TrunkedNetworkPropertiesInput>;
-
-export interface TrunkedNetworksCreateOrUpdateRequest {
+export interface GetTrunkedNetworkRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the trunked network. */
   trunkedNetworkName: string;
-  /** Resource tags. */
-  tags?: TrunkedNetworksCreateOrUpdateRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: TrunkedNetworkPropertiesInput;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
 }
-export const TrunkedNetworksCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      trunkedNetworkName: S.String.pipe(T.Label()),
-      tags: S.optional(TrunkedNetworksCreateOrUpdateRequestTagsMap),
-      location: S.String,
-      properties: TrunkedNetworkPropertiesInput,
-      extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/trunkedNetworks/{trunkedNetworkName}",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
+export const GetTrunkedNetworkRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    trunkedNetworkName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/trunkedNetworks/{trunkedNetworkName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
 ).annotate({
-  identifier: "TrunkedNetworksCreateOrUpdateRequest",
-}) as any as S.Schema<TrunkedNetworksCreateOrUpdateRequest>;
+  identifier: "GetTrunkedNetworkRequest",
+}) as any as S.Schema<GetTrunkedNetworkRequest>;
 
 /** Resource tags. */
-export type TrunkedNetworksCreateOrUpdateResponseTagsMap = {
+export type GetTrunkedNetworkResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const TrunkedNetworksCreateOrUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<TrunkedNetworksCreateOrUpdateResponseTagsMap>;
+export const GetTrunkedNetworkResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetTrunkedNetworkResponseTagsMap>;
 
 /** Field Deprecated. The field was previously optional, now it will have no defined behavior and will be ignored. The network plugin type for Hybrid AKS. */
 export type TrunkedNetworkPropertiesHybridAksPluginType =
@@ -13868,7 +8018,7 @@ export const TrunkedNetworkProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "TrunkedNetworkProperties",
 }) as any as S.Schema<TrunkedNetworkProperties>;
 
-export interface TrunkedNetworksCreateOrUpdateResponse {
+export interface GetTrunkedNetworkResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -13878,7 +8028,7 @@ export interface TrunkedNetworksCreateOrUpdateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: TrunkedNetworksCreateOrUpdateResponseTagsMap;
+  tags?: GetTrunkedNetworkResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The list of the resource properties. */
@@ -13888,126 +8038,1143 @@ export interface TrunkedNetworksCreateOrUpdateResponse {
   /** The extended location of the resource. This property is required when creating the resource. */
   extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
 }
-export const TrunkedNetworksCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(TrunkedNetworksCreateOrUpdateResponseTagsMap),
-      location: S.String,
-      properties: TrunkedNetworkProperties,
-      etag: S.optional(S.String),
-      extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-    }),
-).annotate({
-  identifier: "TrunkedNetworksCreateOrUpdateResponse",
-}) as any as S.Schema<TrunkedNetworksCreateOrUpdateResponse>;
-
-export interface TrunkedNetworksDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the trunked network. */
-  trunkedNetworkName: string;
-}
-export const TrunkedNetworksDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    trunkedNetworkName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/trunkedNetworks/{trunkedNetworkName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "TrunkedNetworksDeleteRequest",
-}) as any as S.Schema<TrunkedNetworksDeleteRequest>;
-
-export interface TrunkedNetworksDeleteResponse {}
-export const TrunkedNetworksDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "TrunkedNetworksDeleteResponse",
-}) as any as S.Schema<TrunkedNetworksDeleteResponse>;
-
-export interface TrunkedNetworksGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the trunked network. */
-  trunkedNetworkName: string;
-}
-export const TrunkedNetworksGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    trunkedNetworkName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/trunkedNetworks/{trunkedNetworkName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "TrunkedNetworksGetRequest",
-}) as any as S.Schema<TrunkedNetworksGetRequest>;
-
-/** Resource tags. */
-export type TrunkedNetworksGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const TrunkedNetworksGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<TrunkedNetworksGetResponseTagsMap>;
-
-export interface TrunkedNetworksGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: TrunkedNetworksGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: TrunkedNetworkProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
-}
-export const TrunkedNetworksGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetTrunkedNetworkResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(TrunkedNetworksGetResponseTagsMap),
+    tags: S.optional(GetTrunkedNetworkResponseTagsMap),
     location: S.String,
     properties: TrunkedNetworkProperties,
     etag: S.optional(S.String),
     extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
   }),
 ).annotate({
-  identifier: "TrunkedNetworksGetResponse",
-}) as any as S.Schema<TrunkedNetworksGetResponse>;
+  identifier: "GetTrunkedNetworkResponse",
+}) as any as S.Schema<GetTrunkedNetworkResponse>;
 
-export interface TrunkedNetworksListByResourceGroupRequest {
+export interface GetVirtualMachineRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the virtual machine. */
+  virtualMachineName: string;
+}
+export const GetVirtualMachineRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    virtualMachineName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetVirtualMachineRequest",
+}) as any as S.Schema<GetVirtualMachineRequest>;
+
+/** Resource tags. */
+export type GetVirtualMachineResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetVirtualMachineResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetVirtualMachineResponseTagsMap>;
+
+/** Selects the boot method for the virtual machine. */
+export type VirtualMachinePropertiesBootMethod = "BIOS" | "UEFI";
+export const VirtualMachinePropertiesBootMethod = /*@__PURE__*/ S.String;
+
+/** Field Deprecated, the value will be ignored if provided. The indicator of whether one of the specified CPU cores is isolated to run the emulator thread for this virtual machine. */
+export type VirtualMachinePropertiesIsolateEmulatorThread = "False" | "True";
+export const VirtualMachinePropertiesIsolateEmulatorThread =
+  /*@__PURE__*/ S.String;
+
+/** The list of network attachments to the virtual machine. */
+export type VirtualMachinePropertiesNetworkAttachmentsList =
+  Array<NetworkAttachment>;
+export const VirtualMachinePropertiesNetworkAttachmentsList =
+  /*@__PURE__*/ S.Array(
+    NetworkAttachment,
+  ) as any as S.Schema<VirtualMachinePropertiesNetworkAttachmentsList>;
+
+/** The specification of whether this hint supports affinity or anti-affinity with the referenced resources. */
+export type VirtualMachinePlacementHintType = "Affinity" | "AntiAffinity";
+export const VirtualMachinePlacementHintType = /*@__PURE__*/ S.String;
+
+/** The indicator of whether the hint is a hard or soft requirement during scheduling. */
+export type VirtualMachineSchedulingExecution = "Hard" | "Soft";
+export const VirtualMachineSchedulingExecution = /*@__PURE__*/ S.String;
+
+/** The scope for the virtual machine affinity or anti-affinity placement hint. It should always be "Machine" in the case of node affinity. */
+export type VirtualMachinePlacementHintPodAffinityScope = "Machine" | "Rack";
+export const VirtualMachinePlacementHintPodAffinityScope =
+  /*@__PURE__*/ S.String;
+
+/** VirtualMachinePlacementHint represents a single scheduling hint of the virtual machine. */
+export interface VirtualMachinePlacementHint {
+  /** The specification of whether this hint supports affinity or anti-affinity with the referenced resources. */
+  hintType: VirtualMachinePlacementHintType | (string & {});
+  /** The resource ID of the target object that the placement hints will be checked against, e.g., the bare metal node to host the virtual machine. */
+  resourceId: string;
+  /** The indicator of whether the hint is a hard or soft requirement during scheduling. */
+  schedulingExecution: VirtualMachineSchedulingExecution | (string & {});
+  /** The scope for the virtual machine affinity or anti-affinity placement hint. It should always be "Machine" in the case of node affinity. */
+  scope: VirtualMachinePlacementHintPodAffinityScope | (string & {});
+}
+export const VirtualMachinePlacementHint = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    hintType: VirtualMachinePlacementHintType,
+    resourceId: S.String,
+    schedulingExecution: VirtualMachineSchedulingExecution,
+    scope: VirtualMachinePlacementHintPodAffinityScope,
+  }),
+).annotate({
+  identifier: "VirtualMachinePlacementHint",
+}) as any as S.Schema<VirtualMachinePlacementHint>;
+
+/** The scheduling hints for the virtual machine. */
+export type VirtualMachinePropertiesPlacementHintsList =
+  Array<VirtualMachinePlacementHint>;
+export const VirtualMachinePropertiesPlacementHintsList = /*@__PURE__*/ S.Array(
+  VirtualMachinePlacementHint,
+) as any as S.Schema<VirtualMachinePropertiesPlacementHintsList>;
+
+/** The list of ssh public keys. Each key will be added to the virtual machine using the cloud-init ssh_authorized_keys mechanism for the adminUsername. */
+export type VirtualMachinePropertiesSshPublicKeysList = Array<SshPublicKey>;
+export const VirtualMachinePropertiesSshPublicKeysList = /*@__PURE__*/ S.Array(
+  SshPublicKey,
+) as any as S.Schema<VirtualMachinePropertiesSshPublicKeysList>;
+
+/** The strategy for creating the OS disk. */
+export type OsDiskCreateOption = "Ephemeral" | "Persistent";
+export const OsDiskCreateOption = /*@__PURE__*/ S.String;
+
+/** The strategy for deleting the OS disk. */
+export type OsDiskDeleteOption = "Delete";
+export const OsDiskDeleteOption = /*@__PURE__*/ S.String;
+
+/** OsDisk represents configuration of the boot disk. */
+export interface OsDisk {
+  /** The strategy for creating the OS disk. */
+  createOption?: OsDiskCreateOption | (string & {});
+  /** The strategy for deleting the OS disk. */
+  deleteOption?: OsDiskDeleteOption | (string & {});
+  /** The size of the disk. Required if the createOption is Ephemeral. Allocations are measured in gibibytes. */
+  diskSizeGB: number;
+}
+export const OsDisk = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createOption: S.optional(OsDiskCreateOption),
+    deleteOption: S.optional(OsDiskDeleteOption),
+    diskSizeGB: S.Number,
+  }),
+).annotate({ identifier: "OsDisk" }) as any as S.Schema<OsDisk>;
+
+/** The resource IDs of volumes that are requested to be attached to the virtual machine. */
+export type StorageProfileVolumeAttachmentsList = Array<string>;
+export const StorageProfileVolumeAttachmentsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<StorageProfileVolumeAttachmentsList>;
+
+/** StorageProfile represents information about a disk. */
+export interface StorageProfile {
+  /** The disk to use with this virtual machine. */
+  osDisk: OsDisk;
+  /** The resource IDs of volumes that are requested to be attached to the virtual machine. */
+  volumeAttachments?: StorageProfileVolumeAttachmentsList;
+}
+export const StorageProfile = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    osDisk: OsDisk,
+    volumeAttachments: S.optional(StorageProfileVolumeAttachmentsList),
+  }),
+).annotate({ identifier: "StorageProfile" }) as any as S.Schema<StorageProfile>;
+
+/** Field Deprecated, use virtualizationModel instead. The type of the virtio interface. */
+export type VirtualMachinePropertiesVirtioInterface = "Modern" | "Transitional";
+export const VirtualMachinePropertiesVirtioInterface = /*@__PURE__*/ S.String;
+
+/** The type of the device model to use. */
+export type VirtualMachinePropertiesVmDeviceModel = "T1" | "T2" | "T3";
+export const VirtualMachinePropertiesVmDeviceModel = /*@__PURE__*/ S.String;
+
+/** ImageRepositoryCredentials represents the credentials used to login to the image repository. */
+export interface ImageRepositoryCredentials {
+  /** The password or token used to access an image in the target repository. */
+  password: string | Redacted.Redacted<string>;
+  /** The URL of the authentication server used to validate the repository credentials. */
+  registryUrl: string;
+  /** The username used to access an image in the target repository. */
+  username: string;
+}
+export const ImageRepositoryCredentials = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    password: S.String.pipe(T.SensitiveValue({})),
+    registryUrl: S.String,
+    username: S.String,
+  }),
+).annotate({
+  identifier: "ImageRepositoryCredentials",
+}) as any as S.Schema<ImageRepositoryCredentials>;
+
+/** The more detailed status of the virtual machine. */
+export type VirtualMachineDetailedStatus =
+  | "Available"
+  | "Error"
+  | "Provisioning"
+  | "Running"
+  | "Scheduling"
+  | "Stopped"
+  | "Terminating"
+  | "Unknown";
+export const VirtualMachineDetailedStatus = /*@__PURE__*/ S.String;
+
+/** The power state of the virtual machine. */
+export type VirtualMachinePowerState = "Off" | "On" | "Unknown";
+export const VirtualMachinePowerState = /*@__PURE__*/ S.String;
+
+/** The resource IDs of volumes that are attached to the virtual machine. */
+export type VirtualMachinePropertiesVolumesList = Array<string>;
+export const VirtualMachinePropertiesVolumesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<VirtualMachinePropertiesVolumesList>;
+
+/** The provisioning state of the virtual machine. */
+export type VirtualMachineProvisioningState =
+  | "Accepted"
+  | "Canceled"
+  | "Failed"
+  | "Provisioning"
+  | "Succeeded";
+export const VirtualMachineProvisioningState = /*@__PURE__*/ S.String;
+
+/** VirtualMachineProperties represents the properties of the virtual machine. */
+export interface VirtualMachineProperties {
+  /** The name of the administrator to which the ssh public keys will be added into the authorized keys. */
+  adminUsername: string;
+  /** Selects the boot method for the virtual machine. */
+  bootMethod?: VirtualMachinePropertiesBootMethod;
+  /** The cloud service network that provides platform-level services for the virtual machine. */
+  cloudServicesNetworkAttachment: NetworkAttachment;
+  /** The number of CPU cores in the virtual machine. */
+  cpuCores: number;
+  /** Field Deprecated, the value will be ignored if provided. The indicator of whether one of the specified CPU cores is isolated to run the emulator thread for this virtual machine. */
+  isolateEmulatorThread?: VirtualMachinePropertiesIsolateEmulatorThread;
+  /** The memory size of the virtual machine. Allocations are measured in gibibytes. */
+  memorySizeGB: number;
+  /** The list of network attachments to the virtual machine. */
+  networkAttachments?: VirtualMachinePropertiesNetworkAttachmentsList;
+  /** Field Deprecated: The Base64 encoded cloud-init network data. The networkDataContent property will be used in preference to this property. */
+  networkData?: string;
+  /** The Base64 encoded cloud-init network data. */
+  networkDataContent?: string;
+  /** The scheduling hints for the virtual machine. */
+  placementHints?: VirtualMachinePropertiesPlacementHintsList;
+  /** The list of ssh public keys. Each key will be added to the virtual machine using the cloud-init ssh_authorized_keys mechanism for the adminUsername. */
+  sshPublicKeys?: VirtualMachinePropertiesSshPublicKeysList;
+  /** The storage profile that specifies size and other parameters about the disks related to the virtual machine. */
+  storageProfile: StorageProfile;
+  /** Field Deprecated: The Base64 encoded cloud-init user data. The userDataContent property will be used in preference to this property. */
+  userData?: string;
+  /** The Base64 encoded cloud-init user data. */
+  userDataContent?: string;
+  /** Field Deprecated, use virtualizationModel instead. The type of the virtio interface. */
+  virtioInterface?: VirtualMachinePropertiesVirtioInterface;
+  /** The type of the device model to use. */
+  vmDeviceModel?: VirtualMachinePropertiesVmDeviceModel;
+  /** The virtual machine image that is currently provisioned to the OS disk, using the full url and tag notation used to pull the image. */
+  vmImage: string;
+  /** The credentials used to login to the image repository that has access to the specified image. */
+  vmImageRepositoryCredentials?: ImageRepositoryCredentials;
+  /** The cluster availability zone containing this virtual machine. */
+  availabilityZone?: string;
+  /** The resource ID of the bare metal machine that hosts the virtual machine. */
+  bareMetalMachineId?: string;
+  /** The resource ID of the cluster the virtual machine is created for. */
+  clusterId?: string;
+  /** The extended location to use for creation of a VM console resource. */
+  consoleExtendedLocation?: AzureResourceManagerCommonTypesExtendedLocation;
+  /** The more detailed status of the virtual machine. */
+  detailedStatus?: VirtualMachineDetailedStatus;
+  /** The descriptive message about the current detailed status. */
+  detailedStatusMessage?: string;
+  /** The power state of the virtual machine. */
+  powerState?: VirtualMachinePowerState;
+  /** The resource IDs of volumes that are attached to the virtual machine. */
+  volumes?: VirtualMachinePropertiesVolumesList;
+  /** The provisioning state of the virtual machine. */
+  provisioningState?: VirtualMachineProvisioningState;
+}
+export const VirtualMachineProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    adminUsername: S.String,
+    bootMethod: S.optional(VirtualMachinePropertiesBootMethod),
+    cloudServicesNetworkAttachment: NetworkAttachment,
+    cpuCores: S.Number,
+    isolateEmulatorThread: S.optional(
+      VirtualMachinePropertiesIsolateEmulatorThread,
+    ),
+    memorySizeGB: S.Number,
+    networkAttachments: S.optional(
+      VirtualMachinePropertiesNetworkAttachmentsList,
+    ),
+    networkData: S.optional(S.String),
+    networkDataContent: S.optional(S.String),
+    placementHints: S.optional(VirtualMachinePropertiesPlacementHintsList),
+    sshPublicKeys: S.optional(VirtualMachinePropertiesSshPublicKeysList),
+    storageProfile: StorageProfile,
+    userData: S.optional(S.String),
+    userDataContent: S.optional(S.String),
+    virtioInterface: S.optional(VirtualMachinePropertiesVirtioInterface),
+    vmDeviceModel: S.optional(VirtualMachinePropertiesVmDeviceModel),
+    vmImage: S.String,
+    vmImageRepositoryCredentials: S.optional(ImageRepositoryCredentials),
+    availabilityZone: S.optional(S.String),
+    bareMetalMachineId: S.optional(S.String),
+    clusterId: S.optional(S.String),
+    consoleExtendedLocation: S.optional(
+      AzureResourceManagerCommonTypesExtendedLocation,
+    ),
+    detailedStatus: S.optional(VirtualMachineDetailedStatus),
+    detailedStatusMessage: S.optional(S.String),
+    powerState: S.optional(VirtualMachinePowerState),
+    volumes: S.optional(VirtualMachinePropertiesVolumesList),
+    provisioningState: S.optional(VirtualMachineProvisioningState),
+  }),
+).annotate({
+  identifier: "VirtualMachineProperties",
+}) as any as S.Schema<VirtualMachineProperties>;
+
+/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+export type GetVirtualMachineResponseIdentityUserAssignedIdentitiesMap = {
+  [key: string]: UserAssignedIdentity | undefined;
+};
+export const GetVirtualMachineResponseIdentityUserAssignedIdentitiesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    UserAssignedIdentity,
+  ) as any as S.Schema<GetVirtualMachineResponseIdentityUserAssignedIdentitiesMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export interface GetVirtualMachineResponseIdentity {
+  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  principalId?: string;
+  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  tenantId?: string;
+  type: ManagedServiceIdentityType;
+  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+  userAssignedIdentities?: GetVirtualMachineResponseIdentityUserAssignedIdentitiesMap;
+}
+export const GetVirtualMachineResponseIdentity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    principalId: S.optional(S.String),
+    tenantId: S.optional(S.String),
+    type: ManagedServiceIdentityType,
+    userAssignedIdentities: S.optional(
+      GetVirtualMachineResponseIdentityUserAssignedIdentitiesMap,
+    ),
+  }),
+).annotate({
+  identifier: "GetVirtualMachineResponseIdentity",
+}) as any as S.Schema<GetVirtualMachineResponseIdentity>;
+
+export interface GetVirtualMachineResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetVirtualMachineResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: VirtualMachineProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: GetVirtualMachineResponseIdentity;
+}
+export const GetVirtualMachineResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetVirtualMachineResponseTagsMap),
+    location: S.String,
+    properties: VirtualMachineProperties,
+    etag: S.optional(S.String),
+    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+    identity: S.optional(GetVirtualMachineResponseIdentity),
+  }),
+).annotate({
+  identifier: "GetVirtualMachineResponse",
+}) as any as S.Schema<GetVirtualMachineResponse>;
+
+export interface GetVolumeRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the volume. */
+  volumeName: string;
+}
+export const GetVolumeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    volumeName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/volumes/{volumeName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetVolumeRequest",
+}) as any as S.Schema<GetVolumeRequest>;
+
+/** Resource tags. */
+export type GetVolumeResponseTagsMap = { [key: string]: string | undefined };
+export const GetVolumeResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetVolumeResponseTagsMap>;
+
+/** The list of resource IDs that attach the volume. It may include virtual machines and Hybrid AKS clusters. */
+export type VolumePropertiesAttachedToList = Array<string>;
+export const VolumePropertiesAttachedToList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<VolumePropertiesAttachedToList>;
+
+/** The more detailed status of the volume. */
+export type VolumeDetailedStatus = "Active" | "Error" | "Provisioning";
+export const VolumeDetailedStatus = /*@__PURE__*/ S.String;
+
+/** The provisioning state of the volume. */
+export type VolumeProvisioningState =
+  | "Accepted"
+  | "Canceled"
+  | "Failed"
+  | "Provisioning"
+  | "Succeeded";
+export const VolumeProvisioningState = /*@__PURE__*/ S.String;
+
+/** VolumeProperties represents properties of the volume resource. */
+export interface VolumeProperties {
+  /** The requested storage allocation for the volume in Mebibytes. */
+  sizeMiB: number;
+  /** The resource ID of the storage appliance that hosts the volume. */
+  storageApplianceId?: string;
+  /** The allocated size of the volume in Mebibytes. */
+  allocatedSizeMiB?: number;
+  /** The assigned resource ID of the storage appliance that hosts the volume. */
+  assignedStorageApplianceId?: string;
+  /** The list of resource IDs that attach the volume. It may include virtual machines and Hybrid AKS clusters. */
+  attachedTo?: VolumePropertiesAttachedToList;
+  /** The more detailed status of the volume. */
+  detailedStatus?: VolumeDetailedStatus;
+  /** The descriptive message about the current detailed status. */
+  detailedStatusMessage?: string;
+  /** The unique identifier of the volume. */
+  serialNumber?: string;
+  /** The provisioning state of the volume. */
+  provisioningState?: VolumeProvisioningState;
+}
+export const VolumeProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    sizeMiB: S.Number,
+    storageApplianceId: S.optional(S.String),
+    allocatedSizeMiB: S.optional(S.Number),
+    assignedStorageApplianceId: S.optional(S.String),
+    attachedTo: S.optional(VolumePropertiesAttachedToList),
+    detailedStatus: S.optional(VolumeDetailedStatus),
+    detailedStatusMessage: S.optional(S.String),
+    serialNumber: S.optional(S.String),
+    provisioningState: S.optional(VolumeProvisioningState),
+  }),
+).annotate({
+  identifier: "VolumeProperties",
+}) as any as S.Schema<VolumeProperties>;
+
+export interface GetVolumeResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetVolumeResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: VolumeProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const GetVolumeResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetVolumeResponseTagsMap),
+    location: S.String,
+    properties: VolumeProperties,
+    etag: S.optional(S.String),
+    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+  }),
+).annotate({
+  identifier: "GetVolumeResponse",
+}) as any as S.Schema<GetVolumeResponse>;
+
+/** Resource tags. */
+export type KubernetesClusterFeaturesCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const KubernetesClusterFeaturesCreateOrUpdateRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<KubernetesClusterFeaturesCreateOrUpdateRequestTagsMap>;
+
+/** The configured options for the feature. */
+export type KubernetesClusterFeaturePropertiesInputOptionsList =
+  Array<StringKeyValuePair>;
+export const KubernetesClusterFeaturePropertiesInputOptionsList =
+  /*@__PURE__*/ S.Array(
+    StringKeyValuePair,
+  ) as any as S.Schema<KubernetesClusterFeaturePropertiesInputOptionsList>;
+
+/** KubernetesClusterFeatureProperties represents the properties of a Kubernetes cluster feature. */
+export interface KubernetesClusterFeaturePropertiesInput {
+  /** The configured options for the feature. */
+  options?: KubernetesClusterFeaturePropertiesInputOptionsList;
+}
+export const KubernetesClusterFeaturePropertiesInput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      options: S.optional(KubernetesClusterFeaturePropertiesInputOptionsList),
+    }),
+).annotate({
+  identifier: "KubernetesClusterFeaturePropertiesInput",
+}) as any as S.Schema<KubernetesClusterFeaturePropertiesInput>;
+
+export interface KubernetesClusterFeaturesCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kubernetes cluster. */
+  kubernetesClusterName: string;
+  /** The name of the feature. */
+  featureName: string;
+  /** Resource tags. */
+  tags?: KubernetesClusterFeaturesCreateOrUpdateRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties?: KubernetesClusterFeaturePropertiesInput;
+}
+export const KubernetesClusterFeaturesCreateOrUpdateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      kubernetesClusterName: S.String.pipe(T.Label()),
+      featureName: S.String.pipe(T.Label()),
+      tags: S.optional(KubernetesClusterFeaturesCreateOrUpdateRequestTagsMap),
+      location: S.String,
+      properties: S.optional(KubernetesClusterFeaturePropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}/features/{featureName}",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "KubernetesClusterFeaturesCreateOrUpdateRequest",
+  }) as any as S.Schema<KubernetesClusterFeaturesCreateOrUpdateRequest>;
+
+/** Resource tags. */
+export type KubernetesClusterFeaturesCreateOrUpdateResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const KubernetesClusterFeaturesCreateOrUpdateResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<KubernetesClusterFeaturesCreateOrUpdateResponseTagsMap>;
+
+export interface KubernetesClusterFeaturesCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: KubernetesClusterFeaturesCreateOrUpdateResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties?: KubernetesClusterFeatureProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const KubernetesClusterFeaturesCreateOrUpdateResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(KubernetesClusterFeaturesCreateOrUpdateResponseTagsMap),
+      location: S.String,
+      properties: S.optional(KubernetesClusterFeatureProperties),
+      etag: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "KubernetesClusterFeaturesCreateOrUpdateResponse",
+  }) as any as S.Schema<KubernetesClusterFeaturesCreateOrUpdateResponse>;
+
+/** Resource tags. */
+export type KubernetesClustersCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const KubernetesClustersCreateOrUpdateRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<KubernetesClustersCreateOrUpdateRequestTagsMap>;
+
+/** The agent pools that are created with this Kubernetes cluster for running critical system services and workloads. This data in this field is only used during creation, and the field will be empty following the creation of the Kubernetes Cluster. After creation, the management of agent pools is done using the agentPools sub-resource. */
+export type KubernetesClusterPropertiesInputInitialAgentPoolConfigurationsList =
+  Array<InitialAgentPoolConfiguration>;
+export const KubernetesClusterPropertiesInputInitialAgentPoolConfigurationsList =
+  /*@__PURE__*/ S.Array(
+    InitialAgentPoolConfiguration,
+  ) as any as S.Schema<KubernetesClusterPropertiesInputInitialAgentPoolConfigurationsList>;
+
+/** KubernetesClusterProperties represents the properties of Kubernetes cluster resource. */
+export interface KubernetesClusterPropertiesInput {
+  /** The Azure Active Directory Integration properties. */
+  aadConfiguration?: AadConfiguration;
+  /** The administrative credentials that will be applied to the control plane and agent pool nodes that do not specify their own values. */
+  administratorConfiguration?: AdministratorConfiguration;
+  /** The defining characteristics of the control plane for this Kubernetes Cluster. */
+  controlPlaneNodeConfiguration: ControlPlaneNodeConfiguration;
+  /** The agent pools that are created with this Kubernetes cluster for running critical system services and workloads. This data in this field is only used during creation, and the field will be empty following the creation of the Kubernetes Cluster. After creation, the management of agent pools is done using the agentPools sub-resource. */
+  initialAgentPoolConfigurations: KubernetesClusterPropertiesInputInitialAgentPoolConfigurationsList;
+  /** The Kubernetes version for this cluster. */
+  kubernetesVersion: string;
+  /** The configuration of the managed resource group associated with the resource. */
+  managedResourceGroupConfiguration?: ManagedResourceGroupConfiguration;
+  /** The configuration of the Kubernetes cluster networking, including the attachment of networks that span the cluster. */
+  networkConfiguration: NetworkConfiguration;
+}
+export const KubernetesClusterPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    aadConfiguration: S.optional(AadConfiguration),
+    administratorConfiguration: S.optional(AdministratorConfiguration),
+    controlPlaneNodeConfiguration: ControlPlaneNodeConfiguration,
+    initialAgentPoolConfigurations:
+      KubernetesClusterPropertiesInputInitialAgentPoolConfigurationsList,
+    kubernetesVersion: S.String,
+    managedResourceGroupConfiguration: S.optional(
+      ManagedResourceGroupConfiguration,
+    ),
+    networkConfiguration: NetworkConfiguration,
+  }),
+).annotate({
+  identifier: "KubernetesClusterPropertiesInput",
+}) as any as S.Schema<KubernetesClusterPropertiesInput>;
+
+export interface KubernetesClustersCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kubernetes cluster. */
+  kubernetesClusterName: string;
+  /** Resource tags. */
+  tags?: KubernetesClustersCreateOrUpdateRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: KubernetesClusterPropertiesInput;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const KubernetesClustersCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      kubernetesClusterName: S.String.pipe(T.Label()),
+      tags: S.optional(KubernetesClustersCreateOrUpdateRequestTagsMap),
+      location: S.String,
+      properties: KubernetesClusterPropertiesInput,
+      extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "KubernetesClustersCreateOrUpdateRequest",
+}) as any as S.Schema<KubernetesClustersCreateOrUpdateRequest>;
+
+/** Resource tags. */
+export type KubernetesClustersCreateOrUpdateResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const KubernetesClustersCreateOrUpdateResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<KubernetesClustersCreateOrUpdateResponseTagsMap>;
+
+export interface KubernetesClustersCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: KubernetesClustersCreateOrUpdateResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: KubernetesClusterProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const KubernetesClustersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(KubernetesClustersCreateOrUpdateResponseTagsMap),
+      location: S.String,
+      properties: KubernetesClusterProperties,
+      etag: S.optional(S.String),
+      extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+    }),
+).annotate({
+  identifier: "KubernetesClustersCreateOrUpdateResponse",
+}) as any as S.Schema<KubernetesClustersCreateOrUpdateResponse>;
+
+/** Resource tags. */
+export type KubernetesVersionsCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const KubernetesVersionsCreateOrUpdateRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<KubernetesVersionsCreateOrUpdateRequestTagsMap>;
+
+/** KubernetesVersionProperties contains the read-only properties describing available versions. */
+export type KubernetesVersionPropertiesInput = UserAssignedIdentityInput;
+export const KubernetesVersionPropertiesInput = UserAssignedIdentityInput;
+
+export interface KubernetesVersionsCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kubernetes version resource. */
+  kubernetesVersionName: string;
+  /** Resource tags. */
+  tags?: KubernetesVersionsCreateOrUpdateRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: UserAssignedIdentityInput;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const KubernetesVersionsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      kubernetesVersionName: S.String.pipe(T.Label()),
+      tags: S.optional(KubernetesVersionsCreateOrUpdateRequestTagsMap),
+      location: S.String,
+      properties: UserAssignedIdentityInput,
+      extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesVersions/{kubernetesVersionName}",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "KubernetesVersionsCreateOrUpdateRequest",
+}) as any as S.Schema<KubernetesVersionsCreateOrUpdateRequest>;
+
+/** Resource tags. */
+export type KubernetesVersionsCreateOrUpdateResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const KubernetesVersionsCreateOrUpdateResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<KubernetesVersionsCreateOrUpdateResponseTagsMap>;
+
+export interface KubernetesVersionsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: KubernetesVersionsCreateOrUpdateResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: KubernetesVersionProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const KubernetesVersionsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(KubernetesVersionsCreateOrUpdateResponseTagsMap),
+      location: S.String,
+      properties: KubernetesVersionProperties,
+      etag: S.optional(S.String),
+      extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+    }),
+).annotate({
+  identifier: "KubernetesVersionsCreateOrUpdateResponse",
+}) as any as S.Schema<KubernetesVersionsCreateOrUpdateResponse>;
+
+/** Resource tags. */
+export type L2NetworksCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const L2NetworksCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<L2NetworksCreateOrUpdateRequestTagsMap>;
+
+/** Field Deprecated. The field was previously optional, now it will have no defined behavior and will be ignored. The network plugin type for Hybrid AKS. */
+export type L2NetworkPropertiesInputHybridAksPluginType =
+  | "DPDK"
+  | "SRIOV"
+  | "OSDevice";
+export const L2NetworkPropertiesInputHybridAksPluginType =
+  /*@__PURE__*/ S.String;
+
+/** L2NetworkProperties represents properties of the L2 network. */
+export interface L2NetworkPropertiesInput {
+  /** Field Deprecated. The field was previously optional, now it will have no defined behavior and will be ignored. The network plugin type for Hybrid AKS. */
+  hybridAksPluginType?:
+    | L2NetworkPropertiesInputHybridAksPluginType
+    | (string & {});
+  /** The default interface name for this L2 network in the virtual machine. This name can be overridden by the name supplied in the network attachment configuration of that virtual machine. */
+  interfaceName?: string;
+  /** The resource ID of the Network Fabric l2IsolationDomain. */
+  l2IsolationDomainId: string;
+}
+export const L2NetworkPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    hybridAksPluginType: S.optional(
+      L2NetworkPropertiesInputHybridAksPluginType,
+    ),
+    interfaceName: S.optional(S.String),
+    l2IsolationDomainId: S.String,
+  }),
+).annotate({
+  identifier: "L2NetworkPropertiesInput",
+}) as any as S.Schema<L2NetworkPropertiesInput>;
+
+export interface L2NetworksCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the L2 network. */
+  l2NetworkName: string;
+  /** Resource tags. */
+  tags?: L2NetworksCreateOrUpdateRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: L2NetworkPropertiesInput;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const L2NetworksCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    l2NetworkName: S.String.pipe(T.Label()),
+    tags: S.optional(L2NetworksCreateOrUpdateRequestTagsMap),
+    location: S.String,
+    properties: L2NetworkPropertiesInput,
+    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l2Networks/{l2NetworkName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "L2NetworksCreateOrUpdateRequest",
+}) as any as S.Schema<L2NetworksCreateOrUpdateRequest>;
+
+/** Resource tags. */
+export type L2NetworksCreateOrUpdateResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const L2NetworksCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<L2NetworksCreateOrUpdateResponseTagsMap>;
+
+export interface L2NetworksCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: L2NetworksCreateOrUpdateResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: L2NetworkProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const L2NetworksCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(L2NetworksCreateOrUpdateResponseTagsMap),
+    location: S.String,
+    properties: L2NetworkProperties,
+    etag: S.optional(S.String),
+    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+  }),
+).annotate({
+  identifier: "L2NetworksCreateOrUpdateResponse",
+}) as any as S.Schema<L2NetworksCreateOrUpdateResponse>;
+
+/** Resource tags. */
+export type L3NetworksCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const L3NetworksCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<L3NetworksCreateOrUpdateRequestTagsMap>;
+
+/** Field Deprecated. The field was previously optional, now it will have no defined behavior and will be ignored. The indicator of whether or not to disable IPAM allocation on the network attachment definition injected into the Hybrid AKS Cluster. */
+export type L3NetworkPropertiesInputHybridAksIpamEnabled = "True" | "False";
+export const L3NetworkPropertiesInputHybridAksIpamEnabled =
+  /*@__PURE__*/ S.String;
+
+/** Field Deprecated. The field was previously optional, now it will have no defined behavior and will be ignored. The network plugin type for Hybrid AKS. */
+export type L3NetworkPropertiesInputHybridAksPluginType =
+  | "DPDK"
+  | "SRIOV"
+  | "OSDevice";
+export const L3NetworkPropertiesInputHybridAksPluginType =
+  /*@__PURE__*/ S.String;
+
+/** The type of the IP address allocation, defaulted to "DualStack". */
+export type L3NetworkPropertiesInputIpAllocationType =
+  | "IPV4"
+  | "IPV6"
+  | "DualStack";
+export const L3NetworkPropertiesInputIpAllocationType = /*@__PURE__*/ S.String;
+
+/** L3NetworkProperties represents properties of the L3 network. */
+export interface L3NetworkPropertiesInput {
+  /** Field Deprecated. The field was previously optional, now it will have no defined behavior and will be ignored. The indicator of whether or not to disable IPAM allocation on the network attachment definition injected into the Hybrid AKS Cluster. */
+  hybridAksIpamEnabled?:
+    | L3NetworkPropertiesInputHybridAksIpamEnabled
+    | (string & {});
+  /** Field Deprecated. The field was previously optional, now it will have no defined behavior and will be ignored. The network plugin type for Hybrid AKS. */
+  hybridAksPluginType?:
+    | L3NetworkPropertiesInputHybridAksPluginType
+    | (string & {});
+  /** The default interface name for this L3 network in the virtual machine. This name can be overridden by the name supplied in the network attachment configuration of that virtual machine. */
+  interfaceName?: string;
+  /** The type of the IP address allocation, defaulted to "DualStack". */
+  ipAllocationType?: L3NetworkPropertiesInputIpAllocationType | (string & {});
+  /** The IPV4 prefix (CIDR) assigned to this L3 network. Required when the IP allocation type is IPV4 or DualStack. */
+  ipv4ConnectedPrefix?: string;
+  /** The IPV6 prefix (CIDR) assigned to this L3 network. Required when the IP allocation type is IPV6 or DualStack. */
+  ipv6ConnectedPrefix?: string;
+  /** The resource ID of the Network Fabric l3IsolationDomain. */
+  l3IsolationDomainId: string;
+  /** The VLAN from the l3IsolationDomain that is used for this network. */
+  vlan: number;
+}
+export const L3NetworkPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    hybridAksIpamEnabled: S.optional(
+      L3NetworkPropertiesInputHybridAksIpamEnabled,
+    ),
+    hybridAksPluginType: S.optional(
+      L3NetworkPropertiesInputHybridAksPluginType,
+    ),
+    interfaceName: S.optional(S.String),
+    ipAllocationType: S.optional(L3NetworkPropertiesInputIpAllocationType),
+    ipv4ConnectedPrefix: S.optional(S.String),
+    ipv6ConnectedPrefix: S.optional(S.String),
+    l3IsolationDomainId: S.String,
+    vlan: S.Number,
+  }),
+).annotate({
+  identifier: "L3NetworkPropertiesInput",
+}) as any as S.Schema<L3NetworkPropertiesInput>;
+
+export interface L3NetworksCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the L3 network. */
+  l3NetworkName: string;
+  /** Resource tags. */
+  tags?: L3NetworksCreateOrUpdateRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: L3NetworkPropertiesInput;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const L3NetworksCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    l3NetworkName: S.String.pipe(T.Label()),
+    tags: S.optional(L3NetworksCreateOrUpdateRequestTagsMap),
+    location: S.String,
+    properties: L3NetworkPropertiesInput,
+    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l3Networks/{l3NetworkName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "L3NetworksCreateOrUpdateRequest",
+}) as any as S.Schema<L3NetworksCreateOrUpdateRequest>;
+
+/** Resource tags. */
+export type L3NetworksCreateOrUpdateResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const L3NetworksCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<L3NetworksCreateOrUpdateResponseTagsMap>;
+
+export interface L3NetworksCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: L3NetworksCreateOrUpdateResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: L3NetworkProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const L3NetworksCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(L3NetworksCreateOrUpdateResponseTagsMap),
+    location: S.String,
+    properties: L3NetworkProperties,
+    etag: S.optional(S.String),
+    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+  }),
+).annotate({
+  identifier: "L3NetworksCreateOrUpdateResponse",
+}) as any as S.Schema<L3NetworksCreateOrUpdateResponse>;
+
+export interface ListAccessBridgeByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -14017,8 +9184,2116 @@ export interface TrunkedNetworksListByResourceGroupRequest {
   /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
   _skipToken?: string;
 }
-export const TrunkedNetworksListByResourceGroupRequest =
+export const ListAccessBridgeByResourceGroupRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      _top: S.optional(S.Number.pipe(T.Query("$top"))),
+      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/accessBridges",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListAccessBridgeByResourceGroupRequest",
+}) as any as S.Schema<ListAccessBridgeByResourceGroupRequest>;
+
+/** Resource tags. */
+export type AccessBridgeTagsMap = { [key: string]: string | undefined };
+export const AccessBridgeTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<AccessBridgeTagsMap>;
+
+/** AccessBridge represents a managed access bridge resource. */
+export interface AccessBridge {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: AccessBridgeTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: AccessBridgeProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const AccessBridge = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(AccessBridgeTagsMap),
+    location: S.String,
+    properties: AccessBridgeProperties,
+    etag: S.optional(S.String),
+    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+  }),
+).annotate({ identifier: "AccessBridge" }) as any as S.Schema<AccessBridge>;
+
+/** The AccessBridge items on this page */
+export type AccessBridgeListValueList = Array<AccessBridge>;
+export const AccessBridgeListValueList = /*@__PURE__*/ S.Array(
+  AccessBridge,
+) as any as S.Schema<AccessBridgeListValueList>;
+
+/** AccessBridgeList represents a paged list of access bridges. */
+export interface AccessBridgeList {
+  /** The AccessBridge items on this page */
+  value: AccessBridgeListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const AccessBridgeList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: AccessBridgeListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AccessBridgeList",
+}) as any as S.Schema<AccessBridgeList>;
+
+export interface ListAccessBridgeBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
+  _top?: number;
+  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
+  _skipToken?: string;
+}
+export const ListAccessBridgeBySubscriptionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      _top: S.optional(S.Number.pipe(T.Query("$top"))),
+      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/accessBridges",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListAccessBridgeBySubscriptionRequest",
+}) as any as S.Schema<ListAccessBridgeBySubscriptionRequest>;
+
+export interface ListAgentPoolByKubernetesClusterRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kubernetes cluster. */
+  kubernetesClusterName: string;
+  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
+  _top?: number;
+  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
+  _skipToken?: string;
+}
+export const ListAgentPoolByKubernetesClusterRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      kubernetesClusterName: S.String.pipe(T.Label()),
+      _top: S.optional(S.Number.pipe(T.Query("$top"))),
+      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}/agentPools",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListAgentPoolByKubernetesClusterRequest",
+}) as any as S.Schema<ListAgentPoolByKubernetesClusterRequest>;
+
+/** Resource tags. */
+export type AgentPoolTagsMap = { [key: string]: string | undefined };
+export const AgentPoolTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<AgentPoolTagsMap>;
+
+/** AgentPool represents the agent pool of Kubernetes cluster. */
+export interface AgentPool {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: AgentPoolTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: AgentPoolProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** The extended location of the resource. */
+  extendedLocation?: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const AgentPool = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(AgentPoolTagsMap),
+    location: S.String,
+    properties: AgentPoolProperties,
+    etag: S.optional(S.String),
+    extendedLocation: S.optional(
+      AzureResourceManagerCommonTypesExtendedLocation,
+    ),
+  }),
+).annotate({ identifier: "AgentPool" }) as any as S.Schema<AgentPool>;
+
+/** The AgentPool items on this page */
+export type AgentPoolListValueList = Array<AgentPool>;
+export const AgentPoolListValueList = /*@__PURE__*/ S.Array(
+  AgentPool,
+) as any as S.Schema<AgentPoolListValueList>;
+
+/** AgentPoolList represents a list of Kubernetes cluster agent pools. */
+export interface AgentPoolList {
+  /** The AgentPool items on this page */
+  value: AgentPoolListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const AgentPoolList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: AgentPoolListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "AgentPoolList" }) as any as S.Schema<AgentPoolList>;
+
+export interface ListBareMetalMachineByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
+  _top?: number;
+  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
+  _skipToken?: string;
+}
+export const ListBareMetalMachineByResourceGroupRequest =
   /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      _top: S.optional(S.Number.pipe(T.Query("$top"))),
+      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListBareMetalMachineByResourceGroupRequest",
+  }) as any as S.Schema<ListBareMetalMachineByResourceGroupRequest>;
+
+/** Resource tags. */
+export type BareMetalMachineTagsMap = { [key: string]: string | undefined };
+export const BareMetalMachineTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<BareMetalMachineTagsMap>;
+
+/** BareMetalMachine represents the physical machine in the rack. */
+export interface BareMetalMachine {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: BareMetalMachineTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: BareMetalMachineProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const BareMetalMachine = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(BareMetalMachineTagsMap),
+    location: S.String,
+    properties: BareMetalMachineProperties,
+    etag: S.optional(S.String),
+    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+  }),
+).annotate({
+  identifier: "BareMetalMachine",
+}) as any as S.Schema<BareMetalMachine>;
+
+/** The BareMetalMachine items on this page */
+export type BareMetalMachineListValueList = Array<BareMetalMachine>;
+export const BareMetalMachineListValueList = /*@__PURE__*/ S.Array(
+  BareMetalMachine,
+) as any as S.Schema<BareMetalMachineListValueList>;
+
+/** BareMetalMachineList represents a list of bare metal machines. */
+export interface BareMetalMachineList {
+  /** The BareMetalMachine items on this page */
+  value: BareMetalMachineListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const BareMetalMachineList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: BareMetalMachineListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "BareMetalMachineList",
+}) as any as S.Schema<BareMetalMachineList>;
+
+export interface ListBareMetalMachineBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
+  _top?: number;
+  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
+  _skipToken?: string;
+}
+export const ListBareMetalMachineBySubscriptionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      _top: S.optional(S.Number.pipe(T.Query("$top"))),
+      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/bareMetalMachines",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListBareMetalMachineBySubscriptionRequest",
+  }) as any as S.Schema<ListBareMetalMachineBySubscriptionRequest>;
+
+export interface ListBareMetalMachineKeySetByClusterRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
+  _top?: number;
+  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
+  _skipToken?: string;
+}
+export const ListBareMetalMachineKeySetByClusterRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+      _top: S.optional(S.Number.pipe(T.Query("$top"))),
+      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bareMetalMachineKeySets",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListBareMetalMachineKeySetByClusterRequest",
+  }) as any as S.Schema<ListBareMetalMachineKeySetByClusterRequest>;
+
+/** Resource tags. */
+export type BareMetalMachineKeySetTagsMap = {
+  [key: string]: string | undefined;
+};
+export const BareMetalMachineKeySetTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<BareMetalMachineKeySetTagsMap>;
+
+/** BareMetalMachineKeySet represents the bare metal machine key set. */
+export interface BareMetalMachineKeySet {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: BareMetalMachineKeySetTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: BareMetalMachineKeySetProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const BareMetalMachineKeySet = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(BareMetalMachineKeySetTagsMap),
+    location: S.String,
+    properties: BareMetalMachineKeySetProperties,
+    etag: S.optional(S.String),
+    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+  }),
+).annotate({
+  identifier: "BareMetalMachineKeySet",
+}) as any as S.Schema<BareMetalMachineKeySet>;
+
+/** The BareMetalMachineKeySet items on this page */
+export type BareMetalMachineKeySetListValueList = Array<BareMetalMachineKeySet>;
+export const BareMetalMachineKeySetListValueList = /*@__PURE__*/ S.Array(
+  BareMetalMachineKeySet,
+) as any as S.Schema<BareMetalMachineKeySetListValueList>;
+
+/** BareMetalMachineKeySetList represents a list of bare metal machine key sets. */
+export interface BareMetalMachineKeySetList {
+  /** The BareMetalMachineKeySet items on this page */
+  value: BareMetalMachineKeySetListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const BareMetalMachineKeySetList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: BareMetalMachineKeySetListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "BareMetalMachineKeySetList",
+}) as any as S.Schema<BareMetalMachineKeySetList>;
+
+export interface ListBmcKeySetByClusterRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
+  _top?: number;
+  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
+  _skipToken?: string;
+}
+export const ListBmcKeySetByClusterRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bmcKeySets",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListBmcKeySetByClusterRequest",
+}) as any as S.Schema<ListBmcKeySetByClusterRequest>;
+
+/** Resource tags. */
+export type BmcKeySetTagsMap = { [key: string]: string | undefined };
+export const BmcKeySetTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<BmcKeySetTagsMap>;
+
+/** BmcKeySet represents the baseboard management controller key set. */
+export interface BmcKeySet {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: BmcKeySetTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: BmcKeySetProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const BmcKeySet = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(BmcKeySetTagsMap),
+    location: S.String,
+    properties: BmcKeySetProperties,
+    etag: S.optional(S.String),
+    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+  }),
+).annotate({ identifier: "BmcKeySet" }) as any as S.Schema<BmcKeySet>;
+
+/** The BmcKeySet items on this page */
+export type BmcKeySetListValueList = Array<BmcKeySet>;
+export const BmcKeySetListValueList = /*@__PURE__*/ S.Array(
+  BmcKeySet,
+) as any as S.Schema<BmcKeySetListValueList>;
+
+/** BmcKeySetList represents a list of baseboard management controller key sets. */
+export interface BmcKeySetList {
+  /** The BmcKeySet items on this page */
+  value: BmcKeySetListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const BmcKeySetList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: BmcKeySetListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "BmcKeySetList" }) as any as S.Schema<BmcKeySetList>;
+
+export interface ListCloudServicesNetworkByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
+  _top?: number;
+  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
+  _skipToken?: string;
+}
+export const ListCloudServicesNetworkByResourceGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      _top: S.optional(S.Number.pipe(T.Query("$top"))),
+      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/cloudServicesNetworks",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListCloudServicesNetworkByResourceGroupRequest",
+  }) as any as S.Schema<ListCloudServicesNetworkByResourceGroupRequest>;
+
+/** Resource tags. */
+export type CloudServicesNetworkTagsMap = { [key: string]: string | undefined };
+export const CloudServicesNetworkTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<CloudServicesNetworkTagsMap>;
+
+/** Upon creation, the additional services that are provided by the platform will be allocated and represented in the status of this resource. All resources associated with this cloud services network will be part of the same layer 2 (L2) isolation domain. At least one service network must be created but may be reused across many virtual machines and/or Hybrid AKS clusters. */
+export interface CloudServicesNetwork {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: CloudServicesNetworkTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties?: CloudServicesNetworkProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const CloudServicesNetwork = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(CloudServicesNetworkTagsMap),
+    location: S.String,
+    properties: S.optional(CloudServicesNetworkProperties),
+    etag: S.optional(S.String),
+    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+  }),
+).annotate({
+  identifier: "CloudServicesNetwork",
+}) as any as S.Schema<CloudServicesNetwork>;
+
+/** The CloudServicesNetwork items on this page */
+export type CloudServicesNetworkListValueList = Array<CloudServicesNetwork>;
+export const CloudServicesNetworkListValueList = /*@__PURE__*/ S.Array(
+  CloudServicesNetwork,
+) as any as S.Schema<CloudServicesNetworkListValueList>;
+
+/** CloudServicesNetworkList represents a list of cloud services networks. */
+export interface CloudServicesNetworkList {
+  /** The CloudServicesNetwork items on this page */
+  value: CloudServicesNetworkListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const CloudServicesNetworkList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: CloudServicesNetworkListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CloudServicesNetworkList",
+}) as any as S.Schema<CloudServicesNetworkList>;
+
+export interface ListCloudServicesNetworkBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
+  _top?: number;
+  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
+  _skipToken?: string;
+}
+export const ListCloudServicesNetworkBySubscriptionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      _top: S.optional(S.Number.pipe(T.Query("$top"))),
+      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/cloudServicesNetworks",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListCloudServicesNetworkBySubscriptionRequest",
+  }) as any as S.Schema<ListCloudServicesNetworkBySubscriptionRequest>;
+
+export interface ListClusterByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
+  _top?: number;
+  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
+  _skipToken?: string;
+}
+export const ListClusterByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListClusterByResourceGroupRequest",
+}) as any as S.Schema<ListClusterByResourceGroupRequest>;
+
+/** Resource tags. */
+export type ClusterTagsMap = { [key: string]: string | undefined };
+export const ClusterTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ClusterTagsMap>;
+
+/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+export type ClusterIdentityUserAssignedIdentitiesMap = {
+  [key: string]: UserAssignedIdentity | undefined;
+};
+export const ClusterIdentityUserAssignedIdentitiesMap = /*@__PURE__*/ S.Record(
+  S.String,
+  UserAssignedIdentity,
+) as any as S.Schema<ClusterIdentityUserAssignedIdentitiesMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export interface ClusterIdentity {
+  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  principalId?: string;
+  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  tenantId?: string;
+  type: ManagedServiceIdentityType;
+  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+  userAssignedIdentities?: ClusterIdentityUserAssignedIdentitiesMap;
+}
+export const ClusterIdentity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    principalId: S.optional(S.String),
+    tenantId: S.optional(S.String),
+    type: ManagedServiceIdentityType,
+    userAssignedIdentities: S.optional(
+      ClusterIdentityUserAssignedIdentitiesMap,
+    ),
+  }),
+).annotate({
+  identifier: "ClusterIdentity",
+}) as any as S.Schema<ClusterIdentity>;
+
+/** Cluster represents the on-premises Network Cloud cluster. */
+export interface Cluster {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: ClusterTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: ClusterProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: ClusterIdentity;
+  /** The type (kind) of the cluster. When specified, the value must exactly match the kind configured on the cluster manager that manages the cluster. If omitted, the service will default the value to the kind value of the cluster manager. */
+  kind?: DeploymentType;
+}
+export const Cluster = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(ClusterTagsMap),
+    location: S.String,
+    properties: ClusterProperties,
+    etag: S.optional(S.String),
+    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+    identity: S.optional(ClusterIdentity),
+    kind: S.optional(DeploymentType),
+  }),
+).annotate({ identifier: "Cluster" }) as any as S.Schema<Cluster>;
+
+/** The Cluster items on this page */
+export type ClusterListValueList = Array<Cluster>;
+export const ClusterListValueList = /*@__PURE__*/ S.Array(
+  Cluster,
+) as any as S.Schema<ClusterListValueList>;
+
+/** ClusterList represents a list of clusters. */
+export interface ClusterList {
+  /** The Cluster items on this page */
+  value: ClusterListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ClusterList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ClusterListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "ClusterList" }) as any as S.Schema<ClusterList>;
+
+export interface ListClusterBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
+  _top?: number;
+  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
+  _skipToken?: string;
+}
+export const ListClusterBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/clusters",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListClusterBySubscriptionRequest",
+}) as any as S.Schema<ListClusterBySubscriptionRequest>;
+
+export interface ListClusterManagerByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
+  _top?: number;
+  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
+  _skipToken?: string;
+}
+export const ListClusterManagerByResourceGroupRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      _top: S.optional(S.Number.pipe(T.Query("$top"))),
+      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusterManagers",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListClusterManagerByResourceGroupRequest",
+}) as any as S.Schema<ListClusterManagerByResourceGroupRequest>;
+
+/** Resource tags. */
+export type ClusterManagerTagsMap = { [key: string]: string | undefined };
+export const ClusterManagerTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ClusterManagerTagsMap>;
+
+/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+export type ClusterManagerIdentityUserAssignedIdentitiesMap = {
+  [key: string]: UserAssignedIdentity | undefined;
+};
+export const ClusterManagerIdentityUserAssignedIdentitiesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    UserAssignedIdentity,
+  ) as any as S.Schema<ClusterManagerIdentityUserAssignedIdentitiesMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export interface ClusterManagerIdentity {
+  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  principalId?: string;
+  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  tenantId?: string;
+  type: ManagedServiceIdentityType;
+  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+  userAssignedIdentities?: ClusterManagerIdentityUserAssignedIdentitiesMap;
+}
+export const ClusterManagerIdentity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    principalId: S.optional(S.String),
+    tenantId: S.optional(S.String),
+    type: ManagedServiceIdentityType,
+    userAssignedIdentities: S.optional(
+      ClusterManagerIdentityUserAssignedIdentitiesMap,
+    ),
+  }),
+).annotate({
+  identifier: "ClusterManagerIdentity",
+}) as any as S.Schema<ClusterManagerIdentity>;
+
+/** ClusterManager represents a control-plane to manage one or more on-premises clusters. */
+export interface ClusterManager {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: ClusterManagerTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: ClusterManagerProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: ClusterManagerIdentity;
+  /** The kind of the cluster manager. */
+  kind?: DeploymentType;
+}
+export const ClusterManager = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(ClusterManagerTagsMap),
+    location: S.String,
+    properties: ClusterManagerProperties,
+    etag: S.optional(S.String),
+    identity: S.optional(ClusterManagerIdentity),
+    kind: S.optional(DeploymentType),
+  }),
+).annotate({ identifier: "ClusterManager" }) as any as S.Schema<ClusterManager>;
+
+/** The ClusterManager items on this page */
+export type ClusterManagerListValueList = Array<ClusterManager>;
+export const ClusterManagerListValueList = /*@__PURE__*/ S.Array(
+  ClusterManager,
+) as any as S.Schema<ClusterManagerListValueList>;
+
+/** ClusterManagerList represents a list of cluster manager objects. */
+export interface ClusterManagerList {
+  /** The ClusterManager items on this page */
+  value: ClusterManagerListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ClusterManagerList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ClusterManagerListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ClusterManagerList",
+}) as any as S.Schema<ClusterManagerList>;
+
+export interface ListClusterManagerBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
+  _top?: number;
+  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
+  _skipToken?: string;
+}
+export const ListClusterManagerBySubscriptionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      _top: S.optional(S.Number.pipe(T.Query("$top"))),
+      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/clusterManagers",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListClusterManagerBySubscriptionRequest",
+}) as any as S.Schema<ListClusterManagerBySubscriptionRequest>;
+
+export interface ListConsoleByVirtualMachineRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the virtual machine. */
+  virtualMachineName: string;
+  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
+  _top?: number;
+  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
+  _skipToken?: string;
+}
+export const ListConsoleByVirtualMachineRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    virtualMachineName: S.String.pipe(T.Label()),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/consoles",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListConsoleByVirtualMachineRequest",
+}) as any as S.Schema<ListConsoleByVirtualMachineRequest>;
+
+/** Resource tags. */
+export type ConsoleTagsMap = { [key: string]: string | undefined };
+export const ConsoleTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ConsoleTagsMap>;
+
+/** Console represents the console of an on-premises Network Cloud virtual machine. */
+export interface Console {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: ConsoleTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: ConsoleProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const Console = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(ConsoleTagsMap),
+    location: S.String,
+    properties: ConsoleProperties,
+    etag: S.optional(S.String),
+    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+  }),
+).annotate({ identifier: "Console" }) as any as S.Schema<Console>;
+
+/** The Console items on this page */
+export type ConsoleListValueList = Array<Console>;
+export const ConsoleListValueList = /*@__PURE__*/ S.Array(
+  Console,
+) as any as S.Schema<ConsoleListValueList>;
+
+/** ConsoleList represents a list of virtual machine consoles. */
+export interface ConsoleList {
+  /** The Console items on this page */
+  value: ConsoleListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ConsoleList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ConsoleListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "ConsoleList" }) as any as S.Schema<ConsoleList>;
+
+export interface ListKubernetesClusterByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
+  _top?: number;
+  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
+  _skipToken?: string;
+}
+export const ListKubernetesClusterByResourceGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      _top: S.optional(S.Number.pipe(T.Query("$top"))),
+      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListKubernetesClusterByResourceGroupRequest",
+  }) as any as S.Schema<ListKubernetesClusterByResourceGroupRequest>;
+
+/** Resource tags. */
+export type KubernetesClusterTagsMap = { [key: string]: string | undefined };
+export const KubernetesClusterTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<KubernetesClusterTagsMap>;
+
+/** KubernetesCluster represents the Kubernetes cluster hosted on Network Cloud. */
+export interface KubernetesCluster {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: KubernetesClusterTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: KubernetesClusterProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const KubernetesCluster = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(KubernetesClusterTagsMap),
+    location: S.String,
+    properties: KubernetesClusterProperties,
+    etag: S.optional(S.String),
+    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+  }),
+).annotate({
+  identifier: "KubernetesCluster",
+}) as any as S.Schema<KubernetesCluster>;
+
+/** The KubernetesCluster items on this page */
+export type KubernetesClusterListValueList = Array<KubernetesCluster>;
+export const KubernetesClusterListValueList = /*@__PURE__*/ S.Array(
+  KubernetesCluster,
+) as any as S.Schema<KubernetesClusterListValueList>;
+
+/** KubernetesClusterList represents a list of Kubernetes clusters. */
+export interface KubernetesClusterList {
+  /** The KubernetesCluster items on this page */
+  value: KubernetesClusterListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const KubernetesClusterList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: KubernetesClusterListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "KubernetesClusterList",
+}) as any as S.Schema<KubernetesClusterList>;
+
+export interface ListKubernetesClusterBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
+  _top?: number;
+  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
+  _skipToken?: string;
+}
+export const ListKubernetesClusterBySubscriptionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      _top: S.optional(S.Number.pipe(T.Query("$top"))),
+      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/kubernetesClusters",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListKubernetesClusterBySubscriptionRequest",
+  }) as any as S.Schema<ListKubernetesClusterBySubscriptionRequest>;
+
+export interface ListKubernetesClusterFeatureByKubernetesClusterRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kubernetes cluster. */
+  kubernetesClusterName: string;
+  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
+  _top?: number;
+  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
+  _skipToken?: string;
+}
+export const ListKubernetesClusterFeatureByKubernetesClusterRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      kubernetesClusterName: S.String.pipe(T.Label()),
+      _top: S.optional(S.Number.pipe(T.Query("$top"))),
+      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}/features",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListKubernetesClusterFeatureByKubernetesClusterRequest",
+  }) as any as S.Schema<ListKubernetesClusterFeatureByKubernetesClusterRequest>;
+
+/** Resource tags. */
+export type KubernetesClusterFeatureTagsMap = {
+  [key: string]: string | undefined;
+};
+export const KubernetesClusterFeatureTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<KubernetesClusterFeatureTagsMap>;
+
+/** KubernetesClusterFeature represents the feature of a Kubernetes cluster. */
+export interface KubernetesClusterFeature {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: KubernetesClusterFeatureTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties?: KubernetesClusterFeatureProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const KubernetesClusterFeature = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(KubernetesClusterFeatureTagsMap),
+    location: S.String,
+    properties: S.optional(KubernetesClusterFeatureProperties),
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "KubernetesClusterFeature",
+}) as any as S.Schema<KubernetesClusterFeature>;
+
+/** The KubernetesClusterFeature items on this page */
+export type KubernetesClusterFeatureListValueList =
+  Array<KubernetesClusterFeature>;
+export const KubernetesClusterFeatureListValueList = /*@__PURE__*/ S.Array(
+  KubernetesClusterFeature,
+) as any as S.Schema<KubernetesClusterFeatureListValueList>;
+
+/** KubernetesClusterFeatureList represents the list of Kubernetes cluster feature resources. */
+export interface KubernetesClusterFeatureList {
+  /** The KubernetesClusterFeature items on this page */
+  value: KubernetesClusterFeatureListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const KubernetesClusterFeatureList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: KubernetesClusterFeatureListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "KubernetesClusterFeatureList",
+}) as any as S.Schema<KubernetesClusterFeatureList>;
+
+export interface ListKubernetesVersionByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
+  _top?: number;
+  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
+  _skipToken?: string;
+}
+export const ListKubernetesVersionByResourceGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      _top: S.optional(S.Number.pipe(T.Query("$top"))),
+      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesVersions",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListKubernetesVersionByResourceGroupRequest",
+  }) as any as S.Schema<ListKubernetesVersionByResourceGroupRequest>;
+
+/** Resource tags. */
+export type KubernetesVersionTagsMap = { [key: string]: string | undefined };
+export const KubernetesVersionTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<KubernetesVersionTagsMap>;
+
+/** KubernetesVersion represents the available Kubernetes versions for a cluster. */
+export interface KubernetesVersion {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: KubernetesVersionTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: KubernetesVersionProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const KubernetesVersion = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(KubernetesVersionTagsMap),
+    location: S.String,
+    properties: KubernetesVersionProperties,
+    etag: S.optional(S.String),
+    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+  }),
+).annotate({
+  identifier: "KubernetesVersion",
+}) as any as S.Schema<KubernetesVersion>;
+
+/** The KubernetesVersion items on this page */
+export type KubernetesVersionListValueList = Array<KubernetesVersion>;
+export const KubernetesVersionListValueList = /*@__PURE__*/ S.Array(
+  KubernetesVersion,
+) as any as S.Schema<KubernetesVersionListValueList>;
+
+/** KubernetesVersionList represents a list of Kubernetes version resources. */
+export interface KubernetesVersionList {
+  /** The KubernetesVersion items on this page */
+  value: KubernetesVersionListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const KubernetesVersionList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: KubernetesVersionListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "KubernetesVersionList",
+}) as any as S.Schema<KubernetesVersionList>;
+
+export interface ListKubernetesVersionBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
+  _top?: number;
+  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
+  _skipToken?: string;
+}
+export const ListKubernetesVersionBySubscriptionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      _top: S.optional(S.Number.pipe(T.Query("$top"))),
+      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/kubernetesVersions",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListKubernetesVersionBySubscriptionRequest",
+  }) as any as S.Schema<ListKubernetesVersionBySubscriptionRequest>;
+
+export interface ListL2NetworkByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
+  _top?: number;
+  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
+  _skipToken?: string;
+}
+export const ListL2NetworkByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l2Networks",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListL2NetworkByResourceGroupRequest",
+}) as any as S.Schema<ListL2NetworkByResourceGroupRequest>;
+
+/** Resource tags. */
+export type L2NetworkTagsMap = { [key: string]: string | undefined };
+export const L2NetworkTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<L2NetworkTagsMap>;
+
+/** L2Network represents a network that utilizes a single isolation domain set up for layer-2 resources. */
+export interface L2Network {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: L2NetworkTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: L2NetworkProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const L2Network = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(L2NetworkTagsMap),
+    location: S.String,
+    properties: L2NetworkProperties,
+    etag: S.optional(S.String),
+    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+  }),
+).annotate({ identifier: "L2Network" }) as any as S.Schema<L2Network>;
+
+/** The L2Network items on this page */
+export type L2NetworkListValueList = Array<L2Network>;
+export const L2NetworkListValueList = /*@__PURE__*/ S.Array(
+  L2Network,
+) as any as S.Schema<L2NetworkListValueList>;
+
+/** L2NetworkList represents a list of L2 networks. */
+export interface L2NetworkList {
+  /** The L2Network items on this page */
+  value: L2NetworkListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const L2NetworkList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: L2NetworkListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "L2NetworkList" }) as any as S.Schema<L2NetworkList>;
+
+export interface ListL2NetworkBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
+  _top?: number;
+  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
+  _skipToken?: string;
+}
+export const ListL2NetworkBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/l2Networks",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListL2NetworkBySubscriptionRequest",
+}) as any as S.Schema<ListL2NetworkBySubscriptionRequest>;
+
+export interface ListL3NetworkByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
+  _top?: number;
+  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
+  _skipToken?: string;
+}
+export const ListL3NetworkByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l3Networks",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListL3NetworkByResourceGroupRequest",
+}) as any as S.Schema<ListL3NetworkByResourceGroupRequest>;
+
+/** Resource tags. */
+export type L3NetworkTagsMap = { [key: string]: string | undefined };
+export const L3NetworkTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<L3NetworkTagsMap>;
+
+/** L3Network represents a network that utilizes a single isolation domain set up for layer-3 resources. */
+export interface L3Network {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: L3NetworkTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: L3NetworkProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const L3Network = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(L3NetworkTagsMap),
+    location: S.String,
+    properties: L3NetworkProperties,
+    etag: S.optional(S.String),
+    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+  }),
+).annotate({ identifier: "L3Network" }) as any as S.Schema<L3Network>;
+
+/** The L3Network items on this page */
+export type L3NetworkListValueList = Array<L3Network>;
+export const L3NetworkListValueList = /*@__PURE__*/ S.Array(
+  L3Network,
+) as any as S.Schema<L3NetworkListValueList>;
+
+/** L3NetworkList represents a list of L3 networks. */
+export interface L3NetworkList {
+  /** The L3Network items on this page */
+  value: L3NetworkListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const L3NetworkList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: L3NetworkListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "L3NetworkList" }) as any as S.Schema<L3NetworkList>;
+
+export interface ListL3NetworkBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
+  _top?: number;
+  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
+  _skipToken?: string;
+}
+export const ListL3NetworkBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/l3Networks",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListL3NetworkBySubscriptionRequest",
+}) as any as S.Schema<ListL3NetworkBySubscriptionRequest>;
+
+export interface ListMetricsConfigurationByClusterRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
+  _top?: number;
+  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
+  _skipToken?: string;
+}
+export const ListMetricsConfigurationByClusterRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+      _top: S.optional(S.Number.pipe(T.Query("$top"))),
+      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/metricsConfigurations",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListMetricsConfigurationByClusterRequest",
+}) as any as S.Schema<ListMetricsConfigurationByClusterRequest>;
+
+/** Resource tags. */
+export type ClusterMetricsConfigurationTagsMap = {
+  [key: string]: string | undefined;
+};
+export const ClusterMetricsConfigurationTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ClusterMetricsConfigurationTagsMap>;
+
+/** ClusterMetricsConfiguration represents the metrics configuration of an on-premises Network Cloud cluster. */
+export interface ClusterMetricsConfiguration {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: ClusterMetricsConfigurationTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: ClusterMetricsConfigurationProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const ClusterMetricsConfiguration = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(ClusterMetricsConfigurationTagsMap),
+    location: S.String,
+    properties: ClusterMetricsConfigurationProperties,
+    etag: S.optional(S.String),
+    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+  }),
+).annotate({
+  identifier: "ClusterMetricsConfiguration",
+}) as any as S.Schema<ClusterMetricsConfiguration>;
+
+/** The ClusterMetricsConfiguration items on this page */
+export type ClusterMetricsConfigurationListValueList =
+  Array<ClusterMetricsConfiguration>;
+export const ClusterMetricsConfigurationListValueList = /*@__PURE__*/ S.Array(
+  ClusterMetricsConfiguration,
+) as any as S.Schema<ClusterMetricsConfigurationListValueList>;
+
+/** ClusterMetricsConfigurationList represents a list of metrics configuration of the cluster. */
+export interface ClusterMetricsConfigurationList {
+  /** The ClusterMetricsConfiguration items on this page */
+  value: ClusterMetricsConfigurationListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ClusterMetricsConfigurationList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ClusterMetricsConfigurationListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ClusterMetricsConfigurationList",
+}) as any as S.Schema<ClusterMetricsConfigurationList>;
+
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.NetworkCloud/operations",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
+
+/** Localized display information for this particular operation. */
+export interface OperationDisplay {
+  /** The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring Insights" or "Microsoft Compute". */
+  provider?: string;
+  /** The localized friendly name of the resource type related to this operation. E.g. "Virtual Machines" or "Job Schedule Collections". */
+  resource?: string;
+  /** The concise, localized friendly name for the operation; suitable for dropdowns. E.g. "Create or Update Virtual Machine", "Restart Virtual Machine". */
+  operation?: string;
+  /** The short, localized friendly description of the operation; suitable for tool tips and detailed views. */
+  description?: string;
+}
+export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provider: S.optional(S.String),
+    resource: S.optional(S.String),
+    operation: S.optional(S.String),
+    description: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationDisplay",
+}) as any as S.Schema<OperationDisplay>;
+
+/** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
+export type OperationOrigin = "user" | "system" | "user,system";
+export const OperationOrigin = /*@__PURE__*/ S.String;
+
+/** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
+export type OperationActionType = "Internal";
+export const OperationActionType = /*@__PURE__*/ S.String;
+
+/** Details of a REST API operation, returned from the Resource Provider Operations API */
+export interface Operation {
+  /** The name of the operation, as per Resource-Based Access Control (RBAC). Examples: "Microsoft.Compute/virtualMachines/write", "Microsoft.Compute/virtualMachines/capture/action" */
+  name?: string;
+  /** Whether the operation applies to data-plane. This is "true" for data-plane operations and "false" for ARM/control-plane operations. */
+  isDataAction?: boolean;
+  /** Localized display information for this particular operation. */
+  display?: OperationDisplay;
+  /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
+  origin?: OperationOrigin;
+  /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
+  actionType?: OperationActionType;
+}
+export const Operation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    isDataAction: S.optional(S.Boolean),
+    display: S.optional(OperationDisplay),
+    origin: S.optional(OperationOrigin),
+    actionType: S.optional(OperationActionType),
+  }),
+).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
+
+/** List of operations supported by the resource provider */
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
+  Operation,
+) as any as S.Schema<ListOperationsResponseValueList>;
+
+export interface ListOperationsResponse {
+  /** List of operations supported by the resource provider */
+  value?: ListOperationsResponseValueList;
+  /** URL to get the next set of operation list results (if there are any). */
+  nextLink?: string;
+}
+export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(ListOperationsResponseValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ListOperationsResponse",
+}) as any as S.Schema<ListOperationsResponse>;
+
+export interface ListRackByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
+  _top?: number;
+  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
+  _skipToken?: string;
+}
+export const ListRackByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/racks",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListRackByResourceGroupRequest",
+}) as any as S.Schema<ListRackByResourceGroupRequest>;
+
+/** Resource tags. */
+export type RackTagsMap = { [key: string]: string | undefined };
+export const RackTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<RackTagsMap>;
+
+/** Rack represents the hardware of the rack and is dependent upon the cluster for lifecycle. */
+export interface Rack {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: RackTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: RackProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const Rack = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(RackTagsMap),
+    location: S.String,
+    properties: RackProperties,
+    etag: S.optional(S.String),
+    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+  }),
+).annotate({ identifier: "Rack" }) as any as S.Schema<Rack>;
+
+/** The Rack items on this page */
+export type RackListValueList = Array<Rack>;
+export const RackListValueList = /*@__PURE__*/ S.Array(
+  Rack,
+) as any as S.Schema<RackListValueList>;
+
+/** RackList represents a list of racks. */
+export interface RackList {
+  /** The Rack items on this page */
+  value: RackListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const RackList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: RackListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "RackList" }) as any as S.Schema<RackList>;
+
+export interface ListRackBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
+  _top?: number;
+  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
+  _skipToken?: string;
+}
+export const ListRackBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/racks",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListRackBySubscriptionRequest",
+}) as any as S.Schema<ListRackBySubscriptionRequest>;
+
+export interface ListRackSkusBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+}
+export const ListRackSkusBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/rackSkus",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListRackSkusBySubscriptionRequest",
+}) as any as S.Schema<ListRackSkusBySubscriptionRequest>;
+
+/** RackSku represents the SKU information of the rack. */
+export interface RackSku {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The list of the resource properties. */
+  properties: RackSkuProperties;
+}
+export const RackSku = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: RackSkuProperties,
+  }),
+).annotate({ identifier: "RackSku" }) as any as S.Schema<RackSku>;
+
+/** The RackSku items on this page */
+export type RackSkuListValueList = Array<RackSku>;
+export const RackSkuListValueList = /*@__PURE__*/ S.Array(
+  RackSku,
+) as any as S.Schema<RackSkuListValueList>;
+
+/** RackSkuList represents a list of rack SKUs. */
+export interface RackSkuList {
+  /** The RackSku items on this page */
+  value: RackSkuListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const RackSkuList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: RackSkuListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "RackSkuList" }) as any as S.Schema<RackSkuList>;
+
+export interface ListStorageApplianceByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
+  _top?: number;
+  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
+  _skipToken?: string;
+}
+export const ListStorageApplianceByResourceGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      _top: S.optional(S.Number.pipe(T.Query("$top"))),
+      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListStorageApplianceByResourceGroupRequest",
+  }) as any as S.Schema<ListStorageApplianceByResourceGroupRequest>;
+
+/** Resource tags. */
+export type StorageApplianceTagsMap = { [key: string]: string | undefined };
+export const StorageApplianceTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<StorageApplianceTagsMap>;
+
+/** StorageAppliance represents on-premises Network Cloud storage appliance. */
+export interface StorageAppliance {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: StorageApplianceTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: StorageApplianceProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const StorageAppliance = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(StorageApplianceTagsMap),
+    location: S.String,
+    properties: StorageApplianceProperties,
+    etag: S.optional(S.String),
+    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+  }),
+).annotate({
+  identifier: "StorageAppliance",
+}) as any as S.Schema<StorageAppliance>;
+
+/** The StorageAppliance items on this page */
+export type StorageApplianceListValueList = Array<StorageAppliance>;
+export const StorageApplianceListValueList = /*@__PURE__*/ S.Array(
+  StorageAppliance,
+) as any as S.Schema<StorageApplianceListValueList>;
+
+/** StorageApplianceList represents a list of storage appliances. */
+export interface StorageApplianceList {
+  /** The StorageAppliance items on this page */
+  value: StorageApplianceListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const StorageApplianceList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: StorageApplianceListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "StorageApplianceList",
+}) as any as S.Schema<StorageApplianceList>;
+
+export interface ListStorageApplianceBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
+  _top?: number;
+  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
+  _skipToken?: string;
+}
+export const ListStorageApplianceBySubscriptionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      _top: S.optional(S.Number.pipe(T.Query("$top"))),
+      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/storageAppliances",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListStorageApplianceBySubscriptionRequest",
+  }) as any as S.Schema<ListStorageApplianceBySubscriptionRequest>;
+
+export interface ListTrunkedNetworkByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
+  _top?: number;
+  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
+  _skipToken?: string;
+}
+export const ListTrunkedNetworkByResourceGroupRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
@@ -14032,9 +11307,9 @@ export const TrunkedNetworksListByResourceGroupRequest =
         apiVersion: "2026-07-01",
       }),
     ),
-  ).annotate({
-    identifier: "TrunkedNetworksListByResourceGroupRequest",
-  }) as any as S.Schema<TrunkedNetworksListByResourceGroupRequest>;
+).annotate({
+  identifier: "ListTrunkedNetworkByResourceGroupRequest",
+}) as any as S.Schema<ListTrunkedNetworkByResourceGroupRequest>;
 
 /** Resource tags. */
 export type TrunkedNetworkTagsMap = { [key: string]: string | undefined };
@@ -14100,7 +11375,7 @@ export const TrunkedNetworkList = /*@__PURE__*/ S.suspend(() =>
   identifier: "TrunkedNetworkList",
 }) as any as S.Schema<TrunkedNetworkList>;
 
-export interface TrunkedNetworksListBySubscriptionRequest {
+export interface ListTrunkedNetworkBySubscriptionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The maximum number of resources to return from the operation. Example: '$top=10'. */
@@ -14108,7 +11383,7 @@ export interface TrunkedNetworksListBySubscriptionRequest {
   /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
   _skipToken?: string;
 }
-export const TrunkedNetworksListBySubscriptionRequest = /*@__PURE__*/ S.suspend(
+export const ListTrunkedNetworkBySubscriptionRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -14123,56 +11398,80 @@ export const TrunkedNetworksListBySubscriptionRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "TrunkedNetworksListBySubscriptionRequest",
-}) as any as S.Schema<TrunkedNetworksListBySubscriptionRequest>;
+  identifier: "ListTrunkedNetworkBySubscriptionRequest",
+}) as any as S.Schema<ListTrunkedNetworkBySubscriptionRequest>;
 
-/** Resource tags. */
-export type TrunkedNetworksUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const TrunkedNetworksUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<TrunkedNetworksUpdateRequestTagsMap>;
-
-export interface TrunkedNetworksUpdateRequest {
+export interface ListVirtualMachineByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** The name of the trunked network. */
-  trunkedNetworkName: string;
-  /** Resource tags. */
-  tags?: TrunkedNetworksUpdateRequestTagsMap;
+  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
+  _top?: number;
+  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
+  _skipToken?: string;
 }
-export const TrunkedNetworksUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    trunkedNetworkName: S.String.pipe(T.Label()),
-    tags: S.optional(TrunkedNetworksUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/trunkedNetworks/{trunkedNetworkName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
+export const ListVirtualMachineByResourceGroupRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      _top: S.optional(S.Number.pipe(T.Query("$top"))),
+      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
 ).annotate({
-  identifier: "TrunkedNetworksUpdateRequest",
-}) as any as S.Schema<TrunkedNetworksUpdateRequest>;
+  identifier: "ListVirtualMachineByResourceGroupRequest",
+}) as any as S.Schema<ListVirtualMachineByResourceGroupRequest>;
 
 /** Resource tags. */
-export type TrunkedNetworksUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const TrunkedNetworksUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type VirtualMachineTagsMap = { [key: string]: string | undefined };
+export const VirtualMachineTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<TrunkedNetworksUpdateResponseTagsMap>;
+) as any as S.Schema<VirtualMachineTagsMap>;
 
-export interface TrunkedNetworksUpdateResponse {
+/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+export type VirtualMachineIdentityUserAssignedIdentitiesMap = {
+  [key: string]: UserAssignedIdentity | undefined;
+};
+export const VirtualMachineIdentityUserAssignedIdentitiesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    UserAssignedIdentity,
+  ) as any as S.Schema<VirtualMachineIdentityUserAssignedIdentitiesMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export interface VirtualMachineIdentity {
+  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  principalId?: string;
+  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  tenantId?: string;
+  type: ManagedServiceIdentityType;
+  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+  userAssignedIdentities?: VirtualMachineIdentityUserAssignedIdentitiesMap;
+}
+export const VirtualMachineIdentity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    principalId: S.optional(S.String),
+    tenantId: S.optional(S.String),
+    type: ManagedServiceIdentityType,
+    userAssignedIdentities: S.optional(
+      VirtualMachineIdentityUserAssignedIdentitiesMap,
+    ),
+  }),
+).annotate({
+  identifier: "VirtualMachineIdentity",
+}) as any as S.Schema<VirtualMachineIdentity>;
+
+/** VirtualMachine represents the on-premises Network Cloud virtual machine. */
+export interface VirtualMachine {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -14182,7 +11481,1152 @@ export interface TrunkedNetworksUpdateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: TrunkedNetworksUpdateResponseTagsMap;
+  tags?: VirtualMachineTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: VirtualMachineProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: VirtualMachineIdentity;
+}
+export const VirtualMachine = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(VirtualMachineTagsMap),
+    location: S.String,
+    properties: VirtualMachineProperties,
+    etag: S.optional(S.String),
+    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+    identity: S.optional(VirtualMachineIdentity),
+  }),
+).annotate({ identifier: "VirtualMachine" }) as any as S.Schema<VirtualMachine>;
+
+/** The VirtualMachine items on this page */
+export type VirtualMachineListValueList = Array<VirtualMachine>;
+export const VirtualMachineListValueList = /*@__PURE__*/ S.Array(
+  VirtualMachine,
+) as any as S.Schema<VirtualMachineListValueList>;
+
+/** VirtualMachineList represents a list of virtual machines. */
+export interface VirtualMachineList {
+  /** The VirtualMachine items on this page */
+  value: VirtualMachineListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const VirtualMachineList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: VirtualMachineListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "VirtualMachineList",
+}) as any as S.Schema<VirtualMachineList>;
+
+export interface ListVirtualMachineBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
+  _top?: number;
+  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
+  _skipToken?: string;
+}
+export const ListVirtualMachineBySubscriptionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      _top: S.optional(S.Number.pipe(T.Query("$top"))),
+      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/virtualMachines",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListVirtualMachineBySubscriptionRequest",
+}) as any as S.Schema<ListVirtualMachineBySubscriptionRequest>;
+
+export interface ListVolumeByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
+  _top?: number;
+  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
+  _skipToken?: string;
+}
+export const ListVolumeByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/volumes",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListVolumeByResourceGroupRequest",
+}) as any as S.Schema<ListVolumeByResourceGroupRequest>;
+
+/** Resource tags. */
+export type VolumeTagsMap = { [key: string]: string | undefined };
+export const VolumeTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<VolumeTagsMap>;
+
+/** Volume represents storage made available for use by resources running on the cluster. */
+export interface Volume {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: VolumeTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: VolumeProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const Volume = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(VolumeTagsMap),
+    location: S.String,
+    properties: VolumeProperties,
+    etag: S.optional(S.String),
+    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+  }),
+).annotate({ identifier: "Volume" }) as any as S.Schema<Volume>;
+
+/** The Volume items on this page */
+export type VolumeListValueList = Array<Volume>;
+export const VolumeListValueList = /*@__PURE__*/ S.Array(
+  Volume,
+) as any as S.Schema<VolumeListValueList>;
+
+/** VolumeList represents a list of volumes. */
+export interface VolumeList {
+  /** The Volume items on this page */
+  value: VolumeListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const VolumeList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: VolumeListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "VolumeList" }) as any as S.Schema<VolumeList>;
+
+export interface ListVolumeBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
+  _top?: number;
+  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
+  _skipToken?: string;
+}
+export const ListVolumeBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/volumes",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListVolumeBySubscriptionRequest",
+}) as any as S.Schema<ListVolumeBySubscriptionRequest>;
+
+/** Resource tags. */
+export type MetricsConfigurationsCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const MetricsConfigurationsCreateOrUpdateRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<MetricsConfigurationsCreateOrUpdateRequestTagsMap>;
+
+/** The list of metric names that have been chosen to be enabled in addition to the core set of enabled metrics. */
+export type ClusterMetricsConfigurationPropertiesInputEnabledMetricsList =
+  Array<string>;
+export const ClusterMetricsConfigurationPropertiesInputEnabledMetricsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ClusterMetricsConfigurationPropertiesInputEnabledMetricsList>;
+
+/** ClusterMetricsConfigurationProperties represents the properties of metrics configuration for the cluster. */
+export interface ClusterMetricsConfigurationPropertiesInput {
+  /** The list of metric names that have been chosen to be enabled in addition to the core set of enabled metrics. */
+  enabledMetrics?: ClusterMetricsConfigurationPropertiesInputEnabledMetricsList;
+  /** The interval in minutes by which metrics will be collected. */
+  collectionInterval: number;
+}
+export const ClusterMetricsConfigurationPropertiesInput =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      enabledMetrics: S.optional(
+        ClusterMetricsConfigurationPropertiesInputEnabledMetricsList,
+      ),
+      collectionInterval: S.Number,
+    }),
+  ).annotate({
+    identifier: "ClusterMetricsConfigurationPropertiesInput",
+  }) as any as S.Schema<ClusterMetricsConfigurationPropertiesInput>;
+
+export interface MetricsConfigurationsCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The name of the metrics configuration for the cluster. */
+  metricsConfigurationName: string;
+  /** Resource tags. */
+  tags?: MetricsConfigurationsCreateOrUpdateRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: ClusterMetricsConfigurationPropertiesInput;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const MetricsConfigurationsCreateOrUpdateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+      metricsConfigurationName: S.String.pipe(T.Label()),
+      tags: S.optional(MetricsConfigurationsCreateOrUpdateRequestTagsMap),
+      location: S.String,
+      properties: ClusterMetricsConfigurationPropertiesInput,
+      extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/metricsConfigurations/{metricsConfigurationName}",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "MetricsConfigurationsCreateOrUpdateRequest",
+  }) as any as S.Schema<MetricsConfigurationsCreateOrUpdateRequest>;
+
+/** Resource tags. */
+export type MetricsConfigurationsCreateOrUpdateResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const MetricsConfigurationsCreateOrUpdateResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<MetricsConfigurationsCreateOrUpdateResponseTagsMap>;
+
+export interface MetricsConfigurationsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: MetricsConfigurationsCreateOrUpdateResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: ClusterMetricsConfigurationProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const MetricsConfigurationsCreateOrUpdateResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(MetricsConfigurationsCreateOrUpdateResponseTagsMap),
+      location: S.String,
+      properties: ClusterMetricsConfigurationProperties,
+      etag: S.optional(S.String),
+      extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+    }),
+  ).annotate({
+    identifier: "MetricsConfigurationsCreateOrUpdateResponse",
+  }) as any as S.Schema<MetricsConfigurationsCreateOrUpdateResponse>;
+
+/** Resource tags. */
+export type RacksCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const RacksCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<RacksCreateOrUpdateRequestTagsMap>;
+
+/** RackProperties represents the properties of the rack. */
+export interface RackPropertiesInput {
+  /** The value that will be used for machines in this rack to represent the availability zones that can be referenced by Hybrid AKS Clusters for node arrangement. */
+  availabilityZone: string;
+  /** The free-form description of the rack location. (e.g. "DTN Datacenter, Floor 3, Isle 9, Rack 2B") */
+  rackLocation: string;
+  /** The unique identifier for the rack within Network Cloud cluster. An alternate unique alphanumeric value other than a serial number may be provided if desired. */
+  rackSerialNumber: string;
+  /** The SKU for the rack. */
+  rackSkuId: string;
+}
+export const RackPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    availabilityZone: S.String,
+    rackLocation: S.String,
+    rackSerialNumber: S.String,
+    rackSkuId: S.String,
+  }),
+).annotate({
+  identifier: "RackPropertiesInput",
+}) as any as S.Schema<RackPropertiesInput>;
+
+export interface RacksCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the rack. */
+  rackName: string;
+  /** Resource tags. */
+  tags?: RacksCreateOrUpdateRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: RackPropertiesInput;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const RacksCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    rackName: S.String.pipe(T.Label()),
+    tags: S.optional(RacksCreateOrUpdateRequestTagsMap),
+    location: S.String,
+    properties: RackPropertiesInput,
+    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/racks/{rackName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "RacksCreateOrUpdateRequest",
+}) as any as S.Schema<RacksCreateOrUpdateRequest>;
+
+/** Resource tags. */
+export type RacksCreateOrUpdateResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const RacksCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<RacksCreateOrUpdateResponseTagsMap>;
+
+export interface RacksCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: RacksCreateOrUpdateResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: RackProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const RacksCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(RacksCreateOrUpdateResponseTagsMap),
+    location: S.String,
+    properties: RackProperties,
+    etag: S.optional(S.String),
+    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+  }),
+).annotate({
+  identifier: "RacksCreateOrUpdateResponse",
+}) as any as S.Schema<RacksCreateOrUpdateResponse>;
+
+/** The safeguard mode to use for the replace action, where None indicates to bypass safeguards and All indicates to utilize all safeguards. */
+export type ReplaceBareMetalMachineRequestSafeguardMode = "All" | "None";
+export const ReplaceBareMetalMachineRequestSafeguardMode =
+  /*@__PURE__*/ S.String;
+
+/** The indicator of whether to bypass clearing storage while replacing a bare metal machine. */
+export type ReplaceBareMetalMachineRequestStoragePolicy =
+  | "Preserve"
+  | "DiscardAll";
+export const ReplaceBareMetalMachineRequestStoragePolicy =
+  /*@__PURE__*/ S.String;
+
+export interface ReplaceBareMetalMachineRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the bare metal machine. */
+  bareMetalMachineName: string;
+  /** The credentials of the baseboard management controller on this bare metal machine. The password field is expected to be an Azure Key Vault key URL. Until the cluster is converted to utilize managed identity by setting the secret archive settings, the actual password value should be provided instead. */
+  bmcCredentials?: AdministrativeCredentials;
+  /** The MAC address of the BMC device. */
+  bmcMacAddress?: string;
+  /** The MAC address of a NIC connected to the PXE network. */
+  bootMacAddress?: string;
+  /** The OS-level hostname assigned to this machine. */
+  machineName?: string;
+  /** The safeguard mode to use for the replace action, where None indicates to bypass safeguards and All indicates to utilize all safeguards. */
+  safeguardMode?: ReplaceBareMetalMachineRequestSafeguardMode | (string & {});
+  /** The serial number of the bare metal machine. */
+  serialNumber?: string;
+  /** The indicator of whether to bypass clearing storage while replacing a bare metal machine. */
+  storagePolicy?: ReplaceBareMetalMachineRequestStoragePolicy | (string & {});
+}
+export const ReplaceBareMetalMachineRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    bareMetalMachineName: S.String.pipe(T.Label()),
+    bmcCredentials: S.optional(AdministrativeCredentials),
+    bmcMacAddress: S.optional(S.String),
+    bootMacAddress: S.optional(S.String),
+    machineName: S.optional(S.String),
+    safeguardMode: S.optional(ReplaceBareMetalMachineRequestSafeguardMode),
+    serialNumber: S.optional(S.String),
+    storagePolicy: S.optional(ReplaceBareMetalMachineRequestStoragePolicy),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/replace",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ReplaceBareMetalMachineRequest",
+}) as any as S.Schema<ReplaceBareMetalMachineRequest>;
+
+export interface ReplaceBareMetalMachineResponse {}
+export const ReplaceBareMetalMachineResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "ReplaceBareMetalMachineResponse",
+}) as any as S.Schema<ReplaceBareMetalMachineResponse>;
+
+export interface RestartBareMetalMachineRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the bare metal machine. */
+  bareMetalMachineName: string;
+}
+export const RestartBareMetalMachineRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    bareMetalMachineName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/restart",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "RestartBareMetalMachineRequest",
+}) as any as S.Schema<RestartBareMetalMachineRequest>;
+
+export interface RestartBareMetalMachineResponse {}
+export const RestartBareMetalMachineResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "RestartBareMetalMachineResponse",
+}) as any as S.Schema<RestartBareMetalMachineResponse>;
+
+export interface RestartKubernetesClusterNodeRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kubernetes cluster. */
+  kubernetesClusterName: string;
+  /** The name of the node to restart. */
+  nodeName: string;
+}
+export const RestartKubernetesClusterNodeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    kubernetesClusterName: S.String.pipe(T.Label()),
+    nodeName: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}/restartNode",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "RestartKubernetesClusterNodeRequest",
+}) as any as S.Schema<RestartKubernetesClusterNodeRequest>;
+
+export interface RestartKubernetesClusterNodeResponse {}
+export const RestartKubernetesClusterNodeResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "RestartKubernetesClusterNodeResponse",
+}) as any as S.Schema<RestartKubernetesClusterNodeResponse>;
+
+export interface RestartVirtualMachineRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the virtual machine. */
+  virtualMachineName: string;
+}
+export const RestartVirtualMachineRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    virtualMachineName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/restart",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "RestartVirtualMachineRequest",
+}) as any as S.Schema<RestartVirtualMachineRequest>;
+
+export interface RestartVirtualMachineResponse {}
+export const RestartVirtualMachineResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "RestartVirtualMachineResponse",
+}) as any as S.Schema<RestartVirtualMachineResponse>;
+
+/** The list of credential names for the credentials to rotate. */
+export type RotateClusterCredentialRequestCredentialsList = Array<string>;
+export const RotateClusterCredentialRequestCredentialsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<RotateClusterCredentialRequestCredentialsList>;
+
+export interface RotateClusterCredentialRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The list of credential names for the credentials to rotate. */
+  credentials: RotateClusterCredentialRequestCredentialsList;
+}
+export const RotateClusterCredentialRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    credentials: RotateClusterCredentialRequestCredentialsList,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/rotateCredential",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "RotateClusterCredentialRequest",
+}) as any as S.Schema<RotateClusterCredentialRequest>;
+
+export interface RotateClusterCredentialResponse {}
+export const RotateClusterCredentialResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "RotateClusterCredentialResponse",
+}) as any as S.Schema<RotateClusterCredentialResponse>;
+
+/** The list of string arguments that will be passed to the script in order as separate arguments. */
+export type RunBareMetalMachineCommandRequestArgumentsList = Array<string>;
+export const RunBareMetalMachineCommandRequestArgumentsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<RunBareMetalMachineCommandRequestArgumentsList>;
+
+export interface RunBareMetalMachineCommandRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the bare metal machine. */
+  bareMetalMachineName: string;
+  /** The list of string arguments that will be passed to the script in order as separate arguments. */
+  arguments?: RunBareMetalMachineCommandRequestArgumentsList;
+  /** The maximum time the script is allowed to run. If the execution time exceeds the maximum, the script will be stopped, any output produced until then will be captured, and the exit code matching a timeout will be returned (252). */
+  limitTimeSeconds: number;
+  /** The base64 encoded script to execute on the bare metal machine. */
+  script: string;
+}
+export const RunBareMetalMachineCommandRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    bareMetalMachineName: S.String.pipe(T.Label()),
+    arguments: S.optional(RunBareMetalMachineCommandRequestArgumentsList),
+    limitTimeSeconds: S.Number,
+    script: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/runCommand",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "RunBareMetalMachineCommandRequest",
+}) as any as S.Schema<RunBareMetalMachineCommandRequest>;
+
+export interface RunBareMetalMachineCommandResponse {}
+export const RunBareMetalMachineCommandResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "RunBareMetalMachineCommandResponse",
+}) as any as S.Schema<RunBareMetalMachineCommandResponse>;
+
+/** The list of curated data extraction commands to be executed directly against the target machine. */
+export type RunBareMetalMachineDataExtractsRequestCommandsList =
+  Array<BareMetalMachineCommandSpecification>;
+export const RunBareMetalMachineDataExtractsRequestCommandsList =
+  /*@__PURE__*/ S.Array(
+    BareMetalMachineCommandSpecification,
+  ) as any as S.Schema<RunBareMetalMachineDataExtractsRequestCommandsList>;
+
+export interface RunBareMetalMachineDataExtractsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the bare metal machine. */
+  bareMetalMachineName: string;
+  /** The list of curated data extraction commands to be executed directly against the target machine. */
+  commands: RunBareMetalMachineDataExtractsRequestCommandsList;
+  /** The maximum time the commands are allowed to run. If the execution time exceeds the maximum, the script will be stopped, any output produced until then will be captured, and the exit code matching a timeout will be returned (252). */
+  limitTimeSeconds: number;
+}
+export const RunBareMetalMachineDataExtractsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      bareMetalMachineName: S.String.pipe(T.Label()),
+      commands: RunBareMetalMachineDataExtractsRequestCommandsList,
+      limitTimeSeconds: S.Number,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/runDataExtracts",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "RunBareMetalMachineDataExtractsRequest",
+}) as any as S.Schema<RunBareMetalMachineDataExtractsRequest>;
+
+export interface RunBareMetalMachineDataExtractsResponse {}
+export const RunBareMetalMachineDataExtractsResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "RunBareMetalMachineDataExtractsResponse",
+}) as any as S.Schema<RunBareMetalMachineDataExtractsResponse>;
+
+/** The list of curated data extraction commands to be executed directly against the target machine. */
+export type RunBareMetalMachineDataExtractsRestrictedRequestCommandsList =
+  Array<BareMetalMachineCommandSpecification>;
+export const RunBareMetalMachineDataExtractsRestrictedRequestCommandsList =
+  /*@__PURE__*/ S.Array(
+    BareMetalMachineCommandSpecification,
+  ) as any as S.Schema<RunBareMetalMachineDataExtractsRestrictedRequestCommandsList>;
+
+export interface RunBareMetalMachineDataExtractsRestrictedRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the bare metal machine. */
+  bareMetalMachineName: string;
+  /** The list of curated data extraction commands to be executed directly against the target machine. */
+  commands: RunBareMetalMachineDataExtractsRestrictedRequestCommandsList;
+  /** The maximum time the commands are allowed to run. If the execution time exceeds the maximum, the script will be stopped, any output produced until then will be captured, and the exit code matching a timeout will be returned (252). */
+  limitTimeSeconds: number;
+}
+export const RunBareMetalMachineDataExtractsRestrictedRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      bareMetalMachineName: S.String.pipe(T.Label()),
+      commands: RunBareMetalMachineDataExtractsRestrictedRequestCommandsList,
+      limitTimeSeconds: S.Number,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/runDataExtractsRestricted",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "RunBareMetalMachineDataExtractsRestrictedRequest",
+  }) as any as S.Schema<RunBareMetalMachineDataExtractsRestrictedRequest>;
+
+export interface RunBareMetalMachineDataExtractsRestrictedResponse {}
+export const RunBareMetalMachineDataExtractsRestrictedResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "RunBareMetalMachineDataExtractsRestrictedResponse",
+  }) as any as S.Schema<RunBareMetalMachineDataExtractsRestrictedResponse>;
+
+export interface StartBareMetalMachineRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the bare metal machine. */
+  bareMetalMachineName: string;
+}
+export const StartBareMetalMachineRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    bareMetalMachineName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/start",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "StartBareMetalMachineRequest",
+}) as any as S.Schema<StartBareMetalMachineRequest>;
+
+export interface StartBareMetalMachineResponse {}
+export const StartBareMetalMachineResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "StartBareMetalMachineResponse",
+}) as any as S.Schema<StartBareMetalMachineResponse>;
+
+export interface StartVirtualMachineRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the virtual machine. */
+  virtualMachineName: string;
+}
+export const StartVirtualMachineRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    virtualMachineName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/start",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "StartVirtualMachineRequest",
+}) as any as S.Schema<StartVirtualMachineRequest>;
+
+export interface StartVirtualMachineResponse {}
+export const StartVirtualMachineResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "StartVirtualMachineResponse",
+}) as any as S.Schema<StartVirtualMachineResponse>;
+
+/** Resource tags. */
+export type StorageAppliancesCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const StorageAppliancesCreateOrUpdateRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<StorageAppliancesCreateOrUpdateRequestTagsMap>;
+
+/** StorageApplianceProperties represents the properties of the storage appliance. */
+export interface StorageAppliancePropertiesInput {
+  /** The resource ID of the rack where this storage appliance resides. */
+  rackId: string;
+  /** The SKU for the storage appliance. */
+  storageApplianceSkuId: string;
+  /** The slot the storage appliance is in the rack based on the BOM configuration. */
+  rackSlot: number;
+  /** The serial number for the storage appliance. */
+  serialNumber: string;
+  /** The credentials of the administrative interface on this storage appliance. */
+  administratorCredentials: AdministrativeCredentials;
+}
+export const StorageAppliancePropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    rackId: S.String,
+    storageApplianceSkuId: S.String,
+    rackSlot: S.Number,
+    serialNumber: S.String,
+    administratorCredentials: AdministrativeCredentials,
+  }),
+).annotate({
+  identifier: "StorageAppliancePropertiesInput",
+}) as any as S.Schema<StorageAppliancePropertiesInput>;
+
+export interface StorageAppliancesCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the storage appliance. */
+  storageApplianceName: string;
+  /** Resource tags. */
+  tags?: StorageAppliancesCreateOrUpdateRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: StorageAppliancePropertiesInput;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const StorageAppliancesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      storageApplianceName: S.String.pipe(T.Label()),
+      tags: S.optional(StorageAppliancesCreateOrUpdateRequestTagsMap),
+      location: S.String,
+      properties: StorageAppliancePropertiesInput,
+      extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances/{storageApplianceName}",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "StorageAppliancesCreateOrUpdateRequest",
+}) as any as S.Schema<StorageAppliancesCreateOrUpdateRequest>;
+
+/** Resource tags. */
+export type StorageAppliancesCreateOrUpdateResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const StorageAppliancesCreateOrUpdateResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<StorageAppliancesCreateOrUpdateResponseTagsMap>;
+
+export interface StorageAppliancesCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: StorageAppliancesCreateOrUpdateResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: StorageApplianceProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const StorageAppliancesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(StorageAppliancesCreateOrUpdateResponseTagsMap),
+      location: S.String,
+      properties: StorageApplianceProperties,
+      etag: S.optional(S.String),
+      extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+    }),
+).annotate({
+  identifier: "StorageAppliancesCreateOrUpdateResponse",
+}) as any as S.Schema<StorageAppliancesCreateOrUpdateResponse>;
+
+/** The list of strings that will be passed to the script in order as separate arguments. */
+export type StorageApplianceCommandSpecificationArgumentsList = Array<string>;
+export const StorageApplianceCommandSpecificationArgumentsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<StorageApplianceCommandSpecificationArgumentsList>;
+
+/** StorageApplianceCommandSpecification represents the command and optional arguments to run. */
+export interface StorageApplianceCommandSpecification {
+  /** The list of strings that will be passed to the script in order as separate arguments. */
+  arguments?: StorageApplianceCommandSpecificationArgumentsList;
+  /** The command to execute. */
+  command: string;
+}
+export const StorageApplianceCommandSpecification = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      arguments: S.optional(StorageApplianceCommandSpecificationArgumentsList),
+      command: S.String,
+    }),
+).annotate({
+  identifier: "StorageApplianceCommandSpecification",
+}) as any as S.Schema<StorageApplianceCommandSpecification>;
+
+/** The list of read-only commands to be executed directly against the target storage appliance. */
+export type StorageAppliancesRunReadCommandsRequestCommandsList =
+  Array<StorageApplianceCommandSpecification>;
+export const StorageAppliancesRunReadCommandsRequestCommandsList =
+  /*@__PURE__*/ S.Array(
+    StorageApplianceCommandSpecification,
+  ) as any as S.Schema<StorageAppliancesRunReadCommandsRequestCommandsList>;
+
+export interface StorageAppliancesRunReadCommandsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the storage appliance. */
+  storageApplianceName: string;
+  /** The list of read-only commands to be executed directly against the target storage appliance. */
+  commands: StorageAppliancesRunReadCommandsRequestCommandsList;
+  /** The maximum time the commands are allowed to run. */
+  limitTimeSeconds: number;
+}
+export const StorageAppliancesRunReadCommandsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      storageApplianceName: S.String.pipe(T.Label()),
+      commands: StorageAppliancesRunReadCommandsRequestCommandsList,
+      limitTimeSeconds: S.Number,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances/{storageApplianceName}/runReadCommands",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "StorageAppliancesRunReadCommandsRequest",
+}) as any as S.Schema<StorageAppliancesRunReadCommandsRequest>;
+
+export interface StorageAppliancesRunReadCommandsResponse {}
+export const StorageAppliancesRunReadCommandsResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "StorageAppliancesRunReadCommandsResponse",
+}) as any as S.Schema<StorageAppliancesRunReadCommandsResponse>;
+
+/** Resource tags. */
+export type TrunkedNetworksCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const TrunkedNetworksCreateOrUpdateRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<TrunkedNetworksCreateOrUpdateRequestTagsMap>;
+
+/** Field Deprecated. The field was previously optional, now it will have no defined behavior and will be ignored. The network plugin type for Hybrid AKS. */
+export type TrunkedNetworkPropertiesInputHybridAksPluginType =
+  | "DPDK"
+  | "SRIOV"
+  | "OSDevice";
+export const TrunkedNetworkPropertiesInputHybridAksPluginType =
+  /*@__PURE__*/ S.String;
+
+/** The list of resource IDs representing the Network Fabric isolation domains. It can be any combination of l2IsolationDomain and l3IsolationDomain resources. */
+export type TrunkedNetworkPropertiesInputIsolationDomainIdsList = Array<string>;
+export const TrunkedNetworkPropertiesInputIsolationDomainIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<TrunkedNetworkPropertiesInputIsolationDomainIdsList>;
+
+/** The list of vlans that are selected from the isolation domains for trunking. */
+export type TrunkedNetworkPropertiesInputVlansList = Array<number>;
+export const TrunkedNetworkPropertiesInputVlansList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<TrunkedNetworkPropertiesInputVlansList>;
+
+/** TrunkedNetworkProperties represents properties of the trunked network. */
+export interface TrunkedNetworkPropertiesInput {
+  /** Field Deprecated. The field was previously optional, now it will have no defined behavior and will be ignored. The network plugin type for Hybrid AKS. */
+  hybridAksPluginType?:
+    | TrunkedNetworkPropertiesInputHybridAksPluginType
+    | (string & {});
+  /** The default interface name for this trunked network in the virtual machine. This name can be overridden by the name supplied in the network attachment configuration of that virtual machine. */
+  interfaceName?: string;
+  /** The list of resource IDs representing the Network Fabric isolation domains. It can be any combination of l2IsolationDomain and l3IsolationDomain resources. */
+  isolationDomainIds: TrunkedNetworkPropertiesInputIsolationDomainIdsList;
+  /** The list of vlans that are selected from the isolation domains for trunking. */
+  vlans: TrunkedNetworkPropertiesInputVlansList;
+}
+export const TrunkedNetworkPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    hybridAksPluginType: S.optional(
+      TrunkedNetworkPropertiesInputHybridAksPluginType,
+    ),
+    interfaceName: S.optional(S.String),
+    isolationDomainIds: TrunkedNetworkPropertiesInputIsolationDomainIdsList,
+    vlans: TrunkedNetworkPropertiesInputVlansList,
+  }),
+).annotate({
+  identifier: "TrunkedNetworkPropertiesInput",
+}) as any as S.Schema<TrunkedNetworkPropertiesInput>;
+
+export interface TrunkedNetworksCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the trunked network. */
+  trunkedNetworkName: string;
+  /** Resource tags. */
+  tags?: TrunkedNetworksCreateOrUpdateRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: TrunkedNetworkPropertiesInput;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const TrunkedNetworksCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      trunkedNetworkName: S.String.pipe(T.Label()),
+      tags: S.optional(TrunkedNetworksCreateOrUpdateRequestTagsMap),
+      location: S.String,
+      properties: TrunkedNetworkPropertiesInput,
+      extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/trunkedNetworks/{trunkedNetworkName}",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "TrunkedNetworksCreateOrUpdateRequest",
+}) as any as S.Schema<TrunkedNetworksCreateOrUpdateRequest>;
+
+/** Resource tags. */
+export type TrunkedNetworksCreateOrUpdateResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const TrunkedNetworksCreateOrUpdateResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<TrunkedNetworksCreateOrUpdateResponseTagsMap>;
+
+export interface TrunkedNetworksCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: TrunkedNetworksCreateOrUpdateResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The list of the resource properties. */
@@ -14192,64 +12636,2745 @@ export interface TrunkedNetworksUpdateResponse {
   /** The extended location of the resource. This property is required when creating the resource. */
   extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
 }
-export const TrunkedNetworksUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const TrunkedNetworksCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(TrunkedNetworksCreateOrUpdateResponseTagsMap),
+      location: S.String,
+      properties: TrunkedNetworkProperties,
+      etag: S.optional(S.String),
+      extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+    }),
+).annotate({
+  identifier: "TrunkedNetworksCreateOrUpdateResponse",
+}) as any as S.Schema<TrunkedNetworksCreateOrUpdateResponse>;
+
+export interface UncordonBareMetalMachineRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the bare metal machine. */
+  bareMetalMachineName: string;
+}
+export const UncordonBareMetalMachineRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    bareMetalMachineName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}/uncordon",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "UncordonBareMetalMachineRequest",
+}) as any as S.Schema<UncordonBareMetalMachineRequest>;
+
+export interface UncordonBareMetalMachineResponse {}
+export const UncordonBareMetalMachineResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "UncordonBareMetalMachineResponse",
+}) as any as S.Schema<UncordonBareMetalMachineResponse>;
+
+export type UpdateAccessBridgeRequestAccessBridgeName =
+  | "Bastion"
+  | "PrivateVault"
+  | "StorageDashboard";
+export const UpdateAccessBridgeRequestAccessBridgeName = /*@__PURE__*/ S.String;
+
+/** The list of security rules enforced by the access bridge. */
+export type AccessBridgePatchPropertiesSecurityRulesList =
+  Array<AccessBridgeSecurityRule>;
+export const AccessBridgePatchPropertiesSecurityRulesList =
+  /*@__PURE__*/ S.Array(
+    AccessBridgeSecurityRule,
+  ) as any as S.Schema<AccessBridgePatchPropertiesSecurityRulesList>;
+
+/** AccessBridgePatchProperties identifies the mutable properties for patch operations. */
+export interface AccessBridgePatchProperties {
+  /** The list of security rules enforced by the access bridge. */
+  securityRules?: AccessBridgePatchPropertiesSecurityRulesList;
+}
+export const AccessBridgePatchProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    securityRules: S.optional(AccessBridgePatchPropertiesSecurityRulesList),
+  }),
+).annotate({
+  identifier: "AccessBridgePatchProperties",
+}) as any as S.Schema<AccessBridgePatchProperties>;
+
+/** Resource tags. */
+export type UpdateAccessBridgeRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateAccessBridgeRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateAccessBridgeRequestTagsMap>;
+
+export interface UpdateAccessBridgeRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the access bridge. */
+  accessBridgeName: UpdateAccessBridgeRequestAccessBridgeName | (string & {});
+  /** The list of the resource properties. */
+  properties?: AccessBridgePatchProperties;
+  /** Resource tags. */
+  tags?: UpdateAccessBridgeRequestTagsMap;
+}
+export const UpdateAccessBridgeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accessBridgeName: UpdateAccessBridgeRequestAccessBridgeName.pipe(T.Label()),
+    properties: S.optional(AccessBridgePatchProperties),
+    tags: S.optional(UpdateAccessBridgeRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/accessBridges/{accessBridgeName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateAccessBridgeRequest",
+}) as any as S.Schema<UpdateAccessBridgeRequest>;
+
+/** Resource tags. */
+export type UpdateAccessBridgeResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateAccessBridgeResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateAccessBridgeResponseTagsMap>;
+
+export interface UpdateAccessBridgeResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateAccessBridgeResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: AccessBridgeProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const UpdateAccessBridgeResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(TrunkedNetworksUpdateResponseTagsMap),
+    tags: S.optional(UpdateAccessBridgeResponseTagsMap),
     location: S.String,
-    properties: TrunkedNetworkProperties,
+    properties: AccessBridgeProperties,
     etag: S.optional(S.String),
     extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
   }),
 ).annotate({
-  identifier: "TrunkedNetworksUpdateResponse",
-}) as any as S.Schema<TrunkedNetworksUpdateResponse>;
+  identifier: "UpdateAccessBridgeResponse",
+}) as any as S.Schema<UpdateAccessBridgeResponse>;
 
-/** The indicator of which relay type the machine should be assigned to use. Platform indicates the use of a platform-dedicated relay. Public indicates the use of the standard public relay for Arc services. */
-export type VirtualMachinesAssignRelayRequestRelayType = "Platform" | "Public";
-export const VirtualMachinesAssignRelayRequestRelayType =
+/** SshPublicKey represents the public key used to authenticate with a resource through SSH. */
+export type NodePoolAdministratorConfigurationPatchSshPublicKeysList =
+  Array<SshPublicKey>;
+export const NodePoolAdministratorConfigurationPatchSshPublicKeysList =
+  /*@__PURE__*/ S.Array(
+    SshPublicKey,
+  ) as any as S.Schema<NodePoolAdministratorConfigurationPatchSshPublicKeysList>;
+
+/** NodePoolAdministratorConfigurationPatch represents the patching capabilities for the administrator configuration. */
+export interface NodePoolAdministratorConfigurationPatch {
+  /** SshPublicKey represents the public key used to authenticate with a resource through SSH. */
+  sshPublicKeys?: NodePoolAdministratorConfigurationPatchSshPublicKeysList;
+}
+export const NodePoolAdministratorConfigurationPatch = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      sshPublicKeys: S.optional(
+        NodePoolAdministratorConfigurationPatchSshPublicKeysList,
+      ),
+    }),
+).annotate({
+  identifier: "NodePoolAdministratorConfigurationPatch",
+}) as any as S.Schema<NodePoolAdministratorConfigurationPatch>;
+
+/** AgentPoolPatchProperties represents the properties of an agent pool that can be modified. */
+export interface AgentPoolPatchProperties {
+  /** The configuration of administrator credentials for the control plane nodes. */
+  administratorConfiguration?: NodePoolAdministratorConfigurationPatch;
+  /** The number of virtual machines that use this configuration. */
+  count?: number;
+  /** The configuration of the agent pool. */
+  upgradeSettings?: AgentPoolUpgradeSettings;
+}
+export const AgentPoolPatchProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    administratorConfiguration: S.optional(
+      NodePoolAdministratorConfigurationPatch,
+    ),
+    count: S.optional(S.Number),
+    upgradeSettings: S.optional(AgentPoolUpgradeSettings),
+  }),
+).annotate({
+  identifier: "AgentPoolPatchProperties",
+}) as any as S.Schema<AgentPoolPatchProperties>;
+
+/** Resource tags. */
+export type UpdateAgentPoolRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateAgentPoolRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateAgentPoolRequestTagsMap>;
+
+export interface UpdateAgentPoolRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kubernetes cluster. */
+  kubernetesClusterName: string;
+  /** The name of the Kubernetes cluster agent pool. */
+  agentPoolName: string;
+  /** The list of the resource properties. */
+  properties?: AgentPoolPatchProperties;
+  /** Resource tags. */
+  tags?: UpdateAgentPoolRequestTagsMap;
+}
+export const UpdateAgentPoolRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    kubernetesClusterName: S.String.pipe(T.Label()),
+    agentPoolName: S.String.pipe(T.Label()),
+    properties: S.optional(AgentPoolPatchProperties),
+    tags: S.optional(UpdateAgentPoolRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}/agentPools/{agentPoolName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateAgentPoolRequest",
+}) as any as S.Schema<UpdateAgentPoolRequest>;
+
+/** Resource tags. */
+export type UpdateAgentPoolResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateAgentPoolResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateAgentPoolResponseTagsMap>;
+
+export interface UpdateAgentPoolResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateAgentPoolResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: AgentPoolProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** The extended location of the resource. */
+  extendedLocation?: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const UpdateAgentPoolResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateAgentPoolResponseTagsMap),
+    location: S.String,
+    properties: AgentPoolProperties,
+    etag: S.optional(S.String),
+    extendedLocation: S.optional(
+      AzureResourceManagerCommonTypesExtendedLocation,
+    ),
+  }),
+).annotate({
+  identifier: "UpdateAgentPoolResponse",
+}) as any as S.Schema<UpdateAgentPoolResponse>;
+
+/** BareMetalMachinePatchProperties represents the properties of the bare metal machine that can be patched. */
+export interface BareMetalMachinePatchProperties {
+  /** The details provided by the customer during the creation of rack manifests that allows for custom data to be associated with this machine. */
+  machineDetails?: string;
+}
+export const BareMetalMachinePatchProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    machineDetails: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "BareMetalMachinePatchProperties",
+}) as any as S.Schema<BareMetalMachinePatchProperties>;
+
+/** Resource tags. */
+export type UpdateBareMetalMachineRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateBareMetalMachineRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateBareMetalMachineRequestTagsMap>;
+
+export interface UpdateBareMetalMachineRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the bare metal machine. */
+  bareMetalMachineName: string;
+  /** The list of the resource properties. */
+  properties?: BareMetalMachinePatchProperties;
+  /** Resource tags. */
+  tags?: UpdateBareMetalMachineRequestTagsMap;
+}
+export const UpdateBareMetalMachineRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    bareMetalMachineName: S.String.pipe(T.Label()),
+    properties: S.optional(BareMetalMachinePatchProperties),
+    tags: S.optional(UpdateBareMetalMachineRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/bareMetalMachines/{bareMetalMachineName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateBareMetalMachineRequest",
+}) as any as S.Schema<UpdateBareMetalMachineRequest>;
+
+/** Resource tags. */
+export type UpdateBareMetalMachineResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateBareMetalMachineResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateBareMetalMachineResponseTagsMap>;
+
+export interface UpdateBareMetalMachineResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateBareMetalMachineResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: BareMetalMachineProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const UpdateBareMetalMachineResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateBareMetalMachineResponseTagsMap),
+    location: S.String,
+    properties: BareMetalMachineProperties,
+    etag: S.optional(S.String),
+    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+  }),
+).annotate({
+  identifier: "UpdateBareMetalMachineResponse",
+}) as any as S.Schema<UpdateBareMetalMachineResponse>;
+
+/** The list of IP addresses of jump hosts with management network access from which a login will be allowed for the users. */
+export type BareMetalMachineKeySetPatchPropertiesJumpHostsAllowedList =
+  Array<string>;
+export const BareMetalMachineKeySetPatchPropertiesJumpHostsAllowedList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<BareMetalMachineKeySetPatchPropertiesJumpHostsAllowedList>;
+
+/** The unique list of permitted users. */
+export type BareMetalMachineKeySetPatchPropertiesUserListList =
+  Array<KeySetUser>;
+export const BareMetalMachineKeySetPatchPropertiesUserListList =
+  /*@__PURE__*/ S.Array(
+    KeySetUser,
+  ) as any as S.Schema<BareMetalMachineKeySetPatchPropertiesUserListList>;
+
+/** BareMetalMachineKeySetPatchProperties represents the properties of bare metal machine key set that can be patched. */
+export interface BareMetalMachineKeySetPatchProperties {
+  /** The date and time after which the users in this key set will be removed from the bare metal machines. */
+  expiration?: string;
+  /** The list of IP addresses of jump hosts with management network access from which a login will be allowed for the users. */
+  jumpHostsAllowed?: BareMetalMachineKeySetPatchPropertiesJumpHostsAllowedList;
+  /** The unique list of permitted users. */
+  userList?: BareMetalMachineKeySetPatchPropertiesUserListList;
+}
+export const BareMetalMachineKeySetPatchProperties = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      expiration: S.optional(S.String),
+      jumpHostsAllowed: S.optional(
+        BareMetalMachineKeySetPatchPropertiesJumpHostsAllowedList,
+      ),
+      userList: S.optional(BareMetalMachineKeySetPatchPropertiesUserListList),
+    }),
+).annotate({
+  identifier: "BareMetalMachineKeySetPatchProperties",
+}) as any as S.Schema<BareMetalMachineKeySetPatchProperties>;
+
+/** Resource tags. */
+export type UpdateBareMetalMachineKeySetRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateBareMetalMachineKeySetRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<UpdateBareMetalMachineKeySetRequestTagsMap>;
+
+export interface UpdateBareMetalMachineKeySetRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The name of the bare metal machine key set. */
+  bareMetalMachineKeySetName: string;
+  /** The list of the resource properties. */
+  properties?: BareMetalMachineKeySetPatchProperties;
+  /** Resource tags. */
+  tags?: UpdateBareMetalMachineKeySetRequestTagsMap;
+}
+export const UpdateBareMetalMachineKeySetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    bareMetalMachineKeySetName: S.String.pipe(T.Label()),
+    properties: S.optional(BareMetalMachineKeySetPatchProperties),
+    tags: S.optional(UpdateBareMetalMachineKeySetRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bareMetalMachineKeySets/{bareMetalMachineKeySetName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateBareMetalMachineKeySetRequest",
+}) as any as S.Schema<UpdateBareMetalMachineKeySetRequest>;
+
+/** Resource tags. */
+export type UpdateBareMetalMachineKeySetResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateBareMetalMachineKeySetResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<UpdateBareMetalMachineKeySetResponseTagsMap>;
+
+export interface UpdateBareMetalMachineKeySetResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateBareMetalMachineKeySetResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: BareMetalMachineKeySetProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const UpdateBareMetalMachineKeySetResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(UpdateBareMetalMachineKeySetResponseTagsMap),
+      location: S.String,
+      properties: BareMetalMachineKeySetProperties,
+      etag: S.optional(S.String),
+      extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+    }),
+).annotate({
+  identifier: "UpdateBareMetalMachineKeySetResponse",
+}) as any as S.Schema<UpdateBareMetalMachineKeySetResponse>;
+
+/** The unique list of permitted users. */
+export type BmcKeySetPatchPropertiesUserListList = Array<KeySetUser>;
+export const BmcKeySetPatchPropertiesUserListList = /*@__PURE__*/ S.Array(
+  KeySetUser,
+) as any as S.Schema<BmcKeySetPatchPropertiesUserListList>;
+
+/** BmcKeySetPatchProperties represents the properties of baseboard management controller key set that are patchable. */
+export interface BmcKeySetPatchProperties {
+  /** The date and time after which the users in this key set will be removed from the baseboard management controllers. */
+  expiration?: string;
+  /** The unique list of permitted users. */
+  userList?: BmcKeySetPatchPropertiesUserListList;
+}
+export const BmcKeySetPatchProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    expiration: S.optional(S.String),
+    userList: S.optional(BmcKeySetPatchPropertiesUserListList),
+  }),
+).annotate({
+  identifier: "BmcKeySetPatchProperties",
+}) as any as S.Schema<BmcKeySetPatchProperties>;
+
+/** Resource tags. */
+export type UpdateBmcKeySetRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateBmcKeySetRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateBmcKeySetRequestTagsMap>;
+
+export interface UpdateBmcKeySetRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The name of the baseboard management controller key set. */
+  bmcKeySetName: string;
+  /** The list of the resource properties. */
+  properties?: BmcKeySetPatchProperties;
+  /** Resource tags. */
+  tags?: UpdateBmcKeySetRequestTagsMap;
+}
+export const UpdateBmcKeySetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    bmcKeySetName: S.String.pipe(T.Label()),
+    properties: S.optional(BmcKeySetPatchProperties),
+    tags: S.optional(UpdateBmcKeySetRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/bmcKeySets/{bmcKeySetName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateBmcKeySetRequest",
+}) as any as S.Schema<UpdateBmcKeySetRequest>;
+
+/** Resource tags. */
+export type UpdateBmcKeySetResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateBmcKeySetResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateBmcKeySetResponseTagsMap>;
+
+export interface UpdateBmcKeySetResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateBmcKeySetResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: BmcKeySetProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const UpdateBmcKeySetResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateBmcKeySetResponseTagsMap),
+    location: S.String,
+    properties: BmcKeySetProperties,
+    etag: S.optional(S.String),
+    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+  }),
+).annotate({
+  identifier: "UpdateBmcKeySetResponse",
+}) as any as S.Schema<UpdateBmcKeySetResponse>;
+
+/** The list of egress endpoints. This allows for connection from a Hybrid AKS cluster to the specified endpoint. */
+export type CloudServicesNetworkPatchPropertiesAdditionalEgressEndpointsList =
+  Array<EgressEndpoint>;
+export const CloudServicesNetworkPatchPropertiesAdditionalEgressEndpointsList =
+  /*@__PURE__*/ S.Array(
+    EgressEndpoint,
+  ) as any as S.Schema<CloudServicesNetworkPatchPropertiesAdditionalEgressEndpointsList>;
+
+/** The indicator of whether the platform default endpoints are allowed for the egress traffic. */
+export type CloudServicesNetworkEnableDefaultEgressEndpoints = "True" | "False";
+export const CloudServicesNetworkEnableDefaultEgressEndpoints =
   /*@__PURE__*/ S.String;
 
-export interface VirtualMachinesAssignRelayRequest {
+/** CloudServicesNetworkStorageOptionsPatch represents the patchable storage options for the cloud services network. */
+export interface CloudServicesNetworkStorageOptionsPatch {
+  /** The indicator to enable shared storage on the cloud services network. */
+  mode?: CloudServicesNetworkStorageMode | (string & {});
+  /** The requested storage allocation for the volume in Mebibytes. */
+  sizeMiB?: number;
+  /** The resource ID of the storage appliance that hosts the storage. */
+  storageApplianceId?: string;
+}
+export const CloudServicesNetworkStorageOptionsPatch = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      mode: S.optional(CloudServicesNetworkStorageMode),
+      sizeMiB: S.optional(S.Number),
+      storageApplianceId: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "CloudServicesNetworkStorageOptionsPatch",
+}) as any as S.Schema<CloudServicesNetworkStorageOptionsPatch>;
+
+/** CloudServicesNetworkPatchProperties represents the properties of the cloud services network that can be updated using a patch request. */
+export interface CloudServicesNetworkPatchProperties {
+  /** The list of egress endpoints. This allows for connection from a Hybrid AKS cluster to the specified endpoint. */
+  additionalEgressEndpoints?: CloudServicesNetworkPatchPropertiesAdditionalEgressEndpointsList;
+  /** The indicator of whether the platform default endpoints are allowed for the egress traffic. */
+  enableDefaultEgressEndpoints?:
+    | CloudServicesNetworkEnableDefaultEgressEndpoints
+    | (string & {});
+  /** The storage options for the cloud services network. */
+  storageOptions?: CloudServicesNetworkStorageOptionsPatch;
+}
+export const CloudServicesNetworkPatchProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    additionalEgressEndpoints: S.optional(
+      CloudServicesNetworkPatchPropertiesAdditionalEgressEndpointsList,
+    ),
+    enableDefaultEgressEndpoints: S.optional(
+      CloudServicesNetworkEnableDefaultEgressEndpoints,
+    ),
+    storageOptions: S.optional(CloudServicesNetworkStorageOptionsPatch),
+  }),
+).annotate({
+  identifier: "CloudServicesNetworkPatchProperties",
+}) as any as S.Schema<CloudServicesNetworkPatchProperties>;
+
+/** Resource tags. */
+export type UpdateCloudServicesNetworkRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateCloudServicesNetworkRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateCloudServicesNetworkRequestTagsMap>;
+
+export interface UpdateCloudServicesNetworkRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cloud services network. */
+  cloudServicesNetworkName: string;
+  /** The list of the resource properties. */
+  properties?: CloudServicesNetworkPatchProperties;
+  /** Resource tags. */
+  tags?: UpdateCloudServicesNetworkRequestTagsMap;
+}
+export const UpdateCloudServicesNetworkRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    cloudServicesNetworkName: S.String.pipe(T.Label()),
+    properties: S.optional(CloudServicesNetworkPatchProperties),
+    tags: S.optional(UpdateCloudServicesNetworkRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/cloudServicesNetworks/{cloudServicesNetworkName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateCloudServicesNetworkRequest",
+}) as any as S.Schema<UpdateCloudServicesNetworkRequest>;
+
+/** Resource tags. */
+export type UpdateCloudServicesNetworkResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateCloudServicesNetworkResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateCloudServicesNetworkResponseTagsMap>;
+
+export interface UpdateCloudServicesNetworkResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateCloudServicesNetworkResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties?: CloudServicesNetworkProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const UpdateCloudServicesNetworkResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateCloudServicesNetworkResponseTagsMap),
+    location: S.String,
+    properties: S.optional(CloudServicesNetworkProperties),
+    etag: S.optional(S.String),
+    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+  }),
+).annotate({
+  identifier: "UpdateCloudServicesNetworkResponse",
+}) as any as S.Schema<UpdateCloudServicesNetworkResponse>;
+
+/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+export type UpdateClusterRequestIdentityUserAssignedIdentitiesMap = {
+  [key: string]: UserAssignedIdentityInput | undefined;
+};
+export const UpdateClusterRequestIdentityUserAssignedIdentitiesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    UserAssignedIdentityInput,
+  ) as any as S.Schema<UpdateClusterRequestIdentityUserAssignedIdentitiesMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export interface UpdateClusterRequestIdentity {
+  type: ManagedServiceIdentityType | (string & {});
+  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+  userAssignedIdentities?: UpdateClusterRequestIdentityUserAssignedIdentitiesMap;
+}
+export const UpdateClusterRequestIdentity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: ManagedServiceIdentityType,
+    userAssignedIdentities: S.optional(
+      UpdateClusterRequestIdentityUserAssignedIdentitiesMap,
+    ),
+  }),
+).annotate({
+  identifier: "UpdateClusterRequestIdentity",
+}) as any as S.Schema<UpdateClusterRequestIdentity>;
+
+/** AdministrativeCredentialsPatch represents the admin credentials for the device requiring password-based authentication. */
+export interface AdministrativeCredentialsPatch {
+  /** The password of the administrator of the device used during initialization. */
+  password?: string | Redacted.Redacted<string>;
+  /** The username of the administrator of the device used during initialization. */
+  username?: string;
+}
+export const AdministrativeCredentialsPatch = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    password: S.optional(S.String.pipe(T.SensitiveValue({}))),
+    username: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AdministrativeCredentialsPatch",
+}) as any as S.Schema<AdministrativeCredentialsPatch>;
+
+/** BareMetalMachineConfigurationDataPatch represents configuration for the bare metal machine for patch operations. */
+export interface BareMetalMachineConfigurationDataPatchInput {
+  /** The credentials of the baseboard management controller on this bare metal machine. The password field is expected to be an Azure Key Vault key URL. Until the cluster is converted to utilize managed identity by setting the secret archive settings, the actual password value should be provided instead. */
+  bmcCredentials?: AdministrativeCredentialsPatch;
+  /** The MAC address of the BMC for this machine. */
+  bmcMacAddress?: string;
+  /** The MAC address associated with the PXE NIC card. */
+  bootMacAddress?: string;
+  /** The free-form additional information about the machine, e.g. an asset tag. */
+  machineDetails?: string;
+  /** The user-provided name for the bare metal machine created from this specification. If not provided, the machine name will be generated programmatically. */
+  machineName?: string;
+  /** The slot the physical machine is in the rack based on the BOM configuration. */
+  rackSlot?: number;
+  /** The serial number of the machine. Hardware suppliers may use an alternate value. For example, service tag. */
+  serialNumber?: string;
+}
+export const BareMetalMachineConfigurationDataPatchInput =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      bmcCredentials: S.optional(AdministrativeCredentialsPatch),
+      bmcMacAddress: S.optional(S.String),
+      bootMacAddress: S.optional(S.String),
+      machineDetails: S.optional(S.String),
+      machineName: S.optional(S.String),
+      rackSlot: S.optional(S.Number),
+      serialNumber: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "BareMetalMachineConfigurationDataPatchInput",
+  }) as any as S.Schema<BareMetalMachineConfigurationDataPatchInput>;
+
+/** The unordered list of bare metal machine configuration. */
+export type RackDefinitionPatchInputBareMetalMachineConfigurationDataList =
+  Array<BareMetalMachineConfigurationDataPatchInput>;
+export const RackDefinitionPatchInputBareMetalMachineConfigurationDataList =
+  /*@__PURE__*/ S.Array(
+    BareMetalMachineConfigurationDataPatchInput,
+  ) as any as S.Schema<RackDefinitionPatchInputBareMetalMachineConfigurationDataList>;
+
+/** StorageApplianceConfigurationDataPatch represents configuration for the storage application for patch operations. */
+export interface StorageApplianceConfigurationDataPatch {
+  /** The credentials of the administrative interface on this storage appliance. The password field is expected to be an Azure Key Vault key URL. Until the cluster is converted to utilize managed identity by setting the secret archive settings, the actual password value should be provided instead. */
+  adminCredentials?: AdministrativeCredentialsPatch;
+  /** The slot that storage appliance is in the rack based on the BOM configuration. */
+  rackSlot?: number;
+  /** The serial number of the appliance. */
+  serialNumber?: string;
+  /** The user-provided name for the storage appliance that will be created from this specification. */
+  storageApplianceName?: string;
+}
+export const StorageApplianceConfigurationDataPatch = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      adminCredentials: S.optional(AdministrativeCredentialsPatch),
+      rackSlot: S.optional(S.Number),
+      serialNumber: S.optional(S.String),
+      storageApplianceName: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "StorageApplianceConfigurationDataPatch",
+}) as any as S.Schema<StorageApplianceConfigurationDataPatch>;
+
+/** The list of storage appliance configuration data for this rack. */
+export type RackDefinitionPatchInputStorageApplianceConfigurationDataList =
+  Array<StorageApplianceConfigurationDataPatch>;
+export const RackDefinitionPatchInputStorageApplianceConfigurationDataList =
+  /*@__PURE__*/ S.Array(
+    StorageApplianceConfigurationDataPatch,
+  ) as any as S.Schema<RackDefinitionPatchInputStorageApplianceConfigurationDataList>;
+
+/** RackDefinitionPatch represents details regarding the rack for patch operations. */
+export interface RackDefinitionPatchInput {
+  /** The zone name used for this rack when created. Availability zones are used for workload placement. */
+  availabilityZone?: string;
+  /** The unordered list of bare metal machine configuration. */
+  bareMetalMachineConfigurationData?: RackDefinitionPatchInputBareMetalMachineConfigurationDataList;
+  /** The resource ID of the network rack that matches this rack definition. */
+  networkRackId?: string;
+  /** The free-form description of the rack's location. */
+  rackLocation?: string;
+  /** The unique identifier for the rack within Network Cloud cluster. An alternate unique alphanumeric value other than a serial number may be provided if desired. */
+  rackSerialNumber?: string;
+  /** The resource ID of the sku for the rack being added. */
+  rackSkuId?: string;
+  /** The list of storage appliance configuration data for this rack. */
+  storageApplianceConfigurationData?: RackDefinitionPatchInputStorageApplianceConfigurationDataList;
+}
+export const RackDefinitionPatchInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    availabilityZone: S.optional(S.String),
+    bareMetalMachineConfigurationData: S.optional(
+      RackDefinitionPatchInputBareMetalMachineConfigurationDataList,
+    ),
+    networkRackId: S.optional(S.String),
+    rackLocation: S.optional(S.String),
+    rackSerialNumber: S.optional(S.String),
+    rackSkuId: S.optional(S.String),
+    storageApplianceConfigurationData: S.optional(
+      RackDefinitionPatchInputStorageApplianceConfigurationDataList,
+    ),
+  }),
+).annotate({
+  identifier: "RackDefinitionPatchInput",
+}) as any as S.Schema<RackDefinitionPatchInput>;
+
+/** ServicePrincipalInformationPatch represents the details of the service principal to be used by the cluster during Arc Appliance installation for patch operations. */
+export interface ServicePrincipalInformationPatch {
+  /** The application ID, also known as client ID, of the service principal. */
+  applicationId?: string;
+  /** The password of the service principal. */
+  password?: string | Redacted.Redacted<string>;
+  /** The principal ID, also known as the object ID, of the service principal. */
+  principalId?: string;
+  /** The tenant ID, also known as the directory ID, of the tenant in which the service principal is created. */
+  tenantId?: string;
+}
+export const ServicePrincipalInformationPatch = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    applicationId: S.optional(S.String),
+    password: S.optional(S.String.pipe(T.SensitiveValue({}))),
+    principalId: S.optional(S.String),
+    tenantId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ServicePrincipalInformationPatch",
+}) as any as S.Schema<ServicePrincipalInformationPatch>;
+
+/** ValidationThresholdPatch indicates allowed machine and node hardware and deployment failures for patch operations. */
+export interface ValidationThresholdPatch {
+  /** Selection of how the type evaluation is applied to the cluster calculation. */
+  grouping?: ValidationThresholdGrouping | (string & {});
+  /** Selection of how the threshold should be evaluated. */
+  type?: ValidationThresholdType | (string & {});
+  /** The numeric threshold value. */
+  value?: number;
+}
+export const ValidationThresholdPatch = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    grouping: S.optional(ValidationThresholdGrouping),
+    type: S.optional(ValidationThresholdType),
+    value: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "ValidationThresholdPatch",
+}) as any as S.Schema<ValidationThresholdPatch>;
+
+/** The list of rack definitions for the compute racks in a multi-rack cluster, or an empty list in a single-rack cluster. */
+export type ClusterPatchPropertiesInputComputeRackDefinitionsList =
+  Array<RackDefinitionPatchInput>;
+export const ClusterPatchPropertiesInputComputeRackDefinitionsList =
+  /*@__PURE__*/ S.Array(
+    RackDefinitionPatchInput,
+  ) as any as S.Schema<ClusterPatchPropertiesInputComputeRackDefinitionsList>;
+
+/** RuntimeProtectionConfigurationPatch represents the runtime protection configuration for the cluster for patch operations. */
+export interface RuntimeProtectionConfigurationPatch {
+  /** The definition update mode for runtime protection. */
+  definitionUpdateMode?: RuntimeProtectionDefinitionUpdateMode | (string & {});
+  /** The mode of operation for runtime protection. */
+  enforcementLevel?: RuntimeProtectionEnforcementLevel | (string & {});
+}
+export const RuntimeProtectionConfigurationPatch = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    definitionUpdateMode: S.optional(RuntimeProtectionDefinitionUpdateMode),
+    enforcementLevel: S.optional(RuntimeProtectionEnforcementLevel),
+  }),
+).annotate({
+  identifier: "RuntimeProtectionConfigurationPatch",
+}) as any as S.Schema<RuntimeProtectionConfigurationPatch>;
+
+/** The indicator if the specified key vault should be used to archive the secrets of the cluster. */
+export type ClusterSecretArchiveEnabled = "True" | "False";
+export const ClusterSecretArchiveEnabled = /*@__PURE__*/ S.String;
+
+/** ClusterSecretArchivePatch configures the key vault to archive the secrets of the cluster for later retrieval for patch operations. */
+export interface ClusterSecretArchivePatch {
+  /** The resource ID of the key vault to archive the secrets of the cluster. */
+  keyVaultId?: string;
+  /** The indicator if the specified key vault should be used to archive the secrets of the cluster. */
+  useKeyVault?: ClusterSecretArchiveEnabled | (string & {});
+}
+export const ClusterSecretArchivePatch = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    keyVaultId: S.optional(S.String),
+    useKeyVault: S.optional(ClusterSecretArchiveEnabled),
+  }),
+).annotate({
+  identifier: "ClusterSecretArchivePatch",
+}) as any as S.Schema<ClusterSecretArchivePatch>;
+
+/** ClusterUpdateStrategyPatch represents the strategy for updating the cluster for patch operations. */
+export interface ClusterUpdateStrategyPatch {
+  /** The maximum number of worker nodes that can be offline within the increment of update, e.g., rack-by-rack. Limited by the maximum number of machines in the increment. Defaults to the whole increment size. */
+  maxUnavailable?: number;
+  /** The mode of operation for runtime protection. */
+  strategyType?: ClusterUpdateStrategyType | (string & {});
+  /** Selection of how the threshold should be evaluated. */
+  thresholdType?: ValidationThresholdType | (string & {});
+  /** The numeric threshold value. */
+  thresholdValue?: number;
+  /** The time to wait between the increments of update defined by the strategy. */
+  waitTimeMinutes?: number;
+}
+export const ClusterUpdateStrategyPatch = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    maxUnavailable: S.optional(S.Number),
+    strategyType: S.optional(ClusterUpdateStrategyType),
+    thresholdType: S.optional(ValidationThresholdType),
+    thresholdValue: S.optional(S.Number),
+    waitTimeMinutes: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "ClusterUpdateStrategyPatch",
+}) as any as S.Schema<ClusterUpdateStrategyPatch>;
+
+/** The mode selection for container vulnerability scanning. */
+export type VulnerabilityScanningSettingsContainerScan2 =
+  | "Disabled"
+  | "Enabled";
+export const VulnerabilityScanningSettingsContainerScan2 =
+  /*@__PURE__*/ S.String;
+
+/** VulnerabilityScanningSettingsPatch represents the settings for how security vulnerability scanning is applied to the cluster. */
+export interface VulnerabilityScanningSettingsPatch {
+  /** The mode selection for container vulnerability scanning. */
+  containerScan?: VulnerabilityScanningSettingsContainerScan2 | (string & {});
+}
+export const VulnerabilityScanningSettingsPatch = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    containerScan: S.optional(VulnerabilityScanningSettingsContainerScan2),
+  }),
+).annotate({
+  identifier: "VulnerabilityScanningSettingsPatch",
+}) as any as S.Schema<VulnerabilityScanningSettingsPatch>;
+
+/** ClusterPatchProperties represents the properties of the cluster for patching. */
+export interface ClusterPatchPropertiesInput {
+  /** The rack definition that is intended to reflect only a single rack in a single rack cluster, or an aggregator rack in a multi-rack cluster. */
+  aggregatorOrSingleRackDefinition?: RackDefinitionPatchInput;
+  /** The settings for the log analytics workspace used for output of logs from this cluster. */
+  analyticsOutputSettings?: AnalyticsOutputSettings;
+  /** The customer-provided location information to identify where the cluster resides. */
+  clusterLocation?: string;
+  /** Field Deprecated: Use managed identity to provide cluster privileges. The service principal to be used by the cluster during Arc Appliance installation. */
+  clusterServicePrincipal?: ServicePrincipalInformationPatch;
+  /** The settings for commands run in this cluster, such as bare metal machine run read only commands and data extracts. */
+  commandOutputSettings?: CommandOutputSettings;
+  /** The validation threshold indicating the allowable failures of compute machines during environment validation and deployment. */
+  computeDeploymentThreshold?: ValidationThresholdPatch;
+  /** The list of rack definitions for the compute racks in a multi-rack cluster, or an empty list in a single-rack cluster. */
+  computeRackDefinitions?: ClusterPatchPropertiesInputComputeRackDefinitionsList;
+  /** The settings for cluster runtime protection. */
+  runtimeProtectionConfiguration?: RuntimeProtectionConfigurationPatch;
+  /** The configuration for use of a key vault to store secrets for later retrieval by the operator. */
+  secretArchive?: ClusterSecretArchivePatch;
+  /** The settings for the secret archive used to hold credentials for the cluster. */
+  secretArchiveSettings?: SecretArchiveSettings;
+  /** The strategy for updating the cluster. */
+  updateStrategy?: ClusterUpdateStrategyPatch;
+  /** The settings for how security vulnerability scanning is applied to the cluster. */
+  vulnerabilityScanningSettings?: VulnerabilityScanningSettingsPatch;
+}
+export const ClusterPatchPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    aggregatorOrSingleRackDefinition: S.optional(RackDefinitionPatchInput),
+    analyticsOutputSettings: S.optional(AnalyticsOutputSettings),
+    clusterLocation: S.optional(S.String),
+    clusterServicePrincipal: S.optional(ServicePrincipalInformationPatch),
+    commandOutputSettings: S.optional(CommandOutputSettings),
+    computeDeploymentThreshold: S.optional(ValidationThresholdPatch),
+    computeRackDefinitions: S.optional(
+      ClusterPatchPropertiesInputComputeRackDefinitionsList,
+    ),
+    runtimeProtectionConfiguration: S.optional(
+      RuntimeProtectionConfigurationPatch,
+    ),
+    secretArchive: S.optional(ClusterSecretArchivePatch),
+    secretArchiveSettings: S.optional(SecretArchiveSettings),
+    updateStrategy: S.optional(ClusterUpdateStrategyPatch),
+    vulnerabilityScanningSettings: S.optional(
+      VulnerabilityScanningSettingsPatch,
+    ),
+  }),
+).annotate({
+  identifier: "ClusterPatchPropertiesInput",
+}) as any as S.Schema<ClusterPatchPropertiesInput>;
+
+/** Resource tags. */
+export type UpdateClusterRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateClusterRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateClusterRequestTagsMap>;
+
+export interface UpdateClusterRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: UpdateClusterRequestIdentity;
+  /** The list of the resource properties. */
+  properties?: ClusterPatchPropertiesInput;
+  /** Resource tags. */
+  tags?: UpdateClusterRequestTagsMap;
+}
+export const UpdateClusterRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    identity: S.optional(UpdateClusterRequestIdentity),
+    properties: S.optional(ClusterPatchPropertiesInput),
+    tags: S.optional(UpdateClusterRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateClusterRequest",
+}) as any as S.Schema<UpdateClusterRequest>;
+
+/** Resource tags. */
+export type UpdateClusterResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateClusterResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateClusterResponseTagsMap>;
+
+/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+export type UpdateClusterResponseIdentityUserAssignedIdentitiesMap = {
+  [key: string]: UserAssignedIdentity | undefined;
+};
+export const UpdateClusterResponseIdentityUserAssignedIdentitiesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    UserAssignedIdentity,
+  ) as any as S.Schema<UpdateClusterResponseIdentityUserAssignedIdentitiesMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export interface UpdateClusterResponseIdentity {
+  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  principalId?: string;
+  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  tenantId?: string;
+  type: ManagedServiceIdentityType;
+  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+  userAssignedIdentities?: UpdateClusterResponseIdentityUserAssignedIdentitiesMap;
+}
+export const UpdateClusterResponseIdentity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    principalId: S.optional(S.String),
+    tenantId: S.optional(S.String),
+    type: ManagedServiceIdentityType,
+    userAssignedIdentities: S.optional(
+      UpdateClusterResponseIdentityUserAssignedIdentitiesMap,
+    ),
+  }),
+).annotate({
+  identifier: "UpdateClusterResponseIdentity",
+}) as any as S.Schema<UpdateClusterResponseIdentity>;
+
+export interface UpdateClusterResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateClusterResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: ClusterProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: UpdateClusterResponseIdentity;
+  /** The type (kind) of the cluster. When specified, the value must exactly match the kind configured on the cluster manager that manages the cluster. If omitted, the service will default the value to the kind value of the cluster manager. */
+  kind?: DeploymentType;
+}
+export const UpdateClusterResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateClusterResponseTagsMap),
+    location: S.String,
+    properties: ClusterProperties,
+    etag: S.optional(S.String),
+    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+    identity: S.optional(UpdateClusterResponseIdentity),
+    kind: S.optional(DeploymentType),
+  }),
+).annotate({
+  identifier: "UpdateClusterResponse",
+}) as any as S.Schema<UpdateClusterResponse>;
+
+/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+export type UpdateClusterManagerRequestIdentityUserAssignedIdentitiesMap = {
+  [key: string]: UserAssignedIdentityInput | undefined;
+};
+export const UpdateClusterManagerRequestIdentityUserAssignedIdentitiesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    UserAssignedIdentityInput,
+  ) as any as S.Schema<UpdateClusterManagerRequestIdentityUserAssignedIdentitiesMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export interface UpdateClusterManagerRequestIdentity {
+  type: ManagedServiceIdentityType | (string & {});
+  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+  userAssignedIdentities?: UpdateClusterManagerRequestIdentityUserAssignedIdentitiesMap;
+}
+export const UpdateClusterManagerRequestIdentity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: ManagedServiceIdentityType,
+    userAssignedIdentities: S.optional(
+      UpdateClusterManagerRequestIdentityUserAssignedIdentitiesMap,
+    ),
+  }),
+).annotate({
+  identifier: "UpdateClusterManagerRequestIdentity",
+}) as any as S.Schema<UpdateClusterManagerRequestIdentity>;
+
+/** Resource tags. */
+export type UpdateClusterManagerRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateClusterManagerRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateClusterManagerRequestTagsMap>;
+
+export interface UpdateClusterManagerRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster manager. */
+  clusterManagerName: string;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: UpdateClusterManagerRequestIdentity;
+  /** Resource tags. */
+  tags?: UpdateClusterManagerRequestTagsMap;
+}
+export const UpdateClusterManagerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterManagerName: S.String.pipe(T.Label()),
+    identity: S.optional(UpdateClusterManagerRequestIdentity),
+    tags: S.optional(UpdateClusterManagerRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusterManagers/{clusterManagerName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateClusterManagerRequest",
+}) as any as S.Schema<UpdateClusterManagerRequest>;
+
+/** Resource tags. */
+export type UpdateClusterManagerResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateClusterManagerResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateClusterManagerResponseTagsMap>;
+
+/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+export type UpdateClusterManagerResponseIdentityUserAssignedIdentitiesMap = {
+  [key: string]: UserAssignedIdentity | undefined;
+};
+export const UpdateClusterManagerResponseIdentityUserAssignedIdentitiesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    UserAssignedIdentity,
+  ) as any as S.Schema<UpdateClusterManagerResponseIdentityUserAssignedIdentitiesMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export interface UpdateClusterManagerResponseIdentity {
+  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  principalId?: string;
+  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  tenantId?: string;
+  type: ManagedServiceIdentityType;
+  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+  userAssignedIdentities?: UpdateClusterManagerResponseIdentityUserAssignedIdentitiesMap;
+}
+export const UpdateClusterManagerResponseIdentity = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      principalId: S.optional(S.String),
+      tenantId: S.optional(S.String),
+      type: ManagedServiceIdentityType,
+      userAssignedIdentities: S.optional(
+        UpdateClusterManagerResponseIdentityUserAssignedIdentitiesMap,
+      ),
+    }),
+).annotate({
+  identifier: "UpdateClusterManagerResponseIdentity",
+}) as any as S.Schema<UpdateClusterManagerResponseIdentity>;
+
+export interface UpdateClusterManagerResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateClusterManagerResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: ClusterManagerProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: UpdateClusterManagerResponseIdentity;
+  /** The kind of the cluster manager. */
+  kind?: DeploymentType;
+}
+export const UpdateClusterManagerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateClusterManagerResponseTagsMap),
+    location: S.String,
+    properties: ClusterManagerProperties,
+    etag: S.optional(S.String),
+    identity: S.optional(UpdateClusterManagerResponseIdentity),
+    kind: S.optional(DeploymentType),
+  }),
+).annotate({
+  identifier: "UpdateClusterManagerResponse",
+}) as any as S.Schema<UpdateClusterManagerResponse>;
+
+/** The state to set for the private endpoint connection. */
+export type RelayPrivateEndpointConnectionState = "Approved" | "Rejected";
+export const RelayPrivateEndpointConnectionState = /*@__PURE__*/ S.String;
+
+export interface UpdateClusterManagerRelayPrivateEndpointConnectionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster manager. */
+  clusterManagerName: string;
+  /** The state to set for the private endpoint connection. */
+  connectionState: RelayPrivateEndpointConnectionState | (string & {});
+  /** The description to associate with the private endpoint connection. */
+  description?: string;
+  /** The resource ID of private endpoint to be permitted or denied connection to the relay namespace. */
+  privateEndpointResourceId: string;
+}
+export const UpdateClusterManagerRelayPrivateEndpointConnectionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      clusterManagerName: S.String.pipe(T.Label()),
+      connectionState: RelayPrivateEndpointConnectionState,
+      description: S.optional(S.String),
+      privateEndpointResourceId: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusterManagers/{clusterManagerName}/updateRelayPrivateEndpointConnection",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "UpdateClusterManagerRelayPrivateEndpointConnectionRequest",
+  }) as any as S.Schema<UpdateClusterManagerRelayPrivateEndpointConnectionRequest>;
+
+export interface UpdateClusterManagerRelayPrivateEndpointConnectionResponse {}
+export const UpdateClusterManagerRelayPrivateEndpointConnectionResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "UpdateClusterManagerRelayPrivateEndpointConnectionResponse",
+  }) as any as S.Schema<UpdateClusterManagerRelayPrivateEndpointConnectionResponse>;
+
+/** ClusterUpdateVersionSafeguardMode represents the mode of the cluster update safeguards. */
+export type ClusterUpdateVersionSafeguardMode = "All" | "None";
+export const ClusterUpdateVersionSafeguardMode = /*@__PURE__*/ S.String;
+
+export interface UpdateClusterVersionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** Specifies how safeguards are applied during the update version operation. Use All to run all pre‑operation validation checks. Use None to bypass safeguards. If not specified, the default is All. */
+  safeguardMode?: ClusterUpdateVersionSafeguardMode | (string & {});
+  /** The version to be applied to the cluster during update. */
+  targetClusterVersion: string;
+}
+export const UpdateClusterVersionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    safeguardMode: S.optional(ClusterUpdateVersionSafeguardMode),
+    targetClusterVersion: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/updateVersion",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateClusterVersionRequest",
+}) as any as S.Schema<UpdateClusterVersionRequest>;
+
+export interface UpdateClusterVersionResponse {}
+export const UpdateClusterVersionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "UpdateClusterVersionResponse",
+}) as any as S.Schema<UpdateClusterVersionResponse>;
+
+/** SshPublicKeyPatch represents the public key used to authenticate with a resource through SSH. */
+export interface SshPublicKeyPatch {
+  /** The SSH public key data. */
+  keyData?: string;
+}
+export const SshPublicKeyPatch = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    keyData: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SshPublicKeyPatch",
+}) as any as S.Schema<SshPublicKeyPatch>;
+
+/** ConsolePatchProperties represents the properties of the virtual machine console that can be patched. */
+export interface ConsolePatchProperties {
+  /** The indicator of whether the console access is enabled. */
+  enabled?: ConsoleEnabled | (string & {});
+  /** The date and time after which the key will be disallowed access. */
+  expiration?: string;
+  /** The SSH public key that will be provisioned for user access. The user is expected to have the corresponding SSH private key for logging in. */
+  sshPublicKey?: SshPublicKeyPatch;
+}
+export const ConsolePatchProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    enabled: S.optional(ConsoleEnabled),
+    expiration: S.optional(S.String),
+    sshPublicKey: S.optional(SshPublicKeyPatch),
+  }),
+).annotate({
+  identifier: "ConsolePatchProperties",
+}) as any as S.Schema<ConsolePatchProperties>;
+
+/** Resource tags. */
+export type UpdateConsoleRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateConsoleRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateConsoleRequestTagsMap>;
+
+export interface UpdateConsoleRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the virtual machine. */
   virtualMachineName: string;
-  /** The resourceId of the Microsoft.HybridCompute machine resource to assign relay usage. */
-  machineId: string;
-  /** The indicator of which relay type the machine should be assigned to use. Platform indicates the use of a platform-dedicated relay. Public indicates the use of the standard public relay for Arc services. */
-  relayType?: VirtualMachinesAssignRelayRequestRelayType | (string & {});
+  /** The name of the virtual machine console. */
+  consoleName: string;
+  /** The list of the resource properties. */
+  properties?: ConsolePatchProperties;
+  /** Resource tags. */
+  tags?: UpdateConsoleRequestTagsMap;
 }
-export const VirtualMachinesAssignRelayRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateConsoleRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     virtualMachineName: S.String.pipe(T.Label()),
-    machineId: S.String,
-    relayType: S.optional(VirtualMachinesAssignRelayRequestRelayType),
+    consoleName: S.String.pipe(T.Label()),
+    properties: S.optional(ConsolePatchProperties),
+    tags: S.optional(UpdateConsoleRequestTagsMap),
   }).pipe(
     T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/assignRelay",
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/consoles/{consoleName}",
       code: 200,
       apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
-  identifier: "VirtualMachinesAssignRelayRequest",
-}) as any as S.Schema<VirtualMachinesAssignRelayRequest>;
+  identifier: "UpdateConsoleRequest",
+}) as any as S.Schema<UpdateConsoleRequest>;
 
-export interface VirtualMachinesAssignRelayResponse {}
-export const VirtualMachinesAssignRelayResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
+/** Resource tags. */
+export type UpdateConsoleResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateConsoleResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateConsoleResponseTagsMap>;
+
+export interface UpdateConsoleResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateConsoleResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: ConsoleProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const UpdateConsoleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateConsoleResponseTagsMap),
+    location: S.String,
+    properties: ConsoleProperties,
+    etag: S.optional(S.String),
+    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+  }),
 ).annotate({
-  identifier: "VirtualMachinesAssignRelayResponse",
-}) as any as S.Schema<VirtualMachinesAssignRelayResponse>;
+  identifier: "UpdateConsoleResponse",
+}) as any as S.Schema<UpdateConsoleResponse>;
+
+/** SshPublicKey represents the public key used to authenticate with a resource through SSH. */
+export type AdministratorConfigurationPatchSshPublicKeysList =
+  Array<SshPublicKey>;
+export const AdministratorConfigurationPatchSshPublicKeysList =
+  /*@__PURE__*/ S.Array(
+    SshPublicKey,
+  ) as any as S.Schema<AdministratorConfigurationPatchSshPublicKeysList>;
+
+/** AdministratorConfigurationPatch represents the patching capabilities for the administrator configuration. */
+export interface AdministratorConfigurationPatch {
+  /** SshPublicKey represents the public key used to authenticate with a resource through SSH. */
+  sshPublicKeys?: AdministratorConfigurationPatchSshPublicKeysList;
+}
+export const AdministratorConfigurationPatch = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    sshPublicKeys: S.optional(AdministratorConfigurationPatchSshPublicKeysList),
+  }),
+).annotate({
+  identifier: "AdministratorConfigurationPatch",
+}) as any as S.Schema<AdministratorConfigurationPatch>;
+
+/** ControlPlaneNodePatchConfiguration represents the properties of the control plane that can be patched for this Kubernetes cluster. */
+export interface ControlPlaneNodePatchConfiguration {
+  /** The configuration of administrator credentials for the control plane nodes. */
+  administratorConfiguration?: AdministratorConfigurationPatch;
+  /** The number of virtual machines that use this configuration. */
+  count?: number;
+}
+export const ControlPlaneNodePatchConfiguration = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    administratorConfiguration: S.optional(AdministratorConfigurationPatch),
+    count: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "ControlPlaneNodePatchConfiguration",
+}) as any as S.Schema<ControlPlaneNodePatchConfiguration>;
+
+/** KubernetesClusterPatchProperties represents the properties of the Kubernetes cluster that can be patched. */
+export interface KubernetesClusterPatchProperties {
+  /** The configuration of the default administrator credentials. */
+  administratorConfiguration?: AdministratorConfigurationPatch;
+  /** The defining characteristics of the control plane that can be patched for this Kubernetes cluster. */
+  controlPlaneNodeConfiguration?: ControlPlaneNodePatchConfiguration;
+  /** The Kubernetes version for this cluster. */
+  kubernetesVersion?: string;
+}
+export const KubernetesClusterPatchProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    administratorConfiguration: S.optional(AdministratorConfigurationPatch),
+    controlPlaneNodeConfiguration: S.optional(
+      ControlPlaneNodePatchConfiguration,
+    ),
+    kubernetesVersion: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "KubernetesClusterPatchProperties",
+}) as any as S.Schema<KubernetesClusterPatchProperties>;
+
+/** Resource tags. */
+export type UpdateKubernetesClusterRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateKubernetesClusterRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateKubernetesClusterRequestTagsMap>;
+
+export interface UpdateKubernetesClusterRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kubernetes cluster. */
+  kubernetesClusterName: string;
+  /** The list of the resource properties. */
+  properties?: KubernetesClusterPatchProperties;
+  /** Resource tags. */
+  tags?: UpdateKubernetesClusterRequestTagsMap;
+}
+export const UpdateKubernetesClusterRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    kubernetesClusterName: S.String.pipe(T.Label()),
+    properties: S.optional(KubernetesClusterPatchProperties),
+    tags: S.optional(UpdateKubernetesClusterRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateKubernetesClusterRequest",
+}) as any as S.Schema<UpdateKubernetesClusterRequest>;
+
+/** Resource tags. */
+export type UpdateKubernetesClusterResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateKubernetesClusterResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateKubernetesClusterResponseTagsMap>;
+
+export interface UpdateKubernetesClusterResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateKubernetesClusterResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: KubernetesClusterProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const UpdateKubernetesClusterResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateKubernetesClusterResponseTagsMap),
+    location: S.String,
+    properties: KubernetesClusterProperties,
+    etag: S.optional(S.String),
+    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+  }),
+).annotate({
+  identifier: "UpdateKubernetesClusterResponse",
+}) as any as S.Schema<UpdateKubernetesClusterResponse>;
+
+/** The configured options for the feature. */
+export type KubernetesClusterFeaturePatchPropertiesOptionsList =
+  Array<StringKeyValuePair>;
+export const KubernetesClusterFeaturePatchPropertiesOptionsList =
+  /*@__PURE__*/ S.Array(
+    StringKeyValuePair,
+  ) as any as S.Schema<KubernetesClusterFeaturePatchPropertiesOptionsList>;
+
+/** KubernetesClusterFeaturePatchProperties represents the Kubernetes cluster feature properties for patching. */
+export interface KubernetesClusterFeaturePatchProperties {
+  /** The configured options for the feature. */
+  options?: KubernetesClusterFeaturePatchPropertiesOptionsList;
+}
+export const KubernetesClusterFeaturePatchProperties = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      options: S.optional(KubernetesClusterFeaturePatchPropertiesOptionsList),
+    }),
+).annotate({
+  identifier: "KubernetesClusterFeaturePatchProperties",
+}) as any as S.Schema<KubernetesClusterFeaturePatchProperties>;
+
+/** Resource tags. */
+export type UpdateKubernetesClusterFeatureRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateKubernetesClusterFeatureRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<UpdateKubernetesClusterFeatureRequestTagsMap>;
+
+export interface UpdateKubernetesClusterFeatureRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kubernetes cluster. */
+  kubernetesClusterName: string;
+  /** The name of the feature. */
+  featureName: string;
+  /** The list of the resource properties. */
+  properties?: KubernetesClusterFeaturePatchProperties;
+  /** Resource tags. */
+  tags?: UpdateKubernetesClusterFeatureRequestTagsMap;
+}
+export const UpdateKubernetesClusterFeatureRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      kubernetesClusterName: S.String.pipe(T.Label()),
+      featureName: S.String.pipe(T.Label()),
+      properties: S.optional(KubernetesClusterFeaturePatchProperties),
+      tags: S.optional(UpdateKubernetesClusterFeatureRequestTagsMap),
+    }).pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters/{kubernetesClusterName}/features/{featureName}",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "UpdateKubernetesClusterFeatureRequest",
+}) as any as S.Schema<UpdateKubernetesClusterFeatureRequest>;
+
+/** Resource tags. */
+export type UpdateKubernetesClusterFeatureResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateKubernetesClusterFeatureResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<UpdateKubernetesClusterFeatureResponseTagsMap>;
+
+export interface UpdateKubernetesClusterFeatureResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateKubernetesClusterFeatureResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties?: KubernetesClusterFeatureProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const UpdateKubernetesClusterFeatureResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(UpdateKubernetesClusterFeatureResponseTagsMap),
+      location: S.String,
+      properties: S.optional(KubernetesClusterFeatureProperties),
+      etag: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "UpdateKubernetesClusterFeatureResponse",
+}) as any as S.Schema<UpdateKubernetesClusterFeatureResponse>;
+
+/** Resource tags. */
+export type UpdateKubernetesVersionRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateKubernetesVersionRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateKubernetesVersionRequestTagsMap>;
+
+export interface UpdateKubernetesVersionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kubernetes version resource. */
+  kubernetesVersionName: string;
+  /** Resource tags. */
+  tags?: UpdateKubernetesVersionRequestTagsMap;
+}
+export const UpdateKubernetesVersionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    kubernetesVersionName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateKubernetesVersionRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesVersions/{kubernetesVersionName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateKubernetesVersionRequest",
+}) as any as S.Schema<UpdateKubernetesVersionRequest>;
+
+/** Resource tags. */
+export type UpdateKubernetesVersionResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateKubernetesVersionResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateKubernetesVersionResponseTagsMap>;
+
+export interface UpdateKubernetesVersionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateKubernetesVersionResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: KubernetesVersionProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const UpdateKubernetesVersionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateKubernetesVersionResponseTagsMap),
+    location: S.String,
+    properties: KubernetesVersionProperties,
+    etag: S.optional(S.String),
+    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+  }),
+).annotate({
+  identifier: "UpdateKubernetesVersionResponse",
+}) as any as S.Schema<UpdateKubernetesVersionResponse>;
+
+/** Resource tags. */
+export type UpdateL2NetworkRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateL2NetworkRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateL2NetworkRequestTagsMap>;
+
+export interface UpdateL2NetworkRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the L2 network. */
+  l2NetworkName: string;
+  /** Resource tags. */
+  tags?: UpdateL2NetworkRequestTagsMap;
+}
+export const UpdateL2NetworkRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    l2NetworkName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateL2NetworkRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l2Networks/{l2NetworkName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateL2NetworkRequest",
+}) as any as S.Schema<UpdateL2NetworkRequest>;
+
+/** Resource tags. */
+export type UpdateL2NetworkResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateL2NetworkResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateL2NetworkResponseTagsMap>;
+
+export interface UpdateL2NetworkResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateL2NetworkResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: L2NetworkProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const UpdateL2NetworkResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateL2NetworkResponseTagsMap),
+    location: S.String,
+    properties: L2NetworkProperties,
+    etag: S.optional(S.String),
+    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+  }),
+).annotate({
+  identifier: "UpdateL2NetworkResponse",
+}) as any as S.Schema<UpdateL2NetworkResponse>;
+
+/** Resource tags. */
+export type UpdateL3NetworkRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateL3NetworkRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateL3NetworkRequestTagsMap>;
+
+export interface UpdateL3NetworkRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the L3 network. */
+  l3NetworkName: string;
+  /** Resource tags. */
+  tags?: UpdateL3NetworkRequestTagsMap;
+}
+export const UpdateL3NetworkRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    l3NetworkName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateL3NetworkRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l3Networks/{l3NetworkName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateL3NetworkRequest",
+}) as any as S.Schema<UpdateL3NetworkRequest>;
+
+/** Resource tags. */
+export type UpdateL3NetworkResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateL3NetworkResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateL3NetworkResponseTagsMap>;
+
+export interface UpdateL3NetworkResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateL3NetworkResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: L3NetworkProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const UpdateL3NetworkResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateL3NetworkResponseTagsMap),
+    location: S.String,
+    properties: L3NetworkProperties,
+    etag: S.optional(S.String),
+    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+  }),
+).annotate({
+  identifier: "UpdateL3NetworkResponse",
+}) as any as S.Schema<UpdateL3NetworkResponse>;
+
+/** The list of metric names that have been chosen to be enabled in addition to the core set of enabled metrics. */
+export type ClusterMetricsConfigurationPatchPropertiesEnabledMetricsList =
+  Array<string>;
+export const ClusterMetricsConfigurationPatchPropertiesEnabledMetricsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ClusterMetricsConfigurationPatchPropertiesEnabledMetricsList>;
+
+/** ClusterMetricsConfigurationPatchProperties represents the properties of metrics configuration for the cluster for patching. */
+export interface ClusterMetricsConfigurationPatchProperties {
+  /** The interval in minutes by which metrics will be collected. */
+  collectionInterval?: number;
+  /** The list of metric names that have been chosen to be enabled in addition to the core set of enabled metrics. */
+  enabledMetrics?: ClusterMetricsConfigurationPatchPropertiesEnabledMetricsList;
+}
+export const ClusterMetricsConfigurationPatchProperties =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      collectionInterval: S.optional(S.Number),
+      enabledMetrics: S.optional(
+        ClusterMetricsConfigurationPatchPropertiesEnabledMetricsList,
+      ),
+    }),
+  ).annotate({
+    identifier: "ClusterMetricsConfigurationPatchProperties",
+  }) as any as S.Schema<ClusterMetricsConfigurationPatchProperties>;
+
+/** Resource tags. */
+export type UpdateMetricsConfigurationRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateMetricsConfigurationRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateMetricsConfigurationRequestTagsMap>;
+
+export interface UpdateMetricsConfigurationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The name of the metrics configuration for the cluster. */
+  metricsConfigurationName: string;
+  /** The list of the resource properties. */
+  properties?: ClusterMetricsConfigurationPatchProperties;
+  /** Resource tags. */
+  tags?: UpdateMetricsConfigurationRequestTagsMap;
+}
+export const UpdateMetricsConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    metricsConfigurationName: S.String.pipe(T.Label()),
+    properties: S.optional(ClusterMetricsConfigurationPatchProperties),
+    tags: S.optional(UpdateMetricsConfigurationRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters/{clusterName}/metricsConfigurations/{metricsConfigurationName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateMetricsConfigurationRequest",
+}) as any as S.Schema<UpdateMetricsConfigurationRequest>;
+
+/** Resource tags. */
+export type UpdateMetricsConfigurationResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateMetricsConfigurationResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateMetricsConfigurationResponseTagsMap>;
+
+export interface UpdateMetricsConfigurationResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateMetricsConfigurationResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: ClusterMetricsConfigurationProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const UpdateMetricsConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateMetricsConfigurationResponseTagsMap),
+    location: S.String,
+    properties: ClusterMetricsConfigurationProperties,
+    etag: S.optional(S.String),
+    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+  }),
+).annotate({
+  identifier: "UpdateMetricsConfigurationResponse",
+}) as any as S.Schema<UpdateMetricsConfigurationResponse>;
+
+/** RacksPatchProperties represents the properties of the rack during patching. */
+export interface RacksPatchProperties {
+  /** The free-form description of the rack location. (e.g. "DTN Datacenter, Floor 3, Isle 9, Rack 2B") */
+  rackLocation?: string;
+  /** The globally unique identifier for the rack. */
+  rackSerialNumber?: string;
+}
+export const RacksPatchProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    rackLocation: S.optional(S.String),
+    rackSerialNumber: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "RacksPatchProperties",
+}) as any as S.Schema<RacksPatchProperties>;
+
+/** Resource tags. */
+export type UpdateRackRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateRackRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateRackRequestTagsMap>;
+
+export interface UpdateRackRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the rack. */
+  rackName: string;
+  /** The list of the resource properties. */
+  properties?: RacksPatchProperties;
+  /** Resource tags. */
+  tags?: UpdateRackRequestTagsMap;
+}
+export const UpdateRackRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    rackName: S.String.pipe(T.Label()),
+    properties: S.optional(RacksPatchProperties),
+    tags: S.optional(UpdateRackRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/racks/{rackName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateRackRequest",
+}) as any as S.Schema<UpdateRackRequest>;
+
+/** Resource tags. */
+export type UpdateRackResponseTagsMap = { [key: string]: string | undefined };
+export const UpdateRackResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateRackResponseTagsMap>;
+
+export interface UpdateRackResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateRackResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: RackProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const UpdateRackResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateRackResponseTagsMap),
+    location: S.String,
+    properties: RackProperties,
+    etag: S.optional(S.String),
+    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+  }),
+).annotate({
+  identifier: "UpdateRackResponse",
+}) as any as S.Schema<UpdateRackResponse>;
+
+/** StorageAppliancePatchProperties represents the properties of the storage appliance that can be patched. */
+export interface StorageAppliancePatchProperties {
+  /** The serial number for the storage appliance. */
+  serialNumber?: string;
+}
+export const StorageAppliancePatchProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serialNumber: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "StorageAppliancePatchProperties",
+}) as any as S.Schema<StorageAppliancePatchProperties>;
+
+/** Resource tags. */
+export type UpdateStorageApplianceRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateStorageApplianceRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateStorageApplianceRequestTagsMap>;
+
+export interface UpdateStorageApplianceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the storage appliance. */
+  storageApplianceName: string;
+  /** The list of the resource properties. */
+  properties?: StorageAppliancePatchProperties;
+  /** Resource tags. */
+  tags?: UpdateStorageApplianceRequestTagsMap;
+}
+export const UpdateStorageApplianceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    storageApplianceName: S.String.pipe(T.Label()),
+    properties: S.optional(StorageAppliancePatchProperties),
+    tags: S.optional(UpdateStorageApplianceRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances/{storageApplianceName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateStorageApplianceRequest",
+}) as any as S.Schema<UpdateStorageApplianceRequest>;
+
+/** Resource tags. */
+export type UpdateStorageApplianceResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateStorageApplianceResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateStorageApplianceResponseTagsMap>;
+
+export interface UpdateStorageApplianceResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateStorageApplianceResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: StorageApplianceProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const UpdateStorageApplianceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateStorageApplianceResponseTagsMap),
+    location: S.String,
+    properties: StorageApplianceProperties,
+    etag: S.optional(S.String),
+    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+  }),
+).annotate({
+  identifier: "UpdateStorageApplianceResponse",
+}) as any as S.Schema<UpdateStorageApplianceResponse>;
+
+/** Resource tags. */
+export type UpdateTrunkedNetworkRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateTrunkedNetworkRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateTrunkedNetworkRequestTagsMap>;
+
+export interface UpdateTrunkedNetworkRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the trunked network. */
+  trunkedNetworkName: string;
+  /** Resource tags. */
+  tags?: UpdateTrunkedNetworkRequestTagsMap;
+}
+export const UpdateTrunkedNetworkRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    trunkedNetworkName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateTrunkedNetworkRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/trunkedNetworks/{trunkedNetworkName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateTrunkedNetworkRequest",
+}) as any as S.Schema<UpdateTrunkedNetworkRequest>;
+
+/** Resource tags. */
+export type UpdateTrunkedNetworkResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateTrunkedNetworkResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateTrunkedNetworkResponseTagsMap>;
+
+export interface UpdateTrunkedNetworkResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateTrunkedNetworkResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: TrunkedNetworkProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const UpdateTrunkedNetworkResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateTrunkedNetworkResponseTagsMap),
+    location: S.String,
+    properties: TrunkedNetworkProperties,
+    etag: S.optional(S.String),
+    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+  }),
+).annotate({
+  identifier: "UpdateTrunkedNetworkResponse",
+}) as any as S.Schema<UpdateTrunkedNetworkResponse>;
+
+/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+export type UpdateVirtualMachineRequestIdentityUserAssignedIdentitiesMap = {
+  [key: string]: UserAssignedIdentityInput | undefined;
+};
+export const UpdateVirtualMachineRequestIdentityUserAssignedIdentitiesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    UserAssignedIdentityInput,
+  ) as any as S.Schema<UpdateVirtualMachineRequestIdentityUserAssignedIdentitiesMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export interface UpdateVirtualMachineRequestIdentity {
+  type: ManagedServiceIdentityType | (string & {});
+  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+  userAssignedIdentities?: UpdateVirtualMachineRequestIdentityUserAssignedIdentitiesMap;
+}
+export const UpdateVirtualMachineRequestIdentity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: ManagedServiceIdentityType,
+    userAssignedIdentities: S.optional(
+      UpdateVirtualMachineRequestIdentityUserAssignedIdentitiesMap,
+    ),
+  }),
+).annotate({
+  identifier: "UpdateVirtualMachineRequestIdentity",
+}) as any as S.Schema<UpdateVirtualMachineRequestIdentity>;
+
+/** ImageRepositoryCredentialsPatch represents the credentials used to login to the image repository for patch operations. */
+export interface ImageRepositoryCredentialsPatch {
+  /** The password or token used to access an image in the target repository. */
+  password?: string | Redacted.Redacted<string>;
+  /** The URL of the authentication server used to validate the repository credentials. */
+  registryUrl?: string;
+  /** The username used to access an image in the target repository. */
+  username?: string;
+}
+export const ImageRepositoryCredentialsPatch = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    password: S.optional(S.String.pipe(T.SensitiveValue({}))),
+    registryUrl: S.optional(S.String),
+    username: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ImageRepositoryCredentialsPatch",
+}) as any as S.Schema<ImageRepositoryCredentialsPatch>;
+
+/** VirtualMachinePatchProperties represents the properties of the virtual machine that can be patched. */
+export interface VirtualMachinePatchProperties {
+  /** The credentials used to login to the image repository that has access to the specified image. */
+  vmImageRepositoryCredentials?: ImageRepositoryCredentialsPatch;
+}
+export const VirtualMachinePatchProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    vmImageRepositoryCredentials: S.optional(ImageRepositoryCredentialsPatch),
+  }),
+).annotate({
+  identifier: "VirtualMachinePatchProperties",
+}) as any as S.Schema<VirtualMachinePatchProperties>;
+
+/** Resource tags. */
+export type UpdateVirtualMachineRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateVirtualMachineRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateVirtualMachineRequestTagsMap>;
+
+export interface UpdateVirtualMachineRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the virtual machine. */
+  virtualMachineName: string;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: UpdateVirtualMachineRequestIdentity;
+  /** The list of the resource properties. */
+  properties?: VirtualMachinePatchProperties;
+  /** Resource tags. */
+  tags?: UpdateVirtualMachineRequestTagsMap;
+}
+export const UpdateVirtualMachineRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    virtualMachineName: S.String.pipe(T.Label()),
+    identity: S.optional(UpdateVirtualMachineRequestIdentity),
+    properties: S.optional(VirtualMachinePatchProperties),
+    tags: S.optional(UpdateVirtualMachineRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateVirtualMachineRequest",
+}) as any as S.Schema<UpdateVirtualMachineRequest>;
+
+/** Resource tags. */
+export type UpdateVirtualMachineResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateVirtualMachineResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateVirtualMachineResponseTagsMap>;
+
+/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+export type UpdateVirtualMachineResponseIdentityUserAssignedIdentitiesMap = {
+  [key: string]: UserAssignedIdentity | undefined;
+};
+export const UpdateVirtualMachineResponseIdentityUserAssignedIdentitiesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    UserAssignedIdentity,
+  ) as any as S.Schema<UpdateVirtualMachineResponseIdentityUserAssignedIdentitiesMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export interface UpdateVirtualMachineResponseIdentity {
+  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  principalId?: string;
+  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  tenantId?: string;
+  type: ManagedServiceIdentityType;
+  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+  userAssignedIdentities?: UpdateVirtualMachineResponseIdentityUserAssignedIdentitiesMap;
+}
+export const UpdateVirtualMachineResponseIdentity = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      principalId: S.optional(S.String),
+      tenantId: S.optional(S.String),
+      type: ManagedServiceIdentityType,
+      userAssignedIdentities: S.optional(
+        UpdateVirtualMachineResponseIdentityUserAssignedIdentitiesMap,
+      ),
+    }),
+).annotate({
+  identifier: "UpdateVirtualMachineResponseIdentity",
+}) as any as S.Schema<UpdateVirtualMachineResponseIdentity>;
+
+export interface UpdateVirtualMachineResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateVirtualMachineResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: VirtualMachineProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: UpdateVirtualMachineResponseIdentity;
+}
+export const UpdateVirtualMachineResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateVirtualMachineResponseTagsMap),
+    location: S.String,
+    properties: VirtualMachineProperties,
+    etag: S.optional(S.String),
+    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+    identity: S.optional(UpdateVirtualMachineResponseIdentity),
+  }),
+).annotate({
+  identifier: "UpdateVirtualMachineResponse",
+}) as any as S.Schema<UpdateVirtualMachineResponse>;
+
+/** Resource tags. */
+export type UpdateVolumeRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateVolumeRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateVolumeRequestTagsMap>;
+
+export interface UpdateVolumeRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the volume. */
+  volumeName: string;
+  /** Resource tags. */
+  tags?: UpdateVolumeRequestTagsMap;
+}
+export const UpdateVolumeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    volumeName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateVolumeRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/volumes/{volumeName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateVolumeRequest",
+}) as any as S.Schema<UpdateVolumeRequest>;
+
+/** Resource tags. */
+export type UpdateVolumeResponseTagsMap = { [key: string]: string | undefined };
+export const UpdateVolumeResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateVolumeResponseTagsMap>;
+
+export interface UpdateVolumeResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateVolumeResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The list of the resource properties. */
+  properties: VolumeProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** The extended location of the resource. This property is required when creating the resource. */
+  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
+}
+export const UpdateVolumeResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateVolumeResponseTagsMap),
+    location: S.String,
+    properties: VolumeProperties,
+    etag: S.optional(S.String),
+    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
+  }),
+).annotate({
+  identifier: "UpdateVolumeResponse",
+}) as any as S.Schema<UpdateVolumeResponse>;
 
 /** Resource tags. */
 export type VirtualMachinesCreateOrUpdateRequestTagsMap = {
@@ -14308,41 +15433,6 @@ export const VirtualMachinePropertiesInputNetworkAttachmentsList =
     NetworkAttachmentInput,
   ) as any as S.Schema<VirtualMachinePropertiesInputNetworkAttachmentsList>;
 
-/** The specification of whether this hint supports affinity or anti-affinity with the referenced resources. */
-export type VirtualMachinePlacementHintType = "Affinity" | "AntiAffinity";
-export const VirtualMachinePlacementHintType = /*@__PURE__*/ S.String;
-
-/** The indicator of whether the hint is a hard or soft requirement during scheduling. */
-export type VirtualMachineSchedulingExecution = "Hard" | "Soft";
-export const VirtualMachineSchedulingExecution = /*@__PURE__*/ S.String;
-
-/** The scope for the virtual machine affinity or anti-affinity placement hint. It should always be "Machine" in the case of node affinity. */
-export type VirtualMachinePlacementHintPodAffinityScope = "Machine" | "Rack";
-export const VirtualMachinePlacementHintPodAffinityScope =
-  /*@__PURE__*/ S.String;
-
-/** VirtualMachinePlacementHint represents a single scheduling hint of the virtual machine. */
-export interface VirtualMachinePlacementHint {
-  /** The specification of whether this hint supports affinity or anti-affinity with the referenced resources. */
-  hintType: VirtualMachinePlacementHintType | (string & {});
-  /** The resource ID of the target object that the placement hints will be checked against, e.g., the bare metal node to host the virtual machine. */
-  resourceId: string;
-  /** The indicator of whether the hint is a hard or soft requirement during scheduling. */
-  schedulingExecution: VirtualMachineSchedulingExecution | (string & {});
-  /** The scope for the virtual machine affinity or anti-affinity placement hint. It should always be "Machine" in the case of node affinity. */
-  scope: VirtualMachinePlacementHintPodAffinityScope | (string & {});
-}
-export const VirtualMachinePlacementHint = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    hintType: VirtualMachinePlacementHintType,
-    resourceId: S.String,
-    schedulingExecution: VirtualMachineSchedulingExecution,
-    scope: VirtualMachinePlacementHintPodAffinityScope,
-  }),
-).annotate({
-  identifier: "VirtualMachinePlacementHint",
-}) as any as S.Schema<VirtualMachinePlacementHint>;
-
 /** The scheduling hints for the virtual machine. */
 export type VirtualMachinePropertiesInputPlacementHintsList =
   Array<VirtualMachinePlacementHint>;
@@ -14359,51 +15449,6 @@ export const VirtualMachinePropertiesInputSshPublicKeysList =
     SshPublicKey,
   ) as any as S.Schema<VirtualMachinePropertiesInputSshPublicKeysList>;
 
-/** The strategy for creating the OS disk. */
-export type OsDiskCreateOption = "Ephemeral" | "Persistent";
-export const OsDiskCreateOption = /*@__PURE__*/ S.String;
-
-/** The strategy for deleting the OS disk. */
-export type OsDiskDeleteOption = "Delete";
-export const OsDiskDeleteOption = /*@__PURE__*/ S.String;
-
-/** OsDisk represents configuration of the boot disk. */
-export interface OsDisk {
-  /** The strategy for creating the OS disk. */
-  createOption?: OsDiskCreateOption | (string & {});
-  /** The strategy for deleting the OS disk. */
-  deleteOption?: OsDiskDeleteOption | (string & {});
-  /** The size of the disk. Required if the createOption is Ephemeral. Allocations are measured in gibibytes. */
-  diskSizeGB: number;
-}
-export const OsDisk = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createOption: S.optional(OsDiskCreateOption),
-    deleteOption: S.optional(OsDiskDeleteOption),
-    diskSizeGB: S.Number,
-  }),
-).annotate({ identifier: "OsDisk" }) as any as S.Schema<OsDisk>;
-
-/** The resource IDs of volumes that are requested to be attached to the virtual machine. */
-export type StorageProfileVolumeAttachmentsList = Array<string>;
-export const StorageProfileVolumeAttachmentsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<StorageProfileVolumeAttachmentsList>;
-
-/** StorageProfile represents information about a disk. */
-export interface StorageProfile {
-  /** The disk to use with this virtual machine. */
-  osDisk: OsDisk;
-  /** The resource IDs of volumes that are requested to be attached to the virtual machine. */
-  volumeAttachments?: StorageProfileVolumeAttachmentsList;
-}
-export const StorageProfile = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    osDisk: OsDisk,
-    volumeAttachments: S.optional(StorageProfileVolumeAttachmentsList),
-  }),
-).annotate({ identifier: "StorageProfile" }) as any as S.Schema<StorageProfile>;
-
 /** Field Deprecated, use virtualizationModel instead. The type of the virtio interface. */
 export type VirtualMachinePropertiesInputVirtioInterface =
   | "Modern"
@@ -14415,25 +15460,6 @@ export const VirtualMachinePropertiesInputVirtioInterface =
 export type VirtualMachinePropertiesInputVmDeviceModel = "T1" | "T2" | "T3";
 export const VirtualMachinePropertiesInputVmDeviceModel =
   /*@__PURE__*/ S.String;
-
-/** ImageRepositoryCredentials represents the credentials used to login to the image repository. */
-export interface ImageRepositoryCredentials {
-  /** The password or token used to access an image in the target repository. */
-  password: string | Redacted.Redacted<string>;
-  /** The URL of the authentication server used to validate the repository credentials. */
-  registryUrl: string;
-  /** The username used to access an image in the target repository. */
-  username: string;
-}
-export const ImageRepositoryCredentials = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    password: S.String.pipe(T.SensitiveValue({})),
-    registryUrl: S.String,
-    username: S.String,
-  }),
-).annotate({
-  identifier: "ImageRepositoryCredentials",
-}) as any as S.Schema<ImageRepositoryCredentials>;
 
 /** VirtualMachineProperties represents the properties of the virtual machine. */
 export interface VirtualMachinePropertiesInput {
@@ -14590,172 +15616,6 @@ export const VirtualMachinesCreateOrUpdateResponseTagsMap =
     S.String,
   ) as any as S.Schema<VirtualMachinesCreateOrUpdateResponseTagsMap>;
 
-/** Selects the boot method for the virtual machine. */
-export type VirtualMachinePropertiesBootMethod = "BIOS" | "UEFI";
-export const VirtualMachinePropertiesBootMethod = /*@__PURE__*/ S.String;
-
-/** Field Deprecated, the value will be ignored if provided. The indicator of whether one of the specified CPU cores is isolated to run the emulator thread for this virtual machine. */
-export type VirtualMachinePropertiesIsolateEmulatorThread = "False" | "True";
-export const VirtualMachinePropertiesIsolateEmulatorThread =
-  /*@__PURE__*/ S.String;
-
-/** The list of network attachments to the virtual machine. */
-export type VirtualMachinePropertiesNetworkAttachmentsList =
-  Array<NetworkAttachment>;
-export const VirtualMachinePropertiesNetworkAttachmentsList =
-  /*@__PURE__*/ S.Array(
-    NetworkAttachment,
-  ) as any as S.Schema<VirtualMachinePropertiesNetworkAttachmentsList>;
-
-/** The scheduling hints for the virtual machine. */
-export type VirtualMachinePropertiesPlacementHintsList =
-  Array<VirtualMachinePlacementHint>;
-export const VirtualMachinePropertiesPlacementHintsList = /*@__PURE__*/ S.Array(
-  VirtualMachinePlacementHint,
-) as any as S.Schema<VirtualMachinePropertiesPlacementHintsList>;
-
-/** The list of ssh public keys. Each key will be added to the virtual machine using the cloud-init ssh_authorized_keys mechanism for the adminUsername. */
-export type VirtualMachinePropertiesSshPublicKeysList = Array<SshPublicKey>;
-export const VirtualMachinePropertiesSshPublicKeysList = /*@__PURE__*/ S.Array(
-  SshPublicKey,
-) as any as S.Schema<VirtualMachinePropertiesSshPublicKeysList>;
-
-/** Field Deprecated, use virtualizationModel instead. The type of the virtio interface. */
-export type VirtualMachinePropertiesVirtioInterface = "Modern" | "Transitional";
-export const VirtualMachinePropertiesVirtioInterface = /*@__PURE__*/ S.String;
-
-/** The type of the device model to use. */
-export type VirtualMachinePropertiesVmDeviceModel = "T1" | "T2" | "T3";
-export const VirtualMachinePropertiesVmDeviceModel = /*@__PURE__*/ S.String;
-
-/** The more detailed status of the virtual machine. */
-export type VirtualMachineDetailedStatus =
-  | "Available"
-  | "Error"
-  | "Provisioning"
-  | "Running"
-  | "Scheduling"
-  | "Stopped"
-  | "Terminating"
-  | "Unknown";
-export const VirtualMachineDetailedStatus = /*@__PURE__*/ S.String;
-
-/** The power state of the virtual machine. */
-export type VirtualMachinePowerState = "Off" | "On" | "Unknown";
-export const VirtualMachinePowerState = /*@__PURE__*/ S.String;
-
-/** The resource IDs of volumes that are attached to the virtual machine. */
-export type VirtualMachinePropertiesVolumesList = Array<string>;
-export const VirtualMachinePropertiesVolumesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<VirtualMachinePropertiesVolumesList>;
-
-/** The provisioning state of the virtual machine. */
-export type VirtualMachineProvisioningState =
-  | "Accepted"
-  | "Canceled"
-  | "Failed"
-  | "Provisioning"
-  | "Succeeded";
-export const VirtualMachineProvisioningState = /*@__PURE__*/ S.String;
-
-/** VirtualMachineProperties represents the properties of the virtual machine. */
-export interface VirtualMachineProperties {
-  /** The name of the administrator to which the ssh public keys will be added into the authorized keys. */
-  adminUsername: string;
-  /** Selects the boot method for the virtual machine. */
-  bootMethod?: VirtualMachinePropertiesBootMethod;
-  /** The cloud service network that provides platform-level services for the virtual machine. */
-  cloudServicesNetworkAttachment: NetworkAttachment;
-  /** The number of CPU cores in the virtual machine. */
-  cpuCores: number;
-  /** Field Deprecated, the value will be ignored if provided. The indicator of whether one of the specified CPU cores is isolated to run the emulator thread for this virtual machine. */
-  isolateEmulatorThread?: VirtualMachinePropertiesIsolateEmulatorThread;
-  /** The memory size of the virtual machine. Allocations are measured in gibibytes. */
-  memorySizeGB: number;
-  /** The list of network attachments to the virtual machine. */
-  networkAttachments?: VirtualMachinePropertiesNetworkAttachmentsList;
-  /** Field Deprecated: The Base64 encoded cloud-init network data. The networkDataContent property will be used in preference to this property. */
-  networkData?: string;
-  /** The Base64 encoded cloud-init network data. */
-  networkDataContent?: string;
-  /** The scheduling hints for the virtual machine. */
-  placementHints?: VirtualMachinePropertiesPlacementHintsList;
-  /** The list of ssh public keys. Each key will be added to the virtual machine using the cloud-init ssh_authorized_keys mechanism for the adminUsername. */
-  sshPublicKeys?: VirtualMachinePropertiesSshPublicKeysList;
-  /** The storage profile that specifies size and other parameters about the disks related to the virtual machine. */
-  storageProfile: StorageProfile;
-  /** Field Deprecated: The Base64 encoded cloud-init user data. The userDataContent property will be used in preference to this property. */
-  userData?: string;
-  /** The Base64 encoded cloud-init user data. */
-  userDataContent?: string;
-  /** Field Deprecated, use virtualizationModel instead. The type of the virtio interface. */
-  virtioInterface?: VirtualMachinePropertiesVirtioInterface;
-  /** The type of the device model to use. */
-  vmDeviceModel?: VirtualMachinePropertiesVmDeviceModel;
-  /** The virtual machine image that is currently provisioned to the OS disk, using the full url and tag notation used to pull the image. */
-  vmImage: string;
-  /** The credentials used to login to the image repository that has access to the specified image. */
-  vmImageRepositoryCredentials?: ImageRepositoryCredentials;
-  /** The cluster availability zone containing this virtual machine. */
-  availabilityZone?: string;
-  /** The resource ID of the bare metal machine that hosts the virtual machine. */
-  bareMetalMachineId?: string;
-  /** The resource ID of the cluster the virtual machine is created for. */
-  clusterId?: string;
-  /** The extended location to use for creation of a VM console resource. */
-  consoleExtendedLocation?: AzureResourceManagerCommonTypesExtendedLocation;
-  /** The more detailed status of the virtual machine. */
-  detailedStatus?: VirtualMachineDetailedStatus;
-  /** The descriptive message about the current detailed status. */
-  detailedStatusMessage?: string;
-  /** The power state of the virtual machine. */
-  powerState?: VirtualMachinePowerState;
-  /** The resource IDs of volumes that are attached to the virtual machine. */
-  volumes?: VirtualMachinePropertiesVolumesList;
-  /** The provisioning state of the virtual machine. */
-  provisioningState?: VirtualMachineProvisioningState;
-}
-export const VirtualMachineProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    adminUsername: S.String,
-    bootMethod: S.optional(VirtualMachinePropertiesBootMethod),
-    cloudServicesNetworkAttachment: NetworkAttachment,
-    cpuCores: S.Number,
-    isolateEmulatorThread: S.optional(
-      VirtualMachinePropertiesIsolateEmulatorThread,
-    ),
-    memorySizeGB: S.Number,
-    networkAttachments: S.optional(
-      VirtualMachinePropertiesNetworkAttachmentsList,
-    ),
-    networkData: S.optional(S.String),
-    networkDataContent: S.optional(S.String),
-    placementHints: S.optional(VirtualMachinePropertiesPlacementHintsList),
-    sshPublicKeys: S.optional(VirtualMachinePropertiesSshPublicKeysList),
-    storageProfile: StorageProfile,
-    userData: S.optional(S.String),
-    userDataContent: S.optional(S.String),
-    virtioInterface: S.optional(VirtualMachinePropertiesVirtioInterface),
-    vmDeviceModel: S.optional(VirtualMachinePropertiesVmDeviceModel),
-    vmImage: S.String,
-    vmImageRepositoryCredentials: S.optional(ImageRepositoryCredentials),
-    availabilityZone: S.optional(S.String),
-    bareMetalMachineId: S.optional(S.String),
-    clusterId: S.optional(S.String),
-    consoleExtendedLocation: S.optional(
-      AzureResourceManagerCommonTypesExtendedLocation,
-    ),
-    detailedStatus: S.optional(VirtualMachineDetailedStatus),
-    detailedStatusMessage: S.optional(S.String),
-    powerState: S.optional(VirtualMachinePowerState),
-    volumes: S.optional(VirtualMachinePropertiesVolumesList),
-    provisioningState: S.optional(VirtualMachineProvisioningState),
-  }),
-).annotate({
-  identifier: "VirtualMachineProperties",
-}) as any as S.Schema<VirtualMachineProperties>;
-
 /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
 export type VirtualMachinesCreateOrUpdateResponseIdentityUserAssignedIdentitiesMap =
   { [key: string]: UserAssignedIdentity | undefined };
@@ -14829,299 +15689,6 @@ export const VirtualMachinesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "VirtualMachinesCreateOrUpdateResponse",
 }) as any as S.Schema<VirtualMachinesCreateOrUpdateResponse>;
 
-export interface VirtualMachinesDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the virtual machine. */
-  virtualMachineName: string;
-}
-export const VirtualMachinesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    virtualMachineName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "VirtualMachinesDeleteRequest",
-}) as any as S.Schema<VirtualMachinesDeleteRequest>;
-
-export interface VirtualMachinesDeleteResponse {}
-export const VirtualMachinesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "VirtualMachinesDeleteResponse",
-}) as any as S.Schema<VirtualMachinesDeleteResponse>;
-
-export interface VirtualMachinesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the virtual machine. */
-  virtualMachineName: string;
-}
-export const VirtualMachinesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    virtualMachineName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "VirtualMachinesGetRequest",
-}) as any as S.Schema<VirtualMachinesGetRequest>;
-
-/** Resource tags. */
-export type VirtualMachinesGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const VirtualMachinesGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<VirtualMachinesGetResponseTagsMap>;
-
-/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type VirtualMachinesGetResponseIdentityUserAssignedIdentitiesMap = {
-  [key: string]: UserAssignedIdentity | undefined;
-};
-export const VirtualMachinesGetResponseIdentityUserAssignedIdentitiesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    UserAssignedIdentity,
-  ) as any as S.Schema<VirtualMachinesGetResponseIdentityUserAssignedIdentitiesMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export interface VirtualMachinesGetResponseIdentity {
-  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  principalId?: string;
-  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  tenantId?: string;
-  type: ManagedServiceIdentityType;
-  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: VirtualMachinesGetResponseIdentityUserAssignedIdentitiesMap;
-}
-export const VirtualMachinesGetResponseIdentity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    principalId: S.optional(S.String),
-    tenantId: S.optional(S.String),
-    type: ManagedServiceIdentityType,
-    userAssignedIdentities: S.optional(
-      VirtualMachinesGetResponseIdentityUserAssignedIdentitiesMap,
-    ),
-  }),
-).annotate({
-  identifier: "VirtualMachinesGetResponseIdentity",
-}) as any as S.Schema<VirtualMachinesGetResponseIdentity>;
-
-export interface VirtualMachinesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: VirtualMachinesGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: VirtualMachineProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: VirtualMachinesGetResponseIdentity;
-}
-export const VirtualMachinesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(VirtualMachinesGetResponseTagsMap),
-    location: S.String,
-    properties: VirtualMachineProperties,
-    etag: S.optional(S.String),
-    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-    identity: S.optional(VirtualMachinesGetResponseIdentity),
-  }),
-).annotate({
-  identifier: "VirtualMachinesGetResponse",
-}) as any as S.Schema<VirtualMachinesGetResponse>;
-
-export interface VirtualMachinesListByResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
-  _top?: number;
-  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
-  _skipToken?: string;
-}
-export const VirtualMachinesListByResourceGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "VirtualMachinesListByResourceGroupRequest",
-  }) as any as S.Schema<VirtualMachinesListByResourceGroupRequest>;
-
-/** Resource tags. */
-export type VirtualMachineTagsMap = { [key: string]: string | undefined };
-export const VirtualMachineTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<VirtualMachineTagsMap>;
-
-/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type VirtualMachineIdentityUserAssignedIdentitiesMap = {
-  [key: string]: UserAssignedIdentity | undefined;
-};
-export const VirtualMachineIdentityUserAssignedIdentitiesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    UserAssignedIdentity,
-  ) as any as S.Schema<VirtualMachineIdentityUserAssignedIdentitiesMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export interface VirtualMachineIdentity {
-  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  principalId?: string;
-  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  tenantId?: string;
-  type: ManagedServiceIdentityType;
-  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: VirtualMachineIdentityUserAssignedIdentitiesMap;
-}
-export const VirtualMachineIdentity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    principalId: S.optional(S.String),
-    tenantId: S.optional(S.String),
-    type: ManagedServiceIdentityType,
-    userAssignedIdentities: S.optional(
-      VirtualMachineIdentityUserAssignedIdentitiesMap,
-    ),
-  }),
-).annotate({
-  identifier: "VirtualMachineIdentity",
-}) as any as S.Schema<VirtualMachineIdentity>;
-
-/** VirtualMachine represents the on-premises Network Cloud virtual machine. */
-export interface VirtualMachine {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: VirtualMachineTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: VirtualMachineProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: VirtualMachineIdentity;
-}
-export const VirtualMachine = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(VirtualMachineTagsMap),
-    location: S.String,
-    properties: VirtualMachineProperties,
-    etag: S.optional(S.String),
-    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-    identity: S.optional(VirtualMachineIdentity),
-  }),
-).annotate({ identifier: "VirtualMachine" }) as any as S.Schema<VirtualMachine>;
-
-/** The VirtualMachine items on this page */
-export type VirtualMachineListValueList = Array<VirtualMachine>;
-export const VirtualMachineListValueList = /*@__PURE__*/ S.Array(
-  VirtualMachine,
-) as any as S.Schema<VirtualMachineListValueList>;
-
-/** VirtualMachineList represents a list of virtual machines. */
-export interface VirtualMachineList {
-  /** The VirtualMachine items on this page */
-  value: VirtualMachineListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const VirtualMachineList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: VirtualMachineListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "VirtualMachineList",
-}) as any as S.Schema<VirtualMachineList>;
-
-export interface VirtualMachinesListBySubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
-  _top?: number;
-  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
-  _skipToken?: string;
-}
-export const VirtualMachinesListBySubscriptionRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/virtualMachines",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "VirtualMachinesListBySubscriptionRequest",
-}) as any as S.Schema<VirtualMachinesListBySubscriptionRequest>;
-
 /** The indicator of whether to skip the graceful OS shutdown and power off the virtual machine immediately. */
 export type VirtualMachinesPowerOffRequestSkipShutdown = "True" | "False";
 export const VirtualMachinesPowerOffRequestSkipShutdown =
@@ -15194,255 +15761,6 @@ export const VirtualMachinesReimageResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "VirtualMachinesReimageResponse",
 }) as any as S.Schema<VirtualMachinesReimageResponse>;
 
-export interface VirtualMachinesRestartRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the virtual machine. */
-  virtualMachineName: string;
-}
-export const VirtualMachinesRestartRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    virtualMachineName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/restart",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "VirtualMachinesRestartRequest",
-}) as any as S.Schema<VirtualMachinesRestartRequest>;
-
-export interface VirtualMachinesRestartResponse {}
-export const VirtualMachinesRestartResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "VirtualMachinesRestartResponse",
-}) as any as S.Schema<VirtualMachinesRestartResponse>;
-
-export interface VirtualMachinesStartRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the virtual machine. */
-  virtualMachineName: string;
-}
-export const VirtualMachinesStartRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    virtualMachineName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/start",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "VirtualMachinesStartRequest",
-}) as any as S.Schema<VirtualMachinesStartRequest>;
-
-export interface VirtualMachinesStartResponse {}
-export const VirtualMachinesStartResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "VirtualMachinesStartResponse",
-}) as any as S.Schema<VirtualMachinesStartResponse>;
-
-/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type VirtualMachinesUpdateRequestIdentityUserAssignedIdentitiesMap = {
-  [key: string]: UserAssignedIdentityInput | undefined;
-};
-export const VirtualMachinesUpdateRequestIdentityUserAssignedIdentitiesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    UserAssignedIdentityInput,
-  ) as any as S.Schema<VirtualMachinesUpdateRequestIdentityUserAssignedIdentitiesMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export interface VirtualMachinesUpdateRequestIdentity {
-  type: ManagedServiceIdentityType | (string & {});
-  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: VirtualMachinesUpdateRequestIdentityUserAssignedIdentitiesMap;
-}
-export const VirtualMachinesUpdateRequestIdentity = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      type: ManagedServiceIdentityType,
-      userAssignedIdentities: S.optional(
-        VirtualMachinesUpdateRequestIdentityUserAssignedIdentitiesMap,
-      ),
-    }),
-).annotate({
-  identifier: "VirtualMachinesUpdateRequestIdentity",
-}) as any as S.Schema<VirtualMachinesUpdateRequestIdentity>;
-
-/** ImageRepositoryCredentialsPatch represents the credentials used to login to the image repository for patch operations. */
-export interface ImageRepositoryCredentialsPatch {
-  /** The password or token used to access an image in the target repository. */
-  password?: string | Redacted.Redacted<string>;
-  /** The URL of the authentication server used to validate the repository credentials. */
-  registryUrl?: string;
-  /** The username used to access an image in the target repository. */
-  username?: string;
-}
-export const ImageRepositoryCredentialsPatch = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    password: S.optional(S.String.pipe(T.SensitiveValue({}))),
-    registryUrl: S.optional(S.String),
-    username: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ImageRepositoryCredentialsPatch",
-}) as any as S.Schema<ImageRepositoryCredentialsPatch>;
-
-/** VirtualMachinePatchProperties represents the properties of the virtual machine that can be patched. */
-export interface VirtualMachinePatchProperties {
-  /** The credentials used to login to the image repository that has access to the specified image. */
-  vmImageRepositoryCredentials?: ImageRepositoryCredentialsPatch;
-}
-export const VirtualMachinePatchProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    vmImageRepositoryCredentials: S.optional(ImageRepositoryCredentialsPatch),
-  }),
-).annotate({
-  identifier: "VirtualMachinePatchProperties",
-}) as any as S.Schema<VirtualMachinePatchProperties>;
-
-/** Resource tags. */
-export type VirtualMachinesUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const VirtualMachinesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<VirtualMachinesUpdateRequestTagsMap>;
-
-export interface VirtualMachinesUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the virtual machine. */
-  virtualMachineName: string;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: VirtualMachinesUpdateRequestIdentity;
-  /** The list of the resource properties. */
-  properties?: VirtualMachinePatchProperties;
-  /** Resource tags. */
-  tags?: VirtualMachinesUpdateRequestTagsMap;
-}
-export const VirtualMachinesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    virtualMachineName: S.String.pipe(T.Label()),
-    identity: S.optional(VirtualMachinesUpdateRequestIdentity),
-    properties: S.optional(VirtualMachinePatchProperties),
-    tags: S.optional(VirtualMachinesUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "VirtualMachinesUpdateRequest",
-}) as any as S.Schema<VirtualMachinesUpdateRequest>;
-
-/** Resource tags. */
-export type VirtualMachinesUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const VirtualMachinesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<VirtualMachinesUpdateResponseTagsMap>;
-
-/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type VirtualMachinesUpdateResponseIdentityUserAssignedIdentitiesMap = {
-  [key: string]: UserAssignedIdentity | undefined;
-};
-export const VirtualMachinesUpdateResponseIdentityUserAssignedIdentitiesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    UserAssignedIdentity,
-  ) as any as S.Schema<VirtualMachinesUpdateResponseIdentityUserAssignedIdentitiesMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export interface VirtualMachinesUpdateResponseIdentity {
-  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  principalId?: string;
-  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  tenantId?: string;
-  type: ManagedServiceIdentityType;
-  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: VirtualMachinesUpdateResponseIdentityUserAssignedIdentitiesMap;
-}
-export const VirtualMachinesUpdateResponseIdentity = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      principalId: S.optional(S.String),
-      tenantId: S.optional(S.String),
-      type: ManagedServiceIdentityType,
-      userAssignedIdentities: S.optional(
-        VirtualMachinesUpdateResponseIdentityUserAssignedIdentitiesMap,
-      ),
-    }),
-).annotate({
-  identifier: "VirtualMachinesUpdateResponseIdentity",
-}) as any as S.Schema<VirtualMachinesUpdateResponseIdentity>;
-
-export interface VirtualMachinesUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: VirtualMachinesUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: VirtualMachineProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: VirtualMachinesUpdateResponseIdentity;
-}
-export const VirtualMachinesUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(VirtualMachinesUpdateResponseTagsMap),
-    location: S.String,
-    properties: VirtualMachineProperties,
-    etag: S.optional(S.String),
-    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-    identity: S.optional(VirtualMachinesUpdateResponseIdentity),
-  }),
-).annotate({
-  identifier: "VirtualMachinesUpdateResponse",
-}) as any as S.Schema<VirtualMachinesUpdateResponse>;
-
 /** Resource tags. */
 export type VolumesCreateOrUpdateRequestTagsMap = {
   [key: string]: string | undefined;
@@ -15514,62 +15832,6 @@ export const VolumesCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
 ) as any as S.Schema<VolumesCreateOrUpdateResponseTagsMap>;
 
-/** The list of resource IDs that attach the volume. It may include virtual machines and Hybrid AKS clusters. */
-export type VolumePropertiesAttachedToList = Array<string>;
-export const VolumePropertiesAttachedToList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<VolumePropertiesAttachedToList>;
-
-/** The more detailed status of the volume. */
-export type VolumeDetailedStatus = "Active" | "Error" | "Provisioning";
-export const VolumeDetailedStatus = /*@__PURE__*/ S.String;
-
-/** The provisioning state of the volume. */
-export type VolumeProvisioningState =
-  | "Accepted"
-  | "Canceled"
-  | "Failed"
-  | "Provisioning"
-  | "Succeeded";
-export const VolumeProvisioningState = /*@__PURE__*/ S.String;
-
-/** VolumeProperties represents properties of the volume resource. */
-export interface VolumeProperties {
-  /** The requested storage allocation for the volume in Mebibytes. */
-  sizeMiB: number;
-  /** The resource ID of the storage appliance that hosts the volume. */
-  storageApplianceId?: string;
-  /** The allocated size of the volume in Mebibytes. */
-  allocatedSizeMiB?: number;
-  /** The assigned resource ID of the storage appliance that hosts the volume. */
-  assignedStorageApplianceId?: string;
-  /** The list of resource IDs that attach the volume. It may include virtual machines and Hybrid AKS clusters. */
-  attachedTo?: VolumePropertiesAttachedToList;
-  /** The more detailed status of the volume. */
-  detailedStatus?: VolumeDetailedStatus;
-  /** The descriptive message about the current detailed status. */
-  detailedStatusMessage?: string;
-  /** The unique identifier of the volume. */
-  serialNumber?: string;
-  /** The provisioning state of the volume. */
-  provisioningState?: VolumeProvisioningState;
-}
-export const VolumeProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    sizeMiB: S.Number,
-    storageApplianceId: S.optional(S.String),
-    allocatedSizeMiB: S.optional(S.Number),
-    assignedStorageApplianceId: S.optional(S.String),
-    attachedTo: S.optional(VolumePropertiesAttachedToList),
-    detailedStatus: S.optional(VolumeDetailedStatus),
-    detailedStatusMessage: S.optional(S.String),
-    serialNumber: S.optional(S.String),
-    provisioningState: S.optional(VolumeProvisioningState),
-  }),
-).annotate({
-  identifier: "VolumeProperties",
-}) as any as S.Schema<VolumeProperties>;
-
 export interface VolumesCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
@@ -15606,301 +15868,6 @@ export const VolumesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "VolumesCreateOrUpdateResponse",
 }) as any as S.Schema<VolumesCreateOrUpdateResponse>;
 
-export interface VolumesDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the volume. */
-  volumeName: string;
-}
-export const VolumesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    volumeName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/volumes/{volumeName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "VolumesDeleteRequest",
-}) as any as S.Schema<VolumesDeleteRequest>;
-
-export interface VolumesDeleteResponse {}
-export const VolumesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "VolumesDeleteResponse",
-}) as any as S.Schema<VolumesDeleteResponse>;
-
-export interface VolumesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the volume. */
-  volumeName: string;
-}
-export const VolumesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    volumeName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/volumes/{volumeName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "VolumesGetRequest",
-}) as any as S.Schema<VolumesGetRequest>;
-
-/** Resource tags. */
-export type VolumesGetResponseTagsMap = { [key: string]: string | undefined };
-export const VolumesGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<VolumesGetResponseTagsMap>;
-
-export interface VolumesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: VolumesGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: VolumeProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
-}
-export const VolumesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(VolumesGetResponseTagsMap),
-    location: S.String,
-    properties: VolumeProperties,
-    etag: S.optional(S.String),
-    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-  }),
-).annotate({
-  identifier: "VolumesGetResponse",
-}) as any as S.Schema<VolumesGetResponse>;
-
-export interface VolumesListByResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
-  _top?: number;
-  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
-  _skipToken?: string;
-}
-export const VolumesListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/volumes",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "VolumesListByResourceGroupRequest",
-}) as any as S.Schema<VolumesListByResourceGroupRequest>;
-
-/** Resource tags. */
-export type VolumeTagsMap = { [key: string]: string | undefined };
-export const VolumeTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<VolumeTagsMap>;
-
-/** Volume represents storage made available for use by resources running on the cluster. */
-export interface Volume {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: VolumeTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: VolumeProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
-}
-export const Volume = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(VolumeTagsMap),
-    location: S.String,
-    properties: VolumeProperties,
-    etag: S.optional(S.String),
-    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-  }),
-).annotate({ identifier: "Volume" }) as any as S.Schema<Volume>;
-
-/** The Volume items on this page */
-export type VolumeListValueList = Array<Volume>;
-export const VolumeListValueList = /*@__PURE__*/ S.Array(
-  Volume,
-) as any as S.Schema<VolumeListValueList>;
-
-/** VolumeList represents a list of volumes. */
-export interface VolumeList {
-  /** The Volume items on this page */
-  value: VolumeListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const VolumeList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: VolumeListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "VolumeList" }) as any as S.Schema<VolumeList>;
-
-export interface VolumesListBySubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The maximum number of resources to return from the operation. Example: '$top=10'. */
-  _top?: number;
-  /** The opaque token that the server returns to indicate where to continue listing resources from. This is used for paging through large result sets. */
-  _skipToken?: string;
-}
-export const VolumesListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/volumes",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "VolumesListBySubscriptionRequest",
-}) as any as S.Schema<VolumesListBySubscriptionRequest>;
-
-/** Resource tags. */
-export type VolumesUpdateRequestTagsMap = { [key: string]: string | undefined };
-export const VolumesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<VolumesUpdateRequestTagsMap>;
-
-export interface VolumesUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the volume. */
-  volumeName: string;
-  /** Resource tags. */
-  tags?: VolumesUpdateRequestTagsMap;
-}
-export const VolumesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    volumeName: S.String.pipe(T.Label()),
-    tags: S.optional(VolumesUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/volumes/{volumeName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "VolumesUpdateRequest",
-}) as any as S.Schema<VolumesUpdateRequest>;
-
-/** Resource tags. */
-export type VolumesUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const VolumesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<VolumesUpdateResponseTagsMap>;
-
-export interface VolumesUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: VolumesUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The list of the resource properties. */
-  properties: VolumeProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The extended location of the resource. This property is required when creating the resource. */
-  extendedLocation: AzureResourceManagerCommonTypesExtendedLocation;
-}
-export const VolumesUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(VolumesUpdateResponseTagsMap),
-    location: S.String,
-    properties: VolumeProperties,
-    etag: S.optional(S.String),
-    extendedLocation: AzureResourceManagerCommonTypesExtendedLocation,
-  }),
-).annotate({
-  identifier: "VolumesUpdateResponse",
-}) as any as S.Schema<VolumesUpdateResponse>;
-
 export type AccessBridgesCreateOrUpdateError = AzureOpError;
 /** Create a new access bridge or update the properties of the existing access bridge. */
 export const AccessBridgesCreateOrUpdate: API.OperationMethod<
@@ -15911,81 +15878,6 @@ export const AccessBridgesCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: AccessBridgesCreateOrUpdateRequest,
   output: AccessBridgesCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccessBridgesDeleteError = AzureOpError;
-/** Delete the specified access bridge. */
-export const AccessBridgesDelete: API.OperationMethod<
-  AccessBridgesDeleteRequest,
-  AccessBridgesDeleteResponse,
-  AccessBridgesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccessBridgesDeleteRequest,
-  output: AccessBridgesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccessBridgesGetError = AzureOpError;
-/** Get the properties of the provided access bridge. */
-export const AccessBridgesGet: API.OperationMethod<
-  AccessBridgesGetRequest,
-  AccessBridgesGetResponse,
-  AccessBridgesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccessBridgesGetRequest,
-  output: AccessBridgesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccessBridgesListByResourceGroupError = AzureOpError;
-/** Get a list of access bridges in the provided resource group. */
-export const AccessBridgesListByResourceGroup: API.OperationMethod<
-  AccessBridgesListByResourceGroupRequest,
-  AccessBridgeList,
-  AccessBridgesListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccessBridgesListByResourceGroupRequest,
-  output: AccessBridgeList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccessBridgesListBySubscriptionError = AzureOpError;
-/** Get a list of access bridges in the provided subscription. */
-export const AccessBridgesListBySubscription: API.OperationMethod<
-  AccessBridgesListBySubscriptionRequest,
-  AccessBridgeList,
-  AccessBridgesListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccessBridgesListBySubscriptionRequest,
-  output: AccessBridgeList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccessBridgesUpdateError = AzureOpError;
-/** Update properties of the provided access bridge, or update tags associated with the access bridge. Properties and tag updates can be done independently. */
-export const AccessBridgesUpdate: API.OperationMethod<
-  AccessBridgesUpdateRequest,
-  AccessBridgesUpdateResponse,
-  AccessBridgesUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccessBridgesUpdateRequest,
-  output: AccessBridgesUpdateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -16006,61 +15898,16 @@ export const AgentPoolsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type AgentPoolsDeleteError = AzureOpError;
-/** Delete the provided Kubernetes cluster agent pool. */
-export const AgentPoolsDelete: API.OperationMethod<
-  AgentPoolsDeleteRequest,
-  AgentPoolsDeleteResponse,
-  AgentPoolsDeleteError,
+export type AssignVirtualMachineRelayError = AzureOpError;
+/** Assigns a relay to the specified Microsoft.HybridCompute machine associated with the provided virtual machine. */
+export const AssignVirtualMachineRelay: API.OperationMethod<
+  AssignVirtualMachineRelayRequest,
+  AssignVirtualMachineRelayResponse,
+  AssignVirtualMachineRelayError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AgentPoolsDeleteRequest,
-  output: AgentPoolsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AgentPoolsGetError = AzureOpError;
-/** Get properties of the provided Kubernetes cluster agent pool. */
-export const AgentPoolsGet: API.OperationMethod<
-  AgentPoolsGetRequest,
-  AgentPoolsGetResponse,
-  AgentPoolsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AgentPoolsGetRequest,
-  output: AgentPoolsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AgentPoolsListByKubernetesClusterError = AzureOpError;
-/** Get a list of agent pools for the provided Kubernetes cluster. */
-export const AgentPoolsListByKubernetesCluster: API.OperationMethod<
-  AgentPoolsListByKubernetesClusterRequest,
-  AgentPoolList,
-  AgentPoolsListByKubernetesClusterError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AgentPoolsListByKubernetesClusterRequest,
-  output: AgentPoolList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AgentPoolsUpdateError = AzureOpError;
-/** Patch the properties of the provided Kubernetes cluster agent pool, or update the tags associated with the Kubernetes cluster agent pool. Properties and tag updates can be done independently. */
-export const AgentPoolsUpdate: API.OperationMethod<
-  AgentPoolsUpdateRequest,
-  AgentPoolsUpdateResponse,
-  AgentPoolsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AgentPoolsUpdateRequest,
-  output: AgentPoolsUpdateResponse,
+  input: AssignVirtualMachineRelayRequest,
+  output: AssignVirtualMachineRelayResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -16081,81 +15928,6 @@ export const BareMetalMachineKeySetsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type BareMetalMachineKeySetsDeleteError = AzureOpError;
-/** Delete the bare metal machine key set of the provided cluster. */
-export const BareMetalMachineKeySetsDelete: API.OperationMethod<
-  BareMetalMachineKeySetsDeleteRequest,
-  BareMetalMachineKeySetsDeleteResponse,
-  BareMetalMachineKeySetsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BareMetalMachineKeySetsDeleteRequest,
-  output: BareMetalMachineKeySetsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BareMetalMachineKeySetsGetError = AzureOpError;
-/** Get bare metal machine key set of the provided cluster. */
-export const BareMetalMachineKeySetsGet: API.OperationMethod<
-  BareMetalMachineKeySetsGetRequest,
-  BareMetalMachineKeySetsGetResponse,
-  BareMetalMachineKeySetsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BareMetalMachineKeySetsGetRequest,
-  output: BareMetalMachineKeySetsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BareMetalMachineKeySetsListByClusterError = AzureOpError;
-/** Get a list of bare metal machine key sets for the provided cluster. */
-export const BareMetalMachineKeySetsListByCluster: API.OperationMethod<
-  BareMetalMachineKeySetsListByClusterRequest,
-  BareMetalMachineKeySetList,
-  BareMetalMachineKeySetsListByClusterError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BareMetalMachineKeySetsListByClusterRequest,
-  output: BareMetalMachineKeySetList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BareMetalMachineKeySetsUpdateError = AzureOpError;
-/** Patch properties of bare metal machine key set for the provided cluster, or update the tags associated with it. Properties and tag updates can be done independently. */
-export const BareMetalMachineKeySetsUpdate: API.OperationMethod<
-  BareMetalMachineKeySetsUpdateRequest,
-  BareMetalMachineKeySetsUpdateResponse,
-  BareMetalMachineKeySetsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BareMetalMachineKeySetsUpdateRequest,
-  output: BareMetalMachineKeySetsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BareMetalMachinesCordonError = AzureOpError;
-/** Cordon the provided bare metal machine's Kubernetes node. */
-export const BareMetalMachinesCordon: API.OperationMethod<
-  BareMetalMachinesCordonRequest,
-  BareMetalMachinesCordonResponse,
-  BareMetalMachinesCordonError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BareMetalMachinesCordonRequest,
-  output: BareMetalMachinesCordonResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type BareMetalMachinesCreateOrUpdateError = AzureOpError;
 /** Create a new bare metal machine or update the properties of the existing one. All customer initiated requests will be rejected as the life cycle of this resource is managed by the system. */
 export const BareMetalMachinesCreateOrUpdate: API.OperationMethod<
@@ -16166,66 +15938,6 @@ export const BareMetalMachinesCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: BareMetalMachinesCreateOrUpdateRequest,
   output: BareMetalMachinesCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BareMetalMachinesDeleteError = AzureOpError;
-/** Delete the provided bare metal machine. All customer initiated requests will be rejected as the life cycle of this resource is managed by the system. */
-export const BareMetalMachinesDelete: API.OperationMethod<
-  BareMetalMachinesDeleteRequest,
-  BareMetalMachinesDeleteResponse,
-  BareMetalMachinesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BareMetalMachinesDeleteRequest,
-  output: BareMetalMachinesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BareMetalMachinesGetError = AzureOpError;
-/** Get properties of the provided bare metal machine. */
-export const BareMetalMachinesGet: API.OperationMethod<
-  BareMetalMachinesGetRequest,
-  BareMetalMachinesGetResponse,
-  BareMetalMachinesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BareMetalMachinesGetRequest,
-  output: BareMetalMachinesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BareMetalMachinesListByResourceGroupError = AzureOpError;
-/** Get a list of bare metal machines in the provided resource group. */
-export const BareMetalMachinesListByResourceGroup: API.OperationMethod<
-  BareMetalMachinesListByResourceGroupRequest,
-  BareMetalMachineList,
-  BareMetalMachinesListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BareMetalMachinesListByResourceGroupRequest,
-  output: BareMetalMachineList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BareMetalMachinesListBySubscriptionError = AzureOpError;
-/** Get a list of bare metal machines in the provided subscription. */
-export const BareMetalMachinesListBySubscription: API.OperationMethod<
-  BareMetalMachinesListBySubscriptionRequest,
-  BareMetalMachineList,
-  BareMetalMachinesListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BareMetalMachinesListBySubscriptionRequest,
-  output: BareMetalMachineList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -16261,81 +15973,6 @@ export const BareMetalMachinesReimage: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type BareMetalMachinesReplaceError = AzureOpError;
-/** Replace the provided bare metal machine. */
-export const BareMetalMachinesReplace: API.OperationMethod<
-  BareMetalMachinesReplaceRequest,
-  BareMetalMachinesReplaceResponse,
-  BareMetalMachinesReplaceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BareMetalMachinesReplaceRequest,
-  output: BareMetalMachinesReplaceResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BareMetalMachinesRestartError = AzureOpError;
-/** Restart the provided bare metal machine. */
-export const BareMetalMachinesRestart: API.OperationMethod<
-  BareMetalMachinesRestartRequest,
-  BareMetalMachinesRestartResponse,
-  BareMetalMachinesRestartError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BareMetalMachinesRestartRequest,
-  output: BareMetalMachinesRestartResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BareMetalMachinesRunCommandError = AzureOpError;
-/** Run the command or the script on the provided bare metal machine. The URL to storage account with the command execution results and the command exit code can be retrieved from the operation status API once available. */
-export const BareMetalMachinesRunCommand: API.OperationMethod<
-  BareMetalMachinesRunCommandRequest,
-  BareMetalMachinesRunCommandResponse,
-  BareMetalMachinesRunCommandError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BareMetalMachinesRunCommandRequest,
-  output: BareMetalMachinesRunCommandResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BareMetalMachinesRunDataExtractsError = AzureOpError;
-/** Run one or more data extractions on the provided bare metal machine. The URL to storage account with the command execution results and the command exit code can be retrieved from the operation status API once available. */
-export const BareMetalMachinesRunDataExtracts: API.OperationMethod<
-  BareMetalMachinesRunDataExtractsRequest,
-  BareMetalMachinesRunDataExtractsResponse,
-  BareMetalMachinesRunDataExtractsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BareMetalMachinesRunDataExtractsRequest,
-  output: BareMetalMachinesRunDataExtractsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BareMetalMachinesRunDataExtractsRestrictedError = AzureOpError;
-/** Run one or more restricted data extractions on the provided bare metal machine. The URL to storage account with the command execution results and the command exit code can be retrieved from the operation status API once available. */
-export const BareMetalMachinesRunDataExtractsRestricted: API.OperationMethod<
-  BareMetalMachinesRunDataExtractsRestrictedRequest,
-  BareMetalMachinesRunDataExtractsRestrictedResponse,
-  BareMetalMachinesRunDataExtractsRestrictedError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BareMetalMachinesRunDataExtractsRestrictedRequest,
-  output: BareMetalMachinesRunDataExtractsRestrictedResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type BareMetalMachinesRunReadCommandsError = AzureOpError;
 /** Run one or more read-only commands on the provided bare metal machine. The URL to storage account with the command execution results and the command exit code can be retrieved from the operation status API once available. */
 export const BareMetalMachinesRunReadCommands: API.OperationMethod<
@@ -16346,51 +15983,6 @@ export const BareMetalMachinesRunReadCommands: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: BareMetalMachinesRunReadCommandsRequest,
   output: BareMetalMachinesRunReadCommandsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BareMetalMachinesStartError = AzureOpError;
-/** Start the provided bare metal machine. */
-export const BareMetalMachinesStart: API.OperationMethod<
-  BareMetalMachinesStartRequest,
-  BareMetalMachinesStartResponse,
-  BareMetalMachinesStartError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BareMetalMachinesStartRequest,
-  output: BareMetalMachinesStartResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BareMetalMachinesUncordonError = AzureOpError;
-/** Uncordon the provided bare metal machine's Kubernetes node. */
-export const BareMetalMachinesUncordon: API.OperationMethod<
-  BareMetalMachinesUncordonRequest,
-  BareMetalMachinesUncordonResponse,
-  BareMetalMachinesUncordonError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BareMetalMachinesUncordonRequest,
-  output: BareMetalMachinesUncordonResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BareMetalMachinesUpdateError = AzureOpError;
-/** Patch properties of the provided bare metal machine, or update tags associated with the bare metal machine. Properties and tag updates can be done independently. */
-export const BareMetalMachinesUpdate: API.OperationMethod<
-  BareMetalMachinesUpdateRequest,
-  BareMetalMachinesUpdateResponse,
-  BareMetalMachinesUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BareMetalMachinesUpdateRequest,
-  output: BareMetalMachinesUpdateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -16411,66 +16003,6 @@ export const BmcKeySetsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type BmcKeySetsDeleteError = AzureOpError;
-/** Delete the baseboard management controller key set of the provided cluster. */
-export const BmcKeySetsDelete: API.OperationMethod<
-  BmcKeySetsDeleteRequest,
-  BmcKeySetsDeleteResponse,
-  BmcKeySetsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BmcKeySetsDeleteRequest,
-  output: BmcKeySetsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BmcKeySetsGetError = AzureOpError;
-/** Get baseboard management controller key set of the provided cluster. */
-export const BmcKeySetsGet: API.OperationMethod<
-  BmcKeySetsGetRequest,
-  BmcKeySetsGetResponse,
-  BmcKeySetsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BmcKeySetsGetRequest,
-  output: BmcKeySetsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BmcKeySetsListByClusterError = AzureOpError;
-/** Get a list of baseboard management controller key sets for the provided cluster. */
-export const BmcKeySetsListByCluster: API.OperationMethod<
-  BmcKeySetsListByClusterRequest,
-  BmcKeySetList,
-  BmcKeySetsListByClusterError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BmcKeySetsListByClusterRequest,
-  output: BmcKeySetList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BmcKeySetsUpdateError = AzureOpError;
-/** Patch properties of baseboard management controller key set for the provided cluster, or update the tags associated with it. Properties and tag updates can be done independently. */
-export const BmcKeySetsUpdate: API.OperationMethod<
-  BmcKeySetsUpdateRequest,
-  BmcKeySetsUpdateResponse,
-  BmcKeySetsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BmcKeySetsUpdateRequest,
-  output: BmcKeySetsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type CloudServicesNetworksCreateOrUpdateError = AzureOpError;
 /** Create a new cloud services network or update the properties of the existing cloud services network. */
 export const CloudServicesNetworksCreateOrUpdate: API.OperationMethod<
@@ -16486,81 +16018,6 @@ export const CloudServicesNetworksCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CloudServicesNetworksDeleteError = AzureOpError;
-/** Delete the provided cloud services network. */
-export const CloudServicesNetworksDelete: API.OperationMethod<
-  CloudServicesNetworksDeleteRequest,
-  CloudServicesNetworksDeleteResponse,
-  CloudServicesNetworksDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CloudServicesNetworksDeleteRequest,
-  output: CloudServicesNetworksDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CloudServicesNetworksGetError = AzureOpError;
-/** Get properties of the provided cloud services network. */
-export const CloudServicesNetworksGet: API.OperationMethod<
-  CloudServicesNetworksGetRequest,
-  CloudServicesNetworksGetResponse,
-  CloudServicesNetworksGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CloudServicesNetworksGetRequest,
-  output: CloudServicesNetworksGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CloudServicesNetworksListByResourceGroupError = AzureOpError;
-/** Get a list of cloud services networks in the provided resource group. */
-export const CloudServicesNetworksListByResourceGroup: API.OperationMethod<
-  CloudServicesNetworksListByResourceGroupRequest,
-  CloudServicesNetworkList,
-  CloudServicesNetworksListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CloudServicesNetworksListByResourceGroupRequest,
-  output: CloudServicesNetworkList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CloudServicesNetworksListBySubscriptionError = AzureOpError;
-/** Get a list of cloud services networks in the provided subscription. */
-export const CloudServicesNetworksListBySubscription: API.OperationMethod<
-  CloudServicesNetworksListBySubscriptionRequest,
-  CloudServicesNetworkList,
-  CloudServicesNetworksListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CloudServicesNetworksListBySubscriptionRequest,
-  output: CloudServicesNetworkList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CloudServicesNetworksUpdateError = AzureOpError;
-/** Update properties of the provided cloud services network, or update the tags associated with it. Properties and tag updates can be done independently. */
-export const CloudServicesNetworksUpdate: API.OperationMethod<
-  CloudServicesNetworksUpdateRequest,
-  CloudServicesNetworksUpdateResponse,
-  CloudServicesNetworksUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CloudServicesNetworksUpdateRequest,
-  output: CloudServicesNetworksUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ClusterManagersCreateOrUpdateError = AzureOpError;
 /** Create a new cluster manager or update properties of the cluster manager if it exists. */
 export const ClusterManagersCreateOrUpdate: API.OperationMethod<
@@ -16571,97 +16028,6 @@ export const ClusterManagersCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ClusterManagersCreateOrUpdateRequest,
   output: ClusterManagersCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClusterManagersDeleteError = AzureOpError;
-/** Delete the provided cluster manager. */
-export const ClusterManagersDelete: API.OperationMethod<
-  ClusterManagersDeleteRequest,
-  ClusterManagersDeleteResponse,
-  ClusterManagersDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClusterManagersDeleteRequest,
-  output: ClusterManagersDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClusterManagersGetError = AzureOpError;
-/** Get the properties of the provided cluster manager. */
-export const ClusterManagersGet: API.OperationMethod<
-  ClusterManagersGetRequest,
-  ClusterManagersGetResponse,
-  ClusterManagersGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClusterManagersGetRequest,
-  output: ClusterManagersGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClusterManagersListByResourceGroupError = AzureOpError;
-/** Get a list of cluster managers in the provided resource group. */
-export const ClusterManagersListByResourceGroup: API.OperationMethod<
-  ClusterManagersListByResourceGroupRequest,
-  ClusterManagerList,
-  ClusterManagersListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClusterManagersListByResourceGroupRequest,
-  output: ClusterManagerList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClusterManagersListBySubscriptionError = AzureOpError;
-/** Get a list of cluster managers in the provided subscription. */
-export const ClusterManagersListBySubscription: API.OperationMethod<
-  ClusterManagersListBySubscriptionRequest,
-  ClusterManagerList,
-  ClusterManagersListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClusterManagersListBySubscriptionRequest,
-  output: ClusterManagerList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClusterManagersUpdateError = AzureOpError;
-/** Patch properties of the provided cluster manager, or update the tags assigned to the cluster manager. Properties and tag updates can be done independently. */
-export const ClusterManagersUpdate: API.OperationMethod<
-  ClusterManagersUpdateRequest,
-  ClusterManagersUpdateResponse,
-  ClusterManagersUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClusterManagersUpdateRequest,
-  output: ClusterManagersUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClusterManagersUpdateRelayPrivateEndpointConnectionError =
-  AzureOpError;
-/** Update the private endpoint connection for the Azure Relay namespace managed by the specified cluster manager. Use this operation to approve or reject a pending private endpoint connection request for the relay namespace managed by the cluster manager. */
-export const ClusterManagersUpdateRelayPrivateEndpointConnection: API.OperationMethod<
-  ClusterManagersUpdateRelayPrivateEndpointConnectionRequest,
-  ClusterManagersUpdateRelayPrivateEndpointConnectionResponse,
-  ClusterManagersUpdateRelayPrivateEndpointConnectionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClusterManagersUpdateRelayPrivateEndpointConnectionRequest,
-  output: ClusterManagersUpdateRelayPrivateEndpointConnectionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -16697,51 +16063,6 @@ export const ClustersCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ClustersDeleteError = AzureOpError;
-/** Delete the provided cluster. */
-export const ClustersDelete: API.OperationMethod<
-  ClustersDeleteRequest,
-  ClustersDeleteResponse,
-  ClustersDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersDeleteRequest,
-  output: ClustersDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClustersDeployError = AzureOpError;
-/** Deploy the cluster using the rack configuration provided during creation. */
-export const ClustersDeploy: API.OperationMethod<
-  ClustersDeployRequest,
-  ClustersDeployResponse,
-  ClustersDeployError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersDeployRequest,
-  output: ClustersDeployResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClustersGetError = AzureOpError;
-/** Get properties of the provided cluster. */
-export const ClustersGet: API.OperationMethod<
-  ClustersGetRequest,
-  ClustersGetResponse,
-  ClustersGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersGetRequest,
-  output: ClustersGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ClustersInspectError = AzureOpError;
 /** Trigger an inspection of the cluster to perform validation and optional corrective actions based on the supplied additional actions and filters. */
 export const ClustersInspect: API.OperationMethod<
@@ -16752,51 +16073,6 @@ export const ClustersInspect: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ClustersInspectRequest,
   output: ClustersInspectResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClustersListByResourceGroupError = AzureOpError;
-/** Get a list of clusters in the provided resource group. */
-export const ClustersListByResourceGroup: API.OperationMethod<
-  ClustersListByResourceGroupRequest,
-  ClusterList,
-  ClustersListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersListByResourceGroupRequest,
-  output: ClusterList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClustersListBySubscriptionError = AzureOpError;
-/** Get a list of clusters in the provided subscription. */
-export const ClustersListBySubscription: API.OperationMethod<
-  ClustersListBySubscriptionRequest,
-  ClusterList,
-  ClustersListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersListBySubscriptionRequest,
-  output: ClusterList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClustersRotateCredentialError = AzureOpError;
-/** Rotate the specified cluster credential. */
-export const ClustersRotateCredential: API.OperationMethod<
-  ClustersRotateCredentialRequest,
-  ClustersRotateCredentialResponse,
-  ClustersRotateCredentialError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersRotateCredentialRequest,
-  output: ClustersRotateCredentialResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -16817,36 +16093,6 @@ export const ClustersScanRuntime: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ClustersUpdateError = AzureOpError;
-/** Patch the properties of the provided cluster, or update the tags associated with the cluster. Properties and tag updates can be done independently. */
-export const ClustersUpdate: API.OperationMethod<
-  ClustersUpdateRequest,
-  ClustersUpdateResponse,
-  ClustersUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersUpdateRequest,
-  output: ClustersUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClustersUpdateVersionError = AzureOpError;
-/** Update the version of the provided cluster to one of the available supported versions. */
-export const ClustersUpdateVersion: API.OperationMethod<
-  ClustersUpdateVersionRequest,
-  ClustersUpdateVersionResponse,
-  ClustersUpdateVersionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersUpdateVersionRequest,
-  output: ClustersUpdateVersionResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ConsolesCreateOrUpdateError = AzureOpError;
 /** Create a new virtual machine console or update the properties of the existing virtual machine console. */
 export const ConsolesCreateOrUpdate: API.OperationMethod<
@@ -16862,61 +16108,676 @@ export const ConsolesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ConsolesDeleteError = AzureOpError;
+export type CordonBareMetalMachineError = AzureOpError;
+/** Cordon the provided bare metal machine's Kubernetes node. */
+export const CordonBareMetalMachine: API.OperationMethod<
+  CordonBareMetalMachineRequest,
+  CordonBareMetalMachineResponse,
+  CordonBareMetalMachineError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CordonBareMetalMachineRequest,
+  output: CordonBareMetalMachineResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteAccessBridgeError = AzureOpError;
+/** Delete the specified access bridge. */
+export const DeleteAccessBridge: API.OperationMethod<
+  DeleteAccessBridgeRequest,
+  DeleteAccessBridgeResponse,
+  DeleteAccessBridgeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteAccessBridgeRequest,
+  output: DeleteAccessBridgeResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteAgentPoolError = AzureOpError;
+/** Delete the provided Kubernetes cluster agent pool. */
+export const DeleteAgentPool: API.OperationMethod<
+  DeleteAgentPoolRequest,
+  DeleteAgentPoolResponse,
+  DeleteAgentPoolError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteAgentPoolRequest,
+  output: DeleteAgentPoolResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteBareMetalMachineError = AzureOpError;
+/** Delete the provided bare metal machine. All customer initiated requests will be rejected as the life cycle of this resource is managed by the system. */
+export const DeleteBareMetalMachine: API.OperationMethod<
+  DeleteBareMetalMachineRequest,
+  DeleteBareMetalMachineResponse,
+  DeleteBareMetalMachineError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteBareMetalMachineRequest,
+  output: DeleteBareMetalMachineResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteBareMetalMachineKeySetError = AzureOpError;
+/** Delete the bare metal machine key set of the provided cluster. */
+export const DeleteBareMetalMachineKeySet: API.OperationMethod<
+  DeleteBareMetalMachineKeySetRequest,
+  DeleteBareMetalMachineKeySetResponse,
+  DeleteBareMetalMachineKeySetError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteBareMetalMachineKeySetRequest,
+  output: DeleteBareMetalMachineKeySetResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteBmcKeySetError = AzureOpError;
+/** Delete the baseboard management controller key set of the provided cluster. */
+export const DeleteBmcKeySet: API.OperationMethod<
+  DeleteBmcKeySetRequest,
+  DeleteBmcKeySetResponse,
+  DeleteBmcKeySetError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteBmcKeySetRequest,
+  output: DeleteBmcKeySetResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteCloudServicesNetworkError = AzureOpError;
+/** Delete the provided cloud services network. */
+export const DeleteCloudServicesNetwork: API.OperationMethod<
+  DeleteCloudServicesNetworkRequest,
+  DeleteCloudServicesNetworkResponse,
+  DeleteCloudServicesNetworkError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteCloudServicesNetworkRequest,
+  output: DeleteCloudServicesNetworkResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteClusterError = AzureOpError;
+/** Delete the provided cluster. */
+export const DeleteCluster: API.OperationMethod<
+  DeleteClusterRequest,
+  DeleteClusterResponse,
+  DeleteClusterError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteClusterRequest,
+  output: DeleteClusterResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteClusterManagerError = AzureOpError;
+/** Delete the provided cluster manager. */
+export const DeleteClusterManager: API.OperationMethod<
+  DeleteClusterManagerRequest,
+  DeleteClusterManagerResponse,
+  DeleteClusterManagerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteClusterManagerRequest,
+  output: DeleteClusterManagerResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteConsoleError = AzureOpError;
 /** Delete the provided virtual machine console. */
-export const ConsolesDelete: API.OperationMethod<
-  ConsolesDeleteRequest,
-  ConsolesDeleteResponse,
-  ConsolesDeleteError,
+export const DeleteConsole: API.OperationMethod<
+  DeleteConsoleRequest,
+  DeleteConsoleResponse,
+  DeleteConsoleError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ConsolesDeleteRequest,
-  output: ConsolesDeleteResponse,
+  input: DeleteConsoleRequest,
+  output: DeleteConsoleResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ConsolesGetError = AzureOpError;
+export type DeleteKubernetesClusterError = AzureOpError;
+/** Delete the provided Kubernetes cluster. */
+export const DeleteKubernetesCluster: API.OperationMethod<
+  DeleteKubernetesClusterRequest,
+  DeleteKubernetesClusterResponse,
+  DeleteKubernetesClusterError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteKubernetesClusterRequest,
+  output: DeleteKubernetesClusterResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteKubernetesClusterFeatureError = AzureOpError;
+/** Delete the provided Kubernetes cluster feature. */
+export const DeleteKubernetesClusterFeature: API.OperationMethod<
+  DeleteKubernetesClusterFeatureRequest,
+  DeleteKubernetesClusterFeatureResponse,
+  DeleteKubernetesClusterFeatureError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteKubernetesClusterFeatureRequest,
+  output: DeleteKubernetesClusterFeatureResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteKubernetesVersionError = AzureOpError;
+/** Delete the specified Kubernetes version resource. */
+export const DeleteKubernetesVersion: API.OperationMethod<
+  DeleteKubernetesVersionRequest,
+  DeleteKubernetesVersionResponse,
+  DeleteKubernetesVersionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteKubernetesVersionRequest,
+  output: DeleteKubernetesVersionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteL2NetworkError = AzureOpError;
+/** Delete the provided layer 2 (L2) network. */
+export const DeleteL2Network: API.OperationMethod<
+  DeleteL2NetworkRequest,
+  DeleteL2NetworkResponse,
+  DeleteL2NetworkError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteL2NetworkRequest,
+  output: DeleteL2NetworkResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteL3NetworkError = AzureOpError;
+/** Delete the provided layer 3 (L3) network. */
+export const DeleteL3Network: API.OperationMethod<
+  DeleteL3NetworkRequest,
+  DeleteL3NetworkResponse,
+  DeleteL3NetworkError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteL3NetworkRequest,
+  output: DeleteL3NetworkResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteMetricsConfigurationError = AzureOpError;
+/** Delete the metrics configuration of the provided cluster. */
+export const DeleteMetricsConfiguration: API.OperationMethod<
+  DeleteMetricsConfigurationRequest,
+  DeleteMetricsConfigurationResponse,
+  DeleteMetricsConfigurationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteMetricsConfigurationRequest,
+  output: DeleteMetricsConfigurationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteRackError = AzureOpError;
+/** Delete the provided rack. All customer initiated requests will be rejected as the life cycle of this resource is managed by the system. */
+export const DeleteRack: API.OperationMethod<
+  DeleteRackRequest,
+  DeleteRackResponse,
+  DeleteRackError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteRackRequest,
+  output: DeleteRackResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteStorageApplianceError = AzureOpError;
+/** Delete the provided storage appliance. All customer initiated requests will be rejected as the life cycle of this resource is managed by the system. */
+export const DeleteStorageAppliance: API.OperationMethod<
+  DeleteStorageApplianceRequest,
+  DeleteStorageApplianceResponse,
+  DeleteStorageApplianceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteStorageApplianceRequest,
+  output: DeleteStorageApplianceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteTrunkedNetworkError = AzureOpError;
+/** Delete the provided trunked network. */
+export const DeleteTrunkedNetwork: API.OperationMethod<
+  DeleteTrunkedNetworkRequest,
+  DeleteTrunkedNetworkResponse,
+  DeleteTrunkedNetworkError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteTrunkedNetworkRequest,
+  output: DeleteTrunkedNetworkResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteVirtualMachineError = AzureOpError;
+/** Delete the provided virtual machine. */
+export const DeleteVirtualMachine: API.OperationMethod<
+  DeleteVirtualMachineRequest,
+  DeleteVirtualMachineResponse,
+  DeleteVirtualMachineError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteVirtualMachineRequest,
+  output: DeleteVirtualMachineResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteVolumeError = AzureOpError;
+/** Delete the provided volume. */
+export const DeleteVolume: API.OperationMethod<
+  DeleteVolumeRequest,
+  DeleteVolumeResponse,
+  DeleteVolumeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteVolumeRequest,
+  output: DeleteVolumeResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeployClusterError = AzureOpError;
+/** Deploy the cluster using the rack configuration provided during creation. */
+export const DeployCluster: API.OperationMethod<
+  DeployClusterRequest,
+  DeployClusterResponse,
+  DeployClusterError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeployClusterRequest,
+  output: DeployClusterResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DisableStorageApplianceRemoteVendorManagementError = AzureOpError;
+/** Disable remote vendor management of the provided storage appliance. */
+export const DisableStorageApplianceRemoteVendorManagement: API.OperationMethod<
+  DisableStorageApplianceRemoteVendorManagementRequest,
+  DisableStorageApplianceRemoteVendorManagementResponse,
+  DisableStorageApplianceRemoteVendorManagementError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DisableStorageApplianceRemoteVendorManagementRequest,
+  output: DisableStorageApplianceRemoteVendorManagementResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type EnableStorageApplianceRemoteVendorManagementError = AzureOpError;
+/** Enable remote vendor management of the provided storage appliance. */
+export const EnableStorageApplianceRemoteVendorManagement: API.OperationMethod<
+  EnableStorageApplianceRemoteVendorManagementRequest,
+  EnableStorageApplianceRemoteVendorManagementResponse,
+  EnableStorageApplianceRemoteVendorManagementError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: EnableStorageApplianceRemoteVendorManagementRequest,
+  output: EnableStorageApplianceRemoteVendorManagementResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAccessBridgeError = AzureOpError;
+/** Get the properties of the provided access bridge. */
+export const GetAccessBridge: API.OperationMethod<
+  GetAccessBridgeRequest,
+  GetAccessBridgeResponse,
+  GetAccessBridgeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAccessBridgeRequest,
+  output: GetAccessBridgeResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAgentPoolError = AzureOpError;
+/** Get properties of the provided Kubernetes cluster agent pool. */
+export const GetAgentPool: API.OperationMethod<
+  GetAgentPoolRequest,
+  GetAgentPoolResponse,
+  GetAgentPoolError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAgentPoolRequest,
+  output: GetAgentPoolResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBareMetalMachineError = AzureOpError;
+/** Get properties of the provided bare metal machine. */
+export const GetBareMetalMachine: API.OperationMethod<
+  GetBareMetalMachineRequest,
+  GetBareMetalMachineResponse,
+  GetBareMetalMachineError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBareMetalMachineRequest,
+  output: GetBareMetalMachineResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBareMetalMachineKeySetError = AzureOpError;
+/** Get bare metal machine key set of the provided cluster. */
+export const GetBareMetalMachineKeySet: API.OperationMethod<
+  GetBareMetalMachineKeySetRequest,
+  GetBareMetalMachineKeySetResponse,
+  GetBareMetalMachineKeySetError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBareMetalMachineKeySetRequest,
+  output: GetBareMetalMachineKeySetResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBmcKeySetError = AzureOpError;
+/** Get baseboard management controller key set of the provided cluster. */
+export const GetBmcKeySet: API.OperationMethod<
+  GetBmcKeySetRequest,
+  GetBmcKeySetResponse,
+  GetBmcKeySetError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBmcKeySetRequest,
+  output: GetBmcKeySetResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCloudServicesNetworkError = AzureOpError;
+/** Get properties of the provided cloud services network. */
+export const GetCloudServicesNetwork: API.OperationMethod<
+  GetCloudServicesNetworkRequest,
+  GetCloudServicesNetworkResponse,
+  GetCloudServicesNetworkError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCloudServicesNetworkRequest,
+  output: GetCloudServicesNetworkResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetClusterError = AzureOpError;
+/** Get properties of the provided cluster. */
+export const GetCluster: API.OperationMethod<
+  GetClusterRequest,
+  GetClusterResponse,
+  GetClusterError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetClusterRequest,
+  output: GetClusterResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetClusterManagerError = AzureOpError;
+/** Get the properties of the provided cluster manager. */
+export const GetClusterManager: API.OperationMethod<
+  GetClusterManagerRequest,
+  GetClusterManagerResponse,
+  GetClusterManagerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetClusterManagerRequest,
+  output: GetClusterManagerResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetConsoleError = AzureOpError;
 /** Get properties of the provided virtual machine console. */
-export const ConsolesGet: API.OperationMethod<
-  ConsolesGetRequest,
-  ConsolesGetResponse,
-  ConsolesGetError,
+export const GetConsole: API.OperationMethod<
+  GetConsoleRequest,
+  GetConsoleResponse,
+  GetConsoleError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ConsolesGetRequest,
-  output: ConsolesGetResponse,
+  input: GetConsoleRequest,
+  output: GetConsoleResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ConsolesListByVirtualMachineError = AzureOpError;
-/** Get a list of consoles for the provided virtual machine. */
-export const ConsolesListByVirtualMachine: API.OperationMethod<
-  ConsolesListByVirtualMachineRequest,
-  ConsoleList,
-  ConsolesListByVirtualMachineError,
+export type GetKubernetesClusterError = AzureOpError;
+/** Get properties of the provided the Kubernetes cluster. */
+export const GetKubernetesCluster: API.OperationMethod<
+  GetKubernetesClusterRequest,
+  GetKubernetesClusterResponse,
+  GetKubernetesClusterError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ConsolesListByVirtualMachineRequest,
-  output: ConsoleList,
+  input: GetKubernetesClusterRequest,
+  output: GetKubernetesClusterResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ConsolesUpdateError = AzureOpError;
-/** Patch the properties of the provided virtual machine console, or update the tags associated with the virtual machine console. Properties and tag updates can be done independently. */
-export const ConsolesUpdate: API.OperationMethod<
-  ConsolesUpdateRequest,
-  ConsolesUpdateResponse,
-  ConsolesUpdateError,
+export type GetKubernetesClusterFeatureError = AzureOpError;
+/** Get properties of the provided the Kubernetes cluster feature. */
+export const GetKubernetesClusterFeature: API.OperationMethod<
+  GetKubernetesClusterFeatureRequest,
+  GetKubernetesClusterFeatureResponse,
+  GetKubernetesClusterFeatureError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ConsolesUpdateRequest,
-  output: ConsolesUpdateResponse,
+  input: GetKubernetesClusterFeatureRequest,
+  output: GetKubernetesClusterFeatureResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetKubernetesVersionError = AzureOpError;
+/** Retrieve the Kubernetes version resource that describes the available Kubernetes versions for deployment. */
+export const GetKubernetesVersion: API.OperationMethod<
+  GetKubernetesVersionRequest,
+  GetKubernetesVersionResponse,
+  GetKubernetesVersionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetKubernetesVersionRequest,
+  output: GetKubernetesVersionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetL2NetworkError = AzureOpError;
+/** Get properties of the provided layer 2 (L2) network. */
+export const GetL2Network: API.OperationMethod<
+  GetL2NetworkRequest,
+  GetL2NetworkResponse,
+  GetL2NetworkError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetL2NetworkRequest,
+  output: GetL2NetworkResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetL3NetworkError = AzureOpError;
+/** Get properties of the provided layer 3 (L3) network. */
+export const GetL3Network: API.OperationMethod<
+  GetL3NetworkRequest,
+  GetL3NetworkResponse,
+  GetL3NetworkError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetL3NetworkRequest,
+  output: GetL3NetworkResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetMetricsConfigurationError = AzureOpError;
+/** Get metrics configuration of the provided cluster. */
+export const GetMetricsConfiguration: API.OperationMethod<
+  GetMetricsConfigurationRequest,
+  GetMetricsConfigurationResponse,
+  GetMetricsConfigurationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetMetricsConfigurationRequest,
+  output: GetMetricsConfigurationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetRackError = AzureOpError;
+/** Get properties of the provided rack. */
+export const GetRack: API.OperationMethod<
+  GetRackRequest,
+  GetRackResponse,
+  GetRackError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetRackRequest,
+  output: GetRackResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetRackSkusError = AzureOpError;
+/** Get the properties of the provided rack SKU. */
+export const GetRackSkus: API.OperationMethod<
+  GetRackSkusRequest,
+  GetRackSkusResponse,
+  GetRackSkusError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetRackSkusRequest,
+  output: GetRackSkusResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetStorageApplianceError = AzureOpError;
+/** Get properties of the provided storage appliance. */
+export const GetStorageAppliance: API.OperationMethod<
+  GetStorageApplianceRequest,
+  GetStorageApplianceResponse,
+  GetStorageApplianceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetStorageApplianceRequest,
+  output: GetStorageApplianceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTrunkedNetworkError = AzureOpError;
+/** Get properties of the provided trunked network. */
+export const GetTrunkedNetwork: API.OperationMethod<
+  GetTrunkedNetworkRequest,
+  GetTrunkedNetworkResponse,
+  GetTrunkedNetworkError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTrunkedNetworkRequest,
+  output: GetTrunkedNetworkResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetVirtualMachineError = AzureOpError;
+/** Get properties of the provided virtual machine. */
+export const GetVirtualMachine: API.OperationMethod<
+  GetVirtualMachineRequest,
+  GetVirtualMachineResponse,
+  GetVirtualMachineError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetVirtualMachineRequest,
+  output: GetVirtualMachineResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetVolumeError = AzureOpError;
+/** Get properties of the provided volume. */
+export const GetVolume: API.OperationMethod<
+  GetVolumeRequest,
+  GetVolumeResponse,
+  GetVolumeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetVolumeRequest,
+  output: GetVolumeResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -16937,67 +16798,6 @@ export const KubernetesClusterFeaturesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type KubernetesClusterFeaturesDeleteError = AzureOpError;
-/** Delete the provided Kubernetes cluster feature. */
-export const KubernetesClusterFeaturesDelete: API.OperationMethod<
-  KubernetesClusterFeaturesDeleteRequest,
-  KubernetesClusterFeaturesDeleteResponse,
-  KubernetesClusterFeaturesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: KubernetesClusterFeaturesDeleteRequest,
-  output: KubernetesClusterFeaturesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type KubernetesClusterFeaturesGetError = AzureOpError;
-/** Get properties of the provided the Kubernetes cluster feature. */
-export const KubernetesClusterFeaturesGet: API.OperationMethod<
-  KubernetesClusterFeaturesGetRequest,
-  KubernetesClusterFeaturesGetResponse,
-  KubernetesClusterFeaturesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: KubernetesClusterFeaturesGetRequest,
-  output: KubernetesClusterFeaturesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type KubernetesClusterFeaturesListByKubernetesClusterError =
-  AzureOpError;
-/** Get a list of features for the provided Kubernetes cluster. */
-export const KubernetesClusterFeaturesListByKubernetesCluster: API.OperationMethod<
-  KubernetesClusterFeaturesListByKubernetesClusterRequest,
-  KubernetesClusterFeatureList,
-  KubernetesClusterFeaturesListByKubernetesClusterError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: KubernetesClusterFeaturesListByKubernetesClusterRequest,
-  output: KubernetesClusterFeatureList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type KubernetesClusterFeaturesUpdateError = AzureOpError;
-/** Patch properties of the provided Kubernetes cluster feature. */
-export const KubernetesClusterFeaturesUpdate: API.OperationMethod<
-  KubernetesClusterFeaturesUpdateRequest,
-  KubernetesClusterFeaturesUpdateResponse,
-  KubernetesClusterFeaturesUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: KubernetesClusterFeaturesUpdateRequest,
-  output: KubernetesClusterFeaturesUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type KubernetesClustersCreateOrUpdateError = AzureOpError;
 /** Create a new Kubernetes cluster or update the properties of the existing one. */
 export const KubernetesClustersCreateOrUpdate: API.OperationMethod<
@@ -17008,96 +16808,6 @@ export const KubernetesClustersCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: KubernetesClustersCreateOrUpdateRequest,
   output: KubernetesClustersCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type KubernetesClustersDeleteError = AzureOpError;
-/** Delete the provided Kubernetes cluster. */
-export const KubernetesClustersDelete: API.OperationMethod<
-  KubernetesClustersDeleteRequest,
-  KubernetesClustersDeleteResponse,
-  KubernetesClustersDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: KubernetesClustersDeleteRequest,
-  output: KubernetesClustersDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type KubernetesClustersGetError = AzureOpError;
-/** Get properties of the provided the Kubernetes cluster. */
-export const KubernetesClustersGet: API.OperationMethod<
-  KubernetesClustersGetRequest,
-  KubernetesClustersGetResponse,
-  KubernetesClustersGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: KubernetesClustersGetRequest,
-  output: KubernetesClustersGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type KubernetesClustersListByResourceGroupError = AzureOpError;
-/** Get a list of Kubernetes clusters in the provided resource group. */
-export const KubernetesClustersListByResourceGroup: API.OperationMethod<
-  KubernetesClustersListByResourceGroupRequest,
-  KubernetesClusterList,
-  KubernetesClustersListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: KubernetesClustersListByResourceGroupRequest,
-  output: KubernetesClusterList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type KubernetesClustersListBySubscriptionError = AzureOpError;
-/** Get a list of Kubernetes clusters in the provided subscription. */
-export const KubernetesClustersListBySubscription: API.OperationMethod<
-  KubernetesClustersListBySubscriptionRequest,
-  KubernetesClusterList,
-  KubernetesClustersListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: KubernetesClustersListBySubscriptionRequest,
-  output: KubernetesClusterList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type KubernetesClustersRestartNodeError = AzureOpError;
-/** Restart a targeted node of a Kubernetes cluster. */
-export const KubernetesClustersRestartNode: API.OperationMethod<
-  KubernetesClustersRestartNodeRequest,
-  KubernetesClustersRestartNodeResponse,
-  KubernetesClustersRestartNodeError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: KubernetesClustersRestartNodeRequest,
-  output: KubernetesClustersRestartNodeResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type KubernetesClustersUpdateError = AzureOpError;
-/** Patch the properties of the provided Kubernetes cluster, or update the tags associated with the Kubernetes cluster. Properties and tag updates can be done independently. */
-export const KubernetesClustersUpdate: API.OperationMethod<
-  KubernetesClustersUpdateRequest,
-  KubernetesClustersUpdateResponse,
-  KubernetesClustersUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: KubernetesClustersUpdateRequest,
-  output: KubernetesClustersUpdateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -17118,81 +16828,6 @@ export const KubernetesVersionsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type KubernetesVersionsDeleteError = AzureOpError;
-/** Delete the specified Kubernetes version resource. */
-export const KubernetesVersionsDelete: API.OperationMethod<
-  KubernetesVersionsDeleteRequest,
-  KubernetesVersionsDeleteResponse,
-  KubernetesVersionsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: KubernetesVersionsDeleteRequest,
-  output: KubernetesVersionsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type KubernetesVersionsGetError = AzureOpError;
-/** Retrieve the Kubernetes version resource that describes the available Kubernetes versions for deployment. */
-export const KubernetesVersionsGet: API.OperationMethod<
-  KubernetesVersionsGetRequest,
-  KubernetesVersionsGetResponse,
-  KubernetesVersionsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: KubernetesVersionsGetRequest,
-  output: KubernetesVersionsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type KubernetesVersionsListByResourceGroupError = AzureOpError;
-/** Get a list of Kubernetes version resources in the provided resource group. */
-export const KubernetesVersionsListByResourceGroup: API.OperationMethod<
-  KubernetesVersionsListByResourceGroupRequest,
-  KubernetesVersionList,
-  KubernetesVersionsListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: KubernetesVersionsListByResourceGroupRequest,
-  output: KubernetesVersionList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type KubernetesVersionsListBySubscriptionError = AzureOpError;
-/** Get a list of Kubernetes version resources in the provided subscription. */
-export const KubernetesVersionsListBySubscription: API.OperationMethod<
-  KubernetesVersionsListBySubscriptionRequest,
-  KubernetesVersionList,
-  KubernetesVersionsListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: KubernetesVersionsListBySubscriptionRequest,
-  output: KubernetesVersionList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type KubernetesVersionsUpdateError = AzureOpError;
-/** Update tags associated with the Kubernetes version resource. No other properties are supported for update. */
-export const KubernetesVersionsUpdate: API.OperationMethod<
-  KubernetesVersionsUpdateRequest,
-  KubernetesVersionsUpdateResponse,
-  KubernetesVersionsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: KubernetesVersionsUpdateRequest,
-  output: KubernetesVersionsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type L2NetworksCreateOrUpdateError = AzureOpError;
 /** Create a new layer 2 (L2) network or update the properties of the existing network. */
 export const L2NetworksCreateOrUpdate: API.OperationMethod<
@@ -17203,81 +16838,6 @@ export const L2NetworksCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: L2NetworksCreateOrUpdateRequest,
   output: L2NetworksCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type L2NetworksDeleteError = AzureOpError;
-/** Delete the provided layer 2 (L2) network. */
-export const L2NetworksDelete: API.OperationMethod<
-  L2NetworksDeleteRequest,
-  L2NetworksDeleteResponse,
-  L2NetworksDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: L2NetworksDeleteRequest,
-  output: L2NetworksDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type L2NetworksGetError = AzureOpError;
-/** Get properties of the provided layer 2 (L2) network. */
-export const L2NetworksGet: API.OperationMethod<
-  L2NetworksGetRequest,
-  L2NetworksGetResponse,
-  L2NetworksGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: L2NetworksGetRequest,
-  output: L2NetworksGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type L2NetworksListByResourceGroupError = AzureOpError;
-/** Get a list of layer 2 (L2) networks in the provided resource group. */
-export const L2NetworksListByResourceGroup: API.OperationMethod<
-  L2NetworksListByResourceGroupRequest,
-  L2NetworkList,
-  L2NetworksListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: L2NetworksListByResourceGroupRequest,
-  output: L2NetworkList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type L2NetworksListBySubscriptionError = AzureOpError;
-/** Get a list of layer 2 (L2) networks in the provided subscription. */
-export const L2NetworksListBySubscription: API.OperationMethod<
-  L2NetworksListBySubscriptionRequest,
-  L2NetworkList,
-  L2NetworksListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: L2NetworksListBySubscriptionRequest,
-  output: L2NetworkList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type L2NetworksUpdateError = AzureOpError;
-/** Update tags associated with the provided layer 2 (L2) network. */
-export const L2NetworksUpdate: API.OperationMethod<
-  L2NetworksUpdateRequest,
-  L2NetworksUpdateResponse,
-  L2NetworksUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: L2NetworksUpdateRequest,
-  output: L2NetworksUpdateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -17298,76 +16858,541 @@ export const L3NetworksCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type L3NetworksDeleteError = AzureOpError;
-/** Delete the provided layer 3 (L3) network. */
-export const L3NetworksDelete: API.OperationMethod<
-  L3NetworksDeleteRequest,
-  L3NetworksDeleteResponse,
-  L3NetworksDeleteError,
+export type ListAccessBridgeByResourceGroupError = AzureOpError;
+/** Get a list of access bridges in the provided resource group. */
+export const ListAccessBridgeByResourceGroup: API.OperationMethod<
+  ListAccessBridgeByResourceGroupRequest,
+  AccessBridgeList,
+  ListAccessBridgeByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: L3NetworksDeleteRequest,
-  output: L3NetworksDeleteResponse,
+  input: ListAccessBridgeByResourceGroupRequest,
+  output: AccessBridgeList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type L3NetworksGetError = AzureOpError;
-/** Get properties of the provided layer 3 (L3) network. */
-export const L3NetworksGet: API.OperationMethod<
-  L3NetworksGetRequest,
-  L3NetworksGetResponse,
-  L3NetworksGetError,
+export type ListAccessBridgeBySubscriptionError = AzureOpError;
+/** Get a list of access bridges in the provided subscription. */
+export const ListAccessBridgeBySubscription: API.OperationMethod<
+  ListAccessBridgeBySubscriptionRequest,
+  AccessBridgeList,
+  ListAccessBridgeBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: L3NetworksGetRequest,
-  output: L3NetworksGetResponse,
+  input: ListAccessBridgeBySubscriptionRequest,
+  output: AccessBridgeList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type L3NetworksListByResourceGroupError = AzureOpError;
+export type ListAgentPoolByKubernetesClusterError = AzureOpError;
+/** Get a list of agent pools for the provided Kubernetes cluster. */
+export const ListAgentPoolByKubernetesCluster: API.OperationMethod<
+  ListAgentPoolByKubernetesClusterRequest,
+  AgentPoolList,
+  ListAgentPoolByKubernetesClusterError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAgentPoolByKubernetesClusterRequest,
+  output: AgentPoolList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListBareMetalMachineByResourceGroupError = AzureOpError;
+/** Get a list of bare metal machines in the provided resource group. */
+export const ListBareMetalMachineByResourceGroup: API.OperationMethod<
+  ListBareMetalMachineByResourceGroupRequest,
+  BareMetalMachineList,
+  ListBareMetalMachineByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListBareMetalMachineByResourceGroupRequest,
+  output: BareMetalMachineList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListBareMetalMachineBySubscriptionError = AzureOpError;
+/** Get a list of bare metal machines in the provided subscription. */
+export const ListBareMetalMachineBySubscription: API.OperationMethod<
+  ListBareMetalMachineBySubscriptionRequest,
+  BareMetalMachineList,
+  ListBareMetalMachineBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListBareMetalMachineBySubscriptionRequest,
+  output: BareMetalMachineList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListBareMetalMachineKeySetByClusterError = AzureOpError;
+/** Get a list of bare metal machine key sets for the provided cluster. */
+export const ListBareMetalMachineKeySetByCluster: API.OperationMethod<
+  ListBareMetalMachineKeySetByClusterRequest,
+  BareMetalMachineKeySetList,
+  ListBareMetalMachineKeySetByClusterError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListBareMetalMachineKeySetByClusterRequest,
+  output: BareMetalMachineKeySetList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListBmcKeySetByClusterError = AzureOpError;
+/** Get a list of baseboard management controller key sets for the provided cluster. */
+export const ListBmcKeySetByCluster: API.OperationMethod<
+  ListBmcKeySetByClusterRequest,
+  BmcKeySetList,
+  ListBmcKeySetByClusterError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListBmcKeySetByClusterRequest,
+  output: BmcKeySetList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListCloudServicesNetworkByResourceGroupError = AzureOpError;
+/** Get a list of cloud services networks in the provided resource group. */
+export const ListCloudServicesNetworkByResourceGroup: API.OperationMethod<
+  ListCloudServicesNetworkByResourceGroupRequest,
+  CloudServicesNetworkList,
+  ListCloudServicesNetworkByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListCloudServicesNetworkByResourceGroupRequest,
+  output: CloudServicesNetworkList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListCloudServicesNetworkBySubscriptionError = AzureOpError;
+/** Get a list of cloud services networks in the provided subscription. */
+export const ListCloudServicesNetworkBySubscription: API.OperationMethod<
+  ListCloudServicesNetworkBySubscriptionRequest,
+  CloudServicesNetworkList,
+  ListCloudServicesNetworkBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListCloudServicesNetworkBySubscriptionRequest,
+  output: CloudServicesNetworkList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListClusterByResourceGroupError = AzureOpError;
+/** Get a list of clusters in the provided resource group. */
+export const ListClusterByResourceGroup: API.OperationMethod<
+  ListClusterByResourceGroupRequest,
+  ClusterList,
+  ListClusterByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListClusterByResourceGroupRequest,
+  output: ClusterList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListClusterBySubscriptionError = AzureOpError;
+/** Get a list of clusters in the provided subscription. */
+export const ListClusterBySubscription: API.OperationMethod<
+  ListClusterBySubscriptionRequest,
+  ClusterList,
+  ListClusterBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListClusterBySubscriptionRequest,
+  output: ClusterList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListClusterManagerByResourceGroupError = AzureOpError;
+/** Get a list of cluster managers in the provided resource group. */
+export const ListClusterManagerByResourceGroup: API.OperationMethod<
+  ListClusterManagerByResourceGroupRequest,
+  ClusterManagerList,
+  ListClusterManagerByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListClusterManagerByResourceGroupRequest,
+  output: ClusterManagerList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListClusterManagerBySubscriptionError = AzureOpError;
+/** Get a list of cluster managers in the provided subscription. */
+export const ListClusterManagerBySubscription: API.OperationMethod<
+  ListClusterManagerBySubscriptionRequest,
+  ClusterManagerList,
+  ListClusterManagerBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListClusterManagerBySubscriptionRequest,
+  output: ClusterManagerList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListConsoleByVirtualMachineError = AzureOpError;
+/** Get a list of consoles for the provided virtual machine. */
+export const ListConsoleByVirtualMachine: API.OperationMethod<
+  ListConsoleByVirtualMachineRequest,
+  ConsoleList,
+  ListConsoleByVirtualMachineError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListConsoleByVirtualMachineRequest,
+  output: ConsoleList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListKubernetesClusterByResourceGroupError = AzureOpError;
+/** Get a list of Kubernetes clusters in the provided resource group. */
+export const ListKubernetesClusterByResourceGroup: API.OperationMethod<
+  ListKubernetesClusterByResourceGroupRequest,
+  KubernetesClusterList,
+  ListKubernetesClusterByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListKubernetesClusterByResourceGroupRequest,
+  output: KubernetesClusterList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListKubernetesClusterBySubscriptionError = AzureOpError;
+/** Get a list of Kubernetes clusters in the provided subscription. */
+export const ListKubernetesClusterBySubscription: API.OperationMethod<
+  ListKubernetesClusterBySubscriptionRequest,
+  KubernetesClusterList,
+  ListKubernetesClusterBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListKubernetesClusterBySubscriptionRequest,
+  output: KubernetesClusterList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListKubernetesClusterFeatureByKubernetesClusterError = AzureOpError;
+/** Get a list of features for the provided Kubernetes cluster. */
+export const ListKubernetesClusterFeatureByKubernetesCluster: API.OperationMethod<
+  ListKubernetesClusterFeatureByKubernetesClusterRequest,
+  KubernetesClusterFeatureList,
+  ListKubernetesClusterFeatureByKubernetesClusterError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListKubernetesClusterFeatureByKubernetesClusterRequest,
+  output: KubernetesClusterFeatureList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListKubernetesVersionByResourceGroupError = AzureOpError;
+/** Get a list of Kubernetes version resources in the provided resource group. */
+export const ListKubernetesVersionByResourceGroup: API.OperationMethod<
+  ListKubernetesVersionByResourceGroupRequest,
+  KubernetesVersionList,
+  ListKubernetesVersionByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListKubernetesVersionByResourceGroupRequest,
+  output: KubernetesVersionList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListKubernetesVersionBySubscriptionError = AzureOpError;
+/** Get a list of Kubernetes version resources in the provided subscription. */
+export const ListKubernetesVersionBySubscription: API.OperationMethod<
+  ListKubernetesVersionBySubscriptionRequest,
+  KubernetesVersionList,
+  ListKubernetesVersionBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListKubernetesVersionBySubscriptionRequest,
+  output: KubernetesVersionList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListL2NetworkByResourceGroupError = AzureOpError;
+/** Get a list of layer 2 (L2) networks in the provided resource group. */
+export const ListL2NetworkByResourceGroup: API.OperationMethod<
+  ListL2NetworkByResourceGroupRequest,
+  L2NetworkList,
+  ListL2NetworkByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListL2NetworkByResourceGroupRequest,
+  output: L2NetworkList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListL2NetworkBySubscriptionError = AzureOpError;
+/** Get a list of layer 2 (L2) networks in the provided subscription. */
+export const ListL2NetworkBySubscription: API.OperationMethod<
+  ListL2NetworkBySubscriptionRequest,
+  L2NetworkList,
+  ListL2NetworkBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListL2NetworkBySubscriptionRequest,
+  output: L2NetworkList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListL3NetworkByResourceGroupError = AzureOpError;
 /** Get a list of layer 3 (L3) networks in the provided resource group. */
-export const L3NetworksListByResourceGroup: API.OperationMethod<
-  L3NetworksListByResourceGroupRequest,
+export const ListL3NetworkByResourceGroup: API.OperationMethod<
+  ListL3NetworkByResourceGroupRequest,
   L3NetworkList,
-  L3NetworksListByResourceGroupError,
+  ListL3NetworkByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: L3NetworksListByResourceGroupRequest,
+  input: ListL3NetworkByResourceGroupRequest,
   output: L3NetworkList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type L3NetworksListBySubscriptionError = AzureOpError;
+export type ListL3NetworkBySubscriptionError = AzureOpError;
 /** Get a list of layer 3 (L3) networks in the provided subscription. */
-export const L3NetworksListBySubscription: API.OperationMethod<
-  L3NetworksListBySubscriptionRequest,
+export const ListL3NetworkBySubscription: API.OperationMethod<
+  ListL3NetworkBySubscriptionRequest,
   L3NetworkList,
-  L3NetworksListBySubscriptionError,
+  ListL3NetworkBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: L3NetworksListBySubscriptionRequest,
+  input: ListL3NetworkBySubscriptionRequest,
   output: L3NetworkList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type L3NetworksUpdateError = AzureOpError;
-/** Update tags associated with the provided layer 3 (L3) network. */
-export const L3NetworksUpdate: API.OperationMethod<
-  L3NetworksUpdateRequest,
-  L3NetworksUpdateResponse,
-  L3NetworksUpdateError,
+export type ListMetricsConfigurationByClusterError = AzureOpError;
+/** Get a list of metrics configurations for the provided cluster. */
+export const ListMetricsConfigurationByCluster: API.OperationMethod<
+  ListMetricsConfigurationByClusterRequest,
+  ClusterMetricsConfigurationList,
+  ListMetricsConfigurationByClusterError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: L3NetworksUpdateRequest,
-  output: L3NetworksUpdateResponse,
+  input: ListMetricsConfigurationByClusterRequest,
+  output: ClusterMetricsConfigurationList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOperationsError = AzureOpError;
+/** List the operations for the provider */
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  ListOperationsResponse,
+  ListOperationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOperationsRequest,
+  output: ListOperationsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListRackByResourceGroupError = AzureOpError;
+/** Get a list of racks in the provided resource group. */
+export const ListRackByResourceGroup: API.OperationMethod<
+  ListRackByResourceGroupRequest,
+  RackList,
+  ListRackByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListRackByResourceGroupRequest,
+  output: RackList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListRackBySubscriptionError = AzureOpError;
+/** Get a list of racks in the provided subscription. */
+export const ListRackBySubscription: API.OperationMethod<
+  ListRackBySubscriptionRequest,
+  RackList,
+  ListRackBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListRackBySubscriptionRequest,
+  output: RackList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListRackSkusBySubscriptionError = AzureOpError;
+/** Get a list of rack SKUs in the provided subscription. */
+export const ListRackSkusBySubscription: API.OperationMethod<
+  ListRackSkusBySubscriptionRequest,
+  RackSkuList,
+  ListRackSkusBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListRackSkusBySubscriptionRequest,
+  output: RackSkuList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListStorageApplianceByResourceGroupError = AzureOpError;
+/** Get a list of storage appliances in the provided resource group. */
+export const ListStorageApplianceByResourceGroup: API.OperationMethod<
+  ListStorageApplianceByResourceGroupRequest,
+  StorageApplianceList,
+  ListStorageApplianceByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListStorageApplianceByResourceGroupRequest,
+  output: StorageApplianceList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListStorageApplianceBySubscriptionError = AzureOpError;
+/** Get a list of storage appliances in the provided subscription. */
+export const ListStorageApplianceBySubscription: API.OperationMethod<
+  ListStorageApplianceBySubscriptionRequest,
+  StorageApplianceList,
+  ListStorageApplianceBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListStorageApplianceBySubscriptionRequest,
+  output: StorageApplianceList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListTrunkedNetworkByResourceGroupError = AzureOpError;
+/** Get a list of trunked networks in the provided resource group. */
+export const ListTrunkedNetworkByResourceGroup: API.OperationMethod<
+  ListTrunkedNetworkByResourceGroupRequest,
+  TrunkedNetworkList,
+  ListTrunkedNetworkByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListTrunkedNetworkByResourceGroupRequest,
+  output: TrunkedNetworkList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListTrunkedNetworkBySubscriptionError = AzureOpError;
+/** Get a list of trunked networks in the provided subscription. */
+export const ListTrunkedNetworkBySubscription: API.OperationMethod<
+  ListTrunkedNetworkBySubscriptionRequest,
+  TrunkedNetworkList,
+  ListTrunkedNetworkBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListTrunkedNetworkBySubscriptionRequest,
+  output: TrunkedNetworkList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVirtualMachineByResourceGroupError = AzureOpError;
+/** Get a list of virtual machines in the provided resource group. */
+export const ListVirtualMachineByResourceGroup: API.OperationMethod<
+  ListVirtualMachineByResourceGroupRequest,
+  VirtualMachineList,
+  ListVirtualMachineByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVirtualMachineByResourceGroupRequest,
+  output: VirtualMachineList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVirtualMachineBySubscriptionError = AzureOpError;
+/** Get a list of virtual machines in the provided subscription. */
+export const ListVirtualMachineBySubscription: API.OperationMethod<
+  ListVirtualMachineBySubscriptionRequest,
+  VirtualMachineList,
+  ListVirtualMachineBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVirtualMachineBySubscriptionRequest,
+  output: VirtualMachineList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVolumeByResourceGroupError = AzureOpError;
+/** Get a list of volumes in the provided resource group. */
+export const ListVolumeByResourceGroup: API.OperationMethod<
+  ListVolumeByResourceGroupRequest,
+  VolumeList,
+  ListVolumeByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVolumeByResourceGroupRequest,
+  output: VolumeList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVolumeBySubscriptionError = AzureOpError;
+/** Get a list of volumes in the provided subscription. */
+export const ListVolumeBySubscription: API.OperationMethod<
+  ListVolumeBySubscriptionRequest,
+  VolumeList,
+  ListVolumeBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVolumeBySubscriptionRequest,
+  output: VolumeList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -17388,81 +17413,6 @@ export const MetricsConfigurationsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type MetricsConfigurationsDeleteError = AzureOpError;
-/** Delete the metrics configuration of the provided cluster. */
-export const MetricsConfigurationsDelete: API.OperationMethod<
-  MetricsConfigurationsDeleteRequest,
-  MetricsConfigurationsDeleteResponse,
-  MetricsConfigurationsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MetricsConfigurationsDeleteRequest,
-  output: MetricsConfigurationsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MetricsConfigurationsGetError = AzureOpError;
-/** Get metrics configuration of the provided cluster. */
-export const MetricsConfigurationsGet: API.OperationMethod<
-  MetricsConfigurationsGetRequest,
-  MetricsConfigurationsGetResponse,
-  MetricsConfigurationsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MetricsConfigurationsGetRequest,
-  output: MetricsConfigurationsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MetricsConfigurationsListByClusterError = AzureOpError;
-/** Get a list of metrics configurations for the provided cluster. */
-export const MetricsConfigurationsListByCluster: API.OperationMethod<
-  MetricsConfigurationsListByClusterRequest,
-  ClusterMetricsConfigurationList,
-  MetricsConfigurationsListByClusterError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MetricsConfigurationsListByClusterRequest,
-  output: ClusterMetricsConfigurationList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MetricsConfigurationsUpdateError = AzureOpError;
-/** Patch properties of metrics configuration for the provided cluster, or update the tags associated with it. Properties and tag updates can be done independently. */
-export const MetricsConfigurationsUpdate: API.OperationMethod<
-  MetricsConfigurationsUpdateRequest,
-  MetricsConfigurationsUpdateResponse,
-  MetricsConfigurationsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MetricsConfigurationsUpdateRequest,
-  output: MetricsConfigurationsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OperationsListError = AzureOpError;
-/** List the operations for the provider */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationsListResponse,
-  OperationsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
-  output: OperationsListResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type RacksCreateOrUpdateError = AzureOpError;
 /** Create a new rack or update properties of the existing one. All customer initiated requests will be rejected as the life cycle of this resource is managed by the system. */
 export const RacksCreateOrUpdate: API.OperationMethod<
@@ -17478,106 +17428,151 @@ export const RacksCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type RacksDeleteError = AzureOpError;
-/** Delete the provided rack. All customer initiated requests will be rejected as the life cycle of this resource is managed by the system. */
-export const RacksDelete: API.OperationMethod<
-  RacksDeleteRequest,
-  RacksDeleteResponse,
-  RacksDeleteError,
+export type ReplaceBareMetalMachineError = AzureOpError;
+/** Replace the provided bare metal machine. */
+export const ReplaceBareMetalMachine: API.OperationMethod<
+  ReplaceBareMetalMachineRequest,
+  ReplaceBareMetalMachineResponse,
+  ReplaceBareMetalMachineError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RacksDeleteRequest,
-  output: RacksDeleteResponse,
+  input: ReplaceBareMetalMachineRequest,
+  output: ReplaceBareMetalMachineResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type RacksGetError = AzureOpError;
-/** Get properties of the provided rack. */
-export const RacksGet: API.OperationMethod<
-  RacksGetRequest,
-  RacksGetResponse,
-  RacksGetError,
+export type RestartBareMetalMachineError = AzureOpError;
+/** Restart the provided bare metal machine. */
+export const RestartBareMetalMachine: API.OperationMethod<
+  RestartBareMetalMachineRequest,
+  RestartBareMetalMachineResponse,
+  RestartBareMetalMachineError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RacksGetRequest,
-  output: RacksGetResponse,
+  input: RestartBareMetalMachineRequest,
+  output: RestartBareMetalMachineResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type RackSkusGetError = AzureOpError;
-/** Get the properties of the provided rack SKU. */
-export const RackSkusGet: API.OperationMethod<
-  RackSkusGetRequest,
-  RackSkusGetResponse,
-  RackSkusGetError,
+export type RestartKubernetesClusterNodeError = AzureOpError;
+/** Restart a targeted node of a Kubernetes cluster. */
+export const RestartKubernetesClusterNode: API.OperationMethod<
+  RestartKubernetesClusterNodeRequest,
+  RestartKubernetesClusterNodeResponse,
+  RestartKubernetesClusterNodeError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RackSkusGetRequest,
-  output: RackSkusGetResponse,
+  input: RestartKubernetesClusterNodeRequest,
+  output: RestartKubernetesClusterNodeResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type RackSkusListBySubscriptionError = AzureOpError;
-/** Get a list of rack SKUs in the provided subscription. */
-export const RackSkusListBySubscription: API.OperationMethod<
-  RackSkusListBySubscriptionRequest,
-  RackSkuList,
-  RackSkusListBySubscriptionError,
+export type RestartVirtualMachineError = AzureOpError;
+/** Restart the provided virtual machine. */
+export const RestartVirtualMachine: API.OperationMethod<
+  RestartVirtualMachineRequest,
+  RestartVirtualMachineResponse,
+  RestartVirtualMachineError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RackSkusListBySubscriptionRequest,
-  output: RackSkuList,
+  input: RestartVirtualMachineRequest,
+  output: RestartVirtualMachineResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type RacksListByResourceGroupError = AzureOpError;
-/** Get a list of racks in the provided resource group. */
-export const RacksListByResourceGroup: API.OperationMethod<
-  RacksListByResourceGroupRequest,
-  RackList,
-  RacksListByResourceGroupError,
+export type RotateClusterCredentialError = AzureOpError;
+/** Rotate the specified cluster credential. */
+export const RotateClusterCredential: API.OperationMethod<
+  RotateClusterCredentialRequest,
+  RotateClusterCredentialResponse,
+  RotateClusterCredentialError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RacksListByResourceGroupRequest,
-  output: RackList,
+  input: RotateClusterCredentialRequest,
+  output: RotateClusterCredentialResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type RacksListBySubscriptionError = AzureOpError;
-/** Get a list of racks in the provided subscription. */
-export const RacksListBySubscription: API.OperationMethod<
-  RacksListBySubscriptionRequest,
-  RackList,
-  RacksListBySubscriptionError,
+export type RunBareMetalMachineCommandError = AzureOpError;
+/** Run the command or the script on the provided bare metal machine. The URL to storage account with the command execution results and the command exit code can be retrieved from the operation status API once available. */
+export const RunBareMetalMachineCommand: API.OperationMethod<
+  RunBareMetalMachineCommandRequest,
+  RunBareMetalMachineCommandResponse,
+  RunBareMetalMachineCommandError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RacksListBySubscriptionRequest,
-  output: RackList,
+  input: RunBareMetalMachineCommandRequest,
+  output: RunBareMetalMachineCommandResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type RacksUpdateError = AzureOpError;
-/** Patch properties of the provided rack, or update the tags associated with the rack. Properties and tag updates can be done independently. */
-export const RacksUpdate: API.OperationMethod<
-  RacksUpdateRequest,
-  RacksUpdateResponse,
-  RacksUpdateError,
+export type RunBareMetalMachineDataExtractsError = AzureOpError;
+/** Run one or more data extractions on the provided bare metal machine. The URL to storage account with the command execution results and the command exit code can be retrieved from the operation status API once available. */
+export const RunBareMetalMachineDataExtracts: API.OperationMethod<
+  RunBareMetalMachineDataExtractsRequest,
+  RunBareMetalMachineDataExtractsResponse,
+  RunBareMetalMachineDataExtractsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RacksUpdateRequest,
-  output: RacksUpdateResponse,
+  input: RunBareMetalMachineDataExtractsRequest,
+  output: RunBareMetalMachineDataExtractsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RunBareMetalMachineDataExtractsRestrictedError = AzureOpError;
+/** Run one or more restricted data extractions on the provided bare metal machine. The URL to storage account with the command execution results and the command exit code can be retrieved from the operation status API once available. */
+export const RunBareMetalMachineDataExtractsRestricted: API.OperationMethod<
+  RunBareMetalMachineDataExtractsRestrictedRequest,
+  RunBareMetalMachineDataExtractsRestrictedResponse,
+  RunBareMetalMachineDataExtractsRestrictedError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RunBareMetalMachineDataExtractsRestrictedRequest,
+  output: RunBareMetalMachineDataExtractsRestrictedResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type StartBareMetalMachineError = AzureOpError;
+/** Start the provided bare metal machine. */
+export const StartBareMetalMachine: API.OperationMethod<
+  StartBareMetalMachineRequest,
+  StartBareMetalMachineResponse,
+  StartBareMetalMachineError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: StartBareMetalMachineRequest,
+  output: StartBareMetalMachineResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type StartVirtualMachineError = AzureOpError;
+/** Start the provided virtual machine. */
+export const StartVirtualMachine: API.OperationMethod<
+  StartVirtualMachineRequest,
+  StartVirtualMachineResponse,
+  StartVirtualMachineError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: StartVirtualMachineRequest,
+  output: StartVirtualMachineResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -17598,96 +17593,6 @@ export const StorageAppliancesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type StorageAppliancesDeleteError = AzureOpError;
-/** Delete the provided storage appliance. All customer initiated requests will be rejected as the life cycle of this resource is managed by the system. */
-export const StorageAppliancesDelete: API.OperationMethod<
-  StorageAppliancesDeleteRequest,
-  StorageAppliancesDeleteResponse,
-  StorageAppliancesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: StorageAppliancesDeleteRequest,
-  output: StorageAppliancesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type StorageAppliancesDisableRemoteVendorManagementError = AzureOpError;
-/** Disable remote vendor management of the provided storage appliance. */
-export const StorageAppliancesDisableRemoteVendorManagement: API.OperationMethod<
-  StorageAppliancesDisableRemoteVendorManagementRequest,
-  StorageAppliancesDisableRemoteVendorManagementResponse,
-  StorageAppliancesDisableRemoteVendorManagementError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: StorageAppliancesDisableRemoteVendorManagementRequest,
-  output: StorageAppliancesDisableRemoteVendorManagementResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type StorageAppliancesEnableRemoteVendorManagementError = AzureOpError;
-/** Enable remote vendor management of the provided storage appliance. */
-export const StorageAppliancesEnableRemoteVendorManagement: API.OperationMethod<
-  StorageAppliancesEnableRemoteVendorManagementRequest,
-  StorageAppliancesEnableRemoteVendorManagementResponse,
-  StorageAppliancesEnableRemoteVendorManagementError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: StorageAppliancesEnableRemoteVendorManagementRequest,
-  output: StorageAppliancesEnableRemoteVendorManagementResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type StorageAppliancesGetError = AzureOpError;
-/** Get properties of the provided storage appliance. */
-export const StorageAppliancesGet: API.OperationMethod<
-  StorageAppliancesGetRequest,
-  StorageAppliancesGetResponse,
-  StorageAppliancesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: StorageAppliancesGetRequest,
-  output: StorageAppliancesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type StorageAppliancesListByResourceGroupError = AzureOpError;
-/** Get a list of storage appliances in the provided resource group. */
-export const StorageAppliancesListByResourceGroup: API.OperationMethod<
-  StorageAppliancesListByResourceGroupRequest,
-  StorageApplianceList,
-  StorageAppliancesListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: StorageAppliancesListByResourceGroupRequest,
-  output: StorageApplianceList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type StorageAppliancesListBySubscriptionError = AzureOpError;
-/** Get a list of storage appliances in the provided subscription. */
-export const StorageAppliancesListBySubscription: API.OperationMethod<
-  StorageAppliancesListBySubscriptionRequest,
-  StorageApplianceList,
-  StorageAppliancesListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: StorageAppliancesListBySubscriptionRequest,
-  output: StorageApplianceList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type StorageAppliancesRunReadCommandsError = AzureOpError;
 /** Run one or more read-only commands on the provided storage appliance. */
 export const StorageAppliancesRunReadCommands: API.OperationMethod<
@@ -17698,21 +17603,6 @@ export const StorageAppliancesRunReadCommands: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: StorageAppliancesRunReadCommandsRequest,
   output: StorageAppliancesRunReadCommandsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type StorageAppliancesUpdateError = AzureOpError;
-/** Update properties of the provided storage appliance, or update tags associated with the storage appliance Properties and tag updates can be done independently. */
-export const StorageAppliancesUpdate: API.OperationMethod<
-  StorageAppliancesUpdateRequest,
-  StorageAppliancesUpdateResponse,
-  StorageAppliancesUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: StorageAppliancesUpdateRequest,
-  output: StorageAppliancesUpdateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -17733,91 +17623,347 @@ export const TrunkedNetworksCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type TrunkedNetworksDeleteError = AzureOpError;
-/** Delete the provided trunked network. */
-export const TrunkedNetworksDelete: API.OperationMethod<
-  TrunkedNetworksDeleteRequest,
-  TrunkedNetworksDeleteResponse,
-  TrunkedNetworksDeleteError,
+export type UncordonBareMetalMachineError = AzureOpError;
+/** Uncordon the provided bare metal machine's Kubernetes node. */
+export const UncordonBareMetalMachine: API.OperationMethod<
+  UncordonBareMetalMachineRequest,
+  UncordonBareMetalMachineResponse,
+  UncordonBareMetalMachineError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TrunkedNetworksDeleteRequest,
-  output: TrunkedNetworksDeleteResponse,
+  input: UncordonBareMetalMachineRequest,
+  output: UncordonBareMetalMachineResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type TrunkedNetworksGetError = AzureOpError;
-/** Get properties of the provided trunked network. */
-export const TrunkedNetworksGet: API.OperationMethod<
-  TrunkedNetworksGetRequest,
-  TrunkedNetworksGetResponse,
-  TrunkedNetworksGetError,
+export type UpdateAccessBridgeError = AzureOpError;
+/** Update properties of the provided access bridge, or update tags associated with the access bridge. Properties and tag updates can be done independently. */
+export const UpdateAccessBridge: API.OperationMethod<
+  UpdateAccessBridgeRequest,
+  UpdateAccessBridgeResponse,
+  UpdateAccessBridgeError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TrunkedNetworksGetRequest,
-  output: TrunkedNetworksGetResponse,
+  input: UpdateAccessBridgeRequest,
+  output: UpdateAccessBridgeResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type TrunkedNetworksListByResourceGroupError = AzureOpError;
-/** Get a list of trunked networks in the provided resource group. */
-export const TrunkedNetworksListByResourceGroup: API.OperationMethod<
-  TrunkedNetworksListByResourceGroupRequest,
-  TrunkedNetworkList,
-  TrunkedNetworksListByResourceGroupError,
+export type UpdateAgentPoolError = AzureOpError;
+/** Patch the properties of the provided Kubernetes cluster agent pool, or update the tags associated with the Kubernetes cluster agent pool. Properties and tag updates can be done independently. */
+export const UpdateAgentPool: API.OperationMethod<
+  UpdateAgentPoolRequest,
+  UpdateAgentPoolResponse,
+  UpdateAgentPoolError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TrunkedNetworksListByResourceGroupRequest,
-  output: TrunkedNetworkList,
+  input: UpdateAgentPoolRequest,
+  output: UpdateAgentPoolResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type TrunkedNetworksListBySubscriptionError = AzureOpError;
-/** Get a list of trunked networks in the provided subscription. */
-export const TrunkedNetworksListBySubscription: API.OperationMethod<
-  TrunkedNetworksListBySubscriptionRequest,
-  TrunkedNetworkList,
-  TrunkedNetworksListBySubscriptionError,
+export type UpdateBareMetalMachineError = AzureOpError;
+/** Patch properties of the provided bare metal machine, or update tags associated with the bare metal machine. Properties and tag updates can be done independently. */
+export const UpdateBareMetalMachine: API.OperationMethod<
+  UpdateBareMetalMachineRequest,
+  UpdateBareMetalMachineResponse,
+  UpdateBareMetalMachineError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TrunkedNetworksListBySubscriptionRequest,
-  output: TrunkedNetworkList,
+  input: UpdateBareMetalMachineRequest,
+  output: UpdateBareMetalMachineResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type TrunkedNetworksUpdateError = AzureOpError;
+export type UpdateBareMetalMachineKeySetError = AzureOpError;
+/** Patch properties of bare metal machine key set for the provided cluster, or update the tags associated with it. Properties and tag updates can be done independently. */
+export const UpdateBareMetalMachineKeySet: API.OperationMethod<
+  UpdateBareMetalMachineKeySetRequest,
+  UpdateBareMetalMachineKeySetResponse,
+  UpdateBareMetalMachineKeySetError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateBareMetalMachineKeySetRequest,
+  output: UpdateBareMetalMachineKeySetResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateBmcKeySetError = AzureOpError;
+/** Patch properties of baseboard management controller key set for the provided cluster, or update the tags associated with it. Properties and tag updates can be done independently. */
+export const UpdateBmcKeySet: API.OperationMethod<
+  UpdateBmcKeySetRequest,
+  UpdateBmcKeySetResponse,
+  UpdateBmcKeySetError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateBmcKeySetRequest,
+  output: UpdateBmcKeySetResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateCloudServicesNetworkError = AzureOpError;
+/** Update properties of the provided cloud services network, or update the tags associated with it. Properties and tag updates can be done independently. */
+export const UpdateCloudServicesNetwork: API.OperationMethod<
+  UpdateCloudServicesNetworkRequest,
+  UpdateCloudServicesNetworkResponse,
+  UpdateCloudServicesNetworkError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateCloudServicesNetworkRequest,
+  output: UpdateCloudServicesNetworkResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateClusterError = AzureOpError;
+/** Patch the properties of the provided cluster, or update the tags associated with the cluster. Properties and tag updates can be done independently. */
+export const UpdateCluster: API.OperationMethod<
+  UpdateClusterRequest,
+  UpdateClusterResponse,
+  UpdateClusterError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateClusterRequest,
+  output: UpdateClusterResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateClusterManagerError = AzureOpError;
+/** Patch properties of the provided cluster manager, or update the tags assigned to the cluster manager. Properties and tag updates can be done independently. */
+export const UpdateClusterManager: API.OperationMethod<
+  UpdateClusterManagerRequest,
+  UpdateClusterManagerResponse,
+  UpdateClusterManagerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateClusterManagerRequest,
+  output: UpdateClusterManagerResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateClusterManagerRelayPrivateEndpointConnectionError =
+  AzureOpError;
+/** Update the private endpoint connection for the Azure Relay namespace managed by the specified cluster manager. Use this operation to approve or reject a pending private endpoint connection request for the relay namespace managed by the cluster manager. */
+export const UpdateClusterManagerRelayPrivateEndpointConnection: API.OperationMethod<
+  UpdateClusterManagerRelayPrivateEndpointConnectionRequest,
+  UpdateClusterManagerRelayPrivateEndpointConnectionResponse,
+  UpdateClusterManagerRelayPrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateClusterManagerRelayPrivateEndpointConnectionRequest,
+  output: UpdateClusterManagerRelayPrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateClusterVersionError = AzureOpError;
+/** Update the version of the provided cluster to one of the available supported versions. */
+export const UpdateClusterVersion: API.OperationMethod<
+  UpdateClusterVersionRequest,
+  UpdateClusterVersionResponse,
+  UpdateClusterVersionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateClusterVersionRequest,
+  output: UpdateClusterVersionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateConsoleError = AzureOpError;
+/** Patch the properties of the provided virtual machine console, or update the tags associated with the virtual machine console. Properties and tag updates can be done independently. */
+export const UpdateConsole: API.OperationMethod<
+  UpdateConsoleRequest,
+  UpdateConsoleResponse,
+  UpdateConsoleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateConsoleRequest,
+  output: UpdateConsoleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateKubernetesClusterError = AzureOpError;
+/** Patch the properties of the provided Kubernetes cluster, or update the tags associated with the Kubernetes cluster. Properties and tag updates can be done independently. */
+export const UpdateKubernetesCluster: API.OperationMethod<
+  UpdateKubernetesClusterRequest,
+  UpdateKubernetesClusterResponse,
+  UpdateKubernetesClusterError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateKubernetesClusterRequest,
+  output: UpdateKubernetesClusterResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateKubernetesClusterFeatureError = AzureOpError;
+/** Patch properties of the provided Kubernetes cluster feature. */
+export const UpdateKubernetesClusterFeature: API.OperationMethod<
+  UpdateKubernetesClusterFeatureRequest,
+  UpdateKubernetesClusterFeatureResponse,
+  UpdateKubernetesClusterFeatureError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateKubernetesClusterFeatureRequest,
+  output: UpdateKubernetesClusterFeatureResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateKubernetesVersionError = AzureOpError;
+/** Update tags associated with the Kubernetes version resource. No other properties are supported for update. */
+export const UpdateKubernetesVersion: API.OperationMethod<
+  UpdateKubernetesVersionRequest,
+  UpdateKubernetesVersionResponse,
+  UpdateKubernetesVersionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateKubernetesVersionRequest,
+  output: UpdateKubernetesVersionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateL2NetworkError = AzureOpError;
+/** Update tags associated with the provided layer 2 (L2) network. */
+export const UpdateL2Network: API.OperationMethod<
+  UpdateL2NetworkRequest,
+  UpdateL2NetworkResponse,
+  UpdateL2NetworkError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateL2NetworkRequest,
+  output: UpdateL2NetworkResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateL3NetworkError = AzureOpError;
+/** Update tags associated with the provided layer 3 (L3) network. */
+export const UpdateL3Network: API.OperationMethod<
+  UpdateL3NetworkRequest,
+  UpdateL3NetworkResponse,
+  UpdateL3NetworkError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateL3NetworkRequest,
+  output: UpdateL3NetworkResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateMetricsConfigurationError = AzureOpError;
+/** Patch properties of metrics configuration for the provided cluster, or update the tags associated with it. Properties and tag updates can be done independently. */
+export const UpdateMetricsConfiguration: API.OperationMethod<
+  UpdateMetricsConfigurationRequest,
+  UpdateMetricsConfigurationResponse,
+  UpdateMetricsConfigurationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateMetricsConfigurationRequest,
+  output: UpdateMetricsConfigurationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateRackError = AzureOpError;
+/** Patch properties of the provided rack, or update the tags associated with the rack. Properties and tag updates can be done independently. */
+export const UpdateRack: API.OperationMethod<
+  UpdateRackRequest,
+  UpdateRackResponse,
+  UpdateRackError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateRackRequest,
+  output: UpdateRackResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateStorageApplianceError = AzureOpError;
+/** Update properties of the provided storage appliance, or update tags associated with the storage appliance Properties and tag updates can be done independently. */
+export const UpdateStorageAppliance: API.OperationMethod<
+  UpdateStorageApplianceRequest,
+  UpdateStorageApplianceResponse,
+  UpdateStorageApplianceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateStorageApplianceRequest,
+  output: UpdateStorageApplianceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateTrunkedNetworkError = AzureOpError;
 /** Update tags associated with the provided trunked network. */
-export const TrunkedNetworksUpdate: API.OperationMethod<
-  TrunkedNetworksUpdateRequest,
-  TrunkedNetworksUpdateResponse,
-  TrunkedNetworksUpdateError,
+export const UpdateTrunkedNetwork: API.OperationMethod<
+  UpdateTrunkedNetworkRequest,
+  UpdateTrunkedNetworkResponse,
+  UpdateTrunkedNetworkError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TrunkedNetworksUpdateRequest,
-  output: TrunkedNetworksUpdateResponse,
+  input: UpdateTrunkedNetworkRequest,
+  output: UpdateTrunkedNetworkResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type VirtualMachinesAssignRelayError = AzureOpError;
-/** Assigns a relay to the specified Microsoft.HybridCompute machine associated with the provided virtual machine. */
-export const VirtualMachinesAssignRelay: API.OperationMethod<
-  VirtualMachinesAssignRelayRequest,
-  VirtualMachinesAssignRelayResponse,
-  VirtualMachinesAssignRelayError,
+export type UpdateVirtualMachineError = AzureOpError;
+/** Patch the properties of the provided virtual machine, or update the tags associated with the virtual machine. Properties and tag updates can be done independently. */
+export const UpdateVirtualMachine: API.OperationMethod<
+  UpdateVirtualMachineRequest,
+  UpdateVirtualMachineResponse,
+  UpdateVirtualMachineError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachinesAssignRelayRequest,
-  output: VirtualMachinesAssignRelayResponse,
+  input: UpdateVirtualMachineRequest,
+  output: UpdateVirtualMachineResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateVolumeError = AzureOpError;
+/** Update tags associated with the provided volume. */
+export const UpdateVolume: API.OperationMethod<
+  UpdateVolumeRequest,
+  UpdateVolumeResponse,
+  UpdateVolumeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateVolumeRequest,
+  output: UpdateVolumeResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -17833,66 +17979,6 @@ export const VirtualMachinesCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: VirtualMachinesCreateOrUpdateRequest,
   output: VirtualMachinesCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachinesDeleteError = AzureOpError;
-/** Delete the provided virtual machine. */
-export const VirtualMachinesDelete: API.OperationMethod<
-  VirtualMachinesDeleteRequest,
-  VirtualMachinesDeleteResponse,
-  VirtualMachinesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachinesDeleteRequest,
-  output: VirtualMachinesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachinesGetError = AzureOpError;
-/** Get properties of the provided virtual machine. */
-export const VirtualMachinesGet: API.OperationMethod<
-  VirtualMachinesGetRequest,
-  VirtualMachinesGetResponse,
-  VirtualMachinesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachinesGetRequest,
-  output: VirtualMachinesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachinesListByResourceGroupError = AzureOpError;
-/** Get a list of virtual machines in the provided resource group. */
-export const VirtualMachinesListByResourceGroup: API.OperationMethod<
-  VirtualMachinesListByResourceGroupRequest,
-  VirtualMachineList,
-  VirtualMachinesListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachinesListByResourceGroupRequest,
-  output: VirtualMachineList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachinesListBySubscriptionError = AzureOpError;
-/** Get a list of virtual machines in the provided subscription. */
-export const VirtualMachinesListBySubscription: API.OperationMethod<
-  VirtualMachinesListBySubscriptionRequest,
-  VirtualMachineList,
-  VirtualMachinesListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachinesListBySubscriptionRequest,
-  output: VirtualMachineList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -17928,51 +18014,6 @@ export const VirtualMachinesReimage: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type VirtualMachinesRestartError = AzureOpError;
-/** Restart the provided virtual machine. */
-export const VirtualMachinesRestart: API.OperationMethod<
-  VirtualMachinesRestartRequest,
-  VirtualMachinesRestartResponse,
-  VirtualMachinesRestartError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachinesRestartRequest,
-  output: VirtualMachinesRestartResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachinesStartError = AzureOpError;
-/** Start the provided virtual machine. */
-export const VirtualMachinesStart: API.OperationMethod<
-  VirtualMachinesStartRequest,
-  VirtualMachinesStartResponse,
-  VirtualMachinesStartError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachinesStartRequest,
-  output: VirtualMachinesStartResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachinesUpdateError = AzureOpError;
-/** Patch the properties of the provided virtual machine, or update the tags associated with the virtual machine. Properties and tag updates can be done independently. */
-export const VirtualMachinesUpdate: API.OperationMethod<
-  VirtualMachinesUpdateRequest,
-  VirtualMachinesUpdateResponse,
-  VirtualMachinesUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachinesUpdateRequest,
-  output: VirtualMachinesUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type VolumesCreateOrUpdateError = AzureOpError;
 /** Create a new volume or update the properties of the existing one. */
 export const VolumesCreateOrUpdate: API.OperationMethod<
@@ -17983,81 +18024,6 @@ export const VolumesCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: VolumesCreateOrUpdateRequest,
   output: VolumesCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VolumesDeleteError = AzureOpError;
-/** Delete the provided volume. */
-export const VolumesDelete: API.OperationMethod<
-  VolumesDeleteRequest,
-  VolumesDeleteResponse,
-  VolumesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VolumesDeleteRequest,
-  output: VolumesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VolumesGetError = AzureOpError;
-/** Get properties of the provided volume. */
-export const VolumesGet: API.OperationMethod<
-  VolumesGetRequest,
-  VolumesGetResponse,
-  VolumesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VolumesGetRequest,
-  output: VolumesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VolumesListByResourceGroupError = AzureOpError;
-/** Get a list of volumes in the provided resource group. */
-export const VolumesListByResourceGroup: API.OperationMethod<
-  VolumesListByResourceGroupRequest,
-  VolumeList,
-  VolumesListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VolumesListByResourceGroupRequest,
-  output: VolumeList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VolumesListBySubscriptionError = AzureOpError;
-/** Get a list of volumes in the provided subscription. */
-export const VolumesListBySubscription: API.OperationMethod<
-  VolumesListBySubscriptionRequest,
-  VolumeList,
-  VolumesListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VolumesListBySubscriptionRequest,
-  output: VolumeList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VolumesUpdateError = AzureOpError;
-/** Update tags associated with the provided volume. */
-export const VolumesUpdate: API.OperationMethod<
-  VolumesUpdateRequest,
-  VolumesUpdateResponse,
-  VolumesUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VolumesUpdateRequest,
-  output: VolumesUpdateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

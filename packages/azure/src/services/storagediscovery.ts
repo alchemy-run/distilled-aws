@@ -12,101 +12,46 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.StorageDiscovery/operations",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
-
-/** Localized display information for this particular operation. */
-export interface OperationDisplay {
-  /** The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring Insights" or "Microsoft Compute". */
-  provider?: string;
-  /** The localized friendly name of the resource type related to this operation. E.g. "Virtual Machines" or "Job Schedule Collections". */
-  resource?: string;
-  /** The concise, localized friendly name for the operation; suitable for dropdowns. E.g. "Create or Update Virtual Machine", "Restart Virtual Machine". */
-  operation?: string;
-  /** The short, localized friendly description of the operation; suitable for tool tips and detailed views. */
-  description?: string;
+export interface DeleteStorageDiscoveryWorkspaceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the StorageDiscoveryWorkspace */
+  storageDiscoveryWorkspaceName: string;
 }
-export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provider: S.optional(S.String),
-    resource: S.optional(S.String),
-    operation: S.optional(S.String),
-    description: S.optional(S.String),
-  }),
+export const DeleteStorageDiscoveryWorkspaceRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      storageDiscoveryWorkspaceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageDiscovery/storageDiscoveryWorkspaces/{storageDiscoveryWorkspaceName}",
+        code: 200,
+        apiVersion: "2025-09-01",
+      }),
+    ),
 ).annotate({
-  identifier: "OperationDisplay",
-}) as any as S.Schema<OperationDisplay>;
+  identifier: "DeleteStorageDiscoveryWorkspaceRequest",
+}) as any as S.Schema<DeleteStorageDiscoveryWorkspaceRequest>;
 
-/** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
-export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
-
-/** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
-export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
-
-/** Details of a REST API operation, returned from the Resource Provider Operations API */
-export interface Operation {
-  /** The name of the operation, as per Resource-Based Access Control (RBAC). Examples: "Microsoft.Compute/virtualMachines/write", "Microsoft.Compute/virtualMachines/capture/action" */
-  name?: string;
-  /** Whether the operation applies to data-plane. This is "true" for data-plane operations and "false" for ARM/control-plane operations. */
-  isDataAction?: boolean;
-  /** Localized display information for this particular operation. */
-  display?: OperationDisplay;
-  /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
-  origin?: OperationOrigin;
-  /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
-  actionType?: OperationActionType;
-}
-export const Operation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    isDataAction: S.optional(S.Boolean),
-    display: S.optional(OperationDisplay),
-    origin: S.optional(OperationOrigin),
-    actionType: S.optional(OperationActionType),
-  }),
-).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
-
-/** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
-  Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
-
-export interface OperationsListResponse {
-  /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
-  /** URL to get the next set of operation list results (if there are any). */
-  nextLink?: string;
-}
-export const OperationsListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(OperationsListResponseValueList),
-    nextLink: S.optional(S.String),
-  }),
+export interface DeleteStorageDiscoveryWorkspaceResponse {}
+export const DeleteStorageDiscoveryWorkspaceResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
 ).annotate({
-  identifier: "OperationsListResponse",
-}) as any as S.Schema<OperationsListResponse>;
+  identifier: "DeleteStorageDiscoveryWorkspaceResponse",
+}) as any as S.Schema<DeleteStorageDiscoveryWorkspaceResponse>;
 
 /** The queries to execute against Storage Discovery data. Format: Base64-encoded JSON object with structure: {"queries":[{"name":"queryName","query":"KQL query"}]} For query syntax and available tables, see: https://aka.ms/storageDiscoveryQuery */
-export type ReportGenerateReportRequestQueriesList = Array<string>;
-export const ReportGenerateReportRequestQueriesList = /*@__PURE__*/ S.Array(
+export type GenerateReportReportRequestQueriesList = Array<string>;
+export const GenerateReportReportRequestQueriesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<ReportGenerateReportRequestQueriesList>;
+) as any as S.Schema<GenerateReportReportRequestQueriesList>;
 
-export interface ReportGenerateReportRequest {
+export interface GenerateReportReportRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -116,15 +61,15 @@ export interface ReportGenerateReportRequest {
   /** The name of the ReportResource */
   discoveryResourceName: string;
   /** The queries to execute against Storage Discovery data. Format: Base64-encoded JSON object with structure: {"queries":[{"name":"queryName","query":"KQL query"}]} For query syntax and available tables, see: https://aka.ms/storageDiscoveryQuery */
-  queries: ReportGenerateReportRequestQueriesList;
+  queries: GenerateReportReportRequestQueriesList;
 }
-export const ReportGenerateReportRequest = /*@__PURE__*/ S.suspend(() =>
+export const GenerateReportReportRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     storageDiscoveryWorkspaceName: S.String.pipe(T.Label()),
     discoveryResourceName: S.String.pipe(T.Label()),
-    queries: ReportGenerateReportRequestQueriesList,
+    queries: GenerateReportReportRequestQueriesList,
   }).pipe(
     T.Http({
       method: "POST",
@@ -134,8 +79,8 @@ export const ReportGenerateReportRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ReportGenerateReportRequest",
-}) as any as S.Schema<ReportGenerateReportRequest>;
+  identifier: "GenerateReportReportRequest",
+}) as any as S.Schema<GenerateReportReportRequest>;
 
 /** The column of the response result set */
 export interface ReportResultColumn {
@@ -208,7 +153,7 @@ export const GetReportResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetReportResult",
 }) as any as S.Schema<GetReportResult>;
 
-export interface ReportGetRequest {
+export interface GetReportRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -218,7 +163,7 @@ export interface ReportGetRequest {
   /** The name of the ReportResource */
   discoveryResourceName: string;
 }
-export const ReportGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetReportRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -233,8 +178,8 @@ export const ReportGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ReportGetRequest",
-}) as any as S.Schema<ReportGetRequest>;
+  identifier: "GetReportRequest",
+}) as any as S.Schema<GetReportRequest>;
 
 /** The type of identity that created the resource. */
 export type SystemDataCreatedByType =
@@ -301,7 +246,7 @@ export const ReportProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "ReportProperties",
 }) as any as S.Schema<ReportProperties>;
 
-export interface ReportGetResponse {
+export interface GetReportResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -313,7 +258,7 @@ export interface ReportGetResponse {
   /** The resource-specific properties for this resource. */
   properties?: ReportProperties;
 }
-export const ReportGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetReportResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -322,10 +267,10 @@ export const ReportGetResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(ReportProperties),
   }),
 ).annotate({
-  identifier: "ReportGetResponse",
-}) as any as S.Schema<ReportGetResponse>;
+  identifier: "GetReportResponse",
+}) as any as S.Schema<GetReportResponse>;
 
-export interface ReportListByResourceGroupRequest {
+export interface GetStorageDiscoveryWorkspaceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -333,7 +278,7 @@ export interface ReportListByResourceGroupRequest {
   /** The name of the StorageDiscoveryWorkspace */
   storageDiscoveryWorkspaceName: string;
 }
-export const ReportListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetStorageDiscoveryWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -341,104 +286,36 @@ export const ReportListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageDiscovery/storageDiscoveryWorkspaces/{storageDiscoveryWorkspaceName}/reports",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageDiscovery/storageDiscoveryWorkspaces/{storageDiscoveryWorkspaceName}",
       code: 200,
       apiVersion: "2025-09-01",
     }),
   ),
 ).annotate({
-  identifier: "ReportListByResourceGroupRequest",
-}) as any as S.Schema<ReportListByResourceGroupRequest>;
-
-/** A report resource */
-export interface ReportResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: ReportProperties;
-}
-export const ReportResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ReportProperties),
-  }),
-).annotate({ identifier: "ReportResource" }) as any as S.Schema<ReportResource>;
-
-/** The ReportResource items on this page */
-export type ReportResourceListResultValueList = Array<ReportResource>;
-export const ReportResourceListResultValueList = /*@__PURE__*/ S.Array(
-  ReportResource,
-) as any as S.Schema<ReportResourceListResultValueList>;
-
-/** The response of a ReportResource list operation. */
-export interface ReportResourceListResult {
-  /** The ReportResource items on this page */
-  value: ReportResourceListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ReportResourceListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: ReportResourceListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ReportResourceListResult",
-}) as any as S.Schema<ReportResourceListResult>;
-
-export interface ReportListBySubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the StorageDiscoveryWorkspace */
-  storageDiscoveryWorkspaceName: string;
-}
-export const ReportListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    storageDiscoveryWorkspaceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.StorageDiscovery/storageDiscoveryWorkspaces/{storageDiscoveryWorkspaceName}/reports",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "ReportListBySubscriptionRequest",
-}) as any as S.Schema<ReportListBySubscriptionRequest>;
+  identifier: "GetStorageDiscoveryWorkspaceRequest",
+}) as any as S.Schema<GetStorageDiscoveryWorkspaceRequest>;
 
 /** Resource tags. */
-export type StorageDiscoveryWorkspacesCreateOrUpdateRequestTagsMap = {
+export type GetStorageDiscoveryWorkspaceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const StorageDiscoveryWorkspacesCreateOrUpdateRequestTagsMap =
+export const GetStorageDiscoveryWorkspaceResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<StorageDiscoveryWorkspacesCreateOrUpdateRequestTagsMap>;
+  ) as any as S.Schema<GetStorageDiscoveryWorkspaceResponseTagsMap>;
 
 /** The storage discovery sku */
-export type StorageDiscoveryWorkspacePropertiesInputSku = "Standard" | "Free";
-export const StorageDiscoveryWorkspacePropertiesInputSku =
-  /*@__PURE__*/ S.String;
+export type StorageDiscoveryWorkspacePropertiesSku = "Standard" | "Free";
+export const StorageDiscoveryWorkspacePropertiesSku = /*@__PURE__*/ S.String;
 
 /** The view level storage discovery data estate */
-export type StorageDiscoveryWorkspacePropertiesInputWorkspaceRootsList =
+export type StorageDiscoveryWorkspacePropertiesWorkspaceRootsList =
   Array<string>;
-export const StorageDiscoveryWorkspacePropertiesInputWorkspaceRootsList =
+export const StorageDiscoveryWorkspacePropertiesWorkspaceRootsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<StorageDiscoveryWorkspacePropertiesInputWorkspaceRootsList>;
+  ) as any as S.Schema<StorageDiscoveryWorkspacePropertiesWorkspaceRootsList>;
 
 /** Storage Discovery Resource Type */
 export type StorageDiscoveryResourceType = "Microsoft.Storage/storageAccounts";
@@ -488,6 +365,382 @@ export const StorageDiscoveryScope = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "StorageDiscoveryScope",
 }) as any as S.Schema<StorageDiscoveryScope>;
+
+/** The scopes of the storage discovery workspace. */
+export type StorageDiscoveryWorkspacePropertiesScopesList =
+  Array<StorageDiscoveryScope>;
+export const StorageDiscoveryWorkspacePropertiesScopesList =
+  /*@__PURE__*/ S.Array(
+    StorageDiscoveryScope,
+  ) as any as S.Schema<StorageDiscoveryWorkspacePropertiesScopesList>;
+
+/** Storage Discovery Workspace Properties */
+export interface StorageDiscoveryWorkspaceProperties {
+  /** The storage discovery sku */
+  sku?: StorageDiscoveryWorkspacePropertiesSku;
+  /** The description of the storage discovery workspace */
+  description?: string;
+  /** The view level storage discovery data estate */
+  workspaceRoots: StorageDiscoveryWorkspacePropertiesWorkspaceRootsList;
+  /** The scopes of the storage discovery workspace. */
+  scopes: StorageDiscoveryWorkspacePropertiesScopesList;
+  /** The status of the last operation. */
+  provisioningState?: AzureResourceManagerResourceProvisioningState;
+}
+export const StorageDiscoveryWorkspaceProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    sku: S.optional(StorageDiscoveryWorkspacePropertiesSku),
+    description: S.optional(S.String),
+    workspaceRoots: StorageDiscoveryWorkspacePropertiesWorkspaceRootsList,
+    scopes: StorageDiscoveryWorkspacePropertiesScopesList,
+    provisioningState: S.optional(
+      AzureResourceManagerResourceProvisioningState,
+    ),
+  }),
+).annotate({
+  identifier: "StorageDiscoveryWorkspaceProperties",
+}) as any as S.Schema<StorageDiscoveryWorkspaceProperties>;
+
+export interface GetStorageDiscoveryWorkspaceResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetStorageDiscoveryWorkspaceResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: StorageDiscoveryWorkspaceProperties;
+}
+export const GetStorageDiscoveryWorkspaceResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(GetStorageDiscoveryWorkspaceResponseTagsMap),
+      location: S.String,
+      properties: S.optional(StorageDiscoveryWorkspaceProperties),
+    }),
+).annotate({
+  identifier: "GetStorageDiscoveryWorkspaceResponse",
+}) as any as S.Schema<GetStorageDiscoveryWorkspaceResponse>;
+
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.StorageDiscovery/operations",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
+
+/** Localized display information for this particular operation. */
+export interface OperationDisplay {
+  /** The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring Insights" or "Microsoft Compute". */
+  provider?: string;
+  /** The localized friendly name of the resource type related to this operation. E.g. "Virtual Machines" or "Job Schedule Collections". */
+  resource?: string;
+  /** The concise, localized friendly name for the operation; suitable for dropdowns. E.g. "Create or Update Virtual Machine", "Restart Virtual Machine". */
+  operation?: string;
+  /** The short, localized friendly description of the operation; suitable for tool tips and detailed views. */
+  description?: string;
+}
+export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provider: S.optional(S.String),
+    resource: S.optional(S.String),
+    operation: S.optional(S.String),
+    description: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationDisplay",
+}) as any as S.Schema<OperationDisplay>;
+
+/** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
+export type OperationOrigin = "user" | "system" | "user,system";
+export const OperationOrigin = /*@__PURE__*/ S.String;
+
+/** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
+export type OperationActionType = "Internal";
+export const OperationActionType = /*@__PURE__*/ S.String;
+
+/** Details of a REST API operation, returned from the Resource Provider Operations API */
+export interface Operation {
+  /** The name of the operation, as per Resource-Based Access Control (RBAC). Examples: "Microsoft.Compute/virtualMachines/write", "Microsoft.Compute/virtualMachines/capture/action" */
+  name?: string;
+  /** Whether the operation applies to data-plane. This is "true" for data-plane operations and "false" for ARM/control-plane operations. */
+  isDataAction?: boolean;
+  /** Localized display information for this particular operation. */
+  display?: OperationDisplay;
+  /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
+  origin?: OperationOrigin;
+  /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
+  actionType?: OperationActionType;
+}
+export const Operation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    isDataAction: S.optional(S.Boolean),
+    display: S.optional(OperationDisplay),
+    origin: S.optional(OperationOrigin),
+    actionType: S.optional(OperationActionType),
+  }),
+).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
+
+/** List of operations supported by the resource provider */
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
+  Operation,
+) as any as S.Schema<ListOperationsResponseValueList>;
+
+export interface ListOperationsResponse {
+  /** List of operations supported by the resource provider */
+  value?: ListOperationsResponseValueList;
+  /** URL to get the next set of operation list results (if there are any). */
+  nextLink?: string;
+}
+export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(ListOperationsResponseValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ListOperationsResponse",
+}) as any as S.Schema<ListOperationsResponse>;
+
+export interface ListReportByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the StorageDiscoveryWorkspace */
+  storageDiscoveryWorkspaceName: string;
+}
+export const ListReportByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    storageDiscoveryWorkspaceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageDiscovery/storageDiscoveryWorkspaces/{storageDiscoveryWorkspaceName}/reports",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListReportByResourceGroupRequest",
+}) as any as S.Schema<ListReportByResourceGroupRequest>;
+
+/** A report resource */
+export interface ReportResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: ReportProperties;
+}
+export const ReportResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ReportProperties),
+  }),
+).annotate({ identifier: "ReportResource" }) as any as S.Schema<ReportResource>;
+
+/** The ReportResource items on this page */
+export type ReportResourceListResultValueList = Array<ReportResource>;
+export const ReportResourceListResultValueList = /*@__PURE__*/ S.Array(
+  ReportResource,
+) as any as S.Schema<ReportResourceListResultValueList>;
+
+/** The response of a ReportResource list operation. */
+export interface ReportResourceListResult {
+  /** The ReportResource items on this page */
+  value: ReportResourceListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ReportResourceListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ReportResourceListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ReportResourceListResult",
+}) as any as S.Schema<ReportResourceListResult>;
+
+export interface ListReportBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the StorageDiscoveryWorkspace */
+  storageDiscoveryWorkspaceName: string;
+}
+export const ListReportBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    storageDiscoveryWorkspaceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.StorageDiscovery/storageDiscoveryWorkspaces/{storageDiscoveryWorkspaceName}/reports",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListReportBySubscriptionRequest",
+}) as any as S.Schema<ListReportBySubscriptionRequest>;
+
+export interface ListStorageDiscoveryWorkspaceByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const ListStorageDiscoveryWorkspaceByResourceGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageDiscovery/storageDiscoveryWorkspaces",
+        code: 200,
+        apiVersion: "2025-09-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListStorageDiscoveryWorkspaceByResourceGroupRequest",
+  }) as any as S.Schema<ListStorageDiscoveryWorkspaceByResourceGroupRequest>;
+
+/** Resource tags. */
+export type StorageDiscoveryWorkspaceTagsMap = {
+  [key: string]: string | undefined;
+};
+export const StorageDiscoveryWorkspaceTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<StorageDiscoveryWorkspaceTagsMap>;
+
+/** A Storage Discovery Workspace resource. This resource configures the collection of storage account metrics. */
+export interface StorageDiscoveryWorkspace {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: StorageDiscoveryWorkspaceTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: StorageDiscoveryWorkspaceProperties;
+}
+export const StorageDiscoveryWorkspace = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(StorageDiscoveryWorkspaceTagsMap),
+    location: S.String,
+    properties: S.optional(StorageDiscoveryWorkspaceProperties),
+  }),
+).annotate({
+  identifier: "StorageDiscoveryWorkspace",
+}) as any as S.Schema<StorageDiscoveryWorkspace>;
+
+/** The StorageDiscoveryWorkspace items on this page */
+export type StorageDiscoveryWorkspaceListResultValueList =
+  Array<StorageDiscoveryWorkspace>;
+export const StorageDiscoveryWorkspaceListResultValueList =
+  /*@__PURE__*/ S.Array(
+    StorageDiscoveryWorkspace,
+  ) as any as S.Schema<StorageDiscoveryWorkspaceListResultValueList>;
+
+/** The response of a StorageDiscoveryWorkspace list operation. */
+export interface StorageDiscoveryWorkspaceListResult {
+  /** The StorageDiscoveryWorkspace items on this page */
+  value: StorageDiscoveryWorkspaceListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const StorageDiscoveryWorkspaceListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: StorageDiscoveryWorkspaceListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "StorageDiscoveryWorkspaceListResult",
+}) as any as S.Schema<StorageDiscoveryWorkspaceListResult>;
+
+export interface ListStorageDiscoveryWorkspaceBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+}
+export const ListStorageDiscoveryWorkspaceBySubscriptionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.StorageDiscovery/storageDiscoveryWorkspaces",
+        code: 200,
+        apiVersion: "2025-09-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListStorageDiscoveryWorkspaceBySubscriptionRequest",
+  }) as any as S.Schema<ListStorageDiscoveryWorkspaceBySubscriptionRequest>;
+
+/** Resource tags. */
+export type StorageDiscoveryWorkspacesCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const StorageDiscoveryWorkspacesCreateOrUpdateRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<StorageDiscoveryWorkspacesCreateOrUpdateRequestTagsMap>;
+
+/** The storage discovery sku */
+export type StorageDiscoveryWorkspacePropertiesInputSku = "Standard" | "Free";
+export const StorageDiscoveryWorkspacePropertiesInputSku =
+  /*@__PURE__*/ S.String;
+
+/** The view level storage discovery data estate */
+export type StorageDiscoveryWorkspacePropertiesInputWorkspaceRootsList =
+  Array<string>;
+export const StorageDiscoveryWorkspacePropertiesInputWorkspaceRootsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<StorageDiscoveryWorkspacePropertiesInputWorkspaceRootsList>;
 
 /** The scopes of the storage discovery workspace. */
 export type StorageDiscoveryWorkspacePropertiesInputScopesList =
@@ -566,53 +819,6 @@ export const StorageDiscoveryWorkspacesCreateOrUpdateResponseTagsMap =
     S.String,
   ) as any as S.Schema<StorageDiscoveryWorkspacesCreateOrUpdateResponseTagsMap>;
 
-/** The storage discovery sku */
-export type StorageDiscoveryWorkspacePropertiesSku = "Standard" | "Free";
-export const StorageDiscoveryWorkspacePropertiesSku = /*@__PURE__*/ S.String;
-
-/** The view level storage discovery data estate */
-export type StorageDiscoveryWorkspacePropertiesWorkspaceRootsList =
-  Array<string>;
-export const StorageDiscoveryWorkspacePropertiesWorkspaceRootsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<StorageDiscoveryWorkspacePropertiesWorkspaceRootsList>;
-
-/** The scopes of the storage discovery workspace. */
-export type StorageDiscoveryWorkspacePropertiesScopesList =
-  Array<StorageDiscoveryScope>;
-export const StorageDiscoveryWorkspacePropertiesScopesList =
-  /*@__PURE__*/ S.Array(
-    StorageDiscoveryScope,
-  ) as any as S.Schema<StorageDiscoveryWorkspacePropertiesScopesList>;
-
-/** Storage Discovery Workspace Properties */
-export interface StorageDiscoveryWorkspaceProperties {
-  /** The storage discovery sku */
-  sku?: StorageDiscoveryWorkspacePropertiesSku;
-  /** The description of the storage discovery workspace */
-  description?: string;
-  /** The view level storage discovery data estate */
-  workspaceRoots: StorageDiscoveryWorkspacePropertiesWorkspaceRootsList;
-  /** The scopes of the storage discovery workspace. */
-  scopes: StorageDiscoveryWorkspacePropertiesScopesList;
-  /** The status of the last operation. */
-  provisioningState?: AzureResourceManagerResourceProvisioningState;
-}
-export const StorageDiscoveryWorkspaceProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    sku: S.optional(StorageDiscoveryWorkspacePropertiesSku),
-    description: S.optional(S.String),
-    workspaceRoots: StorageDiscoveryWorkspacePropertiesWorkspaceRootsList,
-    scopes: StorageDiscoveryWorkspacePropertiesScopesList,
-    provisioningState: S.optional(
-      AzureResourceManagerResourceProvisioningState,
-    ),
-  }),
-).annotate({
-  identifier: "StorageDiscoveryWorkspaceProperties",
-}) as any as S.Schema<StorageDiscoveryWorkspaceProperties>;
-
 export interface StorageDiscoveryWorkspacesCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
@@ -643,213 +849,6 @@ export const StorageDiscoveryWorkspacesCreateOrUpdateResponse =
   ).annotate({
     identifier: "StorageDiscoveryWorkspacesCreateOrUpdateResponse",
   }) as any as S.Schema<StorageDiscoveryWorkspacesCreateOrUpdateResponse>;
-
-export interface StorageDiscoveryWorkspacesDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the StorageDiscoveryWorkspace */
-  storageDiscoveryWorkspaceName: string;
-}
-export const StorageDiscoveryWorkspacesDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      storageDiscoveryWorkspaceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageDiscovery/storageDiscoveryWorkspaces/{storageDiscoveryWorkspaceName}",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-).annotate({
-  identifier: "StorageDiscoveryWorkspacesDeleteRequest",
-}) as any as S.Schema<StorageDiscoveryWorkspacesDeleteRequest>;
-
-export interface StorageDiscoveryWorkspacesDeleteResponse {}
-export const StorageDiscoveryWorkspacesDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "StorageDiscoveryWorkspacesDeleteResponse",
-}) as any as S.Schema<StorageDiscoveryWorkspacesDeleteResponse>;
-
-export interface StorageDiscoveryWorkspacesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the StorageDiscoveryWorkspace */
-  storageDiscoveryWorkspaceName: string;
-}
-export const StorageDiscoveryWorkspacesGetRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      storageDiscoveryWorkspaceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageDiscovery/storageDiscoveryWorkspaces/{storageDiscoveryWorkspaceName}",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-).annotate({
-  identifier: "StorageDiscoveryWorkspacesGetRequest",
-}) as any as S.Schema<StorageDiscoveryWorkspacesGetRequest>;
-
-/** Resource tags. */
-export type StorageDiscoveryWorkspacesGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const StorageDiscoveryWorkspacesGetResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<StorageDiscoveryWorkspacesGetResponseTagsMap>;
-
-export interface StorageDiscoveryWorkspacesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: StorageDiscoveryWorkspacesGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: StorageDiscoveryWorkspaceProperties;
-}
-export const StorageDiscoveryWorkspacesGetResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(StorageDiscoveryWorkspacesGetResponseTagsMap),
-      location: S.String,
-      properties: S.optional(StorageDiscoveryWorkspaceProperties),
-    }),
-).annotate({
-  identifier: "StorageDiscoveryWorkspacesGetResponse",
-}) as any as S.Schema<StorageDiscoveryWorkspacesGetResponse>;
-
-export interface StorageDiscoveryWorkspacesListByResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const StorageDiscoveryWorkspacesListByResourceGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageDiscovery/storageDiscoveryWorkspaces",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "StorageDiscoveryWorkspacesListByResourceGroupRequest",
-  }) as any as S.Schema<StorageDiscoveryWorkspacesListByResourceGroupRequest>;
-
-/** Resource tags. */
-export type StorageDiscoveryWorkspaceTagsMap = {
-  [key: string]: string | undefined;
-};
-export const StorageDiscoveryWorkspaceTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<StorageDiscoveryWorkspaceTagsMap>;
-
-/** A Storage Discovery Workspace resource. This resource configures the collection of storage account metrics. */
-export interface StorageDiscoveryWorkspace {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: StorageDiscoveryWorkspaceTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: StorageDiscoveryWorkspaceProperties;
-}
-export const StorageDiscoveryWorkspace = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(StorageDiscoveryWorkspaceTagsMap),
-    location: S.String,
-    properties: S.optional(StorageDiscoveryWorkspaceProperties),
-  }),
-).annotate({
-  identifier: "StorageDiscoveryWorkspace",
-}) as any as S.Schema<StorageDiscoveryWorkspace>;
-
-/** The StorageDiscoveryWorkspace items on this page */
-export type StorageDiscoveryWorkspaceListResultValueList =
-  Array<StorageDiscoveryWorkspace>;
-export const StorageDiscoveryWorkspaceListResultValueList =
-  /*@__PURE__*/ S.Array(
-    StorageDiscoveryWorkspace,
-  ) as any as S.Schema<StorageDiscoveryWorkspaceListResultValueList>;
-
-/** The response of a StorageDiscoveryWorkspace list operation. */
-export interface StorageDiscoveryWorkspaceListResult {
-  /** The StorageDiscoveryWorkspace items on this page */
-  value: StorageDiscoveryWorkspaceListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const StorageDiscoveryWorkspaceListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: StorageDiscoveryWorkspaceListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "StorageDiscoveryWorkspaceListResult",
-}) as any as S.Schema<StorageDiscoveryWorkspaceListResult>;
-
-export interface StorageDiscoveryWorkspacesListBySubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-}
-export const StorageDiscoveryWorkspacesListBySubscriptionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.StorageDiscovery/storageDiscoveryWorkspaces",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "StorageDiscoveryWorkspacesListBySubscriptionRequest",
-  }) as any as S.Schema<StorageDiscoveryWorkspacesListBySubscriptionRequest>;
 
 /** The queries to execute against Storage Discovery data. Format: Base64-encoded JSON object with structure: {"queries":[{"name":"queryName","query":"KQL query"}]} For query syntax and available tables, see: https://aka.ms/storageDiscoveryQuery */
 export type StorageDiscoveryWorkspacesReportRequestQueriesList = Array<string>;
@@ -888,14 +887,14 @@ export const StorageDiscoveryWorkspacesReportRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<StorageDiscoveryWorkspacesReportRequest>;
 
 /** Resource tags. */
-export type StorageDiscoveryWorkspacesUpdateRequestTagsMap = {
+export type UpdateStorageDiscoveryWorkspaceRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const StorageDiscoveryWorkspacesUpdateRequestTagsMap =
+export const UpdateStorageDiscoveryWorkspaceRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<StorageDiscoveryWorkspacesUpdateRequestTagsMap>;
+  ) as any as S.Schema<UpdateStorageDiscoveryWorkspaceRequestTagsMap>;
 
 /** Storage Discovery Sku */
 export type StorageDiscoverySku = "Standard" | "Free";
@@ -942,7 +941,7 @@ export const StorageDiscoveryWorkspacePropertiesUpdate =
     identifier: "StorageDiscoveryWorkspacePropertiesUpdate",
   }) as any as S.Schema<StorageDiscoveryWorkspacePropertiesUpdate>;
 
-export interface StorageDiscoveryWorkspacesUpdateRequest {
+export interface UpdateStorageDiscoveryWorkspaceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -950,17 +949,17 @@ export interface StorageDiscoveryWorkspacesUpdateRequest {
   /** The name of the StorageDiscoveryWorkspace */
   storageDiscoveryWorkspaceName: string;
   /** Resource tags. */
-  tags?: StorageDiscoveryWorkspacesUpdateRequestTagsMap;
+  tags?: UpdateStorageDiscoveryWorkspaceRequestTagsMap;
   /** The resource-specific properties for this resource. */
   properties?: StorageDiscoveryWorkspacePropertiesUpdate;
 }
-export const StorageDiscoveryWorkspacesUpdateRequest = /*@__PURE__*/ S.suspend(
+export const UpdateStorageDiscoveryWorkspaceRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       storageDiscoveryWorkspaceName: S.String.pipe(T.Label()),
-      tags: S.optional(StorageDiscoveryWorkspacesUpdateRequestTagsMap),
+      tags: S.optional(UpdateStorageDiscoveryWorkspaceRequestTagsMap),
       properties: S.optional(StorageDiscoveryWorkspacePropertiesUpdate),
     }).pipe(
       T.Http({
@@ -971,20 +970,20 @@ export const StorageDiscoveryWorkspacesUpdateRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "StorageDiscoveryWorkspacesUpdateRequest",
-}) as any as S.Schema<StorageDiscoveryWorkspacesUpdateRequest>;
+  identifier: "UpdateStorageDiscoveryWorkspaceRequest",
+}) as any as S.Schema<UpdateStorageDiscoveryWorkspaceRequest>;
 
 /** Resource tags. */
-export type StorageDiscoveryWorkspacesUpdateResponseTagsMap = {
+export type UpdateStorageDiscoveryWorkspaceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const StorageDiscoveryWorkspacesUpdateResponseTagsMap =
+export const UpdateStorageDiscoveryWorkspaceResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<StorageDiscoveryWorkspacesUpdateResponseTagsMap>;
+  ) as any as S.Schema<UpdateStorageDiscoveryWorkspaceResponseTagsMap>;
 
-export interface StorageDiscoveryWorkspacesUpdateResponse {
+export interface UpdateStorageDiscoveryWorkspaceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -994,97 +993,157 @@ export interface StorageDiscoveryWorkspacesUpdateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: StorageDiscoveryWorkspacesUpdateResponseTagsMap;
+  tags?: UpdateStorageDiscoveryWorkspaceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: StorageDiscoveryWorkspaceProperties;
 }
-export const StorageDiscoveryWorkspacesUpdateResponse = /*@__PURE__*/ S.suspend(
+export const UpdateStorageDiscoveryWorkspaceResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      tags: S.optional(StorageDiscoveryWorkspacesUpdateResponseTagsMap),
+      tags: S.optional(UpdateStorageDiscoveryWorkspaceResponseTagsMap),
       location: S.String,
       properties: S.optional(StorageDiscoveryWorkspaceProperties),
     }),
 ).annotate({
-  identifier: "StorageDiscoveryWorkspacesUpdateResponse",
-}) as any as S.Schema<StorageDiscoveryWorkspacesUpdateResponse>;
+  identifier: "UpdateStorageDiscoveryWorkspaceResponse",
+}) as any as S.Schema<UpdateStorageDiscoveryWorkspaceResponse>;
 
-export type OperationsListError = AzureOpError;
-/** List the operations for the provider */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationsListResponse,
-  OperationsListError,
+export type DeleteStorageDiscoveryWorkspaceError = AzureOpError;
+/** Delete a StorageDiscoveryWorkspace */
+export const DeleteStorageDiscoveryWorkspace: API.OperationMethod<
+  DeleteStorageDiscoveryWorkspaceRequest,
+  DeleteStorageDiscoveryWorkspaceResponse,
+  DeleteStorageDiscoveryWorkspaceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
-  output: OperationsListResponse,
+  input: DeleteStorageDiscoveryWorkspaceRequest,
+  output: DeleteStorageDiscoveryWorkspaceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ReportGenerateReportError = AzureOpError;
+export type GenerateReportReportError = AzureOpError;
 /** A long-running resource action. */
-export const ReportGenerateReport: API.OperationMethod<
-  ReportGenerateReportRequest,
+export const GenerateReportReport: API.OperationMethod<
+  GenerateReportReportRequest,
   GetReportResult,
-  ReportGenerateReportError,
+  GenerateReportReportError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ReportGenerateReportRequest,
+  input: GenerateReportReportRequest,
   output: GetReportResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ReportGetError = AzureOpError;
+export type GetReportError = AzureOpError;
 /** Get a ReportResource */
-export const ReportGet: API.OperationMethod<
-  ReportGetRequest,
-  ReportGetResponse,
-  ReportGetError,
+export const GetReport: API.OperationMethod<
+  GetReportRequest,
+  GetReportResponse,
+  GetReportError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ReportGetRequest,
-  output: ReportGetResponse,
+  input: GetReportRequest,
+  output: GetReportResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ReportListByResourceGroupError = AzureOpError;
+export type GetStorageDiscoveryWorkspaceError = AzureOpError;
+/** Get a StorageDiscoveryWorkspace */
+export const GetStorageDiscoveryWorkspace: API.OperationMethod<
+  GetStorageDiscoveryWorkspaceRequest,
+  GetStorageDiscoveryWorkspaceResponse,
+  GetStorageDiscoveryWorkspaceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetStorageDiscoveryWorkspaceRequest,
+  output: GetStorageDiscoveryWorkspaceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOperationsError = AzureOpError;
+/** List the operations for the provider */
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  ListOperationsResponse,
+  ListOperationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOperationsRequest,
+  output: ListOperationsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListReportByResourceGroupError = AzureOpError;
 /** List ReportResource resources by StorageDiscoveryWorkspace */
-export const ReportListByResourceGroup: API.OperationMethod<
-  ReportListByResourceGroupRequest,
+export const ListReportByResourceGroup: API.OperationMethod<
+  ListReportByResourceGroupRequest,
   ReportResourceListResult,
-  ReportListByResourceGroupError,
+  ListReportByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ReportListByResourceGroupRequest,
+  input: ListReportByResourceGroupRequest,
   output: ReportResourceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ReportListBySubscriptionError = AzureOpError;
+export type ListReportBySubscriptionError = AzureOpError;
 /** List ReportResource resources by subscription ID */
-export const ReportListBySubscription: API.OperationMethod<
-  ReportListBySubscriptionRequest,
+export const ListReportBySubscription: API.OperationMethod<
+  ListReportBySubscriptionRequest,
   ReportResourceListResult,
-  ReportListBySubscriptionError,
+  ListReportBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ReportListBySubscriptionRequest,
+  input: ListReportBySubscriptionRequest,
   output: ReportResourceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListStorageDiscoveryWorkspaceByResourceGroupError = AzureOpError;
+/** List StorageDiscoveryWorkspace resources by resource group */
+export const ListStorageDiscoveryWorkspaceByResourceGroup: API.OperationMethod<
+  ListStorageDiscoveryWorkspaceByResourceGroupRequest,
+  StorageDiscoveryWorkspaceListResult,
+  ListStorageDiscoveryWorkspaceByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListStorageDiscoveryWorkspaceByResourceGroupRequest,
+  output: StorageDiscoveryWorkspaceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListStorageDiscoveryWorkspaceBySubscriptionError = AzureOpError;
+/** List StorageDiscoveryWorkspace resources by subscription ID */
+export const ListStorageDiscoveryWorkspaceBySubscription: API.OperationMethod<
+  ListStorageDiscoveryWorkspaceBySubscriptionRequest,
+  StorageDiscoveryWorkspaceListResult,
+  ListStorageDiscoveryWorkspaceBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListStorageDiscoveryWorkspaceBySubscriptionRequest,
+  output: StorageDiscoveryWorkspaceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -1105,66 +1164,6 @@ export const StorageDiscoveryWorkspacesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type StorageDiscoveryWorkspacesDeleteError = AzureOpError;
-/** Delete a StorageDiscoveryWorkspace */
-export const StorageDiscoveryWorkspacesDelete: API.OperationMethod<
-  StorageDiscoveryWorkspacesDeleteRequest,
-  StorageDiscoveryWorkspacesDeleteResponse,
-  StorageDiscoveryWorkspacesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: StorageDiscoveryWorkspacesDeleteRequest,
-  output: StorageDiscoveryWorkspacesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type StorageDiscoveryWorkspacesGetError = AzureOpError;
-/** Get a StorageDiscoveryWorkspace */
-export const StorageDiscoveryWorkspacesGet: API.OperationMethod<
-  StorageDiscoveryWorkspacesGetRequest,
-  StorageDiscoveryWorkspacesGetResponse,
-  StorageDiscoveryWorkspacesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: StorageDiscoveryWorkspacesGetRequest,
-  output: StorageDiscoveryWorkspacesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type StorageDiscoveryWorkspacesListByResourceGroupError = AzureOpError;
-/** List StorageDiscoveryWorkspace resources by resource group */
-export const StorageDiscoveryWorkspacesListByResourceGroup: API.OperationMethod<
-  StorageDiscoveryWorkspacesListByResourceGroupRequest,
-  StorageDiscoveryWorkspaceListResult,
-  StorageDiscoveryWorkspacesListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: StorageDiscoveryWorkspacesListByResourceGroupRequest,
-  output: StorageDiscoveryWorkspaceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type StorageDiscoveryWorkspacesListBySubscriptionError = AzureOpError;
-/** List StorageDiscoveryWorkspace resources by subscription ID */
-export const StorageDiscoveryWorkspacesListBySubscription: API.OperationMethod<
-  StorageDiscoveryWorkspacesListBySubscriptionRequest,
-  StorageDiscoveryWorkspaceListResult,
-  StorageDiscoveryWorkspacesListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: StorageDiscoveryWorkspacesListBySubscriptionRequest,
-  output: StorageDiscoveryWorkspaceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type StorageDiscoveryWorkspacesReportError = AzureOpError;
 /** A long-running resource action. */
 export const StorageDiscoveryWorkspacesReport: API.OperationMethod<
@@ -1180,16 +1179,16 @@ export const StorageDiscoveryWorkspacesReport: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type StorageDiscoveryWorkspacesUpdateError = AzureOpError;
+export type UpdateStorageDiscoveryWorkspaceError = AzureOpError;
 /** Update a StorageDiscoveryWorkspace */
-export const StorageDiscoveryWorkspacesUpdate: API.OperationMethod<
-  StorageDiscoveryWorkspacesUpdateRequest,
-  StorageDiscoveryWorkspacesUpdateResponse,
-  StorageDiscoveryWorkspacesUpdateError,
+export const UpdateStorageDiscoveryWorkspace: API.OperationMethod<
+  UpdateStorageDiscoveryWorkspaceRequest,
+  UpdateStorageDiscoveryWorkspaceResponse,
+  UpdateStorageDiscoveryWorkspaceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: StorageDiscoveryWorkspacesUpdateRequest,
-  output: StorageDiscoveryWorkspacesUpdateResponse,
+  input: UpdateStorageDiscoveryWorkspaceRequest,
+  output: UpdateStorageDiscoveryWorkspaceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

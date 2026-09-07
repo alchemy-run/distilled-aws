@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.alertsmanagement#AlertProcessingRulesDelete": {
+    "com.azure.alertsmanagement#DeleteAlertProcessingRule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.alertsmanagement#AlertProcessingRulesDeleteRequest"
+        "target": "com.azure.alertsmanagement#DeleteAlertProcessingRuleRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -36,7 +37,7 @@
         "com.distilled.openapi#apiVersion": "2021-08-08"
       }
     },
-    "com.azure.alertsmanagement#AlertProcessingRulesDeleteRequest": {
+    "com.azure.alertsmanagement#DeleteAlertProcessingRuleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -68,13 +69,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.alertsmanagement#AlertProcessingRulesUpdate": {
+    "com.azure.alertsmanagement#UpdateAlertProcessingRule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.alertsmanagement#AlertProcessingRulesUpdateRequest"
+        "target": "com.azure.alertsmanagement#UpdateAlertProcessingRuleRequest"
       },
       "output": {
-        "target": "com.azure.alertsmanagement#AlertProcessingRulesUpdateResponse"
+        "target": "com.azure.alertsmanagement#UpdateAlertProcessingRuleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -87,7 +88,7 @@
         "com.distilled.openapi#apiVersion": "2021-08-08"
       }
     },
-    "com.azure.alertsmanagement#AlertProcessingRulesUpdateResponse": {
+    "com.azure.alertsmanagement#UpdateAlertProcessingRuleResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -109,7 +110,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.alertsmanagement#AlertProcessingRulesUpdateResponseTagsMap",
+          "target": "com.azure.alertsmanagement#UpdateAlertProcessingRuleResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -475,7 +476,7 @@
         "smithy.api#documentation": "Scopes on which alert processing rule will apply."
       }
     },
-    "com.azure.alertsmanagement#AlertProcessingRulesUpdateResponseTagsMap": {
+    "com.azure.alertsmanagement#UpdateAlertProcessingRuleResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -487,7 +488,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.alertsmanagement#AlertProcessingRulesUpdateRequest": {
+    "com.azure.alertsmanagement#UpdateAlertProcessingRuleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -521,7 +522,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.alertsmanagement#AlertProcessingRulesUpdateRequestTagsMap",
+          "target": "com.azure.alertsmanagement#UpdateAlertProcessingRuleRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags to be updated."
           }
@@ -531,7 +532,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.alertsmanagement#AlertProcessingRulesUpdateRequestTagsMap": {
+    "com.azure.alertsmanagement#UpdateAlertProcessingRuleRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -696,13 +697,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.alertsmanagement#AlertProcessingRulesGetByName": {
+    "com.azure.alertsmanagement#GetAlertProcessingRuleByName": {
       "type": "operation",
       "input": {
-        "target": "com.azure.alertsmanagement#AlertProcessingRulesGetByNameRequest"
+        "target": "com.azure.alertsmanagement#GetAlertProcessingRuleByNameRequest"
       },
       "output": {
-        "target": "com.azure.alertsmanagement#AlertProcessingRulesGetByNameResponse"
+        "target": "com.azure.alertsmanagement#GetAlertProcessingRuleByNameResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -715,7 +716,7 @@
         "com.distilled.openapi#apiVersion": "2021-08-08"
       }
     },
-    "com.azure.alertsmanagement#AlertProcessingRulesGetByNameResponse": {
+    "com.azure.alertsmanagement#GetAlertProcessingRuleByNameResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -737,7 +738,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.alertsmanagement#AlertProcessingRulesGetByNameResponseTagsMap",
+          "target": "com.azure.alertsmanagement#GetAlertProcessingRuleByNameResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -760,7 +761,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.alertsmanagement#AlertProcessingRulesGetByNameResponseTagsMap": {
+    "com.azure.alertsmanagement#GetAlertProcessingRuleByNameResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -772,7 +773,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.alertsmanagement#AlertProcessingRulesGetByNameRequest": {
+    "com.azure.alertsmanagement#GetAlertProcessingRuleByNameRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -804,10 +805,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.alertsmanagement#AlertProcessingRulesListByResourceGroup": {
+    "com.azure.alertsmanagement#ListAlertProcessingRuleByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.alertsmanagement#AlertProcessingRulesListByResourceGroupRequest"
+        "target": "com.azure.alertsmanagement#ListAlertProcessingRuleByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.alertsmanagement#AlertProcessingRulesList"
@@ -910,7 +911,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.alertsmanagement#AlertProcessingRulesListByResourceGroupRequest": {
+    "com.azure.alertsmanagement#ListAlertProcessingRuleByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -934,10 +935,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.alertsmanagement#AlertProcessingRulesListBySubscription": {
+    "com.azure.alertsmanagement#ListAlertProcessingRuleBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.alertsmanagement#AlertProcessingRulesListBySubscriptionRequest"
+        "target": "com.azure.alertsmanagement#ListAlertProcessingRuleBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.alertsmanagement#AlertProcessingRulesList"
@@ -953,7 +954,7 @@
         "com.distilled.openapi#apiVersion": "2021-08-08"
       }
     },
-    "com.azure.alertsmanagement#AlertProcessingRulesListBySubscriptionRequest": {
+    "com.azure.alertsmanagement#ListAlertProcessingRuleBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -969,13 +970,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.alertsmanagement#AlertsGetSummary": {
+    "com.azure.alertsmanagement#GetAlertSummary": {
       "type": "operation",
       "input": {
-        "target": "com.azure.alertsmanagement#AlertsGetSummaryRequest"
+        "target": "com.azure.alertsmanagement#GetAlertSummaryRequest"
       },
       "output": {
-        "target": "com.azure.alertsmanagement#AlertsGetSummaryResponse"
+        "target": "com.azure.alertsmanagement#GetAlertSummaryResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -988,7 +989,7 @@
         "com.distilled.openapi#apiVersion": "2019-03-01"
       }
     },
-    "com.azure.alertsmanagement#AlertsGetSummaryResponse": {
+    "com.azure.alertsmanagement#GetAlertSummaryResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1099,7 +1100,7 @@
         "smithy.api#documentation": "List of the items"
       }
     },
-    "com.azure.alertsmanagement#AlertsGetSummaryRequest": {
+    "com.azure.alertsmanagement#GetAlertSummaryRequest": {
       "type": "structure",
       "members": {
         "scope": {
@@ -1111,7 +1112,7 @@
           }
         },
         "groupby": {
-          "target": "com.azure.alertsmanagement#AlertsGetSummaryRequestGroupby",
+          "target": "com.azure.alertsmanagement#GetAlertSummaryRequestGroupby",
           "traits": {
             "smithy.api#httpQuery": "groupby",
             "smithy.api#required": {},
@@ -1147,28 +1148,28 @@
           }
         },
         "monitorService": {
-          "target": "com.azure.alertsmanagement#AlertsGetSummaryRequestMonitorService",
+          "target": "com.azure.alertsmanagement#GetAlertSummaryRequestMonitorService",
           "traits": {
             "smithy.api#httpQuery": "monitorService",
             "smithy.api#documentation": "Filter by monitor service which generates the alert instance. Default value is select all."
           }
         },
         "monitorCondition": {
-          "target": "com.azure.alertsmanagement#AlertsGetSummaryRequestMonitorCondition",
+          "target": "com.azure.alertsmanagement#GetAlertSummaryRequestMonitorCondition",
           "traits": {
             "smithy.api#httpQuery": "monitorCondition",
             "smithy.api#documentation": "Filter by monitor condition which is either 'Fired' or 'Resolved'. Default value is to select all."
           }
         },
         "severity": {
-          "target": "com.azure.alertsmanagement#AlertsGetSummaryRequestSeverity",
+          "target": "com.azure.alertsmanagement#GetAlertSummaryRequestSeverity",
           "traits": {
             "smithy.api#httpQuery": "severity",
             "smithy.api#documentation": "Filter by severity.  Default value is select all."
           }
         },
         "alertState": {
-          "target": "com.azure.alertsmanagement#AlertsGetSummaryRequestAlertState",
+          "target": "com.azure.alertsmanagement#GetAlertSummaryRequestAlertState",
           "traits": {
             "smithy.api#httpQuery": "alertState",
             "smithy.api#documentation": "Filter by state of the alert instance. Default value is to select all."
@@ -1182,7 +1183,7 @@
           }
         },
         "timeRange": {
-          "target": "com.azure.alertsmanagement#AlertsGetSummaryRequestTimeRange",
+          "target": "com.azure.alertsmanagement#GetAlertSummaryRequestTimeRange",
           "traits": {
             "smithy.api#httpQuery": "timeRange",
             "smithy.api#documentation": "Filter by time range by below listed values. Default value is 1 day."
@@ -1200,7 +1201,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.alertsmanagement#AlertsGetSummaryRequestTimeRange": {
+    "com.azure.alertsmanagement#GetAlertSummaryRequestTimeRange": {
       "type": "enum",
       "members": {
         "_1H": {
@@ -1230,7 +1231,7 @@
       },
       "traits": {}
     },
-    "com.azure.alertsmanagement#AlertsGetSummaryRequestAlertState": {
+    "com.azure.alertsmanagement#GetAlertSummaryRequestAlertState": {
       "type": "enum",
       "members": {
         "NEW": {
@@ -1254,7 +1255,7 @@
       },
       "traits": {}
     },
-    "com.azure.alertsmanagement#AlertsGetSummaryRequestSeverity": {
+    "com.azure.alertsmanagement#GetAlertSummaryRequestSeverity": {
       "type": "enum",
       "members": {
         "SEV0": {
@@ -1290,7 +1291,7 @@
       },
       "traits": {}
     },
-    "com.azure.alertsmanagement#AlertsGetSummaryRequestMonitorCondition": {
+    "com.azure.alertsmanagement#GetAlertSummaryRequestMonitorCondition": {
       "type": "enum",
       "members": {
         "FIRED": {
@@ -1308,7 +1309,7 @@
       },
       "traits": {}
     },
-    "com.azure.alertsmanagement#AlertsGetSummaryRequestMonitorService": {
+    "com.azure.alertsmanagement#GetAlertSummaryRequestMonitorService": {
       "type": "enum",
       "members": {
         "APPLICATION_INSIGHTS": {
@@ -1404,7 +1405,7 @@
       },
       "traits": {}
     },
-    "com.azure.alertsmanagement#AlertsGetSummaryRequestGroupby": {
+    "com.azure.alertsmanagement#GetAlertSummaryRequestGroupby": {
       "type": "enum",
       "members": {
         "SEVERITY": {
@@ -1446,13 +1447,13 @@
       },
       "traits": {}
     },
-    "com.azure.alertsmanagement#AlertsGetHistory": {
+    "com.azure.alertsmanagement#GetAlertHistory": {
       "type": "operation",
       "input": {
-        "target": "com.azure.alertsmanagement#AlertsGetHistoryRequest"
+        "target": "com.azure.alertsmanagement#GetAlertHistoryRequest"
       },
       "output": {
-        "target": "com.azure.alertsmanagement#AlertsGetHistoryResponse"
+        "target": "com.azure.alertsmanagement#GetAlertHistoryResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1465,7 +1466,7 @@
         "com.distilled.openapi#apiVersion": "2019-03-01"
       }
     },
-    "com.azure.alertsmanagement#AlertsGetHistoryResponse": {
+    "com.azure.alertsmanagement#GetAlertHistoryResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1599,7 +1600,7 @@
         "smithy.api#documentation": "Reason for the modification"
       }
     },
-    "com.azure.alertsmanagement#AlertsGetHistoryRequest": {
+    "com.azure.alertsmanagement#GetAlertHistoryRequest": {
       "type": "structure",
       "members": {
         "scope": {
@@ -2088,13 +2089,13 @@
       },
       "traits": {}
     },
-    "com.azure.alertsmanagement#AlertsGetById": {
+    "com.azure.alertsmanagement#GetAlertById": {
       "type": "operation",
       "input": {
-        "target": "com.azure.alertsmanagement#AlertsGetByIdRequest"
+        "target": "com.azure.alertsmanagement#GetAlertByIdRequest"
       },
       "output": {
-        "target": "com.azure.alertsmanagement#AlertsGetByIdResponse"
+        "target": "com.azure.alertsmanagement#GetAlertByIdResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2107,7 +2108,7 @@
         "com.distilled.openapi#apiVersion": "2019-03-01"
       }
     },
-    "com.azure.alertsmanagement#AlertsGetByIdResponse": {
+    "com.azure.alertsmanagement#GetAlertByIdResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2136,7 +2137,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.alertsmanagement#AlertsGetByIdRequest": {
+    "com.azure.alertsmanagement#GetAlertByIdRequest": {
       "type": "structure",
       "members": {
         "scope": {
@@ -2160,10 +2161,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.alertsmanagement#AlertsGetAll": {
+    "com.azure.alertsmanagement#GetAlertAll": {
       "type": "operation",
       "input": {
-        "target": "com.azure.alertsmanagement#AlertsGetAllRequest"
+        "target": "com.azure.alertsmanagement#GetAlertAllRequest"
       },
       "output": {
         "target": "com.azure.alertsmanagement#AlertsList"
@@ -2237,7 +2238,7 @@
         "smithy.api#documentation": "An alert created in alert management service."
       }
     },
-    "com.azure.alertsmanagement#AlertsGetAllRequest": {
+    "com.azure.alertsmanagement#GetAlertAllRequest": {
       "type": "structure",
       "members": {
         "scope": {
@@ -2270,28 +2271,28 @@
           }
         },
         "monitorService": {
-          "target": "com.azure.alertsmanagement#AlertsGetAllRequestMonitorService",
+          "target": "com.azure.alertsmanagement#GetAlertAllRequestMonitorService",
           "traits": {
             "smithy.api#httpQuery": "monitorService",
             "smithy.api#documentation": "Filter by monitor service which generates the alert instance. Default value is select all."
           }
         },
         "monitorCondition": {
-          "target": "com.azure.alertsmanagement#AlertsGetAllRequestMonitorCondition",
+          "target": "com.azure.alertsmanagement#GetAlertAllRequestMonitorCondition",
           "traits": {
             "smithy.api#httpQuery": "monitorCondition",
             "smithy.api#documentation": "Filter by monitor condition which is either 'Fired' or 'Resolved'. Default value is to select all."
           }
         },
         "severity": {
-          "target": "com.azure.alertsmanagement#AlertsGetAllRequestSeverity",
+          "target": "com.azure.alertsmanagement#GetAlertAllRequestSeverity",
           "traits": {
             "smithy.api#httpQuery": "severity",
             "smithy.api#documentation": "Filter by severity.  Default value is select all."
           }
         },
         "alertState": {
-          "target": "com.azure.alertsmanagement#AlertsGetAllRequestAlertState",
+          "target": "com.azure.alertsmanagement#GetAlertAllRequestAlertState",
           "traits": {
             "smithy.api#httpQuery": "alertState",
             "smithy.api#documentation": "Filter by state of the alert instance. Default value is to select all."
@@ -2333,14 +2334,14 @@
           }
         },
         "sortBy": {
-          "target": "com.azure.alertsmanagement#AlertsGetAllRequestSortBy",
+          "target": "com.azure.alertsmanagement#GetAlertAllRequestSortBy",
           "traits": {
             "smithy.api#httpQuery": "sortBy",
             "smithy.api#documentation": "Sort the query results by input field,  Default value is 'lastModifiedDateTime'."
           }
         },
         "sortOrder": {
-          "target": "com.azure.alertsmanagement#AlertsGetAllRequestSortOrder",
+          "target": "com.azure.alertsmanagement#GetAlertAllRequestSortOrder",
           "traits": {
             "smithy.api#httpQuery": "sortOrder",
             "smithy.api#documentation": "Sort the query results order in either ascending or descending.  Default value is 'desc' for time fields and 'asc' for others."
@@ -2354,7 +2355,7 @@
           }
         },
         "timeRange": {
-          "target": "com.azure.alertsmanagement#AlertsGetAllRequestTimeRange",
+          "target": "com.azure.alertsmanagement#GetAlertAllRequestTimeRange",
           "traits": {
             "smithy.api#httpQuery": "timeRange",
             "smithy.api#documentation": "Filter by time range by below listed values. Default value is 1 day."
@@ -2372,7 +2373,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.alertsmanagement#AlertsGetAllRequestTimeRange": {
+    "com.azure.alertsmanagement#GetAlertAllRequestTimeRange": {
       "type": "enum",
       "members": {
         "_1H": {
@@ -2402,7 +2403,7 @@
       },
       "traits": {}
     },
-    "com.azure.alertsmanagement#AlertsGetAllRequestSortOrder": {
+    "com.azure.alertsmanagement#GetAlertAllRequestSortOrder": {
       "type": "enum",
       "members": {
         "ASC": {
@@ -2420,7 +2421,7 @@
       },
       "traits": {}
     },
-    "com.azure.alertsmanagement#AlertsGetAllRequestSortBy": {
+    "com.azure.alertsmanagement#GetAlertAllRequestSortBy": {
       "type": "enum",
       "members": {
         "NAME": {
@@ -2486,7 +2487,7 @@
       },
       "traits": {}
     },
-    "com.azure.alertsmanagement#AlertsGetAllRequestAlertState": {
+    "com.azure.alertsmanagement#GetAlertAllRequestAlertState": {
       "type": "enum",
       "members": {
         "NEW": {
@@ -2510,7 +2511,7 @@
       },
       "traits": {}
     },
-    "com.azure.alertsmanagement#AlertsGetAllRequestSeverity": {
+    "com.azure.alertsmanagement#GetAlertAllRequestSeverity": {
       "type": "enum",
       "members": {
         "SEV0": {
@@ -2546,7 +2547,7 @@
       },
       "traits": {}
     },
-    "com.azure.alertsmanagement#AlertsGetAllRequestMonitorCondition": {
+    "com.azure.alertsmanagement#GetAlertAllRequestMonitorCondition": {
       "type": "enum",
       "members": {
         "FIRED": {
@@ -2564,7 +2565,7 @@
       },
       "traits": {}
     },
-    "com.azure.alertsmanagement#AlertsGetAllRequestMonitorService": {
+    "com.azure.alertsmanagement#GetAlertAllRequestMonitorService": {
       "type": "enum",
       "members": {
         "APPLICATION_INSIGHTS": {
@@ -2747,7 +2748,7 @@
       },
       "traits": {}
     },
-    "com.azure.alertsmanagement#OperationsList2": {
+    "com.azure.alertsmanagement#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -2848,10 +2849,10 @@
         "smithy.api#documentation": "Properties of the operation"
       }
     },
-    "com.azure.alertsmanagement#SmartDetectorAlertRulesDelete": {
+    "com.azure.alertsmanagement#DeleteSmartDetectorAlertRule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.alertsmanagement#SmartDetectorAlertRulesDeleteRequest"
+        "target": "com.azure.alertsmanagement#DeleteSmartDetectorAlertRuleRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2867,7 +2868,7 @@
         "com.distilled.openapi#apiVersion": "2021-04-01"
       }
     },
-    "com.azure.alertsmanagement#SmartDetectorAlertRulesDeleteRequest": {
+    "com.azure.alertsmanagement#DeleteSmartDetectorAlertRuleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2899,13 +2900,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.alertsmanagement#SmartDetectorAlertRulesPatch": {
+    "com.azure.alertsmanagement#PatchSmartDetectorAlertRule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.alertsmanagement#SmartDetectorAlertRulesPatchRequest"
+        "target": "com.azure.alertsmanagement#PatchSmartDetectorAlertRuleRequest"
       },
       "output": {
-        "target": "com.azure.alertsmanagement#SmartDetectorAlertRulesPatchResponse"
+        "target": "com.azure.alertsmanagement#PatchSmartDetectorAlertRuleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2918,7 +2919,7 @@
         "com.distilled.openapi#apiVersion": "2021-04-01"
       }
     },
-    "com.azure.alertsmanagement#SmartDetectorAlertRulesPatchResponse": {
+    "com.azure.alertsmanagement#PatchSmartDetectorAlertRuleResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2946,7 +2947,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.alertsmanagement#SmartDetectorAlertRulesPatchResponseTagsMap",
+          "target": "com.azure.alertsmanagement#PatchSmartDetectorAlertRuleResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -3322,7 +3323,7 @@
         "smithy.api#documentation": "The alert rule state."
       }
     },
-    "com.azure.alertsmanagement#SmartDetectorAlertRulesPatchResponseTagsMap": {
+    "com.azure.alertsmanagement#PatchSmartDetectorAlertRuleResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3334,7 +3335,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.alertsmanagement#SmartDetectorAlertRulesPatchRequest": {
+    "com.azure.alertsmanagement#PatchSmartDetectorAlertRuleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3362,7 +3363,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.alertsmanagement#SmartDetectorAlertRulesPatchRequestTagsMap",
+          "target": "com.azure.alertsmanagement#PatchSmartDetectorAlertRuleRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -3480,7 +3481,7 @@
         "smithy.api#documentation": "The alert rule state."
       }
     },
-    "com.azure.alertsmanagement#SmartDetectorAlertRulesPatchRequestTagsMap": {
+    "com.azure.alertsmanagement#PatchSmartDetectorAlertRuleRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3791,13 +3792,13 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.alertsmanagement#SmartDetectorAlertRulesGet": {
+    "com.azure.alertsmanagement#GetSmartDetectorAlertRule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.alertsmanagement#SmartDetectorAlertRulesGetRequest"
+        "target": "com.azure.alertsmanagement#GetSmartDetectorAlertRuleRequest"
       },
       "output": {
-        "target": "com.azure.alertsmanagement#SmartDetectorAlertRulesGetResponse"
+        "target": "com.azure.alertsmanagement#GetSmartDetectorAlertRuleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3810,7 +3811,7 @@
         "com.distilled.openapi#apiVersion": "2021-04-01"
       }
     },
-    "com.azure.alertsmanagement#SmartDetectorAlertRulesGetResponse": {
+    "com.azure.alertsmanagement#GetSmartDetectorAlertRuleResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3838,7 +3839,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.alertsmanagement#SmartDetectorAlertRulesGetResponseTagsMap",
+          "target": "com.azure.alertsmanagement#GetSmartDetectorAlertRuleResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -3854,7 +3855,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.alertsmanagement#SmartDetectorAlertRulesGetResponseTagsMap": {
+    "com.azure.alertsmanagement#GetSmartDetectorAlertRuleResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3866,7 +3867,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.alertsmanagement#SmartDetectorAlertRulesGetRequest": {
+    "com.azure.alertsmanagement#GetSmartDetectorAlertRuleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3905,10 +3906,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.alertsmanagement#SmartDetectorAlertRulesListByResourceGroup": {
+    "com.azure.alertsmanagement#ListSmartDetectorAlertRuleByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.alertsmanagement#SmartDetectorAlertRulesListByResourceGroupRequest"
+        "target": "com.azure.alertsmanagement#ListSmartDetectorAlertRuleByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.alertsmanagement#AlertRulesList"
@@ -4009,7 +4010,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.alertsmanagement#SmartDetectorAlertRulesListByResourceGroupRequest": {
+    "com.azure.alertsmanagement#ListSmartDetectorAlertRuleByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4040,10 +4041,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.alertsmanagement#SmartDetectorAlertRulesList": {
+    "com.azure.alertsmanagement#ListSmartDetectorAlertRules": {
       "type": "operation",
       "input": {
-        "target": "com.azure.alertsmanagement#SmartDetectorAlertRulesListRequest"
+        "target": "com.azure.alertsmanagement#ListSmartDetectorAlertRulesRequest"
       },
       "output": {
         "target": "com.azure.alertsmanagement#AlertRulesList"
@@ -4059,7 +4060,7 @@
         "com.distilled.openapi#apiVersion": "2021-04-01"
       }
     },
-    "com.azure.alertsmanagement#SmartDetectorAlertRulesListRequest": {
+    "com.azure.alertsmanagement#ListSmartDetectorAlertRulesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4082,10 +4083,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.alertsmanagement#PrometheusRuleGroupsDelete": {
+    "com.azure.alertsmanagement#DeletePrometheusRuleGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.alertsmanagement#PrometheusRuleGroupsDeleteRequest"
+        "target": "com.azure.alertsmanagement#DeletePrometheusRuleGroupRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4101,7 +4102,7 @@
         "com.distilled.openapi#apiVersion": "2023-03-01"
       }
     },
-    "com.azure.alertsmanagement#PrometheusRuleGroupsDeleteRequest": {
+    "com.azure.alertsmanagement#DeletePrometheusRuleGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4133,13 +4134,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.alertsmanagement#PrometheusRuleGroupsUpdate": {
+    "com.azure.alertsmanagement#UpdatePrometheusRuleGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.alertsmanagement#PrometheusRuleGroupsUpdateRequest"
+        "target": "com.azure.alertsmanagement#UpdatePrometheusRuleGroupRequest"
       },
       "output": {
-        "target": "com.azure.alertsmanagement#PrometheusRuleGroupsUpdateResponse"
+        "target": "com.azure.alertsmanagement#UpdatePrometheusRuleGroupResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4152,7 +4153,7 @@
         "com.distilled.openapi#apiVersion": "2023-03-01"
       }
     },
-    "com.azure.alertsmanagement#PrometheusRuleGroupsUpdateResponse": {
+    "com.azure.alertsmanagement#UpdatePrometheusRuleGroupResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4180,7 +4181,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.alertsmanagement#PrometheusRuleGroupsUpdateResponseTagsMap",
+          "target": "com.azure.alertsmanagement#UpdatePrometheusRuleGroupResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4422,7 +4423,7 @@
         "smithy.api#documentation": "Target Azure Monitor workspaces resource ids. This api-version is currently limited to creating with one scope. This may change in future."
       }
     },
-    "com.azure.alertsmanagement#PrometheusRuleGroupsUpdateResponseTagsMap": {
+    "com.azure.alertsmanagement#UpdatePrometheusRuleGroupResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4542,7 +4543,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.alertsmanagement#PrometheusRuleGroupsUpdateRequest": {
+    "com.azure.alertsmanagement#UpdatePrometheusRuleGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4570,7 +4571,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.alertsmanagement#PrometheusRuleGroupsUpdateRequestTagsMap",
+          "target": "com.azure.alertsmanagement#UpdatePrometheusRuleGroupRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags"
           }
@@ -4595,7 +4596,7 @@
       },
       "traits": {}
     },
-    "com.azure.alertsmanagement#PrometheusRuleGroupsUpdateRequestTagsMap": {
+    "com.azure.alertsmanagement#UpdatePrometheusRuleGroupRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4754,13 +4755,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.alertsmanagement#PrometheusRuleGroupsGet": {
+    "com.azure.alertsmanagement#GetPrometheusRuleGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.alertsmanagement#PrometheusRuleGroupsGetRequest"
+        "target": "com.azure.alertsmanagement#GetPrometheusRuleGroupRequest"
       },
       "output": {
-        "target": "com.azure.alertsmanagement#PrometheusRuleGroupsGetResponse"
+        "target": "com.azure.alertsmanagement#GetPrometheusRuleGroupResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4773,7 +4774,7 @@
         "com.distilled.openapi#apiVersion": "2023-03-01"
       }
     },
-    "com.azure.alertsmanagement#PrometheusRuleGroupsGetResponse": {
+    "com.azure.alertsmanagement#GetPrometheusRuleGroupResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4801,7 +4802,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.alertsmanagement#PrometheusRuleGroupsGetResponseTagsMap",
+          "target": "com.azure.alertsmanagement#GetPrometheusRuleGroupResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4825,7 +4826,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.alertsmanagement#PrometheusRuleGroupsGetResponseTagsMap": {
+    "com.azure.alertsmanagement#GetPrometheusRuleGroupResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4837,7 +4838,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.alertsmanagement#PrometheusRuleGroupsGetRequest": {
+    "com.azure.alertsmanagement#GetPrometheusRuleGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4869,10 +4870,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.alertsmanagement#PrometheusRuleGroupsListByResourceGroup": {
+    "com.azure.alertsmanagement#ListPrometheusRuleGroupByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.alertsmanagement#PrometheusRuleGroupsListByResourceGroupRequest"
+        "target": "com.azure.alertsmanagement#ListPrometheusRuleGroupByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.alertsmanagement#PrometheusRuleGroupResourceCollection"
@@ -4978,7 +4979,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.alertsmanagement#PrometheusRuleGroupsListByResourceGroupRequest": {
+    "com.azure.alertsmanagement#ListPrometheusRuleGroupByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5002,10 +5003,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.alertsmanagement#PrometheusRuleGroupsListBySubscription": {
+    "com.azure.alertsmanagement#ListPrometheusRuleGroupBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.alertsmanagement#PrometheusRuleGroupsListBySubscriptionRequest"
+        "target": "com.azure.alertsmanagement#ListPrometheusRuleGroupBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.alertsmanagement#PrometheusRuleGroupResourceCollection"
@@ -5021,7 +5022,7 @@
         "com.distilled.openapi#apiVersion": "2023-03-01"
       }
     },
-    "com.azure.alertsmanagement#PrometheusRuleGroupsListBySubscriptionRequest": {
+    "com.azure.alertsmanagement#ListPrometheusRuleGroupBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5042,79 +5043,79 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.alertsmanagement#AlertProcessingRulesDelete"
+          "target": "com.azure.alertsmanagement#DeleteAlertProcessingRule"
         },
         {
-          "target": "com.azure.alertsmanagement#AlertProcessingRulesUpdate"
+          "target": "com.azure.alertsmanagement#UpdateAlertProcessingRule"
         },
         {
           "target": "com.azure.alertsmanagement#AlertProcessingRulesCreateOrUpdate"
         },
         {
-          "target": "com.azure.alertsmanagement#AlertProcessingRulesGetByName"
+          "target": "com.azure.alertsmanagement#GetAlertProcessingRuleByName"
         },
         {
-          "target": "com.azure.alertsmanagement#AlertProcessingRulesListByResourceGroup"
+          "target": "com.azure.alertsmanagement#ListAlertProcessingRuleByResourceGroup"
         },
         {
-          "target": "com.azure.alertsmanagement#AlertProcessingRulesListBySubscription"
+          "target": "com.azure.alertsmanagement#ListAlertProcessingRuleBySubscription"
         },
         {
-          "target": "com.azure.alertsmanagement#AlertsGetSummary"
+          "target": "com.azure.alertsmanagement#GetAlertSummary"
         },
         {
-          "target": "com.azure.alertsmanagement#AlertsGetHistory"
+          "target": "com.azure.alertsmanagement#GetAlertHistory"
         },
         {
           "target": "com.azure.alertsmanagement#AlertsChangeState"
         },
         {
-          "target": "com.azure.alertsmanagement#AlertsGetById"
+          "target": "com.azure.alertsmanagement#GetAlertById"
         },
         {
-          "target": "com.azure.alertsmanagement#AlertsGetAll"
+          "target": "com.azure.alertsmanagement#GetAlertAll"
         },
         {
           "target": "com.azure.alertsmanagement#AlertsMetaData2"
         },
         {
-          "target": "com.azure.alertsmanagement#OperationsList2"
+          "target": "com.azure.alertsmanagement#ListOperations"
         },
         {
-          "target": "com.azure.alertsmanagement#SmartDetectorAlertRulesDelete"
+          "target": "com.azure.alertsmanagement#DeleteSmartDetectorAlertRule"
         },
         {
-          "target": "com.azure.alertsmanagement#SmartDetectorAlertRulesPatch"
+          "target": "com.azure.alertsmanagement#PatchSmartDetectorAlertRule"
         },
         {
           "target": "com.azure.alertsmanagement#SmartDetectorAlertRulesCreateOrUpdate"
         },
         {
-          "target": "com.azure.alertsmanagement#SmartDetectorAlertRulesGet"
+          "target": "com.azure.alertsmanagement#GetSmartDetectorAlertRule"
         },
         {
-          "target": "com.azure.alertsmanagement#SmartDetectorAlertRulesListByResourceGroup"
+          "target": "com.azure.alertsmanagement#ListSmartDetectorAlertRuleByResourceGroup"
         },
         {
-          "target": "com.azure.alertsmanagement#SmartDetectorAlertRulesList"
+          "target": "com.azure.alertsmanagement#ListSmartDetectorAlertRules"
         },
         {
-          "target": "com.azure.alertsmanagement#PrometheusRuleGroupsDelete"
+          "target": "com.azure.alertsmanagement#DeletePrometheusRuleGroup"
         },
         {
-          "target": "com.azure.alertsmanagement#PrometheusRuleGroupsUpdate"
+          "target": "com.azure.alertsmanagement#UpdatePrometheusRuleGroup"
         },
         {
           "target": "com.azure.alertsmanagement#PrometheusRuleGroupsCreateOrUpdate"
         },
         {
-          "target": "com.azure.alertsmanagement#PrometheusRuleGroupsGet"
+          "target": "com.azure.alertsmanagement#GetPrometheusRuleGroup"
         },
         {
-          "target": "com.azure.alertsmanagement#PrometheusRuleGroupsListByResourceGroup"
+          "target": "com.azure.alertsmanagement#ListPrometheusRuleGroupByResourceGroup"
         },
         {
-          "target": "com.azure.alertsmanagement#PrometheusRuleGroupsListBySubscription"
+          "target": "com.azure.alertsmanagement#ListPrometheusRuleGroupBySubscription"
         }
       ],
       "traits": {

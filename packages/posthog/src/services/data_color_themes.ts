@@ -39,13 +39,13 @@ export class NotFound
     [{ status: 404 }],
   ) {}
 
-export interface DataColorThemesCreateRequest {
+export interface CreateDataColorThemeRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   name?: string;
   colors?: unknown;
 }
-export const DataColorThemesCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateDataColorThemeRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     name: S.optional(S.String),
@@ -58,8 +58,8 @@ export const DataColorThemesCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DataColorThemesCreateRequest",
-}) as any as S.Schema<DataColorThemesCreateRequest>;
+  identifier: "CreateDataColorThemeRequest",
+}) as any as S.Schema<CreateDataColorThemeRequest>;
 
 export type UserBasicHedgehogConfigMap = { [key: string]: unknown | undefined };
 export const UserBasicHedgehogConfigMap = /*@__PURE__*/ S.Record(
@@ -159,7 +159,28 @@ export const DataColorThemesDestroyResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DataColorThemesDestroyResponse",
 }) as any as S.Schema<DataColorThemesDestroyResponse>;
 
-export interface DataColorThemesListRequest {
+export interface GetDataColorThemeRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A unique integer value identifying this data color theme. */
+  id: number;
+}
+export const GetDataColorThemeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/data_color_themes/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetDataColorThemeRequest",
+}) as any as S.Schema<GetDataColorThemeRequest>;
+
+export interface ListDataColorThemesRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Number of results to return per page. */
@@ -167,7 +188,7 @@ export interface DataColorThemesListRequest {
   /** The initial index from which to return the results. */
   offset?: number;
 }
-export const DataColorThemesListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListDataColorThemesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     limit: S.optional(S.Number.pipe(T.Query())),
@@ -180,8 +201,8 @@ export const DataColorThemesListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DataColorThemesListRequest",
-}) as any as S.Schema<DataColorThemesListRequest>;
+  identifier: "ListDataColorThemesRequest",
+}) as any as S.Schema<ListDataColorThemesRequest>;
 
 export type PaginatedDataColorThemeListResultsList = Array<DataColorTheme>;
 export const PaginatedDataColorThemeListResultsList = /*@__PURE__*/ S.Array(
@@ -205,7 +226,7 @@ export const PaginatedDataColorThemeList = /*@__PURE__*/ S.suspend(() =>
   identifier: "PaginatedDataColorThemeList",
 }) as any as S.Schema<PaginatedDataColorThemeList>;
 
-export interface DataColorThemesPartialUpdateRequest {
+export interface UpdateDataColorThemeRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A unique integer value identifying this data color theme. */
@@ -213,53 +234,7 @@ export interface DataColorThemesPartialUpdateRequest {
   name?: string;
   colors?: unknown;
 }
-export const DataColorThemesPartialUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.Number.pipe(T.Label()),
-    name: S.optional(S.String),
-    colors: S.optional(S.Unknown),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/api/projects/{project_id}/data_color_themes/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "DataColorThemesPartialUpdateRequest",
-}) as any as S.Schema<DataColorThemesPartialUpdateRequest>;
-
-export interface DataColorThemesRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A unique integer value identifying this data color theme. */
-  id: number;
-}
-export const DataColorThemesRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/data_color_themes/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "DataColorThemesRetrieveRequest",
-}) as any as S.Schema<DataColorThemesRetrieveRequest>;
-
-export interface DataColorThemesUpdateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A unique integer value identifying this data color theme. */
-  id: number;
-  name?: string;
-  colors?: unknown;
-}
-export const DataColorThemesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateDataColorThemeRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.Number.pipe(T.Label()),
@@ -273,21 +248,46 @@ export const DataColorThemesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DataColorThemesUpdateRequest",
-}) as any as S.Schema<DataColorThemesUpdateRequest>;
+  identifier: "UpdateDataColorThemeRequest",
+}) as any as S.Schema<UpdateDataColorThemeRequest>;
 
-export type DataColorThemesCreateError =
+export interface UpdateDataColorThemesPartialRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A unique integer value identifying this data color theme. */
+  id: number;
+  name?: string;
+  colors?: unknown;
+}
+export const UpdateDataColorThemesPartialRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+    name: S.optional(S.String),
+    colors: S.optional(S.Unknown),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/api/projects/{project_id}/data_color_themes/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UpdateDataColorThemesPartialRequest",
+}) as any as S.Schema<UpdateDataColorThemesPartialRequest>;
+
+export type CreateDataColorThemeError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
-export const dataColorThemesCreate: API.OperationMethod<
-  DataColorThemesCreateRequest,
+export const createDataColorTheme: API.OperationMethod<
+  CreateDataColorThemeRequest,
   DataColorTheme,
-  DataColorThemesCreateError,
+  CreateDataColorThemeError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DataColorThemesCreateRequest,
+  input: CreateDataColorThemeRequest,
   output: DataColorTheme,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
@@ -308,71 +308,68 @@ export const dataColorThemesDestroy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DataColorThemesListError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const dataColorThemesList: API.OperationMethod<
-  DataColorThemesListRequest,
-  PaginatedDataColorThemeList,
-  DataColorThemesListError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DataColorThemesListRequest,
-  output: PaginatedDataColorThemeList,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DataColorThemesPartialUpdateError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const dataColorThemesPartialUpdate: API.OperationMethod<
-  DataColorThemesPartialUpdateRequest,
+export type GetDataColorThemeError = Forbidden | NotFound | PosthogOpError;
+export const getDataColorTheme: API.OperationMethod<
+  GetDataColorThemeRequest,
   DataColorTheme,
-  DataColorThemesPartialUpdateError,
+  GetDataColorThemeError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DataColorThemesPartialUpdateRequest,
-  output: DataColorTheme,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DataColorThemesRetrieveError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const dataColorThemesRetrieve: API.OperationMethod<
-  DataColorThemesRetrieveRequest,
-  DataColorTheme,
-  DataColorThemesRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DataColorThemesRetrieveRequest,
+  input: GetDataColorThemeRequest,
   output: DataColorTheme,
   errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type DataColorThemesUpdateError =
+export type ListDataColorThemesError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
-export const dataColorThemesUpdate: API.OperationMethod<
-  DataColorThemesUpdateRequest,
-  DataColorTheme,
-  DataColorThemesUpdateError,
+export const listDataColorThemes: API.OperationMethod<
+  ListDataColorThemesRequest,
+  PaginatedDataColorThemeList,
+  ListDataColorThemesError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DataColorThemesUpdateRequest,
+  input: ListDataColorThemesRequest,
+  output: PaginatedDataColorThemeList,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateDataColorThemeError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+export const updateDataColorTheme: API.OperationMethod<
+  UpdateDataColorThemeRequest,
+  DataColorTheme,
+  UpdateDataColorThemeError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateDataColorThemeRequest,
+  output: DataColorTheme,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateDataColorThemesPartialError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+export const updateDataColorThemesPartial: API.OperationMethod<
+  UpdateDataColorThemesPartialRequest,
+  DataColorTheme,
+  UpdateDataColorThemesPartialError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateDataColorThemesPartialRequest,
   output: DataColorTheme,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,

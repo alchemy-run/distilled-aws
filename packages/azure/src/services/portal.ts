@@ -12,6 +12,133 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
+/** Tenant Configuration Properties with Provisioning state */
+export interface ConfigurationPropertiesInput {
+  /** When flag is set to true Markdown tile will require external storage configuration (URI). The inline content configuration will be prohibited. */
+  enforcePrivateMarkdownStorage?: boolean;
+}
+export const ConfigurationPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    enforcePrivateMarkdownStorage: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "ConfigurationPropertiesInput",
+}) as any as S.Schema<ConfigurationPropertiesInput>;
+
+export interface CreateTenantConfigurationRequest {
+  /** The name of the Configuration */
+  configurationName: string;
+  /** The resource-specific properties for this resource. */
+  properties?: ConfigurationPropertiesInput;
+}
+export const CreateTenantConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    configurationName: S.String.pipe(T.Label()),
+    properties: S.optional(ConfigurationPropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/providers/Microsoft.Portal/tenantConfigurations/{configurationName}",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "CreateTenantConfigurationRequest",
+}) as any as S.Schema<CreateTenantConfigurationRequest>;
+
+/** The type of identity that created the resource. */
+export type SystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type SystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface SystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: SystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: SystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const SystemData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdBy: S.optional(S.String),
+    createdByType: S.optional(SystemDataCreatedByType),
+    createdAt: S.optional(S.String),
+    lastModifiedBy: S.optional(S.String),
+    lastModifiedByType: S.optional(SystemDataLastModifiedByType),
+    lastModifiedAt: S.optional(S.String),
+  }),
+).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
+
+/** The provisioning state of a resource type. */
+export type AzureResourceManagerResourceProvisioningState =
+  | "Succeeded"
+  | "Failed"
+  | "Canceled";
+export const AzureResourceManagerResourceProvisioningState =
+  /*@__PURE__*/ S.String;
+
+/** Tenant Configuration Properties with Provisioning state */
+export interface ConfigurationProperties {
+  /** When flag is set to true Markdown tile will require external storage configuration (URI). The inline content configuration will be prohibited. */
+  enforcePrivateMarkdownStorage?: boolean;
+  /** The status of the last operation. */
+  provisioningState?: AzureResourceManagerResourceProvisioningState;
+}
+export const ConfigurationProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    enforcePrivateMarkdownStorage: S.optional(S.Boolean),
+    provisioningState: S.optional(
+      AzureResourceManagerResourceProvisioningState,
+    ),
+  }),
+).annotate({
+  identifier: "ConfigurationProperties",
+}) as any as S.Schema<ConfigurationProperties>;
+
+export interface CreateTenantConfigurationResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: ConfigurationProperties;
+}
+export const CreateTenantConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ConfigurationProperties),
+  }),
+).annotate({
+  identifier: "CreateTenantConfigurationResponse",
+}) as any as S.Schema<CreateTenantConfigurationResponse>;
+
 /** Resource tags. */
 export type DashboardsCreateOrUpdateRequestTagsMap = {
   [key: string]: string | undefined;
@@ -161,48 +288,6 @@ export const DashboardsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "DashboardsCreateOrUpdateRequest",
 }) as any as S.Schema<DashboardsCreateOrUpdateRequest>;
 
-/** The type of identity that created the resource. */
-export type SystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type SystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface SystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: SystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: SystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const SystemData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createdBy: S.optional(S.String),
-    createdByType: S.optional(SystemDataCreatedByType),
-    createdAt: S.optional(S.String),
-    lastModifiedBy: S.optional(S.String),
-    lastModifiedByType: S.optional(SystemDataLastModifiedByType),
-    lastModifiedAt: S.optional(S.String),
-  }),
-).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
-
 /** Resource tags. */
 export type DashboardsCreateOrUpdateResponseTagsMap = {
   [key: string]: string | undefined;
@@ -219,14 +304,6 @@ export const DashboardPropertiesWithProvisioningStateLensesList =
   /*@__PURE__*/ S.Array(
     DashboardLens,
   ) as any as S.Schema<DashboardPropertiesWithProvisioningStateLensesList>;
-
-/** The provisioning state of a resource type. */
-export type AzureResourceManagerResourceProvisioningState =
-  | "Succeeded"
-  | "Failed"
-  | "Canceled";
-export const AzureResourceManagerResourceProvisioningState =
-  /*@__PURE__*/ S.String;
 
 /** Dashboard Properties with Provisioning state */
 export interface DashboardPropertiesWithProvisioningState {
@@ -280,7 +357,7 @@ export const DashboardsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DashboardsCreateOrUpdateResponse",
 }) as any as S.Schema<DashboardsCreateOrUpdateResponse>;
 
-export interface DashboardsDeleteRequest {
+export interface DeleteDashboardRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -288,7 +365,7 @@ export interface DashboardsDeleteRequest {
   /** The name of the dashboard. */
   dashboardName: string;
 }
-export const DashboardsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteDashboardRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -302,17 +379,43 @@ export const DashboardsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DashboardsDeleteRequest",
-}) as any as S.Schema<DashboardsDeleteRequest>;
+  identifier: "DeleteDashboardRequest",
+}) as any as S.Schema<DeleteDashboardRequest>;
 
-export interface DashboardsDeleteResponse {}
-export const DashboardsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteDashboardResponse {}
+export const DeleteDashboardResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DashboardsDeleteResponse",
-}) as any as S.Schema<DashboardsDeleteResponse>;
+  identifier: "DeleteDashboardResponse",
+}) as any as S.Schema<DeleteDashboardResponse>;
 
-export interface DashboardsGetRequest {
+export interface DeleteTenantConfigurationRequest {
+  /** The name of the Configuration */
+  configurationName: string;
+}
+export const DeleteTenantConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    configurationName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/providers/Microsoft.Portal/tenantConfigurations/{configurationName}",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteTenantConfigurationRequest",
+}) as any as S.Schema<DeleteTenantConfigurationRequest>;
+
+export interface DeleteTenantConfigurationResponse {}
+export const DeleteTenantConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteTenantConfigurationResponse",
+}) as any as S.Schema<DeleteTenantConfigurationResponse>;
+
+export interface GetDashboardRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -320,7 +423,7 @@ export interface DashboardsGetRequest {
   /** The name of the dashboard. */
   dashboardName: string;
 }
-export const DashboardsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDashboardRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -334,19 +437,17 @@ export const DashboardsGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DashboardsGetRequest",
-}) as any as S.Schema<DashboardsGetRequest>;
+  identifier: "GetDashboardRequest",
+}) as any as S.Schema<GetDashboardRequest>;
 
 /** Resource tags. */
-export type DashboardsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DashboardsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetDashboardResponseTagsMap = { [key: string]: string | undefined };
+export const GetDashboardResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DashboardsGetResponseTagsMap>;
+) as any as S.Schema<GetDashboardResponseTagsMap>;
 
-export interface DashboardsGetResponse {
+export interface GetDashboardResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -356,48 +457,90 @@ export interface DashboardsGetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: DashboardsGetResponseTagsMap;
+  tags?: GetDashboardResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: DashboardPropertiesWithProvisioningState;
 }
-export const DashboardsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetDashboardResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(DashboardsGetResponseTagsMap),
+    tags: S.optional(GetDashboardResponseTagsMap),
     location: S.String,
     properties: S.optional(DashboardPropertiesWithProvisioningState),
   }),
 ).annotate({
-  identifier: "DashboardsGetResponse",
-}) as any as S.Schema<DashboardsGetResponse>;
+  identifier: "GetDashboardResponse",
+}) as any as S.Schema<GetDashboardResponse>;
 
-export interface DashboardsListByResourceGroupRequest {
+export interface GetTenantConfigurationRequest {
+  /** The name of the Configuration */
+  configurationName: string;
+}
+export const GetTenantConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    configurationName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.Portal/tenantConfigurations/{configurationName}",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetTenantConfigurationRequest",
+}) as any as S.Schema<GetTenantConfigurationRequest>;
+
+export interface GetTenantConfigurationResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: ConfigurationProperties;
+}
+export const GetTenantConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ConfigurationProperties),
+  }),
+).annotate({
+  identifier: "GetTenantConfigurationResponse",
+}) as any as S.Schema<GetTenantConfigurationResponse>;
+
+export interface ListDashboardByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
 }
-export const DashboardsListByResourceGroupRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Portal/dashboards",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
+export const ListDashboardByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Portal/dashboards",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
 ).annotate({
-  identifier: "DashboardsListByResourceGroupRequest",
-}) as any as S.Schema<DashboardsListByResourceGroupRequest>;
+  identifier: "ListDashboardByResourceGroupRequest",
+}) as any as S.Schema<ListDashboardByResourceGroupRequest>;
 
 /** Resource tags. */
 export type DashboardTagsMap = { [key: string]: string | undefined };
@@ -457,11 +600,11 @@ export const DashboardListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "DashboardListResult",
 }) as any as S.Schema<DashboardListResult>;
 
-export interface DashboardsListBySubscriptionRequest {
+export interface ListDashboardBySubscriptionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
 }
-export const DashboardsListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListDashboardBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
   }).pipe(
@@ -473,112 +616,11 @@ export const DashboardsListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DashboardsListBySubscriptionRequest",
-}) as any as S.Schema<DashboardsListBySubscriptionRequest>;
+  identifier: "ListDashboardBySubscriptionRequest",
+}) as any as S.Schema<ListDashboardBySubscriptionRequest>;
 
-/** The dashboard lenses. */
-export type DashboardPropertiesLensesList = Array<DashboardLens>;
-export const DashboardPropertiesLensesList = /*@__PURE__*/ S.Array(
-  DashboardLens,
-) as any as S.Schema<DashboardPropertiesLensesList>;
-
-/** The shared dashboard properties. */
-export interface DashboardProperties {
-  /** The dashboard lenses. */
-  lenses?: DashboardPropertiesLensesList;
-  /** The dashboard metadata. */
-  metadata?: unknown;
-}
-export const DashboardProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    lenses: S.optional(DashboardPropertiesLensesList),
-    metadata: S.optional(S.Unknown),
-  }),
-).annotate({
-  identifier: "DashboardProperties",
-}) as any as S.Schema<DashboardProperties>;
-
-/** Resource tags */
-export type DashboardsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DashboardsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DashboardsUpdateRequestTagsMap>;
-
-export interface DashboardsUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the dashboard. */
-  dashboardName: string;
-  /** The shared dashboard properties. */
-  properties?: DashboardProperties;
-  /** Resource tags */
-  tags?: DashboardsUpdateRequestTagsMap;
-}
-export const DashboardsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    dashboardName: S.String.pipe(T.Label()),
-    properties: S.optional(DashboardProperties),
-    tags: S.optional(DashboardsUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Portal/dashboards/{dashboardName}",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "DashboardsUpdateRequest",
-}) as any as S.Schema<DashboardsUpdateRequest>;
-
-/** Resource tags. */
-export type DashboardsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DashboardsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DashboardsUpdateResponseTagsMap>;
-
-export interface DashboardsUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: DashboardsUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: DashboardPropertiesWithProvisioningState;
-}
-export const DashboardsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(DashboardsUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(DashboardPropertiesWithProvisioningState),
-  }),
-).annotate({
-  identifier: "DashboardsUpdateResponse",
-}) as any as S.Schema<DashboardsUpdateResponse>;
-
-export interface ListTenantConfigurationViolationsListRequest {}
-export const ListTenantConfigurationViolationsListRequest =
+export interface ListListTenantConfigurationViolationsRequest {}
+export const ListListTenantConfigurationViolationsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({}).pipe(
       T.Http({
@@ -589,8 +631,8 @@ export const ListTenantConfigurationViolationsListRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListTenantConfigurationViolationsListRequest",
-  }) as any as S.Schema<ListTenantConfigurationViolationsListRequest>;
+    identifier: "ListListTenantConfigurationViolationsRequest",
+  }) as any as S.Schema<ListListTenantConfigurationViolationsRequest>;
 
 /** Violation information. */
 export interface Violation {
@@ -629,8 +671,8 @@ export const ViolationsList = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "ViolationsList" }) as any as S.Schema<ViolationsList>;
 
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({
       method: "GET",
@@ -640,8 +682,8 @@ export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
 
 /** Localized display information for this particular operation. */
 export interface OperationDisplay {
@@ -697,174 +739,28 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
-export interface OperationsListResponse {
+export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
-export const OperationsListResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "OperationsListResponse",
-}) as any as S.Schema<OperationsListResponse>;
+  identifier: "ListOperationsResponse",
+}) as any as S.Schema<ListOperationsResponse>;
 
-/** Tenant Configuration Properties with Provisioning state */
-export interface ConfigurationPropertiesInput {
-  /** When flag is set to true Markdown tile will require external storage configuration (URI). The inline content configuration will be prohibited. */
-  enforcePrivateMarkdownStorage?: boolean;
-}
-export const ConfigurationPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    enforcePrivateMarkdownStorage: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "ConfigurationPropertiesInput",
-}) as any as S.Schema<ConfigurationPropertiesInput>;
-
-export interface TenantConfigurationsCreateRequest {
-  /** The name of the Configuration */
-  configurationName: string;
-  /** The resource-specific properties for this resource. */
-  properties?: ConfigurationPropertiesInput;
-}
-export const TenantConfigurationsCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    configurationName: S.String.pipe(T.Label()),
-    properties: S.optional(ConfigurationPropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/providers/Microsoft.Portal/tenantConfigurations/{configurationName}",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "TenantConfigurationsCreateRequest",
-}) as any as S.Schema<TenantConfigurationsCreateRequest>;
-
-/** Tenant Configuration Properties with Provisioning state */
-export interface ConfigurationProperties {
-  /** When flag is set to true Markdown tile will require external storage configuration (URI). The inline content configuration will be prohibited. */
-  enforcePrivateMarkdownStorage?: boolean;
-  /** The status of the last operation. */
-  provisioningState?: AzureResourceManagerResourceProvisioningState;
-}
-export const ConfigurationProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    enforcePrivateMarkdownStorage: S.optional(S.Boolean),
-    provisioningState: S.optional(
-      AzureResourceManagerResourceProvisioningState,
-    ),
-  }),
-).annotate({
-  identifier: "ConfigurationProperties",
-}) as any as S.Schema<ConfigurationProperties>;
-
-export interface TenantConfigurationsCreateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: ConfigurationProperties;
-}
-export const TenantConfigurationsCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ConfigurationProperties),
-  }),
-).annotate({
-  identifier: "TenantConfigurationsCreateResponse",
-}) as any as S.Schema<TenantConfigurationsCreateResponse>;
-
-export interface TenantConfigurationsDeleteRequest {
-  /** The name of the Configuration */
-  configurationName: string;
-}
-export const TenantConfigurationsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    configurationName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/providers/Microsoft.Portal/tenantConfigurations/{configurationName}",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "TenantConfigurationsDeleteRequest",
-}) as any as S.Schema<TenantConfigurationsDeleteRequest>;
-
-export interface TenantConfigurationsDeleteResponse {}
-export const TenantConfigurationsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "TenantConfigurationsDeleteResponse",
-}) as any as S.Schema<TenantConfigurationsDeleteResponse>;
-
-export interface TenantConfigurationsGetRequest {
-  /** The name of the Configuration */
-  configurationName: string;
-}
-export const TenantConfigurationsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    configurationName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.Portal/tenantConfigurations/{configurationName}",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "TenantConfigurationsGetRequest",
-}) as any as S.Schema<TenantConfigurationsGetRequest>;
-
-export interface TenantConfigurationsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: ConfigurationProperties;
-}
-export const TenantConfigurationsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ConfigurationProperties),
-  }),
-).annotate({
-  identifier: "TenantConfigurationsGetResponse",
-}) as any as S.Schema<TenantConfigurationsGetResponse>;
-
-export interface TenantConfigurationsListRequest {}
-export const TenantConfigurationsListRequest = /*@__PURE__*/ S.suspend(() =>
+export interface ListTenantConfigurationsRequest {}
+export const ListTenantConfigurationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({
       method: "GET",
@@ -874,8 +770,8 @@ export const TenantConfigurationsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "TenantConfigurationsListRequest",
-}) as any as S.Schema<TenantConfigurationsListRequest>;
+  identifier: "ListTenantConfigurationsRequest",
+}) as any as S.Schema<ListTenantConfigurationsRequest>;
 
 /** The tenant configuration resource definition. */
 export interface Configuration {
@@ -922,6 +818,122 @@ export const ConfigurationListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ConfigurationListResult",
 }) as any as S.Schema<ConfigurationListResult>;
 
+/** The dashboard lenses. */
+export type DashboardPropertiesLensesList = Array<DashboardLens>;
+export const DashboardPropertiesLensesList = /*@__PURE__*/ S.Array(
+  DashboardLens,
+) as any as S.Schema<DashboardPropertiesLensesList>;
+
+/** The shared dashboard properties. */
+export interface DashboardProperties {
+  /** The dashboard lenses. */
+  lenses?: DashboardPropertiesLensesList;
+  /** The dashboard metadata. */
+  metadata?: unknown;
+}
+export const DashboardProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    lenses: S.optional(DashboardPropertiesLensesList),
+    metadata: S.optional(S.Unknown),
+  }),
+).annotate({
+  identifier: "DashboardProperties",
+}) as any as S.Schema<DashboardProperties>;
+
+/** Resource tags */
+export type UpdateDashboardRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateDashboardRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateDashboardRequestTagsMap>;
+
+export interface UpdateDashboardRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the dashboard. */
+  dashboardName: string;
+  /** The shared dashboard properties. */
+  properties?: DashboardProperties;
+  /** Resource tags */
+  tags?: UpdateDashboardRequestTagsMap;
+}
+export const UpdateDashboardRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    dashboardName: S.String.pipe(T.Label()),
+    properties: S.optional(DashboardProperties),
+    tags: S.optional(UpdateDashboardRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Portal/dashboards/{dashboardName}",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateDashboardRequest",
+}) as any as S.Schema<UpdateDashboardRequest>;
+
+/** Resource tags. */
+export type UpdateDashboardResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateDashboardResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateDashboardResponseTagsMap>;
+
+export interface UpdateDashboardResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateDashboardResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: DashboardPropertiesWithProvisioningState;
+}
+export const UpdateDashboardResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateDashboardResponseTagsMap),
+    location: S.String,
+    properties: S.optional(DashboardPropertiesWithProvisioningState),
+  }),
+).annotate({
+  identifier: "UpdateDashboardResponse",
+}) as any as S.Schema<UpdateDashboardResponse>;
+
+export type CreateTenantConfigurationError = AzureOpError;
+/** Create the tenant configuration. If configuration already exists - update it. User has to be a Tenant Admin for this operation. */
+export const CreateTenantConfiguration: API.OperationMethod<
+  CreateTenantConfigurationRequest,
+  CreateTenantConfigurationResponse,
+  CreateTenantConfigurationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateTenantConfigurationRequest,
+  output: CreateTenantConfigurationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type DashboardsCreateOrUpdateError = AzureOpError;
 /** Creates or updates a Dashboard. */
 export const DashboardsCreateOrUpdate: API.OperationMethod<
@@ -937,166 +949,151 @@ export const DashboardsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DashboardsDeleteError = AzureOpError;
+export type DeleteDashboardError = AzureOpError;
 /** Deletes the Dashboard. */
-export const DashboardsDelete: API.OperationMethod<
-  DashboardsDeleteRequest,
-  DashboardsDeleteResponse,
-  DashboardsDeleteError,
+export const DeleteDashboard: API.OperationMethod<
+  DeleteDashboardRequest,
+  DeleteDashboardResponse,
+  DeleteDashboardError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DashboardsDeleteRequest,
-  output: DashboardsDeleteResponse,
+  input: DeleteDashboardRequest,
+  output: DeleteDashboardResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DashboardsGetError = AzureOpError;
+export type DeleteTenantConfigurationError = AzureOpError;
+/** Delete the tenant configuration. User has to be a Tenant Admin for this operation. */
+export const DeleteTenantConfiguration: API.OperationMethod<
+  DeleteTenantConfigurationRequest,
+  DeleteTenantConfigurationResponse,
+  DeleteTenantConfigurationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteTenantConfigurationRequest,
+  output: DeleteTenantConfigurationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDashboardError = AzureOpError;
 /** Gets the Dashboard. */
-export const DashboardsGet: API.OperationMethod<
-  DashboardsGetRequest,
-  DashboardsGetResponse,
-  DashboardsGetError,
+export const GetDashboard: API.OperationMethod<
+  GetDashboardRequest,
+  GetDashboardResponse,
+  GetDashboardError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DashboardsGetRequest,
-  output: DashboardsGetResponse,
+  input: GetDashboardRequest,
+  output: GetDashboardResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DashboardsListByResourceGroupError = AzureOpError;
+export type GetTenantConfigurationError = AzureOpError;
+/** Gets the tenant configuration. */
+export const GetTenantConfiguration: API.OperationMethod<
+  GetTenantConfigurationRequest,
+  GetTenantConfigurationResponse,
+  GetTenantConfigurationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTenantConfigurationRequest,
+  output: GetTenantConfigurationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDashboardByResourceGroupError = AzureOpError;
 /** Gets all the Dashboards within a resource group. */
-export const DashboardsListByResourceGroup: API.OperationMethod<
-  DashboardsListByResourceGroupRequest,
+export const ListDashboardByResourceGroup: API.OperationMethod<
+  ListDashboardByResourceGroupRequest,
   DashboardListResult,
-  DashboardsListByResourceGroupError,
+  ListDashboardByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DashboardsListByResourceGroupRequest,
+  input: ListDashboardByResourceGroupRequest,
   output: DashboardListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DashboardsListBySubscriptionError = AzureOpError;
+export type ListDashboardBySubscriptionError = AzureOpError;
 /** Gets all the dashboards within a subscription. */
-export const DashboardsListBySubscription: API.OperationMethod<
-  DashboardsListBySubscriptionRequest,
+export const ListDashboardBySubscription: API.OperationMethod<
+  ListDashboardBySubscriptionRequest,
   DashboardListResult,
-  DashboardsListBySubscriptionError,
+  ListDashboardBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DashboardsListBySubscriptionRequest,
+  input: ListDashboardBySubscriptionRequest,
   output: DashboardListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DashboardsUpdateError = AzureOpError;
-/** Updates an existing Dashboard. */
-export const DashboardsUpdate: API.OperationMethod<
-  DashboardsUpdateRequest,
-  DashboardsUpdateResponse,
-  DashboardsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DashboardsUpdateRequest,
-  output: DashboardsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListTenantConfigurationViolationsListError = AzureOpError;
+export type ListListTenantConfigurationViolationsError = AzureOpError;
 /** Gets list of items that violate tenant's configuration. */
-export const ListTenantConfigurationViolationsList: API.OperationMethod<
-  ListTenantConfigurationViolationsListRequest,
+export const ListListTenantConfigurationViolations: API.OperationMethod<
+  ListListTenantConfigurationViolationsRequest,
   ViolationsList,
-  ListTenantConfigurationViolationsListError,
+  ListListTenantConfigurationViolationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListTenantConfigurationViolationsListRequest,
+  input: ListListTenantConfigurationViolationsRequest,
   output: ViolationsList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OperationsListError = AzureOpError;
+export type ListOperationsError = AzureOpError;
 /** List the operations for the provider */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationsListResponse,
-  OperationsListError,
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  ListOperationsResponse,
+  ListOperationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
-  output: OperationsListResponse,
+  input: ListOperationsRequest,
+  output: ListOperationsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type TenantConfigurationsCreateError = AzureOpError;
-/** Create the tenant configuration. If configuration already exists - update it. User has to be a Tenant Admin for this operation. */
-export const TenantConfigurationsCreate: API.OperationMethod<
-  TenantConfigurationsCreateRequest,
-  TenantConfigurationsCreateResponse,
-  TenantConfigurationsCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TenantConfigurationsCreateRequest,
-  output: TenantConfigurationsCreateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TenantConfigurationsDeleteError = AzureOpError;
-/** Delete the tenant configuration. User has to be a Tenant Admin for this operation. */
-export const TenantConfigurationsDelete: API.OperationMethod<
-  TenantConfigurationsDeleteRequest,
-  TenantConfigurationsDeleteResponse,
-  TenantConfigurationsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TenantConfigurationsDeleteRequest,
-  output: TenantConfigurationsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TenantConfigurationsGetError = AzureOpError;
-/** Gets the tenant configuration. */
-export const TenantConfigurationsGet: API.OperationMethod<
-  TenantConfigurationsGetRequest,
-  TenantConfigurationsGetResponse,
-  TenantConfigurationsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TenantConfigurationsGetRequest,
-  output: TenantConfigurationsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TenantConfigurationsListError = AzureOpError;
+export type ListTenantConfigurationsError = AzureOpError;
 /** Gets list of the tenant configurations. */
-export const TenantConfigurationsList: API.OperationMethod<
-  TenantConfigurationsListRequest,
+export const ListTenantConfigurations: API.OperationMethod<
+  ListTenantConfigurationsRequest,
   ConfigurationListResult,
-  TenantConfigurationsListError,
+  ListTenantConfigurationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TenantConfigurationsListRequest,
+  input: ListTenantConfigurationsRequest,
   output: ConfigurationListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateDashboardError = AzureOpError;
+/** Updates an existing Dashboard. */
+export const UpdateDashboard: API.OperationMethod<
+  UpdateDashboardRequest,
+  UpdateDashboardResponse,
+  UpdateDashboardError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateDashboardRequest,
+  output: UpdateDashboardResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

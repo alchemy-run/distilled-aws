@@ -13,600 +13,6 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export interface AccessCreateRoleBindingRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Organization resource name */
-  organizationName: string;
-  /** The principal User or Group to bind the role to */
-  principal?: string;
-  /** The name of the role to bind to the principal */
-  role_name?: string;
-  /** A CRN that specifies the scope and resource patterns necessary for the role to bind */
-  crn_pattern?: string;
-}
-export const AccessCreateRoleBindingRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    organizationName: S.String.pipe(T.Label()),
-    principal: S.optional(S.String),
-    role_name: S.optional(S.String),
-    crn_pattern: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/access/default/createRoleBinding",
-      code: 200,
-      apiVersion: "2024-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "AccessCreateRoleBindingRequest",
-}) as any as S.Schema<AccessCreateRoleBindingRequest>;
-
-/** Metadata of the data record */
-export interface MetadataEntity {
-  /** Self lookup url */
-  self?: string;
-  /** Resource name of the record */
-  resource_name?: string;
-  /** Created Date Time */
-  created_at?: string;
-  /** Updated Date time */
-  updated_at?: string;
-  /** Deleted Date time */
-  deleted_at?: string;
-}
-export const MetadataEntity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    self: S.optional(S.String),
-    resource_name: S.optional(S.String),
-    created_at: S.optional(S.String),
-    updated_at: S.optional(S.String),
-    deleted_at: S.optional(S.String),
-  }),
-).annotate({ identifier: "MetadataEntity" }) as any as S.Schema<MetadataEntity>;
-
-/** Details on principal, role name and crn pattern of a role binding */
-export interface RoleBindingRecord {
-  /** The type of the resource. */
-  kind?: string;
-  /** Id of the role binding */
-  id?: string;
-  /** Metadata of the record */
-  metadata?: MetadataEntity;
-  /** The principal User or Group to bind the role to */
-  principal?: string;
-  /** The name of the role to bind to the principal */
-  role_name?: string;
-  /** A CRN that specifies the scope and resource patterns necessary for the role to bind */
-  crn_pattern?: string;
-}
-export const RoleBindingRecord = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    kind: S.optional(S.String),
-    id: S.optional(S.String),
-    metadata: S.optional(MetadataEntity),
-    principal: S.optional(S.String),
-    role_name: S.optional(S.String),
-    crn_pattern: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "RoleBindingRecord",
-}) as any as S.Schema<RoleBindingRecord>;
-
-export interface AccessDeleteRoleBindingRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Organization resource name */
-  organizationName: string;
-  /** Confluent Role binding id */
-  roleBindingId: string;
-}
-export const AccessDeleteRoleBindingRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    organizationName: S.String.pipe(T.Label()),
-    roleBindingId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/access/default/deleteRoleBinding/{roleBindingId}",
-      code: 200,
-      apiVersion: "2024-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "AccessDeleteRoleBindingRequest",
-}) as any as S.Schema<AccessDeleteRoleBindingRequest>;
-
-export interface AccessDeleteRoleBindingResponse {}
-export const AccessDeleteRoleBindingResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "AccessDeleteRoleBindingResponse",
-}) as any as S.Schema<AccessDeleteRoleBindingResponse>;
-
-/** Details of the user being invited */
-export interface AccessInvitedUserDetails {
-  /** UPN/Email of the user who is being invited */
-  invitedEmail?: string;
-  /** Auth type of the user */
-  auth_type?: string;
-}
-export const AccessInvitedUserDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    invitedEmail: S.optional(S.String),
-    auth_type: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AccessInvitedUserDetails",
-}) as any as S.Schema<AccessInvitedUserDetails>;
-
-export interface AccessInviteUserRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Organization resource name */
-  organizationName: string;
-  /** Id of the organization */
-  organizationId?: string;
-  /** Email of the logged in user */
-  email?: string;
-  /** Upn of the logged in user */
-  upn?: string;
-  /** Details of the user who is being invited */
-  invitedUserDetails?: AccessInvitedUserDetails;
-}
-export const AccessInviteUserRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    organizationName: S.String.pipe(T.Label()),
-    organizationId: S.optional(S.String),
-    email: S.optional(S.String),
-    upn: S.optional(S.String),
-    invitedUserDetails: S.optional(AccessInvitedUserDetails),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/access/default/createInvitation",
-      code: 200,
-      apiVersion: "2024-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "AccessInviteUserRequest",
-}) as any as S.Schema<AccessInviteUserRequest>;
-
-/** Record of the invitation */
-export interface InvitationRecord {
-  /** Type of account */
-  kind?: string;
-  /** Id of the invitation */
-  id?: string;
-  /** Metadata of the record */
-  metadata?: MetadataEntity;
-  /** Email of the user */
-  email?: string;
-  /** Auth type of the user */
-  auth_type?: string;
-  /** Status of the invitation */
-  status?: string;
-  /** Accepted date time of the invitation */
-  accepted_at?: string;
-  /** Expiration date time of the invitation */
-  expires_at?: string;
-}
-export const InvitationRecord = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    kind: S.optional(S.String),
-    id: S.optional(S.String),
-    metadata: S.optional(MetadataEntity),
-    email: S.optional(S.String),
-    auth_type: S.optional(S.String),
-    status: S.optional(S.String),
-    accepted_at: S.optional(S.String),
-    expires_at: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "InvitationRecord",
-}) as any as S.Schema<InvitationRecord>;
-
-/** Search filters for the request */
-export type AccessListClustersRequestSearchFiltersMap = {
-  [key: string]: string | undefined;
-};
-export const AccessListClustersRequestSearchFiltersMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AccessListClustersRequestSearchFiltersMap>;
-
-export interface AccessListClustersRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Organization resource name */
-  organizationName: string;
-  /** Search filters for the request */
-  searchFilters?: AccessListClustersRequestSearchFiltersMap;
-}
-export const AccessListClustersRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    organizationName: S.String.pipe(T.Label()),
-    searchFilters: S.optional(AccessListClustersRequestSearchFiltersMap),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/access/default/listClusters",
-      code: 200,
-      apiVersion: "2024-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "AccessListClustersRequest",
-}) as any as S.Schema<AccessListClustersRequest>;
-
-/** Metadata of the list */
-export interface ConfluentListMetadata {
-  /** First page of the list */
-  first?: string;
-  /** Last page of the list */
-  last?: string;
-  /** Previous page of the list */
-  prev?: string;
-  /** Next page of the list */
-  next?: string;
-  /** Total size of the list */
-  total_size?: number;
-}
-export const ConfluentListMetadata = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    first: S.optional(S.String),
-    last: S.optional(S.String),
-    prev: S.optional(S.String),
-    next: S.optional(S.String),
-    total_size: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "ConfluentListMetadata",
-}) as any as S.Schema<ConfluentListMetadata>;
-
-/** The configuration of the Kafka cluster */
-export interface ClusterConfigEntity {
-  /** The lifecycle phase of the cluster */
-  kind?: string;
-}
-export const ClusterConfigEntity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    kind: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ClusterConfigEntity",
-}) as any as S.Schema<ClusterConfigEntity>;
-
-/** The environment to which cluster belongs */
-export interface ClusterEnvironmentEntity {
-  /** ID of the referred resource */
-  id?: string;
-  /** Environment of the referred resource */
-  environment?: string;
-  /** API URL for accessing or modifying the referred object */
-  related?: string;
-  /** CRN reference to the referred resource */
-  resource_name?: string;
-}
-export const ClusterEnvironmentEntity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    environment: S.optional(S.String),
-    related: S.optional(S.String),
-    resource_name: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ClusterEnvironmentEntity",
-}) as any as S.Schema<ClusterEnvironmentEntity>;
-
-/** The network associated with this object */
-export type ClusterNetworkEntity = ClusterEnvironmentEntity;
-export const ClusterNetworkEntity = ClusterEnvironmentEntity;
-
-/** The network associated with this object */
-export interface ClusterByokEntity {
-  /** ID of the referred resource */
-  id?: string;
-  /** API URL for accessing or modifying the referred object */
-  related?: string;
-  /** CRN reference to the referred resource */
-  resource_name?: string;
-}
-export const ClusterByokEntity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    related: S.optional(S.String),
-    resource_name: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ClusterByokEntity",
-}) as any as S.Schema<ClusterByokEntity>;
-
-/** Spec of the cluster record */
-export interface ClusterSpecEntity {
-  /** The name of the cluster */
-  display_name?: string;
-  /** The availability zone configuration of the cluster */
-  availability?: string;
-  /** The cloud service provider */
-  cloud?: string;
-  /** type of zone availability */
-  zone?: string;
-  /** The cloud service provider region */
-  region?: string;
-  /** The bootstrap endpoint used by Kafka clients to connect to the cluster */
-  kafka_bootstrap_endpoint?: string;
-  /** The cluster HTTP request URL. */
-  http_endpoint?: string;
-  /** The Kafka API cluster endpoint */
-  api_endpoint?: string;
-  /** Specification of the cluster */
-  config?: ClusterConfigEntity;
-  /** Specification of the cluster */
-  environment?: ClusterEnvironmentEntity;
-  /** Specification of the cluster */
-  network?: ClusterEnvironmentEntity;
-  /** Specification of the cluster */
-  byok?: ClusterByokEntity;
-}
-export const ClusterSpecEntity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    display_name: S.optional(S.String),
-    availability: S.optional(S.String),
-    cloud: S.optional(S.String),
-    zone: S.optional(S.String),
-    region: S.optional(S.String),
-    kafka_bootstrap_endpoint: S.optional(S.String),
-    http_endpoint: S.optional(S.String),
-    api_endpoint: S.optional(S.String),
-    config: S.optional(ClusterConfigEntity),
-    environment: S.optional(ClusterEnvironmentEntity),
-    network: S.optional(ClusterEnvironmentEntity),
-    byok: S.optional(ClusterByokEntity),
-  }),
-).annotate({
-  identifier: "ClusterSpecEntity",
-}) as any as S.Schema<ClusterSpecEntity>;
-
-/** Status of the cluster record */
-export interface ClusterStatusEntity {
-  /** The lifecycle phase of the cluster */
-  phase?: string;
-  /** The number of Confluent Kafka Units */
-  cku?: number;
-}
-export const ClusterStatusEntity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    phase: S.optional(S.String),
-    cku: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "ClusterStatusEntity",
-}) as any as S.Schema<ClusterStatusEntity>;
-
-/** Details of cluster record */
-export interface ClusterRecord {
-  /** Type of cluster */
-  kind?: string;
-  /** Id of the cluster */
-  id?: string;
-  /** Metadata of the record */
-  metadata?: MetadataEntity;
-  /** Display name of the cluster */
-  display_name?: string;
-  /** Specification of the cluster */
-  spec?: ClusterSpecEntity;
-  /** Specification of the cluster */
-  status?: ClusterStatusEntity;
-}
-export const ClusterRecord = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    kind: S.optional(S.String),
-    id: S.optional(S.String),
-    metadata: S.optional(MetadataEntity),
-    display_name: S.optional(S.String),
-    spec: S.optional(ClusterSpecEntity),
-    status: S.optional(ClusterStatusEntity),
-  }),
-).annotate({ identifier: "ClusterRecord" }) as any as S.Schema<ClusterRecord>;
-
-/** List of clusters */
-export type AccessListClusterSuccessResponseDataList = Array<ClusterRecord>;
-export const AccessListClusterSuccessResponseDataList = /*@__PURE__*/ S.Array(
-  ClusterRecord,
-) as any as S.Schema<AccessListClusterSuccessResponseDataList>;
-
-/** Details of the clusters returned on successful response */
-export interface AccessListClusterSuccessResponse {
-  /** Type of response */
-  kind?: string;
-  /** Metadata of the list */
-  metadata?: ConfluentListMetadata;
-  /** List of clusters */
-  data?: AccessListClusterSuccessResponseDataList;
-}
-export const AccessListClusterSuccessResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    kind: S.optional(S.String),
-    metadata: S.optional(ConfluentListMetadata),
-    data: S.optional(AccessListClusterSuccessResponseDataList),
-  }),
-).annotate({
-  identifier: "AccessListClusterSuccessResponse",
-}) as any as S.Schema<AccessListClusterSuccessResponse>;
-
-/** Search filters for the request */
-export type AccessListEnvironmentsRequestSearchFiltersMap = {
-  [key: string]: string | undefined;
-};
-export const AccessListEnvironmentsRequestSearchFiltersMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<AccessListEnvironmentsRequestSearchFiltersMap>;
-
-export interface AccessListEnvironmentsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Organization resource name */
-  organizationName: string;
-  /** Search filters for the request */
-  searchFilters?: AccessListEnvironmentsRequestSearchFiltersMap;
-}
-export const AccessListEnvironmentsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    organizationName: S.String.pipe(T.Label()),
-    searchFilters: S.optional(AccessListEnvironmentsRequestSearchFiltersMap),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/access/default/listEnvironments",
-      code: 200,
-      apiVersion: "2024-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "AccessListEnvironmentsRequest",
-}) as any as S.Schema<AccessListEnvironmentsRequest>;
-
-/** Details about environment name, metadata and environment id of an environment */
-export interface EnvironmentRecord {
-  /** Type of environment */
-  kind?: string;
-  /** Id of the environment */
-  id?: string;
-  /** Metadata of the record */
-  metadata?: MetadataEntity;
-  /** Display name of the user */
-  display_name?: string;
-}
-export const EnvironmentRecord = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    kind: S.optional(S.String),
-    id: S.optional(S.String),
-    metadata: S.optional(MetadataEntity),
-    display_name: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "EnvironmentRecord",
-}) as any as S.Schema<EnvironmentRecord>;
-
-/** Environment list data */
-export type AccessListEnvironmentsSuccessResponseDataList =
-  Array<EnvironmentRecord>;
-export const AccessListEnvironmentsSuccessResponseDataList =
-  /*@__PURE__*/ S.Array(
-    EnvironmentRecord,
-  ) as any as S.Schema<AccessListEnvironmentsSuccessResponseDataList>;
-
-/** Details of the environments returned on successful response */
-export interface AccessListEnvironmentsSuccessResponse {
-  /** Type of response */
-  kind?: string;
-  /** Metadata of the environment list */
-  metadata?: ConfluentListMetadata;
-  /** Environment list data */
-  data?: AccessListEnvironmentsSuccessResponseDataList;
-}
-export const AccessListEnvironmentsSuccessResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      kind: S.optional(S.String),
-      metadata: S.optional(ConfluentListMetadata),
-      data: S.optional(AccessListEnvironmentsSuccessResponseDataList),
-    }),
-).annotate({
-  identifier: "AccessListEnvironmentsSuccessResponse",
-}) as any as S.Schema<AccessListEnvironmentsSuccessResponse>;
-
-/** Search filters for the request */
-export type AccessListInvitationsRequestSearchFiltersMap = {
-  [key: string]: string | undefined;
-};
-export const AccessListInvitationsRequestSearchFiltersMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<AccessListInvitationsRequestSearchFiltersMap>;
-
-export interface AccessListInvitationsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Organization resource name */
-  organizationName: string;
-  /** Search filters for the request */
-  searchFilters?: AccessListInvitationsRequestSearchFiltersMap;
-}
-export const AccessListInvitationsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    organizationName: S.String.pipe(T.Label()),
-    searchFilters: S.optional(AccessListInvitationsRequestSearchFiltersMap),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/access/default/listInvitations",
-      code: 200,
-      apiVersion: "2024-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "AccessListInvitationsRequest",
-}) as any as S.Schema<AccessListInvitationsRequest>;
-
-/** Data of the invitations list */
-export type AccessListInvitationsSuccessResponseDataList =
-  Array<InvitationRecord>;
-export const AccessListInvitationsSuccessResponseDataList =
-  /*@__PURE__*/ S.Array(
-    InvitationRecord,
-  ) as any as S.Schema<AccessListInvitationsSuccessResponseDataList>;
-
-/** List invitations success response */
-export interface AccessListInvitationsSuccessResponse {
-  /** Type of response */
-  kind?: string;
-  /** Metadata of the list */
-  metadata?: ConfluentListMetadata;
-  /** Data of the invitations list */
-  data?: AccessListInvitationsSuccessResponseDataList;
-}
-export const AccessListInvitationsSuccessResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      kind: S.optional(S.String),
-      metadata: S.optional(ConfluentListMetadata),
-      data: S.optional(AccessListInvitationsSuccessResponseDataList),
-    }),
-).annotate({
-  identifier: "AccessListInvitationsSuccessResponse",
-}) as any as S.Schema<AccessListInvitationsSuccessResponse>;
-
 /** Search filters for the request */
 export type AccessListRoleBindingNameListRequestSearchFiltersMap = {
   [key: string]: string | undefined;
@@ -648,6 +54,31 @@ export const AccessListRoleBindingNameListRequest = /*@__PURE__*/ S.suspend(
   identifier: "AccessListRoleBindingNameListRequest",
 }) as any as S.Schema<AccessListRoleBindingNameListRequest>;
 
+/** Metadata of the list */
+export interface ConfluentListMetadata {
+  /** First page of the list */
+  first?: string;
+  /** Last page of the list */
+  last?: string;
+  /** Previous page of the list */
+  prev?: string;
+  /** Next page of the list */
+  next?: string;
+  /** Total size of the list */
+  total_size?: number;
+}
+export const ConfluentListMetadata = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    first: S.optional(S.String),
+    last: S.optional(S.String),
+    prev: S.optional(S.String),
+    next: S.optional(S.String),
+    total_size: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "ConfluentListMetadata",
+}) as any as S.Schema<ConfluentListMetadata>;
+
 /** List of role binding names */
 export type AccessRoleBindingNameListSuccessResponseDataList = Array<string>;
 export const AccessRoleBindingNameListSuccessResponseDataList =
@@ -674,251 +105,6 @@ export const AccessRoleBindingNameListSuccessResponse = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "AccessRoleBindingNameListSuccessResponse",
 }) as any as S.Schema<AccessRoleBindingNameListSuccessResponse>;
-
-/** Search filters for the request */
-export type AccessListRoleBindingsRequestSearchFiltersMap = {
-  [key: string]: string | undefined;
-};
-export const AccessListRoleBindingsRequestSearchFiltersMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<AccessListRoleBindingsRequestSearchFiltersMap>;
-
-export interface AccessListRoleBindingsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Organization resource name */
-  organizationName: string;
-  /** Search filters for the request */
-  searchFilters?: AccessListRoleBindingsRequestSearchFiltersMap;
-}
-export const AccessListRoleBindingsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    organizationName: S.String.pipe(T.Label()),
-    searchFilters: S.optional(AccessListRoleBindingsRequestSearchFiltersMap),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/access/default/listRoleBindings",
-      code: 200,
-      apiVersion: "2024-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "AccessListRoleBindingsRequest",
-}) as any as S.Schema<AccessListRoleBindingsRequest>;
-
-/** List of role binding */
-export type AccessListRoleBindingsSuccessResponseDataList =
-  Array<RoleBindingRecord>;
-export const AccessListRoleBindingsSuccessResponseDataList =
-  /*@__PURE__*/ S.Array(
-    RoleBindingRecord,
-  ) as any as S.Schema<AccessListRoleBindingsSuccessResponseDataList>;
-
-/** Details of the role bindings returned on successful response */
-export interface AccessListRoleBindingsSuccessResponse {
-  /** Type of response */
-  kind?: string;
-  /** Metadata of the list */
-  metadata?: ConfluentListMetadata;
-  /** List of role binding */
-  data?: AccessListRoleBindingsSuccessResponseDataList;
-}
-export const AccessListRoleBindingsSuccessResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      kind: S.optional(S.String),
-      metadata: S.optional(ConfluentListMetadata),
-      data: S.optional(AccessListRoleBindingsSuccessResponseDataList),
-    }),
-).annotate({
-  identifier: "AccessListRoleBindingsSuccessResponse",
-}) as any as S.Schema<AccessListRoleBindingsSuccessResponse>;
-
-/** Search filters for the request */
-export type AccessListServiceAccountsRequestSearchFiltersMap = {
-  [key: string]: string | undefined;
-};
-export const AccessListServiceAccountsRequestSearchFiltersMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<AccessListServiceAccountsRequestSearchFiltersMap>;
-
-export interface AccessListServiceAccountsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Organization resource name */
-  organizationName: string;
-  /** Search filters for the request */
-  searchFilters?: AccessListServiceAccountsRequestSearchFiltersMap;
-}
-export const AccessListServiceAccountsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    organizationName: S.String.pipe(T.Label()),
-    searchFilters: S.optional(AccessListServiceAccountsRequestSearchFiltersMap),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/access/default/listServiceAccounts",
-      code: 200,
-      apiVersion: "2024-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "AccessListServiceAccountsRequest",
-}) as any as S.Schema<AccessListServiceAccountsRequest>;
-
-/** Record of the service account */
-export interface ServiceAccountRecord {
-  /** Type of account */
-  kind?: string;
-  /** Id of the service account */
-  id?: string;
-  /** Metadata of the record */
-  metadata?: MetadataEntity;
-  /** Name of the service account */
-  display_name?: string;
-  /** Description of the service account */
-  description?: string;
-}
-export const ServiceAccountRecord = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    kind: S.optional(S.String),
-    id: S.optional(S.String),
-    metadata: S.optional(MetadataEntity),
-    display_name: S.optional(S.String),
-    description: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ServiceAccountRecord",
-}) as any as S.Schema<ServiceAccountRecord>;
-
-/** Data of the service accounts list */
-export type AccessListServiceAccountsSuccessResponseDataList =
-  Array<ServiceAccountRecord>;
-export const AccessListServiceAccountsSuccessResponseDataList =
-  /*@__PURE__*/ S.Array(
-    ServiceAccountRecord,
-  ) as any as S.Schema<AccessListServiceAccountsSuccessResponseDataList>;
-
-/** List service accounts success response */
-export interface AccessListServiceAccountsSuccessResponse {
-  /** Type of response */
-  kind?: string;
-  /** Metadata of the list */
-  metadata?: ConfluentListMetadata;
-  /** Data of the service accounts list */
-  data?: AccessListServiceAccountsSuccessResponseDataList;
-}
-export const AccessListServiceAccountsSuccessResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      kind: S.optional(S.String),
-      metadata: S.optional(ConfluentListMetadata),
-      data: S.optional(AccessListServiceAccountsSuccessResponseDataList),
-    }),
-).annotate({
-  identifier: "AccessListServiceAccountsSuccessResponse",
-}) as any as S.Schema<AccessListServiceAccountsSuccessResponse>;
-
-/** Search filters for the request */
-export type AccessListUsersRequestSearchFiltersMap = {
-  [key: string]: string | undefined;
-};
-export const AccessListUsersRequestSearchFiltersMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AccessListUsersRequestSearchFiltersMap>;
-
-export interface AccessListUsersRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Organization resource name */
-  organizationName: string;
-  /** Search filters for the request */
-  searchFilters?: AccessListUsersRequestSearchFiltersMap;
-}
-export const AccessListUsersRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    organizationName: S.String.pipe(T.Label()),
-    searchFilters: S.optional(AccessListUsersRequestSearchFiltersMap),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/access/default/listUsers",
-      code: 200,
-      apiVersion: "2024-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "AccessListUsersRequest",
-}) as any as S.Schema<AccessListUsersRequest>;
-
-/** Record of the user */
-export interface UserRecord {
-  /** Type of account */
-  kind?: string;
-  /** Id of the user */
-  id?: string;
-  /** Metadata of the record */
-  metadata?: MetadataEntity;
-  /** Email of the user */
-  email?: string;
-  /** Name of the user */
-  full_name?: string;
-  /** Auth type of the user */
-  auth_type?: string;
-}
-export const UserRecord = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    kind: S.optional(S.String),
-    id: S.optional(S.String),
-    metadata: S.optional(MetadataEntity),
-    email: S.optional(S.String),
-    full_name: S.optional(S.String),
-    auth_type: S.optional(S.String),
-  }),
-).annotate({ identifier: "UserRecord" }) as any as S.Schema<UserRecord>;
-
-/** Data of the users list */
-export type AccessListUsersSuccessResponseDataList = Array<UserRecord>;
-export const AccessListUsersSuccessResponseDataList = /*@__PURE__*/ S.Array(
-  UserRecord,
-) as any as S.Schema<AccessListUsersSuccessResponseDataList>;
-
-/** List users success response */
-export interface AccessListUsersSuccessResponse {
-  /** Type of response */
-  kind?: string;
-  /** Metadata of the list */
-  metadata?: ConfluentListMetadata;
-  /** Data of the users list */
-  data?: AccessListUsersSuccessResponseDataList;
-}
-export const AccessListUsersSuccessResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    kind: S.optional(S.String),
-    metadata: S.optional(ConfluentListMetadata),
-    data: S.optional(AccessListUsersSuccessResponseDataList),
-  }),
-).annotate({
-  identifier: "AccessListUsersSuccessResponse",
-}) as any as S.Schema<AccessListUsersSuccessResponse>;
 
 /** Metadata of the data record */
 export interface SCMetadataEntity {
@@ -948,6 +134,19 @@ export const SCMetadataEntity = /*@__PURE__*/ S.suspend(() =>
 /** Stream Governance Package. Supported values are ESSENTIALS and ADVANCED */
 export type Package = "ESSENTIALS" | "ADVANCED";
 export const Package = /*@__PURE__*/ S.String;
+
+/** The configuration of the Kafka cluster */
+export interface ClusterConfigEntity {
+  /** The lifecycle phase of the cluster */
+  kind?: string;
+}
+export const ClusterConfigEntity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    kind: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ClusterConfigEntity",
+}) as any as S.Schema<ClusterConfigEntity>;
 
 /** The environment or the network to which cluster belongs */
 export interface SCClusterNetworkEnvironmentEntity {
@@ -1038,6 +237,22 @@ export const SCClusterSpecEntity = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "SCClusterSpecEntity",
 }) as any as S.Schema<SCClusterSpecEntity>;
+
+/** Status of the cluster record */
+export interface ClusterStatusEntity {
+  /** The lifecycle phase of the cluster */
+  phase?: string;
+  /** The number of Confluent Kafka Units */
+  cku?: number;
+}
+export const ClusterStatusEntity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    phase: S.optional(S.String),
+    cku: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "ClusterStatusEntity",
+}) as any as S.Schema<ClusterStatusEntity>;
 
 /** Service Connector Cluster Properties */
 export interface ClusterProperties {
@@ -1163,44 +378,6 @@ export const ClusterCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ClusterCreateOrUpdateResponse",
 }) as any as S.Schema<ClusterCreateOrUpdateResponse>;
-
-export interface ClusterDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Organization resource name */
-  organizationName: string;
-  /** Confluent environment id */
-  environmentId: string;
-  /** Confluent kafka or schema registry cluster id */
-  clusterId: string;
-}
-export const ClusterDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    organizationName: S.String.pipe(T.Label()),
-    environmentId: S.String.pipe(T.Label()),
-    clusterId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/environments/{environmentId}/clusters/{clusterId}",
-      code: 200,
-      apiVersion: "2024-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ClusterDeleteRequest",
-}) as any as S.Schema<ClusterDeleteRequest>;
-
-export interface ClusterDeleteResponse {}
-export const ClusterDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ClusterDeleteResponse",
-}) as any as S.Schema<ClusterDeleteResponse>;
 
 /** Connector Type */
 export type ConnectorType = "SINK" | "SOURCE";
@@ -1363,313 +540,90 @@ export const ConnectorCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ConnectorCreateOrUpdateResponse",
 }) as any as S.Schema<ConnectorCreateOrUpdateResponse>;
 
-export interface ConnectorDeleteRequest {
+export interface CreateAccessRoleBindingRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** Organization resource name */
   organizationName: string;
-  /** Confluent environment id */
-  environmentId: string;
-  /** Confluent kafka or schema registry cluster id */
-  clusterId: string;
-  /** Confluent connector name */
-  connectorName: string;
+  /** The principal User or Group to bind the role to */
+  principal?: string;
+  /** The name of the role to bind to the principal */
+  role_name?: string;
+  /** A CRN that specifies the scope and resource patterns necessary for the role to bind */
+  crn_pattern?: string;
 }
-export const ConnectorDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateAccessRoleBindingRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     organizationName: S.String.pipe(T.Label()),
-    environmentId: S.String.pipe(T.Label()),
-    clusterId: S.String.pipe(T.Label()),
-    connectorName: S.String.pipe(T.Label()),
+    principal: S.optional(S.String),
+    role_name: S.optional(S.String),
+    crn_pattern: S.optional(S.String),
   }).pipe(
     T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/environments/{environmentId}/clusters/{clusterId}/connectors/{connectorName}",
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/access/default/createRoleBinding",
       code: 200,
       apiVersion: "2024-07-01",
     }),
   ),
 ).annotate({
-  identifier: "ConnectorDeleteRequest",
-}) as any as S.Schema<ConnectorDeleteRequest>;
+  identifier: "CreateAccessRoleBindingRequest",
+}) as any as S.Schema<CreateAccessRoleBindingRequest>;
 
-export interface ConnectorDeleteResponse {}
-export const ConnectorDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ConnectorDeleteResponse",
-}) as any as S.Schema<ConnectorDeleteResponse>;
-
-export interface ConnectorGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Organization resource name */
-  organizationName: string;
-  /** Confluent environment id */
-  environmentId: string;
-  /** Confluent kafka or schema registry cluster id */
-  clusterId: string;
-  /** Confluent connector name */
-  connectorName: string;
+/** Metadata of the data record */
+export interface MetadataEntity {
+  /** Self lookup url */
+  self?: string;
+  /** Resource name of the record */
+  resource_name?: string;
+  /** Created Date Time */
+  created_at?: string;
+  /** Updated Date time */
+  updated_at?: string;
+  /** Deleted Date time */
+  deleted_at?: string;
 }
-export const ConnectorGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const MetadataEntity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    organizationName: S.String.pipe(T.Label()),
-    environmentId: S.String.pipe(T.Label()),
-    clusterId: S.String.pipe(T.Label()),
-    connectorName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/environments/{environmentId}/clusters/{clusterId}/connectors/{connectorName}",
-      code: 200,
-      apiVersion: "2024-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ConnectorGetRequest",
-}) as any as S.Schema<ConnectorGetRequest>;
+    self: S.optional(S.String),
+    resource_name: S.optional(S.String),
+    created_at: S.optional(S.String),
+    updated_at: S.optional(S.String),
+    deleted_at: S.optional(S.String),
+  }),
+).annotate({ identifier: "MetadataEntity" }) as any as S.Schema<MetadataEntity>;
 
-export interface ConnectorGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+/** Details on principal, role name and crn pattern of a role binding */
+export interface RoleBindingRecord {
+  /** The type of the resource. */
+  kind?: string;
+  /** Id of the role binding */
   id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of the Connector */
-  properties: ConnectorResourceProperties;
-}
-export const ConnectorGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: ConnectorResourceProperties,
-  }),
-).annotate({
-  identifier: "ConnectorGetResponse",
-}) as any as S.Schema<ConnectorGetResponse>;
-
-export interface ConnectorListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Organization resource name */
-  organizationName: string;
-  /** Confluent environment id */
-  environmentId: string;
-  /** Confluent kafka or schema registry cluster id */
-  clusterId: string;
-  /** Pagination size */
-  pageSize?: number;
-  /** An opaque pagination token to fetch the next set of records */
-  pageToken?: string;
-}
-export const ConnectorListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    organizationName: S.String.pipe(T.Label()),
-    environmentId: S.String.pipe(T.Label()),
-    clusterId: S.String.pipe(T.Label()),
-    pageSize: S.optional(S.Number.pipe(T.Query())),
-    pageToken: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/environments/{environmentId}/clusters/{clusterId}/connectors",
-      code: 200,
-      apiVersion: "2024-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ConnectorListRequest",
-}) as any as S.Schema<ConnectorListRequest>;
-
-/** Details of connector record */
-export interface ConnectorResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of the Connector */
-  properties: ConnectorResourceProperties;
-}
-export const ConnectorResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: ConnectorResourceProperties,
-  }),
-).annotate({
-  identifier: "ConnectorResource",
-}) as any as S.Schema<ConnectorResource>;
-
-/** The ConnectorResource items on this page */
-export type ListConnectorsSuccessResponseValueList = Array<ConnectorResource>;
-export const ListConnectorsSuccessResponseValueList = /*@__PURE__*/ S.Array(
-  ConnectorResource,
-) as any as S.Schema<ListConnectorsSuccessResponseValueList>;
-
-/** Result of GET request to list connectors in the cluster of a confluent organization */
-export interface ListConnectorsSuccessResponse {
-  /** The ConnectorResource items on this page */
-  value: ListConnectorsSuccessResponseValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ListConnectorsSuccessResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: ListConnectorsSuccessResponseValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ListConnectorsSuccessResponse",
-}) as any as S.Schema<ListConnectorsSuccessResponse>;
-
-/** Stream governance configuration */
-export interface StreamGovernanceConfig {
-  /** Stream governance configuration */
-  package?: Package | (string & {});
-}
-export const StreamGovernanceConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    package: S.optional(Package),
-  }),
-).annotate({
-  identifier: "StreamGovernanceConfig",
-}) as any as S.Schema<StreamGovernanceConfig>;
-
-/** Environment resource property */
-export interface EnvironmentProperties {
-  /** Stream governance configuration */
-  streamGovernanceConfig?: StreamGovernanceConfig;
   /** Metadata of the record */
-  metadata?: SCMetadataEntity;
+  metadata?: MetadataEntity;
+  /** The principal User or Group to bind the role to */
+  principal?: string;
+  /** The name of the role to bind to the principal */
+  role_name?: string;
+  /** A CRN that specifies the scope and resource patterns necessary for the role to bind */
+  crn_pattern?: string;
 }
-export const EnvironmentProperties = /*@__PURE__*/ S.suspend(() =>
+export const RoleBindingRecord = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    streamGovernanceConfig: S.optional(StreamGovernanceConfig),
-    metadata: S.optional(SCMetadataEntity),
-  }),
-).annotate({
-  identifier: "EnvironmentProperties",
-}) as any as S.Schema<EnvironmentProperties>;
-
-export interface EnvironmentCreateOrUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Organization resource name */
-  organizationName: string;
-  /** Confluent environment id */
-  environmentId: string;
-  /** Type of environment */
-  kind?: string;
-  /** Environment properties */
-  properties?: EnvironmentProperties;
-}
-export const EnvironmentCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    organizationName: S.String.pipe(T.Label()),
-    environmentId: S.String.pipe(T.Label()),
     kind: S.optional(S.String),
-    properties: S.optional(EnvironmentProperties),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/environments/{environmentId}",
-      code: 200,
-      apiVersion: "2024-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "EnvironmentCreateOrUpdateRequest",
-}) as any as S.Schema<EnvironmentCreateOrUpdateRequest>;
-
-export interface EnvironmentCreateOrUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Type of environment */
-  kind?: string;
-  /** Environment properties */
-  properties?: EnvironmentProperties;
-}
-export const EnvironmentCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
     id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    kind: S.optional(S.String),
-    properties: S.optional(EnvironmentProperties),
+    metadata: S.optional(MetadataEntity),
+    principal: S.optional(S.String),
+    role_name: S.optional(S.String),
+    crn_pattern: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "EnvironmentCreateOrUpdateResponse",
-}) as any as S.Schema<EnvironmentCreateOrUpdateResponse>;
-
-export interface EnvironmentDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Organization resource name */
-  organizationName: string;
-  /** Confluent environment id */
-  environmentId: string;
-}
-export const EnvironmentDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    organizationName: S.String.pipe(T.Label()),
-    environmentId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/environments/{environmentId}",
-      code: 200,
-      apiVersion: "2024-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "EnvironmentDeleteRequest",
-}) as any as S.Schema<EnvironmentDeleteRequest>;
-
-export interface EnvironmentDeleteResponse {}
-export const EnvironmentDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "EnvironmentDeleteResponse",
-}) as any as S.Schema<EnvironmentDeleteResponse>;
+  identifier: "RoleBindingRecord",
+}) as any as S.Schema<RoleBindingRecord>;
 
 /** Terms properties for Marketplace and Confluent. */
 export interface ConfluentAgreementProperties {
@@ -1705,13 +659,13 @@ export const ConfluentAgreementProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "ConfluentAgreementProperties",
 }) as any as S.Schema<ConfluentAgreementProperties>;
 
-export interface MarketplaceAgreementsCreateRequest {
+export interface CreateMarketplaceAgreementRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** Represents the properties of the resource. */
   properties?: ConfluentAgreementProperties;
 }
-export const MarketplaceAgreementsCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateMarketplaceAgreementRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     properties: S.optional(ConfluentAgreementProperties),
@@ -1724,8 +678,8 @@ export const MarketplaceAgreementsCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "MarketplaceAgreementsCreateRequest",
-}) as any as S.Schema<MarketplaceAgreementsCreateRequest>;
+  identifier: "CreateMarketplaceAgreementRequest",
+}) as any as S.Schema<CreateMarketplaceAgreementRequest>;
 
 /** The type of identity that created the resource. */
 export type ConfluentAgreementResourceSystemDataCreatedByType =
@@ -1803,58 +757,14 @@ export const ConfluentAgreementResource = /*@__PURE__*/ S.suspend(() =>
   identifier: "ConfluentAgreementResource",
 }) as any as S.Schema<ConfluentAgreementResource>;
 
-export interface MarketplaceAgreementsListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-}
-export const MarketplaceAgreementsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Confluent/agreements",
-      code: 200,
-      apiVersion: "2024-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "MarketplaceAgreementsListRequest",
-}) as any as S.Schema<MarketplaceAgreementsListRequest>;
-
-/** The ConfluentAgreementResource items on this page */
-export type ConfluentAgreementResourceListResponseValueList =
-  Array<ConfluentAgreementResource>;
-export const ConfluentAgreementResourceListResponseValueList =
-  /*@__PURE__*/ S.Array(
-    ConfluentAgreementResource,
-  ) as any as S.Schema<ConfluentAgreementResourceListResponseValueList>;
-
-/** Response of a list operation. */
-export interface ConfluentAgreementResourceListResponse {
-  /** The ConfluentAgreementResource items on this page */
-  value: ConfluentAgreementResourceListResponseValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ConfluentAgreementResourceListResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      value: ConfluentAgreementResourceListResponseValueList,
-      nextLink: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "ConfluentAgreementResourceListResponse",
-}) as any as S.Schema<ConfluentAgreementResourceListResponse>;
-
 /** Resource tags. */
-export type OrganizationCreateRequestTagsMap = {
+export type CreateOrganizationRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const OrganizationCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateOrganizationRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<OrganizationCreateRequestTagsMap>;
+) as any as S.Schema<CreateOrganizationRequestTagsMap>;
 
 /** Array of Private Offer Ids */
 export type OfferDetailInputPrivateOfferIdsList = Array<string>;
@@ -1951,7 +861,7 @@ export const OrganizationResourcePropertiesInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "OrganizationResourcePropertiesInput",
 }) as any as S.Schema<OrganizationResourcePropertiesInput>;
 
-export interface OrganizationCreateRequest {
+export interface CreateOrganizationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1959,18 +869,18 @@ export interface OrganizationCreateRequest {
   /** Organization resource name */
   organizationName: string;
   /** Resource tags. */
-  tags?: OrganizationCreateRequestTagsMap;
+  tags?: CreateOrganizationRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Organization resource properties */
   properties: OrganizationResourcePropertiesInput;
 }
-export const OrganizationCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateOrganizationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     organizationName: S.String.pipe(T.Label()),
-    tags: S.optional(OrganizationCreateRequestTagsMap),
+    tags: S.optional(CreateOrganizationRequestTagsMap),
     location: S.String,
     properties: OrganizationResourcePropertiesInput,
   }).pipe(
@@ -1982,17 +892,17 @@ export const OrganizationCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OrganizationCreateRequest",
-}) as any as S.Schema<OrganizationCreateRequest>;
+  identifier: "CreateOrganizationRequest",
+}) as any as S.Schema<CreateOrganizationRequest>;
 
 /** Resource tags. */
-export type OrganizationCreateResponseTagsMap = {
+export type CreateOrganizationResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const OrganizationCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateOrganizationResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<OrganizationCreateResponseTagsMap>;
+) as any as S.Schema<CreateOrganizationResponseTagsMap>;
 
 /** Provision states for confluent RP */
 export type ProvisionState =
@@ -2093,7 +1003,7 @@ export const OrganizationResourceProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "OrganizationResourceProperties",
 }) as any as S.Schema<OrganizationResourceProperties>;
 
-export interface OrganizationCreateResponse {
+export interface CreateOrganizationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -2103,27 +1013,27 @@ export interface OrganizationCreateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: OrganizationCreateResponseTagsMap;
+  tags?: CreateOrganizationResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Organization resource properties */
   properties: OrganizationResourceProperties;
 }
-export const OrganizationCreateResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateOrganizationResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(OrganizationCreateResponseTagsMap),
+    tags: S.optional(CreateOrganizationResponseTagsMap),
     location: S.String,
     properties: OrganizationResourceProperties,
   }),
 ).annotate({
-  identifier: "OrganizationCreateResponse",
-}) as any as S.Schema<OrganizationCreateResponse>;
+  identifier: "CreateOrganizationResponse",
+}) as any as S.Schema<CreateOrganizationResponse>;
 
-export interface OrganizationCreateAPIKeyRequest {
+export interface CreateOrganizationAPIKeyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2139,7 +1049,7 @@ export interface OrganizationCreateAPIKeyRequest {
   /** Description of the API Key */
   description?: string;
 }
-export const OrganizationCreateAPIKeyRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateOrganizationAPIKeyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2157,8 +1067,8 @@ export const OrganizationCreateAPIKeyRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OrganizationCreateAPIKeyRequest",
-}) as any as S.Schema<OrganizationCreateAPIKeyRequest>;
+  identifier: "CreateOrganizationAPIKeyRequest",
+}) as any as S.Schema<CreateOrganizationAPIKeyRequest>;
 
 /** API Key Resource details which can be kafka cluster or schema registry cluster */
 export interface APIKeyResourceEntity {
@@ -2265,993 +1175,6 @@ export const APIKeyRecord = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "APIKeyRecord" }) as any as S.Schema<APIKeyRecord>;
 
-export interface OrganizationDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Organization resource name */
-  organizationName: string;
-}
-export const OrganizationDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    organizationName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}",
-      code: 200,
-      apiVersion: "2024-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "OrganizationDeleteRequest",
-}) as any as S.Schema<OrganizationDeleteRequest>;
-
-export interface OrganizationDeleteResponse {}
-export const OrganizationDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "OrganizationDeleteResponse",
-}) as any as S.Schema<OrganizationDeleteResponse>;
-
-export interface OrganizationDeleteClusterAPIKeyRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Organization resource name */
-  organizationName: string;
-  /** Confluent API Key id */
-  apiKeyId: string;
-}
-export const OrganizationDeleteClusterAPIKeyRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      organizationName: S.String.pipe(T.Label()),
-      apiKeyId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/apiKeys/{apiKeyId}",
-        code: 200,
-        apiVersion: "2024-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "OrganizationDeleteClusterAPIKeyRequest",
-}) as any as S.Schema<OrganizationDeleteClusterAPIKeyRequest>;
-
-export interface OrganizationDeleteClusterAPIKeyResponse {}
-export const OrganizationDeleteClusterAPIKeyResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "OrganizationDeleteClusterAPIKeyResponse",
-}) as any as S.Schema<OrganizationDeleteClusterAPIKeyResponse>;
-
-export interface OrganizationGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Organization resource name */
-  organizationName: string;
-}
-export const OrganizationGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    organizationName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}",
-      code: 200,
-      apiVersion: "2024-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "OrganizationGetRequest",
-}) as any as S.Schema<OrganizationGetRequest>;
-
-/** Resource tags. */
-export type OrganizationGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const OrganizationGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<OrganizationGetResponseTagsMap>;
-
-export interface OrganizationGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: OrganizationGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Organization resource properties */
-  properties: OrganizationResourceProperties;
-}
-export const OrganizationGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(OrganizationGetResponseTagsMap),
-    location: S.String,
-    properties: OrganizationResourceProperties,
-  }),
-).annotate({
-  identifier: "OrganizationGetResponse",
-}) as any as S.Schema<OrganizationGetResponse>;
-
-export interface OrganizationGetClusterAPIKeyRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Organization resource name */
-  organizationName: string;
-  /** Confluent API Key id */
-  apiKeyId: string;
-}
-export const OrganizationGetClusterAPIKeyRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    organizationName: S.String.pipe(T.Label()),
-    apiKeyId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/apiKeys/{apiKeyId}",
-      code: 200,
-      apiVersion: "2024-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "OrganizationGetClusterAPIKeyRequest",
-}) as any as S.Schema<OrganizationGetClusterAPIKeyRequest>;
-
-export interface OrganizationGetClusterByIdRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Organization resource name */
-  organizationName: string;
-  /** Confluent environment id */
-  environmentId: string;
-  /** Confluent kafka or schema registry cluster id */
-  clusterId: string;
-}
-export const OrganizationGetClusterByIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    organizationName: S.String.pipe(T.Label()),
-    environmentId: S.String.pipe(T.Label()),
-    clusterId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/environments/{environmentId}/clusters/{clusterId}",
-      code: 200,
-      apiVersion: "2024-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "OrganizationGetClusterByIdRequest",
-}) as any as S.Schema<OrganizationGetClusterByIdRequest>;
-
-export interface OrganizationGetClusterByIdResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Type of cluster */
-  kind?: string;
-  /** Cluster Properties */
-  properties?: ClusterProperties;
-}
-export const OrganizationGetClusterByIdResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    kind: S.optional(S.String),
-    properties: S.optional(ClusterProperties),
-  }),
-).annotate({
-  identifier: "OrganizationGetClusterByIdResponse",
-}) as any as S.Schema<OrganizationGetClusterByIdResponse>;
-
-export interface OrganizationGetEnvironmentByIdRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Organization resource name */
-  organizationName: string;
-  /** Confluent environment id */
-  environmentId: string;
-}
-export const OrganizationGetEnvironmentByIdRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      organizationName: S.String.pipe(T.Label()),
-      environmentId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/environments/{environmentId}",
-        code: 200,
-        apiVersion: "2024-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "OrganizationGetEnvironmentByIdRequest",
-}) as any as S.Schema<OrganizationGetEnvironmentByIdRequest>;
-
-export interface OrganizationGetEnvironmentByIdResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Type of environment */
-  kind?: string;
-  /** Environment properties */
-  properties?: EnvironmentProperties;
-}
-export const OrganizationGetEnvironmentByIdResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      kind: S.optional(S.String),
-      properties: S.optional(EnvironmentProperties),
-    }),
-).annotate({
-  identifier: "OrganizationGetEnvironmentByIdResponse",
-}) as any as S.Schema<OrganizationGetEnvironmentByIdResponse>;
-
-export interface OrganizationGetSchemaRegistryClusterByIdRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Organization resource name */
-  organizationName: string;
-  /** Confluent environment id */
-  environmentId: string;
-  /** Confluent connector name */
-  clusterId: string;
-}
-export const OrganizationGetSchemaRegistryClusterByIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      organizationName: S.String.pipe(T.Label()),
-      environmentId: S.String.pipe(T.Label()),
-      clusterId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/environments/{environmentId}/schemaRegistryClusters/{clusterId}",
-        code: 200,
-        apiVersion: "2024-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "OrganizationGetSchemaRegistryClusterByIdRequest",
-  }) as any as S.Schema<OrganizationGetSchemaRegistryClusterByIdRequest>;
-
-/** The environment associated with this object */
-export type SchemaRegistryClusterEnvironmentRegionEntity = SCClusterByokEntity;
-export const SchemaRegistryClusterEnvironmentRegionEntity = SCClusterByokEntity;
-
-/** Details of schema registry cluster spec */
-export interface SchemaRegistryClusterSpecEntity {
-  /** Name of the schema registry cluster */
-  name?: string;
-  /** Http endpoint of the cluster */
-  httpEndpoint?: string;
-  /** Type of the cluster package Advanced, essentials */
-  package?: string;
-  /** Region details of the schema registry cluster */
-  region?: SCClusterByokEntity;
-  /** Environment details of the schema registry cluster */
-  environment?: SCClusterByokEntity;
-  /** The cloud service provider */
-  cloud?: string;
-}
-export const SchemaRegistryClusterSpecEntity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    httpEndpoint: S.optional(S.String),
-    package: S.optional(S.String),
-    region: S.optional(SCClusterByokEntity),
-    environment: S.optional(SCClusterByokEntity),
-    cloud: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SchemaRegistryClusterSpecEntity",
-}) as any as S.Schema<SchemaRegistryClusterSpecEntity>;
-
-/** Status of the schema registry cluster record */
-export interface SchemaRegistryClusterStatusEntity {
-  /** The lifecycle phase of the cluster */
-  phase?: string;
-}
-export const SchemaRegistryClusterStatusEntity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    phase: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SchemaRegistryClusterStatusEntity",
-}) as any as S.Schema<SchemaRegistryClusterStatusEntity>;
-
-/** Schema Registry Cluster Properties */
-export interface SchemaRegistryClusterProperties {
-  /** Metadata of the record */
-  metadata?: SCMetadataEntity;
-  /** Specification of the schema registry cluster */
-  spec?: SchemaRegistryClusterSpecEntity;
-  /** Specification of the cluster status */
-  status?: SchemaRegistryClusterStatusEntity;
-}
-export const SchemaRegistryClusterProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    metadata: S.optional(SCMetadataEntity),
-    spec: S.optional(SchemaRegistryClusterSpecEntity),
-    status: S.optional(SchemaRegistryClusterStatusEntity),
-  }),
-).annotate({
-  identifier: "SchemaRegistryClusterProperties",
-}) as any as S.Schema<SchemaRegistryClusterProperties>;
-
-/** Details of schema registry cluster record */
-export interface SchemaRegistryClusterRecord {
-  /** Kind of the cluster */
-  kind?: string;
-  /** Id of the cluster */
-  id?: string;
-  /** Schema Registry Cluster Properties */
-  properties?: SchemaRegistryClusterProperties;
-}
-export const SchemaRegistryClusterRecord = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    kind: S.optional(S.String),
-    id: S.optional(S.String),
-    properties: S.optional(SchemaRegistryClusterProperties),
-  }),
-).annotate({
-  identifier: "SchemaRegistryClusterRecord",
-}) as any as S.Schema<SchemaRegistryClusterRecord>;
-
-export interface OrganizationListByResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const OrganizationListByResourceGroupRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations",
-        code: 200,
-        apiVersion: "2024-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "OrganizationListByResourceGroupRequest",
-}) as any as S.Schema<OrganizationListByResourceGroupRequest>;
-
-/** Resource tags. */
-export type OrganizationResourceTagsMap = { [key: string]: string | undefined };
-export const OrganizationResourceTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<OrganizationResourceTagsMap>;
-
-/** Organization resource. */
-export interface OrganizationResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: OrganizationResourceTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Organization resource properties */
-  properties: OrganizationResourceProperties;
-}
-export const OrganizationResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(OrganizationResourceTagsMap),
-    location: S.String,
-    properties: OrganizationResourceProperties,
-  }),
-).annotate({
-  identifier: "OrganizationResource",
-}) as any as S.Schema<OrganizationResource>;
-
-/** The OrganizationResource items on this page */
-export type OrganizationResourceListResultValueList =
-  Array<OrganizationResource>;
-export const OrganizationResourceListResultValueList = /*@__PURE__*/ S.Array(
-  OrganizationResource,
-) as any as S.Schema<OrganizationResourceListResultValueList>;
-
-/** The response of a OrganizationResource list operation. */
-export interface OrganizationResourceListResult {
-  /** The OrganizationResource items on this page */
-  value: OrganizationResourceListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const OrganizationResourceListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: OrganizationResourceListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OrganizationResourceListResult",
-}) as any as S.Schema<OrganizationResourceListResult>;
-
-export interface OrganizationListBySubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-}
-export const OrganizationListBySubscriptionRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Confluent/organizations",
-        code: 200,
-        apiVersion: "2024-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "OrganizationListBySubscriptionRequest",
-}) as any as S.Schema<OrganizationListBySubscriptionRequest>;
-
-export interface OrganizationListClustersRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Organization resource name */
-  organizationName: string;
-  /** Confluent environment id */
-  environmentId: string;
-  /** Pagination size */
-  pageSize?: number;
-  /** An opaque pagination token to fetch the next set of records */
-  pageToken?: string;
-}
-export const OrganizationListClustersRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    organizationName: S.String.pipe(T.Label()),
-    environmentId: S.String.pipe(T.Label()),
-    pageSize: S.optional(S.Number.pipe(T.Query())),
-    pageToken: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/environments/{environmentId}/clusters",
-      code: 200,
-      apiVersion: "2024-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "OrganizationListClustersRequest",
-}) as any as S.Schema<OrganizationListClustersRequest>;
-
-/** Details of cluster record */
-export interface SCClusterRecord {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Type of cluster */
-  kind?: string;
-  /** Cluster Properties */
-  properties?: ClusterProperties;
-}
-export const SCClusterRecord = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    kind: S.optional(S.String),
-    properties: S.optional(ClusterProperties),
-  }),
-).annotate({
-  identifier: "SCClusterRecord",
-}) as any as S.Schema<SCClusterRecord>;
-
-/** The SCClusterRecord items on this page */
-export type ListClustersSuccessResponseValueList = Array<SCClusterRecord>;
-export const ListClustersSuccessResponseValueList = /*@__PURE__*/ S.Array(
-  SCClusterRecord,
-) as any as S.Schema<ListClustersSuccessResponseValueList>;
-
-/** Result of GET request to list clusters in the environment of a confluent organization */
-export interface ListClustersSuccessResponse {
-  /** The SCClusterRecord items on this page */
-  value: ListClustersSuccessResponseValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ListClustersSuccessResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: ListClustersSuccessResponseValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ListClustersSuccessResponse",
-}) as any as S.Schema<ListClustersSuccessResponse>;
-
-export interface OrganizationListEnvironmentsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Organization resource name */
-  organizationName: string;
-  /** Pagination size */
-  pageSize?: number;
-  /** An opaque pagination token to fetch the next set of records */
-  pageToken?: string;
-}
-export const OrganizationListEnvironmentsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    organizationName: S.String.pipe(T.Label()),
-    pageSize: S.optional(S.Number.pipe(T.Query())),
-    pageToken: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/environments",
-      code: 200,
-      apiVersion: "2024-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "OrganizationListEnvironmentsRequest",
-}) as any as S.Schema<OrganizationListEnvironmentsRequest>;
-
-/** Details about environment name, metadata and environment id of an environment */
-export interface SCEnvironmentRecord {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Type of environment */
-  kind?: string;
-  /** Environment properties */
-  properties?: EnvironmentProperties;
-}
-export const SCEnvironmentRecord = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    kind: S.optional(S.String),
-    properties: S.optional(EnvironmentProperties),
-  }),
-).annotate({
-  identifier: "SCEnvironmentRecord",
-}) as any as S.Schema<SCEnvironmentRecord>;
-
-/** The SCEnvironmentRecord items on this page */
-export type GetEnvironmentsResponseValueList = Array<SCEnvironmentRecord>;
-export const GetEnvironmentsResponseValueList = /*@__PURE__*/ S.Array(
-  SCEnvironmentRecord,
-) as any as S.Schema<GetEnvironmentsResponseValueList>;
-
-/** Result of GET request to list Confluent operations. */
-export interface GetEnvironmentsResponse {
-  /** The SCEnvironmentRecord items on this page */
-  value: GetEnvironmentsResponseValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const GetEnvironmentsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: GetEnvironmentsResponseValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "GetEnvironmentsResponse",
-}) as any as S.Schema<GetEnvironmentsResponse>;
-
-/** Search filters for the request */
-export type OrganizationListRegionsRequestSearchFiltersMap = {
-  [key: string]: string | undefined;
-};
-export const OrganizationListRegionsRequestSearchFiltersMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<OrganizationListRegionsRequestSearchFiltersMap>;
-
-export interface OrganizationListRegionsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Organization resource name */
-  organizationName: string;
-  /** Search filters for the request */
-  searchFilters?: OrganizationListRegionsRequestSearchFiltersMap;
-}
-export const OrganizationListRegionsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    organizationName: S.String.pipe(T.Label()),
-    searchFilters: S.optional(OrganizationListRegionsRequestSearchFiltersMap),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/listRegions",
-      code: 200,
-      apiVersion: "2024-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "OrganizationListRegionsRequest",
-}) as any as S.Schema<OrganizationListRegionsRequest>;
-
-export type RegionSpecEntityPackagesList = Array<string>;
-export const RegionSpecEntityPackagesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<RegionSpecEntityPackagesList>;
-
-/** Region spec details */
-export interface RegionSpecEntity {
-  /** Display Name of the region */
-  name?: string;
-  /** Cloud provider name */
-  cloud?: string;
-  /** Region name */
-  regionName?: string;
-  packages?: RegionSpecEntityPackagesList;
-}
-export const RegionSpecEntity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    cloud: S.optional(S.String),
-    regionName: S.optional(S.String),
-    packages: S.optional(RegionSpecEntityPackagesList),
-  }),
-).annotate({
-  identifier: "RegionSpecEntity",
-}) as any as S.Schema<RegionSpecEntity>;
-
-/** Region Properties */
-export interface RegionProperties {
-  /** Metadata of the record */
-  metadata?: SCMetadataEntity;
-  /** Specification of the region */
-  spec?: RegionSpecEntity;
-}
-export const RegionProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    metadata: S.optional(SCMetadataEntity),
-    spec: S.optional(RegionSpecEntity),
-  }),
-).annotate({
-  identifier: "RegionProperties",
-}) as any as S.Schema<RegionProperties>;
-
-/** Details of region record */
-export interface RegionRecord {
-  /** Kind of the cluster */
-  kind?: string;
-  /** Id of the cluster */
-  id?: string;
-  /** Region Properties */
-  properties?: RegionProperties;
-}
-export const RegionRecord = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    kind: S.optional(S.String),
-    id: S.optional(S.String),
-    properties: S.optional(RegionProperties),
-  }),
-).annotate({ identifier: "RegionRecord" }) as any as S.Schema<RegionRecord>;
-
-/** List of regions supported by confluent */
-export type ListRegionsSuccessResponseDataList = Array<RegionRecord>;
-export const ListRegionsSuccessResponseDataList = /*@__PURE__*/ S.Array(
-  RegionRecord,
-) as any as S.Schema<ListRegionsSuccessResponseDataList>;
-
-/** Result of POST request to list regions supported by confluent */
-export interface ListRegionsSuccessResponse {
-  /** List of regions supported by confluent */
-  data?: ListRegionsSuccessResponseDataList;
-}
-export const ListRegionsSuccessResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data: S.optional(ListRegionsSuccessResponseDataList),
-  }),
-).annotate({
-  identifier: "ListRegionsSuccessResponse",
-}) as any as S.Schema<ListRegionsSuccessResponse>;
-
-export interface OrganizationListSchemaRegistryClustersRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Organization resource name */
-  organizationName: string;
-  /** Confluent environment id */
-  environmentId: string;
-  /** Pagination size */
-  pageSize?: number;
-  /** An opaque pagination token to fetch the next set of records */
-  pageToken?: string;
-}
-export const OrganizationListSchemaRegistryClustersRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      organizationName: S.String.pipe(T.Label()),
-      environmentId: S.String.pipe(T.Label()),
-      pageSize: S.optional(S.Number.pipe(T.Query())),
-      pageToken: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/environments/{environmentId}/schemaRegistryClusters",
-        code: 200,
-        apiVersion: "2024-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "OrganizationListSchemaRegistryClustersRequest",
-  }) as any as S.Schema<OrganizationListSchemaRegistryClustersRequest>;
-
-/** The SchemaRegistryClusterRecord items on this page */
-export type ListSchemaRegistryClustersResponseValueList =
-  Array<SchemaRegistryClusterRecord>;
-export const ListSchemaRegistryClustersResponseValueList =
-  /*@__PURE__*/ S.Array(
-    SchemaRegistryClusterRecord,
-  ) as any as S.Schema<ListSchemaRegistryClustersResponseValueList>;
-
-/** Result of GET request to list schema registry clusters in the environment of a confluent organization */
-export interface ListSchemaRegistryClustersResponse {
-  /** The SchemaRegistryClusterRecord items on this page */
-  value: ListSchemaRegistryClustersResponseValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ListSchemaRegistryClustersResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: ListSchemaRegistryClustersResponseValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ListSchemaRegistryClustersResponse",
-}) as any as S.Schema<ListSchemaRegistryClustersResponse>;
-
-export interface OrganizationOperationsListRequest {}
-export const OrganizationOperationsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.Confluent/operations",
-      code: 200,
-      apiVersion: "2024-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "OrganizationOperationsListRequest",
-}) as any as S.Schema<OrganizationOperationsListRequest>;
-
-/** The object that represents the operation. */
-export interface OperationDisplay {
-  /** Service provider: Microsoft.Confluent */
-  provider?: string;
-  /** Type on which the operation is performed, e.g., 'clusters'. */
-  resource?: string;
-  /** Operation type, e.g., read, write, delete, etc. */
-  operation?: string;
-  /** Description of the operation, e.g., 'Write confluent'. */
-  description?: string;
-}
-export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provider: S.optional(S.String),
-    resource: S.optional(S.String),
-    operation: S.optional(S.String),
-    description: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationDisplay",
-}) as any as S.Schema<OperationDisplay>;
-
-/** An Confluent REST API operation. */
-export interface OperationResult {
-  /** Operation name: {provider}/{resource}/{operation} */
-  name?: string;
-  /** The object that represents the operation. */
-  display?: OperationDisplay;
-  /** Indicates whether the operation is a data action */
-  isDataAction?: boolean;
-}
-export const OperationResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    display: S.optional(OperationDisplay),
-    isDataAction: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "OperationResult",
-}) as any as S.Schema<OperationResult>;
-
-/** List of Confluent operations supported by the Microsoft.Confluent provider. */
-export type OperationListResultValueList = Array<OperationResult>;
-export const OperationListResultValueList = /*@__PURE__*/ S.Array(
-  OperationResult,
-) as any as S.Schema<OperationListResultValueList>;
-
-/** Result of GET request to list Confluent operations. */
-export interface OperationListResult {
-  /** List of Confluent operations supported by the Microsoft.Confluent provider. */
-  value: OperationListResultValueList;
-  /** URL to get the next set of operation list results if there are any. */
-  nextLink?: string;
-}
-export const OperationListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: OperationListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationListResult",
-}) as any as S.Schema<OperationListResult>;
-
-/** ARM resource tags */
-export type OrganizationUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const OrganizationUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<OrganizationUpdateRequestTagsMap>;
-
-export interface OrganizationUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Organization resource name */
-  organizationName: string;
-  /** ARM resource tags */
-  tags?: OrganizationUpdateRequestTagsMap;
-}
-export const OrganizationUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    organizationName: S.String.pipe(T.Label()),
-    tags: S.optional(OrganizationUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}",
-      code: 200,
-      apiVersion: "2024-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "OrganizationUpdateRequest",
-}) as any as S.Schema<OrganizationUpdateRequest>;
-
-/** Resource tags. */
-export type OrganizationUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const OrganizationUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<OrganizationUpdateResponseTagsMap>;
-
-export interface OrganizationUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: OrganizationUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Organization resource properties */
-  properties: OrganizationResourceProperties;
-}
-export const OrganizationUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(OrganizationUpdateResponseTagsMap),
-    location: S.String,
-    properties: OrganizationResourceProperties,
-  }),
-).annotate({
-  identifier: "OrganizationUpdateResponse",
-}) as any as S.Schema<OrganizationUpdateResponse>;
-
 /** Metadata of the data record */
 export interface TopicMetadataEntity {
   /** Self lookup url */
@@ -3340,7 +1263,7 @@ export const TopicProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "TopicProperties",
 }) as any as S.Schema<TopicProperties>;
 
-export interface TopicsCreateRequest {
+export interface CreateTopicRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3356,7 +1279,7 @@ export interface TopicsCreateRequest {
   /** Topic Properties */
   properties?: TopicProperties;
 }
-export const TopicsCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateTopicRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -3374,10 +1297,10 @@ export const TopicsCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "TopicsCreateRequest",
-}) as any as S.Schema<TopicsCreateRequest>;
+  identifier: "CreateTopicRequest",
+}) as any as S.Schema<CreateTopicRequest>;
 
-export interface TopicsCreateResponse {
+export interface CreateTopicResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -3389,7 +1312,7 @@ export interface TopicsCreateResponse {
   /** Topic Properties */
   properties?: TopicProperties;
 }
-export const TopicsCreateResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateTopicResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -3398,10 +1321,227 @@ export const TopicsCreateResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(TopicProperties),
   }),
 ).annotate({
-  identifier: "TopicsCreateResponse",
-}) as any as S.Schema<TopicsCreateResponse>;
+  identifier: "CreateTopicResponse",
+}) as any as S.Schema<CreateTopicResponse>;
 
-export interface TopicsDeleteRequest {
+export interface DeleteAccessRoleBindingRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Organization resource name */
+  organizationName: string;
+  /** Confluent Role binding id */
+  roleBindingId: string;
+}
+export const DeleteAccessRoleBindingRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    organizationName: S.String.pipe(T.Label()),
+    roleBindingId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/access/default/deleteRoleBinding/{roleBindingId}",
+      code: 200,
+      apiVersion: "2024-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteAccessRoleBindingRequest",
+}) as any as S.Schema<DeleteAccessRoleBindingRequest>;
+
+export interface DeleteAccessRoleBindingResponse {}
+export const DeleteAccessRoleBindingResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteAccessRoleBindingResponse",
+}) as any as S.Schema<DeleteAccessRoleBindingResponse>;
+
+export interface DeleteClusterRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Organization resource name */
+  organizationName: string;
+  /** Confluent environment id */
+  environmentId: string;
+  /** Confluent kafka or schema registry cluster id */
+  clusterId: string;
+}
+export const DeleteClusterRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    organizationName: S.String.pipe(T.Label()),
+    environmentId: S.String.pipe(T.Label()),
+    clusterId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/environments/{environmentId}/clusters/{clusterId}",
+      code: 200,
+      apiVersion: "2024-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteClusterRequest",
+}) as any as S.Schema<DeleteClusterRequest>;
+
+export interface DeleteClusterResponse {}
+export const DeleteClusterResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteClusterResponse",
+}) as any as S.Schema<DeleteClusterResponse>;
+
+export interface DeleteConnectorRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Organization resource name */
+  organizationName: string;
+  /** Confluent environment id */
+  environmentId: string;
+  /** Confluent kafka or schema registry cluster id */
+  clusterId: string;
+  /** Confluent connector name */
+  connectorName: string;
+}
+export const DeleteConnectorRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    organizationName: S.String.pipe(T.Label()),
+    environmentId: S.String.pipe(T.Label()),
+    clusterId: S.String.pipe(T.Label()),
+    connectorName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/environments/{environmentId}/clusters/{clusterId}/connectors/{connectorName}",
+      code: 200,
+      apiVersion: "2024-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteConnectorRequest",
+}) as any as S.Schema<DeleteConnectorRequest>;
+
+export interface DeleteConnectorResponse {}
+export const DeleteConnectorResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteConnectorResponse",
+}) as any as S.Schema<DeleteConnectorResponse>;
+
+export interface DeleteEnvironmentRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Organization resource name */
+  organizationName: string;
+  /** Confluent environment id */
+  environmentId: string;
+}
+export const DeleteEnvironmentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    organizationName: S.String.pipe(T.Label()),
+    environmentId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/environments/{environmentId}",
+      code: 200,
+      apiVersion: "2024-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteEnvironmentRequest",
+}) as any as S.Schema<DeleteEnvironmentRequest>;
+
+export interface DeleteEnvironmentResponse {}
+export const DeleteEnvironmentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteEnvironmentResponse",
+}) as any as S.Schema<DeleteEnvironmentResponse>;
+
+export interface DeleteOrganizationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Organization resource name */
+  organizationName: string;
+}
+export const DeleteOrganizationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    organizationName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}",
+      code: 200,
+      apiVersion: "2024-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteOrganizationRequest",
+}) as any as S.Schema<DeleteOrganizationRequest>;
+
+export interface DeleteOrganizationResponse {}
+export const DeleteOrganizationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteOrganizationResponse",
+}) as any as S.Schema<DeleteOrganizationResponse>;
+
+export interface DeleteOrganizationClusterAPIKeyRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Organization resource name */
+  organizationName: string;
+  /** Confluent API Key id */
+  apiKeyId: string;
+}
+export const DeleteOrganizationClusterAPIKeyRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      organizationName: S.String.pipe(T.Label()),
+      apiKeyId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/apiKeys/{apiKeyId}",
+        code: 200,
+        apiVersion: "2024-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "DeleteOrganizationClusterAPIKeyRequest",
+}) as any as S.Schema<DeleteOrganizationClusterAPIKeyRequest>;
+
+export interface DeleteOrganizationClusterAPIKeyResponse {}
+export const DeleteOrganizationClusterAPIKeyResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteOrganizationClusterAPIKeyResponse",
+}) as any as S.Schema<DeleteOrganizationClusterAPIKeyResponse>;
+
+export interface DeleteTopicRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3415,7 +1555,7 @@ export interface TopicsDeleteRequest {
   /** Confluent kafka or schema registry topic name */
   topicName: string;
 }
-export const TopicsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteTopicRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -3432,17 +1572,487 @@ export const TopicsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "TopicsDeleteRequest",
-}) as any as S.Schema<TopicsDeleteRequest>;
+  identifier: "DeleteTopicRequest",
+}) as any as S.Schema<DeleteTopicRequest>;
 
-export interface TopicsDeleteResponse {}
-export const TopicsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteTopicResponse {}
+export const DeleteTopicResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "TopicsDeleteResponse",
-}) as any as S.Schema<TopicsDeleteResponse>;
+  identifier: "DeleteTopicResponse",
+}) as any as S.Schema<DeleteTopicResponse>;
 
-export interface TopicsGetRequest {
+/** Stream governance configuration */
+export interface StreamGovernanceConfig {
+  /** Stream governance configuration */
+  package?: Package | (string & {});
+}
+export const StreamGovernanceConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    package: S.optional(Package),
+  }),
+).annotate({
+  identifier: "StreamGovernanceConfig",
+}) as any as S.Schema<StreamGovernanceConfig>;
+
+/** Environment resource property */
+export interface EnvironmentProperties {
+  /** Stream governance configuration */
+  streamGovernanceConfig?: StreamGovernanceConfig;
+  /** Metadata of the record */
+  metadata?: SCMetadataEntity;
+}
+export const EnvironmentProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    streamGovernanceConfig: S.optional(StreamGovernanceConfig),
+    metadata: S.optional(SCMetadataEntity),
+  }),
+).annotate({
+  identifier: "EnvironmentProperties",
+}) as any as S.Schema<EnvironmentProperties>;
+
+export interface EnvironmentCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Organization resource name */
+  organizationName: string;
+  /** Confluent environment id */
+  environmentId: string;
+  /** Type of environment */
+  kind?: string;
+  /** Environment properties */
+  properties?: EnvironmentProperties;
+}
+export const EnvironmentCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    organizationName: S.String.pipe(T.Label()),
+    environmentId: S.String.pipe(T.Label()),
+    kind: S.optional(S.String),
+    properties: S.optional(EnvironmentProperties),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/environments/{environmentId}",
+      code: 200,
+      apiVersion: "2024-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "EnvironmentCreateOrUpdateRequest",
+}) as any as S.Schema<EnvironmentCreateOrUpdateRequest>;
+
+export interface EnvironmentCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Type of environment */
+  kind?: string;
+  /** Environment properties */
+  properties?: EnvironmentProperties;
+}
+export const EnvironmentCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    kind: S.optional(S.String),
+    properties: S.optional(EnvironmentProperties),
+  }),
+).annotate({
+  identifier: "EnvironmentCreateOrUpdateResponse",
+}) as any as S.Schema<EnvironmentCreateOrUpdateResponse>;
+
+export interface GetConnectorRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Organization resource name */
+  organizationName: string;
+  /** Confluent environment id */
+  environmentId: string;
+  /** Confluent kafka or schema registry cluster id */
+  clusterId: string;
+  /** Confluent connector name */
+  connectorName: string;
+}
+export const GetConnectorRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    organizationName: S.String.pipe(T.Label()),
+    environmentId: S.String.pipe(T.Label()),
+    clusterId: S.String.pipe(T.Label()),
+    connectorName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/environments/{environmentId}/clusters/{clusterId}/connectors/{connectorName}",
+      code: 200,
+      apiVersion: "2024-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetConnectorRequest",
+}) as any as S.Schema<GetConnectorRequest>;
+
+export interface GetConnectorResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of the Connector */
+  properties: ConnectorResourceProperties;
+}
+export const GetConnectorResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: ConnectorResourceProperties,
+  }),
+).annotate({
+  identifier: "GetConnectorResponse",
+}) as any as S.Schema<GetConnectorResponse>;
+
+export interface GetOrganizationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Organization resource name */
+  organizationName: string;
+}
+export const GetOrganizationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    organizationName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}",
+      code: 200,
+      apiVersion: "2024-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetOrganizationRequest",
+}) as any as S.Schema<GetOrganizationRequest>;
+
+/** Resource tags. */
+export type GetOrganizationResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetOrganizationResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetOrganizationResponseTagsMap>;
+
+export interface GetOrganizationResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetOrganizationResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Organization resource properties */
+  properties: OrganizationResourceProperties;
+}
+export const GetOrganizationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetOrganizationResponseTagsMap),
+    location: S.String,
+    properties: OrganizationResourceProperties,
+  }),
+).annotate({
+  identifier: "GetOrganizationResponse",
+}) as any as S.Schema<GetOrganizationResponse>;
+
+export interface GetOrganizationClusterAPIKeyRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Organization resource name */
+  organizationName: string;
+  /** Confluent API Key id */
+  apiKeyId: string;
+}
+export const GetOrganizationClusterAPIKeyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    organizationName: S.String.pipe(T.Label()),
+    apiKeyId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/apiKeys/{apiKeyId}",
+      code: 200,
+      apiVersion: "2024-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetOrganizationClusterAPIKeyRequest",
+}) as any as S.Schema<GetOrganizationClusterAPIKeyRequest>;
+
+export interface GetOrganizationClusterByIdRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Organization resource name */
+  organizationName: string;
+  /** Confluent environment id */
+  environmentId: string;
+  /** Confluent kafka or schema registry cluster id */
+  clusterId: string;
+}
+export const GetOrganizationClusterByIdRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    organizationName: S.String.pipe(T.Label()),
+    environmentId: S.String.pipe(T.Label()),
+    clusterId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/environments/{environmentId}/clusters/{clusterId}",
+      code: 200,
+      apiVersion: "2024-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetOrganizationClusterByIdRequest",
+}) as any as S.Schema<GetOrganizationClusterByIdRequest>;
+
+export interface GetOrganizationClusterByIdResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Type of cluster */
+  kind?: string;
+  /** Cluster Properties */
+  properties?: ClusterProperties;
+}
+export const GetOrganizationClusterByIdResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    kind: S.optional(S.String),
+    properties: S.optional(ClusterProperties),
+  }),
+).annotate({
+  identifier: "GetOrganizationClusterByIdResponse",
+}) as any as S.Schema<GetOrganizationClusterByIdResponse>;
+
+export interface GetOrganizationEnvironmentByIdRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Organization resource name */
+  organizationName: string;
+  /** Confluent environment id */
+  environmentId: string;
+}
+export const GetOrganizationEnvironmentByIdRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      organizationName: S.String.pipe(T.Label()),
+      environmentId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/environments/{environmentId}",
+        code: 200,
+        apiVersion: "2024-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "GetOrganizationEnvironmentByIdRequest",
+}) as any as S.Schema<GetOrganizationEnvironmentByIdRequest>;
+
+export interface GetOrganizationEnvironmentByIdResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Type of environment */
+  kind?: string;
+  /** Environment properties */
+  properties?: EnvironmentProperties;
+}
+export const GetOrganizationEnvironmentByIdResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      kind: S.optional(S.String),
+      properties: S.optional(EnvironmentProperties),
+    }),
+).annotate({
+  identifier: "GetOrganizationEnvironmentByIdResponse",
+}) as any as S.Schema<GetOrganizationEnvironmentByIdResponse>;
+
+export interface GetOrganizationSchemaRegistryClusterByIdRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Organization resource name */
+  organizationName: string;
+  /** Confluent environment id */
+  environmentId: string;
+  /** Confluent connector name */
+  clusterId: string;
+}
+export const GetOrganizationSchemaRegistryClusterByIdRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      organizationName: S.String.pipe(T.Label()),
+      environmentId: S.String.pipe(T.Label()),
+      clusterId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/environments/{environmentId}/schemaRegistryClusters/{clusterId}",
+        code: 200,
+        apiVersion: "2024-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetOrganizationSchemaRegistryClusterByIdRequest",
+  }) as any as S.Schema<GetOrganizationSchemaRegistryClusterByIdRequest>;
+
+/** The environment associated with this object */
+export type SchemaRegistryClusterEnvironmentRegionEntity = SCClusterByokEntity;
+export const SchemaRegistryClusterEnvironmentRegionEntity = SCClusterByokEntity;
+
+/** Details of schema registry cluster spec */
+export interface SchemaRegistryClusterSpecEntity {
+  /** Name of the schema registry cluster */
+  name?: string;
+  /** Http endpoint of the cluster */
+  httpEndpoint?: string;
+  /** Type of the cluster package Advanced, essentials */
+  package?: string;
+  /** Region details of the schema registry cluster */
+  region?: SCClusterByokEntity;
+  /** Environment details of the schema registry cluster */
+  environment?: SCClusterByokEntity;
+  /** The cloud service provider */
+  cloud?: string;
+}
+export const SchemaRegistryClusterSpecEntity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    httpEndpoint: S.optional(S.String),
+    package: S.optional(S.String),
+    region: S.optional(SCClusterByokEntity),
+    environment: S.optional(SCClusterByokEntity),
+    cloud: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SchemaRegistryClusterSpecEntity",
+}) as any as S.Schema<SchemaRegistryClusterSpecEntity>;
+
+/** Status of the schema registry cluster record */
+export interface SchemaRegistryClusterStatusEntity {
+  /** The lifecycle phase of the cluster */
+  phase?: string;
+}
+export const SchemaRegistryClusterStatusEntity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    phase: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SchemaRegistryClusterStatusEntity",
+}) as any as S.Schema<SchemaRegistryClusterStatusEntity>;
+
+/** Schema Registry Cluster Properties */
+export interface SchemaRegistryClusterProperties {
+  /** Metadata of the record */
+  metadata?: SCMetadataEntity;
+  /** Specification of the schema registry cluster */
+  spec?: SchemaRegistryClusterSpecEntity;
+  /** Specification of the cluster status */
+  status?: SchemaRegistryClusterStatusEntity;
+}
+export const SchemaRegistryClusterProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    metadata: S.optional(SCMetadataEntity),
+    spec: S.optional(SchemaRegistryClusterSpecEntity),
+    status: S.optional(SchemaRegistryClusterStatusEntity),
+  }),
+).annotate({
+  identifier: "SchemaRegistryClusterProperties",
+}) as any as S.Schema<SchemaRegistryClusterProperties>;
+
+/** Details of schema registry cluster record */
+export interface SchemaRegistryClusterRecord {
+  /** Kind of the cluster */
+  kind?: string;
+  /** Id of the cluster */
+  id?: string;
+  /** Schema Registry Cluster Properties */
+  properties?: SchemaRegistryClusterProperties;
+}
+export const SchemaRegistryClusterRecord = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    kind: S.optional(S.String),
+    id: S.optional(S.String),
+    properties: S.optional(SchemaRegistryClusterProperties),
+  }),
+).annotate({
+  identifier: "SchemaRegistryClusterRecord",
+}) as any as S.Schema<SchemaRegistryClusterRecord>;
+
+export interface GetTopicRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3456,7 +2066,7 @@ export interface TopicsGetRequest {
   /** Confluent kafka or schema registry topic name */
   topicName: string;
 }
-export const TopicsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetTopicRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -3473,10 +2083,10 @@ export const TopicsGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "TopicsGetRequest",
-}) as any as S.Schema<TopicsGetRequest>;
+  identifier: "GetTopicRequest",
+}) as any as S.Schema<GetTopicRequest>;
 
-export interface TopicsGetResponse {
+export interface GetTopicResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -3488,7 +2098,7 @@ export interface TopicsGetResponse {
   /** Topic Properties */
   properties?: TopicProperties;
 }
-export const TopicsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetTopicResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -3497,10 +2107,675 @@ export const TopicsGetResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(TopicProperties),
   }),
 ).annotate({
-  identifier: "TopicsGetResponse",
-}) as any as S.Schema<TopicsGetResponse>;
+  identifier: "GetTopicResponse",
+}) as any as S.Schema<GetTopicResponse>;
 
-export interface TopicsListRequest {
+/** Details of the user being invited */
+export interface AccessInvitedUserDetails {
+  /** UPN/Email of the user who is being invited */
+  invitedEmail?: string;
+  /** Auth type of the user */
+  auth_type?: string;
+}
+export const AccessInvitedUserDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    invitedEmail: S.optional(S.String),
+    auth_type: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AccessInvitedUserDetails",
+}) as any as S.Schema<AccessInvitedUserDetails>;
+
+export interface InviteAccessUserRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Organization resource name */
+  organizationName: string;
+  /** Id of the organization */
+  organizationId?: string;
+  /** Email of the logged in user */
+  email?: string;
+  /** Upn of the logged in user */
+  upn?: string;
+  /** Details of the user who is being invited */
+  invitedUserDetails?: AccessInvitedUserDetails;
+}
+export const InviteAccessUserRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    organizationName: S.String.pipe(T.Label()),
+    organizationId: S.optional(S.String),
+    email: S.optional(S.String),
+    upn: S.optional(S.String),
+    invitedUserDetails: S.optional(AccessInvitedUserDetails),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/access/default/createInvitation",
+      code: 200,
+      apiVersion: "2024-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "InviteAccessUserRequest",
+}) as any as S.Schema<InviteAccessUserRequest>;
+
+/** Record of the invitation */
+export interface InvitationRecord {
+  /** Type of account */
+  kind?: string;
+  /** Id of the invitation */
+  id?: string;
+  /** Metadata of the record */
+  metadata?: MetadataEntity;
+  /** Email of the user */
+  email?: string;
+  /** Auth type of the user */
+  auth_type?: string;
+  /** Status of the invitation */
+  status?: string;
+  /** Accepted date time of the invitation */
+  accepted_at?: string;
+  /** Expiration date time of the invitation */
+  expires_at?: string;
+}
+export const InvitationRecord = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    kind: S.optional(S.String),
+    id: S.optional(S.String),
+    metadata: S.optional(MetadataEntity),
+    email: S.optional(S.String),
+    auth_type: S.optional(S.String),
+    status: S.optional(S.String),
+    accepted_at: S.optional(S.String),
+    expires_at: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "InvitationRecord",
+}) as any as S.Schema<InvitationRecord>;
+
+/** Search filters for the request */
+export type ListAccessClustersRequestSearchFiltersMap = {
+  [key: string]: string | undefined;
+};
+export const ListAccessClustersRequestSearchFiltersMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ListAccessClustersRequestSearchFiltersMap>;
+
+export interface ListAccessClustersRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Organization resource name */
+  organizationName: string;
+  /** Search filters for the request */
+  searchFilters?: ListAccessClustersRequestSearchFiltersMap;
+}
+export const ListAccessClustersRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    organizationName: S.String.pipe(T.Label()),
+    searchFilters: S.optional(ListAccessClustersRequestSearchFiltersMap),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/access/default/listClusters",
+      code: 200,
+      apiVersion: "2024-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListAccessClustersRequest",
+}) as any as S.Schema<ListAccessClustersRequest>;
+
+/** The environment to which cluster belongs */
+export interface ClusterEnvironmentEntity {
+  /** ID of the referred resource */
+  id?: string;
+  /** Environment of the referred resource */
+  environment?: string;
+  /** API URL for accessing or modifying the referred object */
+  related?: string;
+  /** CRN reference to the referred resource */
+  resource_name?: string;
+}
+export const ClusterEnvironmentEntity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    environment: S.optional(S.String),
+    related: S.optional(S.String),
+    resource_name: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ClusterEnvironmentEntity",
+}) as any as S.Schema<ClusterEnvironmentEntity>;
+
+/** The network associated with this object */
+export type ClusterNetworkEntity = ClusterEnvironmentEntity;
+export const ClusterNetworkEntity = ClusterEnvironmentEntity;
+
+/** The network associated with this object */
+export interface ClusterByokEntity {
+  /** ID of the referred resource */
+  id?: string;
+  /** API URL for accessing or modifying the referred object */
+  related?: string;
+  /** CRN reference to the referred resource */
+  resource_name?: string;
+}
+export const ClusterByokEntity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    related: S.optional(S.String),
+    resource_name: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ClusterByokEntity",
+}) as any as S.Schema<ClusterByokEntity>;
+
+/** Spec of the cluster record */
+export interface ClusterSpecEntity {
+  /** The name of the cluster */
+  display_name?: string;
+  /** The availability zone configuration of the cluster */
+  availability?: string;
+  /** The cloud service provider */
+  cloud?: string;
+  /** type of zone availability */
+  zone?: string;
+  /** The cloud service provider region */
+  region?: string;
+  /** The bootstrap endpoint used by Kafka clients to connect to the cluster */
+  kafka_bootstrap_endpoint?: string;
+  /** The cluster HTTP request URL. */
+  http_endpoint?: string;
+  /** The Kafka API cluster endpoint */
+  api_endpoint?: string;
+  /** Specification of the cluster */
+  config?: ClusterConfigEntity;
+  /** Specification of the cluster */
+  environment?: ClusterEnvironmentEntity;
+  /** Specification of the cluster */
+  network?: ClusterEnvironmentEntity;
+  /** Specification of the cluster */
+  byok?: ClusterByokEntity;
+}
+export const ClusterSpecEntity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    display_name: S.optional(S.String),
+    availability: S.optional(S.String),
+    cloud: S.optional(S.String),
+    zone: S.optional(S.String),
+    region: S.optional(S.String),
+    kafka_bootstrap_endpoint: S.optional(S.String),
+    http_endpoint: S.optional(S.String),
+    api_endpoint: S.optional(S.String),
+    config: S.optional(ClusterConfigEntity),
+    environment: S.optional(ClusterEnvironmentEntity),
+    network: S.optional(ClusterEnvironmentEntity),
+    byok: S.optional(ClusterByokEntity),
+  }),
+).annotate({
+  identifier: "ClusterSpecEntity",
+}) as any as S.Schema<ClusterSpecEntity>;
+
+/** Details of cluster record */
+export interface ClusterRecord {
+  /** Type of cluster */
+  kind?: string;
+  /** Id of the cluster */
+  id?: string;
+  /** Metadata of the record */
+  metadata?: MetadataEntity;
+  /** Display name of the cluster */
+  display_name?: string;
+  /** Specification of the cluster */
+  spec?: ClusterSpecEntity;
+  /** Specification of the cluster */
+  status?: ClusterStatusEntity;
+}
+export const ClusterRecord = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    kind: S.optional(S.String),
+    id: S.optional(S.String),
+    metadata: S.optional(MetadataEntity),
+    display_name: S.optional(S.String),
+    spec: S.optional(ClusterSpecEntity),
+    status: S.optional(ClusterStatusEntity),
+  }),
+).annotate({ identifier: "ClusterRecord" }) as any as S.Schema<ClusterRecord>;
+
+/** List of clusters */
+export type AccessListClusterSuccessResponseDataList = Array<ClusterRecord>;
+export const AccessListClusterSuccessResponseDataList = /*@__PURE__*/ S.Array(
+  ClusterRecord,
+) as any as S.Schema<AccessListClusterSuccessResponseDataList>;
+
+/** Details of the clusters returned on successful response */
+export interface AccessListClusterSuccessResponse {
+  /** Type of response */
+  kind?: string;
+  /** Metadata of the list */
+  metadata?: ConfluentListMetadata;
+  /** List of clusters */
+  data?: AccessListClusterSuccessResponseDataList;
+}
+export const AccessListClusterSuccessResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    kind: S.optional(S.String),
+    metadata: S.optional(ConfluentListMetadata),
+    data: S.optional(AccessListClusterSuccessResponseDataList),
+  }),
+).annotate({
+  identifier: "AccessListClusterSuccessResponse",
+}) as any as S.Schema<AccessListClusterSuccessResponse>;
+
+/** Search filters for the request */
+export type ListAccessEnvironmentsRequestSearchFiltersMap = {
+  [key: string]: string | undefined;
+};
+export const ListAccessEnvironmentsRequestSearchFiltersMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<ListAccessEnvironmentsRequestSearchFiltersMap>;
+
+export interface ListAccessEnvironmentsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Organization resource name */
+  organizationName: string;
+  /** Search filters for the request */
+  searchFilters?: ListAccessEnvironmentsRequestSearchFiltersMap;
+}
+export const ListAccessEnvironmentsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    organizationName: S.String.pipe(T.Label()),
+    searchFilters: S.optional(ListAccessEnvironmentsRequestSearchFiltersMap),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/access/default/listEnvironments",
+      code: 200,
+      apiVersion: "2024-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListAccessEnvironmentsRequest",
+}) as any as S.Schema<ListAccessEnvironmentsRequest>;
+
+/** Details about environment name, metadata and environment id of an environment */
+export interface EnvironmentRecord {
+  /** Type of environment */
+  kind?: string;
+  /** Id of the environment */
+  id?: string;
+  /** Metadata of the record */
+  metadata?: MetadataEntity;
+  /** Display name of the user */
+  display_name?: string;
+}
+export const EnvironmentRecord = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    kind: S.optional(S.String),
+    id: S.optional(S.String),
+    metadata: S.optional(MetadataEntity),
+    display_name: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "EnvironmentRecord",
+}) as any as S.Schema<EnvironmentRecord>;
+
+/** Environment list data */
+export type AccessListEnvironmentsSuccessResponseDataList =
+  Array<EnvironmentRecord>;
+export const AccessListEnvironmentsSuccessResponseDataList =
+  /*@__PURE__*/ S.Array(
+    EnvironmentRecord,
+  ) as any as S.Schema<AccessListEnvironmentsSuccessResponseDataList>;
+
+/** Details of the environments returned on successful response */
+export interface AccessListEnvironmentsSuccessResponse {
+  /** Type of response */
+  kind?: string;
+  /** Metadata of the environment list */
+  metadata?: ConfluentListMetadata;
+  /** Environment list data */
+  data?: AccessListEnvironmentsSuccessResponseDataList;
+}
+export const AccessListEnvironmentsSuccessResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      kind: S.optional(S.String),
+      metadata: S.optional(ConfluentListMetadata),
+      data: S.optional(AccessListEnvironmentsSuccessResponseDataList),
+    }),
+).annotate({
+  identifier: "AccessListEnvironmentsSuccessResponse",
+}) as any as S.Schema<AccessListEnvironmentsSuccessResponse>;
+
+/** Search filters for the request */
+export type ListAccessInvitationsRequestSearchFiltersMap = {
+  [key: string]: string | undefined;
+};
+export const ListAccessInvitationsRequestSearchFiltersMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<ListAccessInvitationsRequestSearchFiltersMap>;
+
+export interface ListAccessInvitationsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Organization resource name */
+  organizationName: string;
+  /** Search filters for the request */
+  searchFilters?: ListAccessInvitationsRequestSearchFiltersMap;
+}
+export const ListAccessInvitationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    organizationName: S.String.pipe(T.Label()),
+    searchFilters: S.optional(ListAccessInvitationsRequestSearchFiltersMap),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/access/default/listInvitations",
+      code: 200,
+      apiVersion: "2024-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListAccessInvitationsRequest",
+}) as any as S.Schema<ListAccessInvitationsRequest>;
+
+/** Data of the invitations list */
+export type AccessListInvitationsSuccessResponseDataList =
+  Array<InvitationRecord>;
+export const AccessListInvitationsSuccessResponseDataList =
+  /*@__PURE__*/ S.Array(
+    InvitationRecord,
+  ) as any as S.Schema<AccessListInvitationsSuccessResponseDataList>;
+
+/** List invitations success response */
+export interface AccessListInvitationsSuccessResponse {
+  /** Type of response */
+  kind?: string;
+  /** Metadata of the list */
+  metadata?: ConfluentListMetadata;
+  /** Data of the invitations list */
+  data?: AccessListInvitationsSuccessResponseDataList;
+}
+export const AccessListInvitationsSuccessResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      kind: S.optional(S.String),
+      metadata: S.optional(ConfluentListMetadata),
+      data: S.optional(AccessListInvitationsSuccessResponseDataList),
+    }),
+).annotate({
+  identifier: "AccessListInvitationsSuccessResponse",
+}) as any as S.Schema<AccessListInvitationsSuccessResponse>;
+
+/** Search filters for the request */
+export type ListAccessRoleBindingsRequestSearchFiltersMap = {
+  [key: string]: string | undefined;
+};
+export const ListAccessRoleBindingsRequestSearchFiltersMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<ListAccessRoleBindingsRequestSearchFiltersMap>;
+
+export interface ListAccessRoleBindingsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Organization resource name */
+  organizationName: string;
+  /** Search filters for the request */
+  searchFilters?: ListAccessRoleBindingsRequestSearchFiltersMap;
+}
+export const ListAccessRoleBindingsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    organizationName: S.String.pipe(T.Label()),
+    searchFilters: S.optional(ListAccessRoleBindingsRequestSearchFiltersMap),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/access/default/listRoleBindings",
+      code: 200,
+      apiVersion: "2024-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListAccessRoleBindingsRequest",
+}) as any as S.Schema<ListAccessRoleBindingsRequest>;
+
+/** List of role binding */
+export type AccessListRoleBindingsSuccessResponseDataList =
+  Array<RoleBindingRecord>;
+export const AccessListRoleBindingsSuccessResponseDataList =
+  /*@__PURE__*/ S.Array(
+    RoleBindingRecord,
+  ) as any as S.Schema<AccessListRoleBindingsSuccessResponseDataList>;
+
+/** Details of the role bindings returned on successful response */
+export interface AccessListRoleBindingsSuccessResponse {
+  /** Type of response */
+  kind?: string;
+  /** Metadata of the list */
+  metadata?: ConfluentListMetadata;
+  /** List of role binding */
+  data?: AccessListRoleBindingsSuccessResponseDataList;
+}
+export const AccessListRoleBindingsSuccessResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      kind: S.optional(S.String),
+      metadata: S.optional(ConfluentListMetadata),
+      data: S.optional(AccessListRoleBindingsSuccessResponseDataList),
+    }),
+).annotate({
+  identifier: "AccessListRoleBindingsSuccessResponse",
+}) as any as S.Schema<AccessListRoleBindingsSuccessResponse>;
+
+/** Search filters for the request */
+export type ListAccessServiceAccountsRequestSearchFiltersMap = {
+  [key: string]: string | undefined;
+};
+export const ListAccessServiceAccountsRequestSearchFiltersMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<ListAccessServiceAccountsRequestSearchFiltersMap>;
+
+export interface ListAccessServiceAccountsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Organization resource name */
+  organizationName: string;
+  /** Search filters for the request */
+  searchFilters?: ListAccessServiceAccountsRequestSearchFiltersMap;
+}
+export const ListAccessServiceAccountsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    organizationName: S.String.pipe(T.Label()),
+    searchFilters: S.optional(ListAccessServiceAccountsRequestSearchFiltersMap),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/access/default/listServiceAccounts",
+      code: 200,
+      apiVersion: "2024-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListAccessServiceAccountsRequest",
+}) as any as S.Schema<ListAccessServiceAccountsRequest>;
+
+/** Record of the service account */
+export interface ServiceAccountRecord {
+  /** Type of account */
+  kind?: string;
+  /** Id of the service account */
+  id?: string;
+  /** Metadata of the record */
+  metadata?: MetadataEntity;
+  /** Name of the service account */
+  display_name?: string;
+  /** Description of the service account */
+  description?: string;
+}
+export const ServiceAccountRecord = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    kind: S.optional(S.String),
+    id: S.optional(S.String),
+    metadata: S.optional(MetadataEntity),
+    display_name: S.optional(S.String),
+    description: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ServiceAccountRecord",
+}) as any as S.Schema<ServiceAccountRecord>;
+
+/** Data of the service accounts list */
+export type AccessListServiceAccountsSuccessResponseDataList =
+  Array<ServiceAccountRecord>;
+export const AccessListServiceAccountsSuccessResponseDataList =
+  /*@__PURE__*/ S.Array(
+    ServiceAccountRecord,
+  ) as any as S.Schema<AccessListServiceAccountsSuccessResponseDataList>;
+
+/** List service accounts success response */
+export interface AccessListServiceAccountsSuccessResponse {
+  /** Type of response */
+  kind?: string;
+  /** Metadata of the list */
+  metadata?: ConfluentListMetadata;
+  /** Data of the service accounts list */
+  data?: AccessListServiceAccountsSuccessResponseDataList;
+}
+export const AccessListServiceAccountsSuccessResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      kind: S.optional(S.String),
+      metadata: S.optional(ConfluentListMetadata),
+      data: S.optional(AccessListServiceAccountsSuccessResponseDataList),
+    }),
+).annotate({
+  identifier: "AccessListServiceAccountsSuccessResponse",
+}) as any as S.Schema<AccessListServiceAccountsSuccessResponse>;
+
+/** Search filters for the request */
+export type ListAccessUsersRequestSearchFiltersMap = {
+  [key: string]: string | undefined;
+};
+export const ListAccessUsersRequestSearchFiltersMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ListAccessUsersRequestSearchFiltersMap>;
+
+export interface ListAccessUsersRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Organization resource name */
+  organizationName: string;
+  /** Search filters for the request */
+  searchFilters?: ListAccessUsersRequestSearchFiltersMap;
+}
+export const ListAccessUsersRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    organizationName: S.String.pipe(T.Label()),
+    searchFilters: S.optional(ListAccessUsersRequestSearchFiltersMap),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/access/default/listUsers",
+      code: 200,
+      apiVersion: "2024-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListAccessUsersRequest",
+}) as any as S.Schema<ListAccessUsersRequest>;
+
+/** Record of the user */
+export interface UserRecord {
+  /** Type of account */
+  kind?: string;
+  /** Id of the user */
+  id?: string;
+  /** Metadata of the record */
+  metadata?: MetadataEntity;
+  /** Email of the user */
+  email?: string;
+  /** Name of the user */
+  full_name?: string;
+  /** Auth type of the user */
+  auth_type?: string;
+}
+export const UserRecord = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    kind: S.optional(S.String),
+    id: S.optional(S.String),
+    metadata: S.optional(MetadataEntity),
+    email: S.optional(S.String),
+    full_name: S.optional(S.String),
+    auth_type: S.optional(S.String),
+  }),
+).annotate({ identifier: "UserRecord" }) as any as S.Schema<UserRecord>;
+
+/** Data of the users list */
+export type AccessListUsersSuccessResponseDataList = Array<UserRecord>;
+export const AccessListUsersSuccessResponseDataList = /*@__PURE__*/ S.Array(
+  UserRecord,
+) as any as S.Schema<AccessListUsersSuccessResponseDataList>;
+
+/** List users success response */
+export interface AccessListUsersSuccessResponse {
+  /** Type of response */
+  kind?: string;
+  /** Metadata of the list */
+  metadata?: ConfluentListMetadata;
+  /** Data of the users list */
+  data?: AccessListUsersSuccessResponseDataList;
+}
+export const AccessListUsersSuccessResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    kind: S.optional(S.String),
+    metadata: S.optional(ConfluentListMetadata),
+    data: S.optional(AccessListUsersSuccessResponseDataList),
+  }),
+).annotate({
+  identifier: "AccessListUsersSuccessResponse",
+}) as any as S.Schema<AccessListUsersSuccessResponse>;
+
+export interface ListConnectorRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3516,7 +2791,656 @@ export interface TopicsListRequest {
   /** An opaque pagination token to fetch the next set of records */
   pageToken?: string;
 }
-export const TopicsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListConnectorRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    organizationName: S.String.pipe(T.Label()),
+    environmentId: S.String.pipe(T.Label()),
+    clusterId: S.String.pipe(T.Label()),
+    pageSize: S.optional(S.Number.pipe(T.Query())),
+    pageToken: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/environments/{environmentId}/clusters/{clusterId}/connectors",
+      code: 200,
+      apiVersion: "2024-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListConnectorRequest",
+}) as any as S.Schema<ListConnectorRequest>;
+
+/** Details of connector record */
+export interface ConnectorResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of the Connector */
+  properties: ConnectorResourceProperties;
+}
+export const ConnectorResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: ConnectorResourceProperties,
+  }),
+).annotate({
+  identifier: "ConnectorResource",
+}) as any as S.Schema<ConnectorResource>;
+
+/** The ConnectorResource items on this page */
+export type ListConnectorsSuccessResponseValueList = Array<ConnectorResource>;
+export const ListConnectorsSuccessResponseValueList = /*@__PURE__*/ S.Array(
+  ConnectorResource,
+) as any as S.Schema<ListConnectorsSuccessResponseValueList>;
+
+/** Result of GET request to list connectors in the cluster of a confluent organization */
+export interface ListConnectorsSuccessResponse {
+  /** The ConnectorResource items on this page */
+  value: ListConnectorsSuccessResponseValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ListConnectorsSuccessResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ListConnectorsSuccessResponseValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ListConnectorsSuccessResponse",
+}) as any as S.Schema<ListConnectorsSuccessResponse>;
+
+export interface ListMarketplaceAgreementsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+}
+export const ListMarketplaceAgreementsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Confluent/agreements",
+      code: 200,
+      apiVersion: "2024-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListMarketplaceAgreementsRequest",
+}) as any as S.Schema<ListMarketplaceAgreementsRequest>;
+
+/** The ConfluentAgreementResource items on this page */
+export type ConfluentAgreementResourceListResponseValueList =
+  Array<ConfluentAgreementResource>;
+export const ConfluentAgreementResourceListResponseValueList =
+  /*@__PURE__*/ S.Array(
+    ConfluentAgreementResource,
+  ) as any as S.Schema<ConfluentAgreementResourceListResponseValueList>;
+
+/** Response of a list operation. */
+export interface ConfluentAgreementResourceListResponse {
+  /** The ConfluentAgreementResource items on this page */
+  value: ConfluentAgreementResourceListResponseValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ConfluentAgreementResourceListResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      value: ConfluentAgreementResourceListResponseValueList,
+      nextLink: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "ConfluentAgreementResourceListResponse",
+}) as any as S.Schema<ConfluentAgreementResourceListResponse>;
+
+export interface ListOrganizationByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const ListOrganizationByResourceGroupRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations",
+        code: 200,
+        apiVersion: "2024-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListOrganizationByResourceGroupRequest",
+}) as any as S.Schema<ListOrganizationByResourceGroupRequest>;
+
+/** Resource tags. */
+export type OrganizationResourceTagsMap = { [key: string]: string | undefined };
+export const OrganizationResourceTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<OrganizationResourceTagsMap>;
+
+/** Organization resource. */
+export interface OrganizationResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: OrganizationResourceTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Organization resource properties */
+  properties: OrganizationResourceProperties;
+}
+export const OrganizationResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(OrganizationResourceTagsMap),
+    location: S.String,
+    properties: OrganizationResourceProperties,
+  }),
+).annotate({
+  identifier: "OrganizationResource",
+}) as any as S.Schema<OrganizationResource>;
+
+/** The OrganizationResource items on this page */
+export type OrganizationResourceListResultValueList =
+  Array<OrganizationResource>;
+export const OrganizationResourceListResultValueList = /*@__PURE__*/ S.Array(
+  OrganizationResource,
+) as any as S.Schema<OrganizationResourceListResultValueList>;
+
+/** The response of a OrganizationResource list operation. */
+export interface OrganizationResourceListResult {
+  /** The OrganizationResource items on this page */
+  value: OrganizationResourceListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const OrganizationResourceListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: OrganizationResourceListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OrganizationResourceListResult",
+}) as any as S.Schema<OrganizationResourceListResult>;
+
+export interface ListOrganizationBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+}
+export const ListOrganizationBySubscriptionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Confluent/organizations",
+        code: 200,
+        apiVersion: "2024-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListOrganizationBySubscriptionRequest",
+}) as any as S.Schema<ListOrganizationBySubscriptionRequest>;
+
+export interface ListOrganizationClustersRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Organization resource name */
+  organizationName: string;
+  /** Confluent environment id */
+  environmentId: string;
+  /** Pagination size */
+  pageSize?: number;
+  /** An opaque pagination token to fetch the next set of records */
+  pageToken?: string;
+}
+export const ListOrganizationClustersRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    organizationName: S.String.pipe(T.Label()),
+    environmentId: S.String.pipe(T.Label()),
+    pageSize: S.optional(S.Number.pipe(T.Query())),
+    pageToken: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/environments/{environmentId}/clusters",
+      code: 200,
+      apiVersion: "2024-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListOrganizationClustersRequest",
+}) as any as S.Schema<ListOrganizationClustersRequest>;
+
+/** Details of cluster record */
+export interface SCClusterRecord {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Type of cluster */
+  kind?: string;
+  /** Cluster Properties */
+  properties?: ClusterProperties;
+}
+export const SCClusterRecord = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    kind: S.optional(S.String),
+    properties: S.optional(ClusterProperties),
+  }),
+).annotate({
+  identifier: "SCClusterRecord",
+}) as any as S.Schema<SCClusterRecord>;
+
+/** The SCClusterRecord items on this page */
+export type ListClustersSuccessResponseValueList = Array<SCClusterRecord>;
+export const ListClustersSuccessResponseValueList = /*@__PURE__*/ S.Array(
+  SCClusterRecord,
+) as any as S.Schema<ListClustersSuccessResponseValueList>;
+
+/** Result of GET request to list clusters in the environment of a confluent organization */
+export interface ListClustersSuccessResponse {
+  /** The SCClusterRecord items on this page */
+  value: ListClustersSuccessResponseValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ListClustersSuccessResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ListClustersSuccessResponseValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ListClustersSuccessResponse",
+}) as any as S.Schema<ListClustersSuccessResponse>;
+
+export interface ListOrganizationEnvironmentsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Organization resource name */
+  organizationName: string;
+  /** Pagination size */
+  pageSize?: number;
+  /** An opaque pagination token to fetch the next set of records */
+  pageToken?: string;
+}
+export const ListOrganizationEnvironmentsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    organizationName: S.String.pipe(T.Label()),
+    pageSize: S.optional(S.Number.pipe(T.Query())),
+    pageToken: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/environments",
+      code: 200,
+      apiVersion: "2024-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListOrganizationEnvironmentsRequest",
+}) as any as S.Schema<ListOrganizationEnvironmentsRequest>;
+
+/** Details about environment name, metadata and environment id of an environment */
+export interface SCEnvironmentRecord {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Type of environment */
+  kind?: string;
+  /** Environment properties */
+  properties?: EnvironmentProperties;
+}
+export const SCEnvironmentRecord = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    kind: S.optional(S.String),
+    properties: S.optional(EnvironmentProperties),
+  }),
+).annotate({
+  identifier: "SCEnvironmentRecord",
+}) as any as S.Schema<SCEnvironmentRecord>;
+
+/** The SCEnvironmentRecord items on this page */
+export type GetEnvironmentsResponseValueList = Array<SCEnvironmentRecord>;
+export const GetEnvironmentsResponseValueList = /*@__PURE__*/ S.Array(
+  SCEnvironmentRecord,
+) as any as S.Schema<GetEnvironmentsResponseValueList>;
+
+/** Result of GET request to list Confluent operations. */
+export interface GetEnvironmentsResponse {
+  /** The SCEnvironmentRecord items on this page */
+  value: GetEnvironmentsResponseValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const GetEnvironmentsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: GetEnvironmentsResponseValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetEnvironmentsResponse",
+}) as any as S.Schema<GetEnvironmentsResponse>;
+
+export interface ListOrganizationOperationsRequest {}
+export const ListOrganizationOperationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.Confluent/operations",
+      code: 200,
+      apiVersion: "2024-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListOrganizationOperationsRequest",
+}) as any as S.Schema<ListOrganizationOperationsRequest>;
+
+/** The object that represents the operation. */
+export interface OperationDisplay {
+  /** Service provider: Microsoft.Confluent */
+  provider?: string;
+  /** Type on which the operation is performed, e.g., 'clusters'. */
+  resource?: string;
+  /** Operation type, e.g., read, write, delete, etc. */
+  operation?: string;
+  /** Description of the operation, e.g., 'Write confluent'. */
+  description?: string;
+}
+export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provider: S.optional(S.String),
+    resource: S.optional(S.String),
+    operation: S.optional(S.String),
+    description: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationDisplay",
+}) as any as S.Schema<OperationDisplay>;
+
+/** An Confluent REST API operation. */
+export interface OperationResult {
+  /** Operation name: {provider}/{resource}/{operation} */
+  name?: string;
+  /** The object that represents the operation. */
+  display?: OperationDisplay;
+  /** Indicates whether the operation is a data action */
+  isDataAction?: boolean;
+}
+export const OperationResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    display: S.optional(OperationDisplay),
+    isDataAction: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "OperationResult",
+}) as any as S.Schema<OperationResult>;
+
+/** List of Confluent operations supported by the Microsoft.Confluent provider. */
+export type OperationListResultValueList = Array<OperationResult>;
+export const OperationListResultValueList = /*@__PURE__*/ S.Array(
+  OperationResult,
+) as any as S.Schema<OperationListResultValueList>;
+
+/** Result of GET request to list Confluent operations. */
+export interface OperationListResult {
+  /** List of Confluent operations supported by the Microsoft.Confluent provider. */
+  value: OperationListResultValueList;
+  /** URL to get the next set of operation list results if there are any. */
+  nextLink?: string;
+}
+export const OperationListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: OperationListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationListResult",
+}) as any as S.Schema<OperationListResult>;
+
+/** Search filters for the request */
+export type ListOrganizationRegionsRequestSearchFiltersMap = {
+  [key: string]: string | undefined;
+};
+export const ListOrganizationRegionsRequestSearchFiltersMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<ListOrganizationRegionsRequestSearchFiltersMap>;
+
+export interface ListOrganizationRegionsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Organization resource name */
+  organizationName: string;
+  /** Search filters for the request */
+  searchFilters?: ListOrganizationRegionsRequestSearchFiltersMap;
+}
+export const ListOrganizationRegionsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    organizationName: S.String.pipe(T.Label()),
+    searchFilters: S.optional(ListOrganizationRegionsRequestSearchFiltersMap),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/listRegions",
+      code: 200,
+      apiVersion: "2024-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListOrganizationRegionsRequest",
+}) as any as S.Schema<ListOrganizationRegionsRequest>;
+
+export type RegionSpecEntityPackagesList = Array<string>;
+export const RegionSpecEntityPackagesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<RegionSpecEntityPackagesList>;
+
+/** Region spec details */
+export interface RegionSpecEntity {
+  /** Display Name of the region */
+  name?: string;
+  /** Cloud provider name */
+  cloud?: string;
+  /** Region name */
+  regionName?: string;
+  packages?: RegionSpecEntityPackagesList;
+}
+export const RegionSpecEntity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    cloud: S.optional(S.String),
+    regionName: S.optional(S.String),
+    packages: S.optional(RegionSpecEntityPackagesList),
+  }),
+).annotate({
+  identifier: "RegionSpecEntity",
+}) as any as S.Schema<RegionSpecEntity>;
+
+/** Region Properties */
+export interface RegionProperties {
+  /** Metadata of the record */
+  metadata?: SCMetadataEntity;
+  /** Specification of the region */
+  spec?: RegionSpecEntity;
+}
+export const RegionProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    metadata: S.optional(SCMetadataEntity),
+    spec: S.optional(RegionSpecEntity),
+  }),
+).annotate({
+  identifier: "RegionProperties",
+}) as any as S.Schema<RegionProperties>;
+
+/** Details of region record */
+export interface RegionRecord {
+  /** Kind of the cluster */
+  kind?: string;
+  /** Id of the cluster */
+  id?: string;
+  /** Region Properties */
+  properties?: RegionProperties;
+}
+export const RegionRecord = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    kind: S.optional(S.String),
+    id: S.optional(S.String),
+    properties: S.optional(RegionProperties),
+  }),
+).annotate({ identifier: "RegionRecord" }) as any as S.Schema<RegionRecord>;
+
+/** List of regions supported by confluent */
+export type ListRegionsSuccessResponseDataList = Array<RegionRecord>;
+export const ListRegionsSuccessResponseDataList = /*@__PURE__*/ S.Array(
+  RegionRecord,
+) as any as S.Schema<ListRegionsSuccessResponseDataList>;
+
+/** Result of POST request to list regions supported by confluent */
+export interface ListRegionsSuccessResponse {
+  /** List of regions supported by confluent */
+  data?: ListRegionsSuccessResponseDataList;
+}
+export const ListRegionsSuccessResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: S.optional(ListRegionsSuccessResponseDataList),
+  }),
+).annotate({
+  identifier: "ListRegionsSuccessResponse",
+}) as any as S.Schema<ListRegionsSuccessResponse>;
+
+export interface ListOrganizationSchemaRegistryClustersRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Organization resource name */
+  organizationName: string;
+  /** Confluent environment id */
+  environmentId: string;
+  /** Pagination size */
+  pageSize?: number;
+  /** An opaque pagination token to fetch the next set of records */
+  pageToken?: string;
+}
+export const ListOrganizationSchemaRegistryClustersRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      organizationName: S.String.pipe(T.Label()),
+      environmentId: S.String.pipe(T.Label()),
+      pageSize: S.optional(S.Number.pipe(T.Query())),
+      pageToken: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/environments/{environmentId}/schemaRegistryClusters",
+        code: 200,
+        apiVersion: "2024-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListOrganizationSchemaRegistryClustersRequest",
+  }) as any as S.Schema<ListOrganizationSchemaRegistryClustersRequest>;
+
+/** The SchemaRegistryClusterRecord items on this page */
+export type ListSchemaRegistryClustersResponseValueList =
+  Array<SchemaRegistryClusterRecord>;
+export const ListSchemaRegistryClustersResponseValueList =
+  /*@__PURE__*/ S.Array(
+    SchemaRegistryClusterRecord,
+  ) as any as S.Schema<ListSchemaRegistryClustersResponseValueList>;
+
+/** Result of GET request to list schema registry clusters in the environment of a confluent organization */
+export interface ListSchemaRegistryClustersResponse {
+  /** The SchemaRegistryClusterRecord items on this page */
+  value: ListSchemaRegistryClustersResponseValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ListSchemaRegistryClustersResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ListSchemaRegistryClustersResponseValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ListSchemaRegistryClustersResponse",
+}) as any as S.Schema<ListSchemaRegistryClustersResponse>;
+
+export interface ListTopicsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Organization resource name */
+  organizationName: string;
+  /** Confluent environment id */
+  environmentId: string;
+  /** Confluent kafka or schema registry cluster id */
+  clusterId: string;
+  /** Pagination size */
+  pageSize?: number;
+  /** An opaque pagination token to fetch the next set of records */
+  pageToken?: string;
+}
+export const ListTopicsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -3534,8 +3458,8 @@ export const TopicsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "TopicsListRequest",
-}) as any as S.Schema<TopicsListRequest>;
+  identifier: "ListTopicsRequest",
+}) as any as S.Schema<ListTopicsRequest>;
 
 /** Details of topic record */
 export interface TopicRecord {
@@ -3582,17 +3506,93 @@ export const ListTopicsSuccessResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListTopicsSuccessResponse",
 }) as any as S.Schema<ListTopicsSuccessResponse>;
 
-/** Resource tags. */
-export type ValidationsValidateOrganizationRequestTagsMap = {
+/** ARM resource tags */
+export type UpdateOrganizationRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ValidationsValidateOrganizationRequestTagsMap =
+export const UpdateOrganizationRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateOrganizationRequestTagsMap>;
+
+export interface UpdateOrganizationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Organization resource name */
+  organizationName: string;
+  /** ARM resource tags */
+  tags?: UpdateOrganizationRequestTagsMap;
+}
+export const UpdateOrganizationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    organizationName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateOrganizationRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}",
+      code: 200,
+      apiVersion: "2024-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateOrganizationRequest",
+}) as any as S.Schema<UpdateOrganizationRequest>;
+
+/** Resource tags. */
+export type UpdateOrganizationResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateOrganizationResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateOrganizationResponseTagsMap>;
+
+export interface UpdateOrganizationResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateOrganizationResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Organization resource properties */
+  properties: OrganizationResourceProperties;
+}
+export const UpdateOrganizationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateOrganizationResponseTagsMap),
+    location: S.String,
+    properties: OrganizationResourceProperties,
+  }),
+).annotate({
+  identifier: "UpdateOrganizationResponse",
+}) as any as S.Schema<UpdateOrganizationResponse>;
+
+/** Resource tags. */
+export type ValidateValidationOrganizationRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const ValidateValidationOrganizationRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ValidationsValidateOrganizationRequestTagsMap>;
+  ) as any as S.Schema<ValidateValidationOrganizationRequestTagsMap>;
 
-export interface ValidationsValidateOrganizationRequest {
+export interface ValidateValidationOrganizationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3600,19 +3600,19 @@ export interface ValidationsValidateOrganizationRequest {
   /** Organization resource name */
   organizationName: string;
   /** Resource tags. */
-  tags?: ValidationsValidateOrganizationRequestTagsMap;
+  tags?: ValidateValidationOrganizationRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Organization resource properties */
   properties: OrganizationResourcePropertiesInput;
 }
-export const ValidationsValidateOrganizationRequest = /*@__PURE__*/ S.suspend(
+export const ValidateValidationOrganizationRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       organizationName: S.String.pipe(T.Label()),
-      tags: S.optional(ValidationsValidateOrganizationRequestTagsMap),
+      tags: S.optional(ValidateValidationOrganizationRequestTagsMap),
       location: S.String,
       properties: OrganizationResourcePropertiesInput,
     }).pipe(
@@ -3624,20 +3624,20 @@ export const ValidationsValidateOrganizationRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ValidationsValidateOrganizationRequest",
-}) as any as S.Schema<ValidationsValidateOrganizationRequest>;
+  identifier: "ValidateValidationOrganizationRequest",
+}) as any as S.Schema<ValidateValidationOrganizationRequest>;
 
 /** Resource tags. */
-export type ValidationsValidateOrganizationResponseTagsMap = {
+export type ValidateValidationOrganizationResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ValidationsValidateOrganizationResponseTagsMap =
+export const ValidateValidationOrganizationResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ValidationsValidateOrganizationResponseTagsMap>;
+  ) as any as S.Schema<ValidateValidationOrganizationResponseTagsMap>;
 
-export interface ValidationsValidateOrganizationResponse {
+export interface ValidateValidationOrganizationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -3647,38 +3647,38 @@ export interface ValidationsValidateOrganizationResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ValidationsValidateOrganizationResponseTagsMap;
+  tags?: ValidateValidationOrganizationResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Organization resource properties */
   properties: OrganizationResourceProperties;
 }
-export const ValidationsValidateOrganizationResponse = /*@__PURE__*/ S.suspend(
+export const ValidateValidationOrganizationResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      tags: S.optional(ValidationsValidateOrganizationResponseTagsMap),
+      tags: S.optional(ValidateValidationOrganizationResponseTagsMap),
       location: S.String,
       properties: OrganizationResourceProperties,
     }),
 ).annotate({
-  identifier: "ValidationsValidateOrganizationResponse",
-}) as any as S.Schema<ValidationsValidateOrganizationResponse>;
+  identifier: "ValidateValidationOrganizationResponse",
+}) as any as S.Schema<ValidateValidationOrganizationResponse>;
 
 /** Resource tags. */
-export type ValidationsValidateOrganizationV2RequestTagsMap = {
+export type ValidateValidationOrganizationV2RequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ValidationsValidateOrganizationV2RequestTagsMap =
+export const ValidateValidationOrganizationV2RequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ValidationsValidateOrganizationV2RequestTagsMap>;
+  ) as any as S.Schema<ValidateValidationOrganizationV2RequestTagsMap>;
 
-export interface ValidationsValidateOrganizationV2Request {
+export interface ValidateValidationOrganizationV2Request {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3686,19 +3686,19 @@ export interface ValidationsValidateOrganizationV2Request {
   /** Organization resource name */
   organizationName: string;
   /** Resource tags. */
-  tags?: ValidationsValidateOrganizationV2RequestTagsMap;
+  tags?: ValidateValidationOrganizationV2RequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Organization resource properties */
   properties: OrganizationResourcePropertiesInput;
 }
-export const ValidationsValidateOrganizationV2Request = /*@__PURE__*/ S.suspend(
+export const ValidateValidationOrganizationV2Request = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       organizationName: S.String.pipe(T.Label()),
-      tags: S.optional(ValidationsValidateOrganizationV2RequestTagsMap),
+      tags: S.optional(ValidateValidationOrganizationV2RequestTagsMap),
       location: S.String,
       properties: OrganizationResourcePropertiesInput,
     }).pipe(
@@ -3710,8 +3710,8 @@ export const ValidationsValidateOrganizationV2Request = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ValidationsValidateOrganizationV2Request",
-}) as any as S.Schema<ValidationsValidateOrganizationV2Request>;
+  identifier: "ValidateValidationOrganizationV2Request",
+}) as any as S.Schema<ValidateValidationOrganizationV2Request>;
 
 /** Info from the response */
 export type ValidationResponseInfoMap = { [key: string]: string | undefined };
@@ -3733,96 +3733,6 @@ export const ValidationResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ValidationResponse",
 }) as any as S.Schema<ValidationResponse>;
 
-export type AccessCreateRoleBindingError = AzureOpError;
-/** Organization role bindings */
-export const AccessCreateRoleBinding: API.OperationMethod<
-  AccessCreateRoleBindingRequest,
-  RoleBindingRecord,
-  AccessCreateRoleBindingError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccessCreateRoleBindingRequest,
-  output: RoleBindingRecord,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccessDeleteRoleBindingError = AzureOpError;
-/** Organization role bindings */
-export const AccessDeleteRoleBinding: API.OperationMethod<
-  AccessDeleteRoleBindingRequest,
-  AccessDeleteRoleBindingResponse,
-  AccessDeleteRoleBindingError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccessDeleteRoleBindingRequest,
-  output: AccessDeleteRoleBindingResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccessInviteUserError = AzureOpError;
-/** Invite user to the organization */
-export const AccessInviteUser: API.OperationMethod<
-  AccessInviteUserRequest,
-  InvitationRecord,
-  AccessInviteUserError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccessInviteUserRequest,
-  output: InvitationRecord,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccessListClustersError = AzureOpError;
-/** Cluster details */
-export const AccessListClusters: API.OperationMethod<
-  AccessListClustersRequest,
-  AccessListClusterSuccessResponse,
-  AccessListClustersError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccessListClustersRequest,
-  output: AccessListClusterSuccessResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccessListEnvironmentsError = AzureOpError;
-/** Environment list of an organization */
-export const AccessListEnvironments: API.OperationMethod<
-  AccessListEnvironmentsRequest,
-  AccessListEnvironmentsSuccessResponse,
-  AccessListEnvironmentsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccessListEnvironmentsRequest,
-  output: AccessListEnvironmentsSuccessResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccessListInvitationsError = AzureOpError;
-/** Organization accounts invitation details */
-export const AccessListInvitations: API.OperationMethod<
-  AccessListInvitationsRequest,
-  AccessListInvitationsSuccessResponse,
-  AccessListInvitationsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccessListInvitationsRequest,
-  output: AccessListInvitationsSuccessResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type AccessListRoleBindingNameListError = AzureOpError;
 /** Organization role bindings */
 export const AccessListRoleBindingNameList: API.OperationMethod<
@@ -3833,51 +3743,6 @@ export const AccessListRoleBindingNameList: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: AccessListRoleBindingNameListRequest,
   output: AccessRoleBindingNameListSuccessResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccessListRoleBindingsError = AzureOpError;
-/** Organization role bindings */
-export const AccessListRoleBindings: API.OperationMethod<
-  AccessListRoleBindingsRequest,
-  AccessListRoleBindingsSuccessResponse,
-  AccessListRoleBindingsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccessListRoleBindingsRequest,
-  output: AccessListRoleBindingsSuccessResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccessListServiceAccountsError = AzureOpError;
-/** Organization service accounts details */
-export const AccessListServiceAccounts: API.OperationMethod<
-  AccessListServiceAccountsRequest,
-  AccessListServiceAccountsSuccessResponse,
-  AccessListServiceAccountsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccessListServiceAccountsRequest,
-  output: AccessListServiceAccountsSuccessResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccessListUsersError = AzureOpError;
-/** Organization users details */
-export const AccessListUsers: API.OperationMethod<
-  AccessListUsersRequest,
-  AccessListUsersSuccessResponse,
-  AccessListUsersError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccessListUsersRequest,
-  output: AccessListUsersSuccessResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3898,21 +3763,6 @@ export const ClusterCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ClusterDeleteError = AzureOpError;
-/** Delete confluent cluster by id */
-export const ClusterDelete: API.OperationMethod<
-  ClusterDeleteRequest,
-  ClusterDeleteResponse,
-  ClusterDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClusterDeleteRequest,
-  output: ClusterDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ConnectorCreateOrUpdateError = AzureOpError;
 /** Create confluent connector by Name */
 export const ConnectorCreateOrUpdate: API.OperationMethod<
@@ -3928,46 +3778,181 @@ export const ConnectorCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ConnectorDeleteError = AzureOpError;
+export type CreateAccessRoleBindingError = AzureOpError;
+/** Organization role bindings */
+export const CreateAccessRoleBinding: API.OperationMethod<
+  CreateAccessRoleBindingRequest,
+  RoleBindingRecord,
+  CreateAccessRoleBindingError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateAccessRoleBindingRequest,
+  output: RoleBindingRecord,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateMarketplaceAgreementError = AzureOpError;
+/** Create Confluent Marketplace agreement in the subscription. Create Confluent Marketplace agreement in the subscription. */
+export const CreateMarketplaceAgreement: API.OperationMethod<
+  CreateMarketplaceAgreementRequest,
+  ConfluentAgreementResource,
+  CreateMarketplaceAgreementError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateMarketplaceAgreementRequest,
+  output: ConfluentAgreementResource,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateOrganizationError = AzureOpError;
+/** Create Organization resource */
+export const CreateOrganization: API.OperationMethod<
+  CreateOrganizationRequest,
+  CreateOrganizationResponse,
+  CreateOrganizationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateOrganizationRequest,
+  output: CreateOrganizationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateOrganizationAPIKeyError = AzureOpError;
+/** Creates API key for a schema registry Cluster ID or Kafka Cluster ID under a environment */
+export const CreateOrganizationAPIKey: API.OperationMethod<
+  CreateOrganizationAPIKeyRequest,
+  APIKeyRecord,
+  CreateOrganizationAPIKeyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateOrganizationAPIKeyRequest,
+  output: APIKeyRecord,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateTopicError = AzureOpError;
+/** Create confluent topics by Name */
+export const CreateTopic: API.OperationMethod<
+  CreateTopicRequest,
+  CreateTopicResponse,
+  CreateTopicError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateTopicRequest,
+  output: CreateTopicResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteAccessRoleBindingError = AzureOpError;
+/** Organization role bindings */
+export const DeleteAccessRoleBinding: API.OperationMethod<
+  DeleteAccessRoleBindingRequest,
+  DeleteAccessRoleBindingResponse,
+  DeleteAccessRoleBindingError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteAccessRoleBindingRequest,
+  output: DeleteAccessRoleBindingResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteClusterError = AzureOpError;
+/** Delete confluent cluster by id */
+export const DeleteCluster: API.OperationMethod<
+  DeleteClusterRequest,
+  DeleteClusterResponse,
+  DeleteClusterError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteClusterRequest,
+  output: DeleteClusterResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteConnectorError = AzureOpError;
 /** Delete confluent connector by name */
-export const ConnectorDelete: API.OperationMethod<
-  ConnectorDeleteRequest,
-  ConnectorDeleteResponse,
-  ConnectorDeleteError,
+export const DeleteConnector: API.OperationMethod<
+  DeleteConnectorRequest,
+  DeleteConnectorResponse,
+  DeleteConnectorError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ConnectorDeleteRequest,
-  output: ConnectorDeleteResponse,
+  input: DeleteConnectorRequest,
+  output: DeleteConnectorResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ConnectorGetError = AzureOpError;
-/** Get confluent connector by Name */
-export const ConnectorGet: API.OperationMethod<
-  ConnectorGetRequest,
-  ConnectorGetResponse,
-  ConnectorGetError,
+export type DeleteEnvironmentError = AzureOpError;
+/** Delete confluent environment by id */
+export const DeleteEnvironment: API.OperationMethod<
+  DeleteEnvironmentRequest,
+  DeleteEnvironmentResponse,
+  DeleteEnvironmentError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ConnectorGetRequest,
-  output: ConnectorGetResponse,
+  input: DeleteEnvironmentRequest,
+  output: DeleteEnvironmentResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ConnectorListError = AzureOpError;
-/** Lists all the connectors in a cluster */
-export const ConnectorList: API.OperationMethod<
-  ConnectorListRequest,
-  ListConnectorsSuccessResponse,
-  ConnectorListError,
+export type DeleteOrganizationError = AzureOpError;
+/** Delete Organization resource */
+export const DeleteOrganization: API.OperationMethod<
+  DeleteOrganizationRequest,
+  DeleteOrganizationResponse,
+  DeleteOrganizationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ConnectorListRequest,
-  output: ListConnectorsSuccessResponse,
+  input: DeleteOrganizationRequest,
+  output: DeleteOrganizationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteOrganizationClusterAPIKeyError = AzureOpError;
+/** Deletes API key of a kafka or schema registry cluster */
+export const DeleteOrganizationClusterAPIKey: API.OperationMethod<
+  DeleteOrganizationClusterAPIKeyRequest,
+  DeleteOrganizationClusterAPIKeyResponse,
+  DeleteOrganizationClusterAPIKeyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteOrganizationClusterAPIKeyRequest,
+  output: DeleteOrganizationClusterAPIKeyResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteTopicError = AzureOpError;
+/** Delete confluent topic by name */
+export const DeleteTopic: API.OperationMethod<
+  DeleteTopicRequest,
+  DeleteTopicResponse,
+  DeleteTopicError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteTopicRequest,
+  output: DeleteTopicResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3988,390 +3973,405 @@ export const EnvironmentCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type EnvironmentDeleteError = AzureOpError;
-/** Delete confluent environment by id */
-export const EnvironmentDelete: API.OperationMethod<
-  EnvironmentDeleteRequest,
-  EnvironmentDeleteResponse,
-  EnvironmentDeleteError,
+export type GetConnectorError = AzureOpError;
+/** Get confluent connector by Name */
+export const GetConnector: API.OperationMethod<
+  GetConnectorRequest,
+  GetConnectorResponse,
+  GetConnectorError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EnvironmentDeleteRequest,
-  output: EnvironmentDeleteResponse,
+  input: GetConnectorRequest,
+  output: GetConnectorResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type MarketplaceAgreementsCreateError = AzureOpError;
-/** Create Confluent Marketplace agreement in the subscription. Create Confluent Marketplace agreement in the subscription. */
-export const MarketplaceAgreementsCreate: API.OperationMethod<
-  MarketplaceAgreementsCreateRequest,
-  ConfluentAgreementResource,
-  MarketplaceAgreementsCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MarketplaceAgreementsCreateRequest,
-  output: ConfluentAgreementResource,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MarketplaceAgreementsListError = AzureOpError;
-/** List Confluent marketplace agreements in the subscription. List Confluent marketplace agreements in the subscription. */
-export const MarketplaceAgreementsList: API.OperationMethod<
-  MarketplaceAgreementsListRequest,
-  ConfluentAgreementResourceListResponse,
-  MarketplaceAgreementsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MarketplaceAgreementsListRequest,
-  output: ConfluentAgreementResourceListResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OrganizationCreateError = AzureOpError;
-/** Create Organization resource */
-export const OrganizationCreate: API.OperationMethod<
-  OrganizationCreateRequest,
-  OrganizationCreateResponse,
-  OrganizationCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OrganizationCreateRequest,
-  output: OrganizationCreateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OrganizationCreateAPIKeyError = AzureOpError;
-/** Creates API key for a schema registry Cluster ID or Kafka Cluster ID under a environment */
-export const OrganizationCreateAPIKey: API.OperationMethod<
-  OrganizationCreateAPIKeyRequest,
-  APIKeyRecord,
-  OrganizationCreateAPIKeyError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OrganizationCreateAPIKeyRequest,
-  output: APIKeyRecord,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OrganizationDeleteError = AzureOpError;
-/** Delete Organization resource */
-export const OrganizationDelete: API.OperationMethod<
-  OrganizationDeleteRequest,
-  OrganizationDeleteResponse,
-  OrganizationDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OrganizationDeleteRequest,
-  output: OrganizationDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OrganizationDeleteClusterAPIKeyError = AzureOpError;
-/** Deletes API key of a kafka or schema registry cluster */
-export const OrganizationDeleteClusterAPIKey: API.OperationMethod<
-  OrganizationDeleteClusterAPIKeyRequest,
-  OrganizationDeleteClusterAPIKeyResponse,
-  OrganizationDeleteClusterAPIKeyError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OrganizationDeleteClusterAPIKeyRequest,
-  output: OrganizationDeleteClusterAPIKeyResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OrganizationGetError = AzureOpError;
+export type GetOrganizationError = AzureOpError;
 /** Get the properties of a specific Organization resource. */
-export const OrganizationGet: API.OperationMethod<
-  OrganizationGetRequest,
-  OrganizationGetResponse,
-  OrganizationGetError,
+export const GetOrganization: API.OperationMethod<
+  GetOrganizationRequest,
+  GetOrganizationResponse,
+  GetOrganizationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OrganizationGetRequest,
-  output: OrganizationGetResponse,
+  input: GetOrganizationRequest,
+  output: GetOrganizationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OrganizationGetClusterAPIKeyError = AzureOpError;
+export type GetOrganizationClusterAPIKeyError = AzureOpError;
 /** Get API key details of a kafka or schema registry cluster */
-export const OrganizationGetClusterAPIKey: API.OperationMethod<
-  OrganizationGetClusterAPIKeyRequest,
+export const GetOrganizationClusterAPIKey: API.OperationMethod<
+  GetOrganizationClusterAPIKeyRequest,
   APIKeyRecord,
-  OrganizationGetClusterAPIKeyError,
+  GetOrganizationClusterAPIKeyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OrganizationGetClusterAPIKeyRequest,
+  input: GetOrganizationClusterAPIKeyRequest,
   output: APIKeyRecord,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OrganizationGetClusterByIdError = AzureOpError;
+export type GetOrganizationClusterByIdError = AzureOpError;
 /** Get cluster by Id */
-export const OrganizationGetClusterById: API.OperationMethod<
-  OrganizationGetClusterByIdRequest,
-  OrganizationGetClusterByIdResponse,
-  OrganizationGetClusterByIdError,
+export const GetOrganizationClusterById: API.OperationMethod<
+  GetOrganizationClusterByIdRequest,
+  GetOrganizationClusterByIdResponse,
+  GetOrganizationClusterByIdError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OrganizationGetClusterByIdRequest,
-  output: OrganizationGetClusterByIdResponse,
+  input: GetOrganizationClusterByIdRequest,
+  output: GetOrganizationClusterByIdResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OrganizationGetEnvironmentByIdError = AzureOpError;
+export type GetOrganizationEnvironmentByIdError = AzureOpError;
 /** Get Environment details by environment Id */
-export const OrganizationGetEnvironmentById: API.OperationMethod<
-  OrganizationGetEnvironmentByIdRequest,
-  OrganizationGetEnvironmentByIdResponse,
-  OrganizationGetEnvironmentByIdError,
+export const GetOrganizationEnvironmentById: API.OperationMethod<
+  GetOrganizationEnvironmentByIdRequest,
+  GetOrganizationEnvironmentByIdResponse,
+  GetOrganizationEnvironmentByIdError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OrganizationGetEnvironmentByIdRequest,
-  output: OrganizationGetEnvironmentByIdResponse,
+  input: GetOrganizationEnvironmentByIdRequest,
+  output: GetOrganizationEnvironmentByIdResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OrganizationGetSchemaRegistryClusterByIdError = AzureOpError;
+export type GetOrganizationSchemaRegistryClusterByIdError = AzureOpError;
 /** Get schema registry cluster by Id */
-export const OrganizationGetSchemaRegistryClusterById: API.OperationMethod<
-  OrganizationGetSchemaRegistryClusterByIdRequest,
+export const GetOrganizationSchemaRegistryClusterById: API.OperationMethod<
+  GetOrganizationSchemaRegistryClusterByIdRequest,
   SchemaRegistryClusterRecord,
-  OrganizationGetSchemaRegistryClusterByIdError,
+  GetOrganizationSchemaRegistryClusterByIdError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OrganizationGetSchemaRegistryClusterByIdRequest,
+  input: GetOrganizationSchemaRegistryClusterByIdRequest,
   output: SchemaRegistryClusterRecord,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OrganizationListByResourceGroupError = AzureOpError;
+export type GetTopicError = AzureOpError;
+/** Get confluent topic by Name */
+export const GetTopic: API.OperationMethod<
+  GetTopicRequest,
+  GetTopicResponse,
+  GetTopicError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTopicRequest,
+  output: GetTopicResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type InviteAccessUserError = AzureOpError;
+/** Invite user to the organization */
+export const InviteAccessUser: API.OperationMethod<
+  InviteAccessUserRequest,
+  InvitationRecord,
+  InviteAccessUserError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: InviteAccessUserRequest,
+  output: InvitationRecord,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAccessClustersError = AzureOpError;
+/** Cluster details */
+export const ListAccessClusters: API.OperationMethod<
+  ListAccessClustersRequest,
+  AccessListClusterSuccessResponse,
+  ListAccessClustersError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAccessClustersRequest,
+  output: AccessListClusterSuccessResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAccessEnvironmentsError = AzureOpError;
+/** Environment list of an organization */
+export const ListAccessEnvironments: API.OperationMethod<
+  ListAccessEnvironmentsRequest,
+  AccessListEnvironmentsSuccessResponse,
+  ListAccessEnvironmentsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAccessEnvironmentsRequest,
+  output: AccessListEnvironmentsSuccessResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAccessInvitationsError = AzureOpError;
+/** Organization accounts invitation details */
+export const ListAccessInvitations: API.OperationMethod<
+  ListAccessInvitationsRequest,
+  AccessListInvitationsSuccessResponse,
+  ListAccessInvitationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAccessInvitationsRequest,
+  output: AccessListInvitationsSuccessResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAccessRoleBindingsError = AzureOpError;
+/** Organization role bindings */
+export const ListAccessRoleBindings: API.OperationMethod<
+  ListAccessRoleBindingsRequest,
+  AccessListRoleBindingsSuccessResponse,
+  ListAccessRoleBindingsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAccessRoleBindingsRequest,
+  output: AccessListRoleBindingsSuccessResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAccessServiceAccountsError = AzureOpError;
+/** Organization service accounts details */
+export const ListAccessServiceAccounts: API.OperationMethod<
+  ListAccessServiceAccountsRequest,
+  AccessListServiceAccountsSuccessResponse,
+  ListAccessServiceAccountsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAccessServiceAccountsRequest,
+  output: AccessListServiceAccountsSuccessResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAccessUsersError = AzureOpError;
+/** Organization users details */
+export const ListAccessUsers: API.OperationMethod<
+  ListAccessUsersRequest,
+  AccessListUsersSuccessResponse,
+  ListAccessUsersError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAccessUsersRequest,
+  output: AccessListUsersSuccessResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListConnectorError = AzureOpError;
+/** Lists all the connectors in a cluster */
+export const ListConnector: API.OperationMethod<
+  ListConnectorRequest,
+  ListConnectorsSuccessResponse,
+  ListConnectorError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListConnectorRequest,
+  output: ListConnectorsSuccessResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListMarketplaceAgreementsError = AzureOpError;
+/** List Confluent marketplace agreements in the subscription. List Confluent marketplace agreements in the subscription. */
+export const ListMarketplaceAgreements: API.OperationMethod<
+  ListMarketplaceAgreementsRequest,
+  ConfluentAgreementResourceListResponse,
+  ListMarketplaceAgreementsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListMarketplaceAgreementsRequest,
+  output: ConfluentAgreementResourceListResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOrganizationByResourceGroupError = AzureOpError;
 /** List all Organizations under the specified resource group. */
-export const OrganizationListByResourceGroup: API.OperationMethod<
-  OrganizationListByResourceGroupRequest,
+export const ListOrganizationByResourceGroup: API.OperationMethod<
+  ListOrganizationByResourceGroupRequest,
   OrganizationResourceListResult,
-  OrganizationListByResourceGroupError,
+  ListOrganizationByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OrganizationListByResourceGroupRequest,
+  input: ListOrganizationByResourceGroupRequest,
   output: OrganizationResourceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OrganizationListBySubscriptionError = AzureOpError;
+export type ListOrganizationBySubscriptionError = AzureOpError;
 /** List all organizations under the specified subscription. */
-export const OrganizationListBySubscription: API.OperationMethod<
-  OrganizationListBySubscriptionRequest,
+export const ListOrganizationBySubscription: API.OperationMethod<
+  ListOrganizationBySubscriptionRequest,
   OrganizationResourceListResult,
-  OrganizationListBySubscriptionError,
+  ListOrganizationBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OrganizationListBySubscriptionRequest,
+  input: ListOrganizationBySubscriptionRequest,
   output: OrganizationResourceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OrganizationListClustersError = AzureOpError;
+export type ListOrganizationClustersError = AzureOpError;
 /** Lists of all the clusters in a environment */
-export const OrganizationListClusters: API.OperationMethod<
-  OrganizationListClustersRequest,
+export const ListOrganizationClusters: API.OperationMethod<
+  ListOrganizationClustersRequest,
   ListClustersSuccessResponse,
-  OrganizationListClustersError,
+  ListOrganizationClustersError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OrganizationListClustersRequest,
+  input: ListOrganizationClustersRequest,
   output: ListClustersSuccessResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OrganizationListEnvironmentsError = AzureOpError;
+export type ListOrganizationEnvironmentsError = AzureOpError;
 /** Lists of all the environments in a organization */
-export const OrganizationListEnvironments: API.OperationMethod<
-  OrganizationListEnvironmentsRequest,
+export const ListOrganizationEnvironments: API.OperationMethod<
+  ListOrganizationEnvironmentsRequest,
   GetEnvironmentsResponse,
-  OrganizationListEnvironmentsError,
+  ListOrganizationEnvironmentsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OrganizationListEnvironmentsRequest,
+  input: ListOrganizationEnvironmentsRequest,
   output: GetEnvironmentsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OrganizationListRegionsError = AzureOpError;
-/** cloud provider regions available for creating Schema Registry clusters. */
-export const OrganizationListRegions: API.OperationMethod<
-  OrganizationListRegionsRequest,
-  ListRegionsSuccessResponse,
-  OrganizationListRegionsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OrganizationListRegionsRequest,
-  output: ListRegionsSuccessResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OrganizationListSchemaRegistryClustersError = AzureOpError;
-/** Get schema registry clusters */
-export const OrganizationListSchemaRegistryClusters: API.OperationMethod<
-  OrganizationListSchemaRegistryClustersRequest,
-  ListSchemaRegistryClustersResponse,
-  OrganizationListSchemaRegistryClustersError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OrganizationListSchemaRegistryClustersRequest,
-  output: ListSchemaRegistryClustersResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OrganizationOperationsListError = AzureOpError;
+export type ListOrganizationOperationsError = AzureOpError;
 /** List the operations for the provider */
-export const OrganizationOperationsList: API.OperationMethod<
-  OrganizationOperationsListRequest,
+export const ListOrganizationOperations: API.OperationMethod<
+  ListOrganizationOperationsRequest,
   OperationListResult,
-  OrganizationOperationsListError,
+  ListOrganizationOperationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OrganizationOperationsListRequest,
+  input: ListOrganizationOperationsRequest,
   output: OperationListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OrganizationUpdateError = AzureOpError;
-/** Update Organization resource */
-export const OrganizationUpdate: API.OperationMethod<
-  OrganizationUpdateRequest,
-  OrganizationUpdateResponse,
-  OrganizationUpdateError,
+export type ListOrganizationRegionsError = AzureOpError;
+/** cloud provider regions available for creating Schema Registry clusters. */
+export const ListOrganizationRegions: API.OperationMethod<
+  ListOrganizationRegionsRequest,
+  ListRegionsSuccessResponse,
+  ListOrganizationRegionsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OrganizationUpdateRequest,
-  output: OrganizationUpdateResponse,
+  input: ListOrganizationRegionsRequest,
+  output: ListRegionsSuccessResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type TopicsCreateError = AzureOpError;
-/** Create confluent topics by Name */
-export const TopicsCreate: API.OperationMethod<
-  TopicsCreateRequest,
-  TopicsCreateResponse,
-  TopicsCreateError,
+export type ListOrganizationSchemaRegistryClustersError = AzureOpError;
+/** Get schema registry clusters */
+export const ListOrganizationSchemaRegistryClusters: API.OperationMethod<
+  ListOrganizationSchemaRegistryClustersRequest,
+  ListSchemaRegistryClustersResponse,
+  ListOrganizationSchemaRegistryClustersError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TopicsCreateRequest,
-  output: TopicsCreateResponse,
+  input: ListOrganizationSchemaRegistryClustersRequest,
+  output: ListSchemaRegistryClustersResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type TopicsDeleteError = AzureOpError;
-/** Delete confluent topic by name */
-export const TopicsDelete: API.OperationMethod<
-  TopicsDeleteRequest,
-  TopicsDeleteResponse,
-  TopicsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TopicsDeleteRequest,
-  output: TopicsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TopicsGetError = AzureOpError;
-/** Get confluent topic by Name */
-export const TopicsGet: API.OperationMethod<
-  TopicsGetRequest,
-  TopicsGetResponse,
-  TopicsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TopicsGetRequest,
-  output: TopicsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TopicsListError = AzureOpError;
+export type ListTopicsError = AzureOpError;
 /** Lists of all the topics in a clusters */
-export const TopicsList: API.OperationMethod<
-  TopicsListRequest,
+export const ListTopics: API.OperationMethod<
+  ListTopicsRequest,
   ListTopicsSuccessResponse,
-  TopicsListError,
+  ListTopicsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TopicsListRequest,
+  input: ListTopicsRequest,
   output: ListTopicsSuccessResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ValidationsValidateOrganizationError = AzureOpError;
-/** Organization Validate proxy resource Organization Validate proxy resource */
-export const ValidationsValidateOrganization: API.OperationMethod<
-  ValidationsValidateOrganizationRequest,
-  ValidationsValidateOrganizationResponse,
-  ValidationsValidateOrganizationError,
+export type UpdateOrganizationError = AzureOpError;
+/** Update Organization resource */
+export const UpdateOrganization: API.OperationMethod<
+  UpdateOrganizationRequest,
+  UpdateOrganizationResponse,
+  UpdateOrganizationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ValidationsValidateOrganizationRequest,
-  output: ValidationsValidateOrganizationResponse,
+  input: UpdateOrganizationRequest,
+  output: UpdateOrganizationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ValidationsValidateOrganizationV2Error = AzureOpError;
+export type ValidateValidationOrganizationError = AzureOpError;
 /** Organization Validate proxy resource Organization Validate proxy resource */
-export const ValidationsValidateOrganizationV2: API.OperationMethod<
-  ValidationsValidateOrganizationV2Request,
-  ValidationResponse,
-  ValidationsValidateOrganizationV2Error,
+export const ValidateValidationOrganization: API.OperationMethod<
+  ValidateValidationOrganizationRequest,
+  ValidateValidationOrganizationResponse,
+  ValidateValidationOrganizationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ValidationsValidateOrganizationV2Request,
+  input: ValidateValidationOrganizationRequest,
+  output: ValidateValidationOrganizationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ValidateValidationOrganizationV2Error = AzureOpError;
+/** Organization Validate proxy resource Organization Validate proxy resource */
+export const ValidateValidationOrganizationV2: API.OperationMethod<
+  ValidateValidationOrganizationV2Request,
+  ValidationResponse,
+  ValidateValidationOrganizationV2Error,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ValidateValidationOrganizationV2Request,
   output: ValidationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,

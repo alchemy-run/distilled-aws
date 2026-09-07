@@ -12,7 +12,237 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export interface DeletedVaultsGetRequest {
+export interface CheckRecoveryServiceNameAvailabilityRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Azure region. */
+  location: string;
+  /** Describes the Resource type: Microsoft.RecoveryServices/Vaults */
+  type?: string;
+  /** Resource name for which availability needs to be checked */
+  name?: string;
+}
+export const CheckRecoveryServiceNameAvailabilityRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      location: S.String.pipe(T.Label()),
+      type: S.optional(S.String),
+      name: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/locations/{location}/checkNameAvailability",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "CheckRecoveryServiceNameAvailabilityRequest",
+  }) as any as S.Schema<CheckRecoveryServiceNameAvailabilityRequest>;
+
+/** Response for check name availability API. Resource provider will set availability as true | false. */
+export interface CheckNameAvailabilityResult {
+  nameAvailable?: boolean;
+  reason?: string;
+  message?: string;
+}
+export const CheckNameAvailabilityResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nameAvailable: S.optional(S.Boolean),
+    reason: S.optional(S.String),
+    message: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CheckNameAvailabilityResult",
+}) as any as S.Schema<CheckNameAvailabilityResult>;
+
+/** Specifies the authentication type. */
+export type AuthType =
+  | "Invalid"
+  | "ACS"
+  | "AAD"
+  | "AccessControlService"
+  | "AzureActiveDirectory";
+export const AuthType = /*@__PURE__*/ S.String;
+
+/** Raw certificate data. */
+export interface RawCertificateData {
+  /** Specifies the authentication type. */
+  authType?: AuthType | (string & {});
+  /** The base64 encoded certificate raw data string */
+  certificate?: string;
+}
+export const RawCertificateData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    authType: S.optional(AuthType),
+    certificate: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "RawCertificateData",
+}) as any as S.Schema<RawCertificateData>;
+
+export interface CreateVaultCertificateRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the recovery services vault. */
+  vaultName: string;
+  /** Certificate friendly name. */
+  certificateName: string;
+  /** Raw certificate data. */
+  properties?: RawCertificateData;
+}
+export const CreateVaultCertificateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    certificateName: S.String.pipe(T.Label()),
+    properties: S.optional(RawCertificateData),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/certificates/{certificateName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "CreateVaultCertificateRequest",
+}) as any as S.Schema<CreateVaultCertificateRequest>;
+
+/** Certificate details representing the Vault credentials. */
+export interface ResourceCertificateDetails {
+  /** This property will be used as the discriminator for deciding the specific types in the polymorphic chain of types. */
+  authType: string;
+  /** The base64 encoded certificate raw data string. */
+  certificate?: string;
+  /** Certificate friendly name. */
+  friendlyName?: string;
+  /** Certificate issuer. */
+  issuer?: string;
+  /** Resource ID of the vault. */
+  resourceId?: number;
+  /** Certificate Subject Name. */
+  subject?: string;
+  /** Certificate thumbprint. */
+  thumbprint?: string;
+  /** Certificate Validity start Date time. */
+  validFrom?: string;
+  /** Certificate Validity End Date time. */
+  validTo?: string;
+}
+export const ResourceCertificateDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    authType: S.String,
+    certificate: S.optional(S.String),
+    friendlyName: S.optional(S.String),
+    issuer: S.optional(S.String),
+    resourceId: S.optional(S.Number),
+    subject: S.optional(S.String),
+    thumbprint: S.optional(S.String),
+    validFrom: S.optional(S.String),
+    validTo: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ResourceCertificateDetails",
+}) as any as S.Schema<ResourceCertificateDetails>;
+
+/** Certificate corresponding to a vault that can be used by clients to register themselves with the vault. */
+export interface VaultCertificateResponse {
+  /** Resource name associated with the resource. */
+  name?: string;
+  /** Resource type represents the complete path of the form Namespace/ResourceType/ResourceType/... */
+  type?: string;
+  /** Resource Id represents the complete path to the resource. */
+  id?: string;
+  /** Certificate details representing the Vault credentials. */
+  properties?: ResourceCertificateDetails;
+}
+export const VaultCertificateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    id: S.optional(S.String),
+    properties: S.optional(ResourceCertificateDetails),
+  }),
+).annotate({
+  identifier: "VaultCertificateResponse",
+}) as any as S.Schema<VaultCertificateResponse>;
+
+export interface DeleteRegisteredIdentityRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the recovery services vault. */
+  vaultName: string;
+  /** Name of the protection container to unregister. */
+  identityName: string;
+}
+export const DeleteRegisteredIdentityRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    identityName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/registeredIdentities/{identityName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteRegisteredIdentityRequest",
+}) as any as S.Schema<DeleteRegisteredIdentityRequest>;
+
+export interface DeleteRegisteredIdentityResponse {}
+export const DeleteRegisteredIdentityResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteRegisteredIdentityResponse",
+}) as any as S.Schema<DeleteRegisteredIdentityResponse>;
+
+export interface DeleteVaultRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Vault */
+  vaultName: string;
+}
+export const DeleteVaultRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteVaultRequest",
+}) as any as S.Schema<DeleteVaultRequest>;
+
+export interface DeleteVaultResponse {}
+export const DeleteVaultResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteVaultResponse",
+}) as any as S.Schema<DeleteVaultResponse>;
+
+export interface GetDeletedVaultRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of Azure region. */
@@ -20,7 +250,7 @@ export interface DeletedVaultsGetRequest {
   /** The name of the DeletedVault */
   deletedVaultName: string;
 }
-export const DeletedVaultsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDeletedVaultRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     location: S.String.pipe(T.Label()),
@@ -34,8 +264,8 @@ export const DeletedVaultsGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeletedVaultsGetRequest",
-}) as any as S.Schema<DeletedVaultsGetRequest>;
+  identifier: "GetDeletedVaultRequest",
+}) as any as S.Schema<GetDeletedVaultRequest>;
 
 /** The type of identity that created the resource. */
 export type SystemDataCreatedByType =
@@ -98,7 +328,7 @@ export const DeletedVaultProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeletedVaultProperties",
 }) as any as S.Schema<DeletedVaultProperties>;
 
-export interface DeletedVaultsGetResponse {
+export interface GetDeletedVaultResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -110,7 +340,7 @@ export interface DeletedVaultsGetResponse {
   /** The resource-specific properties for this resource. */
   properties?: DeletedVaultProperties;
 }
-export const DeletedVaultsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetDeletedVaultResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -119,10 +349,10 @@ export const DeletedVaultsGetResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(DeletedVaultProperties),
   }),
 ).annotate({
-  identifier: "DeletedVaultsGetResponse",
-}) as any as S.Schema<DeletedVaultsGetResponse>;
+  identifier: "GetDeletedVaultResponse",
+}) as any as S.Schema<GetDeletedVaultResponse>;
 
-export interface DeletedVaultsGetOperationStatusRequest {
+export interface GetDeletedVaultOperationStatusRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of Azure region. */
@@ -131,7 +361,7 @@ export interface DeletedVaultsGetOperationStatusRequest {
   deletedVaultName: string;
   operationId: string;
 }
-export const DeletedVaultsGetOperationStatusRequest = /*@__PURE__*/ S.suspend(
+export const GetDeletedVaultOperationStatusRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -147,8 +377,8 @@ export const DeletedVaultsGetOperationStatusRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "DeletedVaultsGetOperationStatusRequest",
-}) as any as S.Schema<DeletedVaultsGetOperationStatusRequest>;
+  identifier: "GetDeletedVaultOperationStatusRequest",
+}) as any as S.Schema<GetDeletedVaultOperationStatusRequest>;
 
 /** The resource management error additional info. */
 export interface ErrorAdditionalInfoItem {
@@ -228,139 +458,6 @@ export const OperationResource = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "OperationResource",
 }) as any as S.Schema<OperationResource>;
-
-export interface DeletedVaultsListBySubscriptionIdRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of Azure region. */
-  location: string;
-}
-export const DeletedVaultsListBySubscriptionIdRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      location: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.RecoveryServices/locations/{location}/deletedVaults",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "DeletedVaultsListBySubscriptionIdRequest",
-}) as any as S.Schema<DeletedVaultsListBySubscriptionIdRequest>;
-
-/** DeletedVault information as returned by the resource provider. */
-export interface DeletedVault {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: DeletedVaultProperties;
-}
-export const DeletedVault = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(DeletedVaultProperties),
-  }),
-).annotate({ identifier: "DeletedVault" }) as any as S.Schema<DeletedVault>;
-
-/** The DeletedVault items on this page */
-export type DeletedVaultListValueList = Array<DeletedVault>;
-export const DeletedVaultListValueList = /*@__PURE__*/ S.Array(
-  DeletedVault,
-) as any as S.Schema<DeletedVaultListValueList>;
-
-/** The response model for a list of DeletedVaults. */
-export interface DeletedVaultList {
-  /** The DeletedVault items on this page */
-  value: DeletedVaultListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const DeletedVaultList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: DeletedVaultListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DeletedVaultList",
-}) as any as S.Schema<DeletedVaultList>;
-
-/** Input definition for DeletedVault undelete properties. */
-export interface DeletedVaultUndeleteInputProperties {
-  /** Recovery resource group Id. */
-  recoveryResourceGroupId: string;
-}
-export const DeletedVaultUndeleteInputProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    recoveryResourceGroupId: S.String,
-  }),
-).annotate({
-  identifier: "DeletedVaultUndeleteInputProperties",
-}) as any as S.Schema<DeletedVaultUndeleteInputProperties>;
-
-export interface DeletedVaultsUndeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of Azure region. */
-  location: string;
-  /** The name of the DeletedVault */
-  deletedVaultName: string;
-  /** Undelete input properties. */
-  properties: DeletedVaultUndeleteInputProperties;
-}
-export const DeletedVaultsUndeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
-    deletedVaultName: S.String.pipe(T.Label()),
-    properties: DeletedVaultUndeleteInputProperties,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.RecoveryServices/locations/{location}/deletedVaults/{deletedVaultName}/undelete",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "DeletedVaultsUndeleteRequest",
-}) as any as S.Schema<DeletedVaultsUndeleteRequest>;
-
-export interface DeletedVaultsUndeleteResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: DeletedVaultProperties;
-}
-export const DeletedVaultsUndeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(DeletedVaultProperties),
-  }),
-).annotate({
-  identifier: "DeletedVaultsUndeleteResponse",
-}) as any as S.Schema<DeletedVaultsUndeleteResponse>;
 
 export interface GetOperationResultRequest {
   /** The ID of the target subscription. */
@@ -1163,8 +1260,309 @@ export const GetOperationStatusRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetOperationStatusRequest",
 }) as any as S.Schema<GetOperationStatusRequest>;
 
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
+export interface GetPrivateLinkResourceRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the recovery services vault. */
+  vaultName: string;
+  privateLinkResourceName: string;
+}
+export const GetPrivateLinkResourceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    privateLinkResourceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/privateLinkResources/{privateLinkResourceName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetPrivateLinkResourceRequest",
+}) as any as S.Schema<GetPrivateLinkResourceRequest>;
+
+/** [backup-ecs1, backup-prot1, backup-prot1b, backup-prot1c, backup-id1] */
+export type PrivateLinkResourcePropertiesRequiredMembersList = Array<string>;
+export const PrivateLinkResourcePropertiesRequiredMembersList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredMembersList>;
+
+/** The private link resource Private link DNS zone name. */
+export type PrivateLinkResourcePropertiesRequiredZoneNamesList = Array<string>;
+export const PrivateLinkResourcePropertiesRequiredZoneNamesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredZoneNamesList>;
+
+/** Properties of the private link resource. */
+export interface PrivateLinkResourceProperties {
+  /** e.g. f9ad6492-33d4-4690-9999-6bfd52a0d081 (Backup) or f9ad6492-33d4-4690-9999-6bfd52a0d082 (SiteRecovery) */
+  groupId?: string;
+  /** [backup-ecs1, backup-prot1, backup-prot1b, backup-prot1c, backup-id1] */
+  requiredMembers?: PrivateLinkResourcePropertiesRequiredMembersList;
+  /** The private link resource Private link DNS zone name. */
+  requiredZoneNames?: PrivateLinkResourcePropertiesRequiredZoneNamesList;
+}
+export const PrivateLinkResourceProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    groupId: S.optional(S.String),
+    requiredMembers: S.optional(
+      PrivateLinkResourcePropertiesRequiredMembersList,
+    ),
+    requiredZoneNames: S.optional(
+      PrivateLinkResourcePropertiesRequiredZoneNamesList,
+    ),
+  }),
+).annotate({
+  identifier: "PrivateLinkResourceProperties",
+}) as any as S.Schema<PrivateLinkResourceProperties>;
+
+export interface GetPrivateLinkResourceResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource properties */
+  properties?: PrivateLinkResourceProperties;
+}
+export const GetPrivateLinkResourceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(PrivateLinkResourceProperties),
+  }),
+).annotate({
+  identifier: "GetPrivateLinkResourceResponse",
+}) as any as S.Schema<GetPrivateLinkResourceResponse>;
+
+export interface GetVaultRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Vault */
+  vaultName: string;
+}
+export const GetVaultRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetVaultRequest",
+}) as any as S.Schema<GetVaultRequest>;
+
+/** Resource tags. */
+export type GetVaultResponseTagsMap = { [key: string]: string | undefined };
+export const GetVaultResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetVaultResponseTagsMap>;
+
+export interface GetVaultResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetVaultResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the vault. */
+  properties?: VaultProperties;
+  /** Identity for the resource. */
+  identity?: IdentityData;
+  /** Identifies the unique system identifier for each Azure resource. */
+  sku?: Sku;
+  /** etag for the resource. */
+  etag?: string;
+}
+export const GetVaultResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetVaultResponseTagsMap),
+    location: S.String,
+    properties: S.optional(VaultProperties),
+    identity: S.optional(IdentityData),
+    sku: S.optional(Sku),
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetVaultResponse",
+}) as any as S.Schema<GetVaultResponse>;
+
+export interface GetVaultExtendedInfoRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the recovery services vault. */
+  vaultName: string;
+}
+export const GetVaultExtendedInfoRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/extendedInformation/vaultExtendedInfo",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetVaultExtendedInfoRequest",
+}) as any as S.Schema<GetVaultExtendedInfoRequest>;
+
+/** Vault extended information. */
+export interface VaultExtendedInfo {
+  /** Integrity key. */
+  integrityKey?: string;
+  /** Encryption key. */
+  encryptionKey?: string;
+  /** Encryption key thumbprint. */
+  encryptionKeyThumbprint?: string;
+  /** Algorithm for Vault ExtendedInfo */
+  algorithm?: string;
+}
+export const VaultExtendedInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    integrityKey: S.optional(S.String),
+    encryptionKey: S.optional(S.String),
+    encryptionKeyThumbprint: S.optional(S.String),
+    algorithm: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "VaultExtendedInfo",
+}) as any as S.Schema<VaultExtendedInfo>;
+
+export interface GetVaultExtendedInfoResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Vault extended information. */
+  properties?: VaultExtendedInfo;
+  /** etag for the resource. */
+  etag?: string;
+}
+export const GetVaultExtendedInfoResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(VaultExtendedInfo),
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetVaultExtendedInfoResponse",
+}) as any as S.Schema<GetVaultExtendedInfoResponse>;
+
+export interface ListDeletedVaultBySubscriptionIdRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of Azure region. */
+  location: string;
+}
+export const ListDeletedVaultBySubscriptionIdRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      location: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.RecoveryServices/locations/{location}/deletedVaults",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListDeletedVaultBySubscriptionIdRequest",
+}) as any as S.Schema<ListDeletedVaultBySubscriptionIdRequest>;
+
+/** DeletedVault information as returned by the resource provider. */
+export interface DeletedVault {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: DeletedVaultProperties;
+}
+export const DeletedVault = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(DeletedVaultProperties),
+  }),
+).annotate({ identifier: "DeletedVault" }) as any as S.Schema<DeletedVault>;
+
+/** The DeletedVault items on this page */
+export type DeletedVaultListValueList = Array<DeletedVault>;
+export const DeletedVaultListValueList = /*@__PURE__*/ S.Array(
+  DeletedVault,
+) as any as S.Schema<DeletedVaultListValueList>;
+
+/** The response model for a list of DeletedVaults. */
+export interface DeletedVaultList {
+  /** The DeletedVault items on this page */
+  value: DeletedVaultListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const DeletedVaultList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: DeletedVaultListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DeletedVaultList",
+}) as any as S.Schema<DeletedVaultList>;
+
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({
       method: "GET",
@@ -1174,8 +1572,8 @@ export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
 
 /** Localized display information of an operation. */
 export interface ClientDiscoveryDisplay {
@@ -1300,95 +1698,7 @@ export const ClientDiscoveryResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ClientDiscoveryResponse",
 }) as any as S.Schema<ClientDiscoveryResponse>;
 
-export interface PrivateLinkResourcesGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the recovery services vault. */
-  vaultName: string;
-  privateLinkResourceName: string;
-}
-export const PrivateLinkResourcesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-    privateLinkResourceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/privateLinkResources/{privateLinkResourceName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "PrivateLinkResourcesGetRequest",
-}) as any as S.Schema<PrivateLinkResourcesGetRequest>;
-
-/** [backup-ecs1, backup-prot1, backup-prot1b, backup-prot1c, backup-id1] */
-export type PrivateLinkResourcePropertiesRequiredMembersList = Array<string>;
-export const PrivateLinkResourcePropertiesRequiredMembersList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredMembersList>;
-
-/** The private link resource Private link DNS zone name. */
-export type PrivateLinkResourcePropertiesRequiredZoneNamesList = Array<string>;
-export const PrivateLinkResourcePropertiesRequiredZoneNamesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredZoneNamesList>;
-
-/** Properties of the private link resource. */
-export interface PrivateLinkResourceProperties {
-  /** e.g. f9ad6492-33d4-4690-9999-6bfd52a0d081 (Backup) or f9ad6492-33d4-4690-9999-6bfd52a0d082 (SiteRecovery) */
-  groupId?: string;
-  /** [backup-ecs1, backup-prot1, backup-prot1b, backup-prot1c, backup-id1] */
-  requiredMembers?: PrivateLinkResourcePropertiesRequiredMembersList;
-  /** The private link resource Private link DNS zone name. */
-  requiredZoneNames?: PrivateLinkResourcePropertiesRequiredZoneNamesList;
-}
-export const PrivateLinkResourceProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    groupId: S.optional(S.String),
-    requiredMembers: S.optional(
-      PrivateLinkResourcePropertiesRequiredMembersList,
-    ),
-    requiredZoneNames: S.optional(
-      PrivateLinkResourcePropertiesRequiredZoneNamesList,
-    ),
-  }),
-).annotate({
-  identifier: "PrivateLinkResourceProperties",
-}) as any as S.Schema<PrivateLinkResourceProperties>;
-
-export interface PrivateLinkResourcesGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource properties */
-  properties?: PrivateLinkResourceProperties;
-}
-export const PrivateLinkResourcesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(PrivateLinkResourceProperties),
-  }),
-).annotate({
-  identifier: "PrivateLinkResourcesGetResponse",
-}) as any as S.Schema<PrivateLinkResourcesGetResponse>;
-
-export interface PrivateLinkResourcesListRequest {
+export interface ListPrivateLinkResourcesRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1396,7 +1706,7 @@ export interface PrivateLinkResourcesListRequest {
   /** The name of the recovery services vault. */
   vaultName: string;
 }
-export const PrivateLinkResourcesListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListPrivateLinkResourcesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1410,8 +1720,8 @@ export const PrivateLinkResourcesListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "PrivateLinkResourcesListRequest",
-}) as any as S.Schema<PrivateLinkResourcesListRequest>;
+  identifier: "ListPrivateLinkResourcesRequest",
+}) as any as S.Schema<ListPrivateLinkResourcesRequest>;
 
 /** Information of the private link resource. */
 export interface PrivateLinkResource {
@@ -1459,6 +1769,325 @@ export const PrivateLinkResources = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "PrivateLinkResources",
 }) as any as S.Schema<PrivateLinkResources>;
+
+export interface ListReplicationUsagesRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Vault */
+  vaultName: string;
+}
+export const ListReplicationUsagesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/replicationUsages",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListReplicationUsagesRequest",
+}) as any as S.Schema<ListReplicationUsagesRequest>;
+
+/** Summary of the replication monitoring data for this vault. */
+export interface MonitoringSummary {
+  /** Count of unhealthy VMs. */
+  unHealthyVmCount?: number;
+  /** Count of unhealthy replication providers. */
+  unHealthyProviderCount?: number;
+  /** Count of all critical warnings. */
+  eventsCount?: number;
+  /** Count of all deprecated recovery service providers. */
+  deprecatedProviderCount?: number;
+  /** Count of all the supported recovery service providers. */
+  supportedProviderCount?: number;
+  /** Count of all the unsupported recovery service providers. */
+  unsupportedProviderCount?: number;
+}
+export const MonitoringSummary = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    unHealthyVmCount: S.optional(S.Number),
+    unHealthyProviderCount: S.optional(S.Number),
+    eventsCount: S.optional(S.Number),
+    deprecatedProviderCount: S.optional(S.Number),
+    supportedProviderCount: S.optional(S.Number),
+    unsupportedProviderCount: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "MonitoringSummary",
+}) as any as S.Schema<MonitoringSummary>;
+
+/** Summary of the replication job data for this vault. */
+export interface JobsSummary {
+  /** Count of failed jobs. */
+  failedJobs?: number;
+  /** Count of suspended jobs. */
+  suspendedJobs?: number;
+  /** Count of in-progress jobs. */
+  inProgressJobs?: number;
+}
+export const JobsSummary = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    failedJobs: S.optional(S.Number),
+    suspendedJobs: S.optional(S.Number),
+    inProgressJobs: S.optional(S.Number),
+  }),
+).annotate({ identifier: "JobsSummary" }) as any as S.Schema<JobsSummary>;
+
+/** Replication usages of a vault. */
+export interface ReplicationUsage {
+  /** Summary of the replication monitoring data for this vault. */
+  monitoringSummary?: MonitoringSummary;
+  /** Summary of the replication jobs data for this vault. */
+  jobsSummary?: JobsSummary;
+  /** Number of replication protected items for this vault. */
+  protectedItemCount?: number;
+  /** Number of replication recovery plans for this vault. */
+  recoveryPlanCount?: number;
+  /** Number of servers registered to this vault. */
+  registeredServersCount?: number;
+  /** The authentication type of recovery service providers in the vault. */
+  recoveryServicesProviderAuthType?: number;
+}
+export const ReplicationUsage = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    monitoringSummary: S.optional(MonitoringSummary),
+    jobsSummary: S.optional(JobsSummary),
+    protectedItemCount: S.optional(S.Number),
+    recoveryPlanCount: S.optional(S.Number),
+    registeredServersCount: S.optional(S.Number),
+    recoveryServicesProviderAuthType: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "ReplicationUsage",
+}) as any as S.Schema<ReplicationUsage>;
+
+/** The list of replication usages for the given vault. */
+export type ReplicationUsageListValueList = Array<ReplicationUsage>;
+export const ReplicationUsageListValueList = /*@__PURE__*/ S.Array(
+  ReplicationUsage,
+) as any as S.Schema<ReplicationUsageListValueList>;
+
+/** Replication usages for vault. */
+export interface ReplicationUsageList {
+  /** The list of replication usages for the given vault. */
+  value?: ReplicationUsageListValueList;
+  nextLink?: string;
+}
+export const ReplicationUsageList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(ReplicationUsageListValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ReplicationUsageList",
+}) as any as S.Schema<ReplicationUsageList>;
+
+export interface ListUsageByVaultsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Vault */
+  vaultName: string;
+}
+export const ListUsageByVaultsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/usages",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListUsageByVaultsRequest",
+}) as any as S.Schema<ListUsageByVaultsRequest>;
+
+/** Unit of the usage. */
+export type UsagesUnit =
+  | "Count"
+  | "Bytes"
+  | "Seconds"
+  | "Percent"
+  | "CountPerSecond"
+  | "BytesPerSecond";
+export const UsagesUnit = /*@__PURE__*/ S.String;
+
+/** The name of usage. */
+export interface NameInfo {
+  /** Value of usage. */
+  value?: string;
+  /** Localized value of usage. */
+  localizedValue?: string;
+}
+export const NameInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(S.String),
+    localizedValue: S.optional(S.String),
+  }),
+).annotate({ identifier: "NameInfo" }) as any as S.Schema<NameInfo>;
+
+/** Usages of a vault. */
+export interface VaultUsage {
+  /** Unit of the usage. */
+  unit?: UsagesUnit;
+  /** Quota period of usage. */
+  quotaPeriod?: string;
+  /** Next reset time of usage. */
+  nextResetTime?: string;
+  /** Current value of usage. */
+  currentValue?: number;
+  /** Limit of usage. */
+  limit?: number;
+  /** Name of usage. */
+  name?: NameInfo;
+}
+export const VaultUsage = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    unit: S.optional(UsagesUnit),
+    quotaPeriod: S.optional(S.String),
+    nextResetTime: S.optional(S.String),
+    currentValue: S.optional(S.Number),
+    limit: S.optional(S.Number),
+    name: S.optional(NameInfo),
+  }),
+).annotate({ identifier: "VaultUsage" }) as any as S.Schema<VaultUsage>;
+
+/** The list of usages for the given vault. */
+export type VaultUsageListValueList = Array<VaultUsage>;
+export const VaultUsageListValueList = /*@__PURE__*/ S.Array(
+  VaultUsage,
+) as any as S.Schema<VaultUsageListValueList>;
+
+/** Usage for vault. */
+export interface VaultUsageList {
+  /** The list of usages for the given vault. */
+  value?: VaultUsageListValueList;
+  nextLink?: string;
+}
+export const VaultUsageList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(VaultUsageListValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "VaultUsageList" }) as any as S.Schema<VaultUsageList>;
+
+export interface ListVaultByResourceGroupRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const ListVaultByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListVaultByResourceGroupRequest",
+}) as any as S.Schema<ListVaultByResourceGroupRequest>;
+
+/** Resource tags. */
+export type VaultTagsMap = { [key: string]: string | undefined };
+export const VaultTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<VaultTagsMap>;
+
+/** Resource information, as returned by the resource provider. */
+export interface Vault {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: VaultTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the vault. */
+  properties?: VaultProperties;
+  /** Identity for the resource. */
+  identity?: IdentityData;
+  /** Identifies the unique system identifier for each Azure resource. */
+  sku?: Sku;
+  /** etag for the resource. */
+  etag?: string;
+}
+export const Vault = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(VaultTagsMap),
+    location: S.String,
+    properties: S.optional(VaultProperties),
+    identity: S.optional(IdentityData),
+    sku: S.optional(Sku),
+    etag: S.optional(S.String),
+  }),
+).annotate({ identifier: "Vault" }) as any as S.Schema<Vault>;
+
+/** The Vault items on this page */
+export type VaultListValueList = Array<Vault>;
+export const VaultListValueList = /*@__PURE__*/ S.Array(
+  Vault,
+) as any as S.Schema<VaultListValueList>;
+
+/** The response model for a list of Vaults. */
+export interface VaultList {
+  /** The Vault items on this page */
+  value: VaultListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const VaultList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: VaultListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "VaultList" }) as any as S.Schema<VaultList>;
+
+export interface ListVaultBySubscriptionIdRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+}
+export const ListVaultBySubscriptionIdRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.RecoveryServices/vaults",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListVaultBySubscriptionIdRequest",
+}) as any as S.Schema<ListVaultBySubscriptionIdRequest>;
 
 /** DNSZone information */
 export interface DNSZone {
@@ -1571,472 +2200,48 @@ export const RecoveryServicesCapabilitiesResponse = /*@__PURE__*/ S.suspend(
   identifier: "RecoveryServicesCapabilitiesResponse",
 }) as any as S.Schema<RecoveryServicesCapabilitiesResponse>;
 
-export interface RecoveryServicesCheckNameAvailabilityRequest {
+/** Input definition for DeletedVault undelete properties. */
+export interface DeletedVaultUndeleteInputProperties {
+  /** Recovery resource group Id. */
+  recoveryResourceGroupId: string;
+}
+export const DeletedVaultUndeleteInputProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    recoveryResourceGroupId: S.String,
+  }),
+).annotate({
+  identifier: "DeletedVaultUndeleteInputProperties",
+}) as any as S.Schema<DeletedVaultUndeleteInputProperties>;
+
+export interface UndeleteDeletedVaultRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
   /** The name of Azure region. */
   location: string;
-  /** Describes the Resource type: Microsoft.RecoveryServices/Vaults */
-  type?: string;
-  /** Resource name for which availability needs to be checked */
-  name?: string;
+  /** The name of the DeletedVault */
+  deletedVaultName: string;
+  /** Undelete input properties. */
+  properties: DeletedVaultUndeleteInputProperties;
 }
-export const RecoveryServicesCheckNameAvailabilityRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      location: S.String.pipe(T.Label()),
-      type: S.optional(S.String),
-      name: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/locations/{location}/checkNameAvailability",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "RecoveryServicesCheckNameAvailabilityRequest",
-  }) as any as S.Schema<RecoveryServicesCheckNameAvailabilityRequest>;
-
-/** Response for check name availability API. Resource provider will set availability as true | false. */
-export interface CheckNameAvailabilityResult {
-  nameAvailable?: boolean;
-  reason?: string;
-  message?: string;
-}
-export const CheckNameAvailabilityResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nameAvailable: S.optional(S.Boolean),
-    reason: S.optional(S.String),
-    message: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CheckNameAvailabilityResult",
-}) as any as S.Schema<CheckNameAvailabilityResult>;
-
-export interface RegisteredIdentitiesDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the recovery services vault. */
-  vaultName: string;
-  /** Name of the protection container to unregister. */
-  identityName: string;
-}
-export const RegisteredIdentitiesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const UndeleteDeletedVaultRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-    identityName: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+    deletedVaultName: S.String.pipe(T.Label()),
+    properties: DeletedVaultUndeleteInputProperties,
   }).pipe(
     T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/registeredIdentities/{identityName}",
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.RecoveryServices/locations/{location}/deletedVaults/{deletedVaultName}/undelete",
       code: 200,
       apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
-  identifier: "RegisteredIdentitiesDeleteRequest",
-}) as any as S.Schema<RegisteredIdentitiesDeleteRequest>;
+  identifier: "UndeleteDeletedVaultRequest",
+}) as any as S.Schema<UndeleteDeletedVaultRequest>;
 
-export interface RegisteredIdentitiesDeleteResponse {}
-export const RegisteredIdentitiesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "RegisteredIdentitiesDeleteResponse",
-}) as any as S.Schema<RegisteredIdentitiesDeleteResponse>;
-
-export interface ReplicationUsagesListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Vault */
-  vaultName: string;
-}
-export const ReplicationUsagesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/replicationUsages",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ReplicationUsagesListRequest",
-}) as any as S.Schema<ReplicationUsagesListRequest>;
-
-/** Summary of the replication monitoring data for this vault. */
-export interface MonitoringSummary {
-  /** Count of unhealthy VMs. */
-  unHealthyVmCount?: number;
-  /** Count of unhealthy replication providers. */
-  unHealthyProviderCount?: number;
-  /** Count of all critical warnings. */
-  eventsCount?: number;
-  /** Count of all deprecated recovery service providers. */
-  deprecatedProviderCount?: number;
-  /** Count of all the supported recovery service providers. */
-  supportedProviderCount?: number;
-  /** Count of all the unsupported recovery service providers. */
-  unsupportedProviderCount?: number;
-}
-export const MonitoringSummary = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    unHealthyVmCount: S.optional(S.Number),
-    unHealthyProviderCount: S.optional(S.Number),
-    eventsCount: S.optional(S.Number),
-    deprecatedProviderCount: S.optional(S.Number),
-    supportedProviderCount: S.optional(S.Number),
-    unsupportedProviderCount: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "MonitoringSummary",
-}) as any as S.Schema<MonitoringSummary>;
-
-/** Summary of the replication job data for this vault. */
-export interface JobsSummary {
-  /** Count of failed jobs. */
-  failedJobs?: number;
-  /** Count of suspended jobs. */
-  suspendedJobs?: number;
-  /** Count of in-progress jobs. */
-  inProgressJobs?: number;
-}
-export const JobsSummary = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    failedJobs: S.optional(S.Number),
-    suspendedJobs: S.optional(S.Number),
-    inProgressJobs: S.optional(S.Number),
-  }),
-).annotate({ identifier: "JobsSummary" }) as any as S.Schema<JobsSummary>;
-
-/** Replication usages of a vault. */
-export interface ReplicationUsage {
-  /** Summary of the replication monitoring data for this vault. */
-  monitoringSummary?: MonitoringSummary;
-  /** Summary of the replication jobs data for this vault. */
-  jobsSummary?: JobsSummary;
-  /** Number of replication protected items for this vault. */
-  protectedItemCount?: number;
-  /** Number of replication recovery plans for this vault. */
-  recoveryPlanCount?: number;
-  /** Number of servers registered to this vault. */
-  registeredServersCount?: number;
-  /** The authentication type of recovery service providers in the vault. */
-  recoveryServicesProviderAuthType?: number;
-}
-export const ReplicationUsage = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    monitoringSummary: S.optional(MonitoringSummary),
-    jobsSummary: S.optional(JobsSummary),
-    protectedItemCount: S.optional(S.Number),
-    recoveryPlanCount: S.optional(S.Number),
-    registeredServersCount: S.optional(S.Number),
-    recoveryServicesProviderAuthType: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "ReplicationUsage",
-}) as any as S.Schema<ReplicationUsage>;
-
-/** The list of replication usages for the given vault. */
-export type ReplicationUsageListValueList = Array<ReplicationUsage>;
-export const ReplicationUsageListValueList = /*@__PURE__*/ S.Array(
-  ReplicationUsage,
-) as any as S.Schema<ReplicationUsageListValueList>;
-
-/** Replication usages for vault. */
-export interface ReplicationUsageList {
-  /** The list of replication usages for the given vault. */
-  value?: ReplicationUsageListValueList;
-  nextLink?: string;
-}
-export const ReplicationUsageList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(ReplicationUsageListValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ReplicationUsageList",
-}) as any as S.Schema<ReplicationUsageList>;
-
-export interface UsagesListByVaultsRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Vault */
-  vaultName: string;
-}
-export const UsagesListByVaultsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/usages",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "UsagesListByVaultsRequest",
-}) as any as S.Schema<UsagesListByVaultsRequest>;
-
-/** Unit of the usage. */
-export type UsagesUnit =
-  | "Count"
-  | "Bytes"
-  | "Seconds"
-  | "Percent"
-  | "CountPerSecond"
-  | "BytesPerSecond";
-export const UsagesUnit = /*@__PURE__*/ S.String;
-
-/** The name of usage. */
-export interface NameInfo {
-  /** Value of usage. */
-  value?: string;
-  /** Localized value of usage. */
-  localizedValue?: string;
-}
-export const NameInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(S.String),
-    localizedValue: S.optional(S.String),
-  }),
-).annotate({ identifier: "NameInfo" }) as any as S.Schema<NameInfo>;
-
-/** Usages of a vault. */
-export interface VaultUsage {
-  /** Unit of the usage. */
-  unit?: UsagesUnit;
-  /** Quota period of usage. */
-  quotaPeriod?: string;
-  /** Next reset time of usage. */
-  nextResetTime?: string;
-  /** Current value of usage. */
-  currentValue?: number;
-  /** Limit of usage. */
-  limit?: number;
-  /** Name of usage. */
-  name?: NameInfo;
-}
-export const VaultUsage = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    unit: S.optional(UsagesUnit),
-    quotaPeriod: S.optional(S.String),
-    nextResetTime: S.optional(S.String),
-    currentValue: S.optional(S.Number),
-    limit: S.optional(S.Number),
-    name: S.optional(NameInfo),
-  }),
-).annotate({ identifier: "VaultUsage" }) as any as S.Schema<VaultUsage>;
-
-/** The list of usages for the given vault. */
-export type VaultUsageListValueList = Array<VaultUsage>;
-export const VaultUsageListValueList = /*@__PURE__*/ S.Array(
-  VaultUsage,
-) as any as S.Schema<VaultUsageListValueList>;
-
-/** Usage for vault. */
-export interface VaultUsageList {
-  /** The list of usages for the given vault. */
-  value?: VaultUsageListValueList;
-  nextLink?: string;
-}
-export const VaultUsageList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(VaultUsageListValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "VaultUsageList" }) as any as S.Schema<VaultUsageList>;
-
-/** Specifies the authentication type. */
-export type AuthType =
-  | "Invalid"
-  | "ACS"
-  | "AAD"
-  | "AccessControlService"
-  | "AzureActiveDirectory";
-export const AuthType = /*@__PURE__*/ S.String;
-
-/** Raw certificate data. */
-export interface RawCertificateData {
-  /** Specifies the authentication type. */
-  authType?: AuthType | (string & {});
-  /** The base64 encoded certificate raw data string */
-  certificate?: string;
-}
-export const RawCertificateData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    authType: S.optional(AuthType),
-    certificate: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "RawCertificateData",
-}) as any as S.Schema<RawCertificateData>;
-
-export interface VaultCertificatesCreateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the recovery services vault. */
-  vaultName: string;
-  /** Certificate friendly name. */
-  certificateName: string;
-  /** Raw certificate data. */
-  properties?: RawCertificateData;
-}
-export const VaultCertificatesCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-    certificateName: S.String.pipe(T.Label()),
-    properties: S.optional(RawCertificateData),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/certificates/{certificateName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "VaultCertificatesCreateRequest",
-}) as any as S.Schema<VaultCertificatesCreateRequest>;
-
-/** Certificate details representing the Vault credentials. */
-export interface ResourceCertificateDetails {
-  /** This property will be used as the discriminator for deciding the specific types in the polymorphic chain of types. */
-  authType: string;
-  /** The base64 encoded certificate raw data string. */
-  certificate?: string;
-  /** Certificate friendly name. */
-  friendlyName?: string;
-  /** Certificate issuer. */
-  issuer?: string;
-  /** Resource ID of the vault. */
-  resourceId?: number;
-  /** Certificate Subject Name. */
-  subject?: string;
-  /** Certificate thumbprint. */
-  thumbprint?: string;
-  /** Certificate Validity start Date time. */
-  validFrom?: string;
-  /** Certificate Validity End Date time. */
-  validTo?: string;
-}
-export const ResourceCertificateDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    authType: S.String,
-    certificate: S.optional(S.String),
-    friendlyName: S.optional(S.String),
-    issuer: S.optional(S.String),
-    resourceId: S.optional(S.Number),
-    subject: S.optional(S.String),
-    thumbprint: S.optional(S.String),
-    validFrom: S.optional(S.String),
-    validTo: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ResourceCertificateDetails",
-}) as any as S.Schema<ResourceCertificateDetails>;
-
-/** Certificate corresponding to a vault that can be used by clients to register themselves with the vault. */
-export interface VaultCertificateResponse {
-  /** Resource name associated with the resource. */
-  name?: string;
-  /** Resource type represents the complete path of the form Namespace/ResourceType/ResourceType/... */
-  type?: string;
-  /** Resource Id represents the complete path to the resource. */
-  id?: string;
-  /** Certificate details representing the Vault credentials. */
-  properties?: ResourceCertificateDetails;
-}
-export const VaultCertificateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    id: S.optional(S.String),
-    properties: S.optional(ResourceCertificateDetails),
-  }),
-).annotate({
-  identifier: "VaultCertificateResponse",
-}) as any as S.Schema<VaultCertificateResponse>;
-
-/** Vault extended information. */
-export interface VaultExtendedInfo {
-  /** Integrity key. */
-  integrityKey?: string;
-  /** Encryption key. */
-  encryptionKey?: string;
-  /** Encryption key thumbprint. */
-  encryptionKeyThumbprint?: string;
-  /** Algorithm for Vault ExtendedInfo */
-  algorithm?: string;
-}
-export const VaultExtendedInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    integrityKey: S.optional(S.String),
-    encryptionKey: S.optional(S.String),
-    encryptionKeyThumbprint: S.optional(S.String),
-    algorithm: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "VaultExtendedInfo",
-}) as any as S.Schema<VaultExtendedInfo>;
-
-export interface VaultExtendedInfoCreateOrUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the recovery services vault. */
-  vaultName: string;
-  /** Vault extended information. */
-  properties?: VaultExtendedInfo;
-  /** etag for the resource. */
-  etag?: string;
-}
-export const VaultExtendedInfoCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vaultName: S.String.pipe(T.Label()),
-      properties: S.optional(VaultExtendedInfo),
-      etag: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/extendedInformation/vaultExtendedInfo",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "VaultExtendedInfoCreateOrUpdateRequest",
-}) as any as S.Schema<VaultExtendedInfoCreateOrUpdateRequest>;
-
-export interface VaultExtendedInfoCreateOrUpdateResponse {
+export interface UndeleteDeletedVaultResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -2045,143 +2250,27 @@ export interface VaultExtendedInfoCreateOrUpdateResponse {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
-  /** Vault extended information. */
-  properties?: VaultExtendedInfo;
-  /** etag for the resource. */
-  etag?: string;
+  /** The resource-specific properties for this resource. */
+  properties?: DeletedVaultProperties;
 }
-export const VaultExtendedInfoCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(VaultExtendedInfo),
-      etag: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "VaultExtendedInfoCreateOrUpdateResponse",
-}) as any as S.Schema<VaultExtendedInfoCreateOrUpdateResponse>;
-
-export interface VaultExtendedInfoGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the recovery services vault. */
-  vaultName: string;
-}
-export const VaultExtendedInfoGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/extendedInformation/vaultExtendedInfo",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "VaultExtendedInfoGetRequest",
-}) as any as S.Schema<VaultExtendedInfoGetRequest>;
-
-export interface VaultExtendedInfoGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Vault extended information. */
-  properties?: VaultExtendedInfo;
-  /** etag for the resource. */
-  etag?: string;
-}
-export const VaultExtendedInfoGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const UndeleteDeletedVaultResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    properties: S.optional(VaultExtendedInfo),
-    etag: S.optional(S.String),
+    properties: S.optional(DeletedVaultProperties),
   }),
 ).annotate({
-  identifier: "VaultExtendedInfoGetResponse",
-}) as any as S.Schema<VaultExtendedInfoGetResponse>;
-
-export interface VaultExtendedInfoUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the recovery services vault. */
-  vaultName: string;
-  /** Vault extended information. */
-  properties?: VaultExtendedInfo;
-  /** etag for the resource. */
-  etag?: string;
-}
-export const VaultExtendedInfoUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-    properties: S.optional(VaultExtendedInfo),
-    etag: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/extendedInformation/vaultExtendedInfo",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "VaultExtendedInfoUpdateRequest",
-}) as any as S.Schema<VaultExtendedInfoUpdateRequest>;
-
-export interface VaultExtendedInfoUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Vault extended information. */
-  properties?: VaultExtendedInfo;
-  /** etag for the resource. */
-  etag?: string;
-}
-export const VaultExtendedInfoUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(VaultExtendedInfo),
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "VaultExtendedInfoUpdateResponse",
-}) as any as S.Schema<VaultExtendedInfoUpdateResponse>;
+  identifier: "UndeleteDeletedVaultResponse",
+}) as any as S.Schema<UndeleteDeletedVaultResponse>;
 
 /** Resource tags. */
-export type VaultsCreateOrUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const VaultsCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateVaultRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateVaultRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<VaultsCreateOrUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateVaultRequestTagsMap>;
 
 /** Details for upgrading vault. */
 export interface UpgradeDetailsInput {}
@@ -2280,6 +2369,222 @@ export const IdentityDataInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "IdentityDataInput",
 }) as any as S.Schema<IdentityDataInput>;
 
+export interface UpdateVaultRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Vault */
+  vaultName: string;
+  /** Resource location. */
+  location?: string;
+  /** Resource tags. */
+  tags?: UpdateVaultRequestTagsMap;
+  /** Optional ETag. */
+  etag?: string;
+  /** Properties of the vault. */
+  properties?: VaultPropertiesInput;
+  /** Identifies the unique system identifier for each Azure resource. */
+  sku?: Sku;
+  /** Identity for the resource. */
+  identity?: IdentityDataInput;
+}
+export const UpdateVaultRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    location: S.optional(S.String),
+    tags: S.optional(UpdateVaultRequestTagsMap),
+    etag: S.optional(S.String),
+    properties: S.optional(VaultPropertiesInput),
+    sku: S.optional(Sku),
+    identity: S.optional(IdentityDataInput),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateVaultRequest",
+}) as any as S.Schema<UpdateVaultRequest>;
+
+/** Resource tags. */
+export type UpdateVaultResponseTagsMap = { [key: string]: string | undefined };
+export const UpdateVaultResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateVaultResponseTagsMap>;
+
+export interface UpdateVaultResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateVaultResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the vault. */
+  properties?: VaultProperties;
+  /** Identity for the resource. */
+  identity?: IdentityData;
+  /** Identifies the unique system identifier for each Azure resource. */
+  sku?: Sku;
+  /** etag for the resource. */
+  etag?: string;
+}
+export const UpdateVaultResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateVaultResponseTagsMap),
+    location: S.String,
+    properties: S.optional(VaultProperties),
+    identity: S.optional(IdentityData),
+    sku: S.optional(Sku),
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "UpdateVaultResponse",
+}) as any as S.Schema<UpdateVaultResponse>;
+
+export interface UpdateVaultExtendedInfoRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the recovery services vault. */
+  vaultName: string;
+  /** Vault extended information. */
+  properties?: VaultExtendedInfo;
+  /** etag for the resource. */
+  etag?: string;
+}
+export const UpdateVaultExtendedInfoRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    properties: S.optional(VaultExtendedInfo),
+    etag: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/extendedInformation/vaultExtendedInfo",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateVaultExtendedInfoRequest",
+}) as any as S.Schema<UpdateVaultExtendedInfoRequest>;
+
+export interface UpdateVaultExtendedInfoResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Vault extended information. */
+  properties?: VaultExtendedInfo;
+  /** etag for the resource. */
+  etag?: string;
+}
+export const UpdateVaultExtendedInfoResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(VaultExtendedInfo),
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "UpdateVaultExtendedInfoResponse",
+}) as any as S.Schema<UpdateVaultExtendedInfoResponse>;
+
+export interface VaultExtendedInfoCreateOrUpdateRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the recovery services vault. */
+  vaultName: string;
+  /** Vault extended information. */
+  properties?: VaultExtendedInfo;
+  /** etag for the resource. */
+  etag?: string;
+}
+export const VaultExtendedInfoCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vaultName: S.String.pipe(T.Label()),
+      properties: S.optional(VaultExtendedInfo),
+      etag: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/extendedInformation/vaultExtendedInfo",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "VaultExtendedInfoCreateOrUpdateRequest",
+}) as any as S.Schema<VaultExtendedInfoCreateOrUpdateRequest>;
+
+export interface VaultExtendedInfoCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Vault extended information. */
+  properties?: VaultExtendedInfo;
+  /** etag for the resource. */
+  etag?: string;
+}
+export const VaultExtendedInfoCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(VaultExtendedInfo),
+      etag: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "VaultExtendedInfoCreateOrUpdateResponse",
+}) as any as S.Schema<VaultExtendedInfoCreateOrUpdateResponse>;
+
+/** Resource tags. */
+export type VaultsCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const VaultsCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<VaultsCreateOrUpdateRequestTagsMap>;
+
 export interface VaultsCreateOrUpdateRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
@@ -2371,366 +2676,91 @@ export const VaultsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "VaultsCreateOrUpdateResponse",
 }) as any as S.Schema<VaultsCreateOrUpdateResponse>;
 
-export interface VaultsDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Vault */
-  vaultName: string;
-}
-export const VaultsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "VaultsDeleteRequest",
-}) as any as S.Schema<VaultsDeleteRequest>;
+export type CheckRecoveryServiceNameAvailabilityError = AzureOpError;
+/** API to check for resource name availability. A name is available if no other resource exists that has the same SubscriptionId, Resource Name and Type or if one or more such resources exist, each of these must be GC'd and their time of deletion be more than 24 Hours Ago API to check for resource name availability. A name is available if no other resource exists that has the same SubscriptionId, Resource Name and Type or if one or more such resources exist, each of these must be GC'd and their time of deletion be more than 24 Hours Ago */
+export const CheckRecoveryServiceNameAvailability: API.OperationMethod<
+  CheckRecoveryServiceNameAvailabilityRequest,
+  CheckNameAvailabilityResult,
+  CheckRecoveryServiceNameAvailabilityError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CheckRecoveryServiceNameAvailabilityRequest,
+  output: CheckNameAvailabilityResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-export interface VaultsDeleteResponse {}
-export const VaultsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "VaultsDeleteResponse",
-}) as any as S.Schema<VaultsDeleteResponse>;
+export type CreateVaultCertificateError = AzureOpError;
+/** Uploads a certificate for a resource. */
+export const CreateVaultCertificate: API.OperationMethod<
+  CreateVaultCertificateRequest,
+  VaultCertificateResponse,
+  CreateVaultCertificateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateVaultCertificateRequest,
+  output: VaultCertificateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-export interface VaultsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Vault */
-  vaultName: string;
-}
-export const VaultsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "VaultsGetRequest",
-}) as any as S.Schema<VaultsGetRequest>;
+export type DeleteRegisteredIdentityError = AzureOpError;
+/** Unregisters the given container from your Recovery Services vault. */
+export const DeleteRegisteredIdentity: API.OperationMethod<
+  DeleteRegisteredIdentityRequest,
+  DeleteRegisteredIdentityResponse,
+  DeleteRegisteredIdentityError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteRegisteredIdentityRequest,
+  output: DeleteRegisteredIdentityResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-/** Resource tags. */
-export type VaultsGetResponseTagsMap = { [key: string]: string | undefined };
-export const VaultsGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<VaultsGetResponseTagsMap>;
+export type DeleteVaultError = AzureOpError;
+/** Deletes a vault. */
+export const DeleteVault: API.OperationMethod<
+  DeleteVaultRequest,
+  DeleteVaultResponse,
+  DeleteVaultError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteVaultRequest,
+  output: DeleteVaultResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-export interface VaultsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: VaultsGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the vault. */
-  properties?: VaultProperties;
-  /** Identity for the resource. */
-  identity?: IdentityData;
-  /** Identifies the unique system identifier for each Azure resource. */
-  sku?: Sku;
-  /** etag for the resource. */
-  etag?: string;
-}
-export const VaultsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(VaultsGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(VaultProperties),
-    identity: S.optional(IdentityData),
-    sku: S.optional(Sku),
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "VaultsGetResponse",
-}) as any as S.Schema<VaultsGetResponse>;
-
-export interface VaultsListByResourceGroupRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const VaultsListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "VaultsListByResourceGroupRequest",
-}) as any as S.Schema<VaultsListByResourceGroupRequest>;
-
-/** Resource tags. */
-export type VaultTagsMap = { [key: string]: string | undefined };
-export const VaultTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<VaultTagsMap>;
-
-/** Resource information, as returned by the resource provider. */
-export interface Vault {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: VaultTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the vault. */
-  properties?: VaultProperties;
-  /** Identity for the resource. */
-  identity?: IdentityData;
-  /** Identifies the unique system identifier for each Azure resource. */
-  sku?: Sku;
-  /** etag for the resource. */
-  etag?: string;
-}
-export const Vault = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(VaultTagsMap),
-    location: S.String,
-    properties: S.optional(VaultProperties),
-    identity: S.optional(IdentityData),
-    sku: S.optional(Sku),
-    etag: S.optional(S.String),
-  }),
-).annotate({ identifier: "Vault" }) as any as S.Schema<Vault>;
-
-/** The Vault items on this page */
-export type VaultListValueList = Array<Vault>;
-export const VaultListValueList = /*@__PURE__*/ S.Array(
-  Vault,
-) as any as S.Schema<VaultListValueList>;
-
-/** The response model for a list of Vaults. */
-export interface VaultList {
-  /** The Vault items on this page */
-  value: VaultListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const VaultList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: VaultListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "VaultList" }) as any as S.Schema<VaultList>;
-
-export interface VaultsListBySubscriptionIdRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-}
-export const VaultsListBySubscriptionIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.RecoveryServices/vaults",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "VaultsListBySubscriptionIdRequest",
-}) as any as S.Schema<VaultsListBySubscriptionIdRequest>;
-
-/** Resource tags. */
-export type VaultsUpdateRequestTagsMap = { [key: string]: string | undefined };
-export const VaultsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<VaultsUpdateRequestTagsMap>;
-
-export interface VaultsUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Vault */
-  vaultName: string;
-  /** Resource location. */
-  location?: string;
-  /** Resource tags. */
-  tags?: VaultsUpdateRequestTagsMap;
-  /** Optional ETag. */
-  etag?: string;
-  /** Properties of the vault. */
-  properties?: VaultPropertiesInput;
-  /** Identifies the unique system identifier for each Azure resource. */
-  sku?: Sku;
-  /** Identity for the resource. */
-  identity?: IdentityDataInput;
-}
-export const VaultsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-    location: S.optional(S.String),
-    tags: S.optional(VaultsUpdateRequestTagsMap),
-    etag: S.optional(S.String),
-    properties: S.optional(VaultPropertiesInput),
-    sku: S.optional(Sku),
-    identity: S.optional(IdentityDataInput),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "VaultsUpdateRequest",
-}) as any as S.Schema<VaultsUpdateRequest>;
-
-/** Resource tags. */
-export type VaultsUpdateResponseTagsMap = { [key: string]: string | undefined };
-export const VaultsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<VaultsUpdateResponseTagsMap>;
-
-export interface VaultsUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: VaultsUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the vault. */
-  properties?: VaultProperties;
-  /** Identity for the resource. */
-  identity?: IdentityData;
-  /** Identifies the unique system identifier for each Azure resource. */
-  sku?: Sku;
-  /** etag for the resource. */
-  etag?: string;
-}
-export const VaultsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(VaultsUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(VaultProperties),
-    identity: S.optional(IdentityData),
-    sku: S.optional(Sku),
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "VaultsUpdateResponse",
-}) as any as S.Schema<VaultsUpdateResponse>;
-
-export type DeletedVaultsGetError = AzureOpError;
+export type GetDeletedVaultError = AzureOpError;
 /** Get a specific deleted vault. */
-export const DeletedVaultsGet: API.OperationMethod<
-  DeletedVaultsGetRequest,
-  DeletedVaultsGetResponse,
-  DeletedVaultsGetError,
+export const GetDeletedVault: API.OperationMethod<
+  GetDeletedVaultRequest,
+  GetDeletedVaultResponse,
+  GetDeletedVaultError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeletedVaultsGetRequest,
-  output: DeletedVaultsGetResponse,
+  input: GetDeletedVaultRequest,
+  output: GetDeletedVaultResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeletedVaultsGetOperationStatusError = AzureOpError;
+export type GetDeletedVaultOperationStatusError = AzureOpError;
 /** Get the operation status of a deleted vault. */
-export const DeletedVaultsGetOperationStatus: API.OperationMethod<
-  DeletedVaultsGetOperationStatusRequest,
+export const GetDeletedVaultOperationStatus: API.OperationMethod<
+  GetDeletedVaultOperationStatusRequest,
   OperationResource,
-  DeletedVaultsGetOperationStatusError,
+  GetDeletedVaultOperationStatusError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeletedVaultsGetOperationStatusRequest,
+  input: GetDeletedVaultOperationStatusRequest,
   output: OperationResource,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeletedVaultsListBySubscriptionIdError = AzureOpError;
-/** List deleted vaults in a subscription. */
-export const DeletedVaultsListBySubscriptionId: API.OperationMethod<
-  DeletedVaultsListBySubscriptionIdRequest,
-  DeletedVaultList,
-  DeletedVaultsListBySubscriptionIdError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeletedVaultsListBySubscriptionIdRequest,
-  output: DeletedVaultList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeletedVaultsUndeleteError = AzureOpError;
-/** Start undelete of a deleted vault. */
-export const DeletedVaultsUndelete: API.OperationMethod<
-  DeletedVaultsUndeleteRequest,
-  DeletedVaultsUndeleteResponse,
-  DeletedVaultsUndeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeletedVaultsUndeleteRequest,
-  output: DeletedVaultsUndeleteResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2766,46 +2796,151 @@ export const GetOperationStatus: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type OperationsListError = AzureOpError;
-/** List the operations for the provider */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  ClientDiscoveryResponse,
-  OperationsListError,
+export type GetPrivateLinkResourceError = AzureOpError;
+/** Returns a specified private link resource that need to be created for Backup and SiteRecovery */
+export const GetPrivateLinkResource: API.OperationMethod<
+  GetPrivateLinkResourceRequest,
+  GetPrivateLinkResourceResponse,
+  GetPrivateLinkResourceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
+  input: GetPrivateLinkResourceRequest,
+  output: GetPrivateLinkResourceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetVaultError = AzureOpError;
+/** Get the Vault details. */
+export const GetVault: API.OperationMethod<
+  GetVaultRequest,
+  GetVaultResponse,
+  GetVaultError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetVaultRequest,
+  output: GetVaultResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetVaultExtendedInfoError = AzureOpError;
+/** Get the vault extended info. */
+export const GetVaultExtendedInfo: API.OperationMethod<
+  GetVaultExtendedInfoRequest,
+  GetVaultExtendedInfoResponse,
+  GetVaultExtendedInfoError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetVaultExtendedInfoRequest,
+  output: GetVaultExtendedInfoResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDeletedVaultBySubscriptionIdError = AzureOpError;
+/** List deleted vaults in a subscription. */
+export const ListDeletedVaultBySubscriptionId: API.OperationMethod<
+  ListDeletedVaultBySubscriptionIdRequest,
+  DeletedVaultList,
+  ListDeletedVaultBySubscriptionIdError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDeletedVaultBySubscriptionIdRequest,
+  output: DeletedVaultList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOperationsError = AzureOpError;
+/** List the operations for the provider */
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  ClientDiscoveryResponse,
+  ListOperationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOperationsRequest,
   output: ClientDiscoveryResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type PrivateLinkResourcesGetError = AzureOpError;
-/** Returns a specified private link resource that need to be created for Backup and SiteRecovery */
-export const PrivateLinkResourcesGet: API.OperationMethod<
-  PrivateLinkResourcesGetRequest,
-  PrivateLinkResourcesGetResponse,
-  PrivateLinkResourcesGetError,
+export type ListPrivateLinkResourcesError = AzureOpError;
+/** Returns the list of private link resources that need to be created for Backup and SiteRecovery */
+export const ListPrivateLinkResources: API.OperationMethod<
+  ListPrivateLinkResourcesRequest,
+  PrivateLinkResources,
+  ListPrivateLinkResourcesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PrivateLinkResourcesGetRequest,
-  output: PrivateLinkResourcesGetResponse,
+  input: ListPrivateLinkResourcesRequest,
+  output: PrivateLinkResources,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type PrivateLinkResourcesListError = AzureOpError;
-/** Returns the list of private link resources that need to be created for Backup and SiteRecovery */
-export const PrivateLinkResourcesList: API.OperationMethod<
-  PrivateLinkResourcesListRequest,
-  PrivateLinkResources,
-  PrivateLinkResourcesListError,
+export type ListReplicationUsagesError = AzureOpError;
+/** Fetches the replication usages of the vault. */
+export const ListReplicationUsages: API.OperationMethod<
+  ListReplicationUsagesRequest,
+  ReplicationUsageList,
+  ListReplicationUsagesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PrivateLinkResourcesListRequest,
-  output: PrivateLinkResources,
+  input: ListReplicationUsagesRequest,
+  output: ReplicationUsageList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListUsageByVaultsError = AzureOpError;
+/** Fetches the usages of the vault. */
+export const ListUsageByVaults: API.OperationMethod<
+  ListUsageByVaultsRequest,
+  VaultUsageList,
+  ListUsageByVaultsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListUsageByVaultsRequest,
+  output: VaultUsageList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVaultByResourceGroupError = AzureOpError;
+/** Retrieve a list of Vaults. */
+export const ListVaultByResourceGroup: API.OperationMethod<
+  ListVaultByResourceGroupRequest,
+  VaultList,
+  ListVaultByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVaultByResourceGroupRequest,
+  output: VaultList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVaultBySubscriptionIdError = AzureOpError;
+/** Fetches all the resources of the specified type in the subscription. */
+export const ListVaultBySubscriptionId: API.OperationMethod<
+  ListVaultBySubscriptionIdRequest,
+  VaultList,
+  ListVaultBySubscriptionIdError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVaultBySubscriptionIdRequest,
+  output: VaultList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2826,76 +2961,46 @@ export const RecoveryServicesCapabilities: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type RecoveryServicesCheckNameAvailabilityError = AzureOpError;
-/** API to check for resource name availability. A name is available if no other resource exists that has the same SubscriptionId, Resource Name and Type or if one or more such resources exist, each of these must be GC'd and their time of deletion be more than 24 Hours Ago API to check for resource name availability. A name is available if no other resource exists that has the same SubscriptionId, Resource Name and Type or if one or more such resources exist, each of these must be GC'd and their time of deletion be more than 24 Hours Ago */
-export const RecoveryServicesCheckNameAvailability: API.OperationMethod<
-  RecoveryServicesCheckNameAvailabilityRequest,
-  CheckNameAvailabilityResult,
-  RecoveryServicesCheckNameAvailabilityError,
+export type UndeleteDeletedVaultError = AzureOpError;
+/** Start undelete of a deleted vault. */
+export const UndeleteDeletedVault: API.OperationMethod<
+  UndeleteDeletedVaultRequest,
+  UndeleteDeletedVaultResponse,
+  UndeleteDeletedVaultError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RecoveryServicesCheckNameAvailabilityRequest,
-  output: CheckNameAvailabilityResult,
+  input: UndeleteDeletedVaultRequest,
+  output: UndeleteDeletedVaultResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type RegisteredIdentitiesDeleteError = AzureOpError;
-/** Unregisters the given container from your Recovery Services vault. */
-export const RegisteredIdentitiesDelete: API.OperationMethod<
-  RegisteredIdentitiesDeleteRequest,
-  RegisteredIdentitiesDeleteResponse,
-  RegisteredIdentitiesDeleteError,
+export type UpdateVaultError = AzureOpError;
+/** Updates the vault. */
+export const UpdateVault: API.OperationMethod<
+  UpdateVaultRequest,
+  UpdateVaultResponse,
+  UpdateVaultError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RegisteredIdentitiesDeleteRequest,
-  output: RegisteredIdentitiesDeleteResponse,
+  input: UpdateVaultRequest,
+  output: UpdateVaultResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ReplicationUsagesListError = AzureOpError;
-/** Fetches the replication usages of the vault. */
-export const ReplicationUsagesList: API.OperationMethod<
-  ReplicationUsagesListRequest,
-  ReplicationUsageList,
-  ReplicationUsagesListError,
+export type UpdateVaultExtendedInfoError = AzureOpError;
+/** Update vault extended info. */
+export const UpdateVaultExtendedInfo: API.OperationMethod<
+  UpdateVaultExtendedInfoRequest,
+  UpdateVaultExtendedInfoResponse,
+  UpdateVaultExtendedInfoError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ReplicationUsagesListRequest,
-  output: ReplicationUsageList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UsagesListByVaultsError = AzureOpError;
-/** Fetches the usages of the vault. */
-export const UsagesListByVaults: API.OperationMethod<
-  UsagesListByVaultsRequest,
-  VaultUsageList,
-  UsagesListByVaultsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UsagesListByVaultsRequest,
-  output: VaultUsageList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VaultCertificatesCreateError = AzureOpError;
-/** Uploads a certificate for a resource. */
-export const VaultCertificatesCreate: API.OperationMethod<
-  VaultCertificatesCreateRequest,
-  VaultCertificateResponse,
-  VaultCertificatesCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VaultCertificatesCreateRequest,
-  output: VaultCertificateResponse,
+  input: UpdateVaultExtendedInfoRequest,
+  output: UpdateVaultExtendedInfoResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2916,36 +3021,6 @@ export const VaultExtendedInfoCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type VaultExtendedInfoGetError = AzureOpError;
-/** Get the vault extended info. */
-export const VaultExtendedInfoGet: API.OperationMethod<
-  VaultExtendedInfoGetRequest,
-  VaultExtendedInfoGetResponse,
-  VaultExtendedInfoGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VaultExtendedInfoGetRequest,
-  output: VaultExtendedInfoGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VaultExtendedInfoUpdateError = AzureOpError;
-/** Update vault extended info. */
-export const VaultExtendedInfoUpdate: API.OperationMethod<
-  VaultExtendedInfoUpdateRequest,
-  VaultExtendedInfoUpdateResponse,
-  VaultExtendedInfoUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VaultExtendedInfoUpdateRequest,
-  output: VaultExtendedInfoUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type VaultsCreateOrUpdateError = AzureOpError;
 /** Creates or updates a Recovery Services vault. */
 export const VaultsCreateOrUpdate: API.OperationMethod<
@@ -2956,81 +3031,6 @@ export const VaultsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: VaultsCreateOrUpdateRequest,
   output: VaultsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VaultsDeleteError = AzureOpError;
-/** Deletes a vault. */
-export const VaultsDelete: API.OperationMethod<
-  VaultsDeleteRequest,
-  VaultsDeleteResponse,
-  VaultsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VaultsDeleteRequest,
-  output: VaultsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VaultsGetError = AzureOpError;
-/** Get the Vault details. */
-export const VaultsGet: API.OperationMethod<
-  VaultsGetRequest,
-  VaultsGetResponse,
-  VaultsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VaultsGetRequest,
-  output: VaultsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VaultsListByResourceGroupError = AzureOpError;
-/** Retrieve a list of Vaults. */
-export const VaultsListByResourceGroup: API.OperationMethod<
-  VaultsListByResourceGroupRequest,
-  VaultList,
-  VaultsListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VaultsListByResourceGroupRequest,
-  output: VaultList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VaultsListBySubscriptionIdError = AzureOpError;
-/** Fetches all the resources of the specified type in the subscription. */
-export const VaultsListBySubscriptionId: API.OperationMethod<
-  VaultsListBySubscriptionIdRequest,
-  VaultList,
-  VaultsListBySubscriptionIdError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VaultsListBySubscriptionIdRequest,
-  output: VaultList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VaultsUpdateError = AzureOpError;
-/** Updates the vault. */
-export const VaultsUpdate: API.OperationMethod<
-  VaultsUpdateRequest,
-  VaultsUpdateResponse,
-  VaultsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VaultsUpdateRequest,
-  output: VaultsUpdateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

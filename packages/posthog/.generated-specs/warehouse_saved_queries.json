@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesListRequest": {
+    "com.posthog.warehouse_saved_queries#ListWarehouseSavedQueriesRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -117,7 +118,7 @@
           "target": "com.posthog.warehouse_saved_queries#DataWarehouseSavedQueryMinimalColumnsList"
         },
         "status": {
-          "target": "com.posthog.warehouse_saved_queries#SavedQueryStatusEnum",
+          "target": "com.posthog.warehouse_saved_queries#DataWarehouseSavedQueryStatusEnum",
           "traits": {
             "smithy.api#documentation": "The status of when this SavedQuery last ran.\n\n* `Cancelled` - Cancelled\n* `Modified` - Modified\n* `Completed` - Completed\n* `Failed` - Failed\n* `Running` - Running",
             "com.distilled.openapi#nullable": {}
@@ -166,7 +167,7 @@
           }
         },
         "origin": {
-          "target": "com.posthog.warehouse_saved_queries#OriginEnum",
+          "target": "com.posthog.warehouse_saved_queries#DataWarehouseSavedQueryOriginEnum",
           "traits": {
             "smithy.api#documentation": "Where this SavedQuery is created.\n\n* `data_warehouse` - Data Warehouse\n* `endpoint` - Endpoint\n* `managed_viewset` - Managed Viewset",
             "com.distilled.openapi#nullable": {}
@@ -355,7 +356,7 @@
       },
       "traits": {}
     },
-    "com.posthog.warehouse_saved_queries#SavedQueryStatusEnum": {
+    "com.posthog.warehouse_saved_queries#DataWarehouseSavedQueryStatusEnum": {
       "type": "enum",
       "members": {
         "CANCELLED": {
@@ -393,7 +394,7 @@
         "smithy.api#documentation": "* `Cancelled` - Cancelled\n* `Modified` - Modified\n* `Completed` - Completed\n* `Failed` - Failed\n* `Running` - Running"
       }
     },
-    "com.posthog.warehouse_saved_queries#OriginEnum": {
+    "com.posthog.warehouse_saved_queries#DataWarehouseSavedQueryOriginEnum": {
       "type": "enum",
       "members": {
         "DATA_WAREHOUSE": {
@@ -426,10 +427,10 @@
       },
       "traits": {}
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesList": {
+    "com.posthog.warehouse_saved_queries#ListWarehouseSavedQueries": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesListRequest"
+        "target": "com.posthog.warehouse_saved_queries#ListWarehouseSavedQueriesRequest"
       },
       "output": {
         "target": "com.posthog.warehouse_saved_queries#PaginatedDataWarehouseSavedQueryMinimalList"
@@ -454,7 +455,7 @@
         "smithy.api#documentation": "Create, Read, Update and Delete Warehouse Tables."
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesCreateRequestQueryKind": {
+    "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueryRequestQueryKind": {
       "type": "enum",
       "members": {
         "HOGQLQUERY": {
@@ -466,11 +467,11 @@
       },
       "traits": {}
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesCreateRequestQuery": {
+    "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueryRequestQuery": {
       "type": "structure",
       "members": {
         "kind": {
-          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesCreateRequestQueryKind"
+          "target": "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueryRequestQueryKind"
         },
         "query": {
           "target": "smithy.api#String",
@@ -588,7 +589,7 @@
         "smithy.api#documentation": "* `never` - never\n* `15min` - 15min\n* `30min` - 30min\n* `1hour` - 1hour\n* `6hour` - 6hour\n* `12hour` - 12hour\n* `24hour` - 24hour\n* `7day` - 7day\n* `30day` - 30day"
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesCreateRequest": {
+    "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueryRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -612,7 +613,7 @@
           }
         },
         "query": {
-          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesCreateRequestQuery",
+          "target": "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueryRequestQuery",
           "traits": {
             "smithy.api#documentation": "HogQL query definition as a JSON object with a \"query\" key containing the SQL string and a \"kind\" key (always \"HogQLQuery\"). Format the SQL string multi-line with indentation and inline `--` comments for non-obvious logic — the SQL editor renders it verbatim, so avoid minified single-line SQL. Example: {\"kind\": \"HogQLQuery\", \"query\": \"SELECT\\n    event,\\n    count() AS cnt\\nFROM events\\nGROUP BY event\\nLIMIT 100\"}"
           }
@@ -754,7 +755,7 @@
           "target": "com.posthog.warehouse_saved_queries#DataWarehouseSavedQueryOutputColumnsList"
         },
         "status": {
-          "target": "com.posthog.warehouse_saved_queries#SavedQueryStatusEnum",
+          "target": "com.posthog.warehouse_saved_queries#DataWarehouseSavedQueryStatusEnum",
           "traits": {
             "smithy.api#documentation": "The status of when this SavedQuery last ran.\n\n* `Cancelled` - Cancelled\n* `Modified` - Modified\n* `Completed` - Completed\n* `Failed` - Failed\n* `Running` - Running",
             "com.distilled.openapi#nullable": {}
@@ -805,7 +806,7 @@
           }
         },
         "origin": {
-          "target": "com.posthog.warehouse_saved_queries#OriginEnum",
+          "target": "com.posthog.warehouse_saved_queries#DataWarehouseSavedQueryOriginEnum",
           "traits": {
             "smithy.api#documentation": "Where this SavedQuery is created.\n\n* `data_warehouse` - Data Warehouse\n* `endpoint` - Endpoint\n* `managed_viewset` - Managed Viewset",
             "com.distilled.openapi#nullable": {}
@@ -1244,10 +1245,10 @@
         "smithy.api#documentation": "Engines this query's materialization is suspended for after repeated failures. Suspended engines are skipped by scheduled runs until the query is resumed."
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesCreate": {
+    "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQuery": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesCreateRequest"
+        "target": "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueryRequest"
       },
       "output": {
         "target": "com.posthog.warehouse_saved_queries#DataWarehouseSavedQueryOutput"
@@ -1272,7 +1273,7 @@
         "smithy.api#documentation": "Create, Read, Update and Delete Warehouse Tables."
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesRetrieveRequest": {
+    "com.posthog.warehouse_saved_queries#GetWarehouseSavedQueryRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1296,10 +1297,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesRetrieve": {
+    "com.posthog.warehouse_saved_queries#GetWarehouseSavedQuery": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesRetrieveRequest"
+        "target": "com.posthog.warehouse_saved_queries#GetWarehouseSavedQueryRequest"
       },
       "output": {
         "target": "com.posthog.warehouse_saved_queries#DataWarehouseSavedQueryOutput"
@@ -1321,7 +1322,7 @@
         "smithy.api#documentation": "Create, Read, Update and Delete Warehouse Tables."
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesUpdateRequestQueryKind": {
+    "com.posthog.warehouse_saved_queries#UpdateWarehouseSavedQueryRequestQueryKind": {
       "type": "enum",
       "members": {
         "HOGQLQUERY": {
@@ -1333,11 +1334,11 @@
       },
       "traits": {}
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesUpdateRequestQuery": {
+    "com.posthog.warehouse_saved_queries#UpdateWarehouseSavedQueryRequestQuery": {
       "type": "structure",
       "members": {
         "kind": {
-          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesUpdateRequestQueryKind"
+          "target": "com.posthog.warehouse_saved_queries#UpdateWarehouseSavedQueryRequestQueryKind"
         },
         "query": {
           "target": "smithy.api#String",
@@ -1350,7 +1351,7 @@
         "smithy.api#documentation": "HogQL query definition as a JSON object with a \"query\" key containing the SQL string and a \"kind\" key (always \"HogQLQuery\"). Format the SQL string multi-line with indentation and inline `--` comments for non-obvious logic — the SQL editor renders it verbatim, so avoid minified single-line SQL. Example: {\"kind\": \"HogQLQuery\", \"query\": \"SELECT\\n    event,\\n    count() AS cnt\\nFROM events\\nGROUP BY event\\nLIMIT 100\"}"
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesUpdateRequest": {
+    "com.posthog.warehouse_saved_queries#UpdateWarehouseSavedQueryRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1382,7 +1383,7 @@
           }
         },
         "query": {
-          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesUpdateRequestQuery",
+          "target": "com.posthog.warehouse_saved_queries#UpdateWarehouseSavedQueryRequestQuery",
           "traits": {
             "smithy.api#documentation": "HogQL query definition as a JSON object with a \"query\" key containing the SQL string and a \"kind\" key (always \"HogQLQuery\"). Format the SQL string multi-line with indentation and inline `--` comments for non-obvious logic — the SQL editor renders it verbatim, so avoid minified single-line SQL. Example: {\"kind\": \"HogQLQuery\", \"query\": \"SELECT\\n    event,\\n    count() AS cnt\\nFROM events\\nGROUP BY event\\nLIMIT 100\"}"
           }
@@ -1447,10 +1448,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesUpdate": {
+    "com.posthog.warehouse_saved_queries#UpdateWarehouseSavedQuery": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesUpdateRequest"
+        "target": "com.posthog.warehouse_saved_queries#UpdateWarehouseSavedQueryRequest"
       },
       "output": {
         "target": "com.posthog.warehouse_saved_queries#DataWarehouseSavedQueryOutput"
@@ -1475,7 +1476,7 @@
         "smithy.api#documentation": "Create, Read, Update and Delete Warehouse Tables."
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesPartialUpdateRequestQueryKind": {
+    "com.posthog.warehouse_saved_queries#UpdateWarehouseSavedQueriesPartialRequestQueryKind": {
       "type": "enum",
       "members": {
         "HOGQLQUERY": {
@@ -1487,11 +1488,11 @@
       },
       "traits": {}
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesPartialUpdateRequestQuery": {
+    "com.posthog.warehouse_saved_queries#UpdateWarehouseSavedQueriesPartialRequestQuery": {
       "type": "structure",
       "members": {
         "kind": {
-          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesPartialUpdateRequestQueryKind"
+          "target": "com.posthog.warehouse_saved_queries#UpdateWarehouseSavedQueriesPartialRequestQueryKind"
         },
         "query": {
           "target": "smithy.api#String",
@@ -1504,7 +1505,7 @@
         "smithy.api#documentation": "HogQL query definition as a JSON object with a \"query\" key containing the SQL string and a \"kind\" key (always \"HogQLQuery\"). Format the SQL string multi-line with indentation and inline `--` comments for non-obvious logic — the SQL editor renders it verbatim, so avoid minified single-line SQL. Example: {\"kind\": \"HogQLQuery\", \"query\": \"SELECT\\n    event,\\n    count() AS cnt\\nFROM events\\nGROUP BY event\\nLIMIT 100\"}"
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesPartialUpdateRequest": {
+    "com.posthog.warehouse_saved_queries#UpdateWarehouseSavedQueriesPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1536,7 +1537,7 @@
           }
         },
         "query": {
-          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesPartialUpdateRequestQuery",
+          "target": "com.posthog.warehouse_saved_queries#UpdateWarehouseSavedQueriesPartialRequestQuery",
           "traits": {
             "smithy.api#documentation": "HogQL query definition as a JSON object with a \"query\" key containing the SQL string and a \"kind\" key (always \"HogQLQuery\"). Format the SQL string multi-line with indentation and inline `--` comments for non-obvious logic — the SQL editor renders it verbatim, so avoid minified single-line SQL. Example: {\"kind\": \"HogQLQuery\", \"query\": \"SELECT\\n    event,\\n    count() AS cnt\\nFROM events\\nGROUP BY event\\nLIMIT 100\"}"
           }
@@ -1601,10 +1602,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesPartialUpdate": {
+    "com.posthog.warehouse_saved_queries#UpdateWarehouseSavedQueriesPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesPartialUpdateRequest"
+        "target": "com.posthog.warehouse_saved_queries#UpdateWarehouseSavedQueriesPartialRequest"
       },
       "output": {
         "target": "com.posthog.warehouse_saved_queries#DataWarehouseSavedQueryOutput"
@@ -1678,7 +1679,7 @@
         "smithy.api#documentation": "Create, Read, Update and Delete Warehouse Tables."
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesActivityRetrieveRequest": {
+    "com.posthog.warehouse_saved_queries#GetWarehouseSavedQueriesActivityRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1702,10 +1703,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesActivityRetrieve": {
+    "com.posthog.warehouse_saved_queries#GetWarehouseSavedQueriesActivity": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesActivityRetrieveRequest"
+        "target": "com.posthog.warehouse_saved_queries#GetWarehouseSavedQueriesActivityRequest"
       },
       "output": {
         "target": "com.posthog.warehouse_saved_queries#DataWarehouseSavedQueryOutput"
@@ -1727,7 +1728,7 @@
         "smithy.api#documentation": "Create, Read, Update and Delete Warehouse Tables."
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesAncestorsCreateRequestQueryKind": {
+    "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesAncestorRequestQueryKind": {
       "type": "enum",
       "members": {
         "HOGQLQUERY": {
@@ -1739,11 +1740,11 @@
       },
       "traits": {}
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesAncestorsCreateRequestQuery": {
+    "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesAncestorRequestQuery": {
       "type": "structure",
       "members": {
         "kind": {
-          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesAncestorsCreateRequestQueryKind"
+          "target": "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesAncestorRequestQueryKind"
         },
         "query": {
           "target": "smithy.api#String",
@@ -1756,7 +1757,7 @@
         "smithy.api#documentation": "HogQL query definition as a JSON object with a \"query\" key containing the SQL string and a \"kind\" key (always \"HogQLQuery\"). Format the SQL string multi-line with indentation and inline `--` comments for non-obvious logic — the SQL editor renders it verbatim, so avoid minified single-line SQL. Example: {\"kind\": \"HogQLQuery\", \"query\": \"SELECT\\n    event,\\n    count() AS cnt\\nFROM events\\nGROUP BY event\\nLIMIT 100\"}"
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesAncestorsCreateRequest": {
+    "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesAncestorRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1788,7 +1789,7 @@
           }
         },
         "query": {
-          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesAncestorsCreateRequestQuery",
+          "target": "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesAncestorRequestQuery",
           "traits": {
             "smithy.api#documentation": "HogQL query definition as a JSON object with a \"query\" key containing the SQL string and a \"kind\" key (always \"HogQLQuery\"). Format the SQL string multi-line with indentation and inline `--` comments for non-obvious logic — the SQL editor renders it verbatim, so avoid minified single-line SQL. Example: {\"kind\": \"HogQLQuery\", \"query\": \"SELECT\\n    event,\\n    count() AS cnt\\nFROM events\\nGROUP BY event\\nLIMIT 100\"}"
           }
@@ -1853,10 +1854,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesAncestorsCreate": {
+    "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesAncestor": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesAncestorsCreateRequest"
+        "target": "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesAncestorRequest"
       },
       "output": {
         "target": "com.posthog.warehouse_saved_queries#DataWarehouseSavedQueryOutput"
@@ -2035,7 +2036,7 @@
         "smithy.api#documentation": "Cancel a running saved query workflow."
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesDependenciesRetrieveRequest": {
+    "com.posthog.warehouse_saved_queries#GetWarehouseSavedQueriesDependencyRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2059,10 +2060,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesDependenciesRetrieve": {
+    "com.posthog.warehouse_saved_queries#GetWarehouseSavedQueriesDependency": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesDependenciesRetrieveRequest"
+        "target": "com.posthog.warehouse_saved_queries#GetWarehouseSavedQueriesDependencyRequest"
       },
       "output": {
         "target": "com.posthog.warehouse_saved_queries#DataWarehouseSavedQueryOutput"
@@ -2084,7 +2085,7 @@
         "smithy.api#documentation": "Return the count of immediate upstream and downstream dependencies for this saved query."
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesDescendantsCreateRequestQueryKind": {
+    "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesDescendantRequestQueryKind": {
       "type": "enum",
       "members": {
         "HOGQLQUERY": {
@@ -2096,11 +2097,11 @@
       },
       "traits": {}
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesDescendantsCreateRequestQuery": {
+    "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesDescendantRequestQuery": {
       "type": "structure",
       "members": {
         "kind": {
-          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesDescendantsCreateRequestQueryKind"
+          "target": "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesDescendantRequestQueryKind"
         },
         "query": {
           "target": "smithy.api#String",
@@ -2113,7 +2114,7 @@
         "smithy.api#documentation": "HogQL query definition as a JSON object with a \"query\" key containing the SQL string and a \"kind\" key (always \"HogQLQuery\"). Format the SQL string multi-line with indentation and inline `--` comments for non-obvious logic — the SQL editor renders it verbatim, so avoid minified single-line SQL. Example: {\"kind\": \"HogQLQuery\", \"query\": \"SELECT\\n    event,\\n    count() AS cnt\\nFROM events\\nGROUP BY event\\nLIMIT 100\"}"
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesDescendantsCreateRequest": {
+    "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesDescendantRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2145,7 +2146,7 @@
           }
         },
         "query": {
-          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesDescendantsCreateRequestQuery",
+          "target": "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesDescendantRequestQuery",
           "traits": {
             "smithy.api#documentation": "HogQL query definition as a JSON object with a \"query\" key containing the SQL string and a \"kind\" key (always \"HogQLQuery\"). Format the SQL string multi-line with indentation and inline `--` comments for non-obvious logic — the SQL editor renders it verbatim, so avoid minified single-line SQL. Example: {\"kind\": \"HogQLQuery\", \"query\": \"SELECT\\n    event,\\n    count() AS cnt\\nFROM events\\nGROUP BY event\\nLIMIT 100\"}"
           }
@@ -2210,10 +2211,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesDescendantsCreate": {
+    "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesDescendant": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesDescendantsCreateRequest"
+        "target": "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesDescendantRequest"
       },
       "output": {
         "target": "com.posthog.warehouse_saved_queries#DataWarehouseSavedQueryOutput"
@@ -2238,7 +2239,7 @@
         "smithy.api#documentation": "Return the descendants of this saved query.\n\nBy default, we return the immediate children. The `level` parameter can be used to\nlook further ahead into the descendants tree. If `level` overshoots (i.e. points to only\ndescendants further than a leaf), we return an empty list."
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesMaterializeCreateRequest": {
+    "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesMaterializeRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2268,10 +2269,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesMaterializeCreate": {
+    "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesMaterialize": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesMaterializeCreateRequest"
+        "target": "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesMaterializeRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2350,7 +2351,7 @@
         "smithy.api#documentation": "Resume materialization suspended after repeated failures.\n\nScheduled runs skip a suspended model and everything downstream of it, so it cannot succeed\nits way back on its own."
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesRevertMaterializationCreateRequestQueryKind": {
+    "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesRevertMaterializationRequestQueryKind": {
       "type": "enum",
       "members": {
         "HOGQLQUERY": {
@@ -2362,11 +2363,11 @@
       },
       "traits": {}
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesRevertMaterializationCreateRequestQuery": {
+    "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesRevertMaterializationRequestQuery": {
       "type": "structure",
       "members": {
         "kind": {
-          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesRevertMaterializationCreateRequestQueryKind"
+          "target": "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesRevertMaterializationRequestQueryKind"
         },
         "query": {
           "target": "smithy.api#String",
@@ -2379,7 +2380,7 @@
         "smithy.api#documentation": "HogQL query definition as a JSON object with a \"query\" key containing the SQL string and a \"kind\" key (always \"HogQLQuery\"). Format the SQL string multi-line with indentation and inline `--` comments for non-obvious logic — the SQL editor renders it verbatim, so avoid minified single-line SQL. Example: {\"kind\": \"HogQLQuery\", \"query\": \"SELECT\\n    event,\\n    count() AS cnt\\nFROM events\\nGROUP BY event\\nLIMIT 100\"}"
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesRevertMaterializationCreateRequest": {
+    "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesRevertMaterializationRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2411,7 +2412,7 @@
           }
         },
         "query": {
-          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesRevertMaterializationCreateRequestQuery",
+          "target": "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesRevertMaterializationRequestQuery",
           "traits": {
             "smithy.api#documentation": "HogQL query definition as a JSON object with a \"query\" key containing the SQL string and a \"kind\" key (always \"HogQLQuery\"). Format the SQL string multi-line with indentation and inline `--` comments for non-obvious logic — the SQL editor renders it verbatim, so avoid minified single-line SQL. Example: {\"kind\": \"HogQLQuery\", \"query\": \"SELECT\\n    event,\\n    count() AS cnt\\nFROM events\\nGROUP BY event\\nLIMIT 100\"}"
           }
@@ -2476,10 +2477,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesRevertMaterializationCreate": {
+    "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesRevertMaterialization": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesRevertMaterializationCreateRequest"
+        "target": "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesRevertMaterializationRequest"
       },
       "output": {
         "target": "com.posthog.warehouse_saved_queries#DataWarehouseSavedQueryOutput"
@@ -2504,7 +2505,7 @@
         "smithy.api#documentation": "Undo materialization, revert back to the original view.\n(i.e. delete the materialized table and the schedule)"
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesRunCreateRequest": {
+    "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesRunRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2534,10 +2535,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesRunCreate": {
+    "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesRun": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesRunCreateRequest"
+        "target": "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesRunRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2562,7 +2563,7 @@
         "smithy.api#documentation": "Run this saved query."
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesRunHistoryRetrieveRequest": {
+    "com.posthog.warehouse_saved_queries#GetWarehouseSavedQueriesRunHistoryRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2586,10 +2587,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesRunHistoryRetrieve": {
+    "com.posthog.warehouse_saved_queries#GetWarehouseSavedQueriesRunHistory": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesRunHistoryRetrieveRequest"
+        "target": "com.posthog.warehouse_saved_queries#GetWarehouseSavedQueriesRunHistoryRequest"
       },
       "output": {
         "target": "com.posthog.warehouse_saved_queries#DataWarehouseSavedQueryOutput"
@@ -2611,7 +2612,7 @@
         "smithy.api#documentation": "Return the recent run history (up to 5 most recent) for this materialized view."
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesCheckSuiteRunsListRequest": {
+    "com.posthog.warehouse_saved_queries#ListWarehouseSavedQueriesCheckSuiteRunsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2785,10 +2786,10 @@
       },
       "traits": {}
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesCheckSuiteRunsList": {
+    "com.posthog.warehouse_saved_queries#ListWarehouseSavedQueriesCheckSuiteRuns": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesCheckSuiteRunsListRequest"
+        "target": "com.posthog.warehouse_saved_queries#ListWarehouseSavedQueriesCheckSuiteRunsRequest"
       },
       "output": {
         "target": "com.posthog.warehouse_saved_queries#PaginatedDataQualitySuiteRunList"
@@ -2802,7 +2803,7 @@
         "smithy.api#documentation": "Read-only reports for this subject's check-suite executions."
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesCheckSuiteRunsRetrieveRequest": {
+    "com.posthog.warehouse_saved_queries#GetWarehouseSavedQueriesCheckSuiteRunRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2834,10 +2835,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesCheckSuiteRunsRetrieve": {
+    "com.posthog.warehouse_saved_queries#GetWarehouseSavedQueriesCheckSuiteRun": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesCheckSuiteRunsRetrieveRequest"
+        "target": "com.posthog.warehouse_saved_queries#GetWarehouseSavedQueriesCheckSuiteRunRequest"
       },
       "output": {
         "target": "com.posthog.warehouse_saved_queries#DataQualitySuiteRun"
@@ -2851,7 +2852,7 @@
         "smithy.api#documentation": "Read-only reports for this subject's check-suite executions."
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesCheckSuiteRunsCheckRunsListRequest": {
+    "com.posthog.warehouse_saved_queries#ListWarehouseSavedQueriesCheckSuiteRunsCheckRunsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2896,6 +2897,14 @@
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "The definition executed. Nulled rather than cascaded so history outlives hard deletes.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "check_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name the check carries now, so a run can be told from the others in its suite. Null when the check is unnamed, has been hard deleted, or is out of your reach today -- describe the run by check_type and column_name instead.",
             "smithy.api#required": {},
             "com.distilled.openapi#nullable": {}
           }
@@ -3122,18 +3131,18 @@
         "smithy.api#documentation": "* `error` - error\n* `warn` - warn"
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesCheckSuiteRunsCheckRunsListResponseBodyList": {
+    "com.posthog.warehouse_saved_queries#ListWarehouseSavedQueriesCheckSuiteRunsCheckRunsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.posthog.warehouse_saved_queries#DataQualityCheckRun"
       },
       "traits": {}
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesCheckSuiteRunsCheckRunsListResponse": {
+    "com.posthog.warehouse_saved_queries#ListWarehouseSavedQueriesCheckSuiteRunsCheckRunsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesCheckSuiteRunsCheckRunsListResponseBodyList",
+          "target": "com.posthog.warehouse_saved_queries#ListWarehouseSavedQueriesCheckSuiteRunsCheckRunsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -3144,13 +3153,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesCheckSuiteRunsCheckRunsList": {
+    "com.posthog.warehouse_saved_queries#ListWarehouseSavedQueriesCheckSuiteRunsCheckRuns": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesCheckSuiteRunsCheckRunsListRequest"
+        "target": "com.posthog.warehouse_saved_queries#ListWarehouseSavedQueriesCheckSuiteRunsCheckRunsRequest"
       },
       "output": {
-        "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesCheckSuiteRunsCheckRunsListResponse"
+        "target": "com.posthog.warehouse_saved_queries#ListWarehouseSavedQueriesCheckSuiteRunsCheckRunsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3161,7 +3170,7 @@
         "smithy.api#documentation": "Every check execution in this suite run."
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksListRequest": {
+    "com.posthog.warehouse_saved_queries#ListWarehouseSavedQueriesChecksRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3341,7 +3350,15 @@
         "last_succeeded_at": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "When the check last passed, so a failing check can say how long it has been failing. Null means it has not passed within the run retention window.",
+            "smithy.api#documentation": "When the check last passed. Read failing_since for how long a failing check has been failing. Null means it has not passed within the run retention window.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "failing_since": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the current streak of failing runs started, so a failing check can say how long it has been failing. Null when the check is not failing.",
             "smithy.api#required": {},
             "com.distilled.openapi#nullable": {}
           }
@@ -3451,10 +3468,10 @@
       },
       "traits": {}
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksList": {
+    "com.posthog.warehouse_saved_queries#ListWarehouseSavedQueriesChecks": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksListRequest"
+        "target": "com.posthog.warehouse_saved_queries#ListWarehouseSavedQueriesChecksRequest"
       },
       "output": {
         "target": "com.posthog.warehouse_saved_queries#PaginatedDataQualityCheckList"
@@ -3468,7 +3485,7 @@
         "smithy.api#documentation": "CRUD for one subject's checks, plus the actions that run them and report on them."
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksCreateRequestConfigMap": {
+    "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesCheckRequestConfigMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3480,7 +3497,7 @@
         "smithy.api#documentation": "Type-specific configuration, validated against the check type's JSON schema."
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksCreateRequestTagsList": {
+    "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesCheckRequestTagsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -3489,7 +3506,7 @@
         "smithy.api#documentation": "Free-form string labels for grouping and filtering."
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksCreateRequest": {
+    "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesCheckRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3533,7 +3550,7 @@
           }
         },
         "config": {
-          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksCreateRequestConfigMap",
+          "target": "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesCheckRequestConfigMap",
           "traits": {
             "smithy.api#documentation": "Type-specific configuration, validated against the check type's JSON schema."
           }
@@ -3551,7 +3568,7 @@
           }
         },
         "tags": {
-          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksCreateRequestTagsList",
+          "target": "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesCheckRequestTagsList",
           "traits": {
             "smithy.api#documentation": "Free-form string labels for grouping and filtering."
           }
@@ -3586,10 +3603,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksCreate": {
+    "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesCheck": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksCreateRequest"
+        "target": "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesCheckRequest"
       },
       "output": {
         "target": "com.posthog.warehouse_saved_queries#DataQualityCheck"
@@ -3603,7 +3620,7 @@
         "smithy.api#documentation": "Create a check on this table or view, or refine the one already carrying the same fingerprint. Re-creating a semantically identical check returns 200 and the existing row, never a duplicate."
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksRetrieveRequest": {
+    "com.posthog.warehouse_saved_queries#GetWarehouseSavedQueriesCheckRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3634,10 +3651,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksRetrieve": {
+    "com.posthog.warehouse_saved_queries#GetWarehouseSavedQueriesCheck": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksRetrieveRequest"
+        "target": "com.posthog.warehouse_saved_queries#GetWarehouseSavedQueriesCheckRequest"
       },
       "output": {
         "target": "com.posthog.warehouse_saved_queries#DataQualityCheck"
@@ -3651,7 +3668,7 @@
         "smithy.api#documentation": "CRUD for one subject's checks, plus the actions that run them and report on them."
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksUpdateRequestConfigMap": {
+    "com.posthog.warehouse_saved_queries#UpdateWarehouseSavedQueriesCheckRequestConfigMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3663,7 +3680,7 @@
         "smithy.api#documentation": "Type-specific configuration, validated against the check type's JSON schema."
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksUpdateRequestTagsList": {
+    "com.posthog.warehouse_saved_queries#UpdateWarehouseSavedQueriesCheckRequestTagsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -3672,7 +3689,7 @@
         "smithy.api#documentation": "Free-form string labels for grouping and filtering."
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksUpdateRequest": {
+    "com.posthog.warehouse_saved_queries#UpdateWarehouseSavedQueriesCheckRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3724,7 +3741,7 @@
           }
         },
         "config": {
-          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksUpdateRequestConfigMap",
+          "target": "com.posthog.warehouse_saved_queries#UpdateWarehouseSavedQueriesCheckRequestConfigMap",
           "traits": {
             "smithy.api#documentation": "Type-specific configuration, validated against the check type's JSON schema."
           }
@@ -3742,7 +3759,7 @@
           }
         },
         "tags": {
-          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksUpdateRequestTagsList",
+          "target": "com.posthog.warehouse_saved_queries#UpdateWarehouseSavedQueriesCheckRequestTagsList",
           "traits": {
             "smithy.api#documentation": "Free-form string labels for grouping and filtering."
           }
@@ -3777,10 +3794,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksUpdate": {
+    "com.posthog.warehouse_saved_queries#UpdateWarehouseSavedQueriesCheck": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksUpdateRequest"
+        "target": "com.posthog.warehouse_saved_queries#UpdateWarehouseSavedQueriesCheckRequest"
       },
       "output": {
         "target": "com.posthog.warehouse_saved_queries#DataQualityCheck"
@@ -3794,7 +3811,7 @@
         "smithy.api#documentation": "Edit this check in place, including what it asserts (check_type, column_name, config). The table or view it audits is fixed, and the check keeps its id, run history, latest status, and latest run time. A definition or name already held by another active check comes back as a field error, with nothing written."
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksPartialUpdateRequestConfigMap": {
+    "com.posthog.warehouse_saved_queries#UpdateWarehouseSavedQueriesChecksPartialRequestConfigMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3806,7 +3823,7 @@
         "smithy.api#documentation": "Type-specific configuration, validated against the check type's JSON schema."
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksPartialUpdateRequestTagsList": {
+    "com.posthog.warehouse_saved_queries#UpdateWarehouseSavedQueriesChecksPartialRequestTagsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -3815,7 +3832,7 @@
         "smithy.api#documentation": "Free-form string labels for grouping and filtering."
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksPartialUpdateRequest": {
+    "com.posthog.warehouse_saved_queries#UpdateWarehouseSavedQueriesChecksPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3866,7 +3883,7 @@
           }
         },
         "config": {
-          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksPartialUpdateRequestConfigMap",
+          "target": "com.posthog.warehouse_saved_queries#UpdateWarehouseSavedQueriesChecksPartialRequestConfigMap",
           "traits": {
             "smithy.api#documentation": "Type-specific configuration, validated against the check type's JSON schema."
           }
@@ -3884,7 +3901,7 @@
           }
         },
         "tags": {
-          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksPartialUpdateRequestTagsList",
+          "target": "com.posthog.warehouse_saved_queries#UpdateWarehouseSavedQueriesChecksPartialRequestTagsList",
           "traits": {
             "smithy.api#documentation": "Free-form string labels for grouping and filtering."
           }
@@ -3919,10 +3936,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksPartialUpdate": {
+    "com.posthog.warehouse_saved_queries#UpdateWarehouseSavedQueriesChecksPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksPartialUpdateRequest"
+        "target": "com.posthog.warehouse_saved_queries#UpdateWarehouseSavedQueriesChecksPartialRequest"
       },
       "output": {
         "target": "com.posthog.warehouse_saved_queries#DataQualityCheck"
@@ -3984,7 +4001,7 @@
         "smithy.api#documentation": "CRUD for one subject's checks, plus the actions that run them and report on them."
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksRunCreateRequest": {
+    "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesChecksRunRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -4015,10 +4032,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksRunCreate": {
+    "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesChecksRun": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksRunCreateRequest"
+        "target": "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesChecksRunRequest"
       },
       "output": {
         "target": "com.posthog.warehouse_saved_queries#DataQualitySuiteRun"
@@ -4032,7 +4049,7 @@
         "smithy.api#documentation": "Run this check now. Returns the suite run to poll for the report."
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksRunsListRequest": {
+    "com.posthog.warehouse_saved_queries#ListWarehouseSavedQueriesChecksRunsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -4063,18 +4080,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksRunsListResponseBodyList": {
+    "com.posthog.warehouse_saved_queries#ListWarehouseSavedQueriesChecksRunsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.posthog.warehouse_saved_queries#DataQualityCheckRun"
       },
       "traits": {}
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksRunsListResponse": {
+    "com.posthog.warehouse_saved_queries#ListWarehouseSavedQueriesChecksRunsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksRunsListResponseBodyList",
+          "target": "com.posthog.warehouse_saved_queries#ListWarehouseSavedQueriesChecksRunsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -4085,13 +4102,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksRunsList": {
+    "com.posthog.warehouse_saved_queries#ListWarehouseSavedQueriesChecksRuns": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksRunsListRequest"
+        "target": "com.posthog.warehouse_saved_queries#ListWarehouseSavedQueriesChecksRunsRequest"
       },
       "output": {
-        "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksRunsListResponse"
+        "target": "com.posthog.warehouse_saved_queries#ListWarehouseSavedQueriesChecksRunsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4102,7 +4119,7 @@
         "smithy.api#documentation": "Recent run history for this check, newest first."
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksCheckTypesListRequest": {
+    "com.posthog.warehouse_saved_queries#ListWarehouseSavedQueriesChecksCheckTypesRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -4173,18 +4190,18 @@
         "smithy.api#documentation": "JSON schema the config object is validated against."
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksCheckTypesListResponseBodyList": {
+    "com.posthog.warehouse_saved_queries#ListWarehouseSavedQueriesChecksCheckTypesResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.posthog.warehouse_saved_queries#DataQualityCheckType"
       },
       "traits": {}
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksCheckTypesListResponse": {
+    "com.posthog.warehouse_saved_queries#ListWarehouseSavedQueriesChecksCheckTypesResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksCheckTypesListResponseBodyList",
+          "target": "com.posthog.warehouse_saved_queries#ListWarehouseSavedQueriesChecksCheckTypesResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -4195,13 +4212,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksCheckTypesList": {
+    "com.posthog.warehouse_saved_queries#ListWarehouseSavedQueriesChecksCheckTypes": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksCheckTypesListRequest"
+        "target": "com.posthog.warehouse_saved_queries#ListWarehouseSavedQueriesChecksCheckTypesRequest"
       },
       "output": {
-        "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksCheckTypesListResponse"
+        "target": "com.posthog.warehouse_saved_queries#ListWarehouseSavedQueriesChecksCheckTypesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4212,7 +4229,7 @@
         "smithy.api#documentation": "The check types this project can author, with the JSON schema of each type's config."
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksHealthRetrieveRequest": {
+    "com.posthog.warehouse_saved_queries#GetWarehouseSavedQueriesChecksHealthRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -4278,10 +4295,10 @@
         "smithy.api#documentation": "Per-subject rollup, the same rule the information_schema.data_quality_health table uses."
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksHealthRetrieve": {
+    "com.posthog.warehouse_saved_queries#GetWarehouseSavedQueriesChecksHealth": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksHealthRetrieveRequest"
+        "target": "com.posthog.warehouse_saved_queries#GetWarehouseSavedQueriesChecksHealthRequest"
       },
       "output": {
         "target": "com.posthog.warehouse_saved_queries#DataQualitySubjectHealth"
@@ -4295,7 +4312,7 @@
         "smithy.api#documentation": "Health rollup for this table or view, from the denormalized status of its checks."
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksRunAllCreateRequest": {
+    "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesChecksRunAllRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -4318,10 +4335,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksRunAllCreate": {
+    "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesChecksRunAll": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksRunAllCreateRequest"
+        "target": "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesChecksRunAllRequest"
       },
       "output": {
         "target": "com.posthog.warehouse_saved_queries#DataQualitySuiteRun"
@@ -4335,7 +4352,7 @@
         "smithy.api#documentation": "Run every enabled check on this table or view. Returns the suite run to poll."
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesCheckIncrementalCreateRequestUniqueKeyList": {
+    "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesCheckIncrementalRequestUniqueKeyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -4344,7 +4361,7 @@
         "smithy.api#documentation": "Output columns that identify a row. Must include every GROUP BY column."
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesCheckIncrementalCreateRequest": {
+    "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesCheckIncrementalRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -4370,7 +4387,7 @@
           }
         },
         "unique_key": {
-          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesCheckIncrementalCreateRequestUniqueKeyList",
+          "target": "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesCheckIncrementalRequestUniqueKeyList",
           "traits": {
             "smithy.api#documentation": "Output columns that identify a row. Must include every GROUP BY column.",
             "com.distilled.openapi#nullable": {}
@@ -4485,10 +4502,10 @@
         "smithy.api#documentation": "Things that still work but are worth knowing, such as a filter that cannot be pushed down so each run reads as much data as a full refresh."
       }
     },
-    "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesCheckIncrementalCreate": {
+    "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesCheckIncremental": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesCheckIncrementalCreateRequest"
+        "target": "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesCheckIncrementalRequest"
       },
       "output": {
         "target": "com.posthog.warehouse_saved_queries#IncrementalEligibility"
@@ -4692,97 +4709,97 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesList"
+          "target": "com.posthog.warehouse_saved_queries#ListWarehouseSavedQueries"
         },
         {
-          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesCreate"
+          "target": "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQuery"
         },
         {
-          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesRetrieve"
+          "target": "com.posthog.warehouse_saved_queries#GetWarehouseSavedQuery"
         },
         {
-          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesUpdate"
+          "target": "com.posthog.warehouse_saved_queries#UpdateWarehouseSavedQuery"
         },
         {
-          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesPartialUpdate"
+          "target": "com.posthog.warehouse_saved_queries#UpdateWarehouseSavedQueriesPartial"
         },
         {
           "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesDestroy"
         },
         {
-          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesActivityRetrieve"
+          "target": "com.posthog.warehouse_saved_queries#GetWarehouseSavedQueriesActivity"
         },
         {
-          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesAncestorsCreate"
+          "target": "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesAncestor"
         },
         {
           "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesCancelCreate"
         },
         {
-          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesDependenciesRetrieve"
+          "target": "com.posthog.warehouse_saved_queries#GetWarehouseSavedQueriesDependency"
         },
         {
-          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesDescendantsCreate"
+          "target": "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesDescendant"
         },
         {
-          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesMaterializeCreate"
+          "target": "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesMaterialize"
         },
         {
           "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesResumeCreate"
         },
         {
-          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesRevertMaterializationCreate"
+          "target": "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesRevertMaterialization"
         },
         {
-          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesRunCreate"
+          "target": "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesRun"
         },
         {
-          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesRunHistoryRetrieve"
+          "target": "com.posthog.warehouse_saved_queries#GetWarehouseSavedQueriesRunHistory"
         },
         {
-          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesCheckSuiteRunsList"
+          "target": "com.posthog.warehouse_saved_queries#ListWarehouseSavedQueriesCheckSuiteRuns"
         },
         {
-          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesCheckSuiteRunsRetrieve"
+          "target": "com.posthog.warehouse_saved_queries#GetWarehouseSavedQueriesCheckSuiteRun"
         },
         {
-          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesCheckSuiteRunsCheckRunsList"
+          "target": "com.posthog.warehouse_saved_queries#ListWarehouseSavedQueriesCheckSuiteRunsCheckRuns"
         },
         {
-          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksList"
+          "target": "com.posthog.warehouse_saved_queries#ListWarehouseSavedQueriesChecks"
         },
         {
-          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksCreate"
+          "target": "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesCheck"
         },
         {
-          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksRetrieve"
+          "target": "com.posthog.warehouse_saved_queries#GetWarehouseSavedQueriesCheck"
         },
         {
-          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksUpdate"
+          "target": "com.posthog.warehouse_saved_queries#UpdateWarehouseSavedQueriesCheck"
         },
         {
-          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksPartialUpdate"
+          "target": "com.posthog.warehouse_saved_queries#UpdateWarehouseSavedQueriesChecksPartial"
         },
         {
           "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksDestroy"
         },
         {
-          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksRunCreate"
+          "target": "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesChecksRun"
         },
         {
-          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksRunsList"
+          "target": "com.posthog.warehouse_saved_queries#ListWarehouseSavedQueriesChecksRuns"
         },
         {
-          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksCheckTypesList"
+          "target": "com.posthog.warehouse_saved_queries#ListWarehouseSavedQueriesChecksCheckTypes"
         },
         {
-          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksHealthRetrieve"
+          "target": "com.posthog.warehouse_saved_queries#GetWarehouseSavedQueriesChecksHealth"
         },
         {
-          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesChecksRunAllCreate"
+          "target": "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesChecksRunAll"
         },
         {
-          "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesCheckIncrementalCreate"
+          "target": "com.posthog.warehouse_saved_queries#CreateWarehouseSavedQueriesCheckIncremental"
         },
         {
           "target": "com.posthog.warehouse_saved_queries#WarehouseSavedQueriesResumeSchedulesCreate"

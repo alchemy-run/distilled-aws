@@ -31,6 +31,512 @@ export class NotFound
     [{ status: 404 }],
   ) {}
 
+export interface GetPersonRequest {
+  /** The person ID, user ID, email address, or phone number to look up. */
+  id: string;
+  /** Account ID, prefixed `biz_`. Optional for account API keys; required for credentials that can access multiple accounts. */
+  account_id?: string;
+}
+export const GetPersonRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    account_id: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/people/{id}", code: 200 })),
+).annotate({
+  identifier: "GetPersonRequest",
+}) as any as S.Schema<GetPersonRequest>;
+
+export type GetPersonResponseAudienceIdsList = Array<string>;
+export const GetPersonResponseAudienceIdsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<GetPersonResponseAudienceIdsList>;
+
+export type GetPersonResponseCustomEventNamesList = Array<string>;
+export const GetPersonResponseCustomEventNamesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<GetPersonResponseCustomEventNamesList>;
+
+export interface GetPersonResponseDevice {
+  browser?: string | null;
+  device?: string | null;
+  os?: string | null;
+}
+export const GetPersonResponseDevice = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    browser: S.optional(S.NullOr(S.String)),
+    device: S.optional(S.NullOr(S.String)),
+    os: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({
+  identifier: "GetPersonResponseDevice",
+}) as any as S.Schema<GetPersonResponseDevice>;
+
+/** Every linked email, primary first. */
+export type GetPersonResponseEmailsList = Array<string>;
+export const GetPersonResponseEmailsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<GetPersonResponseEmailsList>;
+
+export type GetPersonResponseEventNamesList = Array<string>;
+export const GetPersonResponseEventNamesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<GetPersonResponseEventNamesList>;
+
+export interface GetPersonResponseFirstSourceAd {
+  id: string;
+  name?: string | null;
+  thumbnail_url?: string | null;
+}
+export const GetPersonResponseFirstSourceAd = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    name: S.optional(S.NullOr(S.String)),
+    thumbnail_url: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({
+  identifier: "GetPersonResponseFirstSourceAd",
+}) as any as S.Schema<GetPersonResponseFirstSourceAd>;
+
+export type GetPersonResponseFirstSourceAdGroup =
+  GetPersonResponseFirstSourceAd;
+export const GetPersonResponseFirstSourceAdGroup =
+  GetPersonResponseFirstSourceAd;
+
+export type GetPersonResponseFirstSourceCampaign =
+  GetPersonResponseFirstSourceAd;
+export const GetPersonResponseFirstSourceCampaign =
+  GetPersonResponseFirstSourceAd;
+
+export type GetPersonResponseFirstSourceType =
+  | "ad_click"
+  | "lead_form"
+  | "external_ad_click"
+  | "referrer"
+  | "utm";
+export const GetPersonResponseFirstSourceType = /*@__PURE__*/ S.String;
+
+/** Where a visit came from: a whop ad click, a lead form, an external ad, or a referring site. */
+export interface GetPersonResponseFirstSource {
+  ad?: GetPersonResponseFirstSourceAd | null;
+  ad_group?: GetPersonResponseFirstSourceAd | null;
+  campaign?: GetPersonResponseFirstSourceAd | null;
+  domain?: string | null;
+  occurred_at?: string | null;
+  platform?: string | null;
+  type: GetPersonResponseFirstSourceType;
+  utm_source?: string | null;
+}
+export const GetPersonResponseFirstSource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ad: S.optional(S.NullOr(GetPersonResponseFirstSourceAd)),
+    ad_group: S.optional(S.NullOr(GetPersonResponseFirstSourceAd)),
+    campaign: S.optional(S.NullOr(GetPersonResponseFirstSourceAd)),
+    domain: S.optional(S.NullOr(S.String)),
+    occurred_at: S.optional(S.NullOr(S.String)),
+    platform: S.optional(S.NullOr(S.String)),
+    type: GetPersonResponseFirstSourceType,
+    utm_source: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({
+  identifier: "GetPersonResponseFirstSource",
+}) as any as S.Schema<GetPersonResponseFirstSource>;
+
+export type GetPersonResponseLastSourceAd = GetPersonResponseFirstSourceAd;
+export const GetPersonResponseLastSourceAd = GetPersonResponseFirstSourceAd;
+
+export type GetPersonResponseLastSourceAdGroup = GetPersonResponseFirstSourceAd;
+export const GetPersonResponseLastSourceAdGroup =
+  GetPersonResponseFirstSourceAd;
+
+export type GetPersonResponseLastSourceCampaign =
+  GetPersonResponseFirstSourceAd;
+export const GetPersonResponseLastSourceCampaign =
+  GetPersonResponseFirstSourceAd;
+
+export type GetPersonResponseLastSourceType =
+  | "ad_click"
+  | "lead_form"
+  | "external_ad_click"
+  | "referrer"
+  | "utm";
+export const GetPersonResponseLastSourceType = /*@__PURE__*/ S.String;
+
+/** Where a visit came from: a whop ad click, a lead form, an external ad, or a referring site. */
+export interface GetPersonResponseLastSource {
+  ad?: GetPersonResponseFirstSourceAd | null;
+  ad_group?: GetPersonResponseFirstSourceAd | null;
+  campaign?: GetPersonResponseFirstSourceAd | null;
+  domain?: string | null;
+  occurred_at?: string | null;
+  platform?: string | null;
+  type: GetPersonResponseLastSourceType;
+  utm_source?: string | null;
+}
+export const GetPersonResponseLastSource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ad: S.optional(S.NullOr(GetPersonResponseFirstSourceAd)),
+    ad_group: S.optional(S.NullOr(GetPersonResponseFirstSourceAd)),
+    campaign: S.optional(S.NullOr(GetPersonResponseFirstSourceAd)),
+    domain: S.optional(S.NullOr(S.String)),
+    occurred_at: S.optional(S.NullOr(S.String)),
+    platform: S.optional(S.NullOr(S.String)),
+    type: GetPersonResponseLastSourceType,
+    utm_source: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({
+  identifier: "GetPersonResponseLastSource",
+}) as any as S.Schema<GetPersonResponseLastSource>;
+
+export interface GetPersonResponseLocation {
+  city?: string | null;
+  continent?: string | null;
+  country?: string | null;
+}
+export const GetPersonResponseLocation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    city: S.optional(S.NullOr(S.String)),
+    continent: S.optional(S.NullOr(S.String)),
+    country: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({
+  identifier: "GetPersonResponseLocation",
+}) as any as S.Schema<GetPersonResponseLocation>;
+
+/** The user's member record at this account, when they are a member of it. */
+export interface GetPersonResponseMember {
+  id: string;
+  joined_at?: string | null;
+  status?: string | null;
+  usd_total_spend?: number;
+}
+export const GetPersonResponseMember = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    joined_at: S.optional(S.NullOr(S.String)),
+    status: S.optional(S.NullOr(S.String)),
+    usd_total_spend: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "GetPersonResponseMember",
+}) as any as S.Schema<GetPersonResponseMember>;
+
+/** Every name the person's linked identities carried, primary first. */
+export type GetPersonResponseNamesList = Array<string>;
+export const GetPersonResponseNamesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<GetPersonResponseNamesList>;
+
+/** Every linked phone, primary first. */
+export type GetPersonResponsePhonesList = Array<string>;
+export const GetPersonResponsePhonesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<GetPersonResponsePhonesList>;
+
+export interface GetPersonResponsePurchasesItem {
+  event_id: string;
+  occurred_at: string;
+  usd_value: number;
+}
+export const GetPersonResponsePurchasesItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    event_id: S.String,
+    occurred_at: S.String,
+    usd_value: S.Number,
+  }),
+).annotate({
+  identifier: "GetPersonResponsePurchasesItem",
+}) as any as S.Schema<GetPersonResponsePurchasesItem>;
+
+export type GetPersonResponsePurchasesList =
+  Array<GetPersonResponsePurchasesItem>;
+export const GetPersonResponsePurchasesList = /*@__PURE__*/ S.Array(
+  GetPersonResponsePurchasesItem,
+) as any as S.Schema<GetPersonResponsePurchasesList>;
+
+export type GetPersonResponseRolesList = Array<string>;
+export const GetPersonResponseRolesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<GetPersonResponseRolesList>;
+
+export type GetPersonResponseSourcesItemAd = GetPersonResponseFirstSourceAd;
+export const GetPersonResponseSourcesItemAd = GetPersonResponseFirstSourceAd;
+
+export type GetPersonResponseSourcesItemAdGroup =
+  GetPersonResponseFirstSourceAd;
+export const GetPersonResponseSourcesItemAdGroup =
+  GetPersonResponseFirstSourceAd;
+
+export type GetPersonResponseSourcesItemCampaign =
+  GetPersonResponseFirstSourceAd;
+export const GetPersonResponseSourcesItemCampaign =
+  GetPersonResponseFirstSourceAd;
+
+export type GetPersonResponseSourcesItemType =
+  | "ad_click"
+  | "lead_form"
+  | "external_ad_click"
+  | "referrer"
+  | "utm";
+export const GetPersonResponseSourcesItemType = /*@__PURE__*/ S.String;
+
+/** Where a visit came from: a whop ad click, a lead form, an external ad, or a referring site. */
+export interface GetPersonResponseSourcesItem {
+  ad?: GetPersonResponseFirstSourceAd | null;
+  ad_group?: GetPersonResponseFirstSourceAd | null;
+  campaign?: GetPersonResponseFirstSourceAd | null;
+  domain?: string | null;
+  occurred_at?: string | null;
+  platform?: string | null;
+  type: GetPersonResponseSourcesItemType;
+  utm_source?: string | null;
+}
+export const GetPersonResponseSourcesItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ad: S.optional(S.NullOr(GetPersonResponseFirstSourceAd)),
+    ad_group: S.optional(S.NullOr(GetPersonResponseFirstSourceAd)),
+    campaign: S.optional(S.NullOr(GetPersonResponseFirstSourceAd)),
+    domain: S.optional(S.NullOr(S.String)),
+    occurred_at: S.optional(S.NullOr(S.String)),
+    platform: S.optional(S.NullOr(S.String)),
+    type: GetPersonResponseSourcesItemType,
+    utm_source: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({
+  identifier: "GetPersonResponseSourcesItem",
+}) as any as S.Schema<GetPersonResponseSourcesItem>;
+
+/** Every distinct acquisition signal the person ever carried, ad entities hydrated. */
+export type GetPersonResponseSourcesList = Array<GetPersonResponseSourcesItem>;
+export const GetPersonResponseSourcesList = /*@__PURE__*/ S.Array(
+  GetPersonResponseSourcesItem,
+) as any as S.Schema<GetPersonResponseSourcesList>;
+
+export interface GetPersonResponseUsageBrowserItem {
+  events: number;
+  value: string;
+}
+export const GetPersonResponseUsageBrowserItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    events: S.Number,
+    value: S.String,
+  }),
+).annotate({
+  identifier: "GetPersonResponseUsageBrowserItem",
+}) as any as S.Schema<GetPersonResponseUsageBrowserItem>;
+
+export type GetPersonResponseUsageBrowserList =
+  Array<GetPersonResponseUsageBrowserItem>;
+export const GetPersonResponseUsageBrowserList = /*@__PURE__*/ S.Array(
+  GetPersonResponseUsageBrowserItem,
+) as any as S.Schema<GetPersonResponseUsageBrowserList>;
+
+export type GetPersonResponseUsageCityItem = GetPersonResponseUsageBrowserItem;
+export const GetPersonResponseUsageCityItem = GetPersonResponseUsageBrowserItem;
+
+export type GetPersonResponseUsageCityList =
+  Array<GetPersonResponseUsageBrowserItem>;
+export const GetPersonResponseUsageCityList = /*@__PURE__*/ S.Array(
+  GetPersonResponseUsageBrowserItem,
+) as any as S.Schema<GetPersonResponseUsageCityList>;
+
+export type GetPersonResponseUsageCountryItem =
+  GetPersonResponseUsageBrowserItem;
+export const GetPersonResponseUsageCountryItem =
+  GetPersonResponseUsageBrowserItem;
+
+export type GetPersonResponseUsageCountryList =
+  Array<GetPersonResponseUsageBrowserItem>;
+export const GetPersonResponseUsageCountryList = /*@__PURE__*/ S.Array(
+  GetPersonResponseUsageBrowserItem,
+) as any as S.Schema<GetPersonResponseUsageCountryList>;
+
+export type GetPersonResponseUsageDeviceItem =
+  GetPersonResponseUsageBrowserItem;
+export const GetPersonResponseUsageDeviceItem =
+  GetPersonResponseUsageBrowserItem;
+
+export type GetPersonResponseUsageDeviceList =
+  Array<GetPersonResponseUsageBrowserItem>;
+export const GetPersonResponseUsageDeviceList = /*@__PURE__*/ S.Array(
+  GetPersonResponseUsageBrowserItem,
+) as any as S.Schema<GetPersonResponseUsageDeviceList>;
+
+export type GetPersonResponseUsageIpItem = GetPersonResponseUsageBrowserItem;
+export const GetPersonResponseUsageIpItem = GetPersonResponseUsageBrowserItem;
+
+export type GetPersonResponseUsageIpList =
+  Array<GetPersonResponseUsageBrowserItem>;
+export const GetPersonResponseUsageIpList = /*@__PURE__*/ S.Array(
+  GetPersonResponseUsageBrowserItem,
+) as any as S.Schema<GetPersonResponseUsageIpList>;
+
+export type GetPersonResponseUsageOsItem = GetPersonResponseUsageBrowserItem;
+export const GetPersonResponseUsageOsItem = GetPersonResponseUsageBrowserItem;
+
+export type GetPersonResponseUsageOsList =
+  Array<GetPersonResponseUsageBrowserItem>;
+export const GetPersonResponseUsageOsList = /*@__PURE__*/ S.Array(
+  GetPersonResponseUsageBrowserItem,
+) as any as S.Schema<GetPersonResponseUsageOsList>;
+
+export type GetPersonResponseUsageReferrerItem =
+  GetPersonResponseUsageBrowserItem;
+export const GetPersonResponseUsageReferrerItem =
+  GetPersonResponseUsageBrowserItem;
+
+export type GetPersonResponseUsageReferrerList =
+  Array<GetPersonResponseUsageBrowserItem>;
+export const GetPersonResponseUsageReferrerList = /*@__PURE__*/ S.Array(
+  GetPersonResponseUsageBrowserItem,
+) as any as S.Schema<GetPersonResponseUsageReferrerList>;
+
+export type GetPersonResponseUsageTimezoneItem =
+  GetPersonResponseUsageBrowserItem;
+export const GetPersonResponseUsageTimezoneItem =
+  GetPersonResponseUsageBrowserItem;
+
+export type GetPersonResponseUsageTimezoneList =
+  Array<GetPersonResponseUsageBrowserItem>;
+export const GetPersonResponseUsageTimezoneList = /*@__PURE__*/ S.Array(
+  GetPersonResponseUsageBrowserItem,
+) as any as S.Schema<GetPersonResponseUsageTimezoneList>;
+
+/** Exact usage breakdowns for the person's browser traffic (distinct events per value). */
+export interface GetPersonResponseUsage {
+  browser?: GetPersonResponseUsageBrowserList;
+  city?: GetPersonResponseUsageCityList;
+  country?: GetPersonResponseUsageCountryList;
+  device?: GetPersonResponseUsageDeviceList;
+  ip?: GetPersonResponseUsageIpList;
+  os?: GetPersonResponseUsageOsList;
+  referrer?: GetPersonResponseUsageReferrerList;
+  timezone?: GetPersonResponseUsageTimezoneList;
+}
+export const GetPersonResponseUsage = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    browser: S.optional(GetPersonResponseUsageBrowserList),
+    city: S.optional(GetPersonResponseUsageCityList),
+    country: S.optional(GetPersonResponseUsageCountryList),
+    device: S.optional(GetPersonResponseUsageDeviceList),
+    ip: S.optional(GetPersonResponseUsageIpList),
+    os: S.optional(GetPersonResponseUsageOsList),
+    referrer: S.optional(GetPersonResponseUsageReferrerList),
+    timezone: S.optional(GetPersonResponseUsageTimezoneList),
+  }),
+).annotate({
+  identifier: "GetPersonResponseUsage",
+}) as any as S.Schema<GetPersonResponseUsage>;
+
+/** The person's primary whop user, when one of their identities is a whop account. */
+export interface GetPersonResponseUser {
+  id: string;
+  name?: string | null;
+  profile_pic_url?: string | null;
+  username: string;
+}
+export const GetPersonResponseUser = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    name: S.optional(S.NullOr(S.String)),
+    profile_pic_url: S.optional(S.NullOr(S.String)),
+    username: S.String,
+  }),
+).annotate({
+  identifier: "GetPersonResponseUser",
+}) as any as S.Schema<GetPersonResponseUser>;
+
+/** Every linked whop account, the most used one first. */
+export type GetPersonResponseUserIdsList = Array<string>;
+export const GetPersonResponseUserIdsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<GetPersonResponseUserIdsList>;
+
+export interface GetPersonResponse {
+  account_id: string;
+  aov?: number;
+  audience_ids?: GetPersonResponseAudienceIdsList;
+  custom_event_names?: GetPersonResponseCustomEventNamesList;
+  device?: GetPersonResponseDevice;
+  /** The email from the person's most recent event that carried one. */
+  email?: string | null;
+  /** Every linked email, primary first. */
+  emails?: GetPersonResponseEmailsList;
+  event_count: number;
+  event_names?: GetPersonResponseEventNamesList;
+  first_purchase_at?: string | null;
+  first_seen_at: string;
+  /** Where a visit came from: a whop ad click, a lead form, an external ad, or a referring site. */
+  first_source?: GetPersonResponseFirstSource | null;
+  id: string;
+  last_ip?: string | null;
+  last_purchase_at?: string | null;
+  last_seen_at: string;
+  /** Where a visit came from: a whop ad click, a lead form, an external ad, or a referring site. */
+  last_source?: GetPersonResponseLastSource | null;
+  location?: GetPersonResponseLocation;
+  ltv?: number;
+  /** The user's member record at this account, when they are a member of it. */
+  member?: GetPersonResponseMember | null;
+  /** The name from the person's most recent event that carried one. */
+  name?: string | null;
+  /** Every name the person's linked identities carried, primary first. */
+  names?: GetPersonResponseNamesList;
+  /** The phone from the person's most recent event that carried one. */
+  phone?: string | null;
+  /** Every linked phone, primary first. */
+  phones?: GetPersonResponsePhonesList;
+  purchase_count: number;
+  purchases?: GetPersonResponsePurchasesList;
+  roles?: GetPersonResponseRolesList;
+  /** Every distinct acquisition signal the person ever carried, ad entities hydrated. */
+  sources?: GetPersonResponseSourcesList;
+  timezone?: string | null;
+  /** Exact usage breakdowns for the person's browser traffic (distinct events per value). */
+  usage?: GetPersonResponseUsage;
+  /** The person's primary whop user, when one of their identities is a whop account. */
+  user?: GetPersonResponseUser | null;
+  /** Every linked whop account, the most used one first. */
+  user_ids?: GetPersonResponseUserIdsList;
+}
+export const GetPersonResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    account_id: S.String,
+    aov: S.optional(S.Number),
+    audience_ids: S.optional(GetPersonResponseAudienceIdsList),
+    custom_event_names: S.optional(GetPersonResponseCustomEventNamesList),
+    device: S.optional(GetPersonResponseDevice),
+    email: S.optional(S.NullOr(S.String)),
+    emails: S.optional(GetPersonResponseEmailsList),
+    event_count: S.Number,
+    event_names: S.optional(GetPersonResponseEventNamesList),
+    first_purchase_at: S.optional(S.NullOr(S.String)),
+    first_seen_at: S.String,
+    first_source: S.optional(S.NullOr(GetPersonResponseFirstSource)),
+    id: S.String,
+    last_ip: S.optional(S.NullOr(S.String)),
+    last_purchase_at: S.optional(S.NullOr(S.String)),
+    last_seen_at: S.String,
+    last_source: S.optional(S.NullOr(GetPersonResponseLastSource)),
+    location: S.optional(GetPersonResponseLocation),
+    ltv: S.optional(S.Number),
+    member: S.optional(S.NullOr(GetPersonResponseMember)),
+    name: S.optional(S.NullOr(S.String)),
+    names: S.optional(GetPersonResponseNamesList),
+    phone: S.optional(S.NullOr(S.String)),
+    phones: S.optional(GetPersonResponsePhonesList),
+    purchase_count: S.Number,
+    purchases: S.optional(GetPersonResponsePurchasesList),
+    roles: S.optional(GetPersonResponseRolesList),
+    sources: S.optional(GetPersonResponseSourcesList),
+    timezone: S.optional(S.NullOr(S.String)),
+    usage: S.optional(GetPersonResponseUsage),
+    user: S.optional(S.NullOr(GetPersonResponseUser)),
+    user_ids: S.optional(GetPersonResponseUserIdsList),
+  }),
+).annotate({
+  identifier: "GetPersonResponse",
+}) as any as S.Schema<GetPersonResponse>;
+
 export type ListPeopleRequestSourceList = Array<string>;
 export const ListPeopleRequestSourceList = /*@__PURE__*/ S.Array(
   S.String,
@@ -149,46 +655,23 @@ export const ListPeopleRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListPeopleRequest",
 }) as any as S.Schema<ListPeopleRequest>;
 
-export interface ListPeopleResponseDataItemDevice {
-  browser?: string | null;
-  device?: string | null;
-  os?: string | null;
-}
-export const ListPeopleResponseDataItemDevice = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    browser: S.optional(S.NullOr(S.String)),
-    device: S.optional(S.NullOr(S.String)),
-    os: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({
-  identifier: "ListPeopleResponseDataItemDevice",
-}) as any as S.Schema<ListPeopleResponseDataItemDevice>;
+export type ListPeopleResponseDataItemDevice = GetPersonResponseDevice;
+export const ListPeopleResponseDataItemDevice = GetPersonResponseDevice;
 
-export interface ListPeopleResponseDataItemFirstSourceAd {
-  id: string;
-  name?: string | null;
-  thumbnail_url?: string | null;
-}
-export const ListPeopleResponseDataItemFirstSourceAd = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.String,
-      name: S.optional(S.NullOr(S.String)),
-      thumbnail_url: S.optional(S.NullOr(S.String)),
-    }),
-).annotate({
-  identifier: "ListPeopleResponseDataItemFirstSourceAd",
-}) as any as S.Schema<ListPeopleResponseDataItemFirstSourceAd>;
+export type ListPeopleResponseDataItemFirstSourceAd =
+  GetPersonResponseFirstSourceAd;
+export const ListPeopleResponseDataItemFirstSourceAd =
+  GetPersonResponseFirstSourceAd;
 
 export type ListPeopleResponseDataItemFirstSourceAdGroup =
-  ListPeopleResponseDataItemFirstSourceAd;
+  GetPersonResponseFirstSourceAd;
 export const ListPeopleResponseDataItemFirstSourceAdGroup =
-  ListPeopleResponseDataItemFirstSourceAd;
+  GetPersonResponseFirstSourceAd;
 
 export type ListPeopleResponseDataItemFirstSourceCampaign =
-  ListPeopleResponseDataItemFirstSourceAd;
+  GetPersonResponseFirstSourceAd;
 export const ListPeopleResponseDataItemFirstSourceCampaign =
-  ListPeopleResponseDataItemFirstSourceAd;
+  GetPersonResponseFirstSourceAd;
 
 export type ListPeopleResponseDataItemFirstSourceType =
   | "ad_click"
@@ -200,9 +683,9 @@ export const ListPeopleResponseDataItemFirstSourceType = /*@__PURE__*/ S.String;
 
 /** Where a visit came from: a whop ad click, a lead form, an external ad, or a referring site. */
 export interface ListPeopleResponseDataItemFirstSource {
-  ad?: ListPeopleResponseDataItemFirstSourceAd | null;
-  ad_group?: ListPeopleResponseDataItemFirstSourceAd | null;
-  campaign?: ListPeopleResponseDataItemFirstSourceAd | null;
+  ad?: GetPersonResponseFirstSourceAd | null;
+  ad_group?: GetPersonResponseFirstSourceAd | null;
+  campaign?: GetPersonResponseFirstSourceAd | null;
   domain?: string | null;
   occurred_at?: string | null;
   platform?: string | null;
@@ -212,9 +695,9 @@ export interface ListPeopleResponseDataItemFirstSource {
 export const ListPeopleResponseDataItemFirstSource = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      ad: S.optional(S.NullOr(ListPeopleResponseDataItemFirstSourceAd)),
-      ad_group: S.optional(S.NullOr(ListPeopleResponseDataItemFirstSourceAd)),
-      campaign: S.optional(S.NullOr(ListPeopleResponseDataItemFirstSourceAd)),
+      ad: S.optional(S.NullOr(GetPersonResponseFirstSourceAd)),
+      ad_group: S.optional(S.NullOr(GetPersonResponseFirstSourceAd)),
+      campaign: S.optional(S.NullOr(GetPersonResponseFirstSourceAd)),
       domain: S.optional(S.NullOr(S.String)),
       occurred_at: S.optional(S.NullOr(S.String)),
       platform: S.optional(S.NullOr(S.String)),
@@ -226,19 +709,19 @@ export const ListPeopleResponseDataItemFirstSource = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<ListPeopleResponseDataItemFirstSource>;
 
 export type ListPeopleResponseDataItemLastSourceAd =
-  ListPeopleResponseDataItemFirstSourceAd;
+  GetPersonResponseFirstSourceAd;
 export const ListPeopleResponseDataItemLastSourceAd =
-  ListPeopleResponseDataItemFirstSourceAd;
+  GetPersonResponseFirstSourceAd;
 
 export type ListPeopleResponseDataItemLastSourceAdGroup =
-  ListPeopleResponseDataItemFirstSourceAd;
+  GetPersonResponseFirstSourceAd;
 export const ListPeopleResponseDataItemLastSourceAdGroup =
-  ListPeopleResponseDataItemFirstSourceAd;
+  GetPersonResponseFirstSourceAd;
 
 export type ListPeopleResponseDataItemLastSourceCampaign =
-  ListPeopleResponseDataItemFirstSourceAd;
+  GetPersonResponseFirstSourceAd;
 export const ListPeopleResponseDataItemLastSourceCampaign =
-  ListPeopleResponseDataItemFirstSourceAd;
+  GetPersonResponseFirstSourceAd;
 
 export type ListPeopleResponseDataItemLastSourceType =
   | "ad_click"
@@ -250,9 +733,9 @@ export const ListPeopleResponseDataItemLastSourceType = /*@__PURE__*/ S.String;
 
 /** Where a visit came from: a whop ad click, a lead form, an external ad, or a referring site. */
 export interface ListPeopleResponseDataItemLastSource {
-  ad?: ListPeopleResponseDataItemFirstSourceAd | null;
-  ad_group?: ListPeopleResponseDataItemFirstSourceAd | null;
-  campaign?: ListPeopleResponseDataItemFirstSourceAd | null;
+  ad?: GetPersonResponseFirstSourceAd | null;
+  ad_group?: GetPersonResponseFirstSourceAd | null;
+  campaign?: GetPersonResponseFirstSourceAd | null;
   domain?: string | null;
   occurred_at?: string | null;
   platform?: string | null;
@@ -262,9 +745,9 @@ export interface ListPeopleResponseDataItemLastSource {
 export const ListPeopleResponseDataItemLastSource = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      ad: S.optional(S.NullOr(ListPeopleResponseDataItemFirstSourceAd)),
-      ad_group: S.optional(S.NullOr(ListPeopleResponseDataItemFirstSourceAd)),
-      campaign: S.optional(S.NullOr(ListPeopleResponseDataItemFirstSourceAd)),
+      ad: S.optional(S.NullOr(GetPersonResponseFirstSourceAd)),
+      ad_group: S.optional(S.NullOr(GetPersonResponseFirstSourceAd)),
+      campaign: S.optional(S.NullOr(GetPersonResponseFirstSourceAd)),
       domain: S.optional(S.NullOr(S.String)),
       occurred_at: S.optional(S.NullOr(S.String)),
       platform: S.optional(S.NullOr(S.String)),
@@ -275,61 +758,21 @@ export const ListPeopleResponseDataItemLastSource = /*@__PURE__*/ S.suspend(
   identifier: "ListPeopleResponseDataItemLastSource",
 }) as any as S.Schema<ListPeopleResponseDataItemLastSource>;
 
-export interface ListPeopleResponseDataItemLocation {
-  city?: string | null;
-  continent?: string | null;
-  country?: string | null;
-}
-export const ListPeopleResponseDataItemLocation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    city: S.optional(S.NullOr(S.String)),
-    continent: S.optional(S.NullOr(S.String)),
-    country: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({
-  identifier: "ListPeopleResponseDataItemLocation",
-}) as any as S.Schema<ListPeopleResponseDataItemLocation>;
+export type ListPeopleResponseDataItemLocation = GetPersonResponseLocation;
+export const ListPeopleResponseDataItemLocation = GetPersonResponseLocation;
 
 /** The user's member record at this account, when they are a member of it. */
-export interface ListPeopleResponseDataItemMember {
-  id: string;
-  joined_at?: string | null;
-  status?: string | null;
-  usd_total_spend?: number;
-}
-export const ListPeopleResponseDataItemMember = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    joined_at: S.optional(S.NullOr(S.String)),
-    status: S.optional(S.NullOr(S.String)),
-    usd_total_spend: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "ListPeopleResponseDataItemMember",
-}) as any as S.Schema<ListPeopleResponseDataItemMember>;
+export type ListPeopleResponseDataItemMember = GetPersonResponseMember;
+export const ListPeopleResponseDataItemMember = GetPersonResponseMember;
 
 /** The person's primary whop user, when one of their identities is a whop account. */
-export interface ListPeopleResponseDataItemUser {
-  id: string;
-  name?: string | null;
-  profile_pic_url?: string | null;
-  username: string;
-}
-export const ListPeopleResponseDataItemUser = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    name: S.optional(S.NullOr(S.String)),
-    profile_pic_url: S.optional(S.NullOr(S.String)),
-    username: S.String,
-  }),
-).annotate({
-  identifier: "ListPeopleResponseDataItemUser",
-}) as any as S.Schema<ListPeopleResponseDataItemUser>;
+export type ListPeopleResponseDataItemUser = GetPersonResponseUser;
+export const ListPeopleResponseDataItemUser = GetPersonResponseUser;
 
 export interface ListPeopleResponseDataItem {
   account_id: string;
   aov?: number;
-  device?: ListPeopleResponseDataItemDevice;
+  device?: GetPersonResponseDevice;
   /** The email from the person's most recent event that carried one. */
   email?: string | null;
   event_count: number;
@@ -343,10 +786,10 @@ export interface ListPeopleResponseDataItem {
   last_seen_at: string;
   /** Where a visit came from: a whop ad click, a lead form, an external ad, or a referring site. */
   last_source?: ListPeopleResponseDataItemLastSource | null;
-  location?: ListPeopleResponseDataItemLocation;
+  location?: GetPersonResponseLocation;
   ltv?: number;
   /** The user's member record at this account, when they are a member of it. */
-  member?: ListPeopleResponseDataItemMember | null;
+  member?: GetPersonResponseMember | null;
   /** The name from the person's most recent event that carried one. */
   name?: string | null;
   /** The phone from the person's most recent event that carried one. */
@@ -354,13 +797,13 @@ export interface ListPeopleResponseDataItem {
   purchase_count: number;
   timezone?: string | null;
   /** The person's primary whop user, when one of their identities is a whop account. */
-  user?: ListPeopleResponseDataItemUser | null;
+  user?: GetPersonResponseUser | null;
 }
 export const ListPeopleResponseDataItem = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     account_id: S.String,
     aov: S.optional(S.Number),
-    device: S.optional(ListPeopleResponseDataItemDevice),
+    device: S.optional(GetPersonResponseDevice),
     email: S.optional(S.NullOr(S.String)),
     event_count: S.Number,
     first_purchase_at: S.optional(S.NullOr(S.String)),
@@ -371,14 +814,14 @@ export const ListPeopleResponseDataItem = /*@__PURE__*/ S.suspend(() =>
     last_purchase_at: S.optional(S.NullOr(S.String)),
     last_seen_at: S.String,
     last_source: S.optional(S.NullOr(ListPeopleResponseDataItemLastSource)),
-    location: S.optional(ListPeopleResponseDataItemLocation),
+    location: S.optional(GetPersonResponseLocation),
     ltv: S.optional(S.Number),
-    member: S.optional(S.NullOr(ListPeopleResponseDataItemMember)),
+    member: S.optional(S.NullOr(GetPersonResponseMember)),
     name: S.optional(S.NullOr(S.String)),
     phone: S.optional(S.NullOr(S.String)),
     purchase_count: S.Number,
     timezone: S.optional(S.NullOr(S.String)),
-    user: S.optional(S.NullOr(ListPeopleResponseDataItemUser)),
+    user: S.optional(S.NullOr(GetPersonResponseUser)),
   }),
 ).annotate({
   identifier: "ListPeopleResponseDataItem",
@@ -421,463 +864,20 @@ export const ListPeopleResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListPeopleResponse",
 }) as any as S.Schema<ListPeopleResponse>;
 
-export interface RetrievePersonRequest {
-  /** The person ID, user ID, email address, or phone number to look up. */
-  id: string;
-  /** Account ID, prefixed `biz_`. Optional for account API keys; required for credentials that can access multiple accounts. */
-  account_id?: string;
-}
-export const RetrievePersonRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    account_id: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/people/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrievePersonRequest",
-}) as any as S.Schema<RetrievePersonRequest>;
-
-export type RetrievePersonResponseAudienceIdsList = Array<string>;
-export const RetrievePersonResponseAudienceIdsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<RetrievePersonResponseAudienceIdsList>;
-
-export type RetrievePersonResponseCustomEventNamesList = Array<string>;
-export const RetrievePersonResponseCustomEventNamesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<RetrievePersonResponseCustomEventNamesList>;
-
-export type RetrievePersonResponseDevice = ListPeopleResponseDataItemDevice;
-export const RetrievePersonResponseDevice = ListPeopleResponseDataItemDevice;
-
-/** Every linked email, primary first. */
-export type RetrievePersonResponseEmailsList = Array<string>;
-export const RetrievePersonResponseEmailsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<RetrievePersonResponseEmailsList>;
-
-export type RetrievePersonResponseEventNamesList = Array<string>;
-export const RetrievePersonResponseEventNamesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<RetrievePersonResponseEventNamesList>;
-
-export type RetrievePersonResponseFirstSourceAd =
-  ListPeopleResponseDataItemFirstSourceAd;
-export const RetrievePersonResponseFirstSourceAd =
-  ListPeopleResponseDataItemFirstSourceAd;
-
-export type RetrievePersonResponseFirstSourceAdGroup =
-  ListPeopleResponseDataItemFirstSourceAd;
-export const RetrievePersonResponseFirstSourceAdGroup =
-  ListPeopleResponseDataItemFirstSourceAd;
-
-export type RetrievePersonResponseFirstSourceCampaign =
-  ListPeopleResponseDataItemFirstSourceAd;
-export const RetrievePersonResponseFirstSourceCampaign =
-  ListPeopleResponseDataItemFirstSourceAd;
-
-export type RetrievePersonResponseFirstSourceType =
-  | "ad_click"
-  | "lead_form"
-  | "external_ad_click"
-  | "referrer"
-  | "utm";
-export const RetrievePersonResponseFirstSourceType = /*@__PURE__*/ S.String;
-
-/** Where a visit came from: a whop ad click, a lead form, an external ad, or a referring site. */
-export interface RetrievePersonResponseFirstSource {
-  ad?: ListPeopleResponseDataItemFirstSourceAd | null;
-  ad_group?: ListPeopleResponseDataItemFirstSourceAd | null;
-  campaign?: ListPeopleResponseDataItemFirstSourceAd | null;
-  domain?: string | null;
-  occurred_at?: string | null;
-  platform?: string | null;
-  type: RetrievePersonResponseFirstSourceType;
-  utm_source?: string | null;
-}
-export const RetrievePersonResponseFirstSource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ad: S.optional(S.NullOr(ListPeopleResponseDataItemFirstSourceAd)),
-    ad_group: S.optional(S.NullOr(ListPeopleResponseDataItemFirstSourceAd)),
-    campaign: S.optional(S.NullOr(ListPeopleResponseDataItemFirstSourceAd)),
-    domain: S.optional(S.NullOr(S.String)),
-    occurred_at: S.optional(S.NullOr(S.String)),
-    platform: S.optional(S.NullOr(S.String)),
-    type: RetrievePersonResponseFirstSourceType,
-    utm_source: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({
-  identifier: "RetrievePersonResponseFirstSource",
-}) as any as S.Schema<RetrievePersonResponseFirstSource>;
-
-export type RetrievePersonResponseLastSourceAd =
-  ListPeopleResponseDataItemFirstSourceAd;
-export const RetrievePersonResponseLastSourceAd =
-  ListPeopleResponseDataItemFirstSourceAd;
-
-export type RetrievePersonResponseLastSourceAdGroup =
-  ListPeopleResponseDataItemFirstSourceAd;
-export const RetrievePersonResponseLastSourceAdGroup =
-  ListPeopleResponseDataItemFirstSourceAd;
-
-export type RetrievePersonResponseLastSourceCampaign =
-  ListPeopleResponseDataItemFirstSourceAd;
-export const RetrievePersonResponseLastSourceCampaign =
-  ListPeopleResponseDataItemFirstSourceAd;
-
-export type RetrievePersonResponseLastSourceType =
-  | "ad_click"
-  | "lead_form"
-  | "external_ad_click"
-  | "referrer"
-  | "utm";
-export const RetrievePersonResponseLastSourceType = /*@__PURE__*/ S.String;
-
-/** Where a visit came from: a whop ad click, a lead form, an external ad, or a referring site. */
-export interface RetrievePersonResponseLastSource {
-  ad?: ListPeopleResponseDataItemFirstSourceAd | null;
-  ad_group?: ListPeopleResponseDataItemFirstSourceAd | null;
-  campaign?: ListPeopleResponseDataItemFirstSourceAd | null;
-  domain?: string | null;
-  occurred_at?: string | null;
-  platform?: string | null;
-  type: RetrievePersonResponseLastSourceType;
-  utm_source?: string | null;
-}
-export const RetrievePersonResponseLastSource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ad: S.optional(S.NullOr(ListPeopleResponseDataItemFirstSourceAd)),
-    ad_group: S.optional(S.NullOr(ListPeopleResponseDataItemFirstSourceAd)),
-    campaign: S.optional(S.NullOr(ListPeopleResponseDataItemFirstSourceAd)),
-    domain: S.optional(S.NullOr(S.String)),
-    occurred_at: S.optional(S.NullOr(S.String)),
-    platform: S.optional(S.NullOr(S.String)),
-    type: RetrievePersonResponseLastSourceType,
-    utm_source: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({
-  identifier: "RetrievePersonResponseLastSource",
-}) as any as S.Schema<RetrievePersonResponseLastSource>;
-
-export type RetrievePersonResponseLocation = ListPeopleResponseDataItemLocation;
-export const RetrievePersonResponseLocation =
-  ListPeopleResponseDataItemLocation;
-
-/** The user's member record at this account, when they are a member of it. */
-export type RetrievePersonResponseMember = ListPeopleResponseDataItemMember;
-export const RetrievePersonResponseMember = ListPeopleResponseDataItemMember;
-
-/** Every name the person's linked identities carried, primary first. */
-export type RetrievePersonResponseNamesList = Array<string>;
-export const RetrievePersonResponseNamesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<RetrievePersonResponseNamesList>;
-
-/** Every linked phone, primary first. */
-export type RetrievePersonResponsePhonesList = Array<string>;
-export const RetrievePersonResponsePhonesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<RetrievePersonResponsePhonesList>;
-
-export interface RetrievePersonResponsePurchasesItem {
-  event_id: string;
-  occurred_at: string;
-  usd_value: number;
-}
-export const RetrievePersonResponsePurchasesItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    event_id: S.String,
-    occurred_at: S.String,
-    usd_value: S.Number,
-  }),
-).annotate({
-  identifier: "RetrievePersonResponsePurchasesItem",
-}) as any as S.Schema<RetrievePersonResponsePurchasesItem>;
-
-export type RetrievePersonResponsePurchasesList =
-  Array<RetrievePersonResponsePurchasesItem>;
-export const RetrievePersonResponsePurchasesList = /*@__PURE__*/ S.Array(
-  RetrievePersonResponsePurchasesItem,
-) as any as S.Schema<RetrievePersonResponsePurchasesList>;
-
-export type RetrievePersonResponseRolesList = Array<string>;
-export const RetrievePersonResponseRolesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<RetrievePersonResponseRolesList>;
-
-export type RetrievePersonResponseSourcesItemAd =
-  ListPeopleResponseDataItemFirstSourceAd;
-export const RetrievePersonResponseSourcesItemAd =
-  ListPeopleResponseDataItemFirstSourceAd;
-
-export type RetrievePersonResponseSourcesItemAdGroup =
-  ListPeopleResponseDataItemFirstSourceAd;
-export const RetrievePersonResponseSourcesItemAdGroup =
-  ListPeopleResponseDataItemFirstSourceAd;
-
-export type RetrievePersonResponseSourcesItemCampaign =
-  ListPeopleResponseDataItemFirstSourceAd;
-export const RetrievePersonResponseSourcesItemCampaign =
-  ListPeopleResponseDataItemFirstSourceAd;
-
-export type RetrievePersonResponseSourcesItemType =
-  | "ad_click"
-  | "lead_form"
-  | "external_ad_click"
-  | "referrer"
-  | "utm";
-export const RetrievePersonResponseSourcesItemType = /*@__PURE__*/ S.String;
-
-/** Where a visit came from: a whop ad click, a lead form, an external ad, or a referring site. */
-export interface RetrievePersonResponseSourcesItem {
-  ad?: ListPeopleResponseDataItemFirstSourceAd | null;
-  ad_group?: ListPeopleResponseDataItemFirstSourceAd | null;
-  campaign?: ListPeopleResponseDataItemFirstSourceAd | null;
-  domain?: string | null;
-  occurred_at?: string | null;
-  platform?: string | null;
-  type: RetrievePersonResponseSourcesItemType;
-  utm_source?: string | null;
-}
-export const RetrievePersonResponseSourcesItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ad: S.optional(S.NullOr(ListPeopleResponseDataItemFirstSourceAd)),
-    ad_group: S.optional(S.NullOr(ListPeopleResponseDataItemFirstSourceAd)),
-    campaign: S.optional(S.NullOr(ListPeopleResponseDataItemFirstSourceAd)),
-    domain: S.optional(S.NullOr(S.String)),
-    occurred_at: S.optional(S.NullOr(S.String)),
-    platform: S.optional(S.NullOr(S.String)),
-    type: RetrievePersonResponseSourcesItemType,
-    utm_source: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({
-  identifier: "RetrievePersonResponseSourcesItem",
-}) as any as S.Schema<RetrievePersonResponseSourcesItem>;
-
-/** Every distinct acquisition signal the person ever carried, ad entities hydrated. */
-export type RetrievePersonResponseSourcesList =
-  Array<RetrievePersonResponseSourcesItem>;
-export const RetrievePersonResponseSourcesList = /*@__PURE__*/ S.Array(
-  RetrievePersonResponseSourcesItem,
-) as any as S.Schema<RetrievePersonResponseSourcesList>;
-
-export interface RetrievePersonResponseUsageBrowserItem {
-  events: number;
-  value: string;
-}
-export const RetrievePersonResponseUsageBrowserItem = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      events: S.Number,
-      value: S.String,
-    }),
-).annotate({
-  identifier: "RetrievePersonResponseUsageBrowserItem",
-}) as any as S.Schema<RetrievePersonResponseUsageBrowserItem>;
-
-export type RetrievePersonResponseUsageBrowserList =
-  Array<RetrievePersonResponseUsageBrowserItem>;
-export const RetrievePersonResponseUsageBrowserList = /*@__PURE__*/ S.Array(
-  RetrievePersonResponseUsageBrowserItem,
-) as any as S.Schema<RetrievePersonResponseUsageBrowserList>;
-
-export type RetrievePersonResponseUsageCityItem =
-  RetrievePersonResponseUsageBrowserItem;
-export const RetrievePersonResponseUsageCityItem =
-  RetrievePersonResponseUsageBrowserItem;
-
-export type RetrievePersonResponseUsageCityList =
-  Array<RetrievePersonResponseUsageBrowserItem>;
-export const RetrievePersonResponseUsageCityList = /*@__PURE__*/ S.Array(
-  RetrievePersonResponseUsageBrowserItem,
-) as any as S.Schema<RetrievePersonResponseUsageCityList>;
-
-export type RetrievePersonResponseUsageCountryItem =
-  RetrievePersonResponseUsageBrowserItem;
-export const RetrievePersonResponseUsageCountryItem =
-  RetrievePersonResponseUsageBrowserItem;
-
-export type RetrievePersonResponseUsageCountryList =
-  Array<RetrievePersonResponseUsageBrowserItem>;
-export const RetrievePersonResponseUsageCountryList = /*@__PURE__*/ S.Array(
-  RetrievePersonResponseUsageBrowserItem,
-) as any as S.Schema<RetrievePersonResponseUsageCountryList>;
-
-export type RetrievePersonResponseUsageDeviceItem =
-  RetrievePersonResponseUsageBrowserItem;
-export const RetrievePersonResponseUsageDeviceItem =
-  RetrievePersonResponseUsageBrowserItem;
-
-export type RetrievePersonResponseUsageDeviceList =
-  Array<RetrievePersonResponseUsageBrowserItem>;
-export const RetrievePersonResponseUsageDeviceList = /*@__PURE__*/ S.Array(
-  RetrievePersonResponseUsageBrowserItem,
-) as any as S.Schema<RetrievePersonResponseUsageDeviceList>;
-
-export type RetrievePersonResponseUsageIpItem =
-  RetrievePersonResponseUsageBrowserItem;
-export const RetrievePersonResponseUsageIpItem =
-  RetrievePersonResponseUsageBrowserItem;
-
-export type RetrievePersonResponseUsageIpList =
-  Array<RetrievePersonResponseUsageBrowserItem>;
-export const RetrievePersonResponseUsageIpList = /*@__PURE__*/ S.Array(
-  RetrievePersonResponseUsageBrowserItem,
-) as any as S.Schema<RetrievePersonResponseUsageIpList>;
-
-export type RetrievePersonResponseUsageOsItem =
-  RetrievePersonResponseUsageBrowserItem;
-export const RetrievePersonResponseUsageOsItem =
-  RetrievePersonResponseUsageBrowserItem;
-
-export type RetrievePersonResponseUsageOsList =
-  Array<RetrievePersonResponseUsageBrowserItem>;
-export const RetrievePersonResponseUsageOsList = /*@__PURE__*/ S.Array(
-  RetrievePersonResponseUsageBrowserItem,
-) as any as S.Schema<RetrievePersonResponseUsageOsList>;
-
-export type RetrievePersonResponseUsageReferrerItem =
-  RetrievePersonResponseUsageBrowserItem;
-export const RetrievePersonResponseUsageReferrerItem =
-  RetrievePersonResponseUsageBrowserItem;
-
-export type RetrievePersonResponseUsageReferrerList =
-  Array<RetrievePersonResponseUsageBrowserItem>;
-export const RetrievePersonResponseUsageReferrerList = /*@__PURE__*/ S.Array(
-  RetrievePersonResponseUsageBrowserItem,
-) as any as S.Schema<RetrievePersonResponseUsageReferrerList>;
-
-export type RetrievePersonResponseUsageTimezoneItem =
-  RetrievePersonResponseUsageBrowserItem;
-export const RetrievePersonResponseUsageTimezoneItem =
-  RetrievePersonResponseUsageBrowserItem;
-
-export type RetrievePersonResponseUsageTimezoneList =
-  Array<RetrievePersonResponseUsageBrowserItem>;
-export const RetrievePersonResponseUsageTimezoneList = /*@__PURE__*/ S.Array(
-  RetrievePersonResponseUsageBrowserItem,
-) as any as S.Schema<RetrievePersonResponseUsageTimezoneList>;
-
-/** Exact usage breakdowns for the person's browser traffic (distinct events per value). */
-export interface RetrievePersonResponseUsage {
-  browser?: RetrievePersonResponseUsageBrowserList;
-  city?: RetrievePersonResponseUsageCityList;
-  country?: RetrievePersonResponseUsageCountryList;
-  device?: RetrievePersonResponseUsageDeviceList;
-  ip?: RetrievePersonResponseUsageIpList;
-  os?: RetrievePersonResponseUsageOsList;
-  referrer?: RetrievePersonResponseUsageReferrerList;
-  timezone?: RetrievePersonResponseUsageTimezoneList;
-}
-export const RetrievePersonResponseUsage = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    browser: S.optional(RetrievePersonResponseUsageBrowserList),
-    city: S.optional(RetrievePersonResponseUsageCityList),
-    country: S.optional(RetrievePersonResponseUsageCountryList),
-    device: S.optional(RetrievePersonResponseUsageDeviceList),
-    ip: S.optional(RetrievePersonResponseUsageIpList),
-    os: S.optional(RetrievePersonResponseUsageOsList),
-    referrer: S.optional(RetrievePersonResponseUsageReferrerList),
-    timezone: S.optional(RetrievePersonResponseUsageTimezoneList),
-  }),
-).annotate({
-  identifier: "RetrievePersonResponseUsage",
-}) as any as S.Schema<RetrievePersonResponseUsage>;
-
-/** The person's primary whop user, when one of their identities is a whop account. */
-export type RetrievePersonResponseUser = ListPeopleResponseDataItemUser;
-export const RetrievePersonResponseUser = ListPeopleResponseDataItemUser;
-
-/** Every linked whop account, the most used one first. */
-export type RetrievePersonResponseUserIdsList = Array<string>;
-export const RetrievePersonResponseUserIdsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<RetrievePersonResponseUserIdsList>;
-
-export interface RetrievePersonResponse {
-  account_id: string;
-  aov?: number;
-  audience_ids?: RetrievePersonResponseAudienceIdsList;
-  custom_event_names?: RetrievePersonResponseCustomEventNamesList;
-  device?: ListPeopleResponseDataItemDevice;
-  /** The email from the person's most recent event that carried one. */
-  email?: string | null;
-  /** Every linked email, primary first. */
-  emails?: RetrievePersonResponseEmailsList;
-  event_count: number;
-  event_names?: RetrievePersonResponseEventNamesList;
-  first_purchase_at?: string | null;
-  first_seen_at: string;
-  /** Where a visit came from: a whop ad click, a lead form, an external ad, or a referring site. */
-  first_source?: RetrievePersonResponseFirstSource | null;
-  id: string;
-  last_ip?: string | null;
-  last_purchase_at?: string | null;
-  last_seen_at: string;
-  /** Where a visit came from: a whop ad click, a lead form, an external ad, or a referring site. */
-  last_source?: RetrievePersonResponseLastSource | null;
-  location?: ListPeopleResponseDataItemLocation;
-  ltv?: number;
-  /** The user's member record at this account, when they are a member of it. */
-  member?: ListPeopleResponseDataItemMember | null;
-  /** The name from the person's most recent event that carried one. */
-  name?: string | null;
-  /** Every name the person's linked identities carried, primary first. */
-  names?: RetrievePersonResponseNamesList;
-  /** The phone from the person's most recent event that carried one. */
-  phone?: string | null;
-  /** Every linked phone, primary first. */
-  phones?: RetrievePersonResponsePhonesList;
-  purchase_count: number;
-  purchases?: RetrievePersonResponsePurchasesList;
-  roles?: RetrievePersonResponseRolesList;
-  /** Every distinct acquisition signal the person ever carried, ad entities hydrated. */
-  sources?: RetrievePersonResponseSourcesList;
-  timezone?: string | null;
-  /** Exact usage breakdowns for the person's browser traffic (distinct events per value). */
-  usage?: RetrievePersonResponseUsage;
-  /** The person's primary whop user, when one of their identities is a whop account. */
-  user?: ListPeopleResponseDataItemUser | null;
-  /** Every linked whop account, the most used one first. */
-  user_ids?: RetrievePersonResponseUserIdsList;
-}
-export const RetrievePersonResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    account_id: S.String,
-    aov: S.optional(S.Number),
-    audience_ids: S.optional(RetrievePersonResponseAudienceIdsList),
-    custom_event_names: S.optional(RetrievePersonResponseCustomEventNamesList),
-    device: S.optional(ListPeopleResponseDataItemDevice),
-    email: S.optional(S.NullOr(S.String)),
-    emails: S.optional(RetrievePersonResponseEmailsList),
-    event_count: S.Number,
-    event_names: S.optional(RetrievePersonResponseEventNamesList),
-    first_purchase_at: S.optional(S.NullOr(S.String)),
-    first_seen_at: S.String,
-    first_source: S.optional(S.NullOr(RetrievePersonResponseFirstSource)),
-    id: S.String,
-    last_ip: S.optional(S.NullOr(S.String)),
-    last_purchase_at: S.optional(S.NullOr(S.String)),
-    last_seen_at: S.String,
-    last_source: S.optional(S.NullOr(RetrievePersonResponseLastSource)),
-    location: S.optional(ListPeopleResponseDataItemLocation),
-    ltv: S.optional(S.Number),
-    member: S.optional(S.NullOr(ListPeopleResponseDataItemMember)),
-    name: S.optional(S.NullOr(S.String)),
-    names: S.optional(RetrievePersonResponseNamesList),
-    phone: S.optional(S.NullOr(S.String)),
-    phones: S.optional(RetrievePersonResponsePhonesList),
-    purchase_count: S.Number,
-    purchases: S.optional(RetrievePersonResponsePurchasesList),
-    roles: S.optional(RetrievePersonResponseRolesList),
-    sources: S.optional(RetrievePersonResponseSourcesList),
-    timezone: S.optional(S.NullOr(S.String)),
-    usage: S.optional(RetrievePersonResponseUsage),
-    user: S.optional(S.NullOr(ListPeopleResponseDataItemUser)),
-    user_ids: S.optional(RetrievePersonResponseUserIdsList),
-  }),
-).annotate({
-  identifier: "RetrievePersonResponse",
-}) as any as S.Schema<RetrievePersonResponse>;
+export type GetPersonError = NotFound | WhopOpError;
+/** Retrieve Person Retrieves one person for an account. The identifier can be a person ID (prefixed `prsn_`), a user ID (prefixed `user_`), an email address, or a phone number — merged people resolve to the surviving profile. */
+export const getPerson: API.OperationMethod<
+  GetPersonRequest,
+  GetPersonResponse,
+  GetPersonError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPersonRequest,
+  output: GetPersonResponse,
+  errors: [NotFound],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
 
 export type ListPeopleError = BadRequest | WhopOpError;
 /** List People Lists the people (visitors and customers) of an account: the identity-linked person profiles aggregated from every pixel, payment, and platform event — identities, purchases and LTV, geo/device profile, traffic sources, and first/last marketing touches. */
@@ -905,18 +905,3 @@ export const listPeople: API.PaginatedOperationMethod<
   }),
   paginateRelay,
 ) as any;
-
-export type RetrievePersonError = NotFound | WhopOpError;
-/** Retrieve Person Retrieves one person for an account. The identifier can be a person ID (prefixed `prsn_`), a user ID (prefixed `user_`), an email address, or a phone number — merged people resolve to the surviving profile. */
-export const retrievePerson: API.OperationMethod<
-  RetrievePersonRequest,
-  RetrievePersonResponse,
-  RetrievePersonError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrievePersonRequest,
-  output: RetrievePersonResponse,
-  errors: [NotFound],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));

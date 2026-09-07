@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.databricks#VNetPeeringDelete": {
+    "com.azure.databricks#DeleteVNetPeering": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databricks#VNetPeeringDeleteRequest"
+        "target": "com.azure.databricks#DeleteVNetPeeringRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -36,7 +37,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.databricks#VNetPeeringDeleteRequest": {
+    "com.azure.databricks#DeleteVNetPeeringRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -353,13 +354,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databricks#VNetPeeringGet": {
+    "com.azure.databricks#GetVNetPeering": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databricks#VNetPeeringGetRequest"
+        "target": "com.azure.databricks#GetVNetPeeringRequest"
       },
       "output": {
-        "target": "com.azure.databricks#VNetPeeringGetResponse"
+        "target": "com.azure.databricks#GetVNetPeeringResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -372,7 +373,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.databricks#VNetPeeringGetResponse": {
+    "com.azure.databricks#GetVNetPeeringResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -405,7 +406,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.databricks#VNetPeeringGetRequest": {
+    "com.azure.databricks#GetVNetPeeringRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -445,10 +446,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databricks#VNetPeeringListByWorkspace": {
+    "com.azure.databricks#ListVNetPeeringByWorkspace": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databricks#VNetPeeringListByWorkspaceRequest"
+        "target": "com.azure.databricks#ListVNetPeeringByWorkspaceRequest"
       },
       "output": {
         "target": "com.azure.databricks#VirtualNetworkPeeringList"
@@ -527,7 +528,7 @@
         "smithy.api#documentation": "Peerings in a VirtualNetwork resource"
       }
     },
-    "com.azure.databricks#VNetPeeringListByWorkspaceRequest": {
+    "com.azure.databricks#ListVNetPeeringByWorkspaceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -559,13 +560,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databricks#PrivateLinkResourcesGet": {
+    "com.azure.databricks#GetPrivateLinkResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databricks#PrivateLinkResourcesGetRequest"
+        "target": "com.azure.databricks#GetPrivateLinkResourceRequest"
       },
       "output": {
-        "target": "com.azure.databricks#PrivateLinkResourcesGetResponse"
+        "target": "com.azure.databricks#GetPrivateLinkResourceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -578,7 +579,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.databricks#PrivateLinkResourcesGetResponse": {
+    "com.azure.databricks#GetPrivateLinkResourceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -655,7 +656,7 @@
         "smithy.api#documentation": "The required members for a specific group id"
       }
     },
-    "com.azure.databricks#PrivateLinkResourcesGetRequest": {
+    "com.azure.databricks#GetPrivateLinkResourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -695,10 +696,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databricks#PrivateLinkResourcesList2": {
+    "com.azure.databricks#ListPrivateLinkResources": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databricks#PrivateLinkResourcesListRequest"
+        "target": "com.azure.databricks#ListPrivateLinkResourcesRequest"
       },
       "output": {
         "target": "com.azure.databricks#PrivateLinkResourcesList"
@@ -777,7 +778,7 @@
         "smithy.api#documentation": "The group information for creating a private endpoint on a workspace"
       }
     },
-    "com.azure.databricks#PrivateLinkResourcesListRequest": {
+    "com.azure.databricks#ListPrivateLinkResourcesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -809,10 +810,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databricks#PrivateEndpointConnectionsDelete": {
+    "com.azure.databricks#DeletePrivateEndpointConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databricks#PrivateEndpointConnectionsDeleteRequest"
+        "target": "com.azure.databricks#DeletePrivateEndpointConnectionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -828,7 +829,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.databricks#PrivateEndpointConnectionsDeleteRequest": {
+    "com.azure.databricks#DeletePrivateEndpointConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -868,13 +869,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databricks#PrivateEndpointConnectionsCreate": {
+    "com.azure.databricks#CreatePrivateEndpointConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databricks#PrivateEndpointConnectionsCreateRequest"
+        "target": "com.azure.databricks#CreatePrivateEndpointConnectionRequest"
       },
       "output": {
-        "target": "com.azure.databricks#PrivateEndpointConnectionsCreateResponse"
+        "target": "com.azure.databricks#CreatePrivateEndpointConnectionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -887,7 +888,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.databricks#PrivateEndpointConnectionsCreateResponse": {
+    "com.azure.databricks#CreatePrivateEndpointConnectionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1073,7 +1074,7 @@
         "smithy.api#documentation": "The private endpoint property of a private endpoint connection."
       }
     },
-    "com.azure.databricks#PrivateEndpointConnectionsCreateRequest": {
+    "com.azure.databricks#CreatePrivateEndpointConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1163,13 +1164,13 @@
         "smithy.api#documentation": "The private endpoint property of a private endpoint connection."
       }
     },
-    "com.azure.databricks#PrivateEndpointConnectionsGet": {
+    "com.azure.databricks#GetPrivateEndpointConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databricks#PrivateEndpointConnectionsGetRequest"
+        "target": "com.azure.databricks#GetPrivateEndpointConnectionRequest"
       },
       "output": {
-        "target": "com.azure.databricks#PrivateEndpointConnectionsGetResponse"
+        "target": "com.azure.databricks#GetPrivateEndpointConnectionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1182,7 +1183,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.databricks#PrivateEndpointConnectionsGetResponse": {
+    "com.azure.databricks#GetPrivateEndpointConnectionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1215,7 +1216,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.databricks#PrivateEndpointConnectionsGetRequest": {
+    "com.azure.databricks#GetPrivateEndpointConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1255,10 +1256,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databricks#PrivateEndpointConnectionsList2": {
+    "com.azure.databricks#ListPrivateEndpointConnections": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databricks#PrivateEndpointConnectionsListRequest"
+        "target": "com.azure.databricks#ListPrivateEndpointConnectionsRequest"
       },
       "output": {
         "target": "com.azure.databricks#PrivateEndpointConnectionsList"
@@ -1337,7 +1338,7 @@
         "smithy.api#documentation": "The private endpoint connection of a workspace."
       }
     },
-    "com.azure.databricks#PrivateEndpointConnectionsListRequest": {
+    "com.azure.databricks#ListPrivateEndpointConnectionsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1369,13 +1370,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databricks#OutboundNetworkDependenciesEndpointsList": {
+    "com.azure.databricks#ListOutboundNetworkDependenciesEndpoints": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databricks#OutboundNetworkDependenciesEndpointsListRequest"
+        "target": "com.azure.databricks#ListOutboundNetworkDependenciesEndpointsRequest"
       },
       "output": {
-        "target": "com.azure.databricks#OutboundNetworkDependenciesEndpointsListResponse"
+        "target": "com.azure.databricks#ListOutboundNetworkDependenciesEndpointsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1388,7 +1389,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.databricks#OutboundNetworkDependenciesEndpointsListResponse": {
+    "com.azure.databricks#ListOutboundNetworkDependenciesEndpointsResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -1502,7 +1503,7 @@
         "smithy.api#documentation": "Connect information from the Workspace to a single endpoint."
       }
     },
-    "com.azure.databricks#OutboundNetworkDependenciesEndpointsListRequest": {
+    "com.azure.databricks#ListOutboundNetworkDependenciesEndpointsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1534,10 +1535,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databricks#WorkspacesDelete": {
+    "com.azure.databricks#DeleteWorkspace": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databricks#WorkspacesDeleteRequest"
+        "target": "com.azure.databricks#DeleteWorkspaceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1553,7 +1554,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.databricks#WorkspacesDeleteRequest": {
+    "com.azure.databricks#DeleteWorkspaceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1592,13 +1593,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databricks#WorkspacesUpdate": {
+    "com.azure.databricks#UpdateWorkspace": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databricks#WorkspacesUpdateRequest"
+        "target": "com.azure.databricks#UpdateWorkspaceRequest"
       },
       "output": {
-        "target": "com.azure.databricks#WorkspacesUpdateResponse"
+        "target": "com.azure.databricks#UpdateWorkspaceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1611,7 +1612,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.databricks#WorkspacesUpdateResponse": {
+    "com.azure.databricks#UpdateWorkspaceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1633,7 +1634,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.databricks#WorkspacesUpdateResponseTagsMap",
+          "target": "com.azure.databricks#UpdateWorkspaceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2741,7 +2742,7 @@
         "smithy.api#documentation": "The workspace compute mode. Required on create, cannot be changed. Possible values include: 'Serverless', 'Hybrid'"
       }
     },
-    "com.azure.databricks#WorkspacesUpdateResponseTagsMap": {
+    "com.azure.databricks#UpdateWorkspaceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2753,7 +2754,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.databricks#WorkspacesUpdateRequest": {
+    "com.azure.databricks#UpdateWorkspaceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2781,7 +2782,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.databricks#WorkspacesUpdateRequestTagsMap",
+          "target": "com.azure.databricks#UpdateWorkspaceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2791,7 +2792,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databricks#WorkspacesUpdateRequestTagsMap": {
+    "com.azure.databricks#UpdateWorkspaceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3084,13 +3085,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.databricks#WorkspacesGet": {
+    "com.azure.databricks#GetWorkspace": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databricks#WorkspacesGetRequest"
+        "target": "com.azure.databricks#GetWorkspaceRequest"
       },
       "output": {
-        "target": "com.azure.databricks#WorkspacesGetResponse"
+        "target": "com.azure.databricks#GetWorkspaceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3103,7 +3104,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.databricks#WorkspacesGetResponse": {
+    "com.azure.databricks#GetWorkspaceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3125,7 +3126,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.databricks#WorkspacesGetResponseTagsMap",
+          "target": "com.azure.databricks#GetWorkspaceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3155,7 +3156,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.databricks#WorkspacesGetResponseTagsMap": {
+    "com.azure.databricks#GetWorkspaceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3167,7 +3168,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.databricks#WorkspacesGetRequest": {
+    "com.azure.databricks#GetWorkspaceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3199,10 +3200,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databricks#WorkspacesListByResourceGroup": {
+    "com.azure.databricks#ListWorkspaceByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databricks#WorkspacesListByResourceGroupRequest"
+        "target": "com.azure.databricks#ListWorkspaceByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.databricks#WorkspaceListResult"
@@ -3312,7 +3313,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.databricks#WorkspacesListByResourceGroupRequest": {
+    "com.azure.databricks#ListWorkspaceByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3336,10 +3337,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databricks#AccessConnectorsDelete": {
+    "com.azure.databricks#DeleteAccessConnector": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databricks#AccessConnectorsDeleteRequest"
+        "target": "com.azure.databricks#DeleteAccessConnectorRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3355,7 +3356,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.databricks#AccessConnectorsDeleteRequest": {
+    "com.azure.databricks#DeleteAccessConnectorRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3387,13 +3388,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databricks#AccessConnectorsUpdate": {
+    "com.azure.databricks#UpdateAccessConnector": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databricks#AccessConnectorsUpdateRequest"
+        "target": "com.azure.databricks#UpdateAccessConnectorRequest"
       },
       "output": {
-        "target": "com.azure.databricks#AccessConnectorsUpdateResponse"
+        "target": "com.azure.databricks#UpdateAccessConnectorResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3406,7 +3407,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.databricks#AccessConnectorsUpdateResponse": {
+    "com.azure.databricks#UpdateAccessConnectorResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3428,7 +3429,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.databricks#AccessConnectorsUpdateResponseTagsMap",
+          "target": "com.azure.databricks#UpdateAccessConnectorResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3447,7 +3448,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.databricks#AccessConnectorsUpdateResponseIdentity",
+          "target": "com.azure.databricks#UpdateAccessConnectorResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -3457,7 +3458,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.databricks#AccessConnectorsUpdateResponseIdentity": {
+    "com.azure.databricks#UpdateAccessConnectorResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -3577,7 +3578,7 @@
         "smithy.api#documentation": "List of workspaces referring this Access Connector."
       }
     },
-    "com.azure.databricks#AccessConnectorsUpdateResponseTagsMap": {
+    "com.azure.databricks#UpdateAccessConnectorResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3589,7 +3590,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.databricks#AccessConnectorsUpdateRequest": {
+    "com.azure.databricks#UpdateAccessConnectorRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3617,13 +3618,13 @@
           }
         },
         "tags": {
-          "target": "com.azure.databricks#AccessConnectorsUpdateRequestTagsMap",
+          "target": "com.azure.databricks#UpdateAccessConnectorRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
         },
         "identity": {
-          "target": "com.azure.databricks#AccessConnectorsUpdateRequestIdentity",
+          "target": "com.azure.databricks#UpdateAccessConnectorRequestIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -3633,7 +3634,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databricks#AccessConnectorsUpdateRequestIdentity": {
+    "com.azure.databricks#UpdateAccessConnectorRequestIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -3669,7 +3670,7 @@
         "smithy.api#documentation": "User assigned identity properties"
       }
     },
-    "com.azure.databricks#AccessConnectorsUpdateRequestTagsMap": {
+    "com.azure.databricks#UpdateAccessConnectorRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3883,13 +3884,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.databricks#AccessConnectorsGet": {
+    "com.azure.databricks#GetAccessConnector": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databricks#AccessConnectorsGetRequest"
+        "target": "com.azure.databricks#GetAccessConnectorRequest"
       },
       "output": {
-        "target": "com.azure.databricks#AccessConnectorsGetResponse"
+        "target": "com.azure.databricks#GetAccessConnectorResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3902,7 +3903,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.databricks#AccessConnectorsGetResponse": {
+    "com.azure.databricks#GetAccessConnectorResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3924,7 +3925,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.databricks#AccessConnectorsGetResponseTagsMap",
+          "target": "com.azure.databricks#GetAccessConnectorResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3943,7 +3944,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.databricks#AccessConnectorsGetResponseIdentity",
+          "target": "com.azure.databricks#GetAccessConnectorResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -3953,7 +3954,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.databricks#AccessConnectorsGetResponseIdentity": {
+    "com.azure.databricks#GetAccessConnectorResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -3982,7 +3983,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.databricks#AccessConnectorsGetResponseTagsMap": {
+    "com.azure.databricks#GetAccessConnectorResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3994,7 +3995,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.databricks#AccessConnectorsGetRequest": {
+    "com.azure.databricks#GetAccessConnectorRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4026,10 +4027,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databricks#AccessConnectorsListByResourceGroup": {
+    "com.azure.databricks#ListAccessConnectorByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databricks#AccessConnectorsListByResourceGroupRequest"
+        "target": "com.azure.databricks#ListAccessConnectorByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.databricks#AccessConnectorListResult"
@@ -4167,7 +4168,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.databricks#AccessConnectorsListByResourceGroupRequest": {
+    "com.azure.databricks#ListAccessConnectorByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4191,10 +4192,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databricks#WorkspacesListBySubscription": {
+    "com.azure.databricks#ListWorkspaceBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databricks#WorkspacesListBySubscriptionRequest"
+        "target": "com.azure.databricks#ListWorkspaceBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.databricks#WorkspaceListResult"
@@ -4210,7 +4211,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.databricks#WorkspacesListBySubscriptionRequest": {
+    "com.azure.databricks#ListWorkspaceBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4226,10 +4227,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databricks#AccessConnectorsListBySubscription": {
+    "com.azure.databricks#ListAccessConnectorBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databricks#AccessConnectorsListBySubscriptionRequest"
+        "target": "com.azure.databricks#ListAccessConnectorBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.databricks#AccessConnectorListResult"
@@ -4245,7 +4246,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.databricks#AccessConnectorsListBySubscriptionRequest": {
+    "com.azure.databricks#ListAccessConnectorBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4261,7 +4262,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databricks#OperationsList": {
+    "com.azure.databricks#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -4366,76 +4367,76 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.databricks#VNetPeeringDelete"
+          "target": "com.azure.databricks#DeleteVNetPeering"
         },
         {
           "target": "com.azure.databricks#VNetPeeringCreateOrUpdate"
         },
         {
-          "target": "com.azure.databricks#VNetPeeringGet"
+          "target": "com.azure.databricks#GetVNetPeering"
         },
         {
-          "target": "com.azure.databricks#VNetPeeringListByWorkspace"
+          "target": "com.azure.databricks#ListVNetPeeringByWorkspace"
         },
         {
-          "target": "com.azure.databricks#PrivateLinkResourcesGet"
+          "target": "com.azure.databricks#GetPrivateLinkResource"
         },
         {
-          "target": "com.azure.databricks#PrivateLinkResourcesList2"
+          "target": "com.azure.databricks#ListPrivateLinkResources"
         },
         {
-          "target": "com.azure.databricks#PrivateEndpointConnectionsDelete"
+          "target": "com.azure.databricks#DeletePrivateEndpointConnection"
         },
         {
-          "target": "com.azure.databricks#PrivateEndpointConnectionsCreate"
+          "target": "com.azure.databricks#CreatePrivateEndpointConnection"
         },
         {
-          "target": "com.azure.databricks#PrivateEndpointConnectionsGet"
+          "target": "com.azure.databricks#GetPrivateEndpointConnection"
         },
         {
-          "target": "com.azure.databricks#PrivateEndpointConnectionsList2"
+          "target": "com.azure.databricks#ListPrivateEndpointConnections"
         },
         {
-          "target": "com.azure.databricks#OutboundNetworkDependenciesEndpointsList"
+          "target": "com.azure.databricks#ListOutboundNetworkDependenciesEndpoints"
         },
         {
-          "target": "com.azure.databricks#WorkspacesDelete"
+          "target": "com.azure.databricks#DeleteWorkspace"
         },
         {
-          "target": "com.azure.databricks#WorkspacesUpdate"
+          "target": "com.azure.databricks#UpdateWorkspace"
         },
         {
           "target": "com.azure.databricks#WorkspacesCreateOrUpdate"
         },
         {
-          "target": "com.azure.databricks#WorkspacesGet"
+          "target": "com.azure.databricks#GetWorkspace"
         },
         {
-          "target": "com.azure.databricks#WorkspacesListByResourceGroup"
+          "target": "com.azure.databricks#ListWorkspaceByResourceGroup"
         },
         {
-          "target": "com.azure.databricks#AccessConnectorsDelete"
+          "target": "com.azure.databricks#DeleteAccessConnector"
         },
         {
-          "target": "com.azure.databricks#AccessConnectorsUpdate"
+          "target": "com.azure.databricks#UpdateAccessConnector"
         },
         {
           "target": "com.azure.databricks#AccessConnectorsCreateOrUpdate"
         },
         {
-          "target": "com.azure.databricks#AccessConnectorsGet"
+          "target": "com.azure.databricks#GetAccessConnector"
         },
         {
-          "target": "com.azure.databricks#AccessConnectorsListByResourceGroup"
+          "target": "com.azure.databricks#ListAccessConnectorByResourceGroup"
         },
         {
-          "target": "com.azure.databricks#WorkspacesListBySubscription"
+          "target": "com.azure.databricks#ListWorkspaceBySubscription"
         },
         {
-          "target": "com.azure.databricks#AccessConnectorsListBySubscription"
+          "target": "com.azure.databricks#ListAccessConnectorBySubscription"
         },
         {
-          "target": "com.azure.databricks#OperationsList"
+          "target": "com.azure.databricks#ListOperations"
         }
       ],
       "traits": {

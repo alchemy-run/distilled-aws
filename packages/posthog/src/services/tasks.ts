@@ -48,408 +48,8 @@ export class NotFound
     [{ status: 404 }],
   ) {}
 
-export interface CodeInvitesCheckAccessRetrieveRequest {}
-export const CodeInvitesCheckAccessRetrieveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({}).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/code/invites/check-access/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "CodeInvitesCheckAccessRetrieveRequest",
-}) as any as S.Schema<CodeInvitesCheckAccessRetrieveRequest>;
-
-export interface LegacyDesktopAccessResponse {
-  /** Whether the current project can use PostHog Desktop. */
-  has_access: boolean;
-  /** Whether the independent Loops feature is enabled. */
-  has_loops_access: boolean;
-}
-export const LegacyDesktopAccessResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    has_access: S.Boolean,
-    has_loops_access: S.Boolean,
-  }),
-).annotate({
-  identifier: "LegacyDesktopAccessResponse",
-}) as any as S.Schema<LegacyDesktopAccessResponse>;
-
-export interface DesktopAccessRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-}
-export const DesktopAccessRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/desktop/access/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "DesktopAccessRetrieveRequest",
-}) as any as S.Schema<DesktopAccessRetrieveRequest>;
-
-/** * `startup_plan` - startup_plan * `prepaid_credits` - prepaid_credits */
-export type DesktopAccessReasonEnum = "startup_plan" | "prepaid_credits";
-export const DesktopAccessReasonEnum = /*@__PURE__*/ S.String;
-
-export interface DesktopAccessResponse {
-  /** Whether the selected project can use PostHog Desktop. */
-  allowed: boolean;
-  /** Why Desktop access is blocked, or null when access is allowed. * `startup_plan` - startup_plan * `prepaid_credits` - prepaid_credits */
-  reason: DesktopAccessReasonEnum | null;
-}
-export const DesktopAccessResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    allowed: S.Boolean,
-    reason: S.NullOr(DesktopAccessReasonEnum),
-  }),
-).annotate({
-  identifier: "DesktopAccessResponse",
-}) as any as S.Schema<DesktopAccessResponse>;
-
-export interface TasksActiveWizardRunRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-}
-export const TasksActiveWizardRunRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/tasks/active_wizard_run/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "TasksActiveWizardRunRetrieveRequest",
-}) as any as S.Schema<TasksActiveWizardRunRetrieveRequest>;
-
-/** The team's active onboarding wizard cloud run, used to rehydrate the setup-progress FAB when the run was started server-side (drop flow). */
-export interface WizardCloudRunDTO {
-  /** Id of the onboarding wizard task. */
-  task_id: string;
-  /** Id of the task's latest run, for reconnecting to its progress stream. */
-  run_id: string;
-  /** Latest run status (e.g. queued, in_progress, completed, failed). */
-  status: string;
-  /** When the run was created, for the FAB's elapsed timer. */
-  started_at?: string | null;
-}
-export const WizardCloudRunDTO = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    task_id: S.String,
-    run_id: S.String,
-    status: S.String,
-    started_at: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({
-  identifier: "WizardCloudRunDTO",
-}) as any as S.Schema<WizardCloudRunDTO>;
-
-export interface TasksArtifactsListRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  id: string;
-}
-export const TasksArtifactsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/tasks/{id}/artifacts/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "TasksArtifactsListRequest",
-}) as any as S.Schema<TasksArtifactsListRequest>;
-
-export interface TaskArtifact {
-  /** Stable artifact id used to filter task comments. */
-  id: string;
-  /** Artifact type: artifact or canvas. */
-  type: string;
-  /** Display name of the artifact. */
-  name: string;
-}
-export const TaskArtifact = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    type: S.String,
-    name: S.String,
-  }),
-).annotate({ identifier: "TaskArtifact" }) as any as S.Schema<TaskArtifact>;
-
-/** Artifacts and canvases linked to this task. */
-export type TaskArtifactsResponseArtifactsList = Array<TaskArtifact>;
-export const TaskArtifactsResponseArtifactsList = /*@__PURE__*/ S.Array(
-  TaskArtifact,
-) as any as S.Schema<TaskArtifactsResponseArtifactsList>;
-
-export interface TaskArtifactsResponse {
-  /** Artifacts and canvases linked to this task. */
-  artifacts: TaskArtifactsResponseArtifactsList;
-}
-export const TaskArtifactsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    artifacts: TaskArtifactsResponseArtifactsList,
-  }),
-).annotate({
-  identifier: "TaskArtifactsResponse",
-}) as any as S.Schema<TaskArtifactsResponse>;
-
-export interface TasksCommentsListRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  id: string;
-  /** Artifact id returned by the artifacts endpoint. */
-  artifact_id?: string;
-  /** Opaque cursor returned by the previous page. */
-  cursor?: string;
-  /** Whether to include resolved comment threads. */
-  include_resolved?: boolean;
-  /** Maximum number of root comments to return. */
-  limit?: number;
-}
-export const TasksCommentsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    artifact_id: S.optional(S.String.pipe(T.Query())),
-    cursor: S.optional(S.String.pipe(T.Query())),
-    include_resolved: S.optional(S.Boolean.pipe(T.Query())),
-    limit: S.optional(S.Number.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/tasks/{id}/comments/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "TasksCommentsListRequest",
-}) as any as S.Schema<TasksCommentsListRequest>;
-
-export interface TaskCommentTarget {
-  /** Stable target id. */
-  id: string;
-  /** Target type: task, artifact, or canvas. */
-  type: string;
-  /** Display name of the comment target. */
-  name: string;
-}
-export const TaskCommentTarget = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    type: S.String,
-    name: S.String,
-  }),
-).annotate({
-  identifier: "TaskCommentTarget",
-}) as any as S.Schema<TaskCommentTarget>;
-
-export interface TaskCommentSummary {
-  /** Root comment id. */
-  id: string;
-  /** Task, artifact, or canvas receiving the comment. */
-  target: TaskCommentTarget;
-  /** Bounded excerpt of the root comment body. */
-  content: string;
-  /** Whether the root comment body has more content. */
-  content_truncated: boolean;
-  /** Text selected when the comment was created. */
-  selected_text: string | null;
-  /** When the root comment was created. */
-  created_at: string;
-  /** Number of human replies. */
-  reply_count: number;
-  /** Whether the comment is resolved. */
-  resolved: boolean;
-}
-export const TaskCommentSummary = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    target: TaskCommentTarget,
-    content: S.String,
-    content_truncated: S.Boolean,
-    selected_text: S.NullOr(S.String),
-    created_at: S.String,
-    reply_count: S.Number,
-    resolved: S.Boolean,
-  }),
-).annotate({
-  identifier: "TaskCommentSummary",
-}) as any as S.Schema<TaskCommentSummary>;
-
-/** Root comments, newest first. */
-export type TaskCommentsResponseCommentsList = Array<TaskCommentSummary>;
-export const TaskCommentsResponseCommentsList = /*@__PURE__*/ S.Array(
-  TaskCommentSummary,
-) as any as S.Schema<TaskCommentsResponseCommentsList>;
-
-export interface TaskCommentsResponse {
-  /** Root comments, newest first. */
-  comments: TaskCommentsResponseCommentsList;
-  /** Opaque cursor for the next page, or null. */
-  next: string | null;
-}
-export const TaskCommentsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    comments: TaskCommentsResponseCommentsList,
-    next: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "TaskCommentsResponse",
-}) as any as S.Schema<TaskCommentsResponse>;
-
-export interface TasksCommentsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  id: string;
-  root_comment_id: string;
-  /** Comment id whose truncated body should continue. Use with content_offset. */
-  comment_id?: string;
-  /** Byte offset returned as content_next_offset for the selected comment. */
-  content_offset?: number;
-  /** Opaque cursor returned by the previous page. */
-  cursor?: string;
-  /** Maximum number of comments in the thread to return. */
-  limit?: number;
-}
-export const TasksCommentsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    root_comment_id: S.String.pipe(T.Label()),
-    comment_id: S.optional(S.String.pipe(T.Query())),
-    content_offset: S.optional(S.Number.pipe(T.Query())),
-    cursor: S.optional(S.String.pipe(T.Query())),
-    limit: S.optional(S.Number.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/tasks/{id}/comments/{root_comment_id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "TasksCommentsRetrieveRequest",
-}) as any as S.Schema<TasksCommentsRetrieveRequest>;
-
-export interface TaskCommentAnchor {
-  /** Anchor kind. */
-  kind?: string;
-  /** Selected text. */
-  quote?: string;
-  /** Text immediately before the selection. */
-  prefix?: string;
-  /** Text immediately after the selection. */
-  suffix?: string;
-  /** Selection start offset. */
-  start?: number;
-  /** Selection end offset. */
-  end?: number;
-  /** Horizontal region position. */
-  x?: number;
-  /** Vertical region position. */
-  y?: number;
-  /** Region width. */
-  width?: number;
-  /** Region height. */
-  height?: number;
-}
-export const TaskCommentAnchor = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    kind: S.optional(S.String),
-    quote: S.optional(S.String),
-    prefix: S.optional(S.String),
-    suffix: S.optional(S.String),
-    start: S.optional(S.Number),
-    end: S.optional(S.Number),
-    x: S.optional(S.Number),
-    y: S.optional(S.Number),
-    width: S.optional(S.Number),
-    height: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "TaskCommentAnchor",
-}) as any as S.Schema<TaskCommentAnchor>;
-
-export interface TaskCommentEntry {
-  /** Comment id. */
-  id: string;
-  /** Byte-bounded comment body chunk. */
-  content: string;
-  /** Whether this comment body has more content. */
-  content_truncated: boolean;
-  /** Byte offset for the next body chunk, or null when complete. */
-  content_next_offset: number | null;
-  /** Comment author's display name. */
-  author: string | null;
-  /** When the comment was created. */
-  created_at: string;
-  /** Normalized text or document anchor. */
-  anchor: TaskCommentAnchor | null;
-  /** Canvas version receiving the comment. */
-  canvas_version_id: string | null;
-}
-export const TaskCommentEntry = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    content: S.String,
-    content_truncated: S.Boolean,
-    content_next_offset: S.NullOr(S.Number),
-    author: S.NullOr(S.String),
-    created_at: S.String,
-    anchor: S.NullOr(TaskCommentAnchor),
-    canvas_version_id: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "TaskCommentEntry",
-}) as any as S.Schema<TaskCommentEntry>;
-
-/** Comments in this page, oldest first. */
-export type TaskCommentDetailCommentsList = Array<TaskCommentEntry>;
-export const TaskCommentDetailCommentsList = /*@__PURE__*/ S.Array(
-  TaskCommentEntry,
-) as any as S.Schema<TaskCommentDetailCommentsList>;
-
-export interface TaskCommentDetail {
-  /** Root comment id. */
-  id: string;
-  /** Task, artifact, or canvas receiving the comment. */
-  target: TaskCommentTarget;
-  /** Whether the comment is resolved. */
-  resolved: boolean;
-  /** Comments in this page, oldest first. */
-  comments: TaskCommentDetailCommentsList;
-  /** Opaque cursor for the next page, or null. */
-  next: string | null;
-}
-export const TaskCommentDetail = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    target: TaskCommentTarget,
-    resolved: S.Boolean,
-    comments: TaskCommentDetailCommentsList,
-    next: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "TaskCommentDetail",
-}) as any as S.Schema<TaskCommentDetail>;
-
-/** * `onboarding` - Onboarding * `error_tracking` - Error Tracking * `eval_clusters` - Eval Clusters * `user_created` - User Created * `slack` - Slack * `support_queue` - Support Queue * `session_summaries` - Session Summaries * `posthog_ai` - PostHog AI * `experiments` - Experiments * `signal_report` - Signal Report * `signals_scout` - Signals Scout * `support_reply` - Support Reply * `hogdesk` - HogDesk * `review_hog` - ReviewHog * `image_builder` - Image Builder * `loop` - Loop * `mcp_analytics` - MCP Analytics * `signals_chat` - Signals Chat * `task_analysis` - Task Analysis * `workflow` - Workflow */
-export type OriginProductEnum =
+/** * `onboarding` - Onboarding * `error_tracking` - Error Tracking * `eval_clusters` - Eval Clusters * `user_created` - User Created * `slack` - Slack * `support_queue` - Support Queue * `session_summaries` - Session Summaries * `posthog_ai` - PostHog AI * `experiments` - Experiments * `signal_report` - Signal Report * `signals_scout` - Signals Scout * `scout_suggestions` - Signals Scout Suggestions * `support_reply` - Support Reply * `hogdesk` - HogDesk * `review_hog` - ReviewHog * `image_builder` - Image Builder * `loop` - Loop * `mcp_analytics` - MCP Analytics * `signals_chat` - Signals Chat * `task_analysis` - Task Analysis * `workflow` - Workflow */
+export type TaskOriginProductEnum =
   | "onboarding"
   | "error_tracking"
   | "eval_clusters"
@@ -461,6 +61,7 @@ export type OriginProductEnum =
   | "experiments"
   | "signal_report"
   | "signals_scout"
+  | "scout_suggestions"
   | "support_reply"
   | "hogdesk"
   | "review_hog"
@@ -470,13 +71,13 @@ export type OriginProductEnum =
   | "signals_chat"
   | "task_analysis"
   | "workflow";
-export const OriginProductEnum = /*@__PURE__*/ S.String;
+export const TaskOriginProductEnum = /*@__PURE__*/ S.String;
 
 /** GitHub repositories available to this task, each in `organization/repo` format. */
-export type TasksCreateRequestRepositoriesList = Array<string>;
-export const TasksCreateRequestRepositoriesList = /*@__PURE__*/ S.Array(
+export type CreateTaskRequestRepositoriesList = Array<string>;
+export const CreateTaskRequestRepositoriesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<TasksCreateRequestRepositoriesList>;
+) as any as S.Schema<CreateTaskRequestRepositoriesList>;
 
 /** * `claude` - claude * `codex` - codex */
 export type RuntimeAdapterEnum = "claude" | "codex";
@@ -505,17 +106,17 @@ export const TaskRunBootstrapCreateRequestInitialPermissionModeEnum =
   /*@__PURE__*/ S.String;
 
 /** Run artifact ids (already uploaded to the pre-warmed Run) to attach to the forwarded first message when creation reuses that warm Run, e.g. skill bundles or file attachments. If any id is missing from the warm Run's manifest, warm reuse is skipped and the task is created cold. Ignored when no warm Run is matched. */
-export type TasksCreateRequestPendingUserArtifactIdsList = Array<string>;
-export const TasksCreateRequestPendingUserArtifactIdsList =
+export type CreateTaskRequestPendingUserArtifactIdsList = Array<string>;
+export const CreateTaskRequestPendingUserArtifactIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<TasksCreateRequestPendingUserArtifactIdsList>;
+  ) as any as S.Schema<CreateTaskRequestPendingUserArtifactIdsList>;
 
 /** * `acp` - ACP * `pi` - Pi */
-export type RuntimeEnum = "acp" | "pi";
-export const RuntimeEnum = /*@__PURE__*/ S.String;
+export type TaskRuntimeEnum = "acp" | "pi";
+export const TaskRuntimeEnum = /*@__PURE__*/ S.String;
 
-export interface TasksCreateRequest {
+export interface CreateTaskRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Short human-readable title. Auto-generated from `description` when omitted. */
@@ -524,12 +125,12 @@ export interface TasksCreateRequest {
   title_manually_set?: boolean;
   /** Free-form description of the work to be done. Used as the prompt passed to the agent. */
   description?: string;
-  /** PostHog product or surface that created this task (e.g. error_tracking, slack, user_created). Origins reserved for server-created agents cannot be set through this API. * `onboarding` - Onboarding * `error_tracking` - Error Tracking * `eval_clusters` - Eval Clusters * `user_created` - User Created * `slack` - Slack * `support_queue` - Support Queue * `session_summaries` - Session Summaries * `posthog_ai` - PostHog AI * `experiments` - Experiments * `signal_report` - Signal Report * `signals_scout` - Signals Scout * `support_reply` - Support Reply * `hogdesk` - HogDesk * `review_hog` - ReviewHog * `image_builder` - Image Builder * `loop` - Loop * `mcp_analytics` - MCP Analytics * `signals_chat` - Signals Chat * `task_analysis` - Task Analysis * `workflow` - Workflow */
-  origin_product?: OriginProductEnum | (string & {});
+  /** PostHog product or surface that created this task (e.g. error_tracking, slack, user_created). Origins reserved for server-created agents cannot be set through this API. * `onboarding` - Onboarding * `error_tracking` - Error Tracking * `eval_clusters` - Eval Clusters * `user_created` - User Created * `slack` - Slack * `support_queue` - Support Queue * `session_summaries` - Session Summaries * `posthog_ai` - PostHog AI * `experiments` - Experiments * `signal_report` - Signal Report * `signals_scout` - Signals Scout * `scout_suggestions` - Signals Scout Suggestions * `support_reply` - Support Reply * `hogdesk` - HogDesk * `review_hog` - ReviewHog * `image_builder` - Image Builder * `loop` - Loop * `mcp_analytics` - MCP Analytics * `signals_chat` - Signals Chat * `task_analysis` - Task Analysis * `workflow` - Workflow */
+  origin_product?: TaskOriginProductEnum | (string & {});
   /** Target GitHub repository in `organization/repo` format (e.g. `posthog/posthog-js`). */
   repository?: string | null;
   /** GitHub repositories available to this task, each in `organization/repo` format. */
-  repositories?: TasksCreateRequestRepositoriesList;
+  repositories?: CreateTaskRequestRepositoriesList;
   /** GitHub integration for this task. */
   github_integration?: number | null;
   /** User-scoped GitHub integration to use for user-authored cloud runs. */
@@ -560,7 +161,7 @@ export interface TasksCreateRequest {
   /** First user message to forward when creation reuses a pre-warmed Run. Write-only and not persisted on the task: lets clients deliver a message that differs from `description` (e.g. a resolved skill invocation with channel context folded in). Ignored when no warm Run is reused — cold creation takes the first message via the run start endpoint instead. */
   pending_user_message?: string | null;
   /** Run artifact ids (already uploaded to the pre-warmed Run) to attach to the forwarded first message when creation reuses that warm Run, e.g. skill bundles or file attachments. If any id is missing from the warm Run's manifest, warm reuse is skipped and the task is created cold. Ignored when no warm Run is matched. */
-  pending_user_artifact_ids?: TasksCreateRequestPendingUserArtifactIdsList;
+  pending_user_artifact_ids?: CreateTaskRequestPendingUserArtifactIdsList;
   /** When true, the cloud run agent pushes its work and opens a draft pull request on completion without waiting for an explicit ask. Write-only and not persisted on the task: persisted into the reused warm Run's state when creation activates one, so resumes of that Run honor it. Ignored when no warm Run is reused — cold creation takes it via the run start endpoint instead. */
   auto_publish?: boolean | null;
   /** Channel this task is owned by (the channel it was kicked off in). */
@@ -572,17 +173,17 @@ export interface TasksCreateRequest {
   /** Custom image selected for matching a pre-warmed cloud run. Not persisted on the task. */
   custom_image_id?: string | null;
   /** Agent protocol and harness used for this task's runs. Defaults to ACP when omitted. * `acp` - ACP * `pi` - Pi */
-  runtime?: RuntimeEnum | (string & {});
+  runtime?: TaskRuntimeEnum | (string & {});
 }
-export const TasksCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateTaskRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     title: S.optional(S.String),
     title_manually_set: S.optional(S.Boolean),
     description: S.optional(S.String),
-    origin_product: S.optional(OriginProductEnum),
+    origin_product: S.optional(TaskOriginProductEnum),
     repository: S.optional(S.NullOr(S.String)),
-    repositories: S.optional(TasksCreateRequestRepositoriesList),
+    repositories: S.optional(CreateTaskRequestRepositoriesList),
     github_integration: S.optional(S.NullOr(S.Number)),
     github_user_integration: S.optional(S.NullOr(S.String)),
     signal_report: S.optional(S.NullOr(S.String)),
@@ -599,14 +200,14 @@ export const TasksCreateRequest = /*@__PURE__*/ S.suspend(() =>
     ),
     pending_user_message: S.optional(S.NullOr(S.String)),
     pending_user_artifact_ids: S.optional(
-      TasksCreateRequestPendingUserArtifactIdsList,
+      CreateTaskRequestPendingUserArtifactIdsList,
     ),
     auto_publish: S.optional(S.NullOr(S.Boolean)),
     channel: S.optional(S.NullOr(S.String)),
     naming_source: S.optional(S.String),
     sandbox_environment_id: S.optional(S.NullOr(S.String)),
     custom_image_id: S.optional(S.NullOr(S.String)),
-    runtime: S.optional(RuntimeEnum),
+    runtime: S.optional(TaskRuntimeEnum),
   }).pipe(
     T.Http({
       method: "POST",
@@ -615,8 +216,8 @@ export const TasksCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "TasksCreateRequest",
-}) as any as S.Schema<TasksCreateRequest>;
+  identifier: "CreateTaskRequest",
+}) as any as S.Schema<CreateTaskRequest>;
 
 export type TaskDetailDTORepositoriesList = Array<string>;
 export const TaskDetailDTORepositoriesList = /*@__PURE__*/ S.Array(
@@ -928,7 +529,7 @@ export interface TaskDetailDTO {
   description: string;
   origin_product: string;
   /** Agent protocol and harness used for this task's runs. * `acp` - ACP * `pi` - Pi */
-  runtime: RuntimeEnum;
+  runtime: TaskRuntimeEnum;
   repository: string | null;
   repositories: TaskDetailDTORepositoriesList;
   github_integration: number | null;
@@ -959,7 +560,7 @@ export const TaskDetailDTO = /*@__PURE__*/ S.suspend(() =>
     title_manually_set: S.Boolean,
     description: S.String,
     origin_product: S.String,
-    runtime: RuntimeEnum,
+    runtime: TaskRuntimeEnum,
     repository: S.NullOr(S.String),
     repositories: TaskDetailDTORepositoriesList,
     github_integration: S.NullOr(S.Number),
@@ -981,41 +582,73 @@ export const TaskDetailDTO = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "TaskDetailDTO" }) as any as S.Schema<TaskDetailDTO>;
 
-export interface TasksDestroyRequest {
+export interface CreateTasksConfigRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  id: string;
+  /** Default agent runtime adapter for new task runs. Use 'claude' for the Claude runtime or 'codex' for the Codex runtime. Must be set together with `model`. * `claude` - claude * `codex` - codex */
+  runtime_adapter?: RuntimeAdapterEnum | (string & {}) | null;
+  /** Default LLM model identifier for new task runs. Must be set together with `runtime_adapter`. */
+  model?: string | null;
+  /** Default reasoning effort for models that expose an effort control. * `low` - low * `medium` - medium * `high` - high * `xhigh` - xhigh * `max` - max * `ultracode` - ultracode */
+  reasoning_effort?: ReasoningEffortEnum | (string & {}) | null;
 }
-export const TasksDestroyRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateTasksConfigRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
+    runtime_adapter: S.optional(S.NullOr(RuntimeAdapterEnum)),
+    model: S.optional(S.NullOr(S.String)),
+    reasoning_effort: S.optional(S.NullOr(ReasoningEffortEnum)),
   }).pipe(
     T.Http({
-      method: "DELETE",
-      uri: "/api/projects/{project_id}/tasks/{id}/",
+      method: "POST",
+      uri: "/api/projects/{project_id}/tasks/config/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "TasksDestroyRequest",
-}) as any as S.Schema<TasksDestroyRequest>;
+  identifier: "CreateTasksConfigRequest",
+}) as any as S.Schema<CreateTasksConfigRequest>;
 
-export interface TasksDestroyResponse {}
-export const TasksDestroyResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
+/** The default AI run triple stored at team or user level. Write payload for the tasks config endpoints and the `ai_run_preferences` block of their responses. `runtime_adapter` and `model` must be set together; send all three as null to clear a stored preference. */
+export interface TasksAIRunPreferences {
+  /** Default agent runtime adapter for new task runs. Use 'claude' for the Claude runtime or 'codex' for the Codex runtime. Must be set together with `model`. * `claude` - claude * `codex` - codex */
+  runtime_adapter?: RuntimeAdapterEnum | null;
+  /** Default LLM model identifier for new task runs. Must be set together with `runtime_adapter`. */
+  model?: string | null;
+  /** Default reasoning effort for models that expose an effort control. * `low` - low * `medium` - medium * `high` - high * `xhigh` - xhigh * `max` - max * `ultracode` - ultracode */
+  reasoning_effort?: ReasoningEffortEnum | null;
+}
+export const TasksAIRunPreferences = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    runtime_adapter: S.optional(S.NullOr(RuntimeAdapterEnum)),
+    model: S.optional(S.NullOr(S.String)),
+    reasoning_effort: S.optional(S.NullOr(ReasoningEffortEnum)),
+  }),
 ).annotate({
-  identifier: "TasksDestroyResponse",
-}) as any as S.Schema<TasksDestroyResponse>;
+  identifier: "TasksAIRunPreferences",
+}) as any as S.Schema<TasksAIRunPreferences>;
 
-export interface TasksHandoffCreateRequest {
+/** Team-level tasks configuration. */
+export interface TasksTeamConfigResponse {
+  /** Project-wide default AI run triple; all fields null when unset. */
+  ai_run_preferences: TasksAIRunPreferences;
+}
+export const TasksTeamConfigResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ai_run_preferences: TasksAIRunPreferences,
+  }),
+).annotate({
+  identifier: "TasksTeamConfigResponse",
+}) as any as S.Schema<TasksTeamConfigResponse>;
+
+export interface CreateTasksHandoffRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   id: string;
   /** ID of the user taking over the task. Must have access to this project and not be the task's current owner. */
   user: number;
 }
-export const TasksHandoffCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateTasksHandoffRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
@@ -1028,167 +661,1862 @@ export const TasksHandoffCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "TasksHandoffCreateRequest",
-}) as any as S.Schema<TasksHandoffCreateRequest>;
+  identifier: "CreateTasksHandoffRequest",
+}) as any as S.Schema<CreateTasksHandoffRequest>;
 
-export type TasksListRequestArchived = "true" | "false" | "all";
-export const TasksListRequestArchived = /*@__PURE__*/ S.String;
+export interface CreateTasksMeConfigRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Default agent runtime adapter for new task runs. Use 'claude' for the Claude runtime or 'codex' for the Codex runtime. Must be set together with `model`. * `claude` - claude * `codex` - codex */
+  runtime_adapter?: RuntimeAdapterEnum | (string & {}) | null;
+  /** Default LLM model identifier for new task runs. Must be set together with `runtime_adapter`. */
+  model?: string | null;
+  /** Default reasoning effort for models that expose an effort control. * `low` - low * `medium` - medium * `high` - high * `xhigh` - xhigh * `max` - max * `ultracode` - ultracode */
+  reasoning_effort?: ReasoningEffortEnum | (string & {}) | null;
+}
+export const CreateTasksMeConfigRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    runtime_adapter: S.optional(S.NullOr(RuntimeAdapterEnum)),
+    model: S.optional(S.NullOr(S.String)),
+    reasoning_effort: S.optional(S.NullOr(ReasoningEffortEnum)),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/projects/{project_id}/tasks/@me/config/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateTasksMeConfigRequest",
+}) as any as S.Schema<CreateTasksMeConfigRequest>;
 
-export type TasksListRequestCiStatus =
-  | "passing"
-  | "failing"
-  | "pending"
-  | "none";
-export const TasksListRequestCiStatus = /*@__PURE__*/ S.String;
+/** * `user` - user * `team` - team * `none` - none */
+export type TasksResolvedAIRunDefaultsSourceEnum = "user" | "team" | "none";
+export const TasksResolvedAIRunDefaultsSourceEnum = /*@__PURE__*/ S.String;
 
-export type TasksListRequestExcludeOriginProduct =
-  | "onboarding"
-  | "error_tracking"
-  | "eval_clusters"
-  | "user_created"
-  | "slack"
-  | "support_queue"
-  | "session_summaries"
-  | "posthog_ai"
-  | "experiments"
-  | "signal_report"
-  | "signals_scout"
-  | "support_reply"
-  | "hogdesk"
-  | "review_hog"
-  | "image_builder"
-  | "loop"
-  | "mcp_analytics"
-  | "signals_chat"
-  | "task_analysis"
-  | "workflow";
-export const TasksListRequestExcludeOriginProduct = /*@__PURE__*/ S.String;
+/** The AI run triple a new run will effectively use when the caller pins nothing, plus which preference level supplied it. */
+export interface TasksResolvedAIRunDefaults {
+  /** Effective default runtime adapter, or null when no preference is stored. */
+  runtime_adapter: string | null;
+  /** Effective default model identifier, or null when no preference is stored. */
+  model: string | null;
+  /** Effective default reasoning effort, or null when unset or unsupported. */
+  reasoning_effort: string | null;
+  /** Preference level that supplied the default: the caller's own per-project preference ('user'), the project default ('team'), or 'none'. * `user` - user * `team` - team * `none` - none */
+  source: TasksResolvedAIRunDefaultsSourceEnum;
+}
+export const TasksResolvedAIRunDefaults = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    runtime_adapter: S.NullOr(S.String),
+    model: S.NullOr(S.String),
+    reasoning_effort: S.NullOr(S.String),
+    source: TasksResolvedAIRunDefaultsSourceEnum,
+  }),
+).annotate({
+  identifier: "TasksResolvedAIRunDefaults",
+}) as any as S.Schema<TasksResolvedAIRunDefaults>;
 
-export type TasksListRequestInternal = "true" | "false" | "all";
-export const TasksListRequestInternal = /*@__PURE__*/ S.String;
+/** The requesting user's per-project tasks configuration. */
+export interface TasksUserConfigResponse {
+  /** The requesting user's per-project default AI run triple; all fields null when unset. */
+  ai_run_preferences: TasksAIRunPreferences;
+  /** The defaults a new run will use when no explicit runtime selection is sent. */
+  resolved_ai_run_defaults: TasksResolvedAIRunDefaults;
+}
+export const TasksUserConfigResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ai_run_preferences: TasksAIRunPreferences,
+    resolved_ai_run_defaults: TasksResolvedAIRunDefaults,
+  }),
+).annotate({
+  identifier: "TasksUserConfigResponse",
+}) as any as S.Schema<TasksUserConfigResponse>;
 
-export type TasksListRequestOrdering = "-created_at" | "-last_activity_at";
-export const TasksListRequestOrdering = /*@__PURE__*/ S.String;
+export interface CreateTasksPinRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  id: string;
+  /** Whether the task should be pinned for the requester. */
+  pinned: boolean;
+}
+export const CreateTasksPinRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    pinned: S.Boolean,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/projects/{project_id}/tasks/{id}/pin/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateTasksPinRequest",
+}) as any as S.Schema<CreateTasksPinRequest>;
 
-export type TasksListRequestPrState = "open" | "draft" | "merged" | "closed";
-export const TasksListRequestPrState = /*@__PURE__*/ S.String;
+export interface TaskPinResponse {
+  /** Task whose pin state was updated. */
+  task_id: string;
+  /** Current pin state for the requester. */
+  pinned: boolean;
+}
+export const TaskPinResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    task_id: S.String,
+    pinned: S.Boolean,
+  }),
+).annotate({
+  identifier: "TaskPinResponse",
+}) as any as S.Schema<TaskPinResponse>;
 
-export type TasksListRequestStatus =
+export interface CreateTasksPresenceRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  id: string;
+  /** UUID of the caller's UserPushToken (returned by `/api/users/@me/push_tokens/` on register). */
+  device_id: string;
+}
+export const CreateTasksPresenceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    device_id: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/projects/{project_id}/tasks/{id}/presence/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateTasksPresenceRequest",
+}) as any as S.Schema<CreateTasksPresenceRequest>;
+
+export interface CreateTasksPresenceResponse {}
+export const CreateTasksPresenceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "CreateTasksPresenceResponse",
+}) as any as S.Schema<CreateTasksPresenceResponse>;
+
+/** * `http` - http * `sse` - sse */
+export type ImportedMcpServerTypeEnum = "http" | "sse";
+export const ImportedMcpServerTypeEnum = /*@__PURE__*/ S.String;
+
+export interface ImportedMcpServerHeader {
+  name: string;
+  value: string;
+}
+export const ImportedMcpServerHeader = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    value: S.String,
+  }),
+).annotate({
+  identifier: "ImportedMcpServerHeader",
+}) as any as S.Schema<ImportedMcpServerHeader>;
+
+export type ImportedMcpServerHeadersList = Array<ImportedMcpServerHeader>;
+export const ImportedMcpServerHeadersList = /*@__PURE__*/ S.Array(
+  ImportedMcpServerHeader,
+) as any as S.Schema<ImportedMcpServerHeadersList>;
+
+/** One client-imported MCP server, in the agent server's --mcpServers entry shape. */
+export interface ImportedMcpServer {
+  type: ImportedMcpServerTypeEnum | (string & {});
+  name: string;
+  url: string;
+  headers?: ImportedMcpServerHeadersList;
+}
+export const ImportedMcpServer = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: ImportedMcpServerTypeEnum,
+    name: S.String,
+    url: S.String,
+    headers: S.optional(ImportedMcpServerHeadersList),
+  }),
+).annotate({
+  identifier: "ImportedMcpServer",
+}) as any as S.Schema<ImportedMcpServer>;
+
+/** Local url-based MCP servers from the creating client (PostHog Desktop) to make available inside the cloud sandbox. Header values are treated as credentials: stored encrypted and never returned by the API. */
+export type CreateTasksRunRequestImportedMcpServersList =
+  Array<ImportedMcpServer>;
+export const CreateTasksRunRequestImportedMcpServersList =
+  /*@__PURE__*/ S.Array(
+    ImportedMcpServer,
+  ) as any as S.Schema<CreateTasksRunRequestImportedMcpServersList>;
+
+/** One desktop-only MCP server relayed into the run — a name only, never configuration. */
+export interface RelayedMcpServer {
+  name: string;
+}
+export const RelayedMcpServer = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+  }),
+).annotate({
+  identifier: "RelayedMcpServer",
+}) as any as S.Schema<RelayedMcpServer>;
+
+/** Names of desktop-only MCP servers the creating client (PostHog Desktop) relays into the cloud sandbox over the durable event/command channel. Names only — the server configuration (command, env, URL, headers) never crosses the wire. */
+export type CreateTasksRunRequestRelayedMcpServersList =
+  Array<RelayedMcpServer>;
+export const CreateTasksRunRequestRelayedMcpServersList = /*@__PURE__*/ S.Array(
+  RelayedMcpServer,
+) as any as S.Schema<CreateTasksRunRequestRelayedMcpServersList>;
+
+/** * `local` - local * `cloud` - cloud */
+export type TaskRunBootstrapCreateRequestEnvironmentEnum = "local" | "cloud";
+export const TaskRunBootstrapCreateRequestEnvironmentEnum =
+  /*@__PURE__*/ S.String;
+
+/** * `interactive` - interactive * `background` - background */
+export type TaskExecutionModeEnum = "interactive" | "background";
+export const TaskExecutionModeEnum = /*@__PURE__*/ S.String;
+
+/** * `user` - user * `bot` - bot */
+export type PrAuthorshipModeEnum = "user" | "bot";
+export const PrAuthorshipModeEnum = /*@__PURE__*/ S.String;
+
+/** * `manual` - manual * `signal_report` - signal_report */
+export type RunSourceEnum = "manual" | "signal_report";
+export const RunSourceEnum = /*@__PURE__*/ S.String;
+
+/** * `200k` - 200k * `1m` - 1m */
+export type ContextWindowEnum = "200k" | "1m";
+export const ContextWindowEnum = /*@__PURE__*/ S.String;
+
+export interface CreateTasksRunRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  task_id: string;
+  /** Local url-based MCP servers from the creating client (PostHog Desktop) to make available inside the cloud sandbox. Header values are treated as credentials: stored encrypted and never returned by the API. */
+  imported_mcp_servers?: CreateTasksRunRequestImportedMcpServersList | null;
+  /** Names of desktop-only MCP servers the creating client (PostHog Desktop) relays into the cloud sandbox over the durable event/command channel. Names only — the server configuration (command, env, URL, headers) never crosses the wire. */
+  relayed_mcp_servers?: CreateTasksRunRequestRelayedMcpServersList | null;
+  /** Execution environment for the new run. Use 'cloud' for remote sandbox runs and 'local' for desktop sessions. * `local` - local * `cloud` - cloud */
+  environment?: TaskRunBootstrapCreateRequestEnvironmentEnum | (string & {});
+  /** Execution mode: 'interactive' for user-connected runs, 'background' for autonomous runs * `interactive` - interactive * `background` - background */
+  mode?: TaskExecutionModeEnum | (string & {});
+  /** Git branch to checkout in the sandbox */
+  branch?: string | null;
+  /** Optional sandbox environment to apply for this cloud run. */
+  sandbox_environment_id?: string;
+  /** Optional custom base image for this cloud run's sandbox (Modal VM runtime only); takes precedence over the environment's image. */
+  custom_image_id?: string;
+  /** Whether pull requests for this run should be authored by the user or the bot. * `user` - user * `bot` - bot */
+  pr_authorship_mode?: PrAuthorshipModeEnum | (string & {});
+  /** When true, the cloud run agent pushes its work and opens a draft pull request on completion without waiting for an explicit ask. */
+  auto_publish?: boolean | null;
+  /** High-level source that triggered this run, used to distinguish manual and signal-based cloud runs. * `manual` - manual * `signal_report` - signal_report */
+  run_source?: RunSourceEnum | (string & {});
+  /** Optional signal report identifier when this run was started from Inbox. */
+  signal_report_id?: string;
+  /** Agent runtime adapter to launch for this run. Use 'claude' for the Claude runtime or 'codex' for the Codex runtime. * `claude` - claude * `codex` - codex */
+  runtime_adapter?: RuntimeAdapterEnum | (string & {});
+  /** LLM model identifier to run in the selected runtime. */
+  model?: string;
+  /** Reasoning effort to request for models that expose an effort control. * `off` - off * `minimal` - minimal * `low` - low * `medium` - medium * `high` - high * `xhigh` - xhigh * `max` - max * `ultracode` - ultracode */
+  reasoning_effort?: TaskRunReasoningEffortEnum | (string & {});
+  /** Context window size for models that support the 1M window. * `200k` - 200k * `1m` - 1m */
+  context_window?: ContextWindowEnum | (string & {});
+  /** Enable fast mode for models that support it. */
+  fast_mode?: boolean | null;
+  /** Ephemeral GitHub user token from PostHog Desktop for user-authored cloud pull requests. */
+  github_user_token?: string;
+  /** Initial permission mode for the agent session. Claude runtimes accept PostHog permission presets like 'plan'. Codex runtimes accept native Codex modes like 'plan', 'auto', and 'read-only'. * `default` - default * `acceptEdits` - acceptEdits * `plan` - plan * `bypassPermissions` - bypassPermissions * `auto` - auto * `read-only` - read-only * `full-access` - full-access */
+  initial_permission_mode?:
+    | TaskRunBootstrapCreateRequestInitialPermissionModeEnum
+    | (string & {});
+  /** Whether rtk command-output compression is enabled for this run. Omitted or null follows the server-side default (enabled); false opts this run out. */
+  rtk_enabled?: boolean | null;
+  /** Whether the Benjamin-Plus token-efficiency instruction applies to this run. Omitted or null lets the server decide from the feature flag; true or false pins the choice for this run. */
+  benjamin_enabled?: boolean | null;
+}
+export const CreateTasksRunRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    task_id: S.String.pipe(T.Label()),
+    imported_mcp_servers: S.optional(
+      S.NullOr(CreateTasksRunRequestImportedMcpServersList),
+    ),
+    relayed_mcp_servers: S.optional(
+      S.NullOr(CreateTasksRunRequestRelayedMcpServersList),
+    ),
+    environment: S.optional(TaskRunBootstrapCreateRequestEnvironmentEnum),
+    mode: S.optional(TaskExecutionModeEnum),
+    branch: S.optional(S.NullOr(S.String)),
+    sandbox_environment_id: S.optional(S.String),
+    custom_image_id: S.optional(S.String),
+    pr_authorship_mode: S.optional(PrAuthorshipModeEnum),
+    auto_publish: S.optional(S.NullOr(S.Boolean)),
+    run_source: S.optional(RunSourceEnum),
+    signal_report_id: S.optional(S.String),
+    runtime_adapter: S.optional(RuntimeAdapterEnum),
+    model: S.optional(S.String),
+    reasoning_effort: S.optional(TaskRunReasoningEffortEnum),
+    context_window: S.optional(ContextWindowEnum),
+    fast_mode: S.optional(S.NullOr(S.Boolean)),
+    github_user_token: S.optional(S.String),
+    initial_permission_mode: S.optional(
+      TaskRunBootstrapCreateRequestInitialPermissionModeEnum,
+    ),
+    rtk_enabled: S.optional(S.NullOr(S.Boolean)),
+    benjamin_enabled: S.optional(S.NullOr(S.Boolean)),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/projects/{project_id}/tasks/{task_id}/runs/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateTasksRunRequest",
+}) as any as S.Schema<CreateTasksRunRequest>;
+
+/** * `run_was_efficient` - run_was_efficient * `too_short_to_judge` - too_short_to_judge * `insufficient_visibility` - insufficient_visibility */
+export type NoFindingsReasonEnum =
+  | "run_was_efficient"
+  | "too_short_to_judge"
+  | "insufficient_visibility";
+export const NoFindingsReasonEnum = /*@__PURE__*/ S.String;
+
+/** * `transcript_quote` - transcript_quote * `command_output` - command_output * `measured_count` - measured_count */
+export type EvidenceTypeEnum =
+  | "transcript_quote"
+  | "command_output"
+  | "measured_count";
+export const EvidenceTypeEnum = /*@__PURE__*/ S.String;
+
+export interface TaskAnalysisEvidence {
+  /** Verbatim span copied from the analysed run log. */
+  quote: string;
+  /** What kind of log content the quote was taken from. * `transcript_quote` - transcript_quote * `command_output` - command_output * `measured_count` - measured_count */
+  evidence_type: EvidenceTypeEnum | (string & {});
+}
+export const TaskAnalysisEvidence = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    quote: S.String,
+    evidence_type: EvidenceTypeEnum,
+  }),
+).annotate({
+  identifier: "TaskAnalysisEvidence",
+}) as any as S.Schema<TaskAnalysisEvidence>;
+
+/** Quotes from the analysed log backing the observation. */
+export type CreateTasksRunsAnalysisInsightRequestEvidenceList =
+  Array<TaskAnalysisEvidence>;
+export const CreateTasksRunsAnalysisInsightRequestEvidenceList =
+  /*@__PURE__*/ S.Array(
+    TaskAnalysisEvidence,
+  ) as any as S.Schema<CreateTasksRunsAnalysisInsightRequestEvidenceList>;
+
+/** * `environment_failure` - environment_failure * `missing_tool` - missing_tool * `verbose_output` - verbose_output * `redundant_work` - redundant_work * `missing_capability` - missing_capability * `instruction_gap` - instruction_gap * `wasted_retry` - wasted_retry * `other` - other */
+export type TaskRunAnalysisInsightRequestCategoryEnum =
+  | "environment_failure"
+  | "missing_tool"
+  | "verbose_output"
+  | "redundant_work"
+  | "missing_capability"
+  | "instruction_gap"
+  | "wasted_retry"
+  | "other";
+export const TaskRunAnalysisInsightRequestCategoryEnum = /*@__PURE__*/ S.String;
+
+export interface TaskAnalysisWastedEffort {
+  /** Wasted tool calls, counted from the log. */
+  tool_calls?: number;
+  /** Wall-clock seconds across the wasted span. */
+  seconds?: number;
+  /** Token delta across the wasted span. */
+  tokens?: number;
+  /** Sum of tool-output sizes across the wasted span. */
+  output_bytes?: number;
+}
+export const TaskAnalysisWastedEffort = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    tool_calls: S.optional(S.Number),
+    seconds: S.optional(S.Number),
+    tokens: S.optional(S.Number),
+    output_bytes: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "TaskAnalysisWastedEffort",
+}) as any as S.Schema<TaskAnalysisWastedEffort>;
+
+/** * `every_run_in_this_repo` - every_run_in_this_repo * `runs_touching_this_area` - runs_touching_this_area * `one_off` - one_off */
+export type RecurrenceEnum =
+  | "every_run_in_this_repo"
+  | "runs_touching_this_area"
+  | "one_off";
+export const RecurrenceEnum = /*@__PURE__*/ S.String;
+
+/** * `directly_observed` - directly_observed * `inferred` - inferred */
+export type ConfidenceBasisEnum = "directly_observed" | "inferred";
+export const ConfidenceBasisEnum = /*@__PURE__*/ S.String;
+
+/** Single-line commands only; these may become image build steps. */
+export type TaskAnalysisSuggestedFixSetupCommandsList = Array<string>;
+export const TaskAnalysisSuggestedFixSetupCommandsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<TaskAnalysisSuggestedFixSetupCommandsList>;
+
+/** Services the fix needs available. */
+export type TaskAnalysisSuggestedFixRequiredServicesList = Array<string>;
+export const TaskAnalysisSuggestedFixRequiredServicesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<TaskAnalysisSuggestedFixRequiredServicesList>;
+
+/** Environment variable names only, never values. */
+export type TaskAnalysisSuggestedFixEnvVarNamesList = Array<string>;
+export const TaskAnalysisSuggestedFixEnvVarNamesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<TaskAnalysisSuggestedFixEnvVarNamesList>;
+
+export interface TaskAnalysisSuggestedFix {
+  /** The specific change to make. */
+  change: string;
+  /** A checkable condition confirming the fix worked. */
+  done_when: string;
+  /** Single-line commands only; these may become image build steps. */
+  setup_commands?: TaskAnalysisSuggestedFixSetupCommandsList;
+  /** Services the fix needs available. */
+  required_services?: TaskAnalysisSuggestedFixRequiredServicesList;
+  /** Environment variable names only, never values. */
+  env_var_names?: TaskAnalysisSuggestedFixEnvVarNamesList;
+}
+export const TaskAnalysisSuggestedFix = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    change: S.String,
+    done_when: S.String,
+    setup_commands: S.optional(TaskAnalysisSuggestedFixSetupCommandsList),
+    required_services: S.optional(TaskAnalysisSuggestedFixRequiredServicesList),
+    env_var_names: S.optional(TaskAnalysisSuggestedFixEnvVarNamesList),
+  }),
+).annotate({
+  identifier: "TaskAnalysisSuggestedFix",
+}) as any as S.Schema<TaskAnalysisSuggestedFix>;
+
+export interface CreateTasksRunsAnalysisInsightRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  task_id: string;
+  id: string;
+  /** Only for a run with zero findings; never combined with a finding. * `run_was_efficient` - run_was_efficient * `too_short_to_judge` - too_short_to_judge * `insufficient_visibility` - insufficient_visibility */
+  no_findings_reason?: NoFindingsReasonEnum | (string & {});
+  /** What happened, 1-3 sentences. */
+  observation?: string;
+  /** Quotes from the analysed log backing the observation. */
+  evidence?: CreateTasksRunsAnalysisInsightRequestEvidenceList;
+  /** How often this happened. */
+  occurrence_count?: number;
+  /** The kind of inefficiency observed. * `environment_failure` - environment_failure * `missing_tool` - missing_tool * `verbose_output` - verbose_output * `redundant_work` - redundant_work * `missing_capability` - missing_capability * `instruction_gap` - instruction_gap * `wasted_retry` - wasted_retry * `other` - other */
+  category?: TaskRunAnalysisInsightRequestCategoryEnum | (string & {});
+  /** Required when category is 'other'. */
+  other_justification?: string;
+  /** Effort measured from the log, never estimated. */
+  wasted_effort?: TaskAnalysisWastedEffort;
+  /** How widely this is expected to recur. * `every_run_in_this_repo` - every_run_in_this_repo * `runs_touching_this_area` - runs_touching_this_area * `one_off` - one_off */
+  recurrence?: RecurrenceEnum | (string & {});
+  /** How the finding was established. * `directly_observed` - directly_observed * `inferred` - inferred */
+  confidence_basis?: ConfidenceBasisEnum | (string & {});
+  /** The fix the finding argues for. */
+  suggested_fix?: TaskAnalysisSuggestedFix;
+}
+export const CreateTasksRunsAnalysisInsightRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      task_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+      no_findings_reason: S.optional(NoFindingsReasonEnum),
+      observation: S.optional(S.String),
+      evidence: S.optional(CreateTasksRunsAnalysisInsightRequestEvidenceList),
+      occurrence_count: S.optional(S.Number),
+      category: S.optional(TaskRunAnalysisInsightRequestCategoryEnum),
+      other_justification: S.optional(S.String),
+      wasted_effort: S.optional(TaskAnalysisWastedEffort),
+      recurrence: S.optional(RecurrenceEnum),
+      confidence_basis: S.optional(ConfidenceBasisEnum),
+      suggested_fix: S.optional(TaskAnalysisSuggestedFix),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/analysis-insight/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateTasksRunsAnalysisInsightRequest",
+}) as any as S.Schema<CreateTasksRunsAnalysisInsightRequest>;
+
+export interface TaskRunAnalysisInsightResponse {
+  /** Zero-based position of the stored finding on the run. */
+  insight_index: number;
+}
+export const TaskRunAnalysisInsightResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    insight_index: S.Number,
+  }),
+).annotate({
+  identifier: "TaskRunAnalysisInsightResponse",
+}) as any as S.Schema<TaskRunAnalysisInsightResponse>;
+
+export interface CreateTasksRunsAnalyzeRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  task_id: string;
+  id: string;
+}
+export const CreateTasksRunsAnalyzeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    task_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/analyze/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateTasksRunsAnalyzeRequest",
+}) as any as S.Schema<CreateTasksRunsAnalyzeRequest>;
+
+export interface TaskRunAnalyzeResponse {
+  /** Id of the analysis task to navigate to. */
+  analysis_task_id: string;
+  /** True when a new analysis task was created; false when an existing analysis for this run was returned. */
+  created: boolean;
+}
+export const TaskRunAnalyzeResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    analysis_task_id: S.String,
+    created: S.Boolean,
+  }),
+).annotate({
+  identifier: "TaskRunAnalyzeResponse",
+}) as any as S.Schema<TaskRunAnalyzeResponse>;
+
+export type CreateTasksRunsAppendLogRequestEntriesItemMap = {
+  [key: string]: unknown | undefined;
+};
+export const CreateTasksRunsAppendLogRequestEntriesItemMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Unknown,
+  ) as any as S.Schema<CreateTasksRunsAppendLogRequestEntriesItemMap>;
+
+/** Array of log entry dictionaries to append */
+export type CreateTasksRunsAppendLogRequestEntriesList =
+  Array<CreateTasksRunsAppendLogRequestEntriesItemMap>;
+export const CreateTasksRunsAppendLogRequestEntriesList = /*@__PURE__*/ S.Array(
+  CreateTasksRunsAppendLogRequestEntriesItemMap,
+) as any as S.Schema<CreateTasksRunsAppendLogRequestEntriesList>;
+
+export interface CreateTasksRunsAppendLogRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  task_id: string;
+  id: string;
+  /** Array of log entry dictionaries to append */
+  entries?: CreateTasksRunsAppendLogRequestEntriesList;
+}
+export const CreateTasksRunsAppendLogRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    task_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    entries: S.optional(CreateTasksRunsAppendLogRequestEntriesList),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/append_log/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateTasksRunsAppendLogRequest",
+}) as any as S.Schema<CreateTasksRunsAppendLogRequest>;
+
+/** * `plan` - plan * `context` - context * `reference` - reference * `output` - output * `artifact` - artifact * `tree_snapshot` - tree_snapshot * `user_attachment` - user_attachment * `skill_bundle` - skill_bundle */
+export type TaskRunArtifactTypeEnum =
+  | "plan"
+  | "context"
+  | "reference"
+  | "output"
+  | "artifact"
+  | "tree_snapshot"
+  | "user_attachment"
+  | "skill_bundle";
+export const TaskRunArtifactTypeEnum = /*@__PURE__*/ S.String;
+
+/** * `utf-8` - utf-8 * `base64` - base64 */
+export type ContentEncodingEnum = "utf-8" | "base64";
+export const ContentEncodingEnum = /*@__PURE__*/ S.String;
+
+export interface TaskRunArtifactUpload {
+  /** File name to associate with the artifact */
+  name?: string;
+  /** Classification for the artifact * `plan` - plan * `context` - context * `reference` - reference * `output` - output * `artifact` - artifact * `tree_snapshot` - tree_snapshot * `user_attachment` - user_attachment * `skill_bundle` - skill_bundle */
+  type?: TaskRunArtifactTypeEnum | (string & {});
+  /** Optional source label for the artifact, such as agent_output or user_attachment */
+  source?: string;
+  /** Artifact contents encoded according to content_encoding. Artifacts above 14 MB must use prepare_upload instead. */
+  content?: string;
+  /** Encoding used for content. Use base64 for binary files and utf-8 for text payloads. * `utf-8` - utf-8 * `base64` - base64 */
+  content_encoding?: ContentEncodingEnum | (string & {});
+  /** Optional MIME type for the artifact */
+  content_type?: string;
+  /** Skill bundle metadata, required when the artifact type is skill_bundle. */
+  metadata?: TaskRunSkillBundleMetadata;
+}
+export const TaskRunArtifactUpload = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    type: S.optional(TaskRunArtifactTypeEnum),
+    source: S.optional(S.String),
+    content: S.optional(S.String),
+    content_encoding: S.optional(ContentEncodingEnum),
+    content_type: S.optional(S.String),
+    metadata: S.optional(TaskRunSkillBundleMetadata),
+  }),
+).annotate({
+  identifier: "TaskRunArtifactUpload",
+}) as any as S.Schema<TaskRunArtifactUpload>;
+
+/** Array of artifacts to upload */
+export type CreateTasksRunsArtifactRequestArtifactsList =
+  Array<TaskRunArtifactUpload>;
+export const CreateTasksRunsArtifactRequestArtifactsList =
+  /*@__PURE__*/ S.Array(
+    TaskRunArtifactUpload,
+  ) as any as S.Schema<CreateTasksRunsArtifactRequestArtifactsList>;
+
+export interface CreateTasksRunsArtifactRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  task_id: string;
+  id: string;
+  /** Array of artifacts to upload */
+  artifacts?: CreateTasksRunsArtifactRequestArtifactsList;
+}
+export const CreateTasksRunsArtifactRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    task_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    artifacts: S.optional(CreateTasksRunsArtifactRequestArtifactsList),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/artifacts/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateTasksRunsArtifactRequest",
+}) as any as S.Schema<CreateTasksRunsArtifactRequest>;
+
+/** Updated list of artifacts on the run */
+export type TaskRunArtifactsUploadResponseArtifactsList =
+  Array<TaskRunArtifactResponse>;
+export const TaskRunArtifactsUploadResponseArtifactsList =
+  /*@__PURE__*/ S.Array(
+    TaskRunArtifactResponse,
+  ) as any as S.Schema<TaskRunArtifactsUploadResponseArtifactsList>;
+
+export interface TaskRunArtifactsUploadResponse {
+  /** Updated list of artifacts on the run */
+  artifacts?: TaskRunArtifactsUploadResponseArtifactsList;
+}
+export const TaskRunArtifactsUploadResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    artifacts: S.optional(TaskRunArtifactsUploadResponseArtifactsList),
+  }),
+).annotate({
+  identifier: "TaskRunArtifactsUploadResponse",
+}) as any as S.Schema<TaskRunArtifactsUploadResponse>;
+
+/** Manifest ids of the artifacts to update. Pass every version of a file together so the whole file is dismissed rather than a single upload of it. */
+export type CreateTasksRunsArtifactsDismissRequestArtifactIdsList =
+  Array<string>;
+export const CreateTasksRunsArtifactsDismissRequestArtifactIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateTasksRunsArtifactsDismissRequestArtifactIdsList>;
+
+export interface CreateTasksRunsArtifactsDismissRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  task_id: string;
+  id: string;
+  /** Manifest ids of the artifacts to update. Pass every version of a file together so the whole file is dismissed rather than a single upload of it. */
+  artifact_ids: CreateTasksRunsArtifactsDismissRequestArtifactIdsList;
+  /** True to hide the artifacts from clients, false to show them again. */
+  dismissed?: boolean;
+}
+export const CreateTasksRunsArtifactsDismissRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      task_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+      artifact_ids: CreateTasksRunsArtifactsDismissRequestArtifactIdsList,
+      dismissed: S.optional(S.Boolean),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/artifacts/dismiss/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateTasksRunsArtifactsDismissRequest",
+}) as any as S.Schema<CreateTasksRunsArtifactsDismissRequest>;
+
+/** Updated list of artifacts on the run */
+export type TaskRunArtifactsDismissResponseArtifactsList =
+  Array<TaskRunArtifactResponse>;
+export const TaskRunArtifactsDismissResponseArtifactsList =
+  /*@__PURE__*/ S.Array(
+    TaskRunArtifactResponse,
+  ) as any as S.Schema<TaskRunArtifactsDismissResponseArtifactsList>;
+
+export interface TaskRunArtifactsDismissResponse {
+  /** Updated list of artifacts on the run */
+  artifacts: TaskRunArtifactsDismissResponseArtifactsList;
+}
+export const TaskRunArtifactsDismissResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    artifacts: TaskRunArtifactsDismissResponseArtifactsList,
+  }),
+).annotate({
+  identifier: "TaskRunArtifactsDismissResponse",
+}) as any as S.Schema<TaskRunArtifactsDismissResponse>;
+
+export interface CreateTasksRunsArtifactsPresignRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  task_id: string;
+  id: string;
+  /** S3 storage path returned in the artifact manifest */
+  storage_path?: string;
+}
+export const CreateTasksRunsArtifactsPresignRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      task_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+      storage_path: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/artifacts/presign/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateTasksRunsArtifactsPresignRequest",
+}) as any as S.Schema<CreateTasksRunsArtifactsPresignRequest>;
+
+export interface TaskRunArtifactPresignResponse {
+  /** Presigned URL for downloading the artifact */
+  url?: string;
+  /** URL expiry in seconds */
+  expires_in?: number;
+}
+export const TaskRunArtifactPresignResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    url: S.optional(S.String),
+    expires_in: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "TaskRunArtifactPresignResponse",
+}) as any as S.Schema<TaskRunArtifactPresignResponse>;
+
+export interface TaskRunPostHogReference {
+  /** Fallback display name for the referenced object. */
+  name: string;
+  /** PostHog object kind used to resolve the reference. * `insight` - insight * `hogql` - hogql * `dashboard` - dashboard * `error` - error * `replay` - replay * `flag` - flag * `experiment` - experiment * `survey` - survey * `ticket` - ticket * `trace` - trace * `eval` - eval * `event` - event * `cohort` - cohort * `action` - action * `person` - person */
+  object_kind: ObjectKindEnum | (string & {});
+  /** Exact PostHog object identifier, flag key, event name, or SQL query. */
+  object_id: string;
+  /** Stable identifier of the completed assistant message containing the reference. */
+  source_message_id: string;
+}
+export const TaskRunPostHogReference = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    object_kind: ObjectKindEnum,
+    object_id: S.String,
+    source_message_id: S.String,
+  }),
+).annotate({
+  identifier: "TaskRunPostHogReference",
+}) as any as S.Schema<TaskRunPostHogReference>;
+
+/** PostHog object references extracted from one completed assistant message. */
+export type CreateTasksRunsArtifactsReferenceRequestReferencesList =
+  Array<TaskRunPostHogReference>;
+export const CreateTasksRunsArtifactsReferenceRequestReferencesList =
+  /*@__PURE__*/ S.Array(
+    TaskRunPostHogReference,
+  ) as any as S.Schema<CreateTasksRunsArtifactsReferenceRequestReferencesList>;
+
+export interface CreateTasksRunsArtifactsReferenceRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  task_id: string;
+  id: string;
+  /** PostHog object references extracted from one completed assistant message. */
+  references: CreateTasksRunsArtifactsReferenceRequestReferencesList;
+}
+export const CreateTasksRunsArtifactsReferenceRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      task_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+      references: CreateTasksRunsArtifactsReferenceRequestReferencesList,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/artifacts/references/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateTasksRunsArtifactsReferenceRequest",
+}) as any as S.Schema<CreateTasksRunsArtifactsReferenceRequest>;
+
+/** Updated list of artifacts on the run. */
+export type TaskRunPostHogReferencesResponseArtifactsList =
+  Array<TaskRunArtifactResponse>;
+export const TaskRunPostHogReferencesResponseArtifactsList =
+  /*@__PURE__*/ S.Array(
+    TaskRunArtifactResponse,
+  ) as any as S.Schema<TaskRunPostHogReferencesResponseArtifactsList>;
+
+export interface TaskRunPostHogReferencesResponse {
+  /** Updated list of artifacts on the run. */
+  artifacts: TaskRunPostHogReferencesResponseArtifactsList;
+}
+export const TaskRunPostHogReferencesResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    artifacts: TaskRunPostHogReferencesResponseArtifactsList,
+  }),
+).annotate({
+  identifier: "TaskRunPostHogReferencesResponse",
+}) as any as S.Schema<TaskRunPostHogReferencesResponse>;
+
+export interface CreateTasksRunsClearConversationRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  task_id: string;
+  id: string;
+}
+export const CreateTasksRunsClearConversationRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      task_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/clear_conversation/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateTasksRunsClearConversationRequest",
+}) as any as S.Schema<CreateTasksRunsClearConversationRequest>;
+
+/** * `2.0` - 2.0 */
+export type JsonrpcEnum = "2.0";
+export const JsonrpcEnum = /*@__PURE__*/ S.String;
+
+/** * `user_message` - user_message * `cancel` - cancel * `close` - close * `permission_response` - permission_response * `set_config_option` - set_config_option * `mcp_response` - mcp_response * `pi/rpc` - pi/rpc * `queue_get` - queue_get * `queue_clear` - queue_clear * `side_question` - side_question */
+export type TaskRunCommandRequestMethodEnum =
+  | "user_message"
+  | "cancel"
+  | "close"
+  | "permission_response"
+  | "set_config_option"
+  | "mcp_response"
+  | "pi/rpc"
+  | "queue_get"
+  | "queue_clear"
+  | "side_question";
+export const TaskRunCommandRequestMethodEnum = /*@__PURE__*/ S.String;
+
+/** Parameters for the command */
+export type CreateTasksRunsCommandRequestParamsMap = {
+  [key: string]: unknown | undefined;
+};
+export const CreateTasksRunsCommandRequestParamsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<CreateTasksRunsCommandRequestParamsMap>;
+
+export interface CreateTasksRunsCommandRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  task_id: string;
+  id: string;
+  /** JSON-RPC version, must be '2.0' * `2.0` - 2.0 */
+  jsonrpc?: JsonrpcEnum | (string & {});
+  /** Command method to execute on the agent server * `user_message` - user_message * `cancel` - cancel * `close` - close * `permission_response` - permission_response * `set_config_option` - set_config_option * `mcp_response` - mcp_response * `pi/rpc` - pi/rpc * `queue_get` - queue_get * `queue_clear` - queue_clear * `side_question` - side_question */
+  method?: TaskRunCommandRequestMethodEnum | (string & {});
+  /** Parameters for the command */
+  params?: CreateTasksRunsCommandRequestParamsMap;
+}
+export const CreateTasksRunsCommandRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    task_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    jsonrpc: S.optional(JsonrpcEnum),
+    method: S.optional(TaskRunCommandRequestMethodEnum),
+    params: S.optional(CreateTasksRunsCommandRequestParamsMap),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/command/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateTasksRunsCommandRequest",
+}) as any as S.Schema<CreateTasksRunsCommandRequest>;
+
+/** Error details on failure */
+export type TaskRunCommandResponseErrorMap = {
+  [key: string]: unknown | undefined;
+};
+export const TaskRunCommandResponseErrorMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<TaskRunCommandResponseErrorMap>;
+
+/** Response from the agent server command endpoint. */
+export interface TaskRunCommandResponse {
+  /** JSON-RPC version */
+  jsonrpc?: string;
+  /** Request ID echoed back (string or number) */
+  id?: unknown;
+  /** Command result on success */
+  result?: unknown;
+  /** Error details on failure */
+  error?: TaskRunCommandResponseErrorMap;
+}
+export const TaskRunCommandResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    jsonrpc: S.optional(S.String),
+    id: S.optional(S.Unknown),
+    result: S.optional(S.Unknown),
+    error: S.optional(TaskRunCommandResponseErrorMap),
+  }),
+).annotate({
+  identifier: "TaskRunCommandResponse",
+}) as any as S.Schema<TaskRunCommandResponse>;
+
+/** * `slack_message` - slack_message * `slack_canvas` - slack_canvas * `document` - document * `spreadsheet` - spreadsheet * `dashboard` - dashboard * `file` - file * `github_pr` - github_pr */
+export type ArtifactTypeEnum =
+  | "slack_message"
+  | "slack_canvas"
+  | "document"
+  | "spreadsheet"
+  | "dashboard"
+  | "file"
+  | "github_pr";
+export const ArtifactTypeEnum = /*@__PURE__*/ S.String;
+
+/** * `slack_message` - slack_message * `slack_canvas` - slack_canvas * `slack_file` - slack_file * `document_connector` - document_connector * `github_pr` - github_pr */
+export type AdapterEnum =
+  | "slack_message"
+  | "slack_canvas"
+  | "slack_file"
+  | "document_connector"
+  | "github_pr";
+export const AdapterEnum = /*@__PURE__*/ S.String;
+
+/** Optional metadata to persist with the living artifact. */
+export type CreateTasksRunsLivingArtifactRequestMetadataMap = {
+  [key: string]: unknown | undefined;
+};
+export const CreateTasksRunsLivingArtifactRequestMetadataMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Unknown,
+  ) as any as S.Schema<CreateTasksRunsLivingArtifactRequestMetadataMap>;
+
+export interface CreateTasksRunsLivingArtifactRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  task_id: string;
+  run_id: string;
+  /** Human-readable artifact name, used as the title. */
+  name: string;
+  /** Artifact format or delivery surface to create, such as document, spreadsheet, slack_canvas, or file. * `slack_message` - slack_message * `slack_canvas` - slack_canvas * `document` - document * `spreadsheet` - spreadsheet * `dashboard` - dashboard * `file` - file * `github_pr` - github_pr */
+  artifact_type?: ArtifactTypeEnum | (string & {});
+  /** Optional preferred external storage or delivery adapter. Slack adapters deliver into the mapped Slack thread; omitted Slack-run documents use Slack canvas, omitted Slack-run files and spreadsheets use Slack file upload, and document_connector uses a connected external document provider. * `slack_message` - slack_message * `slack_canvas` - slack_canvas * `slack_file` - slack_file * `document_connector` - document_connector * `github_pr` - github_pr */
+  adapter?: AdapterEnum | (string & {});
+  /** Markdown or text content for the initial artifact version. */
+  content?: string;
+  /** Base64-encoded binary content for Slack file uploads or other external adapters. Prefer source_artifact_id or source_storage_path for large files that were already uploaded as run output artifacts. */
+  content_base64?: string;
+  /** MIME type for content_base64 or source-backed artifacts, such as application/vnd.openxmlformats-officedocument.spreadsheetml.sheet. */
+  content_type?: string;
+  /** Existing run artifact id to use as the initial content source. Only agent-uploaded output artifacts are accepted; internal run artifacts are rejected. */
+  source_artifact_id?: string;
+  /** Existing run artifact storage_path to use as the initial content source. Only agent-uploaded output artifacts are accepted; internal run artifacts are rejected. */
+  source_storage_path?: string;
+  /** Optional metadata to persist with the living artifact. */
+  metadata?: CreateTasksRunsLivingArtifactRequestMetadataMap;
+}
+export const CreateTasksRunsLivingArtifactRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      task_id: S.String.pipe(T.Label()),
+      run_id: S.String.pipe(T.Label()),
+      name: S.String,
+      artifact_type: S.optional(ArtifactTypeEnum),
+      adapter: S.optional(AdapterEnum),
+      content: S.optional(S.String),
+      content_base64: S.optional(S.String),
+      content_type: S.optional(S.String),
+      source_artifact_id: S.optional(S.String),
+      source_storage_path: S.optional(S.String),
+      metadata: S.optional(CreateTasksRunsLivingArtifactRequestMetadataMap),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{run_id}/living_artifacts/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateTasksRunsLivingArtifactRequest",
+}) as any as S.Schema<CreateTasksRunsLivingArtifactRequest>;
+
+/** * `active` - active * `failed` - failed */
+export type TaskArtifactStatusEnum = "active" | "failed";
+export const TaskArtifactStatusEnum = /*@__PURE__*/ S.String;
+
+export type TaskRunLivingArtifactResponseVersionsItemMap = {
+  [key: string]: unknown | undefined;
+};
+export const TaskRunLivingArtifactResponseVersionsItemMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Unknown,
+  ) as any as S.Schema<TaskRunLivingArtifactResponseVersionsItemMap>;
+
+/** Chronological version records for this artifact. */
+export type TaskRunLivingArtifactResponseVersionsList =
+  Array<TaskRunLivingArtifactResponseVersionsItemMap>;
+export const TaskRunLivingArtifactResponseVersionsList = /*@__PURE__*/ S.Array(
+  TaskRunLivingArtifactResponseVersionsItemMap,
+) as any as S.Schema<TaskRunLivingArtifactResponseVersionsList>;
+
+export interface TaskRunLivingArtifactResponse {
+  /** Stable living artifact id. Use this id when editing the artifact. */
+  id: string;
+  /** Task id this living artifact belongs to. */
+  task_id: string;
+  /** Task run id that created or currently owns this artifact. */
+  run_id: string;
+  /** Project id that owns this artifact. */
+  team_id: number;
+  /** Human-readable artifact name. */
+  name: string;
+  /** Artifact format or delivery surface, such as document, spreadsheet, slack_canvas, file, or slack_message. * `slack_message` - slack_message * `slack_canvas` - slack_canvas * `document` - document * `spreadsheet` - spreadsheet * `dashboard` - dashboard * `file` - file * `github_pr` - github_pr */
+  artifact_type: ArtifactTypeEnum;
+  /** Adapter that currently stores or edits the artifact. * `slack_message` - slack_message * `slack_canvas` - slack_canvas * `slack_file` - slack_file * `document_connector` - document_connector * `github_pr` - github_pr */
+  adapter: AdapterEnum;
+  /** Current registry status for the artifact. * `active` - active * `failed` - failed */
+  status: TaskArtifactStatusEnum;
+  /** Adapter-specific location, such as S3 key or Slack canvas id. */
+  location: unknown;
+  /** Adapter-specific metadata for external storage and source tracking. */
+  metadata: unknown;
+  /** Current version number for the artifact. */
+  current_version: number;
+  /** Chronological version records for this artifact. */
+  versions: TaskRunLivingArtifactResponseVersionsList;
+  /** ISO timestamp when created. */
+  created_at?: string | null;
+  /** ISO timestamp when last updated. */
+  updated_at?: string | null;
+}
+export const TaskRunLivingArtifactResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    task_id: S.String,
+    run_id: S.String,
+    team_id: S.Number,
+    name: S.String,
+    artifact_type: ArtifactTypeEnum,
+    adapter: AdapterEnum,
+    status: TaskArtifactStatusEnum,
+    location: S.Unknown,
+    metadata: S.Unknown,
+    current_version: S.Number,
+    versions: TaskRunLivingArtifactResponseVersionsList,
+    created_at: S.optional(S.NullOr(S.String)),
+    updated_at: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({
+  identifier: "TaskRunLivingArtifactResponse",
+}) as any as S.Schema<TaskRunLivingArtifactResponse>;
+
+/** Manifest ids of artifacts on the SENDING run to share (max 10). Each is copied into the target run's own artifact storage; the receiver gets an immutable snapshot. */
+export type CreateTasksRunsPeersMessageRequestArtifactIdsList = Array<string>;
+export const CreateTasksRunsPeersMessageRequestArtifactIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateTasksRunsPeersMessageRequestArtifactIdsList>;
+
+export interface CreateTasksRunsPeersMessageRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  task_id: string;
+  id: string;
+  target_run_id: string;
+  /** Plain-text message body (max 16000 chars). Delivered to the peer below a server-composed provenance envelope; send short summaries, never raw file dumps — use artifact_ids for files. */
+  content: string;
+  /** Manifest ids of artifacts on the SENDING run to share (max 10). Each is copied into the target run's own artifact storage; the receiver gets an immutable snapshot. */
+  artifact_ids?: CreateTasksRunsPeersMessageRequestArtifactIdsList;
+}
+export const CreateTasksRunsPeersMessageRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    task_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    target_run_id: S.String.pipe(T.Label()),
+    content: S.String,
+    artifact_ids: S.optional(CreateTasksRunsPeersMessageRequestArtifactIdsList),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/peers/{target_run_id}/message/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateTasksRunsPeersMessageRequest",
+}) as any as S.Schema<CreateTasksRunsPeersMessageRequest>;
+
+/** * `accepted` - accepted * `target_finished` - target_finished * `rejected` - rejected */
+export type ResultEnum = "accepted" | "target_finished" | "rejected";
+export const ResultEnum = /*@__PURE__*/ S.String;
+
+export interface TaskRunPeerMessageResponse {
+  /** Send outcome: 'accepted' (queued for delivery — not a delivery confirmation), 'target_finished' (the peer's workflow is gone), or 'rejected' (throttled or invalid). * `accepted` - accepted * `target_finished` - target_finished * `rejected` - rejected */
+  result: ResultEnum;
+  /** Human-readable explanation of the result. */
+  detail: string;
+  /** Id of the recorded peer message, when one was created for this send. */
+  message_id?: string | null;
+}
+export const TaskRunPeerMessageResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    result: ResultEnum,
+    detail: S.String,
+    message_id: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({
+  identifier: "TaskRunPeerMessageResponse",
+}) as any as S.Schema<TaskRunPeerMessageResponse>;
+
+/** Ordered assistant text blocks. When present, the last non-empty entry is posted instead of text. */
+export type CreateTasksRunsRelayMessageRequestTextPartsList = Array<string>;
+export const CreateTasksRunsRelayMessageRequestTextPartsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateTasksRunsRelayMessageRequestTextPartsList>;
+
+export interface CreateTasksRunsRelayMessageRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  task_id: string;
+  id: string;
+  /** Joined message body. Used when text_parts is absent. */
+  text?: string;
+  /** Id of the user message this turn answers, when the agent-server echoes it. */
+  message_id?: string | null;
+  /** Ordered assistant text blocks. When present, the last non-empty entry is posted instead of text. */
+  text_parts?: CreateTasksRunsRelayMessageRequestTextPartsList;
+}
+export const CreateTasksRunsRelayMessageRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    task_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    text: S.optional(S.String),
+    message_id: S.optional(S.NullOr(S.String)),
+    text_parts: S.optional(CreateTasksRunsRelayMessageRequestTextPartsList),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/relay_message/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateTasksRunsRelayMessageRequest",
+}) as any as S.Schema<CreateTasksRunsRelayMessageRequest>;
+
+export interface TaskRunRelayMessageResponse {
+  /** Relay status: 'accepted' or 'skipped' */
+  status?: string;
+  /** Relay workflow ID when accepted */
+  relay_id?: string;
+}
+export const TaskRunRelayMessageResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(S.String),
+    relay_id: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "TaskRunRelayMessageResponse",
+}) as any as S.Schema<TaskRunRelayMessageResponse>;
+
+export interface CreateTasksRunsTaskSessionSyncRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  task_id: string;
+  id: string;
+}
+export const CreateTasksRunsTaskSessionSyncRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      task_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/task_session_sync/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateTasksRunsTaskSessionSyncRequest",
+}) as any as S.Schema<CreateTasksRunsTaskSessionSyncRequest>;
+
+export interface TaskSessionSyncResponse {
+  /** Task session identifier */
+  id: string;
+  /** SHA-256 digest of the uploaded session content */
+  content_sha256: string;
+}
+export const TaskSessionSyncResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    content_sha256: S.String,
+  }),
+).annotate({
+  identifier: "TaskSessionSyncResponse",
+}) as any as S.Schema<TaskSessionSyncResponse>;
+
+/** Task IDs to fetch summaries for (max 5000). Response is paginated; follow the `next` cursor to retrieve all results. */
+export type CreateTasksSummaryRequestIdsList = Array<string>;
+export const CreateTasksSummaryRequestIdsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CreateTasksSummaryRequestIdsList>;
+
+export interface CreateTasksSummaryRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Page size for the paginated response. */
+  limit?: number;
+  /** Offset into the result set for pagination. */
+  offset?: number;
+  /** Task IDs to fetch summaries for (max 5000). Response is paginated; follow the `next` cursor to retrieve all results. */
+  ids: CreateTasksSummaryRequestIdsList;
+}
+export const CreateTasksSummaryRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
+    ids: CreateTasksSummaryRequestIdsList,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/projects/{project_id}/tasks/summaries/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateTasksSummaryRequest",
+}) as any as S.Schema<CreateTasksSummaryRequest>;
+
+/** * `not_started` - Not Started * `queued` - Queued * `in_progress` - In Progress * `completed` - Completed * `failed` - Failed * `cancelled` - Cancelled */
+export type TaskRunStatusEnum =
   | "not_started"
   | "queued"
   | "in_progress"
   | "completed"
   | "failed"
   | "cancelled";
-export const TasksListRequestStatus = /*@__PURE__*/ S.String;
+export const TaskRunStatusEnum = /*@__PURE__*/ S.String;
 
-export interface TasksListRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Local development only. With ph_debug=true, list all project tasks for debugging. Ignored outside local development. */
-  all_team_tasks?: boolean;
-  /** Filter by archived state. Defaults to excluding archived tasks. Use 'true' to list only archived tasks, 'false' for the default, or 'all' to include both. * `true` - true * `false` - false * `all` - all */
-  archived?: TasksListRequestArchived | (string & {});
-  /** Filter tasks to a channel's feed. */
-  channel?: string;
-  /** Filter tasks by the CI check rollup on their most recent run's pull request, as last observed from GitHub. 'none' means the PR has no checks. * `passing` - passing * `failing` - failing * `pending` - pending * `none` - none */
-  ci_status?: TasksListRequestCiStatus | (string & {});
-  /** Filter to tasks carrying a thread comment written by this user ID. */
-  commented_by?: number;
-  /** Filter by creator user ID */
-  created_by?: number;
-  /** Exclude tasks with this origin product from the results * `onboarding` - Onboarding * `error_tracking` - Error Tracking * `eval_clusters` - Eval Clusters * `user_created` - User Created * `slack` - Slack * `support_queue` - Support Queue * `session_summaries` - Session Summaries * `posthog_ai` - PostHog AI * `experiments` - Experiments * `signal_report` - Signal Report * `signals_scout` - Signals Scout * `support_reply` - Support Reply * `hogdesk` - HogDesk * `review_hog` - ReviewHog * `image_builder` - Image Builder * `loop` - Loop * `mcp_analytics` - MCP Analytics * `signals_chat` - Signals Chat * `task_analysis` - Task Analysis * `workflow` - Workflow */
-  exclude_origin_product?: TasksListRequestExcludeOriginProduct | (string & {});
-  /** Filter by the internal flag, which controls whether a task is shown by default, not whether it is accessible. Defaults to excluding internal tasks. Use 'all' to include both internal and user-facing tasks, or 'true' to list only internal tasks. All values are available to any team member; access stays governed by task visibility. * `true` - true * `false` - false * `all` - all */
-  internal?: TasksListRequestInternal | (string & {});
-  /** Number of results to return per page. */
-  limit?: number;
-  /** Filter to tasks whose thread mentions this user ID. */
-  mentions?: number;
-  /** The initial index from which to return the results. */
-  offset?: number;
-  /** Sort order. '-last_activity_at' is newest activity first, where activity means a thread message or a run starting, streaming, or finishing. Defaults to '-created_at'. * `-created_at` - -created_at * `-last_activity_at` - -last_activity_at */
-  ordering?: TasksListRequestOrdering | (string & {});
-  /** Filter by repository organization */
-  organization?: string;
-  /** Filter by origin product */
-  origin_product?: string;
-  /** With true, only tasks the requesting user has pinned. */
-  pinned?: boolean;
-  /** Filter tasks by the state of their most recent run's pull request, as last observed from GitHub (webhooks plus the CI follow-up snapshot). * `open` - open * `draft` - draft * `merged` - merged * `closed` - closed */
-  pr_state?: TasksListRequestPrState | (string & {});
-  /** Filter by repository name (can include org/repo format) */
-  repository?: string;
-  /** Case-insensitive substring search over task title and description. A numeric value also matches the task number. An empty value disables the filter. */
-  search?: string;
-  /** Filter by task run stage */
-  stage?: string;
-  /** Filter tasks by the status of their most recent run. * `not_started` - not_started * `queued` - queued * `in_progress` - in_progress * `completed` - completed * `failed` - failed * `cancelled` - cancelled */
-  status?: TasksListRequestStatus | (string & {});
+/** * `local` - Local * `cloud` - Cloud */
+export type TaskRunEnvironmentEnum = "local" | "cloud";
+export const TaskRunEnvironmentEnum = /*@__PURE__*/ S.String;
+
+export interface TaskRunSummary {
+  /** ID of the latest run. */
+  id: string;
+  status: TaskRunStatusEnum | null;
+  environment: TaskRunEnvironmentEnum | null;
 }
-export const TasksListRequest = /*@__PURE__*/ S.suspend(() =>
+export const TaskRunSummary = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    all_team_tasks: S.optional(S.Boolean.pipe(T.Query())),
-    archived: S.optional(TasksListRequestArchived.pipe(T.Query())),
-    channel: S.optional(S.String.pipe(T.Query())),
-    ci_status: S.optional(TasksListRequestCiStatus.pipe(T.Query())),
-    commented_by: S.optional(S.Number.pipe(T.Query())),
-    created_by: S.optional(S.Number.pipe(T.Query())),
-    exclude_origin_product: S.optional(
-      TasksListRequestExcludeOriginProduct.pipe(T.Query()),
-    ),
-    internal: S.optional(TasksListRequestInternal.pipe(T.Query())),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    mentions: S.optional(S.Number.pipe(T.Query())),
-    offset: S.optional(S.Number.pipe(T.Query())),
-    ordering: S.optional(TasksListRequestOrdering.pipe(T.Query())),
-    organization: S.optional(S.String.pipe(T.Query())),
-    origin_product: S.optional(S.String.pipe(T.Query())),
-    pinned: S.optional(S.Boolean.pipe(T.Query())),
-    pr_state: S.optional(TasksListRequestPrState.pipe(T.Query())),
-    repository: S.optional(S.String.pipe(T.Query())),
-    search: S.optional(S.String.pipe(T.Query())),
-    stage: S.optional(S.String.pipe(T.Query())),
-    status: S.optional(TasksListRequestStatus.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/tasks/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "TasksListRequest",
-}) as any as S.Schema<TasksListRequest>;
+    id: S.String,
+    status: S.NullOr(TaskRunStatusEnum),
+    environment: S.NullOr(TaskRunEnvironmentEnum),
+  }),
+).annotate({ identifier: "TaskRunSummary" }) as any as S.Schema<TaskRunSummary>;
 
-export type PaginatedTaskDetailDTOListResultsList = Array<TaskDetailDTO>;
-export const PaginatedTaskDetailDTOListResultsList = /*@__PURE__*/ S.Array(
-  TaskDetailDTO,
-) as any as S.Schema<PaginatedTaskDetailDTOListResultsList>;
+/** Summary response for a task — reads from a frozen ``TaskSummaryDTO``. */
+export interface TaskSummaryDTO {
+  id: string;
+  title: string;
+  repository: string | null;
+  /** ID of the user who created the task, or null for system-created tasks. */
+  created_by_id: number | null;
+  created_at: string;
+  updated_at: string;
+  origin_product?: string;
+  latest_run?: TaskRunSummary | null;
+}
+export const TaskSummaryDTO = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    title: S.String,
+    repository: S.NullOr(S.String),
+    created_by_id: S.NullOr(S.Number),
+    created_at: S.String,
+    updated_at: S.String,
+    origin_product: S.optional(S.String),
+    latest_run: S.optional(S.NullOr(TaskRunSummary)),
+  }),
+).annotate({ identifier: "TaskSummaryDTO" }) as any as S.Schema<TaskSummaryDTO>;
 
-export interface PaginatedTaskDetailDTOList {
+export type PaginatedTaskSummaryDTOListResultsList = Array<TaskSummaryDTO>;
+export const PaginatedTaskSummaryDTOListResultsList = /*@__PURE__*/ S.Array(
+  TaskSummaryDTO,
+) as any as S.Schema<PaginatedTaskSummaryDTOListResultsList>;
+
+export interface PaginatedTaskSummaryDTOList {
   count: number;
   next?: string | null;
   previous?: string | null;
-  results: PaginatedTaskDetailDTOListResultsList;
+  results: PaginatedTaskSummaryDTOListResultsList;
 }
-export const PaginatedTaskDetailDTOList = /*@__PURE__*/ S.suspend(() =>
+export const PaginatedTaskSummaryDTOList = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     count: S.Number,
     next: S.optional(S.NullOr(S.String)),
     previous: S.optional(S.NullOr(S.String)),
-    results: PaginatedTaskDetailDTOListResultsList,
+    results: PaginatedTaskSummaryDTOListResultsList,
   }),
 ).annotate({
-  identifier: "PaginatedTaskDetailDTOList",
-}) as any as S.Schema<PaginatedTaskDetailDTOList>;
+  identifier: "PaginatedTaskSummaryDTOList",
+}) as any as S.Schema<PaginatedTaskSummaryDTOList>;
 
-export interface TasksModelsRetrieveRequest {
+export interface CreateTasksThreadMessageRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  task_id: string;
+  /** Message text. */
+  content: string;
+}
+export const CreateTasksThreadMessageRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    task_id: S.String.pipe(T.Label()),
+    content: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/projects/{project_id}/tasks/{task_id}/thread_messages/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateTasksThreadMessageRequest",
+}) as any as S.Schema<CreateTasksThreadMessageRequest>;
+
+export type TaskThreadMessageDTOPayloadMap = {
+  [key: string]: unknown | undefined;
+};
+export const TaskThreadMessageDTOPayloadMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<TaskThreadMessageDTOPayloadMap>;
+
+/** Response shape for one message in a task's thread. */
+export interface TaskThreadMessageDTO {
+  id: string;
+  task: string;
+  author_kind: string;
+  event: string;
+  payload: TaskThreadMessageDTOPayloadMap;
+  content: string;
+  created_at: string;
+  author?: TaskUserBasicInfo | null;
+  forwarded_to_agent_at?: string | null;
+  forwarded_by?: TaskUserBasicInfo | null;
+}
+export const TaskThreadMessageDTO = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    task: S.String,
+    author_kind: S.String,
+    event: S.String,
+    payload: TaskThreadMessageDTOPayloadMap,
+    content: S.String,
+    created_at: S.String,
+    author: S.optional(S.NullOr(TaskUserBasicInfo)),
+    forwarded_to_agent_at: S.optional(S.NullOr(S.String)),
+    forwarded_by: S.optional(S.NullOr(TaskUserBasicInfo)),
+  }),
+).annotate({
+  identifier: "TaskThreadMessageDTO",
+}) as any as S.Schema<TaskThreadMessageDTO>;
+
+/** GitHub repositories to clone into the warm sandbox, each in `organization/repo` format. */
+export type CreateTasksWarmRequestRepositoriesList = Array<string>;
+export const CreateTasksWarmRequestRepositoriesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CreateTasksWarmRequestRepositoriesList>;
+
+/** * `user_created` - user_created * `posthog_ai` - posthog_ai */
+export type WarmTaskRequestOriginProductEnum = "user_created" | "posthog_ai";
+export const WarmTaskRequestOriginProductEnum = /*@__PURE__*/ S.String;
+
+export interface CreateTasksWarmRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Optional GitHub repository to clone, in `organization/repo` format (e.g. `posthog/posthog`). */
+  repository?: string | null;
+  /** GitHub repositories to clone into the warm sandbox, each in `organization/repo` format. */
+  repositories?: CreateTasksWarmRequestRepositoriesList;
+  /** Primary key of the team's GitHub integration. Required when a repository is selected (it is what the sandbox clones with). Accepted without a repository too: the warm Run then boots with that integration's GitHub credentials, matching a repo-less create that carries it. */
+  github_integration?: number | null;
+  /** Branch to check out in the warm sandbox. Defaults to the repository's default branch when omitted. */
+  branch?: string | null;
+  /** Agent runtime adapter to warm the sandbox on ('claude' or 'codex'). The warm Run starts the agent on this runtime so a matching submit reuses it; a submit selecting a different runtime falls through to a cold Run instead of reusing a mismatched warm session. * `claude` - claude * `codex` - codex */
+  runtime_adapter?: RuntimeAdapterEnum | (string & {}) | null;
+  /** LLM model identifier to warm the sandbox on. A submit selecting a different model won't reuse this warm Run. */
+  model?: string | null;
+  /** Reasoning effort to warm the sandbox on for models that expose an effort control. * `low` - low * `medium` - medium * `high` - high * `xhigh` - xhigh * `max` - max * `ultracode` - ultracode */
+  reasoning_effort?: ReasoningEffortEnum | (string & {}) | null;
+  /** Optional sandbox environment to provision before the task is submitted. */
+  sandbox_environment_id?: string | null;
+  /** Optional custom base image to provision before the task is submitted; takes precedence over the environment's image. */
+  custom_image_id?: string | null;
+  /** Product the warm Run is for. Fixed when the sandbox boots — it selects the OAuth app, the quota gate, the warm-pool budget, and PR authorship — so a submit only reuses a warm born under the same origin. Defaults to the Code app. * `user_created` - user_created * `posthog_ai` - posthog_ai */
+  origin_product?: WarmTaskRequestOriginProductEnum | (string & {});
+  /** Permission mode to boot the agent session on. Read at session construction, so it cannot be changed once the sandbox is warm — a submit selecting a different mode falls through to a cold Run. Omit to take the runtime's default. * `default` - default * `acceptEdits` - acceptEdits * `plan` - plan * `bypassPermissions` - bypassPermissions * `auto` - auto * `read-only` - read-only * `full-access` - full-access */
+  initial_permission_mode?:
+    | TaskRunBootstrapCreateRequestInitialPermissionModeEnum
+    | (string & {})
+    | null;
+}
+export const CreateTasksWarmRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    repository: S.optional(S.NullOr(S.String)),
+    repositories: S.optional(CreateTasksWarmRequestRepositoriesList),
+    github_integration: S.optional(S.NullOr(S.Number)),
+    branch: S.optional(S.NullOr(S.String)),
+    runtime_adapter: S.optional(S.NullOr(RuntimeAdapterEnum)),
+    model: S.optional(S.NullOr(S.String)),
+    reasoning_effort: S.optional(S.NullOr(ReasoningEffortEnum)),
+    sandbox_environment_id: S.optional(S.NullOr(S.String)),
+    custom_image_id: S.optional(S.NullOr(S.String)),
+    origin_product: S.optional(WarmTaskRequestOriginProductEnum),
+    initial_permission_mode: S.optional(
+      S.NullOr(TaskRunBootstrapCreateRequestInitialPermissionModeEnum),
+    ),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/projects/{project_id}/tasks/warm/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateTasksWarmRequest",
+}) as any as S.Schema<CreateTasksWarmRequest>;
+
+/** Response for a successful warm request — the draft Task + idling warm Run reused on submit. */
+export interface WarmTaskResponse {
+  /** Id of the draft Task birthed for the warm Run. */
+  task_id: string;
+  /** Id of the idling warm Run. The normal create+run path reuses and activates it on submit. */
+  run_id: string;
+}
+export const WarmTaskResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    task_id: S.String,
+    run_id: S.String,
+  }),
+).annotate({
+  identifier: "WarmTaskResponse",
+}) as any as S.Schema<WarmTaskResponse>;
+
+/** Optional metadata to merge into the artifact registry record. */
+export type EditTasksRunsLivingArtifactRequestMetadataMap = {
+  [key: string]: unknown | undefined;
+};
+export const EditTasksRunsLivingArtifactRequestMetadataMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Unknown,
+  ) as any as S.Schema<EditTasksRunsLivingArtifactRequestMetadataMap>;
+
+export interface EditTasksRunsLivingArtifactRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  task_id: string;
+  run_id: string;
+  id: string;
+  /** Optional new human-readable artifact name. */
+  name?: string;
+  /** Markdown or text content for the next version. */
+  content?: string;
+  /** Base64-encoded binary content for the next version, used by adapters such as slack_file. */
+  content_base64?: string;
+  /** MIME type for content_base64 or source-backed edits. */
+  content_type?: string;
+  /** Existing run artifact id to use as the next version content source. Only agent-uploaded output artifacts are accepted; internal run artifacts are rejected. */
+  source_artifact_id?: string;
+  /** Existing run artifact storage_path to use as the next version content source. Only agent-uploaded output artifacts are accepted; internal run artifacts are rejected. */
+  source_storage_path?: string;
+  /** Optional metadata to merge into the artifact registry record. */
+  metadata?: EditTasksRunsLivingArtifactRequestMetadataMap;
+}
+export const EditTasksRunsLivingArtifactRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    task_id: S.String.pipe(T.Label()),
+    run_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    name: S.optional(S.String),
+    content: S.optional(S.String),
+    content_base64: S.optional(S.String),
+    content_type: S.optional(S.String),
+    source_artifact_id: S.optional(S.String),
+    source_storage_path: S.optional(S.String),
+    metadata: S.optional(EditTasksRunsLivingArtifactRequestMetadataMap),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{run_id}/living_artifacts/{id}/edit/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "EditTasksRunsLivingArtifactRequest",
+}) as any as S.Schema<EditTasksRunsLivingArtifactRequest>;
+
+export interface GetCodeInvitesCheckAccessRequest {}
+export const GetCodeInvitesCheckAccessRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/code/invites/check-access/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetCodeInvitesCheckAccessRequest",
+}) as any as S.Schema<GetCodeInvitesCheckAccessRequest>;
+
+export interface LegacyDesktopAccessResponse {
+  /** Whether the current project can use PostHog Desktop. */
+  has_access: boolean;
+  /** Whether the independent Loops feature is enabled. */
+  has_loops_access: boolean;
+}
+export const LegacyDesktopAccessResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    has_access: S.Boolean,
+    has_loops_access: S.Boolean,
+  }),
+).annotate({
+  identifier: "LegacyDesktopAccessResponse",
+}) as any as S.Schema<LegacyDesktopAccessResponse>;
+
+export interface GetDesktopAccessRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
 }
-export const TasksModelsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDesktopAccessRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/desktop/access/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetDesktopAccessRequest",
+}) as any as S.Schema<GetDesktopAccessRequest>;
+
+/** * `startup_plan` - startup_plan * `prepaid_credits` - prepaid_credits */
+export type DesktopAccessReasonEnum = "startup_plan" | "prepaid_credits";
+export const DesktopAccessReasonEnum = /*@__PURE__*/ S.String;
+
+export interface DesktopAccessResponse {
+  /** Whether the selected project can use PostHog Desktop. */
+  allowed: boolean;
+  /** Why Desktop access is blocked, or null when access is allowed. * `startup_plan` - startup_plan * `prepaid_credits` - prepaid_credits */
+  reason: DesktopAccessReasonEnum | null;
+}
+export const DesktopAccessResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    allowed: S.Boolean,
+    reason: S.NullOr(DesktopAccessReasonEnum),
+  }),
+).annotate({
+  identifier: "DesktopAccessResponse",
+}) as any as S.Schema<DesktopAccessResponse>;
+
+export interface GetTaskRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  id: string;
+}
+export const GetTaskRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/tasks/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({ identifier: "GetTaskRequest" }) as any as S.Schema<GetTaskRequest>;
+
+export interface GetTasksActiveWizardRunRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+}
+export const GetTasksActiveWizardRunRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/tasks/active_wizard_run/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetTasksActiveWizardRunRequest",
+}) as any as S.Schema<GetTasksActiveWizardRunRequest>;
+
+/** The team's active onboarding wizard cloud run, used to rehydrate the setup-progress FAB when the run was started server-side (drop flow). */
+export interface WizardCloudRunDTO {
+  /** Id of the onboarding wizard task. */
+  task_id: string;
+  /** Id of the task's latest run, for reconnecting to its progress stream. */
+  run_id: string;
+  /** Latest run status (e.g. queued, in_progress, completed, failed). */
+  status: string;
+  /** When the run was created, for the FAB's elapsed timer. */
+  started_at?: string | null;
+}
+export const WizardCloudRunDTO = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    task_id: S.String,
+    run_id: S.String,
+    status: S.String,
+    started_at: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({
+  identifier: "WizardCloudRunDTO",
+}) as any as S.Schema<WizardCloudRunDTO>;
+
+export interface GetTasksCommentRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  id: string;
+  root_comment_id: string;
+  /** Comment id whose truncated body should continue. Use with content_offset. */
+  comment_id?: string;
+  /** Byte offset returned as content_next_offset for the selected comment. */
+  content_offset?: number;
+  /** Opaque cursor returned by the previous page. */
+  cursor?: string;
+  /** Maximum number of comments in the thread to return. */
+  limit?: number;
+}
+export const GetTasksCommentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    root_comment_id: S.String.pipe(T.Label()),
+    comment_id: S.optional(S.String.pipe(T.Query())),
+    content_offset: S.optional(S.Number.pipe(T.Query())),
+    cursor: S.optional(S.String.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/tasks/{id}/comments/{root_comment_id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetTasksCommentRequest",
+}) as any as S.Schema<GetTasksCommentRequest>;
+
+export interface TaskCommentTarget {
+  /** Stable target id. */
+  id: string;
+  /** Target type: task, artifact, or canvas. */
+  type: string;
+  /** Display name of the comment target. */
+  name: string;
+}
+export const TaskCommentTarget = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    type: S.String,
+    name: S.String,
+  }),
+).annotate({
+  identifier: "TaskCommentTarget",
+}) as any as S.Schema<TaskCommentTarget>;
+
+export interface TaskCommentAnchor {
+  /** Anchor kind. */
+  kind?: string;
+  /** Selected text. */
+  quote?: string;
+  /** Text immediately before the selection. */
+  prefix?: string;
+  /** Text immediately after the selection. */
+  suffix?: string;
+  /** Selection start offset. */
+  start?: number;
+  /** Selection end offset. */
+  end?: number;
+  /** Horizontal region position. */
+  x?: number;
+  /** Vertical region position. */
+  y?: number;
+  /** Region width. */
+  width?: number;
+  /** Region height. */
+  height?: number;
+}
+export const TaskCommentAnchor = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    kind: S.optional(S.String),
+    quote: S.optional(S.String),
+    prefix: S.optional(S.String),
+    suffix: S.optional(S.String),
+    start: S.optional(S.Number),
+    end: S.optional(S.Number),
+    x: S.optional(S.Number),
+    y: S.optional(S.Number),
+    width: S.optional(S.Number),
+    height: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "TaskCommentAnchor",
+}) as any as S.Schema<TaskCommentAnchor>;
+
+export interface TaskCommentEntry {
+  /** Comment id. */
+  id: string;
+  /** Byte-bounded comment body chunk. */
+  content: string;
+  /** Whether this comment body has more content. */
+  content_truncated: boolean;
+  /** Byte offset for the next body chunk, or null when complete. */
+  content_next_offset: number | null;
+  /** Comment author's display name. */
+  author: string | null;
+  /** When the comment was created. */
+  created_at: string;
+  /** Normalized text or document anchor. */
+  anchor: TaskCommentAnchor | null;
+  /** Canvas version receiving the comment. */
+  canvas_version_id: string | null;
+}
+export const TaskCommentEntry = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    content: S.String,
+    content_truncated: S.Boolean,
+    content_next_offset: S.NullOr(S.Number),
+    author: S.NullOr(S.String),
+    created_at: S.String,
+    anchor: S.NullOr(TaskCommentAnchor),
+    canvas_version_id: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "TaskCommentEntry",
+}) as any as S.Schema<TaskCommentEntry>;
+
+/** Comments in this page, oldest first. */
+export type TaskCommentDetailCommentsList = Array<TaskCommentEntry>;
+export const TaskCommentDetailCommentsList = /*@__PURE__*/ S.Array(
+  TaskCommentEntry,
+) as any as S.Schema<TaskCommentDetailCommentsList>;
+
+export interface TaskCommentDetail {
+  /** Root comment id. */
+  id: string;
+  /** Task, artifact, or canvas receiving the comment. */
+  target: TaskCommentTarget;
+  /** Whether the comment is resolved. */
+  resolved: boolean;
+  /** Comments in this page, oldest first. */
+  comments: TaskCommentDetailCommentsList;
+  /** Opaque cursor for the next page, or null. */
+  next: string | null;
+}
+export const TaskCommentDetail = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    target: TaskCommentTarget,
+    resolved: S.Boolean,
+    comments: TaskCommentDetailCommentsList,
+    next: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "TaskCommentDetail",
+}) as any as S.Schema<TaskCommentDetail>;
+
+export interface GetTasksModelRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+}
+export const GetTasksModelRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
   }).pipe(
@@ -1199,8 +2527,8 @@ export const TasksModelsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "TasksModelsRetrieveRequest",
-}) as any as S.Schema<TasksModelsRetrieveRequest>;
+  identifier: "GetTasksModelRequest",
+}) as any as S.Schema<GetTasksModelRequest>;
 
 /** Reasoning efforts this model accepts, in ascending order. Empty for a model with no effort control. */
 export type ModelChoiceSupportedEffortsList = Array<ReasoningEffortEnum>;
@@ -1245,155 +2573,11 @@ export const ModelCatalogueResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ModelCatalogueResponse",
 }) as any as S.Schema<ModelCatalogueResponse>;
 
-/** GitHub repositories available to this task, each in `organization/repo` format. */
-export type TasksPartialUpdateRequestRepositoriesList = Array<string>;
-export const TasksPartialUpdateRequestRepositoriesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<TasksPartialUpdateRequestRepositoriesList>;
-
-/** Run artifact ids (already uploaded to the pre-warmed Run) to attach to the forwarded first message when creation reuses that warm Run, e.g. skill bundles or file attachments. If any id is missing from the warm Run's manifest, warm reuse is skipped and the task is created cold. Ignored when no warm Run is matched. */
-export type TasksPartialUpdateRequestPendingUserArtifactIdsList = Array<string>;
-export const TasksPartialUpdateRequestPendingUserArtifactIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<TasksPartialUpdateRequestPendingUserArtifactIdsList>;
-
-export interface TasksPartialUpdateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  id: string;
-  /** Short human-readable title. Auto-generated from `description` when omitted. */
-  title?: string;
-  /** Whether the title was set by a human (vs auto-generated from the description). */
-  title_manually_set?: boolean;
-  /** Free-form description of the work to be done. Used as the prompt passed to the agent. */
-  description?: string;
-  /** PostHog product or surface that created this task (e.g. error_tracking, slack, user_created). Origins reserved for server-created agents cannot be set through this API. * `onboarding` - Onboarding * `error_tracking` - Error Tracking * `eval_clusters` - Eval Clusters * `user_created` - User Created * `slack` - Slack * `support_queue` - Support Queue * `session_summaries` - Session Summaries * `posthog_ai` - PostHog AI * `experiments` - Experiments * `signal_report` - Signal Report * `signals_scout` - Signals Scout * `support_reply` - Support Reply * `hogdesk` - HogDesk * `review_hog` - ReviewHog * `image_builder` - Image Builder * `loop` - Loop * `mcp_analytics` - MCP Analytics * `signals_chat` - Signals Chat * `task_analysis` - Task Analysis * `workflow` - Workflow */
-  origin_product?: OriginProductEnum | (string & {});
-  /** Target GitHub repository in `organization/repo` format (e.g. `posthog/posthog-js`). */
-  repository?: string | null;
-  /** GitHub repositories available to this task, each in `organization/repo` format. */
-  repositories?: TasksPartialUpdateRequestRepositoriesList;
-  /** GitHub integration for this task. */
-  github_integration?: number | null;
-  /** User-scoped GitHub integration to use for user-authored cloud runs. */
-  github_user_integration?: string | null;
-  /** Signal report this task implements, when created from a report. */
-  signal_report?: string | null;
-  /** How the created task relates to the signal report (e.g. 'implementation', 'discussion'). Recorded as a signals task_run work-log entry; 'implementation' also opens the auto-start spend gate. Any routing-safe identifier (lowercase letters, numbers, '_', '-') is accepted except labels reserved for server-created tasks ('research', 'repo_selection', 'scout'). Non-implementation labels count toward the report's discussion task limit. */
-  signal_report_task_relationship?: string;
-  /** JSON schema used to validate the output of the task. */
-  json_schema?: unknown;
-  /** If true, the task is hidden from default list responses. */
-  archived?: boolean;
-  /** Custom prompt for CI fixes. If blank, a default prompt will be used. */
-  ci_prompt?: string | null;
-  /** Branch the user has selected for this cloud task. Write-only and not persisted on the task itself: used only to reuse a matching pre-warmed sandbox Run on creation (the branch is otherwise carried on the run). Omit to match a warm Run on the default branch. */
-  branch?: string | null;
-  /** Selected runtime adapter ('claude' or 'codex'). Write-only and not persisted on the task: used only to reuse a pre-warmed Run started on the same runtime. A value differing from the warm Run's runtime skips reuse so the task isn't silently run on the wrong runtime. * `claude` - claude * `codex` - codex */
-  runtime_adapter?: RuntimeAdapterEnum | (string & {}) | null;
-  /** Selected LLM model identifier. Write-only; used only to reuse a warm Run started on the same model. */
-  model?: string | null;
-  /** Selected reasoning effort. Write-only; used only to reuse a warm Run started on the same effort. * `low` - low * `medium` - medium * `high` - high * `xhigh` - xhigh * `max` - max * `ultracode` - ultracode */
-  reasoning_effort?: ReasoningEffortEnum | (string & {}) | null;
-  /** Selected agent permission mode. Write-only; used only to reuse a warm Run booted on the same mode. Omit to reuse a warm Run whatever mode it booted on. * `default` - default * `acceptEdits` - acceptEdits * `plan` - plan * `bypassPermissions` - bypassPermissions * `auto` - auto * `read-only` - read-only * `full-access` - full-access */
-  initial_permission_mode?:
-    | TaskRunBootstrapCreateRequestInitialPermissionModeEnum
-    | (string & {})
-    | null;
-  /** First user message to forward when creation reuses a pre-warmed Run. Write-only and not persisted on the task: lets clients deliver a message that differs from `description` (e.g. a resolved skill invocation with channel context folded in). Ignored when no warm Run is reused — cold creation takes the first message via the run start endpoint instead. */
-  pending_user_message?: string | null;
-  /** Run artifact ids (already uploaded to the pre-warmed Run) to attach to the forwarded first message when creation reuses that warm Run, e.g. skill bundles or file attachments. If any id is missing from the warm Run's manifest, warm reuse is skipped and the task is created cold. Ignored when no warm Run is matched. */
-  pending_user_artifact_ids?: TasksPartialUpdateRequestPendingUserArtifactIdsList;
-  /** When true, the cloud run agent pushes its work and opens a draft pull request on completion without waiting for an explicit ask. Write-only and not persisted on the task: persisted into the reused warm Run's state when creation activates one, so resumes of that Run honor it. Ignored when no warm Run is reused — cold creation takes it via the run start endpoint instead. */
-  auto_publish?: boolean | null;
-  /** Channel this task is owned by (the channel it was kicked off in). */
-  channel?: string | null;
-}
-export const TasksPartialUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    title: S.optional(S.String),
-    title_manually_set: S.optional(S.Boolean),
-    description: S.optional(S.String),
-    origin_product: S.optional(OriginProductEnum),
-    repository: S.optional(S.NullOr(S.String)),
-    repositories: S.optional(TasksPartialUpdateRequestRepositoriesList),
-    github_integration: S.optional(S.NullOr(S.Number)),
-    github_user_integration: S.optional(S.NullOr(S.String)),
-    signal_report: S.optional(S.NullOr(S.String)),
-    signal_report_task_relationship: S.optional(S.String),
-    json_schema: S.optional(S.Unknown),
-    archived: S.optional(S.Boolean),
-    ci_prompt: S.optional(S.NullOr(S.String)),
-    branch: S.optional(S.NullOr(S.String)),
-    runtime_adapter: S.optional(S.NullOr(RuntimeAdapterEnum)),
-    model: S.optional(S.NullOr(S.String)),
-    reasoning_effort: S.optional(S.NullOr(ReasoningEffortEnum)),
-    initial_permission_mode: S.optional(
-      S.NullOr(TaskRunBootstrapCreateRequestInitialPermissionModeEnum),
-    ),
-    pending_user_message: S.optional(S.NullOr(S.String)),
-    pending_user_artifact_ids: S.optional(
-      TasksPartialUpdateRequestPendingUserArtifactIdsList,
-    ),
-    auto_publish: S.optional(S.NullOr(S.Boolean)),
-    channel: S.optional(S.NullOr(S.String)),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/api/projects/{project_id}/tasks/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "TasksPartialUpdateRequest",
-}) as any as S.Schema<TasksPartialUpdateRequest>;
-
-export interface TasksPinCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  id: string;
-  /** Whether the task should be pinned for the requester. */
-  pinned: boolean;
-}
-export const TasksPinCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    pinned: S.Boolean,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/projects/{project_id}/tasks/{id}/pin/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "TasksPinCreateRequest",
-}) as any as S.Schema<TasksPinCreateRequest>;
-
-export interface TaskPinResponse {
-  /** Task whose pin state was updated. */
-  task_id: string;
-  /** Current pin state for the requester. */
-  pinned: boolean;
-}
-export const TaskPinResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    task_id: S.String,
-    pinned: S.Boolean,
-  }),
-).annotate({
-  identifier: "TaskPinResponse",
-}) as any as S.Schema<TaskPinResponse>;
-
-export interface TasksPinnedRetrieveRequest {
+export interface GetTasksPinnedRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
 }
-export const TasksPinnedRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetTasksPinnedRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
   }).pipe(
@@ -1404,8 +2588,8 @@ export const TasksPinnedRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "TasksPinnedRetrieveRequest",
-}) as any as S.Schema<TasksPinnedRetrieveRequest>;
+  identifier: "GetTasksPinnedRequest",
+}) as any as S.Schema<GetTasksPinnedRequest>;
 
 /** Visible task IDs pinned by the requester, newest pin first. */
 export type PinnedTaskIdsResponseTaskIdsList = Array<string>;
@@ -1425,68 +2609,11 @@ export const PinnedTaskIdsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "PinnedTaskIdsResponse",
 }) as any as S.Schema<PinnedTaskIdsResponse>;
 
-export interface TasksPresenceCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  id: string;
-  /** UUID of the caller's UserPushToken (returned by `/api/users/@me/push_tokens/` on register). */
-  device_id: string;
-}
-export const TasksPresenceCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    device_id: S.String,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/projects/{project_id}/tasks/{id}/presence/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "TasksPresenceCreateRequest",
-}) as any as S.Schema<TasksPresenceCreateRequest>;
-
-export interface TasksPresenceCreateResponse {}
-export const TasksPresenceCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "TasksPresenceCreateResponse",
-}) as any as S.Schema<TasksPresenceCreateResponse>;
-
-export interface TasksPresenceDestroyRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  id: string;
-}
-export const TasksPresenceDestroyRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/api/projects/{project_id}/tasks/{id}/presence/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "TasksPresenceDestroyRequest",
-}) as any as S.Schema<TasksPresenceDestroyRequest>;
-
-export interface TasksPresenceDestroyResponse {}
-export const TasksPresenceDestroyResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "TasksPresenceDestroyResponse",
-}) as any as S.Schema<TasksPresenceDestroyResponse>;
-
-export interface TasksRepositoriesRetrieveRequest {
+export interface GetTasksRepositoryRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
 }
-export const TasksRepositoriesRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetTasksRepositoryRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
   }).pipe(
@@ -1497,8 +2624,8 @@ export const TasksRepositoriesRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "TasksRepositoriesRetrieveRequest",
-}) as any as S.Schema<TasksRepositoriesRetrieveRequest>;
+  identifier: "GetTasksRepositoryRequest",
+}) as any as S.Schema<GetTasksRepositoryRequest>;
 
 /** Distinct repositories in use by non-deleted, non-internal tasks for the current team. */
 export type TaskRepositoriesResponseRepositoriesList = Array<string>;
@@ -1518,7 +2645,7 @@ export const TaskRepositoriesResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "TaskRepositoriesResponse",
 }) as any as S.Schema<TaskRepositoriesResponse>;
 
-export interface TasksRepositoryReadinessRetrieveRequest {
+export interface GetTasksRepositoryReadinessRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   refresh?: boolean;
@@ -1526,23 +2653,22 @@ export interface TasksRepositoryReadinessRetrieveRequest {
   repository: string;
   window_days?: number;
 }
-export const TasksRepositoryReadinessRetrieveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      refresh: S.optional(S.Boolean.pipe(T.Query())),
-      repository: S.String.pipe(T.Query()),
-      window_days: S.optional(S.Number.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/tasks/repository_readiness/",
-        code: 200,
-      }),
-    ),
+export const GetTasksRepositoryReadinessRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    refresh: S.optional(S.Boolean.pipe(T.Query())),
+    repository: S.String.pipe(T.Query()),
+    window_days: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/tasks/repository_readiness/",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "TasksRepositoryReadinessRetrieveRequest",
-}) as any as S.Schema<TasksRepositoryReadinessRetrieveRequest>;
+  identifier: "GetTasksRepositoryReadinessRequest",
+}) as any as S.Schema<GetTasksRepositoryReadinessRequest>;
 
 /** * `needs_setup` - needs_setup * `detected` - detected * `waiting_for_data` - waiting_for_data * `ready` - ready * `not_applicable` - not_applicable * `unknown` - unknown */
 export type CapabilityStateStateEnum =
@@ -1652,65 +2778,1150 @@ export const RepositoryReadinessResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "RepositoryReadinessResponse",
 }) as any as S.Schema<RepositoryReadinessResponse>;
 
-export interface TasksRetrieveRequest {
+export interface GetTasksRunRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  task_id: string;
+  id: string;
+}
+export const GetTasksRunRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    task_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetTasksRunRequest",
+}) as any as S.Schema<GetTasksRunRequest>;
+
+export interface GetTasksRunsConnectionTokenRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  task_id: string;
+  id: string;
+}
+export const GetTasksRunsConnectionTokenRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    task_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/connection_token/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetTasksRunsConnectionTokenRequest",
+}) as any as S.Schema<GetTasksRunsConnectionTokenRequest>;
+
+/** Response containing a JWT token for direct sandbox connection */
+export interface ConnectionTokenResponse {
+  /** JWT token for authenticating with the sandbox */
+  token?: string;
+}
+export const ConnectionTokenResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    token: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ConnectionTokenResponse",
+}) as any as S.Schema<ConnectionTokenResponse>;
+
+export interface GetTasksRunsLogRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  task_id: string;
+  id: string;
+}
+export const GetTasksRunsLogRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    task_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/logs/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetTasksRunsLogRequest",
+}) as any as S.Schema<GetTasksRunsLogRequest>;
+
+export interface GetTasksRunsLogResponse {}
+export const GetTasksRunsLogResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "GetTasksRunsLogResponse",
+}) as any as S.Schema<GetTasksRunsLogResponse>;
+
+export interface GetTasksRunsPeerRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  task_id: string;
+  id: string;
+}
+export const GetTasksRunsPeerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    task_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/peers/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetTasksRunsPeerRequest",
+}) as any as S.Schema<GetTasksRunsPeerRequest>;
+
+/** One peer agent run visible to the requesting run (agent peer messaging). */
+export interface TaskRunPeer {
+  /** The peer run's id — the address send_agent_message targets. */
+  run_id: string;
+  /** Id of the peer run's parent task. */
+  task_id: string;
+  /** Title of the peer run's parent task. */
+  task_title: string;
+  /** Email of the user whose task the peer run belongs to. */
+  created_by_email: string | null;
+  /** Agent runtime of the peer run's task (e.g. 'pi'). */
+  runtime: string;
+  /** Model the peer run was started with, when recorded. */
+  model: string | null;
+  /** Repository the peer run works on, or null for repo-less (channel-mode) runs. */
+  repository: string | null;
+  /** Current stage of the peer run (e.g. 'build'). */
+  stage: string | null;
+  /** Run status: 'in_progress' or 'queued' (only these are listed). */
+  status: string;
+  /** Whether the peer accepts messages right now. Only in-progress runs are sendable; a queued run is listed but its workflow may not exist yet. Never infer sendability from status labels. */
+  sendable: boolean;
+  /** ISO-8601 timestamp of the peer run's last update. */
+  updated_at: string | null;
+}
+export const TaskRunPeer = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    run_id: S.String,
+    task_id: S.String,
+    task_title: S.String,
+    created_by_email: S.NullOr(S.String),
+    runtime: S.String,
+    model: S.NullOr(S.String),
+    repository: S.NullOr(S.String),
+    stage: S.NullOr(S.String),
+    status: S.String,
+    sendable: S.Boolean,
+    updated_at: S.NullOr(S.String),
+  }),
+).annotate({ identifier: "TaskRunPeer" }) as any as S.Schema<TaskRunPeer>;
+
+/** Active agent runs the requesting run may message, most recently updated first. */
+export type TaskRunPeersResponsePeersList = Array<TaskRunPeer>;
+export const TaskRunPeersResponsePeersList = /*@__PURE__*/ S.Array(
+  TaskRunPeer,
+) as any as S.Schema<TaskRunPeersResponsePeersList>;
+
+export interface TaskRunPeersResponse {
+  /** Active agent runs the requesting run may message, most recently updated first. */
+  peers: TaskRunPeersResponsePeersList;
+}
+export const TaskRunPeersResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    peers: TaskRunPeersResponsePeersList,
+  }),
+).annotate({
+  identifier: "TaskRunPeersResponse",
+}) as any as S.Schema<TaskRunPeersResponse>;
+
+export interface GetTasksRunsPreviewRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  task_id: string;
+  id: string;
+}
+export const GetTasksRunsPreviewRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    task_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/preview/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetTasksRunsPreviewRequest",
+}) as any as S.Schema<GetTasksRunsPreviewRequest>;
+
+export interface GetTasksRunsPreviewResponse {}
+export const GetTasksRunsPreviewResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "GetTasksRunsPreviewResponse",
+}) as any as S.Schema<GetTasksRunsPreviewResponse>;
+
+export interface GetTasksRunsSessionLogRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  task_id: string;
+  id: string;
+  /** Only return events after this ISO8601 timestamp */
+  after?: string;
+  /** Comma-separated list of event types to include */
+  event_types?: string;
+  /** Comma-separated list of event types to exclude */
+  exclude_types?: string;
+  /** Maximum number of entries to return (default 1000, max 5000) */
+  limit?: number;
+  /** Zero-based offset into the filtered log entries */
+  offset?: number;
+}
+export const GetTasksRunsSessionLogRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    task_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    after: S.optional(S.String.pipe(T.Query())),
+    event_types: S.optional(S.String.pipe(T.Query())),
+    exclude_types: S.optional(S.String.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/session_logs/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetTasksRunsSessionLogRequest",
+}) as any as S.Schema<GetTasksRunsSessionLogRequest>;
+
+export interface GetTasksRunsSessionLogResponse {}
+export const GetTasksRunsSessionLogResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "GetTasksRunsSessionLogResponse",
+}) as any as S.Schema<GetTasksRunsSessionLogResponse>;
+
+export interface GetTasksRunsStreamRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  task_id: string;
+  id: string;
+  /** Set to `latest` to skip the event backlog and only receive events published after connecting. */
+  start?: string;
+}
+export const GetTasksRunsStreamRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    task_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    start: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/stream/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetTasksRunsStreamRequest",
+}) as any as S.Schema<GetTasksRunsStreamRequest>;
+
+export interface GetTasksRunsStreamResponse {}
+export const GetTasksRunsStreamResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "GetTasksRunsStreamResponse",
+}) as any as S.Schema<GetTasksRunsStreamResponse>;
+
+export interface GetTasksRunsStreamTokenRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  task_id: string;
+  id: string;
+}
+export const GetTasksRunsStreamTokenRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    task_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/stream_token/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetTasksRunsStreamTokenRequest",
+}) as any as S.Schema<GetTasksRunsStreamTokenRequest>;
+
+/** Response containing a JWT token (and resolved base URL) for reading a task run's live event stream */
+export interface StreamReadTokenResponse {
+  /** Run-scoped JWT the browser presents to the agent-proxy to read this run's live event stream */
+  token: string;
+  /** Base URL of the agent-proxy to read the stream from when routing via the proxy is enabled for this user. Null means read from the Django endpoint directly (same-origin). The client appends the run's stream path and sends the token as a Bearer header when this is set. */
+  stream_base_url: string | null;
+}
+export const StreamReadTokenResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    token: S.String,
+    stream_base_url: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "StreamReadTokenResponse",
+}) as any as S.Schema<StreamReadTokenResponse>;
+
+export interface GetTasksRunsTaskSessionRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  task_id: string;
+  id: string;
+}
+export const GetTasksRunsTaskSessionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    task_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/task_session/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetTasksRunsTaskSessionRequest",
+}) as any as S.Schema<GetTasksRunsTaskSessionRequest>;
+
+export interface TaskSessionResponse {
+  /** Task session identifier */
+  id: string;
+  /** Temporary URL for downloading the session */
+  download_url: string | null;
+  /** SHA-256 digest of the current session content */
+  content_sha256: string | null;
+}
+export const TaskSessionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    download_url: S.NullOr(S.String),
+    content_sha256: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "TaskSessionResponse",
+}) as any as S.Schema<TaskSessionResponse>;
+
+export interface GetTasksSlackThreadContextRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Full Slack permalink to any message in the thread (e.g. https://posthog.slack.com/archives/C…/p1779956938619299). Replies inside the thread are accepted too — the `thread_ts` query param (when present) takes precedence over the in-path message ts. */
+  url: string;
+}
+export const GetTasksSlackThreadContextRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    url: S.String.pipe(T.Query()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/tasks/slack_thread_context/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetTasksSlackThreadContextRequest",
+}) as any as S.Schema<GetTasksSlackThreadContextRequest>;
+
+/** Slack-side identifiers and the mapping metadata for a thread → task lookup. */
+export interface SlackThreadContextThread {
+  /** Echoed input URL. */
+  url: string;
+  /** Slack channel id parsed from the URL (e.g. C0ACRAMJUAG). */
+  channel: string;
+  /** Slack thread_ts (e.g. 1779956938.619299). */
+  thread_ts: string;
+  /** Slack workspace id (e.g. T…). Null when no mapping exists yet. */
+  slack_workspace_id: string | null;
+  /** The Slack user who triggered the task. Null when no mapping exists yet. */
+  mentioning_slack_user_id: string | null;
+  /** Temporal workflow id of the per-conversation mention queue (`slack-app-mention-<workspace>:<channel>:<thread_ts>`) that serializes the thread's messages before any run exists. Null when the workspace id cannot be resolved. */
+  queue_workflow_id: string | null;
+  /** Full Temporal Web UI URL for the mention queue workflow; null when `TEMPORAL_UI_HOST` is unset. */
+  queue_workflow_url: string | null;
+  /** Absolute URL to the SlackThreadTaskMapping row in Django admin. Null when no mapping exists. */
+  mapping_admin_url: string | null;
+}
+export const SlackThreadContextThread = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    url: S.String,
+    channel: S.String,
+    thread_ts: S.String,
+    slack_workspace_id: S.NullOr(S.String),
+    mentioning_slack_user_id: S.NullOr(S.String),
+    queue_workflow_id: S.NullOr(S.String),
+    queue_workflow_url: S.NullOr(S.String),
+    mapping_admin_url: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "SlackThreadContextThread",
+}) as any as S.Schema<SlackThreadContextThread>;
+
+/** The PostHog Task linked to the Slack thread. */
+export interface SlackThreadContextTask {
+  /** UUID of the Task row. */
+  id: string;
+  /** Team that owns the task. */
+  team_id: number;
+  /** Task title (typically the first ~255 chars of the Slack ask). */
+  title: string;
+  /** Resolved repository in `org/repo` form, or null if the run started without a repo. */
+  repository: string | null;
+  /** `Task.OriginProduct` (`slack` for slack-originated tasks). */
+  origin_product: string;
+  /** When the task was created (server-side timestamp). */
+  created_at: string;
+  /** Absolute URL to the task detail page in the PostHog app. */
+  url: string;
+  /** Absolute URL to the Task row in Django admin. */
+  admin_url: string;
+}
+export const SlackThreadContextTask = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    team_id: S.Number,
+    title: S.String,
+    repository: S.NullOr(S.String),
+    origin_product: S.String,
+    created_at: S.String,
+    url: S.String,
+    admin_url: S.String,
+  }),
+).annotate({
+  identifier: "SlackThreadContextTask",
+}) as any as S.Schema<SlackThreadContextTask>;
+
+/** The internal sandbox run the discovery agent used to pick this run's repo. Only present when the originating mention was ambiguous (multiple candidate repos, no explicit mention) — that's the only path that spins up a research sandbox. Null otherwise. */
+export interface SlackThreadContextRepoResearch {
+  /** UUID of the internal repo-research Task. */
+  task_id: string;
+  /** UUID of the internal repo-research TaskRun. */
+  run_id: string;
+  /** Research run status, or null if the run row could not be loaded. */
+  status: string | null;
+  /** Temporal workflow id for the research sandbox run (`task-processing-<task_id>-<run_id>`, or a caller-prefixed variant). */
+  task_processing_workflow_id: string;
+  /** Full Temporal Web UI URL for the research workflow; null when `TEMPORAL_UI_HOST` is unset. */
+  task_processing_workflow_url: string | null;
+  /** Live sandbox tunnel URL for the research run, when one was attached. */
+  sandbox_url: string | null;
+  /** Absolute URL to the research task detail page (carries `?ph_debug=true`). */
+  task_view_url: string;
+  /** Presigned S3 URL for the research run's JSONL log transcript (valid ~1 hour). */
+  log_url: string | null;
+}
+export const SlackThreadContextRepoResearch = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    task_id: S.String,
+    run_id: S.String,
+    status: S.NullOr(S.String),
+    task_processing_workflow_id: S.String,
+    task_processing_workflow_url: S.NullOr(S.String),
+    sandbox_url: S.NullOr(S.String),
+    task_view_url: S.String,
+    log_url: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "SlackThreadContextRepoResearch",
+}) as any as S.Schema<SlackThreadContextRepoResearch>;
+
+/** One TaskRun and its associated Temporal workflow handles. */
+export interface SlackThreadContextRun {
+  /** UUID of the TaskRun row. */
+  id: string;
+  /** Run status (queued/in_progress/completed/failed/…). */
+  status: string;
+  /** When the run was created. */
+  created_at: string;
+  /** When the run reached a terminal state, or null while still running. */
+  completed_at: string | null;
+  /** Live sandbox tunnel URL, when one was attached. */
+  sandbox_url: string | null;
+  /** PR URL produced by the run, when one was opened. */
+  pr_url: string | null;
+  /** Error captured on terminal failure, or null on success. */
+  error_message: string | null;
+  /** Temporal workflow id for the sandbox/agent run (`task-processing-<task_id>-<run_id>`, or a caller-prefixed variant). */
+  task_processing_workflow_id: string;
+  /** Full Temporal Web UI URL for the task-processing workflow; null when `TEMPORAL_UI_HOST` is unset. */
+  task_processing_workflow_url: string | null;
+  /** Temporal workflow id of the Slack mention that dispatched this run (`posthog-code-mention-<workspace>:<event_id_or_channel:ts>`). Null for runs created before this field was persisted. */
+  mention_workflow_id: string | null;
+  /** Full Temporal Web UI URL for the mention dispatch workflow; null when unavailable. */
+  mention_workflow_url: string | null;
+  /** Absolute URL to the task detail page focused on this run. */
+  task_view_url: string;
+  /** Presigned S3 URL for the run's full JSONL log transcript (valid ~1 hour). */
+  log_url: string | null;
+  /** The discovery-agent sandbox that picked this run's repo, when the mention was ambiguous. */
+  repo_research: SlackThreadContextRepoResearch | null;
+  /** Absolute URL to the TaskRun row in Django admin (includes a log download action). */
+  admin_url: string;
+}
+export const SlackThreadContextRun = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    status: S.String,
+    created_at: S.String,
+    completed_at: S.NullOr(S.String),
+    sandbox_url: S.NullOr(S.String),
+    pr_url: S.NullOr(S.String),
+    error_message: S.NullOr(S.String),
+    task_processing_workflow_id: S.String,
+    task_processing_workflow_url: S.NullOr(S.String),
+    mention_workflow_id: S.NullOr(S.String),
+    mention_workflow_url: S.NullOr(S.String),
+    task_view_url: S.String,
+    log_url: S.NullOr(S.String),
+    repo_research: S.NullOr(SlackThreadContextRepoResearch),
+    admin_url: S.String,
+  }),
+).annotate({
+  identifier: "SlackThreadContextRun",
+}) as any as S.Schema<SlackThreadContextRun>;
+
+/** All runs on the task, oldest first. Empty when no mapping was found. */
+export type SlackThreadContextResponseRunsList = Array<SlackThreadContextRun>;
+export const SlackThreadContextResponseRunsList = /*@__PURE__*/ S.Array(
+  SlackThreadContextRun,
+) as any as S.Schema<SlackThreadContextResponseRunsList>;
+
+/** Top-level response for the slack-thread debug endpoint. */
+export interface SlackThreadContextResponse {
+  /** Slack-side identifiers and the mapping metadata. */
+  thread: SlackThreadContextThread;
+  /** Linked PostHog Task. Null when no mapping was found for the thread. */
+  task: SlackThreadContextTask | null;
+  /** All runs on the task, oldest first. Empty when no mapping was found. */
+  runs: SlackThreadContextResponseRunsList;
+}
+export const SlackThreadContextResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    thread: SlackThreadContextThread,
+    task: S.NullOr(SlackThreadContextTask),
+    runs: SlackThreadContextResponseRunsList,
+  }),
+).annotate({
+  identifier: "SlackThreadContextResponse",
+}) as any as S.Schema<SlackThreadContextResponse>;
+
+export interface GetTasksUsageRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   id: string;
 }
-export const TasksRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetTasksUsageRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
+      uri: "/api/projects/{project_id}/tasks/{id}/usage/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetTasksUsageRequest",
+}) as any as S.Schema<GetTasksUsageRequest>;
+
+export interface TaskUsageResponse {
+  /** Estimated model cost attributed to this task in US dollars. */
+  token_cost_usd: number;
+  /** Estimated cloud compute cost attributed to this task in US dollars. */
+  compute_cost_usd: number;
+  /** Estimated total cost attributed to this task in US dollars. */
+  total_cost_usd: number;
+}
+export const TaskUsageResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    token_cost_usd: S.Number,
+    compute_cost_usd: S.Number,
+    total_cost_usd: S.Number,
+  }),
+).annotate({
+  identifier: "TaskUsageResponse",
+}) as any as S.Schema<TaskUsageResponse>;
+
+export type ListTasksRequestArchived = "true" | "false" | "all";
+export const ListTasksRequestArchived = /*@__PURE__*/ S.String;
+
+export type ListTasksRequestCiStatus =
+  | "passing"
+  | "failing"
+  | "pending"
+  | "none";
+export const ListTasksRequestCiStatus = /*@__PURE__*/ S.String;
+
+export type ListTasksRequestExcludeOriginProduct =
+  | "onboarding"
+  | "error_tracking"
+  | "eval_clusters"
+  | "user_created"
+  | "slack"
+  | "support_queue"
+  | "session_summaries"
+  | "posthog_ai"
+  | "experiments"
+  | "signal_report"
+  | "signals_scout"
+  | "scout_suggestions"
+  | "support_reply"
+  | "hogdesk"
+  | "review_hog"
+  | "image_builder"
+  | "loop"
+  | "mcp_analytics"
+  | "signals_chat"
+  | "task_analysis"
+  | "workflow";
+export const ListTasksRequestExcludeOriginProduct = /*@__PURE__*/ S.String;
+
+export type ListTasksRequestInternal = "true" | "false" | "all";
+export const ListTasksRequestInternal = /*@__PURE__*/ S.String;
+
+export type ListTasksRequestOrdering = "-created_at" | "-last_activity_at";
+export const ListTasksRequestOrdering = /*@__PURE__*/ S.String;
+
+export type ListTasksRequestPrState = "open" | "draft" | "merged" | "closed";
+export const ListTasksRequestPrState = /*@__PURE__*/ S.String;
+
+export type ListTasksRequestStatus =
+  | "not_started"
+  | "queued"
+  | "in_progress"
+  | "completed"
+  | "failed"
+  | "cancelled";
+export const ListTasksRequestStatus = /*@__PURE__*/ S.String;
+
+export interface ListTasksRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Local development only. With ph_debug=true, list all project tasks for debugging. Ignored outside local development. */
+  all_team_tasks?: boolean;
+  /** Filter by archived state. Defaults to excluding archived tasks. Use 'true' to list only archived tasks, 'false' for the default, or 'all' to include both. * `true` - true * `false` - false * `all` - all */
+  archived?: ListTasksRequestArchived | (string & {});
+  /** Filter tasks to a channel's feed. */
+  channel?: string;
+  /** Filter tasks by the CI check rollup on their most recent run's pull request, as last observed from GitHub. 'none' means the PR has no checks. * `passing` - passing * `failing` - failing * `pending` - pending * `none` - none */
+  ci_status?: ListTasksRequestCiStatus | (string & {});
+  /** Filter to tasks carrying a thread comment written by this user ID. */
+  commented_by?: number;
+  /** Filter by creator user ID */
+  created_by?: number;
+  /** Exclude tasks with this origin product from the results * `onboarding` - Onboarding * `error_tracking` - Error Tracking * `eval_clusters` - Eval Clusters * `user_created` - User Created * `slack` - Slack * `support_queue` - Support Queue * `session_summaries` - Session Summaries * `posthog_ai` - PostHog AI * `experiments` - Experiments * `signal_report` - Signal Report * `signals_scout` - Signals Scout * `scout_suggestions` - Signals Scout Suggestions * `support_reply` - Support Reply * `hogdesk` - HogDesk * `review_hog` - ReviewHog * `image_builder` - Image Builder * `loop` - Loop * `mcp_analytics` - MCP Analytics * `signals_chat` - Signals Chat * `task_analysis` - Task Analysis * `workflow` - Workflow */
+  exclude_origin_product?: ListTasksRequestExcludeOriginProduct | (string & {});
+  /** Filter tasks to the runs spawned by this workflow's 'Create AI task' action. */
+  hog_flow_id?: string;
+  /** Filter by the internal flag, which controls whether a task is shown by default, not whether it is accessible. Defaults to excluding internal tasks. Use 'all' to include both internal and user-facing tasks, or 'true' to list only internal tasks. All values are available to any team member; access stays governed by task visibility. * `true` - true * `false` - false * `all` - all */
+  internal?: ListTasksRequestInternal | (string & {});
+  /** Number of results to return per page. */
+  limit?: number;
+  /** Filter to tasks whose thread mentions this user ID. */
+  mentions?: number;
+  /** The initial index from which to return the results. */
+  offset?: number;
+  /** Sort order. '-last_activity_at' is newest activity first, where activity means a thread message or a run starting, streaming, or finishing. Defaults to '-created_at'. * `-created_at` - -created_at * `-last_activity_at` - -last_activity_at */
+  ordering?: ListTasksRequestOrdering | (string & {});
+  /** Filter by repository organization */
+  organization?: string;
+  /** Filter by origin product */
+  origin_product?: string;
+  /** With true, only tasks the requesting user has pinned. */
+  pinned?: boolean;
+  /** Filter tasks by the state of their most recent run's pull request, as last observed from GitHub (webhooks plus the CI follow-up snapshot). * `open` - open * `draft` - draft * `merged` - merged * `closed` - closed */
+  pr_state?: ListTasksRequestPrState | (string & {});
+  /** Filter by repository name (can include org/repo format) */
+  repository?: string;
+  /** Case-insensitive substring search over task title and description. A numeric value also matches the task number. An empty value disables the filter. */
+  search?: string;
+  /** Filter by task run stage */
+  stage?: string;
+  /** Filter tasks by the status of their most recent run. * `not_started` - not_started * `queued` - queued * `in_progress` - in_progress * `completed` - completed * `failed` - failed * `cancelled` - cancelled */
+  status?: ListTasksRequestStatus | (string & {});
+}
+export const ListTasksRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    all_team_tasks: S.optional(S.Boolean.pipe(T.Query())),
+    archived: S.optional(ListTasksRequestArchived.pipe(T.Query())),
+    channel: S.optional(S.String.pipe(T.Query())),
+    ci_status: S.optional(ListTasksRequestCiStatus.pipe(T.Query())),
+    commented_by: S.optional(S.Number.pipe(T.Query())),
+    created_by: S.optional(S.Number.pipe(T.Query())),
+    exclude_origin_product: S.optional(
+      ListTasksRequestExcludeOriginProduct.pipe(T.Query()),
+    ),
+    hog_flow_id: S.optional(S.String.pipe(T.Query())),
+    internal: S.optional(ListTasksRequestInternal.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    mentions: S.optional(S.Number.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
+    ordering: S.optional(ListTasksRequestOrdering.pipe(T.Query())),
+    organization: S.optional(S.String.pipe(T.Query())),
+    origin_product: S.optional(S.String.pipe(T.Query())),
+    pinned: S.optional(S.Boolean.pipe(T.Query())),
+    pr_state: S.optional(ListTasksRequestPrState.pipe(T.Query())),
+    repository: S.optional(S.String.pipe(T.Query())),
+    search: S.optional(S.String.pipe(T.Query())),
+    stage: S.optional(S.String.pipe(T.Query())),
+    status: S.optional(ListTasksRequestStatus.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/tasks/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListTasksRequest",
+}) as any as S.Schema<ListTasksRequest>;
+
+export type PaginatedTaskDetailDTOListResultsList = Array<TaskDetailDTO>;
+export const PaginatedTaskDetailDTOListResultsList = /*@__PURE__*/ S.Array(
+  TaskDetailDTO,
+) as any as S.Schema<PaginatedTaskDetailDTOListResultsList>;
+
+export interface PaginatedTaskDetailDTOList {
+  count: number;
+  next?: string | null;
+  previous?: string | null;
+  results: PaginatedTaskDetailDTOListResultsList;
+}
+export const PaginatedTaskDetailDTOList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    count: S.Number,
+    next: S.optional(S.NullOr(S.String)),
+    previous: S.optional(S.NullOr(S.String)),
+    results: PaginatedTaskDetailDTOListResultsList,
+  }),
+).annotate({
+  identifier: "PaginatedTaskDetailDTOList",
+}) as any as S.Schema<PaginatedTaskDetailDTOList>;
+
+export interface ListTasksArtifactsRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  id: string;
+}
+export const ListTasksArtifactsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/tasks/{id}/artifacts/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListTasksArtifactsRequest",
+}) as any as S.Schema<ListTasksArtifactsRequest>;
+
+export interface TaskArtifact {
+  /** Stable artifact id used to filter task comments. */
+  id: string;
+  /** Artifact type: artifact or canvas. */
+  type: string;
+  /** Display name of the artifact. */
+  name: string;
+}
+export const TaskArtifact = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    type: S.String,
+    name: S.String,
+  }),
+).annotate({ identifier: "TaskArtifact" }) as any as S.Schema<TaskArtifact>;
+
+/** Artifacts and canvases linked to this task. */
+export type TaskArtifactsResponseArtifactsList = Array<TaskArtifact>;
+export const TaskArtifactsResponseArtifactsList = /*@__PURE__*/ S.Array(
+  TaskArtifact,
+) as any as S.Schema<TaskArtifactsResponseArtifactsList>;
+
+export interface TaskArtifactsResponse {
+  /** Artifacts and canvases linked to this task. */
+  artifacts: TaskArtifactsResponseArtifactsList;
+}
+export const TaskArtifactsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    artifacts: TaskArtifactsResponseArtifactsList,
+  }),
+).annotate({
+  identifier: "TaskArtifactsResponse",
+}) as any as S.Schema<TaskArtifactsResponse>;
+
+export interface ListTasksCommentsRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  id: string;
+  /** Artifact id returned by the artifacts endpoint. */
+  artifact_id?: string;
+  /** Opaque cursor returned by the previous page. */
+  cursor?: string;
+  /** Whether to include resolved comment threads. */
+  include_resolved?: boolean;
+  /** Maximum number of root comments to return. */
+  limit?: number;
+}
+export const ListTasksCommentsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    artifact_id: S.optional(S.String.pipe(T.Query())),
+    cursor: S.optional(S.String.pipe(T.Query())),
+    include_resolved: S.optional(S.Boolean.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/tasks/{id}/comments/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListTasksCommentsRequest",
+}) as any as S.Schema<ListTasksCommentsRequest>;
+
+export interface TaskCommentSummary {
+  /** Root comment id. */
+  id: string;
+  /** Task, artifact, or canvas receiving the comment. */
+  target: TaskCommentTarget;
+  /** Bounded excerpt of the root comment body. */
+  content: string;
+  /** Whether the root comment body has more content. */
+  content_truncated: boolean;
+  /** Text selected when the comment was created. */
+  selected_text: string | null;
+  /** When the root comment was created. */
+  created_at: string;
+  /** Number of human replies. */
+  reply_count: number;
+  /** Whether the comment is resolved. */
+  resolved: boolean;
+}
+export const TaskCommentSummary = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    target: TaskCommentTarget,
+    content: S.String,
+    content_truncated: S.Boolean,
+    selected_text: S.NullOr(S.String),
+    created_at: S.String,
+    reply_count: S.Number,
+    resolved: S.Boolean,
+  }),
+).annotate({
+  identifier: "TaskCommentSummary",
+}) as any as S.Schema<TaskCommentSummary>;
+
+/** Root comments, newest first. */
+export type TaskCommentsResponseCommentsList = Array<TaskCommentSummary>;
+export const TaskCommentsResponseCommentsList = /*@__PURE__*/ S.Array(
+  TaskCommentSummary,
+) as any as S.Schema<TaskCommentsResponseCommentsList>;
+
+export interface TaskCommentsResponse {
+  /** Root comments, newest first. */
+  comments: TaskCommentsResponseCommentsList;
+  /** Opaque cursor for the next page, or null. */
+  next: string | null;
+}
+export const TaskCommentsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    comments: TaskCommentsResponseCommentsList,
+    next: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "TaskCommentsResponse",
+}) as any as S.Schema<TaskCommentsResponse>;
+
+export interface ListTasksConfigRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Number of results to return per page. */
+  limit?: number;
+  /** The initial index from which to return the results. */
+  offset?: number;
+}
+export const ListTasksConfigRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/tasks/config/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListTasksConfigRequest",
+}) as any as S.Schema<ListTasksConfigRequest>;
+
+export interface ListTasksMeConfigRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Number of results to return per page. */
+  limit?: number;
+  /** The initial index from which to return the results. */
+  offset?: number;
+}
+export const ListTasksMeConfigRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/tasks/@me/config/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListTasksMeConfigRequest",
+}) as any as S.Schema<ListTasksMeConfigRequest>;
+
+export interface ListTasksRunsRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  task_id: string;
+  /** Number of results to return per page. */
+  limit?: number;
+  /** The initial index from which to return the results. */
+  offset?: number;
+}
+export const ListTasksRunsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    task_id: S.String.pipe(T.Label()),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/tasks/{task_id}/runs/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListTasksRunsRequest",
+}) as any as S.Schema<ListTasksRunsRequest>;
+
+export type PaginatedTaskRunDetailDTOListResultsList = Array<TaskRunDetailDTO>;
+export const PaginatedTaskRunDetailDTOListResultsList = /*@__PURE__*/ S.Array(
+  TaskRunDetailDTO,
+) as any as S.Schema<PaginatedTaskRunDetailDTOListResultsList>;
+
+export interface PaginatedTaskRunDetailDTOList {
+  count: number;
+  next?: string | null;
+  previous?: string | null;
+  results: PaginatedTaskRunDetailDTOListResultsList;
+}
+export const PaginatedTaskRunDetailDTOList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    count: S.Number,
+    next: S.optional(S.NullOr(S.String)),
+    previous: S.optional(S.NullOr(S.String)),
+    results: PaginatedTaskRunDetailDTOListResultsList,
+  }),
+).annotate({
+  identifier: "PaginatedTaskRunDetailDTOList",
+}) as any as S.Schema<PaginatedTaskRunDetailDTOList>;
+
+export interface ListTasksRunsLivingArtifactsRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  task_id: string;
+  run_id: string;
+}
+export const ListTasksRunsLivingArtifactsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    task_id: S.String.pipe(T.Label()),
+    run_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{run_id}/living_artifacts/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListTasksRunsLivingArtifactsRequest",
+}) as any as S.Schema<ListTasksRunsLivingArtifactsRequest>;
+
+/** Living artifacts for this task run. */
+export type TaskRunLivingArtifactsResponseArtifactsList =
+  Array<TaskRunLivingArtifactResponse>;
+export const TaskRunLivingArtifactsResponseArtifactsList =
+  /*@__PURE__*/ S.Array(
+    TaskRunLivingArtifactResponse,
+  ) as any as S.Schema<TaskRunLivingArtifactsResponseArtifactsList>;
+
+export interface TaskRunLivingArtifactsResponse {
+  /** Living artifacts for this task run. */
+  artifacts: TaskRunLivingArtifactsResponseArtifactsList;
+}
+export const TaskRunLivingArtifactsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    artifacts: TaskRunLivingArtifactsResponseArtifactsList,
+  }),
+).annotate({
+  identifier: "TaskRunLivingArtifactsResponse",
+}) as any as S.Schema<TaskRunLivingArtifactsResponse>;
+
+export type ListTasksRunsLivingArtifactsResponseBodyList =
+  Array<TaskRunLivingArtifactsResponse>;
+export const ListTasksRunsLivingArtifactsResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    TaskRunLivingArtifactsResponse,
+  ) as any as S.Schema<ListTasksRunsLivingArtifactsResponseBodyList>;
+
+export type ListTasksRunsLivingArtifactsResponse =
+  ListTasksRunsLivingArtifactsResponseBodyList;
+export const ListTasksRunsLivingArtifactsResponse = /*@__PURE__*/ S.suspend(
+  () => ListTasksRunsLivingArtifactsResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListTasksRunsLivingArtifactsResponse",
+}) as any as S.Schema<ListTasksRunsLivingArtifactsResponse>;
+
+export interface ListTasksThreadMessagesRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  task_id: string;
+  /** Number of results to return per page. */
+  limit?: number;
+  /** The initial index from which to return the results. */
+  offset?: number;
+}
+export const ListTasksThreadMessagesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    task_id: S.String.pipe(T.Label()),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/tasks/{task_id}/thread_messages/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListTasksThreadMessagesRequest",
+}) as any as S.Schema<ListTasksThreadMessagesRequest>;
+
+export type PaginatedTaskThreadMessageDTOListResultsList =
+  Array<TaskThreadMessageDTO>;
+export const PaginatedTaskThreadMessageDTOListResultsList =
+  /*@__PURE__*/ S.Array(
+    TaskThreadMessageDTO,
+  ) as any as S.Schema<PaginatedTaskThreadMessageDTOListResultsList>;
+
+export interface PaginatedTaskThreadMessageDTOList {
+  count: number;
+  next?: string | null;
+  previous?: string | null;
+  results: PaginatedTaskThreadMessageDTOListResultsList;
+}
+export const PaginatedTaskThreadMessageDTOList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    count: S.Number,
+    next: S.optional(S.NullOr(S.String)),
+    previous: S.optional(S.NullOr(S.String)),
+    results: PaginatedTaskThreadMessageDTOListResultsList,
+  }),
+).annotate({
+  identifier: "PaginatedTaskThreadMessageDTOList",
+}) as any as S.Schema<PaginatedTaskThreadMessageDTOList>;
+
+export interface TasksDestroyRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  id: string;
+}
+export const TasksDestroyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
       uri: "/api/projects/{project_id}/tasks/{id}/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "TasksRetrieveRequest",
-}) as any as S.Schema<TasksRetrieveRequest>;
+  identifier: "TasksDestroyRequest",
+}) as any as S.Schema<TasksDestroyRequest>;
 
-/** * `http` - http * `sse` - sse */
-export type ImportedMcpServerTypeEnum = "http" | "sse";
-export const ImportedMcpServerTypeEnum = /*@__PURE__*/ S.String;
-
-export interface ImportedMcpServerHeader {
-  name: string;
-  value: string;
-}
-export const ImportedMcpServerHeader = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-    value: S.String,
-  }),
+export interface TasksDestroyResponse {}
+export const TasksDestroyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
 ).annotate({
-  identifier: "ImportedMcpServerHeader",
-}) as any as S.Schema<ImportedMcpServerHeader>;
+  identifier: "TasksDestroyResponse",
+}) as any as S.Schema<TasksDestroyResponse>;
 
-export type ImportedMcpServerHeadersList = Array<ImportedMcpServerHeader>;
-export const ImportedMcpServerHeadersList = /*@__PURE__*/ S.Array(
-  ImportedMcpServerHeader,
-) as any as S.Schema<ImportedMcpServerHeadersList>;
-
-/** One client-imported MCP server, in the agent server's --mcpServers entry shape. */
-export interface ImportedMcpServer {
-  type: ImportedMcpServerTypeEnum | (string & {});
-  name: string;
-  url: string;
-  headers?: ImportedMcpServerHeadersList;
+export interface TasksPresenceDestroyRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  id: string;
 }
-export const ImportedMcpServer = /*@__PURE__*/ S.suspend(() =>
+export const TasksPresenceDestroyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    type: ImportedMcpServerTypeEnum,
-    name: S.String,
-    url: S.String,
-    headers: S.optional(ImportedMcpServerHeadersList),
-  }),
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/api/projects/{project_id}/tasks/{id}/presence/",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "ImportedMcpServer",
-}) as any as S.Schema<ImportedMcpServer>;
+  identifier: "TasksPresenceDestroyRequest",
+}) as any as S.Schema<TasksPresenceDestroyRequest>;
+
+export interface TasksPresenceDestroyResponse {}
+export const TasksPresenceDestroyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "TasksPresenceDestroyResponse",
+}) as any as S.Schema<TasksPresenceDestroyResponse>;
 
 /** Local url-based MCP servers from the creating client (PostHog Desktop) to make available inside the cloud sandbox. Header values are treated as credentials: stored encrypted and never returned by the API. */
 export type ClaudeTaskRunCreateSchemaImportedMcpServersList =
@@ -1720,18 +3931,6 @@ export const ClaudeTaskRunCreateSchemaImportedMcpServersList =
     ImportedMcpServer,
   ) as any as S.Schema<ClaudeTaskRunCreateSchemaImportedMcpServersList>;
 
-/** One desktop-only MCP server relayed into the run — a name only, never configuration. */
-export interface RelayedMcpServer {
-  name: string;
-}
-export const RelayedMcpServer = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-  }),
-).annotate({
-  identifier: "RelayedMcpServer",
-}) as any as S.Schema<RelayedMcpServer>;
-
 /** Names of desktop-only MCP servers the creating client (PostHog Desktop) relays into the cloud sandbox over the durable event/command channel. Names only — the server configuration (command, env, URL, headers) never crosses the wire. */
 export type ClaudeTaskRunCreateSchemaRelayedMcpServersList =
   Array<RelayedMcpServer>;
@@ -1740,10 +3939,6 @@ export const ClaudeTaskRunCreateSchemaRelayedMcpServersList =
     RelayedMcpServer,
   ) as any as S.Schema<ClaudeTaskRunCreateSchemaRelayedMcpServersList>;
 
-/** * `interactive` - interactive * `background` - background */
-export type TaskExecutionModeEnum = "interactive" | "background";
-export const TaskExecutionModeEnum = /*@__PURE__*/ S.String;
-
 /** Identifiers for staged task artifacts that should be attached to the initial run prompt. */
 export type ClaudeTaskRunCreateSchemaPendingUserArtifactIdsList = Array<string>;
 export const ClaudeTaskRunCreateSchemaPendingUserArtifactIdsList =
@@ -1751,21 +3946,9 @@ export const ClaudeTaskRunCreateSchemaPendingUserArtifactIdsList =
     S.String,
   ) as any as S.Schema<ClaudeTaskRunCreateSchemaPendingUserArtifactIdsList>;
 
-/** * `user` - user * `bot` - bot */
-export type PrAuthorshipModeEnum = "user" | "bot";
-export const PrAuthorshipModeEnum = /*@__PURE__*/ S.String;
-
-/** * `manual` - manual * `signal_report` - signal_report */
-export type RunSourceEnum = "manual" | "signal_report";
-export const RunSourceEnum = /*@__PURE__*/ S.String;
-
 /** * `claude` - claude */
 export type ClaudeRuntimeAdapterEnum = "claude";
 export const ClaudeRuntimeAdapterEnum = /*@__PURE__*/ S.String;
-
-/** * `200k` - 200k * `1m` - 1m */
-export type ContextWindowEnum = "200k" | "1m";
-export const ContextWindowEnum = /*@__PURE__*/ S.String;
 
 /** * `default` - default * `acceptEdits` - acceptEdits * `plan` - plan * `bypassPermissions` - bypassPermissions * `auto` - auto */
 export type InitialPermissionModeEnum =
@@ -1820,6 +4003,8 @@ export interface ClaudeTaskRunCreateSchema {
   initial_permission_mode?: InitialPermissionModeEnum | (string & {});
   /** Whether rtk command-output compression is enabled for this run. Omitted or null follows the server-side default (enabled); false opts this run out. */
   rtk_enabled?: boolean | null;
+  /** Whether the Benjamin-Plus token-efficiency instruction applies to this run. Omitted or null lets the server decide from the feature flag; true or false pins the choice for this run. */
+  benjamin_enabled?: boolean | null;
 }
 export const ClaudeTaskRunCreateSchema = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -1850,6 +4035,7 @@ export const ClaudeTaskRunCreateSchema = /*@__PURE__*/ S.suspend(() =>
     github_user_token: S.optional(S.String),
     initial_permission_mode: S.optional(InitialPermissionModeEnum),
     rtk_enabled: S.optional(S.NullOr(S.Boolean)),
+    benjamin_enabled: S.optional(S.NullOr(S.Boolean)),
   }),
 ).annotate({
   identifier: "ClaudeTaskRunCreateSchema",
@@ -1937,6 +4123,8 @@ export interface CodexTaskRunCreateSchema {
     | (string & {});
   /** Whether rtk command-output compression is enabled for this run. Omitted or null follows the server-side default (enabled); false opts this run out. */
   rtk_enabled?: boolean | null;
+  /** Whether the Benjamin-Plus token-efficiency instruction applies to this run. Omitted or null lets the server decide from the feature flag; true or false pins the choice for this run. */
+  benjamin_enabled?: boolean | null;
 }
 export const CodexTaskRunCreateSchema = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -1969,6 +4157,7 @@ export const CodexTaskRunCreateSchema = /*@__PURE__*/ S.suspend(() =>
       CodexTaskRunCreateSchemaInitialPermissionModeEnum,
     ),
     rtk_enabled: S.optional(S.NullOr(S.Boolean)),
+    benjamin_enabled: S.optional(S.NullOr(S.Boolean)),
   }),
 ).annotate({
   identifier: "CodexTaskRunCreateSchema",
@@ -2041,429 +4230,6 @@ export const TasksRunCreateRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "TasksRunCreateRequest",
 }) as any as S.Schema<TasksRunCreateRequest>;
-
-/** * `run_was_efficient` - run_was_efficient * `too_short_to_judge` - too_short_to_judge * `insufficient_visibility` - insufficient_visibility */
-export type NoFindingsReasonEnum =
-  | "run_was_efficient"
-  | "too_short_to_judge"
-  | "insufficient_visibility";
-export const NoFindingsReasonEnum = /*@__PURE__*/ S.String;
-
-/** * `transcript_quote` - transcript_quote * `command_output` - command_output * `measured_count` - measured_count */
-export type EvidenceTypeEnum =
-  | "transcript_quote"
-  | "command_output"
-  | "measured_count";
-export const EvidenceTypeEnum = /*@__PURE__*/ S.String;
-
-export interface TaskAnalysisEvidence {
-  /** Verbatim span copied from the analysed run log. */
-  quote: string;
-  /** What kind of log content the quote was taken from. * `transcript_quote` - transcript_quote * `command_output` - command_output * `measured_count` - measured_count */
-  evidence_type: EvidenceTypeEnum | (string & {});
-}
-export const TaskAnalysisEvidence = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    quote: S.String,
-    evidence_type: EvidenceTypeEnum,
-  }),
-).annotate({
-  identifier: "TaskAnalysisEvidence",
-}) as any as S.Schema<TaskAnalysisEvidence>;
-
-/** Quotes from the analysed log backing the observation. */
-export type TasksRunsAnalysisInsightCreateRequestEvidenceList =
-  Array<TaskAnalysisEvidence>;
-export const TasksRunsAnalysisInsightCreateRequestEvidenceList =
-  /*@__PURE__*/ S.Array(
-    TaskAnalysisEvidence,
-  ) as any as S.Schema<TasksRunsAnalysisInsightCreateRequestEvidenceList>;
-
-/** * `environment_failure` - environment_failure * `missing_tool` - missing_tool * `verbose_output` - verbose_output * `redundant_work` - redundant_work * `missing_capability` - missing_capability * `instruction_gap` - instruction_gap * `wasted_retry` - wasted_retry * `other` - other */
-export type TaskRunAnalysisInsightRequestCategoryEnum =
-  | "environment_failure"
-  | "missing_tool"
-  | "verbose_output"
-  | "redundant_work"
-  | "missing_capability"
-  | "instruction_gap"
-  | "wasted_retry"
-  | "other";
-export const TaskRunAnalysisInsightRequestCategoryEnum = /*@__PURE__*/ S.String;
-
-export interface TaskAnalysisWastedEffort {
-  /** Wasted tool calls, counted from the log. */
-  tool_calls?: number;
-  /** Wall-clock seconds across the wasted span. */
-  seconds?: number;
-  /** Token delta across the wasted span. */
-  tokens?: number;
-  /** Sum of tool-output sizes across the wasted span. */
-  output_bytes?: number;
-}
-export const TaskAnalysisWastedEffort = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    tool_calls: S.optional(S.Number),
-    seconds: S.optional(S.Number),
-    tokens: S.optional(S.Number),
-    output_bytes: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "TaskAnalysisWastedEffort",
-}) as any as S.Schema<TaskAnalysisWastedEffort>;
-
-/** * `every_run_in_this_repo` - every_run_in_this_repo * `runs_touching_this_area` - runs_touching_this_area * `one_off` - one_off */
-export type RecurrenceEnum =
-  | "every_run_in_this_repo"
-  | "runs_touching_this_area"
-  | "one_off";
-export const RecurrenceEnum = /*@__PURE__*/ S.String;
-
-/** * `directly_observed` - directly_observed * `inferred` - inferred */
-export type ConfidenceBasisEnum = "directly_observed" | "inferred";
-export const ConfidenceBasisEnum = /*@__PURE__*/ S.String;
-
-/** Single-line commands only; these may become image build steps. */
-export type TaskAnalysisSuggestedFixSetupCommandsList = Array<string>;
-export const TaskAnalysisSuggestedFixSetupCommandsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<TaskAnalysisSuggestedFixSetupCommandsList>;
-
-/** Services the fix needs available. */
-export type TaskAnalysisSuggestedFixRequiredServicesList = Array<string>;
-export const TaskAnalysisSuggestedFixRequiredServicesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<TaskAnalysisSuggestedFixRequiredServicesList>;
-
-/** Environment variable names only, never values. */
-export type TaskAnalysisSuggestedFixEnvVarNamesList = Array<string>;
-export const TaskAnalysisSuggestedFixEnvVarNamesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<TaskAnalysisSuggestedFixEnvVarNamesList>;
-
-export interface TaskAnalysisSuggestedFix {
-  /** The specific change to make. */
-  change: string;
-  /** A checkable condition confirming the fix worked. */
-  done_when: string;
-  /** Single-line commands only; these may become image build steps. */
-  setup_commands?: TaskAnalysisSuggestedFixSetupCommandsList;
-  /** Services the fix needs available. */
-  required_services?: TaskAnalysisSuggestedFixRequiredServicesList;
-  /** Environment variable names only, never values. */
-  env_var_names?: TaskAnalysisSuggestedFixEnvVarNamesList;
-}
-export const TaskAnalysisSuggestedFix = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    change: S.String,
-    done_when: S.String,
-    setup_commands: S.optional(TaskAnalysisSuggestedFixSetupCommandsList),
-    required_services: S.optional(TaskAnalysisSuggestedFixRequiredServicesList),
-    env_var_names: S.optional(TaskAnalysisSuggestedFixEnvVarNamesList),
-  }),
-).annotate({
-  identifier: "TaskAnalysisSuggestedFix",
-}) as any as S.Schema<TaskAnalysisSuggestedFix>;
-
-export interface TasksRunsAnalysisInsightCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  task_id: string;
-  id: string;
-  /** Only for a run with zero findings; never combined with a finding. * `run_was_efficient` - run_was_efficient * `too_short_to_judge` - too_short_to_judge * `insufficient_visibility` - insufficient_visibility */
-  no_findings_reason?: NoFindingsReasonEnum | (string & {});
-  /** What happened, 1-3 sentences. */
-  observation?: string;
-  /** Quotes from the analysed log backing the observation. */
-  evidence?: TasksRunsAnalysisInsightCreateRequestEvidenceList;
-  /** How often this happened. */
-  occurrence_count?: number;
-  /** The kind of inefficiency observed. * `environment_failure` - environment_failure * `missing_tool` - missing_tool * `verbose_output` - verbose_output * `redundant_work` - redundant_work * `missing_capability` - missing_capability * `instruction_gap` - instruction_gap * `wasted_retry` - wasted_retry * `other` - other */
-  category?: TaskRunAnalysisInsightRequestCategoryEnum | (string & {});
-  /** Required when category is 'other'. */
-  other_justification?: string;
-  /** Effort measured from the log, never estimated. */
-  wasted_effort?: TaskAnalysisWastedEffort;
-  /** How widely this is expected to recur. * `every_run_in_this_repo` - every_run_in_this_repo * `runs_touching_this_area` - runs_touching_this_area * `one_off` - one_off */
-  recurrence?: RecurrenceEnum | (string & {});
-  /** How the finding was established. * `directly_observed` - directly_observed * `inferred` - inferred */
-  confidence_basis?: ConfidenceBasisEnum | (string & {});
-  /** The fix the finding argues for. */
-  suggested_fix?: TaskAnalysisSuggestedFix;
-}
-export const TasksRunsAnalysisInsightCreateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      task_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-      no_findings_reason: S.optional(NoFindingsReasonEnum),
-      observation: S.optional(S.String),
-      evidence: S.optional(TasksRunsAnalysisInsightCreateRequestEvidenceList),
-      occurrence_count: S.optional(S.Number),
-      category: S.optional(TaskRunAnalysisInsightRequestCategoryEnum),
-      other_justification: S.optional(S.String),
-      wasted_effort: S.optional(TaskAnalysisWastedEffort),
-      recurrence: S.optional(RecurrenceEnum),
-      confidence_basis: S.optional(ConfidenceBasisEnum),
-      suggested_fix: S.optional(TaskAnalysisSuggestedFix),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/analysis-insight/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "TasksRunsAnalysisInsightCreateRequest",
-}) as any as S.Schema<TasksRunsAnalysisInsightCreateRequest>;
-
-export interface TaskRunAnalysisInsightResponse {
-  /** Zero-based position of the stored finding on the run. */
-  insight_index: number;
-}
-export const TaskRunAnalysisInsightResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    insight_index: S.Number,
-  }),
-).annotate({
-  identifier: "TaskRunAnalysisInsightResponse",
-}) as any as S.Schema<TaskRunAnalysisInsightResponse>;
-
-export interface TasksRunsAnalyzeCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  task_id: string;
-  id: string;
-}
-export const TasksRunsAnalyzeCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    task_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/analyze/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "TasksRunsAnalyzeCreateRequest",
-}) as any as S.Schema<TasksRunsAnalyzeCreateRequest>;
-
-export interface TaskRunAnalyzeResponse {
-  /** Id of the analysis task to navigate to. */
-  analysis_task_id: string;
-  /** True when a new analysis task was created; false when an existing analysis for this run was returned. */
-  created: boolean;
-}
-export const TaskRunAnalyzeResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    analysis_task_id: S.String,
-    created: S.Boolean,
-  }),
-).annotate({
-  identifier: "TaskRunAnalyzeResponse",
-}) as any as S.Schema<TaskRunAnalyzeResponse>;
-
-export type TasksRunsAppendLogCreateRequestEntriesItemMap = {
-  [key: string]: unknown | undefined;
-};
-export const TasksRunsAppendLogCreateRequestEntriesItemMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<TasksRunsAppendLogCreateRequestEntriesItemMap>;
-
-/** Array of log entry dictionaries to append */
-export type TasksRunsAppendLogCreateRequestEntriesList =
-  Array<TasksRunsAppendLogCreateRequestEntriesItemMap>;
-export const TasksRunsAppendLogCreateRequestEntriesList = /*@__PURE__*/ S.Array(
-  TasksRunsAppendLogCreateRequestEntriesItemMap,
-) as any as S.Schema<TasksRunsAppendLogCreateRequestEntriesList>;
-
-export interface TasksRunsAppendLogCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  task_id: string;
-  id: string;
-  /** Array of log entry dictionaries to append */
-  entries?: TasksRunsAppendLogCreateRequestEntriesList;
-}
-export const TasksRunsAppendLogCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    task_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    entries: S.optional(TasksRunsAppendLogCreateRequestEntriesList),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/append_log/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "TasksRunsAppendLogCreateRequest",
-}) as any as S.Schema<TasksRunsAppendLogCreateRequest>;
-
-/** * `plan` - plan * `context` - context * `reference` - reference * `output` - output * `artifact` - artifact * `tree_snapshot` - tree_snapshot * `user_attachment` - user_attachment * `skill_bundle` - skill_bundle */
-export type TaskRunArtifactTypeEnum =
-  | "plan"
-  | "context"
-  | "reference"
-  | "output"
-  | "artifact"
-  | "tree_snapshot"
-  | "user_attachment"
-  | "skill_bundle";
-export const TaskRunArtifactTypeEnum = /*@__PURE__*/ S.String;
-
-/** * `utf-8` - utf-8 * `base64` - base64 */
-export type ContentEncodingEnum = "utf-8" | "base64";
-export const ContentEncodingEnum = /*@__PURE__*/ S.String;
-
-export interface TaskRunArtifactUpload {
-  /** File name to associate with the artifact */
-  name?: string;
-  /** Classification for the artifact * `plan` - plan * `context` - context * `reference` - reference * `output` - output * `artifact` - artifact * `tree_snapshot` - tree_snapshot * `user_attachment` - user_attachment * `skill_bundle` - skill_bundle */
-  type?: TaskRunArtifactTypeEnum | (string & {});
-  /** Optional source label for the artifact, such as agent_output or user_attachment */
-  source?: string;
-  /** Artifact contents encoded according to content_encoding */
-  content?: string;
-  /** Encoding used for content. Use base64 for binary files and utf-8 for text payloads. * `utf-8` - utf-8 * `base64` - base64 */
-  content_encoding?: ContentEncodingEnum | (string & {});
-  /** Optional MIME type for the artifact */
-  content_type?: string;
-  /** Skill bundle metadata, required when the artifact type is skill_bundle. */
-  metadata?: TaskRunSkillBundleMetadata;
-}
-export const TaskRunArtifactUpload = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    type: S.optional(TaskRunArtifactTypeEnum),
-    source: S.optional(S.String),
-    content: S.optional(S.String),
-    content_encoding: S.optional(ContentEncodingEnum),
-    content_type: S.optional(S.String),
-    metadata: S.optional(TaskRunSkillBundleMetadata),
-  }),
-).annotate({
-  identifier: "TaskRunArtifactUpload",
-}) as any as S.Schema<TaskRunArtifactUpload>;
-
-/** Array of artifacts to upload */
-export type TasksRunsArtifactsCreateRequestArtifactsList =
-  Array<TaskRunArtifactUpload>;
-export const TasksRunsArtifactsCreateRequestArtifactsList =
-  /*@__PURE__*/ S.Array(
-    TaskRunArtifactUpload,
-  ) as any as S.Schema<TasksRunsArtifactsCreateRequestArtifactsList>;
-
-export interface TasksRunsArtifactsCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  task_id: string;
-  id: string;
-  /** Array of artifacts to upload */
-  artifacts?: TasksRunsArtifactsCreateRequestArtifactsList;
-}
-export const TasksRunsArtifactsCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    task_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    artifacts: S.optional(TasksRunsArtifactsCreateRequestArtifactsList),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/artifacts/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "TasksRunsArtifactsCreateRequest",
-}) as any as S.Schema<TasksRunsArtifactsCreateRequest>;
-
-/** Updated list of artifacts on the run */
-export type TaskRunArtifactsUploadResponseArtifactsList =
-  Array<TaskRunArtifactResponse>;
-export const TaskRunArtifactsUploadResponseArtifactsList =
-  /*@__PURE__*/ S.Array(
-    TaskRunArtifactResponse,
-  ) as any as S.Schema<TaskRunArtifactsUploadResponseArtifactsList>;
-
-export interface TaskRunArtifactsUploadResponse {
-  /** Updated list of artifacts on the run */
-  artifacts?: TaskRunArtifactsUploadResponseArtifactsList;
-}
-export const TaskRunArtifactsUploadResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    artifacts: S.optional(TaskRunArtifactsUploadResponseArtifactsList),
-  }),
-).annotate({
-  identifier: "TaskRunArtifactsUploadResponse",
-}) as any as S.Schema<TaskRunArtifactsUploadResponse>;
-
-/** Manifest ids of the artifacts to update. Pass every version of a file together so the whole file is dismissed rather than a single upload of it. */
-export type TasksRunsArtifactsDismissCreateRequestArtifactIdsList =
-  Array<string>;
-export const TasksRunsArtifactsDismissCreateRequestArtifactIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<TasksRunsArtifactsDismissCreateRequestArtifactIdsList>;
-
-export interface TasksRunsArtifactsDismissCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  task_id: string;
-  id: string;
-  /** Manifest ids of the artifacts to update. Pass every version of a file together so the whole file is dismissed rather than a single upload of it. */
-  artifact_ids: TasksRunsArtifactsDismissCreateRequestArtifactIdsList;
-  /** True to hide the artifacts from clients, false to show them again. */
-  dismissed?: boolean;
-}
-export const TasksRunsArtifactsDismissCreateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      task_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-      artifact_ids: TasksRunsArtifactsDismissCreateRequestArtifactIdsList,
-      dismissed: S.optional(S.Boolean),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/artifacts/dismiss/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "TasksRunsArtifactsDismissCreateRequest",
-}) as any as S.Schema<TasksRunsArtifactsDismissCreateRequest>;
-
-/** Updated list of artifacts on the run */
-export type TaskRunArtifactsDismissResponseArtifactsList =
-  Array<TaskRunArtifactResponse>;
-export const TaskRunArtifactsDismissResponseArtifactsList =
-  /*@__PURE__*/ S.Array(
-    TaskRunArtifactResponse,
-  ) as any as S.Schema<TaskRunArtifactsDismissResponseArtifactsList>;
-
-export interface TaskRunArtifactsDismissResponse {
-  /** Updated list of artifacts on the run */
-  artifacts: TaskRunArtifactsDismissResponseArtifactsList;
-}
-export const TaskRunArtifactsDismissResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    artifacts: TaskRunArtifactsDismissResponseArtifactsList,
-  }),
-).annotate({
-  identifier: "TaskRunArtifactsDismissResponse",
-}) as any as S.Schema<TaskRunArtifactsDismissResponse>;
 
 export interface TasksRunsArtifactsDownloadCreateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -2765,122 +4531,6 @@ export const TaskRunArtifactsPrepareUploadResponse = /*@__PURE__*/ S.suspend(
   identifier: "TaskRunArtifactsPrepareUploadResponse",
 }) as any as S.Schema<TaskRunArtifactsPrepareUploadResponse>;
 
-export interface TasksRunsArtifactsPresignCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  task_id: string;
-  id: string;
-  /** S3 storage path returned in the artifact manifest */
-  storage_path?: string;
-}
-export const TasksRunsArtifactsPresignCreateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      task_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-      storage_path: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/artifacts/presign/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "TasksRunsArtifactsPresignCreateRequest",
-}) as any as S.Schema<TasksRunsArtifactsPresignCreateRequest>;
-
-export interface TaskRunArtifactPresignResponse {
-  /** Presigned URL for downloading the artifact */
-  url?: string;
-  /** URL expiry in seconds */
-  expires_in?: number;
-}
-export const TaskRunArtifactPresignResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    url: S.optional(S.String),
-    expires_in: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "TaskRunArtifactPresignResponse",
-}) as any as S.Schema<TaskRunArtifactPresignResponse>;
-
-export interface TaskRunPostHogReference {
-  /** Fallback display name for the referenced object. */
-  name: string;
-  /** PostHog object kind used to resolve the reference. * `insight` - insight * `hogql` - hogql * `dashboard` - dashboard * `error` - error * `replay` - replay * `flag` - flag * `experiment` - experiment * `survey` - survey * `ticket` - ticket * `trace` - trace * `eval` - eval * `event` - event * `cohort` - cohort * `action` - action * `person` - person */
-  object_kind: ObjectKindEnum | (string & {});
-  /** Exact PostHog object identifier, flag key, event name, or SQL query. */
-  object_id: string;
-  /** Stable identifier of the completed assistant message containing the reference. */
-  source_message_id: string;
-}
-export const TaskRunPostHogReference = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-    object_kind: ObjectKindEnum,
-    object_id: S.String,
-    source_message_id: S.String,
-  }),
-).annotate({
-  identifier: "TaskRunPostHogReference",
-}) as any as S.Schema<TaskRunPostHogReference>;
-
-/** PostHog object references extracted from one completed assistant message. */
-export type TasksRunsArtifactsReferencesCreateRequestReferencesList =
-  Array<TaskRunPostHogReference>;
-export const TasksRunsArtifactsReferencesCreateRequestReferencesList =
-  /*@__PURE__*/ S.Array(
-    TaskRunPostHogReference,
-  ) as any as S.Schema<TasksRunsArtifactsReferencesCreateRequestReferencesList>;
-
-export interface TasksRunsArtifactsReferencesCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  task_id: string;
-  id: string;
-  /** PostHog object references extracted from one completed assistant message. */
-  references: TasksRunsArtifactsReferencesCreateRequestReferencesList;
-}
-export const TasksRunsArtifactsReferencesCreateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      task_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-      references: TasksRunsArtifactsReferencesCreateRequestReferencesList,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/artifacts/references/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "TasksRunsArtifactsReferencesCreateRequest",
-  }) as any as S.Schema<TasksRunsArtifactsReferencesCreateRequest>;
-
-/** Updated list of artifacts on the run. */
-export type TaskRunPostHogReferencesResponseArtifactsList =
-  Array<TaskRunArtifactResponse>;
-export const TaskRunPostHogReferencesResponseArtifactsList =
-  /*@__PURE__*/ S.Array(
-    TaskRunArtifactResponse,
-  ) as any as S.Schema<TaskRunPostHogReferencesResponseArtifactsList>;
-
-export interface TaskRunPostHogReferencesResponse {
-  /** Updated list of artifacts on the run. */
-  artifacts: TaskRunPostHogReferencesResponseArtifactsList;
-}
-export const TaskRunPostHogReferencesResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    artifacts: TaskRunPostHogReferencesResponseArtifactsList,
-  }),
-).annotate({
-  identifier: "TaskRunPostHogReferencesResponse",
-}) as any as S.Schema<TaskRunPostHogReferencesResponse>;
-
 export interface TasksRunsCancelCreateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
@@ -2908,308 +4558,6 @@ export const TasksRunsCancelCreateRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "TasksRunsCancelCreateRequest",
 }) as any as S.Schema<TasksRunsCancelCreateRequest>;
-
-export interface TasksRunsClearConversationCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  task_id: string;
-  id: string;
-}
-export const TasksRunsClearConversationCreateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      task_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/clear_conversation/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "TasksRunsClearConversationCreateRequest",
-}) as any as S.Schema<TasksRunsClearConversationCreateRequest>;
-
-/** * `2.0` - 2.0 */
-export type JsonrpcEnum = "2.0";
-export const JsonrpcEnum = /*@__PURE__*/ S.String;
-
-/** * `user_message` - user_message * `cancel` - cancel * `close` - close * `permission_response` - permission_response * `set_config_option` - set_config_option * `mcp_response` - mcp_response * `pi/rpc` - pi/rpc * `queue_get` - queue_get * `queue_clear` - queue_clear * `side_question` - side_question */
-export type TaskRunCommandRequestMethodEnum =
-  | "user_message"
-  | "cancel"
-  | "close"
-  | "permission_response"
-  | "set_config_option"
-  | "mcp_response"
-  | "pi/rpc"
-  | "queue_get"
-  | "queue_clear"
-  | "side_question";
-export const TaskRunCommandRequestMethodEnum = /*@__PURE__*/ S.String;
-
-/** Parameters for the command */
-export type TasksRunsCommandCreateRequestParamsMap = {
-  [key: string]: unknown | undefined;
-};
-export const TasksRunsCommandCreateRequestParamsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<TasksRunsCommandCreateRequestParamsMap>;
-
-export interface TasksRunsCommandCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  task_id: string;
-  id: string;
-  /** JSON-RPC version, must be '2.0' * `2.0` - 2.0 */
-  jsonrpc?: JsonrpcEnum | (string & {});
-  /** Command method to execute on the agent server * `user_message` - user_message * `cancel` - cancel * `close` - close * `permission_response` - permission_response * `set_config_option` - set_config_option * `mcp_response` - mcp_response * `pi/rpc` - pi/rpc * `queue_get` - queue_get * `queue_clear` - queue_clear * `side_question` - side_question */
-  method?: TaskRunCommandRequestMethodEnum | (string & {});
-  /** Parameters for the command */
-  params?: TasksRunsCommandCreateRequestParamsMap;
-}
-export const TasksRunsCommandCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    task_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    jsonrpc: S.optional(JsonrpcEnum),
-    method: S.optional(TaskRunCommandRequestMethodEnum),
-    params: S.optional(TasksRunsCommandCreateRequestParamsMap),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/command/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "TasksRunsCommandCreateRequest",
-}) as any as S.Schema<TasksRunsCommandCreateRequest>;
-
-/** Error details on failure */
-export type TaskRunCommandResponseErrorMap = {
-  [key: string]: unknown | undefined;
-};
-export const TaskRunCommandResponseErrorMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<TaskRunCommandResponseErrorMap>;
-
-/** Response from the agent server command endpoint. */
-export interface TaskRunCommandResponse {
-  /** JSON-RPC version */
-  jsonrpc?: string;
-  /** Request ID echoed back (string or number) */
-  id?: unknown;
-  /** Command result on success */
-  result?: unknown;
-  /** Error details on failure */
-  error?: TaskRunCommandResponseErrorMap;
-}
-export const TaskRunCommandResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    jsonrpc: S.optional(S.String),
-    id: S.optional(S.Unknown),
-    result: S.optional(S.Unknown),
-    error: S.optional(TaskRunCommandResponseErrorMap),
-  }),
-).annotate({
-  identifier: "TaskRunCommandResponse",
-}) as any as S.Schema<TaskRunCommandResponse>;
-
-export interface TasksRunsConnectionTokenRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  task_id: string;
-  id: string;
-}
-export const TasksRunsConnectionTokenRetrieveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      task_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/connection_token/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "TasksRunsConnectionTokenRetrieveRequest",
-}) as any as S.Schema<TasksRunsConnectionTokenRetrieveRequest>;
-
-/** Response containing a JWT token for direct sandbox connection */
-export interface ConnectionTokenResponse {
-  /** JWT token for authenticating with the sandbox */
-  token?: string;
-}
-export const ConnectionTokenResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    token: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ConnectionTokenResponse",
-}) as any as S.Schema<ConnectionTokenResponse>;
-
-/** Local url-based MCP servers from the creating client (PostHog Desktop) to make available inside the cloud sandbox. Header values are treated as credentials: stored encrypted and never returned by the API. */
-export type TasksRunsCreateRequestImportedMcpServersList =
-  Array<ImportedMcpServer>;
-export const TasksRunsCreateRequestImportedMcpServersList =
-  /*@__PURE__*/ S.Array(
-    ImportedMcpServer,
-  ) as any as S.Schema<TasksRunsCreateRequestImportedMcpServersList>;
-
-/** Names of desktop-only MCP servers the creating client (PostHog Desktop) relays into the cloud sandbox over the durable event/command channel. Names only — the server configuration (command, env, URL, headers) never crosses the wire. */
-export type TasksRunsCreateRequestRelayedMcpServersList =
-  Array<RelayedMcpServer>;
-export const TasksRunsCreateRequestRelayedMcpServersList =
-  /*@__PURE__*/ S.Array(
-    RelayedMcpServer,
-  ) as any as S.Schema<TasksRunsCreateRequestRelayedMcpServersList>;
-
-/** * `local` - local * `cloud` - cloud */
-export type TaskRunBootstrapCreateRequestEnvironmentEnum = "local" | "cloud";
-export const TaskRunBootstrapCreateRequestEnvironmentEnum =
-  /*@__PURE__*/ S.String;
-
-export interface TasksRunsCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  task_id: string;
-  /** Local url-based MCP servers from the creating client (PostHog Desktop) to make available inside the cloud sandbox. Header values are treated as credentials: stored encrypted and never returned by the API. */
-  imported_mcp_servers?: TasksRunsCreateRequestImportedMcpServersList | null;
-  /** Names of desktop-only MCP servers the creating client (PostHog Desktop) relays into the cloud sandbox over the durable event/command channel. Names only — the server configuration (command, env, URL, headers) never crosses the wire. */
-  relayed_mcp_servers?: TasksRunsCreateRequestRelayedMcpServersList | null;
-  /** Execution environment for the new run. Use 'cloud' for remote sandbox runs and 'local' for desktop sessions. * `local` - local * `cloud` - cloud */
-  environment?: TaskRunBootstrapCreateRequestEnvironmentEnum | (string & {});
-  /** Execution mode: 'interactive' for user-connected runs, 'background' for autonomous runs * `interactive` - interactive * `background` - background */
-  mode?: TaskExecutionModeEnum | (string & {});
-  /** Git branch to checkout in the sandbox */
-  branch?: string | null;
-  /** Optional sandbox environment to apply for this cloud run. */
-  sandbox_environment_id?: string;
-  /** Optional custom base image for this cloud run's sandbox (Modal VM runtime only); takes precedence over the environment's image. */
-  custom_image_id?: string;
-  /** Whether pull requests for this run should be authored by the user or the bot. * `user` - user * `bot` - bot */
-  pr_authorship_mode?: PrAuthorshipModeEnum | (string & {});
-  /** When true, the cloud run agent pushes its work and opens a draft pull request on completion without waiting for an explicit ask. */
-  auto_publish?: boolean | null;
-  /** High-level source that triggered this run, used to distinguish manual and signal-based cloud runs. * `manual` - manual * `signal_report` - signal_report */
-  run_source?: RunSourceEnum | (string & {});
-  /** Optional signal report identifier when this run was started from Inbox. */
-  signal_report_id?: string;
-  /** Agent runtime adapter to launch for this run. Use 'claude' for the Claude runtime or 'codex' for the Codex runtime. * `claude` - claude * `codex` - codex */
-  runtime_adapter?: RuntimeAdapterEnum | (string & {});
-  /** LLM model identifier to run in the selected runtime. */
-  model?: string;
-  /** Reasoning effort to request for models that expose an effort control. * `off` - off * `minimal` - minimal * `low` - low * `medium` - medium * `high` - high * `xhigh` - xhigh * `max` - max * `ultracode` - ultracode */
-  reasoning_effort?: TaskRunReasoningEffortEnum | (string & {});
-  /** Context window size for models that support the 1M window. * `200k` - 200k * `1m` - 1m */
-  context_window?: ContextWindowEnum | (string & {});
-  /** Enable fast mode for models that support it. */
-  fast_mode?: boolean | null;
-  /** Ephemeral GitHub user token from PostHog Desktop for user-authored cloud pull requests. */
-  github_user_token?: string;
-  /** Initial permission mode for the agent session. Claude runtimes accept PostHog permission presets like 'plan'. Codex runtimes accept native Codex modes like 'plan', 'auto', and 'read-only'. * `default` - default * `acceptEdits` - acceptEdits * `plan` - plan * `bypassPermissions` - bypassPermissions * `auto` - auto * `read-only` - read-only * `full-access` - full-access */
-  initial_permission_mode?:
-    | TaskRunBootstrapCreateRequestInitialPermissionModeEnum
-    | (string & {});
-  /** Whether rtk command-output compression is enabled for this run. Omitted or null follows the server-side default (enabled); false opts this run out. */
-  rtk_enabled?: boolean | null;
-}
-export const TasksRunsCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    task_id: S.String.pipe(T.Label()),
-    imported_mcp_servers: S.optional(
-      S.NullOr(TasksRunsCreateRequestImportedMcpServersList),
-    ),
-    relayed_mcp_servers: S.optional(
-      S.NullOr(TasksRunsCreateRequestRelayedMcpServersList),
-    ),
-    environment: S.optional(TaskRunBootstrapCreateRequestEnvironmentEnum),
-    mode: S.optional(TaskExecutionModeEnum),
-    branch: S.optional(S.NullOr(S.String)),
-    sandbox_environment_id: S.optional(S.String),
-    custom_image_id: S.optional(S.String),
-    pr_authorship_mode: S.optional(PrAuthorshipModeEnum),
-    auto_publish: S.optional(S.NullOr(S.Boolean)),
-    run_source: S.optional(RunSourceEnum),
-    signal_report_id: S.optional(S.String),
-    runtime_adapter: S.optional(RuntimeAdapterEnum),
-    model: S.optional(S.String),
-    reasoning_effort: S.optional(TaskRunReasoningEffortEnum),
-    context_window: S.optional(ContextWindowEnum),
-    fast_mode: S.optional(S.NullOr(S.Boolean)),
-    github_user_token: S.optional(S.String),
-    initial_permission_mode: S.optional(
-      TaskRunBootstrapCreateRequestInitialPermissionModeEnum,
-    ),
-    rtk_enabled: S.optional(S.NullOr(S.Boolean)),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/projects/{project_id}/tasks/{task_id}/runs/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "TasksRunsCreateRequest",
-}) as any as S.Schema<TasksRunsCreateRequest>;
-
-export interface TasksRunsListRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  task_id: string;
-  /** Number of results to return per page. */
-  limit?: number;
-  /** The initial index from which to return the results. */
-  offset?: number;
-}
-export const TasksRunsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    task_id: S.String.pipe(T.Label()),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    offset: S.optional(S.Number.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/tasks/{task_id}/runs/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "TasksRunsListRequest",
-}) as any as S.Schema<TasksRunsListRequest>;
-
-export type PaginatedTaskRunDetailDTOListResultsList = Array<TaskRunDetailDTO>;
-export const PaginatedTaskRunDetailDTOListResultsList = /*@__PURE__*/ S.Array(
-  TaskRunDetailDTO,
-) as any as S.Schema<PaginatedTaskRunDetailDTOListResultsList>;
-
-export interface PaginatedTaskRunDetailDTOList {
-  count: number;
-  next?: string | null;
-  previous?: string | null;
-  results: PaginatedTaskRunDetailDTOListResultsList;
-}
-export const PaginatedTaskRunDetailDTOList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    count: S.Number,
-    next: S.optional(S.NullOr(S.String)),
-    previous: S.optional(S.NullOr(S.String)),
-    results: PaginatedTaskRunDetailDTOListResultsList,
-  }),
-).annotate({
-  identifier: "PaginatedTaskRunDetailDTOList",
-}) as any as S.Schema<PaginatedTaskRunDetailDTOList>;
 
 /** Insight query JSON to render ad hoc, e.g. {"kind": "InsightVizNode", "source": {"kind": "TrendsQuery", ...}}. SQL queries (DataVisualizationNode, HogQLQuery) are not supported yet. Provide exactly one of query or insight_id. */
 export type TasksRunsLivingArtifactsChartRequestQueryMap = {
@@ -3253,97 +4601,6 @@ export const TasksRunsLivingArtifactsChartRequest = /*@__PURE__*/ S.suspend(
   identifier: "TasksRunsLivingArtifactsChartRequest",
 }) as any as S.Schema<TasksRunsLivingArtifactsChartRequest>;
 
-/** * `slack_message` - slack_message * `slack_canvas` - slack_canvas * `document` - document * `spreadsheet` - spreadsheet * `dashboard` - dashboard * `file` - file * `github_pr` - github_pr */
-export type ArtifactTypeEnum =
-  | "slack_message"
-  | "slack_canvas"
-  | "document"
-  | "spreadsheet"
-  | "dashboard"
-  | "file"
-  | "github_pr";
-export const ArtifactTypeEnum = /*@__PURE__*/ S.String;
-
-/** * `slack_message` - slack_message * `slack_canvas` - slack_canvas * `slack_file` - slack_file * `document_connector` - document_connector * `github_pr` - github_pr */
-export type AdapterEnum =
-  | "slack_message"
-  | "slack_canvas"
-  | "slack_file"
-  | "document_connector"
-  | "github_pr";
-export const AdapterEnum = /*@__PURE__*/ S.String;
-
-/** * `active` - active * `failed` - failed */
-export type TaskArtifactStatusEnum = "active" | "failed";
-export const TaskArtifactStatusEnum = /*@__PURE__*/ S.String;
-
-export type TaskRunLivingArtifactResponseVersionsItemMap = {
-  [key: string]: unknown | undefined;
-};
-export const TaskRunLivingArtifactResponseVersionsItemMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<TaskRunLivingArtifactResponseVersionsItemMap>;
-
-/** Chronological version records for this artifact. */
-export type TaskRunLivingArtifactResponseVersionsList =
-  Array<TaskRunLivingArtifactResponseVersionsItemMap>;
-export const TaskRunLivingArtifactResponseVersionsList = /*@__PURE__*/ S.Array(
-  TaskRunLivingArtifactResponseVersionsItemMap,
-) as any as S.Schema<TaskRunLivingArtifactResponseVersionsList>;
-
-export interface TaskRunLivingArtifactResponse {
-  /** Stable living artifact id. Use this id when editing the artifact. */
-  id: string;
-  /** Task id this living artifact belongs to. */
-  task_id: string;
-  /** Task run id that created or currently owns this artifact. */
-  run_id: string;
-  /** Project id that owns this artifact. */
-  team_id: number;
-  /** Human-readable artifact name. */
-  name: string;
-  /** Artifact format or delivery surface, such as document, spreadsheet, slack_canvas, file, or slack_message. * `slack_message` - slack_message * `slack_canvas` - slack_canvas * `document` - document * `spreadsheet` - spreadsheet * `dashboard` - dashboard * `file` - file * `github_pr` - github_pr */
-  artifact_type: ArtifactTypeEnum;
-  /** Adapter that currently stores or edits the artifact. * `slack_message` - slack_message * `slack_canvas` - slack_canvas * `slack_file` - slack_file * `document_connector` - document_connector * `github_pr` - github_pr */
-  adapter: AdapterEnum;
-  /** Current registry status for the artifact. * `active` - active * `failed` - failed */
-  status: TaskArtifactStatusEnum;
-  /** Adapter-specific location, such as S3 key or Slack canvas id. */
-  location: unknown;
-  /** Adapter-specific metadata for external storage and source tracking. */
-  metadata: unknown;
-  /** Current version number for the artifact. */
-  current_version: number;
-  /** Chronological version records for this artifact. */
-  versions: TaskRunLivingArtifactResponseVersionsList;
-  /** ISO timestamp when created. */
-  created_at?: string | null;
-  /** ISO timestamp when last updated. */
-  updated_at?: string | null;
-}
-export const TaskRunLivingArtifactResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    task_id: S.String,
-    run_id: S.String,
-    team_id: S.Number,
-    name: S.String,
-    artifact_type: ArtifactTypeEnum,
-    adapter: AdapterEnum,
-    status: TaskArtifactStatusEnum,
-    location: S.Unknown,
-    metadata: S.Unknown,
-    current_version: S.Number,
-    versions: TaskRunLivingArtifactResponseVersionsList,
-    created_at: S.optional(S.NullOr(S.String)),
-    updated_at: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({
-  identifier: "TaskRunLivingArtifactResponse",
-}) as any as S.Schema<TaskRunLivingArtifactResponse>;
-
 export interface TaskRunLivingArtifactChartResponse {
   /** The living artifact registered for delivery. */
   artifact: TaskRunLivingArtifactResponse;
@@ -3361,178 +4618,6 @@ export const TaskRunLivingArtifactChartResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "TaskRunLivingArtifactChartResponse",
 }) as any as S.Schema<TaskRunLivingArtifactChartResponse>;
-
-/** Optional metadata to persist with the living artifact. */
-export type TasksRunsLivingArtifactsCreateRequestMetadataMap = {
-  [key: string]: unknown | undefined;
-};
-export const TasksRunsLivingArtifactsCreateRequestMetadataMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<TasksRunsLivingArtifactsCreateRequestMetadataMap>;
-
-export interface TasksRunsLivingArtifactsCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  task_id: string;
-  run_id: string;
-  /** Human-readable artifact name, used as the title. */
-  name: string;
-  /** Artifact format or delivery surface to create, such as document, spreadsheet, slack_canvas, or file. * `slack_message` - slack_message * `slack_canvas` - slack_canvas * `document` - document * `spreadsheet` - spreadsheet * `dashboard` - dashboard * `file` - file * `github_pr` - github_pr */
-  artifact_type?: ArtifactTypeEnum | (string & {});
-  /** Optional preferred external storage or delivery adapter. Slack adapters deliver into the mapped Slack thread; omitted Slack-run documents use Slack canvas, omitted Slack-run files and spreadsheets use Slack file upload, and document_connector uses a connected external document provider. * `slack_message` - slack_message * `slack_canvas` - slack_canvas * `slack_file` - slack_file * `document_connector` - document_connector * `github_pr` - github_pr */
-  adapter?: AdapterEnum | (string & {});
-  /** Markdown or text content for the initial artifact version. */
-  content?: string;
-  /** Base64-encoded binary content for Slack file uploads or other external adapters. Prefer source_artifact_id or source_storage_path for large files that were already uploaded as run output artifacts. */
-  content_base64?: string;
-  /** MIME type for content_base64 or source-backed artifacts, such as application/vnd.openxmlformats-officedocument.spreadsheetml.sheet. */
-  content_type?: string;
-  /** Existing run artifact id to use as the initial content source. Only agent-uploaded output artifacts are accepted; internal run artifacts are rejected. */
-  source_artifact_id?: string;
-  /** Existing run artifact storage_path to use as the initial content source. Only agent-uploaded output artifacts are accepted; internal run artifacts are rejected. */
-  source_storage_path?: string;
-  /** Optional metadata to persist with the living artifact. */
-  metadata?: TasksRunsLivingArtifactsCreateRequestMetadataMap;
-}
-export const TasksRunsLivingArtifactsCreateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      task_id: S.String.pipe(T.Label()),
-      run_id: S.String.pipe(T.Label()),
-      name: S.String,
-      artifact_type: S.optional(ArtifactTypeEnum),
-      adapter: S.optional(AdapterEnum),
-      content: S.optional(S.String),
-      content_base64: S.optional(S.String),
-      content_type: S.optional(S.String),
-      source_artifact_id: S.optional(S.String),
-      source_storage_path: S.optional(S.String),
-      metadata: S.optional(TasksRunsLivingArtifactsCreateRequestMetadataMap),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{run_id}/living_artifacts/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "TasksRunsLivingArtifactsCreateRequest",
-}) as any as S.Schema<TasksRunsLivingArtifactsCreateRequest>;
-
-/** Optional metadata to merge into the artifact registry record. */
-export type TasksRunsLivingArtifactsEditRequestMetadataMap = {
-  [key: string]: unknown | undefined;
-};
-export const TasksRunsLivingArtifactsEditRequestMetadataMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<TasksRunsLivingArtifactsEditRequestMetadataMap>;
-
-export interface TasksRunsLivingArtifactsEditRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  task_id: string;
-  run_id: string;
-  id: string;
-  /** Optional new human-readable artifact name. */
-  name?: string;
-  /** Markdown or text content for the next version. */
-  content?: string;
-  /** Base64-encoded binary content for the next version, used by adapters such as slack_file. */
-  content_base64?: string;
-  /** MIME type for content_base64 or source-backed edits. */
-  content_type?: string;
-  /** Existing run artifact id to use as the next version content source. Only agent-uploaded output artifacts are accepted; internal run artifacts are rejected. */
-  source_artifact_id?: string;
-  /** Existing run artifact storage_path to use as the next version content source. Only agent-uploaded output artifacts are accepted; internal run artifacts are rejected. */
-  source_storage_path?: string;
-  /** Optional metadata to merge into the artifact registry record. */
-  metadata?: TasksRunsLivingArtifactsEditRequestMetadataMap;
-}
-export const TasksRunsLivingArtifactsEditRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    task_id: S.String.pipe(T.Label()),
-    run_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    name: S.optional(S.String),
-    content: S.optional(S.String),
-    content_base64: S.optional(S.String),
-    content_type: S.optional(S.String),
-    source_artifact_id: S.optional(S.String),
-    source_storage_path: S.optional(S.String),
-    metadata: S.optional(TasksRunsLivingArtifactsEditRequestMetadataMap),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{run_id}/living_artifacts/{id}/edit/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "TasksRunsLivingArtifactsEditRequest",
-}) as any as S.Schema<TasksRunsLivingArtifactsEditRequest>;
-
-export interface TasksRunsLivingArtifactsListRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  task_id: string;
-  run_id: string;
-}
-export const TasksRunsLivingArtifactsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    task_id: S.String.pipe(T.Label()),
-    run_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{run_id}/living_artifacts/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "TasksRunsLivingArtifactsListRequest",
-}) as any as S.Schema<TasksRunsLivingArtifactsListRequest>;
-
-/** Living artifacts for this task run. */
-export type TaskRunLivingArtifactsResponseArtifactsList =
-  Array<TaskRunLivingArtifactResponse>;
-export const TaskRunLivingArtifactsResponseArtifactsList =
-  /*@__PURE__*/ S.Array(
-    TaskRunLivingArtifactResponse,
-  ) as any as S.Schema<TaskRunLivingArtifactsResponseArtifactsList>;
-
-export interface TaskRunLivingArtifactsResponse {
-  /** Living artifacts for this task run. */
-  artifacts: TaskRunLivingArtifactsResponseArtifactsList;
-}
-export const TaskRunLivingArtifactsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    artifacts: TaskRunLivingArtifactsResponseArtifactsList,
-  }),
-).annotate({
-  identifier: "TaskRunLivingArtifactsResponse",
-}) as any as S.Schema<TaskRunLivingArtifactsResponse>;
-
-export type TasksRunsLivingArtifactsListResponseBodyList =
-  Array<TaskRunLivingArtifactsResponse>;
-export const TasksRunsLivingArtifactsListResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    TaskRunLivingArtifactsResponse,
-  ) as any as S.Schema<TasksRunsLivingArtifactsListResponseBodyList>;
-
-export type TasksRunsLivingArtifactsListResponse =
-  TasksRunsLivingArtifactsListResponseBodyList;
-export const TasksRunsLivingArtifactsListResponse = /*@__PURE__*/ S.suspend(
-  () => TasksRunsLivingArtifactsListResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "TasksRunsLivingArtifactsListResponse",
-}) as any as S.Schema<TasksRunsLivingArtifactsListResponse>;
 
 export interface TasksRunsLivingArtifactsOpenRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -3629,332 +4714,6 @@ export const TaskRunLivingArtifactOpenResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "TaskRunLivingArtifactOpenResponse",
 }) as any as S.Schema<TaskRunLivingArtifactOpenResponse>;
 
-export interface TasksRunsLogsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  task_id: string;
-  id: string;
-}
-export const TasksRunsLogsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    task_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/logs/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "TasksRunsLogsRetrieveRequest",
-}) as any as S.Schema<TasksRunsLogsRetrieveRequest>;
-
-export interface TasksRunsLogsRetrieveResponse {}
-export const TasksRunsLogsRetrieveResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "TasksRunsLogsRetrieveResponse",
-}) as any as S.Schema<TasksRunsLogsRetrieveResponse>;
-
-/** * `not_started` - not_started * `queued` - queued * `in_progress` - in_progress * `completed` - completed * `failed` - failed * `cancelled` - cancelled */
-export type RunStatusEnum =
-  | "not_started"
-  | "queued"
-  | "in_progress"
-  | "completed"
-  | "failed"
-  | "cancelled";
-export const RunStatusEnum = /*@__PURE__*/ S.String;
-
-/** State keys to remove atomically before applying any state updates. */
-export type TasksRunsPartialUpdateRequestStateRemoveKeysList = Array<string>;
-export const TasksRunsPartialUpdateRequestStateRemoveKeysList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<TasksRunsPartialUpdateRequestStateRemoveKeysList>;
-
-/** State keys whose value to append to the list stored at that key, atomically under the row lock. Use instead of sending the whole list back through `state`, which loses concurrent appends to a read-modify-write race. */
-export type TasksRunsPartialUpdateRequestStateAppendMap = {
-  [key: string]: unknown | undefined;
-};
-export const TasksRunsPartialUpdateRequestStateAppendMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<TasksRunsPartialUpdateRequestStateAppendMap>;
-
-export interface TasksRunsPartialUpdateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  task_id: string;
-  id: string;
-  /** Current execution status * `not_started` - not_started * `queued` - queued * `in_progress` - in_progress * `completed` - completed * `failed` - failed * `cancelled` - cancelled */
-  status?: RunStatusEnum | (string & {});
-  /** Git branch name to associate with the task */
-  branch?: string | null;
-  /** Current stage of the run (e.g. research, plan, build) */
-  stage?: string | null;
-  /** Output from the run */
-  output?: unknown;
-  /** State of the run */
-  state?: unknown;
-  /** State keys to remove atomically before applying any state updates. */
-  state_remove_keys?: TasksRunsPartialUpdateRequestStateRemoveKeysList;
-  /** State keys whose value to append to the list stored at that key, atomically under the row lock. Use instead of sending the whole list back through `state`, which loses concurrent appends to a read-modify-write race. */
-  state_append?: TasksRunsPartialUpdateRequestStateAppendMap;
-  /** Error message if execution failed */
-  error_message?: string | null;
-}
-export const TasksRunsPartialUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    task_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    status: S.optional(RunStatusEnum),
-    branch: S.optional(S.NullOr(S.String)),
-    stage: S.optional(S.NullOr(S.String)),
-    output: S.optional(S.Unknown),
-    state: S.optional(S.Unknown),
-    state_remove_keys: S.optional(
-      TasksRunsPartialUpdateRequestStateRemoveKeysList,
-    ),
-    state_append: S.optional(TasksRunsPartialUpdateRequestStateAppendMap),
-    error_message: S.optional(S.NullOr(S.String)),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "TasksRunsPartialUpdateRequest",
-}) as any as S.Schema<TasksRunsPartialUpdateRequest>;
-
-/** Manifest ids of artifacts on the SENDING run to share (max 10). Each is copied into the target run's own artifact storage; the receiver gets an immutable snapshot. */
-export type TasksRunsPeersMessageCreateRequestArtifactIdsList = Array<string>;
-export const TasksRunsPeersMessageCreateRequestArtifactIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<TasksRunsPeersMessageCreateRequestArtifactIdsList>;
-
-export interface TasksRunsPeersMessageCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  task_id: string;
-  id: string;
-  target_run_id: string;
-  /** Plain-text message body (max 16000 chars). Delivered to the peer below a server-composed provenance envelope; send short summaries, never raw file dumps — use artifact_ids for files. */
-  content: string;
-  /** Manifest ids of artifacts on the SENDING run to share (max 10). Each is copied into the target run's own artifact storage; the receiver gets an immutable snapshot. */
-  artifact_ids?: TasksRunsPeersMessageCreateRequestArtifactIdsList;
-}
-export const TasksRunsPeersMessageCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    task_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    target_run_id: S.String.pipe(T.Label()),
-    content: S.String,
-    artifact_ids: S.optional(TasksRunsPeersMessageCreateRequestArtifactIdsList),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/peers/{target_run_id}/message/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "TasksRunsPeersMessageCreateRequest",
-}) as any as S.Schema<TasksRunsPeersMessageCreateRequest>;
-
-/** * `accepted` - accepted * `target_finished` - target_finished * `rejected` - rejected */
-export type ResultEnum = "accepted" | "target_finished" | "rejected";
-export const ResultEnum = /*@__PURE__*/ S.String;
-
-export interface TaskRunPeerMessageResponse {
-  /** Send outcome: 'accepted' (queued for delivery — not a delivery confirmation), 'target_finished' (the peer's workflow is gone), or 'rejected' (throttled or invalid). * `accepted` - accepted * `target_finished` - target_finished * `rejected` - rejected */
-  result: ResultEnum;
-  /** Human-readable explanation of the result. */
-  detail: string;
-  /** Id of the recorded peer message, when one was created for this send. */
-  message_id?: string | null;
-}
-export const TaskRunPeerMessageResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    result: ResultEnum,
-    detail: S.String,
-    message_id: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({
-  identifier: "TaskRunPeerMessageResponse",
-}) as any as S.Schema<TaskRunPeerMessageResponse>;
-
-export interface TasksRunsPeersRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  task_id: string;
-  id: string;
-}
-export const TasksRunsPeersRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    task_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/peers/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "TasksRunsPeersRetrieveRequest",
-}) as any as S.Schema<TasksRunsPeersRetrieveRequest>;
-
-/** One peer agent run visible to the requesting run (agent peer messaging). */
-export interface TaskRunPeer {
-  /** The peer run's id — the address send_agent_message targets. */
-  run_id: string;
-  /** Id of the peer run's parent task. */
-  task_id: string;
-  /** Title of the peer run's parent task. */
-  task_title: string;
-  /** Email of the user whose task the peer run belongs to. */
-  created_by_email: string | null;
-  /** Agent runtime of the peer run's task (e.g. 'pi'). */
-  runtime: string;
-  /** Model the peer run was started with, when recorded. */
-  model: string | null;
-  /** Repository the peer run works on, or null for repo-less (channel-mode) runs. */
-  repository: string | null;
-  /** Current stage of the peer run (e.g. 'build'). */
-  stage: string | null;
-  /** Run status: 'in_progress' or 'queued' (only these are listed). */
-  status: string;
-  /** Whether the peer accepts messages right now. Only in-progress runs are sendable; a queued run is listed but its workflow may not exist yet. Never infer sendability from status labels. */
-  sendable: boolean;
-  /** ISO-8601 timestamp of the peer run's last update. */
-  updated_at: string | null;
-}
-export const TaskRunPeer = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    run_id: S.String,
-    task_id: S.String,
-    task_title: S.String,
-    created_by_email: S.NullOr(S.String),
-    runtime: S.String,
-    model: S.NullOr(S.String),
-    repository: S.NullOr(S.String),
-    stage: S.NullOr(S.String),
-    status: S.String,
-    sendable: S.Boolean,
-    updated_at: S.NullOr(S.String),
-  }),
-).annotate({ identifier: "TaskRunPeer" }) as any as S.Schema<TaskRunPeer>;
-
-/** Active agent runs the requesting run may message, most recently updated first. */
-export type TaskRunPeersResponsePeersList = Array<TaskRunPeer>;
-export const TaskRunPeersResponsePeersList = /*@__PURE__*/ S.Array(
-  TaskRunPeer,
-) as any as S.Schema<TaskRunPeersResponsePeersList>;
-
-export interface TaskRunPeersResponse {
-  /** Active agent runs the requesting run may message, most recently updated first. */
-  peers: TaskRunPeersResponsePeersList;
-}
-export const TaskRunPeersResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    peers: TaskRunPeersResponsePeersList,
-  }),
-).annotate({
-  identifier: "TaskRunPeersResponse",
-}) as any as S.Schema<TaskRunPeersResponse>;
-
-export interface TasksRunsPreviewRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  task_id: string;
-  id: string;
-}
-export const TasksRunsPreviewRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    task_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/preview/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "TasksRunsPreviewRetrieveRequest",
-}) as any as S.Schema<TasksRunsPreviewRetrieveRequest>;
-
-export interface TasksRunsPreviewRetrieveResponse {}
-export const TasksRunsPreviewRetrieveResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "TasksRunsPreviewRetrieveResponse",
-}) as any as S.Schema<TasksRunsPreviewRetrieveResponse>;
-
-/** Ordered assistant text blocks. When present, the last non-empty entry is posted instead of text. */
-export type TasksRunsRelayMessageCreateRequestTextPartsList = Array<string>;
-export const TasksRunsRelayMessageCreateRequestTextPartsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<TasksRunsRelayMessageCreateRequestTextPartsList>;
-
-export interface TasksRunsRelayMessageCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  task_id: string;
-  id: string;
-  /** Joined message body. Used when text_parts is absent. */
-  text?: string;
-  /** Id of the user message this turn answers, when the agent-server echoes it. */
-  message_id?: string | null;
-  /** Ordered assistant text blocks. When present, the last non-empty entry is posted instead of text. */
-  text_parts?: TasksRunsRelayMessageCreateRequestTextPartsList;
-}
-export const TasksRunsRelayMessageCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    task_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    text: S.optional(S.String),
-    message_id: S.optional(S.NullOr(S.String)),
-    text_parts: S.optional(TasksRunsRelayMessageCreateRequestTextPartsList),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/relay_message/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "TasksRunsRelayMessageCreateRequest",
-}) as any as S.Schema<TasksRunsRelayMessageCreateRequest>;
-
-export interface TaskRunRelayMessageResponse {
-  /** Relay status: 'accepted' or 'skipped' */
-  status?: string;
-  /** Relay workflow ID when accepted */
-  relay_id?: string;
-}
-export const TaskRunRelayMessageResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(S.String),
-    relay_id: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "TaskRunRelayMessageResponse",
-}) as any as S.Schema<TaskRunRelayMessageResponse>;
-
 export interface TasksRunsResumeInCloudCreateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
@@ -3976,98 +4735,6 @@ export const TasksRunsResumeInCloudCreateRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "TasksRunsResumeInCloudCreateRequest",
 }) as any as S.Schema<TasksRunsResumeInCloudCreateRequest>;
-
-export interface TasksRunsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  task_id: string;
-  id: string;
-}
-export const TasksRunsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    task_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "TasksRunsRetrieveRequest",
-}) as any as S.Schema<TasksRunsRetrieveRequest>;
-
-export interface TasksRunsSessionLogsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  task_id: string;
-  id: string;
-  /** Only return events after this ISO8601 timestamp */
-  after?: string;
-  /** Comma-separated list of event types to include */
-  event_types?: string;
-  /** Comma-separated list of event types to exclude */
-  exclude_types?: string;
-  /** Maximum number of entries to return (default 1000, max 5000) */
-  limit?: number;
-  /** Zero-based offset into the filtered log entries */
-  offset?: number;
-}
-export const TasksRunsSessionLogsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    task_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    after: S.optional(S.String.pipe(T.Query())),
-    event_types: S.optional(S.String.pipe(T.Query())),
-    exclude_types: S.optional(S.String.pipe(T.Query())),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    offset: S.optional(S.Number.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/session_logs/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "TasksRunsSessionLogsRetrieveRequest",
-}) as any as S.Schema<TasksRunsSessionLogsRetrieveRequest>;
-
-export interface TasksRunsSessionLogsRetrieveResponse {}
-export const TasksRunsSessionLogsRetrieveResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "TasksRunsSessionLogsRetrieveResponse",
-}) as any as S.Schema<TasksRunsSessionLogsRetrieveResponse>;
-
-export interface TasksRunsSetOutputPartialUpdateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  task_id: string;
-  id: string;
-  /** Output data from the run. Validated against the task's json_schema if one is set. */
-  output?: unknown;
-}
-export const TasksRunsSetOutputPartialUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      task_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-      output: S.optional(S.Unknown),
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/set_output/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "TasksRunsSetOutputPartialUpdateRequest",
-}) as any as S.Schema<TasksRunsSetOutputPartialUpdateRequest>;
 
 /** Identifiers for run artifacts that should be attached to the next user message delivered to the sandbox. */
 export type TasksRunsStartCreateRequestPendingUserArtifactIdsList =
@@ -4106,154 +4773,6 @@ export const TasksRunsStartCreateRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "TasksRunsStartCreateRequest",
 }) as any as S.Schema<TasksRunsStartCreateRequest>;
-
-export interface TasksRunsStreamRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  task_id: string;
-  id: string;
-  /** Set to `latest` to skip the event backlog and only receive events published after connecting. */
-  start?: string;
-}
-export const TasksRunsStreamRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    task_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    start: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/stream/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "TasksRunsStreamRetrieveRequest",
-}) as any as S.Schema<TasksRunsStreamRetrieveRequest>;
-
-export interface TasksRunsStreamRetrieveResponse {}
-export const TasksRunsStreamRetrieveResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "TasksRunsStreamRetrieveResponse",
-}) as any as S.Schema<TasksRunsStreamRetrieveResponse>;
-
-export interface TasksRunsStreamTokenRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  task_id: string;
-  id: string;
-}
-export const TasksRunsStreamTokenRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    task_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/stream_token/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "TasksRunsStreamTokenRetrieveRequest",
-}) as any as S.Schema<TasksRunsStreamTokenRetrieveRequest>;
-
-/** Response containing a JWT token (and resolved base URL) for reading a task run's live event stream */
-export interface StreamReadTokenResponse {
-  /** Run-scoped JWT the browser presents to the agent-proxy to read this run's live event stream */
-  token: string;
-  /** Base URL of the agent-proxy to read the stream from when routing via the proxy is enabled for this user. Null means read from the Django endpoint directly (same-origin). The client appends the run's stream path and sends the token as a Bearer header when this is set. */
-  stream_base_url: string | null;
-}
-export const StreamReadTokenResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    token: S.String,
-    stream_base_url: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "StreamReadTokenResponse",
-}) as any as S.Schema<StreamReadTokenResponse>;
-
-export interface TasksRunsTaskSessionRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  task_id: string;
-  id: string;
-}
-export const TasksRunsTaskSessionRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    task_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/task_session/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "TasksRunsTaskSessionRetrieveRequest",
-}) as any as S.Schema<TasksRunsTaskSessionRetrieveRequest>;
-
-export interface TaskSessionResponse {
-  /** Task session identifier */
-  id: string;
-  /** Temporary URL for downloading the session */
-  download_url: string | null;
-  /** SHA-256 digest of the current session content */
-  content_sha256: string | null;
-}
-export const TaskSessionResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    download_url: S.NullOr(S.String),
-    content_sha256: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "TaskSessionResponse",
-}) as any as S.Schema<TaskSessionResponse>;
-
-export interface TasksRunsTaskSessionSyncCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  task_id: string;
-  id: string;
-}
-export const TasksRunsTaskSessionSyncCreateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      task_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/task_session_sync/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "TasksRunsTaskSessionSyncCreateRequest",
-}) as any as S.Schema<TasksRunsTaskSessionSyncCreateRequest>;
-
-export interface TaskSessionSyncResponse {
-  /** Task session identifier */
-  id: string;
-  /** SHA-256 digest of the uploaded session content */
-  content_sha256: string;
-}
-export const TaskSessionSyncResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    content_sha256: S.String,
-  }),
-).annotate({
-  identifier: "TaskSessionSyncResponse",
-}) as any as S.Schema<TaskSessionSyncResponse>;
 
 export interface TasksSearchRetrieveRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -4331,195 +4850,6 @@ export const TasksSearchRetrieveResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "TasksSearchRetrieveResponse",
 }) as any as S.Schema<TasksSearchRetrieveResponse>;
-
-export interface TasksSlackThreadContextRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Full Slack permalink to any message in the thread (e.g. https://posthog.slack.com/archives/C…/p1779956938619299). Replies inside the thread are accepted too — the `thread_ts` query param (when present) takes precedence over the in-path message ts. */
-  url: string;
-}
-export const TasksSlackThreadContextRetrieveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      url: S.String.pipe(T.Query()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/tasks/slack_thread_context/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "TasksSlackThreadContextRetrieveRequest",
-}) as any as S.Schema<TasksSlackThreadContextRetrieveRequest>;
-
-/** Slack-side identifiers and the mapping metadata for a thread → task lookup. */
-export interface SlackThreadContextThread {
-  /** Echoed input URL. */
-  url: string;
-  /** Slack channel id parsed from the URL (e.g. C0ACRAMJUAG). */
-  channel: string;
-  /** Slack thread_ts (e.g. 1779956938.619299). */
-  thread_ts: string;
-  /** Slack workspace id (e.g. T…). Null when no mapping exists yet. */
-  slack_workspace_id: string | null;
-  /** The Slack user who triggered the task. Null when no mapping exists yet. */
-  mentioning_slack_user_id: string | null;
-}
-export const SlackThreadContextThread = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    url: S.String,
-    channel: S.String,
-    thread_ts: S.String,
-    slack_workspace_id: S.NullOr(S.String),
-    mentioning_slack_user_id: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "SlackThreadContextThread",
-}) as any as S.Schema<SlackThreadContextThread>;
-
-/** The PostHog Task linked to the Slack thread. */
-export interface SlackThreadContextTask {
-  /** UUID of the Task row. */
-  id: string;
-  /** Team that owns the task. */
-  team_id: number;
-  /** Task title (typically the first ~255 chars of the Slack ask). */
-  title: string;
-  /** Resolved repository in `org/repo` form, or null if the run started without a repo. */
-  repository: string | null;
-  /** `Task.OriginProduct` (`slack` for slack-originated tasks). */
-  origin_product: string;
-  /** When the task was created (server-side timestamp). */
-  created_at: string;
-  /** Absolute URL to the task detail page in the PostHog app. */
-  url: string;
-}
-export const SlackThreadContextTask = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    team_id: S.Number,
-    title: S.String,
-    repository: S.NullOr(S.String),
-    origin_product: S.String,
-    created_at: S.String,
-    url: S.String,
-  }),
-).annotate({
-  identifier: "SlackThreadContextTask",
-}) as any as S.Schema<SlackThreadContextTask>;
-
-/** The internal sandbox run the discovery agent used to pick this run's repo. Only present when the originating mention was ambiguous (multiple candidate repos, no explicit mention) — that's the only path that spins up a research sandbox. Null otherwise. */
-export interface SlackThreadContextRepoResearch {
-  /** UUID of the internal repo-research Task. */
-  task_id: string;
-  /** UUID of the internal repo-research TaskRun. */
-  run_id: string;
-  /** Research run status, or null if the run row could not be loaded. */
-  status: string | null;
-  /** Temporal workflow id for the research sandbox run (`task-processing-<task_id>-<run_id>`, or a caller-prefixed variant). */
-  task_processing_workflow_id: string;
-  /** Full Temporal Web UI URL for the research workflow; null when `TEMPORAL_UI_HOST` is unset. */
-  task_processing_workflow_url: string | null;
-  /** Live sandbox tunnel URL for the research run, when one was attached. */
-  sandbox_url: string | null;
-  /** Absolute URL to the research task detail page (carries `?ph_debug=true`). */
-  task_view_url: string;
-  /** Presigned S3 URL for the research run's JSONL log transcript (valid ~1 hour). */
-  log_url: string | null;
-}
-export const SlackThreadContextRepoResearch = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    task_id: S.String,
-    run_id: S.String,
-    status: S.NullOr(S.String),
-    task_processing_workflow_id: S.String,
-    task_processing_workflow_url: S.NullOr(S.String),
-    sandbox_url: S.NullOr(S.String),
-    task_view_url: S.String,
-    log_url: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "SlackThreadContextRepoResearch",
-}) as any as S.Schema<SlackThreadContextRepoResearch>;
-
-/** One TaskRun and its associated Temporal workflow handles. */
-export interface SlackThreadContextRun {
-  /** UUID of the TaskRun row. */
-  id: string;
-  /** Run status (queued/in_progress/completed/failed/…). */
-  status: string;
-  /** When the run was created. */
-  created_at: string;
-  /** When the run reached a terminal state, or null while still running. */
-  completed_at: string | null;
-  /** Live sandbox tunnel URL, when one was attached. */
-  sandbox_url: string | null;
-  /** PR URL produced by the run, when one was opened. */
-  pr_url: string | null;
-  /** Error captured on terminal failure, or null on success. */
-  error_message: string | null;
-  /** Temporal workflow id for the sandbox/agent run (`task-processing-<task_id>-<run_id>`, or a caller-prefixed variant). */
-  task_processing_workflow_id: string;
-  /** Full Temporal Web UI URL for the task-processing workflow; null when `TEMPORAL_UI_HOST` is unset. */
-  task_processing_workflow_url: string | null;
-  /** Temporal workflow id of the Slack mention that dispatched this run (`posthog-code-mention-<workspace>:<event_id_or_channel:ts>`). Null for runs created before this field was persisted. */
-  mention_workflow_id: string | null;
-  /** Full Temporal Web UI URL for the mention dispatch workflow; null when unavailable. */
-  mention_workflow_url: string | null;
-  /** Absolute URL to the task detail page focused on this run. */
-  task_view_url: string;
-  /** Presigned S3 URL for the run's full JSONL log transcript (valid ~1 hour). */
-  log_url: string | null;
-  /** The discovery-agent sandbox that picked this run's repo, when the mention was ambiguous. */
-  repo_research: SlackThreadContextRepoResearch | null;
-}
-export const SlackThreadContextRun = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    status: S.String,
-    created_at: S.String,
-    completed_at: S.NullOr(S.String),
-    sandbox_url: S.NullOr(S.String),
-    pr_url: S.NullOr(S.String),
-    error_message: S.NullOr(S.String),
-    task_processing_workflow_id: S.String,
-    task_processing_workflow_url: S.NullOr(S.String),
-    mention_workflow_id: S.NullOr(S.String),
-    mention_workflow_url: S.NullOr(S.String),
-    task_view_url: S.String,
-    log_url: S.NullOr(S.String),
-    repo_research: S.NullOr(SlackThreadContextRepoResearch),
-  }),
-).annotate({
-  identifier: "SlackThreadContextRun",
-}) as any as S.Schema<SlackThreadContextRun>;
-
-/** All runs on the task, oldest first. Empty when no mapping was found. */
-export type SlackThreadContextResponseRunsList = Array<SlackThreadContextRun>;
-export const SlackThreadContextResponseRunsList = /*@__PURE__*/ S.Array(
-  SlackThreadContextRun,
-) as any as S.Schema<SlackThreadContextResponseRunsList>;
-
-/** Top-level response for the slack-thread debug endpoint. */
-export interface SlackThreadContextResponse {
-  /** Slack-side identifiers and the mapping metadata. */
-  thread: SlackThreadContextThread;
-  /** Linked PostHog Task. Null when no mapping was found for the thread. */
-  task: SlackThreadContextTask | null;
-  /** All runs on the task, oldest first. Empty when no mapping was found. */
-  runs: SlackThreadContextResponseRunsList;
-}
-export const SlackThreadContextResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    thread: SlackThreadContextThread,
-    task: S.NullOr(SlackThreadContextTask),
-    runs: SlackThreadContextResponseRunsList,
-  }),
-).annotate({
-  identifier: "SlackThreadContextResponse",
-}) as any as S.Schema<SlackThreadContextResponse>;
 
 export interface TaskStagedArtifactFinalizeUpload {
   /** Stable identifier returned by the staged prepare upload endpoint */
@@ -4732,169 +5062,6 @@ export const TaskStagedArtifactsPrepareUploadResponse = /*@__PURE__*/ S.suspend(
   identifier: "TaskStagedArtifactsPrepareUploadResponse",
 }) as any as S.Schema<TaskStagedArtifactsPrepareUploadResponse>;
 
-/** Task IDs to fetch summaries for (max 5000). Response is paginated; follow the `next` cursor to retrieve all results. */
-export type TasksSummariesCreateRequestIdsList = Array<string>;
-export const TasksSummariesCreateRequestIdsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<TasksSummariesCreateRequestIdsList>;
-
-export interface TasksSummariesCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Page size for the paginated response. */
-  limit?: number;
-  /** Offset into the result set for pagination. */
-  offset?: number;
-  /** Task IDs to fetch summaries for (max 5000). Response is paginated; follow the `next` cursor to retrieve all results. */
-  ids: TasksSummariesCreateRequestIdsList;
-}
-export const TasksSummariesCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    offset: S.optional(S.Number.pipe(T.Query())),
-    ids: TasksSummariesCreateRequestIdsList,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/projects/{project_id}/tasks/summaries/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "TasksSummariesCreateRequest",
-}) as any as S.Schema<TasksSummariesCreateRequest>;
-
-/** * `not_started` - Not Started * `queued` - Queued * `in_progress` - In Progress * `completed` - Completed * `failed` - Failed * `cancelled` - Cancelled */
-export type TaskRunStatusEnum =
-  | "not_started"
-  | "queued"
-  | "in_progress"
-  | "completed"
-  | "failed"
-  | "cancelled";
-export const TaskRunStatusEnum = /*@__PURE__*/ S.String;
-
-/** * `local` - Local * `cloud` - Cloud */
-export type TaskRunEnvironmentEnum = "local" | "cloud";
-export const TaskRunEnvironmentEnum = /*@__PURE__*/ S.String;
-
-export interface TaskRunSummary {
-  status: TaskRunStatusEnum | null;
-  environment: TaskRunEnvironmentEnum | null;
-}
-export const TaskRunSummary = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.NullOr(TaskRunStatusEnum),
-    environment: S.NullOr(TaskRunEnvironmentEnum),
-  }),
-).annotate({ identifier: "TaskRunSummary" }) as any as S.Schema<TaskRunSummary>;
-
-/** Summary response for a task — reads from a frozen ``TaskSummaryDTO``. */
-export interface TaskSummaryDTO {
-  id: string;
-  title: string;
-  repository: string | null;
-  created_at: string;
-  updated_at: string;
-  origin_product?: string;
-  latest_run?: TaskRunSummary | null;
-}
-export const TaskSummaryDTO = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    title: S.String,
-    repository: S.NullOr(S.String),
-    created_at: S.String,
-    updated_at: S.String,
-    origin_product: S.optional(S.String),
-    latest_run: S.optional(S.NullOr(TaskRunSummary)),
-  }),
-).annotate({ identifier: "TaskSummaryDTO" }) as any as S.Schema<TaskSummaryDTO>;
-
-export type PaginatedTaskSummaryDTOListResultsList = Array<TaskSummaryDTO>;
-export const PaginatedTaskSummaryDTOListResultsList = /*@__PURE__*/ S.Array(
-  TaskSummaryDTO,
-) as any as S.Schema<PaginatedTaskSummaryDTOListResultsList>;
-
-export interface PaginatedTaskSummaryDTOList {
-  count: number;
-  next?: string | null;
-  previous?: string | null;
-  results: PaginatedTaskSummaryDTOListResultsList;
-}
-export const PaginatedTaskSummaryDTOList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    count: S.Number,
-    next: S.optional(S.NullOr(S.String)),
-    previous: S.optional(S.NullOr(S.String)),
-    results: PaginatedTaskSummaryDTOListResultsList,
-  }),
-).annotate({
-  identifier: "PaginatedTaskSummaryDTOList",
-}) as any as S.Schema<PaginatedTaskSummaryDTOList>;
-
-export interface TasksThreadMessagesCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  task_id: string;
-  /** Message text. */
-  content: string;
-}
-export const TasksThreadMessagesCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    task_id: S.String.pipe(T.Label()),
-    content: S.String,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/projects/{project_id}/tasks/{task_id}/thread_messages/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "TasksThreadMessagesCreateRequest",
-}) as any as S.Schema<TasksThreadMessagesCreateRequest>;
-
-export type TaskThreadMessageDTOPayloadMap = {
-  [key: string]: unknown | undefined;
-};
-export const TaskThreadMessageDTOPayloadMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<TaskThreadMessageDTOPayloadMap>;
-
-/** Response shape for one message in a task's thread. */
-export interface TaskThreadMessageDTO {
-  id: string;
-  task: string;
-  author_kind: string;
-  event: string;
-  payload: TaskThreadMessageDTOPayloadMap;
-  content: string;
-  created_at: string;
-  author?: TaskUserBasicInfo | null;
-  forwarded_to_agent_at?: string | null;
-  forwarded_by?: TaskUserBasicInfo | null;
-}
-export const TaskThreadMessageDTO = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    task: S.String,
-    author_kind: S.String,
-    event: S.String,
-    payload: TaskThreadMessageDTOPayloadMap,
-    content: S.String,
-    created_at: S.String,
-    author: S.optional(S.NullOr(TaskUserBasicInfo)),
-    forwarded_to_agent_at: S.optional(S.NullOr(S.String)),
-    forwarded_by: S.optional(S.NullOr(TaskUserBasicInfo)),
-  }),
-).annotate({
-  identifier: "TaskThreadMessageDTO",
-}) as any as S.Schema<TaskThreadMessageDTO>;
-
 export interface TasksThreadMessagesDestroyRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
@@ -4923,56 +5090,6 @@ export const TasksThreadMessagesDestroyResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "TasksThreadMessagesDestroyResponse",
 }) as any as S.Schema<TasksThreadMessagesDestroyResponse>;
-
-export interface TasksThreadMessagesListRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  task_id: string;
-  /** Number of results to return per page. */
-  limit?: number;
-  /** The initial index from which to return the results. */
-  offset?: number;
-}
-export const TasksThreadMessagesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    task_id: S.String.pipe(T.Label()),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    offset: S.optional(S.Number.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/tasks/{task_id}/thread_messages/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "TasksThreadMessagesListRequest",
-}) as any as S.Schema<TasksThreadMessagesListRequest>;
-
-export type PaginatedTaskThreadMessageDTOListResultsList =
-  Array<TaskThreadMessageDTO>;
-export const PaginatedTaskThreadMessageDTOListResultsList =
-  /*@__PURE__*/ S.Array(
-    TaskThreadMessageDTO,
-  ) as any as S.Schema<PaginatedTaskThreadMessageDTOListResultsList>;
-
-export interface PaginatedTaskThreadMessageDTOList {
-  count: number;
-  next?: string | null;
-  previous?: string | null;
-  results: PaginatedTaskThreadMessageDTOListResultsList;
-}
-export const PaginatedTaskThreadMessageDTOList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    count: S.Number,
-    next: S.optional(S.NullOr(S.String)),
-    previous: S.optional(S.NullOr(S.String)),
-    results: PaginatedTaskThreadMessageDTOListResultsList,
-  }),
-).annotate({
-  identifier: "PaginatedTaskThreadMessageDTOList",
-}) as any as S.Schema<PaginatedTaskThreadMessageDTOList>;
 
 export type TasksThreadMessagesSendToAgentCreateRequestPayloadMap = {
   [key: string]: unknown | undefined;
@@ -5023,232 +5140,6 @@ export const TasksThreadMessagesSendToAgentCreateRequest =
   ).annotate({
     identifier: "TasksThreadMessagesSendToAgentCreateRequest",
   }) as any as S.Schema<TasksThreadMessagesSendToAgentCreateRequest>;
-
-/** GitHub repositories available to this task, each in `organization/repo` format. */
-export type TasksUpdateRequestRepositoriesList = Array<string>;
-export const TasksUpdateRequestRepositoriesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<TasksUpdateRequestRepositoriesList>;
-
-/** Run artifact ids (already uploaded to the pre-warmed Run) to attach to the forwarded first message when creation reuses that warm Run, e.g. skill bundles or file attachments. If any id is missing from the warm Run's manifest, warm reuse is skipped and the task is created cold. Ignored when no warm Run is matched. */
-export type TasksUpdateRequestPendingUserArtifactIdsList = Array<string>;
-export const TasksUpdateRequestPendingUserArtifactIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<TasksUpdateRequestPendingUserArtifactIdsList>;
-
-export interface TasksUpdateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  id: string;
-  /** Short human-readable title. Auto-generated from `description` when omitted. */
-  title?: string;
-  /** Whether the title was set by a human (vs auto-generated from the description). */
-  title_manually_set?: boolean;
-  /** Free-form description of the work to be done. Used as the prompt passed to the agent. */
-  description?: string;
-  /** PostHog product or surface that created this task (e.g. error_tracking, slack, user_created). Origins reserved for server-created agents cannot be set through this API. * `onboarding` - Onboarding * `error_tracking` - Error Tracking * `eval_clusters` - Eval Clusters * `user_created` - User Created * `slack` - Slack * `support_queue` - Support Queue * `session_summaries` - Session Summaries * `posthog_ai` - PostHog AI * `experiments` - Experiments * `signal_report` - Signal Report * `signals_scout` - Signals Scout * `support_reply` - Support Reply * `hogdesk` - HogDesk * `review_hog` - ReviewHog * `image_builder` - Image Builder * `loop` - Loop * `mcp_analytics` - MCP Analytics * `signals_chat` - Signals Chat * `task_analysis` - Task Analysis * `workflow` - Workflow */
-  origin_product?: OriginProductEnum | (string & {});
-  /** Target GitHub repository in `organization/repo` format (e.g. `posthog/posthog-js`). */
-  repository?: string | null;
-  /** GitHub repositories available to this task, each in `organization/repo` format. */
-  repositories?: TasksUpdateRequestRepositoriesList;
-  /** GitHub integration for this task. */
-  github_integration?: number | null;
-  /** User-scoped GitHub integration to use for user-authored cloud runs. */
-  github_user_integration?: string | null;
-  /** Signal report this task implements, when created from a report. */
-  signal_report?: string | null;
-  /** How the created task relates to the signal report (e.g. 'implementation', 'discussion'). Recorded as a signals task_run work-log entry; 'implementation' also opens the auto-start spend gate. Any routing-safe identifier (lowercase letters, numbers, '_', '-') is accepted except labels reserved for server-created tasks ('research', 'repo_selection', 'scout'). Non-implementation labels count toward the report's discussion task limit. */
-  signal_report_task_relationship?: string;
-  /** JSON schema used to validate the output of the task. */
-  json_schema?: unknown;
-  /** If true, the task is hidden from default list responses. */
-  archived?: boolean;
-  /** Custom prompt for CI fixes. If blank, a default prompt will be used. */
-  ci_prompt?: string | null;
-  /** Branch the user has selected for this cloud task. Write-only and not persisted on the task itself: used only to reuse a matching pre-warmed sandbox Run on creation (the branch is otherwise carried on the run). Omit to match a warm Run on the default branch. */
-  branch?: string | null;
-  /** Selected runtime adapter ('claude' or 'codex'). Write-only and not persisted on the task: used only to reuse a pre-warmed Run started on the same runtime. A value differing from the warm Run's runtime skips reuse so the task isn't silently run on the wrong runtime. * `claude` - claude * `codex` - codex */
-  runtime_adapter?: RuntimeAdapterEnum | (string & {}) | null;
-  /** Selected LLM model identifier. Write-only; used only to reuse a warm Run started on the same model. */
-  model?: string | null;
-  /** Selected reasoning effort. Write-only; used only to reuse a warm Run started on the same effort. * `low` - low * `medium` - medium * `high` - high * `xhigh` - xhigh * `max` - max * `ultracode` - ultracode */
-  reasoning_effort?: ReasoningEffortEnum | (string & {}) | null;
-  /** Selected agent permission mode. Write-only; used only to reuse a warm Run booted on the same mode. Omit to reuse a warm Run whatever mode it booted on. * `default` - default * `acceptEdits` - acceptEdits * `plan` - plan * `bypassPermissions` - bypassPermissions * `auto` - auto * `read-only` - read-only * `full-access` - full-access */
-  initial_permission_mode?:
-    | TaskRunBootstrapCreateRequestInitialPermissionModeEnum
-    | (string & {})
-    | null;
-  /** First user message to forward when creation reuses a pre-warmed Run. Write-only and not persisted on the task: lets clients deliver a message that differs from `description` (e.g. a resolved skill invocation with channel context folded in). Ignored when no warm Run is reused — cold creation takes the first message via the run start endpoint instead. */
-  pending_user_message?: string | null;
-  /** Run artifact ids (already uploaded to the pre-warmed Run) to attach to the forwarded first message when creation reuses that warm Run, e.g. skill bundles or file attachments. If any id is missing from the warm Run's manifest, warm reuse is skipped and the task is created cold. Ignored when no warm Run is matched. */
-  pending_user_artifact_ids?: TasksUpdateRequestPendingUserArtifactIdsList;
-  /** When true, the cloud run agent pushes its work and opens a draft pull request on completion without waiting for an explicit ask. Write-only and not persisted on the task: persisted into the reused warm Run's state when creation activates one, so resumes of that Run honor it. Ignored when no warm Run is reused — cold creation takes it via the run start endpoint instead. */
-  auto_publish?: boolean | null;
-  /** Channel this task is owned by (the channel it was kicked off in). */
-  channel?: string | null;
-}
-export const TasksUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    title: S.optional(S.String),
-    title_manually_set: S.optional(S.Boolean),
-    description: S.optional(S.String),
-    origin_product: S.optional(OriginProductEnum),
-    repository: S.optional(S.NullOr(S.String)),
-    repositories: S.optional(TasksUpdateRequestRepositoriesList),
-    github_integration: S.optional(S.NullOr(S.Number)),
-    github_user_integration: S.optional(S.NullOr(S.String)),
-    signal_report: S.optional(S.NullOr(S.String)),
-    signal_report_task_relationship: S.optional(S.String),
-    json_schema: S.optional(S.Unknown),
-    archived: S.optional(S.Boolean),
-    ci_prompt: S.optional(S.NullOr(S.String)),
-    branch: S.optional(S.NullOr(S.String)),
-    runtime_adapter: S.optional(S.NullOr(RuntimeAdapterEnum)),
-    model: S.optional(S.NullOr(S.String)),
-    reasoning_effort: S.optional(S.NullOr(ReasoningEffortEnum)),
-    initial_permission_mode: S.optional(
-      S.NullOr(TaskRunBootstrapCreateRequestInitialPermissionModeEnum),
-    ),
-    pending_user_message: S.optional(S.NullOr(S.String)),
-    pending_user_artifact_ids: S.optional(
-      TasksUpdateRequestPendingUserArtifactIdsList,
-    ),
-    auto_publish: S.optional(S.NullOr(S.Boolean)),
-    channel: S.optional(S.NullOr(S.String)),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/api/projects/{project_id}/tasks/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "TasksUpdateRequest",
-}) as any as S.Schema<TasksUpdateRequest>;
-
-export interface TasksUsageRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  id: string;
-}
-export const TasksUsageRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/tasks/{id}/usage/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "TasksUsageRetrieveRequest",
-}) as any as S.Schema<TasksUsageRetrieveRequest>;
-
-export interface TaskUsageResponse {
-  /** Estimated model cost attributed to this task in US dollars. */
-  token_cost_usd: number;
-  /** Estimated cloud compute cost attributed to this task in US dollars. */
-  compute_cost_usd: number;
-  /** Estimated total cost attributed to this task in US dollars. */
-  total_cost_usd: number;
-}
-export const TaskUsageResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    token_cost_usd: S.Number,
-    compute_cost_usd: S.Number,
-    total_cost_usd: S.Number,
-  }),
-).annotate({
-  identifier: "TaskUsageResponse",
-}) as any as S.Schema<TaskUsageResponse>;
-
-/** GitHub repositories to clone into the warm sandbox, each in `organization/repo` format. */
-export type TasksWarmCreateRequestRepositoriesList = Array<string>;
-export const TasksWarmCreateRequestRepositoriesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<TasksWarmCreateRequestRepositoriesList>;
-
-/** * `user_created` - user_created * `posthog_ai` - posthog_ai */
-export type WarmTaskRequestOriginProductEnum = "user_created" | "posthog_ai";
-export const WarmTaskRequestOriginProductEnum = /*@__PURE__*/ S.String;
-
-export interface TasksWarmCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Optional GitHub repository to clone, in `organization/repo` format (e.g. `posthog/posthog`). */
-  repository?: string | null;
-  /** GitHub repositories to clone into the warm sandbox, each in `organization/repo` format. */
-  repositories?: TasksWarmCreateRequestRepositoriesList;
-  /** Primary key of the team's GitHub integration to clone with when a repository is selected. */
-  github_integration?: number | null;
-  /** Branch to check out in the warm sandbox. Defaults to the repository's default branch when omitted. */
-  branch?: string | null;
-  /** Agent runtime adapter to warm the sandbox on ('claude' or 'codex'). The warm Run starts the agent on this runtime so a matching submit reuses it; a submit selecting a different runtime falls through to a cold Run instead of reusing a mismatched warm session. * `claude` - claude * `codex` - codex */
-  runtime_adapter?: RuntimeAdapterEnum | (string & {}) | null;
-  /** LLM model identifier to warm the sandbox on. A submit selecting a different model won't reuse this warm Run. */
-  model?: string | null;
-  /** Reasoning effort to warm the sandbox on for models that expose an effort control. * `low` - low * `medium` - medium * `high` - high * `xhigh` - xhigh * `max` - max * `ultracode` - ultracode */
-  reasoning_effort?: ReasoningEffortEnum | (string & {}) | null;
-  /** Optional sandbox environment to provision before the task is submitted. */
-  sandbox_environment_id?: string | null;
-  /** Optional custom base image to provision before the task is submitted; takes precedence over the environment's image. */
-  custom_image_id?: string | null;
-  /** Product the warm Run is for. Fixed when the sandbox boots — it selects the OAuth app, the quota gate, the warm-pool budget, and PR authorship — so a submit only reuses a warm born under the same origin. Defaults to the Code app. * `user_created` - user_created * `posthog_ai` - posthog_ai */
-  origin_product?: WarmTaskRequestOriginProductEnum | (string & {});
-  /** Permission mode to boot the agent session on. Read at session construction, so it cannot be changed once the sandbox is warm — a submit selecting a different mode falls through to a cold Run. Omit to take the runtime's default. * `default` - default * `acceptEdits` - acceptEdits * `plan` - plan * `bypassPermissions` - bypassPermissions * `auto` - auto * `read-only` - read-only * `full-access` - full-access */
-  initial_permission_mode?:
-    | TaskRunBootstrapCreateRequestInitialPermissionModeEnum
-    | (string & {})
-    | null;
-}
-export const TasksWarmCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    repository: S.optional(S.NullOr(S.String)),
-    repositories: S.optional(TasksWarmCreateRequestRepositoriesList),
-    github_integration: S.optional(S.NullOr(S.Number)),
-    branch: S.optional(S.NullOr(S.String)),
-    runtime_adapter: S.optional(S.NullOr(RuntimeAdapterEnum)),
-    model: S.optional(S.NullOr(S.String)),
-    reasoning_effort: S.optional(S.NullOr(ReasoningEffortEnum)),
-    sandbox_environment_id: S.optional(S.NullOr(S.String)),
-    custom_image_id: S.optional(S.NullOr(S.String)),
-    origin_product: S.optional(WarmTaskRequestOriginProductEnum),
-    initial_permission_mode: S.optional(
-      S.NullOr(TaskRunBootstrapCreateRequestInitialPermissionModeEnum),
-    ),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/projects/{project_id}/tasks/warm/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "TasksWarmCreateRequest",
-}) as any as S.Schema<TasksWarmCreateRequest>;
-
-/** Response for a successful warm request — the draft Task + idling warm Run reused on submit. */
-export interface WarmTaskResponse {
-  /** Id of the draft Task birthed for the warm Run. */
-  task_id: string;
-  /** Id of the idling warm Run. The normal create+run path reuses and activates it on submit. */
-  run_id: string;
-}
-export const WarmTaskResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    task_id: S.String,
-    run_id: S.String,
-  }),
-).annotate({
-  identifier: "WarmTaskResponse",
-}) as any as S.Schema<WarmTaskResponse>;
 
 export interface TasksWarmResumeCreateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -5305,111 +5196,1169 @@ export const WarmTaskResumeResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "WarmTaskResumeResponse",
 }) as any as S.Schema<WarmTaskResumeResponse>;
 
-export type CodeInvitesCheckAccessRetrieveError = Forbidden | PosthogOpError;
-/** Check PostHog Desktop access Compatibility endpoint for released PostHog Desktop clients. */
-export const codeInvitesCheckAccessRetrieve: API.OperationMethod<
-  CodeInvitesCheckAccessRetrieveRequest,
-  LegacyDesktopAccessResponse,
-  CodeInvitesCheckAccessRetrieveError,
+/** GitHub repositories available to this task, each in `organization/repo` format. */
+export type UpdateTaskRequestRepositoriesList = Array<string>;
+export const UpdateTaskRequestRepositoriesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<UpdateTaskRequestRepositoriesList>;
+
+/** Run artifact ids (already uploaded to the pre-warmed Run) to attach to the forwarded first message when creation reuses that warm Run, e.g. skill bundles or file attachments. If any id is missing from the warm Run's manifest, warm reuse is skipped and the task is created cold. Ignored when no warm Run is matched. */
+export type UpdateTaskRequestPendingUserArtifactIdsList = Array<string>;
+export const UpdateTaskRequestPendingUserArtifactIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<UpdateTaskRequestPendingUserArtifactIdsList>;
+
+export interface UpdateTaskRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  id: string;
+  /** Short human-readable title. Auto-generated from `description` when omitted. */
+  title?: string;
+  /** Whether the title was set by a human (vs auto-generated from the description). */
+  title_manually_set?: boolean;
+  /** Free-form description of the work to be done. Used as the prompt passed to the agent. */
+  description?: string;
+  /** PostHog product or surface that created this task (e.g. error_tracking, slack, user_created). Origins reserved for server-created agents cannot be set through this API. * `onboarding` - Onboarding * `error_tracking` - Error Tracking * `eval_clusters` - Eval Clusters * `user_created` - User Created * `slack` - Slack * `support_queue` - Support Queue * `session_summaries` - Session Summaries * `posthog_ai` - PostHog AI * `experiments` - Experiments * `signal_report` - Signal Report * `signals_scout` - Signals Scout * `scout_suggestions` - Signals Scout Suggestions * `support_reply` - Support Reply * `hogdesk` - HogDesk * `review_hog` - ReviewHog * `image_builder` - Image Builder * `loop` - Loop * `mcp_analytics` - MCP Analytics * `signals_chat` - Signals Chat * `task_analysis` - Task Analysis * `workflow` - Workflow */
+  origin_product?: TaskOriginProductEnum | (string & {});
+  /** Target GitHub repository in `organization/repo` format (e.g. `posthog/posthog-js`). */
+  repository?: string | null;
+  /** GitHub repositories available to this task, each in `organization/repo` format. */
+  repositories?: UpdateTaskRequestRepositoriesList;
+  /** GitHub integration for this task. */
+  github_integration?: number | null;
+  /** User-scoped GitHub integration to use for user-authored cloud runs. */
+  github_user_integration?: string | null;
+  /** Signal report this task implements, when created from a report. */
+  signal_report?: string | null;
+  /** How the created task relates to the signal report (e.g. 'implementation', 'discussion'). Recorded as a signals task_run work-log entry; 'implementation' also opens the auto-start spend gate. Any routing-safe identifier (lowercase letters, numbers, '_', '-') is accepted except labels reserved for server-created tasks ('research', 'repo_selection', 'scout'). Non-implementation labels count toward the report's discussion task limit. */
+  signal_report_task_relationship?: string;
+  /** JSON schema used to validate the output of the task. */
+  json_schema?: unknown;
+  /** If true, the task is hidden from default list responses. */
+  archived?: boolean;
+  /** Custom prompt for CI fixes. If blank, a default prompt will be used. */
+  ci_prompt?: string | null;
+  /** Branch the user has selected for this cloud task. Write-only and not persisted on the task itself: used only to reuse a matching pre-warmed sandbox Run on creation (the branch is otherwise carried on the run). Omit to match a warm Run on the default branch. */
+  branch?: string | null;
+  /** Selected runtime adapter ('claude' or 'codex'). Write-only and not persisted on the task: used only to reuse a pre-warmed Run started on the same runtime. A value differing from the warm Run's runtime skips reuse so the task isn't silently run on the wrong runtime. * `claude` - claude * `codex` - codex */
+  runtime_adapter?: RuntimeAdapterEnum | (string & {}) | null;
+  /** Selected LLM model identifier. Write-only; used only to reuse a warm Run started on the same model. */
+  model?: string | null;
+  /** Selected reasoning effort. Write-only; used only to reuse a warm Run started on the same effort. * `low` - low * `medium` - medium * `high` - high * `xhigh` - xhigh * `max` - max * `ultracode` - ultracode */
+  reasoning_effort?: ReasoningEffortEnum | (string & {}) | null;
+  /** Selected agent permission mode. Write-only; used only to reuse a warm Run booted on the same mode. Omit to reuse a warm Run whatever mode it booted on. * `default` - default * `acceptEdits` - acceptEdits * `plan` - plan * `bypassPermissions` - bypassPermissions * `auto` - auto * `read-only` - read-only * `full-access` - full-access */
+  initial_permission_mode?:
+    | TaskRunBootstrapCreateRequestInitialPermissionModeEnum
+    | (string & {})
+    | null;
+  /** First user message to forward when creation reuses a pre-warmed Run. Write-only and not persisted on the task: lets clients deliver a message that differs from `description` (e.g. a resolved skill invocation with channel context folded in). Ignored when no warm Run is reused — cold creation takes the first message via the run start endpoint instead. */
+  pending_user_message?: string | null;
+  /** Run artifact ids (already uploaded to the pre-warmed Run) to attach to the forwarded first message when creation reuses that warm Run, e.g. skill bundles or file attachments. If any id is missing from the warm Run's manifest, warm reuse is skipped and the task is created cold. Ignored when no warm Run is matched. */
+  pending_user_artifact_ids?: UpdateTaskRequestPendingUserArtifactIdsList;
+  /** When true, the cloud run agent pushes its work and opens a draft pull request on completion without waiting for an explicit ask. Write-only and not persisted on the task: persisted into the reused warm Run's state when creation activates one, so resumes of that Run honor it. Ignored when no warm Run is reused — cold creation takes it via the run start endpoint instead. */
+  auto_publish?: boolean | null;
+  /** Channel this task is owned by (the channel it was kicked off in). */
+  channel?: string | null;
+}
+export const UpdateTaskRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    title: S.optional(S.String),
+    title_manually_set: S.optional(S.Boolean),
+    description: S.optional(S.String),
+    origin_product: S.optional(TaskOriginProductEnum),
+    repository: S.optional(S.NullOr(S.String)),
+    repositories: S.optional(UpdateTaskRequestRepositoriesList),
+    github_integration: S.optional(S.NullOr(S.Number)),
+    github_user_integration: S.optional(S.NullOr(S.String)),
+    signal_report: S.optional(S.NullOr(S.String)),
+    signal_report_task_relationship: S.optional(S.String),
+    json_schema: S.optional(S.Unknown),
+    archived: S.optional(S.Boolean),
+    ci_prompt: S.optional(S.NullOr(S.String)),
+    branch: S.optional(S.NullOr(S.String)),
+    runtime_adapter: S.optional(S.NullOr(RuntimeAdapterEnum)),
+    model: S.optional(S.NullOr(S.String)),
+    reasoning_effort: S.optional(S.NullOr(ReasoningEffortEnum)),
+    initial_permission_mode: S.optional(
+      S.NullOr(TaskRunBootstrapCreateRequestInitialPermissionModeEnum),
+    ),
+    pending_user_message: S.optional(S.NullOr(S.String)),
+    pending_user_artifact_ids: S.optional(
+      UpdateTaskRequestPendingUserArtifactIdsList,
+    ),
+    auto_publish: S.optional(S.NullOr(S.Boolean)),
+    channel: S.optional(S.NullOr(S.String)),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/api/projects/{project_id}/tasks/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UpdateTaskRequest",
+}) as any as S.Schema<UpdateTaskRequest>;
+
+/** GitHub repositories available to this task, each in `organization/repo` format. */
+export type UpdateTasksPartialRequestRepositoriesList = Array<string>;
+export const UpdateTasksPartialRequestRepositoriesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<UpdateTasksPartialRequestRepositoriesList>;
+
+/** Run artifact ids (already uploaded to the pre-warmed Run) to attach to the forwarded first message when creation reuses that warm Run, e.g. skill bundles or file attachments. If any id is missing from the warm Run's manifest, warm reuse is skipped and the task is created cold. Ignored when no warm Run is matched. */
+export type UpdateTasksPartialRequestPendingUserArtifactIdsList = Array<string>;
+export const UpdateTasksPartialRequestPendingUserArtifactIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<UpdateTasksPartialRequestPendingUserArtifactIdsList>;
+
+export interface UpdateTasksPartialRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  id: string;
+  /** Short human-readable title. Auto-generated from `description` when omitted. */
+  title?: string;
+  /** Whether the title was set by a human (vs auto-generated from the description). */
+  title_manually_set?: boolean;
+  /** Free-form description of the work to be done. Used as the prompt passed to the agent. */
+  description?: string;
+  /** PostHog product or surface that created this task (e.g. error_tracking, slack, user_created). Origins reserved for server-created agents cannot be set through this API. * `onboarding` - Onboarding * `error_tracking` - Error Tracking * `eval_clusters` - Eval Clusters * `user_created` - User Created * `slack` - Slack * `support_queue` - Support Queue * `session_summaries` - Session Summaries * `posthog_ai` - PostHog AI * `experiments` - Experiments * `signal_report` - Signal Report * `signals_scout` - Signals Scout * `scout_suggestions` - Signals Scout Suggestions * `support_reply` - Support Reply * `hogdesk` - HogDesk * `review_hog` - ReviewHog * `image_builder` - Image Builder * `loop` - Loop * `mcp_analytics` - MCP Analytics * `signals_chat` - Signals Chat * `task_analysis` - Task Analysis * `workflow` - Workflow */
+  origin_product?: TaskOriginProductEnum | (string & {});
+  /** Target GitHub repository in `organization/repo` format (e.g. `posthog/posthog-js`). */
+  repository?: string | null;
+  /** GitHub repositories available to this task, each in `organization/repo` format. */
+  repositories?: UpdateTasksPartialRequestRepositoriesList;
+  /** GitHub integration for this task. */
+  github_integration?: number | null;
+  /** User-scoped GitHub integration to use for user-authored cloud runs. */
+  github_user_integration?: string | null;
+  /** Signal report this task implements, when created from a report. */
+  signal_report?: string | null;
+  /** How the created task relates to the signal report (e.g. 'implementation', 'discussion'). Recorded as a signals task_run work-log entry; 'implementation' also opens the auto-start spend gate. Any routing-safe identifier (lowercase letters, numbers, '_', '-') is accepted except labels reserved for server-created tasks ('research', 'repo_selection', 'scout'). Non-implementation labels count toward the report's discussion task limit. */
+  signal_report_task_relationship?: string;
+  /** JSON schema used to validate the output of the task. */
+  json_schema?: unknown;
+  /** If true, the task is hidden from default list responses. */
+  archived?: boolean;
+  /** Custom prompt for CI fixes. If blank, a default prompt will be used. */
+  ci_prompt?: string | null;
+  /** Branch the user has selected for this cloud task. Write-only and not persisted on the task itself: used only to reuse a matching pre-warmed sandbox Run on creation (the branch is otherwise carried on the run). Omit to match a warm Run on the default branch. */
+  branch?: string | null;
+  /** Selected runtime adapter ('claude' or 'codex'). Write-only and not persisted on the task: used only to reuse a pre-warmed Run started on the same runtime. A value differing from the warm Run's runtime skips reuse so the task isn't silently run on the wrong runtime. * `claude` - claude * `codex` - codex */
+  runtime_adapter?: RuntimeAdapterEnum | (string & {}) | null;
+  /** Selected LLM model identifier. Write-only; used only to reuse a warm Run started on the same model. */
+  model?: string | null;
+  /** Selected reasoning effort. Write-only; used only to reuse a warm Run started on the same effort. * `low` - low * `medium` - medium * `high` - high * `xhigh` - xhigh * `max` - max * `ultracode` - ultracode */
+  reasoning_effort?: ReasoningEffortEnum | (string & {}) | null;
+  /** Selected agent permission mode. Write-only; used only to reuse a warm Run booted on the same mode. Omit to reuse a warm Run whatever mode it booted on. * `default` - default * `acceptEdits` - acceptEdits * `plan` - plan * `bypassPermissions` - bypassPermissions * `auto` - auto * `read-only` - read-only * `full-access` - full-access */
+  initial_permission_mode?:
+    | TaskRunBootstrapCreateRequestInitialPermissionModeEnum
+    | (string & {})
+    | null;
+  /** First user message to forward when creation reuses a pre-warmed Run. Write-only and not persisted on the task: lets clients deliver a message that differs from `description` (e.g. a resolved skill invocation with channel context folded in). Ignored when no warm Run is reused — cold creation takes the first message via the run start endpoint instead. */
+  pending_user_message?: string | null;
+  /** Run artifact ids (already uploaded to the pre-warmed Run) to attach to the forwarded first message when creation reuses that warm Run, e.g. skill bundles or file attachments. If any id is missing from the warm Run's manifest, warm reuse is skipped and the task is created cold. Ignored when no warm Run is matched. */
+  pending_user_artifact_ids?: UpdateTasksPartialRequestPendingUserArtifactIdsList;
+  /** When true, the cloud run agent pushes its work and opens a draft pull request on completion without waiting for an explicit ask. Write-only and not persisted on the task: persisted into the reused warm Run's state when creation activates one, so resumes of that Run honor it. Ignored when no warm Run is reused — cold creation takes it via the run start endpoint instead. */
+  auto_publish?: boolean | null;
+  /** Channel this task is owned by (the channel it was kicked off in). */
+  channel?: string | null;
+}
+export const UpdateTasksPartialRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    title: S.optional(S.String),
+    title_manually_set: S.optional(S.Boolean),
+    description: S.optional(S.String),
+    origin_product: S.optional(TaskOriginProductEnum),
+    repository: S.optional(S.NullOr(S.String)),
+    repositories: S.optional(UpdateTasksPartialRequestRepositoriesList),
+    github_integration: S.optional(S.NullOr(S.Number)),
+    github_user_integration: S.optional(S.NullOr(S.String)),
+    signal_report: S.optional(S.NullOr(S.String)),
+    signal_report_task_relationship: S.optional(S.String),
+    json_schema: S.optional(S.Unknown),
+    archived: S.optional(S.Boolean),
+    ci_prompt: S.optional(S.NullOr(S.String)),
+    branch: S.optional(S.NullOr(S.String)),
+    runtime_adapter: S.optional(S.NullOr(RuntimeAdapterEnum)),
+    model: S.optional(S.NullOr(S.String)),
+    reasoning_effort: S.optional(S.NullOr(ReasoningEffortEnum)),
+    initial_permission_mode: S.optional(
+      S.NullOr(TaskRunBootstrapCreateRequestInitialPermissionModeEnum),
+    ),
+    pending_user_message: S.optional(S.NullOr(S.String)),
+    pending_user_artifact_ids: S.optional(
+      UpdateTasksPartialRequestPendingUserArtifactIdsList,
+    ),
+    auto_publish: S.optional(S.NullOr(S.Boolean)),
+    channel: S.optional(S.NullOr(S.String)),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/api/projects/{project_id}/tasks/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UpdateTasksPartialRequest",
+}) as any as S.Schema<UpdateTasksPartialRequest>;
+
+/** * `not_started` - not_started * `queued` - queued * `in_progress` - in_progress * `completed` - completed * `failed` - failed * `cancelled` - cancelled */
+export type RunStatusEnum =
+  | "not_started"
+  | "queued"
+  | "in_progress"
+  | "completed"
+  | "failed"
+  | "cancelled";
+export const RunStatusEnum = /*@__PURE__*/ S.String;
+
+/** State keys to remove atomically before applying any state updates. */
+export type UpdateTasksRunsPartialRequestStateRemoveKeysList = Array<string>;
+export const UpdateTasksRunsPartialRequestStateRemoveKeysList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<UpdateTasksRunsPartialRequestStateRemoveKeysList>;
+
+/** State keys whose value to append to the list stored at that key, atomically under the row lock. Use instead of sending the whole list back through `state`, which loses concurrent appends to a read-modify-write race. */
+export type UpdateTasksRunsPartialRequestStateAppendMap = {
+  [key: string]: unknown | undefined;
+};
+export const UpdateTasksRunsPartialRequestStateAppendMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Unknown,
+  ) as any as S.Schema<UpdateTasksRunsPartialRequestStateAppendMap>;
+
+export interface UpdateTasksRunsPartialRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  task_id: string;
+  id: string;
+  /** Current execution status * `not_started` - not_started * `queued` - queued * `in_progress` - in_progress * `completed` - completed * `failed` - failed * `cancelled` - cancelled */
+  status?: RunStatusEnum | (string & {});
+  /** Git branch name to associate with the task */
+  branch?: string | null;
+  /** Current stage of the run (e.g. research, plan, build) */
+  stage?: string | null;
+  /** Output from the run */
+  output?: unknown;
+  /** State of the run */
+  state?: unknown;
+  /** State keys to remove atomically before applying any state updates. */
+  state_remove_keys?: UpdateTasksRunsPartialRequestStateRemoveKeysList;
+  /** State keys whose value to append to the list stored at that key, atomically under the row lock. Use instead of sending the whole list back through `state`, which loses concurrent appends to a read-modify-write race. */
+  state_append?: UpdateTasksRunsPartialRequestStateAppendMap;
+  /** Error message if execution failed */
+  error_message?: string | null;
+}
+export const UpdateTasksRunsPartialRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    task_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    status: S.optional(RunStatusEnum),
+    branch: S.optional(S.NullOr(S.String)),
+    stage: S.optional(S.NullOr(S.String)),
+    output: S.optional(S.Unknown),
+    state: S.optional(S.Unknown),
+    state_remove_keys: S.optional(
+      UpdateTasksRunsPartialRequestStateRemoveKeysList,
+    ),
+    state_append: S.optional(UpdateTasksRunsPartialRequestStateAppendMap),
+    error_message: S.optional(S.NullOr(S.String)),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UpdateTasksRunsPartialRequest",
+}) as any as S.Schema<UpdateTasksRunsPartialRequest>;
+
+export interface UpdateTasksRunsSetOutputPartialRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  task_id: string;
+  id: string;
+  /** Output data from the run. Validated against the task's json_schema if one is set. */
+  output?: unknown;
+}
+export const UpdateTasksRunsSetOutputPartialRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      task_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+      output: S.optional(S.Unknown),
+    }).pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/api/projects/{project_id}/tasks/{task_id}/runs/{id}/set_output/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "UpdateTasksRunsSetOutputPartialRequest",
+}) as any as S.Schema<UpdateTasksRunsSetOutputPartialRequest>;
+
+export type CreateTaskError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** API for managing tasks within a project. Tasks represent units of work to be performed by an agent. */
+export const createTask: API.OperationMethod<
+  CreateTaskRequest,
+  TaskDetailDTO,
+  CreateTaskError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CodeInvitesCheckAccessRetrieveRequest,
+  input: CreateTaskRequest,
+  output: TaskDetailDTO,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateTasksConfigError = PosthogOpError;
+/** Set the project-wide default AI run preferences applied to task runs created without an explicit runtime selection. Send all fields as null to clear. */
+export const createTasksConfig: API.OperationMethod<
+  CreateTasksConfigRequest,
+  TasksTeamConfigResponse,
+  CreateTasksConfigError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateTasksConfigRequest,
+  output: TasksTeamConfigResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateTasksHandoffError = Forbidden | PosthogOpError;
+/** Hand a task off to a colleague Transfer ownership of a task to another member of the project: they take over driving it (steering, archiving, running), and future runs resolve GitHub authorship and notification recipients from them. Only the task's current owner can hand it off. Every run must be finished or canceled, and every sandbox must be shut down first. A task in a private space moves into the recipient's private space; a task in a shared space stays there. */
+export const createTasksHandoff: API.OperationMethod<
+  CreateTasksHandoffRequest,
+  TaskDetailDTO,
+  CreateTasksHandoffError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateTasksHandoffRequest,
+  output: TaskDetailDTO,
+  errors: [Forbidden],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateTasksMeConfigError = PosthogOpError;
+/** Set your per-project default AI run preferences; they override the project default wholesale. Send all fields as null to clear and inherit the project default. */
+export const createTasksMeConfig: API.OperationMethod<
+  CreateTasksMeConfigRequest,
+  TasksUserConfigResponse,
+  CreateTasksMeConfigError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateTasksMeConfigRequest,
+  output: TasksUserConfigResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateTasksPinError = PosthogOpError;
+/** API for managing tasks within a project. Tasks represent units of work to be performed by an agent. */
+export const createTasksPin: API.OperationMethod<
+  CreateTasksPinRequest,
+  TaskPinResponse,
+  CreateTasksPinError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateTasksPinRequest,
+  output: TaskPinResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateTasksPresenceError = NotFound | PosthogOpError;
+/** Beacon presence for a device watching this task Idempotent upsert: marks the calling user + `device_id` as actively watching this task for the next ~60 seconds. While at least one device for the user has a non-expired presence row for this task, the push fanout will skip ALL of that user's other registered devices for task notifications — the contract is 'if any device is demonstrably watching, suppress the others'. Clients call this every ~30s while the task screen is foregrounded. `device_id` is the UUID of the caller's UserPushToken row. */
+export const createTasksPresence: API.OperationMethod<
+  CreateTasksPresenceRequest,
+  CreateTasksPresenceResponse,
+  CreateTasksPresenceError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateTasksPresenceRequest,
+  output: CreateTasksPresenceResponse,
+  errors: [NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateTasksRunError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** Create task run Create a new run for a specific task without starting execution. */
+export const createTasksRun: API.OperationMethod<
+  CreateTasksRunRequest,
+  TaskRunDetailDTO,
+  CreateTasksRunError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateTasksRunRequest,
+  output: TaskRunDetailDTO,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateTasksRunsAnalysisInsightError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** Report an analysis finding Store one verified inefficiency finding on a task-analysis run. Only the run's own task-bound sandbox agent may call it, and only on a task-analysis run. The findings list is server-owned: it is not writable through the run update endpoint. */
+export const createTasksRunsAnalysisInsight: API.OperationMethod<
+  CreateTasksRunsAnalysisInsightRequest,
+  TaskRunAnalysisInsightResponse,
+  CreateTasksRunsAnalysisInsightError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateTasksRunsAnalysisInsightRequest,
+  output: TaskRunAnalysisInsightResponse,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateTasksRunsAnalyzeError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** Analyze this run Create a PostHog-funded analysis task that reviews this run's transcript for inefficiencies and reports findings. Idempotent per run: if an analysis task already exists for this run, it is returned instead of creating another. The analysis is not billed to the customer. */
+export const createTasksRunsAnalyze: API.OperationMethod<
+  CreateTasksRunsAnalyzeRequest,
+  TaskRunAnalyzeResponse,
+  CreateTasksRunsAnalyzeError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateTasksRunsAnalyzeRequest,
+  output: TaskRunAnalyzeResponse,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateTasksRunsAppendLogError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** Append log entries Append one or more log entries to the task run log array */
+export const createTasksRunsAppendLog: API.OperationMethod<
+  CreateTasksRunsAppendLogRequest,
+  TaskRunDetailDTO,
+  CreateTasksRunsAppendLogError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateTasksRunsAppendLogRequest,
+  output: TaskRunDetailDTO,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateTasksRunsArtifactError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** Upload artifacts for a task run Persist task artifacts to S3 and attach them to the run manifest. */
+export const createTasksRunsArtifact: API.OperationMethod<
+  CreateTasksRunsArtifactRequest,
+  TaskRunArtifactsUploadResponse,
+  CreateTasksRunsArtifactError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateTasksRunsArtifactRequest,
+  output: TaskRunArtifactsUploadResponse,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateTasksRunsArtifactsDismissError = NotFound | PosthogOpError;
+/** Dismiss or restore task run artifacts Hides artifacts from clients without deleting them from storage, so a file dismissed by mistake can be restored. */
+export const createTasksRunsArtifactsDismiss: API.OperationMethod<
+  CreateTasksRunsArtifactsDismissRequest,
+  TaskRunArtifactsDismissResponse,
+  CreateTasksRunsArtifactsDismissError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateTasksRunsArtifactsDismissRequest,
+  output: TaskRunArtifactsDismissResponse,
+  errors: [NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateTasksRunsArtifactsPresignError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** Generate presigned URL for an artifact Returns a temporary, signed URL that can be used to download a specific artifact. */
+export const createTasksRunsArtifactsPresign: API.OperationMethod<
+  CreateTasksRunsArtifactsPresignRequest,
+  TaskRunArtifactPresignResponse,
+  CreateTasksRunsArtifactsPresignError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateTasksRunsArtifactsPresignRequest,
+  output: TaskRunArtifactPresignResponse,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateTasksRunsArtifactsReferenceError = NotFound | PosthogOpError;
+/** Register PostHog object references for a task run Attach live PostHog object references to the run artifact manifest without uploading files. */
+export const createTasksRunsArtifactsReference: API.OperationMethod<
+  CreateTasksRunsArtifactsReferenceRequest,
+  TaskRunPostHogReferencesResponse,
+  CreateTasksRunsArtifactsReferenceError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateTasksRunsArtifactsReferenceRequest,
+  output: TaskRunPostHogReferencesResponse,
+  errors: [NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateTasksRunsClearConversationError =
+  | NotFound
+  | Conflict
+  | PosthogOpError;
+/** Clear conversation history Record a `/clear` boundary in a finished run's log so the next run in the chain starts with an empty conversation. Its artifacts and visible history are unaffected. Only for a finished run: an active one has an agent that owns the clear, so send `/clear` to it as an ordinary message instead. */
+export const createTasksRunsClearConversation: API.OperationMethod<
+  CreateTasksRunsClearConversationRequest,
+  TaskRunDetailDTO,
+  CreateTasksRunsClearConversationError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateTasksRunsClearConversationRequest,
+  output: TaskRunDetailDTO,
+  errors: [NotFound, Conflict],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateTasksRunsCommandError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | Conflict
+  | PosthogOpError;
+/** Send command to task run Queue user_message JSON-RPC commands through the task workflow and forward sandbox control commands to the agent server. Supports user_message, cancel, close, permission_response, set_config_option, mcp_response, side_question, native Pi RPC commands, and Pi queue operations. */
+export const createTasksRunsCommand: API.OperationMethod<
+  CreateTasksRunsCommandRequest,
+  TaskRunCommandResponse,
+  CreateTasksRunsCommandError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateTasksRunsCommandRequest,
+  output: TaskRunCommandResponse,
+  errors: [BadRequest, Forbidden, NotFound, Conflict],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateTasksRunsLivingArtifactError =
+  | BadRequest
+  | NotFound
+  | PosthogOpError;
+/** Create a living artifact for a task run Create a stable, editable artifact handle from direct markdown/text content or an existing run artifact. Slack adapters deliver into the mapped Slack thread; document artifacts use external connector storage when available. */
+export const createTasksRunsLivingArtifact: API.OperationMethod<
+  CreateTasksRunsLivingArtifactRequest,
+  TaskRunLivingArtifactResponse,
+  CreateTasksRunsLivingArtifactError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateTasksRunsLivingArtifactRequest,
+  output: TaskRunLivingArtifactResponse,
+  errors: [BadRequest, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateTasksRunsPeersMessageError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** Send a message to a peer agent run Relay a message from this run to a peer agent run. The body is delivered below a server-composed provenance envelope as a queued (non-steer) turn; attachments are copied into the target run's own artifact storage. `accepted` means queued for delivery, never delivered — the sandbox handoff happens later inside the target's workflow. */
+export const createTasksRunsPeersMessage: API.OperationMethod<
+  CreateTasksRunsPeersMessageRequest,
+  TaskRunPeerMessageResponse,
+  CreateTasksRunsPeersMessageError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateTasksRunsPeersMessageRequest,
+  output: TaskRunPeerMessageResponse,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateTasksRunsRelayMessageError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** Relay run message to Slack Queue a Slack relay workflow to post a run message into the mapped Slack thread. */
+export const createTasksRunsRelayMessage: API.OperationMethod<
+  CreateTasksRunsRelayMessageRequest,
+  TaskRunRelayMessageResponse,
+  CreateTasksRunsRelayMessageError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateTasksRunsRelayMessageRequest,
+  output: TaskRunRelayMessageResponse,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateTasksRunsTaskSessionSyncError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | Conflict
+  | PosthogOpError;
+/** Replace the active native task session API for managing task runs. Each run represents an execution of a task. */
+export const createTasksRunsTaskSessionSync: API.OperationMethod<
+  CreateTasksRunsTaskSessionSyncRequest,
+  TaskSessionSyncResponse,
+  CreateTasksRunsTaskSessionSyncError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateTasksRunsTaskSessionSyncRequest,
+  output: TaskSessionSyncResponse,
+  errors: [BadRequest, Forbidden, NotFound, Conflict],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateTasksSummaryError = PosthogOpError;
+/** Fetch task summaries by ID Returns summary for the requested tasks, including the creator ID and the latest run's ID, status, and environment. */
+export const createTasksSummary: API.OperationMethod<
+  CreateTasksSummaryRequest,
+  PaginatedTaskSummaryDTOList,
+  CreateTasksSummaryError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateTasksSummaryRequest,
+  output: PaginatedTaskSummaryDTOList,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateTasksThreadMessageError = PosthogOpError;
+/** Post a thread message API for a task's thread — the human-only side conversation around a task. Messages reach the agent only via the explicit send_to_agent action, gated to the task author. */
+export const createTasksThreadMessage: API.OperationMethod<
+  CreateTasksThreadMessageRequest,
+  TaskThreadMessageDTO,
+  CreateTasksThreadMessageError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateTasksThreadMessageRequest,
+  output: TaskThreadMessageDTO,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateTasksWarmError = Forbidden | PosthogOpError;
+/** Warm a task sandbox Warm a full idling Run for a cloud task while the user composes: boot a sandbox, clone the repo, check out the branch, and start the agent, then idle awaiting the first message. On submit the normal create+run path transparently reuses and activates this Run; abandoned warms are reaped by the Run's inactivity timeout. Best-effort: returns an empty body when the feature flag is off, the warm pool is full, or the GitHub integration doesn't belong to the team. */
+export const createTasksWarm: API.OperationMethod<
+  CreateTasksWarmRequest,
+  WarmTaskResponse,
+  CreateTasksWarmError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateTasksWarmRequest,
+  output: WarmTaskResponse,
+  errors: [Forbidden],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type EditTasksRunsLivingArtifactError =
+  | BadRequest
+  | NotFound
+  | PosthogOpError;
+/** Edit a living artifact for a task run Commit a new version to an existing living artifact handle. */
+export const editTasksRunsLivingArtifact: API.OperationMethod<
+  EditTasksRunsLivingArtifactRequest,
+  TaskRunLivingArtifactResponse,
+  EditTasksRunsLivingArtifactError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: EditTasksRunsLivingArtifactRequest,
+  output: TaskRunLivingArtifactResponse,
+  errors: [BadRequest, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCodeInvitesCheckAccessError = Forbidden | PosthogOpError;
+/** Check PostHog Desktop access Compatibility endpoint for released PostHog Desktop clients. */
+export const getCodeInvitesCheckAccess: API.OperationMethod<
+  GetCodeInvitesCheckAccessRequest,
+  LegacyDesktopAccessResponse,
+  GetCodeInvitesCheckAccessError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCodeInvitesCheckAccessRequest,
   output: LegacyDesktopAccessResponse,
   errors: [Forbidden],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type DesktopAccessRetrieveError = PosthogOpError;
+export type GetDesktopAccessError = PosthogOpError;
 /** Check PostHog Desktop access Evaluate Desktop access for the selected project and organization. */
-export const desktopAccessRetrieve: API.OperationMethod<
-  DesktopAccessRetrieveRequest,
+export const getDesktopAccess: API.OperationMethod<
+  GetDesktopAccessRequest,
   DesktopAccessResponse,
-  DesktopAccessRetrieveError,
+  GetDesktopAccessError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DesktopAccessRetrieveRequest,
+  input: GetDesktopAccessRequest,
   output: DesktopAccessResponse,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type TasksActiveWizardRunRetrieveError = PosthogOpError;
-/** Get the team's active onboarding wizard cloud run Returns the most recent onboarding wizard cloud run for the current project when it is still running (or completed within the last day), so the setup-progress FAB can rehydrate after a drop-flow signup that started the run server-side. Returns 204 when there is none. */
-export const tasksActiveWizardRunRetrieve: API.OperationMethod<
-  TasksActiveWizardRunRetrieveRequest,
-  WizardCloudRunDTO,
-  TasksActiveWizardRunRetrieveError,
+export type GetTaskError = Forbidden | NotFound | PosthogOpError;
+/** Get task Retrieve a single task by ID. */
+export const getTask: API.OperationMethod<
+  GetTaskRequest,
+  TaskDetailDTO,
+  GetTaskError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TasksActiveWizardRunRetrieveRequest,
+  input: GetTaskRequest,
+  output: TaskDetailDTO,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTasksActiveWizardRunError = PosthogOpError;
+/** Get the team's active onboarding wizard cloud run Returns the most recent onboarding wizard cloud run for the current project when it is still running (or completed within the last day), so the setup-progress FAB can rehydrate after a drop-flow signup that started the run server-side. Returns 204 when there is none. */
+export const getTasksActiveWizardRun: API.OperationMethod<
+  GetTasksActiveWizardRunRequest,
+  WizardCloudRunDTO,
+  GetTasksActiveWizardRunError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTasksActiveWizardRunRequest,
   output: WizardCloudRunDTO,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type TasksArtifactsListError = PosthogOpError;
+export type GetTasksCommentError = PosthogOpError;
 /** API for managing tasks within a project. Tasks represent units of work to be performed by an agent. */
-export const tasksArtifactsList: API.OperationMethod<
-  TasksArtifactsListRequest,
-  TaskArtifactsResponse,
-  TasksArtifactsListError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TasksArtifactsListRequest,
-  output: TaskArtifactsResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TasksCommentsListError = PosthogOpError;
-/** API for managing tasks within a project. Tasks represent units of work to be performed by an agent. */
-export const tasksCommentsList: API.OperationMethod<
-  TasksCommentsListRequest,
-  TaskCommentsResponse,
-  TasksCommentsListError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TasksCommentsListRequest,
-  output: TaskCommentsResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TasksCommentsRetrieveError = PosthogOpError;
-/** API for managing tasks within a project. Tasks represent units of work to be performed by an agent. */
-export const tasksCommentsRetrieve: API.OperationMethod<
-  TasksCommentsRetrieveRequest,
+export const getTasksComment: API.OperationMethod<
+  GetTasksCommentRequest,
   TaskCommentDetail,
-  TasksCommentsRetrieveError,
+  GetTasksCommentError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TasksCommentsRetrieveRequest,
+  input: GetTasksCommentRequest,
   output: TaskCommentDetail,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type TasksCreateError =
+export type GetTasksModelError = PosthogOpError;
+/** List available models Return the models a task run may use, with the reasoning efforts each one supports. Derived from the live LLM gateway catalogue, so a newly released model appears without a client change. An empty list means the gateway is unreachable — clients should fall back to their own default rather than treating it as 'no models exist'. */
+export const getTasksModel: API.OperationMethod<
+  GetTasksModelRequest,
+  ModelCatalogueResponse,
+  GetTasksModelError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTasksModelRequest,
+  output: ModelCatalogueResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTasksPinnedError = PosthogOpError;
+/** List pinned tasks Return the visible tasks pinned by the requester in the current project. */
+export const getTasksPinned: API.OperationMethod<
+  GetTasksPinnedRequest,
+  PinnedTaskIdsResponse,
+  GetTasksPinnedError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTasksPinnedRequest,
+  output: PinnedTaskIdsResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTasksRepositoryError = Forbidden | NotFound | PosthogOpError;
+/** List distinct task repositories Return the set of repositories referenced by non-deleted, non-internal tasks in the current project. Used to populate repository filter pickers without being constrained by task list pagination. */
+export const getTasksRepository: API.OperationMethod<
+  GetTasksRepositoryRequest,
+  TaskRepositoriesResponse,
+  GetTasksRepositoryError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTasksRepositoryRequest,
+  output: TaskRepositoriesResponse,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTasksRepositoryReadinessError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
-/** API for managing tasks within a project. Tasks represent units of work to be performed by an agent. */
-export const tasksCreate: API.OperationMethod<
-  TasksCreateRequest,
-  TaskDetailDTO,
-  TasksCreateError,
+/** Get repository readiness Get autonomy readiness details for a specific repository in the current project. */
+export const getTasksRepositoryReadiness: API.OperationMethod<
+  GetTasksRepositoryReadinessRequest,
+  RepositoryReadinessResponse,
+  GetTasksRepositoryReadinessError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TasksCreateRequest,
-  output: TaskDetailDTO,
+  input: GetTasksRepositoryReadinessRequest,
+  output: RepositoryReadinessResponse,
   errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTasksRunError = Forbidden | NotFound | PosthogOpError;
+/** Get task run Retrieve a single run for a specific task. */
+export const getTasksRun: API.OperationMethod<
+  GetTasksRunRequest,
+  TaskRunDetailDTO,
+  GetTasksRunError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTasksRunRequest,
+  output: TaskRunDetailDTO,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTasksRunsConnectionTokenError =
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** Get sandbox connection token Generate a JWT token for direct connection to the sandbox. Valid for 24 hours. */
+export const getTasksRunsConnectionToken: API.OperationMethod<
+  GetTasksRunsConnectionTokenRequest,
+  ConnectionTokenResponse,
+  GetTasksRunsConnectionTokenError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTasksRunsConnectionTokenRequest,
+  output: ConnectionTokenResponse,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTasksRunsLogError = Forbidden | NotFound | PosthogOpError;
+/** Get task run logs Fetch the logs for a task run as JSONL. If the run resumes from another (state.resume_from_run_id), each ancestor's log is concatenated first (oldest ancestor → ... → this run) so resume consumers see a single continuous history. */
+export const getTasksRunsLog: API.OperationMethod<
+  GetTasksRunsLogRequest,
+  GetTasksRunsLogResponse,
+  GetTasksRunsLogError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTasksRunsLogRequest,
+  output: GetTasksRunsLogResponse,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTasksRunsPeerError = Forbidden | NotFound | PosthogOpError;
+/** List peer agent runs Agent runs this run may send messages to: cloud Pi runs of tasks created by the same user, currently in progress or queued. Discovery and send validation share one visibility policy, so a run can only message what it can list; the per-entry `sendable` flag is the liveness contract. */
+export const getTasksRunsPeer: API.OperationMethod<
+  GetTasksRunsPeerRequest,
+  TaskRunPeersResponse,
+  GetTasksRunsPeerError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTasksRunsPeerRequest,
+  output: TaskRunPeersResponse,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTasksRunsPreviewError = Forbidden | NotFound | PosthogOpError;
+/** Open the dev stack preview for a task run Redirects to the PostHog dev stack running inside this run's sandbox. A fresh sandbox access token is minted on every request and carried only in the redirect target, so it is never persisted or returned in a response body. When the run has no preview, or its sandbox has stopped, this renders a short HTML page instead. */
+export const getTasksRunsPreview: API.OperationMethod<
+  GetTasksRunsPreviewRequest,
+  GetTasksRunsPreviewResponse,
+  GetTasksRunsPreviewError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTasksRunsPreviewRequest,
+  output: GetTasksRunsPreviewResponse,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTasksRunsSessionLogError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** Get filtered task run session logs Fetch session log entries for a task run with optional filtering by timestamp, event type, and limit. */
+export const getTasksRunsSessionLog: API.OperationMethod<
+  GetTasksRunsSessionLogRequest,
+  GetTasksRunsSessionLogResponse,
+  GetTasksRunsSessionLogError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTasksRunsSessionLogRequest,
+  output: GetTasksRunsSessionLogResponse,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTasksRunsStreamError = Forbidden | NotFound | PosthogOpError;
+/** Server-Sent Events stream of task run events. Events carry an `id:` line (a Redis stream id) usable as a resume cursor. The server caps each connection at 900 seconds: it emits `event: end` with `data: {"type": "rotated"}` and closes. This does NOT mean the run finished — reconnect with the `Last-Event-ID` header set to the last received event id to resume without gaps or duplicates. Only treat the stream as complete when the run itself reaches a terminal status. Resume guarantees cover mirrored events only: on runs where live mirroring is presence-gated, events produced while no viewer was connected are not in the live stream. Reload the run's session logs to recover the agent's output; run-state and progress frames are not in those logs, so refetch the run itself for its current state. `?start=latest` consumers must also carry `Last-Event-ID` across reconnects: reconnecting without it re-resolves to the then-current latest event, silently skipping anything published while disconnected. **SDK consumers**: do not call the generated fetch wrapper for this path — it will buffer the entire stream. Use the URL builder (`getTasksRunsStreamRetrieveUrl`) with a streaming `fetch`/`EventSource`-style consumer and the `Last-Event-ID` header instead. */
+export const getTasksRunsStream: API.OperationMethod<
+  GetTasksRunsStreamRequest,
+  GetTasksRunsStreamResponse,
+  GetTasksRunsStreamError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTasksRunsStreamRequest,
+  output: GetTasksRunsStreamResponse,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTasksRunsStreamTokenError = NotFound | PosthogOpError;
+/** Get task run stream read token Generate a run-scoped JWT that authorizes reading this task run's live event stream via the agent-proxy. */
+export const getTasksRunsStreamToken: API.OperationMethod<
+  GetTasksRunsStreamTokenRequest,
+  StreamReadTokenResponse,
+  GetTasksRunsStreamTokenError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTasksRunsStreamTokenRequest,
+  output: StreamReadTokenResponse,
+  errors: [NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTasksRunsTaskSessionError = NotFound | PosthogOpError;
+/** Get active task session storage access API for managing task runs. Each run represents an execution of a task. */
+export const getTasksRunsTaskSession: API.OperationMethod<
+  GetTasksRunsTaskSessionRequest,
+  TaskSessionResponse,
+  GetTasksRunsTaskSessionError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTasksRunsTaskSessionRequest,
+  output: TaskSessionResponse,
+  errors: [NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTasksSlackThreadContextError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** Resolve a Slack thread to its task, runs, and Temporal workflows PostHog-internal debug tool. Resolves a Slack permalink to the linked task, its runs, the task-processing and mention-dispatch Temporal workflow ids/URLs, and presigned log URLs. */
+export const getTasksSlackThreadContext: API.OperationMethod<
+  GetTasksSlackThreadContextRequest,
+  SlackThreadContextResponse,
+  GetTasksSlackThreadContextError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTasksSlackThreadContextRequest,
+  output: SlackThreadContextResponse,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTasksUsageError = PosthogOpError;
+/** Get task usage Return estimated model and cloud compute costs attributed to a task. */
+export const getTasksUsage: API.OperationMethod<
+  GetTasksUsageRequest,
+  TaskUsageResponse,
+  GetTasksUsageError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTasksUsageRequest,
+  output: TaskUsageResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListTasksError = BadRequest | Forbidden | NotFound | PosthogOpError;
+/** List tasks Get a list of tasks for the current project, with optional filtering by origin product, stage, organization, repository, created_by, and the workflow (hog_flow_id) that created the task. */
+export const listTasks: API.OperationMethod<
+  ListTasksRequest,
+  PaginatedTaskDetailDTOList,
+  ListTasksError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListTasksRequest,
+  output: PaginatedTaskDetailDTOList,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListTasksArtifactsError = PosthogOpError;
+/** API for managing tasks within a project. Tasks represent units of work to be performed by an agent. */
+export const listTasksArtifacts: API.OperationMethod<
+  ListTasksArtifactsRequest,
+  TaskArtifactsResponse,
+  ListTasksArtifactsError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListTasksArtifactsRequest,
+  output: TaskArtifactsResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListTasksCommentsError = PosthogOpError;
+/** API for managing tasks within a project. Tasks represent units of work to be performed by an agent. */
+export const listTasksComments: API.OperationMethod<
+  ListTasksCommentsRequest,
+  TaskCommentsResponse,
+  ListTasksCommentsError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListTasksCommentsRequest,
+  output: TaskCommentsResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListTasksConfigError = PosthogOpError;
+/** Retrieve the project-wide default AI run preferences for task runs. */
+export const listTasksConfig: API.OperationMethod<
+  ListTasksConfigRequest,
+  TasksTeamConfigResponse,
+  ListTasksConfigError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListTasksConfigRequest,
+  output: TasksTeamConfigResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListTasksMeConfigError = PosthogOpError;
+/** Retrieve your per-project default AI run preferences, plus the resolved defaults a new run will use when no explicit runtime selection is sent (your preference over the project default). */
+export const listTasksMeConfig: API.OperationMethod<
+  ListTasksMeConfigRequest,
+  TasksUserConfigResponse,
+  ListTasksMeConfigError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListTasksMeConfigRequest,
+  output: TasksUserConfigResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListTasksRunsError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** List task runs Get a list of runs for a specific task. */
+export const listTasksRuns: API.OperationMethod<
+  ListTasksRunsRequest,
+  PaginatedTaskRunDetailDTOList,
+  ListTasksRunsError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListTasksRunsRequest,
+  output: PaginatedTaskRunDetailDTOList,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListTasksRunsLivingArtifactsError = NotFound | PosthogOpError;
+/** List living artifacts for a task run Returns stable, versioned artifact handles created by the run's task. */
+export const listTasksRunsLivingArtifacts: API.OperationMethod<
+  ListTasksRunsLivingArtifactsRequest,
+  ListTasksRunsLivingArtifactsResponse,
+  ListTasksRunsLivingArtifactsError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListTasksRunsLivingArtifactsRequest,
+  output: ListTasksRunsLivingArtifactsResponse,
+  errors: [NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListTasksThreadMessagesError = PosthogOpError;
+/** List thread messages The task's thread in chronological order. */
+export const listTasksThreadMessages: API.OperationMethod<
+  ListTasksThreadMessagesRequest,
+  PaginatedTaskThreadMessageDTOList,
+  ListTasksThreadMessagesError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListTasksThreadMessagesRequest,
+  output: PaginatedTaskThreadMessageDTOList,
+  errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
@@ -5429,115 +6378,6 @@ export const tasksDestroy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type TasksHandoffCreateError = Forbidden | PosthogOpError;
-/** Hand a task off to a colleague Transfer ownership of a task to another member of the project: they take over driving it (steering, archiving, running), and future runs resolve GitHub authorship and notification recipients from them. Only the task's current owner can hand it off. Every run must be finished or canceled, and every sandbox must be shut down first. A task in a private space moves into the recipient's private space; a task in a shared space stays there. */
-export const tasksHandoffCreate: API.OperationMethod<
-  TasksHandoffCreateRequest,
-  TaskDetailDTO,
-  TasksHandoffCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TasksHandoffCreateRequest,
-  output: TaskDetailDTO,
-  errors: [Forbidden],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TasksListError = BadRequest | Forbidden | NotFound | PosthogOpError;
-/** List tasks Get a list of tasks for the current project, with optional filtering by origin product, stage, organization, repository, and created_by. */
-export const tasksList: API.OperationMethod<
-  TasksListRequest,
-  PaginatedTaskDetailDTOList,
-  TasksListError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TasksListRequest,
-  output: PaginatedTaskDetailDTOList,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TasksModelsRetrieveError = PosthogOpError;
-/** List available models Return the models a task run may use, with the reasoning efforts each one supports. Derived from the live LLM gateway catalogue, so a newly released model appears without a client change. An empty list means the gateway is unreachable — clients should fall back to their own default rather than treating it as 'no models exist'. */
-export const tasksModelsRetrieve: API.OperationMethod<
-  TasksModelsRetrieveRequest,
-  ModelCatalogueResponse,
-  TasksModelsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TasksModelsRetrieveRequest,
-  output: ModelCatalogueResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TasksPartialUpdateError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** API for managing tasks within a project. Tasks represent units of work to be performed by an agent. */
-export const tasksPartialUpdate: API.OperationMethod<
-  TasksPartialUpdateRequest,
-  TaskDetailDTO,
-  TasksPartialUpdateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TasksPartialUpdateRequest,
-  output: TaskDetailDTO,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TasksPinCreateError = PosthogOpError;
-/** API for managing tasks within a project. Tasks represent units of work to be performed by an agent. */
-export const tasksPinCreate: API.OperationMethod<
-  TasksPinCreateRequest,
-  TaskPinResponse,
-  TasksPinCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TasksPinCreateRequest,
-  output: TaskPinResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TasksPinnedRetrieveError = PosthogOpError;
-/** List pinned tasks Return the visible tasks pinned by the requester in the current project. */
-export const tasksPinnedRetrieve: API.OperationMethod<
-  TasksPinnedRetrieveRequest,
-  PinnedTaskIdsResponse,
-  TasksPinnedRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TasksPinnedRetrieveRequest,
-  output: PinnedTaskIdsResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TasksPresenceCreateError = NotFound | PosthogOpError;
-/** Beacon presence for a device watching this task Idempotent upsert: marks the calling user + `device_id` as actively watching this task for the next ~60 seconds. While at least one device for the user has a non-expired presence row for this task, the push fanout will skip ALL of that user's other registered devices for task notifications — the contract is 'if any device is demonstrably watching, suppress the others'. Clients call this every ~30s while the task screen is foregrounded. `device_id` is the UUID of the caller's UserPushToken row. */
-export const tasksPresenceCreate: API.OperationMethod<
-  TasksPresenceCreateRequest,
-  TasksPresenceCreateResponse,
-  TasksPresenceCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TasksPresenceCreateRequest,
-  output: TasksPresenceCreateResponse,
-  errors: [NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
 export type TasksPresenceDestroyError = NotFound | PosthogOpError;
 /** Beacon presence for a device watching this task Idempotent upsert: marks the calling user + `device_id` as actively watching this task for the next ~60 seconds. While at least one device for the user has a non-expired presence row for this task, the push fanout will skip ALL of that user's other registered devices for task notifications — the contract is 'if any device is demonstrably watching, suppress the others'. Clients call this every ~30s while the task screen is foregrounded. `device_id` is the UUID of the caller's UserPushToken row. */
 export const tasksPresenceDestroy: API.OperationMethod<
@@ -5549,58 +6389,6 @@ export const tasksPresenceDestroy: API.OperationMethod<
   input: TasksPresenceDestroyRequest,
   output: TasksPresenceDestroyResponse,
   errors: [NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TasksRepositoriesRetrieveError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** List distinct task repositories Return the set of repositories referenced by non-deleted, non-internal tasks in the current project. Used to populate repository filter pickers without being constrained by task list pagination. */
-export const tasksRepositoriesRetrieve: API.OperationMethod<
-  TasksRepositoriesRetrieveRequest,
-  TaskRepositoriesResponse,
-  TasksRepositoriesRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TasksRepositoriesRetrieveRequest,
-  output: TaskRepositoriesResponse,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TasksRepositoryReadinessRetrieveError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Get repository readiness Get autonomy readiness details for a specific repository in the current project. */
-export const tasksRepositoryReadinessRetrieve: API.OperationMethod<
-  TasksRepositoryReadinessRetrieveRequest,
-  RepositoryReadinessResponse,
-  TasksRepositoryReadinessRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TasksRepositoryReadinessRetrieveRequest,
-  output: RepositoryReadinessResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TasksRetrieveError = Forbidden | NotFound | PosthogOpError;
-/** Get task Retrieve a single task by ID. */
-export const tasksRetrieve: API.OperationMethod<
-  TasksRetrieveRequest,
-  TaskDetailDTO,
-  TasksRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TasksRetrieveRequest,
-  output: TaskDetailDTO,
-  errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
@@ -5620,97 +6408,6 @@ export const tasksRunCreate: API.OperationMethod<
   input: TasksRunCreateRequest,
   output: TaskDetailDTO,
   errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TasksRunsAnalysisInsightCreateError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Report an analysis finding Store one verified inefficiency finding on a task-analysis run. Only the run's own task-bound sandbox agent may call it, and only on a task-analysis run. The findings list is server-owned: it is not writable through the run update endpoint. */
-export const tasksRunsAnalysisInsightCreate: API.OperationMethod<
-  TasksRunsAnalysisInsightCreateRequest,
-  TaskRunAnalysisInsightResponse,
-  TasksRunsAnalysisInsightCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TasksRunsAnalysisInsightCreateRequest,
-  output: TaskRunAnalysisInsightResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TasksRunsAnalyzeCreateError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Analyze this run Create a PostHog-funded analysis task that reviews this run's transcript for inefficiencies and reports findings. Idempotent per run: if an analysis task already exists for this run, it is returned instead of creating another. The analysis is not billed to the customer. */
-export const tasksRunsAnalyzeCreate: API.OperationMethod<
-  TasksRunsAnalyzeCreateRequest,
-  TaskRunAnalyzeResponse,
-  TasksRunsAnalyzeCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TasksRunsAnalyzeCreateRequest,
-  output: TaskRunAnalyzeResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TasksRunsAppendLogCreateError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Append log entries Append one or more log entries to the task run log array */
-export const tasksRunsAppendLogCreate: API.OperationMethod<
-  TasksRunsAppendLogCreateRequest,
-  TaskRunDetailDTO,
-  TasksRunsAppendLogCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TasksRunsAppendLogCreateRequest,
-  output: TaskRunDetailDTO,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TasksRunsArtifactsCreateError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Upload artifacts for a task run Persist task artifacts to S3 and attach them to the run manifest. */
-export const tasksRunsArtifactsCreate: API.OperationMethod<
-  TasksRunsArtifactsCreateRequest,
-  TaskRunArtifactsUploadResponse,
-  TasksRunsArtifactsCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TasksRunsArtifactsCreateRequest,
-  output: TaskRunArtifactsUploadResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TasksRunsArtifactsDismissCreateError = NotFound | PosthogOpError;
-/** Dismiss or restore task run artifacts Hides artifacts from clients without deleting them from storage, so a file dismissed by mistake can be restored. */
-export const tasksRunsArtifactsDismissCreate: API.OperationMethod<
-  TasksRunsArtifactsDismissCreateRequest,
-  TaskRunArtifactsDismissResponse,
-  TasksRunsArtifactsDismissCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TasksRunsArtifactsDismissCreateRequest,
-  output: TaskRunArtifactsDismissResponse,
-  errors: [NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
@@ -5790,40 +6487,6 @@ export const tasksRunsArtifactsPrepareUploadCreate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type TasksRunsArtifactsPresignCreateError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Generate presigned URL for an artifact Returns a temporary, signed URL that can be used to download a specific artifact. */
-export const tasksRunsArtifactsPresignCreate: API.OperationMethod<
-  TasksRunsArtifactsPresignCreateRequest,
-  TaskRunArtifactPresignResponse,
-  TasksRunsArtifactsPresignCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TasksRunsArtifactsPresignCreateRequest,
-  output: TaskRunArtifactPresignResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TasksRunsArtifactsReferencesCreateError = NotFound | PosthogOpError;
-/** Register PostHog object references for a task run Attach live PostHog object references to the run artifact manifest without uploading files. */
-export const tasksRunsArtifactsReferencesCreate: API.OperationMethod<
-  TasksRunsArtifactsReferencesCreateRequest,
-  TaskRunPostHogReferencesResponse,
-  TasksRunsArtifactsReferencesCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TasksRunsArtifactsReferencesCreateRequest,
-  output: TaskRunPostHogReferencesResponse,
-  errors: [NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
 export type TasksRunsCancelCreateError = BadRequest | NotFound | PosthogOpError;
 /** Cancel task run Stop an active cloud run. Interrupts the agent, snapshots interactive sessions for later resume, tears down the sandbox, and marks the run cancelled. Idempotent: cancelling a finished run returns it unchanged. */
 export const tasksRunsCancelCreate: API.OperationMethod<
@@ -5835,100 +6498,6 @@ export const tasksRunsCancelCreate: API.OperationMethod<
   input: TasksRunsCancelCreateRequest,
   output: TaskRunDetailDTO,
   errors: [BadRequest, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TasksRunsClearConversationCreateError =
-  | NotFound
-  | Conflict
-  | PosthogOpError;
-/** Clear conversation history Record a `/clear` boundary in a finished run's log so the next run in the chain starts with an empty conversation. Its artifacts and visible history are unaffected. Only for a finished run: an active one has an agent that owns the clear, so send `/clear` to it as an ordinary message instead. */
-export const tasksRunsClearConversationCreate: API.OperationMethod<
-  TasksRunsClearConversationCreateRequest,
-  TaskRunDetailDTO,
-  TasksRunsClearConversationCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TasksRunsClearConversationCreateRequest,
-  output: TaskRunDetailDTO,
-  errors: [NotFound, Conflict],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TasksRunsCommandCreateError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | Conflict
-  | PosthogOpError;
-/** Send command to task run Queue user_message JSON-RPC commands through the task workflow and forward sandbox control commands to the agent server. Supports user_message, cancel, close, permission_response, set_config_option, mcp_response, side_question, native Pi RPC commands, and Pi queue operations. */
-export const tasksRunsCommandCreate: API.OperationMethod<
-  TasksRunsCommandCreateRequest,
-  TaskRunCommandResponse,
-  TasksRunsCommandCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TasksRunsCommandCreateRequest,
-  output: TaskRunCommandResponse,
-  errors: [BadRequest, Forbidden, NotFound, Conflict],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TasksRunsConnectionTokenRetrieveError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Get sandbox connection token Generate a JWT token for direct connection to the sandbox. Valid for 24 hours. */
-export const tasksRunsConnectionTokenRetrieve: API.OperationMethod<
-  TasksRunsConnectionTokenRetrieveRequest,
-  ConnectionTokenResponse,
-  TasksRunsConnectionTokenRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TasksRunsConnectionTokenRetrieveRequest,
-  output: ConnectionTokenResponse,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TasksRunsCreateError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Create task run Create a new run for a specific task without starting execution. */
-export const tasksRunsCreate: API.OperationMethod<
-  TasksRunsCreateRequest,
-  TaskRunDetailDTO,
-  TasksRunsCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TasksRunsCreateRequest,
-  output: TaskRunDetailDTO,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TasksRunsListError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** List task runs Get a list of runs for a specific task. */
-export const tasksRunsList: API.OperationMethod<
-  TasksRunsListRequest,
-  PaginatedTaskRunDetailDTOList,
-  TasksRunsListError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TasksRunsListRequest,
-  output: PaginatedTaskRunDetailDTOList,
-  errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
@@ -5952,57 +6521,6 @@ export const tasksRunsLivingArtifactsChart: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type TasksRunsLivingArtifactsCreateError =
-  | BadRequest
-  | NotFound
-  | PosthogOpError;
-/** Create a living artifact for a task run Create a stable, editable artifact handle from direct markdown/text content or an existing run artifact. Slack adapters deliver into the mapped Slack thread; document artifacts use external connector storage when available. */
-export const tasksRunsLivingArtifactsCreate: API.OperationMethod<
-  TasksRunsLivingArtifactsCreateRequest,
-  TaskRunLivingArtifactResponse,
-  TasksRunsLivingArtifactsCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TasksRunsLivingArtifactsCreateRequest,
-  output: TaskRunLivingArtifactResponse,
-  errors: [BadRequest, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TasksRunsLivingArtifactsEditError =
-  | BadRequest
-  | NotFound
-  | PosthogOpError;
-/** Edit a living artifact for a task run Commit a new version to an existing living artifact handle. */
-export const tasksRunsLivingArtifactsEdit: API.OperationMethod<
-  TasksRunsLivingArtifactsEditRequest,
-  TaskRunLivingArtifactResponse,
-  TasksRunsLivingArtifactsEditError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TasksRunsLivingArtifactsEditRequest,
-  output: TaskRunLivingArtifactResponse,
-  errors: [BadRequest, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TasksRunsLivingArtifactsListError = NotFound | PosthogOpError;
-/** List living artifacts for a task run Returns stable, versioned artifact handles created by the run's task. */
-export const tasksRunsLivingArtifactsList: API.OperationMethod<
-  TasksRunsLivingArtifactsListRequest,
-  TasksRunsLivingArtifactsListResponse,
-  TasksRunsLivingArtifactsListError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TasksRunsLivingArtifactsListRequest,
-  output: TasksRunsLivingArtifactsListResponse,
-  errors: [NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
 export type TasksRunsLivingArtifactsOpenError = NotFound | PosthogOpError;
 /** Open a living artifact for a task run Return a stable living artifact handle and the current content when the adapter supports reads. */
 export const tasksRunsLivingArtifactsOpen: API.OperationMethod<
@@ -6014,111 +6532,6 @@ export const tasksRunsLivingArtifactsOpen: API.OperationMethod<
   input: TasksRunsLivingArtifactsOpenRequest,
   output: TaskRunLivingArtifactOpenResponse,
   errors: [NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TasksRunsLogsRetrieveError = Forbidden | NotFound | PosthogOpError;
-/** Get task run logs Fetch the logs for a task run as JSONL. If the run resumes from another (state.resume_from_run_id), each ancestor's log is concatenated first (oldest ancestor → ... → this run) so resume consumers see a single continuous history. */
-export const tasksRunsLogsRetrieve: API.OperationMethod<
-  TasksRunsLogsRetrieveRequest,
-  TasksRunsLogsRetrieveResponse,
-  TasksRunsLogsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TasksRunsLogsRetrieveRequest,
-  output: TasksRunsLogsRetrieveResponse,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TasksRunsPartialUpdateError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Update task run API for managing task runs. Each run represents an execution of a task. */
-export const tasksRunsPartialUpdate: API.OperationMethod<
-  TasksRunsPartialUpdateRequest,
-  TaskRunDetailDTO,
-  TasksRunsPartialUpdateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TasksRunsPartialUpdateRequest,
-  output: TaskRunDetailDTO,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TasksRunsPeersMessageCreateError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Send a message to a peer agent run Relay a message from this run to a peer agent run. The body is delivered below a server-composed provenance envelope as a queued (non-steer) turn; attachments are copied into the target run's own artifact storage. `accepted` means queued for delivery, never delivered — the sandbox handoff happens later inside the target's workflow. */
-export const tasksRunsPeersMessageCreate: API.OperationMethod<
-  TasksRunsPeersMessageCreateRequest,
-  TaskRunPeerMessageResponse,
-  TasksRunsPeersMessageCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TasksRunsPeersMessageCreateRequest,
-  output: TaskRunPeerMessageResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TasksRunsPeersRetrieveError = Forbidden | NotFound | PosthogOpError;
-/** List peer agent runs Agent runs this run may send messages to: cloud Pi runs of tasks created by the same user, currently in progress or queued. Discovery and send validation share one visibility policy, so a run can only message what it can list; the per-entry `sendable` flag is the liveness contract. */
-export const tasksRunsPeersRetrieve: API.OperationMethod<
-  TasksRunsPeersRetrieveRequest,
-  TaskRunPeersResponse,
-  TasksRunsPeersRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TasksRunsPeersRetrieveRequest,
-  output: TaskRunPeersResponse,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TasksRunsPreviewRetrieveError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Open the dev stack preview for a task run Redirects to the PostHog dev stack running inside this run's sandbox. A fresh sandbox access token is minted on every request and carried only in the redirect target, so it is never persisted or returned in a response body. When the run has no preview, or its sandbox has stopped, this renders a short HTML page instead. */
-export const tasksRunsPreviewRetrieve: API.OperationMethod<
-  TasksRunsPreviewRetrieveRequest,
-  TasksRunsPreviewRetrieveResponse,
-  TasksRunsPreviewRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TasksRunsPreviewRetrieveRequest,
-  output: TasksRunsPreviewRetrieveResponse,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TasksRunsRelayMessageCreateError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Relay run message to Slack Queue a Slack relay workflow to post a run message into the mapped Slack thread. */
-export const tasksRunsRelayMessageCreate: API.OperationMethod<
-  TasksRunsRelayMessageCreateRequest,
-  TaskRunRelayMessageResponse,
-  TasksRunsRelayMessageCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TasksRunsRelayMessageCreateRequest,
-  output: TaskRunRelayMessageResponse,
-  errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
@@ -6136,59 +6549,6 @@ export const tasksRunsResumeInCloudCreate: API.OperationMethod<
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: TasksRunsResumeInCloudCreateRequest,
-  output: TaskRunDetailDTO,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TasksRunsRetrieveError = Forbidden | NotFound | PosthogOpError;
-/** Get task run Retrieve a single run for a specific task. */
-export const tasksRunsRetrieve: API.OperationMethod<
-  TasksRunsRetrieveRequest,
-  TaskRunDetailDTO,
-  TasksRunsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TasksRunsRetrieveRequest,
-  output: TaskRunDetailDTO,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TasksRunsSessionLogsRetrieveError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Get filtered task run session logs Fetch session log entries for a task run with optional filtering by timestamp, event type, and limit. */
-export const tasksRunsSessionLogsRetrieve: API.OperationMethod<
-  TasksRunsSessionLogsRetrieveRequest,
-  TasksRunsSessionLogsRetrieveResponse,
-  TasksRunsSessionLogsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TasksRunsSessionLogsRetrieveRequest,
-  output: TasksRunsSessionLogsRetrieveResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TasksRunsSetOutputPartialUpdateError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Set run output Update the output field for a task run (e.g., PR URL, commit SHA, etc.) */
-export const tasksRunsSetOutputPartialUpdate: API.OperationMethod<
-  TasksRunsSetOutputPartialUpdateRequest,
-  TaskRunDetailDTO,
-  TasksRunsSetOutputPartialUpdateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TasksRunsSetOutputPartialUpdateRequest,
   output: TaskRunDetailDTO,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
@@ -6214,74 +6574,6 @@ export const tasksRunsStartCreate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type TasksRunsStreamRetrieveError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Server-Sent Events stream of task run events. Events carry an `id:` line (a Redis stream id) usable as a resume cursor. The server caps each connection at 900 seconds: it emits `event: end` with `data: {"type": "rotated"}` and closes. This does NOT mean the run finished — reconnect with the `Last-Event-ID` header set to the last received event id to resume without gaps or duplicates. Only treat the stream as complete when the run itself reaches a terminal status. `?start=latest` consumers must also carry `Last-Event-ID` across reconnects: reconnecting without it re-resolves to the then-current latest event, silently skipping anything published while disconnected. **SDK consumers**: do not call the generated fetch wrapper for this path — it will buffer the entire stream. Use the URL builder (`getTasksRunsStreamRetrieveUrl`) with a streaming `fetch`/`EventSource`-style consumer and the `Last-Event-ID` header instead. */
-export const tasksRunsStreamRetrieve: API.OperationMethod<
-  TasksRunsStreamRetrieveRequest,
-  TasksRunsStreamRetrieveResponse,
-  TasksRunsStreamRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TasksRunsStreamRetrieveRequest,
-  output: TasksRunsStreamRetrieveResponse,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TasksRunsStreamTokenRetrieveError = NotFound | PosthogOpError;
-/** Get task run stream read token Generate a run-scoped JWT that authorizes reading this task run's live event stream via the agent-proxy. */
-export const tasksRunsStreamTokenRetrieve: API.OperationMethod<
-  TasksRunsStreamTokenRetrieveRequest,
-  StreamReadTokenResponse,
-  TasksRunsStreamTokenRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TasksRunsStreamTokenRetrieveRequest,
-  output: StreamReadTokenResponse,
-  errors: [NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TasksRunsTaskSessionRetrieveError = NotFound | PosthogOpError;
-/** Get active task session storage access API for managing task runs. Each run represents an execution of a task. */
-export const tasksRunsTaskSessionRetrieve: API.OperationMethod<
-  TasksRunsTaskSessionRetrieveRequest,
-  TaskSessionResponse,
-  TasksRunsTaskSessionRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TasksRunsTaskSessionRetrieveRequest,
-  output: TaskSessionResponse,
-  errors: [NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TasksRunsTaskSessionSyncCreateError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | Conflict
-  | PosthogOpError;
-/** Replace the active native task session API for managing task runs. Each run represents an execution of a task. */
-export const tasksRunsTaskSessionSyncCreate: API.OperationMethod<
-  TasksRunsTaskSessionSyncCreateRequest,
-  TaskSessionSyncResponse,
-  TasksRunsTaskSessionSyncCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TasksRunsTaskSessionSyncCreateRequest,
-  output: TaskSessionSyncResponse,
-  errors: [BadRequest, Forbidden, NotFound, Conflict],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
 export type TasksSearchRetrieveError = PosthogOpError;
 /** Search tasks, pull requests, artifacts, and spaces API for managing tasks within a project. Tasks represent units of work to be performed by an agent. */
 export const tasksSearchRetrieve: API.OperationMethod<
@@ -6293,25 +6585,6 @@ export const tasksSearchRetrieve: API.OperationMethod<
   input: TasksSearchRetrieveRequest,
   output: TasksSearchRetrieveResponse,
   errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TasksSlackThreadContextRetrieveError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Resolve a Slack thread to its task, runs, and Temporal workflows PostHog-internal debug tool. Resolves a Slack permalink to the linked task, its runs, the task-processing and mention-dispatch Temporal workflow ids/URLs, and presigned log URLs. */
-export const tasksSlackThreadContextRetrieve: API.OperationMethod<
-  TasksSlackThreadContextRetrieveRequest,
-  SlackThreadContextResponse,
-  TasksSlackThreadContextRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TasksSlackThreadContextRetrieveRequest,
-  output: SlackThreadContextResponse,
-  errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
@@ -6354,36 +6627,6 @@ export const tasksStagedArtifactsPrepareUploadCreate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type TasksSummariesCreateError = PosthogOpError;
-/** Fetch task summaries by ID Returns summary for the requested tasks: `id`, `title`, `repository`, `created_at`, `updated_at`, and the latest run's `status` and `environment`. */
-export const tasksSummariesCreate: API.OperationMethod<
-  TasksSummariesCreateRequest,
-  PaginatedTaskSummaryDTOList,
-  TasksSummariesCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TasksSummariesCreateRequest,
-  output: PaginatedTaskSummaryDTOList,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TasksThreadMessagesCreateError = PosthogOpError;
-/** Post a thread message API for a task's thread — the human-only side conversation around a task. Messages reach the agent only via the explicit send_to_agent action, gated to the task author. */
-export const tasksThreadMessagesCreate: API.OperationMethod<
-  TasksThreadMessagesCreateRequest,
-  TaskThreadMessageDTO,
-  TasksThreadMessagesCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TasksThreadMessagesCreateRequest,
-  output: TaskThreadMessageDTO,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
 export type TasksThreadMessagesDestroyError = PosthogOpError;
 /** Delete own thread message API for a task's thread — the human-only side conversation around a task. Messages reach the agent only via the explicit send_to_agent action, gated to the task author. */
 export const tasksThreadMessagesDestroy: API.OperationMethod<
@@ -6394,21 +6637,6 @@ export const tasksThreadMessagesDestroy: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: TasksThreadMessagesDestroyRequest,
   output: TasksThreadMessagesDestroyResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TasksThreadMessagesListError = PosthogOpError;
-/** List thread messages The task's thread in chronological order. */
-export const tasksThreadMessagesList: API.OperationMethod<
-  TasksThreadMessagesListRequest,
-  PaginatedTaskThreadMessageDTOList,
-  TasksThreadMessagesListError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TasksThreadMessagesListRequest,
-  output: PaginatedTaskThreadMessageDTOList,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
@@ -6431,55 +6659,6 @@ export const tasksThreadMessagesSendToAgentCreate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type TasksUpdateError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** API for managing tasks within a project. Tasks represent units of work to be performed by an agent. */
-export const tasksUpdate: API.OperationMethod<
-  TasksUpdateRequest,
-  TaskDetailDTO,
-  TasksUpdateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TasksUpdateRequest,
-  output: TaskDetailDTO,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TasksUsageRetrieveError = PosthogOpError;
-/** Get task usage Return estimated model and cloud compute costs attributed to a task. */
-export const tasksUsageRetrieve: API.OperationMethod<
-  TasksUsageRetrieveRequest,
-  TaskUsageResponse,
-  TasksUsageRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TasksUsageRetrieveRequest,
-  output: TaskUsageResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TasksWarmCreateError = Forbidden | PosthogOpError;
-/** Warm a task sandbox Warm a full idling Run for a cloud task while the user composes: boot a sandbox, clone the repo, check out the branch, and start the agent, then idle awaiting the first message. On submit the normal create+run path transparently reuses and activates this Run; abandoned warms are reaped by the Run's inactivity timeout. Best-effort: returns an empty body when the feature flag is off, the warm pool is full, or the GitHub integration doesn't belong to the team. */
-export const tasksWarmCreate: API.OperationMethod<
-  TasksWarmCreateRequest,
-  WarmTaskResponse,
-  TasksWarmCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TasksWarmCreateRequest,
-  output: WarmTaskResponse,
-  errors: [Forbidden],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
 export type TasksWarmResumeCreateError = Forbidden | NotFound | PosthogOpError;
 /** Warm a resumed task sandbox Warm an idling successor for the task's latest terminal Run while the user composes the next message. The successor restores the prior snapshot when compatible and waits for the normal run endpoint to activate it. Best-effort: returns an empty body when warming is disabled, capped, or the task advanced to another Run. */
 export const tasksWarmResumeCreate: API.OperationMethod<
@@ -6491,6 +6670,82 @@ export const tasksWarmResumeCreate: API.OperationMethod<
   input: TasksWarmResumeCreateRequest,
   output: WarmTaskResumeResponse,
   errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateTaskError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** API for managing tasks within a project. Tasks represent units of work to be performed by an agent. */
+export const updateTask: API.OperationMethod<
+  UpdateTaskRequest,
+  TaskDetailDTO,
+  UpdateTaskError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateTaskRequest,
+  output: TaskDetailDTO,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateTasksPartialError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** API for managing tasks within a project. Tasks represent units of work to be performed by an agent. */
+export const updateTasksPartial: API.OperationMethod<
+  UpdateTasksPartialRequest,
+  TaskDetailDTO,
+  UpdateTasksPartialError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateTasksPartialRequest,
+  output: TaskDetailDTO,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateTasksRunsPartialError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** Update task run API for managing task runs. Each run represents an execution of a task. */
+export const updateTasksRunsPartial: API.OperationMethod<
+  UpdateTasksRunsPartialRequest,
+  TaskRunDetailDTO,
+  UpdateTasksRunsPartialError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateTasksRunsPartialRequest,
+  output: TaskRunDetailDTO,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateTasksRunsSetOutputPartialError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** Set run output Update the output field for a task run (e.g., PR URL, commit SHA, etc.) */
+export const updateTasksRunsSetOutputPartial: API.OperationMethod<
+  UpdateTasksRunsSetOutputPartialRequest,
+  TaskRunDetailDTO,
+  UpdateTasksRunsSetOutputPartialError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateTasksRunsSetOutputPartialRequest,
+  output: TaskRunDetailDTO,
+  errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));

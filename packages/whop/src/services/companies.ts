@@ -603,6 +603,18 @@ export const Company = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Company" }) as any as S.Schema<Company>;
 
+export interface GetCompanyRequest {
+  /** The unique identifier or route slug of the company. */
+  id: string;
+}
+export const GetCompanyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/companies/{id}", code: 200 })),
+).annotate({
+  identifier: "GetCompanyRequest",
+}) as any as S.Schema<GetCompanyRequest>;
+
 /** The direction of the sort. */
 export type Direction = "asc" | "desc";
 export const Direction = /*@__PURE__*/ S.String;
@@ -740,18 +752,6 @@ export const ListCompanyResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListCompanyResponse",
 }) as any as S.Schema<ListCompanyResponse>;
 
-export interface RetrieveCompanyRequest {
-  /** The unique identifier or route slug of the company. */
-  id: string;
-}
-export const RetrieveCompanyRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/companies/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveCompanyRequest",
-}) as any as S.Schema<RetrieveCompanyRequest>;
-
 /** The company's banner image. Accepts PNG or JPEG format. */
 export type UpdateCompanyRequestBannerImage = CreateCompanyRequestLogo;
 export const UpdateCompanyRequestBannerImage = CreateCompanyRequestLogo;
@@ -885,6 +885,26 @@ export const createCompany: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetCompanyError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | WhopOpError;
+/** Retrieve company [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing company. Required permissions: - `company:basic:read` */
+export const getCompany: API.OperationMethod<
+  GetCompanyRequest,
+  Company,
+  GetCompanyError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCompanyRequest,
+  output: Company,
+  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListCompanyError =
   | BadRequest
   | Forbidden
@@ -916,26 +936,6 @@ export const listCompany: API.PaginatedOperationMethod<
   }),
   paginateRelay,
 ) as any;
-
-export type RetrieveCompanyError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | WhopOpError;
-/** Retrieve company [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing company. Required permissions: - `company:basic:read` */
-export const retrieveCompany: API.OperationMethod<
-  RetrieveCompanyRequest,
-  Company,
-  RetrieveCompanyError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveCompanyRequest,
-  output: Company,
-  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
 
 export type UpdateCompanyError =
   | BadRequest

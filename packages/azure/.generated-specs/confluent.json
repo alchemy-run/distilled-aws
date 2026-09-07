@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.confluent#ValidationsValidateOrganizationV2": {
+    "com.azure.confluent#ValidateValidationOrganizationV2": {
       "type": "operation",
       "input": {
-        "target": "com.azure.confluent#ValidationsValidateOrganizationV2Request"
+        "target": "com.azure.confluent#ValidateValidationOrganizationV2Request"
       },
       "output": {
         "target": "com.azure.confluent#ValidationResponse"
@@ -62,7 +63,7 @@
         "smithy.api#documentation": "Info from the response"
       }
     },
-    "com.azure.confluent#ValidationsValidateOrganizationV2Request": {
+    "com.azure.confluent#ValidateValidationOrganizationV2Request": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -90,7 +91,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.confluent#ValidationsValidateOrganizationV2RequestTagsMap",
+          "target": "com.azure.confluent#ValidateValidationOrganizationV2RequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -266,7 +267,7 @@
         "smithy.api#documentation": "Array of Private Offer Ids"
       }
     },
-    "com.azure.confluent#ValidationsValidateOrganizationV2RequestTagsMap": {
+    "com.azure.confluent#ValidateValidationOrganizationV2RequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -278,13 +279,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.confluent#ValidationsValidateOrganization": {
+    "com.azure.confluent#ValidateValidationOrganization": {
       "type": "operation",
       "input": {
-        "target": "com.azure.confluent#ValidationsValidateOrganizationRequest"
+        "target": "com.azure.confluent#ValidateValidationOrganizationRequest"
       },
       "output": {
-        "target": "com.azure.confluent#ValidationsValidateOrganizationResponse"
+        "target": "com.azure.confluent#ValidateValidationOrganizationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -297,7 +298,7 @@
         "com.distilled.openapi#apiVersion": "2024-07-01"
       }
     },
-    "com.azure.confluent#ValidationsValidateOrganizationResponse": {
+    "com.azure.confluent#ValidateValidationOrganizationResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -325,7 +326,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.confluent#ValidationsValidateOrganizationResponseTagsMap",
+          "target": "com.azure.confluent#ValidateValidationOrganizationResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -607,7 +608,7 @@
         "smithy.api#documentation": "Provision states for confluent RP"
       }
     },
-    "com.azure.confluent#ValidationsValidateOrganizationResponseTagsMap": {
+    "com.azure.confluent#ValidateValidationOrganizationResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -727,7 +728,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.confluent#ValidationsValidateOrganizationRequest": {
+    "com.azure.confluent#ValidateValidationOrganizationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -755,7 +756,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.confluent#ValidationsValidateOrganizationRequestTagsMap",
+          "target": "com.azure.confluent#ValidateValidationOrganizationRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -779,7 +780,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.confluent#ValidationsValidateOrganizationRequestTagsMap": {
+    "com.azure.confluent#ValidateValidationOrganizationRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -791,10 +792,10 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.confluent#OrganizationListRegions": {
+    "com.azure.confluent#ListOrganizationRegions": {
       "type": "operation",
       "input": {
-        "target": "com.azure.confluent#OrganizationListRegionsRequest"
+        "target": "com.azure.confluent#ListOrganizationRegionsRequest"
       },
       "output": {
         "target": "com.azure.confluent#ListRegionsSuccessResponse"
@@ -953,7 +954,7 @@
         "smithy.api#documentation": "Metadata of the data record"
       }
     },
-    "com.azure.confluent#OrganizationListRegionsRequest": {
+    "com.azure.confluent#ListOrganizationRegionsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -981,7 +982,7 @@
           }
         },
         "searchFilters": {
-          "target": "com.azure.confluent#OrganizationListRegionsRequestSearchFiltersMap",
+          "target": "com.azure.confluent#ListOrganizationRegionsRequestSearchFiltersMap",
           "traits": {
             "smithy.api#documentation": "Search filters for the request"
           }
@@ -991,7 +992,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.confluent#OrganizationListRegionsRequestSearchFiltersMap": {
+    "com.azure.confluent#ListOrganizationRegionsRequestSearchFiltersMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1003,10 +1004,10 @@
         "smithy.api#documentation": "Search filters for the request"
       }
     },
-    "com.azure.confluent#OrganizationGetSchemaRegistryClusterById": {
+    "com.azure.confluent#GetOrganizationSchemaRegistryClusterById": {
       "type": "operation",
       "input": {
-        "target": "com.azure.confluent#OrganizationGetSchemaRegistryClusterByIdRequest"
+        "target": "com.azure.confluent#GetOrganizationSchemaRegistryClusterByIdRequest"
       },
       "output": {
         "target": "com.azure.confluent#SchemaRegistryClusterRecord"
@@ -1158,7 +1159,7 @@
         "smithy.api#documentation": "The environment associated with this object"
       }
     },
-    "com.azure.confluent#OrganizationGetSchemaRegistryClusterByIdRequest": {
+    "com.azure.confluent#GetOrganizationSchemaRegistryClusterByIdRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1206,10 +1207,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.confluent#OrganizationListSchemaRegistryClusters": {
+    "com.azure.confluent#ListOrganizationSchemaRegistryClusters": {
       "type": "operation",
       "input": {
-        "target": "com.azure.confluent#OrganizationListSchemaRegistryClustersRequest"
+        "target": "com.azure.confluent#ListOrganizationSchemaRegistryClustersRequest"
       },
       "output": {
         "target": "com.azure.confluent#ListSchemaRegistryClustersResponse"
@@ -1255,7 +1256,7 @@
         "smithy.api#documentation": "The SchemaRegistryClusterRecord items on this page"
       }
     },
-    "com.azure.confluent#OrganizationListSchemaRegistryClustersRequest": {
+    "com.azure.confluent#ListOrganizationSchemaRegistryClustersRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1309,10 +1310,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.confluent#TopicsDelete": {
+    "com.azure.confluent#DeleteTopic": {
       "type": "operation",
       "input": {
-        "target": "com.azure.confluent#TopicsDeleteRequest"
+        "target": "com.azure.confluent#DeleteTopicRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1328,7 +1329,7 @@
         "com.distilled.openapi#apiVersion": "2024-07-01"
       }
     },
-    "com.azure.confluent#TopicsDeleteRequest": {
+    "com.azure.confluent#DeleteTopicRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1384,13 +1385,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.confluent#TopicsCreate": {
+    "com.azure.confluent#CreateTopic": {
       "type": "operation",
       "input": {
-        "target": "com.azure.confluent#TopicsCreateRequest"
+        "target": "com.azure.confluent#CreateTopicRequest"
       },
       "output": {
-        "target": "com.azure.confluent#TopicsCreateResponse"
+        "target": "com.azure.confluent#CreateTopicResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1403,7 +1404,7 @@
         "com.distilled.openapi#apiVersion": "2024-07-01"
       }
     },
-    "com.azure.confluent#TopicsCreateResponse": {
+    "com.azure.confluent#CreateTopicResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1566,7 +1567,7 @@
         "smithy.api#documentation": "Metadata of the data record"
       }
     },
-    "com.azure.confluent#TopicsCreateRequest": {
+    "com.azure.confluent#CreateTopicRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1628,13 +1629,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.confluent#TopicsGet": {
+    "com.azure.confluent#GetTopic": {
       "type": "operation",
       "input": {
-        "target": "com.azure.confluent#TopicsGetRequest"
+        "target": "com.azure.confluent#GetTopicRequest"
       },
       "output": {
-        "target": "com.azure.confluent#TopicsGetResponse"
+        "target": "com.azure.confluent#GetTopicResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1647,7 +1648,7 @@
         "com.distilled.openapi#apiVersion": "2024-07-01"
       }
     },
-    "com.azure.confluent#TopicsGetResponse": {
+    "com.azure.confluent#GetTopicResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1685,7 +1686,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.confluent#TopicsGetRequest": {
+    "com.azure.confluent#GetTopicRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1741,10 +1742,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.confluent#TopicsList": {
+    "com.azure.confluent#ListTopics": {
       "type": "operation",
       "input": {
-        "target": "com.azure.confluent#TopicsListRequest"
+        "target": "com.azure.confluent#ListTopicsRequest"
       },
       "output": {
         "target": "com.azure.confluent#ListTopicsSuccessResponse"
@@ -1828,7 +1829,7 @@
         "smithy.api#documentation": "Details of topic record"
       }
     },
-    "com.azure.confluent#TopicsListRequest": {
+    "com.azure.confluent#ListTopicsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1890,10 +1891,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.confluent#OrganizationCreateAPIKey": {
+    "com.azure.confluent#CreateOrganizationAPIKey": {
       "type": "operation",
       "input": {
-        "target": "com.azure.confluent#OrganizationCreateAPIKeyRequest"
+        "target": "com.azure.confluent#CreateOrganizationAPIKeyRequest"
       },
       "output": {
         "target": "com.azure.confluent#APIKeyRecord"
@@ -2064,7 +2065,7 @@
         "smithy.api#documentation": "API Key Resource details which can be kafka cluster or schema registry cluster"
       }
     },
-    "com.azure.confluent#OrganizationCreateAPIKeyRequest": {
+    "com.azure.confluent#CreateOrganizationAPIKeyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2124,10 +2125,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.confluent#ConnectorDelete": {
+    "com.azure.confluent#DeleteConnector": {
       "type": "operation",
       "input": {
-        "target": "com.azure.confluent#ConnectorDeleteRequest"
+        "target": "com.azure.confluent#DeleteConnectorRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2143,7 +2144,7 @@
         "com.distilled.openapi#apiVersion": "2024-07-01"
       }
     },
-    "com.azure.confluent#ConnectorDeleteRequest": {
+    "com.azure.confluent#DeleteConnectorRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2562,13 +2563,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.confluent#ConnectorGet": {
+    "com.azure.confluent#GetConnector": {
       "type": "operation",
       "input": {
-        "target": "com.azure.confluent#ConnectorGetRequest"
+        "target": "com.azure.confluent#GetConnectorRequest"
       },
       "output": {
-        "target": "com.azure.confluent#ConnectorGetResponse"
+        "target": "com.azure.confluent#GetConnectorResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2581,7 +2582,7 @@
         "com.distilled.openapi#apiVersion": "2024-07-01"
       }
     },
-    "com.azure.confluent#ConnectorGetResponse": {
+    "com.azure.confluent#GetConnectorResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2620,7 +2621,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.confluent#ConnectorGetRequest": {
+    "com.azure.confluent#GetConnectorRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2676,10 +2677,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.confluent#ConnectorList": {
+    "com.azure.confluent#ListConnector": {
       "type": "operation",
       "input": {
-        "target": "com.azure.confluent#ConnectorListRequest"
+        "target": "com.azure.confluent#ListConnectorRequest"
       },
       "output": {
         "target": "com.azure.confluent#ListConnectorsSuccessResponse"
@@ -2764,7 +2765,7 @@
         "smithy.api#documentation": "Details of connector record"
       }
     },
-    "com.azure.confluent#ConnectorListRequest": {
+    "com.azure.confluent#ListConnectorRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2826,10 +2827,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.confluent#ClusterDelete": {
+    "com.azure.confluent#DeleteCluster": {
       "type": "operation",
       "input": {
-        "target": "com.azure.confluent#ClusterDeleteRequest"
+        "target": "com.azure.confluent#DeleteClusterRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2845,7 +2846,7 @@
         "com.distilled.openapi#apiVersion": "2024-07-01"
       }
     },
-    "com.azure.confluent#ClusterDeleteRequest": {
+    "com.azure.confluent#DeleteClusterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3240,13 +3241,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.confluent#OrganizationGetClusterById": {
+    "com.azure.confluent#GetOrganizationClusterById": {
       "type": "operation",
       "input": {
-        "target": "com.azure.confluent#OrganizationGetClusterByIdRequest"
+        "target": "com.azure.confluent#GetOrganizationClusterByIdRequest"
       },
       "output": {
-        "target": "com.azure.confluent#OrganizationGetClusterByIdResponse"
+        "target": "com.azure.confluent#GetOrganizationClusterByIdResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3259,7 +3260,7 @@
         "com.distilled.openapi#apiVersion": "2024-07-01"
       }
     },
-    "com.azure.confluent#OrganizationGetClusterByIdResponse": {
+    "com.azure.confluent#GetOrganizationClusterByIdResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3303,7 +3304,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.confluent#OrganizationGetClusterByIdRequest": {
+    "com.azure.confluent#GetOrganizationClusterByIdRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3351,10 +3352,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.confluent#OrganizationListClusters": {
+    "com.azure.confluent#ListOrganizationClusters": {
       "type": "operation",
       "input": {
-        "target": "com.azure.confluent#OrganizationListClustersRequest"
+        "target": "com.azure.confluent#ListOrganizationClustersRequest"
       },
       "output": {
         "target": "com.azure.confluent#ListClustersSuccessResponse"
@@ -3444,7 +3445,7 @@
         "smithy.api#documentation": "Details of cluster record"
       }
     },
-    "com.azure.confluent#OrganizationListClustersRequest": {
+    "com.azure.confluent#ListOrganizationClustersRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3498,10 +3499,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.confluent#EnvironmentDelete": {
+    "com.azure.confluent#DeleteEnvironment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.confluent#EnvironmentDeleteRequest"
+        "target": "com.azure.confluent#DeleteEnvironmentRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3517,7 +3518,7 @@
         "com.distilled.openapi#apiVersion": "2024-07-01"
       }
     },
-    "com.azure.confluent#EnvironmentDeleteRequest": {
+    "com.azure.confluent#DeleteEnvironmentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3706,13 +3707,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.confluent#OrganizationGetEnvironmentById": {
+    "com.azure.confluent#GetOrganizationEnvironmentById": {
       "type": "operation",
       "input": {
-        "target": "com.azure.confluent#OrganizationGetEnvironmentByIdRequest"
+        "target": "com.azure.confluent#GetOrganizationEnvironmentByIdRequest"
       },
       "output": {
-        "target": "com.azure.confluent#OrganizationGetEnvironmentByIdResponse"
+        "target": "com.azure.confluent#GetOrganizationEnvironmentByIdResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3725,7 +3726,7 @@
         "com.distilled.openapi#apiVersion": "2024-07-01"
       }
     },
-    "com.azure.confluent#OrganizationGetEnvironmentByIdResponse": {
+    "com.azure.confluent#GetOrganizationEnvironmentByIdResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3769,7 +3770,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.confluent#OrganizationGetEnvironmentByIdRequest": {
+    "com.azure.confluent#GetOrganizationEnvironmentByIdRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3809,10 +3810,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.confluent#OrganizationListEnvironments": {
+    "com.azure.confluent#ListOrganizationEnvironments": {
       "type": "operation",
       "input": {
-        "target": "com.azure.confluent#OrganizationListEnvironmentsRequest"
+        "target": "com.azure.confluent#ListOrganizationEnvironmentsRequest"
       },
       "output": {
         "target": "com.azure.confluent#GetEnvironmentsResponse"
@@ -3902,7 +3903,7 @@
         "smithy.api#documentation": "Details about environment name, metadata and environment id of an environment"
       }
     },
-    "com.azure.confluent#OrganizationListEnvironmentsRequest": {
+    "com.azure.confluent#ListOrganizationEnvironmentsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3948,10 +3949,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.confluent#OrganizationDeleteClusterAPIKey": {
+    "com.azure.confluent#DeleteOrganizationClusterAPIKey": {
       "type": "operation",
       "input": {
-        "target": "com.azure.confluent#OrganizationDeleteClusterAPIKeyRequest"
+        "target": "com.azure.confluent#DeleteOrganizationClusterAPIKeyRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3967,7 +3968,7 @@
         "com.distilled.openapi#apiVersion": "2024-07-01"
       }
     },
-    "com.azure.confluent#OrganizationDeleteClusterAPIKeyRequest": {
+    "com.azure.confluent#DeleteOrganizationClusterAPIKeyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4007,10 +4008,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.confluent#OrganizationGetClusterAPIKey": {
+    "com.azure.confluent#GetOrganizationClusterAPIKey": {
       "type": "operation",
       "input": {
-        "target": "com.azure.confluent#OrganizationGetClusterAPIKeyRequest"
+        "target": "com.azure.confluent#GetOrganizationClusterAPIKeyRequest"
       },
       "output": {
         "target": "com.azure.confluent#APIKeyRecord"
@@ -4026,7 +4027,7 @@
         "com.distilled.openapi#apiVersion": "2024-07-01"
       }
     },
-    "com.azure.confluent#OrganizationGetClusterAPIKeyRequest": {
+    "com.azure.confluent#GetOrganizationClusterAPIKeyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4066,10 +4067,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.confluent#AccessListUsers": {
+    "com.azure.confluent#ListAccessUsers": {
       "type": "operation",
       "input": {
-        "target": "com.azure.confluent#AccessListUsersRequest"
+        "target": "com.azure.confluent#ListAccessUsersRequest"
       },
       "output": {
         "target": "com.azure.confluent#AccessListUsersSuccessResponse"
@@ -4240,7 +4241,7 @@
         "smithy.api#documentation": "Metadata of the list"
       }
     },
-    "com.azure.confluent#AccessListUsersRequest": {
+    "com.azure.confluent#ListAccessUsersRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4268,7 +4269,7 @@
           }
         },
         "searchFilters": {
-          "target": "com.azure.confluent#AccessListUsersRequestSearchFiltersMap",
+          "target": "com.azure.confluent#ListAccessUsersRequestSearchFiltersMap",
           "traits": {
             "smithy.api#documentation": "Search filters for the request"
           }
@@ -4278,7 +4279,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.confluent#AccessListUsersRequestSearchFiltersMap": {
+    "com.azure.confluent#ListAccessUsersRequestSearchFiltersMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4290,10 +4291,10 @@
         "smithy.api#documentation": "Search filters for the request"
       }
     },
-    "com.azure.confluent#AccessListServiceAccounts": {
+    "com.azure.confluent#ListAccessServiceAccounts": {
       "type": "operation",
       "input": {
-        "target": "com.azure.confluent#AccessListServiceAccountsRequest"
+        "target": "com.azure.confluent#ListAccessServiceAccountsRequest"
       },
       "output": {
         "target": "com.azure.confluent#AccessListServiceAccountsSuccessResponse"
@@ -4382,7 +4383,7 @@
         "smithy.api#documentation": "Record of the service account"
       }
     },
-    "com.azure.confluent#AccessListServiceAccountsRequest": {
+    "com.azure.confluent#ListAccessServiceAccountsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4410,7 +4411,7 @@
           }
         },
         "searchFilters": {
-          "target": "com.azure.confluent#AccessListServiceAccountsRequestSearchFiltersMap",
+          "target": "com.azure.confluent#ListAccessServiceAccountsRequestSearchFiltersMap",
           "traits": {
             "smithy.api#documentation": "Search filters for the request"
           }
@@ -4420,7 +4421,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.confluent#AccessListServiceAccountsRequestSearchFiltersMap": {
+    "com.azure.confluent#ListAccessServiceAccountsRequestSearchFiltersMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4432,10 +4433,10 @@
         "smithy.api#documentation": "Search filters for the request"
       }
     },
-    "com.azure.confluent#AccessListRoleBindings": {
+    "com.azure.confluent#ListAccessRoleBindings": {
       "type": "operation",
       "input": {
-        "target": "com.azure.confluent#AccessListRoleBindingsRequest"
+        "target": "com.azure.confluent#ListAccessRoleBindingsRequest"
       },
       "output": {
         "target": "com.azure.confluent#AccessListRoleBindingsSuccessResponse"
@@ -4530,7 +4531,7 @@
         "smithy.api#documentation": "Details on principal, role name and crn pattern of a role binding"
       }
     },
-    "com.azure.confluent#AccessListRoleBindingsRequest": {
+    "com.azure.confluent#ListAccessRoleBindingsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4558,7 +4559,7 @@
           }
         },
         "searchFilters": {
-          "target": "com.azure.confluent#AccessListRoleBindingsRequestSearchFiltersMap",
+          "target": "com.azure.confluent#ListAccessRoleBindingsRequestSearchFiltersMap",
           "traits": {
             "smithy.api#documentation": "Search filters for the request"
           }
@@ -4568,7 +4569,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.confluent#AccessListRoleBindingsRequestSearchFiltersMap": {
+    "com.azure.confluent#ListAccessRoleBindingsRequestSearchFiltersMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4684,10 +4685,10 @@
         "smithy.api#documentation": "Search filters for the request"
       }
     },
-    "com.azure.confluent#AccessListInvitations": {
+    "com.azure.confluent#ListAccessInvitations": {
       "type": "operation",
       "input": {
-        "target": "com.azure.confluent#AccessListInvitationsRequest"
+        "target": "com.azure.confluent#ListAccessInvitationsRequest"
       },
       "output": {
         "target": "com.azure.confluent#AccessListInvitationsSuccessResponse"
@@ -4794,7 +4795,7 @@
         "smithy.api#documentation": "Record of the invitation"
       }
     },
-    "com.azure.confluent#AccessListInvitationsRequest": {
+    "com.azure.confluent#ListAccessInvitationsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4822,7 +4823,7 @@
           }
         },
         "searchFilters": {
-          "target": "com.azure.confluent#AccessListInvitationsRequestSearchFiltersMap",
+          "target": "com.azure.confluent#ListAccessInvitationsRequestSearchFiltersMap",
           "traits": {
             "smithy.api#documentation": "Search filters for the request"
           }
@@ -4832,7 +4833,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.confluent#AccessListInvitationsRequestSearchFiltersMap": {
+    "com.azure.confluent#ListAccessInvitationsRequestSearchFiltersMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4844,10 +4845,10 @@
         "smithy.api#documentation": "Search filters for the request"
       }
     },
-    "com.azure.confluent#AccessListEnvironments": {
+    "com.azure.confluent#ListAccessEnvironments": {
       "type": "operation",
       "input": {
-        "target": "com.azure.confluent#AccessListEnvironmentsRequest"
+        "target": "com.azure.confluent#ListAccessEnvironmentsRequest"
       },
       "output": {
         "target": "com.azure.confluent#AccessListEnvironmentsSuccessResponse"
@@ -4930,7 +4931,7 @@
         "smithy.api#documentation": "Details about environment name, metadata and environment id of an environment"
       }
     },
-    "com.azure.confluent#AccessListEnvironmentsRequest": {
+    "com.azure.confluent#ListAccessEnvironmentsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4958,7 +4959,7 @@
           }
         },
         "searchFilters": {
-          "target": "com.azure.confluent#AccessListEnvironmentsRequestSearchFiltersMap",
+          "target": "com.azure.confluent#ListAccessEnvironmentsRequestSearchFiltersMap",
           "traits": {
             "smithy.api#documentation": "Search filters for the request"
           }
@@ -4968,7 +4969,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.confluent#AccessListEnvironmentsRequestSearchFiltersMap": {
+    "com.azure.confluent#ListAccessEnvironmentsRequestSearchFiltersMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4980,10 +4981,10 @@
         "smithy.api#documentation": "Search filters for the request"
       }
     },
-    "com.azure.confluent#AccessListClusters": {
+    "com.azure.confluent#ListAccessClusters": {
       "type": "operation",
       "input": {
-        "target": "com.azure.confluent#AccessListClustersRequest"
+        "target": "com.azure.confluent#ListAccessClustersRequest"
       },
       "output": {
         "target": "com.azure.confluent#AccessListClusterSuccessResponse"
@@ -5248,7 +5249,7 @@
         "smithy.api#documentation": "The environment to which cluster belongs"
       }
     },
-    "com.azure.confluent#AccessListClustersRequest": {
+    "com.azure.confluent#ListAccessClustersRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5276,7 +5277,7 @@
           }
         },
         "searchFilters": {
-          "target": "com.azure.confluent#AccessListClustersRequestSearchFiltersMap",
+          "target": "com.azure.confluent#ListAccessClustersRequestSearchFiltersMap",
           "traits": {
             "smithy.api#documentation": "Search filters for the request"
           }
@@ -5286,7 +5287,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.confluent#AccessListClustersRequestSearchFiltersMap": {
+    "com.azure.confluent#ListAccessClustersRequestSearchFiltersMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5298,10 +5299,10 @@
         "smithy.api#documentation": "Search filters for the request"
       }
     },
-    "com.azure.confluent#AccessDeleteRoleBinding": {
+    "com.azure.confluent#DeleteAccessRoleBinding": {
       "type": "operation",
       "input": {
-        "target": "com.azure.confluent#AccessDeleteRoleBindingRequest"
+        "target": "com.azure.confluent#DeleteAccessRoleBindingRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5317,7 +5318,7 @@
         "com.distilled.openapi#apiVersion": "2024-07-01"
       }
     },
-    "com.azure.confluent#AccessDeleteRoleBindingRequest": {
+    "com.azure.confluent#DeleteAccessRoleBindingRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5357,10 +5358,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.confluent#AccessCreateRoleBinding": {
+    "com.azure.confluent#CreateAccessRoleBinding": {
       "type": "operation",
       "input": {
-        "target": "com.azure.confluent#AccessCreateRoleBindingRequest"
+        "target": "com.azure.confluent#CreateAccessRoleBindingRequest"
       },
       "output": {
         "target": "com.azure.confluent#RoleBindingRecord"
@@ -5376,7 +5377,7 @@
         "com.distilled.openapi#apiVersion": "2024-07-01"
       }
     },
-    "com.azure.confluent#AccessCreateRoleBindingRequest": {
+    "com.azure.confluent#CreateAccessRoleBindingRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5426,10 +5427,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.confluent#AccessInviteUser": {
+    "com.azure.confluent#InviteAccessUser": {
       "type": "operation",
       "input": {
-        "target": "com.azure.confluent#AccessInviteUserRequest"
+        "target": "com.azure.confluent#InviteAccessUserRequest"
       },
       "output": {
         "target": "com.azure.confluent#InvitationRecord"
@@ -5445,7 +5446,7 @@
         "com.distilled.openapi#apiVersion": "2024-07-01"
       }
     },
-    "com.azure.confluent#AccessInviteUserRequest": {
+    "com.azure.confluent#InviteAccessUserRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5521,10 +5522,10 @@
         "smithy.api#documentation": "Details of the user being invited"
       }
     },
-    "com.azure.confluent#OrganizationDelete": {
+    "com.azure.confluent#DeleteOrganization": {
       "type": "operation",
       "input": {
-        "target": "com.azure.confluent#OrganizationDeleteRequest"
+        "target": "com.azure.confluent#DeleteOrganizationRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5540,7 +5541,7 @@
         "com.distilled.openapi#apiVersion": "2024-07-01"
       }
     },
-    "com.azure.confluent#OrganizationDeleteRequest": {
+    "com.azure.confluent#DeleteOrganizationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5572,13 +5573,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.confluent#OrganizationUpdate": {
+    "com.azure.confluent#UpdateOrganization": {
       "type": "operation",
       "input": {
-        "target": "com.azure.confluent#OrganizationUpdateRequest"
+        "target": "com.azure.confluent#UpdateOrganizationRequest"
       },
       "output": {
-        "target": "com.azure.confluent#OrganizationUpdateResponse"
+        "target": "com.azure.confluent#UpdateOrganizationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5591,7 +5592,7 @@
         "com.distilled.openapi#apiVersion": "2024-07-01"
       }
     },
-    "com.azure.confluent#OrganizationUpdateResponse": {
+    "com.azure.confluent#UpdateOrganizationResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5619,7 +5620,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.confluent#OrganizationUpdateResponseTagsMap",
+          "target": "com.azure.confluent#UpdateOrganizationResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5643,7 +5644,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.confluent#OrganizationUpdateResponseTagsMap": {
+    "com.azure.confluent#UpdateOrganizationResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5655,7 +5656,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.confluent#OrganizationUpdateRequest": {
+    "com.azure.confluent#UpdateOrganizationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5683,7 +5684,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.confluent#OrganizationUpdateRequestTagsMap",
+          "target": "com.azure.confluent#UpdateOrganizationRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "ARM resource tags"
           }
@@ -5693,7 +5694,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.confluent#OrganizationUpdateRequestTagsMap": {
+    "com.azure.confluent#UpdateOrganizationRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5705,13 +5706,13 @@
         "smithy.api#documentation": "ARM resource tags"
       }
     },
-    "com.azure.confluent#OrganizationCreate": {
+    "com.azure.confluent#CreateOrganization": {
       "type": "operation",
       "input": {
-        "target": "com.azure.confluent#OrganizationCreateRequest"
+        "target": "com.azure.confluent#CreateOrganizationRequest"
       },
       "output": {
-        "target": "com.azure.confluent#OrganizationCreateResponse"
+        "target": "com.azure.confluent#CreateOrganizationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5724,7 +5725,7 @@
         "com.distilled.openapi#apiVersion": "2024-07-01"
       }
     },
-    "com.azure.confluent#OrganizationCreateResponse": {
+    "com.azure.confluent#CreateOrganizationResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5752,7 +5753,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.confluent#OrganizationCreateResponseTagsMap",
+          "target": "com.azure.confluent#CreateOrganizationResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5776,7 +5777,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.confluent#OrganizationCreateResponseTagsMap": {
+    "com.azure.confluent#CreateOrganizationResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5788,7 +5789,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.confluent#OrganizationCreateRequest": {
+    "com.azure.confluent#CreateOrganizationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5816,7 +5817,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.confluent#OrganizationCreateRequestTagsMap",
+          "target": "com.azure.confluent#CreateOrganizationRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5840,7 +5841,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.confluent#OrganizationCreateRequestTagsMap": {
+    "com.azure.confluent#CreateOrganizationRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5852,13 +5853,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.confluent#OrganizationGet": {
+    "com.azure.confluent#GetOrganization": {
       "type": "operation",
       "input": {
-        "target": "com.azure.confluent#OrganizationGetRequest"
+        "target": "com.azure.confluent#GetOrganizationRequest"
       },
       "output": {
-        "target": "com.azure.confluent#OrganizationGetResponse"
+        "target": "com.azure.confluent#GetOrganizationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5871,7 +5872,7 @@
         "com.distilled.openapi#apiVersion": "2024-07-01"
       }
     },
-    "com.azure.confluent#OrganizationGetResponse": {
+    "com.azure.confluent#GetOrganizationResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5899,7 +5900,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.confluent#OrganizationGetResponseTagsMap",
+          "target": "com.azure.confluent#GetOrganizationResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5923,7 +5924,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.confluent#OrganizationGetResponseTagsMap": {
+    "com.azure.confluent#GetOrganizationResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5935,7 +5936,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.confluent#OrganizationGetRequest": {
+    "com.azure.confluent#GetOrganizationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5967,10 +5968,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.confluent#OrganizationListByResourceGroup": {
+    "com.azure.confluent#ListOrganizationByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.confluent#OrganizationListByResourceGroupRequest"
+        "target": "com.azure.confluent#ListOrganizationByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.confluent#OrganizationResourceListResult"
@@ -6080,7 +6081,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.confluent#OrganizationListByResourceGroupRequest": {
+    "com.azure.confluent#ListOrganizationByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6104,10 +6105,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.confluent#OrganizationListBySubscription": {
+    "com.azure.confluent#ListOrganizationBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.confluent#OrganizationListBySubscriptionRequest"
+        "target": "com.azure.confluent#ListOrganizationBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.confluent#OrganizationResourceListResult"
@@ -6123,7 +6124,7 @@
         "com.distilled.openapi#apiVersion": "2024-07-01"
       }
     },
-    "com.azure.confluent#OrganizationListBySubscriptionRequest": {
+    "com.azure.confluent#ListOrganizationBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6139,10 +6140,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.confluent#MarketplaceAgreementsCreate": {
+    "com.azure.confluent#CreateMarketplaceAgreement": {
       "type": "operation",
       "input": {
-        "target": "com.azure.confluent#MarketplaceAgreementsCreateRequest"
+        "target": "com.azure.confluent#CreateMarketplaceAgreementRequest"
       },
       "output": {
         "target": "com.azure.confluent#ConfluentAgreementResource"
@@ -6360,7 +6361,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.confluent#MarketplaceAgreementsCreateRequest": {
+    "com.azure.confluent#CreateMarketplaceAgreementRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6382,10 +6383,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.confluent#MarketplaceAgreementsList": {
+    "com.azure.confluent#ListMarketplaceAgreements": {
       "type": "operation",
       "input": {
-        "target": "com.azure.confluent#MarketplaceAgreementsListRequest"
+        "target": "com.azure.confluent#ListMarketplaceAgreementsRequest"
       },
       "output": {
         "target": "com.azure.confluent#ConfluentAgreementResourceListResponse"
@@ -6431,7 +6432,7 @@
         "smithy.api#documentation": "The ConfluentAgreementResource items on this page"
       }
     },
-    "com.azure.confluent#MarketplaceAgreementsListRequest": {
+    "com.azure.confluent#ListMarketplaceAgreementsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6447,7 +6448,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.confluent#OrganizationOperationsList": {
+    "com.azure.confluent#ListOrganizationOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -6559,133 +6560,133 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.confluent#ValidationsValidateOrganizationV2"
+          "target": "com.azure.confluent#ValidateValidationOrganizationV2"
         },
         {
-          "target": "com.azure.confluent#ValidationsValidateOrganization"
+          "target": "com.azure.confluent#ValidateValidationOrganization"
         },
         {
-          "target": "com.azure.confluent#OrganizationListRegions"
+          "target": "com.azure.confluent#ListOrganizationRegions"
         },
         {
-          "target": "com.azure.confluent#OrganizationGetSchemaRegistryClusterById"
+          "target": "com.azure.confluent#GetOrganizationSchemaRegistryClusterById"
         },
         {
-          "target": "com.azure.confluent#OrganizationListSchemaRegistryClusters"
+          "target": "com.azure.confluent#ListOrganizationSchemaRegistryClusters"
         },
         {
-          "target": "com.azure.confluent#TopicsDelete"
+          "target": "com.azure.confluent#DeleteTopic"
         },
         {
-          "target": "com.azure.confluent#TopicsCreate"
+          "target": "com.azure.confluent#CreateTopic"
         },
         {
-          "target": "com.azure.confluent#TopicsGet"
+          "target": "com.azure.confluent#GetTopic"
         },
         {
-          "target": "com.azure.confluent#TopicsList"
+          "target": "com.azure.confluent#ListTopics"
         },
         {
-          "target": "com.azure.confluent#OrganizationCreateAPIKey"
+          "target": "com.azure.confluent#CreateOrganizationAPIKey"
         },
         {
-          "target": "com.azure.confluent#ConnectorDelete"
+          "target": "com.azure.confluent#DeleteConnector"
         },
         {
           "target": "com.azure.confluent#ConnectorCreateOrUpdate"
         },
         {
-          "target": "com.azure.confluent#ConnectorGet"
+          "target": "com.azure.confluent#GetConnector"
         },
         {
-          "target": "com.azure.confluent#ConnectorList"
+          "target": "com.azure.confluent#ListConnector"
         },
         {
-          "target": "com.azure.confluent#ClusterDelete"
+          "target": "com.azure.confluent#DeleteCluster"
         },
         {
           "target": "com.azure.confluent#ClusterCreateOrUpdate"
         },
         {
-          "target": "com.azure.confluent#OrganizationGetClusterById"
+          "target": "com.azure.confluent#GetOrganizationClusterById"
         },
         {
-          "target": "com.azure.confluent#OrganizationListClusters"
+          "target": "com.azure.confluent#ListOrganizationClusters"
         },
         {
-          "target": "com.azure.confluent#EnvironmentDelete"
+          "target": "com.azure.confluent#DeleteEnvironment"
         },
         {
           "target": "com.azure.confluent#EnvironmentCreateOrUpdate"
         },
         {
-          "target": "com.azure.confluent#OrganizationGetEnvironmentById"
+          "target": "com.azure.confluent#GetOrganizationEnvironmentById"
         },
         {
-          "target": "com.azure.confluent#OrganizationListEnvironments"
+          "target": "com.azure.confluent#ListOrganizationEnvironments"
         },
         {
-          "target": "com.azure.confluent#OrganizationDeleteClusterAPIKey"
+          "target": "com.azure.confluent#DeleteOrganizationClusterAPIKey"
         },
         {
-          "target": "com.azure.confluent#OrganizationGetClusterAPIKey"
+          "target": "com.azure.confluent#GetOrganizationClusterAPIKey"
         },
         {
-          "target": "com.azure.confluent#AccessListUsers"
+          "target": "com.azure.confluent#ListAccessUsers"
         },
         {
-          "target": "com.azure.confluent#AccessListServiceAccounts"
+          "target": "com.azure.confluent#ListAccessServiceAccounts"
         },
         {
-          "target": "com.azure.confluent#AccessListRoleBindings"
+          "target": "com.azure.confluent#ListAccessRoleBindings"
         },
         {
           "target": "com.azure.confluent#AccessListRoleBindingNameList"
         },
         {
-          "target": "com.azure.confluent#AccessListInvitations"
+          "target": "com.azure.confluent#ListAccessInvitations"
         },
         {
-          "target": "com.azure.confluent#AccessListEnvironments"
+          "target": "com.azure.confluent#ListAccessEnvironments"
         },
         {
-          "target": "com.azure.confluent#AccessListClusters"
+          "target": "com.azure.confluent#ListAccessClusters"
         },
         {
-          "target": "com.azure.confluent#AccessDeleteRoleBinding"
+          "target": "com.azure.confluent#DeleteAccessRoleBinding"
         },
         {
-          "target": "com.azure.confluent#AccessCreateRoleBinding"
+          "target": "com.azure.confluent#CreateAccessRoleBinding"
         },
         {
-          "target": "com.azure.confluent#AccessInviteUser"
+          "target": "com.azure.confluent#InviteAccessUser"
         },
         {
-          "target": "com.azure.confluent#OrganizationDelete"
+          "target": "com.azure.confluent#DeleteOrganization"
         },
         {
-          "target": "com.azure.confluent#OrganizationUpdate"
+          "target": "com.azure.confluent#UpdateOrganization"
         },
         {
-          "target": "com.azure.confluent#OrganizationCreate"
+          "target": "com.azure.confluent#CreateOrganization"
         },
         {
-          "target": "com.azure.confluent#OrganizationGet"
+          "target": "com.azure.confluent#GetOrganization"
         },
         {
-          "target": "com.azure.confluent#OrganizationListByResourceGroup"
+          "target": "com.azure.confluent#ListOrganizationByResourceGroup"
         },
         {
-          "target": "com.azure.confluent#OrganizationListBySubscription"
+          "target": "com.azure.confluent#ListOrganizationBySubscription"
         },
         {
-          "target": "com.azure.confluent#MarketplaceAgreementsCreate"
+          "target": "com.azure.confluent#CreateMarketplaceAgreement"
         },
         {
-          "target": "com.azure.confluent#MarketplaceAgreementsList"
+          "target": "com.azure.confluent#ListMarketplaceAgreements"
         },
         {
-          "target": "com.azure.confluent#OrganizationOperationsList"
+          "target": "com.azure.confluent#ListOrganizationOperations"
         }
       ],
       "traits": {

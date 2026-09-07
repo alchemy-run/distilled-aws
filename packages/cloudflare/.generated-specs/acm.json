@@ -14,32 +14,26 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "keyDictionary": {
+      "certificateAuthority": "certificate_authority",
+      "expiresOn": "expires_on",
+      "perPage": "per_page",
+      "resultInfo": "result_info",
+      "totalCount": "total_count",
+      "updatedAt": "updated_at",
+      "uploadedOn": "uploaded_on",
+      "validityPeriod": "validity_period"
+    },
+    "opAliases": [
+      {
+        "alias": "editTotalTl",
+        "target": "updateTotalTl"
+      }
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.cloudflare.acm#CustomTrustStoreCreateRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "certificate": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The root CA certificate in PEM format. Only root CA certificates are accepted; intermediate and leaf certificates are not supported.",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.acm#CustomTrustStoreCreateResponseStatus": {
       "type": "enum",
       "members": {
@@ -81,169 +75,6 @@
         }
       }
     },
-    "com.cloudflare.acm#CustomTrustStoreCreateResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#required": {}
-          }
-        },
-        "certificate": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The root CA certificate in PEM format. Only root CA certificates are accepted; intermediate and leaf certificates are not supported.",
-            "smithy.api#required": {}
-          }
-        },
-        "expires_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the certificate expires.",
-            "smithy.api#required": {}
-          }
-        },
-        "issuer": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The certificate authority that issued the certificate.",
-            "smithy.api#required": {}
-          }
-        },
-        "signature": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The type of hash used for the certificate.",
-            "smithy.api#required": {}
-          }
-        },
-        "status": {
-          "target": "com.cloudflare.acm#CustomTrustStoreCreateResponseStatus",
-          "traits": {
-            "smithy.api#documentation": "Status of the zone's custom SSL.",
-            "smithy.api#required": {}
-          }
-        },
-        "updated_at": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the certificate was last modified.",
-            "smithy.api#required": {}
-          }
-        },
-        "uploaded_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the certificate was uploaded to Cloudflare.",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.acm#CustomTrustStoreCreate": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.acm#CustomTrustStoreCreateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.acm#CustomTrustStoreCreateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "/zones/{zone_id}/acm/custom_trust_store",
-          "code": 200
-        },
-        "smithy.api#documentation": "Upload a root CA certificate to the Custom Origin Trust Store for a Zone. Only root CA certificates are accepted."
-      }
-    },
-    "com.cloudflare.acm#CustomTrustStoreDeleteRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "custom_origin_trust_store_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.acm#CustomTrustStoreDeleteResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.acm#CustomTrustStoreDelete": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.acm#CustomTrustStoreDeleteRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.acm#CustomTrustStoreDeleteResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "/zones/{zone_id}/acm/custom_trust_store/{custom_origin_trust_store_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Removes a root CA certificate from the custom origin trust store. Origins using certificates signed by this CA will no longer be trusted.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.acm#CustomTrustStoreGetRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "custom_origin_trust_store_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.acm#CustomTrustStoreGetResponseStatus": {
       "type": "enum",
       "members": {
@@ -283,133 +114,6 @@
             "smithy.api#enumValue": "expired"
           }
         }
-      }
-    },
-    "com.cloudflare.acm#CustomTrustStoreGetResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#required": {}
-          }
-        },
-        "certificate": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The root CA certificate in PEM format. Only root CA certificates are accepted; intermediate and leaf certificates are not supported.",
-            "smithy.api#required": {}
-          }
-        },
-        "expires_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the certificate expires.",
-            "smithy.api#required": {}
-          }
-        },
-        "issuer": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The certificate authority that issued the certificate.",
-            "smithy.api#required": {}
-          }
-        },
-        "signature": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The type of hash used for the certificate.",
-            "smithy.api#required": {}
-          }
-        },
-        "status": {
-          "target": "com.cloudflare.acm#CustomTrustStoreGetResponseStatus",
-          "traits": {
-            "smithy.api#documentation": "Status of the zone's custom SSL.",
-            "smithy.api#required": {}
-          }
-        },
-        "updated_at": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the certificate was last modified.",
-            "smithy.api#required": {}
-          }
-        },
-        "uploaded_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the certificate was uploaded to Cloudflare.",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.acm#CustomTrustStoreGet": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.acm#CustomTrustStoreGetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.acm#CustomTrustStoreGetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/acm/custom_trust_store/{custom_origin_trust_store_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Retrieves details about a specific root CA certificate in the custom origin trust store, including expiration and subject information.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.acm#CustomTrustStoreListRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "limit": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Limit to the number of records returned.",
-            "smithy.api#httpQuery": "limit"
-          }
-        },
-        "offset": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Offset the results.",
-            "smithy.api#httpQuery": "offset"
-          }
-        },
-        "page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Page number of paginated results.",
-            "smithy.api#httpQuery": "page"
-          }
-        },
-        "per_page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Number of records per page.",
-            "smithy.api#httpQuery": "per_page"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.acm#CustomTrustStoreListResultItemStatus": {
@@ -520,39 +224,6 @@
         "target": "com.cloudflare.acm#CustomTrustStoreListResultItem"
       }
     },
-    "com.cloudflare.acm#CustomTrustStoreListResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.acm#CustomTrustStoreListResultList",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.acm#CustomTrustStoreList": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.acm#CustomTrustStoreListRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.acm#CustomTrustStoreListResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/acm/custom_trust_store",
-          "code": 200
-        },
-        "smithy.api#documentation": "Get Custom Origin Trust Store for a Zone.",
-        "smithy.api#readonly": {}
-      }
-    },
     "com.cloudflare.acm#TotalTlsEditRequestCertificateAuthority": {
       "type": "enum",
       "members": {
@@ -574,35 +245,6 @@
             "smithy.api#enumValue": "ssl_com"
           }
         }
-      }
-    },
-    "com.cloudflare.acm#TotalTlsEditRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "enabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "If enabled, Total TLS will order a hostname specific TLS certificate for any proxied A, AAAA, or CNAME record in your zone.",
-            "smithy.api#required": {}
-          }
-        },
-        "certificate_authority": {
-          "target": "com.cloudflare.acm#TotalTlsEditRequestCertificateAuthority",
-          "traits": {
-            "smithy.api#documentation": "The Certificate Authority that Total TLS certificates will be issued through."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.acm#TotalTlsEditResponseCertificateAuthority": {
@@ -639,66 +281,6 @@
         }
       }
     },
-    "com.cloudflare.acm#TotalTlsEditResponse": {
-      "type": "structure",
-      "members": {
-        "certificate_authority": {
-          "target": "com.cloudflare.acm#TotalTlsEditResponseCertificateAuthority",
-          "traits": {
-            "smithy.api#documentation": "The Certificate Authority that Total TLS certificates will be issued through."
-          }
-        },
-        "enabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "If enabled, Total TLS will order a hostname specific TLS certificate for any proxied A, AAAA, or CNAME record in your zone."
-          }
-        },
-        "validity_period": {
-          "target": "com.cloudflare.acm#TotalTlsEditResponseValidityPeriod",
-          "traits": {
-            "smithy.api#documentation": "The validity period in days for the certificates ordered via Total TLS."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.acm#TotalTlsEdit": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.acm#TotalTlsEditRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.acm#TotalTlsEditResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "/zones/{zone_id}/acm/total_tls",
-          "code": 200
-        },
-        "smithy.api#documentation": "Set Total TLS Settings or disable the feature for a Zone."
-      }
-    },
-    "com.cloudflare.acm#TotalTlsGetRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.acm#TotalTlsGetResponseCertificateAuthority": {
       "type": "enum",
       "members": {
@@ -733,7 +315,653 @@
         }
       }
     },
-    "com.cloudflare.acm#TotalTlsGetResponse": {
+    "com.cloudflare.acm#UpdateTotalTlsRequestCertificateAuthority": {
+      "type": "enum",
+      "members": {
+        "GOOGLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "google"
+          }
+        },
+        "LETS_ENCRYPT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "lets_encrypt"
+          }
+        },
+        "SSL_COM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ssl_com"
+          }
+        }
+      }
+    },
+    "com.cloudflare.acm#UpdateTotalTlsRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If enabled, Total TLS will order a hostname specific TLS certificate for any proxied A, AAAA, or CNAME record in your zone.",
+            "smithy.api#required": {}
+          }
+        },
+        "certificate_authority": {
+          "target": "com.cloudflare.acm#UpdateTotalTlsRequestCertificateAuthority",
+          "traits": {
+            "smithy.api#documentation": "The Certificate Authority that Total TLS certificates will be issued through."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.acm#UpdateTotalTlsResponseCertificateAuthority": {
+      "type": "enum",
+      "members": {
+        "GOOGLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "google"
+          }
+        },
+        "LETS_ENCRYPT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "lets_encrypt"
+          }
+        },
+        "SSL_COM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ssl_com"
+          }
+        }
+      }
+    },
+    "com.cloudflare.acm#UpdateTotalTlsResponseValidityPeriod": {
+      "type": "intEnum",
+      "members": {
+        "_90": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 90
+          }
+        }
+      }
+    },
+    "com.cloudflare.acm#UpdateTotalTlsResponse": {
+      "type": "structure",
+      "members": {
+        "certificate_authority": {
+          "target": "com.cloudflare.acm#UpdateTotalTlsResponseCertificateAuthority",
+          "traits": {
+            "smithy.api#documentation": "The Certificate Authority that Total TLS certificates will be issued through."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If enabled, Total TLS will order a hostname specific TLS certificate for any proxied A, AAAA, or CNAME record in your zone."
+          }
+        },
+        "validity_period": {
+          "target": "com.cloudflare.acm#UpdateTotalTlsResponseValidityPeriod",
+          "traits": {
+            "smithy.api#documentation": "The validity period in days for the certificates ordered via Total TLS."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.acm#UpdateTotalTls": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.acm#UpdateTotalTlsRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.acm#UpdateTotalTlsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/zones/{zone_id}/acm/total_tls",
+          "code": 200
+        },
+        "smithy.api#documentation": "Set Total TLS Settings or disable the feature for a Zone."
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.acm#InvalidObjectIdentifier"
+        },
+        {
+          "target": "com.cloudflare.acm#AdvancedCertificateManagerRequired"
+        },
+        {
+          "target": "com.cloudflare.acm#NoStateChange"
+        },
+        {
+          "target": "com.cloudflare.acm#PreviousJobInProgress"
+        },
+        {
+          "target": "com.cloudflare.acm#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.acm#Acm": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.acm#UpdateTotalTls"
+        },
+        {
+          "target": "com.cloudflare.acm#CreateCustomTrustStore"
+        },
+        {
+          "target": "com.cloudflare.acm#DeleteCustomTrustStore"
+        },
+        {
+          "target": "com.cloudflare.acm#GetCustomTrustStore"
+        },
+        {
+          "target": "com.cloudflare.acm#GetTotalTl"
+        },
+        {
+          "target": "com.cloudflare.acm#ListCustomTrustStores"
+        },
+        {
+          "target": "com.cloudflare.acm#UpdateTotalTl"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare Acm",
+        "smithy.api#documentation": "Cloudflare API — acm resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    },
+    "com.cloudflare.acm#AdvancedCertificateManagerRequired": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 1450
+          }
+        ]
+      }
+    },
+    "com.cloudflare.acm#CustomTrustStoreNotFound": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.cloudflare.acm#Forbidden": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.cloudflare.acm#InvalidObjectIdentifier": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 7003
+          }
+        ]
+      }
+    },
+    "com.cloudflare.acm#NoStateChange": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 1467
+          }
+        ]
+      }
+    },
+    "com.cloudflare.acm#PreviousJobInProgress": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 1482
+          }
+        ]
+      }
+    },
+    "com.cloudflare.acm#CreateCustomTrustStore": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.acm#CreateCustomTrustStoreRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.acm#CreateCustomTrustStoreResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/zones/{zone_id}/acm/custom_trust_store",
+          "code": 200
+        },
+        "smithy.api#documentation": "Upload a root CA certificate to the Custom Origin Trust Store for a Zone. Only root CA certificates are accepted."
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.acm#InvalidObjectIdentifier"
+        },
+        {
+          "target": "com.cloudflare.acm#AdvancedCertificateManagerRequired"
+        },
+        {
+          "target": "com.cloudflare.acm#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.acm#CreateCustomTrustStoreRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "certificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The root CA certificate in PEM format. Only root CA certificates are accepted; intermediate and leaf certificates are not supported.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.acm#CreateCustomTrustStoreResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "certificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The root CA certificate in PEM format. Only root CA certificates are accepted; intermediate and leaf certificates are not supported.",
+            "smithy.api#required": {}
+          }
+        },
+        "expires_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the certificate expires.",
+            "smithy.api#required": {}
+          }
+        },
+        "issuer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The certificate authority that issued the certificate.",
+            "smithy.api#required": {}
+          }
+        },
+        "signature": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of hash used for the certificate.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.acm#CustomTrustStoreCreateResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the zone's custom SSL.",
+            "smithy.api#required": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the certificate was last modified.",
+            "smithy.api#required": {}
+          }
+        },
+        "uploaded_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the certificate was uploaded to Cloudflare.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.acm#DeleteCustomTrustStore": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.acm#DeleteCustomTrustStoreRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.acm#DeleteCustomTrustStoreResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/zones/{zone_id}/acm/custom_trust_store/{custom_origin_trust_store_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Removes a root CA certificate from the custom origin trust store. Origins using certificates signed by this CA will no longer be trusted.",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.acm#InvalidObjectIdentifier"
+        },
+        {
+          "target": "com.cloudflare.acm#AdvancedCertificateManagerRequired"
+        },
+        {
+          "target": "com.cloudflare.acm#CustomTrustStoreNotFound"
+        },
+        {
+          "target": "com.cloudflare.acm#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.acm#DeleteCustomTrustStoreRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "custom_origin_trust_store_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.acm#DeleteCustomTrustStoreResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.acm#GetCustomTrustStore": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.acm#GetCustomTrustStoreRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.acm#GetCustomTrustStoreResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/acm/custom_trust_store/{custom_origin_trust_store_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieves details about a specific root CA certificate in the custom origin trust store, including expiration and subject information.",
+        "smithy.api#readonly": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.acm#InvalidObjectIdentifier"
+        },
+        {
+          "target": "com.cloudflare.acm#AdvancedCertificateManagerRequired"
+        },
+        {
+          "target": "com.cloudflare.acm#CustomTrustStoreNotFound"
+        },
+        {
+          "target": "com.cloudflare.acm#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.acm#GetCustomTrustStoreRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "custom_origin_trust_store_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.acm#GetCustomTrustStoreResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "certificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The root CA certificate in PEM format. Only root CA certificates are accepted; intermediate and leaf certificates are not supported.",
+            "smithy.api#required": {}
+          }
+        },
+        "expires_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the certificate expires.",
+            "smithy.api#required": {}
+          }
+        },
+        "issuer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The certificate authority that issued the certificate.",
+            "smithy.api#required": {}
+          }
+        },
+        "signature": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of hash used for the certificate.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.acm#CustomTrustStoreGetResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the zone's custom SSL.",
+            "smithy.api#required": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the certificate was last modified.",
+            "smithy.api#required": {}
+          }
+        },
+        "uploaded_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the certificate was uploaded to Cloudflare.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.acm#GetTotalTl": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.acm#GetTotalTlRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.acm#GetTotalTlResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/acm/total_tls",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Total TLS Settings for a Zone.",
+        "smithy.api#readonly": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.acm#InvalidObjectIdentifier"
+        },
+        {
+          "target": "com.cloudflare.acm#AdvancedCertificateManagerRequired"
+        },
+        {
+          "target": "com.cloudflare.acm#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.acm#GetTotalTlRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.acm#GetTotalTlResponse": {
       "type": "structure",
       "members": {
         "certificate_authority": {
@@ -760,48 +988,133 @@
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     },
-    "com.cloudflare.acm#TotalTlsGet": {
+    "com.cloudflare.acm#ListCustomTrustStores": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.acm#TotalTlsGetRequest"
+        "target": "com.cloudflare.acm#ListCustomTrustStoresRequest"
       },
       "output": {
-        "target": "com.cloudflare.acm#TotalTlsGetResponse"
+        "target": "com.cloudflare.acm#ListCustomTrustStoresResponse"
       },
       "traits": {
         "smithy.api#http": {
           "method": "GET",
+          "uri": "/zones/{zone_id}/acm/custom_trust_store",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Custom Origin Trust Store for a Zone.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "page",
+          "inputToken": "page",
+          "outputToken": "resultInfo.page",
+          "items": "result",
+          "pageSize": "perPage"
+        }
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.acm#AdvancedCertificateManagerRequired"
+        },
+        {
+          "target": "com.cloudflare.acm#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.acm#ListCustomTrustStoresRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Limit to the number of records returned.",
+            "smithy.api#httpQuery": "limit"
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Offset the results.",
+            "smithy.api#httpQuery": "offset"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Page number of paginated results.",
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of records per page.",
+            "smithy.api#httpQuery": "per_page"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.acm#ListCustomTrustStoresResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.acm#CustomTrustStoreListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.acm#UpdateTotalTl": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.acm#UpdateTotalTlRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.acm#UpdateTotalTlResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
           "uri": "/zones/{zone_id}/acm/total_tls",
           "code": 200
         },
-        "smithy.api#documentation": "Get Total TLS Settings for a Zone.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.acm#TotalTlsUpdateRequestCertificateAuthority": {
-      "type": "enum",
-      "members": {
-        "GOOGLE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "google"
-          }
+        "smithy.api#documentation": "Set Total TLS Settings or disable the feature for a Zone."
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.acm#InvalidObjectIdentifier"
         },
-        "LETS_ENCRYPT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "lets_encrypt"
-          }
+        {
+          "target": "com.cloudflare.acm#AdvancedCertificateManagerRequired"
         },
-        "SSL_COM": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ssl_com"
-          }
+        {
+          "target": "com.cloudflare.acm#NoStateChange"
+        },
+        {
+          "target": "com.cloudflare.acm#PreviousJobInProgress"
+        },
+        {
+          "target": "com.cloudflare.acm#Forbidden"
         }
-      }
+      ]
     },
-    "com.cloudflare.acm#TotalTlsUpdateRequest": {
+    "com.cloudflare.acm#UpdateTotalTlRequest": {
       "type": "structure",
       "members": {
         "zone_id": {
@@ -820,7 +1133,7 @@
           }
         },
         "certificate_authority": {
-          "target": "com.cloudflare.acm#TotalTlsUpdateRequestCertificateAuthority",
+          "target": "com.cloudflare.acm#TotalTlsEditRequestCertificateAuthority",
           "traits": {
             "smithy.api#documentation": "The Certificate Authority that Total TLS certificates will be issued through."
           }
@@ -830,45 +1143,11 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.acm#TotalTlsUpdateResponseCertificateAuthority": {
-      "type": "enum",
-      "members": {
-        "GOOGLE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "google"
-          }
-        },
-        "LETS_ENCRYPT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "lets_encrypt"
-          }
-        },
-        "SSL_COM": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ssl_com"
-          }
-        }
-      }
-    },
-    "com.cloudflare.acm#TotalTlsUpdateResponseValidityPeriod": {
-      "type": "intEnum",
-      "members": {
-        "_90": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": 90
-          }
-        }
-      }
-    },
-    "com.cloudflare.acm#TotalTlsUpdateResponse": {
+    "com.cloudflare.acm#UpdateTotalTlResponse": {
       "type": "structure",
       "members": {
         "certificate_authority": {
-          "target": "com.cloudflare.acm#TotalTlsUpdateResponseCertificateAuthority",
+          "target": "com.cloudflare.acm#TotalTlsEditResponseCertificateAuthority",
           "traits": {
             "smithy.api#documentation": "The Certificate Authority that Total TLS certificates will be issued through."
           }
@@ -880,7 +1159,7 @@
           }
         },
         "validity_period": {
-          "target": "com.cloudflare.acm#TotalTlsUpdateResponseValidityPeriod",
+          "target": "com.cloudflare.acm#TotalTlsEditResponseValidityPeriod",
           "traits": {
             "smithy.api#documentation": "The validity period in days for the certificates ordered via Total TLS."
           }
@@ -889,55 +1168,6 @@
       "traits": {
         "smithy.api#output": {},
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.acm#TotalTlsUpdate": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.acm#TotalTlsUpdateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.acm#TotalTlsUpdateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "/zones/{zone_id}/acm/total_tls",
-          "code": 200
-        },
-        "smithy.api#documentation": "Set Total TLS Settings or disable the feature for a Zone."
-      }
-    },
-    "com.cloudflare.acm#Acm": {
-      "type": "service",
-      "version": "4.0",
-      "operations": [
-        {
-          "target": "com.cloudflare.acm#CustomTrustStoreCreate"
-        },
-        {
-          "target": "com.cloudflare.acm#CustomTrustStoreDelete"
-        },
-        {
-          "target": "com.cloudflare.acm#CustomTrustStoreGet"
-        },
-        {
-          "target": "com.cloudflare.acm#CustomTrustStoreList"
-        },
-        {
-          "target": "com.cloudflare.acm#TotalTlsEdit"
-        },
-        {
-          "target": "com.cloudflare.acm#TotalTlsGet"
-        },
-        {
-          "target": "com.cloudflare.acm#TotalTlsUpdate"
-        }
-      ],
-      "traits": {
-        "com.cloudflare.protocols#v4Json": {},
-        "smithy.api#title": "Cloudflare Acm",
-        "smithy.api#documentation": "Cloudflare API — acm resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
       }
     }
   }

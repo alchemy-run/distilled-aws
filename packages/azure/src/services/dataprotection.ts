@@ -637,516 +637,6 @@ export const BackupInstancesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "BackupInstancesCreateOrUpdateResponse",
 }) as any as S.Schema<BackupInstancesCreateOrUpdateResponse>;
 
-export interface BackupInstancesDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the backup vault. */
-  vaultName: string;
-  /** The name of the BackupInstanceResource */
-  backupInstanceName: string;
-}
-export const BackupInstancesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-    backupInstanceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/backupInstances/{backupInstanceName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "BackupInstancesDeleteRequest",
-}) as any as S.Schema<BackupInstancesDeleteRequest>;
-
-export interface BackupInstancesDeleteResponse {}
-export const BackupInstancesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "BackupInstancesDeleteResponse",
-}) as any as S.Schema<BackupInstancesDeleteResponse>;
-
-export interface BackupInstancesExtensionRoutingListRequest {
-  /** ARM path of the resource to be protected using Microsoft.DataProtection */
-  resourceId: string;
-}
-export const BackupInstancesExtensionRoutingListRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      resourceId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/{resourceId}/providers/Microsoft.DataProtection/backupInstances",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "BackupInstancesExtensionRoutingListRequest",
-  }) as any as S.Schema<BackupInstancesExtensionRoutingListRequest>;
-
-/** Proxy Resource tags. */
-export type BackupInstanceResourceTagsMap = {
-  [key: string]: string | undefined;
-};
-export const BackupInstanceResourceTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<BackupInstanceResourceTagsMap>;
-
-/** BackupInstance Resource */
-export interface BackupInstanceResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** BackupInstanceResource properties */
-  properties?: BackupInstance;
-  /** Proxy Resource tags. */
-  tags?: BackupInstanceResourceTagsMap;
-}
-export const BackupInstanceResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(BackupInstance),
-    tags: S.optional(BackupInstanceResourceTagsMap),
-  }),
-).annotate({
-  identifier: "BackupInstanceResource",
-}) as any as S.Schema<BackupInstanceResource>;
-
-/** List of resources. */
-export type BackupInstancesExtensionRoutingListResponseValueList =
-  Array<BackupInstanceResource>;
-export const BackupInstancesExtensionRoutingListResponseValueList =
-  /*@__PURE__*/ S.Array(
-    BackupInstanceResource,
-  ) as any as S.Schema<BackupInstancesExtensionRoutingListResponseValueList>;
-
-export interface BackupInstancesExtensionRoutingListResponse {
-  /** The uri to fetch the next page of resources. Call ListNext() fetches next page of resources. */
-  nextLink?: string;
-  /** List of resources. */
-  value?: BackupInstancesExtensionRoutingListResponseValueList;
-}
-export const BackupInstancesExtensionRoutingListResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      nextLink: S.optional(S.String),
-      value: S.optional(BackupInstancesExtensionRoutingListResponseValueList),
-    }),
-  ).annotate({
-    identifier: "BackupInstancesExtensionRoutingListResponse",
-  }) as any as S.Schema<BackupInstancesExtensionRoutingListResponse>;
-
-export interface BackupInstancesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the backup vault. */
-  vaultName: string;
-  /** The name of the BackupInstanceResource */
-  backupInstanceName: string;
-}
-export const BackupInstancesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-    backupInstanceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/backupInstances/{backupInstanceName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "BackupInstancesGetRequest",
-}) as any as S.Schema<BackupInstancesGetRequest>;
-
-/** Proxy Resource tags. */
-export type BackupInstancesGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const BackupInstancesGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<BackupInstancesGetResponseTagsMap>;
-
-export interface BackupInstancesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** BackupInstanceResource properties */
-  properties?: BackupInstance;
-  /** Proxy Resource tags. */
-  tags?: BackupInstancesGetResponseTagsMap;
-}
-export const BackupInstancesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(BackupInstance),
-    tags: S.optional(BackupInstancesGetResponseTagsMap),
-  }),
-).annotate({
-  identifier: "BackupInstancesGetResponse",
-}) as any as S.Schema<BackupInstancesGetResponse>;
-
-export interface BackupInstancesGetBackupInstanceOperationResultRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the BackupVaultResource */
-  vaultName: string;
-  /** The name of the BackupInstanceResource */
-  backupInstanceName: string;
-  /** The name of the BackupInstanceResource */
-  operationId: string;
-}
-export const BackupInstancesGetBackupInstanceOperationResultRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vaultName: S.String.pipe(T.Label()),
-      backupInstanceName: S.String.pipe(T.Label()),
-      operationId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/backupInstances/{backupInstanceName}/operationResults/{operationId}",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "BackupInstancesGetBackupInstanceOperationResultRequest",
-  }) as any as S.Schema<BackupInstancesGetBackupInstanceOperationResultRequest>;
-
-/** Proxy Resource tags. */
-export type BackupInstancesGetBackupInstanceOperationResultResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const BackupInstancesGetBackupInstanceOperationResultResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<BackupInstancesGetBackupInstanceOperationResultResponseTagsMap>;
-
-export interface BackupInstancesGetBackupInstanceOperationResultResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** BackupInstanceResource properties */
-  properties?: BackupInstance;
-  /** Proxy Resource tags. */
-  tags?: BackupInstancesGetBackupInstanceOperationResultResponseTagsMap;
-}
-export const BackupInstancesGetBackupInstanceOperationResultResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(BackupInstance),
-      tags: S.optional(
-        BackupInstancesGetBackupInstanceOperationResultResponseTagsMap,
-      ),
-    }),
-  ).annotate({
-    identifier: "BackupInstancesGetBackupInstanceOperationResultResponse",
-  }) as any as S.Schema<BackupInstancesGetBackupInstanceOperationResultResponse>;
-
-export interface BackupInstancesListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the backup vault. */
-  vaultName: string;
-}
-export const BackupInstancesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/backupInstances",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "BackupInstancesListRequest",
-}) as any as S.Schema<BackupInstancesListRequest>;
-
-/** List of resources. */
-export type BackupInstancesListResponseValueList =
-  Array<BackupInstanceResource>;
-export const BackupInstancesListResponseValueList = /*@__PURE__*/ S.Array(
-  BackupInstanceResource,
-) as any as S.Schema<BackupInstancesListResponseValueList>;
-
-export interface BackupInstancesListResponse {
-  /** The uri to fetch the next page of resources. Call ListNext() fetches next page of resources. */
-  nextLink?: string;
-  /** List of resources. */
-  value?: BackupInstancesListResponseValueList;
-}
-export const BackupInstancesListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: S.optional(BackupInstancesListResponseValueList),
-  }),
-).annotate({
-  identifier: "BackupInstancesListResponse",
-}) as any as S.Schema<BackupInstancesListResponse>;
-
-export interface BackupInstancesResumeBackupsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the backup vault. */
-  vaultName: string;
-  /** The name of the BackupInstanceResource */
-  backupInstanceName: string;
-}
-export const BackupInstancesResumeBackupsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-    backupInstanceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/backupInstances/{backupInstanceName}/resumeBackups",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "BackupInstancesResumeBackupsRequest",
-}) as any as S.Schema<BackupInstancesResumeBackupsRequest>;
-
-export interface BackupInstancesResumeBackupsResponse {}
-export const BackupInstancesResumeBackupsResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "BackupInstancesResumeBackupsResponse",
-}) as any as S.Schema<BackupInstancesResumeBackupsResponse>;
-
-export interface BackupInstancesResumeProtectionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the backup vault. */
-  vaultName: string;
-  /** The name of the BackupInstanceResource */
-  backupInstanceName: string;
-}
-export const BackupInstancesResumeProtectionRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vaultName: S.String.pipe(T.Label()),
-      backupInstanceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/backupInstances/{backupInstanceName}/resumeProtection",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "BackupInstancesResumeProtectionRequest",
-}) as any as S.Schema<BackupInstancesResumeProtectionRequest>;
-
-export interface BackupInstancesResumeProtectionResponse {}
-export const BackupInstancesResumeProtectionResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "BackupInstancesResumeProtectionResponse",
-}) as any as S.Schema<BackupInstancesResumeProtectionResponse>;
-
-/** ResourceGuardOperationRequests on which LAC check will be performed */
-export type BackupInstancesStopProtectionRequestResourceGuardOperationRequestsList =
-  Array<string>;
-export const BackupInstancesStopProtectionRequestResourceGuardOperationRequestsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<BackupInstancesStopProtectionRequestResourceGuardOperationRequestsList>;
-
-export interface BackupInstancesStopProtectionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the backup vault. */
-  vaultName: string;
-  /** The name of the BackupInstanceResource */
-  backupInstanceName: string;
-  /** ResourceGuardOperationRequests on which LAC check will be performed */
-  resourceGuardOperationRequests?: BackupInstancesStopProtectionRequestResourceGuardOperationRequestsList;
-}
-export const BackupInstancesStopProtectionRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vaultName: S.String.pipe(T.Label()),
-      backupInstanceName: S.String.pipe(T.Label()),
-      resourceGuardOperationRequests: S.optional(
-        BackupInstancesStopProtectionRequestResourceGuardOperationRequestsList,
-      ),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/backupInstances/{backupInstanceName}/stopProtection",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "BackupInstancesStopProtectionRequest",
-}) as any as S.Schema<BackupInstancesStopProtectionRequest>;
-
-export interface BackupInstancesStopProtectionResponse {}
-export const BackupInstancesStopProtectionResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "BackupInstancesStopProtectionResponse",
-}) as any as S.Schema<BackupInstancesStopProtectionResponse>;
-
-/** ResourceGuardOperationRequests on which LAC check will be performed */
-export type BackupInstancesSuspendBackupsRequestResourceGuardOperationRequestsList =
-  Array<string>;
-export const BackupInstancesSuspendBackupsRequestResourceGuardOperationRequestsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<BackupInstancesSuspendBackupsRequestResourceGuardOperationRequestsList>;
-
-export interface BackupInstancesSuspendBackupsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the backup vault. */
-  vaultName: string;
-  /** The name of the BackupInstanceResource */
-  backupInstanceName: string;
-  /** ResourceGuardOperationRequests on which LAC check will be performed */
-  resourceGuardOperationRequests?: BackupInstancesSuspendBackupsRequestResourceGuardOperationRequestsList;
-}
-export const BackupInstancesSuspendBackupsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vaultName: S.String.pipe(T.Label()),
-      backupInstanceName: S.String.pipe(T.Label()),
-      resourceGuardOperationRequests: S.optional(
-        BackupInstancesSuspendBackupsRequestResourceGuardOperationRequestsList,
-      ),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/backupInstances/{backupInstanceName}/suspendBackups",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "BackupInstancesSuspendBackupsRequest",
-}) as any as S.Schema<BackupInstancesSuspendBackupsRequest>;
-
-export interface BackupInstancesSuspendBackupsResponse {}
-export const BackupInstancesSuspendBackupsResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "BackupInstancesSuspendBackupsResponse",
-}) as any as S.Schema<BackupInstancesSuspendBackupsResponse>;
-
-/** Field indicating sync type e.g. to sync only in case of failure or in all cases */
-export type SyncType = "Default" | "ForceResync";
-export const SyncType = /*@__PURE__*/ S.String;
-
-export interface BackupInstancesSyncBackupInstanceRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the backup vault. */
-  vaultName: string;
-  /** The name of the BackupInstanceResource */
-  backupInstanceName: string;
-  /** Field indicating sync type e.g. to sync only in case of failure or in all cases */
-  syncType?: SyncType | (string & {});
-}
-export const BackupInstancesSyncBackupInstanceRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vaultName: S.String.pipe(T.Label()),
-      backupInstanceName: S.String.pipe(T.Label()),
-      syncType: S.optional(SyncType),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/backupInstances/{backupInstanceName}/sync",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "BackupInstancesSyncBackupInstanceRequest",
-}) as any as S.Schema<BackupInstancesSyncBackupInstanceRequest>;
-
-export interface BackupInstancesSyncBackupInstanceResponse {}
-export const BackupInstancesSyncBackupInstanceResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "BackupInstancesSyncBackupInstanceResponse",
-  }) as any as S.Schema<BackupInstancesSyncBackupInstanceResponse>;
-
 /** Recovery Option */
 export type RecoveryOption = "FailIfExists";
 export const RecoveryOption = /*@__PURE__*/ S.String;
@@ -1277,55 +767,6 @@ export const BackupInstancesTriggerCrossRegionRestoreResponse =
     identifier: "BackupInstancesTriggerCrossRegionRestoreResponse",
   }) as any as S.Schema<BackupInstancesTriggerCrossRegionRestoreResponse>;
 
-/** Priority to be used for rehydration. Values High or Standard */
-export type RehydrationPriority = "Invalid" | "High" | "Standard";
-export const RehydrationPriority = /*@__PURE__*/ S.String;
-
-export interface BackupInstancesTriggerRehydrateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the backup vault. */
-  vaultName: string;
-  /** The name of the BackupInstanceResource */
-  backupInstanceName: string;
-  /** Id of the recovery point to be recovered */
-  recoveryPointId: string;
-  /** Priority to be used for rehydration. Values High or Standard */
-  rehydrationPriority?: RehydrationPriority | (string & {});
-  /** Retention duration in ISO 8601 format i.e P10D . */
-  rehydrationRetentionDuration: string;
-}
-export const BackupInstancesTriggerRehydrateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vaultName: S.String.pipe(T.Label()),
-      backupInstanceName: S.String.pipe(T.Label()),
-      recoveryPointId: S.String,
-      rehydrationPriority: S.optional(RehydrationPriority),
-      rehydrationRetentionDuration: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/backupInstances/{backupInstanceName}/rehydrate",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "BackupInstancesTriggerRehydrateRequest",
-}) as any as S.Schema<BackupInstancesTriggerRehydrateRequest>;
-
-export interface BackupInstancesTriggerRehydrateResponse {}
-export const BackupInstancesTriggerRehydrateResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "BackupInstancesTriggerRehydrateResponse",
-}) as any as S.Schema<BackupInstancesTriggerRehydrateResponse>;
-
 /** ResourceGuardOperationRequests on which LAC check will be performed */
 export type BackupInstancesTriggerRestoreRequestResourceGuardOperationRequestsList =
   Array<string>;
@@ -1445,51 +886,6 @@ export const BackupInstancesValidateCrossRegionRestoreResponse =
   ).annotate({
     identifier: "BackupInstancesValidateCrossRegionRestoreResponse",
   }) as any as S.Schema<BackupInstancesValidateCrossRegionRestoreResponse>;
-
-export interface BackupInstancesValidateForBackupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the BackupVaultResource */
-  vaultName: string;
-  /** Backup Instance */
-  backupInstance: BackupInstanceInput;
-}
-export const BackupInstancesValidateForBackupRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vaultName: S.String.pipe(T.Label()),
-      backupInstance: BackupInstanceInput,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/validateForBackup",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "BackupInstancesValidateForBackupRequest",
-}) as any as S.Schema<BackupInstancesValidateForBackupRequest>;
-
-export interface BackupInstancesValidateForBackupResponse {
-  /** This property will be used as the discriminator for deciding the specific types in the polymorphic chain of types. */
-  objectType: string;
-  /** Name or Arm Id of the job created for this operation. */
-  jobId?: string;
-}
-export const BackupInstancesValidateForBackupResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      objectType: S.String,
-      jobId: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "BackupInstancesValidateForBackupResponse",
-}) as any as S.Schema<BackupInstancesValidateForBackupResponse>;
 
 export interface BackupInstancesValidateForModifyBackupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -1653,201 +1049,14 @@ export const BackupPoliciesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "BackupPoliciesCreateOrUpdateResponse",
 }) as any as S.Schema<BackupPoliciesCreateOrUpdateResponse>;
 
-export interface BackupPoliciesDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the backup vault. */
-  vaultName: string;
-  backupPolicyName: string;
-}
-export const BackupPoliciesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-    backupPolicyName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/backupPolicies/{backupPolicyName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "BackupPoliciesDeleteRequest",
-}) as any as S.Schema<BackupPoliciesDeleteRequest>;
-
-export interface BackupPoliciesDeleteResponse {}
-export const BackupPoliciesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "BackupPoliciesDeleteResponse",
-}) as any as S.Schema<BackupPoliciesDeleteResponse>;
-
-export interface BackupPoliciesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the backup vault. */
-  vaultName: string;
-  backupPolicyName: string;
-}
-export const BackupPoliciesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-    backupPolicyName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/backupPolicies/{backupPolicyName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "BackupPoliciesGetRequest",
-}) as any as S.Schema<BackupPoliciesGetRequest>;
-
-export interface BackupPoliciesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** BaseBackupPolicyResource properties */
-  properties?: BaseBackupPolicy;
-}
-export const BackupPoliciesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(BaseBackupPolicy),
-  }),
-).annotate({
-  identifier: "BackupPoliciesGetResponse",
-}) as any as S.Schema<BackupPoliciesGetResponse>;
-
-export interface BackupPoliciesListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the backup vault. */
-  vaultName: string;
-}
-export const BackupPoliciesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/backupPolicies",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "BackupPoliciesListRequest",
-}) as any as S.Schema<BackupPoliciesListRequest>;
-
-/** BaseBackupPolicy resource */
-export interface BaseBackupPolicyResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** BaseBackupPolicyResource properties */
-  properties?: BaseBackupPolicy;
-}
-export const BaseBackupPolicyResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(BaseBackupPolicy),
-  }),
-).annotate({
-  identifier: "BaseBackupPolicyResource",
-}) as any as S.Schema<BaseBackupPolicyResource>;
-
-/** List of resources. */
-export type BackupPoliciesListResponseValueList =
-  Array<BaseBackupPolicyResource>;
-export const BackupPoliciesListResponseValueList = /*@__PURE__*/ S.Array(
-  BaseBackupPolicyResource,
-) as any as S.Schema<BackupPoliciesListResponseValueList>;
-
-export interface BackupPoliciesListResponse {
-  /** The uri to fetch the next page of resources. Call ListNext() fetches next page of resources. */
-  nextLink?: string;
-  /** List of resources. */
-  value?: BackupPoliciesListResponseValueList;
-}
-export const BackupPoliciesListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: S.optional(BackupPoliciesListResponseValueList),
-  }),
-).annotate({
-  identifier: "BackupPoliciesListResponse",
-}) as any as S.Schema<BackupPoliciesListResponse>;
-
-export interface BackupVaultOperationResultsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the BackupVaultResource */
-  vaultName: string;
-  /** The name of the BackupVaultResource */
-  operationId: string;
-}
-export const BackupVaultOperationResultsGetRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vaultName: S.String.pipe(T.Label()),
-      operationId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/operationResults/{operationId}",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "BackupVaultOperationResultsGetRequest",
-}) as any as S.Schema<BackupVaultOperationResultsGetRequest>;
-
 /** Resource tags. */
-export type BackupVaultOperationResultsGetResponseTagsMap = {
+export type BackupVaultsCreateOrUpdateRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const BackupVaultOperationResultsGetResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<BackupVaultOperationResultsGetResponseTagsMap>;
+export const BackupVaultsCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<BackupVaultsCreateOrUpdateRequestTagsMap>;
 
 export type AlertsState = "Enabled" | "Disabled";
 export const AlertsState = /*@__PURE__*/ S.String;
@@ -1895,54 +1104,6 @@ export const CostManagementSettings = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "CostManagementSettings",
 }) as any as S.Schema<CostManagementSettings>;
-
-/** Provisioning state of the BackupVault resource */
-export type ProvisioningState =
-  | "Failed"
-  | "Provisioning"
-  | "Succeeded"
-  | "Unknown"
-  | "Updating";
-export const ProvisioningState = /*@__PURE__*/ S.String;
-
-/** Resource move state for backup vault */
-export type ResourceMoveState =
-  | "Unknown"
-  | "InProgress"
-  | "PrepareFailed"
-  | "CommitFailed"
-  | "Failed"
-  | "PrepareTimedout"
-  | "CommitTimedout"
-  | "CriticalFailure"
-  | "PartialSuccess"
-  | "MoveSucceeded";
-export const ResourceMoveState = /*@__PURE__*/ S.String;
-
-/** ResourceMoveDetails will be returned in response to GetResource call from ARM */
-export interface ResourceMoveDetails {
-  /** CorrelationId of latest ResourceMove operation attempted */
-  operationId?: string;
-  /** Start time in UTC of latest ResourceMove operation attempted. ISO 8601 format. */
-  startTimeUtc?: string;
-  /** Completion time in UTC of latest ResourceMove operation attempted. ISO 8601 format. */
-  completionTimeUtc?: string;
-  /** ARM resource path of source resource */
-  sourceResourcePath?: string;
-  /** ARM resource path of target resource used in latest ResourceMove operation */
-  targetResourcePath?: string;
-}
-export const ResourceMoveDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    operationId: S.optional(S.String),
-    startTimeUtc: S.optional(S.String),
-    completionTimeUtc: S.optional(S.String),
-    sourceResourcePath: S.optional(S.String),
-    targetResourcePath: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ResourceMoveDetails",
-}) as any as S.Schema<ResourceMoveDetails>;
 
 /** State of soft delete */
 export type SoftDeleteState = "Off" | "On" | "AlwaysOn";
@@ -2090,10 +1251,10 @@ export const StorageSetting = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "StorageSetting" }) as any as S.Schema<StorageSetting>;
 
 /** Storage Settings */
-export type BackupVaultStorageSettingsList = Array<StorageSetting>;
-export const BackupVaultStorageSettingsList = /*@__PURE__*/ S.Array(
+export type BackupVaultInputStorageSettingsList = Array<StorageSetting>;
+export const BackupVaultInputStorageSettingsList = /*@__PURE__*/ S.Array(
   StorageSetting,
-) as any as S.Schema<BackupVaultStorageSettingsList>;
+) as any as S.Schema<BackupVaultInputStorageSettingsList>;
 
 /** CrossSubscriptionRestore state */
 export type CrossSubscriptionRestoreState =
@@ -2147,6 +1308,190 @@ export const FeatureSettings = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "FeatureSettings",
 }) as any as S.Schema<FeatureSettings>;
+
+/** ResourceGuardOperationRequests on which LAC check will be performed */
+export type BackupVaultInputResourceGuardOperationRequestsList = Array<string>;
+export const BackupVaultInputResourceGuardOperationRequestsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<BackupVaultInputResourceGuardOperationRequestsList>;
+
+/** List of replicated regions for Backup Vault */
+export type BackupVaultInputReplicatedRegionsList = Array<string>;
+export const BackupVaultInputReplicatedRegionsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<BackupVaultInputReplicatedRegionsList>;
+
+/** Backup Vault */
+export interface BackupVaultInput {
+  /** Monitoring Settings */
+  monitoringSettings?: MonitoringSettings;
+  /** Cost Management Settings of the vault */
+  costManagementSettings?: CostManagementSettings;
+  /** Security Settings */
+  securitySettings?: SecuritySettings;
+  /** Storage Settings */
+  storageSettings?: BackupVaultInputStorageSettingsList;
+  /** Feature Settings */
+  featureSettings?: FeatureSettings;
+  /** ResourceGuardOperationRequests on which LAC check will be performed */
+  resourceGuardOperationRequests?: BackupVaultInputResourceGuardOperationRequestsList;
+  /** List of replicated regions for Backup Vault */
+  replicatedRegions?: BackupVaultInputReplicatedRegionsList;
+}
+export const BackupVaultInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    monitoringSettings: S.optional(MonitoringSettings),
+    costManagementSettings: S.optional(CostManagementSettings),
+    securitySettings: S.optional(SecuritySettings),
+    storageSettings: S.optional(BackupVaultInputStorageSettingsList),
+    featureSettings: S.optional(FeatureSettings),
+    resourceGuardOperationRequests: S.optional(
+      BackupVaultInputResourceGuardOperationRequestsList,
+    ),
+    replicatedRegions: S.optional(BackupVaultInputReplicatedRegionsList),
+  }),
+).annotate({
+  identifier: "BackupVaultInput",
+}) as any as S.Schema<BackupVaultInput>;
+
+/** User assigned identity properties */
+export interface DppIdentityDetailsInputUserAssignedIdentitiesValue {}
+export const DppIdentityDetailsInputUserAssignedIdentitiesValue =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "DppIdentityDetailsInputUserAssignedIdentitiesValue",
+  }) as any as S.Schema<DppIdentityDetailsInputUserAssignedIdentitiesValue>;
+
+/** Gets or sets the user assigned identities. */
+export type DppIdentityDetailsInputUserAssignedIdentitiesMap = {
+  [key: string]: DppIdentityDetailsInputUserAssignedIdentitiesValue | undefined;
+};
+export const DppIdentityDetailsInputUserAssignedIdentitiesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    DppIdentityDetailsInputUserAssignedIdentitiesValue,
+  ) as any as S.Schema<DppIdentityDetailsInputUserAssignedIdentitiesMap>;
+
+/** Identity details */
+export interface DppIdentityDetailsInput {
+  /** The identityType which can be either SystemAssigned, UserAssigned, 'SystemAssigned,UserAssigned' or None */
+  type?: string;
+  /** Gets or sets the user assigned identities. */
+  userAssignedIdentities?: DppIdentityDetailsInputUserAssignedIdentitiesMap;
+}
+export const DppIdentityDetailsInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.optional(S.String),
+    userAssignedIdentities: S.optional(
+      DppIdentityDetailsInputUserAssignedIdentitiesMap,
+    ),
+  }),
+).annotate({
+  identifier: "DppIdentityDetailsInput",
+}) as any as S.Schema<DppIdentityDetailsInput>;
+
+export interface BackupVaultsCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the BackupVaultResource */
+  vaultName: string;
+  /** Resource tags. */
+  tags?: BackupVaultsCreateOrUpdateRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** BackupVaultResource properties */
+  properties: BackupVaultInput;
+  /** Input Managed Identity Details */
+  identity?: DppIdentityDetailsInput;
+  /** Optional ETag. */
+  eTag?: string;
+}
+export const BackupVaultsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    tags: S.optional(BackupVaultsCreateOrUpdateRequestTagsMap),
+    location: S.String,
+    properties: BackupVaultInput,
+    identity: S.optional(DppIdentityDetailsInput),
+    eTag: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "BackupVaultsCreateOrUpdateRequest",
+}) as any as S.Schema<BackupVaultsCreateOrUpdateRequest>;
+
+/** Resource tags. */
+export type BackupVaultsCreateOrUpdateResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const BackupVaultsCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<BackupVaultsCreateOrUpdateResponseTagsMap>;
+
+/** Provisioning state of the BackupVault resource */
+export type ProvisioningState =
+  | "Failed"
+  | "Provisioning"
+  | "Succeeded"
+  | "Unknown"
+  | "Updating";
+export const ProvisioningState = /*@__PURE__*/ S.String;
+
+/** Resource move state for backup vault */
+export type ResourceMoveState =
+  | "Unknown"
+  | "InProgress"
+  | "PrepareFailed"
+  | "CommitFailed"
+  | "Failed"
+  | "PrepareTimedout"
+  | "CommitTimedout"
+  | "CriticalFailure"
+  | "PartialSuccess"
+  | "MoveSucceeded";
+export const ResourceMoveState = /*@__PURE__*/ S.String;
+
+/** ResourceMoveDetails will be returned in response to GetResource call from ARM */
+export interface ResourceMoveDetails {
+  /** CorrelationId of latest ResourceMove operation attempted */
+  operationId?: string;
+  /** Start time in UTC of latest ResourceMove operation attempted. ISO 8601 format. */
+  startTimeUtc?: string;
+  /** Completion time in UTC of latest ResourceMove operation attempted. ISO 8601 format. */
+  completionTimeUtc?: string;
+  /** ARM resource path of source resource */
+  sourceResourcePath?: string;
+  /** ARM resource path of target resource used in latest ResourceMove operation */
+  targetResourcePath?: string;
+}
+export const ResourceMoveDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    operationId: S.optional(S.String),
+    startTimeUtc: S.optional(S.String),
+    completionTimeUtc: S.optional(S.String),
+    sourceResourcePath: S.optional(S.String),
+    targetResourcePath: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ResourceMoveDetails",
+}) as any as S.Schema<ResourceMoveDetails>;
+
+/** Storage Settings */
+export type BackupVaultStorageSettingsList = Array<StorageSetting>;
+export const BackupVaultStorageSettingsList = /*@__PURE__*/ S.Array(
+  StorageSetting,
+) as any as S.Schema<BackupVaultStorageSettingsList>;
 
 /** Secure Score of Backup Vault */
 export type SecureScoreLevel =
@@ -2279,239 +1624,6 @@ export const DppIdentityDetails = /*@__PURE__*/ S.suspend(() =>
   identifier: "DppIdentityDetails",
 }) as any as S.Schema<DppIdentityDetails>;
 
-export interface BackupVaultOperationResultsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: BackupVaultOperationResultsGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** BackupVaultResource properties */
-  properties: BackupVault;
-  /** Input Managed Identity Details */
-  identity?: DppIdentityDetails;
-  /** Optional ETag. */
-  eTag?: string;
-}
-export const BackupVaultOperationResultsGetResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(BackupVaultOperationResultsGetResponseTagsMap),
-      location: S.String,
-      properties: BackupVault,
-      identity: S.optional(DppIdentityDetails),
-      eTag: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "BackupVaultOperationResultsGetResponse",
-}) as any as S.Schema<BackupVaultOperationResultsGetResponse>;
-
-export interface BackupVaultsCheckNameAvailabilityRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Azure region. */
-  location: string;
-  /** Resource name for which availability needs to be checked */
-  name?: string;
-  /** Describes the Resource type: Microsoft.DataProtection/BackupVaults */
-  type?: string;
-}
-export const BackupVaultsCheckNameAvailabilityRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      location: S.String.pipe(T.Label()),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/locations/{location}/checkNameAvailability",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "BackupVaultsCheckNameAvailabilityRequest",
-}) as any as S.Schema<BackupVaultsCheckNameAvailabilityRequest>;
-
-/** CheckNameAvailability Result */
-export interface CheckNameAvailabilityResult {
-  /** Gets or sets the message. */
-  message?: string;
-  /** Gets or sets a value indicating whether [name available]. */
-  nameAvailable?: boolean;
-  /** Gets or sets the reason. */
-  reason?: string;
-}
-export const CheckNameAvailabilityResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    message: S.optional(S.String),
-    nameAvailable: S.optional(S.Boolean),
-    reason: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CheckNameAvailabilityResult",
-}) as any as S.Schema<CheckNameAvailabilityResult>;
-
-/** Resource tags. */
-export type BackupVaultsCreateOrUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const BackupVaultsCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<BackupVaultsCreateOrUpdateRequestTagsMap>;
-
-/** Storage Settings */
-export type BackupVaultInputStorageSettingsList = Array<StorageSetting>;
-export const BackupVaultInputStorageSettingsList = /*@__PURE__*/ S.Array(
-  StorageSetting,
-) as any as S.Schema<BackupVaultInputStorageSettingsList>;
-
-/** ResourceGuardOperationRequests on which LAC check will be performed */
-export type BackupVaultInputResourceGuardOperationRequestsList = Array<string>;
-export const BackupVaultInputResourceGuardOperationRequestsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<BackupVaultInputResourceGuardOperationRequestsList>;
-
-/** List of replicated regions for Backup Vault */
-export type BackupVaultInputReplicatedRegionsList = Array<string>;
-export const BackupVaultInputReplicatedRegionsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<BackupVaultInputReplicatedRegionsList>;
-
-/** Backup Vault */
-export interface BackupVaultInput {
-  /** Monitoring Settings */
-  monitoringSettings?: MonitoringSettings;
-  /** Cost Management Settings of the vault */
-  costManagementSettings?: CostManagementSettings;
-  /** Security Settings */
-  securitySettings?: SecuritySettings;
-  /** Storage Settings */
-  storageSettings?: BackupVaultInputStorageSettingsList;
-  /** Feature Settings */
-  featureSettings?: FeatureSettings;
-  /** ResourceGuardOperationRequests on which LAC check will be performed */
-  resourceGuardOperationRequests?: BackupVaultInputResourceGuardOperationRequestsList;
-  /** List of replicated regions for Backup Vault */
-  replicatedRegions?: BackupVaultInputReplicatedRegionsList;
-}
-export const BackupVaultInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    monitoringSettings: S.optional(MonitoringSettings),
-    costManagementSettings: S.optional(CostManagementSettings),
-    securitySettings: S.optional(SecuritySettings),
-    storageSettings: S.optional(BackupVaultInputStorageSettingsList),
-    featureSettings: S.optional(FeatureSettings),
-    resourceGuardOperationRequests: S.optional(
-      BackupVaultInputResourceGuardOperationRequestsList,
-    ),
-    replicatedRegions: S.optional(BackupVaultInputReplicatedRegionsList),
-  }),
-).annotate({
-  identifier: "BackupVaultInput",
-}) as any as S.Schema<BackupVaultInput>;
-
-/** User assigned identity properties */
-export interface DppIdentityDetailsInputUserAssignedIdentitiesValue {}
-export const DppIdentityDetailsInputUserAssignedIdentitiesValue =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DppIdentityDetailsInputUserAssignedIdentitiesValue",
-  }) as any as S.Schema<DppIdentityDetailsInputUserAssignedIdentitiesValue>;
-
-/** Gets or sets the user assigned identities. */
-export type DppIdentityDetailsInputUserAssignedIdentitiesMap = {
-  [key: string]: DppIdentityDetailsInputUserAssignedIdentitiesValue | undefined;
-};
-export const DppIdentityDetailsInputUserAssignedIdentitiesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    DppIdentityDetailsInputUserAssignedIdentitiesValue,
-  ) as any as S.Schema<DppIdentityDetailsInputUserAssignedIdentitiesMap>;
-
-/** Identity details */
-export interface DppIdentityDetailsInput {
-  /** The identityType which can be either SystemAssigned, UserAssigned, 'SystemAssigned,UserAssigned' or None */
-  type?: string;
-  /** Gets or sets the user assigned identities. */
-  userAssignedIdentities?: DppIdentityDetailsInputUserAssignedIdentitiesMap;
-}
-export const DppIdentityDetailsInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(S.String),
-    userAssignedIdentities: S.optional(
-      DppIdentityDetailsInputUserAssignedIdentitiesMap,
-    ),
-  }),
-).annotate({
-  identifier: "DppIdentityDetailsInput",
-}) as any as S.Schema<DppIdentityDetailsInput>;
-
-export interface BackupVaultsCreateOrUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the BackupVaultResource */
-  vaultName: string;
-  /** Resource tags. */
-  tags?: BackupVaultsCreateOrUpdateRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** BackupVaultResource properties */
-  properties: BackupVaultInput;
-  /** Input Managed Identity Details */
-  identity?: DppIdentityDetailsInput;
-  /** Optional ETag. */
-  eTag?: string;
-}
-export const BackupVaultsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-    tags: S.optional(BackupVaultsCreateOrUpdateRequestTagsMap),
-    location: S.String,
-    properties: BackupVaultInput,
-    identity: S.optional(DppIdentityDetailsInput),
-    eTag: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "BackupVaultsCreateOrUpdateRequest",
-}) as any as S.Schema<BackupVaultsCreateOrUpdateRequest>;
-
-/** Resource tags. */
-export type BackupVaultsCreateOrUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const BackupVaultsCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<BackupVaultsCreateOrUpdateResponseTagsMap>;
-
 export interface BackupVaultsCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
@@ -2548,7 +1660,166 @@ export const BackupVaultsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "BackupVaultsCreateOrUpdateResponse",
 }) as any as S.Schema<BackupVaultsCreateOrUpdateResponse>;
 
-export interface BackupVaultsDeleteRequest {
+export interface CheckBackupVaultNameAvailabilityRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Azure region. */
+  location: string;
+  /** Resource name for which availability needs to be checked */
+  name?: string;
+  /** Describes the Resource type: Microsoft.DataProtection/BackupVaults */
+  type?: string;
+}
+export const CheckBackupVaultNameAvailabilityRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      location: S.String.pipe(T.Label()),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/locations/{location}/checkNameAvailability",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "CheckBackupVaultNameAvailabilityRequest",
+}) as any as S.Schema<CheckBackupVaultNameAvailabilityRequest>;
+
+/** CheckNameAvailability Result */
+export interface CheckNameAvailabilityResult {
+  /** Gets or sets the message. */
+  message?: string;
+  /** Gets or sets a value indicating whether [name available]. */
+  nameAvailable?: boolean;
+  /** Gets or sets the reason. */
+  reason?: string;
+}
+export const CheckNameAvailabilityResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    message: S.optional(S.String),
+    nameAvailable: S.optional(S.Boolean),
+    reason: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CheckNameAvailabilityResult",
+}) as any as S.Schema<CheckNameAvailabilityResult>;
+
+export interface CheckDataProtectionFeatureSupportRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the Azure region. */
+  location: string;
+  /** Type of the specific object - used for deserializing */
+  objectType: string;
+}
+export const CheckDataProtectionFeatureSupportRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      location: S.String.pipe(T.Label()),
+      objectType: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DataProtection/locations/{location}/checkFeatureSupport",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "CheckDataProtectionFeatureSupportRequest",
+}) as any as S.Schema<CheckDataProtectionFeatureSupportRequest>;
+
+/** Base class for Backup Feature support */
+export interface FeatureValidationResponseBase {
+  /** Type of the specific object - used for deserializing */
+  objectType: string;
+}
+export const FeatureValidationResponseBase = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    objectType: S.String,
+  }),
+).annotate({
+  identifier: "FeatureValidationResponseBase",
+}) as any as S.Schema<FeatureValidationResponseBase>;
+
+export interface DeleteBackupInstanceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the backup vault. */
+  vaultName: string;
+  /** The name of the BackupInstanceResource */
+  backupInstanceName: string;
+}
+export const DeleteBackupInstanceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    backupInstanceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/backupInstances/{backupInstanceName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteBackupInstanceRequest",
+}) as any as S.Schema<DeleteBackupInstanceRequest>;
+
+export interface DeleteBackupInstanceResponse {}
+export const DeleteBackupInstanceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteBackupInstanceResponse",
+}) as any as S.Schema<DeleteBackupInstanceResponse>;
+
+export interface DeleteBackupPolicyRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the backup vault. */
+  vaultName: string;
+  backupPolicyName: string;
+}
+export const DeleteBackupPolicyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    backupPolicyName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/backupPolicies/{backupPolicyName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteBackupPolicyRequest",
+}) as any as S.Schema<DeleteBackupPolicyRequest>;
+
+export interface DeleteBackupPolicyResponse {}
+export const DeleteBackupPolicyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteBackupPolicyResponse",
+}) as any as S.Schema<DeleteBackupPolicyResponse>;
+
+export interface DeleteBackupVaultRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2556,7 +1827,7 @@ export interface BackupVaultsDeleteRequest {
   /** The name of the BackupVaultResource */
   vaultName: string;
 }
-export const BackupVaultsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteBackupVaultRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2570,17 +1841,426 @@ export const BackupVaultsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "BackupVaultsDeleteRequest",
-}) as any as S.Schema<BackupVaultsDeleteRequest>;
+  identifier: "DeleteBackupVaultRequest",
+}) as any as S.Schema<DeleteBackupVaultRequest>;
 
-export interface BackupVaultsDeleteResponse {}
-export const BackupVaultsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteBackupVaultResponse {}
+export const DeleteBackupVaultResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "BackupVaultsDeleteResponse",
-}) as any as S.Schema<BackupVaultsDeleteResponse>;
+  identifier: "DeleteBackupVaultResponse",
+}) as any as S.Schema<DeleteBackupVaultResponse>;
 
-export interface BackupVaultsGetRequest {
+export interface DeleteDppResourceGuardProxyRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the backup vault. */
+  vaultName: string;
+  /** name of the resource guard proxy */
+  resourceGuardProxyName: string;
+}
+export const DeleteDppResourceGuardProxyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    resourceGuardProxyName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/backupResourceGuardProxies/{resourceGuardProxyName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteDppResourceGuardProxyRequest",
+}) as any as S.Schema<DeleteDppResourceGuardProxyRequest>;
+
+export interface DeleteDppResourceGuardProxyResponse {}
+export const DeleteDppResourceGuardProxyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteDppResourceGuardProxyResponse",
+}) as any as S.Schema<DeleteDppResourceGuardProxyResponse>;
+
+export interface DeleteResourceGuardRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of ResourceGuard */
+  resourceGuardsName: string;
+}
+export const DeleteResourceGuardRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceGuardsName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/resourceGuards/{resourceGuardsName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteResourceGuardRequest",
+}) as any as S.Schema<DeleteResourceGuardRequest>;
+
+export interface DeleteResourceGuardResponse {}
+export const DeleteResourceGuardResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteResourceGuardResponse",
+}) as any as S.Schema<DeleteResourceGuardResponse>;
+
+/** VaultCritical Operation protected by a resource guard */
+export interface ResourceGuardOperationDetail {
+  vaultCriticalOperation?: string;
+  defaultResourceRequest?: string;
+}
+export const ResourceGuardOperationDetail = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    vaultCriticalOperation: S.optional(S.String),
+    defaultResourceRequest: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ResourceGuardOperationDetail",
+}) as any as S.Schema<ResourceGuardOperationDetail>;
+
+export type ResourceGuardProxyBaseResourceGuardOperationDetailsList =
+  Array<ResourceGuardOperationDetail>;
+export const ResourceGuardProxyBaseResourceGuardOperationDetailsList =
+  /*@__PURE__*/ S.Array(
+    ResourceGuardOperationDetail,
+  ) as any as S.Schema<ResourceGuardProxyBaseResourceGuardOperationDetailsList>;
+
+/** ResourceGuardProxyBase object, used in ResourceGuardProxyBaseResource */
+export interface ResourceGuardProxyBase {
+  resourceGuardResourceId?: string;
+  resourceGuardOperationDetails?: ResourceGuardProxyBaseResourceGuardOperationDetailsList;
+  lastUpdatedTime?: string;
+  description?: string;
+}
+export const ResourceGuardProxyBase = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceGuardResourceId: S.optional(S.String),
+    resourceGuardOperationDetails: S.optional(
+      ResourceGuardProxyBaseResourceGuardOperationDetailsList,
+    ),
+    lastUpdatedTime: S.optional(S.String),
+    description: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ResourceGuardProxyBase",
+}) as any as S.Schema<ResourceGuardProxyBase>;
+
+export interface DppResourceGuardProxyCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the backup vault. */
+  vaultName: string;
+  /** name of the resource guard proxy */
+  resourceGuardProxyName: string;
+  /** ResourceGuardProxyBaseResource properties */
+  properties?: ResourceGuardProxyBase;
+}
+export const DppResourceGuardProxyCreateOrUpdateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vaultName: S.String.pipe(T.Label()),
+      resourceGuardProxyName: S.String.pipe(T.Label()),
+      properties: S.optional(ResourceGuardProxyBase),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/backupResourceGuardProxies/{resourceGuardProxyName}",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "DppResourceGuardProxyCreateOrUpdateRequest",
+  }) as any as S.Schema<DppResourceGuardProxyCreateOrUpdateRequest>;
+
+export interface DppResourceGuardProxyCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** ResourceGuardProxyBaseResource properties */
+  properties?: ResourceGuardProxyBase;
+}
+export const DppResourceGuardProxyCreateOrUpdateResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(ResourceGuardProxyBase),
+    }),
+  ).annotate({
+    identifier: "DppResourceGuardProxyCreateOrUpdateResponse",
+  }) as any as S.Schema<DppResourceGuardProxyCreateOrUpdateResponse>;
+
+/** ResourceGuardOperationRequests on which LAC check will be performed */
+export type DppResourceGuardProxyUnlockDeleteRequestResourceGuardOperationRequestsList =
+  Array<string>;
+export const DppResourceGuardProxyUnlockDeleteRequestResourceGuardOperationRequestsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<DppResourceGuardProxyUnlockDeleteRequestResourceGuardOperationRequestsList>;
+
+export interface DppResourceGuardProxyUnlockDeleteRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the backup vault. */
+  vaultName: string;
+  /** name of the resource guard proxy */
+  resourceGuardProxyName: string;
+  /** ResourceGuardOperationRequests on which LAC check will be performed */
+  resourceGuardOperationRequests?: DppResourceGuardProxyUnlockDeleteRequestResourceGuardOperationRequestsList;
+  resourceToBeDeleted?: string;
+}
+export const DppResourceGuardProxyUnlockDeleteRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vaultName: S.String.pipe(T.Label()),
+      resourceGuardProxyName: S.String.pipe(T.Label()),
+      resourceGuardOperationRequests: S.optional(
+        DppResourceGuardProxyUnlockDeleteRequestResourceGuardOperationRequestsList,
+      ),
+      resourceToBeDeleted: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/backupResourceGuardProxies/{resourceGuardProxyName}/unlockDelete",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "DppResourceGuardProxyUnlockDeleteRequest",
+}) as any as S.Schema<DppResourceGuardProxyUnlockDeleteRequest>;
+
+/** Response of Unlock Delete API. */
+export interface UnlockDeleteResponse {
+  /** This is the time when unlock delete privileges will get expired. */
+  unlockDeleteExpiryTime?: string;
+}
+export const UnlockDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    unlockDeleteExpiryTime: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "UnlockDeleteResponse",
+}) as any as S.Schema<UnlockDeleteResponse>;
+
+export interface GetBackupInstanceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the backup vault. */
+  vaultName: string;
+  /** The name of the BackupInstanceResource */
+  backupInstanceName: string;
+}
+export const GetBackupInstanceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    backupInstanceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/backupInstances/{backupInstanceName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetBackupInstanceRequest",
+}) as any as S.Schema<GetBackupInstanceRequest>;
+
+/** Proxy Resource tags. */
+export type GetBackupInstanceResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetBackupInstanceResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetBackupInstanceResponseTagsMap>;
+
+export interface GetBackupInstanceResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** BackupInstanceResource properties */
+  properties?: BackupInstance;
+  /** Proxy Resource tags. */
+  tags?: GetBackupInstanceResponseTagsMap;
+}
+export const GetBackupInstanceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(BackupInstance),
+    tags: S.optional(GetBackupInstanceResponseTagsMap),
+  }),
+).annotate({
+  identifier: "GetBackupInstanceResponse",
+}) as any as S.Schema<GetBackupInstanceResponse>;
+
+export interface GetBackupInstanceBackupInstanceOperationResultRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the BackupVaultResource */
+  vaultName: string;
+  /** The name of the BackupInstanceResource */
+  backupInstanceName: string;
+  /** The name of the BackupInstanceResource */
+  operationId: string;
+}
+export const GetBackupInstanceBackupInstanceOperationResultRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vaultName: S.String.pipe(T.Label()),
+      backupInstanceName: S.String.pipe(T.Label()),
+      operationId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/backupInstances/{backupInstanceName}/operationResults/{operationId}",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetBackupInstanceBackupInstanceOperationResultRequest",
+  }) as any as S.Schema<GetBackupInstanceBackupInstanceOperationResultRequest>;
+
+/** Proxy Resource tags. */
+export type GetBackupInstanceBackupInstanceOperationResultResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetBackupInstanceBackupInstanceOperationResultResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<GetBackupInstanceBackupInstanceOperationResultResponseTagsMap>;
+
+export interface GetBackupInstanceBackupInstanceOperationResultResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** BackupInstanceResource properties */
+  properties?: BackupInstance;
+  /** Proxy Resource tags. */
+  tags?: GetBackupInstanceBackupInstanceOperationResultResponseTagsMap;
+}
+export const GetBackupInstanceBackupInstanceOperationResultResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(BackupInstance),
+      tags: S.optional(
+        GetBackupInstanceBackupInstanceOperationResultResponseTagsMap,
+      ),
+    }),
+  ).annotate({
+    identifier: "GetBackupInstanceBackupInstanceOperationResultResponse",
+  }) as any as S.Schema<GetBackupInstanceBackupInstanceOperationResultResponse>;
+
+export interface GetBackupPolicyRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the backup vault. */
+  vaultName: string;
+  backupPolicyName: string;
+}
+export const GetBackupPolicyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    backupPolicyName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/backupPolicies/{backupPolicyName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetBackupPolicyRequest",
+}) as any as S.Schema<GetBackupPolicyRequest>;
+
+export interface GetBackupPolicyResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** BaseBackupPolicyResource properties */
+  properties?: BaseBackupPolicy;
+}
+export const GetBackupPolicyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(BaseBackupPolicy),
+  }),
+).annotate({
+  identifier: "GetBackupPolicyResponse",
+}) as any as S.Schema<GetBackupPolicyResponse>;
+
+export interface GetBackupVaultRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2588,7 +2268,7 @@ export interface BackupVaultsGetRequest {
   /** The name of the BackupVaultResource */
   vaultName: string;
 }
-export const BackupVaultsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetBackupVaultRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2602,19 +2282,19 @@ export const BackupVaultsGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "BackupVaultsGetRequest",
-}) as any as S.Schema<BackupVaultsGetRequest>;
+  identifier: "GetBackupVaultRequest",
+}) as any as S.Schema<GetBackupVaultRequest>;
 
 /** Resource tags. */
-export type BackupVaultsGetResponseTagsMap = {
+export type GetBackupVaultResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BackupVaultsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetBackupVaultResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<BackupVaultsGetResponseTagsMap>;
+) as any as S.Schema<GetBackupVaultResponseTagsMap>;
 
-export interface BackupVaultsGetResponse {
+export interface GetBackupVaultResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -2624,7 +2304,7 @@ export interface BackupVaultsGetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: BackupVaultsGetResponseTagsMap;
+  tags?: GetBackupVaultResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** BackupVaultResource properties */
@@ -2634,29 +2314,29 @@ export interface BackupVaultsGetResponse {
   /** Optional ETag. */
   eTag?: string;
 }
-export const BackupVaultsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetBackupVaultResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(BackupVaultsGetResponseTagsMap),
+    tags: S.optional(GetBackupVaultResponseTagsMap),
     location: S.String,
     properties: BackupVault,
     identity: S.optional(DppIdentityDetails),
     eTag: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "BackupVaultsGetResponse",
-}) as any as S.Schema<BackupVaultsGetResponse>;
+  identifier: "GetBackupVaultResponse",
+}) as any as S.Schema<GetBackupVaultResponse>;
 
-export interface BackupVaultsGetInResourceGroupRequest {
+export interface GetBackupVaultInResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
 }
-export const BackupVaultsGetInResourceGroupRequest = /*@__PURE__*/ S.suspend(
+export const GetBackupVaultInResourceGroupRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2670,8 +2350,8 @@ export const BackupVaultsGetInResourceGroupRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "BackupVaultsGetInResourceGroupRequest",
-}) as any as S.Schema<BackupVaultsGetInResourceGroupRequest>;
+  identifier: "GetBackupVaultInResourceGroupRequest",
+}) as any as S.Schema<GetBackupVaultInResourceGroupRequest>;
 
 /** Resource tags. */
 export type BackupVaultResourceTagsMap = { [key: string]: string | undefined };
@@ -2718,161 +2398,112 @@ export const BackupVaultResource = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<BackupVaultResource>;
 
 /** List of resources. */
-export type BackupVaultsGetInResourceGroupResponseValueList =
+export type GetBackupVaultInResourceGroupResponseValueList =
   Array<BackupVaultResource>;
-export const BackupVaultsGetInResourceGroupResponseValueList =
+export const GetBackupVaultInResourceGroupResponseValueList =
   /*@__PURE__*/ S.Array(
     BackupVaultResource,
-  ) as any as S.Schema<BackupVaultsGetInResourceGroupResponseValueList>;
+  ) as any as S.Schema<GetBackupVaultInResourceGroupResponseValueList>;
 
-export interface BackupVaultsGetInResourceGroupResponse {
+export interface GetBackupVaultInResourceGroupResponse {
   /** The uri to fetch the next page of resources. Call ListNext() fetches next page of resources. */
   nextLink?: string;
   /** List of resources. */
-  value?: BackupVaultsGetInResourceGroupResponseValueList;
+  value?: GetBackupVaultInResourceGroupResponseValueList;
 }
-export const BackupVaultsGetInResourceGroupResponse = /*@__PURE__*/ S.suspend(
+export const GetBackupVaultInResourceGroupResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       nextLink: S.optional(S.String),
-      value: S.optional(BackupVaultsGetInResourceGroupResponseValueList),
+      value: S.optional(GetBackupVaultInResourceGroupResponseValueList),
     }),
 ).annotate({
-  identifier: "BackupVaultsGetInResourceGroupResponse",
-}) as any as S.Schema<BackupVaultsGetInResourceGroupResponse>;
+  identifier: "GetBackupVaultInResourceGroupResponse",
+}) as any as S.Schema<GetBackupVaultInResourceGroupResponse>;
 
-export interface BackupVaultsGetInSubscriptionRequest {
+export interface GetBackupVaultInSubscriptionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
 }
-export const BackupVaultsGetInSubscriptionRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DataProtection/backupVaults",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
+export const GetBackupVaultInSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DataProtection/backupVaults",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
 ).annotate({
-  identifier: "BackupVaultsGetInSubscriptionRequest",
-}) as any as S.Schema<BackupVaultsGetInSubscriptionRequest>;
+  identifier: "GetBackupVaultInSubscriptionRequest",
+}) as any as S.Schema<GetBackupVaultInSubscriptionRequest>;
 
 /** List of resources. */
-export type BackupVaultsGetInSubscriptionResponseValueList =
+export type GetBackupVaultInSubscriptionResponseValueList =
   Array<BackupVaultResource>;
-export const BackupVaultsGetInSubscriptionResponseValueList =
+export const GetBackupVaultInSubscriptionResponseValueList =
   /*@__PURE__*/ S.Array(
     BackupVaultResource,
-  ) as any as S.Schema<BackupVaultsGetInSubscriptionResponseValueList>;
+  ) as any as S.Schema<GetBackupVaultInSubscriptionResponseValueList>;
 
-export interface BackupVaultsGetInSubscriptionResponse {
+export interface GetBackupVaultInSubscriptionResponse {
   /** The uri to fetch the next page of resources. Call ListNext() fetches next page of resources. */
   nextLink?: string;
   /** List of resources. */
-  value?: BackupVaultsGetInSubscriptionResponseValueList;
+  value?: GetBackupVaultInSubscriptionResponseValueList;
 }
-export const BackupVaultsGetInSubscriptionResponse = /*@__PURE__*/ S.suspend(
+export const GetBackupVaultInSubscriptionResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       nextLink: S.optional(S.String),
-      value: S.optional(BackupVaultsGetInSubscriptionResponseValueList),
+      value: S.optional(GetBackupVaultInSubscriptionResponseValueList),
     }),
 ).annotate({
-  identifier: "BackupVaultsGetInSubscriptionResponse",
-}) as any as S.Schema<BackupVaultsGetInSubscriptionResponse>;
+  identifier: "GetBackupVaultInSubscriptionResponse",
+}) as any as S.Schema<GetBackupVaultInSubscriptionResponse>;
 
-/** ResourceGuardOperationRequests on which LAC check will be performed */
-export type PatchBackupVaultInputResourceGuardOperationRequestsList =
-  Array<string>;
-export const PatchBackupVaultInputResourceGuardOperationRequestsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PatchBackupVaultInputResourceGuardOperationRequestsList>;
-
-/** Backup Vault Contract for Patch Backup Vault API. */
-export interface PatchBackupVaultInput {
-  /** Monitoring Settings */
-  monitoringSettings?: MonitoringSettings;
-  /** Security Settings */
-  securitySettings?: SecuritySettings;
-  /** Feature Settings */
-  featureSettings?: FeatureSettings;
-  /** Cost Management Settings of the vault */
-  costManagementSettings?: CostManagementSettings;
-  /** ResourceGuardOperationRequests on which LAC check will be performed */
-  resourceGuardOperationRequests?: PatchBackupVaultInputResourceGuardOperationRequestsList;
-}
-export const PatchBackupVaultInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    monitoringSettings: S.optional(MonitoringSettings),
-    securitySettings: S.optional(SecuritySettings),
-    featureSettings: S.optional(FeatureSettings),
-    costManagementSettings: S.optional(CostManagementSettings),
-    resourceGuardOperationRequests: S.optional(
-      PatchBackupVaultInputResourceGuardOperationRequestsList,
-    ),
-  }),
-).annotate({
-  identifier: "PatchBackupVaultInput",
-}) as any as S.Schema<PatchBackupVaultInput>;
-
-/** Resource tags. */
-export type BackupVaultsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const BackupVaultsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<BackupVaultsUpdateRequestTagsMap>;
-
-export interface BackupVaultsUpdateRequest {
+export interface GetBackupVaultOperationResultRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the BackupVaultResource */
   vaultName: string;
-  /** Input Managed Identity Details */
-  identity?: DppIdentityDetailsInput;
-  /** Resource properties. */
-  properties?: PatchBackupVaultInput;
-  /** Resource tags. */
-  tags?: BackupVaultsUpdateRequestTagsMap;
+  /** The name of the BackupVaultResource */
+  operationId: string;
 }
-export const BackupVaultsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-    identity: S.optional(DppIdentityDetailsInput),
-    properties: S.optional(PatchBackupVaultInput),
-    tags: S.optional(BackupVaultsUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
+export const GetBackupVaultOperationResultRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vaultName: S.String.pipe(T.Label()),
+      operationId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/operationResults/{operationId}",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
 ).annotate({
-  identifier: "BackupVaultsUpdateRequest",
-}) as any as S.Schema<BackupVaultsUpdateRequest>;
+  identifier: "GetBackupVaultOperationResultRequest",
+}) as any as S.Schema<GetBackupVaultOperationResultRequest>;
 
 /** Resource tags. */
-export type BackupVaultsUpdateResponseTagsMap = {
+export type GetBackupVaultOperationResultResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BackupVaultsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<BackupVaultsUpdateResponseTagsMap>;
+export const GetBackupVaultOperationResultResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<GetBackupVaultOperationResultResponseTagsMap>;
 
-export interface BackupVaultsUpdateResponse {
+export interface GetBackupVaultOperationResultResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -2882,7 +2513,7 @@ export interface BackupVaultsUpdateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: BackupVaultsUpdateResponseTagsMap;
+  tags?: GetBackupVaultOperationResultResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** BackupVaultResource properties */
@@ -2892,152 +2523,24 @@ export interface BackupVaultsUpdateResponse {
   /** Optional ETag. */
   eTag?: string;
 }
-export const BackupVaultsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(BackupVaultsUpdateResponseTagsMap),
-    location: S.String,
-    properties: BackupVault,
-    identity: S.optional(DppIdentityDetails),
-    eTag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "BackupVaultsUpdateResponse",
-}) as any as S.Schema<BackupVaultsUpdateResponse>;
-
-export interface DataProtectionCheckFeatureSupportRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the Azure region. */
-  location: string;
-  /** Type of the specific object - used for deserializing */
-  objectType: string;
-}
-export const DataProtectionCheckFeatureSupportRequest = /*@__PURE__*/ S.suspend(
+export const GetBackupVaultOperationResultResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      location: S.String.pipe(T.Label()),
-      objectType: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DataProtection/locations/{location}/checkFeatureSupport",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "DataProtectionCheckFeatureSupportRequest",
-}) as any as S.Schema<DataProtectionCheckFeatureSupportRequest>;
-
-/** Base class for Backup Feature support */
-export interface FeatureValidationResponseBase {
-  /** Type of the specific object - used for deserializing */
-  objectType: string;
-}
-export const FeatureValidationResponseBase = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    objectType: S.String,
-  }),
-).annotate({
-  identifier: "FeatureValidationResponseBase",
-}) as any as S.Schema<FeatureValidationResponseBase>;
-
-export interface DataProtectionOperationsListRequest {}
-export const DataProtectionOperationsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.DataProtection/operations",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "DataProtectionOperationsListRequest",
-}) as any as S.Schema<DataProtectionOperationsListRequest>;
-
-/** Localized display information for this particular operation. */
-export interface OperationDisplay {
-  /** The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring Insights" or "Microsoft Compute". */
-  provider?: string;
-  /** The localized friendly name of the resource type related to this operation. E.g. "Virtual Machines" or "Job Schedule Collections". */
-  resource?: string;
-  /** The concise, localized friendly name for the operation; suitable for dropdowns. E.g. "Create or Update Virtual Machine", "Restart Virtual Machine". */
-  operation?: string;
-  /** The short, localized friendly description of the operation; suitable for tool tips and detailed views. */
-  description?: string;
-}
-export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provider: S.optional(S.String),
-    resource: S.optional(S.String),
-    operation: S.optional(S.String),
-    description: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationDisplay",
-}) as any as S.Schema<OperationDisplay>;
-
-/** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
-export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
-
-/** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
-export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
-
-/** Details of a REST API operation, returned from the Resource Provider Operations API */
-export interface Operation {
-  /** The name of the operation, as per Resource-Based Access Control (RBAC). Examples: "Microsoft.Compute/virtualMachines/write", "Microsoft.Compute/virtualMachines/capture/action" */
-  name?: string;
-  /** Whether the operation applies to data-plane. This is "true" for data-plane operations and "false" for ARM/control-plane operations. */
-  isDataAction?: boolean;
-  /** Localized display information for this particular operation. */
-  display?: OperationDisplay;
-  /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
-  origin?: OperationOrigin;
-  /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
-  actionType?: OperationActionType;
-}
-export const Operation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    isDataAction: S.optional(S.Boolean),
-    display: S.optional(OperationDisplay),
-    origin: S.optional(OperationOrigin),
-    actionType: S.optional(OperationActionType),
-  }),
-).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
-
-/** List of operations supported by the resource provider */
-export type DataProtectionOperationsListResponseValueList = Array<Operation>;
-export const DataProtectionOperationsListResponseValueList =
-  /*@__PURE__*/ S.Array(
-    Operation,
-  ) as any as S.Schema<DataProtectionOperationsListResponseValueList>;
-
-export interface DataProtectionOperationsListResponse {
-  /** List of operations supported by the resource provider */
-  value?: DataProtectionOperationsListResponseValueList;
-  /** URL to get the next set of operation list results (if there are any). */
-  nextLink?: string;
-}
-export const DataProtectionOperationsListResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      value: S.optional(DataProtectionOperationsListResponseValueList),
-      nextLink: S.optional(S.String),
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(GetBackupVaultOperationResultResponseTagsMap),
+      location: S.String,
+      properties: BackupVault,
+      identity: S.optional(DppIdentityDetails),
+      eTag: S.optional(S.String),
     }),
 ).annotate({
-  identifier: "DataProtectionOperationsListResponse",
-}) as any as S.Schema<DataProtectionOperationsListResponse>;
+  identifier: "GetBackupVaultOperationResultResponse",
+}) as any as S.Schema<GetBackupVaultOperationResultResponse>;
 
-export interface DeletedBackupInstancesGetRequest {
+export interface GetDeletedBackupInstanceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3047,7 +2550,7 @@ export interface DeletedBackupInstancesGetRequest {
   /** The name of the deleted backup instance */
   backupInstanceName: string;
 }
-export const DeletedBackupInstancesGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDeletedBackupInstanceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -3062,8 +2565,8 @@ export const DeletedBackupInstancesGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeletedBackupInstancesGetRequest",
-}) as any as S.Schema<DeletedBackupInstancesGetRequest>;
+  identifier: "GetDeletedBackupInstanceRequest",
+}) as any as S.Schema<GetDeletedBackupInstanceRequest>;
 
 /** ResourceGuardOperationRequests on which LAC check will be performed */
 export type DeletedBackupInstanceResourceGuardOperationRequestsList =
@@ -3146,7 +2649,7 @@ export const DeletedBackupInstance = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeletedBackupInstance",
 }) as any as S.Schema<DeletedBackupInstance>;
 
-export interface DeletedBackupInstancesGetResponse {
+export interface GetDeletedBackupInstanceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -3158,7 +2661,7 @@ export interface DeletedBackupInstancesGetResponse {
   /** DeletedBackupInstanceResource properties */
   properties?: DeletedBackupInstance;
 }
-export const DeletedBackupInstancesGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetDeletedBackupInstanceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -3167,119 +2670,10 @@ export const DeletedBackupInstancesGetResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(DeletedBackupInstance),
   }),
 ).annotate({
-  identifier: "DeletedBackupInstancesGetResponse",
-}) as any as S.Schema<DeletedBackupInstancesGetResponse>;
+  identifier: "GetDeletedBackupInstanceResponse",
+}) as any as S.Schema<GetDeletedBackupInstanceResponse>;
 
-export interface DeletedBackupInstancesListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the backup vault. */
-  vaultName: string;
-}
-export const DeletedBackupInstancesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/deletedBackupInstances",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "DeletedBackupInstancesListRequest",
-}) as any as S.Schema<DeletedBackupInstancesListRequest>;
-
-/** Deleted Backup Instance */
-export interface DeletedBackupInstanceResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** DeletedBackupInstanceResource properties */
-  properties?: DeletedBackupInstance;
-}
-export const DeletedBackupInstanceResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(DeletedBackupInstance),
-  }),
-).annotate({
-  identifier: "DeletedBackupInstanceResource",
-}) as any as S.Schema<DeletedBackupInstanceResource>;
-
-/** List of resources. */
-export type DeletedBackupInstancesListResponseValueList =
-  Array<DeletedBackupInstanceResource>;
-export const DeletedBackupInstancesListResponseValueList =
-  /*@__PURE__*/ S.Array(
-    DeletedBackupInstanceResource,
-  ) as any as S.Schema<DeletedBackupInstancesListResponseValueList>;
-
-export interface DeletedBackupInstancesListResponse {
-  /** The uri to fetch the next page of resources. Call ListNext() fetches next page of resources. */
-  nextLink?: string;
-  /** List of resources. */
-  value?: DeletedBackupInstancesListResponseValueList;
-}
-export const DeletedBackupInstancesListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: S.optional(DeletedBackupInstancesListResponseValueList),
-  }),
-).annotate({
-  identifier: "DeletedBackupInstancesListResponse",
-}) as any as S.Schema<DeletedBackupInstancesListResponse>;
-
-export interface DeletedBackupInstancesUndeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the backup vault. */
-  vaultName: string;
-  /** The name of the deleted backup instance */
-  backupInstanceName: string;
-}
-export const DeletedBackupInstancesUndeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vaultName: S.String.pipe(T.Label()),
-      backupInstanceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/deletedBackupInstances/{backupInstanceName}/undelete",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "DeletedBackupInstancesUndeleteRequest",
-}) as any as S.Schema<DeletedBackupInstancesUndeleteRequest>;
-
-export interface DeletedBackupInstancesUndeleteResponse {}
-export const DeletedBackupInstancesUndeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "DeletedBackupInstancesUndeleteResponse",
-}) as any as S.Schema<DeletedBackupInstancesUndeleteResponse>;
-
-export interface DeletedBackupVaultsGetRequest {
+export interface GetDeletedBackupVaultRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the Azure region. */
@@ -3287,7 +2681,7 @@ export interface DeletedBackupVaultsGetRequest {
   /** The name of the DeletedBackupVaultResource */
   deletedVaultName: string;
 }
-export const DeletedBackupVaultsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDeletedBackupVaultRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     location: S.String.pipe(T.Label()),
@@ -3301,8 +2695,8 @@ export const DeletedBackupVaultsGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeletedBackupVaultsGetRequest",
-}) as any as S.Schema<DeletedBackupVaultsGetRequest>;
+  identifier: "GetDeletedBackupVaultRequest",
+}) as any as S.Schema<GetDeletedBackupVaultRequest>;
 
 /** Storage Settings */
 export type DeletedBackupVaultStorageSettingsList = Array<StorageSetting>;
@@ -3406,7 +2800,7 @@ export const DeletedBackupVault = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeletedBackupVault",
 }) as any as S.Schema<DeletedBackupVault>;
 
-export interface DeletedBackupVaultsGetResponse {
+export interface GetDeletedBackupVaultResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -3418,7 +2812,7 @@ export interface DeletedBackupVaultsGetResponse {
   /** The resource-specific properties for this resource. */
   properties?: DeletedBackupVault;
 }
-export const DeletedBackupVaultsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetDeletedBackupVaultResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -3427,181 +2821,10 @@ export const DeletedBackupVaultsGetResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(DeletedBackupVault),
   }),
 ).annotate({
-  identifier: "DeletedBackupVaultsGetResponse",
-}) as any as S.Schema<DeletedBackupVaultsGetResponse>;
+  identifier: "GetDeletedBackupVaultResponse",
+}) as any as S.Schema<GetDeletedBackupVaultResponse>;
 
-export interface DeletedBackupVaultsListByLocationRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the Azure region. */
-  location: string;
-}
-export const DeletedBackupVaultsListByLocationRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      location: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DataProtection/locations/{location}/deletedVaults",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "DeletedBackupVaultsListByLocationRequest",
-}) as any as S.Schema<DeletedBackupVaultsListByLocationRequest>;
-
-/** Deleted Backup Vault Resource (available from version 2025-09-01) */
-export interface DeletedBackupVaultResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: DeletedBackupVault;
-}
-export const DeletedBackupVaultResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(DeletedBackupVault),
-  }),
-).annotate({
-  identifier: "DeletedBackupVaultResource",
-}) as any as S.Schema<DeletedBackupVaultResource>;
-
-/** The DeletedBackupVaultResource items on this page */
-export type DeletedBackupVaultResourceListResultValueList =
-  Array<DeletedBackupVaultResource>;
-export const DeletedBackupVaultResourceListResultValueList =
-  /*@__PURE__*/ S.Array(
-    DeletedBackupVaultResource,
-  ) as any as S.Schema<DeletedBackupVaultResourceListResultValueList>;
-
-/** The response of a DeletedBackupVaultResource list operation. */
-export interface DeletedBackupVaultResourceListResult {
-  /** The DeletedBackupVaultResource items on this page */
-  value: DeletedBackupVaultResourceListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const DeletedBackupVaultResourceListResult = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      value: DeletedBackupVaultResourceListResultValueList,
-      nextLink: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "DeletedBackupVaultResourceListResult",
-}) as any as S.Schema<DeletedBackupVaultResourceListResult>;
-
-/** VaultCritical Operation protected by a resource guard */
-export interface ResourceGuardOperationDetail {
-  vaultCriticalOperation?: string;
-  defaultResourceRequest?: string;
-}
-export const ResourceGuardOperationDetail = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    vaultCriticalOperation: S.optional(S.String),
-    defaultResourceRequest: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ResourceGuardOperationDetail",
-}) as any as S.Schema<ResourceGuardOperationDetail>;
-
-export type ResourceGuardProxyBaseResourceGuardOperationDetailsList =
-  Array<ResourceGuardOperationDetail>;
-export const ResourceGuardProxyBaseResourceGuardOperationDetailsList =
-  /*@__PURE__*/ S.Array(
-    ResourceGuardOperationDetail,
-  ) as any as S.Schema<ResourceGuardProxyBaseResourceGuardOperationDetailsList>;
-
-/** ResourceGuardProxyBase object, used in ResourceGuardProxyBaseResource */
-export interface ResourceGuardProxyBase {
-  resourceGuardResourceId?: string;
-  resourceGuardOperationDetails?: ResourceGuardProxyBaseResourceGuardOperationDetailsList;
-  lastUpdatedTime?: string;
-  description?: string;
-}
-export const ResourceGuardProxyBase = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceGuardResourceId: S.optional(S.String),
-    resourceGuardOperationDetails: S.optional(
-      ResourceGuardProxyBaseResourceGuardOperationDetailsList,
-    ),
-    lastUpdatedTime: S.optional(S.String),
-    description: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ResourceGuardProxyBase",
-}) as any as S.Schema<ResourceGuardProxyBase>;
-
-export interface DppResourceGuardProxyCreateOrUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the backup vault. */
-  vaultName: string;
-  /** name of the resource guard proxy */
-  resourceGuardProxyName: string;
-  /** ResourceGuardProxyBaseResource properties */
-  properties?: ResourceGuardProxyBase;
-}
-export const DppResourceGuardProxyCreateOrUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vaultName: S.String.pipe(T.Label()),
-      resourceGuardProxyName: S.String.pipe(T.Label()),
-      properties: S.optional(ResourceGuardProxyBase),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/backupResourceGuardProxies/{resourceGuardProxyName}",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "DppResourceGuardProxyCreateOrUpdateRequest",
-  }) as any as S.Schema<DppResourceGuardProxyCreateOrUpdateRequest>;
-
-export interface DppResourceGuardProxyCreateOrUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** ResourceGuardProxyBaseResource properties */
-  properties?: ResourceGuardProxyBase;
-}
-export const DppResourceGuardProxyCreateOrUpdateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(ResourceGuardProxyBase),
-    }),
-  ).annotate({
-    identifier: "DppResourceGuardProxyCreateOrUpdateResponse",
-  }) as any as S.Schema<DppResourceGuardProxyCreateOrUpdateResponse>;
-
-export interface DppResourceGuardProxyDeleteRequest {
+export interface GetDppResourceGuardProxyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3611,42 +2834,7 @@ export interface DppResourceGuardProxyDeleteRequest {
   /** name of the resource guard proxy */
   resourceGuardProxyName: string;
 }
-export const DppResourceGuardProxyDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-    resourceGuardProxyName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/backupResourceGuardProxies/{resourceGuardProxyName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "DppResourceGuardProxyDeleteRequest",
-}) as any as S.Schema<DppResourceGuardProxyDeleteRequest>;
-
-export interface DppResourceGuardProxyDeleteResponse {}
-export const DppResourceGuardProxyDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DppResourceGuardProxyDeleteResponse",
-}) as any as S.Schema<DppResourceGuardProxyDeleteResponse>;
-
-export interface DppResourceGuardProxyGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the backup vault. */
-  vaultName: string;
-  /** name of the resource guard proxy */
-  resourceGuardProxyName: string;
-}
-export const DppResourceGuardProxyGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDppResourceGuardProxyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -3661,10 +2849,10 @@ export const DppResourceGuardProxyGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DppResourceGuardProxyGetRequest",
-}) as any as S.Schema<DppResourceGuardProxyGetRequest>;
+  identifier: "GetDppResourceGuardProxyRequest",
+}) as any as S.Schema<GetDppResourceGuardProxyRequest>;
 
-export interface DppResourceGuardProxyGetResponse {
+export interface GetDppResourceGuardProxyResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -3676,7 +2864,7 @@ export interface DppResourceGuardProxyGetResponse {
   /** ResourceGuardProxyBaseResource properties */
   properties?: ResourceGuardProxyBase;
 }
-export const DppResourceGuardProxyGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetDppResourceGuardProxyResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -3685,139 +2873,10 @@ export const DppResourceGuardProxyGetResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(ResourceGuardProxyBase),
   }),
 ).annotate({
-  identifier: "DppResourceGuardProxyGetResponse",
-}) as any as S.Schema<DppResourceGuardProxyGetResponse>;
+  identifier: "GetDppResourceGuardProxyResponse",
+}) as any as S.Schema<GetDppResourceGuardProxyResponse>;
 
-export interface DppResourceGuardProxyListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the backup vault. */
-  vaultName: string;
-}
-export const DppResourceGuardProxyListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/backupResourceGuardProxies",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "DppResourceGuardProxyListRequest",
-}) as any as S.Schema<DppResourceGuardProxyListRequest>;
-
-/** ResourceGuardProxyBaseResource object, used for response and request bodies for ResourceGuardProxy APIs */
-export interface ResourceGuardProxyBaseResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** ResourceGuardProxyBaseResource properties */
-  properties?: ResourceGuardProxyBase;
-}
-export const ResourceGuardProxyBaseResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ResourceGuardProxyBase),
-  }),
-).annotate({
-  identifier: "ResourceGuardProxyBaseResource",
-}) as any as S.Schema<ResourceGuardProxyBaseResource>;
-
-/** List of resources. */
-export type DppResourceGuardProxyListResponseValueList =
-  Array<ResourceGuardProxyBaseResource>;
-export const DppResourceGuardProxyListResponseValueList = /*@__PURE__*/ S.Array(
-  ResourceGuardProxyBaseResource,
-) as any as S.Schema<DppResourceGuardProxyListResponseValueList>;
-
-export interface DppResourceGuardProxyListResponse {
-  /** The uri to fetch the next page of resources. Call ListNext() fetches next page of resources. */
-  nextLink?: string;
-  /** List of resources. */
-  value?: DppResourceGuardProxyListResponseValueList;
-}
-export const DppResourceGuardProxyListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: S.optional(DppResourceGuardProxyListResponseValueList),
-  }),
-).annotate({
-  identifier: "DppResourceGuardProxyListResponse",
-}) as any as S.Schema<DppResourceGuardProxyListResponse>;
-
-/** ResourceGuardOperationRequests on which LAC check will be performed */
-export type DppResourceGuardProxyUnlockDeleteRequestResourceGuardOperationRequestsList =
-  Array<string>;
-export const DppResourceGuardProxyUnlockDeleteRequestResourceGuardOperationRequestsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<DppResourceGuardProxyUnlockDeleteRequestResourceGuardOperationRequestsList>;
-
-export interface DppResourceGuardProxyUnlockDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the backup vault. */
-  vaultName: string;
-  /** name of the resource guard proxy */
-  resourceGuardProxyName: string;
-  /** ResourceGuardOperationRequests on which LAC check will be performed */
-  resourceGuardOperationRequests?: DppResourceGuardProxyUnlockDeleteRequestResourceGuardOperationRequestsList;
-  resourceToBeDeleted?: string;
-}
-export const DppResourceGuardProxyUnlockDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vaultName: S.String.pipe(T.Label()),
-      resourceGuardProxyName: S.String.pipe(T.Label()),
-      resourceGuardOperationRequests: S.optional(
-        DppResourceGuardProxyUnlockDeleteRequestResourceGuardOperationRequestsList,
-      ),
-      resourceToBeDeleted: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/backupResourceGuardProxies/{resourceGuardProxyName}/unlockDelete",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "DppResourceGuardProxyUnlockDeleteRequest",
-}) as any as S.Schema<DppResourceGuardProxyUnlockDeleteRequest>;
-
-/** Response of Unlock Delete API. */
-export interface UnlockDeleteResponse {
-  /** This is the time when unlock delete privileges will get expired. */
-  unlockDeleteExpiryTime?: string;
-}
-export const UnlockDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    unlockDeleteExpiryTime: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "UnlockDeleteResponse",
-}) as any as S.Schema<UnlockDeleteResponse>;
-
-export interface ExportJobsOperationResultGetRequest {
+export interface GetExportJobsOperationResultRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3827,7 +2886,7 @@ export interface ExportJobsOperationResultGetRequest {
   /** OperationID which represents the export job. */
   operationId: string;
 }
-export const ExportJobsOperationResultGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetExportJobsOperationResultRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -3842,8 +2901,8 @@ export const ExportJobsOperationResultGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ExportJobsOperationResultGetRequest",
-}) as any as S.Schema<ExportJobsOperationResultGetRequest>;
+  identifier: "GetExportJobsOperationResultRequest",
+}) as any as S.Schema<GetExportJobsOperationResultRequest>;
 
 /** The result for export jobs containing blob details. */
 export interface ExportJobsResult {
@@ -3867,39 +2926,7 @@ export const ExportJobsResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ExportJobsResult",
 }) as any as S.Schema<ExportJobsResult>;
 
-export interface ExportJobsTriggerRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the BackupVaultResource */
-  vaultName: string;
-}
-export const ExportJobsTriggerRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/exportBackupJobs",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ExportJobsTriggerRequest",
-}) as any as S.Schema<ExportJobsTriggerRequest>;
-
-export interface ExportJobsTriggerResponse {}
-export const ExportJobsTriggerResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ExportJobsTriggerResponse",
-}) as any as S.Schema<ExportJobsTriggerResponse>;
-
-export interface FetchCrossRegionRestoreJobGetRequest {
+export interface GetFetchCrossRegionRestoreJobRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3910,7 +2937,7 @@ export interface FetchCrossRegionRestoreJobGetRequest {
   sourceBackupVaultId: string;
   jobId: string;
 }
-export const FetchCrossRegionRestoreJobGetRequest = /*@__PURE__*/ S.suspend(
+export const GetFetchCrossRegionRestoreJobRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -3928,8 +2955,8 @@ export const FetchCrossRegionRestoreJobGetRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "FetchCrossRegionRestoreJobGetRequest",
-}) as any as S.Schema<FetchCrossRegionRestoreJobGetRequest>;
+  identifier: "GetFetchCrossRegionRestoreJobRequest",
+}) as any as S.Schema<GetFetchCrossRegionRestoreJobRequest>;
 
 /** A List, detailing the errors related to the job */
 export type AzureBackupJobErrorDetailsList = Array<UserFacingError>;
@@ -4157,7 +3184,7 @@ export const AzureBackupJob = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "AzureBackupJob" }) as any as S.Schema<AzureBackupJob>;
 
-export interface FetchCrossRegionRestoreJobGetResponse {
+export interface GetFetchCrossRegionRestoreJobResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -4169,7 +3196,7 @@ export interface FetchCrossRegionRestoreJobGetResponse {
   /** AzureBackupJobResource properties */
   properties?: AzureBackupJob;
 }
-export const FetchCrossRegionRestoreJobGetResponse = /*@__PURE__*/ S.suspend(
+export const GetFetchCrossRegionRestoreJobResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -4179,191 +3206,10 @@ export const FetchCrossRegionRestoreJobGetResponse = /*@__PURE__*/ S.suspend(
       properties: S.optional(AzureBackupJob),
     }),
 ).annotate({
-  identifier: "FetchCrossRegionRestoreJobGetResponse",
-}) as any as S.Schema<FetchCrossRegionRestoreJobGetResponse>;
+  identifier: "GetFetchCrossRegionRestoreJobResponse",
+}) as any as S.Schema<GetFetchCrossRegionRestoreJobResponse>;
 
-export interface FetchCrossRegionRestoreJobsListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Azure region. */
-  location: string;
-  /** OData filter options. */
-  _filter?: string;
-  sourceRegion: string;
-  sourceBackupVaultId: string;
-}
-export const FetchCrossRegionRestoreJobsListRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      location: S.String.pipe(T.Label()),
-      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-      sourceRegion: S.String,
-      sourceBackupVaultId: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/locations/{location}/fetchCrossRegionRestoreJobs",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "FetchCrossRegionRestoreJobsListRequest",
-}) as any as S.Schema<FetchCrossRegionRestoreJobsListRequest>;
-
-/** AzureBackup Job Resource Class */
-export interface AzureBackupJobResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** AzureBackupJobResource properties */
-  properties?: AzureBackupJob;
-}
-export const AzureBackupJobResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(AzureBackupJob),
-  }),
-).annotate({
-  identifier: "AzureBackupJobResource",
-}) as any as S.Schema<AzureBackupJobResource>;
-
-/** List of resources. */
-export type FetchCrossRegionRestoreJobsListResponseValueList =
-  Array<AzureBackupJobResource>;
-export const FetchCrossRegionRestoreJobsListResponseValueList =
-  /*@__PURE__*/ S.Array(
-    AzureBackupJobResource,
-  ) as any as S.Schema<FetchCrossRegionRestoreJobsListResponseValueList>;
-
-export interface FetchCrossRegionRestoreJobsListResponse {
-  /** The uri to fetch the next page of resources. Call ListNext() fetches next page of resources. */
-  nextLink?: string;
-  /** List of resources. */
-  value?: FetchCrossRegionRestoreJobsListResponseValueList;
-}
-export const FetchCrossRegionRestoreJobsListResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      nextLink: S.optional(S.String),
-      value: S.optional(FetchCrossRegionRestoreJobsListResponseValueList),
-    }),
-).annotate({
-  identifier: "FetchCrossRegionRestoreJobsListResponse",
-}) as any as S.Schema<FetchCrossRegionRestoreJobsListResponse>;
-
-export interface FetchSecondaryRecoveryPointsListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Azure region. */
-  location: string;
-  /** OData filter options. */
-  _filter?: string;
-  /** skipToken Filter. */
-  _skipToken?: string;
-  /** Source region in which BackupInstance is located */
-  sourceRegion?: string;
-  /** ARM Path of BackupInstance */
-  sourceBackupInstanceId?: string;
-}
-export const FetchSecondaryRecoveryPointsListRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      location: S.String.pipe(T.Label()),
-      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-      sourceRegion: S.optional(S.String),
-      sourceBackupInstanceId: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/locations/{location}/fetchSecondaryRecoveryPoints",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "FetchSecondaryRecoveryPointsListRequest",
-}) as any as S.Schema<FetchSecondaryRecoveryPointsListRequest>;
-
-/** Azure backup recoveryPoint */
-export interface AzureBackupRecoveryPoint {
-  objectType: string;
-}
-export const AzureBackupRecoveryPoint = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    objectType: S.String,
-  }),
-).annotate({
-  identifier: "AzureBackupRecoveryPoint",
-}) as any as S.Schema<AzureBackupRecoveryPoint>;
-
-/** Azure backup recoveryPoint resource */
-export interface AzureBackupRecoveryPointResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** AzureBackupRecoveryPointResource properties */
-  properties?: AzureBackupRecoveryPoint;
-}
-export const AzureBackupRecoveryPointResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(AzureBackupRecoveryPoint),
-  }),
-).annotate({
-  identifier: "AzureBackupRecoveryPointResource",
-}) as any as S.Schema<AzureBackupRecoveryPointResource>;
-
-/** List of resources. */
-export type FetchSecondaryRecoveryPointsListResponseValueList =
-  Array<AzureBackupRecoveryPointResource>;
-export const FetchSecondaryRecoveryPointsListResponseValueList =
-  /*@__PURE__*/ S.Array(
-    AzureBackupRecoveryPointResource,
-  ) as any as S.Schema<FetchSecondaryRecoveryPointsListResponseValueList>;
-
-export interface FetchSecondaryRecoveryPointsListResponse {
-  /** The uri to fetch the next page of resources. Call ListNext() fetches next page of resources. */
-  nextLink?: string;
-  /** List of resources. */
-  value?: FetchSecondaryRecoveryPointsListResponseValueList;
-}
-export const FetchSecondaryRecoveryPointsListResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      nextLink: S.optional(S.String),
-      value: S.optional(FetchSecondaryRecoveryPointsListResponseValueList),
-    }),
-).annotate({
-  identifier: "FetchSecondaryRecoveryPointsListResponse",
-}) as any as S.Schema<FetchSecondaryRecoveryPointsListResponse>;
-
-export interface JobsGetRequest {
+export interface GetJobRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4373,7 +3219,7 @@ export interface JobsGetRequest {
   /** The Job ID. This is a GUID-formatted string (e.g. 00000000-0000-0000-0000-000000000000). */
   jobId: string;
 }
-export const JobsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetJobRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -4387,9 +3233,9 @@ export const JobsGetRequest = /*@__PURE__*/ S.suspend(() =>
       apiVersion: "2026-06-01",
     }),
   ),
-).annotate({ identifier: "JobsGetRequest" }) as any as S.Schema<JobsGetRequest>;
+).annotate({ identifier: "GetJobRequest" }) as any as S.Schema<GetJobRequest>;
 
-export interface JobsGetResponse {
+export interface GetJobResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -4401,7 +3247,7 @@ export interface JobsGetResponse {
   /** AzureBackupJobResource properties */
   properties?: AzureBackupJob;
 }
-export const JobsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetJobResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -4409,64 +3255,16 @@ export const JobsGetResponse = /*@__PURE__*/ S.suspend(() =>
     systemData: S.optional(SystemData),
     properties: S.optional(AzureBackupJob),
   }),
-).annotate({
-  identifier: "JobsGetResponse",
-}) as any as S.Schema<JobsGetResponse>;
+).annotate({ identifier: "GetJobResponse" }) as any as S.Schema<GetJobResponse>;
 
-export interface JobsListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the backup vault. */
-  vaultName: string;
-}
-export const JobsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/backupJobs",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "JobsListRequest",
-}) as any as S.Schema<JobsListRequest>;
-
-/** List of resources. */
-export type JobsListResponseValueList = Array<AzureBackupJobResource>;
-export const JobsListResponseValueList = /*@__PURE__*/ S.Array(
-  AzureBackupJobResource,
-) as any as S.Schema<JobsListResponseValueList>;
-
-export interface JobsListResponse {
-  /** The uri to fetch the next page of resources. Call ListNext() fetches next page of resources. */
-  nextLink?: string;
-  /** List of resources. */
-  value?: JobsListResponseValueList;
-}
-export const JobsListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: S.optional(JobsListResponseValueList),
-  }),
-).annotate({
-  identifier: "JobsListResponse",
-}) as any as S.Schema<JobsListResponse>;
-
-export interface OperationResultGetRequest {
+export interface GetOperationResultRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the Azure region. */
   location: string;
   operationId: string;
 }
-export const OperationResultGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetOperationResultRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     location: S.String.pipe(T.Label()),
@@ -4480,51 +3278,47 @@ export const OperationResultGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OperationResultGetRequest",
-}) as any as S.Schema<OperationResultGetRequest>;
+  identifier: "GetOperationResultRequest",
+}) as any as S.Schema<GetOperationResultRequest>;
 
-export interface OperationResultGetResponse {
+export interface GetOperationResultResponse {
   /** This property will be used as the discriminator for deciding the specific types in the polymorphic chain of types. */
   objectType: string;
   /** Name or Arm Id of the job created for this operation. */
   jobId?: string;
 }
-export const OperationResultGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetOperationResultResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     objectType: S.String,
     jobId: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "OperationResultGetResponse",
-}) as any as S.Schema<OperationResultGetResponse>;
+  identifier: "GetOperationResultResponse",
+}) as any as S.Schema<GetOperationResultResponse>;
 
-export interface OperationStatusBackupVaultContextGetRequest {
+export interface GetOperationStatusRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the BackupVaultResource */
-  vaultName: string;
+  /** The name of the Azure region. */
+  location: string;
   operationId: string;
 }
-export const OperationStatusBackupVaultContextGetRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vaultName: S.String.pipe(T.Label()),
-      operationId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/operationStatus/{operationId}",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "OperationStatusBackupVaultContextGetRequest",
-  }) as any as S.Schema<OperationStatusBackupVaultContextGetRequest>;
+export const GetOperationStatusRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+    operationId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DataProtection/locations/{location}/operationStatus/{operationId}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetOperationStatusRequest",
+}) as any as S.Schema<GetOperationStatusRequest>;
 
 /** The resource management error additional info. */
 export interface ErrorAdditionalInfoItem {
@@ -4620,38 +3414,42 @@ export const OperationResource = /*@__PURE__*/ S.suspend(() =>
   identifier: "OperationResource",
 }) as any as S.Schema<OperationResource>;
 
-export interface OperationStatusGetRequest {
+export interface GetOperationStatusBackupVaultContextRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
-  /** The name of the Azure region. */
-  location: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the BackupVaultResource */
+  vaultName: string;
   operationId: string;
 }
-export const OperationStatusGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
-    operationId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DataProtection/locations/{location}/operationStatus/{operationId}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "OperationStatusGetRequest",
-}) as any as S.Schema<OperationStatusGetRequest>;
+export const GetOperationStatusBackupVaultContextRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vaultName: S.String.pipe(T.Label()),
+      operationId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/operationStatus/{operationId}",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetOperationStatusBackupVaultContextRequest",
+  }) as any as S.Schema<GetOperationStatusBackupVaultContextRequest>;
 
-export interface OperationStatusResourceGroupContextGetRequest {
+export interface GetOperationStatusResourceGroupContextRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   operationId: string;
 }
-export const OperationStatusResourceGroupContextGetRequest =
+export const GetOperationStatusResourceGroupContextRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -4666,10 +3464,10 @@ export const OperationStatusResourceGroupContextGetRequest =
       }),
     ),
   ).annotate({
-    identifier: "OperationStatusResourceGroupContextGetRequest",
-  }) as any as S.Schema<OperationStatusResourceGroupContextGetRequest>;
+    identifier: "GetOperationStatusResourceGroupContextRequest",
+  }) as any as S.Schema<GetOperationStatusResourceGroupContextRequest>;
 
-export interface RecoveryPointsGetRequest {
+export interface GetRecoveryPointRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4680,7 +3478,7 @@ export interface RecoveryPointsGetRequest {
   backupInstanceName: string;
   recoveryPointId: string;
 }
-export const RecoveryPointsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetRecoveryPointRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -4696,10 +3494,22 @@ export const RecoveryPointsGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "RecoveryPointsGetRequest",
-}) as any as S.Schema<RecoveryPointsGetRequest>;
+  identifier: "GetRecoveryPointRequest",
+}) as any as S.Schema<GetRecoveryPointRequest>;
 
-export interface RecoveryPointsGetResponse {
+/** Azure backup recoveryPoint */
+export interface AzureBackupRecoveryPoint {
+  objectType: string;
+}
+export const AzureBackupRecoveryPoint = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    objectType: S.String,
+  }),
+).annotate({
+  identifier: "AzureBackupRecoveryPoint",
+}) as any as S.Schema<AzureBackupRecoveryPoint>;
+
+export interface GetRecoveryPointResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -4711,7 +3521,7 @@ export interface RecoveryPointsGetResponse {
   /** AzureBackupRecoveryPointResource properties */
   properties?: AzureBackupRecoveryPoint;
 }
-export const RecoveryPointsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetRecoveryPointResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -4720,66 +3530,10 @@ export const RecoveryPointsGetResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(AzureBackupRecoveryPoint),
   }),
 ).annotate({
-  identifier: "RecoveryPointsGetResponse",
-}) as any as S.Schema<RecoveryPointsGetResponse>;
+  identifier: "GetRecoveryPointResponse",
+}) as any as S.Schema<GetRecoveryPointResponse>;
 
-export interface RecoveryPointsListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the backup vault. */
-  vaultName: string;
-  /** The name of the backup instance. */
-  backupInstanceName: string;
-  /** OData filter options. */
-  _filter?: string;
-  /** skipToken Filter. */
-  _skipToken?: string;
-}
-export const RecoveryPointsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-    backupInstanceName: S.String.pipe(T.Label()),
-    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/backupInstances/{backupInstanceName}/recoveryPoints",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "RecoveryPointsListRequest",
-}) as any as S.Schema<RecoveryPointsListRequest>;
-
-/** List of resources. */
-export type RecoveryPointsListResponseValueList =
-  Array<AzureBackupRecoveryPointResource>;
-export const RecoveryPointsListResponseValueList = /*@__PURE__*/ S.Array(
-  AzureBackupRecoveryPointResource,
-) as any as S.Schema<RecoveryPointsListResponseValueList>;
-
-export interface RecoveryPointsListResponse {
-  /** The uri to fetch the next page of resources. Call ListNext() fetches next page of resources. */
-  nextLink?: string;
-  /** List of resources. */
-  value?: RecoveryPointsListResponseValueList;
-}
-export const RecoveryPointsListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: S.optional(RecoveryPointsListResponseValueList),
-  }),
-).annotate({
-  identifier: "RecoveryPointsListResponse",
-}) as any as S.Schema<RecoveryPointsListResponse>;
-
-export interface ResourceGuardsDeleteRequest {
+export interface GetResourceGuardRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4787,39 +3541,7 @@ export interface ResourceGuardsDeleteRequest {
   /** The name of ResourceGuard */
   resourceGuardsName: string;
 }
-export const ResourceGuardsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceGuardsName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/resourceGuards/{resourceGuardsName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ResourceGuardsDeleteRequest",
-}) as any as S.Schema<ResourceGuardsDeleteRequest>;
-
-export interface ResourceGuardsDeleteResponse {}
-export const ResourceGuardsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ResourceGuardsDeleteResponse",
-}) as any as S.Schema<ResourceGuardsDeleteResponse>;
-
-export interface ResourceGuardsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of ResourceGuard */
-  resourceGuardsName: string;
-}
-export const ResourceGuardsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetResourceGuardRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -4833,17 +3555,17 @@ export const ResourceGuardsGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ResourceGuardsGetRequest",
-}) as any as S.Schema<ResourceGuardsGetRequest>;
+  identifier: "GetResourceGuardRequest",
+}) as any as S.Schema<GetResourceGuardRequest>;
 
 /** Resource tags. */
-export type ResourceGuardsGetResponseTagsMap = {
+export type GetResourceGuardResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ResourceGuardsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetResourceGuardResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ResourceGuardsGetResponseTagsMap>;
+) as any as S.Schema<GetResourceGuardResponseTagsMap>;
 
 /** This class contains all the details about a critical operation. */
 export interface ResourceGuardOperation {
@@ -4902,7 +3624,7 @@ export const ResourceGuard = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "ResourceGuard" }) as any as S.Schema<ResourceGuard>;
 
-export interface ResourceGuardsGetResponse {
+export interface GetResourceGuardResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -4912,7 +3634,7 @@ export interface ResourceGuardsGetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ResourceGuardsGetResponseTagsMap;
+  tags?: GetResourceGuardResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** ResourceGuardResource properties */
@@ -4920,22 +3642,22 @@ export interface ResourceGuardsGetResponse {
   /** Optional ETag. */
   eTag?: string;
 }
-export const ResourceGuardsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetResourceGuardResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ResourceGuardsGetResponseTagsMap),
+    tags: S.optional(GetResourceGuardResponseTagsMap),
     location: S.String,
     properties: S.optional(ResourceGuard),
     eTag: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ResourceGuardsGetResponse",
-}) as any as S.Schema<ResourceGuardsGetResponse>;
+  identifier: "GetResourceGuardResponse",
+}) as any as S.Schema<GetResourceGuardResponse>;
 
-export interface ResourceGuardsGetBackupSecurityPINRequestsObjectsRequest {
+export interface GetResourceGuardBackupSecurityPINRequestsObjectsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4943,7 +3665,7 @@ export interface ResourceGuardsGetBackupSecurityPINRequestsObjectsRequest {
   /** The name of the ResourceGuardResource */
   resourceGuardsName: string;
 }
-export const ResourceGuardsGetBackupSecurityPINRequestsObjectsRequest =
+export const GetResourceGuardBackupSecurityPINRequestsObjectsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -4958,8 +3680,8 @@ export const ResourceGuardsGetBackupSecurityPINRequestsObjectsRequest =
       }),
     ),
   ).annotate({
-    identifier: "ResourceGuardsGetBackupSecurityPINRequestsObjectsRequest",
-  }) as any as S.Schema<ResourceGuardsGetBackupSecurityPINRequestsObjectsRequest>;
+    identifier: "GetResourceGuardBackupSecurityPINRequestsObjectsRequest",
+  }) as any as S.Schema<GetResourceGuardBackupSecurityPINRequestsObjectsRequest>;
 
 /** Common fields that are returned in the response for all Azure Resource Manager resources */
 export interface Resource {
@@ -5003,7 +3725,7 @@ export const DppBaseResourceList = /*@__PURE__*/ S.suspend(() =>
   identifier: "DppBaseResourceList",
 }) as any as S.Schema<DppBaseResourceList>;
 
-export interface ResourceGuardsGetDefaultBackupSecurityPINRequestsObjectRequest {
+export interface GetResourceGuardDefaultBackupSecurityPINRequestsObjectRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5013,7 +3735,7 @@ export interface ResourceGuardsGetDefaultBackupSecurityPINRequestsObjectRequest 
   /** The name of the DppBaseResource */
   requestName: string;
 }
-export const ResourceGuardsGetDefaultBackupSecurityPINRequestsObjectRequest =
+export const GetResourceGuardDefaultBackupSecurityPINRequestsObjectRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -5029,11 +3751,10 @@ export const ResourceGuardsGetDefaultBackupSecurityPINRequestsObjectRequest =
       }),
     ),
   ).annotate({
-    identifier:
-      "ResourceGuardsGetDefaultBackupSecurityPINRequestsObjectRequest",
-  }) as any as S.Schema<ResourceGuardsGetDefaultBackupSecurityPINRequestsObjectRequest>;
+    identifier: "GetResourceGuardDefaultBackupSecurityPINRequestsObjectRequest",
+  }) as any as S.Schema<GetResourceGuardDefaultBackupSecurityPINRequestsObjectRequest>;
 
-export interface ResourceGuardsGetDefaultBackupSecurityPINRequestsObjectResponse {
+export interface GetResourceGuardDefaultBackupSecurityPINRequestsObjectResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -5043,7 +3764,7 @@ export interface ResourceGuardsGetDefaultBackupSecurityPINRequestsObjectResponse
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
 }
-export const ResourceGuardsGetDefaultBackupSecurityPINRequestsObjectResponse =
+export const GetResourceGuardDefaultBackupSecurityPINRequestsObjectResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -5053,8 +3774,1114 @@ export const ResourceGuardsGetDefaultBackupSecurityPINRequestsObjectResponse =
     }),
   ).annotate({
     identifier:
-      "ResourceGuardsGetDefaultBackupSecurityPINRequestsObjectResponse",
-  }) as any as S.Schema<ResourceGuardsGetDefaultBackupSecurityPINRequestsObjectResponse>;
+      "GetResourceGuardDefaultBackupSecurityPINRequestsObjectResponse",
+  }) as any as S.Schema<GetResourceGuardDefaultBackupSecurityPINRequestsObjectResponse>;
+
+export interface GetResourceGuardResourcesInResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const GetResourceGuardResourcesInResourceGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/resourceGuards",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetResourceGuardResourcesInResourceGroupRequest",
+  }) as any as S.Schema<GetResourceGuardResourcesInResourceGroupRequest>;
+
+/** Resource tags. */
+export type ResourceGuardResourceTagsMap = {
+  [key: string]: string | undefined;
+};
+export const ResourceGuardResourceTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ResourceGuardResourceTagsMap>;
+
+/** Concrete tracked resource types can be created by aliasing this type using a specific property type. */
+export interface ResourceGuardResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: ResourceGuardResourceTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** ResourceGuardResource properties */
+  properties?: ResourceGuard;
+  /** Optional ETag. */
+  eTag?: string;
+}
+export const ResourceGuardResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(ResourceGuardResourceTagsMap),
+    location: S.String,
+    properties: S.optional(ResourceGuard),
+    eTag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ResourceGuardResource",
+}) as any as S.Schema<ResourceGuardResource>;
+
+/** List of resources. */
+export type GetResourceGuardResourcesInResourceGroupResponseValueList =
+  Array<ResourceGuardResource>;
+export const GetResourceGuardResourcesInResourceGroupResponseValueList =
+  /*@__PURE__*/ S.Array(
+    ResourceGuardResource,
+  ) as any as S.Schema<GetResourceGuardResourcesInResourceGroupResponseValueList>;
+
+export interface GetResourceGuardResourcesInResourceGroupResponse {
+  /** The uri to fetch the next page of resources. Call ListNext() fetches next page of resources. */
+  nextLink?: string;
+  /** List of resources. */
+  value?: GetResourceGuardResourcesInResourceGroupResponseValueList;
+}
+export const GetResourceGuardResourcesInResourceGroupResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      nextLink: S.optional(S.String),
+      value: S.optional(
+        GetResourceGuardResourcesInResourceGroupResponseValueList,
+      ),
+    }),
+  ).annotate({
+    identifier: "GetResourceGuardResourcesInResourceGroupResponse",
+  }) as any as S.Schema<GetResourceGuardResourcesInResourceGroupResponse>;
+
+export interface GetResourceGuardResourcesInSubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+}
+export const GetResourceGuardResourcesInSubscriptionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DataProtection/resourceGuards",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetResourceGuardResourcesInSubscriptionRequest",
+  }) as any as S.Schema<GetResourceGuardResourcesInSubscriptionRequest>;
+
+/** List of resources. */
+export type GetResourceGuardResourcesInSubscriptionResponseValueList =
+  Array<ResourceGuardResource>;
+export const GetResourceGuardResourcesInSubscriptionResponseValueList =
+  /*@__PURE__*/ S.Array(
+    ResourceGuardResource,
+  ) as any as S.Schema<GetResourceGuardResourcesInSubscriptionResponseValueList>;
+
+export interface GetResourceGuardResourcesInSubscriptionResponse {
+  /** The uri to fetch the next page of resources. Call ListNext() fetches next page of resources. */
+  nextLink?: string;
+  /** List of resources. */
+  value?: GetResourceGuardResourcesInSubscriptionResponseValueList;
+}
+export const GetResourceGuardResourcesInSubscriptionResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      nextLink: S.optional(S.String),
+      value: S.optional(
+        GetResourceGuardResourcesInSubscriptionResponseValueList,
+      ),
+    }),
+  ).annotate({
+    identifier: "GetResourceGuardResourcesInSubscriptionResponse",
+  }) as any as S.Schema<GetResourceGuardResourcesInSubscriptionResponse>;
+
+export interface ListBackupInstancesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the backup vault. */
+  vaultName: string;
+}
+export const ListBackupInstancesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/backupInstances",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListBackupInstancesRequest",
+}) as any as S.Schema<ListBackupInstancesRequest>;
+
+/** Proxy Resource tags. */
+export type BackupInstanceResourceTagsMap = {
+  [key: string]: string | undefined;
+};
+export const BackupInstanceResourceTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<BackupInstanceResourceTagsMap>;
+
+/** BackupInstance Resource */
+export interface BackupInstanceResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** BackupInstanceResource properties */
+  properties?: BackupInstance;
+  /** Proxy Resource tags. */
+  tags?: BackupInstanceResourceTagsMap;
+}
+export const BackupInstanceResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(BackupInstance),
+    tags: S.optional(BackupInstanceResourceTagsMap),
+  }),
+).annotate({
+  identifier: "BackupInstanceResource",
+}) as any as S.Schema<BackupInstanceResource>;
+
+/** List of resources. */
+export type ListBackupInstancesResponseValueList =
+  Array<BackupInstanceResource>;
+export const ListBackupInstancesResponseValueList = /*@__PURE__*/ S.Array(
+  BackupInstanceResource,
+) as any as S.Schema<ListBackupInstancesResponseValueList>;
+
+export interface ListBackupInstancesResponse {
+  /** The uri to fetch the next page of resources. Call ListNext() fetches next page of resources. */
+  nextLink?: string;
+  /** List of resources. */
+  value?: ListBackupInstancesResponseValueList;
+}
+export const ListBackupInstancesResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: S.optional(ListBackupInstancesResponseValueList),
+  }),
+).annotate({
+  identifier: "ListBackupInstancesResponse",
+}) as any as S.Schema<ListBackupInstancesResponse>;
+
+export interface ListBackupInstancesExtensionRoutingRequest {
+  /** ARM path of the resource to be protected using Microsoft.DataProtection */
+  resourceId: string;
+}
+export const ListBackupInstancesExtensionRoutingRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      resourceId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/{resourceId}/providers/Microsoft.DataProtection/backupInstances",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListBackupInstancesExtensionRoutingRequest",
+  }) as any as S.Schema<ListBackupInstancesExtensionRoutingRequest>;
+
+/** List of resources. */
+export type ListBackupInstancesExtensionRoutingResponseValueList =
+  Array<BackupInstanceResource>;
+export const ListBackupInstancesExtensionRoutingResponseValueList =
+  /*@__PURE__*/ S.Array(
+    BackupInstanceResource,
+  ) as any as S.Schema<ListBackupInstancesExtensionRoutingResponseValueList>;
+
+export interface ListBackupInstancesExtensionRoutingResponse {
+  /** The uri to fetch the next page of resources. Call ListNext() fetches next page of resources. */
+  nextLink?: string;
+  /** List of resources. */
+  value?: ListBackupInstancesExtensionRoutingResponseValueList;
+}
+export const ListBackupInstancesExtensionRoutingResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      nextLink: S.optional(S.String),
+      value: S.optional(ListBackupInstancesExtensionRoutingResponseValueList),
+    }),
+  ).annotate({
+    identifier: "ListBackupInstancesExtensionRoutingResponse",
+  }) as any as S.Schema<ListBackupInstancesExtensionRoutingResponse>;
+
+export interface ListBackupPoliciesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the backup vault. */
+  vaultName: string;
+}
+export const ListBackupPoliciesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/backupPolicies",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListBackupPoliciesRequest",
+}) as any as S.Schema<ListBackupPoliciesRequest>;
+
+/** BaseBackupPolicy resource */
+export interface BaseBackupPolicyResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** BaseBackupPolicyResource properties */
+  properties?: BaseBackupPolicy;
+}
+export const BaseBackupPolicyResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(BaseBackupPolicy),
+  }),
+).annotate({
+  identifier: "BaseBackupPolicyResource",
+}) as any as S.Schema<BaseBackupPolicyResource>;
+
+/** List of resources. */
+export type ListBackupPoliciesResponseValueList =
+  Array<BaseBackupPolicyResource>;
+export const ListBackupPoliciesResponseValueList = /*@__PURE__*/ S.Array(
+  BaseBackupPolicyResource,
+) as any as S.Schema<ListBackupPoliciesResponseValueList>;
+
+export interface ListBackupPoliciesResponse {
+  /** The uri to fetch the next page of resources. Call ListNext() fetches next page of resources. */
+  nextLink?: string;
+  /** List of resources. */
+  value?: ListBackupPoliciesResponseValueList;
+}
+export const ListBackupPoliciesResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: S.optional(ListBackupPoliciesResponseValueList),
+  }),
+).annotate({
+  identifier: "ListBackupPoliciesResponse",
+}) as any as S.Schema<ListBackupPoliciesResponse>;
+
+export interface ListDataProtectionOperationsRequest {}
+export const ListDataProtectionOperationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.DataProtection/operations",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListDataProtectionOperationsRequest",
+}) as any as S.Schema<ListDataProtectionOperationsRequest>;
+
+/** Localized display information for this particular operation. */
+export interface OperationDisplay {
+  /** The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring Insights" or "Microsoft Compute". */
+  provider?: string;
+  /** The localized friendly name of the resource type related to this operation. E.g. "Virtual Machines" or "Job Schedule Collections". */
+  resource?: string;
+  /** The concise, localized friendly name for the operation; suitable for dropdowns. E.g. "Create or Update Virtual Machine", "Restart Virtual Machine". */
+  operation?: string;
+  /** The short, localized friendly description of the operation; suitable for tool tips and detailed views. */
+  description?: string;
+}
+export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provider: S.optional(S.String),
+    resource: S.optional(S.String),
+    operation: S.optional(S.String),
+    description: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationDisplay",
+}) as any as S.Schema<OperationDisplay>;
+
+/** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
+export type OperationOrigin = "user" | "system" | "user,system";
+export const OperationOrigin = /*@__PURE__*/ S.String;
+
+/** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
+export type OperationActionType = "Internal";
+export const OperationActionType = /*@__PURE__*/ S.String;
+
+/** Details of a REST API operation, returned from the Resource Provider Operations API */
+export interface Operation {
+  /** The name of the operation, as per Resource-Based Access Control (RBAC). Examples: "Microsoft.Compute/virtualMachines/write", "Microsoft.Compute/virtualMachines/capture/action" */
+  name?: string;
+  /** Whether the operation applies to data-plane. This is "true" for data-plane operations and "false" for ARM/control-plane operations. */
+  isDataAction?: boolean;
+  /** Localized display information for this particular operation. */
+  display?: OperationDisplay;
+  /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
+  origin?: OperationOrigin;
+  /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
+  actionType?: OperationActionType;
+}
+export const Operation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    isDataAction: S.optional(S.Boolean),
+    display: S.optional(OperationDisplay),
+    origin: S.optional(OperationOrigin),
+    actionType: S.optional(OperationActionType),
+  }),
+).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
+
+/** List of operations supported by the resource provider */
+export type ListDataProtectionOperationsResponseValueList = Array<Operation>;
+export const ListDataProtectionOperationsResponseValueList =
+  /*@__PURE__*/ S.Array(
+    Operation,
+  ) as any as S.Schema<ListDataProtectionOperationsResponseValueList>;
+
+export interface ListDataProtectionOperationsResponse {
+  /** List of operations supported by the resource provider */
+  value?: ListDataProtectionOperationsResponseValueList;
+  /** URL to get the next set of operation list results (if there are any). */
+  nextLink?: string;
+}
+export const ListDataProtectionOperationsResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      value: S.optional(ListDataProtectionOperationsResponseValueList),
+      nextLink: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "ListDataProtectionOperationsResponse",
+}) as any as S.Schema<ListDataProtectionOperationsResponse>;
+
+export interface ListDeletedBackupInstancesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the backup vault. */
+  vaultName: string;
+}
+export const ListDeletedBackupInstancesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/deletedBackupInstances",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListDeletedBackupInstancesRequest",
+}) as any as S.Schema<ListDeletedBackupInstancesRequest>;
+
+/** Deleted Backup Instance */
+export interface DeletedBackupInstanceResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** DeletedBackupInstanceResource properties */
+  properties?: DeletedBackupInstance;
+}
+export const DeletedBackupInstanceResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(DeletedBackupInstance),
+  }),
+).annotate({
+  identifier: "DeletedBackupInstanceResource",
+}) as any as S.Schema<DeletedBackupInstanceResource>;
+
+/** List of resources. */
+export type ListDeletedBackupInstancesResponseValueList =
+  Array<DeletedBackupInstanceResource>;
+export const ListDeletedBackupInstancesResponseValueList =
+  /*@__PURE__*/ S.Array(
+    DeletedBackupInstanceResource,
+  ) as any as S.Schema<ListDeletedBackupInstancesResponseValueList>;
+
+export interface ListDeletedBackupInstancesResponse {
+  /** The uri to fetch the next page of resources. Call ListNext() fetches next page of resources. */
+  nextLink?: string;
+  /** List of resources. */
+  value?: ListDeletedBackupInstancesResponseValueList;
+}
+export const ListDeletedBackupInstancesResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: S.optional(ListDeletedBackupInstancesResponseValueList),
+  }),
+).annotate({
+  identifier: "ListDeletedBackupInstancesResponse",
+}) as any as S.Schema<ListDeletedBackupInstancesResponse>;
+
+export interface ListDeletedBackupVaultByLocationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the Azure region. */
+  location: string;
+}
+export const ListDeletedBackupVaultByLocationRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      location: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DataProtection/locations/{location}/deletedVaults",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListDeletedBackupVaultByLocationRequest",
+}) as any as S.Schema<ListDeletedBackupVaultByLocationRequest>;
+
+/** Deleted Backup Vault Resource (available from version 2025-09-01) */
+export interface DeletedBackupVaultResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: DeletedBackupVault;
+}
+export const DeletedBackupVaultResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(DeletedBackupVault),
+  }),
+).annotate({
+  identifier: "DeletedBackupVaultResource",
+}) as any as S.Schema<DeletedBackupVaultResource>;
+
+/** The DeletedBackupVaultResource items on this page */
+export type DeletedBackupVaultResourceListResultValueList =
+  Array<DeletedBackupVaultResource>;
+export const DeletedBackupVaultResourceListResultValueList =
+  /*@__PURE__*/ S.Array(
+    DeletedBackupVaultResource,
+  ) as any as S.Schema<DeletedBackupVaultResourceListResultValueList>;
+
+/** The response of a DeletedBackupVaultResource list operation. */
+export interface DeletedBackupVaultResourceListResult {
+  /** The DeletedBackupVaultResource items on this page */
+  value: DeletedBackupVaultResourceListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const DeletedBackupVaultResourceListResult = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      value: DeletedBackupVaultResourceListResultValueList,
+      nextLink: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "DeletedBackupVaultResourceListResult",
+}) as any as S.Schema<DeletedBackupVaultResourceListResult>;
+
+export interface ListDppResourceGuardProxyRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the backup vault. */
+  vaultName: string;
+}
+export const ListDppResourceGuardProxyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/backupResourceGuardProxies",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListDppResourceGuardProxyRequest",
+}) as any as S.Schema<ListDppResourceGuardProxyRequest>;
+
+/** ResourceGuardProxyBaseResource object, used for response and request bodies for ResourceGuardProxy APIs */
+export interface ResourceGuardProxyBaseResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** ResourceGuardProxyBaseResource properties */
+  properties?: ResourceGuardProxyBase;
+}
+export const ResourceGuardProxyBaseResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ResourceGuardProxyBase),
+  }),
+).annotate({
+  identifier: "ResourceGuardProxyBaseResource",
+}) as any as S.Schema<ResourceGuardProxyBaseResource>;
+
+/** List of resources. */
+export type ListDppResourceGuardProxyResponseValueList =
+  Array<ResourceGuardProxyBaseResource>;
+export const ListDppResourceGuardProxyResponseValueList = /*@__PURE__*/ S.Array(
+  ResourceGuardProxyBaseResource,
+) as any as S.Schema<ListDppResourceGuardProxyResponseValueList>;
+
+export interface ListDppResourceGuardProxyResponse {
+  /** The uri to fetch the next page of resources. Call ListNext() fetches next page of resources. */
+  nextLink?: string;
+  /** List of resources. */
+  value?: ListDppResourceGuardProxyResponseValueList;
+}
+export const ListDppResourceGuardProxyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: S.optional(ListDppResourceGuardProxyResponseValueList),
+  }),
+).annotate({
+  identifier: "ListDppResourceGuardProxyResponse",
+}) as any as S.Schema<ListDppResourceGuardProxyResponse>;
+
+export interface ListFetchCrossRegionRestoreJobsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Azure region. */
+  location: string;
+  /** OData filter options. */
+  _filter?: string;
+  sourceRegion: string;
+  sourceBackupVaultId: string;
+}
+export const ListFetchCrossRegionRestoreJobsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      location: S.String.pipe(T.Label()),
+      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+      sourceRegion: S.String,
+      sourceBackupVaultId: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/locations/{location}/fetchCrossRegionRestoreJobs",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListFetchCrossRegionRestoreJobsRequest",
+}) as any as S.Schema<ListFetchCrossRegionRestoreJobsRequest>;
+
+/** AzureBackup Job Resource Class */
+export interface AzureBackupJobResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** AzureBackupJobResource properties */
+  properties?: AzureBackupJob;
+}
+export const AzureBackupJobResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(AzureBackupJob),
+  }),
+).annotate({
+  identifier: "AzureBackupJobResource",
+}) as any as S.Schema<AzureBackupJobResource>;
+
+/** List of resources. */
+export type ListFetchCrossRegionRestoreJobsResponseValueList =
+  Array<AzureBackupJobResource>;
+export const ListFetchCrossRegionRestoreJobsResponseValueList =
+  /*@__PURE__*/ S.Array(
+    AzureBackupJobResource,
+  ) as any as S.Schema<ListFetchCrossRegionRestoreJobsResponseValueList>;
+
+export interface ListFetchCrossRegionRestoreJobsResponse {
+  /** The uri to fetch the next page of resources. Call ListNext() fetches next page of resources. */
+  nextLink?: string;
+  /** List of resources. */
+  value?: ListFetchCrossRegionRestoreJobsResponseValueList;
+}
+export const ListFetchCrossRegionRestoreJobsResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      nextLink: S.optional(S.String),
+      value: S.optional(ListFetchCrossRegionRestoreJobsResponseValueList),
+    }),
+).annotate({
+  identifier: "ListFetchCrossRegionRestoreJobsResponse",
+}) as any as S.Schema<ListFetchCrossRegionRestoreJobsResponse>;
+
+export interface ListFetchSecondaryRecoveryPointsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Azure region. */
+  location: string;
+  /** OData filter options. */
+  _filter?: string;
+  /** skipToken Filter. */
+  _skipToken?: string;
+  /** Source region in which BackupInstance is located */
+  sourceRegion?: string;
+  /** ARM Path of BackupInstance */
+  sourceBackupInstanceId?: string;
+}
+export const ListFetchSecondaryRecoveryPointsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      location: S.String.pipe(T.Label()),
+      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+      sourceRegion: S.optional(S.String),
+      sourceBackupInstanceId: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/locations/{location}/fetchSecondaryRecoveryPoints",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListFetchSecondaryRecoveryPointsRequest",
+}) as any as S.Schema<ListFetchSecondaryRecoveryPointsRequest>;
+
+/** Azure backup recoveryPoint resource */
+export interface AzureBackupRecoveryPointResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** AzureBackupRecoveryPointResource properties */
+  properties?: AzureBackupRecoveryPoint;
+}
+export const AzureBackupRecoveryPointResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(AzureBackupRecoveryPoint),
+  }),
+).annotate({
+  identifier: "AzureBackupRecoveryPointResource",
+}) as any as S.Schema<AzureBackupRecoveryPointResource>;
+
+/** List of resources. */
+export type ListFetchSecondaryRecoveryPointsResponseValueList =
+  Array<AzureBackupRecoveryPointResource>;
+export const ListFetchSecondaryRecoveryPointsResponseValueList =
+  /*@__PURE__*/ S.Array(
+    AzureBackupRecoveryPointResource,
+  ) as any as S.Schema<ListFetchSecondaryRecoveryPointsResponseValueList>;
+
+export interface ListFetchSecondaryRecoveryPointsResponse {
+  /** The uri to fetch the next page of resources. Call ListNext() fetches next page of resources. */
+  nextLink?: string;
+  /** List of resources. */
+  value?: ListFetchSecondaryRecoveryPointsResponseValueList;
+}
+export const ListFetchSecondaryRecoveryPointsResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      nextLink: S.optional(S.String),
+      value: S.optional(ListFetchSecondaryRecoveryPointsResponseValueList),
+    }),
+).annotate({
+  identifier: "ListFetchSecondaryRecoveryPointsResponse",
+}) as any as S.Schema<ListFetchSecondaryRecoveryPointsResponse>;
+
+export interface ListJobsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the backup vault. */
+  vaultName: string;
+}
+export const ListJobsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/backupJobs",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListJobsRequest",
+}) as any as S.Schema<ListJobsRequest>;
+
+/** List of resources. */
+export type ListJobsResponseValueList = Array<AzureBackupJobResource>;
+export const ListJobsResponseValueList = /*@__PURE__*/ S.Array(
+  AzureBackupJobResource,
+) as any as S.Schema<ListJobsResponseValueList>;
+
+export interface ListJobsResponse {
+  /** The uri to fetch the next page of resources. Call ListNext() fetches next page of resources. */
+  nextLink?: string;
+  /** List of resources. */
+  value?: ListJobsResponseValueList;
+}
+export const ListJobsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: S.optional(ListJobsResponseValueList),
+  }),
+).annotate({
+  identifier: "ListJobsResponse",
+}) as any as S.Schema<ListJobsResponse>;
+
+export interface ListRecoveryPointsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the backup vault. */
+  vaultName: string;
+  /** The name of the backup instance. */
+  backupInstanceName: string;
+  /** OData filter options. */
+  _filter?: string;
+  /** skipToken Filter. */
+  _skipToken?: string;
+}
+export const ListRecoveryPointsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    backupInstanceName: S.String.pipe(T.Label()),
+    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/backupInstances/{backupInstanceName}/recoveryPoints",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListRecoveryPointsRequest",
+}) as any as S.Schema<ListRecoveryPointsRequest>;
+
+/** List of resources. */
+export type ListRecoveryPointsResponseValueList =
+  Array<AzureBackupRecoveryPointResource>;
+export const ListRecoveryPointsResponseValueList = /*@__PURE__*/ S.Array(
+  AzureBackupRecoveryPointResource,
+) as any as S.Schema<ListRecoveryPointsResponseValueList>;
+
+export interface ListRecoveryPointsResponse {
+  /** The uri to fetch the next page of resources. Call ListNext() fetches next page of resources. */
+  nextLink?: string;
+  /** List of resources. */
+  value?: ListRecoveryPointsResponseValueList;
+}
+export const ListRecoveryPointsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: S.optional(ListRecoveryPointsResponseValueList),
+  }),
+).annotate({
+  identifier: "ListRecoveryPointsResponse",
+}) as any as S.Schema<ListRecoveryPointsResponse>;
+
+/** Resource Guard tags. */
+export type PatchResourceGuardRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const PatchResourceGuardRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<PatchResourceGuardRequestTagsMap>;
+
+export interface PatchResourceGuardRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of ResourceGuard */
+  resourceGuardsName: string;
+  /** Resource Guard tags. */
+  tags?: PatchResourceGuardRequestTagsMap;
+}
+export const PatchResourceGuardRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceGuardsName: S.String.pipe(T.Label()),
+    tags: S.optional(PatchResourceGuardRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/resourceGuards/{resourceGuardsName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "PatchResourceGuardRequest",
+}) as any as S.Schema<PatchResourceGuardRequest>;
+
+/** Resource tags. */
+export type PatchResourceGuardResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const PatchResourceGuardResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<PatchResourceGuardResponseTagsMap>;
+
+export interface PatchResourceGuardResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: PatchResourceGuardResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** ResourceGuardResource properties */
+  properties?: ResourceGuard;
+  /** Optional ETag. */
+  eTag?: string;
+}
+export const PatchResourceGuardResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(PatchResourceGuardResponseTagsMap),
+    location: S.String,
+    properties: S.optional(ResourceGuard),
+    eTag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PatchResourceGuardResponse",
+}) as any as S.Schema<PatchResourceGuardResponse>;
+
+/** Resource tags. */
+export type PutResourceGuardRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const PutResourceGuardRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<PutResourceGuardRequestTagsMap>;
+
+/** List of critical operations which are not protected by this resourceGuard */
+export type ResourceGuardInputVaultCriticalOperationExclusionListList =
+  Array<string>;
+export const ResourceGuardInputVaultCriticalOperationExclusionListList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ResourceGuardInputVaultCriticalOperationExclusionListList>;
+
+export interface ResourceGuardInput {
+  /** List of critical operations which are not protected by this resourceGuard */
+  vaultCriticalOperationExclusionList?: ResourceGuardInputVaultCriticalOperationExclusionListList;
+}
+export const ResourceGuardInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    vaultCriticalOperationExclusionList: S.optional(
+      ResourceGuardInputVaultCriticalOperationExclusionListList,
+    ),
+  }),
+).annotate({
+  identifier: "ResourceGuardInput",
+}) as any as S.Schema<ResourceGuardInput>;
+
+export interface PutResourceGuardRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of ResourceGuard */
+  resourceGuardsName: string;
+  /** Resource tags. */
+  tags?: PutResourceGuardRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** ResourceGuardResource properties */
+  properties?: ResourceGuardInput;
+  /** Optional ETag. */
+  eTag?: string;
+}
+export const PutResourceGuardRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceGuardsName: S.String.pipe(T.Label()),
+    tags: S.optional(PutResourceGuardRequestTagsMap),
+    location: S.String,
+    properties: S.optional(ResourceGuardInput),
+    eTag: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/resourceGuards/{resourceGuardsName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "PutResourceGuardRequest",
+}) as any as S.Schema<PutResourceGuardRequest>;
+
+/** Resource tags. */
+export type PutResourceGuardResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const PutResourceGuardResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<PutResourceGuardResponseTagsMap>;
+
+export interface PutResourceGuardResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: PutResourceGuardResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** ResourceGuardResource properties */
+  properties?: ResourceGuard;
+  /** Optional ETag. */
+  eTag?: string;
+}
+export const PutResourceGuardResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(PutResourceGuardResponseTagsMap),
+    location: S.String,
+    properties: S.optional(ResourceGuard),
+    eTag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PutResourceGuardResponse",
+}) as any as S.Schema<PutResourceGuardResponse>;
 
 export interface ResourceGuardsGetDefaultDeleteProtectedItemRequestsObjectRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -5400,144 +5227,6 @@ export const ResourceGuardsGetDisableSoftDeleteRequestsObjectsRequest =
     identifier: "ResourceGuardsGetDisableSoftDeleteRequestsObjectsRequest",
   }) as any as S.Schema<ResourceGuardsGetDisableSoftDeleteRequestsObjectsRequest>;
 
-export interface ResourceGuardsGetResourcesInResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const ResourceGuardsGetResourcesInResourceGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/resourceGuards",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ResourceGuardsGetResourcesInResourceGroupRequest",
-  }) as any as S.Schema<ResourceGuardsGetResourcesInResourceGroupRequest>;
-
-/** Resource tags. */
-export type ResourceGuardResourceTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ResourceGuardResourceTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ResourceGuardResourceTagsMap>;
-
-/** Concrete tracked resource types can be created by aliasing this type using a specific property type. */
-export interface ResourceGuardResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ResourceGuardResourceTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** ResourceGuardResource properties */
-  properties?: ResourceGuard;
-  /** Optional ETag. */
-  eTag?: string;
-}
-export const ResourceGuardResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(ResourceGuardResourceTagsMap),
-    location: S.String,
-    properties: S.optional(ResourceGuard),
-    eTag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ResourceGuardResource",
-}) as any as S.Schema<ResourceGuardResource>;
-
-/** List of resources. */
-export type ResourceGuardsGetResourcesInResourceGroupResponseValueList =
-  Array<ResourceGuardResource>;
-export const ResourceGuardsGetResourcesInResourceGroupResponseValueList =
-  /*@__PURE__*/ S.Array(
-    ResourceGuardResource,
-  ) as any as S.Schema<ResourceGuardsGetResourcesInResourceGroupResponseValueList>;
-
-export interface ResourceGuardsGetResourcesInResourceGroupResponse {
-  /** The uri to fetch the next page of resources. Call ListNext() fetches next page of resources. */
-  nextLink?: string;
-  /** List of resources. */
-  value?: ResourceGuardsGetResourcesInResourceGroupResponseValueList;
-}
-export const ResourceGuardsGetResourcesInResourceGroupResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      nextLink: S.optional(S.String),
-      value: S.optional(
-        ResourceGuardsGetResourcesInResourceGroupResponseValueList,
-      ),
-    }),
-  ).annotate({
-    identifier: "ResourceGuardsGetResourcesInResourceGroupResponse",
-  }) as any as S.Schema<ResourceGuardsGetResourcesInResourceGroupResponse>;
-
-export interface ResourceGuardsGetResourcesInSubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-}
-export const ResourceGuardsGetResourcesInSubscriptionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DataProtection/resourceGuards",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ResourceGuardsGetResourcesInSubscriptionRequest",
-  }) as any as S.Schema<ResourceGuardsGetResourcesInSubscriptionRequest>;
-
-/** List of resources. */
-export type ResourceGuardsGetResourcesInSubscriptionResponseValueList =
-  Array<ResourceGuardResource>;
-export const ResourceGuardsGetResourcesInSubscriptionResponseValueList =
-  /*@__PURE__*/ S.Array(
-    ResourceGuardResource,
-  ) as any as S.Schema<ResourceGuardsGetResourcesInSubscriptionResponseValueList>;
-
-export interface ResourceGuardsGetResourcesInSubscriptionResponse {
-  /** The uri to fetch the next page of resources. Call ListNext() fetches next page of resources. */
-  nextLink?: string;
-  /** List of resources. */
-  value?: ResourceGuardsGetResourcesInSubscriptionResponseValueList;
-}
-export const ResourceGuardsGetResourcesInSubscriptionResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      nextLink: S.optional(S.String),
-      value: S.optional(
-        ResourceGuardsGetResourcesInSubscriptionResponseValueList,
-      ),
-    }),
-  ).annotate({
-    identifier: "ResourceGuardsGetResourcesInSubscriptionResponse",
-  }) as any as S.Schema<ResourceGuardsGetResourcesInSubscriptionResponse>;
-
 export interface ResourceGuardsGetUpdateProtectedItemRequestsObjectsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -5589,195 +5278,6 @@ export const ResourceGuardsGetUpdateProtectionPolicyRequestsObjectsRequest =
   ).annotate({
     identifier: "ResourceGuardsGetUpdateProtectionPolicyRequestsObjectsRequest",
   }) as any as S.Schema<ResourceGuardsGetUpdateProtectionPolicyRequestsObjectsRequest>;
-
-/** Resource Guard tags. */
-export type ResourceGuardsPatchRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ResourceGuardsPatchRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ResourceGuardsPatchRequestTagsMap>;
-
-export interface ResourceGuardsPatchRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of ResourceGuard */
-  resourceGuardsName: string;
-  /** Resource Guard tags. */
-  tags?: ResourceGuardsPatchRequestTagsMap;
-}
-export const ResourceGuardsPatchRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceGuardsName: S.String.pipe(T.Label()),
-    tags: S.optional(ResourceGuardsPatchRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/resourceGuards/{resourceGuardsName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ResourceGuardsPatchRequest",
-}) as any as S.Schema<ResourceGuardsPatchRequest>;
-
-/** Resource tags. */
-export type ResourceGuardsPatchResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ResourceGuardsPatchResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ResourceGuardsPatchResponseTagsMap>;
-
-export interface ResourceGuardsPatchResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ResourceGuardsPatchResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** ResourceGuardResource properties */
-  properties?: ResourceGuard;
-  /** Optional ETag. */
-  eTag?: string;
-}
-export const ResourceGuardsPatchResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(ResourceGuardsPatchResponseTagsMap),
-    location: S.String,
-    properties: S.optional(ResourceGuard),
-    eTag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ResourceGuardsPatchResponse",
-}) as any as S.Schema<ResourceGuardsPatchResponse>;
-
-/** Resource tags. */
-export type ResourceGuardsPutRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ResourceGuardsPutRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ResourceGuardsPutRequestTagsMap>;
-
-/** List of critical operations which are not protected by this resourceGuard */
-export type ResourceGuardInputVaultCriticalOperationExclusionListList =
-  Array<string>;
-export const ResourceGuardInputVaultCriticalOperationExclusionListList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ResourceGuardInputVaultCriticalOperationExclusionListList>;
-
-export interface ResourceGuardInput {
-  /** List of critical operations which are not protected by this resourceGuard */
-  vaultCriticalOperationExclusionList?: ResourceGuardInputVaultCriticalOperationExclusionListList;
-}
-export const ResourceGuardInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    vaultCriticalOperationExclusionList: S.optional(
-      ResourceGuardInputVaultCriticalOperationExclusionListList,
-    ),
-  }),
-).annotate({
-  identifier: "ResourceGuardInput",
-}) as any as S.Schema<ResourceGuardInput>;
-
-export interface ResourceGuardsPutRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of ResourceGuard */
-  resourceGuardsName: string;
-  /** Resource tags. */
-  tags?: ResourceGuardsPutRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** ResourceGuardResource properties */
-  properties?: ResourceGuardInput;
-  /** Optional ETag. */
-  eTag?: string;
-}
-export const ResourceGuardsPutRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceGuardsName: S.String.pipe(T.Label()),
-    tags: S.optional(ResourceGuardsPutRequestTagsMap),
-    location: S.String,
-    properties: S.optional(ResourceGuardInput),
-    eTag: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/resourceGuards/{resourceGuardsName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ResourceGuardsPutRequest",
-}) as any as S.Schema<ResourceGuardsPutRequest>;
-
-/** Resource tags. */
-export type ResourceGuardsPutResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ResourceGuardsPutResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ResourceGuardsPutResponseTagsMap>;
-
-export interface ResourceGuardsPutResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ResourceGuardsPutResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** ResourceGuardResource properties */
-  properties?: ResourceGuard;
-  /** Optional ETag. */
-  eTag?: string;
-}
-export const ResourceGuardsPutResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(ResourceGuardsPutResponseTagsMap),
-    location: S.String,
-    properties: S.optional(ResourceGuard),
-    eTag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ResourceGuardsPutResponse",
-}) as any as S.Schema<ResourceGuardsPutResponse>;
 
 /** Gets or sets the type of the source data store. */
 export type RestoreSourceDataStoreType =
@@ -5941,6 +5441,501 @@ export const RestorableTimeRangesFindResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "RestorableTimeRangesFindResponse",
 }) as any as S.Schema<RestorableTimeRangesFindResponse>;
 
+export interface ResumeBackupInstanceBackupsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the backup vault. */
+  vaultName: string;
+  /** The name of the BackupInstanceResource */
+  backupInstanceName: string;
+}
+export const ResumeBackupInstanceBackupsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    backupInstanceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/backupInstances/{backupInstanceName}/resumeBackups",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ResumeBackupInstanceBackupsRequest",
+}) as any as S.Schema<ResumeBackupInstanceBackupsRequest>;
+
+export interface ResumeBackupInstanceBackupsResponse {}
+export const ResumeBackupInstanceBackupsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "ResumeBackupInstanceBackupsResponse",
+}) as any as S.Schema<ResumeBackupInstanceBackupsResponse>;
+
+export interface ResumeBackupInstanceProtectionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the backup vault. */
+  vaultName: string;
+  /** The name of the BackupInstanceResource */
+  backupInstanceName: string;
+}
+export const ResumeBackupInstanceProtectionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vaultName: S.String.pipe(T.Label()),
+      backupInstanceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/backupInstances/{backupInstanceName}/resumeProtection",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "ResumeBackupInstanceProtectionRequest",
+}) as any as S.Schema<ResumeBackupInstanceProtectionRequest>;
+
+export interface ResumeBackupInstanceProtectionResponse {}
+export const ResumeBackupInstanceProtectionResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "ResumeBackupInstanceProtectionResponse",
+}) as any as S.Schema<ResumeBackupInstanceProtectionResponse>;
+
+/** ResourceGuardOperationRequests on which LAC check will be performed */
+export type StopBackupInstanceProtectionRequestResourceGuardOperationRequestsList =
+  Array<string>;
+export const StopBackupInstanceProtectionRequestResourceGuardOperationRequestsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<StopBackupInstanceProtectionRequestResourceGuardOperationRequestsList>;
+
+export interface StopBackupInstanceProtectionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the backup vault. */
+  vaultName: string;
+  /** The name of the BackupInstanceResource */
+  backupInstanceName: string;
+  /** ResourceGuardOperationRequests on which LAC check will be performed */
+  resourceGuardOperationRequests?: StopBackupInstanceProtectionRequestResourceGuardOperationRequestsList;
+}
+export const StopBackupInstanceProtectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    backupInstanceName: S.String.pipe(T.Label()),
+    resourceGuardOperationRequests: S.optional(
+      StopBackupInstanceProtectionRequestResourceGuardOperationRequestsList,
+    ),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/backupInstances/{backupInstanceName}/stopProtection",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "StopBackupInstanceProtectionRequest",
+}) as any as S.Schema<StopBackupInstanceProtectionRequest>;
+
+export interface StopBackupInstanceProtectionResponse {}
+export const StopBackupInstanceProtectionResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "StopBackupInstanceProtectionResponse",
+}) as any as S.Schema<StopBackupInstanceProtectionResponse>;
+
+/** ResourceGuardOperationRequests on which LAC check will be performed */
+export type SuspendBackupInstanceBackupsRequestResourceGuardOperationRequestsList =
+  Array<string>;
+export const SuspendBackupInstanceBackupsRequestResourceGuardOperationRequestsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<SuspendBackupInstanceBackupsRequestResourceGuardOperationRequestsList>;
+
+export interface SuspendBackupInstanceBackupsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the backup vault. */
+  vaultName: string;
+  /** The name of the BackupInstanceResource */
+  backupInstanceName: string;
+  /** ResourceGuardOperationRequests on which LAC check will be performed */
+  resourceGuardOperationRequests?: SuspendBackupInstanceBackupsRequestResourceGuardOperationRequestsList;
+}
+export const SuspendBackupInstanceBackupsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    backupInstanceName: S.String.pipe(T.Label()),
+    resourceGuardOperationRequests: S.optional(
+      SuspendBackupInstanceBackupsRequestResourceGuardOperationRequestsList,
+    ),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/backupInstances/{backupInstanceName}/suspendBackups",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "SuspendBackupInstanceBackupsRequest",
+}) as any as S.Schema<SuspendBackupInstanceBackupsRequest>;
+
+export interface SuspendBackupInstanceBackupsResponse {}
+export const SuspendBackupInstanceBackupsResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "SuspendBackupInstanceBackupsResponse",
+}) as any as S.Schema<SuspendBackupInstanceBackupsResponse>;
+
+/** Field indicating sync type e.g. to sync only in case of failure or in all cases */
+export type SyncType = "Default" | "ForceResync";
+export const SyncType = /*@__PURE__*/ S.String;
+
+export interface SyncBackupInstanceBackupInstanceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the backup vault. */
+  vaultName: string;
+  /** The name of the BackupInstanceResource */
+  backupInstanceName: string;
+  /** Field indicating sync type e.g. to sync only in case of failure or in all cases */
+  syncType?: SyncType | (string & {});
+}
+export const SyncBackupInstanceBackupInstanceRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vaultName: S.String.pipe(T.Label()),
+      backupInstanceName: S.String.pipe(T.Label()),
+      syncType: S.optional(SyncType),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/backupInstances/{backupInstanceName}/sync",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "SyncBackupInstanceBackupInstanceRequest",
+}) as any as S.Schema<SyncBackupInstanceBackupInstanceRequest>;
+
+export interface SyncBackupInstanceBackupInstanceResponse {}
+export const SyncBackupInstanceBackupInstanceResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "SyncBackupInstanceBackupInstanceResponse",
+}) as any as S.Schema<SyncBackupInstanceBackupInstanceResponse>;
+
+/** Priority to be used for rehydration. Values High or Standard */
+export type RehydrationPriority = "Invalid" | "High" | "Standard";
+export const RehydrationPriority = /*@__PURE__*/ S.String;
+
+export interface TriggerBackupInstanceRehydrateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the backup vault. */
+  vaultName: string;
+  /** The name of the BackupInstanceResource */
+  backupInstanceName: string;
+  /** Id of the recovery point to be recovered */
+  recoveryPointId: string;
+  /** Priority to be used for rehydration. Values High or Standard */
+  rehydrationPriority?: RehydrationPriority | (string & {});
+  /** Retention duration in ISO 8601 format i.e P10D . */
+  rehydrationRetentionDuration: string;
+}
+export const TriggerBackupInstanceRehydrateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vaultName: S.String.pipe(T.Label()),
+      backupInstanceName: S.String.pipe(T.Label()),
+      recoveryPointId: S.String,
+      rehydrationPriority: S.optional(RehydrationPriority),
+      rehydrationRetentionDuration: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/backupInstances/{backupInstanceName}/rehydrate",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "TriggerBackupInstanceRehydrateRequest",
+}) as any as S.Schema<TriggerBackupInstanceRehydrateRequest>;
+
+export interface TriggerBackupInstanceRehydrateResponse {}
+export const TriggerBackupInstanceRehydrateResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "TriggerBackupInstanceRehydrateResponse",
+}) as any as S.Schema<TriggerBackupInstanceRehydrateResponse>;
+
+export interface TriggerExportJobRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the BackupVaultResource */
+  vaultName: string;
+}
+export const TriggerExportJobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/exportBackupJobs",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "TriggerExportJobRequest",
+}) as any as S.Schema<TriggerExportJobRequest>;
+
+export interface TriggerExportJobResponse {}
+export const TriggerExportJobResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "TriggerExportJobResponse",
+}) as any as S.Schema<TriggerExportJobResponse>;
+
+export interface UndeleteDeletedBackupInstanceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the backup vault. */
+  vaultName: string;
+  /** The name of the deleted backup instance */
+  backupInstanceName: string;
+}
+export const UndeleteDeletedBackupInstanceRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vaultName: S.String.pipe(T.Label()),
+      backupInstanceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/deletedBackupInstances/{backupInstanceName}/undelete",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "UndeleteDeletedBackupInstanceRequest",
+}) as any as S.Schema<UndeleteDeletedBackupInstanceRequest>;
+
+export interface UndeleteDeletedBackupInstanceResponse {}
+export const UndeleteDeletedBackupInstanceResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "UndeleteDeletedBackupInstanceResponse",
+}) as any as S.Schema<UndeleteDeletedBackupInstanceResponse>;
+
+/** ResourceGuardOperationRequests on which LAC check will be performed */
+export type PatchBackupVaultInputResourceGuardOperationRequestsList =
+  Array<string>;
+export const PatchBackupVaultInputResourceGuardOperationRequestsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PatchBackupVaultInputResourceGuardOperationRequestsList>;
+
+/** Backup Vault Contract for Patch Backup Vault API. */
+export interface PatchBackupVaultInput {
+  /** Monitoring Settings */
+  monitoringSettings?: MonitoringSettings;
+  /** Security Settings */
+  securitySettings?: SecuritySettings;
+  /** Feature Settings */
+  featureSettings?: FeatureSettings;
+  /** Cost Management Settings of the vault */
+  costManagementSettings?: CostManagementSettings;
+  /** ResourceGuardOperationRequests on which LAC check will be performed */
+  resourceGuardOperationRequests?: PatchBackupVaultInputResourceGuardOperationRequestsList;
+}
+export const PatchBackupVaultInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    monitoringSettings: S.optional(MonitoringSettings),
+    securitySettings: S.optional(SecuritySettings),
+    featureSettings: S.optional(FeatureSettings),
+    costManagementSettings: S.optional(CostManagementSettings),
+    resourceGuardOperationRequests: S.optional(
+      PatchBackupVaultInputResourceGuardOperationRequestsList,
+    ),
+  }),
+).annotate({
+  identifier: "PatchBackupVaultInput",
+}) as any as S.Schema<PatchBackupVaultInput>;
+
+/** Resource tags. */
+export type UpdateBackupVaultRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateBackupVaultRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateBackupVaultRequestTagsMap>;
+
+export interface UpdateBackupVaultRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the BackupVaultResource */
+  vaultName: string;
+  /** Input Managed Identity Details */
+  identity?: DppIdentityDetailsInput;
+  /** Resource properties. */
+  properties?: PatchBackupVaultInput;
+  /** Resource tags. */
+  tags?: UpdateBackupVaultRequestTagsMap;
+}
+export const UpdateBackupVaultRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    identity: S.optional(DppIdentityDetailsInput),
+    properties: S.optional(PatchBackupVaultInput),
+    tags: S.optional(UpdateBackupVaultRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateBackupVaultRequest",
+}) as any as S.Schema<UpdateBackupVaultRequest>;
+
+/** Resource tags. */
+export type UpdateBackupVaultResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateBackupVaultResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateBackupVaultResponseTagsMap>;
+
+export interface UpdateBackupVaultResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateBackupVaultResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** BackupVaultResource properties */
+  properties: BackupVault;
+  /** Input Managed Identity Details */
+  identity?: DppIdentityDetails;
+  /** Optional ETag. */
+  eTag?: string;
+}
+export const UpdateBackupVaultResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateBackupVaultResponseTagsMap),
+    location: S.String,
+    properties: BackupVault,
+    identity: S.optional(DppIdentityDetails),
+    eTag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "UpdateBackupVaultResponse",
+}) as any as S.Schema<UpdateBackupVaultResponse>;
+
+export interface ValidateBackupInstanceForBackupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the BackupVaultResource */
+  vaultName: string;
+  /** Backup Instance */
+  backupInstance: BackupInstanceInput;
+}
+export const ValidateBackupInstanceForBackupRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vaultName: S.String.pipe(T.Label()),
+      backupInstance: BackupInstanceInput,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/validateForBackup",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "ValidateBackupInstanceForBackupRequest",
+}) as any as S.Schema<ValidateBackupInstanceForBackupRequest>;
+
+export interface ValidateBackupInstanceForBackupResponse {
+  /** This property will be used as the discriminator for deciding the specific types in the polymorphic chain of types. */
+  objectType: string;
+  /** Name or Arm Id of the job created for this operation. */
+  jobId?: string;
+}
+export const ValidateBackupInstanceForBackupResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      objectType: S.String,
+      jobId: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "ValidateBackupInstanceForBackupResponse",
+}) as any as S.Schema<ValidateBackupInstanceForBackupResponse>;
+
 export type BackupInstancesAdhocBackupError = AzureOpError;
 /** Trigger adhoc backup */
 export const BackupInstancesAdhocBackup: API.OperationMethod<
@@ -5971,156 +5966,6 @@ export const BackupInstancesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type BackupInstancesDeleteError = AzureOpError;
-/** Delete a backup instance in a backup vault */
-export const BackupInstancesDelete: API.OperationMethod<
-  BackupInstancesDeleteRequest,
-  BackupInstancesDeleteResponse,
-  BackupInstancesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BackupInstancesDeleteRequest,
-  output: BackupInstancesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BackupInstancesExtensionRoutingListError = AzureOpError;
-/** Gets a list of backup instances associated with a tracked resource */
-export const BackupInstancesExtensionRoutingList: API.OperationMethod<
-  BackupInstancesExtensionRoutingListRequest,
-  BackupInstancesExtensionRoutingListResponse,
-  BackupInstancesExtensionRoutingListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BackupInstancesExtensionRoutingListRequest,
-  output: BackupInstancesExtensionRoutingListResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BackupInstancesGetError = AzureOpError;
-/** Gets a backup instance with name in a backup vault */
-export const BackupInstancesGet: API.OperationMethod<
-  BackupInstancesGetRequest,
-  BackupInstancesGetResponse,
-  BackupInstancesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BackupInstancesGetRequest,
-  output: BackupInstancesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BackupInstancesGetBackupInstanceOperationResultError = AzureOpError;
-/** Get result of backup instance creation operation */
-export const BackupInstancesGetBackupInstanceOperationResult: API.OperationMethod<
-  BackupInstancesGetBackupInstanceOperationResultRequest,
-  BackupInstancesGetBackupInstanceOperationResultResponse,
-  BackupInstancesGetBackupInstanceOperationResultError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BackupInstancesGetBackupInstanceOperationResultRequest,
-  output: BackupInstancesGetBackupInstanceOperationResultResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BackupInstancesListError = AzureOpError;
-/** Gets a backup instances belonging to a backup vault */
-export const BackupInstancesList: API.OperationMethod<
-  BackupInstancesListRequest,
-  BackupInstancesListResponse,
-  BackupInstancesListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BackupInstancesListRequest,
-  output: BackupInstancesListResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BackupInstancesResumeBackupsError = AzureOpError;
-/** This operation will resume backups for backup instance */
-export const BackupInstancesResumeBackups: API.OperationMethod<
-  BackupInstancesResumeBackupsRequest,
-  BackupInstancesResumeBackupsResponse,
-  BackupInstancesResumeBackupsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BackupInstancesResumeBackupsRequest,
-  output: BackupInstancesResumeBackupsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BackupInstancesResumeProtectionError = AzureOpError;
-/** This operation will resume protection for a stopped backup instance */
-export const BackupInstancesResumeProtection: API.OperationMethod<
-  BackupInstancesResumeProtectionRequest,
-  BackupInstancesResumeProtectionResponse,
-  BackupInstancesResumeProtectionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BackupInstancesResumeProtectionRequest,
-  output: BackupInstancesResumeProtectionResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BackupInstancesStopProtectionError = AzureOpError;
-/** This operation will stop protection of a backup instance and data will be held forever */
-export const BackupInstancesStopProtection: API.OperationMethod<
-  BackupInstancesStopProtectionRequest,
-  BackupInstancesStopProtectionResponse,
-  BackupInstancesStopProtectionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BackupInstancesStopProtectionRequest,
-  output: BackupInstancesStopProtectionResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BackupInstancesSuspendBackupsError = AzureOpError;
-/** This operation will stop backup for a backup instance and retains the backup data as per the policy (except latest Recovery point, which will be retained forever) */
-export const BackupInstancesSuspendBackups: API.OperationMethod<
-  BackupInstancesSuspendBackupsRequest,
-  BackupInstancesSuspendBackupsResponse,
-  BackupInstancesSuspendBackupsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BackupInstancesSuspendBackupsRequest,
-  output: BackupInstancesSuspendBackupsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BackupInstancesSyncBackupInstanceError = AzureOpError;
-/** Sync backup instance again in case of failure This action will retry last failed operation and will bring backup instance to valid state */
-export const BackupInstancesSyncBackupInstance: API.OperationMethod<
-  BackupInstancesSyncBackupInstanceRequest,
-  BackupInstancesSyncBackupInstanceResponse,
-  BackupInstancesSyncBackupInstanceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BackupInstancesSyncBackupInstanceRequest,
-  output: BackupInstancesSyncBackupInstanceResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type BackupInstancesTriggerCrossRegionRestoreError = AzureOpError;
 /** Triggers Cross Region Restore for BackupInstance. */
 export const BackupInstancesTriggerCrossRegionRestore: API.OperationMethod<
@@ -6131,21 +5976,6 @@ export const BackupInstancesTriggerCrossRegionRestore: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: BackupInstancesTriggerCrossRegionRestoreRequest,
   output: BackupInstancesTriggerCrossRegionRestoreResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BackupInstancesTriggerRehydrateError = AzureOpError;
-/** rehydrate recovery point for restore for a BackupInstance */
-export const BackupInstancesTriggerRehydrate: API.OperationMethod<
-  BackupInstancesTriggerRehydrateRequest,
-  BackupInstancesTriggerRehydrateResponse,
-  BackupInstancesTriggerRehydrateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BackupInstancesTriggerRehydrateRequest,
-  output: BackupInstancesTriggerRehydrateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -6176,21 +6006,6 @@ export const BackupInstancesValidateCrossRegionRestore: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: BackupInstancesValidateCrossRegionRestoreRequest,
   output: BackupInstancesValidateCrossRegionRestoreResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BackupInstancesValidateForBackupError = AzureOpError;
-/** Validate whether adhoc backup will be successful or not */
-export const BackupInstancesValidateForBackup: API.OperationMethod<
-  BackupInstancesValidateForBackupRequest,
-  BackupInstancesValidateForBackupResponse,
-  BackupInstancesValidateForBackupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BackupInstancesValidateForBackupRequest,
-  output: BackupInstancesValidateForBackupResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -6241,81 +6056,6 @@ export const BackupPoliciesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type BackupPoliciesDeleteError = AzureOpError;
-/** Deletes a backup policy belonging to a backup vault */
-export const BackupPoliciesDelete: API.OperationMethod<
-  BackupPoliciesDeleteRequest,
-  BackupPoliciesDeleteResponse,
-  BackupPoliciesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BackupPoliciesDeleteRequest,
-  output: BackupPoliciesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BackupPoliciesGetError = AzureOpError;
-/** Gets a backup policy belonging to a backup vault */
-export const BackupPoliciesGet: API.OperationMethod<
-  BackupPoliciesGetRequest,
-  BackupPoliciesGetResponse,
-  BackupPoliciesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BackupPoliciesGetRequest,
-  output: BackupPoliciesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BackupPoliciesListError = AzureOpError;
-/** Returns list of backup policies belonging to a backup vault */
-export const BackupPoliciesList: API.OperationMethod<
-  BackupPoliciesListRequest,
-  BackupPoliciesListResponse,
-  BackupPoliciesListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BackupPoliciesListRequest,
-  output: BackupPoliciesListResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BackupVaultOperationResultsGetError = AzureOpError;
-/** Get a BackupVaultResource */
-export const BackupVaultOperationResultsGet: API.OperationMethod<
-  BackupVaultOperationResultsGetRequest,
-  BackupVaultOperationResultsGetResponse,
-  BackupVaultOperationResultsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BackupVaultOperationResultsGetRequest,
-  output: BackupVaultOperationResultsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BackupVaultsCheckNameAvailabilityError = AzureOpError;
-/** API to check for resource name availability API to check for resource name availability */
-export const BackupVaultsCheckNameAvailability: API.OperationMethod<
-  BackupVaultsCheckNameAvailabilityRequest,
-  CheckNameAvailabilityResult,
-  BackupVaultsCheckNameAvailabilityError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BackupVaultsCheckNameAvailabilityRequest,
-  output: CheckNameAvailabilityResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type BackupVaultsCreateOrUpdateError = AzureOpError;
 /** Creates or updates a BackupVault resource belonging to a resource group. */
 export const BackupVaultsCreateOrUpdate: API.OperationMethod<
@@ -6331,181 +6071,106 @@ export const BackupVaultsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type BackupVaultsDeleteError = AzureOpError;
-/** Deletes a BackupVault resource from the resource group. */
-export const BackupVaultsDelete: API.OperationMethod<
-  BackupVaultsDeleteRequest,
-  BackupVaultsDeleteResponse,
-  BackupVaultsDeleteError,
+export type CheckBackupVaultNameAvailabilityError = AzureOpError;
+/** API to check for resource name availability API to check for resource name availability */
+export const CheckBackupVaultNameAvailability: API.OperationMethod<
+  CheckBackupVaultNameAvailabilityRequest,
+  CheckNameAvailabilityResult,
+  CheckBackupVaultNameAvailabilityError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: BackupVaultsDeleteRequest,
-  output: BackupVaultsDeleteResponse,
+  input: CheckBackupVaultNameAvailabilityRequest,
+  output: CheckNameAvailabilityResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type BackupVaultsGetError = AzureOpError;
-/** Returns a resource belonging to a resource group. */
-export const BackupVaultsGet: API.OperationMethod<
-  BackupVaultsGetRequest,
-  BackupVaultsGetResponse,
-  BackupVaultsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BackupVaultsGetRequest,
-  output: BackupVaultsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BackupVaultsGetInResourceGroupError = AzureOpError;
-/** Returns resource collection belonging to a resource group. */
-export const BackupVaultsGetInResourceGroup: API.OperationMethod<
-  BackupVaultsGetInResourceGroupRequest,
-  BackupVaultsGetInResourceGroupResponse,
-  BackupVaultsGetInResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BackupVaultsGetInResourceGroupRequest,
-  output: BackupVaultsGetInResourceGroupResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BackupVaultsGetInSubscriptionError = AzureOpError;
-/** Returns resource collection belonging to a subscription. */
-export const BackupVaultsGetInSubscription: API.OperationMethod<
-  BackupVaultsGetInSubscriptionRequest,
-  BackupVaultsGetInSubscriptionResponse,
-  BackupVaultsGetInSubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BackupVaultsGetInSubscriptionRequest,
-  output: BackupVaultsGetInSubscriptionResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BackupVaultsUpdateError = AzureOpError;
-/** Updates a BackupVault resource belonging to a resource group. For example, updating tags for a resource. */
-export const BackupVaultsUpdate: API.OperationMethod<
-  BackupVaultsUpdateRequest,
-  BackupVaultsUpdateResponse,
-  BackupVaultsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BackupVaultsUpdateRequest,
-  output: BackupVaultsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DataProtectionCheckFeatureSupportError = AzureOpError;
+export type CheckDataProtectionFeatureSupportError = AzureOpError;
 /** Validates if a feature is supported Validates if a feature is supported */
-export const DataProtectionCheckFeatureSupport: API.OperationMethod<
-  DataProtectionCheckFeatureSupportRequest,
+export const CheckDataProtectionFeatureSupport: API.OperationMethod<
+  CheckDataProtectionFeatureSupportRequest,
   FeatureValidationResponseBase,
-  DataProtectionCheckFeatureSupportError,
+  CheckDataProtectionFeatureSupportError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DataProtectionCheckFeatureSupportRequest,
+  input: CheckDataProtectionFeatureSupportRequest,
   output: FeatureValidationResponseBase,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DataProtectionOperationsListError = AzureOpError;
-/** List the operations for the provider */
-export const DataProtectionOperationsList: API.OperationMethod<
-  DataProtectionOperationsListRequest,
-  DataProtectionOperationsListResponse,
-  DataProtectionOperationsListError,
+export type DeleteBackupInstanceError = AzureOpError;
+/** Delete a backup instance in a backup vault */
+export const DeleteBackupInstance: API.OperationMethod<
+  DeleteBackupInstanceRequest,
+  DeleteBackupInstanceResponse,
+  DeleteBackupInstanceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DataProtectionOperationsListRequest,
-  output: DataProtectionOperationsListResponse,
+  input: DeleteBackupInstanceRequest,
+  output: DeleteBackupInstanceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeletedBackupInstancesGetError = AzureOpError;
-/** Gets a deleted backup instance with name in a backup vault */
-export const DeletedBackupInstancesGet: API.OperationMethod<
-  DeletedBackupInstancesGetRequest,
-  DeletedBackupInstancesGetResponse,
-  DeletedBackupInstancesGetError,
+export type DeleteBackupPolicyError = AzureOpError;
+/** Deletes a backup policy belonging to a backup vault */
+export const DeleteBackupPolicy: API.OperationMethod<
+  DeleteBackupPolicyRequest,
+  DeleteBackupPolicyResponse,
+  DeleteBackupPolicyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeletedBackupInstancesGetRequest,
-  output: DeletedBackupInstancesGetResponse,
+  input: DeleteBackupPolicyRequest,
+  output: DeleteBackupPolicyResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeletedBackupInstancesListError = AzureOpError;
-/** Gets deleted backup instances belonging to a backup vault */
-export const DeletedBackupInstancesList: API.OperationMethod<
-  DeletedBackupInstancesListRequest,
-  DeletedBackupInstancesListResponse,
-  DeletedBackupInstancesListError,
+export type DeleteBackupVaultError = AzureOpError;
+/** Deletes a BackupVault resource from the resource group. */
+export const DeleteBackupVault: API.OperationMethod<
+  DeleteBackupVaultRequest,
+  DeleteBackupVaultResponse,
+  DeleteBackupVaultError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeletedBackupInstancesListRequest,
-  output: DeletedBackupInstancesListResponse,
+  input: DeleteBackupVaultRequest,
+  output: DeleteBackupVaultResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeletedBackupInstancesUndeleteError = AzureOpError;
-/** A long-running resource action. */
-export const DeletedBackupInstancesUndelete: API.OperationMethod<
-  DeletedBackupInstancesUndeleteRequest,
-  DeletedBackupInstancesUndeleteResponse,
-  DeletedBackupInstancesUndeleteError,
+export type DeleteDppResourceGuardProxyError = AzureOpError;
+/** Deletes the ResourceGuardProxy */
+export const DeleteDppResourceGuardProxy: API.OperationMethod<
+  DeleteDppResourceGuardProxyRequest,
+  DeleteDppResourceGuardProxyResponse,
+  DeleteDppResourceGuardProxyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeletedBackupInstancesUndeleteRequest,
-  output: DeletedBackupInstancesUndeleteResponse,
+  input: DeleteDppResourceGuardProxyRequest,
+  output: DeleteDppResourceGuardProxyResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeletedBackupVaultsGetError = AzureOpError;
-/** Gets a deleted backup vault */
-export const DeletedBackupVaultsGet: API.OperationMethod<
-  DeletedBackupVaultsGetRequest,
-  DeletedBackupVaultsGetResponse,
-  DeletedBackupVaultsGetError,
+export type DeleteResourceGuardError = AzureOpError;
+/** Deletes a ResourceGuard resource from the resource group. */
+export const DeleteResourceGuard: API.OperationMethod<
+  DeleteResourceGuardRequest,
+  DeleteResourceGuardResponse,
+  DeleteResourceGuardError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeletedBackupVaultsGetRequest,
-  output: DeletedBackupVaultsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeletedBackupVaultsListByLocationError = AzureOpError;
-/** Lists deleted backup vaults by location */
-export const DeletedBackupVaultsListByLocation: API.OperationMethod<
-  DeletedBackupVaultsListByLocationRequest,
-  DeletedBackupVaultResourceListResult,
-  DeletedBackupVaultsListByLocationError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeletedBackupVaultsListByLocationRequest,
-  output: DeletedBackupVaultResourceListResult,
+  input: DeleteResourceGuardRequest,
+  output: DeleteResourceGuardResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -6526,51 +6191,6 @@ export const DppResourceGuardProxyCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DppResourceGuardProxyDeleteError = AzureOpError;
-/** Deletes the ResourceGuardProxy */
-export const DppResourceGuardProxyDelete: API.OperationMethod<
-  DppResourceGuardProxyDeleteRequest,
-  DppResourceGuardProxyDeleteResponse,
-  DppResourceGuardProxyDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DppResourceGuardProxyDeleteRequest,
-  output: DppResourceGuardProxyDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DppResourceGuardProxyGetError = AzureOpError;
-/** Returns the ResourceGuardProxy object associated with the vault, and that matches the name in the request */
-export const DppResourceGuardProxyGet: API.OperationMethod<
-  DppResourceGuardProxyGetRequest,
-  DppResourceGuardProxyGetResponse,
-  DppResourceGuardProxyGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DppResourceGuardProxyGetRequest,
-  output: DppResourceGuardProxyGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DppResourceGuardProxyListError = AzureOpError;
-/** Returns the list of ResourceGuardProxies associated with the vault */
-export const DppResourceGuardProxyList: API.OperationMethod<
-  DppResourceGuardProxyListRequest,
-  DppResourceGuardProxyListResponse,
-  DppResourceGuardProxyListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DppResourceGuardProxyListRequest,
-  output: DppResourceGuardProxyListResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type DppResourceGuardProxyUnlockDeleteError = AzureOpError;
 /** UnlockDelete call for ResourceGuardProxy, executed before one can delete it */
 export const DppResourceGuardProxyUnlockDelete: API.OperationMethod<
@@ -6586,258 +6206,543 @@ export const DppResourceGuardProxyUnlockDelete: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ExportJobsOperationResultGetError = AzureOpError;
-/** Gets the operation result of operation triggered by Export Jobs API. If the operation is successful, then it also contains URL of a Blob and a SAS key to access the same. The blob contains exported jobs in JSON serialized format. */
-export const ExportJobsOperationResultGet: API.OperationMethod<
-  ExportJobsOperationResultGetRequest,
-  ExportJobsResult,
-  ExportJobsOperationResultGetError,
+export type GetBackupInstanceError = AzureOpError;
+/** Gets a backup instance with name in a backup vault */
+export const GetBackupInstance: API.OperationMethod<
+  GetBackupInstanceRequest,
+  GetBackupInstanceResponse,
+  GetBackupInstanceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ExportJobsOperationResultGetRequest,
+  input: GetBackupInstanceRequest,
+  output: GetBackupInstanceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBackupInstanceBackupInstanceOperationResultError = AzureOpError;
+/** Get result of backup instance creation operation */
+export const GetBackupInstanceBackupInstanceOperationResult: API.OperationMethod<
+  GetBackupInstanceBackupInstanceOperationResultRequest,
+  GetBackupInstanceBackupInstanceOperationResultResponse,
+  GetBackupInstanceBackupInstanceOperationResultError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBackupInstanceBackupInstanceOperationResultRequest,
+  output: GetBackupInstanceBackupInstanceOperationResultResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBackupPolicyError = AzureOpError;
+/** Gets a backup policy belonging to a backup vault */
+export const GetBackupPolicy: API.OperationMethod<
+  GetBackupPolicyRequest,
+  GetBackupPolicyResponse,
+  GetBackupPolicyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBackupPolicyRequest,
+  output: GetBackupPolicyResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBackupVaultError = AzureOpError;
+/** Returns a resource belonging to a resource group. */
+export const GetBackupVault: API.OperationMethod<
+  GetBackupVaultRequest,
+  GetBackupVaultResponse,
+  GetBackupVaultError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBackupVaultRequest,
+  output: GetBackupVaultResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBackupVaultInResourceGroupError = AzureOpError;
+/** Returns resource collection belonging to a resource group. */
+export const GetBackupVaultInResourceGroup: API.OperationMethod<
+  GetBackupVaultInResourceGroupRequest,
+  GetBackupVaultInResourceGroupResponse,
+  GetBackupVaultInResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBackupVaultInResourceGroupRequest,
+  output: GetBackupVaultInResourceGroupResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBackupVaultInSubscriptionError = AzureOpError;
+/** Returns resource collection belonging to a subscription. */
+export const GetBackupVaultInSubscription: API.OperationMethod<
+  GetBackupVaultInSubscriptionRequest,
+  GetBackupVaultInSubscriptionResponse,
+  GetBackupVaultInSubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBackupVaultInSubscriptionRequest,
+  output: GetBackupVaultInSubscriptionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBackupVaultOperationResultError = AzureOpError;
+/** Get a BackupVaultResource */
+export const GetBackupVaultOperationResult: API.OperationMethod<
+  GetBackupVaultOperationResultRequest,
+  GetBackupVaultOperationResultResponse,
+  GetBackupVaultOperationResultError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBackupVaultOperationResultRequest,
+  output: GetBackupVaultOperationResultResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDeletedBackupInstanceError = AzureOpError;
+/** Gets a deleted backup instance with name in a backup vault */
+export const GetDeletedBackupInstance: API.OperationMethod<
+  GetDeletedBackupInstanceRequest,
+  GetDeletedBackupInstanceResponse,
+  GetDeletedBackupInstanceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDeletedBackupInstanceRequest,
+  output: GetDeletedBackupInstanceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDeletedBackupVaultError = AzureOpError;
+/** Gets a deleted backup vault */
+export const GetDeletedBackupVault: API.OperationMethod<
+  GetDeletedBackupVaultRequest,
+  GetDeletedBackupVaultResponse,
+  GetDeletedBackupVaultError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDeletedBackupVaultRequest,
+  output: GetDeletedBackupVaultResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDppResourceGuardProxyError = AzureOpError;
+/** Returns the ResourceGuardProxy object associated with the vault, and that matches the name in the request */
+export const GetDppResourceGuardProxy: API.OperationMethod<
+  GetDppResourceGuardProxyRequest,
+  GetDppResourceGuardProxyResponse,
+  GetDppResourceGuardProxyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDppResourceGuardProxyRequest,
+  output: GetDppResourceGuardProxyResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetExportJobsOperationResultError = AzureOpError;
+/** Gets the operation result of operation triggered by Export Jobs API. If the operation is successful, then it also contains URL of a Blob and a SAS key to access the same. The blob contains exported jobs in JSON serialized format. */
+export const GetExportJobsOperationResult: API.OperationMethod<
+  GetExportJobsOperationResultRequest,
+  ExportJobsResult,
+  GetExportJobsOperationResultError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetExportJobsOperationResultRequest,
   output: ExportJobsResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ExportJobsTriggerError = AzureOpError;
-/** Triggers export of jobs and returns an OperationID to track. */
-export const ExportJobsTrigger: API.OperationMethod<
-  ExportJobsTriggerRequest,
-  ExportJobsTriggerResponse,
-  ExportJobsTriggerError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ExportJobsTriggerRequest,
-  output: ExportJobsTriggerResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FetchCrossRegionRestoreJobGetError = AzureOpError;
+export type GetFetchCrossRegionRestoreJobError = AzureOpError;
 /** Fetches the Cross Region Restore Job */
-export const FetchCrossRegionRestoreJobGet: API.OperationMethod<
-  FetchCrossRegionRestoreJobGetRequest,
-  FetchCrossRegionRestoreJobGetResponse,
-  FetchCrossRegionRestoreJobGetError,
+export const GetFetchCrossRegionRestoreJob: API.OperationMethod<
+  GetFetchCrossRegionRestoreJobRequest,
+  GetFetchCrossRegionRestoreJobResponse,
+  GetFetchCrossRegionRestoreJobError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FetchCrossRegionRestoreJobGetRequest,
-  output: FetchCrossRegionRestoreJobGetResponse,
+  input: GetFetchCrossRegionRestoreJobRequest,
+  output: GetFetchCrossRegionRestoreJobResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type FetchCrossRegionRestoreJobsListError = AzureOpError;
-/** Fetches list of Cross Region Restore job belonging to the vault */
-export const FetchCrossRegionRestoreJobsList: API.OperationMethod<
-  FetchCrossRegionRestoreJobsListRequest,
-  FetchCrossRegionRestoreJobsListResponse,
-  FetchCrossRegionRestoreJobsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FetchCrossRegionRestoreJobsListRequest,
-  output: FetchCrossRegionRestoreJobsListResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FetchSecondaryRecoveryPointsListError = AzureOpError;
-/** Returns a list of Secondary Recovery Points for a DataSource in a vault, that can be used for Cross Region Restore. */
-export const FetchSecondaryRecoveryPointsList: API.OperationMethod<
-  FetchSecondaryRecoveryPointsListRequest,
-  FetchSecondaryRecoveryPointsListResponse,
-  FetchSecondaryRecoveryPointsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FetchSecondaryRecoveryPointsListRequest,
-  output: FetchSecondaryRecoveryPointsListResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type JobsGetError = AzureOpError;
+export type GetJobError = AzureOpError;
 /** Gets a job with id in a backup vault */
-export const JobsGet: API.OperationMethod<
-  JobsGetRequest,
-  JobsGetResponse,
-  JobsGetError,
+export const GetJob: API.OperationMethod<
+  GetJobRequest,
+  GetJobResponse,
+  GetJobError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: JobsGetRequest,
-  output: JobsGetResponse,
+  input: GetJobRequest,
+  output: GetJobResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type JobsListError = AzureOpError;
-/** Returns list of jobs belonging to a backup vault */
-export const JobsList: API.OperationMethod<
-  JobsListRequest,
-  JobsListResponse,
-  JobsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: JobsListRequest,
-  output: JobsListResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OperationResultGetError = AzureOpError;
+export type GetOperationResultError = AzureOpError;
 /** Gets the operation status for a resource. Gets the operation result for a resource */
-export const OperationResultGet: API.OperationMethod<
-  OperationResultGetRequest,
-  OperationResultGetResponse,
-  OperationResultGetError,
+export const GetOperationResult: API.OperationMethod<
+  GetOperationResultRequest,
+  GetOperationResultResponse,
+  GetOperationResultError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationResultGetRequest,
-  output: OperationResultGetResponse,
+  input: GetOperationResultRequest,
+  output: GetOperationResultResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OperationStatusBackupVaultContextGetError = AzureOpError;
-/** Gets the operation status for an operation over a BackupVault's context. */
-export const OperationStatusBackupVaultContextGet: API.OperationMethod<
-  OperationStatusBackupVaultContextGetRequest,
-  OperationResource,
-  OperationStatusBackupVaultContextGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OperationStatusBackupVaultContextGetRequest,
-  output: OperationResource,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OperationStatusGetError = AzureOpError;
+export type GetOperationStatusError = AzureOpError;
 /** Gets the operation status for a resource. Gets the operation status for a resource. */
-export const OperationStatusGet: API.OperationMethod<
-  OperationStatusGetRequest,
+export const GetOperationStatus: API.OperationMethod<
+  GetOperationStatusRequest,
   OperationResource,
-  OperationStatusGetError,
+  GetOperationStatusError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationStatusGetRequest,
+  input: GetOperationStatusRequest,
   output: OperationResource,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OperationStatusResourceGroupContextGetError = AzureOpError;
+export type GetOperationStatusBackupVaultContextError = AzureOpError;
+/** Gets the operation status for an operation over a BackupVault's context. */
+export const GetOperationStatusBackupVaultContext: API.OperationMethod<
+  GetOperationStatusBackupVaultContextRequest,
+  OperationResource,
+  GetOperationStatusBackupVaultContextError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetOperationStatusBackupVaultContextRequest,
+  output: OperationResource,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetOperationStatusResourceGroupContextError = AzureOpError;
 /** Gets the operation status for an operation over a ResourceGroup's context. Gets the operation status for an operation over a ResourceGroup's context. */
-export const OperationStatusResourceGroupContextGet: API.OperationMethod<
-  OperationStatusResourceGroupContextGetRequest,
+export const GetOperationStatusResourceGroupContext: API.OperationMethod<
+  GetOperationStatusResourceGroupContextRequest,
   OperationResource,
-  OperationStatusResourceGroupContextGetError,
+  GetOperationStatusResourceGroupContextError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationStatusResourceGroupContextGetRequest,
+  input: GetOperationStatusResourceGroupContextRequest,
   output: OperationResource,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type RecoveryPointsGetError = AzureOpError;
+export type GetRecoveryPointError = AzureOpError;
 /** Gets a Recovery Point using recoveryPointId for a Datasource. */
-export const RecoveryPointsGet: API.OperationMethod<
-  RecoveryPointsGetRequest,
-  RecoveryPointsGetResponse,
-  RecoveryPointsGetError,
+export const GetRecoveryPoint: API.OperationMethod<
+  GetRecoveryPointRequest,
+  GetRecoveryPointResponse,
+  GetRecoveryPointError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RecoveryPointsGetRequest,
-  output: RecoveryPointsGetResponse,
+  input: GetRecoveryPointRequest,
+  output: GetRecoveryPointResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type RecoveryPointsListError = AzureOpError;
-/** Returns a list of Recovery Points for a DataSource in a vault. */
-export const RecoveryPointsList: API.OperationMethod<
-  RecoveryPointsListRequest,
-  RecoveryPointsListResponse,
-  RecoveryPointsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RecoveryPointsListRequest,
-  output: RecoveryPointsListResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ResourceGuardsDeleteError = AzureOpError;
-/** Deletes a ResourceGuard resource from the resource group. */
-export const ResourceGuardsDelete: API.OperationMethod<
-  ResourceGuardsDeleteRequest,
-  ResourceGuardsDeleteResponse,
-  ResourceGuardsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ResourceGuardsDeleteRequest,
-  output: ResourceGuardsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ResourceGuardsGetError = AzureOpError;
+export type GetResourceGuardError = AzureOpError;
 /** Returns a ResourceGuard belonging to a resource group. */
-export const ResourceGuardsGet: API.OperationMethod<
-  ResourceGuardsGetRequest,
-  ResourceGuardsGetResponse,
-  ResourceGuardsGetError,
+export const GetResourceGuard: API.OperationMethod<
+  GetResourceGuardRequest,
+  GetResourceGuardResponse,
+  GetResourceGuardError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ResourceGuardsGetRequest,
-  output: ResourceGuardsGetResponse,
+  input: GetResourceGuardRequest,
+  output: GetResourceGuardResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ResourceGuardsGetBackupSecurityPINRequestsObjectsError =
+export type GetResourceGuardBackupSecurityPINRequestsObjectsError =
   AzureOpError;
 /** Returns collection of operation request objects for a critical operation protected by the given ResourceGuard resource. */
-export const ResourceGuardsGetBackupSecurityPINRequestsObjects: API.OperationMethod<
-  ResourceGuardsGetBackupSecurityPINRequestsObjectsRequest,
+export const GetResourceGuardBackupSecurityPINRequestsObjects: API.OperationMethod<
+  GetResourceGuardBackupSecurityPINRequestsObjectsRequest,
   DppBaseResourceList,
-  ResourceGuardsGetBackupSecurityPINRequestsObjectsError,
+  GetResourceGuardBackupSecurityPINRequestsObjectsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ResourceGuardsGetBackupSecurityPINRequestsObjectsRequest,
+  input: GetResourceGuardBackupSecurityPINRequestsObjectsRequest,
   output: DppBaseResourceList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ResourceGuardsGetDefaultBackupSecurityPINRequestsObjectError =
+export type GetResourceGuardDefaultBackupSecurityPINRequestsObjectError =
   AzureOpError;
 /** Returns collection of operation request objects for a critical operation protected by the given ResourceGuard resource. */
-export const ResourceGuardsGetDefaultBackupSecurityPINRequestsObject: API.OperationMethod<
-  ResourceGuardsGetDefaultBackupSecurityPINRequestsObjectRequest,
-  ResourceGuardsGetDefaultBackupSecurityPINRequestsObjectResponse,
-  ResourceGuardsGetDefaultBackupSecurityPINRequestsObjectError,
+export const GetResourceGuardDefaultBackupSecurityPINRequestsObject: API.OperationMethod<
+  GetResourceGuardDefaultBackupSecurityPINRequestsObjectRequest,
+  GetResourceGuardDefaultBackupSecurityPINRequestsObjectResponse,
+  GetResourceGuardDefaultBackupSecurityPINRequestsObjectError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ResourceGuardsGetDefaultBackupSecurityPINRequestsObjectRequest,
-  output: ResourceGuardsGetDefaultBackupSecurityPINRequestsObjectResponse,
+  input: GetResourceGuardDefaultBackupSecurityPINRequestsObjectRequest,
+  output: GetResourceGuardDefaultBackupSecurityPINRequestsObjectResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetResourceGuardResourcesInResourceGroupError = AzureOpError;
+/** Returns ResourceGuards collection belonging to a ResourceGroup. */
+export const GetResourceGuardResourcesInResourceGroup: API.OperationMethod<
+  GetResourceGuardResourcesInResourceGroupRequest,
+  GetResourceGuardResourcesInResourceGroupResponse,
+  GetResourceGuardResourcesInResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetResourceGuardResourcesInResourceGroupRequest,
+  output: GetResourceGuardResourcesInResourceGroupResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetResourceGuardResourcesInSubscriptionError = AzureOpError;
+/** Returns ResourceGuards collection belonging to a subscription. */
+export const GetResourceGuardResourcesInSubscription: API.OperationMethod<
+  GetResourceGuardResourcesInSubscriptionRequest,
+  GetResourceGuardResourcesInSubscriptionResponse,
+  GetResourceGuardResourcesInSubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetResourceGuardResourcesInSubscriptionRequest,
+  output: GetResourceGuardResourcesInSubscriptionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListBackupInstancesError = AzureOpError;
+/** Gets a backup instances belonging to a backup vault */
+export const ListBackupInstances: API.OperationMethod<
+  ListBackupInstancesRequest,
+  ListBackupInstancesResponse,
+  ListBackupInstancesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListBackupInstancesRequest,
+  output: ListBackupInstancesResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListBackupInstancesExtensionRoutingError = AzureOpError;
+/** Gets a list of backup instances associated with a tracked resource */
+export const ListBackupInstancesExtensionRouting: API.OperationMethod<
+  ListBackupInstancesExtensionRoutingRequest,
+  ListBackupInstancesExtensionRoutingResponse,
+  ListBackupInstancesExtensionRoutingError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListBackupInstancesExtensionRoutingRequest,
+  output: ListBackupInstancesExtensionRoutingResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListBackupPoliciesError = AzureOpError;
+/** Returns list of backup policies belonging to a backup vault */
+export const ListBackupPolicies: API.OperationMethod<
+  ListBackupPoliciesRequest,
+  ListBackupPoliciesResponse,
+  ListBackupPoliciesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListBackupPoliciesRequest,
+  output: ListBackupPoliciesResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDataProtectionOperationsError = AzureOpError;
+/** List the operations for the provider */
+export const ListDataProtectionOperations: API.OperationMethod<
+  ListDataProtectionOperationsRequest,
+  ListDataProtectionOperationsResponse,
+  ListDataProtectionOperationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDataProtectionOperationsRequest,
+  output: ListDataProtectionOperationsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDeletedBackupInstancesError = AzureOpError;
+/** Gets deleted backup instances belonging to a backup vault */
+export const ListDeletedBackupInstances: API.OperationMethod<
+  ListDeletedBackupInstancesRequest,
+  ListDeletedBackupInstancesResponse,
+  ListDeletedBackupInstancesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDeletedBackupInstancesRequest,
+  output: ListDeletedBackupInstancesResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDeletedBackupVaultByLocationError = AzureOpError;
+/** Lists deleted backup vaults by location */
+export const ListDeletedBackupVaultByLocation: API.OperationMethod<
+  ListDeletedBackupVaultByLocationRequest,
+  DeletedBackupVaultResourceListResult,
+  ListDeletedBackupVaultByLocationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDeletedBackupVaultByLocationRequest,
+  output: DeletedBackupVaultResourceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDppResourceGuardProxyError = AzureOpError;
+/** Returns the list of ResourceGuardProxies associated with the vault */
+export const ListDppResourceGuardProxy: API.OperationMethod<
+  ListDppResourceGuardProxyRequest,
+  ListDppResourceGuardProxyResponse,
+  ListDppResourceGuardProxyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDppResourceGuardProxyRequest,
+  output: ListDppResourceGuardProxyResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListFetchCrossRegionRestoreJobsError = AzureOpError;
+/** Fetches list of Cross Region Restore job belonging to the vault */
+export const ListFetchCrossRegionRestoreJobs: API.OperationMethod<
+  ListFetchCrossRegionRestoreJobsRequest,
+  ListFetchCrossRegionRestoreJobsResponse,
+  ListFetchCrossRegionRestoreJobsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListFetchCrossRegionRestoreJobsRequest,
+  output: ListFetchCrossRegionRestoreJobsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListFetchSecondaryRecoveryPointsError = AzureOpError;
+/** Returns a list of Secondary Recovery Points for a DataSource in a vault, that can be used for Cross Region Restore. */
+export const ListFetchSecondaryRecoveryPoints: API.OperationMethod<
+  ListFetchSecondaryRecoveryPointsRequest,
+  ListFetchSecondaryRecoveryPointsResponse,
+  ListFetchSecondaryRecoveryPointsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListFetchSecondaryRecoveryPointsRequest,
+  output: ListFetchSecondaryRecoveryPointsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListJobsError = AzureOpError;
+/** Returns list of jobs belonging to a backup vault */
+export const ListJobs: API.OperationMethod<
+  ListJobsRequest,
+  ListJobsResponse,
+  ListJobsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListJobsRequest,
+  output: ListJobsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListRecoveryPointsError = AzureOpError;
+/** Returns a list of Recovery Points for a DataSource in a vault. */
+export const ListRecoveryPoints: API.OperationMethod<
+  ListRecoveryPointsRequest,
+  ListRecoveryPointsResponse,
+  ListRecoveryPointsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListRecoveryPointsRequest,
+  output: ListRecoveryPointsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PatchResourceGuardError = AzureOpError;
+/** Updates a ResourceGuard resource belonging to a resource group. For example, updating tags for a resource. */
+export const PatchResourceGuard: API.OperationMethod<
+  PatchResourceGuardRequest,
+  PatchResourceGuardResponse,
+  PatchResourceGuardError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PatchResourceGuardRequest,
+  output: PatchResourceGuardResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutResourceGuardError = AzureOpError;
+/** Creates or updates a ResourceGuard resource belonging to a resource group. */
+export const PutResourceGuard: API.OperationMethod<
+  PutResourceGuardRequest,
+  PutResourceGuardResponse,
+  PutResourceGuardError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutResourceGuardRequest,
+  output: PutResourceGuardResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -6972,36 +6877,6 @@ export const ResourceGuardsGetDisableSoftDeleteRequestsObjects: API.OperationMet
   retry: Retry.Retry,
 }));
 
-export type ResourceGuardsGetResourcesInResourceGroupError = AzureOpError;
-/** Returns ResourceGuards collection belonging to a ResourceGroup. */
-export const ResourceGuardsGetResourcesInResourceGroup: API.OperationMethod<
-  ResourceGuardsGetResourcesInResourceGroupRequest,
-  ResourceGuardsGetResourcesInResourceGroupResponse,
-  ResourceGuardsGetResourcesInResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ResourceGuardsGetResourcesInResourceGroupRequest,
-  output: ResourceGuardsGetResourcesInResourceGroupResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ResourceGuardsGetResourcesInSubscriptionError = AzureOpError;
-/** Returns ResourceGuards collection belonging to a subscription. */
-export const ResourceGuardsGetResourcesInSubscription: API.OperationMethod<
-  ResourceGuardsGetResourcesInSubscriptionRequest,
-  ResourceGuardsGetResourcesInSubscriptionResponse,
-  ResourceGuardsGetResourcesInSubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ResourceGuardsGetResourcesInSubscriptionRequest,
-  output: ResourceGuardsGetResourcesInSubscriptionResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ResourceGuardsGetUpdateProtectedItemRequestsObjectsError =
   AzureOpError;
 /** Returns collection of operation request objects for a critical operation protected by the given ResourceGuard resource. */
@@ -7034,36 +6909,6 @@ export const ResourceGuardsGetUpdateProtectionPolicyRequestsObjects: API.Operati
   retry: Retry.Retry,
 }));
 
-export type ResourceGuardsPatchError = AzureOpError;
-/** Updates a ResourceGuard resource belonging to a resource group. For example, updating tags for a resource. */
-export const ResourceGuardsPatch: API.OperationMethod<
-  ResourceGuardsPatchRequest,
-  ResourceGuardsPatchResponse,
-  ResourceGuardsPatchError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ResourceGuardsPatchRequest,
-  output: ResourceGuardsPatchResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ResourceGuardsPutError = AzureOpError;
-/** Creates or updates a ResourceGuard resource belonging to a resource group. */
-export const ResourceGuardsPut: API.OperationMethod<
-  ResourceGuardsPutRequest,
-  ResourceGuardsPutResponse,
-  ResourceGuardsPutError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ResourceGuardsPutRequest,
-  output: ResourceGuardsPutResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type RestorableTimeRangesFindError = AzureOpError;
 export const RestorableTimeRangesFind: API.OperationMethod<
   RestorableTimeRangesFindRequest,
@@ -7073,6 +6918,156 @@ export const RestorableTimeRangesFind: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: RestorableTimeRangesFindRequest,
   output: RestorableTimeRangesFindResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ResumeBackupInstanceBackupsError = AzureOpError;
+/** This operation will resume backups for backup instance */
+export const ResumeBackupInstanceBackups: API.OperationMethod<
+  ResumeBackupInstanceBackupsRequest,
+  ResumeBackupInstanceBackupsResponse,
+  ResumeBackupInstanceBackupsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ResumeBackupInstanceBackupsRequest,
+  output: ResumeBackupInstanceBackupsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ResumeBackupInstanceProtectionError = AzureOpError;
+/** This operation will resume protection for a stopped backup instance */
+export const ResumeBackupInstanceProtection: API.OperationMethod<
+  ResumeBackupInstanceProtectionRequest,
+  ResumeBackupInstanceProtectionResponse,
+  ResumeBackupInstanceProtectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ResumeBackupInstanceProtectionRequest,
+  output: ResumeBackupInstanceProtectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type StopBackupInstanceProtectionError = AzureOpError;
+/** This operation will stop protection of a backup instance and data will be held forever */
+export const StopBackupInstanceProtection: API.OperationMethod<
+  StopBackupInstanceProtectionRequest,
+  StopBackupInstanceProtectionResponse,
+  StopBackupInstanceProtectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: StopBackupInstanceProtectionRequest,
+  output: StopBackupInstanceProtectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type SuspendBackupInstanceBackupsError = AzureOpError;
+/** This operation will stop backup for a backup instance and retains the backup data as per the policy (except latest Recovery point, which will be retained forever) */
+export const SuspendBackupInstanceBackups: API.OperationMethod<
+  SuspendBackupInstanceBackupsRequest,
+  SuspendBackupInstanceBackupsResponse,
+  SuspendBackupInstanceBackupsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: SuspendBackupInstanceBackupsRequest,
+  output: SuspendBackupInstanceBackupsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type SyncBackupInstanceBackupInstanceError = AzureOpError;
+/** Sync backup instance again in case of failure This action will retry last failed operation and will bring backup instance to valid state */
+export const SyncBackupInstanceBackupInstance: API.OperationMethod<
+  SyncBackupInstanceBackupInstanceRequest,
+  SyncBackupInstanceBackupInstanceResponse,
+  SyncBackupInstanceBackupInstanceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: SyncBackupInstanceBackupInstanceRequest,
+  output: SyncBackupInstanceBackupInstanceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type TriggerBackupInstanceRehydrateError = AzureOpError;
+/** rehydrate recovery point for restore for a BackupInstance */
+export const TriggerBackupInstanceRehydrate: API.OperationMethod<
+  TriggerBackupInstanceRehydrateRequest,
+  TriggerBackupInstanceRehydrateResponse,
+  TriggerBackupInstanceRehydrateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: TriggerBackupInstanceRehydrateRequest,
+  output: TriggerBackupInstanceRehydrateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type TriggerExportJobError = AzureOpError;
+/** Triggers export of jobs and returns an OperationID to track. */
+export const TriggerExportJob: API.OperationMethod<
+  TriggerExportJobRequest,
+  TriggerExportJobResponse,
+  TriggerExportJobError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: TriggerExportJobRequest,
+  output: TriggerExportJobResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UndeleteDeletedBackupInstanceError = AzureOpError;
+/** A long-running resource action. */
+export const UndeleteDeletedBackupInstance: API.OperationMethod<
+  UndeleteDeletedBackupInstanceRequest,
+  UndeleteDeletedBackupInstanceResponse,
+  UndeleteDeletedBackupInstanceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UndeleteDeletedBackupInstanceRequest,
+  output: UndeleteDeletedBackupInstanceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateBackupVaultError = AzureOpError;
+/** Updates a BackupVault resource belonging to a resource group. For example, updating tags for a resource. */
+export const UpdateBackupVault: API.OperationMethod<
+  UpdateBackupVaultRequest,
+  UpdateBackupVaultResponse,
+  UpdateBackupVaultError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateBackupVaultRequest,
+  output: UpdateBackupVaultResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ValidateBackupInstanceForBackupError = AzureOpError;
+/** Validate whether adhoc backup will be successful or not */
+export const ValidateBackupInstanceForBackup: API.OperationMethod<
+  ValidateBackupInstanceForBackupRequest,
+  ValidateBackupInstanceForBackupResponse,
+  ValidateBackupInstanceForBackupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ValidateBackupInstanceForBackupRequest,
+  output: ValidateBackupInstanceForBackupResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

@@ -111,36 +111,36 @@ export const GenerateAccessTokenProjectsServiceAccountsRequest =
   }) as any as S.Schema<GenerateAccessTokenProjectsServiceAccountsRequest>;
 
 export interface GenerateAccessTokenResponse {
-  /** Token expiration time. The expiration time is always set. */
-  expireTime?: string;
   /** The OAuth 2.0 access token. */
   accessToken?: string;
+  /** Token expiration time. The expiration time is always set. */
+  expireTime?: string;
 }
 export const GenerateAccessTokenResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    expireTime: S.optional(S.String),
     accessToken: S.optional(S.String),
+    expireTime: S.optional(S.String),
   }),
 ).annotate({
   identifier: "GenerateAccessTokenResponse",
 }) as any as S.Schema<GenerateAccessTokenResponse>;
 
 export interface GenerateIdTokenRequest {
-  /** Required. The audience for the token, such as the API or account that this token grants access to. */
-  audience?: string;
-  /** Include the service account email in the token. If set to `true`, the token will contain `email` and `email_verified` claims. */
-  includeEmail?: boolean;
   /** Include the organization number of the service account in the token. If set to `true`, the token will contain a `google.organization_number` claim. The value of the claim will be `null` if the service account isn't associated with an organization. */
   organizationNumberIncluded?: boolean;
   /** The sequence of service accounts in a delegation chain. Each service account must be granted the `roles/iam.serviceAccountTokenCreator` role on its next service account in the chain. The last service account in the chain must be granted the `roles/iam.serviceAccountTokenCreator` role on the service account that is specified in the `name` field of the request. The delegates must have the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid. */
   delegates?: StringList;
+  /** Required. The audience for the token, such as the API or account that this token grants access to. */
+  audience?: string;
+  /** Include the service account email in the token. If set to `true`, the token will contain `email` and `email_verified` claims. */
+  includeEmail?: boolean;
 }
 export const GenerateIdTokenRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    audience: S.optional(S.String),
-    includeEmail: S.optional(S.Boolean),
     organizationNumberIncluded: S.optional(S.Boolean),
     delegates: S.optional(StringList),
+    audience: S.optional(S.String),
+    includeEmail: S.optional(S.Boolean),
   }),
 ).annotate({
   identifier: "GenerateIdTokenRequest",
@@ -237,16 +237,16 @@ export const GetAllowedLocationsProjectsLocationsWorkloadIdentityPoolsRequest =
 
 /** Represents a list of allowed locations for given workload identity pool. */
 export interface WorkloadIdentityPoolAllowedLocations {
-  /** Output only. The human readable trust boundary locations. For example, ["us-central1", "europe-west1"] */
-  locations?: StringList;
   /** Output only. The hex encoded bitmap of the trust boundary locations */
   encodedLocations?: string;
+  /** Output only. The human readable trust boundary locations. For example, ["us-central1", "europe-west1"] */
+  locations?: StringList;
 }
 export const WorkloadIdentityPoolAllowedLocations = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      locations: S.optional(StringList),
       encodedLocations: S.optional(S.String),
+      locations: S.optional(StringList),
     }),
 ).annotate({
   identifier: "WorkloadIdentityPoolAllowedLocations",
@@ -273,15 +273,15 @@ export const GetAllowedLocationsProjectsServiceAccountsRequest =
 
 /** Represents a list of allowed locations for given service account. */
 export interface ServiceAccountAllowedLocations {
-  /** Output only. The hex encoded bitmap of the trust boundary locations */
-  encodedLocations?: string;
   /** Output only. The human readable trust boundary locations. For example, ["us-central1", "europe-west1"] */
   locations?: StringList;
+  /** Output only. The hex encoded bitmap of the trust boundary locations */
+  encodedLocations?: string;
 }
 export const ServiceAccountAllowedLocations = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    encodedLocations: S.optional(S.String),
     locations: S.optional(StringList),
+    encodedLocations: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ServiceAccountAllowedLocations",
@@ -340,15 +340,15 @@ export const SignBlobResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SignBlobResponse>;
 
 export interface SignJwtRequest {
-  /** The sequence of service accounts in a delegation chain. Each service account must be granted the `roles/iam.serviceAccountTokenCreator` role on its next service account in the chain. The last service account in the chain must be granted the `roles/iam.serviceAccountTokenCreator` role on the service account that is specified in the `name` field of the request. The delegates must have the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid. */
-  delegates?: StringList;
   /** Required. The JWT payload to sign. Must be a serialized JSON object that contains a JWT Claims Set. For example: `{"sub": "user@example.com", "iat": 313435}` If the JWT Claims Set contains an expiration time (`exp`) claim, it must be an integer timestamp that is not in the past and no more than 12 hours in the future. */
   payload?: string;
+  /** The sequence of service accounts in a delegation chain. Each service account must be granted the `roles/iam.serviceAccountTokenCreator` role on its next service account in the chain. The last service account in the chain must be granted the `roles/iam.serviceAccountTokenCreator` role on the service account that is specified in the `name` field of the request. The delegates must have the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid. */
+  delegates?: StringList;
 }
 export const SignJwtRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    delegates: S.optional(StringList),
     payload: S.optional(S.String),
+    delegates: S.optional(StringList),
   }),
 ).annotate({ identifier: "SignJwtRequest" }) as any as S.Schema<SignJwtRequest>;
 
@@ -375,15 +375,15 @@ export const SignJwtProjectsServiceAccountsRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<SignJwtProjectsServiceAccountsRequest>;
 
 export interface SignJwtResponse {
-  /** The ID of the key used to sign the JWT. The key used for signing will remain valid for at least 12 hours after the JWT is signed. To verify the signature, you can retrieve the public key in several formats from the following endpoints: - RSA public key wrapped in an X.509 v3 certificate: `https://www.googleapis.com/service_accounts/v1/metadata/x509/{ACCOUNT_EMAIL}` - Raw key in JSON format: `https://www.googleapis.com/service_accounts/v1/metadata/raw/{ACCOUNT_EMAIL}` - JSON Web Key (JWK): `https://www.googleapis.com/service_accounts/v1/metadata/jwk/{ACCOUNT_EMAIL}` */
-  keyId?: string;
   /** The signed JWT. Contains the automatically generated header; the client-supplied payload; and the signature, which is generated using the key referenced by the `kid` field in the header. After the key pair referenced by the `key_id` response field expires, Google no longer exposes the public key that can be used to verify the JWT. As a result, the receiver can no longer verify the signature. */
   signedJwt?: string;
+  /** The ID of the key used to sign the JWT. The key used for signing will remain valid for at least 12 hours after the JWT is signed. To verify the signature, you can retrieve the public key in several formats from the following endpoints: - RSA public key wrapped in an X.509 v3 certificate: `https://www.googleapis.com/service_accounts/v1/metadata/x509/{ACCOUNT_EMAIL}` - Raw key in JSON format: `https://www.googleapis.com/service_accounts/v1/metadata/raw/{ACCOUNT_EMAIL}` - JSON Web Key (JWK): `https://www.googleapis.com/service_accounts/v1/metadata/jwk/{ACCOUNT_EMAIL}` */
+  keyId?: string;
 }
 export const SignJwtResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    keyId: S.optional(S.String),
     signedJwt: S.optional(S.String),
+    keyId: S.optional(S.String),
   }),
 ).annotate({
   identifier: "SignJwtResponse",

@@ -21,13 +21,13 @@ export class BadRequest
     [{ status: 400 }],
   ) {}
 
-export interface WebAnalyticsFetchLlmsTxtRequest {
+export interface FetchWebAnalyticsLlmsTxtRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Public HTTP or HTTPS URL of the llms.txt file to load. */
   url: string;
 }
-export const WebAnalyticsFetchLlmsTxtRequest = /*@__PURE__*/ S.suspend(() =>
+export const FetchWebAnalyticsLlmsTxtRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     url: S.String,
@@ -39,8 +39,8 @@ export const WebAnalyticsFetchLlmsTxtRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "WebAnalyticsFetchLlmsTxtRequest",
-}) as any as S.Schema<WebAnalyticsFetchLlmsTxtRequest>;
+  identifier: "FetchWebAnalyticsLlmsTxtRequest",
+}) as any as S.Schema<FetchWebAnalyticsLlmsTxtRequest>;
 
 export interface LlmsTxtFetchResponse {
   /** UTF-8 contents of the fetched llms.txt file. */
@@ -393,15 +393,15 @@ export const WeeklyDigestResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "WeeklyDigestResponse",
 }) as any as S.Schema<WeeklyDigestResponse>;
 
-export type WebAnalyticsFetchLlmsTxtError = BadRequest | PosthogOpError;
+export type FetchWebAnalyticsLlmsTxtError = BadRequest | PosthogOpError;
 /** Load an llms.txt file Loads an llms.txt file from a public URL for coverage analysis without saving it. */
-export const webAnalyticsFetchLlmsTxt: API.OperationMethod<
-  WebAnalyticsFetchLlmsTxtRequest,
+export const fetchWebAnalyticsLlmsTxt: API.OperationMethod<
+  FetchWebAnalyticsLlmsTxtRequest,
   LlmsTxtFetchResponse,
-  WebAnalyticsFetchLlmsTxtError,
+  FetchWebAnalyticsLlmsTxtError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: WebAnalyticsFetchLlmsTxtRequest,
+  input: FetchWebAnalyticsLlmsTxtRequest,
   output: LlmsTxtFetchResponse,
   errors: [BadRequest],
   protocol: PosthogProtocol,

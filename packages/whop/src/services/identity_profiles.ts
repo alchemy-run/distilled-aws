@@ -49,45 +49,20 @@ export class UnprocessableEntity
     [{ status: 422 }],
   ) {}
 
-/** The kind of identity profile (individual vs business). */
-export type IdentityProfileKinds = "individual" | "business";
-export const IdentityProfileKinds = /*@__PURE__*/ S.String;
-
-/** Derived verification status for an identity profile. */
-export type IdentityProfileStatuses =
-  | "not_started"
-  | "pending"
-  | "manual_review"
-  | "approved"
-  | "rejected"
-  | "action_required";
-export const IdentityProfileStatuses = /*@__PURE__*/ S.String;
-
-export interface ListIdentityProfileRequest {
-  after?: string;
-  before?: string;
-  first?: number;
-  last?: number;
-  company_id?: string;
-  profile_type?: IdentityProfileKinds | (string & {});
-  status?: IdentityProfileStatuses | (string & {});
+export interface GetIdentityProfileRequest {
+  /** The unique identifier of the identity profile (idpf_xxx). */
+  id: string;
 }
-export const ListIdentityProfileRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetIdentityProfileRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    after: S.optional(S.String.pipe(T.Query())),
-    before: S.optional(S.String.pipe(T.Query())),
-    first: S.optional(S.Number.pipe(T.Query())),
-    last: S.optional(S.Number.pipe(T.Query())),
-    company_id: S.optional(S.String.pipe(T.Query())),
-    profile_type: S.optional(IdentityProfileKinds.pipe(T.Query())),
-    status: S.optional(IdentityProfileStatuses.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/identity_profiles", code: 200 })),
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/identity_profiles/{id}", code: 200 })),
 ).annotate({
-  identifier: "ListIdentityProfileRequest",
-}) as any as S.Schema<ListIdentityProfileRequest>;
+  identifier: "GetIdentityProfileRequest",
+}) as any as S.Schema<GetIdentityProfileRequest>;
 
 /** Registered business address reported by the identity provider. Present on `business` profiles. */
-export interface IdentityProfileListItemBusinessAddress {
+export interface IdentityProfileBusinessAddress {
   /** The city of the address. */
   city: string | null;
   /** The country of the address. */
@@ -101,43 +76,41 @@ export interface IdentityProfileListItemBusinessAddress {
   /** The state of the address. */
   state: string | null;
 }
-export const IdentityProfileListItemBusinessAddress = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      city: S.NullOr(S.String),
-      country: S.NullOr(S.String),
-      line1: S.NullOr(S.String),
-      line2: S.NullOr(S.String),
-      postal_code: S.NullOr(S.String),
-      state: S.NullOr(S.String),
-    }),
+export const IdentityProfileBusinessAddress = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    city: S.NullOr(S.String),
+    country: S.NullOr(S.String),
+    line1: S.NullOr(S.String),
+    line2: S.NullOr(S.String),
+    postal_code: S.NullOr(S.String),
+    state: S.NullOr(S.String),
+  }),
 ).annotate({
-  identifier: "IdentityProfileListItemBusinessAddress",
-}) as any as S.Schema<IdentityProfileListItemBusinessAddress>;
+  identifier: "IdentityProfileBusinessAddress",
+}) as any as S.Schema<IdentityProfileBusinessAddress>;
 
 /** A company is a seller on Whop. Companies own products, manage members, and receive payouts. */
-export interface IdentityProfileListItemLinkedCompaniesItem {
+export interface IdentityProfileLinkedCompaniesItem {
   /** The unique identifier for the company. */
   id: string;
   /** The display name of the company shown to customers. */
   title: string;
 }
-export const IdentityProfileListItemLinkedCompaniesItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.String,
-      title: S.String,
-    }),
-  ).annotate({
-    identifier: "IdentityProfileListItemLinkedCompaniesItem",
-  }) as any as S.Schema<IdentityProfileListItemLinkedCompaniesItem>;
+export const IdentityProfileLinkedCompaniesItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    title: S.String,
+  }),
+).annotate({
+  identifier: "IdentityProfileLinkedCompaniesItem",
+}) as any as S.Schema<IdentityProfileLinkedCompaniesItem>;
 
 /** The companies this identity profile is currently linked to. Only populated for direct Whop user sessions; always empty when authenticated via API key, app, or OAuth scope (a single identity can be linked to companies the calling platform is not entitled to see). */
-export type IdentityProfileListItemLinkedCompaniesList =
-  Array<IdentityProfileListItemLinkedCompaniesItem>;
-export const IdentityProfileListItemLinkedCompaniesList = /*@__PURE__*/ S.Array(
-  IdentityProfileListItemLinkedCompaniesItem,
-) as any as S.Schema<IdentityProfileListItemLinkedCompaniesList>;
+export type IdentityProfileLinkedCompaniesList =
+  Array<IdentityProfileLinkedCompaniesItem>;
+export const IdentityProfileLinkedCompaniesList = /*@__PURE__*/ S.Array(
+  IdentityProfileLinkedCompaniesItem,
+) as any as S.Schema<IdentityProfileLinkedCompaniesList>;
 
 /** The granular calculated statuses reflecting payout account KYC and payout readiness. */
 export type PayoutAccountCalculatedStatuses =
@@ -153,10 +126,18 @@ export type PayoutAccountCalculatedStatuses =
 export const PayoutAccountCalculatedStatuses = /*@__PURE__*/ S.String;
 
 /** Residential address reported by the identity provider. Present on `individual` profiles. */
-export type IdentityProfileListItemPersonalAddress =
-  IdentityProfileListItemBusinessAddress;
-export const IdentityProfileListItemPersonalAddress =
-  IdentityProfileListItemBusinessAddress;
+export type IdentityProfilePersonalAddress = IdentityProfileBusinessAddress;
+export const IdentityProfilePersonalAddress = IdentityProfileBusinessAddress;
+
+/** Derived verification status for an identity profile. */
+export type IdentityProfileStatuses =
+  | "not_started"
+  | "pending"
+  | "manual_review"
+  | "approved"
+  | "rejected"
+  | "action_required";
+export const IdentityProfileStatuses = /*@__PURE__*/ S.String;
 
 /** An error code for a verification attempt. */
 export type VerificationErrorCodes =
@@ -201,7 +182,7 @@ export type VerificationStatuses =
 export const VerificationStatuses = /*@__PURE__*/ S.String;
 
 /** An identity verification session used to confirm a person or entity's identity for payout account eligibility. */
-export interface IdentityProfileListItemVerificationsItem {
+export interface IdentityProfileVerificationsItem {
   /** When the verification record was created. */
   created_at: string;
   /** The numeric id of the verification record. */
@@ -215,31 +196,162 @@ export interface IdentityProfileListItemVerificationsItem {
   /** The current status of this verification session. */
   status: VerificationStatuses;
 }
-export const IdentityProfileListItemVerificationsItem = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      created_at: S.String,
-      id: S.String,
-      last_error_code: S.NullOr(VerificationErrorCodes),
-      last_error_reason: S.NullOr(S.String),
-      session_url: S.NullOr(S.String),
-      status: VerificationStatuses,
-    }),
+export const IdentityProfileVerificationsItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    created_at: S.String,
+    id: S.String,
+    last_error_code: S.NullOr(VerificationErrorCodes),
+    last_error_reason: S.NullOr(S.String),
+    session_url: S.NullOr(S.String),
+    status: VerificationStatuses,
+  }),
 ).annotate({
-  identifier: "IdentityProfileListItemVerificationsItem",
-}) as any as S.Schema<IdentityProfileListItemVerificationsItem>;
+  identifier: "IdentityProfileVerificationsItem",
+}) as any as S.Schema<IdentityProfileVerificationsItem>;
+
+/** All verification attempts attached to this identity profile, ordered most-recent first. */
+export type IdentityProfileVerificationsList =
+  Array<IdentityProfileVerificationsItem>;
+export const IdentityProfileVerificationsList = /*@__PURE__*/ S.Array(
+  IdentityProfileVerificationsItem,
+) as any as S.Schema<IdentityProfileVerificationsList>;
+
+/** A consolidated identity or business profile synced from verification provider data. */
+export interface IdentityProfile {
+  /** Registered business address reported by the identity provider. Present on `business` profiles. */
+  business_address: IdentityProfileBusinessAddress | null;
+  /** Business entity name. Present on `business` profiles. */
+  business_name: string | null;
+  /** Reported legal structure of a business profile (e.g. `corp`, `llc`). Provider-specific values; present on `business` profiles. */
+  business_structure: string | null;
+  /** ISO 3166-1 alpha-2 country code reported by the identity provider, such as `US` or `GB`. For individuals this is the country of citizenship or residence; for businesses, the country of incorporation. */
+  country: string | null;
+  /** When the identity profile was first created. */
+  created_at: string;
+  /** ISO date (`YYYY-MM-DD`) reported by the identity provider. Present on `individual` profiles. */
+  date_of_birth: string | null;
+  /** Email address reported by the identity provider. Typically present on `individual` profiles. */
+  email: string | null;
+  /** Individual's first name. */
+  first_name: string | null;
+  /** The tag of the identity profile (idpf_xxx). */
+  id: string;
+  /** Individual's last name. */
+  last_name: string | null;
+  /** The companies this identity profile is currently linked to. Only populated for direct Whop user sessions; always empty when authenticated via API key, app, or OAuth scope (a single identity can be linked to companies the calling platform is not entitled to see). */
+  linked_companies: IdentityProfileLinkedCompaniesList;
+  /** Progress of payout-account setup for this profile, independent of holds. `connected` means onboarding is complete; a `connected` status paired with `payouts_enabled: false` indicates an active account restriction rather than incomplete setup. */
+  payout_status: PayoutAccountCalculatedStatuses;
+  /** Whether this profile can receive payouts right now. True only when payout onboarding is complete and no payout holds are active on the linked account. Treat this as the single source of truth for payout readiness. */
+  payouts_enabled: boolean;
+  /** Residential address reported by the identity provider. Present on `individual` profiles. */
+  personal_address: IdentityProfileBusinessAddress | null;
+  /** Phone number reported by the identity provider. Typically present on `individual` profiles. */
+  phone: string | null;
+  /** Whether this is an 'individual' or 'business' profile. */
+  profile_type: string;
+  /** Derived verification status across all linked verifications. Returns `action_required` whenever the profile has an open request for information (whether a verification, payout, or audit RFI) — i.e. the merchant must submit something before it is in good standing. */
+  status: IdentityProfileStatuses;
+  /** When the identity profile was last synced from a verification. */
+  updated_at: string;
+  /** All verification attempts attached to this identity profile, ordered most-recent first. */
+  verifications: IdentityProfileVerificationsList;
+}
+export const IdentityProfile = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    business_address: S.NullOr(IdentityProfileBusinessAddress),
+    business_name: S.NullOr(S.String),
+    business_structure: S.NullOr(S.String),
+    country: S.NullOr(S.String),
+    created_at: S.String,
+    date_of_birth: S.NullOr(S.String),
+    email: S.NullOr(S.String),
+    first_name: S.NullOr(S.String),
+    id: S.String,
+    last_name: S.NullOr(S.String),
+    linked_companies: IdentityProfileLinkedCompaniesList,
+    payout_status: PayoutAccountCalculatedStatuses,
+    payouts_enabled: S.Boolean,
+    personal_address: S.NullOr(IdentityProfileBusinessAddress),
+    phone: S.NullOr(S.String),
+    profile_type: S.String,
+    status: IdentityProfileStatuses,
+    updated_at: S.String,
+    verifications: IdentityProfileVerificationsList,
+  }),
+).annotate({
+  identifier: "IdentityProfile",
+}) as any as S.Schema<IdentityProfile>;
+
+/** The kind of identity profile (individual vs business). */
+export type IdentityProfileKinds = "individual" | "business";
+export const IdentityProfileKinds = /*@__PURE__*/ S.String;
+
+export interface ListIdentityProfileRequest {
+  after?: string;
+  before?: string;
+  first?: number;
+  last?: number;
+  company_id?: string;
+  profile_type?: IdentityProfileKinds | (string & {});
+  status?: IdentityProfileStatuses | (string & {});
+}
+export const ListIdentityProfileRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    after: S.optional(S.String.pipe(T.Query())),
+    before: S.optional(S.String.pipe(T.Query())),
+    first: S.optional(S.Number.pipe(T.Query())),
+    last: S.optional(S.Number.pipe(T.Query())),
+    company_id: S.optional(S.String.pipe(T.Query())),
+    profile_type: S.optional(IdentityProfileKinds.pipe(T.Query())),
+    status: S.optional(IdentityProfileStatuses.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/identity_profiles", code: 200 })),
+).annotate({
+  identifier: "ListIdentityProfileRequest",
+}) as any as S.Schema<ListIdentityProfileRequest>;
+
+/** Registered business address reported by the identity provider. Present on `business` profiles. */
+export type IdentityProfileListItemBusinessAddress =
+  IdentityProfileBusinessAddress;
+export const IdentityProfileListItemBusinessAddress =
+  IdentityProfileBusinessAddress;
+
+/** A company is a seller on Whop. Companies own products, manage members, and receive payouts. */
+export type IdentityProfileListItemLinkedCompaniesItem =
+  IdentityProfileLinkedCompaniesItem;
+export const IdentityProfileListItemLinkedCompaniesItem =
+  IdentityProfileLinkedCompaniesItem;
+
+/** The companies this identity profile is currently linked to. Only populated for direct Whop user sessions; always empty when authenticated via API key, app, or OAuth scope (a single identity can be linked to companies the calling platform is not entitled to see). */
+export type IdentityProfileListItemLinkedCompaniesList =
+  Array<IdentityProfileLinkedCompaniesItem>;
+export const IdentityProfileListItemLinkedCompaniesList = /*@__PURE__*/ S.Array(
+  IdentityProfileLinkedCompaniesItem,
+) as any as S.Schema<IdentityProfileListItemLinkedCompaniesList>;
+
+/** Residential address reported by the identity provider. Present on `individual` profiles. */
+export type IdentityProfileListItemPersonalAddress =
+  IdentityProfileBusinessAddress;
+export const IdentityProfileListItemPersonalAddress =
+  IdentityProfileBusinessAddress;
+
+/** An identity verification session used to confirm a person or entity's identity for payout account eligibility. */
+export type IdentityProfileListItemVerificationsItem =
+  IdentityProfileVerificationsItem;
+export const IdentityProfileListItemVerificationsItem =
+  IdentityProfileVerificationsItem;
 
 /** All verification attempts attached to this identity profile, ordered most-recent first. */
 export type IdentityProfileListItemVerificationsList =
-  Array<IdentityProfileListItemVerificationsItem>;
+  Array<IdentityProfileVerificationsItem>;
 export const IdentityProfileListItemVerificationsList = /*@__PURE__*/ S.Array(
-  IdentityProfileListItemVerificationsItem,
+  IdentityProfileVerificationsItem,
 ) as any as S.Schema<IdentityProfileListItemVerificationsList>;
 
 /** A consolidated identity or business profile synced from verification provider data. */
 export interface IdentityProfileListItem {
   /** Registered business address reported by the identity provider. Present on `business` profiles. */
-  business_address: IdentityProfileListItemBusinessAddress | null;
+  business_address: IdentityProfileBusinessAddress | null;
   /** Business entity name. Present on `business` profiles. */
   business_name: string | null;
   /** Reported legal structure of a business profile (e.g. `corp`, `llc`). Provider-specific values; present on `business` profiles. */
@@ -265,7 +377,7 @@ export interface IdentityProfileListItem {
   /** Whether this profile can receive payouts right now. True only when payout onboarding is complete and no payout holds are active on the linked account. Treat this as the single source of truth for payout readiness. */
   payouts_enabled: boolean;
   /** Residential address reported by the identity provider. Present on `individual` profiles. */
-  personal_address: IdentityProfileListItemBusinessAddress | null;
+  personal_address: IdentityProfileBusinessAddress | null;
   /** Phone number reported by the identity provider. Typically present on `individual` profiles. */
   phone: string | null;
   /** Whether this is an 'individual' or 'business' profile. */
@@ -279,7 +391,7 @@ export interface IdentityProfileListItem {
 }
 export const IdentityProfileListItem = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    business_address: S.NullOr(IdentityProfileListItemBusinessAddress),
+    business_address: S.NullOr(IdentityProfileBusinessAddress),
     business_name: S.NullOr(S.String),
     business_structure: S.NullOr(S.String),
     country: S.NullOr(S.String),
@@ -292,7 +404,7 @@ export const IdentityProfileListItem = /*@__PURE__*/ S.suspend(() =>
     linked_companies: IdentityProfileListItemLinkedCompaniesList,
     payout_status: PayoutAccountCalculatedStatuses,
     payouts_enabled: S.Boolean,
-    personal_address: S.NullOr(IdentityProfileListItemBusinessAddress),
+    personal_address: S.NullOr(IdentityProfileBusinessAddress),
     phone: S.NullOr(S.String),
     profile_type: S.String,
     status: IdentityProfileStatuses,
@@ -374,16 +486,16 @@ export const ListVerificationsIdentityProfileRequest = /*@__PURE__*/ S.suspend(
 
 /** An identity verification session used to confirm a person or entity's identity for payout account eligibility. */
 export type ListVerificationsIdentityProfileResponseDataItem =
-  IdentityProfileListItemVerificationsItem;
+  IdentityProfileVerificationsItem;
 export const ListVerificationsIdentityProfileResponseDataItem =
-  IdentityProfileListItemVerificationsItem;
+  IdentityProfileVerificationsItem;
 
 /** A list of nodes. */
 export type ListVerificationsIdentityProfileResponseDataList =
-  Array<IdentityProfileListItemVerificationsItem>;
+  Array<IdentityProfileVerificationsItem>;
 export const ListVerificationsIdentityProfileResponseDataList =
   /*@__PURE__*/ S.Array(
-    IdentityProfileListItemVerificationsItem,
+    IdentityProfileVerificationsItem,
   ) as any as S.Schema<ListVerificationsIdentityProfileResponseDataList>;
 
 export interface ListVerificationsIdentityProfileResponse {
@@ -402,123 +514,6 @@ export const ListVerificationsIdentityProfileResponse = /*@__PURE__*/ S.suspend(
   identifier: "ListVerificationsIdentityProfileResponse",
 }) as any as S.Schema<ListVerificationsIdentityProfileResponse>;
 
-export interface RetrieveIdentityProfileRequest {
-  /** The unique identifier of the identity profile (idpf_xxx). */
-  id: string;
-}
-export const RetrieveIdentityProfileRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/identity_profiles/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveIdentityProfileRequest",
-}) as any as S.Schema<RetrieveIdentityProfileRequest>;
-
-/** Registered business address reported by the identity provider. Present on `business` profiles. */
-export type IdentityProfileBusinessAddress =
-  IdentityProfileListItemBusinessAddress;
-export const IdentityProfileBusinessAddress =
-  IdentityProfileListItemBusinessAddress;
-
-/** A company is a seller on Whop. Companies own products, manage members, and receive payouts. */
-export type IdentityProfileLinkedCompaniesItem =
-  IdentityProfileListItemLinkedCompaniesItem;
-export const IdentityProfileLinkedCompaniesItem =
-  IdentityProfileListItemLinkedCompaniesItem;
-
-/** The companies this identity profile is currently linked to. Only populated for direct Whop user sessions; always empty when authenticated via API key, app, or OAuth scope (a single identity can be linked to companies the calling platform is not entitled to see). */
-export type IdentityProfileLinkedCompaniesList =
-  Array<IdentityProfileListItemLinkedCompaniesItem>;
-export const IdentityProfileLinkedCompaniesList = /*@__PURE__*/ S.Array(
-  IdentityProfileListItemLinkedCompaniesItem,
-) as any as S.Schema<IdentityProfileLinkedCompaniesList>;
-
-/** Residential address reported by the identity provider. Present on `individual` profiles. */
-export type IdentityProfilePersonalAddress =
-  IdentityProfileListItemBusinessAddress;
-export const IdentityProfilePersonalAddress =
-  IdentityProfileListItemBusinessAddress;
-
-/** An identity verification session used to confirm a person or entity's identity for payout account eligibility. */
-export type IdentityProfileVerificationsItem =
-  IdentityProfileListItemVerificationsItem;
-export const IdentityProfileVerificationsItem =
-  IdentityProfileListItemVerificationsItem;
-
-/** All verification attempts attached to this identity profile, ordered most-recent first. */
-export type IdentityProfileVerificationsList =
-  Array<IdentityProfileListItemVerificationsItem>;
-export const IdentityProfileVerificationsList = /*@__PURE__*/ S.Array(
-  IdentityProfileListItemVerificationsItem,
-) as any as S.Schema<IdentityProfileVerificationsList>;
-
-/** A consolidated identity or business profile synced from verification provider data. */
-export interface IdentityProfile {
-  /** Registered business address reported by the identity provider. Present on `business` profiles. */
-  business_address: IdentityProfileListItemBusinessAddress | null;
-  /** Business entity name. Present on `business` profiles. */
-  business_name: string | null;
-  /** Reported legal structure of a business profile (e.g. `corp`, `llc`). Provider-specific values; present on `business` profiles. */
-  business_structure: string | null;
-  /** ISO 3166-1 alpha-2 country code reported by the identity provider, such as `US` or `GB`. For individuals this is the country of citizenship or residence; for businesses, the country of incorporation. */
-  country: string | null;
-  /** When the identity profile was first created. */
-  created_at: string;
-  /** ISO date (`YYYY-MM-DD`) reported by the identity provider. Present on `individual` profiles. */
-  date_of_birth: string | null;
-  /** Email address reported by the identity provider. Typically present on `individual` profiles. */
-  email: string | null;
-  /** Individual's first name. */
-  first_name: string | null;
-  /** The tag of the identity profile (idpf_xxx). */
-  id: string;
-  /** Individual's last name. */
-  last_name: string | null;
-  /** The companies this identity profile is currently linked to. Only populated for direct Whop user sessions; always empty when authenticated via API key, app, or OAuth scope (a single identity can be linked to companies the calling platform is not entitled to see). */
-  linked_companies: IdentityProfileLinkedCompaniesList;
-  /** Progress of payout-account setup for this profile, independent of holds. `connected` means onboarding is complete; a `connected` status paired with `payouts_enabled: false` indicates an active account restriction rather than incomplete setup. */
-  payout_status: PayoutAccountCalculatedStatuses;
-  /** Whether this profile can receive payouts right now. True only when payout onboarding is complete and no payout holds are active on the linked account. Treat this as the single source of truth for payout readiness. */
-  payouts_enabled: boolean;
-  /** Residential address reported by the identity provider. Present on `individual` profiles. */
-  personal_address: IdentityProfileListItemBusinessAddress | null;
-  /** Phone number reported by the identity provider. Typically present on `individual` profiles. */
-  phone: string | null;
-  /** Whether this is an 'individual' or 'business' profile. */
-  profile_type: string;
-  /** Derived verification status across all linked verifications. Returns `action_required` whenever the profile has an open request for information (whether a verification, payout, or audit RFI) — i.e. the merchant must submit something before it is in good standing. */
-  status: IdentityProfileStatuses;
-  /** When the identity profile was last synced from a verification. */
-  updated_at: string;
-  /** All verification attempts attached to this identity profile, ordered most-recent first. */
-  verifications: IdentityProfileVerificationsList;
-}
-export const IdentityProfile = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    business_address: S.NullOr(IdentityProfileListItemBusinessAddress),
-    business_name: S.NullOr(S.String),
-    business_structure: S.NullOr(S.String),
-    country: S.NullOr(S.String),
-    created_at: S.String,
-    date_of_birth: S.NullOr(S.String),
-    email: S.NullOr(S.String),
-    first_name: S.NullOr(S.String),
-    id: S.String,
-    last_name: S.NullOr(S.String),
-    linked_companies: IdentityProfileLinkedCompaniesList,
-    payout_status: PayoutAccountCalculatedStatuses,
-    payouts_enabled: S.Boolean,
-    personal_address: S.NullOr(IdentityProfileListItemBusinessAddress),
-    phone: S.NullOr(S.String),
-    profile_type: S.String,
-    status: IdentityProfileStatuses,
-    updated_at: S.String,
-    verifications: IdentityProfileVerificationsList,
-  }),
-).annotate({
-  identifier: "IdentityProfile",
-}) as any as S.Schema<IdentityProfile>;
-
 export interface UnlinkIdentityProfileRequest {
   /** The ID of the IdentityProfile to unlink. */
   id: string;
@@ -534,6 +529,26 @@ export const UnlinkIdentityProfileRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "UnlinkIdentityProfileRequest",
 }) as any as S.Schema<UnlinkIdentityProfileRequest>;
+
+export type GetIdentityProfileError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | WhopOpError;
+/** Retrieve identity profile [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing identity profile. Required permissions: - `identity:read` */
+export const getIdentityProfile: API.OperationMethod<
+  GetIdentityProfileRequest,
+  IdentityProfile,
+  GetIdentityProfileError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetIdentityProfileRequest,
+  output: IdentityProfile,
+  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
 
 export type ListIdentityProfileError =
   | BadRequest
@@ -579,7 +594,7 @@ export const listVerificationsIdentityProfile: API.PaginatedOperationMethod<
   ListVerificationsIdentityProfileResponse,
   ListVerificationsIdentityProfileError,
   WhopOpContext,
-  IdentityProfileListItemVerificationsItem
+  IdentityProfileVerificationsItem
 > = /*@__PURE__*/ API.makePaginated(
   () => ({
     input: ListVerificationsIdentityProfileRequest,
@@ -598,26 +613,6 @@ export const listVerificationsIdentityProfile: API.PaginatedOperationMethod<
   }),
   paginateRelay,
 ) as any;
-
-export type RetrieveIdentityProfileError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | WhopOpError;
-/** Retrieve identity profile [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing identity profile. Required permissions: - `identity:read` */
-export const retrieveIdentityProfile: API.OperationMethod<
-  RetrieveIdentityProfileRequest,
-  IdentityProfile,
-  RetrieveIdentityProfileError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveIdentityProfileRequest,
-  output: IdentityProfile,
-  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
 
 export type UnlinkIdentityProfileError =
   | BadRequest

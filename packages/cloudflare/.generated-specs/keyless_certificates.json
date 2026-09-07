@@ -14,7 +14,15 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "keyDictionary": {
+      "bundleMethod": "bundle_method",
+      "createdOn": "created_on",
+      "modifiedOn": "modified_on",
+      "privateIp": "private_ip",
+      "vnetId": "vnet_id"
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.keyless_certificates#CreateRequestBundleMethod": {
@@ -59,61 +67,6 @@
         }
       }
     },
-    "com.cloudflare.keyless_certificates#CreateRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "certificate": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The zone's SSL certificate or SSL certificate and intermediate(s).",
-            "smithy.api#required": {}
-          }
-        },
-        "host": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The keyless SSL name.",
-            "smithy.api#required": {}
-          }
-        },
-        "port": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The keyless SSL port used to communicate between Cloudflare and the client's Keyless SSL server.",
-            "smithy.api#required": {}
-          }
-        },
-        "bundle_method": {
-          "target": "com.cloudflare.keyless_certificates#CreateRequestBundleMethod",
-          "traits": {
-            "smithy.api#documentation": "A ubiquitous bundle has the highest probability of being verified everywhere, even by clients using outdated or unusual trust stores. An optimal bundle uses the shortest chain and newest intermediates. And the force bundle verifies the chain, but does not otherwise modify it."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The keyless SSL name."
-          }
-        },
-        "tunnel": {
-          "target": "com.cloudflare.keyless_certificates#CreateRequestTunnel",
-          "traits": {
-            "smithy.api#documentation": "Configuration for using Keyless SSL through a Cloudflare Tunnel."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.keyless_certificates#CreateResponsePermissionsList": {
       "type": "list",
       "member": {
@@ -156,158 +109,6 @@
         }
       }
     },
-    "com.cloudflare.keyless_certificates#CreateResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Keyless certificate identifier tag.",
-            "smithy.api#required": {}
-          }
-        },
-        "created_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the Keyless SSL was created.",
-            "smithy.api#required": {}
-          }
-        },
-        "enabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether or not the Keyless SSL is on or off.",
-            "smithy.api#required": {}
-          }
-        },
-        "host": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The keyless SSL name.",
-            "smithy.api#required": {}
-          }
-        },
-        "modified_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the Keyless SSL was last modified.",
-            "smithy.api#required": {}
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The keyless SSL name.",
-            "smithy.api#required": {}
-          }
-        },
-        "permissions": {
-          "target": "com.cloudflare.keyless_certificates#CreateResponsePermissionsList",
-          "traits": {
-            "smithy.api#documentation": "Available permissions for the Keyless SSL for the current user requesting the item.",
-            "smithy.api#required": {}
-          }
-        },
-        "port": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The keyless SSL port used to communicate between Cloudflare and the client's Keyless SSL server.",
-            "smithy.api#required": {}
-          }
-        },
-        "status": {
-          "target": "com.cloudflare.keyless_certificates#CreateResponseStatus",
-          "traits": {
-            "smithy.api#documentation": "Status of the Keyless SSL.",
-            "smithy.api#required": {}
-          }
-        },
-        "tunnel": {
-          "target": "com.cloudflare.keyless_certificates#CreateResponseTunnel",
-          "traits": {
-            "smithy.api#documentation": "Configuration for using Keyless SSL through a Cloudflare Tunnel."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.keyless_certificates#Create": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.keyless_certificates#CreateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.keyless_certificates#CreateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "/zones/{zone_id}/keyless_certificates",
-          "code": 200
-        },
-        "smithy.api#documentation": "Creates a Keyless SSL configuration that allows SSL/TLS termination without exposing private keys to Cloudflare. Keys remain on your infrastructure."
-      }
-    },
-    "com.cloudflare.keyless_certificates#DeleteRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "keyless_certificate_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.keyless_certificates#DeleteResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.keyless_certificates#Delete": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.keyless_certificates#DeleteRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.keyless_certificates#DeleteResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "/zones/{zone_id}/keyless_certificates/{keyless_certificate_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Removes a Keyless SSL configuration. SSL connections will no longer use the keyless server for cryptographic operations.",
-        "smithy.api#idempotent": {}
-      }
-    },
     "com.cloudflare.keyless_certificates#EditRequestTunnel": {
       "type": "structure",
       "members": {
@@ -325,60 +126,6 @@
             "smithy.api#required": {}
           }
         }
-      }
-    },
-    "com.cloudflare.keyless_certificates#EditRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "keyless_certificate_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "enabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether or not the Keyless SSL is on or off."
-          }
-        },
-        "host": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The keyless SSL name."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The keyless SSL name."
-          }
-        },
-        "port": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The keyless SSL port used to communicate between Cloudflare and the client's Keyless SSL server."
-          }
-        },
-        "tunnel": {
-          "target": "com.cloudflare.keyless_certificates#EditRequestTunnel",
-          "traits": {
-            "smithy.api#documentation": "Configuration for using Keyless SSL through a Cloudflare Tunnel."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.keyless_certificates#EditResponsePermissionsList": {
@@ -423,125 +170,6 @@
         }
       }
     },
-    "com.cloudflare.keyless_certificates#EditResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Keyless certificate identifier tag.",
-            "smithy.api#required": {}
-          }
-        },
-        "created_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the Keyless SSL was created.",
-            "smithy.api#required": {}
-          }
-        },
-        "enabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether or not the Keyless SSL is on or off.",
-            "smithy.api#required": {}
-          }
-        },
-        "host": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The keyless SSL name.",
-            "smithy.api#required": {}
-          }
-        },
-        "modified_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the Keyless SSL was last modified.",
-            "smithy.api#required": {}
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The keyless SSL name.",
-            "smithy.api#required": {}
-          }
-        },
-        "permissions": {
-          "target": "com.cloudflare.keyless_certificates#EditResponsePermissionsList",
-          "traits": {
-            "smithy.api#documentation": "Available permissions for the Keyless SSL for the current user requesting the item.",
-            "smithy.api#required": {}
-          }
-        },
-        "port": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The keyless SSL port used to communicate between Cloudflare and the client's Keyless SSL server.",
-            "smithy.api#required": {}
-          }
-        },
-        "status": {
-          "target": "com.cloudflare.keyless_certificates#EditResponseStatus",
-          "traits": {
-            "smithy.api#documentation": "Status of the Keyless SSL.",
-            "smithy.api#required": {}
-          }
-        },
-        "tunnel": {
-          "target": "com.cloudflare.keyless_certificates#EditResponseTunnel",
-          "traits": {
-            "smithy.api#documentation": "Configuration for using Keyless SSL through a Cloudflare Tunnel."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.keyless_certificates#Edit": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.keyless_certificates#EditRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.keyless_certificates#EditResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PATCH",
-          "uri": "/zones/{zone_id}/keyless_certificates/{keyless_certificate_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "This will update attributes of a Keyless SSL. Consists of one or more of the following:  host,name,port."
-      }
-    },
-    "com.cloudflare.keyless_certificates#GetRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "keyless_certificate_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.keyless_certificates#GetResponsePermissionsList": {
       "type": "list",
       "member": {
@@ -582,118 +210,6 @@
             "smithy.api#required": {}
           }
         }
-      }
-    },
-    "com.cloudflare.keyless_certificates#GetResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Keyless certificate identifier tag.",
-            "smithy.api#required": {}
-          }
-        },
-        "created_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the Keyless SSL was created.",
-            "smithy.api#required": {}
-          }
-        },
-        "enabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether or not the Keyless SSL is on or off.",
-            "smithy.api#required": {}
-          }
-        },
-        "host": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The keyless SSL name.",
-            "smithy.api#required": {}
-          }
-        },
-        "modified_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the Keyless SSL was last modified.",
-            "smithy.api#required": {}
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The keyless SSL name.",
-            "smithy.api#required": {}
-          }
-        },
-        "permissions": {
-          "target": "com.cloudflare.keyless_certificates#GetResponsePermissionsList",
-          "traits": {
-            "smithy.api#documentation": "Available permissions for the Keyless SSL for the current user requesting the item.",
-            "smithy.api#required": {}
-          }
-        },
-        "port": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The keyless SSL port used to communicate between Cloudflare and the client's Keyless SSL server.",
-            "smithy.api#required": {}
-          }
-        },
-        "status": {
-          "target": "com.cloudflare.keyless_certificates#GetResponseStatus",
-          "traits": {
-            "smithy.api#documentation": "Status of the Keyless SSL.",
-            "smithy.api#required": {}
-          }
-        },
-        "tunnel": {
-          "target": "com.cloudflare.keyless_certificates#GetResponseTunnel",
-          "traits": {
-            "smithy.api#documentation": "Configuration for using Keyless SSL through a Cloudflare Tunnel."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.keyless_certificates#Get": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.keyless_certificates#GetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.keyless_certificates#GetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/keyless_certificates/{keyless_certificate_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Get details for one Keyless SSL configuration.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.keyless_certificates#ListRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.keyless_certificates#ListResultItemPermissionsList": {
@@ -818,7 +334,490 @@
         "target": "com.cloudflare.keyless_certificates#ListResultItem"
       }
     },
-    "com.cloudflare.keyless_certificates#ListResponse": {
+    "com.cloudflare.keyless_certificates#KeylessCertificates": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.keyless_certificates#CreateKeylessCertificate"
+        },
+        {
+          "target": "com.cloudflare.keyless_certificates#DeleteKeylessCertificate"
+        },
+        {
+          "target": "com.cloudflare.keyless_certificates#GetKeylessCertificate"
+        },
+        {
+          "target": "com.cloudflare.keyless_certificates#ListKeylessCertificates"
+        },
+        {
+          "target": "com.cloudflare.keyless_certificates#PatchKeylessCertificate"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare KeylessCertificates",
+        "smithy.api#documentation": "Cloudflare API — keyless_certificates resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    },
+    "com.cloudflare.keyless_certificates#Forbidden": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.cloudflare.keyless_certificates#KeylessCertificateNotFound": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 1005,
+            "message": {
+              "includes": "Invalid or missing Keyless SSL"
+            }
+          }
+        ]
+      }
+    },
+    "com.cloudflare.keyless_certificates#KeylessSslNotAvailable": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 1067,
+            "message": {
+              "includes": "Keyless SSL is not available"
+            }
+          }
+        ]
+      }
+    },
+    "com.cloudflare.keyless_certificates#CreateKeylessCertificate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.keyless_certificates#CreateKeylessCertificateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.keyless_certificates#CreateKeylessCertificateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/zones/{zone_id}/keyless_certificates",
+          "code": 200
+        },
+        "smithy.api#documentation": "Creates a Keyless SSL configuration that allows SSL/TLS termination without exposing private keys to Cloudflare. Keys remain on your infrastructure."
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.keyless_certificates#KeylessSslNotAvailable"
+        },
+        {
+          "target": "com.cloudflare.keyless_certificates#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.keyless_certificates#CreateKeylessCertificateRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "certificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The zone's SSL certificate or SSL certificate and intermediate(s).",
+            "smithy.api#required": {}
+          }
+        },
+        "host": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The keyless SSL name.",
+            "smithy.api#required": {}
+          }
+        },
+        "port": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The keyless SSL port used to communicate between Cloudflare and the client's Keyless SSL server.",
+            "smithy.api#required": {}
+          }
+        },
+        "bundle_method": {
+          "target": "com.cloudflare.keyless_certificates#CreateRequestBundleMethod",
+          "traits": {
+            "smithy.api#documentation": "A ubiquitous bundle has the highest probability of being verified everywhere, even by clients using outdated or unusual trust stores. An optimal bundle uses the shortest chain and newest intermediates. And the force bundle verifies the chain, but does not otherwise modify it."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The keyless SSL name."
+          }
+        },
+        "tunnel": {
+          "target": "com.cloudflare.keyless_certificates#CreateRequestTunnel",
+          "traits": {
+            "smithy.api#documentation": "Configuration for using Keyless SSL through a Cloudflare Tunnel."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.keyless_certificates#CreateKeylessCertificateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Keyless certificate identifier tag.",
+            "smithy.api#required": {}
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the Keyless SSL was created.",
+            "smithy.api#required": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not the Keyless SSL is on or off.",
+            "smithy.api#required": {}
+          }
+        },
+        "host": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The keyless SSL name.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the Keyless SSL was last modified.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The keyless SSL name.",
+            "smithy.api#required": {}
+          }
+        },
+        "permissions": {
+          "target": "com.cloudflare.keyless_certificates#CreateResponsePermissionsList",
+          "traits": {
+            "smithy.api#documentation": "Available permissions for the Keyless SSL for the current user requesting the item.",
+            "smithy.api#required": {}
+          }
+        },
+        "port": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The keyless SSL port used to communicate between Cloudflare and the client's Keyless SSL server.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.keyless_certificates#CreateResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the Keyless SSL.",
+            "smithy.api#required": {}
+          }
+        },
+        "tunnel": {
+          "target": "com.cloudflare.keyless_certificates#CreateResponseTunnel",
+          "traits": {
+            "smithy.api#documentation": "Configuration for using Keyless SSL through a Cloudflare Tunnel."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.keyless_certificates#DeleteKeylessCertificate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.keyless_certificates#DeleteKeylessCertificateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.keyless_certificates#DeleteKeylessCertificateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/zones/{zone_id}/keyless_certificates/{keyless_certificate_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Removes a Keyless SSL configuration. SSL connections will no longer use the keyless server for cryptographic operations.",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.keyless_certificates#KeylessCertificateNotFound"
+        },
+        {
+          "target": "com.cloudflare.keyless_certificates#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.keyless_certificates#DeleteKeylessCertificateRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "keyless_certificate_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.keyless_certificates#DeleteKeylessCertificateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.keyless_certificates#GetKeylessCertificate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.keyless_certificates#GetKeylessCertificateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.keyless_certificates#GetKeylessCertificateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/keyless_certificates/{keyless_certificate_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get details for one Keyless SSL configuration.",
+        "smithy.api#readonly": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.keyless_certificates#KeylessCertificateNotFound"
+        },
+        {
+          "target": "com.cloudflare.keyless_certificates#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.keyless_certificates#GetKeylessCertificateRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "keyless_certificate_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.keyless_certificates#GetKeylessCertificateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Keyless certificate identifier tag.",
+            "smithy.api#required": {}
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the Keyless SSL was created.",
+            "smithy.api#required": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not the Keyless SSL is on or off.",
+            "smithy.api#required": {}
+          }
+        },
+        "host": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The keyless SSL name.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the Keyless SSL was last modified.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The keyless SSL name.",
+            "smithy.api#required": {}
+          }
+        },
+        "permissions": {
+          "target": "com.cloudflare.keyless_certificates#GetResponsePermissionsList",
+          "traits": {
+            "smithy.api#documentation": "Available permissions for the Keyless SSL for the current user requesting the item.",
+            "smithy.api#required": {}
+          }
+        },
+        "port": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The keyless SSL port used to communicate between Cloudflare and the client's Keyless SSL server.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.keyless_certificates#GetResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the Keyless SSL.",
+            "smithy.api#required": {}
+          }
+        },
+        "tunnel": {
+          "target": "com.cloudflare.keyless_certificates#GetResponseTunnel",
+          "traits": {
+            "smithy.api#documentation": "Configuration for using Keyless SSL through a Cloudflare Tunnel."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.keyless_certificates#ListKeylessCertificates": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.keyless_certificates#ListKeylessCertificatesRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.keyless_certificates#ListKeylessCertificatesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/keyless_certificates",
+          "code": 200
+        },
+        "smithy.api#documentation": "List all Keyless SSL configurations for a given zone.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "single",
+          "items": "result"
+        }
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.keyless_certificates#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.keyless_certificates#ListKeylessCertificatesRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.keyless_certificates#ListKeylessCertificatesResponse": {
       "type": "structure",
       "members": {
         "result": {
@@ -833,48 +832,161 @@
         "smithy.api#output": {}
       }
     },
-    "com.cloudflare.keyless_certificates#List": {
+    "com.cloudflare.keyless_certificates#PatchKeylessCertificate": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.keyless_certificates#ListRequest"
+        "target": "com.cloudflare.keyless_certificates#PatchKeylessCertificateRequest"
       },
       "output": {
-        "target": "com.cloudflare.keyless_certificates#ListResponse"
+        "target": "com.cloudflare.keyless_certificates#PatchKeylessCertificateResponse"
       },
       "traits": {
         "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/keyless_certificates",
+          "method": "PATCH",
+          "uri": "/zones/{zone_id}/keyless_certificates/{keyless_certificate_id}",
           "code": 200
         },
-        "smithy.api#documentation": "List all Keyless SSL configurations for a given zone.",
-        "smithy.api#readonly": {}
+        "smithy.api#documentation": "This will update attributes of a Keyless SSL. Consists of one or more of the following:  host,name,port."
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.keyless_certificates#KeylessCertificateNotFound"
+        },
+        {
+          "target": "com.cloudflare.keyless_certificates#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.keyless_certificates#PatchKeylessCertificateRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "keyless_certificate_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not the Keyless SSL is on or off."
+          }
+        },
+        "host": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The keyless SSL name."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The keyless SSL name."
+          }
+        },
+        "port": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The keyless SSL port used to communicate between Cloudflare and the client's Keyless SSL server."
+          }
+        },
+        "tunnel": {
+          "target": "com.cloudflare.keyless_certificates#EditRequestTunnel",
+          "traits": {
+            "smithy.api#documentation": "Configuration for using Keyless SSL through a Cloudflare Tunnel."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
       }
     },
-    "com.cloudflare.keyless_certificates#KeylessCertificates": {
-      "type": "service",
-      "version": "4.0",
-      "operations": [
-        {
-          "target": "com.cloudflare.keyless_certificates#Create"
+    "com.cloudflare.keyless_certificates#PatchKeylessCertificateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Keyless certificate identifier tag.",
+            "smithy.api#required": {}
+          }
         },
-        {
-          "target": "com.cloudflare.keyless_certificates#Delete"
+        "created_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the Keyless SSL was created.",
+            "smithy.api#required": {}
+          }
         },
-        {
-          "target": "com.cloudflare.keyless_certificates#Edit"
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not the Keyless SSL is on or off.",
+            "smithy.api#required": {}
+          }
         },
-        {
-          "target": "com.cloudflare.keyless_certificates#Get"
+        "host": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The keyless SSL name.",
+            "smithy.api#required": {}
+          }
         },
-        {
-          "target": "com.cloudflare.keyless_certificates#List"
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the Keyless SSL was last modified.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The keyless SSL name.",
+            "smithy.api#required": {}
+          }
+        },
+        "permissions": {
+          "target": "com.cloudflare.keyless_certificates#EditResponsePermissionsList",
+          "traits": {
+            "smithy.api#documentation": "Available permissions for the Keyless SSL for the current user requesting the item.",
+            "smithy.api#required": {}
+          }
+        },
+        "port": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The keyless SSL port used to communicate between Cloudflare and the client's Keyless SSL server.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.keyless_certificates#EditResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the Keyless SSL.",
+            "smithy.api#required": {}
+          }
+        },
+        "tunnel": {
+          "target": "com.cloudflare.keyless_certificates#EditResponseTunnel",
+          "traits": {
+            "smithy.api#documentation": "Configuration for using Keyless SSL through a Cloudflare Tunnel."
+          }
         }
-      ],
+      },
       "traits": {
-        "com.cloudflare.protocols#v4Json": {},
-        "smithy.api#title": "Cloudflare KeylessCertificates",
-        "smithy.api#documentation": "Cloudflare API — keyless_certificates resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     }
   }

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.bounty_submissions#ListBountySubmissionsRequestStatus": {
@@ -1106,7 +1107,7 @@
         "smithy.api#documentation": "Create Bounty Submission\n\nCreates a submission on a workforce bounty. Include a `deliverable` payload — any combination of links and uploaded files, with at least one of the two — and the submission goes straight to review; create is the only step. For `data_capture` bounties, omit the deliverable: this starts a claimed attempt whose proof accumulates server-side, and the separate submit endpoint sends it to review once complete. Requires a user credential — account API keys cannot author submissions."
       }
     },
-    "com.whop.bounty_submissions#RetrieveBountySubmissionRequest": {
+    "com.whop.bounty_submissions#GetBountySubmissionRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -1129,10 +1130,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.bounty_submissions#RetrieveBountySubmission": {
+    "com.whop.bounty_submissions#GetBountySubmission": {
       "type": "operation",
       "input": {
-        "target": "com.whop.bounty_submissions#RetrieveBountySubmissionRequest"
+        "target": "com.whop.bounty_submissions#GetBountySubmissionRequest"
       },
       "output": {
         "target": "com.whop.bounty_submissions#BountySubmission"
@@ -1383,7 +1384,7 @@
           "target": "com.whop.bounty_submissions#CreateBountySubmission"
         },
         {
-          "target": "com.whop.bounty_submissions#RetrieveBountySubmission"
+          "target": "com.whop.bounty_submissions#GetBountySubmission"
         },
         {
           "target": "com.whop.bounty_submissions#CancelBountySubmission"

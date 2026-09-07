@@ -14,51 +14,19 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "keyDictionary": {
+      "aiInput": "ai-input",
+      "aiTrain": "ai-train",
+      "countryName": "country_name",
+      "dnssecValid": "dnssec_valid",
+      "ipv6Percentage": "IPv6Percentage",
+      "phishingV2": "phishing_v2",
+      "superCategoryId": "super_category_id"
+    },
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.cloudflare.url_scanner#ResponsesGetRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Account ID.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "response_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Response hash.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.url_scanner#ResponsesGet": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.url_scanner#ResponsesGetRequest"
-      },
-      "output": {
-        "target": "smithy.api#Unit"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/accounts/{account_id}/urlscanner/v2/responses/{response_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Returns the raw response of the network request. Find the `response_id` in the `data.requests.response.hash`.",
-        "smithy.api#readonly": {}
-      }
-    },
     "com.cloudflare.url_scanner#ScansBulkCreateRequestBodyItemCustomHeadersMap": {
       "type": "map",
       "key": {
@@ -159,61 +127,6 @@
       "type": "list",
       "member": {
         "target": "com.cloudflare.url_scanner#ScansBulkCreateRequestBodyItem"
-      }
-    },
-    "com.cloudflare.url_scanner#ScansBulkCreateRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Account ID.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.cloudflare.url_scanner#ScansBulkCreateRequestBodyList",
-          "traits": {
-            "smithy.api#documentation": "List of urls to scan (up to a 100).",
-            "smithy.api#httpPayload": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.url_scanner#ScansBulkCreateResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "smithy.api#String",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.url_scanner#ScansBulkCreate": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.url_scanner#ScansBulkCreateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.url_scanner#ScansBulkCreateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "/accounts/{account_id}/urlscanner/v2/bulk",
-          "code": 200
-        },
-        "smithy.api#documentation": "Submit URLs to scan. Check limits at https://developers.cloudflare.com/security-center/investigate/scan-limits/ and take into account scans submitted in bulk have lower priority and may take longer to finish."
       }
     },
     "com.cloudflare.url_scanner#ScansCreateRequestCountry": {
@@ -1444,162 +1357,6 @@
             "smithy.api#enumValue": "Unlisted"
           }
         }
-      }
-    },
-    "com.cloudflare.url_scanner#ScansCreateRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Account ID.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "url": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "agentReadiness": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Enable agent readiness checks."
-          }
-        },
-        "country": {
-          "target": "com.cloudflare.url_scanner#ScansCreateRequestCountry",
-          "traits": {
-            "smithy.api#documentation": "Country to geo egress from"
-          }
-        },
-        "customagent": {
-          "target": "smithy.api#String"
-        },
-        "customHeaders": {
-          "target": "com.cloudflare.url_scanner#ScansCreateRequestCustomHeadersMap",
-          "traits": {
-            "smithy.api#documentation": "Set custom headers."
-          }
-        },
-        "referer": {
-          "target": "smithy.api#String"
-        },
-        "screenshotsResolutions": {
-          "target": "com.cloudflare.url_scanner#ScansCreateRequestScreenshotsResolutionsList",
-          "traits": {
-            "smithy.api#documentation": "Take multiple screenshots targeting different device types."
-          }
-        },
-        "visibility": {
-          "target": "com.cloudflare.url_scanner#ScansCreateRequestVisibility",
-          "traits": {
-            "smithy.api#documentation": "The option `Public` means it will be included in listings like recent scans and search results. `Unlisted` means it will not be included in the aforementioned listings, users will need to have the scan's ID to access it. A a scan will be automatically marked as unlisted if it fails, if it contains potential PII or other sensitive material."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.url_scanner#ScansCreateResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "smithy.api#String",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.url_scanner#ScansCreate": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.url_scanner#ScansCreateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.url_scanner#ScansCreateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "/accounts/{account_id}/urlscanner/v2/scan",
-          "code": 200
-        },
-        "smithy.api#documentation": "Submit a URL to scan. Check limits at https://developers.cloudflare.com/security-center/investigate/scan-limits/."
-      }
-    },
-    "com.cloudflare.url_scanner#ScansDomRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Account ID.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "scan_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Scan UUID.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.url_scanner#ScansDom": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.url_scanner#ScansDomRequest"
-      },
-      "output": {
-        "target": "smithy.api#Unit"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/accounts/{account_id}/urlscanner/v2/dom/{scan_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Returns a plain text response, with the scan's DOM content as rendered by Chrome.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.url_scanner#ScansGetRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Account ID.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "scan_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Scan UUID.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.url_scanner#ScansGetResponseDataConsoleItemMessage": {
@@ -6998,105 +6755,6 @@
         }
       }
     },
-    "com.cloudflare.url_scanner#ScansGetResponse": {
-      "type": "structure",
-      "members": {
-        "data": {
-          "target": "com.cloudflare.url_scanner#ScansGetResponseData",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "lists": {
-          "target": "com.cloudflare.url_scanner#ScansGetResponseLists",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "meta": {
-          "target": "com.cloudflare.url_scanner#ScansGetResponseMeta",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "page": {
-          "target": "com.cloudflare.url_scanner#ScansGetResponsePage",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "scanner": {
-          "target": "com.cloudflare.url_scanner#ScansGetResponseScanner",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "stats": {
-          "target": "com.cloudflare.url_scanner#ScansGetResponseStats",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "task": {
-          "target": "com.cloudflare.url_scanner#ScansGetResponseTask",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "verdicts": {
-          "target": "com.cloudflare.url_scanner#ScansGetResponseVerdicts",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Raw response payload (operation does not use the standard v4 result envelope)."
-      }
-    },
-    "com.cloudflare.url_scanner#ScansGet": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.url_scanner#ScansGetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.url_scanner#ScansGetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/accounts/{account_id}/urlscanner/v2/result/{scan_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Get URL scan by uuid",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.url_scanner#ScansHarRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Account ID.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "scan_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Scan UUID.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.url_scanner#ScansHarResponseLogCreator": {
       "type": "structure",
       "members": {
@@ -7462,69 +7120,6 @@
         }
       }
     },
-    "com.cloudflare.url_scanner#ScansHarResponse": {
-      "type": "structure",
-      "members": {
-        "log": {
-          "target": "com.cloudflare.url_scanner#ScansHarResponseLog",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Raw response payload (operation does not use the standard v4 result envelope)."
-      }
-    },
-    "com.cloudflare.url_scanner#ScansHar": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.url_scanner#ScansHarRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.url_scanner#ScansHarResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/accounts/{account_id}/urlscanner/v2/har/{scan_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Get a URL scan's HAR file. See HAR spec at http://www.softwareishard.com/blog/har-12-spec/.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.url_scanner#ScansListRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Account ID.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "q": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Filter scans",
-            "smithy.api#httpQuery": "q"
-          }
-        },
-        "size": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Limit the number of objects in the response.",
-            "smithy.api#httpQuery": "size"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.url_scanner#ScansListResponseResultsItemPage": {
       "type": "structure",
       "members": {
@@ -7670,39 +7265,6 @@
         "target": "com.cloudflare.url_scanner#ScansListResponseResultsItem"
       }
     },
-    "com.cloudflare.url_scanner#ScansListResponse": {
-      "type": "structure",
-      "members": {
-        "results": {
-          "target": "com.cloudflare.url_scanner#ScansListResponseResultsList",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Raw response payload (operation does not use the standard v4 result envelope)."
-      }
-    },
-    "com.cloudflare.url_scanner#ScansList": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.url_scanner#ScansListRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.url_scanner#ScansListResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/accounts/{account_id}/urlscanner/v2/search",
-          "code": 200
-        },
-        "smithy.api#documentation": "Use a subset of ElasticSearch Query syntax to filter scans. Some example queries:<br/> <br/>- 'path:\"/bundles/jquery.js\"': Searches for scans who requested resources with the given path.<br/>- 'page.asn:AS24940 AND hash:xxx': Websites hosted in AS24940 where a resource with the given hash was downloaded.<br/>- 'page.domain:microsoft* AND verdicts.malicious:true AND NOT page.domain:microsoft.com': malicious scans whose hostname starts with \"microsoft\".<br/>- 'apikey:me AND date:[2025-01 TO 2025-02]': my scans from 2025 January to 2025 February.",
-        "smithy.api#readonly": {}
-      }
-    },
     "com.cloudflare.url_scanner#ScansScreenshotRequestResolution": {
       "type": "enum",
       "members": {
@@ -7726,7 +7288,508 @@
         }
       }
     },
-    "com.cloudflare.url_scanner#ScansScreenshotRequest": {
+    "com.cloudflare.url_scanner#UrlScanner": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.url_scanner#BulkCreateScans"
+        },
+        {
+          "target": "com.cloudflare.url_scanner#CreateScan"
+        },
+        {
+          "target": "com.cloudflare.url_scanner#DomScan"
+        },
+        {
+          "target": "com.cloudflare.url_scanner#GetRespons"
+        },
+        {
+          "target": "com.cloudflare.url_scanner#GetScan"
+        },
+        {
+          "target": "com.cloudflare.url_scanner#HarScan"
+        },
+        {
+          "target": "com.cloudflare.url_scanner#ListScans"
+        },
+        {
+          "target": "com.cloudflare.url_scanner#ScreenshotScan"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare UrlScanner",
+        "smithy.api#documentation": "Cloudflare API — url_scanner resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    },
+    "com.cloudflare.url_scanner#BulkCreateScans": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.url_scanner#BulkCreateScansRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.url_scanner#BulkCreateScansResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/urlscanner/v2/bulk",
+          "code": 200
+        },
+        "smithy.api#documentation": "Submit URLs to scan. Check limits at https://developers.cloudflare.com/security-center/investigate/scan-limits/ and take into account scans submitted in bulk have lower priority and may take longer to finish."
+      }
+    },
+    "com.cloudflare.url_scanner#BulkCreateScansRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.cloudflare.url_scanner#ScansBulkCreateRequestBodyList",
+          "traits": {
+            "smithy.api#documentation": "List of urls to scan (up to a 100).",
+            "smithy.api#httpPayload": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.url_scanner#BulkCreateScansResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.url_scanner#CreateScan": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.url_scanner#CreateScanRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.url_scanner#CreateScanResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/urlscanner/v2/scan",
+          "code": 200
+        },
+        "smithy.api#documentation": "Submit a URL to scan. Check limits at https://developers.cloudflare.com/security-center/investigate/scan-limits/."
+      }
+    },
+    "com.cloudflare.url_scanner#CreateScanRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "agentReadiness": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Enable agent readiness checks."
+          }
+        },
+        "country": {
+          "target": "com.cloudflare.url_scanner#ScansCreateRequestCountry",
+          "traits": {
+            "smithy.api#documentation": "Country to geo egress from"
+          }
+        },
+        "customagent": {
+          "target": "smithy.api#String"
+        },
+        "customHeaders": {
+          "target": "com.cloudflare.url_scanner#ScansCreateRequestCustomHeadersMap",
+          "traits": {
+            "smithy.api#documentation": "Set custom headers."
+          }
+        },
+        "referer": {
+          "target": "smithy.api#String"
+        },
+        "screenshotsResolutions": {
+          "target": "com.cloudflare.url_scanner#ScansCreateRequestScreenshotsResolutionsList",
+          "traits": {
+            "smithy.api#documentation": "Take multiple screenshots targeting different device types."
+          }
+        },
+        "visibility": {
+          "target": "com.cloudflare.url_scanner#ScansCreateRequestVisibility",
+          "traits": {
+            "smithy.api#documentation": "The option `Public` means it will be included in listings like recent scans and search results. `Unlisted` means it will not be included in the aforementioned listings, users will need to have the scan's ID to access it. A a scan will be automatically marked as unlisted if it fails, if it contains potential PII or other sensitive material."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.url_scanner#CreateScanResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.url_scanner#DomScan": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.url_scanner#DomScanRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/urlscanner/v2/dom/{scan_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Returns a plain text response, with the scan's DOM content as rendered by Chrome.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.url_scanner#DomScanRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "scan_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Scan UUID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.url_scanner#GetRespons": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.url_scanner#GetResponsRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/urlscanner/v2/responses/{response_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Returns the raw response of the network request. Find the `response_id` in the `data.requests.response.hash`.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.url_scanner#GetResponsRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "response_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Response hash.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.url_scanner#GetScan": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.url_scanner#GetScanRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.url_scanner#GetScanResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/urlscanner/v2/result/{scan_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get URL scan by uuid",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.url_scanner#GetScanRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "scan_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Scan UUID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.url_scanner#GetScanResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.cloudflare.url_scanner#ScansGetResponseData",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "lists": {
+          "target": "com.cloudflare.url_scanner#ScansGetResponseLists",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "meta": {
+          "target": "com.cloudflare.url_scanner#ScansGetResponseMeta",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "page": {
+          "target": "com.cloudflare.url_scanner#ScansGetResponsePage",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "scanner": {
+          "target": "com.cloudflare.url_scanner#ScansGetResponseScanner",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "stats": {
+          "target": "com.cloudflare.url_scanner#ScansGetResponseStats",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "task": {
+          "target": "com.cloudflare.url_scanner#ScansGetResponseTask",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "verdicts": {
+          "target": "com.cloudflare.url_scanner#ScansGetResponseVerdicts",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Raw response payload (operation does not use the standard v4 result envelope)."
+      }
+    },
+    "com.cloudflare.url_scanner#HarScan": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.url_scanner#HarScanRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.url_scanner#HarScanResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/urlscanner/v2/har/{scan_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a URL scan's HAR file. See HAR spec at http://www.softwareishard.com/blog/har-12-spec/.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.url_scanner#HarScanRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "scan_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Scan UUID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.url_scanner#HarScanResponse": {
+      "type": "structure",
+      "members": {
+        "log": {
+          "target": "com.cloudflare.url_scanner#ScansHarResponseLog",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Raw response payload (operation does not use the standard v4 result envelope)."
+      }
+    },
+    "com.cloudflare.url_scanner#ListScans": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.url_scanner#ListScansRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.url_scanner#ListScansResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/urlscanner/v2/search",
+          "code": 200
+        },
+        "smithy.api#documentation": "Use a subset of ElasticSearch Query syntax to filter scans. Some example queries:<br/> <br/>- 'path:\"/bundles/jquery.js\"': Searches for scans who requested resources with the given path.<br/>- 'page.asn:AS24940 AND hash:xxx': Websites hosted in AS24940 where a resource with the given hash was downloaded.<br/>- 'page.domain:microsoft* AND verdicts.malicious:true AND NOT page.domain:microsoft.com': malicious scans whose hostname starts with \"microsoft\".<br/>- 'apikey:me AND date:[2025-01 TO 2025-02]': my scans from 2025 January to 2025 February.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.url_scanner#ListScansRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "q": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filter scans",
+            "smithy.api#httpQuery": "q"
+          }
+        },
+        "size": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Limit the number of objects in the response.",
+            "smithy.api#httpQuery": "size"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.url_scanner#ListScansResponse": {
+      "type": "structure",
+      "members": {
+        "results": {
+          "target": "com.cloudflare.url_scanner#ScansListResponseResultsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Raw response payload (operation does not use the standard v4 result envelope)."
+      }
+    },
+    "com.cloudflare.url_scanner#ScreenshotScan": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.url_scanner#ScreenshotScanRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/urlscanner/v2/screenshots/{scan_id}.png",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get scan's screenshot by resolution (desktop/mobile/tablet).",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.url_scanner#ScreenshotScanRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -7755,59 +7818,6 @@
       },
       "traits": {
         "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.url_scanner#ScansScreenshot": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.url_scanner#ScansScreenshotRequest"
-      },
-      "output": {
-        "target": "smithy.api#Unit"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/accounts/{account_id}/urlscanner/v2/screenshots/{scan_id}.png",
-          "code": 200
-        },
-        "smithy.api#documentation": "Get scan's screenshot by resolution (desktop/mobile/tablet).",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.url_scanner#UrlScanner": {
-      "type": "service",
-      "version": "4.0",
-      "operations": [
-        {
-          "target": "com.cloudflare.url_scanner#ResponsesGet"
-        },
-        {
-          "target": "com.cloudflare.url_scanner#ScansBulkCreate"
-        },
-        {
-          "target": "com.cloudflare.url_scanner#ScansCreate"
-        },
-        {
-          "target": "com.cloudflare.url_scanner#ScansDom"
-        },
-        {
-          "target": "com.cloudflare.url_scanner#ScansGet"
-        },
-        {
-          "target": "com.cloudflare.url_scanner#ScansHar"
-        },
-        {
-          "target": "com.cloudflare.url_scanner#ScansList"
-        },
-        {
-          "target": "com.cloudflare.url_scanner#ScansScreenshot"
-        }
-      ],
-      "traits": {
-        "com.cloudflare.protocols#v4Json": {},
-        "smithy.api#title": "Cloudflare UrlScanner",
-        "smithy.api#documentation": "Cloudflare API — url_scanner resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
       }
     }
   }

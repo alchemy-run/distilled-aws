@@ -59,6 +59,7 @@ import {
   type PatchFile,
 } from "@distilled.cloud/core/json-patch";
 import { convertOpenApiToSmithy } from "@distilled.cloud/core/codegen/openapi";
+import { finalizeConvert } from "@distilled.cloud/core/codegen/patches";
 
 const rootDir = path.resolve(import.meta.dir, "..");
 const specDir = path.join(rootDir, "specs");
@@ -664,3 +665,5 @@ console.log(
   `   ${idempotencyRenames} \`Idempotency-Key\` input(s) renamed to ` +
     `\`${IDEMPOTENCY_MEMBER_RENAMED}\`; pinned Api-Version-Date: ${versionDate}`,
 );
+
+await finalizeConvert({ root: rootDir });

@@ -30,40 +30,6 @@ export class UnprocessableEntity
     [{ status: 422 }],
   ) {}
 
-export interface ConversationsAppendMessageCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this conversation. */
-  conversation: string;
-  content?: string;
-}
-export const ConversationsAppendMessageCreateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      conversation: S.String.pipe(T.Label()),
-      content: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/conversations/{conversation}/append_message/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "ConversationsAppendMessageCreateRequest",
-}) as any as S.Schema<ConversationsAppendMessageCreateRequest>;
-
-/** Serializer for appending a message to an existing conversation without triggering AI processing. */
-export interface MessageMinimal {
-  content?: string;
-}
-export const MessageMinimal = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    content: S.optional(S.String),
-  }),
-).annotate({ identifier: "MessageMinimal" }) as any as S.Schema<MessageMinimal>;
-
 export interface ConversationsCancelPartialUpdateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
@@ -93,14 +59,72 @@ export const ConversationsCancelPartialUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "ConversationsCancelPartialUpdateResponse",
 }) as any as S.Schema<ConversationsCancelPartialUpdateResponse>;
 
-export type ConversationsCreateRequestContextualToolsMap = {
+export interface ConversationsDestroyRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this conversation. */
+  conversation: string;
+}
+export const ConversationsDestroyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    conversation: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/api/projects/{project_id}/conversations/{conversation}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ConversationsDestroyRequest",
+}) as any as S.Schema<ConversationsDestroyRequest>;
+
+export interface ConversationsDestroyResponse {}
+export const ConversationsDestroyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "ConversationsDestroyResponse",
+}) as any as S.Schema<ConversationsDestroyResponse>;
+
+export interface ConversationsQueueDestroyRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this conversation. */
+  conversation: string;
+  queue_id: string;
+}
+export const ConversationsQueueDestroyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    conversation: S.String.pipe(T.Label()),
+    queue_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/api/projects/{project_id}/conversations/{conversation}/queue/{queue_id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ConversationsQueueDestroyRequest",
+}) as any as S.Schema<ConversationsQueueDestroyRequest>;
+
+export interface ConversationsQueueDestroyResponse {}
+export const ConversationsQueueDestroyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "ConversationsQueueDestroyResponse",
+}) as any as S.Schema<ConversationsQueueDestroyResponse>;
+
+export type CreateConversationRequestContextualToolsMap = {
   [key: string]: unknown | undefined;
 };
-export const ConversationsCreateRequestContextualToolsMap =
+export const CreateConversationRequestContextualToolsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.Unknown,
-  ) as any as S.Schema<ConversationsCreateRequestContextualToolsMap>;
+  ) as any as S.Schema<CreateConversationRequestContextualToolsMap>;
 
 /** * `product_analytics` - product_analytics * `sql` - sql * `session_replay` - session_replay * `error_tracking` - error_tracking * `plan` - plan * `execution` - execution * `survey` - survey * `research` - research * `flags` - flags * `llm_analytics` - llm_analytics * `sandbox` - sandbox * `user_interview` - user_interview * `customer_analytics` - customer_analytics */
 export type AgentModeEnum =
@@ -119,12 +143,12 @@ export type AgentModeEnum =
   | "customer_analytics";
 export const AgentModeEnum = /*@__PURE__*/ S.String;
 
-export interface ConversationsCreateRequest {
+export interface CreateConversationRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   content?: string | null;
   conversation?: string;
-  contextual_tools?: ConversationsCreateRequestContextualToolsMap;
+  contextual_tools?: CreateConversationRequestContextualToolsMap;
   ui_context?: unknown;
   billing_context?: unknown;
   trace_id?: string;
@@ -133,12 +157,12 @@ export interface ConversationsCreateRequest {
   is_sandbox?: boolean;
   resume_payload?: unknown;
 }
-export const ConversationsCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateConversationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     content: S.optional(S.NullOr(S.String)),
     conversation: S.optional(S.String),
-    contextual_tools: S.optional(ConversationsCreateRequestContextualToolsMap),
+    contextual_tools: S.optional(CreateConversationRequestContextualToolsMap),
     ui_context: S.optional(S.Unknown),
     billing_context: S.optional(S.Unknown),
     trace_id: S.optional(S.String),
@@ -154,8 +178,8 @@ export const ConversationsCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ConversationsCreateRequest",
-}) as any as S.Schema<ConversationsCreateRequest>;
+  identifier: "CreateConversationRequest",
+}) as any as S.Schema<CreateConversationRequest>;
 
 export type MessageContextualToolsMap = { [key: string]: unknown | undefined };
 export const MessageContextualToolsMap = /*@__PURE__*/ S.Record(
@@ -191,64 +215,181 @@ export const Message = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Message" }) as any as S.Schema<Message>;
 
-export interface ConversationsDestroyRequest {
+export interface CreateConversationsAppendMessageRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this conversation. */
+  conversation: string;
+  content?: string;
+}
+export const CreateConversationsAppendMessageRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      conversation: S.String.pipe(T.Label()),
+      content: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/conversations/{conversation}/append_message/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateConversationsAppendMessageRequest",
+}) as any as S.Schema<CreateConversationsAppendMessageRequest>;
+
+/** Serializer for appending a message to an existing conversation without triggering AI processing. */
+export interface MessageMinimal {
+  content?: string;
+}
+export const MessageMinimal = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    content: S.optional(S.String),
+  }),
+).annotate({ identifier: "MessageMinimal" }) as any as S.Schema<MessageMinimal>;
+
+/** * `action` - action * `dashboard` - dashboard * `error_tracking_issue` - error_tracking_issue * `evaluation` - evaluation * `event` - event * `insight` - insight * `notebook` - notebook * `text` - text */
+export type SandboxAttachedContextItemTypeEnum =
+  | "action"
+  | "dashboard"
+  | "error_tracking_issue"
+  | "evaluation"
+  | "event"
+  | "insight"
+  | "notebook"
+  | "text";
+export const SandboxAttachedContextItemTypeEnum = /*@__PURE__*/ S.String;
+
+/** One typed attachment carried by a sandbox message. DEPRECATED PATH — do not extend. This structured `attached_context` (and its server-side wrap in `context_wrapper.py`) exists only for the legacy Max conversations bridge and is removed with it; the live path wraps context client-side (`products/posthog_ai/frontend/utils/posthogContextBlock.ts`). */
+export interface SandboxAttachedContextItem {
+  /** Attachment kind. Entity types carry `id` (+ optional `name`); `text` carries `value`. * `action` - action * `dashboard` - dashboard * `error_tracking_issue` - error_tracking_issue * `evaluation` - evaluation * `event` - event * `insight` - insight * `notebook` - notebook * `text` - text */
+  type: SandboxAttachedContextItemTypeEnum | (string & {});
+  /** Entity identifier — integer for `dashboard`/`action`, string short_id/UUID otherwise. Absent for `text`. */
+  id?: unknown;
+  /** Optional human-readable label rendered in the context block. */
+  name?: string;
+  /** Free-text content. Only for `text` attachments. */
+  value?: string;
+}
+export const SandboxAttachedContextItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: SandboxAttachedContextItemTypeEnum,
+    id: S.optional(S.Unknown),
+    name: S.optional(S.String),
+    value: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SandboxAttachedContextItem",
+}) as any as S.Schema<SandboxAttachedContextItem>;
+
+/** Typed PostHog entities (and free text) attached to this message. */
+export type CreateConversationsOpenRequestAttachedContextList =
+  Array<SandboxAttachedContextItem>;
+export const CreateConversationsOpenRequestAttachedContextList =
+  /*@__PURE__*/ S.Array(
+    SandboxAttachedContextItem,
+  ) as any as S.Schema<CreateConversationsOpenRequestAttachedContextList>;
+
+/** * `default` - default * `acceptEdits` - acceptEdits * `plan` - plan * `bypassPermissions` - bypassPermissions * `auto` - auto */
+export type InitialPermissionModeEnum =
+  | "default"
+  | "acceptEdits"
+  | "plan"
+  | "bypassPermissions"
+  | "auto";
+export const InitialPermissionModeEnum = /*@__PURE__*/ S.String;
+
+export interface CreateConversationsOpenRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this conversation. */
+  conversation: string;
+  /** The user's message text. Omit or null to warm a sandbox (boot + idle) ahead of the first message. */
+  content?: string | null;
+  /** Client-generated trace id correlated with the resulting Run's SSE stream. */
+  trace_id?: string;
+  /** Typed PostHog entities (and free text) attached to this message. */
+  attached_context?: CreateConversationsOpenRequestAttachedContextList;
+  /** Initial permission mode for the sandbox agent session. Defaults to `auto`, which allows safe tool use while preserving explicit confirmations. * `default` - default * `acceptEdits` - acceptEdits * `plan` - plan * `bypassPermissions` - bypassPermissions * `auto` - auto */
+  initial_permission_mode?: InitialPermissionModeEnum | (string & {});
+  /** Bind a brand-new sandbox conversation to an existing Task so the first message resumes that Task's run. Honored only when this request creates the conversation row; ignored for an already-existing conversation. */
+  task_id?: string;
+}
+export const CreateConversationsOpenRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    conversation: S.String.pipe(T.Label()),
+    content: S.optional(S.NullOr(S.String)),
+    trace_id: S.optional(S.String),
+    attached_context: S.optional(
+      CreateConversationsOpenRequestAttachedContextList,
+    ),
+    initial_permission_mode: S.optional(InitialPermissionModeEnum),
+    task_id: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/projects/{project_id}/conversations/{conversation}/open/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateConversationsOpenRequest",
+}) as any as S.Schema<CreateConversationsOpenRequest>;
+
+/** Response for `POST /conversations/{id}/open/` — the IDs the frontend opens SSE against. */
+export interface SandboxMessageResponse {
+  /** The products/tasks Task backing the conversation. */
+  task_id: string;
+  /** The Run the frontend opens SSE against. */
+  run_id: string;
+  /** Echo of the request trace id, if provided. */
+  trace_id: string | null;
+  /** Current status of the targeted Run (e.g. `queued`, `in_progress`). */
+  run_status: string;
+  /** True when a new Run was created (first message, terminal resume, or fresh warm); false for an in-progress follow-up or a reused warm Run. */
+  just_created_run: boolean;
+}
+export const SandboxMessageResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    task_id: S.String,
+    run_id: S.String,
+    trace_id: S.NullOr(S.String),
+    run_status: S.String,
+    just_created_run: S.Boolean,
+  }),
+).annotate({
+  identifier: "SandboxMessageResponse",
+}) as any as S.Schema<SandboxMessageResponse>;
+
+export interface CreateConversationsQueueRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this conversation. */
   conversation: string;
 }
-export const ConversationsDestroyRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateConversationsQueueRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     conversation: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "DELETE",
-      uri: "/api/projects/{project_id}/conversations/{conversation}/",
+      method: "POST",
+      uri: "/api/projects/{project_id}/conversations/{conversation}/queue/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "ConversationsDestroyRequest",
-}) as any as S.Schema<ConversationsDestroyRequest>;
-
-export interface ConversationsDestroyResponse {}
-export const ConversationsDestroyResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ConversationsDestroyResponse",
-}) as any as S.Schema<ConversationsDestroyResponse>;
-
-export interface ConversationsListRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Number of results to return per page. */
-  limit?: number;
-  /** The initial index from which to return the results. */
-  offset?: number;
-}
-export const ConversationsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    offset: S.optional(S.Number.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/conversations/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ConversationsListRequest",
-}) as any as S.Schema<ConversationsListRequest>;
+  identifier: "CreateConversationsQueueRequest",
+}) as any as S.Schema<CreateConversationsQueueRequest>;
 
 /** * `idle` - Idle * `in_progress` - In progress * `canceling` - Canceling */
-export type ConversationStatus = "idle" | "in_progress" | "canceling";
-export const ConversationStatus = /*@__PURE__*/ S.String;
+export type ConversationStatusEnum = "idle" | "in_progress" | "canceling";
+export const ConversationStatusEnum = /*@__PURE__*/ S.String;
 
 /** * `web_analytics` - Web analytics * `product_analytics` - Product analytics * `session_replay` - Session replay * `surveys` - Surveys * `feature_flags` - Feature flags * `experiments` - Experiments * `error_tracking` - Error tracking * `data_warehouse` - Data warehouse * `other` - Other */
-export type TopicEnum =
+export type ConversationTopicEnum =
   | "web_analytics"
   | "product_analytics"
   | "session_replay"
@@ -258,7 +399,7 @@ export type TopicEnum =
   | "error_tracking"
   | "data_warehouse"
   | "other";
-export const TopicEnum = /*@__PURE__*/ S.String;
+export const ConversationTopicEnum = /*@__PURE__*/ S.String;
 
 export type UserBasicHedgehogConfigMap = { [key: string]: unknown | undefined };
 export const UserBasicHedgehogConfigMap = /*@__PURE__*/ S.Record(
@@ -312,16 +453,48 @@ export const UserBasic = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "UserBasic" }) as any as S.Schema<UserBasic>;
 
 /** * `assistant` - Assistant * `tool_call` - Tool call * `deep_research` - Deep research * `slack` - Slack */
-export type ConversationType =
+export type ConversationTypeEnum =
   | "assistant"
   | "tool_call"
   | "deep_research"
   | "slack";
-export const ConversationType = /*@__PURE__*/ S.String;
+export const ConversationTypeEnum = /*@__PURE__*/ S.String;
+
+export type ConversationMessagesItemMap = {
+  [key: string]: unknown | undefined;
+};
+export const ConversationMessagesItemMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<ConversationMessagesItemMap>;
+
+export type ConversationMessagesList = Array<ConversationMessagesItemMap>;
+export const ConversationMessagesList = /*@__PURE__*/ S.Array(
+  ConversationMessagesItemMap,
+) as any as S.Schema<ConversationMessagesList>;
+
+/** * `langgraph` - LangGraph * `sandbox` - Sandbox */
+export type ConversationAgentRuntimeEnum = "langgraph" | "sandbox";
+export const ConversationAgentRuntimeEnum = /*@__PURE__*/ S.String;
+
+export type ConversationPendingApprovalsItemMap = {
+  [key: string]: unknown | undefined;
+};
+export const ConversationPendingApprovalsItemMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<ConversationPendingApprovalsItemMap>;
+
+/** Return pending approval cards as structured data. Combines metadata from conversation.approval_decisions with payload from checkpoint interrupts (single source of truth for payload data). */
+export type ConversationPendingApprovalsList =
+  Array<ConversationPendingApprovalsItemMap>;
+export const ConversationPendingApprovalsList = /*@__PURE__*/ S.Array(
+  ConversationPendingApprovalsItemMap,
+) as any as S.Schema<ConversationPendingApprovalsList>;
 
 /** * `acp` - ACP * `pi` - Pi */
-export type RuntimeEnum = "acp" | "pi";
-export const RuntimeEnum = /*@__PURE__*/ S.String;
+export type TaskRuntimeEnum = "acp" | "pi";
+export const TaskRuntimeEnum = /*@__PURE__*/ S.String;
 
 export type ConversationTaskJsonSchemaMap = {
   [key: string]: unknown | undefined;
@@ -377,7 +550,7 @@ export interface ConversationTask {
   description: string;
   origin_product: string;
   /** Agent protocol and harness used for this task's runs. * `acp` - ACP * `pi` - Pi */
-  runtime: RuntimeEnum;
+  runtime: TaskRuntimeEnum;
   repository: string | null;
   github_integration: number | null;
   github_user_integration: string | null;
@@ -402,7 +575,7 @@ export const ConversationTask = /*@__PURE__*/ S.suspend(() =>
     title_manually_set: S.Boolean,
     description: S.String,
     origin_product: S.String,
-    runtime: RuntimeEnum,
+    runtime: TaskRuntimeEnum,
     repository: S.NullOr(S.String),
     github_integration: S.NullOr(S.Number),
     github_user_integration: S.NullOr(S.String),
@@ -421,17 +594,155 @@ export const ConversationTask = /*@__PURE__*/ S.suspend(() =>
   identifier: "ConversationTask",
 }) as any as S.Schema<ConversationTask>;
 
-export interface ConversationMinimal {
+export interface Conversation {
   id?: string;
-  status?: ConversationStatus;
+  status?: ConversationStatusEnum;
   /** Title of the conversation. */
   title?: string | null;
   /** Product domain the conversation is about, classified from the first question. * `web_analytics` - Web analytics * `product_analytics` - Product analytics * `session_replay` - Session replay * `surveys` - Surveys * `feature_flags` - Feature flags * `experiments` - Experiments * `error_tracking` - Error tracking * `data_warehouse` - Data warehouse * `other` - Other */
-  topic?: TopicEnum | null;
+  topic?: ConversationTopicEnum | null;
   user?: UserBasic | null;
   created_at?: string | null;
   updated_at?: string | null;
-  type?: ConversationType;
+  type?: ConversationTypeEnum;
+  /** Whether this conversation was created during an impersonated session (e.g., by support agents). Internal conversations are hidden from customers. */
+  is_internal?: boolean | null;
+  /** Unique key for Slack thread: '{workspace_id}:{channel}:{thread_ts}' */
+  slack_thread_key?: string | null;
+  /** Slack workspace subdomain (e.g. 'posthog' for posthog.slack.com) */
+  slack_workspace_domain?: string | null;
+  messages?: ConversationMessagesList;
+  has_unsupported_content?: boolean;
+  agent_mode?: string | null;
+  /** Runtime that owns this conversation. 'langgraph' conversations return their messages in the `messages` field; born-'sandbox' conversations return an empty `messages` array and load history from the products/tasks logs endpoint. A converted conversation is 'sandbox' but still returns its legacy thread in `messages`. * `langgraph` - LangGraph * `sandbox` - Sandbox */
+  agent_runtime?: ConversationAgentRuntimeEnum;
+  is_sandbox?: boolean;
+  /** Return pending approval cards as structured data. Combines metadata from conversation.approval_decisions with payload from checkpoint interrupts (single source of truth for payload data). */
+  pending_approvals?: ConversationPendingApprovalsList;
+  task?: ConversationTask | null;
+}
+export const Conversation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    status: S.optional(ConversationStatusEnum),
+    title: S.optional(S.NullOr(S.String)),
+    topic: S.optional(S.NullOr(ConversationTopicEnum)),
+    user: S.optional(S.NullOr(UserBasic)),
+    created_at: S.optional(S.NullOr(S.String)),
+    updated_at: S.optional(S.NullOr(S.String)),
+    type: S.optional(ConversationTypeEnum),
+    is_internal: S.optional(S.NullOr(S.Boolean)),
+    slack_thread_key: S.optional(S.NullOr(S.String)),
+    slack_workspace_domain: S.optional(S.NullOr(S.String)),
+    messages: S.optional(ConversationMessagesList),
+    has_unsupported_content: S.optional(S.Boolean),
+    agent_mode: S.optional(S.NullOr(S.String)),
+    agent_runtime: S.optional(ConversationAgentRuntimeEnum),
+    is_sandbox: S.optional(S.Boolean),
+    pending_approvals: S.optional(ConversationPendingApprovalsList),
+    task: S.optional(S.NullOr(ConversationTask)),
+  }),
+).annotate({ identifier: "Conversation" }) as any as S.Schema<Conversation>;
+
+export interface CreateConversationsQueueClearRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this conversation. */
+  conversation: string;
+}
+export const CreateConversationsQueueClearRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      conversation: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/conversations/{conversation}/queue/clear/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateConversationsQueueClearRequest",
+}) as any as S.Schema<CreateConversationsQueueClearRequest>;
+
+export interface GetConversationRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this conversation. */
+  conversation: string;
+}
+export const GetConversationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    conversation: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/conversations/{conversation}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetConversationRequest",
+}) as any as S.Schema<GetConversationRequest>;
+
+export interface GetConversationsQueueRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this conversation. */
+  conversation: string;
+}
+export const GetConversationsQueueRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    conversation: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/conversations/{conversation}/queue/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetConversationsQueueRequest",
+}) as any as S.Schema<GetConversationsQueueRequest>;
+
+export interface ListConversationsRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Number of results to return per page. */
+  limit?: number;
+  /** The initial index from which to return the results. */
+  offset?: number;
+}
+export const ListConversationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/conversations/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListConversationsRequest",
+}) as any as S.Schema<ListConversationsRequest>;
+
+export interface ConversationMinimal {
+  id?: string;
+  status?: ConversationStatusEnum;
+  /** Title of the conversation. */
+  title?: string | null;
+  /** Product domain the conversation is about, classified from the first question. * `web_analytics` - Web analytics * `product_analytics` - Product analytics * `session_replay` - Session replay * `surveys` - Surveys * `feature_flags` - Feature flags * `experiments` - Experiments * `error_tracking` - Error tracking * `data_warehouse` - Data warehouse * `other` - Other */
+  topic?: ConversationTopicEnum | null;
+  user?: UserBasic | null;
+  created_at?: string | null;
+  updated_at?: string | null;
+  type?: ConversationTypeEnum;
   /** Whether this conversation was created during an impersonated session (e.g., by support agents). Internal conversations are hidden from customers. */
   is_internal?: boolean | null;
   /** Unique key for Slack thread: '{workspace_id}:{channel}:{thread_ts}' */
@@ -443,13 +754,13 @@ export interface ConversationMinimal {
 export const ConversationMinimal = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
-    status: S.optional(ConversationStatus),
+    status: S.optional(ConversationStatusEnum),
     title: S.optional(S.NullOr(S.String)),
-    topic: S.optional(S.NullOr(TopicEnum)),
+    topic: S.optional(S.NullOr(ConversationTopicEnum)),
     user: S.optional(S.NullOr(UserBasic)),
     created_at: S.optional(S.NullOr(S.String)),
     updated_at: S.optional(S.NullOr(S.String)),
-    type: S.optional(ConversationType),
+    type: S.optional(ConversationTypeEnum),
     is_internal: S.optional(S.NullOr(S.Boolean)),
     slack_thread_key: S.optional(S.NullOr(S.String)),
     slack_workspace_domain: S.optional(S.NullOr(S.String)),
@@ -483,283 +794,14 @@ export const PaginatedConversationMinimalList = /*@__PURE__*/ S.suspend(() =>
   identifier: "PaginatedConversationMinimalList",
 }) as any as S.Schema<PaginatedConversationMinimalList>;
 
-/** * `action` - action * `dashboard` - dashboard * `error_tracking_issue` - error_tracking_issue * `evaluation` - evaluation * `event` - event * `insight` - insight * `notebook` - notebook * `text` - text */
-export type SandboxAttachedContextItemTypeEnum =
-  | "action"
-  | "dashboard"
-  | "error_tracking_issue"
-  | "evaluation"
-  | "event"
-  | "insight"
-  | "notebook"
-  | "text";
-export const SandboxAttachedContextItemTypeEnum = /*@__PURE__*/ S.String;
-
-/** One typed attachment carried by a sandbox message. DEPRECATED PATH — do not extend. This structured `attached_context` (and its server-side wrap in `context_wrapper.py`) exists only for the legacy Max conversations bridge and is removed with it; the live path wraps context client-side (`products/posthog_ai/frontend/utils/posthogContextBlock.ts`). */
-export interface SandboxAttachedContextItem {
-  /** Attachment kind. Entity types carry `id` (+ optional `name`); `text` carries `value`. * `action` - action * `dashboard` - dashboard * `error_tracking_issue` - error_tracking_issue * `evaluation` - evaluation * `event` - event * `insight` - insight * `notebook` - notebook * `text` - text */
-  type: SandboxAttachedContextItemTypeEnum | (string & {});
-  /** Entity identifier — integer for `dashboard`/`action`, string short_id/UUID otherwise. Absent for `text`. */
-  id?: unknown;
-  /** Optional human-readable label rendered in the context block. */
-  name?: string;
-  /** Free-text content. Only for `text` attachments. */
-  value?: string;
-}
-export const SandboxAttachedContextItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: SandboxAttachedContextItemTypeEnum,
-    id: S.optional(S.Unknown),
-    name: S.optional(S.String),
-    value: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SandboxAttachedContextItem",
-}) as any as S.Schema<SandboxAttachedContextItem>;
-
-/** Typed PostHog entities (and free text) attached to this message. */
-export type ConversationsOpenCreateRequestAttachedContextList =
-  Array<SandboxAttachedContextItem>;
-export const ConversationsOpenCreateRequestAttachedContextList =
-  /*@__PURE__*/ S.Array(
-    SandboxAttachedContextItem,
-  ) as any as S.Schema<ConversationsOpenCreateRequestAttachedContextList>;
-
-/** * `default` - default * `acceptEdits` - acceptEdits * `plan` - plan * `bypassPermissions` - bypassPermissions * `auto` - auto */
-export type InitialPermissionModeEnum =
-  | "default"
-  | "acceptEdits"
-  | "plan"
-  | "bypassPermissions"
-  | "auto";
-export const InitialPermissionModeEnum = /*@__PURE__*/ S.String;
-
-export interface ConversationsOpenCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this conversation. */
-  conversation: string;
-  /** The user's message text. Omit or null to warm a sandbox (boot + idle) ahead of the first message. */
-  content?: string | null;
-  /** Client-generated trace id correlated with the resulting Run's SSE stream. */
-  trace_id?: string;
-  /** Typed PostHog entities (and free text) attached to this message. */
-  attached_context?: ConversationsOpenCreateRequestAttachedContextList;
-  /** Initial permission mode for the sandbox agent session. Defaults to `auto`, which allows safe tool use while preserving explicit confirmations. * `default` - default * `acceptEdits` - acceptEdits * `plan` - plan * `bypassPermissions` - bypassPermissions * `auto` - auto */
-  initial_permission_mode?: InitialPermissionModeEnum | (string & {});
-  /** Bind a brand-new sandbox conversation to an existing Task so the first message resumes that Task's run. Honored only when this request creates the conversation row; ignored for an already-existing conversation. */
-  task_id?: string;
-}
-export const ConversationsOpenCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    conversation: S.String.pipe(T.Label()),
-    content: S.optional(S.NullOr(S.String)),
-    trace_id: S.optional(S.String),
-    attached_context: S.optional(
-      ConversationsOpenCreateRequestAttachedContextList,
-    ),
-    initial_permission_mode: S.optional(InitialPermissionModeEnum),
-    task_id: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/projects/{project_id}/conversations/{conversation}/open/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ConversationsOpenCreateRequest",
-}) as any as S.Schema<ConversationsOpenCreateRequest>;
-
-/** Response for `POST /conversations/{id}/open/` — the IDs the frontend opens SSE against. */
-export interface SandboxMessageResponse {
-  /** The products/tasks Task backing the conversation. */
-  task_id: string;
-  /** The Run the frontend opens SSE against. */
-  run_id: string;
-  /** Echo of the request trace id, if provided. */
-  trace_id: string | null;
-  /** Current status of the targeted Run (e.g. `queued`, `in_progress`). */
-  run_status: string;
-  /** True when a new Run was created (first message, terminal resume, or fresh warm); false for an in-progress follow-up or a reused warm Run. */
-  just_created_run: boolean;
-}
-export const SandboxMessageResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    task_id: S.String,
-    run_id: S.String,
-    trace_id: S.NullOr(S.String),
-    run_status: S.String,
-    just_created_run: S.Boolean,
-  }),
-).annotate({
-  identifier: "SandboxMessageResponse",
-}) as any as S.Schema<SandboxMessageResponse>;
-
-export interface ConversationsQueueClearCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this conversation. */
-  conversation: string;
-}
-export const ConversationsQueueClearCreateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      conversation: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/conversations/{conversation}/queue/clear/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "ConversationsQueueClearCreateRequest",
-}) as any as S.Schema<ConversationsQueueClearCreateRequest>;
-
-export type ConversationMessagesItemMap = {
-  [key: string]: unknown | undefined;
-};
-export const ConversationMessagesItemMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<ConversationMessagesItemMap>;
-
-export type ConversationMessagesList = Array<ConversationMessagesItemMap>;
-export const ConversationMessagesList = /*@__PURE__*/ S.Array(
-  ConversationMessagesItemMap,
-) as any as S.Schema<ConversationMessagesList>;
-
-/** * `langgraph` - LangGraph * `sandbox` - Sandbox */
-export type AgentRuntimeEnum = "langgraph" | "sandbox";
-export const AgentRuntimeEnum = /*@__PURE__*/ S.String;
-
-export type ConversationPendingApprovalsItemMap = {
-  [key: string]: unknown | undefined;
-};
-export const ConversationPendingApprovalsItemMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<ConversationPendingApprovalsItemMap>;
-
-/** Return pending approval cards as structured data. Combines metadata from conversation.approval_decisions with payload from checkpoint interrupts (single source of truth for payload data). */
-export type ConversationPendingApprovalsList =
-  Array<ConversationPendingApprovalsItemMap>;
-export const ConversationPendingApprovalsList = /*@__PURE__*/ S.Array(
-  ConversationPendingApprovalsItemMap,
-) as any as S.Schema<ConversationPendingApprovalsList>;
-
-export interface Conversation {
-  id?: string;
-  status?: ConversationStatus;
-  /** Title of the conversation. */
-  title?: string | null;
-  /** Product domain the conversation is about, classified from the first question. * `web_analytics` - Web analytics * `product_analytics` - Product analytics * `session_replay` - Session replay * `surveys` - Surveys * `feature_flags` - Feature flags * `experiments` - Experiments * `error_tracking` - Error tracking * `data_warehouse` - Data warehouse * `other` - Other */
-  topic?: TopicEnum | null;
-  user?: UserBasic | null;
-  created_at?: string | null;
-  updated_at?: string | null;
-  type?: ConversationType;
-  /** Whether this conversation was created during an impersonated session (e.g., by support agents). Internal conversations are hidden from customers. */
-  is_internal?: boolean | null;
-  /** Unique key for Slack thread: '{workspace_id}:{channel}:{thread_ts}' */
-  slack_thread_key?: string | null;
-  /** Slack workspace subdomain (e.g. 'posthog' for posthog.slack.com) */
-  slack_workspace_domain?: string | null;
-  messages?: ConversationMessagesList;
-  has_unsupported_content?: boolean;
-  agent_mode?: string | null;
-  /** Runtime that owns this conversation. 'langgraph' conversations return their messages in the `messages` field; born-'sandbox' conversations return an empty `messages` array and load history from the products/tasks logs endpoint. A converted conversation is 'sandbox' but still returns its legacy thread in `messages`. * `langgraph` - LangGraph * `sandbox` - Sandbox */
-  agent_runtime?: AgentRuntimeEnum;
-  is_sandbox?: boolean;
-  /** Return pending approval cards as structured data. Combines metadata from conversation.approval_decisions with payload from checkpoint interrupts (single source of truth for payload data). */
-  pending_approvals?: ConversationPendingApprovalsList;
-  task?: ConversationTask | null;
-}
-export const Conversation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    status: S.optional(ConversationStatus),
-    title: S.optional(S.NullOr(S.String)),
-    topic: S.optional(S.NullOr(TopicEnum)),
-    user: S.optional(S.NullOr(UserBasic)),
-    created_at: S.optional(S.NullOr(S.String)),
-    updated_at: S.optional(S.NullOr(S.String)),
-    type: S.optional(ConversationType),
-    is_internal: S.optional(S.NullOr(S.Boolean)),
-    slack_thread_key: S.optional(S.NullOr(S.String)),
-    slack_workspace_domain: S.optional(S.NullOr(S.String)),
-    messages: S.optional(ConversationMessagesList),
-    has_unsupported_content: S.optional(S.Boolean),
-    agent_mode: S.optional(S.NullOr(S.String)),
-    agent_runtime: S.optional(AgentRuntimeEnum),
-    is_sandbox: S.optional(S.Boolean),
-    pending_approvals: S.optional(ConversationPendingApprovalsList),
-    task: S.optional(S.NullOr(ConversationTask)),
-  }),
-).annotate({ identifier: "Conversation" }) as any as S.Schema<Conversation>;
-
-export interface ConversationsQueueCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this conversation. */
-  conversation: string;
-}
-export const ConversationsQueueCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    conversation: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/projects/{project_id}/conversations/{conversation}/queue/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ConversationsQueueCreateRequest",
-}) as any as S.Schema<ConversationsQueueCreateRequest>;
-
-export interface ConversationsQueueDestroyRequest {
+export interface UpdateConversationsQueuePartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this conversation. */
   conversation: string;
   queue_id: string;
 }
-export const ConversationsQueueDestroyRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    conversation: S.String.pipe(T.Label()),
-    queue_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/api/projects/{project_id}/conversations/{conversation}/queue/{queue_id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ConversationsQueueDestroyRequest",
-}) as any as S.Schema<ConversationsQueueDestroyRequest>;
-
-export interface ConversationsQueueDestroyResponse {}
-export const ConversationsQueueDestroyResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ConversationsQueueDestroyResponse",
-}) as any as S.Schema<ConversationsQueueDestroyResponse>;
-
-export interface ConversationsQueuePartialUpdateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this conversation. */
-  conversation: string;
-  queue_id: string;
-}
-export const ConversationsQueuePartialUpdateRequest = /*@__PURE__*/ S.suspend(
+export const UpdateConversationsQueuePartialRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -773,65 +815,8 @@ export const ConversationsQueuePartialUpdateRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ConversationsQueuePartialUpdateRequest",
-}) as any as S.Schema<ConversationsQueuePartialUpdateRequest>;
-
-export interface ConversationsQueueRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this conversation. */
-  conversation: string;
-}
-export const ConversationsQueueRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    conversation: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/conversations/{conversation}/queue/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ConversationsQueueRetrieveRequest",
-}) as any as S.Schema<ConversationsQueueRetrieveRequest>;
-
-export interface ConversationsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this conversation. */
-  conversation: string;
-}
-export const ConversationsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    conversation: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/conversations/{conversation}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ConversationsRetrieveRequest",
-}) as any as S.Schema<ConversationsRetrieveRequest>;
-
-export type ConversationsAppendMessageCreateError = PosthogOpError;
-/** Appends a message to an existing conversation without triggering AI processing. This is used for client-side generated messages that need to be persisted (e.g., support ticket confirmation messages). */
-export const conversationsAppendMessageCreate: API.OperationMethod<
-  ConversationsAppendMessageCreateRequest,
-  MessageMinimal,
-  ConversationsAppendMessageCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConversationsAppendMessageCreateRequest,
-  output: MessageMinimal,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
+  identifier: "UpdateConversationsQueuePartialRequest",
+}) as any as S.Schema<UpdateConversationsQueuePartialRequest>;
 
 export type ConversationsCancelPartialUpdateError =
   | UnprocessableEntity
@@ -846,21 +831,6 @@ export const conversationsCancelPartialUpdate: API.OperationMethod<
   input: ConversationsCancelPartialUpdateRequest,
   output: ConversationsCancelPartialUpdateResponse,
   errors: [UnprocessableEntity],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ConversationsCreateError = PosthogOpError;
-/** Unified endpoint that handles both conversation creation and streaming. - If message is provided: Start new conversation processing - If no message: Stream from existing conversation */
-export const conversationsCreate: API.OperationMethod<
-  ConversationsCreateRequest,
-  Message,
-  ConversationsCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConversationsCreateRequest,
-  output: Message,
-  errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
@@ -880,63 +850,6 @@ export const conversationsDestroy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ConversationsListError = PosthogOpError;
-export const conversationsList: API.OperationMethod<
-  ConversationsListRequest,
-  PaginatedConversationMinimalList,
-  ConversationsListError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConversationsListRequest,
-  output: PaginatedConversationMinimalList,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ConversationsOpenCreateError = BadRequest | PosthogOpError;
-/** Create-or-resume a sandbox conversation — the single sandbox session opener. With `content`, processes the turn (first message, in-progress follow-up, or terminal resume); without `content`, warms a sandbox that idles awaiting the first message. Returns the `(task, run)` handle the frontend opens SSE against. The conversation row is created on first use from the URL id. */
-export const conversationsOpenCreate: API.OperationMethod<
-  ConversationsOpenCreateRequest,
-  SandboxMessageResponse,
-  ConversationsOpenCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConversationsOpenCreateRequest,
-  output: SandboxMessageResponse,
-  errors: [BadRequest],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ConversationsQueueClearCreateError = PosthogOpError;
-export const conversationsQueueClearCreate: API.OperationMethod<
-  ConversationsQueueClearCreateRequest,
-  Conversation,
-  ConversationsQueueClearCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConversationsQueueClearCreateRequest,
-  output: Conversation,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ConversationsQueueCreateError = PosthogOpError;
-export const conversationsQueueCreate: API.OperationMethod<
-  ConversationsQueueCreateRequest,
-  Conversation,
-  ConversationsQueueCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConversationsQueueCreateRequest,
-  output: Conversation,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ConversationsQueueDestroyError = PosthogOpError;
 export const conversationsQueueDestroy: API.OperationMethod<
   ConversationsQueueDestroyRequest,
@@ -951,42 +864,129 @@ export const conversationsQueueDestroy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ConversationsQueuePartialUpdateError = PosthogOpError;
-export const conversationsQueuePartialUpdate: API.OperationMethod<
-  ConversationsQueuePartialUpdateRequest,
-  Conversation,
-  ConversationsQueuePartialUpdateError,
+export type CreateConversationError = PosthogOpError;
+/** Unified endpoint that handles both conversation creation and streaming. - If message is provided: Start new conversation processing - If no message: Stream from existing conversation */
+export const createConversation: API.OperationMethod<
+  CreateConversationRequest,
+  Message,
+  CreateConversationError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ConversationsQueuePartialUpdateRequest,
+  input: CreateConversationRequest,
+  output: Message,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateConversationsAppendMessageError = PosthogOpError;
+/** Appends a message to an existing conversation without triggering AI processing. This is used for client-side generated messages that need to be persisted (e.g., support ticket confirmation messages). */
+export const createConversationsAppendMessage: API.OperationMethod<
+  CreateConversationsAppendMessageRequest,
+  MessageMinimal,
+  CreateConversationsAppendMessageError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateConversationsAppendMessageRequest,
+  output: MessageMinimal,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateConversationsOpenError = BadRequest | PosthogOpError;
+/** Create-or-resume a sandbox conversation — the single sandbox session opener. With `content`, processes the turn (first message, in-progress follow-up, or terminal resume); without `content`, warms a sandbox that idles awaiting the first message. Returns the `(task, run)` handle the frontend opens SSE against. The conversation row is created on first use from the URL id. */
+export const createConversationsOpen: API.OperationMethod<
+  CreateConversationsOpenRequest,
+  SandboxMessageResponse,
+  CreateConversationsOpenError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateConversationsOpenRequest,
+  output: SandboxMessageResponse,
+  errors: [BadRequest],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateConversationsQueueError = PosthogOpError;
+export const createConversationsQueue: API.OperationMethod<
+  CreateConversationsQueueRequest,
+  Conversation,
+  CreateConversationsQueueError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateConversationsQueueRequest,
   output: Conversation,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type ConversationsQueueRetrieveError = PosthogOpError;
-export const conversationsQueueRetrieve: API.OperationMethod<
-  ConversationsQueueRetrieveRequest,
+export type CreateConversationsQueueClearError = PosthogOpError;
+export const createConversationsQueueClear: API.OperationMethod<
+  CreateConversationsQueueClearRequest,
   Conversation,
-  ConversationsQueueRetrieveError,
+  CreateConversationsQueueClearError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ConversationsQueueRetrieveRequest,
+  input: CreateConversationsQueueClearRequest,
   output: Conversation,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type ConversationsRetrieveError = PosthogOpError;
-export const conversationsRetrieve: API.OperationMethod<
-  ConversationsRetrieveRequest,
+export type GetConversationError = PosthogOpError;
+export const getConversation: API.OperationMethod<
+  GetConversationRequest,
   Conversation,
-  ConversationsRetrieveError,
+  GetConversationError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ConversationsRetrieveRequest,
+  input: GetConversationRequest,
+  output: Conversation,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetConversationsQueueError = PosthogOpError;
+export const getConversationsQueue: API.OperationMethod<
+  GetConversationsQueueRequest,
+  Conversation,
+  GetConversationsQueueError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetConversationsQueueRequest,
+  output: Conversation,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListConversationsError = PosthogOpError;
+export const listConversations: API.OperationMethod<
+  ListConversationsRequest,
+  PaginatedConversationMinimalList,
+  ListConversationsError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListConversationsRequest,
+  output: PaginatedConversationMinimalList,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateConversationsQueuePartialError = PosthogOpError;
+export const updateConversationsQueuePartial: API.OperationMethod<
+  UpdateConversationsQueuePartialRequest,
+  Conversation,
+  UpdateConversationsQueuePartialError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateConversationsQueuePartialRequest,
   output: Conversation,
   errors: [],
   protocol: PosthogProtocol,

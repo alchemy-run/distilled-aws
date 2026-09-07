@@ -13,7 +13,407 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export interface CustomizationPoliciesGetRequest {
+/** The purchase SKU for CloudSimple paid resources */
+export interface SkuDescription {
+  /** SKU's id */
+  id: string;
+  /** SKU's name */
+  name: string;
+}
+export const SkuDescription = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    name: S.String,
+  }),
+).annotate({ identifier: "SkuDescription" }) as any as S.Schema<SkuDescription>;
+
+/** Properties of dedicated cloud node */
+export interface DedicatedCloudNodePropertiesInput {
+  /** Availability Zone id, e.g. "az1" */
+  availabilityZoneId: string;
+  /** count of nodes to create */
+  nodesCount: number;
+  /** Placement Group id, e.g. "n1" */
+  placementGroupId: string;
+  /** purchase id */
+  purchaseId: string;
+  /** Dedicated Cloud Nodes SKU's description */
+  skuDescription?: SkuDescription;
+}
+export const DedicatedCloudNodePropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    availabilityZoneId: S.String,
+    nodesCount: S.Number,
+    placementGroupId: S.String,
+    purchaseId: S.String,
+    skuDescription: S.optional(SkuDescription),
+  }),
+).annotate({
+  identifier: "DedicatedCloudNodePropertiesInput",
+}) as any as S.Schema<DedicatedCloudNodePropertiesInput>;
+
+/** The purchase SKU for CloudSimple paid resources */
+export interface Sku {
+  /** The capacity of the SKU */
+  capacity?: string;
+  /** dedicatedCloudNode example: 8 x Ten-Core Intel® Xeon® Processor E5-2640 v4 2.40GHz 25MB Cache (90W); 12 x 64GB PC4-19200 2400MHz DDR4 ECC Registered DIMM, ... */
+  description?: string;
+  /** If the service has different generations of hardware, for the same SKU, then that can be captured here */
+  family?: string;
+  /** The name of the SKU for VMWare CloudSimple Node */
+  name: string;
+  /** The tier of the SKU */
+  tier?: string;
+}
+export const Sku = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    capacity: S.optional(S.String),
+    description: S.optional(S.String),
+    family: S.optional(S.String),
+    name: S.String,
+    tier: S.optional(S.String),
+  }),
+).annotate({ identifier: "Sku" }) as any as S.Schema<Sku>;
+
+/** Tags model */
+export type Tags = { [key: string]: string | undefined };
+export const Tags = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<Tags>;
+
+export interface DedicatedCloudNodesCreateOrUpdateRequest {
+  /** The subscription ID. */
+  subscriptionId: string;
+  /** The name of the resource group */
+  resourceGroupName: string;
+  /** dedicated cloud node name */
+  dedicatedCloudNodeName: string;
+  /** Azure region */
+  location: string;
+  /** Dedicated Cloud Nodes properties */
+  properties?: DedicatedCloudNodePropertiesInput;
+  /** Dedicated Cloud Nodes SKU */
+  sku?: Sku;
+  /** Dedicated Cloud Nodes tags */
+  tags?: Tags;
+}
+export const DedicatedCloudNodesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      dedicatedCloudNodeName: S.String.pipe(T.Label()),
+      location: S.String,
+      properties: S.optional(DedicatedCloudNodePropertiesInput),
+      sku: S.optional(Sku),
+      tags: S.optional(Tags),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VMwareCloudSimple/dedicatedCloudNodes/{dedicatedCloudNodeName}",
+        code: 200,
+        apiVersion: "2019-04-01",
+      }),
+    ),
+).annotate({
+  identifier: "DedicatedCloudNodesCreateOrUpdateRequest",
+}) as any as S.Schema<DedicatedCloudNodesCreateOrUpdateRequest>;
+
+/** Node status, indicates is private cloud set up on this node or not */
+export type DedicatedCloudNodePropertiesStatus = "unused" | "used";
+export const DedicatedCloudNodePropertiesStatus = /*@__PURE__*/ S.String;
+
+/** Properties of dedicated cloud node */
+export interface DedicatedCloudNodeProperties {
+  /** Availability Zone id, e.g. "az1" */
+  availabilityZoneId: string;
+  /** Availability Zone name, e.g. "Availability Zone 1" */
+  availabilityZoneName?: string;
+  /** VMWare Cloud Rack Name */
+  cloudRackName?: string;
+  /** date time the resource was created */
+  created?: string;
+  /** count of nodes to create */
+  nodesCount: number;
+  /** Placement Group id, e.g. "n1" */
+  placementGroupId: string;
+  /** Placement Name, e.g. "Placement Group 1" */
+  placementGroupName?: string;
+  /** Private Cloud Id */
+  privateCloudId?: string;
+  /** Resource Pool Name */
+  privateCloudName?: string;
+  /** The provisioning status of the resource */
+  provisioningState?: string;
+  /** purchase id */
+  purchaseId: string;
+  /** Dedicated Cloud Nodes SKU's description */
+  skuDescription?: SkuDescription;
+  /** Node status, indicates is private cloud set up on this node or not */
+  status?: DedicatedCloudNodePropertiesStatus;
+  /** VMWare Cluster Name */
+  vmwareClusterName?: string;
+}
+export const DedicatedCloudNodeProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    availabilityZoneId: S.String,
+    availabilityZoneName: S.optional(S.String),
+    cloudRackName: S.optional(S.String),
+    created: S.optional(S.String),
+    nodesCount: S.Number,
+    placementGroupId: S.String,
+    placementGroupName: S.optional(S.String),
+    privateCloudId: S.optional(S.String),
+    privateCloudName: S.optional(S.String),
+    provisioningState: S.optional(S.String),
+    purchaseId: S.String,
+    skuDescription: S.optional(SkuDescription),
+    status: S.optional(DedicatedCloudNodePropertiesStatus),
+    vmwareClusterName: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DedicatedCloudNodeProperties",
+}) as any as S.Schema<DedicatedCloudNodeProperties>;
+
+/** Dedicated cloud node model */
+export interface DedicatedCloudNode {
+  /** /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/dedicatedCloudNodes/{dedicatedCloudNodeName} */
+  id?: string;
+  /** Azure region */
+  location: string;
+  /** {dedicatedCloudNodeName} */
+  name?: string;
+  /** Dedicated Cloud Nodes properties */
+  properties?: DedicatedCloudNodeProperties;
+  /** Dedicated Cloud Nodes SKU */
+  sku?: Sku;
+  /** Dedicated Cloud Nodes tags */
+  tags?: Tags;
+  /** {resourceProviderNamespace}/{resourceType} */
+  type?: string;
+}
+export const DedicatedCloudNode = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    location: S.String,
+    name: S.optional(S.String),
+    properties: S.optional(DedicatedCloudNodeProperties),
+    sku: S.optional(Sku),
+    tags: S.optional(Tags),
+    type: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DedicatedCloudNode",
+}) as any as S.Schema<DedicatedCloudNode>;
+
+/** Properties of dedicated cloud service */
+export interface DedicatedCloudServicePropertiesInput {
+  /** gateway Subnet for the account. It will collect the subnet address and always treat it as /28 */
+  gatewaySubnet: string;
+}
+export const DedicatedCloudServicePropertiesInput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      gatewaySubnet: S.String,
+    }),
+).annotate({
+  identifier: "DedicatedCloudServicePropertiesInput",
+}) as any as S.Schema<DedicatedCloudServicePropertiesInput>;
+
+export interface DedicatedCloudServicesCreateOrUpdateRequest {
+  /** The subscription ID. */
+  subscriptionId: string;
+  /** The name of the resource group */
+  resourceGroupName: string;
+  /** dedicated cloud Service name */
+  dedicatedCloudServiceName: string;
+  /** Azure region */
+  location: string;
+  /** The properties of Dedicated Node Service */
+  properties?: DedicatedCloudServicePropertiesInput;
+  /** The list of tags */
+  tags?: Tags;
+}
+export const DedicatedCloudServicesCreateOrUpdateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      dedicatedCloudServiceName: S.String.pipe(T.Label()),
+      location: S.String,
+      properties: S.optional(DedicatedCloudServicePropertiesInput),
+      tags: S.optional(Tags),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VMwareCloudSimple/dedicatedCloudServices/{dedicatedCloudServiceName}",
+        code: 200,
+        apiVersion: "2019-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "DedicatedCloudServicesCreateOrUpdateRequest",
+  }) as any as S.Schema<DedicatedCloudServicesCreateOrUpdateRequest>;
+
+/** indicates whether account onboarded or not in a given region */
+export type DedicatedCloudServicePropertiesIsAccountOnboarded =
+  | "notOnBoarded"
+  | "onBoarded"
+  | "onBoardingFailed"
+  | "onBoarding";
+export const DedicatedCloudServicePropertiesIsAccountOnboarded =
+  /*@__PURE__*/ S.String;
+
+/** Properties of dedicated cloud service */
+export interface DedicatedCloudServiceProperties {
+  /** gateway Subnet for the account. It will collect the subnet address and always treat it as /28 */
+  gatewaySubnet: string;
+  /** indicates whether account onboarded or not in a given region */
+  isAccountOnboarded?: DedicatedCloudServicePropertiesIsAccountOnboarded;
+  /** total nodes purchased */
+  nodes?: number;
+  /** link to a service management web portal */
+  serviceURL?: string;
+}
+export const DedicatedCloudServiceProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    gatewaySubnet: S.String,
+    isAccountOnboarded: S.optional(
+      DedicatedCloudServicePropertiesIsAccountOnboarded,
+    ),
+    nodes: S.optional(S.Number),
+    serviceURL: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DedicatedCloudServiceProperties",
+}) as any as S.Schema<DedicatedCloudServiceProperties>;
+
+/** Dedicated cloud service model */
+export interface DedicatedCloudService {
+  /** /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/dedicatedCloudServices/{dedicatedCloudServiceName} */
+  id?: string;
+  /** Azure region */
+  location: string;
+  /** {dedicatedCloudServiceName} */
+  name?: string;
+  /** The properties of Dedicated Node Service */
+  properties?: DedicatedCloudServiceProperties;
+  /** The list of tags */
+  tags?: Tags;
+  /** {resourceProviderNamespace}/{resourceType} */
+  type?: string;
+}
+export const DedicatedCloudService = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    location: S.String,
+    name: S.optional(S.String),
+    properties: S.optional(DedicatedCloudServiceProperties),
+    tags: S.optional(Tags),
+    type: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DedicatedCloudService",
+}) as any as S.Schema<DedicatedCloudService>;
+
+export interface DeleteDedicatedCloudNodeRequest {
+  /** The subscription ID. */
+  subscriptionId: string;
+  /** The name of the resource group */
+  resourceGroupName: string;
+  /** dedicated cloud node name */
+  dedicatedCloudNodeName: string;
+}
+export const DeleteDedicatedCloudNodeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    dedicatedCloudNodeName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VMwareCloudSimple/dedicatedCloudNodes/{dedicatedCloudNodeName}",
+      code: 200,
+      apiVersion: "2019-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteDedicatedCloudNodeRequest",
+}) as any as S.Schema<DeleteDedicatedCloudNodeRequest>;
+
+export interface DeleteDedicatedCloudNodeResponse {}
+export const DeleteDedicatedCloudNodeResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteDedicatedCloudNodeResponse",
+}) as any as S.Schema<DeleteDedicatedCloudNodeResponse>;
+
+export interface DeleteDedicatedCloudServiceRequest {
+  /** The subscription ID. */
+  subscriptionId: string;
+  /** The name of the resource group */
+  resourceGroupName: string;
+  /** dedicated cloud service name */
+  dedicatedCloudServiceName: string;
+}
+export const DeleteDedicatedCloudServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    dedicatedCloudServiceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VMwareCloudSimple/dedicatedCloudServices/{dedicatedCloudServiceName}",
+      code: 200,
+      apiVersion: "2019-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteDedicatedCloudServiceRequest",
+}) as any as S.Schema<DeleteDedicatedCloudServiceRequest>;
+
+export interface DeleteDedicatedCloudServiceResponse {}
+export const DeleteDedicatedCloudServiceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteDedicatedCloudServiceResponse",
+}) as any as S.Schema<DeleteDedicatedCloudServiceResponse>;
+
+export interface DeleteVirtualMachineRequest {
+  /** The subscription ID. */
+  subscriptionId: string;
+  /** The name of the resource group */
+  resourceGroupName: string;
+  /** virtual machine name */
+  virtualMachineName: string;
+}
+export const DeleteVirtualMachineRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    virtualMachineName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VMwareCloudSimple/virtualMachines/{virtualMachineName}",
+      code: 200,
+      apiVersion: "2019-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteVirtualMachineRequest",
+}) as any as S.Schema<DeleteVirtualMachineRequest>;
+
+export interface DeleteVirtualMachineResponse {}
+export const DeleteVirtualMachineResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteVirtualMachineResponse",
+}) as any as S.Schema<DeleteVirtualMachineResponse>;
+
+export interface GetCustomizationPolicyRequest {
   /** The subscription ID. */
   subscriptionId: string;
   /** The region Id (westus, eastus) */
@@ -23,7 +423,7 @@ export interface CustomizationPoliciesGetRequest {
   /** customization policy name */
   customizationPolicyName: string;
 }
-export const CustomizationPoliciesGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetCustomizationPolicyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     regionId: S.String.pipe(T.Label()),
@@ -38,8 +438,8 @@ export const CustomizationPoliciesGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CustomizationPoliciesGetRequest",
-}) as any as S.Schema<CustomizationPoliciesGetRequest>;
+  identifier: "GetCustomizationPolicyRequest",
+}) as any as S.Schema<GetCustomizationPolicyRequest>;
 
 /** Type of host name */
 export type CustomizationHostNameType =
@@ -245,252 +645,7 @@ export const CustomizationPolicy = /*@__PURE__*/ S.suspend(() =>
   identifier: "CustomizationPolicy",
 }) as any as S.Schema<CustomizationPolicy>;
 
-export interface CustomizationPoliciesListRequest {
-  /** The subscription ID. */
-  subscriptionId: string;
-  /** The region Id (westus, eastus) */
-  regionId: string;
-  /** The private cloud name */
-  pcName: string;
-  /** The filter to apply on the list operation. only type is allowed here as a filter e.g. $filter=type eq 'xxxx' */
-  _filter?: string;
-}
-export const CustomizationPoliciesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    regionId: S.String.pipe(T.Label()),
-    pcName: S.String.pipe(T.Label()),
-    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.VMwareCloudSimple/locations/{regionId}/privateClouds/{pcName}/customizationPolicies",
-      code: 200,
-      apiVersion: "2019-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "CustomizationPoliciesListRequest",
-}) as any as S.Schema<CustomizationPoliciesListRequest>;
-
-/** List of the customization policies */
-export type CustomizationPoliciesListResponseValueList =
-  Array<CustomizationPolicy>;
-export const CustomizationPoliciesListResponseValueList = /*@__PURE__*/ S.Array(
-  CustomizationPolicy,
-) as any as S.Schema<CustomizationPoliciesListResponseValueList>;
-
-/** List of customization polices response model */
-export interface CustomizationPoliciesListResponse {
-  /** Link for next list of the Customization policy */
-  nextLink?: string;
-  /** List of the customization policies */
-  value?: CustomizationPoliciesListResponseValueList;
-}
-export const CustomizationPoliciesListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: S.optional(CustomizationPoliciesListResponseValueList),
-  }),
-).annotate({
-  identifier: "CustomizationPoliciesListResponse",
-}) as any as S.Schema<CustomizationPoliciesListResponse>;
-
-/** The purchase SKU for CloudSimple paid resources */
-export interface SkuDescription {
-  /** SKU's id */
-  id: string;
-  /** SKU's name */
-  name: string;
-}
-export const SkuDescription = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    name: S.String,
-  }),
-).annotate({ identifier: "SkuDescription" }) as any as S.Schema<SkuDescription>;
-
-/** Properties of dedicated cloud node */
-export interface DedicatedCloudNodePropertiesInput {
-  /** Availability Zone id, e.g. "az1" */
-  availabilityZoneId: string;
-  /** count of nodes to create */
-  nodesCount: number;
-  /** Placement Group id, e.g. "n1" */
-  placementGroupId: string;
-  /** purchase id */
-  purchaseId: string;
-  /** Dedicated Cloud Nodes SKU's description */
-  skuDescription?: SkuDescription;
-}
-export const DedicatedCloudNodePropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    availabilityZoneId: S.String,
-    nodesCount: S.Number,
-    placementGroupId: S.String,
-    purchaseId: S.String,
-    skuDescription: S.optional(SkuDescription),
-  }),
-).annotate({
-  identifier: "DedicatedCloudNodePropertiesInput",
-}) as any as S.Schema<DedicatedCloudNodePropertiesInput>;
-
-/** The purchase SKU for CloudSimple paid resources */
-export interface Sku {
-  /** The capacity of the SKU */
-  capacity?: string;
-  /** dedicatedCloudNode example: 8 x Ten-Core Intel® Xeon® Processor E5-2640 v4 2.40GHz 25MB Cache (90W); 12 x 64GB PC4-19200 2400MHz DDR4 ECC Registered DIMM, ... */
-  description?: string;
-  /** If the service has different generations of hardware, for the same SKU, then that can be captured here */
-  family?: string;
-  /** The name of the SKU for VMWare CloudSimple Node */
-  name: string;
-  /** The tier of the SKU */
-  tier?: string;
-}
-export const Sku = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    capacity: S.optional(S.String),
-    description: S.optional(S.String),
-    family: S.optional(S.String),
-    name: S.String,
-    tier: S.optional(S.String),
-  }),
-).annotate({ identifier: "Sku" }) as any as S.Schema<Sku>;
-
-/** Tags model */
-export type Tags = { [key: string]: string | undefined };
-export const Tags = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<Tags>;
-
-export interface DedicatedCloudNodesCreateOrUpdateRequest {
-  /** The subscription ID. */
-  subscriptionId: string;
-  /** The name of the resource group */
-  resourceGroupName: string;
-  /** dedicated cloud node name */
-  dedicatedCloudNodeName: string;
-  /** Azure region */
-  location: string;
-  /** Dedicated Cloud Nodes properties */
-  properties?: DedicatedCloudNodePropertiesInput;
-  /** Dedicated Cloud Nodes SKU */
-  sku?: Sku;
-  /** Dedicated Cloud Nodes tags */
-  tags?: Tags;
-}
-export const DedicatedCloudNodesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      dedicatedCloudNodeName: S.String.pipe(T.Label()),
-      location: S.String,
-      properties: S.optional(DedicatedCloudNodePropertiesInput),
-      sku: S.optional(Sku),
-      tags: S.optional(Tags),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VMwareCloudSimple/dedicatedCloudNodes/{dedicatedCloudNodeName}",
-        code: 200,
-        apiVersion: "2019-04-01",
-      }),
-    ),
-).annotate({
-  identifier: "DedicatedCloudNodesCreateOrUpdateRequest",
-}) as any as S.Schema<DedicatedCloudNodesCreateOrUpdateRequest>;
-
-/** Node status, indicates is private cloud set up on this node or not */
-export type DedicatedCloudNodePropertiesStatus = "unused" | "used";
-export const DedicatedCloudNodePropertiesStatus = /*@__PURE__*/ S.String;
-
-/** Properties of dedicated cloud node */
-export interface DedicatedCloudNodeProperties {
-  /** Availability Zone id, e.g. "az1" */
-  availabilityZoneId: string;
-  /** Availability Zone name, e.g. "Availability Zone 1" */
-  availabilityZoneName?: string;
-  /** VMWare Cloud Rack Name */
-  cloudRackName?: string;
-  /** date time the resource was created */
-  created?: string;
-  /** count of nodes to create */
-  nodesCount: number;
-  /** Placement Group id, e.g. "n1" */
-  placementGroupId: string;
-  /** Placement Name, e.g. "Placement Group 1" */
-  placementGroupName?: string;
-  /** Private Cloud Id */
-  privateCloudId?: string;
-  /** Resource Pool Name */
-  privateCloudName?: string;
-  /** The provisioning status of the resource */
-  provisioningState?: string;
-  /** purchase id */
-  purchaseId: string;
-  /** Dedicated Cloud Nodes SKU's description */
-  skuDescription?: SkuDescription;
-  /** Node status, indicates is private cloud set up on this node or not */
-  status?: DedicatedCloudNodePropertiesStatus;
-  /** VMWare Cluster Name */
-  vmwareClusterName?: string;
-}
-export const DedicatedCloudNodeProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    availabilityZoneId: S.String,
-    availabilityZoneName: S.optional(S.String),
-    cloudRackName: S.optional(S.String),
-    created: S.optional(S.String),
-    nodesCount: S.Number,
-    placementGroupId: S.String,
-    placementGroupName: S.optional(S.String),
-    privateCloudId: S.optional(S.String),
-    privateCloudName: S.optional(S.String),
-    provisioningState: S.optional(S.String),
-    purchaseId: S.String,
-    skuDescription: S.optional(SkuDescription),
-    status: S.optional(DedicatedCloudNodePropertiesStatus),
-    vmwareClusterName: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DedicatedCloudNodeProperties",
-}) as any as S.Schema<DedicatedCloudNodeProperties>;
-
-/** Dedicated cloud node model */
-export interface DedicatedCloudNode {
-  /** /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/dedicatedCloudNodes/{dedicatedCloudNodeName} */
-  id?: string;
-  /** Azure region */
-  location: string;
-  /** {dedicatedCloudNodeName} */
-  name?: string;
-  /** Dedicated Cloud Nodes properties */
-  properties?: DedicatedCloudNodeProperties;
-  /** Dedicated Cloud Nodes SKU */
-  sku?: Sku;
-  /** Dedicated Cloud Nodes tags */
-  tags?: Tags;
-  /** {resourceProviderNamespace}/{resourceType} */
-  type?: string;
-}
-export const DedicatedCloudNode = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    location: S.String,
-    name: S.optional(S.String),
-    properties: S.optional(DedicatedCloudNodeProperties),
-    sku: S.optional(Sku),
-    tags: S.optional(Tags),
-    type: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DedicatedCloudNode",
-}) as any as S.Schema<DedicatedCloudNode>;
-
-export interface DedicatedCloudNodesDeleteRequest {
+export interface GetDedicatedCloudNodeRequest {
   /** The subscription ID. */
   subscriptionId: string;
   /** The name of the resource group */
@@ -498,39 +653,7 @@ export interface DedicatedCloudNodesDeleteRequest {
   /** dedicated cloud node name */
   dedicatedCloudNodeName: string;
 }
-export const DedicatedCloudNodesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    dedicatedCloudNodeName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VMwareCloudSimple/dedicatedCloudNodes/{dedicatedCloudNodeName}",
-      code: 200,
-      apiVersion: "2019-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "DedicatedCloudNodesDeleteRequest",
-}) as any as S.Schema<DedicatedCloudNodesDeleteRequest>;
-
-export interface DedicatedCloudNodesDeleteResponse {}
-export const DedicatedCloudNodesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DedicatedCloudNodesDeleteResponse",
-}) as any as S.Schema<DedicatedCloudNodesDeleteResponse>;
-
-export interface DedicatedCloudNodesGetRequest {
-  /** The subscription ID. */
-  subscriptionId: string;
-  /** The name of the resource group */
-  resourceGroupName: string;
-  /** dedicated cloud node name */
-  dedicatedCloudNodeName: string;
-}
-export const DedicatedCloudNodesGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDedicatedCloudNodeRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -544,263 +667,10 @@ export const DedicatedCloudNodesGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DedicatedCloudNodesGetRequest",
-}) as any as S.Schema<DedicatedCloudNodesGetRequest>;
+  identifier: "GetDedicatedCloudNodeRequest",
+}) as any as S.Schema<GetDedicatedCloudNodeRequest>;
 
-export interface DedicatedCloudNodesListByResourceGroupRequest {
-  /** The subscription ID. */
-  subscriptionId: string;
-  /** The name of the resource group */
-  resourceGroupName: string;
-  /** The filter to apply on the list operation */
-  _filter?: string;
-  /** The maximum number of record sets to return */
-  _top?: number;
-  /** to be used by nextLink implementation */
-  _skipToken?: string;
-}
-export const DedicatedCloudNodesListByResourceGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VMwareCloudSimple/dedicatedCloudNodes",
-        code: 200,
-        apiVersion: "2019-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "DedicatedCloudNodesListByResourceGroupRequest",
-  }) as any as S.Schema<DedicatedCloudNodesListByResourceGroupRequest>;
-
-/** Results of the DedicatedCloudNode list */
-export type DedicatedCloudNodeListResponseValueList = Array<DedicatedCloudNode>;
-export const DedicatedCloudNodeListResponseValueList = /*@__PURE__*/ S.Array(
-  DedicatedCloudNode,
-) as any as S.Schema<DedicatedCloudNodeListResponseValueList>;
-
-/** List of dedicated nodes response model */
-export interface DedicatedCloudNodeListResponse {
-  /** Link for next list of DedicatedCloudNode */
-  nextLink?: string;
-  /** Results of the DedicatedCloudNode list */
-  value?: DedicatedCloudNodeListResponseValueList;
-}
-export const DedicatedCloudNodeListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: S.optional(DedicatedCloudNodeListResponseValueList),
-  }),
-).annotate({
-  identifier: "DedicatedCloudNodeListResponse",
-}) as any as S.Schema<DedicatedCloudNodeListResponse>;
-
-export interface DedicatedCloudNodesListBySubscriptionRequest {
-  /** The subscription ID. */
-  subscriptionId: string;
-  /** The filter to apply on the list operation */
-  _filter?: string;
-  /** The maximum number of record sets to return */
-  _top?: number;
-  /** to be used by nextLink implementation */
-  _skipToken?: string;
-}
-export const DedicatedCloudNodesListBySubscriptionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.VMwareCloudSimple/dedicatedCloudNodes",
-        code: 200,
-        apiVersion: "2019-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "DedicatedCloudNodesListBySubscriptionRequest",
-  }) as any as S.Schema<DedicatedCloudNodesListBySubscriptionRequest>;
-
-export interface DedicatedCloudNodesUpdateRequest {
-  /** The subscription ID. */
-  subscriptionId: string;
-  /** The name of the resource group */
-  resourceGroupName: string;
-  /** dedicated cloud node name */
-  dedicatedCloudNodeName: string;
-  /** The tags key:value pairs */
-  tags?: Tags;
-}
-export const DedicatedCloudNodesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    dedicatedCloudNodeName: S.String.pipe(T.Label()),
-    tags: S.optional(Tags),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VMwareCloudSimple/dedicatedCloudNodes/{dedicatedCloudNodeName}",
-      code: 200,
-      apiVersion: "2019-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "DedicatedCloudNodesUpdateRequest",
-}) as any as S.Schema<DedicatedCloudNodesUpdateRequest>;
-
-/** Properties of dedicated cloud service */
-export interface DedicatedCloudServicePropertiesInput {
-  /** gateway Subnet for the account. It will collect the subnet address and always treat it as /28 */
-  gatewaySubnet: string;
-}
-export const DedicatedCloudServicePropertiesInput = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      gatewaySubnet: S.String,
-    }),
-).annotate({
-  identifier: "DedicatedCloudServicePropertiesInput",
-}) as any as S.Schema<DedicatedCloudServicePropertiesInput>;
-
-export interface DedicatedCloudServicesCreateOrUpdateRequest {
-  /** The subscription ID. */
-  subscriptionId: string;
-  /** The name of the resource group */
-  resourceGroupName: string;
-  /** dedicated cloud Service name */
-  dedicatedCloudServiceName: string;
-  /** Azure region */
-  location: string;
-  /** The properties of Dedicated Node Service */
-  properties?: DedicatedCloudServicePropertiesInput;
-  /** The list of tags */
-  tags?: Tags;
-}
-export const DedicatedCloudServicesCreateOrUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      dedicatedCloudServiceName: S.String.pipe(T.Label()),
-      location: S.String,
-      properties: S.optional(DedicatedCloudServicePropertiesInput),
-      tags: S.optional(Tags),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VMwareCloudSimple/dedicatedCloudServices/{dedicatedCloudServiceName}",
-        code: 200,
-        apiVersion: "2019-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "DedicatedCloudServicesCreateOrUpdateRequest",
-  }) as any as S.Schema<DedicatedCloudServicesCreateOrUpdateRequest>;
-
-/** indicates whether account onboarded or not in a given region */
-export type DedicatedCloudServicePropertiesIsAccountOnboarded =
-  | "notOnBoarded"
-  | "onBoarded"
-  | "onBoardingFailed"
-  | "onBoarding";
-export const DedicatedCloudServicePropertiesIsAccountOnboarded =
-  /*@__PURE__*/ S.String;
-
-/** Properties of dedicated cloud service */
-export interface DedicatedCloudServiceProperties {
-  /** gateway Subnet for the account. It will collect the subnet address and always treat it as /28 */
-  gatewaySubnet: string;
-  /** indicates whether account onboarded or not in a given region */
-  isAccountOnboarded?: DedicatedCloudServicePropertiesIsAccountOnboarded;
-  /** total nodes purchased */
-  nodes?: number;
-  /** link to a service management web portal */
-  serviceURL?: string;
-}
-export const DedicatedCloudServiceProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    gatewaySubnet: S.String,
-    isAccountOnboarded: S.optional(
-      DedicatedCloudServicePropertiesIsAccountOnboarded,
-    ),
-    nodes: S.optional(S.Number),
-    serviceURL: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DedicatedCloudServiceProperties",
-}) as any as S.Schema<DedicatedCloudServiceProperties>;
-
-/** Dedicated cloud service model */
-export interface DedicatedCloudService {
-  /** /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/dedicatedCloudServices/{dedicatedCloudServiceName} */
-  id?: string;
-  /** Azure region */
-  location: string;
-  /** {dedicatedCloudServiceName} */
-  name?: string;
-  /** The properties of Dedicated Node Service */
-  properties?: DedicatedCloudServiceProperties;
-  /** The list of tags */
-  tags?: Tags;
-  /** {resourceProviderNamespace}/{resourceType} */
-  type?: string;
-}
-export const DedicatedCloudService = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    location: S.String,
-    name: S.optional(S.String),
-    properties: S.optional(DedicatedCloudServiceProperties),
-    tags: S.optional(Tags),
-    type: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DedicatedCloudService",
-}) as any as S.Schema<DedicatedCloudService>;
-
-export interface DedicatedCloudServicesDeleteRequest {
-  /** The subscription ID. */
-  subscriptionId: string;
-  /** The name of the resource group */
-  resourceGroupName: string;
-  /** dedicated cloud service name */
-  dedicatedCloudServiceName: string;
-}
-export const DedicatedCloudServicesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    dedicatedCloudServiceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VMwareCloudSimple/dedicatedCloudServices/{dedicatedCloudServiceName}",
-      code: 200,
-      apiVersion: "2019-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "DedicatedCloudServicesDeleteRequest",
-}) as any as S.Schema<DedicatedCloudServicesDeleteRequest>;
-
-export interface DedicatedCloudServicesDeleteResponse {}
-export const DedicatedCloudServicesDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "DedicatedCloudServicesDeleteResponse",
-}) as any as S.Schema<DedicatedCloudServicesDeleteResponse>;
-
-export interface DedicatedCloudServicesGetRequest {
+export interface GetDedicatedCloudServiceRequest {
   /** The subscription ID. */
   subscriptionId: string;
   /** The name of the resource group */
@@ -808,7 +678,7 @@ export interface DedicatedCloudServicesGetRequest {
   /** dedicated cloud Service name */
   dedicatedCloudServiceName: string;
 }
-export const DedicatedCloudServicesGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDedicatedCloudServiceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -822,122 +692,10 @@ export const DedicatedCloudServicesGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DedicatedCloudServicesGetRequest",
-}) as any as S.Schema<DedicatedCloudServicesGetRequest>;
+  identifier: "GetDedicatedCloudServiceRequest",
+}) as any as S.Schema<GetDedicatedCloudServiceRequest>;
 
-export interface DedicatedCloudServicesListByResourceGroupRequest {
-  /** The subscription ID. */
-  subscriptionId: string;
-  /** The name of the resource group */
-  resourceGroupName: string;
-  /** The filter to apply on the list operation */
-  _filter?: string;
-  /** The maximum number of record sets to return */
-  _top?: number;
-  /** to be used by nextLink implementation */
-  _skipToken?: string;
-}
-export const DedicatedCloudServicesListByResourceGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VMwareCloudSimple/dedicatedCloudServices",
-        code: 200,
-        apiVersion: "2019-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "DedicatedCloudServicesListByResourceGroupRequest",
-  }) as any as S.Schema<DedicatedCloudServicesListByResourceGroupRequest>;
-
-/** Results of the DedicatedCloudService list */
-export type DedicatedCloudServiceListResponseValueList =
-  Array<DedicatedCloudService>;
-export const DedicatedCloudServiceListResponseValueList = /*@__PURE__*/ S.Array(
-  DedicatedCloudService,
-) as any as S.Schema<DedicatedCloudServiceListResponseValueList>;
-
-/** List of dedicated cloud services */
-export interface DedicatedCloudServiceListResponse {
-  /** Link for next list of DedicatedCloudNode */
-  nextLink?: string;
-  /** Results of the DedicatedCloudService list */
-  value?: DedicatedCloudServiceListResponseValueList;
-}
-export const DedicatedCloudServiceListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: S.optional(DedicatedCloudServiceListResponseValueList),
-  }),
-).annotate({
-  identifier: "DedicatedCloudServiceListResponse",
-}) as any as S.Schema<DedicatedCloudServiceListResponse>;
-
-export interface DedicatedCloudServicesListBySubscriptionRequest {
-  /** The subscription ID. */
-  subscriptionId: string;
-  /** The filter to apply on the list operation */
-  _filter?: string;
-  /** The maximum number of record sets to return */
-  _top?: number;
-  /** to be used by nextLink implementation */
-  _skipToken?: string;
-}
-export const DedicatedCloudServicesListBySubscriptionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.VMwareCloudSimple/dedicatedCloudServices",
-        code: 200,
-        apiVersion: "2019-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "DedicatedCloudServicesListBySubscriptionRequest",
-  }) as any as S.Schema<DedicatedCloudServicesListBySubscriptionRequest>;
-
-export interface DedicatedCloudServicesUpdateRequest {
-  /** The subscription ID. */
-  subscriptionId: string;
-  /** The name of the resource group */
-  resourceGroupName: string;
-  /** dedicated cloud service name */
-  dedicatedCloudServiceName: string;
-  /** The tags key:value pairs */
-  tags?: Tags;
-}
-export const DedicatedCloudServicesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    dedicatedCloudServiceName: S.String.pipe(T.Label()),
-    tags: S.optional(Tags),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VMwareCloudSimple/dedicatedCloudServices/{dedicatedCloudServiceName}",
-      code: 200,
-      apiVersion: "2019-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "DedicatedCloudServicesUpdateRequest",
-}) as any as S.Schema<DedicatedCloudServicesUpdateRequest>;
-
-export interface OperationsGetRequest {
+export interface GetOperationRequest {
   /** The subscription ID. */
   subscriptionId: string;
   /** The region Id (westus, eastus) */
@@ -945,7 +703,7 @@ export interface OperationsGetRequest {
   /** operation id */
   operationId: string;
 }
-export const OperationsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetOperationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     regionId: S.String.pipe(T.Label()),
@@ -959,8 +717,8 @@ export const OperationsGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OperationsGetRequest",
-}) as any as S.Schema<OperationsGetRequest>;
+  identifier: "GetOperationRequest",
+}) as any as S.Schema<GetOperationRequest>;
 
 /** Operation error model */
 export interface OperationError {
@@ -1004,173 +762,7 @@ export const OperationResource = /*@__PURE__*/ S.suspend(() =>
   identifier: "OperationResource",
 }) as any as S.Schema<OperationResource>;
 
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.VMwareCloudSimple/operations",
-      code: 200,
-      apiVersion: "2019-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
-
-/** Resource provider available operation display model */
-export interface AvailableOperationDisplay {
-  /** Description of the operation for display purposes */
-  description?: string;
-  /** Name of the operation for display purposes */
-  operation?: string;
-  /** Name of the provider for display purposes */
-  provider?: string;
-  /** Name of the resource type for display purposes */
-  resource?: string;
-}
-export const AvailableOperationDisplay = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    description: S.optional(S.String),
-    operation: S.optional(S.String),
-    provider: S.optional(S.String),
-    resource: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AvailableOperationDisplay",
-}) as any as S.Schema<AvailableOperationDisplay>;
-
-/** The origin of operation */
-export type AvailableOperationOrigin = "user" | "system" | "user,system";
-export const AvailableOperationOrigin = /*@__PURE__*/ S.String;
-
-/** Metric's aggregation type for e.g. (Average, Total) */
-export type AvailableOperationDisplayPropertyServiceSpecificationMetricsItemAggregationType =
-  | "Average"
-  | "Total";
-export const AvailableOperationDisplayPropertyServiceSpecificationMetricsItemAggregationType =
-  /*@__PURE__*/ S.String;
-
-/** Available operation display property service specification metrics item */
-export interface AvailableOperationDisplayPropertyServiceSpecificationMetricsItem {
-  /** Metric's aggregation type for e.g. (Average, Total) */
-  aggregationType: AvailableOperationDisplayPropertyServiceSpecificationMetricsItemAggregationType;
-  /** Metric's description */
-  displayDescription: string;
-  /** Human readable metric's name */
-  displayName: string;
-  /** Metric's name/id */
-  name: string;
-  /** Metric's unit */
-  unit: string;
-}
-export const AvailableOperationDisplayPropertyServiceSpecificationMetricsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      aggregationType:
-        AvailableOperationDisplayPropertyServiceSpecificationMetricsItemAggregationType,
-      displayDescription: S.String,
-      displayName: S.String,
-      name: S.String,
-      unit: S.String,
-    }),
-  ).annotate({
-    identifier:
-      "AvailableOperationDisplayPropertyServiceSpecificationMetricsItem",
-  }) as any as S.Schema<AvailableOperationDisplayPropertyServiceSpecificationMetricsItem>;
-
-/** Metric specifications of operation */
-export type AvailableOperationDisplayPropertyServiceSpecificationMetricsListMetricSpecificationsList =
-  Array<AvailableOperationDisplayPropertyServiceSpecificationMetricsItem>;
-export const AvailableOperationDisplayPropertyServiceSpecificationMetricsListMetricSpecificationsList =
-  /*@__PURE__*/ S.Array(
-    AvailableOperationDisplayPropertyServiceSpecificationMetricsItem,
-  ) as any as S.Schema<AvailableOperationDisplayPropertyServiceSpecificationMetricsListMetricSpecificationsList>;
-
-/** List of available operation display property service specification metrics */
-export interface AvailableOperationDisplayPropertyServiceSpecificationMetricsList {
-  /** Metric specifications of operation */
-  metricSpecifications?: AvailableOperationDisplayPropertyServiceSpecificationMetricsListMetricSpecificationsList;
-}
-export const AvailableOperationDisplayPropertyServiceSpecificationMetricsList =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      metricSpecifications: S.optional(
-        AvailableOperationDisplayPropertyServiceSpecificationMetricsListMetricSpecificationsList,
-      ),
-    }),
-  ).annotate({
-    identifier:
-      "AvailableOperationDisplayPropertyServiceSpecificationMetricsList",
-  }) as any as S.Schema<AvailableOperationDisplayPropertyServiceSpecificationMetricsList>;
-
-/** Available operation display property service specification model */
-export interface AvailableOperationDisplayPropertyServiceSpecification {
-  /** The list of specification's service metrics */
-  serviceSpecification?: AvailableOperationDisplayPropertyServiceSpecificationMetricsList;
-}
-export const AvailableOperationDisplayPropertyServiceSpecification =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      serviceSpecification: S.optional(
-        AvailableOperationDisplayPropertyServiceSpecificationMetricsList,
-      ),
-    }),
-  ).annotate({
-    identifier: "AvailableOperationDisplayPropertyServiceSpecification",
-  }) as any as S.Schema<AvailableOperationDisplayPropertyServiceSpecification>;
-
-/** Resource provider available operation model */
-export interface AvailableOperation {
-  /** The list of operations */
-  display?: AvailableOperationDisplay;
-  /** Indicating whether the operation is a data action or not */
-  isDataAction?: boolean;
-  /** {resourceProviderNamespace}/{resourceType}/{read|write|delete|action} */
-  name?: string;
-  /** The origin of operation */
-  origin?: AvailableOperationOrigin;
-  /** The list of operation properties */
-  properties?: AvailableOperationDisplayPropertyServiceSpecification;
-}
-export const AvailableOperation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    display: S.optional(AvailableOperationDisplay),
-    isDataAction: S.optional(S.Boolean),
-    name: S.optional(S.String),
-    origin: S.optional(AvailableOperationOrigin),
-    properties: S.optional(
-      AvailableOperationDisplayPropertyServiceSpecification,
-    ),
-  }),
-).annotate({
-  identifier: "AvailableOperation",
-}) as any as S.Schema<AvailableOperation>;
-
-/** Returns a list of available operations */
-export type AvailableOperationsListResponseValueList =
-  Array<AvailableOperation>;
-export const AvailableOperationsListResponseValueList = /*@__PURE__*/ S.Array(
-  AvailableOperation,
-) as any as S.Schema<AvailableOperationsListResponseValueList>;
-
-/** List of available operations */
-export interface AvailableOperationsListResponse {
-  /** Link for next list of available operations */
-  nextLink?: string;
-  /** Returns a list of available operations */
-  value?: AvailableOperationsListResponseValueList;
-}
-export const AvailableOperationsListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: S.optional(AvailableOperationsListResponseValueList),
-  }),
-).annotate({
-  identifier: "AvailableOperationsListResponse",
-}) as any as S.Schema<AvailableOperationsListResponse>;
-
-export interface PrivateCloudsGetRequest {
+export interface GetPrivateCloudRequest {
   /** The subscription ID. */
   subscriptionId: string;
   /** The region Id (westus, eastus) */
@@ -1178,7 +770,7 @@ export interface PrivateCloudsGetRequest {
   /** The private cloud name */
   pcName: string;
 }
-export const PrivateCloudsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetPrivateCloudRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     regionId: S.String.pipe(T.Label()),
@@ -1192,8 +784,8 @@ export const PrivateCloudsGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "PrivateCloudsGetRequest",
-}) as any as S.Schema<PrivateCloudsGetRequest>;
+  identifier: "GetPrivateCloudRequest",
+}) as any as S.Schema<GetPrivateCloudRequest>;
 
 /** Array of DNS servers */
 export type PrivateCloudPropertiesDnsServersList = Array<string>;
@@ -1670,13 +1262,679 @@ export const PrivateCloud = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "PrivateCloud" }) as any as S.Schema<PrivateCloud>;
 
-export interface PrivateCloudsListRequest {
+export interface GetResourcePoolRequest {
+  /** The subscription ID. */
+  subscriptionId: string;
+  /** The region Id (westus, eastus) */
+  regionId: string;
+  /** The private cloud name */
+  pcName: string;
+  /** resource pool id (vsphereId) */
+  resourcePoolName: string;
+}
+export const GetResourcePoolRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    regionId: S.String.pipe(T.Label()),
+    pcName: S.String.pipe(T.Label()),
+    resourcePoolName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.VMwareCloudSimple/locations/{regionId}/privateClouds/{pcName}/resourcePools/{resourcePoolName}",
+      code: 200,
+      apiVersion: "2019-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetResourcePoolRequest",
+}) as any as S.Schema<GetResourcePoolRequest>;
+
+export interface GetVirtualMachineRequest {
+  /** The subscription ID. */
+  subscriptionId: string;
+  /** The name of the resource group */
+  resourceGroupName: string;
+  /** virtual machine name */
+  virtualMachineName: string;
+}
+export const GetVirtualMachineRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    virtualMachineName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VMwareCloudSimple/virtualMachines/{virtualMachineName}",
+      code: 200,
+      apiVersion: "2019-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetVirtualMachineRequest",
+}) as any as S.Schema<GetVirtualMachineRequest>;
+
+/** The list of Virtual Disks' Controllers */
+export type VirtualMachinePropertiesControllersList =
+  Array<VirtualDiskController>;
+export const VirtualMachinePropertiesControllersList = /*@__PURE__*/ S.Array(
+  VirtualDiskController,
+) as any as S.Schema<VirtualMachinePropertiesControllersList>;
+
+/** List of dns servers to use */
+export type GuestOSCustomizationDnsServersList = Array<string>;
+export const GuestOSCustomizationDnsServersList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<GuestOSCustomizationDnsServersList>;
+
+/** Guest OS Customization properties */
+export interface GuestOSCustomization {
+  /** List of dns servers to use */
+  dnsServers?: GuestOSCustomizationDnsServersList;
+  /** Virtual Machine hostname */
+  hostName?: string;
+  /** Password for login */
+  password?: string | Redacted.Redacted<string>;
+  /** id of customization policy */
+  policyId?: string;
+  /** Username for login */
+  username?: string;
+}
+export const GuestOSCustomization = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    dnsServers: S.optional(GuestOSCustomizationDnsServersList),
+    hostName: S.optional(S.String),
+    password: S.optional(S.String.pipe(T.SensitiveValue({}))),
+    policyId: S.optional(S.String),
+    username: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GuestOSCustomization",
+}) as any as S.Schema<GuestOSCustomization>;
+
+/** The list of Virtual Disks */
+export type VirtualMachinePropertiesDisksList = Array<VirtualDisk>;
+export const VirtualMachinePropertiesDisksList = /*@__PURE__*/ S.Array(
+  VirtualDisk,
+) as any as S.Schema<VirtualMachinePropertiesDisksList>;
+
+/** The Guest OS type */
+export type VirtualMachinePropertiesGuestOSType = "linux" | "windows" | "other";
+export const VirtualMachinePropertiesGuestOSType = /*@__PURE__*/ S.String;
+
+/** The list of Virtual NICs */
+export type VirtualMachinePropertiesNicsList = Array<VirtualNic>;
+export const VirtualMachinePropertiesNicsList = /*@__PURE__*/ S.Array(
+  VirtualNic,
+) as any as S.Schema<VirtualMachinePropertiesNicsList>;
+
+/** The status of Virtual machine */
+export type VirtualMachinePropertiesStatus =
+  | "running"
+  | "suspended"
+  | "poweredoff"
+  | "updating"
+  | "deallocating"
+  | "deleting";
+export const VirtualMachinePropertiesStatus = /*@__PURE__*/ S.String;
+
+/** The list of Virtual VSphere Networks */
+export type VirtualMachinePropertiesVSphereNetworksList = Array<string>;
+export const VirtualMachinePropertiesVSphereNetworksList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<VirtualMachinePropertiesVSphereNetworksList>;
+
+/** Properties of virtual machine */
+export interface VirtualMachineProperties {
+  /** The amount of memory */
+  amountOfRam: number;
+  /** The list of Virtual Disks' Controllers */
+  controllers?: VirtualMachinePropertiesControllersList;
+  /** Virtual machine properties */
+  customization?: GuestOSCustomization;
+  /** The list of Virtual Disks */
+  disks?: VirtualMachinePropertiesDisksList;
+  /** The DNS name of Virtual Machine in VCenter */
+  dnsname?: string;
+  /** Expose Guest OS or not */
+  exposeToGuestVM?: boolean;
+  /** The path to virtual machine folder in VCenter */
+  folder?: string;
+  /** The name of Guest OS */
+  guestOS?: string;
+  /** The Guest OS type */
+  guestOSType?: VirtualMachinePropertiesGuestOSType;
+  /** The list of Virtual NICs */
+  nics?: VirtualMachinePropertiesNicsList;
+  /** The number of CPU cores */
+  numberOfCores: number;
+  /** Password for login. Deprecated - use customization property */
+  password?: string | Redacted.Redacted<string>;
+  /** Private Cloud Id */
+  privateCloudId: string;
+  /** The provisioning status of the resource */
+  provisioningState?: string;
+  /** The public ip of Virtual Machine */
+  publicIP?: string;
+  /** Virtual Machines Resource Pool */
+  resourcePool?: ResourcePool;
+  /** The status of Virtual machine */
+  status?: VirtualMachinePropertiesStatus;
+  /** Virtual Machine Template Id */
+  templateId?: string;
+  /** Username for login. Deprecated - use customization property */
+  username?: string;
+  /** The list of Virtual VSphere Networks */
+  vSphereNetworks?: VirtualMachinePropertiesVSphereNetworksList;
+  /** The internal id of Virtual Machine in VCenter */
+  vmId?: string;
+  /** VMware tools version */
+  vmwaretools?: string;
+}
+export const VirtualMachineProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    amountOfRam: S.Number,
+    controllers: S.optional(VirtualMachinePropertiesControllersList),
+    customization: S.optional(GuestOSCustomization),
+    disks: S.optional(VirtualMachinePropertiesDisksList),
+    dnsname: S.optional(S.String),
+    exposeToGuestVM: S.optional(S.Boolean),
+    folder: S.optional(S.String),
+    guestOS: S.optional(S.String),
+    guestOSType: S.optional(VirtualMachinePropertiesGuestOSType),
+    nics: S.optional(VirtualMachinePropertiesNicsList),
+    numberOfCores: S.Number,
+    password: S.optional(S.String.pipe(T.SensitiveValue({}))),
+    privateCloudId: S.String,
+    provisioningState: S.optional(S.String),
+    publicIP: S.optional(S.String),
+    resourcePool: S.optional(ResourcePool),
+    status: S.optional(VirtualMachinePropertiesStatus),
+    templateId: S.optional(S.String),
+    username: S.optional(S.String),
+    vSphereNetworks: S.optional(VirtualMachinePropertiesVSphereNetworksList),
+    vmId: S.optional(S.String),
+    vmwaretools: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "VirtualMachineProperties",
+}) as any as S.Schema<VirtualMachineProperties>;
+
+/** Virtual machine model */
+export interface VirtualMachine {
+  /** /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/virtualMachines/{virtualMachineName} */
+  id?: string;
+  /** Azure region */
+  location: string;
+  /** {virtualMachineName} */
+  name?: string;
+  /** Virtual machine properties */
+  properties?: VirtualMachineProperties;
+  /** The list of tags */
+  tags?: Tags;
+  /** {resourceProviderNamespace}/{resourceType} */
+  type?: string;
+}
+export const VirtualMachine = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    location: S.String,
+    name: S.optional(S.String),
+    properties: S.optional(VirtualMachineProperties),
+    tags: S.optional(Tags),
+    type: S.optional(S.String),
+  }),
+).annotate({ identifier: "VirtualMachine" }) as any as S.Schema<VirtualMachine>;
+
+export interface GetVirtualMachineTemplateRequest {
+  /** The subscription ID. */
+  subscriptionId: string;
+  /** The region Id (westus, eastus) */
+  regionId: string;
+  /** The private cloud name */
+  pcName: string;
+  /** virtual machine template id (vsphereId) */
+  virtualMachineTemplateName: string;
+}
+export const GetVirtualMachineTemplateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    regionId: S.String.pipe(T.Label()),
+    pcName: S.String.pipe(T.Label()),
+    virtualMachineTemplateName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.VMwareCloudSimple/locations/{regionId}/privateClouds/{pcName}/virtualMachineTemplates/{virtualMachineTemplateName}",
+      code: 200,
+      apiVersion: "2019-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetVirtualMachineTemplateRequest",
+}) as any as S.Schema<GetVirtualMachineTemplateRequest>;
+
+export interface GetVirtualNetworkRequest {
+  /** The subscription ID. */
+  subscriptionId: string;
+  /** The region Id (westus, eastus) */
+  regionId: string;
+  /** The private cloud name */
+  pcName: string;
+  /** virtual network id (vsphereId) */
+  virtualNetworkName: string;
+}
+export const GetVirtualNetworkRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    regionId: S.String.pipe(T.Label()),
+    pcName: S.String.pipe(T.Label()),
+    virtualNetworkName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.VMwareCloudSimple/locations/{regionId}/privateClouds/{pcName}/virtualNetworks/{virtualNetworkName}",
+      code: 200,
+      apiVersion: "2019-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetVirtualNetworkRequest",
+}) as any as S.Schema<GetVirtualNetworkRequest>;
+
+export interface ListCustomizationPoliciesRequest {
+  /** The subscription ID. */
+  subscriptionId: string;
+  /** The region Id (westus, eastus) */
+  regionId: string;
+  /** The private cloud name */
+  pcName: string;
+  /** The filter to apply on the list operation. only type is allowed here as a filter e.g. $filter=type eq 'xxxx' */
+  _filter?: string;
+}
+export const ListCustomizationPoliciesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    regionId: S.String.pipe(T.Label()),
+    pcName: S.String.pipe(T.Label()),
+    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.VMwareCloudSimple/locations/{regionId}/privateClouds/{pcName}/customizationPolicies",
+      code: 200,
+      apiVersion: "2019-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListCustomizationPoliciesRequest",
+}) as any as S.Schema<ListCustomizationPoliciesRequest>;
+
+/** List of the customization policies */
+export type CustomizationPoliciesListResponseValueList =
+  Array<CustomizationPolicy>;
+export const CustomizationPoliciesListResponseValueList = /*@__PURE__*/ S.Array(
+  CustomizationPolicy,
+) as any as S.Schema<CustomizationPoliciesListResponseValueList>;
+
+/** List of customization polices response model */
+export interface CustomizationPoliciesListResponse {
+  /** Link for next list of the Customization policy */
+  nextLink?: string;
+  /** List of the customization policies */
+  value?: CustomizationPoliciesListResponseValueList;
+}
+export const CustomizationPoliciesListResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: S.optional(CustomizationPoliciesListResponseValueList),
+  }),
+).annotate({
+  identifier: "CustomizationPoliciesListResponse",
+}) as any as S.Schema<CustomizationPoliciesListResponse>;
+
+export interface ListDedicatedCloudNodeByResourceGroupRequest {
+  /** The subscription ID. */
+  subscriptionId: string;
+  /** The name of the resource group */
+  resourceGroupName: string;
+  /** The filter to apply on the list operation */
+  _filter?: string;
+  /** The maximum number of record sets to return */
+  _top?: number;
+  /** to be used by nextLink implementation */
+  _skipToken?: string;
+}
+export const ListDedicatedCloudNodeByResourceGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+      _top: S.optional(S.Number.pipe(T.Query("$top"))),
+      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VMwareCloudSimple/dedicatedCloudNodes",
+        code: 200,
+        apiVersion: "2019-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListDedicatedCloudNodeByResourceGroupRequest",
+  }) as any as S.Schema<ListDedicatedCloudNodeByResourceGroupRequest>;
+
+/** Results of the DedicatedCloudNode list */
+export type DedicatedCloudNodeListResponseValueList = Array<DedicatedCloudNode>;
+export const DedicatedCloudNodeListResponseValueList = /*@__PURE__*/ S.Array(
+  DedicatedCloudNode,
+) as any as S.Schema<DedicatedCloudNodeListResponseValueList>;
+
+/** List of dedicated nodes response model */
+export interface DedicatedCloudNodeListResponse {
+  /** Link for next list of DedicatedCloudNode */
+  nextLink?: string;
+  /** Results of the DedicatedCloudNode list */
+  value?: DedicatedCloudNodeListResponseValueList;
+}
+export const DedicatedCloudNodeListResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: S.optional(DedicatedCloudNodeListResponseValueList),
+  }),
+).annotate({
+  identifier: "DedicatedCloudNodeListResponse",
+}) as any as S.Schema<DedicatedCloudNodeListResponse>;
+
+export interface ListDedicatedCloudNodeBySubscriptionRequest {
+  /** The subscription ID. */
+  subscriptionId: string;
+  /** The filter to apply on the list operation */
+  _filter?: string;
+  /** The maximum number of record sets to return */
+  _top?: number;
+  /** to be used by nextLink implementation */
+  _skipToken?: string;
+}
+export const ListDedicatedCloudNodeBySubscriptionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+      _top: S.optional(S.Number.pipe(T.Query("$top"))),
+      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.VMwareCloudSimple/dedicatedCloudNodes",
+        code: 200,
+        apiVersion: "2019-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListDedicatedCloudNodeBySubscriptionRequest",
+  }) as any as S.Schema<ListDedicatedCloudNodeBySubscriptionRequest>;
+
+export interface ListDedicatedCloudServiceByResourceGroupRequest {
+  /** The subscription ID. */
+  subscriptionId: string;
+  /** The name of the resource group */
+  resourceGroupName: string;
+  /** The filter to apply on the list operation */
+  _filter?: string;
+  /** The maximum number of record sets to return */
+  _top?: number;
+  /** to be used by nextLink implementation */
+  _skipToken?: string;
+}
+export const ListDedicatedCloudServiceByResourceGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+      _top: S.optional(S.Number.pipe(T.Query("$top"))),
+      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VMwareCloudSimple/dedicatedCloudServices",
+        code: 200,
+        apiVersion: "2019-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListDedicatedCloudServiceByResourceGroupRequest",
+  }) as any as S.Schema<ListDedicatedCloudServiceByResourceGroupRequest>;
+
+/** Results of the DedicatedCloudService list */
+export type DedicatedCloudServiceListResponseValueList =
+  Array<DedicatedCloudService>;
+export const DedicatedCloudServiceListResponseValueList = /*@__PURE__*/ S.Array(
+  DedicatedCloudService,
+) as any as S.Schema<DedicatedCloudServiceListResponseValueList>;
+
+/** List of dedicated cloud services */
+export interface DedicatedCloudServiceListResponse {
+  /** Link for next list of DedicatedCloudNode */
+  nextLink?: string;
+  /** Results of the DedicatedCloudService list */
+  value?: DedicatedCloudServiceListResponseValueList;
+}
+export const DedicatedCloudServiceListResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: S.optional(DedicatedCloudServiceListResponseValueList),
+  }),
+).annotate({
+  identifier: "DedicatedCloudServiceListResponse",
+}) as any as S.Schema<DedicatedCloudServiceListResponse>;
+
+export interface ListDedicatedCloudServiceBySubscriptionRequest {
+  /** The subscription ID. */
+  subscriptionId: string;
+  /** The filter to apply on the list operation */
+  _filter?: string;
+  /** The maximum number of record sets to return */
+  _top?: number;
+  /** to be used by nextLink implementation */
+  _skipToken?: string;
+}
+export const ListDedicatedCloudServiceBySubscriptionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+      _top: S.optional(S.Number.pipe(T.Query("$top"))),
+      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.VMwareCloudSimple/dedicatedCloudServices",
+        code: 200,
+        apiVersion: "2019-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListDedicatedCloudServiceBySubscriptionRequest",
+  }) as any as S.Schema<ListDedicatedCloudServiceBySubscriptionRequest>;
+
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.VMwareCloudSimple/operations",
+      code: 200,
+      apiVersion: "2019-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
+
+/** Resource provider available operation display model */
+export interface AvailableOperationDisplay {
+  /** Description of the operation for display purposes */
+  description?: string;
+  /** Name of the operation for display purposes */
+  operation?: string;
+  /** Name of the provider for display purposes */
+  provider?: string;
+  /** Name of the resource type for display purposes */
+  resource?: string;
+}
+export const AvailableOperationDisplay = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    description: S.optional(S.String),
+    operation: S.optional(S.String),
+    provider: S.optional(S.String),
+    resource: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AvailableOperationDisplay",
+}) as any as S.Schema<AvailableOperationDisplay>;
+
+/** The origin of operation */
+export type AvailableOperationOrigin = "user" | "system" | "user,system";
+export const AvailableOperationOrigin = /*@__PURE__*/ S.String;
+
+/** Metric's aggregation type for e.g. (Average, Total) */
+export type AvailableOperationDisplayPropertyServiceSpecificationMetricsItemAggregationType =
+  | "Average"
+  | "Total";
+export const AvailableOperationDisplayPropertyServiceSpecificationMetricsItemAggregationType =
+  /*@__PURE__*/ S.String;
+
+/** Available operation display property service specification metrics item */
+export interface AvailableOperationDisplayPropertyServiceSpecificationMetricsItem {
+  /** Metric's aggregation type for e.g. (Average, Total) */
+  aggregationType: AvailableOperationDisplayPropertyServiceSpecificationMetricsItemAggregationType;
+  /** Metric's description */
+  displayDescription: string;
+  /** Human readable metric's name */
+  displayName: string;
+  /** Metric's name/id */
+  name: string;
+  /** Metric's unit */
+  unit: string;
+}
+export const AvailableOperationDisplayPropertyServiceSpecificationMetricsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      aggregationType:
+        AvailableOperationDisplayPropertyServiceSpecificationMetricsItemAggregationType,
+      displayDescription: S.String,
+      displayName: S.String,
+      name: S.String,
+      unit: S.String,
+    }),
+  ).annotate({
+    identifier:
+      "AvailableOperationDisplayPropertyServiceSpecificationMetricsItem",
+  }) as any as S.Schema<AvailableOperationDisplayPropertyServiceSpecificationMetricsItem>;
+
+/** Metric specifications of operation */
+export type AvailableOperationDisplayPropertyServiceSpecificationMetricsListMetricSpecificationsList =
+  Array<AvailableOperationDisplayPropertyServiceSpecificationMetricsItem>;
+export const AvailableOperationDisplayPropertyServiceSpecificationMetricsListMetricSpecificationsList =
+  /*@__PURE__*/ S.Array(
+    AvailableOperationDisplayPropertyServiceSpecificationMetricsItem,
+  ) as any as S.Schema<AvailableOperationDisplayPropertyServiceSpecificationMetricsListMetricSpecificationsList>;
+
+/** List of available operation display property service specification metrics */
+export interface AvailableOperationDisplayPropertyServiceSpecificationMetricsList {
+  /** Metric specifications of operation */
+  metricSpecifications?: AvailableOperationDisplayPropertyServiceSpecificationMetricsListMetricSpecificationsList;
+}
+export const AvailableOperationDisplayPropertyServiceSpecificationMetricsList =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      metricSpecifications: S.optional(
+        AvailableOperationDisplayPropertyServiceSpecificationMetricsListMetricSpecificationsList,
+      ),
+    }),
+  ).annotate({
+    identifier:
+      "AvailableOperationDisplayPropertyServiceSpecificationMetricsList",
+  }) as any as S.Schema<AvailableOperationDisplayPropertyServiceSpecificationMetricsList>;
+
+/** Available operation display property service specification model */
+export interface AvailableOperationDisplayPropertyServiceSpecification {
+  /** The list of specification's service metrics */
+  serviceSpecification?: AvailableOperationDisplayPropertyServiceSpecificationMetricsList;
+}
+export const AvailableOperationDisplayPropertyServiceSpecification =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      serviceSpecification: S.optional(
+        AvailableOperationDisplayPropertyServiceSpecificationMetricsList,
+      ),
+    }),
+  ).annotate({
+    identifier: "AvailableOperationDisplayPropertyServiceSpecification",
+  }) as any as S.Schema<AvailableOperationDisplayPropertyServiceSpecification>;
+
+/** Resource provider available operation model */
+export interface AvailableOperation {
+  /** The list of operations */
+  display?: AvailableOperationDisplay;
+  /** Indicating whether the operation is a data action or not */
+  isDataAction?: boolean;
+  /** {resourceProviderNamespace}/{resourceType}/{read|write|delete|action} */
+  name?: string;
+  /** The origin of operation */
+  origin?: AvailableOperationOrigin;
+  /** The list of operation properties */
+  properties?: AvailableOperationDisplayPropertyServiceSpecification;
+}
+export const AvailableOperation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    display: S.optional(AvailableOperationDisplay),
+    isDataAction: S.optional(S.Boolean),
+    name: S.optional(S.String),
+    origin: S.optional(AvailableOperationOrigin),
+    properties: S.optional(
+      AvailableOperationDisplayPropertyServiceSpecification,
+    ),
+  }),
+).annotate({
+  identifier: "AvailableOperation",
+}) as any as S.Schema<AvailableOperation>;
+
+/** Returns a list of available operations */
+export type AvailableOperationsListResponseValueList =
+  Array<AvailableOperation>;
+export const AvailableOperationsListResponseValueList = /*@__PURE__*/ S.Array(
+  AvailableOperation,
+) as any as S.Schema<AvailableOperationsListResponseValueList>;
+
+/** List of available operations */
+export interface AvailableOperationsListResponse {
+  /** Link for next list of available operations */
+  nextLink?: string;
+  /** Returns a list of available operations */
+  value?: AvailableOperationsListResponseValueList;
+}
+export const AvailableOperationsListResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: S.optional(AvailableOperationsListResponseValueList),
+  }),
+).annotate({
+  identifier: "AvailableOperationsListResponse",
+}) as any as S.Schema<AvailableOperationsListResponse>;
+
+export interface ListPrivateCloudsRequest {
   /** The subscription ID. */
   subscriptionId: string;
   /** The region Id (westus, eastus) */
   regionId: string;
 }
-export const PrivateCloudsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListPrivateCloudsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     regionId: S.String.pipe(T.Label()),
@@ -1689,8 +1947,8 @@ export const PrivateCloudsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "PrivateCloudsListRequest",
-}) as any as S.Schema<PrivateCloudsListRequest>;
+  identifier: "ListPrivateCloudsRequest",
+}) as any as S.Schema<ListPrivateCloudsRequest>;
 
 /** the list of private clouds */
 export type PrivateCloudListValueList = Array<PrivateCloud>;
@@ -1714,35 +1972,7 @@ export const PrivateCloudList = /*@__PURE__*/ S.suspend(() =>
   identifier: "PrivateCloudList",
 }) as any as S.Schema<PrivateCloudList>;
 
-export interface ResourcePoolsGetRequest {
-  /** The subscription ID. */
-  subscriptionId: string;
-  /** The region Id (westus, eastus) */
-  regionId: string;
-  /** The private cloud name */
-  pcName: string;
-  /** resource pool id (vsphereId) */
-  resourcePoolName: string;
-}
-export const ResourcePoolsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    regionId: S.String.pipe(T.Label()),
-    pcName: S.String.pipe(T.Label()),
-    resourcePoolName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.VMwareCloudSimple/locations/{regionId}/privateClouds/{pcName}/resourcePools/{resourcePoolName}",
-      code: 200,
-      apiVersion: "2019-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "ResourcePoolsGetRequest",
-}) as any as S.Schema<ResourcePoolsGetRequest>;
-
-export interface ResourcePoolsListRequest {
+export interface ListResourcePoolsRequest {
   /** The subscription ID. */
   subscriptionId: string;
   /** The region Id (westus, eastus) */
@@ -1750,7 +1980,7 @@ export interface ResourcePoolsListRequest {
   /** The private cloud name */
   pcName: string;
 }
-export const ResourcePoolsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListResourcePoolsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     regionId: S.String.pipe(T.Label()),
@@ -1764,8 +1994,8 @@ export const ResourcePoolsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ResourcePoolsListRequest",
-}) as any as S.Schema<ResourcePoolsListRequest>;
+  identifier: "ListResourcePoolsRequest",
+}) as any as S.Schema<ListResourcePoolsRequest>;
 
 /** Results of the Resource pools list */
 export type ResourcePoolsListResponseValueList = Array<ResourcePool>;
@@ -1789,7 +2019,7 @@ export const ResourcePoolsListResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ResourcePoolsListResponse",
 }) as any as S.Schema<ResourcePoolsListResponse>;
 
-export interface SkusAvailabilityListRequest {
+export interface ListSkusAvailabilityRequest {
   /** The subscription ID. */
   subscriptionId: string;
   /** The region Id (westus, eastus) */
@@ -1797,7 +2027,7 @@ export interface SkusAvailabilityListRequest {
   /** sku id, if no sku is passed availability for all skus will be returned */
   skuId?: string;
 }
-export const SkusAvailabilityListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListSkusAvailabilityRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     regionId: S.String.pipe(T.Label()),
@@ -1811,8 +2041,8 @@ export const SkusAvailabilityListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "SkusAvailabilityListRequest",
-}) as any as S.Schema<SkusAvailabilityListRequest>;
+  identifier: "ListSkusAvailabilityRequest",
+}) as any as S.Schema<ListSkusAvailabilityRequest>;
 
 /** SKU availability model */
 export interface SkuAvailability {
@@ -1870,7 +2100,7 @@ export const SkuAvailabilityListResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "SkuAvailabilityListResponse",
 }) as any as S.Schema<SkuAvailabilityListResponse>;
 
-export interface UsagesListRequest {
+export interface ListUsagesRequest {
   /** The subscription ID. */
   subscriptionId: string;
   /** The region Id (westus, eastus) */
@@ -1878,7 +2108,7 @@ export interface UsagesListRequest {
   /** The filter to apply on the list operation. only name.value is allowed here as a filter e.g. $filter=name.value eq 'xxxx' */
   _filter?: string;
 }
-export const UsagesListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListUsagesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     regionId: S.String.pipe(T.Label()),
@@ -1892,8 +2122,8 @@ export const UsagesListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UsagesListRequest",
-}) as any as S.Schema<UsagesListRequest>;
+  identifier: "ListUsagesRequest",
+}) as any as S.Schema<ListUsagesRequest>;
 
 /** User name model */
 export interface UsageName {
@@ -1961,36 +2191,348 @@ export const UsageListResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UsageListResponse",
 }) as any as S.Schema<UsageListResponse>;
 
-/** List of dns servers to use */
-export type GuestOSCustomizationDnsServersList = Array<string>;
-export const GuestOSCustomizationDnsServersList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<GuestOSCustomizationDnsServersList>;
-
-/** Guest OS Customization properties */
-export interface GuestOSCustomization {
-  /** List of dns servers to use */
-  dnsServers?: GuestOSCustomizationDnsServersList;
-  /** Virtual Machine hostname */
-  hostName?: string;
-  /** Password for login */
-  password?: string | Redacted.Redacted<string>;
-  /** id of customization policy */
-  policyId?: string;
-  /** Username for login */
-  username?: string;
+export interface ListVirtualMachineByResourceGroupRequest {
+  /** The subscription ID. */
+  subscriptionId: string;
+  /** The name of the resource group */
+  resourceGroupName: string;
+  /** The filter to apply on the list operation */
+  _filter?: string;
+  /** The maximum number of record sets to return */
+  _top?: number;
+  /** to be used by nextLink implementation */
+  _skipToken?: string;
 }
-export const GuestOSCustomization = /*@__PURE__*/ S.suspend(() =>
+export const ListVirtualMachineByResourceGroupRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+      _top: S.optional(S.Number.pipe(T.Query("$top"))),
+      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VMwareCloudSimple/virtualMachines",
+        code: 200,
+        apiVersion: "2019-04-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListVirtualMachineByResourceGroupRequest",
+}) as any as S.Schema<ListVirtualMachineByResourceGroupRequest>;
+
+/** Results of the VirtualMachine list */
+export type VirtualMachineListResponseValueList = Array<VirtualMachine>;
+export const VirtualMachineListResponseValueList = /*@__PURE__*/ S.Array(
+  VirtualMachine,
+) as any as S.Schema<VirtualMachineListResponseValueList>;
+
+/** List of virtual machines */
+export interface VirtualMachineListResponse {
+  /** Link for next list of VirtualMachines */
+  nextLink?: string;
+  /** Results of the VirtualMachine list */
+  value?: VirtualMachineListResponseValueList;
+}
+export const VirtualMachineListResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    dnsServers: S.optional(GuestOSCustomizationDnsServersList),
-    hostName: S.optional(S.String),
-    password: S.optional(S.String.pipe(T.SensitiveValue({}))),
-    policyId: S.optional(S.String),
-    username: S.optional(S.String),
+    nextLink: S.optional(S.String),
+    value: S.optional(VirtualMachineListResponseValueList),
   }),
 ).annotate({
-  identifier: "GuestOSCustomization",
-}) as any as S.Schema<GuestOSCustomization>;
+  identifier: "VirtualMachineListResponse",
+}) as any as S.Schema<VirtualMachineListResponse>;
+
+export interface ListVirtualMachineBySubscriptionRequest {
+  /** The subscription ID. */
+  subscriptionId: string;
+  /** The filter to apply on the list operation */
+  _filter?: string;
+  /** The maximum number of record sets to return */
+  _top?: number;
+  /** to be used by nextLink implementation */
+  _skipToken?: string;
+}
+export const ListVirtualMachineBySubscriptionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+      _top: S.optional(S.Number.pipe(T.Query("$top"))),
+      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.VMwareCloudSimple/virtualMachines",
+        code: 200,
+        apiVersion: "2019-04-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListVirtualMachineBySubscriptionRequest",
+}) as any as S.Schema<ListVirtualMachineBySubscriptionRequest>;
+
+export interface ListVirtualMachineTemplatesRequest {
+  /** The subscription ID. */
+  subscriptionId: string;
+  /** The region Id (westus, eastus) */
+  regionId: string;
+  /** The private cloud name */
+  pcName: string;
+  /** Resource pool used to derive vSphere cluster which contains VM templates */
+  resourcePoolName: string;
+}
+export const ListVirtualMachineTemplatesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    regionId: S.String.pipe(T.Label()),
+    pcName: S.String.pipe(T.Label()),
+    resourcePoolName: S.String.pipe(T.Query()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.VMwareCloudSimple/locations/{regionId}/privateClouds/{pcName}/virtualMachineTemplates",
+      code: 200,
+      apiVersion: "2019-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListVirtualMachineTemplatesRequest",
+}) as any as S.Schema<ListVirtualMachineTemplatesRequest>;
+
+/** Results of the VM template list */
+export type VirtualMachineTemplateListResponseValueList =
+  Array<VirtualMachineTemplate>;
+export const VirtualMachineTemplateListResponseValueList =
+  /*@__PURE__*/ S.Array(
+    VirtualMachineTemplate,
+  ) as any as S.Schema<VirtualMachineTemplateListResponseValueList>;
+
+/** List of virtual machine templates */
+export interface VirtualMachineTemplateListResponse {
+  /** Link for next list of VirtualMachineTemplate */
+  nextLink?: string;
+  /** Results of the VM template list */
+  value?: VirtualMachineTemplateListResponseValueList;
+}
+export const VirtualMachineTemplateListResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: S.optional(VirtualMachineTemplateListResponseValueList),
+  }),
+).annotate({
+  identifier: "VirtualMachineTemplateListResponse",
+}) as any as S.Schema<VirtualMachineTemplateListResponse>;
+
+export interface ListVirtualNetworksRequest {
+  /** The subscription ID. */
+  subscriptionId: string;
+  /** The region Id (westus, eastus) */
+  regionId: string;
+  /** The private cloud name */
+  pcName: string;
+  /** Resource pool used to derive vSphere cluster which contains virtual networks */
+  resourcePoolName: string;
+}
+export const ListVirtualNetworksRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    regionId: S.String.pipe(T.Label()),
+    pcName: S.String.pipe(T.Label()),
+    resourcePoolName: S.String.pipe(T.Query()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.VMwareCloudSimple/locations/{regionId}/privateClouds/{pcName}/virtualNetworks",
+      code: 200,
+      apiVersion: "2019-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListVirtualNetworksRequest",
+}) as any as S.Schema<ListVirtualNetworksRequest>;
+
+/** Results of the VirtualNetwork list */
+export type VirtualNetworkListResponseValueList = Array<VirtualNetwork>;
+export const VirtualNetworkListResponseValueList = /*@__PURE__*/ S.Array(
+  VirtualNetwork,
+) as any as S.Schema<VirtualNetworkListResponseValueList>;
+
+/** List of virtual networks */
+export interface VirtualNetworkListResponse {
+  /** Link for next list of VirtualNetwork */
+  nextLink?: string;
+  /** Results of the VirtualNetwork list */
+  value?: VirtualNetworkListResponseValueList;
+}
+export const VirtualNetworkListResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: S.optional(VirtualNetworkListResponseValueList),
+  }),
+).annotate({
+  identifier: "VirtualNetworkListResponse",
+}) as any as S.Schema<VirtualNetworkListResponse>;
+
+export interface StartVirtualMachineRequest {
+  /** The subscription ID. */
+  subscriptionId: string;
+  /** The name of the resource group */
+  resourceGroupName: string;
+  /** virtual machine name */
+  virtualMachineName: string;
+}
+export const StartVirtualMachineRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    virtualMachineName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VMwareCloudSimple/virtualMachines/{virtualMachineName}/start",
+      code: 200,
+      apiVersion: "2019-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "StartVirtualMachineRequest",
+}) as any as S.Schema<StartVirtualMachineRequest>;
+
+export interface StartVirtualMachineResponse {}
+export const StartVirtualMachineResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "StartVirtualMachineResponse",
+}) as any as S.Schema<StartVirtualMachineResponse>;
+
+export type StopVirtualMachineRequestMode =
+  | "reboot"
+  | "suspend"
+  | "shutdown"
+  | "poweroff";
+export const StopVirtualMachineRequestMode = /*@__PURE__*/ S.String;
+
+export interface StopVirtualMachineRequest {
+  /** The subscription ID. */
+  subscriptionId: string;
+  /** The name of the resource group */
+  resourceGroupName: string;
+  /** virtual machine name */
+  virtualMachineName: string;
+  /** query stop mode parameter (reboot, shutdown, etc...) */
+  mode?: StopVirtualMachineRequestMode | (string & {});
+}
+export const StopVirtualMachineRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    virtualMachineName: S.String.pipe(T.Label()),
+    mode: S.optional(StopVirtualMachineRequestMode.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VMwareCloudSimple/virtualMachines/{virtualMachineName}/stop",
+      code: 200,
+      apiVersion: "2019-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "StopVirtualMachineRequest",
+}) as any as S.Schema<StopVirtualMachineRequest>;
+
+export interface StopVirtualMachineResponse {}
+export const StopVirtualMachineResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "StopVirtualMachineResponse",
+}) as any as S.Schema<StopVirtualMachineResponse>;
+
+export interface UpdateDedicatedCloudNodeRequest {
+  /** The subscription ID. */
+  subscriptionId: string;
+  /** The name of the resource group */
+  resourceGroupName: string;
+  /** dedicated cloud node name */
+  dedicatedCloudNodeName: string;
+  /** The tags key:value pairs */
+  tags?: Tags;
+}
+export const UpdateDedicatedCloudNodeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    dedicatedCloudNodeName: S.String.pipe(T.Label()),
+    tags: S.optional(Tags),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VMwareCloudSimple/dedicatedCloudNodes/{dedicatedCloudNodeName}",
+      code: 200,
+      apiVersion: "2019-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateDedicatedCloudNodeRequest",
+}) as any as S.Schema<UpdateDedicatedCloudNodeRequest>;
+
+export interface UpdateDedicatedCloudServiceRequest {
+  /** The subscription ID. */
+  subscriptionId: string;
+  /** The name of the resource group */
+  resourceGroupName: string;
+  /** dedicated cloud service name */
+  dedicatedCloudServiceName: string;
+  /** The tags key:value pairs */
+  tags?: Tags;
+}
+export const UpdateDedicatedCloudServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    dedicatedCloudServiceName: S.String.pipe(T.Label()),
+    tags: S.optional(Tags),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VMwareCloudSimple/dedicatedCloudServices/{dedicatedCloudServiceName}",
+      code: 200,
+      apiVersion: "2019-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateDedicatedCloudServiceRequest",
+}) as any as S.Schema<UpdateDedicatedCloudServiceRequest>;
+
+export interface UpdateVirtualMachineRequest {
+  /** The subscription ID. */
+  subscriptionId: string;
+  /** The name of the resource group */
+  resourceGroupName: string;
+  /** virtual machine name */
+  virtualMachineName: string;
+  /** The tags key:value pairs */
+  tags?: Tags;
+}
+export const UpdateVirtualMachineRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    virtualMachineName: S.String.pipe(T.Label()),
+    tags: S.optional(Tags),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VMwareCloudSimple/virtualMachines/{virtualMachineName}",
+      code: 200,
+      apiVersion: "2019-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateVirtualMachineRequest",
+}) as any as S.Schema<UpdateVirtualMachineRequest>;
 
 /** Disk's independence mode type */
 export type VirtualDiskInputIndependenceMode =
@@ -2214,578 +2756,6 @@ export const VirtualMachinesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
   identifier: "VirtualMachinesCreateOrUpdateRequest",
 }) as any as S.Schema<VirtualMachinesCreateOrUpdateRequest>;
 
-/** The list of Virtual Disks' Controllers */
-export type VirtualMachinePropertiesControllersList =
-  Array<VirtualDiskController>;
-export const VirtualMachinePropertiesControllersList = /*@__PURE__*/ S.Array(
-  VirtualDiskController,
-) as any as S.Schema<VirtualMachinePropertiesControllersList>;
-
-/** The list of Virtual Disks */
-export type VirtualMachinePropertiesDisksList = Array<VirtualDisk>;
-export const VirtualMachinePropertiesDisksList = /*@__PURE__*/ S.Array(
-  VirtualDisk,
-) as any as S.Schema<VirtualMachinePropertiesDisksList>;
-
-/** The Guest OS type */
-export type VirtualMachinePropertiesGuestOSType = "linux" | "windows" | "other";
-export const VirtualMachinePropertiesGuestOSType = /*@__PURE__*/ S.String;
-
-/** The list of Virtual NICs */
-export type VirtualMachinePropertiesNicsList = Array<VirtualNic>;
-export const VirtualMachinePropertiesNicsList = /*@__PURE__*/ S.Array(
-  VirtualNic,
-) as any as S.Schema<VirtualMachinePropertiesNicsList>;
-
-/** The status of Virtual machine */
-export type VirtualMachinePropertiesStatus =
-  | "running"
-  | "suspended"
-  | "poweredoff"
-  | "updating"
-  | "deallocating"
-  | "deleting";
-export const VirtualMachinePropertiesStatus = /*@__PURE__*/ S.String;
-
-/** The list of Virtual VSphere Networks */
-export type VirtualMachinePropertiesVSphereNetworksList = Array<string>;
-export const VirtualMachinePropertiesVSphereNetworksList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<VirtualMachinePropertiesVSphereNetworksList>;
-
-/** Properties of virtual machine */
-export interface VirtualMachineProperties {
-  /** The amount of memory */
-  amountOfRam: number;
-  /** The list of Virtual Disks' Controllers */
-  controllers?: VirtualMachinePropertiesControllersList;
-  /** Virtual machine properties */
-  customization?: GuestOSCustomization;
-  /** The list of Virtual Disks */
-  disks?: VirtualMachinePropertiesDisksList;
-  /** The DNS name of Virtual Machine in VCenter */
-  dnsname?: string;
-  /** Expose Guest OS or not */
-  exposeToGuestVM?: boolean;
-  /** The path to virtual machine folder in VCenter */
-  folder?: string;
-  /** The name of Guest OS */
-  guestOS?: string;
-  /** The Guest OS type */
-  guestOSType?: VirtualMachinePropertiesGuestOSType;
-  /** The list of Virtual NICs */
-  nics?: VirtualMachinePropertiesNicsList;
-  /** The number of CPU cores */
-  numberOfCores: number;
-  /** Password for login. Deprecated - use customization property */
-  password?: string | Redacted.Redacted<string>;
-  /** Private Cloud Id */
-  privateCloudId: string;
-  /** The provisioning status of the resource */
-  provisioningState?: string;
-  /** The public ip of Virtual Machine */
-  publicIP?: string;
-  /** Virtual Machines Resource Pool */
-  resourcePool?: ResourcePool;
-  /** The status of Virtual machine */
-  status?: VirtualMachinePropertiesStatus;
-  /** Virtual Machine Template Id */
-  templateId?: string;
-  /** Username for login. Deprecated - use customization property */
-  username?: string;
-  /** The list of Virtual VSphere Networks */
-  vSphereNetworks?: VirtualMachinePropertiesVSphereNetworksList;
-  /** The internal id of Virtual Machine in VCenter */
-  vmId?: string;
-  /** VMware tools version */
-  vmwaretools?: string;
-}
-export const VirtualMachineProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    amountOfRam: S.Number,
-    controllers: S.optional(VirtualMachinePropertiesControllersList),
-    customization: S.optional(GuestOSCustomization),
-    disks: S.optional(VirtualMachinePropertiesDisksList),
-    dnsname: S.optional(S.String),
-    exposeToGuestVM: S.optional(S.Boolean),
-    folder: S.optional(S.String),
-    guestOS: S.optional(S.String),
-    guestOSType: S.optional(VirtualMachinePropertiesGuestOSType),
-    nics: S.optional(VirtualMachinePropertiesNicsList),
-    numberOfCores: S.Number,
-    password: S.optional(S.String.pipe(T.SensitiveValue({}))),
-    privateCloudId: S.String,
-    provisioningState: S.optional(S.String),
-    publicIP: S.optional(S.String),
-    resourcePool: S.optional(ResourcePool),
-    status: S.optional(VirtualMachinePropertiesStatus),
-    templateId: S.optional(S.String),
-    username: S.optional(S.String),
-    vSphereNetworks: S.optional(VirtualMachinePropertiesVSphereNetworksList),
-    vmId: S.optional(S.String),
-    vmwaretools: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "VirtualMachineProperties",
-}) as any as S.Schema<VirtualMachineProperties>;
-
-/** Virtual machine model */
-export interface VirtualMachine {
-  /** /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/virtualMachines/{virtualMachineName} */
-  id?: string;
-  /** Azure region */
-  location: string;
-  /** {virtualMachineName} */
-  name?: string;
-  /** Virtual machine properties */
-  properties?: VirtualMachineProperties;
-  /** The list of tags */
-  tags?: Tags;
-  /** {resourceProviderNamespace}/{resourceType} */
-  type?: string;
-}
-export const VirtualMachine = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    location: S.String,
-    name: S.optional(S.String),
-    properties: S.optional(VirtualMachineProperties),
-    tags: S.optional(Tags),
-    type: S.optional(S.String),
-  }),
-).annotate({ identifier: "VirtualMachine" }) as any as S.Schema<VirtualMachine>;
-
-export interface VirtualMachinesDeleteRequest {
-  /** The subscription ID. */
-  subscriptionId: string;
-  /** The name of the resource group */
-  resourceGroupName: string;
-  /** virtual machine name */
-  virtualMachineName: string;
-}
-export const VirtualMachinesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    virtualMachineName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VMwareCloudSimple/virtualMachines/{virtualMachineName}",
-      code: 200,
-      apiVersion: "2019-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "VirtualMachinesDeleteRequest",
-}) as any as S.Schema<VirtualMachinesDeleteRequest>;
-
-export interface VirtualMachinesDeleteResponse {}
-export const VirtualMachinesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "VirtualMachinesDeleteResponse",
-}) as any as S.Schema<VirtualMachinesDeleteResponse>;
-
-export interface VirtualMachinesGetRequest {
-  /** The subscription ID. */
-  subscriptionId: string;
-  /** The name of the resource group */
-  resourceGroupName: string;
-  /** virtual machine name */
-  virtualMachineName: string;
-}
-export const VirtualMachinesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    virtualMachineName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VMwareCloudSimple/virtualMachines/{virtualMachineName}",
-      code: 200,
-      apiVersion: "2019-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "VirtualMachinesGetRequest",
-}) as any as S.Schema<VirtualMachinesGetRequest>;
-
-export interface VirtualMachinesListByResourceGroupRequest {
-  /** The subscription ID. */
-  subscriptionId: string;
-  /** The name of the resource group */
-  resourceGroupName: string;
-  /** The filter to apply on the list operation */
-  _filter?: string;
-  /** The maximum number of record sets to return */
-  _top?: number;
-  /** to be used by nextLink implementation */
-  _skipToken?: string;
-}
-export const VirtualMachinesListByResourceGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VMwareCloudSimple/virtualMachines",
-        code: 200,
-        apiVersion: "2019-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "VirtualMachinesListByResourceGroupRequest",
-  }) as any as S.Schema<VirtualMachinesListByResourceGroupRequest>;
-
-/** Results of the VirtualMachine list */
-export type VirtualMachineListResponseValueList = Array<VirtualMachine>;
-export const VirtualMachineListResponseValueList = /*@__PURE__*/ S.Array(
-  VirtualMachine,
-) as any as S.Schema<VirtualMachineListResponseValueList>;
-
-/** List of virtual machines */
-export interface VirtualMachineListResponse {
-  /** Link for next list of VirtualMachines */
-  nextLink?: string;
-  /** Results of the VirtualMachine list */
-  value?: VirtualMachineListResponseValueList;
-}
-export const VirtualMachineListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: S.optional(VirtualMachineListResponseValueList),
-  }),
-).annotate({
-  identifier: "VirtualMachineListResponse",
-}) as any as S.Schema<VirtualMachineListResponse>;
-
-export interface VirtualMachinesListBySubscriptionRequest {
-  /** The subscription ID. */
-  subscriptionId: string;
-  /** The filter to apply on the list operation */
-  _filter?: string;
-  /** The maximum number of record sets to return */
-  _top?: number;
-  /** to be used by nextLink implementation */
-  _skipToken?: string;
-}
-export const VirtualMachinesListBySubscriptionRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.VMwareCloudSimple/virtualMachines",
-        code: 200,
-        apiVersion: "2019-04-01",
-      }),
-    ),
-).annotate({
-  identifier: "VirtualMachinesListBySubscriptionRequest",
-}) as any as S.Schema<VirtualMachinesListBySubscriptionRequest>;
-
-export interface VirtualMachinesStartRequest {
-  /** The subscription ID. */
-  subscriptionId: string;
-  /** The name of the resource group */
-  resourceGroupName: string;
-  /** virtual machine name */
-  virtualMachineName: string;
-}
-export const VirtualMachinesStartRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    virtualMachineName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VMwareCloudSimple/virtualMachines/{virtualMachineName}/start",
-      code: 200,
-      apiVersion: "2019-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "VirtualMachinesStartRequest",
-}) as any as S.Schema<VirtualMachinesStartRequest>;
-
-export interface VirtualMachinesStartResponse {}
-export const VirtualMachinesStartResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "VirtualMachinesStartResponse",
-}) as any as S.Schema<VirtualMachinesStartResponse>;
-
-export type VirtualMachinesStopRequestMode =
-  | "reboot"
-  | "suspend"
-  | "shutdown"
-  | "poweroff";
-export const VirtualMachinesStopRequestMode = /*@__PURE__*/ S.String;
-
-export interface VirtualMachinesStopRequest {
-  /** The subscription ID. */
-  subscriptionId: string;
-  /** The name of the resource group */
-  resourceGroupName: string;
-  /** virtual machine name */
-  virtualMachineName: string;
-  /** query stop mode parameter (reboot, shutdown, etc...) */
-  mode?: VirtualMachinesStopRequestMode | (string & {});
-}
-export const VirtualMachinesStopRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    virtualMachineName: S.String.pipe(T.Label()),
-    mode: S.optional(VirtualMachinesStopRequestMode.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VMwareCloudSimple/virtualMachines/{virtualMachineName}/stop",
-      code: 200,
-      apiVersion: "2019-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "VirtualMachinesStopRequest",
-}) as any as S.Schema<VirtualMachinesStopRequest>;
-
-export interface VirtualMachinesStopResponse {}
-export const VirtualMachinesStopResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "VirtualMachinesStopResponse",
-}) as any as S.Schema<VirtualMachinesStopResponse>;
-
-export interface VirtualMachinesUpdateRequest {
-  /** The subscription ID. */
-  subscriptionId: string;
-  /** The name of the resource group */
-  resourceGroupName: string;
-  /** virtual machine name */
-  virtualMachineName: string;
-  /** The tags key:value pairs */
-  tags?: Tags;
-}
-export const VirtualMachinesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    virtualMachineName: S.String.pipe(T.Label()),
-    tags: S.optional(Tags),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VMwareCloudSimple/virtualMachines/{virtualMachineName}",
-      code: 200,
-      apiVersion: "2019-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "VirtualMachinesUpdateRequest",
-}) as any as S.Schema<VirtualMachinesUpdateRequest>;
-
-export interface VirtualMachineTemplatesGetRequest {
-  /** The subscription ID. */
-  subscriptionId: string;
-  /** The region Id (westus, eastus) */
-  regionId: string;
-  /** The private cloud name */
-  pcName: string;
-  /** virtual machine template id (vsphereId) */
-  virtualMachineTemplateName: string;
-}
-export const VirtualMachineTemplatesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    regionId: S.String.pipe(T.Label()),
-    pcName: S.String.pipe(T.Label()),
-    virtualMachineTemplateName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.VMwareCloudSimple/locations/{regionId}/privateClouds/{pcName}/virtualMachineTemplates/{virtualMachineTemplateName}",
-      code: 200,
-      apiVersion: "2019-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "VirtualMachineTemplatesGetRequest",
-}) as any as S.Schema<VirtualMachineTemplatesGetRequest>;
-
-export interface VirtualMachineTemplatesListRequest {
-  /** The subscription ID. */
-  subscriptionId: string;
-  /** The region Id (westus, eastus) */
-  regionId: string;
-  /** The private cloud name */
-  pcName: string;
-  /** Resource pool used to derive vSphere cluster which contains VM templates */
-  resourcePoolName: string;
-}
-export const VirtualMachineTemplatesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    regionId: S.String.pipe(T.Label()),
-    pcName: S.String.pipe(T.Label()),
-    resourcePoolName: S.String.pipe(T.Query()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.VMwareCloudSimple/locations/{regionId}/privateClouds/{pcName}/virtualMachineTemplates",
-      code: 200,
-      apiVersion: "2019-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "VirtualMachineTemplatesListRequest",
-}) as any as S.Schema<VirtualMachineTemplatesListRequest>;
-
-/** Results of the VM template list */
-export type VirtualMachineTemplateListResponseValueList =
-  Array<VirtualMachineTemplate>;
-export const VirtualMachineTemplateListResponseValueList =
-  /*@__PURE__*/ S.Array(
-    VirtualMachineTemplate,
-  ) as any as S.Schema<VirtualMachineTemplateListResponseValueList>;
-
-/** List of virtual machine templates */
-export interface VirtualMachineTemplateListResponse {
-  /** Link for next list of VirtualMachineTemplate */
-  nextLink?: string;
-  /** Results of the VM template list */
-  value?: VirtualMachineTemplateListResponseValueList;
-}
-export const VirtualMachineTemplateListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: S.optional(VirtualMachineTemplateListResponseValueList),
-  }),
-).annotate({
-  identifier: "VirtualMachineTemplateListResponse",
-}) as any as S.Schema<VirtualMachineTemplateListResponse>;
-
-export interface VirtualNetworksGetRequest {
-  /** The subscription ID. */
-  subscriptionId: string;
-  /** The region Id (westus, eastus) */
-  regionId: string;
-  /** The private cloud name */
-  pcName: string;
-  /** virtual network id (vsphereId) */
-  virtualNetworkName: string;
-}
-export const VirtualNetworksGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    regionId: S.String.pipe(T.Label()),
-    pcName: S.String.pipe(T.Label()),
-    virtualNetworkName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.VMwareCloudSimple/locations/{regionId}/privateClouds/{pcName}/virtualNetworks/{virtualNetworkName}",
-      code: 200,
-      apiVersion: "2019-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "VirtualNetworksGetRequest",
-}) as any as S.Schema<VirtualNetworksGetRequest>;
-
-export interface VirtualNetworksListRequest {
-  /** The subscription ID. */
-  subscriptionId: string;
-  /** The region Id (westus, eastus) */
-  regionId: string;
-  /** The private cloud name */
-  pcName: string;
-  /** Resource pool used to derive vSphere cluster which contains virtual networks */
-  resourcePoolName: string;
-}
-export const VirtualNetworksListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    regionId: S.String.pipe(T.Label()),
-    pcName: S.String.pipe(T.Label()),
-    resourcePoolName: S.String.pipe(T.Query()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.VMwareCloudSimple/locations/{regionId}/privateClouds/{pcName}/virtualNetworks",
-      code: 200,
-      apiVersion: "2019-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "VirtualNetworksListRequest",
-}) as any as S.Schema<VirtualNetworksListRequest>;
-
-/** Results of the VirtualNetwork list */
-export type VirtualNetworkListResponseValueList = Array<VirtualNetwork>;
-export const VirtualNetworkListResponseValueList = /*@__PURE__*/ S.Array(
-  VirtualNetwork,
-) as any as S.Schema<VirtualNetworkListResponseValueList>;
-
-/** List of virtual networks */
-export interface VirtualNetworkListResponse {
-  /** Link for next list of VirtualNetwork */
-  nextLink?: string;
-  /** Results of the VirtualNetwork list */
-  value?: VirtualNetworkListResponseValueList;
-}
-export const VirtualNetworkListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: S.optional(VirtualNetworkListResponseValueList),
-  }),
-).annotate({
-  identifier: "VirtualNetworkListResponse",
-}) as any as S.Schema<VirtualNetworkListResponse>;
-
-export type CustomizationPoliciesGetError = AzureOpError;
-/** Implements get of customization policy Returns customization policy by its name */
-export const CustomizationPoliciesGet: API.OperationMethod<
-  CustomizationPoliciesGetRequest,
-  CustomizationPolicy,
-  CustomizationPoliciesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CustomizationPoliciesGetRequest,
-  output: CustomizationPolicy,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CustomizationPoliciesListError = AzureOpError;
-/** Implements get of customization policies list Returns list of customization policies in region for private cloud */
-export const CustomizationPoliciesList: API.OperationMethod<
-  CustomizationPoliciesListRequest,
-  CustomizationPoliciesListResponse,
-  CustomizationPoliciesListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CustomizationPoliciesListRequest,
-  output: CustomizationPoliciesListResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type DedicatedCloudNodesCreateOrUpdateError = AzureOpError;
 /** Implements dedicated cloud node PUT method Returns dedicated cloud node by its name */
 export const DedicatedCloudNodesCreateOrUpdate: API.OperationMethod<
@@ -2795,81 +2765,6 @@ export const DedicatedCloudNodesCreateOrUpdate: API.OperationMethod<
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: DedicatedCloudNodesCreateOrUpdateRequest,
-  output: DedicatedCloudNode,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DedicatedCloudNodesDeleteError = AzureOpError;
-/** Implements dedicated cloud node DELETE method Delete dedicated cloud node */
-export const DedicatedCloudNodesDelete: API.OperationMethod<
-  DedicatedCloudNodesDeleteRequest,
-  DedicatedCloudNodesDeleteResponse,
-  DedicatedCloudNodesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DedicatedCloudNodesDeleteRequest,
-  output: DedicatedCloudNodesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DedicatedCloudNodesGetError = AzureOpError;
-/** Implements dedicated cloud node GET method Returns dedicated cloud node */
-export const DedicatedCloudNodesGet: API.OperationMethod<
-  DedicatedCloudNodesGetRequest,
-  DedicatedCloudNode,
-  DedicatedCloudNodesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DedicatedCloudNodesGetRequest,
-  output: DedicatedCloudNode,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DedicatedCloudNodesListByResourceGroupError = AzureOpError;
-/** Implements list of dedicated cloud nodes within RG method Returns list of dedicate cloud nodes within resource group */
-export const DedicatedCloudNodesListByResourceGroup: API.OperationMethod<
-  DedicatedCloudNodesListByResourceGroupRequest,
-  DedicatedCloudNodeListResponse,
-  DedicatedCloudNodesListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DedicatedCloudNodesListByResourceGroupRequest,
-  output: DedicatedCloudNodeListResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DedicatedCloudNodesListBySubscriptionError = AzureOpError;
-/** Implements list of dedicated cloud nodes within subscription method Returns list of dedicate cloud nodes within subscription */
-export const DedicatedCloudNodesListBySubscription: API.OperationMethod<
-  DedicatedCloudNodesListBySubscriptionRequest,
-  DedicatedCloudNodeListResponse,
-  DedicatedCloudNodesListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DedicatedCloudNodesListBySubscriptionRequest,
-  output: DedicatedCloudNodeListResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DedicatedCloudNodesUpdateError = AzureOpError;
-/** Implements dedicated cloud node PATCH method Patches dedicated node properties */
-export const DedicatedCloudNodesUpdate: API.OperationMethod<
-  DedicatedCloudNodesUpdateRequest,
-  DedicatedCloudNode,
-  DedicatedCloudNodesUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DedicatedCloudNodesUpdateRequest,
   output: DedicatedCloudNode,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -2891,196 +2786,466 @@ export const DedicatedCloudServicesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DedicatedCloudServicesDeleteError = AzureOpError;
+export type DeleteDedicatedCloudNodeError = AzureOpError;
+/** Implements dedicated cloud node DELETE method Delete dedicated cloud node */
+export const DeleteDedicatedCloudNode: API.OperationMethod<
+  DeleteDedicatedCloudNodeRequest,
+  DeleteDedicatedCloudNodeResponse,
+  DeleteDedicatedCloudNodeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteDedicatedCloudNodeRequest,
+  output: DeleteDedicatedCloudNodeResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteDedicatedCloudServiceError = AzureOpError;
 /** Implements dedicatedCloudService DELETE method Delete dedicate cloud service */
-export const DedicatedCloudServicesDelete: API.OperationMethod<
-  DedicatedCloudServicesDeleteRequest,
-  DedicatedCloudServicesDeleteResponse,
-  DedicatedCloudServicesDeleteError,
+export const DeleteDedicatedCloudService: API.OperationMethod<
+  DeleteDedicatedCloudServiceRequest,
+  DeleteDedicatedCloudServiceResponse,
+  DeleteDedicatedCloudServiceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DedicatedCloudServicesDeleteRequest,
-  output: DedicatedCloudServicesDeleteResponse,
+  input: DeleteDedicatedCloudServiceRequest,
+  output: DeleteDedicatedCloudServiceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DedicatedCloudServicesGetError = AzureOpError;
+export type DeleteVirtualMachineError = AzureOpError;
+/** Implements virtual machine DELETE method Delete virtual machine */
+export const DeleteVirtualMachine: API.OperationMethod<
+  DeleteVirtualMachineRequest,
+  DeleteVirtualMachineResponse,
+  DeleteVirtualMachineError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteVirtualMachineRequest,
+  output: DeleteVirtualMachineResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCustomizationPolicyError = AzureOpError;
+/** Implements get of customization policy Returns customization policy by its name */
+export const GetCustomizationPolicy: API.OperationMethod<
+  GetCustomizationPolicyRequest,
+  CustomizationPolicy,
+  GetCustomizationPolicyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCustomizationPolicyRequest,
+  output: CustomizationPolicy,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDedicatedCloudNodeError = AzureOpError;
+/** Implements dedicated cloud node GET method Returns dedicated cloud node */
+export const GetDedicatedCloudNode: API.OperationMethod<
+  GetDedicatedCloudNodeRequest,
+  DedicatedCloudNode,
+  GetDedicatedCloudNodeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDedicatedCloudNodeRequest,
+  output: DedicatedCloudNode,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDedicatedCloudServiceError = AzureOpError;
 /** Implements dedicatedCloudService GET method Returns Dedicate Cloud Service */
-export const DedicatedCloudServicesGet: API.OperationMethod<
-  DedicatedCloudServicesGetRequest,
+export const GetDedicatedCloudService: API.OperationMethod<
+  GetDedicatedCloudServiceRequest,
   DedicatedCloudService,
-  DedicatedCloudServicesGetError,
+  GetDedicatedCloudServiceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DedicatedCloudServicesGetRequest,
+  input: GetDedicatedCloudServiceRequest,
   output: DedicatedCloudService,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DedicatedCloudServicesListByResourceGroupError = AzureOpError;
-/** Implements list of dedicatedCloudService objects within RG method Returns list of dedicated cloud services within a resource group */
-export const DedicatedCloudServicesListByResourceGroup: API.OperationMethod<
-  DedicatedCloudServicesListByResourceGroupRequest,
-  DedicatedCloudServiceListResponse,
-  DedicatedCloudServicesListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DedicatedCloudServicesListByResourceGroupRequest,
-  output: DedicatedCloudServiceListResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DedicatedCloudServicesListBySubscriptionError = AzureOpError;
-/** Implements list of dedicatedCloudService objects within subscription method Returns list of dedicated cloud services within a subscription */
-export const DedicatedCloudServicesListBySubscription: API.OperationMethod<
-  DedicatedCloudServicesListBySubscriptionRequest,
-  DedicatedCloudServiceListResponse,
-  DedicatedCloudServicesListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DedicatedCloudServicesListBySubscriptionRequest,
-  output: DedicatedCloudServiceListResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DedicatedCloudServicesUpdateError = AzureOpError;
-/** Implements dedicatedCloudService PATCH method Patch dedicated cloud service's properties */
-export const DedicatedCloudServicesUpdate: API.OperationMethod<
-  DedicatedCloudServicesUpdateRequest,
-  DedicatedCloudService,
-  DedicatedCloudServicesUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DedicatedCloudServicesUpdateRequest,
-  output: DedicatedCloudService,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OperationsGetError = AzureOpError;
+export type GetOperationError = AzureOpError;
 /** Implements get of async operation Return an async operation */
-export const OperationsGet: API.OperationMethod<
-  OperationsGetRequest,
+export const GetOperation: API.OperationMethod<
+  GetOperationRequest,
   OperationResource,
-  OperationsGetError,
+  GetOperationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsGetRequest,
+  input: GetOperationRequest,
   output: OperationResource,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OperationsListError = AzureOpError;
-/** Implements list of available operations Return list of operations */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  AvailableOperationsListResponse,
-  OperationsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
-  output: AvailableOperationsListResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateCloudsGetError = AzureOpError;
+export type GetPrivateCloudError = AzureOpError;
 /** Implements private cloud GET method Returns private cloud by its name */
-export const PrivateCloudsGet: API.OperationMethod<
-  PrivateCloudsGetRequest,
+export const GetPrivateCloud: API.OperationMethod<
+  GetPrivateCloudRequest,
   PrivateCloud,
-  PrivateCloudsGetError,
+  GetPrivateCloudError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PrivateCloudsGetRequest,
+  input: GetPrivateCloudRequest,
   output: PrivateCloud,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type PrivateCloudsListError = AzureOpError;
-/** Implements private cloud list GET method Returns list of private clouds in particular region */
-export const PrivateCloudsList: API.OperationMethod<
-  PrivateCloudsListRequest,
-  PrivateCloudList,
-  PrivateCloudsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateCloudsListRequest,
-  output: PrivateCloudList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ResourcePoolsGetError = AzureOpError;
+export type GetResourcePoolError = AzureOpError;
 /** Implements get of resource pool Returns resource pool templates by its name */
-export const ResourcePoolsGet: API.OperationMethod<
-  ResourcePoolsGetRequest,
+export const GetResourcePool: API.OperationMethod<
+  GetResourcePoolRequest,
   ResourcePool,
-  ResourcePoolsGetError,
+  GetResourcePoolError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ResourcePoolsGetRequest,
+  input: GetResourcePoolRequest,
   output: ResourcePool,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ResourcePoolsListError = AzureOpError;
-/** Implements get of resource pools list Returns list of resource pools in region for private cloud */
-export const ResourcePoolsList: API.OperationMethod<
-  ResourcePoolsListRequest,
-  ResourcePoolsListResponse,
-  ResourcePoolsListError,
+export type GetVirtualMachineError = AzureOpError;
+/** Implements virtual machine GET method Get virtual machine */
+export const GetVirtualMachine: API.OperationMethod<
+  GetVirtualMachineRequest,
+  VirtualMachine,
+  GetVirtualMachineError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ResourcePoolsListRequest,
+  input: GetVirtualMachineRequest,
+  output: VirtualMachine,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetVirtualMachineTemplateError = AzureOpError;
+/** Implements virtual machine template GET method Returns virtual machine templates by its name */
+export const GetVirtualMachineTemplate: API.OperationMethod<
+  GetVirtualMachineTemplateRequest,
+  VirtualMachineTemplate,
+  GetVirtualMachineTemplateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetVirtualMachineTemplateRequest,
+  output: VirtualMachineTemplate,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetVirtualNetworkError = AzureOpError;
+/** Implements virtual network GET method Return virtual network by its name */
+export const GetVirtualNetwork: API.OperationMethod<
+  GetVirtualNetworkRequest,
+  VirtualNetwork,
+  GetVirtualNetworkError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetVirtualNetworkRequest,
+  output: VirtualNetwork,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListCustomizationPoliciesError = AzureOpError;
+/** Implements get of customization policies list Returns list of customization policies in region for private cloud */
+export const ListCustomizationPolicies: API.OperationMethod<
+  ListCustomizationPoliciesRequest,
+  CustomizationPoliciesListResponse,
+  ListCustomizationPoliciesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListCustomizationPoliciesRequest,
+  output: CustomizationPoliciesListResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDedicatedCloudNodeByResourceGroupError = AzureOpError;
+/** Implements list of dedicated cloud nodes within RG method Returns list of dedicate cloud nodes within resource group */
+export const ListDedicatedCloudNodeByResourceGroup: API.OperationMethod<
+  ListDedicatedCloudNodeByResourceGroupRequest,
+  DedicatedCloudNodeListResponse,
+  ListDedicatedCloudNodeByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDedicatedCloudNodeByResourceGroupRequest,
+  output: DedicatedCloudNodeListResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDedicatedCloudNodeBySubscriptionError = AzureOpError;
+/** Implements list of dedicated cloud nodes within subscription method Returns list of dedicate cloud nodes within subscription */
+export const ListDedicatedCloudNodeBySubscription: API.OperationMethod<
+  ListDedicatedCloudNodeBySubscriptionRequest,
+  DedicatedCloudNodeListResponse,
+  ListDedicatedCloudNodeBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDedicatedCloudNodeBySubscriptionRequest,
+  output: DedicatedCloudNodeListResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDedicatedCloudServiceByResourceGroupError = AzureOpError;
+/** Implements list of dedicatedCloudService objects within RG method Returns list of dedicated cloud services within a resource group */
+export const ListDedicatedCloudServiceByResourceGroup: API.OperationMethod<
+  ListDedicatedCloudServiceByResourceGroupRequest,
+  DedicatedCloudServiceListResponse,
+  ListDedicatedCloudServiceByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDedicatedCloudServiceByResourceGroupRequest,
+  output: DedicatedCloudServiceListResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDedicatedCloudServiceBySubscriptionError = AzureOpError;
+/** Implements list of dedicatedCloudService objects within subscription method Returns list of dedicated cloud services within a subscription */
+export const ListDedicatedCloudServiceBySubscription: API.OperationMethod<
+  ListDedicatedCloudServiceBySubscriptionRequest,
+  DedicatedCloudServiceListResponse,
+  ListDedicatedCloudServiceBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDedicatedCloudServiceBySubscriptionRequest,
+  output: DedicatedCloudServiceListResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOperationsError = AzureOpError;
+/** Implements list of available operations Return list of operations */
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  AvailableOperationsListResponse,
+  ListOperationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOperationsRequest,
+  output: AvailableOperationsListResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPrivateCloudsError = AzureOpError;
+/** Implements private cloud list GET method Returns list of private clouds in particular region */
+export const ListPrivateClouds: API.OperationMethod<
+  ListPrivateCloudsRequest,
+  PrivateCloudList,
+  ListPrivateCloudsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPrivateCloudsRequest,
+  output: PrivateCloudList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListResourcePoolsError = AzureOpError;
+/** Implements get of resource pools list Returns list of resource pools in region for private cloud */
+export const ListResourcePools: API.OperationMethod<
+  ListResourcePoolsRequest,
+  ResourcePoolsListResponse,
+  ListResourcePoolsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListResourcePoolsRequest,
   output: ResourcePoolsListResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type SkusAvailabilityListError = AzureOpError;
+export type ListSkusAvailabilityError = AzureOpError;
 /** Implements SkuAvailability List method Returns list of available resources in region */
-export const SkusAvailabilityList: API.OperationMethod<
-  SkusAvailabilityListRequest,
+export const ListSkusAvailability: API.OperationMethod<
+  ListSkusAvailabilityRequest,
   SkuAvailabilityListResponse,
-  SkusAvailabilityListError,
+  ListSkusAvailabilityError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SkusAvailabilityListRequest,
+  input: ListSkusAvailabilityRequest,
   output: SkuAvailabilityListResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type UsagesListError = AzureOpError;
+export type ListUsagesError = AzureOpError;
 /** Implements Usages List method Returns list of usage in region */
-export const UsagesList: API.OperationMethod<
-  UsagesListRequest,
+export const ListUsages: API.OperationMethod<
+  ListUsagesRequest,
   UsageListResponse,
-  UsagesListError,
+  ListUsagesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UsagesListRequest,
+  input: ListUsagesRequest,
   output: UsageListResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVirtualMachineByResourceGroupError = AzureOpError;
+/** Implements list virtual machine within RG method Returns list of virtual machine within resource group */
+export const ListVirtualMachineByResourceGroup: API.OperationMethod<
+  ListVirtualMachineByResourceGroupRequest,
+  VirtualMachineListResponse,
+  ListVirtualMachineByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVirtualMachineByResourceGroupRequest,
+  output: VirtualMachineListResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVirtualMachineBySubscriptionError = AzureOpError;
+/** Implements list virtual machine within subscription method Returns list virtual machine within subscription */
+export const ListVirtualMachineBySubscription: API.OperationMethod<
+  ListVirtualMachineBySubscriptionRequest,
+  VirtualMachineListResponse,
+  ListVirtualMachineBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVirtualMachineBySubscriptionRequest,
+  output: VirtualMachineListResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVirtualMachineTemplatesError = AzureOpError;
+/** Implements list of available VM templates Returns list of virtual machine templates in region for private cloud */
+export const ListVirtualMachineTemplates: API.OperationMethod<
+  ListVirtualMachineTemplatesRequest,
+  VirtualMachineTemplateListResponse,
+  ListVirtualMachineTemplatesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVirtualMachineTemplatesRequest,
+  output: VirtualMachineTemplateListResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVirtualNetworksError = AzureOpError;
+/** Implements list available virtual networks within a subscription method Return list of virtual networks in location for private cloud */
+export const ListVirtualNetworks: API.OperationMethod<
+  ListVirtualNetworksRequest,
+  VirtualNetworkListResponse,
+  ListVirtualNetworksError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVirtualNetworksRequest,
+  output: VirtualNetworkListResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type StartVirtualMachineError = AzureOpError;
+/** Implements a start method for a virtual machine Power on virtual machine */
+export const StartVirtualMachine: API.OperationMethod<
+  StartVirtualMachineRequest,
+  StartVirtualMachineResponse,
+  StartVirtualMachineError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: StartVirtualMachineRequest,
+  output: StartVirtualMachineResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type StopVirtualMachineError = AzureOpError;
+/** Implements shutdown, poweroff, and suspend method for a virtual machine Power off virtual machine, options: shutdown, poweroff, and suspend */
+export const StopVirtualMachine: API.OperationMethod<
+  StopVirtualMachineRequest,
+  StopVirtualMachineResponse,
+  StopVirtualMachineError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: StopVirtualMachineRequest,
+  output: StopVirtualMachineResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateDedicatedCloudNodeError = AzureOpError;
+/** Implements dedicated cloud node PATCH method Patches dedicated node properties */
+export const UpdateDedicatedCloudNode: API.OperationMethod<
+  UpdateDedicatedCloudNodeRequest,
+  DedicatedCloudNode,
+  UpdateDedicatedCloudNodeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateDedicatedCloudNodeRequest,
+  output: DedicatedCloudNode,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateDedicatedCloudServiceError = AzureOpError;
+/** Implements dedicatedCloudService PATCH method Patch dedicated cloud service's properties */
+export const UpdateDedicatedCloudService: API.OperationMethod<
+  UpdateDedicatedCloudServiceRequest,
+  DedicatedCloudService,
+  UpdateDedicatedCloudServiceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateDedicatedCloudServiceRequest,
+  output: DedicatedCloudService,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateVirtualMachineError = AzureOpError;
+/** Implements virtual machine PATCH method Patch virtual machine properties */
+export const UpdateVirtualMachine: API.OperationMethod<
+  UpdateVirtualMachineRequest,
+  VirtualMachine,
+  UpdateVirtualMachineError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateVirtualMachineRequest,
+  output: VirtualMachine,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3096,171 +3261,6 @@ export const VirtualMachinesCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: VirtualMachinesCreateOrUpdateRequest,
   output: VirtualMachine,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachinesDeleteError = AzureOpError;
-/** Implements virtual machine DELETE method Delete virtual machine */
-export const VirtualMachinesDelete: API.OperationMethod<
-  VirtualMachinesDeleteRequest,
-  VirtualMachinesDeleteResponse,
-  VirtualMachinesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachinesDeleteRequest,
-  output: VirtualMachinesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachinesGetError = AzureOpError;
-/** Implements virtual machine GET method Get virtual machine */
-export const VirtualMachinesGet: API.OperationMethod<
-  VirtualMachinesGetRequest,
-  VirtualMachine,
-  VirtualMachinesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachinesGetRequest,
-  output: VirtualMachine,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachinesListByResourceGroupError = AzureOpError;
-/** Implements list virtual machine within RG method Returns list of virtual machine within resource group */
-export const VirtualMachinesListByResourceGroup: API.OperationMethod<
-  VirtualMachinesListByResourceGroupRequest,
-  VirtualMachineListResponse,
-  VirtualMachinesListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachinesListByResourceGroupRequest,
-  output: VirtualMachineListResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachinesListBySubscriptionError = AzureOpError;
-/** Implements list virtual machine within subscription method Returns list virtual machine within subscription */
-export const VirtualMachinesListBySubscription: API.OperationMethod<
-  VirtualMachinesListBySubscriptionRequest,
-  VirtualMachineListResponse,
-  VirtualMachinesListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachinesListBySubscriptionRequest,
-  output: VirtualMachineListResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachinesStartError = AzureOpError;
-/** Implements a start method for a virtual machine Power on virtual machine */
-export const VirtualMachinesStart: API.OperationMethod<
-  VirtualMachinesStartRequest,
-  VirtualMachinesStartResponse,
-  VirtualMachinesStartError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachinesStartRequest,
-  output: VirtualMachinesStartResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachinesStopError = AzureOpError;
-/** Implements shutdown, poweroff, and suspend method for a virtual machine Power off virtual machine, options: shutdown, poweroff, and suspend */
-export const VirtualMachinesStop: API.OperationMethod<
-  VirtualMachinesStopRequest,
-  VirtualMachinesStopResponse,
-  VirtualMachinesStopError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachinesStopRequest,
-  output: VirtualMachinesStopResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachinesUpdateError = AzureOpError;
-/** Implements virtual machine PATCH method Patch virtual machine properties */
-export const VirtualMachinesUpdate: API.OperationMethod<
-  VirtualMachinesUpdateRequest,
-  VirtualMachine,
-  VirtualMachinesUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachinesUpdateRequest,
-  output: VirtualMachine,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachineTemplatesGetError = AzureOpError;
-/** Implements virtual machine template GET method Returns virtual machine templates by its name */
-export const VirtualMachineTemplatesGet: API.OperationMethod<
-  VirtualMachineTemplatesGetRequest,
-  VirtualMachineTemplate,
-  VirtualMachineTemplatesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachineTemplatesGetRequest,
-  output: VirtualMachineTemplate,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachineTemplatesListError = AzureOpError;
-/** Implements list of available VM templates Returns list of virtual machine templates in region for private cloud */
-export const VirtualMachineTemplatesList: API.OperationMethod<
-  VirtualMachineTemplatesListRequest,
-  VirtualMachineTemplateListResponse,
-  VirtualMachineTemplatesListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachineTemplatesListRequest,
-  output: VirtualMachineTemplateListResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualNetworksGetError = AzureOpError;
-/** Implements virtual network GET method Return virtual network by its name */
-export const VirtualNetworksGet: API.OperationMethod<
-  VirtualNetworksGetRequest,
-  VirtualNetwork,
-  VirtualNetworksGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualNetworksGetRequest,
-  output: VirtualNetwork,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualNetworksListError = AzureOpError;
-/** Implements list available virtual networks within a subscription method Return list of virtual networks in location for private cloud */
-export const VirtualNetworksList: API.OperationMethod<
-  VirtualNetworksListRequest,
-  VirtualNetworkListResponse,
-  VirtualNetworksListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualNetworksListRequest,
-  output: VirtualNetworkListResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

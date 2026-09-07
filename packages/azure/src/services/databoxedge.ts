@@ -117,598 +117,6 @@ export const AddonsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "AddonsCreateOrUpdateResponse",
 }) as any as S.Schema<AddonsCreateOrUpdateResponse>;
 
-export interface AddonsDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the device. */
-  deviceName: string;
-  /** The name of the role. */
-  roleName: string;
-  /** The name of the addon. */
-  addonName: string;
-}
-export const AddonsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    deviceName: S.String.pipe(T.Label()),
-    roleName: S.String.pipe(T.Label()),
-    addonName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/roles/{roleName}/addons/{addonName}",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "AddonsDeleteRequest",
-}) as any as S.Schema<AddonsDeleteRequest>;
-
-export interface AddonsDeleteResponse {}
-export const AddonsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "AddonsDeleteResponse",
-}) as any as S.Schema<AddonsDeleteResponse>;
-
-export interface AddonsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the device. */
-  deviceName: string;
-  /** The name of the role. */
-  roleName: string;
-  /** The name of the addon. */
-  addonName: string;
-}
-export const AddonsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    deviceName: S.String.pipe(T.Label()),
-    roleName: S.String.pipe(T.Label()),
-    addonName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/roles/{roleName}/addons/{addonName}",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "AddonsGetRequest",
-}) as any as S.Schema<AddonsGetRequest>;
-
-export interface AddonsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Addon type. */
-  kind: AddonType;
-}
-export const AddonsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    kind: AddonType,
-  }),
-).annotate({
-  identifier: "AddonsGetResponse",
-}) as any as S.Schema<AddonsGetResponse>;
-
-export interface AddonsListByRoleRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the device. */
-  deviceName: string;
-  /** The name of the role. */
-  roleName: string;
-}
-export const AddonsListByRoleRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    deviceName: S.String.pipe(T.Label()),
-    roleName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/roles/{roleName}/addons",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "AddonsListByRoleRequest",
-}) as any as S.Schema<AddonsListByRoleRequest>;
-
-/** Role Addon */
-export interface Addon {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Addon type. */
-  kind: AddonType;
-}
-export const Addon = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    kind: AddonType,
-  }),
-).annotate({ identifier: "Addon" }) as any as S.Schema<Addon>;
-
-/** The Addon items on this page */
-export type AddonListValueList = Array<Addon>;
-export const AddonListValueList = /*@__PURE__*/ S.Array(
-  Addon,
-) as any as S.Schema<AddonListValueList>;
-
-/** Collection of all the Role addon on the Azure Stack Edge device. */
-export interface AddonList {
-  /** The Addon items on this page */
-  value: AddonListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const AddonList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: AddonListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "AddonList" }) as any as S.Schema<AddonList>;
-
-export interface AlertsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The device name. */
-  deviceName: string;
-  /** The alert name. */
-  name: string;
-}
-export const AlertsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    deviceName: S.String.pipe(T.Label()),
-    name: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/alerts/{name}",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "AlertsGetRequest",
-}) as any as S.Schema<AlertsGetRequest>;
-
-/** Severity of the alert. */
-export type AlertSeverity = "Informational" | "Warning" | "Critical";
-export const AlertSeverity = /*@__PURE__*/ S.String;
-
-/** Error details for the alert. */
-export interface AlertErrorDetails {
-  /** Error code. */
-  errorCode?: string;
-  /** Error Message. */
-  errorMessage?: string;
-  /** Number of occurrences. */
-  occurrences?: number;
-}
-export const AlertErrorDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    errorCode: S.optional(S.String),
-    errorMessage: S.optional(S.String),
-    occurrences: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "AlertErrorDetails",
-}) as any as S.Schema<AlertErrorDetails>;
-
-/** Alert details. */
-export type AlertPropertiesDetailedInformationMap = {
-  [key: string]: string | undefined;
-};
-export const AlertPropertiesDetailedInformationMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AlertPropertiesDetailedInformationMap>;
-
-/** Properties of alert. */
-export interface AlertProperties {
-  /** Alert title. */
-  title?: string;
-  /** Alert type. */
-  alertType?: string;
-  /** UTC time when the alert appeared. */
-  appearedAtDateTime?: string;
-  /** Alert recommendation. */
-  recommendation?: string;
-  /** Severity of the alert. */
-  severity?: AlertSeverity;
-  /** Error details of the alert. */
-  errorDetails?: AlertErrorDetails;
-  /** Alert details. */
-  detailedInformation?: AlertPropertiesDetailedInformationMap;
-}
-export const AlertProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    title: S.optional(S.String),
-    alertType: S.optional(S.String),
-    appearedAtDateTime: S.optional(S.String),
-    recommendation: S.optional(S.String),
-    severity: S.optional(AlertSeverity),
-    errorDetails: S.optional(AlertErrorDetails),
-    detailedInformation: S.optional(AlertPropertiesDetailedInformationMap),
-  }),
-).annotate({
-  identifier: "AlertProperties",
-}) as any as S.Schema<AlertProperties>;
-
-export interface AlertsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of alert. */
-  properties?: AlertProperties;
-}
-export const AlertsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(AlertProperties),
-  }),
-).annotate({
-  identifier: "AlertsGetResponse",
-}) as any as S.Schema<AlertsGetResponse>;
-
-export interface AlertsListByDataBoxEdgeDeviceRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The device name. */
-  deviceName: string;
-}
-export const AlertsListByDataBoxEdgeDeviceRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      deviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/alerts",
-        code: 200,
-        apiVersion: "2023-12-01",
-      }),
-    ),
-).annotate({
-  identifier: "AlertsListByDataBoxEdgeDeviceRequest",
-}) as any as S.Schema<AlertsListByDataBoxEdgeDeviceRequest>;
-
-/** Alert on the data box edge/gateway device. */
-export interface Alert {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of alert. */
-  properties?: AlertProperties;
-}
-export const Alert = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(AlertProperties),
-  }),
-).annotate({ identifier: "Alert" }) as any as S.Schema<Alert>;
-
-/** The Alert items on this page */
-export type AlertListValueList = Array<Alert>;
-export const AlertListValueList = /*@__PURE__*/ S.Array(
-  Alert,
-) as any as S.Schema<AlertListValueList>;
-
-/** Collection of alerts. */
-export interface AlertList {
-  /** The Alert items on this page */
-  value: AlertListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const AlertList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: AlertListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "AlertList" }) as any as S.Schema<AlertList>;
-
-export interface AvailableSkusListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-}
-export const AvailableSkusListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DataBoxEdge/availableSkus",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "AvailableSkusListRequest",
-}) as any as S.Schema<AvailableSkusListRequest>;
-
-/** The Sku name. */
-export type SkuName =
-  | "Gateway"
-  | "Edge"
-  | "TEA_1Node"
-  | "TEA_1Node_UPS"
-  | "TEA_1Node_Heater"
-  | "TEA_1Node_UPS_Heater"
-  | "TEA_4Node_Heater"
-  | "TEA_4Node_UPS_Heater"
-  | "TMA"
-  | "TDC"
-  | "TCA_Small"
-  | "GPU"
-  | "TCA_Large"
-  | "EdgeP_Base"
-  | "EdgeP_High"
-  | "EdgePR_Base"
-  | "EdgePR_Base_UPS"
-  | "EP2_64_1VPU_W"
-  | "EP2_128_1T4_Mx1_W"
-  | "EP2_256_2T4_W"
-  | "EdgeMR_Mini"
-  | "RCA_Small"
-  | "RCA_Large"
-  | "RDC"
-  | "Management"
-  | "EP2_64_Mx1_W"
-  | "EP2_128_GPU1_Mx1_W"
-  | "EP2_256_GPU2_Mx1"
-  | "EdgeMR_TCP";
-export const SkuName = /*@__PURE__*/ S.String;
-
-/** The Sku tier. */
-export type SkuTier = "Standard";
-export const SkuTier = /*@__PURE__*/ S.String;
-
-/** Availability of the Sku for the region. */
-export type DataBoxEdgeSkuLocationsList = Array<string>;
-export const DataBoxEdgeSkuLocationsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<DataBoxEdgeSkuLocationsList>;
-
-/** The API versions in which Sku is available. */
-export type DataBoxEdgeSkuApiVersionsList = Array<string>;
-export const DataBoxEdgeSkuApiVersionsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<DataBoxEdgeSkuApiVersionsList>;
-
-/** The zones. */
-export type SkuLocationInfoZonesList = Array<string>;
-export const SkuLocationInfoZonesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<SkuLocationInfoZonesList>;
-
-/** The sites. */
-export type SkuLocationInfoSitesList = Array<string>;
-export const SkuLocationInfoSitesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<SkuLocationInfoSitesList>;
-
-/** The location info. */
-export interface SkuLocationInfo {
-  /** The location. */
-  location?: string;
-  /** The zones. */
-  zones?: SkuLocationInfoZonesList;
-  /** The sites. */
-  sites?: SkuLocationInfoSitesList;
-}
-export const SkuLocationInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    location: S.optional(S.String),
-    zones: S.optional(SkuLocationInfoZonesList),
-    sites: S.optional(SkuLocationInfoSitesList),
-  }),
-).annotate({
-  identifier: "SkuLocationInfo",
-}) as any as S.Schema<SkuLocationInfo>;
-
-/** Availability of the Sku for the location/zone/site. */
-export type DataBoxEdgeSkuLocationInfoList = Array<SkuLocationInfo>;
-export const DataBoxEdgeSkuLocationInfoList = /*@__PURE__*/ S.Array(
-  SkuLocationInfo,
-) as any as S.Schema<DataBoxEdgeSkuLocationInfoList>;
-
-/** The metadata for retrieving price info. */
-export interface SkuCost {
-  /** Used for querying price from commerce. */
-  meterId?: string;
-  /** The cost quantity. */
-  quantity?: number;
-  /** The extended unit. */
-  extendedUnit?: string;
-}
-export const SkuCost = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    meterId: S.optional(S.String),
-    quantity: S.optional(S.Number),
-    extendedUnit: S.optional(S.String),
-  }),
-).annotate({ identifier: "SkuCost" }) as any as S.Schema<SkuCost>;
-
-/** The pricing info of the Sku. */
-export type DataBoxEdgeSkuCostsList = Array<SkuCost>;
-export const DataBoxEdgeSkuCostsList = /*@__PURE__*/ S.Array(
-  SkuCost,
-) as any as S.Schema<DataBoxEdgeSkuCostsList>;
-
-/** Sku can be signed up by customer or not. */
-export type SkuSignupOption = "None" | "Available";
-export const SkuSignupOption = /*@__PURE__*/ S.String;
-
-/** Availability of the Sku as preview/stable. */
-export type SkuVersion = "Stable" | "Preview";
-export const SkuVersion = /*@__PURE__*/ S.String;
-
-/** Links to the next set of results */
-export type SkuAvailability = "Available" | "Unavailable";
-export const SkuAvailability = /*@__PURE__*/ S.String;
-
-export type ShipmentType = "NotApplicable" | "ShippedToCustomer" | "SelfPickup";
-export const ShipmentType = /*@__PURE__*/ S.String;
-
-/** List of Shipment Types supported by this SKU */
-export type DataBoxEdgeSkuShipmentTypesList = Array<ShipmentType>;
-export const DataBoxEdgeSkuShipmentTypesList = /*@__PURE__*/ S.Array(
-  ShipmentType,
-) as any as S.Schema<DataBoxEdgeSkuShipmentTypesList>;
-
-/** The metadata to describe the capability. */
-export interface SkuCapability {
-  /** An invariant to describe the feature. */
-  name?: string;
-  /** An invariant if the feature is measured by quantity. */
-  value?: string;
-}
-export const SkuCapability = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    value: S.optional(S.String),
-  }),
-).annotate({ identifier: "SkuCapability" }) as any as S.Schema<SkuCapability>;
-
-/** The capability info of the SKU. */
-export type DataBoxEdgeSkuCapabilitiesList = Array<SkuCapability>;
-export const DataBoxEdgeSkuCapabilitiesList = /*@__PURE__*/ S.Array(
-  SkuCapability,
-) as any as S.Schema<DataBoxEdgeSkuCapabilitiesList>;
-
-/** The Sku information. */
-export interface DataBoxEdgeSku {
-  /** The type of the resource. */
-  resourceType?: string;
-  /** The Sku name. */
-  name?: SkuName;
-  /** The Sku kind. */
-  kind?: string;
-  /** The Sku tier. */
-  tier?: SkuTier;
-  /** The Sku kind. */
-  size?: string;
-  /** The Sku family. */
-  family?: string;
-  /** Availability of the Sku for the region. */
-  locations?: DataBoxEdgeSkuLocationsList;
-  /** The API versions in which Sku is available. */
-  apiVersions?: DataBoxEdgeSkuApiVersionsList;
-  /** Availability of the Sku for the location/zone/site. */
-  locationInfo?: DataBoxEdgeSkuLocationInfoList;
-  /** The pricing info of the Sku. */
-  costs?: DataBoxEdgeSkuCostsList;
-  /** Sku can be signed up by customer or not. */
-  signupOption?: SkuSignupOption;
-  /** Availability of the Sku as preview/stable. */
-  version?: SkuVersion;
-  /** Links to the next set of results */
-  availability?: SkuAvailability;
-  /** List of Shipment Types supported by this SKU */
-  shipmentTypes?: DataBoxEdgeSkuShipmentTypesList;
-  /** The capability info of the SKU. */
-  capabilities?: DataBoxEdgeSkuCapabilitiesList;
-}
-export const DataBoxEdgeSku = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceType: S.optional(S.String),
-    name: S.optional(SkuName),
-    kind: S.optional(S.String),
-    tier: S.optional(SkuTier),
-    size: S.optional(S.String),
-    family: S.optional(S.String),
-    locations: S.optional(DataBoxEdgeSkuLocationsList),
-    apiVersions: S.optional(DataBoxEdgeSkuApiVersionsList),
-    locationInfo: S.optional(DataBoxEdgeSkuLocationInfoList),
-    costs: S.optional(DataBoxEdgeSkuCostsList),
-    signupOption: S.optional(SkuSignupOption),
-    version: S.optional(SkuVersion),
-    availability: S.optional(SkuAvailability),
-    shipmentTypes: S.optional(DataBoxEdgeSkuShipmentTypesList),
-    capabilities: S.optional(DataBoxEdgeSkuCapabilitiesList),
-  }),
-).annotate({ identifier: "DataBoxEdgeSku" }) as any as S.Schema<DataBoxEdgeSku>;
-
-/** The DataBoxEdgeSku items on this page */
-export type DataBoxEdgeSkuListValueList = Array<DataBoxEdgeSku>;
-export const DataBoxEdgeSkuListValueList = /*@__PURE__*/ S.Array(
-  DataBoxEdgeSku,
-) as any as S.Schema<DataBoxEdgeSkuListValueList>;
-
-/** List of SKU Information objects. */
-export interface DataBoxEdgeSkuList {
-  /** The DataBoxEdgeSku items on this page */
-  value: DataBoxEdgeSkuListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const DataBoxEdgeSkuList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: DataBoxEdgeSkuListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DataBoxEdgeSkuList",
-}) as any as S.Schema<DataBoxEdgeSkuList>;
-
 export type DayOfWeek =
   | "Sunday"
   | "Monday"
@@ -806,165 +214,112 @@ export const BandwidthSchedulesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "BandwidthSchedulesCreateOrUpdateResponse",
 }) as any as S.Schema<BandwidthSchedulesCreateOrUpdateResponse>;
 
-export interface BandwidthSchedulesDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The device name. */
-  deviceName: string;
-  /** The bandwidth schedule name. */
-  name: string;
-}
-export const BandwidthSchedulesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    deviceName: S.String.pipe(T.Label()),
-    name: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/bandwidthSchedules/{name}",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "BandwidthSchedulesDeleteRequest",
-}) as any as S.Schema<BandwidthSchedulesDeleteRequest>;
+export type DeviceCapacityRequestInfoPropertiesVmPlacementQueryItemList =
+  Array<string>;
+export const DeviceCapacityRequestInfoPropertiesVmPlacementQueryItemList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<DeviceCapacityRequestInfoPropertiesVmPlacementQueryItemList>;
 
-export interface BandwidthSchedulesDeleteResponse {}
-export const BandwidthSchedulesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "BandwidthSchedulesDeleteResponse",
-}) as any as S.Schema<BandwidthSchedulesDeleteResponse>;
+/** Array containing the sizes of the VMs for checking if its feasible to create them on the appliance. */
+export type DeviceCapacityRequestInfoPropertiesVmPlacementQueryList =
+  Array<DeviceCapacityRequestInfoPropertiesVmPlacementQueryItemList>;
+export const DeviceCapacityRequestInfoPropertiesVmPlacementQueryList =
+  /*@__PURE__*/ S.Array(
+    DeviceCapacityRequestInfoPropertiesVmPlacementQueryItemList,
+  ) as any as S.Schema<DeviceCapacityRequestInfoPropertiesVmPlacementQueryList>;
 
-export interface BandwidthSchedulesGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The device name. */
-  deviceName: string;
-  /** The bandwidth schedule name. */
-  name: string;
-}
-export const BandwidthSchedulesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    deviceName: S.String.pipe(T.Label()),
-    name: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/bandwidthSchedules/{name}",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "BandwidthSchedulesGetRequest",
-}) as any as S.Schema<BandwidthSchedulesGetRequest>;
+/** List of VM sizes being checked. */
+export type VmPlacementRequestResultVmSizeList = Array<string>;
+export const VmPlacementRequestResultVmSizeList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<VmPlacementRequestResultVmSizeList>;
 
-export interface BandwidthSchedulesGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of the bandwidth schedule. */
-  properties: BandwidthScheduleProperties;
+/** List of VM sizes being checked for creation on appliance along with corresponding result. */
+export interface VmPlacementRequestResult {
+  /** List of VM sizes being checked. */
+  vmSize?: VmPlacementRequestResultVmSizeList;
+  /** Boolean value indicating if the VM(s) in VmSize can be created. */
+  isFeasible?: boolean;
+  /** MessageCode indicating reason for success or failure. */
+  messageCode?: string;
+  /** Localized message to be displayed to the user to explain the check result. */
+  message?: string;
 }
-export const BandwidthSchedulesGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const VmPlacementRequestResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: BandwidthScheduleProperties,
+    vmSize: S.optional(VmPlacementRequestResultVmSizeList),
+    isFeasible: S.optional(S.Boolean),
+    messageCode: S.optional(S.String),
+    message: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "BandwidthSchedulesGetResponse",
-}) as any as S.Schema<BandwidthSchedulesGetResponse>;
+  identifier: "VmPlacementRequestResult",
+}) as any as S.Schema<VmPlacementRequestResult>;
 
-export interface BandwidthSchedulesListByDataBoxEdgeDeviceRequest {
+/** Array of the VMs of the sizes in VmSizes can be provisioned on the appliance. */
+export type DeviceCapacityRequestInfoPropertiesVmPlacementResultsList =
+  Array<VmPlacementRequestResult>;
+export const DeviceCapacityRequestInfoPropertiesVmPlacementResultsList =
+  /*@__PURE__*/ S.Array(
+    VmPlacementRequestResult,
+  ) as any as S.Schema<DeviceCapacityRequestInfoPropertiesVmPlacementResultsList>;
+
+/** Properties of Device Capacity Request Info containing VM's to be checked and their corresponding results. */
+export interface DeviceCapacityRequestInfoProperties {
+  /** Array containing the sizes of the VMs for checking if its feasible to create them on the appliance. */
+  vmPlacementQuery: DeviceCapacityRequestInfoPropertiesVmPlacementQueryList;
+  /** Array of the VMs of the sizes in VmSizes can be provisioned on the appliance. */
+  vmPlacementResults?: DeviceCapacityRequestInfoPropertiesVmPlacementResultsList;
+}
+export const DeviceCapacityRequestInfoProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    vmPlacementQuery: DeviceCapacityRequestInfoPropertiesVmPlacementQueryList,
+    vmPlacementResults: S.optional(
+      DeviceCapacityRequestInfoPropertiesVmPlacementResultsList,
+    ),
+  }),
+).annotate({
+  identifier: "DeviceCapacityRequestInfoProperties",
+}) as any as S.Schema<DeviceCapacityRequestInfoProperties>;
+
+export interface CheckDeviceCapacityCheckResourceCreationFeasibilityRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The device name. */
   deviceName: string;
+  /** The capacity name. */
+  capacityName?: string;
+  /** The properties of the Device Capacity Request. */
+  properties: DeviceCapacityRequestInfoProperties;
 }
-export const BandwidthSchedulesListByDataBoxEdgeDeviceRequest =
+export const CheckDeviceCapacityCheckResourceCreationFeasibilityRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       deviceName: S.String.pipe(T.Label()),
+      capacityName: S.optional(S.String.pipe(T.Query())),
+      properties: DeviceCapacityRequestInfoProperties,
     }).pipe(
       T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/bandwidthSchedules",
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/deviceCapacityCheck",
         code: 200,
         apiVersion: "2023-12-01",
       }),
     ),
   ).annotate({
-    identifier: "BandwidthSchedulesListByDataBoxEdgeDeviceRequest",
-  }) as any as S.Schema<BandwidthSchedulesListByDataBoxEdgeDeviceRequest>;
+    identifier: "CheckDeviceCapacityCheckResourceCreationFeasibilityRequest",
+  }) as any as S.Schema<CheckDeviceCapacityCheckResourceCreationFeasibilityRequest>;
 
-/** The bandwidth schedule details. */
-export interface BandwidthSchedule {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of the bandwidth schedule. */
-  properties: BandwidthScheduleProperties;
-}
-export const BandwidthSchedule = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: BandwidthScheduleProperties,
-  }),
-).annotate({
-  identifier: "BandwidthSchedule",
-}) as any as S.Schema<BandwidthSchedule>;
-
-/** The BandwidthSchedule items on this page */
-export type BandwidthSchedulesListValueList = Array<BandwidthSchedule>;
-export const BandwidthSchedulesListValueList = /*@__PURE__*/ S.Array(
-  BandwidthSchedule,
-) as any as S.Schema<BandwidthSchedulesListValueList>;
-
-/** The collection of bandwidth schedules. */
-export interface BandwidthSchedulesList {
-  /** The BandwidthSchedule items on this page */
-  value: BandwidthSchedulesListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const BandwidthSchedulesList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: BandwidthSchedulesListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "BandwidthSchedulesList",
-}) as any as S.Schema<BandwidthSchedulesList>;
+export interface CheckDeviceCapacityCheckResourceCreationFeasibilityResponse {}
+export const CheckDeviceCapacityCheckResourceCreationFeasibilityResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "CheckDeviceCapacityCheckResourceCreationFeasibilityResponse",
+  }) as any as S.Schema<CheckDeviceCapacityCheckResourceCreationFeasibilityResponse>;
 
 /** Storage format used for the file represented by the share. */
 export type AzureContainerDataFormat = "BlockBlob" | "PageBlob" | "AzureFile";
@@ -1092,7 +447,80 @@ export const ContainersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ContainersCreateOrUpdateResponse",
 }) as any as S.Schema<ContainersCreateOrUpdateResponse>;
 
-export interface ContainersDeleteRequest {
+export interface DeleteAddonRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the device. */
+  deviceName: string;
+  /** The name of the role. */
+  roleName: string;
+  /** The name of the addon. */
+  addonName: string;
+}
+export const DeleteAddonRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    deviceName: S.String.pipe(T.Label()),
+    roleName: S.String.pipe(T.Label()),
+    addonName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/roles/{roleName}/addons/{addonName}",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteAddonRequest",
+}) as any as S.Schema<DeleteAddonRequest>;
+
+export interface DeleteAddonResponse {}
+export const DeleteAddonResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteAddonResponse",
+}) as any as S.Schema<DeleteAddonResponse>;
+
+export interface DeleteBandwidthScheduleRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The device name. */
+  deviceName: string;
+  /** The bandwidth schedule name. */
+  name: string;
+}
+export const DeleteBandwidthScheduleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    deviceName: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/bandwidthSchedules/{name}",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteBandwidthScheduleRequest",
+}) as any as S.Schema<DeleteBandwidthScheduleRequest>;
+
+export interface DeleteBandwidthScheduleResponse {}
+export const DeleteBandwidthScheduleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteBandwidthScheduleResponse",
+}) as any as S.Schema<DeleteBandwidthScheduleResponse>;
+
+export interface DeleteContainerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1104,7 +532,7 @@ export interface ContainersDeleteRequest {
   /** The container Name */
   containerName: string;
 }
-export const ContainersDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteContainerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1120,72 +548,186 @@ export const ContainersDeleteRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ContainersDeleteRequest",
-}) as any as S.Schema<ContainersDeleteRequest>;
+  identifier: "DeleteContainerRequest",
+}) as any as S.Schema<DeleteContainerRequest>;
 
-export interface ContainersDeleteResponse {}
-export const ContainersDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteContainerResponse {}
+export const DeleteContainerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "ContainersDeleteResponse",
-}) as any as S.Schema<ContainersDeleteResponse>;
+  identifier: "DeleteContainerResponse",
+}) as any as S.Schema<DeleteContainerResponse>;
 
-export interface ContainersGetRequest {
+export interface DeleteDeviceRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The device name. */
   deviceName: string;
-  /** The storage account name. */
-  storageAccountName: string;
-  /** The container Name */
-  containerName: string;
 }
-export const ContainersGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteDeviceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     deviceName: S.String.pipe(T.Label()),
-    storageAccountName: S.String.pipe(T.Label()),
-    containerName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/storageAccounts/{storageAccountName}/containers/{containerName}",
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}",
       code: 200,
       apiVersion: "2023-12-01",
     }),
   ),
 ).annotate({
-  identifier: "ContainersGetRequest",
-}) as any as S.Schema<ContainersGetRequest>;
+  identifier: "DeleteDeviceRequest",
+}) as any as S.Schema<DeleteDeviceRequest>;
 
-export interface ContainersGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The container properties. */
-  properties: ContainerProperties;
-}
-export const ContainersGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: ContainerProperties,
-  }),
+export interface DeleteDeviceResponse {}
+export const DeleteDeviceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
 ).annotate({
-  identifier: "ContainersGetResponse",
-}) as any as S.Schema<ContainersGetResponse>;
+  identifier: "DeleteDeviceResponse",
+}) as any as S.Schema<DeleteDeviceResponse>;
 
-export interface ContainersListByStorageAccountRequest {
+export interface DeleteMonitoringConfigRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the device. */
+  deviceName: string;
+  /** The name of the role. */
+  roleName: string;
+}
+export const DeleteMonitoringConfigRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    deviceName: S.String.pipe(T.Label()),
+    roleName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/roles/{roleName}/monitoringConfig/default",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteMonitoringConfigRequest",
+}) as any as S.Schema<DeleteMonitoringConfigRequest>;
+
+export interface DeleteMonitoringConfigResponse {}
+export const DeleteMonitoringConfigResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteMonitoringConfigResponse",
+}) as any as S.Schema<DeleteMonitoringConfigResponse>;
+
+export interface DeleteOrderRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The device name. */
+  deviceName: string;
+}
+export const DeleteOrderRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    deviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/orders/default",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteOrderRequest",
+}) as any as S.Schema<DeleteOrderRequest>;
+
+export interface DeleteOrderResponse {}
+export const DeleteOrderResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteOrderResponse",
+}) as any as S.Schema<DeleteOrderResponse>;
+
+export interface DeleteRoleRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The device name. */
+  deviceName: string;
+  /** The role name. */
+  name: string;
+}
+export const DeleteRoleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    deviceName: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/roles/{name}",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteRoleRequest",
+}) as any as S.Schema<DeleteRoleRequest>;
+
+export interface DeleteRoleResponse {}
+export const DeleteRoleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteRoleResponse",
+}) as any as S.Schema<DeleteRoleResponse>;
+
+export interface DeleteShareRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The device name. */
+  deviceName: string;
+  /** The share name. */
+  name: string;
+}
+export const DeleteShareRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    deviceName: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/shares/{name}",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteShareRequest",
+}) as any as S.Schema<DeleteShareRequest>;
+
+export interface DeleteShareResponse {}
+export const DeleteShareResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteShareResponse",
+}) as any as S.Schema<DeleteShareResponse>;
+
+export interface DeleteStorageAccountRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1195,502 +737,136 @@ export interface ContainersListByStorageAccountRequest {
   /** The storage account name. */
   storageAccountName: string;
 }
-export const ContainersListByStorageAccountRequest = /*@__PURE__*/ S.suspend(
+export const DeleteStorageAccountRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    deviceName: S.String.pipe(T.Label()),
+    storageAccountName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/storageAccounts/{storageAccountName}",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteStorageAccountRequest",
+}) as any as S.Schema<DeleteStorageAccountRequest>;
+
+export interface DeleteStorageAccountResponse {}
+export const DeleteStorageAccountResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteStorageAccountResponse",
+}) as any as S.Schema<DeleteStorageAccountResponse>;
+
+export interface DeleteStorageAccountCredentialsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The device name. */
+  deviceName: string;
+  /** The storage account credential name. */
+  name: string;
+}
+export const DeleteStorageAccountCredentialsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       deviceName: S.String.pipe(T.Label()),
-      storageAccountName: S.String.pipe(T.Label()),
+      name: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/storageAccounts/{storageAccountName}/containers",
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/storageAccountCredentials/{name}",
         code: 200,
         apiVersion: "2023-12-01",
       }),
     ),
 ).annotate({
-  identifier: "ContainersListByStorageAccountRequest",
-}) as any as S.Schema<ContainersListByStorageAccountRequest>;
+  identifier: "DeleteStorageAccountCredentialsRequest",
+}) as any as S.Schema<DeleteStorageAccountCredentialsRequest>;
 
-/** Represents a container on the Data Box Edge/Gateway device. */
-export interface Container {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The container properties. */
-  properties: ContainerProperties;
-}
-export const Container = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: ContainerProperties,
-  }),
-).annotate({ identifier: "Container" }) as any as S.Schema<Container>;
+export interface DeleteStorageAccountCredentialsResponse {}
+export const DeleteStorageAccountCredentialsResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteStorageAccountCredentialsResponse",
+}) as any as S.Schema<DeleteStorageAccountCredentialsResponse>;
 
-/** The Container items on this page */
-export type ContainerListValueList = Array<Container>;
-export const ContainerListValueList = /*@__PURE__*/ S.Array(
-  Container,
-) as any as S.Schema<ContainerListValueList>;
-
-/** Collection of all the containers on the Data Box Edge/Gateway device. */
-export interface ContainerList {
-  /** The Container items on this page */
-  value: ContainerListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ContainerList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: ContainerListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "ContainerList" }) as any as S.Schema<ContainerList>;
-
-export interface ContainersRefreshRequest {
+export interface DeleteTriggerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The device name. */
   deviceName: string;
-  /** The storage account name. */
-  storageAccountName: string;
-  /** The container Name */
-  containerName: string;
+  /** The trigger name. */
+  name: string;
 }
-export const ContainersRefreshRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteTriggerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     deviceName: S.String.pipe(T.Label()),
-    storageAccountName: S.String.pipe(T.Label()),
-    containerName: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/storageAccounts/{storageAccountName}/containers/{containerName}/refresh",
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/triggers/{name}",
       code: 200,
       apiVersion: "2023-12-01",
     }),
   ),
 ).annotate({
-  identifier: "ContainersRefreshRequest",
-}) as any as S.Schema<ContainersRefreshRequest>;
+  identifier: "DeleteTriggerRequest",
+}) as any as S.Schema<DeleteTriggerRequest>;
 
-export interface ContainersRefreshResponse {}
-export const ContainersRefreshResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteTriggerResponse {}
+export const DeleteTriggerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "ContainersRefreshResponse",
-}) as any as S.Schema<ContainersRefreshResponse>;
+  identifier: "DeleteTriggerResponse",
+}) as any as S.Schema<DeleteTriggerResponse>;
 
-export type DeviceCapacityRequestInfoPropertiesVmPlacementQueryItemList =
-  Array<string>;
-export const DeviceCapacityRequestInfoPropertiesVmPlacementQueryItemList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<DeviceCapacityRequestInfoPropertiesVmPlacementQueryItemList>;
-
-/** Array containing the sizes of the VMs for checking if its feasible to create them on the appliance. */
-export type DeviceCapacityRequestInfoPropertiesVmPlacementQueryList =
-  Array<DeviceCapacityRequestInfoPropertiesVmPlacementQueryItemList>;
-export const DeviceCapacityRequestInfoPropertiesVmPlacementQueryList =
-  /*@__PURE__*/ S.Array(
-    DeviceCapacityRequestInfoPropertiesVmPlacementQueryItemList,
-  ) as any as S.Schema<DeviceCapacityRequestInfoPropertiesVmPlacementQueryList>;
-
-/** List of VM sizes being checked. */
-export type VmPlacementRequestResultVmSizeList = Array<string>;
-export const VmPlacementRequestResultVmSizeList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<VmPlacementRequestResultVmSizeList>;
-
-/** List of VM sizes being checked for creation on appliance along with corresponding result. */
-export interface VmPlacementRequestResult {
-  /** List of VM sizes being checked. */
-  vmSize?: VmPlacementRequestResultVmSizeList;
-  /** Boolean value indicating if the VM(s) in VmSize can be created. */
-  isFeasible?: boolean;
-  /** MessageCode indicating reason for success or failure. */
-  messageCode?: string;
-  /** Localized message to be displayed to the user to explain the check result. */
-  message?: string;
-}
-export const VmPlacementRequestResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    vmSize: S.optional(VmPlacementRequestResultVmSizeList),
-    isFeasible: S.optional(S.Boolean),
-    messageCode: S.optional(S.String),
-    message: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "VmPlacementRequestResult",
-}) as any as S.Schema<VmPlacementRequestResult>;
-
-/** Array of the VMs of the sizes in VmSizes can be provisioned on the appliance. */
-export type DeviceCapacityRequestInfoPropertiesVmPlacementResultsList =
-  Array<VmPlacementRequestResult>;
-export const DeviceCapacityRequestInfoPropertiesVmPlacementResultsList =
-  /*@__PURE__*/ S.Array(
-    VmPlacementRequestResult,
-  ) as any as S.Schema<DeviceCapacityRequestInfoPropertiesVmPlacementResultsList>;
-
-/** Properties of Device Capacity Request Info containing VM's to be checked and their corresponding results. */
-export interface DeviceCapacityRequestInfoProperties {
-  /** Array containing the sizes of the VMs for checking if its feasible to create them on the appliance. */
-  vmPlacementQuery: DeviceCapacityRequestInfoPropertiesVmPlacementQueryList;
-  /** Array of the VMs of the sizes in VmSizes can be provisioned on the appliance. */
-  vmPlacementResults?: DeviceCapacityRequestInfoPropertiesVmPlacementResultsList;
-}
-export const DeviceCapacityRequestInfoProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    vmPlacementQuery: DeviceCapacityRequestInfoPropertiesVmPlacementQueryList,
-    vmPlacementResults: S.optional(
-      DeviceCapacityRequestInfoPropertiesVmPlacementResultsList,
-    ),
-  }),
-).annotate({
-  identifier: "DeviceCapacityRequestInfoProperties",
-}) as any as S.Schema<DeviceCapacityRequestInfoProperties>;
-
-export interface DeviceCapacityCheckCheckResourceCreationFeasibilityRequest {
+export interface DeleteUserRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The device name. */
   deviceName: string;
-  /** The capacity name. */
-  capacityName?: string;
-  /** The properties of the Device Capacity Request. */
-  properties: DeviceCapacityRequestInfoProperties;
+  /** The user name. */
+  name: string;
 }
-export const DeviceCapacityCheckCheckResourceCreationFeasibilityRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      deviceName: S.String.pipe(T.Label()),
-      capacityName: S.optional(S.String.pipe(T.Query())),
-      properties: DeviceCapacityRequestInfoProperties,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/deviceCapacityCheck",
-        code: 200,
-        apiVersion: "2023-12-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "DeviceCapacityCheckCheckResourceCreationFeasibilityRequest",
-  }) as any as S.Schema<DeviceCapacityCheckCheckResourceCreationFeasibilityRequest>;
-
-export interface DeviceCapacityCheckCheckResourceCreationFeasibilityResponse {}
-export const DeviceCapacityCheckCheckResourceCreationFeasibilityResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeviceCapacityCheckCheckResourceCreationFeasibilityResponse",
-  }) as any as S.Schema<DeviceCapacityCheckCheckResourceCreationFeasibilityResponse>;
-
-export interface DeviceCapacityInfoGetDeviceCapacityInfoRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The device name. */
-  deviceName: string;
-}
-export const DeviceCapacityInfoGetDeviceCapacityInfoRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      deviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/deviceCapacityInfo/default",
-        code: 200,
-        apiVersion: "2023-12-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "DeviceCapacityInfoGetDeviceCapacityInfoRequest",
-  }) as any as S.Schema<DeviceCapacityInfoGetDeviceCapacityInfoRequest>;
-
-/** Cluster Storage Data. */
-export interface ClusterStorageViewData {
-  /** Total storage on the cluster in MB. */
-  clusterTotalStorageMb?: number;
-  /** The available or free storage on the cluster in MB. */
-  clusterFreeStorageMb?: number;
-}
-export const ClusterStorageViewData = /*@__PURE__*/ S.suspend(() =>
+export const DeleteUserRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    clusterTotalStorageMb: S.optional(S.Number),
-    clusterFreeStorageMb: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "ClusterStorageViewData",
-}) as any as S.Schema<ClusterStorageViewData>;
-
-/** Cluster GPU Data. */
-export interface ClusterGpuCapacity {
-  /** The cluster GPU Type. */
-  gpuType?: string;
-  /** The used GPU units count in the cluster. */
-  gpuUsedUnitsCount?: number;
-  /** The free GPU units count in the cluster. */
-  gpuFreeUnitsCount?: number;
-  /** The GPU units count reserved for failover in the cluster. */
-  gpuReservedForFailoverUnitsCount?: number;
-  /** The total GPU units count in the cluster. */
-  gpuTotalUnitsCount?: number;
-}
-export const ClusterGpuCapacity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    gpuType: S.optional(S.String),
-    gpuUsedUnitsCount: S.optional(S.Number),
-    gpuFreeUnitsCount: S.optional(S.Number),
-    gpuReservedForFailoverUnitsCount: S.optional(S.Number),
-    gpuTotalUnitsCount: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "ClusterGpuCapacity",
-}) as any as S.Schema<ClusterGpuCapacity>;
-
-/** NodeCapacityInfo defines the required information to determine the placement of a VM. */
-export interface ClusterMemoryCapacity {
-  /** The free memory in the cluster in MB. */
-  clusterFreeMemoryMb?: number;
-  /** The used memory in the cluster in MB. */
-  clusterUsedMemoryMb?: number;
-  /** The failover memory in the cluster in MB. */
-  clusterFailoverMemoryMb?: number;
-  /** The fragmentation memory in the cluster in MB. */
-  clusterFragmentationMemoryMb?: number;
-  /** The memory reserved for Hyper-V in the cluster in MB. */
-  clusterHypervReserveMemoryMb?: number;
-  /** The memory of the Infra VM in the cluster in MB. */
-  clusterInfraVmMemoryMb?: number;
-  /** The total memory in the cluster in MB. */
-  clusterTotalMemoryMb?: number;
-  /** The non-failover memory in the cluster in MB. */
-  clusterNonFailoverVmMb?: number;
-  /** The memory used by VMs in the cluster in MB. */
-  clusterMemoryUsedByVmsMb?: number;
-}
-export const ClusterMemoryCapacity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    clusterFreeMemoryMb: S.optional(S.Number),
-    clusterUsedMemoryMb: S.optional(S.Number),
-    clusterFailoverMemoryMb: S.optional(S.Number),
-    clusterFragmentationMemoryMb: S.optional(S.Number),
-    clusterHypervReserveMemoryMb: S.optional(S.Number),
-    clusterInfraVmMemoryMb: S.optional(S.Number),
-    clusterTotalMemoryMb: S.optional(S.Number),
-    clusterNonFailoverVmMb: S.optional(S.Number),
-    clusterMemoryUsedByVmsMb: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "ClusterMemoryCapacity",
-}) as any as S.Schema<ClusterMemoryCapacity>;
-
-/** Cluster Compute Data. */
-export interface ClusterCapacityViewData {
-  /** The FQDN of the cluster. */
-  fqdn?: string;
-  /** The cluster's GPU capacity. */
-  gpuCapacity?: ClusterGpuCapacity;
-  /** The cluster's memory capacity. */
-  memoryCapacity?: ClusterMemoryCapacity;
-  /** The last time at which the ClusterCapacityViewData was set. */
-  lastRefreshedTime?: string;
-  /** The total # of vCPUs provisioned by non-HPN VM per appliance. */
-  totalProvisionedNonHpnCores?: number;
-}
-export const ClusterCapacityViewData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    fqdn: S.optional(S.String),
-    gpuCapacity: S.optional(ClusterGpuCapacity),
-    memoryCapacity: S.optional(ClusterMemoryCapacity),
-    lastRefreshedTime: S.optional(S.String),
-    totalProvisionedNonHpnCores: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "ClusterCapacityViewData",
-}) as any as S.Schema<ClusterCapacityViewData>;
-
-/** VmMemory Data. */
-export interface VmMemory {
-  /** The total amount of RAM in the virtual machine, as seen by the guest operating system. For a virtual machine with dynamic memory enabled, this represents the initial memory available at startup. */
-  startupMemoryMB?: number;
-  /** The current memory used by the virtual machine. */
-  currentMemoryUsageMB?: number;
-}
-export const VmMemory = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    startupMemoryMB: S.optional(S.Number),
-    currentMemoryUsageMB: S.optional(S.Number),
-  }),
-).annotate({ identifier: "VmMemory" }) as any as S.Schema<VmMemory>;
-
-/** The VM used memory per VmId. */
-export type HostCapacityVmUsedMemoryMap = {
-  [key: string]: VmMemory | undefined;
-};
-export const HostCapacityVmUsedMemoryMap = /*@__PURE__*/ S.Record(
-  S.String,
-  VmMemory,
-) as any as S.Schema<HostCapacityVmUsedMemoryMap>;
-
-/** The free VCPU indices for the Hpn VMs. */
-export type NumaNodeDataFreeVCpuIndexesForHpnList = Array<number>;
-export const NumaNodeDataFreeVCpuIndexesForHpnList = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<NumaNodeDataFreeVCpuIndexesForHpnList>;
-
-/** The VCPU indices for Hpn VMs */
-export type NumaNodeDataVCpuIndexesForHpnList = Array<number>;
-export const NumaNodeDataVCpuIndexesForHpnList = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<NumaNodeDataVCpuIndexesForHpnList>;
-
-/** The VCPU indices for the root. */
-export type NumaNodeDataVCpuIndexesForRootList = Array<number>;
-export const NumaNodeDataVCpuIndexesForRootList = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<NumaNodeDataVCpuIndexesForRootList>;
-
-/** NUMA node data. */
-export interface NumaNodeData {
-  /** The NUMA node index. */
-  numaNodeIndex?: number;
-  /** The total memory on the NUMA node. */
-  totalMemoryInMb?: number;
-  /** The logical cores per core count. */
-  logicalCoreCountPerCore?: number;
-  /** The effective available memory on the NUMA node in MB. */
-  effectiveAvailableMemoryInMb?: number;
-  /** The free VCPU indices for the Hpn VMs. */
-  freeVCpuIndexesForHpn?: NumaNodeDataFreeVCpuIndexesForHpnList;
-  /** The VCPU indices for Hpn VMs */
-  vCpuIndexesForHpn?: NumaNodeDataVCpuIndexesForHpnList;
-  /** The VCPU indices for the root. */
-  vCpuIndexesForRoot?: NumaNodeDataVCpuIndexesForRootList;
-}
-export const NumaNodeData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    numaNodeIndex: S.optional(S.Number),
-    totalMemoryInMb: S.optional(S.Number),
-    logicalCoreCountPerCore: S.optional(S.Number),
-    effectiveAvailableMemoryInMb: S.optional(S.Number),
-    freeVCpuIndexesForHpn: S.optional(NumaNodeDataFreeVCpuIndexesForHpnList),
-    vCpuIndexesForHpn: S.optional(NumaNodeDataVCpuIndexesForHpnList),
-    vCpuIndexesForRoot: S.optional(NumaNodeDataVCpuIndexesForRootList),
-  }),
-).annotate({ identifier: "NumaNodeData" }) as any as S.Schema<NumaNodeData>;
-
-/** The numa nodes information for Hpn VMs. */
-export type HostCapacityNumaNodesDataList = Array<NumaNodeData>;
-export const HostCapacityNumaNodesDataList = /*@__PURE__*/ S.Array(
-  NumaNodeData,
-) as any as S.Schema<HostCapacityNumaNodesDataList>;
-
-/** Host Capacity Data. */
-export interface HostCapacity {
-  /** The name of the host. */
-  hostName?: string;
-  /** The available memory on the host accounting for VM placement size and any host VM reservations. */
-  effectiveAvailableMemoryMbOnHost?: number;
-  /** The available amount of GPUs on the host to use after accounting for GPUS used by reservations on the host. */
-  availableGpuCount?: number;
-  /** The VM used memory per VmId. */
-  vmUsedMemory?: HostCapacityVmUsedMemoryMap;
-  /** The GPU type of the VM. */
-  gpuType?: string;
-  /** The numa nodes information for Hpn VMs. */
-  numaNodesData?: HostCapacityNumaNodesDataList;
-}
-export const HostCapacity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    hostName: S.optional(S.String),
-    effectiveAvailableMemoryMbOnHost: S.optional(S.Number),
-    availableGpuCount: S.optional(S.Number),
-    vmUsedMemory: S.optional(HostCapacityVmUsedMemoryMap),
-    gpuType: S.optional(S.String),
-    numaNodesData: S.optional(HostCapacityNumaNodesDataList),
-  }),
-).annotate({ identifier: "HostCapacity" }) as any as S.Schema<HostCapacity>;
-
-/** The dictionary of individual node names and node capacities in the cluster. */
-export type DeviceCapacityInfoPropertiesNodeCapacityInfosMap = {
-  [key: string]: HostCapacity | undefined;
-};
-export const DeviceCapacityInfoPropertiesNodeCapacityInfosMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    HostCapacity,
-  ) as any as S.Schema<DeviceCapacityInfoPropertiesNodeCapacityInfosMap>;
-
-/** The properties of Device Capacity Info */
-export interface DeviceCapacityInfoProperties {
-  /** Timestamp of request in UTC */
-  timeStamp?: string;
-  /** Cluster capacity data for storage resources (CSV). */
-  clusterStorageCapacityInfo?: ClusterStorageViewData;
-  /** Cluster capacity data for compute resources (Memory and GPU). */
-  clusterComputeCapacityInfo?: ClusterCapacityViewData;
-  /** The dictionary of individual node names and node capacities in the cluster. */
-  nodeCapacityInfos?: DeviceCapacityInfoPropertiesNodeCapacityInfosMap;
-}
-export const DeviceCapacityInfoProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    timeStamp: S.optional(S.String),
-    clusterStorageCapacityInfo: S.optional(ClusterStorageViewData),
-    clusterComputeCapacityInfo: S.optional(ClusterCapacityViewData),
-    nodeCapacityInfos: S.optional(
-      DeviceCapacityInfoPropertiesNodeCapacityInfosMap,
-    ),
-  }),
-).annotate({
-  identifier: "DeviceCapacityInfoProperties",
-}) as any as S.Schema<DeviceCapacityInfoProperties>;
-
-export interface DeviceCapacityInfoGetDeviceCapacityInfoResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The device capacity properties. */
-  properties?: DeviceCapacityInfoProperties;
-}
-export const DeviceCapacityInfoGetDeviceCapacityInfoResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(DeviceCapacityInfoProperties),
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    deviceName: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/users/{name}",
+      code: 200,
+      apiVersion: "2023-12-01",
     }),
-  ).annotate({
-    identifier: "DeviceCapacityInfoGetDeviceCapacityInfoResponse",
-  }) as any as S.Schema<DeviceCapacityInfoGetDeviceCapacityInfoResponse>;
+  ),
+).annotate({
+  identifier: "DeleteUserRequest",
+}) as any as S.Schema<DeleteUserRequest>;
+
+export interface DeleteUserResponse {}
+export const DeleteUserResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteUserResponse",
+}) as any as S.Schema<DeleteUserResponse>;
 
 /** Resource tags. */
 export type DevicesCreateOrUpdateRequestTagsMap = {
@@ -1728,6 +904,43 @@ export const DataBoxEdgeDevicePropertiesInput = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DataBoxEdgeDevicePropertiesInput",
 }) as any as S.Schema<DataBoxEdgeDevicePropertiesInput>;
+
+/** The Sku name. */
+export type SkuName =
+  | "Gateway"
+  | "Edge"
+  | "TEA_1Node"
+  | "TEA_1Node_UPS"
+  | "TEA_1Node_Heater"
+  | "TEA_1Node_UPS_Heater"
+  | "TEA_4Node_Heater"
+  | "TEA_4Node_UPS_Heater"
+  | "TMA"
+  | "TDC"
+  | "TCA_Small"
+  | "GPU"
+  | "TCA_Large"
+  | "EdgeP_Base"
+  | "EdgeP_High"
+  | "EdgePR_Base"
+  | "EdgePR_Base_UPS"
+  | "EP2_64_1VPU_W"
+  | "EP2_128_1T4_Mx1_W"
+  | "EP2_256_2T4_W"
+  | "EdgeMR_Mini"
+  | "RCA_Small"
+  | "RCA_Large"
+  | "RDC"
+  | "Management"
+  | "EP2_64_Mx1_W"
+  | "EP2_128_GPU1_Mx1_W"
+  | "EP2_256_GPU2_Mx1"
+  | "EdgeMR_TCP";
+export const SkuName = /*@__PURE__*/ S.String;
+
+/** The Sku tier. */
+export type SkuTier = "Standard";
+export const SkuTier = /*@__PURE__*/ S.String;
 
 /** The SKU type. */
 export interface Sku {
@@ -2212,581 +1425,6 @@ export const DevicesCreateOrUpdateSecuritySettingsResponse =
     identifier: "DevicesCreateOrUpdateSecuritySettingsResponse",
   }) as any as S.Schema<DevicesCreateOrUpdateSecuritySettingsResponse>;
 
-export interface DevicesDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The device name. */
-  deviceName: string;
-}
-export const DevicesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    deviceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "DevicesDeleteRequest",
-}) as any as S.Schema<DevicesDeleteRequest>;
-
-export interface DevicesDeleteResponse {}
-export const DevicesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DevicesDeleteResponse",
-}) as any as S.Schema<DevicesDeleteResponse>;
-
-export interface DevicesDownloadUpdatesRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The device name. */
-  deviceName: string;
-}
-export const DevicesDownloadUpdatesRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    deviceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/downloadUpdates",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "DevicesDownloadUpdatesRequest",
-}) as any as S.Schema<DevicesDownloadUpdatesRequest>;
-
-export interface DevicesDownloadUpdatesResponse {}
-export const DevicesDownloadUpdatesResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DevicesDownloadUpdatesResponse",
-}) as any as S.Schema<DevicesDownloadUpdatesResponse>;
-
-export interface DevicesGenerateCertificateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The device name. */
-  deviceName: string;
-}
-export const DevicesGenerateCertificateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    deviceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/generateCertificate",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "DevicesGenerateCertificateRequest",
-}) as any as S.Schema<DevicesGenerateCertificateRequest>;
-
-/** Used in activation key generation flow. */
-export interface GenerateCertResponse {
-  /** Gets or sets base64 encoded certificate raw data, this is the public part needed to be uploaded to cert vault */
-  publicKey?: string;
-  /** Gets or sets base64 encoded private part of the certificate, needed to form the activation key */
-  privateKey?: string | Redacted.Redacted<string>;
-  /** Gets or sets expiry time in UTC */
-  expiryTimeInUTC?: string;
-}
-export const GenerateCertResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    publicKey: S.optional(S.String),
-    privateKey: S.optional(S.String.pipe(T.SensitiveValue({}))),
-    expiryTimeInUTC: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "GenerateCertResponse",
-}) as any as S.Schema<GenerateCertResponse>;
-
-export interface DevicesGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The device name. */
-  deviceName: string;
-}
-export const DevicesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    deviceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "DevicesGetRequest",
-}) as any as S.Schema<DevicesGetRequest>;
-
-/** Resource tags. */
-export type DevicesGetResponseTagsMap = { [key: string]: string | undefined };
-export const DevicesGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DevicesGetResponseTagsMap>;
-
-export interface DevicesGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: DevicesGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The properties of the Data Box Edge/Gateway device. */
-  properties?: DataBoxEdgeDeviceProperties;
-  /** The SKU type. */
-  sku?: Sku;
-  /** The etag for the devices. */
-  etag?: string;
-  /** Msi identity of the resource */
-  identity?: ResourceIdentity;
-  /** The kind of the device. */
-  kind?: DataBoxEdgeDeviceKind;
-}
-export const DevicesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(DevicesGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(DataBoxEdgeDeviceProperties),
-    sku: S.optional(Sku),
-    etag: S.optional(S.String),
-    identity: S.optional(ResourceIdentity),
-    kind: S.optional(DataBoxEdgeDeviceKind),
-  }),
-).annotate({
-  identifier: "DevicesGetResponse",
-}) as any as S.Schema<DevicesGetResponse>;
-
-export interface DevicesGetExtendedInformationRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The device name. */
-  deviceName: string;
-}
-export const DevicesGetExtendedInformationRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      deviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/getExtendedInformation",
-        code: 200,
-        apiVersion: "2023-12-01",
-      }),
-    ),
-).annotate({
-  identifier: "DevicesGetExtendedInformationRequest",
-}) as any as S.Schema<DevicesGetExtendedInformationRequest>;
-
-/** For changing or to initiate the resync to key-vault set the status to KeyVaultSyncPending, rest of the status will not be applicable. */
-export type KeyVaultSyncStatus =
-  | "KeyVaultSynced"
-  | "KeyVaultSyncFailed"
-  | "KeyVaultNotConfigured"
-  | "KeyVaultSyncPending"
-  | "KeyVaultSyncing"
-  | "KeyVaultNotSynced";
-export const KeyVaultSyncStatus = /*@__PURE__*/ S.String;
-
-/** Holds device secret either as a KeyVault reference or as an encrypted value. */
-export interface Secret {
-  /** Encrypted (using device public key) secret value. */
-  encryptedSecret?: AsymmetricEncryptedSecret;
-  /** Id of the Key-Vault where secret is stored (ex: secrets/AuthClientSecret/82ef4346187a4033a10d629cde07d740). */
-  keyVaultId?: string;
-}
-export const Secret = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    encryptedSecret: S.optional(AsymmetricEncryptedSecret),
-    keyVaultId: S.optional(S.String),
-  }),
-).annotate({ identifier: "Secret" }) as any as S.Schema<Secret>;
-
-/** Device secrets, will be returned only with ODataFilter $expand=deviceSecrets */
-export type DataBoxEdgeDeviceExtendedInfoPropertiesDeviceSecretsMap = {
-  [key: string]: Secret | undefined;
-};
-export const DataBoxEdgeDeviceExtendedInfoPropertiesDeviceSecretsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    Secret,
-  ) as any as S.Schema<DataBoxEdgeDeviceExtendedInfoPropertiesDeviceSecretsMap>;
-
-/** Cluster Witness Type */
-export type ClusterWitnessType = "None" | "Cloud" | "FileShare";
-export const ClusterWitnessType = /*@__PURE__*/ S.String;
-
-/** The properties of the Data Box Edge/Gateway device extended info. */
-export interface DataBoxEdgeDeviceExtendedInfoProperties {
-  /** The digital signature of encrypted certificate. */
-  encryptionKeyThumbprint?: string;
-  /** The public part of the encryption certificate. Client uses this to encrypt any secret. */
-  encryptionKey?: string;
-  /** The Resource ID of the Resource. */
-  resourceKey?: string;
-  /** The Key Vault ARM Id for client secrets */
-  clientSecretStoreId?: string;
-  /** The url to access the Client Key Vault */
-  clientSecretStoreUrl?: string;
-  /** The name of Channel Integrity Key stored in the Client Key Vault */
-  channelIntegrityKeyName?: string;
-  /** The version of Channel Integrity Key stored in the Client Key Vault */
-  channelIntegrityKeyVersion?: string;
-  /** Key vault sync status */
-  keyVaultSyncStatus?: KeyVaultSyncStatus;
-  /** Device secrets, will be returned only with ODataFilter $expand=deviceSecrets */
-  deviceSecrets?: DataBoxEdgeDeviceExtendedInfoPropertiesDeviceSecretsMap;
-  /** Cluster Witness Type */
-  clusterWitnessType?: ClusterWitnessType;
-  /** The witness location of file share. */
-  fileShareWitnessLocation?: string;
-  /** The username of file share. */
-  fileShareWitnessUsername?: string;
-  /** The Cloud Witness Storage account name. */
-  cloudWitnessStorageAccountName?: string;
-  /** The Container for cloud witness in the storage account. */
-  cloudWitnessContainerName?: string;
-  /** The Azure service endpoint of the cloud witness storage account. */
-  cloudWitnessStorageEndpoint?: string;
-}
-export const DataBoxEdgeDeviceExtendedInfoProperties = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      encryptionKeyThumbprint: S.optional(S.String),
-      encryptionKey: S.optional(S.String),
-      resourceKey: S.optional(S.String),
-      clientSecretStoreId: S.optional(S.String),
-      clientSecretStoreUrl: S.optional(S.String),
-      channelIntegrityKeyName: S.optional(S.String),
-      channelIntegrityKeyVersion: S.optional(S.String),
-      keyVaultSyncStatus: S.optional(KeyVaultSyncStatus),
-      deviceSecrets: S.optional(
-        DataBoxEdgeDeviceExtendedInfoPropertiesDeviceSecretsMap,
-      ),
-      clusterWitnessType: S.optional(ClusterWitnessType),
-      fileShareWitnessLocation: S.optional(S.String),
-      fileShareWitnessUsername: S.optional(S.String),
-      cloudWitnessStorageAccountName: S.optional(S.String),
-      cloudWitnessContainerName: S.optional(S.String),
-      cloudWitnessStorageEndpoint: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "DataBoxEdgeDeviceExtendedInfoProperties",
-}) as any as S.Schema<DataBoxEdgeDeviceExtendedInfoProperties>;
-
-/** The type of identity that created the resource. */
-export type DevicesGetExtendedInformationResponseSystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const DevicesGetExtendedInformationResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type DevicesGetExtendedInformationResponseSystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const DevicesGetExtendedInformationResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface DevicesGetExtendedInformationResponseSystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: DevicesGetExtendedInformationResponseSystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: DevicesGetExtendedInformationResponseSystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const DevicesGetExtendedInformationResponseSystemData =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      createdBy: S.optional(S.String),
-      createdByType: S.optional(
-        DevicesGetExtendedInformationResponseSystemDataCreatedByType,
-      ),
-      createdAt: S.optional(S.String),
-      lastModifiedBy: S.optional(S.String),
-      lastModifiedByType: S.optional(
-        DevicesGetExtendedInformationResponseSystemDataLastModifiedByType,
-      ),
-      lastModifiedAt: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "DevicesGetExtendedInformationResponseSystemData",
-  }) as any as S.Schema<DevicesGetExtendedInformationResponseSystemData>;
-
-export interface DevicesGetExtendedInformationResponse {
-  /** The path ID that uniquely identifies the object. */
-  id?: string;
-  /** The object name. */
-  name?: string;
-  /** The hierarchical type of the object. */
-  type?: string;
-  /** The extended info properties. */
-  properties?: DataBoxEdgeDeviceExtendedInfoProperties;
-  /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: DevicesGetExtendedInformationResponseSystemData;
-}
-export const DevicesGetExtendedInformationResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      properties: S.optional(DataBoxEdgeDeviceExtendedInfoProperties),
-      systemData: S.optional(DevicesGetExtendedInformationResponseSystemData),
-    }),
-).annotate({
-  identifier: "DevicesGetExtendedInformationResponse",
-}) as any as S.Schema<DevicesGetExtendedInformationResponse>;
-
-export interface DevicesGetNetworkSettingsRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The device name. */
-  deviceName: string;
-}
-export const DevicesGetNetworkSettingsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    deviceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/networkSettings/default",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "DevicesGetNetworkSettingsRequest",
-}) as any as S.Schema<DevicesGetNetworkSettingsRequest>;
-
-/** The network group. */
-export type NetworkGroup = "None" | "NonRDMA" | "RDMA";
-export const NetworkGroup = /*@__PURE__*/ S.String;
-
-/** The network adapter position. */
-export interface NetworkAdapterPosition {
-  /** The network group. */
-  networkGroup?: NetworkGroup;
-  /** The port. */
-  port?: number;
-}
-export const NetworkAdapterPosition = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    networkGroup: S.optional(NetworkGroup),
-    port: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "NetworkAdapterPosition",
-}) as any as S.Schema<NetworkAdapterPosition>;
-
-/** Value indicating whether this adapter is valid. */
-export type NetworkAdapterStatus = "Inactive" | "Active";
-export const NetworkAdapterStatus = /*@__PURE__*/ S.String;
-
-/** Value indicating whether this adapter is RDMA capable. */
-export type NetworkAdapterRDMAStatus = "Incapable" | "Capable";
-export const NetworkAdapterRDMAStatus = /*@__PURE__*/ S.String;
-
-/** Value indicating whether this adapter has DHCP enabled. */
-export type NetworkAdapterDHCPStatus = "Disabled" | "Enabled";
-export const NetworkAdapterDHCPStatus = /*@__PURE__*/ S.String;
-
-/** Details related to the IPv4 address configuration. */
-export interface Ipv4Config {
-  /** The IPv4 address of the network adapter. */
-  ipAddress?: string;
-  /** The IPv4 subnet of the network adapter. */
-  subnet?: string;
-  /** The IPv4 gateway of the network adapter. */
-  gateway?: string;
-}
-export const Ipv4Config = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ipAddress: S.optional(S.String),
-    subnet: S.optional(S.String),
-    gateway: S.optional(S.String),
-  }),
-).annotate({ identifier: "Ipv4Config" }) as any as S.Schema<Ipv4Config>;
-
-/** Details related to the IPv6 address configuration. */
-export interface Ipv6Config {
-  /** The IPv6 address of the network adapter. */
-  ipAddress?: string;
-  /** The IPv6 prefix of the network adapter. */
-  prefixLength?: number;
-  /** The IPv6 gateway of the network adapter. */
-  gateway?: string;
-}
-export const Ipv6Config = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ipAddress: S.optional(S.String),
-    prefixLength: S.optional(S.Number),
-    gateway: S.optional(S.String),
-  }),
-).annotate({ identifier: "Ipv6Config" }) as any as S.Schema<Ipv6Config>;
-
-/** The list of DNS Servers of the device. */
-export type NetworkAdapterDnsServersList = Array<string>;
-export const NetworkAdapterDnsServersList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<NetworkAdapterDnsServersList>;
-
-/** Represents the networkAdapter on a device. */
-export interface NetworkAdapter {
-  /** Instance ID of network adapter. */
-  adapterId?: string;
-  /** Hardware position of network adapter. */
-  adapterPosition?: NetworkAdapterPosition;
-  /** Logical index of the adapter. */
-  index?: number;
-  /** Node ID of the network adapter. */
-  nodeId?: string;
-  /** Network adapter name. */
-  networkAdapterName?: string;
-  /** Hardware label for the adapter. */
-  label?: string;
-  /** MAC address. */
-  macAddress?: string;
-  /** Link speed. */
-  linkSpeed?: number;
-  /** Value indicating whether this adapter is valid. */
-  status?: NetworkAdapterStatus;
-  /** Value indicating whether this adapter is RDMA capable. */
-  rdmaStatus?: NetworkAdapterRDMAStatus;
-  /** Value indicating whether this adapter has DHCP enabled. */
-  dhcpStatus?: NetworkAdapterDHCPStatus;
-  /** The IPv4 configuration of the network adapter. */
-  ipv4Configuration?: Ipv4Config;
-  /** The IPv6 configuration of the network adapter. */
-  ipv6Configuration?: Ipv6Config;
-  /** The IPv6 local address. */
-  ipv6LinkLocalAddress?: string;
-  /** The list of DNS Servers of the device. */
-  dnsServers?: NetworkAdapterDnsServersList;
-}
-export const NetworkAdapter = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    adapterId: S.optional(S.String),
-    adapterPosition: S.optional(NetworkAdapterPosition),
-    index: S.optional(S.Number),
-    nodeId: S.optional(S.String),
-    networkAdapterName: S.optional(S.String),
-    label: S.optional(S.String),
-    macAddress: S.optional(S.String),
-    linkSpeed: S.optional(S.Number),
-    status: S.optional(NetworkAdapterStatus),
-    rdmaStatus: S.optional(NetworkAdapterRDMAStatus),
-    dhcpStatus: S.optional(NetworkAdapterDHCPStatus),
-    ipv4Configuration: S.optional(Ipv4Config),
-    ipv6Configuration: S.optional(Ipv6Config),
-    ipv6LinkLocalAddress: S.optional(S.String),
-    dnsServers: S.optional(NetworkAdapterDnsServersList),
-  }),
-).annotate({ identifier: "NetworkAdapter" }) as any as S.Schema<NetworkAdapter>;
-
-/** The network adapter list on the device. */
-export type NetworkSettingsPropertiesNetworkAdaptersList =
-  Array<NetworkAdapter>;
-export const NetworkSettingsPropertiesNetworkAdaptersList =
-  /*@__PURE__*/ S.Array(
-    NetworkAdapter,
-  ) as any as S.Schema<NetworkSettingsPropertiesNetworkAdaptersList>;
-
-/** The properties of network settings. */
-export interface NetworkSettingsProperties {
-  /** The network adapter list on the device. */
-  networkAdapters?: NetworkSettingsPropertiesNetworkAdaptersList;
-}
-export const NetworkSettingsProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    networkAdapters: S.optional(NetworkSettingsPropertiesNetworkAdaptersList),
-  }),
-).annotate({
-  identifier: "NetworkSettingsProperties",
-}) as any as S.Schema<NetworkSettingsProperties>;
-
-export interface DevicesGetNetworkSettingsResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of network settings of a device. */
-  properties?: NetworkSettingsProperties;
-}
-export const DevicesGetNetworkSettingsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(NetworkSettingsProperties),
-  }),
-).annotate({
-  identifier: "DevicesGetNetworkSettingsResponse",
-}) as any as S.Schema<DevicesGetNetworkSettingsResponse>;
-
 export interface DevicesGetUpdateSummaryRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
@@ -3010,157 +1648,6 @@ export const DevicesGetUpdateSummaryResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DevicesGetUpdateSummaryResponse",
 }) as any as S.Schema<DevicesGetUpdateSummaryResponse>;
 
-export interface DevicesInstallUpdatesRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The device name. */
-  deviceName: string;
-}
-export const DevicesInstallUpdatesRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    deviceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/installUpdates",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "DevicesInstallUpdatesRequest",
-}) as any as S.Schema<DevicesInstallUpdatesRequest>;
-
-export interface DevicesInstallUpdatesResponse {}
-export const DevicesInstallUpdatesResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DevicesInstallUpdatesResponse",
-}) as any as S.Schema<DevicesInstallUpdatesResponse>;
-
-export interface DevicesListByResourceGroupRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Specify $expand=details to populate additional fields related to the resource or Specify $skipToken=<token> to populate the next page in the list. */
-  _expand?: string;
-}
-export const DevicesListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    _expand: S.optional(S.String.pipe(T.Query("$expand"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "DevicesListByResourceGroupRequest",
-}) as any as S.Schema<DevicesListByResourceGroupRequest>;
-
-/** Resource tags. */
-export type DataBoxEdgeDeviceTagsMap = { [key: string]: string | undefined };
-export const DataBoxEdgeDeviceTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DataBoxEdgeDeviceTagsMap>;
-
-/** The Data Box Edge/Gateway device. */
-export interface DataBoxEdgeDevice {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: DataBoxEdgeDeviceTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The properties of the Data Box Edge/Gateway device. */
-  properties?: DataBoxEdgeDeviceProperties;
-  /** The SKU type. */
-  sku?: Sku;
-  /** The etag for the devices. */
-  etag?: string;
-  /** Msi identity of the resource */
-  identity?: ResourceIdentity;
-  /** The kind of the device. */
-  kind?: DataBoxEdgeDeviceKind;
-}
-export const DataBoxEdgeDevice = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(DataBoxEdgeDeviceTagsMap),
-    location: S.String,
-    properties: S.optional(DataBoxEdgeDeviceProperties),
-    sku: S.optional(Sku),
-    etag: S.optional(S.String),
-    identity: S.optional(ResourceIdentity),
-    kind: S.optional(DataBoxEdgeDeviceKind),
-  }),
-).annotate({
-  identifier: "DataBoxEdgeDevice",
-}) as any as S.Schema<DataBoxEdgeDevice>;
-
-/** The DataBoxEdgeDevice items on this page */
-export type DataBoxEdgeDeviceListValueList = Array<DataBoxEdgeDevice>;
-export const DataBoxEdgeDeviceListValueList = /*@__PURE__*/ S.Array(
-  DataBoxEdgeDevice,
-) as any as S.Schema<DataBoxEdgeDeviceListValueList>;
-
-/** The collection of Data Box Edge/Gateway devices. */
-export interface DataBoxEdgeDeviceList {
-  /** The DataBoxEdgeDevice items on this page */
-  value: DataBoxEdgeDeviceListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const DataBoxEdgeDeviceList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: DataBoxEdgeDeviceListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DataBoxEdgeDeviceList",
-}) as any as S.Schema<DataBoxEdgeDeviceList>;
-
-export interface DevicesListBySubscriptionRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** Specify $expand=details to populate additional fields related to the resource or Specify $skipToken=<token> to populate the next page in the list. */
-  _expand?: string;
-}
-export const DevicesListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    _expand: S.optional(S.String.pipe(T.Query("$expand"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "DevicesListBySubscriptionRequest",
-}) as any as S.Schema<DevicesListBySubscriptionRequest>;
-
 export interface DevicesScanForUpdatesRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
@@ -3193,96 +1680,392 @@ export const DevicesScanForUpdatesResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DevicesScanForUpdatesResponse",
 }) as any as S.Schema<DevicesScanForUpdatesResponse>;
 
-/** The tags attached to the Data Box Edge/Gateway resource. */
-export type DevicesUpdateRequestTagsMap = { [key: string]: string | undefined };
-export const DevicesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DevicesUpdateRequestTagsMap>;
-
-/** The Data Box Edge/Gateway Edge Profile Subscription patch. */
-export interface EdgeProfileSubscriptionPatch {
-  /** The path ID that uniquely identifies the subscription of the edge profile. */
-  id?: string;
-}
-export const EdgeProfileSubscriptionPatch = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "EdgeProfileSubscriptionPatch",
-}) as any as S.Schema<EdgeProfileSubscriptionPatch>;
-
-/** The Data Box Edge/Gateway Edge Profile patch. */
-export interface EdgeProfilePatch {
-  /** The Data Box Edge/Gateway Edge Profile Subscription patch */
-  subscription?: EdgeProfileSubscriptionPatch;
-}
-export const EdgeProfilePatch = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscription: S.optional(EdgeProfileSubscriptionPatch),
-  }),
-).annotate({
-  identifier: "EdgeProfilePatch",
-}) as any as S.Schema<EdgeProfilePatch>;
-
-/** The Data Box Edge/Gateway device properties patch. */
-export interface DataBoxEdgeDevicePropertiesPatch {
-  /** Edge Profile property of the Data Box Edge/Gateway device */
-  edgeProfile?: EdgeProfilePatch;
-}
-export const DataBoxEdgeDevicePropertiesPatch = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    edgeProfile: S.optional(EdgeProfilePatch),
-  }),
-).annotate({
-  identifier: "DataBoxEdgeDevicePropertiesPatch",
-}) as any as S.Schema<DataBoxEdgeDevicePropertiesPatch>;
-
-export interface DevicesUpdateRequest {
+export interface DownloadDeviceUpdatesRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The device name. */
   deviceName: string;
-  /** The tags attached to the Data Box Edge/Gateway resource. */
-  tags?: DevicesUpdateRequestTagsMap;
-  /** Msi identity of the resource */
-  identity?: ResourceIdentityInput;
-  /** The properties associated with the Data Box Edge/Gateway resource */
-  properties?: DataBoxEdgeDevicePropertiesPatch;
 }
-export const DevicesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const DownloadDeviceUpdatesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     deviceName: S.String.pipe(T.Label()),
-    tags: S.optional(DevicesUpdateRequestTagsMap),
-    identity: S.optional(ResourceIdentityInput),
-    properties: S.optional(DataBoxEdgeDevicePropertiesPatch),
   }).pipe(
     T.Http({
-      method: "PATCH",
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/downloadUpdates",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "DownloadDeviceUpdatesRequest",
+}) as any as S.Schema<DownloadDeviceUpdatesRequest>;
+
+export interface DownloadDeviceUpdatesResponse {}
+export const DownloadDeviceUpdatesResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DownloadDeviceUpdatesResponse",
+}) as any as S.Schema<DownloadDeviceUpdatesResponse>;
+
+export interface GenerateDeviceCertificateRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The device name. */
+  deviceName: string;
+}
+export const GenerateDeviceCertificateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    deviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/generateCertificate",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "GenerateDeviceCertificateRequest",
+}) as any as S.Schema<GenerateDeviceCertificateRequest>;
+
+/** Used in activation key generation flow. */
+export interface GenerateCertResponse {
+  /** Gets or sets base64 encoded certificate raw data, this is the public part needed to be uploaded to cert vault */
+  publicKey?: string;
+  /** Gets or sets base64 encoded private part of the certificate, needed to form the activation key */
+  privateKey?: string | Redacted.Redacted<string>;
+  /** Gets or sets expiry time in UTC */
+  expiryTimeInUTC?: string;
+}
+export const GenerateCertResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    publicKey: S.optional(S.String),
+    privateKey: S.optional(S.String.pipe(T.SensitiveValue({}))),
+    expiryTimeInUTC: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GenerateCertResponse",
+}) as any as S.Schema<GenerateCertResponse>;
+
+export interface GetAddonRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the device. */
+  deviceName: string;
+  /** The name of the role. */
+  roleName: string;
+  /** The name of the addon. */
+  addonName: string;
+}
+export const GetAddonRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    deviceName: S.String.pipe(T.Label()),
+    roleName: S.String.pipe(T.Label()),
+    addonName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/roles/{roleName}/addons/{addonName}",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetAddonRequest",
+}) as any as S.Schema<GetAddonRequest>;
+
+export interface GetAddonResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Addon type. */
+  kind: AddonType;
+}
+export const GetAddonResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    kind: AddonType,
+  }),
+).annotate({
+  identifier: "GetAddonResponse",
+}) as any as S.Schema<GetAddonResponse>;
+
+export interface GetAlertRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The device name. */
+  deviceName: string;
+  /** The alert name. */
+  name: string;
+}
+export const GetAlertRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    deviceName: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/alerts/{name}",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetAlertRequest",
+}) as any as S.Schema<GetAlertRequest>;
+
+/** Severity of the alert. */
+export type AlertSeverity = "Informational" | "Warning" | "Critical";
+export const AlertSeverity = /*@__PURE__*/ S.String;
+
+/** Error details for the alert. */
+export interface AlertErrorDetails {
+  /** Error code. */
+  errorCode?: string;
+  /** Error Message. */
+  errorMessage?: string;
+  /** Number of occurrences. */
+  occurrences?: number;
+}
+export const AlertErrorDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    errorCode: S.optional(S.String),
+    errorMessage: S.optional(S.String),
+    occurrences: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "AlertErrorDetails",
+}) as any as S.Schema<AlertErrorDetails>;
+
+/** Alert details. */
+export type AlertPropertiesDetailedInformationMap = {
+  [key: string]: string | undefined;
+};
+export const AlertPropertiesDetailedInformationMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<AlertPropertiesDetailedInformationMap>;
+
+/** Properties of alert. */
+export interface AlertProperties {
+  /** Alert title. */
+  title?: string;
+  /** Alert type. */
+  alertType?: string;
+  /** UTC time when the alert appeared. */
+  appearedAtDateTime?: string;
+  /** Alert recommendation. */
+  recommendation?: string;
+  /** Severity of the alert. */
+  severity?: AlertSeverity;
+  /** Error details of the alert. */
+  errorDetails?: AlertErrorDetails;
+  /** Alert details. */
+  detailedInformation?: AlertPropertiesDetailedInformationMap;
+}
+export const AlertProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    title: S.optional(S.String),
+    alertType: S.optional(S.String),
+    appearedAtDateTime: S.optional(S.String),
+    recommendation: S.optional(S.String),
+    severity: S.optional(AlertSeverity),
+    errorDetails: S.optional(AlertErrorDetails),
+    detailedInformation: S.optional(AlertPropertiesDetailedInformationMap),
+  }),
+).annotate({
+  identifier: "AlertProperties",
+}) as any as S.Schema<AlertProperties>;
+
+export interface GetAlertResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of alert. */
+  properties?: AlertProperties;
+}
+export const GetAlertResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(AlertProperties),
+  }),
+).annotate({
+  identifier: "GetAlertResponse",
+}) as any as S.Schema<GetAlertResponse>;
+
+export interface GetBandwidthScheduleRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The device name. */
+  deviceName: string;
+  /** The bandwidth schedule name. */
+  name: string;
+}
+export const GetBandwidthScheduleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    deviceName: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/bandwidthSchedules/{name}",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetBandwidthScheduleRequest",
+}) as any as S.Schema<GetBandwidthScheduleRequest>;
+
+export interface GetBandwidthScheduleResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of the bandwidth schedule. */
+  properties: BandwidthScheduleProperties;
+}
+export const GetBandwidthScheduleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: BandwidthScheduleProperties,
+  }),
+).annotate({
+  identifier: "GetBandwidthScheduleResponse",
+}) as any as S.Schema<GetBandwidthScheduleResponse>;
+
+export interface GetContainerRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The device name. */
+  deviceName: string;
+  /** The storage account name. */
+  storageAccountName: string;
+  /** The container Name */
+  containerName: string;
+}
+export const GetContainerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    deviceName: S.String.pipe(T.Label()),
+    storageAccountName: S.String.pipe(T.Label()),
+    containerName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/storageAccounts/{storageAccountName}/containers/{containerName}",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetContainerRequest",
+}) as any as S.Schema<GetContainerRequest>;
+
+export interface GetContainerResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The container properties. */
+  properties: ContainerProperties;
+}
+export const GetContainerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: ContainerProperties,
+  }),
+).annotate({
+  identifier: "GetContainerResponse",
+}) as any as S.Schema<GetContainerResponse>;
+
+export interface GetDeviceRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The device name. */
+  deviceName: string;
+}
+export const GetDeviceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    deviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}",
       code: 200,
       apiVersion: "2023-12-01",
     }),
   ),
 ).annotate({
-  identifier: "DevicesUpdateRequest",
-}) as any as S.Schema<DevicesUpdateRequest>;
+  identifier: "GetDeviceRequest",
+}) as any as S.Schema<GetDeviceRequest>;
 
 /** Resource tags. */
-export type DevicesUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DevicesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetDeviceResponseTagsMap = { [key: string]: string | undefined };
+export const GetDeviceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DevicesUpdateResponseTagsMap>;
+) as any as S.Schema<GetDeviceResponseTagsMap>;
 
-export interface DevicesUpdateResponse {
+export interface GetDeviceResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -3292,7 +2075,7 @@ export interface DevicesUpdateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: DevicesUpdateResponseTagsMap;
+  tags?: GetDeviceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The properties of the Data Box Edge/Gateway device. */
@@ -3306,13 +2089,13 @@ export interface DevicesUpdateResponse {
   /** The kind of the device. */
   kind?: DataBoxEdgeDeviceKind;
 }
-export const DevicesUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetDeviceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(DevicesUpdateResponseTagsMap),
+    tags: S.optional(GetDeviceResponseTagsMap),
     location: S.String,
     properties: S.optional(DataBoxEdgeDeviceProperties),
     sku: S.optional(Sku),
@@ -3321,102 +2104,472 @@ export const DevicesUpdateResponse = /*@__PURE__*/ S.suspend(() =>
     kind: S.optional(DataBoxEdgeDeviceKind),
   }),
 ).annotate({
-  identifier: "DevicesUpdateResponse",
-}) as any as S.Schema<DevicesUpdateResponse>;
+  identifier: "GetDeviceResponse",
+}) as any as S.Schema<GetDeviceResponse>;
 
-export interface DevicesUpdateExtendedInformationRequest {
+export interface GetDeviceCapacityInfoDeviceCapacityInfoRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The device name. */
   deviceName: string;
-  /** The Key Vault ARM Id for client secrets */
-  clientSecretStoreId?: string;
-  /** The url to access the Client Key Vault */
-  clientSecretStoreUrl?: string;
-  /** The name for Channel Integrity Key stored in the Client Key Vault */
-  channelIntegrityKeyName?: string;
-  /** The version of Channel Integrity Key stored in the Client Key Vault */
-  channelIntegrityKeyVersion?: string;
-  /** For changing or to initiate the resync to key-vault set the status to KeyVaultSyncPending, rest of the status will not be applicable. */
-  syncStatus?: KeyVaultSyncStatus | (string & {});
 }
-export const DevicesUpdateExtendedInformationRequest = /*@__PURE__*/ S.suspend(
-  () =>
+export const GetDeviceCapacityInfoDeviceCapacityInfoRequest =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       deviceName: S.String.pipe(T.Label()),
-      clientSecretStoreId: S.optional(S.String),
-      clientSecretStoreUrl: S.optional(S.String),
-      channelIntegrityKeyName: S.optional(S.String),
-      channelIntegrityKeyVersion: S.optional(S.String),
-      syncStatus: S.optional(KeyVaultSyncStatus),
     }).pipe(
       T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/updateExtendedInformation",
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/deviceCapacityInfo/default",
         code: 200,
         apiVersion: "2023-12-01",
       }),
     ),
+  ).annotate({
+    identifier: "GetDeviceCapacityInfoDeviceCapacityInfoRequest",
+  }) as any as S.Schema<GetDeviceCapacityInfoDeviceCapacityInfoRequest>;
+
+/** Cluster Storage Data. */
+export interface ClusterStorageViewData {
+  /** Total storage on the cluster in MB. */
+  clusterTotalStorageMb?: number;
+  /** The available or free storage on the cluster in MB. */
+  clusterFreeStorageMb?: number;
+}
+export const ClusterStorageViewData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    clusterTotalStorageMb: S.optional(S.Number),
+    clusterFreeStorageMb: S.optional(S.Number),
+  }),
 ).annotate({
-  identifier: "DevicesUpdateExtendedInformationRequest",
-}) as any as S.Schema<DevicesUpdateExtendedInformationRequest>;
+  identifier: "ClusterStorageViewData",
+}) as any as S.Schema<ClusterStorageViewData>;
+
+/** Cluster GPU Data. */
+export interface ClusterGpuCapacity {
+  /** The cluster GPU Type. */
+  gpuType?: string;
+  /** The used GPU units count in the cluster. */
+  gpuUsedUnitsCount?: number;
+  /** The free GPU units count in the cluster. */
+  gpuFreeUnitsCount?: number;
+  /** The GPU units count reserved for failover in the cluster. */
+  gpuReservedForFailoverUnitsCount?: number;
+  /** The total GPU units count in the cluster. */
+  gpuTotalUnitsCount?: number;
+}
+export const ClusterGpuCapacity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    gpuType: S.optional(S.String),
+    gpuUsedUnitsCount: S.optional(S.Number),
+    gpuFreeUnitsCount: S.optional(S.Number),
+    gpuReservedForFailoverUnitsCount: S.optional(S.Number),
+    gpuTotalUnitsCount: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "ClusterGpuCapacity",
+}) as any as S.Schema<ClusterGpuCapacity>;
+
+/** NodeCapacityInfo defines the required information to determine the placement of a VM. */
+export interface ClusterMemoryCapacity {
+  /** The free memory in the cluster in MB. */
+  clusterFreeMemoryMb?: number;
+  /** The used memory in the cluster in MB. */
+  clusterUsedMemoryMb?: number;
+  /** The failover memory in the cluster in MB. */
+  clusterFailoverMemoryMb?: number;
+  /** The fragmentation memory in the cluster in MB. */
+  clusterFragmentationMemoryMb?: number;
+  /** The memory reserved for Hyper-V in the cluster in MB. */
+  clusterHypervReserveMemoryMb?: number;
+  /** The memory of the Infra VM in the cluster in MB. */
+  clusterInfraVmMemoryMb?: number;
+  /** The total memory in the cluster in MB. */
+  clusterTotalMemoryMb?: number;
+  /** The non-failover memory in the cluster in MB. */
+  clusterNonFailoverVmMb?: number;
+  /** The memory used by VMs in the cluster in MB. */
+  clusterMemoryUsedByVmsMb?: number;
+}
+export const ClusterMemoryCapacity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    clusterFreeMemoryMb: S.optional(S.Number),
+    clusterUsedMemoryMb: S.optional(S.Number),
+    clusterFailoverMemoryMb: S.optional(S.Number),
+    clusterFragmentationMemoryMb: S.optional(S.Number),
+    clusterHypervReserveMemoryMb: S.optional(S.Number),
+    clusterInfraVmMemoryMb: S.optional(S.Number),
+    clusterTotalMemoryMb: S.optional(S.Number),
+    clusterNonFailoverVmMb: S.optional(S.Number),
+    clusterMemoryUsedByVmsMb: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "ClusterMemoryCapacity",
+}) as any as S.Schema<ClusterMemoryCapacity>;
+
+/** Cluster Compute Data. */
+export interface ClusterCapacityViewData {
+  /** The FQDN of the cluster. */
+  fqdn?: string;
+  /** The cluster's GPU capacity. */
+  gpuCapacity?: ClusterGpuCapacity;
+  /** The cluster's memory capacity. */
+  memoryCapacity?: ClusterMemoryCapacity;
+  /** The last time at which the ClusterCapacityViewData was set. */
+  lastRefreshedTime?: string;
+  /** The total # of vCPUs provisioned by non-HPN VM per appliance. */
+  totalProvisionedNonHpnCores?: number;
+}
+export const ClusterCapacityViewData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    fqdn: S.optional(S.String),
+    gpuCapacity: S.optional(ClusterGpuCapacity),
+    memoryCapacity: S.optional(ClusterMemoryCapacity),
+    lastRefreshedTime: S.optional(S.String),
+    totalProvisionedNonHpnCores: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "ClusterCapacityViewData",
+}) as any as S.Schema<ClusterCapacityViewData>;
+
+/** VmMemory Data. */
+export interface VmMemory {
+  /** The total amount of RAM in the virtual machine, as seen by the guest operating system. For a virtual machine with dynamic memory enabled, this represents the initial memory available at startup. */
+  startupMemoryMB?: number;
+  /** The current memory used by the virtual machine. */
+  currentMemoryUsageMB?: number;
+}
+export const VmMemory = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    startupMemoryMB: S.optional(S.Number),
+    currentMemoryUsageMB: S.optional(S.Number),
+  }),
+).annotate({ identifier: "VmMemory" }) as any as S.Schema<VmMemory>;
+
+/** The VM used memory per VmId. */
+export type HostCapacityVmUsedMemoryMap = {
+  [key: string]: VmMemory | undefined;
+};
+export const HostCapacityVmUsedMemoryMap = /*@__PURE__*/ S.Record(
+  S.String,
+  VmMemory,
+) as any as S.Schema<HostCapacityVmUsedMemoryMap>;
+
+/** The free VCPU indices for the Hpn VMs. */
+export type NumaNodeDataFreeVCpuIndexesForHpnList = Array<number>;
+export const NumaNodeDataFreeVCpuIndexesForHpnList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<NumaNodeDataFreeVCpuIndexesForHpnList>;
+
+/** The VCPU indices for Hpn VMs */
+export type NumaNodeDataVCpuIndexesForHpnList = Array<number>;
+export const NumaNodeDataVCpuIndexesForHpnList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<NumaNodeDataVCpuIndexesForHpnList>;
+
+/** The VCPU indices for the root. */
+export type NumaNodeDataVCpuIndexesForRootList = Array<number>;
+export const NumaNodeDataVCpuIndexesForRootList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<NumaNodeDataVCpuIndexesForRootList>;
+
+/** NUMA node data. */
+export interface NumaNodeData {
+  /** The NUMA node index. */
+  numaNodeIndex?: number;
+  /** The total memory on the NUMA node. */
+  totalMemoryInMb?: number;
+  /** The logical cores per core count. */
+  logicalCoreCountPerCore?: number;
+  /** The effective available memory on the NUMA node in MB. */
+  effectiveAvailableMemoryInMb?: number;
+  /** The free VCPU indices for the Hpn VMs. */
+  freeVCpuIndexesForHpn?: NumaNodeDataFreeVCpuIndexesForHpnList;
+  /** The VCPU indices for Hpn VMs */
+  vCpuIndexesForHpn?: NumaNodeDataVCpuIndexesForHpnList;
+  /** The VCPU indices for the root. */
+  vCpuIndexesForRoot?: NumaNodeDataVCpuIndexesForRootList;
+}
+export const NumaNodeData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    numaNodeIndex: S.optional(S.Number),
+    totalMemoryInMb: S.optional(S.Number),
+    logicalCoreCountPerCore: S.optional(S.Number),
+    effectiveAvailableMemoryInMb: S.optional(S.Number),
+    freeVCpuIndexesForHpn: S.optional(NumaNodeDataFreeVCpuIndexesForHpnList),
+    vCpuIndexesForHpn: S.optional(NumaNodeDataVCpuIndexesForHpnList),
+    vCpuIndexesForRoot: S.optional(NumaNodeDataVCpuIndexesForRootList),
+  }),
+).annotate({ identifier: "NumaNodeData" }) as any as S.Schema<NumaNodeData>;
+
+/** The numa nodes information for Hpn VMs. */
+export type HostCapacityNumaNodesDataList = Array<NumaNodeData>;
+export const HostCapacityNumaNodesDataList = /*@__PURE__*/ S.Array(
+  NumaNodeData,
+) as any as S.Schema<HostCapacityNumaNodesDataList>;
+
+/** Host Capacity Data. */
+export interface HostCapacity {
+  /** The name of the host. */
+  hostName?: string;
+  /** The available memory on the host accounting for VM placement size and any host VM reservations. */
+  effectiveAvailableMemoryMbOnHost?: number;
+  /** The available amount of GPUs on the host to use after accounting for GPUS used by reservations on the host. */
+  availableGpuCount?: number;
+  /** The VM used memory per VmId. */
+  vmUsedMemory?: HostCapacityVmUsedMemoryMap;
+  /** The GPU type of the VM. */
+  gpuType?: string;
+  /** The numa nodes information for Hpn VMs. */
+  numaNodesData?: HostCapacityNumaNodesDataList;
+}
+export const HostCapacity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    hostName: S.optional(S.String),
+    effectiveAvailableMemoryMbOnHost: S.optional(S.Number),
+    availableGpuCount: S.optional(S.Number),
+    vmUsedMemory: S.optional(HostCapacityVmUsedMemoryMap),
+    gpuType: S.optional(S.String),
+    numaNodesData: S.optional(HostCapacityNumaNodesDataList),
+  }),
+).annotate({ identifier: "HostCapacity" }) as any as S.Schema<HostCapacity>;
+
+/** The dictionary of individual node names and node capacities in the cluster. */
+export type DeviceCapacityInfoPropertiesNodeCapacityInfosMap = {
+  [key: string]: HostCapacity | undefined;
+};
+export const DeviceCapacityInfoPropertiesNodeCapacityInfosMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    HostCapacity,
+  ) as any as S.Schema<DeviceCapacityInfoPropertiesNodeCapacityInfosMap>;
+
+/** The properties of Device Capacity Info */
+export interface DeviceCapacityInfoProperties {
+  /** Timestamp of request in UTC */
+  timeStamp?: string;
+  /** Cluster capacity data for storage resources (CSV). */
+  clusterStorageCapacityInfo?: ClusterStorageViewData;
+  /** Cluster capacity data for compute resources (Memory and GPU). */
+  clusterComputeCapacityInfo?: ClusterCapacityViewData;
+  /** The dictionary of individual node names and node capacities in the cluster. */
+  nodeCapacityInfos?: DeviceCapacityInfoPropertiesNodeCapacityInfosMap;
+}
+export const DeviceCapacityInfoProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    timeStamp: S.optional(S.String),
+    clusterStorageCapacityInfo: S.optional(ClusterStorageViewData),
+    clusterComputeCapacityInfo: S.optional(ClusterCapacityViewData),
+    nodeCapacityInfos: S.optional(
+      DeviceCapacityInfoPropertiesNodeCapacityInfosMap,
+    ),
+  }),
+).annotate({
+  identifier: "DeviceCapacityInfoProperties",
+}) as any as S.Schema<DeviceCapacityInfoProperties>;
+
+export interface GetDeviceCapacityInfoDeviceCapacityInfoResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The device capacity properties. */
+  properties?: DeviceCapacityInfoProperties;
+}
+export const GetDeviceCapacityInfoDeviceCapacityInfoResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(DeviceCapacityInfoProperties),
+    }),
+  ).annotate({
+    identifier: "GetDeviceCapacityInfoDeviceCapacityInfoResponse",
+  }) as any as S.Schema<GetDeviceCapacityInfoDeviceCapacityInfoResponse>;
+
+export interface GetDeviceExtendedInformationRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The device name. */
+  deviceName: string;
+}
+export const GetDeviceExtendedInformationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    deviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/getExtendedInformation",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetDeviceExtendedInformationRequest",
+}) as any as S.Schema<GetDeviceExtendedInformationRequest>;
+
+/** For changing or to initiate the resync to key-vault set the status to KeyVaultSyncPending, rest of the status will not be applicable. */
+export type KeyVaultSyncStatus =
+  | "KeyVaultSynced"
+  | "KeyVaultSyncFailed"
+  | "KeyVaultNotConfigured"
+  | "KeyVaultSyncPending"
+  | "KeyVaultSyncing"
+  | "KeyVaultNotSynced";
+export const KeyVaultSyncStatus = /*@__PURE__*/ S.String;
+
+/** Holds device secret either as a KeyVault reference or as an encrypted value. */
+export interface Secret {
+  /** Encrypted (using device public key) secret value. */
+  encryptedSecret?: AsymmetricEncryptedSecret;
+  /** Id of the Key-Vault where secret is stored (ex: secrets/AuthClientSecret/82ef4346187a4033a10d629cde07d740). */
+  keyVaultId?: string;
+}
+export const Secret = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    encryptedSecret: S.optional(AsymmetricEncryptedSecret),
+    keyVaultId: S.optional(S.String),
+  }),
+).annotate({ identifier: "Secret" }) as any as S.Schema<Secret>;
+
+/** Device secrets, will be returned only with ODataFilter $expand=deviceSecrets */
+export type DataBoxEdgeDeviceExtendedInfoPropertiesDeviceSecretsMap = {
+  [key: string]: Secret | undefined;
+};
+export const DataBoxEdgeDeviceExtendedInfoPropertiesDeviceSecretsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    Secret,
+  ) as any as S.Schema<DataBoxEdgeDeviceExtendedInfoPropertiesDeviceSecretsMap>;
+
+/** Cluster Witness Type */
+export type ClusterWitnessType = "None" | "Cloud" | "FileShare";
+export const ClusterWitnessType = /*@__PURE__*/ S.String;
+
+/** The properties of the Data Box Edge/Gateway device extended info. */
+export interface DataBoxEdgeDeviceExtendedInfoProperties {
+  /** The digital signature of encrypted certificate. */
+  encryptionKeyThumbprint?: string;
+  /** The public part of the encryption certificate. Client uses this to encrypt any secret. */
+  encryptionKey?: string;
+  /** The Resource ID of the Resource. */
+  resourceKey?: string;
+  /** The Key Vault ARM Id for client secrets */
+  clientSecretStoreId?: string;
+  /** The url to access the Client Key Vault */
+  clientSecretStoreUrl?: string;
+  /** The name of Channel Integrity Key stored in the Client Key Vault */
+  channelIntegrityKeyName?: string;
+  /** The version of Channel Integrity Key stored in the Client Key Vault */
+  channelIntegrityKeyVersion?: string;
+  /** Key vault sync status */
+  keyVaultSyncStatus?: KeyVaultSyncStatus;
+  /** Device secrets, will be returned only with ODataFilter $expand=deviceSecrets */
+  deviceSecrets?: DataBoxEdgeDeviceExtendedInfoPropertiesDeviceSecretsMap;
+  /** Cluster Witness Type */
+  clusterWitnessType?: ClusterWitnessType;
+  /** The witness location of file share. */
+  fileShareWitnessLocation?: string;
+  /** The username of file share. */
+  fileShareWitnessUsername?: string;
+  /** The Cloud Witness Storage account name. */
+  cloudWitnessStorageAccountName?: string;
+  /** The Container for cloud witness in the storage account. */
+  cloudWitnessContainerName?: string;
+  /** The Azure service endpoint of the cloud witness storage account. */
+  cloudWitnessStorageEndpoint?: string;
+}
+export const DataBoxEdgeDeviceExtendedInfoProperties = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      encryptionKeyThumbprint: S.optional(S.String),
+      encryptionKey: S.optional(S.String),
+      resourceKey: S.optional(S.String),
+      clientSecretStoreId: S.optional(S.String),
+      clientSecretStoreUrl: S.optional(S.String),
+      channelIntegrityKeyName: S.optional(S.String),
+      channelIntegrityKeyVersion: S.optional(S.String),
+      keyVaultSyncStatus: S.optional(KeyVaultSyncStatus),
+      deviceSecrets: S.optional(
+        DataBoxEdgeDeviceExtendedInfoPropertiesDeviceSecretsMap,
+      ),
+      clusterWitnessType: S.optional(ClusterWitnessType),
+      fileShareWitnessLocation: S.optional(S.String),
+      fileShareWitnessUsername: S.optional(S.String),
+      cloudWitnessStorageAccountName: S.optional(S.String),
+      cloudWitnessContainerName: S.optional(S.String),
+      cloudWitnessStorageEndpoint: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "DataBoxEdgeDeviceExtendedInfoProperties",
+}) as any as S.Schema<DataBoxEdgeDeviceExtendedInfoProperties>;
 
 /** The type of identity that created the resource. */
-export type DevicesUpdateExtendedInformationResponseSystemDataCreatedByType =
+export type GetDeviceExtendedInformationResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const DevicesUpdateExtendedInformationResponseSystemDataCreatedByType =
+export const GetDeviceExtendedInformationResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type DevicesUpdateExtendedInformationResponseSystemDataLastModifiedByType =
+export type GetDeviceExtendedInformationResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const DevicesUpdateExtendedInformationResponseSystemDataLastModifiedByType =
+export const GetDeviceExtendedInformationResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface DevicesUpdateExtendedInformationResponseSystemData {
+export interface GetDeviceExtendedInformationResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: DevicesUpdateExtendedInformationResponseSystemDataCreatedByType;
+  createdByType?: GetDeviceExtendedInformationResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: DevicesUpdateExtendedInformationResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetDeviceExtendedInformationResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const DevicesUpdateExtendedInformationResponseSystemData =
+export const GetDeviceExtendedInformationResponseSystemData =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        DevicesUpdateExtendedInformationResponseSystemDataCreatedByType,
+        GetDeviceExtendedInformationResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        DevicesUpdateExtendedInformationResponseSystemDataLastModifiedByType,
+        GetDeviceExtendedInformationResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "DevicesUpdateExtendedInformationResponseSystemData",
-  }) as any as S.Schema<DevicesUpdateExtendedInformationResponseSystemData>;
+    identifier: "GetDeviceExtendedInformationResponseSystemData",
+  }) as any as S.Schema<GetDeviceExtendedInformationResponseSystemData>;
 
-export interface DevicesUpdateExtendedInformationResponse {
+export interface GetDeviceExtendedInformationResponse {
   /** The path ID that uniquely identifies the object. */
   id?: string;
   /** The object name. */
@@ -3426,106 +2579,217 @@ export interface DevicesUpdateExtendedInformationResponse {
   /** The extended info properties. */
   properties?: DataBoxEdgeDeviceExtendedInfoProperties;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: DevicesUpdateExtendedInformationResponseSystemData;
+  systemData?: GetDeviceExtendedInformationResponseSystemData;
 }
-export const DevicesUpdateExtendedInformationResponse = /*@__PURE__*/ S.suspend(
+export const GetDeviceExtendedInformationResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
       name: S.optional(S.String),
       type: S.optional(S.String),
       properties: S.optional(DataBoxEdgeDeviceExtendedInfoProperties),
-      systemData: S.optional(
-        DevicesUpdateExtendedInformationResponseSystemData,
-      ),
+      systemData: S.optional(GetDeviceExtendedInformationResponseSystemData),
     }),
 ).annotate({
-  identifier: "DevicesUpdateExtendedInformationResponse",
-}) as any as S.Schema<DevicesUpdateExtendedInformationResponse>;
+  identifier: "GetDeviceExtendedInformationResponse",
+}) as any as S.Schema<GetDeviceExtendedInformationResponse>;
 
-/** The authentication type. */
-export type AuthenticationType = "Invalid" | "AzureActiveDirectory";
-export const AuthenticationType = /*@__PURE__*/ S.String;
-
-/** Raw Certificate Data. */
-export interface RawCertificateData {
-  /** The authentication type. */
-  authenticationType?: AuthenticationType | (string & {});
-  /** The base64 encoded certificate raw data. */
-  certificate: string;
-}
-export const RawCertificateData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    authenticationType: S.optional(AuthenticationType),
-    certificate: S.String,
-  }),
-).annotate({
-  identifier: "RawCertificateData",
-}) as any as S.Schema<RawCertificateData>;
-
-export interface DevicesUploadCertificateRequest {
+export interface GetDeviceNetworkSettingsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The device name. */
   deviceName: string;
-  /** The Base 64 encoded certificate raw data. */
-  properties: RawCertificateData;
 }
-export const DevicesUploadCertificateRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDeviceNetworkSettingsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     deviceName: S.String.pipe(T.Label()),
-    properties: RawCertificateData,
   }).pipe(
     T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/uploadCertificate",
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/networkSettings/default",
       code: 200,
       apiVersion: "2023-12-01",
     }),
   ),
 ).annotate({
-  identifier: "DevicesUploadCertificateRequest",
-}) as any as S.Schema<DevicesUploadCertificateRequest>;
+  identifier: "GetDeviceNetworkSettingsRequest",
+}) as any as S.Schema<GetDeviceNetworkSettingsRequest>;
 
-/** The upload registration certificate response. */
-export interface UploadCertificateResponse {
-  /** Specifies authentication type. */
-  authType?: AuthenticationType;
-  /** The resource ID of the Data Box Edge/Gateway device. */
-  resourceId?: string;
-  /** Azure Active Directory tenant authority. */
-  aadAuthority?: string;
-  /** Azure Active Directory tenant ID. */
-  aadTenantId?: string;
-  /** Azure Active Directory service principal client ID. */
-  servicePrincipalClientId?: string;
-  /** Azure Active Directory service principal object ID. */
-  servicePrincipalObjectId?: string;
-  /** The azure management endpoint audience. */
-  azureManagementEndpointAudience?: string;
-  /** Identifier of the target resource that is the recipient of the requested token. */
-  aadAudience?: string;
+/** The network group. */
+export type NetworkGroup = "None" | "NonRDMA" | "RDMA";
+export const NetworkGroup = /*@__PURE__*/ S.String;
+
+/** The network adapter position. */
+export interface NetworkAdapterPosition {
+  /** The network group. */
+  networkGroup?: NetworkGroup;
+  /** The port. */
+  port?: number;
 }
-export const UploadCertificateResponse = /*@__PURE__*/ S.suspend(() =>
+export const NetworkAdapterPosition = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    authType: S.optional(AuthenticationType),
-    resourceId: S.optional(S.String),
-    aadAuthority: S.optional(S.String),
-    aadTenantId: S.optional(S.String),
-    servicePrincipalClientId: S.optional(S.String),
-    servicePrincipalObjectId: S.optional(S.String),
-    azureManagementEndpointAudience: S.optional(S.String),
-    aadAudience: S.optional(S.String),
+    networkGroup: S.optional(NetworkGroup),
+    port: S.optional(S.Number),
   }),
 ).annotate({
-  identifier: "UploadCertificateResponse",
-}) as any as S.Schema<UploadCertificateResponse>;
+  identifier: "NetworkAdapterPosition",
+}) as any as S.Schema<NetworkAdapterPosition>;
 
-export interface DiagnosticSettingsGetDiagnosticProactiveLogCollectionSettingsRequest {
+/** Value indicating whether this adapter is valid. */
+export type NetworkAdapterStatus = "Inactive" | "Active";
+export const NetworkAdapterStatus = /*@__PURE__*/ S.String;
+
+/** Value indicating whether this adapter is RDMA capable. */
+export type NetworkAdapterRDMAStatus = "Incapable" | "Capable";
+export const NetworkAdapterRDMAStatus = /*@__PURE__*/ S.String;
+
+/** Value indicating whether this adapter has DHCP enabled. */
+export type NetworkAdapterDHCPStatus = "Disabled" | "Enabled";
+export const NetworkAdapterDHCPStatus = /*@__PURE__*/ S.String;
+
+/** Details related to the IPv4 address configuration. */
+export interface Ipv4Config {
+  /** The IPv4 address of the network adapter. */
+  ipAddress?: string;
+  /** The IPv4 subnet of the network adapter. */
+  subnet?: string;
+  /** The IPv4 gateway of the network adapter. */
+  gateway?: string;
+}
+export const Ipv4Config = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ipAddress: S.optional(S.String),
+    subnet: S.optional(S.String),
+    gateway: S.optional(S.String),
+  }),
+).annotate({ identifier: "Ipv4Config" }) as any as S.Schema<Ipv4Config>;
+
+/** Details related to the IPv6 address configuration. */
+export interface Ipv6Config {
+  /** The IPv6 address of the network adapter. */
+  ipAddress?: string;
+  /** The IPv6 prefix of the network adapter. */
+  prefixLength?: number;
+  /** The IPv6 gateway of the network adapter. */
+  gateway?: string;
+}
+export const Ipv6Config = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ipAddress: S.optional(S.String),
+    prefixLength: S.optional(S.Number),
+    gateway: S.optional(S.String),
+  }),
+).annotate({ identifier: "Ipv6Config" }) as any as S.Schema<Ipv6Config>;
+
+/** The list of DNS Servers of the device. */
+export type NetworkAdapterDnsServersList = Array<string>;
+export const NetworkAdapterDnsServersList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<NetworkAdapterDnsServersList>;
+
+/** Represents the networkAdapter on a device. */
+export interface NetworkAdapter {
+  /** Instance ID of network adapter. */
+  adapterId?: string;
+  /** Hardware position of network adapter. */
+  adapterPosition?: NetworkAdapterPosition;
+  /** Logical index of the adapter. */
+  index?: number;
+  /** Node ID of the network adapter. */
+  nodeId?: string;
+  /** Network adapter name. */
+  networkAdapterName?: string;
+  /** Hardware label for the adapter. */
+  label?: string;
+  /** MAC address. */
+  macAddress?: string;
+  /** Link speed. */
+  linkSpeed?: number;
+  /** Value indicating whether this adapter is valid. */
+  status?: NetworkAdapterStatus;
+  /** Value indicating whether this adapter is RDMA capable. */
+  rdmaStatus?: NetworkAdapterRDMAStatus;
+  /** Value indicating whether this adapter has DHCP enabled. */
+  dhcpStatus?: NetworkAdapterDHCPStatus;
+  /** The IPv4 configuration of the network adapter. */
+  ipv4Configuration?: Ipv4Config;
+  /** The IPv6 configuration of the network adapter. */
+  ipv6Configuration?: Ipv6Config;
+  /** The IPv6 local address. */
+  ipv6LinkLocalAddress?: string;
+  /** The list of DNS Servers of the device. */
+  dnsServers?: NetworkAdapterDnsServersList;
+}
+export const NetworkAdapter = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    adapterId: S.optional(S.String),
+    adapterPosition: S.optional(NetworkAdapterPosition),
+    index: S.optional(S.Number),
+    nodeId: S.optional(S.String),
+    networkAdapterName: S.optional(S.String),
+    label: S.optional(S.String),
+    macAddress: S.optional(S.String),
+    linkSpeed: S.optional(S.Number),
+    status: S.optional(NetworkAdapterStatus),
+    rdmaStatus: S.optional(NetworkAdapterRDMAStatus),
+    dhcpStatus: S.optional(NetworkAdapterDHCPStatus),
+    ipv4Configuration: S.optional(Ipv4Config),
+    ipv6Configuration: S.optional(Ipv6Config),
+    ipv6LinkLocalAddress: S.optional(S.String),
+    dnsServers: S.optional(NetworkAdapterDnsServersList),
+  }),
+).annotate({ identifier: "NetworkAdapter" }) as any as S.Schema<NetworkAdapter>;
+
+/** The network adapter list on the device. */
+export type NetworkSettingsPropertiesNetworkAdaptersList =
+  Array<NetworkAdapter>;
+export const NetworkSettingsPropertiesNetworkAdaptersList =
+  /*@__PURE__*/ S.Array(
+    NetworkAdapter,
+  ) as any as S.Schema<NetworkSettingsPropertiesNetworkAdaptersList>;
+
+/** The properties of network settings. */
+export interface NetworkSettingsProperties {
+  /** The network adapter list on the device. */
+  networkAdapters?: NetworkSettingsPropertiesNetworkAdaptersList;
+}
+export const NetworkSettingsProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    networkAdapters: S.optional(NetworkSettingsPropertiesNetworkAdaptersList),
+  }),
+).annotate({
+  identifier: "NetworkSettingsProperties",
+}) as any as S.Schema<NetworkSettingsProperties>;
+
+export interface GetDeviceNetworkSettingsResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of network settings of a device. */
+  properties?: NetworkSettingsProperties;
+}
+export const GetDeviceNetworkSettingsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(NetworkSettingsProperties),
+  }),
+).annotate({
+  identifier: "GetDeviceNetworkSettingsResponse",
+}) as any as S.Schema<GetDeviceNetworkSettingsResponse>;
+
+export interface GetDiagnosticSettingsDiagnosticProactiveLogCollectionSettingsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3533,7 +2797,7 @@ export interface DiagnosticSettingsGetDiagnosticProactiveLogCollectionSettingsRe
   /** The device name. */
   deviceName: string;
 }
-export const DiagnosticSettingsGetDiagnosticProactiveLogCollectionSettingsRequest =
+export const GetDiagnosticSettingsDiagnosticProactiveLogCollectionSettingsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -3549,8 +2813,8 @@ export const DiagnosticSettingsGetDiagnosticProactiveLogCollectionSettingsReques
     ),
   ).annotate({
     identifier:
-      "DiagnosticSettingsGetDiagnosticProactiveLogCollectionSettingsRequest",
-  }) as any as S.Schema<DiagnosticSettingsGetDiagnosticProactiveLogCollectionSettingsRequest>;
+      "GetDiagnosticSettingsDiagnosticProactiveLogCollectionSettingsRequest",
+  }) as any as S.Schema<GetDiagnosticSettingsDiagnosticProactiveLogCollectionSettingsRequest>;
 
 /** Proactive diagnostic collection consent flag */
 export type ProactiveDiagnosticsConsent = "Enabled" | "Disabled";
@@ -3570,7 +2834,7 @@ export const ProactiveLogCollectionSettingsProperties = /*@__PURE__*/ S.suspend(
   identifier: "ProactiveLogCollectionSettingsProperties",
 }) as any as S.Schema<ProactiveLogCollectionSettingsProperties>;
 
-export interface DiagnosticSettingsGetDiagnosticProactiveLogCollectionSettingsResponse {
+export interface GetDiagnosticSettingsDiagnosticProactiveLogCollectionSettingsResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -3582,7 +2846,7 @@ export interface DiagnosticSettingsGetDiagnosticProactiveLogCollectionSettingsRe
   /** Properties of the diagnostic proactive log collection settings. */
   properties: ProactiveLogCollectionSettingsProperties;
 }
-export const DiagnosticSettingsGetDiagnosticProactiveLogCollectionSettingsResponse =
+export const GetDiagnosticSettingsDiagnosticProactiveLogCollectionSettingsResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -3593,10 +2857,10 @@ export const DiagnosticSettingsGetDiagnosticProactiveLogCollectionSettingsRespon
     }),
   ).annotate({
     identifier:
-      "DiagnosticSettingsGetDiagnosticProactiveLogCollectionSettingsResponse",
-  }) as any as S.Schema<DiagnosticSettingsGetDiagnosticProactiveLogCollectionSettingsResponse>;
+      "GetDiagnosticSettingsDiagnosticProactiveLogCollectionSettingsResponse",
+  }) as any as S.Schema<GetDiagnosticSettingsDiagnosticProactiveLogCollectionSettingsResponse>;
 
-export interface DiagnosticSettingsGetDiagnosticRemoteSupportSettingsRequest {
+export interface GetDiagnosticSettingsDiagnosticRemoteSupportSettingsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3604,7 +2868,7 @@ export interface DiagnosticSettingsGetDiagnosticRemoteSupportSettingsRequest {
   /** The device name. */
   deviceName: string;
 }
-export const DiagnosticSettingsGetDiagnosticRemoteSupportSettingsRequest =
+export const GetDiagnosticSettingsDiagnosticRemoteSupportSettingsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -3619,8 +2883,8 @@ export const DiagnosticSettingsGetDiagnosticRemoteSupportSettingsRequest =
       }),
     ),
   ).annotate({
-    identifier: "DiagnosticSettingsGetDiagnosticRemoteSupportSettingsRequest",
-  }) as any as S.Schema<DiagnosticSettingsGetDiagnosticRemoteSupportSettingsRequest>;
+    identifier: "GetDiagnosticSettingsDiagnosticRemoteSupportSettingsRequest",
+  }) as any as S.Schema<GetDiagnosticSettingsDiagnosticRemoteSupportSettingsRequest>;
 
 /** Remote application type */
 export type RemoteApplicationType =
@@ -3677,7 +2941,7 @@ export const DiagnosticRemoteSupportSettingsProperties =
     identifier: "DiagnosticRemoteSupportSettingsProperties",
   }) as any as S.Schema<DiagnosticRemoteSupportSettingsProperties>;
 
-export interface DiagnosticSettingsGetDiagnosticRemoteSupportSettingsResponse {
+export interface GetDiagnosticSettingsDiagnosticRemoteSupportSettingsResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -3689,7 +2953,7 @@ export interface DiagnosticSettingsGetDiagnosticRemoteSupportSettingsResponse {
   /** Properties of the remote support settings. */
   properties: DiagnosticRemoteSupportSettingsProperties;
 }
-export const DiagnosticSettingsGetDiagnosticRemoteSupportSettingsResponse =
+export const GetDiagnosticSettingsDiagnosticRemoteSupportSettingsResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -3699,122 +2963,10 @@ export const DiagnosticSettingsGetDiagnosticRemoteSupportSettingsResponse =
       properties: DiagnosticRemoteSupportSettingsProperties,
     }),
   ).annotate({
-    identifier: "DiagnosticSettingsGetDiagnosticRemoteSupportSettingsResponse",
-  }) as any as S.Schema<DiagnosticSettingsGetDiagnosticRemoteSupportSettingsResponse>;
+    identifier: "GetDiagnosticSettingsDiagnosticRemoteSupportSettingsResponse",
+  }) as any as S.Schema<GetDiagnosticSettingsDiagnosticRemoteSupportSettingsResponse>;
 
-export interface DiagnosticSettingsUpdateDiagnosticProactiveLogCollectionSettingsRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The device name. */
-  deviceName: string;
-  /** Properties of the diagnostic proactive log collection settings. */
-  properties: ProactiveLogCollectionSettingsProperties;
-}
-export const DiagnosticSettingsUpdateDiagnosticProactiveLogCollectionSettingsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      deviceName: S.String.pipe(T.Label()),
-      properties: ProactiveLogCollectionSettingsProperties,
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/diagnosticProactiveLogCollectionSettings/default",
-        code: 200,
-        apiVersion: "2023-12-01",
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "DiagnosticSettingsUpdateDiagnosticProactiveLogCollectionSettingsRequest",
-  }) as any as S.Schema<DiagnosticSettingsUpdateDiagnosticProactiveLogCollectionSettingsRequest>;
-
-export interface DiagnosticSettingsUpdateDiagnosticProactiveLogCollectionSettingsResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of the diagnostic proactive log collection settings. */
-  properties: ProactiveLogCollectionSettingsProperties;
-}
-export const DiagnosticSettingsUpdateDiagnosticProactiveLogCollectionSettingsResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: ProactiveLogCollectionSettingsProperties,
-    }),
-  ).annotate({
-    identifier:
-      "DiagnosticSettingsUpdateDiagnosticProactiveLogCollectionSettingsResponse",
-  }) as any as S.Schema<DiagnosticSettingsUpdateDiagnosticProactiveLogCollectionSettingsResponse>;
-
-export interface DiagnosticSettingsUpdateDiagnosticRemoteSupportSettingsRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The device name. */
-  deviceName: string;
-  /** Properties of the remote support settings. */
-  properties: DiagnosticRemoteSupportSettingsProperties;
-}
-export const DiagnosticSettingsUpdateDiagnosticRemoteSupportSettingsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      deviceName: S.String.pipe(T.Label()),
-      properties: DiagnosticRemoteSupportSettingsProperties,
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/diagnosticRemoteSupportSettings/default",
-        code: 200,
-        apiVersion: "2023-12-01",
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "DiagnosticSettingsUpdateDiagnosticRemoteSupportSettingsRequest",
-  }) as any as S.Schema<DiagnosticSettingsUpdateDiagnosticRemoteSupportSettingsRequest>;
-
-export interface DiagnosticSettingsUpdateDiagnosticRemoteSupportSettingsResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of the remote support settings. */
-  properties: DiagnosticRemoteSupportSettingsProperties;
-}
-export const DiagnosticSettingsUpdateDiagnosticRemoteSupportSettingsResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: DiagnosticRemoteSupportSettingsProperties,
-    }),
-  ).annotate({
-    identifier:
-      "DiagnosticSettingsUpdateDiagnosticRemoteSupportSettingsResponse",
-  }) as any as S.Schema<DiagnosticSettingsUpdateDiagnosticRemoteSupportSettingsResponse>;
-
-export interface JobsGetRequest {
+export interface GetJobRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3824,7 +2976,7 @@ export interface JobsGetRequest {
   /** The job name. */
   name: string;
 }
-export const JobsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetJobRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -3838,7 +2990,7 @@ export const JobsGetRequest = /*@__PURE__*/ S.suspend(() =>
       apiVersion: "2023-12-01",
     }),
   ),
-).annotate({ identifier: "JobsGetRequest" }) as any as S.Schema<JobsGetRequest>;
+).annotate({ identifier: "GetJobRequest" }) as any as S.Schema<GetJobRequest>;
 
 /** The type of the job. */
 export type JobType =
@@ -4009,7 +3161,7 @@ export const JobErrorDetails = /*@__PURE__*/ S.suspend(() =>
   identifier: "JobErrorDetails",
 }) as any as S.Schema<JobErrorDetails>;
 
-export interface JobsGetResponse {
+export interface GetJobResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -4031,7 +3183,7 @@ export interface JobsGetResponse {
   /** The error details. */
   error?: JobErrorDetails;
 }
-export const JobsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetJobResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -4044,9 +3196,35 @@ export const JobsGetResponse = /*@__PURE__*/ S.suspend(() =>
     percentComplete: S.optional(S.Number),
     error: S.optional(JobErrorDetails),
   }),
+).annotate({ identifier: "GetJobResponse" }) as any as S.Schema<GetJobResponse>;
+
+export interface GetMonitoringConfigRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the device. */
+  deviceName: string;
+  /** The name of the role. */
+  roleName: string;
+}
+export const GetMonitoringConfigRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    deviceName: S.String.pipe(T.Label()),
+    roleName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/roles/{roleName}/monitoringConfig/default",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
 ).annotate({
-  identifier: "JobsGetResponse",
-}) as any as S.Schema<JobsGetResponse>;
+  identifier: "GetMonitoringConfigRequest",
+}) as any as S.Schema<GetMonitoringConfigRequest>;
 
 /** The metric dimension */
 export interface MetricDimension {
@@ -4166,39 +3344,7 @@ export const MonitoringMetricConfigurationProperties = /*@__PURE__*/ S.suspend(
   identifier: "MonitoringMetricConfigurationProperties",
 }) as any as S.Schema<MonitoringMetricConfigurationProperties>;
 
-export interface MonitoringConfigCreateOrUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the device. */
-  deviceName: string;
-  /** The name of the role. */
-  roleName: string;
-  /** The metric setting properties. */
-  properties: MonitoringMetricConfigurationProperties;
-}
-export const MonitoringConfigCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      deviceName: S.String.pipe(T.Label()),
-      roleName: S.String.pipe(T.Label()),
-      properties: MonitoringMetricConfigurationProperties,
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/roles/{roleName}/monitoringConfig/default",
-        code: 200,
-        apiVersion: "2023-12-01",
-      }),
-    ),
-).annotate({
-  identifier: "MonitoringConfigCreateOrUpdateRequest",
-}) as any as S.Schema<MonitoringConfigCreateOrUpdateRequest>;
-
-export interface MonitoringConfigCreateOrUpdateResponse {
+export interface GetMonitoringConfigResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -4210,95 +3356,7 @@ export interface MonitoringConfigCreateOrUpdateResponse {
   /** The metric setting properties. */
   properties: MonitoringMetricConfigurationProperties;
 }
-export const MonitoringConfigCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: MonitoringMetricConfigurationProperties,
-    }),
-).annotate({
-  identifier: "MonitoringConfigCreateOrUpdateResponse",
-}) as any as S.Schema<MonitoringConfigCreateOrUpdateResponse>;
-
-export interface MonitoringConfigDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the device. */
-  deviceName: string;
-  /** The name of the role. */
-  roleName: string;
-}
-export const MonitoringConfigDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    deviceName: S.String.pipe(T.Label()),
-    roleName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/roles/{roleName}/monitoringConfig/default",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "MonitoringConfigDeleteRequest",
-}) as any as S.Schema<MonitoringConfigDeleteRequest>;
-
-export interface MonitoringConfigDeleteResponse {}
-export const MonitoringConfigDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "MonitoringConfigDeleteResponse",
-}) as any as S.Schema<MonitoringConfigDeleteResponse>;
-
-export interface MonitoringConfigGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the device. */
-  deviceName: string;
-  /** The name of the role. */
-  roleName: string;
-}
-export const MonitoringConfigGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    deviceName: S.String.pipe(T.Label()),
-    roleName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/roles/{roleName}/monitoringConfig/default",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "MonitoringConfigGetRequest",
-}) as any as S.Schema<MonitoringConfigGetRequest>;
-
-export interface MonitoringConfigGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The metric setting properties. */
-  properties: MonitoringMetricConfigurationProperties;
-}
-export const MonitoringConfigGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetMonitoringConfigResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -4307,10 +3365,947 @@ export const MonitoringConfigGetResponse = /*@__PURE__*/ S.suspend(() =>
     properties: MonitoringMetricConfigurationProperties,
   }),
 ).annotate({
-  identifier: "MonitoringConfigGetResponse",
-}) as any as S.Schema<MonitoringConfigGetResponse>;
+  identifier: "GetMonitoringConfigResponse",
+}) as any as S.Schema<GetMonitoringConfigResponse>;
 
-export interface MonitoringConfigListRequest {
+export interface GetOperationsStatusRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The device name. */
+  deviceName: string;
+  /** The job name. */
+  name: string;
+}
+export const GetOperationsStatusRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    deviceName: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/operationsStatus/{name}",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetOperationsStatusRequest",
+}) as any as S.Schema<GetOperationsStatusRequest>;
+
+export interface GetOperationsStatusResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of the job. */
+  properties?: JobProperties;
+  /** The current status of the job. */
+  status?: JobStatus;
+  /** The UTC date and time at which the job started. */
+  startTime?: string;
+  /** The UTC date and time at which the job completed. */
+  endTime?: string;
+  /** The percentage of the job that is complete. */
+  percentComplete?: number;
+  /** The error details. */
+  error?: JobErrorDetails;
+}
+export const GetOperationsStatusResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(JobProperties),
+    status: S.optional(JobStatus),
+    startTime: S.optional(S.String),
+    endTime: S.optional(S.String),
+    percentComplete: S.optional(S.Number),
+    error: S.optional(JobErrorDetails),
+  }),
+).annotate({
+  identifier: "GetOperationsStatusResponse",
+}) as any as S.Schema<GetOperationsStatusResponse>;
+
+export interface GetOrderRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The device name. */
+  deviceName: string;
+}
+export const GetOrderRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    deviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/orders/default",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetOrderRequest",
+}) as any as S.Schema<GetOrderRequest>;
+
+/** The email list. */
+export type ContactDetailsEmailListList = Array<string>;
+export const ContactDetailsEmailListList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ContactDetailsEmailListList>;
+
+/** Contains all the contact details of the customer. */
+export interface ContactDetails {
+  /** The contact person name. */
+  contactPerson: string;
+  /** The name of the company. */
+  companyName: string;
+  /** The phone number. */
+  phone: string;
+  /** The email list. */
+  emailList: ContactDetailsEmailListList;
+}
+export const ContactDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    contactPerson: S.String,
+    companyName: S.String,
+    phone: S.String,
+    emailList: ContactDetailsEmailListList,
+  }),
+).annotate({ identifier: "ContactDetails" }) as any as S.Schema<ContactDetails>;
+
+/** The shipping address of the customer. */
+export interface Address {
+  /** The address line1. */
+  addressLine1?: string;
+  /** The address line2. */
+  addressLine2?: string;
+  /** The address line3. */
+  addressLine3?: string;
+  /** The postal code. */
+  postalCode?: string;
+  /** The city name. */
+  city?: string;
+  /** The state name. */
+  state?: string;
+  /** The country name. */
+  country: string;
+}
+export const Address = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    addressLine1: S.optional(S.String),
+    addressLine2: S.optional(S.String),
+    addressLine3: S.optional(S.String),
+    postalCode: S.optional(S.String),
+    city: S.optional(S.String),
+    state: S.optional(S.String),
+    country: S.String,
+  }),
+).annotate({ identifier: "Address" }) as any as S.Schema<Address>;
+
+/** Status of the order as per the allowed status types. */
+export type OrderState =
+  | "Untracked"
+  | "AwaitingFulfillment"
+  | "AwaitingPreparation"
+  | "AwaitingShipment"
+  | "Shipped"
+  | "Arriving"
+  | "Delivered"
+  | "ReplacementRequested"
+  | "LostDevice"
+  | "Declined"
+  | "ReturnInitiated"
+  | "AwaitingReturnShipment"
+  | "ShippedBack"
+  | "CollectedAtMicrosoft"
+  | "AwaitingPickup"
+  | "PickupCompleted"
+  | "AwaitingDrop";
+export const OrderState = /*@__PURE__*/ S.String;
+
+/** Tracking courier information. */
+export interface TrackingInfo {
+  /** Serial number of the device being tracked. */
+  serialNumber?: string;
+  /** Name of the carrier used in the delivery. */
+  carrierName?: string;
+  /** Tracking ID of the shipment. */
+  trackingId?: string;
+  /** Tracking URL of the shipment. */
+  trackingUrl?: string;
+}
+export const TrackingInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serialNumber: S.optional(S.String),
+    carrierName: S.optional(S.String),
+    trackingId: S.optional(S.String),
+    trackingUrl: S.optional(S.String),
+  }),
+).annotate({ identifier: "TrackingInfo" }) as any as S.Schema<TrackingInfo>;
+
+/** Dictionary to hold generic information which is not stored by the already existing properties */
+export type OrderStatusAdditionalOrderDetailsMap = {
+  [key: string]: string | undefined;
+};
+export const OrderStatusAdditionalOrderDetailsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<OrderStatusAdditionalOrderDetailsMap>;
+
+/** Represents a single status change. */
+export interface OrderStatus {
+  /** Status of the order as per the allowed status types. */
+  status: OrderState;
+  /** Time of status update. */
+  updateDateTime?: string;
+  /** Comments related to this status change. */
+  comments?: string;
+  /** Tracking information related to the state in the ordering flow */
+  trackingInformation?: TrackingInfo;
+  /** Dictionary to hold generic information which is not stored by the already existing properties */
+  additionalOrderDetails?: OrderStatusAdditionalOrderDetailsMap;
+}
+export const OrderStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: OrderState,
+    updateDateTime: S.optional(S.String),
+    comments: S.optional(S.String),
+    trackingInformation: S.optional(TrackingInfo),
+    additionalOrderDetails: S.optional(OrderStatusAdditionalOrderDetailsMap),
+  }),
+).annotate({ identifier: "OrderStatus" }) as any as S.Schema<OrderStatus>;
+
+/** List of status changes in the order. */
+export type OrderPropertiesOrderHistoryList = Array<OrderStatus>;
+export const OrderPropertiesOrderHistoryList = /*@__PURE__*/ S.Array(
+  OrderStatus,
+) as any as S.Schema<OrderPropertiesOrderHistoryList>;
+
+/** Tracking information for the package delivered to the customer whether it has an original or a replacement device. */
+export type OrderPropertiesDeliveryTrackingInfoList = Array<TrackingInfo>;
+export const OrderPropertiesDeliveryTrackingInfoList = /*@__PURE__*/ S.Array(
+  TrackingInfo,
+) as any as S.Schema<OrderPropertiesDeliveryTrackingInfoList>;
+
+/** Tracking information for the package returned from the customer whether it has an original or a replacement device. */
+export type OrderPropertiesReturnTrackingInfoList = Array<TrackingInfo>;
+export const OrderPropertiesReturnTrackingInfoList = /*@__PURE__*/ S.Array(
+  TrackingInfo,
+) as any as S.Schema<OrderPropertiesReturnTrackingInfoList>;
+
+export type ShipmentType = "NotApplicable" | "ShippedToCustomer" | "SelfPickup";
+export const ShipmentType = /*@__PURE__*/ S.String;
+
+/** Order properties. */
+export interface OrderProperties {
+  /** It specify the order resource id. */
+  orderId?: string;
+  /** The contact details. */
+  contactInformation: ContactDetails;
+  /** The shipping address. */
+  shippingAddress?: Address;
+  /** Current status of the order. */
+  currentStatus?: OrderStatus;
+  /** List of status changes in the order. */
+  orderHistory?: OrderPropertiesOrderHistoryList;
+  /** Serial number of the device. */
+  serialNumber?: string;
+  /** Tracking information for the package delivered to the customer whether it has an original or a replacement device. */
+  deliveryTrackingInfo?: OrderPropertiesDeliveryTrackingInfoList;
+  /** Tracking information for the package returned from the customer whether it has an original or a replacement device. */
+  returnTrackingInfo?: OrderPropertiesReturnTrackingInfoList;
+  /** ShipmentType of the order */
+  shipmentType?: ShipmentType;
+}
+export const OrderProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    orderId: S.optional(S.String),
+    contactInformation: ContactDetails,
+    shippingAddress: S.optional(Address),
+    currentStatus: S.optional(OrderStatus),
+    orderHistory: S.optional(OrderPropertiesOrderHistoryList),
+    serialNumber: S.optional(S.String),
+    deliveryTrackingInfo: S.optional(OrderPropertiesDeliveryTrackingInfoList),
+    returnTrackingInfo: S.optional(OrderPropertiesReturnTrackingInfoList),
+    shipmentType: S.optional(ShipmentType),
+  }),
+).annotate({
+  identifier: "OrderProperties",
+}) as any as S.Schema<OrderProperties>;
+
+export interface GetOrderResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The order properties. */
+  properties?: OrderProperties;
+  /** It specify the order api version. */
+  kind?: string;
+}
+export const GetOrderResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(OrderProperties),
+    kind: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetOrderResponse",
+}) as any as S.Schema<GetOrderResponse>;
+
+export interface GetRoleRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The device name. */
+  deviceName: string;
+  /** The role name. */
+  name: string;
+}
+export const GetRoleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    deviceName: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/roles/{name}",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({ identifier: "GetRoleRequest" }) as any as S.Schema<GetRoleRequest>;
+
+export interface GetRoleResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Role type. */
+  kind: RoleTypes;
+}
+export const GetRoleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    kind: RoleTypes,
+  }),
+).annotate({
+  identifier: "GetRoleResponse",
+}) as any as S.Schema<GetRoleResponse>;
+
+export interface GetShareRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The device name. */
+  deviceName: string;
+  /** The share name. */
+  name: string;
+}
+export const GetShareRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    deviceName: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/shares/{name}",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetShareRequest",
+}) as any as S.Schema<GetShareRequest>;
+
+/** Current status of the share. */
+export type ShareStatus =
+  | "Offline"
+  | "Unknown"
+  | "OK"
+  | "Updating"
+  | "NeedsAttention";
+export const ShareStatus = /*@__PURE__*/ S.String;
+
+/** Current monitoring status of the share. */
+export type MonitoringStatus = "Enabled" | "Disabled";
+export const MonitoringStatus = /*@__PURE__*/ S.String;
+
+/** Azure container mapping of the endpoint. */
+export interface AzureContainerInfo {
+  /** ID of the storage account credential used to access storage. */
+  storageAccountCredentialId: string;
+  /** Container name (Based on the data format specified, this represents the name of Azure Files/Page blob/Block blob). */
+  containerName: string;
+  /** Storage format used for the file represented by the share. */
+  dataFormat: AzureContainerDataFormat | (string & {});
+}
+export const AzureContainerInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    storageAccountCredentialId: S.String,
+    containerName: S.String,
+    dataFormat: AzureContainerDataFormat,
+  }),
+).annotate({
+  identifier: "AzureContainerInfo",
+}) as any as S.Schema<AzureContainerInfo>;
+
+/** Access protocol to be used by the share. */
+export type ShareAccessProtocol = "SMB" | "NFS";
+export const ShareAccessProtocol = /*@__PURE__*/ S.String;
+
+/** Type of access to be allowed on the share for this user. */
+export type ShareAccessType = "Change" | "Read" | "Custom";
+export const ShareAccessType = /*@__PURE__*/ S.String;
+
+/** The mapping between a particular user and the access type on the SMB share. */
+export interface UserAccessRight {
+  /** User ID (already existing in the device). */
+  userId: string;
+  /** Type of access to be allowed for the user. */
+  accessType: ShareAccessType | (string & {});
+}
+export const UserAccessRight = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    userId: S.String,
+    accessType: ShareAccessType,
+  }),
+).annotate({
+  identifier: "UserAccessRight",
+}) as any as S.Schema<UserAccessRight>;
+
+/** Mapping of users and corresponding access rights on the share (required for SMB protocol). */
+export type SharePropertiesUserAccessRightsList = Array<UserAccessRight>;
+export const SharePropertiesUserAccessRightsList = /*@__PURE__*/ S.Array(
+  UserAccessRight,
+) as any as S.Schema<SharePropertiesUserAccessRightsList>;
+
+/** Type of access to be allowed for the client. */
+export type ClientPermissionType = "NoAccess" | "ReadOnly" | "ReadWrite";
+export const ClientPermissionType = /*@__PURE__*/ S.String;
+
+/** The mapping between a particular client IP and the type of access client has on the NFS share. */
+export interface ClientAccessRight {
+  /** IP of the client. */
+  client: string;
+  /** Type of access to be allowed for the client. */
+  accessPermission: ClientPermissionType | (string & {});
+}
+export const ClientAccessRight = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    client: S.String,
+    accessPermission: ClientPermissionType,
+  }),
+).annotate({
+  identifier: "ClientAccessRight",
+}) as any as S.Schema<ClientAccessRight>;
+
+/** List of IP addresses and corresponding access rights on the share(required for NFS protocol). */
+export type SharePropertiesClientAccessRightsList = Array<ClientAccessRight>;
+export const SharePropertiesClientAccessRightsList = /*@__PURE__*/ S.Array(
+  ClientAccessRight,
+) as any as S.Schema<SharePropertiesClientAccessRightsList>;
+
+/** Mounting type. */
+export type MountType = "Volume" | "HostPath";
+export const MountType = /*@__PURE__*/ S.String;
+
+/** The share mount point. */
+export interface MountPointMap {
+  /** ID of the share mounted to the role VM. */
+  shareId: string;
+  /** ID of the role to which share is mounted. */
+  roleId?: string;
+  /** Mount point for the share. */
+  mountPoint?: string;
+  /** Mounting type. */
+  mountType?: MountType;
+  /** Role type. */
+  roleType?: RoleTypes;
+}
+export const MountPointMap = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    shareId: S.String,
+    roleId: S.optional(S.String),
+    mountPoint: S.optional(S.String),
+    mountType: S.optional(MountType),
+    roleType: S.optional(RoleTypes),
+  }),
+).annotate({ identifier: "MountPointMap" }) as any as S.Schema<MountPointMap>;
+
+/** Share mount point to the role. */
+export type SharePropertiesShareMappingsList = Array<MountPointMap>;
+export const SharePropertiesShareMappingsList = /*@__PURE__*/ S.Array(
+  MountPointMap,
+) as any as S.Schema<SharePropertiesShareMappingsList>;
+
+/** Data policy of the share. */
+export type DataPolicy = "Cloud" | "Local";
+export const DataPolicy = /*@__PURE__*/ S.String;
+
+/** The share properties. */
+export interface ShareProperties {
+  /** Description for the share. */
+  description?: string;
+  /** Current status of the share. */
+  shareStatus: ShareStatus;
+  /** Current monitoring status of the share. */
+  monitoringStatus: MonitoringStatus;
+  /** Azure container mapping for the share. */
+  azureContainerInfo?: AzureContainerInfo;
+  /** Access protocol to be used by the share. */
+  accessProtocol: ShareAccessProtocol;
+  /** Mapping of users and corresponding access rights on the share (required for SMB protocol). */
+  userAccessRights?: SharePropertiesUserAccessRightsList;
+  /** List of IP addresses and corresponding access rights on the share(required for NFS protocol). */
+  clientAccessRights?: SharePropertiesClientAccessRightsList;
+  /** Details of the refresh job on this share. */
+  refreshDetails?: RefreshDetails;
+  /** Share mount point to the role. */
+  shareMappings?: SharePropertiesShareMappingsList;
+  /** Data policy of the share. */
+  dataPolicy?: DataPolicy;
+}
+export const ShareProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    description: S.optional(S.String),
+    shareStatus: ShareStatus,
+    monitoringStatus: MonitoringStatus,
+    azureContainerInfo: S.optional(AzureContainerInfo),
+    accessProtocol: ShareAccessProtocol,
+    userAccessRights: S.optional(SharePropertiesUserAccessRightsList),
+    clientAccessRights: S.optional(SharePropertiesClientAccessRightsList),
+    refreshDetails: S.optional(RefreshDetails),
+    shareMappings: S.optional(SharePropertiesShareMappingsList),
+    dataPolicy: S.optional(DataPolicy),
+  }),
+).annotate({
+  identifier: "ShareProperties",
+}) as any as S.Schema<ShareProperties>;
+
+export interface GetShareResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The share properties. */
+  properties: ShareProperties;
+}
+export const GetShareResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: ShareProperties,
+  }),
+).annotate({
+  identifier: "GetShareResponse",
+}) as any as S.Schema<GetShareResponse>;
+
+export interface GetStorageAccountRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The device name. */
+  deviceName: string;
+  /** The storage account name. */
+  storageAccountName: string;
+}
+export const GetStorageAccountRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    deviceName: S.String.pipe(T.Label()),
+    storageAccountName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/storageAccounts/{storageAccountName}",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetStorageAccountRequest",
+}) as any as S.Schema<GetStorageAccountRequest>;
+
+/** Current status of the storage account */
+export type StorageAccountStatus =
+  | "OK"
+  | "Offline"
+  | "Unknown"
+  | "Updating"
+  | "NeedsAttention";
+export const StorageAccountStatus = /*@__PURE__*/ S.String;
+
+/** The storage account properties. */
+export interface StorageAccountProperties {
+  /** Description for the storage Account. */
+  description?: string;
+  /** Current status of the storage account */
+  storageAccountStatus?: StorageAccountStatus;
+  /** Data policy of the storage Account. */
+  dataPolicy: DataPolicy;
+  /** Storage Account Credential Id */
+  storageAccountCredentialId?: string;
+  /** BlobEndpoint of Storage Account */
+  blobEndpoint?: string;
+  /** The Container Count. Present only for Storage Accounts with DataPolicy set to Cloud. */
+  containerCount?: number;
+}
+export const StorageAccountProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    description: S.optional(S.String),
+    storageAccountStatus: S.optional(StorageAccountStatus),
+    dataPolicy: DataPolicy,
+    storageAccountCredentialId: S.optional(S.String),
+    blobEndpoint: S.optional(S.String),
+    containerCount: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "StorageAccountProperties",
+}) as any as S.Schema<StorageAccountProperties>;
+
+export interface GetStorageAccountResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The Storage Account properties. */
+  properties: StorageAccountProperties;
+}
+export const GetStorageAccountResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: StorageAccountProperties,
+  }),
+).annotate({
+  identifier: "GetStorageAccountResponse",
+}) as any as S.Schema<GetStorageAccountResponse>;
+
+export interface GetStorageAccountCredentialsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The device name. */
+  deviceName: string;
+  /** The storage account credential name. */
+  name: string;
+}
+export const GetStorageAccountCredentialsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    deviceName: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/storageAccountCredentials/{name}",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetStorageAccountCredentialsRequest",
+}) as any as S.Schema<GetStorageAccountCredentialsRequest>;
+
+/** Signifies whether SSL needs to be enabled or not. */
+export type SSLStatus = "Enabled" | "Disabled";
+export const SSLStatus = /*@__PURE__*/ S.String;
+
+/** Type of storage accessed on the storage account. */
+export type AccountType = "GeneralPurposeStorage" | "BlobStorage";
+export const AccountType = /*@__PURE__*/ S.String;
+
+/** The storage account credential properties. */
+export interface StorageAccountCredentialProperties {
+  /** Alias for the storage account. */
+  alias: string;
+  /** Username for the storage account. */
+  userName?: string;
+  /** Encrypted storage key. */
+  accountKey?: AsymmetricEncryptedSecret;
+  /** Connection string for the storage account. Use this string if username and account key are not specified. */
+  connectionString?: string | Redacted.Redacted<string>;
+  /** Signifies whether SSL needs to be enabled or not. */
+  sslStatus: SSLStatus | (string & {});
+  /** Blob end point for private clouds. */
+  blobDomainName?: string;
+  /** Type of storage accessed on the storage account. */
+  accountType: AccountType | (string & {});
+  /** Id of the storage account. */
+  storageAccountId?: string;
+}
+export const StorageAccountCredentialProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    alias: S.String,
+    userName: S.optional(S.String),
+    accountKey: S.optional(AsymmetricEncryptedSecret),
+    connectionString: S.optional(S.String.pipe(T.SensitiveValue({}))),
+    sslStatus: SSLStatus,
+    blobDomainName: S.optional(S.String),
+    accountType: AccountType,
+    storageAccountId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "StorageAccountCredentialProperties",
+}) as any as S.Schema<StorageAccountCredentialProperties>;
+
+export interface GetStorageAccountCredentialsResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The storage account credential properties. */
+  properties: StorageAccountCredentialProperties;
+}
+export const GetStorageAccountCredentialsResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: StorageAccountCredentialProperties,
+    }),
+).annotate({
+  identifier: "GetStorageAccountCredentialsResponse",
+}) as any as S.Schema<GetStorageAccountCredentialsResponse>;
+
+export interface GetTriggerRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The device name. */
+  deviceName: string;
+  /** The trigger name. */
+  name: string;
+}
+export const GetTriggerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    deviceName: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/triggers/{name}",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetTriggerRequest",
+}) as any as S.Schema<GetTriggerRequest>;
+
+/** Trigger Kind. */
+export type TriggerEventType = "FileEvent" | "PeriodicTimerEvent";
+export const TriggerEventType = /*@__PURE__*/ S.String;
+
+export interface GetTriggerResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Trigger Kind. */
+  kind: TriggerEventType;
+}
+export const GetTriggerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    kind: TriggerEventType,
+  }),
+).annotate({
+  identifier: "GetTriggerResponse",
+}) as any as S.Schema<GetTriggerResponse>;
+
+export interface GetUserRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The device name. */
+  deviceName: string;
+  /** The user name. */
+  name: string;
+}
+export const GetUserRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    deviceName: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/users/{name}",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({ identifier: "GetUserRequest" }) as any as S.Schema<GetUserRequest>;
+
+/** Specifies the mapping between this particular user and the type of access he has on shares on this device. */
+export interface ShareAccessRight {
+  /** The share ID. */
+  shareId: string;
+  /** Type of access to be allowed on the share for this user. */
+  accessType: ShareAccessType;
+}
+export const ShareAccessRight = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    shareId: S.String,
+    accessType: ShareAccessType,
+  }),
+).annotate({
+  identifier: "ShareAccessRight",
+}) as any as S.Schema<ShareAccessRight>;
+
+/** List of shares that the user has rights on. This field should not be specified during user creation. */
+export type UserPropertiesShareAccessRightsList = Array<ShareAccessRight>;
+export const UserPropertiesShareAccessRightsList = /*@__PURE__*/ S.Array(
+  ShareAccessRight,
+) as any as S.Schema<UserPropertiesShareAccessRightsList>;
+
+/** Type of the user. */
+export type UserType = "Share" | "LocalManagement" | "ARM";
+export const UserType = /*@__PURE__*/ S.String;
+
+/** The user properties. */
+export interface UserProperties {
+  /** The password details. */
+  encryptedPassword?: AsymmetricEncryptedSecret;
+  /** List of shares that the user has rights on. This field should not be specified during user creation. */
+  shareAccessRights?: UserPropertiesShareAccessRightsList;
+  /** Type of the user. */
+  userType: UserType;
+}
+export const UserProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    encryptedPassword: S.optional(AsymmetricEncryptedSecret),
+    shareAccessRights: S.optional(UserPropertiesShareAccessRightsList),
+    userType: UserType,
+  }),
+).annotate({ identifier: "UserProperties" }) as any as S.Schema<UserProperties>;
+
+export interface GetUserResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The storage account credential properties. */
+  properties: UserProperties;
+}
+export const GetUserResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: UserProperties,
+  }),
+).annotate({
+  identifier: "GetUserResponse",
+}) as any as S.Schema<GetUserResponse>;
+
+export interface InstallDeviceUpdatesRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The device name. */
+  deviceName: string;
+}
+export const InstallDeviceUpdatesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    deviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/installUpdates",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "InstallDeviceUpdatesRequest",
+}) as any as S.Schema<InstallDeviceUpdatesRequest>;
+
+export interface InstallDeviceUpdatesResponse {}
+export const InstallDeviceUpdatesResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "InstallDeviceUpdatesResponse",
+}) as any as S.Schema<InstallDeviceUpdatesResponse>;
+
+export interface ListAddonByRoleRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4320,7 +4315,614 @@ export interface MonitoringConfigListRequest {
   /** The name of the role. */
   roleName: string;
 }
-export const MonitoringConfigListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListAddonByRoleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    deviceName: S.String.pipe(T.Label()),
+    roleName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/roles/{roleName}/addons",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListAddonByRoleRequest",
+}) as any as S.Schema<ListAddonByRoleRequest>;
+
+/** Role Addon */
+export interface Addon {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Addon type. */
+  kind: AddonType;
+}
+export const Addon = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    kind: AddonType,
+  }),
+).annotate({ identifier: "Addon" }) as any as S.Schema<Addon>;
+
+/** The Addon items on this page */
+export type AddonListValueList = Array<Addon>;
+export const AddonListValueList = /*@__PURE__*/ S.Array(
+  Addon,
+) as any as S.Schema<AddonListValueList>;
+
+/** Collection of all the Role addon on the Azure Stack Edge device. */
+export interface AddonList {
+  /** The Addon items on this page */
+  value: AddonListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const AddonList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: AddonListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "AddonList" }) as any as S.Schema<AddonList>;
+
+export interface ListAlertByDataBoxEdgeDeviceRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The device name. */
+  deviceName: string;
+}
+export const ListAlertByDataBoxEdgeDeviceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    deviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/alerts",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListAlertByDataBoxEdgeDeviceRequest",
+}) as any as S.Schema<ListAlertByDataBoxEdgeDeviceRequest>;
+
+/** Alert on the data box edge/gateway device. */
+export interface Alert {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of alert. */
+  properties?: AlertProperties;
+}
+export const Alert = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(AlertProperties),
+  }),
+).annotate({ identifier: "Alert" }) as any as S.Schema<Alert>;
+
+/** The Alert items on this page */
+export type AlertListValueList = Array<Alert>;
+export const AlertListValueList = /*@__PURE__*/ S.Array(
+  Alert,
+) as any as S.Schema<AlertListValueList>;
+
+/** Collection of alerts. */
+export interface AlertList {
+  /** The Alert items on this page */
+  value: AlertListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const AlertList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: AlertListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "AlertList" }) as any as S.Schema<AlertList>;
+
+export interface ListAvailableSkusRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+}
+export const ListAvailableSkusRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DataBoxEdge/availableSkus",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListAvailableSkusRequest",
+}) as any as S.Schema<ListAvailableSkusRequest>;
+
+/** Availability of the Sku for the region. */
+export type DataBoxEdgeSkuLocationsList = Array<string>;
+export const DataBoxEdgeSkuLocationsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<DataBoxEdgeSkuLocationsList>;
+
+/** The API versions in which Sku is available. */
+export type DataBoxEdgeSkuApiVersionsList = Array<string>;
+export const DataBoxEdgeSkuApiVersionsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<DataBoxEdgeSkuApiVersionsList>;
+
+/** The zones. */
+export type SkuLocationInfoZonesList = Array<string>;
+export const SkuLocationInfoZonesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SkuLocationInfoZonesList>;
+
+/** The sites. */
+export type SkuLocationInfoSitesList = Array<string>;
+export const SkuLocationInfoSitesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SkuLocationInfoSitesList>;
+
+/** The location info. */
+export interface SkuLocationInfo {
+  /** The location. */
+  location?: string;
+  /** The zones. */
+  zones?: SkuLocationInfoZonesList;
+  /** The sites. */
+  sites?: SkuLocationInfoSitesList;
+}
+export const SkuLocationInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    location: S.optional(S.String),
+    zones: S.optional(SkuLocationInfoZonesList),
+    sites: S.optional(SkuLocationInfoSitesList),
+  }),
+).annotate({
+  identifier: "SkuLocationInfo",
+}) as any as S.Schema<SkuLocationInfo>;
+
+/** Availability of the Sku for the location/zone/site. */
+export type DataBoxEdgeSkuLocationInfoList = Array<SkuLocationInfo>;
+export const DataBoxEdgeSkuLocationInfoList = /*@__PURE__*/ S.Array(
+  SkuLocationInfo,
+) as any as S.Schema<DataBoxEdgeSkuLocationInfoList>;
+
+/** The metadata for retrieving price info. */
+export interface SkuCost {
+  /** Used for querying price from commerce. */
+  meterId?: string;
+  /** The cost quantity. */
+  quantity?: number;
+  /** The extended unit. */
+  extendedUnit?: string;
+}
+export const SkuCost = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    meterId: S.optional(S.String),
+    quantity: S.optional(S.Number),
+    extendedUnit: S.optional(S.String),
+  }),
+).annotate({ identifier: "SkuCost" }) as any as S.Schema<SkuCost>;
+
+/** The pricing info of the Sku. */
+export type DataBoxEdgeSkuCostsList = Array<SkuCost>;
+export const DataBoxEdgeSkuCostsList = /*@__PURE__*/ S.Array(
+  SkuCost,
+) as any as S.Schema<DataBoxEdgeSkuCostsList>;
+
+/** Sku can be signed up by customer or not. */
+export type SkuSignupOption = "None" | "Available";
+export const SkuSignupOption = /*@__PURE__*/ S.String;
+
+/** Availability of the Sku as preview/stable. */
+export type SkuVersion = "Stable" | "Preview";
+export const SkuVersion = /*@__PURE__*/ S.String;
+
+/** Links to the next set of results */
+export type SkuAvailability = "Available" | "Unavailable";
+export const SkuAvailability = /*@__PURE__*/ S.String;
+
+/** List of Shipment Types supported by this SKU */
+export type DataBoxEdgeSkuShipmentTypesList = Array<ShipmentType>;
+export const DataBoxEdgeSkuShipmentTypesList = /*@__PURE__*/ S.Array(
+  ShipmentType,
+) as any as S.Schema<DataBoxEdgeSkuShipmentTypesList>;
+
+/** The metadata to describe the capability. */
+export interface SkuCapability {
+  /** An invariant to describe the feature. */
+  name?: string;
+  /** An invariant if the feature is measured by quantity. */
+  value?: string;
+}
+export const SkuCapability = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    value: S.optional(S.String),
+  }),
+).annotate({ identifier: "SkuCapability" }) as any as S.Schema<SkuCapability>;
+
+/** The capability info of the SKU. */
+export type DataBoxEdgeSkuCapabilitiesList = Array<SkuCapability>;
+export const DataBoxEdgeSkuCapabilitiesList = /*@__PURE__*/ S.Array(
+  SkuCapability,
+) as any as S.Schema<DataBoxEdgeSkuCapabilitiesList>;
+
+/** The Sku information. */
+export interface DataBoxEdgeSku {
+  /** The type of the resource. */
+  resourceType?: string;
+  /** The Sku name. */
+  name?: SkuName;
+  /** The Sku kind. */
+  kind?: string;
+  /** The Sku tier. */
+  tier?: SkuTier;
+  /** The Sku kind. */
+  size?: string;
+  /** The Sku family. */
+  family?: string;
+  /** Availability of the Sku for the region. */
+  locations?: DataBoxEdgeSkuLocationsList;
+  /** The API versions in which Sku is available. */
+  apiVersions?: DataBoxEdgeSkuApiVersionsList;
+  /** Availability of the Sku for the location/zone/site. */
+  locationInfo?: DataBoxEdgeSkuLocationInfoList;
+  /** The pricing info of the Sku. */
+  costs?: DataBoxEdgeSkuCostsList;
+  /** Sku can be signed up by customer or not. */
+  signupOption?: SkuSignupOption;
+  /** Availability of the Sku as preview/stable. */
+  version?: SkuVersion;
+  /** Links to the next set of results */
+  availability?: SkuAvailability;
+  /** List of Shipment Types supported by this SKU */
+  shipmentTypes?: DataBoxEdgeSkuShipmentTypesList;
+  /** The capability info of the SKU. */
+  capabilities?: DataBoxEdgeSkuCapabilitiesList;
+}
+export const DataBoxEdgeSku = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceType: S.optional(S.String),
+    name: S.optional(SkuName),
+    kind: S.optional(S.String),
+    tier: S.optional(SkuTier),
+    size: S.optional(S.String),
+    family: S.optional(S.String),
+    locations: S.optional(DataBoxEdgeSkuLocationsList),
+    apiVersions: S.optional(DataBoxEdgeSkuApiVersionsList),
+    locationInfo: S.optional(DataBoxEdgeSkuLocationInfoList),
+    costs: S.optional(DataBoxEdgeSkuCostsList),
+    signupOption: S.optional(SkuSignupOption),
+    version: S.optional(SkuVersion),
+    availability: S.optional(SkuAvailability),
+    shipmentTypes: S.optional(DataBoxEdgeSkuShipmentTypesList),
+    capabilities: S.optional(DataBoxEdgeSkuCapabilitiesList),
+  }),
+).annotate({ identifier: "DataBoxEdgeSku" }) as any as S.Schema<DataBoxEdgeSku>;
+
+/** The DataBoxEdgeSku items on this page */
+export type DataBoxEdgeSkuListValueList = Array<DataBoxEdgeSku>;
+export const DataBoxEdgeSkuListValueList = /*@__PURE__*/ S.Array(
+  DataBoxEdgeSku,
+) as any as S.Schema<DataBoxEdgeSkuListValueList>;
+
+/** List of SKU Information objects. */
+export interface DataBoxEdgeSkuList {
+  /** The DataBoxEdgeSku items on this page */
+  value: DataBoxEdgeSkuListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const DataBoxEdgeSkuList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: DataBoxEdgeSkuListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DataBoxEdgeSkuList",
+}) as any as S.Schema<DataBoxEdgeSkuList>;
+
+export interface ListBandwidthScheduleByDataBoxEdgeDeviceRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The device name. */
+  deviceName: string;
+}
+export const ListBandwidthScheduleByDataBoxEdgeDeviceRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      deviceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/bandwidthSchedules",
+        code: 200,
+        apiVersion: "2023-12-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListBandwidthScheduleByDataBoxEdgeDeviceRequest",
+  }) as any as S.Schema<ListBandwidthScheduleByDataBoxEdgeDeviceRequest>;
+
+/** The bandwidth schedule details. */
+export interface BandwidthSchedule {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of the bandwidth schedule. */
+  properties: BandwidthScheduleProperties;
+}
+export const BandwidthSchedule = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: BandwidthScheduleProperties,
+  }),
+).annotate({
+  identifier: "BandwidthSchedule",
+}) as any as S.Schema<BandwidthSchedule>;
+
+/** The BandwidthSchedule items on this page */
+export type BandwidthSchedulesListValueList = Array<BandwidthSchedule>;
+export const BandwidthSchedulesListValueList = /*@__PURE__*/ S.Array(
+  BandwidthSchedule,
+) as any as S.Schema<BandwidthSchedulesListValueList>;
+
+/** The collection of bandwidth schedules. */
+export interface BandwidthSchedulesList {
+  /** The BandwidthSchedule items on this page */
+  value: BandwidthSchedulesListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const BandwidthSchedulesList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: BandwidthSchedulesListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "BandwidthSchedulesList",
+}) as any as S.Schema<BandwidthSchedulesList>;
+
+export interface ListContainerByStorageAccountRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The device name. */
+  deviceName: string;
+  /** The storage account name. */
+  storageAccountName: string;
+}
+export const ListContainerByStorageAccountRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      deviceName: S.String.pipe(T.Label()),
+      storageAccountName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/storageAccounts/{storageAccountName}/containers",
+        code: 200,
+        apiVersion: "2023-12-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListContainerByStorageAccountRequest",
+}) as any as S.Schema<ListContainerByStorageAccountRequest>;
+
+/** Represents a container on the Data Box Edge/Gateway device. */
+export interface Container {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The container properties. */
+  properties: ContainerProperties;
+}
+export const Container = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: ContainerProperties,
+  }),
+).annotate({ identifier: "Container" }) as any as S.Schema<Container>;
+
+/** The Container items on this page */
+export type ContainerListValueList = Array<Container>;
+export const ContainerListValueList = /*@__PURE__*/ S.Array(
+  Container,
+) as any as S.Schema<ContainerListValueList>;
+
+/** Collection of all the containers on the Data Box Edge/Gateway device. */
+export interface ContainerList {
+  /** The Container items on this page */
+  value: ContainerListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ContainerList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ContainerListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "ContainerList" }) as any as S.Schema<ContainerList>;
+
+export interface ListDeviceByResourceGroupRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Specify $expand=details to populate additional fields related to the resource or Specify $skipToken=<token> to populate the next page in the list. */
+  _expand?: string;
+}
+export const ListDeviceByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    _expand: S.optional(S.String.pipe(T.Query("$expand"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListDeviceByResourceGroupRequest",
+}) as any as S.Schema<ListDeviceByResourceGroupRequest>;
+
+/** Resource tags. */
+export type DataBoxEdgeDeviceTagsMap = { [key: string]: string | undefined };
+export const DataBoxEdgeDeviceTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<DataBoxEdgeDeviceTagsMap>;
+
+/** The Data Box Edge/Gateway device. */
+export interface DataBoxEdgeDevice {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: DataBoxEdgeDeviceTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The properties of the Data Box Edge/Gateway device. */
+  properties?: DataBoxEdgeDeviceProperties;
+  /** The SKU type. */
+  sku?: Sku;
+  /** The etag for the devices. */
+  etag?: string;
+  /** Msi identity of the resource */
+  identity?: ResourceIdentity;
+  /** The kind of the device. */
+  kind?: DataBoxEdgeDeviceKind;
+}
+export const DataBoxEdgeDevice = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(DataBoxEdgeDeviceTagsMap),
+    location: S.String,
+    properties: S.optional(DataBoxEdgeDeviceProperties),
+    sku: S.optional(Sku),
+    etag: S.optional(S.String),
+    identity: S.optional(ResourceIdentity),
+    kind: S.optional(DataBoxEdgeDeviceKind),
+  }),
+).annotate({
+  identifier: "DataBoxEdgeDevice",
+}) as any as S.Schema<DataBoxEdgeDevice>;
+
+/** The DataBoxEdgeDevice items on this page */
+export type DataBoxEdgeDeviceListValueList = Array<DataBoxEdgeDevice>;
+export const DataBoxEdgeDeviceListValueList = /*@__PURE__*/ S.Array(
+  DataBoxEdgeDevice,
+) as any as S.Schema<DataBoxEdgeDeviceListValueList>;
+
+/** The collection of Data Box Edge/Gateway devices. */
+export interface DataBoxEdgeDeviceList {
+  /** The DataBoxEdgeDevice items on this page */
+  value: DataBoxEdgeDeviceListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const DataBoxEdgeDeviceList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: DataBoxEdgeDeviceListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DataBoxEdgeDeviceList",
+}) as any as S.Schema<DataBoxEdgeDeviceList>;
+
+export interface ListDeviceBySubscriptionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** Specify $expand=details to populate additional fields related to the resource or Specify $skipToken=<token> to populate the next page in the list. */
+  _expand?: string;
+}
+export const ListDeviceBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    _expand: S.optional(S.String.pipe(T.Query("$expand"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListDeviceBySubscriptionRequest",
+}) as any as S.Schema<ListDeviceBySubscriptionRequest>;
+
+export interface ListMonitoringConfigRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the device. */
+  deviceName: string;
+  /** The name of the role. */
+  roleName: string;
+}
+export const ListMonitoringConfigRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -4335,8 +4937,8 @@ export const MonitoringConfigListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "MonitoringConfigListRequest",
-}) as any as S.Schema<MonitoringConfigListRequest>;
+  identifier: "ListMonitoringConfigRequest",
+}) as any as S.Schema<ListMonitoringConfigRequest>;
 
 /** The metric setting details for the role */
 export interface MonitoringMetricConfiguration {
@@ -4386,7 +4988,7 @@ export const MonitoringMetricConfigurationList = /*@__PURE__*/ S.suspend(() =>
   identifier: "MonitoringMetricConfigurationList",
 }) as any as S.Schema<MonitoringMetricConfigurationList>;
 
-export interface NodesListByDataBoxEdgeDeviceRequest {
+export interface ListNodeByDataBoxEdgeDeviceRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4394,7 +4996,7 @@ export interface NodesListByDataBoxEdgeDeviceRequest {
   /** The device name. */
   deviceName: string;
 }
-export const NodesListByDataBoxEdgeDeviceRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListNodeByDataBoxEdgeDeviceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -4408,8 +5010,8 @@ export const NodesListByDataBoxEdgeDeviceRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "NodesListByDataBoxEdgeDeviceRequest",
-}) as any as S.Schema<NodesListByDataBoxEdgeDeviceRequest>;
+  identifier: "ListNodeByDataBoxEdgeDeviceRequest",
+}) as any as S.Schema<ListNodeByDataBoxEdgeDeviceRequest>;
 
 /** The current status of the individual node */
 export type NodeStatus =
@@ -4489,8 +5091,8 @@ export const NodeList = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "NodeList" }) as any as S.Schema<NodeList>;
 
-export interface OperationsList2Request {}
-export const OperationsList2Request = /*@__PURE__*/ S.suspend(() =>
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({
       method: "GET",
@@ -4500,8 +5102,8 @@ export const OperationsList2Request = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OperationsList2Request",
-}) as any as S.Schema<OperationsList2Request>;
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
 
 /** Operation display properties. */
 export interface OperationDisplay {
@@ -4727,35 +5329,33 @@ export const OperationsList = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "OperationsList" }) as any as S.Schema<OperationsList>;
 
-export interface OperationsStatusGetRequest {
+export interface ListOrderByDataBoxEdgeDeviceRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The device name. */
   deviceName: string;
-  /** The job name. */
-  name: string;
 }
-export const OperationsStatusGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListOrderByDataBoxEdgeDeviceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     deviceName: S.String.pipe(T.Label()),
-    name: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/operationsStatus/{name}",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/orders",
       code: 200,
       apiVersion: "2023-12-01",
     }),
   ),
 ).annotate({
-  identifier: "OperationsStatusGetRequest",
-}) as any as S.Schema<OperationsStatusGetRequest>;
+  identifier: "ListOrderByDataBoxEdgeDeviceRequest",
+}) as any as S.Schema<ListOrderByDataBoxEdgeDeviceRequest>;
 
-export interface OperationsStatusGetResponse {
+/** The order details. */
+export interface Order {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -4764,90 +5364,571 @@ export interface OperationsStatusGetResponse {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
-  /** The properties of the job. */
-  properties?: JobProperties;
-  /** The current status of the job. */
-  status?: JobStatus;
-  /** The UTC date and time at which the job started. */
-  startTime?: string;
-  /** The UTC date and time at which the job completed. */
-  endTime?: string;
-  /** The percentage of the job that is complete. */
-  percentComplete?: number;
-  /** The error details. */
-  error?: JobErrorDetails;
+  /** The order properties. */
+  properties?: OrderProperties;
+  /** It specify the order api version. */
+  kind?: string;
 }
-export const OperationsStatusGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const Order = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    properties: S.optional(JobProperties),
-    status: S.optional(JobStatus),
-    startTime: S.optional(S.String),
-    endTime: S.optional(S.String),
-    percentComplete: S.optional(S.Number),
-    error: S.optional(JobErrorDetails),
+    properties: S.optional(OrderProperties),
+    kind: S.optional(S.String),
+  }),
+).annotate({ identifier: "Order" }) as any as S.Schema<Order>;
+
+/** The Order items on this page */
+export type OrderListValueList = Array<Order>;
+export const OrderListValueList = /*@__PURE__*/ S.Array(
+  Order,
+) as any as S.Schema<OrderListValueList>;
+
+/** List of order entities. */
+export interface OrderList {
+  /** The Order items on this page */
+  value: OrderListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const OrderList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: OrderListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "OrderList" }) as any as S.Schema<OrderList>;
+
+export interface ListOrderDCAccessCodeRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The device name. */
+  deviceName: string;
+}
+export const ListOrderDCAccessCodeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    deviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/orders/default/listDCAccessCode",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListOrderDCAccessCodeRequest",
+}) as any as S.Schema<ListOrderDCAccessCodeRequest>;
+
+/** DCAccessCode Properties. */
+export interface DCAccessCodeProperties {
+  /** DCAccess Code for the Self Managed shipment. */
+  authCode?: string;
+}
+export const DCAccessCodeProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    authCode: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "OperationsStatusGetResponse",
-}) as any as S.Schema<OperationsStatusGetResponse>;
+  identifier: "DCAccessCodeProperties",
+}) as any as S.Schema<DCAccessCodeProperties>;
 
-/** The email list. */
-export type ContactDetailsEmailListList = Array<string>;
-export const ContactDetailsEmailListList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ContactDetailsEmailListList>;
-
-/** Contains all the contact details of the customer. */
-export interface ContactDetails {
-  /** The contact person name. */
-  contactPerson: string;
-  /** The name of the company. */
-  companyName: string;
-  /** The phone number. */
-  phone: string;
-  /** The email list. */
-  emailList: ContactDetailsEmailListList;
+/** DC Access code in the case of Self Managed Shipping. */
+export interface DCAccessCode {
+  /** DCAccessCode properties. */
+  properties?: DCAccessCodeProperties;
 }
-export const ContactDetails = /*@__PURE__*/ S.suspend(() =>
+export const DCAccessCode = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    contactPerson: S.String,
-    companyName: S.String,
-    phone: S.String,
-    emailList: ContactDetailsEmailListList,
+    properties: S.optional(DCAccessCodeProperties),
   }),
-).annotate({ identifier: "ContactDetails" }) as any as S.Schema<ContactDetails>;
+).annotate({ identifier: "DCAccessCode" }) as any as S.Schema<DCAccessCode>;
 
-/** The shipping address of the customer. */
-export interface Address {
-  /** The address line1. */
-  addressLine1?: string;
-  /** The address line2. */
-  addressLine2?: string;
-  /** The address line3. */
-  addressLine3?: string;
-  /** The postal code. */
-  postalCode?: string;
-  /** The city name. */
-  city?: string;
-  /** The state name. */
-  state?: string;
-  /** The country name. */
-  country: string;
+export interface ListRoleByDataBoxEdgeDeviceRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The device name. */
+  deviceName: string;
 }
-export const Address = /*@__PURE__*/ S.suspend(() =>
+export const ListRoleByDataBoxEdgeDeviceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    addressLine1: S.optional(S.String),
-    addressLine2: S.optional(S.String),
-    addressLine3: S.optional(S.String),
-    postalCode: S.optional(S.String),
-    city: S.optional(S.String),
-    state: S.optional(S.String),
-    country: S.String,
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    deviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/roles",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListRoleByDataBoxEdgeDeviceRequest",
+}) as any as S.Schema<ListRoleByDataBoxEdgeDeviceRequest>;
+
+/** Compute role. */
+export interface Role {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Role type. */
+  kind: RoleTypes;
+}
+export const Role = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    kind: RoleTypes,
   }),
-).annotate({ identifier: "Address" }) as any as S.Schema<Address>;
+).annotate({ identifier: "Role" }) as any as S.Schema<Role>;
+
+/** The Role items on this page */
+export type RoleListValueList = Array<Role>;
+export const RoleListValueList = /*@__PURE__*/ S.Array(
+  Role,
+) as any as S.Schema<RoleListValueList>;
+
+/** Collection of all the roles on the Data Box Edge device. */
+export interface RoleList {
+  /** The Role items on this page */
+  value: RoleListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const RoleList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: RoleListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "RoleList" }) as any as S.Schema<RoleList>;
+
+export interface ListShareByDataBoxEdgeDeviceRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The device name. */
+  deviceName: string;
+}
+export const ListShareByDataBoxEdgeDeviceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    deviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/shares",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListShareByDataBoxEdgeDeviceRequest",
+}) as any as S.Schema<ListShareByDataBoxEdgeDeviceRequest>;
+
+/** Represents a share on the Data Box Edge/Gateway device. */
+export interface Share {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The share properties. */
+  properties: ShareProperties;
+}
+export const Share = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: ShareProperties,
+  }),
+).annotate({ identifier: "Share" }) as any as S.Schema<Share>;
+
+/** The Share items on this page */
+export type ShareListValueList = Array<Share>;
+export const ShareListValueList = /*@__PURE__*/ S.Array(
+  Share,
+) as any as S.Schema<ShareListValueList>;
+
+/** Collection of all the shares on the Data Box Edge/Gateway device. */
+export interface ShareList {
+  /** The Share items on this page */
+  value: ShareListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ShareList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ShareListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "ShareList" }) as any as S.Schema<ShareList>;
+
+export interface ListStorageAccountByDataBoxEdgeDeviceRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The device name. */
+  deviceName: string;
+}
+export const ListStorageAccountByDataBoxEdgeDeviceRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      deviceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/storageAccounts",
+        code: 200,
+        apiVersion: "2023-12-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListStorageAccountByDataBoxEdgeDeviceRequest",
+  }) as any as S.Schema<ListStorageAccountByDataBoxEdgeDeviceRequest>;
+
+/** Represents a Storage Account on the Data Box Edge/Gateway device. */
+export interface StorageAccount {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The Storage Account properties. */
+  properties: StorageAccountProperties;
+}
+export const StorageAccount = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: StorageAccountProperties,
+  }),
+).annotate({ identifier: "StorageAccount" }) as any as S.Schema<StorageAccount>;
+
+/** The StorageAccount items on this page */
+export type StorageAccountListValueList = Array<StorageAccount>;
+export const StorageAccountListValueList = /*@__PURE__*/ S.Array(
+  StorageAccount,
+) as any as S.Schema<StorageAccountListValueList>;
+
+/** Collection of all the Storage Accounts on the Data Box Edge/Gateway device. */
+export interface StorageAccountList {
+  /** The StorageAccount items on this page */
+  value: StorageAccountListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const StorageAccountList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: StorageAccountListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "StorageAccountList",
+}) as any as S.Schema<StorageAccountList>;
+
+export interface ListStorageAccountCredentialsByDataBoxEdgeDeviceRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The device name. */
+  deviceName: string;
+}
+export const ListStorageAccountCredentialsByDataBoxEdgeDeviceRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      deviceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/storageAccountCredentials",
+        code: 200,
+        apiVersion: "2023-12-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListStorageAccountCredentialsByDataBoxEdgeDeviceRequest",
+  }) as any as S.Schema<ListStorageAccountCredentialsByDataBoxEdgeDeviceRequest>;
+
+/** The storage account credential. */
+export interface StorageAccountCredential {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The storage account credential properties. */
+  properties: StorageAccountCredentialProperties;
+}
+export const StorageAccountCredential = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: StorageAccountCredentialProperties,
+  }),
+).annotate({
+  identifier: "StorageAccountCredential",
+}) as any as S.Schema<StorageAccountCredential>;
+
+/** The StorageAccountCredential items on this page */
+export type StorageAccountCredentialListValueList =
+  Array<StorageAccountCredential>;
+export const StorageAccountCredentialListValueList = /*@__PURE__*/ S.Array(
+  StorageAccountCredential,
+) as any as S.Schema<StorageAccountCredentialListValueList>;
+
+/** The collection of storage account credentials. */
+export interface StorageAccountCredentialList {
+  /** The StorageAccountCredential items on this page */
+  value: StorageAccountCredentialListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const StorageAccountCredentialList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: StorageAccountCredentialListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "StorageAccountCredentialList",
+}) as any as S.Schema<StorageAccountCredentialList>;
+
+export interface ListTriggerByDataBoxEdgeDeviceRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The device name. */
+  deviceName: string;
+  /** Specify $filter='CustomContextTag eq <tag>' to filter on custom context tag property */
+  _filter?: string;
+}
+export const ListTriggerByDataBoxEdgeDeviceRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      deviceName: S.String.pipe(T.Label()),
+      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/triggers",
+        code: 200,
+        apiVersion: "2023-12-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListTriggerByDataBoxEdgeDeviceRequest",
+}) as any as S.Schema<ListTriggerByDataBoxEdgeDeviceRequest>;
+
+/** Trigger details. */
+export interface Trigger {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Trigger Kind. */
+  kind: TriggerEventType;
+}
+export const Trigger = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    kind: TriggerEventType,
+  }),
+).annotate({ identifier: "Trigger" }) as any as S.Schema<Trigger>;
+
+/** The Trigger items on this page */
+export type TriggerListValueList = Array<Trigger>;
+export const TriggerListValueList = /*@__PURE__*/ S.Array(
+  Trigger,
+) as any as S.Schema<TriggerListValueList>;
+
+/** Collection of all trigger on the data box edge device. */
+export interface TriggerList {
+  /** The Trigger items on this page */
+  value: TriggerListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const TriggerList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: TriggerListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "TriggerList" }) as any as S.Schema<TriggerList>;
+
+export interface ListUserByDataBoxEdgeDeviceRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The device name. */
+  deviceName: string;
+  /** Specify $filter='Type eq <type>' to filter on user type property */
+  _filter?: string;
+}
+export const ListUserByDataBoxEdgeDeviceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    deviceName: S.String.pipe(T.Label()),
+    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/users",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListUserByDataBoxEdgeDeviceRequest",
+}) as any as S.Schema<ListUserByDataBoxEdgeDeviceRequest>;
+
+/** Represents a user who has access to one or more shares on the Data Box Edge/Gateway device. */
+export interface User {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The storage account credential properties. */
+  properties: UserProperties;
+}
+export const User = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: UserProperties,
+  }),
+).annotate({ identifier: "User" }) as any as S.Schema<User>;
+
+/** The User items on this page */
+export type UserListValueList = Array<User>;
+export const UserListValueList = /*@__PURE__*/ S.Array(
+  User,
+) as any as S.Schema<UserListValueList>;
+
+/** Collection of users. */
+export interface UserList {
+  /** The User items on this page */
+  value: UserListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const UserList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: UserListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "UserList" }) as any as S.Schema<UserList>;
+
+export interface MonitoringConfigCreateOrUpdateRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the device. */
+  deviceName: string;
+  /** The name of the role. */
+  roleName: string;
+  /** The metric setting properties. */
+  properties: MonitoringMetricConfigurationProperties;
+}
+export const MonitoringConfigCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      deviceName: S.String.pipe(T.Label()),
+      roleName: S.String.pipe(T.Label()),
+      properties: MonitoringMetricConfigurationProperties,
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/roles/{roleName}/monitoringConfig/default",
+        code: 200,
+        apiVersion: "2023-12-01",
+      }),
+    ),
+).annotate({
+  identifier: "MonitoringConfigCreateOrUpdateRequest",
+}) as any as S.Schema<MonitoringConfigCreateOrUpdateRequest>;
+
+export interface MonitoringConfigCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The metric setting properties. */
+  properties: MonitoringMetricConfigurationProperties;
+}
+export const MonitoringConfigCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: MonitoringMetricConfigurationProperties,
+    }),
+).annotate({
+  identifier: "MonitoringConfigCreateOrUpdateResponse",
+}) as any as S.Schema<MonitoringConfigCreateOrUpdateResponse>;
 
 /** Order properties. */
 export interface OrderPropertiesInput {
@@ -4896,134 +5977,6 @@ export const OrdersCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "OrdersCreateOrUpdateRequest",
 }) as any as S.Schema<OrdersCreateOrUpdateRequest>;
 
-/** Status of the order as per the allowed status types. */
-export type OrderState =
-  | "Untracked"
-  | "AwaitingFulfillment"
-  | "AwaitingPreparation"
-  | "AwaitingShipment"
-  | "Shipped"
-  | "Arriving"
-  | "Delivered"
-  | "ReplacementRequested"
-  | "LostDevice"
-  | "Declined"
-  | "ReturnInitiated"
-  | "AwaitingReturnShipment"
-  | "ShippedBack"
-  | "CollectedAtMicrosoft"
-  | "AwaitingPickup"
-  | "PickupCompleted"
-  | "AwaitingDrop";
-export const OrderState = /*@__PURE__*/ S.String;
-
-/** Tracking courier information. */
-export interface TrackingInfo {
-  /** Serial number of the device being tracked. */
-  serialNumber?: string;
-  /** Name of the carrier used in the delivery. */
-  carrierName?: string;
-  /** Tracking ID of the shipment. */
-  trackingId?: string;
-  /** Tracking URL of the shipment. */
-  trackingUrl?: string;
-}
-export const TrackingInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serialNumber: S.optional(S.String),
-    carrierName: S.optional(S.String),
-    trackingId: S.optional(S.String),
-    trackingUrl: S.optional(S.String),
-  }),
-).annotate({ identifier: "TrackingInfo" }) as any as S.Schema<TrackingInfo>;
-
-/** Dictionary to hold generic information which is not stored by the already existing properties */
-export type OrderStatusAdditionalOrderDetailsMap = {
-  [key: string]: string | undefined;
-};
-export const OrderStatusAdditionalOrderDetailsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<OrderStatusAdditionalOrderDetailsMap>;
-
-/** Represents a single status change. */
-export interface OrderStatus {
-  /** Status of the order as per the allowed status types. */
-  status: OrderState;
-  /** Time of status update. */
-  updateDateTime?: string;
-  /** Comments related to this status change. */
-  comments?: string;
-  /** Tracking information related to the state in the ordering flow */
-  trackingInformation?: TrackingInfo;
-  /** Dictionary to hold generic information which is not stored by the already existing properties */
-  additionalOrderDetails?: OrderStatusAdditionalOrderDetailsMap;
-}
-export const OrderStatus = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: OrderState,
-    updateDateTime: S.optional(S.String),
-    comments: S.optional(S.String),
-    trackingInformation: S.optional(TrackingInfo),
-    additionalOrderDetails: S.optional(OrderStatusAdditionalOrderDetailsMap),
-  }),
-).annotate({ identifier: "OrderStatus" }) as any as S.Schema<OrderStatus>;
-
-/** List of status changes in the order. */
-export type OrderPropertiesOrderHistoryList = Array<OrderStatus>;
-export const OrderPropertiesOrderHistoryList = /*@__PURE__*/ S.Array(
-  OrderStatus,
-) as any as S.Schema<OrderPropertiesOrderHistoryList>;
-
-/** Tracking information for the package delivered to the customer whether it has an original or a replacement device. */
-export type OrderPropertiesDeliveryTrackingInfoList = Array<TrackingInfo>;
-export const OrderPropertiesDeliveryTrackingInfoList = /*@__PURE__*/ S.Array(
-  TrackingInfo,
-) as any as S.Schema<OrderPropertiesDeliveryTrackingInfoList>;
-
-/** Tracking information for the package returned from the customer whether it has an original or a replacement device. */
-export type OrderPropertiesReturnTrackingInfoList = Array<TrackingInfo>;
-export const OrderPropertiesReturnTrackingInfoList = /*@__PURE__*/ S.Array(
-  TrackingInfo,
-) as any as S.Schema<OrderPropertiesReturnTrackingInfoList>;
-
-/** Order properties. */
-export interface OrderProperties {
-  /** It specify the order resource id. */
-  orderId?: string;
-  /** The contact details. */
-  contactInformation: ContactDetails;
-  /** The shipping address. */
-  shippingAddress?: Address;
-  /** Current status of the order. */
-  currentStatus?: OrderStatus;
-  /** List of status changes in the order. */
-  orderHistory?: OrderPropertiesOrderHistoryList;
-  /** Serial number of the device. */
-  serialNumber?: string;
-  /** Tracking information for the package delivered to the customer whether it has an original or a replacement device. */
-  deliveryTrackingInfo?: OrderPropertiesDeliveryTrackingInfoList;
-  /** Tracking information for the package returned from the customer whether it has an original or a replacement device. */
-  returnTrackingInfo?: OrderPropertiesReturnTrackingInfoList;
-  /** ShipmentType of the order */
-  shipmentType?: ShipmentType;
-}
-export const OrderProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    orderId: S.optional(S.String),
-    contactInformation: ContactDetails,
-    shippingAddress: S.optional(Address),
-    currentStatus: S.optional(OrderStatus),
-    orderHistory: S.optional(OrderPropertiesOrderHistoryList),
-    serialNumber: S.optional(S.String),
-    deliveryTrackingInfo: S.optional(OrderPropertiesDeliveryTrackingInfoList),
-    returnTrackingInfo: S.optional(OrderPropertiesReturnTrackingInfoList),
-    shipmentType: S.optional(ShipmentType),
-  }),
-).annotate({
-  identifier: "OrderProperties",
-}) as any as S.Schema<OrderProperties>;
-
 export interface OrdersCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
@@ -5051,210 +6004,78 @@ export const OrdersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "OrdersCreateOrUpdateResponse",
 }) as any as S.Schema<OrdersCreateOrUpdateResponse>;
 
-export interface OrdersDeleteRequest {
+export interface RefreshContainerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The device name. */
   deviceName: string;
+  /** The storage account name. */
+  storageAccountName: string;
+  /** The container Name */
+  containerName: string;
 }
-export const OrdersDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const RefreshContainerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     deviceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/orders/default",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "OrdersDeleteRequest",
-}) as any as S.Schema<OrdersDeleteRequest>;
-
-export interface OrdersDeleteResponse {}
-export const OrdersDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "OrdersDeleteResponse",
-}) as any as S.Schema<OrdersDeleteResponse>;
-
-export interface OrdersGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The device name. */
-  deviceName: string;
-}
-export const OrdersGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    deviceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/orders/default",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "OrdersGetRequest",
-}) as any as S.Schema<OrdersGetRequest>;
-
-export interface OrdersGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The order properties. */
-  properties?: OrderProperties;
-  /** It specify the order api version. */
-  kind?: string;
-}
-export const OrdersGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(OrderProperties),
-    kind: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OrdersGetResponse",
-}) as any as S.Schema<OrdersGetResponse>;
-
-export interface OrdersListByDataBoxEdgeDeviceRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The device name. */
-  deviceName: string;
-}
-export const OrdersListByDataBoxEdgeDeviceRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      deviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/orders",
-        code: 200,
-        apiVersion: "2023-12-01",
-      }),
-    ),
-).annotate({
-  identifier: "OrdersListByDataBoxEdgeDeviceRequest",
-}) as any as S.Schema<OrdersListByDataBoxEdgeDeviceRequest>;
-
-/** The order details. */
-export interface Order {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The order properties. */
-  properties?: OrderProperties;
-  /** It specify the order api version. */
-  kind?: string;
-}
-export const Order = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(OrderProperties),
-    kind: S.optional(S.String),
-  }),
-).annotate({ identifier: "Order" }) as any as S.Schema<Order>;
-
-/** The Order items on this page */
-export type OrderListValueList = Array<Order>;
-export const OrderListValueList = /*@__PURE__*/ S.Array(
-  Order,
-) as any as S.Schema<OrderListValueList>;
-
-/** List of order entities. */
-export interface OrderList {
-  /** The Order items on this page */
-  value: OrderListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const OrderList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: OrderListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "OrderList" }) as any as S.Schema<OrderList>;
-
-export interface OrdersListDCAccessCodeRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The device name. */
-  deviceName: string;
-}
-export const OrdersListDCAccessCodeRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    deviceName: S.String.pipe(T.Label()),
+    storageAccountName: S.String.pipe(T.Label()),
+    containerName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/orders/default/listDCAccessCode",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/storageAccounts/{storageAccountName}/containers/{containerName}/refresh",
       code: 200,
       apiVersion: "2023-12-01",
     }),
   ),
 ).annotate({
-  identifier: "OrdersListDCAccessCodeRequest",
-}) as any as S.Schema<OrdersListDCAccessCodeRequest>;
+  identifier: "RefreshContainerRequest",
+}) as any as S.Schema<RefreshContainerRequest>;
 
-/** DCAccessCode Properties. */
-export interface DCAccessCodeProperties {
-  /** DCAccess Code for the Self Managed shipment. */
-  authCode?: string;
-}
-export const DCAccessCodeProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    authCode: S.optional(S.String),
-  }),
+export interface RefreshContainerResponse {}
+export const RefreshContainerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
 ).annotate({
-  identifier: "DCAccessCodeProperties",
-}) as any as S.Schema<DCAccessCodeProperties>;
+  identifier: "RefreshContainerResponse",
+}) as any as S.Schema<RefreshContainerResponse>;
 
-/** DC Access code in the case of Self Managed Shipping. */
-export interface DCAccessCode {
-  /** DCAccessCode properties. */
-  properties?: DCAccessCodeProperties;
+export interface RefreshShareRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The device name. */
+  deviceName: string;
+  /** The share name. */
+  name: string;
 }
-export const DCAccessCode = /*@__PURE__*/ S.suspend(() =>
+export const RefreshShareRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    properties: S.optional(DCAccessCodeProperties),
-  }),
-).annotate({ identifier: "DCAccessCode" }) as any as S.Schema<DCAccessCode>;
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    deviceName: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/shares/{name}/refresh",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "RefreshShareRequest",
+}) as any as S.Schema<RefreshShareRequest>;
+
+export interface RefreshShareResponse {}
+export const RefreshShareResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "RefreshShareResponse",
+}) as any as S.Schema<RefreshShareResponse>;
 
 export interface RolesCreateOrUpdateRequest {
   /** The ID of the target subscription. */
@@ -5311,242 +6132,11 @@ export const RolesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "RolesCreateOrUpdateResponse",
 }) as any as S.Schema<RolesCreateOrUpdateResponse>;
 
-export interface RolesDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The device name. */
-  deviceName: string;
-  /** The role name. */
-  name: string;
-}
-export const RolesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    deviceName: S.String.pipe(T.Label()),
-    name: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/roles/{name}",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "RolesDeleteRequest",
-}) as any as S.Schema<RolesDeleteRequest>;
-
-export interface RolesDeleteResponse {}
-export const RolesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "RolesDeleteResponse",
-}) as any as S.Schema<RolesDeleteResponse>;
-
-export interface RolesGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The device name. */
-  deviceName: string;
-  /** The role name. */
-  name: string;
-}
-export const RolesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    deviceName: S.String.pipe(T.Label()),
-    name: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/roles/{name}",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "RolesGetRequest",
-}) as any as S.Schema<RolesGetRequest>;
-
-export interface RolesGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Role type. */
-  kind: RoleTypes;
-}
-export const RolesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    kind: RoleTypes,
-  }),
-).annotate({
-  identifier: "RolesGetResponse",
-}) as any as S.Schema<RolesGetResponse>;
-
-export interface RolesListByDataBoxEdgeDeviceRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The device name. */
-  deviceName: string;
-}
-export const RolesListByDataBoxEdgeDeviceRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    deviceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/roles",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "RolesListByDataBoxEdgeDeviceRequest",
-}) as any as S.Schema<RolesListByDataBoxEdgeDeviceRequest>;
-
-/** Compute role. */
-export interface Role {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Role type. */
-  kind: RoleTypes;
-}
-export const Role = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    kind: RoleTypes,
-  }),
-).annotate({ identifier: "Role" }) as any as S.Schema<Role>;
-
-/** The Role items on this page */
-export type RoleListValueList = Array<Role>;
-export const RoleListValueList = /*@__PURE__*/ S.Array(
-  Role,
-) as any as S.Schema<RoleListValueList>;
-
-/** Collection of all the roles on the Data Box Edge device. */
-export interface RoleList {
-  /** The Role items on this page */
-  value: RoleListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const RoleList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: RoleListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "RoleList" }) as any as S.Schema<RoleList>;
-
-/** Current status of the share. */
-export type ShareStatus =
-  | "Offline"
-  | "Unknown"
-  | "OK"
-  | "Updating"
-  | "NeedsAttention";
-export const ShareStatus = /*@__PURE__*/ S.String;
-
-/** Current monitoring status of the share. */
-export type MonitoringStatus = "Enabled" | "Disabled";
-export const MonitoringStatus = /*@__PURE__*/ S.String;
-
-/** Azure container mapping of the endpoint. */
-export interface AzureContainerInfo {
-  /** ID of the storage account credential used to access storage. */
-  storageAccountCredentialId: string;
-  /** Container name (Based on the data format specified, this represents the name of Azure Files/Page blob/Block blob). */
-  containerName: string;
-  /** Storage format used for the file represented by the share. */
-  dataFormat: AzureContainerDataFormat | (string & {});
-}
-export const AzureContainerInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    storageAccountCredentialId: S.String,
-    containerName: S.String,
-    dataFormat: AzureContainerDataFormat,
-  }),
-).annotate({
-  identifier: "AzureContainerInfo",
-}) as any as S.Schema<AzureContainerInfo>;
-
-/** Access protocol to be used by the share. */
-export type ShareAccessProtocol = "SMB" | "NFS";
-export const ShareAccessProtocol = /*@__PURE__*/ S.String;
-
-/** Type of access to be allowed on the share for this user. */
-export type ShareAccessType = "Change" | "Read" | "Custom";
-export const ShareAccessType = /*@__PURE__*/ S.String;
-
-/** The mapping between a particular user and the access type on the SMB share. */
-export interface UserAccessRight {
-  /** User ID (already existing in the device). */
-  userId: string;
-  /** Type of access to be allowed for the user. */
-  accessType: ShareAccessType | (string & {});
-}
-export const UserAccessRight = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    userId: S.String,
-    accessType: ShareAccessType,
-  }),
-).annotate({
-  identifier: "UserAccessRight",
-}) as any as S.Schema<UserAccessRight>;
-
 /** Mapping of users and corresponding access rights on the share (required for SMB protocol). */
 export type SharePropertiesInputUserAccessRightsList = Array<UserAccessRight>;
 export const SharePropertiesInputUserAccessRightsList = /*@__PURE__*/ S.Array(
   UserAccessRight,
 ) as any as S.Schema<SharePropertiesInputUserAccessRightsList>;
-
-/** Type of access to be allowed for the client. */
-export type ClientPermissionType = "NoAccess" | "ReadOnly" | "ReadWrite";
-export const ClientPermissionType = /*@__PURE__*/ S.String;
-
-/** The mapping between a particular client IP and the type of access client has on the NFS share. */
-export interface ClientAccessRight {
-  /** IP of the client. */
-  client: string;
-  /** Type of access to be allowed for the client. */
-  accessPermission: ClientPermissionType | (string & {});
-}
-export const ClientAccessRight = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    client: S.String,
-    accessPermission: ClientPermissionType,
-  }),
-).annotate({
-  identifier: "ClientAccessRight",
-}) as any as S.Schema<ClientAccessRight>;
 
 /** List of IP addresses and corresponding access rights on the share(required for NFS protocol). */
 export type SharePropertiesInputClientAccessRightsList =
@@ -5554,10 +6144,6 @@ export type SharePropertiesInputClientAccessRightsList =
 export const SharePropertiesInputClientAccessRightsList = /*@__PURE__*/ S.Array(
   ClientAccessRight,
 ) as any as S.Schema<SharePropertiesInputClientAccessRightsList>;
-
-/** Data policy of the share. */
-export type DataPolicy = "Cloud" | "Local";
-export const DataPolicy = /*@__PURE__*/ S.String;
 
 /** The share properties. */
 export interface SharePropertiesInput {
@@ -5627,91 +6213,6 @@ export const SharesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "SharesCreateOrUpdateRequest",
 }) as any as S.Schema<SharesCreateOrUpdateRequest>;
 
-/** Mapping of users and corresponding access rights on the share (required for SMB protocol). */
-export type SharePropertiesUserAccessRightsList = Array<UserAccessRight>;
-export const SharePropertiesUserAccessRightsList = /*@__PURE__*/ S.Array(
-  UserAccessRight,
-) as any as S.Schema<SharePropertiesUserAccessRightsList>;
-
-/** List of IP addresses and corresponding access rights on the share(required for NFS protocol). */
-export type SharePropertiesClientAccessRightsList = Array<ClientAccessRight>;
-export const SharePropertiesClientAccessRightsList = /*@__PURE__*/ S.Array(
-  ClientAccessRight,
-) as any as S.Schema<SharePropertiesClientAccessRightsList>;
-
-/** Mounting type. */
-export type MountType = "Volume" | "HostPath";
-export const MountType = /*@__PURE__*/ S.String;
-
-/** The share mount point. */
-export interface MountPointMap {
-  /** ID of the share mounted to the role VM. */
-  shareId: string;
-  /** ID of the role to which share is mounted. */
-  roleId?: string;
-  /** Mount point for the share. */
-  mountPoint?: string;
-  /** Mounting type. */
-  mountType?: MountType;
-  /** Role type. */
-  roleType?: RoleTypes;
-}
-export const MountPointMap = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    shareId: S.String,
-    roleId: S.optional(S.String),
-    mountPoint: S.optional(S.String),
-    mountType: S.optional(MountType),
-    roleType: S.optional(RoleTypes),
-  }),
-).annotate({ identifier: "MountPointMap" }) as any as S.Schema<MountPointMap>;
-
-/** Share mount point to the role. */
-export type SharePropertiesShareMappingsList = Array<MountPointMap>;
-export const SharePropertiesShareMappingsList = /*@__PURE__*/ S.Array(
-  MountPointMap,
-) as any as S.Schema<SharePropertiesShareMappingsList>;
-
-/** The share properties. */
-export interface ShareProperties {
-  /** Description for the share. */
-  description?: string;
-  /** Current status of the share. */
-  shareStatus: ShareStatus;
-  /** Current monitoring status of the share. */
-  monitoringStatus: MonitoringStatus;
-  /** Azure container mapping for the share. */
-  azureContainerInfo?: AzureContainerInfo;
-  /** Access protocol to be used by the share. */
-  accessProtocol: ShareAccessProtocol;
-  /** Mapping of users and corresponding access rights on the share (required for SMB protocol). */
-  userAccessRights?: SharePropertiesUserAccessRightsList;
-  /** List of IP addresses and corresponding access rights on the share(required for NFS protocol). */
-  clientAccessRights?: SharePropertiesClientAccessRightsList;
-  /** Details of the refresh job on this share. */
-  refreshDetails?: RefreshDetails;
-  /** Share mount point to the role. */
-  shareMappings?: SharePropertiesShareMappingsList;
-  /** Data policy of the share. */
-  dataPolicy?: DataPolicy;
-}
-export const ShareProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    description: S.optional(S.String),
-    shareStatus: ShareStatus,
-    monitoringStatus: MonitoringStatus,
-    azureContainerInfo: S.optional(AzureContainerInfo),
-    accessProtocol: ShareAccessProtocol,
-    userAccessRights: S.optional(SharePropertiesUserAccessRightsList),
-    clientAccessRights: S.optional(SharePropertiesClientAccessRightsList),
-    refreshDetails: S.optional(RefreshDetails),
-    shareMappings: S.optional(SharePropertiesShareMappingsList),
-    dataPolicy: S.optional(DataPolicy),
-  }),
-).annotate({
-  identifier: "ShareProperties",
-}) as any as S.Schema<ShareProperties>;
-
 export interface SharesCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
@@ -5735,239 +6236,6 @@ export const SharesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "SharesCreateOrUpdateResponse",
 }) as any as S.Schema<SharesCreateOrUpdateResponse>;
-
-export interface SharesDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The device name. */
-  deviceName: string;
-  /** The share name. */
-  name: string;
-}
-export const SharesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    deviceName: S.String.pipe(T.Label()),
-    name: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/shares/{name}",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "SharesDeleteRequest",
-}) as any as S.Schema<SharesDeleteRequest>;
-
-export interface SharesDeleteResponse {}
-export const SharesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "SharesDeleteResponse",
-}) as any as S.Schema<SharesDeleteResponse>;
-
-export interface SharesGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The device name. */
-  deviceName: string;
-  /** The share name. */
-  name: string;
-}
-export const SharesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    deviceName: S.String.pipe(T.Label()),
-    name: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/shares/{name}",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "SharesGetRequest",
-}) as any as S.Schema<SharesGetRequest>;
-
-export interface SharesGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The share properties. */
-  properties: ShareProperties;
-}
-export const SharesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: ShareProperties,
-  }),
-).annotate({
-  identifier: "SharesGetResponse",
-}) as any as S.Schema<SharesGetResponse>;
-
-export interface SharesListByDataBoxEdgeDeviceRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The device name. */
-  deviceName: string;
-}
-export const SharesListByDataBoxEdgeDeviceRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      deviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/shares",
-        code: 200,
-        apiVersion: "2023-12-01",
-      }),
-    ),
-).annotate({
-  identifier: "SharesListByDataBoxEdgeDeviceRequest",
-}) as any as S.Schema<SharesListByDataBoxEdgeDeviceRequest>;
-
-/** Represents a share on the Data Box Edge/Gateway device. */
-export interface Share {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The share properties. */
-  properties: ShareProperties;
-}
-export const Share = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: ShareProperties,
-  }),
-).annotate({ identifier: "Share" }) as any as S.Schema<Share>;
-
-/** The Share items on this page */
-export type ShareListValueList = Array<Share>;
-export const ShareListValueList = /*@__PURE__*/ S.Array(
-  Share,
-) as any as S.Schema<ShareListValueList>;
-
-/** Collection of all the shares on the Data Box Edge/Gateway device. */
-export interface ShareList {
-  /** The Share items on this page */
-  value: ShareListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ShareList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: ShareListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "ShareList" }) as any as S.Schema<ShareList>;
-
-export interface SharesRefreshRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The device name. */
-  deviceName: string;
-  /** The share name. */
-  name: string;
-}
-export const SharesRefreshRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    deviceName: S.String.pipe(T.Label()),
-    name: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/shares/{name}/refresh",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "SharesRefreshRequest",
-}) as any as S.Schema<SharesRefreshRequest>;
-
-export interface SharesRefreshResponse {}
-export const SharesRefreshResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "SharesRefreshResponse",
-}) as any as S.Schema<SharesRefreshResponse>;
-
-/** Signifies whether SSL needs to be enabled or not. */
-export type SSLStatus = "Enabled" | "Disabled";
-export const SSLStatus = /*@__PURE__*/ S.String;
-
-/** Type of storage accessed on the storage account. */
-export type AccountType = "GeneralPurposeStorage" | "BlobStorage";
-export const AccountType = /*@__PURE__*/ S.String;
-
-/** The storage account credential properties. */
-export interface StorageAccountCredentialProperties {
-  /** Alias for the storage account. */
-  alias: string;
-  /** Username for the storage account. */
-  userName?: string;
-  /** Encrypted storage key. */
-  accountKey?: AsymmetricEncryptedSecret;
-  /** Connection string for the storage account. Use this string if username and account key are not specified. */
-  connectionString?: string | Redacted.Redacted<string>;
-  /** Signifies whether SSL needs to be enabled or not. */
-  sslStatus: SSLStatus | (string & {});
-  /** Blob end point for private clouds. */
-  blobDomainName?: string;
-  /** Type of storage accessed on the storage account. */
-  accountType: AccountType | (string & {});
-  /** Id of the storage account. */
-  storageAccountId?: string;
-}
-export const StorageAccountCredentialProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    alias: S.String,
-    userName: S.optional(S.String),
-    accountKey: S.optional(AsymmetricEncryptedSecret),
-    connectionString: S.optional(S.String.pipe(T.SensitiveValue({}))),
-    sslStatus: SSLStatus,
-    blobDomainName: S.optional(S.String),
-    accountType: AccountType,
-    storageAccountId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "StorageAccountCredentialProperties",
-}) as any as S.Schema<StorageAccountCredentialProperties>;
 
 export interface StorageAccountCredentialsCreateOrUpdateRequest {
   /** The ID of the target subscription. */
@@ -6026,178 +6294,6 @@ export const StorageAccountCredentialsCreateOrUpdateResponse =
     identifier: "StorageAccountCredentialsCreateOrUpdateResponse",
   }) as any as S.Schema<StorageAccountCredentialsCreateOrUpdateResponse>;
 
-export interface StorageAccountCredentialsDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The device name. */
-  deviceName: string;
-  /** The storage account credential name. */
-  name: string;
-}
-export const StorageAccountCredentialsDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      deviceName: S.String.pipe(T.Label()),
-      name: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/storageAccountCredentials/{name}",
-        code: 200,
-        apiVersion: "2023-12-01",
-      }),
-    ),
-).annotate({
-  identifier: "StorageAccountCredentialsDeleteRequest",
-}) as any as S.Schema<StorageAccountCredentialsDeleteRequest>;
-
-export interface StorageAccountCredentialsDeleteResponse {}
-export const StorageAccountCredentialsDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "StorageAccountCredentialsDeleteResponse",
-}) as any as S.Schema<StorageAccountCredentialsDeleteResponse>;
-
-export interface StorageAccountCredentialsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The device name. */
-  deviceName: string;
-  /** The storage account credential name. */
-  name: string;
-}
-export const StorageAccountCredentialsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    deviceName: S.String.pipe(T.Label()),
-    name: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/storageAccountCredentials/{name}",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "StorageAccountCredentialsGetRequest",
-}) as any as S.Schema<StorageAccountCredentialsGetRequest>;
-
-export interface StorageAccountCredentialsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The storage account credential properties. */
-  properties: StorageAccountCredentialProperties;
-}
-export const StorageAccountCredentialsGetResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: StorageAccountCredentialProperties,
-    }),
-).annotate({
-  identifier: "StorageAccountCredentialsGetResponse",
-}) as any as S.Schema<StorageAccountCredentialsGetResponse>;
-
-export interface StorageAccountCredentialsListByDataBoxEdgeDeviceRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The device name. */
-  deviceName: string;
-}
-export const StorageAccountCredentialsListByDataBoxEdgeDeviceRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      deviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/storageAccountCredentials",
-        code: 200,
-        apiVersion: "2023-12-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "StorageAccountCredentialsListByDataBoxEdgeDeviceRequest",
-  }) as any as S.Schema<StorageAccountCredentialsListByDataBoxEdgeDeviceRequest>;
-
-/** The storage account credential. */
-export interface StorageAccountCredential {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The storage account credential properties. */
-  properties: StorageAccountCredentialProperties;
-}
-export const StorageAccountCredential = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: StorageAccountCredentialProperties,
-  }),
-).annotate({
-  identifier: "StorageAccountCredential",
-}) as any as S.Schema<StorageAccountCredential>;
-
-/** The StorageAccountCredential items on this page */
-export type StorageAccountCredentialListValueList =
-  Array<StorageAccountCredential>;
-export const StorageAccountCredentialListValueList = /*@__PURE__*/ S.Array(
-  StorageAccountCredential,
-) as any as S.Schema<StorageAccountCredentialListValueList>;
-
-/** The collection of storage account credentials. */
-export interface StorageAccountCredentialList {
-  /** The StorageAccountCredential items on this page */
-  value: StorageAccountCredentialListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const StorageAccountCredentialList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: StorageAccountCredentialListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "StorageAccountCredentialList",
-}) as any as S.Schema<StorageAccountCredentialList>;
-
-/** Current status of the storage account */
-export type StorageAccountStatus =
-  | "OK"
-  | "Offline"
-  | "Unknown"
-  | "Updating"
-  | "NeedsAttention";
-export const StorageAccountStatus = /*@__PURE__*/ S.String;
-
 /** The storage account properties. */
 export interface StorageAccountPropertiesInput {
   /** Description for the storage Account. */
@@ -6252,34 +6348,6 @@ export const StorageAccountsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
   identifier: "StorageAccountsCreateOrUpdateRequest",
 }) as any as S.Schema<StorageAccountsCreateOrUpdateRequest>;
 
-/** The storage account properties. */
-export interface StorageAccountProperties {
-  /** Description for the storage Account. */
-  description?: string;
-  /** Current status of the storage account */
-  storageAccountStatus?: StorageAccountStatus;
-  /** Data policy of the storage Account. */
-  dataPolicy: DataPolicy;
-  /** Storage Account Credential Id */
-  storageAccountCredentialId?: string;
-  /** BlobEndpoint of Storage Account */
-  blobEndpoint?: string;
-  /** The Container Count. Present only for Storage Accounts with DataPolicy set to Cloud. */
-  containerCount?: number;
-}
-export const StorageAccountProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    description: S.optional(S.String),
-    storageAccountStatus: S.optional(StorageAccountStatus),
-    dataPolicy: DataPolicy,
-    storageAccountCredentialId: S.optional(S.String),
-    blobEndpoint: S.optional(S.String),
-    containerCount: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "StorageAccountProperties",
-}) as any as S.Schema<StorageAccountProperties>;
-
 export interface StorageAccountsCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
@@ -6304,222 +6372,6 @@ export const StorageAccountsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "StorageAccountsCreateOrUpdateResponse",
 }) as any as S.Schema<StorageAccountsCreateOrUpdateResponse>;
-
-export interface StorageAccountsDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The device name. */
-  deviceName: string;
-  /** The storage account name. */
-  storageAccountName: string;
-}
-export const StorageAccountsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    deviceName: S.String.pipe(T.Label()),
-    storageAccountName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/storageAccounts/{storageAccountName}",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "StorageAccountsDeleteRequest",
-}) as any as S.Schema<StorageAccountsDeleteRequest>;
-
-export interface StorageAccountsDeleteResponse {}
-export const StorageAccountsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "StorageAccountsDeleteResponse",
-}) as any as S.Schema<StorageAccountsDeleteResponse>;
-
-export interface StorageAccountsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The device name. */
-  deviceName: string;
-  /** The storage account name. */
-  storageAccountName: string;
-}
-export const StorageAccountsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    deviceName: S.String.pipe(T.Label()),
-    storageAccountName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/storageAccounts/{storageAccountName}",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "StorageAccountsGetRequest",
-}) as any as S.Schema<StorageAccountsGetRequest>;
-
-export interface StorageAccountsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The Storage Account properties. */
-  properties: StorageAccountProperties;
-}
-export const StorageAccountsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: StorageAccountProperties,
-  }),
-).annotate({
-  identifier: "StorageAccountsGetResponse",
-}) as any as S.Schema<StorageAccountsGetResponse>;
-
-export interface StorageAccountsListByDataBoxEdgeDeviceRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The device name. */
-  deviceName: string;
-}
-export const StorageAccountsListByDataBoxEdgeDeviceRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      deviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/storageAccounts",
-        code: 200,
-        apiVersion: "2023-12-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "StorageAccountsListByDataBoxEdgeDeviceRequest",
-  }) as any as S.Schema<StorageAccountsListByDataBoxEdgeDeviceRequest>;
-
-/** Represents a Storage Account on the Data Box Edge/Gateway device. */
-export interface StorageAccount {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The Storage Account properties. */
-  properties: StorageAccountProperties;
-}
-export const StorageAccount = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: StorageAccountProperties,
-  }),
-).annotate({ identifier: "StorageAccount" }) as any as S.Schema<StorageAccount>;
-
-/** The StorageAccount items on this page */
-export type StorageAccountListValueList = Array<StorageAccount>;
-export const StorageAccountListValueList = /*@__PURE__*/ S.Array(
-  StorageAccount,
-) as any as S.Schema<StorageAccountListValueList>;
-
-/** Collection of all the Storage Accounts on the Data Box Edge/Gateway device. */
-export interface StorageAccountList {
-  /** The StorageAccount items on this page */
-  value: StorageAccountListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const StorageAccountList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: StorageAccountListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "StorageAccountList",
-}) as any as S.Schema<StorageAccountList>;
-
-/** The share properties. */
-export interface SupportPackageRequestProperties {
-  /** MinimumTimeStamp from where logs need to be collected */
-  minimumTimeStamp?: string;
-  /** Start of the timespan of the log collection */
-  maximumTimeStamp?: string;
-  /** Type of files, which need to be included in the logs This will contain the type of logs (Default/DefaultWithDumps/None/All/DefaultWithArchived) or a comma separated list of log types that are required */
-  include?: string;
-}
-export const SupportPackageRequestProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    minimumTimeStamp: S.optional(S.String),
-    maximumTimeStamp: S.optional(S.String),
-    include: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SupportPackageRequestProperties",
-}) as any as S.Schema<SupportPackageRequestProperties>;
-
-export interface SupportPackagesTriggerSupportPackageRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The device name. */
-  deviceName: string;
-  /** The TriggerSupportPackageRequest properties. */
-  properties: SupportPackageRequestProperties;
-}
-export const SupportPackagesTriggerSupportPackageRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      deviceName: S.String.pipe(T.Label()),
-      properties: SupportPackageRequestProperties,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/triggerSupportPackage",
-        code: 200,
-        apiVersion: "2023-12-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "SupportPackagesTriggerSupportPackageRequest",
-  }) as any as S.Schema<SupportPackagesTriggerSupportPackageRequest>;
-
-export interface SupportPackagesTriggerSupportPackageResponse {}
-export const SupportPackagesTriggerSupportPackageResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "SupportPackagesTriggerSupportPackageResponse",
-  }) as any as S.Schema<SupportPackagesTriggerSupportPackageResponse>;
-
-/** Trigger Kind. */
-export type TriggerEventType = "FileEvent" | "PeriodicTimerEvent";
-export const TriggerEventType = /*@__PURE__*/ S.String;
 
 export interface TriggersCreateOrUpdateRequest {
   /** The ID of the target subscription. */
@@ -6576,70 +6428,148 @@ export const TriggersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "TriggersCreateOrUpdateResponse",
 }) as any as S.Schema<TriggersCreateOrUpdateResponse>;
 
-export interface TriggersDeleteRequest {
+/** The share properties. */
+export interface SupportPackageRequestProperties {
+  /** MinimumTimeStamp from where logs need to be collected */
+  minimumTimeStamp?: string;
+  /** Start of the timespan of the log collection */
+  maximumTimeStamp?: string;
+  /** Type of files, which need to be included in the logs This will contain the type of logs (Default/DefaultWithDumps/None/All/DefaultWithArchived) or a comma separated list of log types that are required */
+  include?: string;
+}
+export const SupportPackageRequestProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    minimumTimeStamp: S.optional(S.String),
+    maximumTimeStamp: S.optional(S.String),
+    include: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SupportPackageRequestProperties",
+}) as any as S.Schema<SupportPackageRequestProperties>;
+
+export interface TriggerSupportPackageSupportPackageRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The device name. */
   deviceName: string;
-  /** The trigger name. */
-  name: string;
+  /** The TriggerSupportPackageRequest properties. */
+  properties: SupportPackageRequestProperties;
 }
-export const TriggersDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const TriggerSupportPackageSupportPackageRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      deviceName: S.String.pipe(T.Label()),
+      properties: SupportPackageRequestProperties,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/triggerSupportPackage",
+        code: 200,
+        apiVersion: "2023-12-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "TriggerSupportPackageSupportPackageRequest",
+  }) as any as S.Schema<TriggerSupportPackageSupportPackageRequest>;
+
+export interface TriggerSupportPackageSupportPackageResponse {}
+export const TriggerSupportPackageSupportPackageResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "TriggerSupportPackageSupportPackageResponse",
+  }) as any as S.Schema<TriggerSupportPackageSupportPackageResponse>;
+
+/** The tags attached to the Data Box Edge/Gateway resource. */
+export type UpdateDeviceRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateDeviceRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateDeviceRequestTagsMap>;
+
+/** The Data Box Edge/Gateway Edge Profile Subscription patch. */
+export interface EdgeProfileSubscriptionPatch {
+  /** The path ID that uniquely identifies the subscription of the edge profile. */
+  id?: string;
+}
+export const EdgeProfileSubscriptionPatch = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    deviceName: S.String.pipe(T.Label()),
-    name: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/triggers/{name}",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
+    id: S.optional(S.String),
+  }),
 ).annotate({
-  identifier: "TriggersDeleteRequest",
-}) as any as S.Schema<TriggersDeleteRequest>;
+  identifier: "EdgeProfileSubscriptionPatch",
+}) as any as S.Schema<EdgeProfileSubscriptionPatch>;
 
-export interface TriggersDeleteResponse {}
-export const TriggersDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
+/** The Data Box Edge/Gateway Edge Profile patch. */
+export interface EdgeProfilePatch {
+  /** The Data Box Edge/Gateway Edge Profile Subscription patch */
+  subscription?: EdgeProfileSubscriptionPatch;
+}
+export const EdgeProfilePatch = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscription: S.optional(EdgeProfileSubscriptionPatch),
+  }),
 ).annotate({
-  identifier: "TriggersDeleteResponse",
-}) as any as S.Schema<TriggersDeleteResponse>;
+  identifier: "EdgeProfilePatch",
+}) as any as S.Schema<EdgeProfilePatch>;
 
-export interface TriggersGetRequest {
+/** The Data Box Edge/Gateway device properties patch. */
+export interface DataBoxEdgeDevicePropertiesPatch {
+  /** Edge Profile property of the Data Box Edge/Gateway device */
+  edgeProfile?: EdgeProfilePatch;
+}
+export const DataBoxEdgeDevicePropertiesPatch = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    edgeProfile: S.optional(EdgeProfilePatch),
+  }),
+).annotate({
+  identifier: "DataBoxEdgeDevicePropertiesPatch",
+}) as any as S.Schema<DataBoxEdgeDevicePropertiesPatch>;
+
+export interface UpdateDeviceRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The device name. */
   deviceName: string;
-  /** The trigger name. */
-  name: string;
+  /** The tags attached to the Data Box Edge/Gateway resource. */
+  tags?: UpdateDeviceRequestTagsMap;
+  /** Msi identity of the resource */
+  identity?: ResourceIdentityInput;
+  /** The properties associated with the Data Box Edge/Gateway resource */
+  properties?: DataBoxEdgeDevicePropertiesPatch;
 }
-export const TriggersGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateDeviceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     deviceName: S.String.pipe(T.Label()),
-    name: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateDeviceRequestTagsMap),
+    identity: S.optional(ResourceIdentityInput),
+    properties: S.optional(DataBoxEdgeDevicePropertiesPatch),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/triggers/{name}",
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}",
       code: 200,
       apiVersion: "2023-12-01",
     }),
   ),
 ).annotate({
-  identifier: "TriggersGetRequest",
-}) as any as S.Schema<TriggersGetRequest>;
+  identifier: "UpdateDeviceRequest",
+}) as any as S.Schema<UpdateDeviceRequest>;
 
-export interface TriggersGetResponse {
+/** Resource tags. */
+export type UpdateDeviceResponseTagsMap = { [key: string]: string | undefined };
+export const UpdateDeviceResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateDeviceResponseTagsMap>;
+
+export interface UpdateDeviceResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -6648,52 +6578,187 @@ export interface TriggersGetResponse {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
-  /** Trigger Kind. */
-  kind: TriggerEventType;
+  /** Resource tags. */
+  tags?: UpdateDeviceResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The properties of the Data Box Edge/Gateway device. */
+  properties?: DataBoxEdgeDeviceProperties;
+  /** The SKU type. */
+  sku?: Sku;
+  /** The etag for the devices. */
+  etag?: string;
+  /** Msi identity of the resource */
+  identity?: ResourceIdentity;
+  /** The kind of the device. */
+  kind?: DataBoxEdgeDeviceKind;
 }
-export const TriggersGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateDeviceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    kind: TriggerEventType,
+    tags: S.optional(UpdateDeviceResponseTagsMap),
+    location: S.String,
+    properties: S.optional(DataBoxEdgeDeviceProperties),
+    sku: S.optional(Sku),
+    etag: S.optional(S.String),
+    identity: S.optional(ResourceIdentity),
+    kind: S.optional(DataBoxEdgeDeviceKind),
   }),
 ).annotate({
-  identifier: "TriggersGetResponse",
-}) as any as S.Schema<TriggersGetResponse>;
+  identifier: "UpdateDeviceResponse",
+}) as any as S.Schema<UpdateDeviceResponse>;
 
-export interface TriggersListByDataBoxEdgeDeviceRequest {
+export interface UpdateDeviceExtendedInformationRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The device name. */
   deviceName: string;
-  /** Specify $filter='CustomContextTag eq <tag>' to filter on custom context tag property */
-  _filter?: string;
+  /** The Key Vault ARM Id for client secrets */
+  clientSecretStoreId?: string;
+  /** The url to access the Client Key Vault */
+  clientSecretStoreUrl?: string;
+  /** The name for Channel Integrity Key stored in the Client Key Vault */
+  channelIntegrityKeyName?: string;
+  /** The version of Channel Integrity Key stored in the Client Key Vault */
+  channelIntegrityKeyVersion?: string;
+  /** For changing or to initiate the resync to key-vault set the status to KeyVaultSyncPending, rest of the status will not be applicable. */
+  syncStatus?: KeyVaultSyncStatus | (string & {});
 }
-export const TriggersListByDataBoxEdgeDeviceRequest = /*@__PURE__*/ S.suspend(
+export const UpdateDeviceExtendedInformationRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       deviceName: S.String.pipe(T.Label()),
-      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+      clientSecretStoreId: S.optional(S.String),
+      clientSecretStoreUrl: S.optional(S.String),
+      channelIntegrityKeyName: S.optional(S.String),
+      channelIntegrityKeyVersion: S.optional(S.String),
+      syncStatus: S.optional(KeyVaultSyncStatus),
     }).pipe(
       T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/triggers",
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/updateExtendedInformation",
         code: 200,
         apiVersion: "2023-12-01",
       }),
     ),
 ).annotate({
-  identifier: "TriggersListByDataBoxEdgeDeviceRequest",
-}) as any as S.Schema<TriggersListByDataBoxEdgeDeviceRequest>;
+  identifier: "UpdateDeviceExtendedInformationRequest",
+}) as any as S.Schema<UpdateDeviceExtendedInformationRequest>;
 
-/** Trigger details. */
-export interface Trigger {
+/** The type of identity that created the resource. */
+export type UpdateDeviceExtendedInformationResponseSystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const UpdateDeviceExtendedInformationResponseSystemDataCreatedByType =
+  /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type UpdateDeviceExtendedInformationResponseSystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const UpdateDeviceExtendedInformationResponseSystemDataLastModifiedByType =
+  /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface UpdateDeviceExtendedInformationResponseSystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: UpdateDeviceExtendedInformationResponseSystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: UpdateDeviceExtendedInformationResponseSystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const UpdateDeviceExtendedInformationResponseSystemData =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      createdBy: S.optional(S.String),
+      createdByType: S.optional(
+        UpdateDeviceExtendedInformationResponseSystemDataCreatedByType,
+      ),
+      createdAt: S.optional(S.String),
+      lastModifiedBy: S.optional(S.String),
+      lastModifiedByType: S.optional(
+        UpdateDeviceExtendedInformationResponseSystemDataLastModifiedByType,
+      ),
+      lastModifiedAt: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "UpdateDeviceExtendedInformationResponseSystemData",
+  }) as any as S.Schema<UpdateDeviceExtendedInformationResponseSystemData>;
+
+export interface UpdateDeviceExtendedInformationResponse {
+  /** The path ID that uniquely identifies the object. */
+  id?: string;
+  /** The object name. */
+  name?: string;
+  /** The hierarchical type of the object. */
+  type?: string;
+  /** The extended info properties. */
+  properties?: DataBoxEdgeDeviceExtendedInfoProperties;
+  /** Metadata pertaining to creation and last modification of the resource. */
+  systemData?: UpdateDeviceExtendedInformationResponseSystemData;
+}
+export const UpdateDeviceExtendedInformationResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      properties: S.optional(DataBoxEdgeDeviceExtendedInfoProperties),
+      systemData: S.optional(UpdateDeviceExtendedInformationResponseSystemData),
+    }),
+).annotate({
+  identifier: "UpdateDeviceExtendedInformationResponse",
+}) as any as S.Schema<UpdateDeviceExtendedInformationResponse>;
+
+export interface UpdateDiagnosticSettingsDiagnosticProactiveLogCollectionSettingsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The device name. */
+  deviceName: string;
+  /** Properties of the diagnostic proactive log collection settings. */
+  properties: ProactiveLogCollectionSettingsProperties;
+}
+export const UpdateDiagnosticSettingsDiagnosticProactiveLogCollectionSettingsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      deviceName: S.String.pipe(T.Label()),
+      properties: ProactiveLogCollectionSettingsProperties,
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/diagnosticProactiveLogCollectionSettings/default",
+        code: 200,
+        apiVersion: "2023-12-01",
+      }),
+    ),
+  ).annotate({
+    identifier:
+      "UpdateDiagnosticSettingsDiagnosticProactiveLogCollectionSettingsRequest",
+  }) as any as S.Schema<UpdateDiagnosticSettingsDiagnosticProactiveLogCollectionSettingsRequest>;
+
+export interface UpdateDiagnosticSettingsDiagnosticProactiveLogCollectionSettingsResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -6702,42 +6767,160 @@ export interface Trigger {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
-  /** Trigger Kind. */
-  kind: TriggerEventType;
+  /** Properties of the diagnostic proactive log collection settings. */
+  properties: ProactiveLogCollectionSettingsProperties;
 }
-export const Trigger = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    kind: TriggerEventType,
-  }),
-).annotate({ identifier: "Trigger" }) as any as S.Schema<Trigger>;
+export const UpdateDiagnosticSettingsDiagnosticProactiveLogCollectionSettingsResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: ProactiveLogCollectionSettingsProperties,
+    }),
+  ).annotate({
+    identifier:
+      "UpdateDiagnosticSettingsDiagnosticProactiveLogCollectionSettingsResponse",
+  }) as any as S.Schema<UpdateDiagnosticSettingsDiagnosticProactiveLogCollectionSettingsResponse>;
 
-/** The Trigger items on this page */
-export type TriggerListValueList = Array<Trigger>;
-export const TriggerListValueList = /*@__PURE__*/ S.Array(
-  Trigger,
-) as any as S.Schema<TriggerListValueList>;
-
-/** Collection of all trigger on the data box edge device. */
-export interface TriggerList {
-  /** The Trigger items on this page */
-  value: TriggerListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
+export interface UpdateDiagnosticSettingsDiagnosticRemoteSupportSettingsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The device name. */
+  deviceName: string;
+  /** Properties of the remote support settings. */
+  properties: DiagnosticRemoteSupportSettingsProperties;
 }
-export const TriggerList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: TriggerListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "TriggerList" }) as any as S.Schema<TriggerList>;
+export const UpdateDiagnosticSettingsDiagnosticRemoteSupportSettingsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      deviceName: S.String.pipe(T.Label()),
+      properties: DiagnosticRemoteSupportSettingsProperties,
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/diagnosticRemoteSupportSettings/default",
+        code: 200,
+        apiVersion: "2023-12-01",
+      }),
+    ),
+  ).annotate({
+    identifier:
+      "UpdateDiagnosticSettingsDiagnosticRemoteSupportSettingsRequest",
+  }) as any as S.Schema<UpdateDiagnosticSettingsDiagnosticRemoteSupportSettingsRequest>;
 
-/** Type of the user. */
-export type UserType = "Share" | "LocalManagement" | "ARM";
-export const UserType = /*@__PURE__*/ S.String;
+export interface UpdateDiagnosticSettingsDiagnosticRemoteSupportSettingsResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of the remote support settings. */
+  properties: DiagnosticRemoteSupportSettingsProperties;
+}
+export const UpdateDiagnosticSettingsDiagnosticRemoteSupportSettingsResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: DiagnosticRemoteSupportSettingsProperties,
+    }),
+  ).annotate({
+    identifier:
+      "UpdateDiagnosticSettingsDiagnosticRemoteSupportSettingsResponse",
+  }) as any as S.Schema<UpdateDiagnosticSettingsDiagnosticRemoteSupportSettingsResponse>;
+
+/** The authentication type. */
+export type AuthenticationType = "Invalid" | "AzureActiveDirectory";
+export const AuthenticationType = /*@__PURE__*/ S.String;
+
+/** Raw Certificate Data. */
+export interface RawCertificateData {
+  /** The authentication type. */
+  authenticationType?: AuthenticationType | (string & {});
+  /** The base64 encoded certificate raw data. */
+  certificate: string;
+}
+export const RawCertificateData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    authenticationType: S.optional(AuthenticationType),
+    certificate: S.String,
+  }),
+).annotate({
+  identifier: "RawCertificateData",
+}) as any as S.Schema<RawCertificateData>;
+
+export interface UploadDeviceCertificateRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The device name. */
+  deviceName: string;
+  /** The Base 64 encoded certificate raw data. */
+  properties: RawCertificateData;
+}
+export const UploadDeviceCertificateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    deviceName: S.String.pipe(T.Label()),
+    properties: RawCertificateData,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/uploadCertificate",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "UploadDeviceCertificateRequest",
+}) as any as S.Schema<UploadDeviceCertificateRequest>;
+
+/** The upload registration certificate response. */
+export interface UploadCertificateResponse {
+  /** Specifies authentication type. */
+  authType?: AuthenticationType;
+  /** The resource ID of the Data Box Edge/Gateway device. */
+  resourceId?: string;
+  /** Azure Active Directory tenant authority. */
+  aadAuthority?: string;
+  /** Azure Active Directory tenant ID. */
+  aadTenantId?: string;
+  /** Azure Active Directory service principal client ID. */
+  servicePrincipalClientId?: string;
+  /** Azure Active Directory service principal object ID. */
+  servicePrincipalObjectId?: string;
+  /** The azure management endpoint audience. */
+  azureManagementEndpointAudience?: string;
+  /** Identifier of the target resource that is the recipient of the requested token. */
+  aadAudience?: string;
+}
+export const UploadCertificateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    authType: S.optional(AuthenticationType),
+    resourceId: S.optional(S.String),
+    aadAuthority: S.optional(S.String),
+    aadTenantId: S.optional(S.String),
+    servicePrincipalClientId: S.optional(S.String),
+    servicePrincipalObjectId: S.optional(S.String),
+    azureManagementEndpointAudience: S.optional(S.String),
+    aadAudience: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "UploadCertificateResponse",
+}) as any as S.Schema<UploadCertificateResponse>;
 
 /** The user properties. */
 export interface UserPropertiesInput {
@@ -6786,45 +6969,6 @@ export const UsersCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "UsersCreateOrUpdateRequest",
 }) as any as S.Schema<UsersCreateOrUpdateRequest>;
 
-/** Specifies the mapping between this particular user and the type of access he has on shares on this device. */
-export interface ShareAccessRight {
-  /** The share ID. */
-  shareId: string;
-  /** Type of access to be allowed on the share for this user. */
-  accessType: ShareAccessType;
-}
-export const ShareAccessRight = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    shareId: S.String,
-    accessType: ShareAccessType,
-  }),
-).annotate({
-  identifier: "ShareAccessRight",
-}) as any as S.Schema<ShareAccessRight>;
-
-/** List of shares that the user has rights on. This field should not be specified during user creation. */
-export type UserPropertiesShareAccessRightsList = Array<ShareAccessRight>;
-export const UserPropertiesShareAccessRightsList = /*@__PURE__*/ S.Array(
-  ShareAccessRight,
-) as any as S.Schema<UserPropertiesShareAccessRightsList>;
-
-/** The user properties. */
-export interface UserProperties {
-  /** The password details. */
-  encryptedPassword?: AsymmetricEncryptedSecret;
-  /** List of shares that the user has rights on. This field should not be specified during user creation. */
-  shareAccessRights?: UserPropertiesShareAccessRightsList;
-  /** Type of the user. */
-  userType: UserType;
-}
-export const UserProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    encryptedPassword: S.optional(AsymmetricEncryptedSecret),
-    shareAccessRights: S.optional(UserPropertiesShareAccessRightsList),
-    userType: UserType,
-  }),
-).annotate({ identifier: "UserProperties" }) as any as S.Schema<UserProperties>;
-
 export interface UsersCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
@@ -6849,164 +6993,6 @@ export const UsersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UsersCreateOrUpdateResponse",
 }) as any as S.Schema<UsersCreateOrUpdateResponse>;
 
-export interface UsersDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The device name. */
-  deviceName: string;
-  /** The user name. */
-  name: string;
-}
-export const UsersDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    deviceName: S.String.pipe(T.Label()),
-    name: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/users/{name}",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "UsersDeleteRequest",
-}) as any as S.Schema<UsersDeleteRequest>;
-
-export interface UsersDeleteResponse {}
-export const UsersDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "UsersDeleteResponse",
-}) as any as S.Schema<UsersDeleteResponse>;
-
-export interface UsersGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The device name. */
-  deviceName: string;
-  /** The user name. */
-  name: string;
-}
-export const UsersGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    deviceName: S.String.pipe(T.Label()),
-    name: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/users/{name}",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "UsersGetRequest",
-}) as any as S.Schema<UsersGetRequest>;
-
-export interface UsersGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The storage account credential properties. */
-  properties: UserProperties;
-}
-export const UsersGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: UserProperties,
-  }),
-).annotate({
-  identifier: "UsersGetResponse",
-}) as any as S.Schema<UsersGetResponse>;
-
-export interface UsersListByDataBoxEdgeDeviceRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The device name. */
-  deviceName: string;
-  /** Specify $filter='Type eq <type>' to filter on user type property */
-  _filter?: string;
-}
-export const UsersListByDataBoxEdgeDeviceRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    deviceName: S.String.pipe(T.Label()),
-    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{deviceName}/users",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "UsersListByDataBoxEdgeDeviceRequest",
-}) as any as S.Schema<UsersListByDataBoxEdgeDeviceRequest>;
-
-/** Represents a user who has access to one or more shares on the Data Box Edge/Gateway device. */
-export interface User {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The storage account credential properties. */
-  properties: UserProperties;
-}
-export const User = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: UserProperties,
-  }),
-).annotate({ identifier: "User" }) as any as S.Schema<User>;
-
-/** The User items on this page */
-export type UserListValueList = Array<User>;
-export const UserListValueList = /*@__PURE__*/ S.Array(
-  User,
-) as any as S.Schema<UserListValueList>;
-
-/** Collection of users. */
-export interface UserList {
-  /** The User items on this page */
-  value: UserListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const UserList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: UserListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "UserList" }) as any as S.Schema<UserList>;
-
 export type AddonsCreateOrUpdateError = AzureOpError;
 /** Create or update a addon. */
 export const AddonsCreateOrUpdate: API.OperationMethod<
@@ -7017,96 +7003,6 @@ export const AddonsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: AddonsCreateOrUpdateRequest,
   output: AddonsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AddonsDeleteError = AzureOpError;
-/** Deletes the addon on the device. */
-export const AddonsDelete: API.OperationMethod<
-  AddonsDeleteRequest,
-  AddonsDeleteResponse,
-  AddonsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AddonsDeleteRequest,
-  output: AddonsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AddonsGetError = AzureOpError;
-/** Gets a specific addon by name. */
-export const AddonsGet: API.OperationMethod<
-  AddonsGetRequest,
-  AddonsGetResponse,
-  AddonsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AddonsGetRequest,
-  output: AddonsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AddonsListByRoleError = AzureOpError;
-/** Lists all the addons configured in the role. */
-export const AddonsListByRole: API.OperationMethod<
-  AddonsListByRoleRequest,
-  AddonList,
-  AddonsListByRoleError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AddonsListByRoleRequest,
-  output: AddonList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AlertsGetError = AzureOpError;
-/** Gets an alert by name. Gets an alert by name. */
-export const AlertsGet: API.OperationMethod<
-  AlertsGetRequest,
-  AlertsGetResponse,
-  AlertsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AlertsGetRequest,
-  output: AlertsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AlertsListByDataBoxEdgeDeviceError = AzureOpError;
-/** Gets all the alerts for a Data Box Edge/Data Box Gateway device. */
-export const AlertsListByDataBoxEdgeDevice: API.OperationMethod<
-  AlertsListByDataBoxEdgeDeviceRequest,
-  AlertList,
-  AlertsListByDataBoxEdgeDeviceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AlertsListByDataBoxEdgeDeviceRequest,
-  output: AlertList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AvailableSkusListError = AzureOpError;
-/** List all the available Skus and information related to them. List all the available Skus and information related to them. */
-export const AvailableSkusList: API.OperationMethod<
-  AvailableSkusListRequest,
-  DataBoxEdgeSkuList,
-  AvailableSkusListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AvailableSkusListRequest,
-  output: DataBoxEdgeSkuList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -7127,46 +7023,17 @@ export const BandwidthSchedulesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type BandwidthSchedulesDeleteError = AzureOpError;
-/** Deletes the specified bandwidth schedule. */
-export const BandwidthSchedulesDelete: API.OperationMethod<
-  BandwidthSchedulesDeleteRequest,
-  BandwidthSchedulesDeleteResponse,
-  BandwidthSchedulesDeleteError,
+export type CheckDeviceCapacityCheckResourceCreationFeasibilityError =
+  AzureOpError;
+/** Posts the device capacity request info to check feasibility. */
+export const CheckDeviceCapacityCheckResourceCreationFeasibility: API.OperationMethod<
+  CheckDeviceCapacityCheckResourceCreationFeasibilityRequest,
+  CheckDeviceCapacityCheckResourceCreationFeasibilityResponse,
+  CheckDeviceCapacityCheckResourceCreationFeasibilityError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: BandwidthSchedulesDeleteRequest,
-  output: BandwidthSchedulesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BandwidthSchedulesGetError = AzureOpError;
-/** Gets the properties of the specified bandwidth schedule. */
-export const BandwidthSchedulesGet: API.OperationMethod<
-  BandwidthSchedulesGetRequest,
-  BandwidthSchedulesGetResponse,
-  BandwidthSchedulesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BandwidthSchedulesGetRequest,
-  output: BandwidthSchedulesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BandwidthSchedulesListByDataBoxEdgeDeviceError = AzureOpError;
-/** Gets all the bandwidth schedules for a Data Box Edge/Data Box Gateway device. */
-export const BandwidthSchedulesListByDataBoxEdgeDevice: API.OperationMethod<
-  BandwidthSchedulesListByDataBoxEdgeDeviceRequest,
-  BandwidthSchedulesList,
-  BandwidthSchedulesListByDataBoxEdgeDeviceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BandwidthSchedulesListByDataBoxEdgeDeviceRequest,
-  output: BandwidthSchedulesList,
+  input: CheckDeviceCapacityCheckResourceCreationFeasibilityRequest,
+  output: CheckDeviceCapacityCheckResourceCreationFeasibilityResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -7187,92 +7054,181 @@ export const ContainersCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ContainersDeleteError = AzureOpError;
+export type DeleteAddonError = AzureOpError;
+/** Deletes the addon on the device. */
+export const DeleteAddon: API.OperationMethod<
+  DeleteAddonRequest,
+  DeleteAddonResponse,
+  DeleteAddonError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteAddonRequest,
+  output: DeleteAddonResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteBandwidthScheduleError = AzureOpError;
+/** Deletes the specified bandwidth schedule. */
+export const DeleteBandwidthSchedule: API.OperationMethod<
+  DeleteBandwidthScheduleRequest,
+  DeleteBandwidthScheduleResponse,
+  DeleteBandwidthScheduleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteBandwidthScheduleRequest,
+  output: DeleteBandwidthScheduleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteContainerError = AzureOpError;
 /** Deletes the container on the Data Box Edge/Data Box Gateway device. */
-export const ContainersDelete: API.OperationMethod<
-  ContainersDeleteRequest,
-  ContainersDeleteResponse,
-  ContainersDeleteError,
+export const DeleteContainer: API.OperationMethod<
+  DeleteContainerRequest,
+  DeleteContainerResponse,
+  DeleteContainerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ContainersDeleteRequest,
-  output: ContainersDeleteResponse,
+  input: DeleteContainerRequest,
+  output: DeleteContainerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ContainersGetError = AzureOpError;
-/** Gets a container by name. Gets a container by name. */
-export const ContainersGet: API.OperationMethod<
-  ContainersGetRequest,
-  ContainersGetResponse,
-  ContainersGetError,
+export type DeleteDeviceError = AzureOpError;
+/** Deletes the Data Box Edge/Data Box Gateway device. */
+export const DeleteDevice: API.OperationMethod<
+  DeleteDeviceRequest,
+  DeleteDeviceResponse,
+  DeleteDeviceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ContainersGetRequest,
-  output: ContainersGetResponse,
+  input: DeleteDeviceRequest,
+  output: DeleteDeviceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ContainersListByStorageAccountError = AzureOpError;
-/** Lists all the containers of a storage Account in a Data Box Edge/Data Box Gateway device. Lists all the containers of a storage Account in a Data Box Edge/Data Box Gateway device. */
-export const ContainersListByStorageAccount: API.OperationMethod<
-  ContainersListByStorageAccountRequest,
-  ContainerList,
-  ContainersListByStorageAccountError,
+export type DeleteMonitoringConfigError = AzureOpError;
+/** deletes a new metric configuration for a role. deletes a new metric configuration for a role. */
+export const DeleteMonitoringConfig: API.OperationMethod<
+  DeleteMonitoringConfigRequest,
+  DeleteMonitoringConfigResponse,
+  DeleteMonitoringConfigError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ContainersListByStorageAccountRequest,
-  output: ContainerList,
+  input: DeleteMonitoringConfigRequest,
+  output: DeleteMonitoringConfigResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ContainersRefreshError = AzureOpError;
-/** Refreshes the container metadata with the data from the cloud. Refreshes the container metadata with the data from the cloud. */
-export const ContainersRefresh: API.OperationMethod<
-  ContainersRefreshRequest,
-  ContainersRefreshResponse,
-  ContainersRefreshError,
+export type DeleteOrderError = AzureOpError;
+/** Deletes the order related to the device. Deletes the order related to the device. */
+export const DeleteOrder: API.OperationMethod<
+  DeleteOrderRequest,
+  DeleteOrderResponse,
+  DeleteOrderError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ContainersRefreshRequest,
-  output: ContainersRefreshResponse,
+  input: DeleteOrderRequest,
+  output: DeleteOrderResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeviceCapacityCheckCheckResourceCreationFeasibilityError =
-  AzureOpError;
-/** Posts the device capacity request info to check feasibility. */
-export const DeviceCapacityCheckCheckResourceCreationFeasibility: API.OperationMethod<
-  DeviceCapacityCheckCheckResourceCreationFeasibilityRequest,
-  DeviceCapacityCheckCheckResourceCreationFeasibilityResponse,
-  DeviceCapacityCheckCheckResourceCreationFeasibilityError,
+export type DeleteRoleError = AzureOpError;
+/** Deletes the role on the device. */
+export const DeleteRole: API.OperationMethod<
+  DeleteRoleRequest,
+  DeleteRoleResponse,
+  DeleteRoleError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeviceCapacityCheckCheckResourceCreationFeasibilityRequest,
-  output: DeviceCapacityCheckCheckResourceCreationFeasibilityResponse,
+  input: DeleteRoleRequest,
+  output: DeleteRoleResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeviceCapacityInfoGetDeviceCapacityInfoError = AzureOpError;
-/** Gets the properties of the specified device capacity info. */
-export const DeviceCapacityInfoGetDeviceCapacityInfo: API.OperationMethod<
-  DeviceCapacityInfoGetDeviceCapacityInfoRequest,
-  DeviceCapacityInfoGetDeviceCapacityInfoResponse,
-  DeviceCapacityInfoGetDeviceCapacityInfoError,
+export type DeleteShareError = AzureOpError;
+/** Deletes the share on the Data Box Edge/Data Box Gateway device. */
+export const DeleteShare: API.OperationMethod<
+  DeleteShareRequest,
+  DeleteShareResponse,
+  DeleteShareError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeviceCapacityInfoGetDeviceCapacityInfoRequest,
-  output: DeviceCapacityInfoGetDeviceCapacityInfoResponse,
+  input: DeleteShareRequest,
+  output: DeleteShareResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteStorageAccountError = AzureOpError;
+/** Deletes the StorageAccount on the Data Box Edge/Data Box Gateway device. */
+export const DeleteStorageAccount: API.OperationMethod<
+  DeleteStorageAccountRequest,
+  DeleteStorageAccountResponse,
+  DeleteStorageAccountError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteStorageAccountRequest,
+  output: DeleteStorageAccountResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteStorageAccountCredentialsError = AzureOpError;
+/** Deletes the storage account credential. */
+export const DeleteStorageAccountCredentials: API.OperationMethod<
+  DeleteStorageAccountCredentialsRequest,
+  DeleteStorageAccountCredentialsResponse,
+  DeleteStorageAccountCredentialsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteStorageAccountCredentialsRequest,
+  output: DeleteStorageAccountCredentialsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteTriggerError = AzureOpError;
+/** Deletes the trigger on the gateway device. */
+export const DeleteTrigger: API.OperationMethod<
+  DeleteTriggerRequest,
+  DeleteTriggerResponse,
+  DeleteTriggerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteTriggerRequest,
+  output: DeleteTriggerResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteUserError = AzureOpError;
+/** Deletes the user on a databox edge/gateway device. */
+export const DeleteUser: API.OperationMethod<
+  DeleteUserRequest,
+  DeleteUserResponse,
+  DeleteUserError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteUserRequest,
+  output: DeleteUserResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -7308,96 +7264,6 @@ export const DevicesCreateOrUpdateSecuritySettings: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DevicesDeleteError = AzureOpError;
-/** Deletes the Data Box Edge/Data Box Gateway device. */
-export const DevicesDelete: API.OperationMethod<
-  DevicesDeleteRequest,
-  DevicesDeleteResponse,
-  DevicesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DevicesDeleteRequest,
-  output: DevicesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DevicesDownloadUpdatesError = AzureOpError;
-/** Downloads the updates on a Data Box Edge/Data Box Gateway device. Downloads the updates on a Data Box Edge/Data Box Gateway device. */
-export const DevicesDownloadUpdates: API.OperationMethod<
-  DevicesDownloadUpdatesRequest,
-  DevicesDownloadUpdatesResponse,
-  DevicesDownloadUpdatesError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DevicesDownloadUpdatesRequest,
-  output: DevicesDownloadUpdatesResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DevicesGenerateCertificateError = AzureOpError;
-/** Generates certificate for activation key. */
-export const DevicesGenerateCertificate: API.OperationMethod<
-  DevicesGenerateCertificateRequest,
-  GenerateCertResponse,
-  DevicesGenerateCertificateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DevicesGenerateCertificateRequest,
-  output: GenerateCertResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DevicesGetError = AzureOpError;
-/** Gets the properties of the Data Box Edge/Data Box Gateway device. */
-export const DevicesGet: API.OperationMethod<
-  DevicesGetRequest,
-  DevicesGetResponse,
-  DevicesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DevicesGetRequest,
-  output: DevicesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DevicesGetExtendedInformationError = AzureOpError;
-/** Gets additional information for the specified Azure Stack Edge/Data Box Gateway device. */
-export const DevicesGetExtendedInformation: API.OperationMethod<
-  DevicesGetExtendedInformationRequest,
-  DevicesGetExtendedInformationResponse,
-  DevicesGetExtendedInformationError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DevicesGetExtendedInformationRequest,
-  output: DevicesGetExtendedInformationResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DevicesGetNetworkSettingsError = AzureOpError;
-/** Gets the network settings of the specified Data Box Edge/Data Box Gateway device. */
-export const DevicesGetNetworkSettings: API.OperationMethod<
-  DevicesGetNetworkSettingsRequest,
-  DevicesGetNetworkSettingsResponse,
-  DevicesGetNetworkSettingsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DevicesGetNetworkSettingsRequest,
-  output: DevicesGetNetworkSettingsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type DevicesGetUpdateSummaryError = AzureOpError;
 /** Gets information about the availability of updates based on the last scan of the device. It also gets information about any ongoing download or install jobs on the device. Gets information about the availability of updates based on the last scan of the device. It also gets information about any ongoing download or install jobs on the device. */
 export const DevicesGetUpdateSummary: API.OperationMethod<
@@ -7408,51 +7274,6 @@ export const DevicesGetUpdateSummary: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DevicesGetUpdateSummaryRequest,
   output: DevicesGetUpdateSummaryResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DevicesInstallUpdatesError = AzureOpError;
-/** Installs the updates on the Data Box Edge/Data Box Gateway device. Installs the updates on the Data Box Edge/Data Box Gateway device. */
-export const DevicesInstallUpdates: API.OperationMethod<
-  DevicesInstallUpdatesRequest,
-  DevicesInstallUpdatesResponse,
-  DevicesInstallUpdatesError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DevicesInstallUpdatesRequest,
-  output: DevicesInstallUpdatesResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DevicesListByResourceGroupError = AzureOpError;
-/** Gets all the Data Box Edge/Data Box Gateway devices in a resource group. */
-export const DevicesListByResourceGroup: API.OperationMethod<
-  DevicesListByResourceGroupRequest,
-  DataBoxEdgeDeviceList,
-  DevicesListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DevicesListByResourceGroupRequest,
-  output: DataBoxEdgeDeviceList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DevicesListBySubscriptionError = AzureOpError;
-/** Gets all the Data Box Edge/Data Box Gateway devices in a subscription. */
-export const DevicesListBySubscription: API.OperationMethod<
-  DevicesListBySubscriptionRequest,
-  DataBoxEdgeDeviceList,
-  DevicesListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DevicesListBySubscriptionRequest,
-  output: DataBoxEdgeDeviceList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -7473,127 +7294,619 @@ export const DevicesScanForUpdates: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DevicesUpdateError = AzureOpError;
-/** Modifies a Data Box Edge/Data Box Gateway resource. */
-export const DevicesUpdate: API.OperationMethod<
-  DevicesUpdateRequest,
-  DevicesUpdateResponse,
-  DevicesUpdateError,
+export type DownloadDeviceUpdatesError = AzureOpError;
+/** Downloads the updates on a Data Box Edge/Data Box Gateway device. Downloads the updates on a Data Box Edge/Data Box Gateway device. */
+export const DownloadDeviceUpdates: API.OperationMethod<
+  DownloadDeviceUpdatesRequest,
+  DownloadDeviceUpdatesResponse,
+  DownloadDeviceUpdatesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DevicesUpdateRequest,
-  output: DevicesUpdateResponse,
+  input: DownloadDeviceUpdatesRequest,
+  output: DownloadDeviceUpdatesResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DevicesUpdateExtendedInformationError = AzureOpError;
-/** Gets additional information for the specified Data Box Edge/Data Box Gateway device. */
-export const DevicesUpdateExtendedInformation: API.OperationMethod<
-  DevicesUpdateExtendedInformationRequest,
-  DevicesUpdateExtendedInformationResponse,
-  DevicesUpdateExtendedInformationError,
+export type GenerateDeviceCertificateError = AzureOpError;
+/** Generates certificate for activation key. */
+export const GenerateDeviceCertificate: API.OperationMethod<
+  GenerateDeviceCertificateRequest,
+  GenerateCertResponse,
+  GenerateDeviceCertificateError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DevicesUpdateExtendedInformationRequest,
-  output: DevicesUpdateExtendedInformationResponse,
+  input: GenerateDeviceCertificateRequest,
+  output: GenerateCertResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DevicesUploadCertificateError = AzureOpError;
-/** Uploads registration certificate for the device. */
-export const DevicesUploadCertificate: API.OperationMethod<
-  DevicesUploadCertificateRequest,
-  UploadCertificateResponse,
-  DevicesUploadCertificateError,
+export type GetAddonError = AzureOpError;
+/** Gets a specific addon by name. */
+export const GetAddon: API.OperationMethod<
+  GetAddonRequest,
+  GetAddonResponse,
+  GetAddonError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DevicesUploadCertificateRequest,
-  output: UploadCertificateResponse,
+  input: GetAddonRequest,
+  output: GetAddonResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DiagnosticSettingsGetDiagnosticProactiveLogCollectionSettingsError =
+export type GetAlertError = AzureOpError;
+/** Gets an alert by name. Gets an alert by name. */
+export const GetAlert: API.OperationMethod<
+  GetAlertRequest,
+  GetAlertResponse,
+  GetAlertError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAlertRequest,
+  output: GetAlertResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBandwidthScheduleError = AzureOpError;
+/** Gets the properties of the specified bandwidth schedule. */
+export const GetBandwidthSchedule: API.OperationMethod<
+  GetBandwidthScheduleRequest,
+  GetBandwidthScheduleResponse,
+  GetBandwidthScheduleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBandwidthScheduleRequest,
+  output: GetBandwidthScheduleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetContainerError = AzureOpError;
+/** Gets a container by name. Gets a container by name. */
+export const GetContainer: API.OperationMethod<
+  GetContainerRequest,
+  GetContainerResponse,
+  GetContainerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetContainerRequest,
+  output: GetContainerResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDeviceError = AzureOpError;
+/** Gets the properties of the Data Box Edge/Data Box Gateway device. */
+export const GetDevice: API.OperationMethod<
+  GetDeviceRequest,
+  GetDeviceResponse,
+  GetDeviceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDeviceRequest,
+  output: GetDeviceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDeviceCapacityInfoDeviceCapacityInfoError = AzureOpError;
+/** Gets the properties of the specified device capacity info. */
+export const GetDeviceCapacityInfoDeviceCapacityInfo: API.OperationMethod<
+  GetDeviceCapacityInfoDeviceCapacityInfoRequest,
+  GetDeviceCapacityInfoDeviceCapacityInfoResponse,
+  GetDeviceCapacityInfoDeviceCapacityInfoError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDeviceCapacityInfoDeviceCapacityInfoRequest,
+  output: GetDeviceCapacityInfoDeviceCapacityInfoResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDeviceExtendedInformationError = AzureOpError;
+/** Gets additional information for the specified Azure Stack Edge/Data Box Gateway device. */
+export const GetDeviceExtendedInformation: API.OperationMethod<
+  GetDeviceExtendedInformationRequest,
+  GetDeviceExtendedInformationResponse,
+  GetDeviceExtendedInformationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDeviceExtendedInformationRequest,
+  output: GetDeviceExtendedInformationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDeviceNetworkSettingsError = AzureOpError;
+/** Gets the network settings of the specified Data Box Edge/Data Box Gateway device. */
+export const GetDeviceNetworkSettings: API.OperationMethod<
+  GetDeviceNetworkSettingsRequest,
+  GetDeviceNetworkSettingsResponse,
+  GetDeviceNetworkSettingsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDeviceNetworkSettingsRequest,
+  output: GetDeviceNetworkSettingsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDiagnosticSettingsDiagnosticProactiveLogCollectionSettingsError =
   AzureOpError;
 /** Gets the proactive log collection settings of the specified Data Box Edge/Data Box Gateway device. */
-export const DiagnosticSettingsGetDiagnosticProactiveLogCollectionSettings: API.OperationMethod<
-  DiagnosticSettingsGetDiagnosticProactiveLogCollectionSettingsRequest,
-  DiagnosticSettingsGetDiagnosticProactiveLogCollectionSettingsResponse,
-  DiagnosticSettingsGetDiagnosticProactiveLogCollectionSettingsError,
+export const GetDiagnosticSettingsDiagnosticProactiveLogCollectionSettings: API.OperationMethod<
+  GetDiagnosticSettingsDiagnosticProactiveLogCollectionSettingsRequest,
+  GetDiagnosticSettingsDiagnosticProactiveLogCollectionSettingsResponse,
+  GetDiagnosticSettingsDiagnosticProactiveLogCollectionSettingsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DiagnosticSettingsGetDiagnosticProactiveLogCollectionSettingsRequest,
-  output: DiagnosticSettingsGetDiagnosticProactiveLogCollectionSettingsResponse,
+  input: GetDiagnosticSettingsDiagnosticProactiveLogCollectionSettingsRequest,
+  output: GetDiagnosticSettingsDiagnosticProactiveLogCollectionSettingsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DiagnosticSettingsGetDiagnosticRemoteSupportSettingsError =
+export type GetDiagnosticSettingsDiagnosticRemoteSupportSettingsError =
   AzureOpError;
 /** Gets the diagnostic remote support settings of the specified Data Box Edge/Data Box Gateway device. */
-export const DiagnosticSettingsGetDiagnosticRemoteSupportSettings: API.OperationMethod<
-  DiagnosticSettingsGetDiagnosticRemoteSupportSettingsRequest,
-  DiagnosticSettingsGetDiagnosticRemoteSupportSettingsResponse,
-  DiagnosticSettingsGetDiagnosticRemoteSupportSettingsError,
+export const GetDiagnosticSettingsDiagnosticRemoteSupportSettings: API.OperationMethod<
+  GetDiagnosticSettingsDiagnosticRemoteSupportSettingsRequest,
+  GetDiagnosticSettingsDiagnosticRemoteSupportSettingsResponse,
+  GetDiagnosticSettingsDiagnosticRemoteSupportSettingsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DiagnosticSettingsGetDiagnosticRemoteSupportSettingsRequest,
-  output: DiagnosticSettingsGetDiagnosticRemoteSupportSettingsResponse,
+  input: GetDiagnosticSettingsDiagnosticRemoteSupportSettingsRequest,
+  output: GetDiagnosticSettingsDiagnosticRemoteSupportSettingsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DiagnosticSettingsUpdateDiagnosticProactiveLogCollectionSettingsError =
-  AzureOpError;
-/** Updates the proactive log collection settings on a Data Box Edge/Data Box Gateway device. */
-export const DiagnosticSettingsUpdateDiagnosticProactiveLogCollectionSettings: API.OperationMethod<
-  DiagnosticSettingsUpdateDiagnosticProactiveLogCollectionSettingsRequest,
-  DiagnosticSettingsUpdateDiagnosticProactiveLogCollectionSettingsResponse,
-  DiagnosticSettingsUpdateDiagnosticProactiveLogCollectionSettingsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input:
-    DiagnosticSettingsUpdateDiagnosticProactiveLogCollectionSettingsRequest,
-  output:
-    DiagnosticSettingsUpdateDiagnosticProactiveLogCollectionSettingsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DiagnosticSettingsUpdateDiagnosticRemoteSupportSettingsError =
-  AzureOpError;
-/** Updates the diagnostic remote support settings on a Data Box Edge/Data Box Gateway device. */
-export const DiagnosticSettingsUpdateDiagnosticRemoteSupportSettings: API.OperationMethod<
-  DiagnosticSettingsUpdateDiagnosticRemoteSupportSettingsRequest,
-  DiagnosticSettingsUpdateDiagnosticRemoteSupportSettingsResponse,
-  DiagnosticSettingsUpdateDiagnosticRemoteSupportSettingsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DiagnosticSettingsUpdateDiagnosticRemoteSupportSettingsRequest,
-  output: DiagnosticSettingsUpdateDiagnosticRemoteSupportSettingsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type JobsGetError = AzureOpError;
+export type GetJobError = AzureOpError;
 /** Gets the details of a specified job on a Data Box Edge/Data Box Gateway device. Gets the details of a specified job on a Data Box Edge/Data Box Gateway device. */
-export const JobsGet: API.OperationMethod<
-  JobsGetRequest,
-  JobsGetResponse,
-  JobsGetError,
+export const GetJob: API.OperationMethod<
+  GetJobRequest,
+  GetJobResponse,
+  GetJobError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: JobsGetRequest,
-  output: JobsGetResponse,
+  input: GetJobRequest,
+  output: GetJobResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetMonitoringConfigError = AzureOpError;
+/** Gets a metric configuration of a role. Gets a metric configuration of a role. */
+export const GetMonitoringConfig: API.OperationMethod<
+  GetMonitoringConfigRequest,
+  GetMonitoringConfigResponse,
+  GetMonitoringConfigError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetMonitoringConfigRequest,
+  output: GetMonitoringConfigResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetOperationsStatusError = AzureOpError;
+/** Gets the details of a specified job on a Data Box Edge/Data Box Gateway device. Gets the details of a specified job on a Data Box Edge/Data Box Gateway device. */
+export const GetOperationsStatus: API.OperationMethod<
+  GetOperationsStatusRequest,
+  GetOperationsStatusResponse,
+  GetOperationsStatusError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetOperationsStatusRequest,
+  output: GetOperationsStatusResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetOrderError = AzureOpError;
+/** Gets a specific order by name. Gets a specific order by name. */
+export const GetOrder: API.OperationMethod<
+  GetOrderRequest,
+  GetOrderResponse,
+  GetOrderError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetOrderRequest,
+  output: GetOrderResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetRoleError = AzureOpError;
+/** Gets a specific role by name. */
+export const GetRole: API.OperationMethod<
+  GetRoleRequest,
+  GetRoleResponse,
+  GetRoleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetRoleRequest,
+  output: GetRoleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetShareError = AzureOpError;
+/** Gets a share by name. Gets a share by name. */
+export const GetShare: API.OperationMethod<
+  GetShareRequest,
+  GetShareResponse,
+  GetShareError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetShareRequest,
+  output: GetShareResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetStorageAccountError = AzureOpError;
+/** Gets a StorageAccount by name. Gets a StorageAccount by name. */
+export const GetStorageAccount: API.OperationMethod<
+  GetStorageAccountRequest,
+  GetStorageAccountResponse,
+  GetStorageAccountError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetStorageAccountRequest,
+  output: GetStorageAccountResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetStorageAccountCredentialsError = AzureOpError;
+/** Gets the properties of the specified storage account credential. */
+export const GetStorageAccountCredentials: API.OperationMethod<
+  GetStorageAccountCredentialsRequest,
+  GetStorageAccountCredentialsResponse,
+  GetStorageAccountCredentialsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetStorageAccountCredentialsRequest,
+  output: GetStorageAccountCredentialsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTriggerError = AzureOpError;
+/** Get a specific trigger by name. */
+export const GetTrigger: API.OperationMethod<
+  GetTriggerRequest,
+  GetTriggerResponse,
+  GetTriggerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTriggerRequest,
+  output: GetTriggerResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetUserError = AzureOpError;
+/** Gets the properties of the specified user. */
+export const GetUser: API.OperationMethod<
+  GetUserRequest,
+  GetUserResponse,
+  GetUserError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetUserRequest,
+  output: GetUserResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type InstallDeviceUpdatesError = AzureOpError;
+/** Installs the updates on the Data Box Edge/Data Box Gateway device. Installs the updates on the Data Box Edge/Data Box Gateway device. */
+export const InstallDeviceUpdates: API.OperationMethod<
+  InstallDeviceUpdatesRequest,
+  InstallDeviceUpdatesResponse,
+  InstallDeviceUpdatesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: InstallDeviceUpdatesRequest,
+  output: InstallDeviceUpdatesResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAddonByRoleError = AzureOpError;
+/** Lists all the addons configured in the role. */
+export const ListAddonByRole: API.OperationMethod<
+  ListAddonByRoleRequest,
+  AddonList,
+  ListAddonByRoleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAddonByRoleRequest,
+  output: AddonList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAlertByDataBoxEdgeDeviceError = AzureOpError;
+/** Gets all the alerts for a Data Box Edge/Data Box Gateway device. */
+export const ListAlertByDataBoxEdgeDevice: API.OperationMethod<
+  ListAlertByDataBoxEdgeDeviceRequest,
+  AlertList,
+  ListAlertByDataBoxEdgeDeviceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAlertByDataBoxEdgeDeviceRequest,
+  output: AlertList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAvailableSkusError = AzureOpError;
+/** List all the available Skus and information related to them. List all the available Skus and information related to them. */
+export const ListAvailableSkus: API.OperationMethod<
+  ListAvailableSkusRequest,
+  DataBoxEdgeSkuList,
+  ListAvailableSkusError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAvailableSkusRequest,
+  output: DataBoxEdgeSkuList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListBandwidthScheduleByDataBoxEdgeDeviceError = AzureOpError;
+/** Gets all the bandwidth schedules for a Data Box Edge/Data Box Gateway device. */
+export const ListBandwidthScheduleByDataBoxEdgeDevice: API.OperationMethod<
+  ListBandwidthScheduleByDataBoxEdgeDeviceRequest,
+  BandwidthSchedulesList,
+  ListBandwidthScheduleByDataBoxEdgeDeviceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListBandwidthScheduleByDataBoxEdgeDeviceRequest,
+  output: BandwidthSchedulesList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListContainerByStorageAccountError = AzureOpError;
+/** Lists all the containers of a storage Account in a Data Box Edge/Data Box Gateway device. Lists all the containers of a storage Account in a Data Box Edge/Data Box Gateway device. */
+export const ListContainerByStorageAccount: API.OperationMethod<
+  ListContainerByStorageAccountRequest,
+  ContainerList,
+  ListContainerByStorageAccountError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListContainerByStorageAccountRequest,
+  output: ContainerList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDeviceByResourceGroupError = AzureOpError;
+/** Gets all the Data Box Edge/Data Box Gateway devices in a resource group. */
+export const ListDeviceByResourceGroup: API.OperationMethod<
+  ListDeviceByResourceGroupRequest,
+  DataBoxEdgeDeviceList,
+  ListDeviceByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDeviceByResourceGroupRequest,
+  output: DataBoxEdgeDeviceList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDeviceBySubscriptionError = AzureOpError;
+/** Gets all the Data Box Edge/Data Box Gateway devices in a subscription. */
+export const ListDeviceBySubscription: API.OperationMethod<
+  ListDeviceBySubscriptionRequest,
+  DataBoxEdgeDeviceList,
+  ListDeviceBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDeviceBySubscriptionRequest,
+  output: DataBoxEdgeDeviceList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListMonitoringConfigError = AzureOpError;
+/** Lists metric configurations in a role. Lists metric configurations in a role. */
+export const ListMonitoringConfig: API.OperationMethod<
+  ListMonitoringConfigRequest,
+  MonitoringMetricConfigurationList,
+  ListMonitoringConfigError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListMonitoringConfigRequest,
+  output: MonitoringMetricConfigurationList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListNodeByDataBoxEdgeDeviceError = AzureOpError;
+/** Gets all the nodes currently configured under this Data Box Edge device */
+export const ListNodeByDataBoxEdgeDevice: API.OperationMethod<
+  ListNodeByDataBoxEdgeDeviceRequest,
+  NodeList,
+  ListNodeByDataBoxEdgeDeviceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListNodeByDataBoxEdgeDeviceRequest,
+  output: NodeList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOperationsError = AzureOpError;
+/** List all the supported operations. List the operations for the provider */
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  OperationsList,
+  ListOperationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOperationsRequest,
+  output: OperationsList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOrderByDataBoxEdgeDeviceError = AzureOpError;
+/** Lists all the orders related to a Data Box Edge/Data Box Gateway device. Lists all the orders related to a Data Box Edge/Data Box Gateway device. */
+export const ListOrderByDataBoxEdgeDevice: API.OperationMethod<
+  ListOrderByDataBoxEdgeDeviceRequest,
+  OrderList,
+  ListOrderByDataBoxEdgeDeviceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOrderByDataBoxEdgeDeviceRequest,
+  output: OrderList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOrderDCAccessCodeError = AzureOpError;
+/** Gets the DCAccess Code Gets the DCAccess Code */
+export const ListOrderDCAccessCode: API.OperationMethod<
+  ListOrderDCAccessCodeRequest,
+  DCAccessCode,
+  ListOrderDCAccessCodeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOrderDCAccessCodeRequest,
+  output: DCAccessCode,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListRoleByDataBoxEdgeDeviceError = AzureOpError;
+/** Lists all the roles configured in a Data Box Edge/Data Box Gateway device. */
+export const ListRoleByDataBoxEdgeDevice: API.OperationMethod<
+  ListRoleByDataBoxEdgeDeviceRequest,
+  RoleList,
+  ListRoleByDataBoxEdgeDeviceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListRoleByDataBoxEdgeDeviceRequest,
+  output: RoleList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListShareByDataBoxEdgeDeviceError = AzureOpError;
+/** Lists all the shares in a Data Box Edge/Data Box Gateway device. Lists all the shares in a Data Box Edge/Data Box Gateway device. */
+export const ListShareByDataBoxEdgeDevice: API.OperationMethod<
+  ListShareByDataBoxEdgeDeviceRequest,
+  ShareList,
+  ListShareByDataBoxEdgeDeviceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListShareByDataBoxEdgeDeviceRequest,
+  output: ShareList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListStorageAccountByDataBoxEdgeDeviceError = AzureOpError;
+/** Lists all the StorageAccounts in a Data Box Edge/Data Box Gateway device. Lists all the StorageAccounts in a Data Box Edge/Data Box Gateway device. */
+export const ListStorageAccountByDataBoxEdgeDevice: API.OperationMethod<
+  ListStorageAccountByDataBoxEdgeDeviceRequest,
+  StorageAccountList,
+  ListStorageAccountByDataBoxEdgeDeviceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListStorageAccountByDataBoxEdgeDeviceRequest,
+  output: StorageAccountList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListStorageAccountCredentialsByDataBoxEdgeDeviceError =
+  AzureOpError;
+/** Gets all the storage account credentials in a Data Box Edge/Data Box Gateway device. Gets all the storage account credentials in a Data Box Edge/Data Box Gateway device. */
+export const ListStorageAccountCredentialsByDataBoxEdgeDevice: API.OperationMethod<
+  ListStorageAccountCredentialsByDataBoxEdgeDeviceRequest,
+  StorageAccountCredentialList,
+  ListStorageAccountCredentialsByDataBoxEdgeDeviceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListStorageAccountCredentialsByDataBoxEdgeDeviceRequest,
+  output: StorageAccountCredentialList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListTriggerByDataBoxEdgeDeviceError = AzureOpError;
+/** Lists all the triggers configured in the device. */
+export const ListTriggerByDataBoxEdgeDevice: API.OperationMethod<
+  ListTriggerByDataBoxEdgeDeviceRequest,
+  TriggerList,
+  ListTriggerByDataBoxEdgeDeviceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListTriggerByDataBoxEdgeDeviceRequest,
+  output: TriggerList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListUserByDataBoxEdgeDeviceError = AzureOpError;
+/** Gets all the users registered on a Data Box Edge/Data Box Gateway device. */
+export const ListUserByDataBoxEdgeDevice: API.OperationMethod<
+  ListUserByDataBoxEdgeDeviceRequest,
+  UserList,
+  ListUserByDataBoxEdgeDeviceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListUserByDataBoxEdgeDeviceRequest,
+  output: UserList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -7614,96 +7927,6 @@ export const MonitoringConfigCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type MonitoringConfigDeleteError = AzureOpError;
-/** deletes a new metric configuration for a role. deletes a new metric configuration for a role. */
-export const MonitoringConfigDelete: API.OperationMethod<
-  MonitoringConfigDeleteRequest,
-  MonitoringConfigDeleteResponse,
-  MonitoringConfigDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MonitoringConfigDeleteRequest,
-  output: MonitoringConfigDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MonitoringConfigGetError = AzureOpError;
-/** Gets a metric configuration of a role. Gets a metric configuration of a role. */
-export const MonitoringConfigGet: API.OperationMethod<
-  MonitoringConfigGetRequest,
-  MonitoringConfigGetResponse,
-  MonitoringConfigGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MonitoringConfigGetRequest,
-  output: MonitoringConfigGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MonitoringConfigListError = AzureOpError;
-/** Lists metric configurations in a role. Lists metric configurations in a role. */
-export const MonitoringConfigList: API.OperationMethod<
-  MonitoringConfigListRequest,
-  MonitoringMetricConfigurationList,
-  MonitoringConfigListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MonitoringConfigListRequest,
-  output: MonitoringMetricConfigurationList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NodesListByDataBoxEdgeDeviceError = AzureOpError;
-/** Gets all the nodes currently configured under this Data Box Edge device */
-export const NodesListByDataBoxEdgeDevice: API.OperationMethod<
-  NodesListByDataBoxEdgeDeviceRequest,
-  NodeList,
-  NodesListByDataBoxEdgeDeviceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NodesListByDataBoxEdgeDeviceRequest,
-  output: NodeList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OperationsList2Error = AzureOpError;
-/** List all the supported operations. List the operations for the provider */
-export const OperationsList2: API.OperationMethod<
-  OperationsList2Request,
-  OperationsList,
-  OperationsList2Error,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OperationsList2Request,
-  output: OperationsList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OperationsStatusGetError = AzureOpError;
-/** Gets the details of a specified job on a Data Box Edge/Data Box Gateway device. Gets the details of a specified job on a Data Box Edge/Data Box Gateway device. */
-export const OperationsStatusGet: API.OperationMethod<
-  OperationsStatusGetRequest,
-  OperationsStatusGetResponse,
-  OperationsStatusGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OperationsStatusGetRequest,
-  output: OperationsStatusGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type OrdersCreateOrUpdateError = AzureOpError;
 /** Creates or updates an order. Creates or updates an order. */
 export const OrdersCreateOrUpdate: API.OperationMethod<
@@ -7719,61 +7942,31 @@ export const OrdersCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type OrdersDeleteError = AzureOpError;
-/** Deletes the order related to the device. Deletes the order related to the device. */
-export const OrdersDelete: API.OperationMethod<
-  OrdersDeleteRequest,
-  OrdersDeleteResponse,
-  OrdersDeleteError,
+export type RefreshContainerError = AzureOpError;
+/** Refreshes the container metadata with the data from the cloud. Refreshes the container metadata with the data from the cloud. */
+export const RefreshContainer: API.OperationMethod<
+  RefreshContainerRequest,
+  RefreshContainerResponse,
+  RefreshContainerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OrdersDeleteRequest,
-  output: OrdersDeleteResponse,
+  input: RefreshContainerRequest,
+  output: RefreshContainerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OrdersGetError = AzureOpError;
-/** Gets a specific order by name. Gets a specific order by name. */
-export const OrdersGet: API.OperationMethod<
-  OrdersGetRequest,
-  OrdersGetResponse,
-  OrdersGetError,
+export type RefreshShareError = AzureOpError;
+/** Refreshes the share metadata with the data from the cloud. Refreshes the share metadata with the data from the cloud. */
+export const RefreshShare: API.OperationMethod<
+  RefreshShareRequest,
+  RefreshShareResponse,
+  RefreshShareError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OrdersGetRequest,
-  output: OrdersGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OrdersListByDataBoxEdgeDeviceError = AzureOpError;
-/** Lists all the orders related to a Data Box Edge/Data Box Gateway device. Lists all the orders related to a Data Box Edge/Data Box Gateway device. */
-export const OrdersListByDataBoxEdgeDevice: API.OperationMethod<
-  OrdersListByDataBoxEdgeDeviceRequest,
-  OrderList,
-  OrdersListByDataBoxEdgeDeviceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OrdersListByDataBoxEdgeDeviceRequest,
-  output: OrderList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OrdersListDCAccessCodeError = AzureOpError;
-/** Gets the DCAccess Code Gets the DCAccess Code */
-export const OrdersListDCAccessCode: API.OperationMethod<
-  OrdersListDCAccessCodeRequest,
-  DCAccessCode,
-  OrdersListDCAccessCodeError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OrdersListDCAccessCodeRequest,
-  output: DCAccessCode,
+  input: RefreshShareRequest,
+  output: RefreshShareResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -7794,51 +7987,6 @@ export const RolesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type RolesDeleteError = AzureOpError;
-/** Deletes the role on the device. */
-export const RolesDelete: API.OperationMethod<
-  RolesDeleteRequest,
-  RolesDeleteResponse,
-  RolesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RolesDeleteRequest,
-  output: RolesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RolesGetError = AzureOpError;
-/** Gets a specific role by name. */
-export const RolesGet: API.OperationMethod<
-  RolesGetRequest,
-  RolesGetResponse,
-  RolesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RolesGetRequest,
-  output: RolesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RolesListByDataBoxEdgeDeviceError = AzureOpError;
-/** Lists all the roles configured in a Data Box Edge/Data Box Gateway device. */
-export const RolesListByDataBoxEdgeDevice: API.OperationMethod<
-  RolesListByDataBoxEdgeDeviceRequest,
-  RoleList,
-  RolesListByDataBoxEdgeDeviceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RolesListByDataBoxEdgeDeviceRequest,
-  output: RoleList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type SharesCreateOrUpdateError = AzureOpError;
 /** Creates a new share or updates an existing share on the device. Creates a new share or updates an existing share on the device. */
 export const SharesCreateOrUpdate: API.OperationMethod<
@@ -7849,66 +7997,6 @@ export const SharesCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: SharesCreateOrUpdateRequest,
   output: SharesCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SharesDeleteError = AzureOpError;
-/** Deletes the share on the Data Box Edge/Data Box Gateway device. */
-export const SharesDelete: API.OperationMethod<
-  SharesDeleteRequest,
-  SharesDeleteResponse,
-  SharesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SharesDeleteRequest,
-  output: SharesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SharesGetError = AzureOpError;
-/** Gets a share by name. Gets a share by name. */
-export const SharesGet: API.OperationMethod<
-  SharesGetRequest,
-  SharesGetResponse,
-  SharesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SharesGetRequest,
-  output: SharesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SharesListByDataBoxEdgeDeviceError = AzureOpError;
-/** Lists all the shares in a Data Box Edge/Data Box Gateway device. Lists all the shares in a Data Box Edge/Data Box Gateway device. */
-export const SharesListByDataBoxEdgeDevice: API.OperationMethod<
-  SharesListByDataBoxEdgeDeviceRequest,
-  ShareList,
-  SharesListByDataBoxEdgeDeviceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SharesListByDataBoxEdgeDeviceRequest,
-  output: ShareList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SharesRefreshError = AzureOpError;
-/** Refreshes the share metadata with the data from the cloud. Refreshes the share metadata with the data from the cloud. */
-export const SharesRefresh: API.OperationMethod<
-  SharesRefreshRequest,
-  SharesRefreshResponse,
-  SharesRefreshError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SharesRefreshRequest,
-  output: SharesRefreshResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -7929,52 +8017,6 @@ export const StorageAccountCredentialsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type StorageAccountCredentialsDeleteError = AzureOpError;
-/** Deletes the storage account credential. */
-export const StorageAccountCredentialsDelete: API.OperationMethod<
-  StorageAccountCredentialsDeleteRequest,
-  StorageAccountCredentialsDeleteResponse,
-  StorageAccountCredentialsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: StorageAccountCredentialsDeleteRequest,
-  output: StorageAccountCredentialsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type StorageAccountCredentialsGetError = AzureOpError;
-/** Gets the properties of the specified storage account credential. */
-export const StorageAccountCredentialsGet: API.OperationMethod<
-  StorageAccountCredentialsGetRequest,
-  StorageAccountCredentialsGetResponse,
-  StorageAccountCredentialsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: StorageAccountCredentialsGetRequest,
-  output: StorageAccountCredentialsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type StorageAccountCredentialsListByDataBoxEdgeDeviceError =
-  AzureOpError;
-/** Gets all the storage account credentials in a Data Box Edge/Data Box Gateway device. Gets all the storage account credentials in a Data Box Edge/Data Box Gateway device. */
-export const StorageAccountCredentialsListByDataBoxEdgeDevice: API.OperationMethod<
-  StorageAccountCredentialsListByDataBoxEdgeDeviceRequest,
-  StorageAccountCredentialList,
-  StorageAccountCredentialsListByDataBoxEdgeDeviceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: StorageAccountCredentialsListByDataBoxEdgeDeviceRequest,
-  output: StorageAccountCredentialList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type StorageAccountsCreateOrUpdateError = AzureOpError;
 /** Creates a new StorageAccount or updates an existing StorageAccount on the device. Creates a new StorageAccount or updates an existing StorageAccount on the device. */
 export const StorageAccountsCreateOrUpdate: API.OperationMethod<
@@ -7985,66 +8027,6 @@ export const StorageAccountsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: StorageAccountsCreateOrUpdateRequest,
   output: StorageAccountsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type StorageAccountsDeleteError = AzureOpError;
-/** Deletes the StorageAccount on the Data Box Edge/Data Box Gateway device. */
-export const StorageAccountsDelete: API.OperationMethod<
-  StorageAccountsDeleteRequest,
-  StorageAccountsDeleteResponse,
-  StorageAccountsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: StorageAccountsDeleteRequest,
-  output: StorageAccountsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type StorageAccountsGetError = AzureOpError;
-/** Gets a StorageAccount by name. Gets a StorageAccount by name. */
-export const StorageAccountsGet: API.OperationMethod<
-  StorageAccountsGetRequest,
-  StorageAccountsGetResponse,
-  StorageAccountsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: StorageAccountsGetRequest,
-  output: StorageAccountsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type StorageAccountsListByDataBoxEdgeDeviceError = AzureOpError;
-/** Lists all the StorageAccounts in a Data Box Edge/Data Box Gateway device. Lists all the StorageAccounts in a Data Box Edge/Data Box Gateway device. */
-export const StorageAccountsListByDataBoxEdgeDevice: API.OperationMethod<
-  StorageAccountsListByDataBoxEdgeDeviceRequest,
-  StorageAccountList,
-  StorageAccountsListByDataBoxEdgeDeviceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: StorageAccountsListByDataBoxEdgeDeviceRequest,
-  output: StorageAccountList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SupportPackagesTriggerSupportPackageError = AzureOpError;
-/** Triggers support package on the device Triggers support package on the device */
-export const SupportPackagesTriggerSupportPackage: API.OperationMethod<
-  SupportPackagesTriggerSupportPackageRequest,
-  SupportPackagesTriggerSupportPackageResponse,
-  SupportPackagesTriggerSupportPackageError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SupportPackagesTriggerSupportPackageRequest,
-  output: SupportPackagesTriggerSupportPackageResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -8065,46 +8047,95 @@ export const TriggersCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type TriggersDeleteError = AzureOpError;
-/** Deletes the trigger on the gateway device. */
-export const TriggersDelete: API.OperationMethod<
-  TriggersDeleteRequest,
-  TriggersDeleteResponse,
-  TriggersDeleteError,
+export type TriggerSupportPackageSupportPackageError = AzureOpError;
+/** Triggers support package on the device Triggers support package on the device */
+export const TriggerSupportPackageSupportPackage: API.OperationMethod<
+  TriggerSupportPackageSupportPackageRequest,
+  TriggerSupportPackageSupportPackageResponse,
+  TriggerSupportPackageSupportPackageError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TriggersDeleteRequest,
-  output: TriggersDeleteResponse,
+  input: TriggerSupportPackageSupportPackageRequest,
+  output: TriggerSupportPackageSupportPackageResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type TriggersGetError = AzureOpError;
-/** Get a specific trigger by name. */
-export const TriggersGet: API.OperationMethod<
-  TriggersGetRequest,
-  TriggersGetResponse,
-  TriggersGetError,
+export type UpdateDeviceError = AzureOpError;
+/** Modifies a Data Box Edge/Data Box Gateway resource. */
+export const UpdateDevice: API.OperationMethod<
+  UpdateDeviceRequest,
+  UpdateDeviceResponse,
+  UpdateDeviceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TriggersGetRequest,
-  output: TriggersGetResponse,
+  input: UpdateDeviceRequest,
+  output: UpdateDeviceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type TriggersListByDataBoxEdgeDeviceError = AzureOpError;
-/** Lists all the triggers configured in the device. */
-export const TriggersListByDataBoxEdgeDevice: API.OperationMethod<
-  TriggersListByDataBoxEdgeDeviceRequest,
-  TriggerList,
-  TriggersListByDataBoxEdgeDeviceError,
+export type UpdateDeviceExtendedInformationError = AzureOpError;
+/** Gets additional information for the specified Data Box Edge/Data Box Gateway device. */
+export const UpdateDeviceExtendedInformation: API.OperationMethod<
+  UpdateDeviceExtendedInformationRequest,
+  UpdateDeviceExtendedInformationResponse,
+  UpdateDeviceExtendedInformationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TriggersListByDataBoxEdgeDeviceRequest,
-  output: TriggerList,
+  input: UpdateDeviceExtendedInformationRequest,
+  output: UpdateDeviceExtendedInformationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateDiagnosticSettingsDiagnosticProactiveLogCollectionSettingsError =
+  AzureOpError;
+/** Updates the proactive log collection settings on a Data Box Edge/Data Box Gateway device. */
+export const UpdateDiagnosticSettingsDiagnosticProactiveLogCollectionSettings: API.OperationMethod<
+  UpdateDiagnosticSettingsDiagnosticProactiveLogCollectionSettingsRequest,
+  UpdateDiagnosticSettingsDiagnosticProactiveLogCollectionSettingsResponse,
+  UpdateDiagnosticSettingsDiagnosticProactiveLogCollectionSettingsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input:
+    UpdateDiagnosticSettingsDiagnosticProactiveLogCollectionSettingsRequest,
+  output:
+    UpdateDiagnosticSettingsDiagnosticProactiveLogCollectionSettingsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateDiagnosticSettingsDiagnosticRemoteSupportSettingsError =
+  AzureOpError;
+/** Updates the diagnostic remote support settings on a Data Box Edge/Data Box Gateway device. */
+export const UpdateDiagnosticSettingsDiagnosticRemoteSupportSettings: API.OperationMethod<
+  UpdateDiagnosticSettingsDiagnosticRemoteSupportSettingsRequest,
+  UpdateDiagnosticSettingsDiagnosticRemoteSupportSettingsResponse,
+  UpdateDiagnosticSettingsDiagnosticRemoteSupportSettingsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateDiagnosticSettingsDiagnosticRemoteSupportSettingsRequest,
+  output: UpdateDiagnosticSettingsDiagnosticRemoteSupportSettingsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UploadDeviceCertificateError = AzureOpError;
+/** Uploads registration certificate for the device. */
+export const UploadDeviceCertificate: API.OperationMethod<
+  UploadDeviceCertificateRequest,
+  UploadCertificateResponse,
+  UploadDeviceCertificateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UploadDeviceCertificateRequest,
+  output: UploadCertificateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -8120,51 +8151,6 @@ export const UsersCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: UsersCreateOrUpdateRequest,
   output: UsersCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UsersDeleteError = AzureOpError;
-/** Deletes the user on a databox edge/gateway device. */
-export const UsersDelete: API.OperationMethod<
-  UsersDeleteRequest,
-  UsersDeleteResponse,
-  UsersDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UsersDeleteRequest,
-  output: UsersDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UsersGetError = AzureOpError;
-/** Gets the properties of the specified user. */
-export const UsersGet: API.OperationMethod<
-  UsersGetRequest,
-  UsersGetResponse,
-  UsersGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UsersGetRequest,
-  output: UsersGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UsersListByDataBoxEdgeDeviceError = AzureOpError;
-/** Gets all the users registered on a Data Box Edge/Data Box Gateway device. */
-export const UsersListByDataBoxEdgeDevice: API.OperationMethod<
-  UsersListByDataBoxEdgeDeviceRequest,
-  UserList,
-  UsersListByDataBoxEdgeDeviceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UsersListByDataBoxEdgeDeviceRequest,
-  output: UserList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

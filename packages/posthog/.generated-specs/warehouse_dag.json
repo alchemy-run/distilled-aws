@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.warehouse_dag#WarehouseDagListRequest": {
+    "com.posthog.warehouse_dag#ListWarehouseDagRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -33,10 +34,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.warehouse_dag#WarehouseDagList": {
+    "com.posthog.warehouse_dag#ListWarehouseDag": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.warehouse_dag#WarehouseDagListRequest"
+        "target": "com.posthog.warehouse_dag#ListWarehouseDagRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -55,7 +56,7 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.warehouse_dag#WarehouseDagList"
+          "target": "com.posthog.warehouse_dag#ListWarehouseDag"
         }
       ],
       "traits": {

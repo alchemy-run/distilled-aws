@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.devtestlabs#GlobalSchedulesRetarget": {
@@ -80,10 +81,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#GlobalSchedulesExecute": {
+    "com.azure.devtestlabs#ExecuteGlobalSchedule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#GlobalSchedulesExecuteRequest"
+        "target": "com.azure.devtestlabs#ExecuteGlobalScheduleRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -99,7 +100,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#GlobalSchedulesExecuteRequest": {
+    "com.azure.devtestlabs#ExecuteGlobalScheduleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -131,10 +132,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#GlobalSchedulesDelete": {
+    "com.azure.devtestlabs#DeleteGlobalSchedule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#GlobalSchedulesDeleteRequest"
+        "target": "com.azure.devtestlabs#DeleteGlobalScheduleRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -150,7 +151,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#GlobalSchedulesDeleteRequest": {
+    "com.azure.devtestlabs#DeleteGlobalScheduleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -182,13 +183,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#GlobalSchedulesUpdate": {
+    "com.azure.devtestlabs#UpdateGlobalSchedule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#GlobalSchedulesUpdateRequest"
+        "target": "com.azure.devtestlabs#UpdateGlobalScheduleRequest"
       },
       "output": {
-        "target": "com.azure.devtestlabs#GlobalSchedulesUpdateResponse"
+        "target": "com.azure.devtestlabs#UpdateGlobalScheduleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -201,7 +202,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#GlobalSchedulesUpdateResponse": {
+    "com.azure.devtestlabs#UpdateGlobalScheduleResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -236,7 +237,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#GlobalSchedulesUpdateResponseTagsMap",
+          "target": "com.azure.devtestlabs#UpdateGlobalScheduleResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -252,7 +253,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devtestlabs#GlobalSchedulesUpdateResponseTagsMap": {
+    "com.azure.devtestlabs#UpdateGlobalScheduleResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -581,7 +582,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.devtestlabs#GlobalSchedulesUpdateRequest": {
+    "com.azure.devtestlabs#UpdateGlobalScheduleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -609,7 +610,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#GlobalSchedulesUpdateRequestTagsMap",
+          "target": "com.azure.devtestlabs#UpdateGlobalScheduleRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -619,7 +620,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#GlobalSchedulesUpdateRequestTagsMap": {
+    "com.azure.devtestlabs#UpdateGlobalScheduleRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -852,13 +853,13 @@
         "smithy.api#documentation": "The status of the schedule (i.e. Enabled, Disabled)"
       }
     },
-    "com.azure.devtestlabs#GlobalSchedulesGet": {
+    "com.azure.devtestlabs#GetGlobalSchedule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#GlobalSchedulesGetRequest"
+        "target": "com.azure.devtestlabs#GetGlobalScheduleRequest"
       },
       "output": {
-        "target": "com.azure.devtestlabs#GlobalSchedulesGetResponse"
+        "target": "com.azure.devtestlabs#GetGlobalScheduleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -871,7 +872,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#GlobalSchedulesGetResponse": {
+    "com.azure.devtestlabs#GetGlobalScheduleResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -906,7 +907,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#GlobalSchedulesGetResponseTagsMap",
+          "target": "com.azure.devtestlabs#GetGlobalScheduleResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -922,7 +923,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devtestlabs#GlobalSchedulesGetResponseTagsMap": {
+    "com.azure.devtestlabs#GetGlobalScheduleResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -934,7 +935,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devtestlabs#GlobalSchedulesGetRequest": {
+    "com.azure.devtestlabs#GetGlobalScheduleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -973,10 +974,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#GlobalSchedulesListByResourceGroup": {
+    "com.azure.devtestlabs#ListGlobalScheduleByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#GlobalSchedulesListByResourceGroupRequest"
+        "target": "com.azure.devtestlabs#ListGlobalScheduleByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.devtestlabs#ScheduleList"
@@ -1085,7 +1086,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devtestlabs#GlobalSchedulesListByResourceGroupRequest": {
+    "com.azure.devtestlabs#ListGlobalScheduleByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1137,10 +1138,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#VirtualNetworksDelete": {
+    "com.azure.devtestlabs#DeleteVirtualNetwork": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#VirtualNetworksDeleteRequest"
+        "target": "com.azure.devtestlabs#DeleteVirtualNetworkRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1156,7 +1157,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#VirtualNetworksDeleteRequest": {
+    "com.azure.devtestlabs#DeleteVirtualNetworkRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1196,13 +1197,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#VirtualNetworksUpdate": {
+    "com.azure.devtestlabs#UpdateVirtualNetwork": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#VirtualNetworksUpdateRequest"
+        "target": "com.azure.devtestlabs#UpdateVirtualNetworkRequest"
       },
       "output": {
-        "target": "com.azure.devtestlabs#VirtualNetworksUpdateResponse"
+        "target": "com.azure.devtestlabs#UpdateVirtualNetworkResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1215,7 +1216,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#VirtualNetworksUpdateResponse": {
+    "com.azure.devtestlabs#UpdateVirtualNetworkResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1250,7 +1251,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#VirtualNetworksUpdateResponseTagsMap",
+          "target": "com.azure.devtestlabs#UpdateVirtualNetworkResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1266,7 +1267,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devtestlabs#VirtualNetworksUpdateResponseTagsMap": {
+    "com.azure.devtestlabs#UpdateVirtualNetworkResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1540,7 +1541,7 @@
         "smithy.api#documentation": "Subnet information."
       }
     },
-    "com.azure.devtestlabs#VirtualNetworksUpdateRequest": {
+    "com.azure.devtestlabs#UpdateVirtualNetworkRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1576,7 +1577,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#VirtualNetworksUpdateRequestTagsMap",
+          "target": "com.azure.devtestlabs#UpdateVirtualNetworkRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -1586,7 +1587,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#VirtualNetworksUpdateRequestTagsMap": {
+    "com.azure.devtestlabs#UpdateVirtualNetworkRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1801,13 +1802,13 @@
         "smithy.api#documentation": "The allowed subnets of the virtual network."
       }
     },
-    "com.azure.devtestlabs#VirtualNetworksGet": {
+    "com.azure.devtestlabs#GetVirtualNetwork": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#VirtualNetworksGetRequest"
+        "target": "com.azure.devtestlabs#GetVirtualNetworkRequest"
       },
       "output": {
-        "target": "com.azure.devtestlabs#VirtualNetworksGetResponse"
+        "target": "com.azure.devtestlabs#GetVirtualNetworkResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1820,7 +1821,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#VirtualNetworksGetResponse": {
+    "com.azure.devtestlabs#GetVirtualNetworkResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1855,7 +1856,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#VirtualNetworksGetResponseTagsMap",
+          "target": "com.azure.devtestlabs#GetVirtualNetworkResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1871,7 +1872,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devtestlabs#VirtualNetworksGetResponseTagsMap": {
+    "com.azure.devtestlabs#GetVirtualNetworkResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1883,7 +1884,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devtestlabs#VirtualNetworksGetRequest": {
+    "com.azure.devtestlabs#GetVirtualNetworkRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1930,10 +1931,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#VirtualNetworksList": {
+    "com.azure.devtestlabs#ListVirtualNetworks": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#VirtualNetworksListRequest"
+        "target": "com.azure.devtestlabs#ListVirtualNetworksRequest"
       },
       "output": {
         "target": "com.azure.devtestlabs#VirtualNetworkList"
@@ -2042,7 +2043,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devtestlabs#VirtualNetworksListRequest": {
+    "com.azure.devtestlabs#ListVirtualNetworksRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2102,10 +2103,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#VirtualMachinesUnClaim": {
+    "com.azure.devtestlabs#ClaimVirtualMachinesUn": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#VirtualMachinesUnClaimRequest"
+        "target": "com.azure.devtestlabs#ClaimVirtualMachinesUnRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2121,7 +2122,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#VirtualMachinesUnClaimRequest": {
+    "com.azure.devtestlabs#ClaimVirtualMachinesUnRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2161,10 +2162,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#VirtualMachinesTransferDisks": {
+    "com.azure.devtestlabs#TransferVirtualMachineDisks": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#VirtualMachinesTransferDisksRequest"
+        "target": "com.azure.devtestlabs#TransferVirtualMachineDisksRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2180,7 +2181,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#VirtualMachinesTransferDisksRequest": {
+    "com.azure.devtestlabs#TransferVirtualMachineDisksRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2220,10 +2221,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#VirtualMachinesStop": {
+    "com.azure.devtestlabs#StopVirtualMachine": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#VirtualMachinesStopRequest"
+        "target": "com.azure.devtestlabs#StopVirtualMachineRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2239,7 +2240,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#VirtualMachinesStopRequest": {
+    "com.azure.devtestlabs#StopVirtualMachineRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2279,10 +2280,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#VirtualMachinesStart": {
+    "com.azure.devtestlabs#StartVirtualMachine": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#VirtualMachinesStartRequest"
+        "target": "com.azure.devtestlabs#StartVirtualMachineRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2298,7 +2299,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#VirtualMachinesStartRequest": {
+    "com.azure.devtestlabs#StartVirtualMachineRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2338,10 +2339,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#VirtualMachineSchedulesExecute": {
+    "com.azure.devtestlabs#ExecuteVirtualMachineSchedule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#VirtualMachineSchedulesExecuteRequest"
+        "target": "com.azure.devtestlabs#ExecuteVirtualMachineScheduleRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2357,7 +2358,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#VirtualMachineSchedulesExecuteRequest": {
+    "com.azure.devtestlabs#ExecuteVirtualMachineScheduleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2405,10 +2406,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#VirtualMachineSchedulesDelete": {
+    "com.azure.devtestlabs#DeleteVirtualMachineSchedule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#VirtualMachineSchedulesDeleteRequest"
+        "target": "com.azure.devtestlabs#DeleteVirtualMachineScheduleRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2424,7 +2425,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#VirtualMachineSchedulesDeleteRequest": {
+    "com.azure.devtestlabs#DeleteVirtualMachineScheduleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2472,13 +2473,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#VirtualMachineSchedulesUpdate": {
+    "com.azure.devtestlabs#UpdateVirtualMachineSchedule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#VirtualMachineSchedulesUpdateRequest"
+        "target": "com.azure.devtestlabs#UpdateVirtualMachineScheduleRequest"
       },
       "output": {
-        "target": "com.azure.devtestlabs#VirtualMachineSchedulesUpdateResponse"
+        "target": "com.azure.devtestlabs#UpdateVirtualMachineScheduleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2491,7 +2492,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#VirtualMachineSchedulesUpdateResponse": {
+    "com.azure.devtestlabs#UpdateVirtualMachineScheduleResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2526,7 +2527,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#VirtualMachineSchedulesUpdateResponseTagsMap",
+          "target": "com.azure.devtestlabs#UpdateVirtualMachineScheduleResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2542,7 +2543,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devtestlabs#VirtualMachineSchedulesUpdateResponseTagsMap": {
+    "com.azure.devtestlabs#UpdateVirtualMachineScheduleResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2554,7 +2555,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devtestlabs#VirtualMachineSchedulesUpdateRequest": {
+    "com.azure.devtestlabs#UpdateVirtualMachineScheduleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2598,7 +2599,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#VirtualMachineSchedulesUpdateRequestTagsMap",
+          "target": "com.azure.devtestlabs#UpdateVirtualMachineScheduleRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -2608,7 +2609,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#VirtualMachineSchedulesUpdateRequestTagsMap": {
+    "com.azure.devtestlabs#UpdateVirtualMachineScheduleRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2781,13 +2782,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devtestlabs#VirtualMachineSchedulesGet": {
+    "com.azure.devtestlabs#GetVirtualMachineSchedule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#VirtualMachineSchedulesGetRequest"
+        "target": "com.azure.devtestlabs#GetVirtualMachineScheduleRequest"
       },
       "output": {
-        "target": "com.azure.devtestlabs#VirtualMachineSchedulesGetResponse"
+        "target": "com.azure.devtestlabs#GetVirtualMachineScheduleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2800,7 +2801,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#VirtualMachineSchedulesGetResponse": {
+    "com.azure.devtestlabs#GetVirtualMachineScheduleResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2835,7 +2836,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#VirtualMachineSchedulesGetResponseTagsMap",
+          "target": "com.azure.devtestlabs#GetVirtualMachineScheduleResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2851,7 +2852,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devtestlabs#VirtualMachineSchedulesGetResponseTagsMap": {
+    "com.azure.devtestlabs#GetVirtualMachineScheduleResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2863,7 +2864,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devtestlabs#VirtualMachineSchedulesGetRequest": {
+    "com.azure.devtestlabs#GetVirtualMachineScheduleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2918,10 +2919,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#VirtualMachineSchedulesList": {
+    "com.azure.devtestlabs#ListVirtualMachineSchedules": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#VirtualMachineSchedulesListRequest"
+        "target": "com.azure.devtestlabs#ListVirtualMachineSchedulesRequest"
       },
       "output": {
         "target": "com.azure.devtestlabs#ScheduleList"
@@ -2937,7 +2938,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#VirtualMachineSchedulesListRequest": {
+    "com.azure.devtestlabs#ListVirtualMachineSchedulesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3005,10 +3006,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#VirtualMachinesRestart": {
+    "com.azure.devtestlabs#RestartVirtualMachine": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#VirtualMachinesRestartRequest"
+        "target": "com.azure.devtestlabs#RestartVirtualMachineRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3024,7 +3025,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#VirtualMachinesRestartRequest": {
+    "com.azure.devtestlabs#RestartVirtualMachineRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3064,10 +3065,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#VirtualMachinesResize": {
+    "com.azure.devtestlabs#ResizeVirtualMachine": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#VirtualMachinesResizeRequest"
+        "target": "com.azure.devtestlabs#ResizeVirtualMachineRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3083,7 +3084,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#VirtualMachinesResizeRequest": {
+    "com.azure.devtestlabs#ResizeVirtualMachineRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3129,10 +3130,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#VirtualMachinesRedeploy": {
+    "com.azure.devtestlabs#RedeployVirtualMachine": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#VirtualMachinesRedeployRequest"
+        "target": "com.azure.devtestlabs#RedeployVirtualMachineRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3148,7 +3149,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#VirtualMachinesRedeployRequest": {
+    "com.azure.devtestlabs#RedeployVirtualMachineRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3188,13 +3189,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#VirtualMachinesListApplicableSchedules": {
+    "com.azure.devtestlabs#ListVirtualMachineApplicableSchedules": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#VirtualMachinesListApplicableSchedulesRequest"
+        "target": "com.azure.devtestlabs#ListVirtualMachineApplicableSchedulesRequest"
       },
       "output": {
-        "target": "com.azure.devtestlabs#VirtualMachinesListApplicableSchedulesResponse"
+        "target": "com.azure.devtestlabs#ListVirtualMachineApplicableSchedulesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3207,7 +3208,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#VirtualMachinesListApplicableSchedulesResponse": {
+    "com.azure.devtestlabs#ListVirtualMachineApplicableSchedulesResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3241,7 +3242,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#VirtualMachinesListApplicableSchedulesResponseTagsMap",
+          "target": "com.azure.devtestlabs#ListVirtualMachineApplicableSchedulesResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -3278,7 +3279,7 @@
         "smithy.api#documentation": "Properties of a schedules applicable to a virtual machine."
       }
     },
-    "com.azure.devtestlabs#VirtualMachinesListApplicableSchedulesResponseTagsMap": {
+    "com.azure.devtestlabs#ListVirtualMachineApplicableSchedulesResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3290,7 +3291,7 @@
         "smithy.api#documentation": "The tags of the resource."
       }
     },
-    "com.azure.devtestlabs#VirtualMachinesListApplicableSchedulesRequest": {
+    "com.azure.devtestlabs#ListVirtualMachineApplicableSchedulesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3330,10 +3331,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#VirtualMachinesGetRdpFileContents": {
+    "com.azure.devtestlabs#GetVirtualMachineRdpFileContents": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#VirtualMachinesGetRdpFileContentsRequest"
+        "target": "com.azure.devtestlabs#GetVirtualMachineRdpFileContentsRequest"
       },
       "output": {
         "target": "com.azure.devtestlabs#RdpConnection"
@@ -3363,7 +3364,7 @@
         "smithy.api#documentation": "Represents a .rdp file"
       }
     },
-    "com.azure.devtestlabs#VirtualMachinesGetRdpFileContentsRequest": {
+    "com.azure.devtestlabs#GetVirtualMachineRdpFileContentsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3403,10 +3404,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#VirtualMachinesDetachDataDisk": {
+    "com.azure.devtestlabs#DetachVirtualMachineDataDisk": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#VirtualMachinesDetachDataDiskRequest"
+        "target": "com.azure.devtestlabs#DetachVirtualMachineDataDiskRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3422,7 +3423,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#VirtualMachinesDetachDataDiskRequest": {
+    "com.azure.devtestlabs#DetachVirtualMachineDataDiskRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3468,10 +3469,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#VirtualMachinesClaim": {
+    "com.azure.devtestlabs#ClaimVirtualMachine": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#VirtualMachinesClaimRequest"
+        "target": "com.azure.devtestlabs#ClaimVirtualMachineRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3487,7 +3488,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#VirtualMachinesClaimRequest": {
+    "com.azure.devtestlabs#ClaimVirtualMachineRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3527,10 +3528,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#VirtualMachinesApplyArtifacts": {
+    "com.azure.devtestlabs#ApplyVirtualMachineArtifacts": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#VirtualMachinesApplyArtifactsRequest"
+        "target": "com.azure.devtestlabs#ApplyVirtualMachineArtifactsRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3546,7 +3547,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#VirtualMachinesApplyArtifactsRequest": {
+    "com.azure.devtestlabs#ApplyVirtualMachineArtifactsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3582,7 +3583,7 @@
           }
         },
         "artifacts": {
-          "target": "com.azure.devtestlabs#VirtualMachinesApplyArtifactsRequestArtifactsList",
+          "target": "com.azure.devtestlabs#ApplyVirtualMachineArtifactsRequestArtifactsList",
           "traits": {
             "smithy.api#documentation": "The list of artifacts to apply."
           }
@@ -3592,7 +3593,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#VirtualMachinesApplyArtifactsRequestArtifactsList": {
+    "com.azure.devtestlabs#ApplyVirtualMachineArtifactsRequestArtifactsList": {
       "type": "list",
       "member": {
         "target": "com.azure.devtestlabs#ArtifactInstallProperties"
@@ -3680,10 +3681,10 @@
         "smithy.api#documentation": "Properties of an artifact parameter."
       }
     },
-    "com.azure.devtestlabs#VirtualMachinesAddDataDisk": {
+    "com.azure.devtestlabs#AddVirtualMachineDataDisk": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#VirtualMachinesAddDataDiskRequest"
+        "target": "com.azure.devtestlabs#AddVirtualMachineDataDiskRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3699,7 +3700,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#VirtualMachinesAddDataDiskRequest": {
+    "com.azure.devtestlabs#AddVirtualMachineDataDiskRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3835,10 +3836,10 @@
         "smithy.api#documentation": "The storage type for the disk (i.e. Standard, Premium)."
       }
     },
-    "com.azure.devtestlabs#VirtualMachinesDelete": {
+    "com.azure.devtestlabs#DeleteVirtualMachine": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#VirtualMachinesDeleteRequest"
+        "target": "com.azure.devtestlabs#DeleteVirtualMachineRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3854,7 +3855,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#VirtualMachinesDeleteRequest": {
+    "com.azure.devtestlabs#DeleteVirtualMachineRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3894,13 +3895,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#VirtualMachinesUpdate": {
+    "com.azure.devtestlabs#UpdateVirtualMachine": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#VirtualMachinesUpdateRequest"
+        "target": "com.azure.devtestlabs#UpdateVirtualMachineRequest"
       },
       "output": {
-        "target": "com.azure.devtestlabs#VirtualMachinesUpdateResponse"
+        "target": "com.azure.devtestlabs#UpdateVirtualMachineResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3913,7 +3914,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#VirtualMachinesUpdateResponse": {
+    "com.azure.devtestlabs#UpdateVirtualMachineResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3948,7 +3949,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#VirtualMachinesUpdateResponseTagsMap",
+          "target": "com.azure.devtestlabs#UpdateVirtualMachineResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3964,7 +3965,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devtestlabs#VirtualMachinesUpdateResponseTagsMap": {
+    "com.azure.devtestlabs#UpdateVirtualMachineResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4767,7 +4768,7 @@
         "smithy.api#documentation": "The artifacts to be installed on the virtual machine."
       }
     },
-    "com.azure.devtestlabs#VirtualMachinesUpdateRequest": {
+    "com.azure.devtestlabs#UpdateVirtualMachineRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4803,7 +4804,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#VirtualMachinesUpdateRequestTagsMap",
+          "target": "com.azure.devtestlabs#UpdateVirtualMachineRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -4813,7 +4814,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#VirtualMachinesUpdateRequestTagsMap": {
+    "com.azure.devtestlabs#UpdateVirtualMachineRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5190,13 +5191,13 @@
         "smithy.api#documentation": "The artifacts to be installed on the virtual machine."
       }
     },
-    "com.azure.devtestlabs#VirtualMachinesGet": {
+    "com.azure.devtestlabs#GetVirtualMachine": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#VirtualMachinesGetRequest"
+        "target": "com.azure.devtestlabs#GetVirtualMachineRequest"
       },
       "output": {
-        "target": "com.azure.devtestlabs#VirtualMachinesGetResponse"
+        "target": "com.azure.devtestlabs#GetVirtualMachineResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5209,7 +5210,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#VirtualMachinesGetResponse": {
+    "com.azure.devtestlabs#GetVirtualMachineResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5244,7 +5245,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#VirtualMachinesGetResponseTagsMap",
+          "target": "com.azure.devtestlabs#GetVirtualMachineResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5260,7 +5261,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devtestlabs#VirtualMachinesGetResponseTagsMap": {
+    "com.azure.devtestlabs#GetVirtualMachineResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5272,7 +5273,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devtestlabs#VirtualMachinesGetRequest": {
+    "com.azure.devtestlabs#GetVirtualMachineRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5319,10 +5320,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#VirtualMachinesList": {
+    "com.azure.devtestlabs#ListVirtualMachines": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#VirtualMachinesListRequest"
+        "target": "com.azure.devtestlabs#ListVirtualMachinesRequest"
       },
       "output": {
         "target": "com.azure.devtestlabs#LabVirtualMachineList"
@@ -5431,7 +5432,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devtestlabs#VirtualMachinesListRequest": {
+    "com.azure.devtestlabs#ListVirtualMachinesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5491,10 +5492,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#ServiceFabricsStop": {
+    "com.azure.devtestlabs#StopServiceFabric": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#ServiceFabricsStopRequest"
+        "target": "com.azure.devtestlabs#StopServiceFabricRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5510,7 +5511,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#ServiceFabricsStopRequest": {
+    "com.azure.devtestlabs#StopServiceFabricRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5558,10 +5559,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#ServiceFabricsStart": {
+    "com.azure.devtestlabs#StartServiceFabric": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#ServiceFabricsStartRequest"
+        "target": "com.azure.devtestlabs#StartServiceFabricRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5577,7 +5578,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#ServiceFabricsStartRequest": {
+    "com.azure.devtestlabs#StartServiceFabricRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5625,10 +5626,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#ServiceFabricSchedulesExecute": {
+    "com.azure.devtestlabs#ExecuteServiceFabricSchedule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#ServiceFabricSchedulesExecuteRequest"
+        "target": "com.azure.devtestlabs#ExecuteServiceFabricScheduleRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5644,7 +5645,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#ServiceFabricSchedulesExecuteRequest": {
+    "com.azure.devtestlabs#ExecuteServiceFabricScheduleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5700,10 +5701,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#ServiceFabricSchedulesDelete": {
+    "com.azure.devtestlabs#DeleteServiceFabricSchedule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#ServiceFabricSchedulesDeleteRequest"
+        "target": "com.azure.devtestlabs#DeleteServiceFabricScheduleRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5719,7 +5720,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#ServiceFabricSchedulesDeleteRequest": {
+    "com.azure.devtestlabs#DeleteServiceFabricScheduleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5775,13 +5776,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#ServiceFabricSchedulesUpdate": {
+    "com.azure.devtestlabs#UpdateServiceFabricSchedule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#ServiceFabricSchedulesUpdateRequest"
+        "target": "com.azure.devtestlabs#UpdateServiceFabricScheduleRequest"
       },
       "output": {
-        "target": "com.azure.devtestlabs#ServiceFabricSchedulesUpdateResponse"
+        "target": "com.azure.devtestlabs#UpdateServiceFabricScheduleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5794,7 +5795,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#ServiceFabricSchedulesUpdateResponse": {
+    "com.azure.devtestlabs#UpdateServiceFabricScheduleResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5829,7 +5830,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#ServiceFabricSchedulesUpdateResponseTagsMap",
+          "target": "com.azure.devtestlabs#UpdateServiceFabricScheduleResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5845,7 +5846,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devtestlabs#ServiceFabricSchedulesUpdateResponseTagsMap": {
+    "com.azure.devtestlabs#UpdateServiceFabricScheduleResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5857,7 +5858,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devtestlabs#ServiceFabricSchedulesUpdateRequest": {
+    "com.azure.devtestlabs#UpdateServiceFabricScheduleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5909,7 +5910,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#ServiceFabricSchedulesUpdateRequestTagsMap",
+          "target": "com.azure.devtestlabs#UpdateServiceFabricScheduleRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -5919,7 +5920,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#ServiceFabricSchedulesUpdateRequestTagsMap": {
+    "com.azure.devtestlabs#UpdateServiceFabricScheduleRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6100,13 +6101,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devtestlabs#ServiceFabricSchedulesGet": {
+    "com.azure.devtestlabs#GetServiceFabricSchedule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#ServiceFabricSchedulesGetRequest"
+        "target": "com.azure.devtestlabs#GetServiceFabricScheduleRequest"
       },
       "output": {
-        "target": "com.azure.devtestlabs#ServiceFabricSchedulesGetResponse"
+        "target": "com.azure.devtestlabs#GetServiceFabricScheduleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6119,7 +6120,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#ServiceFabricSchedulesGetResponse": {
+    "com.azure.devtestlabs#GetServiceFabricScheduleResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -6154,7 +6155,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#ServiceFabricSchedulesGetResponseTagsMap",
+          "target": "com.azure.devtestlabs#GetServiceFabricScheduleResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -6170,7 +6171,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devtestlabs#ServiceFabricSchedulesGetResponseTagsMap": {
+    "com.azure.devtestlabs#GetServiceFabricScheduleResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6182,7 +6183,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devtestlabs#ServiceFabricSchedulesGetRequest": {
+    "com.azure.devtestlabs#GetServiceFabricScheduleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6245,10 +6246,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#ServiceFabricSchedulesList": {
+    "com.azure.devtestlabs#ListServiceFabricSchedules": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#ServiceFabricSchedulesListRequest"
+        "target": "com.azure.devtestlabs#ListServiceFabricSchedulesRequest"
       },
       "output": {
         "target": "com.azure.devtestlabs#ScheduleList"
@@ -6264,7 +6265,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#ServiceFabricSchedulesListRequest": {
+    "com.azure.devtestlabs#ListServiceFabricSchedulesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6340,13 +6341,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#ServiceFabricsListApplicableSchedules": {
+    "com.azure.devtestlabs#ListServiceFabricApplicableSchedules": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#ServiceFabricsListApplicableSchedulesRequest"
+        "target": "com.azure.devtestlabs#ListServiceFabricApplicableSchedulesRequest"
       },
       "output": {
-        "target": "com.azure.devtestlabs#ServiceFabricsListApplicableSchedulesResponse"
+        "target": "com.azure.devtestlabs#ListServiceFabricApplicableSchedulesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6359,7 +6360,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#ServiceFabricsListApplicableSchedulesResponse": {
+    "com.azure.devtestlabs#ListServiceFabricApplicableSchedulesResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -6393,7 +6394,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#ServiceFabricsListApplicableSchedulesResponseTagsMap",
+          "target": "com.azure.devtestlabs#ListServiceFabricApplicableSchedulesResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -6410,7 +6411,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devtestlabs#ServiceFabricsListApplicableSchedulesResponseTagsMap": {
+    "com.azure.devtestlabs#ListServiceFabricApplicableSchedulesResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6422,7 +6423,7 @@
         "smithy.api#documentation": "The tags of the resource."
       }
     },
-    "com.azure.devtestlabs#ServiceFabricsListApplicableSchedulesRequest": {
+    "com.azure.devtestlabs#ListServiceFabricApplicableSchedulesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6470,10 +6471,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#ServiceFabricsDelete": {
+    "com.azure.devtestlabs#DeleteServiceFabric": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#ServiceFabricsDeleteRequest"
+        "target": "com.azure.devtestlabs#DeleteServiceFabricRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -6489,7 +6490,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#ServiceFabricsDeleteRequest": {
+    "com.azure.devtestlabs#DeleteServiceFabricRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6537,13 +6538,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#ServiceFabricsUpdate": {
+    "com.azure.devtestlabs#UpdateServiceFabric": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#ServiceFabricsUpdateRequest"
+        "target": "com.azure.devtestlabs#UpdateServiceFabricRequest"
       },
       "output": {
-        "target": "com.azure.devtestlabs#ServiceFabricsUpdateResponse"
+        "target": "com.azure.devtestlabs#UpdateServiceFabricResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6556,7 +6557,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#ServiceFabricsUpdateResponse": {
+    "com.azure.devtestlabs#UpdateServiceFabricResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -6591,7 +6592,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#ServiceFabricsUpdateResponseTagsMap",
+          "target": "com.azure.devtestlabs#UpdateServiceFabricResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -6607,7 +6608,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devtestlabs#ServiceFabricsUpdateResponseTagsMap": {
+    "com.azure.devtestlabs#UpdateServiceFabricResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6657,7 +6658,7 @@
         "smithy.api#documentation": "Properties of a service fabric."
       }
     },
-    "com.azure.devtestlabs#ServiceFabricsUpdateRequest": {
+    "com.azure.devtestlabs#UpdateServiceFabricRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6701,7 +6702,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#ServiceFabricsUpdateRequestTagsMap",
+          "target": "com.azure.devtestlabs#UpdateServiceFabricRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -6711,7 +6712,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#ServiceFabricsUpdateRequestTagsMap": {
+    "com.azure.devtestlabs#UpdateServiceFabricRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6904,13 +6905,13 @@
         "smithy.api#documentation": "Properties of a service fabric."
       }
     },
-    "com.azure.devtestlabs#ServiceFabricsGet": {
+    "com.azure.devtestlabs#GetServiceFabric": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#ServiceFabricsGetRequest"
+        "target": "com.azure.devtestlabs#GetServiceFabricRequest"
       },
       "output": {
-        "target": "com.azure.devtestlabs#ServiceFabricsGetResponse"
+        "target": "com.azure.devtestlabs#GetServiceFabricResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6923,7 +6924,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#ServiceFabricsGetResponse": {
+    "com.azure.devtestlabs#GetServiceFabricResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -6958,7 +6959,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#ServiceFabricsGetResponseTagsMap",
+          "target": "com.azure.devtestlabs#GetServiceFabricResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -6974,7 +6975,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devtestlabs#ServiceFabricsGetResponseTagsMap": {
+    "com.azure.devtestlabs#GetServiceFabricResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6986,7 +6987,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devtestlabs#ServiceFabricsGetRequest": {
+    "com.azure.devtestlabs#GetServiceFabricRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7041,10 +7042,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#ServiceFabricsList": {
+    "com.azure.devtestlabs#ListServiceFabrics": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#ServiceFabricsListRequest"
+        "target": "com.azure.devtestlabs#ListServiceFabricsRequest"
       },
       "output": {
         "target": "com.azure.devtestlabs#ServiceFabricList"
@@ -7153,7 +7154,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devtestlabs#ServiceFabricsListRequest": {
+    "com.azure.devtestlabs#ListServiceFabricsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7221,10 +7222,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#SecretsDelete": {
+    "com.azure.devtestlabs#DeleteSecret": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#SecretsDeleteRequest"
+        "target": "com.azure.devtestlabs#DeleteSecretRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7240,7 +7241,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#SecretsDeleteRequest": {
+    "com.azure.devtestlabs#DeleteSecretRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7288,13 +7289,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#SecretsUpdate": {
+    "com.azure.devtestlabs#UpdateSecret": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#SecretsUpdateRequest"
+        "target": "com.azure.devtestlabs#UpdateSecretRequest"
       },
       "output": {
-        "target": "com.azure.devtestlabs#SecretsUpdateResponse"
+        "target": "com.azure.devtestlabs#UpdateSecretResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7307,7 +7308,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#SecretsUpdateResponse": {
+    "com.azure.devtestlabs#UpdateSecretResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -7342,7 +7343,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#SecretsUpdateResponseTagsMap",
+          "target": "com.azure.devtestlabs#UpdateSecretResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -7358,7 +7359,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devtestlabs#SecretsUpdateResponseTagsMap": {
+    "com.azure.devtestlabs#UpdateSecretResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7396,7 +7397,7 @@
         "smithy.api#documentation": "Properties of a secret."
       }
     },
-    "com.azure.devtestlabs#SecretsUpdateRequest": {
+    "com.azure.devtestlabs#UpdateSecretRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7440,7 +7441,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#SecretsUpdateRequestTagsMap",
+          "target": "com.azure.devtestlabs#UpdateSecretRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -7450,7 +7451,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#SecretsUpdateRequestTagsMap": {
+    "com.azure.devtestlabs#UpdateSecretRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7637,13 +7638,13 @@
         "smithy.api#documentation": "Properties of a secret."
       }
     },
-    "com.azure.devtestlabs#SecretsGet": {
+    "com.azure.devtestlabs#GetSecret": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#SecretsGetRequest"
+        "target": "com.azure.devtestlabs#GetSecretRequest"
       },
       "output": {
-        "target": "com.azure.devtestlabs#SecretsGetResponse"
+        "target": "com.azure.devtestlabs#GetSecretResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7656,7 +7657,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#SecretsGetResponse": {
+    "com.azure.devtestlabs#GetSecretResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -7691,7 +7692,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#SecretsGetResponseTagsMap",
+          "target": "com.azure.devtestlabs#GetSecretResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -7707,7 +7708,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devtestlabs#SecretsGetResponseTagsMap": {
+    "com.azure.devtestlabs#GetSecretResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7719,7 +7720,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devtestlabs#SecretsGetRequest": {
+    "com.azure.devtestlabs#GetSecretRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7774,10 +7775,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#SecretsList": {
+    "com.azure.devtestlabs#ListSecrets": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#SecretsListRequest"
+        "target": "com.azure.devtestlabs#ListSecretsRequest"
       },
       "output": {
         "target": "com.azure.devtestlabs#SecretList"
@@ -7886,7 +7887,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devtestlabs#SecretsListRequest": {
+    "com.azure.devtestlabs#ListSecretsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7954,10 +7955,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#EnvironmentsDelete": {
+    "com.azure.devtestlabs#DeleteEnvironment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#EnvironmentsDeleteRequest"
+        "target": "com.azure.devtestlabs#DeleteEnvironmentRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7973,7 +7974,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#EnvironmentsDeleteRequest": {
+    "com.azure.devtestlabs#DeleteEnvironmentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8021,13 +8022,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#EnvironmentsUpdate": {
+    "com.azure.devtestlabs#UpdateEnvironment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#EnvironmentsUpdateRequest"
+        "target": "com.azure.devtestlabs#UpdateEnvironmentRequest"
       },
       "output": {
-        "target": "com.azure.devtestlabs#EnvironmentsUpdateResponse"
+        "target": "com.azure.devtestlabs#UpdateEnvironmentResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8040,7 +8041,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#EnvironmentsUpdateResponse": {
+    "com.azure.devtestlabs#UpdateEnvironmentResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -8075,7 +8076,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#EnvironmentsUpdateResponseTagsMap",
+          "target": "com.azure.devtestlabs#UpdateEnvironmentResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -8091,7 +8092,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devtestlabs#EnvironmentsUpdateResponseTagsMap": {
+    "com.azure.devtestlabs#UpdateEnvironmentResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8196,7 +8197,7 @@
         "smithy.api#documentation": "Properties of an Azure Resource Manager template parameter."
       }
     },
-    "com.azure.devtestlabs#EnvironmentsUpdateRequest": {
+    "com.azure.devtestlabs#UpdateEnvironmentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8240,7 +8241,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#EnvironmentsUpdateRequestTagsMap",
+          "target": "com.azure.devtestlabs#UpdateEnvironmentRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -8250,7 +8251,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#EnvironmentsUpdateRequestTagsMap": {
+    "com.azure.devtestlabs#UpdateEnvironmentRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8443,13 +8444,13 @@
         "smithy.api#documentation": "Properties of an environment."
       }
     },
-    "com.azure.devtestlabs#EnvironmentsGet": {
+    "com.azure.devtestlabs#GetEnvironment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#EnvironmentsGetRequest"
+        "target": "com.azure.devtestlabs#GetEnvironmentRequest"
       },
       "output": {
-        "target": "com.azure.devtestlabs#EnvironmentsGetResponse"
+        "target": "com.azure.devtestlabs#GetEnvironmentResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8462,7 +8463,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#EnvironmentsGetResponse": {
+    "com.azure.devtestlabs#GetEnvironmentResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -8497,7 +8498,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#EnvironmentsGetResponseTagsMap",
+          "target": "com.azure.devtestlabs#GetEnvironmentResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -8513,7 +8514,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devtestlabs#EnvironmentsGetResponseTagsMap": {
+    "com.azure.devtestlabs#GetEnvironmentResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8525,7 +8526,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devtestlabs#EnvironmentsGetRequest": {
+    "com.azure.devtestlabs#GetEnvironmentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8580,10 +8581,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#EnvironmentsList": {
+    "com.azure.devtestlabs#ListEnvironments": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#EnvironmentsListRequest"
+        "target": "com.azure.devtestlabs#ListEnvironmentsRequest"
       },
       "output": {
         "target": "com.azure.devtestlabs#DtlEnvironmentList"
@@ -8692,7 +8693,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devtestlabs#EnvironmentsListRequest": {
+    "com.azure.devtestlabs#ListEnvironmentsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8760,10 +8761,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#DisksDetach": {
+    "com.azure.devtestlabs#DetachDisk": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#DisksDetachRequest"
+        "target": "com.azure.devtestlabs#DetachDiskRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8779,7 +8780,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#DisksDetachRequest": {
+    "com.azure.devtestlabs#DetachDiskRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8833,10 +8834,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#DisksAttach": {
+    "com.azure.devtestlabs#AttachDisk": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#DisksAttachRequest"
+        "target": "com.azure.devtestlabs#AttachDiskRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8852,7 +8853,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#DisksAttachRequest": {
+    "com.azure.devtestlabs#AttachDiskRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8906,10 +8907,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#DisksDelete": {
+    "com.azure.devtestlabs#DeleteDisk": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#DisksDeleteRequest"
+        "target": "com.azure.devtestlabs#DeleteDiskRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8925,7 +8926,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#DisksDeleteRequest": {
+    "com.azure.devtestlabs#DeleteDiskRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8973,13 +8974,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#DisksUpdate": {
+    "com.azure.devtestlabs#UpdateDisk": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#DisksUpdateRequest"
+        "target": "com.azure.devtestlabs#UpdateDiskRequest"
       },
       "output": {
-        "target": "com.azure.devtestlabs#DisksUpdateResponse"
+        "target": "com.azure.devtestlabs#UpdateDiskResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8992,7 +8993,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#DisksUpdateResponse": {
+    "com.azure.devtestlabs#UpdateDiskResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -9027,7 +9028,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#DisksUpdateResponseTagsMap",
+          "target": "com.azure.devtestlabs#UpdateDiskResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -9043,7 +9044,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devtestlabs#DisksUpdateResponseTagsMap": {
+    "com.azure.devtestlabs#UpdateDiskResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9129,7 +9130,7 @@
         "smithy.api#documentation": "Properties of a disk."
       }
     },
-    "com.azure.devtestlabs#DisksUpdateRequest": {
+    "com.azure.devtestlabs#UpdateDiskRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9173,7 +9174,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#DisksUpdateRequestTagsMap",
+          "target": "com.azure.devtestlabs#UpdateDiskRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -9183,7 +9184,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#DisksUpdateRequestTagsMap": {
+    "com.azure.devtestlabs#UpdateDiskRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9412,13 +9413,13 @@
         "smithy.api#documentation": "Properties of a disk."
       }
     },
-    "com.azure.devtestlabs#DisksGet": {
+    "com.azure.devtestlabs#GetDisk": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#DisksGetRequest"
+        "target": "com.azure.devtestlabs#GetDiskRequest"
       },
       "output": {
-        "target": "com.azure.devtestlabs#DisksGetResponse"
+        "target": "com.azure.devtestlabs#GetDiskResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9431,7 +9432,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#DisksGetResponse": {
+    "com.azure.devtestlabs#GetDiskResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -9466,7 +9467,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#DisksGetResponseTagsMap",
+          "target": "com.azure.devtestlabs#GetDiskResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -9482,7 +9483,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devtestlabs#DisksGetResponseTagsMap": {
+    "com.azure.devtestlabs#GetDiskResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9494,7 +9495,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devtestlabs#DisksGetRequest": {
+    "com.azure.devtestlabs#GetDiskRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9549,10 +9550,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#DisksList": {
+    "com.azure.devtestlabs#ListDisks": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#DisksListRequest"
+        "target": "com.azure.devtestlabs#ListDisksRequest"
       },
       "output": {
         "target": "com.azure.devtestlabs#DiskList"
@@ -9661,7 +9662,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devtestlabs#DisksListRequest": {
+    "com.azure.devtestlabs#ListDisksRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9729,10 +9730,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#UsersDelete": {
+    "com.azure.devtestlabs#DeleteUser": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#UsersDeleteRequest"
+        "target": "com.azure.devtestlabs#DeleteUserRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -9748,7 +9749,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#UsersDeleteRequest": {
+    "com.azure.devtestlabs#DeleteUserRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9788,13 +9789,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#UsersUpdate": {
+    "com.azure.devtestlabs#UpdateUser": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#UsersUpdateRequest"
+        "target": "com.azure.devtestlabs#UpdateUserRequest"
       },
       "output": {
-        "target": "com.azure.devtestlabs#UsersUpdateResponse"
+        "target": "com.azure.devtestlabs#UpdateUserResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9807,7 +9808,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#UsersUpdateResponse": {
+    "com.azure.devtestlabs#UpdateUserResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -9842,7 +9843,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#UsersUpdateResponseTagsMap",
+          "target": "com.azure.devtestlabs#UpdateUserResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -9858,7 +9859,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devtestlabs#UsersUpdateResponseTagsMap": {
+    "com.azure.devtestlabs#UpdateUserResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9966,7 +9967,7 @@
         "smithy.api#documentation": "Identity attributes of a lab user."
       }
     },
-    "com.azure.devtestlabs#UsersUpdateRequest": {
+    "com.azure.devtestlabs#UpdateUserRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10002,7 +10003,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#UsersUpdateRequestTagsMap",
+          "target": "com.azure.devtestlabs#UpdateUserRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -10012,7 +10013,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#UsersUpdateRequestTagsMap": {
+    "com.azure.devtestlabs#UpdateUserRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -10197,13 +10198,13 @@
         "smithy.api#documentation": "Properties of a lab user profile."
       }
     },
-    "com.azure.devtestlabs#UsersGet": {
+    "com.azure.devtestlabs#GetUser": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#UsersGetRequest"
+        "target": "com.azure.devtestlabs#GetUserRequest"
       },
       "output": {
-        "target": "com.azure.devtestlabs#UsersGetResponse"
+        "target": "com.azure.devtestlabs#GetUserResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10216,7 +10217,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#UsersGetResponse": {
+    "com.azure.devtestlabs#GetUserResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -10251,7 +10252,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#UsersGetResponseTagsMap",
+          "target": "com.azure.devtestlabs#GetUserResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -10267,7 +10268,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devtestlabs#UsersGetResponseTagsMap": {
+    "com.azure.devtestlabs#GetUserResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -10279,7 +10280,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devtestlabs#UsersGetRequest": {
+    "com.azure.devtestlabs#GetUserRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10326,10 +10327,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#UsersList": {
+    "com.azure.devtestlabs#ListUsers": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#UsersListRequest"
+        "target": "com.azure.devtestlabs#ListUsersRequest"
       },
       "output": {
         "target": "com.azure.devtestlabs#UserList"
@@ -10438,7 +10439,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devtestlabs#UsersListRequest": {
+    "com.azure.devtestlabs#ListUsersRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10498,10 +10499,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#ServiceRunnersDelete": {
+    "com.azure.devtestlabs#DeleteServiceRunner": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#ServiceRunnersDeleteRequest"
+        "target": "com.azure.devtestlabs#DeleteServiceRunnerRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -10517,7 +10518,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#ServiceRunnersDeleteRequest": {
+    "com.azure.devtestlabs#DeleteServiceRunnerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10772,13 +10773,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devtestlabs#ServiceRunnersGet": {
+    "com.azure.devtestlabs#GetServiceRunner": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#ServiceRunnersGetRequest"
+        "target": "com.azure.devtestlabs#GetServiceRunnerRequest"
       },
       "output": {
-        "target": "com.azure.devtestlabs#ServiceRunnersGetResponse"
+        "target": "com.azure.devtestlabs#GetServiceRunnerResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10791,7 +10792,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#ServiceRunnersGetResponse": {
+    "com.azure.devtestlabs#GetServiceRunnerResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -10819,7 +10820,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#ServiceRunnersGetResponseTagsMap",
+          "target": "com.azure.devtestlabs#GetServiceRunnerResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -10841,7 +10842,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devtestlabs#ServiceRunnersGetResponseTagsMap": {
+    "com.azure.devtestlabs#GetServiceRunnerResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -10853,7 +10854,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devtestlabs#ServiceRunnersGetRequest": {
+    "com.azure.devtestlabs#GetServiceRunnerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10893,10 +10894,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#SchedulesListApplicable": {
+    "com.azure.devtestlabs#ListScheduleApplicable": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#SchedulesListApplicableRequest"
+        "target": "com.azure.devtestlabs#ListScheduleApplicableRequest"
       },
       "output": {
         "target": "com.azure.devtestlabs#ScheduleList"
@@ -10912,7 +10913,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#SchedulesListApplicableRequest": {
+    "com.azure.devtestlabs#ListScheduleApplicableRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10952,10 +10953,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#SchedulesExecute": {
+    "com.azure.devtestlabs#ExecuteSchedule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#SchedulesExecuteRequest"
+        "target": "com.azure.devtestlabs#ExecuteScheduleRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -10971,7 +10972,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#SchedulesExecuteRequest": {
+    "com.azure.devtestlabs#ExecuteScheduleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11011,10 +11012,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#SchedulesDelete": {
+    "com.azure.devtestlabs#DeleteSchedule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#SchedulesDeleteRequest"
+        "target": "com.azure.devtestlabs#DeleteScheduleRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -11030,7 +11031,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#SchedulesDeleteRequest": {
+    "com.azure.devtestlabs#DeleteScheduleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11070,13 +11071,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#SchedulesUpdate": {
+    "com.azure.devtestlabs#UpdateSchedule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#SchedulesUpdateRequest"
+        "target": "com.azure.devtestlabs#UpdateScheduleRequest"
       },
       "output": {
-        "target": "com.azure.devtestlabs#SchedulesUpdateResponse"
+        "target": "com.azure.devtestlabs#UpdateScheduleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11089,7 +11090,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#SchedulesUpdateResponse": {
+    "com.azure.devtestlabs#UpdateScheduleResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -11124,7 +11125,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#SchedulesUpdateResponseTagsMap",
+          "target": "com.azure.devtestlabs#UpdateScheduleResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -11140,7 +11141,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devtestlabs#SchedulesUpdateResponseTagsMap": {
+    "com.azure.devtestlabs#UpdateScheduleResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -11152,7 +11153,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devtestlabs#SchedulesUpdateRequest": {
+    "com.azure.devtestlabs#UpdateScheduleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11188,7 +11189,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#SchedulesUpdateRequestTagsMap",
+          "target": "com.azure.devtestlabs#UpdateScheduleRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -11198,7 +11199,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#SchedulesUpdateRequestTagsMap": {
+    "com.azure.devtestlabs#UpdateScheduleRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -11363,13 +11364,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devtestlabs#SchedulesGet": {
+    "com.azure.devtestlabs#GetSchedule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#SchedulesGetRequest"
+        "target": "com.azure.devtestlabs#GetScheduleRequest"
       },
       "output": {
-        "target": "com.azure.devtestlabs#SchedulesGetResponse"
+        "target": "com.azure.devtestlabs#GetScheduleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11382,7 +11383,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#SchedulesGetResponse": {
+    "com.azure.devtestlabs#GetScheduleResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -11417,7 +11418,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#SchedulesGetResponseTagsMap",
+          "target": "com.azure.devtestlabs#GetScheduleResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -11433,7 +11434,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devtestlabs#SchedulesGetResponseTagsMap": {
+    "com.azure.devtestlabs#GetScheduleResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -11445,7 +11446,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devtestlabs#SchedulesGetRequest": {
+    "com.azure.devtestlabs#GetScheduleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11492,10 +11493,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#SchedulesList": {
+    "com.azure.devtestlabs#ListSchedules": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#SchedulesListRequest"
+        "target": "com.azure.devtestlabs#ListSchedulesRequest"
       },
       "output": {
         "target": "com.azure.devtestlabs#ScheduleList"
@@ -11511,7 +11512,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#SchedulesListRequest": {
+    "com.azure.devtestlabs#ListSchedulesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11571,10 +11572,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#PoliciesDelete": {
+    "com.azure.devtestlabs#DeletePolicy": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#PoliciesDeleteRequest"
+        "target": "com.azure.devtestlabs#DeletePolicyRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -11590,7 +11591,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#PoliciesDeleteRequest": {
+    "com.azure.devtestlabs#DeletePolicyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11638,13 +11639,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#PoliciesUpdate": {
+    "com.azure.devtestlabs#UpdatePolicy": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#PoliciesUpdateRequest"
+        "target": "com.azure.devtestlabs#UpdatePolicyRequest"
       },
       "output": {
-        "target": "com.azure.devtestlabs#PoliciesUpdateResponse"
+        "target": "com.azure.devtestlabs#UpdatePolicyResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11657,7 +11658,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#PoliciesUpdateResponse": {
+    "com.azure.devtestlabs#UpdatePolicyResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -11692,7 +11693,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#PoliciesUpdateResponseTagsMap",
+          "target": "com.azure.devtestlabs#UpdatePolicyResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -11708,7 +11709,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devtestlabs#PoliciesUpdateResponseTagsMap": {
+    "com.azure.devtestlabs#UpdatePolicyResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -11890,7 +11891,7 @@
         "smithy.api#documentation": "The status of the policy."
       }
     },
-    "com.azure.devtestlabs#PoliciesUpdateRequest": {
+    "com.azure.devtestlabs#UpdatePolicyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11934,7 +11935,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#PoliciesUpdateRequestTagsMap",
+          "target": "com.azure.devtestlabs#UpdatePolicyRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -11944,7 +11945,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#PoliciesUpdateRequestTagsMap": {
+    "com.azure.devtestlabs#UpdatePolicyRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -12161,13 +12162,13 @@
         "smithy.api#documentation": "Properties of a Policy."
       }
     },
-    "com.azure.devtestlabs#PoliciesGet": {
+    "com.azure.devtestlabs#GetPolicy": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#PoliciesGetRequest"
+        "target": "com.azure.devtestlabs#GetPolicyRequest"
       },
       "output": {
-        "target": "com.azure.devtestlabs#PoliciesGetResponse"
+        "target": "com.azure.devtestlabs#GetPolicyResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -12180,7 +12181,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#PoliciesGetResponse": {
+    "com.azure.devtestlabs#GetPolicyResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -12215,7 +12216,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#PoliciesGetResponseTagsMap",
+          "target": "com.azure.devtestlabs#GetPolicyResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -12231,7 +12232,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devtestlabs#PoliciesGetResponseTagsMap": {
+    "com.azure.devtestlabs#GetPolicyResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -12243,7 +12244,7 @@
         "smithy.api#documentation": "The tags of the resource."
       }
     },
-    "com.azure.devtestlabs#PoliciesGetRequest": {
+    "com.azure.devtestlabs#GetPolicyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12298,10 +12299,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#PoliciesList": {
+    "com.azure.devtestlabs#ListPolicies": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#PoliciesListRequest"
+        "target": "com.azure.devtestlabs#ListPoliciesRequest"
       },
       "output": {
         "target": "com.azure.devtestlabs#PolicyList"
@@ -12410,7 +12411,7 @@
         "smithy.api#documentation": "The tags of the resource."
       }
     },
-    "com.azure.devtestlabs#PoliciesListRequest": {
+    "com.azure.devtestlabs#ListPoliciesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12656,10 +12657,10 @@
         "smithy.api#documentation": "Properties for evaluating a policy set."
       }
     },
-    "com.azure.devtestlabs#NotificationChannelsNotify": {
+    "com.azure.devtestlabs#NotifyNotificationChannel": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#NotificationChannelsNotifyRequest"
+        "target": "com.azure.devtestlabs#NotifyNotificationChannelRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -12675,7 +12676,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#NotificationChannelsNotifyRequest": {
+    "com.azure.devtestlabs#NotifyNotificationChannelRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12747,10 +12748,10 @@
         "smithy.api#documentation": "The event type for which this notification is enabled (i.e. AutoShutdown, Cost)"
       }
     },
-    "com.azure.devtestlabs#NotificationChannelsDelete": {
+    "com.azure.devtestlabs#DeleteNotificationChannel": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#NotificationChannelsDeleteRequest"
+        "target": "com.azure.devtestlabs#DeleteNotificationChannelRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -12766,7 +12767,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#NotificationChannelsDeleteRequest": {
+    "com.azure.devtestlabs#DeleteNotificationChannelRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12806,13 +12807,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#NotificationChannelsUpdate": {
+    "com.azure.devtestlabs#UpdateNotificationChannel": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#NotificationChannelsUpdateRequest"
+        "target": "com.azure.devtestlabs#UpdateNotificationChannelRequest"
       },
       "output": {
-        "target": "com.azure.devtestlabs#NotificationChannelsUpdateResponse"
+        "target": "com.azure.devtestlabs#UpdateNotificationChannelResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -12825,7 +12826,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#NotificationChannelsUpdateResponse": {
+    "com.azure.devtestlabs#UpdateNotificationChannelResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -12860,7 +12861,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#NotificationChannelsUpdateResponseTagsMap",
+          "target": "com.azure.devtestlabs#UpdateNotificationChannelResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -12876,7 +12877,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devtestlabs#NotificationChannelsUpdateResponseTagsMap": {
+    "com.azure.devtestlabs#UpdateNotificationChannelResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -12967,7 +12968,7 @@
         "smithy.api#documentation": "An event to be notified for."
       }
     },
-    "com.azure.devtestlabs#NotificationChannelsUpdateRequest": {
+    "com.azure.devtestlabs#UpdateNotificationChannelRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13003,7 +13004,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#NotificationChannelsUpdateRequestTagsMap",
+          "target": "com.azure.devtestlabs#UpdateNotificationChannelRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -13013,7 +13014,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#NotificationChannelsUpdateRequestTagsMap": {
+    "com.azure.devtestlabs#UpdateNotificationChannelRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -13225,13 +13226,13 @@
         "smithy.api#documentation": "The list of event for which this notification is enabled."
       }
     },
-    "com.azure.devtestlabs#NotificationChannelsGet": {
+    "com.azure.devtestlabs#GetNotificationChannel": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#NotificationChannelsGetRequest"
+        "target": "com.azure.devtestlabs#GetNotificationChannelRequest"
       },
       "output": {
-        "target": "com.azure.devtestlabs#NotificationChannelsGetResponse"
+        "target": "com.azure.devtestlabs#GetNotificationChannelResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -13244,7 +13245,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#NotificationChannelsGetResponse": {
+    "com.azure.devtestlabs#GetNotificationChannelResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -13279,7 +13280,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#NotificationChannelsGetResponseTagsMap",
+          "target": "com.azure.devtestlabs#GetNotificationChannelResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -13295,7 +13296,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devtestlabs#NotificationChannelsGetResponseTagsMap": {
+    "com.azure.devtestlabs#GetNotificationChannelResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -13307,7 +13308,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devtestlabs#NotificationChannelsGetRequest": {
+    "com.azure.devtestlabs#GetNotificationChannelRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13354,10 +13355,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#NotificationChannelsList": {
+    "com.azure.devtestlabs#ListNotificationChannels": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#NotificationChannelsListRequest"
+        "target": "com.azure.devtestlabs#ListNotificationChannelsRequest"
       },
       "output": {
         "target": "com.azure.devtestlabs#NotificationChannelList"
@@ -13466,7 +13467,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devtestlabs#NotificationChannelsListRequest": {
+    "com.azure.devtestlabs#ListNotificationChannelsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13526,10 +13527,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#LabsListVhds": {
+    "com.azure.devtestlabs#ListLabVhds": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#LabsListVhdsRequest"
+        "target": "com.azure.devtestlabs#ListLabVhdsRequest"
       },
       "output": {
         "target": "com.azure.devtestlabs#LabVhdList"
@@ -13589,7 +13590,7 @@
         "smithy.api#documentation": "Properties of a VHD in the lab."
       }
     },
-    "com.azure.devtestlabs#LabsListVhdsRequest": {
+    "com.azure.devtestlabs#ListLabVhdsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13621,10 +13622,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#LabsImportVirtualMachine": {
+    "com.azure.devtestlabs#ImportLabVirtualMachine": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#LabsImportVirtualMachineRequest"
+        "target": "com.azure.devtestlabs#ImportLabVirtualMachineRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -13640,7 +13641,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#LabsImportVirtualMachineRequest": {
+    "com.azure.devtestlabs#ImportLabVirtualMachineRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13755,10 +13756,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#GalleryImagesList": {
+    "com.azure.devtestlabs#ListGalleryImages": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#GalleryImagesListRequest"
+        "target": "com.azure.devtestlabs#ListGalleryImagesRequest"
       },
       "output": {
         "target": "com.azure.devtestlabs#GalleryImageList"
@@ -13923,7 +13924,7 @@
         "smithy.api#documentation": "Properties of a gallery image."
       }
     },
-    "com.azure.devtestlabs#GalleryImagesListRequest": {
+    "com.azure.devtestlabs#ListGalleryImagesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13983,10 +13984,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#FormulasDelete": {
+    "com.azure.devtestlabs#DeleteFormulas": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#FormulasDeleteRequest"
+        "target": "com.azure.devtestlabs#DeleteFormulasRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -14002,7 +14003,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#FormulasDeleteRequest": {
+    "com.azure.devtestlabs#DeleteFormulasRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -14042,13 +14043,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#FormulasUpdate": {
+    "com.azure.devtestlabs#UpdateFormulas": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#FormulasUpdateRequest"
+        "target": "com.azure.devtestlabs#UpdateFormulasRequest"
       },
       "output": {
-        "target": "com.azure.devtestlabs#FormulasUpdateResponse"
+        "target": "com.azure.devtestlabs#UpdateFormulasResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -14061,7 +14062,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#FormulasUpdateResponse": {
+    "com.azure.devtestlabs#UpdateFormulasResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -14096,7 +14097,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#FormulasUpdateResponseTagsMap",
+          "target": "com.azure.devtestlabs#UpdateFormulasResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -14112,7 +14113,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devtestlabs#FormulasUpdateResponseTagsMap": {
+    "com.azure.devtestlabs#UpdateFormulasResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -14432,7 +14433,7 @@
         "smithy.api#documentation": "Parameters for creating multiple virtual machines as a single action."
       }
     },
-    "com.azure.devtestlabs#FormulasUpdateRequest": {
+    "com.azure.devtestlabs#UpdateFormulasRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -14468,7 +14469,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#FormulasUpdateRequestTagsMap",
+          "target": "com.azure.devtestlabs#UpdateFormulasRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -14478,7 +14479,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#FormulasUpdateRequestTagsMap": {
+    "com.azure.devtestlabs#UpdateFormulasRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -14899,13 +14900,13 @@
         "smithy.api#documentation": "The artifacts to be installed on the virtual machine."
       }
     },
-    "com.azure.devtestlabs#FormulasGet": {
+    "com.azure.devtestlabs#GetFormulas": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#FormulasGetRequest"
+        "target": "com.azure.devtestlabs#GetFormulasRequest"
       },
       "output": {
-        "target": "com.azure.devtestlabs#FormulasGetResponse"
+        "target": "com.azure.devtestlabs#GetFormulasResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -14918,7 +14919,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#FormulasGetResponse": {
+    "com.azure.devtestlabs#GetFormulasResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -14953,7 +14954,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#FormulasGetResponseTagsMap",
+          "target": "com.azure.devtestlabs#GetFormulasResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -14969,7 +14970,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devtestlabs#FormulasGetResponseTagsMap": {
+    "com.azure.devtestlabs#GetFormulasResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -14981,7 +14982,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devtestlabs#FormulasGetRequest": {
+    "com.azure.devtestlabs#GetFormulasRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15028,10 +15029,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#FormulasList": {
+    "com.azure.devtestlabs#ListFormulas": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#FormulasListRequest"
+        "target": "com.azure.devtestlabs#ListFormulasRequest"
       },
       "output": {
         "target": "com.azure.devtestlabs#FormulaList"
@@ -15140,7 +15141,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devtestlabs#FormulasListRequest": {
+    "com.azure.devtestlabs#ListFormulasRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15200,10 +15201,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#LabsExportResourceUsage": {
+    "com.azure.devtestlabs#ExportLabResourceUsage": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#LabsExportResourceUsageRequest"
+        "target": "com.azure.devtestlabs#ExportLabResourceUsageRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -15219,7 +15220,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#LabsExportResourceUsageRequest": {
+    "com.azure.devtestlabs#ExportLabResourceUsageRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15263,10 +15264,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#CustomImagesDelete": {
+    "com.azure.devtestlabs#DeleteCustomImage": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#CustomImagesDeleteRequest"
+        "target": "com.azure.devtestlabs#DeleteCustomImageRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -15282,7 +15283,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#CustomImagesDeleteRequest": {
+    "com.azure.devtestlabs#DeleteCustomImageRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15322,13 +15323,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#CustomImagesUpdate": {
+    "com.azure.devtestlabs#UpdateCustomImage": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#CustomImagesUpdateRequest"
+        "target": "com.azure.devtestlabs#UpdateCustomImageRequest"
       },
       "output": {
-        "target": "com.azure.devtestlabs#CustomImagesUpdateResponse"
+        "target": "com.azure.devtestlabs#UpdateCustomImageResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -15341,7 +15342,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#CustomImagesUpdateResponse": {
+    "com.azure.devtestlabs#UpdateCustomImageResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -15376,7 +15377,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#CustomImagesUpdateResponseTagsMap",
+          "target": "com.azure.devtestlabs#UpdateCustomImageResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -15392,7 +15393,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devtestlabs#CustomImagesUpdateResponseTagsMap": {
+    "com.azure.devtestlabs#UpdateCustomImageResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -15698,7 +15699,7 @@
         "smithy.api#documentation": "The state of the Windows OS (i.e. NonSysprepped, SysprepRequested, SysprepApplied)."
       }
     },
-    "com.azure.devtestlabs#CustomImagesUpdateRequest": {
+    "com.azure.devtestlabs#UpdateCustomImageRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15734,7 +15735,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#CustomImagesUpdateRequestTagsMap",
+          "target": "com.azure.devtestlabs#UpdateCustomImageRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -15744,7 +15745,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#CustomImagesUpdateRequestTagsMap": {
+    "com.azure.devtestlabs#UpdateCustomImageRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -15980,13 +15981,13 @@
         "smithy.api#documentation": "Storage information about the data disks present in the custom image"
       }
     },
-    "com.azure.devtestlabs#CustomImagesGet": {
+    "com.azure.devtestlabs#GetCustomImage": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#CustomImagesGetRequest"
+        "target": "com.azure.devtestlabs#GetCustomImageRequest"
       },
       "output": {
-        "target": "com.azure.devtestlabs#CustomImagesGetResponse"
+        "target": "com.azure.devtestlabs#GetCustomImageResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -15999,7 +16000,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#CustomImagesGetResponse": {
+    "com.azure.devtestlabs#GetCustomImageResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -16034,7 +16035,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#CustomImagesGetResponseTagsMap",
+          "target": "com.azure.devtestlabs#GetCustomImageResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -16050,7 +16051,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devtestlabs#CustomImagesGetResponseTagsMap": {
+    "com.azure.devtestlabs#GetCustomImageResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -16062,7 +16063,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devtestlabs#CustomImagesGetRequest": {
+    "com.azure.devtestlabs#GetCustomImageRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16109,10 +16110,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#CustomImagesList": {
+    "com.azure.devtestlabs#ListCustomImages": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#CustomImagesListRequest"
+        "target": "com.azure.devtestlabs#ListCustomImagesRequest"
       },
       "output": {
         "target": "com.azure.devtestlabs#CustomImageList"
@@ -16221,7 +16222,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devtestlabs#CustomImagesListRequest": {
+    "com.azure.devtestlabs#ListCustomImagesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16281,10 +16282,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#LabsCreateEnvironment": {
+    "com.azure.devtestlabs#CreateLabEnvironment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#LabsCreateEnvironmentRequest"
+        "target": "com.azure.devtestlabs#CreateLabEnvironmentRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -16300,7 +16301,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#LabsCreateEnvironmentRequest": {
+    "com.azure.devtestlabs#CreateLabEnvironmentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16340,7 +16341,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#LabsCreateEnvironmentRequestTagsMap",
+          "target": "com.azure.devtestlabs#CreateLabEnvironmentRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -16350,7 +16351,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#LabsCreateEnvironmentRequestTagsMap": {
+    "com.azure.devtestlabs#CreateLabEnvironmentRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -16932,13 +16933,13 @@
         "smithy.api#documentation": "Properties of a cost item."
       }
     },
-    "com.azure.devtestlabs#CostsGet": {
+    "com.azure.devtestlabs#GetCost": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#CostsGetRequest"
+        "target": "com.azure.devtestlabs#GetCostRequest"
       },
       "output": {
-        "target": "com.azure.devtestlabs#CostsGetResponse"
+        "target": "com.azure.devtestlabs#GetCostResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -16951,7 +16952,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#CostsGetResponse": {
+    "com.azure.devtestlabs#GetCostResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -16986,7 +16987,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#CostsGetResponseTagsMap",
+          "target": "com.azure.devtestlabs#GetCostResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -17002,7 +17003,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devtestlabs#CostsGetResponseTagsMap": {
+    "com.azure.devtestlabs#GetCostResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -17014,7 +17015,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devtestlabs#CostsGetRequest": {
+    "com.azure.devtestlabs#GetCostRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -17061,10 +17062,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#LabsClaimAnyVm": {
+    "com.azure.devtestlabs#ClaimLabAnyVm": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#LabsClaimAnyVmRequest"
+        "target": "com.azure.devtestlabs#ClaimLabAnyVmRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -17080,7 +17081,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#LabsClaimAnyVmRequest": {
+    "com.azure.devtestlabs#ClaimLabAnyVmRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -17112,10 +17113,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#ArtifactsGenerateArmTemplate": {
+    "com.azure.devtestlabs#GenerateArtifactArmTemplate": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#ArtifactsGenerateArmTemplateRequest"
+        "target": "com.azure.devtestlabs#GenerateArtifactArmTemplateRequest"
       },
       "output": {
         "target": "com.azure.devtestlabs#ArmTemplateInfo"
@@ -17175,7 +17176,7 @@
         "smithy.api#documentation": "The template's contents."
       }
     },
-    "com.azure.devtestlabs#ArtifactsGenerateArmTemplateRequest": {
+    "com.azure.devtestlabs#GenerateArtifactArmTemplateRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -17225,7 +17226,7 @@
           }
         },
         "parameters": {
-          "target": "com.azure.devtestlabs#ArtifactsGenerateArmTemplateRequestParametersList",
+          "target": "com.azure.devtestlabs#GenerateArtifactArmTemplateRequestParametersList",
           "traits": {
             "smithy.api#documentation": "The parameters of the ARM template."
           }
@@ -17267,7 +17268,7 @@
         "smithy.api#documentation": "Options for uploading the files for the artifact. UploadFilesAndGenerateSasTokens is the default value."
       }
     },
-    "com.azure.devtestlabs#ArtifactsGenerateArmTemplateRequestParametersList": {
+    "com.azure.devtestlabs#GenerateArtifactArmTemplateRequestParametersList": {
       "type": "list",
       "member": {
         "target": "com.azure.devtestlabs#ParameterInfo"
@@ -17296,13 +17297,13 @@
         "smithy.api#documentation": "Information about an artifact's parameter."
       }
     },
-    "com.azure.devtestlabs#ArtifactsGet": {
+    "com.azure.devtestlabs#GetArtifact": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#ArtifactsGetRequest"
+        "target": "com.azure.devtestlabs#GetArtifactRequest"
       },
       "output": {
-        "target": "com.azure.devtestlabs#ArtifactsGetResponse"
+        "target": "com.azure.devtestlabs#GetArtifactResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -17315,7 +17316,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#ArtifactsGetResponse": {
+    "com.azure.devtestlabs#GetArtifactResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -17350,7 +17351,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#ArtifactsGetResponseTagsMap",
+          "target": "com.azure.devtestlabs#GetArtifactResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -17366,7 +17367,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devtestlabs#ArtifactsGetResponseTagsMap": {
+    "com.azure.devtestlabs#GetArtifactResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -17446,7 +17447,7 @@
         "smithy.api#documentation": "The artifact's parameters."
       }
     },
-    "com.azure.devtestlabs#ArtifactsGetRequest": {
+    "com.azure.devtestlabs#GetArtifactRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -17501,10 +17502,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#ArtifactsList": {
+    "com.azure.devtestlabs#ListArtifacts": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#ArtifactsListRequest"
+        "target": "com.azure.devtestlabs#ListArtifactsRequest"
       },
       "output": {
         "target": "com.azure.devtestlabs#ArtifactList"
@@ -17613,7 +17614,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devtestlabs#ArtifactsListRequest": {
+    "com.azure.devtestlabs#ListArtifactsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -17681,13 +17682,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#ArmTemplatesGet": {
+    "com.azure.devtestlabs#GetArmTemplate": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#ArmTemplatesGetRequest"
+        "target": "com.azure.devtestlabs#GetArmTemplateRequest"
       },
       "output": {
-        "target": "com.azure.devtestlabs#ArmTemplatesGetResponse"
+        "target": "com.azure.devtestlabs#GetArmTemplateResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -17700,7 +17701,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#ArmTemplatesGetResponse": {
+    "com.azure.devtestlabs#GetArmTemplateResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -17735,7 +17736,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#ArmTemplatesGetResponseTagsMap",
+          "target": "com.azure.devtestlabs#GetArmTemplateResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -17751,7 +17752,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devtestlabs#ArmTemplatesGetResponseTagsMap": {
+    "com.azure.devtestlabs#GetArmTemplateResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -17872,7 +17873,7 @@
         "smithy.api#documentation": "The contents of the ARM template."
       }
     },
-    "com.azure.devtestlabs#ArmTemplatesGetRequest": {
+    "com.azure.devtestlabs#GetArmTemplateRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -17927,10 +17928,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#ArmTemplatesList": {
+    "com.azure.devtestlabs#ListArmTemplates": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#ArmTemplatesListRequest"
+        "target": "com.azure.devtestlabs#ListArmTemplatesRequest"
       },
       "output": {
         "target": "com.azure.devtestlabs#ArmTemplateList"
@@ -18039,7 +18040,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devtestlabs#ArmTemplatesListRequest": {
+    "com.azure.devtestlabs#ListArmTemplatesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -18107,10 +18108,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#ArtifactSourcesDelete": {
+    "com.azure.devtestlabs#DeleteArtifactSource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#ArtifactSourcesDeleteRequest"
+        "target": "com.azure.devtestlabs#DeleteArtifactSourceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -18126,7 +18127,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#ArtifactSourcesDeleteRequest": {
+    "com.azure.devtestlabs#DeleteArtifactSourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -18166,13 +18167,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#ArtifactSourcesUpdate": {
+    "com.azure.devtestlabs#UpdateArtifactSource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#ArtifactSourcesUpdateRequest"
+        "target": "com.azure.devtestlabs#UpdateArtifactSourceRequest"
       },
       "output": {
-        "target": "com.azure.devtestlabs#ArtifactSourcesUpdateResponse"
+        "target": "com.azure.devtestlabs#UpdateArtifactSourceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -18185,7 +18186,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#ArtifactSourcesUpdateResponse": {
+    "com.azure.devtestlabs#UpdateArtifactSourceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -18220,7 +18221,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#ArtifactSourcesUpdateResponseTagsMap",
+          "target": "com.azure.devtestlabs#UpdateArtifactSourceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -18236,7 +18237,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devtestlabs#ArtifactSourcesUpdateResponseTagsMap": {
+    "com.azure.devtestlabs#UpdateArtifactSourceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -18368,7 +18369,7 @@
         "smithy.api#documentation": "The artifact source's type."
       }
     },
-    "com.azure.devtestlabs#ArtifactSourcesUpdateRequest": {
+    "com.azure.devtestlabs#UpdateArtifactSourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -18404,7 +18405,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#ArtifactSourcesUpdateRequestTagsMap",
+          "target": "com.azure.devtestlabs#UpdateArtifactSourceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -18414,7 +18415,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#ArtifactSourcesUpdateRequestTagsMap": {
+    "com.azure.devtestlabs#UpdateArtifactSourceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -18635,13 +18636,13 @@
         "smithy.api#documentation": "Properties of an artifact source."
       }
     },
-    "com.azure.devtestlabs#ArtifactSourcesGet": {
+    "com.azure.devtestlabs#GetArtifactSource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#ArtifactSourcesGetRequest"
+        "target": "com.azure.devtestlabs#GetArtifactSourceRequest"
       },
       "output": {
-        "target": "com.azure.devtestlabs#ArtifactSourcesGetResponse"
+        "target": "com.azure.devtestlabs#GetArtifactSourceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -18654,7 +18655,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#ArtifactSourcesGetResponse": {
+    "com.azure.devtestlabs#GetArtifactSourceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -18689,7 +18690,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#ArtifactSourcesGetResponseTagsMap",
+          "target": "com.azure.devtestlabs#GetArtifactSourceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -18705,7 +18706,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devtestlabs#ArtifactSourcesGetResponseTagsMap": {
+    "com.azure.devtestlabs#GetArtifactSourceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -18717,7 +18718,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devtestlabs#ArtifactSourcesGetRequest": {
+    "com.azure.devtestlabs#GetArtifactSourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -18764,10 +18765,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#ArtifactSourcesList": {
+    "com.azure.devtestlabs#ListArtifactSources": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#ArtifactSourcesListRequest"
+        "target": "com.azure.devtestlabs#ListArtifactSourcesRequest"
       },
       "output": {
         "target": "com.azure.devtestlabs#ArtifactSourceList"
@@ -18876,7 +18877,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devtestlabs#ArtifactSourcesListRequest": {
+    "com.azure.devtestlabs#ListArtifactSourcesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -18936,10 +18937,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#LabsDelete": {
+    "com.azure.devtestlabs#DeleteLab": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#LabsDeleteRequest"
+        "target": "com.azure.devtestlabs#DeleteLabRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -18955,7 +18956,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#LabsDeleteRequest": {
+    "com.azure.devtestlabs#DeleteLabRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -18987,13 +18988,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#LabsUpdate": {
+    "com.azure.devtestlabs#UpdateLab": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#LabsUpdateRequest"
+        "target": "com.azure.devtestlabs#UpdateLabRequest"
       },
       "output": {
-        "target": "com.azure.devtestlabs#LabsUpdateResponse"
+        "target": "com.azure.devtestlabs#UpdateLabResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -19006,7 +19007,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#LabsUpdateResponse": {
+    "com.azure.devtestlabs#UpdateLabResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -19041,7 +19042,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#LabsUpdateResponseTagsMap",
+          "target": "com.azure.devtestlabs#UpdateLabResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -19057,7 +19058,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devtestlabs#LabsUpdateResponseTagsMap": {
+    "com.azure.devtestlabs#UpdateLabResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -19363,7 +19364,7 @@
         "smithy.api#documentation": "Type of storage used by the lab. It can be either Premium or Standard. Default is Premium."
       }
     },
-    "com.azure.devtestlabs#LabsUpdateRequest": {
+    "com.azure.devtestlabs#UpdateLabRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -19391,7 +19392,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#LabsUpdateRequestTagsMap",
+          "target": "com.azure.devtestlabs#UpdateLabRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -19401,7 +19402,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#LabsUpdateRequestTagsMap": {
+    "com.azure.devtestlabs#UpdateLabRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -19708,13 +19709,13 @@
         "smithy.api#documentation": "Type of storage used by the lab. It can be either Premium or Standard. Default is Premium."
       }
     },
-    "com.azure.devtestlabs#LabsGet": {
+    "com.azure.devtestlabs#GetLab": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#LabsGetRequest"
+        "target": "com.azure.devtestlabs#GetLabRequest"
       },
       "output": {
-        "target": "com.azure.devtestlabs#LabsGetResponse"
+        "target": "com.azure.devtestlabs#GetLabResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -19727,7 +19728,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#LabsGetResponse": {
+    "com.azure.devtestlabs#GetLabResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -19762,7 +19763,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devtestlabs#LabsGetResponseTagsMap",
+          "target": "com.azure.devtestlabs#GetLabResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -19778,7 +19779,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devtestlabs#LabsGetResponseTagsMap": {
+    "com.azure.devtestlabs#GetLabResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -19790,7 +19791,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devtestlabs#LabsGetRequest": {
+    "com.azure.devtestlabs#GetLabRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -19829,10 +19830,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#LabsListByResourceGroup": {
+    "com.azure.devtestlabs#ListLabByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#LabsListByResourceGroupRequest"
+        "target": "com.azure.devtestlabs#ListLabByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.devtestlabs#LabList"
@@ -19941,7 +19942,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devtestlabs#LabsListByResourceGroupRequest": {
+    "com.azure.devtestlabs#ListLabByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -19993,10 +19994,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#GlobalSchedulesListBySubscription": {
+    "com.azure.devtestlabs#ListGlobalScheduleBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#GlobalSchedulesListBySubscriptionRequest"
+        "target": "com.azure.devtestlabs#ListGlobalScheduleBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.devtestlabs#ScheduleList"
@@ -20012,7 +20013,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#GlobalSchedulesListBySubscriptionRequest": {
+    "com.azure.devtestlabs#ListGlobalScheduleBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -20056,10 +20057,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#OperationsGet": {
+    "com.azure.devtestlabs#GetOperation": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#OperationsGetRequest"
+        "target": "com.azure.devtestlabs#GetOperationRequest"
       },
       "output": {
         "target": "com.azure.devtestlabs#OperationResult"
@@ -20411,7 +20412,7 @@
         "smithy.api#documentation": "The status code for the operation."
       }
     },
-    "com.azure.devtestlabs#OperationsGetRequest": {
+    "com.azure.devtestlabs#GetOperationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -20443,10 +20444,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#LabsListBySubscription": {
+    "com.azure.devtestlabs#ListLabBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devtestlabs#LabsListBySubscriptionRequest"
+        "target": "com.azure.devtestlabs#ListLabBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.devtestlabs#LabList"
@@ -20462,7 +20463,7 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#LabsListBySubscriptionRequest": {
+    "com.azure.devtestlabs#ListLabBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -20506,13 +20507,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devtestlabs#ProviderOperationsList": {
+    "com.azure.devtestlabs#ListProviderOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.azure.devtestlabs#ProviderOperationsListResponse"
+        "target": "com.azure.devtestlabs#ListProviderOperationsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -20525,11 +20526,11 @@
         "com.distilled.openapi#apiVersion": "2018-09-15"
       }
     },
-    "com.azure.devtestlabs#ProviderOperationsListResponse": {
+    "com.azure.devtestlabs#ListProviderOperationsResponse": {
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.devtestlabs#ProviderOperationsListResponseValueList",
+          "target": "com.azure.devtestlabs#ListProviderOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -20545,7 +20546,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devtestlabs#ProviderOperationsListResponseValueList": {
+    "com.azure.devtestlabs#ListProviderOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.devtestlabs#Operation"
@@ -20672,397 +20673,397 @@
           "target": "com.azure.devtestlabs#GlobalSchedulesRetarget"
         },
         {
-          "target": "com.azure.devtestlabs#GlobalSchedulesExecute"
+          "target": "com.azure.devtestlabs#ExecuteGlobalSchedule"
         },
         {
-          "target": "com.azure.devtestlabs#GlobalSchedulesDelete"
+          "target": "com.azure.devtestlabs#DeleteGlobalSchedule"
         },
         {
-          "target": "com.azure.devtestlabs#GlobalSchedulesUpdate"
+          "target": "com.azure.devtestlabs#UpdateGlobalSchedule"
         },
         {
           "target": "com.azure.devtestlabs#GlobalSchedulesCreateOrUpdate"
         },
         {
-          "target": "com.azure.devtestlabs#GlobalSchedulesGet"
+          "target": "com.azure.devtestlabs#GetGlobalSchedule"
         },
         {
-          "target": "com.azure.devtestlabs#GlobalSchedulesListByResourceGroup"
+          "target": "com.azure.devtestlabs#ListGlobalScheduleByResourceGroup"
         },
         {
-          "target": "com.azure.devtestlabs#VirtualNetworksDelete"
+          "target": "com.azure.devtestlabs#DeleteVirtualNetwork"
         },
         {
-          "target": "com.azure.devtestlabs#VirtualNetworksUpdate"
+          "target": "com.azure.devtestlabs#UpdateVirtualNetwork"
         },
         {
           "target": "com.azure.devtestlabs#VirtualNetworksCreateOrUpdate"
         },
         {
-          "target": "com.azure.devtestlabs#VirtualNetworksGet"
+          "target": "com.azure.devtestlabs#GetVirtualNetwork"
         },
         {
-          "target": "com.azure.devtestlabs#VirtualNetworksList"
+          "target": "com.azure.devtestlabs#ListVirtualNetworks"
         },
         {
-          "target": "com.azure.devtestlabs#VirtualMachinesUnClaim"
+          "target": "com.azure.devtestlabs#ClaimVirtualMachinesUn"
         },
         {
-          "target": "com.azure.devtestlabs#VirtualMachinesTransferDisks"
+          "target": "com.azure.devtestlabs#TransferVirtualMachineDisks"
         },
         {
-          "target": "com.azure.devtestlabs#VirtualMachinesStop"
+          "target": "com.azure.devtestlabs#StopVirtualMachine"
         },
         {
-          "target": "com.azure.devtestlabs#VirtualMachinesStart"
+          "target": "com.azure.devtestlabs#StartVirtualMachine"
         },
         {
-          "target": "com.azure.devtestlabs#VirtualMachineSchedulesExecute"
+          "target": "com.azure.devtestlabs#ExecuteVirtualMachineSchedule"
         },
         {
-          "target": "com.azure.devtestlabs#VirtualMachineSchedulesDelete"
+          "target": "com.azure.devtestlabs#DeleteVirtualMachineSchedule"
         },
         {
-          "target": "com.azure.devtestlabs#VirtualMachineSchedulesUpdate"
+          "target": "com.azure.devtestlabs#UpdateVirtualMachineSchedule"
         },
         {
           "target": "com.azure.devtestlabs#VirtualMachineSchedulesCreateOrUpdate"
         },
         {
-          "target": "com.azure.devtestlabs#VirtualMachineSchedulesGet"
+          "target": "com.azure.devtestlabs#GetVirtualMachineSchedule"
         },
         {
-          "target": "com.azure.devtestlabs#VirtualMachineSchedulesList"
+          "target": "com.azure.devtestlabs#ListVirtualMachineSchedules"
         },
         {
-          "target": "com.azure.devtestlabs#VirtualMachinesRestart"
+          "target": "com.azure.devtestlabs#RestartVirtualMachine"
         },
         {
-          "target": "com.azure.devtestlabs#VirtualMachinesResize"
+          "target": "com.azure.devtestlabs#ResizeVirtualMachine"
         },
         {
-          "target": "com.azure.devtestlabs#VirtualMachinesRedeploy"
+          "target": "com.azure.devtestlabs#RedeployVirtualMachine"
         },
         {
-          "target": "com.azure.devtestlabs#VirtualMachinesListApplicableSchedules"
+          "target": "com.azure.devtestlabs#ListVirtualMachineApplicableSchedules"
         },
         {
-          "target": "com.azure.devtestlabs#VirtualMachinesGetRdpFileContents"
+          "target": "com.azure.devtestlabs#GetVirtualMachineRdpFileContents"
         },
         {
-          "target": "com.azure.devtestlabs#VirtualMachinesDetachDataDisk"
+          "target": "com.azure.devtestlabs#DetachVirtualMachineDataDisk"
         },
         {
-          "target": "com.azure.devtestlabs#VirtualMachinesClaim"
+          "target": "com.azure.devtestlabs#ClaimVirtualMachine"
         },
         {
-          "target": "com.azure.devtestlabs#VirtualMachinesApplyArtifacts"
+          "target": "com.azure.devtestlabs#ApplyVirtualMachineArtifacts"
         },
         {
-          "target": "com.azure.devtestlabs#VirtualMachinesAddDataDisk"
+          "target": "com.azure.devtestlabs#AddVirtualMachineDataDisk"
         },
         {
-          "target": "com.azure.devtestlabs#VirtualMachinesDelete"
+          "target": "com.azure.devtestlabs#DeleteVirtualMachine"
         },
         {
-          "target": "com.azure.devtestlabs#VirtualMachinesUpdate"
+          "target": "com.azure.devtestlabs#UpdateVirtualMachine"
         },
         {
           "target": "com.azure.devtestlabs#VirtualMachinesCreateOrUpdate"
         },
         {
-          "target": "com.azure.devtestlabs#VirtualMachinesGet"
+          "target": "com.azure.devtestlabs#GetVirtualMachine"
         },
         {
-          "target": "com.azure.devtestlabs#VirtualMachinesList"
+          "target": "com.azure.devtestlabs#ListVirtualMachines"
         },
         {
-          "target": "com.azure.devtestlabs#ServiceFabricsStop"
+          "target": "com.azure.devtestlabs#StopServiceFabric"
         },
         {
-          "target": "com.azure.devtestlabs#ServiceFabricsStart"
+          "target": "com.azure.devtestlabs#StartServiceFabric"
         },
         {
-          "target": "com.azure.devtestlabs#ServiceFabricSchedulesExecute"
+          "target": "com.azure.devtestlabs#ExecuteServiceFabricSchedule"
         },
         {
-          "target": "com.azure.devtestlabs#ServiceFabricSchedulesDelete"
+          "target": "com.azure.devtestlabs#DeleteServiceFabricSchedule"
         },
         {
-          "target": "com.azure.devtestlabs#ServiceFabricSchedulesUpdate"
+          "target": "com.azure.devtestlabs#UpdateServiceFabricSchedule"
         },
         {
           "target": "com.azure.devtestlabs#ServiceFabricSchedulesCreateOrUpdate"
         },
         {
-          "target": "com.azure.devtestlabs#ServiceFabricSchedulesGet"
+          "target": "com.azure.devtestlabs#GetServiceFabricSchedule"
         },
         {
-          "target": "com.azure.devtestlabs#ServiceFabricSchedulesList"
+          "target": "com.azure.devtestlabs#ListServiceFabricSchedules"
         },
         {
-          "target": "com.azure.devtestlabs#ServiceFabricsListApplicableSchedules"
+          "target": "com.azure.devtestlabs#ListServiceFabricApplicableSchedules"
         },
         {
-          "target": "com.azure.devtestlabs#ServiceFabricsDelete"
+          "target": "com.azure.devtestlabs#DeleteServiceFabric"
         },
         {
-          "target": "com.azure.devtestlabs#ServiceFabricsUpdate"
+          "target": "com.azure.devtestlabs#UpdateServiceFabric"
         },
         {
           "target": "com.azure.devtestlabs#ServiceFabricsCreateOrUpdate"
         },
         {
-          "target": "com.azure.devtestlabs#ServiceFabricsGet"
+          "target": "com.azure.devtestlabs#GetServiceFabric"
         },
         {
-          "target": "com.azure.devtestlabs#ServiceFabricsList"
+          "target": "com.azure.devtestlabs#ListServiceFabrics"
         },
         {
-          "target": "com.azure.devtestlabs#SecretsDelete"
+          "target": "com.azure.devtestlabs#DeleteSecret"
         },
         {
-          "target": "com.azure.devtestlabs#SecretsUpdate"
+          "target": "com.azure.devtestlabs#UpdateSecret"
         },
         {
           "target": "com.azure.devtestlabs#SecretsCreateOrUpdate"
         },
         {
-          "target": "com.azure.devtestlabs#SecretsGet"
+          "target": "com.azure.devtestlabs#GetSecret"
         },
         {
-          "target": "com.azure.devtestlabs#SecretsList"
+          "target": "com.azure.devtestlabs#ListSecrets"
         },
         {
-          "target": "com.azure.devtestlabs#EnvironmentsDelete"
+          "target": "com.azure.devtestlabs#DeleteEnvironment"
         },
         {
-          "target": "com.azure.devtestlabs#EnvironmentsUpdate"
+          "target": "com.azure.devtestlabs#UpdateEnvironment"
         },
         {
           "target": "com.azure.devtestlabs#EnvironmentsCreateOrUpdate"
         },
         {
-          "target": "com.azure.devtestlabs#EnvironmentsGet"
+          "target": "com.azure.devtestlabs#GetEnvironment"
         },
         {
-          "target": "com.azure.devtestlabs#EnvironmentsList"
+          "target": "com.azure.devtestlabs#ListEnvironments"
         },
         {
-          "target": "com.azure.devtestlabs#DisksDetach"
+          "target": "com.azure.devtestlabs#DetachDisk"
         },
         {
-          "target": "com.azure.devtestlabs#DisksAttach"
+          "target": "com.azure.devtestlabs#AttachDisk"
         },
         {
-          "target": "com.azure.devtestlabs#DisksDelete"
+          "target": "com.azure.devtestlabs#DeleteDisk"
         },
         {
-          "target": "com.azure.devtestlabs#DisksUpdate"
+          "target": "com.azure.devtestlabs#UpdateDisk"
         },
         {
           "target": "com.azure.devtestlabs#DisksCreateOrUpdate"
         },
         {
-          "target": "com.azure.devtestlabs#DisksGet"
+          "target": "com.azure.devtestlabs#GetDisk"
         },
         {
-          "target": "com.azure.devtestlabs#DisksList"
+          "target": "com.azure.devtestlabs#ListDisks"
         },
         {
-          "target": "com.azure.devtestlabs#UsersDelete"
+          "target": "com.azure.devtestlabs#DeleteUser"
         },
         {
-          "target": "com.azure.devtestlabs#UsersUpdate"
+          "target": "com.azure.devtestlabs#UpdateUser"
         },
         {
           "target": "com.azure.devtestlabs#UsersCreateOrUpdate"
         },
         {
-          "target": "com.azure.devtestlabs#UsersGet"
+          "target": "com.azure.devtestlabs#GetUser"
         },
         {
-          "target": "com.azure.devtestlabs#UsersList"
+          "target": "com.azure.devtestlabs#ListUsers"
         },
         {
-          "target": "com.azure.devtestlabs#ServiceRunnersDelete"
+          "target": "com.azure.devtestlabs#DeleteServiceRunner"
         },
         {
           "target": "com.azure.devtestlabs#ServiceRunnersCreateOrUpdate"
         },
         {
-          "target": "com.azure.devtestlabs#ServiceRunnersGet"
+          "target": "com.azure.devtestlabs#GetServiceRunner"
         },
         {
-          "target": "com.azure.devtestlabs#SchedulesListApplicable"
+          "target": "com.azure.devtestlabs#ListScheduleApplicable"
         },
         {
-          "target": "com.azure.devtestlabs#SchedulesExecute"
+          "target": "com.azure.devtestlabs#ExecuteSchedule"
         },
         {
-          "target": "com.azure.devtestlabs#SchedulesDelete"
+          "target": "com.azure.devtestlabs#DeleteSchedule"
         },
         {
-          "target": "com.azure.devtestlabs#SchedulesUpdate"
+          "target": "com.azure.devtestlabs#UpdateSchedule"
         },
         {
           "target": "com.azure.devtestlabs#SchedulesCreateOrUpdate"
         },
         {
-          "target": "com.azure.devtestlabs#SchedulesGet"
+          "target": "com.azure.devtestlabs#GetSchedule"
         },
         {
-          "target": "com.azure.devtestlabs#SchedulesList"
+          "target": "com.azure.devtestlabs#ListSchedules"
         },
         {
-          "target": "com.azure.devtestlabs#PoliciesDelete"
+          "target": "com.azure.devtestlabs#DeletePolicy"
         },
         {
-          "target": "com.azure.devtestlabs#PoliciesUpdate"
+          "target": "com.azure.devtestlabs#UpdatePolicy"
         },
         {
           "target": "com.azure.devtestlabs#PoliciesCreateOrUpdate"
         },
         {
-          "target": "com.azure.devtestlabs#PoliciesGet"
+          "target": "com.azure.devtestlabs#GetPolicy"
         },
         {
-          "target": "com.azure.devtestlabs#PoliciesList"
+          "target": "com.azure.devtestlabs#ListPolicies"
         },
         {
           "target": "com.azure.devtestlabs#PolicySetsEvaluatePolicies"
         },
         {
-          "target": "com.azure.devtestlabs#NotificationChannelsNotify"
+          "target": "com.azure.devtestlabs#NotifyNotificationChannel"
         },
         {
-          "target": "com.azure.devtestlabs#NotificationChannelsDelete"
+          "target": "com.azure.devtestlabs#DeleteNotificationChannel"
         },
         {
-          "target": "com.azure.devtestlabs#NotificationChannelsUpdate"
+          "target": "com.azure.devtestlabs#UpdateNotificationChannel"
         },
         {
           "target": "com.azure.devtestlabs#NotificationChannelsCreateOrUpdate"
         },
         {
-          "target": "com.azure.devtestlabs#NotificationChannelsGet"
+          "target": "com.azure.devtestlabs#GetNotificationChannel"
         },
         {
-          "target": "com.azure.devtestlabs#NotificationChannelsList"
+          "target": "com.azure.devtestlabs#ListNotificationChannels"
         },
         {
-          "target": "com.azure.devtestlabs#LabsListVhds"
+          "target": "com.azure.devtestlabs#ListLabVhds"
         },
         {
-          "target": "com.azure.devtestlabs#LabsImportVirtualMachine"
+          "target": "com.azure.devtestlabs#ImportLabVirtualMachine"
         },
         {
           "target": "com.azure.devtestlabs#LabsGenerateUploadUri"
         },
         {
-          "target": "com.azure.devtestlabs#GalleryImagesList"
+          "target": "com.azure.devtestlabs#ListGalleryImages"
         },
         {
-          "target": "com.azure.devtestlabs#FormulasDelete"
+          "target": "com.azure.devtestlabs#DeleteFormulas"
         },
         {
-          "target": "com.azure.devtestlabs#FormulasUpdate"
+          "target": "com.azure.devtestlabs#UpdateFormulas"
         },
         {
           "target": "com.azure.devtestlabs#FormulasCreateOrUpdate"
         },
         {
-          "target": "com.azure.devtestlabs#FormulasGet"
+          "target": "com.azure.devtestlabs#GetFormulas"
         },
         {
-          "target": "com.azure.devtestlabs#FormulasList"
+          "target": "com.azure.devtestlabs#ListFormulas"
         },
         {
-          "target": "com.azure.devtestlabs#LabsExportResourceUsage"
+          "target": "com.azure.devtestlabs#ExportLabResourceUsage"
         },
         {
-          "target": "com.azure.devtestlabs#CustomImagesDelete"
+          "target": "com.azure.devtestlabs#DeleteCustomImage"
         },
         {
-          "target": "com.azure.devtestlabs#CustomImagesUpdate"
+          "target": "com.azure.devtestlabs#UpdateCustomImage"
         },
         {
           "target": "com.azure.devtestlabs#CustomImagesCreateOrUpdate"
         },
         {
-          "target": "com.azure.devtestlabs#CustomImagesGet"
+          "target": "com.azure.devtestlabs#GetCustomImage"
         },
         {
-          "target": "com.azure.devtestlabs#CustomImagesList"
+          "target": "com.azure.devtestlabs#ListCustomImages"
         },
         {
-          "target": "com.azure.devtestlabs#LabsCreateEnvironment"
+          "target": "com.azure.devtestlabs#CreateLabEnvironment"
         },
         {
           "target": "com.azure.devtestlabs#CostsCreateOrUpdate"
         },
         {
-          "target": "com.azure.devtestlabs#CostsGet"
+          "target": "com.azure.devtestlabs#GetCost"
         },
         {
-          "target": "com.azure.devtestlabs#LabsClaimAnyVm"
+          "target": "com.azure.devtestlabs#ClaimLabAnyVm"
         },
         {
-          "target": "com.azure.devtestlabs#ArtifactsGenerateArmTemplate"
+          "target": "com.azure.devtestlabs#GenerateArtifactArmTemplate"
         },
         {
-          "target": "com.azure.devtestlabs#ArtifactsGet"
+          "target": "com.azure.devtestlabs#GetArtifact"
         },
         {
-          "target": "com.azure.devtestlabs#ArtifactsList"
+          "target": "com.azure.devtestlabs#ListArtifacts"
         },
         {
-          "target": "com.azure.devtestlabs#ArmTemplatesGet"
+          "target": "com.azure.devtestlabs#GetArmTemplate"
         },
         {
-          "target": "com.azure.devtestlabs#ArmTemplatesList"
+          "target": "com.azure.devtestlabs#ListArmTemplates"
         },
         {
-          "target": "com.azure.devtestlabs#ArtifactSourcesDelete"
+          "target": "com.azure.devtestlabs#DeleteArtifactSource"
         },
         {
-          "target": "com.azure.devtestlabs#ArtifactSourcesUpdate"
+          "target": "com.azure.devtestlabs#UpdateArtifactSource"
         },
         {
           "target": "com.azure.devtestlabs#ArtifactSourcesCreateOrUpdate"
         },
         {
-          "target": "com.azure.devtestlabs#ArtifactSourcesGet"
+          "target": "com.azure.devtestlabs#GetArtifactSource"
         },
         {
-          "target": "com.azure.devtestlabs#ArtifactSourcesList"
+          "target": "com.azure.devtestlabs#ListArtifactSources"
         },
         {
-          "target": "com.azure.devtestlabs#LabsDelete"
+          "target": "com.azure.devtestlabs#DeleteLab"
         },
         {
-          "target": "com.azure.devtestlabs#LabsUpdate"
+          "target": "com.azure.devtestlabs#UpdateLab"
         },
         {
           "target": "com.azure.devtestlabs#LabsCreateOrUpdate"
         },
         {
-          "target": "com.azure.devtestlabs#LabsGet"
+          "target": "com.azure.devtestlabs#GetLab"
         },
         {
-          "target": "com.azure.devtestlabs#LabsListByResourceGroup"
+          "target": "com.azure.devtestlabs#ListLabByResourceGroup"
         },
         {
-          "target": "com.azure.devtestlabs#GlobalSchedulesListBySubscription"
+          "target": "com.azure.devtestlabs#ListGlobalScheduleBySubscription"
         },
         {
-          "target": "com.azure.devtestlabs#OperationsGet"
+          "target": "com.azure.devtestlabs#GetOperation"
         },
         {
-          "target": "com.azure.devtestlabs#LabsListBySubscription"
+          "target": "com.azure.devtestlabs#ListLabBySubscription"
         },
         {
-          "target": "com.azure.devtestlabs#ProviderOperationsList"
+          "target": "com.azure.devtestlabs#ListProviderOperations"
         }
       ],
       "traits": {

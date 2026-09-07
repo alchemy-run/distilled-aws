@@ -313,404 +313,6 @@ export const ApplicationsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ApplicationsCreateOrUpdateResponse",
 }) as any as S.Schema<ApplicationsCreateOrUpdateResponse>;
 
-export interface ApplicationsDeleteRequest {
-  /** The customer subscription identifier. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the cluster resource. */
-  clusterName: string;
-  /** The name of the application resource. */
-  applicationName: string;
-}
-export const ApplicationsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    applicationName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/clusters/{clusterName}/applications/{applicationName}",
-      code: 200,
-      apiVersion: "2021-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ApplicationsDeleteRequest",
-}) as any as S.Schema<ApplicationsDeleteRequest>;
-
-export interface ApplicationsDeleteResponse {}
-export const ApplicationsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ApplicationsDeleteResponse",
-}) as any as S.Schema<ApplicationsDeleteResponse>;
-
-export interface ApplicationsGetRequest {
-  /** The customer subscription identifier. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the cluster resource. */
-  clusterName: string;
-  /** The name of the application resource. */
-  applicationName: string;
-}
-export const ApplicationsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    applicationName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/clusters/{clusterName}/applications/{applicationName}",
-      code: 200,
-      apiVersion: "2021-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ApplicationsGetRequest",
-}) as any as S.Schema<ApplicationsGetRequest>;
-
-/** Azure resource tags. */
-export type ApplicationsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ApplicationsGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ApplicationsGetResponseTagsMap>;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface SystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: string;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: string;
-  /** The timestamp of resource last modification (UTC). */
-  lastModifiedAt?: string;
-}
-export const SystemData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createdBy: S.optional(S.String),
-    createdByType: S.optional(S.String),
-    createdAt: S.optional(S.String),
-    lastModifiedBy: S.optional(S.String),
-    lastModifiedByType: S.optional(S.String),
-    lastModifiedAt: S.optional(S.String),
-  }),
-).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
-
-export interface UserAssignedIdentity {
-  /** The principal id of user assigned identity. */
-  principalId?: string;
-  /** The client id of user assigned identity. */
-  clientId?: string;
-}
-export const UserAssignedIdentity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    principalId: S.optional(S.String),
-    clientId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "UserAssignedIdentity",
-}) as any as S.Schema<UserAssignedIdentity>;
-
-/** The list of user identities associated with the resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'. */
-export type UserAssignedIdentityMap = {
-  [key: string]: UserAssignedIdentity | undefined;
-};
-export const UserAssignedIdentityMap = /*@__PURE__*/ S.Record(
-  S.String,
-  UserAssignedIdentity,
-) as any as S.Schema<UserAssignedIdentityMap>;
-
-/** Describes the managed identities for an Azure resource. */
-export interface ManagedIdentity {
-  /** The principal id of the managed identity. This property will only be provided for a system assigned identity. */
-  principalId?: string;
-  /** The tenant id of the managed identity. This property will only be provided for a system assigned identity. */
-  tenantId?: string;
-  type?: ManagedIdentityType;
-  userAssignedIdentities?: UserAssignedIdentityMap;
-}
-export const ManagedIdentity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    principalId: S.optional(S.String),
-    tenantId: S.optional(S.String),
-    type: S.optional(ManagedIdentityType),
-    userAssignedIdentities: S.optional(UserAssignedIdentityMap),
-  }),
-).annotate({
-  identifier: "ManagedIdentity",
-}) as any as S.Schema<ManagedIdentity>;
-
-/** List of user assigned identities for the application, each mapped to a friendly name. */
-export type ApplicationResourcePropertiesManagedIdentitiesList =
-  Array<ApplicationUserAssignedIdentity>;
-export const ApplicationResourcePropertiesManagedIdentitiesList =
-  /*@__PURE__*/ S.Array(
-    ApplicationUserAssignedIdentity,
-  ) as any as S.Schema<ApplicationResourcePropertiesManagedIdentitiesList>;
-
-/** The application resource properties. */
-export interface ApplicationResourceProperties {
-  typeVersion?: string;
-  parameters?: ApplicationParameterList;
-  upgradePolicy?: ApplicationUpgradePolicy;
-  /** The minimum number of nodes where Service Fabric will reserve capacity for this application. Note that this does not mean that the services of this application will be placed on all of those nodes. If this property is set to zero, no capacity will be reserved. The value of this property cannot be more than the value of the MaximumNodes property. */
-  minimumNodes?: number;
-  /** The maximum number of nodes where Service Fabric will reserve capacity for this application. Note that this does not mean that the services of this application will be placed on all of those nodes. By default, the value of this property is zero and it means that the services can be placed on any node. */
-  maximumNodes?: number;
-  /** Remove the current application capacity settings. */
-  removeApplicationCapacity?: boolean;
-  metrics?: ApplicationMetricDescriptionList;
-  /** List of user assigned identities for the application, each mapped to a friendly name. */
-  managedIdentities?: ApplicationResourcePropertiesManagedIdentitiesList;
-  /** The current deployment or provisioning state, which only appears in the response */
-  provisioningState?: string;
-  typeName?: string;
-}
-export const ApplicationResourceProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    typeVersion: S.optional(S.String),
-    parameters: S.optional(ApplicationParameterList),
-    upgradePolicy: S.optional(ApplicationUpgradePolicy),
-    minimumNodes: S.optional(S.Number),
-    maximumNodes: S.optional(S.Number),
-    removeApplicationCapacity: S.optional(S.Boolean),
-    metrics: S.optional(ApplicationMetricDescriptionList),
-    managedIdentities: S.optional(
-      ApplicationResourcePropertiesManagedIdentitiesList,
-    ),
-    provisioningState: S.optional(S.String),
-    typeName: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ApplicationResourceProperties",
-}) as any as S.Schema<ApplicationResourceProperties>;
-
-export interface ApplicationsGetResponse {
-  /** Azure resource identifier. */
-  id?: string;
-  /** Azure resource name. */
-  name?: string;
-  /** Azure resource type. */
-  type?: string;
-  /** It will be deprecated in New API, resource location depends on the parent resource. */
-  location?: string;
-  /** Azure resource tags. */
-  tags?: ApplicationsGetResponseTagsMap;
-  /** Azure resource etag. */
-  etag?: string;
-  systemData?: SystemData;
-  identity?: ManagedIdentity;
-  properties?: ApplicationResourceProperties;
-}
-export const ApplicationsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    location: S.optional(S.String),
-    tags: S.optional(ApplicationsGetResponseTagsMap),
-    etag: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    identity: S.optional(ManagedIdentity),
-    properties: S.optional(ApplicationResourceProperties),
-  }),
-).annotate({
-  identifier: "ApplicationsGetResponse",
-}) as any as S.Schema<ApplicationsGetResponse>;
-
-export interface ApplicationsListRequest {
-  /** The customer subscription identifier. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the cluster resource. */
-  clusterName: string;
-}
-export const ApplicationsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/clusters/{clusterName}/applications",
-      code: 200,
-      apiVersion: "2021-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ApplicationsListRequest",
-}) as any as S.Schema<ApplicationsListRequest>;
-
-/** Azure resource tags. */
-export type ApplicationResourceTagsMap = { [key: string]: string | undefined };
-export const ApplicationResourceTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ApplicationResourceTagsMap>;
-
-/** The application resource. */
-export interface ApplicationResource {
-  /** Azure resource identifier. */
-  id?: string;
-  /** Azure resource name. */
-  name?: string;
-  /** Azure resource type. */
-  type?: string;
-  /** It will be deprecated in New API, resource location depends on the parent resource. */
-  location?: string;
-  /** Azure resource tags. */
-  tags?: ApplicationResourceTagsMap;
-  /** Azure resource etag. */
-  etag?: string;
-  systemData?: SystemData;
-  identity?: ManagedIdentity;
-  properties?: ApplicationResourceProperties;
-}
-export const ApplicationResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    location: S.optional(S.String),
-    tags: S.optional(ApplicationResourceTagsMap),
-    etag: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    identity: S.optional(ManagedIdentity),
-    properties: S.optional(ApplicationResourceProperties),
-  }),
-).annotate({
-  identifier: "ApplicationResource",
-}) as any as S.Schema<ApplicationResource>;
-
-export type ApplicationResourceListValueList = Array<ApplicationResource>;
-export const ApplicationResourceListValueList = /*@__PURE__*/ S.Array(
-  ApplicationResource,
-) as any as S.Schema<ApplicationResourceListValueList>;
-
-/** The list of application resources. */
-export interface ApplicationResourceList {
-  value?: ApplicationResourceListValueList;
-  /** URL to get the next set of application list results if there are any. */
-  nextLink?: string;
-}
-export const ApplicationResourceList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(ApplicationResourceListValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ApplicationResourceList",
-}) as any as S.Schema<ApplicationResourceList>;
-
-/** Azure resource tags. */
-export type ApplicationsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ApplicationsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ApplicationsUpdateRequestTagsMap>;
-
-/** List of user assigned identities for the application, each mapped to a friendly name. */
-export type ApplicationResourceUpdatePropertiesManagedIdentitiesList =
-  Array<ApplicationUserAssignedIdentity>;
-export const ApplicationResourceUpdatePropertiesManagedIdentitiesList =
-  /*@__PURE__*/ S.Array(
-    ApplicationUserAssignedIdentity,
-  ) as any as S.Schema<ApplicationResourceUpdatePropertiesManagedIdentitiesList>;
-
-/** The application resource properties for patch operations. */
-export interface ApplicationResourceUpdateProperties {
-  typeVersion?: string;
-  parameters?: ApplicationParameterList;
-  upgradePolicy?: ApplicationUpgradePolicy;
-  /** The minimum number of nodes where Service Fabric will reserve capacity for this application. Note that this does not mean that the services of this application will be placed on all of those nodes. If this property is set to zero, no capacity will be reserved. The value of this property cannot be more than the value of the MaximumNodes property. */
-  minimumNodes?: number;
-  /** The maximum number of nodes where Service Fabric will reserve capacity for this application. Note that this does not mean that the services of this application will be placed on all of those nodes. By default, the value of this property is zero and it means that the services can be placed on any node. */
-  maximumNodes?: number;
-  /** Remove the current application capacity settings. */
-  removeApplicationCapacity?: boolean;
-  metrics?: ApplicationMetricDescriptionList;
-  /** List of user assigned identities for the application, each mapped to a friendly name. */
-  managedIdentities?: ApplicationResourceUpdatePropertiesManagedIdentitiesList;
-}
-export const ApplicationResourceUpdateProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    typeVersion: S.optional(S.String),
-    parameters: S.optional(ApplicationParameterList),
-    upgradePolicy: S.optional(ApplicationUpgradePolicy),
-    minimumNodes: S.optional(S.Number),
-    maximumNodes: S.optional(S.Number),
-    removeApplicationCapacity: S.optional(S.Boolean),
-    metrics: S.optional(ApplicationMetricDescriptionList),
-    managedIdentities: S.optional(
-      ApplicationResourceUpdatePropertiesManagedIdentitiesList,
-    ),
-  }),
-).annotate({
-  identifier: "ApplicationResourceUpdateProperties",
-}) as any as S.Schema<ApplicationResourceUpdateProperties>;
-
-export interface ApplicationsUpdateRequest {
-  /** The customer subscription identifier. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the cluster resource. */
-  clusterName: string;
-  /** The name of the application resource. */
-  applicationName: string;
-  /** It will be deprecated in New API, resource location depends on the parent resource. */
-  location?: string;
-  /** Azure resource tags. */
-  tags?: ApplicationsUpdateRequestTagsMap;
-  properties?: ApplicationResourceUpdateProperties;
-}
-export const ApplicationsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    applicationName: S.String.pipe(T.Label()),
-    location: S.optional(S.String),
-    tags: S.optional(ApplicationsUpdateRequestTagsMap),
-    properties: S.optional(ApplicationResourceUpdateProperties),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/clusters/{clusterName}/applications/{applicationName}",
-      code: 200,
-      apiVersion: "2021-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ApplicationsUpdateRequest",
-}) as any as S.Schema<ApplicationsUpdateRequest>;
-
-export interface ApplicationsUpdateResponse {}
-export const ApplicationsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ApplicationsUpdateResponse",
-}) as any as S.Schema<ApplicationsUpdateResponse>;
-
 /** Azure resource tags. */
 export type ApplicationTypesCreateOrUpdateRequestTagsMap = {
   [key: string]: string | undefined;
@@ -772,6 +374,32 @@ export const ApplicationTypesCreateOrUpdateResponseTagsMap =
     S.String,
   ) as any as S.Schema<ApplicationTypesCreateOrUpdateResponseTagsMap>;
 
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface SystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: string;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: string;
+  /** The timestamp of resource last modification (UTC). */
+  lastModifiedAt?: string;
+}
+export const SystemData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdBy: S.optional(S.String),
+    createdByType: S.optional(S.String),
+    createdAt: S.optional(S.String),
+    lastModifiedBy: S.optional(S.String),
+    lastModifiedByType: S.optional(S.String),
+    lastModifiedAt: S.optional(S.String),
+  }),
+).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
+
 /** The application type name properties */
 export interface ApplicationTypeResourceProperties {
   /** The current deployment or provisioning state, which only appears in the response. */
@@ -816,196 +444,6 @@ export const ApplicationTypesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "ApplicationTypesCreateOrUpdateResponse",
 }) as any as S.Schema<ApplicationTypesCreateOrUpdateResponse>;
-
-export interface ApplicationTypesDeleteRequest {
-  /** The customer subscription identifier. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the cluster resource. */
-  clusterName: string;
-  /** The name of the application type name resource. */
-  applicationTypeName: string;
-}
-export const ApplicationTypesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    applicationTypeName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/clusters/{clusterName}/applicationTypes/{applicationTypeName}",
-      code: 200,
-      apiVersion: "2021-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ApplicationTypesDeleteRequest",
-}) as any as S.Schema<ApplicationTypesDeleteRequest>;
-
-export interface ApplicationTypesDeleteResponse {}
-export const ApplicationTypesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ApplicationTypesDeleteResponse",
-}) as any as S.Schema<ApplicationTypesDeleteResponse>;
-
-export interface ApplicationTypesGetRequest {
-  /** The customer subscription identifier. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the cluster resource. */
-  clusterName: string;
-  /** The name of the application type name resource. */
-  applicationTypeName: string;
-}
-export const ApplicationTypesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    applicationTypeName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/clusters/{clusterName}/applicationTypes/{applicationTypeName}",
-      code: 200,
-      apiVersion: "2021-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ApplicationTypesGetRequest",
-}) as any as S.Schema<ApplicationTypesGetRequest>;
-
-/** Azure resource tags. */
-export type ApplicationTypesGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ApplicationTypesGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ApplicationTypesGetResponseTagsMap>;
-
-export interface ApplicationTypesGetResponse {
-  /** Azure resource identifier. */
-  id?: string;
-  /** Azure resource name. */
-  name?: string;
-  /** Azure resource type. */
-  type?: string;
-  /** It will be deprecated in New API, resource location depends on the parent resource. */
-  location?: string;
-  /** Azure resource tags. */
-  tags?: ApplicationTypesGetResponseTagsMap;
-  /** Azure resource etag. */
-  etag?: string;
-  systemData?: SystemData;
-  properties?: ApplicationTypeResourceProperties;
-}
-export const ApplicationTypesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    location: S.optional(S.String),
-    tags: S.optional(ApplicationTypesGetResponseTagsMap),
-    etag: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ApplicationTypeResourceProperties),
-  }),
-).annotate({
-  identifier: "ApplicationTypesGetResponse",
-}) as any as S.Schema<ApplicationTypesGetResponse>;
-
-export interface ApplicationTypesListRequest {
-  /** The customer subscription identifier. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the cluster resource. */
-  clusterName: string;
-}
-export const ApplicationTypesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/clusters/{clusterName}/applicationTypes",
-      code: 200,
-      apiVersion: "2021-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ApplicationTypesListRequest",
-}) as any as S.Schema<ApplicationTypesListRequest>;
-
-/** Azure resource tags. */
-export type ApplicationTypeResourceTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ApplicationTypeResourceTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ApplicationTypeResourceTagsMap>;
-
-/** The application type name resource */
-export interface ApplicationTypeResource {
-  /** Azure resource identifier. */
-  id?: string;
-  /** Azure resource name. */
-  name?: string;
-  /** Azure resource type. */
-  type?: string;
-  /** It will be deprecated in New API, resource location depends on the parent resource. */
-  location?: string;
-  /** Azure resource tags. */
-  tags?: ApplicationTypeResourceTagsMap;
-  /** Azure resource etag. */
-  etag?: string;
-  systemData?: SystemData;
-  properties?: ApplicationTypeResourceProperties;
-}
-export const ApplicationTypeResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    location: S.optional(S.String),
-    tags: S.optional(ApplicationTypeResourceTagsMap),
-    etag: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ApplicationTypeResourceProperties),
-  }),
-).annotate({
-  identifier: "ApplicationTypeResource",
-}) as any as S.Schema<ApplicationTypeResource>;
-
-export type ApplicationTypeResourceListValueList =
-  Array<ApplicationTypeResource>;
-export const ApplicationTypeResourceListValueList = /*@__PURE__*/ S.Array(
-  ApplicationTypeResource,
-) as any as S.Schema<ApplicationTypeResourceListValueList>;
-
-/** The list of application type names. */
-export interface ApplicationTypeResourceList {
-  value?: ApplicationTypeResourceListValueList;
-  /** URL to get the next set of application type list results if there are any. */
-  nextLink?: string;
-}
-export const ApplicationTypeResourceList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(ApplicationTypeResourceListValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ApplicationTypeResourceList",
-}) as any as S.Schema<ApplicationTypeResourceList>;
 
 /** Azure resource tags. */
 export type ApplicationTypeVersionsCreateOrUpdateRequestTagsMap = {
@@ -1076,235 +514,6 @@ export const ApplicationTypeVersionsCreateOrUpdateResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
     identifier: "ApplicationTypeVersionsCreateOrUpdateResponse",
   }) as any as S.Schema<ApplicationTypeVersionsCreateOrUpdateResponse>;
-
-export interface ApplicationTypeVersionsDeleteRequest {
-  /** The customer subscription identifier. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the cluster resource. */
-  clusterName: string;
-  /** The name of the application type name resource. */
-  applicationTypeName: string;
-  /** The application type version. */
-  version: string;
-}
-export const ApplicationTypeVersionsDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      applicationTypeName: S.String.pipe(T.Label()),
-      version: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/clusters/{clusterName}/applicationTypes/{applicationTypeName}/versions/{version}",
-        code: 200,
-        apiVersion: "2021-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "ApplicationTypeVersionsDeleteRequest",
-}) as any as S.Schema<ApplicationTypeVersionsDeleteRequest>;
-
-export interface ApplicationTypeVersionsDeleteResponse {}
-export const ApplicationTypeVersionsDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "ApplicationTypeVersionsDeleteResponse",
-}) as any as S.Schema<ApplicationTypeVersionsDeleteResponse>;
-
-export interface ApplicationTypeVersionsGetRequest {
-  /** The customer subscription identifier. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the cluster resource. */
-  clusterName: string;
-  /** The name of the application type name resource. */
-  applicationTypeName: string;
-  /** The application type version. */
-  version: string;
-}
-export const ApplicationTypeVersionsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    applicationTypeName: S.String.pipe(T.Label()),
-    version: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/clusters/{clusterName}/applicationTypes/{applicationTypeName}/versions/{version}",
-      code: 200,
-      apiVersion: "2021-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ApplicationTypeVersionsGetRequest",
-}) as any as S.Schema<ApplicationTypeVersionsGetRequest>;
-
-/** Azure resource tags. */
-export type ApplicationTypeVersionsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ApplicationTypeVersionsGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ApplicationTypeVersionsGetResponseTagsMap>;
-
-/** List of application type parameters that can be overridden when creating or updating the application. */
-export type ApplicationTypeParameterList = {
-  [key: string]: string | undefined;
-};
-export const ApplicationTypeParameterList = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ApplicationTypeParameterList>;
-
-/** The properties of the application type version resource. */
-export interface ApplicationTypeVersionResourceProperties {
-  /** The current deployment or provisioning state, which only appears in the response */
-  provisioningState?: string;
-  /** The URL to the application package */
-  appPackageUrl: string;
-  defaultParameterList?: ApplicationTypeParameterList;
-}
-export const ApplicationTypeVersionResourceProperties = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      provisioningState: S.optional(S.String),
-      appPackageUrl: S.String,
-      defaultParameterList: S.optional(ApplicationTypeParameterList),
-    }),
-).annotate({
-  identifier: "ApplicationTypeVersionResourceProperties",
-}) as any as S.Schema<ApplicationTypeVersionResourceProperties>;
-
-export interface ApplicationTypeVersionsGetResponse {
-  /** Azure resource identifier. */
-  id?: string;
-  /** Azure resource name. */
-  name?: string;
-  /** Azure resource type. */
-  type?: string;
-  /** It will be deprecated in New API, resource location depends on the parent resource. */
-  location?: string;
-  /** Azure resource tags. */
-  tags?: ApplicationTypeVersionsGetResponseTagsMap;
-  /** Azure resource etag. */
-  etag?: string;
-  systemData?: SystemData;
-  properties?: ApplicationTypeVersionResourceProperties;
-}
-export const ApplicationTypeVersionsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    location: S.optional(S.String),
-    tags: S.optional(ApplicationTypeVersionsGetResponseTagsMap),
-    etag: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ApplicationTypeVersionResourceProperties),
-  }),
-).annotate({
-  identifier: "ApplicationTypeVersionsGetResponse",
-}) as any as S.Schema<ApplicationTypeVersionsGetResponse>;
-
-export interface ApplicationTypeVersionsListRequest {
-  /** The customer subscription identifier. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the cluster resource. */
-  clusterName: string;
-  /** The name of the application type name resource. */
-  applicationTypeName: string;
-}
-export const ApplicationTypeVersionsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    applicationTypeName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/clusters/{clusterName}/applicationTypes/{applicationTypeName}/versions",
-      code: 200,
-      apiVersion: "2021-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ApplicationTypeVersionsListRequest",
-}) as any as S.Schema<ApplicationTypeVersionsListRequest>;
-
-/** Azure resource tags. */
-export type ApplicationTypeVersionResourceTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ApplicationTypeVersionResourceTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ApplicationTypeVersionResourceTagsMap>;
-
-/** An application type version resource for the specified application type name resource. */
-export interface ApplicationTypeVersionResource {
-  /** Azure resource identifier. */
-  id?: string;
-  /** Azure resource name. */
-  name?: string;
-  /** Azure resource type. */
-  type?: string;
-  /** It will be deprecated in New API, resource location depends on the parent resource. */
-  location?: string;
-  /** Azure resource tags. */
-  tags?: ApplicationTypeVersionResourceTagsMap;
-  /** Azure resource etag. */
-  etag?: string;
-  systemData?: SystemData;
-  properties?: ApplicationTypeVersionResourceProperties;
-}
-export const ApplicationTypeVersionResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    location: S.optional(S.String),
-    tags: S.optional(ApplicationTypeVersionResourceTagsMap),
-    etag: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ApplicationTypeVersionResourceProperties),
-  }),
-).annotate({
-  identifier: "ApplicationTypeVersionResource",
-}) as any as S.Schema<ApplicationTypeVersionResource>;
-
-export type ApplicationTypeVersionResourceListValueList =
-  Array<ApplicationTypeVersionResource>;
-export const ApplicationTypeVersionResourceListValueList =
-  /*@__PURE__*/ S.Array(
-    ApplicationTypeVersionResource,
-  ) as any as S.Schema<ApplicationTypeVersionResourceListValueList>;
-
-/** The list of application type version resources for the specified application type name resource. */
-export interface ApplicationTypeVersionResourceList {
-  value?: ApplicationTypeVersionResourceListValueList;
-  /** URL to get the next set of application type version list results if there are any. */
-  nextLink?: string;
-}
-export const ApplicationTypeVersionResourceList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(ApplicationTypeVersionResourceListValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ApplicationTypeVersionResourceList",
-}) as any as S.Schema<ApplicationTypeVersionResourceList>;
 
 /** Azure resource tags. */
 export type ClustersCreateOrUpdateRequestTagsMap = {
@@ -2291,7 +1500,115 @@ export const ClustersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ClustersCreateOrUpdateResponse",
 }) as any as S.Schema<ClustersCreateOrUpdateResponse>;
 
-export interface ClustersDeleteRequest {
+export interface DeleteApplicationRequest {
+  /** The customer subscription identifier. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The name of the cluster resource. */
+  clusterName: string;
+  /** The name of the application resource. */
+  applicationName: string;
+}
+export const DeleteApplicationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    applicationName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/clusters/{clusterName}/applications/{applicationName}",
+      code: 200,
+      apiVersion: "2021-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteApplicationRequest",
+}) as any as S.Schema<DeleteApplicationRequest>;
+
+export interface DeleteApplicationResponse {}
+export const DeleteApplicationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteApplicationResponse",
+}) as any as S.Schema<DeleteApplicationResponse>;
+
+export interface DeleteApplicationTypeRequest {
+  /** The customer subscription identifier. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The name of the cluster resource. */
+  clusterName: string;
+  /** The name of the application type name resource. */
+  applicationTypeName: string;
+}
+export const DeleteApplicationTypeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    applicationTypeName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/clusters/{clusterName}/applicationTypes/{applicationTypeName}",
+      code: 200,
+      apiVersion: "2021-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteApplicationTypeRequest",
+}) as any as S.Schema<DeleteApplicationTypeRequest>;
+
+export interface DeleteApplicationTypeResponse {}
+export const DeleteApplicationTypeResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteApplicationTypeResponse",
+}) as any as S.Schema<DeleteApplicationTypeResponse>;
+
+export interface DeleteApplicationTypeVersionRequest {
+  /** The customer subscription identifier. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The name of the cluster resource. */
+  clusterName: string;
+  /** The name of the application type name resource. */
+  applicationTypeName: string;
+  /** The application type version. */
+  version: string;
+}
+export const DeleteApplicationTypeVersionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    applicationTypeName: S.String.pipe(T.Label()),
+    version: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/clusters/{clusterName}/applicationTypes/{applicationTypeName}/versions/{version}",
+      code: 200,
+      apiVersion: "2021-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteApplicationTypeVersionRequest",
+}) as any as S.Schema<DeleteApplicationTypeVersionRequest>;
+
+export interface DeleteApplicationTypeVersionResponse {}
+export const DeleteApplicationTypeVersionResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteApplicationTypeVersionResponse",
+}) as any as S.Schema<DeleteApplicationTypeVersionResponse>;
+
+export interface DeleteClusterRequest {
   /** The customer subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group. */
@@ -2299,7 +1616,7 @@ export interface ClustersDeleteRequest {
   /** The name of the cluster resource. */
   clusterName: string;
 }
-export const ClustersDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteClusterRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2313,17 +1630,381 @@ export const ClustersDeleteRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ClustersDeleteRequest",
-}) as any as S.Schema<ClustersDeleteRequest>;
+  identifier: "DeleteClusterRequest",
+}) as any as S.Schema<DeleteClusterRequest>;
 
-export interface ClustersDeleteResponse {}
-export const ClustersDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteClusterResponse {}
+export const DeleteClusterResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "ClustersDeleteResponse",
-}) as any as S.Schema<ClustersDeleteResponse>;
+  identifier: "DeleteClusterResponse",
+}) as any as S.Schema<DeleteClusterResponse>;
 
-export interface ClustersGetRequest {
+export interface DeleteServiceRequest {
+  /** The customer subscription identifier. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The name of the cluster resource. */
+  clusterName: string;
+  /** The name of the application resource. */
+  applicationName: string;
+  /** The name of the service resource in the format of {applicationName}~{serviceName}. */
+  serviceName: string;
+}
+export const DeleteServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    applicationName: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/clusters/{clusterName}/applications/{applicationName}/services/{serviceName}",
+      code: 200,
+      apiVersion: "2021-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteServiceRequest",
+}) as any as S.Schema<DeleteServiceRequest>;
+
+export interface DeleteServiceResponse {}
+export const DeleteServiceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteServiceResponse",
+}) as any as S.Schema<DeleteServiceResponse>;
+
+export interface GetApplicationRequest {
+  /** The customer subscription identifier. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The name of the cluster resource. */
+  clusterName: string;
+  /** The name of the application resource. */
+  applicationName: string;
+}
+export const GetApplicationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    applicationName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/clusters/{clusterName}/applications/{applicationName}",
+      code: 200,
+      apiVersion: "2021-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetApplicationRequest",
+}) as any as S.Schema<GetApplicationRequest>;
+
+/** Azure resource tags. */
+export type GetApplicationResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetApplicationResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetApplicationResponseTagsMap>;
+
+export interface UserAssignedIdentity {
+  /** The principal id of user assigned identity. */
+  principalId?: string;
+  /** The client id of user assigned identity. */
+  clientId?: string;
+}
+export const UserAssignedIdentity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    principalId: S.optional(S.String),
+    clientId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "UserAssignedIdentity",
+}) as any as S.Schema<UserAssignedIdentity>;
+
+/** The list of user identities associated with the resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'. */
+export type UserAssignedIdentityMap = {
+  [key: string]: UserAssignedIdentity | undefined;
+};
+export const UserAssignedIdentityMap = /*@__PURE__*/ S.Record(
+  S.String,
+  UserAssignedIdentity,
+) as any as S.Schema<UserAssignedIdentityMap>;
+
+/** Describes the managed identities for an Azure resource. */
+export interface ManagedIdentity {
+  /** The principal id of the managed identity. This property will only be provided for a system assigned identity. */
+  principalId?: string;
+  /** The tenant id of the managed identity. This property will only be provided for a system assigned identity. */
+  tenantId?: string;
+  type?: ManagedIdentityType;
+  userAssignedIdentities?: UserAssignedIdentityMap;
+}
+export const ManagedIdentity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    principalId: S.optional(S.String),
+    tenantId: S.optional(S.String),
+    type: S.optional(ManagedIdentityType),
+    userAssignedIdentities: S.optional(UserAssignedIdentityMap),
+  }),
+).annotate({
+  identifier: "ManagedIdentity",
+}) as any as S.Schema<ManagedIdentity>;
+
+/** List of user assigned identities for the application, each mapped to a friendly name. */
+export type ApplicationResourcePropertiesManagedIdentitiesList =
+  Array<ApplicationUserAssignedIdentity>;
+export const ApplicationResourcePropertiesManagedIdentitiesList =
+  /*@__PURE__*/ S.Array(
+    ApplicationUserAssignedIdentity,
+  ) as any as S.Schema<ApplicationResourcePropertiesManagedIdentitiesList>;
+
+/** The application resource properties. */
+export interface ApplicationResourceProperties {
+  typeVersion?: string;
+  parameters?: ApplicationParameterList;
+  upgradePolicy?: ApplicationUpgradePolicy;
+  /** The minimum number of nodes where Service Fabric will reserve capacity for this application. Note that this does not mean that the services of this application will be placed on all of those nodes. If this property is set to zero, no capacity will be reserved. The value of this property cannot be more than the value of the MaximumNodes property. */
+  minimumNodes?: number;
+  /** The maximum number of nodes where Service Fabric will reserve capacity for this application. Note that this does not mean that the services of this application will be placed on all of those nodes. By default, the value of this property is zero and it means that the services can be placed on any node. */
+  maximumNodes?: number;
+  /** Remove the current application capacity settings. */
+  removeApplicationCapacity?: boolean;
+  metrics?: ApplicationMetricDescriptionList;
+  /** List of user assigned identities for the application, each mapped to a friendly name. */
+  managedIdentities?: ApplicationResourcePropertiesManagedIdentitiesList;
+  /** The current deployment or provisioning state, which only appears in the response */
+  provisioningState?: string;
+  typeName?: string;
+}
+export const ApplicationResourceProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    typeVersion: S.optional(S.String),
+    parameters: S.optional(ApplicationParameterList),
+    upgradePolicy: S.optional(ApplicationUpgradePolicy),
+    minimumNodes: S.optional(S.Number),
+    maximumNodes: S.optional(S.Number),
+    removeApplicationCapacity: S.optional(S.Boolean),
+    metrics: S.optional(ApplicationMetricDescriptionList),
+    managedIdentities: S.optional(
+      ApplicationResourcePropertiesManagedIdentitiesList,
+    ),
+    provisioningState: S.optional(S.String),
+    typeName: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ApplicationResourceProperties",
+}) as any as S.Schema<ApplicationResourceProperties>;
+
+export interface GetApplicationResponse {
+  /** Azure resource identifier. */
+  id?: string;
+  /** Azure resource name. */
+  name?: string;
+  /** Azure resource type. */
+  type?: string;
+  /** It will be deprecated in New API, resource location depends on the parent resource. */
+  location?: string;
+  /** Azure resource tags. */
+  tags?: GetApplicationResponseTagsMap;
+  /** Azure resource etag. */
+  etag?: string;
+  systemData?: SystemData;
+  identity?: ManagedIdentity;
+  properties?: ApplicationResourceProperties;
+}
+export const GetApplicationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    location: S.optional(S.String),
+    tags: S.optional(GetApplicationResponseTagsMap),
+    etag: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    identity: S.optional(ManagedIdentity),
+    properties: S.optional(ApplicationResourceProperties),
+  }),
+).annotate({
+  identifier: "GetApplicationResponse",
+}) as any as S.Schema<GetApplicationResponse>;
+
+export interface GetApplicationTypeRequest {
+  /** The customer subscription identifier. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The name of the cluster resource. */
+  clusterName: string;
+  /** The name of the application type name resource. */
+  applicationTypeName: string;
+}
+export const GetApplicationTypeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    applicationTypeName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/clusters/{clusterName}/applicationTypes/{applicationTypeName}",
+      code: 200,
+      apiVersion: "2021-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetApplicationTypeRequest",
+}) as any as S.Schema<GetApplicationTypeRequest>;
+
+/** Azure resource tags. */
+export type GetApplicationTypeResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetApplicationTypeResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetApplicationTypeResponseTagsMap>;
+
+export interface GetApplicationTypeResponse {
+  /** Azure resource identifier. */
+  id?: string;
+  /** Azure resource name. */
+  name?: string;
+  /** Azure resource type. */
+  type?: string;
+  /** It will be deprecated in New API, resource location depends on the parent resource. */
+  location?: string;
+  /** Azure resource tags. */
+  tags?: GetApplicationTypeResponseTagsMap;
+  /** Azure resource etag. */
+  etag?: string;
+  systemData?: SystemData;
+  properties?: ApplicationTypeResourceProperties;
+}
+export const GetApplicationTypeResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    location: S.optional(S.String),
+    tags: S.optional(GetApplicationTypeResponseTagsMap),
+    etag: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ApplicationTypeResourceProperties),
+  }),
+).annotate({
+  identifier: "GetApplicationTypeResponse",
+}) as any as S.Schema<GetApplicationTypeResponse>;
+
+export interface GetApplicationTypeVersionRequest {
+  /** The customer subscription identifier. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The name of the cluster resource. */
+  clusterName: string;
+  /** The name of the application type name resource. */
+  applicationTypeName: string;
+  /** The application type version. */
+  version: string;
+}
+export const GetApplicationTypeVersionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    applicationTypeName: S.String.pipe(T.Label()),
+    version: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/clusters/{clusterName}/applicationTypes/{applicationTypeName}/versions/{version}",
+      code: 200,
+      apiVersion: "2021-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetApplicationTypeVersionRequest",
+}) as any as S.Schema<GetApplicationTypeVersionRequest>;
+
+/** Azure resource tags. */
+export type GetApplicationTypeVersionResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetApplicationTypeVersionResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetApplicationTypeVersionResponseTagsMap>;
+
+/** List of application type parameters that can be overridden when creating or updating the application. */
+export type ApplicationTypeParameterList = {
+  [key: string]: string | undefined;
+};
+export const ApplicationTypeParameterList = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ApplicationTypeParameterList>;
+
+/** The properties of the application type version resource. */
+export interface ApplicationTypeVersionResourceProperties {
+  /** The current deployment or provisioning state, which only appears in the response */
+  provisioningState?: string;
+  /** The URL to the application package */
+  appPackageUrl: string;
+  defaultParameterList?: ApplicationTypeParameterList;
+}
+export const ApplicationTypeVersionResourceProperties = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      provisioningState: S.optional(S.String),
+      appPackageUrl: S.String,
+      defaultParameterList: S.optional(ApplicationTypeParameterList),
+    }),
+).annotate({
+  identifier: "ApplicationTypeVersionResourceProperties",
+}) as any as S.Schema<ApplicationTypeVersionResourceProperties>;
+
+export interface GetApplicationTypeVersionResponse {
+  /** Azure resource identifier. */
+  id?: string;
+  /** Azure resource name. */
+  name?: string;
+  /** Azure resource type. */
+  type?: string;
+  /** It will be deprecated in New API, resource location depends on the parent resource. */
+  location?: string;
+  /** Azure resource tags. */
+  tags?: GetApplicationTypeVersionResponseTagsMap;
+  /** Azure resource etag. */
+  etag?: string;
+  systemData?: SystemData;
+  properties?: ApplicationTypeVersionResourceProperties;
+}
+export const GetApplicationTypeVersionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    location: S.optional(S.String),
+    tags: S.optional(GetApplicationTypeVersionResponseTagsMap),
+    etag: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ApplicationTypeVersionResourceProperties),
+  }),
+).annotate({
+  identifier: "GetApplicationTypeVersionResponse",
+}) as any as S.Schema<GetApplicationTypeVersionResponse>;
+
+export interface GetClusterRequest {
   /** The customer subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group. */
@@ -2331,7 +2012,7 @@ export interface ClustersGetRequest {
   /** The name of the cluster resource. */
   clusterName: string;
 }
-export const ClustersGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetClusterRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2345,17 +2026,17 @@ export const ClustersGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ClustersGetRequest",
-}) as any as S.Schema<ClustersGetRequest>;
+  identifier: "GetClusterRequest",
+}) as any as S.Schema<GetClusterRequest>;
 
 /** Azure resource tags. */
-export type ClustersGetResponseTagsMap = { [key: string]: string | undefined };
-export const ClustersGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetClusterResponseTagsMap = { [key: string]: string | undefined };
+export const GetClusterResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ClustersGetResponseTagsMap>;
+) as any as S.Schema<GetClusterResponseTagsMap>;
 
-export interface ClustersGetResponse {
+export interface GetClusterResponse {
   /** Azure resource identifier. */
   id?: string;
   /** Azure resource name. */
@@ -2365,46 +2046,655 @@ export interface ClustersGetResponse {
   /** Azure resource location. */
   location: string;
   /** Azure resource tags. */
-  tags?: ClustersGetResponseTagsMap;
+  tags?: GetClusterResponseTagsMap;
   /** Azure resource etag. */
   etag?: string;
   systemData?: SystemData;
   /** The cluster resource properties */
   properties?: ClusterProperties;
 }
-export const ClustersGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetClusterResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.String,
-    tags: S.optional(ClustersGetResponseTagsMap),
+    tags: S.optional(GetClusterResponseTagsMap),
     etag: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(ClusterProperties),
   }),
 ).annotate({
-  identifier: "ClustersGetResponse",
-}) as any as S.Schema<ClustersGetResponse>;
+  identifier: "GetClusterResponse",
+}) as any as S.Schema<GetClusterResponse>;
 
-export interface ClustersListRequest {
+export interface GetClusterVersionRequest {
   /** The customer subscription identifier. */
   subscriptionId: string;
+  /** The location for the cluster code versions. This is different from cluster location. */
+  location: string;
+  /** The cluster code version. */
+  clusterVersion: string;
 }
-export const ClustersListRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetClusterVersionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+    clusterVersion: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ServiceFabric/clusters",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ServiceFabric/locations/{location}/clusterVersions/{clusterVersion}",
       code: 200,
       apiVersion: "2021-06-01",
     }),
   ),
 ).annotate({
-  identifier: "ClustersListRequest",
-}) as any as S.Schema<ClustersListRequest>;
+  identifier: "GetClusterVersionRequest",
+}) as any as S.Schema<GetClusterVersionRequest>;
+
+/** The result of the Service Fabric runtime versions */
+export interface ClusterCodeVersionsResult {
+  /** The identification of the result */
+  id?: string;
+  /** The name of the result */
+  name?: string;
+  /** The result resource type */
+  type?: string;
+  properties?: ClusterVersionDetails;
+}
+export const ClusterCodeVersionsResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    properties: S.optional(ClusterVersionDetails),
+  }),
+).annotate({
+  identifier: "ClusterCodeVersionsResult",
+}) as any as S.Schema<ClusterCodeVersionsResult>;
+
+export type ClusterCodeVersionsListResultValueList =
+  Array<ClusterCodeVersionsResult>;
+export const ClusterCodeVersionsListResultValueList = /*@__PURE__*/ S.Array(
+  ClusterCodeVersionsResult,
+) as any as S.Schema<ClusterCodeVersionsListResultValueList>;
+
+/** The list results of the Service Fabric runtime versions. */
+export interface ClusterCodeVersionsListResult {
+  value?: ClusterCodeVersionsListResultValueList;
+  /** The URL to use for getting the next set of results. */
+  nextLink?: string;
+}
+export const ClusterCodeVersionsListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(ClusterCodeVersionsListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ClusterCodeVersionsListResult",
+}) as any as S.Schema<ClusterCodeVersionsListResult>;
+
+export type GetClusterVersionByEnvironmentRequestEnvironment =
+  | "Windows"
+  | "Linux";
+export const GetClusterVersionByEnvironmentRequestEnvironment =
+  /*@__PURE__*/ S.String;
+
+export interface GetClusterVersionByEnvironmentRequest {
+  /** The customer subscription identifier. */
+  subscriptionId: string;
+  /** The location for the cluster code versions. This is different from cluster location. */
+  location: string;
+  /** The operating system of the cluster. The default means all. */
+  environment: GetClusterVersionByEnvironmentRequestEnvironment | (string & {});
+  /** The cluster code version. */
+  clusterVersion: string;
+}
+export const GetClusterVersionByEnvironmentRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      location: S.String.pipe(T.Label()),
+      environment: GetClusterVersionByEnvironmentRequestEnvironment.pipe(
+        T.Label(),
+      ),
+      clusterVersion: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ServiceFabric/locations/{location}/environments/{environment}/clusterVersions/{clusterVersion}",
+        code: 200,
+        apiVersion: "2021-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "GetClusterVersionByEnvironmentRequest",
+}) as any as S.Schema<GetClusterVersionByEnvironmentRequest>;
+
+export interface GetServiceRequest {
+  /** The customer subscription identifier. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The name of the cluster resource. */
+  clusterName: string;
+  /** The name of the application resource. */
+  applicationName: string;
+  /** The name of the service resource in the format of {applicationName}~{serviceName}. */
+  serviceName: string;
+}
+export const GetServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    applicationName: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/clusters/{clusterName}/applications/{applicationName}/services/{serviceName}",
+      code: 200,
+      apiVersion: "2021-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetServiceRequest",
+}) as any as S.Schema<GetServiceRequest>;
+
+/** Azure resource tags. */
+export type GetServiceResponseTagsMap = { [key: string]: string | undefined };
+export const GetServiceResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetServiceResponseTagsMap>;
+
+/** The service correlation scheme. */
+export type ServiceCorrelationScheme =
+  | "Invalid"
+  | "Affinity"
+  | "AlignedAffinity"
+  | "NonAlignedAffinity";
+export const ServiceCorrelationScheme = /*@__PURE__*/ S.String;
+
+/** Creates a particular correlation between services. */
+export interface ServiceCorrelationDescription {
+  /** The ServiceCorrelationScheme which describes the relationship between this service and the service specified via ServiceName. */
+  scheme: ServiceCorrelationScheme | (string & {});
+  /** The name of the service that the correlation relationship is established with. */
+  serviceName: string;
+}
+export const ServiceCorrelationDescription = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    scheme: ServiceCorrelationScheme,
+    serviceName: S.String,
+  }),
+).annotate({
+  identifier: "ServiceCorrelationDescription",
+}) as any as S.Schema<ServiceCorrelationDescription>;
+
+/** A list that describes the correlation of the service with other services. */
+export type CorrelationSchemeList = Array<ServiceCorrelationDescription>;
+export const CorrelationSchemeList = /*@__PURE__*/ S.Array(
+  ServiceCorrelationDescription,
+) as any as S.Schema<CorrelationSchemeList>;
+
+/** Determines the metric weight relative to the other metrics that are configured for this service. During runtime, if two metrics end up in conflict, the Cluster Resource Manager prefers the metric with the higher weight. */
+export type ServiceLoadMetricWeight = "Zero" | "Low" | "Medium" | "High";
+export const ServiceLoadMetricWeight = /*@__PURE__*/ S.String;
+
+/** Specifies a metric to load balance a service during runtime. */
+export interface ServiceLoadMetricDescription {
+  /** The name of the metric. If the service chooses to report load during runtime, the load metric name should match the name that is specified in Name exactly. Note that metric names are case sensitive. */
+  name: string;
+  /** The service load metric relative weight, compared to other metrics configured for this service, as a number. */
+  weight?: ServiceLoadMetricWeight | (string & {});
+  /** Used only for Stateful services. The default amount of load, as a number, that this service creates for this metric when it is a Primary replica. */
+  primaryDefaultLoad?: number;
+  /** Used only for Stateful services. The default amount of load, as a number, that this service creates for this metric when it is a Secondary replica. */
+  secondaryDefaultLoad?: number;
+  /** Used only for Stateless services. The default amount of load, as a number, that this service creates for this metric. */
+  defaultLoad?: number;
+}
+export const ServiceLoadMetricDescription = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    weight: S.optional(ServiceLoadMetricWeight),
+    primaryDefaultLoad: S.optional(S.Number),
+    secondaryDefaultLoad: S.optional(S.Number),
+    defaultLoad: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "ServiceLoadMetricDescription",
+}) as any as S.Schema<ServiceLoadMetricDescription>;
+
+/** The service load metrics is given as an array of ServiceLoadMetricDescription objects. */
+export type ServiceLoadMetricsList = Array<ServiceLoadMetricDescription>;
+export const ServiceLoadMetricsList = /*@__PURE__*/ S.Array(
+  ServiceLoadMetricDescription,
+) as any as S.Schema<ServiceLoadMetricsList>;
+
+/** The type of placement policy for a service fabric service. Following are the possible values. */
+export type ServicePlacementPolicyType =
+  | "Invalid"
+  | "InvalidDomain"
+  | "RequiredDomain"
+  | "PreferredPrimaryDomain"
+  | "RequiredDomainDistribution"
+  | "NonPartiallyPlaceService";
+export const ServicePlacementPolicyType = /*@__PURE__*/ S.String;
+
+/** Describes the policy to be used for placement of a Service Fabric service. */
+export interface ServicePlacementPolicyDescription {
+  type: ServicePlacementPolicyType | (string & {});
+}
+export const ServicePlacementPolicyDescription = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: ServicePlacementPolicyType,
+  }),
+).annotate({
+  identifier: "ServicePlacementPolicyDescription",
+}) as any as S.Schema<ServicePlacementPolicyDescription>;
+
+/** A list that describes the correlation of the service with other services. */
+export type ServicePlacementPoliciesList =
+  Array<ServicePlacementPolicyDescription>;
+export const ServicePlacementPoliciesList = /*@__PURE__*/ S.Array(
+  ServicePlacementPolicyDescription,
+) as any as S.Schema<ServicePlacementPoliciesList>;
+
+/** Specifies the move cost for the service. */
+export type MoveCost = "Zero" | "Low" | "Medium" | "High";
+export const MoveCost = /*@__PURE__*/ S.String;
+
+/** The kind of service (Stateless or Stateful). */
+export type ServiceKind = "Invalid" | "Stateless" | "Stateful";
+export const ServiceKind = /*@__PURE__*/ S.String;
+
+/** Enumerates the ways that a service can be partitioned. */
+export type PartitionScheme =
+  | "Invalid"
+  | "Singleton"
+  | "UniformInt64Range"
+  | "Named";
+export const PartitionScheme = /*@__PURE__*/ S.String;
+
+/** Describes how the service is partitioned. */
+export interface PartitionSchemeDescription {
+  /** Specifies how the service is partitioned. */
+  partitionScheme: PartitionScheme | (string & {});
+}
+export const PartitionSchemeDescription = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    partitionScheme: PartitionScheme,
+  }),
+).annotate({
+  identifier: "PartitionSchemeDescription",
+}) as any as S.Schema<PartitionSchemeDescription>;
+
+/** The activation Mode of the service package */
+export type ServiceResourcePropertiesServicePackageActivationMode =
+  | "SharedProcess"
+  | "ExclusiveProcess";
+export const ServiceResourcePropertiesServicePackageActivationMode =
+  /*@__PURE__*/ S.String;
+
+/** The service resource properties. */
+export interface ServiceResourceProperties {
+  /** The placement constraints as a string. Placement constraints are boolean expressions on node properties and allow for restricting a service to particular nodes based on the service requirements. For example, to place a service on nodes where NodeType is blue specify the following: "NodeColor == blue)". */
+  placementConstraints?: string;
+  correlationScheme?: CorrelationSchemeList;
+  serviceLoadMetrics?: ServiceLoadMetricsList;
+  servicePlacementPolicies?: ServicePlacementPoliciesList;
+  defaultMoveCost?: MoveCost;
+  /** The current deployment or provisioning state, which only appears in the response */
+  provisioningState?: string;
+  serviceKind: ServiceKind;
+  /** The name of the service type */
+  serviceTypeName?: string;
+  partitionDescription?: PartitionSchemeDescription;
+  /** The activation Mode of the service package */
+  servicePackageActivationMode?: ServiceResourcePropertiesServicePackageActivationMode;
+  /** Dns name used for the service. If this is specified, then the service can be accessed via its DNS name instead of service name. */
+  serviceDnsName?: string;
+}
+export const ServiceResourceProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    placementConstraints: S.optional(S.String),
+    correlationScheme: S.optional(CorrelationSchemeList),
+    serviceLoadMetrics: S.optional(ServiceLoadMetricsList),
+    servicePlacementPolicies: S.optional(ServicePlacementPoliciesList),
+    defaultMoveCost: S.optional(MoveCost),
+    provisioningState: S.optional(S.String),
+    serviceKind: ServiceKind,
+    serviceTypeName: S.optional(S.String),
+    partitionDescription: S.optional(PartitionSchemeDescription),
+    servicePackageActivationMode: S.optional(
+      ServiceResourcePropertiesServicePackageActivationMode,
+    ),
+    serviceDnsName: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ServiceResourceProperties",
+}) as any as S.Schema<ServiceResourceProperties>;
+
+export interface GetServiceResponse {
+  /** Azure resource identifier. */
+  id?: string;
+  /** Azure resource name. */
+  name?: string;
+  /** Azure resource type. */
+  type?: string;
+  /** It will be deprecated in New API, resource location depends on the parent resource. */
+  location?: string;
+  /** Azure resource tags. */
+  tags?: GetServiceResponseTagsMap;
+  /** Azure resource etag. */
+  etag?: string;
+  systemData?: SystemData;
+  properties?: ServiceResourceProperties;
+}
+export const GetServiceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    location: S.optional(S.String),
+    tags: S.optional(GetServiceResponseTagsMap),
+    etag: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ServiceResourceProperties),
+  }),
+).annotate({
+  identifier: "GetServiceResponse",
+}) as any as S.Schema<GetServiceResponse>;
+
+export interface ListApplicationsRequest {
+  /** The customer subscription identifier. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The name of the cluster resource. */
+  clusterName: string;
+}
+export const ListApplicationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/clusters/{clusterName}/applications",
+      code: 200,
+      apiVersion: "2021-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListApplicationsRequest",
+}) as any as S.Schema<ListApplicationsRequest>;
+
+/** Azure resource tags. */
+export type ApplicationResourceTagsMap = { [key: string]: string | undefined };
+export const ApplicationResourceTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ApplicationResourceTagsMap>;
+
+/** The application resource. */
+export interface ApplicationResource {
+  /** Azure resource identifier. */
+  id?: string;
+  /** Azure resource name. */
+  name?: string;
+  /** Azure resource type. */
+  type?: string;
+  /** It will be deprecated in New API, resource location depends on the parent resource. */
+  location?: string;
+  /** Azure resource tags. */
+  tags?: ApplicationResourceTagsMap;
+  /** Azure resource etag. */
+  etag?: string;
+  systemData?: SystemData;
+  identity?: ManagedIdentity;
+  properties?: ApplicationResourceProperties;
+}
+export const ApplicationResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    location: S.optional(S.String),
+    tags: S.optional(ApplicationResourceTagsMap),
+    etag: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    identity: S.optional(ManagedIdentity),
+    properties: S.optional(ApplicationResourceProperties),
+  }),
+).annotate({
+  identifier: "ApplicationResource",
+}) as any as S.Schema<ApplicationResource>;
+
+export type ApplicationResourceListValueList = Array<ApplicationResource>;
+export const ApplicationResourceListValueList = /*@__PURE__*/ S.Array(
+  ApplicationResource,
+) as any as S.Schema<ApplicationResourceListValueList>;
+
+/** The list of application resources. */
+export interface ApplicationResourceList {
+  value?: ApplicationResourceListValueList;
+  /** URL to get the next set of application list results if there are any. */
+  nextLink?: string;
+}
+export const ApplicationResourceList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(ApplicationResourceListValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ApplicationResourceList",
+}) as any as S.Schema<ApplicationResourceList>;
+
+export interface ListApplicationTypesRequest {
+  /** The customer subscription identifier. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The name of the cluster resource. */
+  clusterName: string;
+}
+export const ListApplicationTypesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/clusters/{clusterName}/applicationTypes",
+      code: 200,
+      apiVersion: "2021-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListApplicationTypesRequest",
+}) as any as S.Schema<ListApplicationTypesRequest>;
+
+/** Azure resource tags. */
+export type ApplicationTypeResourceTagsMap = {
+  [key: string]: string | undefined;
+};
+export const ApplicationTypeResourceTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ApplicationTypeResourceTagsMap>;
+
+/** The application type name resource */
+export interface ApplicationTypeResource {
+  /** Azure resource identifier. */
+  id?: string;
+  /** Azure resource name. */
+  name?: string;
+  /** Azure resource type. */
+  type?: string;
+  /** It will be deprecated in New API, resource location depends on the parent resource. */
+  location?: string;
+  /** Azure resource tags. */
+  tags?: ApplicationTypeResourceTagsMap;
+  /** Azure resource etag. */
+  etag?: string;
+  systemData?: SystemData;
+  properties?: ApplicationTypeResourceProperties;
+}
+export const ApplicationTypeResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    location: S.optional(S.String),
+    tags: S.optional(ApplicationTypeResourceTagsMap),
+    etag: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ApplicationTypeResourceProperties),
+  }),
+).annotate({
+  identifier: "ApplicationTypeResource",
+}) as any as S.Schema<ApplicationTypeResource>;
+
+export type ApplicationTypeResourceListValueList =
+  Array<ApplicationTypeResource>;
+export const ApplicationTypeResourceListValueList = /*@__PURE__*/ S.Array(
+  ApplicationTypeResource,
+) as any as S.Schema<ApplicationTypeResourceListValueList>;
+
+/** The list of application type names. */
+export interface ApplicationTypeResourceList {
+  value?: ApplicationTypeResourceListValueList;
+  /** URL to get the next set of application type list results if there are any. */
+  nextLink?: string;
+}
+export const ApplicationTypeResourceList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(ApplicationTypeResourceListValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ApplicationTypeResourceList",
+}) as any as S.Schema<ApplicationTypeResourceList>;
+
+export interface ListApplicationTypeVersionsRequest {
+  /** The customer subscription identifier. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The name of the cluster resource. */
+  clusterName: string;
+  /** The name of the application type name resource. */
+  applicationTypeName: string;
+}
+export const ListApplicationTypeVersionsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    applicationTypeName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/clusters/{clusterName}/applicationTypes/{applicationTypeName}/versions",
+      code: 200,
+      apiVersion: "2021-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListApplicationTypeVersionsRequest",
+}) as any as S.Schema<ListApplicationTypeVersionsRequest>;
+
+/** Azure resource tags. */
+export type ApplicationTypeVersionResourceTagsMap = {
+  [key: string]: string | undefined;
+};
+export const ApplicationTypeVersionResourceTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ApplicationTypeVersionResourceTagsMap>;
+
+/** An application type version resource for the specified application type name resource. */
+export interface ApplicationTypeVersionResource {
+  /** Azure resource identifier. */
+  id?: string;
+  /** Azure resource name. */
+  name?: string;
+  /** Azure resource type. */
+  type?: string;
+  /** It will be deprecated in New API, resource location depends on the parent resource. */
+  location?: string;
+  /** Azure resource tags. */
+  tags?: ApplicationTypeVersionResourceTagsMap;
+  /** Azure resource etag. */
+  etag?: string;
+  systemData?: SystemData;
+  properties?: ApplicationTypeVersionResourceProperties;
+}
+export const ApplicationTypeVersionResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    location: S.optional(S.String),
+    tags: S.optional(ApplicationTypeVersionResourceTagsMap),
+    etag: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ApplicationTypeVersionResourceProperties),
+  }),
+).annotate({
+  identifier: "ApplicationTypeVersionResource",
+}) as any as S.Schema<ApplicationTypeVersionResource>;
+
+export type ApplicationTypeVersionResourceListValueList =
+  Array<ApplicationTypeVersionResource>;
+export const ApplicationTypeVersionResourceListValueList =
+  /*@__PURE__*/ S.Array(
+    ApplicationTypeVersionResource,
+  ) as any as S.Schema<ApplicationTypeVersionResourceListValueList>;
+
+/** The list of application type version resources for the specified application type name resource. */
+export interface ApplicationTypeVersionResourceList {
+  value?: ApplicationTypeVersionResourceListValueList;
+  /** URL to get the next set of application type version list results if there are any. */
+  nextLink?: string;
+}
+export const ApplicationTypeVersionResourceList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(ApplicationTypeVersionResourceListValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ApplicationTypeVersionResourceList",
+}) as any as S.Schema<ApplicationTypeVersionResourceList>;
+
+export interface ListClusterByResourceGroupRequest {
+  /** The customer subscription identifier. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+}
+export const ListClusterByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/clusters",
+      code: 200,
+      apiVersion: "2021-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListClusterByResourceGroupRequest",
+}) as any as S.Schema<ListClusterByResourceGroupRequest>;
 
 /** Azure resource tags. */
 export type ClusterTagsMap = { [key: string]: string | undefined };
@@ -2464,29 +2754,26 @@ export const ClusterListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ClusterListResult",
 }) as any as S.Schema<ClusterListResult>;
 
-export interface ClustersListByResourceGroupRequest {
+export interface ListClustersRequest {
   /** The customer subscription identifier. */
   subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
 }
-export const ClustersListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListClustersRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/clusters",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ServiceFabric/clusters",
       code: 200,
       apiVersion: "2021-06-01",
     }),
   ),
 ).annotate({
-  identifier: "ClustersListByResourceGroupRequest",
-}) as any as S.Schema<ClustersListByResourceGroupRequest>;
+  identifier: "ListClustersRequest",
+}) as any as S.Schema<ListClustersRequest>;
 
-export interface ClustersListUpgradableVersionsRequest {
+export interface ListClusterUpgradableVersionsRequest {
   /** The customer subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group. */
@@ -2496,7 +2783,7 @@ export interface ClustersListUpgradableVersionsRequest {
   /** The target code version. */
   targetVersion: string;
 }
-export const ClustersListUpgradableVersionsRequest = /*@__PURE__*/ S.suspend(
+export const ListClusterUpgradableVersionsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2512,8 +2799,8 @@ export const ClustersListUpgradableVersionsRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ClustersListUpgradableVersionsRequest",
-}) as any as S.Schema<ClustersListUpgradableVersionsRequest>;
+  identifier: "ListClusterUpgradableVersionsRequest",
+}) as any as S.Schema<ListClusterUpgradableVersionsRequest>;
 
 export type UpgradableVersionPathResultSupportedPathList = Array<string>;
 export const UpgradableVersionPathResultSupportedPathList =
@@ -2532,6 +2819,426 @@ export const UpgradableVersionPathResult = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "UpgradableVersionPathResult",
 }) as any as S.Schema<UpgradableVersionPathResult>;
+
+export type ListClusterVersionByEnvironmentRequestEnvironment =
+  | "Windows"
+  | "Linux";
+export const ListClusterVersionByEnvironmentRequestEnvironment =
+  /*@__PURE__*/ S.String;
+
+export interface ListClusterVersionByEnvironmentRequest {
+  /** The customer subscription identifier. */
+  subscriptionId: string;
+  /** The location for the cluster code versions. This is different from cluster location. */
+  location: string;
+  /** The operating system of the cluster. The default means all. */
+  environment:
+    | ListClusterVersionByEnvironmentRequestEnvironment
+    | (string & {});
+}
+export const ListClusterVersionByEnvironmentRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      location: S.String.pipe(T.Label()),
+      environment: ListClusterVersionByEnvironmentRequestEnvironment.pipe(
+        T.Label(),
+      ),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ServiceFabric/locations/{location}/environments/{environment}/clusterVersions",
+        code: 200,
+        apiVersion: "2021-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListClusterVersionByEnvironmentRequest",
+}) as any as S.Schema<ListClusterVersionByEnvironmentRequest>;
+
+export interface ListClusterVersionsRequest {
+  /** The customer subscription identifier. */
+  subscriptionId: string;
+  /** The location for the cluster code versions. This is different from cluster location. */
+  location: string;
+}
+export const ListClusterVersionsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ServiceFabric/locations/{location}/clusterVersions",
+      code: 200,
+      apiVersion: "2021-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListClusterVersionsRequest",
+}) as any as S.Schema<ListClusterVersionsRequest>;
+
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.ServiceFabric/operations",
+      code: 200,
+      apiVersion: "2021-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
+
+/** Operation supported by the Service Fabric resource provider */
+export interface AvailableOperationDisplay {
+  /** The name of the provider. */
+  provider?: string;
+  /** The resource on which the operation is performed */
+  resource?: string;
+  /** The operation that can be performed. */
+  operation?: string;
+  /** Operation description */
+  description?: string;
+}
+export const AvailableOperationDisplay = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provider: S.optional(S.String),
+    resource: S.optional(S.String),
+    operation: S.optional(S.String),
+    description: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AvailableOperationDisplay",
+}) as any as S.Schema<AvailableOperationDisplay>;
+
+/** Available operation list result */
+export interface OperationResult {
+  /** The name of the operation. */
+  name?: string;
+  /** Indicates whether the operation is a data action */
+  isDataAction?: boolean;
+  /** The object that represents the operation. */
+  display?: AvailableOperationDisplay;
+  /** Origin result */
+  origin?: string;
+  /** The URL to use for getting the next set of results. */
+  nextLink?: string;
+}
+export const OperationResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    isDataAction: S.optional(S.Boolean),
+    display: S.optional(AvailableOperationDisplay),
+    origin: S.optional(S.String),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationResult",
+}) as any as S.Schema<OperationResult>;
+
+/** List of operations supported by the Service Fabric resource provider. */
+export type OperationListResultValueList = Array<OperationResult>;
+export const OperationListResultValueList = /*@__PURE__*/ S.Array(
+  OperationResult,
+) as any as S.Schema<OperationListResultValueList>;
+
+/** Describes the result of the request to list Service Fabric resource provider operations. */
+export interface OperationListResult {
+  /** List of operations supported by the Service Fabric resource provider. */
+  value?: OperationListResultValueList;
+  /** URL to get the next set of operation list results if there are any. */
+  nextLink?: string;
+}
+export const OperationListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(OperationListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationListResult",
+}) as any as S.Schema<OperationListResult>;
+
+export interface ListServicesRequest {
+  /** The customer subscription identifier. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The name of the cluster resource. */
+  clusterName: string;
+  /** The name of the application resource. */
+  applicationName: string;
+}
+export const ListServicesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    applicationName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/clusters/{clusterName}/applications/{applicationName}/services",
+      code: 200,
+      apiVersion: "2021-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListServicesRequest",
+}) as any as S.Schema<ListServicesRequest>;
+
+/** Azure resource tags. */
+export type ServiceResourceTagsMap = { [key: string]: string | undefined };
+export const ServiceResourceTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ServiceResourceTagsMap>;
+
+/** The service resource. */
+export interface ServiceResource {
+  /** Azure resource identifier. */
+  id?: string;
+  /** Azure resource name. */
+  name?: string;
+  /** Azure resource type. */
+  type?: string;
+  /** It will be deprecated in New API, resource location depends on the parent resource. */
+  location?: string;
+  /** Azure resource tags. */
+  tags?: ServiceResourceTagsMap;
+  /** Azure resource etag. */
+  etag?: string;
+  systemData?: SystemData;
+  properties?: ServiceResourceProperties;
+}
+export const ServiceResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    location: S.optional(S.String),
+    tags: S.optional(ServiceResourceTagsMap),
+    etag: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ServiceResourceProperties),
+  }),
+).annotate({
+  identifier: "ServiceResource",
+}) as any as S.Schema<ServiceResource>;
+
+export type ServiceResourceListValueList = Array<ServiceResource>;
+export const ServiceResourceListValueList = /*@__PURE__*/ S.Array(
+  ServiceResource,
+) as any as S.Schema<ServiceResourceListValueList>;
+
+/** The list of service resources. */
+export interface ServiceResourceList {
+  value?: ServiceResourceListValueList;
+  /** URL to get the next set of service list results if there are any. */
+  nextLink?: string;
+}
+export const ServiceResourceList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(ServiceResourceListValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ServiceResourceList",
+}) as any as S.Schema<ServiceResourceList>;
+
+/** Azure resource tags. */
+export type ServicesCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const ServicesCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ServicesCreateOrUpdateRequestTagsMap>;
+
+/** The activation Mode of the service package */
+export type ServiceResourcePropertiesInputServicePackageActivationMode =
+  | "SharedProcess"
+  | "ExclusiveProcess";
+export const ServiceResourcePropertiesInputServicePackageActivationMode =
+  /*@__PURE__*/ S.String;
+
+/** The service resource properties. */
+export interface ServiceResourcePropertiesInput {
+  /** The placement constraints as a string. Placement constraints are boolean expressions on node properties and allow for restricting a service to particular nodes based on the service requirements. For example, to place a service on nodes where NodeType is blue specify the following: "NodeColor == blue)". */
+  placementConstraints?: string;
+  correlationScheme?: CorrelationSchemeList;
+  serviceLoadMetrics?: ServiceLoadMetricsList;
+  servicePlacementPolicies?: ServicePlacementPoliciesList;
+  defaultMoveCost?: MoveCost | (string & {});
+  serviceKind: ServiceKind | (string & {});
+  /** The name of the service type */
+  serviceTypeName?: string;
+  partitionDescription?: PartitionSchemeDescription;
+  /** The activation Mode of the service package */
+  servicePackageActivationMode?:
+    | ServiceResourcePropertiesInputServicePackageActivationMode
+    | (string & {});
+  /** Dns name used for the service. If this is specified, then the service can be accessed via its DNS name instead of service name. */
+  serviceDnsName?: string;
+}
+export const ServiceResourcePropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    placementConstraints: S.optional(S.String),
+    correlationScheme: S.optional(CorrelationSchemeList),
+    serviceLoadMetrics: S.optional(ServiceLoadMetricsList),
+    servicePlacementPolicies: S.optional(ServicePlacementPoliciesList),
+    defaultMoveCost: S.optional(MoveCost),
+    serviceKind: ServiceKind,
+    serviceTypeName: S.optional(S.String),
+    partitionDescription: S.optional(PartitionSchemeDescription),
+    servicePackageActivationMode: S.optional(
+      ServiceResourcePropertiesInputServicePackageActivationMode,
+    ),
+    serviceDnsName: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ServiceResourcePropertiesInput",
+}) as any as S.Schema<ServiceResourcePropertiesInput>;
+
+export interface ServicesCreateOrUpdateRequest {
+  /** The customer subscription identifier. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The name of the cluster resource. */
+  clusterName: string;
+  /** The name of the application resource. */
+  applicationName: string;
+  /** The name of the service resource in the format of {applicationName}~{serviceName}. */
+  serviceName: string;
+  /** It will be deprecated in New API, resource location depends on the parent resource. */
+  location?: string;
+  /** Azure resource tags. */
+  tags?: ServicesCreateOrUpdateRequestTagsMap;
+  properties?: ServiceResourcePropertiesInput;
+}
+export const ServicesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    applicationName: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
+    location: S.optional(S.String),
+    tags: S.optional(ServicesCreateOrUpdateRequestTagsMap),
+    properties: S.optional(ServiceResourcePropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/clusters/{clusterName}/applications/{applicationName}/services/{serviceName}",
+      code: 200,
+      apiVersion: "2021-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ServicesCreateOrUpdateRequest",
+}) as any as S.Schema<ServicesCreateOrUpdateRequest>;
+
+export interface ServicesCreateOrUpdateResponse {}
+export const ServicesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "ServicesCreateOrUpdateResponse",
+}) as any as S.Schema<ServicesCreateOrUpdateResponse>;
+
+/** Azure resource tags. */
+export type UpdateApplicationRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateApplicationRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateApplicationRequestTagsMap>;
+
+/** List of user assigned identities for the application, each mapped to a friendly name. */
+export type ApplicationResourceUpdatePropertiesManagedIdentitiesList =
+  Array<ApplicationUserAssignedIdentity>;
+export const ApplicationResourceUpdatePropertiesManagedIdentitiesList =
+  /*@__PURE__*/ S.Array(
+    ApplicationUserAssignedIdentity,
+  ) as any as S.Schema<ApplicationResourceUpdatePropertiesManagedIdentitiesList>;
+
+/** The application resource properties for patch operations. */
+export interface ApplicationResourceUpdateProperties {
+  typeVersion?: string;
+  parameters?: ApplicationParameterList;
+  upgradePolicy?: ApplicationUpgradePolicy;
+  /** The minimum number of nodes where Service Fabric will reserve capacity for this application. Note that this does not mean that the services of this application will be placed on all of those nodes. If this property is set to zero, no capacity will be reserved. The value of this property cannot be more than the value of the MaximumNodes property. */
+  minimumNodes?: number;
+  /** The maximum number of nodes where Service Fabric will reserve capacity for this application. Note that this does not mean that the services of this application will be placed on all of those nodes. By default, the value of this property is zero and it means that the services can be placed on any node. */
+  maximumNodes?: number;
+  /** Remove the current application capacity settings. */
+  removeApplicationCapacity?: boolean;
+  metrics?: ApplicationMetricDescriptionList;
+  /** List of user assigned identities for the application, each mapped to a friendly name. */
+  managedIdentities?: ApplicationResourceUpdatePropertiesManagedIdentitiesList;
+}
+export const ApplicationResourceUpdateProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    typeVersion: S.optional(S.String),
+    parameters: S.optional(ApplicationParameterList),
+    upgradePolicy: S.optional(ApplicationUpgradePolicy),
+    minimumNodes: S.optional(S.Number),
+    maximumNodes: S.optional(S.Number),
+    removeApplicationCapacity: S.optional(S.Boolean),
+    metrics: S.optional(ApplicationMetricDescriptionList),
+    managedIdentities: S.optional(
+      ApplicationResourceUpdatePropertiesManagedIdentitiesList,
+    ),
+  }),
+).annotate({
+  identifier: "ApplicationResourceUpdateProperties",
+}) as any as S.Schema<ApplicationResourceUpdateProperties>;
+
+export interface UpdateApplicationRequest {
+  /** The customer subscription identifier. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The name of the cluster resource. */
+  clusterName: string;
+  /** The name of the application resource. */
+  applicationName: string;
+  /** It will be deprecated in New API, resource location depends on the parent resource. */
+  location?: string;
+  /** Azure resource tags. */
+  tags?: UpdateApplicationRequestTagsMap;
+  properties?: ApplicationResourceUpdateProperties;
+}
+export const UpdateApplicationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    applicationName: S.String.pipe(T.Label()),
+    location: S.optional(S.String),
+    tags: S.optional(UpdateApplicationRequestTagsMap),
+    properties: S.optional(ApplicationResourceUpdateProperties),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/clusters/{clusterName}/applications/{applicationName}",
+      code: 200,
+      apiVersion: "2021-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateApplicationRequest",
+}) as any as S.Schema<UpdateApplicationRequest>;
+
+export interface UpdateApplicationResponse {}
+export const UpdateApplicationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "UpdateApplicationResponse",
+}) as any as S.Schema<UpdateApplicationResponse>;
 
 /** The list of add-on features to enable in the cluster. */
 export type ClusterPropertiesUpdateParametersAddOnFeaturesList = Array<
@@ -2666,15 +3373,13 @@ export const ClusterPropertiesUpdateParameters = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ClusterPropertiesUpdateParameters>;
 
 /** Cluster update parameters */
-export type ClustersUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ClustersUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateClusterRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateClusterRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ClustersUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateClusterRequestTagsMap>;
 
-export interface ClustersUpdateRequest {
+export interface UpdateClusterRequest {
   /** The customer subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group. */
@@ -2683,15 +3388,15 @@ export interface ClustersUpdateRequest {
   clusterName: string;
   properties?: ClusterPropertiesUpdateParameters;
   /** Cluster update parameters */
-  tags?: ClustersUpdateRequestTagsMap;
+  tags?: UpdateClusterRequestTagsMap;
 }
-export const ClustersUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateClusterRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     clusterName: S.String.pipe(T.Label()),
     properties: S.optional(ClusterPropertiesUpdateParameters),
-    tags: S.optional(ClustersUpdateRequestTagsMap),
+    tags: S.optional(UpdateClusterRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -2701,19 +3406,19 @@ export const ClustersUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ClustersUpdateRequest",
-}) as any as S.Schema<ClustersUpdateRequest>;
+  identifier: "UpdateClusterRequest",
+}) as any as S.Schema<UpdateClusterRequest>;
 
 /** Azure resource tags. */
-export type ClustersUpdateResponseTagsMap = {
+export type UpdateClusterResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ClustersUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateClusterResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ClustersUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateClusterResponseTagsMap>;
 
-export interface ClustersUpdateResponse {
+export interface UpdateClusterResponse {
   /** Azure resource identifier. */
   id?: string;
   /** Azure resource name. */
@@ -2723,746 +3428,34 @@ export interface ClustersUpdateResponse {
   /** Azure resource location. */
   location: string;
   /** Azure resource tags. */
-  tags?: ClustersUpdateResponseTagsMap;
+  tags?: UpdateClusterResponseTagsMap;
   /** Azure resource etag. */
   etag?: string;
   systemData?: SystemData;
   /** The cluster resource properties */
   properties?: ClusterProperties;
 }
-export const ClustersUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateClusterResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.String,
-    tags: S.optional(ClustersUpdateResponseTagsMap),
+    tags: S.optional(UpdateClusterResponseTagsMap),
     etag: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(ClusterProperties),
   }),
 ).annotate({
-  identifier: "ClustersUpdateResponse",
-}) as any as S.Schema<ClustersUpdateResponse>;
-
-export interface ClusterVersionsGetRequest {
-  /** The customer subscription identifier. */
-  subscriptionId: string;
-  /** The location for the cluster code versions. This is different from cluster location. */
-  location: string;
-  /** The cluster code version. */
-  clusterVersion: string;
-}
-export const ClusterVersionsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
-    clusterVersion: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ServiceFabric/locations/{location}/clusterVersions/{clusterVersion}",
-      code: 200,
-      apiVersion: "2021-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ClusterVersionsGetRequest",
-}) as any as S.Schema<ClusterVersionsGetRequest>;
-
-/** The result of the Service Fabric runtime versions */
-export interface ClusterCodeVersionsResult {
-  /** The identification of the result */
-  id?: string;
-  /** The name of the result */
-  name?: string;
-  /** The result resource type */
-  type?: string;
-  properties?: ClusterVersionDetails;
-}
-export const ClusterCodeVersionsResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    properties: S.optional(ClusterVersionDetails),
-  }),
-).annotate({
-  identifier: "ClusterCodeVersionsResult",
-}) as any as S.Schema<ClusterCodeVersionsResult>;
-
-export type ClusterCodeVersionsListResultValueList =
-  Array<ClusterCodeVersionsResult>;
-export const ClusterCodeVersionsListResultValueList = /*@__PURE__*/ S.Array(
-  ClusterCodeVersionsResult,
-) as any as S.Schema<ClusterCodeVersionsListResultValueList>;
-
-/** The list results of the Service Fabric runtime versions. */
-export interface ClusterCodeVersionsListResult {
-  value?: ClusterCodeVersionsListResultValueList;
-  /** The URL to use for getting the next set of results. */
-  nextLink?: string;
-}
-export const ClusterCodeVersionsListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(ClusterCodeVersionsListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ClusterCodeVersionsListResult",
-}) as any as S.Schema<ClusterCodeVersionsListResult>;
-
-export type ClusterVersionsGetByEnvironmentRequestEnvironment =
-  | "Windows"
-  | "Linux";
-export const ClusterVersionsGetByEnvironmentRequestEnvironment =
-  /*@__PURE__*/ S.String;
-
-export interface ClusterVersionsGetByEnvironmentRequest {
-  /** The customer subscription identifier. */
-  subscriptionId: string;
-  /** The location for the cluster code versions. This is different from cluster location. */
-  location: string;
-  /** The operating system of the cluster. The default means all. */
-  environment:
-    | ClusterVersionsGetByEnvironmentRequestEnvironment
-    | (string & {});
-  /** The cluster code version. */
-  clusterVersion: string;
-}
-export const ClusterVersionsGetByEnvironmentRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      location: S.String.pipe(T.Label()),
-      environment: ClusterVersionsGetByEnvironmentRequestEnvironment.pipe(
-        T.Label(),
-      ),
-      clusterVersion: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ServiceFabric/locations/{location}/environments/{environment}/clusterVersions/{clusterVersion}",
-        code: 200,
-        apiVersion: "2021-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "ClusterVersionsGetByEnvironmentRequest",
-}) as any as S.Schema<ClusterVersionsGetByEnvironmentRequest>;
-
-export interface ClusterVersionsListRequest {
-  /** The customer subscription identifier. */
-  subscriptionId: string;
-  /** The location for the cluster code versions. This is different from cluster location. */
-  location: string;
-}
-export const ClusterVersionsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ServiceFabric/locations/{location}/clusterVersions",
-      code: 200,
-      apiVersion: "2021-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ClusterVersionsListRequest",
-}) as any as S.Schema<ClusterVersionsListRequest>;
-
-export type ClusterVersionsListByEnvironmentRequestEnvironment =
-  | "Windows"
-  | "Linux";
-export const ClusterVersionsListByEnvironmentRequestEnvironment =
-  /*@__PURE__*/ S.String;
-
-export interface ClusterVersionsListByEnvironmentRequest {
-  /** The customer subscription identifier. */
-  subscriptionId: string;
-  /** The location for the cluster code versions. This is different from cluster location. */
-  location: string;
-  /** The operating system of the cluster. The default means all. */
-  environment:
-    | ClusterVersionsListByEnvironmentRequestEnvironment
-    | (string & {});
-}
-export const ClusterVersionsListByEnvironmentRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      location: S.String.pipe(T.Label()),
-      environment: ClusterVersionsListByEnvironmentRequestEnvironment.pipe(
-        T.Label(),
-      ),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ServiceFabric/locations/{location}/environments/{environment}/clusterVersions",
-        code: 200,
-        apiVersion: "2021-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "ClusterVersionsListByEnvironmentRequest",
-}) as any as S.Schema<ClusterVersionsListByEnvironmentRequest>;
-
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.ServiceFabric/operations",
-      code: 200,
-      apiVersion: "2021-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
-
-/** Operation supported by the Service Fabric resource provider */
-export interface AvailableOperationDisplay {
-  /** The name of the provider. */
-  provider?: string;
-  /** The resource on which the operation is performed */
-  resource?: string;
-  /** The operation that can be performed. */
-  operation?: string;
-  /** Operation description */
-  description?: string;
-}
-export const AvailableOperationDisplay = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provider: S.optional(S.String),
-    resource: S.optional(S.String),
-    operation: S.optional(S.String),
-    description: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AvailableOperationDisplay",
-}) as any as S.Schema<AvailableOperationDisplay>;
-
-/** Available operation list result */
-export interface OperationResult {
-  /** The name of the operation. */
-  name?: string;
-  /** Indicates whether the operation is a data action */
-  isDataAction?: boolean;
-  /** The object that represents the operation. */
-  display?: AvailableOperationDisplay;
-  /** Origin result */
-  origin?: string;
-  /** The URL to use for getting the next set of results. */
-  nextLink?: string;
-}
-export const OperationResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    isDataAction: S.optional(S.Boolean),
-    display: S.optional(AvailableOperationDisplay),
-    origin: S.optional(S.String),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationResult",
-}) as any as S.Schema<OperationResult>;
-
-/** List of operations supported by the Service Fabric resource provider. */
-export type OperationListResultValueList = Array<OperationResult>;
-export const OperationListResultValueList = /*@__PURE__*/ S.Array(
-  OperationResult,
-) as any as S.Schema<OperationListResultValueList>;
-
-/** Describes the result of the request to list Service Fabric resource provider operations. */
-export interface OperationListResult {
-  /** List of operations supported by the Service Fabric resource provider. */
-  value?: OperationListResultValueList;
-  /** URL to get the next set of operation list results if there are any. */
-  nextLink?: string;
-}
-export const OperationListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(OperationListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationListResult",
-}) as any as S.Schema<OperationListResult>;
+  identifier: "UpdateClusterResponse",
+}) as any as S.Schema<UpdateClusterResponse>;
 
 /** Azure resource tags. */
-export type ServicesCreateOrUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ServicesCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateServiceRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateServiceRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ServicesCreateOrUpdateRequestTagsMap>;
-
-/** The service correlation scheme. */
-export type ServiceCorrelationScheme =
-  | "Invalid"
-  | "Affinity"
-  | "AlignedAffinity"
-  | "NonAlignedAffinity";
-export const ServiceCorrelationScheme = /*@__PURE__*/ S.String;
-
-/** Creates a particular correlation between services. */
-export interface ServiceCorrelationDescription {
-  /** The ServiceCorrelationScheme which describes the relationship between this service and the service specified via ServiceName. */
-  scheme: ServiceCorrelationScheme | (string & {});
-  /** The name of the service that the correlation relationship is established with. */
-  serviceName: string;
-}
-export const ServiceCorrelationDescription = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    scheme: ServiceCorrelationScheme,
-    serviceName: S.String,
-  }),
-).annotate({
-  identifier: "ServiceCorrelationDescription",
-}) as any as S.Schema<ServiceCorrelationDescription>;
-
-/** A list that describes the correlation of the service with other services. */
-export type CorrelationSchemeList = Array<ServiceCorrelationDescription>;
-export const CorrelationSchemeList = /*@__PURE__*/ S.Array(
-  ServiceCorrelationDescription,
-) as any as S.Schema<CorrelationSchemeList>;
-
-/** Determines the metric weight relative to the other metrics that are configured for this service. During runtime, if two metrics end up in conflict, the Cluster Resource Manager prefers the metric with the higher weight. */
-export type ServiceLoadMetricWeight = "Zero" | "Low" | "Medium" | "High";
-export const ServiceLoadMetricWeight = /*@__PURE__*/ S.String;
-
-/** Specifies a metric to load balance a service during runtime. */
-export interface ServiceLoadMetricDescription {
-  /** The name of the metric. If the service chooses to report load during runtime, the load metric name should match the name that is specified in Name exactly. Note that metric names are case sensitive. */
-  name: string;
-  /** The service load metric relative weight, compared to other metrics configured for this service, as a number. */
-  weight?: ServiceLoadMetricWeight | (string & {});
-  /** Used only for Stateful services. The default amount of load, as a number, that this service creates for this metric when it is a Primary replica. */
-  primaryDefaultLoad?: number;
-  /** Used only for Stateful services. The default amount of load, as a number, that this service creates for this metric when it is a Secondary replica. */
-  secondaryDefaultLoad?: number;
-  /** Used only for Stateless services. The default amount of load, as a number, that this service creates for this metric. */
-  defaultLoad?: number;
-}
-export const ServiceLoadMetricDescription = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-    weight: S.optional(ServiceLoadMetricWeight),
-    primaryDefaultLoad: S.optional(S.Number),
-    secondaryDefaultLoad: S.optional(S.Number),
-    defaultLoad: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "ServiceLoadMetricDescription",
-}) as any as S.Schema<ServiceLoadMetricDescription>;
-
-/** The service load metrics is given as an array of ServiceLoadMetricDescription objects. */
-export type ServiceLoadMetricsList = Array<ServiceLoadMetricDescription>;
-export const ServiceLoadMetricsList = /*@__PURE__*/ S.Array(
-  ServiceLoadMetricDescription,
-) as any as S.Schema<ServiceLoadMetricsList>;
-
-/** The type of placement policy for a service fabric service. Following are the possible values. */
-export type ServicePlacementPolicyType =
-  | "Invalid"
-  | "InvalidDomain"
-  | "RequiredDomain"
-  | "PreferredPrimaryDomain"
-  | "RequiredDomainDistribution"
-  | "NonPartiallyPlaceService";
-export const ServicePlacementPolicyType = /*@__PURE__*/ S.String;
-
-/** Describes the policy to be used for placement of a Service Fabric service. */
-export interface ServicePlacementPolicyDescription {
-  type: ServicePlacementPolicyType | (string & {});
-}
-export const ServicePlacementPolicyDescription = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: ServicePlacementPolicyType,
-  }),
-).annotate({
-  identifier: "ServicePlacementPolicyDescription",
-}) as any as S.Schema<ServicePlacementPolicyDescription>;
-
-/** A list that describes the correlation of the service with other services. */
-export type ServicePlacementPoliciesList =
-  Array<ServicePlacementPolicyDescription>;
-export const ServicePlacementPoliciesList = /*@__PURE__*/ S.Array(
-  ServicePlacementPolicyDescription,
-) as any as S.Schema<ServicePlacementPoliciesList>;
-
-/** Specifies the move cost for the service. */
-export type MoveCost = "Zero" | "Low" | "Medium" | "High";
-export const MoveCost = /*@__PURE__*/ S.String;
-
-/** The kind of service (Stateless or Stateful). */
-export type ServiceKind = "Invalid" | "Stateless" | "Stateful";
-export const ServiceKind = /*@__PURE__*/ S.String;
-
-/** Enumerates the ways that a service can be partitioned. */
-export type PartitionScheme =
-  | "Invalid"
-  | "Singleton"
-  | "UniformInt64Range"
-  | "Named";
-export const PartitionScheme = /*@__PURE__*/ S.String;
-
-/** Describes how the service is partitioned. */
-export interface PartitionSchemeDescription {
-  /** Specifies how the service is partitioned. */
-  partitionScheme: PartitionScheme | (string & {});
-}
-export const PartitionSchemeDescription = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    partitionScheme: PartitionScheme,
-  }),
-).annotate({
-  identifier: "PartitionSchemeDescription",
-}) as any as S.Schema<PartitionSchemeDescription>;
-
-/** The activation Mode of the service package */
-export type ServiceResourcePropertiesInputServicePackageActivationMode =
-  | "SharedProcess"
-  | "ExclusiveProcess";
-export const ServiceResourcePropertiesInputServicePackageActivationMode =
-  /*@__PURE__*/ S.String;
-
-/** The service resource properties. */
-export interface ServiceResourcePropertiesInput {
-  /** The placement constraints as a string. Placement constraints are boolean expressions on node properties and allow for restricting a service to particular nodes based on the service requirements. For example, to place a service on nodes where NodeType is blue specify the following: "NodeColor == blue)". */
-  placementConstraints?: string;
-  correlationScheme?: CorrelationSchemeList;
-  serviceLoadMetrics?: ServiceLoadMetricsList;
-  servicePlacementPolicies?: ServicePlacementPoliciesList;
-  defaultMoveCost?: MoveCost | (string & {});
-  serviceKind: ServiceKind | (string & {});
-  /** The name of the service type */
-  serviceTypeName?: string;
-  partitionDescription?: PartitionSchemeDescription;
-  /** The activation Mode of the service package */
-  servicePackageActivationMode?:
-    | ServiceResourcePropertiesInputServicePackageActivationMode
-    | (string & {});
-  /** Dns name used for the service. If this is specified, then the service can be accessed via its DNS name instead of service name. */
-  serviceDnsName?: string;
-}
-export const ServiceResourcePropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    placementConstraints: S.optional(S.String),
-    correlationScheme: S.optional(CorrelationSchemeList),
-    serviceLoadMetrics: S.optional(ServiceLoadMetricsList),
-    servicePlacementPolicies: S.optional(ServicePlacementPoliciesList),
-    defaultMoveCost: S.optional(MoveCost),
-    serviceKind: ServiceKind,
-    serviceTypeName: S.optional(S.String),
-    partitionDescription: S.optional(PartitionSchemeDescription),
-    servicePackageActivationMode: S.optional(
-      ServiceResourcePropertiesInputServicePackageActivationMode,
-    ),
-    serviceDnsName: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ServiceResourcePropertiesInput",
-}) as any as S.Schema<ServiceResourcePropertiesInput>;
-
-export interface ServicesCreateOrUpdateRequest {
-  /** The customer subscription identifier. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the cluster resource. */
-  clusterName: string;
-  /** The name of the application resource. */
-  applicationName: string;
-  /** The name of the service resource in the format of {applicationName}~{serviceName}. */
-  serviceName: string;
-  /** It will be deprecated in New API, resource location depends on the parent resource. */
-  location?: string;
-  /** Azure resource tags. */
-  tags?: ServicesCreateOrUpdateRequestTagsMap;
-  properties?: ServiceResourcePropertiesInput;
-}
-export const ServicesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    applicationName: S.String.pipe(T.Label()),
-    serviceName: S.String.pipe(T.Label()),
-    location: S.optional(S.String),
-    tags: S.optional(ServicesCreateOrUpdateRequestTagsMap),
-    properties: S.optional(ServiceResourcePropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/clusters/{clusterName}/applications/{applicationName}/services/{serviceName}",
-      code: 200,
-      apiVersion: "2021-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ServicesCreateOrUpdateRequest",
-}) as any as S.Schema<ServicesCreateOrUpdateRequest>;
-
-export interface ServicesCreateOrUpdateResponse {}
-export const ServicesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ServicesCreateOrUpdateResponse",
-}) as any as S.Schema<ServicesCreateOrUpdateResponse>;
-
-export interface ServicesDeleteRequest {
-  /** The customer subscription identifier. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the cluster resource. */
-  clusterName: string;
-  /** The name of the application resource. */
-  applicationName: string;
-  /** The name of the service resource in the format of {applicationName}~{serviceName}. */
-  serviceName: string;
-}
-export const ServicesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    applicationName: S.String.pipe(T.Label()),
-    serviceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/clusters/{clusterName}/applications/{applicationName}/services/{serviceName}",
-      code: 200,
-      apiVersion: "2021-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ServicesDeleteRequest",
-}) as any as S.Schema<ServicesDeleteRequest>;
-
-export interface ServicesDeleteResponse {}
-export const ServicesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ServicesDeleteResponse",
-}) as any as S.Schema<ServicesDeleteResponse>;
-
-export interface ServicesGetRequest {
-  /** The customer subscription identifier. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the cluster resource. */
-  clusterName: string;
-  /** The name of the application resource. */
-  applicationName: string;
-  /** The name of the service resource in the format of {applicationName}~{serviceName}. */
-  serviceName: string;
-}
-export const ServicesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    applicationName: S.String.pipe(T.Label()),
-    serviceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/clusters/{clusterName}/applications/{applicationName}/services/{serviceName}",
-      code: 200,
-      apiVersion: "2021-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ServicesGetRequest",
-}) as any as S.Schema<ServicesGetRequest>;
-
-/** Azure resource tags. */
-export type ServicesGetResponseTagsMap = { [key: string]: string | undefined };
-export const ServicesGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ServicesGetResponseTagsMap>;
-
-/** The activation Mode of the service package */
-export type ServiceResourcePropertiesServicePackageActivationMode =
-  | "SharedProcess"
-  | "ExclusiveProcess";
-export const ServiceResourcePropertiesServicePackageActivationMode =
-  /*@__PURE__*/ S.String;
-
-/** The service resource properties. */
-export interface ServiceResourceProperties {
-  /** The placement constraints as a string. Placement constraints are boolean expressions on node properties and allow for restricting a service to particular nodes based on the service requirements. For example, to place a service on nodes where NodeType is blue specify the following: "NodeColor == blue)". */
-  placementConstraints?: string;
-  correlationScheme?: CorrelationSchemeList;
-  serviceLoadMetrics?: ServiceLoadMetricsList;
-  servicePlacementPolicies?: ServicePlacementPoliciesList;
-  defaultMoveCost?: MoveCost;
-  /** The current deployment or provisioning state, which only appears in the response */
-  provisioningState?: string;
-  serviceKind: ServiceKind;
-  /** The name of the service type */
-  serviceTypeName?: string;
-  partitionDescription?: PartitionSchemeDescription;
-  /** The activation Mode of the service package */
-  servicePackageActivationMode?: ServiceResourcePropertiesServicePackageActivationMode;
-  /** Dns name used for the service. If this is specified, then the service can be accessed via its DNS name instead of service name. */
-  serviceDnsName?: string;
-}
-export const ServiceResourceProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    placementConstraints: S.optional(S.String),
-    correlationScheme: S.optional(CorrelationSchemeList),
-    serviceLoadMetrics: S.optional(ServiceLoadMetricsList),
-    servicePlacementPolicies: S.optional(ServicePlacementPoliciesList),
-    defaultMoveCost: S.optional(MoveCost),
-    provisioningState: S.optional(S.String),
-    serviceKind: ServiceKind,
-    serviceTypeName: S.optional(S.String),
-    partitionDescription: S.optional(PartitionSchemeDescription),
-    servicePackageActivationMode: S.optional(
-      ServiceResourcePropertiesServicePackageActivationMode,
-    ),
-    serviceDnsName: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ServiceResourceProperties",
-}) as any as S.Schema<ServiceResourceProperties>;
-
-export interface ServicesGetResponse {
-  /** Azure resource identifier. */
-  id?: string;
-  /** Azure resource name. */
-  name?: string;
-  /** Azure resource type. */
-  type?: string;
-  /** It will be deprecated in New API, resource location depends on the parent resource. */
-  location?: string;
-  /** Azure resource tags. */
-  tags?: ServicesGetResponseTagsMap;
-  /** Azure resource etag. */
-  etag?: string;
-  systemData?: SystemData;
-  properties?: ServiceResourceProperties;
-}
-export const ServicesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    location: S.optional(S.String),
-    tags: S.optional(ServicesGetResponseTagsMap),
-    etag: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ServiceResourceProperties),
-  }),
-).annotate({
-  identifier: "ServicesGetResponse",
-}) as any as S.Schema<ServicesGetResponse>;
-
-export interface ServicesListRequest {
-  /** The customer subscription identifier. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the cluster resource. */
-  clusterName: string;
-  /** The name of the application resource. */
-  applicationName: string;
-}
-export const ServicesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    applicationName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/clusters/{clusterName}/applications/{applicationName}/services",
-      code: 200,
-      apiVersion: "2021-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ServicesListRequest",
-}) as any as S.Schema<ServicesListRequest>;
-
-/** Azure resource tags. */
-export type ServiceResourceTagsMap = { [key: string]: string | undefined };
-export const ServiceResourceTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ServiceResourceTagsMap>;
-
-/** The service resource. */
-export interface ServiceResource {
-  /** Azure resource identifier. */
-  id?: string;
-  /** Azure resource name. */
-  name?: string;
-  /** Azure resource type. */
-  type?: string;
-  /** It will be deprecated in New API, resource location depends on the parent resource. */
-  location?: string;
-  /** Azure resource tags. */
-  tags?: ServiceResourceTagsMap;
-  /** Azure resource etag. */
-  etag?: string;
-  systemData?: SystemData;
-  properties?: ServiceResourceProperties;
-}
-export const ServiceResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    location: S.optional(S.String),
-    tags: S.optional(ServiceResourceTagsMap),
-    etag: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ServiceResourceProperties),
-  }),
-).annotate({
-  identifier: "ServiceResource",
-}) as any as S.Schema<ServiceResource>;
-
-export type ServiceResourceListValueList = Array<ServiceResource>;
-export const ServiceResourceListValueList = /*@__PURE__*/ S.Array(
-  ServiceResource,
-) as any as S.Schema<ServiceResourceListValueList>;
-
-/** The list of service resources. */
-export interface ServiceResourceList {
-  value?: ServiceResourceListValueList;
-  /** URL to get the next set of service list results if there are any. */
-  nextLink?: string;
-}
-export const ServiceResourceList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(ServiceResourceListValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ServiceResourceList",
-}) as any as S.Schema<ServiceResourceList>;
-
-/** Azure resource tags. */
-export type ServicesUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ServicesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ServicesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateServiceRequestTagsMap>;
 
 /** The service resource properties for patch operations. */
 export interface ServiceResourceUpdateProperties {
@@ -3487,7 +3480,7 @@ export const ServiceResourceUpdateProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "ServiceResourceUpdateProperties",
 }) as any as S.Schema<ServiceResourceUpdateProperties>;
 
-export interface ServicesUpdateRequest {
+export interface UpdateServiceRequest {
   /** The customer subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group. */
@@ -3501,10 +3494,10 @@ export interface ServicesUpdateRequest {
   /** It will be deprecated in New API, resource location depends on the parent resource. */
   location?: string;
   /** Azure resource tags. */
-  tags?: ServicesUpdateRequestTagsMap;
+  tags?: UpdateServiceRequestTagsMap;
   properties?: ServiceResourceUpdateProperties;
 }
-export const ServicesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateServiceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -3512,7 +3505,7 @@ export const ServicesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     applicationName: S.String.pipe(T.Label()),
     serviceName: S.String.pipe(T.Label()),
     location: S.optional(S.String),
-    tags: S.optional(ServicesUpdateRequestTagsMap),
+    tags: S.optional(UpdateServiceRequestTagsMap),
     properties: S.optional(ServiceResourceUpdateProperties),
   }).pipe(
     T.Http({
@@ -3523,15 +3516,15 @@ export const ServicesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ServicesUpdateRequest",
-}) as any as S.Schema<ServicesUpdateRequest>;
+  identifier: "UpdateServiceRequest",
+}) as any as S.Schema<UpdateServiceRequest>;
 
-export interface ServicesUpdateResponse {}
-export const ServicesUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export interface UpdateServiceResponse {}
+export const UpdateServiceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "ServicesUpdateResponse",
-}) as any as S.Schema<ServicesUpdateResponse>;
+  identifier: "UpdateServiceResponse",
+}) as any as S.Schema<UpdateServiceResponse>;
 
 export type ApplicationsCreateOrUpdateError = AzureOpError;
 /** Creates or updates a Service Fabric application resource. Create or update a Service Fabric application resource with the specified name. */
@@ -3543,66 +3536,6 @@ export const ApplicationsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ApplicationsCreateOrUpdateRequest,
   output: ApplicationsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationsDeleteError = AzureOpError;
-/** Deletes a Service Fabric application resource. Delete a Service Fabric application resource with the specified name. */
-export const ApplicationsDelete: API.OperationMethod<
-  ApplicationsDeleteRequest,
-  ApplicationsDeleteResponse,
-  ApplicationsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationsDeleteRequest,
-  output: ApplicationsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationsGetError = AzureOpError;
-/** Gets a Service Fabric application resource. Get a Service Fabric application resource created or in the process of being created in the Service Fabric cluster resource. */
-export const ApplicationsGet: API.OperationMethod<
-  ApplicationsGetRequest,
-  ApplicationsGetResponse,
-  ApplicationsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationsGetRequest,
-  output: ApplicationsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationsListError = AzureOpError;
-/** Gets the list of application resources created in the specified Service Fabric cluster resource. Gets all application resources created or in the process of being created in the Service Fabric cluster resource. */
-export const ApplicationsList: API.OperationMethod<
-  ApplicationsListRequest,
-  ApplicationResourceList,
-  ApplicationsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationsListRequest,
-  output: ApplicationResourceList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationsUpdateError = AzureOpError;
-/** Updates a Service Fabric application resource. Update a Service Fabric application resource with the specified name. */
-export const ApplicationsUpdate: API.OperationMethod<
-  ApplicationsUpdateRequest,
-  ApplicationsUpdateResponse,
-  ApplicationsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationsUpdateRequest,
-  output: ApplicationsUpdateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3623,51 +3556,6 @@ export const ApplicationTypesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ApplicationTypesDeleteError = AzureOpError;
-/** Deletes a Service Fabric application type name resource. Delete a Service Fabric application type name resource with the specified name. */
-export const ApplicationTypesDelete: API.OperationMethod<
-  ApplicationTypesDeleteRequest,
-  ApplicationTypesDeleteResponse,
-  ApplicationTypesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationTypesDeleteRequest,
-  output: ApplicationTypesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationTypesGetError = AzureOpError;
-/** Gets a Service Fabric application type name resource. Get a Service Fabric application type name resource created or in the process of being created in the Service Fabric cluster resource. */
-export const ApplicationTypesGet: API.OperationMethod<
-  ApplicationTypesGetRequest,
-  ApplicationTypesGetResponse,
-  ApplicationTypesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationTypesGetRequest,
-  output: ApplicationTypesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationTypesListError = AzureOpError;
-/** Gets the list of application type name resources created in the specified Service Fabric cluster resource. Gets all application type name resources created or in the process of being created in the Service Fabric cluster resource. */
-export const ApplicationTypesList: API.OperationMethod<
-  ApplicationTypesListRequest,
-  ApplicationTypeResourceList,
-  ApplicationTypesListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationTypesListRequest,
-  output: ApplicationTypeResourceList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ApplicationTypeVersionsCreateOrUpdateError = AzureOpError;
 /** Creates or updates a Service Fabric application type version resource. Create or update a Service Fabric application type version resource with the specified name. */
 export const ApplicationTypeVersionsCreateOrUpdate: API.OperationMethod<
@@ -3678,51 +3566,6 @@ export const ApplicationTypeVersionsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ApplicationTypeVersionsCreateOrUpdateRequest,
   output: ApplicationTypeVersionsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationTypeVersionsDeleteError = AzureOpError;
-/** Deletes a Service Fabric application type version resource. Delete a Service Fabric application type version resource with the specified name. */
-export const ApplicationTypeVersionsDelete: API.OperationMethod<
-  ApplicationTypeVersionsDeleteRequest,
-  ApplicationTypeVersionsDeleteResponse,
-  ApplicationTypeVersionsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationTypeVersionsDeleteRequest,
-  output: ApplicationTypeVersionsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationTypeVersionsGetError = AzureOpError;
-/** Gets a Service Fabric application type version resource. Get a Service Fabric application type version resource created or in the process of being created in the Service Fabric application type name resource. */
-export const ApplicationTypeVersionsGet: API.OperationMethod<
-  ApplicationTypeVersionsGetRequest,
-  ApplicationTypeVersionsGetResponse,
-  ApplicationTypeVersionsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationTypeVersionsGetRequest,
-  output: ApplicationTypeVersionsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationTypeVersionsListError = AzureOpError;
-/** Gets the list of application type version resources created in the specified Service Fabric application type name resource. Gets all application type version resources created or in the process of being created in the Service Fabric application type name resource. */
-export const ApplicationTypeVersionsList: API.OperationMethod<
-  ApplicationTypeVersionsListRequest,
-  ApplicationTypeVersionResourceList,
-  ApplicationTypeVersionsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationTypeVersionsListRequest,
-  output: ApplicationTypeVersionResourceList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3743,166 +3586,331 @@ export const ClustersCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ClustersDeleteError = AzureOpError;
+export type DeleteApplicationError = AzureOpError;
+/** Deletes a Service Fabric application resource. Delete a Service Fabric application resource with the specified name. */
+export const DeleteApplication: API.OperationMethod<
+  DeleteApplicationRequest,
+  DeleteApplicationResponse,
+  DeleteApplicationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteApplicationRequest,
+  output: DeleteApplicationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteApplicationTypeError = AzureOpError;
+/** Deletes a Service Fabric application type name resource. Delete a Service Fabric application type name resource with the specified name. */
+export const DeleteApplicationType: API.OperationMethod<
+  DeleteApplicationTypeRequest,
+  DeleteApplicationTypeResponse,
+  DeleteApplicationTypeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteApplicationTypeRequest,
+  output: DeleteApplicationTypeResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteApplicationTypeVersionError = AzureOpError;
+/** Deletes a Service Fabric application type version resource. Delete a Service Fabric application type version resource with the specified name. */
+export const DeleteApplicationTypeVersion: API.OperationMethod<
+  DeleteApplicationTypeVersionRequest,
+  DeleteApplicationTypeVersionResponse,
+  DeleteApplicationTypeVersionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteApplicationTypeVersionRequest,
+  output: DeleteApplicationTypeVersionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteClusterError = AzureOpError;
 /** Deletes a Service Fabric cluster resource. Delete a Service Fabric cluster resource with the specified name. */
-export const ClustersDelete: API.OperationMethod<
-  ClustersDeleteRequest,
-  ClustersDeleteResponse,
-  ClustersDeleteError,
+export const DeleteCluster: API.OperationMethod<
+  DeleteClusterRequest,
+  DeleteClusterResponse,
+  DeleteClusterError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ClustersDeleteRequest,
-  output: ClustersDeleteResponse,
+  input: DeleteClusterRequest,
+  output: DeleteClusterResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ClustersGetError = AzureOpError;
+export type DeleteServiceError = AzureOpError;
+/** Deletes a Service Fabric service resource. Delete a Service Fabric service resource with the specified name. */
+export const DeleteService: API.OperationMethod<
+  DeleteServiceRequest,
+  DeleteServiceResponse,
+  DeleteServiceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteServiceRequest,
+  output: DeleteServiceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetApplicationError = AzureOpError;
+/** Gets a Service Fabric application resource. Get a Service Fabric application resource created or in the process of being created in the Service Fabric cluster resource. */
+export const GetApplication: API.OperationMethod<
+  GetApplicationRequest,
+  GetApplicationResponse,
+  GetApplicationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetApplicationRequest,
+  output: GetApplicationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetApplicationTypeError = AzureOpError;
+/** Gets a Service Fabric application type name resource. Get a Service Fabric application type name resource created or in the process of being created in the Service Fabric cluster resource. */
+export const GetApplicationType: API.OperationMethod<
+  GetApplicationTypeRequest,
+  GetApplicationTypeResponse,
+  GetApplicationTypeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetApplicationTypeRequest,
+  output: GetApplicationTypeResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetApplicationTypeVersionError = AzureOpError;
+/** Gets a Service Fabric application type version resource. Get a Service Fabric application type version resource created or in the process of being created in the Service Fabric application type name resource. */
+export const GetApplicationTypeVersion: API.OperationMethod<
+  GetApplicationTypeVersionRequest,
+  GetApplicationTypeVersionResponse,
+  GetApplicationTypeVersionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetApplicationTypeVersionRequest,
+  output: GetApplicationTypeVersionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetClusterError = AzureOpError;
 /** Gets a Service Fabric cluster resource. Get a Service Fabric cluster resource created or in the process of being created in the specified resource group. */
-export const ClustersGet: API.OperationMethod<
-  ClustersGetRequest,
-  ClustersGetResponse,
-  ClustersGetError,
+export const GetCluster: API.OperationMethod<
+  GetClusterRequest,
+  GetClusterResponse,
+  GetClusterError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ClustersGetRequest,
-  output: ClustersGetResponse,
+  input: GetClusterRequest,
+  output: GetClusterResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ClustersListError = AzureOpError;
-/** Gets the list of Service Fabric cluster resources created in the specified subscription. Gets all Service Fabric cluster resources created or in the process of being created in the subscription. */
-export const ClustersList: API.OperationMethod<
-  ClustersListRequest,
-  ClusterListResult,
-  ClustersListError,
+export type GetClusterVersionError = AzureOpError;
+/** Gets information about a Service Fabric cluster code version available in the specified location. Gets information about an available Service Fabric cluster code version. */
+export const GetClusterVersion: API.OperationMethod<
+  GetClusterVersionRequest,
+  ClusterCodeVersionsListResult,
+  GetClusterVersionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ClustersListRequest,
-  output: ClusterListResult,
+  input: GetClusterVersionRequest,
+  output: ClusterCodeVersionsListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ClustersListByResourceGroupError = AzureOpError;
+export type GetClusterVersionByEnvironmentError = AzureOpError;
+/** Gets information about a Service Fabric cluster code version available for the specified environment. Gets information about an available Service Fabric cluster code version by environment. */
+export const GetClusterVersionByEnvironment: API.OperationMethod<
+  GetClusterVersionByEnvironmentRequest,
+  ClusterCodeVersionsListResult,
+  GetClusterVersionByEnvironmentError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetClusterVersionByEnvironmentRequest,
+  output: ClusterCodeVersionsListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetServiceError = AzureOpError;
+/** Gets a Service Fabric service resource. Get a Service Fabric service resource created or in the process of being created in the Service Fabric application resource. */
+export const GetService: API.OperationMethod<
+  GetServiceRequest,
+  GetServiceResponse,
+  GetServiceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetServiceRequest,
+  output: GetServiceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListApplicationsError = AzureOpError;
+/** Gets the list of application resources created in the specified Service Fabric cluster resource. Gets all application resources created or in the process of being created in the Service Fabric cluster resource. */
+export const ListApplications: API.OperationMethod<
+  ListApplicationsRequest,
+  ApplicationResourceList,
+  ListApplicationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListApplicationsRequest,
+  output: ApplicationResourceList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListApplicationTypesError = AzureOpError;
+/** Gets the list of application type name resources created in the specified Service Fabric cluster resource. Gets all application type name resources created or in the process of being created in the Service Fabric cluster resource. */
+export const ListApplicationTypes: API.OperationMethod<
+  ListApplicationTypesRequest,
+  ApplicationTypeResourceList,
+  ListApplicationTypesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListApplicationTypesRequest,
+  output: ApplicationTypeResourceList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListApplicationTypeVersionsError = AzureOpError;
+/** Gets the list of application type version resources created in the specified Service Fabric application type name resource. Gets all application type version resources created or in the process of being created in the Service Fabric application type name resource. */
+export const ListApplicationTypeVersions: API.OperationMethod<
+  ListApplicationTypeVersionsRequest,
+  ApplicationTypeVersionResourceList,
+  ListApplicationTypeVersionsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListApplicationTypeVersionsRequest,
+  output: ApplicationTypeVersionResourceList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListClusterByResourceGroupError = AzureOpError;
 /** Gets the list of Service Fabric cluster resources created in the specified resource group. Gets all Service Fabric cluster resources created or in the process of being created in the resource group. */
-export const ClustersListByResourceGroup: API.OperationMethod<
-  ClustersListByResourceGroupRequest,
+export const ListClusterByResourceGroup: API.OperationMethod<
+  ListClusterByResourceGroupRequest,
   ClusterListResult,
-  ClustersListByResourceGroupError,
+  ListClusterByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ClustersListByResourceGroupRequest,
+  input: ListClusterByResourceGroupRequest,
   output: ClusterListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ClustersListUpgradableVersionsError = AzureOpError;
-/** Operation to get the minimum and maximum upgradable version from the current cluster version, or the required path to get to the an specific target version. If a target is not provided, it will get the minimum and maximum versions available from the current cluster version. If a target is given, it will provide the required path to get from the current cluster version to the target version. */
-export const ClustersListUpgradableVersions: API.OperationMethod<
-  ClustersListUpgradableVersionsRequest,
-  UpgradableVersionPathResult,
-  ClustersListUpgradableVersionsError,
+export type ListClustersError = AzureOpError;
+/** Gets the list of Service Fabric cluster resources created in the specified subscription. Gets all Service Fabric cluster resources created or in the process of being created in the subscription. */
+export const ListClusters: API.OperationMethod<
+  ListClustersRequest,
+  ClusterListResult,
+  ListClustersError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ClustersListUpgradableVersionsRequest,
+  input: ListClustersRequest,
+  output: ClusterListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListClusterUpgradableVersionsError = AzureOpError;
+/** Operation to get the minimum and maximum upgradable version from the current cluster version, or the required path to get to the an specific target version. If a target is not provided, it will get the minimum and maximum versions available from the current cluster version. If a target is given, it will provide the required path to get from the current cluster version to the target version. */
+export const ListClusterUpgradableVersions: API.OperationMethod<
+  ListClusterUpgradableVersionsRequest,
+  UpgradableVersionPathResult,
+  ListClusterUpgradableVersionsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListClusterUpgradableVersionsRequest,
   output: UpgradableVersionPathResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ClustersUpdateError = AzureOpError;
-/** Updates the configuration of a Service Fabric cluster resource. Update the configuration of a Service Fabric cluster resource with the specified name. */
-export const ClustersUpdate: API.OperationMethod<
-  ClustersUpdateRequest,
-  ClustersUpdateResponse,
-  ClustersUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersUpdateRequest,
-  output: ClustersUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClusterVersionsGetError = AzureOpError;
-/** Gets information about a Service Fabric cluster code version available in the specified location. Gets information about an available Service Fabric cluster code version. */
-export const ClusterVersionsGet: API.OperationMethod<
-  ClusterVersionsGetRequest,
-  ClusterCodeVersionsListResult,
-  ClusterVersionsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClusterVersionsGetRequest,
-  output: ClusterCodeVersionsListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClusterVersionsGetByEnvironmentError = AzureOpError;
-/** Gets information about a Service Fabric cluster code version available for the specified environment. Gets information about an available Service Fabric cluster code version by environment. */
-export const ClusterVersionsGetByEnvironment: API.OperationMethod<
-  ClusterVersionsGetByEnvironmentRequest,
-  ClusterCodeVersionsListResult,
-  ClusterVersionsGetByEnvironmentError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClusterVersionsGetByEnvironmentRequest,
-  output: ClusterCodeVersionsListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClusterVersionsListError = AzureOpError;
-/** Gets the list of Service Fabric cluster code versions available for the specified location. Gets all available code versions for Service Fabric cluster resources by location. */
-export const ClusterVersionsList: API.OperationMethod<
-  ClusterVersionsListRequest,
-  ClusterCodeVersionsListResult,
-  ClusterVersionsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClusterVersionsListRequest,
-  output: ClusterCodeVersionsListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClusterVersionsListByEnvironmentError = AzureOpError;
+export type ListClusterVersionByEnvironmentError = AzureOpError;
 /** Gets the list of Service Fabric cluster code versions available for the specified environment. Gets all available code versions for Service Fabric cluster resources by environment. */
-export const ClusterVersionsListByEnvironment: API.OperationMethod<
-  ClusterVersionsListByEnvironmentRequest,
+export const ListClusterVersionByEnvironment: API.OperationMethod<
+  ListClusterVersionByEnvironmentRequest,
   ClusterCodeVersionsListResult,
-  ClusterVersionsListByEnvironmentError,
+  ListClusterVersionByEnvironmentError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ClusterVersionsListByEnvironmentRequest,
+  input: ListClusterVersionByEnvironmentRequest,
   output: ClusterCodeVersionsListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OperationsListError = AzureOpError;
-/** Lists all of the available Service Fabric resource provider API operations. Get the list of available Service Fabric resource provider API operations. */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationListResult,
-  OperationsListError,
+export type ListClusterVersionsError = AzureOpError;
+/** Gets the list of Service Fabric cluster code versions available for the specified location. Gets all available code versions for Service Fabric cluster resources by location. */
+export const ListClusterVersions: API.OperationMethod<
+  ListClusterVersionsRequest,
+  ClusterCodeVersionsListResult,
+  ListClusterVersionsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
+  input: ListClusterVersionsRequest,
+  output: ClusterCodeVersionsListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOperationsError = AzureOpError;
+/** Lists all of the available Service Fabric resource provider API operations. Get the list of available Service Fabric resource provider API operations. */
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  OperationListResult,
+  ListOperationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOperationsRequest,
   output: OperationListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListServicesError = AzureOpError;
+/** Gets the list of service resources created in the specified Service Fabric application resource. Gets all service resources created or in the process of being created in the Service Fabric application resource. */
+export const ListServices: API.OperationMethod<
+  ListServicesRequest,
+  ServiceResourceList,
+  ListServicesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListServicesRequest,
+  output: ServiceResourceList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3923,61 +3931,46 @@ export const ServicesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ServicesDeleteError = AzureOpError;
-/** Deletes a Service Fabric service resource. Delete a Service Fabric service resource with the specified name. */
-export const ServicesDelete: API.OperationMethod<
-  ServicesDeleteRequest,
-  ServicesDeleteResponse,
-  ServicesDeleteError,
+export type UpdateApplicationError = AzureOpError;
+/** Updates a Service Fabric application resource. Update a Service Fabric application resource with the specified name. */
+export const UpdateApplication: API.OperationMethod<
+  UpdateApplicationRequest,
+  UpdateApplicationResponse,
+  UpdateApplicationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ServicesDeleteRequest,
-  output: ServicesDeleteResponse,
+  input: UpdateApplicationRequest,
+  output: UpdateApplicationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ServicesGetError = AzureOpError;
-/** Gets a Service Fabric service resource. Get a Service Fabric service resource created or in the process of being created in the Service Fabric application resource. */
-export const ServicesGet: API.OperationMethod<
-  ServicesGetRequest,
-  ServicesGetResponse,
-  ServicesGetError,
+export type UpdateClusterError = AzureOpError;
+/** Updates the configuration of a Service Fabric cluster resource. Update the configuration of a Service Fabric cluster resource with the specified name. */
+export const UpdateCluster: API.OperationMethod<
+  UpdateClusterRequest,
+  UpdateClusterResponse,
+  UpdateClusterError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ServicesGetRequest,
-  output: ServicesGetResponse,
+  input: UpdateClusterRequest,
+  output: UpdateClusterResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ServicesListError = AzureOpError;
-/** Gets the list of service resources created in the specified Service Fabric application resource. Gets all service resources created or in the process of being created in the Service Fabric application resource. */
-export const ServicesList: API.OperationMethod<
-  ServicesListRequest,
-  ServiceResourceList,
-  ServicesListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ServicesListRequest,
-  output: ServiceResourceList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ServicesUpdateError = AzureOpError;
+export type UpdateServiceError = AzureOpError;
 /** Updates a Service Fabric service resource. Update a Service Fabric service resource with the specified name. */
-export const ServicesUpdate: API.OperationMethod<
-  ServicesUpdateRequest,
-  ServicesUpdateResponse,
-  ServicesUpdateError,
+export const UpdateService: API.OperationMethod<
+  UpdateServiceRequest,
+  UpdateServiceResponse,
+  UpdateServiceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ServicesUpdateRequest,
-  output: ServicesUpdateResponse,
+  input: UpdateServiceRequest,
+  output: UpdateServiceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

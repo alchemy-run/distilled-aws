@@ -14,7 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "keyDictionary": {
+      "emailState": "email_state",
+      "modifiedOn": "modified_on",
+      "resendEmail": "resend_email",
+      "zonePlan": "zone_plan"
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.csam_scanner#EditRequestId": {
@@ -64,34 +71,6 @@
             "smithy.api#documentation": "Map of scanning sources and their enabled state."
           }
         }
-      }
-    },
-    "com.cloudflare.csam_scanner#EditRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier for the zone.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "id": {
-          "target": "com.cloudflare.csam_scanner#EditRequestId",
-          "traits": {
-            "smithy.api#documentation": "The feature identifier."
-          }
-        },
-        "value": {
-          "target": "com.cloudflare.csam_scanner#EditRequestValue",
-          "traits": {
-            "smithy.api#documentation": "Writable CSAM Scanner feature configuration values."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.csam_scanner#EditResponseId": {
@@ -172,72 +151,6 @@
         }
       }
     },
-    "com.cloudflare.csam_scanner#EditResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "com.cloudflare.csam_scanner#EditResponseId",
-          "traits": {
-            "smithy.api#documentation": "The feature identifier."
-          }
-        },
-        "editable": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether the feature state can be changed. When false, the zone"
-          }
-        },
-        "modified_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the setting was last modified. Currently always null as the"
-          }
-        },
-        "value": {
-          "target": "com.cloudflare.csam_scanner#EditResponseValue",
-          "traits": {
-            "smithy.api#documentation": "The CSAM Scanner feature configuration values. Contains the"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.csam_scanner#Edit": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.csam_scanner#EditRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.csam_scanner#EditResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PATCH",
-          "uri": "/zones/{zone_id}/settings/csam_scanner_third_party",
-          "code": 200
-        },
-        "smithy.api#documentation": "Update the CSAM Scanner configuration for a zone. Allows enabling or disabling CSAM scanning, updating the notification email, and configuring scanning sources. When a new email is provided, email verification is triggered automatically. The `enabled` field is a toggle; the server may adjust it based on whether the notification email is verified. Returns 403 if the zone or account is locked by Trust & Safety."
-      }
-    },
-    "com.cloudflare.csam_scanner#GetRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier for the zone.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.csam_scanner#GetResponseId": {
       "type": "enum",
       "members": {
@@ -316,7 +229,58 @@
         }
       }
     },
-    "com.cloudflare.csam_scanner#GetResponse": {
+    "com.cloudflare.csam_scanner#CsamScanner": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.csam_scanner#GetCsamScanner"
+        },
+        {
+          "target": "com.cloudflare.csam_scanner#PatchCsamScanner"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare CsamScanner",
+        "smithy.api#documentation": "Cloudflare API — csam_scanner resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    },
+    "com.cloudflare.csam_scanner#GetCsamScanner": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.csam_scanner#GetCsamScannerRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.csam_scanner#GetCsamScannerResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/settings/csam_scanner_third_party",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve the current CSAM Scanner configuration for a zone. The notification email is masked by default in responses.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.csam_scanner#GetCsamScannerRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier for the zone.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.csam_scanner#GetCsamScannerResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -349,39 +313,82 @@
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     },
-    "com.cloudflare.csam_scanner#Get": {
+    "com.cloudflare.csam_scanner#PatchCsamScanner": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.csam_scanner#GetRequest"
+        "target": "com.cloudflare.csam_scanner#PatchCsamScannerRequest"
       },
       "output": {
-        "target": "com.cloudflare.csam_scanner#GetResponse"
+        "target": "com.cloudflare.csam_scanner#PatchCsamScannerResponse"
       },
       "traits": {
         "smithy.api#http": {
-          "method": "GET",
+          "method": "PATCH",
           "uri": "/zones/{zone_id}/settings/csam_scanner_third_party",
           "code": 200
         },
-        "smithy.api#documentation": "Retrieve the current CSAM Scanner configuration for a zone. The notification email is masked by default in responses.",
-        "smithy.api#readonly": {}
+        "smithy.api#documentation": "Update the CSAM Scanner configuration for a zone. Allows enabling or disabling CSAM scanning, updating the notification email, and configuring scanning sources. When a new email is provided, email verification is triggered automatically. The `enabled` field is a toggle; the server may adjust it based on whether the notification email is verified. Returns 403 if the zone or account is locked by Trust & Safety."
       }
     },
-    "com.cloudflare.csam_scanner#CsamScanner": {
-      "type": "service",
-      "version": "4.0",
-      "operations": [
-        {
-          "target": "com.cloudflare.csam_scanner#Edit"
+    "com.cloudflare.csam_scanner#PatchCsamScannerRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier for the zone.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
         },
-        {
-          "target": "com.cloudflare.csam_scanner#Get"
+        "id": {
+          "target": "com.cloudflare.csam_scanner#EditRequestId",
+          "traits": {
+            "smithy.api#documentation": "The feature identifier."
+          }
+        },
+        "value": {
+          "target": "com.cloudflare.csam_scanner#EditRequestValue",
+          "traits": {
+            "smithy.api#documentation": "Writable CSAM Scanner feature configuration values."
+          }
         }
-      ],
+      },
       "traits": {
-        "com.cloudflare.protocols#v4Json": {},
-        "smithy.api#title": "Cloudflare CsamScanner",
-        "smithy.api#documentation": "Cloudflare API — csam_scanner resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.csam_scanner#PatchCsamScannerResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "com.cloudflare.csam_scanner#EditResponseId",
+          "traits": {
+            "smithy.api#documentation": "The feature identifier."
+          }
+        },
+        "editable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the feature state can be changed. When false, the zone"
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the setting was last modified. Currently always null as the"
+          }
+        },
+        "value": {
+          "target": "com.cloudflare.csam_scanner#EditResponseValue",
+          "traits": {
+            "smithy.api#documentation": "The CSAM Scanner feature configuration values. Contains the"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     }
   }

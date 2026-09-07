@@ -12,10 +12,10 @@ import * as Retry from "../retry.ts";
 
 export type { ModalOpError, ModalOpContext };
 
-export interface ClusterGetRequest {
+export interface GetClusterRequest {
   clusterId?: string;
 }
-export const ClusterGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetClusterRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     clusterId: S.optional(S.String),
   }).pipe(
@@ -26,8 +26,8 @@ export const ClusterGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ClusterGetRequest",
-}) as any as S.Schema<ClusterGetRequest>;
+  identifier: "GetClusterRequest",
+}) as any as S.Schema<GetClusterRequest>;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(
@@ -49,21 +49,21 @@ export const ClusterStats = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "ClusterStats" }) as any as S.Schema<ClusterStats>;
 
-export interface ClusterGetResponse {
+export interface GetClusterResponse {
   cluster?: ClusterStats;
 }
-export const ClusterGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetClusterResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     cluster: S.optional(ClusterStats),
   }),
 ).annotate({
-  identifier: "ClusterGetResponse",
-}) as any as S.Schema<ClusterGetResponse>;
+  identifier: "GetClusterResponse",
+}) as any as S.Schema<GetClusterResponse>;
 
-export interface ClusterListRequest {
+export interface ListClusterRequest {
   environmentName?: string;
 }
-export const ClusterListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListClusterRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     environmentName: S.optional(S.String),
   }).pipe(
@@ -74,49 +74,49 @@ export const ClusterListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ClusterListRequest",
-}) as any as S.Schema<ClusterListRequest>;
+  identifier: "ListClusterRequest",
+}) as any as S.Schema<ListClusterRequest>;
 
 export type ClusterStatsList = Array<ClusterStats>;
 export const ClusterStatsList = /*@__PURE__*/ S.Array(
   ClusterStats,
 ) as any as S.Schema<ClusterStatsList>;
 
-export interface ClusterListResponse {
+export interface ListClusterResponse {
   clusters?: ClusterStatsList;
 }
-export const ClusterListResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListClusterResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     clusters: S.optional(ClusterStatsList),
   }),
 ).annotate({
-  identifier: "ClusterListResponse",
-}) as any as S.Schema<ClusterListResponse>;
+  identifier: "ListClusterResponse",
+}) as any as S.Schema<ListClusterResponse>;
 
-export type ClusterGetError = ModalOpError;
+export type GetClusterError = ModalOpError;
 /** Clusters */
-export const clusterGet: API.OperationMethod<
-  ClusterGetRequest,
-  ClusterGetResponse,
-  ClusterGetError,
+export const getCluster: API.OperationMethod<
+  GetClusterRequest,
+  GetClusterResponse,
+  GetClusterError,
   ModalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ClusterGetRequest,
-  output: ClusterGetResponse,
+  input: GetClusterRequest,
+  output: GetClusterResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,
 }));
 
-export type ClusterListError = ModalOpError;
-export const clusterList: API.OperationMethod<
-  ClusterListRequest,
-  ClusterListResponse,
-  ClusterListError,
+export type ListClusterError = ModalOpError;
+export const listCluster: API.OperationMethod<
+  ListClusterRequest,
+  ListClusterResponse,
+  ListClusterError,
   ModalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ClusterListRequest,
-  output: ClusterListResponse,
+  input: ListClusterRequest,
+  output: ListClusterResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,

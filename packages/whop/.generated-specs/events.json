@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.events#ListEventsRequestDirection": {
@@ -2168,7 +2169,7 @@
         "smithy.api#documentation": "Create Event\n\nTracks a conversion or engagement event for an account."
       }
     },
-    "com.whop.events#RetrievePulseRequest": {
+    "com.whop.events#GetPulseRequest": {
       "type": "structure",
       "members": {
         "event": {
@@ -2204,7 +2205,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.events#RetrievePulseResponseDataItemEventName": {
+    "com.whop.events#GetPulseResponseDataItemEventName": {
       "type": "enum",
       "members": {
         "LEDGER_LINE_CREATED": {
@@ -2218,7 +2219,7 @@
         "smithy.api#documentation": "The underlying event recorded. Every movement on this feed is a ledger line, so switch on `type` rather than this."
       }
     },
-    "com.whop.events#RetrievePulseResponseDataItemType": {
+    "com.whop.events#GetPulseResponseDataItemType": {
       "type": "enum",
       "members": {
         "PURCHASE": {
@@ -2292,7 +2293,7 @@
         "smithy.api#documentation": "What moved: a purchase, an affiliate commission, Whop card spend, ad spend, app revenue, an off-platform sale, a wallet deposit, a card load, a claimed drop, a transfer between accounts, or a referral bonus."
       }
     },
-    "com.whop.events#RetrievePulseResponseDataItemUser": {
+    "com.whop.events#GetPulseResponseDataItemUser": {
       "type": "structure",
       "members": {
         "city": {
@@ -2312,11 +2313,11 @@
         "smithy.api#documentation": "Coarse location, shaped like the event `user` block. It belongs to the owner of the wallet the money moved into or out of — the party the event is about, never their counterparty. Omitted entirely when nothing is known."
       }
     },
-    "com.whop.events#RetrievePulseResponseDataItem": {
+    "com.whop.events#GetPulseResponseDataItem": {
       "type": "structure",
       "members": {
         "event_name": {
-          "target": "com.whop.events#RetrievePulseResponseDataItemEventName",
+          "target": "com.whop.events#GetPulseResponseDataItemEventName",
           "traits": {
             "smithy.api#documentation": "The underlying event recorded. Every movement on this feed is a ledger line, so switch on `type` rather than this.",
             "smithy.api#required": {}
@@ -2337,14 +2338,14 @@
           }
         },
         "type": {
-          "target": "com.whop.events#RetrievePulseResponseDataItemType",
+          "target": "com.whop.events#GetPulseResponseDataItemType",
           "traits": {
             "smithy.api#documentation": "What moved: a purchase, an affiliate commission, Whop card spend, ad spend, app revenue, an off-platform sale, a wallet deposit, a card load, a claimed drop, a transfer between accounts, or a referral bonus.",
             "smithy.api#required": {}
           }
         },
         "user": {
-          "target": "com.whop.events#RetrievePulseResponseDataItemUser",
+          "target": "com.whop.events#GetPulseResponseDataItemUser",
           "traits": {
             "smithy.api#documentation": "Coarse location, shaped like the event `user` block. It belongs to the owner of the wallet the money moved into or out of — the party the event is about, never their counterparty. Omitted entirely when nothing is known."
           }
@@ -2352,16 +2353,16 @@
       },
       "traits": {}
     },
-    "com.whop.events#RetrievePulseResponseDataList": {
+    "com.whop.events#GetPulseResponseDataList": {
       "type": "list",
       "member": {
-        "target": "com.whop.events#RetrievePulseResponseDataItem"
+        "target": "com.whop.events#GetPulseResponseDataItem"
       },
       "traits": {
         "smithy.api#documentation": "Recent anonymized money-movement events, newest first."
       }
     },
-    "com.whop.events#RetrievePulseResponsePageInfo": {
+    "com.whop.events#GetPulseResponsePageInfo": {
       "type": "structure",
       "members": {
         "end_cursor": {
@@ -2391,18 +2392,18 @@
       },
       "traits": {}
     },
-    "com.whop.events#RetrievePulseResponse": {
+    "com.whop.events#GetPulseResponse": {
       "type": "structure",
       "members": {
         "data": {
-          "target": "com.whop.events#RetrievePulseResponseDataList",
+          "target": "com.whop.events#GetPulseResponseDataList",
           "traits": {
             "smithy.api#documentation": "Recent anonymized money-movement events, newest first.",
             "smithy.api#required": {}
           }
         },
         "page_info": {
-          "target": "com.whop.events#RetrievePulseResponsePageInfo",
+          "target": "com.whop.events#GetPulseResponsePageInfo",
           "traits": {
             "smithy.api#required": {}
           }
@@ -2412,13 +2413,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.whop.events#RetrievePulse": {
+    "com.whop.events#GetPulse": {
       "type": "operation",
       "input": {
-        "target": "com.whop.events#RetrievePulseRequest"
+        "target": "com.whop.events#GetPulseRequest"
       },
       "output": {
-        "target": "com.whop.events#RetrievePulseResponse"
+        "target": "com.whop.events#GetPulseResponse"
       },
       "errors": [
         {
@@ -2644,7 +2645,7 @@
           "target": "com.whop.events#CreateEvent"
         },
         {
-          "target": "com.whop.events#RetrievePulse"
+          "target": "com.whop.events#GetPulse"
         },
         {
           "target": "com.whop.events#ValidatePixel"

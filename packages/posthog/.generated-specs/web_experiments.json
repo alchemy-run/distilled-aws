@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.web_experiments#WebExperimentsListRequest": {
+    "com.posthog.web_experiments#ListWebExperimentsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -104,10 +105,10 @@
       },
       "traits": {}
     },
-    "com.posthog.web_experiments#WebExperimentsList": {
+    "com.posthog.web_experiments#ListWebExperiments": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.web_experiments#WebExperimentsListRequest"
+        "target": "com.posthog.web_experiments#ListWebExperimentsRequest"
       },
       "output": {
         "target": "com.posthog.web_experiments#PaginatedWebExperimentsAPIList"
@@ -131,7 +132,7 @@
         }
       }
     },
-    "com.posthog.web_experiments#WebExperimentsCreateRequest": {
+    "com.posthog.web_experiments#CreateWebExperimentRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -159,10 +160,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.web_experiments#WebExperimentsCreate": {
+    "com.posthog.web_experiments#CreateWebExperiment": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.web_experiments#WebExperimentsCreateRequest"
+        "target": "com.posthog.web_experiments#CreateWebExperimentRequest"
       },
       "output": {
         "target": "com.posthog.web_experiments#WebExperimentsAPI"
@@ -186,7 +187,7 @@
         }
       }
     },
-    "com.posthog.web_experiments#WebExperimentsRetrieveRequest": {
+    "com.posthog.web_experiments#GetWebExperimentRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -210,10 +211,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.web_experiments#WebExperimentsRetrieve": {
+    "com.posthog.web_experiments#GetWebExperiment": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.web_experiments#WebExperimentsRetrieveRequest"
+        "target": "com.posthog.web_experiments#GetWebExperimentRequest"
       },
       "output": {
         "target": "com.posthog.web_experiments#WebExperimentsAPI"
@@ -234,7 +235,7 @@
         }
       }
     },
-    "com.posthog.web_experiments#WebExperimentsUpdateRequest": {
+    "com.posthog.web_experiments#UpdateWebExperimentRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -270,10 +271,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.web_experiments#WebExperimentsUpdate": {
+    "com.posthog.web_experiments#UpdateWebExperiment": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.web_experiments#WebExperimentsUpdateRequest"
+        "target": "com.posthog.web_experiments#UpdateWebExperimentRequest"
       },
       "output": {
         "target": "com.posthog.web_experiments#WebExperimentsAPI"
@@ -297,7 +298,7 @@
         }
       }
     },
-    "com.posthog.web_experiments#WebExperimentsPartialUpdateRequest": {
+    "com.posthog.web_experiments#UpdateWebExperimentsPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -333,10 +334,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.web_experiments#WebExperimentsPartialUpdate": {
+    "com.posthog.web_experiments#UpdateWebExperimentsPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.web_experiments#WebExperimentsPartialUpdateRequest"
+        "target": "com.posthog.web_experiments#UpdateWebExperimentsPartialRequest"
       },
       "output": {
         "target": "com.posthog.web_experiments#WebExperimentsAPI"
@@ -452,19 +453,19 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.web_experiments#WebExperimentsList"
+          "target": "com.posthog.web_experiments#ListWebExperiments"
         },
         {
-          "target": "com.posthog.web_experiments#WebExperimentsCreate"
+          "target": "com.posthog.web_experiments#CreateWebExperiment"
         },
         {
-          "target": "com.posthog.web_experiments#WebExperimentsRetrieve"
+          "target": "com.posthog.web_experiments#GetWebExperiment"
         },
         {
-          "target": "com.posthog.web_experiments#WebExperimentsUpdate"
+          "target": "com.posthog.web_experiments#UpdateWebExperiment"
         },
         {
-          "target": "com.posthog.web_experiments#WebExperimentsPartialUpdate"
+          "target": "com.posthog.web_experiments#UpdateWebExperimentsPartial"
         },
         {
           "target": "com.posthog.web_experiments#WebExperimentsDestroy"

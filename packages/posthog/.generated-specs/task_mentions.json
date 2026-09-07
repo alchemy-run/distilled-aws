@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.task_mentions#TaskMentionsListRequest": {
+    "com.posthog.task_mentions#ListTaskMentionsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -227,10 +228,10 @@
       },
       "traits": {}
     },
-    "com.posthog.task_mentions#TaskMentionsList": {
+    "com.posthog.task_mentions#ListTaskMentions": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.task_mentions#TaskMentionsListRequest"
+        "target": "com.posthog.task_mentions#ListTaskMentionsRequest"
       },
       "output": {
         "target": "com.posthog.task_mentions#PaginatedTaskMentionDTOList"
@@ -249,7 +250,7 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.task_mentions#TaskMentionsList"
+          "target": "com.posthog.task_mentions#ListTaskMentions"
         }
       ],
       "traits": {

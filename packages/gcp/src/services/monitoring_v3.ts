@@ -67,118 +67,29 @@ export class NotFound
 
 /** Describes a change made to a configuration. */
 export interface MutationRecord {
-  /** The email address of the user making the change. */
-  mutatedBy?: string;
   /** When the change occurred. */
   mutateTime?: string;
+  /** The email address of the user making the change. */
+  mutatedBy?: string;
 }
 export const MutationRecord = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    mutatedBy: S.optional(S.String),
     mutateTime: S.optional(S.String),
+    mutatedBy: S.optional(S.String),
   }),
 ).annotate({ identifier: "MutationRecord" }) as any as S.Schema<MutationRecord>;
 
-/** Control over the rate of notifications sent to this alerting policy's notification channels. */
-export interface NotificationRateLimit {
-  /** Not more than one notification per period. */
-  period?: string;
-}
-export const NotificationRateLimit = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    period: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "NotificationRateLimit",
-}) as any as S.Schema<NotificationRateLimit>;
-
-export type AlertStrategyNotificationPromptsItemEnum =
-  | "NOTIFICATION_PROMPT_UNSPECIFIED"
-  | "OPENED"
-  | "CLOSED";
-export const AlertStrategyNotificationPromptsItemEnum = /*@__PURE__*/ S.String;
-
-export type AlertStrategyNotificationPromptsItemEnumList = Array<
-  AlertStrategyNotificationPromptsItemEnum | (string & {})
->;
-export const AlertStrategyNotificationPromptsItemEnumList =
-  /*@__PURE__*/ S.Array(
-    AlertStrategyNotificationPromptsItemEnum,
-  ) as any as S.Schema<AlertStrategyNotificationPromptsItemEnumList>;
-
-export type StringList = Array<string>;
-export const StringList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<StringList>;
-
-/** Control over how the notification channels in notification_channels are notified when this alert fires, on a per-channel basis. */
-export interface NotificationChannelStrategy {
-  /** The full REST resource name for the notification channels that these settings apply to. Each of these correspond to the name field in one of the NotificationChannel objects referenced in the notification_channels field of this AlertPolicy. The format is: projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID] */
-  notificationChannelNames?: StringList;
-  /** The frequency at which to send reminder notifications for open incidents. The value must be between 30 minutes and 24 hours. */
-  renotifyInterval?: string;
-}
-export const NotificationChannelStrategy = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    notificationChannelNames: S.optional(StringList),
-    renotifyInterval: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "NotificationChannelStrategy",
-}) as any as S.Schema<NotificationChannelStrategy>;
-
-export type NotificationChannelStrategyList =
-  Array<NotificationChannelStrategy>;
-export const NotificationChannelStrategyList = /*@__PURE__*/ S.Array(
-  NotificationChannelStrategy,
-) as any as S.Schema<NotificationChannelStrategyList>;
-
-/** Control over how the notification channels in notification_channels are notified when this alert fires. */
-export interface AlertStrategy {
-  /** Required for log-based alerting policies, i.e. policies with a LogMatch condition.This limit is not implemented for alerting policies that do not have a LogMatch condition. */
-  notificationRateLimit?: NotificationRateLimit;
-  /** For log-based alert policies, the notification prompts is always OPENED. For non log-based alert policies, the notification prompts can be OPENED or OPENED, CLOSED. */
-  notificationPrompts?: AlertStrategyNotificationPromptsItemEnumList;
-  /** If an alerting policy that was active has no data for this long, any open incidents will close */
-  autoClose?: string;
-  /** Control how notifications will be sent out, on a per-channel basis. */
-  notificationChannelStrategy?: NotificationChannelStrategyList;
-}
-export const AlertStrategy = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    notificationRateLimit: S.optional(NotificationRateLimit),
-    notificationPrompts: S.optional(
-      AlertStrategyNotificationPromptsItemEnumList,
-    ),
-    autoClose: S.optional(S.String),
-    notificationChannelStrategy: S.optional(NotificationChannelStrategyList),
-  }),
-).annotate({ identifier: "AlertStrategy" }) as any as S.Schema<AlertStrategy>;
-
-export type AlertPolicyCombinerEnum =
-  | "COMBINE_UNSPECIFIED"
-  | "AND"
-  | "OR"
-  | "AND_WITH_MATCHING_RESOURCE";
-export const AlertPolicyCombinerEnum = /*@__PURE__*/ S.String;
-
-export type StringMap = { [key: string]: string | undefined };
-export const StringMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<StringMap>;
-
 /** Links to content such as playbooks, repositories, and other resources. */
 export interface Link {
-  /** A short display name for the link. The display name must not be empty or exceed 63 characters. Example: "playbook". */
-  displayName?: string;
   /** The url of a webpage. A url can be templatized by using variables in the path or the query parameters. The total length of a URL should not exceed 2083 characters before and after variable expansion. Example: "https://my_domain.com/playbook?name=${resource.name}" */
   url?: string;
+  /** A short display name for the link. The display name must not be empty or exceed 63 characters. Example: "playbook". */
+  displayName?: string;
 }
 export const Link = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    displayName: S.optional(S.String),
     url: S.optional(S.String),
+    displayName: S.optional(S.String),
   }),
 ).annotate({ identifier: "Link" }) as any as S.Schema<Link>;
 
@@ -189,23 +100,28 @@ export const LinkList = /*@__PURE__*/ S.Array(
 
 /** Documentation that is included in the notifications and incidents pertaining to this policy. */
 export interface Documentation {
-  /** The body of the documentation, interpreted according to mime_type. The content may not exceed 8,192 Unicode characters and may not exceed more than 10,240 bytes when encoded in UTF-8 format, whichever is smaller. This text can be templatized by using variables (https://cloud.google.com/monitoring/alerts/doc-variables#doc-vars). */
-  content?: string;
+  /** Optional. Links to content such as playbooks, repositories, and other resources. This field can contain up to 3 entries. */
+  links?: LinkList;
   /** The format of the content field. Presently, only the value "text/markdown" is supported. See Markdown (https://en.wikipedia.org/wiki/Markdown) for more information. */
   mimeType?: string;
   /** Optional. The subject line of the notification. The subject line may not exceed 10,240 bytes. In notifications generated by this policy, the contents of the subject line after variable expansion will be truncated to 255 bytes or shorter at the latest UTF-8 character boundary. The 255-byte limit is recommended by this thread (https://stackoverflow.com/questions/1592291/what-is-the-email-subject-length-limit). It is both the limit imposed by some third-party ticketing products and it is common to define textual fields in databases as VARCHAR(255).The contents of the subject line can be templatized by using variables (https://cloud.google.com/monitoring/alerts/doc-variables#doc-vars). If this field is missing or empty, a default subject line will be generated. */
   subject?: string;
-  /** Optional. Links to content such as playbooks, repositories, and other resources. This field can contain up to 3 entries. */
-  links?: LinkList;
+  /** The body of the documentation, interpreted according to mime_type. The content may not exceed 8,192 Unicode characters and may not exceed more than 10,240 bytes when encoded in UTF-8 format, whichever is smaller. This text can be templatized by using variables (https://cloud.google.com/monitoring/alerts/doc-variables#doc-vars). */
+  content?: string;
 }
 export const Documentation = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    content: S.optional(S.String),
+    links: S.optional(LinkList),
     mimeType: S.optional(S.String),
     subject: S.optional(S.String),
-    links: S.optional(LinkList),
+    content: S.optional(S.String),
   }),
 ).annotate({ identifier: "Documentation" }) as any as S.Schema<Documentation>;
+
+export type StringList = Array<string>;
+export const StringList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<StringList>;
 
 export type DocumentMap = { [key: string]: unknown | undefined };
 export const DocumentMap = /*@__PURE__*/ S.Record(
@@ -235,13 +151,89 @@ export const Status = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Status" }) as any as S.Schema<Status>;
 
-export type MonitoringQueryLanguageConditionEvaluationMissingDataEnum =
-  | "EVALUATION_MISSING_DATA_UNSPECIFIED"
-  | "EVALUATION_MISSING_DATA_INACTIVE"
-  | "EVALUATION_MISSING_DATA_ACTIVE"
-  | "EVALUATION_MISSING_DATA_NO_OP";
-export const MonitoringQueryLanguageConditionEvaluationMissingDataEnum =
-  /*@__PURE__*/ S.String;
+export type AlertPolicySeverityEnum =
+  | "SEVERITY_UNSPECIFIED"
+  | "CRITICAL"
+  | "ERROR"
+  | "WARNING";
+export const AlertPolicySeverityEnum = /*@__PURE__*/ S.String;
+
+export type StringMap = { [key: string]: string | undefined };
+export const StringMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<StringMap>;
+
+/** Control over how the notification channels in notification_channels are notified when this alert fires, on a per-channel basis. */
+export interface NotificationChannelStrategy {
+  /** The full REST resource name for the notification channels that these settings apply to. Each of these correspond to the name field in one of the NotificationChannel objects referenced in the notification_channels field of this AlertPolicy. The format is: projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID] */
+  notificationChannelNames?: StringList;
+  /** The frequency at which to send reminder notifications for open incidents. The value must be between 30 minutes and 24 hours. */
+  renotifyInterval?: string;
+}
+export const NotificationChannelStrategy = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    notificationChannelNames: S.optional(StringList),
+    renotifyInterval: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "NotificationChannelStrategy",
+}) as any as S.Schema<NotificationChannelStrategy>;
+
+export type NotificationChannelStrategyList =
+  Array<NotificationChannelStrategy>;
+export const NotificationChannelStrategyList = /*@__PURE__*/ S.Array(
+  NotificationChannelStrategy,
+) as any as S.Schema<NotificationChannelStrategyList>;
+
+/** Control over the rate of notifications sent to this alerting policy's notification channels. */
+export interface NotificationRateLimit {
+  /** Not more than one notification per period. */
+  period?: string;
+}
+export const NotificationRateLimit = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    period: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "NotificationRateLimit",
+}) as any as S.Schema<NotificationRateLimit>;
+
+export type AlertStrategyNotificationPromptsItemEnum =
+  | "NOTIFICATION_PROMPT_UNSPECIFIED"
+  | "OPENED"
+  | "CLOSED";
+export const AlertStrategyNotificationPromptsItemEnum = /*@__PURE__*/ S.String;
+
+export type AlertStrategyNotificationPromptsItemEnumList = Array<
+  AlertStrategyNotificationPromptsItemEnum | (string & {})
+>;
+export const AlertStrategyNotificationPromptsItemEnumList =
+  /*@__PURE__*/ S.Array(
+    AlertStrategyNotificationPromptsItemEnum,
+  ) as any as S.Schema<AlertStrategyNotificationPromptsItemEnumList>;
+
+/** Control over how the notification channels in notification_channels are notified when this alert fires. */
+export interface AlertStrategy {
+  /** If an alerting policy that was active has no data for this long, any open incidents will close */
+  autoClose?: string;
+  /** Control how notifications will be sent out, on a per-channel basis. */
+  notificationChannelStrategy?: NotificationChannelStrategyList;
+  /** Required for log-based alerting policies, i.e. policies with a LogMatch condition.This limit is not implemented for alerting policies that do not have a LogMatch condition. */
+  notificationRateLimit?: NotificationRateLimit;
+  /** For log-based alert policies, the notification prompts is always OPENED. For non log-based alert policies, the notification prompts can be OPENED or OPENED, CLOSED. */
+  notificationPrompts?: AlertStrategyNotificationPromptsItemEnumList;
+}
+export const AlertStrategy = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    autoClose: S.optional(S.String),
+    notificationChannelStrategy: S.optional(NotificationChannelStrategyList),
+    notificationRateLimit: S.optional(NotificationRateLimit),
+    notificationPrompts: S.optional(
+      AlertStrategyNotificationPromptsItemEnumList,
+    ),
+  }),
+).annotate({ identifier: "AlertStrategy" }) as any as S.Schema<AlertStrategy>;
 
 /** Specifies how many time series must fail a predicate to trigger a condition. If not specified, then a {count: 1} trigger is used. */
 export interface Trigger {
@@ -256,32 +248,6 @@ export const Trigger = /*@__PURE__*/ S.suspend(() =>
     percent: S.optional(S.Number),
   }),
 ).annotate({ identifier: "Trigger" }) as any as S.Schema<Trigger>;
-
-/** A condition type that allows alerting policies to be defined using Monitoring Query Language (https://cloud.google.com/monitoring/mql). */
-export interface MonitoringQueryLanguageCondition {
-  /** A condition control that determines how metric-threshold conditions are evaluated when data stops arriving. */
-  evaluationMissingData?:
-    | MonitoringQueryLanguageConditionEvaluationMissingDataEnum
-    | (string & {});
-  /** Monitoring Query Language (https://cloud.google.com/monitoring/mql) query that outputs a boolean stream. */
-  query?: string;
-  /** Optional. The amount of time that a time series must violate the threshold to be considered failing. Currently, only values that are a multiple of a minute--e.g., 0, 60, 120, or 300 seconds--are supported. If an invalid value is given, an error will be returned. When choosing a duration, it is useful to keep in mind the frequency of the underlying time series data (which may also be affected by any alignments specified in the aggregations field); a good duration is long enough so that a single outlier does not generate spurious alerts, but short enough that unhealthy states are detected and alerted on quickly. The default value is zero. */
-  duration?: string;
-  /** The number/percent of time series for which the comparison must hold in order for the condition to trigger. If unspecified, then the condition will trigger if the comparison is true for any of the time series that have been identified by filter and aggregations, or by the ratio, if denominator_filter and denominator_aggregations are specified. */
-  trigger?: Trigger;
-}
-export const MonitoringQueryLanguageCondition = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    evaluationMissingData: S.optional(
-      MonitoringQueryLanguageConditionEvaluationMissingDataEnum,
-    ),
-    query: S.optional(S.String),
-    duration: S.optional(S.String),
-    trigger: S.optional(Trigger),
-  }),
-).annotate({
-  identifier: "MonitoringQueryLanguageCondition",
-}) as any as S.Schema<MonitoringQueryLanguageCondition>;
 
 export type AggregationPerSeriesAlignerEnum =
   | "ALIGN_NONE"
@@ -324,20 +290,20 @@ export const AggregationCrossSeriesReducerEnum = /*@__PURE__*/ S.String;
 
 /** Describes how to combine multiple time series to provide a different view of the data. Aggregation of time series is done in two steps. First, each time series in the set is aligned to the same time interval boundaries, then the set of time series is optionally reduced in number.Alignment consists of applying the per_series_aligner operation to each time series after its data has been divided into regular alignment_period time intervals. This process takes all of the data points in an alignment period, applies a mathematical transformation such as averaging, minimum, maximum, delta, etc., and converts them into a single data point per period.Reduction is when the aligned and transformed time series can optionally be combined, reducing the number of time series through similar mathematical transformations. Reduction involves applying a cross_series_reducer to all the time series, optionally sorting the time series into subsets with group_by_fields, and applying the reducer to each subset.The raw time series data can contain a huge amount of information from multiple sources. Alignment and reduction transforms this mass of data into a more manageable and representative collection of data, for example "the 95% latency across the average of all tasks in a cluster". This representative data can be more easily graphed and comprehended, and the individual time series data is still available for later drilldown. For more details, see Filtering and aggregation (https://cloud.google.com/monitoring/api/v3/aggregation). */
 export interface Aggregation {
-  /** The alignment_period specifies a time interval, in seconds, that is used to divide the data in all the time series into consistent blocks of time. This will be done before the per-series aligner can be applied to the data.The value must be at least 60 seconds. If a per-series aligner other than ALIGN_NONE is specified, this field is required or an error is returned. If no per-series aligner is specified, or the aligner ALIGN_NONE is specified, then this field is ignored.The maximum value of the alignment_period is 104 weeks (2 years) for charts, and 90,000 seconds (25 hours) for alerting policies. */
-  alignmentPeriod?: string;
   /** An Aligner describes how to bring the data points in a single time series into temporal alignment. Except for ALIGN_NONE, all alignments cause all the data points in an alignment_period to be mathematically grouped together, resulting in a single data point for each alignment_period with end timestamp at the end of the period.Not all alignment operations may be applied to all time series. The valid choices depend on the metric_kind and value_type of the original time series. Alignment can change the metric_kind or the value_type of the time series.Time series data must be aligned in order to perform cross-time series reduction. If cross_series_reducer is specified, then per_series_aligner must be specified and not equal to ALIGN_NONE and alignment_period must be specified; otherwise, an error is returned. */
   perSeriesAligner?: AggregationPerSeriesAlignerEnum | (string & {});
   /** The reduction operation to be used to combine time series into a single time series, where the value of each data point in the resulting series is a function of all the already aligned values in the input time series.Not all reducer operations can be applied to all time series. The valid choices depend on the metric_kind and the value_type of the original time series. Reduction can yield a time series with a different metric_kind or value_type than the input time series.Time series data must first be aligned (see per_series_aligner) in order to perform cross-time series reduction. If cross_series_reducer is specified, then per_series_aligner must be specified, and must not be ALIGN_NONE. An alignment_period must also be specified; otherwise, an error is returned. */
   crossSeriesReducer?: AggregationCrossSeriesReducerEnum | (string & {});
+  /** The alignment_period specifies a time interval, in seconds, that is used to divide the data in all the time series into consistent blocks of time. This will be done before the per-series aligner can be applied to the data.The value must be at least 60 seconds. If a per-series aligner other than ALIGN_NONE is specified, this field is required or an error is returned. If no per-series aligner is specified, or the aligner ALIGN_NONE is specified, then this field is ignored.The maximum value of the alignment_period is 104 weeks (2 years) for charts, and 90,000 seconds (25 hours) for alerting policies. */
+  alignmentPeriod?: string;
   /** The set of fields to preserve when cross_series_reducer is specified. The group_by_fields determine how the time series are partitioned into subsets prior to applying the aggregation operation. Each subset contains time series that have the same value for each of the grouping fields. Each individual time series is a member of exactly one subset. The cross_series_reducer is applied to each subset of time series. It is not possible to reduce across different resource types, so this field implicitly contains resource.type. Fields not specified in group_by_fields are aggregated away. If group_by_fields is not specified and all the time series have the same resource type, then the time series are aggregated into a single output time series. If cross_series_reducer is not defined, this field is ignored. */
   groupByFields?: StringList;
 }
 export const Aggregation = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    alignmentPeriod: S.optional(S.String),
     perSeriesAligner: S.optional(AggregationPerSeriesAlignerEnum),
     crossSeriesReducer: S.optional(AggregationCrossSeriesReducerEnum),
+    alignmentPeriod: S.optional(S.String),
     groupByFields: S.optional(StringList),
   }),
 ).annotate({ identifier: "Aggregation" }) as any as S.Schema<Aggregation>;
@@ -349,23 +315,75 @@ export const AggregationList = /*@__PURE__*/ S.Array(
 
 /** A condition type that checks that monitored resources are reporting data. The configuration defines a metric and a set of monitored resources. The predicate is considered in violation when a time series for the specified metric of a monitored resource does not include any data in the specified duration. */
 export interface MetricAbsence {
-  /** Specifies the alignment of data points in individual time series as well as how to combine the retrieved time series together (such as when aggregating multiple streams on each resource to a single stream for each resource or when aggregating streams across all members of a group of resources). Multiple aggregations are applied in the order specified.This field is similar to the one in the ListTimeSeries request (https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list). It is advisable to use the ListTimeSeries method when debugging this field. */
-  aggregations?: AggregationList;
-  /** Required. The amount of time that a time series must fail to report new data to be considered failing. The minimum value of this field is 120 seconds. Larger values that are a multiple of a minute--for example, 240 or 300 seconds--are supported. If an invalid value is given, an error will be returned. */
-  duration?: string;
   /** The number/percent of time series for which the comparison must hold in order for the condition to trigger. If unspecified, then the condition will trigger if the comparison is true for any of the time series that have been identified by filter and aggregations. */
   trigger?: Trigger;
+  /** Specifies the alignment of data points in individual time series as well as how to combine the retrieved time series together (such as when aggregating multiple streams on each resource to a single stream for each resource or when aggregating streams across all members of a group of resources). Multiple aggregations are applied in the order specified.This field is similar to the one in the ListTimeSeries request (https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list). It is advisable to use the ListTimeSeries method when debugging this field. */
+  aggregations?: AggregationList;
   /** Required. A filter (https://cloud.google.com/monitoring/api/v3/filters) that identifies which time series should be compared with the threshold.The filter is similar to the one that is specified in the ListTimeSeries request (https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list) (that call is useful to verify the time series that will be retrieved / processed). The filter must specify the metric type and the resource type. Optionally, it can specify resource labels and metric labels. This field must not exceed 2048 Unicode characters in length. */
   filter?: string;
+  /** Required. The amount of time that a time series must fail to report new data to be considered failing. The minimum value of this field is 120 seconds. Larger values that are a multiple of a minute--for example, 240 or 300 seconds--are supported. If an invalid value is given, an error will be returned. */
+  duration?: string;
 }
 export const MetricAbsence = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    aggregations: S.optional(AggregationList),
-    duration: S.optional(S.String),
     trigger: S.optional(Trigger),
+    aggregations: S.optional(AggregationList),
     filter: S.optional(S.String),
+    duration: S.optional(S.String),
   }),
 ).annotate({ identifier: "MetricAbsence" }) as any as S.Schema<MetricAbsence>;
+
+/** A condition type that checks whether a log message in the scoping project (https://cloud.google.com/monitoring/api/v3#project_name) satisfies the given filter. Logs from other projects in the metrics scope are not evaluated. */
+export interface LogMatch {
+  /** Required. A logs-based filter. See Advanced Logs Queries (https://cloud.google.com/logging/docs/view/advanced-queries) for how this filter should be constructed. */
+  filter?: string;
+  /** Optional. A map from a label key to an extractor expression, which is used to extract the value for this label key. Each entry in this map is a specification for how data should be extracted from log entries that match filter. Each combination of extracted values is treated as a separate rule for the purposes of triggering notifications. Label keys and corresponding values can be used in notifications generated by this condition.Please see the documentation on logs-based metric valueExtractors (https://cloud.google.com/logging/docs/reference/v2/rest/v2/projects.metrics#LogMetric.FIELDS.value_extractor) for syntax and examples. */
+  labelExtractors?: StringMap;
+}
+export const LogMatch = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    filter: S.optional(S.String),
+    labelExtractors: S.optional(StringMap),
+  }),
+).annotate({ identifier: "LogMatch" }) as any as S.Schema<LogMatch>;
+
+/** A condition type that allows alerting policies to be defined using Prometheus Query Language (PromQL) (https://prometheus.io/docs/prometheus/latest/querying/basics/).The PrometheusQueryLanguageCondition message contains information from a Prometheus alerting rule and its associated rule group.A Prometheus alerting rule is described here (https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/). The semantics of a Prometheus alerting rule is described here (https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/#rule).A Prometheus rule group is described here (https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/). The semantics of a Prometheus rule group is described here (https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/#rule_group).Because Cloud Alerting has no representation of a Prometheus rule group resource, we must embed the information of the parent rule group inside each of the conditions that refer to it. We must also update the contents of all Prometheus alerts in case the information of their rule group changes.The PrometheusQueryLanguageCondition protocol buffer combines the information of the corresponding rule group and alerting rule. The structure of the PrometheusQueryLanguageCondition protocol buffer does NOT mimic the structure of the Prometheus rule group and alerting rule YAML declarations. The PrometheusQueryLanguageCondition protocol buffer may change in the future to support future rule group and/or alerting rule features. There are no new such features at the present time (2023-06-26). */
+export interface PrometheusQueryLanguageCondition {
+  /** Optional. The rule group name of this alert in the corresponding Prometheus configuration file.Some external tools may require this field to be populated correctly in order to refer to the original Prometheus configuration file. The rule group name and the alert name are necessary to update the relevant AlertPolicies in case the definition of the rule group changes in the future.This field is optional. If this field is not empty, then it must contain a valid UTF-8 string. This field may not exceed 2048 Unicode characters in length. */
+  ruleGroup?: string;
+  /** Optional. How often this rule should be evaluated. Must be a positive multiple of 30 seconds or missing. This field is optional. Its default value is 30 seconds. If this PrometheusQueryLanguageCondition was generated from a Prometheus alerting rule, then this value should be taken from the enclosing rule group. */
+  evaluationInterval?: string;
+  /** Optional. Labels to add to or overwrite in the PromQL query result. Label names must be valid (https://prometheus.io/docs/concepts/data_model/#metric-names-and-labels). Label values can be templatized by using variables (https://cloud.google.com/monitoring/alerts/doc-variables#doc-vars). The only available variable names are the names of the labels in the PromQL result, including "__name__" and "value". "labels" may be empty. */
+  labels?: StringMap;
+  /** Optional. Whether to disable metric existence validation for this condition.This allows alerting policies to be defined on metrics that do not yet exist, improving advanced customer workflows such as configuring alerting policies using Terraform.Users with the monitoring.alertPolicyViewer role are able to see the name of the non-existent metric in the alerting policy condition. */
+  disableMetricValidation?: boolean;
+  /** Optional. Alerts are considered firing once their PromQL expression was evaluated to be "true" for this long. Alerts whose PromQL expression was not evaluated to be "true" for long enough are considered pending. Must be a non-negative duration or missing. This field is optional. Its default value is zero. */
+  duration?: string;
+  /** Optional. The alerting rule name of this alert in the corresponding Prometheus configuration file.Some external tools may require this field to be populated correctly in order to refer to the original Prometheus configuration file. The rule group name and the alert name are necessary to update the relevant AlertPolicies in case the definition of the rule group changes in the future.This field is optional. If this field is not empty, then it must be a valid Prometheus label name (https://prometheus.io/docs/concepts/data_model/#metric-names-and-labels). This field may not exceed 2048 Unicode characters in length. */
+  alertRule?: string;
+  /** Required. The PromQL expression to evaluate. Every evaluation cycle this expression is evaluated at the current time, and all resultant time series become pending/firing alerts. This field must not be empty. */
+  query?: string;
+}
+export const PrometheusQueryLanguageCondition = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ruleGroup: S.optional(S.String),
+    evaluationInterval: S.optional(S.String),
+    labels: S.optional(StringMap),
+    disableMetricValidation: S.optional(S.Boolean),
+    duration: S.optional(S.String),
+    alertRule: S.optional(S.String),
+    query: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PrometheusQueryLanguageCondition",
+}) as any as S.Schema<PrometheusQueryLanguageCondition>;
+
+export type MetricThresholdEvaluationMissingDataEnum =
+  | "EVALUATION_MISSING_DATA_UNSPECIFIED"
+  | "EVALUATION_MISSING_DATA_INACTIVE"
+  | "EVALUATION_MISSING_DATA_ACTIVE"
+  | "EVALUATION_MISSING_DATA_NO_OP";
+export const MetricThresholdEvaluationMissingDataEnum = /*@__PURE__*/ S.String;
 
 /** Options used when forecasting the time series and testing the predicted value against the threshold. */
 export interface ForecastOptions {
@@ -390,68 +408,106 @@ export type MetricThresholdComparisonEnum =
   | "COMPARISON_NE";
 export const MetricThresholdComparisonEnum = /*@__PURE__*/ S.String;
 
-export type MetricThresholdEvaluationMissingDataEnum =
-  | "EVALUATION_MISSING_DATA_UNSPECIFIED"
-  | "EVALUATION_MISSING_DATA_INACTIVE"
-  | "EVALUATION_MISSING_DATA_ACTIVE"
-  | "EVALUATION_MISSING_DATA_NO_OP";
-export const MetricThresholdEvaluationMissingDataEnum = /*@__PURE__*/ S.String;
-
 /** A condition type that compares a collection of time series against a threshold. */
 export interface MetricThreshold {
-  /** When this field is present, the MetricThreshold condition forecasts whether the time series is predicted to violate the threshold within the forecast_horizon. When this field is not set, the MetricThreshold tests the current value of the timeseries against the threshold. */
-  forecastOptions?: ForecastOptions;
-  /** A value against which to compare the time series. */
-  thresholdValue?: number;
-  /** Required. The amount of time that a time series must violate the threshold to be considered failing. Currently, only values that are a multiple of a minute--e.g., 0, 60, 120, or 300 seconds--are supported. If an invalid value is given, an error will be returned. When choosing a duration, it is useful to keep in mind the frequency of the underlying time series data (which may also be affected by any alignments specified in the aggregations field); a good duration is long enough so that a single outlier does not generate spurious alerts, but short enough that unhealthy states are detected and alerted on quickly. */
-  duration?: string;
-  /** Specifies the alignment of data points in individual time series selected by denominatorFilter as well as how to combine the retrieved time series together (such as when aggregating multiple streams on each resource to a single stream for each resource or when aggregating streams across all members of a group of resources).When computing ratios, the aggregations and denominator_aggregations fields must use the same alignment period and produce time series that have the same periodicity and labels. */
-  denominatorAggregations?: AggregationList;
-  /** The comparison to apply between the time series (indicated by filter and aggregation) and the threshold (indicated by threshold_value). The comparison is applied on each time series, with the time series on the left-hand side and the threshold on the right-hand side.Only COMPARISON_LT and COMPARISON_GT are supported currently. */
-  comparison?: MetricThresholdComparisonEnum | (string & {});
+  /** Specifies the alignment of data points in individual time series as well as how to combine the retrieved time series together (such as when aggregating multiple streams on each resource to a single stream for each resource or when aggregating streams across all members of a group of resources). Multiple aggregations are applied in the order specified.This field is similar to the one in the ListTimeSeries request (https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list). It is advisable to use the ListTimeSeries method when debugging this field. */
+  aggregations?: AggregationList;
   /** A condition control that determines how metric-threshold conditions are evaluated when data stops arriving. To use this control, the value of the duration field must be greater than or equal to 60 seconds. */
   evaluationMissingData?:
     | MetricThresholdEvaluationMissingDataEnum
     | (string & {});
-  /** Specifies the alignment of data points in individual time series as well as how to combine the retrieved time series together (such as when aggregating multiple streams on each resource to a single stream for each resource or when aggregating streams across all members of a group of resources). Multiple aggregations are applied in the order specified.This field is similar to the one in the ListTimeSeries request (https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list). It is advisable to use the ListTimeSeries method when debugging this field. */
-  aggregations?: AggregationList;
+  /** Specifies the alignment of data points in individual time series selected by denominatorFilter as well as how to combine the retrieved time series together (such as when aggregating multiple streams on each resource to a single stream for each resource or when aggregating streams across all members of a group of resources).When computing ratios, the aggregations and denominator_aggregations fields must use the same alignment period and produce time series that have the same periodicity and labels. */
+  denominatorAggregations?: AggregationList;
+  /** Required. A filter (https://cloud.google.com/monitoring/api/v3/filters) that identifies which time series should be compared with the threshold.The filter is similar to the one that is specified in the ListTimeSeries request (https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list) (that call is useful to verify the time series that will be retrieved / processed). The filter must specify the metric type and the resource type. Optionally, it can specify resource labels and metric labels. This field must not exceed 2048 Unicode characters in length. */
+  filter?: string;
   /** A filter (https://cloud.google.com/monitoring/api/v3/filters) that identifies a time series that should be used as the denominator of a ratio that will be compared with the threshold. If a denominator_filter is specified, the time series specified by the filter field will be used as the numerator.The filter must specify the metric type and optionally may contain restrictions on resource type, resource labels, and metric labels. This field may not exceed 2048 Unicode characters in length. */
   denominatorFilter?: string;
   /** The number/percent of time series for which the comparison must hold in order for the condition to trigger. If unspecified, then the condition will trigger if the comparison is true for any of the time series that have been identified by filter and aggregations, or by the ratio, if denominator_filter and denominator_aggregations are specified. */
   trigger?: Trigger;
-  /** Required. A filter (https://cloud.google.com/monitoring/api/v3/filters) that identifies which time series should be compared with the threshold.The filter is similar to the one that is specified in the ListTimeSeries request (https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list) (that call is useful to verify the time series that will be retrieved / processed). The filter must specify the metric type and the resource type. Optionally, it can specify resource labels and metric labels. This field must not exceed 2048 Unicode characters in length. */
-  filter?: string;
+  /** A value against which to compare the time series. */
+  thresholdValue?: number;
+  /** Required. The amount of time that a time series must violate the threshold to be considered failing. Currently, only values that are a multiple of a minute--e.g., 0, 60, 120, or 300 seconds--are supported. If an invalid value is given, an error will be returned. When choosing a duration, it is useful to keep in mind the frequency of the underlying time series data (which may also be affected by any alignments specified in the aggregations field); a good duration is long enough so that a single outlier does not generate spurious alerts, but short enough that unhealthy states are detected and alerted on quickly. */
+  duration?: string;
+  /** When this field is present, the MetricThreshold condition forecasts whether the time series is predicted to violate the threshold within the forecast_horizon. When this field is not set, the MetricThreshold tests the current value of the timeseries against the threshold. */
+  forecastOptions?: ForecastOptions;
+  /** The comparison to apply between the time series (indicated by filter and aggregation) and the threshold (indicated by threshold_value). The comparison is applied on each time series, with the time series on the left-hand side and the threshold on the right-hand side.Only COMPARISON_LT and COMPARISON_GT are supported currently. */
+  comparison?: MetricThresholdComparisonEnum | (string & {});
 }
 export const MetricThreshold = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    forecastOptions: S.optional(ForecastOptions),
-    thresholdValue: S.optional(S.Number),
-    duration: S.optional(S.String),
-    denominatorAggregations: S.optional(AggregationList),
-    comparison: S.optional(MetricThresholdComparisonEnum),
-    evaluationMissingData: S.optional(MetricThresholdEvaluationMissingDataEnum),
     aggregations: S.optional(AggregationList),
+    evaluationMissingData: S.optional(MetricThresholdEvaluationMissingDataEnum),
+    denominatorAggregations: S.optional(AggregationList),
+    filter: S.optional(S.String),
     denominatorFilter: S.optional(S.String),
     trigger: S.optional(Trigger),
-    filter: S.optional(S.String),
+    thresholdValue: S.optional(S.Number),
+    duration: S.optional(S.String),
+    forecastOptions: S.optional(ForecastOptions),
+    comparison: S.optional(MetricThresholdComparisonEnum),
   }),
 ).annotate({
   identifier: "MetricThreshold",
 }) as any as S.Schema<MetricThreshold>;
 
-/** A condition type that checks whether a log message in the scoping project (https://cloud.google.com/monitoring/api/v3#project_name) satisfies the given filter. Logs from other projects in the metrics scope are not evaluated. */
-export interface LogMatch {
-  /** Optional. A map from a label key to an extractor expression, which is used to extract the value for this label key. Each entry in this map is a specification for how data should be extracted from log entries that match filter. Each combination of extracted values is treated as a separate rule for the purposes of triggering notifications. Label keys and corresponding values can be used in notifications generated by this condition.Please see the documentation on logs-based metric valueExtractors (https://cloud.google.com/logging/docs/reference/v2/rest/v2/projects.metrics#LogMetric.FIELDS.value_extractor) for syntax and examples. */
-  labelExtractors?: StringMap;
-  /** Required. A logs-based filter. See Advanced Logs Queries (https://cloud.google.com/logging/docs/view/advanced-queries) for how this filter should be constructed. */
-  filter?: string;
+export type MonitoringQueryLanguageConditionEvaluationMissingDataEnum =
+  | "EVALUATION_MISSING_DATA_UNSPECIFIED"
+  | "EVALUATION_MISSING_DATA_INACTIVE"
+  | "EVALUATION_MISSING_DATA_ACTIVE"
+  | "EVALUATION_MISSING_DATA_NO_OP";
+export const MonitoringQueryLanguageConditionEvaluationMissingDataEnum =
+  /*@__PURE__*/ S.String;
+
+/** A condition type that allows alerting policies to be defined using Monitoring Query Language (https://cloud.google.com/monitoring/mql). */
+export interface MonitoringQueryLanguageCondition {
+  /** Monitoring Query Language (https://cloud.google.com/monitoring/mql) query that outputs a boolean stream. */
+  query?: string;
+  /** A condition control that determines how metric-threshold conditions are evaluated when data stops arriving. */
+  evaluationMissingData?:
+    | MonitoringQueryLanguageConditionEvaluationMissingDataEnum
+    | (string & {});
+  /** Optional. The amount of time that a time series must violate the threshold to be considered failing. Currently, only values that are a multiple of a minute--e.g., 0, 60, 120, or 300 seconds--are supported. If an invalid value is given, an error will be returned. When choosing a duration, it is useful to keep in mind the frequency of the underlying time series data (which may also be affected by any alignments specified in the aggregations field); a good duration is long enough so that a single outlier does not generate spurious alerts, but short enough that unhealthy states are detected and alerted on quickly. The default value is zero. */
+  duration?: string;
+  /** The number/percent of time series for which the comparison must hold in order for the condition to trigger. If unspecified, then the condition will trigger if the comparison is true for any of the time series that have been identified by filter and aggregations, or by the ratio, if denominator_filter and denominator_aggregations are specified. */
+  trigger?: Trigger;
 }
-export const LogMatch = /*@__PURE__*/ S.suspend(() =>
+export const MonitoringQueryLanguageCondition = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    labelExtractors: S.optional(StringMap),
-    filter: S.optional(S.String),
+    query: S.optional(S.String),
+    evaluationMissingData: S.optional(
+      MonitoringQueryLanguageConditionEvaluationMissingDataEnum,
+    ),
+    duration: S.optional(S.String),
+    trigger: S.optional(Trigger),
   }),
-).annotate({ identifier: "LogMatch" }) as any as S.Schema<LogMatch>;
+).annotate({
+  identifier: "MonitoringQueryLanguageCondition",
+}) as any as S.Schema<MonitoringQueryLanguageCondition>;
+
+/** Used to schedule the query to run every so many hours. */
+export interface Hourly {
+  /** Required. The number of hours between runs. Must be greater than or equal to 1 hour and less than or equal to 48 hours. */
+  periodicity?: number;
+  /** Optional. The number of minutes after the hour (in UTC) to run the query. Must be greater than or equal to 0 minutes and less than or equal to 59 minutes. If left unspecified, then an arbitrary offset is used. */
+  minuteOffset?: number;
+}
+export const Hourly = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    periodicity: S.optional(S.Number),
+    minuteOffset: S.optional(S.Number),
+  }),
+).annotate({ identifier: "Hourly" }) as any as S.Schema<Hourly>;
+
+/** A test that uses an alerting result in a boolean column produced by the SQL query. */
+export interface BooleanTest {
+  /** Required. The name of the column containing the boolean value. If the value in a row is NULL, that row is ignored. */
+  column?: string;
+}
+export const BooleanTest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    column: S.optional(S.String),
+  }),
+).annotate({ identifier: "BooleanTest" }) as any as S.Schema<BooleanTest>;
 
 export type RowCountTestComparisonEnum =
   | "COMPARISON_UNSPECIFIED"
@@ -477,34 +533,23 @@ export const RowCountTest = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "RowCountTest" }) as any as S.Schema<RowCountTest>;
 
-/** Used to schedule the query to run every so many minutes. */
-export interface Minutes {
-  /** Required. Number of minutes between runs. The interval must be greater than or equal to 5 minutes and less than or equal to 1440 minutes. */
-  periodicity?: number;
-}
-export const Minutes = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    periodicity: S.optional(S.Number),
-  }),
-).annotate({ identifier: "Minutes" }) as any as S.Schema<Minutes>;
-
 /** Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and google.protobuf.Timestamp. */
 export interface TimeOfDay {
-  /** Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time. */
-  hours?: number;
+  /** Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999. */
+  nanos?: number;
   /** Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59. */
   minutes?: number;
   /** Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds. */
   seconds?: number;
-  /** Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999. */
-  nanos?: number;
+  /** Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time. */
+  hours?: number;
 }
 export const TimeOfDay = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    hours: S.optional(S.Number),
+    nanos: S.optional(S.Number),
     minutes: S.optional(S.Number),
     seconds: S.optional(S.Number),
-    nanos: S.optional(S.Number),
+    hours: S.optional(S.Number),
   }),
 ).annotate({ identifier: "TimeOfDay" }) as any as S.Schema<TimeOfDay>;
 
@@ -522,121 +567,76 @@ export const Daily = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Daily" }) as any as S.Schema<Daily>;
 
-/** A test that uses an alerting result in a boolean column produced by the SQL query. */
-export interface BooleanTest {
-  /** Required. The name of the column containing the boolean value. If the value in a row is NULL, that row is ignored. */
-  column?: string;
-}
-export const BooleanTest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    column: S.optional(S.String),
-  }),
-).annotate({ identifier: "BooleanTest" }) as any as S.Schema<BooleanTest>;
-
-/** Used to schedule the query to run every so many hours. */
-export interface Hourly {
-  /** Required. The number of hours between runs. Must be greater than or equal to 1 hour and less than or equal to 48 hours. */
+/** Used to schedule the query to run every so many minutes. */
+export interface Minutes {
+  /** Required. Number of minutes between runs. The interval must be greater than or equal to 5 minutes and less than or equal to 1440 minutes. */
   periodicity?: number;
-  /** Optional. The number of minutes after the hour (in UTC) to run the query. Must be greater than or equal to 0 minutes and less than or equal to 59 minutes. If left unspecified, then an arbitrary offset is used. */
-  minuteOffset?: number;
 }
-export const Hourly = /*@__PURE__*/ S.suspend(() =>
+export const Minutes = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     periodicity: S.optional(S.Number),
-    minuteOffset: S.optional(S.Number),
   }),
-).annotate({ identifier: "Hourly" }) as any as S.Schema<Hourly>;
+).annotate({ identifier: "Minutes" }) as any as S.Schema<Minutes>;
 
 /** A condition that allows alerting policies to be defined using GoogleSQL. SQL conditions examine a sliding window of logs using GoogleSQL. Alert policies with SQL conditions may incur additional billing. */
 export interface SqlCondition {
-  /** Test the row count against a threshold. */
-  rowCountTest?: RowCountTest;
   /** Required. The Log Analytics SQL query to run, as a string. The query must conform to the required shape. Specifically, the query must not try to filter the input by time. A filter will automatically be applied to filter the input so that the query receives all rows received since the last time the query was run.For example, the following query extracts all log entries containing an HTTP request: SELECT timestamp, log_name, severity, http_request, resource, labels FROM my-project.global._Default._AllLogs WHERE http_request IS NOT NULL */
   query?: string;
-  /** Schedule the query to execute every so many minutes. */
-  minutes?: Minutes;
-  /** Schedule the query to execute every so many days. */
-  daily?: Daily;
-  /** Test the boolean value in the indicated column. */
-  booleanTest?: BooleanTest;
   /** Schedule the query to execute every so many hours. */
   hourly?: Hourly;
+  /** Test the boolean value in the indicated column. */
+  booleanTest?: BooleanTest;
+  /** Test the row count against a threshold. */
+  rowCountTest?: RowCountTest;
+  /** Schedule the query to execute every so many days. */
+  daily?: Daily;
+  /** Schedule the query to execute every so many minutes. */
+  minutes?: Minutes;
 }
 export const SqlCondition = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    rowCountTest: S.optional(RowCountTest),
     query: S.optional(S.String),
-    minutes: S.optional(Minutes),
-    daily: S.optional(Daily),
-    booleanTest: S.optional(BooleanTest),
     hourly: S.optional(Hourly),
+    booleanTest: S.optional(BooleanTest),
+    rowCountTest: S.optional(RowCountTest),
+    daily: S.optional(Daily),
+    minutes: S.optional(Minutes),
   }),
 ).annotate({ identifier: "SqlCondition" }) as any as S.Schema<SqlCondition>;
 
-/** A condition type that allows alerting policies to be defined using Prometheus Query Language (PromQL) (https://prometheus.io/docs/prometheus/latest/querying/basics/).The PrometheusQueryLanguageCondition message contains information from a Prometheus alerting rule and its associated rule group.A Prometheus alerting rule is described here (https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/). The semantics of a Prometheus alerting rule is described here (https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/#rule).A Prometheus rule group is described here (https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/). The semantics of a Prometheus rule group is described here (https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/#rule_group).Because Cloud Alerting has no representation of a Prometheus rule group resource, we must embed the information of the parent rule group inside each of the conditions that refer to it. We must also update the contents of all Prometheus alerts in case the information of their rule group changes.The PrometheusQueryLanguageCondition protocol buffer combines the information of the corresponding rule group and alerting rule. The structure of the PrometheusQueryLanguageCondition protocol buffer does NOT mimic the structure of the Prometheus rule group and alerting rule YAML declarations. The PrometheusQueryLanguageCondition protocol buffer may change in the future to support future rule group and/or alerting rule features. There are no new such features at the present time (2023-06-26). */
-export interface PrometheusQueryLanguageCondition {
-  /** Required. The PromQL expression to evaluate. Every evaluation cycle this expression is evaluated at the current time, and all resultant time series become pending/firing alerts. This field must not be empty. */
-  query?: string;
-  /** Optional. Whether to disable metric existence validation for this condition.This allows alerting policies to be defined on metrics that do not yet exist, improving advanced customer workflows such as configuring alerting policies using Terraform.Users with the monitoring.alertPolicyViewer role are able to see the name of the non-existent metric in the alerting policy condition. */
-  disableMetricValidation?: boolean;
-  /** Optional. How often this rule should be evaluated. Must be a positive multiple of 30 seconds or missing. This field is optional. Its default value is 30 seconds. If this PrometheusQueryLanguageCondition was generated from a Prometheus alerting rule, then this value should be taken from the enclosing rule group. */
-  evaluationInterval?: string;
-  /** Optional. Labels to add to or overwrite in the PromQL query result. Label names must be valid (https://prometheus.io/docs/concepts/data_model/#metric-names-and-labels). Label values can be templatized by using variables (https://cloud.google.com/monitoring/alerts/doc-variables#doc-vars). The only available variable names are the names of the labels in the PromQL result, including "__name__" and "value". "labels" may be empty. */
-  labels?: StringMap;
-  /** Optional. Alerts are considered firing once their PromQL expression was evaluated to be "true" for this long. Alerts whose PromQL expression was not evaluated to be "true" for long enough are considered pending. Must be a non-negative duration or missing. This field is optional. Its default value is zero. */
-  duration?: string;
-  /** Optional. The alerting rule name of this alert in the corresponding Prometheus configuration file.Some external tools may require this field to be populated correctly in order to refer to the original Prometheus configuration file. The rule group name and the alert name are necessary to update the relevant AlertPolicies in case the definition of the rule group changes in the future.This field is optional. If this field is not empty, then it must be a valid Prometheus label name (https://prometheus.io/docs/concepts/data_model/#metric-names-and-labels). This field may not exceed 2048 Unicode characters in length. */
-  alertRule?: string;
-  /** Optional. The rule group name of this alert in the corresponding Prometheus configuration file.Some external tools may require this field to be populated correctly in order to refer to the original Prometheus configuration file. The rule group name and the alert name are necessary to update the relevant AlertPolicies in case the definition of the rule group changes in the future.This field is optional. If this field is not empty, then it must contain a valid UTF-8 string. This field may not exceed 2048 Unicode characters in length. */
-  ruleGroup?: string;
-}
-export const PrometheusQueryLanguageCondition = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    query: S.optional(S.String),
-    disableMetricValidation: S.optional(S.Boolean),
-    evaluationInterval: S.optional(S.String),
-    labels: S.optional(StringMap),
-    duration: S.optional(S.String),
-    alertRule: S.optional(S.String),
-    ruleGroup: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PrometheusQueryLanguageCondition",
-}) as any as S.Schema<PrometheusQueryLanguageCondition>;
-
 /** A condition is a true/false test that determines when an alerting policy should open an incident. If a condition evaluates to true, it signifies that something is wrong. */
 export interface Condition {
-  /** A short name or phrase used to identify the condition in dashboards, notifications, and incidents. To avoid confusion, don't use the same display name for multiple conditions in the same policy. */
-  displayName?: string;
-  /** A condition that uses the Monitoring Query Language to define alerts. */
-  conditionMonitoringQueryLanguage?: MonitoringQueryLanguageCondition;
   /** A condition that checks that a time series continues to receive new data points. */
   conditionAbsent?: MetricAbsence;
-  /** A condition that compares a time series against a threshold. */
-  conditionThreshold?: MetricThreshold;
   /** A condition that checks for log messages matching given constraints. If set, no other conditions can be present. */
   conditionMatchedLog?: LogMatch;
-  /** A condition that periodically evaluates a SQL query result. */
-  conditionSql?: SqlCondition;
-  /** Required if the condition exists. The unique resource name for this condition. Its format is: projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[POLICY_ID]/conditions/[CONDITION_ID] [CONDITION_ID] is assigned by Cloud Monitoring when the condition is created as part of a new or updated alerting policy.When calling the alertPolicies.create method, do not include the name field in the conditions of the requested alerting policy. Cloud Monitoring creates the condition identifiers and includes them in the new policy.When calling the alertPolicies.update method to update a policy, including a condition name causes the existing condition to be updated. Conditions without names are added to the updated policy. Existing conditions are deleted if they are not updated.Best practice is to preserve [CONDITION_ID] if you make only small changes, such as those to condition thresholds, durations, or trigger values. Otherwise, treat the change as a new condition and let the existing condition be deleted. */
-  name?: string;
   /** A condition that uses the Prometheus query language to define alerts. */
   conditionPrometheusQueryLanguage?: PrometheusQueryLanguageCondition;
+  /** A short name or phrase used to identify the condition in dashboards, notifications, and incidents. To avoid confusion, don't use the same display name for multiple conditions in the same policy. */
+  displayName?: string;
+  /** A condition that compares a time series against a threshold. */
+  conditionThreshold?: MetricThreshold;
+  /** A condition that uses the Monitoring Query Language to define alerts. */
+  conditionMonitoringQueryLanguage?: MonitoringQueryLanguageCondition;
+  /** Required if the condition exists. The unique resource name for this condition. Its format is: projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[POLICY_ID]/conditions/[CONDITION_ID] [CONDITION_ID] is assigned by Cloud Monitoring when the condition is created as part of a new or updated alerting policy.When calling the alertPolicies.create method, do not include the name field in the conditions of the requested alerting policy. Cloud Monitoring creates the condition identifiers and includes them in the new policy.When calling the alertPolicies.update method to update a policy, including a condition name causes the existing condition to be updated. Conditions without names are added to the updated policy. Existing conditions are deleted if they are not updated.Best practice is to preserve [CONDITION_ID] if you make only small changes, such as those to condition thresholds, durations, or trigger values. Otherwise, treat the change as a new condition and let the existing condition be deleted. */
+  name?: string;
+  /** A condition that periodically evaluates a SQL query result. */
+  conditionSql?: SqlCondition;
 }
 export const Condition = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    displayName: S.optional(S.String),
-    conditionMonitoringQueryLanguage: S.optional(
-      MonitoringQueryLanguageCondition,
-    ),
     conditionAbsent: S.optional(MetricAbsence),
-    conditionThreshold: S.optional(MetricThreshold),
     conditionMatchedLog: S.optional(LogMatch),
-    conditionSql: S.optional(SqlCondition),
-    name: S.optional(S.String),
     conditionPrometheusQueryLanguage: S.optional(
       PrometheusQueryLanguageCondition,
     ),
+    displayName: S.optional(S.String),
+    conditionThreshold: S.optional(MetricThreshold),
+    conditionMonitoringQueryLanguage: S.optional(
+      MonitoringQueryLanguageCondition,
+    ),
+    name: S.optional(S.String),
+    conditionSql: S.optional(SqlCondition),
   }),
 ).annotate({ identifier: "Condition" }) as any as S.Schema<Condition>;
 
@@ -645,57 +645,57 @@ export const ConditionList = /*@__PURE__*/ S.Array(
   Condition,
 ) as any as S.Schema<ConditionList>;
 
-export type AlertPolicySeverityEnum =
-  | "SEVERITY_UNSPECIFIED"
-  | "CRITICAL"
-  | "ERROR"
-  | "WARNING";
-export const AlertPolicySeverityEnum = /*@__PURE__*/ S.String;
+export type AlertPolicyCombinerEnum =
+  | "COMBINE_UNSPECIFIED"
+  | "AND"
+  | "OR"
+  | "AND_WITH_MATCHING_RESOURCE";
+export const AlertPolicyCombinerEnum = /*@__PURE__*/ S.String;
 
 /** A description of the conditions under which some aspect of your system is considered to be "unhealthy" and the ways to notify people or services about this state. For an overview of alerting policies, see Introduction to Alerting (https://cloud.google.com/monitoring/alerts/). */
 export interface AlertPolicy {
-  /** A read-only record of the creation of the alerting policy. If provided in a call to create or update, this field will be ignored. */
-  creationRecord?: MutationRecord;
+  /** A read-only record of the most recent change to the alerting policy. If provided in a call to create or update, this field will be ignored. */
+  mutationRecord?: MutationRecord;
+  /** Documentation that is included with notifications and incidents related to this policy. Best practice is for the documentation to include information to help responders understand, mitigate, escalate, and correct the underlying problems detected by the alerting policy. Notification channels that have limited capacity might not show this documentation. */
+  documentation?: Documentation;
+  /** Whether or not the policy is enabled. On write, the default interpretation if unset is that the policy is enabled. On read, clients should not make any assumption about the state if it has not been populated. The field should always be populated on List and Get operations, unless a field projection has been specified that strips it out. */
+  enabled?: boolean;
+  /** Identifies the notification channels to which notifications should be sent when incidents are opened or closed or when new violations occur on an already opened incident. Each element of this array corresponds to the name field in each of the NotificationChannel objects that are returned from the ListNotificationChannels method. The format of the entries in this field is: projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID] */
+  notificationChannels?: StringList;
+  /** Read-only description of how the alerting policy is invalid. This field is only set when the alerting policy is invalid. An invalid alerting policy will not generate incidents. */
+  validity?: Status;
+  /** Optional. The severity of an alerting policy indicates how important incidents generated by that policy are. The severity level will be displayed on the Incident detail page and in notifications. */
+  severity?: AlertPolicySeverityEnum | (string & {});
+  /** User-supplied key/value data to be used for organizing and identifying the AlertPolicy objects.The field can contain up to 64 entries. Each key and value is limited to 63 Unicode characters or 128 bytes, whichever is smaller. Labels and values can contain only lowercase letters, numerals, underscores, and dashes. Keys must begin with a letter.Note that Prometheus {alert name} is a valid Prometheus label names (https://prometheus.io/docs/concepts/data_model/#metric-names-and-labels), whereas Prometheus {rule group} is an unrestricted UTF-8 string. This means that they cannot be stored as-is in user labels, because they may contain characters that are not allowed in user-label values. */
+  userLabels?: StringMap;
+  /** A short name or phrase used to identify the policy in dashboards, notifications, and incidents. To avoid confusion, don't use the same display name for multiple policies in the same project. The name is limited to 512 Unicode characters.The convention for the display_name of a PrometheusQueryLanguageCondition is "{rule group name}/{alert name}", where the {rule group name} and {alert name} should be taken from the corresponding Prometheus configuration file. This convention is not enforced. In any case the display_name is not a unique key of the AlertPolicy. */
+  displayName?: string;
   /** Control over how this alerting policy's notification channels are notified. */
   alertStrategy?: AlertStrategy;
+  /** A read-only record of the creation of the alerting policy. If provided in a call to create or update, this field will be ignored. */
+  creationRecord?: MutationRecord;
+  /** A list of conditions for the policy. The conditions are combined by AND or OR according to the combiner field. If the combined conditions evaluate to true, then an incident is created. A policy can have from one to six conditions. If condition_time_series_query_language is present, it must be the only condition. If condition_monitoring_query_language is present, it must be the only condition. */
+  conditions?: ConditionList;
   /** Identifier. Required if the policy exists. The resource name for this policy. The format is: projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID] [ALERT_POLICY_ID] is assigned by Cloud Monitoring when the policy is created. When calling the alertPolicies.create method, do not include the name field in the alerting policy passed as part of the request. */
   name?: string;
   /** How to combine the results of multiple conditions to determine if an incident should be opened. If condition_time_series_query_language is present, this must be COMBINE_UNSPECIFIED. */
   combiner?: AlertPolicyCombinerEnum | (string & {});
-  /** A read-only record of the most recent change to the alerting policy. If provided in a call to create or update, this field will be ignored. */
-  mutationRecord?: MutationRecord;
-  /** Identifies the notification channels to which notifications should be sent when incidents are opened or closed or when new violations occur on an already opened incident. Each element of this array corresponds to the name field in each of the NotificationChannel objects that are returned from the ListNotificationChannels method. The format of the entries in this field is: projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID] */
-  notificationChannels?: StringList;
-  /** User-supplied key/value data to be used for organizing and identifying the AlertPolicy objects.The field can contain up to 64 entries. Each key and value is limited to 63 Unicode characters or 128 bytes, whichever is smaller. Labels and values can contain only lowercase letters, numerals, underscores, and dashes. Keys must begin with a letter.Note that Prometheus {alert name} is a valid Prometheus label names (https://prometheus.io/docs/concepts/data_model/#metric-names-and-labels), whereas Prometheus {rule group} is an unrestricted UTF-8 string. This means that they cannot be stored as-is in user labels, because they may contain characters that are not allowed in user-label values. */
-  userLabels?: StringMap;
-  /** Documentation that is included with notifications and incidents related to this policy. Best practice is for the documentation to include information to help responders understand, mitigate, escalate, and correct the underlying problems detected by the alerting policy. Notification channels that have limited capacity might not show this documentation. */
-  documentation?: Documentation;
-  /** Read-only description of how the alerting policy is invalid. This field is only set when the alerting policy is invalid. An invalid alerting policy will not generate incidents. */
-  validity?: Status;
-  /** A list of conditions for the policy. The conditions are combined by AND or OR according to the combiner field. If the combined conditions evaluate to true, then an incident is created. A policy can have from one to six conditions. If condition_time_series_query_language is present, it must be the only condition. If condition_monitoring_query_language is present, it must be the only condition. */
-  conditions?: ConditionList;
-  /** A short name or phrase used to identify the policy in dashboards, notifications, and incidents. To avoid confusion, don't use the same display name for multiple policies in the same project. The name is limited to 512 Unicode characters.The convention for the display_name of a PrometheusQueryLanguageCondition is "{rule group name}/{alert name}", where the {rule group name} and {alert name} should be taken from the corresponding Prometheus configuration file. This convention is not enforced. In any case the display_name is not a unique key of the AlertPolicy. */
-  displayName?: string;
-  /** Whether or not the policy is enabled. On write, the default interpretation if unset is that the policy is enabled. On read, clients should not make any assumption about the state if it has not been populated. The field should always be populated on List and Get operations, unless a field projection has been specified that strips it out. */
-  enabled?: boolean;
-  /** Optional. The severity of an alerting policy indicates how important incidents generated by that policy are. The severity level will be displayed on the Incident detail page and in notifications. */
-  severity?: AlertPolicySeverityEnum | (string & {});
 }
 export const AlertPolicy = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    creationRecord: S.optional(MutationRecord),
+    mutationRecord: S.optional(MutationRecord),
+    documentation: S.optional(Documentation),
+    enabled: S.optional(S.Boolean),
+    notificationChannels: S.optional(StringList),
+    validity: S.optional(Status),
+    severity: S.optional(AlertPolicySeverityEnum),
+    userLabels: S.optional(StringMap),
+    displayName: S.optional(S.String),
     alertStrategy: S.optional(AlertStrategy),
+    creationRecord: S.optional(MutationRecord),
+    conditions: S.optional(ConditionList),
     name: S.optional(S.String),
     combiner: S.optional(AlertPolicyCombinerEnum),
-    mutationRecord: S.optional(MutationRecord),
-    notificationChannels: S.optional(StringList),
-    userLabels: S.optional(StringMap),
-    documentation: S.optional(Documentation),
-    validity: S.optional(Status),
-    conditions: S.optional(ConditionList),
-    displayName: S.optional(S.String),
-    enabled: S.optional(S.Boolean),
-    severity: S.optional(AlertPolicySeverityEnum),
   }),
 ).annotate({ identifier: "AlertPolicy" }) as any as S.Schema<AlertPolicy>;
 
@@ -720,61 +720,38 @@ export const CreateProjectsAlertPoliciesRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateProjectsAlertPoliciesRequest",
 }) as any as S.Schema<CreateProjectsAlertPoliciesRequest>;
 
-/** Exemplars are example points that may be used to annotate aggregated distribution values. They are metadata that gives information about a particular value added to a Distribution bucket, such as a trace ID that was active when a value was added. They may contain further information, such as a example values and timestamps, origin, etc. */
-export interface Exemplar {
-  /** The observation (sampling) time of the above value. */
-  timestamp?: string;
-  /** Value of the exemplar point. This value determines to which bucket the exemplar belongs. */
-  value?: number;
-  /** Contextual information about the example value. Examples are:Trace: type.googleapis.com/google.monitoring.v3.SpanContextLiteral string: type.googleapis.com/google.protobuf.StringValueLabels dropped during aggregation: type.googleapis.com/google.monitoring.v3.DroppedLabelsThere may be only a single attachment of any given message type in a single exemplar, and this is enforced by the system. */
-  attachments?: DocumentMapList;
+/** An object representing a resource that can be used for monitoring, logging, billing, or other purposes. Examples include virtual machine instances, databases, and storage devices such as disks. The type field identifies a MonitoredResourceDescriptor object that describes the resource's schema. Information in the labels field identifies the actual resource and its attributes according to the schema. For example, a particular Compute Engine VM instance could be represented by the following object, because the MonitoredResourceDescriptor for "gce_instance" has labels "project_id", "instance_id" and "zone": { "type": "gce_instance", "labels": { "project_id": "my-project", "instance_id": "12345678901234", "zone": "us-central1-a" }} */
+export interface MonitoredResource {
+  /** Required. Values for all of the labels listed in the associated monitored resource descriptor. For example, Compute Engine VM instances use the labels "project_id", "instance_id", and "zone". */
+  labels?: StringMap;
+  /** Required. The monitored resource type. This field must match the type field of a MonitoredResourceDescriptor object. For example, the type of a Compute Engine VM instance is gce_instance. For a list of types, see Monitoring resource types (https://cloud.google.com/monitoring/api/resources) and Logging resource types (https://cloud.google.com/logging/docs/api/v2/resource-list). */
+  type?: string;
 }
-export const Exemplar = /*@__PURE__*/ S.suspend(() =>
+export const MonitoredResource = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    timestamp: S.optional(S.String),
-    value: S.optional(S.Number),
-    attachments: S.optional(DocumentMapList),
+    labels: S.optional(StringMap),
+    type: S.optional(S.String),
   }),
-).annotate({ identifier: "Exemplar" }) as any as S.Schema<Exemplar>;
-
-export type ExemplarList = Array<Exemplar>;
-export const ExemplarList = /*@__PURE__*/ S.Array(
-  Exemplar,
-) as any as S.Schema<ExemplarList>;
+).annotate({
+  identifier: "MonitoredResource",
+}) as any as S.Schema<MonitoredResource>;
 
 /** Specifies a linear sequence of buckets that all have the same width (except overflow and underflow). Each bucket represents a constant absolute uncertainty on the specific value in the bucket.There are num_finite_buckets + 2 (= N) buckets. Bucket i has the following boundaries:Upper bound (0 <= i < N-1): offset + (width * i).Lower bound (1 <= i < N): offset + (width * (i - 1)). */
 export interface Linear {
-  /** Must be greater than 0. */
-  numFiniteBuckets?: number;
-  /** Must be greater than 0. */
-  width?: number;
   /** Lower bound of the first bucket. */
   offset?: number;
+  /** Must be greater than 0. */
+  width?: number;
+  /** Must be greater than 0. */
+  numFiniteBuckets?: number;
 }
 export const Linear = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    numFiniteBuckets: S.optional(S.Number),
-    width: S.optional(S.Number),
     offset: S.optional(S.Number),
+    width: S.optional(S.Number),
+    numFiniteBuckets: S.optional(S.Number),
   }),
 ).annotate({ identifier: "Linear" }) as any as S.Schema<Linear>;
-
-/** Specifies an exponential sequence of buckets that have a width that is proportional to the value of the lower bound. Each bucket represents a constant relative uncertainty on a specific value in the bucket.There are num_finite_buckets + 2 (= N) buckets. Bucket i has the following boundaries:Upper bound (0 <= i < N-1): scale * (growth_factor ^ i).Lower bound (1 <= i < N): scale * (growth_factor ^ (i - 1)). */
-export interface Exponential {
-  /** Must be greater than 0. */
-  numFiniteBuckets?: number;
-  /** Must be greater than 1. */
-  growthFactor?: number;
-  /** Must be greater than 0. */
-  scale?: number;
-}
-export const Exponential = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    numFiniteBuckets: S.optional(S.Number),
-    growthFactor: S.optional(S.Number),
-    scale: S.optional(S.Number),
-  }),
-).annotate({ identifier: "Exponential" }) as any as S.Schema<Exponential>;
 
 export type DoubleList = Array<number>;
 export const DoubleList = /*@__PURE__*/ S.Array(
@@ -792,22 +769,61 @@ export const Explicit = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Explicit" }) as any as S.Schema<Explicit>;
 
+/** Specifies an exponential sequence of buckets that have a width that is proportional to the value of the lower bound. Each bucket represents a constant relative uncertainty on a specific value in the bucket.There are num_finite_buckets + 2 (= N) buckets. Bucket i has the following boundaries:Upper bound (0 <= i < N-1): scale * (growth_factor ^ i).Lower bound (1 <= i < N): scale * (growth_factor ^ (i - 1)). */
+export interface Exponential {
+  /** Must be greater than 0. */
+  scale?: number;
+  /** Must be greater than 0. */
+  numFiniteBuckets?: number;
+  /** Must be greater than 1. */
+  growthFactor?: number;
+}
+export const Exponential = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    scale: S.optional(S.Number),
+    numFiniteBuckets: S.optional(S.Number),
+    growthFactor: S.optional(S.Number),
+  }),
+).annotate({ identifier: "Exponential" }) as any as S.Schema<Exponential>;
+
 /** BucketOptions describes the bucket boundaries used to create a histogram for the distribution. The buckets can be in a linear sequence, an exponential sequence, or each bucket can be specified explicitly. BucketOptions does not include the number of values in each bucket.A bucket has an inclusive lower bound and exclusive upper bound for the values that are counted for that bucket. The upper bound of a bucket must be strictly greater than the lower bound. The sequence of N buckets for a distribution consists of an underflow bucket (number 0), zero or more finite buckets (number 1 through N - 2) and an overflow bucket (number N - 1). The buckets are contiguous: the lower bound of bucket i (i > 0) is the same as the upper bound of bucket i - 1. The buckets span the whole range of finite values: lower bound of the underflow bucket is -infinity and the upper bound of the overflow bucket is +infinity. The finite buckets are so-called because both bounds are finite. */
 export interface BucketOptions {
   /** The linear bucket. */
   linearBuckets?: Linear;
-  /** The exponential buckets. */
-  exponentialBuckets?: Exponential;
   /** The explicit buckets. */
   explicitBuckets?: Explicit;
+  /** The exponential buckets. */
+  exponentialBuckets?: Exponential;
 }
 export const BucketOptions = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     linearBuckets: S.optional(Linear),
-    exponentialBuckets: S.optional(Exponential),
     explicitBuckets: S.optional(Explicit),
+    exponentialBuckets: S.optional(Exponential),
   }),
 ).annotate({ identifier: "BucketOptions" }) as any as S.Schema<BucketOptions>;
+
+/** Exemplars are example points that may be used to annotate aggregated distribution values. They are metadata that gives information about a particular value added to a Distribution bucket, such as a trace ID that was active when a value was added. They may contain further information, such as a example values and timestamps, origin, etc. */
+export interface Exemplar {
+  /** The observation (sampling) time of the above value. */
+  timestamp?: string;
+  /** Contextual information about the example value. Examples are:Trace: type.googleapis.com/google.monitoring.v3.SpanContextLiteral string: type.googleapis.com/google.protobuf.StringValueLabels dropped during aggregation: type.googleapis.com/google.monitoring.v3.DroppedLabelsThere may be only a single attachment of any given message type in a single exemplar, and this is enforced by the system. */
+  attachments?: DocumentMapList;
+  /** Value of the exemplar point. This value determines to which bucket the exemplar belongs. */
+  value?: number;
+}
+export const Exemplar = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    timestamp: S.optional(S.String),
+    attachments: S.optional(DocumentMapList),
+    value: S.optional(S.Number),
+  }),
+).annotate({ identifier: "Exemplar" }) as any as S.Schema<Exemplar>;
+
+export type ExemplarList = Array<Exemplar>;
+export const ExemplarList = /*@__PURE__*/ S.Array(
+  Exemplar,
+) as any as S.Schema<ExemplarList>;
 
 /** The range of the population values. */
 export interface Range {
@@ -825,61 +841,55 @@ export const Range = /*@__PURE__*/ S.suspend(() =>
 
 /** Distribution contains summary statistics for a population of values. It optionally contains a histogram representing the distribution of those values across a set of buckets.The summary statistics are the count, mean, sum of the squared deviation from the mean, the minimum, and the maximum of the set of population of values. The histogram is based on a sequence of buckets and gives a count of values that fall into each bucket. The boundaries of the buckets are given either explicitly or by formulas for buckets of fixed or exponentially increasing widths.Although it is not forbidden, it is generally a bad idea to include non-finite values (infinities or NaNs) in the population of values, as this will render the mean and sum_of_squared_deviation fields meaningless. */
 export interface Distribution {
-  /** Required in the Cloud Monitoring API v3. The values for each bucket specified in bucket_options. The sum of the values in bucketCounts must equal the value in the count field of the Distribution object. The order of the bucket counts follows the numbering schemes described for the three bucket types. The underflow bucket has number 0; the finite buckets, if any, have numbers 1 through N-2; and the overflow bucket has number N-1. The size of bucket_counts must not be greater than N. If the size is less than N, then the remaining buckets are assigned values of zero. */
-  bucketCounts?: StringList;
-  /** Must be in increasing order of value field. */
-  exemplars?: ExemplarList;
   /** Required in the Cloud Monitoring API v3. Defines the histogram bucket boundaries. */
   bucketOptions?: BucketOptions;
+  /** The sum of squared deviations from the mean of the values in the population. For values x_i this is: Sum[i=1..n]((x_i - mean)^2) Knuth, "The Art of Computer Programming", Vol. 2, page 232, 3rd edition describes Welford's method for accumulating this sum in one pass.If count is zero then this field must be zero. */
+  sumOfSquaredDeviation?: number;
+  /** Must be in increasing order of value field. */
+  exemplars?: ExemplarList;
   /** The number of values in the population. Must be non-negative. This value must equal the sum of the values in bucket_counts if a histogram is provided. */
   count?: string;
   /** The arithmetic mean of the values in the population. If count is zero then this field must be zero. */
   mean?: number;
+  /** Required in the Cloud Monitoring API v3. The values for each bucket specified in bucket_options. The sum of the values in bucketCounts must equal the value in the count field of the Distribution object. The order of the bucket counts follows the numbering schemes described for the three bucket types. The underflow bucket has number 0; the finite buckets, if any, have numbers 1 through N-2; and the overflow bucket has number N-1. The size of bucket_counts must not be greater than N. If the size is less than N, then the remaining buckets are assigned values of zero. */
+  bucketCounts?: StringList;
   /** If specified, contains the range of the population values. The field must not be present if the count is zero. This field is presently ignored by the Cloud Monitoring API v3. */
   range?: Range;
-  /** The sum of squared deviations from the mean of the values in the population. For values x_i this is: Sum[i=1..n]((x_i - mean)^2) Knuth, "The Art of Computer Programming", Vol. 2, page 232, 3rd edition describes Welford's method for accumulating this sum in one pass.If count is zero then this field must be zero. */
-  sumOfSquaredDeviation?: number;
 }
 export const Distribution = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    bucketCounts: S.optional(StringList),
-    exemplars: S.optional(ExemplarList),
     bucketOptions: S.optional(BucketOptions),
+    sumOfSquaredDeviation: S.optional(S.Number),
+    exemplars: S.optional(ExemplarList),
     count: S.optional(S.String),
     mean: S.optional(S.Number),
+    bucketCounts: S.optional(StringList),
     range: S.optional(Range),
-    sumOfSquaredDeviation: S.optional(S.Number),
   }),
 ).annotate({ identifier: "Distribution" }) as any as S.Schema<Distribution>;
 
 /** A single strongly-typed value. */
 export interface TypedValue {
-  /** A Boolean value: true or false. */
-  boolValue?: boolean;
-  /** A distribution value. */
-  distributionValue?: Distribution;
-  /** A 64-bit double-precision floating-point number. Its magnitude is approximately ±10±300 and it has 16 significant digits of precision. */
-  doubleValue?: number;
-  /** A 64-bit integer. Its range is approximately ±9.2x1018. */
-  int64Value?: string;
   /** A variable-length string value. */
   stringValue?: string;
+  /** A 64-bit double-precision floating-point number. Its magnitude is approximately ±10±300 and it has 16 significant digits of precision. */
+  doubleValue?: number;
+  /** A distribution value. */
+  distributionValue?: Distribution;
+  /** A 64-bit integer. Its range is approximately ±9.2x1018. */
+  int64Value?: string;
+  /** A Boolean value: true or false. */
+  boolValue?: boolean;
 }
 export const TypedValue = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    boolValue: S.optional(S.Boolean),
-    distributionValue: S.optional(Distribution),
-    doubleValue: S.optional(S.Number),
-    int64Value: S.optional(S.String),
     stringValue: S.optional(S.String),
+    doubleValue: S.optional(S.Number),
+    distributionValue: S.optional(Distribution),
+    int64Value: S.optional(S.String),
+    boolValue: S.optional(S.Boolean),
   }),
 ).annotate({ identifier: "TypedValue" }) as any as S.Schema<TypedValue>;
-
-export type TypedValueMap = { [key: string]: TypedValue | undefined };
-export const TypedValueMap = /*@__PURE__*/ S.Record(
-  S.String,
-  TypedValue,
-) as any as S.Schema<TypedValueMap>;
 
 export type CollectdValueDataSourceTypeEnum =
   | "UNSPECIFIED_DATA_SOURCE_TYPE"
@@ -891,17 +901,17 @@ export const CollectdValueDataSourceTypeEnum = /*@__PURE__*/ S.String;
 
 /** A single data point from a collectd-based plugin. */
 export interface CollectdValue {
-  /** The measurement value. */
-  value?: TypedValue;
   /** The data source for the collectd value. For example, there are two data sources for network measurements: "rx" and "tx". */
   dataSourceName?: string;
+  /** The measurement value. */
+  value?: TypedValue;
   /** The type of measurement. */
   dataSourceType?: CollectdValueDataSourceTypeEnum | (string & {});
 }
 export const CollectdValue = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(TypedValue),
     dataSourceName: S.optional(S.String),
+    value: S.optional(TypedValue),
     dataSourceType: S.optional(CollectdValueDataSourceTypeEnum),
   }),
 ).annotate({ identifier: "CollectdValue" }) as any as S.Schema<CollectdValue>;
@@ -911,35 +921,41 @@ export const CollectdValueList = /*@__PURE__*/ S.Array(
   CollectdValue,
 ) as any as S.Schema<CollectdValueList>;
 
+export type TypedValueMap = { [key: string]: TypedValue | undefined };
+export const TypedValueMap = /*@__PURE__*/ S.Record(
+  S.String,
+  TypedValue,
+) as any as S.Schema<TypedValueMap>;
+
 /** A collection of data points sent from a collectd-based plugin. See the collectd documentation for more information. */
 export interface CollectdPayload {
-  /** The measurement type instance. Example: "used". */
-  typeInstance?: string;
-  /** The measurement metadata. Example: "process_id" -> 12345 */
-  metadata?: TypedValueMap;
+  /** The measured values during this time interval. Each value must have a different data_source_name. */
+  values?: CollectdValueList;
+  /** The instance name of the plugin Example: "hdcl". */
+  pluginInstance?: string;
+  /** The measurement type. Example: "memory". */
+  type?: string;
   /** The end time of the interval. */
   endTime?: string;
   /** The name of the plugin. Example: "disk". */
   plugin?: string;
-  /** The instance name of the plugin Example: "hdcl". */
-  pluginInstance?: string;
-  /** The measured values during this time interval. Each value must have a different data_source_name. */
-  values?: CollectdValueList;
+  /** The measurement type instance. Example: "used". */
+  typeInstance?: string;
+  /** The measurement metadata. Example: "process_id" -> 12345 */
+  metadata?: TypedValueMap;
   /** The start time of the interval. */
   startTime?: string;
-  /** The measurement type. Example: "memory". */
-  type?: string;
 }
 export const CollectdPayload = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    typeInstance: S.optional(S.String),
-    metadata: S.optional(TypedValueMap),
+    values: S.optional(CollectdValueList),
+    pluginInstance: S.optional(S.String),
+    type: S.optional(S.String),
     endTime: S.optional(S.String),
     plugin: S.optional(S.String),
-    pluginInstance: S.optional(S.String),
-    values: S.optional(CollectdValueList),
+    typeInstance: S.optional(S.String),
+    metadata: S.optional(TypedValueMap),
     startTime: S.optional(S.String),
-    type: S.optional(S.String),
   }),
 ).annotate({
   identifier: "CollectdPayload",
@@ -950,36 +966,20 @@ export const CollectdPayloadList = /*@__PURE__*/ S.Array(
   CollectdPayload,
 ) as any as S.Schema<CollectdPayloadList>;
 
-/** An object representing a resource that can be used for monitoring, logging, billing, or other purposes. Examples include virtual machine instances, databases, and storage devices such as disks. The type field identifies a MonitoredResourceDescriptor object that describes the resource's schema. Information in the labels field identifies the actual resource and its attributes according to the schema. For example, a particular Compute Engine VM instance could be represented by the following object, because the MonitoredResourceDescriptor for "gce_instance" has labels "project_id", "instance_id" and "zone": { "type": "gce_instance", "labels": { "project_id": "my-project", "instance_id": "12345678901234", "zone": "us-central1-a" }} */
-export interface MonitoredResource {
-  /** Required. The monitored resource type. This field must match the type field of a MonitoredResourceDescriptor object. For example, the type of a Compute Engine VM instance is gce_instance. For a list of types, see Monitoring resource types (https://cloud.google.com/monitoring/api/resources) and Logging resource types (https://cloud.google.com/logging/docs/api/v2/resource-list). */
-  type?: string;
-  /** Required. Values for all of the labels listed in the associated monitored resource descriptor. For example, Compute Engine VM instances use the labels "project_id", "instance_id", and "zone". */
-  labels?: StringMap;
-}
-export const MonitoredResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(S.String),
-    labels: S.optional(StringMap),
-  }),
-).annotate({
-  identifier: "MonitoredResource",
-}) as any as S.Schema<MonitoredResource>;
-
 /** The CreateCollectdTimeSeries request. */
 export interface CreateCollectdTimeSeriesRequest {
-  /** The version of collectd that collected the data. Example: "5.3.0-192.el6". */
-  collectdVersion?: string;
-  /** The collectd payloads representing the time series data. You must not include more than a single point for each time series, so no two payloads can have the same values for all of the fields plugin, plugin_instance, type, and type_instance. */
-  collectdPayloads?: CollectdPayloadList;
   /** The monitored resource associated with the time series. */
   resource?: MonitoredResource;
+  /** The collectd payloads representing the time series data. You must not include more than a single point for each time series, so no two payloads can have the same values for all of the fields plugin, plugin_instance, type, and type_instance. */
+  collectdPayloads?: CollectdPayloadList;
+  /** The version of collectd that collected the data. Example: "5.3.0-192.el6". */
+  collectdVersion?: string;
 }
 export const CreateCollectdTimeSeriesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    collectdVersion: S.optional(S.String),
-    collectdPayloads: S.optional(CollectdPayloadList),
     resource: S.optional(MonitoredResource),
+    collectdPayloads: S.optional(CollectdPayloadList),
+    collectdVersion: S.optional(S.String),
   }),
 ).annotate({
   identifier: "CreateCollectdTimeSeriesRequest",
@@ -1110,39 +1110,39 @@ export const CreateCollectdTimeSeriesResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** The description of a dynamic collection of monitored resources. Each group has a filter that is matched against monitored resources and their associated metadata. If a group's filter matches an available monitored resource, then that resource is a member of that group. Groups can contain any number of monitored resources, and each monitored resource can be a member of any number of groups.Groups can be nested in parent-child hierarchies. The parentName field identifies an optional parent for each group. If a group has a parent, then the only monitored resources available to be matched by the group's filter are the resources contained in the parent group. In other words, a group contains the monitored resources that match its filter and the filters of all the group's ancestors. A group without a parent can contain any monitored resource.For example, consider an infrastructure running a set of instances with two user-defined tags: "environment" and "role". A parent group has a filter, environment="production". A child of that parent group has a filter, role="transcoder". The parent group contains all instances in the production environment, regardless of their roles. The child group contains instances that have the transcoder role and are in the production environment.The monitored resources contained in a group can change at any moment, depending on what resources exist and what filters are associated with the group and its ancestors. */
 export interface Group {
-  /** If true, the members of this group are considered to be a cluster. The system can perform additional analysis on groups that are clusters. */
-  isCluster?: boolean;
-  /** Output only. The name of this group. The format is: projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID] When creating a group, this field is ignored and a new name is created consisting of the project specified in the call to CreateGroup and a unique [GROUP_ID] that is generated automatically. */
-  name?: string;
   /** The name of the group's parent, if it has one. The format is: projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID] For groups with no parent, parent_name is the empty string, "". */
   parentName?: string;
-  /** The filter used to determine which monitored resources belong to this group. */
-  filter?: string;
   /** A user-assigned name for this group, used only for display purposes. */
   displayName?: string;
+  /** If true, the members of this group are considered to be a cluster. The system can perform additional analysis on groups that are clusters. */
+  isCluster?: boolean;
+  /** The filter used to determine which monitored resources belong to this group. */
+  filter?: string;
+  /** Output only. The name of this group. The format is: projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID] When creating a group, this field is ignored and a new name is created consisting of the project specified in the call to CreateGroup and a unique [GROUP_ID] that is generated automatically. */
+  name?: string;
 }
 export const Group = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    isCluster: S.optional(S.Boolean),
-    name: S.optional(S.String),
     parentName: S.optional(S.String),
-    filter: S.optional(S.String),
     displayName: S.optional(S.String),
+    isCluster: S.optional(S.Boolean),
+    filter: S.optional(S.String),
+    name: S.optional(S.String),
   }),
 ).annotate({ identifier: "Group" }) as any as S.Schema<Group>;
 
 export interface CreateProjectsGroupsRequest {
-  /** If true, validate this request but do not create the group. */
-  validateOnly?: boolean;
   /** Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) in which to create the group. The format is: projects/[PROJECT_ID_OR_NUMBER] */
   name: string;
+  /** If true, validate this request but do not create the group. */
+  validateOnly?: boolean;
   /** Request body */
   body?: Group;
 }
 export const CreateProjectsGroupsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    validateOnly: S.optional(S.Boolean.pipe(T.Query())),
     name: S.String.pipe(T.Label()),
+    validateOnly: S.optional(S.Boolean.pipe(T.Query())),
     body: S.optional(Group.pipe(T.HttpBody())),
   }).pipe(
     T.Http({
@@ -1182,16 +1182,6 @@ export const LabelDescriptorList = /*@__PURE__*/ S.Array(
   LabelDescriptor,
 ) as any as S.Schema<LabelDescriptorList>;
 
-export type MetricDescriptorValueTypeEnum =
-  | "VALUE_TYPE_UNSPECIFIED"
-  | "BOOL"
-  | "INT64"
-  | "DOUBLE"
-  | "STRING"
-  | "DISTRIBUTION"
-  | "MONEY";
-export const MetricDescriptorValueTypeEnum = /*@__PURE__*/ S.String;
-
 export type MetricDescriptorMetricKindEnum =
   | "METRIC_KIND_UNSPECIFIED"
   | "GAUGE"
@@ -1209,6 +1199,17 @@ export type MetricDescriptorLaunchStageEnum =
   | "GA"
   | "DEPRECATED";
 export const MetricDescriptorLaunchStageEnum = /*@__PURE__*/ S.String;
+
+export type MetricDescriptorMetadataLaunchStageEnum =
+  | "LAUNCH_STAGE_UNSPECIFIED"
+  | "UNIMPLEMENTED"
+  | "PRELAUNCH"
+  | "EARLY_ACCESS"
+  | "ALPHA"
+  | "BETA"
+  | "GA"
+  | "DEPRECATED";
+export const MetricDescriptorMetadataLaunchStageEnum = /*@__PURE__*/ S.String;
 
 export type MetricDescriptorMetadataTimeSeriesResourceHierarchyLevelItemEnum =
   | "TIME_SERIES_RESOURCE_HIERARCHY_LEVEL_UNSPECIFIED"
@@ -1228,79 +1229,78 @@ export const MetricDescriptorMetadataTimeSeriesResourceHierarchyLevelItemEnumLis
     MetricDescriptorMetadataTimeSeriesResourceHierarchyLevelItemEnum,
   ) as any as S.Schema<MetricDescriptorMetadataTimeSeriesResourceHierarchyLevelItemEnumList>;
 
-export type MetricDescriptorMetadataLaunchStageEnum =
-  | "LAUNCH_STAGE_UNSPECIFIED"
-  | "UNIMPLEMENTED"
-  | "PRELAUNCH"
-  | "EARLY_ACCESS"
-  | "ALPHA"
-  | "BETA"
-  | "GA"
-  | "DEPRECATED";
-export const MetricDescriptorMetadataLaunchStageEnum = /*@__PURE__*/ S.String;
-
 /** Additional annotations that can be used to guide the usage of a metric. */
 export interface MetricDescriptorMetadata {
+  /** Deprecated. Must use the MetricDescriptor.launch_stage instead. */
+  launchStage?: MetricDescriptorMetadataLaunchStageEnum | (string & {});
   /** The delay of data points caused by ingestion. Data points older than this age are guaranteed to be ingested and available to be read, excluding data loss due to errors. */
   ingestDelay?: string;
   /** The sampling period of metric data points. For metrics which are written periodically, consecutive data points are stored at this time interval, excluding data loss due to errors. Metrics with a higher granularity have a smaller sampling period. */
   samplePeriod?: string;
   /** The scope of the timeseries data of the metric. */
   timeSeriesResourceHierarchyLevel?: MetricDescriptorMetadataTimeSeriesResourceHierarchyLevelItemEnumList;
-  /** Deprecated. Must use the MetricDescriptor.launch_stage instead. */
-  launchStage?: MetricDescriptorMetadataLaunchStageEnum | (string & {});
 }
 export const MetricDescriptorMetadata = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    launchStage: S.optional(MetricDescriptorMetadataLaunchStageEnum),
     ingestDelay: S.optional(S.String),
     samplePeriod: S.optional(S.String),
     timeSeriesResourceHierarchyLevel: S.optional(
       MetricDescriptorMetadataTimeSeriesResourceHierarchyLevelItemEnumList,
     ),
-    launchStage: S.optional(MetricDescriptorMetadataLaunchStageEnum),
   }),
 ).annotate({
   identifier: "MetricDescriptorMetadata",
 }) as any as S.Schema<MetricDescriptorMetadata>;
 
+export type MetricDescriptorValueTypeEnum =
+  | "VALUE_TYPE_UNSPECIFIED"
+  | "BOOL"
+  | "INT64"
+  | "DOUBLE"
+  | "STRING"
+  | "DISTRIBUTION"
+  | "MONEY";
+export const MetricDescriptorValueTypeEnum = /*@__PURE__*/ S.String;
+
 /** Defines a metric type and its schema. Once a metric descriptor is created, deleting or altering it stops data collection and makes the metric type's existing data unusable. */
 export interface MetricDescriptor {
-  /** The units in which the metric value is reported. It is only applicable if the value_type is INT64, DOUBLE, or DISTRIBUTION. The unit defines the representation of the stored metric values.Different systems might scale the values to be more easily displayed (so a value of 0.02kBy might be displayed as 20By, and a value of 3523kBy might be displayed as 3.5MBy). However, if the unit is kBy, then the value of the metric is always in thousands of bytes, no matter how it might be displayed.If you want a custom metric to record the exact number of CPU-seconds used by a job, you can create an INT64 CUMULATIVE metric whose unit is s{CPU} (or equivalently 1s{CPU} or just s). If the job uses 12,005 CPU-seconds, then the value is written as 12005.Alternatively, if you want a custom metric to record data in a more granular way, you can create a DOUBLE CUMULATIVE metric whose unit is ks{CPU}, and then write the value 12.005 (which is 12005/1000), or use Kis{CPU} and write 11.723 (which is 12005/1024).The supported units are a subset of The Unified Code for Units of Measure (https://unitsofmeasure.org/ucum.html) standard:Basic units (UNIT) bit bit By byte s second min minute h hour d day 1 dimensionlessPrefixes (PREFIX) k kilo (10^3) M mega (10^6) G giga (10^9) T tera (10^12) P peta (10^15) E exa (10^18) Z zetta (10^21) Y yotta (10^24) m milli (10^-3) u micro (10^-6) n nano (10^-9) p pico (10^-12) f femto (10^-15) a atto (10^-18) z zepto (10^-21) y yocto (10^-24) Ki kibi (2^10) Mi mebi (2^20) Gi gibi (2^30) Ti tebi (2^40) Pi pebi (2^50)GrammarThe grammar also includes these connectors: / division or ratio (as an infix operator). For examples, kBy/{email} or MiBy/10ms (although you should almost never have /s in a metric unit; rates should always be computed at query time from the underlying cumulative or delta value). . multiplication or composition (as an infix operator). For examples, GBy.d or k{watt}.h.The grammar for a unit is as follows: Expression = Component { "." Component } { "/" Component } ; Component = ( [ PREFIX ] UNIT | "%" ) [ Annotation ] | Annotation | "1" ; Annotation = "{" NAME "}" ; Notes: Annotation is just a comment if it follows a UNIT. If the annotation is used alone, then the unit is equivalent to 1. For examples, {request}/s == 1/s, By{transmitted}/s == By/s. NAME is a sequence of non-blank printable ASCII characters not containing { or }. 1 represents a unitary dimensionless unit (https://en.wikipedia.org/wiki/Dimensionless_quantity) of 1, such as in 1/s. It is typically used when none of the basic units are appropriate. For example, "new users per day" can be represented as 1/d or {new-users}/d (and a metric value 5 would mean "5 new users). Alternatively, "thousands of page views per day" would be represented as 1000/d or k1/d or k{page_views}/d (and a metric value of 5.3 would mean "5300 page views per day"). % represents dimensionless value of 1/100, and annotates values giving a percentage (so the metric values are typically in the range of 0..100, and a metric value 3 means "3 percent"). 10^2.% indicates a metric contains a ratio, typically in the range 0..1, that will be multiplied by 100 and displayed as a percentage (so a metric value 0.03 means "3 percent"). */
-  unit?: string;
   /** The set of labels that can be used to describe a specific instance of this metric type. For example, the appengine.googleapis.com/http/server/response_latencies metric type has a label for the HTTP response code, response_code, so you can look at latencies for successful responses or just for responses that failed. */
   labels?: LabelDescriptorList;
   /** A concise name for the metric, which can be displayed in user interfaces. Use sentence case without an ending period, for example "Request count". This field is optional but it is recommended to be set for any metrics associated with user-visible concepts, such as Quota. */
   displayName?: string;
-  /** Whether the measurement is an integer, a floating-point number, etc. Some combinations of metric_kind and value_type might not be supported. */
-  valueType?: MetricDescriptorValueTypeEnum | (string & {});
-  /** Whether the metric records instantaneous values, changes to a value, etc. Some combinations of metric_kind and value_type might not be supported. */
-  metricKind?: MetricDescriptorMetricKindEnum | (string & {});
-  /** Read-only. If present, then a time series, which is identified partially by a metric type and a MonitoredResourceDescriptor, that is associated with this metric type can only be associated with one of the monitored resource types listed here. */
-  monitoredResourceTypes?: StringList;
-  /** The resource name of the metric descriptor. */
-  name?: string;
-  /** The metric type, including its DNS name prefix. The type is not URL-encoded. All user-defined metric types have the DNS name custom.googleapis.com or external.googleapis.com. Metric types should use a natural hierarchical grouping. For example: "custom.googleapis.com/invoice/paid/amount" "external.googleapis.com/prometheus/up" "appengine.googleapis.com/http/server/response_latencies" */
-  type?: string;
   /** A detailed description of the metric, which can be used in documentation. */
   description?: string;
+  /** Read-only. If present, then a time series, which is identified partially by a metric type and a MonitoredResourceDescriptor, that is associated with this metric type can only be associated with one of the monitored resource types listed here. */
+  monitoredResourceTypes?: StringList;
+  /** Whether the metric records instantaneous values, changes to a value, etc. Some combinations of metric_kind and value_type might not be supported. */
+  metricKind?: MetricDescriptorMetricKindEnum | (string & {});
+  /** The units in which the metric value is reported. It is only applicable if the value_type is INT64, DOUBLE, or DISTRIBUTION. The unit defines the representation of the stored metric values.Different systems might scale the values to be more easily displayed (so a value of 0.02kBy might be displayed as 20By, and a value of 3523kBy might be displayed as 3.5MBy). However, if the unit is kBy, then the value of the metric is always in thousands of bytes, no matter how it might be displayed.If you want a custom metric to record the exact number of CPU-seconds used by a job, you can create an INT64 CUMULATIVE metric whose unit is s{CPU} (or equivalently 1s{CPU} or just s). If the job uses 12,005 CPU-seconds, then the value is written as 12005.Alternatively, if you want a custom metric to record data in a more granular way, you can create a DOUBLE CUMULATIVE metric whose unit is ks{CPU}, and then write the value 12.005 (which is 12005/1000), or use Kis{CPU} and write 11.723 (which is 12005/1024).The supported units are a subset of The Unified Code for Units of Measure (https://unitsofmeasure.org/ucum.html) standard:Basic units (UNIT) bit bit By byte s second min minute h hour d day 1 dimensionlessPrefixes (PREFIX) k kilo (10^3) M mega (10^6) G giga (10^9) T tera (10^12) P peta (10^15) E exa (10^18) Z zetta (10^21) Y yotta (10^24) m milli (10^-3) u micro (10^-6) n nano (10^-9) p pico (10^-12) f femto (10^-15) a atto (10^-18) z zepto (10^-21) y yocto (10^-24) Ki kibi (2^10) Mi mebi (2^20) Gi gibi (2^30) Ti tebi (2^40) Pi pebi (2^50)GrammarThe grammar also includes these connectors: / division or ratio (as an infix operator). For examples, kBy/{email} or MiBy/10ms (although you should almost never have /s in a metric unit; rates should always be computed at query time from the underlying cumulative or delta value). . multiplication or composition (as an infix operator). For examples, GBy.d or k{watt}.h.The grammar for a unit is as follows: Expression = Component { "." Component } { "/" Component } ; Component = ( [ PREFIX ] UNIT | "%" ) [ Annotation ] | Annotation | "1" ; Annotation = "{" NAME "}" ; Notes: Annotation is just a comment if it follows a UNIT. If the annotation is used alone, then the unit is equivalent to 1. For examples, {request}/s == 1/s, By{transmitted}/s == By/s. NAME is a sequence of non-blank printable ASCII characters not containing { or }. 1 represents a unitary dimensionless unit (https://en.wikipedia.org/wiki/Dimensionless_quantity) of 1, such as in 1/s. It is typically used when none of the basic units are appropriate. For example, "new users per day" can be represented as 1/d or {new-users}/d (and a metric value 5 would mean "5 new users). Alternatively, "thousands of page views per day" would be represented as 1000/d or k1/d or k{page_views}/d (and a metric value of 5.3 would mean "5300 page views per day"). % represents dimensionless value of 1/100, and annotates values giving a percentage (so the metric values are typically in the range of 0..100, and a metric value 3 means "3 percent"). 10^2.% indicates a metric contains a ratio, typically in the range 0..1, that will be multiplied by 100 and displayed as a percentage (so a metric value 0.03 means "3 percent"). */
+  unit?: string;
+  /** The metric type, including its DNS name prefix. The type is not URL-encoded. All user-defined metric types have the DNS name custom.googleapis.com or external.googleapis.com. Metric types should use a natural hierarchical grouping. For example: "custom.googleapis.com/invoice/paid/amount" "external.googleapis.com/prometheus/up" "appengine.googleapis.com/http/server/response_latencies" */
+  type?: string;
   /** Optional. The launch stage of the metric definition. */
   launchStage?: MetricDescriptorLaunchStageEnum | (string & {});
+  /** The resource name of the metric descriptor. */
+  name?: string;
   /** Optional. Metadata which can be used to guide usage of the metric. */
   metadata?: MetricDescriptorMetadata;
+  /** Whether the measurement is an integer, a floating-point number, etc. Some combinations of metric_kind and value_type might not be supported. */
+  valueType?: MetricDescriptorValueTypeEnum | (string & {});
 }
 export const MetricDescriptor = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    unit: S.optional(S.String),
     labels: S.optional(LabelDescriptorList),
     displayName: S.optional(S.String),
-    valueType: S.optional(MetricDescriptorValueTypeEnum),
-    metricKind: S.optional(MetricDescriptorMetricKindEnum),
-    monitoredResourceTypes: S.optional(StringList),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
     description: S.optional(S.String),
+    monitoredResourceTypes: S.optional(StringList),
+    metricKind: S.optional(MetricDescriptorMetricKindEnum),
+    unit: S.optional(S.String),
+    type: S.optional(S.String),
     launchStage: S.optional(MetricDescriptorLaunchStageEnum),
+    name: S.optional(S.String),
     metadata: S.optional(MetricDescriptorMetadata),
+    valueType: S.optional(MetricDescriptorValueTypeEnum),
   }),
 ).annotate({
   identifier: "MetricDescriptor",
@@ -1341,41 +1341,41 @@ export const NotificationChannelVerificationStatusEnum = /*@__PURE__*/ S.String;
 
 /** A NotificationChannel is a medium through which an alert is delivered when a policy violation is detected. Examples of channels include email, SMS, and third-party messaging applications. Fields containing sensitive information like authentication tokens or contact info are only partially populated on retrieval. */
 export interface NotificationChannel {
-  /** Configuration fields that define the channel and its behavior. The permissible and required labels are specified in the NotificationChannelDescriptor.labels of the NotificationChannelDescriptor corresponding to the type field. */
-  labels?: StringMap;
-  /** Records of the modification of this channel. */
-  mutationRecords?: MutationRecordList;
-  /** An optional human-readable name for this notification channel. It is recommended that you specify a non-empty and unique name in order to make it easier to identify the channels in your project, though this is not enforced. The display name is limited to 512 Unicode characters. */
-  displayName?: string;
   /** Whether notifications are forwarded to the described channel. This makes it possible to disable delivery of notifications to a particular channel without removing the channel from all alerting policies that reference the channel. This is a more convenient approach when the change is temporary and you want to receive notifications from the same set of alerting policies on the channel at some point in the future. */
   enabled?: boolean;
-  /** The type of the notification channel. This field matches the value of the NotificationChannelDescriptor.type field. */
-  type?: string;
-  /** Identifier. The full REST resource name for this channel. The format is: projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID] The [CHANNEL_ID] is automatically assigned by the server on creation. */
-  name?: string;
   /** Record of the creation of this channel. */
   creationRecord?: MutationRecord;
+  /** Records of the modification of this channel. */
+  mutationRecords?: MutationRecordList;
+  /** Configuration fields that define the channel and its behavior. The permissible and required labels are specified in the NotificationChannelDescriptor.labels of the NotificationChannelDescriptor corresponding to the type field. */
+  labels?: StringMap;
+  /** Identifier. The full REST resource name for this channel. The format is: projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID] The [CHANNEL_ID] is automatically assigned by the server on creation. */
+  name?: string;
   /** An optional human-readable description of this notification channel. This description may provide additional details, beyond the display name, for the channel. This may not exceed 1024 Unicode characters. */
   description?: string;
+  /** An optional human-readable name for this notification channel. It is recommended that you specify a non-empty and unique name in order to make it easier to identify the channels in your project, though this is not enforced. The display name is limited to 512 Unicode characters. */
+  displayName?: string;
+  /** User-supplied key/value data that does not need to conform to the corresponding NotificationChannelDescriptor's schema, unlike the labels field. This field is intended to be used for organizing and identifying the NotificationChannel objects.The field can contain up to 64 entries. Each key and value is limited to 63 Unicode characters or 128 bytes, whichever is smaller. Labels and values can contain only lowercase letters, numerals, underscores, and dashes. Keys must begin with a letter. */
+  userLabels?: StringMap;
   /** Indicates whether this channel has been verified or not. On a ListNotificationChannels or GetNotificationChannel operation, this field is expected to be populated.If the value is UNVERIFIED, then it indicates that the channel is non-functioning (it both requires verification and lacks verification); otherwise, it is assumed that the channel works.If the channel is neither VERIFIED nor UNVERIFIED, it implies that the channel is of a type that does not require verification or that this specific channel has been exempted from verification because it was created prior to verification being required for channels of this type.This field cannot be modified using a standard UpdateNotificationChannel operation. To change the value of this field, you must call VerifyNotificationChannel. */
   verificationStatus?:
     | NotificationChannelVerificationStatusEnum
     | (string & {});
-  /** User-supplied key/value data that does not need to conform to the corresponding NotificationChannelDescriptor's schema, unlike the labels field. This field is intended to be used for organizing and identifying the NotificationChannel objects.The field can contain up to 64 entries. Each key and value is limited to 63 Unicode characters or 128 bytes, whichever is smaller. Labels and values can contain only lowercase letters, numerals, underscores, and dashes. Keys must begin with a letter. */
-  userLabels?: StringMap;
+  /** The type of the notification channel. This field matches the value of the NotificationChannelDescriptor.type field. */
+  type?: string;
 }
 export const NotificationChannel = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    labels: S.optional(StringMap),
-    mutationRecords: S.optional(MutationRecordList),
-    displayName: S.optional(S.String),
     enabled: S.optional(S.Boolean),
-    type: S.optional(S.String),
-    name: S.optional(S.String),
     creationRecord: S.optional(MutationRecord),
+    mutationRecords: S.optional(MutationRecordList),
+    labels: S.optional(StringMap),
+    name: S.optional(S.String),
     description: S.optional(S.String),
-    verificationStatus: S.optional(NotificationChannelVerificationStatusEnum),
+    displayName: S.optional(S.String),
     userLabels: S.optional(StringMap),
+    verificationStatus: S.optional(NotificationChannelVerificationStatusEnum),
+    type: S.optional(S.String),
   }),
 ).annotate({
   identifier: "NotificationChannel",
@@ -1403,6 +1403,20 @@ export const CreateProjectsNotificationChannelsRequest =
     identifier: "CreateProjectsNotificationChannelsRequest",
   }) as any as S.Schema<CreateProjectsNotificationChannelsRequest>;
 
+/** Describes a time interval: Reads: A half-open time interval. It includes the end time but excludes the start time: (startTime, endTime]. The start time must be specified, must be earlier than the end time, and should be no older than the data retention period for the metric. Writes: A closed time interval. It extends from the start time to the end time, and includes both: [startTime, endTime]. Valid time intervals depend on the MetricKind (https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.metricDescriptors#MetricKind) of the metric value. The end time must not be earlier than the start time, and the end time must not be more than 25 hours in the past or more than five minutes in the future. For GAUGE metrics, the startTime value is technically optional; if no value is specified, the start time defaults to the value of the end time, and the interval represents a single point in time. If both start and end times are specified, they must be identical. Such an interval is valid only for GAUGE metrics, which are point-in-time measurements. The end time of a new interval must be at least a millisecond after the end time of the previous interval. For DELTA metrics, the start time and end time must specify a non-zero interval, with subsequent points specifying contiguous and non-overlapping intervals. For DELTA metrics, the start time of the next interval must be at least a millisecond after the end time of the previous interval. For CUMULATIVE metrics, the start time and end time must specify a non-zero interval, with subsequent points specifying the same start time and increasing end times, until an event resets the cumulative value to zero and sets a new start time for the following points. The new start time must be at least a millisecond after the end time of the previous interval. The start time of a new interval must be at least a millisecond after the end time of the previous interval because intervals are closed. If the start time of a new interval is the same as the end time of the previous interval, then data written at the new start time could overwrite data written at the previous end time. */
+export interface TimeInterval {
+  /** Optional. The beginning of the time interval. The default value for the start time is the end time. The start time must not be later than the end time. */
+  startTime?: string;
+  /** Required. The end of the time interval. */
+  endTime?: string;
+}
+export const TimeInterval = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    startTime: S.optional(S.String),
+    endTime: S.optional(S.String),
+  }),
+).annotate({ identifier: "TimeInterval" }) as any as S.Schema<TimeInterval>;
+
 /** Criteria specific to the AlertPolicys that this Snooze applies to. The Snooze will suppress alerts that come from one of the AlertPolicys whose names are supplied. */
 export interface Criteria {
   /** Optional. When you define a snooze, you can also define a filter for that snooze. The filter is a string containing one or more key-value pairs. The string uses the standard https://google.aip.dev/160 filter syntax. If you define a filter for a snooze, then the snooze can only apply to one alert policy. When the snooze is active, incidents won't be created when the incident would have key-value pairs (labels) that match those specified by the filter in the snooze.Snooze filters support resource, metric, and metadata labels. If multiple labels are used, then they must be connected with an AND operator. For example, the following filter applies the snooze to incidents that have a resource label with an instance ID of 1234567890, a metric label with an instance name of test_group, a metadata user label with a key of foo and a value of bar, and a metadata system label with a key of region and a value of us-central1: "filter": "resource.labels.instance_id=\"1234567890\" AND metric.labels.instance_name=\"test_group\" AND metadata.user_labels.foo=\"bar\" AND metadata.system_labels.region=\"us-central1\"" */
@@ -1417,37 +1431,23 @@ export const Criteria = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Criteria" }) as any as S.Schema<Criteria>;
 
-/** Describes a time interval: Reads: A half-open time interval. It includes the end time but excludes the start time: (startTime, endTime]. The start time must be specified, must be earlier than the end time, and should be no older than the data retention period for the metric. Writes: A closed time interval. It extends from the start time to the end time, and includes both: [startTime, endTime]. Valid time intervals depend on the MetricKind (https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.metricDescriptors#MetricKind) of the metric value. The end time must not be earlier than the start time, and the end time must not be more than 25 hours in the past or more than five minutes in the future. For GAUGE metrics, the startTime value is technically optional; if no value is specified, the start time defaults to the value of the end time, and the interval represents a single point in time. If both start and end times are specified, they must be identical. Such an interval is valid only for GAUGE metrics, which are point-in-time measurements. The end time of a new interval must be at least a millisecond after the end time of the previous interval. For DELTA metrics, the start time and end time must specify a non-zero interval, with subsequent points specifying contiguous and non-overlapping intervals. For DELTA metrics, the start time of the next interval must be at least a millisecond after the end time of the previous interval. For CUMULATIVE metrics, the start time and end time must specify a non-zero interval, with subsequent points specifying the same start time and increasing end times, until an event resets the cumulative value to zero and sets a new start time for the following points. The new start time must be at least a millisecond after the end time of the previous interval. The start time of a new interval must be at least a millisecond after the end time of the previous interval because intervals are closed. If the start time of a new interval is the same as the end time of the previous interval, then data written at the new start time could overwrite data written at the previous end time. */
-export interface TimeInterval {
-  /** Required. The end of the time interval. */
-  endTime?: string;
-  /** Optional. The beginning of the time interval. The default value for the start time is the end time. The start time must not be later than the end time. */
-  startTime?: string;
-}
-export const TimeInterval = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    endTime: S.optional(S.String),
-    startTime: S.optional(S.String),
-  }),
-).annotate({ identifier: "TimeInterval" }) as any as S.Schema<TimeInterval>;
-
 /** A Snooze will prevent any alerts from being opened, and close any that are already open. The Snooze will work on alerts that match the criteria defined in the Snooze. The Snooze will be active from interval.start_time through interval.end_time. */
 export interface Snooze {
-  /** Required. A display name for the Snooze. This can be, at most, 512 unicode characters. */
-  displayName?: string;
-  /** Required. Identifier. The name of the Snooze. The format is: projects/[PROJECT_ID_OR_NUMBER]/snoozes/[SNOOZE_ID] The ID of the Snooze will be generated by the system. */
-  name?: string;
-  /** Required. This defines the criteria for applying the Snooze. See Criteria for more information. */
-  criteria?: Criteria;
   /** Required. The Snooze will be active from interval.start_time through interval.end_time. interval.start_time cannot be in the past. There is a 15 second clock skew to account for the time it takes for a request to reach the API from the UI. */
   interval?: TimeInterval;
+  /** Required. This defines the criteria for applying the Snooze. See Criteria for more information. */
+  criteria?: Criteria;
+  /** Required. Identifier. The name of the Snooze. The format is: projects/[PROJECT_ID_OR_NUMBER]/snoozes/[SNOOZE_ID] The ID of the Snooze will be generated by the system. */
+  name?: string;
+  /** Required. A display name for the Snooze. This can be, at most, 512 unicode characters. */
+  displayName?: string;
 }
 export const Snooze = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    displayName: S.optional(S.String),
-    name: S.optional(S.String),
-    criteria: S.optional(Criteria),
     interval: S.optional(TimeInterval),
+    criteria: S.optional(Criteria),
+    name: S.optional(S.String),
+    displayName: S.optional(S.String),
   }),
 ).annotate({ identifier: "Snooze" }) as any as S.Schema<Snooze>;
 
@@ -1472,42 +1472,54 @@ export const CreateProjectsSnoozesRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateProjectsSnoozesRequest",
 }) as any as S.Schema<CreateProjectsSnoozesRequest>;
 
-export type TimeSeriesMetricKindEnum =
-  | "METRIC_KIND_UNSPECIFIED"
-  | "GAUGE"
-  | "DELTA"
-  | "CUMULATIVE";
-export const TimeSeriesMetricKindEnum = /*@__PURE__*/ S.String;
+/** A single data point in a time series. */
+export interface Point {
+  /** The value of the data point. */
+  value?: TypedValue;
+  /** The time interval to which the data point applies. For GAUGE metrics, the start time is optional, but if it is supplied, it must equal the end time. For DELTA metrics, the start and end time should specify a non-zero interval, with subsequent points specifying contiguous and non-overlapping intervals. For CUMULATIVE metrics, the start and end time should specify a non-zero interval, with subsequent points specifying the same start time and increasing end times, until an event resets the cumulative value to zero and sets a new start time for the following points. */
+  interval?: TimeInterval;
+}
+export const Point = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(TypedValue),
+    interval: S.optional(TimeInterval),
+  }),
+).annotate({ identifier: "Point" }) as any as S.Schema<Point>;
+
+export type PointList = Array<Point>;
+export const PointList = /*@__PURE__*/ S.Array(
+  Point,
+) as any as S.Schema<PointList>;
+
+/** A specific metric, identified by specifying values for all of the labels of a MetricDescriptor. */
+export interface Metric {
+  /** The set of label values that uniquely identify this metric. All labels listed in the MetricDescriptor must be assigned values. */
+  labels?: StringMap;
+  /** An existing metric type, see google.api.MetricDescriptor. For example, custom.googleapis.com/invoice/paid/amount. */
+  type?: string;
+}
+export const Metric = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    labels: S.optional(StringMap),
+    type: S.optional(S.String),
+  }),
+).annotate({ identifier: "Metric" }) as any as S.Schema<Metric>;
 
 /** Auxiliary metadata for a MonitoredResource object. MonitoredResource objects contain the minimum set of information to uniquely identify a monitored resource instance. There is some other useful auxiliary metadata. Monitoring and Logging use an ingestion pipeline to extract metadata for cloud resources of all types, and store the metadata in this message. */
 export interface MonitoredResourceMetadata {
-  /** Output only. Values for predefined system metadata labels. System labels are a kind of metadata extracted by Google, including "machine_image", "vpc", "subnet_id", "security_group", "name", etc. System label values can be only strings, Boolean values, or a list of strings. For example: { "name": "my-test-instance", "security_group": ["a", "b", "c"], "spot_instance": false } */
-  systemLabels?: DocumentMap;
   /** Output only. A map of user-defined metadata labels. */
   userLabels?: StringMap;
+  /** Output only. Values for predefined system metadata labels. System labels are a kind of metadata extracted by Google, including "machine_image", "vpc", "subnet_id", "security_group", "name", etc. System label values can be only strings, Boolean values, or a list of strings. For example: { "name": "my-test-instance", "security_group": ["a", "b", "c"], "spot_instance": false } */
+  systemLabels?: DocumentMap;
 }
 export const MonitoredResourceMetadata = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    systemLabels: S.optional(DocumentMap),
     userLabels: S.optional(StringMap),
+    systemLabels: S.optional(DocumentMap),
   }),
 ).annotate({
   identifier: "MonitoredResourceMetadata",
 }) as any as S.Schema<MonitoredResourceMetadata>;
-
-/** A specific metric, identified by specifying values for all of the labels of a MetricDescriptor. */
-export interface Metric {
-  /** An existing metric type, see google.api.MetricDescriptor. For example, custom.googleapis.com/invoice/paid/amount. */
-  type?: string;
-  /** The set of label values that uniquely identify this metric. All labels listed in the MetricDescriptor must be assigned values. */
-  labels?: StringMap;
-}
-export const Metric = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(S.String),
-    labels: S.optional(StringMap),
-  }),
-).annotate({ identifier: "Metric" }) as any as S.Schema<Metric>;
 
 export type TimeSeriesValueTypeEnum =
   | "VALUE_TYPE_UNSPECIFIED"
@@ -1519,54 +1531,42 @@ export type TimeSeriesValueTypeEnum =
   | "MONEY";
 export const TimeSeriesValueTypeEnum = /*@__PURE__*/ S.String;
 
-/** A single data point in a time series. */
-export interface Point {
-  /** The time interval to which the data point applies. For GAUGE metrics, the start time is optional, but if it is supplied, it must equal the end time. For DELTA metrics, the start and end time should specify a non-zero interval, with subsequent points specifying contiguous and non-overlapping intervals. For CUMULATIVE metrics, the start and end time should specify a non-zero interval, with subsequent points specifying the same start time and increasing end times, until an event resets the cumulative value to zero and sets a new start time for the following points. */
-  interval?: TimeInterval;
-  /** The value of the data point. */
-  value?: TypedValue;
-}
-export const Point = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    interval: S.optional(TimeInterval),
-    value: S.optional(TypedValue),
-  }),
-).annotate({ identifier: "Point" }) as any as S.Schema<Point>;
-
-export type PointList = Array<Point>;
-export const PointList = /*@__PURE__*/ S.Array(
-  Point,
-) as any as S.Schema<PointList>;
+export type TimeSeriesMetricKindEnum =
+  | "METRIC_KIND_UNSPECIFIED"
+  | "GAUGE"
+  | "DELTA"
+  | "CUMULATIVE";
+export const TimeSeriesMetricKindEnum = /*@__PURE__*/ S.String;
 
 /** A collection of data points that describes the time-varying values of a metric. A time series is identified by a combination of a fully-specified monitored resource and a fully-specified metric. This type is used for both listing and creating time series. */
 export interface TimeSeries {
-  /** The metric kind of the time series. When listing time series, this metric kind might be different from the metric kind of the associated metric if this time series is an alignment or reduction of other time series.When creating a time series, this field is optional. If present, it must be the same as the metric kind of the associated metric. If the associated metric's descriptor must be auto-created, then this field specifies the metric kind of the new descriptor and must be either GAUGE (the default) or CUMULATIVE. */
-  metricKind?: TimeSeriesMetricKindEnum | (string & {});
-  /** The units in which the metric value is reported. It is only applicable if the value_type is INT64, DOUBLE, or DISTRIBUTION. The unit defines the representation of the stored metric values. This field can only be changed through CreateTimeSeries when it is empty. */
-  unit?: string;
-  /** Input only. A detailed description of the time series that will be associated with the google.api.MetricDescriptor for the metric. Once set, this field cannot be changed through CreateTimeSeries. */
-  description?: string;
-  /** The associated monitored resource. Custom metrics can use only certain monitored resource types in their time series data. For more information, see Monitored resources for custom metrics (https://cloud.google.com/monitoring/custom-metrics/creating-metrics#custom-metric-resources). */
-  resource?: MonitoredResource;
-  /** Output only. The associated monitored resource metadata. When reading a time series, this field will include metadata labels that are explicitly named in the reduction. When creating a time series, this field is ignored. */
-  metadata?: MonitoredResourceMetadata;
-  /** The associated metric. A fully-specified metric used to identify the time series. */
-  metric?: Metric;
-  /** The value type of the time series. When listing time series, this value type might be different from the value type of the associated metric if this time series is an alignment or reduction of other time series.When creating a time series, this field is optional. If present, it must be the same as the type of the data in the points field. */
-  valueType?: TimeSeriesValueTypeEnum | (string & {});
   /** The data points of this time series. When listing time series, points are returned in reverse time order.When creating a time series, this field must contain exactly one point and the point's type must be the same as the value type of the associated metric. If the associated metric's descriptor must be auto-created, then the value type of the descriptor is determined by the point's type, which must be BOOL, INT64, DOUBLE, or DISTRIBUTION. */
   points?: PointList;
+  /** Input only. A detailed description of the time series that will be associated with the google.api.MetricDescriptor for the metric. Once set, this field cannot be changed through CreateTimeSeries. */
+  description?: string;
+  /** The associated metric. A fully-specified metric used to identify the time series. */
+  metric?: Metric;
+  /** Output only. The associated monitored resource metadata. When reading a time series, this field will include metadata labels that are explicitly named in the reduction. When creating a time series, this field is ignored. */
+  metadata?: MonitoredResourceMetadata;
+  /** The units in which the metric value is reported. It is only applicable if the value_type is INT64, DOUBLE, or DISTRIBUTION. The unit defines the representation of the stored metric values. This field can only be changed through CreateTimeSeries when it is empty. */
+  unit?: string;
+  /** The value type of the time series. When listing time series, this value type might be different from the value type of the associated metric if this time series is an alignment or reduction of other time series.When creating a time series, this field is optional. If present, it must be the same as the type of the data in the points field. */
+  valueType?: TimeSeriesValueTypeEnum | (string & {});
+  /** The associated monitored resource. Custom metrics can use only certain monitored resource types in their time series data. For more information, see Monitored resources for custom metrics (https://cloud.google.com/monitoring/custom-metrics/creating-metrics#custom-metric-resources). */
+  resource?: MonitoredResource;
+  /** The metric kind of the time series. When listing time series, this metric kind might be different from the metric kind of the associated metric if this time series is an alignment or reduction of other time series.When creating a time series, this field is optional. If present, it must be the same as the metric kind of the associated metric. If the associated metric's descriptor must be auto-created, then this field specifies the metric kind of the new descriptor and must be either GAUGE (the default) or CUMULATIVE. */
+  metricKind?: TimeSeriesMetricKindEnum | (string & {});
 }
 export const TimeSeries = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    metricKind: S.optional(TimeSeriesMetricKindEnum),
-    unit: S.optional(S.String),
-    description: S.optional(S.String),
-    resource: S.optional(MonitoredResource),
-    metadata: S.optional(MonitoredResourceMetadata),
-    metric: S.optional(Metric),
-    valueType: S.optional(TimeSeriesValueTypeEnum),
     points: S.optional(PointList),
+    description: S.optional(S.String),
+    metric: S.optional(Metric),
+    metadata: S.optional(MonitoredResourceMetadata),
+    unit: S.optional(S.String),
+    valueType: S.optional(TimeSeriesValueTypeEnum),
+    resource: S.optional(MonitoredResource),
+    metricKind: S.optional(TimeSeriesMetricKindEnum),
   }),
 ).annotate({ identifier: "TimeSeries" }) as any as S.Schema<TimeSeries>;
 
@@ -1615,6 +1615,265 @@ export const Empty = /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
   identifier: "Empty",
 }) as any as S.Schema<Empty>;
 
+/** A Synthetic Monitor deployed to a Cloud Functions V2 instance. */
+export interface CloudFunctionV2Target {
+  /** Required. Fully qualified GCFv2 resource name i.e. projects/{project}/locations/{location}/functions/{function} Required. */
+  name?: string;
+  /** Output only. The cloud_run_revision Monitored Resource associated with the GCFv2. The Synthetic Monitor execution results (metrics, logs, and spans) are reported against this Monitored Resource. This field is output only. */
+  cloudRunRevision?: MonitoredResource;
+}
+export const CloudFunctionV2Target = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    cloudRunRevision: S.optional(MonitoredResource),
+  }),
+).annotate({
+  identifier: "CloudFunctionV2Target",
+}) as any as S.Schema<CloudFunctionV2Target>;
+
+/** Describes a Synthetic Monitor to be invoked by Uptime. */
+export interface SyntheticMonitorTarget {
+  /** Target a Synthetic Monitor GCFv2 instance. */
+  cloudFunctionV2?: CloudFunctionV2Target;
+}
+export const SyntheticMonitorTarget = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    cloudFunctionV2: S.optional(CloudFunctionV2Target),
+  }),
+).annotate({
+  identifier: "SyntheticMonitorTarget",
+}) as any as S.Schema<SyntheticMonitorTarget>;
+
+export type HttpCheckContentTypeEnum =
+  | "TYPE_UNSPECIFIED"
+  | "URL_ENCODED"
+  | "USER_PROVIDED";
+export const HttpCheckContentTypeEnum = /*@__PURE__*/ S.String;
+
+export type ServiceAgentAuthenticationTypeEnum =
+  | "SERVICE_AGENT_AUTHENTICATION_TYPE_UNSPECIFIED"
+  | "OIDC_TOKEN";
+export const ServiceAgentAuthenticationTypeEnum = /*@__PURE__*/ S.String;
+
+/** Contains information needed for generating either an OpenID Connect token (https://developers.google.com/identity/protocols/OpenIDConnect) or OAuth token (https://developers.google.com/identity/protocols/oauth2). The token will be generated for the Monitoring service agent service account. */
+export interface ServiceAgentAuthentication {
+  /** Type of authentication. */
+  type?: ServiceAgentAuthenticationTypeEnum | (string & {});
+}
+export const ServiceAgentAuthentication = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.optional(ServiceAgentAuthenticationTypeEnum),
+  }),
+).annotate({
+  identifier: "ServiceAgentAuthentication",
+}) as any as S.Schema<ServiceAgentAuthentication>;
+
+export type ResponseStatusCodeStatusClassEnum =
+  | "STATUS_CLASS_UNSPECIFIED"
+  | "STATUS_CLASS_1XX"
+  | "STATUS_CLASS_2XX"
+  | "STATUS_CLASS_3XX"
+  | "STATUS_CLASS_4XX"
+  | "STATUS_CLASS_5XX"
+  | "STATUS_CLASS_ANY";
+export const ResponseStatusCodeStatusClassEnum = /*@__PURE__*/ S.String;
+
+/** A status to accept. Either a status code class like "2xx", or an integer status code like "200". */
+export interface ResponseStatusCode {
+  /** A status code to accept. */
+  statusValue?: number;
+  /** A class of status codes to accept. */
+  statusClass?: ResponseStatusCodeStatusClassEnum | (string & {});
+}
+export const ResponseStatusCode = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    statusValue: S.optional(S.Number),
+    statusClass: S.optional(ResponseStatusCodeStatusClassEnum),
+  }),
+).annotate({
+  identifier: "ResponseStatusCode",
+}) as any as S.Schema<ResponseStatusCode>;
+
+export type ResponseStatusCodeList = Array<ResponseStatusCode>;
+export const ResponseStatusCodeList = /*@__PURE__*/ S.Array(
+  ResponseStatusCode,
+) as any as S.Schema<ResponseStatusCodeList>;
+
+/** The authentication parameters to provide to the specified resource or URL that requires a username and password. Currently, only Basic HTTP authentication (https://tools.ietf.org/html/rfc7617) is supported in Uptime checks. */
+export interface BasicAuthentication {
+  /** The username to use when authenticating with the HTTP server. */
+  username?: string;
+  /** The password to use when authenticating with the HTTP server. */
+  password?: string;
+}
+export const BasicAuthentication = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    username: S.optional(S.String),
+    password: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "BasicAuthentication",
+}) as any as S.Schema<BasicAuthentication>;
+
+/** Information involved in sending ICMP pings alongside public HTTP/TCP checks. For HTTP, the pings are performed for each part of the redirect chain. */
+export interface PingConfig {
+  /** Number of ICMP pings. A maximum of 3 ICMP pings is currently supported. */
+  pingsCount?: number;
+}
+export const PingConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    pingsCount: S.optional(S.Number),
+  }),
+).annotate({ identifier: "PingConfig" }) as any as S.Schema<PingConfig>;
+
+export type HttpCheckRequestMethodEnum = "METHOD_UNSPECIFIED" | "GET" | "POST";
+export const HttpCheckRequestMethodEnum = /*@__PURE__*/ S.String;
+
+/** Information involved in an HTTP/HTTPS Uptime check request. */
+export interface HttpCheck {
+  /** Optional (defaults to 80 when use_ssl is false, and 443 when use_ssl is true). The TCP port on the HTTP server against which to run the check. Will be combined with host (specified within the monitored_resource) and path to construct the full URL. */
+  port?: number;
+  /** A user provided content type header to use for the check. The invalid configurations outlined in the content_type field apply to custom_content_type, as well as the following: 1. content_type is URL_ENCODED and custom_content_type is set. 2. content_type is USER_PROVIDED and custom_content_type is not set. */
+  customContentType?: string;
+  /** Optional (defaults to "/"). The path to the page against which to run the check. Will be combined with the host (specified within the monitored_resource) and port to construct the full URL. If the provided path does not begin with "/", a "/" will be prepended automatically. */
+  path?: string;
+  /** The content type header to use for the check. The following configurations result in errors: 1. Content type is specified in both the headers field and the content_type field. 2. Request method is GET and content_type is not TYPE_UNSPECIFIED 3. Request method is POST and content_type is TYPE_UNSPECIFIED. 4. Request method is POST and a "Content-Type" header is provided via headers field. The content_type field should be used instead. */
+  contentType?: HttpCheckContentTypeEnum | (string & {});
+  /** Boolean specifying whether to include SSL certificate validation as a part of the Uptime check. Only applies to checks where monitored_resource is set to uptime_url. If use_ssl is false, setting validate_ssl to true has no effect. */
+  validateSsl?: boolean;
+  /** The request body associated with the HTTP POST request. If content_type is URL_ENCODED, the body passed in must be URL-encoded. Users can provide a Content-Length header via the headers field or the API will do so. If the request_method is GET and body is not empty, the API will return an error. The maximum byte size is 1 megabyte.Note: If client libraries aren't used (which performs the conversion automatically) base64 encode your body data since the field is of bytes type. */
+  body?: string;
+  /** Boolean specifying whether to encrypt the header information. Encryption should be specified for any headers related to authentication that you do not wish to be seen when retrieving the configuration. The server will be responsible for encrypting the headers. On Get/List calls, if mask_headers is set to true then the headers will be obscured with ******. */
+  maskHeaders?: boolean;
+  /** If specified, Uptime will generate and attach an OIDC JWT token for the Monitoring service agent service account as an Authorization header in the HTTP request when probing. */
+  serviceAgentAuthentication?: ServiceAgentAuthentication;
+  /** If true, use HTTPS instead of HTTP to run the check. */
+  useSsl?: boolean;
+  /** The list of headers to send as part of the Uptime check request. If two headers have the same key and different values, they should be entered as a single header, with the value being a comma-separated list of all the desired values as described at https://www.w3.org/Protocols/rfc2616/rfc2616.txt (page 31). Entering two separate headers with the same key in a Create call will cause the first to be overwritten by the second. The maximum number of headers allowed is 100. */
+  headers?: StringMap;
+  /** If present, the check will only pass if the HTTP response status code is in this set of status codes. If empty, the HTTP status code will only pass if the HTTP status code is 200-299. */
+  acceptedResponseStatusCodes?: ResponseStatusCodeList;
+  /** The authentication information. Optional when creating an HTTP check; defaults to empty. Do not set both auth_method and auth_info. */
+  authInfo?: BasicAuthentication;
+  /** Contains information needed to add pings to an HTTP check. */
+  pingConfig?: PingConfig;
+  /** The HTTP request method to use for the check. If set to METHOD_UNSPECIFIED then request_method defaults to GET. */
+  requestMethod?: HttpCheckRequestMethodEnum | (string & {});
+}
+export const HttpCheck = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    port: S.optional(S.Number),
+    customContentType: S.optional(S.String),
+    path: S.optional(S.String),
+    contentType: S.optional(HttpCheckContentTypeEnum),
+    validateSsl: S.optional(S.Boolean),
+    body: S.optional(S.String),
+    maskHeaders: S.optional(S.Boolean),
+    serviceAgentAuthentication: S.optional(ServiceAgentAuthentication),
+    useSsl: S.optional(S.Boolean),
+    headers: S.optional(StringMap),
+    acceptedResponseStatusCodes: S.optional(ResponseStatusCodeList),
+    authInfo: S.optional(BasicAuthentication),
+    pingConfig: S.optional(PingConfig),
+    requestMethod: S.optional(HttpCheckRequestMethodEnum),
+  }),
+).annotate({ identifier: "HttpCheck" }) as any as S.Schema<HttpCheck>;
+
+export type UptimeCheckConfigCheckerTypeEnum =
+  | "CHECKER_TYPE_UNSPECIFIED"
+  | "STATIC_IP_CHECKERS"
+  | "VPC_CHECKERS";
+export const UptimeCheckConfigCheckerTypeEnum = /*@__PURE__*/ S.String;
+
+export type UptimeCheckConfigSelectedRegionsItemEnum =
+  | "REGION_UNSPECIFIED"
+  | "USA"
+  | "EUROPE"
+  | "SOUTH_AMERICA"
+  | "ASIA_PACIFIC"
+  | "USA_OREGON"
+  | "USA_IOWA"
+  | "USA_VIRGINIA";
+export const UptimeCheckConfigSelectedRegionsItemEnum = /*@__PURE__*/ S.String;
+
+export type UptimeCheckConfigSelectedRegionsItemEnumList = Array<
+  UptimeCheckConfigSelectedRegionsItemEnum | (string & {})
+>;
+export const UptimeCheckConfigSelectedRegionsItemEnumList =
+  /*@__PURE__*/ S.Array(
+    UptimeCheckConfigSelectedRegionsItemEnum,
+  ) as any as S.Schema<UptimeCheckConfigSelectedRegionsItemEnumList>;
+
+/** Information required for a TCP Uptime check request. */
+export interface TcpCheck {
+  /** The TCP port on the server against which to run the check. Will be combined with host (specified within the monitored_resource) to construct the full URL. Required. */
+  port?: number;
+  /** Contains information needed to add pings to a TCP check. */
+  pingConfig?: PingConfig;
+}
+export const TcpCheck = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    port: S.optional(S.Number),
+    pingConfig: S.optional(PingConfig),
+  }),
+).annotate({ identifier: "TcpCheck" }) as any as S.Schema<TcpCheck>;
+
+export type ResourceGroupResourceTypeEnum =
+  | "RESOURCE_TYPE_UNSPECIFIED"
+  | "INSTANCE"
+  | "AWS_ELB_LOAD_BALANCER";
+export const ResourceGroupResourceTypeEnum = /*@__PURE__*/ S.String;
+
+/** The resource submessage for group checks. It can be used instead of a monitored resource, when multiple resources are being monitored. */
+export interface ResourceGroup {
+  /** The resource type of the group members. */
+  resourceType?: ResourceGroupResourceTypeEnum | (string & {});
+  /** The group of resources being monitored. Should be only the [GROUP_ID], and not the full-path projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]. */
+  groupId?: string;
+}
+export const ResourceGroup = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceType: S.optional(ResourceGroupResourceTypeEnum),
+    groupId: S.optional(S.String),
+  }),
+).annotate({ identifier: "ResourceGroup" }) as any as S.Schema<ResourceGroup>;
+
+export type InternalCheckerStateEnum = "UNSPECIFIED" | "CREATING" | "RUNNING";
+export const InternalCheckerStateEnum = /*@__PURE__*/ S.String;
+
+/** An internal checker allows Uptime checks to run on private/internal GCP resources. */
+export interface InternalChecker {
+  /** A unique resource name for this InternalChecker. The format is: projects/[PROJECT_ID_OR_NUMBER]/internalCheckers/[INTERNAL_CHECKER_ID] [PROJECT_ID_OR_NUMBER] is the Cloud Monitoring Metrics Scope project for the Uptime check config associated with the internal checker. */
+  name?: string;
+  /** The GCP VPC network (https://cloud.google.com/vpc/docs/vpc) where the internal resource lives (ex: "default"). */
+  network?: string;
+  /** The GCP zone the Uptime check should egress from. Only respected for internal Uptime checks, where internal_network is specified. */
+  gcpZone?: string;
+  /** The GCP project ID where the internal checker lives. Not necessary the same as the Metrics Scope project. */
+  peerProjectId?: string;
+  /** The checker's human-readable name. The display name should be unique within a Cloud Monitoring Metrics Scope in order to make it easier to identify; however, uniqueness is not enforced. */
+  displayName?: string;
+  /** The current operational state of the internal checker. */
+  state?: InternalCheckerStateEnum | (string & {});
+}
+export const InternalChecker = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    network: S.optional(S.String),
+    gcpZone: S.optional(S.String),
+    peerProjectId: S.optional(S.String),
+    displayName: S.optional(S.String),
+    state: S.optional(InternalCheckerStateEnum),
+  }),
+).annotate({
+  identifier: "InternalChecker",
+}) as any as S.Schema<InternalChecker>;
+
+export type InternalCheckerList = Array<InternalChecker>;
+export const InternalCheckerList = /*@__PURE__*/ S.Array(
+  InternalChecker,
+) as any as S.Schema<InternalCheckerList>;
+
 export type JsonPathMatcherJsonMatcherEnum =
   | "JSON_PATH_MATCHER_OPTION_UNSPECIFIED"
   | "EXACT_MATCH"
@@ -1623,15 +1882,15 @@ export const JsonPathMatcherJsonMatcherEnum = /*@__PURE__*/ S.String;
 
 /** Information needed to perform a JSONPath content match. Used for ContentMatcherOption::MATCHES_JSON_PATH and ContentMatcherOption::NOT_MATCHES_JSON_PATH. */
 export interface JsonPathMatcher {
-  /** The type of JSONPath match that will be applied to the JSON output (ContentMatcher.content) */
-  jsonMatcher?: JsonPathMatcherJsonMatcherEnum | (string & {});
   /** JSONPath within the response output pointing to the expected ContentMatcher::content to match against. */
   jsonPath?: string;
+  /** The type of JSONPath match that will be applied to the JSON output (ContentMatcher.content) */
+  jsonMatcher?: JsonPathMatcherJsonMatcherEnum | (string & {});
 }
 export const JsonPathMatcher = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    jsonMatcher: S.optional(JsonPathMatcherJsonMatcherEnum),
     jsonPath: S.optional(S.String),
+    jsonMatcher: S.optional(JsonPathMatcherJsonMatcherEnum),
   }),
 ).annotate({
   identifier: "JsonPathMatcher",
@@ -1669,321 +1928,62 @@ export const ContentMatcherList = /*@__PURE__*/ S.Array(
   ContentMatcher,
 ) as any as S.Schema<ContentMatcherList>;
 
-export type InternalCheckerStateEnum = "UNSPECIFIED" | "CREATING" | "RUNNING";
-export const InternalCheckerStateEnum = /*@__PURE__*/ S.String;
-
-/** An internal checker allows Uptime checks to run on private/internal GCP resources. */
-export interface InternalChecker {
-  /** The GCP VPC network (https://cloud.google.com/vpc/docs/vpc) where the internal resource lives (ex: "default"). */
-  network?: string;
-  /** The checker's human-readable name. The display name should be unique within a Cloud Monitoring Metrics Scope in order to make it easier to identify; however, uniqueness is not enforced. */
-  displayName?: string;
-  /** The current operational state of the internal checker. */
-  state?: InternalCheckerStateEnum | (string & {});
-  /** A unique resource name for this InternalChecker. The format is: projects/[PROJECT_ID_OR_NUMBER]/internalCheckers/[INTERNAL_CHECKER_ID] [PROJECT_ID_OR_NUMBER] is the Cloud Monitoring Metrics Scope project for the Uptime check config associated with the internal checker. */
-  name?: string;
-  /** The GCP zone the Uptime check should egress from. Only respected for internal Uptime checks, where internal_network is specified. */
-  gcpZone?: string;
-  /** The GCP project ID where the internal checker lives. Not necessary the same as the Metrics Scope project. */
-  peerProjectId?: string;
-}
-export const InternalChecker = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    network: S.optional(S.String),
-    displayName: S.optional(S.String),
-    state: S.optional(InternalCheckerStateEnum),
-    name: S.optional(S.String),
-    gcpZone: S.optional(S.String),
-    peerProjectId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "InternalChecker",
-}) as any as S.Schema<InternalChecker>;
-
-export type InternalCheckerList = Array<InternalChecker>;
-export const InternalCheckerList = /*@__PURE__*/ S.Array(
-  InternalChecker,
-) as any as S.Schema<InternalCheckerList>;
-
-export type ResourceGroupResourceTypeEnum =
-  | "RESOURCE_TYPE_UNSPECIFIED"
-  | "INSTANCE"
-  | "AWS_ELB_LOAD_BALANCER";
-export const ResourceGroupResourceTypeEnum = /*@__PURE__*/ S.String;
-
-/** The resource submessage for group checks. It can be used instead of a monitored resource, when multiple resources are being monitored. */
-export interface ResourceGroup {
-  /** The group of resources being monitored. Should be only the [GROUP_ID], and not the full-path projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]. */
-  groupId?: string;
-  /** The resource type of the group members. */
-  resourceType?: ResourceGroupResourceTypeEnum | (string & {});
-}
-export const ResourceGroup = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    groupId: S.optional(S.String),
-    resourceType: S.optional(ResourceGroupResourceTypeEnum),
-  }),
-).annotate({ identifier: "ResourceGroup" }) as any as S.Schema<ResourceGroup>;
-
-export type HttpCheckContentTypeEnum =
-  | "TYPE_UNSPECIFIED"
-  | "URL_ENCODED"
-  | "USER_PROVIDED";
-export const HttpCheckContentTypeEnum = /*@__PURE__*/ S.String;
-
-export type ResponseStatusCodeStatusClassEnum =
-  | "STATUS_CLASS_UNSPECIFIED"
-  | "STATUS_CLASS_1XX"
-  | "STATUS_CLASS_2XX"
-  | "STATUS_CLASS_3XX"
-  | "STATUS_CLASS_4XX"
-  | "STATUS_CLASS_5XX"
-  | "STATUS_CLASS_ANY";
-export const ResponseStatusCodeStatusClassEnum = /*@__PURE__*/ S.String;
-
-/** A status to accept. Either a status code class like "2xx", or an integer status code like "200". */
-export interface ResponseStatusCode {
-  /** A status code to accept. */
-  statusValue?: number;
-  /** A class of status codes to accept. */
-  statusClass?: ResponseStatusCodeStatusClassEnum | (string & {});
-}
-export const ResponseStatusCode = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    statusValue: S.optional(S.Number),
-    statusClass: S.optional(ResponseStatusCodeStatusClassEnum),
-  }),
-).annotate({
-  identifier: "ResponseStatusCode",
-}) as any as S.Schema<ResponseStatusCode>;
-
-export type ResponseStatusCodeList = Array<ResponseStatusCode>;
-export const ResponseStatusCodeList = /*@__PURE__*/ S.Array(
-  ResponseStatusCode,
-) as any as S.Schema<ResponseStatusCodeList>;
-
-export type ServiceAgentAuthenticationTypeEnum =
-  | "SERVICE_AGENT_AUTHENTICATION_TYPE_UNSPECIFIED"
-  | "OIDC_TOKEN";
-export const ServiceAgentAuthenticationTypeEnum = /*@__PURE__*/ S.String;
-
-/** Contains information needed for generating either an OpenID Connect token (https://developers.google.com/identity/protocols/OpenIDConnect) or OAuth token (https://developers.google.com/identity/protocols/oauth2). The token will be generated for the Monitoring service agent service account. */
-export interface ServiceAgentAuthentication {
-  /** Type of authentication. */
-  type?: ServiceAgentAuthenticationTypeEnum | (string & {});
-}
-export const ServiceAgentAuthentication = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(ServiceAgentAuthenticationTypeEnum),
-  }),
-).annotate({
-  identifier: "ServiceAgentAuthentication",
-}) as any as S.Schema<ServiceAgentAuthentication>;
-
-/** Information involved in sending ICMP pings alongside public HTTP/TCP checks. For HTTP, the pings are performed for each part of the redirect chain. */
-export interface PingConfig {
-  /** Number of ICMP pings. A maximum of 3 ICMP pings is currently supported. */
-  pingsCount?: number;
-}
-export const PingConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    pingsCount: S.optional(S.Number),
-  }),
-).annotate({ identifier: "PingConfig" }) as any as S.Schema<PingConfig>;
-
-export type HttpCheckRequestMethodEnum = "METHOD_UNSPECIFIED" | "GET" | "POST";
-export const HttpCheckRequestMethodEnum = /*@__PURE__*/ S.String;
-
-/** The authentication parameters to provide to the specified resource or URL that requires a username and password. Currently, only Basic HTTP authentication (https://tools.ietf.org/html/rfc7617) is supported in Uptime checks. */
-export interface BasicAuthentication {
-  /** The username to use when authenticating with the HTTP server. */
-  username?: string;
-  /** The password to use when authenticating with the HTTP server. */
-  password?: string;
-}
-export const BasicAuthentication = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    username: S.optional(S.String),
-    password: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "BasicAuthentication",
-}) as any as S.Schema<BasicAuthentication>;
-
-/** Information involved in an HTTP/HTTPS Uptime check request. */
-export interface HttpCheck {
-  /** Optional (defaults to 80 when use_ssl is false, and 443 when use_ssl is true). The TCP port on the HTTP server against which to run the check. Will be combined with host (specified within the monitored_resource) and path to construct the full URL. */
-  port?: number;
-  /** The content type header to use for the check. The following configurations result in errors: 1. Content type is specified in both the headers field and the content_type field. 2. Request method is GET and content_type is not TYPE_UNSPECIFIED 3. Request method is POST and content_type is TYPE_UNSPECIFIED. 4. Request method is POST and a "Content-Type" header is provided via headers field. The content_type field should be used instead. */
-  contentType?: HttpCheckContentTypeEnum | (string & {});
-  /** If present, the check will only pass if the HTTP response status code is in this set of status codes. If empty, the HTTP status code will only pass if the HTTP status code is 200-299. */
-  acceptedResponseStatusCodes?: ResponseStatusCodeList;
-  /** If specified, Uptime will generate and attach an OIDC JWT token for the Monitoring service agent service account as an Authorization header in the HTTP request when probing. */
-  serviceAgentAuthentication?: ServiceAgentAuthentication;
-  /** If true, use HTTPS instead of HTTP to run the check. */
-  useSsl?: boolean;
-  /** Contains information needed to add pings to an HTTP check. */
-  pingConfig?: PingConfig;
-  /** The request body associated with the HTTP POST request. If content_type is URL_ENCODED, the body passed in must be URL-encoded. Users can provide a Content-Length header via the headers field or the API will do so. If the request_method is GET and body is not empty, the API will return an error. The maximum byte size is 1 megabyte.Note: If client libraries aren't used (which performs the conversion automatically) base64 encode your body data since the field is of bytes type. */
-  body?: string;
-  /** The HTTP request method to use for the check. If set to METHOD_UNSPECIFIED then request_method defaults to GET. */
-  requestMethod?: HttpCheckRequestMethodEnum | (string & {});
-  /** Optional (defaults to "/"). The path to the page against which to run the check. Will be combined with the host (specified within the monitored_resource) and port to construct the full URL. If the provided path does not begin with "/", a "/" will be prepended automatically. */
-  path?: string;
-  /** The authentication information. Optional when creating an HTTP check; defaults to empty. Do not set both auth_method and auth_info. */
-  authInfo?: BasicAuthentication;
-  /** Boolean specifying whether to encrypt the header information. Encryption should be specified for any headers related to authentication that you do not wish to be seen when retrieving the configuration. The server will be responsible for encrypting the headers. On Get/List calls, if mask_headers is set to true then the headers will be obscured with ******. */
-  maskHeaders?: boolean;
-  /** The list of headers to send as part of the Uptime check request. If two headers have the same key and different values, they should be entered as a single header, with the value being a comma-separated list of all the desired values as described at https://www.w3.org/Protocols/rfc2616/rfc2616.txt (page 31). Entering two separate headers with the same key in a Create call will cause the first to be overwritten by the second. The maximum number of headers allowed is 100. */
-  headers?: StringMap;
-  /** Boolean specifying whether to include SSL certificate validation as a part of the Uptime check. Only applies to checks where monitored_resource is set to uptime_url. If use_ssl is false, setting validate_ssl to true has no effect. */
-  validateSsl?: boolean;
-  /** A user provided content type header to use for the check. The invalid configurations outlined in the content_type field apply to custom_content_type, as well as the following: 1. content_type is URL_ENCODED and custom_content_type is set. 2. content_type is USER_PROVIDED and custom_content_type is not set. */
-  customContentType?: string;
-}
-export const HttpCheck = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    port: S.optional(S.Number),
-    contentType: S.optional(HttpCheckContentTypeEnum),
-    acceptedResponseStatusCodes: S.optional(ResponseStatusCodeList),
-    serviceAgentAuthentication: S.optional(ServiceAgentAuthentication),
-    useSsl: S.optional(S.Boolean),
-    pingConfig: S.optional(PingConfig),
-    body: S.optional(S.String),
-    requestMethod: S.optional(HttpCheckRequestMethodEnum),
-    path: S.optional(S.String),
-    authInfo: S.optional(BasicAuthentication),
-    maskHeaders: S.optional(S.Boolean),
-    headers: S.optional(StringMap),
-    validateSsl: S.optional(S.Boolean),
-    customContentType: S.optional(S.String),
-  }),
-).annotate({ identifier: "HttpCheck" }) as any as S.Schema<HttpCheck>;
-
-/** Information required for a TCP Uptime check request. */
-export interface TcpCheck {
-  /** The TCP port on the server against which to run the check. Will be combined with host (specified within the monitored_resource) to construct the full URL. Required. */
-  port?: number;
-  /** Contains information needed to add pings to a TCP check. */
-  pingConfig?: PingConfig;
-}
-export const TcpCheck = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    port: S.optional(S.Number),
-    pingConfig: S.optional(PingConfig),
-  }),
-).annotate({ identifier: "TcpCheck" }) as any as S.Schema<TcpCheck>;
-
-export type UptimeCheckConfigSelectedRegionsItemEnum =
-  | "REGION_UNSPECIFIED"
-  | "USA"
-  | "EUROPE"
-  | "SOUTH_AMERICA"
-  | "ASIA_PACIFIC"
-  | "USA_OREGON"
-  | "USA_IOWA"
-  | "USA_VIRGINIA";
-export const UptimeCheckConfigSelectedRegionsItemEnum = /*@__PURE__*/ S.String;
-
-export type UptimeCheckConfigSelectedRegionsItemEnumList = Array<
-  UptimeCheckConfigSelectedRegionsItemEnum | (string & {})
->;
-export const UptimeCheckConfigSelectedRegionsItemEnumList =
-  /*@__PURE__*/ S.Array(
-    UptimeCheckConfigSelectedRegionsItemEnum,
-  ) as any as S.Schema<UptimeCheckConfigSelectedRegionsItemEnumList>;
-
-export type UptimeCheckConfigCheckerTypeEnum =
-  | "CHECKER_TYPE_UNSPECIFIED"
-  | "STATIC_IP_CHECKERS"
-  | "VPC_CHECKERS";
-export const UptimeCheckConfigCheckerTypeEnum = /*@__PURE__*/ S.String;
-
-/** A Synthetic Monitor deployed to a Cloud Functions V2 instance. */
-export interface CloudFunctionV2Target {
-  /** Required. Fully qualified GCFv2 resource name i.e. projects/{project}/locations/{location}/functions/{function} Required. */
-  name?: string;
-  /** Output only. The cloud_run_revision Monitored Resource associated with the GCFv2. The Synthetic Monitor execution results (metrics, logs, and spans) are reported against this Monitored Resource. This field is output only. */
-  cloudRunRevision?: MonitoredResource;
-}
-export const CloudFunctionV2Target = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    cloudRunRevision: S.optional(MonitoredResource),
-  }),
-).annotate({
-  identifier: "CloudFunctionV2Target",
-}) as any as S.Schema<CloudFunctionV2Target>;
-
-/** Describes a Synthetic Monitor to be invoked by Uptime. */
-export interface SyntheticMonitorTarget {
-  /** Target a Synthetic Monitor GCFv2 instance. */
-  cloudFunctionV2?: CloudFunctionV2Target;
-}
-export const SyntheticMonitorTarget = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    cloudFunctionV2: S.optional(CloudFunctionV2Target),
-  }),
-).annotate({
-  identifier: "SyntheticMonitorTarget",
-}) as any as S.Schema<SyntheticMonitorTarget>;
-
 /** This message configures which resources and services to monitor for availability. */
 export interface UptimeCheckConfig {
-  /** The content that is expected to appear in the data returned by the target server against which the check is run. Currently, only the first entry in the content_matchers list is supported, and additional entries will be ignored. This field is optional and should only be specified if a content match is required as part of the/ Uptime check. */
-  contentMatchers?: ContentMatcherList;
-  /** The internal checkers that this check will egress from. If is_internal is true and this list is empty, the check will egress from all the InternalCheckers configured for the project that owns this UptimeCheckConfig. */
-  internalCheckers?: InternalCheckerList;
-  /** The monitored resource (https://cloud.google.com/monitoring/api/resources) associated with the configuration. The following monitored resource types are valid for this field: uptime_url, gce_instance, gae_app, aws_ec2_instance, aws_elb_load_balancer k8s_service servicedirectory_service cloud_run_revision */
-  monitoredResource?: MonitoredResource;
-  /** Whether the check is disabled or not. */
-  disabled?: boolean;
-  /** The group resource associated with the configuration. */
-  resourceGroup?: ResourceGroup;
+  /** User-supplied key/value data to be used for organizing and identifying the UptimeCheckConfig objects.The field can contain up to 64 entries. Each key and value is limited to 63 Unicode characters or 128 bytes, whichever is smaller. Labels and values can contain only lowercase letters, numerals, underscores, and dashes. Keys must begin with a letter. */
+  userLabels?: StringMap;
+  /** Specifies a Synthetic Monitor to invoke. */
+  syntheticMonitor?: SyntheticMonitorTarget;
+  /** A human-friendly name for the Uptime check configuration. The display name should be unique within a Cloud Monitoring Workspace in order to make it easier to identify; however, uniqueness is not enforced. Required. */
+  displayName?: string;
+  /** To specify whether to log the results of failed probes to Cloud Logging. */
+  logCheckFailures?: boolean;
   /** Contains information needed to make an HTTP or HTTPS check. */
   httpCheck?: HttpCheck;
+  /** The type of checkers to use to execute the Uptime check. */
+  checkerType?: UptimeCheckConfigCheckerTypeEnum | (string & {});
+  /** The list of regions from which the check will be run. Some regions contain one location, and others contain more than one. If this field is specified, enough regions must be provided to include a minimum of 3 locations. Not specifying this field will result in Uptime checks running from all available regions. */
+  selectedRegions?: UptimeCheckConfigSelectedRegionsItemEnumList;
+  /** The maximum amount of time to wait for the request to complete (must be between 1 and 60 seconds). Required. */
+  timeout?: string;
   /** If this is true, then checks are made only from the 'internal_checkers'. If it is false, then checks are made only from the 'selected_regions'. It is an error to provide 'selected_regions' when is_internal is true, or to provide 'internal_checkers' when is_internal is false. */
   isInternal?: boolean;
   /** Contains information needed to make a TCP check. */
   tcpCheck?: TcpCheck;
-  /** To specify whether to log the results of failed probes to Cloud Logging. */
-  logCheckFailures?: boolean;
-  /** The list of regions from which the check will be run. Some regions contain one location, and others contain more than one. If this field is specified, enough regions must be provided to include a minimum of 3 locations. Not specifying this field will result in Uptime checks running from all available regions. */
-  selectedRegions?: UptimeCheckConfigSelectedRegionsItemEnumList;
-  /** A human-friendly name for the Uptime check configuration. The display name should be unique within a Cloud Monitoring Workspace in order to make it easier to identify; however, uniqueness is not enforced. Required. */
-  displayName?: string;
-  /** The type of checkers to use to execute the Uptime check. */
-  checkerType?: UptimeCheckConfigCheckerTypeEnum | (string & {});
-  /** Specifies a Synthetic Monitor to invoke. */
-  syntheticMonitor?: SyntheticMonitorTarget;
-  /** User-supplied key/value data to be used for organizing and identifying the UptimeCheckConfig objects.The field can contain up to 64 entries. Each key and value is limited to 63 Unicode characters or 128 bytes, whichever is smaller. Labels and values can contain only lowercase letters, numerals, underscores, and dashes. Keys must begin with a letter. */
-  userLabels?: StringMap;
+  /** The monitored resource (https://cloud.google.com/monitoring/api/resources) associated with the configuration. The following monitored resource types are valid for this field: uptime_url, gce_instance, gae_app, aws_ec2_instance, aws_elb_load_balancer k8s_service servicedirectory_service cloud_run_revision */
+  monitoredResource?: MonitoredResource;
   /** How often, in seconds, the Uptime check is performed. Currently, the only supported values are 60s (1 minute), 300s (5 minutes), 600s (10 minutes), and 900s (15 minutes). Optional, defaults to 60s. */
   period?: string;
+  /** Whether the check is disabled or not. */
+  disabled?: boolean;
   /** Identifier. A unique resource name for this Uptime check configuration. The format is: projects/[PROJECT_ID_OR_NUMBER]/uptimeCheckConfigs/[UPTIME_CHECK_ID] [PROJECT_ID_OR_NUMBER] is the Workspace host project associated with the Uptime check.This field should be omitted when creating the Uptime check configuration; on create, the resource name is assigned by the server and included in the response. */
   name?: string;
-  /** The maximum amount of time to wait for the request to complete (must be between 1 and 60 seconds). Required. */
-  timeout?: string;
+  /** The group resource associated with the configuration. */
+  resourceGroup?: ResourceGroup;
+  /** The internal checkers that this check will egress from. If is_internal is true and this list is empty, the check will egress from all the InternalCheckers configured for the project that owns this UptimeCheckConfig. */
+  internalCheckers?: InternalCheckerList;
+  /** The content that is expected to appear in the data returned by the target server against which the check is run. Currently, only the first entry in the content_matchers list is supported, and additional entries will be ignored. This field is optional and should only be specified if a content match is required as part of the/ Uptime check. */
+  contentMatchers?: ContentMatcherList;
 }
 export const UptimeCheckConfig = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    contentMatchers: S.optional(ContentMatcherList),
-    internalCheckers: S.optional(InternalCheckerList),
-    monitoredResource: S.optional(MonitoredResource),
-    disabled: S.optional(S.Boolean),
-    resourceGroup: S.optional(ResourceGroup),
+    userLabels: S.optional(StringMap),
+    syntheticMonitor: S.optional(SyntheticMonitorTarget),
+    displayName: S.optional(S.String),
+    logCheckFailures: S.optional(S.Boolean),
     httpCheck: S.optional(HttpCheck),
+    checkerType: S.optional(UptimeCheckConfigCheckerTypeEnum),
+    selectedRegions: S.optional(UptimeCheckConfigSelectedRegionsItemEnumList),
+    timeout: S.optional(S.String),
     isInternal: S.optional(S.Boolean),
     tcpCheck: S.optional(TcpCheck),
-    logCheckFailures: S.optional(S.Boolean),
-    selectedRegions: S.optional(UptimeCheckConfigSelectedRegionsItemEnumList),
-    displayName: S.optional(S.String),
-    checkerType: S.optional(UptimeCheckConfigCheckerTypeEnum),
-    syntheticMonitor: S.optional(SyntheticMonitorTarget),
-    userLabels: S.optional(StringMap),
+    monitoredResource: S.optional(MonitoredResource),
     period: S.optional(S.String),
+    disabled: S.optional(S.Boolean),
     name: S.optional(S.String),
-    timeout: S.optional(S.String),
+    resourceGroup: S.optional(ResourceGroup),
+    internalCheckers: S.optional(InternalCheckerList),
+    contentMatchers: S.optional(ContentMatcherList),
   }),
 ).annotate({
   identifier: "UptimeCheckConfig",
@@ -2033,50 +2033,16 @@ export const CreateServiceProjectsTimeSeriesRequest = /*@__PURE__*/ S.suspend(
   identifier: "CreateServiceProjectsTimeSeriesRequest",
 }) as any as S.Schema<CreateServiceProjectsTimeSeriesRequest>;
 
-/** GKE Namespace. The field names correspond to the resource metadata labels on monitored resources that fall under a namespace (for example, k8s_container or k8s_pod). */
-export interface GkeNamespace {
-  /** The name of the parent cluster. */
-  clusterName?: string;
-  /** The location of the parent cluster. This may be a zone or region. */
-  location?: string;
-  /** The name of this namespace. */
-  namespaceName?: string;
-  /** Output only. The project this resource lives in. For legacy services migrated from the Custom type, this may be a distinct project from the one parenting the service itself. */
-  projectId?: string;
+/** App Engine service. Learn more at https://cloud.google.com/appengine. */
+export interface AppEngine {
+  /** The ID of the App Engine module underlying this service. Corresponds to the module_id resource label in the gae_app monitored resource (https://cloud.google.com/monitoring/api/resources#tag_gae_app). */
+  moduleId?: string;
 }
-export const GkeNamespace = /*@__PURE__*/ S.suspend(() =>
+export const AppEngine = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    clusterName: S.optional(S.String),
-    location: S.optional(S.String),
-    namespaceName: S.optional(S.String),
-    projectId: S.optional(S.String),
+    moduleId: S.optional(S.String),
   }),
-).annotate({ identifier: "GkeNamespace" }) as any as S.Schema<GkeNamespace>;
-
-/** Cloud Endpoints service. Learn more at https://cloud.google.com/endpoints. */
-export interface CloudEndpoints {
-  /** The name of the Cloud Endpoints service underlying this service. Corresponds to the service resource label in the api monitored resource (https://cloud.google.com/monitoring/api/resources#tag_api). */
-  service?: string;
-}
-export const CloudEndpoints = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    service: S.optional(S.String),
-  }),
-).annotate({ identifier: "CloudEndpoints" }) as any as S.Schema<CloudEndpoints>;
-
-/** Cloud Run service. Learn more at https://cloud.google.com/run. */
-export interface CloudRun {
-  /** The location the service is run. Corresponds to the location resource label in the cloud_run_revision monitored resource (https://cloud.google.com/monitoring/api/resources#tag_cloud_run_revision). */
-  location?: string;
-  /** The name of the Cloud Run service. Corresponds to the service_name resource label in the cloud_run_revision monitored resource (https://cloud.google.com/monitoring/api/resources#tag_cloud_run_revision). */
-  serviceName?: string;
-}
-export const CloudRun = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    location: S.optional(S.String),
-    serviceName: S.optional(S.String),
-  }),
-).annotate({ identifier: "CloudRun" }) as any as S.Schema<CloudRun>;
+).annotate({ identifier: "AppEngine" }) as any as S.Schema<AppEngine>;
 
 /** A well-known service type, defined by its service type and service labels. Documentation and examples here (https://cloud.google.com/stackdriver/docs/solutions/slo-monitoring/api/api-structures#basic-svc-w-basic-sli). */
 export interface BasicService {
@@ -2092,37 +2058,6 @@ export const BasicService = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "BasicService" }) as any as S.Schema<BasicService>;
 
-/** App Engine service. Learn more at https://cloud.google.com/appengine. */
-export interface AppEngine {
-  /** The ID of the App Engine module underlying this service. Corresponds to the module_id resource label in the gae_app monitored resource (https://cloud.google.com/monitoring/api/resources#tag_gae_app). */
-  moduleId?: string;
-}
-export const AppEngine = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    moduleId: S.optional(S.String),
-  }),
-).annotate({ identifier: "AppEngine" }) as any as S.Schema<AppEngine>;
-
-/** Istio service scoped to a single Kubernetes cluster. Learn more at https://istio.io. Clusters running OSS Istio will have their services ingested as this type. */
-export interface ClusterIstio {
-  /** The location of the Kubernetes cluster in which this Istio service is defined. Corresponds to the location resource label in k8s_cluster resources. */
-  location?: string;
-  /** The name of the Kubernetes cluster in which this Istio service is defined. Corresponds to the cluster_name resource label in k8s_cluster resources. */
-  clusterName?: string;
-  /** The namespace of the Istio service underlying this service. Corresponds to the destination_service_namespace metric label in Istio metrics. */
-  serviceNamespace?: string;
-  /** The name of the Istio service underlying this service. Corresponds to the destination_service_name metric label in Istio metrics. */
-  serviceName?: string;
-}
-export const ClusterIstio = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    location: S.optional(S.String),
-    clusterName: S.optional(S.String),
-    serviceNamespace: S.optional(S.String),
-    serviceName: S.optional(S.String),
-  }),
-).annotate({ identifier: "ClusterIstio" }) as any as S.Schema<ClusterIstio>;
-
 /** Configuration for how to query telemetry on a Service. */
 export interface Telemetry {
   /** The full name of the resource that defines this service. Formatted as described in https://cloud.google.com/apis/design/resource_names. */
@@ -2134,54 +2069,42 @@ export const Telemetry = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Telemetry" }) as any as S.Schema<Telemetry>;
 
+/** Istio service scoped to a single Kubernetes cluster. Learn more at https://istio.io. Clusters running OSS Istio will have their services ingested as this type. */
+export interface ClusterIstio {
+  /** The namespace of the Istio service underlying this service. Corresponds to the destination_service_namespace metric label in Istio metrics. */
+  serviceNamespace?: string;
+  /** The location of the Kubernetes cluster in which this Istio service is defined. Corresponds to the location resource label in k8s_cluster resources. */
+  location?: string;
+  /** The name of the Kubernetes cluster in which this Istio service is defined. Corresponds to the cluster_name resource label in k8s_cluster resources. */
+  clusterName?: string;
+  /** The name of the Istio service underlying this service. Corresponds to the destination_service_name metric label in Istio metrics. */
+  serviceName?: string;
+}
+export const ClusterIstio = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceNamespace: S.optional(S.String),
+    location: S.optional(S.String),
+    clusterName: S.optional(S.String),
+    serviceName: S.optional(S.String),
+  }),
+).annotate({ identifier: "ClusterIstio" }) as any as S.Schema<ClusterIstio>;
+
 /** Istio service scoped to an Istio mesh. Anthos clusters running ASM < 1.6.8 will have their services ingested as this type. */
 export interface MeshIstio {
-  /** Identifier for the mesh in which this Istio service is defined. Corresponds to the mesh_uid metric label in Istio metrics. */
-  meshUid?: string;
   /** The namespace of the Istio service underlying this service. Corresponds to the destination_service_namespace metric label in Istio metrics. */
   serviceNamespace?: string;
   /** The name of the Istio service underlying this service. Corresponds to the destination_service_name metric label in Istio metrics. */
   serviceName?: string;
+  /** Identifier for the mesh in which this Istio service is defined. Corresponds to the mesh_uid metric label in Istio metrics. */
+  meshUid?: string;
 }
 export const MeshIstio = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    meshUid: S.optional(S.String),
     serviceNamespace: S.optional(S.String),
     serviceName: S.optional(S.String),
+    meshUid: S.optional(S.String),
   }),
 ).annotate({ identifier: "MeshIstio" }) as any as S.Schema<MeshIstio>;
-
-/** Use a custom service to designate a service that you want to monitor when none of the other service types (like App Engine, Cloud Run, or a GKE type) matches your intended service. */
-export interface Custom {}
-export const Custom = /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-  identifier: "Custom",
-}) as any as S.Schema<Custom>;
-
-/** A GKE Workload (Deployment, StatefulSet, etc). The field names correspond to the metadata labels on monitored resources that fall under a workload (for example, k8s_container or k8s_pod). */
-export interface GkeWorkload {
-  /** The type of this workload (for example, "Deployment" or "DaemonSet") */
-  topLevelControllerType?: string;
-  /** The name of this workload. */
-  topLevelControllerName?: string;
-  /** The name of the parent namespace. */
-  namespaceName?: string;
-  /** Output only. The project this resource lives in. For legacy services migrated from the Custom type, this may be a distinct project from the one parenting the service itself. */
-  projectId?: string;
-  /** The location of the parent cluster. This may be a zone or region. */
-  location?: string;
-  /** The name of the parent cluster. */
-  clusterName?: string;
-}
-export const GkeWorkload = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    topLevelControllerType: S.optional(S.String),
-    topLevelControllerName: S.optional(S.String),
-    namespaceName: S.optional(S.String),
-    projectId: S.optional(S.String),
-    location: S.optional(S.String),
-    clusterName: S.optional(S.String),
-  }),
-).annotate({ identifier: "GkeWorkload" }) as any as S.Schema<GkeWorkload>;
 
 /** Canonical service scoped to an Istio mesh. Anthos clusters running ASM >= 1.6.8 will have their services ingested as this type. */
 export interface IstioCanonicalService {
@@ -2204,77 +2127,154 @@ export const IstioCanonicalService = /*@__PURE__*/ S.suspend(() =>
 
 /** GKE Service. The "service" here represents a Kubernetes service object (https://kubernetes.io/docs/concepts/services-networking/service). The field names correspond to the resource labels on k8s_service monitored resources (https://cloud.google.com/monitoring/api/resources#tag_k8s_service). */
 export interface GkeService {
+  /** The name of the parent namespace. */
+  namespaceName?: string;
+  /** The name of the parent cluster. */
+  clusterName?: string;
+  /** The name of this service. */
+  serviceName?: string;
+  /** Output only. The project this resource lives in. For legacy services migrated from the Custom type, this may be a distinct project from the one parenting the service itself. */
+  projectId?: string;
+  /** The location of the parent cluster. This may be a zone or region. */
+  location?: string;
+}
+export const GkeService = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    namespaceName: S.optional(S.String),
+    clusterName: S.optional(S.String),
+    serviceName: S.optional(S.String),
+    projectId: S.optional(S.String),
+    location: S.optional(S.String),
+  }),
+).annotate({ identifier: "GkeService" }) as any as S.Schema<GkeService>;
+
+/** GKE Namespace. The field names correspond to the resource metadata labels on monitored resources that fall under a namespace (for example, k8s_container or k8s_pod). */
+export interface GkeNamespace {
+  /** The name of this namespace. */
+  namespaceName?: string;
   /** The location of the parent cluster. This may be a zone or region. */
   location?: string;
   /** The name of the parent cluster. */
   clusterName?: string;
   /** Output only. The project this resource lives in. For legacy services migrated from the Custom type, this may be a distinct project from the one parenting the service itself. */
   projectId?: string;
-  /** The name of this service. */
-  serviceName?: string;
-  /** The name of the parent namespace. */
-  namespaceName?: string;
 }
-export const GkeService = /*@__PURE__*/ S.suspend(() =>
+export const GkeNamespace = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    namespaceName: S.optional(S.String),
     location: S.optional(S.String),
     clusterName: S.optional(S.String),
     projectId: S.optional(S.String),
-    serviceName: S.optional(S.String),
-    namespaceName: S.optional(S.String),
   }),
-).annotate({ identifier: "GkeService" }) as any as S.Schema<GkeService>;
+).annotate({ identifier: "GkeNamespace" }) as any as S.Schema<GkeNamespace>;
+
+/** A GKE Workload (Deployment, StatefulSet, etc). The field names correspond to the metadata labels on monitored resources that fall under a workload (for example, k8s_container or k8s_pod). */
+export interface GkeWorkload {
+  /** The location of the parent cluster. This may be a zone or region. */
+  location?: string;
+  /** Output only. The project this resource lives in. For legacy services migrated from the Custom type, this may be a distinct project from the one parenting the service itself. */
+  projectId?: string;
+  /** The name of the parent cluster. */
+  clusterName?: string;
+  /** The name of this workload. */
+  topLevelControllerName?: string;
+  /** The name of the parent namespace. */
+  namespaceName?: string;
+  /** The type of this workload (for example, "Deployment" or "DaemonSet") */
+  topLevelControllerType?: string;
+}
+export const GkeWorkload = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    location: S.optional(S.String),
+    projectId: S.optional(S.String),
+    clusterName: S.optional(S.String),
+    topLevelControllerName: S.optional(S.String),
+    namespaceName: S.optional(S.String),
+    topLevelControllerType: S.optional(S.String),
+  }),
+).annotate({ identifier: "GkeWorkload" }) as any as S.Schema<GkeWorkload>;
+
+/** Cloud Run service. Learn more at https://cloud.google.com/run. */
+export interface CloudRun {
+  /** The name of the Cloud Run service. Corresponds to the service_name resource label in the cloud_run_revision monitored resource (https://cloud.google.com/monitoring/api/resources#tag_cloud_run_revision). */
+  serviceName?: string;
+  /** The location the service is run. Corresponds to the location resource label in the cloud_run_revision monitored resource (https://cloud.google.com/monitoring/api/resources#tag_cloud_run_revision). */
+  location?: string;
+}
+export const CloudRun = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: S.optional(S.String),
+    location: S.optional(S.String),
+  }),
+).annotate({ identifier: "CloudRun" }) as any as S.Schema<CloudRun>;
+
+/** Cloud Endpoints service. Learn more at https://cloud.google.com/endpoints. */
+export interface CloudEndpoints {
+  /** The name of the Cloud Endpoints service underlying this service. Corresponds to the service resource label in the api monitored resource (https://cloud.google.com/monitoring/api/resources#tag_api). */
+  service?: string;
+}
+export const CloudEndpoints = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    service: S.optional(S.String),
+  }),
+).annotate({ identifier: "CloudEndpoints" }) as any as S.Schema<CloudEndpoints>;
+
+/** Use a custom service to designate a service that you want to monitor when none of the other service types (like App Engine, Cloud Run, or a GKE type) matches your intended service. */
+export interface Custom {}
+export const Custom = /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+  identifier: "Custom",
+}) as any as S.Schema<Custom>;
 
 /** A Service is a discrete, autonomous, and network-accessible unit, designed to solve an individual concern (Wikipedia (https://en.wikipedia.org/wiki/Service-orientation)). In Cloud Monitoring, a Service acts as the root resource under which operational aspects of the service are accessible. */
 export interface Service {
-  /** Type used for GKE Namespaces. */
-  gkeNamespace?: GkeNamespace;
-  /** Type used for Cloud Endpoints services. */
-  cloudEndpoints?: CloudEndpoints;
-  /** Type used for Cloud Run services. */
-  cloudRun?: CloudRun;
-  /** Message that contains the service type and service labels of this service if it is a basic service. Documentation and examples here (https://cloud.google.com/stackdriver/docs/solutions/slo-monitoring/api/api-structures#basic-svc-w-basic-sli). */
-  basicService?: BasicService;
   /** Type used for App Engine services. */
   appEngine?: AppEngine;
-  /** Type used for Istio services that live in a Kubernetes cluster. */
-  clusterIstio?: ClusterIstio;
+  /** Message that contains the service type and service labels of this service if it is a basic service. Documentation and examples here (https://cloud.google.com/stackdriver/docs/solutions/slo-monitoring/api/api-structures#basic-svc-w-basic-sli). */
+  basicService?: BasicService;
+  /** Name used for UI elements listing this Service. */
+  displayName?: string;
   /** Configuration for how to query telemetry on a Service. */
   telemetry?: Telemetry;
-  /** Labels which have been used to annotate the service. Label keys must start with a letter. Label keys and values may contain lowercase letters, numbers, underscores, and dashes. Label keys and values have a maximum length of 63 characters, and must be less than 128 bytes in size. Up to 64 label entries may be stored. For labels which do not have a semantic value, the empty string may be supplied for the label value. */
-  userLabels?: StringMap;
+  /** Type used for Istio services that live in a Kubernetes cluster. */
+  clusterIstio?: ClusterIstio;
   /** Identifier. Resource name for this Service. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID] */
   name?: string;
   /** Type used for Istio services scoped to an Istio mesh. */
   meshIstio?: MeshIstio;
-  /** Name used for UI elements listing this Service. */
-  displayName?: string;
-  /** Custom service type. */
-  custom?: Custom;
-  /** Type used for GKE Workloads. */
-  gkeWorkload?: GkeWorkload;
   /** Type used for canonical services scoped to an Istio mesh. Metrics for Istio are documented here (https://istio.io/latest/docs/reference/config/metrics/) */
   istioCanonicalService?: IstioCanonicalService;
   /** Type used for GKE Services (the Kubernetes concept of a service). */
   gkeService?: GkeService;
+  /** Type used for GKE Namespaces. */
+  gkeNamespace?: GkeNamespace;
+  /** Type used for GKE Workloads. */
+  gkeWorkload?: GkeWorkload;
+  /** Labels which have been used to annotate the service. Label keys must start with a letter. Label keys and values may contain lowercase letters, numbers, underscores, and dashes. Label keys and values have a maximum length of 63 characters, and must be less than 128 bytes in size. Up to 64 label entries may be stored. For labels which do not have a semantic value, the empty string may be supplied for the label value. */
+  userLabels?: StringMap;
+  /** Type used for Cloud Run services. */
+  cloudRun?: CloudRun;
+  /** Type used for Cloud Endpoints services. */
+  cloudEndpoints?: CloudEndpoints;
+  /** Custom service type. */
+  custom?: Custom;
 }
 export const Service = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    gkeNamespace: S.optional(GkeNamespace),
-    cloudEndpoints: S.optional(CloudEndpoints),
-    cloudRun: S.optional(CloudRun),
-    basicService: S.optional(BasicService),
     appEngine: S.optional(AppEngine),
-    clusterIstio: S.optional(ClusterIstio),
+    basicService: S.optional(BasicService),
+    displayName: S.optional(S.String),
     telemetry: S.optional(Telemetry),
-    userLabels: S.optional(StringMap),
+    clusterIstio: S.optional(ClusterIstio),
     name: S.optional(S.String),
     meshIstio: S.optional(MeshIstio),
-    displayName: S.optional(S.String),
-    custom: S.optional(Custom),
-    gkeWorkload: S.optional(GkeWorkload),
     istioCanonicalService: S.optional(IstioCanonicalService),
     gkeService: S.optional(GkeService),
+    gkeNamespace: S.optional(GkeNamespace),
+    gkeWorkload: S.optional(GkeWorkload),
+    userLabels: S.optional(StringMap),
+    cloudRun: S.optional(CloudRun),
+    cloudEndpoints: S.optional(CloudEndpoints),
+    custom: S.optional(Custom),
   }),
 ).annotate({ identifier: "Service" }) as any as S.Schema<Service>;
 
@@ -2318,56 +2318,19 @@ export const GoogleMonitoringV3Range = /*@__PURE__*/ S.suspend(() =>
   identifier: "GoogleMonitoringV3Range",
 }) as any as S.Schema<GoogleMonitoringV3Range>;
 
-/** A DistributionCut defines a TimeSeries and thresholds used for measuring good service and total service. The TimeSeries must have ValueType = DISTRIBUTION and MetricKind = DELTA or MetricKind = CUMULATIVE. The computed good_service will be the estimated count of values in the Distribution that fall within the specified min and max. */
-export interface DistributionCut {
-  /** A monitoring filter (https://cloud.google.com/monitoring/api/v3/filters) specifying a TimeSeries aggregating values. Must have ValueType = DISTRIBUTION and MetricKind = DELTA or MetricKind = CUMULATIVE. */
-  distributionFilter?: string;
+/** A MetricRange is used when each window is good when the value x of a single TimeSeries satisfies range.min <= x <= range.max. The provided TimeSeries must have ValueType = INT64 or ValueType = DOUBLE and MetricKind = GAUGE. */
+export interface MetricRange {
+  /** A monitoring filter (https://cloud.google.com/monitoring/api/v3/filters) specifying the TimeSeries to use for evaluating window quality. */
+  timeSeries?: string;
   /** Range of values considered "good." For a one-sided range, set one bound to an infinite value. */
   range?: GoogleMonitoringV3Range;
 }
-export const DistributionCut = /*@__PURE__*/ S.suspend(() =>
+export const MetricRange = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    distributionFilter: S.optional(S.String),
+    timeSeries: S.optional(S.String),
     range: S.optional(GoogleMonitoringV3Range),
   }),
-).annotate({
-  identifier: "DistributionCut",
-}) as any as S.Schema<DistributionCut>;
-
-/** A TimeSeriesRatio specifies two TimeSeries to use for computing the good_service / total_service ratio. The specified TimeSeries must have ValueType = DOUBLE or ValueType = INT64 and must have MetricKind = DELTA or MetricKind = CUMULATIVE. The TimeSeriesRatio must specify exactly two of good, bad, and total, and the relationship good_service + bad_service = total_service will be assumed. */
-export interface TimeSeriesRatio {
-  /** A monitoring filter (https://cloud.google.com/monitoring/api/v3/filters) specifying a TimeSeries quantifying total demanded service. Must have ValueType = DOUBLE or ValueType = INT64 and must have MetricKind = DELTA or MetricKind = CUMULATIVE. */
-  totalServiceFilter?: string;
-  /** A monitoring filter (https://cloud.google.com/monitoring/api/v3/filters) specifying a TimeSeries quantifying good service provided. Must have ValueType = DOUBLE or ValueType = INT64 and must have MetricKind = DELTA or MetricKind = CUMULATIVE. */
-  goodServiceFilter?: string;
-  /** A monitoring filter (https://cloud.google.com/monitoring/api/v3/filters) specifying a TimeSeries quantifying bad service, either demanded service that was not provided or demanded service that was of inadequate quality. Must have ValueType = DOUBLE or ValueType = INT64 and must have MetricKind = DELTA or MetricKind = CUMULATIVE. */
-  badServiceFilter?: string;
-}
-export const TimeSeriesRatio = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    totalServiceFilter: S.optional(S.String),
-    goodServiceFilter: S.optional(S.String),
-    badServiceFilter: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "TimeSeriesRatio",
-}) as any as S.Schema<TimeSeriesRatio>;
-
-/** Service Level Indicators for which atomic units of service are counted directly. */
-export interface RequestBasedSli {
-  /** distribution_cut is used when good_service is a count of values aggregated in a Distribution that fall into a good range. The total_service is the total count of all values aggregated in the Distribution. */
-  distributionCut?: DistributionCut;
-  /** good_total_ratio is used when the ratio of good_service to total_service is computed from two TimeSeries. */
-  goodTotalRatio?: TimeSeriesRatio;
-}
-export const RequestBasedSli = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    distributionCut: S.optional(DistributionCut),
-    goodTotalRatio: S.optional(TimeSeriesRatio),
-  }),
-).annotate({
-  identifier: "RequestBasedSli",
-}) as any as S.Schema<RequestBasedSli>;
+).annotate({ identifier: "MetricRange" }) as any as S.Schema<MetricRange>;
 
 /** Future parameters for the availability SLI. */
 export type AvailabilityCriteria = Custom;
@@ -2388,55 +2351,92 @@ export const LatencyCriteria = /*@__PURE__*/ S.suspend(() =>
 
 /** An SLI measuring performance on a well-known service type. Performance will be computed on the basis of pre-defined metrics. The type of the service_resource determines the metrics to use and the service_resource.labels and metric_labels are used to construct a monitoring filter to filter that metric down to just the data relevant to this service. */
 export interface BasicSli {
+  /** OPTIONAL: The set of API versions to which this SLI is relevant. Telemetry from other API versions will not be used to calculate performance for this SLI. If omitted, this SLI applies to all API versions. For service types that don't support breaking down by version, setting this field will result in an error. */
+  version?: StringList;
+  /** OPTIONAL: The set of RPCs to which this SLI is relevant. Telemetry from other methods will not be used to calculate performance for this SLI. If omitted, this SLI applies to all the Service's methods. For service types that don't support breaking down by method, setting this field will result in an error. */
+  method?: StringList;
+  /** OPTIONAL: The set of locations to which this SLI is relevant. Telemetry from other locations will not be used to calculate performance for this SLI. If omitted, this SLI applies to all locations in which the Service has activity. For service types that don't support breaking down by location, setting this field will result in an error. */
+  location?: StringList;
   /** Good service is defined to be the count of requests made to this service that return successfully. */
   availability?: Custom;
   /** Good service is defined to be the count of requests made to this service that are fast enough with respect to latency.threshold. */
   latency?: LatencyCriteria;
-  /** OPTIONAL: The set of API versions to which this SLI is relevant. Telemetry from other API versions will not be used to calculate performance for this SLI. If omitted, this SLI applies to all API versions. For service types that don't support breaking down by version, setting this field will result in an error. */
-  version?: StringList;
-  /** OPTIONAL: The set of locations to which this SLI is relevant. Telemetry from other locations will not be used to calculate performance for this SLI. If omitted, this SLI applies to all locations in which the Service has activity. For service types that don't support breaking down by location, setting this field will result in an error. */
-  location?: StringList;
-  /** OPTIONAL: The set of RPCs to which this SLI is relevant. Telemetry from other methods will not be used to calculate performance for this SLI. If omitted, this SLI applies to all the Service's methods. For service types that don't support breaking down by method, setting this field will result in an error. */
-  method?: StringList;
 }
 export const BasicSli = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    version: S.optional(StringList),
+    method: S.optional(StringList),
+    location: S.optional(StringList),
     availability: S.optional(Custom),
     latency: S.optional(LatencyCriteria),
-    version: S.optional(StringList),
-    location: S.optional(StringList),
-    method: S.optional(StringList),
   }),
 ).annotate({ identifier: "BasicSli" }) as any as S.Schema<BasicSli>;
 
-/** A MetricRange is used when each window is good when the value x of a single TimeSeries satisfies range.min <= x <= range.max. The provided TimeSeries must have ValueType = INT64 or ValueType = DOUBLE and MetricKind = GAUGE. */
-export interface MetricRange {
-  /** A monitoring filter (https://cloud.google.com/monitoring/api/v3/filters) specifying the TimeSeries to use for evaluating window quality. */
-  timeSeries?: string;
+/** A TimeSeriesRatio specifies two TimeSeries to use for computing the good_service / total_service ratio. The specified TimeSeries must have ValueType = DOUBLE or ValueType = INT64 and must have MetricKind = DELTA or MetricKind = CUMULATIVE. The TimeSeriesRatio must specify exactly two of good, bad, and total, and the relationship good_service + bad_service = total_service will be assumed. */
+export interface TimeSeriesRatio {
+  /** A monitoring filter (https://cloud.google.com/monitoring/api/v3/filters) specifying a TimeSeries quantifying total demanded service. Must have ValueType = DOUBLE or ValueType = INT64 and must have MetricKind = DELTA or MetricKind = CUMULATIVE. */
+  totalServiceFilter?: string;
+  /** A monitoring filter (https://cloud.google.com/monitoring/api/v3/filters) specifying a TimeSeries quantifying good service provided. Must have ValueType = DOUBLE or ValueType = INT64 and must have MetricKind = DELTA or MetricKind = CUMULATIVE. */
+  goodServiceFilter?: string;
+  /** A monitoring filter (https://cloud.google.com/monitoring/api/v3/filters) specifying a TimeSeries quantifying bad service, either demanded service that was not provided or demanded service that was of inadequate quality. Must have ValueType = DOUBLE or ValueType = INT64 and must have MetricKind = DELTA or MetricKind = CUMULATIVE. */
+  badServiceFilter?: string;
+}
+export const TimeSeriesRatio = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    totalServiceFilter: S.optional(S.String),
+    goodServiceFilter: S.optional(S.String),
+    badServiceFilter: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "TimeSeriesRatio",
+}) as any as S.Schema<TimeSeriesRatio>;
+
+/** A DistributionCut defines a TimeSeries and thresholds used for measuring good service and total service. The TimeSeries must have ValueType = DISTRIBUTION and MetricKind = DELTA or MetricKind = CUMULATIVE. The computed good_service will be the estimated count of values in the Distribution that fall within the specified min and max. */
+export interface DistributionCut {
+  /** A monitoring filter (https://cloud.google.com/monitoring/api/v3/filters) specifying a TimeSeries aggregating values. Must have ValueType = DISTRIBUTION and MetricKind = DELTA or MetricKind = CUMULATIVE. */
+  distributionFilter?: string;
   /** Range of values considered "good." For a one-sided range, set one bound to an infinite value. */
   range?: GoogleMonitoringV3Range;
 }
-export const MetricRange = /*@__PURE__*/ S.suspend(() =>
+export const DistributionCut = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    timeSeries: S.optional(S.String),
+    distributionFilter: S.optional(S.String),
     range: S.optional(GoogleMonitoringV3Range),
   }),
-).annotate({ identifier: "MetricRange" }) as any as S.Schema<MetricRange>;
+).annotate({
+  identifier: "DistributionCut",
+}) as any as S.Schema<DistributionCut>;
+
+/** Service Level Indicators for which atomic units of service are counted directly. */
+export interface RequestBasedSli {
+  /** good_total_ratio is used when the ratio of good_service to total_service is computed from two TimeSeries. */
+  goodTotalRatio?: TimeSeriesRatio;
+  /** distribution_cut is used when good_service is a count of values aggregated in a Distribution that fall into a good range. The total_service is the total count of all values aggregated in the Distribution. */
+  distributionCut?: DistributionCut;
+}
+export const RequestBasedSli = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    goodTotalRatio: S.optional(TimeSeriesRatio),
+    distributionCut: S.optional(DistributionCut),
+  }),
+).annotate({
+  identifier: "RequestBasedSli",
+}) as any as S.Schema<RequestBasedSli>;
 
 /** A PerformanceThreshold is used when each window is good when that window has a sufficiently high performance. */
 export interface PerformanceThreshold {
-  /** RequestBasedSli to evaluate to judge window quality. */
-  performance?: RequestBasedSli;
   /** BasicSli to evaluate to judge window quality. */
   basicSliPerformance?: BasicSli;
   /** If window performance >= threshold, the window is counted as good. */
   threshold?: number;
+  /** RequestBasedSli to evaluate to judge window quality. */
+  performance?: RequestBasedSli;
 }
 export const PerformanceThreshold = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    performance: S.optional(RequestBasedSli),
     basicSliPerformance: S.optional(BasicSli),
     threshold: S.optional(S.Number),
+    performance: S.optional(RequestBasedSli),
   }),
 ).annotate({
   identifier: "PerformanceThreshold",
@@ -2444,24 +2444,24 @@ export const PerformanceThreshold = /*@__PURE__*/ S.suspend(() =>
 
 /** A WindowsBasedSli defines good_service as the count of time windows for which the provided service was of good quality. Criteria for determining if service was good are embedded in the window_criterion. */
 export interface WindowsBasedSli {
-  /** A window is good if the metric's value is in a good range, averaged across returned streams. */
-  metricMeanInRange?: MetricRange;
   /** A window is good if the metric's value is in a good range, summed across returned streams. */
   metricSumInRange?: MetricRange;
-  /** A monitoring filter (https://cloud.google.com/monitoring/api/v3/filters) specifying a TimeSeries with ValueType = BOOL. The window is good if any true values appear in the window. */
-  goodBadMetricFilter?: string;
-  /** A window is good if its performance is high enough. */
-  goodTotalRatioThreshold?: PerformanceThreshold;
   /** Duration over which window quality is evaluated. Must be an integer fraction of a day and at least 60s. */
   windowPeriod?: string;
+  /** A window is good if its performance is high enough. */
+  goodTotalRatioThreshold?: PerformanceThreshold;
+  /** A window is good if the metric's value is in a good range, averaged across returned streams. */
+  metricMeanInRange?: MetricRange;
+  /** A monitoring filter (https://cloud.google.com/monitoring/api/v3/filters) specifying a TimeSeries with ValueType = BOOL. The window is good if any true values appear in the window. */
+  goodBadMetricFilter?: string;
 }
 export const WindowsBasedSli = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    metricMeanInRange: S.optional(MetricRange),
     metricSumInRange: S.optional(MetricRange),
-    goodBadMetricFilter: S.optional(S.String),
-    goodTotalRatioThreshold: S.optional(PerformanceThreshold),
     windowPeriod: S.optional(S.String),
+    goodTotalRatioThreshold: S.optional(PerformanceThreshold),
+    metricMeanInRange: S.optional(MetricRange),
+    goodBadMetricFilter: S.optional(S.String),
   }),
 ).annotate({
   identifier: "WindowsBasedSli",
@@ -2469,18 +2469,18 @@ export const WindowsBasedSli = /*@__PURE__*/ S.suspend(() =>
 
 /** A Service-Level Indicator (SLI) describes the "performance" of a service. For some services, the SLI is well-defined. In such cases, the SLI can be described easily by referencing the well-known SLI and providing the needed parameters. Alternatively, a "custom" SLI can be defined with a query to the underlying metric store. An SLI is defined to be good_service / total_service over any queried time interval. The value of performance always falls into the range 0 <= performance <= 1. A custom SLI describes how to compute this ratio, whether this is by dividing values from a pair of time series, cutting a Distribution into good and bad counts, or counting time windows in which the service complies with a criterion. For separation of concerns, a single Service-Level Indicator measures performance for only one aspect of service quality, such as fraction of successful queries or fast-enough queries. */
 export interface ServiceLevelIndicator {
-  /** Request-based SLIs */
-  requestBased?: RequestBasedSli;
-  /** Basic SLI on a well-known service type. */
-  basicSli?: BasicSli;
   /** Windows-based SLIs */
   windowsBased?: WindowsBasedSli;
+  /** Basic SLI on a well-known service type. */
+  basicSli?: BasicSli;
+  /** Request-based SLIs */
+  requestBased?: RequestBasedSli;
 }
 export const ServiceLevelIndicator = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    requestBased: S.optional(RequestBasedSli),
-    basicSli: S.optional(BasicSli),
     windowsBased: S.optional(WindowsBasedSli),
+    basicSli: S.optional(BasicSli),
+    requestBased: S.optional(RequestBasedSli),
   }),
 ).annotate({
   identifier: "ServiceLevelIndicator",
@@ -2499,29 +2499,29 @@ export const ServiceLevelObjectiveCalendarPeriodEnum = /*@__PURE__*/ S.String;
 
 /** A Service-Level Objective (SLO) describes a level of desired good service. It consists of a service-level indicator (SLI), a performance goal, and a period over which the objective is to be evaluated against that goal. The SLO can use SLIs defined in a number of different manners. Typical SLOs might include "99% of requests in each rolling week have latency below 200 milliseconds" or "99.5% of requests in each calendar month return successfully." */
 export interface ServiceLevelObjective {
+  /** Labels which have been used to annotate the service-level objective. Label keys must start with a letter. Label keys and values may contain lowercase letters, numbers, underscores, and dashes. Label keys and values have a maximum length of 63 characters, and must be less than 128 bytes in size. Up to 64 label entries may be stored. For labels which do not have a semantic value, the empty string may be supplied for the label value. */
+  userLabels?: StringMap;
+  /** Name used for UI elements listing this SLO. */
+  displayName?: string;
+  /** A rolling time period, semantically "in the past ". Must be an integer multiple of 1 day no larger than 30 days. */
+  rollingPeriod?: string;
   /** Identifier. Resource name for this ServiceLevelObjective. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME] */
   name?: string;
   /** The definition of good service, used to measure and calculate the quality of the Service's performance with respect to a single aspect of service quality. */
   serviceLevelIndicator?: ServiceLevelIndicator;
   /** The fraction of service that must be good in order for this objective to be met. 0 < goal <= 0.9999. */
   goal?: number;
-  /** Labels which have been used to annotate the service-level objective. Label keys must start with a letter. Label keys and values may contain lowercase letters, numbers, underscores, and dashes. Label keys and values have a maximum length of 63 characters, and must be less than 128 bytes in size. Up to 64 label entries may be stored. For labels which do not have a semantic value, the empty string may be supplied for the label value. */
-  userLabels?: StringMap;
-  /** A rolling time period, semantically "in the past ". Must be an integer multiple of 1 day no larger than 30 days. */
-  rollingPeriod?: string;
-  /** Name used for UI elements listing this SLO. */
-  displayName?: string;
   /** A calendar period, semantically "since the start of the current ". At this time, only DAY, WEEK, FORTNIGHT, and MONTH are supported. */
   calendarPeriod?: ServiceLevelObjectiveCalendarPeriodEnum | (string & {});
 }
 export const ServiceLevelObjective = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    userLabels: S.optional(StringMap),
+    displayName: S.optional(S.String),
+    rollingPeriod: S.optional(S.String),
     name: S.optional(S.String),
     serviceLevelIndicator: S.optional(ServiceLevelIndicator),
     goal: S.optional(S.Number),
-    userLabels: S.optional(StringMap),
-    rollingPeriod: S.optional(S.String),
-    displayName: S.optional(S.String),
     calendarPeriod: S.optional(ServiceLevelObjectiveCalendarPeriodEnum),
   }),
 ).annotate({
@@ -2529,18 +2529,18 @@ export const ServiceLevelObjective = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ServiceLevelObjective>;
 
 export interface CreateServicesServiceLevelObjectivesRequest {
-  /** Required. Resource name of the parent Service. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID] */
-  parent: string;
   /** Optional. The ServiceLevelObjective id to use for this ServiceLevelObjective. If omitted, an id will be generated instead. Must match the pattern ^[a-zA-Z0-9-_:.]+$ */
   serviceLevelObjectiveId?: string;
+  /** Required. Resource name of the parent Service. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID] */
+  parent: string;
   /** Request body */
   body?: ServiceLevelObjective;
 }
 export const CreateServicesServiceLevelObjectivesRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      parent: S.String.pipe(T.Label()),
       serviceLevelObjectiveId: S.optional(S.String.pipe(T.Query())),
+      parent: S.String.pipe(T.Label()),
       body: S.optional(ServiceLevelObjective.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -2612,16 +2612,16 @@ export const DeleteProjectsMetricDescriptorsRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<DeleteProjectsMetricDescriptorsRequest>;
 
 export interface DeleteProjectsNotificationChannelsRequest {
-  /** Required. The channel for which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID] */
-  name: string;
   /** If true, the notification channel will be deleted regardless of its use in alert policies (the policies will be updated to remove the channel). If false, this operation will fail if the notification channel is referenced by existing alerting policies. */
   force?: boolean;
+  /** Required. The channel for which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID] */
+  name: string;
 }
 export const DeleteProjectsNotificationChannelsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      name: S.String.pipe(T.Label()),
       force: S.optional(S.Boolean.pipe(T.Query())),
+      name: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "DELETE",
@@ -2725,6 +2725,33 @@ export const GetProjectsAlertsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetProjectsAlertsRequest",
 }) as any as S.Schema<GetProjectsAlertsRequest>;
 
+export type PolicySnapshotSeverityEnum =
+  | "SEVERITY_UNSPECIFIED"
+  | "CRITICAL"
+  | "ERROR"
+  | "WARNING";
+export const PolicySnapshotSeverityEnum = /*@__PURE__*/ S.String;
+
+/** The state of the policy at the time the alert was generated. */
+export interface PolicySnapshot {
+  /** The user labels for the alert policy. */
+  userLabels?: StringMap;
+  /** The name of the alert policy resource. In the form of "projects/PROJECT_ID_OR_NUMBER/alertPolicies/ALERT_POLICY_ID". */
+  name?: string;
+  /** The severity of the alert policy. */
+  severity?: PolicySnapshotSeverityEnum;
+  /** The display name of the alert policy. */
+  displayName?: string;
+}
+export const PolicySnapshot = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    userLabels: S.optional(StringMap),
+    name: S.optional(S.String),
+    severity: S.optional(PolicySnapshotSeverityEnum),
+    displayName: S.optional(S.String),
+  }),
+).annotate({ identifier: "PolicySnapshot" }) as any as S.Schema<PolicySnapshot>;
+
 /** Information about the log for log-based alerts. */
 export interface LogMetadata {
   /** The labels extracted from the log. */
@@ -2739,65 +2766,38 @@ export const LogMetadata = /*@__PURE__*/ S.suspend(() =>
 export type AlertStateEnum = "STATE_UNSPECIFIED" | "OPEN" | "CLOSED";
 export const AlertStateEnum = /*@__PURE__*/ S.String;
 
-export type PolicySnapshotSeverityEnum =
-  | "SEVERITY_UNSPECIFIED"
-  | "CRITICAL"
-  | "ERROR"
-  | "WARNING";
-export const PolicySnapshotSeverityEnum = /*@__PURE__*/ S.String;
-
-/** The state of the policy at the time the alert was generated. */
-export interface PolicySnapshot {
-  /** The name of the alert policy resource. In the form of "projects/PROJECT_ID_OR_NUMBER/alertPolicies/ALERT_POLICY_ID". */
-  name?: string;
-  /** The user labels for the alert policy. */
-  userLabels?: StringMap;
-  /** The display name of the alert policy. */
-  displayName?: string;
-  /** The severity of the alert policy. */
-  severity?: PolicySnapshotSeverityEnum;
-}
-export const PolicySnapshot = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    userLabels: S.optional(StringMap),
-    displayName: S.optional(S.String),
-    severity: S.optional(PolicySnapshotSeverityEnum),
-  }),
-).annotate({ identifier: "PolicySnapshot" }) as any as S.Schema<PolicySnapshot>;
-
 /** An alert is the representation of a violation of an alert policy. It is a read-only resource that cannot be modified by the accompanied API. */
 export interface Alert {
-  /** The metric type and any metric labels preserved from the incident's generating condition. */
-  metric?: Metric;
+  /** The time when the alert was opened. */
+  openTime?: string;
+  /** The metadata of the monitored resource. */
+  metadata?: MonitoredResourceMetadata;
+  /** The snapshot of the alert policy that generated this alert. */
+  policy?: PolicySnapshot;
+  /** Identifier. The name of the alert.The format is: projects/[PROJECT_ID_OR_NUMBER]/alerts/[ALERT_ID] The [ALERT_ID] is a system-assigned unique identifier for the alert. */
+  name?: string;
+  /** The monitored resource type and any monitored resource labels preserved from the incident's generating condition. */
+  resource?: MonitoredResource;
   /** The log information associated with the alert. This field is only populated for log-based alerts. */
   log?: LogMetadata;
   /** The time when the alert was closed. */
   closeTime?: string;
-  /** The monitored resource type and any monitored resource labels preserved from the incident's generating condition. */
-  resource?: MonitoredResource;
+  /** The metric type and any metric labels preserved from the incident's generating condition. */
+  metric?: Metric;
   /** Output only. The current state of the alert. */
   state?: AlertStateEnum;
-  /** The snapshot of the alert policy that generated this alert. */
-  policy?: PolicySnapshot;
-  /** The metadata of the monitored resource. */
-  metadata?: MonitoredResourceMetadata;
-  /** Identifier. The name of the alert.The format is: projects/[PROJECT_ID_OR_NUMBER]/alerts/[ALERT_ID] The [ALERT_ID] is a system-assigned unique identifier for the alert. */
-  name?: string;
-  /** The time when the alert was opened. */
-  openTime?: string;
 }
 export const Alert = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    metric: S.optional(Metric),
+    openTime: S.optional(S.String),
+    metadata: S.optional(MonitoredResourceMetadata),
+    policy: S.optional(PolicySnapshot),
+    name: S.optional(S.String),
+    resource: S.optional(MonitoredResource),
     log: S.optional(LogMetadata),
     closeTime: S.optional(S.String),
-    resource: S.optional(MonitoredResource),
+    metric: S.optional(Metric),
     state: S.optional(AlertStateEnum),
-    policy: S.optional(PolicySnapshot),
-    metadata: S.optional(MonitoredResourceMetadata),
-    name: S.optional(S.String),
-    openTime: S.optional(S.String),
   }),
 ).annotate({ identifier: "Alert" }) as any as S.Schema<Alert>;
 
@@ -2870,27 +2870,27 @@ export const MonitoredResourceDescriptorLaunchStageEnum =
 
 /** An object that describes the schema of a MonitoredResource object using a type name and a set of labels. For example, the monitored resource descriptor for Google Compute Engine VM instances has a type of "gce_instance" and specifies the use of the labels "instance_id" and "zone" to identify particular VM instances.Different APIs can support different monitored resource types. APIs generally provide a list method that returns the monitored resource descriptors used by the API. */
 export interface MonitoredResourceDescriptor {
-  /** Optional. The resource name of the monitored resource descriptor: "projects/{project_id}/monitoredResourceDescriptors/{type}" where {type} is the value of the type field in this object and {project_id} is a project ID that provides API-specific context for accessing the type. APIs that do not use project information can use the resource name format "monitoredResourceDescriptors/{type}". */
-  name?: string;
-  /** Required. The monitored resource type. For example, the type "cloudsql_database" represents databases in Google Cloud SQL. For a list of types, see Monitored resource types (https://cloud.google.com/monitoring/api/resources) and Logging resource types (https://cloud.google.com/logging/docs/api/v2/resource-list). */
-  type?: string;
   /** Required. A set of labels used to describe instances of this monitored resource type. For example, an individual Google Cloud SQL database is identified by values for the labels "database_id" and "zone". */
   labels?: LabelDescriptorList;
-  /** Optional. A detailed description of the monitored resource type that might be used in documentation. */
-  description?: string;
-  /** Optional. The launch stage of the monitored resource definition. */
-  launchStage?: MonitoredResourceDescriptorLaunchStageEnum;
   /** Optional. A concise name for the monitored resource type that might be displayed in user interfaces. It should be a Title Cased Noun Phrase, without any article or other determiners. For example, "Google Cloud SQL Database". */
   displayName?: string;
+  /** Optional. The launch stage of the monitored resource definition. */
+  launchStage?: MonitoredResourceDescriptorLaunchStageEnum;
+  /** Required. The monitored resource type. For example, the type "cloudsql_database" represents databases in Google Cloud SQL. For a list of types, see Monitored resource types (https://cloud.google.com/monitoring/api/resources) and Logging resource types (https://cloud.google.com/logging/docs/api/v2/resource-list). */
+  type?: string;
+  /** Optional. A detailed description of the monitored resource type that might be used in documentation. */
+  description?: string;
+  /** Optional. The resource name of the monitored resource descriptor: "projects/{project_id}/monitoredResourceDescriptors/{type}" where {type} is the value of the type field in this object and {project_id} is a project ID that provides API-specific context for accessing the type. APIs that do not use project information can use the resource name format "monitoredResourceDescriptors/{type}". */
+  name?: string;
 }
 export const MonitoredResourceDescriptor = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    name: S.optional(S.String),
-    type: S.optional(S.String),
     labels: S.optional(LabelDescriptorList),
-    description: S.optional(S.String),
-    launchStage: S.optional(MonitoredResourceDescriptorLaunchStageEnum),
     displayName: S.optional(S.String),
+    launchStage: S.optional(MonitoredResourceDescriptorLaunchStageEnum),
+    type: S.optional(S.String),
+    description: S.optional(S.String),
+    name: S.optional(S.String),
   }),
 ).annotate({
   identifier: "MonitoredResourceDescriptor",
@@ -2943,31 +2943,31 @@ export const NotificationChannelDescriptorLaunchStageEnum =
 
 /** A description of a notification channel. The descriptor includes the properties of the channel and the set of labels or fields that must be specified to configure channels of a given type. */
 export interface NotificationChannelDescriptor {
-  /** A human-readable name for the notification channel type. This form of the name is suitable for a user interface. */
-  displayName?: string;
-  /** The tiers that support this notification channel; the project service tier must be one of the supported_tiers. */
-  supportedTiers?: NotificationChannelDescriptorSupportedTiersItemEnumList;
-  /** The full REST resource name for this descriptor. The format is: projects/[PROJECT_ID_OR_NUMBER]/notificationChannelDescriptors/[TYPE] In the above, [TYPE] is the value of the type field. */
-  name?: string;
-  /** The type of notification channel, such as "email" and "sms". To view the full list of channels, see Channel descriptors (https://cloud.google.com/monitoring/alerts/using-channels-api#ncd). Notification channel types are globally unique. */
-  type?: string;
-  /** The set of labels that must be defined to identify a particular channel of the corresponding type. Each label includes a description for how that field should be populated. */
-  labels?: LabelDescriptorList;
   /** A human-readable description of the notification channel type. The description may include a description of the properties of the channel and pointers to external documentation. */
   description?: string;
+  /** The full REST resource name for this descriptor. The format is: projects/[PROJECT_ID_OR_NUMBER]/notificationChannelDescriptors/[TYPE] In the above, [TYPE] is the value of the type field. */
+  name?: string;
+  /** The tiers that support this notification channel; the project service tier must be one of the supported_tiers. */
+  supportedTiers?: NotificationChannelDescriptorSupportedTiersItemEnumList;
+  /** The set of labels that must be defined to identify a particular channel of the corresponding type. Each label includes a description for how that field should be populated. */
+  labels?: LabelDescriptorList;
+  /** The type of notification channel, such as "email" and "sms". To view the full list of channels, see Channel descriptors (https://cloud.google.com/monitoring/alerts/using-channels-api#ncd). Notification channel types are globally unique. */
+  type?: string;
+  /** A human-readable name for the notification channel type. This form of the name is suitable for a user interface. */
+  displayName?: string;
   /** The product launch stage for channels of this type. */
   launchStage?: NotificationChannelDescriptorLaunchStageEnum;
 }
 export const NotificationChannelDescriptor = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    displayName: S.optional(S.String),
+    description: S.optional(S.String),
+    name: S.optional(S.String),
     supportedTiers: S.optional(
       NotificationChannelDescriptorSupportedTiersItemEnumList,
     ),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
     labels: S.optional(LabelDescriptorList),
-    description: S.optional(S.String),
+    type: S.optional(S.String),
+    displayName: S.optional(S.String),
     launchStage: S.optional(NotificationChannelDescriptorLaunchStageEnum),
   }),
 ).annotate({
@@ -3055,18 +3055,18 @@ export type GetServicesServiceLevelObjectivesViewEnum =
 export const GetServicesServiceLevelObjectivesViewEnum = /*@__PURE__*/ S.String;
 
 export interface GetServicesServiceLevelObjectivesRequest {
-  /** Required. Resource name of the ServiceLevelObjective to get. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME] */
-  name: string;
   /** View of the ServiceLevelObjective to return. If DEFAULT, return the ServiceLevelObjective as originally defined. If EXPLICIT and the ServiceLevelObjective is defined in terms of a BasicSli, replace the BasicSli with a RequestBasedSli spelling out how the SLI is computed. */
   view?: GetServicesServiceLevelObjectivesViewEnum | (string & {});
+  /** Required. Resource name of the ServiceLevelObjective to get. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME] */
+  name: string;
 }
 export const GetServicesServiceLevelObjectivesRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      name: S.String.pipe(T.Label()),
       view: S.optional(
         GetServicesServiceLevelObjectivesViewEnum.pipe(T.Query()),
       ),
+      name: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "GET",
@@ -3133,6 +3133,50 @@ export const GetNotificationChannelVerificationCodeResponse =
     identifier: "GetNotificationChannelVerificationCodeResponse",
   }) as any as S.Schema<GetNotificationChannelVerificationCodeResponse>;
 
+export type ListFoldersTimeSeriesViewEnum = "FULL" | "HEADERS";
+export const ListFoldersTimeSeriesViewEnum = /*@__PURE__*/ S.String;
+
+export type ListFoldersTimeSeriesAggregation_perSeriesAlignerEnum =
+  | "ALIGN_NONE"
+  | "ALIGN_DELTA"
+  | "ALIGN_RATE"
+  | "ALIGN_INTERPOLATE"
+  | "ALIGN_NEXT_OLDER"
+  | "ALIGN_MIN"
+  | "ALIGN_MAX"
+  | "ALIGN_MEAN"
+  | "ALIGN_COUNT"
+  | "ALIGN_SUM"
+  | "ALIGN_STDDEV"
+  | "ALIGN_COUNT_TRUE"
+  | "ALIGN_COUNT_FALSE"
+  | "ALIGN_FRACTION_TRUE"
+  | "ALIGN_PERCENTILE_99"
+  | "ALIGN_PERCENTILE_95"
+  | "ALIGN_PERCENTILE_50"
+  | "ALIGN_PERCENTILE_05"
+  | "ALIGN_PERCENT_CHANGE";
+export const ListFoldersTimeSeriesAggregation_perSeriesAlignerEnum =
+  /*@__PURE__*/ S.String;
+
+export type ListFoldersTimeSeriesSecondaryAggregation_crossSeriesReducerEnum =
+  | "REDUCE_NONE"
+  | "REDUCE_MEAN"
+  | "REDUCE_MIN"
+  | "REDUCE_MAX"
+  | "REDUCE_SUM"
+  | "REDUCE_STDDEV"
+  | "REDUCE_COUNT"
+  | "REDUCE_COUNT_TRUE"
+  | "REDUCE_COUNT_FALSE"
+  | "REDUCE_FRACTION_TRUE"
+  | "REDUCE_PERCENTILE_99"
+  | "REDUCE_PERCENTILE_95"
+  | "REDUCE_PERCENTILE_50"
+  | "REDUCE_PERCENTILE_05";
+export const ListFoldersTimeSeriesSecondaryAggregation_crossSeriesReducerEnum =
+  /*@__PURE__*/ S.String;
+
 export type ListFoldersTimeSeriesAggregation_crossSeriesReducerEnum =
   | "REDUCE_NONE"
   | "REDUCE_MEAN"
@@ -3174,125 +3218,81 @@ export type ListFoldersTimeSeriesSecondaryAggregation_perSeriesAlignerEnum =
 export const ListFoldersTimeSeriesSecondaryAggregation_perSeriesAlignerEnum =
   /*@__PURE__*/ S.String;
 
-export type ListFoldersTimeSeriesViewEnum = "FULL" | "HEADERS";
-export const ListFoldersTimeSeriesViewEnum = /*@__PURE__*/ S.String;
-
-export type ListFoldersTimeSeriesSecondaryAggregation_crossSeriesReducerEnum =
-  | "REDUCE_NONE"
-  | "REDUCE_MEAN"
-  | "REDUCE_MIN"
-  | "REDUCE_MAX"
-  | "REDUCE_SUM"
-  | "REDUCE_STDDEV"
-  | "REDUCE_COUNT"
-  | "REDUCE_COUNT_TRUE"
-  | "REDUCE_COUNT_FALSE"
-  | "REDUCE_FRACTION_TRUE"
-  | "REDUCE_PERCENTILE_99"
-  | "REDUCE_PERCENTILE_95"
-  | "REDUCE_PERCENTILE_50"
-  | "REDUCE_PERCENTILE_05";
-export const ListFoldersTimeSeriesSecondaryAggregation_crossSeriesReducerEnum =
-  /*@__PURE__*/ S.String;
-
-export type ListFoldersTimeSeriesAggregation_perSeriesAlignerEnum =
-  | "ALIGN_NONE"
-  | "ALIGN_DELTA"
-  | "ALIGN_RATE"
-  | "ALIGN_INTERPOLATE"
-  | "ALIGN_NEXT_OLDER"
-  | "ALIGN_MIN"
-  | "ALIGN_MAX"
-  | "ALIGN_MEAN"
-  | "ALIGN_COUNT"
-  | "ALIGN_SUM"
-  | "ALIGN_STDDEV"
-  | "ALIGN_COUNT_TRUE"
-  | "ALIGN_COUNT_FALSE"
-  | "ALIGN_FRACTION_TRUE"
-  | "ALIGN_PERCENTILE_99"
-  | "ALIGN_PERCENTILE_95"
-  | "ALIGN_PERCENTILE_50"
-  | "ALIGN_PERCENTILE_05"
-  | "ALIGN_PERCENT_CHANGE";
-export const ListFoldersTimeSeriesAggregation_perSeriesAlignerEnum =
-  /*@__PURE__*/ S.String;
-
 export interface ListFoldersTimeSeriesRequest {
-  /** Optional. The beginning of the time interval. The default value for the start time is the end time. The start time must not be later than the end time. */
-  "interval.startTime"?: string;
-  /** The reduction operation to be used to combine time series into a single time series, where the value of each data point in the resulting series is a function of all the already aligned values in the input time series.Not all reducer operations can be applied to all time series. The valid choices depend on the metric_kind and the value_type of the original time series. Reduction can yield a time series with a different metric_kind or value_type than the input time series.Time series data must first be aligned (see per_series_aligner) in order to perform cross-time series reduction. If cross_series_reducer is specified, then per_series_aligner must be specified, and must not be ALIGN_NONE. An alignment_period must also be specified; otherwise, an error is returned. */
-  "aggregation.crossSeriesReducer"?:
-    | ListFoldersTimeSeriesAggregation_crossSeriesReducerEnum
-    | (string & {});
-  /** An Aligner describes how to bring the data points in a single time series into temporal alignment. Except for ALIGN_NONE, all alignments cause all the data points in an alignment_period to be mathematically grouped together, resulting in a single data point for each alignment_period with end timestamp at the end of the period.Not all alignment operations may be applied to all time series. The valid choices depend on the metric_kind and value_type of the original time series. Alignment can change the metric_kind or the value_type of the time series.Time series data must be aligned in order to perform cross-time series reduction. If cross_series_reducer is specified, then per_series_aligner must be specified and not equal to ALIGN_NONE and alignment_period must be specified; otherwise, an error is returned. */
-  "secondaryAggregation.perSeriesAligner"?:
-    | ListFoldersTimeSeriesSecondaryAggregation_perSeriesAlignerEnum
-    | (string & {});
-  /** The alignment_period specifies a time interval, in seconds, that is used to divide the data in all the time series into consistent blocks of time. This will be done before the per-series aligner can be applied to the data.The value must be at least 60 seconds. If a per-series aligner other than ALIGN_NONE is specified, this field is required or an error is returned. If no per-series aligner is specified, or the aligner ALIGN_NONE is specified, then this field is ignored.The maximum value of the alignment_period is 104 weeks (2 years) for charts, and 90,000 seconds (25 hours) for alerting policies. */
-  "secondaryAggregation.alignmentPeriod"?: string;
-  /** Required. A monitoring filter (https://cloud.google.com/monitoring/api/v3/filters) that specifies which time series should be returned. The filter must specify a single metric type, and can additionally specify metric labels and other information. For example: metric.type = "compute.googleapis.com/instance/cpu/usage_time" AND metric.labels.instance_name = "my-instance-name" */
-  filter?: string;
   /** Required. Specifies which information is returned about the time series. */
   view?: ListFoldersTimeSeriesViewEnum | (string & {});
-  /** Unsupported: must be left blank. The points in each time series are currently returned in reverse time order (most recent to oldest). */
-  orderBy?: string;
-  /** The alignment_period specifies a time interval, in seconds, that is used to divide the data in all the time series into consistent blocks of time. This will be done before the per-series aligner can be applied to the data.The value must be at least 60 seconds. If a per-series aligner other than ALIGN_NONE is specified, this field is required or an error is returned. If no per-series aligner is specified, or the aligner ALIGN_NONE is specified, then this field is ignored.The maximum value of the alignment_period is 104 weeks (2 years) for charts, and 90,000 seconds (25 hours) for alerting policies. */
-  "aggregation.alignmentPeriod"?: string;
-  /** A positive number that is the maximum number of results to return. If page_size is empty or more than 100,000 results, the effective page_size is 100,000 results. If view is set to FULL, this is the maximum number of Points returned. If view is set to HEADERS, this is the maximum number of TimeSeries returned. */
-  pageSize?: number;
+  /** Required. The project (https://cloud.google.com/monitoring/api/v3#project_name), organization or folder on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] organizations/[ORGANIZATION_ID] folders/[FOLDER_ID] */
+  name: string;
   /** If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call. */
   pageToken?: string;
-  /** Required. The end of the time interval. */
-  "interval.endTime"?: string;
+  /** An Aligner describes how to bring the data points in a single time series into temporal alignment. Except for ALIGN_NONE, all alignments cause all the data points in an alignment_period to be mathematically grouped together, resulting in a single data point for each alignment_period with end timestamp at the end of the period.Not all alignment operations may be applied to all time series. The valid choices depend on the metric_kind and value_type of the original time series. Alignment can change the metric_kind or the value_type of the time series.Time series data must be aligned in order to perform cross-time series reduction. If cross_series_reducer is specified, then per_series_aligner must be specified and not equal to ALIGN_NONE and alignment_period must be specified; otherwise, an error is returned. */
+  "aggregation.perSeriesAligner"?:
+    | ListFoldersTimeSeriesAggregation_perSeriesAlignerEnum
+    | (string & {});
   /** The set of fields to preserve when cross_series_reducer is specified. The group_by_fields determine how the time series are partitioned into subsets prior to applying the aggregation operation. Each subset contains time series that have the same value for each of the grouping fields. Each individual time series is a member of exactly one subset. The cross_series_reducer is applied to each subset of time series. It is not possible to reduce across different resource types, so this field implicitly contains resource.type. Fields not specified in group_by_fields are aggregated away. If group_by_fields is not specified and all the time series have the same resource type, then the time series are aggregated into a single output time series. If cross_series_reducer is not defined, this field is ignored. */
-  "aggregation.groupByFields"?: StringList;
+  "secondaryAggregation.groupByFields"?: StringList;
+  /** Optional. The beginning of the time interval. The default value for the start time is the end time. The start time must not be later than the end time. */
+  "interval.startTime"?: string;
+  /** The alignment_period specifies a time interval, in seconds, that is used to divide the data in all the time series into consistent blocks of time. This will be done before the per-series aligner can be applied to the data.The value must be at least 60 seconds. If a per-series aligner other than ALIGN_NONE is specified, this field is required or an error is returned. If no per-series aligner is specified, or the aligner ALIGN_NONE is specified, then this field is ignored.The maximum value of the alignment_period is 104 weeks (2 years) for charts, and 90,000 seconds (25 hours) for alerting policies. */
+  "aggregation.alignmentPeriod"?: string;
   /** The reduction operation to be used to combine time series into a single time series, where the value of each data point in the resulting series is a function of all the already aligned values in the input time series.Not all reducer operations can be applied to all time series. The valid choices depend on the metric_kind and the value_type of the original time series. Reduction can yield a time series with a different metric_kind or value_type than the input time series.Time series data must first be aligned (see per_series_aligner) in order to perform cross-time series reduction. If cross_series_reducer is specified, then per_series_aligner must be specified, and must not be ALIGN_NONE. An alignment_period must also be specified; otherwise, an error is returned. */
   "secondaryAggregation.crossSeriesReducer"?:
     | ListFoldersTimeSeriesSecondaryAggregation_crossSeriesReducerEnum
     | (string & {});
   /** The set of fields to preserve when cross_series_reducer is specified. The group_by_fields determine how the time series are partitioned into subsets prior to applying the aggregation operation. Each subset contains time series that have the same value for each of the grouping fields. Each individual time series is a member of exactly one subset. The cross_series_reducer is applied to each subset of time series. It is not possible to reduce across different resource types, so this field implicitly contains resource.type. Fields not specified in group_by_fields are aggregated away. If group_by_fields is not specified and all the time series have the same resource type, then the time series are aggregated into a single output time series. If cross_series_reducer is not defined, this field is ignored. */
-  "secondaryAggregation.groupByFields"?: StringList;
-  /** Required. The project (https://cloud.google.com/monitoring/api/v3#project_name), organization or folder on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] organizations/[ORGANIZATION_ID] folders/[FOLDER_ID] */
-  name: string;
-  /** An Aligner describes how to bring the data points in a single time series into temporal alignment. Except for ALIGN_NONE, all alignments cause all the data points in an alignment_period to be mathematically grouped together, resulting in a single data point for each alignment_period with end timestamp at the end of the period.Not all alignment operations may be applied to all time series. The valid choices depend on the metric_kind and value_type of the original time series. Alignment can change the metric_kind or the value_type of the time series.Time series data must be aligned in order to perform cross-time series reduction. If cross_series_reducer is specified, then per_series_aligner must be specified and not equal to ALIGN_NONE and alignment_period must be specified; otherwise, an error is returned. */
-  "aggregation.perSeriesAligner"?:
-    | ListFoldersTimeSeriesAggregation_perSeriesAlignerEnum
+  "aggregation.groupByFields"?: StringList;
+  /** Unsupported: must be left blank. The points in each time series are currently returned in reverse time order (most recent to oldest). */
+  orderBy?: string;
+  /** A positive number that is the maximum number of results to return. If page_size is empty or more than 100,000 results, the effective page_size is 100,000 results. If view is set to FULL, this is the maximum number of Points returned. If view is set to HEADERS, this is the maximum number of TimeSeries returned. */
+  pageSize?: number;
+  /** The reduction operation to be used to combine time series into a single time series, where the value of each data point in the resulting series is a function of all the already aligned values in the input time series.Not all reducer operations can be applied to all time series. The valid choices depend on the metric_kind and the value_type of the original time series. Reduction can yield a time series with a different metric_kind or value_type than the input time series.Time series data must first be aligned (see per_series_aligner) in order to perform cross-time series reduction. If cross_series_reducer is specified, then per_series_aligner must be specified, and must not be ALIGN_NONE. An alignment_period must also be specified; otherwise, an error is returned. */
+  "aggregation.crossSeriesReducer"?:
+    | ListFoldersTimeSeriesAggregation_crossSeriesReducerEnum
     | (string & {});
+  /** Required. The end of the time interval. */
+  "interval.endTime"?: string;
+  /** An Aligner describes how to bring the data points in a single time series into temporal alignment. Except for ALIGN_NONE, all alignments cause all the data points in an alignment_period to be mathematically grouped together, resulting in a single data point for each alignment_period with end timestamp at the end of the period.Not all alignment operations may be applied to all time series. The valid choices depend on the metric_kind and value_type of the original time series. Alignment can change the metric_kind or the value_type of the time series.Time series data must be aligned in order to perform cross-time series reduction. If cross_series_reducer is specified, then per_series_aligner must be specified and not equal to ALIGN_NONE and alignment_period must be specified; otherwise, an error is returned. */
+  "secondaryAggregation.perSeriesAligner"?:
+    | ListFoldersTimeSeriesSecondaryAggregation_perSeriesAlignerEnum
+    | (string & {});
+  /** Required. A monitoring filter (https://cloud.google.com/monitoring/api/v3/filters) that specifies which time series should be returned. The filter must specify a single metric type, and can additionally specify metric labels and other information. For example: metric.type = "compute.googleapis.com/instance/cpu/usage_time" AND metric.labels.instance_name = "my-instance-name" */
+  filter?: string;
+  /** The alignment_period specifies a time interval, in seconds, that is used to divide the data in all the time series into consistent blocks of time. This will be done before the per-series aligner can be applied to the data.The value must be at least 60 seconds. If a per-series aligner other than ALIGN_NONE is specified, this field is required or an error is returned. If no per-series aligner is specified, or the aligner ALIGN_NONE is specified, then this field is ignored.The maximum value of the alignment_period is 104 weeks (2 years) for charts, and 90,000 seconds (25 hours) for alerting policies. */
+  "secondaryAggregation.alignmentPeriod"?: string;
 }
 export const ListFoldersTimeSeriesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    "interval.startTime": S.optional(S.String.pipe(T.Query())),
-    "aggregation.crossSeriesReducer": S.optional(
-      ListFoldersTimeSeriesAggregation_crossSeriesReducerEnum.pipe(T.Query()),
-    ),
-    "secondaryAggregation.perSeriesAligner": S.optional(
-      ListFoldersTimeSeriesSecondaryAggregation_perSeriesAlignerEnum.pipe(
-        T.Query(),
-      ),
-    ),
-    "secondaryAggregation.alignmentPeriod": S.optional(
-      S.String.pipe(T.Query()),
-    ),
-    filter: S.optional(S.String.pipe(T.Query())),
     view: S.optional(ListFoldersTimeSeriesViewEnum.pipe(T.Query())),
-    orderBy: S.optional(S.String.pipe(T.Query())),
-    "aggregation.alignmentPeriod": S.optional(S.String.pipe(T.Query())),
-    pageSize: S.optional(S.Number.pipe(T.Query())),
+    name: S.String.pipe(T.Label()),
     pageToken: S.optional(S.String.pipe(T.Query())),
-    "interval.endTime": S.optional(S.String.pipe(T.Query())),
-    "aggregation.groupByFields": S.optional(StringList.pipe(T.Query())),
+    "aggregation.perSeriesAligner": S.optional(
+      ListFoldersTimeSeriesAggregation_perSeriesAlignerEnum.pipe(T.Query()),
+    ),
+    "secondaryAggregation.groupByFields": S.optional(
+      StringList.pipe(T.Query()),
+    ),
+    "interval.startTime": S.optional(S.String.pipe(T.Query())),
+    "aggregation.alignmentPeriod": S.optional(S.String.pipe(T.Query())),
     "secondaryAggregation.crossSeriesReducer": S.optional(
       ListFoldersTimeSeriesSecondaryAggregation_crossSeriesReducerEnum.pipe(
         T.Query(),
       ),
     ),
-    "secondaryAggregation.groupByFields": S.optional(
-      StringList.pipe(T.Query()),
+    "aggregation.groupByFields": S.optional(StringList.pipe(T.Query())),
+    orderBy: S.optional(S.String.pipe(T.Query())),
+    pageSize: S.optional(S.Number.pipe(T.Query())),
+    "aggregation.crossSeriesReducer": S.optional(
+      ListFoldersTimeSeriesAggregation_crossSeriesReducerEnum.pipe(T.Query()),
     ),
-    name: S.String.pipe(T.Label()),
-    "aggregation.perSeriesAligner": S.optional(
-      ListFoldersTimeSeriesAggregation_perSeriesAlignerEnum.pipe(T.Query()),
+    "interval.endTime": S.optional(S.String.pipe(T.Query())),
+    "secondaryAggregation.perSeriesAligner": S.optional(
+      ListFoldersTimeSeriesSecondaryAggregation_perSeriesAlignerEnum.pipe(
+        T.Query(),
+      ),
+    ),
+    filter: S.optional(S.String.pipe(T.Query())),
+    "secondaryAggregation.alignmentPeriod": S.optional(
+      S.String.pipe(T.Query()),
     ),
   }).pipe(
     T.Http({
@@ -3312,46 +3312,31 @@ export const StatusList = /*@__PURE__*/ S.Array(
 
 /** The ListTimeSeries response. */
 export interface ListTimeSeriesResponse {
+  /** Query execution errors that may have caused the time series data returned to be incomplete. */
+  executionErrors?: StatusList;
+  /** Cloud regions that were unreachable which may have caused incomplete data to be returned. */
+  unreachable?: StringList;
+  /** If there are more results than have been returned, then this field is set to a non-empty value. To see the additional results, use that value as page_token in the next call to this method. */
+  nextPageToken?: string;
   /** One or more time series that match the filter included in the request. */
   timeSeries?: TimeSeriesList;
   /** The unit in which all time_series point values are reported. unit follows the UCUM format for units as seen in https://unitsofmeasure.org/ucum.html. If different time_series have different units (for example, because they come from different metric types, or a unit is absent), then unit will be "{not_a_unit}". */
   unit?: string;
-  /** Cloud regions that were unreachable which may have caused incomplete data to be returned. */
-  unreachable?: StringList;
-  /** Query execution errors that may have caused the time series data returned to be incomplete. */
-  executionErrors?: StatusList;
-  /** If there are more results than have been returned, then this field is set to a non-empty value. To see the additional results, use that value as page_token in the next call to this method. */
-  nextPageToken?: string;
 }
 export const ListTimeSeriesResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    executionErrors: S.optional(StatusList),
+    unreachable: S.optional(StringList),
+    nextPageToken: S.optional(S.String),
     timeSeries: S.optional(TimeSeriesList),
     unit: S.optional(S.String),
-    unreachable: S.optional(StringList),
-    executionErrors: S.optional(StatusList),
-    nextPageToken: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ListTimeSeriesResponse",
 }) as any as S.Schema<ListTimeSeriesResponse>;
 
-export type ListOrganizationsTimeSeriesSecondaryAggregation_crossSeriesReducerEnum =
-  | "REDUCE_NONE"
-  | "REDUCE_MEAN"
-  | "REDUCE_MIN"
-  | "REDUCE_MAX"
-  | "REDUCE_SUM"
-  | "REDUCE_STDDEV"
-  | "REDUCE_COUNT"
-  | "REDUCE_COUNT_TRUE"
-  | "REDUCE_COUNT_FALSE"
-  | "REDUCE_FRACTION_TRUE"
-  | "REDUCE_PERCENTILE_99"
-  | "REDUCE_PERCENTILE_95"
-  | "REDUCE_PERCENTILE_50"
-  | "REDUCE_PERCENTILE_05";
-export const ListOrganizationsTimeSeriesSecondaryAggregation_crossSeriesReducerEnum =
-  /*@__PURE__*/ S.String;
+export type ListOrganizationsTimeSeriesViewEnum = "FULL" | "HEADERS";
+export const ListOrganizationsTimeSeriesViewEnum = /*@__PURE__*/ S.String;
 
 export type ListOrganizationsTimeSeriesAggregation_perSeriesAlignerEnum =
   | "ALIGN_NONE"
@@ -3374,27 +3359,6 @@ export type ListOrganizationsTimeSeriesAggregation_perSeriesAlignerEnum =
   | "ALIGN_PERCENTILE_05"
   | "ALIGN_PERCENT_CHANGE";
 export const ListOrganizationsTimeSeriesAggregation_perSeriesAlignerEnum =
-  /*@__PURE__*/ S.String;
-
-export type ListOrganizationsTimeSeriesViewEnum = "FULL" | "HEADERS";
-export const ListOrganizationsTimeSeriesViewEnum = /*@__PURE__*/ S.String;
-
-export type ListOrganizationsTimeSeriesAggregation_crossSeriesReducerEnum =
-  | "REDUCE_NONE"
-  | "REDUCE_MEAN"
-  | "REDUCE_MIN"
-  | "REDUCE_MAX"
-  | "REDUCE_SUM"
-  | "REDUCE_STDDEV"
-  | "REDUCE_COUNT"
-  | "REDUCE_COUNT_TRUE"
-  | "REDUCE_COUNT_FALSE"
-  | "REDUCE_FRACTION_TRUE"
-  | "REDUCE_PERCENTILE_99"
-  | "REDUCE_PERCENTILE_95"
-  | "REDUCE_PERCENTILE_50"
-  | "REDUCE_PERCENTILE_05";
-export const ListOrganizationsTimeSeriesAggregation_crossSeriesReducerEnum =
   /*@__PURE__*/ S.String;
 
 export type ListOrganizationsTimeSeriesSecondaryAggregation_perSeriesAlignerEnum =
@@ -3420,86 +3384,122 @@ export type ListOrganizationsTimeSeriesSecondaryAggregation_perSeriesAlignerEnum
 export const ListOrganizationsTimeSeriesSecondaryAggregation_perSeriesAlignerEnum =
   /*@__PURE__*/ S.String;
 
+export type ListOrganizationsTimeSeriesAggregation_crossSeriesReducerEnum =
+  | "REDUCE_NONE"
+  | "REDUCE_MEAN"
+  | "REDUCE_MIN"
+  | "REDUCE_MAX"
+  | "REDUCE_SUM"
+  | "REDUCE_STDDEV"
+  | "REDUCE_COUNT"
+  | "REDUCE_COUNT_TRUE"
+  | "REDUCE_COUNT_FALSE"
+  | "REDUCE_FRACTION_TRUE"
+  | "REDUCE_PERCENTILE_99"
+  | "REDUCE_PERCENTILE_95"
+  | "REDUCE_PERCENTILE_50"
+  | "REDUCE_PERCENTILE_05";
+export const ListOrganizationsTimeSeriesAggregation_crossSeriesReducerEnum =
+  /*@__PURE__*/ S.String;
+
+export type ListOrganizationsTimeSeriesSecondaryAggregation_crossSeriesReducerEnum =
+  | "REDUCE_NONE"
+  | "REDUCE_MEAN"
+  | "REDUCE_MIN"
+  | "REDUCE_MAX"
+  | "REDUCE_SUM"
+  | "REDUCE_STDDEV"
+  | "REDUCE_COUNT"
+  | "REDUCE_COUNT_TRUE"
+  | "REDUCE_COUNT_FALSE"
+  | "REDUCE_FRACTION_TRUE"
+  | "REDUCE_PERCENTILE_99"
+  | "REDUCE_PERCENTILE_95"
+  | "REDUCE_PERCENTILE_50"
+  | "REDUCE_PERCENTILE_05";
+export const ListOrganizationsTimeSeriesSecondaryAggregation_crossSeriesReducerEnum =
+  /*@__PURE__*/ S.String;
+
 export interface ListOrganizationsTimeSeriesRequest {
-  /** Required. The end of the time interval. */
-  "interval.endTime"?: string;
-  /** The reduction operation to be used to combine time series into a single time series, where the value of each data point in the resulting series is a function of all the already aligned values in the input time series.Not all reducer operations can be applied to all time series. The valid choices depend on the metric_kind and the value_type of the original time series. Reduction can yield a time series with a different metric_kind or value_type than the input time series.Time series data must first be aligned (see per_series_aligner) in order to perform cross-time series reduction. If cross_series_reducer is specified, then per_series_aligner must be specified, and must not be ALIGN_NONE. An alignment_period must also be specified; otherwise, an error is returned. */
-  "secondaryAggregation.crossSeriesReducer"?:
-    | ListOrganizationsTimeSeriesSecondaryAggregation_crossSeriesReducerEnum
-    | (string & {});
+  /** If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call. */
+  pageToken?: string;
+  /** Optional. The beginning of the time interval. The default value for the start time is the end time. The start time must not be later than the end time. */
+  "interval.startTime"?: string;
   /** The set of fields to preserve when cross_series_reducer is specified. The group_by_fields determine how the time series are partitioned into subsets prior to applying the aggregation operation. Each subset contains time series that have the same value for each of the grouping fields. Each individual time series is a member of exactly one subset. The cross_series_reducer is applied to each subset of time series. It is not possible to reduce across different resource types, so this field implicitly contains resource.type. Fields not specified in group_by_fields are aggregated away. If group_by_fields is not specified and all the time series have the same resource type, then the time series are aggregated into a single output time series. If cross_series_reducer is not defined, this field is ignored. */
   "aggregation.groupByFields"?: StringList;
   /** The set of fields to preserve when cross_series_reducer is specified. The group_by_fields determine how the time series are partitioned into subsets prior to applying the aggregation operation. Each subset contains time series that have the same value for each of the grouping fields. Each individual time series is a member of exactly one subset. The cross_series_reducer is applied to each subset of time series. It is not possible to reduce across different resource types, so this field implicitly contains resource.type. Fields not specified in group_by_fields are aggregated away. If group_by_fields is not specified and all the time series have the same resource type, then the time series are aggregated into a single output time series. If cross_series_reducer is not defined, this field is ignored. */
   "secondaryAggregation.groupByFields"?: StringList;
   /** Required. The project (https://cloud.google.com/monitoring/api/v3#project_name), organization or folder on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] organizations/[ORGANIZATION_ID] folders/[FOLDER_ID] */
   name: string;
+  /** The alignment_period specifies a time interval, in seconds, that is used to divide the data in all the time series into consistent blocks of time. This will be done before the per-series aligner can be applied to the data.The value must be at least 60 seconds. If a per-series aligner other than ALIGN_NONE is specified, this field is required or an error is returned. If no per-series aligner is specified, or the aligner ALIGN_NONE is specified, then this field is ignored.The maximum value of the alignment_period is 104 weeks (2 years) for charts, and 90,000 seconds (25 hours) for alerting policies. */
+  "aggregation.alignmentPeriod"?: string;
+  /** Required. Specifies which information is returned about the time series. */
+  view?: ListOrganizationsTimeSeriesViewEnum | (string & {});
   /** An Aligner describes how to bring the data points in a single time series into temporal alignment. Except for ALIGN_NONE, all alignments cause all the data points in an alignment_period to be mathematically grouped together, resulting in a single data point for each alignment_period with end timestamp at the end of the period.Not all alignment operations may be applied to all time series. The valid choices depend on the metric_kind and value_type of the original time series. Alignment can change the metric_kind or the value_type of the time series.Time series data must be aligned in order to perform cross-time series reduction. If cross_series_reducer is specified, then per_series_aligner must be specified and not equal to ALIGN_NONE and alignment_period must be specified; otherwise, an error is returned. */
   "aggregation.perSeriesAligner"?:
     | ListOrganizationsTimeSeriesAggregation_perSeriesAlignerEnum
     | (string & {});
-  /** Required. A monitoring filter (https://cloud.google.com/monitoring/api/v3/filters) that specifies which time series should be returned. The filter must specify a single metric type, and can additionally specify metric labels and other information. For example: metric.type = "compute.googleapis.com/instance/cpu/usage_time" AND metric.labels.instance_name = "my-instance-name" */
-  filter?: string;
   /** The alignment_period specifies a time interval, in seconds, that is used to divide the data in all the time series into consistent blocks of time. This will be done before the per-series aligner can be applied to the data.The value must be at least 60 seconds. If a per-series aligner other than ALIGN_NONE is specified, this field is required or an error is returned. If no per-series aligner is specified, or the aligner ALIGN_NONE is specified, then this field is ignored.The maximum value of the alignment_period is 104 weeks (2 years) for charts, and 90,000 seconds (25 hours) for alerting policies. */
   "secondaryAggregation.alignmentPeriod"?: string;
-  /** Unsupported: must be left blank. The points in each time series are currently returned in reverse time order (most recent to oldest). */
-  orderBy?: string;
-  /** Required. Specifies which information is returned about the time series. */
-  view?: ListOrganizationsTimeSeriesViewEnum | (string & {});
+  /** Required. A monitoring filter (https://cloud.google.com/monitoring/api/v3/filters) that specifies which time series should be returned. The filter must specify a single metric type, and can additionally specify metric labels and other information. For example: metric.type = "compute.googleapis.com/instance/cpu/usage_time" AND metric.labels.instance_name = "my-instance-name" */
+  filter?: string;
   /** A positive number that is the maximum number of results to return. If page_size is empty or more than 100,000 results, the effective page_size is 100,000 results. If view is set to FULL, this is the maximum number of Points returned. If view is set to HEADERS, this is the maximum number of TimeSeries returned. */
   pageSize?: number;
-  /** If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call. */
-  pageToken?: string;
-  /** The alignment_period specifies a time interval, in seconds, that is used to divide the data in all the time series into consistent blocks of time. This will be done before the per-series aligner can be applied to the data.The value must be at least 60 seconds. If a per-series aligner other than ALIGN_NONE is specified, this field is required or an error is returned. If no per-series aligner is specified, or the aligner ALIGN_NONE is specified, then this field is ignored.The maximum value of the alignment_period is 104 weeks (2 years) for charts, and 90,000 seconds (25 hours) for alerting policies. */
-  "aggregation.alignmentPeriod"?: string;
-  /** Optional. The beginning of the time interval. The default value for the start time is the end time. The start time must not be later than the end time. */
-  "interval.startTime"?: string;
-  /** The reduction operation to be used to combine time series into a single time series, where the value of each data point in the resulting series is a function of all the already aligned values in the input time series.Not all reducer operations can be applied to all time series. The valid choices depend on the metric_kind and the value_type of the original time series. Reduction can yield a time series with a different metric_kind or value_type than the input time series.Time series data must first be aligned (see per_series_aligner) in order to perform cross-time series reduction. If cross_series_reducer is specified, then per_series_aligner must be specified, and must not be ALIGN_NONE. An alignment_period must also be specified; otherwise, an error is returned. */
-  "aggregation.crossSeriesReducer"?:
-    | ListOrganizationsTimeSeriesAggregation_crossSeriesReducerEnum
-    | (string & {});
   /** An Aligner describes how to bring the data points in a single time series into temporal alignment. Except for ALIGN_NONE, all alignments cause all the data points in an alignment_period to be mathematically grouped together, resulting in a single data point for each alignment_period with end timestamp at the end of the period.Not all alignment operations may be applied to all time series. The valid choices depend on the metric_kind and value_type of the original time series. Alignment can change the metric_kind or the value_type of the time series.Time series data must be aligned in order to perform cross-time series reduction. If cross_series_reducer is specified, then per_series_aligner must be specified and not equal to ALIGN_NONE and alignment_period must be specified; otherwise, an error is returned. */
   "secondaryAggregation.perSeriesAligner"?:
     | ListOrganizationsTimeSeriesSecondaryAggregation_perSeriesAlignerEnum
     | (string & {});
+  /** Required. The end of the time interval. */
+  "interval.endTime"?: string;
+  /** The reduction operation to be used to combine time series into a single time series, where the value of each data point in the resulting series is a function of all the already aligned values in the input time series.Not all reducer operations can be applied to all time series. The valid choices depend on the metric_kind and the value_type of the original time series. Reduction can yield a time series with a different metric_kind or value_type than the input time series.Time series data must first be aligned (see per_series_aligner) in order to perform cross-time series reduction. If cross_series_reducer is specified, then per_series_aligner must be specified, and must not be ALIGN_NONE. An alignment_period must also be specified; otherwise, an error is returned. */
+  "aggregation.crossSeriesReducer"?:
+    | ListOrganizationsTimeSeriesAggregation_crossSeriesReducerEnum
+    | (string & {});
+  /** The reduction operation to be used to combine time series into a single time series, where the value of each data point in the resulting series is a function of all the already aligned values in the input time series.Not all reducer operations can be applied to all time series. The valid choices depend on the metric_kind and the value_type of the original time series. Reduction can yield a time series with a different metric_kind or value_type than the input time series.Time series data must first be aligned (see per_series_aligner) in order to perform cross-time series reduction. If cross_series_reducer is specified, then per_series_aligner must be specified, and must not be ALIGN_NONE. An alignment_period must also be specified; otherwise, an error is returned. */
+  "secondaryAggregation.crossSeriesReducer"?:
+    | ListOrganizationsTimeSeriesSecondaryAggregation_crossSeriesReducerEnum
+    | (string & {});
+  /** Unsupported: must be left blank. The points in each time series are currently returned in reverse time order (most recent to oldest). */
+  orderBy?: string;
 }
 export const ListOrganizationsTimeSeriesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    "interval.endTime": S.optional(S.String.pipe(T.Query())),
-    "secondaryAggregation.crossSeriesReducer": S.optional(
-      ListOrganizationsTimeSeriesSecondaryAggregation_crossSeriesReducerEnum.pipe(
-        T.Query(),
-      ),
-    ),
+    pageToken: S.optional(S.String.pipe(T.Query())),
+    "interval.startTime": S.optional(S.String.pipe(T.Query())),
     "aggregation.groupByFields": S.optional(StringList.pipe(T.Query())),
     "secondaryAggregation.groupByFields": S.optional(
       StringList.pipe(T.Query()),
     ),
     name: S.String.pipe(T.Label()),
+    "aggregation.alignmentPeriod": S.optional(S.String.pipe(T.Query())),
+    view: S.optional(ListOrganizationsTimeSeriesViewEnum.pipe(T.Query())),
     "aggregation.perSeriesAligner": S.optional(
       ListOrganizationsTimeSeriesAggregation_perSeriesAlignerEnum.pipe(
         T.Query(),
       ),
     ),
-    filter: S.optional(S.String.pipe(T.Query())),
     "secondaryAggregation.alignmentPeriod": S.optional(
       S.String.pipe(T.Query()),
     ),
-    orderBy: S.optional(S.String.pipe(T.Query())),
-    view: S.optional(ListOrganizationsTimeSeriesViewEnum.pipe(T.Query())),
+    filter: S.optional(S.String.pipe(T.Query())),
     pageSize: S.optional(S.Number.pipe(T.Query())),
-    pageToken: S.optional(S.String.pipe(T.Query())),
-    "aggregation.alignmentPeriod": S.optional(S.String.pipe(T.Query())),
-    "interval.startTime": S.optional(S.String.pipe(T.Query())),
-    "aggregation.crossSeriesReducer": S.optional(
-      ListOrganizationsTimeSeriesAggregation_crossSeriesReducerEnum.pipe(
-        T.Query(),
-      ),
-    ),
     "secondaryAggregation.perSeriesAligner": S.optional(
       ListOrganizationsTimeSeriesSecondaryAggregation_perSeriesAlignerEnum.pipe(
         T.Query(),
       ),
     ),
+    "interval.endTime": S.optional(S.String.pipe(T.Query())),
+    "aggregation.crossSeriesReducer": S.optional(
+      ListOrganizationsTimeSeriesAggregation_crossSeriesReducerEnum.pipe(
+        T.Query(),
+      ),
+    ),
+    "secondaryAggregation.crossSeriesReducer": S.optional(
+      ListOrganizationsTimeSeriesSecondaryAggregation_crossSeriesReducerEnum.pipe(
+        T.Query(),
+      ),
+    ),
+    orderBy: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -3512,24 +3512,24 @@ export const ListOrganizationsTimeSeriesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListOrganizationsTimeSeriesRequest>;
 
 export interface ListProjectsAlertPoliciesRequest {
-  /** Optional. If provided, this field specifies the criteria that must be met by alert policies to be included in the response.For more details, see sorting and filtering (https://cloud.google.com/monitoring/api/v3/sorting-and-filtering). */
-  filter?: string;
-  /** Optional. A comma-separated list of fields by which to sort the result. Supports the same set of field references as the filter field. Entries can be prefixed with a minus sign to sort by the field in descending order.For more details, see sorting and filtering (https://cloud.google.com/monitoring/api/v3/sorting-and-filtering). */
-  orderBy?: string;
-  /** Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) whose alert policies are to be listed. The format is: projects/[PROJECT_ID_OR_NUMBER] Note that this field names the parent container in which the alerting policies to be listed are stored. To retrieve a single alerting policy by name, use the GetAlertPolicy operation, instead. */
-  name: string;
   /** Optional. The maximum number of results to return in a single response. */
   pageSize?: number;
   /** Optional. If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return more results from the previous method call. */
   pageToken?: string;
+  /** Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) whose alert policies are to be listed. The format is: projects/[PROJECT_ID_OR_NUMBER] Note that this field names the parent container in which the alerting policies to be listed are stored. To retrieve a single alerting policy by name, use the GetAlertPolicy operation, instead. */
+  name: string;
+  /** Optional. If provided, this field specifies the criteria that must be met by alert policies to be included in the response.For more details, see sorting and filtering (https://cloud.google.com/monitoring/api/v3/sorting-and-filtering). */
+  filter?: string;
+  /** Optional. A comma-separated list of fields by which to sort the result. Supports the same set of field references as the filter field. Entries can be prefixed with a minus sign to sort by the field in descending order.For more details, see sorting and filtering (https://cloud.google.com/monitoring/api/v3/sorting-and-filtering). */
+  orderBy?: string;
 }
 export const ListProjectsAlertPoliciesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    filter: S.optional(S.String.pipe(T.Query())),
-    orderBy: S.optional(S.String.pipe(T.Query())),
-    name: S.String.pipe(T.Label()),
     pageSize: S.optional(S.Number.pipe(T.Query())),
     pageToken: S.optional(S.String.pipe(T.Query())),
+    name: S.String.pipe(T.Label()),
+    filter: S.optional(S.String.pipe(T.Query())),
+    orderBy: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -3548,42 +3548,42 @@ export const AlertPolicyList = /*@__PURE__*/ S.Array(
 
 /** The protocol for the ListAlertPolicies response. */
 export interface ListAlertPoliciesResponse {
+  /** If there might be more results than were returned, then this field is set to a non-empty value. To see the additional results, use that value as page_token in the next call to this method. */
+  nextPageToken?: string;
   /** The total number of alert policies in all pages. This number is only an estimate, and may change in subsequent pages. https://aip.dev/158 */
   totalSize?: number;
   /** The returned alert policies. */
   alertPolicies?: AlertPolicyList;
-  /** If there might be more results than were returned, then this field is set to a non-empty value. To see the additional results, use that value as page_token in the next call to this method. */
-  nextPageToken?: string;
 }
 export const ListAlertPoliciesResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    nextPageToken: S.optional(S.String),
     totalSize: S.optional(S.Number),
     alertPolicies: S.optional(AlertPolicyList),
-    nextPageToken: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ListAlertPoliciesResponse",
 }) as any as S.Schema<ListAlertPoliciesResponse>;
 
 export interface ListProjectsAlertsRequest {
-  /** Optional. An alert is returned if there is a match on any fields belonging to the alert or its subfields. */
-  filter?: string;
   /** Required. The name of the project to list alerts for. */
   parent: string;
-  /** Optional. A comma-separated list of fields in Alert to use for sorting. The default sort direction is ascending. To specify descending order for a field, add a desc modifier. The following fields are supported: open_time close_timeFor example, close_time desc, open_time will return the alerts closed most recently, with ties broken in the order of older alerts listed first.If the field is not set, the results are sorted by open_time desc. */
-  orderBy?: string;
-  /** Optional. The maximum number of results to return in a single response. If not set to a positive number, at most 50 alerts will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000. */
-  pageSize?: number;
+  /** Optional. An alert is returned if there is a match on any fields belonging to the alert or its subfields. */
+  filter?: string;
   /** Optional. If non-empty, page_token must contain a value returned as the next_page_token in a previous response to request the next set of results. */
   pageToken?: string;
+  /** Optional. The maximum number of results to return in a single response. If not set to a positive number, at most 50 alerts will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000. */
+  pageSize?: number;
+  /** Optional. A comma-separated list of fields in Alert to use for sorting. The default sort direction is ascending. To specify descending order for a field, add a desc modifier. The following fields are supported: open_time close_timeFor example, close_time desc, open_time will return the alerts closed most recently, with ties broken in the order of older alerts listed first.If the field is not set, the results are sorted by open_time desc. */
+  orderBy?: string;
 }
 export const ListProjectsAlertsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    filter: S.optional(S.String.pipe(T.Query())),
     parent: S.String.pipe(T.Label()),
-    orderBy: S.optional(S.String.pipe(T.Query())),
-    pageSize: S.optional(S.Number.pipe(T.Query())),
+    filter: S.optional(S.String.pipe(T.Query())),
     pageToken: S.optional(S.String.pipe(T.Query())),
+    pageSize: S.optional(S.Number.pipe(T.Query())),
+    orderBy: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -3602,17 +3602,17 @@ export const AlertList = /*@__PURE__*/ S.Array(
 
 /** The ListAlerts response. */
 export interface ListAlertsResponse {
-  /** The list of alerts. */
-  alerts?: AlertList;
   /** If not empty, indicates that there may be more results that match the request. Use the value in the page_token field in a subsequent request to fetch the next set of results. The token is encrypted and only guaranteed to return correct results for 72 hours after it is created. If empty, all results have been returned. */
   nextPageToken?: string;
+  /** The list of alerts. */
+  alerts?: AlertList;
   /** The estimated total number of matching results for this query. */
   totalSize?: number;
 }
 export const ListAlertsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    alerts: S.optional(AlertList),
     nextPageToken: S.optional(S.String),
+    alerts: S.optional(AlertList),
     totalSize: S.optional(S.Number),
   }),
 ).annotate({
@@ -3620,27 +3620,27 @@ export const ListAlertsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListAlertsResponse>;
 
 export interface ListProjectsGroupsRequest {
+  /** If this field is not empty then it must contain the next_page_token value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call. */
+  pageToken?: string;
+  /** A group name. The format is: projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID] Returns the descendants of the specified group. This is a superset of the results returned by the children_of_group filter, and includes children-of-children, and so forth. */
+  descendantsOfGroup?: string;
   /** A group name. The format is: projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID] Returns groups that are ancestors of the specified group. The groups are returned in order, starting with the immediate parent and ending with the most distant ancestor. If the specified group has no immediate parent, the results are empty. */
   ancestorsOfGroup?: string;
   /** Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) whose groups are to be listed. The format is: projects/[PROJECT_ID_OR_NUMBER] */
   name: string;
   /** A positive number that is the maximum number of results to return. */
   pageSize?: number;
-  /** If this field is not empty then it must contain the next_page_token value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call. */
-  pageToken?: string;
   /** A group name. The format is: projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID] Returns groups whose parent_name field contains the group name. If no groups have this parent, the results are empty. */
   childrenOfGroup?: string;
-  /** A group name. The format is: projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID] Returns the descendants of the specified group. This is a superset of the results returned by the children_of_group filter, and includes children-of-children, and so forth. */
-  descendantsOfGroup?: string;
 }
 export const ListProjectsGroupsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    pageToken: S.optional(S.String.pipe(T.Query())),
+    descendantsOfGroup: S.optional(S.String.pipe(T.Query())),
     ancestorsOfGroup: S.optional(S.String.pipe(T.Query())),
     name: S.String.pipe(T.Label()),
     pageSize: S.optional(S.Number.pipe(T.Query())),
-    pageToken: S.optional(S.String.pipe(T.Query())),
     childrenOfGroup: S.optional(S.String.pipe(T.Query())),
-    descendantsOfGroup: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -3659,41 +3659,41 @@ export const GroupList = /*@__PURE__*/ S.Array(
 
 /** The ListGroups response. */
 export interface ListGroupsResponse {
-  /** If there are more results than have been returned, then this field is set to a non-empty value. To see the additional results, use that value as page_token in the next call to this method. */
-  nextPageToken?: string;
   /** The groups that match the specified filters. */
   group?: GroupList;
+  /** If there are more results than have been returned, then this field is set to a non-empty value. To see the additional results, use that value as page_token in the next call to this method. */
+  nextPageToken?: string;
 }
 export const ListGroupsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    nextPageToken: S.optional(S.String),
     group: S.optional(GroupList),
+    nextPageToken: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ListGroupsResponse",
 }) as any as S.Schema<ListGroupsResponse>;
 
 export interface ListProjectsGroupsMembersRequest {
-  /** Required. The group whose members are listed. The format is: projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID] */
-  name: string;
+  /** Required. The end of the time interval. */
+  "interval.endTime"?: string;
   /** A positive number that is the maximum number of results to return. */
   pageSize?: number;
   /** If this field is not empty then it must contain the next_page_token value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call. */
   pageToken?: string;
+  /** Required. The group whose members are listed. The format is: projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID] */
+  name: string;
   /** Optional. The beginning of the time interval. The default value for the start time is the end time. The start time must not be later than the end time. */
   "interval.startTime"?: string;
-  /** Required. The end of the time interval. */
-  "interval.endTime"?: string;
   /** An optional list filter (https://cloud.google.com/monitoring/api/learn_more#filtering) describing the members to be returned. The filter may reference the type, labels, and metadata of monitored resources that comprise the group. For example, to return only resources representing Compute Engine VM instances, use this filter: `resource.type = "gce_instance"` */
   filter?: string;
 }
 export const ListProjectsGroupsMembersRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    name: S.String.pipe(T.Label()),
+    "interval.endTime": S.optional(S.String.pipe(T.Query())),
     pageSize: S.optional(S.Number.pipe(T.Query())),
     pageToken: S.optional(S.String.pipe(T.Query())),
+    name: S.String.pipe(T.Label()),
     "interval.startTime": S.optional(S.String.pipe(T.Query())),
-    "interval.endTime": S.optional(S.String.pipe(T.Query())),
     filter: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
@@ -3713,43 +3713,43 @@ export const MonitoredResourceList = /*@__PURE__*/ S.Array(
 
 /** The ListGroupMembers response. */
 export interface ListGroupMembersResponse {
-  /** A set of monitored resources in the group. */
-  members?: MonitoredResourceList;
   /** The total number of elements matching this request. */
   totalSize?: number;
   /** If there are more results than have been returned, then this field is set to a non-empty value. To see the additional results, use that value as page_token in the next call to this method. */
   nextPageToken?: string;
+  /** A set of monitored resources in the group. */
+  members?: MonitoredResourceList;
 }
 export const ListGroupMembersResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    members: S.optional(MonitoredResourceList),
     totalSize: S.optional(S.Number),
     nextPageToken: S.optional(S.String),
+    members: S.optional(MonitoredResourceList),
   }),
 ).annotate({
   identifier: "ListGroupMembersResponse",
 }) as any as S.Schema<ListGroupMembersResponse>;
 
 export interface ListProjectsMetricDescriptorsRequest {
-  /** Optional. A positive number that is the maximum number of results to return. The default and maximum value is 10,000. If a page_size <= 0 or > 10,000 is submitted, will instead return a maximum of 10,000 results. */
-  pageSize?: number;
-  /** Optional. If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call. */
-  pageToken?: string;
-  /** Optional. If true, only metrics and monitored resource types that have recent data (within roughly 25 hours) will be included in the response. - If a metric descriptor enumerates monitored resource types, only the monitored resource types for which the metric type has recent data will be included in the returned metric descriptor, and if none of them have recent data, the metric descriptor will not be returned. - If a metric descriptor does not enumerate the compatible monitored resource types, it will be returned only if the metric type has recent data for some monitored resource type. The returned descriptor will not enumerate any monitored resource types. */
-  activeOnly?: boolean;
-  /** Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] */
-  name: string;
   /** Optional. If this field is empty, all custom and system-defined metric descriptors are returned. Otherwise, the filter (https://cloud.google.com/monitoring/api/v3/filters) specifies which metric descriptors are to be returned. For example, the following filter matches all custom metrics (https://cloud.google.com/monitoring/custom-metrics): metric.type = starts_with("custom.googleapis.com/") */
   filter?: string;
+  /** Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] */
+  name: string;
+  /** Optional. A positive number that is the maximum number of results to return. The default and maximum value is 10,000. If a page_size <= 0 or > 10,000 is submitted, will instead return a maximum of 10,000 results. */
+  pageSize?: number;
+  /** Optional. If true, only metrics and monitored resource types that have recent data (within roughly 25 hours) will be included in the response. - If a metric descriptor enumerates monitored resource types, only the monitored resource types for which the metric type has recent data will be included in the returned metric descriptor, and if none of them have recent data, the metric descriptor will not be returned. - If a metric descriptor does not enumerate the compatible monitored resource types, it will be returned only if the metric type has recent data for some monitored resource type. The returned descriptor will not enumerate any monitored resource types. */
+  activeOnly?: boolean;
+  /** Optional. If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call. */
+  pageToken?: string;
 }
 export const ListProjectsMetricDescriptorsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      pageSize: S.optional(S.Number.pipe(T.Query())),
-      pageToken: S.optional(S.String.pipe(T.Query())),
-      activeOnly: S.optional(S.Boolean.pipe(T.Query())),
-      name: S.String.pipe(T.Label()),
       filter: S.optional(S.String.pipe(T.Query())),
+      name: S.String.pipe(T.Label()),
+      pageSize: S.optional(S.Number.pipe(T.Query())),
+      activeOnly: S.optional(S.Boolean.pipe(T.Query())),
+      pageToken: S.optional(S.String.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -3768,37 +3768,37 @@ export const MetricDescriptorList = /*@__PURE__*/ S.Array(
 
 /** The ListMetricDescriptors response. */
 export interface ListMetricDescriptorsResponse {
-  /** If there are more results than have been returned, then this field is set to a non-empty value. To see the additional results, use that value as page_token in the next call to this method. */
-  nextPageToken?: string;
   /** The metric descriptors that are available to the project and that match the value of filter, if present. */
   metricDescriptors?: MetricDescriptorList;
+  /** If there are more results than have been returned, then this field is set to a non-empty value. To see the additional results, use that value as page_token in the next call to this method. */
+  nextPageToken?: string;
 }
 export const ListMetricDescriptorsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    nextPageToken: S.optional(S.String),
     metricDescriptors: S.optional(MetricDescriptorList),
+    nextPageToken: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ListMetricDescriptorsResponse",
 }) as any as S.Schema<ListMetricDescriptorsResponse>;
 
 export interface ListProjectsMonitoredResourceDescriptorsRequest {
+  /** An optional filter (https://cloud.google.com/monitoring/api/v3/filters) describing the descriptors to be returned. The filter can reference the descriptor's type and labels. For example, the following filter returns only Google Compute Engine descriptors that have an id label: resource.type = starts_with("gce_") AND resource.label:id */
+  filter?: string;
   /** Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] */
   name: string;
   /** A positive number that is the maximum number of results to return. */
   pageSize?: number;
   /** If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call. */
   pageToken?: string;
-  /** An optional filter (https://cloud.google.com/monitoring/api/v3/filters) describing the descriptors to be returned. The filter can reference the descriptor's type and labels. For example, the following filter returns only Google Compute Engine descriptors that have an id label: resource.type = starts_with("gce_") AND resource.label:id */
-  filter?: string;
 }
 export const ListProjectsMonitoredResourceDescriptorsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
+      filter: S.optional(S.String.pipe(T.Query())),
       name: S.String.pipe(T.Label()),
       pageSize: S.optional(S.Number.pipe(T.Query())),
       pageToken: S.optional(S.String.pipe(T.Query())),
-      filter: S.optional(S.String.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -3834,19 +3834,19 @@ export const ListMonitoredResourceDescriptorsResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<ListMonitoredResourceDescriptorsResponse>;
 
 export interface ListProjectsNotificationChannelDescriptorsRequest {
+  /** Required. The REST resource name of the parent from which to retrieve the notification channel descriptors. The expected syntax is: projects/[PROJECT_ID_OR_NUMBER] Note that this names (https://cloud.google.com/monitoring/api/v3#project_name) the parent container in which to look for the descriptors; to retrieve a single descriptor by name, use the GetNotificationChannelDescriptor operation, instead. */
+  name: string;
   /** The maximum number of results to return in a single response. If not set to a positive number, a reasonable value will be chosen by the service. */
   pageSize?: number;
   /** If non-empty, page_token must contain a value returned as the next_page_token in a previous response to request the next set of results. */
   pageToken?: string;
-  /** Required. The REST resource name of the parent from which to retrieve the notification channel descriptors. The expected syntax is: projects/[PROJECT_ID_OR_NUMBER] Note that this names (https://cloud.google.com/monitoring/api/v3#project_name) the parent container in which to look for the descriptors; to retrieve a single descriptor by name, use the GetNotificationChannelDescriptor operation, instead. */
-  name: string;
 }
 export const ListProjectsNotificationChannelDescriptorsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
+      name: S.String.pipe(T.Label()),
       pageSize: S.optional(S.Number.pipe(T.Query())),
       pageToken: S.optional(S.String.pipe(T.Query())),
-      name: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "GET",
@@ -3866,41 +3866,41 @@ export const NotificationChannelDescriptorList = /*@__PURE__*/ S.Array(
 
 /** The ListNotificationChannelDescriptors response. */
 export interface ListNotificationChannelDescriptorsResponse {
-  /** If not empty, indicates that there may be more results that match the request. Use the value in the page_token field in a subsequent request to fetch the next set of results. If empty, all results have been returned. */
-  nextPageToken?: string;
   /** The monitored resource descriptors supported for the specified project, optionally filtered. */
   channelDescriptors?: NotificationChannelDescriptorList;
+  /** If not empty, indicates that there may be more results that match the request. Use the value in the page_token field in a subsequent request to fetch the next set of results. If empty, all results have been returned. */
+  nextPageToken?: string;
 }
 export const ListNotificationChannelDescriptorsResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      nextPageToken: S.optional(S.String),
       channelDescriptors: S.optional(NotificationChannelDescriptorList),
+      nextPageToken: S.optional(S.String),
     }),
   ).annotate({
     identifier: "ListNotificationChannelDescriptorsResponse",
   }) as any as S.Schema<ListNotificationChannelDescriptorsResponse>;
 
 export interface ListProjectsNotificationChannelsRequest {
+  /** Optional. If provided, this field specifies the criteria that must be met by notification channels to be included in the response.For more details, see sorting and filtering (https://cloud.google.com/monitoring/api/v3/sorting-and-filtering). */
+  filter?: string;
   /** Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] This names the container in which to look for the notification channels; it does not name a specific channel. To query a specific channel by REST resource name, use the GetNotificationChannel operation. */
   name: string;
-  /** Optional. The maximum number of results to return in a single response. If not set to a positive number, a reasonable value will be chosen by the service. */
-  pageSize?: number;
   /** Optional. If non-empty, page_token must contain a value returned as the next_page_token in a previous response to request the next set of results. */
   pageToken?: string;
   /** Optional. A comma-separated list of fields by which to sort the result. Supports the same set of fields as in filter. Entries can be prefixed with a minus sign to sort in descending rather than ascending order.For more details, see sorting and filtering (https://cloud.google.com/monitoring/api/v3/sorting-and-filtering). */
   orderBy?: string;
-  /** Optional. If provided, this field specifies the criteria that must be met by notification channels to be included in the response.For more details, see sorting and filtering (https://cloud.google.com/monitoring/api/v3/sorting-and-filtering). */
-  filter?: string;
+  /** Optional. The maximum number of results to return in a single response. If not set to a positive number, a reasonable value will be chosen by the service. */
+  pageSize?: number;
 }
 export const ListProjectsNotificationChannelsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
+      filter: S.optional(S.String.pipe(T.Query())),
       name: S.String.pipe(T.Label()),
-      pageSize: S.optional(S.Number.pipe(T.Query())),
       pageToken: S.optional(S.String.pipe(T.Query())),
       orderBy: S.optional(S.String.pipe(T.Query())),
-      filter: S.optional(S.String.pipe(T.Query())),
+      pageSize: S.optional(S.Number.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -3937,21 +3937,21 @@ export const ListNotificationChannelsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListNotificationChannelsResponse>;
 
 export interface ListProjectsSnoozesRequest {
-  /** Optional. Optional filter to restrict results to the given criteria. The following fields are supported. interval.start_time interval.end_timeFor example: interval.start_time > "2022-03-11T00:00:00-08:00" AND interval.end_time < "2022-03-12T00:00:00-08:00" */
-  filter?: string;
-  /** Optional. The maximum number of results to return for a single query. The server may further constrain the maximum number of results returned in a single page. The value should be in the range 1, 1000. If the value given is outside this range, the server will decide the number of results to be returned. */
-  pageSize?: number;
   /** Optional. The next_page_token from a previous call to ListSnoozesRequest to get the next page of results. */
   pageToken?: string;
+  /** Optional. The maximum number of results to return for a single query. The server may further constrain the maximum number of results returned in a single page. The value should be in the range 1, 1000. If the value given is outside this range, the server will decide the number of results to be returned. */
+  pageSize?: number;
   /** Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) whose Snoozes should be listed. The format is: projects/[PROJECT_ID_OR_NUMBER] */
   parent: string;
+  /** Optional. Optional filter to restrict results to the given criteria. The following fields are supported. interval.start_time interval.end_timeFor example: interval.start_time > "2022-03-11T00:00:00-08:00" AND interval.end_time < "2022-03-12T00:00:00-08:00" */
+  filter?: string;
 }
 export const ListProjectsSnoozesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    filter: S.optional(S.String.pipe(T.Query())),
-    pageSize: S.optional(S.Number.pipe(T.Query())),
     pageToken: S.optional(S.String.pipe(T.Query())),
+    pageSize: S.optional(S.Number.pipe(T.Query())),
     parent: S.String.pipe(T.Label()),
+    filter: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -3984,24 +3984,6 @@ export const ListSnoozesResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListSnoozesResponse",
 }) as any as S.Schema<ListSnoozesResponse>;
 
-export type ListProjectsTimeSeriesAggregation_crossSeriesReducerEnum =
-  | "REDUCE_NONE"
-  | "REDUCE_MEAN"
-  | "REDUCE_MIN"
-  | "REDUCE_MAX"
-  | "REDUCE_SUM"
-  | "REDUCE_STDDEV"
-  | "REDUCE_COUNT"
-  | "REDUCE_COUNT_TRUE"
-  | "REDUCE_COUNT_FALSE"
-  | "REDUCE_FRACTION_TRUE"
-  | "REDUCE_PERCENTILE_99"
-  | "REDUCE_PERCENTILE_95"
-  | "REDUCE_PERCENTILE_50"
-  | "REDUCE_PERCENTILE_05";
-export const ListProjectsTimeSeriesAggregation_crossSeriesReducerEnum =
-  /*@__PURE__*/ S.String;
-
 export type ListProjectsTimeSeriesSecondaryAggregation_perSeriesAlignerEnum =
   | "ALIGN_NONE"
   | "ALIGN_DELTA"
@@ -4023,6 +4005,24 @@ export type ListProjectsTimeSeriesSecondaryAggregation_perSeriesAlignerEnum =
   | "ALIGN_PERCENTILE_05"
   | "ALIGN_PERCENT_CHANGE";
 export const ListProjectsTimeSeriesSecondaryAggregation_perSeriesAlignerEnum =
+  /*@__PURE__*/ S.String;
+
+export type ListProjectsTimeSeriesAggregation_crossSeriesReducerEnum =
+  | "REDUCE_NONE"
+  | "REDUCE_MEAN"
+  | "REDUCE_MIN"
+  | "REDUCE_MAX"
+  | "REDUCE_SUM"
+  | "REDUCE_STDDEV"
+  | "REDUCE_COUNT"
+  | "REDUCE_COUNT_TRUE"
+  | "REDUCE_COUNT_FALSE"
+  | "REDUCE_FRACTION_TRUE"
+  | "REDUCE_PERCENTILE_99"
+  | "REDUCE_PERCENTILE_95"
+  | "REDUCE_PERCENTILE_50"
+  | "REDUCE_PERCENTILE_05";
+export const ListProjectsTimeSeriesAggregation_crossSeriesReducerEnum =
   /*@__PURE__*/ S.String;
 
 export type ListProjectsTimeSeriesSecondaryAggregation_crossSeriesReducerEnum =
@@ -4070,81 +4070,81 @@ export type ListProjectsTimeSeriesViewEnum = "FULL" | "HEADERS";
 export const ListProjectsTimeSeriesViewEnum = /*@__PURE__*/ S.String;
 
 export interface ListProjectsTimeSeriesRequest {
-  /** Optional. The beginning of the time interval. The default value for the start time is the end time. The start time must not be later than the end time. */
-  "interval.startTime"?: string;
-  /** The reduction operation to be used to combine time series into a single time series, where the value of each data point in the resulting series is a function of all the already aligned values in the input time series.Not all reducer operations can be applied to all time series. The valid choices depend on the metric_kind and the value_type of the original time series. Reduction can yield a time series with a different metric_kind or value_type than the input time series.Time series data must first be aligned (see per_series_aligner) in order to perform cross-time series reduction. If cross_series_reducer is specified, then per_series_aligner must be specified, and must not be ALIGN_NONE. An alignment_period must also be specified; otherwise, an error is returned. */
-  "aggregation.crossSeriesReducer"?:
-    | ListProjectsTimeSeriesAggregation_crossSeriesReducerEnum
-    | (string & {});
   /** An Aligner describes how to bring the data points in a single time series into temporal alignment. Except for ALIGN_NONE, all alignments cause all the data points in an alignment_period to be mathematically grouped together, resulting in a single data point for each alignment_period with end timestamp at the end of the period.Not all alignment operations may be applied to all time series. The valid choices depend on the metric_kind and value_type of the original time series. Alignment can change the metric_kind or the value_type of the time series.Time series data must be aligned in order to perform cross-time series reduction. If cross_series_reducer is specified, then per_series_aligner must be specified and not equal to ALIGN_NONE and alignment_period must be specified; otherwise, an error is returned. */
   "secondaryAggregation.perSeriesAligner"?:
     | ListProjectsTimeSeriesSecondaryAggregation_perSeriesAlignerEnum
     | (string & {});
-  /** Required. The end of the time interval. */
-  "interval.endTime"?: string;
+  /** The alignment_period specifies a time interval, in seconds, that is used to divide the data in all the time series into consistent blocks of time. This will be done before the per-series aligner can be applied to the data.The value must be at least 60 seconds. If a per-series aligner other than ALIGN_NONE is specified, this field is required or an error is returned. If no per-series aligner is specified, or the aligner ALIGN_NONE is specified, then this field is ignored.The maximum value of the alignment_period is 104 weeks (2 years) for charts, and 90,000 seconds (25 hours) for alerting policies. */
+  "aggregation.alignmentPeriod"?: string;
+  /** A positive number that is the maximum number of results to return. If page_size is empty or more than 100,000 results, the effective page_size is 100,000 results. If view is set to FULL, this is the maximum number of Points returned. If view is set to HEADERS, this is the maximum number of TimeSeries returned. */
+  pageSize?: number;
+  /** The reduction operation to be used to combine time series into a single time series, where the value of each data point in the resulting series is a function of all the already aligned values in the input time series.Not all reducer operations can be applied to all time series. The valid choices depend on the metric_kind and the value_type of the original time series. Reduction can yield a time series with a different metric_kind or value_type than the input time series.Time series data must first be aligned (see per_series_aligner) in order to perform cross-time series reduction. If cross_series_reducer is specified, then per_series_aligner must be specified, and must not be ALIGN_NONE. An alignment_period must also be specified; otherwise, an error is returned. */
+  "aggregation.crossSeriesReducer"?:
+    | ListProjectsTimeSeriesAggregation_crossSeriesReducerEnum
+    | (string & {});
+  /** The alignment_period specifies a time interval, in seconds, that is used to divide the data in all the time series into consistent blocks of time. This will be done before the per-series aligner can be applied to the data.The value must be at least 60 seconds. If a per-series aligner other than ALIGN_NONE is specified, this field is required or an error is returned. If no per-series aligner is specified, or the aligner ALIGN_NONE is specified, then this field is ignored.The maximum value of the alignment_period is 104 weeks (2 years) for charts, and 90,000 seconds (25 hours) for alerting policies. */
+  "secondaryAggregation.alignmentPeriod"?: string;
+  /** If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call. */
+  pageToken?: string;
+  /** Optional. The beginning of the time interval. The default value for the start time is the end time. The start time must not be later than the end time. */
+  "interval.startTime"?: string;
   /** The reduction operation to be used to combine time series into a single time series, where the value of each data point in the resulting series is a function of all the already aligned values in the input time series.Not all reducer operations can be applied to all time series. The valid choices depend on the metric_kind and the value_type of the original time series. Reduction can yield a time series with a different metric_kind or value_type than the input time series.Time series data must first be aligned (see per_series_aligner) in order to perform cross-time series reduction. If cross_series_reducer is specified, then per_series_aligner must be specified, and must not be ALIGN_NONE. An alignment_period must also be specified; otherwise, an error is returned. */
   "secondaryAggregation.crossSeriesReducer"?:
     | ListProjectsTimeSeriesSecondaryAggregation_crossSeriesReducerEnum
     | (string & {});
-  /** The set of fields to preserve when cross_series_reducer is specified. The group_by_fields determine how the time series are partitioned into subsets prior to applying the aggregation operation. Each subset contains time series that have the same value for each of the grouping fields. Each individual time series is a member of exactly one subset. The cross_series_reducer is applied to each subset of time series. It is not possible to reduce across different resource types, so this field implicitly contains resource.type. Fields not specified in group_by_fields are aggregated away. If group_by_fields is not specified and all the time series have the same resource type, then the time series are aggregated into a single output time series. If cross_series_reducer is not defined, this field is ignored. */
-  "aggregation.groupByFields"?: StringList;
-  /** The set of fields to preserve when cross_series_reducer is specified. The group_by_fields determine how the time series are partitioned into subsets prior to applying the aggregation operation. Each subset contains time series that have the same value for each of the grouping fields. Each individual time series is a member of exactly one subset. The cross_series_reducer is applied to each subset of time series. It is not possible to reduce across different resource types, so this field implicitly contains resource.type. Fields not specified in group_by_fields are aggregated away. If group_by_fields is not specified and all the time series have the same resource type, then the time series are aggregated into a single output time series. If cross_series_reducer is not defined, this field is ignored. */
-  "secondaryAggregation.groupByFields"?: StringList;
-  /** Required. The project (https://cloud.google.com/monitoring/api/v3#project_name), organization or folder on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] organizations/[ORGANIZATION_ID] folders/[FOLDER_ID] */
-  name: string;
   /** An Aligner describes how to bring the data points in a single time series into temporal alignment. Except for ALIGN_NONE, all alignments cause all the data points in an alignment_period to be mathematically grouped together, resulting in a single data point for each alignment_period with end timestamp at the end of the period.Not all alignment operations may be applied to all time series. The valid choices depend on the metric_kind and value_type of the original time series. Alignment can change the metric_kind or the value_type of the time series.Time series data must be aligned in order to perform cross-time series reduction. If cross_series_reducer is specified, then per_series_aligner must be specified and not equal to ALIGN_NONE and alignment_period must be specified; otherwise, an error is returned. */
   "aggregation.perSeriesAligner"?:
     | ListProjectsTimeSeriesAggregation_perSeriesAlignerEnum
     | (string & {});
-  /** Required. A monitoring filter (https://cloud.google.com/monitoring/api/v3/filters) that specifies which time series should be returned. The filter must specify a single metric type, and can additionally specify metric labels and other information. For example: metric.type = "compute.googleapis.com/instance/cpu/usage_time" AND metric.labels.instance_name = "my-instance-name" */
-  filter?: string;
-  /** The alignment_period specifies a time interval, in seconds, that is used to divide the data in all the time series into consistent blocks of time. This will be done before the per-series aligner can be applied to the data.The value must be at least 60 seconds. If a per-series aligner other than ALIGN_NONE is specified, this field is required or an error is returned. If no per-series aligner is specified, or the aligner ALIGN_NONE is specified, then this field is ignored.The maximum value of the alignment_period is 104 weeks (2 years) for charts, and 90,000 seconds (25 hours) for alerting policies. */
-  "secondaryAggregation.alignmentPeriod"?: string;
+  /** The set of fields to preserve when cross_series_reducer is specified. The group_by_fields determine how the time series are partitioned into subsets prior to applying the aggregation operation. Each subset contains time series that have the same value for each of the grouping fields. Each individual time series is a member of exactly one subset. The cross_series_reducer is applied to each subset of time series. It is not possible to reduce across different resource types, so this field implicitly contains resource.type. Fields not specified in group_by_fields are aggregated away. If group_by_fields is not specified and all the time series have the same resource type, then the time series are aggregated into a single output time series. If cross_series_reducer is not defined, this field is ignored. */
+  "aggregation.groupByFields"?: StringList;
   /** Unsupported: must be left blank. The points in each time series are currently returned in reverse time order (most recent to oldest). */
   orderBy?: string;
+  /** Required. The project (https://cloud.google.com/monitoring/api/v3#project_name), organization or folder on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] organizations/[ORGANIZATION_ID] folders/[FOLDER_ID] */
+  name: string;
+  /** Required. The end of the time interval. */
+  "interval.endTime"?: string;
   /** Required. Specifies which information is returned about the time series. */
   view?: ListProjectsTimeSeriesViewEnum | (string & {});
-  /** A positive number that is the maximum number of results to return. If page_size is empty or more than 100,000 results, the effective page_size is 100,000 results. If view is set to FULL, this is the maximum number of Points returned. If view is set to HEADERS, this is the maximum number of TimeSeries returned. */
-  pageSize?: number;
-  /** If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call. */
-  pageToken?: string;
-  /** The alignment_period specifies a time interval, in seconds, that is used to divide the data in all the time series into consistent blocks of time. This will be done before the per-series aligner can be applied to the data.The value must be at least 60 seconds. If a per-series aligner other than ALIGN_NONE is specified, this field is required or an error is returned. If no per-series aligner is specified, or the aligner ALIGN_NONE is specified, then this field is ignored.The maximum value of the alignment_period is 104 weeks (2 years) for charts, and 90,000 seconds (25 hours) for alerting policies. */
-  "aggregation.alignmentPeriod"?: string;
+  /** The set of fields to preserve when cross_series_reducer is specified. The group_by_fields determine how the time series are partitioned into subsets prior to applying the aggregation operation. Each subset contains time series that have the same value for each of the grouping fields. Each individual time series is a member of exactly one subset. The cross_series_reducer is applied to each subset of time series. It is not possible to reduce across different resource types, so this field implicitly contains resource.type. Fields not specified in group_by_fields are aggregated away. If group_by_fields is not specified and all the time series have the same resource type, then the time series are aggregated into a single output time series. If cross_series_reducer is not defined, this field is ignored. */
+  "secondaryAggregation.groupByFields"?: StringList;
+  /** Required. A monitoring filter (https://cloud.google.com/monitoring/api/v3/filters) that specifies which time series should be returned. The filter must specify a single metric type, and can additionally specify metric labels and other information. For example: metric.type = "compute.googleapis.com/instance/cpu/usage_time" AND metric.labels.instance_name = "my-instance-name" */
+  filter?: string;
 }
 export const ListProjectsTimeSeriesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    "interval.startTime": S.optional(S.String.pipe(T.Query())),
-    "aggregation.crossSeriesReducer": S.optional(
-      ListProjectsTimeSeriesAggregation_crossSeriesReducerEnum.pipe(T.Query()),
-    ),
     "secondaryAggregation.perSeriesAligner": S.optional(
       ListProjectsTimeSeriesSecondaryAggregation_perSeriesAlignerEnum.pipe(
         T.Query(),
       ),
     ),
-    "interval.endTime": S.optional(S.String.pipe(T.Query())),
+    "aggregation.alignmentPeriod": S.optional(S.String.pipe(T.Query())),
+    pageSize: S.optional(S.Number.pipe(T.Query())),
+    "aggregation.crossSeriesReducer": S.optional(
+      ListProjectsTimeSeriesAggregation_crossSeriesReducerEnum.pipe(T.Query()),
+    ),
+    "secondaryAggregation.alignmentPeriod": S.optional(
+      S.String.pipe(T.Query()),
+    ),
+    pageToken: S.optional(S.String.pipe(T.Query())),
+    "interval.startTime": S.optional(S.String.pipe(T.Query())),
     "secondaryAggregation.crossSeriesReducer": S.optional(
       ListProjectsTimeSeriesSecondaryAggregation_crossSeriesReducerEnum.pipe(
         T.Query(),
       ),
     ),
-    "aggregation.groupByFields": S.optional(StringList.pipe(T.Query())),
-    "secondaryAggregation.groupByFields": S.optional(
-      StringList.pipe(T.Query()),
-    ),
-    name: S.String.pipe(T.Label()),
     "aggregation.perSeriesAligner": S.optional(
       ListProjectsTimeSeriesAggregation_perSeriesAlignerEnum.pipe(T.Query()),
     ),
-    filter: S.optional(S.String.pipe(T.Query())),
-    "secondaryAggregation.alignmentPeriod": S.optional(
-      S.String.pipe(T.Query()),
-    ),
+    "aggregation.groupByFields": S.optional(StringList.pipe(T.Query())),
     orderBy: S.optional(S.String.pipe(T.Query())),
+    name: S.String.pipe(T.Label()),
+    "interval.endTime": S.optional(S.String.pipe(T.Query())),
     view: S.optional(ListProjectsTimeSeriesViewEnum.pipe(T.Query())),
-    pageSize: S.optional(S.Number.pipe(T.Query())),
-    pageToken: S.optional(S.String.pipe(T.Query())),
-    "aggregation.alignmentPeriod": S.optional(S.String.pipe(T.Query())),
+    "secondaryAggregation.groupByFields": S.optional(
+      StringList.pipe(T.Query()),
+    ),
+    filter: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -4157,22 +4157,22 @@ export const ListProjectsTimeSeriesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListProjectsTimeSeriesRequest>;
 
 export interface ListProjectsUptimeCheckConfigsRequest {
-  /** If provided, this field specifies the criteria that must be met by uptime checks to be included in the response.For more details, see Filtering syntax (https://cloud.google.com/monitoring/api/v3/sorting-and-filtering#filter_syntax). */
-  filter?: string;
-  /** Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) whose Uptime check configurations are listed. The format is: projects/[PROJECT_ID_OR_NUMBER] */
-  parent: string;
   /** The maximum number of results to return in a single response. The server may further constrain the maximum number of results returned in a single page. If the page_size is <=0, the server will decide the number of results to be returned. */
   pageSize?: number;
   /** If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return more results from the previous method call. */
   pageToken?: string;
+  /** Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) whose Uptime check configurations are listed. The format is: projects/[PROJECT_ID_OR_NUMBER] */
+  parent: string;
+  /** If provided, this field specifies the criteria that must be met by uptime checks to be included in the response.For more details, see Filtering syntax (https://cloud.google.com/monitoring/api/v3/sorting-and-filtering#filter_syntax). */
+  filter?: string;
 }
 export const ListProjectsUptimeCheckConfigsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      filter: S.optional(S.String.pipe(T.Query())),
-      parent: S.String.pipe(T.Label()),
       pageSize: S.optional(S.Number.pipe(T.Query())),
       pageToken: S.optional(S.String.pipe(T.Query())),
+      parent: S.String.pipe(T.Label()),
+      filter: S.optional(S.String.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -4191,38 +4191,38 @@ export const UptimeCheckConfigList = /*@__PURE__*/ S.Array(
 
 /** The protocol for the ListUptimeCheckConfigs response. */
 export interface ListUptimeCheckConfigsResponse {
+  /** The total number of Uptime check configurations for the project, irrespective of any pagination. */
+  totalSize?: number;
   /** This field represents the pagination token to retrieve the next page of results. If the value is empty, it means no further results for the request. To retrieve the next page of results, the value of the next_page_token is passed to the subsequent List method call (in the request message's page_token field). */
   nextPageToken?: string;
   /** The returned Uptime check configurations. */
   uptimeCheckConfigs?: UptimeCheckConfigList;
-  /** The total number of Uptime check configurations for the project, irrespective of any pagination. */
-  totalSize?: number;
 }
 export const ListUptimeCheckConfigsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    totalSize: S.optional(S.Number),
     nextPageToken: S.optional(S.String),
     uptimeCheckConfigs: S.optional(UptimeCheckConfigList),
-    totalSize: S.optional(S.Number),
   }),
 ).annotate({
   identifier: "ListUptimeCheckConfigsResponse",
 }) as any as S.Schema<ListUptimeCheckConfigsResponse>;
 
 export interface ListServicesRequest {
-  /** Required. Resource name of the parent containing the listed services, either a project (https://cloud.google.com/monitoring/api/v3#project_name) or a Monitoring Metrics Scope. The formats are: projects/[PROJECT_ID_OR_NUMBER] workspaces/[HOST_PROJECT_ID_OR_NUMBER] */
-  parent: string;
   /** A non-negative number that is the maximum number of results to return. When 0, use default page size. */
   pageSize?: number;
   /** If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call. */
   pageToken?: string;
+  /** Required. Resource name of the parent containing the listed services, either a project (https://cloud.google.com/monitoring/api/v3#project_name) or a Monitoring Metrics Scope. The formats are: projects/[PROJECT_ID_OR_NUMBER] workspaces/[HOST_PROJECT_ID_OR_NUMBER] */
+  parent: string;
   /** A filter specifying what Services to return. The filter supports filtering on a particular service-identifier type or one of its attributes.To filter on a particular service-identifier type, the identifier_case refers to which option in the identifier field is populated. For example, the filter identifier_case = "CUSTOM" would match all services with a value for the custom field. Valid options include "CUSTOM", "APP_ENGINE", "MESH_ISTIO", and the other options listed at https://cloud.google.com/monitoring/api/ref_v3/rest/v3/services#ServiceTo filter on an attribute of a service-identifier type, apply the filter name by using the snake case of the service-identifier type and the attribute of that service-identifier type, and join the two with a period. For example, to filter by the meshUid field of the MeshIstio service-identifier type, you must filter on mesh_istio.mesh_uid = "123" to match all services with mesh UID "123". Service-identifier types and their attributes are described at https://cloud.google.com/monitoring/api/ref_v3/rest/v3/services#Service */
   filter?: string;
 }
 export const ListServicesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    parent: S.String.pipe(T.Label()),
     pageSize: S.optional(S.Number.pipe(T.Query())),
     pageToken: S.optional(S.String.pipe(T.Query())),
+    parent: S.String.pipe(T.Label()),
     filter: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
@@ -4264,27 +4264,27 @@ export const ListServicesServiceLevelObjectivesViewEnum =
   /*@__PURE__*/ S.String;
 
 export interface ListServicesServiceLevelObjectivesRequest {
-  /** View of the ServiceLevelObjectives to return. If DEFAULT, return each ServiceLevelObjective as originally defined. If EXPLICIT and the ServiceLevelObjective is defined in terms of a BasicSli, replace the BasicSli with a RequestBasedSli spelling out how the SLI is computed. */
-  view?: ListServicesServiceLevelObjectivesViewEnum | (string & {});
   /** A non-negative number that is the maximum number of results to return. When 0, use default page size. */
   pageSize?: number;
   /** If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call. */
   pageToken?: string;
-  /** A filter specifying what ServiceLevelObjectives to return. */
-  filter?: string;
+  /** View of the ServiceLevelObjectives to return. If DEFAULT, return each ServiceLevelObjective as originally defined. If EXPLICIT and the ServiceLevelObjective is defined in terms of a BasicSli, replace the BasicSli with a RequestBasedSli spelling out how the SLI is computed. */
+  view?: ListServicesServiceLevelObjectivesViewEnum | (string & {});
   /** Required. Resource name of the parent containing the listed SLOs, either a project or a Monitoring Metrics Scope. The formats are: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID] workspaces/[HOST_PROJECT_ID_OR_NUMBER]/services/- */
   parent: string;
+  /** A filter specifying what ServiceLevelObjectives to return. */
+  filter?: string;
 }
 export const ListServicesServiceLevelObjectivesRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
+      pageSize: S.optional(S.Number.pipe(T.Query())),
+      pageToken: S.optional(S.String.pipe(T.Query())),
       view: S.optional(
         ListServicesServiceLevelObjectivesViewEnum.pipe(T.Query()),
       ),
-      pageSize: S.optional(S.Number.pipe(T.Query())),
-      pageToken: S.optional(S.String.pipe(T.Query())),
-      filter: S.optional(S.String.pipe(T.Query())),
       parent: S.String.pipe(T.Label()),
+      filter: S.optional(S.String.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -4353,16 +4353,16 @@ export const UptimeCheckIpRegionEnum = /*@__PURE__*/ S.String;
 export interface UptimeCheckIp {
   /** A broad region category in which the IP address is located. */
   region?: UptimeCheckIpRegionEnum;
-  /** A more specific location within the region that typically encodes a particular city/town/metro (and its containing state/province or country) within the broader umbrella region category. */
-  location?: string;
   /** The IP address from which the Uptime check originates. This is a fully specified IP address (not an IP address range). Most IP addresses, as of this publication, are in IPv4 format; however, one should not rely on the IP addresses being in IPv4 format indefinitely, and should support interpreting this field in either IPv4 or IPv6 format. */
   ipAddress?: string;
+  /** A more specific location within the region that typically encodes a particular city/town/metro (and its containing state/province or country) within the broader umbrella region category. */
+  location?: string;
 }
 export const UptimeCheckIp = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     region: S.optional(UptimeCheckIpRegionEnum),
-    location: S.optional(S.String),
     ipAddress: S.optional(S.String),
+    location: S.optional(S.String),
   }),
 ).annotate({ identifier: "UptimeCheckIp" }) as any as S.Schema<UptimeCheckIp>;
 
@@ -4412,18 +4412,18 @@ export const PatchProjectsAlertPoliciesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PatchProjectsAlertPoliciesRequest>;
 
 export interface PatchProjectsNotificationChannelsRequest {
-  /** Optional. The fields to update. */
-  updateMask?: string;
   /** Identifier. The full REST resource name for this channel. The format is: projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID] The [CHANNEL_ID] is automatically assigned by the server on creation. */
   name: string;
+  /** Optional. The fields to update. */
+  updateMask?: string;
   /** Request body */
   body?: NotificationChannel;
 }
 export const PatchProjectsNotificationChannelsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      updateMask: S.optional(S.String.pipe(T.Query())),
       name: S.String.pipe(T.Label()),
+      updateMask: S.optional(S.String.pipe(T.Query())),
       body: S.optional(NotificationChannel.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -4437,17 +4437,17 @@ export const PatchProjectsNotificationChannelsRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<PatchProjectsNotificationChannelsRequest>;
 
 export interface PatchProjectsSnoozesRequest {
-  /** Required. Identifier. The name of the Snooze. The format is: projects/[PROJECT_ID_OR_NUMBER]/snoozes/[SNOOZE_ID] The ID of the Snooze will be generated by the system. */
-  name: string;
   /** Required. The fields to update.For each field listed in update_mask: If the Snooze object supplied in the UpdateSnoozeRequest has a value for that field, the value of the field in the existing Snooze will be set to the value of the field in the supplied Snooze. If the field does not have a value in the supplied Snooze, the field in the existing Snooze is set to its default value.Fields not listed retain their existing value.The following are the field names that are accepted in update_mask: display_name interval.start_time interval.end_timeThat said, the start time and end time of the Snooze determines which fields can legally be updated. Before attempting an update, users should consult the documentation for UpdateSnoozeRequest, which talks about which fields can be updated. */
   updateMask?: string;
+  /** Required. Identifier. The name of the Snooze. The format is: projects/[PROJECT_ID_OR_NUMBER]/snoozes/[SNOOZE_ID] The ID of the Snooze will be generated by the system. */
+  name: string;
   /** Request body */
   body?: Snooze;
 }
 export const PatchProjectsSnoozesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    name: S.String.pipe(T.Label()),
     updateMask: S.optional(S.String.pipe(T.Query())),
+    name: S.String.pipe(T.Label()),
     body: S.optional(Snooze.pipe(T.HttpBody())),
   }).pipe(
     T.Http({
@@ -4510,18 +4510,18 @@ export const PatchServicesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PatchServicesRequest>;
 
 export interface PatchServicesServiceLevelObjectivesRequest {
-  /** Identifier. Resource name for this ServiceLevelObjective. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME] */
-  name: string;
   /** A set of field paths defining which fields to use for the update. */
   updateMask?: string;
+  /** Identifier. Resource name for this ServiceLevelObjective. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME] */
+  name: string;
   /** Request body */
   body?: ServiceLevelObjective;
 }
 export const PatchServicesServiceLevelObjectivesRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      name: S.String.pipe(T.Label()),
       updateMask: S.optional(S.String.pipe(T.Query())),
+      name: S.String.pipe(T.Label()),
       body: S.optional(ServiceLevelObjective.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -4536,17 +4536,17 @@ export const PatchServicesServiceLevelObjectivesRequest =
 
 /** The QueryTimeSeries request. For information about the status of Monitoring Query Language (MQL), see the MQL deprecation notice (https://cloud.google.com/stackdriver/docs/deprecations/mql). */
 export interface QueryTimeSeriesRequest {
-  /** Required. The query in the Monitoring Query Language (https://cloud.google.com/monitoring/mql/reference) format. The default time zone is in UTC. */
-  query?: string;
   /** A positive number that is the maximum number of time_series_data to return. */
   pageSize?: number;
+  /** Required. The query in the Monitoring Query Language (https://cloud.google.com/monitoring/mql/reference) format. The default time zone is in UTC. */
+  query?: string;
   /** If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call. */
   pageToken?: string;
 }
 export const QueryTimeSeriesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    query: S.optional(S.String),
     pageSize: S.optional(S.Number),
+    query: S.optional(S.String),
     pageToken: S.optional(S.String),
   }),
 ).annotate({
@@ -4574,6 +4574,66 @@ export const QueryProjectsTimeSeriesRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "QueryProjectsTimeSeriesRequest",
 }) as any as S.Schema<QueryProjectsTimeSeriesRequest>;
 
+export type ValueDescriptorValueTypeEnum =
+  | "VALUE_TYPE_UNSPECIFIED"
+  | "BOOL"
+  | "INT64"
+  | "DOUBLE"
+  | "STRING"
+  | "DISTRIBUTION"
+  | "MONEY";
+export const ValueDescriptorValueTypeEnum = /*@__PURE__*/ S.String;
+
+export type ValueDescriptorMetricKindEnum =
+  | "METRIC_KIND_UNSPECIFIED"
+  | "GAUGE"
+  | "DELTA"
+  | "CUMULATIVE";
+export const ValueDescriptorMetricKindEnum = /*@__PURE__*/ S.String;
+
+/** A descriptor for the value columns in a data point. */
+export interface ValueDescriptor {
+  /** The value type. */
+  valueType?: ValueDescriptorValueTypeEnum;
+  /** The value stream kind. */
+  metricKind?: ValueDescriptorMetricKindEnum;
+  /** The unit in which time_series point values are reported. unit follows the UCUM format for units as seen in https://unitsofmeasure.org/ucum.html. unit is only valid if value_type is INTEGER, DOUBLE, DISTRIBUTION. */
+  unit?: string;
+  /** The value key. */
+  key?: string;
+}
+export const ValueDescriptor = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    valueType: S.optional(ValueDescriptorValueTypeEnum),
+    metricKind: S.optional(ValueDescriptorMetricKindEnum),
+    unit: S.optional(S.String),
+    key: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ValueDescriptor",
+}) as any as S.Schema<ValueDescriptor>;
+
+export type ValueDescriptorList = Array<ValueDescriptor>;
+export const ValueDescriptorList = /*@__PURE__*/ S.Array(
+  ValueDescriptor,
+) as any as S.Schema<ValueDescriptorList>;
+
+/** A descriptor for the labels and points in a time series. */
+export interface TimeSeriesDescriptor {
+  /** Descriptors for the labels. */
+  labelDescriptors?: LabelDescriptorList;
+  /** Descriptors for the point data value columns. */
+  pointDescriptors?: ValueDescriptorList;
+}
+export const TimeSeriesDescriptor = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    labelDescriptors: S.optional(LabelDescriptorList),
+    pointDescriptors: S.optional(ValueDescriptorList),
+  }),
+).annotate({
+  identifier: "TimeSeriesDescriptor",
+}) as any as S.Schema<TimeSeriesDescriptor>;
+
 export type TypedValueList = Array<TypedValue>;
 export const TypedValueList = /*@__PURE__*/ S.Array(
   TypedValue,
@@ -4581,15 +4641,15 @@ export const TypedValueList = /*@__PURE__*/ S.Array(
 
 /** A point's value columns and time interval. Each point has one or more point values corresponding to the entries in point_descriptors field in the TimeSeriesDescriptor associated with this object. */
 export interface PointData {
-  /** The values that make up the point. */
-  values?: TypedValueList;
   /** The time interval associated with the point. */
   timeInterval?: TimeInterval;
+  /** The values that make up the point. */
+  values?: TypedValueList;
 }
 export const PointData = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    values: S.optional(TypedValueList),
     timeInterval: S.optional(TimeInterval),
+    values: S.optional(TypedValueList),
   }),
 ).annotate({ identifier: "PointData" }) as any as S.Schema<PointData>;
 
@@ -4639,83 +4699,23 @@ export const TimeSeriesDataList = /*@__PURE__*/ S.Array(
   TimeSeriesData,
 ) as any as S.Schema<TimeSeriesDataList>;
 
-export type ValueDescriptorMetricKindEnum =
-  | "METRIC_KIND_UNSPECIFIED"
-  | "GAUGE"
-  | "DELTA"
-  | "CUMULATIVE";
-export const ValueDescriptorMetricKindEnum = /*@__PURE__*/ S.String;
-
-export type ValueDescriptorValueTypeEnum =
-  | "VALUE_TYPE_UNSPECIFIED"
-  | "BOOL"
-  | "INT64"
-  | "DOUBLE"
-  | "STRING"
-  | "DISTRIBUTION"
-  | "MONEY";
-export const ValueDescriptorValueTypeEnum = /*@__PURE__*/ S.String;
-
-/** A descriptor for the value columns in a data point. */
-export interface ValueDescriptor {
-  /** The value key. */
-  key?: string;
-  /** The value stream kind. */
-  metricKind?: ValueDescriptorMetricKindEnum;
-  /** The unit in which time_series point values are reported. unit follows the UCUM format for units as seen in https://unitsofmeasure.org/ucum.html. unit is only valid if value_type is INTEGER, DOUBLE, DISTRIBUTION. */
-  unit?: string;
-  /** The value type. */
-  valueType?: ValueDescriptorValueTypeEnum;
-}
-export const ValueDescriptor = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    key: S.optional(S.String),
-    metricKind: S.optional(ValueDescriptorMetricKindEnum),
-    unit: S.optional(S.String),
-    valueType: S.optional(ValueDescriptorValueTypeEnum),
-  }),
-).annotate({
-  identifier: "ValueDescriptor",
-}) as any as S.Schema<ValueDescriptor>;
-
-export type ValueDescriptorList = Array<ValueDescriptor>;
-export const ValueDescriptorList = /*@__PURE__*/ S.Array(
-  ValueDescriptor,
-) as any as S.Schema<ValueDescriptorList>;
-
-/** A descriptor for the labels and points in a time series. */
-export interface TimeSeriesDescriptor {
-  /** Descriptors for the point data value columns. */
-  pointDescriptors?: ValueDescriptorList;
-  /** Descriptors for the labels. */
-  labelDescriptors?: LabelDescriptorList;
-}
-export const TimeSeriesDescriptor = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    pointDescriptors: S.optional(ValueDescriptorList),
-    labelDescriptors: S.optional(LabelDescriptorList),
-  }),
-).annotate({
-  identifier: "TimeSeriesDescriptor",
-}) as any as S.Schema<TimeSeriesDescriptor>;
-
 /** The QueryTimeSeries response. For information about the status of Monitoring Query Language (MQL), see the MQL deprecation notice (https://cloud.google.com/stackdriver/docs/deprecations/mql). */
 export interface QueryTimeSeriesResponse {
-  /** If there are more results than have been returned, then this field is set to a non-empty value. To see the additional results, use that value as page_token in the next call to this method. */
-  nextPageToken?: string;
   /** Query execution errors that may have caused the time series data returned to be incomplete. The available data will be available in the response. */
   partialErrors?: StatusList;
-  /** The time series data. */
-  timeSeriesData?: TimeSeriesDataList;
   /** The descriptor for the time series data. */
   timeSeriesDescriptor?: TimeSeriesDescriptor;
+  /** The time series data. */
+  timeSeriesData?: TimeSeriesDataList;
+  /** If there are more results than have been returned, then this field is set to a non-empty value. To see the additional results, use that value as page_token in the next call to this method. */
+  nextPageToken?: string;
 }
 export const QueryTimeSeriesResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    nextPageToken: S.optional(S.String),
     partialErrors: S.optional(StatusList),
-    timeSeriesData: S.optional(TimeSeriesDataList),
     timeSeriesDescriptor: S.optional(TimeSeriesDescriptor),
+    timeSeriesData: S.optional(TimeSeriesDataList),
+    nextPageToken: S.optional(S.String),
   }),
 ).annotate({
   identifier: "QueryTimeSeriesResponse",
@@ -4748,17 +4748,17 @@ export const SendVerificationCodeProjectsNotificationChannelsRequest =
   }) as any as S.Schema<SendVerificationCodeProjectsNotificationChannelsRequest>;
 
 export interface UpdateProjectsGroupsRequest {
-  /** If true, validate this request but do not update the existing group. */
-  validateOnly?: boolean;
   /** Output only. The name of this group. The format is: projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID] When creating a group, this field is ignored and a new name is created consisting of the project specified in the call to CreateGroup and a unique [GROUP_ID] that is generated automatically. */
   name: string;
+  /** If true, validate this request but do not update the existing group. */
+  validateOnly?: boolean;
   /** Request body */
   body?: Group;
 }
 export const UpdateProjectsGroupsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    validateOnly: S.optional(S.Boolean.pipe(T.Query())),
     name: S.String.pipe(T.Label()),
+    validateOnly: S.optional(S.Boolean.pipe(T.Query())),
     body: S.optional(Group.pipe(T.HttpBody())),
   }).pipe(
     T.Http({

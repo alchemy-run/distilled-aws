@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.calendar_sync#CalendarSyncListRequest": {
+    "com.posthog.calendar_sync#ListCalendarSyncRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -63,18 +64,18 @@
         "smithy.api#documentation": "Sync state of one connected calendar (read-only)."
       }
     },
-    "com.posthog.calendar_sync#CalendarSyncListResponseBodyList": {
+    "com.posthog.calendar_sync#ListCalendarSyncResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.posthog.calendar_sync#CalendarSyncStatus"
       },
       "traits": {}
     },
-    "com.posthog.calendar_sync#CalendarSyncListResponse": {
+    "com.posthog.calendar_sync#ListCalendarSyncResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.calendar_sync#CalendarSyncListResponseBodyList",
+          "target": "com.posthog.calendar_sync#ListCalendarSyncResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -85,13 +86,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.calendar_sync#CalendarSyncList": {
+    "com.posthog.calendar_sync#ListCalendarSync": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.calendar_sync#CalendarSyncListRequest"
+        "target": "com.posthog.calendar_sync#ListCalendarSyncRequest"
       },
       "output": {
-        "target": "com.posthog.calendar_sync#CalendarSyncListResponse"
+        "target": "com.posthog.calendar_sync#ListCalendarSyncResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -102,7 +103,7 @@
         "smithy.api#documentation": "Calendar-sync controls for Customer analytics settings. Sync runs on an hourly\nTemporal schedule; this surface only offers the manual \"sync now\" escape hatch."
       }
     },
-    "com.posthog.calendar_sync#CalendarSyncSyncNowCreateRequest": {
+    "com.posthog.calendar_sync#CreateCalendarSyncSyncNowRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -160,10 +161,10 @@
         "smithy.api#documentation": "* `started` - started\n* `already_running` - already_running"
       }
     },
-    "com.posthog.calendar_sync#CalendarSyncSyncNowCreate": {
+    "com.posthog.calendar_sync#CreateCalendarSyncSyncNow": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.calendar_sync#CalendarSyncSyncNowCreateRequest"
+        "target": "com.posthog.calendar_sync#CreateCalendarSyncSyncNowRequest"
       },
       "output": {
         "target": "com.posthog.calendar_sync#CalendarSyncTriggerResponse"
@@ -182,10 +183,10 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.calendar_sync#CalendarSyncList"
+          "target": "com.posthog.calendar_sync#ListCalendarSync"
         },
         {
-          "target": "com.posthog.calendar_sync#CalendarSyncSyncNowCreate"
+          "target": "com.posthog.calendar_sync#CreateCalendarSyncSyncNow"
         }
       ],
       "traits": {

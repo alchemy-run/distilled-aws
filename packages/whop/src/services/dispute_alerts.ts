@@ -40,62 +40,17 @@ export class NotFound
     [{ status: 404 }],
   ) {}
 
-export type ListDisputeAlertsRequestType =
-  | "early_fraud_warning"
-  | "dispute_alert"
-  | "rapid_dispute_resolution";
-export const ListDisputeAlertsRequestType = /*@__PURE__*/ S.String;
-
-export type ListDisputeAlertsRequestOrder =
-  | "created_at"
-  | "reported_at"
-  | "amount";
-export const ListDisputeAlertsRequestOrder = /*@__PURE__*/ S.String;
-
-export type ListDisputeAlertsRequestDirection = "asc" | "desc";
-export const ListDisputeAlertsRequestDirection = /*@__PURE__*/ S.String;
-
-export interface ListDisputeAlertsRequest {
-  /** Only alerts on this account's payments (`biz_` tag). Omit it to cover every account you can read. */
-  account_id?: string;
-  /** Only alerts on this payment (`pay_` tag). A payment can carry several. */
-  payment_id?: string;
-  /** Only alerts of this kind. `early_fraud_warning` for issuer fraud reports, `dispute_alert` for pre-dispute notices, `rapid_dispute_resolution` for Visa RDR cases the network already closed. */
-  type?: ListDisputeAlertsRequestType | (string & {});
-  /** The number of alerts to return (default 20, max 100). */
-  first?: number;
-  /** A cursor; returns alerts after this position. */
-  after?: string;
-  /** The number of alerts to return from the end of the range. */
-  last?: number;
-  /** A cursor; returns alerts before this position. */
-  before?: string;
-  /** The field to sort alerts by. */
-  order?: ListDisputeAlertsRequestOrder | (string & {});
-  /** Sort direction. */
-  direction?: ListDisputeAlertsRequestDirection | (string & {});
-  /** Only alerts Whop received before this ISO 8601 timestamp. */
-  created_before?: string;
-  /** Only alerts Whop received after this ISO 8601 timestamp. */
-  created_after?: string;
+export interface GetDisputeAlertRequest {
+  /** The dispute alert ID, prefixed `dspa_`. */
+  id: string;
 }
-export const ListDisputeAlertsRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDisputeAlertRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    account_id: S.optional(S.String.pipe(T.Query())),
-    payment_id: S.optional(S.String.pipe(T.Query())),
-    type: S.optional(ListDisputeAlertsRequestType.pipe(T.Query())),
-    first: S.optional(S.Number.pipe(T.Query())),
-    after: S.optional(S.String.pipe(T.Query())),
-    last: S.optional(S.Number.pipe(T.Query())),
-    before: S.optional(S.String.pipe(T.Query())),
-    order: S.optional(ListDisputeAlertsRequestOrder.pipe(T.Query())),
-    direction: S.optional(ListDisputeAlertsRequestDirection.pipe(T.Query())),
-    created_before: S.optional(S.String.pipe(T.Query())),
-    created_after: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/dispute_alerts", code: 200 })),
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/dispute_alerts/{id}", code: 200 })),
 ).annotate({
-  identifier: "ListDisputeAlertsRequest",
-}) as any as S.Schema<ListDisputeAlertsRequest>;
+  identifier: "GetDisputeAlertRequest",
+}) as any as S.Schema<GetDisputeAlertRequest>;
 
 /** Why refunding can no longer avoid a chargeback. `network_resolved` when a Visa RDR already closed the case, `payment_unmatched` when no payment matched, `payment_not_captured` when it never captured money, `payment_disputed` once the payment carries a dispute, `payment_refunded` once fully refunded. `null` while `actionable` is true. */
 export type DisputeAlertNotActionableReason =
@@ -168,6 +123,63 @@ export const DisputeAlert = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "DisputeAlert" }) as any as S.Schema<DisputeAlert>;
 
+export type ListDisputeAlertsRequestType =
+  | "early_fraud_warning"
+  | "dispute_alert"
+  | "rapid_dispute_resolution";
+export const ListDisputeAlertsRequestType = /*@__PURE__*/ S.String;
+
+export type ListDisputeAlertsRequestOrder =
+  | "created_at"
+  | "reported_at"
+  | "amount";
+export const ListDisputeAlertsRequestOrder = /*@__PURE__*/ S.String;
+
+export type ListDisputeAlertsRequestDirection = "asc" | "desc";
+export const ListDisputeAlertsRequestDirection = /*@__PURE__*/ S.String;
+
+export interface ListDisputeAlertsRequest {
+  /** Only alerts on this account's payments (`biz_` tag). Omit it to cover every account you can read. */
+  account_id?: string;
+  /** Only alerts on this payment (`pay_` tag). A payment can carry several. */
+  payment_id?: string;
+  /** Only alerts of this kind. `early_fraud_warning` for issuer fraud reports, `dispute_alert` for pre-dispute notices, `rapid_dispute_resolution` for Visa RDR cases the network already closed. */
+  type?: ListDisputeAlertsRequestType | (string & {});
+  /** The number of alerts to return (default 20, max 100). */
+  first?: number;
+  /** A cursor; returns alerts after this position. */
+  after?: string;
+  /** The number of alerts to return from the end of the range. */
+  last?: number;
+  /** A cursor; returns alerts before this position. */
+  before?: string;
+  /** The field to sort alerts by. */
+  order?: ListDisputeAlertsRequestOrder | (string & {});
+  /** Sort direction. */
+  direction?: ListDisputeAlertsRequestDirection | (string & {});
+  /** Only alerts Whop received before this ISO 8601 timestamp. */
+  created_before?: string;
+  /** Only alerts Whop received after this ISO 8601 timestamp. */
+  created_after?: string;
+}
+export const ListDisputeAlertsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    account_id: S.optional(S.String.pipe(T.Query())),
+    payment_id: S.optional(S.String.pipe(T.Query())),
+    type: S.optional(ListDisputeAlertsRequestType.pipe(T.Query())),
+    first: S.optional(S.Number.pipe(T.Query())),
+    after: S.optional(S.String.pipe(T.Query())),
+    last: S.optional(S.Number.pipe(T.Query())),
+    before: S.optional(S.String.pipe(T.Query())),
+    order: S.optional(ListDisputeAlertsRequestOrder.pipe(T.Query())),
+    direction: S.optional(ListDisputeAlertsRequestDirection.pipe(T.Query())),
+    created_before: S.optional(S.String.pipe(T.Query())),
+    created_after: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/dispute_alerts", code: 200 })),
+).annotate({
+  identifier: "ListDisputeAlertsRequest",
+}) as any as S.Schema<ListDisputeAlertsRequest>;
+
 export type ListDisputeAlertsResponseDataList = Array<DisputeAlert>;
 export const ListDisputeAlertsResponseDataList = /*@__PURE__*/ S.Array(
   DisputeAlert,
@@ -203,17 +215,20 @@ export const ListDisputeAlertsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListDisputeAlertsResponse",
 }) as any as S.Schema<ListDisputeAlertsResponse>;
 
-export interface RetrieveDisputeAlertRequest {
-  /** The dispute alert ID, prefixed `dspa_`. */
-  id: string;
-}
-export const RetrieveDisputeAlertRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/dispute_alerts/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveDisputeAlertRequest",
-}) as any as S.Schema<RetrieveDisputeAlertRequest>;
+export type GetDisputeAlertError = Forbidden | NotFound | WhopOpError;
+/** Retrieve Dispute Alert Retrieves a single dispute alert or early fraud warning by ID. */
+export const getDisputeAlert: API.OperationMethod<
+  GetDisputeAlertRequest,
+  DisputeAlert,
+  GetDisputeAlertError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDisputeAlertRequest,
+  output: DisputeAlert,
+  errors: [Forbidden, NotFound],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
 
 export type ListDisputeAlertsError = BadRequest | Forbidden | WhopOpError;
 /** List Dispute Alerts Lists the dispute alerts and early fraud warnings across the accounts you can read. */
@@ -241,18 +256,3 @@ export const listDisputeAlerts: API.PaginatedOperationMethod<
   }),
   paginateRelay,
 ) as any;
-
-export type RetrieveDisputeAlertError = Forbidden | NotFound | WhopOpError;
-/** Retrieve Dispute Alert Retrieves a single dispute alert or early fraud warning by ID. */
-export const retrieveDisputeAlert: API.OperationMethod<
-  RetrieveDisputeAlertRequest,
-  DisputeAlert,
-  RetrieveDisputeAlertError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveDisputeAlertRequest,
-  output: DisputeAlert,
-  errors: [Forbidden, NotFound],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));

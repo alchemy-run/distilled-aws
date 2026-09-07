@@ -4,500 +4,23 @@
     "service": "webcontentpublisher",
     "version": "v1",
     "title": "Web Content Publisher API",
-    "baseUrl": "https://webcontentpublisher.googleapis.com/"
+    "baseUrl": "https://webcontentpublisher.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.gcp.webcontentpublisher_v1#GeneratePlatformSiteTokensResponse": {
-      "type": "structure",
-      "members": {
-        "siteTokens": {
-          "target": "com.gcp.webcontentpublisher_v1#SiteTokenList",
-          "traits": {
-            "smithy.api#documentation": "List of domain-scoped secure token mappings."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response message for `GeneratePlatformSiteTokens`."
-      }
-    },
-    "com.gcp.webcontentpublisher_v1#SiteTokenList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.webcontentpublisher_v1#SiteToken"
-      }
-    },
-    "com.gcp.webcontentpublisher_v1#NewsletterConfig": {
-      "type": "structure",
-      "members": {
-        "customMessage": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. A custom message displayed to the user in the signup prompt."
-          }
-        },
-        "customConsentText": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Custom consent or disclosure text shown to the user."
-          }
-        },
-        "nameRequired": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Optional. Whether the user is required to provide their name to sign up."
-          }
-        },
-        "optInRequired": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Optional. Whether checking the opt-in checkbox is required."
-          }
-        },
-        "title": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The title of the newsletter signup prompt."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Configuration for newsletter signup calls-to-action (CTAs)."
-      }
-    },
-    "com.gcp.webcontentpublisher_v1#Cta": {
-      "type": "structure",
-      "members": {
-        "displayName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The user-visible display name of the CTA."
-          }
-        },
-        "state": {
-          "target": "com.gcp.webcontentpublisher_v1#CtaStateEnum",
-          "traits": {
-            "smithy.api#documentation": "Output only. The current state of this CTA."
-          }
-        },
-        "type": {
-          "target": "com.gcp.webcontentpublisher_v1#CtaTypeEnum",
-          "traits": {
-            "smithy.api#documentation": "Required. The type of this CTA."
-          }
-        },
-        "newsletterConfig": {
-          "target": "com.gcp.webcontentpublisher_v1#NewsletterConfig",
-          "traits": {
-            "smithy.api#documentation": "Optional. Configuration specific to newsletter signup CTAs. Only populated if type is `NEWSLETTER_SIGNUP`."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier. The resource name of the Cta. Format: organizations/{organization}/publications/{publication}/ctas/{cta}"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Represents a Call-To-Action (CTA) configuration for a publication."
-      }
-    },
-    "com.gcp.webcontentpublisher_v1#CtaStateEnum": {
-      "type": "enum",
-      "members": {
-        "STATE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "STATE_UNSPECIFIED"
-          }
-        },
-        "DRAFT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DRAFT"
-          }
-        },
-        "ACTIVE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ACTIVE"
-          }
-        }
-      }
-    },
-    "com.gcp.webcontentpublisher_v1#CtaTypeEnum": {
-      "type": "enum",
-      "members": {
-        "TYPE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "TYPE_UNSPECIFIED"
-          }
-        },
-        "NEWSLETTER_SIGNUP": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "NEWSLETTER_SIGNUP"
-          }
-        }
-      }
-    },
-    "com.gcp.webcontentpublisher_v1#RrmProduct": {
-      "type": "structure",
-      "members": {
-        "enabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Optional. Whether the RRM product is enabled for the publication."
-          }
-        },
-        "productTosUrl": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The URL to the product-specific Terms of Service."
-          }
-        },
-        "tosAcceptance": {
-          "target": "com.gcp.webcontentpublisher_v1#TosAcceptance",
-          "traits": {
-            "smithy.api#documentation": "Optional. The details of the TOS acceptance."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Configuration and status of the Reader Revenue Manager (RRM) product for a publication."
-      }
-    },
-    "com.gcp.webcontentpublisher_v1#GeneratePlatformSiteTokensRequest": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "Request message for `GeneratePlatformSiteTokens`."
-      }
-    },
-    "com.gcp.webcontentpublisher_v1#ListCtasResponse": {
-      "type": "structure",
-      "members": {
-        "ctas": {
-          "target": "com.gcp.webcontentpublisher_v1#CtaList",
-          "traits": {
-            "smithy.api#documentation": "Output only. The list of CTAs."
-          }
-        },
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. A token to retrieve the next page of results, or empty if there are no more results."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response message for `ListCtas`."
-      }
-    },
-    "com.gcp.webcontentpublisher_v1#CtaList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.webcontentpublisher_v1#Cta"
-      }
-    },
-    "com.gcp.webcontentpublisher_v1#Publication": {
-      "type": "structure",
-      "members": {
-        "products": {
-          "target": "com.gcp.webcontentpublisher_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Output only. The list of active products/features enabled for this publication."
-          }
-        },
-        "publicationTosUrl": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The URL to the publisher's own Terms of Service."
-          }
-        },
-        "publicationType": {
-          "target": "com.gcp.webcontentpublisher_v1#PublicationPublicationTypeEnum",
-          "traits": {
-            "smithy.api#documentation": "Optional. The publication entity type (for-profit vs non-profit). Defaults to FOR_PROFIT if omitted."
-          }
-        },
-        "onboardingState": {
-          "target": "com.gcp.webcontentpublisher_v1#PublicationOnboardingStateEnum",
-          "traits": {
-            "smithy.api#documentation": "Output only. The current onboarding state."
-          }
-        },
-        "additionalDomains": {
-          "target": "com.gcp.webcontentpublisher_v1#DomainPropertyList",
-          "traits": {
-            "smithy.api#documentation": "Optional. Additional domain properties verified for the publication."
-          }
-        },
-        "publicationId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The unique identifier of the publication."
-          }
-        },
-        "regionCode": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The ISO 3166-1 alpha-2 region code where the publication is registered (e.g., \"US\")."
-          }
-        },
-        "contentPolicyStatus": {
-          "target": "com.gcp.webcontentpublisher_v1#ContentPolicyStatus",
-          "traits": {
-            "smithy.api#documentation": "Output only. The content policy compliance status of the publication."
-          }
-        },
-        "displayName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The user-visible display name of the publication."
-          }
-        },
-        "paymentOption": {
-          "target": "com.gcp.webcontentpublisher_v1#PublicationPaymentOptionEnum",
-          "traits": {
-            "smithy.api#documentation": "Output only. The configured payment option."
-          }
-        },
-        "publicationPrivacyPolicyUrl": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The URL to the publisher's Privacy Policy."
-          }
-        },
-        "primaryDomain": {
-          "target": "com.gcp.webcontentpublisher_v1#DomainProperty",
-          "traits": {
-            "smithy.api#documentation": "Required. The primary domain property associated with the publication."
-          }
-        },
-        "languageCode": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The primary language of the publication (BCP-47 code, e.g., \"en-US\")."
-          }
-        },
-        "rrmProduct": {
-          "target": "com.gcp.webcontentpublisher_v1#RrmProduct",
-          "traits": {
-            "smithy.api#documentation": "Optional. Reader Revenue Manager product settings and status."
-          }
-        },
-        "organizationId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The unique identifier of the organization that owns this publication."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier. The resource name of the publication. Format: organizations/{organization}/publications/{publication}"
-          }
-        },
-        "slProduct": {
-          "target": "com.gcp.webcontentpublisher_v1#SlProduct",
-          "traits": {
-            "smithy.api#documentation": "Optional. Subscription Linking product configurations."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Represents a publisher's publication in Reader Revenue Manager."
-      }
-    },
-    "com.gcp.webcontentpublisher_v1#StringList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
-      }
-    },
-    "com.gcp.webcontentpublisher_v1#PublicationPublicationTypeEnum": {
-      "type": "enum",
-      "members": {
-        "PUBLICATION_TYPE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "PUBLICATION_TYPE_UNSPECIFIED"
-          }
-        },
-        "FOR_PROFIT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "FOR_PROFIT"
-          }
-        },
-        "NON_PROFIT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "NON_PROFIT"
-          }
-        }
-      }
-    },
-    "com.gcp.webcontentpublisher_v1#PublicationOnboardingStateEnum": {
-      "type": "enum",
-      "members": {
-        "ONBOARDING_STATE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ONBOARDING_STATE_UNSPECIFIED"
-          }
-        },
-        "ACTION_REQUIRED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ACTION_REQUIRED"
-          }
-        },
-        "PENDING_VERIFICATION": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "PENDING_VERIFICATION"
-          }
-        },
-        "COMPLETE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "COMPLETE"
-          }
-        }
-      }
-    },
-    "com.gcp.webcontentpublisher_v1#DomainPropertyList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.webcontentpublisher_v1#DomainProperty"
-      }
-    },
-    "com.gcp.webcontentpublisher_v1#PublicationPaymentOptionEnum": {
-      "type": "enum",
-      "members": {
-        "PAYMENT_OPTION_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "PAYMENT_OPTION_UNSPECIFIED"
-          }
-        },
-        "NONE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "NONE"
-          }
-        },
-        "SUBSCRIPTIONS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "SUBSCRIPTIONS"
-          }
-        },
-        "CONTRIBUTIONS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CONTRIBUTIONS"
-          }
-        }
-      }
-    },
-    "com.gcp.webcontentpublisher_v1#DomainProperty": {
-      "type": "structure",
-      "members": {
-        "url": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The URL of the domain property (e.g., \"https://example.com\")."
-          }
-        },
-        "ownershipVerified": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Optional. Whether the domain ownership has been verified (e.g., via Google Search Console)."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Represents a domain property associated with a publication, typically used to verify ownership and scope access."
-      }
-    },
-    "com.gcp.webcontentpublisher_v1#CheckFreeAccessResponse": {
-      "type": "structure",
-      "members": {
-        "isAllowed": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Output only. True if free access should be allowed, false otherwise."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response message for CheckFreeAccess"
-      }
-    },
-    "com.gcp.webcontentpublisher_v1#TosAcceptance": {
-      "type": "structure",
-      "members": {
-        "userAccepted": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Required. Whether the user has accepted the Terms of Service."
-          }
-        },
-        "emailOptIn": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Optional. Whether the user opted in to receive product updates and email communications."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Details about the acceptance of the Terms of Service (TOS)."
-      }
-    },
-    "com.gcp.webcontentpublisher_v1#ListPublicationsResponse": {
-      "type": "structure",
-      "members": {
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. A token to retrieve the next page of results, or empty if there are no more results."
-          }
-        },
-        "publications": {
-          "target": "com.gcp.webcontentpublisher_v1#PublicationList",
-          "traits": {
-            "smithy.api#documentation": "Output only. The list of publications."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response message for `ListPublications`."
-      }
-    },
-    "com.gcp.webcontentpublisher_v1#PublicationList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.webcontentpublisher_v1#Publication"
-      }
-    },
     "com.gcp.webcontentpublisher_v1#ContentPolicyStatus": {
       "type": "structure",
       "members": {
-        "state": {
-          "target": "com.gcp.webcontentpublisher_v1#ContentPolicyStatusStateEnum",
-          "traits": {
-            "smithy.api#documentation": "Output only. The current policy state."
-          }
-        },
         "policyInfoUrl": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Output only. URL pointing to more details about the policy violation or status."
+          }
+        },
+        "state": {
+          "target": "com.gcp.webcontentpublisher_v1#ContentPolicyStatusStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The current policy state."
           }
         }
       },
@@ -552,6 +75,358 @@
         }
       }
     },
+    "com.gcp.webcontentpublisher_v1#GeneratePlatformSiteTokensRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Request message for `GeneratePlatformSiteTokens`."
+      }
+    },
+    "com.gcp.webcontentpublisher_v1#ListCtasResponse": {
+      "type": "structure",
+      "members": {
+        "ctas": {
+          "target": "com.gcp.webcontentpublisher_v1#CtaList",
+          "traits": {
+            "smithy.api#documentation": "Output only. The list of CTAs."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. A token to retrieve the next page of results, or empty if there are no more results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for `ListCtas`."
+      }
+    },
+    "com.gcp.webcontentpublisher_v1#CtaList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.webcontentpublisher_v1#Cta"
+      }
+    },
+    "com.gcp.webcontentpublisher_v1#Publication": {
+      "type": "structure",
+      "members": {
+        "publicationPrivacyPolicyUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The URL to the publisher's Privacy Policy."
+          }
+        },
+        "rrmProduct": {
+          "target": "com.gcp.webcontentpublisher_v1#RrmProduct",
+          "traits": {
+            "smithy.api#documentation": "Optional. Reader Revenue Manager product settings and status."
+          }
+        },
+        "primaryDomain": {
+          "target": "com.gcp.webcontentpublisher_v1#DomainProperty",
+          "traits": {
+            "smithy.api#documentation": "Required. The primary domain property associated with the publication."
+          }
+        },
+        "slProduct": {
+          "target": "com.gcp.webcontentpublisher_v1#SlProduct",
+          "traits": {
+            "smithy.api#documentation": "Optional. Subscription Linking product configurations."
+          }
+        },
+        "contentPolicyStatus": {
+          "target": "com.gcp.webcontentpublisher_v1#ContentPolicyStatus",
+          "traits": {
+            "smithy.api#documentation": "Output only. The content policy compliance status of the publication."
+          }
+        },
+        "onboardingState": {
+          "target": "com.gcp.webcontentpublisher_v1#PublicationOnboardingStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The current onboarding state."
+          }
+        },
+        "publicationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The unique identifier of the publication."
+          }
+        },
+        "paymentOption": {
+          "target": "com.gcp.webcontentpublisher_v1#PublicationPaymentOptionEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The configured payment option."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The resource name of the publication. Format: organizations/{organization}/publications/{publication}"
+          }
+        },
+        "additionalDomains": {
+          "target": "com.gcp.webcontentpublisher_v1#DomainPropertyList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Additional domain properties verified for the publication."
+          }
+        },
+        "organizationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The unique identifier of the organization that owns this publication."
+          }
+        },
+        "publicationType": {
+          "target": "com.gcp.webcontentpublisher_v1#PublicationPublicationTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. The publication entity type (for-profit vs non-profit). Defaults to FOR_PROFIT if omitted."
+          }
+        },
+        "products": {
+          "target": "com.gcp.webcontentpublisher_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Output only. The list of active products/features enabled for this publication."
+          }
+        },
+        "publicationTosUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The URL to the publisher's own Terms of Service."
+          }
+        },
+        "languageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The primary language of the publication (BCP-47 code, e.g., \"en-US\")."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The user-visible display name of the publication."
+          }
+        },
+        "regionCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The ISO 3166-1 alpha-2 region code where the publication is registered (e.g., \"US\")."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a publisher's publication in Reader Revenue Manager."
+      }
+    },
+    "com.gcp.webcontentpublisher_v1#PublicationOnboardingStateEnum": {
+      "type": "enum",
+      "members": {
+        "ONBOARDING_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ONBOARDING_STATE_UNSPECIFIED"
+          }
+        },
+        "ACTION_REQUIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTION_REQUIRED"
+          }
+        },
+        "PENDING_VERIFICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PENDING_VERIFICATION"
+          }
+        },
+        "COMPLETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMPLETE"
+          }
+        }
+      }
+    },
+    "com.gcp.webcontentpublisher_v1#PublicationPaymentOptionEnum": {
+      "type": "enum",
+      "members": {
+        "PAYMENT_OPTION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAYMENT_OPTION_UNSPECIFIED"
+          }
+        },
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NONE"
+          }
+        },
+        "SUBSCRIPTIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUBSCRIPTIONS"
+          }
+        },
+        "CONTRIBUTIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONTRIBUTIONS"
+          }
+        }
+      }
+    },
+    "com.gcp.webcontentpublisher_v1#DomainPropertyList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.webcontentpublisher_v1#DomainProperty"
+      }
+    },
+    "com.gcp.webcontentpublisher_v1#PublicationPublicationTypeEnum": {
+      "type": "enum",
+      "members": {
+        "PUBLICATION_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PUBLICATION_TYPE_UNSPECIFIED"
+          }
+        },
+        "FOR_PROFIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FOR_PROFIT"
+          }
+        },
+        "NON_PROFIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NON_PROFIT"
+          }
+        }
+      }
+    },
+    "com.gcp.webcontentpublisher_v1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.webcontentpublisher_v1#NewsletterConfig": {
+      "type": "structure",
+      "members": {
+        "optInRequired": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Whether checking the opt-in checkbox is required."
+          }
+        },
+        "customConsentText": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Custom consent or disclosure text shown to the user."
+          }
+        },
+        "nameRequired": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Whether the user is required to provide their name to sign up."
+          }
+        },
+        "customMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A custom message displayed to the user in the signup prompt."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The title of the newsletter signup prompt."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration for newsletter signup calls-to-action (CTAs)."
+      }
+    },
+    "com.gcp.webcontentpublisher_v1#Cta": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.gcp.webcontentpublisher_v1#CtaTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. The type of this CTA."
+          }
+        },
+        "newsletterConfig": {
+          "target": "com.gcp.webcontentpublisher_v1#NewsletterConfig",
+          "traits": {
+            "smithy.api#documentation": "Optional. Configuration specific to newsletter signup CTAs. Only populated if type is `NEWSLETTER_SIGNUP`."
+          }
+        },
+        "state": {
+          "target": "com.gcp.webcontentpublisher_v1#CtaStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The current state of this CTA."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The user-visible display name of the CTA."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The resource name of the Cta. Format: organizations/{organization}/publications/{publication}/ctas/{cta}"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a Call-To-Action (CTA) configuration for a publication."
+      }
+    },
+    "com.gcp.webcontentpublisher_v1#CtaTypeEnum": {
+      "type": "enum",
+      "members": {
+        "TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TYPE_UNSPECIFIED"
+          }
+        },
+        "NEWSLETTER_SIGNUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NEWSLETTER_SIGNUP"
+          }
+        }
+      }
+    },
+    "com.gcp.webcontentpublisher_v1#CtaStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "DRAFT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DRAFT"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTIVE"
+          }
+        }
+      }
+    },
     "com.gcp.webcontentpublisher_v1#SlProduct": {
       "type": "structure",
       "members": {
@@ -570,6 +445,32 @@
       },
       "traits": {
         "smithy.api#documentation": "Subscription Linking (SL) product settings and status."
+      }
+    },
+    "com.gcp.webcontentpublisher_v1#RrmProduct": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Whether the RRM product is enabled for the publication."
+          }
+        },
+        "tosAcceptance": {
+          "target": "com.gcp.webcontentpublisher_v1#TosAcceptance",
+          "traits": {
+            "smithy.api#documentation": "Optional. The details of the TOS acceptance."
+          }
+        },
+        "productTosUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The URL to the product-specific Terms of Service."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration and status of the Reader Revenue Manager (RRM) product for a publication."
       }
     },
     "com.gcp.webcontentpublisher_v1#SiteToken": {
@@ -592,22 +493,129 @@
         "smithy.api#documentation": "Represents a domain-scoped secure token mapping."
       }
     },
-    "com.gcp.webcontentpublisher_v1#GeneratePlatformSiteTokensUsersRequest": {
+    "com.gcp.webcontentpublisher_v1#CheckFreeAccessResponse": {
       "type": "structure",
       "members": {
+        "isAllowed": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. True if free access should be allowed, false otherwise."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for CheckFreeAccess"
+      }
+    },
+    "com.gcp.webcontentpublisher_v1#DomainProperty": {
+      "type": "structure",
+      "members": {
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The URL of the domain property (e.g., \"https://example.com\")."
+          }
+        },
+        "ownershipVerified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Whether the domain ownership has been verified (e.g., via Google Search Console)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a domain property associated with a publication, typically used to verify ownership and scope access."
+      }
+    },
+    "com.gcp.webcontentpublisher_v1#ListPublicationsResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. A token to retrieve the next page of results, or empty if there are no more results."
+          }
+        },
+        "publications": {
+          "target": "com.gcp.webcontentpublisher_v1#PublicationList",
+          "traits": {
+            "smithy.api#documentation": "Output only. The list of publications."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for `ListPublications`."
+      }
+    },
+    "com.gcp.webcontentpublisher_v1#PublicationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.webcontentpublisher_v1#Publication"
+      }
+    },
+    "com.gcp.webcontentpublisher_v1#TosAcceptance": {
+      "type": "structure",
+      "members": {
+        "userAccepted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Required. Whether the user has accepted the Terms of Service."
+          }
+        },
+        "emailOptIn": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Whether the user opted in to receive product updates and email communications."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details about the acceptance of the Terms of Service (TOS)."
+      }
+    },
+    "com.gcp.webcontentpublisher_v1#GeneratePlatformSiteTokensResponse": {
+      "type": "structure",
+      "members": {
+        "siteTokens": {
+          "target": "com.gcp.webcontentpublisher_v1#SiteTokenList",
+          "traits": {
+            "smithy.api#documentation": "List of domain-scoped secure token mappings."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for `GeneratePlatformSiteTokens`."
+      }
+    },
+    "com.gcp.webcontentpublisher_v1#SiteTokenList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.webcontentpublisher_v1#SiteToken"
+      }
+    },
+    "com.gcp.webcontentpublisher_v1#CheckFreeAccessPublicationsRequest": {
+      "type": "structure",
+      "members": {
+        "httpReferrer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The HTTP referrer.",
+            "smithy.api#httpQuery": "httpReferrer"
+          }
+        },
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. The resource name of the user to generate tokens for. Format: users/{user}",
+            "smithy.api#documentation": "Required. The resource name of the publication. Format: publications/{publication_id}",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
         },
-        "body": {
-          "target": "com.gcp.webcontentpublisher_v1#GeneratePlatformSiteTokensRequest",
+        "uri": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
+            "smithy.api#documentation": "Required. The URI of the content.",
+            "smithy.api#httpQuery": "uri"
           }
         }
       }
@@ -638,6 +646,57 @@
         ]
       }
     },
+    "com.gcp.webcontentpublisher_v1#CheckFreeAccessPublications": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.webcontentpublisher_v1#CheckFreeAccessPublicationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.webcontentpublisher_v1#CheckFreeAccessResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.webcontentpublisher_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.webcontentpublisher_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}:checkFreeAccess"
+        },
+        "smithy.api#documentation": "Checks if a user is eligible for free article access."
+      }
+    },
+    "com.gcp.webcontentpublisher_v1#PatchOrganizationsPublicationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The resource name of the publication. Format: organizations/{organization}/publications/{publication}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The list of fields to update.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.gcp.webcontentpublisher_v1#Publication",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
     "com.gcp.webcontentpublisher_v1#BadRequest": {
       "type": "structure",
       "members": {},
@@ -664,13 +723,13 @@
         ]
       }
     },
-    "com.gcp.webcontentpublisher_v1#GeneratePlatformSiteTokensUsers": {
+    "com.gcp.webcontentpublisher_v1#PatchOrganizationsPublications": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.webcontentpublisher_v1#GeneratePlatformSiteTokensUsersRequest"
+        "target": "com.gcp.webcontentpublisher_v1#PatchOrganizationsPublicationsRequest"
       },
       "output": {
-        "target": "com.gcp.webcontentpublisher_v1#GeneratePlatformSiteTokensResponse"
+        "target": "com.gcp.webcontentpublisher_v1#Publication"
       },
       "errors": [
         {
@@ -688,81 +747,15 @@
       ],
       "traits": {
         "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1/{+name}:generatePlatformSiteTokens"
+          "method": "PATCH",
+          "uri": "v1/{+name}"
         },
-        "smithy.api#documentation": "Returns user tokens mapped to their canonical domains for all publications the authenticated user is entitled to."
-      }
-    },
-    "com.gcp.webcontentpublisher_v1#CheckFreeAccessPublicationsRequest": {
-      "type": "structure",
-      "members": {
-        "httpReferrer": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The HTTP referrer.",
-            "smithy.api#httpQuery": "httpReferrer"
-          }
-        },
-        "uri": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The URI of the content.",
-            "smithy.api#httpQuery": "uri"
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The resource name of the publication. Format: publications/{publication_id}",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.webcontentpublisher_v1#CheckFreeAccessPublications": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.webcontentpublisher_v1#CheckFreeAccessPublicationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.webcontentpublisher_v1#CheckFreeAccessResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.webcontentpublisher_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.webcontentpublisher_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}:checkFreeAccess"
-        },
-        "smithy.api#documentation": "Checks if a user is eligible for free article access."
+        "smithy.api#documentation": "Updates a publication."
       }
     },
     "com.gcp.webcontentpublisher_v1#ListOrganizationsPublicationsRequest": {
       "type": "structure",
       "members": {
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. A filter expression to filter the publications returned.",
-            "smithy.api#httpQuery": "filter"
-          }
-        },
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The parent organization whose publications to list. Format: `organizations/{organization}`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
         "pageSize": {
           "target": "smithy.api#Integer",
           "traits": {
@@ -775,6 +768,21 @@
           "traits": {
             "smithy.api#documentation": "Optional. A page token, received from a previous `ListPublications` call, to retrieve the next page.",
             "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent organization whose publications to list. Format: `organizations/{organization}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A filter expression to filter the publications returned.",
+            "smithy.api#httpQuery": "filter"
           }
         }
       }
@@ -807,22 +815,59 @@
         }
       }
     },
+    "com.gcp.webcontentpublisher_v1#GetOrganizationsPublicationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the publication to retrieve. Format: `organizations/{organization}/publications/{publication}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.webcontentpublisher_v1#GetOrganizationsPublications": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.webcontentpublisher_v1#GetOrganizationsPublicationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.webcontentpublisher_v1#Publication"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.webcontentpublisher_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.webcontentpublisher_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets a publication."
+      }
+    },
     "com.gcp.webcontentpublisher_v1#CreateOrganizationsPublicationsRequest": {
       "type": "structure",
       "members": {
-        "publicationId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The unique identifier of the publication to create. If not specified, the server will generate a random publication ID.",
-            "smithy.api#httpQuery": "publicationId"
-          }
-        },
         "parent": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Required. The parent resource where this publication will be created. Format: `organizations/{organization}`.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
+          }
+        },
+        "publicationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The unique identifier of the publication to create. If not specified, the server will generate a random publication ID.",
+            "smithy.api#httpQuery": "publicationId"
           }
         },
         "body": {
@@ -864,171 +909,22 @@
         "smithy.api#documentation": "Creates a publication."
       }
     },
-    "com.gcp.webcontentpublisher_v1#GetOrganizationsPublicationsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The resource name of the publication to retrieve. Format: `organizations/{organization}/publications/{publication}`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.webcontentpublisher_v1#GetOrganizationsPublications": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.webcontentpublisher_v1#GetOrganizationsPublicationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.webcontentpublisher_v1#Publication"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.webcontentpublisher_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.webcontentpublisher_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Gets a publication."
-      }
-    },
-    "com.gcp.webcontentpublisher_v1#PatchOrganizationsPublicationsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier. The resource name of the publication. Format: organizations/{organization}/publications/{publication}",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "updateMask": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The list of fields to update.",
-            "smithy.api#httpQuery": "updateMask"
-          }
-        },
-        "body": {
-          "target": "com.gcp.webcontentpublisher_v1#Publication",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.webcontentpublisher_v1#PatchOrganizationsPublications": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.webcontentpublisher_v1#PatchOrganizationsPublicationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.webcontentpublisher_v1#Publication"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.webcontentpublisher_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.webcontentpublisher_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.webcontentpublisher_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.webcontentpublisher_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "PATCH",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Updates a publication."
-      }
-    },
-    "com.gcp.webcontentpublisher_v1#ListOrganizationsPublicationsCtasRequest": {
-      "type": "structure",
-      "members": {
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The parent publication resource whose CTAs to list. Format: `organizations/{organization}/publications/{publication}`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. The maximum number of CTAs to return. The service may return fewer than this value. If unspecified, at most 50 CTAs will be returned.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. A page token, received from a previous `ListCtas` call, to retrieve the next page.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        }
-      }
-    },
-    "com.gcp.webcontentpublisher_v1#ListOrganizationsPublicationsCtas": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.webcontentpublisher_v1#ListOrganizationsPublicationsCtasRequest"
-      },
-      "output": {
-        "target": "com.gcp.webcontentpublisher_v1#ListCtasResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.webcontentpublisher_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.webcontentpublisher_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+parent}/ctas"
-        },
-        "smithy.api#documentation": "Lists CTAs.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
-      }
-    },
     "com.gcp.webcontentpublisher_v1#PatchOrganizationsPublicationsCtasRequest": {
       "type": "structure",
       "members": {
-        "updateMask": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The list of fields to update.",
-            "smithy.api#httpQuery": "updateMask"
-          }
-        },
         "name": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Identifier. The resource name of the Cta. Format: organizations/{organization}/publications/{publication}/ctas/{cta}",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The list of fields to update.",
+            "smithy.api#httpQuery": "updateMask"
           }
         },
         "body": {
@@ -1070,22 +966,114 @@
         "smithy.api#documentation": "Updates a CTA."
       }
     },
+    "com.gcp.webcontentpublisher_v1#GetOrganizationsPublicationsCtasRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the CTA to retrieve. Format: `organizations/{organization}/publications/{publication}/ctas/{cta}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.webcontentpublisher_v1#GetOrganizationsPublicationsCtas": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.webcontentpublisher_v1#GetOrganizationsPublicationsCtasRequest"
+      },
+      "output": {
+        "target": "com.gcp.webcontentpublisher_v1#Cta"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.webcontentpublisher_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.webcontentpublisher_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets a CTA."
+      }
+    },
+    "com.gcp.webcontentpublisher_v1#ListOrganizationsPublicationsCtasRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A page token, received from a previous `ListCtas` call, to retrieve the next page.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of CTAs to return. The service may return fewer than this value. If unspecified, at most 50 CTAs will be returned.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent publication resource whose CTAs to list. Format: `organizations/{organization}/publications/{publication}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.webcontentpublisher_v1#ListOrganizationsPublicationsCtas": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.webcontentpublisher_v1#ListOrganizationsPublicationsCtasRequest"
+      },
+      "output": {
+        "target": "com.gcp.webcontentpublisher_v1#ListCtasResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.webcontentpublisher_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.webcontentpublisher_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/ctas"
+        },
+        "smithy.api#documentation": "Lists CTAs.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
     "com.gcp.webcontentpublisher_v1#CreateOrganizationsPublicationsCtasRequest": {
       "type": "structure",
       "members": {
-        "ctaId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The unique identifier of the CTA to create. If not specified, the server will generate a random CTA ID.",
-            "smithy.api#httpQuery": "ctaId"
-          }
-        },
         "parent": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Required. The parent publication resource where this CTA will be created. Format: `organizations/{organization}/publications/{publication}`.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
+          }
+        },
+        "ctaId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The unique identifier of the CTA to create. If not specified, the server will generate a random CTA ID.",
+            "smithy.api#httpQuery": "ctaId"
           }
         },
         "body": {
@@ -1127,26 +1115,33 @@
         "smithy.api#documentation": "Creates a CTA."
       }
     },
-    "com.gcp.webcontentpublisher_v1#GetOrganizationsPublicationsCtasRequest": {
+    "com.gcp.webcontentpublisher_v1#GeneratePlatformSiteTokensUsersRequest": {
       "type": "structure",
       "members": {
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. The resource name of the CTA to retrieve. Format: `organizations/{organization}/publications/{publication}/ctas/{cta}`.",
+            "smithy.api#documentation": "Required. The resource name of the user to generate tokens for. Format: users/{user}",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.webcontentpublisher_v1#GeneratePlatformSiteTokensRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
           }
         }
       }
     },
-    "com.gcp.webcontentpublisher_v1#GetOrganizationsPublicationsCtas": {
+    "com.gcp.webcontentpublisher_v1#GeneratePlatformSiteTokensUsers": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.webcontentpublisher_v1#GetOrganizationsPublicationsCtasRequest"
+        "target": "com.gcp.webcontentpublisher_v1#GeneratePlatformSiteTokensUsersRequest"
       },
       "output": {
-        "target": "com.gcp.webcontentpublisher_v1#Cta"
+        "target": "com.gcp.webcontentpublisher_v1#GeneratePlatformSiteTokensResponse"
       },
       "errors": [
         {
@@ -1154,14 +1149,20 @@
         },
         {
           "target": "com.gcp.webcontentpublisher_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.webcontentpublisher_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.webcontentpublisher_v1#Conflict"
         }
       ],
       "traits": {
         "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}"
+          "method": "POST",
+          "uri": "v1/{+name}:generatePlatformSiteTokens"
         },
-        "smithy.api#documentation": "Gets a CTA."
+        "smithy.api#documentation": "Returns user tokens mapped to their canonical domains for all publications the authenticated user is entitled to."
       }
     }
   }

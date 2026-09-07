@@ -49,22 +49,22 @@ export class UnprocessableEntity
   ) {}
 
 /** Scope the report to these ad campaigns (max 100); stats are summed across them. Mutually exclusive with `companyId`, `adGroupIds`, and `adIds`. */
-export type RetrieveAdReportRequestAdCampaignIdsList = Array<string>;
-export const RetrieveAdReportRequestAdCampaignIdsList = /*@__PURE__*/ S.Array(
+export type GetAdReportRequestAdCampaignIdsList = Array<string>;
+export const GetAdReportRequestAdCampaignIdsList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<RetrieveAdReportRequestAdCampaignIdsList>;
+) as any as S.Schema<GetAdReportRequestAdCampaignIdsList>;
 
 /** Scope the report to these ad groups (max 100); stats are summed across them. Mutually exclusive with `companyId`, `adCampaignIds`, and `adIds`. */
-export type RetrieveAdReportRequestAdGroupIdsList = Array<string>;
-export const RetrieveAdReportRequestAdGroupIdsList = /*@__PURE__*/ S.Array(
+export type GetAdReportRequestAdGroupIdsList = Array<string>;
+export const GetAdReportRequestAdGroupIdsList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<RetrieveAdReportRequestAdGroupIdsList>;
+) as any as S.Schema<GetAdReportRequestAdGroupIdsList>;
 
 /** Scope the report to these ads (max 100); stats are summed across them. Mutually exclusive with `companyId`, `adCampaignIds`, and `adGroupIds`. */
-export type RetrieveAdReportRequestAdIdsList = Array<string>;
-export const RetrieveAdReportRequestAdIdsList = /*@__PURE__*/ S.Array(
+export type GetAdReportRequestAdIdsList = Array<string>;
+export const GetAdReportRequestAdIdsList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<RetrieveAdReportRequestAdIdsList>;
+) as any as S.Schema<GetAdReportRequestAdIdsList>;
 
 /** Entity level to group an ad report by. */
 export type AdReportBreakdownLevels = "campaign" | "ad_group" | "ad";
@@ -74,10 +74,10 @@ export const AdReportBreakdownLevels = /*@__PURE__*/ S.String;
 export type Granularities = "hourly" | "daily" | "weekly" | "monthly";
 export const Granularities = /*@__PURE__*/ S.String;
 
-export interface RetrieveAdReportRequest {
-  ad_campaign_ids?: RetrieveAdReportRequestAdCampaignIdsList;
-  ad_group_ids?: RetrieveAdReportRequestAdGroupIdsList;
-  ad_ids?: RetrieveAdReportRequestAdIdsList;
+export interface GetAdReportRequest {
+  ad_campaign_ids?: GetAdReportRequestAdCampaignIdsList;
+  ad_group_ids?: GetAdReportRequestAdGroupIdsList;
+  ad_ids?: GetAdReportRequestAdIdsList;
   breakdown?: AdReportBreakdownLevels | (string & {});
   company_id?: string;
   currency?: string;
@@ -85,15 +85,13 @@ export interface RetrieveAdReportRequest {
   granularity?: Granularities | (string & {});
   to: string;
 }
-export const RetrieveAdReportRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetAdReportRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ad_campaign_ids: S.optional(
-      RetrieveAdReportRequestAdCampaignIdsList.pipe(T.Query()),
+      GetAdReportRequestAdCampaignIdsList.pipe(T.Query()),
     ),
-    ad_group_ids: S.optional(
-      RetrieveAdReportRequestAdGroupIdsList.pipe(T.Query()),
-    ),
-    ad_ids: S.optional(RetrieveAdReportRequestAdIdsList.pipe(T.Query())),
+    ad_group_ids: S.optional(GetAdReportRequestAdGroupIdsList.pipe(T.Query())),
+    ad_ids: S.optional(GetAdReportRequestAdIdsList.pipe(T.Query())),
     breakdown: S.optional(AdReportBreakdownLevels.pipe(T.Query())),
     company_id: S.optional(S.String.pipe(T.Query())),
     currency: S.optional(S.String.pipe(T.Query())),
@@ -102,8 +100,8 @@ export const RetrieveAdReportRequest = /*@__PURE__*/ S.suspend(() =>
     to: S.String.pipe(T.Query()),
   }).pipe(T.Http({ method: "GET", uri: "/ad_reports", code: 200 })),
 ).annotate({
-  identifier: "RetrieveAdReportRequest",
-}) as any as S.Schema<RetrieveAdReportRequest>;
+  identifier: "GetAdReportRequest",
+}) as any as S.Schema<GetAdReportRequest>;
 
 /** Types of optimization results tracked from external ad platforms */
 export type ResultLabelKeys =
@@ -406,20 +404,20 @@ export const AdReport = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "AdReport" }) as any as S.Schema<AdReport>;
 
-export type RetrieveAdReportError =
+export type GetAdReportError =
   | BadRequest
   | Forbidden
   | NotFound
   | UnprocessableEntity
   | WhopOpError;
 /** Retrieve ad report [Legacy API — https://docs.whop.com/api-reference] Performance report for a company, ad campaigns, ad groups, or ads. Always returns aggregate `summary` totals summed across the scope. Set `granularity` to additionally get a time series, or set `breakdown` (`campaign`/`ad_group`/`ad`) to additionally get per-entity rows inside the requested scope. Exactly one of `companyId`, `adCampaignIds`, `adGroupIds`, or `adIds` must be provided. Required permissions: - `ad_campaign:stats:read` */
-export const retrieveAdReport: API.OperationMethod<
-  RetrieveAdReportRequest,
+export const getAdReport: API.OperationMethod<
+  GetAdReportRequest,
   AdReport,
-  RetrieveAdReportError,
+  GetAdReportError,
   WhopOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveAdReportRequest,
+  input: GetAdReportRequest,
   output: AdReport,
   errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
   protocol: WhopProtocol,

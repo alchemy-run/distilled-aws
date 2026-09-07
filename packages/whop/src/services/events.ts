@@ -413,6 +413,123 @@ export const CreateEventResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateEventResponse",
 }) as any as S.Schema<CreateEventResponse>;
 
+export interface GetPulseRequest {
+  /** Filter to one or more types, comma separated — for example `purchase,card_spend`. These are the item's `type`, not its `event_name`: several types share the `ledger_line.created` event name. Omit for every type in the feed. Values outside the feed's own set are rejected. */
+  event?: string;
+  /** The number of events to return. */
+  first?: number;
+  /** A cursor for fetching events after a previous page. */
+  after?: string;
+  /** A cursor for fetching events before a later page. */
+  before?: string;
+}
+export const GetPulseRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    event: S.optional(S.String.pipe(T.Query())),
+    first: S.optional(S.Number.pipe(T.Query())),
+    after: S.optional(S.String.pipe(T.Query())),
+    before: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/events/pulse", code: 200 })),
+).annotate({
+  identifier: "GetPulseRequest",
+}) as any as S.Schema<GetPulseRequest>;
+
+/** The underlying event recorded. Every movement on this feed is a ledger line, so switch on `type` rather than this. */
+export type GetPulseResponseDataItemEventName = "ledger_line.created";
+export const GetPulseResponseDataItemEventName = /*@__PURE__*/ S.String;
+
+/** What moved: a purchase, an affiliate commission, Whop card spend, ad spend, app revenue, an off-platform sale, a wallet deposit, a card load, a claimed drop, a transfer between accounts, or a referral bonus. */
+export type GetPulseResponseDataItemType =
+  | "purchase"
+  | "affiliate_commission"
+  | "card_spend"
+  | "ad_spend"
+  | "app_revenue"
+  | "off_platform_sale"
+  | "deposit"
+  | "card_load"
+  | "airdrop_claim"
+  | "transfer"
+  | "referral_bonus";
+export const GetPulseResponseDataItemType = /*@__PURE__*/ S.String;
+
+/** Coarse location, shaped like the event `user` block. It belongs to the owner of the wallet the money moved into or out of — the party the event is about, never their counterparty. Omitted entirely when nothing is known. */
+export interface GetPulseResponseDataItemUser {
+  /** City name. Omitted when unknown. */
+  city?: string;
+  /** ISO 3166-1 alpha-2 country code. Omitted when unknown. */
+  country?: string;
+}
+export const GetPulseResponseDataItemUser = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    city: S.optional(S.String),
+    country: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetPulseResponseDataItemUser",
+}) as any as S.Schema<GetPulseResponseDataItemUser>;
+
+export interface GetPulseResponseDataItem {
+  /** The underlying event recorded. Every movement on this feed is a ledger line, so switch on `type` rather than this. */
+  event_name: GetPulseResponseDataItemEventName;
+  /** When the event happened, coarsened to the start of the minute. */
+  event_time: string;
+  /** The USD amount of the event. */
+  total_usd_amount?: number | null;
+  /** What moved: a purchase, an affiliate commission, Whop card spend, ad spend, app revenue, an off-platform sale, a wallet deposit, a card load, a claimed drop, a transfer between accounts, or a referral bonus. */
+  type: GetPulseResponseDataItemType;
+  /** Coarse location, shaped like the event `user` block. It belongs to the owner of the wallet the money moved into or out of — the party the event is about, never their counterparty. Omitted entirely when nothing is known. */
+  user?: GetPulseResponseDataItemUser;
+}
+export const GetPulseResponseDataItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    event_name: GetPulseResponseDataItemEventName,
+    event_time: S.String,
+    total_usd_amount: S.optional(S.NullOr(S.Number)),
+    type: GetPulseResponseDataItemType,
+    user: S.optional(GetPulseResponseDataItemUser),
+  }),
+).annotate({
+  identifier: "GetPulseResponseDataItem",
+}) as any as S.Schema<GetPulseResponseDataItem>;
+
+/** Recent anonymized money-movement events, newest first. */
+export type GetPulseResponseDataList = Array<GetPulseResponseDataItem>;
+export const GetPulseResponseDataList = /*@__PURE__*/ S.Array(
+  GetPulseResponseDataItem,
+) as any as S.Schema<GetPulseResponseDataList>;
+
+export interface GetPulseResponsePageInfo {
+  end_cursor?: string | null;
+  has_next_page: boolean;
+  has_previous_page: boolean;
+  start_cursor?: string | null;
+}
+export const GetPulseResponsePageInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    end_cursor: S.optional(S.NullOr(S.String)),
+    has_next_page: S.Boolean,
+    has_previous_page: S.Boolean,
+    start_cursor: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({
+  identifier: "GetPulseResponsePageInfo",
+}) as any as S.Schema<GetPulseResponsePageInfo>;
+
+export interface GetPulseResponse {
+  /** Recent anonymized money-movement events, newest first. */
+  data: GetPulseResponseDataList;
+  page_info: GetPulseResponsePageInfo;
+}
+export const GetPulseResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: GetPulseResponseDataList,
+    page_info: GetPulseResponsePageInfo,
+  }),
+).annotate({
+  identifier: "GetPulseResponse",
+}) as any as S.Schema<GetPulseResponse>;
+
 export type ListEventsRequestDirection = "asc" | "desc";
 export const ListEventsRequestDirection = /*@__PURE__*/ S.String;
 
@@ -873,139 +990,21 @@ export const ListEventsResponseDataList = /*@__PURE__*/ S.Array(
   ListEventsResponseDataItem,
 ) as any as S.Schema<ListEventsResponseDataList>;
 
-export interface ListEventsResponsePageInfo {
-  end_cursor?: string | null;
-  has_next_page: boolean;
-  has_previous_page: boolean;
-  start_cursor?: string | null;
-}
-export const ListEventsResponsePageInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    end_cursor: S.optional(S.NullOr(S.String)),
-    has_next_page: S.Boolean,
-    has_previous_page: S.Boolean,
-    start_cursor: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({
-  identifier: "ListEventsResponsePageInfo",
-}) as any as S.Schema<ListEventsResponsePageInfo>;
+export type ListEventsResponsePageInfo = GetPulseResponsePageInfo;
+export const ListEventsResponsePageInfo = GetPulseResponsePageInfo;
 
 export interface ListEventsResponse {
   data: ListEventsResponseDataList;
-  page_info: ListEventsResponsePageInfo;
+  page_info: GetPulseResponsePageInfo;
 }
 export const ListEventsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     data: ListEventsResponseDataList,
-    page_info: ListEventsResponsePageInfo,
+    page_info: GetPulseResponsePageInfo,
   }),
 ).annotate({
   identifier: "ListEventsResponse",
 }) as any as S.Schema<ListEventsResponse>;
-
-export interface RetrievePulseRequest {
-  /** Filter to one or more types, comma separated — for example `purchase,card_spend`. These are the item's `type`, not its `event_name`: several types share the `ledger_line.created` event name. Omit for every type in the feed. Values outside the feed's own set are rejected. */
-  event?: string;
-  /** The number of events to return. */
-  first?: number;
-  /** A cursor for fetching events after a previous page. */
-  after?: string;
-  /** A cursor for fetching events before a later page. */
-  before?: string;
-}
-export const RetrievePulseRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    event: S.optional(S.String.pipe(T.Query())),
-    first: S.optional(S.Number.pipe(T.Query())),
-    after: S.optional(S.String.pipe(T.Query())),
-    before: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/events/pulse", code: 200 })),
-).annotate({
-  identifier: "RetrievePulseRequest",
-}) as any as S.Schema<RetrievePulseRequest>;
-
-/** The underlying event recorded. Every movement on this feed is a ledger line, so switch on `type` rather than this. */
-export type RetrievePulseResponseDataItemEventName = "ledger_line.created";
-export const RetrievePulseResponseDataItemEventName = /*@__PURE__*/ S.String;
-
-/** What moved: a purchase, an affiliate commission, Whop card spend, ad spend, app revenue, an off-platform sale, a wallet deposit, a card load, a claimed drop, a transfer between accounts, or a referral bonus. */
-export type RetrievePulseResponseDataItemType =
-  | "purchase"
-  | "affiliate_commission"
-  | "card_spend"
-  | "ad_spend"
-  | "app_revenue"
-  | "off_platform_sale"
-  | "deposit"
-  | "card_load"
-  | "airdrop_claim"
-  | "transfer"
-  | "referral_bonus";
-export const RetrievePulseResponseDataItemType = /*@__PURE__*/ S.String;
-
-/** Coarse location, shaped like the event `user` block. It belongs to the owner of the wallet the money moved into or out of — the party the event is about, never their counterparty. Omitted entirely when nothing is known. */
-export interface RetrievePulseResponseDataItemUser {
-  /** City name. Omitted when unknown. */
-  city?: string;
-  /** ISO 3166-1 alpha-2 country code. Omitted when unknown. */
-  country?: string;
-}
-export const RetrievePulseResponseDataItemUser = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    city: S.optional(S.String),
-    country: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "RetrievePulseResponseDataItemUser",
-}) as any as S.Schema<RetrievePulseResponseDataItemUser>;
-
-export interface RetrievePulseResponseDataItem {
-  /** The underlying event recorded. Every movement on this feed is a ledger line, so switch on `type` rather than this. */
-  event_name: RetrievePulseResponseDataItemEventName;
-  /** When the event happened, coarsened to the start of the minute. */
-  event_time: string;
-  /** The USD amount of the event. */
-  total_usd_amount?: number | null;
-  /** What moved: a purchase, an affiliate commission, Whop card spend, ad spend, app revenue, an off-platform sale, a wallet deposit, a card load, a claimed drop, a transfer between accounts, or a referral bonus. */
-  type: RetrievePulseResponseDataItemType;
-  /** Coarse location, shaped like the event `user` block. It belongs to the owner of the wallet the money moved into or out of — the party the event is about, never their counterparty. Omitted entirely when nothing is known. */
-  user?: RetrievePulseResponseDataItemUser;
-}
-export const RetrievePulseResponseDataItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    event_name: RetrievePulseResponseDataItemEventName,
-    event_time: S.String,
-    total_usd_amount: S.optional(S.NullOr(S.Number)),
-    type: RetrievePulseResponseDataItemType,
-    user: S.optional(RetrievePulseResponseDataItemUser),
-  }),
-).annotate({
-  identifier: "RetrievePulseResponseDataItem",
-}) as any as S.Schema<RetrievePulseResponseDataItem>;
-
-/** Recent anonymized money-movement events, newest first. */
-export type RetrievePulseResponseDataList =
-  Array<RetrievePulseResponseDataItem>;
-export const RetrievePulseResponseDataList = /*@__PURE__*/ S.Array(
-  RetrievePulseResponseDataItem,
-) as any as S.Schema<RetrievePulseResponseDataList>;
-
-export type RetrievePulseResponsePageInfo = ListEventsResponsePageInfo;
-export const RetrievePulseResponsePageInfo = ListEventsResponsePageInfo;
-
-export interface RetrievePulseResponse {
-  /** Recent anonymized money-movement events, newest first. */
-  data: RetrievePulseResponseDataList;
-  page_info: ListEventsResponsePageInfo;
-}
-export const RetrievePulseResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data: RetrievePulseResponseDataList,
-    page_info: ListEventsResponsePageInfo,
-  }),
-).annotate({
-  identifier: "RetrievePulseResponse",
-}) as any as S.Schema<RetrievePulseResponse>;
 
 export interface ValidatePixelRequest {
   /** Account to check. Defaults to the authenticated account. */
@@ -1084,18 +1083,18 @@ export const createEvent: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListEventsError = BadRequest | WhopOpError;
-/** List Events Lists identity-linked events, most recent first by default. Pass identifier for one person's journey, or omit it to list events for an account within an explicit time range. Pass direction=asc to read a journey forwards from where it starts. Events are shaped like the POST /events intake: attribution in context, identity in user. */
-export const listEvents: API.PaginatedOperationMethod<
-  ListEventsRequest,
-  ListEventsResponse,
-  ListEventsError,
+export type GetPulseError = BadRequest | WhopOpError;
+/** Retrieve the pulse feed Returns a fully anonymized feed of recent platform-wide money movement, most recent first: purchases, affiliate commissions, card and ad spend, app revenue, off-platform sales, wallet deposits, card loads, claimed drops, transfers between accounts, and referral bonuses. Items carry only a `type`, the underlying event name, a USD amount, a coarse location under `user`, and a timestamp coarsened to the start of the minute; missing fields are omitted, not nulled. The payload is identical for every caller; no auth is required. */
+export const getPulse: API.PaginatedOperationMethod<
+  GetPulseRequest,
+  GetPulseResponse,
+  GetPulseError,
   WhopOpContext,
-  ListEventsResponseDataItem
+  GetPulseResponseDataItem
 > = /*@__PURE__*/ API.makePaginated(
   () => ({
-    input: ListEventsRequest,
-    output: ListEventsResponse,
+    input: GetPulseRequest,
+    output: GetPulseResponse,
     errors: [BadRequest],
     protocol: WhopProtocol,
     retry: Retry.Retry,
@@ -1111,18 +1110,18 @@ export const listEvents: API.PaginatedOperationMethod<
   paginateRelay,
 ) as any;
 
-export type RetrievePulseError = BadRequest | WhopOpError;
-/** Retrieve the pulse feed Returns a fully anonymized feed of recent platform-wide money movement, most recent first: purchases, affiliate commissions, card and ad spend, app revenue, off-platform sales, wallet deposits, card loads, claimed drops, transfers between accounts, and referral bonuses. Items carry only a `type`, the underlying event name, a USD amount, a coarse location under `user`, and a timestamp coarsened to the start of the minute; missing fields are omitted, not nulled. The payload is identical for every caller; no auth is required. */
-export const retrievePulse: API.PaginatedOperationMethod<
-  RetrievePulseRequest,
-  RetrievePulseResponse,
-  RetrievePulseError,
+export type ListEventsError = BadRequest | WhopOpError;
+/** List Events Lists identity-linked events, most recent first by default. Pass identifier for one person's journey, or omit it to list events for an account within an explicit time range. Pass direction=asc to read a journey forwards from where it starts. Events are shaped like the POST /events intake: attribution in context, identity in user. */
+export const listEvents: API.PaginatedOperationMethod<
+  ListEventsRequest,
+  ListEventsResponse,
+  ListEventsError,
   WhopOpContext,
-  RetrievePulseResponseDataItem
+  ListEventsResponseDataItem
 > = /*@__PURE__*/ API.makePaginated(
   () => ({
-    input: RetrievePulseRequest,
-    output: RetrievePulseResponse,
+    input: ListEventsRequest,
+    output: ListEventsResponse,
     errors: [BadRequest],
     protocol: WhopProtocol,
     retry: Retry.Retry,

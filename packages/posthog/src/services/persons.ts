@@ -39,86 +39,23 @@ export class NotFound
     [{ status: 404 }],
   ) {}
 
-export type PersonsActivityRetrieveRequestFormat = "csv" | "json";
-export const PersonsActivityRetrieveRequestFormat = /*@__PURE__*/ S.String;
-
-export interface PersonsActivityRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A unique integer value identifying this person. */
-  id: number;
-  format?: PersonsActivityRetrieveRequestFormat | (string & {});
-}
-export const PersonsActivityRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.Number.pipe(T.Label()),
-    format: S.optional(PersonsActivityRetrieveRequestFormat.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/persons/{id}/activity/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "PersonsActivityRetrieveRequest",
-}) as any as S.Schema<PersonsActivityRetrieveRequest>;
-
-export interface PersonsActivityRetrieveResponse {}
-export const PersonsActivityRetrieveResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "PersonsActivityRetrieveResponse",
-}) as any as S.Schema<PersonsActivityRetrieveResponse>;
-
-export type PersonsAllActivityRetrieveRequestFormat = "csv" | "json";
-export const PersonsAllActivityRetrieveRequestFormat = /*@__PURE__*/ S.String;
-
-export interface PersonsAllActivityRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  format?: PersonsAllActivityRetrieveRequestFormat | (string & {});
-}
-export const PersonsAllActivityRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    format: S.optional(PersonsAllActivityRetrieveRequestFormat.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/persons/activity/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "PersonsAllActivityRetrieveRequest",
-}) as any as S.Schema<PersonsAllActivityRetrieveRequest>;
-
-export interface PersonsAllActivityRetrieveResponse {}
-export const PersonsAllActivityRetrieveResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "PersonsAllActivityRetrieveResponse",
-}) as any as S.Schema<PersonsAllActivityRetrieveResponse>;
-
-export type PersonsBatchByDistinctIdsCreateRequestFormat = "csv" | "json";
-export const PersonsBatchByDistinctIdsCreateRequestFormat =
+export type CreatePersonsBatchByDistinctIdsRequestFormat = "csv" | "json";
+export const CreatePersonsBatchByDistinctIdsRequestFormat =
   /*@__PURE__*/ S.String;
 
-export interface PersonsBatchByDistinctIdsCreateRequest {
+export interface CreatePersonsBatchByDistinctIdsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  format?: PersonsBatchByDistinctIdsCreateRequestFormat | (string & {});
+  format?: CreatePersonsBatchByDistinctIdsRequestFormat | (string & {});
   /** Key-value map of person properties set via $set and $set_once operations. */
   properties?: unknown;
 }
-export const PersonsBatchByDistinctIdsCreateRequest = /*@__PURE__*/ S.suspend(
+export const CreatePersonsBatchByDistinctIdsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
       format: S.optional(
-        PersonsBatchByDistinctIdsCreateRequestFormat.pipe(T.Query()),
+        CreatePersonsBatchByDistinctIdsRequestFormat.pipe(T.Query()),
       ),
       properties: S.optional(S.Unknown),
     }).pipe(
@@ -129,30 +66,30 @@ export const PersonsBatchByDistinctIdsCreateRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "PersonsBatchByDistinctIdsCreateRequest",
-}) as any as S.Schema<PersonsBatchByDistinctIdsCreateRequest>;
+  identifier: "CreatePersonsBatchByDistinctIdsRequest",
+}) as any as S.Schema<CreatePersonsBatchByDistinctIdsRequest>;
 
-export interface PersonsBatchByDistinctIdsCreateResponse {}
-export const PersonsBatchByDistinctIdsCreateResponse = /*@__PURE__*/ S.suspend(
+export interface CreatePersonsBatchByDistinctIdsResponse {}
+export const CreatePersonsBatchByDistinctIdsResponse = /*@__PURE__*/ S.suspend(
   () => S.Struct({}),
 ).annotate({
-  identifier: "PersonsBatchByDistinctIdsCreateResponse",
-}) as any as S.Schema<PersonsBatchByDistinctIdsCreateResponse>;
+  identifier: "CreatePersonsBatchByDistinctIdsResponse",
+}) as any as S.Schema<CreatePersonsBatchByDistinctIdsResponse>;
 
-export type PersonsBatchByUuidsCreateRequestFormat = "csv" | "json";
-export const PersonsBatchByUuidsCreateRequestFormat = /*@__PURE__*/ S.String;
+export type CreatePersonsBatchByUuidRequestFormat = "csv" | "json";
+export const CreatePersonsBatchByUuidRequestFormat = /*@__PURE__*/ S.String;
 
-export interface PersonsBatchByUuidsCreateRequest {
+export interface CreatePersonsBatchByUuidRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  format?: PersonsBatchByUuidsCreateRequestFormat | (string & {});
+  format?: CreatePersonsBatchByUuidRequestFormat | (string & {});
   /** Key-value map of person properties set via $set and $set_once operations. */
   properties?: unknown;
 }
-export const PersonsBatchByUuidsCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreatePersonsBatchByUuidRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
-    format: S.optional(PersonsBatchByUuidsCreateRequestFormat.pipe(T.Query())),
+    format: S.optional(CreatePersonsBatchByUuidRequestFormat.pipe(T.Query())),
     properties: S.optional(S.Unknown),
   }).pipe(
     T.Http({
@@ -162,88 +99,204 @@ export const PersonsBatchByUuidsCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "PersonsBatchByUuidsCreateRequest",
-}) as any as S.Schema<PersonsBatchByUuidsCreateRequest>;
+  identifier: "CreatePersonsBatchByUuidRequest",
+}) as any as S.Schema<CreatePersonsBatchByUuidRequest>;
 
-export interface PersonsBatchByUuidsCreateResponse {}
-export const PersonsBatchByUuidsCreateResponse = /*@__PURE__*/ S.suspend(() =>
+export interface CreatePersonsBatchByUuidResponse {}
+export const CreatePersonsBatchByUuidResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "PersonsBatchByUuidsCreateResponse",
-}) as any as S.Schema<PersonsBatchByUuidsCreateResponse>;
+  identifier: "CreatePersonsBatchByUuidResponse",
+}) as any as S.Schema<CreatePersonsBatchByUuidResponse>;
 
-export type PersonsBulkDeleteCreateRequestFormat = "csv" | "json";
-export const PersonsBulkDeleteCreateRequestFormat = /*@__PURE__*/ S.String;
+export type CreatePersonsSplitRequestFormat = "csv" | "json";
+export const CreatePersonsSplitRequestFormat = /*@__PURE__*/ S.String;
 
-/** A list of PostHog person UUIDs to delete (max 1000). */
-export type PersonsBulkDeleteCreateRequestIdsList = Array<string>;
-export const PersonsBulkDeleteCreateRequestIdsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PersonsBulkDeleteCreateRequestIdsList>;
-
-/** A list of distinct IDs whose associated persons will be deleted (max 1000). */
-export type PersonsBulkDeleteCreateRequestDistinctIdsList = Array<string>;
-export const PersonsBulkDeleteCreateRequestDistinctIdsList =
+/** List of distinct_ids to **move off** this person onto new single-id persons. The original person keeps every other distinct_id and its properties. New persons are created with deterministic UUIDs derived from `(team_id, distinct_id)`. Cannot be combined with `main_distinct_id`. */
+export type CreatePersonsSplitRequestDistinctIdsToSplitList = Array<string>;
+export const CreatePersonsSplitRequestDistinctIdsToSplitList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<PersonsBulkDeleteCreateRequestDistinctIdsList>;
+  ) as any as S.Schema<CreatePersonsSplitRequestDistinctIdsToSplitList>;
 
-export interface PersonsBulkDeleteCreateRequest {
+export interface CreatePersonsSplitRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  format?: PersonsBulkDeleteCreateRequestFormat | (string & {});
-  /** A list of PostHog person UUIDs to delete (max 1000). */
-  ids?: PersonsBulkDeleteCreateRequestIdsList;
-  /** A list of distinct IDs whose associated persons will be deleted (max 1000). */
-  distinct_ids?: PersonsBulkDeleteCreateRequestDistinctIdsList;
-  /** If true, queue deletion of all events associated with these persons. */
-  delete_events?: boolean;
-  /** If true, queue deletion of all recordings associated with these persons. */
-  delete_recordings?: boolean;
-  /** If true, keep the person records but delete their events and recordings. */
-  keep_person?: boolean;
+  /** A unique value identifying this person. Accepts both numeric ID and UUID. */
+  id: string;
+  format?: CreatePersonsSplitRequestFormat | (string & {});
+  /** The distinct_id to **keep** on this person; every *other* distinct_id is moved to its own new single-id person. If omitted, the first distinct_id on the person is kept. The original person always retains its properties; to clear individual properties afterward, use the delete_property endpoint. To surgically *remove* one or more distinct_ids while leaving the merge intact, use `distinct_ids_to_split` instead — these parameters are inverses of each other and cannot be combined. */
+  main_distinct_id?: string | null;
+  /** List of distinct_ids to **move off** this person onto new single-id persons. The original person keeps every other distinct_id and its properties. New persons are created with deterministic UUIDs derived from `(team_id, distinct_id)`. Cannot be combined with `main_distinct_id`. */
+  distinct_ids_to_split?: CreatePersonsSplitRequestDistinctIdsToSplitList | null;
 }
-export const PersonsBulkDeleteCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreatePersonsSplitRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
-    format: S.optional(PersonsBulkDeleteCreateRequestFormat.pipe(T.Query())),
-    ids: S.optional(PersonsBulkDeleteCreateRequestIdsList),
-    distinct_ids: S.optional(PersonsBulkDeleteCreateRequestDistinctIdsList),
-    delete_events: S.optional(S.Boolean),
-    delete_recordings: S.optional(S.Boolean),
-    keep_person: S.optional(S.Boolean),
+    id: S.String.pipe(T.Label()),
+    format: S.optional(CreatePersonsSplitRequestFormat.pipe(T.Query())),
+    main_distinct_id: S.optional(S.NullOr(S.String)),
+    distinct_ids_to_split: S.optional(
+      S.NullOr(CreatePersonsSplitRequestDistinctIdsToSplitList),
+    ),
   }).pipe(
     T.Http({
       method: "POST",
-      uri: "/api/projects/{project_id}/persons/bulk_delete/",
+      uri: "/api/projects/{project_id}/persons/{id}/split/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "PersonsBulkDeleteCreateRequest",
-}) as any as S.Schema<PersonsBulkDeleteCreateRequest>;
+  identifier: "CreatePersonsSplitRequest",
+}) as any as S.Schema<CreatePersonsSplitRequest>;
 
-export interface PersonsBulkDeleteCreateResponse {}
-export const PersonsBulkDeleteCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
+export interface PersonSplitResponse {
+  /** Always `true` when the split task was enqueued. The split itself runs asynchronously — a 201 response means the task was accepted, not that the merge state has already been updated. */
+  success: boolean;
+}
+export const PersonSplitResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    success: S.Boolean,
+  }),
 ).annotate({
-  identifier: "PersonsBulkDeleteCreateResponse",
-}) as any as S.Schema<PersonsBulkDeleteCreateResponse>;
+  identifier: "PersonSplitResponse",
+}) as any as S.Schema<PersonSplitResponse>;
 
-export type PersonsCohortsRetrieveRequestFormat = "csv" | "json";
-export const PersonsCohortsRetrieveRequestFormat = /*@__PURE__*/ S.String;
+export type GetPersonRequestFormat = "csv" | "json";
+export const GetPersonRequestFormat = /*@__PURE__*/ S.String;
 
-export interface PersonsCohortsRetrieveRequest {
+export interface GetPersonRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  format?: PersonsCohortsRetrieveRequestFormat | (string & {});
+  /** A unique value identifying this person. Accepts both numeric ID and UUID. */
+  id: string;
+  format?: GetPersonRequestFormat | (string & {});
+}
+export const GetPersonRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    format: S.optional(GetPersonRequestFormat.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/persons/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetPersonRequest",
+}) as any as S.Schema<GetPersonRequest>;
+
+export type PersonRecordDistinctIdsList = Array<string>;
+export const PersonRecordDistinctIdsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<PersonRecordDistinctIdsList>;
+
+export interface PersonRecord {
+  /** Numeric person ID. */
+  id?: number;
+  /** Display name derived from person properties (email, name, or username). */
+  name?: string;
+  distinct_ids?: PersonRecordDistinctIdsList;
+  /** Key-value map of person properties set via $set and $set_once operations. */
+  properties?: unknown;
+  /** When this person was first seen (ISO 8601). */
+  created_at?: string;
+  /** Unique identifier (UUID) for this person. */
+  uuid?: string;
+  /** Timestamp of the last event from this person, or null. */
+  last_seen_at?: string | null;
+}
+export const PersonRecord = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.Number),
+    name: S.optional(S.String),
+    distinct_ids: S.optional(PersonRecordDistinctIdsList),
+    properties: S.optional(S.Unknown),
+    created_at: S.optional(S.String),
+    uuid: S.optional(S.String),
+    last_seen_at: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({ identifier: "PersonRecord" }) as any as S.Schema<PersonRecord>;
+
+export type GetPersonsActivityRequestFormat = "csv" | "json";
+export const GetPersonsActivityRequestFormat = /*@__PURE__*/ S.String;
+
+export interface GetPersonsActivityRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A unique integer value identifying this person. */
+  id: number;
+  format?: GetPersonsActivityRequestFormat | (string & {});
+}
+export const GetPersonsActivityRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+    format: S.optional(GetPersonsActivityRequestFormat.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/persons/{id}/activity/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetPersonsActivityRequest",
+}) as any as S.Schema<GetPersonsActivityRequest>;
+
+export interface GetPersonsActivityResponse {}
+export const GetPersonsActivityResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "GetPersonsActivityResponse",
+}) as any as S.Schema<GetPersonsActivityResponse>;
+
+export type GetPersonsAllActivityRequestFormat = "csv" | "json";
+export const GetPersonsAllActivityRequestFormat = /*@__PURE__*/ S.String;
+
+export interface GetPersonsAllActivityRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  format?: GetPersonsAllActivityRequestFormat | (string & {});
+}
+export const GetPersonsAllActivityRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    format: S.optional(GetPersonsAllActivityRequestFormat.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/persons/activity/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetPersonsAllActivityRequest",
+}) as any as S.Schema<GetPersonsAllActivityRequest>;
+
+export interface GetPersonsAllActivityResponse {}
+export const GetPersonsAllActivityResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "GetPersonsAllActivityResponse",
+}) as any as S.Schema<GetPersonsAllActivityResponse>;
+
+export type GetPersonsCohortRequestFormat = "csv" | "json";
+export const GetPersonsCohortRequestFormat = /*@__PURE__*/ S.String;
+
+export interface GetPersonsCohortRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  format?: GetPersonsCohortRequestFormat | (string & {});
   /** The person ID or UUID to get cohorts for. */
   person_id: string;
 }
-export const PersonsCohortsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetPersonsCohortRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
-    format: S.optional(PersonsCohortsRetrieveRequestFormat.pipe(T.Query())),
+    format: S.optional(GetPersonsCohortRequestFormat.pipe(T.Query())),
     person_id: S.String.pipe(T.Query()),
   }).pipe(
     T.Http({
@@ -253,253 +306,219 @@ export const PersonsCohortsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "PersonsCohortsRetrieveRequest",
-}) as any as S.Schema<PersonsCohortsRetrieveRequest>;
+  identifier: "GetPersonsCohortRequest",
+}) as any as S.Schema<GetPersonsCohortRequest>;
 
-export interface PersonsCohortsRetrieveResponse {}
-export const PersonsCohortsRetrieveResponse = /*@__PURE__*/ S.suspend(() =>
+export interface GetPersonsCohortResponse {}
+export const GetPersonsCohortResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "PersonsCohortsRetrieveResponse",
-}) as any as S.Schema<PersonsCohortsRetrieveResponse>;
+  identifier: "GetPersonsCohortResponse",
+}) as any as S.Schema<GetPersonsCohortResponse>;
 
-export type PersonsDeletePropertyCreateRequestFormat = "csv" | "json";
-export const PersonsDeletePropertyCreateRequestFormat = /*@__PURE__*/ S.String;
+export type GetPersonsPropertiesAtTimeRequestFormat = "csv" | "json";
+export const GetPersonsPropertiesAtTimeRequestFormat = /*@__PURE__*/ S.String;
 
-export type PersonsDeletePropertyCreateRequestUnsetCase1List = Array<string>;
-export const PersonsDeletePropertyCreateRequestUnsetCase1List =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PersonsDeletePropertyCreateRequestUnsetCase1List>;
-
-/** A property key, or a list of property keys, to remove from this person. */
-export type PersonsDeletePropertyCreateRequestUnset =
-  | string
-  | PersonsDeletePropertyCreateRequestUnsetCase1List;
-export const PersonsDeletePropertyCreateRequestUnset =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PersonsDeletePropertyCreateRequestUnset>;
-
-export interface PersonsDeletePropertyCreateRequest {
+export interface GetPersonsPropertiesAtTimeRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  /** A unique value identifying this person. Accepts both numeric ID and UUID. */
-  id: string;
-  format?: PersonsDeletePropertyCreateRequestFormat | (string & {});
-  /** A property key, or a list of property keys, to remove from this person. */
-  _unset?: PersonsDeletePropertyCreateRequestUnset;
+  /** The distinct_id of the person (mutually exclusive with person_id) */
+  distinct_id?: string;
+  format?: GetPersonsPropertiesAtTimeRequestFormat | (string & {});
+  /** Whether to handle $set_once operations (default: false) */
+  include_set_once?: boolean;
+  /** The person_id (UUID) to build properties for (mutually exclusive with distinct_id) */
+  person_id?: string;
+  /** ISO datetime string for the point in time (e.g., '2023-06-15T14:30:00Z') */
+  timestamp: string;
 }
-export const PersonsDeletePropertyCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetPersonsPropertiesAtTimeRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    format: S.optional(
-      PersonsDeletePropertyCreateRequestFormat.pipe(T.Query()),
-    ),
-    _unset: S.optional(
-      PersonsDeletePropertyCreateRequestUnset.pipe(T.Body("$unset")),
-    ),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/projects/{project_id}/persons/{id}/delete_property/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "PersonsDeletePropertyCreateRequest",
-}) as any as S.Schema<PersonsDeletePropertyCreateRequest>;
-
-export interface PersonsDeletePropertyCreateResponse {}
-export const PersonsDeletePropertyCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "PersonsDeletePropertyCreateResponse",
-}) as any as S.Schema<PersonsDeletePropertyCreateResponse>;
-
-export type PersonsDeletionStatusListRequestFormat = "csv" | "json";
-export const PersonsDeletionStatusListRequestFormat = /*@__PURE__*/ S.String;
-
-export type PersonsDeletionStatusListRequestStatus =
-  | "all"
-  | "completed"
-  | "pending";
-export const PersonsDeletionStatusListRequestStatus = /*@__PURE__*/ S.String;
-
-export interface PersonsDeletionStatusListRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  format?: PersonsDeletionStatusListRequestFormat | (string & {});
-  /** Number of results to return per page. */
-  limit?: number;
-  /** The initial index from which to return the results. */
-  offset?: number;
-  /** Filter by a specific person UUID. */
-  person_uuid?: string;
-  /** Filter by deletion status: 'pending', 'completed', or 'all'. */
-  status?: PersonsDeletionStatusListRequestStatus | (string & {});
-}
-export const PersonsDeletionStatusListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    format: S.optional(PersonsDeletionStatusListRequestFormat.pipe(T.Query())),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    offset: S.optional(S.Number.pipe(T.Query())),
-    person_uuid: S.optional(S.String.pipe(T.Query())),
-    status: S.optional(PersonsDeletionStatusListRequestStatus.pipe(T.Query())),
+    distinct_id: S.optional(S.String.pipe(T.Query())),
+    format: S.optional(GetPersonsPropertiesAtTimeRequestFormat.pipe(T.Query())),
+    include_set_once: S.optional(S.Boolean.pipe(T.Query())),
+    person_id: S.optional(S.String.pipe(T.Query())),
+    timestamp: S.String.pipe(T.Query()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/api/projects/{project_id}/persons/deletion_status/",
+      uri: "/api/projects/{project_id}/persons/properties_at_time/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "PersonsDeletionStatusListRequest",
-}) as any as S.Schema<PersonsDeletionStatusListRequest>;
+  identifier: "GetPersonsPropertiesAtTimeRequest",
+}) as any as S.Schema<GetPersonsPropertiesAtTimeRequest>;
 
-export interface AsyncDeletionStatus {
-  /** The UUID of the person whose events are queued for deletion. */
-  person_uuid?: string;
-  /** When the deletion was requested. */
-  created_at?: string;
-  /** Current status: 'pending' or 'completed'. */
-  status?: string;
-  /** When the deletion was verified complete. Null if still pending. */
-  delete_verified_at?: string | null;
-}
-export const AsyncDeletionStatus = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    person_uuid: S.optional(S.String),
-    created_at: S.optional(S.String),
-    status: S.optional(S.String),
-    delete_verified_at: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({
-  identifier: "AsyncDeletionStatus",
-}) as any as S.Schema<AsyncDeletionStatus>;
-
-export type PaginatedAsyncDeletionStatusListResultsList =
-  Array<AsyncDeletionStatus>;
-export const PaginatedAsyncDeletionStatusListResultsList =
+/** All distinct IDs associated with this person */
+export type PersonPropertiesAtTimeResponseDistinctIdsList = Array<string>;
+export const PersonPropertiesAtTimeResponseDistinctIdsList =
   /*@__PURE__*/ S.Array(
-    AsyncDeletionStatus,
-  ) as any as S.Schema<PaginatedAsyncDeletionStatusListResultsList>;
+    S.String,
+  ) as any as S.Schema<PersonPropertiesAtTimeResponseDistinctIdsList>;
 
-export interface PaginatedAsyncDeletionStatusList {
-  next?: string | null;
-  previous?: string | null;
-  count?: number;
-  results?: PaginatedAsyncDeletionStatusListResultsList;
+/** Person properties as they existed at the specified time */
+export type PersonPropertiesAtTimeResponsePropertiesMap = {
+  [key: string]: string | undefined;
+};
+export const PersonPropertiesAtTimeResponsePropertiesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<PersonPropertiesAtTimeResponsePropertiesMap>;
+
+/** All distinct_ids that were queried for this person */
+export type PersonPropertiesAtTimeMetadataDistinctIdsQueriedList =
+  Array<string>;
+export const PersonPropertiesAtTimeMetadataDistinctIdsQueriedList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PersonPropertiesAtTimeMetadataDistinctIdsQueriedList>;
+
+/** Serializer for the point-in-time query metadata. */
+export interface PersonPropertiesAtTimeMetadata {
+  /** The timestamp that was queried in ISO format */
+  queried_timestamp?: string;
+  /** Whether $set_once operations were included */
+  include_set_once?: boolean;
+  /** The distinct_id parameter used in the request */
+  distinct_id_used?: string | null;
+  /** The person_id parameter used in the request */
+  person_id_used?: string | null;
+  /** Whether the query used 'distinct_id' or 'person_id' mode */
+  query_mode?: string;
+  /** All distinct_ids that were queried for this person */
+  distinct_ids_queried?: PersonPropertiesAtTimeMetadataDistinctIdsQueriedList;
+  /** Number of distinct_ids associated with this person */
+  distinct_ids_count?: number;
 }
-export const PaginatedAsyncDeletionStatusList = /*@__PURE__*/ S.suspend(() =>
+export const PersonPropertiesAtTimeMetadata = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    next: S.optional(S.NullOr(S.String)),
-    previous: S.optional(S.NullOr(S.String)),
-    count: S.optional(S.Number),
-    results: S.optional(PaginatedAsyncDeletionStatusListResultsList),
+    queried_timestamp: S.optional(S.String),
+    include_set_once: S.optional(S.Boolean),
+    distinct_id_used: S.optional(S.NullOr(S.String)),
+    person_id_used: S.optional(S.NullOr(S.String)),
+    query_mode: S.optional(S.String),
+    distinct_ids_queried: S.optional(
+      PersonPropertiesAtTimeMetadataDistinctIdsQueriedList,
+    ),
+    distinct_ids_count: S.optional(S.Number),
   }),
 ).annotate({
-  identifier: "PaginatedAsyncDeletionStatusList",
-}) as any as S.Schema<PaginatedAsyncDeletionStatusList>;
+  identifier: "PersonPropertiesAtTimeMetadata",
+}) as any as S.Schema<PersonPropertiesAtTimeMetadata>;
 
-export type PersonsEmailsListRequestFormat = "csv" | "json";
-export const PersonsEmailsListRequestFormat = /*@__PURE__*/ S.String;
+/** Serializer for the point-in-time person properties response. */
+export interface PersonPropertiesAtTimeResponse {
+  /** The person ID */
+  id?: number;
+  /** The person's display name */
+  name?: string;
+  /** All distinct IDs associated with this person */
+  distinct_ids?: PersonPropertiesAtTimeResponseDistinctIdsList;
+  /** Person properties as they existed at the specified time */
+  properties?: PersonPropertiesAtTimeResponsePropertiesMap;
+  /** When the person was first created */
+  created_at?: string;
+  /** The person's UUID */
+  uuid?: string;
+  /** When the person was last seen */
+  last_seen_at?: string | null;
+  /** Metadata about the point-in-time query */
+  point_in_time_metadata?: PersonPropertiesAtTimeMetadata;
+}
+export const PersonPropertiesAtTimeResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.Number),
+    name: S.optional(S.String),
+    distinct_ids: S.optional(PersonPropertiesAtTimeResponseDistinctIdsList),
+    properties: S.optional(PersonPropertiesAtTimeResponsePropertiesMap),
+    created_at: S.optional(S.String),
+    uuid: S.optional(S.String),
+    last_seen_at: S.optional(S.NullOr(S.String)),
+    point_in_time_metadata: S.optional(PersonPropertiesAtTimeMetadata),
+  }),
+).annotate({
+  identifier: "PersonPropertiesAtTimeResponse",
+}) as any as S.Schema<PersonPropertiesAtTimeResponse>;
 
-export interface PersonsEmailsListRequest {
+export type GetPersonsPropertiesTimelineRequestFormat = "csv" | "json";
+export const GetPersonsPropertiesTimelineRequestFormat = /*@__PURE__*/ S.String;
+
+export interface GetPersonsPropertiesTimelineRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A unique integer value identifying this person. */
   id: number;
-  /** Start of the time range, matched on sent time. Relative ('-30d', '-24h') or ISO 8601. Defaults to -30d (the retention window) — bounds the ClickHouse partition scan. */
-  after?: string;
-  /** End of the time range, matched on sent time. Same format as 'after'. Defaults to now. */
-  before?: string;
-  format?: PersonsEmailsListRequestFormat | (string & {});
-  /** Maximum number of assets to return (1-500, default 50). */
-  limit?: number;
-  /** Number of assets to skip, for pagination. */
-  offset?: number;
+  format?: GetPersonsPropertiesTimelineRequestFormat | (string & {});
 }
-export const PersonsEmailsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetPersonsPropertiesTimelineRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.Number.pipe(T.Label()),
-    after: S.optional(S.String.pipe(T.Query())),
-    before: S.optional(S.String.pipe(T.Query())),
-    format: S.optional(PersonsEmailsListRequestFormat.pipe(T.Query())),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    offset: S.optional(S.Number.pipe(T.Query())),
+    format: S.optional(
+      GetPersonsPropertiesTimelineRequestFormat.pipe(T.Query()),
+    ),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/api/projects/{project_id}/persons/{id}/emails/",
+      uri: "/api/projects/{project_id}/persons/{id}/properties_timeline/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "PersonsEmailsListRequest",
-}) as any as S.Schema<PersonsEmailsListRequest>;
+  identifier: "GetPersonsPropertiesTimelineRequest",
+}) as any as S.Schema<GetPersonsPropertiesTimelineRequest>;
 
-export interface MessageAsset {
-  /** The workflow run this email was sent in. */
-  invocation_id: string;
-  /** The email step (action node) within the workflow that sent this email. */
-  action_id: string;
-  /** The workflow id that sent this email — used to navigate from a person's Emails tab back into the originating workflow. */
-  function_id: string;
-  /** Human-readable workflow name for display. Empty when the workflow has been deleted; clients should fall back to function_id in that case. */
-  function_name: string;
-  /** The batch run this email belongs to, for batch-triggered workflows. Empty for event-triggered runs. */
-  parent_run_id: string;
-  /** Message channel this asset was sent on: 'email' or 'push'. The per-person endpoints return one channel each. */
-  kind: string;
-  /** The recipient's distinct_id. */
-  distinct_id: string;
-  /** The recipient's person UUID, if resolved. */
-  person_id: string;
-  /** Who the message went to: the email address for 'email', or the recipient's distinct ID for 'push'. */
-  recipient: string;
-  /** The email subject line, or the push notification title. */
-  subject: string;
-  /** Delivery status at capture time. Currently always 'sent' - only delivered messages are captured. */
-  status: string;
-  /** When the message was sent. */
-  sent_at: string;
-}
-export const MessageAsset = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    invocation_id: S.String,
-    action_id: S.String,
-    function_id: S.String,
-    function_name: S.String,
-    parent_run_id: S.String,
-    kind: S.String,
-    distinct_id: S.String,
-    person_id: S.String,
-    recipient: S.String,
-    subject: S.String,
-    status: S.String,
-    sent_at: S.String,
-  }),
-).annotate({ identifier: "MessageAsset" }) as any as S.Schema<MessageAsset>;
-
-export type PersonsEmailsListResponseBodyList = Array<MessageAsset>;
-export const PersonsEmailsListResponseBodyList = /*@__PURE__*/ S.Array(
-  MessageAsset,
-) as any as S.Schema<PersonsEmailsListResponseBodyList>;
-
-export type PersonsEmailsListResponse = PersonsEmailsListResponseBodyList;
-export const PersonsEmailsListResponse = /*@__PURE__*/ S.suspend(() =>
-  PersonsEmailsListResponseBodyList.pipe(T.RawResponseRoot()),
+export interface GetPersonsPropertiesTimelineResponse {}
+export const GetPersonsPropertiesTimelineResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
 ).annotate({
-  identifier: "PersonsEmailsListResponse",
-}) as any as S.Schema<PersonsEmailsListResponse>;
+  identifier: "GetPersonsPropertiesTimelineResponse",
+}) as any as S.Schema<GetPersonsPropertiesTimelineResponse>;
 
-export type PersonsListRequestFormat = "csv" | "json";
-export const PersonsListRequestFormat = /*@__PURE__*/ S.String;
+export type GetPersonsValueRequestFormat = "csv" | "json";
+export const GetPersonsValueRequestFormat = /*@__PURE__*/ S.String;
 
-export type PropertyGroupOperator = "AND" | "OR";
-export const PropertyGroupOperator = /*@__PURE__*/ S.String;
+export interface GetPersonsValueRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  format?: GetPersonsValueRequestFormat | (string & {});
+  /** The person property key to get values for (e.g., 'email', 'plan', 'role'). */
+  key: string;
+  /** Optional search string to filter values (case-insensitive substring match). */
+  value?: string;
+}
+export const GetPersonsValueRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    format: S.optional(GetPersonsValueRequestFormat.pipe(T.Query())),
+    key: S.String.pipe(T.Query()),
+    value: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/persons/values/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetPersonsValueRequest",
+}) as any as S.Schema<GetPersonsValueRequest>;
+
+export interface GetPersonsValueResponse {}
+export const GetPersonsValueResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "GetPersonsValueResponse",
+}) as any as S.Schema<GetPersonsValueResponse>;
+
+export type ListPersonsRequestFormat = "csv" | "json";
+export const ListPersonsRequestFormat = /*@__PURE__*/ S.String;
+
+export type PropertyGroupOperatorEnum = "AND" | "OR";
+export const PropertyGroupOperatorEnum = /*@__PURE__*/ S.String;
 
 export type PropertyItemValueCase3Item = string | number;
 export const PropertyItemValueCase3Item =
@@ -613,22 +632,22 @@ export const PropertyValuesList = /*@__PURE__*/ S.Array(
 
 export interface Property {
   /** You can use a simplified version: ```json { "properties": [ { "key": "email", "value": "x@y.com", "operator": "exact", "type": "event" } ] } ``` Or you can create more complicated queries with AND and OR: ```json { "properties": { "type": "AND", "values": [ { "type": "OR", "values": [ {"key": "email", ...}, {"key": "email", ...} ] }, { "type": "AND", "values": [ {"key": "email", ...}, {"key": "email", ...} ] } ] ] } ``` * `AND` - AND * `OR` - OR */
-  type?: PropertyGroupOperator | (string & {});
+  type?: PropertyGroupOperatorEnum | (string & {});
   values?: PropertyValuesList;
 }
 export const Property = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    type: S.optional(PropertyGroupOperator),
+    type: S.optional(PropertyGroupOperatorEnum),
     values: S.optional(PropertyValuesList),
   }),
 ).annotate({ identifier: "Property" }) as any as S.Schema<Property>;
 
-export type PersonsListRequestPropertiesList = Array<Property>;
-export const PersonsListRequestPropertiesList = /*@__PURE__*/ S.Array(
+export type ListPersonsRequestPropertiesList = Array<Property>;
+export const ListPersonsRequestPropertiesList = /*@__PURE__*/ S.Array(
   Property,
-) as any as S.Schema<PersonsListRequestPropertiesList>;
+) as any as S.Schema<ListPersonsRequestPropertiesList>;
 
-export interface PersonsListRequest {
+export interface ListPersonsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Names the ClickHouse query this request runs. Send the same id to `DELETE /api/projects/:project_id/query/:client_query_id/` to stop a search that is still running. Up to 128 characters. */
@@ -637,26 +656,26 @@ export interface PersonsListRequest {
   distinct_id?: string;
   /** Filter persons by email (exact match) */
   email?: string;
-  format?: PersonsListRequestFormat | (string & {});
+  format?: ListPersonsRequestFormat | (string & {});
   /** Number of results to return per page. */
   limit?: number;
   /** The initial index from which to return the results. */
   offset?: number;
   /** Filter Persons by person properties. */
-  properties?: PersonsListRequestPropertiesList;
+  properties?: ListPersonsRequestPropertiesList;
   /** Search persons by email, name, person ID, or distinct ID. Partial values match. When the term is a complete email address or UUID that exactly matches a distinct ID or person ID, only that person is returned. */
   search?: string;
 }
-export const PersonsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListPersonsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     client_query_id: S.optional(S.String.pipe(T.Query())),
     distinct_id: S.optional(S.String.pipe(T.Query())),
     email: S.optional(S.String.pipe(T.Query())),
-    format: S.optional(PersonsListRequestFormat.pipe(T.Query())),
+    format: S.optional(ListPersonsRequestFormat.pipe(T.Query())),
     limit: S.optional(S.Number.pipe(T.Query())),
     offset: S.optional(S.Number.pipe(T.Query())),
-    properties: S.optional(PersonsListRequestPropertiesList.pipe(T.Query())),
+    properties: S.optional(ListPersonsRequestPropertiesList.pipe(T.Query())),
     search: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
@@ -666,40 +685,8 @@ export const PersonsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "PersonsListRequest",
-}) as any as S.Schema<PersonsListRequest>;
-
-export type PersonRecordDistinctIdsList = Array<string>;
-export const PersonRecordDistinctIdsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PersonRecordDistinctIdsList>;
-
-export interface PersonRecord {
-  /** Numeric person ID. */
-  id?: number;
-  /** Display name derived from person properties (email, name, or username). */
-  name?: string;
-  distinct_ids?: PersonRecordDistinctIdsList;
-  /** Key-value map of person properties set via $set and $set_once operations. */
-  properties?: unknown;
-  /** When this person was first seen (ISO 8601). */
-  created_at?: string;
-  /** Unique identifier (UUID) for this person. */
-  uuid?: string;
-  /** Timestamp of the last event from this person, or null. */
-  last_seen_at?: string | null;
-}
-export const PersonRecord = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.Number),
-    name: S.optional(S.String),
-    distinct_ids: S.optional(PersonRecordDistinctIdsList),
-    properties: S.optional(S.Unknown),
-    created_at: S.optional(S.String),
-    uuid: S.optional(S.String),
-    last_seen_at: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({ identifier: "PersonRecord" }) as any as S.Schema<PersonRecord>;
+  identifier: "ListPersonsRequest",
+}) as any as S.Schema<ListPersonsRequest>;
 
 export type PaginatedPersonRecordListResultsList = Array<PersonRecord>;
 export const PaginatedPersonRecordListResultsList = /*@__PURE__*/ S.Array(
@@ -723,206 +710,96 @@ export const PaginatedPersonRecordList = /*@__PURE__*/ S.suspend(() =>
   identifier: "PaginatedPersonRecordList",
 }) as any as S.Schema<PaginatedPersonRecordList>;
 
-export type PersonsPartialUpdateRequestFormat = "csv" | "json";
-export const PersonsPartialUpdateRequestFormat = /*@__PURE__*/ S.String;
+export type ListPersonsDeletionStatusRequestFormat = "csv" | "json";
+export const ListPersonsDeletionStatusRequestFormat = /*@__PURE__*/ S.String;
 
-export interface PersonsPartialUpdateRequest {
+export type ListPersonsDeletionStatusRequestStatus =
+  | "all"
+  | "completed"
+  | "pending";
+export const ListPersonsDeletionStatusRequestStatus = /*@__PURE__*/ S.String;
+
+export interface ListPersonsDeletionStatusRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  /** A unique value identifying this person. Accepts both numeric ID and UUID. */
-  id: string;
-  format?: PersonsPartialUpdateRequestFormat | (string & {});
-  /** Key-value map of person properties set via $set and $set_once operations. */
-  properties?: unknown;
+  format?: ListPersonsDeletionStatusRequestFormat | (string & {});
+  /** Number of results to return per page. */
+  limit?: number;
+  /** The initial index from which to return the results. */
+  offset?: number;
+  /** Filter by a specific person UUID. */
+  person_uuid?: string;
+  /** Filter by deletion status: 'pending', 'completed', or 'all'. */
+  status?: ListPersonsDeletionStatusRequestStatus | (string & {});
 }
-export const PersonsPartialUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListPersonsDeletionStatusRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    format: S.optional(PersonsPartialUpdateRequestFormat.pipe(T.Query())),
-    properties: S.optional(S.Unknown),
+    format: S.optional(ListPersonsDeletionStatusRequestFormat.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
+    person_uuid: S.optional(S.String.pipe(T.Query())),
+    status: S.optional(ListPersonsDeletionStatusRequestStatus.pipe(T.Query())),
   }).pipe(
     T.Http({
-      method: "PATCH",
-      uri: "/api/projects/{project_id}/persons/{id}/",
+      method: "GET",
+      uri: "/api/projects/{project_id}/persons/deletion_status/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "PersonsPartialUpdateRequest",
-}) as any as S.Schema<PersonsPartialUpdateRequest>;
+  identifier: "ListPersonsDeletionStatusRequest",
+}) as any as S.Schema<ListPersonsDeletionStatusRequest>;
 
-export type PersonsPropertiesAtTimeRetrieveRequestFormat = "csv" | "json";
-export const PersonsPropertiesAtTimeRetrieveRequestFormat =
-  /*@__PURE__*/ S.String;
-
-export interface PersonsPropertiesAtTimeRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** The distinct_id of the person (mutually exclusive with person_id) */
-  distinct_id?: string;
-  format?: PersonsPropertiesAtTimeRetrieveRequestFormat | (string & {});
-  /** Whether to handle $set_once operations (default: false) */
-  include_set_once?: boolean;
-  /** The person_id (UUID) to build properties for (mutually exclusive with distinct_id) */
-  person_id?: string;
-  /** ISO datetime string for the point in time (e.g., '2023-06-15T14:30:00Z') */
-  timestamp: string;
-}
-export const PersonsPropertiesAtTimeRetrieveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      distinct_id: S.optional(S.String.pipe(T.Query())),
-      format: S.optional(
-        PersonsPropertiesAtTimeRetrieveRequestFormat.pipe(T.Query()),
-      ),
-      include_set_once: S.optional(S.Boolean.pipe(T.Query())),
-      person_id: S.optional(S.String.pipe(T.Query())),
-      timestamp: S.String.pipe(T.Query()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/persons/properties_at_time/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "PersonsPropertiesAtTimeRetrieveRequest",
-}) as any as S.Schema<PersonsPropertiesAtTimeRetrieveRequest>;
-
-/** All distinct IDs associated with this person */
-export type PersonPropertiesAtTimeResponseDistinctIdsList = Array<string>;
-export const PersonPropertiesAtTimeResponseDistinctIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PersonPropertiesAtTimeResponseDistinctIdsList>;
-
-/** Person properties as they existed at the specified time */
-export type PersonPropertiesAtTimeResponsePropertiesMap = {
-  [key: string]: string | undefined;
-};
-export const PersonPropertiesAtTimeResponsePropertiesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<PersonPropertiesAtTimeResponsePropertiesMap>;
-
-/** All distinct_ids that were queried for this person */
-export type PersonPropertiesAtTimeMetadataDistinctIdsQueriedList =
-  Array<string>;
-export const PersonPropertiesAtTimeMetadataDistinctIdsQueriedList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PersonPropertiesAtTimeMetadataDistinctIdsQueriedList>;
-
-/** Serializer for the point-in-time query metadata. */
-export interface PersonPropertiesAtTimeMetadata {
-  /** The timestamp that was queried in ISO format */
-  queried_timestamp?: string;
-  /** Whether $set_once operations were included */
-  include_set_once?: boolean;
-  /** The distinct_id parameter used in the request */
-  distinct_id_used?: string | null;
-  /** The person_id parameter used in the request */
-  person_id_used?: string | null;
-  /** Whether the query used 'distinct_id' or 'person_id' mode */
-  query_mode?: string;
-  /** All distinct_ids that were queried for this person */
-  distinct_ids_queried?: PersonPropertiesAtTimeMetadataDistinctIdsQueriedList;
-  /** Number of distinct_ids associated with this person */
-  distinct_ids_count?: number;
-}
-export const PersonPropertiesAtTimeMetadata = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    queried_timestamp: S.optional(S.String),
-    include_set_once: S.optional(S.Boolean),
-    distinct_id_used: S.optional(S.NullOr(S.String)),
-    person_id_used: S.optional(S.NullOr(S.String)),
-    query_mode: S.optional(S.String),
-    distinct_ids_queried: S.optional(
-      PersonPropertiesAtTimeMetadataDistinctIdsQueriedList,
-    ),
-    distinct_ids_count: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "PersonPropertiesAtTimeMetadata",
-}) as any as S.Schema<PersonPropertiesAtTimeMetadata>;
-
-/** Serializer for the point-in-time person properties response. */
-export interface PersonPropertiesAtTimeResponse {
-  /** The person ID */
-  id?: number;
-  /** The person's display name */
-  name?: string;
-  /** All distinct IDs associated with this person */
-  distinct_ids?: PersonPropertiesAtTimeResponseDistinctIdsList;
-  /** Person properties as they existed at the specified time */
-  properties?: PersonPropertiesAtTimeResponsePropertiesMap;
-  /** When the person was first created */
+export interface AsyncDeletionStatus {
+  /** The UUID of the person whose events are queued for deletion. */
+  person_uuid?: string;
+  /** When the deletion was requested. */
   created_at?: string;
-  /** The person's UUID */
-  uuid?: string;
-  /** When the person was last seen */
-  last_seen_at?: string | null;
-  /** Metadata about the point-in-time query */
-  point_in_time_metadata?: PersonPropertiesAtTimeMetadata;
+  /** Current status: 'pending' or 'completed'. */
+  status?: string;
+  /** When the deletion was verified complete. Null if still pending. */
+  delete_verified_at?: string | null;
 }
-export const PersonPropertiesAtTimeResponse = /*@__PURE__*/ S.suspend(() =>
+export const AsyncDeletionStatus = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    id: S.optional(S.Number),
-    name: S.optional(S.String),
-    distinct_ids: S.optional(PersonPropertiesAtTimeResponseDistinctIdsList),
-    properties: S.optional(PersonPropertiesAtTimeResponsePropertiesMap),
+    person_uuid: S.optional(S.String),
     created_at: S.optional(S.String),
-    uuid: S.optional(S.String),
-    last_seen_at: S.optional(S.NullOr(S.String)),
-    point_in_time_metadata: S.optional(PersonPropertiesAtTimeMetadata),
+    status: S.optional(S.String),
+    delete_verified_at: S.optional(S.NullOr(S.String)),
   }),
 ).annotate({
-  identifier: "PersonPropertiesAtTimeResponse",
-}) as any as S.Schema<PersonPropertiesAtTimeResponse>;
+  identifier: "AsyncDeletionStatus",
+}) as any as S.Schema<AsyncDeletionStatus>;
 
-export type PersonsPropertiesTimelineRetrieveRequestFormat = "csv" | "json";
-export const PersonsPropertiesTimelineRetrieveRequestFormat =
-  /*@__PURE__*/ S.String;
+export type PaginatedAsyncDeletionStatusListResultsList =
+  Array<AsyncDeletionStatus>;
+export const PaginatedAsyncDeletionStatusListResultsList =
+  /*@__PURE__*/ S.Array(
+    AsyncDeletionStatus,
+  ) as any as S.Schema<PaginatedAsyncDeletionStatusListResultsList>;
 
-export interface PersonsPropertiesTimelineRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A unique integer value identifying this person. */
-  id: number;
-  format?: PersonsPropertiesTimelineRetrieveRequestFormat | (string & {});
+export interface PaginatedAsyncDeletionStatusList {
+  next?: string | null;
+  previous?: string | null;
+  count?: number;
+  results?: PaginatedAsyncDeletionStatusListResultsList;
 }
-export const PersonsPropertiesTimelineRetrieveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-      format: S.optional(
-        PersonsPropertiesTimelineRetrieveRequestFormat.pipe(T.Query()),
-      ),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/persons/{id}/properties_timeline/",
-        code: 200,
-      }),
-    ),
+export const PaginatedAsyncDeletionStatusList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    next: S.optional(S.NullOr(S.String)),
+    previous: S.optional(S.NullOr(S.String)),
+    count: S.optional(S.Number),
+    results: S.optional(PaginatedAsyncDeletionStatusListResultsList),
+  }),
 ).annotate({
-  identifier: "PersonsPropertiesTimelineRetrieveRequest",
-}) as any as S.Schema<PersonsPropertiesTimelineRetrieveRequest>;
+  identifier: "PaginatedAsyncDeletionStatusList",
+}) as any as S.Schema<PaginatedAsyncDeletionStatusList>;
 
-export interface PersonsPropertiesTimelineRetrieveResponse {}
-export const PersonsPropertiesTimelineRetrieveResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PersonsPropertiesTimelineRetrieveResponse",
-  }) as any as S.Schema<PersonsPropertiesTimelineRetrieveResponse>;
+export type ListPersonsEmailsRequestFormat = "csv" | "json";
+export const ListPersonsEmailsRequestFormat = /*@__PURE__*/ S.String;
 
-export type PersonsPushNotificationsListRequestFormat = "csv" | "json";
-export const PersonsPushNotificationsListRequestFormat = /*@__PURE__*/ S.String;
-
-export interface PersonsPushNotificationsListRequest {
+export interface ListPersonsEmailsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A unique integer value identifying this person. */
@@ -931,20 +808,113 @@ export interface PersonsPushNotificationsListRequest {
   after?: string;
   /** End of the time range, matched on sent time. Same format as 'after'. Defaults to now. */
   before?: string;
-  format?: PersonsPushNotificationsListRequestFormat | (string & {});
+  format?: ListPersonsEmailsRequestFormat | (string & {});
   /** Maximum number of assets to return (1-500, default 50). */
   limit?: number;
   /** Number of assets to skip, for pagination. */
   offset?: number;
 }
-export const PersonsPushNotificationsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListPersonsEmailsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+    after: S.optional(S.String.pipe(T.Query())),
+    before: S.optional(S.String.pipe(T.Query())),
+    format: S.optional(ListPersonsEmailsRequestFormat.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/persons/{id}/emails/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListPersonsEmailsRequest",
+}) as any as S.Schema<ListPersonsEmailsRequest>;
+
+export interface MessageAsset {
+  /** The workflow run this email was sent in. */
+  invocation_id: string;
+  /** The email step (action node) within the workflow that sent this email. */
+  action_id: string;
+  /** The workflow id that sent this email — used to navigate from a person's Emails tab back into the originating workflow. */
+  function_id: string;
+  /** Human-readable workflow name for display. Empty when the workflow has been deleted; clients should fall back to function_id in that case. */
+  function_name: string;
+  /** The batch run this email belongs to, for batch-triggered workflows. Empty for event-triggered runs. */
+  parent_run_id: string;
+  /** Message channel this asset was sent on: 'email' or 'push'. The per-person endpoints return one channel each. */
+  kind: string;
+  /** The recipient's distinct_id. */
+  distinct_id: string;
+  /** The recipient's person UUID, if resolved. */
+  person_id: string;
+  /** Who the message went to: the email address for 'email', or the recipient's distinct ID for 'push'. */
+  recipient: string;
+  /** The email subject line, or the push notification title. */
+  subject: string;
+  /** Delivery status at capture time. Currently always 'sent' - only delivered messages are captured. */
+  status: string;
+  /** When the message was sent. */
+  sent_at: string;
+}
+export const MessageAsset = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    invocation_id: S.String,
+    action_id: S.String,
+    function_id: S.String,
+    function_name: S.String,
+    parent_run_id: S.String,
+    kind: S.String,
+    distinct_id: S.String,
+    person_id: S.String,
+    recipient: S.String,
+    subject: S.String,
+    status: S.String,
+    sent_at: S.String,
+  }),
+).annotate({ identifier: "MessageAsset" }) as any as S.Schema<MessageAsset>;
+
+export type ListPersonsEmailsResponseBodyList = Array<MessageAsset>;
+export const ListPersonsEmailsResponseBodyList = /*@__PURE__*/ S.Array(
+  MessageAsset,
+) as any as S.Schema<ListPersonsEmailsResponseBodyList>;
+
+export type ListPersonsEmailsResponse = ListPersonsEmailsResponseBodyList;
+export const ListPersonsEmailsResponse = /*@__PURE__*/ S.suspend(() =>
+  ListPersonsEmailsResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListPersonsEmailsResponse",
+}) as any as S.Schema<ListPersonsEmailsResponse>;
+
+export type ListPersonsPushNotificationsRequestFormat = "csv" | "json";
+export const ListPersonsPushNotificationsRequestFormat = /*@__PURE__*/ S.String;
+
+export interface ListPersonsPushNotificationsRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A unique integer value identifying this person. */
+  id: number;
+  /** Start of the time range, matched on sent time. Relative ('-30d', '-24h') or ISO 8601. Defaults to -30d (the retention window) — bounds the ClickHouse partition scan. */
+  after?: string;
+  /** End of the time range, matched on sent time. Same format as 'after'. Defaults to now. */
+  before?: string;
+  format?: ListPersonsPushNotificationsRequestFormat | (string & {});
+  /** Maximum number of assets to return (1-500, default 50). */
+  limit?: number;
+  /** Number of assets to skip, for pagination. */
+  offset?: number;
+}
+export const ListPersonsPushNotificationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.Number.pipe(T.Label()),
     after: S.optional(S.String.pipe(T.Query())),
     before: S.optional(S.String.pipe(T.Query())),
     format: S.optional(
-      PersonsPushNotificationsListRequestFormat.pipe(T.Query()),
+      ListPersonsPushNotificationsRequestFormat.pipe(T.Query()),
     ),
     limit: S.optional(S.Number.pipe(T.Query())),
     offset: S.optional(S.Number.pipe(T.Query())),
@@ -956,22 +926,133 @@ export const PersonsPushNotificationsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "PersonsPushNotificationsListRequest",
-}) as any as S.Schema<PersonsPushNotificationsListRequest>;
+  identifier: "ListPersonsPushNotificationsRequest",
+}) as any as S.Schema<ListPersonsPushNotificationsRequest>;
 
-export type PersonsPushNotificationsListResponseBodyList = Array<MessageAsset>;
-export const PersonsPushNotificationsListResponseBodyList =
+export type ListPersonsPushNotificationsResponseBodyList = Array<MessageAsset>;
+export const ListPersonsPushNotificationsResponseBodyList =
   /*@__PURE__*/ S.Array(
     MessageAsset,
-  ) as any as S.Schema<PersonsPushNotificationsListResponseBodyList>;
+  ) as any as S.Schema<ListPersonsPushNotificationsResponseBodyList>;
 
-export type PersonsPushNotificationsListResponse =
-  PersonsPushNotificationsListResponseBodyList;
-export const PersonsPushNotificationsListResponse = /*@__PURE__*/ S.suspend(
-  () => PersonsPushNotificationsListResponseBodyList.pipe(T.RawResponseRoot()),
+export type ListPersonsPushNotificationsResponse =
+  ListPersonsPushNotificationsResponseBodyList;
+export const ListPersonsPushNotificationsResponse = /*@__PURE__*/ S.suspend(
+  () => ListPersonsPushNotificationsResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "PersonsPushNotificationsListResponse",
-}) as any as S.Schema<PersonsPushNotificationsListResponse>;
+  identifier: "ListPersonsPushNotificationsResponse",
+}) as any as S.Schema<ListPersonsPushNotificationsResponse>;
+
+export type PersonsBulkDeleteCreateRequestFormat = "csv" | "json";
+export const PersonsBulkDeleteCreateRequestFormat = /*@__PURE__*/ S.String;
+
+/** A list of PostHog person UUIDs to delete (max 1000). */
+export type PersonsBulkDeleteCreateRequestIdsList = Array<string>;
+export const PersonsBulkDeleteCreateRequestIdsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<PersonsBulkDeleteCreateRequestIdsList>;
+
+/** A list of distinct IDs whose associated persons will be deleted (max 1000). */
+export type PersonsBulkDeleteCreateRequestDistinctIdsList = Array<string>;
+export const PersonsBulkDeleteCreateRequestDistinctIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PersonsBulkDeleteCreateRequestDistinctIdsList>;
+
+export interface PersonsBulkDeleteCreateRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  format?: PersonsBulkDeleteCreateRequestFormat | (string & {});
+  /** A list of PostHog person UUIDs to delete (max 1000). */
+  ids?: PersonsBulkDeleteCreateRequestIdsList;
+  /** A list of distinct IDs whose associated persons will be deleted (max 1000). */
+  distinct_ids?: PersonsBulkDeleteCreateRequestDistinctIdsList;
+  /** If true, queue deletion of all events associated with these persons. */
+  delete_events?: boolean;
+  /** If true, queue deletion of all recordings associated with these persons. */
+  delete_recordings?: boolean;
+  /** If true, keep the person records but delete their events and recordings. */
+  keep_person?: boolean;
+}
+export const PersonsBulkDeleteCreateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    format: S.optional(PersonsBulkDeleteCreateRequestFormat.pipe(T.Query())),
+    ids: S.optional(PersonsBulkDeleteCreateRequestIdsList),
+    distinct_ids: S.optional(PersonsBulkDeleteCreateRequestDistinctIdsList),
+    delete_events: S.optional(S.Boolean),
+    delete_recordings: S.optional(S.Boolean),
+    keep_person: S.optional(S.Boolean),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/projects/{project_id}/persons/bulk_delete/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "PersonsBulkDeleteCreateRequest",
+}) as any as S.Schema<PersonsBulkDeleteCreateRequest>;
+
+export interface PersonsBulkDeleteCreateResponse {}
+export const PersonsBulkDeleteCreateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "PersonsBulkDeleteCreateResponse",
+}) as any as S.Schema<PersonsBulkDeleteCreateResponse>;
+
+export type PersonsDeletePropertyCreateRequestFormat = "csv" | "json";
+export const PersonsDeletePropertyCreateRequestFormat = /*@__PURE__*/ S.String;
+
+export type PersonsDeletePropertyCreateRequestUnsetCase1List = Array<string>;
+export const PersonsDeletePropertyCreateRequestUnsetCase1List =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PersonsDeletePropertyCreateRequestUnsetCase1List>;
+
+/** A property key, or a list of property keys, to remove from this person. */
+export type PersonsDeletePropertyCreateRequestUnset =
+  | string
+  | PersonsDeletePropertyCreateRequestUnsetCase1List;
+export const PersonsDeletePropertyCreateRequestUnset =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<PersonsDeletePropertyCreateRequestUnset>;
+
+export interface PersonsDeletePropertyCreateRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A unique value identifying this person. Accepts both numeric ID and UUID. */
+  id: string;
+  format?: PersonsDeletePropertyCreateRequestFormat | (string & {});
+  /** A property key, or a list of property keys, to remove from this person. */
+  _unset?: PersonsDeletePropertyCreateRequestUnset;
+}
+export const PersonsDeletePropertyCreateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    format: S.optional(
+      PersonsDeletePropertyCreateRequestFormat.pipe(T.Query()),
+    ),
+    _unset: S.optional(
+      PersonsDeletePropertyCreateRequestUnset.pipe(T.Body("$unset")),
+    ),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/projects/{project_id}/persons/{id}/delete_property/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "PersonsDeletePropertyCreateRequest",
+}) as any as S.Schema<PersonsDeletePropertyCreateRequest>;
+
+export interface PersonsDeletePropertyCreateResponse {}
+export const PersonsDeletePropertyCreateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "PersonsDeletePropertyCreateResponse",
+}) as any as S.Schema<PersonsDeletePropertyCreateResponse>;
 
 export type PersonsResetPersonDistinctIdCreateRequestFormat = "csv" | "json";
 export const PersonsResetPersonDistinctIdCreateRequestFormat =
@@ -1008,114 +1089,6 @@ export const PersonsResetPersonDistinctIdCreateResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
     identifier: "PersonsResetPersonDistinctIdCreateResponse",
   }) as any as S.Schema<PersonsResetPersonDistinctIdCreateResponse>;
-
-export type PersonsRetrieveRequestFormat = "csv" | "json";
-export const PersonsRetrieveRequestFormat = /*@__PURE__*/ S.String;
-
-export interface PersonsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A unique value identifying this person. Accepts both numeric ID and UUID. */
-  id: string;
-  format?: PersonsRetrieveRequestFormat | (string & {});
-}
-export const PersonsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    format: S.optional(PersonsRetrieveRequestFormat.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/persons/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "PersonsRetrieveRequest",
-}) as any as S.Schema<PersonsRetrieveRequest>;
-
-export type PersonsSplitCreateRequestFormat = "csv" | "json";
-export const PersonsSplitCreateRequestFormat = /*@__PURE__*/ S.String;
-
-/** List of distinct_ids to **move off** this person onto new single-id persons. The original person keeps every other distinct_id and its properties. New persons are created with deterministic UUIDs derived from `(team_id, distinct_id)`. Cannot be combined with `main_distinct_id`. */
-export type PersonsSplitCreateRequestDistinctIdsToSplitList = Array<string>;
-export const PersonsSplitCreateRequestDistinctIdsToSplitList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PersonsSplitCreateRequestDistinctIdsToSplitList>;
-
-export interface PersonsSplitCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A unique value identifying this person. Accepts both numeric ID and UUID. */
-  id: string;
-  format?: PersonsSplitCreateRequestFormat | (string & {});
-  /** The distinct_id to **keep** on this person; every *other* distinct_id is moved to its own new single-id person. If omitted, the first distinct_id on the person is kept. The original person always retains its properties; to clear individual properties afterward, use the delete_property endpoint. To surgically *remove* one or more distinct_ids while leaving the merge intact, use `distinct_ids_to_split` instead — these parameters are inverses of each other and cannot be combined. */
-  main_distinct_id?: string | null;
-  /** List of distinct_ids to **move off** this person onto new single-id persons. The original person keeps every other distinct_id and its properties. New persons are created with deterministic UUIDs derived from `(team_id, distinct_id)`. Cannot be combined with `main_distinct_id`. */
-  distinct_ids_to_split?: PersonsSplitCreateRequestDistinctIdsToSplitList | null;
-}
-export const PersonsSplitCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    format: S.optional(PersonsSplitCreateRequestFormat.pipe(T.Query())),
-    main_distinct_id: S.optional(S.NullOr(S.String)),
-    distinct_ids_to_split: S.optional(
-      S.NullOr(PersonsSplitCreateRequestDistinctIdsToSplitList),
-    ),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/projects/{project_id}/persons/{id}/split/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "PersonsSplitCreateRequest",
-}) as any as S.Schema<PersonsSplitCreateRequest>;
-
-export interface PersonSplitResponse {
-  /** Always `true` when the split task was enqueued. The split itself runs asynchronously — a 201 response means the task was accepted, not that the merge state has already been updated. */
-  success: boolean;
-}
-export const PersonSplitResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    success: S.Boolean,
-  }),
-).annotate({
-  identifier: "PersonSplitResponse",
-}) as any as S.Schema<PersonSplitResponse>;
-
-export type PersonsUpdateRequestFormat = "csv" | "json";
-export const PersonsUpdateRequestFormat = /*@__PURE__*/ S.String;
-
-export interface PersonsUpdateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A unique value identifying this person. Accepts both numeric ID and UUID. */
-  id: string;
-  format?: PersonsUpdateRequestFormat | (string & {});
-  /** Key-value map of person properties set via $set and $set_once operations. */
-  properties?: unknown;
-}
-export const PersonsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    format: S.optional(PersonsUpdateRequestFormat.pipe(T.Query())),
-    properties: S.optional(S.Unknown),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/api/projects/{project_id}/persons/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "PersonsUpdateRequest",
-}) as any as S.Schema<PersonsUpdateRequest>;
 
 export type PersonsUpdatePropertyCreateRequestFormat = "csv" | "json";
 export const PersonsUpdatePropertyCreateRequestFormat = /*@__PURE__*/ S.String;
@@ -1158,114 +1131,314 @@ export const PersonsUpdatePropertyCreateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "PersonsUpdatePropertyCreateResponse",
 }) as any as S.Schema<PersonsUpdatePropertyCreateResponse>;
 
-export type PersonsValuesRetrieveRequestFormat = "csv" | "json";
-export const PersonsValuesRetrieveRequestFormat = /*@__PURE__*/ S.String;
+export type UpdatePersonRequestFormat = "csv" | "json";
+export const UpdatePersonRequestFormat = /*@__PURE__*/ S.String;
 
-export interface PersonsValuesRetrieveRequest {
+export interface UpdatePersonRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  format?: PersonsValuesRetrieveRequestFormat | (string & {});
-  /** The person property key to get values for (e.g., 'email', 'plan', 'role'). */
-  key: string;
-  /** Optional search string to filter values (case-insensitive substring match). */
-  value?: string;
+  /** A unique value identifying this person. Accepts both numeric ID and UUID. */
+  id: string;
+  format?: UpdatePersonRequestFormat | (string & {});
+  /** Key-value map of person properties set via $set and $set_once operations. */
+  properties?: unknown;
 }
-export const PersonsValuesRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdatePersonRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
-    format: S.optional(PersonsValuesRetrieveRequestFormat.pipe(T.Query())),
-    key: S.String.pipe(T.Query()),
-    value: S.optional(S.String.pipe(T.Query())),
+    id: S.String.pipe(T.Label()),
+    format: S.optional(UpdatePersonRequestFormat.pipe(T.Query())),
+    properties: S.optional(S.Unknown),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/persons/values/",
+      method: "PUT",
+      uri: "/api/projects/{project_id}/persons/{id}/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "PersonsValuesRetrieveRequest",
-}) as any as S.Schema<PersonsValuesRetrieveRequest>;
+  identifier: "UpdatePersonRequest",
+}) as any as S.Schema<UpdatePersonRequest>;
 
-export interface PersonsValuesRetrieveResponse {}
-export const PersonsValuesRetrieveResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
+export type UpdatePersonsPartialRequestFormat = "csv" | "json";
+export const UpdatePersonsPartialRequestFormat = /*@__PURE__*/ S.String;
+
+export interface UpdatePersonsPartialRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A unique value identifying this person. Accepts both numeric ID and UUID. */
+  id: string;
+  format?: UpdatePersonsPartialRequestFormat | (string & {});
+  /** Key-value map of person properties set via $set and $set_once operations. */
+  properties?: unknown;
+}
+export const UpdatePersonsPartialRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    format: S.optional(UpdatePersonsPartialRequestFormat.pipe(T.Query())),
+    properties: S.optional(S.Unknown),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/api/projects/{project_id}/persons/{id}/",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "PersonsValuesRetrieveResponse",
-}) as any as S.Schema<PersonsValuesRetrieveResponse>;
+  identifier: "UpdatePersonsPartialRequest",
+}) as any as S.Schema<UpdatePersonsPartialRequest>;
 
-export type PersonsActivityRetrieveError =
+export type CreatePersonsBatchByDistinctIdsError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
 /** This endpoint is meant for reading and deleting persons. To create or update persons, we recommend using the [capture API](https://posthog.com/docs/api/capture), the `$set` and `$unset` [properties](https://posthog.com/docs/product-analytics/user-properties), or one of our SDKs. */
-export const personsActivityRetrieve: API.OperationMethod<
-  PersonsActivityRetrieveRequest,
-  PersonsActivityRetrieveResponse,
-  PersonsActivityRetrieveError,
+export const createPersonsBatchByDistinctIds: API.OperationMethod<
+  CreatePersonsBatchByDistinctIdsRequest,
+  CreatePersonsBatchByDistinctIdsResponse,
+  CreatePersonsBatchByDistinctIdsError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PersonsActivityRetrieveRequest,
-  output: PersonsActivityRetrieveResponse,
+  input: CreatePersonsBatchByDistinctIdsRequest,
+  output: CreatePersonsBatchByDistinctIdsResponse,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type PersonsAllActivityRetrieveError =
+export type CreatePersonsBatchByUuidError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
 /** This endpoint is meant for reading and deleting persons. To create or update persons, we recommend using the [capture API](https://posthog.com/docs/api/capture), the `$set` and `$unset` [properties](https://posthog.com/docs/product-analytics/user-properties), or one of our SDKs. */
-export const personsAllActivityRetrieve: API.OperationMethod<
-  PersonsAllActivityRetrieveRequest,
-  PersonsAllActivityRetrieveResponse,
-  PersonsAllActivityRetrieveError,
+export const createPersonsBatchByUuid: API.OperationMethod<
+  CreatePersonsBatchByUuidRequest,
+  CreatePersonsBatchByUuidResponse,
+  CreatePersonsBatchByUuidError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PersonsAllActivityRetrieveRequest,
-  output: PersonsAllActivityRetrieveResponse,
+  input: CreatePersonsBatchByUuidRequest,
+  output: CreatePersonsBatchByUuidResponse,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type PersonsBatchByDistinctIdsCreateError =
+export type CreatePersonsSplitError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
-/** This endpoint is meant for reading and deleting persons. To create or update persons, we recommend using the [capture API](https://posthog.com/docs/api/capture), the `$set` and `$unset` [properties](https://posthog.com/docs/product-analytics/user-properties), or one of our SDKs. */
-export const personsBatchByDistinctIdsCreate: API.OperationMethod<
-  PersonsBatchByDistinctIdsCreateRequest,
-  PersonsBatchByDistinctIdsCreateResponse,
-  PersonsBatchByDistinctIdsCreateError,
+/** Split distinct_ids off a merged person. Two mutually exclusive modes: - **`distinct_ids_to_split`** (recommended for surgical edits): moves only the listed distinct_ids off this person onto new single-id persons. The original person keeps every other distinct_id and its properties. - **`main_distinct_id`**: keeps only the specified distinct_id on this person; moves every *other* distinct_id off onto its own new person. If omitted, the first distinct_id is kept. The original person always retains its properties. To clear individual properties afterward, use the `delete_property` endpoint. The split runs asynchronously: a 201 response means the task was enqueued. Newly-created split-off persons get a deterministic UUID derived from `(team_id, distinct_id)`, so they can be located client-side without polling. If you need to delete a split-off person after this call, prefer looking it up by that deterministic UUID rather than by distinct_id, since the latter still resolves to the original merged person until the async task completes. */
+export const createPersonsSplit: API.OperationMethod<
+  CreatePersonsSplitRequest,
+  PersonSplitResponse,
+  CreatePersonsSplitError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PersonsBatchByDistinctIdsCreateRequest,
-  output: PersonsBatchByDistinctIdsCreateResponse,
+  input: CreatePersonsSplitRequest,
+  output: PersonSplitResponse,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type PersonsBatchByUuidsCreateError =
+export type GetPersonError = BadRequest | Forbidden | NotFound | PosthogOpError;
+/** This endpoint is meant for reading and deleting persons. To create or update persons, we recommend using the [capture API](https://posthog.com/docs/api/capture), the `$set` and `$unset` [properties](https://posthog.com/docs/product-analytics/user-properties), or one of our SDKs. */
+export const getPerson: API.OperationMethod<
+  GetPersonRequest,
+  PersonRecord,
+  GetPersonError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPersonRequest,
+  output: PersonRecord,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPersonsActivityError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
 /** This endpoint is meant for reading and deleting persons. To create or update persons, we recommend using the [capture API](https://posthog.com/docs/api/capture), the `$set` and `$unset` [properties](https://posthog.com/docs/product-analytics/user-properties), or one of our SDKs. */
-export const personsBatchByUuidsCreate: API.OperationMethod<
-  PersonsBatchByUuidsCreateRequest,
-  PersonsBatchByUuidsCreateResponse,
-  PersonsBatchByUuidsCreateError,
+export const getPersonsActivity: API.OperationMethod<
+  GetPersonsActivityRequest,
+  GetPersonsActivityResponse,
+  GetPersonsActivityError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PersonsBatchByUuidsCreateRequest,
-  output: PersonsBatchByUuidsCreateResponse,
+  input: GetPersonsActivityRequest,
+  output: GetPersonsActivityResponse,
   errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPersonsAllActivityError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** This endpoint is meant for reading and deleting persons. To create or update persons, we recommend using the [capture API](https://posthog.com/docs/api/capture), the `$set` and `$unset` [properties](https://posthog.com/docs/product-analytics/user-properties), or one of our SDKs. */
+export const getPersonsAllActivity: API.OperationMethod<
+  GetPersonsAllActivityRequest,
+  GetPersonsAllActivityResponse,
+  GetPersonsAllActivityError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPersonsAllActivityRequest,
+  output: GetPersonsAllActivityResponse,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPersonsCohortError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** This endpoint is meant for reading and deleting persons. To create or update persons, we recommend using the [capture API](https://posthog.com/docs/api/capture), the `$set` and `$unset` [properties](https://posthog.com/docs/product-analytics/user-properties), or one of our SDKs. */
+export const getPersonsCohort: API.OperationMethod<
+  GetPersonsCohortRequest,
+  GetPersonsCohortResponse,
+  GetPersonsCohortError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPersonsCohortRequest,
+  output: GetPersonsCohortResponse,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPersonsPropertiesAtTimeError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** Get person properties as they existed at a specific point in time. This endpoint reconstructs person properties by querying ClickHouse events for $set and $set_once operations up to the specified timestamp. Query parameters: - distinct_id: The distinct_id of the person - timestamp: ISO datetime string for the point in time (e.g., "2023-06-15T14:30:00Z") - include_set_once: Whether to handle $set_once operations (default: false) */
+export const getPersonsPropertiesAtTime: API.OperationMethod<
+  GetPersonsPropertiesAtTimeRequest,
+  PersonPropertiesAtTimeResponse,
+  GetPersonsPropertiesAtTimeError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPersonsPropertiesAtTimeRequest,
+  output: PersonPropertiesAtTimeResponse,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPersonsPropertiesTimelineError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** This endpoint is meant for reading and deleting persons. To create or update persons, we recommend using the [capture API](https://posthog.com/docs/api/capture), the `$set` and `$unset` [properties](https://posthog.com/docs/product-analytics/user-properties), or one of our SDKs. */
+export const getPersonsPropertiesTimeline: API.OperationMethod<
+  GetPersonsPropertiesTimelineRequest,
+  GetPersonsPropertiesTimelineResponse,
+  GetPersonsPropertiesTimelineError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPersonsPropertiesTimelineRequest,
+  output: GetPersonsPropertiesTimelineResponse,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPersonsValueError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** This endpoint is meant for reading and deleting persons. To create or update persons, we recommend using the [capture API](https://posthog.com/docs/api/capture), the `$set` and `$unset` [properties](https://posthog.com/docs/product-analytics/user-properties), or one of our SDKs. */
+export const getPersonsValue: API.OperationMethod<
+  GetPersonsValueRequest,
+  GetPersonsValueResponse,
+  GetPersonsValueError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPersonsValueRequest,
+  output: GetPersonsValueResponse,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPersonsError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** This endpoint is meant for reading and deleting persons. To create or update persons, we recommend using the [capture API](https://posthog.com/docs/api/capture), the `$set` and `$unset` [properties](https://posthog.com/docs/product-analytics/user-properties), or one of our SDKs. */
+export const listPersons: API.OperationMethod<
+  ListPersonsRequest,
+  PaginatedPersonRecordList,
+  ListPersonsError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPersonsRequest,
+  output: PaginatedPersonRecordList,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPersonsDeletionStatusError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** List the status of queued event deletions for persons. When you delete a person with `delete_events=true`, an async deletion is queued. Use this endpoint to check whether those deletions are still pending or have been completed. */
+export const listPersonsDeletionStatus: API.OperationMethod<
+  ListPersonsDeletionStatusRequest,
+  PaginatedAsyncDeletionStatusList,
+  ListPersonsDeletionStatusError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPersonsDeletionStatusRequest,
+  output: PaginatedAsyncDeletionStatusList,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPersonsEmailsError = PosthogOpError;
+/** This endpoint is meant for reading and deleting persons. To create or update persons, we recommend using the [capture API](https://posthog.com/docs/api/capture), the `$set` and `$unset` [properties](https://posthog.com/docs/product-analytics/user-properties), or one of our SDKs. */
+export const listPersonsEmails: API.OperationMethod<
+  ListPersonsEmailsRequest,
+  ListPersonsEmailsResponse,
+  ListPersonsEmailsError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPersonsEmailsRequest,
+  output: ListPersonsEmailsResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPersonsPushNotificationsError = PosthogOpError;
+/** This endpoint is meant for reading and deleting persons. To create or update persons, we recommend using the [capture API](https://posthog.com/docs/api/capture), the `$set` and `$unset` [properties](https://posthog.com/docs/product-analytics/user-properties), or one of our SDKs. */
+export const listPersonsPushNotifications: API.OperationMethod<
+  ListPersonsPushNotificationsRequest,
+  ListPersonsPushNotificationsResponse,
+  ListPersonsPushNotificationsError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPersonsPushNotificationsRequest,
+  output: ListPersonsPushNotificationsResponse,
+  errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
@@ -1284,25 +1457,6 @@ export const personsBulkDeleteCreate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: PersonsBulkDeleteCreateRequest,
   output: PersonsBulkDeleteCreateResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PersonsCohortsRetrieveError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** This endpoint is meant for reading and deleting persons. To create or update persons, we recommend using the [capture API](https://posthog.com/docs/api/capture), the `$set` and `$unset` [properties](https://posthog.com/docs/product-analytics/user-properties), or one of our SDKs. */
-export const personsCohortsRetrieve: API.OperationMethod<
-  PersonsCohortsRetrieveRequest,
-  PersonsCohortsRetrieveResponse,
-  PersonsCohortsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PersonsCohortsRetrieveRequest,
-  output: PersonsCohortsRetrieveResponse,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
@@ -1327,131 +1481,6 @@ export const personsDeletePropertyCreate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PersonsDeletionStatusListError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** List the status of queued event deletions for persons. When you delete a person with `delete_events=true`, an async deletion is queued. Use this endpoint to check whether those deletions are still pending or have been completed. */
-export const personsDeletionStatusList: API.OperationMethod<
-  PersonsDeletionStatusListRequest,
-  PaginatedAsyncDeletionStatusList,
-  PersonsDeletionStatusListError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PersonsDeletionStatusListRequest,
-  output: PaginatedAsyncDeletionStatusList,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PersonsEmailsListError = PosthogOpError;
-/** This endpoint is meant for reading and deleting persons. To create or update persons, we recommend using the [capture API](https://posthog.com/docs/api/capture), the `$set` and `$unset` [properties](https://posthog.com/docs/product-analytics/user-properties), or one of our SDKs. */
-export const personsEmailsList: API.OperationMethod<
-  PersonsEmailsListRequest,
-  PersonsEmailsListResponse,
-  PersonsEmailsListError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PersonsEmailsListRequest,
-  output: PersonsEmailsListResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PersonsListError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** This endpoint is meant for reading and deleting persons. To create or update persons, we recommend using the [capture API](https://posthog.com/docs/api/capture), the `$set` and `$unset` [properties](https://posthog.com/docs/product-analytics/user-properties), or one of our SDKs. */
-export const personsList: API.OperationMethod<
-  PersonsListRequest,
-  PaginatedPersonRecordList,
-  PersonsListError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PersonsListRequest,
-  output: PaginatedPersonRecordList,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PersonsPartialUpdateError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** This endpoint is meant for reading and deleting persons. To create or update persons, we recommend using the [capture API](https://posthog.com/docs/api/capture), the `$set` and `$unset` [properties](https://posthog.com/docs/product-analytics/user-properties), or one of our SDKs. */
-export const personsPartialUpdate: API.OperationMethod<
-  PersonsPartialUpdateRequest,
-  PersonRecord,
-  PersonsPartialUpdateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PersonsPartialUpdateRequest,
-  output: PersonRecord,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PersonsPropertiesAtTimeRetrieveError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Get person properties as they existed at a specific point in time. This endpoint reconstructs person properties by querying ClickHouse events for $set and $set_once operations up to the specified timestamp. Query parameters: - distinct_id: The distinct_id of the person - timestamp: ISO datetime string for the point in time (e.g., "2023-06-15T14:30:00Z") - include_set_once: Whether to handle $set_once operations (default: false) */
-export const personsPropertiesAtTimeRetrieve: API.OperationMethod<
-  PersonsPropertiesAtTimeRetrieveRequest,
-  PersonPropertiesAtTimeResponse,
-  PersonsPropertiesAtTimeRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PersonsPropertiesAtTimeRetrieveRequest,
-  output: PersonPropertiesAtTimeResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PersonsPropertiesTimelineRetrieveError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** This endpoint is meant for reading and deleting persons. To create or update persons, we recommend using the [capture API](https://posthog.com/docs/api/capture), the `$set` and `$unset` [properties](https://posthog.com/docs/product-analytics/user-properties), or one of our SDKs. */
-export const personsPropertiesTimelineRetrieve: API.OperationMethod<
-  PersonsPropertiesTimelineRetrieveRequest,
-  PersonsPropertiesTimelineRetrieveResponse,
-  PersonsPropertiesTimelineRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PersonsPropertiesTimelineRetrieveRequest,
-  output: PersonsPropertiesTimelineRetrieveResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PersonsPushNotificationsListError = PosthogOpError;
-/** This endpoint is meant for reading and deleting persons. To create or update persons, we recommend using the [capture API](https://posthog.com/docs/api/capture), the `$set` and `$unset` [properties](https://posthog.com/docs/product-analytics/user-properties), or one of our SDKs. */
-export const personsPushNotificationsList: API.OperationMethod<
-  PersonsPushNotificationsListRequest,
-  PersonsPushNotificationsListResponse,
-  PersonsPushNotificationsListError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PersonsPushNotificationsListRequest,
-  output: PersonsPushNotificationsListResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
 export type PersonsResetPersonDistinctIdCreateError =
   | BadRequest
   | Forbidden
@@ -1466,63 +1495,6 @@ export const personsResetPersonDistinctIdCreate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: PersonsResetPersonDistinctIdCreateRequest,
   output: PersonsResetPersonDistinctIdCreateResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PersonsRetrieveError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** This endpoint is meant for reading and deleting persons. To create or update persons, we recommend using the [capture API](https://posthog.com/docs/api/capture), the `$set` and `$unset` [properties](https://posthog.com/docs/product-analytics/user-properties), or one of our SDKs. */
-export const personsRetrieve: API.OperationMethod<
-  PersonsRetrieveRequest,
-  PersonRecord,
-  PersonsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PersonsRetrieveRequest,
-  output: PersonRecord,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PersonsSplitCreateError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Split distinct_ids off a merged person. Two mutually exclusive modes: - **`distinct_ids_to_split`** (recommended for surgical edits): moves only the listed distinct_ids off this person onto new single-id persons. The original person keeps every other distinct_id and its properties. - **`main_distinct_id`**: keeps only the specified distinct_id on this person; moves every *other* distinct_id off onto its own new person. If omitted, the first distinct_id is kept. The original person always retains its properties. To clear individual properties afterward, use the `delete_property` endpoint. The split runs asynchronously: a 201 response means the task was enqueued. Newly-created split-off persons get a deterministic UUID derived from `(team_id, distinct_id)`, so they can be located client-side without polling. If you need to delete a split-off person after this call, prefer looking it up by that deterministic UUID rather than by distinct_id, since the latter still resolves to the original merged person until the async task completes. */
-export const personsSplitCreate: API.OperationMethod<
-  PersonsSplitCreateRequest,
-  PersonSplitResponse,
-  PersonsSplitCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PersonsSplitCreateRequest,
-  output: PersonSplitResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PersonsUpdateError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Only for setting properties on the person. "properties" from the request data will be updated via a "$set" event. This means that only the properties listed will be updated, but other properties won't be removed nor updated. If you would like to remove a property use the `delete_property` endpoint. */
-export const personsUpdate: API.OperationMethod<
-  PersonsUpdateRequest,
-  PersonRecord,
-  PersonsUpdateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PersonsUpdateRequest,
-  output: PersonRecord,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
@@ -1547,20 +1519,39 @@ export const personsUpdatePropertyCreate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PersonsValuesRetrieveError =
+export type UpdatePersonError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** Only for setting properties on the person. "properties" from the request data will be updated via a "$set" event. This means that only the properties listed will be updated, but other properties won't be removed nor updated. If you would like to remove a property use the `delete_property` endpoint. */
+export const updatePerson: API.OperationMethod<
+  UpdatePersonRequest,
+  PersonRecord,
+  UpdatePersonError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdatePersonRequest,
+  output: PersonRecord,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdatePersonsPartialError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
 /** This endpoint is meant for reading and deleting persons. To create or update persons, we recommend using the [capture API](https://posthog.com/docs/api/capture), the `$set` and `$unset` [properties](https://posthog.com/docs/product-analytics/user-properties), or one of our SDKs. */
-export const personsValuesRetrieve: API.OperationMethod<
-  PersonsValuesRetrieveRequest,
-  PersonsValuesRetrieveResponse,
-  PersonsValuesRetrieveError,
+export const updatePersonsPartial: API.OperationMethod<
+  UpdatePersonsPartialRequest,
+  PersonRecord,
+  UpdatePersonsPartialError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PersonsValuesRetrieveRequest,
-  output: PersonsValuesRetrieveResponse,
+  input: UpdatePersonsPartialRequest,
+  output: PersonRecord,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,

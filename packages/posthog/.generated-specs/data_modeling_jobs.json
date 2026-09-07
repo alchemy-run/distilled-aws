@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.data_modeling_jobs#DataModelingJobsListRequest": {
+    "com.posthog.data_modeling_jobs#ListDataModelingJobsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -235,10 +236,10 @@
       },
       "traits": {}
     },
-    "com.posthog.data_modeling_jobs#DataModelingJobsList": {
+    "com.posthog.data_modeling_jobs#ListDataModelingJobs": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.data_modeling_jobs#DataModelingJobsListRequest"
+        "target": "com.posthog.data_modeling_jobs#ListDataModelingJobsRequest"
       },
       "output": {
         "target": "com.posthog.data_modeling_jobs#PaginatedDataModelingJobList"
@@ -252,7 +253,7 @@
         "smithy.api#documentation": "List data modeling jobs which are \"runs\" for our saved queries."
       }
     },
-    "com.posthog.data_modeling_jobs#DataModelingJobsRetrieveRequest": {
+    "com.posthog.data_modeling_jobs#GetDataModelingJobRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -276,10 +277,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.data_modeling_jobs#DataModelingJobsRetrieve": {
+    "com.posthog.data_modeling_jobs#GetDataModelingJob": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.data_modeling_jobs#DataModelingJobsRetrieveRequest"
+        "target": "com.posthog.data_modeling_jobs#GetDataModelingJobRequest"
       },
       "output": {
         "target": "com.posthog.data_modeling_jobs#DataModelingJob"
@@ -293,7 +294,7 @@
         "smithy.api#documentation": "List data modeling jobs which are \"runs\" for our saved queries."
       }
     },
-    "com.posthog.data_modeling_jobs#DataModelingJobsRecentRetrieveRequest": {
+    "com.posthog.data_modeling_jobs#GetDataModelingJobsRecentRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -309,10 +310,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.data_modeling_jobs#DataModelingJobsRecentRetrieve": {
+    "com.posthog.data_modeling_jobs#GetDataModelingJobsRecent": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.data_modeling_jobs#DataModelingJobsRecentRetrieveRequest"
+        "target": "com.posthog.data_modeling_jobs#GetDataModelingJobsRecentRequest"
       },
       "output": {
         "target": "com.posthog.data_modeling_jobs#DataModelingJob"
@@ -326,7 +327,7 @@
         "smithy.api#documentation": "Get the most recent non-running job for each saved query from the v2 backend."
       }
     },
-    "com.posthog.data_modeling_jobs#DataModelingJobsRunningRetrieveRequest": {
+    "com.posthog.data_modeling_jobs#GetDataModelingJobsRunningRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -342,10 +343,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.data_modeling_jobs#DataModelingJobsRunningRetrieve": {
+    "com.posthog.data_modeling_jobs#GetDataModelingJobsRunning": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.data_modeling_jobs#DataModelingJobsRunningRetrieveRequest"
+        "target": "com.posthog.data_modeling_jobs#GetDataModelingJobsRunningRequest"
       },
       "output": {
         "target": "com.posthog.data_modeling_jobs#DataModelingJob"
@@ -364,16 +365,16 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.data_modeling_jobs#DataModelingJobsList"
+          "target": "com.posthog.data_modeling_jobs#ListDataModelingJobs"
         },
         {
-          "target": "com.posthog.data_modeling_jobs#DataModelingJobsRetrieve"
+          "target": "com.posthog.data_modeling_jobs#GetDataModelingJob"
         },
         {
-          "target": "com.posthog.data_modeling_jobs#DataModelingJobsRecentRetrieve"
+          "target": "com.posthog.data_modeling_jobs#GetDataModelingJobsRecent"
         },
         {
-          "target": "com.posthog.data_modeling_jobs#DataModelingJobsRunningRetrieve"
+          "target": "com.posthog.data_modeling_jobs#GetDataModelingJobsRunning"
         }
       ],
       "traits": {

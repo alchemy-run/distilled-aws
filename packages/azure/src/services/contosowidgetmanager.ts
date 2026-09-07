@@ -12,6 +12,38 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
+export interface DeleteEmployeeRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Employee */
+  employeeName: string;
+}
+export const DeleteEmployeeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    employeeName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Contoso/employees/{employeeName}",
+      code: 200,
+      apiVersion: "2021-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteEmployeeRequest",
+}) as any as S.Schema<DeleteEmployeeRequest>;
+
+export interface DeleteEmployeeResponse {}
+export const DeleteEmployeeResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteEmployeeResponse",
+}) as any as S.Schema<DeleteEmployeeResponse>;
+
 /** Resource tags. */
 export type EmployeesCreateOrUpdateRequestTagsMap = {
   [key: string]: string | undefined;
@@ -188,7 +220,7 @@ export const EmployeesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "EmployeesCreateOrUpdateResponse",
 }) as any as S.Schema<EmployeesCreateOrUpdateResponse>;
 
-export interface EmployeesDeleteRequest {
+export interface GetEmployeeRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -196,39 +228,7 @@ export interface EmployeesDeleteRequest {
   /** The name of the Employee */
   employeeName: string;
 }
-export const EmployeesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    employeeName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Contoso/employees/{employeeName}",
-      code: 200,
-      apiVersion: "2021-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "EmployeesDeleteRequest",
-}) as any as S.Schema<EmployeesDeleteRequest>;
-
-export interface EmployeesDeleteResponse {}
-export const EmployeesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "EmployeesDeleteResponse",
-}) as any as S.Schema<EmployeesDeleteResponse>;
-
-export interface EmployeesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Employee */
-  employeeName: string;
-}
-export const EmployeesGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetEmployeeRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -242,17 +242,17 @@ export const EmployeesGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "EmployeesGetRequest",
-}) as any as S.Schema<EmployeesGetRequest>;
+  identifier: "GetEmployeeRequest",
+}) as any as S.Schema<GetEmployeeRequest>;
 
 /** Resource tags. */
-export type EmployeesGetResponseTagsMap = { [key: string]: string | undefined };
-export const EmployeesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetEmployeeResponseTagsMap = { [key: string]: string | undefined };
+export const GetEmployeeResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<EmployeesGetResponseTagsMap>;
+) as any as S.Schema<GetEmployeeResponseTagsMap>;
 
-export interface EmployeesGetResponse {
+export interface GetEmployeeResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -262,33 +262,33 @@ export interface EmployeesGetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: EmployeesGetResponseTagsMap;
+  tags?: GetEmployeeResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: EmployeeProperties;
 }
-export const EmployeesGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetEmployeeResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(EmployeesGetResponseTagsMap),
+    tags: S.optional(GetEmployeeResponseTagsMap),
     location: S.String,
     properties: S.optional(EmployeeProperties),
   }),
 ).annotate({
-  identifier: "EmployeesGetResponse",
-}) as any as S.Schema<EmployeesGetResponse>;
+  identifier: "GetEmployeeResponse",
+}) as any as S.Schema<GetEmployeeResponse>;
 
-export interface EmployeesListByResourceGroupRequest {
+export interface ListEmployeeByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
 }
-export const EmployeesListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListEmployeeByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -301,8 +301,8 @@ export const EmployeesListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "EmployeesListByResourceGroupRequest",
-}) as any as S.Schema<EmployeesListByResourceGroupRequest>;
+  identifier: "ListEmployeeByResourceGroupRequest",
+}) as any as S.Schema<ListEmployeeByResourceGroupRequest>;
 
 /** Resource tags. */
 export type EmployeeTagsMap = { [key: string]: string | undefined };
@@ -362,11 +362,11 @@ export const EmployeeListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "EmployeeListResult",
 }) as any as S.Schema<EmployeeListResult>;
 
-export interface EmployeesListBySubscriptionRequest {
+export interface ListEmployeeBySubscriptionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
 }
-export const EmployeesListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListEmployeeBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
   }).pipe(
@@ -378,90 +378,11 @@ export const EmployeesListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "EmployeesListBySubscriptionRequest",
-}) as any as S.Schema<EmployeesListBySubscriptionRequest>;
+  identifier: "ListEmployeeBySubscriptionRequest",
+}) as any as S.Schema<ListEmployeeBySubscriptionRequest>;
 
-/** Resource tags. */
-export type EmployeesUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const EmployeesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<EmployeesUpdateRequestTagsMap>;
-
-export interface EmployeesUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Employee */
-  employeeName: string;
-  /** Resource tags. */
-  tags?: EmployeesUpdateRequestTagsMap;
-  /** The resource-specific properties for this resource. */
-  properties?: EmployeePropertiesInput;
-}
-export const EmployeesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    employeeName: S.String.pipe(T.Label()),
-    tags: S.optional(EmployeesUpdateRequestTagsMap),
-    properties: S.optional(EmployeePropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Contoso/employees/{employeeName}",
-      code: 200,
-      apiVersion: "2021-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "EmployeesUpdateRequest",
-}) as any as S.Schema<EmployeesUpdateRequest>;
-
-/** Resource tags. */
-export type EmployeesUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const EmployeesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<EmployeesUpdateResponseTagsMap>;
-
-export interface EmployeesUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: EmployeesUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: EmployeeProperties;
-}
-export const EmployeesUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(EmployeesUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(EmployeeProperties),
-  }),
-).annotate({
-  identifier: "EmployeesUpdateResponse",
-}) as any as S.Schema<EmployeesUpdateResponse>;
-
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({
       method: "GET",
@@ -471,8 +392,8 @@ export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
 
 /** Localized display information for this particular operation. */
 export interface OperationDisplay {
@@ -528,25 +449,119 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
-export interface OperationsListResponse {
+export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
-export const OperationsListResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "OperationsListResponse",
-}) as any as S.Schema<OperationsListResponse>;
+  identifier: "ListOperationsResponse",
+}) as any as S.Schema<ListOperationsResponse>;
+
+/** Resource tags. */
+export type UpdateEmployeeRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateEmployeeRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateEmployeeRequestTagsMap>;
+
+export interface UpdateEmployeeRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Employee */
+  employeeName: string;
+  /** Resource tags. */
+  tags?: UpdateEmployeeRequestTagsMap;
+  /** The resource-specific properties for this resource. */
+  properties?: EmployeePropertiesInput;
+}
+export const UpdateEmployeeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    employeeName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateEmployeeRequestTagsMap),
+    properties: S.optional(EmployeePropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Contoso/employees/{employeeName}",
+      code: 200,
+      apiVersion: "2021-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateEmployeeRequest",
+}) as any as S.Schema<UpdateEmployeeRequest>;
+
+/** Resource tags. */
+export type UpdateEmployeeResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateEmployeeResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateEmployeeResponseTagsMap>;
+
+export interface UpdateEmployeeResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateEmployeeResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: EmployeeProperties;
+}
+export const UpdateEmployeeResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateEmployeeResponseTagsMap),
+    location: S.String,
+    properties: S.optional(EmployeeProperties),
+  }),
+).annotate({
+  identifier: "UpdateEmployeeResponse",
+}) as any as S.Schema<UpdateEmployeeResponse>;
+
+export type DeleteEmployeeError = AzureOpError;
+/** Delete a Employee */
+export const DeleteEmployee: API.OperationMethod<
+  DeleteEmployeeRequest,
+  DeleteEmployeeResponse,
+  DeleteEmployeeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteEmployeeRequest,
+  output: DeleteEmployeeResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
 export type EmployeesCreateOrUpdateError = AzureOpError;
 /** Create a Employee */
@@ -563,91 +578,76 @@ export const EmployeesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type EmployeesDeleteError = AzureOpError;
-/** Delete a Employee */
-export const EmployeesDelete: API.OperationMethod<
-  EmployeesDeleteRequest,
-  EmployeesDeleteResponse,
-  EmployeesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: EmployeesDeleteRequest,
-  output: EmployeesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type EmployeesGetError = AzureOpError;
+export type GetEmployeeError = AzureOpError;
 /** Get a Employee */
-export const EmployeesGet: API.OperationMethod<
-  EmployeesGetRequest,
-  EmployeesGetResponse,
-  EmployeesGetError,
+export const GetEmployee: API.OperationMethod<
+  GetEmployeeRequest,
+  GetEmployeeResponse,
+  GetEmployeeError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EmployeesGetRequest,
-  output: EmployeesGetResponse,
+  input: GetEmployeeRequest,
+  output: GetEmployeeResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type EmployeesListByResourceGroupError = AzureOpError;
+export type ListEmployeeByResourceGroupError = AzureOpError;
 /** List Employee resources by resource group */
-export const EmployeesListByResourceGroup: API.OperationMethod<
-  EmployeesListByResourceGroupRequest,
+export const ListEmployeeByResourceGroup: API.OperationMethod<
+  ListEmployeeByResourceGroupRequest,
   EmployeeListResult,
-  EmployeesListByResourceGroupError,
+  ListEmployeeByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EmployeesListByResourceGroupRequest,
+  input: ListEmployeeByResourceGroupRequest,
   output: EmployeeListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type EmployeesListBySubscriptionError = AzureOpError;
+export type ListEmployeeBySubscriptionError = AzureOpError;
 /** List Employee resources by subscription ID */
-export const EmployeesListBySubscription: API.OperationMethod<
-  EmployeesListBySubscriptionRequest,
+export const ListEmployeeBySubscription: API.OperationMethod<
+  ListEmployeeBySubscriptionRequest,
   EmployeeListResult,
-  EmployeesListBySubscriptionError,
+  ListEmployeeBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EmployeesListBySubscriptionRequest,
+  input: ListEmployeeBySubscriptionRequest,
   output: EmployeeListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type EmployeesUpdateError = AzureOpError;
-/** Update a Employee */
-export const EmployeesUpdate: API.OperationMethod<
-  EmployeesUpdateRequest,
-  EmployeesUpdateResponse,
-  EmployeesUpdateError,
+export type ListOperationsError = AzureOpError;
+/** List the operations for the provider */
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  ListOperationsResponse,
+  ListOperationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EmployeesUpdateRequest,
-  output: EmployeesUpdateResponse,
+  input: ListOperationsRequest,
+  output: ListOperationsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OperationsListError = AzureOpError;
-/** List the operations for the provider */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationsListResponse,
-  OperationsListError,
+export type UpdateEmployeeError = AzureOpError;
+/** Update a Employee */
+export const UpdateEmployee: API.OperationMethod<
+  UpdateEmployeeRequest,
+  UpdateEmployeeResponse,
+  UpdateEmployeeError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
-  output: OperationsListResponse,
+  input: UpdateEmployeeRequest,
+  output: UpdateEmployeeResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

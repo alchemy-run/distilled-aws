@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.exports#ExportsListRequest": {
+    "com.posthog.exports#ListExportsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -200,10 +201,10 @@
       },
       "traits": {}
     },
-    "com.posthog.exports#ExportsList": {
+    "com.posthog.exports#ListExports": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.exports#ExportsListRequest"
+        "target": "com.posthog.exports#ListExportsRequest"
       },
       "output": {
         "target": "com.posthog.exports#PaginatedExportedAssetList"
@@ -283,7 +284,7 @@
         "smithy.api#documentation": "* `image/png` - image/png\n* `application/pdf` - application/pdf\n* `text/csv` - text/csv\n* `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet` - application/vnd.openxmlformats-officedocument.spreadsheetml.sheet\n* `video/webm` - video/webm\n* `video/mp4` - video/mp4\n* `image/gif` - image/gif\n* `application/json` - application/json"
       }
     },
-    "com.posthog.exports#ExportsCreateRequest": {
+    "com.posthog.exports#CreateExportRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -397,10 +398,10 @@
         "smithy.api#documentation": "Standard ExportedAsset serializer that doesn't return content."
       }
     },
-    "com.posthog.exports#ExportsCreate": {
+    "com.posthog.exports#CreateExport": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.exports#ExportsCreateRequest"
+        "target": "com.posthog.exports#CreateExportRequest"
       },
       "output": {
         "target": "com.posthog.exports#ExportedAssetCreate"
@@ -424,7 +425,7 @@
         }
       }
     },
-    "com.posthog.exports#ExportsRetrieveRequest": {
+    "com.posthog.exports#GetExportRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -448,10 +449,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.exports#ExportsRetrieve": {
+    "com.posthog.exports#GetExport": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.exports#ExportsRetrieveRequest"
+        "target": "com.posthog.exports#GetExportRequest"
       },
       "output": {
         "target": "com.posthog.exports#ExportedAsset"
@@ -472,7 +473,7 @@
         }
       }
     },
-    "com.posthog.exports#ExportsContentRetrieveRequest": {
+    "com.posthog.exports#GetExportsContentRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -496,10 +497,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.exports#ExportsContentRetrieve": {
+    "com.posthog.exports#GetExportsContent": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.exports#ExportsContentRetrieveRequest"
+        "target": "com.posthog.exports#GetExportsContentRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -564,16 +565,16 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.exports#ExportsList"
+          "target": "com.posthog.exports#ListExports"
         },
         {
-          "target": "com.posthog.exports#ExportsCreate"
+          "target": "com.posthog.exports#CreateExport"
         },
         {
-          "target": "com.posthog.exports#ExportsRetrieve"
+          "target": "com.posthog.exports#GetExport"
         },
         {
-          "target": "com.posthog.exports#ExportsContentRetrieve"
+          "target": "com.posthog.exports#GetExportsContent"
         }
       ],
       "traits": {

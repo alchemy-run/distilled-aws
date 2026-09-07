@@ -14,7 +14,18 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "opAliases": [
+      {
+        "alias": "getSetting",
+        "target": "getContentScanning"
+      },
+      {
+        "alias": "putContentScanning",
+        "target": "createContentScanning"
+      }
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.content_scanning#CreateRequestValue": {
@@ -32,219 +43,6 @@
             "smithy.api#enumValue": "disabled"
           }
         }
-      }
-    },
-    "com.cloudflare.content_scanning#CreateRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Defines an identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "value": {
-          "target": "com.cloudflare.content_scanning#CreateRequestValue",
-          "traits": {
-            "smithy.api#documentation": "The status value for Content Scanning.",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.content_scanning#CreateResponse": {
-      "type": "structure",
-      "members": {
-        "modified": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Defines the last modification date (ISO 8601) of the Content Scanning status."
-          }
-        },
-        "value": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Defines the status of Content Scanning."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.content_scanning#Create": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.content_scanning#CreateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.content_scanning#CreateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PUT",
-          "uri": "/zones/{zone_id}/content-upload-scan/settings",
-          "code": 200
-        },
-        "smithy.api#documentation": "Update the Content Scanning status.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.content_scanning#DisableRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Defines an identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.content_scanning#DisableResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "smithy.api#Document",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.content_scanning#Disable": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.content_scanning#DisableRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.content_scanning#DisableResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "/zones/{zone_id}/content-upload-scan/disable",
-          "code": 200
-        },
-        "smithy.api#documentation": "Disable Content Scanning."
-      }
-    },
-    "com.cloudflare.content_scanning#EnableRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Defines an identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.content_scanning#EnableResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "smithy.api#Document",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.content_scanning#Enable": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.content_scanning#EnableRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.content_scanning#EnableResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "/zones/{zone_id}/content-upload-scan/enable",
-          "code": 200
-        },
-        "smithy.api#documentation": "Enable Content Scanning."
-      }
-    },
-    "com.cloudflare.content_scanning#GetRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Defines an identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.content_scanning#GetResponse": {
-      "type": "structure",
-      "members": {
-        "modified": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Defines the last modification date (ISO 8601) of the Content Scanning status."
-          }
-        },
-        "value": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Defines the status of Content Scanning."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.content_scanning#Get": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.content_scanning#GetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.content_scanning#GetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/content-upload-scan/settings",
-          "code": 200
-        },
-        "smithy.api#documentation": "Retrieve the current status of Content Scanning.",
-        "smithy.api#readonly": {}
       }
     },
     "com.cloudflare.content_scanning#UpdateRequestValue": {
@@ -324,7 +122,15 @@
         },
         "smithy.api#documentation": "Update the Content Scanning status.",
         "smithy.api#idempotent": {}
-      }
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.content_scanning#ContentScanningNotEntitled"
+        },
+        {
+          "target": "com.cloudflare.content_scanning#Forbidden"
+        }
+      ]
     },
     "com.cloudflare.content_scanning#PayloadsCreateRequestBodyItem": {
       "type": "structure",
@@ -342,29 +148,6 @@
       "type": "list",
       "member": {
         "target": "com.cloudflare.content_scanning#PayloadsCreateRequestBodyItem"
-      }
-    },
-    "com.cloudflare.content_scanning#PayloadsCreateRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Defines an identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.cloudflare.content_scanning#PayloadsCreateRequestBodyList",
-          "traits": {
-            "smithy.api#required": {},
-            "smithy.api#httpPayload": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.content_scanning#PayloadsCreateResultItem": {
@@ -390,62 +173,6 @@
         "target": "com.cloudflare.content_scanning#PayloadsCreateResultItem"
       }
     },
-    "com.cloudflare.content_scanning#PayloadsCreateResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.content_scanning#PayloadsCreateResultList",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.content_scanning#PayloadsCreate": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.content_scanning#PayloadsCreateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.content_scanning#PayloadsCreateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "/zones/{zone_id}/content-upload-scan/payloads",
-          "code": 200
-        },
-        "smithy.api#documentation": "Add custom scan expressions for Content Scanning."
-      }
-    },
-    "com.cloudflare.content_scanning#PayloadsDeleteRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Defines an identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "expression_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "defines the unique ID for this custom scan expression.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.content_scanning#PayloadsDeleteResultItem": {
       "type": "structure",
       "members": {
@@ -467,55 +194,6 @@
       "type": "list",
       "member": {
         "target": "com.cloudflare.content_scanning#PayloadsDeleteResultItem"
-      }
-    },
-    "com.cloudflare.content_scanning#PayloadsDeleteResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.content_scanning#PayloadsDeleteResultList",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.content_scanning#PayloadsDelete": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.content_scanning#PayloadsDeleteRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.content_scanning#PayloadsDeleteResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "/zones/{zone_id}/content-upload-scan/payloads/{expression_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Delete a Content Scan Custom Expression.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.content_scanning#PayloadsListRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Defines an identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.content_scanning#PayloadsListResultItem": {
@@ -541,40 +219,7 @@
         "target": "com.cloudflare.content_scanning#PayloadsListResultItem"
       }
     },
-    "com.cloudflare.content_scanning#PayloadsListResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.content_scanning#PayloadsListResultList",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.content_scanning#PayloadsList": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.content_scanning#PayloadsListRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.content_scanning#PayloadsListResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/content-upload-scan/payloads",
-          "code": 200
-        },
-        "smithy.api#documentation": "Get a list of existing custom scan expressions for Content Scanning.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.content_scanning#SettingsGetRequest": {
+    "com.cloudflare.content_scanning#GetSettingsRequest": {
       "type": "structure",
       "members": {
         "zone_id": {
@@ -590,7 +235,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.content_scanning#SettingsGetResponse": {
+    "com.cloudflare.content_scanning#GetSettingsResponse": {
       "type": "structure",
       "members": {
         "modified": {
@@ -611,13 +256,13 @@
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     },
-    "com.cloudflare.content_scanning#SettingsGet": {
+    "com.cloudflare.content_scanning#GetSettings": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.content_scanning#SettingsGetRequest"
+        "target": "com.cloudflare.content_scanning#GetSettingsRequest"
       },
       "output": {
-        "target": "com.cloudflare.content_scanning#SettingsGetResponse"
+        "target": "com.cloudflare.content_scanning#GetSettingsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -627,44 +272,538 @@
         },
         "smithy.api#documentation": "Retrieve the current status of Content Scanning.",
         "smithy.api#readonly": {}
-      }
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.content_scanning#Forbidden"
+        }
+      ]
     },
     "com.cloudflare.content_scanning#ContentScanning": {
       "type": "service",
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.content_scanning#Create"
-        },
-        {
-          "target": "com.cloudflare.content_scanning#Disable"
-        },
-        {
-          "target": "com.cloudflare.content_scanning#Enable"
-        },
-        {
-          "target": "com.cloudflare.content_scanning#Get"
-        },
-        {
           "target": "com.cloudflare.content_scanning#Update"
         },
         {
-          "target": "com.cloudflare.content_scanning#PayloadsCreate"
+          "target": "com.cloudflare.content_scanning#GetSettings"
         },
         {
-          "target": "com.cloudflare.content_scanning#PayloadsDelete"
+          "target": "com.cloudflare.content_scanning#CreateContentScanning"
         },
         {
-          "target": "com.cloudflare.content_scanning#PayloadsList"
+          "target": "com.cloudflare.content_scanning#CreatePayload"
         },
         {
-          "target": "com.cloudflare.content_scanning#SettingsGet"
+          "target": "com.cloudflare.content_scanning#DeletePayload"
+        },
+        {
+          "target": "com.cloudflare.content_scanning#DisableContentScanning"
+        },
+        {
+          "target": "com.cloudflare.content_scanning#EnableContentScanning"
+        },
+        {
+          "target": "com.cloudflare.content_scanning#GetContentScanning"
+        },
+        {
+          "target": "com.cloudflare.content_scanning#ListPayloads"
         }
       ],
       "traits": {
         "com.cloudflare.protocols#v4Json": {},
         "smithy.api#title": "Cloudflare ContentScanning",
         "smithy.api#documentation": "Cloudflare API — content_scanning resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    },
+    "com.cloudflare.content_scanning#ContentScanningNotEnabled": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "status": 400,
+            "message": {
+              "includes": "File Upload Scan not enabled"
+            }
+          }
+        ]
+      }
+    },
+    "com.cloudflare.content_scanning#ContentScanningNotEntitled": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "status": 400,
+            "message": {
+              "includes": "not entitled"
+            }
+          }
+        ]
+      }
+    },
+    "com.cloudflare.content_scanning#Forbidden": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.cloudflare.content_scanning#CreateContentScanning": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.content_scanning#CreateContentScanningRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.content_scanning#CreateContentScanningResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/zones/{zone_id}/content-upload-scan/settings",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update the Content Scanning status.",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.content_scanning#ContentScanningNotEntitled"
+        },
+        {
+          "target": "com.cloudflare.content_scanning#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.content_scanning#CreateContentScanningRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defines an identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "com.cloudflare.content_scanning#CreateRequestValue",
+          "traits": {
+            "smithy.api#documentation": "The status value for Content Scanning.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.content_scanning#CreateContentScanningResponse": {
+      "type": "structure",
+      "members": {
+        "modified": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defines the last modification date (ISO 8601) of the Content Scanning status."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defines the status of Content Scanning."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.content_scanning#CreatePayload": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.content_scanning#CreatePayloadRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.content_scanning#CreatePayloadResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/zones/{zone_id}/content-upload-scan/payloads",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add custom scan expressions for Content Scanning.",
+        "smithy.api#paginated": {
+          "mode": "single",
+          "items": "result"
+        }
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.content_scanning#ContentScanningNotEnabled"
+        },
+        {
+          "target": "com.cloudflare.content_scanning#ContentScanningNotEntitled"
+        },
+        {
+          "target": "com.cloudflare.content_scanning#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.content_scanning#CreatePayloadRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defines an identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.cloudflare.content_scanning#PayloadsCreateRequestBodyList",
+          "traits": {
+            "smithy.api#required": {},
+            "smithy.api#httpPayload": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.content_scanning#CreatePayloadResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.content_scanning#PayloadsCreateResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.content_scanning#DeletePayload": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.content_scanning#DeletePayloadRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.content_scanning#DeletePayloadResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/zones/{zone_id}/content-upload-scan/payloads/{expression_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a Content Scan Custom Expression.",
+        "smithy.api#idempotent": {},
+        "smithy.api#paginated": {
+          "mode": "single",
+          "items": "result"
+        }
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.content_scanning#ContentScanningNotEnabled"
+        },
+        {
+          "target": "com.cloudflare.content_scanning#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.content_scanning#DeletePayloadRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defines an identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "expression_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "defines the unique ID for this custom scan expression.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.content_scanning#DeletePayloadResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.content_scanning#PayloadsDeleteResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.content_scanning#DisableContentScanning": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.content_scanning#DisableContentScanningRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.content_scanning#DisableContentScanningResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/zones/{zone_id}/content-upload-scan/disable",
+          "code": 200
+        },
+        "smithy.api#documentation": "Disable Content Scanning."
+      }
+    },
+    "com.cloudflare.content_scanning#DisableContentScanningRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defines an identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.content_scanning#DisableContentScanningResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.content_scanning#EnableContentScanning": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.content_scanning#EnableContentScanningRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.content_scanning#EnableContentScanningResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/zones/{zone_id}/content-upload-scan/enable",
+          "code": 200
+        },
+        "smithy.api#documentation": "Enable Content Scanning."
+      }
+    },
+    "com.cloudflare.content_scanning#EnableContentScanningRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defines an identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.content_scanning#EnableContentScanningResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.content_scanning#GetContentScanning": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.content_scanning#GetContentScanningRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.content_scanning#GetContentScanningResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/content-upload-scan/settings",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve the current status of Content Scanning.",
+        "smithy.api#readonly": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.content_scanning#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.content_scanning#GetContentScanningRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defines an identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.content_scanning#GetContentScanningResponse": {
+      "type": "structure",
+      "members": {
+        "modified": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defines the last modification date (ISO 8601) of the Content Scanning status."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defines the status of Content Scanning."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.content_scanning#ListPayloads": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.content_scanning#ListPayloadsRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.content_scanning#ListPayloadsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/content-upload-scan/payloads",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a list of existing custom scan expressions for Content Scanning.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "single",
+          "items": "result"
+        }
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.content_scanning#ContentScanningNotEnabled"
+        },
+        {
+          "target": "com.cloudflare.content_scanning#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.content_scanning#ListPayloadsRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defines an identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.content_scanning#ListPayloadsResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.content_scanning#PayloadsListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
       }
     }
   }

@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.dnsresolver#DnsResolversListByVirtualNetwork": {
+    "com.azure.dnsresolver#ListDnsResolverByVirtualNetwork": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnsresolver#DnsResolversListByVirtualNetworkRequest"
+        "target": "com.azure.dnsresolver#ListDnsResolverByVirtualNetworkRequest"
       },
       "output": {
         "target": "com.azure.dnsresolver#SubResourceListResult"
@@ -81,7 +82,7 @@
         "smithy.api#documentation": "Reference to another ARM resource."
       }
     },
-    "com.azure.dnsresolver#DnsResolversListByVirtualNetworkRequest": {
+    "com.azure.dnsresolver#ListDnsResolverByVirtualNetworkRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -120,10 +121,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#DnsResolverPoliciesListByVirtualNetwork": {
+    "com.azure.dnsresolver#ListDnsResolverPolicyByVirtualNetwork": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnsresolver#DnsResolverPoliciesListByVirtualNetworkRequest"
+        "target": "com.azure.dnsresolver#ListDnsResolverPolicyByVirtualNetworkRequest"
       },
       "output": {
         "target": "com.azure.dnsresolver#SubResourceListResult"
@@ -139,7 +140,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.dnsresolver#DnsResolverPoliciesListByVirtualNetworkRequest": {
+    "com.azure.dnsresolver#ListDnsResolverPolicyByVirtualNetworkRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -171,10 +172,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#DnsForwardingRulesetsListByVirtualNetwork": {
+    "com.azure.dnsresolver#ListDnsForwardingRulesetByVirtualNetwork": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnsresolver#DnsForwardingRulesetsListByVirtualNetworkRequest"
+        "target": "com.azure.dnsresolver#ListDnsForwardingRulesetByVirtualNetworkRequest"
       },
       "output": {
         "target": "com.azure.dnsresolver#VirtualNetworkDnsForwardingRulesetListResult"
@@ -254,7 +255,7 @@
         "smithy.api#documentation": "The reference to the virtual network link that associates between the DNS forwarding ruleset and virtual network."
       }
     },
-    "com.azure.dnsresolver#DnsForwardingRulesetsListByVirtualNetworkRequest": {
+    "com.azure.dnsresolver#ListDnsForwardingRulesetByVirtualNetworkRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -293,10 +294,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#OutboundEndpointsDelete": {
+    "com.azure.dnsresolver#DeleteOutboundEndpoint": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnsresolver#OutboundEndpointsDeleteRequest"
+        "target": "com.azure.dnsresolver#DeleteOutboundEndpointRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -312,7 +313,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.dnsresolver#OutboundEndpointsDeleteRequest": {
+    "com.azure.dnsresolver#DeleteOutboundEndpointRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -352,13 +353,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#OutboundEndpointsUpdate": {
+    "com.azure.dnsresolver#UpdateOutboundEndpoint": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnsresolver#OutboundEndpointsUpdateRequest"
+        "target": "com.azure.dnsresolver#UpdateOutboundEndpointRequest"
       },
       "output": {
-        "target": "com.azure.dnsresolver#OutboundEndpointsUpdateResponse"
+        "target": "com.azure.dnsresolver#UpdateOutboundEndpointResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -371,7 +372,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.dnsresolver#OutboundEndpointsUpdateResponse": {
+    "com.azure.dnsresolver#UpdateOutboundEndpointResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -399,7 +400,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnsresolver#OutboundEndpointsUpdateResponseTagsMap",
+          "target": "com.azure.dnsresolver#UpdateOutboundEndpointResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -500,7 +501,7 @@
         "smithy.api#documentation": "The current provisioning state of the resource."
       }
     },
-    "com.azure.dnsresolver#OutboundEndpointsUpdateResponseTagsMap": {
+    "com.azure.dnsresolver#UpdateOutboundEndpointResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -620,7 +621,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.dnsresolver#OutboundEndpointsUpdateRequest": {
+    "com.azure.dnsresolver#UpdateOutboundEndpointRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -656,7 +657,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnsresolver#OutboundEndpointsUpdateRequestTagsMap",
+          "target": "com.azure.dnsresolver#UpdateOutboundEndpointRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags for outbound endpoint."
           }
@@ -666,7 +667,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#OutboundEndpointsUpdateRequestTagsMap": {
+    "com.azure.dnsresolver#UpdateOutboundEndpointRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -854,13 +855,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dnsresolver#OutboundEndpointsGet": {
+    "com.azure.dnsresolver#GetOutboundEndpoint": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnsresolver#OutboundEndpointsGetRequest"
+        "target": "com.azure.dnsresolver#GetOutboundEndpointRequest"
       },
       "output": {
-        "target": "com.azure.dnsresolver#OutboundEndpointsGetResponse"
+        "target": "com.azure.dnsresolver#GetOutboundEndpointResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -873,7 +874,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.dnsresolver#OutboundEndpointsGetResponse": {
+    "com.azure.dnsresolver#GetOutboundEndpointResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -901,7 +902,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnsresolver#OutboundEndpointsGetResponseTagsMap",
+          "target": "com.azure.dnsresolver#GetOutboundEndpointResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -931,7 +932,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dnsresolver#OutboundEndpointsGetResponseTagsMap": {
+    "com.azure.dnsresolver#GetOutboundEndpointResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -943,7 +944,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dnsresolver#OutboundEndpointsGetRequest": {
+    "com.azure.dnsresolver#GetOutboundEndpointRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -983,10 +984,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#OutboundEndpointsList": {
+    "com.azure.dnsresolver#ListOutboundEndpoints": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnsresolver#OutboundEndpointsListRequest"
+        "target": "com.azure.dnsresolver#ListOutboundEndpointsRequest"
       },
       "output": {
         "target": "com.azure.dnsresolver#OutboundEndpointListResult"
@@ -1102,7 +1103,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dnsresolver#OutboundEndpointsListRequest": {
+    "com.azure.dnsresolver#ListOutboundEndpointsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1141,10 +1142,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#InboundEndpointsDelete": {
+    "com.azure.dnsresolver#DeleteInboundEndpoint": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnsresolver#InboundEndpointsDeleteRequest"
+        "target": "com.azure.dnsresolver#DeleteInboundEndpointRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1160,7 +1161,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.dnsresolver#InboundEndpointsDeleteRequest": {
+    "com.azure.dnsresolver#DeleteInboundEndpointRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1200,13 +1201,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#InboundEndpointsUpdate": {
+    "com.azure.dnsresolver#UpdateInboundEndpoint": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnsresolver#InboundEndpointsUpdateRequest"
+        "target": "com.azure.dnsresolver#UpdateInboundEndpointRequest"
       },
       "output": {
-        "target": "com.azure.dnsresolver#InboundEndpointsUpdateResponse"
+        "target": "com.azure.dnsresolver#UpdateInboundEndpointResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1219,7 +1220,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.dnsresolver#InboundEndpointsUpdateResponse": {
+    "com.azure.dnsresolver#UpdateInboundEndpointResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1247,7 +1248,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnsresolver#InboundEndpointsUpdateResponseTagsMap",
+          "target": "com.azure.dnsresolver#UpdateInboundEndpointResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1360,7 +1361,7 @@
         "smithy.api#documentation": "Private IP address allocation method."
       }
     },
-    "com.azure.dnsresolver#InboundEndpointsUpdateResponseTagsMap": {
+    "com.azure.dnsresolver#UpdateInboundEndpointResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1372,7 +1373,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dnsresolver#InboundEndpointsUpdateRequest": {
+    "com.azure.dnsresolver#UpdateInboundEndpointRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1408,7 +1409,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnsresolver#InboundEndpointsUpdateRequestTagsMap",
+          "target": "com.azure.dnsresolver#UpdateInboundEndpointRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags for inbound endpoint."
           }
@@ -1418,7 +1419,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#InboundEndpointsUpdateRequestTagsMap": {
+    "com.azure.dnsresolver#UpdateInboundEndpointRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1615,13 +1616,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dnsresolver#InboundEndpointsGet": {
+    "com.azure.dnsresolver#GetInboundEndpoint": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnsresolver#InboundEndpointsGetRequest"
+        "target": "com.azure.dnsresolver#GetInboundEndpointRequest"
       },
       "output": {
-        "target": "com.azure.dnsresolver#InboundEndpointsGetResponse"
+        "target": "com.azure.dnsresolver#GetInboundEndpointResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1634,7 +1635,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.dnsresolver#InboundEndpointsGetResponse": {
+    "com.azure.dnsresolver#GetInboundEndpointResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1662,7 +1663,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnsresolver#InboundEndpointsGetResponseTagsMap",
+          "target": "com.azure.dnsresolver#GetInboundEndpointResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1692,7 +1693,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dnsresolver#InboundEndpointsGetResponseTagsMap": {
+    "com.azure.dnsresolver#GetInboundEndpointResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1704,7 +1705,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dnsresolver#InboundEndpointsGetRequest": {
+    "com.azure.dnsresolver#GetInboundEndpointRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1744,10 +1745,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#InboundEndpointsList": {
+    "com.azure.dnsresolver#ListInboundEndpoints": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnsresolver#InboundEndpointsListRequest"
+        "target": "com.azure.dnsresolver#ListInboundEndpointsRequest"
       },
       "output": {
         "target": "com.azure.dnsresolver#InboundEndpointListResult"
@@ -1863,7 +1864,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dnsresolver#InboundEndpointsListRequest": {
+    "com.azure.dnsresolver#ListInboundEndpointsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1902,10 +1903,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#DnsResolversDelete": {
+    "com.azure.dnsresolver#DeleteDnsResolver": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnsresolver#DnsResolversDeleteRequest"
+        "target": "com.azure.dnsresolver#DeleteDnsResolverRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1921,7 +1922,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.dnsresolver#DnsResolversDeleteRequest": {
+    "com.azure.dnsresolver#DeleteDnsResolverRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1953,13 +1954,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#DnsResolversUpdate": {
+    "com.azure.dnsresolver#UpdateDnsResolver": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnsresolver#DnsResolversUpdateRequest"
+        "target": "com.azure.dnsresolver#UpdateDnsResolverRequest"
       },
       "output": {
-        "target": "com.azure.dnsresolver#DnsResolversUpdateResponse"
+        "target": "com.azure.dnsresolver#UpdateDnsResolverResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1972,7 +1973,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.dnsresolver#DnsResolversUpdateResponse": {
+    "com.azure.dnsresolver#UpdateDnsResolverResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2000,7 +2001,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnsresolver#DnsResolversUpdateResponseTagsMap",
+          "target": "com.azure.dnsresolver#UpdateDnsResolverResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2083,7 +2084,7 @@
         "smithy.api#documentation": "The current status of the DNS resolver. This is a read-only property and any attempt to set this value will be ignored."
       }
     },
-    "com.azure.dnsresolver#DnsResolversUpdateResponseTagsMap": {
+    "com.azure.dnsresolver#UpdateDnsResolverResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2095,7 +2096,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dnsresolver#DnsResolversUpdateRequest": {
+    "com.azure.dnsresolver#UpdateDnsResolverRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2123,7 +2124,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnsresolver#DnsResolversUpdateRequestTagsMap",
+          "target": "com.azure.dnsresolver#UpdateDnsResolverRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags for DNS Resolver."
           }
@@ -2133,7 +2134,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#DnsResolversUpdateRequestTagsMap": {
+    "com.azure.dnsresolver#UpdateDnsResolverRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2313,13 +2314,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dnsresolver#DnsResolversGet": {
+    "com.azure.dnsresolver#GetDnsResolver": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnsresolver#DnsResolversGetRequest"
+        "target": "com.azure.dnsresolver#GetDnsResolverRequest"
       },
       "output": {
-        "target": "com.azure.dnsresolver#DnsResolversGetResponse"
+        "target": "com.azure.dnsresolver#GetDnsResolverResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2332,7 +2333,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.dnsresolver#DnsResolversGetResponse": {
+    "com.azure.dnsresolver#GetDnsResolverResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2360,7 +2361,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnsresolver#DnsResolversGetResponseTagsMap",
+          "target": "com.azure.dnsresolver#GetDnsResolverResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2390,7 +2391,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dnsresolver#DnsResolversGetResponseTagsMap": {
+    "com.azure.dnsresolver#GetDnsResolverResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2402,7 +2403,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dnsresolver#DnsResolversGetRequest": {
+    "com.azure.dnsresolver#GetDnsResolverRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2434,10 +2435,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#DnsResolversListByResourceGroup": {
+    "com.azure.dnsresolver#ListDnsResolverByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnsresolver#DnsResolversListByResourceGroupRequest"
+        "target": "com.azure.dnsresolver#ListDnsResolverByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.dnsresolver#DnsResolverListResult"
@@ -2553,7 +2554,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dnsresolver#DnsResolversListByResourceGroupRequest": {
+    "com.azure.dnsresolver#ListDnsResolverByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2584,10 +2585,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#DnsResolverPolicyVirtualNetworkLinksDelete": {
+    "com.azure.dnsresolver#DeleteDnsResolverPolicyVirtualNetworkLink": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnsresolver#DnsResolverPolicyVirtualNetworkLinksDeleteRequest"
+        "target": "com.azure.dnsresolver#DeleteDnsResolverPolicyVirtualNetworkLinkRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2603,7 +2604,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.dnsresolver#DnsResolverPolicyVirtualNetworkLinksDeleteRequest": {
+    "com.azure.dnsresolver#DeleteDnsResolverPolicyVirtualNetworkLinkRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2643,13 +2644,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#DnsResolverPolicyVirtualNetworkLinksUpdate": {
+    "com.azure.dnsresolver#UpdateDnsResolverPolicyVirtualNetworkLink": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnsresolver#DnsResolverPolicyVirtualNetworkLinksUpdateRequest"
+        "target": "com.azure.dnsresolver#UpdateDnsResolverPolicyVirtualNetworkLinkRequest"
       },
       "output": {
-        "target": "com.azure.dnsresolver#DnsResolverPolicyVirtualNetworkLinksUpdateResponse"
+        "target": "com.azure.dnsresolver#UpdateDnsResolverPolicyVirtualNetworkLinkResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2662,7 +2663,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.dnsresolver#DnsResolverPolicyVirtualNetworkLinksUpdateResponse": {
+    "com.azure.dnsresolver#UpdateDnsResolverPolicyVirtualNetworkLinkResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2690,7 +2691,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnsresolver#DnsResolverPolicyVirtualNetworkLinksUpdateResponseTagsMap",
+          "target": "com.azure.dnsresolver#UpdateDnsResolverPolicyVirtualNetworkLinkResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2741,7 +2742,7 @@
         "smithy.api#documentation": "Represents the properties of a DNS resolver policy virtual network link."
       }
     },
-    "com.azure.dnsresolver#DnsResolverPolicyVirtualNetworkLinksUpdateResponseTagsMap": {
+    "com.azure.dnsresolver#UpdateDnsResolverPolicyVirtualNetworkLinkResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2753,7 +2754,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dnsresolver#DnsResolverPolicyVirtualNetworkLinksUpdateRequest": {
+    "com.azure.dnsresolver#UpdateDnsResolverPolicyVirtualNetworkLinkRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2789,7 +2790,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnsresolver#DnsResolverPolicyVirtualNetworkLinksUpdateRequestTagsMap",
+          "target": "com.azure.dnsresolver#UpdateDnsResolverPolicyVirtualNetworkLinkRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags for the DNS resolver policy virtual network link."
           }
@@ -2799,7 +2800,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#DnsResolverPolicyVirtualNetworkLinksUpdateRequestTagsMap": {
+    "com.azure.dnsresolver#UpdateDnsResolverPolicyVirtualNetworkLinkRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2972,13 +2973,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dnsresolver#DnsResolverPolicyVirtualNetworkLinksGet": {
+    "com.azure.dnsresolver#GetDnsResolverPolicyVirtualNetworkLink": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnsresolver#DnsResolverPolicyVirtualNetworkLinksGetRequest"
+        "target": "com.azure.dnsresolver#GetDnsResolverPolicyVirtualNetworkLinkRequest"
       },
       "output": {
-        "target": "com.azure.dnsresolver#DnsResolverPolicyVirtualNetworkLinksGetResponse"
+        "target": "com.azure.dnsresolver#GetDnsResolverPolicyVirtualNetworkLinkResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2991,7 +2992,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.dnsresolver#DnsResolverPolicyVirtualNetworkLinksGetResponse": {
+    "com.azure.dnsresolver#GetDnsResolverPolicyVirtualNetworkLinkResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3019,7 +3020,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnsresolver#DnsResolverPolicyVirtualNetworkLinksGetResponseTagsMap",
+          "target": "com.azure.dnsresolver#GetDnsResolverPolicyVirtualNetworkLinkResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3049,7 +3050,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dnsresolver#DnsResolverPolicyVirtualNetworkLinksGetResponseTagsMap": {
+    "com.azure.dnsresolver#GetDnsResolverPolicyVirtualNetworkLinkResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3061,7 +3062,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dnsresolver#DnsResolverPolicyVirtualNetworkLinksGetRequest": {
+    "com.azure.dnsresolver#GetDnsResolverPolicyVirtualNetworkLinkRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3101,10 +3102,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#DnsResolverPolicyVirtualNetworkLinksList": {
+    "com.azure.dnsresolver#ListDnsResolverPolicyVirtualNetworkLinks": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnsresolver#DnsResolverPolicyVirtualNetworkLinksListRequest"
+        "target": "com.azure.dnsresolver#ListDnsResolverPolicyVirtualNetworkLinksRequest"
       },
       "output": {
         "target": "com.azure.dnsresolver#DnsResolverPolicyVirtualNetworkLinkListResult"
@@ -3220,7 +3221,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dnsresolver#DnsResolverPolicyVirtualNetworkLinksListRequest": {
+    "com.azure.dnsresolver#ListDnsResolverPolicyVirtualNetworkLinksRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3259,10 +3260,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#DnsSecurityRulesDelete": {
+    "com.azure.dnsresolver#DeleteDnsSecurityRule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnsresolver#DnsSecurityRulesDeleteRequest"
+        "target": "com.azure.dnsresolver#DeleteDnsSecurityRuleRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3278,7 +3279,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.dnsresolver#DnsSecurityRulesDeleteRequest": {
+    "com.azure.dnsresolver#DeleteDnsSecurityRuleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3318,13 +3319,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#DnsSecurityRulesUpdate": {
+    "com.azure.dnsresolver#UpdateDnsSecurityRule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnsresolver#DnsSecurityRulesUpdateRequest"
+        "target": "com.azure.dnsresolver#UpdateDnsSecurityRuleRequest"
       },
       "output": {
-        "target": "com.azure.dnsresolver#DnsSecurityRulesUpdateResponse"
+        "target": "com.azure.dnsresolver#UpdateDnsSecurityRuleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3337,7 +3338,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.dnsresolver#DnsSecurityRulesUpdateResponse": {
+    "com.azure.dnsresolver#UpdateDnsSecurityRuleResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3365,7 +3366,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnsresolver#DnsSecurityRulesUpdateResponseTagsMap",
+          "target": "com.azure.dnsresolver#UpdateDnsSecurityRuleResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3505,7 +3506,7 @@
         "smithy.api#documentation": "The type of action to take."
       }
     },
-    "com.azure.dnsresolver#DnsSecurityRulesUpdateResponseTagsMap": {
+    "com.azure.dnsresolver#UpdateDnsSecurityRuleResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3517,7 +3518,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dnsresolver#DnsSecurityRulesUpdateRequest": {
+    "com.azure.dnsresolver#UpdateDnsSecurityRuleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3559,7 +3560,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnsresolver#DnsSecurityRulesUpdateRequestTagsMap",
+          "target": "com.azure.dnsresolver#UpdateDnsSecurityRuleRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags for DNS security rule."
           }
@@ -3569,7 +3570,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#DnsSecurityRulesUpdateRequestTagsMap": {
+    "com.azure.dnsresolver#UpdateDnsSecurityRuleRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3783,13 +3784,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dnsresolver#DnsSecurityRulesGet": {
+    "com.azure.dnsresolver#GetDnsSecurityRule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnsresolver#DnsSecurityRulesGetRequest"
+        "target": "com.azure.dnsresolver#GetDnsSecurityRuleRequest"
       },
       "output": {
-        "target": "com.azure.dnsresolver#DnsSecurityRulesGetResponse"
+        "target": "com.azure.dnsresolver#GetDnsSecurityRuleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3802,7 +3803,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.dnsresolver#DnsSecurityRulesGetResponse": {
+    "com.azure.dnsresolver#GetDnsSecurityRuleResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3830,7 +3831,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnsresolver#DnsSecurityRulesGetResponseTagsMap",
+          "target": "com.azure.dnsresolver#GetDnsSecurityRuleResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3860,7 +3861,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dnsresolver#DnsSecurityRulesGetResponseTagsMap": {
+    "com.azure.dnsresolver#GetDnsSecurityRuleResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3872,7 +3873,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dnsresolver#DnsSecurityRulesGetRequest": {
+    "com.azure.dnsresolver#GetDnsSecurityRuleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3912,10 +3913,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#DnsSecurityRulesList": {
+    "com.azure.dnsresolver#ListDnsSecurityRules": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnsresolver#DnsSecurityRulesListRequest"
+        "target": "com.azure.dnsresolver#ListDnsSecurityRulesRequest"
       },
       "output": {
         "target": "com.azure.dnsresolver#DnsSecurityRuleListResult"
@@ -4031,7 +4032,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dnsresolver#DnsSecurityRulesListRequest": {
+    "com.azure.dnsresolver#ListDnsSecurityRulesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4070,10 +4071,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#DnsResolverPoliciesDelete": {
+    "com.azure.dnsresolver#DeleteDnsResolverPolicy": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnsresolver#DnsResolverPoliciesDeleteRequest"
+        "target": "com.azure.dnsresolver#DeleteDnsResolverPolicyRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4089,7 +4090,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.dnsresolver#DnsResolverPoliciesDeleteRequest": {
+    "com.azure.dnsresolver#DeleteDnsResolverPolicyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4121,13 +4122,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#DnsResolverPoliciesUpdate": {
+    "com.azure.dnsresolver#UpdateDnsResolverPolicy": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnsresolver#DnsResolverPoliciesUpdateRequest"
+        "target": "com.azure.dnsresolver#UpdateDnsResolverPolicyRequest"
       },
       "output": {
-        "target": "com.azure.dnsresolver#DnsResolverPoliciesUpdateResponse"
+        "target": "com.azure.dnsresolver#UpdateDnsResolverPolicyResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4140,7 +4141,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.dnsresolver#DnsResolverPoliciesUpdateResponse": {
+    "com.azure.dnsresolver#UpdateDnsResolverPolicyResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4168,7 +4169,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnsresolver#DnsResolverPoliciesUpdateResponseTagsMap",
+          "target": "com.azure.dnsresolver#UpdateDnsResolverPolicyResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4217,7 +4218,7 @@
         "smithy.api#documentation": "Represents the properties of a DNS resolver policy."
       }
     },
-    "com.azure.dnsresolver#DnsResolverPoliciesUpdateResponseTagsMap": {
+    "com.azure.dnsresolver#UpdateDnsResolverPolicyResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4229,7 +4230,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dnsresolver#DnsResolverPoliciesUpdateRequest": {
+    "com.azure.dnsresolver#UpdateDnsResolverPolicyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4257,7 +4258,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnsresolver#DnsResolverPoliciesUpdateRequestTagsMap",
+          "target": "com.azure.dnsresolver#UpdateDnsResolverPolicyRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags for DNS resolver policy."
           }
@@ -4267,7 +4268,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#DnsResolverPoliciesUpdateRequestTagsMap": {
+    "com.azure.dnsresolver#UpdateDnsResolverPolicyRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4437,13 +4438,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dnsresolver#DnsResolverPoliciesGet": {
+    "com.azure.dnsresolver#GetDnsResolverPolicy": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnsresolver#DnsResolverPoliciesGetRequest"
+        "target": "com.azure.dnsresolver#GetDnsResolverPolicyRequest"
       },
       "output": {
-        "target": "com.azure.dnsresolver#DnsResolverPoliciesGetResponse"
+        "target": "com.azure.dnsresolver#GetDnsResolverPolicyResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4456,7 +4457,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.dnsresolver#DnsResolverPoliciesGetResponse": {
+    "com.azure.dnsresolver#GetDnsResolverPolicyResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4484,7 +4485,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnsresolver#DnsResolverPoliciesGetResponseTagsMap",
+          "target": "com.azure.dnsresolver#GetDnsResolverPolicyResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4513,7 +4514,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dnsresolver#DnsResolverPoliciesGetResponseTagsMap": {
+    "com.azure.dnsresolver#GetDnsResolverPolicyResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4525,7 +4526,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dnsresolver#DnsResolverPoliciesGetRequest": {
+    "com.azure.dnsresolver#GetDnsResolverPolicyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4557,10 +4558,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#DnsResolverPoliciesListByResourceGroup": {
+    "com.azure.dnsresolver#ListDnsResolverPolicyByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnsresolver#DnsResolverPoliciesListByResourceGroupRequest"
+        "target": "com.azure.dnsresolver#ListDnsResolverPolicyByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.dnsresolver#DnsResolverPolicyListResult"
@@ -4675,7 +4676,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dnsresolver#DnsResolverPoliciesListByResourceGroupRequest": {
+    "com.azure.dnsresolver#ListDnsResolverPolicyByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4706,13 +4707,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#DnsResolverDomainListsBulk": {
+    "com.azure.dnsresolver#BulkDnsResolverDomainList": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnsresolver#DnsResolverDomainListsBulkRequest"
+        "target": "com.azure.dnsresolver#BulkDnsResolverDomainListRequest"
       },
       "output": {
-        "target": "com.azure.dnsresolver#DnsResolverDomainListsBulkResponse"
+        "target": "com.azure.dnsresolver#BulkDnsResolverDomainListResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4725,7 +4726,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.dnsresolver#DnsResolverDomainListsBulkResponse": {
+    "com.azure.dnsresolver#BulkDnsResolverDomainListResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4753,7 +4754,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnsresolver#DnsResolverDomainListsBulkResponseTagsMap",
+          "target": "com.azure.dnsresolver#BulkDnsResolverDomainListResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4823,7 +4824,7 @@
         "smithy.api#documentation": "The domains in the domain list. Will be null if user is using large domain list."
       }
     },
-    "com.azure.dnsresolver#DnsResolverDomainListsBulkResponseTagsMap": {
+    "com.azure.dnsresolver#BulkDnsResolverDomainListResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4835,7 +4836,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dnsresolver#DnsResolverDomainListsBulkRequest": {
+    "com.azure.dnsresolver#BulkDnsResolverDomainListRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4916,10 +4917,10 @@
         "smithy.api#documentation": "The action type in requests for bulk upload or download of a DNS resolver domain list."
       }
     },
-    "com.azure.dnsresolver#DnsResolverDomainListsDelete": {
+    "com.azure.dnsresolver#DeleteDnsResolverDomainList": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnsresolver#DnsResolverDomainListsDeleteRequest"
+        "target": "com.azure.dnsresolver#DeleteDnsResolverDomainListRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4935,7 +4936,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.dnsresolver#DnsResolverDomainListsDeleteRequest": {
+    "com.azure.dnsresolver#DeleteDnsResolverDomainListRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4967,13 +4968,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#DnsResolverDomainListsUpdate": {
+    "com.azure.dnsresolver#UpdateDnsResolverDomainList": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnsresolver#DnsResolverDomainListsUpdateRequest"
+        "target": "com.azure.dnsresolver#UpdateDnsResolverDomainListRequest"
       },
       "output": {
-        "target": "com.azure.dnsresolver#DnsResolverDomainListsUpdateResponse"
+        "target": "com.azure.dnsresolver#UpdateDnsResolverDomainListResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4986,7 +4987,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.dnsresolver#DnsResolverDomainListsUpdateResponse": {
+    "com.azure.dnsresolver#UpdateDnsResolverDomainListResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5014,7 +5015,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnsresolver#DnsResolverDomainListsUpdateResponseTagsMap",
+          "target": "com.azure.dnsresolver#UpdateDnsResolverDomainListResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5043,7 +5044,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dnsresolver#DnsResolverDomainListsUpdateResponseTagsMap": {
+    "com.azure.dnsresolver#UpdateDnsResolverDomainListResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5055,7 +5056,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dnsresolver#DnsResolverDomainListsUpdateRequest": {
+    "com.azure.dnsresolver#UpdateDnsResolverDomainListRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5089,7 +5090,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnsresolver#DnsResolverDomainListsUpdateRequestTagsMap",
+          "target": "com.azure.dnsresolver#UpdateDnsResolverDomainListRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags for DNS resolver domain list."
           }
@@ -5099,7 +5100,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#DnsResolverDomainListsUpdateRequestTagsMap": {
+    "com.azure.dnsresolver#UpdateDnsResolverDomainListRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5308,13 +5309,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dnsresolver#DnsResolverDomainListsGet": {
+    "com.azure.dnsresolver#GetDnsResolverDomainList": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnsresolver#DnsResolverDomainListsGetRequest"
+        "target": "com.azure.dnsresolver#GetDnsResolverDomainListRequest"
       },
       "output": {
-        "target": "com.azure.dnsresolver#DnsResolverDomainListsGetResponse"
+        "target": "com.azure.dnsresolver#GetDnsResolverDomainListResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5327,7 +5328,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.dnsresolver#DnsResolverDomainListsGetResponse": {
+    "com.azure.dnsresolver#GetDnsResolverDomainListResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5355,7 +5356,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnsresolver#DnsResolverDomainListsGetResponseTagsMap",
+          "target": "com.azure.dnsresolver#GetDnsResolverDomainListResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5384,7 +5385,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dnsresolver#DnsResolverDomainListsGetResponseTagsMap": {
+    "com.azure.dnsresolver#GetDnsResolverDomainListResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5396,7 +5397,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dnsresolver#DnsResolverDomainListsGetRequest": {
+    "com.azure.dnsresolver#GetDnsResolverDomainListRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5428,10 +5429,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#DnsResolverDomainListsListByResourceGroup": {
+    "com.azure.dnsresolver#ListDnsResolverDomainListByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnsresolver#DnsResolverDomainListsListByResourceGroupRequest"
+        "target": "com.azure.dnsresolver#ListDnsResolverDomainListByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.dnsresolver#DnsResolverDomainListListResult"
@@ -5546,7 +5547,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dnsresolver#DnsResolverDomainListsListByResourceGroupRequest": {
+    "com.azure.dnsresolver#ListDnsResolverDomainListByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5577,10 +5578,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#VirtualNetworkLinksDelete": {
+    "com.azure.dnsresolver#DeleteVirtualNetworkLink": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnsresolver#VirtualNetworkLinksDeleteRequest"
+        "target": "com.azure.dnsresolver#DeleteVirtualNetworkLinkRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5596,7 +5597,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.dnsresolver#VirtualNetworkLinksDeleteRequest": {
+    "com.azure.dnsresolver#DeleteVirtualNetworkLinkRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5636,13 +5637,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#VirtualNetworkLinksUpdate": {
+    "com.azure.dnsresolver#UpdateVirtualNetworkLink": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnsresolver#VirtualNetworkLinksUpdateRequest"
+        "target": "com.azure.dnsresolver#UpdateVirtualNetworkLinkRequest"
       },
       "output": {
-        "target": "com.azure.dnsresolver#VirtualNetworkLinksUpdateResponse"
+        "target": "com.azure.dnsresolver#UpdateVirtualNetworkLinkResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5655,7 +5656,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.dnsresolver#VirtualNetworkLinksUpdateResponse": {
+    "com.azure.dnsresolver#UpdateVirtualNetworkLinkResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5739,7 +5740,7 @@
         "smithy.api#documentation": "Metadata attached to the virtual network link."
       }
     },
-    "com.azure.dnsresolver#VirtualNetworkLinksUpdateRequest": {
+    "com.azure.dnsresolver#UpdateVirtualNetworkLinkRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5922,13 +5923,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#VirtualNetworkLinksGet": {
+    "com.azure.dnsresolver#GetVirtualNetworkLink": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnsresolver#VirtualNetworkLinksGetRequest"
+        "target": "com.azure.dnsresolver#GetVirtualNetworkLinkRequest"
       },
       "output": {
-        "target": "com.azure.dnsresolver#VirtualNetworkLinksGetResponse"
+        "target": "com.azure.dnsresolver#GetVirtualNetworkLinkResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5941,7 +5942,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.dnsresolver#VirtualNetworkLinksGetResponse": {
+    "com.azure.dnsresolver#GetVirtualNetworkLinkResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5986,7 +5987,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dnsresolver#VirtualNetworkLinksGetRequest": {
+    "com.azure.dnsresolver#GetVirtualNetworkLinkRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6026,10 +6027,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#VirtualNetworkLinksList": {
+    "com.azure.dnsresolver#ListVirtualNetworkLinks": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnsresolver#VirtualNetworkLinksListRequest"
+        "target": "com.azure.dnsresolver#ListVirtualNetworkLinksRequest"
       },
       "output": {
         "target": "com.azure.dnsresolver#VirtualNetworkLinkListResult"
@@ -6120,7 +6121,7 @@
         "smithy.api#documentation": "Describes a virtual network link."
       }
     },
-    "com.azure.dnsresolver#VirtualNetworkLinksListRequest": {
+    "com.azure.dnsresolver#ListVirtualNetworkLinksRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6159,10 +6160,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#ForwardingRulesDelete": {
+    "com.azure.dnsresolver#DeleteForwardingRule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnsresolver#ForwardingRulesDeleteRequest"
+        "target": "com.azure.dnsresolver#DeleteForwardingRuleRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -6178,7 +6179,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.dnsresolver#ForwardingRulesDeleteRequest": {
+    "com.azure.dnsresolver#DeleteForwardingRuleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6218,13 +6219,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#ForwardingRulesUpdate": {
+    "com.azure.dnsresolver#UpdateForwardingRule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnsresolver#ForwardingRulesUpdateRequest"
+        "target": "com.azure.dnsresolver#UpdateForwardingRuleRequest"
       },
       "output": {
-        "target": "com.azure.dnsresolver#ForwardingRulesUpdateResponse"
+        "target": "com.azure.dnsresolver#UpdateForwardingRuleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6237,7 +6238,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.dnsresolver#ForwardingRulesUpdateResponse": {
+    "com.azure.dnsresolver#UpdateForwardingRuleResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -6384,7 +6385,7 @@
         "smithy.api#documentation": "Describes a server to forward the DNS queries to."
       }
     },
-    "com.azure.dnsresolver#ForwardingRulesUpdateRequest": {
+    "com.azure.dnsresolver#UpdateForwardingRuleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6608,13 +6609,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#ForwardingRulesGet": {
+    "com.azure.dnsresolver#GetForwardingRule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnsresolver#ForwardingRulesGetRequest"
+        "target": "com.azure.dnsresolver#GetForwardingRuleRequest"
       },
       "output": {
-        "target": "com.azure.dnsresolver#ForwardingRulesGetResponse"
+        "target": "com.azure.dnsresolver#GetForwardingRuleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6627,7 +6628,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.dnsresolver#ForwardingRulesGetResponse": {
+    "com.azure.dnsresolver#GetForwardingRuleResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -6672,7 +6673,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dnsresolver#ForwardingRulesGetRequest": {
+    "com.azure.dnsresolver#GetForwardingRuleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6712,10 +6713,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#ForwardingRulesList": {
+    "com.azure.dnsresolver#ListForwardingRules": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnsresolver#ForwardingRulesListRequest"
+        "target": "com.azure.dnsresolver#ListForwardingRulesRequest"
       },
       "output": {
         "target": "com.azure.dnsresolver#ForwardingRuleListResult"
@@ -6806,7 +6807,7 @@
         "smithy.api#documentation": "Describes a forwarding rule within a DNS forwarding ruleset."
       }
     },
-    "com.azure.dnsresolver#ForwardingRulesListRequest": {
+    "com.azure.dnsresolver#ListForwardingRulesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6845,10 +6846,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#DnsForwardingRulesetsDelete": {
+    "com.azure.dnsresolver#DeleteDnsForwardingRuleset": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnsresolver#DnsForwardingRulesetsDeleteRequest"
+        "target": "com.azure.dnsresolver#DeleteDnsForwardingRulesetRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -6864,7 +6865,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.dnsresolver#DnsForwardingRulesetsDeleteRequest": {
+    "com.azure.dnsresolver#DeleteDnsForwardingRulesetRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6896,13 +6897,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#DnsForwardingRulesetsUpdate": {
+    "com.azure.dnsresolver#UpdateDnsForwardingRuleset": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnsresolver#DnsForwardingRulesetsUpdateRequest"
+        "target": "com.azure.dnsresolver#UpdateDnsForwardingRulesetRequest"
       },
       "output": {
-        "target": "com.azure.dnsresolver#DnsForwardingRulesetsUpdateResponse"
+        "target": "com.azure.dnsresolver#UpdateDnsForwardingRulesetResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6915,7 +6916,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.dnsresolver#DnsForwardingRulesetsUpdateResponse": {
+    "com.azure.dnsresolver#UpdateDnsForwardingRulesetResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -6943,7 +6944,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnsresolver#DnsForwardingRulesetsUpdateResponseTagsMap",
+          "target": "com.azure.dnsresolver#UpdateDnsForwardingRulesetResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -7009,7 +7010,7 @@
         "smithy.api#documentation": "The reference to the DNS resolver outbound endpoints that are used to route DNS queries matching the forwarding rules in the ruleset to the target DNS servers."
       }
     },
-    "com.azure.dnsresolver#DnsForwardingRulesetsUpdateResponseTagsMap": {
+    "com.azure.dnsresolver#UpdateDnsForwardingRulesetResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7021,7 +7022,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dnsresolver#DnsForwardingRulesetsUpdateRequest": {
+    "com.azure.dnsresolver#UpdateDnsForwardingRulesetRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7049,13 +7050,13 @@
           }
         },
         "dnsResolverOutboundEndpoints": {
-          "target": "com.azure.dnsresolver#DnsForwardingRulesetsUpdateRequestDnsResolverOutboundEndpointsList",
+          "target": "com.azure.dnsresolver#UpdateDnsForwardingRulesetRequestDnsResolverOutboundEndpointsList",
           "traits": {
             "smithy.api#documentation": "The reference to the DNS resolver outbound endpoints that are used to route DNS queries matching the forwarding rules in the ruleset to the target DNS servers."
           }
         },
         "tags": {
-          "target": "com.azure.dnsresolver#DnsForwardingRulesetsUpdateRequestTagsMap",
+          "target": "com.azure.dnsresolver#UpdateDnsForwardingRulesetRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags for DNS Resolver."
           }
@@ -7065,7 +7066,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#DnsForwardingRulesetsUpdateRequestTagsMap": {
+    "com.azure.dnsresolver#UpdateDnsForwardingRulesetRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7077,7 +7078,7 @@
         "smithy.api#documentation": "Tags for DNS Resolver."
       }
     },
-    "com.azure.dnsresolver#DnsForwardingRulesetsUpdateRequestDnsResolverOutboundEndpointsList": {
+    "com.azure.dnsresolver#UpdateDnsForwardingRulesetRequestDnsResolverOutboundEndpointsList": {
       "type": "list",
       "member": {
         "target": "com.azure.dnsresolver#SubResource"
@@ -7263,13 +7264,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dnsresolver#DnsForwardingRulesetsGet": {
+    "com.azure.dnsresolver#GetDnsForwardingRuleset": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnsresolver#DnsForwardingRulesetsGetRequest"
+        "target": "com.azure.dnsresolver#GetDnsForwardingRulesetRequest"
       },
       "output": {
-        "target": "com.azure.dnsresolver#DnsForwardingRulesetsGetResponse"
+        "target": "com.azure.dnsresolver#GetDnsForwardingRulesetResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7282,7 +7283,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.dnsresolver#DnsForwardingRulesetsGetResponse": {
+    "com.azure.dnsresolver#GetDnsForwardingRulesetResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -7310,7 +7311,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnsresolver#DnsForwardingRulesetsGetResponseTagsMap",
+          "target": "com.azure.dnsresolver#GetDnsForwardingRulesetResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -7340,7 +7341,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dnsresolver#DnsForwardingRulesetsGetResponseTagsMap": {
+    "com.azure.dnsresolver#GetDnsForwardingRulesetResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7352,7 +7353,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dnsresolver#DnsForwardingRulesetsGetRequest": {
+    "com.azure.dnsresolver#GetDnsForwardingRulesetRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7384,10 +7385,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#DnsForwardingRulesetsListByResourceGroup": {
+    "com.azure.dnsresolver#ListDnsForwardingRulesetByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnsresolver#DnsForwardingRulesetsListByResourceGroupRequest"
+        "target": "com.azure.dnsresolver#ListDnsForwardingRulesetByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.dnsresolver#DnsForwardingRulesetListResult"
@@ -7503,7 +7504,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dnsresolver#DnsForwardingRulesetsListByResourceGroupRequest": {
+    "com.azure.dnsresolver#ListDnsForwardingRulesetByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7534,10 +7535,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#DnsResolversList": {
+    "com.azure.dnsresolver#ListDnsResolvers": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnsresolver#DnsResolversListRequest"
+        "target": "com.azure.dnsresolver#ListDnsResolversRequest"
       },
       "output": {
         "target": "com.azure.dnsresolver#DnsResolverListResult"
@@ -7553,7 +7554,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.dnsresolver#DnsResolversListRequest": {
+    "com.azure.dnsresolver#ListDnsResolversRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7576,10 +7577,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#DnsResolverPoliciesList": {
+    "com.azure.dnsresolver#ListDnsResolverPolicies": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnsresolver#DnsResolverPoliciesListRequest"
+        "target": "com.azure.dnsresolver#ListDnsResolverPoliciesRequest"
       },
       "output": {
         "target": "com.azure.dnsresolver#DnsResolverPolicyListResult"
@@ -7595,7 +7596,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.dnsresolver#DnsResolverPoliciesListRequest": {
+    "com.azure.dnsresolver#ListDnsResolverPoliciesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7618,10 +7619,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#DnsResolverDomainListsList": {
+    "com.azure.dnsresolver#ListDnsResolverDomainLists": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnsresolver#DnsResolverDomainListsListRequest"
+        "target": "com.azure.dnsresolver#ListDnsResolverDomainListsRequest"
       },
       "output": {
         "target": "com.azure.dnsresolver#DnsResolverDomainListListResult"
@@ -7637,7 +7638,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.dnsresolver#DnsResolverDomainListsListRequest": {
+    "com.azure.dnsresolver#ListDnsResolverDomainListsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7660,10 +7661,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#DnsForwardingRulesetsList": {
+    "com.azure.dnsresolver#ListDnsForwardingRulesets": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnsresolver#DnsForwardingRulesetsListRequest"
+        "target": "com.azure.dnsresolver#ListDnsForwardingRulesetsRequest"
       },
       "output": {
         "target": "com.azure.dnsresolver#DnsForwardingRulesetListResult"
@@ -7679,7 +7680,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.dnsresolver#DnsForwardingRulesetsListRequest": {
+    "com.azure.dnsresolver#ListDnsForwardingRulesetsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7707,178 +7708,178 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.dnsresolver#DnsResolversListByVirtualNetwork"
+          "target": "com.azure.dnsresolver#ListDnsResolverByVirtualNetwork"
         },
         {
-          "target": "com.azure.dnsresolver#DnsResolverPoliciesListByVirtualNetwork"
+          "target": "com.azure.dnsresolver#ListDnsResolverPolicyByVirtualNetwork"
         },
         {
-          "target": "com.azure.dnsresolver#DnsForwardingRulesetsListByVirtualNetwork"
+          "target": "com.azure.dnsresolver#ListDnsForwardingRulesetByVirtualNetwork"
         },
         {
-          "target": "com.azure.dnsresolver#OutboundEndpointsDelete"
+          "target": "com.azure.dnsresolver#DeleteOutboundEndpoint"
         },
         {
-          "target": "com.azure.dnsresolver#OutboundEndpointsUpdate"
+          "target": "com.azure.dnsresolver#UpdateOutboundEndpoint"
         },
         {
           "target": "com.azure.dnsresolver#OutboundEndpointsCreateOrUpdate"
         },
         {
-          "target": "com.azure.dnsresolver#OutboundEndpointsGet"
+          "target": "com.azure.dnsresolver#GetOutboundEndpoint"
         },
         {
-          "target": "com.azure.dnsresolver#OutboundEndpointsList"
+          "target": "com.azure.dnsresolver#ListOutboundEndpoints"
         },
         {
-          "target": "com.azure.dnsresolver#InboundEndpointsDelete"
+          "target": "com.azure.dnsresolver#DeleteInboundEndpoint"
         },
         {
-          "target": "com.azure.dnsresolver#InboundEndpointsUpdate"
+          "target": "com.azure.dnsresolver#UpdateInboundEndpoint"
         },
         {
           "target": "com.azure.dnsresolver#InboundEndpointsCreateOrUpdate"
         },
         {
-          "target": "com.azure.dnsresolver#InboundEndpointsGet"
+          "target": "com.azure.dnsresolver#GetInboundEndpoint"
         },
         {
-          "target": "com.azure.dnsresolver#InboundEndpointsList"
+          "target": "com.azure.dnsresolver#ListInboundEndpoints"
         },
         {
-          "target": "com.azure.dnsresolver#DnsResolversDelete"
+          "target": "com.azure.dnsresolver#DeleteDnsResolver"
         },
         {
-          "target": "com.azure.dnsresolver#DnsResolversUpdate"
+          "target": "com.azure.dnsresolver#UpdateDnsResolver"
         },
         {
           "target": "com.azure.dnsresolver#DnsResolversCreateOrUpdate"
         },
         {
-          "target": "com.azure.dnsresolver#DnsResolversGet"
+          "target": "com.azure.dnsresolver#GetDnsResolver"
         },
         {
-          "target": "com.azure.dnsresolver#DnsResolversListByResourceGroup"
+          "target": "com.azure.dnsresolver#ListDnsResolverByResourceGroup"
         },
         {
-          "target": "com.azure.dnsresolver#DnsResolverPolicyVirtualNetworkLinksDelete"
+          "target": "com.azure.dnsresolver#DeleteDnsResolverPolicyVirtualNetworkLink"
         },
         {
-          "target": "com.azure.dnsresolver#DnsResolverPolicyVirtualNetworkLinksUpdate"
+          "target": "com.azure.dnsresolver#UpdateDnsResolverPolicyVirtualNetworkLink"
         },
         {
           "target": "com.azure.dnsresolver#DnsResolverPolicyVirtualNetworkLinksCreateOrUpdate"
         },
         {
-          "target": "com.azure.dnsresolver#DnsResolverPolicyVirtualNetworkLinksGet"
+          "target": "com.azure.dnsresolver#GetDnsResolverPolicyVirtualNetworkLink"
         },
         {
-          "target": "com.azure.dnsresolver#DnsResolverPolicyVirtualNetworkLinksList"
+          "target": "com.azure.dnsresolver#ListDnsResolverPolicyVirtualNetworkLinks"
         },
         {
-          "target": "com.azure.dnsresolver#DnsSecurityRulesDelete"
+          "target": "com.azure.dnsresolver#DeleteDnsSecurityRule"
         },
         {
-          "target": "com.azure.dnsresolver#DnsSecurityRulesUpdate"
+          "target": "com.azure.dnsresolver#UpdateDnsSecurityRule"
         },
         {
           "target": "com.azure.dnsresolver#DnsSecurityRulesCreateOrUpdate"
         },
         {
-          "target": "com.azure.dnsresolver#DnsSecurityRulesGet"
+          "target": "com.azure.dnsresolver#GetDnsSecurityRule"
         },
         {
-          "target": "com.azure.dnsresolver#DnsSecurityRulesList"
+          "target": "com.azure.dnsresolver#ListDnsSecurityRules"
         },
         {
-          "target": "com.azure.dnsresolver#DnsResolverPoliciesDelete"
+          "target": "com.azure.dnsresolver#DeleteDnsResolverPolicy"
         },
         {
-          "target": "com.azure.dnsresolver#DnsResolverPoliciesUpdate"
+          "target": "com.azure.dnsresolver#UpdateDnsResolverPolicy"
         },
         {
           "target": "com.azure.dnsresolver#DnsResolverPoliciesCreateOrUpdate"
         },
         {
-          "target": "com.azure.dnsresolver#DnsResolverPoliciesGet"
+          "target": "com.azure.dnsresolver#GetDnsResolverPolicy"
         },
         {
-          "target": "com.azure.dnsresolver#DnsResolverPoliciesListByResourceGroup"
+          "target": "com.azure.dnsresolver#ListDnsResolverPolicyByResourceGroup"
         },
         {
-          "target": "com.azure.dnsresolver#DnsResolverDomainListsBulk"
+          "target": "com.azure.dnsresolver#BulkDnsResolverDomainList"
         },
         {
-          "target": "com.azure.dnsresolver#DnsResolverDomainListsDelete"
+          "target": "com.azure.dnsresolver#DeleteDnsResolverDomainList"
         },
         {
-          "target": "com.azure.dnsresolver#DnsResolverDomainListsUpdate"
+          "target": "com.azure.dnsresolver#UpdateDnsResolverDomainList"
         },
         {
           "target": "com.azure.dnsresolver#DnsResolverDomainListsCreateOrUpdate"
         },
         {
-          "target": "com.azure.dnsresolver#DnsResolverDomainListsGet"
+          "target": "com.azure.dnsresolver#GetDnsResolverDomainList"
         },
         {
-          "target": "com.azure.dnsresolver#DnsResolverDomainListsListByResourceGroup"
+          "target": "com.azure.dnsresolver#ListDnsResolverDomainListByResourceGroup"
         },
         {
-          "target": "com.azure.dnsresolver#VirtualNetworkLinksDelete"
+          "target": "com.azure.dnsresolver#DeleteVirtualNetworkLink"
         },
         {
-          "target": "com.azure.dnsresolver#VirtualNetworkLinksUpdate"
+          "target": "com.azure.dnsresolver#UpdateVirtualNetworkLink"
         },
         {
           "target": "com.azure.dnsresolver#VirtualNetworkLinksCreateOrUpdate"
         },
         {
-          "target": "com.azure.dnsresolver#VirtualNetworkLinksGet"
+          "target": "com.azure.dnsresolver#GetVirtualNetworkLink"
         },
         {
-          "target": "com.azure.dnsresolver#VirtualNetworkLinksList"
+          "target": "com.azure.dnsresolver#ListVirtualNetworkLinks"
         },
         {
-          "target": "com.azure.dnsresolver#ForwardingRulesDelete"
+          "target": "com.azure.dnsresolver#DeleteForwardingRule"
         },
         {
-          "target": "com.azure.dnsresolver#ForwardingRulesUpdate"
+          "target": "com.azure.dnsresolver#UpdateForwardingRule"
         },
         {
           "target": "com.azure.dnsresolver#ForwardingRulesCreateOrUpdate"
         },
         {
-          "target": "com.azure.dnsresolver#ForwardingRulesGet"
+          "target": "com.azure.dnsresolver#GetForwardingRule"
         },
         {
-          "target": "com.azure.dnsresolver#ForwardingRulesList"
+          "target": "com.azure.dnsresolver#ListForwardingRules"
         },
         {
-          "target": "com.azure.dnsresolver#DnsForwardingRulesetsDelete"
+          "target": "com.azure.dnsresolver#DeleteDnsForwardingRuleset"
         },
         {
-          "target": "com.azure.dnsresolver#DnsForwardingRulesetsUpdate"
+          "target": "com.azure.dnsresolver#UpdateDnsForwardingRuleset"
         },
         {
           "target": "com.azure.dnsresolver#DnsForwardingRulesetsCreateOrUpdate"
         },
         {
-          "target": "com.azure.dnsresolver#DnsForwardingRulesetsGet"
+          "target": "com.azure.dnsresolver#GetDnsForwardingRuleset"
         },
         {
-          "target": "com.azure.dnsresolver#DnsForwardingRulesetsListByResourceGroup"
+          "target": "com.azure.dnsresolver#ListDnsForwardingRulesetByResourceGroup"
         },
         {
-          "target": "com.azure.dnsresolver#DnsResolversList"
+          "target": "com.azure.dnsresolver#ListDnsResolvers"
         },
         {
-          "target": "com.azure.dnsresolver#DnsResolverPoliciesList"
+          "target": "com.azure.dnsresolver#ListDnsResolverPolicies"
         },
         {
-          "target": "com.azure.dnsresolver#DnsResolverDomainListsList"
+          "target": "com.azure.dnsresolver#ListDnsResolverDomainLists"
         },
         {
-          "target": "com.azure.dnsresolver#DnsForwardingRulesetsList"
+          "target": "com.azure.dnsresolver#ListDnsForwardingRulesets"
         }
       ],
       "traits": {

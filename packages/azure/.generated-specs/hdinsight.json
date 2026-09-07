@@ -14,16 +14,17 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.hdinsight#ApplicationsGetAzureAsyncOperationStatus": {
+    "com.azure.hdinsight#GetApplicationAzureAsyncOperationStatus": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hdinsight#ApplicationsGetAzureAsyncOperationStatusRequest"
+        "target": "com.azure.hdinsight#GetApplicationAzureAsyncOperationStatusRequest"
       },
       "output": {
-        "target": "com.azure.hdinsight#ApplicationsGetAzureAsyncOperationStatusResponse"
+        "target": "com.azure.hdinsight#GetApplicationAzureAsyncOperationStatusResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -36,11 +37,11 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.hdinsight#ApplicationsGetAzureAsyncOperationStatusResponse": {
+    "com.azure.hdinsight#GetApplicationAzureAsyncOperationStatusResponse": {
       "type": "structure",
       "members": {
         "status": {
-          "target": "com.azure.hdinsight#ApplicationsGetAzureAsyncOperationStatusResponseStatus",
+          "target": "com.azure.hdinsight#GetApplicationAzureAsyncOperationStatusResponseStatus",
           "traits": {
             "smithy.api#documentation": "The async operation state."
           }
@@ -76,7 +77,7 @@
         "smithy.api#documentation": "The error message associated with the cluster creation."
       }
     },
-    "com.azure.hdinsight#ApplicationsGetAzureAsyncOperationStatusResponseStatus": {
+    "com.azure.hdinsight#GetApplicationAzureAsyncOperationStatusResponseStatus": {
       "type": "enum",
       "members": {
         "INPROGRESS": {
@@ -102,7 +103,7 @@
         "smithy.api#documentation": "The async operation state."
       }
     },
-    "com.azure.hdinsight#ApplicationsGetAzureAsyncOperationStatusRequest": {
+    "com.azure.hdinsight#GetApplicationAzureAsyncOperationStatusRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -150,10 +151,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hdinsight#ApplicationsDelete": {
+    "com.azure.hdinsight#DeleteApplication": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hdinsight#ApplicationsDeleteRequest"
+        "target": "com.azure.hdinsight#DeleteApplicationRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -169,7 +170,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.hdinsight#ApplicationsDeleteRequest": {
+    "com.azure.hdinsight#DeleteApplicationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -209,13 +210,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hdinsight#ApplicationsCreate": {
+    "com.azure.hdinsight#CreateApplication": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hdinsight#ApplicationsCreateRequest"
+        "target": "com.azure.hdinsight#CreateApplicationRequest"
       },
       "output": {
-        "target": "com.azure.hdinsight#ApplicationsCreateResponse"
+        "target": "com.azure.hdinsight#CreateApplicationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -228,7 +229,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.hdinsight#ApplicationsCreateResponse": {
+    "com.azure.hdinsight#CreateApplicationResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -256,7 +257,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hdinsight#ApplicationsCreateResponseTagsMap",
+          "target": "com.azure.hdinsight#CreateApplicationResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags for the application."
           }
@@ -268,7 +269,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.hdinsight#ApplicationsCreateResponseSystemData",
+          "target": "com.azure.hdinsight#CreateApplicationResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -278,7 +279,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hdinsight#ApplicationsCreateResponseSystemData": {
+    "com.azure.hdinsight#CreateApplicationResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -288,7 +289,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.hdinsight#ApplicationsCreateResponseSystemDataCreatedByType",
+          "target": "com.azure.hdinsight#CreateApplicationResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -306,7 +307,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.hdinsight#ApplicationsCreateResponseSystemDataLastModifiedByType",
+          "target": "com.azure.hdinsight#CreateApplicationResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -322,7 +323,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.hdinsight#ApplicationsCreateResponseSystemDataLastModifiedByType": {
+    "com.azure.hdinsight#CreateApplicationResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -354,7 +355,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.hdinsight#ApplicationsCreateResponseSystemDataCreatedByType": {
+    "com.azure.hdinsight#CreateApplicationResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -1437,7 +1438,7 @@
         "smithy.api#documentation": "The load-based autoscale request parameters"
       }
     },
-    "com.azure.hdinsight#ApplicationsCreateResponseTagsMap": {
+    "com.azure.hdinsight#CreateApplicationResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1449,7 +1450,7 @@
         "smithy.api#documentation": "The tags for the application."
       }
     },
-    "com.azure.hdinsight#ApplicationsCreateRequest": {
+    "com.azure.hdinsight#CreateApplicationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1491,7 +1492,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hdinsight#ApplicationsCreateRequestTagsMap",
+          "target": "com.azure.hdinsight#CreateApplicationRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags for the application."
           }
@@ -2056,7 +2057,7 @@
         "smithy.api#documentation": "The data disks groups for the role."
       }
     },
-    "com.azure.hdinsight#ApplicationsCreateRequestTagsMap": {
+    "com.azure.hdinsight#CreateApplicationRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2068,13 +2069,13 @@
         "smithy.api#documentation": "The tags for the application."
       }
     },
-    "com.azure.hdinsight#ApplicationsGet": {
+    "com.azure.hdinsight#GetApplication": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hdinsight#ApplicationsGetRequest"
+        "target": "com.azure.hdinsight#GetApplicationRequest"
       },
       "output": {
-        "target": "com.azure.hdinsight#ApplicationsGetResponse"
+        "target": "com.azure.hdinsight#GetApplicationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2087,7 +2088,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.hdinsight#ApplicationsGetResponse": {
+    "com.azure.hdinsight#GetApplicationResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2115,7 +2116,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hdinsight#ApplicationsGetResponseTagsMap",
+          "target": "com.azure.hdinsight#GetApplicationResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags for the application."
           }
@@ -2127,7 +2128,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.hdinsight#ApplicationsGetResponseSystemData",
+          "target": "com.azure.hdinsight#GetApplicationResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -2137,7 +2138,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hdinsight#ApplicationsGetResponseSystemData": {
+    "com.azure.hdinsight#GetApplicationResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -2147,7 +2148,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.hdinsight#ApplicationsGetResponseSystemDataCreatedByType",
+          "target": "com.azure.hdinsight#GetApplicationResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -2165,7 +2166,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.hdinsight#ApplicationsGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.hdinsight#GetApplicationResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -2181,7 +2182,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.hdinsight#ApplicationsGetResponseSystemDataLastModifiedByType": {
+    "com.azure.hdinsight#GetApplicationResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -2213,7 +2214,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.hdinsight#ApplicationsGetResponseSystemDataCreatedByType": {
+    "com.azure.hdinsight#GetApplicationResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -2245,7 +2246,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.hdinsight#ApplicationsGetResponseTagsMap": {
+    "com.azure.hdinsight#GetApplicationResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2257,7 +2258,7 @@
         "smithy.api#documentation": "The tags for the application."
       }
     },
-    "com.azure.hdinsight#ApplicationsGetRequest": {
+    "com.azure.hdinsight#GetApplicationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2297,10 +2298,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hdinsight#ApplicationsListByCluster": {
+    "com.azure.hdinsight#ListApplicationByCluster": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hdinsight#ApplicationsListByClusterRequest"
+        "target": "com.azure.hdinsight#ListApplicationByClusterRequest"
       },
       "output": {
         "target": "com.azure.hdinsight#ApplicationListResult"
@@ -2515,7 +2516,7 @@
         "smithy.api#documentation": "The tags for the application."
       }
     },
-    "com.azure.hdinsight#ApplicationsListByClusterRequest": {
+    "com.azure.hdinsight#ListApplicationByClusterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2547,10 +2548,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hdinsight#ClustersUpdateIdentityCertificate": {
+    "com.azure.hdinsight#UpdateClusterIdentityCertificate": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hdinsight#ClustersUpdateIdentityCertificateRequest"
+        "target": "com.azure.hdinsight#UpdateClusterIdentityCertificateRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2566,7 +2567,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.hdinsight#ClustersUpdateIdentityCertificateRequest": {
+    "com.azure.hdinsight#UpdateClusterIdentityCertificateRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2617,10 +2618,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hdinsight#ClustersGetAzureAsyncOperationStatus": {
+    "com.azure.hdinsight#GetClusterAzureAsyncOperationStatus": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hdinsight#ClustersGetAzureAsyncOperationStatusRequest"
+        "target": "com.azure.hdinsight#GetClusterAzureAsyncOperationStatusRequest"
       },
       "output": {
         "target": "com.azure.hdinsight#AsyncOperationResult"
@@ -2682,7 +2683,7 @@
         "smithy.api#documentation": "The async operation state."
       }
     },
-    "com.azure.hdinsight#ClustersGetAzureAsyncOperationStatusRequest": {
+    "com.azure.hdinsight#GetClusterAzureAsyncOperationStatusRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2722,10 +2723,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hdinsight#ClustersUpdateGatewaySettings": {
+    "com.azure.hdinsight#UpdateClusterGatewaySettings": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hdinsight#ClustersUpdateGatewaySettingsRequest"
+        "target": "com.azure.hdinsight#UpdateClusterGatewaySettingsRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2741,7 +2742,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.hdinsight#ClustersUpdateGatewaySettingsRequest": {
+    "com.azure.hdinsight#UpdateClusterGatewaySettingsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2795,10 +2796,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hdinsight#ClustersGetGatewaySettings": {
+    "com.azure.hdinsight#GetClusterGatewaySettings": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hdinsight#ClustersGetGatewaySettingsRequest"
+        "target": "com.azure.hdinsight#GetClusterGatewaySettingsRequest"
       },
       "output": {
         "target": "com.azure.hdinsight#GatewaySettings"
@@ -2844,7 +2845,7 @@
         "smithy.api#documentation": "Gateway settings."
       }
     },
-    "com.azure.hdinsight#ClustersGetGatewaySettingsRequest": {
+    "com.azure.hdinsight#GetClusterGatewaySettingsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2876,10 +2877,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hdinsight#ClustersRotateDiskEncryptionKey": {
+    "com.azure.hdinsight#RotateClusterDiskEncryptionKey": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hdinsight#ClustersRotateDiskEncryptionKeyRequest"
+        "target": "com.azure.hdinsight#RotateClusterDiskEncryptionKeyRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2895,7 +2896,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.hdinsight#ClustersRotateDiskEncryptionKeyRequest": {
+    "com.azure.hdinsight#RotateClusterDiskEncryptionKeyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2945,10 +2946,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hdinsight#ClustersList": {
+    "com.azure.hdinsight#ListClusters": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hdinsight#ClustersListRequest"
+        "target": "com.azure.hdinsight#ListClustersRequest"
       },
       "output": {
         "target": "com.azure.hdinsight#ClusterListResult"
@@ -4426,7 +4427,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.hdinsight#ClustersListRequest": {
+    "com.azure.hdinsight#ListClustersRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4442,10 +4443,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hdinsight#ClustersUpdateAutoScaleConfiguration": {
+    "com.azure.hdinsight#UpdateClusterAutoScaleConfiguration": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hdinsight#ClustersUpdateAutoScaleConfigurationRequest"
+        "target": "com.azure.hdinsight#UpdateClusterAutoScaleConfigurationRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4461,7 +4462,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.hdinsight#ClustersUpdateAutoScaleConfigurationRequest": {
+    "com.azure.hdinsight#UpdateClusterAutoScaleConfigurationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4489,7 +4490,7 @@
           }
         },
         "roleName": {
-          "target": "com.azure.hdinsight#ClustersUpdateAutoScaleConfigurationRequestRoleName",
+          "target": "com.azure.hdinsight#UpdateClusterAutoScaleConfigurationRequestRoleName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -4507,7 +4508,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hdinsight#ClustersUpdateAutoScaleConfigurationRequestRoleName": {
+    "com.azure.hdinsight#UpdateClusterAutoScaleConfigurationRequestRoleName": {
       "type": "enum",
       "members": {
         "WORKERNODE": {
@@ -4519,10 +4520,10 @@
       },
       "traits": {}
     },
-    "com.azure.hdinsight#ClustersResize": {
+    "com.azure.hdinsight#ResizeCluster": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hdinsight#ClustersResizeRequest"
+        "target": "com.azure.hdinsight#ResizeClusterRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4538,7 +4539,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.hdinsight#ClustersResizeRequest": {
+    "com.azure.hdinsight#ResizeClusterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4566,7 +4567,7 @@
           }
         },
         "roleName": {
-          "target": "com.azure.hdinsight#ClustersResizeRequestRoleName",
+          "target": "com.azure.hdinsight#ResizeClusterRequestRoleName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -4584,7 +4585,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hdinsight#ClustersResizeRequestRoleName": {
+    "com.azure.hdinsight#ResizeClusterRequestRoleName": {
       "type": "enum",
       "members": {
         "WORKERNODE": {
@@ -4596,10 +4597,10 @@
       },
       "traits": {}
     },
-    "com.azure.hdinsight#ClustersListByResourceGroup": {
+    "com.azure.hdinsight#ListClusterByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hdinsight#ClustersListByResourceGroupRequest"
+        "target": "com.azure.hdinsight#ListClusterByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.hdinsight#ClusterListResult"
@@ -4615,7 +4616,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.hdinsight#ClustersListByResourceGroupRequest": {
+    "com.azure.hdinsight#ListClusterByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4639,10 +4640,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hdinsight#ClustersDelete": {
+    "com.azure.hdinsight#DeleteCluster": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hdinsight#ClustersDeleteRequest"
+        "target": "com.azure.hdinsight#DeleteClusterRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4658,7 +4659,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.hdinsight#ClustersDeleteRequest": {
+    "com.azure.hdinsight#DeleteClusterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4690,13 +4691,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hdinsight#ClustersUpdate": {
+    "com.azure.hdinsight#UpdateCluster": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hdinsight#ClustersUpdateRequest"
+        "target": "com.azure.hdinsight#UpdateClusterRequest"
       },
       "output": {
-        "target": "com.azure.hdinsight#ClustersUpdateResponse"
+        "target": "com.azure.hdinsight#UpdateClusterResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4709,7 +4710,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.hdinsight#ClustersUpdateResponse": {
+    "com.azure.hdinsight#UpdateClusterResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4731,7 +4732,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hdinsight#ClustersUpdateResponseTagsMap",
+          "target": "com.azure.hdinsight#UpdateClusterResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4750,7 +4751,7 @@
           }
         },
         "zones": {
-          "target": "com.azure.hdinsight#ClustersUpdateResponseZonesList",
+          "target": "com.azure.hdinsight#UpdateClusterResponseZonesList",
           "traits": {
             "smithy.api#documentation": "The availability zones."
           }
@@ -4768,7 +4769,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.hdinsight#ClustersUpdateResponseSystemData",
+          "target": "com.azure.hdinsight#UpdateClusterResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -4778,7 +4779,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hdinsight#ClustersUpdateResponseSystemData": {
+    "com.azure.hdinsight#UpdateClusterResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -4788,7 +4789,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.hdinsight#ClustersUpdateResponseSystemDataCreatedByType",
+          "target": "com.azure.hdinsight#UpdateClusterResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -4806,7 +4807,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.hdinsight#ClustersUpdateResponseSystemDataLastModifiedByType",
+          "target": "com.azure.hdinsight#UpdateClusterResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -4822,7 +4823,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.hdinsight#ClustersUpdateResponseSystemDataLastModifiedByType": {
+    "com.azure.hdinsight#UpdateClusterResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -4854,7 +4855,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.hdinsight#ClustersUpdateResponseSystemDataCreatedByType": {
+    "com.azure.hdinsight#UpdateClusterResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -4886,7 +4887,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.hdinsight#ClustersUpdateResponseZonesList": {
+    "com.azure.hdinsight#UpdateClusterResponseZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -4895,7 +4896,7 @@
         "smithy.api#documentation": "The availability zones."
       }
     },
-    "com.azure.hdinsight#ClustersUpdateResponseTagsMap": {
+    "com.azure.hdinsight#UpdateClusterResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4907,7 +4908,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.hdinsight#ClustersUpdateRequest": {
+    "com.azure.hdinsight#UpdateClusterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4935,7 +4936,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hdinsight#ClustersUpdateRequestTagsMap",
+          "target": "com.azure.hdinsight#UpdateClusterRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags.",
             "com.distilled.openapi#nullable": {}
@@ -4946,7 +4947,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hdinsight#ClustersUpdateRequestTagsMap": {
+    "com.azure.hdinsight#UpdateClusterRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4958,13 +4959,13 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.hdinsight#ClustersCreate": {
+    "com.azure.hdinsight#CreateCluster": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hdinsight#ClustersCreateRequest"
+        "target": "com.azure.hdinsight#CreateClusterRequest"
       },
       "output": {
-        "target": "com.azure.hdinsight#ClustersCreateResponse"
+        "target": "com.azure.hdinsight#CreateClusterResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4977,7 +4978,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.hdinsight#ClustersCreateResponse": {
+    "com.azure.hdinsight#CreateClusterResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4999,7 +5000,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hdinsight#ClustersCreateResponseTagsMap",
+          "target": "com.azure.hdinsight#CreateClusterResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5018,7 +5019,7 @@
           }
         },
         "zones": {
-          "target": "com.azure.hdinsight#ClustersCreateResponseZonesList",
+          "target": "com.azure.hdinsight#CreateClusterResponseZonesList",
           "traits": {
             "smithy.api#documentation": "The availability zones."
           }
@@ -5036,7 +5037,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.hdinsight#ClustersCreateResponseSystemData",
+          "target": "com.azure.hdinsight#CreateClusterResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -5046,7 +5047,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hdinsight#ClustersCreateResponseSystemData": {
+    "com.azure.hdinsight#CreateClusterResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -5056,7 +5057,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.hdinsight#ClustersCreateResponseSystemDataCreatedByType",
+          "target": "com.azure.hdinsight#CreateClusterResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -5074,7 +5075,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.hdinsight#ClustersCreateResponseSystemDataLastModifiedByType",
+          "target": "com.azure.hdinsight#CreateClusterResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -5090,7 +5091,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.hdinsight#ClustersCreateResponseSystemDataLastModifiedByType": {
+    "com.azure.hdinsight#CreateClusterResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -5122,7 +5123,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.hdinsight#ClustersCreateResponseSystemDataCreatedByType": {
+    "com.azure.hdinsight#CreateClusterResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -5154,7 +5155,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.hdinsight#ClustersCreateResponseZonesList": {
+    "com.azure.hdinsight#CreateClusterResponseZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -5163,7 +5164,7 @@
         "smithy.api#documentation": "The availability zones."
       }
     },
-    "com.azure.hdinsight#ClustersCreateResponseTagsMap": {
+    "com.azure.hdinsight#CreateClusterResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5175,7 +5176,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.hdinsight#ClustersCreateRequest": {
+    "com.azure.hdinsight#CreateClusterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5209,13 +5210,13 @@
           }
         },
         "tags": {
-          "target": "com.azure.hdinsight#ClustersCreateRequestTagsMap",
+          "target": "com.azure.hdinsight#CreateClusterRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
         },
         "zones": {
-          "target": "com.azure.hdinsight#ClustersCreateRequestZonesList",
+          "target": "com.azure.hdinsight#CreateClusterRequestZonesList",
           "traits": {
             "smithy.api#documentation": "The availability zones."
           }
@@ -5501,7 +5502,7 @@
         "smithy.api#documentation": "The type of operating system."
       }
     },
-    "com.azure.hdinsight#ClustersCreateRequestZonesList": {
+    "com.azure.hdinsight#CreateClusterRequestZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -5510,7 +5511,7 @@
         "smithy.api#documentation": "The availability zones."
       }
     },
-    "com.azure.hdinsight#ClustersCreateRequestTagsMap": {
+    "com.azure.hdinsight#CreateClusterRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5522,13 +5523,13 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.hdinsight#ClustersGet": {
+    "com.azure.hdinsight#GetCluster": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hdinsight#ClustersGetRequest"
+        "target": "com.azure.hdinsight#GetClusterRequest"
       },
       "output": {
-        "target": "com.azure.hdinsight#ClustersGetResponse"
+        "target": "com.azure.hdinsight#GetClusterResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5541,7 +5542,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.hdinsight#ClustersGetResponse": {
+    "com.azure.hdinsight#GetClusterResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5563,7 +5564,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hdinsight#ClustersGetResponseTagsMap",
+          "target": "com.azure.hdinsight#GetClusterResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5582,7 +5583,7 @@
           }
         },
         "zones": {
-          "target": "com.azure.hdinsight#ClustersGetResponseZonesList",
+          "target": "com.azure.hdinsight#GetClusterResponseZonesList",
           "traits": {
             "smithy.api#documentation": "The availability zones."
           }
@@ -5600,7 +5601,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.hdinsight#ClustersGetResponseSystemData",
+          "target": "com.azure.hdinsight#GetClusterResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -5610,7 +5611,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hdinsight#ClustersGetResponseSystemData": {
+    "com.azure.hdinsight#GetClusterResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -5620,7 +5621,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.hdinsight#ClustersGetResponseSystemDataCreatedByType",
+          "target": "com.azure.hdinsight#GetClusterResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -5638,7 +5639,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.hdinsight#ClustersGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.hdinsight#GetClusterResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -5654,7 +5655,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.hdinsight#ClustersGetResponseSystemDataLastModifiedByType": {
+    "com.azure.hdinsight#GetClusterResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -5686,7 +5687,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.hdinsight#ClustersGetResponseSystemDataCreatedByType": {
+    "com.azure.hdinsight#GetClusterResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -5718,7 +5719,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.hdinsight#ClustersGetResponseZonesList": {
+    "com.azure.hdinsight#GetClusterResponseZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -5727,7 +5728,7 @@
         "smithy.api#documentation": "The availability zones."
       }
     },
-    "com.azure.hdinsight#ClustersGetResponseTagsMap": {
+    "com.azure.hdinsight#GetClusterResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5739,7 +5740,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.hdinsight#ClustersGetRequest": {
+    "com.azure.hdinsight#GetClusterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5771,13 +5772,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hdinsight#ConfigurationsGet": {
+    "com.azure.hdinsight#GetConfiguration": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hdinsight#ConfigurationsGetRequest"
+        "target": "com.azure.hdinsight#GetConfigurationRequest"
       },
       "output": {
-        "target": "com.azure.hdinsight#ConfigurationsGetResponse"
+        "target": "com.azure.hdinsight#GetConfigurationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5790,7 +5791,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.hdinsight#ConfigurationsGetResponse": {
+    "com.azure.hdinsight#GetConfigurationResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -5817,7 +5818,7 @@
         "smithy.api#documentation": "The configuration object for the specified configuration for the specified cluster."
       }
     },
-    "com.azure.hdinsight#ConfigurationsGetRequest": {
+    "com.azure.hdinsight#GetConfigurationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5857,10 +5858,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hdinsight#ConfigurationsList": {
+    "com.azure.hdinsight#ListConfigurations": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hdinsight#ConfigurationsListRequest"
+        "target": "com.azure.hdinsight#ListConfigurationsRequest"
       },
       "output": {
         "target": "com.azure.hdinsight#ClusterConfigurations"
@@ -5902,7 +5903,7 @@
         "smithy.api#documentation": "The configuration object for the specified configuration for the specified cluster."
       }
     },
-    "com.azure.hdinsight#ConfigurationsListRequest": {
+    "com.azure.hdinsight#ListConfigurationsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5934,13 +5935,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hdinsight#ExtensionsGetAzureAsyncOperationStatus": {
+    "com.azure.hdinsight#GetExtensionAzureAsyncOperationStatus": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hdinsight#ExtensionsGetAzureAsyncOperationStatusRequest"
+        "target": "com.azure.hdinsight#GetExtensionAzureAsyncOperationStatusRequest"
       },
       "output": {
-        "target": "com.azure.hdinsight#ExtensionsGetAzureAsyncOperationStatusResponse"
+        "target": "com.azure.hdinsight#GetExtensionAzureAsyncOperationStatusResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5953,11 +5954,11 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.hdinsight#ExtensionsGetAzureAsyncOperationStatusResponse": {
+    "com.azure.hdinsight#GetExtensionAzureAsyncOperationStatusResponse": {
       "type": "structure",
       "members": {
         "status": {
-          "target": "com.azure.hdinsight#ExtensionsGetAzureAsyncOperationStatusResponseStatus",
+          "target": "com.azure.hdinsight#GetExtensionAzureAsyncOperationStatusResponseStatus",
           "traits": {
             "smithy.api#documentation": "The async operation state."
           }
@@ -5973,7 +5974,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hdinsight#ExtensionsGetAzureAsyncOperationStatusResponseStatus": {
+    "com.azure.hdinsight#GetExtensionAzureAsyncOperationStatusResponseStatus": {
       "type": "enum",
       "members": {
         "INPROGRESS": {
@@ -5999,7 +6000,7 @@
         "smithy.api#documentation": "The async operation state."
       }
     },
-    "com.azure.hdinsight#ExtensionsGetAzureAsyncOperationStatusRequest": {
+    "com.azure.hdinsight#GetExtensionAzureAsyncOperationStatusRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6047,10 +6048,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hdinsight#ExtensionsDelete": {
+    "com.azure.hdinsight#DeleteExtension": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hdinsight#ExtensionsDeleteRequest"
+        "target": "com.azure.hdinsight#DeleteExtensionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -6066,7 +6067,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.hdinsight#ExtensionsDeleteRequest": {
+    "com.azure.hdinsight#DeleteExtensionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6106,10 +6107,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hdinsight#ExtensionsCreate": {
+    "com.azure.hdinsight#CreateExtension": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hdinsight#ExtensionsCreateRequest"
+        "target": "com.azure.hdinsight#CreateExtensionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -6125,7 +6126,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.hdinsight#ExtensionsCreateRequest": {
+    "com.azure.hdinsight#CreateExtensionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6177,10 +6178,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hdinsight#ExtensionsGet": {
+    "com.azure.hdinsight#GetExtension": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hdinsight#ExtensionsGetRequest"
+        "target": "com.azure.hdinsight#GetExtensionRequest"
       },
       "output": {
         "target": "com.azure.hdinsight#ClusterMonitoringResponse"
@@ -6216,7 +6217,7 @@
         "smithy.api#documentation": "The cluster monitoring status response."
       }
     },
-    "com.azure.hdinsight#ExtensionsGetRequest": {
+    "com.azure.hdinsight#GetExtensionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6256,10 +6257,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hdinsight#ExtensionsDisableAzureMonitor": {
+    "com.azure.hdinsight#DisableExtensionAzureMonitor": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hdinsight#ExtensionsDisableAzureMonitorRequest"
+        "target": "com.azure.hdinsight#DisableExtensionAzureMonitorRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -6275,7 +6276,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.hdinsight#ExtensionsDisableAzureMonitorRequest": {
+    "com.azure.hdinsight#DisableExtensionAzureMonitorRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6307,10 +6308,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hdinsight#ExtensionsEnableAzureMonitor": {
+    "com.azure.hdinsight#EnableExtensionAzureMonitor": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hdinsight#ExtensionsEnableAzureMonitorRequest"
+        "target": "com.azure.hdinsight#EnableExtensionAzureMonitorRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -6326,7 +6327,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.hdinsight#ExtensionsEnableAzureMonitorRequest": {
+    "com.azure.hdinsight#EnableExtensionAzureMonitorRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6437,10 +6438,10 @@
         "smithy.api#documentation": "The global configurations of selected configurations."
       }
     },
-    "com.azure.hdinsight#ExtensionsGetAzureMonitorStatus": {
+    "com.azure.hdinsight#GetExtensionAzureMonitorStatus": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hdinsight#ExtensionsGetAzureMonitorStatusRequest"
+        "target": "com.azure.hdinsight#GetExtensionAzureMonitorStatusRequest"
       },
       "output": {
         "target": "com.azure.hdinsight#AzureMonitorResponse"
@@ -6482,7 +6483,7 @@
         "smithy.api#documentation": "The azure monitor status response."
       }
     },
-    "com.azure.hdinsight#ExtensionsGetAzureMonitorStatusRequest": {
+    "com.azure.hdinsight#GetExtensionAzureMonitorStatusRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6514,10 +6515,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hdinsight#ExtensionsDisableMonitoring": {
+    "com.azure.hdinsight#DisableExtensionMonitoring": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hdinsight#ExtensionsDisableMonitoringRequest"
+        "target": "com.azure.hdinsight#DisableExtensionMonitoringRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -6533,7 +6534,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.hdinsight#ExtensionsDisableMonitoringRequest": {
+    "com.azure.hdinsight#DisableExtensionMonitoringRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6565,10 +6566,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hdinsight#ExtensionsEnableMonitoring": {
+    "com.azure.hdinsight#EnableExtensionMonitoring": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hdinsight#ExtensionsEnableMonitoringRequest"
+        "target": "com.azure.hdinsight#EnableExtensionMonitoringRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -6584,7 +6585,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.hdinsight#ExtensionsEnableMonitoringRequest": {
+    "com.azure.hdinsight#EnableExtensionMonitoringRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6628,10 +6629,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hdinsight#ExtensionsGetMonitoringStatus": {
+    "com.azure.hdinsight#GetExtensionMonitoringStatus": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hdinsight#ExtensionsGetMonitoringStatusRequest"
+        "target": "com.azure.hdinsight#GetExtensionMonitoringStatusRequest"
       },
       "output": {
         "target": "com.azure.hdinsight#ClusterMonitoringResponse"
@@ -6647,7 +6648,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.hdinsight#ExtensionsGetMonitoringStatusRequest": {
+    "com.azure.hdinsight#GetExtensionMonitoringStatusRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6941,10 +6942,10 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.hdinsight#LocationsCheckNameAvailability": {
+    "com.azure.hdinsight#CheckLocationNameAvailability": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hdinsight#LocationsCheckNameAvailabilityRequest"
+        "target": "com.azure.hdinsight#CheckLocationNameAvailabilityRequest"
       },
       "output": {
         "target": "com.azure.hdinsight#NameAvailabilityCheckResult"
@@ -6986,7 +6987,7 @@
         "smithy.api#documentation": "The response spec of checking name availability."
       }
     },
-    "com.azure.hdinsight#LocationsCheckNameAvailabilityRequest": {
+    "com.azure.hdinsight#CheckLocationNameAvailabilityRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7022,13 +7023,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hdinsight#LocationsGetAzureAsyncOperationStatus": {
+    "com.azure.hdinsight#GetLocationAzureAsyncOperationStatus": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hdinsight#LocationsGetAzureAsyncOperationStatusRequest"
+        "target": "com.azure.hdinsight#GetLocationAzureAsyncOperationStatusRequest"
       },
       "output": {
-        "target": "com.azure.hdinsight#LocationsGetAzureAsyncOperationStatusResponse"
+        "target": "com.azure.hdinsight#GetLocationAzureAsyncOperationStatusResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7041,11 +7042,11 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.hdinsight#LocationsGetAzureAsyncOperationStatusResponse": {
+    "com.azure.hdinsight#GetLocationAzureAsyncOperationStatusResponse": {
       "type": "structure",
       "members": {
         "status": {
-          "target": "com.azure.hdinsight#LocationsGetAzureAsyncOperationStatusResponseStatus",
+          "target": "com.azure.hdinsight#GetLocationAzureAsyncOperationStatusResponseStatus",
           "traits": {
             "smithy.api#documentation": "The async operation state."
           }
@@ -7061,7 +7062,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hdinsight#LocationsGetAzureAsyncOperationStatusResponseStatus": {
+    "com.azure.hdinsight#GetLocationAzureAsyncOperationStatusResponseStatus": {
       "type": "enum",
       "members": {
         "INPROGRESS": {
@@ -7087,7 +7088,7 @@
         "smithy.api#documentation": "The async operation state."
       }
     },
-    "com.azure.hdinsight#LocationsGetAzureAsyncOperationStatusRequest": {
+    "com.azure.hdinsight#GetLocationAzureAsyncOperationStatusRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7119,10 +7120,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hdinsight#LocationsListBillingSpecs": {
+    "com.azure.hdinsight#ListLocationBillingSpecs": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hdinsight#LocationsListBillingSpecsRequest"
+        "target": "com.azure.hdinsight#ListLocationBillingSpecsRequest"
       },
       "output": {
         "target": "com.azure.hdinsight#BillingResponseListResult"
@@ -7571,7 +7572,7 @@
         "smithy.api#documentation": "The virtual machine sizes to include or exclude."
       }
     },
-    "com.azure.hdinsight#LocationsListBillingSpecsRequest": {
+    "com.azure.hdinsight#ListLocationBillingSpecsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7595,10 +7596,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hdinsight#LocationsListUsages": {
+    "com.azure.hdinsight#ListLocationUsages": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hdinsight#LocationsListUsagesRequest"
+        "target": "com.azure.hdinsight#ListLocationUsagesRequest"
       },
       "output": {
         "target": "com.azure.hdinsight#UsagesListResult"
@@ -7689,7 +7690,7 @@
         "smithy.api#documentation": "The details about the localizable name of a type of usage."
       }
     },
-    "com.azure.hdinsight#LocationsListUsagesRequest": {
+    "com.azure.hdinsight#ListLocationUsagesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7713,10 +7714,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hdinsight#LocationsGetCapabilities": {
+    "com.azure.hdinsight#GetLocationCapabilities": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hdinsight#LocationsGetCapabilitiesRequest"
+        "target": "com.azure.hdinsight#GetLocationCapabilitiesRequest"
       },
       "output": {
         "target": "com.azure.hdinsight#CapabilitiesResult"
@@ -7948,7 +7949,7 @@
         "smithy.api#documentation": "The component version property."
       }
     },
-    "com.azure.hdinsight#LocationsGetCapabilitiesRequest": {
+    "com.azure.hdinsight#GetLocationCapabilitiesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7972,7 +7973,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hdinsight#OperationsList": {
+    "com.azure.hdinsight#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -8284,10 +8285,10 @@
         "smithy.api#documentation": "The object that represents the operation."
       }
     },
-    "com.azure.hdinsight#PrivateEndpointConnectionsDelete": {
+    "com.azure.hdinsight#DeletePrivateEndpointConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hdinsight#PrivateEndpointConnectionsDeleteRequest"
+        "target": "com.azure.hdinsight#DeletePrivateEndpointConnectionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8303,7 +8304,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.hdinsight#PrivateEndpointConnectionsDeleteRequest": {
+    "com.azure.hdinsight#DeletePrivateEndpointConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8571,13 +8572,13 @@
         "smithy.api#documentation": "The private endpoint connection properties."
       }
     },
-    "com.azure.hdinsight#PrivateEndpointConnectionsGet": {
+    "com.azure.hdinsight#GetPrivateEndpointConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hdinsight#PrivateEndpointConnectionsGetRequest"
+        "target": "com.azure.hdinsight#GetPrivateEndpointConnectionRequest"
       },
       "output": {
-        "target": "com.azure.hdinsight#PrivateEndpointConnectionsGetResponse"
+        "target": "com.azure.hdinsight#GetPrivateEndpointConnectionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8590,7 +8591,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.hdinsight#PrivateEndpointConnectionsGetResponse": {
+    "com.azure.hdinsight#GetPrivateEndpointConnectionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -8619,7 +8620,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.hdinsight#PrivateEndpointConnectionsGetResponseSystemData",
+          "target": "com.azure.hdinsight#GetPrivateEndpointConnectionResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -8629,7 +8630,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hdinsight#PrivateEndpointConnectionsGetResponseSystemData": {
+    "com.azure.hdinsight#GetPrivateEndpointConnectionResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -8639,7 +8640,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.hdinsight#PrivateEndpointConnectionsGetResponseSystemDataCreatedByType",
+          "target": "com.azure.hdinsight#GetPrivateEndpointConnectionResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -8657,7 +8658,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.hdinsight#PrivateEndpointConnectionsGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.hdinsight#GetPrivateEndpointConnectionResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -8673,7 +8674,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.hdinsight#PrivateEndpointConnectionsGetResponseSystemDataLastModifiedByType": {
+    "com.azure.hdinsight#GetPrivateEndpointConnectionResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -8705,7 +8706,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.hdinsight#PrivateEndpointConnectionsGetResponseSystemDataCreatedByType": {
+    "com.azure.hdinsight#GetPrivateEndpointConnectionResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -8737,7 +8738,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.hdinsight#PrivateEndpointConnectionsGetRequest": {
+    "com.azure.hdinsight#GetPrivateEndpointConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8777,10 +8778,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hdinsight#PrivateEndpointConnectionsListByCluster": {
+    "com.azure.hdinsight#ListPrivateEndpointConnectionByCluster": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hdinsight#PrivateEndpointConnectionsListByClusterRequest"
+        "target": "com.azure.hdinsight#ListPrivateEndpointConnectionByClusterRequest"
       },
       "output": {
         "target": "com.azure.hdinsight#PrivateEndpointConnectionListResult"
@@ -8972,7 +8973,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.hdinsight#PrivateEndpointConnectionsListByClusterRequest": {
+    "com.azure.hdinsight#ListPrivateEndpointConnectionByClusterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9004,13 +9005,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hdinsight#PrivateLinkResourcesGet": {
+    "com.azure.hdinsight#GetPrivateLinkResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hdinsight#PrivateLinkResourcesGetRequest"
+        "target": "com.azure.hdinsight#GetPrivateLinkResourceRequest"
       },
       "output": {
-        "target": "com.azure.hdinsight#PrivateLinkResourcesGetResponse"
+        "target": "com.azure.hdinsight#GetPrivateLinkResourceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9023,7 +9024,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.hdinsight#PrivateLinkResourcesGetResponse": {
+    "com.azure.hdinsight#GetPrivateLinkResourceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -9045,13 +9046,13 @@
           }
         },
         "properties": {
-          "target": "com.azure.hdinsight#PrivateLinkResourcesGetResponseProperties",
+          "target": "com.azure.hdinsight#GetPrivateLinkResourceResponseProperties",
           "traits": {
             "smithy.api#documentation": "Properties of a private link resource."
           }
         },
         "systemData": {
-          "target": "com.azure.hdinsight#PrivateLinkResourcesGetResponseSystemData",
+          "target": "com.azure.hdinsight#GetPrivateLinkResourceResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -9061,7 +9062,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hdinsight#PrivateLinkResourcesGetResponseSystemData": {
+    "com.azure.hdinsight#GetPrivateLinkResourceResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -9071,7 +9072,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.hdinsight#PrivateLinkResourcesGetResponseSystemDataCreatedByType",
+          "target": "com.azure.hdinsight#GetPrivateLinkResourceResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -9089,7 +9090,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.hdinsight#PrivateLinkResourcesGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.hdinsight#GetPrivateLinkResourceResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -9105,7 +9106,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.hdinsight#PrivateLinkResourcesGetResponseSystemDataLastModifiedByType": {
+    "com.azure.hdinsight#GetPrivateLinkResourceResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -9137,7 +9138,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.hdinsight#PrivateLinkResourcesGetResponseSystemDataCreatedByType": {
+    "com.azure.hdinsight#GetPrivateLinkResourceResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -9169,7 +9170,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.hdinsight#PrivateLinkResourcesGetResponseProperties": {
+    "com.azure.hdinsight#GetPrivateLinkResourceResponseProperties": {
       "type": "structure",
       "members": {
         "groupId": {
@@ -9179,13 +9180,13 @@
           }
         },
         "requiredMembers": {
-          "target": "com.azure.hdinsight#PrivateLinkResourcesGetResponsePropertiesRequiredMembersList",
+          "target": "com.azure.hdinsight#GetPrivateLinkResourceResponsePropertiesRequiredMembersList",
           "traits": {
             "smithy.api#documentation": "The private link resource required member names."
           }
         },
         "requiredZoneNames": {
-          "target": "com.azure.hdinsight#PrivateLinkResourcesGetResponsePropertiesRequiredZoneNamesList",
+          "target": "com.azure.hdinsight#GetPrivateLinkResourceResponsePropertiesRequiredZoneNamesList",
           "traits": {
             "smithy.api#documentation": "The private link resource Private link DNS zone name."
           }
@@ -9195,7 +9196,7 @@
         "smithy.api#documentation": "Properties of a private link resource."
       }
     },
-    "com.azure.hdinsight#PrivateLinkResourcesGetResponsePropertiesRequiredZoneNamesList": {
+    "com.azure.hdinsight#GetPrivateLinkResourceResponsePropertiesRequiredZoneNamesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -9204,7 +9205,7 @@
         "smithy.api#documentation": "The private link resource Private link DNS zone name."
       }
     },
-    "com.azure.hdinsight#PrivateLinkResourcesGetResponsePropertiesRequiredMembersList": {
+    "com.azure.hdinsight#GetPrivateLinkResourceResponsePropertiesRequiredMembersList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -9213,7 +9214,7 @@
         "smithy.api#documentation": "The private link resource required member names."
       }
     },
-    "com.azure.hdinsight#PrivateLinkResourcesGetRequest": {
+    "com.azure.hdinsight#GetPrivateLinkResourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9253,10 +9254,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hdinsight#PrivateLinkResourcesListByCluster": {
+    "com.azure.hdinsight#ListPrivateLinkResourceByCluster": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hdinsight#PrivateLinkResourcesListByClusterRequest"
+        "target": "com.azure.hdinsight#ListPrivateLinkResourceByClusterRequest"
       },
       "output": {
         "target": "com.azure.hdinsight#PrivateLinkResourceListResult"
@@ -9485,7 +9486,7 @@
         "smithy.api#documentation": "The private link resource required member names."
       }
     },
-    "com.azure.hdinsight#PrivateLinkResourcesListByClusterRequest": {
+    "com.azure.hdinsight#ListPrivateLinkResourceByClusterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9517,13 +9518,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hdinsight#ScriptActionsGetExecutionAsyncOperationStatus": {
+    "com.azure.hdinsight#GetScriptActionExecutionAsyncOperationStatus": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hdinsight#ScriptActionsGetExecutionAsyncOperationStatusRequest"
+        "target": "com.azure.hdinsight#GetScriptActionExecutionAsyncOperationStatusRequest"
       },
       "output": {
-        "target": "com.azure.hdinsight#ScriptActionsGetExecutionAsyncOperationStatusResponse"
+        "target": "com.azure.hdinsight#GetScriptActionExecutionAsyncOperationStatusResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9536,11 +9537,11 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.hdinsight#ScriptActionsGetExecutionAsyncOperationStatusResponse": {
+    "com.azure.hdinsight#GetScriptActionExecutionAsyncOperationStatusResponse": {
       "type": "structure",
       "members": {
         "status": {
-          "target": "com.azure.hdinsight#ScriptActionsGetExecutionAsyncOperationStatusResponseStatus",
+          "target": "com.azure.hdinsight#GetScriptActionExecutionAsyncOperationStatusResponseStatus",
           "traits": {
             "smithy.api#documentation": "The async operation state."
           }
@@ -9556,7 +9557,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hdinsight#ScriptActionsGetExecutionAsyncOperationStatusResponseStatus": {
+    "com.azure.hdinsight#GetScriptActionExecutionAsyncOperationStatusResponseStatus": {
       "type": "enum",
       "members": {
         "INPROGRESS": {
@@ -9582,7 +9583,7 @@
         "smithy.api#documentation": "The async operation state."
       }
     },
-    "com.azure.hdinsight#ScriptActionsGetExecutionAsyncOperationStatusRequest": {
+    "com.azure.hdinsight#GetScriptActionExecutionAsyncOperationStatusRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9622,10 +9623,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hdinsight#ScriptExecutionHistoryPromote": {
+    "com.azure.hdinsight#PromoteScriptExecutionHistory": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hdinsight#ScriptExecutionHistoryPromoteRequest"
+        "target": "com.azure.hdinsight#PromoteScriptExecutionHistoryRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -9641,7 +9642,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.hdinsight#ScriptExecutionHistoryPromoteRequest": {
+    "com.azure.hdinsight#PromoteScriptExecutionHistoryRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9681,10 +9682,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hdinsight#ScriptExecutionHistoryListByCluster": {
+    "com.azure.hdinsight#ListScriptExecutionHistoryByCluster": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hdinsight#ScriptExecutionHistoryListByClusterRequest"
+        "target": "com.azure.hdinsight#ListScriptExecutionHistoryByClusterRequest"
       },
       "output": {
         "target": "com.azure.hdinsight#ScriptActionExecutionHistoryList"
@@ -9850,7 +9851,7 @@
         "smithy.api#documentation": "The list of roles where script will be executed."
       }
     },
-    "com.azure.hdinsight#ScriptExecutionHistoryListByClusterRequest": {
+    "com.azure.hdinsight#ListScriptExecutionHistoryByClusterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9882,13 +9883,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hdinsight#ScriptActionsGetExecutionDetail": {
+    "com.azure.hdinsight#GetScriptActionExecutionDetail": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hdinsight#ScriptActionsGetExecutionDetailRequest"
+        "target": "com.azure.hdinsight#GetScriptActionExecutionDetailRequest"
       },
       "output": {
-        "target": "com.azure.hdinsight#ScriptActionsGetExecutionDetailResponse"
+        "target": "com.azure.hdinsight#GetScriptActionExecutionDetailResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9901,7 +9902,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.hdinsight#ScriptActionsGetExecutionDetailResponse": {
+    "com.azure.hdinsight#GetScriptActionExecutionDetailResponse": {
       "type": "structure",
       "members": {
         "name": {
@@ -9925,7 +9926,7 @@
           }
         },
         "roles": {
-          "target": "com.azure.hdinsight#ScriptActionsGetExecutionDetailResponseRolesList",
+          "target": "com.azure.hdinsight#GetScriptActionExecutionDetailResponseRolesList",
           "traits": {
             "smithy.api#documentation": "The list of roles where script will be executed.",
             "smithy.api#required": {}
@@ -9968,7 +9969,7 @@
           }
         },
         "executionSummary": {
-          "target": "com.azure.hdinsight#ScriptActionsGetExecutionDetailResponseExecutionSummaryList",
+          "target": "com.azure.hdinsight#GetScriptActionExecutionDetailResponseExecutionSummaryList",
           "traits": {
             "smithy.api#documentation": "The summary of script action execution result."
           }
@@ -9984,7 +9985,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hdinsight#ScriptActionsGetExecutionDetailResponseExecutionSummaryList": {
+    "com.azure.hdinsight#GetScriptActionExecutionDetailResponseExecutionSummaryList": {
       "type": "list",
       "member": {
         "target": "com.azure.hdinsight#ScriptActionExecutionSummary"
@@ -9993,7 +9994,7 @@
         "smithy.api#documentation": "The summary of script action execution result."
       }
     },
-    "com.azure.hdinsight#ScriptActionsGetExecutionDetailResponseRolesList": {
+    "com.azure.hdinsight#GetScriptActionExecutionDetailResponseRolesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -10002,7 +10003,7 @@
         "smithy.api#documentation": "The list of roles where script will be executed."
       }
     },
-    "com.azure.hdinsight#ScriptActionsGetExecutionDetailRequest": {
+    "com.azure.hdinsight#GetScriptActionExecutionDetailRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10042,10 +10043,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hdinsight#ScriptActionsListByCluster": {
+    "com.azure.hdinsight#ListScriptActionByCluster": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hdinsight#ScriptActionsListByClusterRequest"
+        "target": "com.azure.hdinsight#ListScriptActionByClusterRequest"
       },
       "output": {
         "target": "com.azure.hdinsight#ScriptActionsList"
@@ -10191,7 +10192,7 @@
         "smithy.api#documentation": "The list of roles where script will be executed."
       }
     },
-    "com.azure.hdinsight#ScriptActionsListByClusterRequest": {
+    "com.azure.hdinsight#ListScriptActionByClusterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10223,10 +10224,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hdinsight#ClustersExecuteScriptActions": {
+    "com.azure.hdinsight#ExecuteClusterScriptActions": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hdinsight#ClustersExecuteScriptActionsRequest"
+        "target": "com.azure.hdinsight#ExecuteClusterScriptActionsRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -10242,7 +10243,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.hdinsight#ClustersExecuteScriptActionsRequest": {
+    "com.azure.hdinsight#ExecuteClusterScriptActionsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10270,7 +10271,7 @@
           }
         },
         "scriptActions": {
-          "target": "com.azure.hdinsight#ClustersExecuteScriptActionsRequestScriptActionsList",
+          "target": "com.azure.hdinsight#ExecuteClusterScriptActionsRequestScriptActionsList",
           "traits": {
             "smithy.api#documentation": "The list of run time script actions."
           }
@@ -10287,7 +10288,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hdinsight#ClustersExecuteScriptActionsRequestScriptActionsList": {
+    "com.azure.hdinsight#ExecuteClusterScriptActionsRequestScriptActionsList": {
       "type": "list",
       "member": {
         "target": "com.azure.hdinsight#RuntimeScriptActionInput"
@@ -10340,10 +10341,10 @@
         "smithy.api#documentation": "The list of roles where script will be executed."
       }
     },
-    "com.azure.hdinsight#ScriptActionsDelete": {
+    "com.azure.hdinsight#DeleteScriptAction": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hdinsight#ScriptActionsDeleteRequest"
+        "target": "com.azure.hdinsight#DeleteScriptActionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -10359,7 +10360,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.hdinsight#ScriptActionsDeleteRequest": {
+    "com.azure.hdinsight#DeleteScriptActionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10399,13 +10400,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hdinsight#VirtualMachinesGetAsyncOperationStatus": {
+    "com.azure.hdinsight#GetVirtualMachineAsyncOperationStatus": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hdinsight#VirtualMachinesGetAsyncOperationStatusRequest"
+        "target": "com.azure.hdinsight#GetVirtualMachineAsyncOperationStatusRequest"
       },
       "output": {
-        "target": "com.azure.hdinsight#VirtualMachinesGetAsyncOperationStatusResponse"
+        "target": "com.azure.hdinsight#GetVirtualMachineAsyncOperationStatusResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10418,11 +10419,11 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.hdinsight#VirtualMachinesGetAsyncOperationStatusResponse": {
+    "com.azure.hdinsight#GetVirtualMachineAsyncOperationStatusResponse": {
       "type": "structure",
       "members": {
         "status": {
-          "target": "com.azure.hdinsight#VirtualMachinesGetAsyncOperationStatusResponseStatus",
+          "target": "com.azure.hdinsight#GetVirtualMachineAsyncOperationStatusResponseStatus",
           "traits": {
             "smithy.api#documentation": "The async operation state."
           }
@@ -10438,7 +10439,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hdinsight#VirtualMachinesGetAsyncOperationStatusResponseStatus": {
+    "com.azure.hdinsight#GetVirtualMachineAsyncOperationStatusResponseStatus": {
       "type": "enum",
       "members": {
         "INPROGRESS": {
@@ -10464,7 +10465,7 @@
         "smithy.api#documentation": "The async operation state."
       }
     },
-    "com.azure.hdinsight#VirtualMachinesGetAsyncOperationStatusRequest": {
+    "com.azure.hdinsight#GetVirtualMachineAsyncOperationStatusRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10504,10 +10505,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hdinsight#VirtualMachinesRestartHosts": {
+    "com.azure.hdinsight#RestartVirtualMachineHosts": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hdinsight#VirtualMachinesRestartHostsRequest"
+        "target": "com.azure.hdinsight#RestartVirtualMachineHostsRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -10523,7 +10524,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.hdinsight#VirtualMachinesRestartHostsRequest": {
+    "com.azure.hdinsight#RestartVirtualMachineHostsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10571,13 +10572,13 @@
         "smithy.api#documentation": "The list of hosts which need to be restarted."
       }
     },
-    "com.azure.hdinsight#VirtualMachinesListHosts": {
+    "com.azure.hdinsight#ListVirtualMachineHosts": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hdinsight#VirtualMachinesListHostsRequest"
+        "target": "com.azure.hdinsight#ListVirtualMachineHostsRequest"
       },
       "output": {
-        "target": "com.azure.hdinsight#VirtualMachinesListHostsResponse"
+        "target": "com.azure.hdinsight#ListVirtualMachineHostsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10590,7 +10591,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.hdinsight#VirtualMachinesListHostsResponse": {
+    "com.azure.hdinsight#ListVirtualMachineHostsResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -10640,7 +10641,7 @@
         "smithy.api#documentation": "The cluster host information."
       }
     },
-    "com.azure.hdinsight#VirtualMachinesListHostsRequest": {
+    "com.azure.hdinsight#ListVirtualMachineHostsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10677,163 +10678,163 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.hdinsight#ApplicationsGetAzureAsyncOperationStatus"
+          "target": "com.azure.hdinsight#GetApplicationAzureAsyncOperationStatus"
         },
         {
-          "target": "com.azure.hdinsight#ApplicationsDelete"
+          "target": "com.azure.hdinsight#DeleteApplication"
         },
         {
-          "target": "com.azure.hdinsight#ApplicationsCreate"
+          "target": "com.azure.hdinsight#CreateApplication"
         },
         {
-          "target": "com.azure.hdinsight#ApplicationsGet"
+          "target": "com.azure.hdinsight#GetApplication"
         },
         {
-          "target": "com.azure.hdinsight#ApplicationsListByCluster"
+          "target": "com.azure.hdinsight#ListApplicationByCluster"
         },
         {
-          "target": "com.azure.hdinsight#ClustersUpdateIdentityCertificate"
+          "target": "com.azure.hdinsight#UpdateClusterIdentityCertificate"
         },
         {
-          "target": "com.azure.hdinsight#ClustersGetAzureAsyncOperationStatus"
+          "target": "com.azure.hdinsight#GetClusterAzureAsyncOperationStatus"
         },
         {
-          "target": "com.azure.hdinsight#ClustersUpdateGatewaySettings"
+          "target": "com.azure.hdinsight#UpdateClusterGatewaySettings"
         },
         {
-          "target": "com.azure.hdinsight#ClustersGetGatewaySettings"
+          "target": "com.azure.hdinsight#GetClusterGatewaySettings"
         },
         {
-          "target": "com.azure.hdinsight#ClustersRotateDiskEncryptionKey"
+          "target": "com.azure.hdinsight#RotateClusterDiskEncryptionKey"
         },
         {
-          "target": "com.azure.hdinsight#ClustersList"
+          "target": "com.azure.hdinsight#ListClusters"
         },
         {
-          "target": "com.azure.hdinsight#ClustersUpdateAutoScaleConfiguration"
+          "target": "com.azure.hdinsight#UpdateClusterAutoScaleConfiguration"
         },
         {
-          "target": "com.azure.hdinsight#ClustersResize"
+          "target": "com.azure.hdinsight#ResizeCluster"
         },
         {
-          "target": "com.azure.hdinsight#ClustersListByResourceGroup"
+          "target": "com.azure.hdinsight#ListClusterByResourceGroup"
         },
         {
-          "target": "com.azure.hdinsight#ClustersDelete"
+          "target": "com.azure.hdinsight#DeleteCluster"
         },
         {
-          "target": "com.azure.hdinsight#ClustersUpdate"
+          "target": "com.azure.hdinsight#UpdateCluster"
         },
         {
-          "target": "com.azure.hdinsight#ClustersCreate"
+          "target": "com.azure.hdinsight#CreateCluster"
         },
         {
-          "target": "com.azure.hdinsight#ClustersGet"
+          "target": "com.azure.hdinsight#GetCluster"
         },
         {
-          "target": "com.azure.hdinsight#ConfigurationsGet"
+          "target": "com.azure.hdinsight#GetConfiguration"
         },
         {
-          "target": "com.azure.hdinsight#ConfigurationsList"
+          "target": "com.azure.hdinsight#ListConfigurations"
         },
         {
-          "target": "com.azure.hdinsight#ExtensionsGetAzureAsyncOperationStatus"
+          "target": "com.azure.hdinsight#GetExtensionAzureAsyncOperationStatus"
         },
         {
-          "target": "com.azure.hdinsight#ExtensionsDelete"
+          "target": "com.azure.hdinsight#DeleteExtension"
         },
         {
-          "target": "com.azure.hdinsight#ExtensionsCreate"
+          "target": "com.azure.hdinsight#CreateExtension"
         },
         {
-          "target": "com.azure.hdinsight#ExtensionsGet"
+          "target": "com.azure.hdinsight#GetExtension"
         },
         {
-          "target": "com.azure.hdinsight#ExtensionsDisableAzureMonitor"
+          "target": "com.azure.hdinsight#DisableExtensionAzureMonitor"
         },
         {
-          "target": "com.azure.hdinsight#ExtensionsEnableAzureMonitor"
+          "target": "com.azure.hdinsight#EnableExtensionAzureMonitor"
         },
         {
-          "target": "com.azure.hdinsight#ExtensionsGetAzureMonitorStatus"
+          "target": "com.azure.hdinsight#GetExtensionAzureMonitorStatus"
         },
         {
-          "target": "com.azure.hdinsight#ExtensionsDisableMonitoring"
+          "target": "com.azure.hdinsight#DisableExtensionMonitoring"
         },
         {
-          "target": "com.azure.hdinsight#ExtensionsEnableMonitoring"
+          "target": "com.azure.hdinsight#EnableExtensionMonitoring"
         },
         {
-          "target": "com.azure.hdinsight#ExtensionsGetMonitoringStatus"
+          "target": "com.azure.hdinsight#GetExtensionMonitoringStatus"
         },
         {
           "target": "com.azure.hdinsight#LocationsValidateClusterCreateRequest"
         },
         {
-          "target": "com.azure.hdinsight#LocationsCheckNameAvailability"
+          "target": "com.azure.hdinsight#CheckLocationNameAvailability"
         },
         {
-          "target": "com.azure.hdinsight#LocationsGetAzureAsyncOperationStatus"
+          "target": "com.azure.hdinsight#GetLocationAzureAsyncOperationStatus"
         },
         {
-          "target": "com.azure.hdinsight#LocationsListBillingSpecs"
+          "target": "com.azure.hdinsight#ListLocationBillingSpecs"
         },
         {
-          "target": "com.azure.hdinsight#LocationsListUsages"
+          "target": "com.azure.hdinsight#ListLocationUsages"
         },
         {
-          "target": "com.azure.hdinsight#LocationsGetCapabilities"
+          "target": "com.azure.hdinsight#GetLocationCapabilities"
         },
         {
-          "target": "com.azure.hdinsight#OperationsList"
+          "target": "com.azure.hdinsight#ListOperations"
         },
         {
-          "target": "com.azure.hdinsight#PrivateEndpointConnectionsDelete"
+          "target": "com.azure.hdinsight#DeletePrivateEndpointConnection"
         },
         {
           "target": "com.azure.hdinsight#PrivateEndpointConnectionsCreateOrUpdate"
         },
         {
-          "target": "com.azure.hdinsight#PrivateEndpointConnectionsGet"
+          "target": "com.azure.hdinsight#GetPrivateEndpointConnection"
         },
         {
-          "target": "com.azure.hdinsight#PrivateEndpointConnectionsListByCluster"
+          "target": "com.azure.hdinsight#ListPrivateEndpointConnectionByCluster"
         },
         {
-          "target": "com.azure.hdinsight#PrivateLinkResourcesGet"
+          "target": "com.azure.hdinsight#GetPrivateLinkResource"
         },
         {
-          "target": "com.azure.hdinsight#PrivateLinkResourcesListByCluster"
+          "target": "com.azure.hdinsight#ListPrivateLinkResourceByCluster"
         },
         {
-          "target": "com.azure.hdinsight#ScriptActionsGetExecutionAsyncOperationStatus"
+          "target": "com.azure.hdinsight#GetScriptActionExecutionAsyncOperationStatus"
         },
         {
-          "target": "com.azure.hdinsight#ScriptExecutionHistoryPromote"
+          "target": "com.azure.hdinsight#PromoteScriptExecutionHistory"
         },
         {
-          "target": "com.azure.hdinsight#ScriptExecutionHistoryListByCluster"
+          "target": "com.azure.hdinsight#ListScriptExecutionHistoryByCluster"
         },
         {
-          "target": "com.azure.hdinsight#ScriptActionsGetExecutionDetail"
+          "target": "com.azure.hdinsight#GetScriptActionExecutionDetail"
         },
         {
-          "target": "com.azure.hdinsight#ScriptActionsListByCluster"
+          "target": "com.azure.hdinsight#ListScriptActionByCluster"
         },
         {
-          "target": "com.azure.hdinsight#ClustersExecuteScriptActions"
+          "target": "com.azure.hdinsight#ExecuteClusterScriptActions"
         },
         {
-          "target": "com.azure.hdinsight#ScriptActionsDelete"
+          "target": "com.azure.hdinsight#DeleteScriptAction"
         },
         {
-          "target": "com.azure.hdinsight#VirtualMachinesGetAsyncOperationStatus"
+          "target": "com.azure.hdinsight#GetVirtualMachineAsyncOperationStatus"
         },
         {
-          "target": "com.azure.hdinsight#VirtualMachinesRestartHosts"
+          "target": "com.azure.hdinsight#RestartVirtualMachineHosts"
         },
         {
-          "target": "com.azure.hdinsight#VirtualMachinesListHosts"
+          "target": "com.azure.hdinsight#ListVirtualMachineHosts"
         }
       ],
       "traits": {

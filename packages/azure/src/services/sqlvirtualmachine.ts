@@ -337,7 +337,7 @@ export const AvailabilityGroupListenersCreateOrUpdateResponse =
     identifier: "AvailabilityGroupListenersCreateOrUpdateResponse",
   }) as any as S.Schema<AvailabilityGroupListenersCreateOrUpdateResponse>;
 
-export interface AvailabilityGroupListenersDeleteRequest {
+export interface DeleteAvailabilityGroupListenerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -347,7 +347,7 @@ export interface AvailabilityGroupListenersDeleteRequest {
   /** Name of the availability group listener. */
   availabilityGroupListenerName: string;
 }
-export const AvailabilityGroupListenersDeleteRequest = /*@__PURE__*/ S.suspend(
+export const DeleteAvailabilityGroupListenerRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -363,17 +363,116 @@ export const AvailabilityGroupListenersDeleteRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "AvailabilityGroupListenersDeleteRequest",
-}) as any as S.Schema<AvailabilityGroupListenersDeleteRequest>;
+  identifier: "DeleteAvailabilityGroupListenerRequest",
+}) as any as S.Schema<DeleteAvailabilityGroupListenerRequest>;
 
-export interface AvailabilityGroupListenersDeleteResponse {}
-export const AvailabilityGroupListenersDeleteResponse = /*@__PURE__*/ S.suspend(
+export interface DeleteAvailabilityGroupListenerResponse {}
+export const DeleteAvailabilityGroupListenerResponse = /*@__PURE__*/ S.suspend(
   () => S.Struct({}),
 ).annotate({
-  identifier: "AvailabilityGroupListenersDeleteResponse",
-}) as any as S.Schema<AvailabilityGroupListenersDeleteResponse>;
+  identifier: "DeleteAvailabilityGroupListenerResponse",
+}) as any as S.Schema<DeleteAvailabilityGroupListenerResponse>;
 
-export interface AvailabilityGroupListenersGetRequest {
+export interface DeleteSqlVirtualMachineRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the SQL virtual machine. */
+  sqlVirtualMachineName: string;
+}
+export const DeleteSqlVirtualMachineRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    sqlVirtualMachineName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachines/{sqlVirtualMachineName}",
+      code: 200,
+      apiVersion: "2023-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteSqlVirtualMachineRequest",
+}) as any as S.Schema<DeleteSqlVirtualMachineRequest>;
+
+export interface DeleteSqlVirtualMachineResponse {}
+export const DeleteSqlVirtualMachineResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteSqlVirtualMachineResponse",
+}) as any as S.Schema<DeleteSqlVirtualMachineResponse>;
+
+export interface DeleteSqlVirtualMachineGroupRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the SQL virtual machine group. */
+  sqlVirtualMachineGroupName: string;
+}
+export const DeleteSqlVirtualMachineGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    sqlVirtualMachineGroupName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/{sqlVirtualMachineGroupName}",
+      code: 200,
+      apiVersion: "2023-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteSqlVirtualMachineGroupRequest",
+}) as any as S.Schema<DeleteSqlVirtualMachineGroupRequest>;
+
+export interface DeleteSqlVirtualMachineGroupResponse {}
+export const DeleteSqlVirtualMachineGroupResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteSqlVirtualMachineGroupResponse",
+}) as any as S.Schema<DeleteSqlVirtualMachineGroupResponse>;
+
+export interface FetchSqlVirtualMachineDCAssessmentRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the SQL virtual machine. */
+  sqlVirtualMachineName: string;
+  /** Boolean to run disk config Assessment. Use false to fetch past Assessment. */
+  runDiskConfigRules?: boolean;
+}
+export const FetchSqlVirtualMachineDCAssessmentRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      sqlVirtualMachineName: S.String.pipe(T.Label()),
+      runDiskConfigRules: S.optional(S.Boolean),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachines/{sqlVirtualMachineName}/fetchDCAssessment",
+        code: 200,
+        apiVersion: "2023-10-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "FetchSqlVirtualMachineDCAssessmentRequest",
+  }) as any as S.Schema<FetchSqlVirtualMachineDCAssessmentRequest>;
+
+export interface FetchSqlVirtualMachineDCAssessmentResponse {}
+export const FetchSqlVirtualMachineDCAssessmentResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "FetchSqlVirtualMachineDCAssessmentResponse",
+  }) as any as S.Schema<FetchSqlVirtualMachineDCAssessmentResponse>;
+
+export interface GetAvailabilityGroupListenerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -385,27 +484,26 @@ export interface AvailabilityGroupListenersGetRequest {
   /** The child resources to include in the response. */
   _expand?: string;
 }
-export const AvailabilityGroupListenersGetRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      sqlVirtualMachineGroupName: S.String.pipe(T.Label()),
-      availabilityGroupListenerName: S.String.pipe(T.Label()),
-      _expand: S.optional(S.String.pipe(T.Query("$expand"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/{sqlVirtualMachineGroupName}/availabilityGroupListeners/{availabilityGroupListenerName}",
-        code: 200,
-        apiVersion: "2023-10-01",
-      }),
-    ),
+export const GetAvailabilityGroupListenerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    sqlVirtualMachineGroupName: S.String.pipe(T.Label()),
+    availabilityGroupListenerName: S.String.pipe(T.Label()),
+    _expand: S.optional(S.String.pipe(T.Query("$expand"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/{sqlVirtualMachineGroupName}/availabilityGroupListeners/{availabilityGroupListenerName}",
+      code: 200,
+      apiVersion: "2023-10-01",
+    }),
+  ),
 ).annotate({
-  identifier: "AvailabilityGroupListenersGetRequest",
-}) as any as S.Schema<AvailabilityGroupListenersGetRequest>;
+  identifier: "GetAvailabilityGroupListenerRequest",
+}) as any as S.Schema<GetAvailabilityGroupListenerRequest>;
 
-export interface AvailabilityGroupListenersGetResponse {
+export interface GetAvailabilityGroupListenerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -417,7 +515,7 @@ export interface AvailabilityGroupListenersGetResponse {
   /** Resource properties. */
   properties?: AvailabilityGroupListenerProperties;
 }
-export const AvailabilityGroupListenersGetResponse = /*@__PURE__*/ S.suspend(
+export const GetAvailabilityGroupListenerResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -427,661 +525,45 @@ export const AvailabilityGroupListenersGetResponse = /*@__PURE__*/ S.suspend(
       properties: S.optional(AvailabilityGroupListenerProperties),
     }),
 ).annotate({
-  identifier: "AvailabilityGroupListenersGetResponse",
-}) as any as S.Schema<AvailabilityGroupListenersGetResponse>;
+  identifier: "GetAvailabilityGroupListenerResponse",
+}) as any as S.Schema<GetAvailabilityGroupListenerResponse>;
 
-export interface AvailabilityGroupListenersListByGroupRequest {
+export interface GetSqlVirtualMachineRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** Name of the SQL virtual machine group. */
-  sqlVirtualMachineGroupName: string;
+  /** Name of the SQL virtual machine. */
+  sqlVirtualMachineName: string;
+  /** The child resources to include in the response. */
+  _expand?: string;
 }
-export const AvailabilityGroupListenersListByGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      sqlVirtualMachineGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/{sqlVirtualMachineGroupName}/availabilityGroupListeners",
-        code: 200,
-        apiVersion: "2023-10-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "AvailabilityGroupListenersListByGroupRequest",
-  }) as any as S.Schema<AvailabilityGroupListenersListByGroupRequest>;
-
-/** A SQL Server availability group listener. */
-export interface AvailabilityGroupListener {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource properties. */
-  properties?: AvailabilityGroupListenerProperties;
-}
-export const AvailabilityGroupListener = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(AvailabilityGroupListenerProperties),
-  }),
-).annotate({
-  identifier: "AvailabilityGroupListener",
-}) as any as S.Schema<AvailabilityGroupListener>;
-
-/** The AvailabilityGroupListener items on this page */
-export type AvailabilityGroupListenerListResultValueList =
-  Array<AvailabilityGroupListener>;
-export const AvailabilityGroupListenerListResultValueList =
-  /*@__PURE__*/ S.Array(
-    AvailabilityGroupListener,
-  ) as any as S.Schema<AvailabilityGroupListenerListResultValueList>;
-
-/** The response of a AvailabilityGroupListener list operation. */
-export interface AvailabilityGroupListenerListResult {
-  /** The AvailabilityGroupListener items on this page */
-  value: AvailabilityGroupListenerListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const AvailabilityGroupListenerListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: AvailabilityGroupListenerListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AvailabilityGroupListenerListResult",
-}) as any as S.Schema<AvailabilityGroupListenerListResult>;
-
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.SqlVirtualMachine/operations",
-      code: 200,
-      apiVersion: "2023-10-01",
-    }),
-  ),
-).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
-
-/** Display metadata associated with the operation. */
-export interface OperationDisplay {
-  /** The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring Insights" or "Microsoft Compute". */
-  provider?: string;
-  /** The localized friendly name of the resource type related to this operation. E.g. "Virtual Machines" or "Job Schedule Collections". */
-  resource?: string;
-  /** The concise, localized friendly name for the operation; suitable for dropdowns. E.g. "Create or Update Virtual Machine", "Restart Virtual Machine". */
-  operation?: string;
-  /** The short, localized friendly description of the operation; suitable for tool tips and detailed views. */
-  description?: string;
-}
-export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provider: S.optional(S.String),
-    resource: S.optional(S.String),
-    operation: S.optional(S.String),
-    description: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationDisplay",
-}) as any as S.Schema<OperationDisplay>;
-
-/** The intended executor of the operation. */
-export type OperationOrigin = "user" | "system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
-
-/** Additional descriptions for the operation. */
-export type OperationPropertiesMap = { [key: string]: unknown | undefined };
-export const OperationPropertiesMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<OperationPropertiesMap>;
-
-/** Result of the request to list SQL operations. */
-export interface Operation {
-  /** The name of the operation being performed on this particular object." */
-  name?: string;
-  /** he localized display information for this particular operation / action. */
-  display?: OperationDisplay;
-  /** The intended executor of the operation." */
-  origin?: OperationOrigin;
-  /** Additional descriptions for the operation. */
-  properties?: OperationPropertiesMap;
-}
-export const Operation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    display: S.optional(OperationDisplay),
-    origin: S.optional(OperationOrigin),
-    properties: S.optional(OperationPropertiesMap),
-  }),
-).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
-
-/** The Operation items on this page */
-export type OperationListResultValueList = Array<Operation>;
-export const OperationListResultValueList = /*@__PURE__*/ S.Array(
-  Operation,
-) as any as S.Schema<OperationListResultValueList>;
-
-/** Virtual machine resource id for response. */
-export interface OperationListResult {
-  /** The Operation items on this page */
-  value: OperationListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const OperationListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: OperationListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationListResult",
-}) as any as S.Schema<OperationListResult>;
-
-/** Resource tags. */
-export type SqlVirtualMachineGroupsCreateOrUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const SqlVirtualMachineGroupsCreateOrUpdateRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<SqlVirtualMachineGroupsCreateOrUpdateRequestTagsMap>;
-
-/** SQL image sku. */
-export type SqlVmGroupImageSku = "Developer" | "Enterprise";
-export const SqlVmGroupImageSku = /*@__PURE__*/ S.String;
-
-/** Cluster subnet type. */
-export type ClusterSubnetType = "SingleSubnet" | "MultiSubnet";
-export const ClusterSubnetType = /*@__PURE__*/ S.String;
-
-/** Active Directory account details to operate Windows Server Failover Cluster. */
-export interface WsfcDomainProfile {
-  /** Fully qualified name of the domain. */
-  domainFqdn?: string;
-  /** Organizational Unit path in which the nodes and cluster will be present. */
-  ouPath?: string;
-  /** Account name used for creating cluster (at minimum needs permissions to 'Create Computer Objects' in domain). */
-  clusterBootstrapAccount?: string;
-  /** Account name used for operating cluster i.e. will be part of administrators group on all the participating virtual machines in the cluster. */
-  clusterOperatorAccount?: string;
-  /** Account name under which SQL service will run on all participating SQL virtual machines in the cluster. */
-  sqlServiceAccount?: string;
-  /** The flag to check if SQL service account is GMSA. */
-  isSqlServiceAccountGmsa?: boolean;
-  /** Optional path for fileshare witness. */
-  fileShareWitnessPath?: string;
-  /** Fully qualified ARM resource id of the witness storage account. */
-  storageAccountUrl?: string;
-  /** Primary key of the witness storage account. */
-  storageAccountPrimaryKey?: string;
-  /** Cluster subnet type. */
-  clusterSubnetType?: ClusterSubnetType | (string & {});
-}
-export const WsfcDomainProfile = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    domainFqdn: S.optional(S.String),
-    ouPath: S.optional(S.String),
-    clusterBootstrapAccount: S.optional(S.String),
-    clusterOperatorAccount: S.optional(S.String),
-    sqlServiceAccount: S.optional(S.String),
-    isSqlServiceAccountGmsa: S.optional(S.Boolean),
-    fileShareWitnessPath: S.optional(S.String),
-    storageAccountUrl: S.optional(S.String),
-    storageAccountPrimaryKey: S.optional(S.String),
-    clusterSubnetType: S.optional(ClusterSubnetType),
-  }),
-).annotate({
-  identifier: "WsfcDomainProfile",
-}) as any as S.Schema<WsfcDomainProfile>;
-
-/** The properties of a SQL virtual machine group. */
-export interface SqlVirtualMachineGroupPropertiesInput {
-  /** SQL image offer. Examples may include SQL2016-WS2016, SQL2017-WS2016. */
-  sqlImageOffer?: string;
-  /** SQL image sku. */
-  sqlImageSku?: SqlVmGroupImageSku | (string & {});
-  /** Cluster Active Directory domain profile. */
-  wsfcDomainProfile?: WsfcDomainProfile;
-}
-export const SqlVirtualMachineGroupPropertiesInput = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      sqlImageOffer: S.optional(S.String),
-      sqlImageSku: S.optional(SqlVmGroupImageSku),
-      wsfcDomainProfile: S.optional(WsfcDomainProfile),
-    }),
-).annotate({
-  identifier: "SqlVirtualMachineGroupPropertiesInput",
-}) as any as S.Schema<SqlVirtualMachineGroupPropertiesInput>;
-
-export interface SqlVirtualMachineGroupsCreateOrUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the SQL virtual machine group. */
-  sqlVirtualMachineGroupName: string;
-  /** Resource tags. */
-  tags?: SqlVirtualMachineGroupsCreateOrUpdateRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Resource properties. */
-  properties?: SqlVirtualMachineGroupPropertiesInput;
-}
-export const SqlVirtualMachineGroupsCreateOrUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      sqlVirtualMachineGroupName: S.String.pipe(T.Label()),
-      tags: S.optional(SqlVirtualMachineGroupsCreateOrUpdateRequestTagsMap),
-      location: S.String,
-      properties: S.optional(SqlVirtualMachineGroupPropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/{sqlVirtualMachineGroupName}",
-        code: 200,
-        apiVersion: "2023-10-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "SqlVirtualMachineGroupsCreateOrUpdateRequest",
-  }) as any as S.Schema<SqlVirtualMachineGroupsCreateOrUpdateRequest>;
-
-/** Resource tags. */
-export type SqlVirtualMachineGroupsCreateOrUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const SqlVirtualMachineGroupsCreateOrUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<SqlVirtualMachineGroupsCreateOrUpdateResponseTagsMap>;
-
-/** Scale type. */
-export type ScaleType = "HA";
-export const ScaleType = /*@__PURE__*/ S.String;
-
-/** Type of cluster manager: Windows Server Failover Cluster (WSFC), implied by the scale type of the group and the OS type. */
-export type ClusterManagerType = "WSFC";
-export const ClusterManagerType = /*@__PURE__*/ S.String;
-
-/** Cluster type. */
-export type ClusterConfiguration = "Domainful";
-export const ClusterConfiguration = /*@__PURE__*/ S.String;
-
-/** The properties of a SQL virtual machine group. */
-export interface SqlVirtualMachineGroupProperties {
-  /** Provisioning state to track the async operation status. */
-  provisioningState?: string;
-  /** SQL image offer. Examples may include SQL2016-WS2016, SQL2017-WS2016. */
-  sqlImageOffer?: string;
-  /** SQL image sku. */
-  sqlImageSku?: SqlVmGroupImageSku;
-  /** Scale type. */
-  scaleType?: ScaleType;
-  /** Type of cluster manager: Windows Server Failover Cluster (WSFC), implied by the scale type of the group and the OS type. */
-  clusterManagerType?: ClusterManagerType;
-  /** Cluster type. */
-  clusterConfiguration?: ClusterConfiguration;
-  /** Cluster Active Directory domain profile. */
-  wsfcDomainProfile?: WsfcDomainProfile;
-}
-export const SqlVirtualMachineGroupProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisioningState: S.optional(S.String),
-    sqlImageOffer: S.optional(S.String),
-    sqlImageSku: S.optional(SqlVmGroupImageSku),
-    scaleType: S.optional(ScaleType),
-    clusterManagerType: S.optional(ClusterManagerType),
-    clusterConfiguration: S.optional(ClusterConfiguration),
-    wsfcDomainProfile: S.optional(WsfcDomainProfile),
-  }),
-).annotate({
-  identifier: "SqlVirtualMachineGroupProperties",
-}) as any as S.Schema<SqlVirtualMachineGroupProperties>;
-
-export interface SqlVirtualMachineGroupsCreateOrUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: SqlVirtualMachineGroupsCreateOrUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Resource properties. */
-  properties?: SqlVirtualMachineGroupProperties;
-}
-export const SqlVirtualMachineGroupsCreateOrUpdateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(SqlVirtualMachineGroupsCreateOrUpdateResponseTagsMap),
-      location: S.String,
-      properties: S.optional(SqlVirtualMachineGroupProperties),
-    }),
-  ).annotate({
-    identifier: "SqlVirtualMachineGroupsCreateOrUpdateResponse",
-  }) as any as S.Schema<SqlVirtualMachineGroupsCreateOrUpdateResponse>;
-
-export interface SqlVirtualMachineGroupsDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the SQL virtual machine group. */
-  sqlVirtualMachineGroupName: string;
-}
-export const SqlVirtualMachineGroupsDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      sqlVirtualMachineGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/{sqlVirtualMachineGroupName}",
-        code: 200,
-        apiVersion: "2023-10-01",
-      }),
-    ),
-).annotate({
-  identifier: "SqlVirtualMachineGroupsDeleteRequest",
-}) as any as S.Schema<SqlVirtualMachineGroupsDeleteRequest>;
-
-export interface SqlVirtualMachineGroupsDeleteResponse {}
-export const SqlVirtualMachineGroupsDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "SqlVirtualMachineGroupsDeleteResponse",
-}) as any as S.Schema<SqlVirtualMachineGroupsDeleteResponse>;
-
-export interface SqlVirtualMachineGroupsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the SQL virtual machine group. */
-  sqlVirtualMachineGroupName: string;
-}
-export const SqlVirtualMachineGroupsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetSqlVirtualMachineRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
-    sqlVirtualMachineGroupName: S.String.pipe(T.Label()),
+    sqlVirtualMachineName: S.String.pipe(T.Label()),
+    _expand: S.optional(S.String.pipe(T.Query("$expand"))),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/{sqlVirtualMachineGroupName}",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachines/{sqlVirtualMachineName}",
       code: 200,
       apiVersion: "2023-10-01",
     }),
   ),
 ).annotate({
-  identifier: "SqlVirtualMachineGroupsGetRequest",
-}) as any as S.Schema<SqlVirtualMachineGroupsGetRequest>;
+  identifier: "GetSqlVirtualMachineRequest",
+}) as any as S.Schema<GetSqlVirtualMachineRequest>;
 
 /** Resource tags. */
-export type SqlVirtualMachineGroupsGetResponseTagsMap = {
+export type GetSqlVirtualMachineResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const SqlVirtualMachineGroupsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetSqlVirtualMachineResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SqlVirtualMachineGroupsGetResponseTagsMap>;
-
-export interface SqlVirtualMachineGroupsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: SqlVirtualMachineGroupsGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Resource properties. */
-  properties?: SqlVirtualMachineGroupProperties;
-}
-export const SqlVirtualMachineGroupsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(SqlVirtualMachineGroupsGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(SqlVirtualMachineGroupProperties),
-  }),
-).annotate({
-  identifier: "SqlVirtualMachineGroupsGetResponse",
-}) as any as S.Schema<SqlVirtualMachineGroupsGetResponse>;
-
-export interface SqlVirtualMachineGroupsListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-}
-export const SqlVirtualMachineGroupsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups",
-      code: 200,
-      apiVersion: "2023-10-01",
-    }),
-  ),
-).annotate({
-  identifier: "SqlVirtualMachineGroupsListRequest",
-}) as any as S.Schema<SqlVirtualMachineGroupsListRequest>;
-
-/** Resource tags. */
-export type SqlVirtualMachineGroupTagsMap = {
-  [key: string]: string | undefined;
-};
-export const SqlVirtualMachineGroupTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<SqlVirtualMachineGroupTagsMap>;
-
-/** A SQL virtual machine group. */
-export interface SqlVirtualMachineGroup {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: SqlVirtualMachineGroupTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Resource properties. */
-  properties?: SqlVirtualMachineGroupProperties;
-}
-export const SqlVirtualMachineGroup = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(SqlVirtualMachineGroupTagsMap),
-    location: S.String,
-    properties: S.optional(SqlVirtualMachineGroupProperties),
-  }),
-).annotate({
-  identifier: "SqlVirtualMachineGroup",
-}) as any as S.Schema<SqlVirtualMachineGroup>;
-
-/** The SqlVirtualMachineGroup items on this page */
-export type SqlVirtualMachineGroupListResultValueList =
-  Array<SqlVirtualMachineGroup>;
-export const SqlVirtualMachineGroupListResultValueList = /*@__PURE__*/ S.Array(
-  SqlVirtualMachineGroup,
-) as any as S.Schema<SqlVirtualMachineGroupListResultValueList>;
-
-/** The response of a SqlVirtualMachineGroup list operation. */
-export interface SqlVirtualMachineGroupListResult {
-  /** The SqlVirtualMachineGroup items on this page */
-  value: SqlVirtualMachineGroupListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const SqlVirtualMachineGroupListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: SqlVirtualMachineGroupListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SqlVirtualMachineGroupListResult",
-}) as any as S.Schema<SqlVirtualMachineGroupListResult>;
-
-export interface SqlVirtualMachineGroupsListByResourceGroupRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const SqlVirtualMachineGroupsListByResourceGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups",
-        code: 200,
-        apiVersion: "2023-10-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "SqlVirtualMachineGroupsListByResourceGroupRequest",
-  }) as any as S.Schema<SqlVirtualMachineGroupsListByResourceGroupRequest>;
-
-/** Resource tags. */
-export type SqlVirtualMachineGroupsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const SqlVirtualMachineGroupsUpdateRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<SqlVirtualMachineGroupsUpdateRequestTagsMap>;
-
-export interface SqlVirtualMachineGroupsUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the SQL virtual machine group. */
-  sqlVirtualMachineGroupName: string;
-  /** Resource tags. */
-  tags?: SqlVirtualMachineGroupsUpdateRequestTagsMap;
-}
-export const SqlVirtualMachineGroupsUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      sqlVirtualMachineGroupName: S.String.pipe(T.Label()),
-      tags: S.optional(SqlVirtualMachineGroupsUpdateRequestTagsMap),
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/{sqlVirtualMachineGroupName}",
-        code: 200,
-        apiVersion: "2023-10-01",
-      }),
-    ),
-).annotate({
-  identifier: "SqlVirtualMachineGroupsUpdateRequest",
-}) as any as S.Schema<SqlVirtualMachineGroupsUpdateRequest>;
-
-/** Resource tags. */
-export type SqlVirtualMachineGroupsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const SqlVirtualMachineGroupsUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<SqlVirtualMachineGroupsUpdateResponseTagsMap>;
-
-export interface SqlVirtualMachineGroupsUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: SqlVirtualMachineGroupsUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Resource properties. */
-  properties?: SqlVirtualMachineGroupProperties;
-}
-export const SqlVirtualMachineGroupsUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(SqlVirtualMachineGroupsUpdateResponseTagsMap),
-      location: S.String,
-      properties: S.optional(SqlVirtualMachineGroupProperties),
-    }),
-).annotate({
-  identifier: "SqlVirtualMachineGroupsUpdateResponse",
-}) as any as S.Schema<SqlVirtualMachineGroupsUpdateResponse>;
-
-/** Resource tags. */
-export type SqlVirtualMachinesCreateOrUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const SqlVirtualMachinesCreateOrUpdateRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<SqlVirtualMachinesCreateOrUpdateRequestTagsMap>;
+) as any as S.Schema<GetSqlVirtualMachineResponseTagsMap>;
 
 /** SQL Server license type. */
 export type SqlServerLicenseType = "PAYG" | "AHUB" | "DR";
@@ -1092,10 +574,10 @@ export type SqlManagementMode = "Full" | "LightWeight" | "NoAgent";
 export const SqlManagementMode = /*@__PURE__*/ S.String;
 
 /** SQL IaaS Agent least privilege mode. */
-export type SqlVirtualMachinePropertiesInputLeastPrivilegeMode =
+export type SqlVirtualMachinePropertiesLeastPrivilegeMode =
   | "Enabled"
   | "NotSet";
-export const SqlVirtualMachinePropertiesInputLeastPrivilegeMode =
+export const SqlVirtualMachinePropertiesLeastPrivilegeMode =
   /*@__PURE__*/ S.String;
 
 /** SQL Server edition type. */
@@ -1537,222 +1019,6 @@ export const StorageConfigurationSettings = /*@__PURE__*/ S.suspend(() =>
   identifier: "StorageConfigurationSettings",
 }) as any as S.Schema<StorageConfigurationSettings>;
 
-/** Day of the week to run assessment. */
-export type AssessmentDayOfWeek =
-  | "Monday"
-  | "Tuesday"
-  | "Wednesday"
-  | "Thursday"
-  | "Friday"
-  | "Saturday"
-  | "Sunday";
-export const AssessmentDayOfWeek = /*@__PURE__*/ S.String;
-
-/** Set assessment schedule for SQL Server. */
-export interface Schedule {
-  /** Enable or disable assessment schedule on SQL virtual machine. */
-  enable?: boolean;
-  /** Number of weeks to schedule between 2 assessment runs. Takes value from 1-6 */
-  weeklyInterval?: number;
-  /** Occurrence of the DayOfWeek day within a month to schedule assessment. Takes values: 1,2,3,4 and -1. Use -1 for last DayOfWeek day of the month */
-  monthlyOccurrence?: number;
-  /** Day of the week to run assessment. */
-  dayOfWeek?: AssessmentDayOfWeek | (string & {});
-  /** Time of the day in HH:mm format. Eg. 17:30 */
-  startTime?: string;
-}
-export const Schedule = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    enable: S.optional(S.Boolean),
-    weeklyInterval: S.optional(S.Number),
-    monthlyOccurrence: S.optional(S.Number),
-    dayOfWeek: S.optional(AssessmentDayOfWeek),
-    startTime: S.optional(S.String),
-  }),
-).annotate({ identifier: "Schedule" }) as any as S.Schema<Schedule>;
-
-/** Configure SQL best practices Assessment for databases in your SQL virtual machine. */
-export interface AssessmentSettings {
-  /** Enable or disable SQL best practices Assessment feature on SQL virtual machine. */
-  enable?: boolean;
-  /** Run SQL best practices Assessment immediately on SQL virtual machine. */
-  runImmediately?: boolean;
-  /** Schedule for SQL best practices Assessment. */
-  schedule?: Schedule;
-}
-export const AssessmentSettings = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    enable: S.optional(S.Boolean),
-    runImmediately: S.optional(S.Boolean),
-    schedule: S.optional(Schedule),
-  }),
-).annotate({
-  identifier: "AssessmentSettings",
-}) as any as S.Schema<AssessmentSettings>;
-
-/** Identity type of the virtual machine. Specify None to opt-out of Managed Identities. */
-export type VmIdentityType = "None" | "SystemAssigned" | "UserAssigned";
-export const VmIdentityType = /*@__PURE__*/ S.String;
-
-/** Virtual Machine Identity details used for Sql IaaS extension configurations. */
-export interface VirtualMachineIdentity {
-  /** Identity type of the virtual machine. Specify None to opt-out of Managed Identities. */
-  type?: VmIdentityType | (string & {});
-  /** ARM Resource Id of the identity. Only required when UserAssigned identity is selected. */
-  resourceId?: string;
-}
-export const VirtualMachineIdentity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(VmIdentityType),
-    resourceId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "VirtualMachineIdentity",
-}) as any as S.Schema<VirtualMachineIdentity>;
-
-/** The SQL virtual machine properties. */
-export interface SqlVirtualMachinePropertiesInput {
-  /** ARM Resource id of underlying virtual machine created from SQL marketplace image. */
-  virtualMachineResourceId?: string;
-  /** SQL image offer. Examples include SQL2016-WS2016, SQL2017-WS2016. */
-  sqlImageOffer?: string;
-  /** SQL Server license type. */
-  sqlServerLicenseType?: SqlServerLicenseType | (string & {});
-  /** SQL Server Management type. NOTE: This parameter is not used anymore. API will automatically detect the Sql Management, refrain from using it. */
-  sqlManagement?: SqlManagementMode | (string & {});
-  /** SQL IaaS Agent least privilege mode. */
-  leastPrivilegeMode?:
-    | SqlVirtualMachinePropertiesInputLeastPrivilegeMode
-    | (string & {});
-  /** SQL Server edition type. */
-  sqlImageSku?: SqlImageSku | (string & {});
-  /** ARM resource id of the SQL virtual machine group this SQL virtual machine is or will be part of. */
-  sqlVirtualMachineGroupResourceId?: string;
-  /** Domain credentials for setting up Windows Server Failover Cluster for SQL availability group. */
-  wsfcDomainCredentials?: WsfcDomainCredentials;
-  /** Domain credentials for setting up Windows Server Failover Cluster for SQL availability group. */
-  wsfcStaticIp?: string;
-  /** Auto patching settings for applying critical security updates to SQL virtual machine. */
-  autoPatchingSettings?: AutoPatchingSettings;
-  /** Auto backup settings for SQL Server. */
-  autoBackupSettings?: AutoBackupSettings;
-  /** Key vault credential settings. */
-  keyVaultCredentialSettings?: KeyVaultCredentialSettings;
-  /** SQL Server configuration management settings. */
-  serverConfigurationsManagementSettings?: ServerConfigurationsManagementSettings;
-  /** Storage Configuration Settings. */
-  storageConfigurationSettings?: StorageConfigurationSettings;
-  /** SQL best practices Assessment Settings. */
-  assessmentSettings?: AssessmentSettings;
-  /** Enable automatic upgrade of Sql IaaS extension Agent. */
-  enableAutomaticUpgrade?: boolean;
-  /** Virtual Machine Identity details used for Sql IaaS extension configurations. */
-  virtualMachineIdentitySettings?: VirtualMachineIdentity;
-}
-export const SqlVirtualMachinePropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    virtualMachineResourceId: S.optional(S.String),
-    sqlImageOffer: S.optional(S.String),
-    sqlServerLicenseType: S.optional(SqlServerLicenseType),
-    sqlManagement: S.optional(SqlManagementMode),
-    leastPrivilegeMode: S.optional(
-      SqlVirtualMachinePropertiesInputLeastPrivilegeMode,
-    ),
-    sqlImageSku: S.optional(SqlImageSku),
-    sqlVirtualMachineGroupResourceId: S.optional(S.String),
-    wsfcDomainCredentials: S.optional(WsfcDomainCredentials),
-    wsfcStaticIp: S.optional(S.String),
-    autoPatchingSettings: S.optional(AutoPatchingSettings),
-    autoBackupSettings: S.optional(AutoBackupSettings),
-    keyVaultCredentialSettings: S.optional(KeyVaultCredentialSettings),
-    serverConfigurationsManagementSettings: S.optional(
-      ServerConfigurationsManagementSettings,
-    ),
-    storageConfigurationSettings: S.optional(StorageConfigurationSettings),
-    assessmentSettings: S.optional(AssessmentSettings),
-    enableAutomaticUpgrade: S.optional(S.Boolean),
-    virtualMachineIdentitySettings: S.optional(VirtualMachineIdentity),
-  }),
-).annotate({
-  identifier: "SqlVirtualMachinePropertiesInput",
-}) as any as S.Schema<SqlVirtualMachinePropertiesInput>;
-
-/** The identity type. Set this to 'SystemAssigned' in order to automatically create and assign an Azure Active Directory principal for the resource. */
-export type IdentityType =
-  | "None"
-  | "SystemAssigned"
-  | "UserAssigned"
-  | "SystemAssigned,UserAssigned";
-export const IdentityType = /*@__PURE__*/ S.String;
-
-/** Azure Active Directory identity configuration for a resource. */
-export interface ResourceIdentityInput {
-  /** The identity type. Set this to 'SystemAssigned' in order to automatically create and assign an Azure Active Directory principal for the resource. */
-  type?: IdentityType | (string & {});
-}
-export const ResourceIdentityInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(IdentityType),
-  }),
-).annotate({
-  identifier: "ResourceIdentityInput",
-}) as any as S.Schema<ResourceIdentityInput>;
-
-export interface SqlVirtualMachinesCreateOrUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the SQL virtual machine. */
-  sqlVirtualMachineName: string;
-  /** Resource tags. */
-  tags?: SqlVirtualMachinesCreateOrUpdateRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Resource properties. */
-  properties?: SqlVirtualMachinePropertiesInput;
-  /** DO NOT USE. This value will be deprecated. Azure Active Directory identity of the server. */
-  identity?: ResourceIdentityInput;
-}
-export const SqlVirtualMachinesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      sqlVirtualMachineName: S.String.pipe(T.Label()),
-      tags: S.optional(SqlVirtualMachinesCreateOrUpdateRequestTagsMap),
-      location: S.String,
-      properties: S.optional(SqlVirtualMachinePropertiesInput),
-      identity: S.optional(ResourceIdentityInput),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachines/{sqlVirtualMachineName}",
-        code: 200,
-        apiVersion: "2023-10-01",
-      }),
-    ),
-).annotate({
-  identifier: "SqlVirtualMachinesCreateOrUpdateRequest",
-}) as any as S.Schema<SqlVirtualMachinesCreateOrUpdateRequest>;
-
-/** Resource tags. */
-export type SqlVirtualMachinesCreateOrUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const SqlVirtualMachinesCreateOrUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<SqlVirtualMachinesCreateOrUpdateResponseTagsMap>;
-
-/** SQL IaaS Agent least privilege mode. */
-export type SqlVirtualMachinePropertiesLeastPrivilegeMode =
-  | "Enabled"
-  | "NotSet";
-export const SqlVirtualMachinePropertiesLeastPrivilegeMode =
-  /*@__PURE__*/ S.String;
-
 /** SQL VM troubleshooting scenario. */
 export type TroubleshootingStatusTroubleshootingScenario = "UnhealthyReplica";
 export const TroubleshootingStatusTroubleshootingScenario =
@@ -1814,9 +1080,82 @@ export const TroubleshootingStatus = /*@__PURE__*/ S.suspend(() =>
   identifier: "TroubleshootingStatus",
 }) as any as S.Schema<TroubleshootingStatus>;
 
+/** Day of the week to run assessment. */
+export type AssessmentDayOfWeek =
+  | "Monday"
+  | "Tuesday"
+  | "Wednesday"
+  | "Thursday"
+  | "Friday"
+  | "Saturday"
+  | "Sunday";
+export const AssessmentDayOfWeek = /*@__PURE__*/ S.String;
+
+/** Set assessment schedule for SQL Server. */
+export interface Schedule {
+  /** Enable or disable assessment schedule on SQL virtual machine. */
+  enable?: boolean;
+  /** Number of weeks to schedule between 2 assessment runs. Takes value from 1-6 */
+  weeklyInterval?: number;
+  /** Occurrence of the DayOfWeek day within a month to schedule assessment. Takes values: 1,2,3,4 and -1. Use -1 for last DayOfWeek day of the month */
+  monthlyOccurrence?: number;
+  /** Day of the week to run assessment. */
+  dayOfWeek?: AssessmentDayOfWeek | (string & {});
+  /** Time of the day in HH:mm format. Eg. 17:30 */
+  startTime?: string;
+}
+export const Schedule = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    enable: S.optional(S.Boolean),
+    weeklyInterval: S.optional(S.Number),
+    monthlyOccurrence: S.optional(S.Number),
+    dayOfWeek: S.optional(AssessmentDayOfWeek),
+    startTime: S.optional(S.String),
+  }),
+).annotate({ identifier: "Schedule" }) as any as S.Schema<Schedule>;
+
+/** Configure SQL best practices Assessment for databases in your SQL virtual machine. */
+export interface AssessmentSettings {
+  /** Enable or disable SQL best practices Assessment feature on SQL virtual machine. */
+  enable?: boolean;
+  /** Run SQL best practices Assessment immediately on SQL virtual machine. */
+  runImmediately?: boolean;
+  /** Schedule for SQL best practices Assessment. */
+  schedule?: Schedule;
+}
+export const AssessmentSettings = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    enable: S.optional(S.Boolean),
+    runImmediately: S.optional(S.Boolean),
+    schedule: S.optional(Schedule),
+  }),
+).annotate({
+  identifier: "AssessmentSettings",
+}) as any as S.Schema<AssessmentSettings>;
+
 /** Additional VM Patching solution enabled on the Virtual Machine */
 export type AdditionalOsPatch = "WU" | "WUMU" | "WSUS";
 export const AdditionalOsPatch = /*@__PURE__*/ S.String;
+
+/** Identity type of the virtual machine. Specify None to opt-out of Managed Identities. */
+export type VmIdentityType = "None" | "SystemAssigned" | "UserAssigned";
+export const VmIdentityType = /*@__PURE__*/ S.String;
+
+/** Virtual Machine Identity details used for Sql IaaS extension configurations. */
+export interface VirtualMachineIdentity {
+  /** Identity type of the virtual machine. Specify None to opt-out of Managed Identities. */
+  type?: VmIdentityType | (string & {});
+  /** ARM Resource Id of the identity. Only required when UserAssigned identity is selected. */
+  resourceId?: string;
+}
+export const VirtualMachineIdentity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.optional(VmIdentityType),
+    resourceId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "VirtualMachineIdentity",
+}) as any as S.Schema<VirtualMachineIdentity>;
 
 /** Operating System of the current SQL Virtual Machine. */
 export type OsType = "Windows" | "Linux";
@@ -1899,6 +1238,14 @@ export const SqlVirtualMachineProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "SqlVirtualMachineProperties",
 }) as any as S.Schema<SqlVirtualMachineProperties>;
 
+/** The identity type. Set this to 'SystemAssigned' in order to automatically create and assign an Azure Active Directory principal for the resource. */
+export type IdentityType =
+  | "None"
+  | "SystemAssigned"
+  | "UserAssigned"
+  | "SystemAssigned,UserAssigned";
+export const IdentityType = /*@__PURE__*/ S.String;
+
 /** Azure Active Directory identity configuration for a resource. */
 export interface ResourceIdentity {
   /** The Azure Active Directory principal id. */
@@ -1918,7 +1265,7 @@ export const ResourceIdentity = /*@__PURE__*/ S.suspend(() =>
   identifier: "ResourceIdentity",
 }) as any as S.Schema<ResourceIdentity>;
 
-export interface SqlVirtualMachinesCreateOrUpdateResponse {
+export interface GetSqlVirtualMachineResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -1928,7 +1275,7 @@ export interface SqlVirtualMachinesCreateOrUpdateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: SqlVirtualMachinesCreateOrUpdateResponseTagsMap;
+  tags?: GetSqlVirtualMachineResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Resource properties. */
@@ -1936,177 +1283,362 @@ export interface SqlVirtualMachinesCreateOrUpdateResponse {
   /** DO NOT USE. This value will be deprecated. Azure Active Directory identity of the server. */
   identity?: ResourceIdentity;
 }
-export const SqlVirtualMachinesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(SqlVirtualMachinesCreateOrUpdateResponseTagsMap),
-      location: S.String,
-      properties: S.optional(SqlVirtualMachineProperties),
-      identity: S.optional(ResourceIdentity),
-    }),
-).annotate({
-  identifier: "SqlVirtualMachinesCreateOrUpdateResponse",
-}) as any as S.Schema<SqlVirtualMachinesCreateOrUpdateResponse>;
-
-export interface SqlVirtualMachinesDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the SQL virtual machine. */
-  sqlVirtualMachineName: string;
-}
-export const SqlVirtualMachinesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    sqlVirtualMachineName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachines/{sqlVirtualMachineName}",
-      code: 200,
-      apiVersion: "2023-10-01",
-    }),
-  ),
-).annotate({
-  identifier: "SqlVirtualMachinesDeleteRequest",
-}) as any as S.Schema<SqlVirtualMachinesDeleteRequest>;
-
-export interface SqlVirtualMachinesDeleteResponse {}
-export const SqlVirtualMachinesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "SqlVirtualMachinesDeleteResponse",
-}) as any as S.Schema<SqlVirtualMachinesDeleteResponse>;
-
-export interface SqlVirtualMachinesFetchDCAssessmentRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the SQL virtual machine. */
-  sqlVirtualMachineName: string;
-  /** Boolean to run disk config Assessment. Use false to fetch past Assessment. */
-  runDiskConfigRules?: boolean;
-}
-export const SqlVirtualMachinesFetchDCAssessmentRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      sqlVirtualMachineName: S.String.pipe(T.Label()),
-      runDiskConfigRules: S.optional(S.Boolean),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachines/{sqlVirtualMachineName}/fetchDCAssessment",
-        code: 200,
-        apiVersion: "2023-10-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "SqlVirtualMachinesFetchDCAssessmentRequest",
-  }) as any as S.Schema<SqlVirtualMachinesFetchDCAssessmentRequest>;
-
-export interface SqlVirtualMachinesFetchDCAssessmentResponse {}
-export const SqlVirtualMachinesFetchDCAssessmentResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "SqlVirtualMachinesFetchDCAssessmentResponse",
-  }) as any as S.Schema<SqlVirtualMachinesFetchDCAssessmentResponse>;
-
-export interface SqlVirtualMachinesGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the SQL virtual machine. */
-  sqlVirtualMachineName: string;
-  /** The child resources to include in the response. */
-  _expand?: string;
-}
-export const SqlVirtualMachinesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    sqlVirtualMachineName: S.String.pipe(T.Label()),
-    _expand: S.optional(S.String.pipe(T.Query("$expand"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachines/{sqlVirtualMachineName}",
-      code: 200,
-      apiVersion: "2023-10-01",
-    }),
-  ),
-).annotate({
-  identifier: "SqlVirtualMachinesGetRequest",
-}) as any as S.Schema<SqlVirtualMachinesGetRequest>;
-
-/** Resource tags. */
-export type SqlVirtualMachinesGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const SqlVirtualMachinesGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<SqlVirtualMachinesGetResponseTagsMap>;
-
-export interface SqlVirtualMachinesGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: SqlVirtualMachinesGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Resource properties. */
-  properties?: SqlVirtualMachineProperties;
-  /** DO NOT USE. This value will be deprecated. Azure Active Directory identity of the server. */
-  identity?: ResourceIdentity;
-}
-export const SqlVirtualMachinesGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetSqlVirtualMachineResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(SqlVirtualMachinesGetResponseTagsMap),
+    tags: S.optional(GetSqlVirtualMachineResponseTagsMap),
     location: S.String,
     properties: S.optional(SqlVirtualMachineProperties),
     identity: S.optional(ResourceIdentity),
   }),
 ).annotate({
-  identifier: "SqlVirtualMachinesGetResponse",
-}) as any as S.Schema<SqlVirtualMachinesGetResponse>;
+  identifier: "GetSqlVirtualMachineResponse",
+}) as any as S.Schema<GetSqlVirtualMachineResponse>;
 
-export interface SqlVirtualMachinesListRequest {
+export interface GetSqlVirtualMachineGroupRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the SQL virtual machine group. */
+  sqlVirtualMachineGroupName: string;
 }
-export const SqlVirtualMachinesListRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetSqlVirtualMachineGroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    sqlVirtualMachineGroupName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachines",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/{sqlVirtualMachineGroupName}",
       code: 200,
       apiVersion: "2023-10-01",
     }),
   ),
 ).annotate({
-  identifier: "SqlVirtualMachinesListRequest",
-}) as any as S.Schema<SqlVirtualMachinesListRequest>;
+  identifier: "GetSqlVirtualMachineGroupRequest",
+}) as any as S.Schema<GetSqlVirtualMachineGroupRequest>;
+
+/** Resource tags. */
+export type GetSqlVirtualMachineGroupResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetSqlVirtualMachineGroupResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetSqlVirtualMachineGroupResponseTagsMap>;
+
+/** SQL image sku. */
+export type SqlVmGroupImageSku = "Developer" | "Enterprise";
+export const SqlVmGroupImageSku = /*@__PURE__*/ S.String;
+
+/** Scale type. */
+export type ScaleType = "HA";
+export const ScaleType = /*@__PURE__*/ S.String;
+
+/** Type of cluster manager: Windows Server Failover Cluster (WSFC), implied by the scale type of the group and the OS type. */
+export type ClusterManagerType = "WSFC";
+export const ClusterManagerType = /*@__PURE__*/ S.String;
+
+/** Cluster type. */
+export type ClusterConfiguration = "Domainful";
+export const ClusterConfiguration = /*@__PURE__*/ S.String;
+
+/** Cluster subnet type. */
+export type ClusterSubnetType = "SingleSubnet" | "MultiSubnet";
+export const ClusterSubnetType = /*@__PURE__*/ S.String;
+
+/** Active Directory account details to operate Windows Server Failover Cluster. */
+export interface WsfcDomainProfile {
+  /** Fully qualified name of the domain. */
+  domainFqdn?: string;
+  /** Organizational Unit path in which the nodes and cluster will be present. */
+  ouPath?: string;
+  /** Account name used for creating cluster (at minimum needs permissions to 'Create Computer Objects' in domain). */
+  clusterBootstrapAccount?: string;
+  /** Account name used for operating cluster i.e. will be part of administrators group on all the participating virtual machines in the cluster. */
+  clusterOperatorAccount?: string;
+  /** Account name under which SQL service will run on all participating SQL virtual machines in the cluster. */
+  sqlServiceAccount?: string;
+  /** The flag to check if SQL service account is GMSA. */
+  isSqlServiceAccountGmsa?: boolean;
+  /** Optional path for fileshare witness. */
+  fileShareWitnessPath?: string;
+  /** Fully qualified ARM resource id of the witness storage account. */
+  storageAccountUrl?: string;
+  /** Primary key of the witness storage account. */
+  storageAccountPrimaryKey?: string;
+  /** Cluster subnet type. */
+  clusterSubnetType?: ClusterSubnetType | (string & {});
+}
+export const WsfcDomainProfile = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    domainFqdn: S.optional(S.String),
+    ouPath: S.optional(S.String),
+    clusterBootstrapAccount: S.optional(S.String),
+    clusterOperatorAccount: S.optional(S.String),
+    sqlServiceAccount: S.optional(S.String),
+    isSqlServiceAccountGmsa: S.optional(S.Boolean),
+    fileShareWitnessPath: S.optional(S.String),
+    storageAccountUrl: S.optional(S.String),
+    storageAccountPrimaryKey: S.optional(S.String),
+    clusterSubnetType: S.optional(ClusterSubnetType),
+  }),
+).annotate({
+  identifier: "WsfcDomainProfile",
+}) as any as S.Schema<WsfcDomainProfile>;
+
+/** The properties of a SQL virtual machine group. */
+export interface SqlVirtualMachineGroupProperties {
+  /** Provisioning state to track the async operation status. */
+  provisioningState?: string;
+  /** SQL image offer. Examples may include SQL2016-WS2016, SQL2017-WS2016. */
+  sqlImageOffer?: string;
+  /** SQL image sku. */
+  sqlImageSku?: SqlVmGroupImageSku;
+  /** Scale type. */
+  scaleType?: ScaleType;
+  /** Type of cluster manager: Windows Server Failover Cluster (WSFC), implied by the scale type of the group and the OS type. */
+  clusterManagerType?: ClusterManagerType;
+  /** Cluster type. */
+  clusterConfiguration?: ClusterConfiguration;
+  /** Cluster Active Directory domain profile. */
+  wsfcDomainProfile?: WsfcDomainProfile;
+}
+export const SqlVirtualMachineGroupProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(S.String),
+    sqlImageOffer: S.optional(S.String),
+    sqlImageSku: S.optional(SqlVmGroupImageSku),
+    scaleType: S.optional(ScaleType),
+    clusterManagerType: S.optional(ClusterManagerType),
+    clusterConfiguration: S.optional(ClusterConfiguration),
+    wsfcDomainProfile: S.optional(WsfcDomainProfile),
+  }),
+).annotate({
+  identifier: "SqlVirtualMachineGroupProperties",
+}) as any as S.Schema<SqlVirtualMachineGroupProperties>;
+
+export interface GetSqlVirtualMachineGroupResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetSqlVirtualMachineGroupResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Resource properties. */
+  properties?: SqlVirtualMachineGroupProperties;
+}
+export const GetSqlVirtualMachineGroupResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetSqlVirtualMachineGroupResponseTagsMap),
+    location: S.String,
+    properties: S.optional(SqlVirtualMachineGroupProperties),
+  }),
+).annotate({
+  identifier: "GetSqlVirtualMachineGroupResponse",
+}) as any as S.Schema<GetSqlVirtualMachineGroupResponse>;
+
+export interface ListAvailabilityGroupListenerByGroupRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the SQL virtual machine group. */
+  sqlVirtualMachineGroupName: string;
+}
+export const ListAvailabilityGroupListenerByGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      sqlVirtualMachineGroupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/{sqlVirtualMachineGroupName}/availabilityGroupListeners",
+        code: 200,
+        apiVersion: "2023-10-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListAvailabilityGroupListenerByGroupRequest",
+  }) as any as S.Schema<ListAvailabilityGroupListenerByGroupRequest>;
+
+/** A SQL Server availability group listener. */
+export interface AvailabilityGroupListener {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource properties. */
+  properties?: AvailabilityGroupListenerProperties;
+}
+export const AvailabilityGroupListener = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(AvailabilityGroupListenerProperties),
+  }),
+).annotate({
+  identifier: "AvailabilityGroupListener",
+}) as any as S.Schema<AvailabilityGroupListener>;
+
+/** The AvailabilityGroupListener items on this page */
+export type AvailabilityGroupListenerListResultValueList =
+  Array<AvailabilityGroupListener>;
+export const AvailabilityGroupListenerListResultValueList =
+  /*@__PURE__*/ S.Array(
+    AvailabilityGroupListener,
+  ) as any as S.Schema<AvailabilityGroupListenerListResultValueList>;
+
+/** The response of a AvailabilityGroupListener list operation. */
+export interface AvailabilityGroupListenerListResult {
+  /** The AvailabilityGroupListener items on this page */
+  value: AvailabilityGroupListenerListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const AvailabilityGroupListenerListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: AvailabilityGroupListenerListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AvailabilityGroupListenerListResult",
+}) as any as S.Schema<AvailabilityGroupListenerListResult>;
+
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.SqlVirtualMachine/operations",
+      code: 200,
+      apiVersion: "2023-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
+
+/** Display metadata associated with the operation. */
+export interface OperationDisplay {
+  /** The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring Insights" or "Microsoft Compute". */
+  provider?: string;
+  /** The localized friendly name of the resource type related to this operation. E.g. "Virtual Machines" or "Job Schedule Collections". */
+  resource?: string;
+  /** The concise, localized friendly name for the operation; suitable for dropdowns. E.g. "Create or Update Virtual Machine", "Restart Virtual Machine". */
+  operation?: string;
+  /** The short, localized friendly description of the operation; suitable for tool tips and detailed views. */
+  description?: string;
+}
+export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provider: S.optional(S.String),
+    resource: S.optional(S.String),
+    operation: S.optional(S.String),
+    description: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationDisplay",
+}) as any as S.Schema<OperationDisplay>;
+
+/** The intended executor of the operation. */
+export type OperationOrigin = "user" | "system";
+export const OperationOrigin = /*@__PURE__*/ S.String;
+
+/** Additional descriptions for the operation. */
+export type OperationPropertiesMap = { [key: string]: unknown | undefined };
+export const OperationPropertiesMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<OperationPropertiesMap>;
+
+/** Result of the request to list SQL operations. */
+export interface Operation {
+  /** The name of the operation being performed on this particular object." */
+  name?: string;
+  /** he localized display information for this particular operation / action. */
+  display?: OperationDisplay;
+  /** The intended executor of the operation." */
+  origin?: OperationOrigin;
+  /** Additional descriptions for the operation. */
+  properties?: OperationPropertiesMap;
+}
+export const Operation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    display: S.optional(OperationDisplay),
+    origin: S.optional(OperationOrigin),
+    properties: S.optional(OperationPropertiesMap),
+  }),
+).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
+
+/** The Operation items on this page */
+export type OperationListResultValueList = Array<Operation>;
+export const OperationListResultValueList = /*@__PURE__*/ S.Array(
+  Operation,
+) as any as S.Schema<OperationListResultValueList>;
+
+/** Virtual machine resource id for response. */
+export interface OperationListResult {
+  /** The Operation items on this page */
+  value: OperationListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const OperationListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: OperationListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationListResult",
+}) as any as S.Schema<OperationListResult>;
+
+export interface ListSqlVirtualMachineByResourceGroupRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const ListSqlVirtualMachineByResourceGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachines",
+        code: 200,
+        apiVersion: "2023-10-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListSqlVirtualMachineByResourceGroupRequest",
+  }) as any as S.Schema<ListSqlVirtualMachineByResourceGroupRequest>;
 
 /** Resource tags. */
 export type SqlVirtualMachineTagsMap = { [key: string]: string | undefined };
@@ -2171,30 +1703,7 @@ export const SqlVirtualMachineListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "SqlVirtualMachineListResult",
 }) as any as S.Schema<SqlVirtualMachineListResult>;
 
-export interface SqlVirtualMachinesListByResourceGroupRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const SqlVirtualMachinesListByResourceGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachines",
-        code: 200,
-        apiVersion: "2023-10-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "SqlVirtualMachinesListByResourceGroupRequest",
-  }) as any as S.Schema<SqlVirtualMachinesListByResourceGroupRequest>;
-
-export interface SqlVirtualMachinesListBySqlVmGroupRequest {
+export interface ListSqlVirtualMachineBySqlVmGroupRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2202,8 +1711,8 @@ export interface SqlVirtualMachinesListBySqlVmGroupRequest {
   /** Name of the SQL virtual machine group. */
   sqlVirtualMachineGroupName: string;
 }
-export const SqlVirtualMachinesListBySqlVmGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const ListSqlVirtualMachineBySqlVmGroupRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
@@ -2216,11 +1725,135 @@ export const SqlVirtualMachinesListBySqlVmGroupRequest =
         apiVersion: "2023-10-01",
       }),
     ),
-  ).annotate({
-    identifier: "SqlVirtualMachinesListBySqlVmGroupRequest",
-  }) as any as S.Schema<SqlVirtualMachinesListBySqlVmGroupRequest>;
+).annotate({
+  identifier: "ListSqlVirtualMachineBySqlVmGroupRequest",
+}) as any as S.Schema<ListSqlVirtualMachineBySqlVmGroupRequest>;
 
-export interface SqlVirtualMachinesRedeployRequest {
+export interface ListSqlVirtualMachineGroupByResourceGroupRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const ListSqlVirtualMachineGroupByResourceGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups",
+        code: 200,
+        apiVersion: "2023-10-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListSqlVirtualMachineGroupByResourceGroupRequest",
+  }) as any as S.Schema<ListSqlVirtualMachineGroupByResourceGroupRequest>;
+
+/** Resource tags. */
+export type SqlVirtualMachineGroupTagsMap = {
+  [key: string]: string | undefined;
+};
+export const SqlVirtualMachineGroupTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<SqlVirtualMachineGroupTagsMap>;
+
+/** A SQL virtual machine group. */
+export interface SqlVirtualMachineGroup {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: SqlVirtualMachineGroupTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Resource properties. */
+  properties?: SqlVirtualMachineGroupProperties;
+}
+export const SqlVirtualMachineGroup = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(SqlVirtualMachineGroupTagsMap),
+    location: S.String,
+    properties: S.optional(SqlVirtualMachineGroupProperties),
+  }),
+).annotate({
+  identifier: "SqlVirtualMachineGroup",
+}) as any as S.Schema<SqlVirtualMachineGroup>;
+
+/** The SqlVirtualMachineGroup items on this page */
+export type SqlVirtualMachineGroupListResultValueList =
+  Array<SqlVirtualMachineGroup>;
+export const SqlVirtualMachineGroupListResultValueList = /*@__PURE__*/ S.Array(
+  SqlVirtualMachineGroup,
+) as any as S.Schema<SqlVirtualMachineGroupListResultValueList>;
+
+/** The response of a SqlVirtualMachineGroup list operation. */
+export interface SqlVirtualMachineGroupListResult {
+  /** The SqlVirtualMachineGroup items on this page */
+  value: SqlVirtualMachineGroupListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const SqlVirtualMachineGroupListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: SqlVirtualMachineGroupListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SqlVirtualMachineGroupListResult",
+}) as any as S.Schema<SqlVirtualMachineGroupListResult>;
+
+export interface ListSqlVirtualMachineGroupsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+}
+export const ListSqlVirtualMachineGroupsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups",
+      code: 200,
+      apiVersion: "2023-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListSqlVirtualMachineGroupsRequest",
+}) as any as S.Schema<ListSqlVirtualMachineGroupsRequest>;
+
+export interface ListSqlVirtualMachinesRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+}
+export const ListSqlVirtualMachinesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachines",
+      code: 200,
+      apiVersion: "2023-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListSqlVirtualMachinesRequest",
+}) as any as S.Schema<ListSqlVirtualMachinesRequest>;
+
+export interface RedeploySqlVirtualMachineRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2228,7 +1861,7 @@ export interface SqlVirtualMachinesRedeployRequest {
   /** Name of the SQL virtual machine. */
   sqlVirtualMachineName: string;
 }
-export const SqlVirtualMachinesRedeployRequest = /*@__PURE__*/ S.suspend(() =>
+export const RedeploySqlVirtualMachineRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2242,95 +1875,92 @@ export const SqlVirtualMachinesRedeployRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "SqlVirtualMachinesRedeployRequest",
-}) as any as S.Schema<SqlVirtualMachinesRedeployRequest>;
+  identifier: "RedeploySqlVirtualMachineRequest",
+}) as any as S.Schema<RedeploySqlVirtualMachineRequest>;
 
-export interface SqlVirtualMachinesRedeployResponse {}
-export const SqlVirtualMachinesRedeployResponse = /*@__PURE__*/ S.suspend(() =>
+export interface RedeploySqlVirtualMachineResponse {}
+export const RedeploySqlVirtualMachineResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "SqlVirtualMachinesRedeployResponse",
-}) as any as S.Schema<SqlVirtualMachinesRedeployResponse>;
+  identifier: "RedeploySqlVirtualMachineResponse",
+}) as any as S.Schema<RedeploySqlVirtualMachineResponse>;
 
-export interface SqlVirtualMachinesStartAssessmentRequest {
+/** Resource tags. */
+export type SqlVirtualMachineGroupsCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const SqlVirtualMachineGroupsCreateOrUpdateRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<SqlVirtualMachineGroupsCreateOrUpdateRequestTagsMap>;
+
+/** The properties of a SQL virtual machine group. */
+export interface SqlVirtualMachineGroupPropertiesInput {
+  /** SQL image offer. Examples may include SQL2016-WS2016, SQL2017-WS2016. */
+  sqlImageOffer?: string;
+  /** SQL image sku. */
+  sqlImageSku?: SqlVmGroupImageSku | (string & {});
+  /** Cluster Active Directory domain profile. */
+  wsfcDomainProfile?: WsfcDomainProfile;
+}
+export const SqlVirtualMachineGroupPropertiesInput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      sqlImageOffer: S.optional(S.String),
+      sqlImageSku: S.optional(SqlVmGroupImageSku),
+      wsfcDomainProfile: S.optional(WsfcDomainProfile),
+    }),
+).annotate({
+  identifier: "SqlVirtualMachineGroupPropertiesInput",
+}) as any as S.Schema<SqlVirtualMachineGroupPropertiesInput>;
+
+export interface SqlVirtualMachineGroupsCreateOrUpdateRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** Name of the SQL virtual machine. */
-  sqlVirtualMachineName: string;
+  /** Name of the SQL virtual machine group. */
+  sqlVirtualMachineGroupName: string;
+  /** Resource tags. */
+  tags?: SqlVirtualMachineGroupsCreateOrUpdateRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Resource properties. */
+  properties?: SqlVirtualMachineGroupPropertiesInput;
 }
-export const SqlVirtualMachinesStartAssessmentRequest = /*@__PURE__*/ S.suspend(
-  () =>
+export const SqlVirtualMachineGroupsCreateOrUpdateRequest =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
-      sqlVirtualMachineName: S.String.pipe(T.Label()),
+      sqlVirtualMachineGroupName: S.String.pipe(T.Label()),
+      tags: S.optional(SqlVirtualMachineGroupsCreateOrUpdateRequestTagsMap),
+      location: S.String,
+      properties: S.optional(SqlVirtualMachineGroupPropertiesInput),
     }).pipe(
       T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachines/{sqlVirtualMachineName}/startAssessment",
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/{sqlVirtualMachineGroupName}",
         code: 200,
         apiVersion: "2023-10-01",
       }),
     ),
-).annotate({
-  identifier: "SqlVirtualMachinesStartAssessmentRequest",
-}) as any as S.Schema<SqlVirtualMachinesStartAssessmentRequest>;
-
-export interface SqlVirtualMachinesStartAssessmentResponse {}
-export const SqlVirtualMachinesStartAssessmentResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "SqlVirtualMachinesStartAssessmentResponse",
-  }) as any as S.Schema<SqlVirtualMachinesStartAssessmentResponse>;
+  ).annotate({
+    identifier: "SqlVirtualMachineGroupsCreateOrUpdateRequest",
+  }) as any as S.Schema<SqlVirtualMachineGroupsCreateOrUpdateRequest>;
 
 /** Resource tags. */
-export type SqlVirtualMachinesUpdateRequestTagsMap = {
+export type SqlVirtualMachineGroupsCreateOrUpdateResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const SqlVirtualMachinesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<SqlVirtualMachinesUpdateRequestTagsMap>;
+export const SqlVirtualMachineGroupsCreateOrUpdateResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<SqlVirtualMachineGroupsCreateOrUpdateResponseTagsMap>;
 
-export interface SqlVirtualMachinesUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the SQL virtual machine. */
-  sqlVirtualMachineName: string;
-  /** Resource tags. */
-  tags?: SqlVirtualMachinesUpdateRequestTagsMap;
-}
-export const SqlVirtualMachinesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    sqlVirtualMachineName: S.String.pipe(T.Label()),
-    tags: S.optional(SqlVirtualMachinesUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachines/{sqlVirtualMachineName}",
-      code: 200,
-      apiVersion: "2023-10-01",
-    }),
-  ),
-).annotate({
-  identifier: "SqlVirtualMachinesUpdateRequest",
-}) as any as S.Schema<SqlVirtualMachinesUpdateRequest>;
-
-/** Resource tags. */
-export type SqlVirtualMachinesUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const SqlVirtualMachinesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<SqlVirtualMachinesUpdateResponseTagsMap>;
-
-export interface SqlVirtualMachinesUpdateResponse {
+export interface SqlVirtualMachineGroupsCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -2340,7 +1970,183 @@ export interface SqlVirtualMachinesUpdateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: SqlVirtualMachinesUpdateResponseTagsMap;
+  tags?: SqlVirtualMachineGroupsCreateOrUpdateResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Resource properties. */
+  properties?: SqlVirtualMachineGroupProperties;
+}
+export const SqlVirtualMachineGroupsCreateOrUpdateResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(SqlVirtualMachineGroupsCreateOrUpdateResponseTagsMap),
+      location: S.String,
+      properties: S.optional(SqlVirtualMachineGroupProperties),
+    }),
+  ).annotate({
+    identifier: "SqlVirtualMachineGroupsCreateOrUpdateResponse",
+  }) as any as S.Schema<SqlVirtualMachineGroupsCreateOrUpdateResponse>;
+
+/** Resource tags. */
+export type SqlVirtualMachinesCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const SqlVirtualMachinesCreateOrUpdateRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<SqlVirtualMachinesCreateOrUpdateRequestTagsMap>;
+
+/** SQL IaaS Agent least privilege mode. */
+export type SqlVirtualMachinePropertiesInputLeastPrivilegeMode =
+  | "Enabled"
+  | "NotSet";
+export const SqlVirtualMachinePropertiesInputLeastPrivilegeMode =
+  /*@__PURE__*/ S.String;
+
+/** The SQL virtual machine properties. */
+export interface SqlVirtualMachinePropertiesInput {
+  /** ARM Resource id of underlying virtual machine created from SQL marketplace image. */
+  virtualMachineResourceId?: string;
+  /** SQL image offer. Examples include SQL2016-WS2016, SQL2017-WS2016. */
+  sqlImageOffer?: string;
+  /** SQL Server license type. */
+  sqlServerLicenseType?: SqlServerLicenseType | (string & {});
+  /** SQL Server Management type. NOTE: This parameter is not used anymore. API will automatically detect the Sql Management, refrain from using it. */
+  sqlManagement?: SqlManagementMode | (string & {});
+  /** SQL IaaS Agent least privilege mode. */
+  leastPrivilegeMode?:
+    | SqlVirtualMachinePropertiesInputLeastPrivilegeMode
+    | (string & {});
+  /** SQL Server edition type. */
+  sqlImageSku?: SqlImageSku | (string & {});
+  /** ARM resource id of the SQL virtual machine group this SQL virtual machine is or will be part of. */
+  sqlVirtualMachineGroupResourceId?: string;
+  /** Domain credentials for setting up Windows Server Failover Cluster for SQL availability group. */
+  wsfcDomainCredentials?: WsfcDomainCredentials;
+  /** Domain credentials for setting up Windows Server Failover Cluster for SQL availability group. */
+  wsfcStaticIp?: string;
+  /** Auto patching settings for applying critical security updates to SQL virtual machine. */
+  autoPatchingSettings?: AutoPatchingSettings;
+  /** Auto backup settings for SQL Server. */
+  autoBackupSettings?: AutoBackupSettings;
+  /** Key vault credential settings. */
+  keyVaultCredentialSettings?: KeyVaultCredentialSettings;
+  /** SQL Server configuration management settings. */
+  serverConfigurationsManagementSettings?: ServerConfigurationsManagementSettings;
+  /** Storage Configuration Settings. */
+  storageConfigurationSettings?: StorageConfigurationSettings;
+  /** SQL best practices Assessment Settings. */
+  assessmentSettings?: AssessmentSettings;
+  /** Enable automatic upgrade of Sql IaaS extension Agent. */
+  enableAutomaticUpgrade?: boolean;
+  /** Virtual Machine Identity details used for Sql IaaS extension configurations. */
+  virtualMachineIdentitySettings?: VirtualMachineIdentity;
+}
+export const SqlVirtualMachinePropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    virtualMachineResourceId: S.optional(S.String),
+    sqlImageOffer: S.optional(S.String),
+    sqlServerLicenseType: S.optional(SqlServerLicenseType),
+    sqlManagement: S.optional(SqlManagementMode),
+    leastPrivilegeMode: S.optional(
+      SqlVirtualMachinePropertiesInputLeastPrivilegeMode,
+    ),
+    sqlImageSku: S.optional(SqlImageSku),
+    sqlVirtualMachineGroupResourceId: S.optional(S.String),
+    wsfcDomainCredentials: S.optional(WsfcDomainCredentials),
+    wsfcStaticIp: S.optional(S.String),
+    autoPatchingSettings: S.optional(AutoPatchingSettings),
+    autoBackupSettings: S.optional(AutoBackupSettings),
+    keyVaultCredentialSettings: S.optional(KeyVaultCredentialSettings),
+    serverConfigurationsManagementSettings: S.optional(
+      ServerConfigurationsManagementSettings,
+    ),
+    storageConfigurationSettings: S.optional(StorageConfigurationSettings),
+    assessmentSettings: S.optional(AssessmentSettings),
+    enableAutomaticUpgrade: S.optional(S.Boolean),
+    virtualMachineIdentitySettings: S.optional(VirtualMachineIdentity),
+  }),
+).annotate({
+  identifier: "SqlVirtualMachinePropertiesInput",
+}) as any as S.Schema<SqlVirtualMachinePropertiesInput>;
+
+/** Azure Active Directory identity configuration for a resource. */
+export interface ResourceIdentityInput {
+  /** The identity type. Set this to 'SystemAssigned' in order to automatically create and assign an Azure Active Directory principal for the resource. */
+  type?: IdentityType | (string & {});
+}
+export const ResourceIdentityInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.optional(IdentityType),
+  }),
+).annotate({
+  identifier: "ResourceIdentityInput",
+}) as any as S.Schema<ResourceIdentityInput>;
+
+export interface SqlVirtualMachinesCreateOrUpdateRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the SQL virtual machine. */
+  sqlVirtualMachineName: string;
+  /** Resource tags. */
+  tags?: SqlVirtualMachinesCreateOrUpdateRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Resource properties. */
+  properties?: SqlVirtualMachinePropertiesInput;
+  /** DO NOT USE. This value will be deprecated. Azure Active Directory identity of the server. */
+  identity?: ResourceIdentityInput;
+}
+export const SqlVirtualMachinesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      sqlVirtualMachineName: S.String.pipe(T.Label()),
+      tags: S.optional(SqlVirtualMachinesCreateOrUpdateRequestTagsMap),
+      location: S.String,
+      properties: S.optional(SqlVirtualMachinePropertiesInput),
+      identity: S.optional(ResourceIdentityInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachines/{sqlVirtualMachineName}",
+        code: 200,
+        apiVersion: "2023-10-01",
+      }),
+    ),
+).annotate({
+  identifier: "SqlVirtualMachinesCreateOrUpdateRequest",
+}) as any as S.Schema<SqlVirtualMachinesCreateOrUpdateRequest>;
+
+/** Resource tags. */
+export type SqlVirtualMachinesCreateOrUpdateResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const SqlVirtualMachinesCreateOrUpdateResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<SqlVirtualMachinesCreateOrUpdateResponseTagsMap>;
+
+export interface SqlVirtualMachinesCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: SqlVirtualMachinesCreateOrUpdateResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Resource properties. */
@@ -2348,20 +2154,21 @@ export interface SqlVirtualMachinesUpdateResponse {
   /** DO NOT USE. This value will be deprecated. Azure Active Directory identity of the server. */
   identity?: ResourceIdentity;
 }
-export const SqlVirtualMachinesUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(SqlVirtualMachinesUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(SqlVirtualMachineProperties),
-    identity: S.optional(ResourceIdentity),
-  }),
+export const SqlVirtualMachinesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(SqlVirtualMachinesCreateOrUpdateResponseTagsMap),
+      location: S.String,
+      properties: S.optional(SqlVirtualMachineProperties),
+      identity: S.optional(ResourceIdentity),
+    }),
 ).annotate({
-  identifier: "SqlVirtualMachinesUpdateResponse",
-}) as any as S.Schema<SqlVirtualMachinesUpdateResponse>;
+  identifier: "SqlVirtualMachinesCreateOrUpdateResponse",
+}) as any as S.Schema<SqlVirtualMachinesCreateOrUpdateResponse>;
 
 /** SQL VM troubleshooting scenario. */
 export type SqlVirtualMachineTroubleshootTroubleshootRequestTroubleshootingScenario =
@@ -2443,6 +2250,197 @@ export const SqlVmTroubleshooting = /*@__PURE__*/ S.suspend(() =>
   identifier: "SqlVmTroubleshooting",
 }) as any as S.Schema<SqlVmTroubleshooting>;
 
+export interface StartSqlVirtualMachineAssessmentRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the SQL virtual machine. */
+  sqlVirtualMachineName: string;
+}
+export const StartSqlVirtualMachineAssessmentRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      sqlVirtualMachineName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachines/{sqlVirtualMachineName}/startAssessment",
+        code: 200,
+        apiVersion: "2023-10-01",
+      }),
+    ),
+).annotate({
+  identifier: "StartSqlVirtualMachineAssessmentRequest",
+}) as any as S.Schema<StartSqlVirtualMachineAssessmentRequest>;
+
+export interface StartSqlVirtualMachineAssessmentResponse {}
+export const StartSqlVirtualMachineAssessmentResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "StartSqlVirtualMachineAssessmentResponse",
+}) as any as S.Schema<StartSqlVirtualMachineAssessmentResponse>;
+
+/** Resource tags. */
+export type UpdateSqlVirtualMachineRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateSqlVirtualMachineRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateSqlVirtualMachineRequestTagsMap>;
+
+export interface UpdateSqlVirtualMachineRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the SQL virtual machine. */
+  sqlVirtualMachineName: string;
+  /** Resource tags. */
+  tags?: UpdateSqlVirtualMachineRequestTagsMap;
+}
+export const UpdateSqlVirtualMachineRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    sqlVirtualMachineName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateSqlVirtualMachineRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachines/{sqlVirtualMachineName}",
+      code: 200,
+      apiVersion: "2023-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateSqlVirtualMachineRequest",
+}) as any as S.Schema<UpdateSqlVirtualMachineRequest>;
+
+/** Resource tags. */
+export type UpdateSqlVirtualMachineResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateSqlVirtualMachineResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateSqlVirtualMachineResponseTagsMap>;
+
+export interface UpdateSqlVirtualMachineResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateSqlVirtualMachineResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Resource properties. */
+  properties?: SqlVirtualMachineProperties;
+  /** DO NOT USE. This value will be deprecated. Azure Active Directory identity of the server. */
+  identity?: ResourceIdentity;
+}
+export const UpdateSqlVirtualMachineResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateSqlVirtualMachineResponseTagsMap),
+    location: S.String,
+    properties: S.optional(SqlVirtualMachineProperties),
+    identity: S.optional(ResourceIdentity),
+  }),
+).annotate({
+  identifier: "UpdateSqlVirtualMachineResponse",
+}) as any as S.Schema<UpdateSqlVirtualMachineResponse>;
+
+/** Resource tags. */
+export type UpdateSqlVirtualMachineGroupRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateSqlVirtualMachineGroupRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<UpdateSqlVirtualMachineGroupRequestTagsMap>;
+
+export interface UpdateSqlVirtualMachineGroupRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the SQL virtual machine group. */
+  sqlVirtualMachineGroupName: string;
+  /** Resource tags. */
+  tags?: UpdateSqlVirtualMachineGroupRequestTagsMap;
+}
+export const UpdateSqlVirtualMachineGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    sqlVirtualMachineGroupName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateSqlVirtualMachineGroupRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachineGroups/{sqlVirtualMachineGroupName}",
+      code: 200,
+      apiVersion: "2023-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateSqlVirtualMachineGroupRequest",
+}) as any as S.Schema<UpdateSqlVirtualMachineGroupRequest>;
+
+/** Resource tags. */
+export type UpdateSqlVirtualMachineGroupResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateSqlVirtualMachineGroupResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<UpdateSqlVirtualMachineGroupResponseTagsMap>;
+
+export interface UpdateSqlVirtualMachineGroupResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateSqlVirtualMachineGroupResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Resource properties. */
+  properties?: SqlVirtualMachineGroupProperties;
+}
+export const UpdateSqlVirtualMachineGroupResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(UpdateSqlVirtualMachineGroupResponseTagsMap),
+      location: S.String,
+      properties: S.optional(SqlVirtualMachineGroupProperties),
+    }),
+).annotate({
+  identifier: "UpdateSqlVirtualMachineGroupResponse",
+}) as any as S.Schema<UpdateSqlVirtualMachineGroupResponse>;
+
 export type AvailabilityGroupListenersCreateOrUpdateError = AzureOpError;
 /** Creates or updates an availability group listener. */
 export const AvailabilityGroupListenersCreateOrUpdate: API.OperationMethod<
@@ -2458,61 +2456,226 @@ export const AvailabilityGroupListenersCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type AvailabilityGroupListenersDeleteError = AzureOpError;
+export type DeleteAvailabilityGroupListenerError = AzureOpError;
 /** Deletes an availability group listener. */
-export const AvailabilityGroupListenersDelete: API.OperationMethod<
-  AvailabilityGroupListenersDeleteRequest,
-  AvailabilityGroupListenersDeleteResponse,
-  AvailabilityGroupListenersDeleteError,
+export const DeleteAvailabilityGroupListener: API.OperationMethod<
+  DeleteAvailabilityGroupListenerRequest,
+  DeleteAvailabilityGroupListenerResponse,
+  DeleteAvailabilityGroupListenerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AvailabilityGroupListenersDeleteRequest,
-  output: AvailabilityGroupListenersDeleteResponse,
+  input: DeleteAvailabilityGroupListenerRequest,
+  output: DeleteAvailabilityGroupListenerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type AvailabilityGroupListenersGetError = AzureOpError;
+export type DeleteSqlVirtualMachineError = AzureOpError;
+/** Deletes a SQL virtual machine. */
+export const DeleteSqlVirtualMachine: API.OperationMethod<
+  DeleteSqlVirtualMachineRequest,
+  DeleteSqlVirtualMachineResponse,
+  DeleteSqlVirtualMachineError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteSqlVirtualMachineRequest,
+  output: DeleteSqlVirtualMachineResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteSqlVirtualMachineGroupError = AzureOpError;
+/** Deletes a SQL virtual machine group. */
+export const DeleteSqlVirtualMachineGroup: API.OperationMethod<
+  DeleteSqlVirtualMachineGroupRequest,
+  DeleteSqlVirtualMachineGroupResponse,
+  DeleteSqlVirtualMachineGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteSqlVirtualMachineGroupRequest,
+  output: DeleteSqlVirtualMachineGroupResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type FetchSqlVirtualMachineDCAssessmentError = AzureOpError;
+/** Starts SQL best practices Assessment with Disk Config rules on SQL virtual machine */
+export const FetchSqlVirtualMachineDCAssessment: API.OperationMethod<
+  FetchSqlVirtualMachineDCAssessmentRequest,
+  FetchSqlVirtualMachineDCAssessmentResponse,
+  FetchSqlVirtualMachineDCAssessmentError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: FetchSqlVirtualMachineDCAssessmentRequest,
+  output: FetchSqlVirtualMachineDCAssessmentResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAvailabilityGroupListenerError = AzureOpError;
 /** Gets an availability group listener. */
-export const AvailabilityGroupListenersGet: API.OperationMethod<
-  AvailabilityGroupListenersGetRequest,
-  AvailabilityGroupListenersGetResponse,
-  AvailabilityGroupListenersGetError,
+export const GetAvailabilityGroupListener: API.OperationMethod<
+  GetAvailabilityGroupListenerRequest,
+  GetAvailabilityGroupListenerResponse,
+  GetAvailabilityGroupListenerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AvailabilityGroupListenersGetRequest,
-  output: AvailabilityGroupListenersGetResponse,
+  input: GetAvailabilityGroupListenerRequest,
+  output: GetAvailabilityGroupListenerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type AvailabilityGroupListenersListByGroupError = AzureOpError;
-/** Lists all availability group listeners in a SQL virtual machine group. */
-export const AvailabilityGroupListenersListByGroup: API.OperationMethod<
-  AvailabilityGroupListenersListByGroupRequest,
-  AvailabilityGroupListenerListResult,
-  AvailabilityGroupListenersListByGroupError,
+export type GetSqlVirtualMachineError = AzureOpError;
+/** Gets a SQL virtual machine. */
+export const GetSqlVirtualMachine: API.OperationMethod<
+  GetSqlVirtualMachineRequest,
+  GetSqlVirtualMachineResponse,
+  GetSqlVirtualMachineError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AvailabilityGroupListenersListByGroupRequest,
+  input: GetSqlVirtualMachineRequest,
+  output: GetSqlVirtualMachineResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSqlVirtualMachineGroupError = AzureOpError;
+/** Gets a SQL virtual machine group. */
+export const GetSqlVirtualMachineGroup: API.OperationMethod<
+  GetSqlVirtualMachineGroupRequest,
+  GetSqlVirtualMachineGroupResponse,
+  GetSqlVirtualMachineGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSqlVirtualMachineGroupRequest,
+  output: GetSqlVirtualMachineGroupResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAvailabilityGroupListenerByGroupError = AzureOpError;
+/** Lists all availability group listeners in a SQL virtual machine group. */
+export const ListAvailabilityGroupListenerByGroup: API.OperationMethod<
+  ListAvailabilityGroupListenerByGroupRequest,
+  AvailabilityGroupListenerListResult,
+  ListAvailabilityGroupListenerByGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAvailabilityGroupListenerByGroupRequest,
   output: AvailabilityGroupListenerListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OperationsListError = AzureOpError;
+export type ListOperationsError = AzureOpError;
 /** Lists all of the available SQL Virtual Machine Rest API operations. */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
   OperationListResult,
-  OperationsListError,
+  ListOperationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
+  input: ListOperationsRequest,
   output: OperationListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSqlVirtualMachineByResourceGroupError = AzureOpError;
+/** Gets all SQL virtual machines in a resource group. */
+export const ListSqlVirtualMachineByResourceGroup: API.OperationMethod<
+  ListSqlVirtualMachineByResourceGroupRequest,
+  SqlVirtualMachineListResult,
+  ListSqlVirtualMachineByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSqlVirtualMachineByResourceGroupRequest,
+  output: SqlVirtualMachineListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSqlVirtualMachineBySqlVmGroupError = AzureOpError;
+/** Gets the list of sql virtual machines in a SQL virtual machine group. */
+export const ListSqlVirtualMachineBySqlVmGroup: API.OperationMethod<
+  ListSqlVirtualMachineBySqlVmGroupRequest,
+  SqlVirtualMachineListResult,
+  ListSqlVirtualMachineBySqlVmGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSqlVirtualMachineBySqlVmGroupRequest,
+  output: SqlVirtualMachineListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSqlVirtualMachineGroupByResourceGroupError = AzureOpError;
+/** Gets all SQL virtual machine groups in a resource group. */
+export const ListSqlVirtualMachineGroupByResourceGroup: API.OperationMethod<
+  ListSqlVirtualMachineGroupByResourceGroupRequest,
+  SqlVirtualMachineGroupListResult,
+  ListSqlVirtualMachineGroupByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSqlVirtualMachineGroupByResourceGroupRequest,
+  output: SqlVirtualMachineGroupListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSqlVirtualMachineGroupsError = AzureOpError;
+/** Gets all SQL virtual machine groups in a subscription. */
+export const ListSqlVirtualMachineGroups: API.OperationMethod<
+  ListSqlVirtualMachineGroupsRequest,
+  SqlVirtualMachineGroupListResult,
+  ListSqlVirtualMachineGroupsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSqlVirtualMachineGroupsRequest,
+  output: SqlVirtualMachineGroupListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSqlVirtualMachinesError = AzureOpError;
+/** Gets all SQL virtual machines in a subscription. */
+export const ListSqlVirtualMachines: API.OperationMethod<
+  ListSqlVirtualMachinesRequest,
+  SqlVirtualMachineListResult,
+  ListSqlVirtualMachinesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSqlVirtualMachinesRequest,
+  output: SqlVirtualMachineListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RedeploySqlVirtualMachineError = AzureOpError;
+/** Uninstalls and reinstalls the SQL IaaS Extension. */
+export const RedeploySqlVirtualMachine: API.OperationMethod<
+  RedeploySqlVirtualMachineRequest,
+  RedeploySqlVirtualMachineResponse,
+  RedeploySqlVirtualMachineError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RedeploySqlVirtualMachineRequest,
+  output: RedeploySqlVirtualMachineResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2533,81 +2696,6 @@ export const SqlVirtualMachineGroupsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SqlVirtualMachineGroupsDeleteError = AzureOpError;
-/** Deletes a SQL virtual machine group. */
-export const SqlVirtualMachineGroupsDelete: API.OperationMethod<
-  SqlVirtualMachineGroupsDeleteRequest,
-  SqlVirtualMachineGroupsDeleteResponse,
-  SqlVirtualMachineGroupsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SqlVirtualMachineGroupsDeleteRequest,
-  output: SqlVirtualMachineGroupsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SqlVirtualMachineGroupsGetError = AzureOpError;
-/** Gets a SQL virtual machine group. */
-export const SqlVirtualMachineGroupsGet: API.OperationMethod<
-  SqlVirtualMachineGroupsGetRequest,
-  SqlVirtualMachineGroupsGetResponse,
-  SqlVirtualMachineGroupsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SqlVirtualMachineGroupsGetRequest,
-  output: SqlVirtualMachineGroupsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SqlVirtualMachineGroupsListError = AzureOpError;
-/** Gets all SQL virtual machine groups in a subscription. */
-export const SqlVirtualMachineGroupsList: API.OperationMethod<
-  SqlVirtualMachineGroupsListRequest,
-  SqlVirtualMachineGroupListResult,
-  SqlVirtualMachineGroupsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SqlVirtualMachineGroupsListRequest,
-  output: SqlVirtualMachineGroupListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SqlVirtualMachineGroupsListByResourceGroupError = AzureOpError;
-/** Gets all SQL virtual machine groups in a resource group. */
-export const SqlVirtualMachineGroupsListByResourceGroup: API.OperationMethod<
-  SqlVirtualMachineGroupsListByResourceGroupRequest,
-  SqlVirtualMachineGroupListResult,
-  SqlVirtualMachineGroupsListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SqlVirtualMachineGroupsListByResourceGroupRequest,
-  output: SqlVirtualMachineGroupListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SqlVirtualMachineGroupsUpdateError = AzureOpError;
-/** Updates SQL virtual machine group tags. */
-export const SqlVirtualMachineGroupsUpdate: API.OperationMethod<
-  SqlVirtualMachineGroupsUpdateRequest,
-  SqlVirtualMachineGroupsUpdateResponse,
-  SqlVirtualMachineGroupsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SqlVirtualMachineGroupsUpdateRequest,
-  output: SqlVirtualMachineGroupsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type SqlVirtualMachinesCreateOrUpdateError = AzureOpError;
 /** Creates or updates a SQL virtual machine. */
 export const SqlVirtualMachinesCreateOrUpdate: API.OperationMethod<
@@ -2623,141 +2711,6 @@ export const SqlVirtualMachinesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SqlVirtualMachinesDeleteError = AzureOpError;
-/** Deletes a SQL virtual machine. */
-export const SqlVirtualMachinesDelete: API.OperationMethod<
-  SqlVirtualMachinesDeleteRequest,
-  SqlVirtualMachinesDeleteResponse,
-  SqlVirtualMachinesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SqlVirtualMachinesDeleteRequest,
-  output: SqlVirtualMachinesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SqlVirtualMachinesFetchDCAssessmentError = AzureOpError;
-/** Starts SQL best practices Assessment with Disk Config rules on SQL virtual machine */
-export const SqlVirtualMachinesFetchDCAssessment: API.OperationMethod<
-  SqlVirtualMachinesFetchDCAssessmentRequest,
-  SqlVirtualMachinesFetchDCAssessmentResponse,
-  SqlVirtualMachinesFetchDCAssessmentError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SqlVirtualMachinesFetchDCAssessmentRequest,
-  output: SqlVirtualMachinesFetchDCAssessmentResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SqlVirtualMachinesGetError = AzureOpError;
-/** Gets a SQL virtual machine. */
-export const SqlVirtualMachinesGet: API.OperationMethod<
-  SqlVirtualMachinesGetRequest,
-  SqlVirtualMachinesGetResponse,
-  SqlVirtualMachinesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SqlVirtualMachinesGetRequest,
-  output: SqlVirtualMachinesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SqlVirtualMachinesListError = AzureOpError;
-/** Gets all SQL virtual machines in a subscription. */
-export const SqlVirtualMachinesList: API.OperationMethod<
-  SqlVirtualMachinesListRequest,
-  SqlVirtualMachineListResult,
-  SqlVirtualMachinesListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SqlVirtualMachinesListRequest,
-  output: SqlVirtualMachineListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SqlVirtualMachinesListByResourceGroupError = AzureOpError;
-/** Gets all SQL virtual machines in a resource group. */
-export const SqlVirtualMachinesListByResourceGroup: API.OperationMethod<
-  SqlVirtualMachinesListByResourceGroupRequest,
-  SqlVirtualMachineListResult,
-  SqlVirtualMachinesListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SqlVirtualMachinesListByResourceGroupRequest,
-  output: SqlVirtualMachineListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SqlVirtualMachinesListBySqlVmGroupError = AzureOpError;
-/** Gets the list of sql virtual machines in a SQL virtual machine group. */
-export const SqlVirtualMachinesListBySqlVmGroup: API.OperationMethod<
-  SqlVirtualMachinesListBySqlVmGroupRequest,
-  SqlVirtualMachineListResult,
-  SqlVirtualMachinesListBySqlVmGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SqlVirtualMachinesListBySqlVmGroupRequest,
-  output: SqlVirtualMachineListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SqlVirtualMachinesRedeployError = AzureOpError;
-/** Uninstalls and reinstalls the SQL IaaS Extension. */
-export const SqlVirtualMachinesRedeploy: API.OperationMethod<
-  SqlVirtualMachinesRedeployRequest,
-  SqlVirtualMachinesRedeployResponse,
-  SqlVirtualMachinesRedeployError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SqlVirtualMachinesRedeployRequest,
-  output: SqlVirtualMachinesRedeployResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SqlVirtualMachinesStartAssessmentError = AzureOpError;
-/** Starts SQL best practices Assessment on SQL virtual machine. */
-export const SqlVirtualMachinesStartAssessment: API.OperationMethod<
-  SqlVirtualMachinesStartAssessmentRequest,
-  SqlVirtualMachinesStartAssessmentResponse,
-  SqlVirtualMachinesStartAssessmentError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SqlVirtualMachinesStartAssessmentRequest,
-  output: SqlVirtualMachinesStartAssessmentResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SqlVirtualMachinesUpdateError = AzureOpError;
-/** Updates SQL virtual machine tags. */
-export const SqlVirtualMachinesUpdate: API.OperationMethod<
-  SqlVirtualMachinesUpdateRequest,
-  SqlVirtualMachinesUpdateResponse,
-  SqlVirtualMachinesUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SqlVirtualMachinesUpdateRequest,
-  output: SqlVirtualMachinesUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type SqlVirtualMachineTroubleshootTroubleshootError = AzureOpError;
 /** Starts SQL virtual machine troubleshooting. */
 export const SqlVirtualMachineTroubleshootTroubleshoot: API.OperationMethod<
@@ -2768,6 +2721,51 @@ export const SqlVirtualMachineTroubleshootTroubleshoot: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: SqlVirtualMachineTroubleshootTroubleshootRequest,
   output: SqlVmTroubleshooting,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type StartSqlVirtualMachineAssessmentError = AzureOpError;
+/** Starts SQL best practices Assessment on SQL virtual machine. */
+export const StartSqlVirtualMachineAssessment: API.OperationMethod<
+  StartSqlVirtualMachineAssessmentRequest,
+  StartSqlVirtualMachineAssessmentResponse,
+  StartSqlVirtualMachineAssessmentError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: StartSqlVirtualMachineAssessmentRequest,
+  output: StartSqlVirtualMachineAssessmentResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateSqlVirtualMachineError = AzureOpError;
+/** Updates SQL virtual machine tags. */
+export const UpdateSqlVirtualMachine: API.OperationMethod<
+  UpdateSqlVirtualMachineRequest,
+  UpdateSqlVirtualMachineResponse,
+  UpdateSqlVirtualMachineError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateSqlVirtualMachineRequest,
+  output: UpdateSqlVirtualMachineResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateSqlVirtualMachineGroupError = AzureOpError;
+/** Updates SQL virtual machine group tags. */
+export const UpdateSqlVirtualMachineGroup: API.OperationMethod<
+  UpdateSqlVirtualMachineGroupRequest,
+  UpdateSqlVirtualMachineGroupResponse,
+  UpdateSqlVirtualMachineGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateSqlVirtualMachineGroupRequest,
+  output: UpdateSqlVirtualMachineGroupResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

@@ -13,11 +13,11 @@ import * as Retry from "../retry.ts";
 export type { AzureOpError, AzureOpContext };
 
 /** The resource type. Note: This should not be set by the user, as the constant value is Microsoft.DataLakeStore/accounts */
-export type AccountsCheckNameAvailabilityRequestType =
+export type CheckAccountNameAvailabilityRequestType =
   "Microsoft.DataLakeStore/accounts";
-export const AccountsCheckNameAvailabilityRequestType = /*@__PURE__*/ S.String;
+export const CheckAccountNameAvailabilityRequestType = /*@__PURE__*/ S.String;
 
-export interface AccountsCheckNameAvailabilityRequest {
+export interface CheckAccountNameAvailabilityRequest {
   /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The resource location without whitespace. */
@@ -25,26 +25,25 @@ export interface AccountsCheckNameAvailabilityRequest {
   /** The Data Lake Store name to check availability for. */
   name: string;
   /** The resource type. Note: This should not be set by the user, as the constant value is Microsoft.DataLakeStore/accounts */
-  type: AccountsCheckNameAvailabilityRequestType | (string & {});
+  type: CheckAccountNameAvailabilityRequestType | (string & {});
 }
-export const AccountsCheckNameAvailabilityRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      location: S.String.pipe(T.Label()),
-      name: S.String,
-      type: AccountsCheckNameAvailabilityRequestType,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DataLakeStore/locations/{location}/checkNameAvailability",
-        code: 200,
-        apiVersion: "2016-11-01",
-      }),
-    ),
+export const CheckAccountNameAvailabilityRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+    name: S.String,
+    type: CheckAccountNameAvailabilityRequestType,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DataLakeStore/locations/{location}/checkNameAvailability",
+      code: 200,
+      apiVersion: "2016-11-01",
+    }),
+  ),
 ).annotate({
-  identifier: "AccountsCheckNameAvailabilityRequest",
-}) as any as S.Schema<AccountsCheckNameAvailabilityRequest>;
+  identifier: "CheckAccountNameAvailabilityRequest",
+}) as any as S.Schema<CheckAccountNameAvailabilityRequest>;
 
 /** Data Lake Store account name availability result information. */
 export interface NameAvailabilityInformation {
@@ -66,13 +65,11 @@ export const NameAvailabilityInformation = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<NameAvailabilityInformation>;
 
 /** The resource tags. */
-export type AccountsCreateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AccountsCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type CreateAccountRequestTagsMap = { [key: string]: string | undefined };
+export const CreateAccountRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsCreateRequestTagsMap>;
+) as any as S.Schema<CreateAccountRequestTagsMap>;
 
 /** The type of encryption being used. Currently the only supported type is 'SystemAssigned'. */
 export type EncryptionIdentityInputType = "SystemAssigned";
@@ -352,7 +349,7 @@ export const CreateDataLakeStoreAccountProperties = /*@__PURE__*/ S.suspend(
   identifier: "CreateDataLakeStoreAccountProperties",
 }) as any as S.Schema<CreateDataLakeStoreAccountProperties>;
 
-export interface AccountsCreateRequest {
+export interface CreateAccountRequest {
   /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The name of the Azure resource group. */
@@ -362,19 +359,19 @@ export interface AccountsCreateRequest {
   /** The resource location. */
   location: string;
   /** The resource tags. */
-  tags?: AccountsCreateRequestTagsMap;
+  tags?: CreateAccountRequestTagsMap;
   /** The Key Vault encryption identity, if any. */
   identity?: EncryptionIdentityInput;
   /** The Data Lake Store account properties to use for creating. */
   properties?: CreateDataLakeStoreAccountProperties;
 }
-export const AccountsCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateAccountRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
     location: S.String,
-    tags: S.optional(AccountsCreateRequestTagsMap),
+    tags: S.optional(CreateAccountRequestTagsMap),
     identity: S.optional(EncryptionIdentityInput),
     properties: S.optional(CreateDataLakeStoreAccountProperties),
   }).pipe(
@@ -386,17 +383,17 @@ export const AccountsCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "AccountsCreateRequest",
-}) as any as S.Schema<AccountsCreateRequest>;
+  identifier: "CreateAccountRequest",
+}) as any as S.Schema<CreateAccountRequest>;
 
 /** The resource tags. */
-export type AccountsCreateResponseTagsMap = {
+export type CreateAccountResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AccountsCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateAccountResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsCreateResponseTagsMap>;
+) as any as S.Schema<CreateAccountResponseTagsMap>;
 
 /** The type of encryption being used. Currently the only supported type is 'SystemAssigned'. */
 export type EncryptionIdentityType = "SystemAssigned";
@@ -704,7 +701,7 @@ export const DataLakeStoreAccountProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "DataLakeStoreAccountProperties",
 }) as any as S.Schema<DataLakeStoreAccountProperties>;
 
-export interface AccountsCreateResponse {
+export interface CreateAccountResponse {
   /** The resource identifier. */
   id?: string;
   /** The resource name. */
@@ -714,27 +711,27 @@ export interface AccountsCreateResponse {
   /** The resource location. */
   location?: string;
   /** The resource tags. */
-  tags?: AccountsCreateResponseTagsMap;
+  tags?: CreateAccountResponseTagsMap;
   /** The Key Vault encryption identity, if any. */
   identity?: EncryptionIdentity;
   /** The Data Lake Store account properties. */
   properties?: DataLakeStoreAccountProperties;
 }
-export const AccountsCreateResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateAccountResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(AccountsCreateResponseTagsMap),
+    tags: S.optional(CreateAccountResponseTagsMap),
     identity: S.optional(EncryptionIdentity),
     properties: S.optional(DataLakeStoreAccountProperties),
   }),
 ).annotate({
-  identifier: "AccountsCreateResponse",
-}) as any as S.Schema<AccountsCreateResponse>;
+  identifier: "CreateAccountResponse",
+}) as any as S.Schema<CreateAccountResponse>;
 
-export interface AccountsDeleteRequest {
+export interface DeleteAccountRequest {
   /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The name of the Azure resource group. */
@@ -742,7 +739,7 @@ export interface AccountsDeleteRequest {
   /** The name of the Data Lake Store account. */
   accountName: string;
 }
-export const AccountsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteAccountRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -756,17 +753,122 @@ export const AccountsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "AccountsDeleteRequest",
-}) as any as S.Schema<AccountsDeleteRequest>;
+  identifier: "DeleteAccountRequest",
+}) as any as S.Schema<DeleteAccountRequest>;
 
-export interface AccountsDeleteResponse {}
-export const AccountsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteAccountResponse {}
+export const DeleteAccountResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "AccountsDeleteResponse",
-}) as any as S.Schema<AccountsDeleteResponse>;
+  identifier: "DeleteAccountResponse",
+}) as any as S.Schema<DeleteAccountResponse>;
 
-export interface AccountsEnableKeyVaultRequest {
+export interface DeleteFirewallRuleRequest {
+  /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the Azure resource group. */
+  resourceGroupName: string;
+  /** The name of the Data Lake Store account. */
+  accountName: string;
+  /** The name of the firewall rule to delete. */
+  firewallRuleName: string;
+}
+export const DeleteFirewallRuleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    firewallRuleName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeStore/accounts/{accountName}/firewallRules/{firewallRuleName}",
+      code: 200,
+      apiVersion: "2016-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteFirewallRuleRequest",
+}) as any as S.Schema<DeleteFirewallRuleRequest>;
+
+export interface DeleteFirewallRuleResponse {}
+export const DeleteFirewallRuleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteFirewallRuleResponse",
+}) as any as S.Schema<DeleteFirewallRuleResponse>;
+
+export interface DeleteTrustedIdProviderRequest {
+  /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the Azure resource group. */
+  resourceGroupName: string;
+  /** The name of the Data Lake Store account. */
+  accountName: string;
+  /** The name of the trusted identity provider to delete. */
+  trustedIdProviderName: string;
+}
+export const DeleteTrustedIdProviderRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    trustedIdProviderName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeStore/accounts/{accountName}/trustedIdProviders/{trustedIdProviderName}",
+      code: 200,
+      apiVersion: "2016-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteTrustedIdProviderRequest",
+}) as any as S.Schema<DeleteTrustedIdProviderRequest>;
+
+export interface DeleteTrustedIdProviderResponse {}
+export const DeleteTrustedIdProviderResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteTrustedIdProviderResponse",
+}) as any as S.Schema<DeleteTrustedIdProviderResponse>;
+
+export interface DeleteVirtualNetworkRuleRequest {
+  /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the Azure resource group. */
+  resourceGroupName: string;
+  /** The name of the Data Lake Store account. */
+  accountName: string;
+  /** The name of the virtual network rule to delete. */
+  virtualNetworkRuleName: string;
+}
+export const DeleteVirtualNetworkRuleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    virtualNetworkRuleName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeStore/accounts/{accountName}/virtualNetworkRules/{virtualNetworkRuleName}",
+      code: 200,
+      apiVersion: "2016-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteVirtualNetworkRuleRequest",
+}) as any as S.Schema<DeleteVirtualNetworkRuleRequest>;
+
+export interface DeleteVirtualNetworkRuleResponse {}
+export const DeleteVirtualNetworkRuleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteVirtualNetworkRuleResponse",
+}) as any as S.Schema<DeleteVirtualNetworkRuleResponse>;
+
+export interface EnableAccountKeyVaultRequest {
   /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The name of the Azure resource group. */
@@ -774,7 +876,7 @@ export interface AccountsEnableKeyVaultRequest {
   /** The name of the Data Lake Store account. */
   accountName: string;
 }
-export const AccountsEnableKeyVaultRequest = /*@__PURE__*/ S.suspend(() =>
+export const EnableAccountKeyVaultRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -788,17 +890,69 @@ export const AccountsEnableKeyVaultRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "AccountsEnableKeyVaultRequest",
-}) as any as S.Schema<AccountsEnableKeyVaultRequest>;
+  identifier: "EnableAccountKeyVaultRequest",
+}) as any as S.Schema<EnableAccountKeyVaultRequest>;
 
-export interface AccountsEnableKeyVaultResponse {}
-export const AccountsEnableKeyVaultResponse = /*@__PURE__*/ S.suspend(() =>
+export interface EnableAccountKeyVaultResponse {}
+export const EnableAccountKeyVaultResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "AccountsEnableKeyVaultResponse",
-}) as any as S.Schema<AccountsEnableKeyVaultResponse>;
+  identifier: "EnableAccountKeyVaultResponse",
+}) as any as S.Schema<EnableAccountKeyVaultResponse>;
 
-export interface AccountsGetRequest {
+export interface FirewallRulesCreateOrUpdateRequest {
+  /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the Azure resource group. */
+  resourceGroupName: string;
+  /** The name of the Data Lake Store account. */
+  accountName: string;
+  /** The name of the firewall rule to create or update. */
+  firewallRuleName: string;
+  /** The firewall rule properties to use when creating a new firewall rule. */
+  properties: CreateOrUpdateFirewallRuleProperties;
+}
+export const FirewallRulesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    firewallRuleName: S.String.pipe(T.Label()),
+    properties: CreateOrUpdateFirewallRuleProperties,
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeStore/accounts/{accountName}/firewallRules/{firewallRuleName}",
+      code: 200,
+      apiVersion: "2016-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "FirewallRulesCreateOrUpdateRequest",
+}) as any as S.Schema<FirewallRulesCreateOrUpdateRequest>;
+
+export interface FirewallRulesCreateOrUpdateResponse {
+  /** The resource identifier. */
+  id?: string;
+  /** The resource name. */
+  name?: string;
+  /** The resource type. */
+  type?: string;
+  /** The firewall rule properties. */
+  properties?: FirewallRuleProperties;
+}
+export const FirewallRulesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    properties: S.optional(FirewallRuleProperties),
+  }),
+).annotate({
+  identifier: "FirewallRulesCreateOrUpdateResponse",
+}) as any as S.Schema<FirewallRulesCreateOrUpdateResponse>;
+
+export interface GetAccountRequest {
   /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The name of the Azure resource group. */
@@ -806,7 +960,7 @@ export interface AccountsGetRequest {
   /** The name of the Data Lake Store account. */
   accountName: string;
 }
-export const AccountsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetAccountRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -820,17 +974,17 @@ export const AccountsGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "AccountsGetRequest",
-}) as any as S.Schema<AccountsGetRequest>;
+  identifier: "GetAccountRequest",
+}) as any as S.Schema<GetAccountRequest>;
 
 /** The resource tags. */
-export type AccountsGetResponseTagsMap = { [key: string]: string | undefined };
-export const AccountsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetAccountResponseTagsMap = { [key: string]: string | undefined };
+export const GetAccountResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsGetResponseTagsMap>;
+) as any as S.Schema<GetAccountResponseTagsMap>;
 
-export interface AccountsGetResponse {
+export interface GetAccountResponse {
   /** The resource identifier. */
   id?: string;
   /** The resource name. */
@@ -840,29 +994,322 @@ export interface AccountsGetResponse {
   /** The resource location. */
   location?: string;
   /** The resource tags. */
-  tags?: AccountsGetResponseTagsMap;
+  tags?: GetAccountResponseTagsMap;
   /** The Key Vault encryption identity, if any. */
   identity?: EncryptionIdentity;
   /** The Data Lake Store account properties. */
   properties?: DataLakeStoreAccountProperties;
 }
-export const AccountsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetAccountResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(AccountsGetResponseTagsMap),
+    tags: S.optional(GetAccountResponseTagsMap),
     identity: S.optional(EncryptionIdentity),
     properties: S.optional(DataLakeStoreAccountProperties),
   }),
 ).annotate({
-  identifier: "AccountsGetResponse",
-}) as any as S.Schema<AccountsGetResponse>;
+  identifier: "GetAccountResponse",
+}) as any as S.Schema<GetAccountResponse>;
 
-export interface AccountsListRequest {
+export interface GetFirewallRuleRequest {
   /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
+  /** The name of the Azure resource group. */
+  resourceGroupName: string;
+  /** The name of the Data Lake Store account. */
+  accountName: string;
+  /** The name of the firewall rule to retrieve. */
+  firewallRuleName: string;
+}
+export const GetFirewallRuleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    firewallRuleName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeStore/accounts/{accountName}/firewallRules/{firewallRuleName}",
+      code: 200,
+      apiVersion: "2016-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetFirewallRuleRequest",
+}) as any as S.Schema<GetFirewallRuleRequest>;
+
+export interface GetFirewallRuleResponse {
+  /** The resource identifier. */
+  id?: string;
+  /** The resource name. */
+  name?: string;
+  /** The resource type. */
+  type?: string;
+  /** The firewall rule properties. */
+  properties?: FirewallRuleProperties;
+}
+export const GetFirewallRuleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    properties: S.optional(FirewallRuleProperties),
+  }),
+).annotate({
+  identifier: "GetFirewallRuleResponse",
+}) as any as S.Schema<GetFirewallRuleResponse>;
+
+export interface GetLocationCapabilityRequest {
+  /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The resource location without whitespace. */
+  location: string;
+}
+export const GetLocationCapabilityRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DataLakeStore/locations/{location}/capability",
+      code: 200,
+      apiVersion: "2016-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetLocationCapabilityRequest",
+}) as any as S.Schema<GetLocationCapabilityRequest>;
+
+/** The subscription state. */
+export type CapabilityInformationState =
+  | "Registered"
+  | "Suspended"
+  | "Deleted"
+  | "Unregistered"
+  | "Warned";
+export const CapabilityInformationState = /*@__PURE__*/ S.String;
+
+/** Subscription-level properties and limits for Data Lake Store. */
+export interface CapabilityInformation {
+  /** The subscription credentials that uniquely identifies the subscription. */
+  subscriptionId?: string;
+  /** The subscription state. */
+  state?: CapabilityInformationState;
+  /** The maximum supported number of accounts under this subscription. */
+  maxAccountCount?: number;
+  /** The current number of accounts under this subscription. */
+  accountCount?: number;
+  /** The Boolean value of true or false to indicate the maintenance state. */
+  migrationState?: boolean;
+}
+export const CapabilityInformation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.optional(S.String),
+    state: S.optional(CapabilityInformationState),
+    maxAccountCount: S.optional(S.Number),
+    accountCount: S.optional(S.Number),
+    migrationState: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "CapabilityInformation",
+}) as any as S.Schema<CapabilityInformation>;
+
+export interface GetLocationUsageRequest {
+  /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The resource location without whitespace. */
+  location: string;
+}
+export const GetLocationUsageRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DataLakeStore/locations/{location}/usages",
+      code: 200,
+      apiVersion: "2016-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetLocationUsageRequest",
+}) as any as S.Schema<GetLocationUsageRequest>;
+
+/** Gets the unit of measurement. */
+export type UsageUnit =
+  | "Count"
+  | "Bytes"
+  | "Seconds"
+  | "Percent"
+  | "CountsPerSecond"
+  | "BytesPerSecond";
+export const UsageUnit = /*@__PURE__*/ S.String;
+
+/** The usage names that can be used. */
+export interface UsageName {
+  /** Gets a string describing the resource name. */
+  value?: string;
+  /** Gets a localized string describing the resource name. */
+  localizedValue?: string;
+}
+export const UsageName = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(S.String),
+    localizedValue: S.optional(S.String),
+  }),
+).annotate({ identifier: "UsageName" }) as any as S.Schema<UsageName>;
+
+/** Describes the Resource Usage. */
+export interface Usage {
+  /** Gets the unit of measurement. */
+  unit?: UsageUnit;
+  /** Resource identifier. */
+  id?: string;
+  /** Gets the current count of the allocated resources in the subscription. */
+  currentValue?: number;
+  /** Gets the maximum count of the resources that can be allocated in the subscription. */
+  limit?: number;
+  /** Gets the name of the type of usage. */
+  name?: UsageName;
+}
+export const Usage = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    unit: S.optional(UsageUnit),
+    id: S.optional(S.String),
+    currentValue: S.optional(S.Number),
+    limit: S.optional(S.Number),
+    name: S.optional(UsageName),
+  }),
+).annotate({ identifier: "Usage" }) as any as S.Schema<Usage>;
+
+/** Gets or sets the list of Storage Resource Usages. */
+export type UsageListResultValueList = Array<Usage>;
+export const UsageListResultValueList = /*@__PURE__*/ S.Array(
+  Usage,
+) as any as S.Schema<UsageListResultValueList>;
+
+/** The response from the List Usages operation. */
+export interface UsageListResult {
+  /** Gets or sets the list of Storage Resource Usages. */
+  value?: UsageListResultValueList;
+}
+export const UsageListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(UsageListResultValueList),
+  }),
+).annotate({
+  identifier: "UsageListResult",
+}) as any as S.Schema<UsageListResult>;
+
+export interface GetTrustedIdProviderRequest {
+  /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the Azure resource group. */
+  resourceGroupName: string;
+  /** The name of the Data Lake Store account. */
+  accountName: string;
+  /** The name of the trusted identity provider to retrieve. */
+  trustedIdProviderName: string;
+}
+export const GetTrustedIdProviderRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    trustedIdProviderName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeStore/accounts/{accountName}/trustedIdProviders/{trustedIdProviderName}",
+      code: 200,
+      apiVersion: "2016-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetTrustedIdProviderRequest",
+}) as any as S.Schema<GetTrustedIdProviderRequest>;
+
+export interface GetTrustedIdProviderResponse {
+  /** The resource identifier. */
+  id?: string;
+  /** The resource name. */
+  name?: string;
+  /** The resource type. */
+  type?: string;
+  /** The trusted identity provider properties. */
+  properties?: TrustedIdProviderProperties;
+}
+export const GetTrustedIdProviderResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    properties: S.optional(TrustedIdProviderProperties),
+  }),
+).annotate({
+  identifier: "GetTrustedIdProviderResponse",
+}) as any as S.Schema<GetTrustedIdProviderResponse>;
+
+export interface GetVirtualNetworkRuleRequest {
+  /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the Azure resource group. */
+  resourceGroupName: string;
+  /** The name of the Data Lake Store account. */
+  accountName: string;
+  /** The name of the virtual network rule to retrieve. */
+  virtualNetworkRuleName: string;
+}
+export const GetVirtualNetworkRuleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    virtualNetworkRuleName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeStore/accounts/{accountName}/virtualNetworkRules/{virtualNetworkRuleName}",
+      code: 200,
+      apiVersion: "2016-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetVirtualNetworkRuleRequest",
+}) as any as S.Schema<GetVirtualNetworkRuleRequest>;
+
+export interface GetVirtualNetworkRuleResponse {
+  /** The resource identifier. */
+  id?: string;
+  /** The resource name. */
+  name?: string;
+  /** The resource type. */
+  type?: string;
+  /** The virtual network rule properties. */
+  properties?: VirtualNetworkRuleProperties;
+}
+export const GetVirtualNetworkRuleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    properties: S.optional(VirtualNetworkRuleProperties),
+  }),
+).annotate({
+  identifier: "GetVirtualNetworkRuleResponse",
+}) as any as S.Schema<GetVirtualNetworkRuleResponse>;
+
+export interface ListAccountByResourceGroupRequest {
+  /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the Azure resource group. */
+  resourceGroupName: string;
   /** OData filter. Optional. */
   _filter?: string;
   /** The number of items to return. Optional. */
@@ -873,12 +1320,13 @@ export interface AccountsListRequest {
   _select?: string;
   /** OrderBy clause. One or more comma-separated expressions with an optional "asc" (the default) or "desc" depending on the order you'd like the values sorted, e.g. Categories?$orderby=CategoryName desc. Optional. */
   _orderby?: string;
-  /** The Boolean value of true or false to request a count of the matching resources included with the resources in the response, e.g. Categories?$count=true. Optional. */
+  /** A Boolean value of true or false to request a count of the matching resources included with the resources in the response, e.g. Categories?$count=true. Optional. */
   _count?: boolean;
 }
-export const AccountsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListAccountByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
     _filter: S.optional(S.String.pipe(T.Query("$filter"))),
     _top: S.optional(S.Number.pipe(T.Query("$top"))),
     _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
@@ -888,14 +1336,14 @@ export const AccountsListRequest = /*@__PURE__*/ S.suspend(() =>
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DataLakeStore/accounts",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeStore/accounts",
       code: 200,
       apiVersion: "2016-11-01",
     }),
   ),
 ).annotate({
-  identifier: "AccountsListRequest",
-}) as any as S.Schema<AccountsListRequest>;
+  identifier: "ListAccountByResourceGroupRequest",
+}) as any as S.Schema<ListAccountByResourceGroupRequest>;
 
 /** The resource tags. */
 export type DataLakeStoreAccountBasicTagsMap = {
@@ -1007,11 +1455,9 @@ export const DataLakeStoreAccountListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "DataLakeStoreAccountListResult",
 }) as any as S.Schema<DataLakeStoreAccountListResult>;
 
-export interface AccountsListByResourceGroupRequest {
+export interface ListAccountsRequest {
   /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
-  /** The name of the Azure resource group. */
-  resourceGroupName: string;
   /** OData filter. Optional. */
   _filter?: string;
   /** The number of items to return. Optional. */
@@ -1022,13 +1468,12 @@ export interface AccountsListByResourceGroupRequest {
   _select?: string;
   /** OrderBy clause. One or more comma-separated expressions with an optional "asc" (the default) or "desc" depending on the order you'd like the values sorted, e.g. Categories?$orderby=CategoryName desc. Optional. */
   _orderby?: string;
-  /** A Boolean value of true or false to request a count of the matching resources included with the resources in the response, e.g. Categories?$count=true. Optional. */
+  /** The Boolean value of true or false to request a count of the matching resources included with the resources in the response, e.g. Categories?$count=true. Optional. */
   _count?: boolean;
 }
-export const AccountsListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListAccountsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
     _filter: S.optional(S.String.pipe(T.Query("$filter"))),
     _top: S.optional(S.Number.pipe(T.Query("$top"))),
     _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
@@ -1038,23 +1483,297 @@ export const AccountsListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeStore/accounts",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DataLakeStore/accounts",
       code: 200,
       apiVersion: "2016-11-01",
     }),
   ),
 ).annotate({
-  identifier: "AccountsListByResourceGroupRequest",
-}) as any as S.Schema<AccountsListByResourceGroupRequest>;
+  identifier: "ListAccountsRequest",
+}) as any as S.Schema<ListAccountsRequest>;
+
+export interface ListFirewallRuleByAccountRequest {
+  /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the Azure resource group. */
+  resourceGroupName: string;
+  /** The name of the Data Lake Store account. */
+  accountName: string;
+}
+export const ListFirewallRuleByAccountRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeStore/accounts/{accountName}/firewallRules",
+      code: 200,
+      apiVersion: "2016-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListFirewallRuleByAccountRequest",
+}) as any as S.Schema<ListFirewallRuleByAccountRequest>;
+
+/** The results of the list operation. */
+export type FirewallRuleListResultValueList = Array<FirewallRule>;
+export const FirewallRuleListResultValueList = /*@__PURE__*/ S.Array(
+  FirewallRule,
+) as any as S.Schema<FirewallRuleListResultValueList>;
+
+/** Data Lake Store firewall rule list information. */
+export interface FirewallRuleListResult {
+  /** The results of the list operation. */
+  value?: FirewallRuleListResultValueList;
+  /** The link (url) to the next page of results. */
+  nextLink?: string;
+}
+export const FirewallRuleListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(FirewallRuleListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "FirewallRuleListResult",
+}) as any as S.Schema<FirewallRuleListResult>;
+
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.DataLakeStore/operations",
+      code: 200,
+      apiVersion: "2016-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
+
+/** The display information for a particular operation. */
+export interface OperationDisplay {
+  /** The resource provider of the operation. */
+  provider?: string;
+  /** The resource type of the operation. */
+  resource?: string;
+  /** A friendly name of the operation. */
+  operation?: string;
+  /** A friendly description of the operation. */
+  description?: string;
+}
+export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provider: S.optional(S.String),
+    resource: S.optional(S.String),
+    operation: S.optional(S.String),
+    description: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationDisplay",
+}) as any as S.Schema<OperationDisplay>;
+
+/** The intended executor of the operation. */
+export type OperationOrigin = "user" | "system" | "user,system";
+export const OperationOrigin = /*@__PURE__*/ S.String;
+
+/** An available operation for Data Lake Store. */
+export interface Operation {
+  /** The name of the operation. */
+  name?: string;
+  /** The display information for the operation. */
+  display?: OperationDisplay;
+  /** The intended executor of the operation. */
+  origin?: OperationOrigin;
+}
+export const Operation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    display: S.optional(OperationDisplay),
+    origin: S.optional(OperationOrigin),
+  }),
+).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
+
+/** The results of the list operation. */
+export type OperationListResultValueList = Array<Operation>;
+export const OperationListResultValueList = /*@__PURE__*/ S.Array(
+  Operation,
+) as any as S.Schema<OperationListResultValueList>;
+
+/** The list of available operations for Data Lake Store. */
+export interface OperationListResult {
+  /** The results of the list operation. */
+  value?: OperationListResultValueList;
+  /** The link (url) to the next page of results. */
+  nextLink?: string;
+}
+export const OperationListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(OperationListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationListResult",
+}) as any as S.Schema<OperationListResult>;
+
+export interface ListTrustedIdProviderByAccountRequest {
+  /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the Azure resource group. */
+  resourceGroupName: string;
+  /** The name of the Data Lake Store account. */
+  accountName: string;
+}
+export const ListTrustedIdProviderByAccountRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeStore/accounts/{accountName}/trustedIdProviders",
+        code: 200,
+        apiVersion: "2016-11-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListTrustedIdProviderByAccountRequest",
+}) as any as S.Schema<ListTrustedIdProviderByAccountRequest>;
+
+/** The results of the list operation. */
+export type TrustedIdProviderListResultValueList = Array<TrustedIdProvider>;
+export const TrustedIdProviderListResultValueList = /*@__PURE__*/ S.Array(
+  TrustedIdProvider,
+) as any as S.Schema<TrustedIdProviderListResultValueList>;
+
+/** Data Lake Store trusted identity provider list information. */
+export interface TrustedIdProviderListResult {
+  /** The results of the list operation. */
+  value?: TrustedIdProviderListResultValueList;
+  /** The link (url) to the next page of results. */
+  nextLink?: string;
+}
+export const TrustedIdProviderListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(TrustedIdProviderListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "TrustedIdProviderListResult",
+}) as any as S.Schema<TrustedIdProviderListResult>;
+
+export interface ListVirtualNetworkRuleByAccountRequest {
+  /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the Azure resource group. */
+  resourceGroupName: string;
+  /** The name of the Data Lake Store account. */
+  accountName: string;
+}
+export const ListVirtualNetworkRuleByAccountRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeStore/accounts/{accountName}/virtualNetworkRules",
+        code: 200,
+        apiVersion: "2016-11-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListVirtualNetworkRuleByAccountRequest",
+}) as any as S.Schema<ListVirtualNetworkRuleByAccountRequest>;
+
+/** The results of the list operation. */
+export type VirtualNetworkRuleListResultValueList = Array<VirtualNetworkRule>;
+export const VirtualNetworkRuleListResultValueList = /*@__PURE__*/ S.Array(
+  VirtualNetworkRule,
+) as any as S.Schema<VirtualNetworkRuleListResultValueList>;
+
+/** Data Lake Store virtual network rule list information. */
+export interface VirtualNetworkRuleListResult {
+  /** The results of the list operation. */
+  value?: VirtualNetworkRuleListResultValueList;
+  /** The link (url) to the next page of results. */
+  nextLink?: string;
+}
+export const VirtualNetworkRuleListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(VirtualNetworkRuleListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "VirtualNetworkRuleListResult",
+}) as any as S.Schema<VirtualNetworkRuleListResult>;
+
+export interface TrustedIdProvidersCreateOrUpdateRequest {
+  /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the Azure resource group. */
+  resourceGroupName: string;
+  /** The name of the Data Lake Store account. */
+  accountName: string;
+  /** The name of the trusted identity provider. This is used for differentiation of providers in the account. */
+  trustedIdProviderName: string;
+  /** The trusted identity provider properties to use when creating a new trusted identity provider. */
+  properties: CreateOrUpdateTrustedIdProviderProperties;
+}
+export const TrustedIdProvidersCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      trustedIdProviderName: S.String.pipe(T.Label()),
+      properties: CreateOrUpdateTrustedIdProviderProperties,
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeStore/accounts/{accountName}/trustedIdProviders/{trustedIdProviderName}",
+        code: 200,
+        apiVersion: "2016-11-01",
+      }),
+    ),
+).annotate({
+  identifier: "TrustedIdProvidersCreateOrUpdateRequest",
+}) as any as S.Schema<TrustedIdProvidersCreateOrUpdateRequest>;
+
+export interface TrustedIdProvidersCreateOrUpdateResponse {
+  /** The resource identifier. */
+  id?: string;
+  /** The resource name. */
+  name?: string;
+  /** The resource type. */
+  type?: string;
+  /** The trusted identity provider properties. */
+  properties?: TrustedIdProviderProperties;
+}
+export const TrustedIdProvidersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      properties: S.optional(TrustedIdProviderProperties),
+    }),
+).annotate({
+  identifier: "TrustedIdProvidersCreateOrUpdateResponse",
+}) as any as S.Schema<TrustedIdProvidersCreateOrUpdateResponse>;
 
 /** Resource tags */
-export type AccountsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AccountsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateAccountRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateAccountRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateAccountRequestTagsMap>;
 
 /** The Key Vault update information used for user managed key rotation. */
 export interface UpdateKeyVaultMetaInfo {
@@ -1258,7 +1977,7 @@ export const UpdateDataLakeStoreAccountProperties = /*@__PURE__*/ S.suspend(
   identifier: "UpdateDataLakeStoreAccountProperties",
 }) as any as S.Schema<UpdateDataLakeStoreAccountProperties>;
 
-export interface AccountsUpdateRequest {
+export interface UpdateAccountRequest {
   /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The name of the Azure resource group. */
@@ -1266,16 +1985,16 @@ export interface AccountsUpdateRequest {
   /** The name of the Data Lake Store account. */
   accountName: string;
   /** Resource tags */
-  tags?: AccountsUpdateRequestTagsMap;
+  tags?: UpdateAccountRequestTagsMap;
   /** The Data Lake Store account properties to update. */
   properties?: UpdateDataLakeStoreAccountProperties;
 }
-export const AccountsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateAccountRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
-    tags: S.optional(AccountsUpdateRequestTagsMap),
+    tags: S.optional(UpdateAccountRequestTagsMap),
     properties: S.optional(UpdateDataLakeStoreAccountProperties),
   }).pipe(
     T.Http({
@@ -1286,19 +2005,19 @@ export const AccountsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "AccountsUpdateRequest",
-}) as any as S.Schema<AccountsUpdateRequest>;
+  identifier: "UpdateAccountRequest",
+}) as any as S.Schema<UpdateAccountRequest>;
 
 /** The resource tags. */
-export type AccountsUpdateResponseTagsMap = {
+export type UpdateAccountResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AccountsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateAccountResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateAccountResponseTagsMap>;
 
-export interface AccountsUpdateResponse {
+export interface UpdateAccountResponse {
   /** The resource identifier. */
   id?: string;
   /** The resource name. */
@@ -1308,210 +2027,27 @@ export interface AccountsUpdateResponse {
   /** The resource location. */
   location?: string;
   /** The resource tags. */
-  tags?: AccountsUpdateResponseTagsMap;
+  tags?: UpdateAccountResponseTagsMap;
   /** The Key Vault encryption identity, if any. */
   identity?: EncryptionIdentity;
   /** The Data Lake Store account properties. */
   properties?: DataLakeStoreAccountProperties;
 }
-export const AccountsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateAccountResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(AccountsUpdateResponseTagsMap),
+    tags: S.optional(UpdateAccountResponseTagsMap),
     identity: S.optional(EncryptionIdentity),
     properties: S.optional(DataLakeStoreAccountProperties),
   }),
 ).annotate({
-  identifier: "AccountsUpdateResponse",
-}) as any as S.Schema<AccountsUpdateResponse>;
+  identifier: "UpdateAccountResponse",
+}) as any as S.Schema<UpdateAccountResponse>;
 
-export interface FirewallRulesCreateOrUpdateRequest {
-  /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the Azure resource group. */
-  resourceGroupName: string;
-  /** The name of the Data Lake Store account. */
-  accountName: string;
-  /** The name of the firewall rule to create or update. */
-  firewallRuleName: string;
-  /** The firewall rule properties to use when creating a new firewall rule. */
-  properties: CreateOrUpdateFirewallRuleProperties;
-}
-export const FirewallRulesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    firewallRuleName: S.String.pipe(T.Label()),
-    properties: CreateOrUpdateFirewallRuleProperties,
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeStore/accounts/{accountName}/firewallRules/{firewallRuleName}",
-      code: 200,
-      apiVersion: "2016-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "FirewallRulesCreateOrUpdateRequest",
-}) as any as S.Schema<FirewallRulesCreateOrUpdateRequest>;
-
-export interface FirewallRulesCreateOrUpdateResponse {
-  /** The resource identifier. */
-  id?: string;
-  /** The resource name. */
-  name?: string;
-  /** The resource type. */
-  type?: string;
-  /** The firewall rule properties. */
-  properties?: FirewallRuleProperties;
-}
-export const FirewallRulesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    properties: S.optional(FirewallRuleProperties),
-  }),
-).annotate({
-  identifier: "FirewallRulesCreateOrUpdateResponse",
-}) as any as S.Schema<FirewallRulesCreateOrUpdateResponse>;
-
-export interface FirewallRulesDeleteRequest {
-  /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the Azure resource group. */
-  resourceGroupName: string;
-  /** The name of the Data Lake Store account. */
-  accountName: string;
-  /** The name of the firewall rule to delete. */
-  firewallRuleName: string;
-}
-export const FirewallRulesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    firewallRuleName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeStore/accounts/{accountName}/firewallRules/{firewallRuleName}",
-      code: 200,
-      apiVersion: "2016-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "FirewallRulesDeleteRequest",
-}) as any as S.Schema<FirewallRulesDeleteRequest>;
-
-export interface FirewallRulesDeleteResponse {}
-export const FirewallRulesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "FirewallRulesDeleteResponse",
-}) as any as S.Schema<FirewallRulesDeleteResponse>;
-
-export interface FirewallRulesGetRequest {
-  /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the Azure resource group. */
-  resourceGroupName: string;
-  /** The name of the Data Lake Store account. */
-  accountName: string;
-  /** The name of the firewall rule to retrieve. */
-  firewallRuleName: string;
-}
-export const FirewallRulesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    firewallRuleName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeStore/accounts/{accountName}/firewallRules/{firewallRuleName}",
-      code: 200,
-      apiVersion: "2016-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "FirewallRulesGetRequest",
-}) as any as S.Schema<FirewallRulesGetRequest>;
-
-export interface FirewallRulesGetResponse {
-  /** The resource identifier. */
-  id?: string;
-  /** The resource name. */
-  name?: string;
-  /** The resource type. */
-  type?: string;
-  /** The firewall rule properties. */
-  properties?: FirewallRuleProperties;
-}
-export const FirewallRulesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    properties: S.optional(FirewallRuleProperties),
-  }),
-).annotate({
-  identifier: "FirewallRulesGetResponse",
-}) as any as S.Schema<FirewallRulesGetResponse>;
-
-export interface FirewallRulesListByAccountRequest {
-  /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the Azure resource group. */
-  resourceGroupName: string;
-  /** The name of the Data Lake Store account. */
-  accountName: string;
-}
-export const FirewallRulesListByAccountRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeStore/accounts/{accountName}/firewallRules",
-      code: 200,
-      apiVersion: "2016-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "FirewallRulesListByAccountRequest",
-}) as any as S.Schema<FirewallRulesListByAccountRequest>;
-
-/** The results of the list operation. */
-export type FirewallRuleListResultValueList = Array<FirewallRule>;
-export const FirewallRuleListResultValueList = /*@__PURE__*/ S.Array(
-  FirewallRule,
-) as any as S.Schema<FirewallRuleListResultValueList>;
-
-/** Data Lake Store firewall rule list information. */
-export interface FirewallRuleListResult {
-  /** The results of the list operation. */
-  value?: FirewallRuleListResultValueList;
-  /** The link (url) to the next page of results. */
-  nextLink?: string;
-}
-export const FirewallRuleListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(FirewallRuleListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "FirewallRuleListResult",
-}) as any as S.Schema<FirewallRuleListResult>;
-
-export interface FirewallRulesUpdateRequest {
+export interface UpdateFirewallRuleRequest {
   /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The name of the Azure resource group. */
@@ -1523,7 +2059,7 @@ export interface FirewallRulesUpdateRequest {
   /** The firewall rule properties to use when updating a firewall rule. */
   properties?: FirewallRuleProperties;
 }
-export const FirewallRulesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateFirewallRuleRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1539,10 +2075,10 @@ export const FirewallRulesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "FirewallRulesUpdateRequest",
-}) as any as S.Schema<FirewallRulesUpdateRequest>;
+  identifier: "UpdateFirewallRuleRequest",
+}) as any as S.Schema<UpdateFirewallRuleRequest>;
 
-export interface FirewallRulesUpdateResponse {
+export interface UpdateFirewallRuleResponse {
   /** The resource identifier. */
   id?: string;
   /** The resource name. */
@@ -1552,7 +2088,7 @@ export interface FirewallRulesUpdateResponse {
   /** The firewall rule properties. */
   properties?: FirewallRuleProperties;
 }
-export const FirewallRulesUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateFirewallRuleResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -1560,419 +2096,10 @@ export const FirewallRulesUpdateResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(FirewallRuleProperties),
   }),
 ).annotate({
-  identifier: "FirewallRulesUpdateResponse",
-}) as any as S.Schema<FirewallRulesUpdateResponse>;
+  identifier: "UpdateFirewallRuleResponse",
+}) as any as S.Schema<UpdateFirewallRuleResponse>;
 
-export interface LocationsGetCapabilityRequest {
-  /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The resource location without whitespace. */
-  location: string;
-}
-export const LocationsGetCapabilityRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DataLakeStore/locations/{location}/capability",
-      code: 200,
-      apiVersion: "2016-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "LocationsGetCapabilityRequest",
-}) as any as S.Schema<LocationsGetCapabilityRequest>;
-
-/** The subscription state. */
-export type CapabilityInformationState =
-  | "Registered"
-  | "Suspended"
-  | "Deleted"
-  | "Unregistered"
-  | "Warned";
-export const CapabilityInformationState = /*@__PURE__*/ S.String;
-
-/** Subscription-level properties and limits for Data Lake Store. */
-export interface CapabilityInformation {
-  /** The subscription credentials that uniquely identifies the subscription. */
-  subscriptionId?: string;
-  /** The subscription state. */
-  state?: CapabilityInformationState;
-  /** The maximum supported number of accounts under this subscription. */
-  maxAccountCount?: number;
-  /** The current number of accounts under this subscription. */
-  accountCount?: number;
-  /** The Boolean value of true or false to indicate the maintenance state. */
-  migrationState?: boolean;
-}
-export const CapabilityInformation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.optional(S.String),
-    state: S.optional(CapabilityInformationState),
-    maxAccountCount: S.optional(S.Number),
-    accountCount: S.optional(S.Number),
-    migrationState: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "CapabilityInformation",
-}) as any as S.Schema<CapabilityInformation>;
-
-export interface LocationsGetUsageRequest {
-  /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The resource location without whitespace. */
-  location: string;
-}
-export const LocationsGetUsageRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DataLakeStore/locations/{location}/usages",
-      code: 200,
-      apiVersion: "2016-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "LocationsGetUsageRequest",
-}) as any as S.Schema<LocationsGetUsageRequest>;
-
-/** Gets the unit of measurement. */
-export type UsageUnit =
-  | "Count"
-  | "Bytes"
-  | "Seconds"
-  | "Percent"
-  | "CountsPerSecond"
-  | "BytesPerSecond";
-export const UsageUnit = /*@__PURE__*/ S.String;
-
-/** The usage names that can be used. */
-export interface UsageName {
-  /** Gets a string describing the resource name. */
-  value?: string;
-  /** Gets a localized string describing the resource name. */
-  localizedValue?: string;
-}
-export const UsageName = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(S.String),
-    localizedValue: S.optional(S.String),
-  }),
-).annotate({ identifier: "UsageName" }) as any as S.Schema<UsageName>;
-
-/** Describes the Resource Usage. */
-export interface Usage {
-  /** Gets the unit of measurement. */
-  unit?: UsageUnit;
-  /** Resource identifier. */
-  id?: string;
-  /** Gets the current count of the allocated resources in the subscription. */
-  currentValue?: number;
-  /** Gets the maximum count of the resources that can be allocated in the subscription. */
-  limit?: number;
-  /** Gets the name of the type of usage. */
-  name?: UsageName;
-}
-export const Usage = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    unit: S.optional(UsageUnit),
-    id: S.optional(S.String),
-    currentValue: S.optional(S.Number),
-    limit: S.optional(S.Number),
-    name: S.optional(UsageName),
-  }),
-).annotate({ identifier: "Usage" }) as any as S.Schema<Usage>;
-
-/** Gets or sets the list of Storage Resource Usages. */
-export type UsageListResultValueList = Array<Usage>;
-export const UsageListResultValueList = /*@__PURE__*/ S.Array(
-  Usage,
-) as any as S.Schema<UsageListResultValueList>;
-
-/** The response from the List Usages operation. */
-export interface UsageListResult {
-  /** Gets or sets the list of Storage Resource Usages. */
-  value?: UsageListResultValueList;
-}
-export const UsageListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(UsageListResultValueList),
-  }),
-).annotate({
-  identifier: "UsageListResult",
-}) as any as S.Schema<UsageListResult>;
-
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.DataLakeStore/operations",
-      code: 200,
-      apiVersion: "2016-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
-
-/** The display information for a particular operation. */
-export interface OperationDisplay {
-  /** The resource provider of the operation. */
-  provider?: string;
-  /** The resource type of the operation. */
-  resource?: string;
-  /** A friendly name of the operation. */
-  operation?: string;
-  /** A friendly description of the operation. */
-  description?: string;
-}
-export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provider: S.optional(S.String),
-    resource: S.optional(S.String),
-    operation: S.optional(S.String),
-    description: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationDisplay",
-}) as any as S.Schema<OperationDisplay>;
-
-/** The intended executor of the operation. */
-export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
-
-/** An available operation for Data Lake Store. */
-export interface Operation {
-  /** The name of the operation. */
-  name?: string;
-  /** The display information for the operation. */
-  display?: OperationDisplay;
-  /** The intended executor of the operation. */
-  origin?: OperationOrigin;
-}
-export const Operation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    display: S.optional(OperationDisplay),
-    origin: S.optional(OperationOrigin),
-  }),
-).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
-
-/** The results of the list operation. */
-export type OperationListResultValueList = Array<Operation>;
-export const OperationListResultValueList = /*@__PURE__*/ S.Array(
-  Operation,
-) as any as S.Schema<OperationListResultValueList>;
-
-/** The list of available operations for Data Lake Store. */
-export interface OperationListResult {
-  /** The results of the list operation. */
-  value?: OperationListResultValueList;
-  /** The link (url) to the next page of results. */
-  nextLink?: string;
-}
-export const OperationListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(OperationListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationListResult",
-}) as any as S.Schema<OperationListResult>;
-
-export interface TrustedIdProvidersCreateOrUpdateRequest {
-  /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the Azure resource group. */
-  resourceGroupName: string;
-  /** The name of the Data Lake Store account. */
-  accountName: string;
-  /** The name of the trusted identity provider. This is used for differentiation of providers in the account. */
-  trustedIdProviderName: string;
-  /** The trusted identity provider properties to use when creating a new trusted identity provider. */
-  properties: CreateOrUpdateTrustedIdProviderProperties;
-}
-export const TrustedIdProvidersCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      trustedIdProviderName: S.String.pipe(T.Label()),
-      properties: CreateOrUpdateTrustedIdProviderProperties,
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeStore/accounts/{accountName}/trustedIdProviders/{trustedIdProviderName}",
-        code: 200,
-        apiVersion: "2016-11-01",
-      }),
-    ),
-).annotate({
-  identifier: "TrustedIdProvidersCreateOrUpdateRequest",
-}) as any as S.Schema<TrustedIdProvidersCreateOrUpdateRequest>;
-
-export interface TrustedIdProvidersCreateOrUpdateResponse {
-  /** The resource identifier. */
-  id?: string;
-  /** The resource name. */
-  name?: string;
-  /** The resource type. */
-  type?: string;
-  /** The trusted identity provider properties. */
-  properties?: TrustedIdProviderProperties;
-}
-export const TrustedIdProvidersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      properties: S.optional(TrustedIdProviderProperties),
-    }),
-).annotate({
-  identifier: "TrustedIdProvidersCreateOrUpdateResponse",
-}) as any as S.Schema<TrustedIdProvidersCreateOrUpdateResponse>;
-
-export interface TrustedIdProvidersDeleteRequest {
-  /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the Azure resource group. */
-  resourceGroupName: string;
-  /** The name of the Data Lake Store account. */
-  accountName: string;
-  /** The name of the trusted identity provider to delete. */
-  trustedIdProviderName: string;
-}
-export const TrustedIdProvidersDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    trustedIdProviderName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeStore/accounts/{accountName}/trustedIdProviders/{trustedIdProviderName}",
-      code: 200,
-      apiVersion: "2016-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "TrustedIdProvidersDeleteRequest",
-}) as any as S.Schema<TrustedIdProvidersDeleteRequest>;
-
-export interface TrustedIdProvidersDeleteResponse {}
-export const TrustedIdProvidersDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "TrustedIdProvidersDeleteResponse",
-}) as any as S.Schema<TrustedIdProvidersDeleteResponse>;
-
-export interface TrustedIdProvidersGetRequest {
-  /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the Azure resource group. */
-  resourceGroupName: string;
-  /** The name of the Data Lake Store account. */
-  accountName: string;
-  /** The name of the trusted identity provider to retrieve. */
-  trustedIdProviderName: string;
-}
-export const TrustedIdProvidersGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    trustedIdProviderName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeStore/accounts/{accountName}/trustedIdProviders/{trustedIdProviderName}",
-      code: 200,
-      apiVersion: "2016-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "TrustedIdProvidersGetRequest",
-}) as any as S.Schema<TrustedIdProvidersGetRequest>;
-
-export interface TrustedIdProvidersGetResponse {
-  /** The resource identifier. */
-  id?: string;
-  /** The resource name. */
-  name?: string;
-  /** The resource type. */
-  type?: string;
-  /** The trusted identity provider properties. */
-  properties?: TrustedIdProviderProperties;
-}
-export const TrustedIdProvidersGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    properties: S.optional(TrustedIdProviderProperties),
-  }),
-).annotate({
-  identifier: "TrustedIdProvidersGetResponse",
-}) as any as S.Schema<TrustedIdProvidersGetResponse>;
-
-export interface TrustedIdProvidersListByAccountRequest {
-  /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the Azure resource group. */
-  resourceGroupName: string;
-  /** The name of the Data Lake Store account. */
-  accountName: string;
-}
-export const TrustedIdProvidersListByAccountRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeStore/accounts/{accountName}/trustedIdProviders",
-        code: 200,
-        apiVersion: "2016-11-01",
-      }),
-    ),
-).annotate({
-  identifier: "TrustedIdProvidersListByAccountRequest",
-}) as any as S.Schema<TrustedIdProvidersListByAccountRequest>;
-
-/** The results of the list operation. */
-export type TrustedIdProviderListResultValueList = Array<TrustedIdProvider>;
-export const TrustedIdProviderListResultValueList = /*@__PURE__*/ S.Array(
-  TrustedIdProvider,
-) as any as S.Schema<TrustedIdProviderListResultValueList>;
-
-/** Data Lake Store trusted identity provider list information. */
-export interface TrustedIdProviderListResult {
-  /** The results of the list operation. */
-  value?: TrustedIdProviderListResultValueList;
-  /** The link (url) to the next page of results. */
-  nextLink?: string;
-}
-export const TrustedIdProviderListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(TrustedIdProviderListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "TrustedIdProviderListResult",
-}) as any as S.Schema<TrustedIdProviderListResult>;
-
-export interface TrustedIdProvidersUpdateRequest {
+export interface UpdateTrustedIdProviderRequest {
   /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The name of the Azure resource group. */
@@ -1984,7 +2111,7 @@ export interface TrustedIdProvidersUpdateRequest {
   /** The trusted identity provider properties to use when updating a trusted identity provider. */
   properties?: TrustedIdProviderProperties;
 }
-export const TrustedIdProvidersUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateTrustedIdProviderRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2000,10 +2127,10 @@ export const TrustedIdProvidersUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "TrustedIdProvidersUpdateRequest",
-}) as any as S.Schema<TrustedIdProvidersUpdateRequest>;
+  identifier: "UpdateTrustedIdProviderRequest",
+}) as any as S.Schema<UpdateTrustedIdProviderRequest>;
 
-export interface TrustedIdProvidersUpdateResponse {
+export interface UpdateTrustedIdProviderResponse {
   /** The resource identifier. */
   id?: string;
   /** The resource name. */
@@ -2013,7 +2140,7 @@ export interface TrustedIdProvidersUpdateResponse {
   /** The trusted identity provider properties. */
   properties?: TrustedIdProviderProperties;
 }
-export const TrustedIdProvidersUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateTrustedIdProviderResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -2021,8 +2148,60 @@ export const TrustedIdProvidersUpdateResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(TrustedIdProviderProperties),
   }),
 ).annotate({
-  identifier: "TrustedIdProvidersUpdateResponse",
-}) as any as S.Schema<TrustedIdProvidersUpdateResponse>;
+  identifier: "UpdateTrustedIdProviderResponse",
+}) as any as S.Schema<UpdateTrustedIdProviderResponse>;
+
+export interface UpdateVirtualNetworkRuleRequest {
+  /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the Azure resource group. */
+  resourceGroupName: string;
+  /** The name of the Data Lake Store account. */
+  accountName: string;
+  /** The name of the virtual network rule to update. */
+  virtualNetworkRuleName: string;
+  /** The virtual network rule properties to use when updating a virtual network rule. */
+  properties?: VirtualNetworkRuleProperties;
+}
+export const UpdateVirtualNetworkRuleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    virtualNetworkRuleName: S.String.pipe(T.Label()),
+    properties: S.optional(VirtualNetworkRuleProperties),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeStore/accounts/{accountName}/virtualNetworkRules/{virtualNetworkRuleName}",
+      code: 200,
+      apiVersion: "2016-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateVirtualNetworkRuleRequest",
+}) as any as S.Schema<UpdateVirtualNetworkRuleRequest>;
+
+export interface UpdateVirtualNetworkRuleResponse {
+  /** The resource identifier. */
+  id?: string;
+  /** The resource name. */
+  name?: string;
+  /** The resource type. */
+  type?: string;
+  /** The virtual network rule properties. */
+  properties?: VirtualNetworkRuleProperties;
+}
+export const UpdateVirtualNetworkRuleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    properties: S.optional(VirtualNetworkRuleProperties),
+  }),
+).annotate({
+  identifier: "UpdateVirtualNetworkRuleResponse",
+}) as any as S.Schema<UpdateVirtualNetworkRuleResponse>;
 
 export interface VirtualNetworkRulesCreateOrUpdateRequest {
   /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
@@ -2078,305 +2257,106 @@ export const VirtualNetworkRulesCreateOrUpdateResponse =
     identifier: "VirtualNetworkRulesCreateOrUpdateResponse",
   }) as any as S.Schema<VirtualNetworkRulesCreateOrUpdateResponse>;
 
-export interface VirtualNetworkRulesDeleteRequest {
-  /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the Azure resource group. */
-  resourceGroupName: string;
-  /** The name of the Data Lake Store account. */
-  accountName: string;
-  /** The name of the virtual network rule to delete. */
-  virtualNetworkRuleName: string;
-}
-export const VirtualNetworkRulesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    virtualNetworkRuleName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeStore/accounts/{accountName}/virtualNetworkRules/{virtualNetworkRuleName}",
-      code: 200,
-      apiVersion: "2016-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "VirtualNetworkRulesDeleteRequest",
-}) as any as S.Schema<VirtualNetworkRulesDeleteRequest>;
-
-export interface VirtualNetworkRulesDeleteResponse {}
-export const VirtualNetworkRulesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "VirtualNetworkRulesDeleteResponse",
-}) as any as S.Schema<VirtualNetworkRulesDeleteResponse>;
-
-export interface VirtualNetworkRulesGetRequest {
-  /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the Azure resource group. */
-  resourceGroupName: string;
-  /** The name of the Data Lake Store account. */
-  accountName: string;
-  /** The name of the virtual network rule to retrieve. */
-  virtualNetworkRuleName: string;
-}
-export const VirtualNetworkRulesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    virtualNetworkRuleName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeStore/accounts/{accountName}/virtualNetworkRules/{virtualNetworkRuleName}",
-      code: 200,
-      apiVersion: "2016-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "VirtualNetworkRulesGetRequest",
-}) as any as S.Schema<VirtualNetworkRulesGetRequest>;
-
-export interface VirtualNetworkRulesGetResponse {
-  /** The resource identifier. */
-  id?: string;
-  /** The resource name. */
-  name?: string;
-  /** The resource type. */
-  type?: string;
-  /** The virtual network rule properties. */
-  properties?: VirtualNetworkRuleProperties;
-}
-export const VirtualNetworkRulesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    properties: S.optional(VirtualNetworkRuleProperties),
-  }),
-).annotate({
-  identifier: "VirtualNetworkRulesGetResponse",
-}) as any as S.Schema<VirtualNetworkRulesGetResponse>;
-
-export interface VirtualNetworkRulesListByAccountRequest {
-  /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the Azure resource group. */
-  resourceGroupName: string;
-  /** The name of the Data Lake Store account. */
-  accountName: string;
-}
-export const VirtualNetworkRulesListByAccountRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeStore/accounts/{accountName}/virtualNetworkRules",
-        code: 200,
-        apiVersion: "2016-11-01",
-      }),
-    ),
-).annotate({
-  identifier: "VirtualNetworkRulesListByAccountRequest",
-}) as any as S.Schema<VirtualNetworkRulesListByAccountRequest>;
-
-/** The results of the list operation. */
-export type VirtualNetworkRuleListResultValueList = Array<VirtualNetworkRule>;
-export const VirtualNetworkRuleListResultValueList = /*@__PURE__*/ S.Array(
-  VirtualNetworkRule,
-) as any as S.Schema<VirtualNetworkRuleListResultValueList>;
-
-/** Data Lake Store virtual network rule list information. */
-export interface VirtualNetworkRuleListResult {
-  /** The results of the list operation. */
-  value?: VirtualNetworkRuleListResultValueList;
-  /** The link (url) to the next page of results. */
-  nextLink?: string;
-}
-export const VirtualNetworkRuleListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(VirtualNetworkRuleListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "VirtualNetworkRuleListResult",
-}) as any as S.Schema<VirtualNetworkRuleListResult>;
-
-export interface VirtualNetworkRulesUpdateRequest {
-  /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the Azure resource group. */
-  resourceGroupName: string;
-  /** The name of the Data Lake Store account. */
-  accountName: string;
-  /** The name of the virtual network rule to update. */
-  virtualNetworkRuleName: string;
-  /** The virtual network rule properties to use when updating a virtual network rule. */
-  properties?: VirtualNetworkRuleProperties;
-}
-export const VirtualNetworkRulesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    virtualNetworkRuleName: S.String.pipe(T.Label()),
-    properties: S.optional(VirtualNetworkRuleProperties),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeStore/accounts/{accountName}/virtualNetworkRules/{virtualNetworkRuleName}",
-      code: 200,
-      apiVersion: "2016-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "VirtualNetworkRulesUpdateRequest",
-}) as any as S.Schema<VirtualNetworkRulesUpdateRequest>;
-
-export interface VirtualNetworkRulesUpdateResponse {
-  /** The resource identifier. */
-  id?: string;
-  /** The resource name. */
-  name?: string;
-  /** The resource type. */
-  type?: string;
-  /** The virtual network rule properties. */
-  properties?: VirtualNetworkRuleProperties;
-}
-export const VirtualNetworkRulesUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    properties: S.optional(VirtualNetworkRuleProperties),
-  }),
-).annotate({
-  identifier: "VirtualNetworkRulesUpdateResponse",
-}) as any as S.Schema<VirtualNetworkRulesUpdateResponse>;
-
-export type AccountsCheckNameAvailabilityError = AzureOpError;
+export type CheckAccountNameAvailabilityError = AzureOpError;
 /** Checks whether the specified account name is available or taken. */
-export const AccountsCheckNameAvailability: API.OperationMethod<
-  AccountsCheckNameAvailabilityRequest,
+export const CheckAccountNameAvailability: API.OperationMethod<
+  CheckAccountNameAvailabilityRequest,
   NameAvailabilityInformation,
-  AccountsCheckNameAvailabilityError,
+  CheckAccountNameAvailabilityError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AccountsCheckNameAvailabilityRequest,
+  input: CheckAccountNameAvailabilityRequest,
   output: NameAvailabilityInformation,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type AccountsCreateError = AzureOpError;
+export type CreateAccountError = AzureOpError;
 /** Creates the specified Data Lake Store account. */
-export const AccountsCreate: API.OperationMethod<
-  AccountsCreateRequest,
-  AccountsCreateResponse,
-  AccountsCreateError,
+export const CreateAccount: API.OperationMethod<
+  CreateAccountRequest,
+  CreateAccountResponse,
+  CreateAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AccountsCreateRequest,
-  output: AccountsCreateResponse,
+  input: CreateAccountRequest,
+  output: CreateAccountResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type AccountsDeleteError = AzureOpError;
+export type DeleteAccountError = AzureOpError;
 /** Deletes the specified Data Lake Store account. */
-export const AccountsDelete: API.OperationMethod<
-  AccountsDeleteRequest,
-  AccountsDeleteResponse,
-  AccountsDeleteError,
+export const DeleteAccount: API.OperationMethod<
+  DeleteAccountRequest,
+  DeleteAccountResponse,
+  DeleteAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AccountsDeleteRequest,
-  output: AccountsDeleteResponse,
+  input: DeleteAccountRequest,
+  output: DeleteAccountResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type AccountsEnableKeyVaultError = AzureOpError;
+export type DeleteFirewallRuleError = AzureOpError;
+/** Deletes the specified firewall rule from the specified Data Lake Store account. */
+export const DeleteFirewallRule: API.OperationMethod<
+  DeleteFirewallRuleRequest,
+  DeleteFirewallRuleResponse,
+  DeleteFirewallRuleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteFirewallRuleRequest,
+  output: DeleteFirewallRuleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteTrustedIdProviderError = AzureOpError;
+/** Deletes the specified trusted identity provider from the specified Data Lake Store account */
+export const DeleteTrustedIdProvider: API.OperationMethod<
+  DeleteTrustedIdProviderRequest,
+  DeleteTrustedIdProviderResponse,
+  DeleteTrustedIdProviderError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteTrustedIdProviderRequest,
+  output: DeleteTrustedIdProviderResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteVirtualNetworkRuleError = AzureOpError;
+/** Deletes the specified virtual network rule from the specified Data Lake Store account. */
+export const DeleteVirtualNetworkRule: API.OperationMethod<
+  DeleteVirtualNetworkRuleRequest,
+  DeleteVirtualNetworkRuleResponse,
+  DeleteVirtualNetworkRuleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteVirtualNetworkRuleRequest,
+  output: DeleteVirtualNetworkRuleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type EnableAccountKeyVaultError = AzureOpError;
 /** Attempts to enable a user managed Key Vault for encryption of the specified Data Lake Store account. */
-export const AccountsEnableKeyVault: API.OperationMethod<
-  AccountsEnableKeyVaultRequest,
-  AccountsEnableKeyVaultResponse,
-  AccountsEnableKeyVaultError,
+export const EnableAccountKeyVault: API.OperationMethod<
+  EnableAccountKeyVaultRequest,
+  EnableAccountKeyVaultResponse,
+  EnableAccountKeyVaultError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AccountsEnableKeyVaultRequest,
-  output: AccountsEnableKeyVaultResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccountsGetError = AzureOpError;
-/** Gets the specified Data Lake Store account. */
-export const AccountsGet: API.OperationMethod<
-  AccountsGetRequest,
-  AccountsGetResponse,
-  AccountsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountsGetRequest,
-  output: AccountsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccountsListError = AzureOpError;
-/** Lists the Data Lake Store accounts within the subscription. The response includes a link to the next page of results, if any. */
-export const AccountsList: API.OperationMethod<
-  AccountsListRequest,
-  DataLakeStoreAccountListResult,
-  AccountsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountsListRequest,
-  output: DataLakeStoreAccountListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccountsListByResourceGroupError = AzureOpError;
-/** Lists the Data Lake Store accounts within a specific resource group. The response includes a link to the next page of results, if any. */
-export const AccountsListByResourceGroup: API.OperationMethod<
-  AccountsListByResourceGroupRequest,
-  DataLakeStoreAccountListResult,
-  AccountsListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountsListByResourceGroupRequest,
-  output: DataLakeStoreAccountListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccountsUpdateError = AzureOpError;
-/** Updates the specified Data Lake Store account information. */
-export const AccountsUpdate: API.OperationMethod<
-  AccountsUpdateRequest,
-  AccountsUpdateResponse,
-  AccountsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountsUpdateRequest,
-  output: AccountsUpdateResponse,
+  input: EnableAccountKeyVaultRequest,
+  output: EnableAccountKeyVaultResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2397,106 +2377,181 @@ export const FirewallRulesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type FirewallRulesDeleteError = AzureOpError;
-/** Deletes the specified firewall rule from the specified Data Lake Store account. */
-export const FirewallRulesDelete: API.OperationMethod<
-  FirewallRulesDeleteRequest,
-  FirewallRulesDeleteResponse,
-  FirewallRulesDeleteError,
+export type GetAccountError = AzureOpError;
+/** Gets the specified Data Lake Store account. */
+export const GetAccount: API.OperationMethod<
+  GetAccountRequest,
+  GetAccountResponse,
+  GetAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FirewallRulesDeleteRequest,
-  output: FirewallRulesDeleteResponse,
+  input: GetAccountRequest,
+  output: GetAccountResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type FirewallRulesGetError = AzureOpError;
+export type GetFirewallRuleError = AzureOpError;
 /** Gets the specified Data Lake Store firewall rule. */
-export const FirewallRulesGet: API.OperationMethod<
-  FirewallRulesGetRequest,
-  FirewallRulesGetResponse,
-  FirewallRulesGetError,
+export const GetFirewallRule: API.OperationMethod<
+  GetFirewallRuleRequest,
+  GetFirewallRuleResponse,
+  GetFirewallRuleError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FirewallRulesGetRequest,
-  output: FirewallRulesGetResponse,
+  input: GetFirewallRuleRequest,
+  output: GetFirewallRuleResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type FirewallRulesListByAccountError = AzureOpError;
-/** Lists the Data Lake Store firewall rules within the specified Data Lake Store account. */
-export const FirewallRulesListByAccount: API.OperationMethod<
-  FirewallRulesListByAccountRequest,
-  FirewallRuleListResult,
-  FirewallRulesListByAccountError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FirewallRulesListByAccountRequest,
-  output: FirewallRuleListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FirewallRulesUpdateError = AzureOpError;
-/** Updates the specified firewall rule. */
-export const FirewallRulesUpdate: API.OperationMethod<
-  FirewallRulesUpdateRequest,
-  FirewallRulesUpdateResponse,
-  FirewallRulesUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FirewallRulesUpdateRequest,
-  output: FirewallRulesUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type LocationsGetCapabilityError = AzureOpError;
+export type GetLocationCapabilityError = AzureOpError;
 /** Gets subscription-level properties and limits for Data Lake Store specified by resource location. */
-export const LocationsGetCapability: API.OperationMethod<
-  LocationsGetCapabilityRequest,
+export const GetLocationCapability: API.OperationMethod<
+  GetLocationCapabilityRequest,
   CapabilityInformation,
-  LocationsGetCapabilityError,
+  GetLocationCapabilityError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: LocationsGetCapabilityRequest,
+  input: GetLocationCapabilityRequest,
   output: CapabilityInformation,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type LocationsGetUsageError = AzureOpError;
+export type GetLocationUsageError = AzureOpError;
 /** Gets the current usage count and the limit for the resources of the location under the subscription. */
-export const LocationsGetUsage: API.OperationMethod<
-  LocationsGetUsageRequest,
+export const GetLocationUsage: API.OperationMethod<
+  GetLocationUsageRequest,
   UsageListResult,
-  LocationsGetUsageError,
+  GetLocationUsageError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: LocationsGetUsageRequest,
+  input: GetLocationUsageRequest,
   output: UsageListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OperationsListError = AzureOpError;
-/** Lists all of the available Data Lake Store REST API operations. */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationListResult,
-  OperationsListError,
+export type GetTrustedIdProviderError = AzureOpError;
+/** Gets the specified Data Lake Store trusted identity provider. */
+export const GetTrustedIdProvider: API.OperationMethod<
+  GetTrustedIdProviderRequest,
+  GetTrustedIdProviderResponse,
+  GetTrustedIdProviderError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
+  input: GetTrustedIdProviderRequest,
+  output: GetTrustedIdProviderResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetVirtualNetworkRuleError = AzureOpError;
+/** Gets the specified Data Lake Store virtual network rule. */
+export const GetVirtualNetworkRule: API.OperationMethod<
+  GetVirtualNetworkRuleRequest,
+  GetVirtualNetworkRuleResponse,
+  GetVirtualNetworkRuleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetVirtualNetworkRuleRequest,
+  output: GetVirtualNetworkRuleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAccountByResourceGroupError = AzureOpError;
+/** Lists the Data Lake Store accounts within a specific resource group. The response includes a link to the next page of results, if any. */
+export const ListAccountByResourceGroup: API.OperationMethod<
+  ListAccountByResourceGroupRequest,
+  DataLakeStoreAccountListResult,
+  ListAccountByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAccountByResourceGroupRequest,
+  output: DataLakeStoreAccountListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAccountsError = AzureOpError;
+/** Lists the Data Lake Store accounts within the subscription. The response includes a link to the next page of results, if any. */
+export const ListAccounts: API.OperationMethod<
+  ListAccountsRequest,
+  DataLakeStoreAccountListResult,
+  ListAccountsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAccountsRequest,
+  output: DataLakeStoreAccountListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListFirewallRuleByAccountError = AzureOpError;
+/** Lists the Data Lake Store firewall rules within the specified Data Lake Store account. */
+export const ListFirewallRuleByAccount: API.OperationMethod<
+  ListFirewallRuleByAccountRequest,
+  FirewallRuleListResult,
+  ListFirewallRuleByAccountError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListFirewallRuleByAccountRequest,
+  output: FirewallRuleListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOperationsError = AzureOpError;
+/** Lists all of the available Data Lake Store REST API operations. */
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  OperationListResult,
+  ListOperationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOperationsRequest,
   output: OperationListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListTrustedIdProviderByAccountError = AzureOpError;
+/** Lists the Data Lake Store trusted identity providers within the specified Data Lake Store account. */
+export const ListTrustedIdProviderByAccount: API.OperationMethod<
+  ListTrustedIdProviderByAccountRequest,
+  TrustedIdProviderListResult,
+  ListTrustedIdProviderByAccountError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListTrustedIdProviderByAccountRequest,
+  output: TrustedIdProviderListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVirtualNetworkRuleByAccountError = AzureOpError;
+/** Lists the Data Lake Store virtual network rules within the specified Data Lake Store account. */
+export const ListVirtualNetworkRuleByAccount: API.OperationMethod<
+  ListVirtualNetworkRuleByAccountRequest,
+  VirtualNetworkRuleListResult,
+  ListVirtualNetworkRuleByAccountError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVirtualNetworkRuleByAccountRequest,
+  output: VirtualNetworkRuleListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2517,61 +2572,61 @@ export const TrustedIdProvidersCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type TrustedIdProvidersDeleteError = AzureOpError;
-/** Deletes the specified trusted identity provider from the specified Data Lake Store account */
-export const TrustedIdProvidersDelete: API.OperationMethod<
-  TrustedIdProvidersDeleteRequest,
-  TrustedIdProvidersDeleteResponse,
-  TrustedIdProvidersDeleteError,
+export type UpdateAccountError = AzureOpError;
+/** Updates the specified Data Lake Store account information. */
+export const UpdateAccount: API.OperationMethod<
+  UpdateAccountRequest,
+  UpdateAccountResponse,
+  UpdateAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TrustedIdProvidersDeleteRequest,
-  output: TrustedIdProvidersDeleteResponse,
+  input: UpdateAccountRequest,
+  output: UpdateAccountResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type TrustedIdProvidersGetError = AzureOpError;
-/** Gets the specified Data Lake Store trusted identity provider. */
-export const TrustedIdProvidersGet: API.OperationMethod<
-  TrustedIdProvidersGetRequest,
-  TrustedIdProvidersGetResponse,
-  TrustedIdProvidersGetError,
+export type UpdateFirewallRuleError = AzureOpError;
+/** Updates the specified firewall rule. */
+export const UpdateFirewallRule: API.OperationMethod<
+  UpdateFirewallRuleRequest,
+  UpdateFirewallRuleResponse,
+  UpdateFirewallRuleError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TrustedIdProvidersGetRequest,
-  output: TrustedIdProvidersGetResponse,
+  input: UpdateFirewallRuleRequest,
+  output: UpdateFirewallRuleResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type TrustedIdProvidersListByAccountError = AzureOpError;
-/** Lists the Data Lake Store trusted identity providers within the specified Data Lake Store account. */
-export const TrustedIdProvidersListByAccount: API.OperationMethod<
-  TrustedIdProvidersListByAccountRequest,
-  TrustedIdProviderListResult,
-  TrustedIdProvidersListByAccountError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TrustedIdProvidersListByAccountRequest,
-  output: TrustedIdProviderListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TrustedIdProvidersUpdateError = AzureOpError;
+export type UpdateTrustedIdProviderError = AzureOpError;
 /** Updates the specified trusted identity provider. */
-export const TrustedIdProvidersUpdate: API.OperationMethod<
-  TrustedIdProvidersUpdateRequest,
-  TrustedIdProvidersUpdateResponse,
-  TrustedIdProvidersUpdateError,
+export const UpdateTrustedIdProvider: API.OperationMethod<
+  UpdateTrustedIdProviderRequest,
+  UpdateTrustedIdProviderResponse,
+  UpdateTrustedIdProviderError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TrustedIdProvidersUpdateRequest,
-  output: TrustedIdProvidersUpdateResponse,
+  input: UpdateTrustedIdProviderRequest,
+  output: UpdateTrustedIdProviderResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateVirtualNetworkRuleError = AzureOpError;
+/** Updates the specified virtual network rule. */
+export const UpdateVirtualNetworkRule: API.OperationMethod<
+  UpdateVirtualNetworkRuleRequest,
+  UpdateVirtualNetworkRuleResponse,
+  UpdateVirtualNetworkRuleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateVirtualNetworkRuleRequest,
+  output: UpdateVirtualNetworkRuleResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2587,66 +2642,6 @@ export const VirtualNetworkRulesCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: VirtualNetworkRulesCreateOrUpdateRequest,
   output: VirtualNetworkRulesCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualNetworkRulesDeleteError = AzureOpError;
-/** Deletes the specified virtual network rule from the specified Data Lake Store account. */
-export const VirtualNetworkRulesDelete: API.OperationMethod<
-  VirtualNetworkRulesDeleteRequest,
-  VirtualNetworkRulesDeleteResponse,
-  VirtualNetworkRulesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualNetworkRulesDeleteRequest,
-  output: VirtualNetworkRulesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualNetworkRulesGetError = AzureOpError;
-/** Gets the specified Data Lake Store virtual network rule. */
-export const VirtualNetworkRulesGet: API.OperationMethod<
-  VirtualNetworkRulesGetRequest,
-  VirtualNetworkRulesGetResponse,
-  VirtualNetworkRulesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualNetworkRulesGetRequest,
-  output: VirtualNetworkRulesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualNetworkRulesListByAccountError = AzureOpError;
-/** Lists the Data Lake Store virtual network rules within the specified Data Lake Store account. */
-export const VirtualNetworkRulesListByAccount: API.OperationMethod<
-  VirtualNetworkRulesListByAccountRequest,
-  VirtualNetworkRuleListResult,
-  VirtualNetworkRulesListByAccountError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualNetworkRulesListByAccountRequest,
-  output: VirtualNetworkRuleListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualNetworkRulesUpdateError = AzureOpError;
-/** Updates the specified virtual network rule. */
-export const VirtualNetworkRulesUpdate: API.OperationMethod<
-  VirtualNetworkRulesUpdateRequest,
-  VirtualNetworkRulesUpdateResponse,
-  VirtualNetworkRulesUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualNetworkRulesUpdateRequest,
-  output: VirtualNetworkRulesUpdateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

@@ -39,26 +39,88 @@ export class NotFound
     [{ status: 404 }],
   ) {}
 
-export interface VisualReviewReposBaselinesRetrieveRequest {
+export interface CreateVisualReviewReposRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  repo_full_name?: string;
+  repo_external_id?: number | null;
+}
+export const CreateVisualReviewReposRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    repo_full_name: S.optional(S.String),
+    repo_external_id: S.optional(S.NullOr(S.Number)),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/projects/{project_id}/visual_review/repos/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateVisualReviewReposRequest",
+}) as any as S.Schema<CreateVisualReviewReposRequest>;
+
+export type RepoBaselineFilePathsMap = { [key: string]: string | undefined };
+export const RepoBaselineFilePathsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<RepoBaselineFilePathsMap>;
+
+export interface Repo {
+  id?: string;
+  team_id?: number;
+  repo_external_id?: number;
+  repo_full_name?: string;
+  baseline_file_paths?: RepoBaselineFilePathsMap;
+  enable_pr_comments?: boolean;
+  created_at?: string;
+}
+export const Repo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    team_id: S.optional(S.Number),
+    repo_external_id: S.optional(S.Number),
+    repo_full_name: S.optional(S.String),
+    baseline_file_paths: S.optional(RepoBaselineFilePathsMap),
+    enable_pr_comments: S.optional(S.Boolean),
+    created_at: S.optional(S.String),
+  }),
+).annotate({ identifier: "Repo" }) as any as S.Schema<Repo>;
+
+export interface CreateVisualReviewReposQuarantineRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   id: string;
+  run_type: string;
+  /** Snapshot identifier to quarantine. */
+  identifier?: string;
+  /** Why this snapshot is being quarantined. */
+  reason?: string;
+  /** Optional pointer to the run whose failing snapshot prompted this quarantine — used to surface a 'view the failing run' link later. */
+  source_run_id?: string | null;
+  expires_at?: string | null;
 }
-export const VisualReviewReposBaselinesRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const CreateVisualReviewReposQuarantineRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
       id: S.String.pipe(T.Label()),
+      run_type: S.String.pipe(T.Label()),
+      identifier: S.optional(S.String),
+      reason: S.optional(S.String),
+      source_run_id: S.optional(S.NullOr(S.String)),
+      expires_at: S.optional(S.NullOr(S.String)),
     }).pipe(
       T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/visual_review/repos/{id}/baselines/",
+        method: "POST",
+        uri: "/api/projects/{project_id}/visual_review/repos/{id}/quarantine/{run_type}/",
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "VisualReviewReposBaselinesRetrieveRequest",
-  }) as any as S.Schema<VisualReviewReposBaselinesRetrieveRequest>;
+).annotate({
+  identifier: "CreateVisualReviewReposQuarantineRequest",
+}) as any as S.Schema<CreateVisualReviewReposQuarantineRequest>;
 
 export interface UserBasicInfo {
   id?: number;
@@ -91,6 +153,556 @@ export const QuarantineSourceRun = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "QuarantineSourceRun",
 }) as any as S.Schema<QuarantineSourceRun>;
+
+export interface QuarantinedIdentifierEntry {
+  created_by?: UserBasicInfo | null;
+  /** Run whose failing snapshot prompted this quarantine. Null when quarantine was created without run context. */
+  source_run?: QuarantineSourceRun | null;
+  id?: string;
+  identifier?: string;
+  run_type?: string;
+  reason?: string;
+  source?: string;
+  expires_at?: string | null;
+  created_at?: string;
+  updated_at?: string;
+}
+export const QuarantinedIdentifierEntry = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    created_by: S.optional(S.NullOr(UserBasicInfo)),
+    source_run: S.optional(S.NullOr(QuarantineSourceRun)),
+    id: S.optional(S.String),
+    identifier: S.optional(S.String),
+    run_type: S.optional(S.String),
+    reason: S.optional(S.String),
+    source: S.optional(S.String),
+    expires_at: S.optional(S.NullOr(S.String)),
+    created_at: S.optional(S.String),
+    updated_at: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "QuarantinedIdentifierEntry",
+}) as any as S.Schema<QuarantinedIdentifierEntry>;
+
+export interface CreateVisualReviewReposQuarantineExpireRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  id: string;
+  run_type: string;
+  /** Snapshot identifier to unquarantine */
+  identifier: string;
+}
+export const CreateVisualReviewReposQuarantineExpireRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+      run_type: S.String.pipe(T.Label()),
+      identifier: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/visual_review/repos/{id}/quarantine/{run_type}/expire/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CreateVisualReviewReposQuarantineExpireRequest",
+  }) as any as S.Schema<CreateVisualReviewReposQuarantineExpireRequest>;
+
+export interface CreateVisualReviewReposQuarantineExpireResponse {}
+export const CreateVisualReviewReposQuarantineExpireResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "CreateVisualReviewReposQuarantineExpireResponse",
+  }) as any as S.Schema<CreateVisualReviewReposQuarantineExpireResponse>;
+
+export type SnapshotManifestItemMetadataMap = {
+  [key: string]: unknown | undefined;
+};
+export const SnapshotManifestItemMetadataMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<SnapshotManifestItemMetadataMap>;
+
+export interface SnapshotManifestItem {
+  identifier?: string;
+  content_hash?: string;
+  width?: number | null;
+  height?: number | null;
+  metadata?: SnapshotManifestItemMetadataMap;
+}
+export const SnapshotManifestItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    identifier: S.optional(S.String),
+    content_hash: S.optional(S.String),
+    width: S.optional(S.NullOr(S.Number)),
+    height: S.optional(S.NullOr(S.Number)),
+    metadata: S.optional(SnapshotManifestItemMetadataMap),
+  }),
+).annotate({
+  identifier: "SnapshotManifestItem",
+}) as any as S.Schema<SnapshotManifestItem>;
+
+export type CreateVisualReviewRunRequestSnapshotsList =
+  Array<SnapshotManifestItem>;
+export const CreateVisualReviewRunRequestSnapshotsList = /*@__PURE__*/ S.Array(
+  SnapshotManifestItem,
+) as any as S.Schema<CreateVisualReviewRunRequestSnapshotsList>;
+
+export type CreateVisualReviewRunRequestBaselineHashesMap = {
+  [key: string]: string | undefined;
+};
+export const CreateVisualReviewRunRequestBaselineHashesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<CreateVisualReviewRunRequestBaselineHashesMap>;
+
+export type CreateVisualReviewRunRequestRemovedIdentifiersList = Array<string>;
+export const CreateVisualReviewRunRequestRemovedIdentifiersList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateVisualReviewRunRequestRemovedIdentifiersList>;
+
+export type CreateVisualReviewRunRequestMetadataMap = {
+  [key: string]: unknown | undefined;
+};
+export const CreateVisualReviewRunRequestMetadataMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<CreateVisualReviewRunRequestMetadataMap>;
+
+export interface CreateVisualReviewRunRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  repo_id?: string;
+  run_type?: string;
+  commit_sha?: string;
+  branch?: string;
+  snapshots?: CreateVisualReviewRunRequestSnapshotsList;
+  pr_number?: number | null;
+  baseline_hashes?: CreateVisualReviewRunRequestBaselineHashesMap;
+  unchanged_count?: number;
+  removed_identifiers?: CreateVisualReviewRunRequestRemovedIdentifiersList;
+  purpose?: string;
+  metadata?: CreateVisualReviewRunRequestMetadataMap;
+  is_partial?: boolean;
+}
+export const CreateVisualReviewRunRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    repo_id: S.optional(S.String),
+    run_type: S.optional(S.String),
+    commit_sha: S.optional(S.String),
+    branch: S.optional(S.String),
+    snapshots: S.optional(CreateVisualReviewRunRequestSnapshotsList),
+    pr_number: S.optional(S.NullOr(S.Number)),
+    baseline_hashes: S.optional(CreateVisualReviewRunRequestBaselineHashesMap),
+    unchanged_count: S.optional(S.Number),
+    removed_identifiers: S.optional(
+      CreateVisualReviewRunRequestRemovedIdentifiersList,
+    ),
+    purpose: S.optional(S.String),
+    metadata: S.optional(CreateVisualReviewRunRequestMetadataMap),
+    is_partial: S.optional(S.Boolean),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/projects/{project_id}/visual_review/runs/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateVisualReviewRunRequest",
+}) as any as S.Schema<CreateVisualReviewRunRequest>;
+
+export type UploadTargetFieldsMap = { [key: string]: string | undefined };
+export const UploadTargetFieldsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UploadTargetFieldsMap>;
+
+export interface UploadTarget {
+  content_hash?: string;
+  url?: string;
+  fields?: UploadTargetFieldsMap;
+}
+export const UploadTarget = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    content_hash: S.optional(S.String),
+    url: S.optional(S.String),
+    fields: S.optional(UploadTargetFieldsMap),
+  }),
+).annotate({ identifier: "UploadTarget" }) as any as S.Schema<UploadTarget>;
+
+export type CreateRunResultUploadsList = Array<UploadTarget>;
+export const CreateRunResultUploadsList = /*@__PURE__*/ S.Array(
+  UploadTarget,
+) as any as S.Schema<CreateRunResultUploadsList>;
+
+export interface CreateRunResult {
+  run_id?: string;
+  uploads?: CreateRunResultUploadsList;
+}
+export const CreateRunResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    run_id: S.optional(S.String),
+    uploads: S.optional(CreateRunResultUploadsList),
+  }),
+).annotate({
+  identifier: "CreateRunResult",
+}) as any as S.Schema<CreateRunResult>;
+
+export interface CreateVisualReviewRunsCompleteRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  id: string;
+}
+export const CreateVisualReviewRunsCompleteRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/visual_review/runs/{id}/complete/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateVisualReviewRunsCompleteRequest",
+}) as any as S.Schema<CreateVisualReviewRunsCompleteRequest>;
+
+export type SearchMatchTypeEnum = "exact" | "similar";
+export const SearchMatchTypeEnum = /*@__PURE__*/ S.String;
+
+export interface RunSummary {
+  total?: number;
+  changed?: number;
+  new?: number;
+  removed?: number;
+  unchanged?: number;
+  unresolved?: number;
+  tolerated_matched?: number;
+}
+export const RunSummary = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    total: S.optional(S.Number),
+    changed: S.optional(S.Number),
+    new: S.optional(S.Number),
+    removed: S.optional(S.Number),
+    unchanged: S.optional(S.Number),
+    unresolved: S.optional(S.Number),
+    tolerated_matched: S.optional(S.Number),
+  }),
+).annotate({ identifier: "RunSummary" }) as any as S.Schema<RunSummary>;
+
+export type RunMetadataMap = { [key: string]: unknown | undefined };
+export const RunMetadataMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<RunMetadataMap>;
+
+export interface Run {
+  approved_by?: UserBasicInfo | null;
+  /** How this row matched the `search` query parameter: `exact` (the term is a case-insensitive substring of branch/run type, a commit SHA prefix, or an exact PR number) or `similar` (a fuzzy trigram match, returned only when no exact match exists). Null when the list is not filtered by `search`. * `exact` - exact * `similar` - similar */
+  search_match_type?: SearchMatchTypeEnum | null;
+  id?: string;
+  repo_id?: string;
+  status?: string;
+  run_type?: string;
+  commit_sha?: string;
+  branch?: string;
+  pr_number?: number | null;
+  approved?: boolean;
+  approved_at?: string | null;
+  summary?: RunSummary;
+  error_message?: string | null;
+  created_at?: string;
+  completed_at?: string | null;
+  is_stale?: boolean;
+  superseded_by_id?: string | null;
+  metadata?: RunMetadataMap;
+}
+export const Run = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    approved_by: S.optional(S.NullOr(UserBasicInfo)),
+    search_match_type: S.optional(S.NullOr(SearchMatchTypeEnum)),
+    id: S.optional(S.String),
+    repo_id: S.optional(S.String),
+    status: S.optional(S.String),
+    run_type: S.optional(S.String),
+    commit_sha: S.optional(S.String),
+    branch: S.optional(S.String),
+    pr_number: S.optional(S.NullOr(S.Number)),
+    approved: S.optional(S.Boolean),
+    approved_at: S.optional(S.NullOr(S.String)),
+    summary: S.optional(RunSummary),
+    error_message: S.optional(S.NullOr(S.String)),
+    created_at: S.optional(S.String),
+    completed_at: S.optional(S.NullOr(S.String)),
+    is_stale: S.optional(S.Boolean),
+    superseded_by_id: S.optional(S.NullOr(S.String)),
+    metadata: S.optional(RunMetadataMap),
+  }),
+).annotate({ identifier: "Run" }) as any as S.Schema<Run>;
+
+export interface CreateVisualReviewRunsFinalizeRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  id: string;
+  /** Approve every still-pending changed and new snapshot before finalizing (tolerated snapshots are left untouched). Leave false to finalize a run you've already reviewed — finalizing fails if any changed/new snapshot is still unreviewed. */
+  approve_all?: boolean;
+  /** Whether the server commits the approved baseline to the PR branch and greens the gate (the normal path — leave true). Set false only for tooling that commits the baseline itself: the server skips the commit and returns the signed YAML in `baseline_content` instead. With false, the gate is NOT greened and `metadata.baseline_commit_sha` is absent. */
+  commit_to_github?: boolean;
+  /** Whether to embed the before/after snapshot images in the post-approval PR comment. The comment itself is always posted (when the run was initiated from a GitHub review prompt and the repo has PR comments enabled); this flag only controls the images. Defaults false — the comment stays a text summary unless the reviewer opts in to attach the snapshots. */
+  add_images_to_comment_on_pr?: boolean;
+}
+export const CreateVisualReviewRunsFinalizeRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+      approve_all: S.optional(S.Boolean),
+      commit_to_github: S.optional(S.Boolean),
+      add_images_to_comment_on_pr: S.optional(S.Boolean),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/visual_review/runs/{id}/finalize/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateVisualReviewRunsFinalizeRequest",
+}) as any as S.Schema<CreateVisualReviewRunsFinalizeRequest>;
+
+export interface FinalizeResult {
+  run: Run;
+  baseline_content: string;
+}
+export const FinalizeResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    run: Run,
+    baseline_content: S.String,
+  }),
+).annotate({ identifier: "FinalizeResult" }) as any as S.Schema<FinalizeResult>;
+
+export interface CreateVisualReviewRunsRecomputeRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  id: string;
+}
+export const CreateVisualReviewRunsRecomputeRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/visual_review/runs/{id}/recompute/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateVisualReviewRunsRecomputeRequest",
+}) as any as S.Schema<CreateVisualReviewRunsRecomputeRequest>;
+
+export interface RecomputeResult {
+  run?: Run;
+  counts_changed?: boolean;
+  unresolved?: number;
+  ci_rerun_triggered?: boolean;
+  ci_rerun_error?: string | null;
+}
+export const RecomputeResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    run: S.optional(Run),
+    counts_changed: S.optional(S.Boolean),
+    unresolved: S.optional(S.Number),
+    ci_rerun_triggered: S.optional(S.Boolean),
+    ci_rerun_error: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({
+  identifier: "RecomputeResult",
+}) as any as S.Schema<RecomputeResult>;
+
+export interface CreateVisualReviewRunsTolerateRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  id: string;
+  /** UUID of the changed snapshot to mark as a known tolerated alternate. Future runs that produce the same alternate hash for this identifier will not be flagged as changes. */
+  snapshot_id?: string;
+}
+export const CreateVisualReviewRunsTolerateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+      snapshot_id: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/visual_review/runs/{id}/tolerate/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateVisualReviewRunsTolerateRequest",
+}) as any as S.Schema<CreateVisualReviewRunsTolerateRequest>;
+
+export interface Artifact {
+  id?: string;
+  content_hash?: string;
+  width?: number | null;
+  height?: number | null;
+  download_url?: string | null;
+}
+export const Artifact = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    content_hash: S.optional(S.String),
+    width: S.optional(S.NullOr(S.Number)),
+    height: S.optional(S.NullOr(S.Number)),
+    download_url: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({ identifier: "Artifact" }) as any as S.Schema<Artifact>;
+
+export interface DiffCluster {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  pixel_count: number;
+  centroid_x: number;
+  centroid_y: number;
+}
+export const DiffCluster = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    x: S.Number,
+    y: S.Number,
+    width: S.Number,
+    height: S.Number,
+    pixel_count: S.Number,
+    centroid_x: S.Number,
+    centroid_y: S.Number,
+  }),
+).annotate({ identifier: "DiffCluster" }) as any as S.Schema<DiffCluster>;
+
+export type ClusterSummaryItemsList = Array<DiffCluster>;
+export const ClusterSummaryItemsList = /*@__PURE__*/ S.Array(
+  DiffCluster,
+) as any as S.Schema<ClusterSummaryItemsList>;
+
+export interface ClusterSummary {
+  items: ClusterSummaryItemsList;
+  total: number;
+  truncated: boolean;
+}
+export const ClusterSummary = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    items: ClusterSummaryItemsList,
+    total: S.Number,
+    truncated: S.Boolean,
+  }),
+).annotate({ identifier: "ClusterSummary" }) as any as S.Schema<ClusterSummary>;
+
+export type SnapshotMetadataMap = { [key: string]: unknown | undefined };
+export const SnapshotMetadataMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<SnapshotMetadataMap>;
+
+export interface Snapshot {
+  current_artifact?: Artifact | null;
+  baseline_artifact?: Artifact | null;
+  diff_artifact?: Artifact | null;
+  reviewed_by?: UserBasicInfo | null;
+  cluster_summary?: ClusterSummary | null;
+  id?: string;
+  run_id?: string;
+  identifier?: string;
+  result?: string;
+  classification_reason?: string;
+  diff_percentage?: number | null;
+  diff_pixel_count?: number | null;
+  review_state?: string;
+  reviewed_at?: string | null;
+  approved_hash?: string;
+  tolerated_hash_id?: string | null;
+  is_quarantined?: boolean;
+  metadata?: SnapshotMetadataMap;
+  ssim_score?: number | null;
+  change_kind?: string;
+  size_mismatch?: boolean;
+}
+export const Snapshot = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    current_artifact: S.optional(S.NullOr(Artifact)),
+    baseline_artifact: S.optional(S.NullOr(Artifact)),
+    diff_artifact: S.optional(S.NullOr(Artifact)),
+    reviewed_by: S.optional(S.NullOr(UserBasicInfo)),
+    cluster_summary: S.optional(S.NullOr(ClusterSummary)),
+    id: S.optional(S.String),
+    run_id: S.optional(S.String),
+    identifier: S.optional(S.String),
+    result: S.optional(S.String),
+    classification_reason: S.optional(S.String),
+    diff_percentage: S.optional(S.NullOr(S.Number)),
+    diff_pixel_count: S.optional(S.NullOr(S.Number)),
+    review_state: S.optional(S.String),
+    reviewed_at: S.optional(S.NullOr(S.String)),
+    approved_hash: S.optional(S.String),
+    tolerated_hash_id: S.optional(S.NullOr(S.String)),
+    is_quarantined: S.optional(S.Boolean),
+    metadata: S.optional(SnapshotMetadataMap),
+    ssim_score: S.optional(S.NullOr(S.Number)),
+    change_kind: S.optional(S.String),
+    size_mismatch: S.optional(S.Boolean),
+  }),
+).annotate({ identifier: "Snapshot" }) as any as S.Schema<Snapshot>;
+
+export interface GetVisualReviewReposRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  id: string;
+}
+export const GetVisualReviewReposRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/visual_review/repos/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetVisualReviewReposRequest",
+}) as any as S.Schema<GetVisualReviewReposRequest>;
+
+export interface GetVisualReviewReposBaselineRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  id: string;
+}
+export const GetVisualReviewReposBaselineRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/visual_review/repos/{id}/baselines/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetVisualReviewReposBaselineRequest",
+}) as any as S.Schema<GetVisualReviewReposBaselineRequest>;
 
 export interface BaselineQuarantineSummary {
   created_by?: UserBasicInfo | null;
@@ -194,62 +806,13 @@ export const BaselineOverview = /*@__PURE__*/ S.suspend(() =>
   identifier: "BaselineOverview",
 }) as any as S.Schema<BaselineOverview>;
 
-export interface VisualReviewReposCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  repo_full_name?: string;
-  repo_external_id?: number | null;
-}
-export const VisualReviewReposCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    repo_full_name: S.optional(S.String),
-    repo_external_id: S.optional(S.NullOr(S.Number)),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/projects/{project_id}/visual_review/repos/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "VisualReviewReposCreateRequest",
-}) as any as S.Schema<VisualReviewReposCreateRequest>;
-
-export type RepoBaselineFilePathsMap = { [key: string]: string | undefined };
-export const RepoBaselineFilePathsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<RepoBaselineFilePathsMap>;
-
-export interface Repo {
-  id?: string;
-  team_id?: number;
-  repo_external_id?: number;
-  repo_full_name?: string;
-  baseline_file_paths?: RepoBaselineFilePathsMap;
-  enable_pr_comments?: boolean;
-  created_at?: string;
-}
-export const Repo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    team_id: S.optional(S.Number),
-    repo_external_id: S.optional(S.Number),
-    repo_full_name: S.optional(S.String),
-    baseline_file_paths: S.optional(RepoBaselineFilePathsMap),
-    enable_pr_comments: S.optional(S.Boolean),
-    created_at: S.optional(S.String),
-  }),
-).annotate({ identifier: "Repo" }) as any as S.Schema<Repo>;
-
-export interface VisualReviewReposFlakinessRetrieveRequest {
+export interface GetVisualReviewReposFlakinessRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   id: string;
 }
-export const VisualReviewReposFlakinessRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetVisualReviewReposFlakinessRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
       id: S.String.pipe(T.Label()),
@@ -260,9 +823,9 @@ export const VisualReviewReposFlakinessRetrieveRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "VisualReviewReposFlakinessRetrieveRequest",
-  }) as any as S.Schema<VisualReviewReposFlakinessRetrieveRequest>;
+).annotate({
+  identifier: "GetVisualReviewReposFlakinessRequest",
+}) as any as S.Schema<GetVisualReviewReposFlakinessRequest>;
 
 /** Gate-failing runs per day over the last 30 days, oldest first. Always that length, so a fixed time axis can be rendered. */
 export type FlakinessEntryDailyHardCountsList = Array<number>;
@@ -423,7 +986,116 @@ export const FlakinessOverview = /*@__PURE__*/ S.suspend(() =>
   identifier: "FlakinessOverview",
 }) as any as S.Schema<FlakinessOverview>;
 
-export interface VisualReviewReposListRequest {
+export interface GetVisualReviewReposRunsCountRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  repo_id: string;
+}
+export const GetVisualReviewReposRunsCountRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      repo_id: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/projects/{project_id}/visual_review/repos/{repo_id}/runs/counts/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "GetVisualReviewReposRunsCountRequest",
+}) as any as S.Schema<GetVisualReviewReposRunsCountRequest>;
+
+export interface ReviewStateCounts {
+  needs_review?: number;
+  clean?: number;
+  processing?: number;
+  stale?: number;
+}
+export const ReviewStateCounts = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    needs_review: S.optional(S.Number),
+    clean: S.optional(S.Number),
+    processing: S.optional(S.Number),
+    stale: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "ReviewStateCounts",
+}) as any as S.Schema<ReviewStateCounts>;
+
+export interface GetVisualReviewReposThumbnailRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  id: string;
+  identifier: string;
+  /** Narrow the lookup to one run type. The same identifier under two run types is two different images, so omit this only when the caller shows one run type. */
+  run_type?: string;
+}
+export const GetVisualReviewReposThumbnailRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+      identifier: S.String.pipe(T.Label()),
+      run_type: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/projects/{project_id}/visual_review/repos/{id}/thumbnails/{identifier}/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "GetVisualReviewReposThumbnailRequest",
+}) as any as S.Schema<GetVisualReviewReposThumbnailRequest>;
+
+export interface GetVisualReviewReposThumbnailResponse {}
+export const GetVisualReviewReposThumbnailResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "GetVisualReviewReposThumbnailResponse",
+}) as any as S.Schema<GetVisualReviewReposThumbnailResponse>;
+
+export interface GetVisualReviewRunRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  id: string;
+}
+export const GetVisualReviewRunRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/visual_review/runs/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetVisualReviewRunRequest",
+}) as any as S.Schema<GetVisualReviewRunRequest>;
+
+export interface GetVisualReviewRunsCountRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+}
+export const GetVisualReviewRunsCountRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/visual_review/runs/counts/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetVisualReviewRunsCountRequest",
+}) as any as S.Schema<GetVisualReviewRunsCountRequest>;
+
+export interface ListVisualReviewReposRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Number of results to return per page. */
@@ -431,7 +1103,7 @@ export interface VisualReviewReposListRequest {
   /** The initial index from which to return the results. */
   offset?: number;
 }
-export const VisualReviewReposListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListVisualReviewReposRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     limit: S.optional(S.Number.pipe(T.Query())),
@@ -444,8 +1116,8 @@ export const VisualReviewReposListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "VisualReviewReposListRequest",
-}) as any as S.Schema<VisualReviewReposListRequest>;
+  identifier: "ListVisualReviewReposRequest",
+}) as any as S.Schema<ListVisualReviewReposRequest>;
 
 export type PaginatedRepoListResultsList = Array<Repo>;
 export const PaginatedRepoListResultsList = /*@__PURE__*/ S.Array(
@@ -469,139 +1141,7 @@ export const PaginatedRepoList = /*@__PURE__*/ S.suspend(() =>
   identifier: "PaginatedRepoList",
 }) as any as S.Schema<PaginatedRepoList>;
 
-export type VisualReviewReposPartialUpdateRequestBaselineFilePathsMap = {
-  [key: string]: string | undefined;
-};
-export const VisualReviewReposPartialUpdateRequestBaselineFilePathsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<VisualReviewReposPartialUpdateRequestBaselineFilePathsMap>;
-
-export interface VisualReviewReposPartialUpdateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  id: string;
-  baseline_file_paths?: VisualReviewReposPartialUpdateRequestBaselineFilePathsMap | null;
-  enable_pr_comments?: boolean | null;
-}
-export const VisualReviewReposPartialUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-      baseline_file_paths: S.optional(
-        S.NullOr(VisualReviewReposPartialUpdateRequestBaselineFilePathsMap),
-      ),
-      enable_pr_comments: S.optional(S.NullOr(S.Boolean)),
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/api/projects/{project_id}/visual_review/repos/{id}/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "VisualReviewReposPartialUpdateRequest",
-}) as any as S.Schema<VisualReviewReposPartialUpdateRequest>;
-
-export interface VisualReviewReposQuarantineCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  id: string;
-  run_type: string;
-  /** Snapshot identifier to quarantine. */
-  identifier?: string;
-  /** Why this snapshot is being quarantined. */
-  reason?: string;
-  /** Optional pointer to the run whose failing snapshot prompted this quarantine — used to surface a 'view the failing run' link later. */
-  source_run_id?: string | null;
-  expires_at?: string | null;
-}
-export const VisualReviewReposQuarantineCreateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-      run_type: S.String.pipe(T.Label()),
-      identifier: S.optional(S.String),
-      reason: S.optional(S.String),
-      source_run_id: S.optional(S.NullOr(S.String)),
-      expires_at: S.optional(S.NullOr(S.String)),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/visual_review/repos/{id}/quarantine/{run_type}/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "VisualReviewReposQuarantineCreateRequest",
-}) as any as S.Schema<VisualReviewReposQuarantineCreateRequest>;
-
-export interface QuarantinedIdentifierEntry {
-  created_by?: UserBasicInfo | null;
-  /** Run whose failing snapshot prompted this quarantine. Null when quarantine was created without run context. */
-  source_run?: QuarantineSourceRun | null;
-  id?: string;
-  identifier?: string;
-  run_type?: string;
-  reason?: string;
-  source?: string;
-  expires_at?: string | null;
-  created_at?: string;
-  updated_at?: string;
-}
-export const QuarantinedIdentifierEntry = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    created_by: S.optional(S.NullOr(UserBasicInfo)),
-    source_run: S.optional(S.NullOr(QuarantineSourceRun)),
-    id: S.optional(S.String),
-    identifier: S.optional(S.String),
-    run_type: S.optional(S.String),
-    reason: S.optional(S.String),
-    source: S.optional(S.String),
-    expires_at: S.optional(S.NullOr(S.String)),
-    created_at: S.optional(S.String),
-    updated_at: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "QuarantinedIdentifierEntry",
-}) as any as S.Schema<QuarantinedIdentifierEntry>;
-
-export interface VisualReviewReposQuarantineExpireCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  id: string;
-  run_type: string;
-  /** Snapshot identifier to unquarantine */
-  identifier: string;
-}
-export const VisualReviewReposQuarantineExpireCreateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-      run_type: S.String.pipe(T.Label()),
-      identifier: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/visual_review/repos/{id}/quarantine/{run_type}/expire/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "VisualReviewReposQuarantineExpireCreateRequest",
-  }) as any as S.Schema<VisualReviewReposQuarantineExpireCreateRequest>;
-
-export interface VisualReviewReposQuarantineExpireCreateResponse {}
-export const VisualReviewReposQuarantineExpireCreateResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "VisualReviewReposQuarantineExpireCreateResponse",
-  }) as any as S.Schema<VisualReviewReposQuarantineExpireCreateResponse>;
-
-export interface VisualReviewReposQuarantineListRequest {
+export interface ListVisualReviewReposQuarantineRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   id: string;
@@ -614,7 +1154,7 @@ export interface VisualReviewReposQuarantineListRequest {
   /** Filter by run type */
   run_type?: string;
 }
-export const VisualReviewReposQuarantineListRequest = /*@__PURE__*/ S.suspend(
+export const ListVisualReviewReposQuarantineRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -631,8 +1171,8 @@ export const VisualReviewReposQuarantineListRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "VisualReviewReposQuarantineListRequest",
-}) as any as S.Schema<VisualReviewReposQuarantineListRequest>;
+  identifier: "ListVisualReviewReposQuarantineRequest",
+}) as any as S.Schema<ListVisualReviewReposQuarantineRequest>;
 
 export type PaginatedQuarantinedIdentifierEntryListResultsList =
   Array<QuarantinedIdentifierEntry>;
@@ -659,65 +1199,7 @@ export const PaginatedQuarantinedIdentifierEntryList = /*@__PURE__*/ S.suspend(
   identifier: "PaginatedQuarantinedIdentifierEntryList",
 }) as any as S.Schema<PaginatedQuarantinedIdentifierEntryList>;
 
-export interface VisualReviewReposRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  id: string;
-}
-export const VisualReviewReposRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/visual_review/repos/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "VisualReviewReposRetrieveRequest",
-}) as any as S.Schema<VisualReviewReposRetrieveRequest>;
-
-export interface VisualReviewReposRunsCountsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  repo_id: string;
-}
-export const VisualReviewReposRunsCountsRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      repo_id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/visual_review/repos/{repo_id}/runs/counts/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "VisualReviewReposRunsCountsRetrieveRequest",
-  }) as any as S.Schema<VisualReviewReposRunsCountsRetrieveRequest>;
-
-export interface ReviewStateCounts {
-  needs_review?: number;
-  clean?: number;
-  processing?: number;
-  stale?: number;
-}
-export const ReviewStateCounts = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    needs_review: S.optional(S.Number),
-    clean: S.optional(S.Number),
-    processing: S.optional(S.Number),
-    stale: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "ReviewStateCounts",
-}) as any as S.Schema<ReviewStateCounts>;
-
-export interface VisualReviewReposRunsListRequest {
+export interface ListVisualReviewReposRunsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   repo_id: string;
@@ -730,7 +1212,7 @@ export interface VisualReviewReposRunsListRequest {
   /** Free-text search over branch, commit SHA, run type, and PR number */
   search?: string;
 }
-export const VisualReviewReposRunsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListVisualReviewReposRunsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     repo_id: S.String.pipe(T.Label()),
@@ -746,82 +1228,8 @@ export const VisualReviewReposRunsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "VisualReviewReposRunsListRequest",
-}) as any as S.Schema<VisualReviewReposRunsListRequest>;
-
-export type SearchMatchTypeEnum = "exact" | "similar";
-export const SearchMatchTypeEnum = /*@__PURE__*/ S.String;
-
-export interface RunSummary {
-  total?: number;
-  changed?: number;
-  new?: number;
-  removed?: number;
-  unchanged?: number;
-  unresolved?: number;
-  tolerated_matched?: number;
-}
-export const RunSummary = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    total: S.optional(S.Number),
-    changed: S.optional(S.Number),
-    new: S.optional(S.Number),
-    removed: S.optional(S.Number),
-    unchanged: S.optional(S.Number),
-    unresolved: S.optional(S.Number),
-    tolerated_matched: S.optional(S.Number),
-  }),
-).annotate({ identifier: "RunSummary" }) as any as S.Schema<RunSummary>;
-
-export type RunMetadataMap = { [key: string]: unknown | undefined };
-export const RunMetadataMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<RunMetadataMap>;
-
-export interface Run {
-  approved_by?: UserBasicInfo | null;
-  /** How this row matched the `search` query parameter: `exact` (the term is a case-insensitive substring of branch/run type, a commit SHA prefix, or an exact PR number) or `similar` (a fuzzy trigram match, returned only when no exact match exists). Null when the list is not filtered by `search`. * `exact` - exact * `similar` - similar */
-  search_match_type?: SearchMatchTypeEnum | null;
-  id?: string;
-  repo_id?: string;
-  status?: string;
-  run_type?: string;
-  commit_sha?: string;
-  branch?: string;
-  pr_number?: number | null;
-  approved?: boolean;
-  approved_at?: string | null;
-  summary?: RunSummary;
-  error_message?: string | null;
-  created_at?: string;
-  completed_at?: string | null;
-  is_stale?: boolean;
-  superseded_by_id?: string | null;
-  metadata?: RunMetadataMap;
-}
-export const Run = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    approved_by: S.optional(S.NullOr(UserBasicInfo)),
-    search_match_type: S.optional(S.NullOr(SearchMatchTypeEnum)),
-    id: S.optional(S.String),
-    repo_id: S.optional(S.String),
-    status: S.optional(S.String),
-    run_type: S.optional(S.String),
-    commit_sha: S.optional(S.String),
-    branch: S.optional(S.String),
-    pr_number: S.optional(S.NullOr(S.Number)),
-    approved: S.optional(S.Boolean),
-    approved_at: S.optional(S.NullOr(S.String)),
-    summary: S.optional(RunSummary),
-    error_message: S.optional(S.NullOr(S.String)),
-    created_at: S.optional(S.String),
-    completed_at: S.optional(S.NullOr(S.String)),
-    is_stale: S.optional(S.Boolean),
-    superseded_by_id: S.optional(S.NullOr(S.String)),
-    metadata: S.optional(RunMetadataMap),
-  }),
-).annotate({ identifier: "Run" }) as any as S.Schema<Run>;
+  identifier: "ListVisualReviewReposRunsRequest",
+}) as any as S.Schema<ListVisualReviewReposRunsRequest>;
 
 export type PaginatedRunListResultsList = Array<Run>;
 export const PaginatedRunListResultsList = /*@__PURE__*/ S.Array(
@@ -845,7 +1253,7 @@ export const PaginatedRunList = /*@__PURE__*/ S.suspend(() =>
   identifier: "PaginatedRunList",
 }) as any as S.Schema<PaginatedRunList>;
 
-export interface VisualReviewReposSnapshotsListRequest {
+export interface ListVisualReviewReposSnapshotsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   repo_id: string;
@@ -858,7 +1266,7 @@ export interface VisualReviewReposSnapshotsListRequest {
   /** The initial index from which to return the results. */
   offset?: number;
 }
-export const VisualReviewReposSnapshotsListRequest = /*@__PURE__*/ S.suspend(
+export const ListVisualReviewReposSnapshotsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -875,25 +1283,8 @@ export const VisualReviewReposSnapshotsListRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "VisualReviewReposSnapshotsListRequest",
-}) as any as S.Schema<VisualReviewReposSnapshotsListRequest>;
-
-export interface Artifact {
-  id?: string;
-  content_hash?: string;
-  width?: number | null;
-  height?: number | null;
-  download_url?: string | null;
-}
-export const Artifact = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    content_hash: S.optional(S.String),
-    width: S.optional(S.NullOr(S.Number)),
-    height: S.optional(S.NullOr(S.Number)),
-    download_url: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({ identifier: "Artifact" }) as any as S.Schema<Artifact>;
+  identifier: "ListVisualReviewReposSnapshotsRequest",
+}) as any as S.Schema<ListVisualReviewReposSnapshotsRequest>;
 
 export interface SnapshotHistoryEntry {
   current_artifact?: Artifact | null;
@@ -954,64 +1345,241 @@ export const PaginatedSnapshotHistoryEntryList = /*@__PURE__*/ S.suspend(() =>
   identifier: "PaginatedSnapshotHistoryEntryList",
 }) as any as S.Schema<PaginatedSnapshotHistoryEntryList>;
 
-export interface VisualReviewReposThumbnailsRetrieveRequest {
+export interface ListVisualReviewRunsRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Filter by branch name */
+  branch?: string;
+  /** Filter by full commit SHA */
+  commit_sha?: string;
+  /** Number of results to return per page. */
+  limit?: number;
+  /** The initial index from which to return the results. */
+  offset?: number;
+  /** Filter by GitHub PR number */
+  pr_number?: number;
+  /** Filter by review state */
+  review_state?: string;
+  /** Free-text search over branch, commit SHA, run type, and PR number */
+  search?: string;
+}
+export const ListVisualReviewRunsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    branch: S.optional(S.String.pipe(T.Query())),
+    commit_sha: S.optional(S.String.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
+    pr_number: S.optional(S.Number.pipe(T.Query())),
+    review_state: S.optional(S.String.pipe(T.Query())),
+    search: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/visual_review/runs/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListVisualReviewRunsRequest",
+}) as any as S.Schema<ListVisualReviewRunsRequest>;
+
+export interface ListVisualReviewRunsSnapshotHistoryRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   id: string;
+  /** Snapshot identifier */
   identifier: string;
-  /** Narrow the lookup to one run type. The same identifier under two run types is two different images, so omit this only when the caller shows one run type. */
-  run_type?: string;
+  /** Number of results to return per page. */
+  limit?: number;
+  /** The initial index from which to return the results. */
+  offset?: number;
 }
-export const VisualReviewReposThumbnailsRetrieveRequest =
+export const ListVisualReviewRunsSnapshotHistoryRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
       id: S.String.pipe(T.Label()),
-      identifier: S.String.pipe(T.Label()),
-      run_type: S.optional(S.String.pipe(T.Query())),
+      identifier: S.String.pipe(T.Query()),
+      limit: S.optional(S.Number.pipe(T.Query())),
+      offset: S.optional(S.Number.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
-        uri: "/api/projects/{project_id}/visual_review/repos/{id}/thumbnails/{identifier}/",
+        uri: "/api/projects/{project_id}/visual_review/runs/{id}/snapshot-history/",
         code: 200,
       }),
     ),
   ).annotate({
-    identifier: "VisualReviewReposThumbnailsRetrieveRequest",
-  }) as any as S.Schema<VisualReviewReposThumbnailsRetrieveRequest>;
+    identifier: "ListVisualReviewRunsSnapshotHistoryRequest",
+  }) as any as S.Schema<ListVisualReviewRunsSnapshotHistoryRequest>;
 
-export interface VisualReviewReposThumbnailsRetrieveResponse {}
-export const VisualReviewReposThumbnailsRetrieveResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "VisualReviewReposThumbnailsRetrieveResponse",
-  }) as any as S.Schema<VisualReviewReposThumbnailsRetrieveResponse>;
-
-export type SnapshotManifestItemMetadataMap = {
-  [key: string]: unknown | undefined;
-};
-export const SnapshotManifestItemMetadataMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<SnapshotManifestItemMetadataMap>;
-
-export interface SnapshotManifestItem {
-  identifier?: string;
-  content_hash?: string;
-  width?: number | null;
-  height?: number | null;
-  metadata?: SnapshotManifestItemMetadataMap;
+export interface ListVisualReviewRunsSnapshotsRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  id: string;
+  /** Whether to include snapshots whose identifier is currently quarantined. Defaults to false: quarantined snapshots are excluded from results and reported in quarantined_count instead, since they are noise when reviewing real changes. */
+  include_quarantined?: boolean;
+  /** Number of results to return per page. */
+  limit?: number;
+  /** The initial index from which to return the results. */
+  offset?: number;
 }
-export const SnapshotManifestItem = /*@__PURE__*/ S.suspend(() =>
+export const ListVisualReviewRunsSnapshotsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+      include_quarantined: S.optional(S.Boolean.pipe(T.Query())),
+      limit: S.optional(S.Number.pipe(T.Query())),
+      offset: S.optional(S.Number.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/projects/{project_id}/visual_review/runs/{id}/snapshots/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "ListVisualReviewRunsSnapshotsRequest",
+}) as any as S.Schema<ListVisualReviewRunsSnapshotsRequest>;
+
+export type PaginatedSnapshotListResultsList = Array<Snapshot>;
+export const PaginatedSnapshotListResultsList = /*@__PURE__*/ S.Array(
+  Snapshot,
+) as any as S.Schema<PaginatedSnapshotListResultsList>;
+
+export interface PaginatedSnapshotList {
+  count?: number;
+  next?: string | null;
+  previous?: string | null;
+  results?: PaginatedSnapshotListResultsList;
+  /** Count of this run's snapshots whose identifier is currently quarantined. Excluded from results unless include_quarantined=true is passed. */
+  quarantined_count?: number;
+}
+export const PaginatedSnapshotList = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    identifier: S.optional(S.String),
-    content_hash: S.optional(S.String),
-    width: S.optional(S.NullOr(S.Number)),
-    height: S.optional(S.NullOr(S.Number)),
-    metadata: S.optional(SnapshotManifestItemMetadataMap),
+    count: S.optional(S.Number),
+    next: S.optional(S.NullOr(S.String)),
+    previous: S.optional(S.NullOr(S.String)),
+    results: S.optional(PaginatedSnapshotListResultsList),
+    quarantined_count: S.optional(S.Number),
   }),
 ).annotate({
-  identifier: "SnapshotManifestItem",
-}) as any as S.Schema<SnapshotManifestItem>;
+  identifier: "PaginatedSnapshotList",
+}) as any as S.Schema<PaginatedSnapshotList>;
+
+export interface ListVisualReviewRunsToleratedHashesRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  id: string;
+  /** Snapshot identifier */
+  identifier: string;
+  /** Number of results to return per page. */
+  limit?: number;
+  /** The initial index from which to return the results. */
+  offset?: number;
+}
+export const ListVisualReviewRunsToleratedHashesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+      identifier: S.String.pipe(T.Query()),
+      limit: S.optional(S.Number.pipe(T.Query())),
+      offset: S.optional(S.Number.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/projects/{project_id}/visual_review/runs/{id}/tolerated-hashes/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ListVisualReviewRunsToleratedHashesRequest",
+  }) as any as S.Schema<ListVisualReviewRunsToleratedHashesRequest>;
+
+export interface ToleratedHashEntry {
+  id?: string;
+  alternate_hash?: string;
+  baseline_hash?: string;
+  reason?: string;
+  diff_percentage?: number | null;
+  created_at?: string;
+  source_run_id?: string | null;
+}
+export const ToleratedHashEntry = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    alternate_hash: S.optional(S.String),
+    baseline_hash: S.optional(S.String),
+    reason: S.optional(S.String),
+    diff_percentage: S.optional(S.NullOr(S.Number)),
+    created_at: S.optional(S.String),
+    source_run_id: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({
+  identifier: "ToleratedHashEntry",
+}) as any as S.Schema<ToleratedHashEntry>;
+
+export type PaginatedToleratedHashEntryListResultsList =
+  Array<ToleratedHashEntry>;
+export const PaginatedToleratedHashEntryListResultsList = /*@__PURE__*/ S.Array(
+  ToleratedHashEntry,
+) as any as S.Schema<PaginatedToleratedHashEntryListResultsList>;
+
+export interface PaginatedToleratedHashEntryList {
+  count?: number;
+  next?: string | null;
+  previous?: string | null;
+  results?: PaginatedToleratedHashEntryListResultsList;
+}
+export const PaginatedToleratedHashEntryList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    count: S.optional(S.Number),
+    next: S.optional(S.NullOr(S.String)),
+    previous: S.optional(S.NullOr(S.String)),
+    results: S.optional(PaginatedToleratedHashEntryListResultsList),
+  }),
+).annotate({
+  identifier: "PaginatedToleratedHashEntryList",
+}) as any as S.Schema<PaginatedToleratedHashEntryList>;
+
+export type UpdateVisualReviewReposPartialRequestBaselineFilePathsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateVisualReviewReposPartialRequestBaselineFilePathsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<UpdateVisualReviewReposPartialRequestBaselineFilePathsMap>;
+
+export interface UpdateVisualReviewReposPartialRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  id: string;
+  baseline_file_paths?: UpdateVisualReviewReposPartialRequestBaselineFilePathsMap | null;
+  enable_pr_comments?: boolean | null;
+}
+export const UpdateVisualReviewReposPartialRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+      baseline_file_paths: S.optional(
+        S.NullOr(UpdateVisualReviewReposPartialRequestBaselineFilePathsMap),
+      ),
+      enable_pr_comments: S.optional(S.NullOr(S.Boolean)),
+    }).pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/api/projects/{project_id}/visual_review/repos/{id}/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "UpdateVisualReviewReposPartialRequest",
+}) as any as S.Schema<UpdateVisualReviewReposPartialRequest>;
 
 export type VisualReviewRunsAddSnapshotsCreateRequestSnapshotsList =
   Array<SnapshotManifestItem>;
@@ -1057,25 +1625,6 @@ export const VisualReviewRunsAddSnapshotsCreateRequest =
   ).annotate({
     identifier: "VisualReviewRunsAddSnapshotsCreateRequest",
   }) as any as S.Schema<VisualReviewRunsAddSnapshotsCreateRequest>;
-
-export type UploadTargetFieldsMap = { [key: string]: string | undefined };
-export const UploadTargetFieldsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<UploadTargetFieldsMap>;
-
-export interface UploadTarget {
-  content_hash?: string;
-  url?: string;
-  fields?: UploadTargetFieldsMap;
-}
-export const UploadTarget = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    content_hash: S.optional(S.String),
-    url: S.optional(S.String),
-    fields: S.optional(UploadTargetFieldsMap),
-  }),
-).annotate({ identifier: "UploadTarget" }) as any as S.Schema<UploadTarget>;
 
 export type AddSnapshotsResultUploadsList = Array<UploadTarget>;
 export const AddSnapshotsResultUploadsList = /*@__PURE__*/ S.Array(
@@ -1142,774 +1691,419 @@ export const VisualReviewRunsApproveCreateRequest = /*@__PURE__*/ S.suspend(
   identifier: "VisualReviewRunsApproveCreateRequest",
 }) as any as S.Schema<VisualReviewRunsApproveCreateRequest>;
 
-export interface VisualReviewRunsCompleteCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  id: string;
-}
-export const VisualReviewRunsCompleteCreateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/visual_review/runs/{id}/complete/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "VisualReviewRunsCompleteCreateRequest",
-}) as any as S.Schema<VisualReviewRunsCompleteCreateRequest>;
-
-export interface VisualReviewRunsCountsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-}
-export const VisualReviewRunsCountsRetrieveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/visual_review/runs/counts/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "VisualReviewRunsCountsRetrieveRequest",
-}) as any as S.Schema<VisualReviewRunsCountsRetrieveRequest>;
-
-export type VisualReviewRunsCreateRequestSnapshotsList =
-  Array<SnapshotManifestItem>;
-export const VisualReviewRunsCreateRequestSnapshotsList = /*@__PURE__*/ S.Array(
-  SnapshotManifestItem,
-) as any as S.Schema<VisualReviewRunsCreateRequestSnapshotsList>;
-
-export type VisualReviewRunsCreateRequestBaselineHashesMap = {
-  [key: string]: string | undefined;
-};
-export const VisualReviewRunsCreateRequestBaselineHashesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<VisualReviewRunsCreateRequestBaselineHashesMap>;
-
-export type VisualReviewRunsCreateRequestRemovedIdentifiersList = Array<string>;
-export const VisualReviewRunsCreateRequestRemovedIdentifiersList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<VisualReviewRunsCreateRequestRemovedIdentifiersList>;
-
-export type VisualReviewRunsCreateRequestMetadataMap = {
-  [key: string]: unknown | undefined;
-};
-export const VisualReviewRunsCreateRequestMetadataMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<VisualReviewRunsCreateRequestMetadataMap>;
-
-export interface VisualReviewRunsCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  repo_id?: string;
-  run_type?: string;
-  commit_sha?: string;
-  branch?: string;
-  snapshots?: VisualReviewRunsCreateRequestSnapshotsList;
-  pr_number?: number | null;
-  baseline_hashes?: VisualReviewRunsCreateRequestBaselineHashesMap;
-  unchanged_count?: number;
-  removed_identifiers?: VisualReviewRunsCreateRequestRemovedIdentifiersList;
-  purpose?: string;
-  metadata?: VisualReviewRunsCreateRequestMetadataMap;
-  is_partial?: boolean;
-}
-export const VisualReviewRunsCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    repo_id: S.optional(S.String),
-    run_type: S.optional(S.String),
-    commit_sha: S.optional(S.String),
-    branch: S.optional(S.String),
-    snapshots: S.optional(VisualReviewRunsCreateRequestSnapshotsList),
-    pr_number: S.optional(S.NullOr(S.Number)),
-    baseline_hashes: S.optional(VisualReviewRunsCreateRequestBaselineHashesMap),
-    unchanged_count: S.optional(S.Number),
-    removed_identifiers: S.optional(
-      VisualReviewRunsCreateRequestRemovedIdentifiersList,
-    ),
-    purpose: S.optional(S.String),
-    metadata: S.optional(VisualReviewRunsCreateRequestMetadataMap),
-    is_partial: S.optional(S.Boolean),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/projects/{project_id}/visual_review/runs/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "VisualReviewRunsCreateRequest",
-}) as any as S.Schema<VisualReviewRunsCreateRequest>;
-
-export type CreateRunResultUploadsList = Array<UploadTarget>;
-export const CreateRunResultUploadsList = /*@__PURE__*/ S.Array(
-  UploadTarget,
-) as any as S.Schema<CreateRunResultUploadsList>;
-
-export interface CreateRunResult {
-  run_id?: string;
-  uploads?: CreateRunResultUploadsList;
-}
-export const CreateRunResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    run_id: S.optional(S.String),
-    uploads: S.optional(CreateRunResultUploadsList),
-  }),
-).annotate({
-  identifier: "CreateRunResult",
-}) as any as S.Schema<CreateRunResult>;
-
-export interface VisualReviewRunsFinalizeCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  id: string;
-  /** Approve every still-pending changed and new snapshot before finalizing (tolerated snapshots are left untouched). Leave false to finalize a run you've already reviewed — finalizing fails if any changed/new snapshot is still unreviewed. */
-  approve_all?: boolean;
-  /** Whether the server commits the approved baseline to the PR branch and greens the gate (the normal path — leave true). Set false only for tooling that commits the baseline itself: the server skips the commit and returns the signed YAML in `baseline_content` instead. With false, the gate is NOT greened and `metadata.baseline_commit_sha` is absent. */
-  commit_to_github?: boolean;
-  /** Whether to embed the before/after snapshot images in the post-approval PR comment. The comment itself is always posted (when the run was initiated from a GitHub review prompt and the repo has PR comments enabled); this flag only controls the images. Defaults false — the comment stays a text summary unless the reviewer opts in to attach the snapshots. */
-  add_images_to_comment_on_pr?: boolean;
-}
-export const VisualReviewRunsFinalizeCreateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-      approve_all: S.optional(S.Boolean),
-      commit_to_github: S.optional(S.Boolean),
-      add_images_to_comment_on_pr: S.optional(S.Boolean),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/visual_review/runs/{id}/finalize/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "VisualReviewRunsFinalizeCreateRequest",
-}) as any as S.Schema<VisualReviewRunsFinalizeCreateRequest>;
-
-export interface FinalizeResult {
-  run: Run;
-  baseline_content: string;
-}
-export const FinalizeResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    run: Run,
-    baseline_content: S.String,
-  }),
-).annotate({ identifier: "FinalizeResult" }) as any as S.Schema<FinalizeResult>;
-
-export interface VisualReviewRunsListRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Filter by branch name */
-  branch?: string;
-  /** Filter by full commit SHA */
-  commit_sha?: string;
-  /** Number of results to return per page. */
-  limit?: number;
-  /** The initial index from which to return the results. */
-  offset?: number;
-  /** Filter by GitHub PR number */
-  pr_number?: number;
-  /** Filter by review state */
-  review_state?: string;
-  /** Free-text search over branch, commit SHA, run type, and PR number */
-  search?: string;
-}
-export const VisualReviewRunsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    branch: S.optional(S.String.pipe(T.Query())),
-    commit_sha: S.optional(S.String.pipe(T.Query())),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    offset: S.optional(S.Number.pipe(T.Query())),
-    pr_number: S.optional(S.Number.pipe(T.Query())),
-    review_state: S.optional(S.String.pipe(T.Query())),
-    search: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/visual_review/runs/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "VisualReviewRunsListRequest",
-}) as any as S.Schema<VisualReviewRunsListRequest>;
-
-export interface VisualReviewRunsRecomputeCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  id: string;
-}
-export const VisualReviewRunsRecomputeCreateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/visual_review/runs/{id}/recompute/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "VisualReviewRunsRecomputeCreateRequest",
-}) as any as S.Schema<VisualReviewRunsRecomputeCreateRequest>;
-
-export interface RecomputeResult {
-  run?: Run;
-  counts_changed?: boolean;
-  unresolved?: number;
-  ci_rerun_triggered?: boolean;
-  ci_rerun_error?: string | null;
-}
-export const RecomputeResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    run: S.optional(Run),
-    counts_changed: S.optional(S.Boolean),
-    unresolved: S.optional(S.Number),
-    ci_rerun_triggered: S.optional(S.Boolean),
-    ci_rerun_error: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({
-  identifier: "RecomputeResult",
-}) as any as S.Schema<RecomputeResult>;
-
-export interface VisualReviewRunsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  id: string;
-}
-export const VisualReviewRunsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/visual_review/runs/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "VisualReviewRunsRetrieveRequest",
-}) as any as S.Schema<VisualReviewRunsRetrieveRequest>;
-
-export interface VisualReviewRunsSnapshotHistoryListRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  id: string;
-  /** Snapshot identifier */
-  identifier: string;
-  /** Number of results to return per page. */
-  limit?: number;
-  /** The initial index from which to return the results. */
-  offset?: number;
-}
-export const VisualReviewRunsSnapshotHistoryListRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-      identifier: S.String.pipe(T.Query()),
-      limit: S.optional(S.Number.pipe(T.Query())),
-      offset: S.optional(S.Number.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/visual_review/runs/{id}/snapshot-history/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "VisualReviewRunsSnapshotHistoryListRequest",
-  }) as any as S.Schema<VisualReviewRunsSnapshotHistoryListRequest>;
-
-export interface VisualReviewRunsSnapshotsListRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  id: string;
-  /** Whether to include snapshots whose identifier is currently quarantined. Defaults to false: quarantined snapshots are excluded from results and reported in quarantined_count instead, since they are noise when reviewing real changes. */
-  include_quarantined?: boolean;
-  /** Number of results to return per page. */
-  limit?: number;
-  /** The initial index from which to return the results. */
-  offset?: number;
-}
-export const VisualReviewRunsSnapshotsListRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-      include_quarantined: S.optional(S.Boolean.pipe(T.Query())),
-      limit: S.optional(S.Number.pipe(T.Query())),
-      offset: S.optional(S.Number.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/visual_review/runs/{id}/snapshots/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "VisualReviewRunsSnapshotsListRequest",
-}) as any as S.Schema<VisualReviewRunsSnapshotsListRequest>;
-
-export interface DiffCluster {
-  x: number;
-  y: number;
-  width: number;
-  height: number;
-  pixel_count: number;
-  centroid_x: number;
-  centroid_y: number;
-}
-export const DiffCluster = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    x: S.Number,
-    y: S.Number,
-    width: S.Number,
-    height: S.Number,
-    pixel_count: S.Number,
-    centroid_x: S.Number,
-    centroid_y: S.Number,
-  }),
-).annotate({ identifier: "DiffCluster" }) as any as S.Schema<DiffCluster>;
-
-export type ClusterSummaryItemsList = Array<DiffCluster>;
-export const ClusterSummaryItemsList = /*@__PURE__*/ S.Array(
-  DiffCluster,
-) as any as S.Schema<ClusterSummaryItemsList>;
-
-export interface ClusterSummary {
-  items: ClusterSummaryItemsList;
-  total: number;
-  truncated: boolean;
-}
-export const ClusterSummary = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    items: ClusterSummaryItemsList,
-    total: S.Number,
-    truncated: S.Boolean,
-  }),
-).annotate({ identifier: "ClusterSummary" }) as any as S.Schema<ClusterSummary>;
-
-export type SnapshotMetadataMap = { [key: string]: unknown | undefined };
-export const SnapshotMetadataMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<SnapshotMetadataMap>;
-
-export interface Snapshot {
-  current_artifact?: Artifact | null;
-  baseline_artifact?: Artifact | null;
-  diff_artifact?: Artifact | null;
-  reviewed_by?: UserBasicInfo | null;
-  cluster_summary?: ClusterSummary | null;
-  id?: string;
-  run_id?: string;
-  identifier?: string;
-  result?: string;
-  classification_reason?: string;
-  diff_percentage?: number | null;
-  diff_pixel_count?: number | null;
-  review_state?: string;
-  reviewed_at?: string | null;
-  approved_hash?: string;
-  tolerated_hash_id?: string | null;
-  is_quarantined?: boolean;
-  metadata?: SnapshotMetadataMap;
-  ssim_score?: number | null;
-  change_kind?: string;
-  size_mismatch?: boolean;
-}
-export const Snapshot = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    current_artifact: S.optional(S.NullOr(Artifact)),
-    baseline_artifact: S.optional(S.NullOr(Artifact)),
-    diff_artifact: S.optional(S.NullOr(Artifact)),
-    reviewed_by: S.optional(S.NullOr(UserBasicInfo)),
-    cluster_summary: S.optional(S.NullOr(ClusterSummary)),
-    id: S.optional(S.String),
-    run_id: S.optional(S.String),
-    identifier: S.optional(S.String),
-    result: S.optional(S.String),
-    classification_reason: S.optional(S.String),
-    diff_percentage: S.optional(S.NullOr(S.Number)),
-    diff_pixel_count: S.optional(S.NullOr(S.Number)),
-    review_state: S.optional(S.String),
-    reviewed_at: S.optional(S.NullOr(S.String)),
-    approved_hash: S.optional(S.String),
-    tolerated_hash_id: S.optional(S.NullOr(S.String)),
-    is_quarantined: S.optional(S.Boolean),
-    metadata: S.optional(SnapshotMetadataMap),
-    ssim_score: S.optional(S.NullOr(S.Number)),
-    change_kind: S.optional(S.String),
-    size_mismatch: S.optional(S.Boolean),
-  }),
-).annotate({ identifier: "Snapshot" }) as any as S.Schema<Snapshot>;
-
-export type PaginatedSnapshotListResultsList = Array<Snapshot>;
-export const PaginatedSnapshotListResultsList = /*@__PURE__*/ S.Array(
-  Snapshot,
-) as any as S.Schema<PaginatedSnapshotListResultsList>;
-
-export interface PaginatedSnapshotList {
-  count?: number;
-  next?: string | null;
-  previous?: string | null;
-  results?: PaginatedSnapshotListResultsList;
-  /** Count of this run's snapshots whose identifier is currently quarantined. Excluded from results unless include_quarantined=true is passed. */
-  quarantined_count?: number;
-}
-export const PaginatedSnapshotList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    count: S.optional(S.Number),
-    next: S.optional(S.NullOr(S.String)),
-    previous: S.optional(S.NullOr(S.String)),
-    results: S.optional(PaginatedSnapshotListResultsList),
-    quarantined_count: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "PaginatedSnapshotList",
-}) as any as S.Schema<PaginatedSnapshotList>;
-
-export interface VisualReviewRunsTolerateCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  id: string;
-  /** UUID of the changed snapshot to mark as a known tolerated alternate. Future runs that produce the same alternate hash for this identifier will not be flagged as changes. */
-  snapshot_id?: string;
-}
-export const VisualReviewRunsTolerateCreateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-      snapshot_id: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/visual_review/runs/{id}/tolerate/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "VisualReviewRunsTolerateCreateRequest",
-}) as any as S.Schema<VisualReviewRunsTolerateCreateRequest>;
-
-export interface VisualReviewRunsToleratedHashesListRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  id: string;
-  /** Snapshot identifier */
-  identifier: string;
-  /** Number of results to return per page. */
-  limit?: number;
-  /** The initial index from which to return the results. */
-  offset?: number;
-}
-export const VisualReviewRunsToleratedHashesListRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-      identifier: S.String.pipe(T.Query()),
-      limit: S.optional(S.Number.pipe(T.Query())),
-      offset: S.optional(S.Number.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/visual_review/runs/{id}/tolerated-hashes/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "VisualReviewRunsToleratedHashesListRequest",
-  }) as any as S.Schema<VisualReviewRunsToleratedHashesListRequest>;
-
-export interface ToleratedHashEntry {
-  id?: string;
-  alternate_hash?: string;
-  baseline_hash?: string;
-  reason?: string;
-  diff_percentage?: number | null;
-  created_at?: string;
-  source_run_id?: string | null;
-}
-export const ToleratedHashEntry = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    alternate_hash: S.optional(S.String),
-    baseline_hash: S.optional(S.String),
-    reason: S.optional(S.String),
-    diff_percentage: S.optional(S.NullOr(S.Number)),
-    created_at: S.optional(S.String),
-    source_run_id: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({
-  identifier: "ToleratedHashEntry",
-}) as any as S.Schema<ToleratedHashEntry>;
-
-export type PaginatedToleratedHashEntryListResultsList =
-  Array<ToleratedHashEntry>;
-export const PaginatedToleratedHashEntryListResultsList = /*@__PURE__*/ S.Array(
-  ToleratedHashEntry,
-) as any as S.Schema<PaginatedToleratedHashEntryListResultsList>;
-
-export interface PaginatedToleratedHashEntryList {
-  count?: number;
-  next?: string | null;
-  previous?: string | null;
-  results?: PaginatedToleratedHashEntryListResultsList;
-}
-export const PaginatedToleratedHashEntryList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    count: S.optional(S.Number),
-    next: S.optional(S.NullOr(S.String)),
-    previous: S.optional(S.NullOr(S.String)),
-    results: S.optional(PaginatedToleratedHashEntryListResultsList),
-  }),
-).annotate({
-  identifier: "PaginatedToleratedHashEntryList",
-}) as any as S.Schema<PaginatedToleratedHashEntryList>;
-
-export type VisualReviewReposBaselinesRetrieveError = PosthogOpError;
-/** Snapshots overview for a repo: every identifier with a current baseline (latest non-superseded master/main run per run_type), plus tolerate counts, active quarantine state, and a 30-day stability sparkline. Capped at 5000 entries — sets `truncated` and returns the most recently active when exceeded. Filtering / faceting / search are all done client-side; this endpoint takes no filter query params. */
-export const visualReviewReposBaselinesRetrieve: API.OperationMethod<
-  VisualReviewReposBaselinesRetrieveRequest,
-  BaselineOverview,
-  VisualReviewReposBaselinesRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VisualReviewReposBaselinesRetrieveRequest,
-  output: BaselineOverview,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VisualReviewReposCreateError =
+export type CreateVisualReviewReposError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
 /** Create a new repo. */
-export const visualReviewReposCreate: API.OperationMethod<
-  VisualReviewReposCreateRequest,
+export const createVisualReviewRepos: API.OperationMethod<
+  CreateVisualReviewReposRequest,
   Repo,
-  VisualReviewReposCreateError,
+  CreateVisualReviewReposError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: VisualReviewReposCreateRequest,
+  input: CreateVisualReviewReposRequest,
   output: Repo,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type VisualReviewReposFlakinessRetrieveError = PosthogOpError;
-/** Snapshots in a repo whose rendering cannot be trusted: those that failed the gate or were absorbed by a toleration on a recent default-branch run, and those under an active quarantine. Everything else is omitted, so this is far smaller than the baselines universe; `totals.tracked` gives the full denominator. Each entry carries the share of the last 7 days of default-branch runs that failed the gate (`hard_rate`) and the share a toleration absorbed (`soft_rate`), plus `headroom`, the fraction of the diff threshold its worst absorbed run leaves free. Capped at 2000 entries, which sets `truncated`. Filtering, faceting and search are done client-side; this endpoint takes no filter query params. */
-export const visualReviewReposFlakinessRetrieve: API.OperationMethod<
-  VisualReviewReposFlakinessRetrieveRequest,
-  FlakinessOverview,
-  VisualReviewReposFlakinessRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VisualReviewReposFlakinessRetrieveRequest,
-  output: FlakinessOverview,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VisualReviewReposListError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** List all projects for the team. */
-export const visualReviewReposList: API.OperationMethod<
-  VisualReviewReposListRequest,
-  PaginatedRepoList,
-  VisualReviewReposListError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VisualReviewReposListRequest,
-  output: PaginatedRepoList,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VisualReviewReposPartialUpdateError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Update a repo's settings. */
-export const visualReviewReposPartialUpdate: API.OperationMethod<
-  VisualReviewReposPartialUpdateRequest,
-  Repo,
-  VisualReviewReposPartialUpdateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VisualReviewReposPartialUpdateRequest,
-  output: Repo,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VisualReviewReposQuarantineCreateError =
+export type CreateVisualReviewReposQuarantineError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
 /** Quarantine a snapshot identifier for a specific run type. */
-export const visualReviewReposQuarantineCreate: API.OperationMethod<
-  VisualReviewReposQuarantineCreateRequest,
+export const createVisualReviewReposQuarantine: API.OperationMethod<
+  CreateVisualReviewReposQuarantineRequest,
   QuarantinedIdentifierEntry,
-  VisualReviewReposQuarantineCreateError,
+  CreateVisualReviewReposQuarantineError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: VisualReviewReposQuarantineCreateRequest,
+  input: CreateVisualReviewReposQuarantineRequest,
   output: QuarantinedIdentifierEntry,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type VisualReviewReposQuarantineExpireCreateError =
+export type CreateVisualReviewReposQuarantineExpireError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
 /** Expire all active quarantine entries for an identifier. */
-export const visualReviewReposQuarantineExpireCreate: API.OperationMethod<
-  VisualReviewReposQuarantineExpireCreateRequest,
-  VisualReviewReposQuarantineExpireCreateResponse,
-  VisualReviewReposQuarantineExpireCreateError,
+export const createVisualReviewReposQuarantineExpire: API.OperationMethod<
+  CreateVisualReviewReposQuarantineExpireRequest,
+  CreateVisualReviewReposQuarantineExpireResponse,
+  CreateVisualReviewReposQuarantineExpireError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: VisualReviewReposQuarantineExpireCreateRequest,
-  output: VisualReviewReposQuarantineExpireCreateResponse,
+  input: CreateVisualReviewReposQuarantineExpireRequest,
+  output: CreateVisualReviewReposQuarantineExpireResponse,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type VisualReviewReposQuarantineListError =
+export type CreateVisualReviewRunError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
-/** List quarantined identifiers. Without filter: active only. With identifier: full history. */
-export const visualReviewReposQuarantineList: API.OperationMethod<
-  VisualReviewReposQuarantineListRequest,
-  PaginatedQuarantinedIdentifierEntryList,
-  VisualReviewReposQuarantineListError,
+/** Create a new run from a CI manifest. */
+export const createVisualReviewRun: API.OperationMethod<
+  CreateVisualReviewRunRequest,
+  CreateRunResult,
+  CreateVisualReviewRunError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: VisualReviewReposQuarantineListRequest,
-  output: PaginatedQuarantinedIdentifierEntryList,
+  input: CreateVisualReviewRunRequest,
+  output: CreateRunResult,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type VisualReviewReposRetrieveError =
+export type CreateVisualReviewRunsCompleteError =
   | Forbidden
   | NotFound
   | PosthogOpError;
-/** Get a repo by ID. */
-export const visualReviewReposRetrieve: API.OperationMethod<
-  VisualReviewReposRetrieveRequest,
-  Repo,
-  VisualReviewReposRetrieveError,
+/** Complete a run: detect removals, verify uploads, trigger diff processing. */
+export const createVisualReviewRunsComplete: API.OperationMethod<
+  CreateVisualReviewRunsCompleteRequest,
+  Run,
+  CreateVisualReviewRunsCompleteError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: VisualReviewReposRetrieveRequest,
+  input: CreateVisualReviewRunsCompleteRequest,
+  output: Run,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateVisualReviewRunsFinalizeError = PosthogOpError;
+/** Finalize a fully-reviewed run: commit the approved baseline and green the gate. Commits exactly the snapshots approved in the DB (tolerated ones keep their baseline) and only succeeds once every changed/new snapshot is resolved. With approve_all=true, any still-pending changed/new snapshot is approved first; quarantined snapshots are skipped, but a quarantined NEW snapshot approved by identifier is still committed. With commit_to_github=false the server returns the signed baseline YAML instead of committing it. */
+export const createVisualReviewRunsFinalize: API.OperationMethod<
+  CreateVisualReviewRunsFinalizeRequest,
+  FinalizeResult,
+  CreateVisualReviewRunsFinalizeError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateVisualReviewRunsFinalizeRequest,
+  output: FinalizeResult,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateVisualReviewRunsRecomputeError =
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** Re-evaluate quarantine and counts, update commit status, and optionally rerun the CI job. */
+export const createVisualReviewRunsRecompute: API.OperationMethod<
+  CreateVisualReviewRunsRecomputeRequest,
+  RecomputeResult,
+  CreateVisualReviewRunsRecomputeError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateVisualReviewRunsRecomputeRequest,
+  output: RecomputeResult,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateVisualReviewRunsTolerateError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** Mark a changed snapshot as a known tolerated alternate. */
+export const createVisualReviewRunsTolerate: API.OperationMethod<
+  CreateVisualReviewRunsTolerateRequest,
+  Snapshot,
+  CreateVisualReviewRunsTolerateError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateVisualReviewRunsTolerateRequest,
+  output: Snapshot,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetVisualReviewReposError = Forbidden | NotFound | PosthogOpError;
+/** Get a repo by ID. */
+export const getVisualReviewRepos: API.OperationMethod<
+  GetVisualReviewReposRequest,
+  Repo,
+  GetVisualReviewReposError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetVisualReviewReposRequest,
   output: Repo,
   errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type VisualReviewReposRunsCountsRetrieveError = PosthogOpError;
-/** Review state counts for runs in this repo. */
-export const visualReviewReposRunsCountsRetrieve: API.OperationMethod<
-  VisualReviewReposRunsCountsRetrieveRequest,
-  ReviewStateCounts,
-  VisualReviewReposRunsCountsRetrieveError,
+export type GetVisualReviewReposBaselineError = PosthogOpError;
+/** Snapshots overview for a repo: every identifier with a current baseline (latest non-superseded master/main run per run_type), plus tolerate counts, active quarantine state, and a 30-day stability sparkline. Capped at 5000 entries — sets `truncated` and returns the most recently active when exceeded. Filtering / faceting / search are all done client-side; this endpoint takes no filter query params. */
+export const getVisualReviewReposBaseline: API.OperationMethod<
+  GetVisualReviewReposBaselineRequest,
+  BaselineOverview,
+  GetVisualReviewReposBaselineError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: VisualReviewReposRunsCountsRetrieveRequest,
+  input: GetVisualReviewReposBaselineRequest,
+  output: BaselineOverview,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetVisualReviewReposFlakinessError = PosthogOpError;
+/** Snapshots in a repo whose rendering cannot be trusted: those that failed the gate or were absorbed by a toleration on a recent default-branch run, and those under an active quarantine. Everything else is omitted, so this is far smaller than the baselines universe; `totals.tracked` gives the full denominator. Each entry carries the share of the last 7 days of default-branch runs that failed the gate (`hard_rate`) and the share a toleration absorbed (`soft_rate`), plus `headroom`, the fraction of the diff threshold its worst absorbed run leaves free. Capped at 2000 entries, which sets `truncated`. Filtering, faceting and search are done client-side; this endpoint takes no filter query params. */
+export const getVisualReviewReposFlakiness: API.OperationMethod<
+  GetVisualReviewReposFlakinessRequest,
+  FlakinessOverview,
+  GetVisualReviewReposFlakinessError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetVisualReviewReposFlakinessRequest,
+  output: FlakinessOverview,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetVisualReviewReposRunsCountError = PosthogOpError;
+/** Review state counts for runs in this repo. */
+export const getVisualReviewReposRunsCount: API.OperationMethod<
+  GetVisualReviewReposRunsCountRequest,
+  ReviewStateCounts,
+  GetVisualReviewReposRunsCountError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetVisualReviewReposRunsCountRequest,
   output: ReviewStateCounts,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type VisualReviewReposRunsListError = PosthogOpError;
-/** List runs in this repo, optionally filtered by review state and free-text search. */
-export const visualReviewReposRunsList: API.OperationMethod<
-  VisualReviewReposRunsListRequest,
-  PaginatedRunList,
-  VisualReviewReposRunsListError,
+export type GetVisualReviewReposThumbnailError = PosthogOpError;
+/** Serve a snapshot thumbnail by identifier. Returns WebP with ETag caching. */
+export const getVisualReviewReposThumbnail: API.OperationMethod<
+  GetVisualReviewReposThumbnailRequest,
+  GetVisualReviewReposThumbnailResponse,
+  GetVisualReviewReposThumbnailError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: VisualReviewReposRunsListRequest,
+  input: GetVisualReviewReposThumbnailRequest,
+  output: GetVisualReviewReposThumbnailResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetVisualReviewRunError = Forbidden | NotFound | PosthogOpError;
+/** Get run status and summary. */
+export const getVisualReviewRun: API.OperationMethod<
+  GetVisualReviewRunRequest,
+  Run,
+  GetVisualReviewRunError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetVisualReviewRunRequest,
+  output: Run,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetVisualReviewRunsCountError =
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** Review state counts for the runs list. */
+export const getVisualReviewRunsCount: API.OperationMethod<
+  GetVisualReviewRunsCountRequest,
+  ReviewStateCounts,
+  GetVisualReviewRunsCountError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetVisualReviewRunsCountRequest,
+  output: ReviewStateCounts,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVisualReviewReposError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** List all projects for the team. */
+export const listVisualReviewRepos: API.OperationMethod<
+  ListVisualReviewReposRequest,
+  PaginatedRepoList,
+  ListVisualReviewReposError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVisualReviewReposRequest,
+  output: PaginatedRepoList,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVisualReviewReposQuarantineError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** List quarantined identifiers. Without filter: active only. With identifier: full history. */
+export const listVisualReviewReposQuarantine: API.OperationMethod<
+  ListVisualReviewReposQuarantineRequest,
+  PaginatedQuarantinedIdentifierEntryList,
+  ListVisualReviewReposQuarantineError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVisualReviewReposQuarantineRequest,
+  output: PaginatedQuarantinedIdentifierEntryList,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVisualReviewReposRunsError = PosthogOpError;
+/** List runs in this repo, optionally filtered by review state and free-text search. */
+export const listVisualReviewReposRuns: API.OperationMethod<
+  ListVisualReviewReposRunsRequest,
+  PaginatedRunList,
+  ListVisualReviewReposRunsError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVisualReviewReposRunsRequest,
   output: PaginatedRunList,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type VisualReviewReposSnapshotsListError = PosthogOpError;
+export type ListVisualReviewReposSnapshotsError = PosthogOpError;
 /** Deduped baseline timeline for a snapshot identity. Newest first. */
-export const visualReviewReposSnapshotsList: API.OperationMethod<
-  VisualReviewReposSnapshotsListRequest,
+export const listVisualReviewReposSnapshots: API.OperationMethod<
+  ListVisualReviewReposSnapshotsRequest,
   PaginatedSnapshotHistoryEntryList,
-  VisualReviewReposSnapshotsListError,
+  ListVisualReviewReposSnapshotsError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: VisualReviewReposSnapshotsListRequest,
+  input: ListVisualReviewReposSnapshotsRequest,
   output: PaginatedSnapshotHistoryEntryList,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type VisualReviewReposThumbnailsRetrieveError = PosthogOpError;
-/** Serve a snapshot thumbnail by identifier. Returns WebP with ETag caching. */
-export const visualReviewReposThumbnailsRetrieve: API.OperationMethod<
-  VisualReviewReposThumbnailsRetrieveRequest,
-  VisualReviewReposThumbnailsRetrieveResponse,
-  VisualReviewReposThumbnailsRetrieveError,
+export type ListVisualReviewRunsError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** List runs for the team, optionally filtered by review state, PR number, commit SHA, branch, or free-text search. */
+export const listVisualReviewRuns: API.OperationMethod<
+  ListVisualReviewRunsRequest,
+  PaginatedRunList,
+  ListVisualReviewRunsError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: VisualReviewReposThumbnailsRetrieveRequest,
-  output: VisualReviewReposThumbnailsRetrieveResponse,
-  errors: [],
+  input: ListVisualReviewRunsRequest,
+  output: PaginatedRunList,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVisualReviewRunsSnapshotHistoryError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** Recent change history for a snapshot identifier across runs. */
+export const listVisualReviewRunsSnapshotHistory: API.OperationMethod<
+  ListVisualReviewRunsSnapshotHistoryRequest,
+  PaginatedSnapshotHistoryEntryList,
+  ListVisualReviewRunsSnapshotHistoryError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVisualReviewRunsSnapshotHistoryRequest,
+  output: PaginatedSnapshotHistoryEntryList,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVisualReviewRunsSnapshotsError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** Get a run's snapshots with diff results, excluding quarantined ones by default. */
+export const listVisualReviewRunsSnapshots: API.OperationMethod<
+  ListVisualReviewRunsSnapshotsRequest,
+  PaginatedSnapshotList,
+  ListVisualReviewRunsSnapshotsError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVisualReviewRunsSnapshotsRequest,
+  output: PaginatedSnapshotList,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVisualReviewRunsToleratedHashesError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** List known tolerated hashes for a snapshot identifier. */
+export const listVisualReviewRunsToleratedHashes: API.OperationMethod<
+  ListVisualReviewRunsToleratedHashesRequest,
+  PaginatedToleratedHashEntryList,
+  ListVisualReviewRunsToleratedHashesError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVisualReviewRunsToleratedHashesRequest,
+  output: PaginatedToleratedHashEntryList,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateVisualReviewReposPartialError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** Update a repo's settings. */
+export const updateVisualReviewReposPartial: API.OperationMethod<
+  UpdateVisualReviewReposPartialRequest,
+  Repo,
+  UpdateVisualReviewReposPartialError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateVisualReviewReposPartialRequest,
+  output: Repo,
+  errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
@@ -1947,207 +2141,6 @@ export const visualReviewRunsApproveCreate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: VisualReviewRunsApproveCreateRequest,
   output: Run,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VisualReviewRunsCompleteCreateError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Complete a run: detect removals, verify uploads, trigger diff processing. */
-export const visualReviewRunsCompleteCreate: API.OperationMethod<
-  VisualReviewRunsCompleteCreateRequest,
-  Run,
-  VisualReviewRunsCompleteCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VisualReviewRunsCompleteCreateRequest,
-  output: Run,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VisualReviewRunsCountsRetrieveError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Review state counts for the runs list. */
-export const visualReviewRunsCountsRetrieve: API.OperationMethod<
-  VisualReviewRunsCountsRetrieveRequest,
-  ReviewStateCounts,
-  VisualReviewRunsCountsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VisualReviewRunsCountsRetrieveRequest,
-  output: ReviewStateCounts,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VisualReviewRunsCreateError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Create a new run from a CI manifest. */
-export const visualReviewRunsCreate: API.OperationMethod<
-  VisualReviewRunsCreateRequest,
-  CreateRunResult,
-  VisualReviewRunsCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VisualReviewRunsCreateRequest,
-  output: CreateRunResult,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VisualReviewRunsFinalizeCreateError = PosthogOpError;
-/** Finalize a fully-reviewed run: commit the approved baseline and green the gate. Commits exactly the snapshots approved in the DB (tolerated ones keep their baseline) and only succeeds once every changed/new snapshot is resolved. With approve_all=true, any still-pending changed/new snapshot is approved first; quarantined snapshots are skipped, but a quarantined NEW snapshot approved by identifier is still committed. With commit_to_github=false the server returns the signed baseline YAML instead of committing it. */
-export const visualReviewRunsFinalizeCreate: API.OperationMethod<
-  VisualReviewRunsFinalizeCreateRequest,
-  FinalizeResult,
-  VisualReviewRunsFinalizeCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VisualReviewRunsFinalizeCreateRequest,
-  output: FinalizeResult,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VisualReviewRunsListError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** List runs for the team, optionally filtered by review state, PR number, commit SHA, branch, or free-text search. */
-export const visualReviewRunsList: API.OperationMethod<
-  VisualReviewRunsListRequest,
-  PaginatedRunList,
-  VisualReviewRunsListError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VisualReviewRunsListRequest,
-  output: PaginatedRunList,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VisualReviewRunsRecomputeCreateError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Re-evaluate quarantine and counts, update commit status, and optionally rerun the CI job. */
-export const visualReviewRunsRecomputeCreate: API.OperationMethod<
-  VisualReviewRunsRecomputeCreateRequest,
-  RecomputeResult,
-  VisualReviewRunsRecomputeCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VisualReviewRunsRecomputeCreateRequest,
-  output: RecomputeResult,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VisualReviewRunsRetrieveError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Get run status and summary. */
-export const visualReviewRunsRetrieve: API.OperationMethod<
-  VisualReviewRunsRetrieveRequest,
-  Run,
-  VisualReviewRunsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VisualReviewRunsRetrieveRequest,
-  output: Run,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VisualReviewRunsSnapshotHistoryListError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Recent change history for a snapshot identifier across runs. */
-export const visualReviewRunsSnapshotHistoryList: API.OperationMethod<
-  VisualReviewRunsSnapshotHistoryListRequest,
-  PaginatedSnapshotHistoryEntryList,
-  VisualReviewRunsSnapshotHistoryListError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VisualReviewRunsSnapshotHistoryListRequest,
-  output: PaginatedSnapshotHistoryEntryList,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VisualReviewRunsSnapshotsListError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Get a run's snapshots with diff results, excluding quarantined ones by default. */
-export const visualReviewRunsSnapshotsList: API.OperationMethod<
-  VisualReviewRunsSnapshotsListRequest,
-  PaginatedSnapshotList,
-  VisualReviewRunsSnapshotsListError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VisualReviewRunsSnapshotsListRequest,
-  output: PaginatedSnapshotList,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VisualReviewRunsTolerateCreateError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Mark a changed snapshot as a known tolerated alternate. */
-export const visualReviewRunsTolerateCreate: API.OperationMethod<
-  VisualReviewRunsTolerateCreateRequest,
-  Snapshot,
-  VisualReviewRunsTolerateCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VisualReviewRunsTolerateCreateRequest,
-  output: Snapshot,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VisualReviewRunsToleratedHashesListError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** List known tolerated hashes for a snapshot identifier. */
-export const visualReviewRunsToleratedHashesList: API.OperationMethod<
-  VisualReviewRunsToleratedHashesListRequest,
-  PaginatedToleratedHashEntryList,
-  VisualReviewRunsToleratedHashesListError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VisualReviewRunsToleratedHashesListRequest,
-  output: PaginatedToleratedHashEntryList,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,

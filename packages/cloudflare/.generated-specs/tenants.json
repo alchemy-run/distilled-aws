@@ -14,24 +14,44 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "keyDictionary": {
+      "abuseContactEmail": "abuse_contact_email",
+      "accessApprovalExpiry": "access_approval_expiry",
+      "allowAddSubdomain": "allow_add_subdomain",
+      "allowAutoAcceptInvites": "allow_auto_accept_invites",
+      "apiAccessEnabled": "api_access_enabled",
+      "cnameSetupAllowed": "cname_setup_allowed",
+      "createdOn": "created_on",
+      "customEntitlements": "custom_entitlements",
+      "customerId": "customer_id",
+      "defaultNameservers": "default_nameservers",
+      "enforceTwofactor": "enforce_twofactor",
+      "mhsCertificateCount": "mhs_certificate_count",
+      "nsPool": "ns_pool",
+      "partialSetupAllowed": "partial_setup_allowed",
+      "tenantContacts": "tenant_contacts",
+      "tenantLabels": "tenant_labels",
+      "tenantMetadata": "tenant_metadata",
+      "tenantName": "tenant_name",
+      "tenantNetwork": "tenant_network",
+      "tenantStatus": "tenant_status",
+      "tenantTag": "tenant_tag",
+      "tenantType": "tenant_type",
+      "tenantUnits": "tenant_units",
+      "unitMemberships": "unit_memberships",
+      "unitMetadata": "unit_metadata",
+      "unitName": "unit_name",
+      "unitStatus": "unit_status",
+      "unitTag": "unit_tag",
+      "useAccountCustomNsByDefault": "use_account_custom_ns_by_default",
+      "userEmail": "user_email",
+      "userName": "user_name",
+      "userTag": "user_tag"
+    },
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.cloudflare.tenants#GetRequest": {
-      "type": "structure",
-      "members": {
-        "tenant_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.tenants#GetResponseTenantContacts": {
       "type": "structure",
       "members": {
@@ -126,169 +146,10 @@
         "target": "com.cloudflare.tenants#GetResponseTenantUnitsItem"
       }
     },
-    "com.cloudflare.tenants#GetResponse": {
-      "type": "structure",
-      "members": {
-        "cdate": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "edate": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "tenant_contacts": {
-          "target": "com.cloudflare.tenants#GetResponseTenantContacts",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "tenant_labels": {
-          "target": "com.cloudflare.tenants#GetResponseTenantLabelsList",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "tenant_metadata": {
-          "target": "com.cloudflare.tenants#GetResponseTenantMetadata",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "tenant_name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "tenant_network": {
-          "target": "smithy.api#Document",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "tenant_status": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "tenant_tag": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "tenant_type": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "tenant_units": {
-          "target": "com.cloudflare.tenants#GetResponseTenantUnitsList",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "customer_id": {
-          "target": "smithy.api#String"
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.tenants#Get": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.tenants#GetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.tenants#GetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/tenants/{tenant_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Retrieves a Tenant by Tenant ID.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.tenants#AccountTypesListRequest": {
-      "type": "structure",
-      "members": {
-        "tenant_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.tenants#AccountTypesListResultList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
-      }
-    },
-    "com.cloudflare.tenants#AccountTypesListResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.tenants#AccountTypesListResultList",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.tenants#AccountTypesList": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.tenants#AccountTypesListRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.tenants#AccountTypesListResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/tenants/{tenant_id}/account_types",
-          "code": 200
-        },
-        "smithy.api#documentation": "List of account types available for the Tenant to provision accounts.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.tenants#AccountsListRequest": {
-      "type": "structure",
-      "members": {
-        "tenant_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.tenants#AccountsListResultItemSettings": {
@@ -390,54 +251,6 @@
       "type": "list",
       "member": {
         "target": "com.cloudflare.tenants#AccountsListResultItem"
-      }
-    },
-    "com.cloudflare.tenants#AccountsListResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.tenants#AccountsListResultList",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.tenants#AccountsList": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.tenants#AccountsListRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.tenants#AccountsListResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/tenants/{tenant_id}/accounts",
-          "code": 200
-        },
-        "smithy.api#documentation": "List of accounts for the Tenant.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.tenants#EntitlementsGetRequest": {
-      "type": "structure",
-      "members": {
-        "tenant_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.tenants#EntitlementsGetResponseAllowAddSubdomainType": {
@@ -709,7 +522,95 @@
         }
       }
     },
-    "com.cloudflare.tenants#EntitlementsGetResponse": {
+    "com.cloudflare.tenants#MembershipsListResultItem": {
+      "type": "structure",
+      "members": {
+        "user_email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "user_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "user_tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.tenants#MembershipsListResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.tenants#MembershipsListResultItem"
+      }
+    },
+    "com.cloudflare.tenants#Tenants": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.tenants#GetEntitlement"
+        },
+        {
+          "target": "com.cloudflare.tenants#GetTenant"
+        },
+        {
+          "target": "com.cloudflare.tenants#ListAccounts"
+        },
+        {
+          "target": "com.cloudflare.tenants#ListAccountTypes"
+        },
+        {
+          "target": "com.cloudflare.tenants#ListMemberships"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare Tenants",
+        "smithy.api#documentation": "Cloudflare API — tenants resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    },
+    "com.cloudflare.tenants#GetEntitlement": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.tenants#GetEntitlementRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.tenants#GetEntitlementResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/tenants/{tenant_id}/entitlements",
+          "code": 200
+        },
+        "smithy.api#documentation": "List of innate entitlements available for the Tenant.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.tenants#GetEntitlementRequest": {
+      "type": "structure",
+      "members": {
+        "tenant_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.tenants#GetEntitlementResponse": {
       "type": "structure",
       "members": {
         "allow_add_subdomain": {
@@ -754,25 +655,25 @@
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     },
-    "com.cloudflare.tenants#EntitlementsGet": {
+    "com.cloudflare.tenants#GetTenant": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.tenants#EntitlementsGetRequest"
+        "target": "com.cloudflare.tenants#GetTenantRequest"
       },
       "output": {
-        "target": "com.cloudflare.tenants#EntitlementsGetResponse"
+        "target": "com.cloudflare.tenants#GetTenantResponse"
       },
       "traits": {
         "smithy.api#http": {
           "method": "GET",
-          "uri": "/tenants/{tenant_id}/entitlements",
+          "uri": "/tenants/{tenant_id}",
           "code": 200
         },
-        "smithy.api#documentation": "List of innate entitlements available for the Tenant.",
+        "smithy.api#documentation": "Retrieves a Tenant by Tenant ID.",
         "smithy.api#readonly": {}
       }
     },
-    "com.cloudflare.tenants#MembershipsListRequest": {
+    "com.cloudflare.tenants#GetTenantRequest": {
       "type": "structure",
       "members": {
         "tenant_id": {
@@ -787,36 +688,226 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.tenants#MembershipsListResultItem": {
+    "com.cloudflare.tenants#GetTenantResponse": {
       "type": "structure",
       "members": {
-        "user_email": {
+        "cdate": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#required": {}
           }
         },
-        "user_name": {
+        "edate": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#required": {}
           }
         },
-        "user_tag": {
+        "tenant_contacts": {
+          "target": "com.cloudflare.tenants#GetResponseTenantContacts",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "tenant_labels": {
+          "target": "com.cloudflare.tenants#GetResponseTenantLabelsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "tenant_metadata": {
+          "target": "com.cloudflare.tenants#GetResponseTenantMetadata",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "tenant_name": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#required": {}
           }
+        },
+        "tenant_network": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "tenant_status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "tenant_tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "tenant_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "tenant_units": {
+          "target": "com.cloudflare.tenants#GetResponseTenantUnitsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "customer_id": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.tenants#ListAccounts": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.tenants#ListAccountsRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.tenants#ListAccountsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/tenants/{tenant_id}/accounts",
+          "code": 200
+        },
+        "smithy.api#documentation": "List of accounts for the Tenant.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "single",
+          "items": "result"
         }
       }
     },
-    "com.cloudflare.tenants#MembershipsListResultList": {
-      "type": "list",
-      "member": {
-        "target": "com.cloudflare.tenants#MembershipsListResultItem"
+    "com.cloudflare.tenants#ListAccountsRequest": {
+      "type": "structure",
+      "members": {
+        "tenant_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
       }
     },
-    "com.cloudflare.tenants#MembershipsListResponse": {
+    "com.cloudflare.tenants#ListAccountsResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.tenants#AccountsListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.tenants#ListAccountTypes": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.tenants#ListAccountTypesRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.tenants#ListAccountTypesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/tenants/{tenant_id}/account_types",
+          "code": 200
+        },
+        "smithy.api#documentation": "List of account types available for the Tenant to provision accounts.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "single",
+          "items": "result"
+        }
+      }
+    },
+    "com.cloudflare.tenants#ListAccountTypesRequest": {
+      "type": "structure",
+      "members": {
+        "tenant_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.tenants#ListAccountTypesResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.tenants#AccountTypesListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.tenants#ListMemberships": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.tenants#ListMembershipsRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.tenants#ListMembershipsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/tenants/{tenant_id}/memberships",
+          "code": 200
+        },
+        "smithy.api#documentation": "List of active members (Cloudflare users) for the Tenant.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "single",
+          "items": "result"
+        }
+      }
+    },
+    "com.cloudflare.tenants#ListMembershipsRequest": {
+      "type": "structure",
+      "members": {
+        "tenant_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.tenants#ListMembershipsResponse": {
       "type": "structure",
       "members": {
         "result": {
@@ -829,50 +920,6 @@
       },
       "traits": {
         "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.tenants#MembershipsList": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.tenants#MembershipsListRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.tenants#MembershipsListResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/tenants/{tenant_id}/memberships",
-          "code": 200
-        },
-        "smithy.api#documentation": "List of active members (Cloudflare users) for the Tenant.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.tenants#Tenants": {
-      "type": "service",
-      "version": "4.0",
-      "operations": [
-        {
-          "target": "com.cloudflare.tenants#Get"
-        },
-        {
-          "target": "com.cloudflare.tenants#AccountTypesList"
-        },
-        {
-          "target": "com.cloudflare.tenants#AccountsList"
-        },
-        {
-          "target": "com.cloudflare.tenants#EntitlementsGet"
-        },
-        {
-          "target": "com.cloudflare.tenants#MembershipsList"
-        }
-      ],
-      "traits": {
-        "com.cloudflare.protocols#v4Json": {},
-        "smithy.api#title": "Cloudflare Tenants",
-        "smithy.api#documentation": "Cloudflare API — tenants resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
       }
     }
   }

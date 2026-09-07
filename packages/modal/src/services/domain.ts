@@ -12,29 +12,22 @@ import * as Retry from "../retry.ts";
 
 export type { ModalOpError, ModalOpContext };
 
-export interface DomainCertificateVerifyRequest {
-  domainId?: string;
+export interface CreateDomainRequest {
+  domainName?: string;
 }
-export const DomainCertificateVerifyRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateDomainRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    domainId: S.optional(S.String),
+    domainName: S.optional(S.String),
   }).pipe(
     T.Http({
       method: "POST",
-      uri: "/modal.client.ModalClient/DomainCertificateVerify",
+      uri: "/modal.client.ModalClient/DomainCreate",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "DomainCertificateVerifyRequest",
-}) as any as S.Schema<DomainCertificateVerifyRequest>;
-
-export type CertificateStatus =
-  | "CERTIFICATE_STATUS_PENDING"
-  | "CERTIFICATE_STATUS_ISSUED"
-  | "CERTIFICATE_STATUS_FAILED"
-  | "CERTIFICATE_STATUS_REVOKED";
-export const CertificateStatus = /*@__PURE__*/ S.String;
+  identifier: "CreateDomainRequest",
+}) as any as S.Schema<CreateDomainRequest>;
 
 /** now unused internal experimental values */
 export type DNSRecordType =
@@ -61,6 +54,39 @@ export const DNSRecordList = /*@__PURE__*/ S.Array(
   DNSRecord,
 ) as any as S.Schema<DNSRecordList>;
 
+export interface CreateDomainResponse {
+  domainId?: string;
+  dnsRecords?: DNSRecordList;
+}
+export const CreateDomainResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    domainId: S.optional(S.String),
+    dnsRecords: S.optional(DNSRecordList),
+  }),
+).annotate({
+  identifier: "CreateDomainResponse",
+}) as any as S.Schema<CreateDomainResponse>;
+
+export interface ListDomainRequest {}
+export const ListDomainRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/modal.client.ModalClient/DomainList",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListDomainRequest",
+}) as any as S.Schema<ListDomainRequest>;
+
+export type CertificateStatus =
+  | "CERTIFICATE_STATUS_PENDING"
+  | "CERTIFICATE_STATUS_ISSUED"
+  | "CERTIFICATE_STATUS_FAILED"
+  | "CERTIFICATE_STATUS_REVOKED";
+export const CertificateStatus = /*@__PURE__*/ S.String;
+
 export interface Domain {
   domainId?: string;
   domainName?: string;
@@ -78,114 +104,88 @@ export const Domain = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Domain" }) as any as S.Schema<Domain>;
 
-export interface DomainCertificateVerifyResponse {
-  domain?: Domain;
-}
-export const DomainCertificateVerifyResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    domain: S.optional(Domain),
-  }),
-).annotate({
-  identifier: "DomainCertificateVerifyResponse",
-}) as any as S.Schema<DomainCertificateVerifyResponse>;
-
-export interface DomainCreateRequest {
-  domainName?: string;
-}
-export const DomainCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    domainName: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/modal.client.ModalClient/DomainCreate",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "DomainCreateRequest",
-}) as any as S.Schema<DomainCreateRequest>;
-
-export interface DomainCreateResponse {
-  domainId?: string;
-  dnsRecords?: DNSRecordList;
-}
-export const DomainCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    domainId: S.optional(S.String),
-    dnsRecords: S.optional(DNSRecordList),
-  }),
-).annotate({
-  identifier: "DomainCreateResponse",
-}) as any as S.Schema<DomainCreateResponse>;
-
-export interface DomainListRequest {}
-export const DomainListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/modal.client.ModalClient/DomainList",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "DomainListRequest",
-}) as any as S.Schema<DomainListRequest>;
-
 export type DomainList2 = Array<Domain>;
 export const DomainList2 = /*@__PURE__*/ S.Array(
   Domain,
 ) as any as S.Schema<DomainList2>;
 
-export interface DomainListResponse {
+export interface ListDomainResponse {
   domains?: DomainList2;
 }
-export const DomainListResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListDomainResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     domains: S.optional(DomainList2),
   }),
 ).annotate({
-  identifier: "DomainListResponse",
-}) as any as S.Schema<DomainListResponse>;
+  identifier: "ListDomainResponse",
+}) as any as S.Schema<ListDomainResponse>;
 
-export type DomainCertificateVerifyError = ModalOpError;
+export interface VerifyDomainCertificateRequest {
+  domainId?: string;
+}
+export const VerifyDomainCertificateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    domainId: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/modal.client.ModalClient/DomainCertificateVerify",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "VerifyDomainCertificateRequest",
+}) as any as S.Schema<VerifyDomainCertificateRequest>;
+
+export interface VerifyDomainCertificateResponse {
+  domain?: Domain;
+}
+export const VerifyDomainCertificateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    domain: S.optional(Domain),
+  }),
+).annotate({
+  identifier: "VerifyDomainCertificateResponse",
+}) as any as S.Schema<VerifyDomainCertificateResponse>;
+
+export type CreateDomainError = ModalOpError;
+export const createDomain: API.OperationMethod<
+  CreateDomainRequest,
+  CreateDomainResponse,
+  CreateDomainError,
+  ModalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateDomainRequest,
+  output: CreateDomainResponse,
+  errors: [UnknownModalError],
+  protocol: ModalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDomainError = ModalOpError;
+export const listDomain: API.OperationMethod<
+  ListDomainRequest,
+  ListDomainResponse,
+  ListDomainError,
+  ModalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDomainRequest,
+  output: ListDomainResponse,
+  errors: [UnknownModalError],
+  protocol: ModalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type VerifyDomainCertificateError = ModalOpError;
 /** Domains */
-export const domainCertificateVerify: API.OperationMethod<
-  DomainCertificateVerifyRequest,
-  DomainCertificateVerifyResponse,
-  DomainCertificateVerifyError,
+export const verifyDomainCertificate: API.OperationMethod<
+  VerifyDomainCertificateRequest,
+  VerifyDomainCertificateResponse,
+  VerifyDomainCertificateError,
   ModalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DomainCertificateVerifyRequest,
-  output: DomainCertificateVerifyResponse,
-  errors: [UnknownModalError],
-  protocol: ModalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DomainCreateError = ModalOpError;
-export const domainCreate: API.OperationMethod<
-  DomainCreateRequest,
-  DomainCreateResponse,
-  DomainCreateError,
-  ModalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DomainCreateRequest,
-  output: DomainCreateResponse,
-  errors: [UnknownModalError],
-  protocol: ModalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DomainListError = ModalOpError;
-export const domainList: API.OperationMethod<
-  DomainListRequest,
-  DomainListResponse,
-  DomainListError,
-  ModalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DomainListRequest,
-  output: DomainListResponse,
+  input: VerifyDomainCertificateRequest,
+  output: VerifyDomainCertificateResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,

@@ -75,69 +75,33 @@ export const AdministratorsMicrosoftEntraCreateOrUpdateResponse =
     identifier: "AdministratorsMicrosoftEntraCreateOrUpdateResponse",
   }) as any as S.Schema<AdministratorsMicrosoftEntraCreateOrUpdateResponse>;
 
-export interface AdministratorsMicrosoftEntraDeleteRequest {
+export interface CancelMigrationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the server. */
   serverName: string;
-  /** Object identifier of the Microsoft Entra principal. */
-  objectId: string;
+  /** Name of migration. */
+  migrationName: string;
 }
-export const AdministratorsMicrosoftEntraDeleteRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      serverName: S.String.pipe(T.Label()),
-      objectId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/administrators/{objectId}",
-        code: 200,
-        apiVersion: "2025-08-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "AdministratorsMicrosoftEntraDeleteRequest",
-  }) as any as S.Schema<AdministratorsMicrosoftEntraDeleteRequest>;
-
-export interface AdministratorsMicrosoftEntraDeleteResponse {}
-export const AdministratorsMicrosoftEntraDeleteResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "AdministratorsMicrosoftEntraDeleteResponse",
-  }) as any as S.Schema<AdministratorsMicrosoftEntraDeleteResponse>;
-
-export interface AdministratorsMicrosoftEntraGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the server. */
-  serverName: string;
-  /** Object identifier of the Microsoft Entra principal. */
-  objectId: string;
-}
-export const AdministratorsMicrosoftEntraGetRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      serverName: S.String.pipe(T.Label()),
-      objectId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/administrators/{objectId}",
-        code: 200,
-        apiVersion: "2025-08-01",
-      }),
-    ),
+export const CancelMigrationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serverName: S.String.pipe(T.Label()),
+    migrationName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/migrations/{migrationName}",
+      code: 200,
+      apiVersion: "2025-08-01",
+    }),
+  ),
 ).annotate({
-  identifier: "AdministratorsMicrosoftEntraGetRequest",
-}) as any as S.Schema<AdministratorsMicrosoftEntraGetRequest>;
+  identifier: "CancelMigrationRequest",
+}) as any as S.Schema<CancelMigrationRequest>;
 
 /** The type of identity that created the resource. */
 export type SystemDataCreatedByType =
@@ -181,2125 +145,14 @@ export const SystemData = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
 
-/** Properties of a server administrator associated to a Microsoft Entra principal. */
-export interface AdministratorMicrosoftEntraProperties {
-  /** Type of Microsoft Entra principal to which the server administrator is associated. */
-  principalType?: PrincipalType;
-  /** Name of the Microsoft Entra principal. */
-  principalName?: string;
-  /** Object identifier of the Microsoft Entra principal. */
-  objectId?: string;
-  /** Identifier of the tenant in which the Microsoft Entra principal exists. */
-  tenantId?: string;
-}
-export const AdministratorMicrosoftEntraProperties = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      principalType: S.optional(PrincipalType),
-      principalName: S.optional(S.String),
-      objectId: S.optional(S.String),
-      tenantId: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "AdministratorMicrosoftEntraProperties",
-}) as any as S.Schema<AdministratorMicrosoftEntraProperties>;
-
-export interface AdministratorsMicrosoftEntraGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of a server administrator associated to a Microsoft Entra principal. */
-  properties: AdministratorMicrosoftEntraProperties;
-}
-export const AdministratorsMicrosoftEntraGetResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: AdministratorMicrosoftEntraProperties,
-    }),
-).annotate({
-  identifier: "AdministratorsMicrosoftEntraGetResponse",
-}) as any as S.Schema<AdministratorsMicrosoftEntraGetResponse>;
-
-export interface AdministratorsMicrosoftEntraListByServerRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the server. */
-  serverName: string;
-}
-export const AdministratorsMicrosoftEntraListByServerRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      serverName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/administrators",
-        code: 200,
-        apiVersion: "2025-08-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "AdministratorsMicrosoftEntraListByServerRequest",
-  }) as any as S.Schema<AdministratorsMicrosoftEntraListByServerRequest>;
-
-/** Server administrator associated to a Microsoft Entra principal. */
-export interface AdministratorMicrosoftEntra {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of a server administrator associated to a Microsoft Entra principal. */
-  properties: AdministratorMicrosoftEntraProperties;
-}
-export const AdministratorMicrosoftEntra = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: AdministratorMicrosoftEntraProperties,
-  }),
-).annotate({
-  identifier: "AdministratorMicrosoftEntra",
-}) as any as S.Schema<AdministratorMicrosoftEntra>;
-
-/** The AdministratorMicrosoftEntra items on this page */
-export type AdministratorMicrosoftEntraListValueList =
-  Array<AdministratorMicrosoftEntra>;
-export const AdministratorMicrosoftEntraListValueList = /*@__PURE__*/ S.Array(
-  AdministratorMicrosoftEntra,
-) as any as S.Schema<AdministratorMicrosoftEntraListValueList>;
-
-/** List of server administrators associated to Microsoft Entra principals. */
-export interface AdministratorMicrosoftEntraList {
-  /** The AdministratorMicrosoftEntra items on this page */
-  value: AdministratorMicrosoftEntraListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const AdministratorMicrosoftEntraList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: AdministratorMicrosoftEntraListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AdministratorMicrosoftEntraList",
-}) as any as S.Schema<AdministratorMicrosoftEntraList>;
-
-export type AdvancedThreatProtectionSettingsGetRequestThreatProtectionName =
-  "Default";
-export const AdvancedThreatProtectionSettingsGetRequestThreatProtectionName =
-  /*@__PURE__*/ S.String;
-
-export interface AdvancedThreatProtectionSettingsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the server. */
-  serverName: string;
-  /** Name of the advanced threat protection settings. */
-  threatProtectionName:
-    | AdvancedThreatProtectionSettingsGetRequestThreatProtectionName
-    | (string & {});
-}
-export const AdvancedThreatProtectionSettingsGetRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      serverName: S.String.pipe(T.Label()),
-      threatProtectionName:
-        AdvancedThreatProtectionSettingsGetRequestThreatProtectionName.pipe(
-          T.Label(),
-        ),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/advancedThreatProtectionSettings/{threatProtectionName}",
-        code: 200,
-        apiVersion: "2025-08-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "AdvancedThreatProtectionSettingsGetRequest",
-  }) as any as S.Schema<AdvancedThreatProtectionSettingsGetRequest>;
-
-/** Specifies the state of the advanced threat protection, whether it is enabled, disabled, or a state has not been applied yet on the server. */
-export type ThreatProtectionState = "Enabled" | "Disabled";
-export const ThreatProtectionState = /*@__PURE__*/ S.String;
-
-/** Properties of advanced threat protection state for a server. */
-export interface AdvancedThreatProtectionSettingsProperties {
-  /** Specifies the state of the advanced threat protection, whether it is enabled, disabled, or a state has not been applied yet on the server. */
-  state: ThreatProtectionState;
-  /** Specifies the creation time (UTC) of the policy. */
-  creationTime?: string;
-}
-export const AdvancedThreatProtectionSettingsProperties =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      state: ThreatProtectionState,
-      creationTime: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "AdvancedThreatProtectionSettingsProperties",
-  }) as any as S.Schema<AdvancedThreatProtectionSettingsProperties>;
-
-export interface AdvancedThreatProtectionSettingsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Advanced threat protection properties. */
-  properties?: AdvancedThreatProtectionSettingsProperties;
-}
-export const AdvancedThreatProtectionSettingsGetResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(AdvancedThreatProtectionSettingsProperties),
-    }),
-  ).annotate({
-    identifier: "AdvancedThreatProtectionSettingsGetResponse",
-  }) as any as S.Schema<AdvancedThreatProtectionSettingsGetResponse>;
-
-export interface AdvancedThreatProtectionSettingsListByServerRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the server. */
-  serverName: string;
-}
-export const AdvancedThreatProtectionSettingsListByServerRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      serverName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/advancedThreatProtectionSettings",
-        code: 200,
-        apiVersion: "2025-08-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "AdvancedThreatProtectionSettingsListByServerRequest",
-  }) as any as S.Schema<AdvancedThreatProtectionSettingsListByServerRequest>;
-
-/** Advanced threat protection settings of the server. */
-export interface AdvancedThreatProtectionSettingsModel {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Advanced threat protection properties. */
-  properties?: AdvancedThreatProtectionSettingsProperties;
-}
-export const AdvancedThreatProtectionSettingsModel = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(AdvancedThreatProtectionSettingsProperties),
-    }),
-).annotate({
-  identifier: "AdvancedThreatProtectionSettingsModel",
-}) as any as S.Schema<AdvancedThreatProtectionSettingsModel>;
-
-/** The AdvancedThreatProtectionSettingsModel items on this page */
-export type AdvancedThreatProtectionSettingsListValueList =
-  Array<AdvancedThreatProtectionSettingsModel>;
-export const AdvancedThreatProtectionSettingsListValueList =
-  /*@__PURE__*/ S.Array(
-    AdvancedThreatProtectionSettingsModel,
-  ) as any as S.Schema<AdvancedThreatProtectionSettingsListValueList>;
-
-/** List of advanced threat protection settings for a server. */
-export interface AdvancedThreatProtectionSettingsList {
-  /** The AdvancedThreatProtectionSettingsModel items on this page */
-  value: AdvancedThreatProtectionSettingsListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const AdvancedThreatProtectionSettingsList = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      value: AdvancedThreatProtectionSettingsListValueList,
-      nextLink: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "AdvancedThreatProtectionSettingsList",
-}) as any as S.Schema<AdvancedThreatProtectionSettingsList>;
-
-export interface BackupsAutomaticAndOnDemandCreateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the server. */
-  serverName: string;
-  /** Name of the backup. */
-  backupName: string;
-}
-export const BackupsAutomaticAndOnDemandCreateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      serverName: S.String.pipe(T.Label()),
-      backupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/backups/{backupName}",
-        code: 200,
-        apiVersion: "2025-08-01",
-      }),
-    ),
-).annotate({
-  identifier: "BackupsAutomaticAndOnDemandCreateRequest",
-}) as any as S.Schema<BackupsAutomaticAndOnDemandCreateRequest>;
-
-export interface BackupsAutomaticAndOnDemandCreateResponse {}
-export const BackupsAutomaticAndOnDemandCreateResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "BackupsAutomaticAndOnDemandCreateResponse",
-  }) as any as S.Schema<BackupsAutomaticAndOnDemandCreateResponse>;
-
-export interface BackupsAutomaticAndOnDemandDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the server. */
-  serverName: string;
-  /** Name of the backup. */
-  backupName: string;
-}
-export const BackupsAutomaticAndOnDemandDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      serverName: S.String.pipe(T.Label()),
-      backupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/backups/{backupName}",
-        code: 200,
-        apiVersion: "2025-08-01",
-      }),
-    ),
-).annotate({
-  identifier: "BackupsAutomaticAndOnDemandDeleteRequest",
-}) as any as S.Schema<BackupsAutomaticAndOnDemandDeleteRequest>;
-
-export interface BackupsAutomaticAndOnDemandDeleteResponse {}
-export const BackupsAutomaticAndOnDemandDeleteResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "BackupsAutomaticAndOnDemandDeleteResponse",
-  }) as any as S.Schema<BackupsAutomaticAndOnDemandDeleteResponse>;
-
-export interface BackupsAutomaticAndOnDemandGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the server. */
-  serverName: string;
-  /** Name of the backup. */
-  backupName: string;
-}
-export const BackupsAutomaticAndOnDemandGetRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      serverName: S.String.pipe(T.Label()),
-      backupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/backups/{backupName}",
-        code: 200,
-        apiVersion: "2025-08-01",
-      }),
-    ),
-).annotate({
-  identifier: "BackupsAutomaticAndOnDemandGetRequest",
-}) as any as S.Schema<BackupsAutomaticAndOnDemandGetRequest>;
-
-/** Type of backup. */
-export type BackupType = "Full" | "Customer On-Demand";
-export const BackupType = /*@__PURE__*/ S.String;
-
-/** Properties of a backup. */
-export interface BackupAutomaticAndOnDemandProperties {
-  /** Type of backup. */
-  backupType?: BackupType;
-  /** Time(ISO8601 format) at which the backup was completed. */
-  completedTime?: string;
-  /** Source of the backup. */
-  source?: string;
-}
-export const BackupAutomaticAndOnDemandProperties = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      backupType: S.optional(BackupType),
-      completedTime: S.optional(S.String),
-      source: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "BackupAutomaticAndOnDemandProperties",
-}) as any as S.Schema<BackupAutomaticAndOnDemandProperties>;
-
-export interface BackupsAutomaticAndOnDemandGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of a backup. */
-  properties?: BackupAutomaticAndOnDemandProperties;
-}
-export const BackupsAutomaticAndOnDemandGetResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(BackupAutomaticAndOnDemandProperties),
-    }),
-).annotate({
-  identifier: "BackupsAutomaticAndOnDemandGetResponse",
-}) as any as S.Schema<BackupsAutomaticAndOnDemandGetResponse>;
-
-export interface BackupsAutomaticAndOnDemandListByServerRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the server. */
-  serverName: string;
-}
-export const BackupsAutomaticAndOnDemandListByServerRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      serverName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/backups",
-        code: 200,
-        apiVersion: "2025-08-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "BackupsAutomaticAndOnDemandListByServerRequest",
-  }) as any as S.Schema<BackupsAutomaticAndOnDemandListByServerRequest>;
-
-/** Properties of a backup. */
-export interface BackupAutomaticAndOnDemand {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of a backup. */
-  properties?: BackupAutomaticAndOnDemandProperties;
-}
-export const BackupAutomaticAndOnDemand = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(BackupAutomaticAndOnDemandProperties),
-  }),
-).annotate({
-  identifier: "BackupAutomaticAndOnDemand",
-}) as any as S.Schema<BackupAutomaticAndOnDemand>;
-
-/** The BackupAutomaticAndOnDemand items on this page */
-export type BackupAutomaticAndOnDemandListValueList =
-  Array<BackupAutomaticAndOnDemand>;
-export const BackupAutomaticAndOnDemandListValueList = /*@__PURE__*/ S.Array(
-  BackupAutomaticAndOnDemand,
-) as any as S.Schema<BackupAutomaticAndOnDemandListValueList>;
-
-/** List of backups. */
-export interface BackupAutomaticAndOnDemandList {
-  /** The BackupAutomaticAndOnDemand items on this page */
-  value: BackupAutomaticAndOnDemandListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const BackupAutomaticAndOnDemandList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: BackupAutomaticAndOnDemandListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "BackupAutomaticAndOnDemandList",
-}) as any as S.Schema<BackupAutomaticAndOnDemandList>;
-
-/** Settings for the long term backup. */
-export interface BackupSettings {
-  /** Backup Name for the current backup */
-  backupName: string;
-}
-export const BackupSettings = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    backupName: S.String,
-  }),
-).annotate({ identifier: "BackupSettings" }) as any as S.Schema<BackupSettings>;
-
-export interface BackupsLongTermRetentionCheckPrerequisitesRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the server. */
-  serverName: string;
-  /** Backup Settings */
-  backupSettings: BackupSettings;
-}
-export const BackupsLongTermRetentionCheckPrerequisitesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      serverName: S.String.pipe(T.Label()),
-      backupSettings: BackupSettings,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/ltrPreBackup",
-        code: 200,
-        apiVersion: "2025-08-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "BackupsLongTermRetentionCheckPrerequisitesRequest",
-  }) as any as S.Schema<BackupsLongTermRetentionCheckPrerequisitesRequest>;
-
-/** Response for the pre-backup request. */
-export interface BackupsLongTermRetentionResponseProperties {
-  /** Number of storage containers the plugin will use during backup. More than one containers may be used for size limitations, parallelism, or redundancy etc. */
-  numberOfContainers: number;
-}
-export const BackupsLongTermRetentionResponseProperties =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      numberOfContainers: S.Number,
-    }),
-  ).annotate({
-    identifier: "BackupsLongTermRetentionResponseProperties",
-  }) as any as S.Schema<BackupsLongTermRetentionResponseProperties>;
-
-/** Response for the LTR pre-backup API call. */
-export interface LtrPreBackupResponse {
-  /** Additional Properties for the pre backup response */
-  properties: BackupsLongTermRetentionResponseProperties;
-}
-export const LtrPreBackupResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    properties: BackupsLongTermRetentionResponseProperties,
-  }),
-).annotate({
-  identifier: "LtrPreBackupResponse",
-}) as any as S.Schema<LtrPreBackupResponse>;
-
-export interface BackupsLongTermRetentionGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the server. */
-  serverName: string;
-  /** The name of the backup. */
-  backupName: string;
-}
-export const BackupsLongTermRetentionGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serverName: S.String.pipe(T.Label()),
-    backupName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/ltrBackupOperations/{backupName}",
-      code: 200,
-      apiVersion: "2025-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "BackupsLongTermRetentionGetRequest",
-}) as any as S.Schema<BackupsLongTermRetentionGetRequest>;
-
-/** Service-set extensible enumeration indicating the status of operation. */
-export type ExecutionStatus = "Running" | "Cancelled" | "Failed" | "Succeeded";
-export const ExecutionStatus = /*@__PURE__*/ S.String;
-
-/** Response for the backup request. */
-export interface LtrBackupOperationResponseProperties {
-  /** Size of datasource in bytes. */
-  datasourceSizeInBytes?: number;
-  /** Data transferred in bytes. */
-  dataTransferredInBytes?: number;
-  /** Name of Backup operation. */
-  backupName?: string;
-  /** Metadata to be stored in RP. Store everything that will be required to perform a successful restore using this Recovery point. e.g. Versions, DataFormat etc. */
-  backupMetadata?: string;
-  /** Service-set extensible enum indicating the status of operation. */
-  status: ExecutionStatus;
-  /** Start time of the operation. */
-  startTime: string;
-  /** End time of the operation. */
-  endTime?: string;
-  /** Percentage completed. */
-  percentComplete?: number;
-  /** Error code. */
-  errorCode?: string;
-  /** Error message. */
-  errorMessage?: string;
-}
-export const LtrBackupOperationResponseProperties = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      datasourceSizeInBytes: S.optional(S.Number),
-      dataTransferredInBytes: S.optional(S.Number),
-      backupName: S.optional(S.String),
-      backupMetadata: S.optional(S.String),
-      status: ExecutionStatus,
-      startTime: S.String,
-      endTime: S.optional(S.String),
-      percentComplete: S.optional(S.Number),
-      errorCode: S.optional(S.String),
-      errorMessage: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "LtrBackupOperationResponseProperties",
-}) as any as S.Schema<LtrBackupOperationResponseProperties>;
-
-export interface BackupsLongTermRetentionGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Long Term Retention Backup Operation Resource Properties */
-  properties?: LtrBackupOperationResponseProperties;
-}
-export const BackupsLongTermRetentionGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(LtrBackupOperationResponseProperties),
-  }),
-).annotate({
-  identifier: "BackupsLongTermRetentionGetResponse",
-}) as any as S.Schema<BackupsLongTermRetentionGetResponse>;
-
-export interface BackupsLongTermRetentionListByServerRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the server. */
-  serverName: string;
-}
-export const BackupsLongTermRetentionListByServerRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      serverName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/ltrBackupOperations",
-        code: 200,
-        apiVersion: "2025-08-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "BackupsLongTermRetentionListByServerRequest",
-  }) as any as S.Schema<BackupsLongTermRetentionListByServerRequest>;
-
-/** Response for the LTR backup Operation API call */
-export interface BackupsLongTermRetentionOperation {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Long Term Retention Backup Operation Resource Properties */
-  properties?: LtrBackupOperationResponseProperties;
-}
-export const BackupsLongTermRetentionOperation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(LtrBackupOperationResponseProperties),
-  }),
-).annotate({
-  identifier: "BackupsLongTermRetentionOperation",
-}) as any as S.Schema<BackupsLongTermRetentionOperation>;
-
-/** The BackupsLongTermRetentionOperation items on this page */
-export type LtrServerBackupOperationListValueList =
-  Array<BackupsLongTermRetentionOperation>;
-export const LtrServerBackupOperationListValueList = /*@__PURE__*/ S.Array(
-  BackupsLongTermRetentionOperation,
-) as any as S.Schema<LtrServerBackupOperationListValueList>;
-
-/** A list of long term retention backup operations for server. */
-export interface LtrServerBackupOperationList {
-  /** The BackupsLongTermRetentionOperation items on this page */
-  value: LtrServerBackupOperationListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const LtrServerBackupOperationList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: LtrServerBackupOperationListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "LtrServerBackupOperationList",
-}) as any as S.Schema<LtrServerBackupOperationList>;
-
-/** List of SAS uri of storage containers where backup data is to be streamed/copied. */
-export type BackupStoreDetailsSasUriListList = Array<string>;
-export const BackupStoreDetailsSasUriListList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<BackupStoreDetailsSasUriListList>;
-
-/** Details about the target where the backup content will be stored. */
-export interface BackupStoreDetails {
-  /** List of SAS uri of storage containers where backup data is to be streamed/copied. */
-  sasUriList: BackupStoreDetailsSasUriListList;
-}
-export const BackupStoreDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    sasUriList: BackupStoreDetailsSasUriListList,
-  }),
-).annotate({
-  identifier: "BackupStoreDetails",
-}) as any as S.Schema<BackupStoreDetails>;
-
-export interface BackupsLongTermRetentionStartRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the server. */
-  serverName: string;
-  /** Backup Settings */
-  backupSettings: BackupSettings;
-  /** Backup store detail for target server. */
-  targetDetails: BackupStoreDetails;
-}
-export const BackupsLongTermRetentionStartRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      serverName: S.String.pipe(T.Label()),
-      backupSettings: BackupSettings,
-      targetDetails: BackupStoreDetails,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/startLtrBackup",
-        code: 200,
-        apiVersion: "2025-08-01",
-      }),
-    ),
-).annotate({
-  identifier: "BackupsLongTermRetentionStartRequest",
-}) as any as S.Schema<BackupsLongTermRetentionStartRequest>;
-
-/** Response for the LTR backup API call */
-export interface BackupsLongTermRetentionResponse {
-  /** Long Term Retention Backup Operation Resource Properties */
-  properties?: LtrBackupOperationResponseProperties;
-}
-export const BackupsLongTermRetentionResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    properties: S.optional(LtrBackupOperationResponseProperties),
-  }),
-).annotate({
-  identifier: "BackupsLongTermRetentionResponse",
-}) as any as S.Schema<BackupsLongTermRetentionResponse>;
-
-export interface CapabilitiesByLocationListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the location. */
-  locationName: string;
-}
-export const CapabilitiesByLocationListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    locationName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DBforPostgreSQL/locations/{locationName}/capabilities",
-      code: 200,
-      apiVersion: "2025-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "CapabilitiesByLocationListRequest",
-}) as any as S.Schema<CapabilitiesByLocationListRequest>;
-
-/** Status of the capability. */
-export type CapabilityStatus = "Visible" | "Available" | "Default" | "Disabled";
-export const CapabilityStatus = /*@__PURE__*/ S.String;
-
-/** Capability of a storage tier. */
-export interface StorageTierCapability {
-  /** Status of the capability. */
-  status?: CapabilityStatus;
-  /** Reason for the capability not being available. */
-  reason?: string;
-  /** Name of the storage tier. */
-  name?: string;
-  /** Supported IOPS for the storage tier. */
-  iops?: number;
-}
-export const StorageTierCapability = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(CapabilityStatus),
-    reason: S.optional(S.String),
-    name: S.optional(S.String),
-    iops: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "StorageTierCapability",
-}) as any as S.Schema<StorageTierCapability>;
-
-/** List of all supported storage tiers for this tier and storage size. */
-export type StorageMbCapabilitySupportedIopsTiersList =
-  Array<StorageTierCapability>;
-export const StorageMbCapabilitySupportedIopsTiersList = /*@__PURE__*/ S.Array(
-  StorageTierCapability,
-) as any as S.Schema<StorageMbCapabilitySupportedIopsTiersList>;
-
-/** Storage size (in MB) capability. */
-export interface StorageMbCapability {
-  /** Status of the capability. */
-  status?: CapabilityStatus;
-  /** Reason for the capability not being available. */
-  reason?: string;
-  /** Minimum IOPS supported by the storage size. */
-  supportedIops?: number;
-  /** Maximum IOPS supported by the storage size. */
-  supportedMaximumIops?: number;
-  /** Minimum supported size (in MB) of storage. */
-  storageSizeMb?: number;
-  /** Maximum supported size (in MB) of storage. */
-  maximumStorageSizeMb?: number;
-  /** Minimum supported throughput (in MB/s) of storage. */
-  supportedThroughput?: number;
-  /** Maximum supported throughput (in MB/s) of storage. */
-  supportedMaximumThroughput?: number;
-  /** Default IOPS for this tier and storage size. */
-  defaultIopsTier?: string;
-  /** List of all supported storage tiers for this tier and storage size. */
-  supportedIopsTiers?: StorageMbCapabilitySupportedIopsTiersList;
-}
-export const StorageMbCapability = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(CapabilityStatus),
-    reason: S.optional(S.String),
-    supportedIops: S.optional(S.Number),
-    supportedMaximumIops: S.optional(S.Number),
-    storageSizeMb: S.optional(S.Number),
-    maximumStorageSizeMb: S.optional(S.Number),
-    supportedThroughput: S.optional(S.Number),
-    supportedMaximumThroughput: S.optional(S.Number),
-    defaultIopsTier: S.optional(S.String),
-    supportedIopsTiers: S.optional(StorageMbCapabilitySupportedIopsTiersList),
-  }),
-).annotate({
-  identifier: "StorageMbCapability",
-}) as any as S.Schema<StorageMbCapability>;
-
-/** Configurations of storage supported for this storage tier. */
-export type StorageEditionCapabilitySupportedStorageMbList =
-  Array<StorageMbCapability>;
-export const StorageEditionCapabilitySupportedStorageMbList =
-  /*@__PURE__*/ S.Array(
-    StorageMbCapability,
-  ) as any as S.Schema<StorageEditionCapabilitySupportedStorageMbList>;
-
-/** Capabilities in terms of storage tier. */
-export interface StorageEditionCapability {
-  /** Status of the capability. */
-  status?: CapabilityStatus;
-  /** Reason for the capability not being available. */
-  reason?: string;
-  /** Name of storage tier. */
-  name?: string;
-  /** Default storage size (in MB) for this storage tier. */
-  defaultStorageSizeMb?: number;
-  /** Configurations of storage supported for this storage tier. */
-  supportedStorageMb?: StorageEditionCapabilitySupportedStorageMbList;
-}
-export const StorageEditionCapability = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(CapabilityStatus),
-    reason: S.optional(S.String),
-    name: S.optional(S.String),
-    defaultStorageSizeMb: S.optional(S.Number),
-    supportedStorageMb: S.optional(
-      StorageEditionCapabilitySupportedStorageMbList,
-    ),
-  }),
-).annotate({
-  identifier: "StorageEditionCapability",
-}) as any as S.Schema<StorageEditionCapability>;
-
-/** List of storage editions supported by this compute tier and compute name. */
-export type ServerEditionCapabilitySupportedStorageEditionsList =
-  Array<StorageEditionCapability>;
-export const ServerEditionCapabilitySupportedStorageEditionsList =
-  /*@__PURE__*/ S.Array(
-    StorageEditionCapability,
-  ) as any as S.Schema<ServerEditionCapabilitySupportedStorageEditionsList>;
-
-/** List of supported availability zones. E.g. '1', '2', '3' */
-export type ServerSkuCapabilitySupportedZonesList = Array<string>;
-export const ServerSkuCapabilitySupportedZonesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ServerSkuCapabilitySupportedZonesList>;
-
-/** Mode of high availability supported for this compute. */
-export type HighAvailabilityMode2 = "ZoneRedundant" | "SameZone";
-export const HighAvailabilityMode2 = /*@__PURE__*/ S.String;
-
-/** Modes of high availability supported for this compute. */
-export type ServerSkuCapabilitySupportedHaModeList =
-  Array<HighAvailabilityMode2>;
-export const ServerSkuCapabilitySupportedHaModeList = /*@__PURE__*/ S.Array(
-  HighAvailabilityMode2,
-) as any as S.Schema<ServerSkuCapabilitySupportedHaModeList>;
-
-/** Status of the feature. Indicates if the feature is enabled or not. */
-export type FeatureStatus = "Enabled" | "Disabled";
-export const FeatureStatus = /*@__PURE__*/ S.String;
-
-/** Features supported. */
-export interface SupportedFeature {
-  /** Name of the feature. */
-  name?: string;
-  /** Status of the feature. Indicates if the feature is enabled or not. */
-  status?: FeatureStatus;
-}
-export const SupportedFeature = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    status: S.optional(FeatureStatus),
-  }),
-).annotate({
-  identifier: "SupportedFeature",
-}) as any as S.Schema<SupportedFeature>;
-
-/** Features supported. */
-export type ServerSkuCapabilitySupportedFeaturesList = Array<SupportedFeature>;
-export const ServerSkuCapabilitySupportedFeaturesList = /*@__PURE__*/ S.Array(
-  SupportedFeature,
-) as any as S.Schema<ServerSkuCapabilitySupportedFeaturesList>;
-
-/** Capabilities in terms of compute. */
-export interface ServerSkuCapability {
-  /** Status of the capability. */
-  status?: CapabilityStatus;
-  /** Reason for the capability not being available. */
-  reason?: string;
-  /** Name of the compute (SKU). */
-  name?: string;
-  /** vCores available for this compute. */
-  vCores?: number;
-  /** Maximum IOPS supported by this compute. */
-  supportedIops?: number;
-  /** Supported memory (in MB) per virtual core assigned to this compute. */
-  supportedMemoryPerVcoreMb?: number;
-  /** List of supported availability zones. E.g. '1', '2', '3' */
-  supportedZones?: ServerSkuCapabilitySupportedZonesList;
-  /** Modes of high availability supported for this compute. */
-  supportedHaMode?: ServerSkuCapabilitySupportedHaModeList;
-  /** Features supported. */
-  supportedFeatures?: ServerSkuCapabilitySupportedFeaturesList;
-  /** Security profile of the compute. Indicates if it's a Confidential Compute virtual machine. */
-  securityProfile?: string;
-}
-export const ServerSkuCapability = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(CapabilityStatus),
-    reason: S.optional(S.String),
-    name: S.optional(S.String),
-    vCores: S.optional(S.Number),
-    supportedIops: S.optional(S.Number),
-    supportedMemoryPerVcoreMb: S.optional(S.Number),
-    supportedZones: S.optional(ServerSkuCapabilitySupportedZonesList),
-    supportedHaMode: S.optional(ServerSkuCapabilitySupportedHaModeList),
-    supportedFeatures: S.optional(ServerSkuCapabilitySupportedFeaturesList),
-    securityProfile: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ServerSkuCapability",
-}) as any as S.Schema<ServerSkuCapability>;
-
-/** List of supported compute names (SKUs). */
-export type ServerEditionCapabilitySupportedServerSkusList =
-  Array<ServerSkuCapability>;
-export const ServerEditionCapabilitySupportedServerSkusList =
-  /*@__PURE__*/ S.Array(
-    ServerSkuCapability,
-  ) as any as S.Schema<ServerEditionCapabilitySupportedServerSkusList>;
-
-/** Capabilities in terms of compute tier. */
-export interface ServerEditionCapability {
-  /** Status of the capability. */
-  status?: CapabilityStatus;
-  /** Reason for the capability not being available. */
-  reason?: string;
-  /** Name of compute tier. */
-  name?: string;
-  /** Default compute name (SKU) for this computer tier. */
-  defaultSkuName?: string;
-  /** List of storage editions supported by this compute tier and compute name. */
-  supportedStorageEditions?: ServerEditionCapabilitySupportedStorageEditionsList;
-  /** List of supported compute names (SKUs). */
-  supportedServerSkus?: ServerEditionCapabilitySupportedServerSkusList;
-}
-export const ServerEditionCapability = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(CapabilityStatus),
-    reason: S.optional(S.String),
-    name: S.optional(S.String),
-    defaultSkuName: S.optional(S.String),
-    supportedStorageEditions: S.optional(
-      ServerEditionCapabilitySupportedStorageEditionsList,
-    ),
-    supportedServerSkus: S.optional(
-      ServerEditionCapabilitySupportedServerSkusList,
-    ),
-  }),
-).annotate({
-  identifier: "ServerEditionCapability",
-}) as any as S.Schema<ServerEditionCapability>;
-
-/** List of supported compute tiers. */
-export type CapabilitySupportedServerEditionsList =
-  Array<ServerEditionCapability>;
-export const CapabilitySupportedServerEditionsList = /*@__PURE__*/ S.Array(
-  ServerEditionCapability,
-) as any as S.Schema<CapabilitySupportedServerEditionsList>;
-
-/** Major versions of PostgreSQL database engine to which this version can be automatically upgraded. */
-export type ServerVersionCapabilitySupportedVersionsToUpgradeList =
-  Array<string>;
-export const ServerVersionCapabilitySupportedVersionsToUpgradeList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ServerVersionCapabilitySupportedVersionsToUpgradeList>;
-
-/** Features supported. */
-export type ServerVersionCapabilitySupportedFeaturesList =
-  Array<SupportedFeature>;
-export const ServerVersionCapabilitySupportedFeaturesList =
-  /*@__PURE__*/ S.Array(
-    SupportedFeature,
-  ) as any as S.Schema<ServerVersionCapabilitySupportedFeaturesList>;
-
-/** Capabilities in terms of major versions of PostgreSQL database engine. */
-export interface ServerVersionCapability {
-  /** Status of the capability. */
-  status?: CapabilityStatus;
-  /** Reason for the capability not being available. */
-  reason?: string;
-  /** Major version of PostgreSQL database engine. */
-  name?: string;
-  /** Major versions of PostgreSQL database engine to which this version can be automatically upgraded. */
-  supportedVersionsToUpgrade?: ServerVersionCapabilitySupportedVersionsToUpgradeList;
-  /** Features supported. */
-  supportedFeatures?: ServerVersionCapabilitySupportedFeaturesList;
-}
-export const ServerVersionCapability = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(CapabilityStatus),
-    reason: S.optional(S.String),
-    name: S.optional(S.String),
-    supportedVersionsToUpgrade: S.optional(
-      ServerVersionCapabilitySupportedVersionsToUpgradeList,
-    ),
-    supportedFeatures: S.optional(ServerVersionCapabilitySupportedFeaturesList),
-  }),
-).annotate({
-  identifier: "ServerVersionCapability",
-}) as any as S.Schema<ServerVersionCapability>;
-
-/** List of supported major versions of PostgreSQL database engine. */
-export type CapabilitySupportedServerVersionsList =
-  Array<ServerVersionCapability>;
-export const CapabilitySupportedServerVersionsList = /*@__PURE__*/ S.Array(
-  ServerVersionCapability,
-) as any as S.Schema<CapabilitySupportedServerVersionsList>;
-
-/** Features supported. */
-export type CapabilitySupportedFeaturesList = Array<SupportedFeature>;
-export const CapabilitySupportedFeaturesList = /*@__PURE__*/ S.Array(
-  SupportedFeature,
-) as any as S.Schema<CapabilitySupportedFeaturesList>;
-
-/** Indicates if fast provisioning is supported. 'Enabled' means fast provisioning is supported. 'Disabled' stands for fast provisioning is not supported. Will be deprecated in the future. Look to Supported Features for 'FastProvisioning'. */
-export type FastProvisioningSupport = "Enabled" | "Disabled";
-export const FastProvisioningSupport = /*@__PURE__*/ S.String;
-
-/** Capability of a fast provisioning compute tier. */
-export interface FastProvisioningEditionCapability {
-  /** Status of the capability. */
-  status?: CapabilityStatus;
-  /** Reason for the capability not being available. */
-  reason?: string;
-  /** Compute tier supporting fast provisioning. */
-  supportedTier?: string;
-  /** Compute name (SKU) supporting fast provisioning. */
-  supportedSku?: string;
-  /** Storage size (in GB) supporting fast provisioning. */
-  supportedStorageGb?: number;
-  /** Major version of PostgreSQL database engine supporting fast provisioning. */
-  supportedServerVersions?: string;
-  /** Count of servers in cache matching this specification. */
-  serverCount?: number;
-}
-export const FastProvisioningEditionCapability = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(CapabilityStatus),
-    reason: S.optional(S.String),
-    supportedTier: S.optional(S.String),
-    supportedSku: S.optional(S.String),
-    supportedStorageGb: S.optional(S.Number),
-    supportedServerVersions: S.optional(S.String),
-    serverCount: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "FastProvisioningEditionCapability",
-}) as any as S.Schema<FastProvisioningEditionCapability>;
-
-/** List of compute tiers supporting fast provisioning. */
-export type CapabilitySupportedFastProvisioningEditionsList =
-  Array<FastProvisioningEditionCapability>;
-export const CapabilitySupportedFastProvisioningEditionsList =
-  /*@__PURE__*/ S.Array(
-    FastProvisioningEditionCapability,
-  ) as any as S.Schema<CapabilitySupportedFastProvisioningEditionsList>;
-
-/** Indicates if geographically redundant backups are supported in this location. Will be deprecated in the future. Look to Supported Features for 'GeoBackup'. */
-export type GeographicallyRedundantBackupSupport = "Enabled" | "Disabled";
-export const GeographicallyRedundantBackupSupport = /*@__PURE__*/ S.String;
-
-/** Indicates if high availability with zone redundancy is supported in this location. Will be deprecated in the future. Look to Supported Features for 'ZoneRedundantHa'. */
-export type ZoneRedundantHighAvailabilitySupport = "Enabled" | "Disabled";
-export const ZoneRedundantHighAvailabilitySupport = /*@__PURE__*/ S.String;
-
-/** Indicates if high availability with zone redundancy is supported in conjunction with geographically redundant backups in this location. Will be deprecated in the future. Look to Supported Features for 'ZoneRedundantHaAndGeoBackup'. */
-export type ZoneRedundantHighAvailabilityAndGeographicallyRedundantBackupSupport =
-  | "Enabled"
-  | "Disabled";
-export const ZoneRedundantHighAvailabilityAndGeographicallyRedundantBackupSupport =
-  /*@__PURE__*/ S.String;
-
-/** Indicates if storage autogrow is supported in this location. Will be deprecated in the future. Look to Supported Features for 'StorageAutoGrowth'. */
-export type StorageAutoGrowthSupport = "Enabled" | "Disabled";
-export const StorageAutoGrowthSupport = /*@__PURE__*/ S.String;
-
-/** Indicates if resizing the storage, without interrupting the operation of the database engine, is supported in this location for the given subscription. Will be deprecated in the future. Look to Supported Features for 'OnlineResize'. */
-export type OnlineStorageResizeSupport = "Enabled" | "Disabled";
-export const OnlineStorageResizeSupport = /*@__PURE__*/ S.String;
-
-/** Indicates if this location is restricted. Will be deprecated in the future. Look to Supported Features for 'Restricted'. */
-export type LocationRestricted = "Enabled" | "Disabled";
-export const LocationRestricted = /*@__PURE__*/ S.String;
-
-/** Capability for the Azure Database for PostgreSQL flexible server. */
-export interface Capability {
-  /** Status of the capability. */
-  status?: CapabilityStatus;
-  /** Reason for the capability not being available. */
-  reason?: string;
-  /** Name of flexible servers capabilities. */
-  name?: string;
-  /** List of supported compute tiers. */
-  supportedServerEditions?: CapabilitySupportedServerEditionsList;
-  /** List of supported major versions of PostgreSQL database engine. */
-  supportedServerVersions?: CapabilitySupportedServerVersionsList;
-  /** Features supported. */
-  supportedFeatures?: CapabilitySupportedFeaturesList;
-  /** Indicates if fast provisioning is supported. 'Enabled' means fast provisioning is supported. 'Disabled' stands for fast provisioning is not supported. Will be deprecated in the future. Look to Supported Features for 'FastProvisioning'. */
-  fastProvisioningSupported?: FastProvisioningSupport;
-  /** List of compute tiers supporting fast provisioning. */
-  supportedFastProvisioningEditions?: CapabilitySupportedFastProvisioningEditionsList;
-  /** Indicates if geographically redundant backups are supported in this location. 'Enabled' means geographically redundant backups are supported. 'Disabled' stands for geographically redundant backup is not supported. Will be deprecated in the future. Look to Supported Features for 'GeoBackup'. */
-  geoBackupSupported?: GeographicallyRedundantBackupSupport;
-  /** Indicates if high availability with zone redundancy is supported in this location. 'Enabled' means high availability with zone redundancy is supported. 'Disabled' stands for high availability with zone redundancy is not supported. Will be deprecated in the future. Look to Supported Features for 'ZoneRedundantHa'. */
-  zoneRedundantHaSupported?: ZoneRedundantHighAvailabilitySupport;
-  /** Indicates if high availability with zone redundancy is supported in conjunction with geographically redundant backups in this location. 'Enabled' means high availability with zone redundancy is supported in conjunction with geographically redundant backups is supported. 'Disabled' stands for high availability with zone redundancy is supported in conjunction with geographically redundant backups is not supported. Will be deprecated in the future. Look to Supported Features for 'ZoneRedundantHaAndGeoBackup'. */
-  zoneRedundantHaAndGeoBackupSupported?: ZoneRedundantHighAvailabilityAndGeographicallyRedundantBackupSupport;
-  /** Indicates if storage autogrow is supported in this location. 'Enabled' means storage autogrow is supported. 'Disabled' stands for storage autogrow is not supported. Will be deprecated in the future. Look to Supported Features for 'StorageAutoGrowth'. */
-  storageAutoGrowthSupported?: StorageAutoGrowthSupport;
-  /** Indicates if resizing the storage, without interrupting the operation of the database engine, is supported in this location for the given subscription. 'Enabled' means resizing the storage without interrupting the operation of the database engine is supported. 'Disabled' means resizing the storage without interrupting the operation of the database engine is not supported. Will be deprecated in the future. Look to Supported Features for 'OnlineResize'. */
-  onlineResizeSupported?: OnlineStorageResizeSupport;
-  /** Indicates if this location is restricted. 'Enabled' means location is restricted. 'Disabled' stands for location is not restricted. Will be deprecated in the future. Look to Supported Features for 'Restricted'. */
-  restricted?: LocationRestricted;
-}
-export const Capability = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(CapabilityStatus),
-    reason: S.optional(S.String),
-    name: S.optional(S.String),
-    supportedServerEditions: S.optional(CapabilitySupportedServerEditionsList),
-    supportedServerVersions: S.optional(CapabilitySupportedServerVersionsList),
-    supportedFeatures: S.optional(CapabilitySupportedFeaturesList),
-    fastProvisioningSupported: S.optional(FastProvisioningSupport),
-    supportedFastProvisioningEditions: S.optional(
-      CapabilitySupportedFastProvisioningEditionsList,
-    ),
-    geoBackupSupported: S.optional(GeographicallyRedundantBackupSupport),
-    zoneRedundantHaSupported: S.optional(ZoneRedundantHighAvailabilitySupport),
-    zoneRedundantHaAndGeoBackupSupported: S.optional(
-      ZoneRedundantHighAvailabilityAndGeographicallyRedundantBackupSupport,
-    ),
-    storageAutoGrowthSupported: S.optional(StorageAutoGrowthSupport),
-    onlineResizeSupported: S.optional(OnlineStorageResizeSupport),
-    restricted: S.optional(LocationRestricted),
-  }),
-).annotate({ identifier: "Capability" }) as any as S.Schema<Capability>;
-
-/** The Capability items on this page */
-export type CapabilityListValueList = Array<Capability>;
-export const CapabilityListValueList = /*@__PURE__*/ S.Array(
-  Capability,
-) as any as S.Schema<CapabilityListValueList>;
-
-/** List of capabilities for the Azure Database for PostgreSQL flexible server. */
-export interface CapabilityList {
-  /** The Capability items on this page */
-  value: CapabilityListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const CapabilityList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: CapabilityListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "CapabilityList" }) as any as S.Schema<CapabilityList>;
-
-export interface CapabilitiesByServerListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the server. */
-  serverName: string;
-}
-export const CapabilitiesByServerListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serverName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/capabilities",
-      code: 200,
-      apiVersion: "2025-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "CapabilitiesByServerListRequest",
-}) as any as S.Schema<CapabilitiesByServerListRequest>;
-
-export interface CapturedLogsListByServerRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the server. */
-  serverName: string;
-}
-export const CapturedLogsListByServerRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serverName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/logFiles",
-      code: 200,
-      apiVersion: "2025-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "CapturedLogsListByServerRequest",
-}) as any as S.Schema<CapturedLogsListByServerRequest>;
-
-/** Properties of a log file. */
-export interface CapturedLogProperties {
-  /** Creation timestamp of the log file. */
-  createdTime?: string;
-  /** Last modified timestamp of the log file. */
-  lastModifiedTime?: string;
-  /** Size (in KB) of the log file. */
-  sizeInKb?: number;
-  /** Type of log file. Can be 'ServerLogs' or 'UpgradeLogs'. */
-  type?: string;
-  /** URL to download the log file from. */
-  url?: string;
-}
-export const CapturedLogProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createdTime: S.optional(S.String),
-    lastModifiedTime: S.optional(S.String),
-    sizeInKb: S.optional(S.Number),
-    type: S.optional(S.String),
-    url: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CapturedLogProperties",
-}) as any as S.Schema<CapturedLogProperties>;
-
-/** Log file. */
-export interface CapturedLog {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of a log file. */
-  properties?: CapturedLogProperties;
-}
-export const CapturedLog = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(CapturedLogProperties),
-  }),
-).annotate({ identifier: "CapturedLog" }) as any as S.Schema<CapturedLog>;
-
-/** The CapturedLog items on this page */
-export type CapturedLogListValueList = Array<CapturedLog>;
-export const CapturedLogListValueList = /*@__PURE__*/ S.Array(
-  CapturedLog,
-) as any as S.Schema<CapturedLogListValueList>;
-
-/** List of log files. */
-export interface CapturedLogList {
-  /** The CapturedLog items on this page */
-  value: CapturedLogListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const CapturedLogList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: CapturedLogListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CapturedLogList",
-}) as any as S.Schema<CapturedLogList>;
-
-export interface ConfigurationsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the server. */
-  serverName: string;
-  /** Name of the configuration (also known as server parameter). */
-  configurationName: string;
-}
-export const ConfigurationsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serverName: S.String.pipe(T.Label()),
-    configurationName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/configurations/{configurationName}",
-      code: 200,
-      apiVersion: "2025-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "ConfigurationsGetRequest",
-}) as any as S.Schema<ConfigurationsGetRequest>;
-
-/** Data type of the configuration (also known as server parameter). */
-export type ConfigurationDataType =
-  | "Boolean"
-  | "Numeric"
-  | "Integer"
-  | "Enumeration"
-  | "String"
-  | "Set";
-export const ConfigurationDataType = /*@__PURE__*/ S.String;
-
-/** Properties of a configuration (also known as server parameter). */
-export interface ConfigurationProperties {
-  /** Value of the configuration (also known as server parameter). Required to update the value assigned to a specific modifiable configuration. */
-  value?: string;
-  /** Description of the configuration (also known as server parameter). */
-  description?: string;
-  /** Value assigned by default to the configuration (also known as server parameter). */
-  defaultValue?: string;
-  /** Data type of the configuration (also known as server parameter). */
-  dataType?: ConfigurationDataType;
-  /** Allowed values of the configuration (also known as server parameter). */
-  allowedValues?: string;
-  /** Source of the value assigned to the configuration (also known as server parameter). Required to update the value assigned to a specific modifiable configuration. */
-  source?: string;
-  /** Indicates if it's a dynamic (true) or static (false) configuration (also known as server parameter). Static server parameters require a server restart after changing the value assigned to them, for the change to take effect. Dynamic server parameters do not require a server restart after changing the value assigned to them, for the change to take effect. */
-  isDynamicConfig?: boolean;
-  /** Indicates if it's a read-only (true) or modifiable (false) configuration (also known as server parameter). */
-  isReadOnly?: boolean;
-  /** Indicates if the value assigned to the configuration (also known as server parameter) is pending a server restart for it to take effect. */
-  isConfigPendingRestart?: boolean;
-  /** Units in which the configuration (also known as server parameter) value is expressed. */
-  unit?: string;
-  /** Link pointing to the documentation of the configuration (also known as server parameter). */
-  documentationLink?: string;
-}
-export const ConfigurationProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(S.String),
-    description: S.optional(S.String),
-    defaultValue: S.optional(S.String),
-    dataType: S.optional(ConfigurationDataType),
-    allowedValues: S.optional(S.String),
-    source: S.optional(S.String),
-    isDynamicConfig: S.optional(S.Boolean),
-    isReadOnly: S.optional(S.Boolean),
-    isConfigPendingRestart: S.optional(S.Boolean),
-    unit: S.optional(S.String),
-    documentationLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ConfigurationProperties",
-}) as any as S.Schema<ConfigurationProperties>;
-
-export interface ConfigurationsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of a configuration (also known as server parameter). */
-  properties?: ConfigurationProperties;
-}
-export const ConfigurationsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ConfigurationProperties),
-  }),
-).annotate({
-  identifier: "ConfigurationsGetResponse",
-}) as any as S.Schema<ConfigurationsGetResponse>;
-
-export interface ConfigurationsListByServerRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the server. */
-  serverName: string;
-}
-export const ConfigurationsListByServerRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serverName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/configurations",
-      code: 200,
-      apiVersion: "2025-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "ConfigurationsListByServerRequest",
-}) as any as S.Schema<ConfigurationsListByServerRequest>;
-
-/** Configuration (also known as server parameter). */
-export interface Configuration {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of a configuration (also known as server parameter). */
-  properties?: ConfigurationProperties;
-}
-export const Configuration = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ConfigurationProperties),
-  }),
-).annotate({ identifier: "Configuration" }) as any as S.Schema<Configuration>;
-
-/** The Configuration items on this page */
-export type ConfigurationListValueList = Array<Configuration>;
-export const ConfigurationListValueList = /*@__PURE__*/ S.Array(
-  Configuration,
-) as any as S.Schema<ConfigurationListValueList>;
-
-/** List of configurations (also known as server parameters). */
-export interface ConfigurationList {
-  /** The Configuration items on this page */
-  value: ConfigurationListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ConfigurationList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: ConfigurationListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ConfigurationList",
-}) as any as S.Schema<ConfigurationList>;
-
-/** Properties of a configuration (also known as server parameter). */
-export interface ConfigurationPropertiesInput {
-  /** Value of the configuration (also known as server parameter). Required to update the value assigned to a specific modifiable configuration. */
-  value?: string;
-  /** Source of the value assigned to the configuration (also known as server parameter). Required to update the value assigned to a specific modifiable configuration. */
-  source?: string;
-}
-export const ConfigurationPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(S.String),
-    source: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ConfigurationPropertiesInput",
-}) as any as S.Schema<ConfigurationPropertiesInput>;
-
-export interface ConfigurationsPutRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the server. */
-  serverName: string;
-  /** Name of the configuration (also known as server parameter). */
-  configurationName: string;
-  /** Properties of a configuration (also known as server parameter). */
-  properties?: ConfigurationPropertiesInput;
-}
-export const ConfigurationsPutRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serverName: S.String.pipe(T.Label()),
-    configurationName: S.String.pipe(T.Label()),
-    properties: S.optional(ConfigurationPropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/configurations/{configurationName}",
-      code: 200,
-      apiVersion: "2025-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "ConfigurationsPutRequest",
-}) as any as S.Schema<ConfigurationsPutRequest>;
-
-export interface ConfigurationsPutResponse {}
-export const ConfigurationsPutResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ConfigurationsPutResponse",
-}) as any as S.Schema<ConfigurationsPutResponse>;
-
-export interface ConfigurationsUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the server. */
-  serverName: string;
-  /** Name of the configuration (also known as server parameter). */
-  configurationName: string;
-  /** Properties of a configuration (also known as server parameter). */
-  properties?: ConfigurationPropertiesInput;
-}
-export const ConfigurationsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serverName: S.String.pipe(T.Label()),
-    configurationName: S.String.pipe(T.Label()),
-    properties: S.optional(ConfigurationPropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/configurations/{configurationName}",
-      code: 200,
-      apiVersion: "2025-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "ConfigurationsUpdateRequest",
-}) as any as S.Schema<ConfigurationsUpdateRequest>;
-
-export interface ConfigurationsUpdateResponse {}
-export const ConfigurationsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ConfigurationsUpdateResponse",
-}) as any as S.Schema<ConfigurationsUpdateResponse>;
-
-/** Properties of a database. */
-export interface DatabaseProperties {
-  /** Character set of the database. */
-  charset?: string;
-  /** Collation of the database. */
-  collation?: string;
-}
-export const DatabaseProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    charset: S.optional(S.String),
-    collation: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DatabaseProperties",
-}) as any as S.Schema<DatabaseProperties>;
-
-export interface DatabasesCreateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the server. */
-  serverName: string;
-  /** Name of the database (case-sensitive). Exact database names can be retrieved by getting the list of all existing databases in a server. */
-  databaseName: string;
-  /** Properties of a database. */
-  properties?: DatabaseProperties;
-}
-export const DatabasesCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serverName: S.String.pipe(T.Label()),
-    databaseName: S.String.pipe(T.Label()),
-    properties: S.optional(DatabaseProperties),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/databases/{databaseName}",
-      code: 200,
-      apiVersion: "2025-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "DatabasesCreateRequest",
-}) as any as S.Schema<DatabasesCreateRequest>;
-
-export interface DatabasesCreateResponse {}
-export const DatabasesCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DatabasesCreateResponse",
-}) as any as S.Schema<DatabasesCreateResponse>;
-
-export interface DatabasesDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the server. */
-  serverName: string;
-  /** Name of the database (case-sensitive). Exact database names can be retrieved by getting the list of all existing databases in a server. */
-  databaseName: string;
-}
-export const DatabasesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serverName: S.String.pipe(T.Label()),
-    databaseName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/databases/{databaseName}",
-      code: 200,
-      apiVersion: "2025-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "DatabasesDeleteRequest",
-}) as any as S.Schema<DatabasesDeleteRequest>;
-
-export interface DatabasesDeleteResponse {}
-export const DatabasesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DatabasesDeleteResponse",
-}) as any as S.Schema<DatabasesDeleteResponse>;
-
-export interface DatabasesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the server. */
-  serverName: string;
-  /** Name of the database (case-sensitive). Exact database names can be retrieved by getting the list of all existing databases in a server. */
-  databaseName: string;
-}
-export const DatabasesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serverName: S.String.pipe(T.Label()),
-    databaseName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/databases/{databaseName}",
-      code: 200,
-      apiVersion: "2025-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "DatabasesGetRequest",
-}) as any as S.Schema<DatabasesGetRequest>;
-
-export interface DatabasesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of a database. */
-  properties?: DatabaseProperties;
-}
-export const DatabasesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(DatabaseProperties),
-  }),
-).annotate({
-  identifier: "DatabasesGetResponse",
-}) as any as S.Schema<DatabasesGetResponse>;
-
-export interface DatabasesListByServerRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the server. */
-  serverName: string;
-}
-export const DatabasesListByServerRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serverName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/databases",
-      code: 200,
-      apiVersion: "2025-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "DatabasesListByServerRequest",
-}) as any as S.Schema<DatabasesListByServerRequest>;
-
-/** Represents a database. */
-export interface Database {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of a database. */
-  properties?: DatabaseProperties;
-}
-export const Database = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(DatabaseProperties),
-  }),
-).annotate({ identifier: "Database" }) as any as S.Schema<Database>;
-
-/** The Database items on this page */
-export type DatabaseListValueList = Array<Database>;
-export const DatabaseListValueList = /*@__PURE__*/ S.Array(
-  Database,
-) as any as S.Schema<DatabaseListValueList>;
-
-/** List of all databases in a server. */
-export interface DatabaseList {
-  /** The Database items on this page */
-  value: DatabaseListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const DatabaseList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: DatabaseListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "DatabaseList" }) as any as S.Schema<DatabaseList>;
-
-/** Properties of a firewall rule. */
-export interface FirewallRuleProperties {
-  /** IP address defining the start of the range of addresses of a firewall rule. Must be expressed in IPv4 format. */
-  startIpAddress: string;
-  /** IP address defining the end of the range of addresses of a firewall rule. Must be expressed in IPv4 format. */
-  endIpAddress: string;
-}
-export const FirewallRuleProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    startIpAddress: S.String,
-    endIpAddress: S.String,
-  }),
-).annotate({
-  identifier: "FirewallRuleProperties",
-}) as any as S.Schema<FirewallRuleProperties>;
-
-export interface FirewallRulesCreateOrUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the server. */
-  serverName: string;
-  /** Name of the firewall rule. */
-  firewallRuleName: string;
-  /** Properties of a firewall rule. */
-  properties: FirewallRuleProperties;
-}
-export const FirewallRulesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serverName: S.String.pipe(T.Label()),
-    firewallRuleName: S.String.pipe(T.Label()),
-    properties: FirewallRuleProperties,
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/firewallRules/{firewallRuleName}",
-      code: 200,
-      apiVersion: "2025-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "FirewallRulesCreateOrUpdateRequest",
-}) as any as S.Schema<FirewallRulesCreateOrUpdateRequest>;
-
-export interface FirewallRulesCreateOrUpdateResponse {}
-export const FirewallRulesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "FirewallRulesCreateOrUpdateResponse",
-}) as any as S.Schema<FirewallRulesCreateOrUpdateResponse>;
-
-export interface FirewallRulesDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the server. */
-  serverName: string;
-  /** Name of the firewall rule. */
-  firewallRuleName: string;
-}
-export const FirewallRulesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serverName: S.String.pipe(T.Label()),
-    firewallRuleName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/firewallRules/{firewallRuleName}",
-      code: 200,
-      apiVersion: "2025-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "FirewallRulesDeleteRequest",
-}) as any as S.Schema<FirewallRulesDeleteRequest>;
-
-export interface FirewallRulesDeleteResponse {}
-export const FirewallRulesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "FirewallRulesDeleteResponse",
-}) as any as S.Schema<FirewallRulesDeleteResponse>;
-
-export interface FirewallRulesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the server. */
-  serverName: string;
-  /** Name of the firewall rule. */
-  firewallRuleName: string;
-}
-export const FirewallRulesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serverName: S.String.pipe(T.Label()),
-    firewallRuleName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/firewallRules/{firewallRuleName}",
-      code: 200,
-      apiVersion: "2025-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "FirewallRulesGetRequest",
-}) as any as S.Schema<FirewallRulesGetRequest>;
-
-export interface FirewallRulesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of a firewall rule. */
-  properties: FirewallRuleProperties;
-}
-export const FirewallRulesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: FirewallRuleProperties,
-  }),
-).annotate({
-  identifier: "FirewallRulesGetResponse",
-}) as any as S.Schema<FirewallRulesGetResponse>;
-
-export interface FirewallRulesListByServerRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the server. */
-  serverName: string;
-}
-export const FirewallRulesListByServerRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serverName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/firewallRules",
-      code: 200,
-      apiVersion: "2025-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "FirewallRulesListByServerRequest",
-}) as any as S.Schema<FirewallRulesListByServerRequest>;
-
-/** Firewall rule. */
-export interface FirewallRule {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of a firewall rule. */
-  properties: FirewallRuleProperties;
-}
-export const FirewallRule = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: FirewallRuleProperties,
-  }),
-).annotate({ identifier: "FirewallRule" }) as any as S.Schema<FirewallRule>;
-
-/** The FirewallRule items on this page */
-export type FirewallRuleListValueList = Array<FirewallRule>;
-export const FirewallRuleListValueList = /*@__PURE__*/ S.Array(
-  FirewallRule,
-) as any as S.Schema<FirewallRuleListValueList>;
-
-/** List of firewall rules. */
-export interface FirewallRuleList {
-  /** The FirewallRule items on this page */
-  value: FirewallRuleListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const FirewallRuleList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: FirewallRuleListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "FirewallRuleList",
-}) as any as S.Schema<FirewallRuleList>;
-
-export interface MigrationsCancelRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the server. */
-  serverName: string;
-  /** Name of migration. */
-  migrationName: string;
-}
-export const MigrationsCancelRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serverName: S.String.pipe(T.Label()),
-    migrationName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/migrations/{migrationName}",
-      code: 200,
-      apiVersion: "2025-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "MigrationsCancelRequest",
-}) as any as S.Schema<MigrationsCancelRequest>;
-
 /** Resource tags. */
-export type MigrationsCancelResponseTagsMap = {
+export type CancelMigrationResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const MigrationsCancelResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CancelMigrationResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<MigrationsCancelResponseTagsMap>;
+) as any as S.Schema<CancelMigrationResponseTagsMap>;
 
 /** State of migration. */
 export type MigrationState =
@@ -2808,7 +661,7 @@ export const MigrationProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "MigrationProperties",
 }) as any as S.Schema<MigrationProperties>;
 
-export interface MigrationsCancelResponse {
+export interface CancelMigrationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -2818,27 +671,94 @@ export interface MigrationsCancelResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: MigrationsCancelResponseTagsMap;
+  tags?: CancelMigrationResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Migration properties. */
   properties?: MigrationProperties;
 }
-export const MigrationsCancelResponse = /*@__PURE__*/ S.suspend(() =>
+export const CancelMigrationResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(MigrationsCancelResponseTagsMap),
+    tags: S.optional(CancelMigrationResponseTagsMap),
     location: S.String,
     properties: S.optional(MigrationProperties),
   }),
 ).annotate({
-  identifier: "MigrationsCancelResponse",
-}) as any as S.Schema<MigrationsCancelResponse>;
+  identifier: "CancelMigrationResponse",
+}) as any as S.Schema<CancelMigrationResponse>;
 
-export interface MigrationsCheckNameAvailabilityRequest {
+/** Settings for the long term backup. */
+export interface BackupSettings {
+  /** Backup Name for the current backup */
+  backupName: string;
+}
+export const BackupSettings = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    backupName: S.String,
+  }),
+).annotate({ identifier: "BackupSettings" }) as any as S.Schema<BackupSettings>;
+
+export interface CheckBackupsLongTermRetentionPrerequisitesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the server. */
+  serverName: string;
+  /** Backup Settings */
+  backupSettings: BackupSettings;
+}
+export const CheckBackupsLongTermRetentionPrerequisitesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      serverName: S.String.pipe(T.Label()),
+      backupSettings: BackupSettings,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/ltrPreBackup",
+        code: 200,
+        apiVersion: "2025-08-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "CheckBackupsLongTermRetentionPrerequisitesRequest",
+  }) as any as S.Schema<CheckBackupsLongTermRetentionPrerequisitesRequest>;
+
+/** Response for the pre-backup request. */
+export interface BackupsLongTermRetentionResponseProperties {
+  /** Number of storage containers the plugin will use during backup. More than one containers may be used for size limitations, parallelism, or redundancy etc. */
+  numberOfContainers: number;
+}
+export const BackupsLongTermRetentionResponseProperties =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      numberOfContainers: S.Number,
+    }),
+  ).annotate({
+    identifier: "BackupsLongTermRetentionResponseProperties",
+  }) as any as S.Schema<BackupsLongTermRetentionResponseProperties>;
+
+/** Response for the LTR pre-backup API call. */
+export interface LtrPreBackupResponse {
+  /** Additional Properties for the pre backup response */
+  properties: BackupsLongTermRetentionResponseProperties;
+}
+export const LtrPreBackupResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    properties: BackupsLongTermRetentionResponseProperties,
+  }),
+).annotate({
+  identifier: "LtrPreBackupResponse",
+}) as any as S.Schema<LtrPreBackupResponse>;
+
+export interface CheckMigrationNameAvailabilityRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2850,7 +770,7 @@ export interface MigrationsCheckNameAvailabilityRequest {
   /** Type of resource. */
   type: string;
 }
-export const MigrationsCheckNameAvailabilityRequest = /*@__PURE__*/ S.suspend(
+export const CheckMigrationNameAvailabilityRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2867,8 +787,8 @@ export const MigrationsCheckNameAvailabilityRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "MigrationsCheckNameAvailabilityRequest",
-}) as any as S.Schema<MigrationsCheckNameAvailabilityRequest>;
+  identifier: "CheckMigrationNameAvailabilityRequest",
+}) as any as S.Schema<CheckMigrationNameAvailabilityRequest>;
 
 /** Migration name availability reason. */
 export type MigrationNameAvailabilityReason = "Invalid" | "AlreadyExists";
@@ -2899,14 +819,222 @@ export const MigrationNameAvailability = /*@__PURE__*/ S.suspend(() =>
   identifier: "MigrationNameAvailability",
 }) as any as S.Schema<MigrationNameAvailability>;
 
+export interface CheckNameAvailabilityGloballyRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource for which availability needs to be checked. */
+  name?: string;
+  /** The resource type. */
+  type?: string;
+}
+export const CheckNameAvailabilityGloballyRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DBforPostgreSQL/checkNameAvailability",
+        code: 200,
+        apiVersion: "2025-08-01",
+      }),
+    ),
+).annotate({
+  identifier: "CheckNameAvailabilityGloballyRequest",
+}) as any as S.Schema<CheckNameAvailabilityGloballyRequest>;
+
+/** The reason why the given name is not available. */
+export type CheckNameAvailabilityGloballyResponseReason =
+  | "Invalid"
+  | "AlreadyExists";
+export const CheckNameAvailabilityGloballyResponseReason =
+  /*@__PURE__*/ S.String;
+
+export interface CheckNameAvailabilityGloballyResponse {
+  /** Indicates if the resource name is available. */
+  nameAvailable?: boolean;
+  /** The reason why the given name is not available. */
+  reason?: CheckNameAvailabilityGloballyResponseReason;
+  /** Detailed reason why the given name is available. */
+  message?: string;
+  /** Name for which validity and availability was checked. */
+  name?: string;
+  /** Type of resource. It can be 'Microsoft.DBforPostgreSQL/flexibleServers' or 'Microsoft.DBforPostgreSQL/flexibleServers/virtualendpoints'. */
+  type?: string;
+}
+export const CheckNameAvailabilityGloballyResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      nameAvailable: S.optional(S.Boolean),
+      reason: S.optional(CheckNameAvailabilityGloballyResponseReason),
+      message: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "CheckNameAvailabilityGloballyResponse",
+}) as any as S.Schema<CheckNameAvailabilityGloballyResponse>;
+
+export interface CheckNameAvailabilityWithLocationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the location. */
+  locationName: string;
+  /** The name of the resource for which availability needs to be checked. */
+  name?: string;
+  /** The resource type. */
+  type?: string;
+}
+export const CheckNameAvailabilityWithLocationRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      locationName: S.String.pipe(T.Label()),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DBforPostgreSQL/locations/{locationName}/checkNameAvailability",
+        code: 200,
+        apiVersion: "2025-08-01",
+      }),
+    ),
+).annotate({
+  identifier: "CheckNameAvailabilityWithLocationRequest",
+}) as any as S.Schema<CheckNameAvailabilityWithLocationRequest>;
+
+/** The reason why the given name is not available. */
+export type CheckNameAvailabilityWithLocationResponseReason =
+  | "Invalid"
+  | "AlreadyExists";
+export const CheckNameAvailabilityWithLocationResponseReason =
+  /*@__PURE__*/ S.String;
+
+export interface CheckNameAvailabilityWithLocationResponse {
+  /** Indicates if the resource name is available. */
+  nameAvailable?: boolean;
+  /** The reason why the given name is not available. */
+  reason?: CheckNameAvailabilityWithLocationResponseReason;
+  /** Detailed reason why the given name is available. */
+  message?: string;
+  /** Name for which validity and availability was checked. */
+  name?: string;
+  /** Type of resource. It can be 'Microsoft.DBforPostgreSQL/flexibleServers' or 'Microsoft.DBforPostgreSQL/flexibleServers/virtualendpoints'. */
+  type?: string;
+}
+export const CheckNameAvailabilityWithLocationResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      nameAvailable: S.optional(S.Boolean),
+      reason: S.optional(CheckNameAvailabilityWithLocationResponseReason),
+      message: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "CheckNameAvailabilityWithLocationResponse",
+  }) as any as S.Schema<CheckNameAvailabilityWithLocationResponse>;
+
+export interface CreateBackupsAutomaticAndOnDemandRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the server. */
+  serverName: string;
+  /** Name of the backup. */
+  backupName: string;
+}
+export const CreateBackupsAutomaticAndOnDemandRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      serverName: S.String.pipe(T.Label()),
+      backupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/backups/{backupName}",
+        code: 200,
+        apiVersion: "2025-08-01",
+      }),
+    ),
+).annotate({
+  identifier: "CreateBackupsAutomaticAndOnDemandRequest",
+}) as any as S.Schema<CreateBackupsAutomaticAndOnDemandRequest>;
+
+export interface CreateBackupsAutomaticAndOnDemandResponse {}
+export const CreateBackupsAutomaticAndOnDemandResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "CreateBackupsAutomaticAndOnDemandResponse",
+  }) as any as S.Schema<CreateBackupsAutomaticAndOnDemandResponse>;
+
+/** Properties of a database. */
+export interface DatabaseProperties {
+  /** Character set of the database. */
+  charset?: string;
+  /** Collation of the database. */
+  collation?: string;
+}
+export const DatabaseProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    charset: S.optional(S.String),
+    collation: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DatabaseProperties",
+}) as any as S.Schema<DatabaseProperties>;
+
+export interface CreateDatabaseRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the server. */
+  serverName: string;
+  /** Name of the database (case-sensitive). Exact database names can be retrieved by getting the list of all existing databases in a server. */
+  databaseName: string;
+  /** Properties of a database. */
+  properties?: DatabaseProperties;
+}
+export const CreateDatabaseRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serverName: S.String.pipe(T.Label()),
+    databaseName: S.String.pipe(T.Label()),
+    properties: S.optional(DatabaseProperties),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/databases/{databaseName}",
+      code: 200,
+      apiVersion: "2025-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "CreateDatabaseRequest",
+}) as any as S.Schema<CreateDatabaseRequest>;
+
+export interface CreateDatabaseResponse {}
+export const CreateDatabaseResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "CreateDatabaseResponse",
+}) as any as S.Schema<CreateDatabaseResponse>;
+
 /** Resource tags. */
-export type MigrationsCreateRequestTagsMap = {
+export type CreateMigrationRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const MigrationsCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateMigrationRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<MigrationsCreateRequestTagsMap>;
+) as any as S.Schema<CreateMigrationRequestTagsMap>;
 
 /** Names of databases to migrate. */
 export type MigrationPropertiesInputDbsToMigrateList = Array<string>;
@@ -3006,7 +1134,7 @@ export const MigrationPropertiesInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "MigrationPropertiesInput",
 }) as any as S.Schema<MigrationPropertiesInput>;
 
-export interface MigrationsCreateRequest {
+export interface CreateMigrationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3016,19 +1144,19 @@ export interface MigrationsCreateRequest {
   /** Name of migration. */
   migrationName: string;
   /** Resource tags. */
-  tags?: MigrationsCreateRequestTagsMap;
+  tags?: CreateMigrationRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Migration properties. */
   properties?: MigrationPropertiesInput;
 }
-export const MigrationsCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateMigrationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     serverName: S.String.pipe(T.Label()),
     migrationName: S.String.pipe(T.Label()),
-    tags: S.optional(MigrationsCreateRequestTagsMap),
+    tags: S.optional(CreateMigrationRequestTagsMap),
     location: S.String,
     properties: S.optional(MigrationPropertiesInput),
   }).pipe(
@@ -3040,19 +1168,19 @@ export const MigrationsCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "MigrationsCreateRequest",
-}) as any as S.Schema<MigrationsCreateRequest>;
+  identifier: "CreateMigrationRequest",
+}) as any as S.Schema<CreateMigrationRequest>;
 
 /** Resource tags. */
-export type MigrationsCreateResponseTagsMap = {
+export type CreateMigrationResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const MigrationsCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateMigrationResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<MigrationsCreateResponseTagsMap>;
+) as any as S.Schema<CreateMigrationResponseTagsMap>;
 
-export interface MigrationsCreateResponse {
+export interface CreateMigrationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -3062,730 +1190,233 @@ export interface MigrationsCreateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: MigrationsCreateResponseTagsMap;
+  tags?: CreateMigrationResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Migration properties. */
   properties?: MigrationProperties;
 }
-export const MigrationsCreateResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateMigrationResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(MigrationsCreateResponseTagsMap),
+    tags: S.optional(CreateMigrationResponseTagsMap),
     location: S.String,
     properties: S.optional(MigrationProperties),
   }),
 ).annotate({
-  identifier: "MigrationsCreateResponse",
-}) as any as S.Schema<MigrationsCreateResponse>;
+  identifier: "CreateMigrationResponse",
+}) as any as S.Schema<CreateMigrationResponse>;
 
-export interface MigrationsGetRequest {
+/** Type of endpoint for the virtual endpoints. */
+export type VirtualEndpointType = "ReadWrite";
+export const VirtualEndpointType = /*@__PURE__*/ S.String;
+
+/** List of servers that one of the virtual endpoints can refer to. */
+export type VirtualEndpointResourcePropertiesInputMembersList = Array<string>;
+export const VirtualEndpointResourcePropertiesInputMembersList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<VirtualEndpointResourcePropertiesInputMembersList>;
+
+/** Properties of a pair of virtual endpoints. */
+export interface VirtualEndpointResourcePropertiesInput {
+  /** Type of endpoint for the virtual endpoints. */
+  endpointType?: VirtualEndpointType | (string & {});
+  /** List of servers that one of the virtual endpoints can refer to. */
+  members?: VirtualEndpointResourcePropertiesInputMembersList;
+}
+export const VirtualEndpointResourcePropertiesInput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      endpointType: S.optional(VirtualEndpointType),
+      members: S.optional(VirtualEndpointResourcePropertiesInputMembersList),
+    }),
+).annotate({
+  identifier: "VirtualEndpointResourcePropertiesInput",
+}) as any as S.Schema<VirtualEndpointResourcePropertiesInput>;
+
+export interface CreateVirtualEndpointRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the server. */
   serverName: string;
-  /** Name of migration. */
-  migrationName: string;
+  /** Base name of the virtual endpoints. */
+  virtualEndpointName: string;
+  /** Properties of the pair of virtual endpoints. */
+  properties?: VirtualEndpointResourcePropertiesInput;
 }
-export const MigrationsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateVirtualEndpointRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     serverName: S.String.pipe(T.Label()),
-    migrationName: S.String.pipe(T.Label()),
+    virtualEndpointName: S.String.pipe(T.Label()),
+    properties: S.optional(VirtualEndpointResourcePropertiesInput),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/migrations/{migrationName}",
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/virtualendpoints/{virtualEndpointName}",
       code: 200,
       apiVersion: "2025-08-01",
     }),
   ),
 ).annotate({
-  identifier: "MigrationsGetRequest",
-}) as any as S.Schema<MigrationsGetRequest>;
+  identifier: "CreateVirtualEndpointRequest",
+}) as any as S.Schema<CreateVirtualEndpointRequest>;
 
-/** Resource tags. */
-export type MigrationsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const MigrationsGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<MigrationsGetResponseTagsMap>;
-
-export interface MigrationsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: MigrationsGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Migration properties. */
-  properties?: MigrationProperties;
-}
-export const MigrationsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(MigrationsGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(MigrationProperties),
-  }),
+export interface CreateVirtualEndpointResponse {}
+export const CreateVirtualEndpointResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
 ).annotate({
-  identifier: "MigrationsGetResponse",
-}) as any as S.Schema<MigrationsGetResponse>;
+  identifier: "CreateVirtualEndpointResponse",
+}) as any as S.Schema<CreateVirtualEndpointResponse>;
 
-export type MigrationsListByTargetServerRequestMigrationListFilter =
-  | "Active"
-  | "All";
-export const MigrationsListByTargetServerRequestMigrationListFilter =
-  /*@__PURE__*/ S.String;
-
-export interface MigrationsListByTargetServerRequest {
+export interface DeleteAdministratorsMicrosoftEntraRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the server. */
   serverName: string;
-  /** Migration list filter. Indicates if the request should retrieve only active migrations or all migrations. Defaults to Active. */
-  migrationListFilter?:
-    | MigrationsListByTargetServerRequestMigrationListFilter
-    | (string & {});
+  /** Object identifier of the Microsoft Entra principal. */
+  objectId: string;
 }
-export const MigrationsListByTargetServerRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serverName: S.String.pipe(T.Label()),
-    migrationListFilter: S.optional(
-      MigrationsListByTargetServerRequestMigrationListFilter.pipe(T.Query()),
-    ),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/migrations",
-      code: 200,
-      apiVersion: "2025-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "MigrationsListByTargetServerRequest",
-}) as any as S.Schema<MigrationsListByTargetServerRequest>;
-
-/** Resource tags. */
-export type MigrationTagsMap = { [key: string]: string | undefined };
-export const MigrationTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<MigrationTagsMap>;
-
-/** Properties of a migration. */
-export interface Migration {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: MigrationTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Migration properties. */
-  properties?: MigrationProperties;
-}
-export const Migration = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(MigrationTagsMap),
-    location: S.String,
-    properties: S.optional(MigrationProperties),
-  }),
-).annotate({ identifier: "Migration" }) as any as S.Schema<Migration>;
-
-/** The Migration items on this page */
-export type MigrationListValueList = Array<Migration>;
-export const MigrationListValueList = /*@__PURE__*/ S.Array(
-  Migration,
-) as any as S.Schema<MigrationListValueList>;
-
-/** List of migrations. */
-export interface MigrationList {
-  /** The Migration items on this page */
-  value: MigrationListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const MigrationList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: MigrationListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "MigrationList" }) as any as S.Schema<MigrationList>;
-
-/** Credentials of administrator users for source and target servers. */
-export interface AdminCredentialsForPatch {
-  /** Password for the user of the source server. */
-  sourceServerPassword?: string | Redacted.Redacted<string>;
-  /** Password for the user of the target server. */
-  targetServerPassword?: string | Redacted.Redacted<string>;
-}
-export const AdminCredentialsForPatch = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    sourceServerPassword: S.optional(S.String.pipe(T.SensitiveValue({}))),
-    targetServerPassword: S.optional(S.String.pipe(T.SensitiveValue({}))),
-  }),
-).annotate({
-  identifier: "AdminCredentialsForPatch",
-}) as any as S.Schema<AdminCredentialsForPatch>;
-
-/** Migration secret parameters. */
-export interface MigrationSecretParametersForPatch {
-  /** Credentials of administrator users for source and target servers. */
-  adminCredentials?: AdminCredentialsForPatch;
-  /** Gets or sets the name of the user for the source server. This user doesn't need to be an administrator. */
-  sourceServerUsername?: string;
-  /** Gets or sets the name of the user for the target server. This user doesn't need to be an administrator. */
-  targetServerUsername?: string;
-}
-export const MigrationSecretParametersForPatch = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    adminCredentials: S.optional(AdminCredentialsForPatch),
-    sourceServerUsername: S.optional(S.String),
-    targetServerUsername: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "MigrationSecretParametersForPatch",
-}) as any as S.Schema<MigrationSecretParametersForPatch>;
-
-/** Names of databases to migrate. */
-export type MigrationPropertiesForPatchDbsToMigrateList = Array<string>;
-export const MigrationPropertiesForPatchDbsToMigrateList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<MigrationPropertiesForPatchDbsToMigrateList>;
-
-/** When you want to trigger cutover for specific databases set 'triggerCutover' to 'True' and the names of the specific databases in this array. */
-export type MigrationPropertiesForPatchDbsToTriggerCutoverOnList =
-  Array<string>;
-export const MigrationPropertiesForPatchDbsToTriggerCutoverOnList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<MigrationPropertiesForPatchDbsToTriggerCutoverOnList>;
-
-/** When you want to trigger cancel for specific databases set 'triggerCutover' to 'True' and the names of the specific databases in this array. */
-export type MigrationPropertiesForPatchDbsToCancelMigrationOnList =
-  Array<string>;
-export const MigrationPropertiesForPatchDbsToCancelMigrationOnList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<MigrationPropertiesForPatchDbsToCancelMigrationOnList>;
-
-/** Migration properties. */
-export interface MigrationPropertiesForPatch {
-  /** Identifier of the source database server resource, when 'sourceType' is 'PostgreSQLSingleServer'. For other source types this must be set to ipaddress:port@username or hostname:port@username. */
-  sourceDbServerResourceId?: string;
-  /** Fully qualified domain name (FQDN) or IP address of the source server. This property is optional. When provided, the migration service will always use it to connect to the source server. */
-  sourceDbServerFullyQualifiedDomainName?: string;
-  /** Fully qualified domain name (FQDN) or IP address of the target server. This property is optional. When provided, the migration service will always use it to connect to the target server. */
-  targetDbServerFullyQualifiedDomainName?: string;
-  /** Migration secret parameters. */
-  secretParameters?: MigrationSecretParametersForPatch;
-  /** Names of databases to migrate. */
-  dbsToMigrate?: MigrationPropertiesForPatchDbsToMigrateList;
-  /** Indicates whether to setup logical replication on source server, if needed. */
-  setupLogicalReplicationOnSourceDbIfNeeded?:
-    | LogicalReplicationOnSourceServer
-    | (string & {});
-  /** Indicates if databases on the target server can be overwritten when already present. If set to 'False', when the migration workflow detects that the database already exists on the target server, it will wait for a confirmation. */
-  overwriteDbsInTarget?: OverwriteDatabasesOnTargetServer | (string & {});
-  /** Start time (UTC) for migration window. */
-  migrationWindowStartTimeInUtc?: string;
-  /** Indicates if roles and permissions must be migrated. */
-  migrateRoles?: MigrateRolesAndPermissions | (string & {});
-  /** Indicates if data migration must start right away. */
-  startDataMigration?: StartDataMigration | (string & {});
-  /** Indicates if cutover must be triggered for the entire migration. */
-  triggerCutover?: TriggerCutover | (string & {});
-  /** When you want to trigger cutover for specific databases set 'triggerCutover' to 'True' and the names of the specific databases in this array. */
-  dbsToTriggerCutoverOn?: MigrationPropertiesForPatchDbsToTriggerCutoverOnList;
-  /** Indicates if cancel must be triggered for the entire migration. */
-  cancel?: Cancel | (string & {});
-  /** When you want to trigger cancel for specific databases set 'triggerCutover' to 'True' and the names of the specific databases in this array. */
-  dbsToCancelMigrationOn?: MigrationPropertiesForPatchDbsToCancelMigrationOnList;
-  /** Mode used to perform the migration: Online or Offline. */
-  migrationMode?: MigrationMode | (string & {});
-}
-export const MigrationPropertiesForPatch = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    sourceDbServerResourceId: S.optional(S.String),
-    sourceDbServerFullyQualifiedDomainName: S.optional(S.String),
-    targetDbServerFullyQualifiedDomainName: S.optional(S.String),
-    secretParameters: S.optional(MigrationSecretParametersForPatch),
-    dbsToMigrate: S.optional(MigrationPropertiesForPatchDbsToMigrateList),
-    setupLogicalReplicationOnSourceDbIfNeeded: S.optional(
-      LogicalReplicationOnSourceServer,
-    ),
-    overwriteDbsInTarget: S.optional(OverwriteDatabasesOnTargetServer),
-    migrationWindowStartTimeInUtc: S.optional(S.String),
-    migrateRoles: S.optional(MigrateRolesAndPermissions),
-    startDataMigration: S.optional(StartDataMigration),
-    triggerCutover: S.optional(TriggerCutover),
-    dbsToTriggerCutoverOn: S.optional(
-      MigrationPropertiesForPatchDbsToTriggerCutoverOnList,
-    ),
-    cancel: S.optional(Cancel),
-    dbsToCancelMigrationOn: S.optional(
-      MigrationPropertiesForPatchDbsToCancelMigrationOnList,
-    ),
-    migrationMode: S.optional(MigrationMode),
-  }),
-).annotate({
-  identifier: "MigrationPropertiesForPatch",
-}) as any as S.Schema<MigrationPropertiesForPatch>;
-
-/** Application-specific metadata in the form of key-value pairs. */
-export type MigrationsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const MigrationsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<MigrationsUpdateRequestTagsMap>;
-
-export interface MigrationsUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the server. */
-  serverName: string;
-  /** Name of migration. */
-  migrationName: string;
-  /** Migration properties. */
-  properties?: MigrationPropertiesForPatch;
-  /** Application-specific metadata in the form of key-value pairs. */
-  tags?: MigrationsUpdateRequestTagsMap;
-}
-export const MigrationsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serverName: S.String.pipe(T.Label()),
-    migrationName: S.String.pipe(T.Label()),
-    properties: S.optional(MigrationPropertiesForPatch),
-    tags: S.optional(MigrationsUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/migrations/{migrationName}",
-      code: 200,
-      apiVersion: "2025-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "MigrationsUpdateRequest",
-}) as any as S.Schema<MigrationsUpdateRequest>;
-
-/** Resource tags. */
-export type MigrationsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const MigrationsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<MigrationsUpdateResponseTagsMap>;
-
-export interface MigrationsUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: MigrationsUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Migration properties. */
-  properties?: MigrationProperties;
-}
-export const MigrationsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(MigrationsUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(MigrationProperties),
-  }),
-).annotate({
-  identifier: "MigrationsUpdateResponse",
-}) as any as S.Schema<MigrationsUpdateResponse>;
-
-export interface NameAvailabilityCheckGloballyRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource for which availability needs to be checked. */
-  name?: string;
-  /** The resource type. */
-  type?: string;
-}
-export const NameAvailabilityCheckGloballyRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DBforPostgreSQL/checkNameAvailability",
-        code: 200,
-        apiVersion: "2025-08-01",
-      }),
-    ),
-).annotate({
-  identifier: "NameAvailabilityCheckGloballyRequest",
-}) as any as S.Schema<NameAvailabilityCheckGloballyRequest>;
-
-/** The reason why the given name is not available. */
-export type NameAvailabilityCheckGloballyResponseReason =
-  | "Invalid"
-  | "AlreadyExists";
-export const NameAvailabilityCheckGloballyResponseReason =
-  /*@__PURE__*/ S.String;
-
-export interface NameAvailabilityCheckGloballyResponse {
-  /** Indicates if the resource name is available. */
-  nameAvailable?: boolean;
-  /** The reason why the given name is not available. */
-  reason?: NameAvailabilityCheckGloballyResponseReason;
-  /** Detailed reason why the given name is available. */
-  message?: string;
-  /** Name for which validity and availability was checked. */
-  name?: string;
-  /** Type of resource. It can be 'Microsoft.DBforPostgreSQL/flexibleServers' or 'Microsoft.DBforPostgreSQL/flexibleServers/virtualendpoints'. */
-  type?: string;
-}
-export const NameAvailabilityCheckGloballyResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      nameAvailable: S.optional(S.Boolean),
-      reason: S.optional(NameAvailabilityCheckGloballyResponseReason),
-      message: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "NameAvailabilityCheckGloballyResponse",
-}) as any as S.Schema<NameAvailabilityCheckGloballyResponse>;
-
-export interface NameAvailabilityCheckWithLocationRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the location. */
-  locationName: string;
-  /** The name of the resource for which availability needs to be checked. */
-  name?: string;
-  /** The resource type. */
-  type?: string;
-}
-export const NameAvailabilityCheckWithLocationRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      locationName: S.String.pipe(T.Label()),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DBforPostgreSQL/locations/{locationName}/checkNameAvailability",
-        code: 200,
-        apiVersion: "2025-08-01",
-      }),
-    ),
-).annotate({
-  identifier: "NameAvailabilityCheckWithLocationRequest",
-}) as any as S.Schema<NameAvailabilityCheckWithLocationRequest>;
-
-/** The reason why the given name is not available. */
-export type NameAvailabilityCheckWithLocationResponseReason =
-  | "Invalid"
-  | "AlreadyExists";
-export const NameAvailabilityCheckWithLocationResponseReason =
-  /*@__PURE__*/ S.String;
-
-export interface NameAvailabilityCheckWithLocationResponse {
-  /** Indicates if the resource name is available. */
-  nameAvailable?: boolean;
-  /** The reason why the given name is not available. */
-  reason?: NameAvailabilityCheckWithLocationResponseReason;
-  /** Detailed reason why the given name is available. */
-  message?: string;
-  /** Name for which validity and availability was checked. */
-  name?: string;
-  /** Type of resource. It can be 'Microsoft.DBforPostgreSQL/flexibleServers' or 'Microsoft.DBforPostgreSQL/flexibleServers/virtualendpoints'. */
-  type?: string;
-}
-export const NameAvailabilityCheckWithLocationResponse =
+export const DeleteAdministratorsMicrosoftEntraRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      nameAvailable: S.optional(S.Boolean),
-      reason: S.optional(NameAvailabilityCheckWithLocationResponseReason),
-      message: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-    }),
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      serverName: S.String.pipe(T.Label()),
+      objectId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/administrators/{objectId}",
+        code: 200,
+        apiVersion: "2025-08-01",
+      }),
+    ),
   ).annotate({
-    identifier: "NameAvailabilityCheckWithLocationResponse",
-  }) as any as S.Schema<NameAvailabilityCheckWithLocationResponse>;
+    identifier: "DeleteAdministratorsMicrosoftEntraRequest",
+  }) as any as S.Schema<DeleteAdministratorsMicrosoftEntraRequest>;
 
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
+export interface DeleteAdministratorsMicrosoftEntraResponse {}
+export const DeleteAdministratorsMicrosoftEntraResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "DeleteAdministratorsMicrosoftEntraResponse",
+  }) as any as S.Schema<DeleteAdministratorsMicrosoftEntraResponse>;
+
+export interface DeleteBackupsAutomaticAndOnDemandRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the server. */
+  serverName: string;
+  /** Name of the backup. */
+  backupName: string;
+}
+export const DeleteBackupsAutomaticAndOnDemandRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      serverName: S.String.pipe(T.Label()),
+      backupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/backups/{backupName}",
+        code: 200,
+        apiVersion: "2025-08-01",
+      }),
+    ),
+).annotate({
+  identifier: "DeleteBackupsAutomaticAndOnDemandRequest",
+}) as any as S.Schema<DeleteBackupsAutomaticAndOnDemandRequest>;
+
+export interface DeleteBackupsAutomaticAndOnDemandResponse {}
+export const DeleteBackupsAutomaticAndOnDemandResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "DeleteBackupsAutomaticAndOnDemandResponse",
+  }) as any as S.Schema<DeleteBackupsAutomaticAndOnDemandResponse>;
+
+export interface DeleteDatabaseRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the server. */
+  serverName: string;
+  /** Name of the database (case-sensitive). Exact database names can be retrieved by getting the list of all existing databases in a server. */
+  databaseName: string;
+}
+export const DeleteDatabaseRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serverName: S.String.pipe(T.Label()),
+    databaseName: S.String.pipe(T.Label()),
+  }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.DBforPostgreSQL/operations",
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/databases/{databaseName}",
       code: 200,
       apiVersion: "2025-08-01",
     }),
   ),
 ).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
+  identifier: "DeleteDatabaseRequest",
+}) as any as S.Schema<DeleteDatabaseRequest>;
 
-/** Display metadata associated with the operation. */
-export interface OperationDisplay {
-  /** Name of the resource provider. */
-  provider?: string;
-  /** Type of resource on which the operation is performed. */
-  resource?: string;
-  /** Name of the operation. */
-  operation?: string;
-  /** Description of the operation. */
-  description?: string;
-}
-export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provider: S.optional(S.String),
-    resource: S.optional(S.String),
-    operation: S.optional(S.String),
-    description: S.optional(S.String),
-  }),
+export interface DeleteDatabaseResponse {}
+export const DeleteDatabaseResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
 ).annotate({
-  identifier: "OperationDisplay",
-}) as any as S.Schema<OperationDisplay>;
+  identifier: "DeleteDatabaseResponse",
+}) as any as S.Schema<DeleteDatabaseResponse>;
 
-/** Intended executor of the operation. */
-export type OperationOrigin = "NotSpecified" | "user" | "system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
-
-/** Supported aggregation types for the metric. */
-export type MetricSpecificationSupportedAggregationTypesList = Array<string>;
-export const MetricSpecificationSupportedAggregationTypesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<MetricSpecificationSupportedAggregationTypesList>;
-
-/** Supported time grain types for the metric. */
-export type MetricSpecificationSupportedTimeGrainTypesList = Array<string>;
-export const MetricSpecificationSupportedTimeGrainTypesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<MetricSpecificationSupportedTimeGrainTypesList>;
-
-/** Metric specification for an operation. */
-export interface MetricSpecification {
-  /** Name of the metric. */
-  name?: string;
-  /** Display name of the metric. */
-  displayName?: string;
-  /** Display description of the metric. */
-  displayDescription?: string;
-  /** Unit of the metric. */
-  unit?: string;
-  /** Aggregation type of the metric. */
-  aggregationType?: string;
-  /** Supported aggregation types for the metric. */
-  supportedAggregationTypes?: MetricSpecificationSupportedAggregationTypesList;
-  /** Supported time grain types for the metric. */
-  supportedTimeGrainTypes?: MetricSpecificationSupportedTimeGrainTypesList;
-  /** Category of the metric. */
-  category?: string;
+export interface DeleteFirewallRuleRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the server. */
+  serverName: string;
+  /** Name of the firewall rule. */
+  firewallRuleName: string;
 }
-export const MetricSpecification = /*@__PURE__*/ S.suspend(() =>
+export const DeleteFirewallRuleRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    name: S.optional(S.String),
-    displayName: S.optional(S.String),
-    displayDescription: S.optional(S.String),
-    unit: S.optional(S.String),
-    aggregationType: S.optional(S.String),
-    supportedAggregationTypes: S.optional(
-      MetricSpecificationSupportedAggregationTypesList,
-    ),
-    supportedTimeGrainTypes: S.optional(
-      MetricSpecificationSupportedTimeGrainTypesList,
-    ),
-    category: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "MetricSpecification",
-}) as any as S.Schema<MetricSpecification>;
-
-/** Metric specifications for the operation. */
-export type ServiceSpecificationMetricSpecificationsList =
-  Array<MetricSpecification>;
-export const ServiceSpecificationMetricSpecificationsList =
-  /*@__PURE__*/ S.Array(
-    MetricSpecification,
-  ) as any as S.Schema<ServiceSpecificationMetricSpecificationsList>;
-
-/** Log specification for an operation. */
-export interface LogSpecification {
-  /** Name of the log. */
-  name?: string;
-  /** Display name of the log. */
-  displayName?: string;
-  /** Blob duration for the log. */
-  blobDuration?: string;
-}
-export const LogSpecification = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    displayName: S.optional(S.String),
-    blobDuration: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "LogSpecification",
-}) as any as S.Schema<LogSpecification>;
-
-/** Log specifications for the operation. */
-export type ServiceSpecificationLogSpecificationsList = Array<LogSpecification>;
-export const ServiceSpecificationLogSpecificationsList = /*@__PURE__*/ S.Array(
-  LogSpecification,
-) as any as S.Schema<ServiceSpecificationLogSpecificationsList>;
-
-/** Service specification for an operation. */
-export interface ServiceSpecification {
-  /** Metric specifications for the operation. */
-  metricSpecifications?: ServiceSpecificationMetricSpecificationsList;
-  /** Log specifications for the operation. */
-  logSpecifications?: ServiceSpecificationLogSpecificationsList;
-}
-export const ServiceSpecification = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    metricSpecifications: S.optional(
-      ServiceSpecificationMetricSpecificationsList,
-    ),
-    logSpecifications: S.optional(ServiceSpecificationLogSpecificationsList),
-  }),
-).annotate({
-  identifier: "ServiceSpecification",
-}) as any as S.Schema<ServiceSpecification>;
-
-/** Additional properties for operation metadata. */
-export interface OperationProperties {
-  /** Service specification for the operation. */
-  serviceSpecification?: ServiceSpecification;
-}
-export const OperationProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceSpecification: S.optional(ServiceSpecification),
-  }),
-).annotate({
-  identifier: "OperationProperties",
-}) as any as S.Schema<OperationProperties>;
-
-/** REST API operation definition. */
-export interface Operation {
-  /** Name of the operation being performed on this particular object. */
-  name?: string;
-  /** Localized display information for this particular operation or action. */
-  display?: OperationDisplay;
-  /** Indicates if the operation is a data action. */
-  isDataAction?: boolean;
-  /** Intended executor of the operation. */
-  origin?: OperationOrigin;
-  /** Additional descriptions for the operation. */
-  properties?: OperationProperties;
-}
-export const Operation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    display: S.optional(OperationDisplay),
-    isDataAction: S.optional(S.Boolean),
-    origin: S.optional(OperationOrigin),
-    properties: S.optional(OperationProperties),
-  }),
-).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
-
-/** The Operation items on this page */
-export type OperationListValueList = Array<Operation>;
-export const OperationListValueList = /*@__PURE__*/ S.Array(
-  Operation,
-) as any as S.Schema<OperationListValueList>;
-
-/** Paged collection of Operation items */
-export interface OperationList {
-  /** The Operation items on this page */
-  value: OperationListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const OperationList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: OperationListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "OperationList" }) as any as S.Schema<OperationList>;
-
-export interface PrivateDnsZoneSuffixGetRequest {}
-export const PrivateDnsZoneSuffixGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serverName: S.String.pipe(T.Label()),
+    firewallRuleName: S.String.pipe(T.Label()),
+  }).pipe(
     T.Http({
-      method: "POST",
-      uri: "/providers/Microsoft.DBforPostgreSQL/getPrivateDnsZoneSuffix",
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/firewallRules/{firewallRuleName}",
       code: 200,
       apiVersion: "2025-08-01",
     }),
   ),
 ).annotate({
-  identifier: "PrivateDnsZoneSuffixGetRequest",
-}) as any as S.Schema<PrivateDnsZoneSuffixGetRequest>;
+  identifier: "DeleteFirewallRuleRequest",
+}) as any as S.Schema<DeleteFirewallRuleRequest>;
 
-export type PrivateDnsZoneSuffixGetResponse = string;
-export const PrivateDnsZoneSuffixGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.String.pipe(T.RawResponseRoot()),
+export interface DeleteFirewallRuleResponse {}
+export const DeleteFirewallRuleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
 ).annotate({
-  identifier: "PrivateDnsZoneSuffixGetResponse",
-}) as any as S.Schema<PrivateDnsZoneSuffixGetResponse>;
+  identifier: "DeleteFirewallRuleResponse",
+}) as any as S.Schema<DeleteFirewallRuleResponse>;
 
-export interface PrivateEndpointConnectionsDeleteRequest {
+export interface DeletePrivateEndpointConnectionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3795,7 +1426,7 @@ export interface PrivateEndpointConnectionsDeleteRequest {
   /** The name of the private endpoint connection associated with the Azure resource. */
   privateEndpointConnectionName: string;
 }
-export const PrivateEndpointConnectionsDeleteRequest = /*@__PURE__*/ S.suspend(
+export const DeletePrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -3811,17 +1442,770 @@ export const PrivateEndpointConnectionsDeleteRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "PrivateEndpointConnectionsDeleteRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsDeleteRequest>;
+  identifier: "DeletePrivateEndpointConnectionRequest",
+}) as any as S.Schema<DeletePrivateEndpointConnectionRequest>;
 
-export interface PrivateEndpointConnectionsDeleteResponse {}
-export const PrivateEndpointConnectionsDeleteResponse = /*@__PURE__*/ S.suspend(
+export interface DeletePrivateEndpointConnectionResponse {}
+export const DeletePrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
   () => S.Struct({}),
 ).annotate({
-  identifier: "PrivateEndpointConnectionsDeleteResponse",
-}) as any as S.Schema<PrivateEndpointConnectionsDeleteResponse>;
+  identifier: "DeletePrivateEndpointConnectionResponse",
+}) as any as S.Schema<DeletePrivateEndpointConnectionResponse>;
 
-export interface PrivateEndpointConnectionsGetRequest {
+export interface DeleteServerRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the server. */
+  serverName: string;
+}
+export const DeleteServerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serverName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}",
+      code: 200,
+      apiVersion: "2025-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteServerRequest",
+}) as any as S.Schema<DeleteServerRequest>;
+
+export interface DeleteServerResponse {}
+export const DeleteServerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteServerResponse",
+}) as any as S.Schema<DeleteServerResponse>;
+
+export interface DeleteVirtualEndpointRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the server. */
+  serverName: string;
+  /** Base name of the virtual endpoints. */
+  virtualEndpointName: string;
+}
+export const DeleteVirtualEndpointRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serverName: S.String.pipe(T.Label()),
+    virtualEndpointName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/virtualendpoints/{virtualEndpointName}",
+      code: 200,
+      apiVersion: "2025-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteVirtualEndpointRequest",
+}) as any as S.Schema<DeleteVirtualEndpointRequest>;
+
+export interface DeleteVirtualEndpointResponse {}
+export const DeleteVirtualEndpointResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteVirtualEndpointResponse",
+}) as any as S.Schema<DeleteVirtualEndpointResponse>;
+
+/** Properties of a firewall rule. */
+export interface FirewallRuleProperties {
+  /** IP address defining the start of the range of addresses of a firewall rule. Must be expressed in IPv4 format. */
+  startIpAddress: string;
+  /** IP address defining the end of the range of addresses of a firewall rule. Must be expressed in IPv4 format. */
+  endIpAddress: string;
+}
+export const FirewallRuleProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    startIpAddress: S.String,
+    endIpAddress: S.String,
+  }),
+).annotate({
+  identifier: "FirewallRuleProperties",
+}) as any as S.Schema<FirewallRuleProperties>;
+
+export interface FirewallRulesCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the server. */
+  serverName: string;
+  /** Name of the firewall rule. */
+  firewallRuleName: string;
+  /** Properties of a firewall rule. */
+  properties: FirewallRuleProperties;
+}
+export const FirewallRulesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serverName: S.String.pipe(T.Label()),
+    firewallRuleName: S.String.pipe(T.Label()),
+    properties: FirewallRuleProperties,
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/firewallRules/{firewallRuleName}",
+      code: 200,
+      apiVersion: "2025-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "FirewallRulesCreateOrUpdateRequest",
+}) as any as S.Schema<FirewallRulesCreateOrUpdateRequest>;
+
+export interface FirewallRulesCreateOrUpdateResponse {}
+export const FirewallRulesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "FirewallRulesCreateOrUpdateResponse",
+}) as any as S.Schema<FirewallRulesCreateOrUpdateResponse>;
+
+export interface GetAdministratorsMicrosoftEntraRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the server. */
+  serverName: string;
+  /** Object identifier of the Microsoft Entra principal. */
+  objectId: string;
+}
+export const GetAdministratorsMicrosoftEntraRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      serverName: S.String.pipe(T.Label()),
+      objectId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/administrators/{objectId}",
+        code: 200,
+        apiVersion: "2025-08-01",
+      }),
+    ),
+).annotate({
+  identifier: "GetAdministratorsMicrosoftEntraRequest",
+}) as any as S.Schema<GetAdministratorsMicrosoftEntraRequest>;
+
+/** Properties of a server administrator associated to a Microsoft Entra principal. */
+export interface AdministratorMicrosoftEntraProperties {
+  /** Type of Microsoft Entra principal to which the server administrator is associated. */
+  principalType?: PrincipalType;
+  /** Name of the Microsoft Entra principal. */
+  principalName?: string;
+  /** Object identifier of the Microsoft Entra principal. */
+  objectId?: string;
+  /** Identifier of the tenant in which the Microsoft Entra principal exists. */
+  tenantId?: string;
+}
+export const AdministratorMicrosoftEntraProperties = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      principalType: S.optional(PrincipalType),
+      principalName: S.optional(S.String),
+      objectId: S.optional(S.String),
+      tenantId: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "AdministratorMicrosoftEntraProperties",
+}) as any as S.Schema<AdministratorMicrosoftEntraProperties>;
+
+export interface GetAdministratorsMicrosoftEntraResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of a server administrator associated to a Microsoft Entra principal. */
+  properties: AdministratorMicrosoftEntraProperties;
+}
+export const GetAdministratorsMicrosoftEntraResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: AdministratorMicrosoftEntraProperties,
+    }),
+).annotate({
+  identifier: "GetAdministratorsMicrosoftEntraResponse",
+}) as any as S.Schema<GetAdministratorsMicrosoftEntraResponse>;
+
+export type GetAdvancedThreatProtectionSettingsRequestThreatProtectionName =
+  "Default";
+export const GetAdvancedThreatProtectionSettingsRequestThreatProtectionName =
+  /*@__PURE__*/ S.String;
+
+export interface GetAdvancedThreatProtectionSettingsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the server. */
+  serverName: string;
+  /** Name of the advanced threat protection settings. */
+  threatProtectionName:
+    | GetAdvancedThreatProtectionSettingsRequestThreatProtectionName
+    | (string & {});
+}
+export const GetAdvancedThreatProtectionSettingsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      serverName: S.String.pipe(T.Label()),
+      threatProtectionName:
+        GetAdvancedThreatProtectionSettingsRequestThreatProtectionName.pipe(
+          T.Label(),
+        ),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/advancedThreatProtectionSettings/{threatProtectionName}",
+        code: 200,
+        apiVersion: "2025-08-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetAdvancedThreatProtectionSettingsRequest",
+  }) as any as S.Schema<GetAdvancedThreatProtectionSettingsRequest>;
+
+/** Specifies the state of the advanced threat protection, whether it is enabled, disabled, or a state has not been applied yet on the server. */
+export type ThreatProtectionState = "Enabled" | "Disabled";
+export const ThreatProtectionState = /*@__PURE__*/ S.String;
+
+/** Properties of advanced threat protection state for a server. */
+export interface AdvancedThreatProtectionSettingsProperties {
+  /** Specifies the state of the advanced threat protection, whether it is enabled, disabled, or a state has not been applied yet on the server. */
+  state: ThreatProtectionState;
+  /** Specifies the creation time (UTC) of the policy. */
+  creationTime?: string;
+}
+export const AdvancedThreatProtectionSettingsProperties =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      state: ThreatProtectionState,
+      creationTime: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "AdvancedThreatProtectionSettingsProperties",
+  }) as any as S.Schema<AdvancedThreatProtectionSettingsProperties>;
+
+export interface GetAdvancedThreatProtectionSettingsResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Advanced threat protection properties. */
+  properties?: AdvancedThreatProtectionSettingsProperties;
+}
+export const GetAdvancedThreatProtectionSettingsResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(AdvancedThreatProtectionSettingsProperties),
+    }),
+  ).annotate({
+    identifier: "GetAdvancedThreatProtectionSettingsResponse",
+  }) as any as S.Schema<GetAdvancedThreatProtectionSettingsResponse>;
+
+export interface GetBackupsAutomaticAndOnDemandRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the server. */
+  serverName: string;
+  /** Name of the backup. */
+  backupName: string;
+}
+export const GetBackupsAutomaticAndOnDemandRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      serverName: S.String.pipe(T.Label()),
+      backupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/backups/{backupName}",
+        code: 200,
+        apiVersion: "2025-08-01",
+      }),
+    ),
+).annotate({
+  identifier: "GetBackupsAutomaticAndOnDemandRequest",
+}) as any as S.Schema<GetBackupsAutomaticAndOnDemandRequest>;
+
+/** Type of backup. */
+export type BackupType = "Full" | "Customer On-Demand";
+export const BackupType = /*@__PURE__*/ S.String;
+
+/** Properties of a backup. */
+export interface BackupAutomaticAndOnDemandProperties {
+  /** Type of backup. */
+  backupType?: BackupType;
+  /** Time(ISO8601 format) at which the backup was completed. */
+  completedTime?: string;
+  /** Source of the backup. */
+  source?: string;
+}
+export const BackupAutomaticAndOnDemandProperties = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      backupType: S.optional(BackupType),
+      completedTime: S.optional(S.String),
+      source: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "BackupAutomaticAndOnDemandProperties",
+}) as any as S.Schema<BackupAutomaticAndOnDemandProperties>;
+
+export interface GetBackupsAutomaticAndOnDemandResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of a backup. */
+  properties?: BackupAutomaticAndOnDemandProperties;
+}
+export const GetBackupsAutomaticAndOnDemandResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(BackupAutomaticAndOnDemandProperties),
+    }),
+).annotate({
+  identifier: "GetBackupsAutomaticAndOnDemandResponse",
+}) as any as S.Schema<GetBackupsAutomaticAndOnDemandResponse>;
+
+export interface GetBackupsLongTermRetentionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the server. */
+  serverName: string;
+  /** The name of the backup. */
+  backupName: string;
+}
+export const GetBackupsLongTermRetentionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serverName: S.String.pipe(T.Label()),
+    backupName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/ltrBackupOperations/{backupName}",
+      code: 200,
+      apiVersion: "2025-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetBackupsLongTermRetentionRequest",
+}) as any as S.Schema<GetBackupsLongTermRetentionRequest>;
+
+/** Service-set extensible enumeration indicating the status of operation. */
+export type ExecutionStatus = "Running" | "Cancelled" | "Failed" | "Succeeded";
+export const ExecutionStatus = /*@__PURE__*/ S.String;
+
+/** Response for the backup request. */
+export interface LtrBackupOperationResponseProperties {
+  /** Size of datasource in bytes. */
+  datasourceSizeInBytes?: number;
+  /** Data transferred in bytes. */
+  dataTransferredInBytes?: number;
+  /** Name of Backup operation. */
+  backupName?: string;
+  /** Metadata to be stored in RP. Store everything that will be required to perform a successful restore using this Recovery point. e.g. Versions, DataFormat etc. */
+  backupMetadata?: string;
+  /** Service-set extensible enum indicating the status of operation. */
+  status: ExecutionStatus;
+  /** Start time of the operation. */
+  startTime: string;
+  /** End time of the operation. */
+  endTime?: string;
+  /** Percentage completed. */
+  percentComplete?: number;
+  /** Error code. */
+  errorCode?: string;
+  /** Error message. */
+  errorMessage?: string;
+}
+export const LtrBackupOperationResponseProperties = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      datasourceSizeInBytes: S.optional(S.Number),
+      dataTransferredInBytes: S.optional(S.Number),
+      backupName: S.optional(S.String),
+      backupMetadata: S.optional(S.String),
+      status: ExecutionStatus,
+      startTime: S.String,
+      endTime: S.optional(S.String),
+      percentComplete: S.optional(S.Number),
+      errorCode: S.optional(S.String),
+      errorMessage: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "LtrBackupOperationResponseProperties",
+}) as any as S.Schema<LtrBackupOperationResponseProperties>;
+
+export interface GetBackupsLongTermRetentionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Long Term Retention Backup Operation Resource Properties */
+  properties?: LtrBackupOperationResponseProperties;
+}
+export const GetBackupsLongTermRetentionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(LtrBackupOperationResponseProperties),
+  }),
+).annotate({
+  identifier: "GetBackupsLongTermRetentionResponse",
+}) as any as S.Schema<GetBackupsLongTermRetentionResponse>;
+
+export interface GetConfigurationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the server. */
+  serverName: string;
+  /** Name of the configuration (also known as server parameter). */
+  configurationName: string;
+}
+export const GetConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serverName: S.String.pipe(T.Label()),
+    configurationName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/configurations/{configurationName}",
+      code: 200,
+      apiVersion: "2025-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetConfigurationRequest",
+}) as any as S.Schema<GetConfigurationRequest>;
+
+/** Data type of the configuration (also known as server parameter). */
+export type ConfigurationDataType =
+  | "Boolean"
+  | "Numeric"
+  | "Integer"
+  | "Enumeration"
+  | "String"
+  | "Set";
+export const ConfigurationDataType = /*@__PURE__*/ S.String;
+
+/** Properties of a configuration (also known as server parameter). */
+export interface ConfigurationProperties {
+  /** Value of the configuration (also known as server parameter). Required to update the value assigned to a specific modifiable configuration. */
+  value?: string;
+  /** Description of the configuration (also known as server parameter). */
+  description?: string;
+  /** Value assigned by default to the configuration (also known as server parameter). */
+  defaultValue?: string;
+  /** Data type of the configuration (also known as server parameter). */
+  dataType?: ConfigurationDataType;
+  /** Allowed values of the configuration (also known as server parameter). */
+  allowedValues?: string;
+  /** Source of the value assigned to the configuration (also known as server parameter). Required to update the value assigned to a specific modifiable configuration. */
+  source?: string;
+  /** Indicates if it's a dynamic (true) or static (false) configuration (also known as server parameter). Static server parameters require a server restart after changing the value assigned to them, for the change to take effect. Dynamic server parameters do not require a server restart after changing the value assigned to them, for the change to take effect. */
+  isDynamicConfig?: boolean;
+  /** Indicates if it's a read-only (true) or modifiable (false) configuration (also known as server parameter). */
+  isReadOnly?: boolean;
+  /** Indicates if the value assigned to the configuration (also known as server parameter) is pending a server restart for it to take effect. */
+  isConfigPendingRestart?: boolean;
+  /** Units in which the configuration (also known as server parameter) value is expressed. */
+  unit?: string;
+  /** Link pointing to the documentation of the configuration (also known as server parameter). */
+  documentationLink?: string;
+}
+export const ConfigurationProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(S.String),
+    description: S.optional(S.String),
+    defaultValue: S.optional(S.String),
+    dataType: S.optional(ConfigurationDataType),
+    allowedValues: S.optional(S.String),
+    source: S.optional(S.String),
+    isDynamicConfig: S.optional(S.Boolean),
+    isReadOnly: S.optional(S.Boolean),
+    isConfigPendingRestart: S.optional(S.Boolean),
+    unit: S.optional(S.String),
+    documentationLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ConfigurationProperties",
+}) as any as S.Schema<ConfigurationProperties>;
+
+export interface GetConfigurationResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of a configuration (also known as server parameter). */
+  properties?: ConfigurationProperties;
+}
+export const GetConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ConfigurationProperties),
+  }),
+).annotate({
+  identifier: "GetConfigurationResponse",
+}) as any as S.Schema<GetConfigurationResponse>;
+
+export interface GetDatabaseRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the server. */
+  serverName: string;
+  /** Name of the database (case-sensitive). Exact database names can be retrieved by getting the list of all existing databases in a server. */
+  databaseName: string;
+}
+export const GetDatabaseRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serverName: S.String.pipe(T.Label()),
+    databaseName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/databases/{databaseName}",
+      code: 200,
+      apiVersion: "2025-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetDatabaseRequest",
+}) as any as S.Schema<GetDatabaseRequest>;
+
+export interface GetDatabaseResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of a database. */
+  properties?: DatabaseProperties;
+}
+export const GetDatabaseResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(DatabaseProperties),
+  }),
+).annotate({
+  identifier: "GetDatabaseResponse",
+}) as any as S.Schema<GetDatabaseResponse>;
+
+export interface GetFirewallRuleRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the server. */
+  serverName: string;
+  /** Name of the firewall rule. */
+  firewallRuleName: string;
+}
+export const GetFirewallRuleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serverName: S.String.pipe(T.Label()),
+    firewallRuleName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/firewallRules/{firewallRuleName}",
+      code: 200,
+      apiVersion: "2025-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetFirewallRuleRequest",
+}) as any as S.Schema<GetFirewallRuleRequest>;
+
+export interface GetFirewallRuleResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of a firewall rule. */
+  properties: FirewallRuleProperties;
+}
+export const GetFirewallRuleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: FirewallRuleProperties,
+  }),
+).annotate({
+  identifier: "GetFirewallRuleResponse",
+}) as any as S.Schema<GetFirewallRuleResponse>;
+
+export interface GetMigrationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the server. */
+  serverName: string;
+  /** Name of migration. */
+  migrationName: string;
+}
+export const GetMigrationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serverName: S.String.pipe(T.Label()),
+    migrationName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/migrations/{migrationName}",
+      code: 200,
+      apiVersion: "2025-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetMigrationRequest",
+}) as any as S.Schema<GetMigrationRequest>;
+
+/** Resource tags. */
+export type GetMigrationResponseTagsMap = { [key: string]: string | undefined };
+export const GetMigrationResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetMigrationResponseTagsMap>;
+
+export interface GetMigrationResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetMigrationResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Migration properties. */
+  properties?: MigrationProperties;
+}
+export const GetMigrationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetMigrationResponseTagsMap),
+    location: S.String,
+    properties: S.optional(MigrationProperties),
+  }),
+).annotate({
+  identifier: "GetMigrationResponse",
+}) as any as S.Schema<GetMigrationResponse>;
+
+export interface GetPrivateDnsZoneSuffixRequest {}
+export const GetPrivateDnsZoneSuffixRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/providers/Microsoft.DBforPostgreSQL/getPrivateDnsZoneSuffix",
+      code: 200,
+      apiVersion: "2025-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetPrivateDnsZoneSuffixRequest",
+}) as any as S.Schema<GetPrivateDnsZoneSuffixRequest>;
+
+export type GetPrivateDnsZoneSuffixResponse = string;
+export const GetPrivateDnsZoneSuffixResponse = /*@__PURE__*/ S.suspend(() =>
+  S.String.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "GetPrivateDnsZoneSuffixResponse",
+}) as any as S.Schema<GetPrivateDnsZoneSuffixResponse>;
+
+export interface GetPrivateEndpointConnectionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3831,24 +2215,23 @@ export interface PrivateEndpointConnectionsGetRequest {
   /** The name of the private endpoint connection associated with the Azure resource. */
   privateEndpointConnectionName: string;
 }
-export const PrivateEndpointConnectionsGetRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      serverName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2025-08-01",
-      }),
-    ),
+export const GetPrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serverName: S.String.pipe(T.Label()),
+    privateEndpointConnectionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/privateEndpointConnections/{privateEndpointConnectionName}",
+      code: 200,
+      apiVersion: "2025-08-01",
+    }),
+  ),
 ).annotate({
-  identifier: "PrivateEndpointConnectionsGetRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsGetRequest>;
+  identifier: "GetPrivateEndpointConnectionRequest",
+}) as any as S.Schema<GetPrivateEndpointConnectionRequest>;
 
 /** The group ids for the private endpoint resource. */
 export type PrivateEndpointConnectionPropertiesGroupIdsList = Array<string>;
@@ -3927,7 +2310,7 @@ export const PrivateEndpointConnectionProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "PrivateEndpointConnectionProperties",
 }) as any as S.Schema<PrivateEndpointConnectionProperties>;
 
-export interface PrivateEndpointConnectionsGetResponse {
+export interface GetPrivateEndpointConnectionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -3939,7 +2322,7 @@ export interface PrivateEndpointConnectionsGetResponse {
   /** Resource properties. */
   properties?: PrivateEndpointConnectionProperties;
 }
-export const PrivateEndpointConnectionsGetResponse = /*@__PURE__*/ S.suspend(
+export const GetPrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -3949,149 +2332,10 @@ export const PrivateEndpointConnectionsGetResponse = /*@__PURE__*/ S.suspend(
       properties: S.optional(PrivateEndpointConnectionProperties),
     }),
 ).annotate({
-  identifier: "PrivateEndpointConnectionsGetResponse",
-}) as any as S.Schema<PrivateEndpointConnectionsGetResponse>;
+  identifier: "GetPrivateEndpointConnectionResponse",
+}) as any as S.Schema<GetPrivateEndpointConnectionResponse>;
 
-export interface PrivateEndpointConnectionsListByServerRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the server. */
-  serverName: string;
-}
-export const PrivateEndpointConnectionsListByServerRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      serverName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/privateEndpointConnections",
-        code: 200,
-        apiVersion: "2025-08-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "PrivateEndpointConnectionsListByServerRequest",
-  }) as any as S.Schema<PrivateEndpointConnectionsListByServerRequest>;
-
-/** The private endpoint connection resource. */
-export interface PrivateEndpointConnectionListValueItem {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource properties. */
-  properties?: PrivateEndpointConnectionProperties;
-}
-export const PrivateEndpointConnectionListValueItem = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(PrivateEndpointConnectionProperties),
-    }),
-).annotate({
-  identifier: "PrivateEndpointConnectionListValueItem",
-}) as any as S.Schema<PrivateEndpointConnectionListValueItem>;
-
-/** The PrivateEndpointConnection items on this page */
-export type PrivateEndpointConnectionListValueList =
-  Array<PrivateEndpointConnectionListValueItem>;
-export const PrivateEndpointConnectionListValueList = /*@__PURE__*/ S.Array(
-  PrivateEndpointConnectionListValueItem,
-) as any as S.Schema<PrivateEndpointConnectionListValueList>;
-
-/** List of private endpoint connections. */
-export interface PrivateEndpointConnectionList {
-  /** The PrivateEndpointConnection items on this page */
-  value: PrivateEndpointConnectionListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const PrivateEndpointConnectionList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: PrivateEndpointConnectionListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PrivateEndpointConnectionList",
-}) as any as S.Schema<PrivateEndpointConnectionList>;
-
-/** The private endpoint resource. */
-export interface PrivateEndpointInput {}
-export const PrivateEndpointInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "PrivateEndpointInput",
-}) as any as S.Schema<PrivateEndpointInput>;
-
-/** Properties of the private endpoint connection. */
-export interface PrivateEndpointConnectionPropertiesInput {
-  /** The private endpoint resource. */
-  privateEndpoint?: PrivateEndpointInput;
-  /** A collection of information about the state of the connection between service consumer and provider. */
-  privateLinkServiceConnectionState: PrivateLinkServiceConnectionState;
-}
-export const PrivateEndpointConnectionPropertiesInput = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      privateEndpoint: S.optional(PrivateEndpointInput),
-      privateLinkServiceConnectionState: PrivateLinkServiceConnectionState,
-    }),
-).annotate({
-  identifier: "PrivateEndpointConnectionPropertiesInput",
-}) as any as S.Schema<PrivateEndpointConnectionPropertiesInput>;
-
-export interface PrivateEndpointConnectionsUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the server. */
-  serverName: string;
-  /** The name of the private endpoint connection associated with the Azure resource. */
-  privateEndpointConnectionName: string;
-  /** Resource properties. */
-  properties?: PrivateEndpointConnectionPropertiesInput;
-}
-export const PrivateEndpointConnectionsUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      serverName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-      properties: S.optional(PrivateEndpointConnectionPropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2025-08-01",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateEndpointConnectionsUpdateRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsUpdateRequest>;
-
-export interface PrivateEndpointConnectionsUpdateResponse {}
-export const PrivateEndpointConnectionsUpdateResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "PrivateEndpointConnectionsUpdateResponse",
-}) as any as S.Schema<PrivateEndpointConnectionsUpdateResponse>;
-
-export interface PrivateLinkResourcesGetRequest {
+export interface GetPrivateLinkResourceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4101,7 +2345,7 @@ export interface PrivateLinkResourcesGetRequest {
   /** The name of the private link resource. */
   groupName: string;
 }
-export const PrivateLinkResourcesGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetPrivateLinkResourceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -4116,50 +2360,50 @@ export const PrivateLinkResourcesGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "PrivateLinkResourcesGetRequest",
-}) as any as S.Schema<PrivateLinkResourcesGetRequest>;
+  identifier: "GetPrivateLinkResourceRequest",
+}) as any as S.Schema<GetPrivateLinkResourceRequest>;
 
 /** The private link resource required member names. */
-export type PrivateLinkResourcesGetResponsePropertiesRequiredMembersList =
+export type GetPrivateLinkResourceResponsePropertiesRequiredMembersList =
   Array<string>;
-export const PrivateLinkResourcesGetResponsePropertiesRequiredMembersList =
+export const GetPrivateLinkResourceResponsePropertiesRequiredMembersList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<PrivateLinkResourcesGetResponsePropertiesRequiredMembersList>;
+  ) as any as S.Schema<GetPrivateLinkResourceResponsePropertiesRequiredMembersList>;
 
 /** The private link resource private link DNS zone name. */
-export type PrivateLinkResourcesGetResponsePropertiesRequiredZoneNamesList =
+export type GetPrivateLinkResourceResponsePropertiesRequiredZoneNamesList =
   Array<string>;
-export const PrivateLinkResourcesGetResponsePropertiesRequiredZoneNamesList =
+export const GetPrivateLinkResourceResponsePropertiesRequiredZoneNamesList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<PrivateLinkResourcesGetResponsePropertiesRequiredZoneNamesList>;
+  ) as any as S.Schema<GetPrivateLinkResourceResponsePropertiesRequiredZoneNamesList>;
 
 /** Properties of a private link resource. */
-export interface PrivateLinkResourcesGetResponseProperties {
+export interface GetPrivateLinkResourceResponseProperties {
   /** The private link resource group id. */
   groupId?: string;
   /** The private link resource required member names. */
-  requiredMembers?: PrivateLinkResourcesGetResponsePropertiesRequiredMembersList;
+  requiredMembers?: GetPrivateLinkResourceResponsePropertiesRequiredMembersList;
   /** The private link resource private link DNS zone name. */
-  requiredZoneNames?: PrivateLinkResourcesGetResponsePropertiesRequiredZoneNamesList;
+  requiredZoneNames?: GetPrivateLinkResourceResponsePropertiesRequiredZoneNamesList;
 }
-export const PrivateLinkResourcesGetResponseProperties =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetPrivateLinkResourceResponseProperties = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       groupId: S.optional(S.String),
       requiredMembers: S.optional(
-        PrivateLinkResourcesGetResponsePropertiesRequiredMembersList,
+        GetPrivateLinkResourceResponsePropertiesRequiredMembersList,
       ),
       requiredZoneNames: S.optional(
-        PrivateLinkResourcesGetResponsePropertiesRequiredZoneNamesList,
+        GetPrivateLinkResourceResponsePropertiesRequiredZoneNamesList,
       ),
     }),
-  ).annotate({
-    identifier: "PrivateLinkResourcesGetResponseProperties",
-  }) as any as S.Schema<PrivateLinkResourcesGetResponseProperties>;
+).annotate({
+  identifier: "GetPrivateLinkResourceResponseProperties",
+}) as any as S.Schema<GetPrivateLinkResourceResponseProperties>;
 
-export interface PrivateLinkResourcesGetResponse {
+export interface GetPrivateLinkResourceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -4169,21 +2413,21 @@ export interface PrivateLinkResourcesGetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Properties of a private link resource. */
-  properties?: PrivateLinkResourcesGetResponseProperties;
+  properties?: GetPrivateLinkResourceResponseProperties;
 }
-export const PrivateLinkResourcesGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetPrivateLinkResourceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    properties: S.optional(PrivateLinkResourcesGetResponseProperties),
+    properties: S.optional(GetPrivateLinkResourceResponseProperties),
   }),
 ).annotate({
-  identifier: "PrivateLinkResourcesGetResponse",
-}) as any as S.Schema<PrivateLinkResourcesGetResponse>;
+  identifier: "GetPrivateLinkResourceResponse",
+}) as any as S.Schema<GetPrivateLinkResourceResponse>;
 
-export interface PrivateLinkResourcesListByServerRequest {
+export interface GetServerRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4191,196 +2435,7 @@ export interface PrivateLinkResourcesListByServerRequest {
   /** The name of the server. */
   serverName: string;
 }
-export const PrivateLinkResourcesListByServerRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      serverName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/privateLinkResources",
-        code: 200,
-        apiVersion: "2025-08-01",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateLinkResourcesListByServerRequest",
-}) as any as S.Schema<PrivateLinkResourcesListByServerRequest>;
-
-/** The private link resource required member names. */
-export type PrivateLinkResourcePropertiesRequiredMembersList = Array<string>;
-export const PrivateLinkResourcePropertiesRequiredMembersList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredMembersList>;
-
-/** The private link resource private link DNS zone name. */
-export type PrivateLinkResourcePropertiesRequiredZoneNamesList = Array<string>;
-export const PrivateLinkResourcePropertiesRequiredZoneNamesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredZoneNamesList>;
-
-/** Properties of a private link resource. */
-export interface PrivateLinkResourceProperties {
-  /** The private link resource group id. */
-  groupId?: string;
-  /** The private link resource required member names. */
-  requiredMembers?: PrivateLinkResourcePropertiesRequiredMembersList;
-  /** The private link resource private link DNS zone name. */
-  requiredZoneNames?: PrivateLinkResourcePropertiesRequiredZoneNamesList;
-}
-export const PrivateLinkResourceProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    groupId: S.optional(S.String),
-    requiredMembers: S.optional(
-      PrivateLinkResourcePropertiesRequiredMembersList,
-    ),
-    requiredZoneNames: S.optional(
-      PrivateLinkResourcePropertiesRequiredZoneNamesList,
-    ),
-  }),
-).annotate({
-  identifier: "PrivateLinkResourceProperties",
-}) as any as S.Schema<PrivateLinkResourceProperties>;
-
-/** A private link resource. */
-export interface PrivateLinkResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of a private link resource. */
-  properties?: PrivateLinkResourceProperties;
-}
-export const PrivateLinkResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(PrivateLinkResourceProperties),
-  }),
-).annotate({
-  identifier: "PrivateLinkResource",
-}) as any as S.Schema<PrivateLinkResource>;
-
-/** The PrivateLinkResource items on this page */
-export type PrivateLinkResourceListValueList = Array<PrivateLinkResource>;
-export const PrivateLinkResourceListValueList = /*@__PURE__*/ S.Array(
-  PrivateLinkResource,
-) as any as S.Schema<PrivateLinkResourceListValueList>;
-
-/** A list of private link resources */
-export interface PrivateLinkResourceList {
-  /** The PrivateLinkResource items on this page */
-  value: PrivateLinkResourceListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const PrivateLinkResourceList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: PrivateLinkResourceListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PrivateLinkResourceList",
-}) as any as S.Schema<PrivateLinkResourceList>;
-
-export interface QuotaUsagesListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the location. */
-  locationName: string;
-}
-export const QuotaUsagesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    locationName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DBforPostgreSQL/locations/{locationName}/resourceType/flexibleServers/usages",
-      code: 200,
-      apiVersion: "2025-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "QuotaUsagesListRequest",
-}) as any as S.Schema<QuotaUsagesListRequest>;
-
-/** Name property for quota usage */
-export interface NameProperty {
-  /** Name value */
-  value?: string;
-  /** Localized name */
-  localizedValue?: string;
-}
-export const NameProperty = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(S.String),
-    localizedValue: S.optional(S.String),
-  }),
-).annotate({ identifier: "NameProperty" }) as any as S.Schema<NameProperty>;
-
-/** Quota usage for servers */
-export interface QuotaUsage {
-  /** Name of quota usage for servers */
-  name?: NameProperty;
-  /** Quota limit */
-  limit?: number;
-  /** Quota unit */
-  unit?: string;
-  /** Current Quota usage value */
-  currentValue?: number;
-  /** Fully qualified ARM resource Id */
-  id?: string;
-}
-export const QuotaUsage = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(NameProperty),
-    limit: S.optional(S.Number),
-    unit: S.optional(S.String),
-    currentValue: S.optional(S.Number),
-    id: S.optional(S.String),
-  }),
-).annotate({ identifier: "QuotaUsage" }) as any as S.Schema<QuotaUsage>;
-
-/** The QuotaUsage items on this page */
-export type QuotaUsageListValueList = Array<QuotaUsage>;
-export const QuotaUsageListValueList = /*@__PURE__*/ S.Array(
-  QuotaUsage,
-) as any as S.Schema<QuotaUsageListValueList>;
-
-/** Capability for the PostgreSQL server */
-export interface QuotaUsageList {
-  /** The QuotaUsage items on this page */
-  value: QuotaUsageListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const QuotaUsageList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: QuotaUsageListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "QuotaUsageList" }) as any as S.Schema<QuotaUsageList>;
-
-export interface ReplicasListByServerRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the server. */
-  serverName: string;
-}
-export const ReplicasListByServerRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetServerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -4388,21 +2443,21 @@ export const ReplicasListByServerRequest = /*@__PURE__*/ S.suspend(() =>
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/replicas",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}",
       code: 200,
       apiVersion: "2025-08-01",
     }),
   ),
 ).annotate({
-  identifier: "ReplicasListByServerRequest",
-}) as any as S.Schema<ReplicasListByServerRequest>;
+  identifier: "GetServerRequest",
+}) as any as S.Schema<GetServerRequest>;
 
 /** Resource tags. */
-export type ServerTagsMap = { [key: string]: string | undefined };
-export const ServerTagsMap = /*@__PURE__*/ S.Record(
+export type GetServerResponseTagsMap = { [key: string]: string | undefined };
+export const GetServerResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ServerTagsMap>;
+) as any as S.Schema<GetServerResponseTagsMap>;
 
 /** Major version of PostgreSQL database engine. */
 export type PostgresMajorVersion =
@@ -4704,17 +2759,37 @@ export type CreateMode =
 export const CreateMode = /*@__PURE__*/ S.String;
 
 /** The private endpoint connection resource. */
-export type ServerPropertiesPrivateEndpointConnectionsItem =
-  PrivateEndpointConnectionListValueItem;
+export interface ServerPropertiesPrivateEndpointConnectionsItem {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource properties. */
+  properties?: PrivateEndpointConnectionProperties;
+}
 export const ServerPropertiesPrivateEndpointConnectionsItem =
-  PrivateEndpointConnectionListValueItem;
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(PrivateEndpointConnectionProperties),
+    }),
+  ).annotate({
+    identifier: "ServerPropertiesPrivateEndpointConnectionsItem",
+  }) as any as S.Schema<ServerPropertiesPrivateEndpointConnectionsItem>;
 
 /** List of private endpoint connections associated with the specified server. */
 export type ServerPropertiesPrivateEndpointConnectionsList =
-  Array<PrivateEndpointConnectionListValueItem>;
+  Array<ServerPropertiesPrivateEndpointConnectionsItem>;
 export const ServerPropertiesPrivateEndpointConnectionsList =
   /*@__PURE__*/ S.Array(
-    PrivateEndpointConnectionListValueItem,
+    ServerPropertiesPrivateEndpointConnectionsItem,
   ) as any as S.Schema<ServerPropertiesPrivateEndpointConnectionsList>;
 
 /** Cluster properties of a server. */
@@ -4879,6 +2954,1862 @@ export const UserAssignedIdentity = /*@__PURE__*/ S.suspend(() =>
   identifier: "UserAssignedIdentity",
 }) as any as S.Schema<UserAssignedIdentity>;
 
+export interface GetServerResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetServerResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of a server. */
+  properties?: ServerProperties;
+  /** Compute tier and size of a server. */
+  sku?: Sku;
+  /** User assigned managed identities assigned to the server. */
+  identity?: UserAssignedIdentity;
+}
+export const GetServerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetServerResponseTagsMap),
+    location: S.String,
+    properties: S.optional(ServerProperties),
+    sku: S.optional(Sku),
+    identity: S.optional(UserAssignedIdentity),
+  }),
+).annotate({
+  identifier: "GetServerResponse",
+}) as any as S.Schema<GetServerResponse>;
+
+export type GetTuningOptionRequestTuningOption = "index" | "table";
+export const GetTuningOptionRequestTuningOption = /*@__PURE__*/ S.String;
+
+export interface GetTuningOptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the server. */
+  serverName: string;
+  /** The name of the tuning option. */
+  tuningOption: GetTuningOptionRequestTuningOption | (string & {});
+}
+export const GetTuningOptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serverName: S.String.pipe(T.Label()),
+    tuningOption: GetTuningOptionRequestTuningOption.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/tuningOptions/{tuningOption}",
+      code: 200,
+      apiVersion: "2025-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetTuningOptionRequest",
+}) as any as S.Schema<GetTuningOptionRequest>;
+
+/** Properties of a tuning option. */
+export interface TuningOptionsProperties {
+  /** State of the tuning option. */
+  state?: string;
+}
+export const TuningOptionsProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    state: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "TuningOptionsProperties",
+}) as any as S.Schema<TuningOptionsProperties>;
+
+export interface GetTuningOptionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: TuningOptionsProperties;
+}
+export const GetTuningOptionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(TuningOptionsProperties),
+  }),
+).annotate({
+  identifier: "GetTuningOptionResponse",
+}) as any as S.Schema<GetTuningOptionResponse>;
+
+export interface GetVirtualEndpointRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the server. */
+  serverName: string;
+  /** Base name of the virtual endpoints. */
+  virtualEndpointName: string;
+}
+export const GetVirtualEndpointRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serverName: S.String.pipe(T.Label()),
+    virtualEndpointName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/virtualendpoints/{virtualEndpointName}",
+      code: 200,
+      apiVersion: "2025-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetVirtualEndpointRequest",
+}) as any as S.Schema<GetVirtualEndpointRequest>;
+
+/** List of servers that one of the virtual endpoints can refer to. */
+export type VirtualEndpointResourcePropertiesMembersList = Array<string>;
+export const VirtualEndpointResourcePropertiesMembersList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<VirtualEndpointResourcePropertiesMembersList>;
+
+/** List of virtual endpoints for a server. */
+export type VirtualEndpointResourcePropertiesVirtualEndpointsList =
+  Array<string>;
+export const VirtualEndpointResourcePropertiesVirtualEndpointsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<VirtualEndpointResourcePropertiesVirtualEndpointsList>;
+
+/** Properties of a pair of virtual endpoints. */
+export interface VirtualEndpointResourceProperties {
+  /** Type of endpoint for the virtual endpoints. */
+  endpointType?: VirtualEndpointType;
+  /** List of servers that one of the virtual endpoints can refer to. */
+  members?: VirtualEndpointResourcePropertiesMembersList;
+  /** List of virtual endpoints for a server. */
+  virtualEndpoints?: VirtualEndpointResourcePropertiesVirtualEndpointsList;
+}
+export const VirtualEndpointResourceProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    endpointType: S.optional(VirtualEndpointType),
+    members: S.optional(VirtualEndpointResourcePropertiesMembersList),
+    virtualEndpoints: S.optional(
+      VirtualEndpointResourcePropertiesVirtualEndpointsList,
+    ),
+  }),
+).annotate({
+  identifier: "VirtualEndpointResourceProperties",
+}) as any as S.Schema<VirtualEndpointResourceProperties>;
+
+export interface GetVirtualEndpointResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of the pair of virtual endpoints. */
+  properties?: VirtualEndpointResourceProperties;
+}
+export const GetVirtualEndpointResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(VirtualEndpointResourceProperties),
+  }),
+).annotate({
+  identifier: "GetVirtualEndpointResponse",
+}) as any as S.Schema<GetVirtualEndpointResponse>;
+
+export interface ListAdministratorsMicrosoftEntraByServerRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the server. */
+  serverName: string;
+}
+export const ListAdministratorsMicrosoftEntraByServerRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      serverName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/administrators",
+        code: 200,
+        apiVersion: "2025-08-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListAdministratorsMicrosoftEntraByServerRequest",
+  }) as any as S.Schema<ListAdministratorsMicrosoftEntraByServerRequest>;
+
+/** Server administrator associated to a Microsoft Entra principal. */
+export interface AdministratorMicrosoftEntra {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of a server administrator associated to a Microsoft Entra principal. */
+  properties: AdministratorMicrosoftEntraProperties;
+}
+export const AdministratorMicrosoftEntra = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: AdministratorMicrosoftEntraProperties,
+  }),
+).annotate({
+  identifier: "AdministratorMicrosoftEntra",
+}) as any as S.Schema<AdministratorMicrosoftEntra>;
+
+/** The AdministratorMicrosoftEntra items on this page */
+export type AdministratorMicrosoftEntraListValueList =
+  Array<AdministratorMicrosoftEntra>;
+export const AdministratorMicrosoftEntraListValueList = /*@__PURE__*/ S.Array(
+  AdministratorMicrosoftEntra,
+) as any as S.Schema<AdministratorMicrosoftEntraListValueList>;
+
+/** List of server administrators associated to Microsoft Entra principals. */
+export interface AdministratorMicrosoftEntraList {
+  /** The AdministratorMicrosoftEntra items on this page */
+  value: AdministratorMicrosoftEntraListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const AdministratorMicrosoftEntraList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: AdministratorMicrosoftEntraListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AdministratorMicrosoftEntraList",
+}) as any as S.Schema<AdministratorMicrosoftEntraList>;
+
+export interface ListAdvancedThreatProtectionSettingsByServerRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the server. */
+  serverName: string;
+}
+export const ListAdvancedThreatProtectionSettingsByServerRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      serverName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/advancedThreatProtectionSettings",
+        code: 200,
+        apiVersion: "2025-08-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListAdvancedThreatProtectionSettingsByServerRequest",
+  }) as any as S.Schema<ListAdvancedThreatProtectionSettingsByServerRequest>;
+
+/** Advanced threat protection settings of the server. */
+export interface AdvancedThreatProtectionSettingsModel {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Advanced threat protection properties. */
+  properties?: AdvancedThreatProtectionSettingsProperties;
+}
+export const AdvancedThreatProtectionSettingsModel = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(AdvancedThreatProtectionSettingsProperties),
+    }),
+).annotate({
+  identifier: "AdvancedThreatProtectionSettingsModel",
+}) as any as S.Schema<AdvancedThreatProtectionSettingsModel>;
+
+/** The AdvancedThreatProtectionSettingsModel items on this page */
+export type AdvancedThreatProtectionSettingsListValueList =
+  Array<AdvancedThreatProtectionSettingsModel>;
+export const AdvancedThreatProtectionSettingsListValueList =
+  /*@__PURE__*/ S.Array(
+    AdvancedThreatProtectionSettingsModel,
+  ) as any as S.Schema<AdvancedThreatProtectionSettingsListValueList>;
+
+/** List of advanced threat protection settings for a server. */
+export interface AdvancedThreatProtectionSettingsList {
+  /** The AdvancedThreatProtectionSettingsModel items on this page */
+  value: AdvancedThreatProtectionSettingsListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const AdvancedThreatProtectionSettingsList = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      value: AdvancedThreatProtectionSettingsListValueList,
+      nextLink: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "AdvancedThreatProtectionSettingsList",
+}) as any as S.Schema<AdvancedThreatProtectionSettingsList>;
+
+export interface ListBackupsAutomaticAndOnDemandByServerRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the server. */
+  serverName: string;
+}
+export const ListBackupsAutomaticAndOnDemandByServerRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      serverName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/backups",
+        code: 200,
+        apiVersion: "2025-08-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListBackupsAutomaticAndOnDemandByServerRequest",
+  }) as any as S.Schema<ListBackupsAutomaticAndOnDemandByServerRequest>;
+
+/** Properties of a backup. */
+export interface BackupAutomaticAndOnDemand {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of a backup. */
+  properties?: BackupAutomaticAndOnDemandProperties;
+}
+export const BackupAutomaticAndOnDemand = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(BackupAutomaticAndOnDemandProperties),
+  }),
+).annotate({
+  identifier: "BackupAutomaticAndOnDemand",
+}) as any as S.Schema<BackupAutomaticAndOnDemand>;
+
+/** The BackupAutomaticAndOnDemand items on this page */
+export type BackupAutomaticAndOnDemandListValueList =
+  Array<BackupAutomaticAndOnDemand>;
+export const BackupAutomaticAndOnDemandListValueList = /*@__PURE__*/ S.Array(
+  BackupAutomaticAndOnDemand,
+) as any as S.Schema<BackupAutomaticAndOnDemandListValueList>;
+
+/** List of backups. */
+export interface BackupAutomaticAndOnDemandList {
+  /** The BackupAutomaticAndOnDemand items on this page */
+  value: BackupAutomaticAndOnDemandListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const BackupAutomaticAndOnDemandList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: BackupAutomaticAndOnDemandListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "BackupAutomaticAndOnDemandList",
+}) as any as S.Schema<BackupAutomaticAndOnDemandList>;
+
+export interface ListBackupsLongTermRetentionByServerRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the server. */
+  serverName: string;
+}
+export const ListBackupsLongTermRetentionByServerRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      serverName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/ltrBackupOperations",
+        code: 200,
+        apiVersion: "2025-08-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListBackupsLongTermRetentionByServerRequest",
+  }) as any as S.Schema<ListBackupsLongTermRetentionByServerRequest>;
+
+/** Response for the LTR backup Operation API call */
+export interface BackupsLongTermRetentionOperation {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Long Term Retention Backup Operation Resource Properties */
+  properties?: LtrBackupOperationResponseProperties;
+}
+export const BackupsLongTermRetentionOperation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(LtrBackupOperationResponseProperties),
+  }),
+).annotate({
+  identifier: "BackupsLongTermRetentionOperation",
+}) as any as S.Schema<BackupsLongTermRetentionOperation>;
+
+/** The BackupsLongTermRetentionOperation items on this page */
+export type LtrServerBackupOperationListValueList =
+  Array<BackupsLongTermRetentionOperation>;
+export const LtrServerBackupOperationListValueList = /*@__PURE__*/ S.Array(
+  BackupsLongTermRetentionOperation,
+) as any as S.Schema<LtrServerBackupOperationListValueList>;
+
+/** A list of long term retention backup operations for server. */
+export interface LtrServerBackupOperationList {
+  /** The BackupsLongTermRetentionOperation items on this page */
+  value: LtrServerBackupOperationListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const LtrServerBackupOperationList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: LtrServerBackupOperationListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "LtrServerBackupOperationList",
+}) as any as S.Schema<LtrServerBackupOperationList>;
+
+export interface ListCapabilitiesByLocationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the location. */
+  locationName: string;
+}
+export const ListCapabilitiesByLocationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    locationName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DBforPostgreSQL/locations/{locationName}/capabilities",
+      code: 200,
+      apiVersion: "2025-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListCapabilitiesByLocationRequest",
+}) as any as S.Schema<ListCapabilitiesByLocationRequest>;
+
+/** Status of the capability. */
+export type CapabilityStatus = "Visible" | "Available" | "Default" | "Disabled";
+export const CapabilityStatus = /*@__PURE__*/ S.String;
+
+/** Capability of a storage tier. */
+export interface StorageTierCapability {
+  /** Status of the capability. */
+  status?: CapabilityStatus;
+  /** Reason for the capability not being available. */
+  reason?: string;
+  /** Name of the storage tier. */
+  name?: string;
+  /** Supported IOPS for the storage tier. */
+  iops?: number;
+}
+export const StorageTierCapability = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(CapabilityStatus),
+    reason: S.optional(S.String),
+    name: S.optional(S.String),
+    iops: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "StorageTierCapability",
+}) as any as S.Schema<StorageTierCapability>;
+
+/** List of all supported storage tiers for this tier and storage size. */
+export type StorageMbCapabilitySupportedIopsTiersList =
+  Array<StorageTierCapability>;
+export const StorageMbCapabilitySupportedIopsTiersList = /*@__PURE__*/ S.Array(
+  StorageTierCapability,
+) as any as S.Schema<StorageMbCapabilitySupportedIopsTiersList>;
+
+/** Storage size (in MB) capability. */
+export interface StorageMbCapability {
+  /** Status of the capability. */
+  status?: CapabilityStatus;
+  /** Reason for the capability not being available. */
+  reason?: string;
+  /** Minimum IOPS supported by the storage size. */
+  supportedIops?: number;
+  /** Maximum IOPS supported by the storage size. */
+  supportedMaximumIops?: number;
+  /** Minimum supported size (in MB) of storage. */
+  storageSizeMb?: number;
+  /** Maximum supported size (in MB) of storage. */
+  maximumStorageSizeMb?: number;
+  /** Minimum supported throughput (in MB/s) of storage. */
+  supportedThroughput?: number;
+  /** Maximum supported throughput (in MB/s) of storage. */
+  supportedMaximumThroughput?: number;
+  /** Default IOPS for this tier and storage size. */
+  defaultIopsTier?: string;
+  /** List of all supported storage tiers for this tier and storage size. */
+  supportedIopsTiers?: StorageMbCapabilitySupportedIopsTiersList;
+}
+export const StorageMbCapability = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(CapabilityStatus),
+    reason: S.optional(S.String),
+    supportedIops: S.optional(S.Number),
+    supportedMaximumIops: S.optional(S.Number),
+    storageSizeMb: S.optional(S.Number),
+    maximumStorageSizeMb: S.optional(S.Number),
+    supportedThroughput: S.optional(S.Number),
+    supportedMaximumThroughput: S.optional(S.Number),
+    defaultIopsTier: S.optional(S.String),
+    supportedIopsTiers: S.optional(StorageMbCapabilitySupportedIopsTiersList),
+  }),
+).annotate({
+  identifier: "StorageMbCapability",
+}) as any as S.Schema<StorageMbCapability>;
+
+/** Configurations of storage supported for this storage tier. */
+export type StorageEditionCapabilitySupportedStorageMbList =
+  Array<StorageMbCapability>;
+export const StorageEditionCapabilitySupportedStorageMbList =
+  /*@__PURE__*/ S.Array(
+    StorageMbCapability,
+  ) as any as S.Schema<StorageEditionCapabilitySupportedStorageMbList>;
+
+/** Capabilities in terms of storage tier. */
+export interface StorageEditionCapability {
+  /** Status of the capability. */
+  status?: CapabilityStatus;
+  /** Reason for the capability not being available. */
+  reason?: string;
+  /** Name of storage tier. */
+  name?: string;
+  /** Default storage size (in MB) for this storage tier. */
+  defaultStorageSizeMb?: number;
+  /** Configurations of storage supported for this storage tier. */
+  supportedStorageMb?: StorageEditionCapabilitySupportedStorageMbList;
+}
+export const StorageEditionCapability = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(CapabilityStatus),
+    reason: S.optional(S.String),
+    name: S.optional(S.String),
+    defaultStorageSizeMb: S.optional(S.Number),
+    supportedStorageMb: S.optional(
+      StorageEditionCapabilitySupportedStorageMbList,
+    ),
+  }),
+).annotate({
+  identifier: "StorageEditionCapability",
+}) as any as S.Schema<StorageEditionCapability>;
+
+/** List of storage editions supported by this compute tier and compute name. */
+export type ServerEditionCapabilitySupportedStorageEditionsList =
+  Array<StorageEditionCapability>;
+export const ServerEditionCapabilitySupportedStorageEditionsList =
+  /*@__PURE__*/ S.Array(
+    StorageEditionCapability,
+  ) as any as S.Schema<ServerEditionCapabilitySupportedStorageEditionsList>;
+
+/** List of supported availability zones. E.g. '1', '2', '3' */
+export type ServerSkuCapabilitySupportedZonesList = Array<string>;
+export const ServerSkuCapabilitySupportedZonesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ServerSkuCapabilitySupportedZonesList>;
+
+/** Mode of high availability supported for this compute. */
+export type HighAvailabilityMode2 = "ZoneRedundant" | "SameZone";
+export const HighAvailabilityMode2 = /*@__PURE__*/ S.String;
+
+/** Modes of high availability supported for this compute. */
+export type ServerSkuCapabilitySupportedHaModeList =
+  Array<HighAvailabilityMode2>;
+export const ServerSkuCapabilitySupportedHaModeList = /*@__PURE__*/ S.Array(
+  HighAvailabilityMode2,
+) as any as S.Schema<ServerSkuCapabilitySupportedHaModeList>;
+
+/** Status of the feature. Indicates if the feature is enabled or not. */
+export type FeatureStatus = "Enabled" | "Disabled";
+export const FeatureStatus = /*@__PURE__*/ S.String;
+
+/** Features supported. */
+export interface SupportedFeature {
+  /** Name of the feature. */
+  name?: string;
+  /** Status of the feature. Indicates if the feature is enabled or not. */
+  status?: FeatureStatus;
+}
+export const SupportedFeature = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    status: S.optional(FeatureStatus),
+  }),
+).annotate({
+  identifier: "SupportedFeature",
+}) as any as S.Schema<SupportedFeature>;
+
+/** Features supported. */
+export type ServerSkuCapabilitySupportedFeaturesList = Array<SupportedFeature>;
+export const ServerSkuCapabilitySupportedFeaturesList = /*@__PURE__*/ S.Array(
+  SupportedFeature,
+) as any as S.Schema<ServerSkuCapabilitySupportedFeaturesList>;
+
+/** Capabilities in terms of compute. */
+export interface ServerSkuCapability {
+  /** Status of the capability. */
+  status?: CapabilityStatus;
+  /** Reason for the capability not being available. */
+  reason?: string;
+  /** Name of the compute (SKU). */
+  name?: string;
+  /** vCores available for this compute. */
+  vCores?: number;
+  /** Maximum IOPS supported by this compute. */
+  supportedIops?: number;
+  /** Supported memory (in MB) per virtual core assigned to this compute. */
+  supportedMemoryPerVcoreMb?: number;
+  /** List of supported availability zones. E.g. '1', '2', '3' */
+  supportedZones?: ServerSkuCapabilitySupportedZonesList;
+  /** Modes of high availability supported for this compute. */
+  supportedHaMode?: ServerSkuCapabilitySupportedHaModeList;
+  /** Features supported. */
+  supportedFeatures?: ServerSkuCapabilitySupportedFeaturesList;
+  /** Security profile of the compute. Indicates if it's a Confidential Compute virtual machine. */
+  securityProfile?: string;
+}
+export const ServerSkuCapability = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(CapabilityStatus),
+    reason: S.optional(S.String),
+    name: S.optional(S.String),
+    vCores: S.optional(S.Number),
+    supportedIops: S.optional(S.Number),
+    supportedMemoryPerVcoreMb: S.optional(S.Number),
+    supportedZones: S.optional(ServerSkuCapabilitySupportedZonesList),
+    supportedHaMode: S.optional(ServerSkuCapabilitySupportedHaModeList),
+    supportedFeatures: S.optional(ServerSkuCapabilitySupportedFeaturesList),
+    securityProfile: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ServerSkuCapability",
+}) as any as S.Schema<ServerSkuCapability>;
+
+/** List of supported compute names (SKUs). */
+export type ServerEditionCapabilitySupportedServerSkusList =
+  Array<ServerSkuCapability>;
+export const ServerEditionCapabilitySupportedServerSkusList =
+  /*@__PURE__*/ S.Array(
+    ServerSkuCapability,
+  ) as any as S.Schema<ServerEditionCapabilitySupportedServerSkusList>;
+
+/** Capabilities in terms of compute tier. */
+export interface ServerEditionCapability {
+  /** Status of the capability. */
+  status?: CapabilityStatus;
+  /** Reason for the capability not being available. */
+  reason?: string;
+  /** Name of compute tier. */
+  name?: string;
+  /** Default compute name (SKU) for this computer tier. */
+  defaultSkuName?: string;
+  /** List of storage editions supported by this compute tier and compute name. */
+  supportedStorageEditions?: ServerEditionCapabilitySupportedStorageEditionsList;
+  /** List of supported compute names (SKUs). */
+  supportedServerSkus?: ServerEditionCapabilitySupportedServerSkusList;
+}
+export const ServerEditionCapability = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(CapabilityStatus),
+    reason: S.optional(S.String),
+    name: S.optional(S.String),
+    defaultSkuName: S.optional(S.String),
+    supportedStorageEditions: S.optional(
+      ServerEditionCapabilitySupportedStorageEditionsList,
+    ),
+    supportedServerSkus: S.optional(
+      ServerEditionCapabilitySupportedServerSkusList,
+    ),
+  }),
+).annotate({
+  identifier: "ServerEditionCapability",
+}) as any as S.Schema<ServerEditionCapability>;
+
+/** List of supported compute tiers. */
+export type CapabilitySupportedServerEditionsList =
+  Array<ServerEditionCapability>;
+export const CapabilitySupportedServerEditionsList = /*@__PURE__*/ S.Array(
+  ServerEditionCapability,
+) as any as S.Schema<CapabilitySupportedServerEditionsList>;
+
+/** Major versions of PostgreSQL database engine to which this version can be automatically upgraded. */
+export type ServerVersionCapabilitySupportedVersionsToUpgradeList =
+  Array<string>;
+export const ServerVersionCapabilitySupportedVersionsToUpgradeList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ServerVersionCapabilitySupportedVersionsToUpgradeList>;
+
+/** Features supported. */
+export type ServerVersionCapabilitySupportedFeaturesList =
+  Array<SupportedFeature>;
+export const ServerVersionCapabilitySupportedFeaturesList =
+  /*@__PURE__*/ S.Array(
+    SupportedFeature,
+  ) as any as S.Schema<ServerVersionCapabilitySupportedFeaturesList>;
+
+/** Capabilities in terms of major versions of PostgreSQL database engine. */
+export interface ServerVersionCapability {
+  /** Status of the capability. */
+  status?: CapabilityStatus;
+  /** Reason for the capability not being available. */
+  reason?: string;
+  /** Major version of PostgreSQL database engine. */
+  name?: string;
+  /** Major versions of PostgreSQL database engine to which this version can be automatically upgraded. */
+  supportedVersionsToUpgrade?: ServerVersionCapabilitySupportedVersionsToUpgradeList;
+  /** Features supported. */
+  supportedFeatures?: ServerVersionCapabilitySupportedFeaturesList;
+}
+export const ServerVersionCapability = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(CapabilityStatus),
+    reason: S.optional(S.String),
+    name: S.optional(S.String),
+    supportedVersionsToUpgrade: S.optional(
+      ServerVersionCapabilitySupportedVersionsToUpgradeList,
+    ),
+    supportedFeatures: S.optional(ServerVersionCapabilitySupportedFeaturesList),
+  }),
+).annotate({
+  identifier: "ServerVersionCapability",
+}) as any as S.Schema<ServerVersionCapability>;
+
+/** List of supported major versions of PostgreSQL database engine. */
+export type CapabilitySupportedServerVersionsList =
+  Array<ServerVersionCapability>;
+export const CapabilitySupportedServerVersionsList = /*@__PURE__*/ S.Array(
+  ServerVersionCapability,
+) as any as S.Schema<CapabilitySupportedServerVersionsList>;
+
+/** Features supported. */
+export type CapabilitySupportedFeaturesList = Array<SupportedFeature>;
+export const CapabilitySupportedFeaturesList = /*@__PURE__*/ S.Array(
+  SupportedFeature,
+) as any as S.Schema<CapabilitySupportedFeaturesList>;
+
+/** Indicates if fast provisioning is supported. 'Enabled' means fast provisioning is supported. 'Disabled' stands for fast provisioning is not supported. Will be deprecated in the future. Look to Supported Features for 'FastProvisioning'. */
+export type FastProvisioningSupport = "Enabled" | "Disabled";
+export const FastProvisioningSupport = /*@__PURE__*/ S.String;
+
+/** Capability of a fast provisioning compute tier. */
+export interface FastProvisioningEditionCapability {
+  /** Status of the capability. */
+  status?: CapabilityStatus;
+  /** Reason for the capability not being available. */
+  reason?: string;
+  /** Compute tier supporting fast provisioning. */
+  supportedTier?: string;
+  /** Compute name (SKU) supporting fast provisioning. */
+  supportedSku?: string;
+  /** Storage size (in GB) supporting fast provisioning. */
+  supportedStorageGb?: number;
+  /** Major version of PostgreSQL database engine supporting fast provisioning. */
+  supportedServerVersions?: string;
+  /** Count of servers in cache matching this specification. */
+  serverCount?: number;
+}
+export const FastProvisioningEditionCapability = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(CapabilityStatus),
+    reason: S.optional(S.String),
+    supportedTier: S.optional(S.String),
+    supportedSku: S.optional(S.String),
+    supportedStorageGb: S.optional(S.Number),
+    supportedServerVersions: S.optional(S.String),
+    serverCount: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "FastProvisioningEditionCapability",
+}) as any as S.Schema<FastProvisioningEditionCapability>;
+
+/** List of compute tiers supporting fast provisioning. */
+export type CapabilitySupportedFastProvisioningEditionsList =
+  Array<FastProvisioningEditionCapability>;
+export const CapabilitySupportedFastProvisioningEditionsList =
+  /*@__PURE__*/ S.Array(
+    FastProvisioningEditionCapability,
+  ) as any as S.Schema<CapabilitySupportedFastProvisioningEditionsList>;
+
+/** Indicates if geographically redundant backups are supported in this location. Will be deprecated in the future. Look to Supported Features for 'GeoBackup'. */
+export type GeographicallyRedundantBackupSupport = "Enabled" | "Disabled";
+export const GeographicallyRedundantBackupSupport = /*@__PURE__*/ S.String;
+
+/** Indicates if high availability with zone redundancy is supported in this location. Will be deprecated in the future. Look to Supported Features for 'ZoneRedundantHa'. */
+export type ZoneRedundantHighAvailabilitySupport = "Enabled" | "Disabled";
+export const ZoneRedundantHighAvailabilitySupport = /*@__PURE__*/ S.String;
+
+/** Indicates if high availability with zone redundancy is supported in conjunction with geographically redundant backups in this location. Will be deprecated in the future. Look to Supported Features for 'ZoneRedundantHaAndGeoBackup'. */
+export type ZoneRedundantHighAvailabilityAndGeographicallyRedundantBackupSupport =
+  | "Enabled"
+  | "Disabled";
+export const ZoneRedundantHighAvailabilityAndGeographicallyRedundantBackupSupport =
+  /*@__PURE__*/ S.String;
+
+/** Indicates if storage autogrow is supported in this location. Will be deprecated in the future. Look to Supported Features for 'StorageAutoGrowth'. */
+export type StorageAutoGrowthSupport = "Enabled" | "Disabled";
+export const StorageAutoGrowthSupport = /*@__PURE__*/ S.String;
+
+/** Indicates if resizing the storage, without interrupting the operation of the database engine, is supported in this location for the given subscription. Will be deprecated in the future. Look to Supported Features for 'OnlineResize'. */
+export type OnlineStorageResizeSupport = "Enabled" | "Disabled";
+export const OnlineStorageResizeSupport = /*@__PURE__*/ S.String;
+
+/** Indicates if this location is restricted. Will be deprecated in the future. Look to Supported Features for 'Restricted'. */
+export type LocationRestricted = "Enabled" | "Disabled";
+export const LocationRestricted = /*@__PURE__*/ S.String;
+
+/** Capability for the Azure Database for PostgreSQL flexible server. */
+export interface Capability {
+  /** Status of the capability. */
+  status?: CapabilityStatus;
+  /** Reason for the capability not being available. */
+  reason?: string;
+  /** Name of flexible servers capabilities. */
+  name?: string;
+  /** List of supported compute tiers. */
+  supportedServerEditions?: CapabilitySupportedServerEditionsList;
+  /** List of supported major versions of PostgreSQL database engine. */
+  supportedServerVersions?: CapabilitySupportedServerVersionsList;
+  /** Features supported. */
+  supportedFeatures?: CapabilitySupportedFeaturesList;
+  /** Indicates if fast provisioning is supported. 'Enabled' means fast provisioning is supported. 'Disabled' stands for fast provisioning is not supported. Will be deprecated in the future. Look to Supported Features for 'FastProvisioning'. */
+  fastProvisioningSupported?: FastProvisioningSupport;
+  /** List of compute tiers supporting fast provisioning. */
+  supportedFastProvisioningEditions?: CapabilitySupportedFastProvisioningEditionsList;
+  /** Indicates if geographically redundant backups are supported in this location. 'Enabled' means geographically redundant backups are supported. 'Disabled' stands for geographically redundant backup is not supported. Will be deprecated in the future. Look to Supported Features for 'GeoBackup'. */
+  geoBackupSupported?: GeographicallyRedundantBackupSupport;
+  /** Indicates if high availability with zone redundancy is supported in this location. 'Enabled' means high availability with zone redundancy is supported. 'Disabled' stands for high availability with zone redundancy is not supported. Will be deprecated in the future. Look to Supported Features for 'ZoneRedundantHa'. */
+  zoneRedundantHaSupported?: ZoneRedundantHighAvailabilitySupport;
+  /** Indicates if high availability with zone redundancy is supported in conjunction with geographically redundant backups in this location. 'Enabled' means high availability with zone redundancy is supported in conjunction with geographically redundant backups is supported. 'Disabled' stands for high availability with zone redundancy is supported in conjunction with geographically redundant backups is not supported. Will be deprecated in the future. Look to Supported Features for 'ZoneRedundantHaAndGeoBackup'. */
+  zoneRedundantHaAndGeoBackupSupported?: ZoneRedundantHighAvailabilityAndGeographicallyRedundantBackupSupport;
+  /** Indicates if storage autogrow is supported in this location. 'Enabled' means storage autogrow is supported. 'Disabled' stands for storage autogrow is not supported. Will be deprecated in the future. Look to Supported Features for 'StorageAutoGrowth'. */
+  storageAutoGrowthSupported?: StorageAutoGrowthSupport;
+  /** Indicates if resizing the storage, without interrupting the operation of the database engine, is supported in this location for the given subscription. 'Enabled' means resizing the storage without interrupting the operation of the database engine is supported. 'Disabled' means resizing the storage without interrupting the operation of the database engine is not supported. Will be deprecated in the future. Look to Supported Features for 'OnlineResize'. */
+  onlineResizeSupported?: OnlineStorageResizeSupport;
+  /** Indicates if this location is restricted. 'Enabled' means location is restricted. 'Disabled' stands for location is not restricted. Will be deprecated in the future. Look to Supported Features for 'Restricted'. */
+  restricted?: LocationRestricted;
+}
+export const Capability = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(CapabilityStatus),
+    reason: S.optional(S.String),
+    name: S.optional(S.String),
+    supportedServerEditions: S.optional(CapabilitySupportedServerEditionsList),
+    supportedServerVersions: S.optional(CapabilitySupportedServerVersionsList),
+    supportedFeatures: S.optional(CapabilitySupportedFeaturesList),
+    fastProvisioningSupported: S.optional(FastProvisioningSupport),
+    supportedFastProvisioningEditions: S.optional(
+      CapabilitySupportedFastProvisioningEditionsList,
+    ),
+    geoBackupSupported: S.optional(GeographicallyRedundantBackupSupport),
+    zoneRedundantHaSupported: S.optional(ZoneRedundantHighAvailabilitySupport),
+    zoneRedundantHaAndGeoBackupSupported: S.optional(
+      ZoneRedundantHighAvailabilityAndGeographicallyRedundantBackupSupport,
+    ),
+    storageAutoGrowthSupported: S.optional(StorageAutoGrowthSupport),
+    onlineResizeSupported: S.optional(OnlineStorageResizeSupport),
+    restricted: S.optional(LocationRestricted),
+  }),
+).annotate({ identifier: "Capability" }) as any as S.Schema<Capability>;
+
+/** The Capability items on this page */
+export type CapabilityListValueList = Array<Capability>;
+export const CapabilityListValueList = /*@__PURE__*/ S.Array(
+  Capability,
+) as any as S.Schema<CapabilityListValueList>;
+
+/** List of capabilities for the Azure Database for PostgreSQL flexible server. */
+export interface CapabilityList {
+  /** The Capability items on this page */
+  value: CapabilityListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const CapabilityList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: CapabilityListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "CapabilityList" }) as any as S.Schema<CapabilityList>;
+
+export interface ListCapabilitiesByServerRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the server. */
+  serverName: string;
+}
+export const ListCapabilitiesByServerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serverName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/capabilities",
+      code: 200,
+      apiVersion: "2025-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListCapabilitiesByServerRequest",
+}) as any as S.Schema<ListCapabilitiesByServerRequest>;
+
+export interface ListCapturedLogByServerRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the server. */
+  serverName: string;
+}
+export const ListCapturedLogByServerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serverName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/logFiles",
+      code: 200,
+      apiVersion: "2025-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListCapturedLogByServerRequest",
+}) as any as S.Schema<ListCapturedLogByServerRequest>;
+
+/** Properties of a log file. */
+export interface CapturedLogProperties {
+  /** Creation timestamp of the log file. */
+  createdTime?: string;
+  /** Last modified timestamp of the log file. */
+  lastModifiedTime?: string;
+  /** Size (in KB) of the log file. */
+  sizeInKb?: number;
+  /** Type of log file. Can be 'ServerLogs' or 'UpgradeLogs'. */
+  type?: string;
+  /** URL to download the log file from. */
+  url?: string;
+}
+export const CapturedLogProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdTime: S.optional(S.String),
+    lastModifiedTime: S.optional(S.String),
+    sizeInKb: S.optional(S.Number),
+    type: S.optional(S.String),
+    url: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CapturedLogProperties",
+}) as any as S.Schema<CapturedLogProperties>;
+
+/** Log file. */
+export interface CapturedLog {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of a log file. */
+  properties?: CapturedLogProperties;
+}
+export const CapturedLog = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(CapturedLogProperties),
+  }),
+).annotate({ identifier: "CapturedLog" }) as any as S.Schema<CapturedLog>;
+
+/** The CapturedLog items on this page */
+export type CapturedLogListValueList = Array<CapturedLog>;
+export const CapturedLogListValueList = /*@__PURE__*/ S.Array(
+  CapturedLog,
+) as any as S.Schema<CapturedLogListValueList>;
+
+/** List of log files. */
+export interface CapturedLogList {
+  /** The CapturedLog items on this page */
+  value: CapturedLogListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const CapturedLogList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: CapturedLogListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CapturedLogList",
+}) as any as S.Schema<CapturedLogList>;
+
+export interface ListConfigurationByServerRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the server. */
+  serverName: string;
+}
+export const ListConfigurationByServerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serverName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/configurations",
+      code: 200,
+      apiVersion: "2025-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListConfigurationByServerRequest",
+}) as any as S.Schema<ListConfigurationByServerRequest>;
+
+/** Configuration (also known as server parameter). */
+export interface Configuration {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of a configuration (also known as server parameter). */
+  properties?: ConfigurationProperties;
+}
+export const Configuration = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ConfigurationProperties),
+  }),
+).annotate({ identifier: "Configuration" }) as any as S.Schema<Configuration>;
+
+/** The Configuration items on this page */
+export type ConfigurationListValueList = Array<Configuration>;
+export const ConfigurationListValueList = /*@__PURE__*/ S.Array(
+  Configuration,
+) as any as S.Schema<ConfigurationListValueList>;
+
+/** List of configurations (also known as server parameters). */
+export interface ConfigurationList {
+  /** The Configuration items on this page */
+  value: ConfigurationListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ConfigurationList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ConfigurationListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ConfigurationList",
+}) as any as S.Schema<ConfigurationList>;
+
+export interface ListDatabaseByServerRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the server. */
+  serverName: string;
+}
+export const ListDatabaseByServerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serverName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/databases",
+      code: 200,
+      apiVersion: "2025-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListDatabaseByServerRequest",
+}) as any as S.Schema<ListDatabaseByServerRequest>;
+
+/** Represents a database. */
+export interface Database {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of a database. */
+  properties?: DatabaseProperties;
+}
+export const Database = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(DatabaseProperties),
+  }),
+).annotate({ identifier: "Database" }) as any as S.Schema<Database>;
+
+/** The Database items on this page */
+export type DatabaseListValueList = Array<Database>;
+export const DatabaseListValueList = /*@__PURE__*/ S.Array(
+  Database,
+) as any as S.Schema<DatabaseListValueList>;
+
+/** List of all databases in a server. */
+export interface DatabaseList {
+  /** The Database items on this page */
+  value: DatabaseListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const DatabaseList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: DatabaseListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "DatabaseList" }) as any as S.Schema<DatabaseList>;
+
+export interface ListFirewallRuleByServerRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the server. */
+  serverName: string;
+}
+export const ListFirewallRuleByServerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serverName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/firewallRules",
+      code: 200,
+      apiVersion: "2025-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListFirewallRuleByServerRequest",
+}) as any as S.Schema<ListFirewallRuleByServerRequest>;
+
+/** Firewall rule. */
+export interface FirewallRule {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of a firewall rule. */
+  properties: FirewallRuleProperties;
+}
+export const FirewallRule = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: FirewallRuleProperties,
+  }),
+).annotate({ identifier: "FirewallRule" }) as any as S.Schema<FirewallRule>;
+
+/** The FirewallRule items on this page */
+export type FirewallRuleListValueList = Array<FirewallRule>;
+export const FirewallRuleListValueList = /*@__PURE__*/ S.Array(
+  FirewallRule,
+) as any as S.Schema<FirewallRuleListValueList>;
+
+/** List of firewall rules. */
+export interface FirewallRuleList {
+  /** The FirewallRule items on this page */
+  value: FirewallRuleListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const FirewallRuleList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: FirewallRuleListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "FirewallRuleList",
+}) as any as S.Schema<FirewallRuleList>;
+
+export type ListMigrationByTargetServerRequestMigrationListFilter =
+  | "Active"
+  | "All";
+export const ListMigrationByTargetServerRequestMigrationListFilter =
+  /*@__PURE__*/ S.String;
+
+export interface ListMigrationByTargetServerRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the server. */
+  serverName: string;
+  /** Migration list filter. Indicates if the request should retrieve only active migrations or all migrations. Defaults to Active. */
+  migrationListFilter?:
+    | ListMigrationByTargetServerRequestMigrationListFilter
+    | (string & {});
+}
+export const ListMigrationByTargetServerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serverName: S.String.pipe(T.Label()),
+    migrationListFilter: S.optional(
+      ListMigrationByTargetServerRequestMigrationListFilter.pipe(T.Query()),
+    ),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/migrations",
+      code: 200,
+      apiVersion: "2025-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListMigrationByTargetServerRequest",
+}) as any as S.Schema<ListMigrationByTargetServerRequest>;
+
+/** Resource tags. */
+export type MigrationTagsMap = { [key: string]: string | undefined };
+export const MigrationTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<MigrationTagsMap>;
+
+/** Properties of a migration. */
+export interface Migration {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: MigrationTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Migration properties. */
+  properties?: MigrationProperties;
+}
+export const Migration = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(MigrationTagsMap),
+    location: S.String,
+    properties: S.optional(MigrationProperties),
+  }),
+).annotate({ identifier: "Migration" }) as any as S.Schema<Migration>;
+
+/** The Migration items on this page */
+export type MigrationListValueList = Array<Migration>;
+export const MigrationListValueList = /*@__PURE__*/ S.Array(
+  Migration,
+) as any as S.Schema<MigrationListValueList>;
+
+/** List of migrations. */
+export interface MigrationList {
+  /** The Migration items on this page */
+  value: MigrationListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const MigrationList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: MigrationListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "MigrationList" }) as any as S.Schema<MigrationList>;
+
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.DBforPostgreSQL/operations",
+      code: 200,
+      apiVersion: "2025-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
+
+/** Display metadata associated with the operation. */
+export interface OperationDisplay {
+  /** Name of the resource provider. */
+  provider?: string;
+  /** Type of resource on which the operation is performed. */
+  resource?: string;
+  /** Name of the operation. */
+  operation?: string;
+  /** Description of the operation. */
+  description?: string;
+}
+export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provider: S.optional(S.String),
+    resource: S.optional(S.String),
+    operation: S.optional(S.String),
+    description: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationDisplay",
+}) as any as S.Schema<OperationDisplay>;
+
+/** Intended executor of the operation. */
+export type OperationOrigin = "NotSpecified" | "user" | "system";
+export const OperationOrigin = /*@__PURE__*/ S.String;
+
+/** Supported aggregation types for the metric. */
+export type MetricSpecificationSupportedAggregationTypesList = Array<string>;
+export const MetricSpecificationSupportedAggregationTypesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<MetricSpecificationSupportedAggregationTypesList>;
+
+/** Supported time grain types for the metric. */
+export type MetricSpecificationSupportedTimeGrainTypesList = Array<string>;
+export const MetricSpecificationSupportedTimeGrainTypesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<MetricSpecificationSupportedTimeGrainTypesList>;
+
+/** Metric specification for an operation. */
+export interface MetricSpecification {
+  /** Name of the metric. */
+  name?: string;
+  /** Display name of the metric. */
+  displayName?: string;
+  /** Display description of the metric. */
+  displayDescription?: string;
+  /** Unit of the metric. */
+  unit?: string;
+  /** Aggregation type of the metric. */
+  aggregationType?: string;
+  /** Supported aggregation types for the metric. */
+  supportedAggregationTypes?: MetricSpecificationSupportedAggregationTypesList;
+  /** Supported time grain types for the metric. */
+  supportedTimeGrainTypes?: MetricSpecificationSupportedTimeGrainTypesList;
+  /** Category of the metric. */
+  category?: string;
+}
+export const MetricSpecification = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    displayName: S.optional(S.String),
+    displayDescription: S.optional(S.String),
+    unit: S.optional(S.String),
+    aggregationType: S.optional(S.String),
+    supportedAggregationTypes: S.optional(
+      MetricSpecificationSupportedAggregationTypesList,
+    ),
+    supportedTimeGrainTypes: S.optional(
+      MetricSpecificationSupportedTimeGrainTypesList,
+    ),
+    category: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "MetricSpecification",
+}) as any as S.Schema<MetricSpecification>;
+
+/** Metric specifications for the operation. */
+export type ServiceSpecificationMetricSpecificationsList =
+  Array<MetricSpecification>;
+export const ServiceSpecificationMetricSpecificationsList =
+  /*@__PURE__*/ S.Array(
+    MetricSpecification,
+  ) as any as S.Schema<ServiceSpecificationMetricSpecificationsList>;
+
+/** Log specification for an operation. */
+export interface LogSpecification {
+  /** Name of the log. */
+  name?: string;
+  /** Display name of the log. */
+  displayName?: string;
+  /** Blob duration for the log. */
+  blobDuration?: string;
+}
+export const LogSpecification = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    displayName: S.optional(S.String),
+    blobDuration: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "LogSpecification",
+}) as any as S.Schema<LogSpecification>;
+
+/** Log specifications for the operation. */
+export type ServiceSpecificationLogSpecificationsList = Array<LogSpecification>;
+export const ServiceSpecificationLogSpecificationsList = /*@__PURE__*/ S.Array(
+  LogSpecification,
+) as any as S.Schema<ServiceSpecificationLogSpecificationsList>;
+
+/** Service specification for an operation. */
+export interface ServiceSpecification {
+  /** Metric specifications for the operation. */
+  metricSpecifications?: ServiceSpecificationMetricSpecificationsList;
+  /** Log specifications for the operation. */
+  logSpecifications?: ServiceSpecificationLogSpecificationsList;
+}
+export const ServiceSpecification = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    metricSpecifications: S.optional(
+      ServiceSpecificationMetricSpecificationsList,
+    ),
+    logSpecifications: S.optional(ServiceSpecificationLogSpecificationsList),
+  }),
+).annotate({
+  identifier: "ServiceSpecification",
+}) as any as S.Schema<ServiceSpecification>;
+
+/** Additional properties for operation metadata. */
+export interface OperationProperties {
+  /** Service specification for the operation. */
+  serviceSpecification?: ServiceSpecification;
+}
+export const OperationProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceSpecification: S.optional(ServiceSpecification),
+  }),
+).annotate({
+  identifier: "OperationProperties",
+}) as any as S.Schema<OperationProperties>;
+
+/** REST API operation definition. */
+export interface Operation {
+  /** Name of the operation being performed on this particular object. */
+  name?: string;
+  /** Localized display information for this particular operation or action. */
+  display?: OperationDisplay;
+  /** Indicates if the operation is a data action. */
+  isDataAction?: boolean;
+  /** Intended executor of the operation. */
+  origin?: OperationOrigin;
+  /** Additional descriptions for the operation. */
+  properties?: OperationProperties;
+}
+export const Operation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    display: S.optional(OperationDisplay),
+    isDataAction: S.optional(S.Boolean),
+    origin: S.optional(OperationOrigin),
+    properties: S.optional(OperationProperties),
+  }),
+).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
+
+/** The Operation items on this page */
+export type OperationListValueList = Array<Operation>;
+export const OperationListValueList = /*@__PURE__*/ S.Array(
+  Operation,
+) as any as S.Schema<OperationListValueList>;
+
+/** Paged collection of Operation items */
+export interface OperationList {
+  /** The Operation items on this page */
+  value: OperationListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const OperationList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: OperationListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "OperationList" }) as any as S.Schema<OperationList>;
+
+export interface ListPrivateEndpointConnectionByServerRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the server. */
+  serverName: string;
+}
+export const ListPrivateEndpointConnectionByServerRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      serverName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/privateEndpointConnections",
+        code: 200,
+        apiVersion: "2025-08-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListPrivateEndpointConnectionByServerRequest",
+  }) as any as S.Schema<ListPrivateEndpointConnectionByServerRequest>;
+
+/** The private endpoint connection resource. */
+export type PrivateEndpointConnectionListValueItem =
+  ServerPropertiesPrivateEndpointConnectionsItem;
+export const PrivateEndpointConnectionListValueItem =
+  ServerPropertiesPrivateEndpointConnectionsItem;
+
+/** The PrivateEndpointConnection items on this page */
+export type PrivateEndpointConnectionListValueList =
+  Array<ServerPropertiesPrivateEndpointConnectionsItem>;
+export const PrivateEndpointConnectionListValueList = /*@__PURE__*/ S.Array(
+  ServerPropertiesPrivateEndpointConnectionsItem,
+) as any as S.Schema<PrivateEndpointConnectionListValueList>;
+
+/** List of private endpoint connections. */
+export interface PrivateEndpointConnectionList {
+  /** The PrivateEndpointConnection items on this page */
+  value: PrivateEndpointConnectionListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const PrivateEndpointConnectionList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: PrivateEndpointConnectionListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PrivateEndpointConnectionList",
+}) as any as S.Schema<PrivateEndpointConnectionList>;
+
+export interface ListPrivateLinkResourceByServerRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the server. */
+  serverName: string;
+}
+export const ListPrivateLinkResourceByServerRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      serverName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/privateLinkResources",
+        code: 200,
+        apiVersion: "2025-08-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListPrivateLinkResourceByServerRequest",
+}) as any as S.Schema<ListPrivateLinkResourceByServerRequest>;
+
+/** The private link resource required member names. */
+export type PrivateLinkResourcePropertiesRequiredMembersList = Array<string>;
+export const PrivateLinkResourcePropertiesRequiredMembersList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredMembersList>;
+
+/** The private link resource private link DNS zone name. */
+export type PrivateLinkResourcePropertiesRequiredZoneNamesList = Array<string>;
+export const PrivateLinkResourcePropertiesRequiredZoneNamesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredZoneNamesList>;
+
+/** Properties of a private link resource. */
+export interface PrivateLinkResourceProperties {
+  /** The private link resource group id. */
+  groupId?: string;
+  /** The private link resource required member names. */
+  requiredMembers?: PrivateLinkResourcePropertiesRequiredMembersList;
+  /** The private link resource private link DNS zone name. */
+  requiredZoneNames?: PrivateLinkResourcePropertiesRequiredZoneNamesList;
+}
+export const PrivateLinkResourceProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    groupId: S.optional(S.String),
+    requiredMembers: S.optional(
+      PrivateLinkResourcePropertiesRequiredMembersList,
+    ),
+    requiredZoneNames: S.optional(
+      PrivateLinkResourcePropertiesRequiredZoneNamesList,
+    ),
+  }),
+).annotate({
+  identifier: "PrivateLinkResourceProperties",
+}) as any as S.Schema<PrivateLinkResourceProperties>;
+
+/** A private link resource. */
+export interface PrivateLinkResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of a private link resource. */
+  properties?: PrivateLinkResourceProperties;
+}
+export const PrivateLinkResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(PrivateLinkResourceProperties),
+  }),
+).annotate({
+  identifier: "PrivateLinkResource",
+}) as any as S.Schema<PrivateLinkResource>;
+
+/** The PrivateLinkResource items on this page */
+export type PrivateLinkResourceListValueList = Array<PrivateLinkResource>;
+export const PrivateLinkResourceListValueList = /*@__PURE__*/ S.Array(
+  PrivateLinkResource,
+) as any as S.Schema<PrivateLinkResourceListValueList>;
+
+/** A list of private link resources */
+export interface PrivateLinkResourceList {
+  /** The PrivateLinkResource items on this page */
+  value: PrivateLinkResourceListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const PrivateLinkResourceList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: PrivateLinkResourceListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PrivateLinkResourceList",
+}) as any as S.Schema<PrivateLinkResourceList>;
+
+export interface ListQuotaUsagesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the location. */
+  locationName: string;
+}
+export const ListQuotaUsagesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    locationName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DBforPostgreSQL/locations/{locationName}/resourceType/flexibleServers/usages",
+      code: 200,
+      apiVersion: "2025-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListQuotaUsagesRequest",
+}) as any as S.Schema<ListQuotaUsagesRequest>;
+
+/** Name property for quota usage */
+export interface NameProperty {
+  /** Name value */
+  value?: string;
+  /** Localized name */
+  localizedValue?: string;
+}
+export const NameProperty = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(S.String),
+    localizedValue: S.optional(S.String),
+  }),
+).annotate({ identifier: "NameProperty" }) as any as S.Schema<NameProperty>;
+
+/** Quota usage for servers */
+export interface QuotaUsage {
+  /** Name of quota usage for servers */
+  name?: NameProperty;
+  /** Quota limit */
+  limit?: number;
+  /** Quota unit */
+  unit?: string;
+  /** Current Quota usage value */
+  currentValue?: number;
+  /** Fully qualified ARM resource Id */
+  id?: string;
+}
+export const QuotaUsage = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(NameProperty),
+    limit: S.optional(S.Number),
+    unit: S.optional(S.String),
+    currentValue: S.optional(S.Number),
+    id: S.optional(S.String),
+  }),
+).annotate({ identifier: "QuotaUsage" }) as any as S.Schema<QuotaUsage>;
+
+/** The QuotaUsage items on this page */
+export type QuotaUsageListValueList = Array<QuotaUsage>;
+export const QuotaUsageListValueList = /*@__PURE__*/ S.Array(
+  QuotaUsage,
+) as any as S.Schema<QuotaUsageListValueList>;
+
+/** Capability for the PostgreSQL server */
+export interface QuotaUsageList {
+  /** The QuotaUsage items on this page */
+  value: QuotaUsageListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const QuotaUsageList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: QuotaUsageListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "QuotaUsageList" }) as any as S.Schema<QuotaUsageList>;
+
+export interface ListReplicasByServerRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the server. */
+  serverName: string;
+}
+export const ListReplicasByServerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serverName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/replicas",
+      code: 200,
+      apiVersion: "2025-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListReplicasByServerRequest",
+}) as any as S.Schema<ListReplicasByServerRequest>;
+
+/** Resource tags. */
+export type ServerTagsMap = { [key: string]: string | undefined };
+export const ServerTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ServerTagsMap>;
+
 /** Properties of a server. */
 export interface Server {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -4934,296 +4865,13 @@ export const ServerList = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "ServerList" }) as any as S.Schema<ServerList>;
 
-/** Resource tags. */
-export type ServersCreateOrUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ServersCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ServersCreateOrUpdateRequestTagsMap>;
-
-/** Indicates if the server is configured to create geographically redundant backups. */
-export type BackupInputGeoRedundantBackup = "Enabled" | "Disabled";
-export const BackupInputGeoRedundantBackup = /*@__PURE__*/ S.String;
-
-/** Backup properties of a server. */
-export interface BackupInput {
-  /** Backup retention days for the server. */
-  backupRetentionDays?: number;
-  /** Indicates if the server is configured to create geographically redundant backups. */
-  geoRedundantBackup?: BackupInputGeoRedundantBackup | (string & {});
-}
-export const BackupInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    backupRetentionDays: S.optional(S.Number),
-    geoRedundantBackup: S.optional(BackupInputGeoRedundantBackup),
-  }),
-).annotate({ identifier: "BackupInput" }) as any as S.Schema<BackupInput>;
-
-/** Replica properties of a server. */
-export interface ReplicaInput {
-  /** Role of the server in a replication set. */
-  role?: ReplicationRole | (string & {});
-  /** Type of operation to apply on the read replica. This property is write only. Standalone means that the read replica will be promoted to a standalone server, and will become a completely independent entity from the replication set. Switchover means that the read replica will roles with the primary server. */
-  promoteMode?: ReadReplicaPromoteMode | (string & {});
-  /** Data synchronization option to use when processing the operation specified in the promoteMode property. This property is write only. */
-  promoteOption?: ReadReplicaPromoteOption | (string & {});
-}
-export const ReplicaInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    role: S.optional(ReplicationRole),
-    promoteMode: S.optional(ReadReplicaPromoteMode),
-    promoteOption: S.optional(ReadReplicaPromoteOption),
-  }),
-).annotate({ identifier: "ReplicaInput" }) as any as S.Schema<ReplicaInput>;
-
-/** Properties of a server. */
-export interface ServerPropertiesInput {
-  /** Name of the login designated as the first password based administrator assigned to your instance of PostgreSQL. Must be specified the first time that you enable password based authentication on a server. Once set to a given value, it cannot be changed for the rest of the life of a server. If you disable password based authentication on a server which had it enabled, this password based role isn't deleted. */
-  administratorLogin?: string;
-  /** Password assigned to the administrator login. As long as password authentication is enabled, this password can be changed at any time. */
-  administratorLoginPassword?: string | Redacted.Redacted<string>;
-  /** Major version of PostgreSQL database engine. */
-  version?: PostgresMajorVersion | (string & {});
-  /** Storage properties of a server. */
-  storage?: Storage;
-  /** Authentication configuration properties of a server. */
-  authConfig?: AuthConfig;
-  /** Data encryption properties of a server. */
-  dataEncryption?: DataEncryption;
-  /** Backup properties of a server. */
-  backup?: BackupInput;
-  /** Network properties of a server. Only required if you want your server to be integrated into a virtual network provided by customer. */
-  network?: Network;
-  /** High availability properties of a server. */
-  highAvailability?: HighAvailability;
-  /** Maintenance window properties of a server. */
-  maintenanceWindow?: MaintenanceWindow;
-  /** Identifier of the server to be used as the source of the new server. Required when 'createMode' is 'PointInTimeRestore', 'GeoRestore', 'Replica', or 'ReviveDropped'. This property is returned only when the target server is a read replica. */
-  sourceServerResourceId?: string;
-  /** Creation time (in ISO8601 format) of the backup which you want to restore in the new server. It's required when 'createMode' is 'PointInTimeRestore', 'GeoRestore', or 'ReviveDropped'. */
-  pointInTimeUTC?: string;
-  /** Availability zone of a server. */
-  availabilityZone?: string;
-  /** Role of the server in a replication set. */
-  replicationRole?: ReplicationRole | (string & {});
-  /** Read replica properties of a server. Required only in case that you want to promote a server. */
-  replica?: ReplicaInput;
-  /** Creation mode of a new server. */
-  createMode?: CreateMode | (string & {});
-  /** Cluster properties of a server. */
-  cluster?: Cluster;
-}
-export const ServerPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    administratorLogin: S.optional(S.String),
-    administratorLoginPassword: S.optional(S.String.pipe(T.SensitiveValue({}))),
-    version: S.optional(PostgresMajorVersion),
-    storage: S.optional(Storage),
-    authConfig: S.optional(AuthConfig),
-    dataEncryption: S.optional(DataEncryption),
-    backup: S.optional(BackupInput),
-    network: S.optional(Network),
-    highAvailability: S.optional(HighAvailability),
-    maintenanceWindow: S.optional(MaintenanceWindow),
-    sourceServerResourceId: S.optional(S.String),
-    pointInTimeUTC: S.optional(S.String),
-    availabilityZone: S.optional(S.String),
-    replicationRole: S.optional(ReplicationRole),
-    replica: S.optional(ReplicaInput),
-    createMode: S.optional(CreateMode),
-    cluster: S.optional(Cluster),
-  }),
-).annotate({
-  identifier: "ServerPropertiesInput",
-}) as any as S.Schema<ServerPropertiesInput>;
-
-/** Map of user assigned managed identities. */
-export type UserAssignedIdentityInputUserAssignedIdentitiesMap = {
-  [key: string]: UserIdentity | undefined;
-};
-export const UserAssignedIdentityInputUserAssignedIdentitiesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    UserIdentity,
-  ) as any as S.Schema<UserAssignedIdentityInputUserAssignedIdentitiesMap>;
-
-/** Identities associated with a server. */
-export interface UserAssignedIdentityInput {
-  /** Map of user assigned managed identities. */
-  userAssignedIdentities?: UserAssignedIdentityInputUserAssignedIdentitiesMap;
-  /** Identifier of the object of the service principal associated to the user assigned managed identity. */
-  principalId?: string;
-  /** Types of identities associated with a server. */
-  type: IdentityType | (string & {});
-}
-export const UserAssignedIdentityInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    userAssignedIdentities: S.optional(
-      UserAssignedIdentityInputUserAssignedIdentitiesMap,
-    ),
-    principalId: S.optional(S.String),
-    type: IdentityType,
-  }),
-).annotate({
-  identifier: "UserAssignedIdentityInput",
-}) as any as S.Schema<UserAssignedIdentityInput>;
-
-export interface ServersCreateOrUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the server. */
-  serverName: string;
-  /** Resource tags. */
-  tags?: ServersCreateOrUpdateRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of a server. */
-  properties?: ServerPropertiesInput;
-  /** Compute tier and size of a server. */
-  sku?: Sku;
-  /** User assigned managed identities assigned to the server. */
-  identity?: UserAssignedIdentityInput;
-}
-export const ServersCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serverName: S.String.pipe(T.Label()),
-    tags: S.optional(ServersCreateOrUpdateRequestTagsMap),
-    location: S.String,
-    properties: S.optional(ServerPropertiesInput),
-    sku: S.optional(Sku),
-    identity: S.optional(UserAssignedIdentityInput),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}",
-      code: 200,
-      apiVersion: "2025-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "ServersCreateOrUpdateRequest",
-}) as any as S.Schema<ServersCreateOrUpdateRequest>;
-
-export interface ServersCreateOrUpdateResponse {}
-export const ServersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ServersCreateOrUpdateResponse",
-}) as any as S.Schema<ServersCreateOrUpdateResponse>;
-
-export interface ServersDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the server. */
-  serverName: string;
-}
-export const ServersDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serverName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}",
-      code: 200,
-      apiVersion: "2025-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "ServersDeleteRequest",
-}) as any as S.Schema<ServersDeleteRequest>;
-
-export interface ServersDeleteResponse {}
-export const ServersDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ServersDeleteResponse",
-}) as any as S.Schema<ServersDeleteResponse>;
-
-export interface ServersGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the server. */
-  serverName: string;
-}
-export const ServersGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serverName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}",
-      code: 200,
-      apiVersion: "2025-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "ServersGetRequest",
-}) as any as S.Schema<ServersGetRequest>;
-
-/** Resource tags. */
-export type ServersGetResponseTagsMap = { [key: string]: string | undefined };
-export const ServersGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ServersGetResponseTagsMap>;
-
-export interface ServersGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ServersGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of a server. */
-  properties?: ServerProperties;
-  /** Compute tier and size of a server. */
-  sku?: Sku;
-  /** User assigned managed identities assigned to the server. */
-  identity?: UserAssignedIdentity;
-}
-export const ServersGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(ServersGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(ServerProperties),
-    sku: S.optional(Sku),
-    identity: S.optional(UserAssignedIdentity),
-  }),
-).annotate({
-  identifier: "ServersGetResponse",
-}) as any as S.Schema<ServersGetResponse>;
-
-export interface ServersListByResourceGroupRequest {
+export interface ListServerByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
 }
-export const ServersListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListServerByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -5236,14 +4884,14 @@ export const ServersListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ServersListByResourceGroupRequest",
-}) as any as S.Schema<ServersListByResourceGroupRequest>;
+  identifier: "ListServerByResourceGroupRequest",
+}) as any as S.Schema<ListServerByResourceGroupRequest>;
 
-export interface ServersListBySubscriptionRequest {
+export interface ListServerBySubscriptionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
 }
-export const ServersListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListServerBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
   }).pipe(
@@ -5255,56 +4903,10 @@ export const ServersListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ServersListBySubscriptionRequest",
-}) as any as S.Schema<ServersListBySubscriptionRequest>;
+  identifier: "ListServerBySubscriptionRequest",
+}) as any as S.Schema<ListServerBySubscriptionRequest>;
 
-/** Failover mode. */
-export type FailoverMode =
-  | "PlannedFailover"
-  | "ForcedFailover"
-  | "PlannedSwitchover"
-  | "ForcedSwitchover";
-export const FailoverMode = /*@__PURE__*/ S.String;
-
-export interface ServersRestartRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the server. */
-  serverName: string;
-  /** Indicates if restart the PostgreSQL database engine should failover or switch over from primary to standby. This only works if server has high availability enabled. */
-  restartWithFailover?: boolean;
-  /** Failover mode. */
-  failoverMode?: FailoverMode | (string & {});
-}
-export const ServersRestartRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serverName: S.String.pipe(T.Label()),
-    restartWithFailover: S.optional(S.Boolean),
-    failoverMode: S.optional(FailoverMode),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/restart",
-      code: 200,
-      apiVersion: "2025-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "ServersRestartRequest",
-}) as any as S.Schema<ServersRestartRequest>;
-
-export interface ServersRestartResponse {}
-export const ServersRestartResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ServersRestartResponse",
-}) as any as S.Schema<ServersRestartResponse>;
-
-export interface ServersStartRequest {
+export interface ListTuningOptionByServerRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5312,386 +4914,7 @@ export interface ServersStartRequest {
   /** The name of the server. */
   serverName: string;
 }
-export const ServersStartRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serverName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/start",
-      code: 200,
-      apiVersion: "2025-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "ServersStartRequest",
-}) as any as S.Schema<ServersStartRequest>;
-
-export interface ServersStartResponse {}
-export const ServersStartResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ServersStartResponse",
-}) as any as S.Schema<ServersStartResponse>;
-
-export interface ServersStopRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the server. */
-  serverName: string;
-}
-export const ServersStopRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serverName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/stop",
-      code: 200,
-      apiVersion: "2025-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "ServersStopRequest",
-}) as any as S.Schema<ServersStopRequest>;
-
-export interface ServersStopResponse {}
-export const ServersStopResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ServersStopResponse",
-}) as any as S.Schema<ServersStopResponse>;
-
-/** Compute information of a server. */
-export interface SkuForPatch {
-  /** Name by which is known a given compute size assigned to a server. */
-  name?: string;
-  /** Tier of the compute assigned to a server. */
-  tier?: SkuTier | (string & {});
-}
-export const SkuForPatch = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    tier: S.optional(SkuTier),
-  }),
-).annotate({ identifier: "SkuForPatch" }) as any as S.Schema<SkuForPatch>;
-
-/** Backup properties of a server. */
-export interface BackupForPatchInput {
-  /** Backup retention days for the server. */
-  backupRetentionDays?: number;
-}
-export const BackupForPatchInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    backupRetentionDays: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "BackupForPatchInput",
-}) as any as S.Schema<BackupForPatchInput>;
-
-/** Mode of high availability supported for this compute. */
-export type PostgreSqlFlexibleServerHighAvailabilityMode =
-  | "Disabled"
-  | "ZoneRedundant"
-  | "SameZone";
-export const PostgreSqlFlexibleServerHighAvailabilityMode =
-  /*@__PURE__*/ S.String;
-
-/** High availability properties of a server. */
-export interface HighAvailabilityForPatch {
-  /** High availability mode for a server. */
-  mode?: PostgreSqlFlexibleServerHighAvailabilityMode | (string & {});
-  /** Availability zone associated to the standby server created when high availability is set to SameZone or ZoneRedundant. */
-  standbyAvailabilityZone?: string;
-}
-export const HighAvailabilityForPatch = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    mode: S.optional(PostgreSqlFlexibleServerHighAvailabilityMode),
-    standbyAvailabilityZone: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "HighAvailabilityForPatch",
-}) as any as S.Schema<HighAvailabilityForPatch>;
-
-/** Maintenance window properties of a server. */
-export type MaintenanceWindowForPatch = MaintenanceWindow;
-export const MaintenanceWindowForPatch = MaintenanceWindow;
-
-/** Indicates if the server supports password based authentication. */
-export type PasswordBasedAuth = "Enabled" | "Disabled";
-export const PasswordBasedAuth = /*@__PURE__*/ S.String;
-
-/** Authentication configuration properties of a server. */
-export interface AuthConfigForPatch {
-  /** Indicates if the server supports Microsoft Entra authentication. */
-  activeDirectoryAuth?: MicrosoftEntraAuth | (string & {});
-  /** Indicates if the server supports password based authentication. */
-  passwordAuth?: PasswordBasedAuth | (string & {});
-  /** Identifier of the tenant of the delegated resource. */
-  tenantId?: string;
-}
-export const AuthConfigForPatch = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    activeDirectoryAuth: S.optional(MicrosoftEntraAuth),
-    passwordAuth: S.optional(PasswordBasedAuth),
-    tenantId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AuthConfigForPatch",
-}) as any as S.Schema<AuthConfigForPatch>;
-
-/** Update mode of an existing server. */
-export type CreateModeForPatch = "Default" | "Update";
-export const CreateModeForPatch = /*@__PURE__*/ S.String;
-
-/** Properties of a server. */
-export interface ServerPropertiesForPatchInput {
-  /** Password assigned to the administrator login. As long as password authentication is enabled, this password can be changed at any time. */
-  administratorLoginPassword?: string | Redacted.Redacted<string>;
-  /** Major version of PostgreSQL database engine. */
-  version?: PostgresMajorVersion | (string & {});
-  /** Storage properties of a server. */
-  storage?: Storage;
-  /** Backup properties of a server. */
-  backup?: BackupForPatchInput;
-  /** High availability properties of a server. */
-  highAvailability?: HighAvailabilityForPatch;
-  /** Maintenance window properties of a server. */
-  maintenanceWindow?: MaintenanceWindow;
-  /** Authentication configuration properties of a server. */
-  authConfig?: AuthConfigForPatch;
-  /** Data encryption properties of a server. */
-  dataEncryption?: DataEncryption;
-  /** Availability zone of a server. */
-  availabilityZone?: string;
-  /** Update mode of an existing server. */
-  createMode?: CreateModeForPatch | (string & {});
-  /** Role of the server in a replication set. */
-  replicationRole?: ReplicationRole | (string & {});
-  /** Read replica properties of a server. Required only in case that you want to promote a server. */
-  replica?: ReplicaInput;
-  /** Network properties of a server. Only required if you want your server to be integrated into a virtual network provided by customer. */
-  network?: Network;
-  /** Cluster properties of a server. */
-  cluster?: Cluster;
-}
-export const ServerPropertiesForPatchInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    administratorLoginPassword: S.optional(S.String.pipe(T.SensitiveValue({}))),
-    version: S.optional(PostgresMajorVersion),
-    storage: S.optional(Storage),
-    backup: S.optional(BackupForPatchInput),
-    highAvailability: S.optional(HighAvailabilityForPatch),
-    maintenanceWindow: S.optional(MaintenanceWindow),
-    authConfig: S.optional(AuthConfigForPatch),
-    dataEncryption: S.optional(DataEncryption),
-    availabilityZone: S.optional(S.String),
-    createMode: S.optional(CreateModeForPatch),
-    replicationRole: S.optional(ReplicationRole),
-    replica: S.optional(ReplicaInput),
-    network: S.optional(Network),
-    cluster: S.optional(Cluster),
-  }),
-).annotate({
-  identifier: "ServerPropertiesForPatchInput",
-}) as any as S.Schema<ServerPropertiesForPatchInput>;
-
-/** Application-specific metadata in the form of key-value pairs. */
-export type ServersUpdateRequestTagsMap = { [key: string]: string | undefined };
-export const ServersUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ServersUpdateRequestTagsMap>;
-
-export interface ServersUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the server. */
-  serverName: string;
-  /** Compute tier and size of a server. */
-  sku?: SkuForPatch;
-  /** Describes the identity of the application. */
-  identity?: UserAssignedIdentityInput;
-  /** Properties of the server. */
-  properties?: ServerPropertiesForPatchInput;
-  /** Application-specific metadata in the form of key-value pairs. */
-  tags?: ServersUpdateRequestTagsMap;
-}
-export const ServersUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serverName: S.String.pipe(T.Label()),
-    sku: S.optional(SkuForPatch),
-    identity: S.optional(UserAssignedIdentityInput),
-    properties: S.optional(ServerPropertiesForPatchInput),
-    tags: S.optional(ServersUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}",
-      code: 200,
-      apiVersion: "2025-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "ServersUpdateRequest",
-}) as any as S.Schema<ServersUpdateRequest>;
-
-export interface ServersUpdateResponse {}
-export const ServersUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ServersUpdateResponse",
-}) as any as S.Schema<ServersUpdateResponse>;
-
-export type ServerThreatProtectionSettingsCreateOrUpdateRequestThreatProtectionName =
-  "Default";
-export const ServerThreatProtectionSettingsCreateOrUpdateRequestThreatProtectionName =
-  /*@__PURE__*/ S.String;
-
-/** Properties of advanced threat protection state for a server. */
-export interface AdvancedThreatProtectionSettingsPropertiesInput {
-  /** Specifies the state of the advanced threat protection, whether it is enabled, disabled, or a state has not been applied yet on the server. */
-  state: ThreatProtectionState | (string & {});
-}
-export const AdvancedThreatProtectionSettingsPropertiesInput =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      state: ThreatProtectionState,
-    }),
-  ).annotate({
-    identifier: "AdvancedThreatProtectionSettingsPropertiesInput",
-  }) as any as S.Schema<AdvancedThreatProtectionSettingsPropertiesInput>;
-
-export interface ServerThreatProtectionSettingsCreateOrUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the server. */
-  serverName: string;
-  /** Name of the advanced threat protection settings. */
-  threatProtectionName:
-    | ServerThreatProtectionSettingsCreateOrUpdateRequestThreatProtectionName
-    | (string & {});
-  /** Advanced threat protection properties. */
-  properties?: AdvancedThreatProtectionSettingsPropertiesInput;
-}
-export const ServerThreatProtectionSettingsCreateOrUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      serverName: S.String.pipe(T.Label()),
-      threatProtectionName:
-        ServerThreatProtectionSettingsCreateOrUpdateRequestThreatProtectionName.pipe(
-          T.Label(),
-        ),
-      properties: S.optional(AdvancedThreatProtectionSettingsPropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/advancedThreatProtectionSettings/{threatProtectionName}",
-        code: 200,
-        apiVersion: "2025-08-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ServerThreatProtectionSettingsCreateOrUpdateRequest",
-  }) as any as S.Schema<ServerThreatProtectionSettingsCreateOrUpdateRequest>;
-
-export interface ServerThreatProtectionSettingsCreateOrUpdateResponse {}
-export const ServerThreatProtectionSettingsCreateOrUpdateResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "ServerThreatProtectionSettingsCreateOrUpdateResponse",
-  }) as any as S.Schema<ServerThreatProtectionSettingsCreateOrUpdateResponse>;
-
-export type TuningOptionsGetRequestTuningOption = "index" | "table";
-export const TuningOptionsGetRequestTuningOption = /*@__PURE__*/ S.String;
-
-export interface TuningOptionsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the server. */
-  serverName: string;
-  /** The name of the tuning option. */
-  tuningOption: TuningOptionsGetRequestTuningOption | (string & {});
-}
-export const TuningOptionsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serverName: S.String.pipe(T.Label()),
-    tuningOption: TuningOptionsGetRequestTuningOption.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/tuningOptions/{tuningOption}",
-      code: 200,
-      apiVersion: "2025-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "TuningOptionsGetRequest",
-}) as any as S.Schema<TuningOptionsGetRequest>;
-
-/** Properties of a tuning option. */
-export interface TuningOptionsProperties {
-  /** State of the tuning option. */
-  state?: string;
-}
-export const TuningOptionsProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    state: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "TuningOptionsProperties",
-}) as any as S.Schema<TuningOptionsProperties>;
-
-export interface TuningOptionsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: TuningOptionsProperties;
-}
-export const TuningOptionsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(TuningOptionsProperties),
-  }),
-).annotate({
-  identifier: "TuningOptionsGetResponse",
-}) as any as S.Schema<TuningOptionsGetResponse>;
-
-export interface TuningOptionsListByServerRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the server. */
-  serverName: string;
-}
-export const TuningOptionsListByServerRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListTuningOptionByServerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -5705,8 +4928,8 @@ export const TuningOptionsListByServerRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "TuningOptionsListByServerRequest",
-}) as any as S.Schema<TuningOptionsListByServerRequest>;
+  identifier: "ListTuningOptionByServerRequest",
+}) as any as S.Schema<ListTuningOptionByServerRequest>;
 
 /** Impact on some metric if this recommended action is applied. */
 export interface TuningOptions {
@@ -5753,21 +4976,21 @@ export const TuningOptionsList = /*@__PURE__*/ S.suspend(() =>
   identifier: "TuningOptionsList",
 }) as any as S.Schema<TuningOptionsList>;
 
-export type TuningOptionsListRecommendationsRequestTuningOption =
+export type ListTuningOptionRecommendationsRequestTuningOption =
   | "index"
   | "table";
-export const TuningOptionsListRecommendationsRequestTuningOption =
+export const ListTuningOptionRecommendationsRequestTuningOption =
   /*@__PURE__*/ S.String;
 
-export type TuningOptionsListRecommendationsRequestRecommendationType =
+export type ListTuningOptionRecommendationsRequestRecommendationType =
   | "CreateIndex"
   | "DropIndex"
   | "ReIndex"
   | "AnalyzeTable";
-export const TuningOptionsListRecommendationsRequestRecommendationType =
+export const ListTuningOptionRecommendationsRequestRecommendationType =
   /*@__PURE__*/ S.String;
 
-export interface TuningOptionsListRecommendationsRequest {
+export interface ListTuningOptionRecommendationsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5776,24 +4999,24 @@ export interface TuningOptionsListRecommendationsRequest {
   serverName: string;
   /** The name of the tuning option. */
   tuningOption:
-    | TuningOptionsListRecommendationsRequestTuningOption
+    | ListTuningOptionRecommendationsRequestTuningOption
     | (string & {});
   /** Recommendations list filter. Retrieves recommendations based on type. */
   recommendationType?:
-    | TuningOptionsListRecommendationsRequestRecommendationType
+    | ListTuningOptionRecommendationsRequestRecommendationType
     | (string & {});
 }
-export const TuningOptionsListRecommendationsRequest = /*@__PURE__*/ S.suspend(
+export const ListTuningOptionRecommendationsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       serverName: S.String.pipe(T.Label()),
-      tuningOption: TuningOptionsListRecommendationsRequestTuningOption.pipe(
+      tuningOption: ListTuningOptionRecommendationsRequestTuningOption.pipe(
         T.Label(),
       ),
       recommendationType: S.optional(
-        TuningOptionsListRecommendationsRequestRecommendationType.pipe(
+        ListTuningOptionRecommendationsRequestRecommendationType.pipe(
           T.Query(),
         ),
       ),
@@ -5806,8 +5029,8 @@ export const TuningOptionsListRecommendationsRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "TuningOptionsListRecommendationsRequest",
-}) as any as S.Schema<TuningOptionsListRecommendationsRequest>;
+  identifier: "ListTuningOptionRecommendationsRequest",
+}) as any as S.Schema<ListTuningOptionRecommendationsRequest>;
 
 /** List of identifiers for all queries identified as targets for improvement if the recommendation is applied. The list is only populated for CREATE INDEX recommendations. */
 export type ObjectRecommendationPropertiesImprovedQueryIdsList = Array<number>;
@@ -6035,196 +5258,7 @@ export const ObjectRecommendationList = /*@__PURE__*/ S.suspend(() =>
   identifier: "ObjectRecommendationList",
 }) as any as S.Schema<ObjectRecommendationList>;
 
-/** Type of endpoint for the virtual endpoints. */
-export type VirtualEndpointType = "ReadWrite";
-export const VirtualEndpointType = /*@__PURE__*/ S.String;
-
-/** List of servers that one of the virtual endpoints can refer to. */
-export type VirtualEndpointResourcePropertiesInputMembersList = Array<string>;
-export const VirtualEndpointResourcePropertiesInputMembersList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<VirtualEndpointResourcePropertiesInputMembersList>;
-
-/** Properties of a pair of virtual endpoints. */
-export interface VirtualEndpointResourcePropertiesInput {
-  /** Type of endpoint for the virtual endpoints. */
-  endpointType?: VirtualEndpointType | (string & {});
-  /** List of servers that one of the virtual endpoints can refer to. */
-  members?: VirtualEndpointResourcePropertiesInputMembersList;
-}
-export const VirtualEndpointResourcePropertiesInput = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      endpointType: S.optional(VirtualEndpointType),
-      members: S.optional(VirtualEndpointResourcePropertiesInputMembersList),
-    }),
-).annotate({
-  identifier: "VirtualEndpointResourcePropertiesInput",
-}) as any as S.Schema<VirtualEndpointResourcePropertiesInput>;
-
-export interface VirtualEndpointsCreateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the server. */
-  serverName: string;
-  /** Base name of the virtual endpoints. */
-  virtualEndpointName: string;
-  /** Properties of the pair of virtual endpoints. */
-  properties?: VirtualEndpointResourcePropertiesInput;
-}
-export const VirtualEndpointsCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serverName: S.String.pipe(T.Label()),
-    virtualEndpointName: S.String.pipe(T.Label()),
-    properties: S.optional(VirtualEndpointResourcePropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/virtualendpoints/{virtualEndpointName}",
-      code: 200,
-      apiVersion: "2025-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "VirtualEndpointsCreateRequest",
-}) as any as S.Schema<VirtualEndpointsCreateRequest>;
-
-export interface VirtualEndpointsCreateResponse {}
-export const VirtualEndpointsCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "VirtualEndpointsCreateResponse",
-}) as any as S.Schema<VirtualEndpointsCreateResponse>;
-
-export interface VirtualEndpointsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the server. */
-  serverName: string;
-  /** Base name of the virtual endpoints. */
-  virtualEndpointName: string;
-}
-export const VirtualEndpointsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serverName: S.String.pipe(T.Label()),
-    virtualEndpointName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/virtualendpoints/{virtualEndpointName}",
-      code: 200,
-      apiVersion: "2025-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "VirtualEndpointsDeleteRequest",
-}) as any as S.Schema<VirtualEndpointsDeleteRequest>;
-
-export interface VirtualEndpointsDeleteResponse {}
-export const VirtualEndpointsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "VirtualEndpointsDeleteResponse",
-}) as any as S.Schema<VirtualEndpointsDeleteResponse>;
-
-export interface VirtualEndpointsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the server. */
-  serverName: string;
-  /** Base name of the virtual endpoints. */
-  virtualEndpointName: string;
-}
-export const VirtualEndpointsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serverName: S.String.pipe(T.Label()),
-    virtualEndpointName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/virtualendpoints/{virtualEndpointName}",
-      code: 200,
-      apiVersion: "2025-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "VirtualEndpointsGetRequest",
-}) as any as S.Schema<VirtualEndpointsGetRequest>;
-
-/** List of servers that one of the virtual endpoints can refer to. */
-export type VirtualEndpointResourcePropertiesMembersList = Array<string>;
-export const VirtualEndpointResourcePropertiesMembersList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<VirtualEndpointResourcePropertiesMembersList>;
-
-/** List of virtual endpoints for a server. */
-export type VirtualEndpointResourcePropertiesVirtualEndpointsList =
-  Array<string>;
-export const VirtualEndpointResourcePropertiesVirtualEndpointsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<VirtualEndpointResourcePropertiesVirtualEndpointsList>;
-
-/** Properties of a pair of virtual endpoints. */
-export interface VirtualEndpointResourceProperties {
-  /** Type of endpoint for the virtual endpoints. */
-  endpointType?: VirtualEndpointType;
-  /** List of servers that one of the virtual endpoints can refer to. */
-  members?: VirtualEndpointResourcePropertiesMembersList;
-  /** List of virtual endpoints for a server. */
-  virtualEndpoints?: VirtualEndpointResourcePropertiesVirtualEndpointsList;
-}
-export const VirtualEndpointResourceProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    endpointType: S.optional(VirtualEndpointType),
-    members: S.optional(VirtualEndpointResourcePropertiesMembersList),
-    virtualEndpoints: S.optional(
-      VirtualEndpointResourcePropertiesVirtualEndpointsList,
-    ),
-  }),
-).annotate({
-  identifier: "VirtualEndpointResourceProperties",
-}) as any as S.Schema<VirtualEndpointResourceProperties>;
-
-export interface VirtualEndpointsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of the pair of virtual endpoints. */
-  properties?: VirtualEndpointResourceProperties;
-}
-export const VirtualEndpointsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(VirtualEndpointResourceProperties),
-  }),
-).annotate({
-  identifier: "VirtualEndpointsGetResponse",
-}) as any as S.Schema<VirtualEndpointsGetResponse>;
-
-export interface VirtualEndpointsListByServerRequest {
+export interface ListVirtualEndpointByServerRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -6232,7 +5266,7 @@ export interface VirtualEndpointsListByServerRequest {
   /** The name of the server. */
   serverName: string;
 }
-export const VirtualEndpointsListByServerRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListVirtualEndpointByServerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -6246,8 +5280,8 @@ export const VirtualEndpointsListByServerRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "VirtualEndpointsListByServerRequest",
-}) as any as S.Schema<VirtualEndpointsListByServerRequest>;
+  identifier: "ListVirtualEndpointByServerRequest",
+}) as any as S.Schema<ListVirtualEndpointByServerRequest>;
 
 /** Pair of virtual endpoints for a server. */
 export interface VirtualEndpoint {
@@ -6296,45 +5330,7 @@ export const VirtualEndpointsList = /*@__PURE__*/ S.suspend(() =>
   identifier: "VirtualEndpointsList",
 }) as any as S.Schema<VirtualEndpointsList>;
 
-export interface VirtualEndpointsUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the server. */
-  serverName: string;
-  /** Base name of the virtual endpoints. */
-  virtualEndpointName: string;
-  /** Properties of the pair of virtual endpoints. */
-  properties?: VirtualEndpointResourcePropertiesInput;
-}
-export const VirtualEndpointsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serverName: S.String.pipe(T.Label()),
-    virtualEndpointName: S.String.pipe(T.Label()),
-    properties: S.optional(VirtualEndpointResourcePropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/virtualendpoints/{virtualEndpointName}",
-      code: 200,
-      apiVersion: "2025-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "VirtualEndpointsUpdateRequest",
-}) as any as S.Schema<VirtualEndpointsUpdateRequest>;
-
-export interface VirtualEndpointsUpdateResponse {}
-export const VirtualEndpointsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "VirtualEndpointsUpdateResponse",
-}) as any as S.Schema<VirtualEndpointsUpdateResponse>;
-
-export interface VirtualNetworkSubnetUsageListRequest {
+export interface ListVirtualNetworkSubnetUsageRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the location. */
@@ -6342,7 +5338,7 @@ export interface VirtualNetworkSubnetUsageListRequest {
   /** Virtual network resource id. */
   virtualNetworkArmResourceId?: string;
 }
-export const VirtualNetworkSubnetUsageListRequest = /*@__PURE__*/ S.suspend(
+export const ListVirtualNetworkSubnetUsageRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -6357,8 +5353,8 @@ export const VirtualNetworkSubnetUsageListRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "VirtualNetworkSubnetUsageListRequest",
-}) as any as S.Schema<VirtualNetworkSubnetUsageListRequest>;
+  identifier: "ListVirtualNetworkSubnetUsageRequest",
+}) as any as S.Schema<ListVirtualNetworkSubnetUsageRequest>;
 
 /** Delegated subnet usage data. */
 export interface DelegatedSubnetUsage {
@@ -6403,6 +5399,1007 @@ export const VirtualNetworkSubnetUsageModel = /*@__PURE__*/ S.suspend(() =>
   identifier: "VirtualNetworkSubnetUsageModel",
 }) as any as S.Schema<VirtualNetworkSubnetUsageModel>;
 
+/** Properties of a configuration (also known as server parameter). */
+export interface ConfigurationPropertiesInput {
+  /** Value of the configuration (also known as server parameter). Required to update the value assigned to a specific modifiable configuration. */
+  value?: string;
+  /** Source of the value assigned to the configuration (also known as server parameter). Required to update the value assigned to a specific modifiable configuration. */
+  source?: string;
+}
+export const ConfigurationPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(S.String),
+    source: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ConfigurationPropertiesInput",
+}) as any as S.Schema<ConfigurationPropertiesInput>;
+
+export interface PutConfigurationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the server. */
+  serverName: string;
+  /** Name of the configuration (also known as server parameter). */
+  configurationName: string;
+  /** Properties of a configuration (also known as server parameter). */
+  properties?: ConfigurationPropertiesInput;
+}
+export const PutConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serverName: S.String.pipe(T.Label()),
+    configurationName: S.String.pipe(T.Label()),
+    properties: S.optional(ConfigurationPropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/configurations/{configurationName}",
+      code: 200,
+      apiVersion: "2025-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "PutConfigurationRequest",
+}) as any as S.Schema<PutConfigurationRequest>;
+
+export interface PutConfigurationResponse {}
+export const PutConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "PutConfigurationResponse",
+}) as any as S.Schema<PutConfigurationResponse>;
+
+/** Failover mode. */
+export type FailoverMode =
+  | "PlannedFailover"
+  | "ForcedFailover"
+  | "PlannedSwitchover"
+  | "ForcedSwitchover";
+export const FailoverMode = /*@__PURE__*/ S.String;
+
+export interface RestartServerRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the server. */
+  serverName: string;
+  /** Indicates if restart the PostgreSQL database engine should failover or switch over from primary to standby. This only works if server has high availability enabled. */
+  restartWithFailover?: boolean;
+  /** Failover mode. */
+  failoverMode?: FailoverMode | (string & {});
+}
+export const RestartServerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serverName: S.String.pipe(T.Label()),
+    restartWithFailover: S.optional(S.Boolean),
+    failoverMode: S.optional(FailoverMode),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/restart",
+      code: 200,
+      apiVersion: "2025-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "RestartServerRequest",
+}) as any as S.Schema<RestartServerRequest>;
+
+export interface RestartServerResponse {}
+export const RestartServerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "RestartServerResponse",
+}) as any as S.Schema<RestartServerResponse>;
+
+/** Resource tags. */
+export type ServersCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const ServersCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ServersCreateOrUpdateRequestTagsMap>;
+
+/** Indicates if the server is configured to create geographically redundant backups. */
+export type BackupInputGeoRedundantBackup = "Enabled" | "Disabled";
+export const BackupInputGeoRedundantBackup = /*@__PURE__*/ S.String;
+
+/** Backup properties of a server. */
+export interface BackupInput {
+  /** Backup retention days for the server. */
+  backupRetentionDays?: number;
+  /** Indicates if the server is configured to create geographically redundant backups. */
+  geoRedundantBackup?: BackupInputGeoRedundantBackup | (string & {});
+}
+export const BackupInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    backupRetentionDays: S.optional(S.Number),
+    geoRedundantBackup: S.optional(BackupInputGeoRedundantBackup),
+  }),
+).annotate({ identifier: "BackupInput" }) as any as S.Schema<BackupInput>;
+
+/** Replica properties of a server. */
+export interface ReplicaInput {
+  /** Role of the server in a replication set. */
+  role?: ReplicationRole | (string & {});
+  /** Type of operation to apply on the read replica. This property is write only. Standalone means that the read replica will be promoted to a standalone server, and will become a completely independent entity from the replication set. Switchover means that the read replica will roles with the primary server. */
+  promoteMode?: ReadReplicaPromoteMode | (string & {});
+  /** Data synchronization option to use when processing the operation specified in the promoteMode property. This property is write only. */
+  promoteOption?: ReadReplicaPromoteOption | (string & {});
+}
+export const ReplicaInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    role: S.optional(ReplicationRole),
+    promoteMode: S.optional(ReadReplicaPromoteMode),
+    promoteOption: S.optional(ReadReplicaPromoteOption),
+  }),
+).annotate({ identifier: "ReplicaInput" }) as any as S.Schema<ReplicaInput>;
+
+/** Properties of a server. */
+export interface ServerPropertiesInput {
+  /** Name of the login designated as the first password based administrator assigned to your instance of PostgreSQL. Must be specified the first time that you enable password based authentication on a server. Once set to a given value, it cannot be changed for the rest of the life of a server. If you disable password based authentication on a server which had it enabled, this password based role isn't deleted. */
+  administratorLogin?: string;
+  /** Password assigned to the administrator login. As long as password authentication is enabled, this password can be changed at any time. */
+  administratorLoginPassword?: string | Redacted.Redacted<string>;
+  /** Major version of PostgreSQL database engine. */
+  version?: PostgresMajorVersion | (string & {});
+  /** Storage properties of a server. */
+  storage?: Storage;
+  /** Authentication configuration properties of a server. */
+  authConfig?: AuthConfig;
+  /** Data encryption properties of a server. */
+  dataEncryption?: DataEncryption;
+  /** Backup properties of a server. */
+  backup?: BackupInput;
+  /** Network properties of a server. Only required if you want your server to be integrated into a virtual network provided by customer. */
+  network?: Network;
+  /** High availability properties of a server. */
+  highAvailability?: HighAvailability;
+  /** Maintenance window properties of a server. */
+  maintenanceWindow?: MaintenanceWindow;
+  /** Identifier of the server to be used as the source of the new server. Required when 'createMode' is 'PointInTimeRestore', 'GeoRestore', 'Replica', or 'ReviveDropped'. This property is returned only when the target server is a read replica. */
+  sourceServerResourceId?: string;
+  /** Creation time (in ISO8601 format) of the backup which you want to restore in the new server. It's required when 'createMode' is 'PointInTimeRestore', 'GeoRestore', or 'ReviveDropped'. */
+  pointInTimeUTC?: string;
+  /** Availability zone of a server. */
+  availabilityZone?: string;
+  /** Role of the server in a replication set. */
+  replicationRole?: ReplicationRole | (string & {});
+  /** Read replica properties of a server. Required only in case that you want to promote a server. */
+  replica?: ReplicaInput;
+  /** Creation mode of a new server. */
+  createMode?: CreateMode | (string & {});
+  /** Cluster properties of a server. */
+  cluster?: Cluster;
+}
+export const ServerPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    administratorLogin: S.optional(S.String),
+    administratorLoginPassword: S.optional(S.String.pipe(T.SensitiveValue({}))),
+    version: S.optional(PostgresMajorVersion),
+    storage: S.optional(Storage),
+    authConfig: S.optional(AuthConfig),
+    dataEncryption: S.optional(DataEncryption),
+    backup: S.optional(BackupInput),
+    network: S.optional(Network),
+    highAvailability: S.optional(HighAvailability),
+    maintenanceWindow: S.optional(MaintenanceWindow),
+    sourceServerResourceId: S.optional(S.String),
+    pointInTimeUTC: S.optional(S.String),
+    availabilityZone: S.optional(S.String),
+    replicationRole: S.optional(ReplicationRole),
+    replica: S.optional(ReplicaInput),
+    createMode: S.optional(CreateMode),
+    cluster: S.optional(Cluster),
+  }),
+).annotate({
+  identifier: "ServerPropertiesInput",
+}) as any as S.Schema<ServerPropertiesInput>;
+
+/** Map of user assigned managed identities. */
+export type UserAssignedIdentityInputUserAssignedIdentitiesMap = {
+  [key: string]: UserIdentity | undefined;
+};
+export const UserAssignedIdentityInputUserAssignedIdentitiesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    UserIdentity,
+  ) as any as S.Schema<UserAssignedIdentityInputUserAssignedIdentitiesMap>;
+
+/** Identities associated with a server. */
+export interface UserAssignedIdentityInput {
+  /** Map of user assigned managed identities. */
+  userAssignedIdentities?: UserAssignedIdentityInputUserAssignedIdentitiesMap;
+  /** Identifier of the object of the service principal associated to the user assigned managed identity. */
+  principalId?: string;
+  /** Types of identities associated with a server. */
+  type: IdentityType | (string & {});
+}
+export const UserAssignedIdentityInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    userAssignedIdentities: S.optional(
+      UserAssignedIdentityInputUserAssignedIdentitiesMap,
+    ),
+    principalId: S.optional(S.String),
+    type: IdentityType,
+  }),
+).annotate({
+  identifier: "UserAssignedIdentityInput",
+}) as any as S.Schema<UserAssignedIdentityInput>;
+
+export interface ServersCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the server. */
+  serverName: string;
+  /** Resource tags. */
+  tags?: ServersCreateOrUpdateRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of a server. */
+  properties?: ServerPropertiesInput;
+  /** Compute tier and size of a server. */
+  sku?: Sku;
+  /** User assigned managed identities assigned to the server. */
+  identity?: UserAssignedIdentityInput;
+}
+export const ServersCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serverName: S.String.pipe(T.Label()),
+    tags: S.optional(ServersCreateOrUpdateRequestTagsMap),
+    location: S.String,
+    properties: S.optional(ServerPropertiesInput),
+    sku: S.optional(Sku),
+    identity: S.optional(UserAssignedIdentityInput),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}",
+      code: 200,
+      apiVersion: "2025-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "ServersCreateOrUpdateRequest",
+}) as any as S.Schema<ServersCreateOrUpdateRequest>;
+
+export interface ServersCreateOrUpdateResponse {}
+export const ServersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "ServersCreateOrUpdateResponse",
+}) as any as S.Schema<ServersCreateOrUpdateResponse>;
+
+export type ServerThreatProtectionSettingsCreateOrUpdateRequestThreatProtectionName =
+  "Default";
+export const ServerThreatProtectionSettingsCreateOrUpdateRequestThreatProtectionName =
+  /*@__PURE__*/ S.String;
+
+/** Properties of advanced threat protection state for a server. */
+export interface AdvancedThreatProtectionSettingsPropertiesInput {
+  /** Specifies the state of the advanced threat protection, whether it is enabled, disabled, or a state has not been applied yet on the server. */
+  state: ThreatProtectionState | (string & {});
+}
+export const AdvancedThreatProtectionSettingsPropertiesInput =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      state: ThreatProtectionState,
+    }),
+  ).annotate({
+    identifier: "AdvancedThreatProtectionSettingsPropertiesInput",
+  }) as any as S.Schema<AdvancedThreatProtectionSettingsPropertiesInput>;
+
+export interface ServerThreatProtectionSettingsCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the server. */
+  serverName: string;
+  /** Name of the advanced threat protection settings. */
+  threatProtectionName:
+    | ServerThreatProtectionSettingsCreateOrUpdateRequestThreatProtectionName
+    | (string & {});
+  /** Advanced threat protection properties. */
+  properties?: AdvancedThreatProtectionSettingsPropertiesInput;
+}
+export const ServerThreatProtectionSettingsCreateOrUpdateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      serverName: S.String.pipe(T.Label()),
+      threatProtectionName:
+        ServerThreatProtectionSettingsCreateOrUpdateRequestThreatProtectionName.pipe(
+          T.Label(),
+        ),
+      properties: S.optional(AdvancedThreatProtectionSettingsPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/advancedThreatProtectionSettings/{threatProtectionName}",
+        code: 200,
+        apiVersion: "2025-08-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ServerThreatProtectionSettingsCreateOrUpdateRequest",
+  }) as any as S.Schema<ServerThreatProtectionSettingsCreateOrUpdateRequest>;
+
+export interface ServerThreatProtectionSettingsCreateOrUpdateResponse {}
+export const ServerThreatProtectionSettingsCreateOrUpdateResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "ServerThreatProtectionSettingsCreateOrUpdateResponse",
+  }) as any as S.Schema<ServerThreatProtectionSettingsCreateOrUpdateResponse>;
+
+/** List of SAS uri of storage containers where backup data is to be streamed/copied. */
+export type BackupStoreDetailsSasUriListList = Array<string>;
+export const BackupStoreDetailsSasUriListList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<BackupStoreDetailsSasUriListList>;
+
+/** Details about the target where the backup content will be stored. */
+export interface BackupStoreDetails {
+  /** List of SAS uri of storage containers where backup data is to be streamed/copied. */
+  sasUriList: BackupStoreDetailsSasUriListList;
+}
+export const BackupStoreDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    sasUriList: BackupStoreDetailsSasUriListList,
+  }),
+).annotate({
+  identifier: "BackupStoreDetails",
+}) as any as S.Schema<BackupStoreDetails>;
+
+export interface StartBackupsLongTermRetentionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the server. */
+  serverName: string;
+  /** Backup Settings */
+  backupSettings: BackupSettings;
+  /** Backup store detail for target server. */
+  targetDetails: BackupStoreDetails;
+}
+export const StartBackupsLongTermRetentionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      serverName: S.String.pipe(T.Label()),
+      backupSettings: BackupSettings,
+      targetDetails: BackupStoreDetails,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/startLtrBackup",
+        code: 200,
+        apiVersion: "2025-08-01",
+      }),
+    ),
+).annotate({
+  identifier: "StartBackupsLongTermRetentionRequest",
+}) as any as S.Schema<StartBackupsLongTermRetentionRequest>;
+
+/** Response for the LTR backup API call */
+export interface BackupsLongTermRetentionResponse {
+  /** Long Term Retention Backup Operation Resource Properties */
+  properties?: LtrBackupOperationResponseProperties;
+}
+export const BackupsLongTermRetentionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    properties: S.optional(LtrBackupOperationResponseProperties),
+  }),
+).annotate({
+  identifier: "BackupsLongTermRetentionResponse",
+}) as any as S.Schema<BackupsLongTermRetentionResponse>;
+
+export interface StartServerRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the server. */
+  serverName: string;
+}
+export const StartServerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serverName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/start",
+      code: 200,
+      apiVersion: "2025-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "StartServerRequest",
+}) as any as S.Schema<StartServerRequest>;
+
+export interface StartServerResponse {}
+export const StartServerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "StartServerResponse",
+}) as any as S.Schema<StartServerResponse>;
+
+export interface StopServerRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the server. */
+  serverName: string;
+}
+export const StopServerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serverName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/stop",
+      code: 200,
+      apiVersion: "2025-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "StopServerRequest",
+}) as any as S.Schema<StopServerRequest>;
+
+export interface StopServerResponse {}
+export const StopServerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "StopServerResponse",
+}) as any as S.Schema<StopServerResponse>;
+
+export interface UpdateConfigurationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the server. */
+  serverName: string;
+  /** Name of the configuration (also known as server parameter). */
+  configurationName: string;
+  /** Properties of a configuration (also known as server parameter). */
+  properties?: ConfigurationPropertiesInput;
+}
+export const UpdateConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serverName: S.String.pipe(T.Label()),
+    configurationName: S.String.pipe(T.Label()),
+    properties: S.optional(ConfigurationPropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/configurations/{configurationName}",
+      code: 200,
+      apiVersion: "2025-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateConfigurationRequest",
+}) as any as S.Schema<UpdateConfigurationRequest>;
+
+export interface UpdateConfigurationResponse {}
+export const UpdateConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "UpdateConfigurationResponse",
+}) as any as S.Schema<UpdateConfigurationResponse>;
+
+/** Credentials of administrator users for source and target servers. */
+export interface AdminCredentialsForPatch {
+  /** Password for the user of the source server. */
+  sourceServerPassword?: string | Redacted.Redacted<string>;
+  /** Password for the user of the target server. */
+  targetServerPassword?: string | Redacted.Redacted<string>;
+}
+export const AdminCredentialsForPatch = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    sourceServerPassword: S.optional(S.String.pipe(T.SensitiveValue({}))),
+    targetServerPassword: S.optional(S.String.pipe(T.SensitiveValue({}))),
+  }),
+).annotate({
+  identifier: "AdminCredentialsForPatch",
+}) as any as S.Schema<AdminCredentialsForPatch>;
+
+/** Migration secret parameters. */
+export interface MigrationSecretParametersForPatch {
+  /** Credentials of administrator users for source and target servers. */
+  adminCredentials?: AdminCredentialsForPatch;
+  /** Gets or sets the name of the user for the source server. This user doesn't need to be an administrator. */
+  sourceServerUsername?: string;
+  /** Gets or sets the name of the user for the target server. This user doesn't need to be an administrator. */
+  targetServerUsername?: string;
+}
+export const MigrationSecretParametersForPatch = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    adminCredentials: S.optional(AdminCredentialsForPatch),
+    sourceServerUsername: S.optional(S.String),
+    targetServerUsername: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "MigrationSecretParametersForPatch",
+}) as any as S.Schema<MigrationSecretParametersForPatch>;
+
+/** Names of databases to migrate. */
+export type MigrationPropertiesForPatchDbsToMigrateList = Array<string>;
+export const MigrationPropertiesForPatchDbsToMigrateList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<MigrationPropertiesForPatchDbsToMigrateList>;
+
+/** When you want to trigger cutover for specific databases set 'triggerCutover' to 'True' and the names of the specific databases in this array. */
+export type MigrationPropertiesForPatchDbsToTriggerCutoverOnList =
+  Array<string>;
+export const MigrationPropertiesForPatchDbsToTriggerCutoverOnList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<MigrationPropertiesForPatchDbsToTriggerCutoverOnList>;
+
+/** When you want to trigger cancel for specific databases set 'triggerCutover' to 'True' and the names of the specific databases in this array. */
+export type MigrationPropertiesForPatchDbsToCancelMigrationOnList =
+  Array<string>;
+export const MigrationPropertiesForPatchDbsToCancelMigrationOnList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<MigrationPropertiesForPatchDbsToCancelMigrationOnList>;
+
+/** Migration properties. */
+export interface MigrationPropertiesForPatch {
+  /** Identifier of the source database server resource, when 'sourceType' is 'PostgreSQLSingleServer'. For other source types this must be set to ipaddress:port@username or hostname:port@username. */
+  sourceDbServerResourceId?: string;
+  /** Fully qualified domain name (FQDN) or IP address of the source server. This property is optional. When provided, the migration service will always use it to connect to the source server. */
+  sourceDbServerFullyQualifiedDomainName?: string;
+  /** Fully qualified domain name (FQDN) or IP address of the target server. This property is optional. When provided, the migration service will always use it to connect to the target server. */
+  targetDbServerFullyQualifiedDomainName?: string;
+  /** Migration secret parameters. */
+  secretParameters?: MigrationSecretParametersForPatch;
+  /** Names of databases to migrate. */
+  dbsToMigrate?: MigrationPropertiesForPatchDbsToMigrateList;
+  /** Indicates whether to setup logical replication on source server, if needed. */
+  setupLogicalReplicationOnSourceDbIfNeeded?:
+    | LogicalReplicationOnSourceServer
+    | (string & {});
+  /** Indicates if databases on the target server can be overwritten when already present. If set to 'False', when the migration workflow detects that the database already exists on the target server, it will wait for a confirmation. */
+  overwriteDbsInTarget?: OverwriteDatabasesOnTargetServer | (string & {});
+  /** Start time (UTC) for migration window. */
+  migrationWindowStartTimeInUtc?: string;
+  /** Indicates if roles and permissions must be migrated. */
+  migrateRoles?: MigrateRolesAndPermissions | (string & {});
+  /** Indicates if data migration must start right away. */
+  startDataMigration?: StartDataMigration | (string & {});
+  /** Indicates if cutover must be triggered for the entire migration. */
+  triggerCutover?: TriggerCutover | (string & {});
+  /** When you want to trigger cutover for specific databases set 'triggerCutover' to 'True' and the names of the specific databases in this array. */
+  dbsToTriggerCutoverOn?: MigrationPropertiesForPatchDbsToTriggerCutoverOnList;
+  /** Indicates if cancel must be triggered for the entire migration. */
+  cancel?: Cancel | (string & {});
+  /** When you want to trigger cancel for specific databases set 'triggerCutover' to 'True' and the names of the specific databases in this array. */
+  dbsToCancelMigrationOn?: MigrationPropertiesForPatchDbsToCancelMigrationOnList;
+  /** Mode used to perform the migration: Online or Offline. */
+  migrationMode?: MigrationMode | (string & {});
+}
+export const MigrationPropertiesForPatch = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    sourceDbServerResourceId: S.optional(S.String),
+    sourceDbServerFullyQualifiedDomainName: S.optional(S.String),
+    targetDbServerFullyQualifiedDomainName: S.optional(S.String),
+    secretParameters: S.optional(MigrationSecretParametersForPatch),
+    dbsToMigrate: S.optional(MigrationPropertiesForPatchDbsToMigrateList),
+    setupLogicalReplicationOnSourceDbIfNeeded: S.optional(
+      LogicalReplicationOnSourceServer,
+    ),
+    overwriteDbsInTarget: S.optional(OverwriteDatabasesOnTargetServer),
+    migrationWindowStartTimeInUtc: S.optional(S.String),
+    migrateRoles: S.optional(MigrateRolesAndPermissions),
+    startDataMigration: S.optional(StartDataMigration),
+    triggerCutover: S.optional(TriggerCutover),
+    dbsToTriggerCutoverOn: S.optional(
+      MigrationPropertiesForPatchDbsToTriggerCutoverOnList,
+    ),
+    cancel: S.optional(Cancel),
+    dbsToCancelMigrationOn: S.optional(
+      MigrationPropertiesForPatchDbsToCancelMigrationOnList,
+    ),
+    migrationMode: S.optional(MigrationMode),
+  }),
+).annotate({
+  identifier: "MigrationPropertiesForPatch",
+}) as any as S.Schema<MigrationPropertiesForPatch>;
+
+/** Application-specific metadata in the form of key-value pairs. */
+export type UpdateMigrationRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateMigrationRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateMigrationRequestTagsMap>;
+
+export interface UpdateMigrationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the server. */
+  serverName: string;
+  /** Name of migration. */
+  migrationName: string;
+  /** Migration properties. */
+  properties?: MigrationPropertiesForPatch;
+  /** Application-specific metadata in the form of key-value pairs. */
+  tags?: UpdateMigrationRequestTagsMap;
+}
+export const UpdateMigrationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serverName: S.String.pipe(T.Label()),
+    migrationName: S.String.pipe(T.Label()),
+    properties: S.optional(MigrationPropertiesForPatch),
+    tags: S.optional(UpdateMigrationRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/migrations/{migrationName}",
+      code: 200,
+      apiVersion: "2025-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateMigrationRequest",
+}) as any as S.Schema<UpdateMigrationRequest>;
+
+/** Resource tags. */
+export type UpdateMigrationResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateMigrationResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateMigrationResponseTagsMap>;
+
+export interface UpdateMigrationResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateMigrationResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Migration properties. */
+  properties?: MigrationProperties;
+}
+export const UpdateMigrationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateMigrationResponseTagsMap),
+    location: S.String,
+    properties: S.optional(MigrationProperties),
+  }),
+).annotate({
+  identifier: "UpdateMigrationResponse",
+}) as any as S.Schema<UpdateMigrationResponse>;
+
+/** The private endpoint resource. */
+export interface PrivateEndpointInput {}
+export const PrivateEndpointInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "PrivateEndpointInput",
+}) as any as S.Schema<PrivateEndpointInput>;
+
+/** Properties of the private endpoint connection. */
+export interface PrivateEndpointConnectionPropertiesInput {
+  /** The private endpoint resource. */
+  privateEndpoint?: PrivateEndpointInput;
+  /** A collection of information about the state of the connection between service consumer and provider. */
+  privateLinkServiceConnectionState: PrivateLinkServiceConnectionState;
+}
+export const PrivateEndpointConnectionPropertiesInput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      privateEndpoint: S.optional(PrivateEndpointInput),
+      privateLinkServiceConnectionState: PrivateLinkServiceConnectionState,
+    }),
+).annotate({
+  identifier: "PrivateEndpointConnectionPropertiesInput",
+}) as any as S.Schema<PrivateEndpointConnectionPropertiesInput>;
+
+export interface UpdatePrivateEndpointConnectionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the server. */
+  serverName: string;
+  /** The name of the private endpoint connection associated with the Azure resource. */
+  privateEndpointConnectionName: string;
+  /** Resource properties. */
+  properties?: PrivateEndpointConnectionPropertiesInput;
+}
+export const UpdatePrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      serverName: S.String.pipe(T.Label()),
+      privateEndpointConnectionName: S.String.pipe(T.Label()),
+      properties: S.optional(PrivateEndpointConnectionPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/privateEndpointConnections/{privateEndpointConnectionName}",
+        code: 200,
+        apiVersion: "2025-08-01",
+      }),
+    ),
+).annotate({
+  identifier: "UpdatePrivateEndpointConnectionRequest",
+}) as any as S.Schema<UpdatePrivateEndpointConnectionRequest>;
+
+export interface UpdatePrivateEndpointConnectionResponse {}
+export const UpdatePrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "UpdatePrivateEndpointConnectionResponse",
+}) as any as S.Schema<UpdatePrivateEndpointConnectionResponse>;
+
+/** Compute information of a server. */
+export interface SkuForPatch {
+  /** Name by which is known a given compute size assigned to a server. */
+  name?: string;
+  /** Tier of the compute assigned to a server. */
+  tier?: SkuTier | (string & {});
+}
+export const SkuForPatch = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    tier: S.optional(SkuTier),
+  }),
+).annotate({ identifier: "SkuForPatch" }) as any as S.Schema<SkuForPatch>;
+
+/** Backup properties of a server. */
+export interface BackupForPatchInput {
+  /** Backup retention days for the server. */
+  backupRetentionDays?: number;
+}
+export const BackupForPatchInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    backupRetentionDays: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "BackupForPatchInput",
+}) as any as S.Schema<BackupForPatchInput>;
+
+/** Mode of high availability supported for this compute. */
+export type PostgreSqlFlexibleServerHighAvailabilityMode =
+  | "Disabled"
+  | "ZoneRedundant"
+  | "SameZone";
+export const PostgreSqlFlexibleServerHighAvailabilityMode =
+  /*@__PURE__*/ S.String;
+
+/** High availability properties of a server. */
+export interface HighAvailabilityForPatch {
+  /** High availability mode for a server. */
+  mode?: PostgreSqlFlexibleServerHighAvailabilityMode | (string & {});
+  /** Availability zone associated to the standby server created when high availability is set to SameZone or ZoneRedundant. */
+  standbyAvailabilityZone?: string;
+}
+export const HighAvailabilityForPatch = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    mode: S.optional(PostgreSqlFlexibleServerHighAvailabilityMode),
+    standbyAvailabilityZone: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "HighAvailabilityForPatch",
+}) as any as S.Schema<HighAvailabilityForPatch>;
+
+/** Maintenance window properties of a server. */
+export type MaintenanceWindowForPatch = MaintenanceWindow;
+export const MaintenanceWindowForPatch = MaintenanceWindow;
+
+/** Indicates if the server supports password based authentication. */
+export type PasswordBasedAuth = "Enabled" | "Disabled";
+export const PasswordBasedAuth = /*@__PURE__*/ S.String;
+
+/** Authentication configuration properties of a server. */
+export interface AuthConfigForPatch {
+  /** Indicates if the server supports Microsoft Entra authentication. */
+  activeDirectoryAuth?: MicrosoftEntraAuth | (string & {});
+  /** Indicates if the server supports password based authentication. */
+  passwordAuth?: PasswordBasedAuth | (string & {});
+  /** Identifier of the tenant of the delegated resource. */
+  tenantId?: string;
+}
+export const AuthConfigForPatch = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    activeDirectoryAuth: S.optional(MicrosoftEntraAuth),
+    passwordAuth: S.optional(PasswordBasedAuth),
+    tenantId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AuthConfigForPatch",
+}) as any as S.Schema<AuthConfigForPatch>;
+
+/** Update mode of an existing server. */
+export type CreateModeForPatch = "Default" | "Update";
+export const CreateModeForPatch = /*@__PURE__*/ S.String;
+
+/** Properties of a server. */
+export interface ServerPropertiesForPatchInput {
+  /** Password assigned to the administrator login. As long as password authentication is enabled, this password can be changed at any time. */
+  administratorLoginPassword?: string | Redacted.Redacted<string>;
+  /** Major version of PostgreSQL database engine. */
+  version?: PostgresMajorVersion | (string & {});
+  /** Storage properties of a server. */
+  storage?: Storage;
+  /** Backup properties of a server. */
+  backup?: BackupForPatchInput;
+  /** High availability properties of a server. */
+  highAvailability?: HighAvailabilityForPatch;
+  /** Maintenance window properties of a server. */
+  maintenanceWindow?: MaintenanceWindow;
+  /** Authentication configuration properties of a server. */
+  authConfig?: AuthConfigForPatch;
+  /** Data encryption properties of a server. */
+  dataEncryption?: DataEncryption;
+  /** Availability zone of a server. */
+  availabilityZone?: string;
+  /** Update mode of an existing server. */
+  createMode?: CreateModeForPatch | (string & {});
+  /** Role of the server in a replication set. */
+  replicationRole?: ReplicationRole | (string & {});
+  /** Read replica properties of a server. Required only in case that you want to promote a server. */
+  replica?: ReplicaInput;
+  /** Network properties of a server. Only required if you want your server to be integrated into a virtual network provided by customer. */
+  network?: Network;
+  /** Cluster properties of a server. */
+  cluster?: Cluster;
+}
+export const ServerPropertiesForPatchInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    administratorLoginPassword: S.optional(S.String.pipe(T.SensitiveValue({}))),
+    version: S.optional(PostgresMajorVersion),
+    storage: S.optional(Storage),
+    backup: S.optional(BackupForPatchInput),
+    highAvailability: S.optional(HighAvailabilityForPatch),
+    maintenanceWindow: S.optional(MaintenanceWindow),
+    authConfig: S.optional(AuthConfigForPatch),
+    dataEncryption: S.optional(DataEncryption),
+    availabilityZone: S.optional(S.String),
+    createMode: S.optional(CreateModeForPatch),
+    replicationRole: S.optional(ReplicationRole),
+    replica: S.optional(ReplicaInput),
+    network: S.optional(Network),
+    cluster: S.optional(Cluster),
+  }),
+).annotate({
+  identifier: "ServerPropertiesForPatchInput",
+}) as any as S.Schema<ServerPropertiesForPatchInput>;
+
+/** Application-specific metadata in the form of key-value pairs. */
+export type UpdateServerRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateServerRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateServerRequestTagsMap>;
+
+export interface UpdateServerRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the server. */
+  serverName: string;
+  /** Compute tier and size of a server. */
+  sku?: SkuForPatch;
+  /** Describes the identity of the application. */
+  identity?: UserAssignedIdentityInput;
+  /** Properties of the server. */
+  properties?: ServerPropertiesForPatchInput;
+  /** Application-specific metadata in the form of key-value pairs. */
+  tags?: UpdateServerRequestTagsMap;
+}
+export const UpdateServerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serverName: S.String.pipe(T.Label()),
+    sku: S.optional(SkuForPatch),
+    identity: S.optional(UserAssignedIdentityInput),
+    properties: S.optional(ServerPropertiesForPatchInput),
+    tags: S.optional(UpdateServerRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}",
+      code: 200,
+      apiVersion: "2025-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateServerRequest",
+}) as any as S.Schema<UpdateServerRequest>;
+
+export interface UpdateServerResponse {}
+export const UpdateServerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "UpdateServerResponse",
+}) as any as S.Schema<UpdateServerResponse>;
+
+export interface UpdateVirtualEndpointRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the server. */
+  serverName: string;
+  /** Base name of the virtual endpoints. */
+  virtualEndpointName: string;
+  /** Properties of the pair of virtual endpoints. */
+  properties?: VirtualEndpointResourcePropertiesInput;
+}
+export const UpdateVirtualEndpointRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serverName: S.String.pipe(T.Label()),
+    virtualEndpointName: S.String.pipe(T.Label()),
+    properties: S.optional(VirtualEndpointResourcePropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/flexibleServers/{serverName}/virtualendpoints/{virtualEndpointName}",
+      code: 200,
+      apiVersion: "2025-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateVirtualEndpointRequest",
+}) as any as S.Schema<UpdateVirtualEndpointRequest>;
+
+export interface UpdateVirtualEndpointResponse {}
+export const UpdateVirtualEndpointResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "UpdateVirtualEndpointResponse",
+}) as any as S.Schema<UpdateVirtualEndpointResponse>;
+
 export type AdministratorsMicrosoftEntraCreateOrUpdateError = AzureOpError;
 /** Creates a new server administrator associated to a Microsoft Entra principal. */
 export const AdministratorsMicrosoftEntraCreateOrUpdate: API.OperationMethod<
@@ -6418,361 +6415,241 @@ export const AdministratorsMicrosoftEntraCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type AdministratorsMicrosoftEntraDeleteError = AzureOpError;
-/** Deletes an existing server administrator associated to a Microsoft Entra principal. */
-export const AdministratorsMicrosoftEntraDelete: API.OperationMethod<
-  AdministratorsMicrosoftEntraDeleteRequest,
-  AdministratorsMicrosoftEntraDeleteResponse,
-  AdministratorsMicrosoftEntraDeleteError,
+export type CancelMigrationError = AzureOpError;
+/** Cancels an active migration. */
+export const CancelMigration: API.OperationMethod<
+  CancelMigrationRequest,
+  CancelMigrationResponse,
+  CancelMigrationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AdministratorsMicrosoftEntraDeleteRequest,
-  output: AdministratorsMicrosoftEntraDeleteResponse,
+  input: CancelMigrationRequest,
+  output: CancelMigrationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type AdministratorsMicrosoftEntraGetError = AzureOpError;
-/** Gets information about a server administrator associated to a Microsoft Entra principal. */
-export const AdministratorsMicrosoftEntraGet: API.OperationMethod<
-  AdministratorsMicrosoftEntraGetRequest,
-  AdministratorsMicrosoftEntraGetResponse,
-  AdministratorsMicrosoftEntraGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AdministratorsMicrosoftEntraGetRequest,
-  output: AdministratorsMicrosoftEntraGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AdministratorsMicrosoftEntraListByServerError = AzureOpError;
-/** List all server administrators associated to a Microsoft Entra principal. */
-export const AdministratorsMicrosoftEntraListByServer: API.OperationMethod<
-  AdministratorsMicrosoftEntraListByServerRequest,
-  AdministratorMicrosoftEntraList,
-  AdministratorsMicrosoftEntraListByServerError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AdministratorsMicrosoftEntraListByServerRequest,
-  output: AdministratorMicrosoftEntraList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AdvancedThreatProtectionSettingsGetError = AzureOpError;
-/** Gets state of advanced threat protection settings for a server. */
-export const AdvancedThreatProtectionSettingsGet: API.OperationMethod<
-  AdvancedThreatProtectionSettingsGetRequest,
-  AdvancedThreatProtectionSettingsGetResponse,
-  AdvancedThreatProtectionSettingsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AdvancedThreatProtectionSettingsGetRequest,
-  output: AdvancedThreatProtectionSettingsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AdvancedThreatProtectionSettingsListByServerError = AzureOpError;
-/** Lists state of advanced threat protection settings for a server. */
-export const AdvancedThreatProtectionSettingsListByServer: API.OperationMethod<
-  AdvancedThreatProtectionSettingsListByServerRequest,
-  AdvancedThreatProtectionSettingsList,
-  AdvancedThreatProtectionSettingsListByServerError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AdvancedThreatProtectionSettingsListByServerRequest,
-  output: AdvancedThreatProtectionSettingsList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BackupsAutomaticAndOnDemandCreateError = AzureOpError;
-/** Creates an on demand backup of a server. */
-export const BackupsAutomaticAndOnDemandCreate: API.OperationMethod<
-  BackupsAutomaticAndOnDemandCreateRequest,
-  BackupsAutomaticAndOnDemandCreateResponse,
-  BackupsAutomaticAndOnDemandCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BackupsAutomaticAndOnDemandCreateRequest,
-  output: BackupsAutomaticAndOnDemandCreateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BackupsAutomaticAndOnDemandDeleteError = AzureOpError;
-/** Deletes a specific backup, given its name. */
-export const BackupsAutomaticAndOnDemandDelete: API.OperationMethod<
-  BackupsAutomaticAndOnDemandDeleteRequest,
-  BackupsAutomaticAndOnDemandDeleteResponse,
-  BackupsAutomaticAndOnDemandDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BackupsAutomaticAndOnDemandDeleteRequest,
-  output: BackupsAutomaticAndOnDemandDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BackupsAutomaticAndOnDemandGetError = AzureOpError;
-/** Gets information of an on demand backup, given its name. */
-export const BackupsAutomaticAndOnDemandGet: API.OperationMethod<
-  BackupsAutomaticAndOnDemandGetRequest,
-  BackupsAutomaticAndOnDemandGetResponse,
-  BackupsAutomaticAndOnDemandGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BackupsAutomaticAndOnDemandGetRequest,
-  output: BackupsAutomaticAndOnDemandGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BackupsAutomaticAndOnDemandListByServerError = AzureOpError;
-/** Lists all available backups of a server. */
-export const BackupsAutomaticAndOnDemandListByServer: API.OperationMethod<
-  BackupsAutomaticAndOnDemandListByServerRequest,
-  BackupAutomaticAndOnDemandList,
-  BackupsAutomaticAndOnDemandListByServerError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BackupsAutomaticAndOnDemandListByServerRequest,
-  output: BackupAutomaticAndOnDemandList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BackupsLongTermRetentionCheckPrerequisitesError = AzureOpError;
+export type CheckBackupsLongTermRetentionPrerequisitesError = AzureOpError;
 /** Performs all checks required for a long term retention backup operation to succeed. */
-export const BackupsLongTermRetentionCheckPrerequisites: API.OperationMethod<
-  BackupsLongTermRetentionCheckPrerequisitesRequest,
+export const CheckBackupsLongTermRetentionPrerequisites: API.OperationMethod<
+  CheckBackupsLongTermRetentionPrerequisitesRequest,
   LtrPreBackupResponse,
-  BackupsLongTermRetentionCheckPrerequisitesError,
+  CheckBackupsLongTermRetentionPrerequisitesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: BackupsLongTermRetentionCheckPrerequisitesRequest,
+  input: CheckBackupsLongTermRetentionPrerequisitesRequest,
   output: LtrPreBackupResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type BackupsLongTermRetentionGetError = AzureOpError;
-/** Gets the results of a long retention backup operation for a server. */
-export const BackupsLongTermRetentionGet: API.OperationMethod<
-  BackupsLongTermRetentionGetRequest,
-  BackupsLongTermRetentionGetResponse,
-  BackupsLongTermRetentionGetError,
+export type CheckMigrationNameAvailabilityError = AzureOpError;
+/** Check the validity and availability of the given name, to assign it to a new migration. Checks if a proposed migration name is valid and available. */
+export const CheckMigrationNameAvailability: API.OperationMethod<
+  CheckMigrationNameAvailabilityRequest,
+  MigrationNameAvailability,
+  CheckMigrationNameAvailabilityError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: BackupsLongTermRetentionGetRequest,
-  output: BackupsLongTermRetentionGetResponse,
+  input: CheckMigrationNameAvailabilityRequest,
+  output: MigrationNameAvailability,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type BackupsLongTermRetentionListByServerError = AzureOpError;
-/** Lists the results of the long term retention backup operations for a server. */
-export const BackupsLongTermRetentionListByServer: API.OperationMethod<
-  BackupsLongTermRetentionListByServerRequest,
-  LtrServerBackupOperationList,
-  BackupsLongTermRetentionListByServerError,
+export type CheckNameAvailabilityGloballyError = AzureOpError;
+/** Checks the validity and availability of the given name, to assign it to a new server or to use it as the base name of a new pair of virtual endpoints. */
+export const CheckNameAvailabilityGlobally: API.OperationMethod<
+  CheckNameAvailabilityGloballyRequest,
+  CheckNameAvailabilityGloballyResponse,
+  CheckNameAvailabilityGloballyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: BackupsLongTermRetentionListByServerRequest,
-  output: LtrServerBackupOperationList,
+  input: CheckNameAvailabilityGloballyRequest,
+  output: CheckNameAvailabilityGloballyResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type BackupsLongTermRetentionStartError = AzureOpError;
-/** Initiates a long term retention backup. */
-export const BackupsLongTermRetentionStart: API.OperationMethod<
-  BackupsLongTermRetentionStartRequest,
-  BackupsLongTermRetentionResponse,
-  BackupsLongTermRetentionStartError,
+export type CheckNameAvailabilityWithLocationError = AzureOpError;
+/** Check the availability of name for resource */
+export const CheckNameAvailabilityWithLocation: API.OperationMethod<
+  CheckNameAvailabilityWithLocationRequest,
+  CheckNameAvailabilityWithLocationResponse,
+  CheckNameAvailabilityWithLocationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: BackupsLongTermRetentionStartRequest,
-  output: BackupsLongTermRetentionResponse,
+  input: CheckNameAvailabilityWithLocationRequest,
+  output: CheckNameAvailabilityWithLocationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type CapabilitiesByLocationListError = AzureOpError;
-/** Lists the capabilities available in a given location for a specific subscription. */
-export const CapabilitiesByLocationList: API.OperationMethod<
-  CapabilitiesByLocationListRequest,
-  CapabilityList,
-  CapabilitiesByLocationListError,
+export type CreateBackupsAutomaticAndOnDemandError = AzureOpError;
+/** Creates an on demand backup of a server. */
+export const CreateBackupsAutomaticAndOnDemand: API.OperationMethod<
+  CreateBackupsAutomaticAndOnDemandRequest,
+  CreateBackupsAutomaticAndOnDemandResponse,
+  CreateBackupsAutomaticAndOnDemandError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CapabilitiesByLocationListRequest,
-  output: CapabilityList,
+  input: CreateBackupsAutomaticAndOnDemandRequest,
+  output: CreateBackupsAutomaticAndOnDemandResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type CapabilitiesByServerListError = AzureOpError;
-/** Lists the capabilities available for a given server. */
-export const CapabilitiesByServerList: API.OperationMethod<
-  CapabilitiesByServerListRequest,
-  CapabilityList,
-  CapabilitiesByServerListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CapabilitiesByServerListRequest,
-  output: CapabilityList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CapturedLogsListByServerError = AzureOpError;
-/** Lists all captured logs for download in a server. */
-export const CapturedLogsListByServer: API.OperationMethod<
-  CapturedLogsListByServerRequest,
-  CapturedLogList,
-  CapturedLogsListByServerError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CapturedLogsListByServerRequest,
-  output: CapturedLogList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ConfigurationsGetError = AzureOpError;
-/** Gets information about a specific configuration (also known as server parameter) of a server. */
-export const ConfigurationsGet: API.OperationMethod<
-  ConfigurationsGetRequest,
-  ConfigurationsGetResponse,
-  ConfigurationsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConfigurationsGetRequest,
-  output: ConfigurationsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ConfigurationsListByServerError = AzureOpError;
-/** Lists all configurations (also known as server parameters) of a server. */
-export const ConfigurationsListByServer: API.OperationMethod<
-  ConfigurationsListByServerRequest,
-  ConfigurationList,
-  ConfigurationsListByServerError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConfigurationsListByServerRequest,
-  output: ConfigurationList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ConfigurationsPutError = AzureOpError;
-/** Updates, using Put verb, the value assigned to a specific modifiable configuration (also known as server parameter) of a server. */
-export const ConfigurationsPut: API.OperationMethod<
-  ConfigurationsPutRequest,
-  ConfigurationsPutResponse,
-  ConfigurationsPutError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConfigurationsPutRequest,
-  output: ConfigurationsPutResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ConfigurationsUpdateError = AzureOpError;
-/** Updates the value assigned to a specific modifiable configuration (also known as server parameter) of a server. */
-export const ConfigurationsUpdate: API.OperationMethod<
-  ConfigurationsUpdateRequest,
-  ConfigurationsUpdateResponse,
-  ConfigurationsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConfigurationsUpdateRequest,
-  output: ConfigurationsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DatabasesCreateError = AzureOpError;
+export type CreateDatabaseError = AzureOpError;
 /** Creates a new database. */
-export const DatabasesCreate: API.OperationMethod<
-  DatabasesCreateRequest,
-  DatabasesCreateResponse,
-  DatabasesCreateError,
+export const CreateDatabase: API.OperationMethod<
+  CreateDatabaseRequest,
+  CreateDatabaseResponse,
+  CreateDatabaseError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DatabasesCreateRequest,
-  output: DatabasesCreateResponse,
+  input: CreateDatabaseRequest,
+  output: CreateDatabaseResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DatabasesDeleteError = AzureOpError;
+export type CreateMigrationError = AzureOpError;
+/** Creates a new migration. */
+export const CreateMigration: API.OperationMethod<
+  CreateMigrationRequest,
+  CreateMigrationResponse,
+  CreateMigrationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateMigrationRequest,
+  output: CreateMigrationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateVirtualEndpointError = AzureOpError;
+/** Creates a pair of virtual endpoints for a server. */
+export const CreateVirtualEndpoint: API.OperationMethod<
+  CreateVirtualEndpointRequest,
+  CreateVirtualEndpointResponse,
+  CreateVirtualEndpointError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateVirtualEndpointRequest,
+  output: CreateVirtualEndpointResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteAdministratorsMicrosoftEntraError = AzureOpError;
+/** Deletes an existing server administrator associated to a Microsoft Entra principal. */
+export const DeleteAdministratorsMicrosoftEntra: API.OperationMethod<
+  DeleteAdministratorsMicrosoftEntraRequest,
+  DeleteAdministratorsMicrosoftEntraResponse,
+  DeleteAdministratorsMicrosoftEntraError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteAdministratorsMicrosoftEntraRequest,
+  output: DeleteAdministratorsMicrosoftEntraResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteBackupsAutomaticAndOnDemandError = AzureOpError;
+/** Deletes a specific backup, given its name. */
+export const DeleteBackupsAutomaticAndOnDemand: API.OperationMethod<
+  DeleteBackupsAutomaticAndOnDemandRequest,
+  DeleteBackupsAutomaticAndOnDemandResponse,
+  DeleteBackupsAutomaticAndOnDemandError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteBackupsAutomaticAndOnDemandRequest,
+  output: DeleteBackupsAutomaticAndOnDemandResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteDatabaseError = AzureOpError;
 /** Deletes an existing database. */
-export const DatabasesDelete: API.OperationMethod<
-  DatabasesDeleteRequest,
-  DatabasesDeleteResponse,
-  DatabasesDeleteError,
+export const DeleteDatabase: API.OperationMethod<
+  DeleteDatabaseRequest,
+  DeleteDatabaseResponse,
+  DeleteDatabaseError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DatabasesDeleteRequest,
-  output: DatabasesDeleteResponse,
+  input: DeleteDatabaseRequest,
+  output: DeleteDatabaseResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DatabasesGetError = AzureOpError;
-/** Gets information about an existing database. */
-export const DatabasesGet: API.OperationMethod<
-  DatabasesGetRequest,
-  DatabasesGetResponse,
-  DatabasesGetError,
+export type DeleteFirewallRuleError = AzureOpError;
+/** Deletes an existing firewall rule. */
+export const DeleteFirewallRule: API.OperationMethod<
+  DeleteFirewallRuleRequest,
+  DeleteFirewallRuleResponse,
+  DeleteFirewallRuleError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DatabasesGetRequest,
-  output: DatabasesGetResponse,
+  input: DeleteFirewallRuleRequest,
+  output: DeleteFirewallRuleResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DatabasesListByServerError = AzureOpError;
-/** Lists all databases in a server. */
-export const DatabasesListByServer: API.OperationMethod<
-  DatabasesListByServerRequest,
-  DatabaseList,
-  DatabasesListByServerError,
+export type DeletePrivateEndpointConnectionError = AzureOpError;
+/** Deletes a private endpoint connection. */
+export const DeletePrivateEndpointConnection: API.OperationMethod<
+  DeletePrivateEndpointConnectionRequest,
+  DeletePrivateEndpointConnectionResponse,
+  DeletePrivateEndpointConnectionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DatabasesListByServerRequest,
-  output: DatabaseList,
+  input: DeletePrivateEndpointConnectionRequest,
+  output: DeletePrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteServerError = AzureOpError;
+/** Deletes or drops an existing server. */
+export const DeleteServer: API.OperationMethod<
+  DeleteServerRequest,
+  DeleteServerResponse,
+  DeleteServerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteServerRequest,
+  output: DeleteServerResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteVirtualEndpointError = AzureOpError;
+/** Deletes a pair of virtual endpoints. */
+export const DeleteVirtualEndpoint: API.OperationMethod<
+  DeleteVirtualEndpointRequest,
+  DeleteVirtualEndpointResponse,
+  DeleteVirtualEndpointError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteVirtualEndpointRequest,
+  output: DeleteVirtualEndpointResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -6793,316 +6670,571 @@ export const FirewallRulesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type FirewallRulesDeleteError = AzureOpError;
-/** Deletes an existing firewall rule. */
-export const FirewallRulesDelete: API.OperationMethod<
-  FirewallRulesDeleteRequest,
-  FirewallRulesDeleteResponse,
-  FirewallRulesDeleteError,
+export type GetAdministratorsMicrosoftEntraError = AzureOpError;
+/** Gets information about a server administrator associated to a Microsoft Entra principal. */
+export const GetAdministratorsMicrosoftEntra: API.OperationMethod<
+  GetAdministratorsMicrosoftEntraRequest,
+  GetAdministratorsMicrosoftEntraResponse,
+  GetAdministratorsMicrosoftEntraError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FirewallRulesDeleteRequest,
-  output: FirewallRulesDeleteResponse,
+  input: GetAdministratorsMicrosoftEntraRequest,
+  output: GetAdministratorsMicrosoftEntraResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type FirewallRulesGetError = AzureOpError;
+export type GetAdvancedThreatProtectionSettingsError = AzureOpError;
+/** Gets state of advanced threat protection settings for a server. */
+export const GetAdvancedThreatProtectionSettings: API.OperationMethod<
+  GetAdvancedThreatProtectionSettingsRequest,
+  GetAdvancedThreatProtectionSettingsResponse,
+  GetAdvancedThreatProtectionSettingsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAdvancedThreatProtectionSettingsRequest,
+  output: GetAdvancedThreatProtectionSettingsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBackupsAutomaticAndOnDemandError = AzureOpError;
+/** Gets information of an on demand backup, given its name. */
+export const GetBackupsAutomaticAndOnDemand: API.OperationMethod<
+  GetBackupsAutomaticAndOnDemandRequest,
+  GetBackupsAutomaticAndOnDemandResponse,
+  GetBackupsAutomaticAndOnDemandError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBackupsAutomaticAndOnDemandRequest,
+  output: GetBackupsAutomaticAndOnDemandResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBackupsLongTermRetentionError = AzureOpError;
+/** Gets the results of a long retention backup operation for a server. */
+export const GetBackupsLongTermRetention: API.OperationMethod<
+  GetBackupsLongTermRetentionRequest,
+  GetBackupsLongTermRetentionResponse,
+  GetBackupsLongTermRetentionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBackupsLongTermRetentionRequest,
+  output: GetBackupsLongTermRetentionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetConfigurationError = AzureOpError;
+/** Gets information about a specific configuration (also known as server parameter) of a server. */
+export const GetConfiguration: API.OperationMethod<
+  GetConfigurationRequest,
+  GetConfigurationResponse,
+  GetConfigurationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetConfigurationRequest,
+  output: GetConfigurationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDatabaseError = AzureOpError;
+/** Gets information about an existing database. */
+export const GetDatabase: API.OperationMethod<
+  GetDatabaseRequest,
+  GetDatabaseResponse,
+  GetDatabaseError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDatabaseRequest,
+  output: GetDatabaseResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetFirewallRuleError = AzureOpError;
 /** Gets information about a firewall rule in a server. */
-export const FirewallRulesGet: API.OperationMethod<
-  FirewallRulesGetRequest,
-  FirewallRulesGetResponse,
-  FirewallRulesGetError,
+export const GetFirewallRule: API.OperationMethod<
+  GetFirewallRuleRequest,
+  GetFirewallRuleResponse,
+  GetFirewallRuleError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FirewallRulesGetRequest,
-  output: FirewallRulesGetResponse,
+  input: GetFirewallRuleRequest,
+  output: GetFirewallRuleResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type FirewallRulesListByServerError = AzureOpError;
-/** Lists information about all firewall rules in a server. */
-export const FirewallRulesListByServer: API.OperationMethod<
-  FirewallRulesListByServerRequest,
-  FirewallRuleList,
-  FirewallRulesListByServerError,
+export type GetMigrationError = AzureOpError;
+/** Gets information about a migration. */
+export const GetMigration: API.OperationMethod<
+  GetMigrationRequest,
+  GetMigrationResponse,
+  GetMigrationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FirewallRulesListByServerRequest,
+  input: GetMigrationRequest,
+  output: GetMigrationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPrivateDnsZoneSuffixError = AzureOpError;
+/** Gets the private DNS zone suffix. */
+export const GetPrivateDnsZoneSuffix: API.OperationMethod<
+  GetPrivateDnsZoneSuffixRequest,
+  GetPrivateDnsZoneSuffixResponse,
+  GetPrivateDnsZoneSuffixError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPrivateDnsZoneSuffixRequest,
+  output: GetPrivateDnsZoneSuffixResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPrivateEndpointConnectionError = AzureOpError;
+/** Gets a private endpoint connection. */
+export const GetPrivateEndpointConnection: API.OperationMethod<
+  GetPrivateEndpointConnectionRequest,
+  GetPrivateEndpointConnectionResponse,
+  GetPrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPrivateEndpointConnectionRequest,
+  output: GetPrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPrivateLinkResourceError = AzureOpError;
+/** Gets a private link resource for PostgreSQL server. */
+export const GetPrivateLinkResource: API.OperationMethod<
+  GetPrivateLinkResourceRequest,
+  GetPrivateLinkResourceResponse,
+  GetPrivateLinkResourceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPrivateLinkResourceRequest,
+  output: GetPrivateLinkResourceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetServerError = AzureOpError;
+/** Gets information about an existing server. */
+export const GetServer: API.OperationMethod<
+  GetServerRequest,
+  GetServerResponse,
+  GetServerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetServerRequest,
+  output: GetServerResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTuningOptionError = AzureOpError;
+/** Gets the tuning options of a server. */
+export const GetTuningOption: API.OperationMethod<
+  GetTuningOptionRequest,
+  GetTuningOptionResponse,
+  GetTuningOptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTuningOptionRequest,
+  output: GetTuningOptionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetVirtualEndpointError = AzureOpError;
+/** Gets information about a pair of virtual endpoints. */
+export const GetVirtualEndpoint: API.OperationMethod<
+  GetVirtualEndpointRequest,
+  GetVirtualEndpointResponse,
+  GetVirtualEndpointError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetVirtualEndpointRequest,
+  output: GetVirtualEndpointResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAdministratorsMicrosoftEntraByServerError = AzureOpError;
+/** List all server administrators associated to a Microsoft Entra principal. */
+export const ListAdministratorsMicrosoftEntraByServer: API.OperationMethod<
+  ListAdministratorsMicrosoftEntraByServerRequest,
+  AdministratorMicrosoftEntraList,
+  ListAdministratorsMicrosoftEntraByServerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAdministratorsMicrosoftEntraByServerRequest,
+  output: AdministratorMicrosoftEntraList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAdvancedThreatProtectionSettingsByServerError = AzureOpError;
+/** Lists state of advanced threat protection settings for a server. */
+export const ListAdvancedThreatProtectionSettingsByServer: API.OperationMethod<
+  ListAdvancedThreatProtectionSettingsByServerRequest,
+  AdvancedThreatProtectionSettingsList,
+  ListAdvancedThreatProtectionSettingsByServerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAdvancedThreatProtectionSettingsByServerRequest,
+  output: AdvancedThreatProtectionSettingsList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListBackupsAutomaticAndOnDemandByServerError = AzureOpError;
+/** Lists all available backups of a server. */
+export const ListBackupsAutomaticAndOnDemandByServer: API.OperationMethod<
+  ListBackupsAutomaticAndOnDemandByServerRequest,
+  BackupAutomaticAndOnDemandList,
+  ListBackupsAutomaticAndOnDemandByServerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListBackupsAutomaticAndOnDemandByServerRequest,
+  output: BackupAutomaticAndOnDemandList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListBackupsLongTermRetentionByServerError = AzureOpError;
+/** Lists the results of the long term retention backup operations for a server. */
+export const ListBackupsLongTermRetentionByServer: API.OperationMethod<
+  ListBackupsLongTermRetentionByServerRequest,
+  LtrServerBackupOperationList,
+  ListBackupsLongTermRetentionByServerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListBackupsLongTermRetentionByServerRequest,
+  output: LtrServerBackupOperationList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListCapabilitiesByLocationError = AzureOpError;
+/** Lists the capabilities available in a given location for a specific subscription. */
+export const ListCapabilitiesByLocation: API.OperationMethod<
+  ListCapabilitiesByLocationRequest,
+  CapabilityList,
+  ListCapabilitiesByLocationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListCapabilitiesByLocationRequest,
+  output: CapabilityList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListCapabilitiesByServerError = AzureOpError;
+/** Lists the capabilities available for a given server. */
+export const ListCapabilitiesByServer: API.OperationMethod<
+  ListCapabilitiesByServerRequest,
+  CapabilityList,
+  ListCapabilitiesByServerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListCapabilitiesByServerRequest,
+  output: CapabilityList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListCapturedLogByServerError = AzureOpError;
+/** Lists all captured logs for download in a server. */
+export const ListCapturedLogByServer: API.OperationMethod<
+  ListCapturedLogByServerRequest,
+  CapturedLogList,
+  ListCapturedLogByServerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListCapturedLogByServerRequest,
+  output: CapturedLogList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListConfigurationByServerError = AzureOpError;
+/** Lists all configurations (also known as server parameters) of a server. */
+export const ListConfigurationByServer: API.OperationMethod<
+  ListConfigurationByServerRequest,
+  ConfigurationList,
+  ListConfigurationByServerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListConfigurationByServerRequest,
+  output: ConfigurationList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDatabaseByServerError = AzureOpError;
+/** Lists all databases in a server. */
+export const ListDatabaseByServer: API.OperationMethod<
+  ListDatabaseByServerRequest,
+  DatabaseList,
+  ListDatabaseByServerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDatabaseByServerRequest,
+  output: DatabaseList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListFirewallRuleByServerError = AzureOpError;
+/** Lists information about all firewall rules in a server. */
+export const ListFirewallRuleByServer: API.OperationMethod<
+  ListFirewallRuleByServerRequest,
+  FirewallRuleList,
+  ListFirewallRuleByServerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListFirewallRuleByServerRequest,
   output: FirewallRuleList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type MigrationsCancelError = AzureOpError;
-/** Cancels an active migration. */
-export const MigrationsCancel: API.OperationMethod<
-  MigrationsCancelRequest,
-  MigrationsCancelResponse,
-  MigrationsCancelError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MigrationsCancelRequest,
-  output: MigrationsCancelResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MigrationsCheckNameAvailabilityError = AzureOpError;
-/** Check the validity and availability of the given name, to assign it to a new migration. Checks if a proposed migration name is valid and available. */
-export const MigrationsCheckNameAvailability: API.OperationMethod<
-  MigrationsCheckNameAvailabilityRequest,
-  MigrationNameAvailability,
-  MigrationsCheckNameAvailabilityError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MigrationsCheckNameAvailabilityRequest,
-  output: MigrationNameAvailability,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MigrationsCreateError = AzureOpError;
-/** Creates a new migration. */
-export const MigrationsCreate: API.OperationMethod<
-  MigrationsCreateRequest,
-  MigrationsCreateResponse,
-  MigrationsCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MigrationsCreateRequest,
-  output: MigrationsCreateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MigrationsGetError = AzureOpError;
-/** Gets information about a migration. */
-export const MigrationsGet: API.OperationMethod<
-  MigrationsGetRequest,
-  MigrationsGetResponse,
-  MigrationsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MigrationsGetRequest,
-  output: MigrationsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MigrationsListByTargetServerError = AzureOpError;
+export type ListMigrationByTargetServerError = AzureOpError;
 /** Lists all migrations of a target flexible server. */
-export const MigrationsListByTargetServer: API.OperationMethod<
-  MigrationsListByTargetServerRequest,
+export const ListMigrationByTargetServer: API.OperationMethod<
+  ListMigrationByTargetServerRequest,
   MigrationList,
-  MigrationsListByTargetServerError,
+  ListMigrationByTargetServerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: MigrationsListByTargetServerRequest,
+  input: ListMigrationByTargetServerRequest,
   output: MigrationList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type MigrationsUpdateError = AzureOpError;
-/** Updates an existing migration. The request body can contain one to many of the mutable properties present in the migration definition. Certain property updates initiate migration state transitions. */
-export const MigrationsUpdate: API.OperationMethod<
-  MigrationsUpdateRequest,
-  MigrationsUpdateResponse,
-  MigrationsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MigrationsUpdateRequest,
-  output: MigrationsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NameAvailabilityCheckGloballyError = AzureOpError;
-/** Checks the validity and availability of the given name, to assign it to a new server or to use it as the base name of a new pair of virtual endpoints. */
-export const NameAvailabilityCheckGlobally: API.OperationMethod<
-  NameAvailabilityCheckGloballyRequest,
-  NameAvailabilityCheckGloballyResponse,
-  NameAvailabilityCheckGloballyError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NameAvailabilityCheckGloballyRequest,
-  output: NameAvailabilityCheckGloballyResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NameAvailabilityCheckWithLocationError = AzureOpError;
-/** Check the availability of name for resource */
-export const NameAvailabilityCheckWithLocation: API.OperationMethod<
-  NameAvailabilityCheckWithLocationRequest,
-  NameAvailabilityCheckWithLocationResponse,
-  NameAvailabilityCheckWithLocationError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NameAvailabilityCheckWithLocationRequest,
-  output: NameAvailabilityCheckWithLocationResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OperationsListError = AzureOpError;
+export type ListOperationsError = AzureOpError;
 /** Lists all available REST API operations. */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
   OperationList,
-  OperationsListError,
+  ListOperationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
+  input: ListOperationsRequest,
   output: OperationList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type PrivateDnsZoneSuffixGetError = AzureOpError;
-/** Gets the private DNS zone suffix. */
-export const PrivateDnsZoneSuffixGet: API.OperationMethod<
-  PrivateDnsZoneSuffixGetRequest,
-  PrivateDnsZoneSuffixGetResponse,
-  PrivateDnsZoneSuffixGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateDnsZoneSuffixGetRequest,
-  output: PrivateDnsZoneSuffixGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateEndpointConnectionsDeleteError = AzureOpError;
-/** Deletes a private endpoint connection. */
-export const PrivateEndpointConnectionsDelete: API.OperationMethod<
-  PrivateEndpointConnectionsDeleteRequest,
-  PrivateEndpointConnectionsDeleteResponse,
-  PrivateEndpointConnectionsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsDeleteRequest,
-  output: PrivateEndpointConnectionsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateEndpointConnectionsGetError = AzureOpError;
-/** Gets a private endpoint connection. */
-export const PrivateEndpointConnectionsGet: API.OperationMethod<
-  PrivateEndpointConnectionsGetRequest,
-  PrivateEndpointConnectionsGetResponse,
-  PrivateEndpointConnectionsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsGetRequest,
-  output: PrivateEndpointConnectionsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateEndpointConnectionsListByServerError = AzureOpError;
+export type ListPrivateEndpointConnectionByServerError = AzureOpError;
 /** Lists all private endpoint connections on a server. */
-export const PrivateEndpointConnectionsListByServer: API.OperationMethod<
-  PrivateEndpointConnectionsListByServerRequest,
+export const ListPrivateEndpointConnectionByServer: API.OperationMethod<
+  ListPrivateEndpointConnectionByServerRequest,
   PrivateEndpointConnectionList,
-  PrivateEndpointConnectionsListByServerError,
+  ListPrivateEndpointConnectionByServerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsListByServerRequest,
+  input: ListPrivateEndpointConnectionByServerRequest,
   output: PrivateEndpointConnectionList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type PrivateEndpointConnectionsUpdateError = AzureOpError;
-/** Approves or rejects a private endpoint connection. */
-export const PrivateEndpointConnectionsUpdate: API.OperationMethod<
-  PrivateEndpointConnectionsUpdateRequest,
-  PrivateEndpointConnectionsUpdateResponse,
-  PrivateEndpointConnectionsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsUpdateRequest,
-  output: PrivateEndpointConnectionsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateLinkResourcesGetError = AzureOpError;
-/** Gets a private link resource for PostgreSQL server. */
-export const PrivateLinkResourcesGet: API.OperationMethod<
-  PrivateLinkResourcesGetRequest,
-  PrivateLinkResourcesGetResponse,
-  PrivateLinkResourcesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateLinkResourcesGetRequest,
-  output: PrivateLinkResourcesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateLinkResourcesListByServerError = AzureOpError;
+export type ListPrivateLinkResourceByServerError = AzureOpError;
 /** Gets the private link resources for PostgreSQL server. */
-export const PrivateLinkResourcesListByServer: API.OperationMethod<
-  PrivateLinkResourcesListByServerRequest,
+export const ListPrivateLinkResourceByServer: API.OperationMethod<
+  ListPrivateLinkResourceByServerRequest,
   PrivateLinkResourceList,
-  PrivateLinkResourcesListByServerError,
+  ListPrivateLinkResourceByServerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PrivateLinkResourcesListByServerRequest,
+  input: ListPrivateLinkResourceByServerRequest,
   output: PrivateLinkResourceList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type QuotaUsagesListError = AzureOpError;
+export type ListQuotaUsagesError = AzureOpError;
 /** Get quota usages at specified location in a given subscription. */
-export const QuotaUsagesList: API.OperationMethod<
-  QuotaUsagesListRequest,
+export const ListQuotaUsages: API.OperationMethod<
+  ListQuotaUsagesRequest,
   QuotaUsageList,
-  QuotaUsagesListError,
+  ListQuotaUsagesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: QuotaUsagesListRequest,
+  input: ListQuotaUsagesRequest,
   output: QuotaUsageList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ReplicasListByServerError = AzureOpError;
+export type ListReplicasByServerError = AzureOpError;
 /** Lists all read replicas of a server. */
-export const ReplicasListByServer: API.OperationMethod<
-  ReplicasListByServerRequest,
+export const ListReplicasByServer: API.OperationMethod<
+  ListReplicasByServerRequest,
   ServerList,
-  ReplicasListByServerError,
+  ListReplicasByServerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ReplicasListByServerRequest,
+  input: ListReplicasByServerRequest,
   output: ServerList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListServerByResourceGroupError = AzureOpError;
+/** Lists all servers in a resource group. */
+export const ListServerByResourceGroup: API.OperationMethod<
+  ListServerByResourceGroupRequest,
+  ServerList,
+  ListServerByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListServerByResourceGroupRequest,
+  output: ServerList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListServerBySubscriptionError = AzureOpError;
+/** Lists all servers in a subscription. */
+export const ListServerBySubscription: API.OperationMethod<
+  ListServerBySubscriptionRequest,
+  ServerList,
+  ListServerBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListServerBySubscriptionRequest,
+  output: ServerList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListTuningOptionByServerError = AzureOpError;
+/** Lists the tuning options of a server. */
+export const ListTuningOptionByServer: API.OperationMethod<
+  ListTuningOptionByServerRequest,
+  TuningOptionsList,
+  ListTuningOptionByServerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListTuningOptionByServerRequest,
+  output: TuningOptionsList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListTuningOptionRecommendationsError = AzureOpError;
+/** Lists available object recommendations. */
+export const ListTuningOptionRecommendations: API.OperationMethod<
+  ListTuningOptionRecommendationsRequest,
+  ObjectRecommendationList,
+  ListTuningOptionRecommendationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListTuningOptionRecommendationsRequest,
+  output: ObjectRecommendationList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVirtualEndpointByServerError = AzureOpError;
+/** Lists pair of virtual endpoints associated to a server. */
+export const ListVirtualEndpointByServer: API.OperationMethod<
+  ListVirtualEndpointByServerRequest,
+  VirtualEndpointsList,
+  ListVirtualEndpointByServerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVirtualEndpointByServerRequest,
+  output: VirtualEndpointsList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVirtualNetworkSubnetUsageError = AzureOpError;
+/** Lists the virtual network subnet usage for a given virtual network. */
+export const ListVirtualNetworkSubnetUsage: API.OperationMethod<
+  ListVirtualNetworkSubnetUsageRequest,
+  VirtualNetworkSubnetUsageModel,
+  ListVirtualNetworkSubnetUsageError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVirtualNetworkSubnetUsageRequest,
+  output: VirtualNetworkSubnetUsageModel,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutConfigurationError = AzureOpError;
+/** Updates, using Put verb, the value assigned to a specific modifiable configuration (also known as server parameter) of a server. */
+export const PutConfiguration: API.OperationMethod<
+  PutConfigurationRequest,
+  PutConfigurationResponse,
+  PutConfigurationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutConfigurationRequest,
+  output: PutConfigurationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RestartServerError = AzureOpError;
+/** Restarts PostgreSQL database engine in a server. */
+export const RestartServer: API.OperationMethod<
+  RestartServerRequest,
+  RestartServerResponse,
+  RestartServerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RestartServerRequest,
+  output: RestartServerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -7123,126 +7255,6 @@ export const ServersCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ServersDeleteError = AzureOpError;
-/** Deletes or drops an existing server. */
-export const ServersDelete: API.OperationMethod<
-  ServersDeleteRequest,
-  ServersDeleteResponse,
-  ServersDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ServersDeleteRequest,
-  output: ServersDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ServersGetError = AzureOpError;
-/** Gets information about an existing server. */
-export const ServersGet: API.OperationMethod<
-  ServersGetRequest,
-  ServersGetResponse,
-  ServersGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ServersGetRequest,
-  output: ServersGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ServersListByResourceGroupError = AzureOpError;
-/** Lists all servers in a resource group. */
-export const ServersListByResourceGroup: API.OperationMethod<
-  ServersListByResourceGroupRequest,
-  ServerList,
-  ServersListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ServersListByResourceGroupRequest,
-  output: ServerList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ServersListBySubscriptionError = AzureOpError;
-/** Lists all servers in a subscription. */
-export const ServersListBySubscription: API.OperationMethod<
-  ServersListBySubscriptionRequest,
-  ServerList,
-  ServersListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ServersListBySubscriptionRequest,
-  output: ServerList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ServersRestartError = AzureOpError;
-/** Restarts PostgreSQL database engine in a server. */
-export const ServersRestart: API.OperationMethod<
-  ServersRestartRequest,
-  ServersRestartResponse,
-  ServersRestartError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ServersRestartRequest,
-  output: ServersRestartResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ServersStartError = AzureOpError;
-/** Starts a stopped server. */
-export const ServersStart: API.OperationMethod<
-  ServersStartRequest,
-  ServersStartResponse,
-  ServersStartError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ServersStartRequest,
-  output: ServersStartResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ServersStopError = AzureOpError;
-/** Stops a server. */
-export const ServersStop: API.OperationMethod<
-  ServersStopRequest,
-  ServersStopResponse,
-  ServersStopError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ServersStopRequest,
-  output: ServersStopResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ServersUpdateError = AzureOpError;
-/** Updates an existing server. The request body can contain one or multiple of the properties present in the normal server definition. */
-export const ServersUpdate: API.OperationMethod<
-  ServersUpdateRequest,
-  ServersUpdateResponse,
-  ServersUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ServersUpdateRequest,
-  output: ServersUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ServerThreatProtectionSettingsCreateOrUpdateError = AzureOpError;
 /** Creates or updates a server's Advanced Threat Protection settings. */
 export const ServerThreatProtectionSettingsCreateOrUpdate: API.OperationMethod<
@@ -7258,136 +7270,121 @@ export const ServerThreatProtectionSettingsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type TuningOptionsGetError = AzureOpError;
-/** Gets the tuning options of a server. */
-export const TuningOptionsGet: API.OperationMethod<
-  TuningOptionsGetRequest,
-  TuningOptionsGetResponse,
-  TuningOptionsGetError,
+export type StartBackupsLongTermRetentionError = AzureOpError;
+/** Initiates a long term retention backup. */
+export const StartBackupsLongTermRetention: API.OperationMethod<
+  StartBackupsLongTermRetentionRequest,
+  BackupsLongTermRetentionResponse,
+  StartBackupsLongTermRetentionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TuningOptionsGetRequest,
-  output: TuningOptionsGetResponse,
+  input: StartBackupsLongTermRetentionRequest,
+  output: BackupsLongTermRetentionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type TuningOptionsListByServerError = AzureOpError;
-/** Lists the tuning options of a server. */
-export const TuningOptionsListByServer: API.OperationMethod<
-  TuningOptionsListByServerRequest,
-  TuningOptionsList,
-  TuningOptionsListByServerError,
+export type StartServerError = AzureOpError;
+/** Starts a stopped server. */
+export const StartServer: API.OperationMethod<
+  StartServerRequest,
+  StartServerResponse,
+  StartServerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TuningOptionsListByServerRequest,
-  output: TuningOptionsList,
+  input: StartServerRequest,
+  output: StartServerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type TuningOptionsListRecommendationsError = AzureOpError;
-/** Lists available object recommendations. */
-export const TuningOptionsListRecommendations: API.OperationMethod<
-  TuningOptionsListRecommendationsRequest,
-  ObjectRecommendationList,
-  TuningOptionsListRecommendationsError,
+export type StopServerError = AzureOpError;
+/** Stops a server. */
+export const StopServer: API.OperationMethod<
+  StopServerRequest,
+  StopServerResponse,
+  StopServerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TuningOptionsListRecommendationsRequest,
-  output: ObjectRecommendationList,
+  input: StopServerRequest,
+  output: StopServerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type VirtualEndpointsCreateError = AzureOpError;
-/** Creates a pair of virtual endpoints for a server. */
-export const VirtualEndpointsCreate: API.OperationMethod<
-  VirtualEndpointsCreateRequest,
-  VirtualEndpointsCreateResponse,
-  VirtualEndpointsCreateError,
+export type UpdateConfigurationError = AzureOpError;
+/** Updates the value assigned to a specific modifiable configuration (also known as server parameter) of a server. */
+export const UpdateConfiguration: API.OperationMethod<
+  UpdateConfigurationRequest,
+  UpdateConfigurationResponse,
+  UpdateConfigurationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: VirtualEndpointsCreateRequest,
-  output: VirtualEndpointsCreateResponse,
+  input: UpdateConfigurationRequest,
+  output: UpdateConfigurationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type VirtualEndpointsDeleteError = AzureOpError;
-/** Deletes a pair of virtual endpoints. */
-export const VirtualEndpointsDelete: API.OperationMethod<
-  VirtualEndpointsDeleteRequest,
-  VirtualEndpointsDeleteResponse,
-  VirtualEndpointsDeleteError,
+export type UpdateMigrationError = AzureOpError;
+/** Updates an existing migration. The request body can contain one to many of the mutable properties present in the migration definition. Certain property updates initiate migration state transitions. */
+export const UpdateMigration: API.OperationMethod<
+  UpdateMigrationRequest,
+  UpdateMigrationResponse,
+  UpdateMigrationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: VirtualEndpointsDeleteRequest,
-  output: VirtualEndpointsDeleteResponse,
+  input: UpdateMigrationRequest,
+  output: UpdateMigrationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type VirtualEndpointsGetError = AzureOpError;
-/** Gets information about a pair of virtual endpoints. */
-export const VirtualEndpointsGet: API.OperationMethod<
-  VirtualEndpointsGetRequest,
-  VirtualEndpointsGetResponse,
-  VirtualEndpointsGetError,
+export type UpdatePrivateEndpointConnectionError = AzureOpError;
+/** Approves or rejects a private endpoint connection. */
+export const UpdatePrivateEndpointConnection: API.OperationMethod<
+  UpdatePrivateEndpointConnectionRequest,
+  UpdatePrivateEndpointConnectionResponse,
+  UpdatePrivateEndpointConnectionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: VirtualEndpointsGetRequest,
-  output: VirtualEndpointsGetResponse,
+  input: UpdatePrivateEndpointConnectionRequest,
+  output: UpdatePrivateEndpointConnectionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type VirtualEndpointsListByServerError = AzureOpError;
-/** Lists pair of virtual endpoints associated to a server. */
-export const VirtualEndpointsListByServer: API.OperationMethod<
-  VirtualEndpointsListByServerRequest,
-  VirtualEndpointsList,
-  VirtualEndpointsListByServerError,
+export type UpdateServerError = AzureOpError;
+/** Updates an existing server. The request body can contain one or multiple of the properties present in the normal server definition. */
+export const UpdateServer: API.OperationMethod<
+  UpdateServerRequest,
+  UpdateServerResponse,
+  UpdateServerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: VirtualEndpointsListByServerRequest,
-  output: VirtualEndpointsList,
+  input: UpdateServerRequest,
+  output: UpdateServerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type VirtualEndpointsUpdateError = AzureOpError;
+export type UpdateVirtualEndpointError = AzureOpError;
 /** Updates a pair of virtual endpoints for a server. */
-export const VirtualEndpointsUpdate: API.OperationMethod<
-  VirtualEndpointsUpdateRequest,
-  VirtualEndpointsUpdateResponse,
-  VirtualEndpointsUpdateError,
+export const UpdateVirtualEndpoint: API.OperationMethod<
+  UpdateVirtualEndpointRequest,
+  UpdateVirtualEndpointResponse,
+  UpdateVirtualEndpointError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: VirtualEndpointsUpdateRequest,
-  output: VirtualEndpointsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualNetworkSubnetUsageListError = AzureOpError;
-/** Lists the virtual network subnet usage for a given virtual network. */
-export const VirtualNetworkSubnetUsageList: API.OperationMethod<
-  VirtualNetworkSubnetUsageListRequest,
-  VirtualNetworkSubnetUsageModel,
-  VirtualNetworkSubnetUsageListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualNetworkSubnetUsageListRequest,
-  output: VirtualNetworkSubnetUsageModel,
+  input: UpdateVirtualEndpointRequest,
+  output: UpdateVirtualEndpointResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

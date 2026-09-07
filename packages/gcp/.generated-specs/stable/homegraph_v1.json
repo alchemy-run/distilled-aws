@@ -4,159 +4,10 @@
     "service": "homegraph",
     "version": "v1",
     "title": "HomeGraph API",
-    "baseUrl": "https://homegraph.googleapis.com/"
+    "baseUrl": "https://homegraph.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.gcp.homegraph_v1#SyncRequest": {
-      "type": "structure",
-      "members": {
-        "requestId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Request ID used for debugging."
-          }
-        },
-        "agentUserId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Third-party user ID."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Request type for the [`Sync`](#google.home.graph.v1.HomeGraphApiService.Sync) call."
-      }
-    },
-    "com.gcp.homegraph_v1#DeviceNames": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Primary name of the device, generally provided by the user. Names will be truncated if over the 60 Unicode code point (character) limit and no errors will be thrown. Developers are responsible for handling long names."
-          }
-        },
-        "nicknames": {
-          "target": "com.gcp.homegraph_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Additional names provided by the user for the device."
-          }
-        },
-        "defaultNames": {
-          "target": "com.gcp.homegraph_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "List of names provided by the manufacturer rather than the user, such as serial numbers, SKUs, etc."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Identifiers used to describe the device."
-      }
-    },
-    "com.gcp.homegraph_v1#StringList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
-      }
-    },
-    "com.gcp.homegraph_v1#TraitData": {
-      "type": "structure",
-      "members": {
-        "providerUpdateTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The custom timestamp supplied by the provider during a ReportStateAndNotification update (if provided). This field is returned as part of the `QueryResponse`."
-          }
-        },
-        "commitTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Other metadata for the trait. The time the client update was committed in the server."
-          }
-        },
-        "trait": {
-          "target": "com.gcp.homegraph_v1#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "The Provider Home API trait payload."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Contains the trait payload for a single trait."
-      }
-    },
-    "com.gcp.homegraph_v1#DocumentMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "smithy.api#Document"
-      }
-    },
-    "com.gcp.homegraph_v1#ComponentTraitUpdates": {
-      "type": "structure",
-      "members": {
-        "componentId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. ID of the component from the device provider."
-          }
-        },
-        "traitData": {
-          "target": "com.gcp.homegraph_v1#TraitDataList",
-          "traits": {
-            "smithy.api#documentation": "Required. The updated trait data for the component."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Contains the set of updates for a component."
-      }
-    },
-    "com.gcp.homegraph_v1#TraitDataList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.homegraph_v1#TraitData"
-      }
-    },
-    "com.gcp.homegraph_v1#DeviceMetadata": {
-      "type": "structure",
-      "members": {
-        "traitCommitTimestamps": {
-          "target": "com.gcp.homegraph_v1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Map from the Trait ID (e.g., \"action.devices.traits.OnOff\") to its last Spanner commit timestamp."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Metadata for traits of a single device."
-      }
-    },
-    "com.gcp.homegraph_v1#StringMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "smithy.api#String"
-      }
-    },
-    "com.gcp.homegraph_v1#HomeTraitPayload": {
-      "type": "structure",
-      "members": {
-        "rootComponent": {
-          "target": "com.gcp.homegraph_v1#Component",
-          "traits": {
-            "smithy.api#documentation": "The root component of the device as reported by the provider."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Container for UDDM trait data associated with a device."
-      }
-    },
     "com.gcp.homegraph_v1#StructurePresenceStateChangeReasonStruct": {
       "type": "structure",
       "members": {
@@ -177,93 +28,6 @@
         "smithy.api#documentation": "Contains the metadata about the cause of the structure presence state change."
       }
     },
-    "com.gcp.homegraph_v1#StructurePresenceStateChangeEvent": {
-      "type": "structure",
-      "members": {
-        "reason": {
-          "target": "com.gcp.homegraph_v1#StructurePresenceStateChangeReasonStruct",
-          "traits": {
-            "smithy.api#documentation": "Optional. Specifies the presence state change reason."
-          }
-        },
-        "presenceState": {
-          "target": "com.gcp.homegraph_v1#StructurePresenceStateChangeEventPresenceStateEnum",
-          "traits": {
-            "smithy.api#documentation": "Required. Specifies the presence state."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Sent when the structure presence state changes."
-      }
-    },
-    "com.gcp.homegraph_v1#StructurePresenceStateChangeEventPresenceStateEnum": {
-      "type": "enum",
-      "members": {
-        "STRUCTURE_PRESENCE_STATE_ENUM_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "STRUCTURE_PRESENCE_STATE_ENUM_UNSPECIFIED"
-          }
-        },
-        "HOME": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "HOME"
-          }
-        },
-        "AWAY": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "AWAY"
-          }
-        }
-      }
-    },
-    "com.gcp.homegraph_v1#ReportStateAndNotificationDevice": {
-      "type": "structure",
-      "members": {
-        "notifications": {
-          "target": "com.gcp.homegraph_v1#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "Notifications metadata for devices. See the **Device NOTIFICATIONS** section of the individual trait [reference guides](https://developers.home.google.com/cloud-to-cloud/traits)."
-          }
-        },
-        "homeEvents": {
-          "target": "com.gcp.homegraph_v1#HomeEventsList",
-          "traits": {
-            "smithy.api#documentation": "Optional. UDDM/WHDM trait events"
-          }
-        },
-        "states": {
-          "target": "com.gcp.homegraph_v1#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "States of devices to update. See the **Device STATES** section of the individual trait [reference guides](https://developers.home.google.com/cloud-to-cloud/traits)."
-          }
-        },
-        "homeTraits": {
-          "target": "com.gcp.homegraph_v1#HomeTraitUpdatesList",
-          "traits": {
-            "smithy.api#documentation": "Optional. UDDM/WHDM trait updates."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The states and notifications specific to a device."
-      }
-    },
-    "com.gcp.homegraph_v1#HomeEventsList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.homegraph_v1#HomeEvents"
-      }
-    },
-    "com.gcp.homegraph_v1#HomeTraitUpdatesList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.homegraph_v1#HomeTraitUpdates"
-      }
-    },
     "com.gcp.homegraph_v1#AgentDeviceId": {
       "type": "structure",
       "members": {
@@ -278,123 +42,26 @@
         "smithy.api#documentation": "Third-party device ID for one device."
       }
     },
-    "com.gcp.homegraph_v1#SyncResponse": {
-      "type": "structure",
-      "members": {
-        "requestId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Request ID used for debugging. Copied from the request."
-          }
-        },
-        "payload": {
-          "target": "com.gcp.homegraph_v1#SyncResponsePayload",
-          "traits": {
-            "smithy.api#documentation": "Devices associated with the third-party user."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response type for the [`Sync`](#google.home.graph.v1.HomeGraphApiService.Sync) call. This should follow the same format as the Google smart home `action.devices.SYNC` [response](https://developers.home.google.com/cloud-to-cloud/intents/sync). Example: ```json { \"requestId\": \"ff36a3cc-ec34-11e6-b1a0-64510650abcf\", \"payload\": { \"agentUserId\": \"1836.15267389\", \"devices\": [{ \"id\": \"123\", \"type\": \"action.devices.types.OUTLET\", \"traits\": [ \"action.devices.traits.OnOff\" ], \"name\": { \"defaultNames\": [\"My Outlet 1234\"], \"name\": \"Night light\", \"nicknames\": [\"wall plug\"] }, \"willReportState\": false, \"deviceInfo\": { \"manufacturer\": \"lights-out-inc\", \"model\": \"hs1234\", \"hwVersion\": \"3.2\", \"swVersion\": \"11.4\" }, \"customData\": { \"fooValue\": 74, \"barValue\": true, \"bazValue\": \"foo\" } }] } } ```"
-      }
-    },
-    "com.gcp.homegraph_v1#HomeTraitUpdates": {
-      "type": "structure",
-      "members": {
-        "components": {
-          "target": "com.gcp.homegraph_v1#ComponentTraitUpdatesList",
-          "traits": {
-            "smithy.api#documentation": "Required. Trait updates for each component."
-          }
-        },
-        "deviceId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Unique identifier for the device."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Contains the set of updates for a device."
-      }
-    },
-    "com.gcp.homegraph_v1#ComponentTraitUpdatesList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.homegraph_v1#ComponentTraitUpdates"
-      }
-    },
-    "com.gcp.homegraph_v1#QueryRequestInput": {
-      "type": "structure",
-      "members": {
-        "payload": {
-          "target": "com.gcp.homegraph_v1#QueryRequestPayload",
-          "traits": {
-            "smithy.api#documentation": "Payload containing third-party device IDs."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Device ID inputs to QueryRequest."
-      }
-    },
-    "com.gcp.homegraph_v1#EventData": {
-      "type": "structure",
-      "members": {
-        "event": {
-          "target": "com.gcp.homegraph_v1#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "Required. The actual event payload."
-          }
-        },
-        "eventId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The unique event ID from the device provider."
-          }
-        },
-        "eventTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The timestamp of the event."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Contains the details for a single event."
-      }
-    },
-    "com.gcp.homegraph_v1#HomeEvents": {
-      "type": "structure",
-      "members": {
-        "events": {
-          "target": "com.gcp.homegraph_v1#EventsList",
-          "traits": {
-            "smithy.api#documentation": "Required. List of events for the item."
-          }
-        },
-        "deviceId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. / Unique identifier for the device."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Contains the set of events for an item."
-      }
-    },
-    "com.gcp.homegraph_v1#EventsList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.homegraph_v1#Events"
-      }
-    },
     "com.gcp.homegraph_v1#EveUtilityTrait": {
       "type": "structure",
       "members": {
-        "altitude": {
+        "loggingMetadata": {
+          "target": "smithy.api#String"
+        },
+        "loggingControlPoint": {
+          "target": "smithy.api#String"
+        },
+        "voltage": {
           "target": "smithy.api#Double"
+        },
+        "wattAccumulated": {
+          "target": "smithy.api#Double"
+        },
+        "openCount": {
+          "target": "smithy.api#String"
+        },
+        "obstructionDetected": {
+          "target": "smithy.api#Boolean"
         },
         "loggingTime": {
           "target": "smithy.api#String"
@@ -402,19 +69,40 @@
         "watt": {
           "target": "smithy.api#Double"
         },
-        "rloc16": {
-          "target": "smithy.api#Integer"
+        "altitude": {
+          "target": "smithy.api#Double"
         },
-        "loggingControlPoint": {
+        "accumulatedControlPoint": {
           "target": "smithy.api#String"
         },
-        "childLock": {
+        "holdPosition": {
           "target": "smithy.api#Boolean"
+        },
+        "weatherTrend": {
+          "target": "smithy.api#Integer"
         },
         "airPressure": {
           "target": "smithy.api#Double"
         },
+        "getConfig": {
+          "target": "smithy.api#String"
+        },
         "lastEventTime": {
+          "target": "smithy.api#String"
+        },
+        "motionSensitivity": {
+          "target": "smithy.api#Integer"
+        },
+        "rloc16": {
+          "target": "smithy.api#Integer"
+        },
+        "current": {
+          "target": "smithy.api#Double"
+        },
+        "childLock": {
+          "target": "smithy.api#Boolean"
+        },
+        "setConfig": {
           "target": "smithy.api#String"
         },
         "acceptedCommandList": {
@@ -423,47 +111,11 @@
             "smithy.api#documentation": "Required. Output only. Accepted command list for this trait"
           }
         },
-        "openCount": {
-          "target": "smithy.api#String"
-        },
-        "holdPosition": {
-          "target": "smithy.api#Boolean"
-        },
-        "loggingMetadata": {
-          "target": "smithy.api#String"
-        },
-        "setConfig": {
-          "target": "smithy.api#String"
-        },
-        "weatherTrend": {
-          "target": "smithy.api#Integer"
-        },
-        "accumulatedControlPoint": {
-          "target": "smithy.api#String"
-        },
-        "loggingData": {
-          "target": "smithy.api#String"
-        },
-        "getConfig": {
-          "target": "smithy.api#String"
-        },
-        "wattAccumulated": {
-          "target": "smithy.api#Double"
-        },
-        "motionSensitivity": {
-          "target": "smithy.api#Integer"
-        },
-        "obstructionDetected": {
-          "target": "smithy.api#Boolean"
-        },
-        "voltage": {
-          "target": "smithy.api#Double"
-        },
         "statusFault": {
           "target": "smithy.api#Integer"
         },
-        "current": {
-          "target": "smithy.api#Double"
+        "loggingData": {
+          "target": "smithy.api#String"
         }
       }
     },
@@ -484,19 +136,26 @@
         "target": "com.gcp.homegraph_v1#EveUtilityTraitAcceptedCommandListItemEnum"
       }
     },
+    "com.gcp.homegraph_v1#RequestSyncDevicesResponse": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Response type for the [`RequestSyncDevices`](#google.home.graph.v1.HomeGraphApiService.RequestSyncDevices) call. Intentionally empty upon success. An HTTP response code is returned with more details upon failure."
+      }
+    },
     "com.gcp.homegraph_v1#UserBlameStruct": {
       "type": "structure",
       "members": {
-        "blameType": {
-          "target": "com.gcp.homegraph_v1#UserBlameStructBlameTypeEnum",
-          "traits": {
-            "smithy.api#documentation": "Required. Specifies the user blame type."
-          }
-        },
         "userEmail": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Required. Specifies the email of the user."
+          }
+        },
+        "blameType": {
+          "target": "com.gcp.homegraph_v1#UserBlameStructBlameTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. Specifies the user blame type."
           }
         }
       },
@@ -525,630 +184,6 @@
             "smithy.api#enumValue": "MANUAL_CHANGE"
           }
         }
-      }
-    },
-    "com.gcp.homegraph_v1#PartnerPresenceSignalTrait": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "Provides attributes and events related to partner presence signals. See PartnerPresenceSignal trait:"
-      }
-    },
-    "com.gcp.homegraph_v1#QueryRequest": {
-      "type": "structure",
-      "members": {
-        "requestId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Request ID used for debugging."
-          }
-        },
-        "inputs": {
-          "target": "com.gcp.homegraph_v1#QueryRequestInputList",
-          "traits": {
-            "smithy.api#documentation": "Required. Inputs containing third-party device IDs for which to get the device states."
-          }
-        },
-        "agentUserId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Third-party user ID."
-          }
-        },
-        "includeDeviceMetadata": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Optional. If true, the response will include device metadata in the device_metadata field."
-          }
-        },
-        "deviceView": {
-          "target": "com.gcp.homegraph_v1#QueryRequestDeviceViewEnum",
-          "traits": {
-            "smithy.api#documentation": "Optional. Specifies the type of device data to be returned in the response. This allows callers to request traditional Smart Home traits, Unified Device Data Model (UDDM) traits, or both. If unspecified, defaults to SMART_HOME_TRAIT_ONLY."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Request type for the [`Query`](#google.home.graph.v1.HomeGraphApiService.Query) call."
-      }
-    },
-    "com.gcp.homegraph_v1#QueryRequestInputList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.homegraph_v1#QueryRequestInput"
-      }
-    },
-    "com.gcp.homegraph_v1#QueryRequestDeviceViewEnum": {
-      "type": "enum",
-      "members": {
-        "DEVICE_VIEW_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DEVICE_VIEW_UNSPECIFIED"
-          }
-        },
-        "SMART_HOME_TRAIT_ONLY": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "SMART_HOME_TRAIT_ONLY"
-          }
-        },
-        "HOME_TRAIT_ONLY": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "HOME_TRAIT_ONLY"
-          }
-        },
-        "HOME_TRAIT_AND_SMART_HOME_TRAIT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "HOME_TRAIT_AND_SMART_HOME_TRAIT"
-          }
-        }
-      }
-    },
-    "com.gcp.homegraph_v1#MotionEvent": {
-      "type": "structure",
-      "members": {
-        "commonEventData": {
-          "target": "com.gcp.homegraph_v1#CommonEventDataStruct"
-        },
-        "zones": {
-          "target": "com.gcp.homegraph_v1#ZoneStructList",
-          "traits": {
-            "smithy.api#documentation": "Zones where events are detected in."
-          }
-        },
-        "zonesIsEmpty": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "If set, zones is an empty list."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Represents a newly detected motion event."
-      }
-    },
-    "com.gcp.homegraph_v1#ZoneStructList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.homegraph_v1#ZoneStruct"
-      }
-    },
-    "com.gcp.homegraph_v1#ZoneStruct": {
-      "type": "structure",
-      "members": {
-        "label": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Name of the zone."
-          }
-        },
-        "zoneId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Id of the zone"
-          }
-        }
-      }
-    },
-    "com.gcp.homegraph_v1#ThermostatFanControlTrait": {
-      "type": "structure",
-      "members": {
-        "timerSpeed": {
-          "target": "com.gcp.homegraph_v1#ThermostatFanControlTraitTimerSpeedEnum"
-        },
-        "timerEnd": {
-          "target": "smithy.api#String"
-        },
-        "timerDuration": {
-          "target": "smithy.api#String"
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "This cluster provides fan control capabilities for thermostats."
-      }
-    },
-    "com.gcp.homegraph_v1#ThermostatFanControlTraitTimerSpeedEnum": {
-      "type": "enum",
-      "members": {
-        "FAN_SPEED_SETTING_ENUM_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "FAN_SPEED_SETTING_ENUM_UNSPECIFIED"
-          }
-        },
-        "FAN_SPEED_SETTING_OFF": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "FAN_SPEED_SETTING_OFF"
-          }
-        },
-        "FAN_SPEED_SETTING_STAGE1": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "FAN_SPEED_SETTING_STAGE1"
-          }
-        },
-        "FAN_SPEED_SETTING_STAGE2": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "FAN_SPEED_SETTING_STAGE2"
-          }
-        },
-        "FAN_SPEED_SETTING_STAGE3": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "FAN_SPEED_SETTING_STAGE3"
-          }
-        },
-        "FAN_SPEED_SETTING_AUTO": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "FAN_SPEED_SETTING_AUTO"
-          }
-        }
-      }
-    },
-    "com.gcp.homegraph_v1#SyncResponsePayload": {
-      "type": "structure",
-      "members": {
-        "agentUserId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Third-party user ID"
-          }
-        },
-        "devices": {
-          "target": "com.gcp.homegraph_v1#DeviceList",
-          "traits": {
-            "smithy.api#documentation": "Devices associated with the third-party user."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Payload containing device information."
-      }
-    },
-    "com.gcp.homegraph_v1#DeviceList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.homegraph_v1#Device"
-      }
-    },
-    "com.gcp.homegraph_v1#Result": {
-      "type": "structure",
-      "members": {
-        "homeTraitCommitTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The trait commit timestamp of the state update in Home Graph."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Result of reporting state and notifications for a single device."
-      }
-    },
-    "com.gcp.homegraph_v1#QueryResponse": {
-      "type": "structure",
-      "members": {
-        "requestId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Request ID used for debugging. Copied from the request."
-          }
-        },
-        "payload": {
-          "target": "com.gcp.homegraph_v1#QueryResponsePayload",
-          "traits": {
-            "smithy.api#documentation": "Device states for the devices given in the request."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response type for the [`Query`](#google.home.graph.v1.HomeGraphApiService.Query) call. This should follow the same format as the Google smart home `action.devices.QUERY` [response](https://developers.home.google.com/cloud-to-cloud/intents/query). Example: ```json { \"requestId\": \"ff36a3cc-ec34-11e6-b1a0-64510650abcf\", \"payload\": { \"devices\": { \"123\": { \"on\": true, \"online\": true }, \"456\": { \"on\": true, \"online\": true, \"brightness\": 80, \"color\": { \"name\": \"cerulean\", \"spectrumRGB\": 31655 } } } } } ```"
-      }
-    },
-    "com.gcp.homegraph_v1#MediaUrlsStruct": {
-      "type": "structure",
-      "members": {
-        "dashManifestUrl": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "URL for a dash manifest for playback"
-          }
-        },
-        "hlsMasterPlaylistUrl": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "URL for a hls master playlist for playback"
-          }
-        },
-        "previewUrl": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "URL for animated preview clip representing the event session"
-          }
-        },
-        "thumbnailUrl": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "URL for thumbnail image representing the event session"
-          }
-        }
-      }
-    },
-    "com.gcp.homegraph_v1#AgentOtherDeviceId": {
-      "type": "structure",
-      "members": {
-        "deviceId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Unique third-party device ID."
-          }
-        },
-        "agentId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Project ID for your smart home Action."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Alternate third-party device ID."
-      }
-    },
-    "com.gcp.homegraph_v1#ReportStateAndNotificationRequest": {
-      "type": "structure",
-      "members": {
-        "followUpToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Deprecated."
-          }
-        },
-        "eventId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Unique identifier per event (for example, a doorbell press)."
-          }
-        },
-        "agentUserId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Third-party user ID."
-          }
-        },
-        "requestId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Request ID used for debugging."
-          }
-        },
-        "payload": {
-          "target": "com.gcp.homegraph_v1#StateAndNotificationPayload",
-          "traits": {
-            "smithy.api#documentation": "Required. State of devices to update and notification metadata for devices."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Request type for the [`ReportStateAndNotification`](#google.home.graph.v1.HomeGraphApiService.ReportStateAndNotification) call. It may include states, notifications, home_traits, home_events, or any combination thereof. Smart Home Device Traits (SHDT) `states` and `notifications` are defined per `device_id` (for example, \"123\" and \"456\" in the following example). Google Home Traits `home_traits` and `home_events` are lists of updates or events, each associated with a `device_id` (for example, \"789\" in the following example). Example: ```json { \"requestId\": \"ff36a3cc-ec34-11e6-b1a0-64510650abcf\", \"agentUserId\": \"1234\", \"payload\": { \"devices\": { \"states\": { \"123\": { \"on\": true }, \"456\": { \"on\": true, \"brightness\": 10 }, }, \"homeTraits\": [ { \"deviceId\": \"789\", \"components\": [ { \"componentId\": \"main\", \"traitData\": [ { \"trait\": { \"@type\": \"type.googleapis.com/home.graph.v1.OnOffTrait\", \"onOff\": true } } ] } ] } ], \"homeEvents\": [ { \"deviceId\": \"789\", \"events\": [ { \"componentId\": \"main\", \"events\": [ { \"eventId\": \"event-123\", \"eventTime\": \"2026-01-01T00:00:00Z\", \"event\": { \"@type\": \"type.googleapis.com/home.graph.v1.DoorbellPressTrait.DoorbellPressedEvent\" } } ] } ] } ] } } } ```"
-      }
-    },
-    "com.gcp.homegraph_v1#DeviceInfo": {
-      "type": "structure",
-      "members": {
-        "model": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Device model."
-          }
-        },
-        "swVersion": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Device software version."
-          }
-        },
-        "hwVersion": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Device hardware version."
-          }
-        },
-        "manufacturer": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Device manufacturer."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Device information."
-      }
-    },
-    "com.gcp.homegraph_v1#ReportStateAndNotificationResponse": {
-      "type": "structure",
-      "members": {
-        "requestId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Request ID copied from ReportStateAndNotificationRequest."
-          }
-        },
-        "deviceResults": {
-          "target": "com.gcp.homegraph_v1#ResultMap",
-          "traits": {
-            "smithy.api#documentation": "Map from agent device ID to the result of reporting state and notifications. This is only populated for UDDM updates for now."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response type for the [`ReportStateAndNotification`](#google.home.graph.v1.HomeGraphApiService.ReportStateAndNotification) call."
-      }
-    },
-    "com.gcp.homegraph_v1#ResultMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "com.gcp.homegraph_v1#Result"
-      }
-    },
-    "com.gcp.homegraph_v1#StateAndNotificationPayload": {
-      "type": "structure",
-      "members": {
-        "devices": {
-          "target": "com.gcp.homegraph_v1#ReportStateAndNotificationDevice",
-          "traits": {
-            "smithy.api#documentation": "The devices for updating state and sending notifications."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Payload containing the state and notification information for devices."
-      }
-    },
-    "com.gcp.homegraph_v1#CommonEventDataStruct": {
-      "type": "structure",
-      "members": {
-        "sessionId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Camera event session id. Used for identifying a unique event session"
-          }
-        },
-        "mediaUrls": {
-          "target": "com.gcp.homegraph_v1#MediaUrlsStruct",
-          "traits": {
-            "smithy.api#documentation": "Contains media urls for the event"
-          }
-        },
-        "trackId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Id of the track this object belongs to"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Common camera event data."
-      }
-    },
-    "com.gcp.homegraph_v1#QueryResponsePayload": {
-      "type": "structure",
-      "members": {
-        "homeTraitPayload": {
-          "target": "com.gcp.homegraph_v1#HomeTraitPayloadMap",
-          "traits": {
-            "smithy.api#documentation": "Map of device IDs to their Unified Device Data Model (UDDM) trait payloads. This field is populated when `device_view` is set to HOME_TRAIT_ONLY or HOME_TRAIT_AND_SMART_HOME_TRAIT."
-          }
-        },
-        "devices": {
-          "target": "com.gcp.homegraph_v1#DocumentMapMap",
-          "traits": {
-            "smithy.api#documentation": "States of the devices. Map of third-party device ID to struct of device states."
-          }
-        },
-        "deviceMetadata": {
-          "target": "com.gcp.homegraph_v1#DeviceMetadataMap",
-          "traits": {
-            "smithy.api#documentation": "Map from the Trait ID (e.g., \"action.devices.traits.OnOff\") to its last Spanner commit timestamp. If a trait has no recorded timestamp, it will be omitted from this map."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Payload containing device states information."
-      }
-    },
-    "com.gcp.homegraph_v1#HomeTraitPayloadMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "com.gcp.homegraph_v1#HomeTraitPayload"
-      }
-    },
-    "com.gcp.homegraph_v1#DocumentMapMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "com.gcp.homegraph_v1#DocumentMap"
-      }
-    },
-    "com.gcp.homegraph_v1#DeviceMetadataMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "com.gcp.homegraph_v1#DeviceMetadata"
-      }
-    },
-    "com.gcp.homegraph_v1#RequestSyncDevicesResponse": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "Response type for the [`RequestSyncDevices`](#google.home.graph.v1.HomeGraphApiService.RequestSyncDevices) call. Intentionally empty upon success. An HTTP response code is returned with more details upon failure."
-      }
-    },
-    "com.gcp.homegraph_v1#QueryRequestPayload": {
-      "type": "structure",
-      "members": {
-        "devices": {
-          "target": "com.gcp.homegraph_v1#AgentDeviceIdList",
-          "traits": {
-            "smithy.api#documentation": "Third-party device IDs for which to get the device states."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Payload containing device IDs."
-      }
-    },
-    "com.gcp.homegraph_v1#AgentDeviceIdList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.homegraph_v1#AgentDeviceId"
-      }
-    },
-    "com.gcp.homegraph_v1#Device": {
-      "type": "structure",
-      "members": {
-        "customData": {
-          "target": "com.gcp.homegraph_v1#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "Custom device attributes stored in Home Graph and provided to your smart home Action in each [QUERY](https://developers.home.google.com/cloud-to-cloud/intents/query) and [EXECUTE](https://developers.home.google.com/cloud-to-cloud/intents/execute) intent. Data in this object has a few constraints: No sensitive information, including but not limited to Personally Identifiable Information."
-          }
-        },
-        "structureHint": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Suggested name for the structure where this device is installed. Google attempts to use this value during user setup."
-          }
-        },
-        "notificationSupportedByAgent": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Indicates whether your smart home Action will report notifications to Google for this device via ReportStateAndNotification. If your smart home Action enables users to control device notifications, you should update this field and call RequestSyncDevices."
-          }
-        },
-        "type": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Hardware type of the device. See [device types](https://developers.home.google.com/cloud-to-cloud/guides)."
-          }
-        },
-        "traits": {
-          "target": "com.gcp.homegraph_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Traits supported by the device. See [device traits](https://developers.home.google.com/cloud-to-cloud/traits)."
-          }
-        },
-        "otherDeviceIds": {
-          "target": "com.gcp.homegraph_v1#AgentOtherDeviceIdList",
-          "traits": {
-            "smithy.api#documentation": "Alternate IDs associated with this device. This is used to identify cloud synced devices enabled for [local fulfillment](https://developers.home.google.com/local-home/overview)."
-          }
-        },
-        "willReportState": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Indicates whether your smart home Action will report state of this device to Google via ReportStateAndNotification."
-          }
-        },
-        "roomHint": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Suggested name for the room where this device is installed. Google attempts to use this value during user setup."
-          }
-        },
-        "deviceInfo": {
-          "target": "com.gcp.homegraph_v1#DeviceInfo",
-          "traits": {
-            "smithy.api#documentation": "Device manufacturer, model, hardware version, and software version."
-          }
-        },
-        "attributes": {
-          "target": "com.gcp.homegraph_v1#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "Attributes for the traits supported by the device."
-          }
-        },
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Third-party device ID."
-          }
-        },
-        "name": {
-          "target": "com.gcp.homegraph_v1#DeviceNames",
-          "traits": {
-            "smithy.api#documentation": "Names given to this device by your smart home Action."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Third-party device definition."
-      }
-    },
-    "com.gcp.homegraph_v1#AgentOtherDeviceIdList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.homegraph_v1#AgentOtherDeviceId"
-      }
-    },
-    "com.gcp.homegraph_v1#Events": {
-      "type": "structure",
-      "members": {
-        "events": {
-          "target": "com.gcp.homegraph_v1#EventDataList",
-          "traits": {
-            "smithy.api#documentation": "Required. List of events associated with the component."
-          }
-        },
-        "componentId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The ID of the provider component if the events are associated with a specific component. Optional for WHDM events, required for UDDM events."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Contains a set of events for a specific component."
-      }
-    },
-    "com.gcp.homegraph_v1#EventDataList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.homegraph_v1#EventData"
       }
     },
     "com.gcp.homegraph_v1#DeviceBlameStruct": {
@@ -1206,11 +241,714 @@
         }
       }
     },
+    "com.gcp.homegraph_v1#MediaUrlsStruct": {
+      "type": "structure",
+      "members": {
+        "thumbnailUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL for thumbnail image representing the event session"
+          }
+        },
+        "dashManifestUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL for a dash manifest for playback"
+          }
+        },
+        "hlsMasterPlaylistUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL for a hls master playlist for playback"
+          }
+        },
+        "previewUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL for animated preview clip representing the event session"
+          }
+        }
+      }
+    },
+    "com.gcp.homegraph_v1#ComponentTraitUpdates": {
+      "type": "structure",
+      "members": {
+        "traitData": {
+          "target": "com.gcp.homegraph_v1#TraitDataList",
+          "traits": {
+            "smithy.api#documentation": "Required. The updated trait data for the component."
+          }
+        },
+        "componentId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. ID of the component from the device provider."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains the set of updates for a component."
+      }
+    },
+    "com.gcp.homegraph_v1#TraitDataList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.homegraph_v1#TraitData"
+      }
+    },
+    "com.gcp.homegraph_v1#ZoneStruct": {
+      "type": "structure",
+      "members": {
+        "label": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the zone."
+          }
+        },
+        "zoneId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Id of the zone"
+          }
+        }
+      }
+    },
+    "com.gcp.homegraph_v1#SyncResponse": {
+      "type": "structure",
+      "members": {
+        "payload": {
+          "target": "com.gcp.homegraph_v1#SyncResponsePayload",
+          "traits": {
+            "smithy.api#documentation": "Devices associated with the third-party user."
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Request ID used for debugging. Copied from the request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response type for the [`Sync`](#google.home.graph.v1.HomeGraphApiService.Sync) call. This should follow the same format as the Google smart home `action.devices.SYNC` [response](https://developers.home.google.com/cloud-to-cloud/intents/sync). Example: ```json { \"requestId\": \"ff36a3cc-ec34-11e6-b1a0-64510650abcf\", \"payload\": { \"agentUserId\": \"1836.15267389\", \"devices\": [{ \"id\": \"123\", \"type\": \"action.devices.types.OUTLET\", \"traits\": [ \"action.devices.traits.OnOff\" ], \"name\": { \"defaultNames\": [\"My Outlet 1234\"], \"name\": \"Night light\", \"nicknames\": [\"wall plug\"] }, \"willReportState\": false, \"deviceInfo\": { \"manufacturer\": \"lights-out-inc\", \"model\": \"hs1234\", \"hwVersion\": \"3.2\", \"swVersion\": \"11.4\" }, \"customData\": { \"fooValue\": 74, \"barValue\": true, \"bazValue\": \"foo\" } }] } } ```"
+      }
+    },
+    "com.gcp.homegraph_v1#DeviceNames": {
+      "type": "structure",
+      "members": {
+        "defaultNames": {
+          "target": "com.gcp.homegraph_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "List of names provided by the manufacturer rather than the user, such as serial numbers, SKUs, etc."
+          }
+        },
+        "nicknames": {
+          "target": "com.gcp.homegraph_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Additional names provided by the user for the device."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Primary name of the device, generally provided by the user. Names will be truncated if over the 60 Unicode code point (character) limit and no errors will be thrown. Developers are responsible for handling long names."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Identifiers used to describe the device."
+      }
+    },
+    "com.gcp.homegraph_v1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.homegraph_v1#AgentOtherDeviceId": {
+      "type": "structure",
+      "members": {
+        "agentId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Project ID for your smart home Action."
+          }
+        },
+        "deviceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique third-party device ID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Alternate third-party device ID."
+      }
+    },
+    "com.gcp.homegraph_v1#DeviceInfo": {
+      "type": "structure",
+      "members": {
+        "hwVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Device hardware version."
+          }
+        },
+        "model": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Device model."
+          }
+        },
+        "swVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Device software version."
+          }
+        },
+        "manufacturer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Device manufacturer."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Device information."
+      }
+    },
+    "com.gcp.homegraph_v1#CameraEventStreamTrait": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "This cluster defines the camera event stream used by GHP for their Cloud-to-Cloud eventing flow"
+      }
+    },
+    "com.gcp.homegraph_v1#Result": {
+      "type": "structure",
+      "members": {
+        "homeTraitCommitTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The trait commit timestamp of the state update in Home Graph."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Result of reporting state and notifications for a single device."
+      }
+    },
+    "com.gcp.homegraph_v1#Events": {
+      "type": "structure",
+      "members": {
+        "componentId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The ID of the provider component if the events are associated with a specific component. Optional for WHDM events, required for UDDM events."
+          }
+        },
+        "events": {
+          "target": "com.gcp.homegraph_v1#EventDataList",
+          "traits": {
+            "smithy.api#documentation": "Required. List of events associated with the component."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains a set of events for a specific component."
+      }
+    },
+    "com.gcp.homegraph_v1#EventDataList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.homegraph_v1#EventData"
+      }
+    },
+    "com.gcp.homegraph_v1#HomeTraitUpdates": {
+      "type": "structure",
+      "members": {
+        "components": {
+          "target": "com.gcp.homegraph_v1#ComponentTraitUpdatesList",
+          "traits": {
+            "smithy.api#documentation": "Required. Trait updates for each component."
+          }
+        },
+        "deviceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Unique identifier for the device."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains the set of updates for a device."
+      }
+    },
+    "com.gcp.homegraph_v1#ComponentTraitUpdatesList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.homegraph_v1#ComponentTraitUpdates"
+      }
+    },
+    "com.gcp.homegraph_v1#PersonEvent": {
+      "type": "structure",
+      "members": {
+        "zones": {
+          "target": "com.gcp.homegraph_v1#ZoneStructList",
+          "traits": {
+            "smithy.api#documentation": "Zones where events are detected in."
+          }
+        },
+        "zonesIsEmpty": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If set, zones is an empty list."
+          }
+        },
+        "commonEventData": {
+          "target": "com.gcp.homegraph_v1#CommonEventDataStruct"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a newly detected person event."
+      }
+    },
+    "com.gcp.homegraph_v1#ZoneStructList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.homegraph_v1#ZoneStruct"
+      }
+    },
+    "com.gcp.homegraph_v1#StructurePresenceStateChangeEvent": {
+      "type": "structure",
+      "members": {
+        "presenceState": {
+          "target": "com.gcp.homegraph_v1#StructurePresenceStateChangeEventPresenceStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. Specifies the presence state."
+          }
+        },
+        "reason": {
+          "target": "com.gcp.homegraph_v1#StructurePresenceStateChangeReasonStruct",
+          "traits": {
+            "smithy.api#documentation": "Optional. Specifies the presence state change reason."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Sent when the structure presence state changes."
+      }
+    },
+    "com.gcp.homegraph_v1#StructurePresenceStateChangeEventPresenceStateEnum": {
+      "type": "enum",
+      "members": {
+        "STRUCTURE_PRESENCE_STATE_ENUM_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STRUCTURE_PRESENCE_STATE_ENUM_UNSPECIFIED"
+          }
+        },
+        "HOME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HOME"
+          }
+        },
+        "AWAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AWAY"
+          }
+        }
+      }
+    },
+    "com.gcp.homegraph_v1#SyncRequest": {
+      "type": "structure",
+      "members": {
+        "agentUserId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Third-party user ID."
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Request ID used for debugging."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request type for the [`Sync`](#google.home.graph.v1.HomeGraphApiService.Sync) call."
+      }
+    },
+    "com.gcp.homegraph_v1#TraitData": {
+      "type": "structure",
+      "members": {
+        "commitTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Other metadata for the trait. The time the client update was committed in the server."
+          }
+        },
+        "trait": {
+          "target": "com.gcp.homegraph_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The Provider Home API trait payload."
+          }
+        },
+        "providerUpdateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The custom timestamp supplied by the provider during a ReportStateAndNotification update (if provided). This field is returned as part of the `QueryResponse`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains the trait payload for a single trait."
+      }
+    },
+    "com.gcp.homegraph_v1#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.homegraph_v1#EventData": {
+      "type": "structure",
+      "members": {
+        "eventTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The timestamp of the event."
+          }
+        },
+        "eventId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The unique event ID from the device provider."
+          }
+        },
+        "event": {
+          "target": "com.gcp.homegraph_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Required. The actual event payload."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains the details for a single event."
+      }
+    },
+    "com.gcp.homegraph_v1#ThermostatFanControlTrait": {
+      "type": "structure",
+      "members": {
+        "timerDuration": {
+          "target": "smithy.api#String"
+        },
+        "timerSpeed": {
+          "target": "com.gcp.homegraph_v1#ThermostatFanControlTraitTimerSpeedEnum"
+        },
+        "timerEnd": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This cluster provides fan control capabilities for thermostats."
+      }
+    },
+    "com.gcp.homegraph_v1#ThermostatFanControlTraitTimerSpeedEnum": {
+      "type": "enum",
+      "members": {
+        "FAN_SPEED_SETTING_ENUM_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAN_SPEED_SETTING_ENUM_UNSPECIFIED"
+          }
+        },
+        "FAN_SPEED_SETTING_OFF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAN_SPEED_SETTING_OFF"
+          }
+        },
+        "FAN_SPEED_SETTING_STAGE1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAN_SPEED_SETTING_STAGE1"
+          }
+        },
+        "FAN_SPEED_SETTING_STAGE2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAN_SPEED_SETTING_STAGE2"
+          }
+        },
+        "FAN_SPEED_SETTING_STAGE3": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAN_SPEED_SETTING_STAGE3"
+          }
+        },
+        "FAN_SPEED_SETTING_AUTO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAN_SPEED_SETTING_AUTO"
+          }
+        }
+      }
+    },
+    "com.gcp.homegraph_v1#HomeTraitPayload": {
+      "type": "structure",
+      "members": {
+        "rootComponent": {
+          "target": "com.gcp.homegraph_v1#Component",
+          "traits": {
+            "smithy.api#documentation": "The root component of the device as reported by the provider."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Container for UDDM trait data associated with a device."
+      }
+    },
     "com.gcp.homegraph_v1#Empty": {
       "type": "structure",
       "members": {},
       "traits": {
         "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.homegraph_v1#StateAndNotificationPayload": {
+      "type": "structure",
+      "members": {
+        "devices": {
+          "target": "com.gcp.homegraph_v1#ReportStateAndNotificationDevice",
+          "traits": {
+            "smithy.api#documentation": "The devices for updating state and sending notifications."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Payload containing the state and notification information for devices."
+      }
+    },
+    "com.gcp.homegraph_v1#QueryRequestInput": {
+      "type": "structure",
+      "members": {
+        "payload": {
+          "target": "com.gcp.homegraph_v1#QueryRequestPayload",
+          "traits": {
+            "smithy.api#documentation": "Payload containing third-party device IDs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Device ID inputs to QueryRequest."
+      }
+    },
+    "com.gcp.homegraph_v1#ReportStateAndNotificationDevice": {
+      "type": "structure",
+      "members": {
+        "homeEvents": {
+          "target": "com.gcp.homegraph_v1#HomeEventsList",
+          "traits": {
+            "smithy.api#documentation": "Optional. UDDM/WHDM trait events"
+          }
+        },
+        "states": {
+          "target": "com.gcp.homegraph_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "States of devices to update. See the **Device STATES** section of the individual trait [reference guides](https://developers.home.google.com/cloud-to-cloud/traits)."
+          }
+        },
+        "homeTraits": {
+          "target": "com.gcp.homegraph_v1#HomeTraitUpdatesList",
+          "traits": {
+            "smithy.api#documentation": "Optional. UDDM/WHDM trait updates."
+          }
+        },
+        "notifications": {
+          "target": "com.gcp.homegraph_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Notifications metadata for devices. See the **Device NOTIFICATIONS** section of the individual trait [reference guides](https://developers.home.google.com/cloud-to-cloud/traits)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The states and notifications specific to a device."
+      }
+    },
+    "com.gcp.homegraph_v1#HomeEventsList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.homegraph_v1#HomeEvents"
+      }
+    },
+    "com.gcp.homegraph_v1#HomeTraitUpdatesList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.homegraph_v1#HomeTraitUpdates"
+      }
+    },
+    "com.gcp.homegraph_v1#QueryResponse": {
+      "type": "structure",
+      "members": {
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Request ID used for debugging. Copied from the request."
+          }
+        },
+        "payload": {
+          "target": "com.gcp.homegraph_v1#QueryResponsePayload",
+          "traits": {
+            "smithy.api#documentation": "Device states for the devices given in the request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response type for the [`Query`](#google.home.graph.v1.HomeGraphApiService.Query) call. This should follow the same format as the Google smart home `action.devices.QUERY` [response](https://developers.home.google.com/cloud-to-cloud/intents/query). Example: ```json { \"requestId\": \"ff36a3cc-ec34-11e6-b1a0-64510650abcf\", \"payload\": { \"devices\": { \"123\": { \"on\": true, \"online\": true }, \"456\": { \"on\": true, \"online\": true, \"brightness\": 80, \"color\": { \"name\": \"cerulean\", \"spectrumRGB\": 31655 } } } } } ```"
+      }
+    },
+    "com.gcp.homegraph_v1#PartnerPresenceSignalTrait": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Provides attributes and events related to partner presence signals. See PartnerPresenceSignal trait:"
+      }
+    },
+    "com.gcp.homegraph_v1#SyncResponsePayload": {
+      "type": "structure",
+      "members": {
+        "agentUserId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Third-party user ID"
+          }
+        },
+        "devices": {
+          "target": "com.gcp.homegraph_v1#DeviceList",
+          "traits": {
+            "smithy.api#documentation": "Devices associated with the third-party user."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Payload containing device information."
+      }
+    },
+    "com.gcp.homegraph_v1#DeviceList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.homegraph_v1#Device"
+      }
+    },
+    "com.gcp.homegraph_v1#MotionEvent": {
+      "type": "structure",
+      "members": {
+        "zones": {
+          "target": "com.gcp.homegraph_v1#ZoneStructList",
+          "traits": {
+            "smithy.api#documentation": "Zones where events are detected in."
+          }
+        },
+        "zonesIsEmpty": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If set, zones is an empty list."
+          }
+        },
+        "commonEventData": {
+          "target": "com.gcp.homegraph_v1#CommonEventDataStruct"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a newly detected motion event."
+      }
+    },
+    "com.gcp.homegraph_v1#ReportStateAndNotificationRequest": {
+      "type": "structure",
+      "members": {
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Request ID used for debugging."
+          }
+        },
+        "eventId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier per event (for example, a doorbell press)."
+          }
+        },
+        "agentUserId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Third-party user ID."
+          }
+        },
+        "followUpToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Deprecated."
+          }
+        },
+        "payload": {
+          "target": "com.gcp.homegraph_v1#StateAndNotificationPayload",
+          "traits": {
+            "smithy.api#documentation": "Required. State of devices to update and notification metadata for devices."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request type for the [`ReportStateAndNotification`](#google.home.graph.v1.HomeGraphApiService.ReportStateAndNotification) call. It may include states, notifications, home_traits, home_events, or any combination thereof. Smart Home Device Traits (SHDT) `states` and `notifications` are defined per `device_id` (for example, \"123\" and \"456\" in the following example). Google Home Traits `home_traits` and `home_events` are lists of updates or events, each associated with a `device_id` (for example, \"789\" in the following example). Example: ```json { \"requestId\": \"ff36a3cc-ec34-11e6-b1a0-64510650abcf\", \"agentUserId\": \"1234\", \"payload\": { \"devices\": { \"states\": { \"123\": { \"on\": true }, \"456\": { \"on\": true, \"brightness\": 10 }, }, \"homeTraits\": [ { \"deviceId\": \"789\", \"components\": [ { \"componentId\": \"main\", \"traitData\": [ { \"trait\": { \"@type\": \"type.googleapis.com/home.graph.v1.OnOffTrait\", \"onOff\": true } } ] } ] } ], \"homeEvents\": [ { \"deviceId\": \"789\", \"events\": [ { \"componentId\": \"main\", \"events\": [ { \"eventId\": \"event-123\", \"eventTime\": \"2026-01-01T00:00:00Z\", \"event\": { \"@type\": \"type.googleapis.com/home.graph.v1.DoorbellPressTrait.DoorbellPressedEvent\" } } ] } ] } ] } } } ```"
+      }
+    },
+    "com.gcp.homegraph_v1#QueryRequestPayload": {
+      "type": "structure",
+      "members": {
+        "devices": {
+          "target": "com.gcp.homegraph_v1#AgentDeviceIdList",
+          "traits": {
+            "smithy.api#documentation": "Third-party device IDs for which to get the device states."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Payload containing device IDs."
+      }
+    },
+    "com.gcp.homegraph_v1#AgentDeviceIdList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.homegraph_v1#AgentDeviceId"
+      }
+    },
+    "com.gcp.homegraph_v1#DeviceMetadata": {
+      "type": "structure",
+      "members": {
+        "traitCommitTimestamps": {
+          "target": "com.gcp.homegraph_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Map from the Trait ID (e.g., \"action.devices.traits.OnOff\") to its last Spanner commit timestamp."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata for traits of a single device."
+      }
+    },
+    "com.gcp.homegraph_v1#StringMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
       }
     },
     "com.gcp.homegraph_v1#RequestSyncDevicesRequest": {
@@ -1233,49 +971,173 @@
         "smithy.api#documentation": "Request type for the [`RequestSyncDevices`](#google.home.graph.v1.HomeGraphApiService.RequestSyncDevices) call."
       }
     },
-    "com.gcp.homegraph_v1#PersonEvent": {
+    "com.gcp.homegraph_v1#QueryRequest": {
       "type": "structure",
       "members": {
-        "commonEventData": {
-          "target": "com.gcp.homegraph_v1#CommonEventDataStruct"
-        },
-        "zonesIsEmpty": {
+        "includeDeviceMetadata": {
           "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "If set, zones is an empty list."
+            "smithy.api#documentation": "Optional. If true, the response will include device metadata in the device_metadata field."
           }
         },
-        "zones": {
-          "target": "com.gcp.homegraph_v1#ZoneStructList",
+        "inputs": {
+          "target": "com.gcp.homegraph_v1#QueryRequestInputList",
           "traits": {
-            "smithy.api#documentation": "Zones where events are detected in."
+            "smithy.api#documentation": "Required. Inputs containing third-party device IDs for which to get the device states."
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Request ID used for debugging."
+          }
+        },
+        "deviceView": {
+          "target": "com.gcp.homegraph_v1#QueryRequestDeviceViewEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. Specifies the type of device data to be returned in the response. This allows callers to request traditional Smart Home traits, Unified Device Data Model (UDDM) traits, or both. If unspecified, defaults to SMART_HOME_TRAIT_ONLY."
+          }
+        },
+        "agentUserId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Third-party user ID."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Represents a newly detected person event."
+        "smithy.api#documentation": "Request type for the [`Query`](#google.home.graph.v1.HomeGraphApiService.Query) call."
       }
     },
-    "com.gcp.homegraph_v1#CameraEventStreamTrait": {
+    "com.gcp.homegraph_v1#QueryRequestInputList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.homegraph_v1#QueryRequestInput"
+      }
+    },
+    "com.gcp.homegraph_v1#QueryRequestDeviceViewEnum": {
+      "type": "enum",
+      "members": {
+        "DEVICE_VIEW_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEVICE_VIEW_UNSPECIFIED"
+          }
+        },
+        "SMART_HOME_TRAIT_ONLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SMART_HOME_TRAIT_ONLY"
+          }
+        },
+        "HOME_TRAIT_ONLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HOME_TRAIT_ONLY"
+          }
+        },
+        "HOME_TRAIT_AND_SMART_HOME_TRAIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HOME_TRAIT_AND_SMART_HOME_TRAIT"
+          }
+        }
+      }
+    },
+    "com.gcp.homegraph_v1#HomeEvents": {
       "type": "structure",
-      "members": {},
+      "members": {
+        "deviceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. / Unique identifier for the device."
+          }
+        },
+        "events": {
+          "target": "com.gcp.homegraph_v1#EventsList",
+          "traits": {
+            "smithy.api#documentation": "Required. List of events for the item."
+          }
+        }
+      },
       "traits": {
-        "smithy.api#documentation": "This cluster defines the camera event stream used by GHP for their Cloud-to-Cloud eventing flow"
+        "smithy.api#documentation": "Contains the set of events for an item."
+      }
+    },
+    "com.gcp.homegraph_v1#EventsList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.homegraph_v1#Events"
+      }
+    },
+    "com.gcp.homegraph_v1#CommonEventDataStruct": {
+      "type": "structure",
+      "members": {
+        "sessionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Camera event session id. Used for identifying a unique event session"
+          }
+        },
+        "mediaUrls": {
+          "target": "com.gcp.homegraph_v1#MediaUrlsStruct",
+          "traits": {
+            "smithy.api#documentation": "Contains media urls for the event"
+          }
+        },
+        "trackId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Id of the track this object belongs to"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Common camera event data."
+      }
+    },
+    "com.gcp.homegraph_v1#ReportStateAndNotificationResponse": {
+      "type": "structure",
+      "members": {
+        "deviceResults": {
+          "target": "com.gcp.homegraph_v1#ResultMap",
+          "traits": {
+            "smithy.api#documentation": "Map from agent device ID to the result of reporting state and notifications. This is only populated for UDDM updates for now."
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Request ID copied from ReportStateAndNotificationRequest."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response type for the [`ReportStateAndNotification`](#google.home.graph.v1.HomeGraphApiService.ReportStateAndNotification) call."
+      }
+    },
+    "com.gcp.homegraph_v1#ResultMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.gcp.homegraph_v1#Result"
       }
     },
     "com.gcp.homegraph_v1#Component": {
       "type": "structure",
       "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. ID of the component from the device provider."
-          }
-        },
         "traitData": {
           "target": "com.gcp.homegraph_v1#TraitDataList",
           "traits": {
             "smithy.api#documentation": "Required. List of trait data associated with the component."
+          }
+        },
+        "childComponents": {
+          "target": "com.gcp.homegraph_v1#ComponentList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Child components."
           }
         },
         "deviceTypes": {
@@ -1284,10 +1146,10 @@
             "smithy.api#documentation": "Required. List of Device types associated with this component. Supported device types are defined in cs//depot/google3/home/homeservicelayer/uddm/types/uddm_device_types.proto and the type string is the enum name, for example: ON_OFF_LIGHT => \"ON_OFF_LIGHT\"."
           }
         },
-        "childComponents": {
-          "target": "com.gcp.homegraph_v1#ComponentList",
+        "id": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. Child components."
+            "smithy.api#documentation": "Required. ID of the component from the device provider."
           }
         }
       },
@@ -1301,22 +1163,153 @@
         "target": "com.gcp.homegraph_v1#Component"
       }
     },
-    "com.gcp.homegraph_v1#DeleteAgentUsersRequest": {
+    "com.gcp.homegraph_v1#Device": {
       "type": "structure",
       "members": {
-        "agentUserId": {
-          "target": "smithy.api#String",
+        "attributes": {
+          "target": "com.gcp.homegraph_v1#DocumentMap",
           "traits": {
-            "smithy.api#documentation": "Required. Third-party user ID.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
+            "smithy.api#documentation": "Attributes for the traits supported by the device."
           }
         },
-        "requestId": {
+        "notificationSupportedByAgent": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether your smart home Action will report notifications to Google for this device via ReportStateAndNotification. If your smart home Action enables users to control device notifications, you should update this field and call RequestSyncDevices."
+          }
+        },
+        "roomHint": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Request ID used for debugging.",
-            "smithy.api#httpQuery": "requestId"
+            "smithy.api#documentation": "Suggested name for the room where this device is installed. Google attempts to use this value during user setup."
+          }
+        },
+        "otherDeviceIds": {
+          "target": "com.gcp.homegraph_v1#AgentOtherDeviceIdList",
+          "traits": {
+            "smithy.api#documentation": "Alternate IDs associated with this device. This is used to identify cloud synced devices enabled for [local fulfillment](https://developers.home.google.com/local-home/overview)."
+          }
+        },
+        "traits": {
+          "target": "com.gcp.homegraph_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Traits supported by the device. See [device traits](https://developers.home.google.com/cloud-to-cloud/traits)."
+          }
+        },
+        "deviceInfo": {
+          "target": "com.gcp.homegraph_v1#DeviceInfo",
+          "traits": {
+            "smithy.api#documentation": "Device manufacturer, model, hardware version, and software version."
+          }
+        },
+        "customData": {
+          "target": "com.gcp.homegraph_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Custom device attributes stored in Home Graph and provided to your smart home Action in each [QUERY](https://developers.home.google.com/cloud-to-cloud/intents/query) and [EXECUTE](https://developers.home.google.com/cloud-to-cloud/intents/execute) intent. Data in this object has a few constraints: No sensitive information, including but not limited to Personally Identifiable Information."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Third-party device ID."
+          }
+        },
+        "name": {
+          "target": "com.gcp.homegraph_v1#DeviceNames",
+          "traits": {
+            "smithy.api#documentation": "Names given to this device by your smart home Action."
+          }
+        },
+        "structureHint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Suggested name for the structure where this device is installed. Google attempts to use this value during user setup."
+          }
+        },
+        "willReportState": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether your smart home Action will report state of this device to Google via ReportStateAndNotification."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Hardware type of the device. See [device types](https://developers.home.google.com/cloud-to-cloud/guides)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Third-party device definition."
+      }
+    },
+    "com.gcp.homegraph_v1#AgentOtherDeviceIdList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.homegraph_v1#AgentOtherDeviceId"
+      }
+    },
+    "com.gcp.homegraph_v1#QueryResponsePayload": {
+      "type": "structure",
+      "members": {
+        "homeTraitPayload": {
+          "target": "com.gcp.homegraph_v1#HomeTraitPayloadMap",
+          "traits": {
+            "smithy.api#documentation": "Map of device IDs to their Unified Device Data Model (UDDM) trait payloads. This field is populated when `device_view` is set to HOME_TRAIT_ONLY or HOME_TRAIT_AND_SMART_HOME_TRAIT."
+          }
+        },
+        "devices": {
+          "target": "com.gcp.homegraph_v1#DocumentMapMap",
+          "traits": {
+            "smithy.api#documentation": "States of the devices. Map of third-party device ID to struct of device states."
+          }
+        },
+        "deviceMetadata": {
+          "target": "com.gcp.homegraph_v1#DeviceMetadataMap",
+          "traits": {
+            "smithy.api#documentation": "Map from the Trait ID (e.g., \"action.devices.traits.OnOff\") to its last Spanner commit timestamp. If a trait has no recorded timestamp, it will be omitted from this map."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Payload containing device states information."
+      }
+    },
+    "com.gcp.homegraph_v1#HomeTraitPayloadMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.gcp.homegraph_v1#HomeTraitPayload"
+      }
+    },
+    "com.gcp.homegraph_v1#DocumentMapMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.gcp.homegraph_v1#DocumentMap"
+      }
+    },
+    "com.gcp.homegraph_v1#DeviceMetadataMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.gcp.homegraph_v1#DeviceMetadata"
+      }
+    },
+    "com.gcp.homegraph_v1#QueryDevicesRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.homegraph_v1#QueryRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
           }
         }
       }
@@ -1373,13 +1366,13 @@
         ]
       }
     },
-    "com.gcp.homegraph_v1#DeleteAgentUsers": {
+    "com.gcp.homegraph_v1#QueryDevices": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.homegraph_v1#DeleteAgentUsersRequest"
+        "target": "com.gcp.homegraph_v1#QueryDevicesRequest"
       },
       "output": {
-        "target": "com.gcp.homegraph_v1#Empty"
+        "target": "com.gcp.homegraph_v1#QueryResponse"
       },
       "errors": [
         {
@@ -1397,10 +1390,10 @@
       ],
       "traits": {
         "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "v1/{+agentUserId}"
+          "method": "POST",
+          "uri": "v1/devices:query"
         },
-        "smithy.api#documentation": "Unlinks the given third-party user from your smart home Action. All data related to this user will be deleted. For more details on how users link their accounts, see [fulfillment and authentication](https://developers.home.google.com/cloud-to-cloud/primer/fulfillment). The third-party user's identity is passed in via the `agent_user_id` (see DeleteAgentUserRequest). This request must be authorized using service account credentials from your Actions console project."
+        "smithy.api#documentation": "Gets the current states in Home Graph for the given set of the third-party user's devices. The third-party user's identity is passed in via the `agent_user_id` (see QueryRequest). This request must be authorized using service account credentials from your Actions console project."
       }
     },
     "com.gcp.homegraph_v1#ReportStateAndNotificationDevicesRequest": {
@@ -1529,25 +1522,33 @@
         "smithy.api#documentation": "Gets all the devices associated with the given third-party user. The third-party user's identity is passed in via the `agent_user_id` (see SyncRequest). This request must be authorized using service account credentials from your Actions console project."
       }
     },
-    "com.gcp.homegraph_v1#QueryDevicesRequest": {
+    "com.gcp.homegraph_v1#DeleteAgentUsersRequest": {
       "type": "structure",
       "members": {
-        "body": {
-          "target": "com.gcp.homegraph_v1#QueryRequest",
+        "agentUserId": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
+            "smithy.api#documentation": "Required. Third-party user ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Request ID used for debugging.",
+            "smithy.api#httpQuery": "requestId"
           }
         }
       }
     },
-    "com.gcp.homegraph_v1#QueryDevices": {
+    "com.gcp.homegraph_v1#DeleteAgentUsers": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.homegraph_v1#QueryDevicesRequest"
+        "target": "com.gcp.homegraph_v1#DeleteAgentUsersRequest"
       },
       "output": {
-        "target": "com.gcp.homegraph_v1#QueryResponse"
+        "target": "com.gcp.homegraph_v1#Empty"
       },
       "errors": [
         {
@@ -1565,10 +1566,10 @@
       ],
       "traits": {
         "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1/devices:query"
+          "method": "DELETE",
+          "uri": "v1/{+agentUserId}"
         },
-        "smithy.api#documentation": "Gets the current states in Home Graph for the given set of the third-party user's devices. The third-party user's identity is passed in via the `agent_user_id` (see QueryRequest). This request must be authorized using service account credentials from your Actions console project."
+        "smithy.api#documentation": "Unlinks the given third-party user from your smart home Action. All data related to this user will be deleted. For more details on how users link their accounts, see [fulfillment and authentication](https://developers.home.google.com/cloud-to-cloud/primer/fulfillment). The third-party user's identity is passed in via the `agent_user_id` (see DeleteAgentUserRequest). This request must be authorized using service account credentials from your Actions console project."
       }
     }
   }

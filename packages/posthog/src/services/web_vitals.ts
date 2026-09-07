@@ -11,13 +11,13 @@ import * as Retry from "../retry.ts";
 
 export type { PosthogOpError, PosthogOpContext };
 
-export interface WebVitalsRetrieveRequest {
+export interface GetWebVitalRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Filter web vitals by pathname */
   pathname: string;
 }
-export const WebVitalsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetWebVitalRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     pathname: S.String.pipe(T.Query()),
@@ -29,34 +29,32 @@ export const WebVitalsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "WebVitalsRetrieveRequest",
-}) as any as S.Schema<WebVitalsRetrieveRequest>;
+  identifier: "GetWebVitalRequest",
+}) as any as S.Schema<GetWebVitalRequest>;
 
-export type WebVitalsRetrieveResponseBodyMap = {
-  [key: string]: unknown | undefined;
-};
-export const WebVitalsRetrieveResponseBodyMap = /*@__PURE__*/ S.Record(
+export type GetWebVitalResponseBodyMap = { [key: string]: unknown | undefined };
+export const GetWebVitalResponseBodyMap = /*@__PURE__*/ S.Record(
   S.String,
   S.Unknown,
-) as any as S.Schema<WebVitalsRetrieveResponseBodyMap>;
+) as any as S.Schema<GetWebVitalResponseBodyMap>;
 
-export type WebVitalsRetrieveResponse = WebVitalsRetrieveResponseBodyMap;
-export const WebVitalsRetrieveResponse = /*@__PURE__*/ S.suspend(() =>
-  WebVitalsRetrieveResponseBodyMap.pipe(T.RawResponseRoot()),
+export type GetWebVitalResponse = GetWebVitalResponseBodyMap;
+export const GetWebVitalResponse = /*@__PURE__*/ S.suspend(() =>
+  GetWebVitalResponseBodyMap.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "WebVitalsRetrieveResponse",
-}) as any as S.Schema<WebVitalsRetrieveResponse>;
+  identifier: "GetWebVitalResponse",
+}) as any as S.Schema<GetWebVitalResponse>;
 
-export type WebVitalsRetrieveError = PosthogOpError;
+export type GetWebVitalError = PosthogOpError;
 /** Get web vitals for a specific pathname. Toolbar accesses this via OAuth (handled by TeamAndOrgViewSetMixin.get_authenticators). */
-export const webVitalsRetrieve: API.OperationMethod<
-  WebVitalsRetrieveRequest,
-  WebVitalsRetrieveResponse,
-  WebVitalsRetrieveError,
+export const getWebVital: API.OperationMethod<
+  GetWebVitalRequest,
+  GetWebVitalResponse,
+  GetWebVitalError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: WebVitalsRetrieveRequest,
-  output: WebVitalsRetrieveResponse,
+  input: GetWebVitalRequest,
+  output: GetWebVitalResponse,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,

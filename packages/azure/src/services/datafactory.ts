@@ -13,99 +13,441 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-/** Parameter name to be used for filter. The allowed operands to query pipeline runs are PipelineName, RunStart, RunEnd and Status; to query activity runs are ActivityName, ActivityRunStart, ActivityRunEnd, ActivityType and Status, and to query trigger runs are TriggerName, TriggerRunTimestamp and Status. */
-export type RunQueryFilterOperand =
-  | "PipelineName"
-  | "Status"
-  | "RunStart"
-  | "RunEnd"
-  | "ActivityName"
-  | "ActivityRunStart"
-  | "ActivityRunEnd"
-  | "ActivityType"
-  | "TriggerName"
-  | "TriggerRunTimestamp"
-  | "RunGroupId"
-  | "LatestOnly";
-export const RunQueryFilterOperand = /*@__PURE__*/ S.String;
+/** List of tags that can be used for describing the data flow. */
+export type DataFlowAnnotationsList = Array<unknown>;
+export const DataFlowAnnotationsList = /*@__PURE__*/ S.Array(
+  S.Unknown,
+) as any as S.Schema<DataFlowAnnotationsList>;
 
-/** Operator to be used for filter. */
-export type RunQueryFilterOperator = "Equals" | "NotEquals" | "In" | "NotIn";
-export const RunQueryFilterOperator = /*@__PURE__*/ S.String;
-
-/** List of filter values. */
-export type RunQueryFilterValuesList = Array<string>;
-export const RunQueryFilterValuesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<RunQueryFilterValuesList>;
-
-/** Query filter option for listing runs. */
-export interface RunQueryFilter {
-  /** Parameter name to be used for filter. The allowed operands to query pipeline runs are PipelineName, RunStart, RunEnd and Status; to query activity runs are ActivityName, ActivityRunStart, ActivityRunEnd, ActivityType and Status, and to query trigger runs are TriggerName, TriggerRunTimestamp and Status. */
-  operand: RunQueryFilterOperand | (string & {});
-  /** Operator to be used for filter. */
-  operator: RunQueryFilterOperator | (string & {});
-  /** List of filter values. */
-  values: RunQueryFilterValuesList;
+/** The folder that this data flow is in. If not specified, Data flow will appear at the root level. */
+export interface DataFlowFolder {
+  /** The name of the folder that this data flow is in. */
+  name?: string;
 }
-export const RunQueryFilter = /*@__PURE__*/ S.suspend(() =>
+export const DataFlowFolder = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    operand: RunQueryFilterOperand,
-    operator: RunQueryFilterOperator,
-    values: RunQueryFilterValuesList,
+    name: S.optional(S.String),
   }),
-).annotate({ identifier: "RunQueryFilter" }) as any as S.Schema<RunQueryFilter>;
+).annotate({ identifier: "DataFlowFolder" }) as any as S.Schema<DataFlowFolder>;
 
-/** List of filters. */
-export type ActivityRunsQueryByPipelineRunRequestFiltersList =
-  Array<RunQueryFilter>;
-export const ActivityRunsQueryByPipelineRunRequestFiltersList =
-  /*@__PURE__*/ S.Array(
-    RunQueryFilter,
-  ) as any as S.Schema<ActivityRunsQueryByPipelineRunRequestFiltersList>;
-
-/** Parameter name to be used for order by. The allowed parameters to order by for pipeline runs are PipelineName, RunStart, RunEnd and Status; for activity runs are ActivityName, ActivityRunStart, ActivityRunEnd and Status; for trigger runs are TriggerName, TriggerRunTimestamp and Status. */
-export type RunQueryOrderByField =
-  | "RunStart"
-  | "RunEnd"
-  | "PipelineName"
-  | "Status"
-  | "ActivityName"
-  | "ActivityRunStart"
-  | "ActivityRunEnd"
-  | "TriggerName"
-  | "TriggerRunTimestamp";
-export const RunQueryOrderByField = /*@__PURE__*/ S.String;
-
-/** Sorting order of the parameter. */
-export type RunQueryOrder = "ASC" | "DESC";
-export const RunQueryOrder = /*@__PURE__*/ S.String;
-
-/** An object to provide order by options for listing runs. */
-export interface RunQueryOrderBy {
-  /** Parameter name to be used for order by. The allowed parameters to order by for pipeline runs are PipelineName, RunStart, RunEnd and Status; for activity runs are ActivityName, ActivityRunStart, ActivityRunEnd and Status; for trigger runs are TriggerName, TriggerRunTimestamp and Status. */
-  orderBy: RunQueryOrderByField | (string & {});
-  /** Sorting order of the parameter. */
-  order: RunQueryOrder | (string & {});
+/** Azure Data Factory nested object which contains a flow with data movements and transformations. */
+export interface DataFlow {
+  /** Type of data flow. */
+  type: string;
+  /** The description of the data flow. */
+  description?: string;
+  /** List of tags that can be used for describing the data flow. */
+  annotations?: DataFlowAnnotationsList;
+  /** The folder that this data flow is in. If not specified, Data flow will appear at the root level. */
+  folder?: DataFlowFolder;
 }
-export const RunQueryOrderBy = /*@__PURE__*/ S.suspend(() =>
+export const DataFlow = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    orderBy: RunQueryOrderByField,
-    order: RunQueryOrder,
+    type: S.String,
+    description: S.optional(S.String),
+    annotations: S.optional(DataFlowAnnotationsList),
+    folder: S.optional(DataFlowFolder),
+  }),
+).annotate({ identifier: "DataFlow" }) as any as S.Schema<DataFlow>;
+
+/** Data flow debug resource. */
+export interface DataFlowDebugResource {
+  /** The resource name. */
+  name?: string;
+  /** Data flow properties. */
+  properties: DataFlow;
+}
+export const DataFlowDebugResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    properties: DataFlow,
   }),
 ).annotate({
-  identifier: "RunQueryOrderBy",
-}) as any as S.Schema<RunQueryOrderBy>;
+  identifier: "DataFlowDebugResource",
+}) as any as S.Schema<DataFlowDebugResource>;
 
-/** List of OrderBy option. */
-export type ActivityRunsQueryByPipelineRunRequestOrderByList =
-  Array<RunQueryOrderBy>;
-export const ActivityRunsQueryByPipelineRunRequestOrderByList =
+/** List of Data flows */
+export type AddDataFlowDebugSessionDataFlowRequestDataFlowsList =
+  Array<DataFlowDebugResource>;
+export const AddDataFlowDebugSessionDataFlowRequestDataFlowsList =
   /*@__PURE__*/ S.Array(
-    RunQueryOrderBy,
-  ) as any as S.Schema<ActivityRunsQueryByPipelineRunRequestOrderByList>;
+    DataFlowDebugResource,
+  ) as any as S.Schema<AddDataFlowDebugSessionDataFlowRequestDataFlowsList>;
 
-export interface ActivityRunsQueryByPipelineRunRequest {
+/** Linked service reference type. */
+export type Type = "LinkedServiceReference";
+export const Type = /*@__PURE__*/ S.String;
+
+/** Arguments for LinkedService. */
+export type LinkedServiceReferenceParametersMap = {
+  [key: string]: unknown | undefined;
+};
+export const LinkedServiceReferenceParametersMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<LinkedServiceReferenceParametersMap>;
+
+/** Linked service reference type. */
+export interface LinkedServiceReference {
+  /** Linked service reference type. */
+  type: Type | (string & {});
+  /** Reference LinkedService name. */
+  referenceName: string;
+  /** Arguments for LinkedService. */
+  parameters?: LinkedServiceReferenceParametersMap;
+}
+export const LinkedServiceReference = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: Type,
+    referenceName: S.String,
+    parameters: S.optional(LinkedServiceReferenceParametersMap),
+  }),
+).annotate({
+  identifier: "LinkedServiceReference",
+}) as any as S.Schema<LinkedServiceReference>;
+
+/** Parameter type. */
+export type ParameterType =
+  | "Object"
+  | "String"
+  | "Int"
+  | "Float"
+  | "Bool"
+  | "Array"
+  | "SecureString";
+export const ParameterType = /*@__PURE__*/ S.String;
+
+/** Definition of a single parameter for an entity. */
+export interface ParameterSpecification {
+  /** Parameter type. */
+  type: ParameterType | (string & {});
+  /** Default value of parameter. */
+  defaultValue?: unknown;
+}
+export const ParameterSpecification = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: ParameterType,
+    defaultValue: S.optional(S.Unknown),
+  }),
+).annotate({
+  identifier: "ParameterSpecification",
+}) as any as S.Schema<ParameterSpecification>;
+
+/** Parameters for dataset. */
+export type DatasetParametersMap = {
+  [key: string]: ParameterSpecification | undefined;
+};
+export const DatasetParametersMap = /*@__PURE__*/ S.Record(
+  S.String,
+  ParameterSpecification,
+) as any as S.Schema<DatasetParametersMap>;
+
+/** List of tags that can be used for describing the Dataset. */
+export type DatasetAnnotationsList = Array<unknown>;
+export const DatasetAnnotationsList = /*@__PURE__*/ S.Array(
+  S.Unknown,
+) as any as S.Schema<DatasetAnnotationsList>;
+
+/** The folder that this Dataset is in. If not specified, Dataset will appear at the root level. */
+export interface DatasetFolder {
+  /** The name of the folder that this Dataset is in. */
+  name?: string;
+}
+export const DatasetFolder = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+  }),
+).annotate({ identifier: "DatasetFolder" }) as any as S.Schema<DatasetFolder>;
+
+/** The Azure Data Factory nested object which identifies data within different data stores, such as tables, files, folders, and documents. */
+export interface Dataset {
+  /** Type of dataset. */
+  type: string;
+  /** Dataset description. */
+  description?: string;
+  /** Columns that define the structure of the dataset. Type: array (or Expression with resultType array), itemType: DatasetDataElement. */
+  structure?: unknown;
+  /** Columns that define the physical type schema of the dataset. Type: array (or Expression with resultType array), itemType: DatasetSchemaDataElement. */
+  schema?: unknown;
+  /** Linked service reference. */
+  linkedServiceName: LinkedServiceReference;
+  /** Parameters for dataset. */
+  parameters?: DatasetParametersMap;
+  /** List of tags that can be used for describing the Dataset. */
+  annotations?: DatasetAnnotationsList;
+  /** The folder that this Dataset is in. If not specified, Dataset will appear at the root level. */
+  folder?: DatasetFolder;
+}
+export const Dataset = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.String,
+    description: S.optional(S.String),
+    structure: S.optional(S.Unknown),
+    schema: S.optional(S.Unknown),
+    linkedServiceName: LinkedServiceReference,
+    parameters: S.optional(DatasetParametersMap),
+    annotations: S.optional(DatasetAnnotationsList),
+    folder: S.optional(DatasetFolder),
+  }),
+).annotate({ identifier: "Dataset" }) as any as S.Schema<Dataset>;
+
+/** Dataset debug resource. */
+export interface DatasetDebugResource {
+  /** The resource name. */
+  name?: string;
+  /** Dataset properties. */
+  properties: Dataset;
+}
+export const DatasetDebugResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    properties: Dataset,
+  }),
+).annotate({
+  identifier: "DatasetDebugResource",
+}) as any as S.Schema<DatasetDebugResource>;
+
+/** List of datasets. */
+export type AddDataFlowDebugSessionDataFlowRequestDatasetsList =
+  Array<DatasetDebugResource>;
+export const AddDataFlowDebugSessionDataFlowRequestDatasetsList =
+  /*@__PURE__*/ S.Array(
+    DatasetDebugResource,
+  ) as any as S.Schema<AddDataFlowDebugSessionDataFlowRequestDatasetsList>;
+
+/** Type of integration runtime. */
+export type IntegrationRuntimeReferenceType = "IntegrationRuntimeReference";
+export const IntegrationRuntimeReferenceType = /*@__PURE__*/ S.String;
+
+/** Arguments for integration runtime. */
+export type IntegrationRuntimeReferenceParametersMap = {
+  [key: string]: unknown | undefined;
+};
+export const IntegrationRuntimeReferenceParametersMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<IntegrationRuntimeReferenceParametersMap>;
+
+/** Integration runtime reference type. */
+export interface IntegrationRuntimeReference {
+  /** Type of integration runtime. */
+  type: IntegrationRuntimeReferenceType | (string & {});
+  /** Reference integration runtime name. */
+  referenceName: string;
+  /** Arguments for integration runtime. */
+  parameters?: IntegrationRuntimeReferenceParametersMap;
+}
+export const IntegrationRuntimeReference = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: IntegrationRuntimeReferenceType,
+    referenceName: S.String,
+    parameters: S.optional(IntegrationRuntimeReferenceParametersMap),
+  }),
+).annotate({
+  identifier: "IntegrationRuntimeReference",
+}) as any as S.Schema<IntegrationRuntimeReference>;
+
+/** Parameters for linked service. */
+export type LinkedServiceParametersMap = {
+  [key: string]: ParameterSpecification | undefined;
+};
+export const LinkedServiceParametersMap = /*@__PURE__*/ S.Record(
+  S.String,
+  ParameterSpecification,
+) as any as S.Schema<LinkedServiceParametersMap>;
+
+/** List of tags that can be used for describing the linked service. */
+export type LinkedServiceAnnotationsList = Array<unknown>;
+export const LinkedServiceAnnotationsList = /*@__PURE__*/ S.Array(
+  S.Unknown,
+) as any as S.Schema<LinkedServiceAnnotationsList>;
+
+/** The nested object which contains the information and credential which can be used to connect with related store or compute resource. */
+export interface LinkedService {
+  /** Type of linked service. */
+  type: string;
+  /** Version of the linked service. */
+  version?: string;
+  /** The integration runtime reference. */
+  connectVia?: IntegrationRuntimeReference;
+  /** Linked service description. */
+  description?: string;
+  /** Parameters for linked service. */
+  parameters?: LinkedServiceParametersMap;
+  /** List of tags that can be used for describing the linked service. */
+  annotations?: LinkedServiceAnnotationsList;
+}
+export const LinkedService = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.String,
+    version: S.optional(S.String),
+    connectVia: S.optional(IntegrationRuntimeReference),
+    description: S.optional(S.String),
+    parameters: S.optional(LinkedServiceParametersMap),
+    annotations: S.optional(LinkedServiceAnnotationsList),
+  }),
+).annotate({ identifier: "LinkedService" }) as any as S.Schema<LinkedService>;
+
+/** Linked service debug resource. */
+export interface LinkedServiceDebugResource {
+  /** The resource name. */
+  name?: string;
+  /** Properties of linked service. */
+  properties: LinkedService;
+}
+export const LinkedServiceDebugResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    properties: LinkedService,
+  }),
+).annotate({
+  identifier: "LinkedServiceDebugResource",
+}) as any as S.Schema<LinkedServiceDebugResource>;
+
+/** List of linked services. */
+export type AddDataFlowDebugSessionDataFlowRequestLinkedServicesList =
+  Array<LinkedServiceDebugResource>;
+export const AddDataFlowDebugSessionDataFlowRequestLinkedServicesList =
+  /*@__PURE__*/ S.Array(
+    LinkedServiceDebugResource,
+  ) as any as S.Schema<AddDataFlowDebugSessionDataFlowRequestLinkedServicesList>;
+
+/** Staging info for execute data flow activity. */
+export interface DataFlowStagingInfo {
+  /** Staging linked service reference. */
+  linkedService?: LinkedServiceReference;
+  /** Folder path for staging blob. Type: string (or Expression with resultType string) */
+  folderPath?: unknown;
+}
+export const DataFlowStagingInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    linkedService: S.optional(LinkedServiceReference),
+    folderPath: S.optional(S.Unknown),
+  }),
+).annotate({
+  identifier: "DataFlowStagingInfo",
+}) as any as S.Schema<DataFlowStagingInfo>;
+
+/** Definition of data flow source setting for debug. */
+export interface DataFlowSourceSetting {
+  /** The data flow source name. */
+  sourceName?: string;
+  /** Defines the row limit of data flow source in debug. */
+  rowLimit?: number;
+}
+export const DataFlowSourceSetting = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    sourceName: S.optional(S.String),
+    rowLimit: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "DataFlowSourceSetting",
+}) as any as S.Schema<DataFlowSourceSetting>;
+
+/** Source setting for data flow debug. */
+export type DataFlowDebugPackageDebugSettingsSourceSettingsList =
+  Array<DataFlowSourceSetting>;
+export const DataFlowDebugPackageDebugSettingsSourceSettingsList =
+  /*@__PURE__*/ S.Array(
+    DataFlowSourceSetting,
+  ) as any as S.Schema<DataFlowDebugPackageDebugSettingsSourceSettingsList>;
+
+/** Data flow parameters. */
+export type DataFlowDebugPackageDebugSettingsParametersMap = {
+  [key: string]: unknown | undefined;
+};
+export const DataFlowDebugPackageDebugSettingsParametersMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Unknown,
+  ) as any as S.Schema<DataFlowDebugPackageDebugSettingsParametersMap>;
+
+/** Data flow debug settings. */
+export interface DataFlowDebugPackageDebugSettings {
+  /** Source setting for data flow debug. */
+  sourceSettings?: DataFlowDebugPackageDebugSettingsSourceSettingsList;
+  /** Data flow parameters. */
+  parameters?: DataFlowDebugPackageDebugSettingsParametersMap;
+  /** Parameters for dataset. */
+  datasetParameters?: unknown;
+}
+export const DataFlowDebugPackageDebugSettings = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    sourceSettings: S.optional(
+      DataFlowDebugPackageDebugSettingsSourceSettingsList,
+    ),
+    parameters: S.optional(DataFlowDebugPackageDebugSettingsParametersMap),
+    datasetParameters: S.optional(S.Unknown),
+  }),
+).annotate({
+  identifier: "DataFlowDebugPackageDebugSettings",
+}) as any as S.Schema<DataFlowDebugPackageDebugSettings>;
+
+export interface AddDataFlowDebugSessionDataFlowRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+  /** The ID of data flow debug session. */
+  sessionId?: string;
+  /** Data flow instance. */
+  dataFlow?: DataFlowDebugResource;
+  /** List of Data flows */
+  dataFlows?: AddDataFlowDebugSessionDataFlowRequestDataFlowsList;
+  /** List of datasets. */
+  datasets?: AddDataFlowDebugSessionDataFlowRequestDatasetsList;
+  /** List of linked services. */
+  linkedServices?: AddDataFlowDebugSessionDataFlowRequestLinkedServicesList;
+  /** Staging info for debug session. */
+  staging?: DataFlowStagingInfo;
+  /** Data flow debug settings. */
+  debugSettings?: DataFlowDebugPackageDebugSettings;
+}
+export const AddDataFlowDebugSessionDataFlowRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      factoryName: S.String.pipe(T.Label()),
+      sessionId: S.optional(S.String),
+      dataFlow: S.optional(DataFlowDebugResource),
+      dataFlows: S.optional(
+        AddDataFlowDebugSessionDataFlowRequestDataFlowsList,
+      ),
+      datasets: S.optional(AddDataFlowDebugSessionDataFlowRequestDatasetsList),
+      linkedServices: S.optional(
+        AddDataFlowDebugSessionDataFlowRequestLinkedServicesList,
+      ),
+      staging: S.optional(DataFlowStagingInfo),
+      debugSettings: S.optional(DataFlowDebugPackageDebugSettings),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/addDataFlowToDebugSession",
+        code: 200,
+        apiVersion: "2018-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "AddDataFlowDebugSessionDataFlowRequest",
+}) as any as S.Schema<AddDataFlowDebugSessionDataFlowRequest>;
+
+/** Response body structure for starting data flow debug session. */
+export interface AddDataFlowToDebugSessionResponse {
+  /** The ID of data flow debug job version. */
+  jobVersion?: string;
+}
+export const AddDataFlowToDebugSessionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    jobVersion: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AddDataFlowToDebugSessionResponse",
+}) as any as S.Schema<AddDataFlowToDebugSessionResponse>;
+
+export interface CancelPipelineRunRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -113,109 +455,70 @@ export interface ActivityRunsQueryByPipelineRunRequest {
   factoryName: string;
   /** The pipeline run identifier. */
   runId: string;
-  /** The continuation token for getting the next page of results. Null for first page. */
-  continuationToken?: string;
-  /** The time at or after which the run event was updated in 'ISO 8601' format. */
-  lastUpdatedAfter: string;
-  /** The time at or before which the run event was updated in 'ISO 8601' format. */
-  lastUpdatedBefore: string;
-  /** List of filters. */
-  filters?: ActivityRunsQueryByPipelineRunRequestFiltersList;
-  /** List of OrderBy option. */
-  orderBy?: ActivityRunsQueryByPipelineRunRequestOrderByList;
+  /** If true, cancel all the Child pipelines that are triggered by the current pipeline. */
+  isRecursive?: boolean;
 }
-export const ActivityRunsQueryByPipelineRunRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      factoryName: S.String.pipe(T.Label()),
-      runId: S.String.pipe(T.Label()),
-      continuationToken: S.optional(S.String),
-      lastUpdatedAfter: S.String,
-      lastUpdatedBefore: S.String,
-      filters: S.optional(ActivityRunsQueryByPipelineRunRequestFiltersList),
-      orderBy: S.optional(ActivityRunsQueryByPipelineRunRequestOrderByList),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/pipelineruns/{runId}/queryActivityruns",
-        code: 200,
-        apiVersion: "2018-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "ActivityRunsQueryByPipelineRunRequest",
-}) as any as S.Schema<ActivityRunsQueryByPipelineRunRequest>;
-
-/** Information about an activity run in a pipeline. */
-export interface ActivityRun {
-  /** The name of the pipeline. */
-  pipelineName?: string;
-  /** The id of the pipeline run. */
-  pipelineRunId?: string;
-  /** The name of the activity. */
-  activityName?: string;
-  /** The type of the activity. */
-  activityType?: string;
-  /** The id of the activity run. */
-  activityRunId?: string;
-  /** The name of the compute linked service. */
-  linkedServiceName?: string;
-  /** The status of the activity run. */
-  status?: string;
-  /** The start time of the activity run in 'ISO 8601' format. */
-  activityRunStart?: string;
-  /** The end time of the activity run in 'ISO 8601' format. */
-  activityRunEnd?: string;
-  /** The duration of the activity run. */
-  durationInMs?: number;
-  /** The input for the activity. */
-  input?: unknown;
-  /** The output for the activity. */
-  output?: unknown;
-  /** The error if any from the activity run. */
-  error?: unknown;
-}
-export const ActivityRun = /*@__PURE__*/ S.suspend(() =>
+export const CancelPipelineRunRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    pipelineName: S.optional(S.String),
-    pipelineRunId: S.optional(S.String),
-    activityName: S.optional(S.String),
-    activityType: S.optional(S.String),
-    activityRunId: S.optional(S.String),
-    linkedServiceName: S.optional(S.String),
-    status: S.optional(S.String),
-    activityRunStart: S.optional(S.String),
-    activityRunEnd: S.optional(S.String),
-    durationInMs: S.optional(S.Number),
-    input: S.optional(S.Unknown),
-    output: S.optional(S.Unknown),
-    error: S.optional(S.Unknown),
-  }),
-).annotate({ identifier: "ActivityRun" }) as any as S.Schema<ActivityRun>;
-
-/** List of activity runs. */
-export type ActivityRunsQueryResponseValueList = Array<ActivityRun>;
-export const ActivityRunsQueryResponseValueList = /*@__PURE__*/ S.Array(
-  ActivityRun,
-) as any as S.Schema<ActivityRunsQueryResponseValueList>;
-
-/** A list activity runs. */
-export interface ActivityRunsQueryResponse {
-  /** List of activity runs. */
-  value: ActivityRunsQueryResponseValueList;
-  /** The continuation token for getting the next page of results, if any remaining results exist, null otherwise. */
-  continuationToken?: string;
-}
-export const ActivityRunsQueryResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: ActivityRunsQueryResponseValueList,
-    continuationToken: S.optional(S.String),
-  }),
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    factoryName: S.String.pipe(T.Label()),
+    runId: S.String.pipe(T.Label()),
+    isRecursive: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/pipelineruns/{runId}/cancel",
+      code: 200,
+      apiVersion: "2018-06-01",
+    }),
+  ),
 ).annotate({
-  identifier: "ActivityRunsQueryResponse",
-}) as any as S.Schema<ActivityRunsQueryResponse>;
+  identifier: "CancelPipelineRunRequest",
+}) as any as S.Schema<CancelPipelineRunRequest>;
+
+export interface CancelPipelineRunResponse {}
+export const CancelPipelineRunResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "CancelPipelineRunResponse",
+}) as any as S.Schema<CancelPipelineRunResponse>;
+
+export interface CancelTriggerRunRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  factoryName: string;
+  triggerName: string;
+  /** The pipeline run identifier. */
+  runId: string;
+}
+export const CancelTriggerRunRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    factoryName: S.String.pipe(T.Label()),
+    triggerName: S.String.pipe(T.Label()),
+    runId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/triggers/{triggerName}/triggerRuns/{runId}/cancel",
+      code: 200,
+      apiVersion: "2018-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "CancelTriggerRunRequest",
+}) as any as S.Schema<CancelTriggerRunRequest>;
+
+export interface CancelTriggerRunResponse {}
+export const CancelTriggerRunResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "CancelTriggerRunResponse",
+}) as any as S.Schema<CancelTriggerRunResponse>;
 
 /** The folder that this CDC is in. If not specified, CDC will appear at the root level. */
 export interface ChangeDataCaptureFolder {
@@ -314,38 +617,6 @@ export const MapperSourceConnectionsInfoSourceEntitiesList =
   /*@__PURE__*/ S.Array(
     MapperTable,
   ) as any as S.Schema<MapperSourceConnectionsInfoSourceEntitiesList>;
-
-/** Linked service reference type. */
-export type Type = "LinkedServiceReference";
-export const Type = /*@__PURE__*/ S.String;
-
-/** Arguments for LinkedService. */
-export type LinkedServiceReferenceParametersMap = {
-  [key: string]: unknown | undefined;
-};
-export const LinkedServiceReferenceParametersMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<LinkedServiceReferenceParametersMap>;
-
-/** Linked service reference type. */
-export interface LinkedServiceReference {
-  /** Linked service reference type. */
-  type: Type | (string & {});
-  /** Reference LinkedService name. */
-  referenceName: string;
-  /** Arguments for LinkedService. */
-  parameters?: LinkedServiceReferenceParametersMap;
-}
-export const LinkedServiceReference = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: Type,
-    referenceName: S.String,
-    parameters: S.optional(LinkedServiceReferenceParametersMap),
-  }),
-).annotate({
-  identifier: "LinkedServiceReference",
-}) as any as S.Schema<LinkedServiceReference>;
 
 /** Type of connection via linked service or dataset. */
 export type ConnectionType = "linkedservicetype";
@@ -752,208 +1023,6 @@ export const ChangeDataCaptureCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "ChangeDataCaptureCreateOrUpdateResponse",
 }) as any as S.Schema<ChangeDataCaptureCreateOrUpdateResponse>;
 
-export interface ChangeDataCaptureDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-  /** The change data capture name. */
-  changeDataCaptureName: string;
-}
-export const ChangeDataCaptureDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    factoryName: S.String.pipe(T.Label()),
-    changeDataCaptureName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/adfcdcs/{changeDataCaptureName}",
-      code: 200,
-      apiVersion: "2018-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ChangeDataCaptureDeleteRequest",
-}) as any as S.Schema<ChangeDataCaptureDeleteRequest>;
-
-export interface ChangeDataCaptureDeleteResponse {}
-export const ChangeDataCaptureDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ChangeDataCaptureDeleteResponse",
-}) as any as S.Schema<ChangeDataCaptureDeleteResponse>;
-
-export interface ChangeDataCaptureGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-  /** The change data capture name. */
-  changeDataCaptureName: string;
-}
-export const ChangeDataCaptureGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    factoryName: S.String.pipe(T.Label()),
-    changeDataCaptureName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/adfcdcs/{changeDataCaptureName}",
-      code: 200,
-      apiVersion: "2018-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ChangeDataCaptureGetRequest",
-}) as any as S.Schema<ChangeDataCaptureGetRequest>;
-
-export interface ChangeDataCaptureGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of the change data capture. */
-  properties: ChangeDataCapture;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const ChangeDataCaptureGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: ChangeDataCapture,
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ChangeDataCaptureGetResponse",
-}) as any as S.Schema<ChangeDataCaptureGetResponse>;
-
-export interface ChangeDataCaptureListByFactoryRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-}
-export const ChangeDataCaptureListByFactoryRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      factoryName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/adfcdcs",
-        code: 200,
-        apiVersion: "2018-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "ChangeDataCaptureListByFactoryRequest",
-}) as any as S.Schema<ChangeDataCaptureListByFactoryRequest>;
-
-/** Change data capture resource type. */
-export interface ChangeDataCaptureResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of the change data capture. */
-  properties: ChangeDataCapture;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const ChangeDataCaptureResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: ChangeDataCapture,
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ChangeDataCaptureResource",
-}) as any as S.Schema<ChangeDataCaptureResource>;
-
-/** The ChangeDataCaptureResource items on this page */
-export type ChangeDataCaptureListResponseValueList =
-  Array<ChangeDataCaptureResource>;
-export const ChangeDataCaptureListResponseValueList = /*@__PURE__*/ S.Array(
-  ChangeDataCaptureResource,
-) as any as S.Schema<ChangeDataCaptureListResponseValueList>;
-
-/** A list of change data capture resources. */
-export interface ChangeDataCaptureListResponse {
-  /** The ChangeDataCaptureResource items on this page */
-  value: ChangeDataCaptureListResponseValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ChangeDataCaptureListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: ChangeDataCaptureListResponseValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ChangeDataCaptureListResponse",
-}) as any as S.Schema<ChangeDataCaptureListResponse>;
-
-export interface ChangeDataCaptureStartRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-  /** The change data capture name. */
-  changeDataCaptureName: string;
-}
-export const ChangeDataCaptureStartRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    factoryName: S.String.pipe(T.Label()),
-    changeDataCaptureName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/adfcdcs/{changeDataCaptureName}/start",
-      code: 200,
-      apiVersion: "2018-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ChangeDataCaptureStartRequest",
-}) as any as S.Schema<ChangeDataCaptureStartRequest>;
-
-export interface ChangeDataCaptureStartResponse {}
-export const ChangeDataCaptureStartResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ChangeDataCaptureStartResponse",
-}) as any as S.Schema<ChangeDataCaptureStartResponse>;
-
 export interface ChangeDataCaptureStatusRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -989,40 +1058,244 @@ export const ChangeDataCaptureStatusResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ChangeDataCaptureStatusResponse",
 }) as any as S.Schema<ChangeDataCaptureStatusResponse>;
 
-export interface ChangeDataCaptureStopRequest {
+/** The type of integration runtime. */
+export type IntegrationRuntimeType = "Managed" | "SelfHosted";
+export const IntegrationRuntimeType = /*@__PURE__*/ S.String;
+
+/** Azure Data Factory nested object which serves as a compute resource for activities. */
+export interface IntegrationRuntime {
+  /** Type of integration runtime. */
+  type: IntegrationRuntimeType | (string & {});
+  /** Integration runtime description. */
+  description?: string;
+}
+export const IntegrationRuntime = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: IntegrationRuntimeType,
+    description: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "IntegrationRuntime",
+}) as any as S.Schema<IntegrationRuntime>;
+
+/** Integration runtime debug resource. */
+export interface IntegrationRuntimeDebugResource {
+  /** The resource name. */
+  name?: string;
+  /** Integration runtime properties. */
+  properties: IntegrationRuntime;
+}
+export const IntegrationRuntimeDebugResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    properties: IntegrationRuntime,
+  }),
+).annotate({
+  identifier: "IntegrationRuntimeDebugResource",
+}) as any as S.Schema<IntegrationRuntimeDebugResource>;
+
+export interface CreateDataFlowDebugSessionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The factory name. */
   factoryName: string;
-  /** The change data capture name. */
-  changeDataCaptureName: string;
+  /** Compute type of the cluster. The value will be overwritten by the same setting in integration runtime if provided. */
+  computeType?: string;
+  /** Core count of the cluster. The value will be overwritten by the same setting in integration runtime if provided. */
+  coreCount?: number;
+  /** Time to live setting of the cluster in minutes. */
+  timeToLive?: number;
+  /** Set to use integration runtime setting for data flow debug session. */
+  integrationRuntime?: IntegrationRuntimeDebugResource;
 }
-export const ChangeDataCaptureStopRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateDataFlowDebugSessionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     factoryName: S.String.pipe(T.Label()),
-    changeDataCaptureName: S.String.pipe(T.Label()),
+    computeType: S.optional(S.String),
+    coreCount: S.optional(S.Number),
+    timeToLive: S.optional(S.Number),
+    integrationRuntime: S.optional(IntegrationRuntimeDebugResource),
   }).pipe(
     T.Http({
       method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/adfcdcs/{changeDataCaptureName}/stop",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/createDataFlowDebugSession",
       code: 200,
       apiVersion: "2018-06-01",
     }),
   ),
 ).annotate({
-  identifier: "ChangeDataCaptureStopRequest",
-}) as any as S.Schema<ChangeDataCaptureStopRequest>;
+  identifier: "CreateDataFlowDebugSessionRequest",
+}) as any as S.Schema<CreateDataFlowDebugSessionRequest>;
 
-export interface ChangeDataCaptureStopResponse {}
-export const ChangeDataCaptureStopResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
+/** Response body structure for creating data flow debug session. */
+export interface CreateDataFlowDebugSessionResponse {
+  /** The state of the debug session. */
+  status?: string;
+  /** The ID of data flow debug session. */
+  sessionId?: string;
+}
+export const CreateDataFlowDebugSessionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(S.String),
+    sessionId: S.optional(S.String),
+  }),
 ).annotate({
-  identifier: "ChangeDataCaptureStopResponse",
-}) as any as S.Schema<ChangeDataCaptureStopResponse>;
+  identifier: "CreateDataFlowDebugSessionResponse",
+}) as any as S.Schema<CreateDataFlowDebugSessionResponse>;
+
+export interface CreateIntegrationRuntimeLinkedIntegrationRuntimeRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+  /** The integration runtime name. */
+  integrationRuntimeName: string;
+  /** The name of the linked integration runtime. */
+  name?: string;
+  /** The name of the data factory that the linked integration runtime belongs to. */
+  dataFactoryName?: string;
+  /** The location of the data factory that the linked integration runtime belongs to. */
+  dataFactoryLocation?: string;
+}
+export const CreateIntegrationRuntimeLinkedIntegrationRuntimeRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      factoryName: S.String.pipe(T.Label()),
+      integrationRuntimeName: S.String.pipe(T.Label()),
+      name: S.optional(S.String),
+      dataFactoryName: S.optional(S.String),
+      dataFactoryLocation: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}/linkedIntegrationRuntime",
+        code: 200,
+        apiVersion: "2018-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "CreateIntegrationRuntimeLinkedIntegrationRuntimeRequest",
+  }) as any as S.Schema<CreateIntegrationRuntimeLinkedIntegrationRuntimeRequest>;
+
+/** The state of integration runtime. */
+export type IntegrationRuntimeState =
+  | "Initial"
+  | "Stopped"
+  | "Started"
+  | "Starting"
+  | "Stopping"
+  | "NeedRegistration"
+  | "Online"
+  | "Limited"
+  | "Offline"
+  | "AccessDenied";
+export const IntegrationRuntimeState = /*@__PURE__*/ S.String;
+
+/** Integration runtime status. */
+export interface IntegrationRuntimeStatus {
+  /** Type of integration runtime. */
+  type: IntegrationRuntimeType;
+  /** The data factory name which the integration runtime belong to. */
+  dataFactoryName?: string;
+  /** The state of integration runtime. */
+  state?: IntegrationRuntimeState;
+}
+export const IntegrationRuntimeStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: IntegrationRuntimeType,
+    dataFactoryName: S.optional(S.String),
+    state: S.optional(IntegrationRuntimeState),
+  }),
+).annotate({
+  identifier: "IntegrationRuntimeStatus",
+}) as any as S.Schema<IntegrationRuntimeStatus>;
+
+/** Integration runtime status response. */
+export interface IntegrationRuntimeStatusResponse {
+  /** The integration runtime name. */
+  name?: string;
+  /** Integration runtime properties. */
+  properties: IntegrationRuntimeStatus;
+}
+export const IntegrationRuntimeStatusResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    properties: IntegrationRuntimeStatus,
+  }),
+).annotate({
+  identifier: "IntegrationRuntimeStatusResponse",
+}) as any as S.Schema<IntegrationRuntimeStatusResponse>;
+
+export type CreatePipelineRunRequestBodyMap = {
+  [key: string]: unknown | undefined;
+};
+export const CreatePipelineRunRequestBodyMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<CreatePipelineRunRequestBodyMap>;
+
+export interface CreatePipelineRunRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+  /** The pipeline name. */
+  pipelineName: string;
+  /** The pipeline run identifier. If run ID is specified the parameters of the specified run will be used to create a new run. */
+  referencePipelineRunId?: string;
+  /** Recovery mode flag. If recovery mode is set to true, the specified referenced pipeline run and the new run will be grouped under the same groupId. */
+  isRecovery?: boolean;
+  /** In recovery mode, the rerun will start from this activity. If not specified, all activities will run. */
+  startActivityName?: string;
+  /** In recovery mode, if set to true, the rerun will start from failed activities. The property will be used only if startActivityName is not specified. */
+  startFromFailure?: boolean;
+  body?: CreatePipelineRunRequestBodyMap;
+}
+export const CreatePipelineRunRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    factoryName: S.String.pipe(T.Label()),
+    pipelineName: S.String.pipe(T.Label()),
+    referencePipelineRunId: S.optional(S.String.pipe(T.Query())),
+    isRecovery: S.optional(S.Boolean.pipe(T.Query())),
+    startActivityName: S.optional(S.String.pipe(T.Query())),
+    startFromFailure: S.optional(S.Boolean.pipe(T.Query())),
+    body: S.optional(CreatePipelineRunRequestBodyMap.pipe(T.HttpBody())),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/pipelines/{pipelineName}/createRun",
+      code: 200,
+      apiVersion: "2018-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "CreatePipelineRunRequest",
+}) as any as S.Schema<CreatePipelineRunRequest>;
+
+/** Response body with a run identifier. */
+export interface CreateRunResponse {
+  /** Identifier of a run. */
+  runId: string;
+}
+export const CreateRunResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    runId: S.String,
+  }),
+).annotate({
+  identifier: "CreateRunResponse",
+}) as any as S.Schema<CreateRunResponse>;
 
 /** List of tags that can be used for describing the Credential. */
 export type CredentialAnnotationsList = Array<unknown>;
@@ -1106,784 +1379,6 @@ export const CredentialOperationsCreateOrUpdateResponse =
   ).annotate({
     identifier: "CredentialOperationsCreateOrUpdateResponse",
   }) as any as S.Schema<CredentialOperationsCreateOrUpdateResponse>;
-
-export interface CredentialOperationsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-  /** Credential name */
-  credentialName: string;
-}
-export const CredentialOperationsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    factoryName: S.String.pipe(T.Label()),
-    credentialName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/credentials/{credentialName}",
-      code: 200,
-      apiVersion: "2018-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "CredentialOperationsDeleteRequest",
-}) as any as S.Schema<CredentialOperationsDeleteRequest>;
-
-export interface CredentialOperationsDeleteResponse {}
-export const CredentialOperationsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "CredentialOperationsDeleteResponse",
-}) as any as S.Schema<CredentialOperationsDeleteResponse>;
-
-export interface CredentialOperationsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-  /** Credential name */
-  credentialName: string;
-}
-export const CredentialOperationsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    factoryName: S.String.pipe(T.Label()),
-    credentialName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/credentials/{credentialName}",
-      code: 200,
-      apiVersion: "2018-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "CredentialOperationsGetRequest",
-}) as any as S.Schema<CredentialOperationsGetRequest>;
-
-export interface CredentialOperationsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of credentials. */
-  properties: Credential;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const CredentialOperationsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: Credential,
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CredentialOperationsGetResponse",
-}) as any as S.Schema<CredentialOperationsGetResponse>;
-
-export interface CredentialOperationsListByFactoryRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-}
-export const CredentialOperationsListByFactoryRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      factoryName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/credentials",
-        code: 200,
-        apiVersion: "2018-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "CredentialOperationsListByFactoryRequest",
-}) as any as S.Schema<CredentialOperationsListByFactoryRequest>;
-
-/** Credential resource type. */
-export interface CredentialResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of credentials. */
-  properties: Credential;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const CredentialResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: Credential,
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CredentialResource",
-}) as any as S.Schema<CredentialResource>;
-
-/** The CredentialResource items on this page */
-export type CredentialListResponseValueList = Array<CredentialResource>;
-export const CredentialListResponseValueList = /*@__PURE__*/ S.Array(
-  CredentialResource,
-) as any as S.Schema<CredentialListResponseValueList>;
-
-/** A list of credential resources. */
-export interface CredentialListResponse {
-  /** The CredentialResource items on this page */
-  value: CredentialListResponseValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const CredentialListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: CredentialListResponseValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CredentialListResponse",
-}) as any as S.Schema<CredentialListResponse>;
-
-/** List of tags that can be used for describing the data flow. */
-export type DataFlowAnnotationsList = Array<unknown>;
-export const DataFlowAnnotationsList = /*@__PURE__*/ S.Array(
-  S.Unknown,
-) as any as S.Schema<DataFlowAnnotationsList>;
-
-/** The folder that this data flow is in. If not specified, Data flow will appear at the root level. */
-export interface DataFlowFolder {
-  /** The name of the folder that this data flow is in. */
-  name?: string;
-}
-export const DataFlowFolder = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-  }),
-).annotate({ identifier: "DataFlowFolder" }) as any as S.Schema<DataFlowFolder>;
-
-/** Azure Data Factory nested object which contains a flow with data movements and transformations. */
-export interface DataFlow {
-  /** Type of data flow. */
-  type: string;
-  /** The description of the data flow. */
-  description?: string;
-  /** List of tags that can be used for describing the data flow. */
-  annotations?: DataFlowAnnotationsList;
-  /** The folder that this data flow is in. If not specified, Data flow will appear at the root level. */
-  folder?: DataFlowFolder;
-}
-export const DataFlow = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.String,
-    description: S.optional(S.String),
-    annotations: S.optional(DataFlowAnnotationsList),
-    folder: S.optional(DataFlowFolder),
-  }),
-).annotate({ identifier: "DataFlow" }) as any as S.Schema<DataFlow>;
-
-/** Data flow debug resource. */
-export interface DataFlowDebugResource {
-  /** The resource name. */
-  name?: string;
-  /** Data flow properties. */
-  properties: DataFlow;
-}
-export const DataFlowDebugResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    properties: DataFlow,
-  }),
-).annotate({
-  identifier: "DataFlowDebugResource",
-}) as any as S.Schema<DataFlowDebugResource>;
-
-/** List of Data flows */
-export type DataFlowDebugSessionAddDataFlowRequestDataFlowsList =
-  Array<DataFlowDebugResource>;
-export const DataFlowDebugSessionAddDataFlowRequestDataFlowsList =
-  /*@__PURE__*/ S.Array(
-    DataFlowDebugResource,
-  ) as any as S.Schema<DataFlowDebugSessionAddDataFlowRequestDataFlowsList>;
-
-/** Parameter type. */
-export type ParameterType =
-  | "Object"
-  | "String"
-  | "Int"
-  | "Float"
-  | "Bool"
-  | "Array"
-  | "SecureString";
-export const ParameterType = /*@__PURE__*/ S.String;
-
-/** Definition of a single parameter for an entity. */
-export interface ParameterSpecification {
-  /** Parameter type. */
-  type: ParameterType | (string & {});
-  /** Default value of parameter. */
-  defaultValue?: unknown;
-}
-export const ParameterSpecification = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: ParameterType,
-    defaultValue: S.optional(S.Unknown),
-  }),
-).annotate({
-  identifier: "ParameterSpecification",
-}) as any as S.Schema<ParameterSpecification>;
-
-/** Parameters for dataset. */
-export type DatasetParametersMap = {
-  [key: string]: ParameterSpecification | undefined;
-};
-export const DatasetParametersMap = /*@__PURE__*/ S.Record(
-  S.String,
-  ParameterSpecification,
-) as any as S.Schema<DatasetParametersMap>;
-
-/** List of tags that can be used for describing the Dataset. */
-export type DatasetAnnotationsList = Array<unknown>;
-export const DatasetAnnotationsList = /*@__PURE__*/ S.Array(
-  S.Unknown,
-) as any as S.Schema<DatasetAnnotationsList>;
-
-/** The folder that this Dataset is in. If not specified, Dataset will appear at the root level. */
-export interface DatasetFolder {
-  /** The name of the folder that this Dataset is in. */
-  name?: string;
-}
-export const DatasetFolder = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-  }),
-).annotate({ identifier: "DatasetFolder" }) as any as S.Schema<DatasetFolder>;
-
-/** The Azure Data Factory nested object which identifies data within different data stores, such as tables, files, folders, and documents. */
-export interface Dataset {
-  /** Type of dataset. */
-  type: string;
-  /** Dataset description. */
-  description?: string;
-  /** Columns that define the structure of the dataset. Type: array (or Expression with resultType array), itemType: DatasetDataElement. */
-  structure?: unknown;
-  /** Columns that define the physical type schema of the dataset. Type: array (or Expression with resultType array), itemType: DatasetSchemaDataElement. */
-  schema?: unknown;
-  /** Linked service reference. */
-  linkedServiceName: LinkedServiceReference;
-  /** Parameters for dataset. */
-  parameters?: DatasetParametersMap;
-  /** List of tags that can be used for describing the Dataset. */
-  annotations?: DatasetAnnotationsList;
-  /** The folder that this Dataset is in. If not specified, Dataset will appear at the root level. */
-  folder?: DatasetFolder;
-}
-export const Dataset = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.String,
-    description: S.optional(S.String),
-    structure: S.optional(S.Unknown),
-    schema: S.optional(S.Unknown),
-    linkedServiceName: LinkedServiceReference,
-    parameters: S.optional(DatasetParametersMap),
-    annotations: S.optional(DatasetAnnotationsList),
-    folder: S.optional(DatasetFolder),
-  }),
-).annotate({ identifier: "Dataset" }) as any as S.Schema<Dataset>;
-
-/** Dataset debug resource. */
-export interface DatasetDebugResource {
-  /** The resource name. */
-  name?: string;
-  /** Dataset properties. */
-  properties: Dataset;
-}
-export const DatasetDebugResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    properties: Dataset,
-  }),
-).annotate({
-  identifier: "DatasetDebugResource",
-}) as any as S.Schema<DatasetDebugResource>;
-
-/** List of datasets. */
-export type DataFlowDebugSessionAddDataFlowRequestDatasetsList =
-  Array<DatasetDebugResource>;
-export const DataFlowDebugSessionAddDataFlowRequestDatasetsList =
-  /*@__PURE__*/ S.Array(
-    DatasetDebugResource,
-  ) as any as S.Schema<DataFlowDebugSessionAddDataFlowRequestDatasetsList>;
-
-/** Type of integration runtime. */
-export type IntegrationRuntimeReferenceType = "IntegrationRuntimeReference";
-export const IntegrationRuntimeReferenceType = /*@__PURE__*/ S.String;
-
-/** Arguments for integration runtime. */
-export type IntegrationRuntimeReferenceParametersMap = {
-  [key: string]: unknown | undefined;
-};
-export const IntegrationRuntimeReferenceParametersMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<IntegrationRuntimeReferenceParametersMap>;
-
-/** Integration runtime reference type. */
-export interface IntegrationRuntimeReference {
-  /** Type of integration runtime. */
-  type: IntegrationRuntimeReferenceType | (string & {});
-  /** Reference integration runtime name. */
-  referenceName: string;
-  /** Arguments for integration runtime. */
-  parameters?: IntegrationRuntimeReferenceParametersMap;
-}
-export const IntegrationRuntimeReference = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: IntegrationRuntimeReferenceType,
-    referenceName: S.String,
-    parameters: S.optional(IntegrationRuntimeReferenceParametersMap),
-  }),
-).annotate({
-  identifier: "IntegrationRuntimeReference",
-}) as any as S.Schema<IntegrationRuntimeReference>;
-
-/** Parameters for linked service. */
-export type LinkedServiceParametersMap = {
-  [key: string]: ParameterSpecification | undefined;
-};
-export const LinkedServiceParametersMap = /*@__PURE__*/ S.Record(
-  S.String,
-  ParameterSpecification,
-) as any as S.Schema<LinkedServiceParametersMap>;
-
-/** List of tags that can be used for describing the linked service. */
-export type LinkedServiceAnnotationsList = Array<unknown>;
-export const LinkedServiceAnnotationsList = /*@__PURE__*/ S.Array(
-  S.Unknown,
-) as any as S.Schema<LinkedServiceAnnotationsList>;
-
-/** The nested object which contains the information and credential which can be used to connect with related store or compute resource. */
-export interface LinkedService {
-  /** Type of linked service. */
-  type: string;
-  /** Version of the linked service. */
-  version?: string;
-  /** The integration runtime reference. */
-  connectVia?: IntegrationRuntimeReference;
-  /** Linked service description. */
-  description?: string;
-  /** Parameters for linked service. */
-  parameters?: LinkedServiceParametersMap;
-  /** List of tags that can be used for describing the linked service. */
-  annotations?: LinkedServiceAnnotationsList;
-}
-export const LinkedService = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.String,
-    version: S.optional(S.String),
-    connectVia: S.optional(IntegrationRuntimeReference),
-    description: S.optional(S.String),
-    parameters: S.optional(LinkedServiceParametersMap),
-    annotations: S.optional(LinkedServiceAnnotationsList),
-  }),
-).annotate({ identifier: "LinkedService" }) as any as S.Schema<LinkedService>;
-
-/** Linked service debug resource. */
-export interface LinkedServiceDebugResource {
-  /** The resource name. */
-  name?: string;
-  /** Properties of linked service. */
-  properties: LinkedService;
-}
-export const LinkedServiceDebugResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    properties: LinkedService,
-  }),
-).annotate({
-  identifier: "LinkedServiceDebugResource",
-}) as any as S.Schema<LinkedServiceDebugResource>;
-
-/** List of linked services. */
-export type DataFlowDebugSessionAddDataFlowRequestLinkedServicesList =
-  Array<LinkedServiceDebugResource>;
-export const DataFlowDebugSessionAddDataFlowRequestLinkedServicesList =
-  /*@__PURE__*/ S.Array(
-    LinkedServiceDebugResource,
-  ) as any as S.Schema<DataFlowDebugSessionAddDataFlowRequestLinkedServicesList>;
-
-/** Staging info for execute data flow activity. */
-export interface DataFlowStagingInfo {
-  /** Staging linked service reference. */
-  linkedService?: LinkedServiceReference;
-  /** Folder path for staging blob. Type: string (or Expression with resultType string) */
-  folderPath?: unknown;
-}
-export const DataFlowStagingInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    linkedService: S.optional(LinkedServiceReference),
-    folderPath: S.optional(S.Unknown),
-  }),
-).annotate({
-  identifier: "DataFlowStagingInfo",
-}) as any as S.Schema<DataFlowStagingInfo>;
-
-/** Definition of data flow source setting for debug. */
-export interface DataFlowSourceSetting {
-  /** The data flow source name. */
-  sourceName?: string;
-  /** Defines the row limit of data flow source in debug. */
-  rowLimit?: number;
-}
-export const DataFlowSourceSetting = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    sourceName: S.optional(S.String),
-    rowLimit: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "DataFlowSourceSetting",
-}) as any as S.Schema<DataFlowSourceSetting>;
-
-/** Source setting for data flow debug. */
-export type DataFlowDebugPackageDebugSettingsSourceSettingsList =
-  Array<DataFlowSourceSetting>;
-export const DataFlowDebugPackageDebugSettingsSourceSettingsList =
-  /*@__PURE__*/ S.Array(
-    DataFlowSourceSetting,
-  ) as any as S.Schema<DataFlowDebugPackageDebugSettingsSourceSettingsList>;
-
-/** Data flow parameters. */
-export type DataFlowDebugPackageDebugSettingsParametersMap = {
-  [key: string]: unknown | undefined;
-};
-export const DataFlowDebugPackageDebugSettingsParametersMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<DataFlowDebugPackageDebugSettingsParametersMap>;
-
-/** Data flow debug settings. */
-export interface DataFlowDebugPackageDebugSettings {
-  /** Source setting for data flow debug. */
-  sourceSettings?: DataFlowDebugPackageDebugSettingsSourceSettingsList;
-  /** Data flow parameters. */
-  parameters?: DataFlowDebugPackageDebugSettingsParametersMap;
-  /** Parameters for dataset. */
-  datasetParameters?: unknown;
-}
-export const DataFlowDebugPackageDebugSettings = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    sourceSettings: S.optional(
-      DataFlowDebugPackageDebugSettingsSourceSettingsList,
-    ),
-    parameters: S.optional(DataFlowDebugPackageDebugSettingsParametersMap),
-    datasetParameters: S.optional(S.Unknown),
-  }),
-).annotate({
-  identifier: "DataFlowDebugPackageDebugSettings",
-}) as any as S.Schema<DataFlowDebugPackageDebugSettings>;
-
-export interface DataFlowDebugSessionAddDataFlowRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-  /** The ID of data flow debug session. */
-  sessionId?: string;
-  /** Data flow instance. */
-  dataFlow?: DataFlowDebugResource;
-  /** List of Data flows */
-  dataFlows?: DataFlowDebugSessionAddDataFlowRequestDataFlowsList;
-  /** List of datasets. */
-  datasets?: DataFlowDebugSessionAddDataFlowRequestDatasetsList;
-  /** List of linked services. */
-  linkedServices?: DataFlowDebugSessionAddDataFlowRequestLinkedServicesList;
-  /** Staging info for debug session. */
-  staging?: DataFlowStagingInfo;
-  /** Data flow debug settings. */
-  debugSettings?: DataFlowDebugPackageDebugSettings;
-}
-export const DataFlowDebugSessionAddDataFlowRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      factoryName: S.String.pipe(T.Label()),
-      sessionId: S.optional(S.String),
-      dataFlow: S.optional(DataFlowDebugResource),
-      dataFlows: S.optional(
-        DataFlowDebugSessionAddDataFlowRequestDataFlowsList,
-      ),
-      datasets: S.optional(DataFlowDebugSessionAddDataFlowRequestDatasetsList),
-      linkedServices: S.optional(
-        DataFlowDebugSessionAddDataFlowRequestLinkedServicesList,
-      ),
-      staging: S.optional(DataFlowStagingInfo),
-      debugSettings: S.optional(DataFlowDebugPackageDebugSettings),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/addDataFlowToDebugSession",
-        code: 200,
-        apiVersion: "2018-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "DataFlowDebugSessionAddDataFlowRequest",
-}) as any as S.Schema<DataFlowDebugSessionAddDataFlowRequest>;
-
-/** Response body structure for starting data flow debug session. */
-export interface AddDataFlowToDebugSessionResponse {
-  /** The ID of data flow debug job version. */
-  jobVersion?: string;
-}
-export const AddDataFlowToDebugSessionResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    jobVersion: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AddDataFlowToDebugSessionResponse",
-}) as any as S.Schema<AddDataFlowToDebugSessionResponse>;
-
-/** The type of integration runtime. */
-export type IntegrationRuntimeType = "Managed" | "SelfHosted";
-export const IntegrationRuntimeType = /*@__PURE__*/ S.String;
-
-/** Azure Data Factory nested object which serves as a compute resource for activities. */
-export interface IntegrationRuntime {
-  /** Type of integration runtime. */
-  type: IntegrationRuntimeType | (string & {});
-  /** Integration runtime description. */
-  description?: string;
-}
-export const IntegrationRuntime = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: IntegrationRuntimeType,
-    description: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "IntegrationRuntime",
-}) as any as S.Schema<IntegrationRuntime>;
-
-/** Integration runtime debug resource. */
-export interface IntegrationRuntimeDebugResource {
-  /** The resource name. */
-  name?: string;
-  /** Integration runtime properties. */
-  properties: IntegrationRuntime;
-}
-export const IntegrationRuntimeDebugResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    properties: IntegrationRuntime,
-  }),
-).annotate({
-  identifier: "IntegrationRuntimeDebugResource",
-}) as any as S.Schema<IntegrationRuntimeDebugResource>;
-
-export interface DataFlowDebugSessionCreateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-  /** Compute type of the cluster. The value will be overwritten by the same setting in integration runtime if provided. */
-  computeType?: string;
-  /** Core count of the cluster. The value will be overwritten by the same setting in integration runtime if provided. */
-  coreCount?: number;
-  /** Time to live setting of the cluster in minutes. */
-  timeToLive?: number;
-  /** Set to use integration runtime setting for data flow debug session. */
-  integrationRuntime?: IntegrationRuntimeDebugResource;
-}
-export const DataFlowDebugSessionCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    factoryName: S.String.pipe(T.Label()),
-    computeType: S.optional(S.String),
-    coreCount: S.optional(S.Number),
-    timeToLive: S.optional(S.Number),
-    integrationRuntime: S.optional(IntegrationRuntimeDebugResource),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/createDataFlowDebugSession",
-      code: 200,
-      apiVersion: "2018-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "DataFlowDebugSessionCreateRequest",
-}) as any as S.Schema<DataFlowDebugSessionCreateRequest>;
-
-/** Response body structure for creating data flow debug session. */
-export interface CreateDataFlowDebugSessionResponse {
-  /** The state of the debug session. */
-  status?: string;
-  /** The ID of data flow debug session. */
-  sessionId?: string;
-}
-export const CreateDataFlowDebugSessionResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(S.String),
-    sessionId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CreateDataFlowDebugSessionResponse",
-}) as any as S.Schema<CreateDataFlowDebugSessionResponse>;
-
-export interface DataFlowDebugSessionDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-  /** The ID of data flow debug session. */
-  sessionId?: string;
-}
-export const DataFlowDebugSessionDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    factoryName: S.String.pipe(T.Label()),
-    sessionId: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/deleteDataFlowDebugSession",
-      code: 200,
-      apiVersion: "2018-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "DataFlowDebugSessionDeleteRequest",
-}) as any as S.Schema<DataFlowDebugSessionDeleteRequest>;
-
-export interface DataFlowDebugSessionDeleteResponse {}
-export const DataFlowDebugSessionDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DataFlowDebugSessionDeleteResponse",
-}) as any as S.Schema<DataFlowDebugSessionDeleteResponse>;
-
-/** The command type. */
-export type DataFlowDebugCommandType =
-  | "executePreviewQuery"
-  | "executeStatisticsQuery"
-  | "executeExpressionQuery";
-export const DataFlowDebugCommandType = /*@__PURE__*/ S.String;
-
-/** Array of column names. */
-export type DataFlowDebugCommandPayloadColumnsList = Array<string>;
-export const DataFlowDebugCommandPayloadColumnsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<DataFlowDebugCommandPayloadColumnsList>;
-
-/** Structure of command payload. */
-export interface DataFlowDebugCommandPayload {
-  /** The stream name which is used for preview. */
-  streamName: string;
-  /** Row limits for preview response. */
-  rowLimits?: number;
-  /** Array of column names. */
-  columns?: DataFlowDebugCommandPayloadColumnsList;
-  /** The expression which is used for preview. */
-  expression?: string;
-}
-export const DataFlowDebugCommandPayload = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    streamName: S.String,
-    rowLimits: S.optional(S.Number),
-    columns: S.optional(DataFlowDebugCommandPayloadColumnsList),
-    expression: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DataFlowDebugCommandPayload",
-}) as any as S.Schema<DataFlowDebugCommandPayload>;
-
-export interface DataFlowDebugSessionExecuteCommandRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-  /** The ID of data flow debug session. */
-  sessionId?: string;
-  /** The command type. */
-  command?: DataFlowDebugCommandType | (string & {});
-  /** The command payload object. */
-  commandPayload?: DataFlowDebugCommandPayload;
-}
-export const DataFlowDebugSessionExecuteCommandRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      factoryName: S.String.pipe(T.Label()),
-      sessionId: S.optional(S.String),
-      command: S.optional(DataFlowDebugCommandType),
-      commandPayload: S.optional(DataFlowDebugCommandPayload),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/executeDataFlowDebugCommand",
-        code: 200,
-        apiVersion: "2018-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "DataFlowDebugSessionExecuteCommandRequest",
-  }) as any as S.Schema<DataFlowDebugSessionExecuteCommandRequest>;
-
-/** Response body structure of data flow result for data preview, statistics or expression preview. */
-export interface DataFlowDebugCommandResponse {
-  /** The run status of data preview, statistics or expression preview. */
-  status?: string;
-  /** The result data of data preview, statistics or expression preview. */
-  data?: string;
-}
-export const DataFlowDebugCommandResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(S.String),
-    data: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DataFlowDebugCommandResponse",
-}) as any as S.Schema<DataFlowDebugCommandResponse>;
 
 export interface DataFlowDebugSessionQueryByFactoryRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -2030,171 +1525,6 @@ export const DataFlowsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DataFlowsCreateOrUpdateResponse",
 }) as any as S.Schema<DataFlowsCreateOrUpdateResponse>;
 
-export interface DataFlowsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-  /** The data flow name. */
-  dataFlowName: string;
-}
-export const DataFlowsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    factoryName: S.String.pipe(T.Label()),
-    dataFlowName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/dataflows/{dataFlowName}",
-      code: 200,
-      apiVersion: "2018-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "DataFlowsDeleteRequest",
-}) as any as S.Schema<DataFlowsDeleteRequest>;
-
-export interface DataFlowsDeleteResponse {}
-export const DataFlowsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DataFlowsDeleteResponse",
-}) as any as S.Schema<DataFlowsDeleteResponse>;
-
-export interface DataFlowsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-  /** The data flow name. */
-  dataFlowName: string;
-}
-export const DataFlowsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    factoryName: S.String.pipe(T.Label()),
-    dataFlowName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/dataflows/{dataFlowName}",
-      code: 200,
-      apiVersion: "2018-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "DataFlowsGetRequest",
-}) as any as S.Schema<DataFlowsGetRequest>;
-
-export interface DataFlowsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Data flow properties. */
-  properties: DataFlow;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const DataFlowsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: DataFlow,
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DataFlowsGetResponse",
-}) as any as S.Schema<DataFlowsGetResponse>;
-
-export interface DataFlowsListByFactoryRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-}
-export const DataFlowsListByFactoryRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    factoryName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/dataflows",
-      code: 200,
-      apiVersion: "2018-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "DataFlowsListByFactoryRequest",
-}) as any as S.Schema<DataFlowsListByFactoryRequest>;
-
-/** Data flow resource type. */
-export interface DataFlowResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Data flow properties. */
-  properties: DataFlow;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const DataFlowResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: DataFlow,
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DataFlowResource",
-}) as any as S.Schema<DataFlowResource>;
-
-/** The DataFlowResource items on this page */
-export type DataFlowListResponseValueList = Array<DataFlowResource>;
-export const DataFlowListResponseValueList = /*@__PURE__*/ S.Array(
-  DataFlowResource,
-) as any as S.Schema<DataFlowListResponseValueList>;
-
-/** A list of data flow resources. */
-export interface DataFlowListResponse {
-  /** The DataFlowResource items on this page */
-  value: DataFlowListResponseValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const DataFlowListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: DataFlowListResponseValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DataFlowListResponse",
-}) as any as S.Schema<DataFlowListResponse>;
-
 export interface DatasetsCreateOrUpdateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -2253,7 +1583,147 @@ export const DatasetsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DatasetsCreateOrUpdateResponse",
 }) as any as S.Schema<DatasetsCreateOrUpdateResponse>;
 
-export interface DatasetsDeleteRequest {
+export interface DeleteChangeDataCaptureRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+  /** The change data capture name. */
+  changeDataCaptureName: string;
+}
+export const DeleteChangeDataCaptureRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    factoryName: S.String.pipe(T.Label()),
+    changeDataCaptureName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/adfcdcs/{changeDataCaptureName}",
+      code: 200,
+      apiVersion: "2018-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteChangeDataCaptureRequest",
+}) as any as S.Schema<DeleteChangeDataCaptureRequest>;
+
+export interface DeleteChangeDataCaptureResponse {}
+export const DeleteChangeDataCaptureResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteChangeDataCaptureResponse",
+}) as any as S.Schema<DeleteChangeDataCaptureResponse>;
+
+export interface DeleteCredentialOperationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+  /** Credential name */
+  credentialName: string;
+}
+export const DeleteCredentialOperationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    factoryName: S.String.pipe(T.Label()),
+    credentialName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/credentials/{credentialName}",
+      code: 200,
+      apiVersion: "2018-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteCredentialOperationRequest",
+}) as any as S.Schema<DeleteCredentialOperationRequest>;
+
+export interface DeleteCredentialOperationResponse {}
+export const DeleteCredentialOperationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteCredentialOperationResponse",
+}) as any as S.Schema<DeleteCredentialOperationResponse>;
+
+export interface DeleteDataFlowRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+  /** The data flow name. */
+  dataFlowName: string;
+}
+export const DeleteDataFlowRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    factoryName: S.String.pipe(T.Label()),
+    dataFlowName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/dataflows/{dataFlowName}",
+      code: 200,
+      apiVersion: "2018-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteDataFlowRequest",
+}) as any as S.Schema<DeleteDataFlowRequest>;
+
+export interface DeleteDataFlowResponse {}
+export const DeleteDataFlowResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteDataFlowResponse",
+}) as any as S.Schema<DeleteDataFlowResponse>;
+
+export interface DeleteDataFlowDebugSessionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+  /** The ID of data flow debug session. */
+  sessionId?: string;
+}
+export const DeleteDataFlowDebugSessionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    factoryName: S.String.pipe(T.Label()),
+    sessionId: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/deleteDataFlowDebugSession",
+      code: 200,
+      apiVersion: "2018-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteDataFlowDebugSessionRequest",
+}) as any as S.Schema<DeleteDataFlowDebugSessionRequest>;
+
+export interface DeleteDataFlowDebugSessionResponse {}
+export const DeleteDataFlowDebugSessionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteDataFlowDebugSessionResponse",
+}) as any as S.Schema<DeleteDataFlowDebugSessionResponse>;
+
+export interface DeleteDatasetRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2263,7 +1733,7 @@ export interface DatasetsDeleteRequest {
   /** The dataset name. */
   datasetName: string;
 }
-export const DatasetsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteDatasetRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2278,72 +1748,17 @@ export const DatasetsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DatasetsDeleteRequest",
-}) as any as S.Schema<DatasetsDeleteRequest>;
+  identifier: "DeleteDatasetRequest",
+}) as any as S.Schema<DeleteDatasetRequest>;
 
-export interface DatasetsDeleteResponse {}
-export const DatasetsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteDatasetResponse {}
+export const DeleteDatasetResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DatasetsDeleteResponse",
-}) as any as S.Schema<DatasetsDeleteResponse>;
+  identifier: "DeleteDatasetResponse",
+}) as any as S.Schema<DeleteDatasetResponse>;
 
-export interface DatasetsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-  /** The dataset name. */
-  datasetName: string;
-}
-export const DatasetsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    factoryName: S.String.pipe(T.Label()),
-    datasetName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/datasets/{datasetName}",
-      code: 200,
-      apiVersion: "2018-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "DatasetsGetRequest",
-}) as any as S.Schema<DatasetsGetRequest>;
-
-export interface DatasetsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Dataset properties. */
-  properties: Dataset;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const DatasetsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: Dataset,
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DatasetsGetResponse",
-}) as any as S.Schema<DatasetsGetResponse>;
-
-export interface DatasetsListByFactoryRequest {
+export interface DeleteFactoryRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2351,149 +1766,517 @@ export interface DatasetsListByFactoryRequest {
   /** The factory name. */
   factoryName: string;
 }
-export const DatasetsListByFactoryRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteFactoryRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     factoryName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/datasets",
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}",
       code: 200,
       apiVersion: "2018-06-01",
     }),
   ),
 ).annotate({
-  identifier: "DatasetsListByFactoryRequest",
-}) as any as S.Schema<DatasetsListByFactoryRequest>;
+  identifier: "DeleteFactoryRequest",
+}) as any as S.Schema<DeleteFactoryRequest>;
 
-/** Dataset resource type. */
-export interface DatasetResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Dataset properties. */
-  properties: Dataset;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const DatasetResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: Dataset,
-    etag: S.optional(S.String),
-  }),
+export interface DeleteFactoryResponse {}
+export const DeleteFactoryResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
 ).annotate({
-  identifier: "DatasetResource",
-}) as any as S.Schema<DatasetResource>;
+  identifier: "DeleteFactoryResponse",
+}) as any as S.Schema<DeleteFactoryResponse>;
 
-/** The DatasetResource items on this page */
-export type DatasetListResponseValueList = Array<DatasetResource>;
-export const DatasetListResponseValueList = /*@__PURE__*/ S.Array(
-  DatasetResource,
-) as any as S.Schema<DatasetListResponseValueList>;
-
-/** A list of dataset resources. */
-export interface DatasetListResponse {
-  /** The DatasetResource items on this page */
-  value: DatasetListResponseValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const DatasetListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: DatasetListResponseValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DatasetListResponse",
-}) as any as S.Schema<DatasetListResponse>;
-
-export interface ExposureControlGetFeatureValueRequest {
+export interface DeleteGlobalParameterRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
-  /** The location identifier. */
-  locationId: string;
-  /** The feature name. */
-  featureName?: string;
-  /** The feature type. */
-  featureType?: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+  /** The global parameter name. */
+  globalParameterName: string;
 }
-export const ExposureControlGetFeatureValueRequest = /*@__PURE__*/ S.suspend(
+export const DeleteGlobalParameterRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    factoryName: S.String.pipe(T.Label()),
+    globalParameterName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/globalParameters/{globalParameterName}",
+      code: 200,
+      apiVersion: "2018-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteGlobalParameterRequest",
+}) as any as S.Schema<DeleteGlobalParameterRequest>;
+
+export interface DeleteGlobalParameterResponse {}
+export const DeleteGlobalParameterResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteGlobalParameterResponse",
+}) as any as S.Schema<DeleteGlobalParameterResponse>;
+
+export interface DeleteIntegrationRuntimeRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+  /** The integration runtime name. */
+  integrationRuntimeName: string;
+}
+export const DeleteIntegrationRuntimeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    factoryName: S.String.pipe(T.Label()),
+    integrationRuntimeName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}",
+      code: 200,
+      apiVersion: "2018-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteIntegrationRuntimeRequest",
+}) as any as S.Schema<DeleteIntegrationRuntimeRequest>;
+
+export interface DeleteIntegrationRuntimeResponse {}
+export const DeleteIntegrationRuntimeResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteIntegrationRuntimeResponse",
+}) as any as S.Schema<DeleteIntegrationRuntimeResponse>;
+
+export interface DeleteIntegrationRuntimeNodeRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  factoryName: string;
+  integrationRuntimeName: string;
+  /** The integration runtime node name. */
+  nodeName: string;
+}
+export const DeleteIntegrationRuntimeNodeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    factoryName: S.String.pipe(T.Label()),
+    integrationRuntimeName: S.String.pipe(T.Label()),
+    nodeName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}/nodes/{nodeName}",
+      code: 200,
+      apiVersion: "2018-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteIntegrationRuntimeNodeRequest",
+}) as any as S.Schema<DeleteIntegrationRuntimeNodeRequest>;
+
+export interface DeleteIntegrationRuntimeNodeResponse {}
+export const DeleteIntegrationRuntimeNodeResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteIntegrationRuntimeNodeResponse",
+}) as any as S.Schema<DeleteIntegrationRuntimeNodeResponse>;
+
+export interface DeleteLinkedServiceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+  /** The linked service name. */
+  linkedServiceName: string;
+}
+export const DeleteLinkedServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    factoryName: S.String.pipe(T.Label()),
+    linkedServiceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/linkedservices/{linkedServiceName}",
+      code: 200,
+      apiVersion: "2018-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteLinkedServiceRequest",
+}) as any as S.Schema<DeleteLinkedServiceRequest>;
+
+export interface DeleteLinkedServiceResponse {}
+export const DeleteLinkedServiceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteLinkedServiceResponse",
+}) as any as S.Schema<DeleteLinkedServiceResponse>;
+
+export interface DeleteManagedPrivateEndpointRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+  /** Managed virtual network name */
+  managedVirtualNetworkName: string;
+  /** Managed private endpoint name */
+  managedPrivateEndpointName: string;
+}
+export const DeleteManagedPrivateEndpointRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    factoryName: S.String.pipe(T.Label()),
+    managedVirtualNetworkName: S.String.pipe(T.Label()),
+    managedPrivateEndpointName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/managedVirtualNetworks/{managedVirtualNetworkName}/managedPrivateEndpoints/{managedPrivateEndpointName}",
+      code: 200,
+      apiVersion: "2018-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteManagedPrivateEndpointRequest",
+}) as any as S.Schema<DeleteManagedPrivateEndpointRequest>;
+
+export interface DeleteManagedPrivateEndpointResponse {}
+export const DeleteManagedPrivateEndpointResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteManagedPrivateEndpointResponse",
+}) as any as S.Schema<DeleteManagedPrivateEndpointResponse>;
+
+export interface DeletePipelineRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+  /** The pipeline name. */
+  pipelineName: string;
+}
+export const DeletePipelineRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    factoryName: S.String.pipe(T.Label()),
+    pipelineName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/pipelines/{pipelineName}",
+      code: 200,
+      apiVersion: "2018-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeletePipelineRequest",
+}) as any as S.Schema<DeletePipelineRequest>;
+
+export interface DeletePipelineResponse {}
+export const DeletePipelineResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeletePipelineResponse",
+}) as any as S.Schema<DeletePipelineResponse>;
+
+export interface DeletePrivateEndpointConnectionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+  /** The private endpoint connection name. */
+  privateEndpointConnectionName: string;
+}
+export const DeletePrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
-      locationId: S.String.pipe(T.Label()),
-      featureName: S.optional(S.String),
-      featureType: S.optional(S.String),
+      resourceGroupName: S.String.pipe(T.Label()),
+      factoryName: S.String.pipe(T.Label()),
+      privateEndpointConnectionName: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DataFactory/locations/{locationId}/getFeatureValue",
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/privateEndpointConnections/{privateEndpointConnectionName}",
         code: 200,
         apiVersion: "2018-06-01",
       }),
     ),
 ).annotate({
-  identifier: "ExposureControlGetFeatureValueRequest",
-}) as any as S.Schema<ExposureControlGetFeatureValueRequest>;
+  identifier: "DeletePrivateEndpointConnectionRequest",
+}) as any as S.Schema<DeletePrivateEndpointConnectionRequest>;
 
-/** The exposure control response. */
-export interface ExposureControlResponse {
-  /** The feature name. */
-  featureName?: string;
-  /** The feature value. */
-  value?: string;
-}
-export const ExposureControlResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    featureName: S.optional(S.String),
-    value: S.optional(S.String),
-  }),
+export interface DeletePrivateEndpointConnectionResponse {}
+export const DeletePrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
 ).annotate({
-  identifier: "ExposureControlResponse",
-}) as any as S.Schema<ExposureControlResponse>;
+  identifier: "DeletePrivateEndpointConnectionResponse",
+}) as any as S.Schema<DeletePrivateEndpointConnectionResponse>;
 
-export interface ExposureControlGetFeatureValueByFactoryRequest {
+export interface DeleteTriggerRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The factory name. */
   factoryName: string;
-  /** The feature name. */
-  featureName?: string;
-  /** The feature type. */
-  featureType?: string;
+  /** The trigger name. */
+  triggerName: string;
 }
-export const ExposureControlGetFeatureValueByFactoryRequest =
+export const DeleteTriggerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    factoryName: S.String.pipe(T.Label()),
+    triggerName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/triggers/{triggerName}",
+      code: 200,
+      apiVersion: "2018-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteTriggerRequest",
+}) as any as S.Schema<DeleteTriggerRequest>;
+
+export interface DeleteTriggerResponse {}
+export const DeleteTriggerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteTriggerResponse",
+}) as any as S.Schema<DeleteTriggerResponse>;
+
+export interface DisableIntegrationRuntimeInteractiveQueryRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+  /** The integration runtime name. */
+  integrationRuntimeName: string;
+}
+export const DisableIntegrationRuntimeInteractiveQueryRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       factoryName: S.String.pipe(T.Label()),
-      featureName: S.optional(S.String),
-      featureType: S.optional(S.String),
+      integrationRuntimeName: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/getFeatureValue",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}/disableInteractiveQuery",
         code: 200,
         apiVersion: "2018-06-01",
       }),
     ),
   ).annotate({
-    identifier: "ExposureControlGetFeatureValueByFactoryRequest",
-  }) as any as S.Schema<ExposureControlGetFeatureValueByFactoryRequest>;
+    identifier: "DisableIntegrationRuntimeInteractiveQueryRequest",
+  }) as any as S.Schema<DisableIntegrationRuntimeInteractiveQueryRequest>;
+
+export interface DisableIntegrationRuntimeInteractiveQueryResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Integration runtime properties. */
+  properties: IntegrationRuntime;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const DisableIntegrationRuntimeInteractiveQueryResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: IntegrationRuntime,
+      etag: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "DisableIntegrationRuntimeInteractiveQueryResponse",
+  }) as any as S.Schema<DisableIntegrationRuntimeInteractiveQueryResponse>;
+
+export interface EnableIntegrationRuntimeInteractiveQueryRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+  /** The integration runtime name. */
+  integrationRuntimeName: string;
+  /** The allowed idle time for interactive authoring. */
+  autoTerminationMinutes?: number;
+}
+export const EnableIntegrationRuntimeInteractiveQueryRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      factoryName: S.String.pipe(T.Label()),
+      integrationRuntimeName: S.String.pipe(T.Label()),
+      autoTerminationMinutes: S.optional(S.Number),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}/enableInteractiveQuery",
+        code: 200,
+        apiVersion: "2018-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "EnableIntegrationRuntimeInteractiveQueryRequest",
+  }) as any as S.Schema<EnableIntegrationRuntimeInteractiveQueryRequest>;
+
+export interface EnableIntegrationRuntimeInteractiveQueryResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Integration runtime properties. */
+  properties: IntegrationRuntime;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const EnableIntegrationRuntimeInteractiveQueryResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: IntegrationRuntime,
+      etag: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "EnableIntegrationRuntimeInteractiveQueryResponse",
+  }) as any as S.Schema<EnableIntegrationRuntimeInteractiveQueryResponse>;
+
+/** The command type. */
+export type DataFlowDebugCommandType =
+  | "executePreviewQuery"
+  | "executeStatisticsQuery"
+  | "executeExpressionQuery";
+export const DataFlowDebugCommandType = /*@__PURE__*/ S.String;
+
+/** Array of column names. */
+export type DataFlowDebugCommandPayloadColumnsList = Array<string>;
+export const DataFlowDebugCommandPayloadColumnsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<DataFlowDebugCommandPayloadColumnsList>;
+
+/** Structure of command payload. */
+export interface DataFlowDebugCommandPayload {
+  /** The stream name which is used for preview. */
+  streamName: string;
+  /** Row limits for preview response. */
+  rowLimits?: number;
+  /** Array of column names. */
+  columns?: DataFlowDebugCommandPayloadColumnsList;
+  /** The expression which is used for preview. */
+  expression?: string;
+}
+export const DataFlowDebugCommandPayload = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    streamName: S.String,
+    rowLimits: S.optional(S.Number),
+    columns: S.optional(DataFlowDebugCommandPayloadColumnsList),
+    expression: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DataFlowDebugCommandPayload",
+}) as any as S.Schema<DataFlowDebugCommandPayload>;
+
+export interface ExecuteDataFlowDebugSessionCommandRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+  /** The ID of data flow debug session. */
+  sessionId?: string;
+  /** The command type. */
+  command?: DataFlowDebugCommandType | (string & {});
+  /** The command payload object. */
+  commandPayload?: DataFlowDebugCommandPayload;
+}
+export const ExecuteDataFlowDebugSessionCommandRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      factoryName: S.String.pipe(T.Label()),
+      sessionId: S.optional(S.String),
+      command: S.optional(DataFlowDebugCommandType),
+      commandPayload: S.optional(DataFlowDebugCommandPayload),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/executeDataFlowDebugCommand",
+        code: 200,
+        apiVersion: "2018-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ExecuteDataFlowDebugSessionCommandRequest",
+  }) as any as S.Schema<ExecuteDataFlowDebugSessionCommandRequest>;
+
+/** Response body structure of data flow result for data preview, statistics or expression preview. */
+export interface DataFlowDebugCommandResponse {
+  /** The run status of data preview, statistics or expression preview. */
+  status?: string;
+  /** The result data of data preview, statistics or expression preview. */
+  data?: string;
+}
+export const DataFlowDebugCommandResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(S.String),
+    data: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DataFlowDebugCommandResponse",
+}) as any as S.Schema<DataFlowDebugCommandResponse>;
 
 /** The exposure control request. */
 export interface ExposureControlRequest {
@@ -2548,6 +2331,22 @@ export const ExposureControlQueryFeatureValuesByFactoryRequest =
   ).annotate({
     identifier: "ExposureControlQueryFeatureValuesByFactoryRequest",
   }) as any as S.Schema<ExposureControlQueryFeatureValuesByFactoryRequest>;
+
+/** The exposure control response. */
+export interface ExposureControlResponse {
+  /** The feature name. */
+  featureName?: string;
+  /** The feature value. */
+  value?: string;
+}
+export const ExposureControlResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    featureName: S.optional(S.String),
+    value: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ExposureControlResponse",
+}) as any as S.Schema<ExposureControlResponse>;
 
 /** List of exposure control feature values. */
 export type ExposureControlBatchResponseExposureControlResponsesList =
@@ -2964,39 +2763,288 @@ export const FactoriesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "FactoriesCreateOrUpdateResponse",
 }) as any as S.Schema<FactoriesCreateOrUpdateResponse>;
 
-export interface FactoriesDeleteRequest {
+export interface GetChangeDataCaptureRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The factory name. */
   factoryName: string;
+  /** The change data capture name. */
+  changeDataCaptureName: string;
 }
-export const FactoriesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetChangeDataCaptureRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     factoryName: S.String.pipe(T.Label()),
+    changeDataCaptureName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}",
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/adfcdcs/{changeDataCaptureName}",
       code: 200,
       apiVersion: "2018-06-01",
     }),
   ),
 ).annotate({
-  identifier: "FactoriesDeleteRequest",
-}) as any as S.Schema<FactoriesDeleteRequest>;
+  identifier: "GetChangeDataCaptureRequest",
+}) as any as S.Schema<GetChangeDataCaptureRequest>;
 
-export interface FactoriesDeleteResponse {}
-export const FactoriesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
+export interface GetChangeDataCaptureResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of the change data capture. */
+  properties: ChangeDataCapture;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const GetChangeDataCaptureResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: ChangeDataCapture,
+    etag: S.optional(S.String),
+  }),
 ).annotate({
-  identifier: "FactoriesDeleteResponse",
-}) as any as S.Schema<FactoriesDeleteResponse>;
+  identifier: "GetChangeDataCaptureResponse",
+}) as any as S.Schema<GetChangeDataCaptureResponse>;
 
-export interface FactoriesGetRequest {
+export interface GetCredentialOperationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+  /** Credential name */
+  credentialName: string;
+}
+export const GetCredentialOperationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    factoryName: S.String.pipe(T.Label()),
+    credentialName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/credentials/{credentialName}",
+      code: 200,
+      apiVersion: "2018-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetCredentialOperationRequest",
+}) as any as S.Schema<GetCredentialOperationRequest>;
+
+export interface GetCredentialOperationResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of credentials. */
+  properties: Credential;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const GetCredentialOperationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: Credential,
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetCredentialOperationResponse",
+}) as any as S.Schema<GetCredentialOperationResponse>;
+
+export interface GetDataFlowRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+  /** The data flow name. */
+  dataFlowName: string;
+}
+export const GetDataFlowRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    factoryName: S.String.pipe(T.Label()),
+    dataFlowName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/dataflows/{dataFlowName}",
+      code: 200,
+      apiVersion: "2018-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetDataFlowRequest",
+}) as any as S.Schema<GetDataFlowRequest>;
+
+export interface GetDataFlowResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Data flow properties. */
+  properties: DataFlow;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const GetDataFlowResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: DataFlow,
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetDataFlowResponse",
+}) as any as S.Schema<GetDataFlowResponse>;
+
+export interface GetDatasetRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+  /** The dataset name. */
+  datasetName: string;
+}
+export const GetDatasetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    factoryName: S.String.pipe(T.Label()),
+    datasetName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/datasets/{datasetName}",
+      code: 200,
+      apiVersion: "2018-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetDatasetRequest",
+}) as any as S.Schema<GetDatasetRequest>;
+
+export interface GetDatasetResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Dataset properties. */
+  properties: Dataset;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const GetDatasetResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: Dataset,
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetDatasetResponse",
+}) as any as S.Schema<GetDatasetResponse>;
+
+export interface GetExposureControlFeatureValueRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The location identifier. */
+  locationId: string;
+  /** The feature name. */
+  featureName?: string;
+  /** The feature type. */
+  featureType?: string;
+}
+export const GetExposureControlFeatureValueRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      locationId: S.String.pipe(T.Label()),
+      featureName: S.optional(S.String),
+      featureType: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DataFactory/locations/{locationId}/getFeatureValue",
+        code: 200,
+        apiVersion: "2018-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "GetExposureControlFeatureValueRequest",
+}) as any as S.Schema<GetExposureControlFeatureValueRequest>;
+
+export interface GetExposureControlFeatureValueByFactoryRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+  /** The feature name. */
+  featureName?: string;
+  /** The feature type. */
+  featureType?: string;
+}
+export const GetExposureControlFeatureValueByFactoryRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      factoryName: S.String.pipe(T.Label()),
+      featureName: S.optional(S.String),
+      featureType: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/getFeatureValue",
+        code: 200,
+        apiVersion: "2018-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetExposureControlFeatureValueByFactoryRequest",
+  }) as any as S.Schema<GetExposureControlFeatureValueByFactoryRequest>;
+
+export interface GetFactoryRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3004,7 +3052,7 @@ export interface FactoriesGetRequest {
   /** The factory name. */
   factoryName: string;
 }
-export const FactoriesGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetFactoryRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -3018,17 +3066,17 @@ export const FactoriesGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "FactoriesGetRequest",
-}) as any as S.Schema<FactoriesGetRequest>;
+  identifier: "GetFactoryRequest",
+}) as any as S.Schema<GetFactoryRequest>;
 
 /** The resource tags. */
-export type FactoriesGetResponseTagsMap = { [key: string]: string | undefined };
-export const FactoriesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetFactoryResponseTagsMap = { [key: string]: string | undefined };
+export const GetFactoryResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<FactoriesGetResponseTagsMap>;
+) as any as S.Schema<GetFactoryResponseTagsMap>;
 
-export interface FactoriesGetResponse {
+export interface GetFactoryResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -3044,11 +3092,11 @@ export interface FactoriesGetResponse {
   /** The resource location. */
   location?: string;
   /** The resource tags. */
-  tags?: FactoriesGetResponseTagsMap;
+  tags?: GetFactoryResponseTagsMap;
   /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
   eTag?: string;
 }
-export const FactoriesGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetFactoryResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -3057,14 +3105,14 @@ export const FactoriesGetResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(FactoryProperties),
     identity: S.optional(FactoryIdentity),
     location: S.optional(S.String),
-    tags: S.optional(FactoriesGetResponseTagsMap),
+    tags: S.optional(GetFactoryResponseTagsMap),
     eTag: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "FactoriesGetResponse",
-}) as any as S.Schema<FactoriesGetResponse>;
+  identifier: "GetFactoryResponse",
+}) as any as S.Schema<GetFactoryResponse>;
 
-export interface FactoriesGetDataPlaneAccessRequest {
+export interface GetFactoryDataPlaneAccessRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3082,7 +3130,7 @@ export interface FactoriesGetDataPlaneAccessRequest {
   /** Expiration time for the token. Maximum duration for the token is eight hours and by default the token will expire in eight hours. */
   expireTime?: string;
 }
-export const FactoriesGetDataPlaneAccessRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetFactoryDataPlaneAccessRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -3101,8 +3149,8 @@ export const FactoriesGetDataPlaneAccessRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "FactoriesGetDataPlaneAccessRequest",
-}) as any as S.Schema<FactoriesGetDataPlaneAccessRequest>;
+  identifier: "GetFactoryDataPlaneAccessRequest",
+}) as any as S.Schema<GetFactoryDataPlaneAccessRequest>;
 
 /** Get Data Plane read only token request definition. */
 export interface UserAccessPolicy {
@@ -3164,7 +3212,7 @@ export const GitHubClientSecret = /*@__PURE__*/ S.suspend(() =>
   identifier: "GitHubClientSecret",
 }) as any as S.Schema<GitHubClientSecret>;
 
-export interface FactoriesGetGitHubAccessTokenRequest {
+export interface GetFactoryGitHubAccessTokenRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3180,27 +3228,26 @@ export interface FactoriesGetGitHubAccessTokenRequest {
   /** GitHub access token base URL. */
   gitHubAccessTokenBaseUrl: string;
 }
-export const FactoriesGetGitHubAccessTokenRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      factoryName: S.String.pipe(T.Label()),
-      gitHubAccessCode: S.String,
-      gitHubClientId: S.optional(S.String),
-      gitHubClientSecret: S.optional(GitHubClientSecret),
-      gitHubAccessTokenBaseUrl: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/getGitHubAccessToken",
-        code: 200,
-        apiVersion: "2018-06-01",
-      }),
-    ),
+export const GetFactoryGitHubAccessTokenRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    factoryName: S.String.pipe(T.Label()),
+    gitHubAccessCode: S.String,
+    gitHubClientId: S.optional(S.String),
+    gitHubClientSecret: S.optional(GitHubClientSecret),
+    gitHubAccessTokenBaseUrl: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/getGitHubAccessToken",
+      code: 200,
+      apiVersion: "2018-06-01",
+    }),
+  ),
 ).annotate({
-  identifier: "FactoriesGetGitHubAccessTokenRequest",
-}) as any as S.Schema<FactoriesGetGitHubAccessTokenRequest>;
+  identifier: "GetFactoryGitHubAccessTokenRequest",
+}) as any as S.Schema<GetFactoryGitHubAccessTokenRequest>;
 
 /** Get GitHub access token response definition. */
 export interface GitHubAccessTokenResponse {
@@ -3215,293 +3262,7 @@ export const GitHubAccessTokenResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GitHubAccessTokenResponse",
 }) as any as S.Schema<GitHubAccessTokenResponse>;
 
-export interface FactoriesListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-}
-export const FactoriesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DataFactory/factories",
-      code: 200,
-      apiVersion: "2018-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "FactoriesListRequest",
-}) as any as S.Schema<FactoriesListRequest>;
-
-/** The resource tags. */
-export type FactoryTagsMap = { [key: string]: string | undefined };
-export const FactoryTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<FactoryTagsMap>;
-
-/** Factory resource type. */
-export interface Factory {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of the factory. */
-  properties?: FactoryProperties;
-  /** Managed service identity of the factory. */
-  identity?: FactoryIdentity;
-  /** The resource location. */
-  location?: string;
-  /** The resource tags. */
-  tags?: FactoryTagsMap;
-  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
-  eTag?: string;
-}
-export const Factory = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(FactoryProperties),
-    identity: S.optional(FactoryIdentity),
-    location: S.optional(S.String),
-    tags: S.optional(FactoryTagsMap),
-    eTag: S.optional(S.String),
-  }),
-).annotate({ identifier: "Factory" }) as any as S.Schema<Factory>;
-
-/** The Factory items on this page */
-export type FactoryListResponseValueList = Array<Factory>;
-export const FactoryListResponseValueList = /*@__PURE__*/ S.Array(
-  Factory,
-) as any as S.Schema<FactoryListResponseValueList>;
-
-/** A list of factory resources. */
-export interface FactoryListResponse {
-  /** The Factory items on this page */
-  value: FactoryListResponseValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const FactoryListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: FactoryListResponseValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "FactoryListResponse",
-}) as any as S.Schema<FactoryListResponse>;
-
-export interface FactoriesListByResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const FactoriesListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories",
-      code: 200,
-      apiVersion: "2018-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "FactoriesListByResourceGroupRequest",
-}) as any as S.Schema<FactoriesListByResourceGroupRequest>;
-
-/** The resource tags. */
-export type FactoriesUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const FactoriesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<FactoriesUpdateRequestTagsMap>;
-
-/** Factory update resource properties. */
-export interface FactoryUpdateProperties {
-  /** Whether or not public network access is allowed for the data factory. */
-  publicNetworkAccess?: PublicNetworkAccess | (string & {});
-}
-export const FactoryUpdateProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    publicNetworkAccess: S.optional(PublicNetworkAccess),
-  }),
-).annotate({
-  identifier: "FactoryUpdateProperties",
-}) as any as S.Schema<FactoryUpdateProperties>;
-
-export interface FactoriesUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-  /** The resource tags. */
-  tags?: FactoriesUpdateRequestTagsMap;
-  /** Managed service identity of the factory. */
-  identity?: FactoryIdentity;
-  /** Properties of update the factory. */
-  properties?: FactoryUpdateProperties;
-}
-export const FactoriesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    factoryName: S.String.pipe(T.Label()),
-    tags: S.optional(FactoriesUpdateRequestTagsMap),
-    identity: S.optional(FactoryIdentity),
-    properties: S.optional(FactoryUpdateProperties),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}",
-      code: 200,
-      apiVersion: "2018-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "FactoriesUpdateRequest",
-}) as any as S.Schema<FactoriesUpdateRequest>;
-
-/** The resource tags. */
-export type FactoriesUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const FactoriesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<FactoriesUpdateResponseTagsMap>;
-
-export interface FactoriesUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of the factory. */
-  properties?: FactoryProperties;
-  /** Managed service identity of the factory. */
-  identity?: FactoryIdentity;
-  /** The resource location. */
-  location?: string;
-  /** The resource tags. */
-  tags?: FactoriesUpdateResponseTagsMap;
-  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
-  eTag?: string;
-}
-export const FactoriesUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(FactoryProperties),
-    identity: S.optional(FactoryIdentity),
-    location: S.optional(S.String),
-    tags: S.optional(FactoriesUpdateResponseTagsMap),
-    eTag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "FactoriesUpdateResponse",
-}) as any as S.Schema<FactoriesUpdateResponse>;
-
-/** Properties of the global parameter. */
-export type GlobalParametersCreateOrUpdateRequestPropertiesMap = {
-  [key: string]: GlobalParameterSpecification | undefined;
-};
-export const GlobalParametersCreateOrUpdateRequestPropertiesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    GlobalParameterSpecification,
-  ) as any as S.Schema<GlobalParametersCreateOrUpdateRequestPropertiesMap>;
-
-export interface GlobalParametersCreateOrUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-  /** The global parameter name. */
-  globalParameterName: string;
-  /** Properties of the global parameter. */
-  properties: GlobalParametersCreateOrUpdateRequestPropertiesMap;
-}
-export const GlobalParametersCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      factoryName: S.String.pipe(T.Label()),
-      globalParameterName: S.String.pipe(T.Label()),
-      properties: GlobalParametersCreateOrUpdateRequestPropertiesMap,
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/globalParameters/{globalParameterName}",
-        code: 200,
-        apiVersion: "2018-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "GlobalParametersCreateOrUpdateRequest",
-}) as any as S.Schema<GlobalParametersCreateOrUpdateRequest>;
-
-/** Properties of the global parameter. */
-export type GlobalParametersCreateOrUpdateResponsePropertiesMap = {
-  [key: string]: GlobalParameterSpecification | undefined;
-};
-export const GlobalParametersCreateOrUpdateResponsePropertiesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    GlobalParameterSpecification,
-  ) as any as S.Schema<GlobalParametersCreateOrUpdateResponsePropertiesMap>;
-
-export interface GlobalParametersCreateOrUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of the global parameter. */
-  properties: GlobalParametersCreateOrUpdateResponsePropertiesMap;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const GlobalParametersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: GlobalParametersCreateOrUpdateResponsePropertiesMap,
-      etag: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "GlobalParametersCreateOrUpdateResponse",
-}) as any as S.Schema<GlobalParametersCreateOrUpdateResponse>;
-
-export interface GlobalParametersDeleteRequest {
+export interface GetGlobalParameterRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3511,42 +3272,7 @@ export interface GlobalParametersDeleteRequest {
   /** The global parameter name. */
   globalParameterName: string;
 }
-export const GlobalParametersDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    factoryName: S.String.pipe(T.Label()),
-    globalParameterName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/globalParameters/{globalParameterName}",
-      code: 200,
-      apiVersion: "2018-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "GlobalParametersDeleteRequest",
-}) as any as S.Schema<GlobalParametersDeleteRequest>;
-
-export interface GlobalParametersDeleteResponse {}
-export const GlobalParametersDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "GlobalParametersDeleteResponse",
-}) as any as S.Schema<GlobalParametersDeleteResponse>;
-
-export interface GlobalParametersGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-  /** The global parameter name. */
-  globalParameterName: string;
-}
-export const GlobalParametersGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetGlobalParameterRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -3561,19 +3287,19 @@ export const GlobalParametersGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GlobalParametersGetRequest",
-}) as any as S.Schema<GlobalParametersGetRequest>;
+  identifier: "GetGlobalParameterRequest",
+}) as any as S.Schema<GetGlobalParameterRequest>;
 
 /** Properties of the global parameter. */
-export type GlobalParametersGetResponsePropertiesMap = {
+export type GetGlobalParameterResponsePropertiesMap = {
   [key: string]: GlobalParameterSpecification | undefined;
 };
-export const GlobalParametersGetResponsePropertiesMap = /*@__PURE__*/ S.Record(
+export const GetGlobalParameterResponsePropertiesMap = /*@__PURE__*/ S.Record(
   S.String,
   GlobalParameterSpecification,
-) as any as S.Schema<GlobalParametersGetResponsePropertiesMap>;
+) as any as S.Schema<GetGlobalParameterResponsePropertiesMap>;
 
-export interface GlobalParametersGetResponse {
+export interface GetGlobalParameterResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -3583,110 +3309,24 @@ export interface GlobalParametersGetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Properties of the global parameter. */
-  properties: GlobalParametersGetResponsePropertiesMap;
+  properties: GetGlobalParameterResponsePropertiesMap;
   /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
   etag?: string;
 }
-export const GlobalParametersGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetGlobalParameterResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    properties: GlobalParametersGetResponsePropertiesMap,
+    properties: GetGlobalParameterResponsePropertiesMap,
     etag: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "GlobalParametersGetResponse",
-}) as any as S.Schema<GlobalParametersGetResponse>;
+  identifier: "GetGlobalParameterResponse",
+}) as any as S.Schema<GetGlobalParameterResponse>;
 
-export interface GlobalParametersListByFactoryRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-}
-export const GlobalParametersListByFactoryRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      factoryName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/globalParameters",
-        code: 200,
-        apiVersion: "2018-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "GlobalParametersListByFactoryRequest",
-}) as any as S.Schema<GlobalParametersListByFactoryRequest>;
-
-/** Properties of the global parameter. */
-export type GlobalParameterResourcePropertiesMap = {
-  [key: string]: GlobalParameterSpecification | undefined;
-};
-export const GlobalParameterResourcePropertiesMap = /*@__PURE__*/ S.Record(
-  S.String,
-  GlobalParameterSpecification,
-) as any as S.Schema<GlobalParameterResourcePropertiesMap>;
-
-/** Global parameters resource type. */
-export interface GlobalParameterResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of the global parameter. */
-  properties: GlobalParameterResourcePropertiesMap;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const GlobalParameterResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: GlobalParameterResourcePropertiesMap,
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "GlobalParameterResource",
-}) as any as S.Schema<GlobalParameterResource>;
-
-/** The GlobalParameterResource items on this page */
-export type GlobalParameterListResponseValueList =
-  Array<GlobalParameterResource>;
-export const GlobalParameterListResponseValueList = /*@__PURE__*/ S.Array(
-  GlobalParameterResource,
-) as any as S.Schema<GlobalParameterListResponseValueList>;
-
-/** A list of Global parameters. */
-export interface GlobalParameterListResponse {
-  /** The GlobalParameterResource items on this page */
-  value: GlobalParameterListResponseValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const GlobalParameterListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: GlobalParameterListResponseValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "GlobalParameterListResponse",
-}) as any as S.Schema<GlobalParameterListResponse>;
-
-export interface IntegrationRuntimeDisableInteractiveQueryRequest {
+export interface GetIntegrationRuntimeRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3696,26 +3336,25 @@ export interface IntegrationRuntimeDisableInteractiveQueryRequest {
   /** The integration runtime name. */
   integrationRuntimeName: string;
 }
-export const IntegrationRuntimeDisableInteractiveQueryRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      factoryName: S.String.pipe(T.Label()),
-      integrationRuntimeName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}/disableInteractiveQuery",
-        code: 200,
-        apiVersion: "2018-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "IntegrationRuntimeDisableInteractiveQueryRequest",
-  }) as any as S.Schema<IntegrationRuntimeDisableInteractiveQueryRequest>;
+export const GetIntegrationRuntimeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    factoryName: S.String.pipe(T.Label()),
+    integrationRuntimeName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}",
+      code: 200,
+      apiVersion: "2018-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetIntegrationRuntimeRequest",
+}) as any as S.Schema<GetIntegrationRuntimeRequest>;
 
-export interface IntegrationRuntimeDisableInteractiveQueryResponse {
+export interface GetIntegrationRuntimeResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -3729,21 +3368,20 @@ export interface IntegrationRuntimeDisableInteractiveQueryResponse {
   /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
   etag?: string;
 }
-export const IntegrationRuntimeDisableInteractiveQueryResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: IntegrationRuntime,
-      etag: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "IntegrationRuntimeDisableInteractiveQueryResponse",
-  }) as any as S.Schema<IntegrationRuntimeDisableInteractiveQueryResponse>;
+export const GetIntegrationRuntimeResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: IntegrationRuntime,
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetIntegrationRuntimeResponse",
+}) as any as S.Schema<GetIntegrationRuntimeResponse>;
 
-export interface IntegrationRuntimeEnableInteractiveQueryRequest {
+export interface GetIntegrationRuntimeConnectionInfoRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3752,95 +3390,142 @@ export interface IntegrationRuntimeEnableInteractiveQueryRequest {
   factoryName: string;
   /** The integration runtime name. */
   integrationRuntimeName: string;
-  /** The allowed idle time for interactive authoring. */
-  autoTerminationMinutes?: number;
 }
-export const IntegrationRuntimeEnableInteractiveQueryRequest =
+export const GetIntegrationRuntimeConnectionInfoRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       factoryName: S.String.pipe(T.Label()),
       integrationRuntimeName: S.String.pipe(T.Label()),
-      autoTerminationMinutes: S.optional(S.Number),
     }).pipe(
       T.Http({
         method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}/enableInteractiveQuery",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}/getConnectionInfo",
         code: 200,
         apiVersion: "2018-06-01",
       }),
     ),
   ).annotate({
-    identifier: "IntegrationRuntimeEnableInteractiveQueryRequest",
-  }) as any as S.Schema<IntegrationRuntimeEnableInteractiveQueryRequest>;
+    identifier: "GetIntegrationRuntimeConnectionInfoRequest",
+  }) as any as S.Schema<GetIntegrationRuntimeConnectionInfoRequest>;
 
-export interface IntegrationRuntimeEnableInteractiveQueryResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Integration runtime properties. */
-  properties: IntegrationRuntime;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
+/** Connection information for encrypting the on-premises data source credentials. */
+export interface IntegrationRuntimeConnectionInfo {
+  /** The token generated in service. Callers use this token to authenticate to integration runtime. */
+  serviceToken?: string;
+  /** The integration runtime SSL certificate thumbprint. Click-Once application uses it to do server validation. */
+  identityCertThumbprint?: string;
+  /** The on-premises integration runtime host URL. */
+  hostServiceUri?: string;
+  /** The integration runtime version. */
+  version?: string;
+  /** The public key for encrypting a credential when transferring the credential to the integration runtime. */
+  publicKey?: string;
+  /** Whether the identity certificate is expired. */
+  isIdentityCertExprired?: boolean;
 }
-export const IntegrationRuntimeEnableInteractiveQueryResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: IntegrationRuntime,
-      etag: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "IntegrationRuntimeEnableInteractiveQueryResponse",
-  }) as any as S.Schema<IntegrationRuntimeEnableInteractiveQueryResponse>;
+export const IntegrationRuntimeConnectionInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceToken: S.optional(S.String),
+    identityCertThumbprint: S.optional(S.String),
+    hostServiceUri: S.optional(S.String),
+    version: S.optional(S.String),
+    publicKey: S.optional(S.String),
+    isIdentityCertExprired: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "IntegrationRuntimeConnectionInfo",
+}) as any as S.Schema<IntegrationRuntimeConnectionInfo>;
 
-export interface IntegrationRuntimeNodesDeleteRequest {
+export interface GetIntegrationRuntimeMonitoringDataRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
+  /** The factory name. */
   factoryName: string;
+  /** The integration runtime name. */
   integrationRuntimeName: string;
-  /** The integration runtime node name. */
-  nodeName: string;
 }
-export const IntegrationRuntimeNodesDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
+export const GetIntegrationRuntimeMonitoringDataRequest =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       factoryName: S.String.pipe(T.Label()),
       integrationRuntimeName: S.String.pipe(T.Label()),
-      nodeName: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}/nodes/{nodeName}",
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}/monitoringData",
         code: 200,
         apiVersion: "2018-06-01",
       }),
     ),
-).annotate({
-  identifier: "IntegrationRuntimeNodesDeleteRequest",
-}) as any as S.Schema<IntegrationRuntimeNodesDeleteRequest>;
+  ).annotate({
+    identifier: "GetIntegrationRuntimeMonitoringDataRequest",
+  }) as any as S.Schema<GetIntegrationRuntimeMonitoringDataRequest>;
 
-export interface IntegrationRuntimeNodesDeleteResponse {}
-export const IntegrationRuntimeNodesDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
+/** Monitoring data for integration runtime node. */
+export interface IntegrationRuntimeNodeMonitoringData {
+  /** Name of the integration runtime node. */
+  nodeName?: string;
+  /** Available memory (MB) on the integration runtime node. */
+  availableMemoryInMB?: number;
+  /** CPU percentage on the integration runtime node. */
+  cpuUtilization?: number;
+  /** Maximum concurrent jobs on the integration runtime node. */
+  concurrentJobsLimit?: number;
+  /** The number of jobs currently running on the integration runtime node. */
+  concurrentJobsRunning?: number;
+  /** The maximum concurrent jobs in this integration runtime. */
+  maxConcurrentJobs?: number;
+  /** Sent bytes on the integration runtime node. */
+  sentBytes?: number;
+  /** Received bytes on the integration runtime node. */
+  receivedBytes?: number;
+}
+export const IntegrationRuntimeNodeMonitoringData = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      nodeName: S.optional(S.String),
+      availableMemoryInMB: S.optional(S.Number),
+      cpuUtilization: S.optional(S.Number),
+      concurrentJobsLimit: S.optional(S.Number),
+      concurrentJobsRunning: S.optional(S.Number),
+      maxConcurrentJobs: S.optional(S.Number),
+      sentBytes: S.optional(S.Number),
+      receivedBytes: S.optional(S.Number),
+    }),
 ).annotate({
-  identifier: "IntegrationRuntimeNodesDeleteResponse",
-}) as any as S.Schema<IntegrationRuntimeNodesDeleteResponse>;
+  identifier: "IntegrationRuntimeNodeMonitoringData",
+}) as any as S.Schema<IntegrationRuntimeNodeMonitoringData>;
 
-export interface IntegrationRuntimeNodesGetRequest {
+/** Integration runtime node monitoring data. */
+export type IntegrationRuntimeMonitoringDataNodesList =
+  Array<IntegrationRuntimeNodeMonitoringData>;
+export const IntegrationRuntimeMonitoringDataNodesList = /*@__PURE__*/ S.Array(
+  IntegrationRuntimeNodeMonitoringData,
+) as any as S.Schema<IntegrationRuntimeMonitoringDataNodesList>;
+
+/** Get monitoring data response. */
+export interface IntegrationRuntimeMonitoringData {
+  /** Integration runtime name. */
+  name?: string;
+  /** Integration runtime node monitoring data. */
+  nodes?: IntegrationRuntimeMonitoringDataNodesList;
+}
+export const IntegrationRuntimeMonitoringData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    nodes: S.optional(IntegrationRuntimeMonitoringDataNodesList),
+  }),
+).annotate({
+  identifier: "IntegrationRuntimeMonitoringData",
+}) as any as S.Schema<IntegrationRuntimeMonitoringData>;
+
+export interface GetIntegrationRuntimeNodeRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3850,7 +3535,7 @@ export interface IntegrationRuntimeNodesGetRequest {
   /** The integration runtime node name. */
   nodeName: string;
 }
-export const IntegrationRuntimeNodesGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetIntegrationRuntimeNodeRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -3866,8 +3551,8 @@ export const IntegrationRuntimeNodesGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "IntegrationRuntimeNodesGetRequest",
-}) as any as S.Schema<IntegrationRuntimeNodesGetRequest>;
+  identifier: "GetIntegrationRuntimeNodeRequest",
+}) as any as S.Schema<GetIntegrationRuntimeNodeRequest>;
 
 /** Status of the integration runtime node. */
 export type SelfHostedIntegrationRuntimeNodeStatus =
@@ -3958,7 +3643,7 @@ export const SelfHostedIntegrationRuntimeNode = /*@__PURE__*/ S.suspend(() =>
   identifier: "SelfHostedIntegrationRuntimeNode",
 }) as any as S.Schema<SelfHostedIntegrationRuntimeNode>;
 
-export interface IntegrationRuntimeNodesGetIpAddressRequest {
+export interface GetIntegrationRuntimeNodeIpAddressRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3968,7 +3653,7 @@ export interface IntegrationRuntimeNodesGetIpAddressRequest {
   /** The integration runtime node name. */
   nodeName: string;
 }
-export const IntegrationRuntimeNodesGetIpAddressRequest =
+export const GetIntegrationRuntimeNodeIpAddressRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -3985,8 +3670,8 @@ export const IntegrationRuntimeNodesGetIpAddressRequest =
       }),
     ),
   ).annotate({
-    identifier: "IntegrationRuntimeNodesGetIpAddressRequest",
-  }) as any as S.Schema<IntegrationRuntimeNodesGetIpAddressRequest>;
+    identifier: "GetIntegrationRuntimeNodeIpAddressRequest",
+  }) as any as S.Schema<GetIntegrationRuntimeNodeIpAddressRequest>;
 
 /** The IP address of self-hosted integration runtime node. */
 export interface IntegrationRuntimeNodeIpAddress {
@@ -4001,40 +3686,7 @@ export const IntegrationRuntimeNodeIpAddress = /*@__PURE__*/ S.suspend(() =>
   identifier: "IntegrationRuntimeNodeIpAddress",
 }) as any as S.Schema<IntegrationRuntimeNodeIpAddress>;
 
-export interface IntegrationRuntimeNodesUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  factoryName: string;
-  integrationRuntimeName: string;
-  /** The integration runtime node name. */
-  nodeName: string;
-  /** The number of concurrent jobs permitted to run on the integration runtime node. Values between 1 and maxConcurrentJobs(inclusive) are allowed. */
-  concurrentJobsLimit?: number;
-}
-export const IntegrationRuntimeNodesUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      factoryName: S.String.pipe(T.Label()),
-      integrationRuntimeName: S.String.pipe(T.Label()),
-      nodeName: S.String.pipe(T.Label()),
-      concurrentJobsLimit: S.optional(S.Number),
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}/nodes/{nodeName}",
-        code: 200,
-        apiVersion: "2018-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "IntegrationRuntimeNodesUpdateRequest",
-}) as any as S.Schema<IntegrationRuntimeNodesUpdateRequest>;
-
-export interface IntegrationRuntimeObjectMetadataGetRequest {
+export interface GetIntegrationRuntimeObjectMetadataRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4046,7 +3698,7 @@ export interface IntegrationRuntimeObjectMetadataGetRequest {
   /** Metadata path. */
   metadataPath?: string;
 }
-export const IntegrationRuntimeObjectMetadataGetRequest =
+export const GetIntegrationRuntimeObjectMetadataRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -4063,8 +3715,8 @@ export const IntegrationRuntimeObjectMetadataGetRequest =
       }),
     ),
   ).annotate({
-    identifier: "IntegrationRuntimeObjectMetadataGetRequest",
-  }) as any as S.Schema<IntegrationRuntimeObjectMetadataGetRequest>;
+    identifier: "GetIntegrationRuntimeObjectMetadataRequest",
+  }) as any as S.Schema<GetIntegrationRuntimeObjectMetadataRequest>;
 
 /** The type of SSIS object metadata. */
 export type SsisObjectMetadataType =
@@ -4118,7 +3770,7 @@ export const SsisObjectMetadataListResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "SsisObjectMetadataListResponse",
 }) as any as S.Schema<SsisObjectMetadataListResponse>;
 
-export interface IntegrationRuntimeObjectMetadataRefreshRequest {
+export interface GetIntegrationRuntimeStatusRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4128,133 +3780,1075 @@ export interface IntegrationRuntimeObjectMetadataRefreshRequest {
   /** The integration runtime name. */
   integrationRuntimeName: string;
 }
-export const IntegrationRuntimeObjectMetadataRefreshRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      factoryName: S.String.pipe(T.Label()),
-      integrationRuntimeName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}/refreshObjectMetadata",
-        code: 200,
-        apiVersion: "2018-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "IntegrationRuntimeObjectMetadataRefreshRequest",
-  }) as any as S.Schema<IntegrationRuntimeObjectMetadataRefreshRequest>;
+export const GetIntegrationRuntimeStatusRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    factoryName: S.String.pipe(T.Label()),
+    integrationRuntimeName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}/getStatus",
+      code: 200,
+      apiVersion: "2018-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetIntegrationRuntimeStatusRequest",
+}) as any as S.Schema<GetIntegrationRuntimeStatusRequest>;
 
-/** The status of the operation. */
-export interface SsisObjectMetadataStatusResponse {
-  /** The status of the operation. */
-  status?: string;
-  /** The operation name. */
-  name?: string;
-  /** The operation properties. */
-  properties?: string;
-  /** The operation error message. */
-  error?: string;
+export interface GetLinkedServiceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+  /** The linked service name. */
+  linkedServiceName: string;
 }
-export const SsisObjectMetadataStatusResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetLinkedServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    factoryName: S.String.pipe(T.Label()),
+    linkedServiceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/linkedservices/{linkedServiceName}",
+      code: 200,
+      apiVersion: "2018-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetLinkedServiceRequest",
+}) as any as S.Schema<GetLinkedServiceRequest>;
+
+export interface GetLinkedServiceResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of linked service. */
+  properties: LinkedService;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const GetLinkedServiceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: LinkedService,
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetLinkedServiceResponse",
+}) as any as S.Schema<GetLinkedServiceResponse>;
+
+export interface GetManagedPrivateEndpointRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+  /** Managed virtual network name */
+  managedVirtualNetworkName: string;
+  /** Managed private endpoint name */
+  managedPrivateEndpointName: string;
+}
+export const GetManagedPrivateEndpointRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    factoryName: S.String.pipe(T.Label()),
+    managedVirtualNetworkName: S.String.pipe(T.Label()),
+    managedPrivateEndpointName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/managedVirtualNetworks/{managedVirtualNetworkName}/managedPrivateEndpoints/{managedPrivateEndpointName}",
+      code: 200,
+      apiVersion: "2018-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetManagedPrivateEndpointRequest",
+}) as any as S.Schema<GetManagedPrivateEndpointRequest>;
+
+/** The connection state of a managed private endpoint */
+export interface ConnectionStateProperties {
+  /** The actions required on the managed private endpoint */
+  actionsRequired?: string;
+  /** The managed private endpoint description */
+  description?: string;
+  /** The approval status */
+  status?: string;
+}
+export const ConnectionStateProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    actionsRequired: S.optional(S.String),
+    description: S.optional(S.String),
+    status: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ConnectionStateProperties",
+}) as any as S.Schema<ConnectionStateProperties>;
+
+/** Fully qualified domain names */
+export type ManagedPrivateEndpointFqdnsList = Array<string>;
+export const ManagedPrivateEndpointFqdnsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ManagedPrivateEndpointFqdnsList>;
+
+/** Properties of a managed private endpoint */
+export interface ManagedPrivateEndpoint {
+  /** The managed private endpoint connection state */
+  connectionState?: ConnectionStateProperties;
+  /** Fully qualified domain names */
+  fqdns?: ManagedPrivateEndpointFqdnsList;
+  /** The groupId to which the managed private endpoint is created */
+  groupId?: string;
+  /** Denotes whether the managed private endpoint is reserved */
+  isReserved?: boolean;
+  /** The ARM resource ID of the resource to which the managed private endpoint is created */
+  privateLinkResourceId?: string;
+  /** The managed private endpoint provisioning state */
+  provisioningState?: string;
+}
+export const ManagedPrivateEndpoint = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    connectionState: S.optional(ConnectionStateProperties),
+    fqdns: S.optional(ManagedPrivateEndpointFqdnsList),
+    groupId: S.optional(S.String),
+    isReserved: S.optional(S.Boolean),
+    privateLinkResourceId: S.optional(S.String),
+    provisioningState: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ManagedPrivateEndpoint",
+}) as any as S.Schema<ManagedPrivateEndpoint>;
+
+export interface GetManagedPrivateEndpointResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Managed private endpoint properties. */
+  properties: ManagedPrivateEndpoint;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const GetManagedPrivateEndpointResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: ManagedPrivateEndpoint,
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetManagedPrivateEndpointResponse",
+}) as any as S.Schema<GetManagedPrivateEndpointResponse>;
+
+export interface GetManagedVirtualNetworkRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+  /** Managed virtual network name */
+  managedVirtualNetworkName: string;
+}
+export const GetManagedVirtualNetworkRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    factoryName: S.String.pipe(T.Label()),
+    managedVirtualNetworkName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/managedVirtualNetworks/{managedVirtualNetworkName}",
+      code: 200,
+      apiVersion: "2018-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetManagedVirtualNetworkRequest",
+}) as any as S.Schema<GetManagedVirtualNetworkRequest>;
+
+/** A managed Virtual Network associated with the Azure Data Factory */
+export interface ManagedVirtualNetwork {
+  /** Managed Virtual Network ID. */
+  vNetId?: string;
+  /** Managed Virtual Network alias. */
+  alias?: string;
+}
+export const ManagedVirtualNetwork = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    vNetId: S.optional(S.String),
+    alias: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ManagedVirtualNetwork",
+}) as any as S.Schema<ManagedVirtualNetwork>;
+
+export interface GetManagedVirtualNetworkResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Managed Virtual Network properties. */
+  properties: ManagedVirtualNetwork;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const GetManagedVirtualNetworkResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: ManagedVirtualNetwork,
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetManagedVirtualNetworkResponse",
+}) as any as S.Schema<GetManagedVirtualNetworkResponse>;
+
+export interface GetPipelineRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+  /** The pipeline name. */
+  pipelineName: string;
+}
+export const GetPipelineRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    factoryName: S.String.pipe(T.Label()),
+    pipelineName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/pipelines/{pipelineName}",
+      code: 200,
+      apiVersion: "2018-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetPipelineRequest",
+}) as any as S.Schema<GetPipelineRequest>;
+
+/** Activity state. This is an optional property and if not provided, the state will be Active by default. */
+export type ActivityState = "Active" | "Inactive";
+export const ActivityState = /*@__PURE__*/ S.String;
+
+/** Status result of the activity when the state is set to Inactive. This is an optional property and if not provided when the activity is inactive, the status will be Succeeded by default. */
+export type ActivityOnInactiveMarkAs = "Succeeded" | "Failed" | "Skipped";
+export const ActivityOnInactiveMarkAs = /*@__PURE__*/ S.String;
+
+export type DependencyCondition =
+  | "Succeeded"
+  | "Failed"
+  | "Skipped"
+  | "Completed";
+export const DependencyCondition = /*@__PURE__*/ S.String;
+
+/** Match-Condition for the dependency. */
+export type ActivityDependencyDependencyConditionsList = Array<
+  DependencyCondition | (string & {})
+>;
+export const ActivityDependencyDependencyConditionsList = /*@__PURE__*/ S.Array(
+  DependencyCondition,
+) as any as S.Schema<ActivityDependencyDependencyConditionsList>;
+
+/** Activity dependency information. */
+export interface ActivityDependency {
+  /** Activity name. */
+  activity: string;
+  /** Match-Condition for the dependency. */
+  dependencyConditions: ActivityDependencyDependencyConditionsList;
+}
+export const ActivityDependency = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    activity: S.String,
+    dependencyConditions: ActivityDependencyDependencyConditionsList,
+  }),
+).annotate({
+  identifier: "ActivityDependency",
+}) as any as S.Schema<ActivityDependency>;
+
+/** Activity depends on condition. */
+export type ActivityDependsOnList = Array<ActivityDependency>;
+export const ActivityDependsOnList = /*@__PURE__*/ S.Array(
+  ActivityDependency,
+) as any as S.Schema<ActivityDependsOnList>;
+
+/** User property. */
+export interface UserProperty {
+  /** User property name. */
+  name: string;
+  /** User property value. Type: string (or Expression with resultType string). */
+  value: unknown;
+}
+export const UserProperty = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    value: S.Unknown,
+  }),
+).annotate({ identifier: "UserProperty" }) as any as S.Schema<UserProperty>;
+
+/** Activity user properties. */
+export type ActivityUserPropertiesList = Array<UserProperty>;
+export const ActivityUserPropertiesList = /*@__PURE__*/ S.Array(
+  UserProperty,
+) as any as S.Schema<ActivityUserPropertiesList>;
+
+/** A pipeline activity. */
+export interface Activity {
+  /** Activity name. */
+  name: string;
+  /** Type of activity. */
+  type: string;
+  /** Activity description. */
+  description?: string;
+  /** Activity state. This is an optional property and if not provided, the state will be Active by default. */
+  state?: ActivityState | (string & {});
+  /** Status result of the activity when the state is set to Inactive. This is an optional property and if not provided when the activity is inactive, the status will be Succeeded by default. */
+  onInactiveMarkAs?: ActivityOnInactiveMarkAs | (string & {});
+  /** Activity depends on condition. */
+  dependsOn?: ActivityDependsOnList;
+  /** Activity user properties. */
+  userProperties?: ActivityUserPropertiesList;
+}
+export const Activity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    type: S.String,
+    description: S.optional(S.String),
+    state: S.optional(ActivityState),
+    onInactiveMarkAs: S.optional(ActivityOnInactiveMarkAs),
+    dependsOn: S.optional(ActivityDependsOnList),
+    userProperties: S.optional(ActivityUserPropertiesList),
+  }),
+).annotate({ identifier: "Activity" }) as any as S.Schema<Activity>;
+
+/** List of activities in pipeline. */
+export type PipelineActivitiesList = Array<Activity>;
+export const PipelineActivitiesList = /*@__PURE__*/ S.Array(
+  Activity,
+) as any as S.Schema<PipelineActivitiesList>;
+
+/** List of parameters for pipeline. */
+export type PipelineParametersMap = {
+  [key: string]: ParameterSpecification | undefined;
+};
+export const PipelineParametersMap = /*@__PURE__*/ S.Record(
+  S.String,
+  ParameterSpecification,
+) as any as S.Schema<PipelineParametersMap>;
+
+/** Variable type. */
+export type VariableType = "String" | "Bool" | "Array";
+export const VariableType = /*@__PURE__*/ S.String;
+
+/** Definition of a single variable for a Pipeline. */
+export interface VariableSpecification {
+  /** Variable type. */
+  type: VariableType | (string & {});
+  /** Default value of variable. */
+  defaultValue?: unknown;
+}
+export const VariableSpecification = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: VariableType,
+    defaultValue: S.optional(S.Unknown),
+  }),
+).annotate({
+  identifier: "VariableSpecification",
+}) as any as S.Schema<VariableSpecification>;
+
+/** List of variables for pipeline. */
+export type PipelineVariablesMap = {
+  [key: string]: VariableSpecification | undefined;
+};
+export const PipelineVariablesMap = /*@__PURE__*/ S.Record(
+  S.String,
+  VariableSpecification,
+) as any as S.Schema<PipelineVariablesMap>;
+
+/** List of tags that can be used for describing the Pipeline. */
+export type PipelineAnnotationsList = Array<unknown>;
+export const PipelineAnnotationsList = /*@__PURE__*/ S.Array(
+  S.Unknown,
+) as any as S.Schema<PipelineAnnotationsList>;
+
+/** Dimensions emitted by Pipeline. */
+export type PipelineRunDimensionsMap = { [key: string]: unknown | undefined };
+export const PipelineRunDimensionsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<PipelineRunDimensionsMap>;
+
+/** The folder that this Pipeline is in. If not specified, Pipeline will appear at the root level. */
+export interface PipelineFolder {
+  /** The name of the folder that this Pipeline is in. */
+  name?: string;
+}
+export const PipelineFolder = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+  }),
+).annotate({ identifier: "PipelineFolder" }) as any as S.Schema<PipelineFolder>;
+
+/** Pipeline ElapsedTime Metric Policy. */
+export interface PipelineElapsedTimeMetricPolicy {
+  /** TimeSpan value, after which an Azure Monitoring Metric is fired. */
+  duration?: unknown;
+}
+export const PipelineElapsedTimeMetricPolicy = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    duration: S.optional(S.Unknown),
+  }),
+).annotate({
+  identifier: "PipelineElapsedTimeMetricPolicy",
+}) as any as S.Schema<PipelineElapsedTimeMetricPolicy>;
+
+/** Pipeline Policy. */
+export interface PipelinePolicy {
+  /** Pipeline ElapsedTime Metric Policy. */
+  elapsedTimeMetric?: PipelineElapsedTimeMetricPolicy;
+}
+export const PipelinePolicy = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    elapsedTimeMetric: S.optional(PipelineElapsedTimeMetricPolicy),
+  }),
+).annotate({ identifier: "PipelinePolicy" }) as any as S.Schema<PipelinePolicy>;
+
+/** A data factory pipeline. */
+export interface Pipeline {
+  /** The description of the pipeline. */
+  description?: string;
+  /** List of activities in pipeline. */
+  activities?: PipelineActivitiesList;
+  /** List of parameters for pipeline. */
+  parameters?: PipelineParametersMap;
+  /** List of variables for pipeline. */
+  variables?: PipelineVariablesMap;
+  /** The max number of concurrent runs for the pipeline. */
+  concurrency?: number;
+  /** List of tags that can be used for describing the Pipeline. */
+  annotations?: PipelineAnnotationsList;
+  /** Dimensions emitted by Pipeline. */
+  runDimensions?: PipelineRunDimensionsMap;
+  /** The folder that this Pipeline is in. If not specified, Pipeline will appear at the root level. */
+  folder?: PipelineFolder;
+  /** Pipeline Policy. */
+  policy?: PipelinePolicy;
+}
+export const Pipeline = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    description: S.optional(S.String),
+    activities: S.optional(PipelineActivitiesList),
+    parameters: S.optional(PipelineParametersMap),
+    variables: S.optional(PipelineVariablesMap),
+    concurrency: S.optional(S.Number),
+    annotations: S.optional(PipelineAnnotationsList),
+    runDimensions: S.optional(PipelineRunDimensionsMap),
+    folder: S.optional(PipelineFolder),
+    policy: S.optional(PipelinePolicy),
+  }),
+).annotate({ identifier: "Pipeline" }) as any as S.Schema<Pipeline>;
+
+export interface GetPipelineResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of the pipeline. */
+  properties: Pipeline;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const GetPipelineResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: Pipeline,
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetPipelineResponse",
+}) as any as S.Schema<GetPipelineResponse>;
+
+export interface GetPipelineRunRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  factoryName: string;
+  /** The pipeline run identifier. */
+  runId: string;
+}
+export const GetPipelineRunRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    factoryName: S.String.pipe(T.Label()),
+    runId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/pipelineruns/{runId}",
+      code: 200,
+      apiVersion: "2018-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetPipelineRunRequest",
+}) as any as S.Schema<GetPipelineRunRequest>;
+
+/** The full or partial list of parameter name, value pair used in the pipeline run. */
+export type PipelineRunParametersMap = { [key: string]: string | undefined };
+export const PipelineRunParametersMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<PipelineRunParametersMap>;
+
+/** Run dimensions emitted by Pipeline run. */
+export type PipelineRunRunDimensionsMap = { [key: string]: string | undefined };
+export const PipelineRunRunDimensionsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<PipelineRunRunDimensionsMap>;
+
+/** Provides entity name and id that started the pipeline run. */
+export interface PipelineRunInvokedBy {
+  /** Name of the entity that started the pipeline run. */
+  name?: string;
+  /** The ID of the entity that started the run. */
+  id?: string;
+  /** The type of the entity that started the run. */
+  invokedByType?: string;
+  /** The name of the pipeline that triggered the run, if any. */
+  pipelineName?: string;
+  /** The run id of the pipeline that triggered the run, if any. */
+  pipelineRunId?: string;
+}
+export const PipelineRunInvokedBy = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    id: S.optional(S.String),
+    invokedByType: S.optional(S.String),
+    pipelineName: S.optional(S.String),
+    pipelineRunId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PipelineRunInvokedBy",
+}) as any as S.Schema<PipelineRunInvokedBy>;
+
+/** Information about a pipeline run. */
+export interface PipelineRun {
+  /** Identifier of a run. */
+  runId?: string;
+  /** Identifier that correlates all the recovery runs of a pipeline run. */
+  runGroupId?: string;
+  /** Indicates if the recovered pipeline run is the latest in its group. */
+  isLatest?: boolean;
+  /** The pipeline name. */
+  pipelineName?: string;
+  /** The full or partial list of parameter name, value pair used in the pipeline run. */
+  parameters?: PipelineRunParametersMap;
+  /** Run dimensions emitted by Pipeline run. */
+  runDimensions?: PipelineRunRunDimensionsMap;
+  /** Entity that started the pipeline run. */
+  invokedBy?: PipelineRunInvokedBy;
+  /** The last updated timestamp for the pipeline run event in ISO8601 format. */
+  lastUpdated?: string;
+  /** The start time of a pipeline run in ISO8601 format. */
+  runStart?: string;
+  /** The end time of a pipeline run in ISO8601 format. */
+  runEnd?: string;
+  /** The duration of a pipeline run. */
+  durationInMs?: number;
+  /** The status of a pipeline run. Possible values: Queued, InProgress, Succeeded, Failed, Canceling, Cancelled */
+  status?: string;
+  /** The message from a pipeline run. */
+  message?: string;
+}
+export const PipelineRun = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    runId: S.optional(S.String),
+    runGroupId: S.optional(S.String),
+    isLatest: S.optional(S.Boolean),
+    pipelineName: S.optional(S.String),
+    parameters: S.optional(PipelineRunParametersMap),
+    runDimensions: S.optional(PipelineRunRunDimensionsMap),
+    invokedBy: S.optional(PipelineRunInvokedBy),
+    lastUpdated: S.optional(S.String),
+    runStart: S.optional(S.String),
+    runEnd: S.optional(S.String),
+    durationInMs: S.optional(S.Number),
+    status: S.optional(S.String),
+    message: S.optional(S.String),
+  }),
+).annotate({ identifier: "PipelineRun" }) as any as S.Schema<PipelineRun>;
+
+export interface GetPrivateEndpointConnectionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+  /** The private endpoint connection name. */
+  privateEndpointConnectionName: string;
+}
+export const GetPrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    factoryName: S.String.pipe(T.Label()),
+    privateEndpointConnectionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/privateEndpointConnections/{privateEndpointConnectionName}",
+      code: 200,
+      apiVersion: "2018-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetPrivateEndpointConnectionRequest",
+}) as any as S.Schema<GetPrivateEndpointConnectionRequest>;
+
+/** A wrapper for an ARM resource id */
+export interface ArmIdWrapper {
+  id?: string;
+}
+export const ArmIdWrapper = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+  }),
+).annotate({ identifier: "ArmIdWrapper" }) as any as S.Schema<ArmIdWrapper>;
+
+/** The state of a private link connection */
+export interface PrivateLinkConnectionState {
+  /** Status of a private link connection */
+  status?: string;
+  /** Description of a private link connection */
+  description?: string;
+  /** ActionsRequired for a private link connection */
+  actionsRequired?: string;
+}
+export const PrivateLinkConnectionState = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     status: S.optional(S.String),
-    name: S.optional(S.String),
-    properties: S.optional(S.String),
-    error: S.optional(S.String),
+    description: S.optional(S.String),
+    actionsRequired: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "SsisObjectMetadataStatusResponse",
-}) as any as S.Schema<SsisObjectMetadataStatusResponse>;
+  identifier: "PrivateLinkConnectionState",
+}) as any as S.Schema<PrivateLinkConnectionState>;
 
-export interface IntegrationRuntimesCreateLinkedIntegrationRuntimeRequest {
+/** A remote private endpoint connection */
+export interface RemotePrivateEndpointConnection {
+  provisioningState?: string;
+  /** PrivateEndpoint of a remote private endpoint connection */
+  privateEndpoint?: ArmIdWrapper;
+  /** The state of a private link connection */
+  privateLinkServiceConnectionState?: PrivateLinkConnectionState;
+}
+export const RemotePrivateEndpointConnection = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(S.String),
+    privateEndpoint: S.optional(ArmIdWrapper),
+    privateLinkServiceConnectionState: S.optional(PrivateLinkConnectionState),
+  }),
+).annotate({
+  identifier: "RemotePrivateEndpointConnection",
+}) as any as S.Schema<RemotePrivateEndpointConnection>;
+
+export interface GetPrivateEndpointConnectionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Core resource properties */
+  properties?: RemotePrivateEndpointConnection;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const GetPrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(RemotePrivateEndpointConnection),
+      etag: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "GetPrivateEndpointConnectionResponse",
+}) as any as S.Schema<GetPrivateEndpointConnectionResponse>;
+
+export interface GetPrivateLinkResourceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The factory name. */
   factoryName: string;
-  /** The integration runtime name. */
-  integrationRuntimeName: string;
-  /** The name of the linked integration runtime. */
-  name?: string;
-  /** The name of the data factory that the linked integration runtime belongs to. */
-  dataFactoryName?: string;
-  /** The location of the data factory that the linked integration runtime belongs to. */
-  dataFactoryLocation?: string;
 }
-export const IntegrationRuntimesCreateLinkedIntegrationRuntimeRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetPrivateLinkResourceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    factoryName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/privateLinkResources",
+      code: 200,
+      apiVersion: "2018-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetPrivateLinkResourceRequest",
+}) as any as S.Schema<GetPrivateLinkResourceRequest>;
+
+/** RequiredMembers of a private link resource */
+export type PrivateLinkResourcePropertiesRequiredMembersList = Array<string>;
+export const PrivateLinkResourcePropertiesRequiredMembersList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredMembersList>;
+
+/** RequiredZoneNames of a private link resource */
+export type PrivateLinkResourcePropertiesRequiredZoneNamesList = Array<string>;
+export const PrivateLinkResourcePropertiesRequiredZoneNamesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredZoneNamesList>;
+
+/** Properties of a private link resource */
+export interface PrivateLinkResourceProperties {
+  /** GroupId of a private link resource */
+  groupId?: string;
+  /** RequiredMembers of a private link resource */
+  requiredMembers?: PrivateLinkResourcePropertiesRequiredMembersList;
+  /** RequiredZoneNames of a private link resource */
+  requiredZoneNames?: PrivateLinkResourcePropertiesRequiredZoneNamesList;
+}
+export const PrivateLinkResourceProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    groupId: S.optional(S.String),
+    requiredMembers: S.optional(
+      PrivateLinkResourcePropertiesRequiredMembersList,
+    ),
+    requiredZoneNames: S.optional(
+      PrivateLinkResourcePropertiesRequiredZoneNamesList,
+    ),
+  }),
+).annotate({
+  identifier: "PrivateLinkResourceProperties",
+}) as any as S.Schema<PrivateLinkResourceProperties>;
+
+/** A private link resource */
+export interface PrivateLinkResource {
+  /** The resource identifier. */
+  id?: string;
+  /** The resource name. */
+  name?: string;
+  /** The resource type. */
+  type?: string;
+  /** Etag identifies change in the resource. */
+  etag?: string;
+  /** Core resource properties */
+  properties?: PrivateLinkResourceProperties;
+}
+export const PrivateLinkResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    etag: S.optional(S.String),
+    properties: S.optional(PrivateLinkResourceProperties),
+  }),
+).annotate({
+  identifier: "PrivateLinkResource",
+}) as any as S.Schema<PrivateLinkResource>;
+
+export type PrivateLinkResourcesWrapperValueList = Array<PrivateLinkResource>;
+export const PrivateLinkResourcesWrapperValueList = /*@__PURE__*/ S.Array(
+  PrivateLinkResource,
+) as any as S.Schema<PrivateLinkResourcesWrapperValueList>;
+
+/** Wrapper for a collection of private link resources */
+export interface PrivateLinkResourcesWrapper {
+  value: PrivateLinkResourcesWrapperValueList;
+}
+export const PrivateLinkResourcesWrapper = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: PrivateLinkResourcesWrapperValueList,
+  }),
+).annotate({
+  identifier: "PrivateLinkResourcesWrapper",
+}) as any as S.Schema<PrivateLinkResourcesWrapper>;
+
+export interface GetTriggerRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+  /** The trigger name. */
+  triggerName: string;
+}
+export const GetTriggerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    factoryName: S.String.pipe(T.Label()),
+    triggerName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/triggers/{triggerName}",
+      code: 200,
+      apiVersion: "2018-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetTriggerRequest",
+}) as any as S.Schema<GetTriggerRequest>;
+
+/** Enumerates possible state of Triggers. */
+export type TriggerRuntimeState = "Started" | "Stopped" | "Disabled";
+export const TriggerRuntimeState = /*@__PURE__*/ S.String;
+
+/** List of tags that can be used for describing the trigger. */
+export type TriggerAnnotationsList = Array<unknown>;
+export const TriggerAnnotationsList = /*@__PURE__*/ S.Array(
+  S.Unknown,
+) as any as S.Schema<TriggerAnnotationsList>;
+
+/** Azure data factory nested object which contains information about creating pipeline run */
+export interface Trigger {
+  /** Trigger type. */
+  type: string;
+  /** Trigger description. */
+  description?: string;
+  /** Indicates if trigger is running or not. Updated when Start/Stop APIs are called on the Trigger. */
+  runtimeState?: TriggerRuntimeState | (string & {});
+  /** List of tags that can be used for describing the trigger. */
+  annotations?: TriggerAnnotationsList;
+}
+export const Trigger = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.String,
+    description: S.optional(S.String),
+    runtimeState: S.optional(TriggerRuntimeState),
+    annotations: S.optional(TriggerAnnotationsList),
+  }),
+).annotate({ identifier: "Trigger" }) as any as S.Schema<Trigger>;
+
+export interface GetTriggerResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of the trigger. */
+  properties: Trigger;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const GetTriggerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: Trigger,
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetTriggerResponse",
+}) as any as S.Schema<GetTriggerResponse>;
+
+export interface GetTriggerEventSubscriptionStatusRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+  /** The trigger name. */
+  triggerName: string;
+}
+export const GetTriggerEventSubscriptionStatusRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       factoryName: S.String.pipe(T.Label()),
-      integrationRuntimeName: S.String.pipe(T.Label()),
-      name: S.optional(S.String),
-      dataFactoryName: S.optional(S.String),
-      dataFactoryLocation: S.optional(S.String),
+      triggerName: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}/linkedIntegrationRuntime",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/triggers/{triggerName}/getEventSubscriptionStatus",
         code: 200,
         apiVersion: "2018-06-01",
       }),
     ),
-  ).annotate({
-    identifier: "IntegrationRuntimesCreateLinkedIntegrationRuntimeRequest",
-  }) as any as S.Schema<IntegrationRuntimesCreateLinkedIntegrationRuntimeRequest>;
+).annotate({
+  identifier: "GetTriggerEventSubscriptionStatusRequest",
+}) as any as S.Schema<GetTriggerEventSubscriptionStatusRequest>;
 
-/** The state of integration runtime. */
-export type IntegrationRuntimeState =
-  | "Initial"
-  | "Stopped"
-  | "Started"
-  | "Starting"
-  | "Stopping"
-  | "NeedRegistration"
-  | "Online"
-  | "Limited"
-  | "Offline"
-  | "AccessDenied";
-export const IntegrationRuntimeState = /*@__PURE__*/ S.String;
+/** Event Subscription Status. */
+export type EventSubscriptionStatus =
+  | "Enabled"
+  | "Provisioning"
+  | "Deprovisioning"
+  | "Disabled"
+  | "Unknown";
+export const EventSubscriptionStatus = /*@__PURE__*/ S.String;
 
-/** Integration runtime status. */
-export interface IntegrationRuntimeStatus {
-  /** Type of integration runtime. */
-  type: IntegrationRuntimeType;
-  /** The data factory name which the integration runtime belong to. */
-  dataFactoryName?: string;
-  /** The state of integration runtime. */
-  state?: IntegrationRuntimeState;
+/** Defines the response of a trigger subscription operation. */
+export interface TriggerSubscriptionOperationStatus {
+  /** Trigger name. */
+  triggerName?: string;
+  /** Event Subscription Status. */
+  status?: EventSubscriptionStatus;
 }
-export const IntegrationRuntimeStatus = /*@__PURE__*/ S.suspend(() =>
+export const TriggerSubscriptionOperationStatus = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    type: IntegrationRuntimeType,
-    dataFactoryName: S.optional(S.String),
-    state: S.optional(IntegrationRuntimeState),
+    triggerName: S.optional(S.String),
+    status: S.optional(EventSubscriptionStatus),
   }),
 ).annotate({
-  identifier: "IntegrationRuntimeStatus",
-}) as any as S.Schema<IntegrationRuntimeStatus>;
+  identifier: "TriggerSubscriptionOperationStatus",
+}) as any as S.Schema<TriggerSubscriptionOperationStatus>;
 
-/** Integration runtime status response. */
-export interface IntegrationRuntimeStatusResponse {
-  /** The integration runtime name. */
+/** Properties of the global parameter. */
+export type GlobalParametersCreateOrUpdateRequestPropertiesMap = {
+  [key: string]: GlobalParameterSpecification | undefined;
+};
+export const GlobalParametersCreateOrUpdateRequestPropertiesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    GlobalParameterSpecification,
+  ) as any as S.Schema<GlobalParametersCreateOrUpdateRequestPropertiesMap>;
+
+export interface GlobalParametersCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+  /** The global parameter name. */
+  globalParameterName: string;
+  /** Properties of the global parameter. */
+  properties: GlobalParametersCreateOrUpdateRequestPropertiesMap;
+}
+export const GlobalParametersCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      factoryName: S.String.pipe(T.Label()),
+      globalParameterName: S.String.pipe(T.Label()),
+      properties: GlobalParametersCreateOrUpdateRequestPropertiesMap,
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/globalParameters/{globalParameterName}",
+        code: 200,
+        apiVersion: "2018-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "GlobalParametersCreateOrUpdateRequest",
+}) as any as S.Schema<GlobalParametersCreateOrUpdateRequest>;
+
+/** Properties of the global parameter. */
+export type GlobalParametersCreateOrUpdateResponsePropertiesMap = {
+  [key: string]: GlobalParameterSpecification | undefined;
+};
+export const GlobalParametersCreateOrUpdateResponsePropertiesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    GlobalParameterSpecification,
+  ) as any as S.Schema<GlobalParametersCreateOrUpdateResponsePropertiesMap>;
+
+export interface GlobalParametersCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
   name?: string;
-  /** Integration runtime properties. */
-  properties: IntegrationRuntimeStatus;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of the global parameter. */
+  properties: GlobalParametersCreateOrUpdateResponsePropertiesMap;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
 }
-export const IntegrationRuntimeStatusResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    properties: IntegrationRuntimeStatus,
-  }),
+export const GlobalParametersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: GlobalParametersCreateOrUpdateResponsePropertiesMap,
+      etag: S.optional(S.String),
+    }),
 ).annotate({
-  identifier: "IntegrationRuntimeStatusResponse",
-}) as any as S.Schema<IntegrationRuntimeStatusResponse>;
+  identifier: "GlobalParametersCreateOrUpdateResponse",
+}) as any as S.Schema<GlobalParametersCreateOrUpdateResponse>;
 
 export interface IntegrationRuntimesCreateOrUpdateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -4315,748 +4909,6 @@ export const IntegrationRuntimesCreateOrUpdateResponse =
   ).annotate({
     identifier: "IntegrationRuntimesCreateOrUpdateResponse",
   }) as any as S.Schema<IntegrationRuntimesCreateOrUpdateResponse>;
-
-export interface IntegrationRuntimesDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-  /** The integration runtime name. */
-  integrationRuntimeName: string;
-}
-export const IntegrationRuntimesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    factoryName: S.String.pipe(T.Label()),
-    integrationRuntimeName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}",
-      code: 200,
-      apiVersion: "2018-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "IntegrationRuntimesDeleteRequest",
-}) as any as S.Schema<IntegrationRuntimesDeleteRequest>;
-
-export interface IntegrationRuntimesDeleteResponse {}
-export const IntegrationRuntimesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "IntegrationRuntimesDeleteResponse",
-}) as any as S.Schema<IntegrationRuntimesDeleteResponse>;
-
-export interface IntegrationRuntimesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-  /** The integration runtime name. */
-  integrationRuntimeName: string;
-}
-export const IntegrationRuntimesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    factoryName: S.String.pipe(T.Label()),
-    integrationRuntimeName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}",
-      code: 200,
-      apiVersion: "2018-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "IntegrationRuntimesGetRequest",
-}) as any as S.Schema<IntegrationRuntimesGetRequest>;
-
-export interface IntegrationRuntimesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Integration runtime properties. */
-  properties: IntegrationRuntime;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const IntegrationRuntimesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: IntegrationRuntime,
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "IntegrationRuntimesGetResponse",
-}) as any as S.Schema<IntegrationRuntimesGetResponse>;
-
-export interface IntegrationRuntimesGetConnectionInfoRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-  /** The integration runtime name. */
-  integrationRuntimeName: string;
-}
-export const IntegrationRuntimesGetConnectionInfoRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      factoryName: S.String.pipe(T.Label()),
-      integrationRuntimeName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}/getConnectionInfo",
-        code: 200,
-        apiVersion: "2018-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "IntegrationRuntimesGetConnectionInfoRequest",
-  }) as any as S.Schema<IntegrationRuntimesGetConnectionInfoRequest>;
-
-/** Connection information for encrypting the on-premises data source credentials. */
-export interface IntegrationRuntimeConnectionInfo {
-  /** The token generated in service. Callers use this token to authenticate to integration runtime. */
-  serviceToken?: string;
-  /** The integration runtime SSL certificate thumbprint. Click-Once application uses it to do server validation. */
-  identityCertThumbprint?: string;
-  /** The on-premises integration runtime host URL. */
-  hostServiceUri?: string;
-  /** The integration runtime version. */
-  version?: string;
-  /** The public key for encrypting a credential when transferring the credential to the integration runtime. */
-  publicKey?: string;
-  /** Whether the identity certificate is expired. */
-  isIdentityCertExprired?: boolean;
-}
-export const IntegrationRuntimeConnectionInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceToken: S.optional(S.String),
-    identityCertThumbprint: S.optional(S.String),
-    hostServiceUri: S.optional(S.String),
-    version: S.optional(S.String),
-    publicKey: S.optional(S.String),
-    isIdentityCertExprired: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "IntegrationRuntimeConnectionInfo",
-}) as any as S.Schema<IntegrationRuntimeConnectionInfo>;
-
-export interface IntegrationRuntimesGetMonitoringDataRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-  /** The integration runtime name. */
-  integrationRuntimeName: string;
-}
-export const IntegrationRuntimesGetMonitoringDataRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      factoryName: S.String.pipe(T.Label()),
-      integrationRuntimeName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}/monitoringData",
-        code: 200,
-        apiVersion: "2018-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "IntegrationRuntimesGetMonitoringDataRequest",
-  }) as any as S.Schema<IntegrationRuntimesGetMonitoringDataRequest>;
-
-/** Monitoring data for integration runtime node. */
-export interface IntegrationRuntimeNodeMonitoringData {
-  /** Name of the integration runtime node. */
-  nodeName?: string;
-  /** Available memory (MB) on the integration runtime node. */
-  availableMemoryInMB?: number;
-  /** CPU percentage on the integration runtime node. */
-  cpuUtilization?: number;
-  /** Maximum concurrent jobs on the integration runtime node. */
-  concurrentJobsLimit?: number;
-  /** The number of jobs currently running on the integration runtime node. */
-  concurrentJobsRunning?: number;
-  /** The maximum concurrent jobs in this integration runtime. */
-  maxConcurrentJobs?: number;
-  /** Sent bytes on the integration runtime node. */
-  sentBytes?: number;
-  /** Received bytes on the integration runtime node. */
-  receivedBytes?: number;
-}
-export const IntegrationRuntimeNodeMonitoringData = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      nodeName: S.optional(S.String),
-      availableMemoryInMB: S.optional(S.Number),
-      cpuUtilization: S.optional(S.Number),
-      concurrentJobsLimit: S.optional(S.Number),
-      concurrentJobsRunning: S.optional(S.Number),
-      maxConcurrentJobs: S.optional(S.Number),
-      sentBytes: S.optional(S.Number),
-      receivedBytes: S.optional(S.Number),
-    }),
-).annotate({
-  identifier: "IntegrationRuntimeNodeMonitoringData",
-}) as any as S.Schema<IntegrationRuntimeNodeMonitoringData>;
-
-/** Integration runtime node monitoring data. */
-export type IntegrationRuntimeMonitoringDataNodesList =
-  Array<IntegrationRuntimeNodeMonitoringData>;
-export const IntegrationRuntimeMonitoringDataNodesList = /*@__PURE__*/ S.Array(
-  IntegrationRuntimeNodeMonitoringData,
-) as any as S.Schema<IntegrationRuntimeMonitoringDataNodesList>;
-
-/** Get monitoring data response. */
-export interface IntegrationRuntimeMonitoringData {
-  /** Integration runtime name. */
-  name?: string;
-  /** Integration runtime node monitoring data. */
-  nodes?: IntegrationRuntimeMonitoringDataNodesList;
-}
-export const IntegrationRuntimeMonitoringData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    nodes: S.optional(IntegrationRuntimeMonitoringDataNodesList),
-  }),
-).annotate({
-  identifier: "IntegrationRuntimeMonitoringData",
-}) as any as S.Schema<IntegrationRuntimeMonitoringData>;
-
-export interface IntegrationRuntimesGetStatusRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-  /** The integration runtime name. */
-  integrationRuntimeName: string;
-}
-export const IntegrationRuntimesGetStatusRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    factoryName: S.String.pipe(T.Label()),
-    integrationRuntimeName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}/getStatus",
-      code: 200,
-      apiVersion: "2018-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "IntegrationRuntimesGetStatusRequest",
-}) as any as S.Schema<IntegrationRuntimesGetStatusRequest>;
-
-export interface IntegrationRuntimesListAuthKeysRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-  /** The integration runtime name. */
-  integrationRuntimeName: string;
-}
-export const IntegrationRuntimesListAuthKeysRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      factoryName: S.String.pipe(T.Label()),
-      integrationRuntimeName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}/listAuthKeys",
-        code: 200,
-        apiVersion: "2018-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "IntegrationRuntimesListAuthKeysRequest",
-}) as any as S.Schema<IntegrationRuntimesListAuthKeysRequest>;
-
-/** The integration runtime authentication keys. */
-export interface IntegrationRuntimeAuthKeys {
-  /** The primary integration runtime authentication key. */
-  authKey1?: string;
-  /** The secondary integration runtime authentication key. */
-  authKey2?: string;
-}
-export const IntegrationRuntimeAuthKeys = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    authKey1: S.optional(S.String),
-    authKey2: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "IntegrationRuntimeAuthKeys",
-}) as any as S.Schema<IntegrationRuntimeAuthKeys>;
-
-export interface IntegrationRuntimesListByFactoryRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-}
-export const IntegrationRuntimesListByFactoryRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      factoryName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes",
-        code: 200,
-        apiVersion: "2018-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "IntegrationRuntimesListByFactoryRequest",
-}) as any as S.Schema<IntegrationRuntimesListByFactoryRequest>;
-
-/** Integration runtime resource type. */
-export interface IntegrationRuntimeResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Integration runtime properties. */
-  properties: IntegrationRuntime;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const IntegrationRuntimeResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: IntegrationRuntime,
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "IntegrationRuntimeResource",
-}) as any as S.Schema<IntegrationRuntimeResource>;
-
-/** The IntegrationRuntimeResource items on this page */
-export type IntegrationRuntimeListResponseValueList =
-  Array<IntegrationRuntimeResource>;
-export const IntegrationRuntimeListResponseValueList = /*@__PURE__*/ S.Array(
-  IntegrationRuntimeResource,
-) as any as S.Schema<IntegrationRuntimeListResponseValueList>;
-
-/** A list of integration runtime resources. */
-export interface IntegrationRuntimeListResponse {
-  /** The IntegrationRuntimeResource items on this page */
-  value: IntegrationRuntimeListResponseValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const IntegrationRuntimeListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: IntegrationRuntimeListResponseValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "IntegrationRuntimeListResponse",
-}) as any as S.Schema<IntegrationRuntimeListResponse>;
-
-export interface IntegrationRuntimesListOutboundNetworkDependenciesEndpointsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-  /** The integration runtime name. */
-  integrationRuntimeName: string;
-}
-export const IntegrationRuntimesListOutboundNetworkDependenciesEndpointsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      factoryName: S.String.pipe(T.Label()),
-      integrationRuntimeName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}/outboundNetworkDependenciesEndpoints",
-        code: 200,
-        apiVersion: "2018-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "IntegrationRuntimesListOutboundNetworkDependenciesEndpointsRequest",
-  }) as any as S.Schema<IntegrationRuntimesListOutboundNetworkDependenciesEndpointsRequest>;
-
-/** The details of Azure-SSIS integration runtime outbound network dependency endpoint. */
-export interface IntegrationRuntimeOutboundNetworkDependenciesEndpointDetails {
-  /** The port of endpoint. */
-  port?: number;
-}
-export const IntegrationRuntimeOutboundNetworkDependenciesEndpointDetails =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      port: S.optional(S.Number),
-    }),
-  ).annotate({
-    identifier: "IntegrationRuntimeOutboundNetworkDependenciesEndpointDetails",
-  }) as any as S.Schema<IntegrationRuntimeOutboundNetworkDependenciesEndpointDetails>;
-
-/** The details of endpoint. */
-export type IntegrationRuntimeOutboundNetworkDependenciesEndpointEndpointDetailsList =
-  Array<IntegrationRuntimeOutboundNetworkDependenciesEndpointDetails>;
-export const IntegrationRuntimeOutboundNetworkDependenciesEndpointEndpointDetailsList =
-  /*@__PURE__*/ S.Array(
-    IntegrationRuntimeOutboundNetworkDependenciesEndpointDetails,
-  ) as any as S.Schema<IntegrationRuntimeOutboundNetworkDependenciesEndpointEndpointDetailsList>;
-
-/** The endpoint for Azure-SSIS integration runtime outbound network dependency. */
-export interface IntegrationRuntimeOutboundNetworkDependenciesEndpoint {
-  /** The domain name of endpoint. */
-  domainName?: string;
-  /** The details of endpoint. */
-  endpointDetails?: IntegrationRuntimeOutboundNetworkDependenciesEndpointEndpointDetailsList;
-}
-export const IntegrationRuntimeOutboundNetworkDependenciesEndpoint =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      domainName: S.optional(S.String),
-      endpointDetails: S.optional(
-        IntegrationRuntimeOutboundNetworkDependenciesEndpointEndpointDetailsList,
-      ),
-    }),
-  ).annotate({
-    identifier: "IntegrationRuntimeOutboundNetworkDependenciesEndpoint",
-  }) as any as S.Schema<IntegrationRuntimeOutboundNetworkDependenciesEndpoint>;
-
-/** The endpoints for outbound network dependency. */
-export type IntegrationRuntimeOutboundNetworkDependenciesCategoryEndpointEndpointsList =
-  Array<IntegrationRuntimeOutboundNetworkDependenciesEndpoint>;
-export const IntegrationRuntimeOutboundNetworkDependenciesCategoryEndpointEndpointsList =
-  /*@__PURE__*/ S.Array(
-    IntegrationRuntimeOutboundNetworkDependenciesEndpoint,
-  ) as any as S.Schema<IntegrationRuntimeOutboundNetworkDependenciesCategoryEndpointEndpointsList>;
-
-/** Azure-SSIS integration runtime outbound network dependency endpoints for one category. */
-export interface IntegrationRuntimeOutboundNetworkDependenciesCategoryEndpoint {
-  /** The category of outbound network dependency. */
-  category?: string;
-  /** The endpoints for outbound network dependency. */
-  endpoints?: IntegrationRuntimeOutboundNetworkDependenciesCategoryEndpointEndpointsList;
-}
-export const IntegrationRuntimeOutboundNetworkDependenciesCategoryEndpoint =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      category: S.optional(S.String),
-      endpoints: S.optional(
-        IntegrationRuntimeOutboundNetworkDependenciesCategoryEndpointEndpointsList,
-      ),
-    }),
-  ).annotate({
-    identifier: "IntegrationRuntimeOutboundNetworkDependenciesCategoryEndpoint",
-  }) as any as S.Schema<IntegrationRuntimeOutboundNetworkDependenciesCategoryEndpoint>;
-
-/** The list of outbound network dependency endpoints. */
-export type IntegrationRuntimeOutboundNetworkDependenciesEndpointsResponseValueList =
-  Array<IntegrationRuntimeOutboundNetworkDependenciesCategoryEndpoint>;
-export const IntegrationRuntimeOutboundNetworkDependenciesEndpointsResponseValueList =
-  /*@__PURE__*/ S.Array(
-    IntegrationRuntimeOutboundNetworkDependenciesCategoryEndpoint,
-  ) as any as S.Schema<IntegrationRuntimeOutboundNetworkDependenciesEndpointsResponseValueList>;
-
-/** Azure-SSIS integration runtime outbound network dependency endpoints. */
-export interface IntegrationRuntimeOutboundNetworkDependenciesEndpointsResponse {
-  /** The list of outbound network dependency endpoints. */
-  value?: IntegrationRuntimeOutboundNetworkDependenciesEndpointsResponseValueList;
-}
-export const IntegrationRuntimeOutboundNetworkDependenciesEndpointsResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      value: S.optional(
-        IntegrationRuntimeOutboundNetworkDependenciesEndpointsResponseValueList,
-      ),
-    }),
-  ).annotate({
-    identifier:
-      "IntegrationRuntimeOutboundNetworkDependenciesEndpointsResponse",
-  }) as any as S.Schema<IntegrationRuntimeOutboundNetworkDependenciesEndpointsResponse>;
-
-/** The name of the authentication key to regenerate. */
-export type IntegrationRuntimeAuthKeyName = "authKey1" | "authKey2";
-export const IntegrationRuntimeAuthKeyName = /*@__PURE__*/ S.String;
-
-export interface IntegrationRuntimesRegenerateAuthKeyRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-  /** The integration runtime name. */
-  integrationRuntimeName: string;
-  /** The name of the authentication key to regenerate. */
-  keyName?: IntegrationRuntimeAuthKeyName | (string & {});
-}
-export const IntegrationRuntimesRegenerateAuthKeyRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      factoryName: S.String.pipe(T.Label()),
-      integrationRuntimeName: S.String.pipe(T.Label()),
-      keyName: S.optional(IntegrationRuntimeAuthKeyName),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}/regenerateAuthKey",
-        code: 200,
-        apiVersion: "2018-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "IntegrationRuntimesRegenerateAuthKeyRequest",
-  }) as any as S.Schema<IntegrationRuntimesRegenerateAuthKeyRequest>;
-
-export interface IntegrationRuntimesRemoveLinksRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-  /** The integration runtime name. */
-  integrationRuntimeName: string;
-}
-export const IntegrationRuntimesRemoveLinksRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      factoryName: S.String.pipe(T.Label()),
-      integrationRuntimeName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}/removeLinks",
-        code: 200,
-        apiVersion: "2018-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "IntegrationRuntimesRemoveLinksRequest",
-}) as any as S.Schema<IntegrationRuntimesRemoveLinksRequest>;
-
-export interface IntegrationRuntimesRemoveLinksResponse {}
-export const IntegrationRuntimesRemoveLinksResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "IntegrationRuntimesRemoveLinksResponse",
-}) as any as S.Schema<IntegrationRuntimesRemoveLinksResponse>;
-
-export interface IntegrationRuntimesStartRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-  /** The integration runtime name. */
-  integrationRuntimeName: string;
-}
-export const IntegrationRuntimesStartRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    factoryName: S.String.pipe(T.Label()),
-    integrationRuntimeName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}/start",
-      code: 200,
-      apiVersion: "2018-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "IntegrationRuntimesStartRequest",
-}) as any as S.Schema<IntegrationRuntimesStartRequest>;
-
-export interface IntegrationRuntimesStopRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-  /** The integration runtime name. */
-  integrationRuntimeName: string;
-}
-export const IntegrationRuntimesStopRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    factoryName: S.String.pipe(T.Label()),
-    integrationRuntimeName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}/stop",
-      code: 200,
-      apiVersion: "2018-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "IntegrationRuntimesStopRequest",
-}) as any as S.Schema<IntegrationRuntimesStopRequest>;
-
-export interface IntegrationRuntimesStopResponse {}
-export const IntegrationRuntimesStopResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "IntegrationRuntimesStopResponse",
-}) as any as S.Schema<IntegrationRuntimesStopResponse>;
-
-export interface IntegrationRuntimesSyncCredentialsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-  /** The integration runtime name. */
-  integrationRuntimeName: string;
-}
-export const IntegrationRuntimesSyncCredentialsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      factoryName: S.String.pipe(T.Label()),
-      integrationRuntimeName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}/syncCredentials",
-        code: 200,
-        apiVersion: "2018-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "IntegrationRuntimesSyncCredentialsRequest",
-  }) as any as S.Schema<IntegrationRuntimesSyncCredentialsRequest>;
-
-export interface IntegrationRuntimesSyncCredentialsResponse {}
-export const IntegrationRuntimesSyncCredentialsResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "IntegrationRuntimesSyncCredentialsResponse",
-  }) as any as S.Schema<IntegrationRuntimesSyncCredentialsResponse>;
-
-/** The state of integration runtime auto update. */
-export type IntegrationRuntimeAutoUpdate = "On" | "Off";
-export const IntegrationRuntimeAutoUpdate = /*@__PURE__*/ S.String;
-
-export interface IntegrationRuntimesUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-  /** The integration runtime name. */
-  integrationRuntimeName: string;
-  /** Enables or disables the auto-update feature of the self-hosted integration runtime. See https://go.microsoft.com/fwlink/?linkid=854189. */
-  autoUpdate?: IntegrationRuntimeAutoUpdate | (string & {});
-  /** The time offset (in hours) in the day, e.g., PT03H is 3 hours. The integration runtime auto update will happen on that time. */
-  updateDelayOffset?: string;
-}
-export const IntegrationRuntimesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    factoryName: S.String.pipe(T.Label()),
-    integrationRuntimeName: S.String.pipe(T.Label()),
-    autoUpdate: S.optional(IntegrationRuntimeAutoUpdate),
-    updateDelayOffset: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}",
-      code: 200,
-      apiVersion: "2018-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "IntegrationRuntimesUpdateRequest",
-}) as any as S.Schema<IntegrationRuntimesUpdateRequest>;
-
-export interface IntegrationRuntimesUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Integration runtime properties. */
-  properties: IntegrationRuntime;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const IntegrationRuntimesUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: IntegrationRuntime,
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "IntegrationRuntimesUpdateResponse",
-}) as any as S.Schema<IntegrationRuntimesUpdateResponse>;
 
 export interface IntegrationRuntimesUpgradeRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -5152,70 +5004,34 @@ export const LinkedServicesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "LinkedServicesCreateOrUpdateResponse",
 }) as any as S.Schema<LinkedServicesCreateOrUpdateResponse>;
 
-export interface LinkedServicesDeleteRequest {
+export interface ListChangeDataCaptureByFactoryRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The factory name. */
   factoryName: string;
-  /** The linked service name. */
-  linkedServiceName: string;
 }
-export const LinkedServicesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    factoryName: S.String.pipe(T.Label()),
-    linkedServiceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/linkedservices/{linkedServiceName}",
-      code: 200,
-      apiVersion: "2018-06-01",
-    }),
-  ),
+export const ListChangeDataCaptureByFactoryRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      factoryName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/adfcdcs",
+        code: 200,
+        apiVersion: "2018-06-01",
+      }),
+    ),
 ).annotate({
-  identifier: "LinkedServicesDeleteRequest",
-}) as any as S.Schema<LinkedServicesDeleteRequest>;
+  identifier: "ListChangeDataCaptureByFactoryRequest",
+}) as any as S.Schema<ListChangeDataCaptureByFactoryRequest>;
 
-export interface LinkedServicesDeleteResponse {}
-export const LinkedServicesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "LinkedServicesDeleteResponse",
-}) as any as S.Schema<LinkedServicesDeleteResponse>;
-
-export interface LinkedServicesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-  /** The linked service name. */
-  linkedServiceName: string;
-}
-export const LinkedServicesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    factoryName: S.String.pipe(T.Label()),
-    linkedServiceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/linkedservices/{linkedServiceName}",
-      code: 200,
-      apiVersion: "2018-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "LinkedServicesGetRequest",
-}) as any as S.Schema<LinkedServicesGetRequest>;
-
-export interface LinkedServicesGetResponse {
+/** Change data capture resource type. */
+export interface ChangeDataCaptureResource {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -5224,25 +5040,48 @@ export interface LinkedServicesGetResponse {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
-  /** Properties of linked service. */
-  properties: LinkedService;
+  /** Properties of the change data capture. */
+  properties: ChangeDataCapture;
   /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
   etag?: string;
 }
-export const LinkedServicesGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const ChangeDataCaptureResource = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    properties: LinkedService,
+    properties: ChangeDataCapture,
     etag: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "LinkedServicesGetResponse",
-}) as any as S.Schema<LinkedServicesGetResponse>;
+  identifier: "ChangeDataCaptureResource",
+}) as any as S.Schema<ChangeDataCaptureResource>;
 
-export interface LinkedServicesListByFactoryRequest {
+/** The ChangeDataCaptureResource items on this page */
+export type ChangeDataCaptureListResponseValueList =
+  Array<ChangeDataCaptureResource>;
+export const ChangeDataCaptureListResponseValueList = /*@__PURE__*/ S.Array(
+  ChangeDataCaptureResource,
+) as any as S.Schema<ChangeDataCaptureListResponseValueList>;
+
+/** A list of change data capture resources. */
+export interface ChangeDataCaptureListResponse {
+  /** The ChangeDataCaptureResource items on this page */
+  value: ChangeDataCaptureListResponseValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ChangeDataCaptureListResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ChangeDataCaptureListResponseValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ChangeDataCaptureListResponse",
+}) as any as S.Schema<ChangeDataCaptureListResponse>;
+
+export interface ListCredentialOperationByFactoryRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5250,7 +5089,668 @@ export interface LinkedServicesListByFactoryRequest {
   /** The factory name. */
   factoryName: string;
 }
-export const LinkedServicesListByFactoryRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListCredentialOperationByFactoryRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      factoryName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/credentials",
+        code: 200,
+        apiVersion: "2018-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListCredentialOperationByFactoryRequest",
+}) as any as S.Schema<ListCredentialOperationByFactoryRequest>;
+
+/** Credential resource type. */
+export interface CredentialResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of credentials. */
+  properties: Credential;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const CredentialResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: Credential,
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CredentialResource",
+}) as any as S.Schema<CredentialResource>;
+
+/** The CredentialResource items on this page */
+export type CredentialListResponseValueList = Array<CredentialResource>;
+export const CredentialListResponseValueList = /*@__PURE__*/ S.Array(
+  CredentialResource,
+) as any as S.Schema<CredentialListResponseValueList>;
+
+/** A list of credential resources. */
+export interface CredentialListResponse {
+  /** The CredentialResource items on this page */
+  value: CredentialListResponseValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const CredentialListResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: CredentialListResponseValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CredentialListResponse",
+}) as any as S.Schema<CredentialListResponse>;
+
+export interface ListDataFlowByFactoryRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+}
+export const ListDataFlowByFactoryRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    factoryName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/dataflows",
+      code: 200,
+      apiVersion: "2018-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListDataFlowByFactoryRequest",
+}) as any as S.Schema<ListDataFlowByFactoryRequest>;
+
+/** Data flow resource type. */
+export interface DataFlowResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Data flow properties. */
+  properties: DataFlow;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const DataFlowResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: DataFlow,
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DataFlowResource",
+}) as any as S.Schema<DataFlowResource>;
+
+/** The DataFlowResource items on this page */
+export type DataFlowListResponseValueList = Array<DataFlowResource>;
+export const DataFlowListResponseValueList = /*@__PURE__*/ S.Array(
+  DataFlowResource,
+) as any as S.Schema<DataFlowListResponseValueList>;
+
+/** A list of data flow resources. */
+export interface DataFlowListResponse {
+  /** The DataFlowResource items on this page */
+  value: DataFlowListResponseValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const DataFlowListResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: DataFlowListResponseValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DataFlowListResponse",
+}) as any as S.Schema<DataFlowListResponse>;
+
+export interface ListDatasetByFactoryRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+}
+export const ListDatasetByFactoryRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    factoryName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/datasets",
+      code: 200,
+      apiVersion: "2018-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListDatasetByFactoryRequest",
+}) as any as S.Schema<ListDatasetByFactoryRequest>;
+
+/** Dataset resource type. */
+export interface DatasetResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Dataset properties. */
+  properties: Dataset;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const DatasetResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: Dataset,
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DatasetResource",
+}) as any as S.Schema<DatasetResource>;
+
+/** The DatasetResource items on this page */
+export type DatasetListResponseValueList = Array<DatasetResource>;
+export const DatasetListResponseValueList = /*@__PURE__*/ S.Array(
+  DatasetResource,
+) as any as S.Schema<DatasetListResponseValueList>;
+
+/** A list of dataset resources. */
+export interface DatasetListResponse {
+  /** The DatasetResource items on this page */
+  value: DatasetListResponseValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const DatasetListResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: DatasetListResponseValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DatasetListResponse",
+}) as any as S.Schema<DatasetListResponse>;
+
+export interface ListFactoriesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+}
+export const ListFactoriesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DataFactory/factories",
+      code: 200,
+      apiVersion: "2018-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListFactoriesRequest",
+}) as any as S.Schema<ListFactoriesRequest>;
+
+/** The resource tags. */
+export type FactoryTagsMap = { [key: string]: string | undefined };
+export const FactoryTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<FactoryTagsMap>;
+
+/** Factory resource type. */
+export interface Factory {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of the factory. */
+  properties?: FactoryProperties;
+  /** Managed service identity of the factory. */
+  identity?: FactoryIdentity;
+  /** The resource location. */
+  location?: string;
+  /** The resource tags. */
+  tags?: FactoryTagsMap;
+  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
+  eTag?: string;
+}
+export const Factory = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(FactoryProperties),
+    identity: S.optional(FactoryIdentity),
+    location: S.optional(S.String),
+    tags: S.optional(FactoryTagsMap),
+    eTag: S.optional(S.String),
+  }),
+).annotate({ identifier: "Factory" }) as any as S.Schema<Factory>;
+
+/** The Factory items on this page */
+export type FactoryListResponseValueList = Array<Factory>;
+export const FactoryListResponseValueList = /*@__PURE__*/ S.Array(
+  Factory,
+) as any as S.Schema<FactoryListResponseValueList>;
+
+/** A list of factory resources. */
+export interface FactoryListResponse {
+  /** The Factory items on this page */
+  value: FactoryListResponseValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const FactoryListResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: FactoryListResponseValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "FactoryListResponse",
+}) as any as S.Schema<FactoryListResponse>;
+
+export interface ListFactoryByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const ListFactoryByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories",
+      code: 200,
+      apiVersion: "2018-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListFactoryByResourceGroupRequest",
+}) as any as S.Schema<ListFactoryByResourceGroupRequest>;
+
+export interface ListGlobalParameterByFactoryRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+}
+export const ListGlobalParameterByFactoryRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    factoryName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/globalParameters",
+      code: 200,
+      apiVersion: "2018-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListGlobalParameterByFactoryRequest",
+}) as any as S.Schema<ListGlobalParameterByFactoryRequest>;
+
+/** Properties of the global parameter. */
+export type GlobalParameterResourcePropertiesMap = {
+  [key: string]: GlobalParameterSpecification | undefined;
+};
+export const GlobalParameterResourcePropertiesMap = /*@__PURE__*/ S.Record(
+  S.String,
+  GlobalParameterSpecification,
+) as any as S.Schema<GlobalParameterResourcePropertiesMap>;
+
+/** Global parameters resource type. */
+export interface GlobalParameterResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of the global parameter. */
+  properties: GlobalParameterResourcePropertiesMap;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const GlobalParameterResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: GlobalParameterResourcePropertiesMap,
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GlobalParameterResource",
+}) as any as S.Schema<GlobalParameterResource>;
+
+/** The GlobalParameterResource items on this page */
+export type GlobalParameterListResponseValueList =
+  Array<GlobalParameterResource>;
+export const GlobalParameterListResponseValueList = /*@__PURE__*/ S.Array(
+  GlobalParameterResource,
+) as any as S.Schema<GlobalParameterListResponseValueList>;
+
+/** A list of Global parameters. */
+export interface GlobalParameterListResponse {
+  /** The GlobalParameterResource items on this page */
+  value: GlobalParameterListResponseValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const GlobalParameterListResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: GlobalParameterListResponseValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GlobalParameterListResponse",
+}) as any as S.Schema<GlobalParameterListResponse>;
+
+export interface ListIntegrationRuntimeAuthKeysRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+  /** The integration runtime name. */
+  integrationRuntimeName: string;
+}
+export const ListIntegrationRuntimeAuthKeysRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      factoryName: S.String.pipe(T.Label()),
+      integrationRuntimeName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}/listAuthKeys",
+        code: 200,
+        apiVersion: "2018-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListIntegrationRuntimeAuthKeysRequest",
+}) as any as S.Schema<ListIntegrationRuntimeAuthKeysRequest>;
+
+/** The integration runtime authentication keys. */
+export interface IntegrationRuntimeAuthKeys {
+  /** The primary integration runtime authentication key. */
+  authKey1?: string;
+  /** The secondary integration runtime authentication key. */
+  authKey2?: string;
+}
+export const IntegrationRuntimeAuthKeys = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    authKey1: S.optional(S.String),
+    authKey2: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "IntegrationRuntimeAuthKeys",
+}) as any as S.Schema<IntegrationRuntimeAuthKeys>;
+
+export interface ListIntegrationRuntimeByFactoryRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+}
+export const ListIntegrationRuntimeByFactoryRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      factoryName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes",
+        code: 200,
+        apiVersion: "2018-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListIntegrationRuntimeByFactoryRequest",
+}) as any as S.Schema<ListIntegrationRuntimeByFactoryRequest>;
+
+/** Integration runtime resource type. */
+export interface IntegrationRuntimeResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Integration runtime properties. */
+  properties: IntegrationRuntime;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const IntegrationRuntimeResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: IntegrationRuntime,
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "IntegrationRuntimeResource",
+}) as any as S.Schema<IntegrationRuntimeResource>;
+
+/** The IntegrationRuntimeResource items on this page */
+export type IntegrationRuntimeListResponseValueList =
+  Array<IntegrationRuntimeResource>;
+export const IntegrationRuntimeListResponseValueList = /*@__PURE__*/ S.Array(
+  IntegrationRuntimeResource,
+) as any as S.Schema<IntegrationRuntimeListResponseValueList>;
+
+/** A list of integration runtime resources. */
+export interface IntegrationRuntimeListResponse {
+  /** The IntegrationRuntimeResource items on this page */
+  value: IntegrationRuntimeListResponseValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const IntegrationRuntimeListResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: IntegrationRuntimeListResponseValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "IntegrationRuntimeListResponse",
+}) as any as S.Schema<IntegrationRuntimeListResponse>;
+
+export interface ListIntegrationRuntimeOutboundNetworkDependenciesEndpointsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+  /** The integration runtime name. */
+  integrationRuntimeName: string;
+}
+export const ListIntegrationRuntimeOutboundNetworkDependenciesEndpointsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      factoryName: S.String.pipe(T.Label()),
+      integrationRuntimeName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}/outboundNetworkDependenciesEndpoints",
+        code: 200,
+        apiVersion: "2018-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier:
+      "ListIntegrationRuntimeOutboundNetworkDependenciesEndpointsRequest",
+  }) as any as S.Schema<ListIntegrationRuntimeOutboundNetworkDependenciesEndpointsRequest>;
+
+/** The details of Azure-SSIS integration runtime outbound network dependency endpoint. */
+export interface IntegrationRuntimeOutboundNetworkDependenciesEndpointDetails {
+  /** The port of endpoint. */
+  port?: number;
+}
+export const IntegrationRuntimeOutboundNetworkDependenciesEndpointDetails =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      port: S.optional(S.Number),
+    }),
+  ).annotate({
+    identifier: "IntegrationRuntimeOutboundNetworkDependenciesEndpointDetails",
+  }) as any as S.Schema<IntegrationRuntimeOutboundNetworkDependenciesEndpointDetails>;
+
+/** The details of endpoint. */
+export type IntegrationRuntimeOutboundNetworkDependenciesEndpointEndpointDetailsList =
+  Array<IntegrationRuntimeOutboundNetworkDependenciesEndpointDetails>;
+export const IntegrationRuntimeOutboundNetworkDependenciesEndpointEndpointDetailsList =
+  /*@__PURE__*/ S.Array(
+    IntegrationRuntimeOutboundNetworkDependenciesEndpointDetails,
+  ) as any as S.Schema<IntegrationRuntimeOutboundNetworkDependenciesEndpointEndpointDetailsList>;
+
+/** The endpoint for Azure-SSIS integration runtime outbound network dependency. */
+export interface IntegrationRuntimeOutboundNetworkDependenciesEndpoint {
+  /** The domain name of endpoint. */
+  domainName?: string;
+  /** The details of endpoint. */
+  endpointDetails?: IntegrationRuntimeOutboundNetworkDependenciesEndpointEndpointDetailsList;
+}
+export const IntegrationRuntimeOutboundNetworkDependenciesEndpoint =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      domainName: S.optional(S.String),
+      endpointDetails: S.optional(
+        IntegrationRuntimeOutboundNetworkDependenciesEndpointEndpointDetailsList,
+      ),
+    }),
+  ).annotate({
+    identifier: "IntegrationRuntimeOutboundNetworkDependenciesEndpoint",
+  }) as any as S.Schema<IntegrationRuntimeOutboundNetworkDependenciesEndpoint>;
+
+/** The endpoints for outbound network dependency. */
+export type IntegrationRuntimeOutboundNetworkDependenciesCategoryEndpointEndpointsList =
+  Array<IntegrationRuntimeOutboundNetworkDependenciesEndpoint>;
+export const IntegrationRuntimeOutboundNetworkDependenciesCategoryEndpointEndpointsList =
+  /*@__PURE__*/ S.Array(
+    IntegrationRuntimeOutboundNetworkDependenciesEndpoint,
+  ) as any as S.Schema<IntegrationRuntimeOutboundNetworkDependenciesCategoryEndpointEndpointsList>;
+
+/** Azure-SSIS integration runtime outbound network dependency endpoints for one category. */
+export interface IntegrationRuntimeOutboundNetworkDependenciesCategoryEndpoint {
+  /** The category of outbound network dependency. */
+  category?: string;
+  /** The endpoints for outbound network dependency. */
+  endpoints?: IntegrationRuntimeOutboundNetworkDependenciesCategoryEndpointEndpointsList;
+}
+export const IntegrationRuntimeOutboundNetworkDependenciesCategoryEndpoint =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      category: S.optional(S.String),
+      endpoints: S.optional(
+        IntegrationRuntimeOutboundNetworkDependenciesCategoryEndpointEndpointsList,
+      ),
+    }),
+  ).annotate({
+    identifier: "IntegrationRuntimeOutboundNetworkDependenciesCategoryEndpoint",
+  }) as any as S.Schema<IntegrationRuntimeOutboundNetworkDependenciesCategoryEndpoint>;
+
+/** The list of outbound network dependency endpoints. */
+export type IntegrationRuntimeOutboundNetworkDependenciesEndpointsResponseValueList =
+  Array<IntegrationRuntimeOutboundNetworkDependenciesCategoryEndpoint>;
+export const IntegrationRuntimeOutboundNetworkDependenciesEndpointsResponseValueList =
+  /*@__PURE__*/ S.Array(
+    IntegrationRuntimeOutboundNetworkDependenciesCategoryEndpoint,
+  ) as any as S.Schema<IntegrationRuntimeOutboundNetworkDependenciesEndpointsResponseValueList>;
+
+/** Azure-SSIS integration runtime outbound network dependency endpoints. */
+export interface IntegrationRuntimeOutboundNetworkDependenciesEndpointsResponse {
+  /** The list of outbound network dependency endpoints. */
+  value?: IntegrationRuntimeOutboundNetworkDependenciesEndpointsResponseValueList;
+}
+export const IntegrationRuntimeOutboundNetworkDependenciesEndpointsResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      value: S.optional(
+        IntegrationRuntimeOutboundNetworkDependenciesEndpointsResponseValueList,
+      ),
+    }),
+  ).annotate({
+    identifier:
+      "IntegrationRuntimeOutboundNetworkDependenciesEndpointsResponse",
+  }) as any as S.Schema<IntegrationRuntimeOutboundNetworkDependenciesEndpointsResponse>;
+
+export interface ListLinkedServiceByFactoryRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+}
+export const ListLinkedServiceByFactoryRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -5264,8 +5764,8 @@ export const LinkedServicesListByFactoryRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "LinkedServicesListByFactoryRequest",
-}) as any as S.Schema<LinkedServicesListByFactoryRequest>;
+  identifier: "ListLinkedServiceByFactoryRequest",
+}) as any as S.Schema<ListLinkedServiceByFactoryRequest>;
 
 /** Linked service resource type. */
 export interface LinkedServiceResource {
@@ -5317,256 +5817,7 @@ export const LinkedServiceListResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "LinkedServiceListResponse",
 }) as any as S.Schema<LinkedServiceListResponse>;
 
-/** The connection state of a managed private endpoint */
-export interface ConnectionStatePropertiesInput {}
-export const ConnectionStatePropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ConnectionStatePropertiesInput",
-}) as any as S.Schema<ConnectionStatePropertiesInput>;
-
-/** Fully qualified domain names */
-export type ManagedPrivateEndpointInputFqdnsList = Array<string>;
-export const ManagedPrivateEndpointInputFqdnsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ManagedPrivateEndpointInputFqdnsList>;
-
-/** Properties of a managed private endpoint */
-export interface ManagedPrivateEndpointInput {
-  /** The managed private endpoint connection state */
-  connectionState?: ConnectionStatePropertiesInput;
-  /** Fully qualified domain names */
-  fqdns?: ManagedPrivateEndpointInputFqdnsList;
-  /** The groupId to which the managed private endpoint is created */
-  groupId?: string;
-  /** The ARM resource ID of the resource to which the managed private endpoint is created */
-  privateLinkResourceId?: string;
-}
-export const ManagedPrivateEndpointInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    connectionState: S.optional(ConnectionStatePropertiesInput),
-    fqdns: S.optional(ManagedPrivateEndpointInputFqdnsList),
-    groupId: S.optional(S.String),
-    privateLinkResourceId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ManagedPrivateEndpointInput",
-}) as any as S.Schema<ManagedPrivateEndpointInput>;
-
-export interface ManagedPrivateEndpointsCreateOrUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-  /** Managed virtual network name */
-  managedVirtualNetworkName: string;
-  /** Managed private endpoint name */
-  managedPrivateEndpointName: string;
-  /** Managed private endpoint properties. */
-  properties: ManagedPrivateEndpointInput;
-}
-export const ManagedPrivateEndpointsCreateOrUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      factoryName: S.String.pipe(T.Label()),
-      managedVirtualNetworkName: S.String.pipe(T.Label()),
-      managedPrivateEndpointName: S.String.pipe(T.Label()),
-      properties: ManagedPrivateEndpointInput,
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/managedVirtualNetworks/{managedVirtualNetworkName}/managedPrivateEndpoints/{managedPrivateEndpointName}",
-        code: 200,
-        apiVersion: "2018-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ManagedPrivateEndpointsCreateOrUpdateRequest",
-  }) as any as S.Schema<ManagedPrivateEndpointsCreateOrUpdateRequest>;
-
-/** The connection state of a managed private endpoint */
-export interface ConnectionStateProperties {
-  /** The actions required on the managed private endpoint */
-  actionsRequired?: string;
-  /** The managed private endpoint description */
-  description?: string;
-  /** The approval status */
-  status?: string;
-}
-export const ConnectionStateProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    actionsRequired: S.optional(S.String),
-    description: S.optional(S.String),
-    status: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ConnectionStateProperties",
-}) as any as S.Schema<ConnectionStateProperties>;
-
-/** Fully qualified domain names */
-export type ManagedPrivateEndpointFqdnsList = Array<string>;
-export const ManagedPrivateEndpointFqdnsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ManagedPrivateEndpointFqdnsList>;
-
-/** Properties of a managed private endpoint */
-export interface ManagedPrivateEndpoint {
-  /** The managed private endpoint connection state */
-  connectionState?: ConnectionStateProperties;
-  /** Fully qualified domain names */
-  fqdns?: ManagedPrivateEndpointFqdnsList;
-  /** The groupId to which the managed private endpoint is created */
-  groupId?: string;
-  /** Denotes whether the managed private endpoint is reserved */
-  isReserved?: boolean;
-  /** The ARM resource ID of the resource to which the managed private endpoint is created */
-  privateLinkResourceId?: string;
-  /** The managed private endpoint provisioning state */
-  provisioningState?: string;
-}
-export const ManagedPrivateEndpoint = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    connectionState: S.optional(ConnectionStateProperties),
-    fqdns: S.optional(ManagedPrivateEndpointFqdnsList),
-    groupId: S.optional(S.String),
-    isReserved: S.optional(S.Boolean),
-    privateLinkResourceId: S.optional(S.String),
-    provisioningState: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ManagedPrivateEndpoint",
-}) as any as S.Schema<ManagedPrivateEndpoint>;
-
-export interface ManagedPrivateEndpointsCreateOrUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Managed private endpoint properties. */
-  properties: ManagedPrivateEndpoint;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const ManagedPrivateEndpointsCreateOrUpdateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: ManagedPrivateEndpoint,
-      etag: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "ManagedPrivateEndpointsCreateOrUpdateResponse",
-  }) as any as S.Schema<ManagedPrivateEndpointsCreateOrUpdateResponse>;
-
-export interface ManagedPrivateEndpointsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-  /** Managed virtual network name */
-  managedVirtualNetworkName: string;
-  /** Managed private endpoint name */
-  managedPrivateEndpointName: string;
-}
-export const ManagedPrivateEndpointsDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      factoryName: S.String.pipe(T.Label()),
-      managedVirtualNetworkName: S.String.pipe(T.Label()),
-      managedPrivateEndpointName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/managedVirtualNetworks/{managedVirtualNetworkName}/managedPrivateEndpoints/{managedPrivateEndpointName}",
-        code: 200,
-        apiVersion: "2018-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "ManagedPrivateEndpointsDeleteRequest",
-}) as any as S.Schema<ManagedPrivateEndpointsDeleteRequest>;
-
-export interface ManagedPrivateEndpointsDeleteResponse {}
-export const ManagedPrivateEndpointsDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "ManagedPrivateEndpointsDeleteResponse",
-}) as any as S.Schema<ManagedPrivateEndpointsDeleteResponse>;
-
-export interface ManagedPrivateEndpointsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-  /** Managed virtual network name */
-  managedVirtualNetworkName: string;
-  /** Managed private endpoint name */
-  managedPrivateEndpointName: string;
-}
-export const ManagedPrivateEndpointsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    factoryName: S.String.pipe(T.Label()),
-    managedVirtualNetworkName: S.String.pipe(T.Label()),
-    managedPrivateEndpointName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/managedVirtualNetworks/{managedVirtualNetworkName}/managedPrivateEndpoints/{managedPrivateEndpointName}",
-      code: 200,
-      apiVersion: "2018-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ManagedPrivateEndpointsGetRequest",
-}) as any as S.Schema<ManagedPrivateEndpointsGetRequest>;
-
-export interface ManagedPrivateEndpointsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Managed private endpoint properties. */
-  properties: ManagedPrivateEndpoint;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const ManagedPrivateEndpointsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: ManagedPrivateEndpoint,
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ManagedPrivateEndpointsGetResponse",
-}) as any as S.Schema<ManagedPrivateEndpointsGetResponse>;
-
-export interface ManagedPrivateEndpointsListByFactoryRequest {
+export interface ListManagedPrivateEndpointByFactoryRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5576,7 +5827,7 @@ export interface ManagedPrivateEndpointsListByFactoryRequest {
   /** Managed virtual network name */
   managedVirtualNetworkName: string;
 }
-export const ManagedPrivateEndpointsListByFactoryRequest =
+export const ListManagedPrivateEndpointByFactoryRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -5592,8 +5843,8 @@ export const ManagedPrivateEndpointsListByFactoryRequest =
       }),
     ),
   ).annotate({
-    identifier: "ManagedPrivateEndpointsListByFactoryRequest",
-  }) as any as S.Schema<ManagedPrivateEndpointsListByFactoryRequest>;
+    identifier: "ListManagedPrivateEndpointByFactoryRequest",
+  }) as any as S.Schema<ListManagedPrivateEndpointByFactoryRequest>;
 
 /** Managed private endpoint resource type. */
 export interface ManagedPrivateEndpointResource {
@@ -5647,142 +5898,7 @@ export const ManagedPrivateEndpointListResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ManagedPrivateEndpointListResponse",
 }) as any as S.Schema<ManagedPrivateEndpointListResponse>;
 
-/** A managed Virtual Network associated with the Azure Data Factory */
-export type ManagedVirtualNetworkInput = ConnectionStatePropertiesInput;
-export const ManagedVirtualNetworkInput = ConnectionStatePropertiesInput;
-
-export interface ManagedVirtualNetworksCreateOrUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-  /** Managed virtual network name */
-  managedVirtualNetworkName: string;
-  /** Managed Virtual Network properties. */
-  properties: ConnectionStatePropertiesInput;
-}
-export const ManagedVirtualNetworksCreateOrUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      factoryName: S.String.pipe(T.Label()),
-      managedVirtualNetworkName: S.String.pipe(T.Label()),
-      properties: ConnectionStatePropertiesInput,
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/managedVirtualNetworks/{managedVirtualNetworkName}",
-        code: 200,
-        apiVersion: "2018-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ManagedVirtualNetworksCreateOrUpdateRequest",
-  }) as any as S.Schema<ManagedVirtualNetworksCreateOrUpdateRequest>;
-
-/** A managed Virtual Network associated with the Azure Data Factory */
-export interface ManagedVirtualNetwork {
-  /** Managed Virtual Network ID. */
-  vNetId?: string;
-  /** Managed Virtual Network alias. */
-  alias?: string;
-}
-export const ManagedVirtualNetwork = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    vNetId: S.optional(S.String),
-    alias: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ManagedVirtualNetwork",
-}) as any as S.Schema<ManagedVirtualNetwork>;
-
-export interface ManagedVirtualNetworksCreateOrUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Managed Virtual Network properties. */
-  properties: ManagedVirtualNetwork;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const ManagedVirtualNetworksCreateOrUpdateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: ManagedVirtualNetwork,
-      etag: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "ManagedVirtualNetworksCreateOrUpdateResponse",
-  }) as any as S.Schema<ManagedVirtualNetworksCreateOrUpdateResponse>;
-
-export interface ManagedVirtualNetworksGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-  /** Managed virtual network name */
-  managedVirtualNetworkName: string;
-}
-export const ManagedVirtualNetworksGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    factoryName: S.String.pipe(T.Label()),
-    managedVirtualNetworkName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/managedVirtualNetworks/{managedVirtualNetworkName}",
-      code: 200,
-      apiVersion: "2018-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ManagedVirtualNetworksGetRequest",
-}) as any as S.Schema<ManagedVirtualNetworksGetRequest>;
-
-export interface ManagedVirtualNetworksGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Managed Virtual Network properties. */
-  properties: ManagedVirtualNetwork;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const ManagedVirtualNetworksGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: ManagedVirtualNetwork,
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ManagedVirtualNetworksGetResponse",
-}) as any as S.Schema<ManagedVirtualNetworksGetResponse>;
-
-export interface ManagedVirtualNetworksListByFactoryRequest {
+export interface ListManagedVirtualNetworkByFactoryRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5790,7 +5906,7 @@ export interface ManagedVirtualNetworksListByFactoryRequest {
   /** The factory name. */
   factoryName: string;
 }
-export const ManagedVirtualNetworksListByFactoryRequest =
+export const ListManagedVirtualNetworkByFactoryRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -5805,8 +5921,8 @@ export const ManagedVirtualNetworksListByFactoryRequest =
       }),
     ),
   ).annotate({
-    identifier: "ManagedVirtualNetworksListByFactoryRequest",
-  }) as any as S.Schema<ManagedVirtualNetworksListByFactoryRequest>;
+    identifier: "ListManagedVirtualNetworkByFactoryRequest",
+  }) as any as S.Schema<ListManagedVirtualNetworkByFactoryRequest>;
 
 /** Managed Virtual Network resource type. */
 export interface ManagedVirtualNetworkResource {
@@ -5859,8 +5975,8 @@ export const ManagedVirtualNetworkListResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ManagedVirtualNetworkListResponse",
 }) as any as S.Schema<ManagedVirtualNetworkListResponse>;
 
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({
       method: "GET",
@@ -5870,8 +5986,8 @@ export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
 
 /** Metadata associated with the operation. */
 export interface OperationDisplay {
@@ -6095,155 +6211,440 @@ export const OperationListResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "OperationListResponse",
 }) as any as S.Schema<OperationListResponse>;
 
-export interface PipelineRunsCancelRequest {
+export interface ListPipelineByFactoryRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
+  /** The factory name. */
   factoryName: string;
-  /** The pipeline run identifier. */
-  runId: string;
-  /** If true, cancel all the Child pipelines that are triggered by the current pipeline. */
-  isRecursive?: boolean;
 }
-export const PipelineRunsCancelRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListPipelineByFactoryRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     factoryName: S.String.pipe(T.Label()),
-    runId: S.String.pipe(T.Label()),
-    isRecursive: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/pipelineruns/{runId}/cancel",
-      code: 200,
-      apiVersion: "2018-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "PipelineRunsCancelRequest",
-}) as any as S.Schema<PipelineRunsCancelRequest>;
-
-export interface PipelineRunsCancelResponse {}
-export const PipelineRunsCancelResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "PipelineRunsCancelResponse",
-}) as any as S.Schema<PipelineRunsCancelResponse>;
-
-export interface PipelineRunsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  factoryName: string;
-  /** The pipeline run identifier. */
-  runId: string;
-}
-export const PipelineRunsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    factoryName: S.String.pipe(T.Label()),
-    runId: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/pipelineruns/{runId}",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/pipelines",
       code: 200,
       apiVersion: "2018-06-01",
     }),
   ),
 ).annotate({
-  identifier: "PipelineRunsGetRequest",
-}) as any as S.Schema<PipelineRunsGetRequest>;
+  identifier: "ListPipelineByFactoryRequest",
+}) as any as S.Schema<ListPipelineByFactoryRequest>;
 
-/** The full or partial list of parameter name, value pair used in the pipeline run. */
-export type PipelineRunParametersMap = { [key: string]: string | undefined };
-export const PipelineRunParametersMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<PipelineRunParametersMap>;
-
-/** Run dimensions emitted by Pipeline run. */
-export type PipelineRunRunDimensionsMap = { [key: string]: string | undefined };
-export const PipelineRunRunDimensionsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<PipelineRunRunDimensionsMap>;
-
-/** Provides entity name and id that started the pipeline run. */
-export interface PipelineRunInvokedBy {
-  /** Name of the entity that started the pipeline run. */
-  name?: string;
-  /** The ID of the entity that started the run. */
+/** Pipeline resource type. */
+export interface PipelineResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
-  /** The type of the entity that started the run. */
-  invokedByType?: string;
-  /** The name of the pipeline that triggered the run, if any. */
-  pipelineName?: string;
-  /** The run id of the pipeline that triggered the run, if any. */
-  pipelineRunId?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of the pipeline. */
+  properties: Pipeline;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
 }
-export const PipelineRunInvokedBy = /*@__PURE__*/ S.suspend(() =>
+export const PipelineResource = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    name: S.optional(S.String),
     id: S.optional(S.String),
-    invokedByType: S.optional(S.String),
-    pipelineName: S.optional(S.String),
-    pipelineRunId: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: Pipeline,
+    etag: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "PipelineRunInvokedBy",
-}) as any as S.Schema<PipelineRunInvokedBy>;
+  identifier: "PipelineResource",
+}) as any as S.Schema<PipelineResource>;
 
-/** Information about a pipeline run. */
-export interface PipelineRun {
-  /** Identifier of a run. */
-  runId?: string;
-  /** Identifier that correlates all the recovery runs of a pipeline run. */
-  runGroupId?: string;
-  /** Indicates if the recovered pipeline run is the latest in its group. */
-  isLatest?: boolean;
-  /** The pipeline name. */
-  pipelineName?: string;
-  /** The full or partial list of parameter name, value pair used in the pipeline run. */
-  parameters?: PipelineRunParametersMap;
-  /** Run dimensions emitted by Pipeline run. */
-  runDimensions?: PipelineRunRunDimensionsMap;
-  /** Entity that started the pipeline run. */
-  invokedBy?: PipelineRunInvokedBy;
-  /** The last updated timestamp for the pipeline run event in ISO8601 format. */
-  lastUpdated?: string;
-  /** The start time of a pipeline run in ISO8601 format. */
-  runStart?: string;
-  /** The end time of a pipeline run in ISO8601 format. */
-  runEnd?: string;
-  /** The duration of a pipeline run. */
-  durationInMs?: number;
-  /** The status of a pipeline run. Possible values: Queued, InProgress, Succeeded, Failed, Canceling, Cancelled */
-  status?: string;
-  /** The message from a pipeline run. */
-  message?: string;
+/** The PipelineResource items on this page */
+export type PipelineListResponseValueList = Array<PipelineResource>;
+export const PipelineListResponseValueList = /*@__PURE__*/ S.Array(
+  PipelineResource,
+) as any as S.Schema<PipelineListResponseValueList>;
+
+/** A list of pipeline resources. */
+export interface PipelineListResponse {
+  /** The PipelineResource items on this page */
+  value: PipelineListResponseValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
 }
-export const PipelineRun = /*@__PURE__*/ S.suspend(() =>
+export const PipelineListResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    runId: S.optional(S.String),
-    runGroupId: S.optional(S.String),
-    isLatest: S.optional(S.Boolean),
-    pipelineName: S.optional(S.String),
-    parameters: S.optional(PipelineRunParametersMap),
-    runDimensions: S.optional(PipelineRunRunDimensionsMap),
-    invokedBy: S.optional(PipelineRunInvokedBy),
-    lastUpdated: S.optional(S.String),
-    runStart: S.optional(S.String),
-    runEnd: S.optional(S.String),
-    durationInMs: S.optional(S.Number),
-    status: S.optional(S.String),
-    message: S.optional(S.String),
+    value: PipelineListResponseValueList,
+    nextLink: S.optional(S.String),
   }),
-).annotate({ identifier: "PipelineRun" }) as any as S.Schema<PipelineRun>;
+).annotate({
+  identifier: "PipelineListResponse",
+}) as any as S.Schema<PipelineListResponse>;
+
+export interface ListPrivateEndPointConnectionByFactoryRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+}
+export const ListPrivateEndPointConnectionByFactoryRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      factoryName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/privateEndpointConnections",
+        code: 200,
+        apiVersion: "2018-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListPrivateEndPointConnectionByFactoryRequest",
+  }) as any as S.Schema<ListPrivateEndPointConnectionByFactoryRequest>;
+
+/** Private Endpoint Connection ARM resource. */
+export interface PrivateEndpointConnectionResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Core resource properties */
+  properties?: RemotePrivateEndpointConnection;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const PrivateEndpointConnectionResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(RemotePrivateEndpointConnection),
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PrivateEndpointConnectionResource",
+}) as any as S.Schema<PrivateEndpointConnectionResource>;
+
+/** The PrivateEndpointConnectionResource items on this page */
+export type PrivateEndpointConnectionListResponseValueList =
+  Array<PrivateEndpointConnectionResource>;
+export const PrivateEndpointConnectionListResponseValueList =
+  /*@__PURE__*/ S.Array(
+    PrivateEndpointConnectionResource,
+  ) as any as S.Schema<PrivateEndpointConnectionListResponseValueList>;
+
+/** A list of linked service resources. */
+export interface PrivateEndpointConnectionListResponse {
+  /** The PrivateEndpointConnectionResource items on this page */
+  value: PrivateEndpointConnectionListResponseValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const PrivateEndpointConnectionListResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      value: PrivateEndpointConnectionListResponseValueList,
+      nextLink: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "PrivateEndpointConnectionListResponse",
+}) as any as S.Schema<PrivateEndpointConnectionListResponse>;
+
+export interface ListTriggerByFactoryRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+}
+export const ListTriggerByFactoryRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    factoryName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/triggers",
+      code: 200,
+      apiVersion: "2018-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListTriggerByFactoryRequest",
+}) as any as S.Schema<ListTriggerByFactoryRequest>;
+
+/** Trigger resource type. */
+export interface TriggerResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of the trigger. */
+  properties: Trigger;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const TriggerResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: Trigger,
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "TriggerResource",
+}) as any as S.Schema<TriggerResource>;
+
+/** The TriggerResource items on this page */
+export type TriggerListResponseValueList = Array<TriggerResource>;
+export const TriggerListResponseValueList = /*@__PURE__*/ S.Array(
+  TriggerResource,
+) as any as S.Schema<TriggerListResponseValueList>;
+
+/** A list of trigger resources. */
+export interface TriggerListResponse {
+  /** The TriggerResource items on this page */
+  value: TriggerListResponseValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const TriggerListResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: TriggerListResponseValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "TriggerListResponse",
+}) as any as S.Schema<TriggerListResponse>;
+
+/** The connection state of a managed private endpoint */
+export interface ConnectionStatePropertiesInput {}
+export const ConnectionStatePropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "ConnectionStatePropertiesInput",
+}) as any as S.Schema<ConnectionStatePropertiesInput>;
+
+/** Fully qualified domain names */
+export type ManagedPrivateEndpointInputFqdnsList = Array<string>;
+export const ManagedPrivateEndpointInputFqdnsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ManagedPrivateEndpointInputFqdnsList>;
+
+/** Properties of a managed private endpoint */
+export interface ManagedPrivateEndpointInput {
+  /** The managed private endpoint connection state */
+  connectionState?: ConnectionStatePropertiesInput;
+  /** Fully qualified domain names */
+  fqdns?: ManagedPrivateEndpointInputFqdnsList;
+  /** The groupId to which the managed private endpoint is created */
+  groupId?: string;
+  /** The ARM resource ID of the resource to which the managed private endpoint is created */
+  privateLinkResourceId?: string;
+}
+export const ManagedPrivateEndpointInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    connectionState: S.optional(ConnectionStatePropertiesInput),
+    fqdns: S.optional(ManagedPrivateEndpointInputFqdnsList),
+    groupId: S.optional(S.String),
+    privateLinkResourceId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ManagedPrivateEndpointInput",
+}) as any as S.Schema<ManagedPrivateEndpointInput>;
+
+export interface ManagedPrivateEndpointsCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+  /** Managed virtual network name */
+  managedVirtualNetworkName: string;
+  /** Managed private endpoint name */
+  managedPrivateEndpointName: string;
+  /** Managed private endpoint properties. */
+  properties: ManagedPrivateEndpointInput;
+}
+export const ManagedPrivateEndpointsCreateOrUpdateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      factoryName: S.String.pipe(T.Label()),
+      managedVirtualNetworkName: S.String.pipe(T.Label()),
+      managedPrivateEndpointName: S.String.pipe(T.Label()),
+      properties: ManagedPrivateEndpointInput,
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/managedVirtualNetworks/{managedVirtualNetworkName}/managedPrivateEndpoints/{managedPrivateEndpointName}",
+        code: 200,
+        apiVersion: "2018-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ManagedPrivateEndpointsCreateOrUpdateRequest",
+  }) as any as S.Schema<ManagedPrivateEndpointsCreateOrUpdateRequest>;
+
+export interface ManagedPrivateEndpointsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Managed private endpoint properties. */
+  properties: ManagedPrivateEndpoint;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const ManagedPrivateEndpointsCreateOrUpdateResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: ManagedPrivateEndpoint,
+      etag: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "ManagedPrivateEndpointsCreateOrUpdateResponse",
+  }) as any as S.Schema<ManagedPrivateEndpointsCreateOrUpdateResponse>;
+
+/** A managed Virtual Network associated with the Azure Data Factory */
+export type ManagedVirtualNetworkInput = ConnectionStatePropertiesInput;
+export const ManagedVirtualNetworkInput = ConnectionStatePropertiesInput;
+
+export interface ManagedVirtualNetworksCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+  /** Managed virtual network name */
+  managedVirtualNetworkName: string;
+  /** Managed Virtual Network properties. */
+  properties: ConnectionStatePropertiesInput;
+}
+export const ManagedVirtualNetworksCreateOrUpdateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      factoryName: S.String.pipe(T.Label()),
+      managedVirtualNetworkName: S.String.pipe(T.Label()),
+      properties: ConnectionStatePropertiesInput,
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/managedVirtualNetworks/{managedVirtualNetworkName}",
+        code: 200,
+        apiVersion: "2018-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ManagedVirtualNetworksCreateOrUpdateRequest",
+  }) as any as S.Schema<ManagedVirtualNetworksCreateOrUpdateRequest>;
+
+export interface ManagedVirtualNetworksCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Managed Virtual Network properties. */
+  properties: ManagedVirtualNetwork;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const ManagedVirtualNetworksCreateOrUpdateResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: ManagedVirtualNetwork,
+      etag: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "ManagedVirtualNetworksCreateOrUpdateResponse",
+  }) as any as S.Schema<ManagedVirtualNetworksCreateOrUpdateResponse>;
+
+/** Parameter name to be used for filter. The allowed operands to query pipeline runs are PipelineName, RunStart, RunEnd and Status; to query activity runs are ActivityName, ActivityRunStart, ActivityRunEnd, ActivityType and Status, and to query trigger runs are TriggerName, TriggerRunTimestamp and Status. */
+export type RunQueryFilterOperand =
+  | "PipelineName"
+  | "Status"
+  | "RunStart"
+  | "RunEnd"
+  | "ActivityName"
+  | "ActivityRunStart"
+  | "ActivityRunEnd"
+  | "ActivityType"
+  | "TriggerName"
+  | "TriggerRunTimestamp"
+  | "RunGroupId"
+  | "LatestOnly";
+export const RunQueryFilterOperand = /*@__PURE__*/ S.String;
+
+/** Operator to be used for filter. */
+export type RunQueryFilterOperator = "Equals" | "NotEquals" | "In" | "NotIn";
+export const RunQueryFilterOperator = /*@__PURE__*/ S.String;
+
+/** List of filter values. */
+export type RunQueryFilterValuesList = Array<string>;
+export const RunQueryFilterValuesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<RunQueryFilterValuesList>;
+
+/** Query filter option for listing runs. */
+export interface RunQueryFilter {
+  /** Parameter name to be used for filter. The allowed operands to query pipeline runs are PipelineName, RunStart, RunEnd and Status; to query activity runs are ActivityName, ActivityRunStart, ActivityRunEnd, ActivityType and Status, and to query trigger runs are TriggerName, TriggerRunTimestamp and Status. */
+  operand: RunQueryFilterOperand | (string & {});
+  /** Operator to be used for filter. */
+  operator: RunQueryFilterOperator | (string & {});
+  /** List of filter values. */
+  values: RunQueryFilterValuesList;
+}
+export const RunQueryFilter = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    operand: RunQueryFilterOperand,
+    operator: RunQueryFilterOperator,
+    values: RunQueryFilterValuesList,
+  }),
+).annotate({ identifier: "RunQueryFilter" }) as any as S.Schema<RunQueryFilter>;
 
 /** List of filters. */
 export type PipelineRunsQueryByFactoryRequestFiltersList =
@@ -6252,6 +6653,39 @@ export const PipelineRunsQueryByFactoryRequestFiltersList =
   /*@__PURE__*/ S.Array(
     RunQueryFilter,
   ) as any as S.Schema<PipelineRunsQueryByFactoryRequestFiltersList>;
+
+/** Parameter name to be used for order by. The allowed parameters to order by for pipeline runs are PipelineName, RunStart, RunEnd and Status; for activity runs are ActivityName, ActivityRunStart, ActivityRunEnd and Status; for trigger runs are TriggerName, TriggerRunTimestamp and Status. */
+export type RunQueryOrderByField =
+  | "RunStart"
+  | "RunEnd"
+  | "PipelineName"
+  | "Status"
+  | "ActivityName"
+  | "ActivityRunStart"
+  | "ActivityRunEnd"
+  | "TriggerName"
+  | "TriggerRunTimestamp";
+export const RunQueryOrderByField = /*@__PURE__*/ S.String;
+
+/** Sorting order of the parameter. */
+export type RunQueryOrder = "ASC" | "DESC";
+export const RunQueryOrder = /*@__PURE__*/ S.String;
+
+/** An object to provide order by options for listing runs. */
+export interface RunQueryOrderBy {
+  /** Parameter name to be used for order by. The allowed parameters to order by for pipeline runs are PipelineName, RunStart, RunEnd and Status; for activity runs are ActivityName, ActivityRunStart, ActivityRunEnd and Status; for trigger runs are TriggerName, TriggerRunTimestamp and Status. */
+  orderBy: RunQueryOrderByField | (string & {});
+  /** Sorting order of the parameter. */
+  order: RunQueryOrder | (string & {});
+}
+export const RunQueryOrderBy = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    orderBy: RunQueryOrderByField,
+    order: RunQueryOrder,
+  }),
+).annotate({
+  identifier: "RunQueryOrderBy",
+}) as any as S.Schema<RunQueryOrderBy>;
 
 /** List of OrderBy option. */
 export type PipelineRunsQueryByFactoryRequestOrderByList =
@@ -6323,227 +6757,6 @@ export const PipelineRunsQueryResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "PipelineRunsQueryResponse",
 }) as any as S.Schema<PipelineRunsQueryResponse>;
 
-/** Activity state. This is an optional property and if not provided, the state will be Active by default. */
-export type ActivityState = "Active" | "Inactive";
-export const ActivityState = /*@__PURE__*/ S.String;
-
-/** Status result of the activity when the state is set to Inactive. This is an optional property and if not provided when the activity is inactive, the status will be Succeeded by default. */
-export type ActivityOnInactiveMarkAs = "Succeeded" | "Failed" | "Skipped";
-export const ActivityOnInactiveMarkAs = /*@__PURE__*/ S.String;
-
-export type DependencyCondition =
-  | "Succeeded"
-  | "Failed"
-  | "Skipped"
-  | "Completed";
-export const DependencyCondition = /*@__PURE__*/ S.String;
-
-/** Match-Condition for the dependency. */
-export type ActivityDependencyDependencyConditionsList = Array<
-  DependencyCondition | (string & {})
->;
-export const ActivityDependencyDependencyConditionsList = /*@__PURE__*/ S.Array(
-  DependencyCondition,
-) as any as S.Schema<ActivityDependencyDependencyConditionsList>;
-
-/** Activity dependency information. */
-export interface ActivityDependency {
-  /** Activity name. */
-  activity: string;
-  /** Match-Condition for the dependency. */
-  dependencyConditions: ActivityDependencyDependencyConditionsList;
-}
-export const ActivityDependency = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    activity: S.String,
-    dependencyConditions: ActivityDependencyDependencyConditionsList,
-  }),
-).annotate({
-  identifier: "ActivityDependency",
-}) as any as S.Schema<ActivityDependency>;
-
-/** Activity depends on condition. */
-export type ActivityDependsOnList = Array<ActivityDependency>;
-export const ActivityDependsOnList = /*@__PURE__*/ S.Array(
-  ActivityDependency,
-) as any as S.Schema<ActivityDependsOnList>;
-
-/** User property. */
-export interface UserProperty {
-  /** User property name. */
-  name: string;
-  /** User property value. Type: string (or Expression with resultType string). */
-  value: unknown;
-}
-export const UserProperty = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-    value: S.Unknown,
-  }),
-).annotate({ identifier: "UserProperty" }) as any as S.Schema<UserProperty>;
-
-/** Activity user properties. */
-export type ActivityUserPropertiesList = Array<UserProperty>;
-export const ActivityUserPropertiesList = /*@__PURE__*/ S.Array(
-  UserProperty,
-) as any as S.Schema<ActivityUserPropertiesList>;
-
-/** A pipeline activity. */
-export interface Activity {
-  /** Activity name. */
-  name: string;
-  /** Type of activity. */
-  type: string;
-  /** Activity description. */
-  description?: string;
-  /** Activity state. This is an optional property and if not provided, the state will be Active by default. */
-  state?: ActivityState | (string & {});
-  /** Status result of the activity when the state is set to Inactive. This is an optional property and if not provided when the activity is inactive, the status will be Succeeded by default. */
-  onInactiveMarkAs?: ActivityOnInactiveMarkAs | (string & {});
-  /** Activity depends on condition. */
-  dependsOn?: ActivityDependsOnList;
-  /** Activity user properties. */
-  userProperties?: ActivityUserPropertiesList;
-}
-export const Activity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-    type: S.String,
-    description: S.optional(S.String),
-    state: S.optional(ActivityState),
-    onInactiveMarkAs: S.optional(ActivityOnInactiveMarkAs),
-    dependsOn: S.optional(ActivityDependsOnList),
-    userProperties: S.optional(ActivityUserPropertiesList),
-  }),
-).annotate({ identifier: "Activity" }) as any as S.Schema<Activity>;
-
-/** List of activities in pipeline. */
-export type PipelineActivitiesList = Array<Activity>;
-export const PipelineActivitiesList = /*@__PURE__*/ S.Array(
-  Activity,
-) as any as S.Schema<PipelineActivitiesList>;
-
-/** List of parameters for pipeline. */
-export type PipelineParametersMap = {
-  [key: string]: ParameterSpecification | undefined;
-};
-export const PipelineParametersMap = /*@__PURE__*/ S.Record(
-  S.String,
-  ParameterSpecification,
-) as any as S.Schema<PipelineParametersMap>;
-
-/** Variable type. */
-export type VariableType = "String" | "Bool" | "Array";
-export const VariableType = /*@__PURE__*/ S.String;
-
-/** Definition of a single variable for a Pipeline. */
-export interface VariableSpecification {
-  /** Variable type. */
-  type: VariableType | (string & {});
-  /** Default value of variable. */
-  defaultValue?: unknown;
-}
-export const VariableSpecification = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: VariableType,
-    defaultValue: S.optional(S.Unknown),
-  }),
-).annotate({
-  identifier: "VariableSpecification",
-}) as any as S.Schema<VariableSpecification>;
-
-/** List of variables for pipeline. */
-export type PipelineVariablesMap = {
-  [key: string]: VariableSpecification | undefined;
-};
-export const PipelineVariablesMap = /*@__PURE__*/ S.Record(
-  S.String,
-  VariableSpecification,
-) as any as S.Schema<PipelineVariablesMap>;
-
-/** List of tags that can be used for describing the Pipeline. */
-export type PipelineAnnotationsList = Array<unknown>;
-export const PipelineAnnotationsList = /*@__PURE__*/ S.Array(
-  S.Unknown,
-) as any as S.Schema<PipelineAnnotationsList>;
-
-/** Dimensions emitted by Pipeline. */
-export type PipelineRunDimensionsMap = { [key: string]: unknown | undefined };
-export const PipelineRunDimensionsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<PipelineRunDimensionsMap>;
-
-/** The folder that this Pipeline is in. If not specified, Pipeline will appear at the root level. */
-export interface PipelineFolder {
-  /** The name of the folder that this Pipeline is in. */
-  name?: string;
-}
-export const PipelineFolder = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-  }),
-).annotate({ identifier: "PipelineFolder" }) as any as S.Schema<PipelineFolder>;
-
-/** Pipeline ElapsedTime Metric Policy. */
-export interface PipelineElapsedTimeMetricPolicy {
-  /** TimeSpan value, after which an Azure Monitoring Metric is fired. */
-  duration?: unknown;
-}
-export const PipelineElapsedTimeMetricPolicy = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    duration: S.optional(S.Unknown),
-  }),
-).annotate({
-  identifier: "PipelineElapsedTimeMetricPolicy",
-}) as any as S.Schema<PipelineElapsedTimeMetricPolicy>;
-
-/** Pipeline Policy. */
-export interface PipelinePolicy {
-  /** Pipeline ElapsedTime Metric Policy. */
-  elapsedTimeMetric?: PipelineElapsedTimeMetricPolicy;
-}
-export const PipelinePolicy = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    elapsedTimeMetric: S.optional(PipelineElapsedTimeMetricPolicy),
-  }),
-).annotate({ identifier: "PipelinePolicy" }) as any as S.Schema<PipelinePolicy>;
-
-/** A data factory pipeline. */
-export interface Pipeline {
-  /** The description of the pipeline. */
-  description?: string;
-  /** List of activities in pipeline. */
-  activities?: PipelineActivitiesList;
-  /** List of parameters for pipeline. */
-  parameters?: PipelineParametersMap;
-  /** List of variables for pipeline. */
-  variables?: PipelineVariablesMap;
-  /** The max number of concurrent runs for the pipeline. */
-  concurrency?: number;
-  /** List of tags that can be used for describing the Pipeline. */
-  annotations?: PipelineAnnotationsList;
-  /** Dimensions emitted by Pipeline. */
-  runDimensions?: PipelineRunDimensionsMap;
-  /** The folder that this Pipeline is in. If not specified, Pipeline will appear at the root level. */
-  folder?: PipelineFolder;
-  /** Pipeline Policy. */
-  policy?: PipelinePolicy;
-}
-export const Pipeline = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    description: S.optional(S.String),
-    activities: S.optional(PipelineActivitiesList),
-    parameters: S.optional(PipelineParametersMap),
-    variables: S.optional(PipelineVariablesMap),
-    concurrency: S.optional(S.Number),
-    annotations: S.optional(PipelineAnnotationsList),
-    runDimensions: S.optional(PipelineRunDimensionsMap),
-    folder: S.optional(PipelineFolder),
-    policy: S.optional(PipelinePolicy),
-  }),
-).annotate({ identifier: "Pipeline" }) as any as S.Schema<Pipeline>;
-
 export interface PipelinesCreateOrUpdateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -6601,253 +6814,6 @@ export const PipelinesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "PipelinesCreateOrUpdateResponse",
 }) as any as S.Schema<PipelinesCreateOrUpdateResponse>;
-
-export type PipelinesCreateRunRequestBodyMap = {
-  [key: string]: unknown | undefined;
-};
-export const PipelinesCreateRunRequestBodyMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<PipelinesCreateRunRequestBodyMap>;
-
-export interface PipelinesCreateRunRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-  /** The pipeline name. */
-  pipelineName: string;
-  /** The pipeline run identifier. If run ID is specified the parameters of the specified run will be used to create a new run. */
-  referencePipelineRunId?: string;
-  /** Recovery mode flag. If recovery mode is set to true, the specified referenced pipeline run and the new run will be grouped under the same groupId. */
-  isRecovery?: boolean;
-  /** In recovery mode, the rerun will start from this activity. If not specified, all activities will run. */
-  startActivityName?: string;
-  /** In recovery mode, if set to true, the rerun will start from failed activities. The property will be used only if startActivityName is not specified. */
-  startFromFailure?: boolean;
-  body?: PipelinesCreateRunRequestBodyMap;
-}
-export const PipelinesCreateRunRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    factoryName: S.String.pipe(T.Label()),
-    pipelineName: S.String.pipe(T.Label()),
-    referencePipelineRunId: S.optional(S.String.pipe(T.Query())),
-    isRecovery: S.optional(S.Boolean.pipe(T.Query())),
-    startActivityName: S.optional(S.String.pipe(T.Query())),
-    startFromFailure: S.optional(S.Boolean.pipe(T.Query())),
-    body: S.optional(PipelinesCreateRunRequestBodyMap.pipe(T.HttpBody())),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/pipelines/{pipelineName}/createRun",
-      code: 200,
-      apiVersion: "2018-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "PipelinesCreateRunRequest",
-}) as any as S.Schema<PipelinesCreateRunRequest>;
-
-/** Response body with a run identifier. */
-export interface CreateRunResponse {
-  /** Identifier of a run. */
-  runId: string;
-}
-export const CreateRunResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    runId: S.String,
-  }),
-).annotate({
-  identifier: "CreateRunResponse",
-}) as any as S.Schema<CreateRunResponse>;
-
-export interface PipelinesDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-  /** The pipeline name. */
-  pipelineName: string;
-}
-export const PipelinesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    factoryName: S.String.pipe(T.Label()),
-    pipelineName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/pipelines/{pipelineName}",
-      code: 200,
-      apiVersion: "2018-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "PipelinesDeleteRequest",
-}) as any as S.Schema<PipelinesDeleteRequest>;
-
-export interface PipelinesDeleteResponse {}
-export const PipelinesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "PipelinesDeleteResponse",
-}) as any as S.Schema<PipelinesDeleteResponse>;
-
-export interface PipelinesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-  /** The pipeline name. */
-  pipelineName: string;
-}
-export const PipelinesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    factoryName: S.String.pipe(T.Label()),
-    pipelineName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/pipelines/{pipelineName}",
-      code: 200,
-      apiVersion: "2018-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "PipelinesGetRequest",
-}) as any as S.Schema<PipelinesGetRequest>;
-
-export interface PipelinesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of the pipeline. */
-  properties: Pipeline;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const PipelinesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: Pipeline,
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PipelinesGetResponse",
-}) as any as S.Schema<PipelinesGetResponse>;
-
-export interface PipelinesListByFactoryRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-}
-export const PipelinesListByFactoryRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    factoryName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/pipelines",
-      code: 200,
-      apiVersion: "2018-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "PipelinesListByFactoryRequest",
-}) as any as S.Schema<PipelinesListByFactoryRequest>;
-
-/** Pipeline resource type. */
-export interface PipelineResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of the pipeline. */
-  properties: Pipeline;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const PipelineResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: Pipeline,
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PipelineResource",
-}) as any as S.Schema<PipelineResource>;
-
-/** The PipelineResource items on this page */
-export type PipelineListResponseValueList = Array<PipelineResource>;
-export const PipelineListResponseValueList = /*@__PURE__*/ S.Array(
-  PipelineResource,
-) as any as S.Schema<PipelineListResponseValueList>;
-
-/** A list of pipeline resources. */
-export interface PipelineListResponse {
-  /** The PipelineResource items on this page */
-  value: PipelineListResponseValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const PipelineListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: PipelineListResponseValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PipelineListResponse",
-}) as any as S.Schema<PipelineListResponse>;
-
-/** The state of a private link connection */
-export interface PrivateLinkConnectionState {
-  /** Status of a private link connection */
-  status?: string;
-  /** Description of a private link connection */
-  description?: string;
-  /** ActionsRequired for a private link connection */
-  actionsRequired?: string;
-}
-export const PrivateLinkConnectionState = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(S.String),
-    description: S.optional(S.String),
-    actionsRequired: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PrivateLinkConnectionState",
-}) as any as S.Schema<PrivateLinkConnectionState>;
 
 /** Private endpoint which a connection belongs to. */
 export interface PrivateEndpoint {
@@ -6911,34 +6877,6 @@ export const PrivateEndpointConnectionCreateOrUpdateRequest =
     identifier: "PrivateEndpointConnectionCreateOrUpdateRequest",
   }) as any as S.Schema<PrivateEndpointConnectionCreateOrUpdateRequest>;
 
-/** A wrapper for an ARM resource id */
-export interface ArmIdWrapper {
-  id?: string;
-}
-export const ArmIdWrapper = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-  }),
-).annotate({ identifier: "ArmIdWrapper" }) as any as S.Schema<ArmIdWrapper>;
-
-/** A remote private endpoint connection */
-export interface RemotePrivateEndpointConnection {
-  provisioningState?: string;
-  /** PrivateEndpoint of a remote private endpoint connection */
-  privateEndpoint?: ArmIdWrapper;
-  /** The state of a private link connection */
-  privateLinkServiceConnectionState?: PrivateLinkConnectionState;
-}
-export const RemotePrivateEndpointConnection = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisioningState: S.optional(S.String),
-    privateEndpoint: S.optional(ArmIdWrapper),
-    privateLinkServiceConnectionState: S.optional(PrivateLinkConnectionState),
-  }),
-).annotate({
-  identifier: "RemotePrivateEndpointConnection",
-}) as any as S.Schema<RemotePrivateEndpointConnection>;
-
 export interface PrivateEndpointConnectionCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
@@ -6967,316 +6905,522 @@ export const PrivateEndpointConnectionCreateOrUpdateResponse =
     identifier: "PrivateEndpointConnectionCreateOrUpdateResponse",
   }) as any as S.Schema<PrivateEndpointConnectionCreateOrUpdateResponse>;
 
-export interface PrivateEndpointConnectionDeleteRequest {
+export interface RefreshIntegrationRuntimeObjectMetadataRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The factory name. */
   factoryName: string;
-  /** The private endpoint connection name. */
-  privateEndpointConnectionName: string;
+  /** The integration runtime name. */
+  integrationRuntimeName: string;
 }
-export const PrivateEndpointConnectionDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      factoryName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2018-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateEndpointConnectionDeleteRequest",
-}) as any as S.Schema<PrivateEndpointConnectionDeleteRequest>;
-
-export interface PrivateEndpointConnectionDeleteResponse {}
-export const PrivateEndpointConnectionDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "PrivateEndpointConnectionDeleteResponse",
-}) as any as S.Schema<PrivateEndpointConnectionDeleteResponse>;
-
-export interface PrivateEndpointConnectionGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-  /** The private endpoint connection name. */
-  privateEndpointConnectionName: string;
-}
-export const PrivateEndpointConnectionGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    factoryName: S.String.pipe(T.Label()),
-    privateEndpointConnectionName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/privateEndpointConnections/{privateEndpointConnectionName}",
-      code: 200,
-      apiVersion: "2018-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "PrivateEndpointConnectionGetRequest",
-}) as any as S.Schema<PrivateEndpointConnectionGetRequest>;
-
-export interface PrivateEndpointConnectionGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Core resource properties */
-  properties?: RemotePrivateEndpointConnection;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const PrivateEndpointConnectionGetResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(RemotePrivateEndpointConnection),
-      etag: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "PrivateEndpointConnectionGetResponse",
-}) as any as S.Schema<PrivateEndpointConnectionGetResponse>;
-
-export interface PrivateEndPointConnectionsListByFactoryRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-}
-export const PrivateEndPointConnectionsListByFactoryRequest =
+export const RefreshIntegrationRuntimeObjectMetadataRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       factoryName: S.String.pipe(T.Label()),
+      integrationRuntimeName: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/privateEndpointConnections",
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}/refreshObjectMetadata",
         code: 200,
         apiVersion: "2018-06-01",
       }),
     ),
   ).annotate({
-    identifier: "PrivateEndPointConnectionsListByFactoryRequest",
-  }) as any as S.Schema<PrivateEndPointConnectionsListByFactoryRequest>;
+    identifier: "RefreshIntegrationRuntimeObjectMetadataRequest",
+  }) as any as S.Schema<RefreshIntegrationRuntimeObjectMetadataRequest>;
 
-/** Private Endpoint Connection ARM resource. */
-export interface PrivateEndpointConnectionResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
+/** The status of the operation. */
+export interface SsisObjectMetadataStatusResponse {
+  /** The status of the operation. */
+  status?: string;
+  /** The operation name. */
   name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Core resource properties */
-  properties?: RemotePrivateEndpointConnection;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
+  /** The operation properties. */
+  properties?: string;
+  /** The operation error message. */
+  error?: string;
 }
-export const PrivateEndpointConnectionResource = /*@__PURE__*/ S.suspend(() =>
+export const SsisObjectMetadataStatusResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    id: S.optional(S.String),
+    status: S.optional(S.String),
     name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(RemotePrivateEndpointConnection),
-    etag: S.optional(S.String),
+    properties: S.optional(S.String),
+    error: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "PrivateEndpointConnectionResource",
-}) as any as S.Schema<PrivateEndpointConnectionResource>;
+  identifier: "SsisObjectMetadataStatusResponse",
+}) as any as S.Schema<SsisObjectMetadataStatusResponse>;
 
-/** The PrivateEndpointConnectionResource items on this page */
-export type PrivateEndpointConnectionListResponseValueList =
-  Array<PrivateEndpointConnectionResource>;
-export const PrivateEndpointConnectionListResponseValueList =
-  /*@__PURE__*/ S.Array(
-    PrivateEndpointConnectionResource,
-  ) as any as S.Schema<PrivateEndpointConnectionListResponseValueList>;
+/** The name of the authentication key to regenerate. */
+export type IntegrationRuntimeAuthKeyName = "authKey1" | "authKey2";
+export const IntegrationRuntimeAuthKeyName = /*@__PURE__*/ S.String;
 
-/** A list of linked service resources. */
-export interface PrivateEndpointConnectionListResponse {
-  /** The PrivateEndpointConnectionResource items on this page */
-  value: PrivateEndpointConnectionListResponseValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const PrivateEndpointConnectionListResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      value: PrivateEndpointConnectionListResponseValueList,
-      nextLink: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "PrivateEndpointConnectionListResponse",
-}) as any as S.Schema<PrivateEndpointConnectionListResponse>;
-
-export interface PrivateLinkResourcesGetRequest {
+export interface RegenerateIntegrationRuntimeAuthKeyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The factory name. */
   factoryName: string;
+  /** The integration runtime name. */
+  integrationRuntimeName: string;
+  /** The name of the authentication key to regenerate. */
+  keyName?: IntegrationRuntimeAuthKeyName | (string & {});
 }
-export const PrivateLinkResourcesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    factoryName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/privateLinkResources",
-      code: 200,
-      apiVersion: "2018-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "PrivateLinkResourcesGetRequest",
-}) as any as S.Schema<PrivateLinkResourcesGetRequest>;
-
-/** RequiredMembers of a private link resource */
-export type PrivateLinkResourcePropertiesRequiredMembersList = Array<string>;
-export const PrivateLinkResourcePropertiesRequiredMembersList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredMembersList>;
-
-/** RequiredZoneNames of a private link resource */
-export type PrivateLinkResourcePropertiesRequiredZoneNamesList = Array<string>;
-export const PrivateLinkResourcePropertiesRequiredZoneNamesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredZoneNamesList>;
-
-/** Properties of a private link resource */
-export interface PrivateLinkResourceProperties {
-  /** GroupId of a private link resource */
-  groupId?: string;
-  /** RequiredMembers of a private link resource */
-  requiredMembers?: PrivateLinkResourcePropertiesRequiredMembersList;
-  /** RequiredZoneNames of a private link resource */
-  requiredZoneNames?: PrivateLinkResourcePropertiesRequiredZoneNamesList;
-}
-export const PrivateLinkResourceProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    groupId: S.optional(S.String),
-    requiredMembers: S.optional(
-      PrivateLinkResourcePropertiesRequiredMembersList,
+export const RegenerateIntegrationRuntimeAuthKeyRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      factoryName: S.String.pipe(T.Label()),
+      integrationRuntimeName: S.String.pipe(T.Label()),
+      keyName: S.optional(IntegrationRuntimeAuthKeyName),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}/regenerateAuthKey",
+        code: 200,
+        apiVersion: "2018-06-01",
+      }),
     ),
-    requiredZoneNames: S.optional(
-      PrivateLinkResourcePropertiesRequiredZoneNamesList,
+  ).annotate({
+    identifier: "RegenerateIntegrationRuntimeAuthKeyRequest",
+  }) as any as S.Schema<RegenerateIntegrationRuntimeAuthKeyRequest>;
+
+export interface RemoveIntegrationRuntimeLinksRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+  /** The integration runtime name. */
+  integrationRuntimeName: string;
+}
+export const RemoveIntegrationRuntimeLinksRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      factoryName: S.String.pipe(T.Label()),
+      integrationRuntimeName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}/removeLinks",
+        code: 200,
+        apiVersion: "2018-06-01",
+      }),
     ),
-  }),
 ).annotate({
-  identifier: "PrivateLinkResourceProperties",
-}) as any as S.Schema<PrivateLinkResourceProperties>;
+  identifier: "RemoveIntegrationRuntimeLinksRequest",
+}) as any as S.Schema<RemoveIntegrationRuntimeLinksRequest>;
 
-/** A private link resource */
-export interface PrivateLinkResource {
-  /** The resource identifier. */
-  id?: string;
-  /** The resource name. */
-  name?: string;
-  /** The resource type. */
-  type?: string;
-  /** Etag identifies change in the resource. */
-  etag?: string;
-  /** Core resource properties */
-  properties?: PrivateLinkResourceProperties;
-}
-export const PrivateLinkResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    etag: S.optional(S.String),
-    properties: S.optional(PrivateLinkResourceProperties),
-  }),
+export interface RemoveIntegrationRuntimeLinksResponse {}
+export const RemoveIntegrationRuntimeLinksResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
 ).annotate({
-  identifier: "PrivateLinkResource",
-}) as any as S.Schema<PrivateLinkResource>;
+  identifier: "RemoveIntegrationRuntimeLinksResponse",
+}) as any as S.Schema<RemoveIntegrationRuntimeLinksResponse>;
 
-export type PrivateLinkResourcesWrapperValueList = Array<PrivateLinkResource>;
-export const PrivateLinkResourcesWrapperValueList = /*@__PURE__*/ S.Array(
-  PrivateLinkResource,
-) as any as S.Schema<PrivateLinkResourcesWrapperValueList>;
+/** List of filters. */
+export type RunActivityRunsQueryByPipelineRequestFiltersList =
+  Array<RunQueryFilter>;
+export const RunActivityRunsQueryByPipelineRequestFiltersList =
+  /*@__PURE__*/ S.Array(
+    RunQueryFilter,
+  ) as any as S.Schema<RunActivityRunsQueryByPipelineRequestFiltersList>;
 
-/** Wrapper for a collection of private link resources */
-export interface PrivateLinkResourcesWrapper {
-  value: PrivateLinkResourcesWrapperValueList;
-}
-export const PrivateLinkResourcesWrapper = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: PrivateLinkResourcesWrapperValueList,
-  }),
-).annotate({
-  identifier: "PrivateLinkResourcesWrapper",
-}) as any as S.Schema<PrivateLinkResourcesWrapper>;
+/** List of OrderBy option. */
+export type RunActivityRunsQueryByPipelineRequestOrderByList =
+  Array<RunQueryOrderBy>;
+export const RunActivityRunsQueryByPipelineRequestOrderByList =
+  /*@__PURE__*/ S.Array(
+    RunQueryOrderBy,
+  ) as any as S.Schema<RunActivityRunsQueryByPipelineRequestOrderByList>;
 
-export interface TriggerRunsCancelRequest {
+export interface RunActivityRunsQueryByPipelineRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   factoryName: string;
-  triggerName: string;
   /** The pipeline run identifier. */
   runId: string;
+  /** The continuation token for getting the next page of results. Null for first page. */
+  continuationToken?: string;
+  /** The time at or after which the run event was updated in 'ISO 8601' format. */
+  lastUpdatedAfter: string;
+  /** The time at or before which the run event was updated in 'ISO 8601' format. */
+  lastUpdatedBefore: string;
+  /** List of filters. */
+  filters?: RunActivityRunsQueryByPipelineRequestFiltersList;
+  /** List of OrderBy option. */
+  orderBy?: RunActivityRunsQueryByPipelineRequestOrderByList;
 }
-export const TriggerRunsCancelRequest = /*@__PURE__*/ S.suspend(() =>
+export const RunActivityRunsQueryByPipelineRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      factoryName: S.String.pipe(T.Label()),
+      runId: S.String.pipe(T.Label()),
+      continuationToken: S.optional(S.String),
+      lastUpdatedAfter: S.String,
+      lastUpdatedBefore: S.String,
+      filters: S.optional(RunActivityRunsQueryByPipelineRequestFiltersList),
+      orderBy: S.optional(RunActivityRunsQueryByPipelineRequestOrderByList),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/pipelineruns/{runId}/queryActivityruns",
+        code: 200,
+        apiVersion: "2018-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "RunActivityRunsQueryByPipelineRequest",
+}) as any as S.Schema<RunActivityRunsQueryByPipelineRequest>;
+
+/** Information about an activity run in a pipeline. */
+export interface ActivityRun {
+  /** The name of the pipeline. */
+  pipelineName?: string;
+  /** The id of the pipeline run. */
+  pipelineRunId?: string;
+  /** The name of the activity. */
+  activityName?: string;
+  /** The type of the activity. */
+  activityType?: string;
+  /** The id of the activity run. */
+  activityRunId?: string;
+  /** The name of the compute linked service. */
+  linkedServiceName?: string;
+  /** The status of the activity run. */
+  status?: string;
+  /** The start time of the activity run in 'ISO 8601' format. */
+  activityRunStart?: string;
+  /** The end time of the activity run in 'ISO 8601' format. */
+  activityRunEnd?: string;
+  /** The duration of the activity run. */
+  durationInMs?: number;
+  /** The input for the activity. */
+  input?: unknown;
+  /** The output for the activity. */
+  output?: unknown;
+  /** The error if any from the activity run. */
+  error?: unknown;
+}
+export const ActivityRun = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    pipelineName: S.optional(S.String),
+    pipelineRunId: S.optional(S.String),
+    activityName: S.optional(S.String),
+    activityType: S.optional(S.String),
+    activityRunId: S.optional(S.String),
+    linkedServiceName: S.optional(S.String),
+    status: S.optional(S.String),
+    activityRunStart: S.optional(S.String),
+    activityRunEnd: S.optional(S.String),
+    durationInMs: S.optional(S.Number),
+    input: S.optional(S.Unknown),
+    output: S.optional(S.Unknown),
+    error: S.optional(S.Unknown),
+  }),
+).annotate({ identifier: "ActivityRun" }) as any as S.Schema<ActivityRun>;
+
+/** List of activity runs. */
+export type ActivityRunsQueryResponseValueList = Array<ActivityRun>;
+export const ActivityRunsQueryResponseValueList = /*@__PURE__*/ S.Array(
+  ActivityRun,
+) as any as S.Schema<ActivityRunsQueryResponseValueList>;
+
+/** A list activity runs. */
+export interface ActivityRunsQueryResponse {
+  /** List of activity runs. */
+  value: ActivityRunsQueryResponseValueList;
+  /** The continuation token for getting the next page of results, if any remaining results exist, null otherwise. */
+  continuationToken?: string;
+}
+export const ActivityRunsQueryResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ActivityRunsQueryResponseValueList,
+    continuationToken: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ActivityRunsQueryResponse",
+}) as any as S.Schema<ActivityRunsQueryResponse>;
+
+export interface StartChangeDataCaptureRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+  /** The change data capture name. */
+  changeDataCaptureName: string;
+}
+export const StartChangeDataCaptureRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     factoryName: S.String.pipe(T.Label()),
-    triggerName: S.String.pipe(T.Label()),
-    runId: S.String.pipe(T.Label()),
+    changeDataCaptureName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/triggers/{triggerName}/triggerRuns/{runId}/cancel",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/adfcdcs/{changeDataCaptureName}/start",
       code: 200,
       apiVersion: "2018-06-01",
     }),
   ),
 ).annotate({
-  identifier: "TriggerRunsCancelRequest",
-}) as any as S.Schema<TriggerRunsCancelRequest>;
+  identifier: "StartChangeDataCaptureRequest",
+}) as any as S.Schema<StartChangeDataCaptureRequest>;
 
-export interface TriggerRunsCancelResponse {}
-export const TriggerRunsCancelResponse = /*@__PURE__*/ S.suspend(() =>
+export interface StartChangeDataCaptureResponse {}
+export const StartChangeDataCaptureResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "TriggerRunsCancelResponse",
-}) as any as S.Schema<TriggerRunsCancelResponse>;
+  identifier: "StartChangeDataCaptureResponse",
+}) as any as S.Schema<StartChangeDataCaptureResponse>;
+
+export interface StartIntegrationRuntimeRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+  /** The integration runtime name. */
+  integrationRuntimeName: string;
+}
+export const StartIntegrationRuntimeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    factoryName: S.String.pipe(T.Label()),
+    integrationRuntimeName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}/start",
+      code: 200,
+      apiVersion: "2018-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "StartIntegrationRuntimeRequest",
+}) as any as S.Schema<StartIntegrationRuntimeRequest>;
+
+export interface StartTriggerRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+  /** The trigger name. */
+  triggerName: string;
+}
+export const StartTriggerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    factoryName: S.String.pipe(T.Label()),
+    triggerName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/triggers/{triggerName}/start",
+      code: 200,
+      apiVersion: "2018-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "StartTriggerRequest",
+}) as any as S.Schema<StartTriggerRequest>;
+
+export interface StartTriggerResponse {}
+export const StartTriggerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "StartTriggerResponse",
+}) as any as S.Schema<StartTriggerResponse>;
+
+export interface StopChangeDataCaptureRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+  /** The change data capture name. */
+  changeDataCaptureName: string;
+}
+export const StopChangeDataCaptureRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    factoryName: S.String.pipe(T.Label()),
+    changeDataCaptureName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/adfcdcs/{changeDataCaptureName}/stop",
+      code: 200,
+      apiVersion: "2018-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "StopChangeDataCaptureRequest",
+}) as any as S.Schema<StopChangeDataCaptureRequest>;
+
+export interface StopChangeDataCaptureResponse {}
+export const StopChangeDataCaptureResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "StopChangeDataCaptureResponse",
+}) as any as S.Schema<StopChangeDataCaptureResponse>;
+
+export interface StopIntegrationRuntimeRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+  /** The integration runtime name. */
+  integrationRuntimeName: string;
+}
+export const StopIntegrationRuntimeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    factoryName: S.String.pipe(T.Label()),
+    integrationRuntimeName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}/stop",
+      code: 200,
+      apiVersion: "2018-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "StopIntegrationRuntimeRequest",
+}) as any as S.Schema<StopIntegrationRuntimeRequest>;
+
+export interface StopIntegrationRuntimeResponse {}
+export const StopIntegrationRuntimeResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "StopIntegrationRuntimeResponse",
+}) as any as S.Schema<StopIntegrationRuntimeResponse>;
+
+export interface StopTriggerRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+  /** The trigger name. */
+  triggerName: string;
+}
+export const StopTriggerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    factoryName: S.String.pipe(T.Label()),
+    triggerName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/triggers/{triggerName}/stop",
+      code: 200,
+      apiVersion: "2018-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "StopTriggerRequest",
+}) as any as S.Schema<StopTriggerRequest>;
+
+export interface StopTriggerResponse {}
+export const StopTriggerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "StopTriggerResponse",
+}) as any as S.Schema<StopTriggerResponse>;
+
+export interface SubscribeTriggerToEventsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+  /** The trigger name. */
+  triggerName: string;
+}
+export const SubscribeTriggerToEventsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    factoryName: S.String.pipe(T.Label()),
+    triggerName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/triggers/{triggerName}/subscribeToEvents",
+      code: 200,
+      apiVersion: "2018-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "SubscribeTriggerToEventsRequest",
+}) as any as S.Schema<SubscribeTriggerToEventsRequest>;
+
+export interface SyncIntegrationRuntimeCredentialsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The factory name. */
+  factoryName: string;
+  /** The integration runtime name. */
+  integrationRuntimeName: string;
+}
+export const SyncIntegrationRuntimeCredentialsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      factoryName: S.String.pipe(T.Label()),
+      integrationRuntimeName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}/syncCredentials",
+        code: 200,
+        apiVersion: "2018-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "SyncIntegrationRuntimeCredentialsRequest",
+}) as any as S.Schema<SyncIntegrationRuntimeCredentialsRequest>;
+
+export interface SyncIntegrationRuntimeCredentialsResponse {}
+export const SyncIntegrationRuntimeCredentialsResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "SyncIntegrationRuntimeCredentialsResponse",
+  }) as any as S.Schema<SyncIntegrationRuntimeCredentialsResponse>;
 
 /** List of filters. */
 export type TriggerRunsQueryByFactoryRequestFiltersList = Array<RunQueryFilter>;
@@ -7465,36 +7609,6 @@ export const TriggerRunsRerunResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "TriggerRunsRerunResponse",
 }) as any as S.Schema<TriggerRunsRerunResponse>;
 
-/** Enumerates possible state of Triggers. */
-export type TriggerRuntimeState = "Started" | "Stopped" | "Disabled";
-export const TriggerRuntimeState = /*@__PURE__*/ S.String;
-
-/** List of tags that can be used for describing the trigger. */
-export type TriggerAnnotationsList = Array<unknown>;
-export const TriggerAnnotationsList = /*@__PURE__*/ S.Array(
-  S.Unknown,
-) as any as S.Schema<TriggerAnnotationsList>;
-
-/** Azure data factory nested object which contains information about creating pipeline run */
-export interface Trigger {
-  /** Trigger type. */
-  type: string;
-  /** Trigger description. */
-  description?: string;
-  /** Indicates if trigger is running or not. Updated when Start/Stop APIs are called on the Trigger. */
-  runtimeState?: TriggerRuntimeState | (string & {});
-  /** List of tags that can be used for describing the trigger. */
-  annotations?: TriggerAnnotationsList;
-}
-export const Trigger = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.String,
-    description: S.optional(S.String),
-    runtimeState: S.optional(TriggerRuntimeState),
-    annotations: S.optional(TriggerAnnotationsList),
-  }),
-).annotate({ identifier: "Trigger" }) as any as S.Schema<Trigger>;
-
 export interface TriggersCreateOrUpdateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -7553,225 +7667,6 @@ export const TriggersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "TriggersCreateOrUpdateResponse",
 }) as any as S.Schema<TriggersCreateOrUpdateResponse>;
 
-export interface TriggersDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-  /** The trigger name. */
-  triggerName: string;
-}
-export const TriggersDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    factoryName: S.String.pipe(T.Label()),
-    triggerName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/triggers/{triggerName}",
-      code: 200,
-      apiVersion: "2018-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "TriggersDeleteRequest",
-}) as any as S.Schema<TriggersDeleteRequest>;
-
-export interface TriggersDeleteResponse {}
-export const TriggersDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "TriggersDeleteResponse",
-}) as any as S.Schema<TriggersDeleteResponse>;
-
-export interface TriggersGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-  /** The trigger name. */
-  triggerName: string;
-}
-export const TriggersGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    factoryName: S.String.pipe(T.Label()),
-    triggerName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/triggers/{triggerName}",
-      code: 200,
-      apiVersion: "2018-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "TriggersGetRequest",
-}) as any as S.Schema<TriggersGetRequest>;
-
-export interface TriggersGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of the trigger. */
-  properties: Trigger;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const TriggersGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: Trigger,
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "TriggersGetResponse",
-}) as any as S.Schema<TriggersGetResponse>;
-
-export interface TriggersGetEventSubscriptionStatusRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-  /** The trigger name. */
-  triggerName: string;
-}
-export const TriggersGetEventSubscriptionStatusRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      factoryName: S.String.pipe(T.Label()),
-      triggerName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/triggers/{triggerName}/getEventSubscriptionStatus",
-        code: 200,
-        apiVersion: "2018-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "TriggersGetEventSubscriptionStatusRequest",
-  }) as any as S.Schema<TriggersGetEventSubscriptionStatusRequest>;
-
-/** Event Subscription Status. */
-export type EventSubscriptionStatus =
-  | "Enabled"
-  | "Provisioning"
-  | "Deprovisioning"
-  | "Disabled"
-  | "Unknown";
-export const EventSubscriptionStatus = /*@__PURE__*/ S.String;
-
-/** Defines the response of a trigger subscription operation. */
-export interface TriggerSubscriptionOperationStatus {
-  /** Trigger name. */
-  triggerName?: string;
-  /** Event Subscription Status. */
-  status?: EventSubscriptionStatus;
-}
-export const TriggerSubscriptionOperationStatus = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    triggerName: S.optional(S.String),
-    status: S.optional(EventSubscriptionStatus),
-  }),
-).annotate({
-  identifier: "TriggerSubscriptionOperationStatus",
-}) as any as S.Schema<TriggerSubscriptionOperationStatus>;
-
-export interface TriggersListByFactoryRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The factory name. */
-  factoryName: string;
-}
-export const TriggersListByFactoryRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    factoryName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/triggers",
-      code: 200,
-      apiVersion: "2018-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "TriggersListByFactoryRequest",
-}) as any as S.Schema<TriggersListByFactoryRequest>;
-
-/** Trigger resource type. */
-export interface TriggerResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of the trigger. */
-  properties: Trigger;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const TriggerResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: Trigger,
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "TriggerResource",
-}) as any as S.Schema<TriggerResource>;
-
-/** The TriggerResource items on this page */
-export type TriggerListResponseValueList = Array<TriggerResource>;
-export const TriggerListResponseValueList = /*@__PURE__*/ S.Array(
-  TriggerResource,
-) as any as S.Schema<TriggerListResponseValueList>;
-
-/** A list of trigger resources. */
-export interface TriggerListResponse {
-  /** The TriggerResource items on this page */
-  value: TriggerListResponseValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const TriggerListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: TriggerListResponseValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "TriggerListResponse",
-}) as any as S.Schema<TriggerListResponse>;
-
 export interface TriggersQueryByFactoryRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -7825,7 +7720,7 @@ export const TriggerQueryResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "TriggerQueryResponse",
 }) as any as S.Schema<TriggerQueryResponse>;
 
-export interface TriggersStartRequest {
+export interface UnsubscribeTriggerFromEventsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -7835,7 +7730,7 @@ export interface TriggersStartRequest {
   /** The trigger name. */
   triggerName: string;
 }
-export const TriggersStartRequest = /*@__PURE__*/ S.suspend(() =>
+export const UnsubscribeTriggerFromEventsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -7844,124 +7739,251 @@ export const TriggersStartRequest = /*@__PURE__*/ S.suspend(() =>
   }).pipe(
     T.Http({
       method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/triggers/{triggerName}/start",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/triggers/{triggerName}/unsubscribeFromEvents",
       code: 200,
       apiVersion: "2018-06-01",
     }),
   ),
 ).annotate({
-  identifier: "TriggersStartRequest",
-}) as any as S.Schema<TriggersStartRequest>;
+  identifier: "UnsubscribeTriggerFromEventsRequest",
+}) as any as S.Schema<UnsubscribeTriggerFromEventsRequest>;
 
-export interface TriggersStartResponse {}
-export const TriggersStartResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
+/** The resource tags. */
+export type UpdateFactoryRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateFactoryRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateFactoryRequestTagsMap>;
+
+/** Factory update resource properties. */
+export interface FactoryUpdateProperties {
+  /** Whether or not public network access is allowed for the data factory. */
+  publicNetworkAccess?: PublicNetworkAccess | (string & {});
+}
+export const FactoryUpdateProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    publicNetworkAccess: S.optional(PublicNetworkAccess),
+  }),
 ).annotate({
-  identifier: "TriggersStartResponse",
-}) as any as S.Schema<TriggersStartResponse>;
+  identifier: "FactoryUpdateProperties",
+}) as any as S.Schema<FactoryUpdateProperties>;
 
-export interface TriggersStopRequest {
+export interface UpdateFactoryRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The factory name. */
   factoryName: string;
-  /** The trigger name. */
-  triggerName: string;
+  /** The resource tags. */
+  tags?: UpdateFactoryRequestTagsMap;
+  /** Managed service identity of the factory. */
+  identity?: FactoryIdentity;
+  /** Properties of update the factory. */
+  properties?: FactoryUpdateProperties;
 }
-export const TriggersStopRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateFactoryRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     factoryName: S.String.pipe(T.Label()),
-    triggerName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateFactoryRequestTagsMap),
+    identity: S.optional(FactoryIdentity),
+    properties: S.optional(FactoryUpdateProperties),
   }).pipe(
     T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/triggers/{triggerName}/stop",
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}",
       code: 200,
       apiVersion: "2018-06-01",
     }),
   ),
 ).annotate({
-  identifier: "TriggersStopRequest",
-}) as any as S.Schema<TriggersStopRequest>;
+  identifier: "UpdateFactoryRequest",
+}) as any as S.Schema<UpdateFactoryRequest>;
 
-export interface TriggersStopResponse {}
-export const TriggersStopResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
+/** The resource tags. */
+export type UpdateFactoryResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateFactoryResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateFactoryResponseTagsMap>;
+
+export interface UpdateFactoryResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of the factory. */
+  properties?: FactoryProperties;
+  /** Managed service identity of the factory. */
+  identity?: FactoryIdentity;
+  /** The resource location. */
+  location?: string;
+  /** The resource tags. */
+  tags?: UpdateFactoryResponseTagsMap;
+  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
+  eTag?: string;
+}
+export const UpdateFactoryResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(FactoryProperties),
+    identity: S.optional(FactoryIdentity),
+    location: S.optional(S.String),
+    tags: S.optional(UpdateFactoryResponseTagsMap),
+    eTag: S.optional(S.String),
+  }),
 ).annotate({
-  identifier: "TriggersStopResponse",
-}) as any as S.Schema<TriggersStopResponse>;
+  identifier: "UpdateFactoryResponse",
+}) as any as S.Schema<UpdateFactoryResponse>;
 
-export interface TriggersSubscribeToEventsRequest {
+/** The state of integration runtime auto update. */
+export type IntegrationRuntimeAutoUpdate = "On" | "Off";
+export const IntegrationRuntimeAutoUpdate = /*@__PURE__*/ S.String;
+
+export interface UpdateIntegrationRuntimeRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The factory name. */
   factoryName: string;
-  /** The trigger name. */
-  triggerName: string;
+  /** The integration runtime name. */
+  integrationRuntimeName: string;
+  /** Enables or disables the auto-update feature of the self-hosted integration runtime. See https://go.microsoft.com/fwlink/?linkid=854189. */
+  autoUpdate?: IntegrationRuntimeAutoUpdate | (string & {});
+  /** The time offset (in hours) in the day, e.g., PT03H is 3 hours. The integration runtime auto update will happen on that time. */
+  updateDelayOffset?: string;
 }
-export const TriggersSubscribeToEventsRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateIntegrationRuntimeRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     factoryName: S.String.pipe(T.Label()),
-    triggerName: S.String.pipe(T.Label()),
+    integrationRuntimeName: S.String.pipe(T.Label()),
+    autoUpdate: S.optional(IntegrationRuntimeAutoUpdate),
+    updateDelayOffset: S.optional(S.String),
   }).pipe(
     T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/triggers/{triggerName}/subscribeToEvents",
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}",
       code: 200,
       apiVersion: "2018-06-01",
     }),
   ),
 ).annotate({
-  identifier: "TriggersSubscribeToEventsRequest",
-}) as any as S.Schema<TriggersSubscribeToEventsRequest>;
+  identifier: "UpdateIntegrationRuntimeRequest",
+}) as any as S.Schema<UpdateIntegrationRuntimeRequest>;
 
-export interface TriggersUnsubscribeFromEventsRequest {
+export interface UpdateIntegrationRuntimeResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Integration runtime properties. */
+  properties: IntegrationRuntime;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const UpdateIntegrationRuntimeResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: IntegrationRuntime,
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "UpdateIntegrationRuntimeResponse",
+}) as any as S.Schema<UpdateIntegrationRuntimeResponse>;
+
+export interface UpdateIntegrationRuntimeNodeRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** The factory name. */
   factoryName: string;
-  /** The trigger name. */
-  triggerName: string;
+  integrationRuntimeName: string;
+  /** The integration runtime node name. */
+  nodeName: string;
+  /** The number of concurrent jobs permitted to run on the integration runtime node. Values between 1 and maxConcurrentJobs(inclusive) are allowed. */
+  concurrentJobsLimit?: number;
 }
-export const TriggersUnsubscribeFromEventsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      factoryName: S.String.pipe(T.Label()),
-      triggerName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/triggers/{triggerName}/unsubscribeFromEvents",
-        code: 200,
-        apiVersion: "2018-06-01",
-      }),
-    ),
+export const UpdateIntegrationRuntimeNodeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    factoryName: S.String.pipe(T.Label()),
+    integrationRuntimeName: S.String.pipe(T.Label()),
+    nodeName: S.String.pipe(T.Label()),
+    concurrentJobsLimit: S.optional(S.Number),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}/nodes/{nodeName}",
+      code: 200,
+      apiVersion: "2018-06-01",
+    }),
+  ),
 ).annotate({
-  identifier: "TriggersUnsubscribeFromEventsRequest",
-}) as any as S.Schema<TriggersUnsubscribeFromEventsRequest>;
+  identifier: "UpdateIntegrationRuntimeNodeRequest",
+}) as any as S.Schema<UpdateIntegrationRuntimeNodeRequest>;
 
-export type ActivityRunsQueryByPipelineRunError = AzureOpError;
-/** Query activity runs based on input filter conditions. */
-export const ActivityRunsQueryByPipelineRun: API.OperationMethod<
-  ActivityRunsQueryByPipelineRunRequest,
-  ActivityRunsQueryResponse,
-  ActivityRunsQueryByPipelineRunError,
+export type AddDataFlowDebugSessionDataFlowError = AzureOpError;
+/** Add a data flow into debug session. */
+export const AddDataFlowDebugSessionDataFlow: API.OperationMethod<
+  AddDataFlowDebugSessionDataFlowRequest,
+  AddDataFlowToDebugSessionResponse,
+  AddDataFlowDebugSessionDataFlowError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ActivityRunsQueryByPipelineRunRequest,
-  output: ActivityRunsQueryResponse,
+  input: AddDataFlowDebugSessionDataFlowRequest,
+  output: AddDataFlowToDebugSessionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CancelPipelineRunError = AzureOpError;
+/** Cancel a pipeline run by its run ID. */
+export const CancelPipelineRun: API.OperationMethod<
+  CancelPipelineRunRequest,
+  CancelPipelineRunResponse,
+  CancelPipelineRunError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CancelPipelineRunRequest,
+  output: CancelPipelineRunResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CancelTriggerRunError = AzureOpError;
+/** Cancel a single trigger instance by runId. */
+export const CancelTriggerRun: API.OperationMethod<
+  CancelTriggerRunRequest,
+  CancelTriggerRunResponse,
+  CancelTriggerRunError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CancelTriggerRunRequest,
+  output: CancelTriggerRunResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -7982,66 +8004,6 @@ export const ChangeDataCaptureCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ChangeDataCaptureDeleteError = AzureOpError;
-/** Deletes a change data capture. */
-export const ChangeDataCaptureDelete: API.OperationMethod<
-  ChangeDataCaptureDeleteRequest,
-  ChangeDataCaptureDeleteResponse,
-  ChangeDataCaptureDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ChangeDataCaptureDeleteRequest,
-  output: ChangeDataCaptureDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ChangeDataCaptureGetError = AzureOpError;
-/** Gets a change data capture. */
-export const ChangeDataCaptureGet: API.OperationMethod<
-  ChangeDataCaptureGetRequest,
-  ChangeDataCaptureGetResponse,
-  ChangeDataCaptureGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ChangeDataCaptureGetRequest,
-  output: ChangeDataCaptureGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ChangeDataCaptureListByFactoryError = AzureOpError;
-/** Lists all resources of type change data capture. */
-export const ChangeDataCaptureListByFactory: API.OperationMethod<
-  ChangeDataCaptureListByFactoryRequest,
-  ChangeDataCaptureListResponse,
-  ChangeDataCaptureListByFactoryError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ChangeDataCaptureListByFactoryRequest,
-  output: ChangeDataCaptureListResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ChangeDataCaptureStartError = AzureOpError;
-/** Starts a change data capture. */
-export const ChangeDataCaptureStart: API.OperationMethod<
-  ChangeDataCaptureStartRequest,
-  ChangeDataCaptureStartResponse,
-  ChangeDataCaptureStartError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ChangeDataCaptureStartRequest,
-  output: ChangeDataCaptureStartResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ChangeDataCaptureStatusError = AzureOpError;
 /** Gets the current status for the change data capture resource. */
 export const ChangeDataCaptureStatus: API.OperationMethod<
@@ -8057,16 +8019,47 @@ export const ChangeDataCaptureStatus: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ChangeDataCaptureStopError = AzureOpError;
-/** Stops a change data capture. */
-export const ChangeDataCaptureStop: API.OperationMethod<
-  ChangeDataCaptureStopRequest,
-  ChangeDataCaptureStopResponse,
-  ChangeDataCaptureStopError,
+export type CreateDataFlowDebugSessionError = AzureOpError;
+/** Creates a data flow debug session. */
+export const CreateDataFlowDebugSession: API.OperationMethod<
+  CreateDataFlowDebugSessionRequest,
+  CreateDataFlowDebugSessionResponse,
+  CreateDataFlowDebugSessionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ChangeDataCaptureStopRequest,
-  output: ChangeDataCaptureStopResponse,
+  input: CreateDataFlowDebugSessionRequest,
+  output: CreateDataFlowDebugSessionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateIntegrationRuntimeLinkedIntegrationRuntimeError =
+  AzureOpError;
+/** Create a linked integration runtime entry in a shared integration runtime. */
+export const CreateIntegrationRuntimeLinkedIntegrationRuntime: API.OperationMethod<
+  CreateIntegrationRuntimeLinkedIntegrationRuntimeRequest,
+  IntegrationRuntimeStatusResponse,
+  CreateIntegrationRuntimeLinkedIntegrationRuntimeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateIntegrationRuntimeLinkedIntegrationRuntimeRequest,
+  output: IntegrationRuntimeStatusResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreatePipelineRunError = AzureOpError;
+/** Creates a run of a pipeline. */
+export const CreatePipelineRun: API.OperationMethod<
+  CreatePipelineRunRequest,
+  CreateRunResponse,
+  CreatePipelineRunError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreatePipelineRunRequest,
+  output: CreateRunResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -8082,111 +8075,6 @@ export const CredentialOperationsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: CredentialOperationsCreateOrUpdateRequest,
   output: CredentialOperationsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CredentialOperationsDeleteError = AzureOpError;
-/** Deletes a credential. */
-export const CredentialOperationsDelete: API.OperationMethod<
-  CredentialOperationsDeleteRequest,
-  CredentialOperationsDeleteResponse,
-  CredentialOperationsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CredentialOperationsDeleteRequest,
-  output: CredentialOperationsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CredentialOperationsGetError = AzureOpError;
-/** Gets a credential. */
-export const CredentialOperationsGet: API.OperationMethod<
-  CredentialOperationsGetRequest,
-  CredentialOperationsGetResponse,
-  CredentialOperationsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CredentialOperationsGetRequest,
-  output: CredentialOperationsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CredentialOperationsListByFactoryError = AzureOpError;
-/** List credentials. */
-export const CredentialOperationsListByFactory: API.OperationMethod<
-  CredentialOperationsListByFactoryRequest,
-  CredentialListResponse,
-  CredentialOperationsListByFactoryError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CredentialOperationsListByFactoryRequest,
-  output: CredentialListResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DataFlowDebugSessionAddDataFlowError = AzureOpError;
-/** Add a data flow into debug session. */
-export const DataFlowDebugSessionAddDataFlow: API.OperationMethod<
-  DataFlowDebugSessionAddDataFlowRequest,
-  AddDataFlowToDebugSessionResponse,
-  DataFlowDebugSessionAddDataFlowError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DataFlowDebugSessionAddDataFlowRequest,
-  output: AddDataFlowToDebugSessionResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DataFlowDebugSessionCreateError = AzureOpError;
-/** Creates a data flow debug session. */
-export const DataFlowDebugSessionCreate: API.OperationMethod<
-  DataFlowDebugSessionCreateRequest,
-  CreateDataFlowDebugSessionResponse,
-  DataFlowDebugSessionCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DataFlowDebugSessionCreateRequest,
-  output: CreateDataFlowDebugSessionResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DataFlowDebugSessionDeleteError = AzureOpError;
-/** Deletes a data flow debug session. */
-export const DataFlowDebugSessionDelete: API.OperationMethod<
-  DataFlowDebugSessionDeleteRequest,
-  DataFlowDebugSessionDeleteResponse,
-  DataFlowDebugSessionDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DataFlowDebugSessionDeleteRequest,
-  output: DataFlowDebugSessionDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DataFlowDebugSessionExecuteCommandError = AzureOpError;
-/** Execute a data flow debug command. */
-export const DataFlowDebugSessionExecuteCommand: API.OperationMethod<
-  DataFlowDebugSessionExecuteCommandRequest,
-  DataFlowDebugCommandResponse,
-  DataFlowDebugSessionExecuteCommandError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DataFlowDebugSessionExecuteCommandRequest,
-  output: DataFlowDebugCommandResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -8222,51 +8110,6 @@ export const DataFlowsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DataFlowsDeleteError = AzureOpError;
-/** Deletes a data flow. */
-export const DataFlowsDelete: API.OperationMethod<
-  DataFlowsDeleteRequest,
-  DataFlowsDeleteResponse,
-  DataFlowsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DataFlowsDeleteRequest,
-  output: DataFlowsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DataFlowsGetError = AzureOpError;
-/** Gets a data flow. */
-export const DataFlowsGet: API.OperationMethod<
-  DataFlowsGetRequest,
-  DataFlowsGetResponse,
-  DataFlowsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DataFlowsGetRequest,
-  output: DataFlowsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DataFlowsListByFactoryError = AzureOpError;
-/** Lists data flows. */
-export const DataFlowsListByFactory: API.OperationMethod<
-  DataFlowsListByFactoryRequest,
-  DataFlowListResponse,
-  DataFlowsListByFactoryError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DataFlowsListByFactoryRequest,
-  output: DataFlowListResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type DatasetsCreateOrUpdateError = AzureOpError;
 /** Creates or updates a dataset. */
 export const DatasetsCreateOrUpdate: API.OperationMethod<
@@ -8282,76 +8125,256 @@ export const DatasetsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DatasetsDeleteError = AzureOpError;
+export type DeleteChangeDataCaptureError = AzureOpError;
+/** Deletes a change data capture. */
+export const DeleteChangeDataCapture: API.OperationMethod<
+  DeleteChangeDataCaptureRequest,
+  DeleteChangeDataCaptureResponse,
+  DeleteChangeDataCaptureError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteChangeDataCaptureRequest,
+  output: DeleteChangeDataCaptureResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteCredentialOperationError = AzureOpError;
+/** Deletes a credential. */
+export const DeleteCredentialOperation: API.OperationMethod<
+  DeleteCredentialOperationRequest,
+  DeleteCredentialOperationResponse,
+  DeleteCredentialOperationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteCredentialOperationRequest,
+  output: DeleteCredentialOperationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteDataFlowError = AzureOpError;
+/** Deletes a data flow. */
+export const DeleteDataFlow: API.OperationMethod<
+  DeleteDataFlowRequest,
+  DeleteDataFlowResponse,
+  DeleteDataFlowError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteDataFlowRequest,
+  output: DeleteDataFlowResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteDataFlowDebugSessionError = AzureOpError;
+/** Deletes a data flow debug session. */
+export const DeleteDataFlowDebugSession: API.OperationMethod<
+  DeleteDataFlowDebugSessionRequest,
+  DeleteDataFlowDebugSessionResponse,
+  DeleteDataFlowDebugSessionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteDataFlowDebugSessionRequest,
+  output: DeleteDataFlowDebugSessionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteDatasetError = AzureOpError;
 /** Deletes a dataset. */
-export const DatasetsDelete: API.OperationMethod<
-  DatasetsDeleteRequest,
-  DatasetsDeleteResponse,
-  DatasetsDeleteError,
+export const DeleteDataset: API.OperationMethod<
+  DeleteDatasetRequest,
+  DeleteDatasetResponse,
+  DeleteDatasetError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DatasetsDeleteRequest,
-  output: DatasetsDeleteResponse,
+  input: DeleteDatasetRequest,
+  output: DeleteDatasetResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DatasetsGetError = AzureOpError;
-/** Gets a dataset. */
-export const DatasetsGet: API.OperationMethod<
-  DatasetsGetRequest,
-  DatasetsGetResponse,
-  DatasetsGetError,
+export type DeleteFactoryError = AzureOpError;
+/** Deletes a factory. */
+export const DeleteFactory: API.OperationMethod<
+  DeleteFactoryRequest,
+  DeleteFactoryResponse,
+  DeleteFactoryError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DatasetsGetRequest,
-  output: DatasetsGetResponse,
+  input: DeleteFactoryRequest,
+  output: DeleteFactoryResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DatasetsListByFactoryError = AzureOpError;
-/** Lists datasets. */
-export const DatasetsListByFactory: API.OperationMethod<
-  DatasetsListByFactoryRequest,
-  DatasetListResponse,
-  DatasetsListByFactoryError,
+export type DeleteGlobalParameterError = AzureOpError;
+/** Deletes a Global parameter */
+export const DeleteGlobalParameter: API.OperationMethod<
+  DeleteGlobalParameterRequest,
+  DeleteGlobalParameterResponse,
+  DeleteGlobalParameterError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DatasetsListByFactoryRequest,
-  output: DatasetListResponse,
+  input: DeleteGlobalParameterRequest,
+  output: DeleteGlobalParameterResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ExposureControlGetFeatureValueError = AzureOpError;
-/** Get exposure control feature for specific location. */
-export const ExposureControlGetFeatureValue: API.OperationMethod<
-  ExposureControlGetFeatureValueRequest,
-  ExposureControlResponse,
-  ExposureControlGetFeatureValueError,
+export type DeleteIntegrationRuntimeError = AzureOpError;
+/** Deletes an integration runtime. */
+export const DeleteIntegrationRuntime: API.OperationMethod<
+  DeleteIntegrationRuntimeRequest,
+  DeleteIntegrationRuntimeResponse,
+  DeleteIntegrationRuntimeError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ExposureControlGetFeatureValueRequest,
-  output: ExposureControlResponse,
+  input: DeleteIntegrationRuntimeRequest,
+  output: DeleteIntegrationRuntimeResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ExposureControlGetFeatureValueByFactoryError = AzureOpError;
-/** Get exposure control feature for specific factory. */
-export const ExposureControlGetFeatureValueByFactory: API.OperationMethod<
-  ExposureControlGetFeatureValueByFactoryRequest,
-  ExposureControlResponse,
-  ExposureControlGetFeatureValueByFactoryError,
+export type DeleteIntegrationRuntimeNodeError = AzureOpError;
+/** Deletes a self-hosted integration runtime node. */
+export const DeleteIntegrationRuntimeNode: API.OperationMethod<
+  DeleteIntegrationRuntimeNodeRequest,
+  DeleteIntegrationRuntimeNodeResponse,
+  DeleteIntegrationRuntimeNodeError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ExposureControlGetFeatureValueByFactoryRequest,
-  output: ExposureControlResponse,
+  input: DeleteIntegrationRuntimeNodeRequest,
+  output: DeleteIntegrationRuntimeNodeResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteLinkedServiceError = AzureOpError;
+/** Deletes a linked service. */
+export const DeleteLinkedService: API.OperationMethod<
+  DeleteLinkedServiceRequest,
+  DeleteLinkedServiceResponse,
+  DeleteLinkedServiceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteLinkedServiceRequest,
+  output: DeleteLinkedServiceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteManagedPrivateEndpointError = AzureOpError;
+/** Deletes a managed private endpoint. */
+export const DeleteManagedPrivateEndpoint: API.OperationMethod<
+  DeleteManagedPrivateEndpointRequest,
+  DeleteManagedPrivateEndpointResponse,
+  DeleteManagedPrivateEndpointError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteManagedPrivateEndpointRequest,
+  output: DeleteManagedPrivateEndpointResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeletePipelineError = AzureOpError;
+/** Deletes a pipeline. */
+export const DeletePipeline: API.OperationMethod<
+  DeletePipelineRequest,
+  DeletePipelineResponse,
+  DeletePipelineError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeletePipelineRequest,
+  output: DeletePipelineResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeletePrivateEndpointConnectionError = AzureOpError;
+/** Deletes a private endpoint connection */
+export const DeletePrivateEndpointConnection: API.OperationMethod<
+  DeletePrivateEndpointConnectionRequest,
+  DeletePrivateEndpointConnectionResponse,
+  DeletePrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeletePrivateEndpointConnectionRequest,
+  output: DeletePrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteTriggerError = AzureOpError;
+/** Deletes a trigger. */
+export const DeleteTrigger: API.OperationMethod<
+  DeleteTriggerRequest,
+  DeleteTriggerResponse,
+  DeleteTriggerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteTriggerRequest,
+  output: DeleteTriggerResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DisableIntegrationRuntimeInteractiveQueryError = AzureOpError;
+/** Disable interactive authoring of Managed Virtual Network integration runtime. */
+export const DisableIntegrationRuntimeInteractiveQuery: API.OperationMethod<
+  DisableIntegrationRuntimeInteractiveQueryRequest,
+  DisableIntegrationRuntimeInteractiveQueryResponse,
+  DisableIntegrationRuntimeInteractiveQueryError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DisableIntegrationRuntimeInteractiveQueryRequest,
+  output: DisableIntegrationRuntimeInteractiveQueryResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type EnableIntegrationRuntimeInteractiveQueryError = AzureOpError;
+/** Enable interactive authoring of Managed Virtual Network integration runtime. */
+export const EnableIntegrationRuntimeInteractiveQuery: API.OperationMethod<
+  EnableIntegrationRuntimeInteractiveQueryRequest,
+  EnableIntegrationRuntimeInteractiveQueryResponse,
+  EnableIntegrationRuntimeInteractiveQueryError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: EnableIntegrationRuntimeInteractiveQueryRequest,
+  output: EnableIntegrationRuntimeInteractiveQueryResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ExecuteDataFlowDebugSessionCommandError = AzureOpError;
+/** Execute a data flow debug command. */
+export const ExecuteDataFlowDebugSessionCommand: API.OperationMethod<
+  ExecuteDataFlowDebugSessionCommandRequest,
+  DataFlowDebugCommandResponse,
+  ExecuteDataFlowDebugSessionCommandError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ExecuteDataFlowDebugSessionCommandRequest,
+  output: DataFlowDebugCommandResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -8402,106 +8425,391 @@ export const FactoriesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type FactoriesDeleteError = AzureOpError;
-/** Deletes a factory. */
-export const FactoriesDelete: API.OperationMethod<
-  FactoriesDeleteRequest,
-  FactoriesDeleteResponse,
-  FactoriesDeleteError,
+export type GetChangeDataCaptureError = AzureOpError;
+/** Gets a change data capture. */
+export const GetChangeDataCapture: API.OperationMethod<
+  GetChangeDataCaptureRequest,
+  GetChangeDataCaptureResponse,
+  GetChangeDataCaptureError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FactoriesDeleteRequest,
-  output: FactoriesDeleteResponse,
+  input: GetChangeDataCaptureRequest,
+  output: GetChangeDataCaptureResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type FactoriesGetError = AzureOpError;
+export type GetCredentialOperationError = AzureOpError;
+/** Gets a credential. */
+export const GetCredentialOperation: API.OperationMethod<
+  GetCredentialOperationRequest,
+  GetCredentialOperationResponse,
+  GetCredentialOperationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCredentialOperationRequest,
+  output: GetCredentialOperationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDataFlowError = AzureOpError;
+/** Gets a data flow. */
+export const GetDataFlow: API.OperationMethod<
+  GetDataFlowRequest,
+  GetDataFlowResponse,
+  GetDataFlowError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDataFlowRequest,
+  output: GetDataFlowResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDatasetError = AzureOpError;
+/** Gets a dataset. */
+export const GetDataset: API.OperationMethod<
+  GetDatasetRequest,
+  GetDatasetResponse,
+  GetDatasetError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDatasetRequest,
+  output: GetDatasetResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetExposureControlFeatureValueError = AzureOpError;
+/** Get exposure control feature for specific location. */
+export const GetExposureControlFeatureValue: API.OperationMethod<
+  GetExposureControlFeatureValueRequest,
+  ExposureControlResponse,
+  GetExposureControlFeatureValueError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetExposureControlFeatureValueRequest,
+  output: ExposureControlResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetExposureControlFeatureValueByFactoryError = AzureOpError;
+/** Get exposure control feature for specific factory. */
+export const GetExposureControlFeatureValueByFactory: API.OperationMethod<
+  GetExposureControlFeatureValueByFactoryRequest,
+  ExposureControlResponse,
+  GetExposureControlFeatureValueByFactoryError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetExposureControlFeatureValueByFactoryRequest,
+  output: ExposureControlResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetFactoryError = AzureOpError;
 /** Gets a factory. */
-export const FactoriesGet: API.OperationMethod<
-  FactoriesGetRequest,
-  FactoriesGetResponse,
-  FactoriesGetError,
+export const GetFactory: API.OperationMethod<
+  GetFactoryRequest,
+  GetFactoryResponse,
+  GetFactoryError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FactoriesGetRequest,
-  output: FactoriesGetResponse,
+  input: GetFactoryRequest,
+  output: GetFactoryResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type FactoriesGetDataPlaneAccessError = AzureOpError;
+export type GetFactoryDataPlaneAccessError = AzureOpError;
 /** Get Data Plane access. */
-export const FactoriesGetDataPlaneAccess: API.OperationMethod<
-  FactoriesGetDataPlaneAccessRequest,
+export const GetFactoryDataPlaneAccess: API.OperationMethod<
+  GetFactoryDataPlaneAccessRequest,
   AccessPolicyResponse,
-  FactoriesGetDataPlaneAccessError,
+  GetFactoryDataPlaneAccessError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FactoriesGetDataPlaneAccessRequest,
+  input: GetFactoryDataPlaneAccessRequest,
   output: AccessPolicyResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type FactoriesGetGitHubAccessTokenError = AzureOpError;
+export type GetFactoryGitHubAccessTokenError = AzureOpError;
 /** Get GitHub Access Token. */
-export const FactoriesGetGitHubAccessToken: API.OperationMethod<
-  FactoriesGetGitHubAccessTokenRequest,
+export const GetFactoryGitHubAccessToken: API.OperationMethod<
+  GetFactoryGitHubAccessTokenRequest,
   GitHubAccessTokenResponse,
-  FactoriesGetGitHubAccessTokenError,
+  GetFactoryGitHubAccessTokenError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FactoriesGetGitHubAccessTokenRequest,
+  input: GetFactoryGitHubAccessTokenRequest,
   output: GitHubAccessTokenResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type FactoriesListError = AzureOpError;
-/** Lists factories under the specified subscription. */
-export const FactoriesList: API.OperationMethod<
-  FactoriesListRequest,
-  FactoryListResponse,
-  FactoriesListError,
+export type GetGlobalParameterError = AzureOpError;
+/** Gets a Global parameter */
+export const GetGlobalParameter: API.OperationMethod<
+  GetGlobalParameterRequest,
+  GetGlobalParameterResponse,
+  GetGlobalParameterError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FactoriesListRequest,
-  output: FactoryListResponse,
+  input: GetGlobalParameterRequest,
+  output: GetGlobalParameterResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type FactoriesListByResourceGroupError = AzureOpError;
-/** Lists factories. */
-export const FactoriesListByResourceGroup: API.OperationMethod<
-  FactoriesListByResourceGroupRequest,
-  FactoryListResponse,
-  FactoriesListByResourceGroupError,
+export type GetIntegrationRuntimeError = AzureOpError;
+/** Gets an integration runtime. */
+export const GetIntegrationRuntime: API.OperationMethod<
+  GetIntegrationRuntimeRequest,
+  GetIntegrationRuntimeResponse,
+  GetIntegrationRuntimeError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FactoriesListByResourceGroupRequest,
-  output: FactoryListResponse,
+  input: GetIntegrationRuntimeRequest,
+  output: GetIntegrationRuntimeResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type FactoriesUpdateError = AzureOpError;
-/** Updates a factory. */
-export const FactoriesUpdate: API.OperationMethod<
-  FactoriesUpdateRequest,
-  FactoriesUpdateResponse,
-  FactoriesUpdateError,
+export type GetIntegrationRuntimeConnectionInfoError = AzureOpError;
+/** Gets the on-premises integration runtime connection information for encrypting the on-premises data source credentials. */
+export const GetIntegrationRuntimeConnectionInfo: API.OperationMethod<
+  GetIntegrationRuntimeConnectionInfoRequest,
+  IntegrationRuntimeConnectionInfo,
+  GetIntegrationRuntimeConnectionInfoError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FactoriesUpdateRequest,
-  output: FactoriesUpdateResponse,
+  input: GetIntegrationRuntimeConnectionInfoRequest,
+  output: IntegrationRuntimeConnectionInfo,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetIntegrationRuntimeMonitoringDataError = AzureOpError;
+/** Get the integration runtime monitoring data, which includes the monitor data for all the nodes under this integration runtime. */
+export const GetIntegrationRuntimeMonitoringData: API.OperationMethod<
+  GetIntegrationRuntimeMonitoringDataRequest,
+  IntegrationRuntimeMonitoringData,
+  GetIntegrationRuntimeMonitoringDataError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetIntegrationRuntimeMonitoringDataRequest,
+  output: IntegrationRuntimeMonitoringData,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetIntegrationRuntimeNodeError = AzureOpError;
+/** Gets a self-hosted integration runtime node. */
+export const GetIntegrationRuntimeNode: API.OperationMethod<
+  GetIntegrationRuntimeNodeRequest,
+  SelfHostedIntegrationRuntimeNode,
+  GetIntegrationRuntimeNodeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetIntegrationRuntimeNodeRequest,
+  output: SelfHostedIntegrationRuntimeNode,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetIntegrationRuntimeNodeIpAddressError = AzureOpError;
+/** Get the IP address of self-hosted integration runtime node. */
+export const GetIntegrationRuntimeNodeIpAddress: API.OperationMethod<
+  GetIntegrationRuntimeNodeIpAddressRequest,
+  IntegrationRuntimeNodeIpAddress,
+  GetIntegrationRuntimeNodeIpAddressError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetIntegrationRuntimeNodeIpAddressRequest,
+  output: IntegrationRuntimeNodeIpAddress,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetIntegrationRuntimeObjectMetadataError = AzureOpError;
+/** Get a SSIS integration runtime object metadata by specified path. The return is pageable metadata list. */
+export const GetIntegrationRuntimeObjectMetadata: API.OperationMethod<
+  GetIntegrationRuntimeObjectMetadataRequest,
+  SsisObjectMetadataListResponse,
+  GetIntegrationRuntimeObjectMetadataError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetIntegrationRuntimeObjectMetadataRequest,
+  output: SsisObjectMetadataListResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetIntegrationRuntimeStatusError = AzureOpError;
+/** Gets detailed status information for an integration runtime. */
+export const GetIntegrationRuntimeStatus: API.OperationMethod<
+  GetIntegrationRuntimeStatusRequest,
+  IntegrationRuntimeStatusResponse,
+  GetIntegrationRuntimeStatusError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetIntegrationRuntimeStatusRequest,
+  output: IntegrationRuntimeStatusResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetLinkedServiceError = AzureOpError;
+/** Gets a linked service. */
+export const GetLinkedService: API.OperationMethod<
+  GetLinkedServiceRequest,
+  GetLinkedServiceResponse,
+  GetLinkedServiceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetLinkedServiceRequest,
+  output: GetLinkedServiceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetManagedPrivateEndpointError = AzureOpError;
+/** Gets a managed private endpoint. */
+export const GetManagedPrivateEndpoint: API.OperationMethod<
+  GetManagedPrivateEndpointRequest,
+  GetManagedPrivateEndpointResponse,
+  GetManagedPrivateEndpointError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetManagedPrivateEndpointRequest,
+  output: GetManagedPrivateEndpointResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetManagedVirtualNetworkError = AzureOpError;
+/** Gets a managed Virtual Network. */
+export const GetManagedVirtualNetwork: API.OperationMethod<
+  GetManagedVirtualNetworkRequest,
+  GetManagedVirtualNetworkResponse,
+  GetManagedVirtualNetworkError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetManagedVirtualNetworkRequest,
+  output: GetManagedVirtualNetworkResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPipelineError = AzureOpError;
+/** Gets a pipeline. */
+export const GetPipeline: API.OperationMethod<
+  GetPipelineRequest,
+  GetPipelineResponse,
+  GetPipelineError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPipelineRequest,
+  output: GetPipelineResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPipelineRunError = AzureOpError;
+/** Get a pipeline run by its run ID. */
+export const GetPipelineRun: API.OperationMethod<
+  GetPipelineRunRequest,
+  PipelineRun,
+  GetPipelineRunError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPipelineRunRequest,
+  output: PipelineRun,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPrivateEndpointConnectionError = AzureOpError;
+/** Gets a private endpoint connection */
+export const GetPrivateEndpointConnection: API.OperationMethod<
+  GetPrivateEndpointConnectionRequest,
+  GetPrivateEndpointConnectionResponse,
+  GetPrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPrivateEndpointConnectionRequest,
+  output: GetPrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPrivateLinkResourceError = AzureOpError;
+/** Gets the private link resources */
+export const GetPrivateLinkResource: API.OperationMethod<
+  GetPrivateLinkResourceRequest,
+  PrivateLinkResourcesWrapper,
+  GetPrivateLinkResourceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPrivateLinkResourceRequest,
+  output: PrivateLinkResourcesWrapper,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTriggerError = AzureOpError;
+/** Gets a trigger. */
+export const GetTrigger: API.OperationMethod<
+  GetTriggerRequest,
+  GetTriggerResponse,
+  GetTriggerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTriggerRequest,
+  output: GetTriggerResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTriggerEventSubscriptionStatusError = AzureOpError;
+/** Get a trigger's event subscription status. */
+export const GetTriggerEventSubscriptionStatus: API.OperationMethod<
+  GetTriggerEventSubscriptionStatusRequest,
+  TriggerSubscriptionOperationStatus,
+  GetTriggerEventSubscriptionStatusError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTriggerEventSubscriptionStatusRequest,
+  output: TriggerSubscriptionOperationStatus,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -8522,187 +8830,6 @@ export const GlobalParametersCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GlobalParametersDeleteError = AzureOpError;
-/** Deletes a Global parameter */
-export const GlobalParametersDelete: API.OperationMethod<
-  GlobalParametersDeleteRequest,
-  GlobalParametersDeleteResponse,
-  GlobalParametersDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GlobalParametersDeleteRequest,
-  output: GlobalParametersDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GlobalParametersGetError = AzureOpError;
-/** Gets a Global parameter */
-export const GlobalParametersGet: API.OperationMethod<
-  GlobalParametersGetRequest,
-  GlobalParametersGetResponse,
-  GlobalParametersGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GlobalParametersGetRequest,
-  output: GlobalParametersGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GlobalParametersListByFactoryError = AzureOpError;
-/** Lists Global parameters */
-export const GlobalParametersListByFactory: API.OperationMethod<
-  GlobalParametersListByFactoryRequest,
-  GlobalParameterListResponse,
-  GlobalParametersListByFactoryError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GlobalParametersListByFactoryRequest,
-  output: GlobalParameterListResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IntegrationRuntimeDisableInteractiveQueryError = AzureOpError;
-/** Disable interactive authoring of Managed Virtual Network integration runtime. */
-export const IntegrationRuntimeDisableInteractiveQuery: API.OperationMethod<
-  IntegrationRuntimeDisableInteractiveQueryRequest,
-  IntegrationRuntimeDisableInteractiveQueryResponse,
-  IntegrationRuntimeDisableInteractiveQueryError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationRuntimeDisableInteractiveQueryRequest,
-  output: IntegrationRuntimeDisableInteractiveQueryResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IntegrationRuntimeEnableInteractiveQueryError = AzureOpError;
-/** Enable interactive authoring of Managed Virtual Network integration runtime. */
-export const IntegrationRuntimeEnableInteractiveQuery: API.OperationMethod<
-  IntegrationRuntimeEnableInteractiveQueryRequest,
-  IntegrationRuntimeEnableInteractiveQueryResponse,
-  IntegrationRuntimeEnableInteractiveQueryError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationRuntimeEnableInteractiveQueryRequest,
-  output: IntegrationRuntimeEnableInteractiveQueryResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IntegrationRuntimeNodesDeleteError = AzureOpError;
-/** Deletes a self-hosted integration runtime node. */
-export const IntegrationRuntimeNodesDelete: API.OperationMethod<
-  IntegrationRuntimeNodesDeleteRequest,
-  IntegrationRuntimeNodesDeleteResponse,
-  IntegrationRuntimeNodesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationRuntimeNodesDeleteRequest,
-  output: IntegrationRuntimeNodesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IntegrationRuntimeNodesGetError = AzureOpError;
-/** Gets a self-hosted integration runtime node. */
-export const IntegrationRuntimeNodesGet: API.OperationMethod<
-  IntegrationRuntimeNodesGetRequest,
-  SelfHostedIntegrationRuntimeNode,
-  IntegrationRuntimeNodesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationRuntimeNodesGetRequest,
-  output: SelfHostedIntegrationRuntimeNode,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IntegrationRuntimeNodesGetIpAddressError = AzureOpError;
-/** Get the IP address of self-hosted integration runtime node. */
-export const IntegrationRuntimeNodesGetIpAddress: API.OperationMethod<
-  IntegrationRuntimeNodesGetIpAddressRequest,
-  IntegrationRuntimeNodeIpAddress,
-  IntegrationRuntimeNodesGetIpAddressError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationRuntimeNodesGetIpAddressRequest,
-  output: IntegrationRuntimeNodeIpAddress,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IntegrationRuntimeNodesUpdateError = AzureOpError;
-/** Updates a self-hosted integration runtime node. */
-export const IntegrationRuntimeNodesUpdate: API.OperationMethod<
-  IntegrationRuntimeNodesUpdateRequest,
-  SelfHostedIntegrationRuntimeNode,
-  IntegrationRuntimeNodesUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationRuntimeNodesUpdateRequest,
-  output: SelfHostedIntegrationRuntimeNode,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IntegrationRuntimeObjectMetadataGetError = AzureOpError;
-/** Get a SSIS integration runtime object metadata by specified path. The return is pageable metadata list. */
-export const IntegrationRuntimeObjectMetadataGet: API.OperationMethod<
-  IntegrationRuntimeObjectMetadataGetRequest,
-  SsisObjectMetadataListResponse,
-  IntegrationRuntimeObjectMetadataGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationRuntimeObjectMetadataGetRequest,
-  output: SsisObjectMetadataListResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IntegrationRuntimeObjectMetadataRefreshError = AzureOpError;
-/** Refresh a SSIS integration runtime object metadata. */
-export const IntegrationRuntimeObjectMetadataRefresh: API.OperationMethod<
-  IntegrationRuntimeObjectMetadataRefreshRequest,
-  SsisObjectMetadataStatusResponse,
-  IntegrationRuntimeObjectMetadataRefreshError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationRuntimeObjectMetadataRefreshRequest,
-  output: SsisObjectMetadataStatusResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IntegrationRuntimesCreateLinkedIntegrationRuntimeError =
-  AzureOpError;
-/** Create a linked integration runtime entry in a shared integration runtime. */
-export const IntegrationRuntimesCreateLinkedIntegrationRuntime: API.OperationMethod<
-  IntegrationRuntimesCreateLinkedIntegrationRuntimeRequest,
-  IntegrationRuntimeStatusResponse,
-  IntegrationRuntimesCreateLinkedIntegrationRuntimeError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationRuntimesCreateLinkedIntegrationRuntimeRequest,
-  output: IntegrationRuntimeStatusResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type IntegrationRuntimesCreateOrUpdateError = AzureOpError;
 /** Creates or updates an integration runtime. */
 export const IntegrationRuntimesCreateOrUpdate: API.OperationMethod<
@@ -8713,217 +8840,6 @@ export const IntegrationRuntimesCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: IntegrationRuntimesCreateOrUpdateRequest,
   output: IntegrationRuntimesCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IntegrationRuntimesDeleteError = AzureOpError;
-/** Deletes an integration runtime. */
-export const IntegrationRuntimesDelete: API.OperationMethod<
-  IntegrationRuntimesDeleteRequest,
-  IntegrationRuntimesDeleteResponse,
-  IntegrationRuntimesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationRuntimesDeleteRequest,
-  output: IntegrationRuntimesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IntegrationRuntimesGetError = AzureOpError;
-/** Gets an integration runtime. */
-export const IntegrationRuntimesGet: API.OperationMethod<
-  IntegrationRuntimesGetRequest,
-  IntegrationRuntimesGetResponse,
-  IntegrationRuntimesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationRuntimesGetRequest,
-  output: IntegrationRuntimesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IntegrationRuntimesGetConnectionInfoError = AzureOpError;
-/** Gets the on-premises integration runtime connection information for encrypting the on-premises data source credentials. */
-export const IntegrationRuntimesGetConnectionInfo: API.OperationMethod<
-  IntegrationRuntimesGetConnectionInfoRequest,
-  IntegrationRuntimeConnectionInfo,
-  IntegrationRuntimesGetConnectionInfoError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationRuntimesGetConnectionInfoRequest,
-  output: IntegrationRuntimeConnectionInfo,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IntegrationRuntimesGetMonitoringDataError = AzureOpError;
-/** Get the integration runtime monitoring data, which includes the monitor data for all the nodes under this integration runtime. */
-export const IntegrationRuntimesGetMonitoringData: API.OperationMethod<
-  IntegrationRuntimesGetMonitoringDataRequest,
-  IntegrationRuntimeMonitoringData,
-  IntegrationRuntimesGetMonitoringDataError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationRuntimesGetMonitoringDataRequest,
-  output: IntegrationRuntimeMonitoringData,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IntegrationRuntimesGetStatusError = AzureOpError;
-/** Gets detailed status information for an integration runtime. */
-export const IntegrationRuntimesGetStatus: API.OperationMethod<
-  IntegrationRuntimesGetStatusRequest,
-  IntegrationRuntimeStatusResponse,
-  IntegrationRuntimesGetStatusError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationRuntimesGetStatusRequest,
-  output: IntegrationRuntimeStatusResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IntegrationRuntimesListAuthKeysError = AzureOpError;
-/** Retrieves the authentication keys for an integration runtime. */
-export const IntegrationRuntimesListAuthKeys: API.OperationMethod<
-  IntegrationRuntimesListAuthKeysRequest,
-  IntegrationRuntimeAuthKeys,
-  IntegrationRuntimesListAuthKeysError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationRuntimesListAuthKeysRequest,
-  output: IntegrationRuntimeAuthKeys,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IntegrationRuntimesListByFactoryError = AzureOpError;
-/** Lists integration runtimes. */
-export const IntegrationRuntimesListByFactory: API.OperationMethod<
-  IntegrationRuntimesListByFactoryRequest,
-  IntegrationRuntimeListResponse,
-  IntegrationRuntimesListByFactoryError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationRuntimesListByFactoryRequest,
-  output: IntegrationRuntimeListResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IntegrationRuntimesListOutboundNetworkDependenciesEndpointsError =
-  AzureOpError;
-/** Gets the list of outbound network dependencies for a given Azure-SSIS integration runtime. */
-export const IntegrationRuntimesListOutboundNetworkDependenciesEndpoints: API.OperationMethod<
-  IntegrationRuntimesListOutboundNetworkDependenciesEndpointsRequest,
-  IntegrationRuntimeOutboundNetworkDependenciesEndpointsResponse,
-  IntegrationRuntimesListOutboundNetworkDependenciesEndpointsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationRuntimesListOutboundNetworkDependenciesEndpointsRequest,
-  output: IntegrationRuntimeOutboundNetworkDependenciesEndpointsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IntegrationRuntimesRegenerateAuthKeyError = AzureOpError;
-/** Regenerates the authentication key for an integration runtime. */
-export const IntegrationRuntimesRegenerateAuthKey: API.OperationMethod<
-  IntegrationRuntimesRegenerateAuthKeyRequest,
-  IntegrationRuntimeAuthKeys,
-  IntegrationRuntimesRegenerateAuthKeyError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationRuntimesRegenerateAuthKeyRequest,
-  output: IntegrationRuntimeAuthKeys,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IntegrationRuntimesRemoveLinksError = AzureOpError;
-/** Remove all linked integration runtimes under specific data factory in a self-hosted integration runtime. */
-export const IntegrationRuntimesRemoveLinks: API.OperationMethod<
-  IntegrationRuntimesRemoveLinksRequest,
-  IntegrationRuntimesRemoveLinksResponse,
-  IntegrationRuntimesRemoveLinksError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationRuntimesRemoveLinksRequest,
-  output: IntegrationRuntimesRemoveLinksResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IntegrationRuntimesStartError = AzureOpError;
-/** Starts a ManagedReserved type integration runtime. */
-export const IntegrationRuntimesStart: API.OperationMethod<
-  IntegrationRuntimesStartRequest,
-  IntegrationRuntimeStatusResponse,
-  IntegrationRuntimesStartError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationRuntimesStartRequest,
-  output: IntegrationRuntimeStatusResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IntegrationRuntimesStopError = AzureOpError;
-/** Stops a ManagedReserved type integration runtime. */
-export const IntegrationRuntimesStop: API.OperationMethod<
-  IntegrationRuntimesStopRequest,
-  IntegrationRuntimesStopResponse,
-  IntegrationRuntimesStopError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationRuntimesStopRequest,
-  output: IntegrationRuntimesStopResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IntegrationRuntimesSyncCredentialsError = AzureOpError;
-/** Force the integration runtime to synchronize credentials across integration runtime nodes, and this will override the credentials across all worker nodes with those available on the dispatcher node. If you already have the latest credential backup file, you should manually import it (preferred) on any self-hosted integration runtime node than using this API directly. */
-export const IntegrationRuntimesSyncCredentials: API.OperationMethod<
-  IntegrationRuntimesSyncCredentialsRequest,
-  IntegrationRuntimesSyncCredentialsResponse,
-  IntegrationRuntimesSyncCredentialsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationRuntimesSyncCredentialsRequest,
-  output: IntegrationRuntimesSyncCredentialsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IntegrationRuntimesUpdateError = AzureOpError;
-/** Updates an integration runtime. */
-export const IntegrationRuntimesUpdate: API.OperationMethod<
-  IntegrationRuntimesUpdateRequest,
-  IntegrationRuntimesUpdateResponse,
-  IntegrationRuntimesUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationRuntimesUpdateRequest,
-  output: IntegrationRuntimesUpdateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -8959,46 +8875,257 @@ export const LinkedServicesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type LinkedServicesDeleteError = AzureOpError;
-/** Deletes a linked service. */
-export const LinkedServicesDelete: API.OperationMethod<
-  LinkedServicesDeleteRequest,
-  LinkedServicesDeleteResponse,
-  LinkedServicesDeleteError,
+export type ListChangeDataCaptureByFactoryError = AzureOpError;
+/** Lists all resources of type change data capture. */
+export const ListChangeDataCaptureByFactory: API.OperationMethod<
+  ListChangeDataCaptureByFactoryRequest,
+  ChangeDataCaptureListResponse,
+  ListChangeDataCaptureByFactoryError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: LinkedServicesDeleteRequest,
-  output: LinkedServicesDeleteResponse,
+  input: ListChangeDataCaptureByFactoryRequest,
+  output: ChangeDataCaptureListResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type LinkedServicesGetError = AzureOpError;
-/** Gets a linked service. */
-export const LinkedServicesGet: API.OperationMethod<
-  LinkedServicesGetRequest,
-  LinkedServicesGetResponse,
-  LinkedServicesGetError,
+export type ListCredentialOperationByFactoryError = AzureOpError;
+/** List credentials. */
+export const ListCredentialOperationByFactory: API.OperationMethod<
+  ListCredentialOperationByFactoryRequest,
+  CredentialListResponse,
+  ListCredentialOperationByFactoryError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: LinkedServicesGetRequest,
-  output: LinkedServicesGetResponse,
+  input: ListCredentialOperationByFactoryRequest,
+  output: CredentialListResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type LinkedServicesListByFactoryError = AzureOpError;
+export type ListDataFlowByFactoryError = AzureOpError;
+/** Lists data flows. */
+export const ListDataFlowByFactory: API.OperationMethod<
+  ListDataFlowByFactoryRequest,
+  DataFlowListResponse,
+  ListDataFlowByFactoryError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDataFlowByFactoryRequest,
+  output: DataFlowListResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDatasetByFactoryError = AzureOpError;
+/** Lists datasets. */
+export const ListDatasetByFactory: API.OperationMethod<
+  ListDatasetByFactoryRequest,
+  DatasetListResponse,
+  ListDatasetByFactoryError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDatasetByFactoryRequest,
+  output: DatasetListResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListFactoriesError = AzureOpError;
+/** Lists factories under the specified subscription. */
+export const ListFactories: API.OperationMethod<
+  ListFactoriesRequest,
+  FactoryListResponse,
+  ListFactoriesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListFactoriesRequest,
+  output: FactoryListResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListFactoryByResourceGroupError = AzureOpError;
+/** Lists factories. */
+export const ListFactoryByResourceGroup: API.OperationMethod<
+  ListFactoryByResourceGroupRequest,
+  FactoryListResponse,
+  ListFactoryByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListFactoryByResourceGroupRequest,
+  output: FactoryListResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListGlobalParameterByFactoryError = AzureOpError;
+/** Lists Global parameters */
+export const ListGlobalParameterByFactory: API.OperationMethod<
+  ListGlobalParameterByFactoryRequest,
+  GlobalParameterListResponse,
+  ListGlobalParameterByFactoryError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListGlobalParameterByFactoryRequest,
+  output: GlobalParameterListResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListIntegrationRuntimeAuthKeysError = AzureOpError;
+/** Retrieves the authentication keys for an integration runtime. */
+export const ListIntegrationRuntimeAuthKeys: API.OperationMethod<
+  ListIntegrationRuntimeAuthKeysRequest,
+  IntegrationRuntimeAuthKeys,
+  ListIntegrationRuntimeAuthKeysError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListIntegrationRuntimeAuthKeysRequest,
+  output: IntegrationRuntimeAuthKeys,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListIntegrationRuntimeByFactoryError = AzureOpError;
+/** Lists integration runtimes. */
+export const ListIntegrationRuntimeByFactory: API.OperationMethod<
+  ListIntegrationRuntimeByFactoryRequest,
+  IntegrationRuntimeListResponse,
+  ListIntegrationRuntimeByFactoryError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListIntegrationRuntimeByFactoryRequest,
+  output: IntegrationRuntimeListResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListIntegrationRuntimeOutboundNetworkDependenciesEndpointsError =
+  AzureOpError;
+/** Gets the list of outbound network dependencies for a given Azure-SSIS integration runtime. */
+export const ListIntegrationRuntimeOutboundNetworkDependenciesEndpoints: API.OperationMethod<
+  ListIntegrationRuntimeOutboundNetworkDependenciesEndpointsRequest,
+  IntegrationRuntimeOutboundNetworkDependenciesEndpointsResponse,
+  ListIntegrationRuntimeOutboundNetworkDependenciesEndpointsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListIntegrationRuntimeOutboundNetworkDependenciesEndpointsRequest,
+  output: IntegrationRuntimeOutboundNetworkDependenciesEndpointsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListLinkedServiceByFactoryError = AzureOpError;
 /** Lists linked services. */
-export const LinkedServicesListByFactory: API.OperationMethod<
-  LinkedServicesListByFactoryRequest,
+export const ListLinkedServiceByFactory: API.OperationMethod<
+  ListLinkedServiceByFactoryRequest,
   LinkedServiceListResponse,
-  LinkedServicesListByFactoryError,
+  ListLinkedServiceByFactoryError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: LinkedServicesListByFactoryRequest,
+  input: ListLinkedServiceByFactoryRequest,
   output: LinkedServiceListResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListManagedPrivateEndpointByFactoryError = AzureOpError;
+/** Lists managed private endpoints. */
+export const ListManagedPrivateEndpointByFactory: API.OperationMethod<
+  ListManagedPrivateEndpointByFactoryRequest,
+  ManagedPrivateEndpointListResponse,
+  ListManagedPrivateEndpointByFactoryError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListManagedPrivateEndpointByFactoryRequest,
+  output: ManagedPrivateEndpointListResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListManagedVirtualNetworkByFactoryError = AzureOpError;
+/** Lists managed Virtual Networks. */
+export const ListManagedVirtualNetworkByFactory: API.OperationMethod<
+  ListManagedVirtualNetworkByFactoryRequest,
+  ManagedVirtualNetworkListResponse,
+  ListManagedVirtualNetworkByFactoryError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListManagedVirtualNetworkByFactoryRequest,
+  output: ManagedVirtualNetworkListResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOperationsError = AzureOpError;
+/** Lists the available Azure Data Factory API operations. */
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  OperationListResponse,
+  ListOperationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOperationsRequest,
+  output: OperationListResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPipelineByFactoryError = AzureOpError;
+/** Lists pipelines. */
+export const ListPipelineByFactory: API.OperationMethod<
+  ListPipelineByFactoryRequest,
+  PipelineListResponse,
+  ListPipelineByFactoryError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPipelineByFactoryRequest,
+  output: PipelineListResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPrivateEndPointConnectionByFactoryError = AzureOpError;
+/** Lists Private endpoint connections */
+export const ListPrivateEndPointConnectionByFactory: API.OperationMethod<
+  ListPrivateEndPointConnectionByFactoryRequest,
+  PrivateEndpointConnectionListResponse,
+  ListPrivateEndPointConnectionByFactoryError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPrivateEndPointConnectionByFactoryRequest,
+  output: PrivateEndpointConnectionListResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListTriggerByFactoryError = AzureOpError;
+/** Lists triggers. */
+export const ListTriggerByFactory: API.OperationMethod<
+  ListTriggerByFactoryRequest,
+  TriggerListResponse,
+  ListTriggerByFactoryError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListTriggerByFactoryRequest,
+  output: TriggerListResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -9019,51 +9146,6 @@ export const ManagedPrivateEndpointsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ManagedPrivateEndpointsDeleteError = AzureOpError;
-/** Deletes a managed private endpoint. */
-export const ManagedPrivateEndpointsDelete: API.OperationMethod<
-  ManagedPrivateEndpointsDeleteRequest,
-  ManagedPrivateEndpointsDeleteResponse,
-  ManagedPrivateEndpointsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedPrivateEndpointsDeleteRequest,
-  output: ManagedPrivateEndpointsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedPrivateEndpointsGetError = AzureOpError;
-/** Gets a managed private endpoint. */
-export const ManagedPrivateEndpointsGet: API.OperationMethod<
-  ManagedPrivateEndpointsGetRequest,
-  ManagedPrivateEndpointsGetResponse,
-  ManagedPrivateEndpointsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedPrivateEndpointsGetRequest,
-  output: ManagedPrivateEndpointsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedPrivateEndpointsListByFactoryError = AzureOpError;
-/** Lists managed private endpoints. */
-export const ManagedPrivateEndpointsListByFactory: API.OperationMethod<
-  ManagedPrivateEndpointsListByFactoryRequest,
-  ManagedPrivateEndpointListResponse,
-  ManagedPrivateEndpointsListByFactoryError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedPrivateEndpointsListByFactoryRequest,
-  output: ManagedPrivateEndpointListResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ManagedVirtualNetworksCreateOrUpdateError = AzureOpError;
 /** Creates or updates a managed Virtual Network. */
 export const ManagedVirtualNetworksCreateOrUpdate: API.OperationMethod<
@@ -9074,81 +9156,6 @@ export const ManagedVirtualNetworksCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ManagedVirtualNetworksCreateOrUpdateRequest,
   output: ManagedVirtualNetworksCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedVirtualNetworksGetError = AzureOpError;
-/** Gets a managed Virtual Network. */
-export const ManagedVirtualNetworksGet: API.OperationMethod<
-  ManagedVirtualNetworksGetRequest,
-  ManagedVirtualNetworksGetResponse,
-  ManagedVirtualNetworksGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedVirtualNetworksGetRequest,
-  output: ManagedVirtualNetworksGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedVirtualNetworksListByFactoryError = AzureOpError;
-/** Lists managed Virtual Networks. */
-export const ManagedVirtualNetworksListByFactory: API.OperationMethod<
-  ManagedVirtualNetworksListByFactoryRequest,
-  ManagedVirtualNetworkListResponse,
-  ManagedVirtualNetworksListByFactoryError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedVirtualNetworksListByFactoryRequest,
-  output: ManagedVirtualNetworkListResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OperationsListError = AzureOpError;
-/** Lists the available Azure Data Factory API operations. */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationListResponse,
-  OperationsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
-  output: OperationListResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PipelineRunsCancelError = AzureOpError;
-/** Cancel a pipeline run by its run ID. */
-export const PipelineRunsCancel: API.OperationMethod<
-  PipelineRunsCancelRequest,
-  PipelineRunsCancelResponse,
-  PipelineRunsCancelError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PipelineRunsCancelRequest,
-  output: PipelineRunsCancelResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PipelineRunsGetError = AzureOpError;
-/** Get a pipeline run by its run ID. */
-export const PipelineRunsGet: API.OperationMethod<
-  PipelineRunsGetRequest,
-  PipelineRun,
-  PipelineRunsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PipelineRunsGetRequest,
-  output: PipelineRun,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -9184,66 +9191,6 @@ export const PipelinesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PipelinesCreateRunError = AzureOpError;
-/** Creates a run of a pipeline. */
-export const PipelinesCreateRun: API.OperationMethod<
-  PipelinesCreateRunRequest,
-  CreateRunResponse,
-  PipelinesCreateRunError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PipelinesCreateRunRequest,
-  output: CreateRunResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PipelinesDeleteError = AzureOpError;
-/** Deletes a pipeline. */
-export const PipelinesDelete: API.OperationMethod<
-  PipelinesDeleteRequest,
-  PipelinesDeleteResponse,
-  PipelinesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PipelinesDeleteRequest,
-  output: PipelinesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PipelinesGetError = AzureOpError;
-/** Gets a pipeline. */
-export const PipelinesGet: API.OperationMethod<
-  PipelinesGetRequest,
-  PipelinesGetResponse,
-  PipelinesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PipelinesGetRequest,
-  output: PipelinesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PipelinesListByFactoryError = AzureOpError;
-/** Lists pipelines. */
-export const PipelinesListByFactory: API.OperationMethod<
-  PipelinesListByFactoryRequest,
-  PipelineListResponse,
-  PipelinesListByFactoryError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PipelinesListByFactoryRequest,
-  output: PipelineListResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type PrivateEndpointConnectionCreateOrUpdateError = AzureOpError;
 /** Approves or rejects a private endpoint connection */
 export const PrivateEndpointConnectionCreateOrUpdate: API.OperationMethod<
@@ -9259,76 +9206,181 @@ export const PrivateEndpointConnectionCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PrivateEndpointConnectionDeleteError = AzureOpError;
-/** Deletes a private endpoint connection */
-export const PrivateEndpointConnectionDelete: API.OperationMethod<
-  PrivateEndpointConnectionDeleteRequest,
-  PrivateEndpointConnectionDeleteResponse,
-  PrivateEndpointConnectionDeleteError,
+export type RefreshIntegrationRuntimeObjectMetadataError = AzureOpError;
+/** Refresh a SSIS integration runtime object metadata. */
+export const RefreshIntegrationRuntimeObjectMetadata: API.OperationMethod<
+  RefreshIntegrationRuntimeObjectMetadataRequest,
+  SsisObjectMetadataStatusResponse,
+  RefreshIntegrationRuntimeObjectMetadataError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionDeleteRequest,
-  output: PrivateEndpointConnectionDeleteResponse,
+  input: RefreshIntegrationRuntimeObjectMetadataRequest,
+  output: SsisObjectMetadataStatusResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type PrivateEndpointConnectionGetError = AzureOpError;
-/** Gets a private endpoint connection */
-export const PrivateEndpointConnectionGet: API.OperationMethod<
-  PrivateEndpointConnectionGetRequest,
-  PrivateEndpointConnectionGetResponse,
-  PrivateEndpointConnectionGetError,
+export type RegenerateIntegrationRuntimeAuthKeyError = AzureOpError;
+/** Regenerates the authentication key for an integration runtime. */
+export const RegenerateIntegrationRuntimeAuthKey: API.OperationMethod<
+  RegenerateIntegrationRuntimeAuthKeyRequest,
+  IntegrationRuntimeAuthKeys,
+  RegenerateIntegrationRuntimeAuthKeyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionGetRequest,
-  output: PrivateEndpointConnectionGetResponse,
+  input: RegenerateIntegrationRuntimeAuthKeyRequest,
+  output: IntegrationRuntimeAuthKeys,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type PrivateEndPointConnectionsListByFactoryError = AzureOpError;
-/** Lists Private endpoint connections */
-export const PrivateEndPointConnectionsListByFactory: API.OperationMethod<
-  PrivateEndPointConnectionsListByFactoryRequest,
-  PrivateEndpointConnectionListResponse,
-  PrivateEndPointConnectionsListByFactoryError,
+export type RemoveIntegrationRuntimeLinksError = AzureOpError;
+/** Remove all linked integration runtimes under specific data factory in a self-hosted integration runtime. */
+export const RemoveIntegrationRuntimeLinks: API.OperationMethod<
+  RemoveIntegrationRuntimeLinksRequest,
+  RemoveIntegrationRuntimeLinksResponse,
+  RemoveIntegrationRuntimeLinksError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndPointConnectionsListByFactoryRequest,
-  output: PrivateEndpointConnectionListResponse,
+  input: RemoveIntegrationRuntimeLinksRequest,
+  output: RemoveIntegrationRuntimeLinksResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type PrivateLinkResourcesGetError = AzureOpError;
-/** Gets the private link resources */
-export const PrivateLinkResourcesGet: API.OperationMethod<
-  PrivateLinkResourcesGetRequest,
-  PrivateLinkResourcesWrapper,
-  PrivateLinkResourcesGetError,
+export type RunActivityRunsQueryByPipelineError = AzureOpError;
+/** Query activity runs based on input filter conditions. */
+export const RunActivityRunsQueryByPipeline: API.OperationMethod<
+  RunActivityRunsQueryByPipelineRequest,
+  ActivityRunsQueryResponse,
+  RunActivityRunsQueryByPipelineError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PrivateLinkResourcesGetRequest,
-  output: PrivateLinkResourcesWrapper,
+  input: RunActivityRunsQueryByPipelineRequest,
+  output: ActivityRunsQueryResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type TriggerRunsCancelError = AzureOpError;
-/** Cancel a single trigger instance by runId. */
-export const TriggerRunsCancel: API.OperationMethod<
-  TriggerRunsCancelRequest,
-  TriggerRunsCancelResponse,
-  TriggerRunsCancelError,
+export type StartChangeDataCaptureError = AzureOpError;
+/** Starts a change data capture. */
+export const StartChangeDataCapture: API.OperationMethod<
+  StartChangeDataCaptureRequest,
+  StartChangeDataCaptureResponse,
+  StartChangeDataCaptureError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TriggerRunsCancelRequest,
-  output: TriggerRunsCancelResponse,
+  input: StartChangeDataCaptureRequest,
+  output: StartChangeDataCaptureResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type StartIntegrationRuntimeError = AzureOpError;
+/** Starts a ManagedReserved type integration runtime. */
+export const StartIntegrationRuntime: API.OperationMethod<
+  StartIntegrationRuntimeRequest,
+  IntegrationRuntimeStatusResponse,
+  StartIntegrationRuntimeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: StartIntegrationRuntimeRequest,
+  output: IntegrationRuntimeStatusResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type StartTriggerError = AzureOpError;
+/** Starts a trigger. */
+export const StartTrigger: API.OperationMethod<
+  StartTriggerRequest,
+  StartTriggerResponse,
+  StartTriggerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: StartTriggerRequest,
+  output: StartTriggerResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type StopChangeDataCaptureError = AzureOpError;
+/** Stops a change data capture. */
+export const StopChangeDataCapture: API.OperationMethod<
+  StopChangeDataCaptureRequest,
+  StopChangeDataCaptureResponse,
+  StopChangeDataCaptureError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: StopChangeDataCaptureRequest,
+  output: StopChangeDataCaptureResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type StopIntegrationRuntimeError = AzureOpError;
+/** Stops a ManagedReserved type integration runtime. */
+export const StopIntegrationRuntime: API.OperationMethod<
+  StopIntegrationRuntimeRequest,
+  StopIntegrationRuntimeResponse,
+  StopIntegrationRuntimeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: StopIntegrationRuntimeRequest,
+  output: StopIntegrationRuntimeResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type StopTriggerError = AzureOpError;
+/** Stops a trigger. */
+export const StopTrigger: API.OperationMethod<
+  StopTriggerRequest,
+  StopTriggerResponse,
+  StopTriggerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: StopTriggerRequest,
+  output: StopTriggerResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type SubscribeTriggerToEventsError = AzureOpError;
+/** Subscribe event trigger to events. */
+export const SubscribeTriggerToEvents: API.OperationMethod<
+  SubscribeTriggerToEventsRequest,
+  TriggerSubscriptionOperationStatus,
+  SubscribeTriggerToEventsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: SubscribeTriggerToEventsRequest,
+  output: TriggerSubscriptionOperationStatus,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type SyncIntegrationRuntimeCredentialsError = AzureOpError;
+/** Force the integration runtime to synchronize credentials across integration runtime nodes, and this will override the credentials across all worker nodes with those available on the dispatcher node. If you already have the latest credential backup file, you should manually import it (preferred) on any self-hosted integration runtime node than using this API directly. */
+export const SyncIntegrationRuntimeCredentials: API.OperationMethod<
+  SyncIntegrationRuntimeCredentialsRequest,
+  SyncIntegrationRuntimeCredentialsResponse,
+  SyncIntegrationRuntimeCredentialsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: SyncIntegrationRuntimeCredentialsRequest,
+  output: SyncIntegrationRuntimeCredentialsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -9379,66 +9431,6 @@ export const TriggersCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type TriggersDeleteError = AzureOpError;
-/** Deletes a trigger. */
-export const TriggersDelete: API.OperationMethod<
-  TriggersDeleteRequest,
-  TriggersDeleteResponse,
-  TriggersDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TriggersDeleteRequest,
-  output: TriggersDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TriggersGetError = AzureOpError;
-/** Gets a trigger. */
-export const TriggersGet: API.OperationMethod<
-  TriggersGetRequest,
-  TriggersGetResponse,
-  TriggersGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TriggersGetRequest,
-  output: TriggersGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TriggersGetEventSubscriptionStatusError = AzureOpError;
-/** Get a trigger's event subscription status. */
-export const TriggersGetEventSubscriptionStatus: API.OperationMethod<
-  TriggersGetEventSubscriptionStatusRequest,
-  TriggerSubscriptionOperationStatus,
-  TriggersGetEventSubscriptionStatusError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TriggersGetEventSubscriptionStatusRequest,
-  output: TriggerSubscriptionOperationStatus,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TriggersListByFactoryError = AzureOpError;
-/** Lists triggers. */
-export const TriggersListByFactory: API.OperationMethod<
-  TriggersListByFactoryRequest,
-  TriggerListResponse,
-  TriggersListByFactoryError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TriggersListByFactoryRequest,
-  output: TriggerListResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type TriggersQueryByFactoryError = AzureOpError;
 /** Query triggers. */
 export const TriggersQueryByFactory: API.OperationMethod<
@@ -9454,61 +9446,61 @@ export const TriggersQueryByFactory: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type TriggersStartError = AzureOpError;
-/** Starts a trigger. */
-export const TriggersStart: API.OperationMethod<
-  TriggersStartRequest,
-  TriggersStartResponse,
-  TriggersStartError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TriggersStartRequest,
-  output: TriggersStartResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TriggersStopError = AzureOpError;
-/** Stops a trigger. */
-export const TriggersStop: API.OperationMethod<
-  TriggersStopRequest,
-  TriggersStopResponse,
-  TriggersStopError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TriggersStopRequest,
-  output: TriggersStopResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TriggersSubscribeToEventsError = AzureOpError;
-/** Subscribe event trigger to events. */
-export const TriggersSubscribeToEvents: API.OperationMethod<
-  TriggersSubscribeToEventsRequest,
-  TriggerSubscriptionOperationStatus,
-  TriggersSubscribeToEventsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TriggersSubscribeToEventsRequest,
-  output: TriggerSubscriptionOperationStatus,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TriggersUnsubscribeFromEventsError = AzureOpError;
+export type UnsubscribeTriggerFromEventsError = AzureOpError;
 /** Unsubscribe event trigger from events. */
-export const TriggersUnsubscribeFromEvents: API.OperationMethod<
-  TriggersUnsubscribeFromEventsRequest,
+export const UnsubscribeTriggerFromEvents: API.OperationMethod<
+  UnsubscribeTriggerFromEventsRequest,
   TriggerSubscriptionOperationStatus,
-  TriggersUnsubscribeFromEventsError,
+  UnsubscribeTriggerFromEventsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TriggersUnsubscribeFromEventsRequest,
+  input: UnsubscribeTriggerFromEventsRequest,
   output: TriggerSubscriptionOperationStatus,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateFactoryError = AzureOpError;
+/** Updates a factory. */
+export const UpdateFactory: API.OperationMethod<
+  UpdateFactoryRequest,
+  UpdateFactoryResponse,
+  UpdateFactoryError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateFactoryRequest,
+  output: UpdateFactoryResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateIntegrationRuntimeError = AzureOpError;
+/** Updates an integration runtime. */
+export const UpdateIntegrationRuntime: API.OperationMethod<
+  UpdateIntegrationRuntimeRequest,
+  UpdateIntegrationRuntimeResponse,
+  UpdateIntegrationRuntimeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateIntegrationRuntimeRequest,
+  output: UpdateIntegrationRuntimeResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateIntegrationRuntimeNodeError = AzureOpError;
+/** Updates a self-hosted integration runtime node. */
+export const UpdateIntegrationRuntimeNode: API.OperationMethod<
+  UpdateIntegrationRuntimeNodeRequest,
+  SelfHostedIntegrationRuntimeNode,
+  UpdateIntegrationRuntimeNodeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateIntegrationRuntimeNodeRequest,
+  output: SelfHostedIntegrationRuntimeNode,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

@@ -30,6 +30,15 @@ export class Forbidden
     [{ status: 403 }],
   ) {}
 
+export class NotFound
+  extends /*@__PURE__*/ T.applyErrorMatchers(
+    /*@__PURE__*/ S.TaggedError<NotFound>()("NotFound", {
+      code: S.Number,
+      message: S.String,
+    }).pipe(C.withBadRequestError),
+    [{ status: 404 }],
+  ) {}
+
 export class PaymentRequired
   extends /*@__PURE__*/ T.applyErrorMatchers(
     /*@__PURE__*/ S.TaggedError<PaymentRequired>()("PaymentRequired", {
@@ -1519,6 +1528,7 @@ export type AggregateEventsError =
   | BadRequest
   | PaymentRequired
   | Forbidden
+  | NotFound
   | VercelOpError;
 /** Aggregates custom events Counts custom events on a project, within the requested date range. Results are either aggregated or broken down over time. Results can additionally be broken down by one dimension, and filtered by multiple dimensions. */
 export const aggregateEvents: API.OperationMethod<
@@ -1529,7 +1539,7 @@ export const aggregateEvents: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: AggregateEventsRequest,
   output: AggregateEventsResponse,
-  errors: [BadRequest, PaymentRequired, Forbidden],
+  errors: [BadRequest, PaymentRequired, Forbidden, NotFound],
   protocol: VercelProtocol,
   retry: Retry.Retry,
 }));
@@ -1538,6 +1548,7 @@ export type AggregatePageviewsError =
   | BadRequest
   | PaymentRequired
   | Forbidden
+  | NotFound
   | VercelOpError;
 /** Aggregates page views Counts pageviews on a project, within the requested date range. Results are either aggregated or broken down over time. Results can additionally be broken down by one dimension, and filtered by multiple dimensions. */
 export const aggregatePageviews: API.OperationMethod<
@@ -1548,7 +1559,7 @@ export const aggregatePageviews: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: AggregatePageviewsRequest,
   output: AggregatePageviewsResponse,
-  errors: [BadRequest, PaymentRequired, Forbidden],
+  errors: [BadRequest, PaymentRequired, Forbidden, NotFound],
   protocol: VercelProtocol,
   retry: Retry.Retry,
 }));
@@ -1557,6 +1568,7 @@ export type CountEventsError =
   | BadRequest
   | PaymentRequired
   | Forbidden
+  | NotFound
   | VercelOpError;
 /** Counts custom events Counts the number of custom events on a project (production only), since Web Analytics was enabled. Results can be filtered on supported dimensions. */
 export const countEvents: API.OperationMethod<
@@ -1567,7 +1579,7 @@ export const countEvents: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: CountEventsRequest,
   output: CountEventsResponse,
-  errors: [BadRequest, PaymentRequired, Forbidden],
+  errors: [BadRequest, PaymentRequired, Forbidden, NotFound],
   protocol: VercelProtocol,
   retry: Retry.Retry,
 }));
@@ -1576,6 +1588,7 @@ export type CountPageviewsError =
   | BadRequest
   | PaymentRequired
   | Forbidden
+  | NotFound
   | VercelOpError;
 /** Counts page views Counts the number of page views on a project (production only), since Web Analytics was enabled. Results can be filtered on supported dimensions. */
 export const countPageviews: API.OperationMethod<
@@ -1586,7 +1599,7 @@ export const countPageviews: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: CountPageviewsRequest,
   output: CountPageviewsResponse,
-  errors: [BadRequest, PaymentRequired, Forbidden],
+  errors: [BadRequest, PaymentRequired, Forbidden, NotFound],
   protocol: VercelProtocol,
   retry: Retry.Retry,
 }));

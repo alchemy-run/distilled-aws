@@ -12,6 +12,134 @@ import * as Retry from "../retry.ts";
 
 export type { ModalOpError, ModalOpContext };
 
+export interface GetWorkspaceDashboardUrlRequest {
+  environmentName?: string;
+}
+export const GetWorkspaceDashboardUrlRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    environmentName: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/modal.client.ModalClient/WorkspaceDashboardUrlGet",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetWorkspaceDashboardUrlRequest",
+}) as any as S.Schema<GetWorkspaceDashboardUrlRequest>;
+
+export interface GetWorkspaceDashboardUrlResponse {
+  url?: string;
+}
+export const GetWorkspaceDashboardUrlResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    url: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetWorkspaceDashboardUrlResponse",
+}) as any as S.Schema<GetWorkspaceDashboardUrlResponse>;
+
+export interface ListWorkspaceMembersRequest {}
+export const ListWorkspaceMembersRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/modal.client.ModalClient/WorkspaceMembersList",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListWorkspaceMembersRequest",
+}) as any as S.Schema<ListWorkspaceMembersRequest>;
+
+export type MemberRole =
+  | "MEMBER_ROLE_UNSPECIFIED"
+  | "MEMBER_ROLE_USER"
+  | "MEMBER_ROLE_MANAGER"
+  | "MEMBER_ROLE_OWNER";
+export const MemberRole = /*@__PURE__*/ S.String;
+
+export type IdentityProviderType =
+  | "IDENTITY_PROVIDER_TYPE_UNSPECIFIED"
+  | "IDENTITY_PROVIDER_TYPE_GITHUB"
+  | "IDENTITY_PROVIDER_TYPE_OKTA"
+  | "IDENTITY_PROVIDER_TYPE_GOOGLE_OAUTH";
+export const IdentityProviderType = /*@__PURE__*/ S.String;
+
+export interface WorkspaceMembersListItem {
+  memberId?: string;
+  memberDisplayname?: string;
+  memberRole?: MemberRole;
+  joinedAt?: number;
+  lastActiveAt?: number;
+  deletedAt?: number;
+  userId?: string;
+  identityProviderType?: IdentityProviderType;
+  email?: string;
+  avatarUrl?: string;
+  idpExternalId?: string;
+}
+export const WorkspaceMembersListItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    memberId: S.optional(S.String),
+    memberDisplayname: S.optional(S.String),
+    memberRole: S.optional(MemberRole),
+    joinedAt: S.optional(S.Number),
+    lastActiveAt: S.optional(S.Number),
+    deletedAt: S.optional(S.Number),
+    userId: S.optional(S.String),
+    identityProviderType: S.optional(IdentityProviderType),
+    email: S.optional(S.String),
+    avatarUrl: S.optional(S.String),
+    idpExternalId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "WorkspaceMembersListItem",
+}) as any as S.Schema<WorkspaceMembersListItem>;
+
+export type WorkspaceMembersListItemList = Array<WorkspaceMembersListItem>;
+export const WorkspaceMembersListItemList = /*@__PURE__*/ S.Array(
+  WorkspaceMembersListItem,
+) as any as S.Schema<WorkspaceMembersListItemList>;
+
+export interface ListWorkspaceMembersResponse {
+  members?: WorkspaceMembersListItemList;
+}
+export const ListWorkspaceMembersResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    members: S.optional(WorkspaceMembersListItemList),
+  }),
+).annotate({
+  identifier: "ListWorkspaceMembersResponse",
+}) as any as S.Schema<ListWorkspaceMembersResponse>;
+
+export interface LookupWorkspaceNameRequest {}
+export const LookupWorkspaceNameRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/modal.client.ModalClient/WorkspaceNameLookup",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "LookupWorkspaceNameRequest",
+}) as any as S.Schema<LookupWorkspaceNameRequest>;
+
+export interface LookupWorkspaceNameResponse {
+  workspaceName?: string;
+  username?: string;
+}
+export const LookupWorkspaceNameResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    workspaceName: S.optional(S.String),
+    username: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "LookupWorkspaceNameResponse",
+}) as any as S.Schema<LookupWorkspaceNameResponse>;
+
 export interface WorkspaceBillingRatesRequest {}
 export const WorkspaceBillingRatesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
@@ -89,134 +217,6 @@ export const WorkspaceBillingSummaryResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "WorkspaceBillingSummaryResponse",
 }) as any as S.Schema<WorkspaceBillingSummaryResponse>;
-
-export interface WorkspaceDashboardUrlGetRequest {
-  environmentName?: string;
-}
-export const WorkspaceDashboardUrlGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    environmentName: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/modal.client.ModalClient/WorkspaceDashboardUrlGet",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "WorkspaceDashboardUrlGetRequest",
-}) as any as S.Schema<WorkspaceDashboardUrlGetRequest>;
-
-export interface WorkspaceDashboardUrlGetResponse {
-  url?: string;
-}
-export const WorkspaceDashboardUrlGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    url: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "WorkspaceDashboardUrlGetResponse",
-}) as any as S.Schema<WorkspaceDashboardUrlGetResponse>;
-
-export interface WorkspaceMembersListRequest {}
-export const WorkspaceMembersListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/modal.client.ModalClient/WorkspaceMembersList",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "WorkspaceMembersListRequest",
-}) as any as S.Schema<WorkspaceMembersListRequest>;
-
-export type MemberRole =
-  | "MEMBER_ROLE_UNSPECIFIED"
-  | "MEMBER_ROLE_USER"
-  | "MEMBER_ROLE_MANAGER"
-  | "MEMBER_ROLE_OWNER";
-export const MemberRole = /*@__PURE__*/ S.String;
-
-export type IdentityProviderType =
-  | "IDENTITY_PROVIDER_TYPE_UNSPECIFIED"
-  | "IDENTITY_PROVIDER_TYPE_GITHUB"
-  | "IDENTITY_PROVIDER_TYPE_OKTA"
-  | "IDENTITY_PROVIDER_TYPE_GOOGLE_OAUTH";
-export const IdentityProviderType = /*@__PURE__*/ S.String;
-
-export interface WorkspaceMembersListItem {
-  memberId?: string;
-  memberDisplayname?: string;
-  memberRole?: MemberRole;
-  joinedAt?: number;
-  lastActiveAt?: number;
-  deletedAt?: number;
-  userId?: string;
-  identityProviderType?: IdentityProviderType;
-  email?: string;
-  avatarUrl?: string;
-  idpExternalId?: string;
-}
-export const WorkspaceMembersListItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    memberId: S.optional(S.String),
-    memberDisplayname: S.optional(S.String),
-    memberRole: S.optional(MemberRole),
-    joinedAt: S.optional(S.Number),
-    lastActiveAt: S.optional(S.Number),
-    deletedAt: S.optional(S.Number),
-    userId: S.optional(S.String),
-    identityProviderType: S.optional(IdentityProviderType),
-    email: S.optional(S.String),
-    avatarUrl: S.optional(S.String),
-    idpExternalId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "WorkspaceMembersListItem",
-}) as any as S.Schema<WorkspaceMembersListItem>;
-
-export type WorkspaceMembersListItemList = Array<WorkspaceMembersListItem>;
-export const WorkspaceMembersListItemList = /*@__PURE__*/ S.Array(
-  WorkspaceMembersListItem,
-) as any as S.Schema<WorkspaceMembersListItemList>;
-
-export interface WorkspaceMembersListResponse {
-  members?: WorkspaceMembersListItemList;
-}
-export const WorkspaceMembersListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    members: S.optional(WorkspaceMembersListItemList),
-  }),
-).annotate({
-  identifier: "WorkspaceMembersListResponse",
-}) as any as S.Schema<WorkspaceMembersListResponse>;
-
-export interface WorkspaceNameLookupRequest {}
-export const WorkspaceNameLookupRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/modal.client.ModalClient/WorkspaceNameLookup",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "WorkspaceNameLookupRequest",
-}) as any as S.Schema<WorkspaceNameLookupRequest>;
-
-export interface WorkspaceNameLookupResponse {
-  workspaceName?: string;
-  username?: string;
-}
-export const WorkspaceNameLookupResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    workspaceName: S.optional(S.String),
-    username: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "WorkspaceNameLookupResponse",
-}) as any as S.Schema<WorkspaceNameLookupResponse>;
 
 export interface WorkspaceSetDefaultEnvironmentRequest {
   environmentName?: string;
@@ -299,6 +299,48 @@ export const WorkspaceSettingsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "WorkspaceSettingsResponse",
 }) as any as S.Schema<WorkspaceSettingsResponse>;
 
+export type GetWorkspaceDashboardUrlError = ModalOpError;
+export const getWorkspaceDashboardUrl: API.OperationMethod<
+  GetWorkspaceDashboardUrlRequest,
+  GetWorkspaceDashboardUrlResponse,
+  GetWorkspaceDashboardUrlError,
+  ModalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWorkspaceDashboardUrlRequest,
+  output: GetWorkspaceDashboardUrlResponse,
+  errors: [UnknownModalError],
+  protocol: ModalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWorkspaceMembersError = ModalOpError;
+export const listWorkspaceMembers: API.OperationMethod<
+  ListWorkspaceMembersRequest,
+  ListWorkspaceMembersResponse,
+  ListWorkspaceMembersError,
+  ModalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWorkspaceMembersRequest,
+  output: ListWorkspaceMembersResponse,
+  errors: [UnknownModalError],
+  protocol: ModalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type LookupWorkspaceNameError = ModalOpError;
+export const lookupWorkspaceName: API.OperationMethod<
+  LookupWorkspaceNameRequest,
+  LookupWorkspaceNameResponse,
+  LookupWorkspaceNameError,
+  ModalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: LookupWorkspaceNameRequest,
+  output: LookupWorkspaceNameResponse,
+  errors: [UnknownModalError],
+  protocol: ModalProtocol,
+  retry: Retry.Retry,
+}));
+
 export type WorkspaceBillingRatesError = ModalOpError;
 /** Workspaces */
 export const workspaceBillingRates: API.OperationMethod<
@@ -323,48 +365,6 @@ export const workspaceBillingSummary: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: WorkspaceBillingSummaryRequest,
   output: WorkspaceBillingSummaryResponse,
-  errors: [UnknownModalError],
-  protocol: ModalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkspaceDashboardUrlGetError = ModalOpError;
-export const workspaceDashboardUrlGet: API.OperationMethod<
-  WorkspaceDashboardUrlGetRequest,
-  WorkspaceDashboardUrlGetResponse,
-  WorkspaceDashboardUrlGetError,
-  ModalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkspaceDashboardUrlGetRequest,
-  output: WorkspaceDashboardUrlGetResponse,
-  errors: [UnknownModalError],
-  protocol: ModalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkspaceMembersListError = ModalOpError;
-export const workspaceMembersList: API.OperationMethod<
-  WorkspaceMembersListRequest,
-  WorkspaceMembersListResponse,
-  WorkspaceMembersListError,
-  ModalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkspaceMembersListRequest,
-  output: WorkspaceMembersListResponse,
-  errors: [UnknownModalError],
-  protocol: ModalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkspaceNameLookupError = ModalOpError;
-export const workspaceNameLookup: API.OperationMethod<
-  WorkspaceNameLookupRequest,
-  WorkspaceNameLookupResponse,
-  WorkspaceNameLookupError,
-  ModalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkspaceNameLookupRequest,
-  output: WorkspaceNameLookupResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,

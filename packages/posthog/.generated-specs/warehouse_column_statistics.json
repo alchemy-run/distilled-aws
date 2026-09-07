@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.warehouse_column_statistics#WarehouseColumnStatisticsListRequest": {
+    "com.posthog.warehouse_column_statistics#ListWarehouseColumnStatisticsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -200,10 +201,10 @@
       },
       "traits": {}
     },
-    "com.posthog.warehouse_column_statistics#WarehouseColumnStatisticsList": {
+    "com.posthog.warehouse_column_statistics#ListWarehouseColumnStatistics": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.warehouse_column_statistics#WarehouseColumnStatisticsListRequest"
+        "target": "com.posthog.warehouse_column_statistics#ListWarehouseColumnStatisticsRequest"
       },
       "output": {
         "target": "com.posthog.warehouse_column_statistics#PaginatedWarehouseColumnStatisticsList"
@@ -217,7 +218,7 @@
         "smithy.api#documentation": "Read per-column data statistics (null fraction, min/max, row count) for warehouse tables.\n\nStatistics are computed automatically after a sync and surfaced to the AI agent so it can write\nbetter queries. They are system-owned and read-only here. List can be filtered to one table with\n`?table_id=<uuid>`."
       }
     },
-    "com.posthog.warehouse_column_statistics#WarehouseColumnStatisticsRetrieveRequest": {
+    "com.posthog.warehouse_column_statistics#GetWarehouseColumnStatisticsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -241,10 +242,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.warehouse_column_statistics#WarehouseColumnStatisticsRetrieve": {
+    "com.posthog.warehouse_column_statistics#GetWarehouseColumnStatistics": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.warehouse_column_statistics#WarehouseColumnStatisticsRetrieveRequest"
+        "target": "com.posthog.warehouse_column_statistics#GetWarehouseColumnStatisticsRequest"
       },
       "output": {
         "target": "com.posthog.warehouse_column_statistics#WarehouseColumnStatistics2"
@@ -263,10 +264,10 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.warehouse_column_statistics#WarehouseColumnStatisticsList"
+          "target": "com.posthog.warehouse_column_statistics#ListWarehouseColumnStatistics"
         },
         {
-          "target": "com.posthog.warehouse_column_statistics#WarehouseColumnStatisticsRetrieve"
+          "target": "com.posthog.warehouse_column_statistics#GetWarehouseColumnStatistics"
         }
       ],
       "traits": {

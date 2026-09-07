@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.mcp_analytics#McpAnalyticsFeedbackListRequest": {
+    "com.posthog.mcp_analytics#ListMcpAnalyticsFeedbackRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -216,10 +217,10 @@
       },
       "traits": {}
     },
-    "com.posthog.mcp_analytics#McpAnalyticsFeedbackList": {
+    "com.posthog.mcp_analytics#ListMcpAnalyticsFeedback": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.mcp_analytics#McpAnalyticsFeedbackListRequest"
+        "target": "com.posthog.mcp_analytics#ListMcpAnalyticsFeedbackRequest"
       },
       "output": {
         "target": "com.posthog.mcp_analytics#PaginatedMCPAnalyticsSubmissionList"
@@ -233,7 +234,7 @@
         "smithy.api#documentation": "List MCP feedback submissions for the current project, newest first."
       }
     },
-    "com.posthog.mcp_analytics#MCPFeedbackCreateCategoryEnum": {
+    "com.posthog.mcp_analytics#MCPAnalyticsSubmissionFeedbackCategoryEnum": {
       "type": "enum",
       "members": {
         "RESULTS": {
@@ -271,7 +272,7 @@
         "smithy.api#documentation": "* `results` - Results\n* `usability` - Usability\n* `bug` - Bug\n* `docs` - Docs\n* `other` - Other"
       }
     },
-    "com.posthog.mcp_analytics#McpAnalyticsFeedbackCreateRequest": {
+    "com.posthog.mcp_analytics#CreateMcpAnalyticsFeedbackRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -339,7 +340,7 @@
           }
         },
         "category": {
-          "target": "com.posthog.mcp_analytics#MCPFeedbackCreateCategoryEnum",
+          "target": "com.posthog.mcp_analytics#MCPAnalyticsSubmissionFeedbackCategoryEnum",
           "traits": {
             "smithy.api#documentation": "High-level category for the feedback.\n\n* `results` - Results\n* `usability` - Usability\n* `bug` - Bug\n* `docs` - Docs\n* `other` - Other"
           }
@@ -349,10 +350,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.mcp_analytics#McpAnalyticsFeedbackCreate": {
+    "com.posthog.mcp_analytics#CreateMcpAnalyticsFeedback": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.mcp_analytics#McpAnalyticsFeedbackCreateRequest"
+        "target": "com.posthog.mcp_analytics#CreateMcpAnalyticsFeedbackRequest"
       },
       "output": {
         "target": "com.posthog.mcp_analytics#MCPAnalyticsSubmission"
@@ -366,7 +367,7 @@
         "smithy.api#documentation": "Create a new MCP feedback submission for the current project."
       }
     },
-    "com.posthog.mcp_analytics#McpAnalyticsIntentClustersRetrieveRequest": {
+    "com.posthog.mcp_analytics#GetMcpAnalyticsIntentClusterRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1172,18 +1173,18 @@
       },
       "traits": {}
     },
-    "com.posthog.mcp_analytics#McpAnalyticsIntentClustersRetrieveResponseBodyList": {
+    "com.posthog.mcp_analytics#GetMcpAnalyticsIntentClusterResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.posthog.mcp_analytics#MCPIntentClusterSnapshot"
       },
       "traits": {}
     },
-    "com.posthog.mcp_analytics#McpAnalyticsIntentClustersRetrieveResponse": {
+    "com.posthog.mcp_analytics#GetMcpAnalyticsIntentClusterResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.mcp_analytics#McpAnalyticsIntentClustersRetrieveResponseBodyList",
+          "target": "com.posthog.mcp_analytics#GetMcpAnalyticsIntentClusterResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -1194,13 +1195,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.mcp_analytics#McpAnalyticsIntentClustersRetrieve": {
+    "com.posthog.mcp_analytics#GetMcpAnalyticsIntentCluster": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.mcp_analytics#McpAnalyticsIntentClustersRetrieveRequest"
+        "target": "com.posthog.mcp_analytics#GetMcpAnalyticsIntentClusterRequest"
       },
       "output": {
-        "target": "com.posthog.mcp_analytics#McpAnalyticsIntentClustersRetrieveResponse"
+        "target": "com.posthog.mcp_analytics#GetMcpAnalyticsIntentClusterResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1244,7 +1245,7 @@
         "smithy.api#documentation": "Trigger an asynchronous recompute of the intent cluster snapshot. The task runs in the background; poll the GET endpoint for progress (status transitions to 'idle' or 'error')."
       }
     },
-    "com.posthog.mcp_analytics#McpAnalyticsMissingCapabilitiesListRequest": {
+    "com.posthog.mcp_analytics#ListMcpAnalyticsMissingCapabilitiesRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1274,10 +1275,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.mcp_analytics#McpAnalyticsMissingCapabilitiesList": {
+    "com.posthog.mcp_analytics#ListMcpAnalyticsMissingCapabilities": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.mcp_analytics#McpAnalyticsMissingCapabilitiesListRequest"
+        "target": "com.posthog.mcp_analytics#ListMcpAnalyticsMissingCapabilitiesRequest"
       },
       "output": {
         "target": "com.posthog.mcp_analytics#PaginatedMCPAnalyticsSubmissionList"
@@ -1291,7 +1292,7 @@
         "smithy.api#documentation": "List missing capability reports for the current project, newest first."
       }
     },
-    "com.posthog.mcp_analytics#McpAnalyticsMissingCapabilitiesCreateRequest": {
+    "com.posthog.mcp_analytics#CreateMcpAnalyticsMissingCapabilityRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1369,10 +1370,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.mcp_analytics#McpAnalyticsMissingCapabilitiesCreate": {
+    "com.posthog.mcp_analytics#CreateMcpAnalyticsMissingCapability": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.mcp_analytics#McpAnalyticsMissingCapabilitiesCreateRequest"
+        "target": "com.posthog.mcp_analytics#CreateMcpAnalyticsMissingCapabilityRequest"
       },
       "output": {
         "target": "com.posthog.mcp_analytics#MCPAnalyticsSubmission"
@@ -1386,7 +1387,7 @@
         "smithy.api#documentation": "Create a new missing capability report for the current project."
       }
     },
-    "com.posthog.mcp_analytics#McpAnalyticsSessionsListRequest": {
+    "com.posthog.mcp_analytics#ListMcpAnalyticsSessionsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1562,10 +1563,10 @@
       },
       "traits": {}
     },
-    "com.posthog.mcp_analytics#McpAnalyticsSessionsList": {
+    "com.posthog.mcp_analytics#ListMcpAnalyticsSessions": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.mcp_analytics#McpAnalyticsSessionsListRequest"
+        "target": "com.posthog.mcp_analytics#ListMcpAnalyticsSessionsRequest"
       },
       "output": {
         "target": "com.posthog.mcp_analytics#PaginatedMCPSessionList"
@@ -1579,7 +1580,7 @@
         "smithy.api#documentation": "List MCP sessions for the current project, derived by grouping $mcp_tool_call events by $mcp_session_id. Ordered by newest session start first by default."
       }
     },
-    "com.posthog.mcp_analytics#McpAnalyticsSessionsGenerateIntentRequest": {
+    "com.posthog.mcp_analytics#GenerateMcpAnalyticsSessionIntentRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1630,10 +1631,10 @@
       },
       "traits": {}
     },
-    "com.posthog.mcp_analytics#McpAnalyticsSessionsGenerateIntent": {
+    "com.posthog.mcp_analytics#GenerateMcpAnalyticsSessionIntent": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.mcp_analytics#McpAnalyticsSessionsGenerateIntentRequest"
+        "target": "com.posthog.mcp_analytics#GenerateMcpAnalyticsSessionIntentRequest"
       },
       "output": {
         "target": "com.posthog.mcp_analytics#MCPSessionIntent"
@@ -2171,28 +2172,28 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.mcp_analytics#McpAnalyticsFeedbackList"
+          "target": "com.posthog.mcp_analytics#ListMcpAnalyticsFeedback"
         },
         {
-          "target": "com.posthog.mcp_analytics#McpAnalyticsFeedbackCreate"
+          "target": "com.posthog.mcp_analytics#CreateMcpAnalyticsFeedback"
         },
         {
-          "target": "com.posthog.mcp_analytics#McpAnalyticsIntentClustersRetrieve"
+          "target": "com.posthog.mcp_analytics#GetMcpAnalyticsIntentCluster"
         },
         {
           "target": "com.posthog.mcp_analytics#McpAnalyticsIntentClustersRecompute"
         },
         {
-          "target": "com.posthog.mcp_analytics#McpAnalyticsMissingCapabilitiesList"
+          "target": "com.posthog.mcp_analytics#ListMcpAnalyticsMissingCapabilities"
         },
         {
-          "target": "com.posthog.mcp_analytics#McpAnalyticsMissingCapabilitiesCreate"
+          "target": "com.posthog.mcp_analytics#CreateMcpAnalyticsMissingCapability"
         },
         {
-          "target": "com.posthog.mcp_analytics#McpAnalyticsSessionsList"
+          "target": "com.posthog.mcp_analytics#ListMcpAnalyticsSessions"
         },
         {
-          "target": "com.posthog.mcp_analytics#McpAnalyticsSessionsGenerateIntent"
+          "target": "com.posthog.mcp_analytics#GenerateMcpAnalyticsSessionIntent"
         },
         {
           "target": "com.posthog.mcp_analytics#McpAnalyticsSessionsToolCalls"

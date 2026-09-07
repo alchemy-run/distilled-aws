@@ -39,41 +39,6 @@ export class NotFound
     [{ status: 404 }],
   ) {}
 
-export interface QueryCheckAuthForAsyncCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-}
-export const QueryCheckAuthForAsyncCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/projects/{project_id}/query/check_auth_for_async/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "QueryCheckAuthForAsyncCreateRequest",
-}) as any as S.Schema<QueryCheckAuthForAsyncCreateRequest>;
-
-export type QueryCheckAuthForAsyncCreateResponseBodyMap = {
-  [key: string]: unknown | undefined;
-};
-export const QueryCheckAuthForAsyncCreateResponseBodyMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<QueryCheckAuthForAsyncCreateResponseBodyMap>;
-
-export type QueryCheckAuthForAsyncCreateResponse =
-  QueryCheckAuthForAsyncCreateResponseBodyMap;
-export const QueryCheckAuthForAsyncCreateResponse = /*@__PURE__*/ S.suspend(
-  () => QueryCheckAuthForAsyncCreateResponseBodyMap.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "QueryCheckAuthForAsyncCreateResponse",
-}) as any as S.Schema<QueryCheckAuthForAsyncCreateResponse>;
-
 export type BreakdownFilterBreakdownCase1Item = string | number;
 export const BreakdownFilterBreakdownCase1Item =
   /*@__PURE__*/ S.Unknown as any as S.Schema<BreakdownFilterBreakdownCase1Item>;
@@ -1756,6 +1721,50 @@ export type BounceRatePageViewMode =
   | "uniq_page_screen_autocaptures";
 export const BounceRatePageViewMode = /*@__PURE__*/ S.String;
 
+export type CustomBotField =
+  | "$raw_user_agent"
+  | "$ip"
+  | "$lib"
+  | "$host"
+  | "$pathname"
+  | "$current_url";
+export const CustomBotField = /*@__PURE__*/ S.String;
+
+export type CustomBotMatcher = "contains" | "regex" | "cidr";
+export const CustomBotMatcher = /*@__PURE__*/ S.String;
+
+export interface CustomBotDefinition {
+  /** Reported by `$virt_traffic_category`. Defaults to `custom`. */
+  category?: string | null;
+  id: string;
+  /** The event property this rule reads. */
+  key: CustomBotField | (string & {});
+  matcher: CustomBotMatcher | (string & {});
+  /** Reported by `$virt_bot_name` and `$virt_bot_operator` when the rule matches. */
+  name: string;
+  /** Matched against the property named by `key`. */
+  pattern: string;
+}
+export const CustomBotDefinition = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    category: S.optional(S.NullOr(S.String)),
+    id: S.String,
+    key: CustomBotField,
+    matcher: CustomBotMatcher,
+    name: S.String,
+    pattern: S.String,
+  }),
+).annotate({
+  identifier: "CustomBotDefinition",
+}) as any as S.Schema<CustomBotDefinition>;
+
+export type HogQLQueryModifiersCustomBotDefinitionsList =
+  Array<CustomBotDefinition>;
+export const HogQLQueryModifiersCustomBotDefinitionsList =
+  /*@__PURE__*/ S.Array(
+    CustomBotDefinition,
+  ) as any as S.Schema<HogQLQueryModifiersCustomBotDefinitionsList>;
+
 export type FilterLogicalOperator = "AND" | "OR";
 export const FilterLogicalOperator = /*@__PURE__*/ S.String;
 
@@ -1924,6 +1933,7 @@ export interface HogQLQueryModifiers {
   bounceRateDurationSeconds?: number | null;
   bounceRatePageViewMode?: BounceRatePageViewMode | (string & {}) | null;
   convertToProjectTimezone?: boolean | null;
+  customBotDefinitions?: HogQLQueryModifiersCustomBotDefinitionsList | null;
   customChannelTypeRules?: HogQLQueryModifiersCustomChannelTypeRulesList | null;
   dataWarehouseEventsModifiers?: HogQLQueryModifiersDataWarehouseEventsModifiersList | null;
   debug?: boolean | null;
@@ -1971,6 +1981,9 @@ export const HogQLQueryModifiers = /*@__PURE__*/ S.suspend(() =>
     bounceRateDurationSeconds: S.optional(S.NullOr(S.Number)),
     bounceRatePageViewMode: S.optional(S.NullOr(BounceRatePageViewMode)),
     convertToProjectTimezone: S.optional(S.NullOr(S.Boolean)),
+    customBotDefinitions: S.optional(
+      S.NullOr(HogQLQueryModifiersCustomBotDefinitionsList),
+    ),
     customChannelTypeRules: S.optional(
       S.NullOr(HogQLQueryModifiersCustomChannelTypeRulesList),
     ),
@@ -6208,6 +6221,8 @@ export interface WebStatsTableQueryResponse {
   /** Modifiers used when performing the query */
   modifiers?: HogQLQueryModifiers | null;
   offset?: number | null;
+  /** Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible. */
+  preComputeIneligibleReason?: string | null;
   /** Whether a lazy-precompute read was served from expired-within-grace (stale) jobs instead of recomputing inline. */
   preComputeStale?: boolean | null;
   preComputeStrategy?: WebAnalyticsPreComputeStrategy | (string & {}) | null;
@@ -6236,6 +6251,7 @@ export const WebStatsTableQueryResponse = /*@__PURE__*/ S.suspend(() =>
     limit: S.optional(S.NullOr(S.Number)),
     modifiers: S.optional(S.NullOr(HogQLQueryModifiers)),
     offset: S.optional(S.NullOr(S.Number)),
+    preComputeIneligibleReason: S.optional(S.NullOr(S.String)),
     preComputeStale: S.optional(S.NullOr(S.Boolean)),
     preComputeStrategy: S.optional(S.NullOr(WebAnalyticsPreComputeStrategy)),
     query_status: S.optional(S.NullOr(QueryStatus)),
@@ -6436,6 +6452,8 @@ export interface WebOverviewQueryResponse {
   hogql?: string | null;
   /** Modifiers used when performing the query */
   modifiers?: HogQLQueryModifiers | null;
+  /** Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible. */
+  preComputeIneligibleReason?: string | null;
   preComputeStrategy?: WebAnalyticsPreComputeStrategy | (string & {}) | null;
   /** Query status indicates whether next to the provided data, a query is still running. */
   query_status?: QueryStatus | null;
@@ -6459,6 +6477,7 @@ export const WebOverviewQueryResponse = /*@__PURE__*/ S.suspend(() =>
     error: S.optional(S.NullOr(S.String)),
     hogql: S.optional(S.NullOr(S.String)),
     modifiers: S.optional(S.NullOr(HogQLQueryModifiers)),
+    preComputeIneligibleReason: S.optional(S.NullOr(S.String)),
     preComputeStrategy: S.optional(S.NullOr(WebAnalyticsPreComputeStrategy)),
     query_status: S.optional(S.NullOr(QueryStatus)),
     resolved_compare_date_range: S.optional(
@@ -12424,6 +12443,8 @@ export interface WebGoalsQueryResponse {
   /** Modifiers used when performing the query */
   modifiers?: HogQLQueryModifiers | null;
   offset?: number | null;
+  /** Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible. */
+  preComputeIneligibleReason?: string | null;
   preComputeStrategy?: WebAnalyticsPreComputeStrategy | (string & {}) | null;
   /** Query status indicates whether next to the provided data, a query is still running. */
   query_status?: QueryStatus | null;
@@ -12450,6 +12471,7 @@ export const WebGoalsQueryResponse = /*@__PURE__*/ S.suspend(() =>
     limit: S.optional(S.NullOr(S.Number)),
     modifiers: S.optional(S.NullOr(HogQLQueryModifiers)),
     offset: S.optional(S.NullOr(S.Number)),
+    preComputeIneligibleReason: S.optional(S.NullOr(S.String)),
     preComputeStrategy: S.optional(S.NullOr(WebAnalyticsPreComputeStrategy)),
     query_status: S.optional(S.NullOr(QueryStatus)),
     resolved_compare_date_range: S.optional(
@@ -12748,6 +12770,8 @@ export interface WebVitalsPathBreakdownQueryResponse {
   hogql?: string | null;
   /** Modifiers used when performing the query */
   modifiers?: HogQLQueryModifiers | null;
+  /** Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible. */
+  preComputeIneligibleReason?: string | null;
   preComputeStrategy?: WebAnalyticsPreComputeStrategy | (string & {}) | null;
   /** Query status indicates whether next to the provided data, a query is still running. */
   query_status?: QueryStatus | null;
@@ -12768,6 +12792,7 @@ export const WebVitalsPathBreakdownQueryResponse = /*@__PURE__*/ S.suspend(() =>
     error: S.optional(S.NullOr(S.String)),
     hogql: S.optional(S.NullOr(S.String)),
     modifiers: S.optional(S.NullOr(HogQLQueryModifiers)),
+    preComputeIneligibleReason: S.optional(S.NullOr(S.String)),
     preComputeStrategy: S.optional(S.NullOr(WebAnalyticsPreComputeStrategy)),
     query_status: S.optional(S.NullOr(QueryStatus)),
     resolved_compare_date_range: S.optional(
@@ -13639,6 +13664,7 @@ export type IntegrationKind =
   | "apns"
   | "postgresql"
   | "aws-s3"
+  | "aws-redshift"
   | "s3-compatible"
   | "snowflake"
   | "youtube-analytics";
@@ -15305,6 +15331,58 @@ export const MetricsQueryClausesList = /*@__PURE__*/ S.Array(
   MetricsQueryClause,
 ) as any as S.Schema<MetricsQueryClausesList>;
 
+export type MetricsDisplaySettingsGoalLinesList = Array<GoalLine>;
+export const MetricsDisplaySettingsGoalLinesList = /*@__PURE__*/ S.Array(
+  GoalLine,
+) as any as S.Schema<MetricsDisplaySettingsGoalLinesList>;
+
+export type MetricsStatSummary = "latest" | "average" | "total";
+export const MetricsStatSummary = /*@__PURE__*/ S.String;
+
+export type MetricsDisplayType = "line" | "area" | "bar" | "stat";
+export const MetricsDisplayType = /*@__PURE__*/ S.String;
+
+export type MetricsAxisScale = "linear" | "log";
+export const MetricsAxisScale = /*@__PURE__*/ S.String;
+
+export interface MetricsYAxisSettings {
+  /** Pins the top of the axis; unset means automatic. Pinning both ends drops the automatic stretch that keeps an off-scale goal line on-plot. */
+  max?: number | null;
+  /** Pins the bottom of the axis; unset means automatic. Ignored while `startAtZero` is on. */
+  min?: number | null;
+  scale?: MetricsAxisScale | (string & {}) | null;
+  /** When false the axis floats to the data range instead of starting at zero. Ignored on a logarithmic scale, and on the bar display, where a bar's length encodes magnitude from zero. */
+  startAtZero?: boolean | null;
+}
+export const MetricsYAxisSettings = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    max: S.optional(S.NullOr(S.Number)),
+    min: S.optional(S.NullOr(S.Number)),
+    scale: S.optional(S.NullOr(MetricsAxisScale)),
+    startAtZero: S.optional(S.NullOr(S.Boolean)),
+  }),
+).annotate({
+  identifier: "MetricsYAxisSettings",
+}) as any as S.Schema<MetricsYAxisSettings>;
+
+export interface MetricsDisplaySettings {
+  goalLines?: MetricsDisplaySettingsGoalLinesList | null;
+  /** `stat` display only: which summary the headline value shows. */
+  statSummary?: MetricsStatSummary | (string & {}) | null;
+  type?: MetricsDisplayType | (string & {}) | null;
+  yAxis?: MetricsYAxisSettings | null;
+}
+export const MetricsDisplaySettings = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    goalLines: S.optional(S.NullOr(MetricsDisplaySettingsGoalLinesList)),
+    statSummary: S.optional(S.NullOr(MetricsStatSummary)),
+    type: S.optional(S.NullOr(MetricsDisplayType)),
+    yAxis: S.optional(S.NullOr(MetricsYAxisSettings)),
+  }),
+).annotate({
+  identifier: "MetricsDisplaySettings",
+}) as any as S.Schema<MetricsDisplaySettings>;
+
 /** Label values identifying this series; empty for an ungrouped query */
 export type MetricsQuerySeriesLabelsMap = { [key: string]: string | undefined };
 export const MetricsQuerySeriesLabelsMap = /*@__PURE__*/ S.Record(
@@ -15425,6 +15503,8 @@ export interface MetricsQuery {
   clauses: MetricsQueryClausesList;
   /** Defaults to the last 24 hours when omitted; dashboard date filters override it */
   dateRange?: DateRange | null;
+  /** Chart presentation. A node without it renders as a line chart. */
+  display?: MetricsDisplaySettings | null;
   /** Arithmetic over clause aliases (e.g. "a / b"); when set, only the formula series are returned */
   formula?: string | null;
   /** Bucket size, one of: second, minute, minute_5, minute_15, hour, hour_6, day, week; auto-picked from the range when omitted */
@@ -15441,6 +15521,7 @@ export const MetricsQuery = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     clauses: MetricsQueryClausesList,
     dateRange: S.optional(S.NullOr(DateRange)),
+    display: S.optional(S.NullOr(MetricsDisplaySettings)),
     formula: S.optional(S.NullOr(S.String)),
     interval: S.optional(S.NullOr(S.String)),
     kind: S.optional(S.String),
@@ -18434,8 +18515,40 @@ export const AccountsTableAssignedToFilter = /*@__PURE__*/ S.suspend(() =>
   identifier: "AccountsTableAssignedToFilter",
 }) as any as S.Schema<AccountsTableAssignedToFilter>;
 
+export type AccountsTableAssignedFilter = AccountsTableTagsColumn;
+export const AccountsTableAssignedFilter = AccountsTableTagsColumn;
+
 export type AccountsTableUnassignedFilter = AccountsTableTagsColumn;
 export const AccountsTableUnassignedFilter = AccountsTableTagsColumn;
+
+export type AccountsTableRelationshipOperator =
+  | "exact"
+  | "is_not"
+  | "is_set"
+  | "is_not_set";
+export const AccountsTableRelationshipOperator = /*@__PURE__*/ S.String;
+
+export type AccountsTableRelationshipFilterUserIdsList = Array<number>;
+export const AccountsTableRelationshipFilterUserIdsList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<AccountsTableRelationshipFilterUserIdsList>;
+
+export interface AccountsTableRelationshipFilter {
+  definitionId: string;
+  kind?: string;
+  operator: AccountsTableRelationshipOperator | (string & {});
+  userIds?: AccountsTableRelationshipFilterUserIdsList | null;
+}
+export const AccountsTableRelationshipFilter = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    definitionId: S.String,
+    kind: S.optional(S.String),
+    operator: AccountsTableRelationshipOperator,
+    userIds: S.optional(S.NullOr(AccountsTableRelationshipFilterUserIdsList)),
+  }),
+).annotate({
+  identifier: "AccountsTableRelationshipFilter",
+}) as any as S.Schema<AccountsTableRelationshipFilter>;
 
 export interface AccountsTableAccountIdFilter {
   accountId: string;
@@ -18539,6 +18652,8 @@ export type AccountsTableQueryFiltersItem =
   | AccountsTableTagsFilter
   | AccountsTableAssignedToFilter
   | AccountsTableTagsColumn
+  | AccountsTableTagsColumn
+  | AccountsTableRelationshipFilter
   | AccountsTableAccountIdFilter
   | AccountsTableAccountFieldFilter
   | AccountsTableCustomPropertyFilter;
@@ -21461,6 +21576,145 @@ export const MCPToolNeighborsQuery = /*@__PURE__*/ S.suspend(() =>
   identifier: "MCPToolNeighborsQuery",
 }) as any as S.Schema<MCPToolNeighborsQuery>;
 
+export interface MCPMissingCapabilitiesItem {
+  distinct_id: string;
+  /** Resolved client label, the client's own self-reported name when unrecognized, or "Unidentified client" when the report carried no client identity at all. */
+  harness: string;
+  /** The agent's own words for the capability it wanted, from $mcp_intent. */
+  intent: string;
+  /** JSON-encoded person email/name for display; "{}" when neither resolved. */
+  person_properties: string;
+  /** Conversation id: $mcp_session_id, falling back to $session_id; empty when neither is set. */
+  session_id: string;
+  timestamp: string;
+}
+export const MCPMissingCapabilitiesItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    distinct_id: S.String,
+    harness: S.String,
+    intent: S.String,
+    person_properties: S.String,
+    session_id: S.String,
+    timestamp: S.String,
+  }),
+).annotate({
+  identifier: "MCPMissingCapabilitiesItem",
+}) as any as S.Schema<MCPMissingCapabilitiesItem>;
+
+export type MCPMissingCapabilitiesQueryResponseResultsList =
+  Array<MCPMissingCapabilitiesItem>;
+export const MCPMissingCapabilitiesQueryResponseResultsList =
+  /*@__PURE__*/ S.Array(
+    MCPMissingCapabilitiesItem,
+  ) as any as S.Schema<MCPMissingCapabilitiesQueryResponseResultsList>;
+
+export type MCPMissingCapabilitiesQueryResponseTimingsList = Array<QueryTiming>;
+export const MCPMissingCapabilitiesQueryResponseTimingsList =
+  /*@__PURE__*/ S.Array(
+    QueryTiming,
+  ) as any as S.Schema<MCPMissingCapabilitiesQueryResponseTimingsList>;
+
+export type MCPMissingCapabilitiesQueryResponseUsedDataWarehouseSourcesList =
+  Array<DataWarehouseSourceUsage>;
+export const MCPMissingCapabilitiesQueryResponseUsedDataWarehouseSourcesList =
+  /*@__PURE__*/ S.Array(
+    DataWarehouseSourceUsage,
+  ) as any as S.Schema<MCPMissingCapabilitiesQueryResponseUsedDataWarehouseSourcesList>;
+
+export type MCPMissingCapabilitiesQueryResponseWarningsItem =
+  | DataWarehouseSyncWarning
+  | AccessControlFilterWarning;
+export const MCPMissingCapabilitiesQueryResponseWarningsItem =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<MCPMissingCapabilitiesQueryResponseWarningsItem>;
+
+export type MCPMissingCapabilitiesQueryResponseWarningsList =
+  Array<MCPMissingCapabilitiesQueryResponseWarningsItem>;
+export const MCPMissingCapabilitiesQueryResponseWarningsList =
+  /*@__PURE__*/ S.Array(
+    MCPMissingCapabilitiesQueryResponseWarningsItem,
+  ) as any as S.Schema<MCPMissingCapabilitiesQueryResponseWarningsList>;
+
+export interface MCPMissingCapabilitiesQueryResponse {
+  /** Query error. Returned only if 'explain' or `modifiers.debug` is true. Throws an error otherwise. */
+  error?: string | null;
+  /** Whether more reports exist past this page. */
+  has_next: boolean;
+  /** Generated HogQL query. */
+  hogql?: string | null;
+  /** Modifiers used when performing the query */
+  modifiers?: HogQLQueryModifiers | null;
+  /** Query status indicates whether next to the provided data, a query is still running. */
+  query_status?: QueryStatus | null;
+  /** The resolved previous/comparison period date range, when comparing against another period */
+  resolved_compare_date_range?: ResolvedDateRangeResponse | null;
+  /** The date range used for the query */
+  resolved_date_range?: ResolvedDateRangeResponse | null;
+  results: MCPMissingCapabilitiesQueryResponseResultsList;
+  /** Measured timings for different parts of the query generation process */
+  timings?: MCPMissingCapabilitiesQueryResponseTimingsList | null;
+  /** Connector-synced data warehouse sources referenced by this query, if any. */
+  used_data_warehouse_sources?: MCPMissingCapabilitiesQueryResponseUsedDataWarehouseSourcesList | null;
+  /** Warnings about data warehouse sources referenced by the query whose latest sync failed, is paused, hit a billing limit, or is otherwise stale. Results may not reflect current source data. Accumulated across every HogQL execution that contributes to this response — so insights backed by warehouse tables (Trends, Funnels, etc.) receive the same warnings as raw HogQL queries. Also carries access control warnings when a system-table query filters out objects the user can't access. */
+  warnings?: MCPMissingCapabilitiesQueryResponseWarningsList | null;
+}
+export const MCPMissingCapabilitiesQueryResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    error: S.optional(S.NullOr(S.String)),
+    has_next: S.Boolean,
+    hogql: S.optional(S.NullOr(S.String)),
+    modifiers: S.optional(S.NullOr(HogQLQueryModifiers)),
+    query_status: S.optional(S.NullOr(QueryStatus)),
+    resolved_compare_date_range: S.optional(
+      S.NullOr(ResolvedDateRangeResponse),
+    ),
+    resolved_date_range: S.optional(S.NullOr(ResolvedDateRangeResponse)),
+    results: MCPMissingCapabilitiesQueryResponseResultsList,
+    timings: S.optional(
+      S.NullOr(MCPMissingCapabilitiesQueryResponseTimingsList),
+    ),
+    used_data_warehouse_sources: S.optional(
+      S.NullOr(MCPMissingCapabilitiesQueryResponseUsedDataWarehouseSourcesList),
+    ),
+    warnings: S.optional(
+      S.NullOr(MCPMissingCapabilitiesQueryResponseWarningsList),
+    ),
+  }),
+).annotate({
+  identifier: "MCPMissingCapabilitiesQueryResponse",
+}) as any as S.Schema<MCPMissingCapabilitiesQueryResponse>;
+
+export interface MCPMissingCapabilitiesQuery {
+  dateRange?: DateRange | null;
+  kind?: string;
+  /** Page size; defaults to 100, capped at 500. */
+  limit?: number | null;
+  /** Modifiers used when performing the query */
+  modifiers?: HogQLQueryModifiers | null;
+  /** Reports to skip before returning results. Combine with limit to page through them; the response's has_next flag indicates whether more remain. */
+  offset?: number | null;
+  response?: MCPMissingCapabilitiesQueryResponse | null;
+  /** Case-insensitive substring match over the report text. */
+  search?: string | null;
+  tags?: QueryLogTags | null;
+  /** version of the node, used for schema migrations */
+  version?: number | null;
+}
+export const MCPMissingCapabilitiesQuery = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    dateRange: S.optional(S.NullOr(DateRange)),
+    kind: S.optional(S.String),
+    limit: S.optional(S.NullOr(S.Number)),
+    modifiers: S.optional(S.NullOr(HogQLQueryModifiers)),
+    offset: S.optional(S.NullOr(S.Number)),
+    response: S.optional(S.NullOr(MCPMissingCapabilitiesQueryResponse)),
+    search: S.optional(S.NullOr(S.String)),
+    tags: S.optional(S.NullOr(QueryLogTags)),
+    version: S.optional(S.NullOr(S.Number)),
+  }),
+).annotate({
+  identifier: "MCPMissingCapabilitiesQuery",
+}) as any as S.Schema<MCPMissingCapabilitiesQuery>;
+
 export type HogQLAutocompleteSourceQuery =
   | EventsNode
   | ActionsNode
@@ -21538,7 +21792,8 @@ export type HogQLAutocompleteSourceQuery =
   | MCPToolCategoryMapQuery
   | MCPToolDescriptionsQuery
   | MCPToolSampleIntentsQuery
-  | MCPToolNeighborsQuery;
+  | MCPToolNeighborsQuery
+  | MCPMissingCapabilitiesQuery;
 export const HogQLAutocompleteSourceQuery =
   /*@__PURE__*/ S.Unknown as any as S.Schema<HogQLAutocompleteSourceQuery>;
 
@@ -21664,7 +21919,8 @@ export type HogQLMetadataSourceQuery =
   | MCPToolCategoryMapQuery
   | MCPToolDescriptionsQuery
   | MCPToolSampleIntentsQuery
-  | MCPToolNeighborsQuery;
+  | MCPToolNeighborsQuery
+  | MCPMissingCapabilitiesQuery;
 export const HogQLMetadataSourceQuery =
   /*@__PURE__*/ S.Unknown as any as S.Schema<HogQLMetadataSourceQuery>;
 
@@ -22541,6 +22797,8 @@ export interface ChartSettings {
   goalLines?: ChartSettingsGoalLinesList | null;
   heatmap?: HeatmapSettings | null;
   leftYAxisSettings?: YAxisSettings | null;
+  /** Where the legend sits relative to the chart. Unset falls back per chart type: right for pie, top for the rest. */
+  legendPosition?: LegendPosition | (string & {}) | null;
   pie?: PieChartSettings | null;
   /** Per-breakdown-value color customizations. Keyed by the raw breakdown column value. */
   resultCustomizations?: ChartSettingsResultCustomizationsMap | null;
@@ -22571,6 +22829,7 @@ export const ChartSettings = /*@__PURE__*/ S.suspend(() =>
     goalLines: S.optional(S.NullOr(ChartSettingsGoalLinesList)),
     heatmap: S.optional(S.NullOr(HeatmapSettings)),
     leftYAxisSettings: S.optional(S.NullOr(YAxisSettings)),
+    legendPosition: S.optional(S.NullOr(LegendPosition)),
     pie: S.optional(S.NullOr(PieChartSettings)),
     resultCustomizations: S.optional(
       S.NullOr(ChartSettingsResultCustomizationsMap),
@@ -23152,6 +23411,8 @@ export interface Response4 {
   hogql?: string | null;
   /** Modifiers used when performing the query */
   modifiers?: HogQLQueryModifiers | null;
+  /** Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible. */
+  preComputeIneligibleReason?: string | null;
   preComputeStrategy?: WebAnalyticsPreComputeStrategy | (string & {}) | null;
   /** Query status indicates whether next to the provided data, a query is still running. */
   query_status?: QueryStatus | null;
@@ -23175,6 +23436,7 @@ export const Response4 = /*@__PURE__*/ S.suspend(() =>
     error: S.optional(S.NullOr(S.String)),
     hogql: S.optional(S.NullOr(S.String)),
     modifiers: S.optional(S.NullOr(HogQLQueryModifiers)),
+    preComputeIneligibleReason: S.optional(S.NullOr(S.String)),
     preComputeStrategy: S.optional(S.NullOr(WebAnalyticsPreComputeStrategy)),
     query_status: S.optional(S.NullOr(QueryStatus)),
     resolved_compare_date_range: S.optional(
@@ -23239,6 +23501,8 @@ export interface Response5 {
   /** Modifiers used when performing the query */
   modifiers?: HogQLQueryModifiers | null;
   offset?: number | null;
+  /** Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible. */
+  preComputeIneligibleReason?: string | null;
   /** Whether a lazy-precompute read was served from expired-within-grace (stale) jobs instead of recomputing inline. */
   preComputeStale?: boolean | null;
   preComputeStrategy?: WebAnalyticsPreComputeStrategy | (string & {}) | null;
@@ -23267,6 +23531,7 @@ export const Response5 = /*@__PURE__*/ S.suspend(() =>
     limit: S.optional(S.NullOr(S.Number)),
     modifiers: S.optional(S.NullOr(HogQLQueryModifiers)),
     offset: S.optional(S.NullOr(S.Number)),
+    preComputeIneligibleReason: S.optional(S.NullOr(S.String)),
     preComputeStale: S.optional(S.NullOr(S.Boolean)),
     preComputeStrategy: S.optional(S.NullOr(WebAnalyticsPreComputeStrategy)),
     query_status: S.optional(S.NullOr(QueryStatus)),
@@ -23509,6 +23774,8 @@ export interface Response8 {
   /** Modifiers used when performing the query */
   modifiers?: HogQLQueryModifiers | null;
   offset?: number | null;
+  /** Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible. */
+  preComputeIneligibleReason?: string | null;
   preComputeStrategy?: WebAnalyticsPreComputeStrategy | (string & {}) | null;
   /** Query status indicates whether next to the provided data, a query is still running. */
   query_status?: QueryStatus | null;
@@ -23535,6 +23802,7 @@ export const Response8 = /*@__PURE__*/ S.suspend(() =>
     limit: S.optional(S.NullOr(S.Number)),
     modifiers: S.optional(S.NullOr(HogQLQueryModifiers)),
     offset: S.optional(S.NullOr(S.Number)),
+    preComputeIneligibleReason: S.optional(S.NullOr(S.String)),
     preComputeStrategy: S.optional(S.NullOr(WebAnalyticsPreComputeStrategy)),
     query_status: S.optional(S.NullOr(QueryStatus)),
     resolved_compare_date_range: S.optional(
@@ -23586,6 +23854,8 @@ export interface Response9 {
   hogql?: string | null;
   /** Modifiers used when performing the query */
   modifiers?: HogQLQueryModifiers | null;
+  /** Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible. */
+  preComputeIneligibleReason?: string | null;
   preComputeStrategy?: WebAnalyticsPreComputeStrategy | (string & {}) | null;
   /** Query status indicates whether next to the provided data, a query is still running. */
   query_status?: QueryStatus | null;
@@ -23606,6 +23876,7 @@ export const Response9 = /*@__PURE__*/ S.suspend(() =>
     error: S.optional(S.NullOr(S.String)),
     hogql: S.optional(S.NullOr(S.String)),
     modifiers: S.optional(S.NullOr(HogQLQueryModifiers)),
+    preComputeIneligibleReason: S.optional(S.NullOr(S.String)),
     preComputeStrategy: S.optional(S.NullOr(WebAnalyticsPreComputeStrategy)),
     query_status: S.optional(S.NullOr(QueryStatus)),
     resolved_compare_date_range: S.optional(
@@ -24796,6 +25067,7 @@ export type TaxonomicFilterGroupType =
   | "replay_saved_filters"
   | "revenue_analytics_properties"
   | "account_fields"
+  | "account_relationships"
   | "account_custom_properties"
   | "resources"
   | "error_tracking_properties"
@@ -26305,7 +26577,7 @@ export const PropertyValuesQuery = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PropertyValuesQuery>;
 
 /** Submit a JSON string representing a query for PostHog data analysis, for example a HogQL query. Example payload: ``` {"query": {"kind": "HogQLQuery", "query": "select * from events limit 100"}} ``` For more details on HogQL queries, see the [PostHog HogQL documentation](/docs/hogql#api-access). */
-export type QueryCreateRequestQuery =
+export type CreateQueryRequestQuery =
   | EventsNode
   | ActionsNode
   | PersonsNode
@@ -26405,9 +26677,10 @@ export type QueryCreateRequestQuery =
   | MCPToolDescriptionsQuery
   | MCPToolSampleIntentsQuery
   | MCPToolNeighborsQuery
+  | MCPMissingCapabilitiesQuery
   | PropertyValuesQuery;
-export const QueryCreateRequestQuery =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryCreateRequestQuery>;
+export const CreateQueryRequestQuery =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateQueryRequestQuery>;
 
 export type RefreshType =
   | "async"
@@ -26419,24 +26692,24 @@ export type RefreshType =
   | "lazy_async";
 export const RefreshType = /*@__PURE__*/ S.String;
 
-export type QueryCreateRequestVariablesOverrideValueMap = {
+export type CreateQueryRequestVariablesOverrideValueMap = {
   [key: string]: unknown | undefined;
 };
-export const QueryCreateRequestVariablesOverrideValueMap =
+export const CreateQueryRequestVariablesOverrideValueMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.Unknown,
-  ) as any as S.Schema<QueryCreateRequestVariablesOverrideValueMap>;
+  ) as any as S.Schema<CreateQueryRequestVariablesOverrideValueMap>;
 
-export type QueryCreateRequestVariablesOverrideMap = {
-  [key: string]: QueryCreateRequestVariablesOverrideValueMap | undefined;
+export type CreateQueryRequestVariablesOverrideMap = {
+  [key: string]: CreateQueryRequestVariablesOverrideValueMap | undefined;
 };
-export const QueryCreateRequestVariablesOverrideMap = /*@__PURE__*/ S.Record(
+export const CreateQueryRequestVariablesOverrideMap = /*@__PURE__*/ S.Record(
   S.String,
-  QueryCreateRequestVariablesOverrideValueMap,
-) as any as S.Schema<QueryCreateRequestVariablesOverrideMap>;
+  CreateQueryRequestVariablesOverrideValueMap,
+) as any as S.Schema<CreateQueryRequestVariablesOverrideMap>;
 
-export interface QueryCreateRequest {
+export interface CreateQueryRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   async?: boolean | null;
@@ -26448,12 +26721,12 @@ export interface QueryCreateRequest {
   /** Name given to a query. It's used to identify the query in the UI. Up to 128 characters for a name. */
   name?: string | null;
   /** Submit a JSON string representing a query for PostHog data analysis, for example a HogQL query. Example payload: ``` {"query": {"kind": "HogQLQuery", "query": "select * from events limit 100"}} ``` For more details on HogQL queries, see the [PostHog HogQL documentation](/docs/hogql#api-access). */
-  query?: QueryCreateRequestQuery;
+  query?: CreateQueryRequestQuery;
   /** Whether results should be calculated sync or async, and how much to rely on the cache: - `'blocking'` - calculate synchronously (returning only when the query is done), UNLESS there are very fresh results in the cache - `'async'` - kick off background calculation (returning immediately with a query status), UNLESS there are very fresh results in the cache - `'lazy_async'` - kick off background calculation, UNLESS there are somewhat fresh results in the cache - `'force_blocking'` - calculate synchronously, even if fresh results are already cached - `'force_async'` - kick off background calculation, even if fresh results are already cached - `'force_cache'` - return cached data or a cache miss; always completes immediately as it never calculates Background calculation can be tracked using the `query_status` response field. */
   refresh?: RefreshType | (string & {}) | null;
-  variables_override?: QueryCreateRequestVariablesOverrideMap | null;
+  variables_override?: CreateQueryRequestVariablesOverrideMap | null;
 }
-export const QueryCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateQueryRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     async: S.optional(S.NullOr(S.Boolean)),
@@ -26461,10 +26734,10 @@ export const QueryCreateRequest = /*@__PURE__*/ S.suspend(() =>
     filters_override: S.optional(S.NullOr(DashboardFilter)),
     limit_context: S.optional(S.NullOr(LimitContext)),
     name: S.optional(S.NullOr(S.String)),
-    query: S.optional(QueryCreateRequestQuery),
+    query: S.optional(CreateQueryRequestQuery),
     refresh: S.optional(S.NullOr(RefreshType)),
     variables_override: S.optional(
-      S.NullOr(QueryCreateRequestVariablesOverrideMap),
+      S.NullOr(CreateQueryRequestVariablesOverrideMap),
     ),
   }).pipe(
     T.Http({
@@ -26474,8 +26747,8 @@ export const QueryCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "QueryCreateRequest",
-}) as any as S.Schema<QueryCreateRequest>;
+  identifier: "CreateQueryRequest",
+}) as any as S.Schema<CreateQueryRequest>;
 
 export type QueryResponseAlternativeCase0Map = {
   [key: string]: unknown | undefined;
@@ -28338,6 +28611,8 @@ export interface QueryResponseAlternative23 {
   hogql?: string | null;
   /** Modifiers used when performing the query */
   modifiers?: HogQLQueryModifiers | null;
+  /** Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible. */
+  preComputeIneligibleReason?: string | null;
   preComputeStrategy?: WebAnalyticsPreComputeStrategy | null;
   /** Query status indicates whether next to the provided data, a query is still running. */
   query_status?: QueryStatus | null;
@@ -28361,6 +28636,7 @@ export const QueryResponseAlternative23 = /*@__PURE__*/ S.suspend(() =>
     error: S.optional(S.NullOr(S.String)),
     hogql: S.optional(S.NullOr(S.String)),
     modifiers: S.optional(S.NullOr(HogQLQueryModifiers)),
+    preComputeIneligibleReason: S.optional(S.NullOr(S.String)),
     preComputeStrategy: S.optional(S.NullOr(WebAnalyticsPreComputeStrategy)),
     query_status: S.optional(S.NullOr(QueryStatus)),
     resolved_compare_date_range: S.optional(
@@ -28429,6 +28705,8 @@ export interface QueryResponseAlternative24 {
   /** Modifiers used when performing the query */
   modifiers?: HogQLQueryModifiers | null;
   offset?: number | null;
+  /** Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible. */
+  preComputeIneligibleReason?: string | null;
   /** Whether a lazy-precompute read was served from expired-within-grace (stale) jobs instead of recomputing inline. */
   preComputeStale?: boolean | null;
   preComputeStrategy?: WebAnalyticsPreComputeStrategy | null;
@@ -28457,6 +28735,7 @@ export const QueryResponseAlternative24 = /*@__PURE__*/ S.suspend(() =>
     limit: S.optional(S.NullOr(S.Number)),
     modifiers: S.optional(S.NullOr(HogQLQueryModifiers)),
     offset: S.optional(S.NullOr(S.Number)),
+    preComputeIneligibleReason: S.optional(S.NullOr(S.String)),
     preComputeStale: S.optional(S.NullOr(S.Boolean)),
     preComputeStrategy: S.optional(S.NullOr(WebAnalyticsPreComputeStrategy)),
     query_status: S.optional(S.NullOr(QueryStatus)),
@@ -28711,6 +28990,8 @@ export interface QueryResponseAlternative28 {
   /** Modifiers used when performing the query */
   modifiers?: HogQLQueryModifiers | null;
   offset?: number | null;
+  /** Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible. */
+  preComputeIneligibleReason?: string | null;
   preComputeStrategy?: WebAnalyticsPreComputeStrategy | null;
   /** Query status indicates whether next to the provided data, a query is still running. */
   query_status?: QueryStatus | null;
@@ -28737,6 +29018,7 @@ export const QueryResponseAlternative28 = /*@__PURE__*/ S.suspend(() =>
     limit: S.optional(S.NullOr(S.Number)),
     modifiers: S.optional(S.NullOr(HogQLQueryModifiers)),
     offset: S.optional(S.NullOr(S.Number)),
+    preComputeIneligibleReason: S.optional(S.NullOr(S.String)),
     preComputeStrategy: S.optional(S.NullOr(WebAnalyticsPreComputeStrategy)),
     query_status: S.optional(S.NullOr(QueryStatus)),
     resolved_compare_date_range: S.optional(
@@ -28793,6 +29075,8 @@ export interface QueryResponseAlternative29 {
   hogql?: string | null;
   /** Modifiers used when performing the query */
   modifiers?: HogQLQueryModifiers | null;
+  /** Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible. */
+  preComputeIneligibleReason?: string | null;
   preComputeStrategy?: WebAnalyticsPreComputeStrategy | null;
   /** Query status indicates whether next to the provided data, a query is still running. */
   query_status?: QueryStatus | null;
@@ -28813,6 +29097,7 @@ export const QueryResponseAlternative29 = /*@__PURE__*/ S.suspend(() =>
     error: S.optional(S.NullOr(S.String)),
     hogql: S.optional(S.NullOr(S.String)),
     modifiers: S.optional(S.NullOr(HogQLQueryModifiers)),
+    preComputeIneligibleReason: S.optional(S.NullOr(S.String)),
     preComputeStrategy: S.optional(S.NullOr(WebAnalyticsPreComputeStrategy)),
     query_status: S.optional(S.NullOr(QueryStatus)),
     resolved_compare_date_range: S.optional(
@@ -30014,6 +30299,8 @@ export interface QueryResponseAlternative43 {
   hogql?: string | null;
   /** Modifiers used when performing the query */
   modifiers?: HogQLQueryModifiers | null;
+  /** Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible. */
+  preComputeIneligibleReason?: string | null;
   preComputeStrategy?: WebAnalyticsPreComputeStrategy | null;
   /** Query status indicates whether next to the provided data, a query is still running. */
   query_status?: QueryStatus | null;
@@ -30037,6 +30324,7 @@ export const QueryResponseAlternative43 = /*@__PURE__*/ S.suspend(() =>
     error: S.optional(S.NullOr(S.String)),
     hogql: S.optional(S.NullOr(S.String)),
     modifiers: S.optional(S.NullOr(HogQLQueryModifiers)),
+    preComputeIneligibleReason: S.optional(S.NullOr(S.String)),
     preComputeStrategy: S.optional(S.NullOr(WebAnalyticsPreComputeStrategy)),
     query_status: S.optional(S.NullOr(QueryStatus)),
     resolved_compare_date_range: S.optional(
@@ -30105,6 +30393,8 @@ export interface QueryResponseAlternative44 {
   /** Modifiers used when performing the query */
   modifiers?: HogQLQueryModifiers | null;
   offset?: number | null;
+  /** Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible. */
+  preComputeIneligibleReason?: string | null;
   /** Whether a lazy-precompute read was served from expired-within-grace (stale) jobs instead of recomputing inline. */
   preComputeStale?: boolean | null;
   preComputeStrategy?: WebAnalyticsPreComputeStrategy | null;
@@ -30133,6 +30423,7 @@ export const QueryResponseAlternative44 = /*@__PURE__*/ S.suspend(() =>
     limit: S.optional(S.NullOr(S.Number)),
     modifiers: S.optional(S.NullOr(HogQLQueryModifiers)),
     offset: S.optional(S.NullOr(S.Number)),
+    preComputeIneligibleReason: S.optional(S.NullOr(S.String)),
     preComputeStale: S.optional(S.NullOr(S.Boolean)),
     preComputeStrategy: S.optional(S.NullOr(WebAnalyticsPreComputeStrategy)),
     query_status: S.optional(S.NullOr(QueryStatus)),
@@ -30387,6 +30678,8 @@ export interface QueryResponseAlternative47 {
   /** Modifiers used when performing the query */
   modifiers?: HogQLQueryModifiers | null;
   offset?: number | null;
+  /** Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible. */
+  preComputeIneligibleReason?: string | null;
   preComputeStrategy?: WebAnalyticsPreComputeStrategy | null;
   /** Query status indicates whether next to the provided data, a query is still running. */
   query_status?: QueryStatus | null;
@@ -30413,6 +30706,7 @@ export const QueryResponseAlternative47 = /*@__PURE__*/ S.suspend(() =>
     limit: S.optional(S.NullOr(S.Number)),
     modifiers: S.optional(S.NullOr(HogQLQueryModifiers)),
     offset: S.optional(S.NullOr(S.Number)),
+    preComputeIneligibleReason: S.optional(S.NullOr(S.String)),
     preComputeStrategy: S.optional(S.NullOr(WebAnalyticsPreComputeStrategy)),
     query_status: S.optional(S.NullOr(QueryStatus)),
     resolved_compare_date_range: S.optional(
@@ -30469,6 +30763,8 @@ export interface QueryResponseAlternative48 {
   hogql?: string | null;
   /** Modifiers used when performing the query */
   modifiers?: HogQLQueryModifiers | null;
+  /** Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible. */
+  preComputeIneligibleReason?: string | null;
   preComputeStrategy?: WebAnalyticsPreComputeStrategy | null;
   /** Query status indicates whether next to the provided data, a query is still running. */
   query_status?: QueryStatus | null;
@@ -30489,6 +30785,7 @@ export const QueryResponseAlternative48 = /*@__PURE__*/ S.suspend(() =>
     error: S.optional(S.NullOr(S.String)),
     hogql: S.optional(S.NullOr(S.String)),
     modifiers: S.optional(S.NullOr(HogQLQueryModifiers)),
+    preComputeIneligibleReason: S.optional(S.NullOr(S.String)),
     preComputeStrategy: S.optional(S.NullOr(WebAnalyticsPreComputeStrategy)),
     query_status: S.optional(S.NullOr(QueryStatus)),
     resolved_compare_date_range: S.optional(
@@ -34980,9 +35277,10 @@ export const QueryResponseAlternative111 = /*@__PURE__*/ S.suspend(() =>
   identifier: "QueryResponseAlternative111",
 }) as any as S.Schema<QueryResponseAlternative111>;
 
-export type QueryResponseAlternative112ResultsList = Array<PropertyValueItem>;
+export type QueryResponseAlternative112ResultsList =
+  Array<MCPMissingCapabilitiesItem>;
 export const QueryResponseAlternative112ResultsList = /*@__PURE__*/ S.Array(
-  PropertyValueItem,
+  MCPMissingCapabilitiesItem,
 ) as any as S.Schema<QueryResponseAlternative112ResultsList>;
 
 export type QueryResponseAlternative112TimingsList = Array<QueryTiming>;
@@ -35012,6 +35310,8 @@ export const QueryResponseAlternative112WarningsList = /*@__PURE__*/ S.Array(
 export interface QueryResponseAlternative112 {
   /** Query error. Returned only if 'explain' or `modifiers.debug` is true. Throws an error otherwise. */
   error?: string | null;
+  /** Whether more reports exist past this page. */
+  has_next: boolean;
   /** Generated HogQL query. */
   hogql?: string | null;
   /** Modifiers used when performing the query */
@@ -35033,6 +35333,7 @@ export interface QueryResponseAlternative112 {
 export const QueryResponseAlternative112 = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     error: S.optional(S.NullOr(S.String)),
+    has_next: S.Boolean,
     hogql: S.optional(S.NullOr(S.String)),
     modifiers: S.optional(S.NullOr(HogQLQueryModifiers)),
     query_status: S.optional(S.NullOr(QueryStatus)),
@@ -35050,6 +35351,77 @@ export const QueryResponseAlternative112 = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "QueryResponseAlternative112",
 }) as any as S.Schema<QueryResponseAlternative112>;
+
+export type QueryResponseAlternative113ResultsList = Array<PropertyValueItem>;
+export const QueryResponseAlternative113ResultsList = /*@__PURE__*/ S.Array(
+  PropertyValueItem,
+) as any as S.Schema<QueryResponseAlternative113ResultsList>;
+
+export type QueryResponseAlternative113TimingsList = Array<QueryTiming>;
+export const QueryResponseAlternative113TimingsList = /*@__PURE__*/ S.Array(
+  QueryTiming,
+) as any as S.Schema<QueryResponseAlternative113TimingsList>;
+
+export type QueryResponseAlternative113UsedDataWarehouseSourcesList =
+  Array<DataWarehouseSourceUsage>;
+export const QueryResponseAlternative113UsedDataWarehouseSourcesList =
+  /*@__PURE__*/ S.Array(
+    DataWarehouseSourceUsage,
+  ) as any as S.Schema<QueryResponseAlternative113UsedDataWarehouseSourcesList>;
+
+export type QueryResponseAlternative113WarningsItem =
+  | DataWarehouseSyncWarning
+  | AccessControlFilterWarning;
+export const QueryResponseAlternative113WarningsItem =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative113WarningsItem>;
+
+export type QueryResponseAlternative113WarningsList =
+  Array<QueryResponseAlternative113WarningsItem>;
+export const QueryResponseAlternative113WarningsList = /*@__PURE__*/ S.Array(
+  QueryResponseAlternative113WarningsItem,
+) as any as S.Schema<QueryResponseAlternative113WarningsList>;
+
+export interface QueryResponseAlternative113 {
+  /** Query error. Returned only if 'explain' or `modifiers.debug` is true. Throws an error otherwise. */
+  error?: string | null;
+  /** Generated HogQL query. */
+  hogql?: string | null;
+  /** Modifiers used when performing the query */
+  modifiers?: HogQLQueryModifiers | null;
+  /** Query status indicates whether next to the provided data, a query is still running. */
+  query_status?: QueryStatus | null;
+  /** The resolved previous/comparison period date range, when comparing against another period */
+  resolved_compare_date_range?: ResolvedDateRangeResponse | null;
+  /** The date range used for the query */
+  resolved_date_range?: ResolvedDateRangeResponse | null;
+  results: QueryResponseAlternative113ResultsList;
+  /** Measured timings for different parts of the query generation process */
+  timings?: QueryResponseAlternative113TimingsList | null;
+  /** Connector-synced data warehouse sources referenced by this query, if any. */
+  used_data_warehouse_sources?: QueryResponseAlternative113UsedDataWarehouseSourcesList | null;
+  /** Warnings about data warehouse sources referenced by the query whose latest sync failed, is paused, hit a billing limit, or is otherwise stale. Results may not reflect current source data. Accumulated across every HogQL execution that contributes to this response — so insights backed by warehouse tables (Trends, Funnels, etc.) receive the same warnings as raw HogQL queries. Also carries access control warnings when a system-table query filters out objects the user can't access. */
+  warnings?: QueryResponseAlternative113WarningsList | null;
+}
+export const QueryResponseAlternative113 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    error: S.optional(S.NullOr(S.String)),
+    hogql: S.optional(S.NullOr(S.String)),
+    modifiers: S.optional(S.NullOr(HogQLQueryModifiers)),
+    query_status: S.optional(S.NullOr(QueryStatus)),
+    resolved_compare_date_range: S.optional(
+      S.NullOr(ResolvedDateRangeResponse),
+    ),
+    resolved_date_range: S.optional(S.NullOr(ResolvedDateRangeResponse)),
+    results: QueryResponseAlternative113ResultsList,
+    timings: S.optional(S.NullOr(QueryResponseAlternative113TimingsList)),
+    used_data_warehouse_sources: S.optional(
+      S.NullOr(QueryResponseAlternative113UsedDataWarehouseSourcesList),
+    ),
+    warnings: S.optional(S.NullOr(QueryResponseAlternative113WarningsList)),
+  }),
+).annotate({
+  identifier: "QueryResponseAlternative113",
+}) as any as S.Schema<QueryResponseAlternative113>;
 
 export type QueryResponseAlternative =
   | QueryResponseAlternativeCase0Map
@@ -35159,172 +35531,54 @@ export type QueryResponseAlternative =
   | QueryResponseAlternative109
   | QueryResponseAlternative110
   | QueryResponseAlternative111
-  | QueryResponseAlternative112;
+  | QueryResponseAlternative112
+  | QueryResponseAlternative113;
 export const QueryResponseAlternative =
   /*@__PURE__*/ S.Unknown as any as S.Schema<QueryResponseAlternative>;
 
-export type QueryCreateResponse = QueryResponseAlternative;
-export const QueryCreateResponse = /*@__PURE__*/ S.suspend(() =>
+export type CreateQueryResponse = QueryResponseAlternative;
+export const CreateQueryResponse = /*@__PURE__*/ S.suspend(() =>
   QueryResponseAlternative.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "QueryCreateResponse",
-}) as any as S.Schema<QueryCreateResponse>;
+  identifier: "CreateQueryResponse",
+}) as any as S.Schema<CreateQueryResponse>;
 
-export interface QueryCreateWithKindRequest {
+export interface CreateQueryCheckAuthForAsyncRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  query_kind: string;
 }
-export const QueryCreateWithKindRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateQueryCheckAuthForAsyncRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
-    query_kind: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "POST",
-      uri: "/api/projects/{project_id}/query/{query_kind}/",
+      uri: "/api/projects/{project_id}/query/check_auth_for_async/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "QueryCreateWithKindRequest",
-}) as any as S.Schema<QueryCreateWithKindRequest>;
+  identifier: "CreateQueryCheckAuthForAsyncRequest",
+}) as any as S.Schema<CreateQueryCheckAuthForAsyncRequest>;
 
-export interface QueryCreateWithKindResponse {}
-export const QueryCreateWithKindResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "QueryCreateWithKindResponse",
-}) as any as S.Schema<QueryCreateWithKindResponse>;
-
-export interface QueryDestroyRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  id: string;
-}
-export const QueryDestroyRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/api/projects/{project_id}/query/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "QueryDestroyRequest",
-}) as any as S.Schema<QueryDestroyRequest>;
-
-export interface QueryDestroyResponse {}
-export const QueryDestroyResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "QueryDestroyResponse",
-}) as any as S.Schema<QueryDestroyResponse>;
-
-export interface QueryDraftSqlRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-}
-export const QueryDraftSqlRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/query/draft_sql/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "QueryDraftSqlRetrieveRequest",
-}) as any as S.Schema<QueryDraftSqlRetrieveRequest>;
-
-export type QueryDraftSqlRetrieveResponseBodyMap = {
+export type CreateQueryCheckAuthForAsyncResponseBodyMap = {
   [key: string]: unknown | undefined;
 };
-export const QueryDraftSqlRetrieveResponseBodyMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<QueryDraftSqlRetrieveResponseBodyMap>;
+export const CreateQueryCheckAuthForAsyncResponseBodyMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Unknown,
+  ) as any as S.Schema<CreateQueryCheckAuthForAsyncResponseBodyMap>;
 
-export type QueryDraftSqlRetrieveResponse =
-  QueryDraftSqlRetrieveResponseBodyMap;
-export const QueryDraftSqlRetrieveResponse = /*@__PURE__*/ S.suspend(() =>
-  QueryDraftSqlRetrieveResponseBodyMap.pipe(T.RawResponseRoot()),
+export type CreateQueryCheckAuthForAsyncResponse =
+  CreateQueryCheckAuthForAsyncResponseBodyMap;
+export const CreateQueryCheckAuthForAsyncResponse = /*@__PURE__*/ S.suspend(
+  () => CreateQueryCheckAuthForAsyncResponseBodyMap.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "QueryDraftSqlRetrieveResponse",
-}) as any as S.Schema<QueryDraftSqlRetrieveResponse>;
+  identifier: "CreateQueryCheckAuthForAsyncResponse",
+}) as any as S.Schema<CreateQueryCheckAuthForAsyncResponse>;
 
-export interface QueryLogRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  id: string;
-}
-export const QueryLogRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/query/{id}/log/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "QueryLogRetrieveRequest",
-}) as any as S.Schema<QueryLogRetrieveRequest>;
-
-export type QueryLogRetrieveResponseBodyMap = {
-  [key: string]: unknown | undefined;
-};
-export const QueryLogRetrieveResponseBodyMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<QueryLogRetrieveResponseBodyMap>;
-
-export type QueryLogRetrieveResponse = QueryLogRetrieveResponseBodyMap;
-export const QueryLogRetrieveResponse = /*@__PURE__*/ S.suspend(() =>
-  QueryLogRetrieveResponseBodyMap.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "QueryLogRetrieveResponse",
-}) as any as S.Schema<QueryLogRetrieveResponse>;
-
-export interface QueryRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  id: string;
-}
-export const QueryRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/query/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "QueryRetrieveRequest",
-}) as any as S.Schema<QueryRetrieveRequest>;
-
-export interface QueryStatusResponse {
-  query_status?: QueryStatus;
-}
-export const QueryStatusResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    query_status: S.optional(QueryStatus),
-  }),
-).annotate({
-  identifier: "QueryStatusResponse",
-}) as any as S.Schema<QueryStatusResponse>;
-
-export type QueryUpgradeCreateRequestQuery =
+export type CreateQueryUpgradeRequestQuery =
   | EventsNode
   | ActionsNode
   | PersonsNode
@@ -35424,19 +35678,20 @@ export type QueryUpgradeCreateRequestQuery =
   | MCPToolDescriptionsQuery
   | MCPToolSampleIntentsQuery
   | MCPToolNeighborsQuery
+  | MCPMissingCapabilitiesQuery
   | PropertyValuesQuery;
-export const QueryUpgradeCreateRequestQuery =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QueryUpgradeCreateRequestQuery>;
+export const CreateQueryUpgradeRequestQuery =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateQueryUpgradeRequestQuery>;
 
-export interface QueryUpgradeCreateRequest {
+export interface CreateQueryUpgradeRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  query?: QueryUpgradeCreateRequestQuery;
+  query?: CreateQueryUpgradeRequestQuery;
 }
-export const QueryUpgradeCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateQueryUpgradeRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
-    query: S.optional(QueryUpgradeCreateRequestQuery),
+    query: S.optional(CreateQueryUpgradeRequestQuery),
   }).pipe(
     T.Http({
       method: "POST",
@@ -35445,8 +35700,8 @@ export const QueryUpgradeCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "QueryUpgradeCreateRequest",
-}) as any as S.Schema<QueryUpgradeCreateRequest>;
+  identifier: "CreateQueryUpgradeRequest",
+}) as any as S.Schema<CreateQueryUpgradeRequest>;
 
 export type QueryUpgradeResponseQuery =
   | EventsNode
@@ -35548,6 +35803,7 @@ export type QueryUpgradeResponseQuery =
   | MCPToolDescriptionsQuery
   | MCPToolSampleIntentsQuery
   | MCPToolNeighborsQuery
+  | MCPMissingCapabilitiesQuery
   | PropertyValuesQuery;
 export const QueryUpgradeResponseQuery =
   /*@__PURE__*/ S.Unknown as any as S.Schema<QueryUpgradeResponseQuery>;
@@ -35563,53 +35819,268 @@ export const QueryUpgradeResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "QueryUpgradeResponse",
 }) as any as S.Schema<QueryUpgradeResponse>;
 
-export type QueryCheckAuthForAsyncCreateError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** DRF ViewSet mixin that gates coalesced responses behind permission checks. The QueryCoalescingMiddleware attaches cached response data to request.META["_coalesced_response"] for followers. This mixin runs DRF's initial() (auth + permissions + throttling) before returning the cached response, ensuring the request is authorized. */
-export const queryCheckAuthForAsyncCreate: API.OperationMethod<
-  QueryCheckAuthForAsyncCreateRequest,
-  QueryCheckAuthForAsyncCreateResponse,
-  QueryCheckAuthForAsyncCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: QueryCheckAuthForAsyncCreateRequest,
-  output: QueryCheckAuthForAsyncCreateResponse,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
+export interface CreateQueryWithKindRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  query_kind: string;
+}
+export const CreateQueryWithKindRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    query_kind: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/projects/{project_id}/query/{query_kind}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateQueryWithKindRequest",
+}) as any as S.Schema<CreateQueryWithKindRequest>;
 
-export type QueryCreateError =
+export interface CreateQueryWithKindResponse {}
+export const CreateQueryWithKindResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "CreateQueryWithKindResponse",
+}) as any as S.Schema<CreateQueryWithKindResponse>;
+
+export interface GetQueryRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  id: string;
+}
+export const GetQueryRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/query/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetQueryRequest",
+}) as any as S.Schema<GetQueryRequest>;
+
+export interface QueryStatusResponse {
+  query_status?: QueryStatus;
+}
+export const QueryStatusResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    query_status: S.optional(QueryStatus),
+  }),
+).annotate({
+  identifier: "QueryStatusResponse",
+}) as any as S.Schema<QueryStatusResponse>;
+
+export interface GetQueryDraftSqlRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+}
+export const GetQueryDraftSqlRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/query/draft_sql/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetQueryDraftSqlRequest",
+}) as any as S.Schema<GetQueryDraftSqlRequest>;
+
+export type GetQueryDraftSqlResponseBodyMap = {
+  [key: string]: unknown | undefined;
+};
+export const GetQueryDraftSqlResponseBodyMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<GetQueryDraftSqlResponseBodyMap>;
+
+export type GetQueryDraftSqlResponse = GetQueryDraftSqlResponseBodyMap;
+export const GetQueryDraftSqlResponse = /*@__PURE__*/ S.suspend(() =>
+  GetQueryDraftSqlResponseBodyMap.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "GetQueryDraftSqlResponse",
+}) as any as S.Schema<GetQueryDraftSqlResponse>;
+
+export interface GetQueryLogRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  id: string;
+}
+export const GetQueryLogRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/query/{id}/log/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetQueryLogRequest",
+}) as any as S.Schema<GetQueryLogRequest>;
+
+export type GetQueryLogResponseBodyMap = { [key: string]: unknown | undefined };
+export const GetQueryLogResponseBodyMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<GetQueryLogResponseBodyMap>;
+
+export type GetQueryLogResponse = GetQueryLogResponseBodyMap;
+export const GetQueryLogResponse = /*@__PURE__*/ S.suspend(() =>
+  GetQueryLogResponseBodyMap.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "GetQueryLogResponse",
+}) as any as S.Schema<GetQueryLogResponse>;
+
+export interface QueryDestroyRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  id: string;
+}
+export const QueryDestroyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/api/projects/{project_id}/query/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "QueryDestroyRequest",
+}) as any as S.Schema<QueryDestroyRequest>;
+
+export interface QueryDestroyResponse {}
+export const QueryDestroyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "QueryDestroyResponse",
+}) as any as S.Schema<QueryDestroyResponse>;
+
+export type CreateQueryError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
 /** DRF ViewSet mixin that gates coalesced responses behind permission checks. The QueryCoalescingMiddleware attaches cached response data to request.META["_coalesced_response"] for followers. This mixin runs DRF's initial() (auth + permissions + throttling) before returning the cached response, ensuring the request is authorized. */
-export const queryCreate: API.OperationMethod<
-  QueryCreateRequest,
-  QueryCreateResponse,
-  QueryCreateError,
+export const createQuery: API.OperationMethod<
+  CreateQueryRequest,
+  CreateQueryResponse,
+  CreateQueryError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: QueryCreateRequest,
-  output: QueryCreateResponse,
+  input: CreateQueryRequest,
+  output: CreateQueryResponse,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type QueryCreateWithKindError = Forbidden | NotFound | PosthogOpError;
+export type CreateQueryCheckAuthForAsyncError =
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
 /** DRF ViewSet mixin that gates coalesced responses behind permission checks. The QueryCoalescingMiddleware attaches cached response data to request.META["_coalesced_response"] for followers. This mixin runs DRF's initial() (auth + permissions + throttling) before returning the cached response, ensuring the request is authorized. */
-export const queryCreateWithKind: API.OperationMethod<
-  QueryCreateWithKindRequest,
-  QueryCreateWithKindResponse,
-  QueryCreateWithKindError,
+export const createQueryCheckAuthForAsync: API.OperationMethod<
+  CreateQueryCheckAuthForAsyncRequest,
+  CreateQueryCheckAuthForAsyncResponse,
+  CreateQueryCheckAuthForAsyncError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: QueryCreateWithKindRequest,
-  output: QueryCreateWithKindResponse,
+  input: CreateQueryCheckAuthForAsyncRequest,
+  output: CreateQueryCheckAuthForAsyncResponse,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateQueryUpgradeError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** Upgrades a query without executing it. Returns a query with all nodes migrated to the latest version. */
+export const createQueryUpgrade: API.OperationMethod<
+  CreateQueryUpgradeRequest,
+  QueryUpgradeResponse,
+  CreateQueryUpgradeError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateQueryUpgradeRequest,
+  output: QueryUpgradeResponse,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateQueryWithKindError = Forbidden | NotFound | PosthogOpError;
+/** DRF ViewSet mixin that gates coalesced responses behind permission checks. The QueryCoalescingMiddleware attaches cached response data to request.META["_coalesced_response"] for followers. This mixin runs DRF's initial() (auth + permissions + throttling) before returning the cached response, ensuring the request is authorized. */
+export const createQueryWithKind: API.OperationMethod<
+  CreateQueryWithKindRequest,
+  CreateQueryWithKindResponse,
+  CreateQueryWithKindError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateQueryWithKindRequest,
+  output: CreateQueryWithKindResponse,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetQueryError = Forbidden | NotFound | PosthogOpError;
+/** (Experimental) */
+export const getQuery: API.OperationMethod<
+  GetQueryRequest,
+  QueryStatusResponse,
+  GetQueryError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetQueryRequest,
+  output: QueryStatusResponse,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetQueryDraftSqlError = Forbidden | NotFound | PosthogOpError;
+/** DRF ViewSet mixin that gates coalesced responses behind permission checks. The QueryCoalescingMiddleware attaches cached response data to request.META["_coalesced_response"] for followers. This mixin runs DRF's initial() (auth + permissions + throttling) before returning the cached response, ensuring the request is authorized. */
+export const getQueryDraftSql: API.OperationMethod<
+  GetQueryDraftSqlRequest,
+  GetQueryDraftSqlResponse,
+  GetQueryDraftSqlError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetQueryDraftSqlRequest,
+  output: GetQueryDraftSqlResponse,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetQueryLogError = Forbidden | NotFound | PosthogOpError;
+/** Get query log details from query_log_archive table for a specific query_id, the query must have been issued in last 24 hours. */
+export const getQueryLog: API.OperationMethod<
+  GetQueryLogRequest,
+  GetQueryLogResponse,
+  GetQueryLogError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetQueryLogRequest,
+  output: GetQueryLogResponse,
   errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
@@ -35626,70 +36097,6 @@ export const queryDestroy: API.OperationMethod<
   input: QueryDestroyRequest,
   output: QueryDestroyResponse,
   errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type QueryDraftSqlRetrieveError = Forbidden | NotFound | PosthogOpError;
-/** DRF ViewSet mixin that gates coalesced responses behind permission checks. The QueryCoalescingMiddleware attaches cached response data to request.META["_coalesced_response"] for followers. This mixin runs DRF's initial() (auth + permissions + throttling) before returning the cached response, ensuring the request is authorized. */
-export const queryDraftSqlRetrieve: API.OperationMethod<
-  QueryDraftSqlRetrieveRequest,
-  QueryDraftSqlRetrieveResponse,
-  QueryDraftSqlRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: QueryDraftSqlRetrieveRequest,
-  output: QueryDraftSqlRetrieveResponse,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type QueryLogRetrieveError = Forbidden | NotFound | PosthogOpError;
-/** Get query log details from query_log_archive table for a specific query_id, the query must have been issued in last 24 hours. */
-export const queryLogRetrieve: API.OperationMethod<
-  QueryLogRetrieveRequest,
-  QueryLogRetrieveResponse,
-  QueryLogRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: QueryLogRetrieveRequest,
-  output: QueryLogRetrieveResponse,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type QueryRetrieveError = Forbidden | NotFound | PosthogOpError;
-/** (Experimental) */
-export const queryRetrieve: API.OperationMethod<
-  QueryRetrieveRequest,
-  QueryStatusResponse,
-  QueryRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: QueryRetrieveRequest,
-  output: QueryStatusResponse,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type QueryUpgradeCreateError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Upgrades a query without executing it. Returns a query with all nodes migrated to the latest version. */
-export const queryUpgradeCreate: API.OperationMethod<
-  QueryUpgradeCreateRequest,
-  QueryUpgradeResponse,
-  QueryUpgradeCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: QueryUpgradeCreateRequest,
-  output: QueryUpgradeResponse,
-  errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));

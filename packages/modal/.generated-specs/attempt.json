@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.modal.attempt#AttemptAwaitRequest": {
@@ -315,7 +316,7 @@
         }
       }
     },
-    "com.modal.attempt#AttemptRetryRequest": {
+    "com.modal.attempt#RetryAttemptRequest": {
       "type": "structure",
       "members": {
         "functionId": {
@@ -335,7 +336,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.modal.attempt#AttemptRetryResponse": {
+    "com.modal.attempt#RetryAttemptResponse": {
       "type": "structure",
       "members": {
         "attemptToken": {
@@ -346,13 +347,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modal.attempt#AttemptRetry": {
+    "com.modal.attempt#RetryAttempt": {
       "type": "operation",
       "input": {
-        "target": "com.modal.attempt#AttemptRetryRequest"
+        "target": "com.modal.attempt#RetryAttemptRequest"
       },
       "output": {
-        "target": "com.modal.attempt#AttemptRetryResponse"
+        "target": "com.modal.attempt#RetryAttemptResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -362,7 +363,7 @@
         }
       }
     },
-    "com.modal.attempt#AttemptStartRequest": {
+    "com.modal.attempt#StartAttemptRequest": {
       "type": "structure",
       "members": {
         "functionId": {
@@ -402,7 +403,7 @@
         }
       }
     },
-    "com.modal.attempt#AttemptStartResponse": {
+    "com.modal.attempt#StartAttemptResponse": {
       "type": "structure",
       "members": {
         "attemptToken": {
@@ -416,13 +417,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modal.attempt#AttemptStart": {
+    "com.modal.attempt#StartAttempt": {
       "type": "operation",
       "input": {
-        "target": "com.modal.attempt#AttemptStartRequest"
+        "target": "com.modal.attempt#StartAttemptRequest"
       },
       "output": {
-        "target": "com.modal.attempt#AttemptStartResponse"
+        "target": "com.modal.attempt#StartAttemptResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -440,10 +441,10 @@
           "target": "com.modal.attempt#AttemptAwait"
         },
         {
-          "target": "com.modal.attempt#AttemptRetry"
+          "target": "com.modal.attempt#RetryAttempt"
         },
         {
-          "target": "com.modal.attempt#AttemptStart"
+          "target": "com.modal.attempt#StartAttempt"
         }
       ],
       "traits": {

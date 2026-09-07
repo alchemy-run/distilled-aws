@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.whop.ad_reports#RetrieveAdReportRequestAdCampaignIdsList": {
+    "com.whop.ad_reports#GetAdReportRequestAdCampaignIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -26,7 +27,7 @@
         "smithy.api#documentation": "Scope the report to these ad campaigns (max 100); stats are summed across them. Mutually exclusive with `companyId`, `adGroupIds`, and `adIds`."
       }
     },
-    "com.whop.ad_reports#RetrieveAdReportRequestAdGroupIdsList": {
+    "com.whop.ad_reports#GetAdReportRequestAdGroupIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -35,7 +36,7 @@
         "smithy.api#documentation": "Scope the report to these ad groups (max 100); stats are summed across them. Mutually exclusive with `companyId`, `adCampaignIds`, and `adIds`."
       }
     },
-    "com.whop.ad_reports#RetrieveAdReportRequestAdIdsList": {
+    "com.whop.ad_reports#GetAdReportRequestAdIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -102,23 +103,23 @@
         "smithy.api#documentation": "Bucket size for external ad stat rows."
       }
     },
-    "com.whop.ad_reports#RetrieveAdReportRequest": {
+    "com.whop.ad_reports#GetAdReportRequest": {
       "type": "structure",
       "members": {
         "ad_campaign_ids": {
-          "target": "com.whop.ad_reports#RetrieveAdReportRequestAdCampaignIdsList",
+          "target": "com.whop.ad_reports#GetAdReportRequestAdCampaignIdsList",
           "traits": {
             "smithy.api#httpQuery": "ad_campaign_ids"
           }
         },
         "ad_group_ids": {
-          "target": "com.whop.ad_reports#RetrieveAdReportRequestAdGroupIdsList",
+          "target": "com.whop.ad_reports#GetAdReportRequestAdGroupIdsList",
           "traits": {
             "smithy.api#httpQuery": "ad_group_ids"
           }
         },
         "ad_ids": {
-          "target": "com.whop.ad_reports#RetrieveAdReportRequestAdIdsList",
+          "target": "com.whop.ad_reports#GetAdReportRequestAdIdsList",
           "traits": {
             "smithy.api#httpQuery": "ad_ids"
           }
@@ -1449,10 +1450,10 @@
         "smithy.api#documentation": "Aggregate totals and rates over the date range."
       }
     },
-    "com.whop.ad_reports#RetrieveAdReport": {
+    "com.whop.ad_reports#GetAdReport": {
       "type": "operation",
       "input": {
-        "target": "com.whop.ad_reports#RetrieveAdReportRequest"
+        "target": "com.whop.ad_reports#GetAdReportRequest"
       },
       "output": {
         "target": "com.whop.ad_reports#AdReport"
@@ -1537,7 +1538,7 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.ad_reports#RetrieveAdReport"
+          "target": "com.whop.ad_reports#GetAdReport"
         }
       ],
       "traits": {

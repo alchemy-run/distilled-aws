@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.modal.classes#ClassMethod": {
@@ -405,7 +406,7 @@
         "target": "com.modal.classes#ClassMethod"
       }
     },
-    "com.modal.classes#ClassCreateRequest": {
+    "com.modal.classes#CreateClassRequest": {
       "type": "structure",
       "members": {
         "appId": {
@@ -442,7 +443,7 @@
         }
       }
     },
-    "com.modal.classes#ClassCreateResponse": {
+    "com.modal.classes#CreateClassResponse": {
       "type": "structure",
       "members": {
         "classId": {
@@ -456,13 +457,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modal.classes#ClassCreate": {
+    "com.modal.classes#CreateClass": {
       "type": "operation",
       "input": {
-        "target": "com.modal.classes#ClassCreateRequest"
+        "target": "com.modal.classes#CreateClassRequest"
       },
       "output": {
-        "target": "com.modal.classes#ClassCreateResponse"
+        "target": "com.modal.classes#CreateClassResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -473,7 +474,7 @@
         "smithy.api#documentation": "Classes"
       }
     },
-    "com.modal.classes#ClassGetRequest": {
+    "com.modal.classes#GetClassRequest": {
       "type": "structure",
       "members": {
         "appName": {
@@ -551,7 +552,7 @@
         "target": "com.modal.classes#Warning"
       }
     },
-    "com.modal.classes#ClassGetResponse": {
+    "com.modal.classes#GetClassResponse": {
       "type": "structure",
       "members": {
         "classId": {
@@ -568,13 +569,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modal.classes#ClassGet": {
+    "com.modal.classes#GetClass": {
       "type": "operation",
       "input": {
-        "target": "com.modal.classes#ClassGetRequest"
+        "target": "com.modal.classes#GetClassRequest"
       },
       "output": {
-        "target": "com.modal.classes#ClassGetResponse"
+        "target": "com.modal.classes#GetClassResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -589,10 +590,10 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.modal.classes#ClassCreate"
+          "target": "com.modal.classes#CreateClass"
         },
         {
-          "target": "com.modal.classes#ClassGet"
+          "target": "com.modal.classes#GetClass"
         }
       ],
       "traits": {

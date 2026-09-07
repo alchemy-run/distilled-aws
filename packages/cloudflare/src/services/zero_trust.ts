@@ -1591,1723 +1591,6 @@ export const BulkPutAccessInfrastructureTargetsResponse =
     identifier: "BulkPutAccessInfrastructureTargetsResponse",
   }) as any as S.Schema<BulkPutAccessInfrastructureTargetsResponse>;
 
-export type CasbApplicationsGetRequestSlug =
-  | "GITHUB"
-  | "GOOGLE_WORKSPACE"
-  | "MICROSOFT_INTERNAL"
-  | "SALESFORCE"
-  | "SLACK";
-export const CasbApplicationsGetRequestSlug = /*@__PURE__*/ S.String;
-
-export interface CasbApplicationsGetRequest {
-  accountId: string;
-  slug: CasbApplicationsGetRequestSlug | (string & {});
-}
-export const CasbApplicationsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountId: S.String.pipe(T.Label("account_id")),
-    slug: CasbApplicationsGetRequestSlug.pipe(T.Label()),
-  })
-    .pipe(
-      T.Http({
-        method: "GET",
-        uri: "/accounts/{account_id}/one/applications/{slug}",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "CasbApplicationsGetRequest",
-}) as any as S.Schema<CasbApplicationsGetRequest>;
-
-export type CasbApplicationsGetResponseAuthMethodsItemSupportedEnvironmentsList =
-  Array<string>;
-export const CasbApplicationsGetResponseAuthMethodsItemSupportedEnvironmentsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<CasbApplicationsGetResponseAuthMethodsItemSupportedEnvironmentsList>;
-
-export interface CasbApplicationsGetResponseAuthMethodsItem {
-  /** Human-readable auth method name. */
-  displayName: string;
-  /** Whether this is the default auth method. */
-  isDefault: boolean;
-  /** Auth method identifier. */
-  slug: string;
-  /** Environments this auth method supports. */
-  supportedEnvironments: CasbApplicationsGetResponseAuthMethodsItemSupportedEnvironmentsList;
-}
-export const CasbApplicationsGetResponseAuthMethodsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      displayName: S.String.pipe(T.Body("display_name")),
-      isDefault: S.Boolean.pipe(T.Body("is_default")),
-      slug: S.String,
-      supportedEnvironments:
-        CasbApplicationsGetResponseAuthMethodsItemSupportedEnvironmentsList.pipe(
-          T.Body("supported_environments"),
-        ),
-    }),
-  ).annotate({
-    identifier: "CasbApplicationsGetResponseAuthMethodsItem",
-  }) as any as S.Schema<CasbApplicationsGetResponseAuthMethodsItem>;
-
-export type CasbApplicationsGetResponseAuthMethodsList =
-  Array<CasbApplicationsGetResponseAuthMethodsItem>;
-export const CasbApplicationsGetResponseAuthMethodsList = /*@__PURE__*/ S.Array(
-  CasbApplicationsGetResponseAuthMethodsItem,
-) as any as S.Schema<CasbApplicationsGetResponseAuthMethodsList>;
-
-export type CasbApplicationsGetResponseSlug =
-  | "GITHUB"
-  | "GOOGLE_WORKSPACE"
-  | "MICROSOFT_INTERNAL"
-  | "SALESFORCE"
-  | "SLACK";
-export const CasbApplicationsGetResponseSlug = /*@__PURE__*/ S.String;
-
-export type CasbApplicationsGetResponseUseCasesItemBaseScopesItemSeverity =
-  | "low"
-  | "medium"
-  | "high"
-  | "critical";
-export const CasbApplicationsGetResponseUseCasesItemBaseScopesItemSeverity =
-  /*@__PURE__*/ S.String;
-
-export interface CasbApplicationsGetResponseUseCasesItemBaseScopesItem {
-  /** Human-readable permission name. */
-  displayName: string;
-  /** Vendor-native scope identifier. */
-  scope: string;
-  /** Permission sensitivity level. */
-  severity: CasbApplicationsGetResponseUseCasesItemBaseScopesItemSeverity;
-}
-export const CasbApplicationsGetResponseUseCasesItemBaseScopesItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      displayName: S.String.pipe(T.Body("display_name")),
-      scope: S.String,
-      severity: CasbApplicationsGetResponseUseCasesItemBaseScopesItemSeverity,
-    }),
-  ).annotate({
-    identifier: "CasbApplicationsGetResponseUseCasesItemBaseScopesItem",
-  }) as any as S.Schema<CasbApplicationsGetResponseUseCasesItemBaseScopesItem>;
-
-export type CasbApplicationsGetResponseUseCasesItemBaseScopesList =
-  Array<CasbApplicationsGetResponseUseCasesItemBaseScopesItem>;
-export const CasbApplicationsGetResponseUseCasesItemBaseScopesList =
-  /*@__PURE__*/ S.Array(
-    CasbApplicationsGetResponseUseCasesItemBaseScopesItem,
-  ) as any as S.Schema<CasbApplicationsGetResponseUseCasesItemBaseScopesList>;
-
-export type CasbApplicationsGetResponseUseCasesItemFeaturesItemScopesItemSeverity =
-  | "low"
-  | "medium"
-  | "high"
-  | "critical";
-export const CasbApplicationsGetResponseUseCasesItemFeaturesItemScopesItemSeverity =
-  /*@__PURE__*/ S.String;
-
-export interface CasbApplicationsGetResponseUseCasesItemFeaturesItemScopesItem {
-  /** Human-readable permission name. */
-  displayName: string;
-  /** Vendor-native scope identifier. */
-  scope: string;
-  /** Permission sensitivity level. */
-  severity: CasbApplicationsGetResponseUseCasesItemFeaturesItemScopesItemSeverity;
-}
-export const CasbApplicationsGetResponseUseCasesItemFeaturesItemScopesItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      displayName: S.String.pipe(T.Body("display_name")),
-      scope: S.String,
-      severity:
-        CasbApplicationsGetResponseUseCasesItemFeaturesItemScopesItemSeverity,
-    }),
-  ).annotate({
-    identifier: "CasbApplicationsGetResponseUseCasesItemFeaturesItemScopesItem",
-  }) as any as S.Schema<CasbApplicationsGetResponseUseCasesItemFeaturesItemScopesItem>;
-
-export type CasbApplicationsGetResponseUseCasesItemFeaturesItemScopesList =
-  Array<CasbApplicationsGetResponseUseCasesItemFeaturesItemScopesItem>;
-export const CasbApplicationsGetResponseUseCasesItemFeaturesItemScopesList =
-  /*@__PURE__*/ S.Array(
-    CasbApplicationsGetResponseUseCasesItemFeaturesItemScopesItem,
-  ) as any as S.Schema<CasbApplicationsGetResponseUseCasesItemFeaturesItemScopesList>;
-
-export interface CasbApplicationsGetResponseUseCasesItemFeaturesItem {
-  /** Feature description. */
-  description: string;
-  /** Human-readable feature name. */
-  displayName: string;
-  /** Additional scopes when feature is enabled. */
-  scopes: CasbApplicationsGetResponseUseCasesItemFeaturesItemScopesList;
-  /** Feature identifier. */
-  slug: string;
-}
-export const CasbApplicationsGetResponseUseCasesItemFeaturesItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      description: S.String,
-      displayName: S.String.pipe(T.Body("display_name")),
-      scopes: CasbApplicationsGetResponseUseCasesItemFeaturesItemScopesList,
-      slug: S.String,
-    }),
-  ).annotate({
-    identifier: "CasbApplicationsGetResponseUseCasesItemFeaturesItem",
-  }) as any as S.Schema<CasbApplicationsGetResponseUseCasesItemFeaturesItem>;
-
-export type CasbApplicationsGetResponseUseCasesItemFeaturesList =
-  Array<CasbApplicationsGetResponseUseCasesItemFeaturesItem>;
-export const CasbApplicationsGetResponseUseCasesItemFeaturesList =
-  /*@__PURE__*/ S.Array(
-    CasbApplicationsGetResponseUseCasesItemFeaturesItem,
-  ) as any as S.Schema<CasbApplicationsGetResponseUseCasesItemFeaturesList>;
-
-export interface CasbApplicationsGetResponseUseCasesItem {
-  /** Scopes always required for this use case. */
-  baseScopes: CasbApplicationsGetResponseUseCasesItemBaseScopesList;
-  /** Use case description. */
-  description: string;
-  /** Human-readable use case name. */
-  displayName: string;
-  /** Optional features with extra scopes. */
-  features: CasbApplicationsGetResponseUseCasesItemFeaturesList;
-  /** Use case identifier. */
-  slug: string;
-}
-export const CasbApplicationsGetResponseUseCasesItem = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      baseScopes: CasbApplicationsGetResponseUseCasesItemBaseScopesList.pipe(
-        T.Body("base_scopes"),
-      ),
-      description: S.String,
-      displayName: S.String.pipe(T.Body("display_name")),
-      features: CasbApplicationsGetResponseUseCasesItemFeaturesList,
-      slug: S.String,
-    }),
-).annotate({
-  identifier: "CasbApplicationsGetResponseUseCasesItem",
-}) as any as S.Schema<CasbApplicationsGetResponseUseCasesItem>;
-
-export type CasbApplicationsGetResponseUseCasesList =
-  Array<CasbApplicationsGetResponseUseCasesItem>;
-export const CasbApplicationsGetResponseUseCasesList = /*@__PURE__*/ S.Array(
-  CasbApplicationsGetResponseUseCasesItem,
-) as any as S.Schema<CasbApplicationsGetResponseUseCasesList>;
-
-/** Raw response payload (operation does not use the standard v4 result envelope). */
-export interface CasbApplicationsGetResponse {
-  /** Available authentication methods. */
-  authMethods: CasbApplicationsGetResponseAuthMethodsList;
-  /** Vendor category. */
-  category: string;
-  /** Brief description. */
-  description: string;
-  /** Human-readable vendor name. */
-  displayName: string;
-  /** Whether DLP scanning is supported. */
-  dlpEnabled: boolean;
-  /** Setup instructions for the user. */
-  instructions: string;
-  /** Logo path. */
-  logo: string;
-  /** Vendor identifier. */
-  slug: CasbApplicationsGetResponseSlug;
-  /** Use cases with full scope details. */
-  useCases: CasbApplicationsGetResponseUseCasesList;
-}
-export const CasbApplicationsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    authMethods: CasbApplicationsGetResponseAuthMethodsList.pipe(
-      T.Body("auth_methods"),
-    ),
-    category: S.String,
-    description: S.String,
-    displayName: S.String.pipe(T.Body("display_name")),
-    dlpEnabled: S.Boolean.pipe(T.Body("dlp_enabled")),
-    instructions: S.String,
-    logo: S.String,
-    slug: CasbApplicationsGetResponseSlug,
-    useCases: CasbApplicationsGetResponseUseCasesList.pipe(T.Body("use_cases")),
-  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "CasbApplicationsGetResponse",
-}) as any as S.Schema<CasbApplicationsGetResponse>;
-
-export interface CasbApplicationsListRequest {
-  accountId: string;
-  /** Filter by supported environment (standard, fedramp). */
-  environment?: string;
-}
-export const CasbApplicationsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountId: S.String.pipe(T.Label("account_id")),
-    environment: S.optional(S.String.pipe(T.Query())),
-  })
-    .pipe(
-      T.Http({
-        method: "GET",
-        uri: "/accounts/{account_id}/one/applications",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "CasbApplicationsListRequest",
-}) as any as S.Schema<CasbApplicationsListRequest>;
-
-export interface CasbApplicationsListResponseAuthMethodsItem {
-  /** Human-readable auth method name. */
-  displayName: string;
-  /** Auth method identifier. */
-  slug: string;
-}
-export const CasbApplicationsListResponseAuthMethodsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      displayName: S.String.pipe(T.Body("display_name")),
-      slug: S.String,
-    }),
-  ).annotate({
-    identifier: "CasbApplicationsListResponseAuthMethodsItem",
-  }) as any as S.Schema<CasbApplicationsListResponseAuthMethodsItem>;
-
-export type CasbApplicationsListResponseAuthMethodsList =
-  Array<CasbApplicationsListResponseAuthMethodsItem>;
-export const CasbApplicationsListResponseAuthMethodsList =
-  /*@__PURE__*/ S.Array(
-    CasbApplicationsListResponseAuthMethodsItem,
-  ) as any as S.Schema<CasbApplicationsListResponseAuthMethodsList>;
-
-export type CasbApplicationsListResponsePermissionsItemSeverity =
-  | "low"
-  | "medium"
-  | "high"
-  | "critical";
-export const CasbApplicationsListResponsePermissionsItemSeverity =
-  /*@__PURE__*/ S.String;
-
-export interface CasbApplicationsListResponsePermissionsItem {
-  /** Human-readable permission name. */
-  displayName: string;
-  /** Vendor-native scope identifier. */
-  scope: string;
-  /** Permission sensitivity level. */
-  severity: CasbApplicationsListResponsePermissionsItemSeverity;
-}
-export const CasbApplicationsListResponsePermissionsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      displayName: S.String.pipe(T.Body("display_name")),
-      scope: S.String,
-      severity: CasbApplicationsListResponsePermissionsItemSeverity,
-    }),
-  ).annotate({
-    identifier: "CasbApplicationsListResponsePermissionsItem",
-  }) as any as S.Schema<CasbApplicationsListResponsePermissionsItem>;
-
-export type CasbApplicationsListResponsePermissionsList =
-  Array<CasbApplicationsListResponsePermissionsItem>;
-export const CasbApplicationsListResponsePermissionsList =
-  /*@__PURE__*/ S.Array(
-    CasbApplicationsListResponsePermissionsItem,
-  ) as any as S.Schema<CasbApplicationsListResponsePermissionsList>;
-
-export type CasbApplicationsListResponseSlug =
-  | "GITHUB"
-  | "GOOGLE_WORKSPACE"
-  | "MICROSOFT_INTERNAL"
-  | "SALESFORCE"
-  | "SLACK";
-export const CasbApplicationsListResponseSlug = /*@__PURE__*/ S.String;
-
-export type CasbApplicationsListResponseSupportedEnvironmentsList =
-  Array<string>;
-export const CasbApplicationsListResponseSupportedEnvironmentsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<CasbApplicationsListResponseSupportedEnvironmentsList>;
-
-export interface CasbApplicationsListResponseUseCasesItem {
-  /** Human-readable use case name. */
-  displayName: string;
-  /** Use case identifier (e.g. casb, ces). */
-  slug: string;
-}
-export const CasbApplicationsListResponseUseCasesItem = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      displayName: S.String.pipe(T.Body("display_name")),
-      slug: S.String,
-    }),
-).annotate({
-  identifier: "CasbApplicationsListResponseUseCasesItem",
-}) as any as S.Schema<CasbApplicationsListResponseUseCasesItem>;
-
-export type CasbApplicationsListResponseUseCasesList =
-  Array<CasbApplicationsListResponseUseCasesItem>;
-export const CasbApplicationsListResponseUseCasesList = /*@__PURE__*/ S.Array(
-  CasbApplicationsListResponseUseCasesItem,
-) as any as S.Schema<CasbApplicationsListResponseUseCasesList>;
-
-/** Raw response payload (operation does not use the standard v4 result envelope). */
-export interface CasbApplicationsListResponse {
-  /** Available auth methods. */
-  authMethods: CasbApplicationsListResponseAuthMethodsList;
-  /** Vendor category (e.g. Productivity, AI). */
-  category: string;
-  /** Brief description of the integration. */
-  description: string;
-  /** Human-readable vendor name. */
-  displayName: string;
-  /** Whether DLP scanning is supported. */
-  dlpEnabled: boolean;
-  /** Logo path. */
-  logo: string;
-  /** All permissions with severity. */
-  permissions: CasbApplicationsListResponsePermissionsList;
-  /** Vendor identifier (e.g. microsoft_internal, google_workspace). */
-  slug: CasbApplicationsListResponseSlug;
-  /** Environments this vendor supports (standard, fedramp). */
-  supportedEnvironments: CasbApplicationsListResponseSupportedEnvironmentsList;
-  /** Supported use cases. */
-  useCases: CasbApplicationsListResponseUseCasesList;
-}
-export const CasbApplicationsListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    authMethods: CasbApplicationsListResponseAuthMethodsList.pipe(
-      T.Body("auth_methods"),
-    ),
-    category: S.String,
-    description: S.String,
-    displayName: S.String.pipe(T.Body("display_name")),
-    dlpEnabled: S.Boolean.pipe(T.Body("dlp_enabled")),
-    logo: S.String,
-    permissions: CasbApplicationsListResponsePermissionsList,
-    slug: CasbApplicationsListResponseSlug,
-    supportedEnvironments:
-      CasbApplicationsListResponseSupportedEnvironmentsList.pipe(
-        T.Body("supported_environments"),
-      ),
-    useCases: CasbApplicationsListResponseUseCasesList.pipe(
-      T.Body("use_cases"),
-    ),
-  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "CasbApplicationsListResponse",
-}) as any as S.Schema<CasbApplicationsListResponse>;
-
-export type CasbApplicationsSetupFlowsListRequestEnvironment =
-  | "fedramp"
-  | "standard";
-export const CasbApplicationsSetupFlowsListRequestEnvironment =
-  /*@__PURE__*/ S.String;
-
-export interface CasbApplicationsSetupFlowsListRequest {
-  accountId: string;
-  slug: string;
-  /** Filter by auth method slug. Get available slugs from GET /v2/applications. */
-  authMethod?: string;
-  /** Filter by environment. */
-  environment?:
-    | CasbApplicationsSetupFlowsListRequestEnvironment
-    | (string & {});
-}
-export const CasbApplicationsSetupFlowsListRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      accountId: S.String.pipe(T.Label("account_id")),
-      slug: S.String.pipe(T.Label()),
-      authMethod: S.optional(S.String.pipe(T.Query("auth_method"))),
-      environment: S.optional(
-        CasbApplicationsSetupFlowsListRequestEnvironment.pipe(T.Query()),
-      ),
-    })
-      .pipe(
-        T.Http({
-          method: "GET",
-          uri: "/accounts/{account_id}/one/applications/{slug}/setup-flows",
-          code: 200,
-        }),
-      )
-      .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "CasbApplicationsSetupFlowsListRequest",
-}) as any as S.Schema<CasbApplicationsSetupFlowsListRequest>;
-
-export type CasbApplicationsSetupFlowsListResponseStepsItemType =
-  | "component"
-  | "instruction"
-  | "form_input"
-  | "oauth_redirect";
-export const CasbApplicationsSetupFlowsListResponseStepsItemType =
-  /*@__PURE__*/ S.String;
-
-export type CasbApplicationsSetupFlowsListResponseStepsItemDynamicContentItemType =
-  | "copy_block"
-  | "external_link";
-export const CasbApplicationsSetupFlowsListResponseStepsItemDynamicContentItemType =
-  /*@__PURE__*/ S.String;
-
-export interface CasbApplicationsSetupFlowsListResponseStepsItemDynamicContentItem {
-  /** Display label. */
-  label: string;
-  /** Content type. */
-  type: CasbApplicationsSetupFlowsListResponseStepsItemDynamicContentItemType;
-  /** URL template with {{ variable }} interpolation (for external_link). */
-  urlTemplate?: string | null;
-  /** Field path to get value from (for copy_block). */
-  valueFrom?: string | null;
-}
-export const CasbApplicationsSetupFlowsListResponseStepsItemDynamicContentItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      label: S.String,
-      type: CasbApplicationsSetupFlowsListResponseStepsItemDynamicContentItemType,
-      urlTemplate: S.optional(S.NullOr(S.String).pipe(T.Body("url_template"))),
-      valueFrom: S.optional(S.NullOr(S.String).pipe(T.Body("value_from"))),
-    }),
-  ).annotate({
-    identifier:
-      "CasbApplicationsSetupFlowsListResponseStepsItemDynamicContentItem",
-  }) as any as S.Schema<CasbApplicationsSetupFlowsListResponseStepsItemDynamicContentItem>;
-
-export type CasbApplicationsSetupFlowsListResponseStepsItemDynamicContentList =
-  Array<CasbApplicationsSetupFlowsListResponseStepsItemDynamicContentItem>;
-export const CasbApplicationsSetupFlowsListResponseStepsItemDynamicContentList =
-  /*@__PURE__*/ S.Array(
-    CasbApplicationsSetupFlowsListResponseStepsItemDynamicContentItem,
-  ) as any as S.Schema<CasbApplicationsSetupFlowsListResponseStepsItemDynamicContentList>;
-
-export type CasbApplicationsSetupFlowsListResponseStepsItemFormFieldsItemSupportedFileTypesList =
-  Array<string>;
-export const CasbApplicationsSetupFlowsListResponseStepsItemFormFieldsItemSupportedFileTypesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<CasbApplicationsSetupFlowsListResponseStepsItemFormFieldsItemSupportedFileTypesList>;
-
-export type CasbApplicationsSetupFlowsListResponseStepsItemFormFieldsItemType =
-  | "text"
-  | "password"
-  | "email"
-  | "file_upload";
-export const CasbApplicationsSetupFlowsListResponseStepsItemFormFieldsItemType =
-  /*@__PURE__*/ S.String;
-
-export interface CasbApplicationsSetupFlowsListResponseStepsItemFormFieldsItem {
-  /** Human-readable field label. */
-  label: string;
-  /** Field identifier (maps to credentials key). */
-  name: string;
-  /** Placeholder text. */
-  placeholder: string;
-  /** Whether field is required. */
-  required: boolean;
-  /** Allowed file extensions for file_upload type. */
-  supportedFileTypes: CasbApplicationsSetupFlowsListResponseStepsItemFormFieldsItemSupportedFileTypesList;
-  /** Field input type. */
-  type: CasbApplicationsSetupFlowsListResponseStepsItemFormFieldsItemType;
-}
-export const CasbApplicationsSetupFlowsListResponseStepsItemFormFieldsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      label: S.String,
-      name: S.String,
-      placeholder: S.String,
-      required: S.Boolean,
-      supportedFileTypes:
-        CasbApplicationsSetupFlowsListResponseStepsItemFormFieldsItemSupportedFileTypesList.pipe(
-          T.Body("supported_file_types"),
-        ),
-      type: CasbApplicationsSetupFlowsListResponseStepsItemFormFieldsItemType,
-    }),
-  ).annotate({
-    identifier: "CasbApplicationsSetupFlowsListResponseStepsItemFormFieldsItem",
-  }) as any as S.Schema<CasbApplicationsSetupFlowsListResponseStepsItemFormFieldsItem>;
-
-export type CasbApplicationsSetupFlowsListResponseStepsItemFormFieldsList =
-  Array<CasbApplicationsSetupFlowsListResponseStepsItemFormFieldsItem>;
-export const CasbApplicationsSetupFlowsListResponseStepsItemFormFieldsList =
-  /*@__PURE__*/ S.Array(
-    CasbApplicationsSetupFlowsListResponseStepsItemFormFieldsItem,
-  ) as any as S.Schema<CasbApplicationsSetupFlowsListResponseStepsItemFormFieldsList>;
-
-export type CasbApplicationsSetupFlowsListResponseStepsItemParametersMap = {
-  [key: string]: string | undefined;
-};
-export const CasbApplicationsSetupFlowsListResponseStepsItemParametersMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<CasbApplicationsSetupFlowsListResponseStepsItemParametersMap>;
-
-export interface CasbApplicationsSetupFlowsListResponseStepsItem {
-  /** Step type. */
-  type: CasbApplicationsSetupFlowsListResponseStepsItemType;
-  /** Component identifier (for component type). */
-  componentId?: string | null;
-  /** Step description with markdown support. */
-  description?: string | null;
-  /** Dynamic content blocks (for instruction/form_input). */
-  dynamicContent?: CasbApplicationsSetupFlowsListResponseStepsItemDynamicContentList | null;
-  /** Form fields (for form_input). */
-  formFields?: CasbApplicationsSetupFlowsListResponseStepsItemFormFieldsList | null;
-  /** Whether step is required (for form_input). */
-  isRequired?: boolean | null;
-  /** Component parameters (for component type). */
-  parameters?: CasbApplicationsSetupFlowsListResponseStepsItemParametersMap | null;
-  /** Step title (for instruction/form_input/oauth_redirect). */
-  title?: string | null;
-}
-export const CasbApplicationsSetupFlowsListResponseStepsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: CasbApplicationsSetupFlowsListResponseStepsItemType,
-      componentId: S.optional(S.NullOr(S.String).pipe(T.Body("component_id"))),
-      description: S.optional(S.NullOr(S.String)),
-      dynamicContent: S.optional(
-        S.NullOr(
-          CasbApplicationsSetupFlowsListResponseStepsItemDynamicContentList,
-        ).pipe(T.Body("dynamic_content")),
-      ),
-      formFields: S.optional(
-        S.NullOr(
-          CasbApplicationsSetupFlowsListResponseStepsItemFormFieldsList,
-        ).pipe(T.Body("form_fields")),
-      ),
-      isRequired: S.optional(S.NullOr(S.Boolean).pipe(T.Body("is_required"))),
-      parameters: S.optional(
-        S.NullOr(CasbApplicationsSetupFlowsListResponseStepsItemParametersMap),
-      ),
-      title: S.optional(S.NullOr(S.String)),
-    }),
-  ).annotate({
-    identifier: "CasbApplicationsSetupFlowsListResponseStepsItem",
-  }) as any as S.Schema<CasbApplicationsSetupFlowsListResponseStepsItem>;
-
-export type CasbApplicationsSetupFlowsListResponseStepsList =
-  Array<CasbApplicationsSetupFlowsListResponseStepsItem>;
-export const CasbApplicationsSetupFlowsListResponseStepsList =
-  /*@__PURE__*/ S.Array(
-    CasbApplicationsSetupFlowsListResponseStepsItem,
-  ) as any as S.Schema<CasbApplicationsSetupFlowsListResponseStepsList>;
-
-export type CasbApplicationsSetupFlowsListResponseSupportedEnvironmentsList =
-  Array<string>;
-export const CasbApplicationsSetupFlowsListResponseSupportedEnvironmentsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<CasbApplicationsSetupFlowsListResponseSupportedEnvironmentsList>;
-
-export type CasbApplicationsSetupFlowsListResponseAuthConfigScopesList =
-  Array<string>;
-export const CasbApplicationsSetupFlowsListResponseAuthConfigScopesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<CasbApplicationsSetupFlowsListResponseAuthConfigScopesList>;
-
-export type CasbApplicationsSetupFlowsListResponseAuthConfigUrlPlaceholdersList =
-  Array<string>;
-export const CasbApplicationsSetupFlowsListResponseAuthConfigUrlPlaceholdersList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<CasbApplicationsSetupFlowsListResponseAuthConfigUrlPlaceholdersList>;
-
-export interface CasbApplicationsSetupFlowsListResponseAuthConfig {
-  /** Authorization URL for the requested environment. */
-  authorizationUrl: string;
-  /** OAuth client ID. */
-  clientId: string;
-  /** Whether PKCE is required. */
-  requiresPkce: boolean;
-  /** OAuth scopes to request. */
-  scopes: CasbApplicationsSetupFlowsListResponseAuthConfigScopesList;
-  /** Placeholders in authorization URL that frontend must fill. */
-  urlPlaceholders: CasbApplicationsSetupFlowsListResponseAuthConfigUrlPlaceholdersList;
-}
-export const CasbApplicationsSetupFlowsListResponseAuthConfig =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      authorizationUrl: S.String.pipe(T.Body("authorization_url")),
-      clientId: S.String.pipe(T.Body("client_id")),
-      requiresPkce: S.Boolean.pipe(T.Body("requires_pkce")),
-      scopes: CasbApplicationsSetupFlowsListResponseAuthConfigScopesList,
-      urlPlaceholders:
-        CasbApplicationsSetupFlowsListResponseAuthConfigUrlPlaceholdersList.pipe(
-          T.Body("url_placeholders"),
-        ),
-    }),
-  ).annotate({
-    identifier: "CasbApplicationsSetupFlowsListResponseAuthConfig",
-  }) as any as S.Schema<CasbApplicationsSetupFlowsListResponseAuthConfig>;
-
-/** Raw response payload (operation does not use the standard v4 result envelope). */
-export interface CasbApplicationsSetupFlowsListResponse {
-  /** Setup flow identifier. */
-  id: string;
-  /** Whether this is the default auth method. */
-  default: boolean;
-  /** Flow description. */
-  description: string;
-  /** Human-readable flow name. */
-  name: string;
-  /** Ordered list of setup steps. */
-  steps: CasbApplicationsSetupFlowsListResponseStepsList;
-  /** Environments this auth method supports (standard, fedramp). */
-  supportedEnvironments: CasbApplicationsSetupFlowsListResponseSupportedEnvironmentsList;
-  /** OAuth configuration (present for OAuth-based flows). */
-  authConfig?: CasbApplicationsSetupFlowsListResponseAuthConfig | null;
-}
-export const CasbApplicationsSetupFlowsListResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.String,
-      default: S.Boolean,
-      description: S.String,
-      name: S.String,
-      steps: CasbApplicationsSetupFlowsListResponseStepsList,
-      supportedEnvironments:
-        CasbApplicationsSetupFlowsListResponseSupportedEnvironmentsList.pipe(
-          T.Body("supported_environments"),
-        ),
-      authConfig: S.optional(
-        S.NullOr(CasbApplicationsSetupFlowsListResponseAuthConfig).pipe(
-          T.Body("auth_config"),
-        ),
-      ),
-    }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "CasbApplicationsSetupFlowsListResponse",
-}) as any as S.Schema<CasbApplicationsSetupFlowsListResponse>;
-
-export type CasbIntegrationsCreateRequestApplication =
-  | "GITHUB"
-  | "GOOGLE_WORKSPACE"
-  | "MICROSOFT_INTERNAL"
-  | "SALESFORCE"
-  | "SLACK";
-export const CasbIntegrationsCreateRequestApplication = /*@__PURE__*/ S.String;
-
-export type CasbIntegrationsCreateRequestCredentialsMap = {
-  [key: string]: unknown | undefined;
-};
-export const CasbIntegrationsCreateRequestCredentialsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<CasbIntegrationsCreateRequestCredentialsMap>;
-
-export type CasbIntegrationsCreateRequestDlpProfilesList = Array<string>;
-export const CasbIntegrationsCreateRequestDlpProfilesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<CasbIntegrationsCreateRequestDlpProfilesList>;
-
-export type CasbIntegrationsCreateRequestPermissionsList = Array<string>;
-export const CasbIntegrationsCreateRequestPermissionsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<CasbIntegrationsCreateRequestPermissionsList>;
-
-export type CasbIntegrationsCreateRequestUseCasesItem =
-  | "casb"
-  | "ces"
-  | "auto_remediation";
-export const CasbIntegrationsCreateRequestUseCasesItem = /*@__PURE__*/ S.String;
-
-export type CasbIntegrationsCreateRequestUseCasesList = Array<
-  CasbIntegrationsCreateRequestUseCasesItem | (string & {})
->;
-export const CasbIntegrationsCreateRequestUseCasesList = /*@__PURE__*/ S.Array(
-  CasbIntegrationsCreateRequestUseCasesItem,
-) as any as S.Schema<CasbIntegrationsCreateRequestUseCasesList>;
-
-export interface CasbIntegrationsCreateRequest {
-  accountId: string;
-  /** Vendor/application slug (e.g., GOOGLE_WORKSPACE). */
-  application: CasbIntegrationsCreateRequestApplication | (string & {});
-  /** Credentials for the integration. */
-  credentials: CasbIntegrationsCreateRequestCredentialsMap;
-  /** Name of the integration. */
-  name: string;
-  /** Authentication method slug (uses default if omitted). */
-  authMethod?: string;
-  /** List of DLP profile IDs to associate. */
-  dlpProfiles?: CasbIntegrationsCreateRequestDlpProfilesList;
-  /** List of permission scopes (uses policy defaults if empty). */
-  permissions?: CasbIntegrationsCreateRequestPermissionsList;
-  /** List of use case or feature slugs to enroll (e.g., ['casb', 'ces', 'auto_remediation']). */
-  useCases?: CasbIntegrationsCreateRequestUseCasesList;
-}
-export const CasbIntegrationsCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountId: S.String.pipe(T.Label("account_id")),
-    application: CasbIntegrationsCreateRequestApplication,
-    credentials: CasbIntegrationsCreateRequestCredentialsMap,
-    name: S.String,
-    authMethod: S.optional(S.String.pipe(T.Body("auth_method"))),
-    dlpProfiles: S.optional(
-      CasbIntegrationsCreateRequestDlpProfilesList.pipe(T.Body("dlp_profiles")),
-    ),
-    permissions: S.optional(CasbIntegrationsCreateRequestPermissionsList),
-    useCases: S.optional(
-      CasbIntegrationsCreateRequestUseCasesList.pipe(T.Body("use_cases")),
-    ),
-  })
-    .pipe(
-      T.Http({
-        method: "POST",
-        uri: "/accounts/{account_id}/one/integrations",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "CasbIntegrationsCreateRequest",
-}) as any as S.Schema<CasbIntegrationsCreateRequest>;
-
-export type CasbIntegrationsCreateResponseApplicationMap = {
-  [key: string]: string | undefined;
-};
-export const CasbIntegrationsCreateResponseApplicationMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<CasbIntegrationsCreateResponseApplicationMap>;
-
-export type CasbIntegrationsCreateResponseAuthMethodMap = {
-  [key: string]: string | undefined;
-};
-export const CasbIntegrationsCreateResponseAuthMethodMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<CasbIntegrationsCreateResponseAuthMethodMap>;
-
-export type CasbIntegrationsCreateResponseAuthorizationLinkComponentsMap = {
-  [key: string]: unknown | undefined;
-};
-export const CasbIntegrationsCreateResponseAuthorizationLinkComponentsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<CasbIntegrationsCreateResponseAuthorizationLinkComponentsMap>;
-
-export interface CasbIntegrationsCreateResponseAuthorizationLink {
-  components: CasbIntegrationsCreateResponseAuthorizationLinkComponentsMap;
-  link: string;
-}
-export const CasbIntegrationsCreateResponseAuthorizationLink =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      components: CasbIntegrationsCreateResponseAuthorizationLinkComponentsMap,
-      link: S.String,
-    }),
-  ).annotate({
-    identifier: "CasbIntegrationsCreateResponseAuthorizationLink",
-  }) as any as S.Schema<CasbIntegrationsCreateResponseAuthorizationLink>;
-
-export type CasbIntegrationsCreateResponseDlpProfilesList = Array<string>;
-export const CasbIntegrationsCreateResponseDlpProfilesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<CasbIntegrationsCreateResponseDlpProfilesList>;
-
-export type CasbIntegrationsCreateResponseHealthDetailsItemMap = {
-  [key: string]: unknown | undefined;
-};
-export const CasbIntegrationsCreateResponseHealthDetailsItemMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<CasbIntegrationsCreateResponseHealthDetailsItemMap>;
-
-export type CasbIntegrationsCreateResponseHealthDetailsList =
-  Array<CasbIntegrationsCreateResponseHealthDetailsItemMap>;
-export const CasbIntegrationsCreateResponseHealthDetailsList =
-  /*@__PURE__*/ S.Array(
-    CasbIntegrationsCreateResponseHealthDetailsItemMap,
-  ) as any as S.Schema<CasbIntegrationsCreateResponseHealthDetailsList>;
-
-export type CasbIntegrationsCreateResponseUseCasesItemMap = {
-  [key: string]: unknown | undefined;
-};
-export const CasbIntegrationsCreateResponseUseCasesItemMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<CasbIntegrationsCreateResponseUseCasesItemMap>;
-
-export type CasbIntegrationsCreateResponseUseCasesList =
-  Array<CasbIntegrationsCreateResponseUseCasesItemMap>;
-export const CasbIntegrationsCreateResponseUseCasesList = /*@__PURE__*/ S.Array(
-  CasbIntegrationsCreateResponseUseCasesItemMap,
-) as any as S.Schema<CasbIntegrationsCreateResponseUseCasesList>;
-
-/** Raw response payload (operation does not use the standard v4 result envelope). */
-export interface CasbIntegrationsCreateResponse {
-  /** Integration ID. */
-  id: string;
-  application: CasbIntegrationsCreateResponseApplicationMap;
-  /** The integration's authentication method. */
-  authMethod: CasbIntegrationsCreateResponseAuthMethodMap;
-  /** Authorization link for the integration. */
-  authorizationLink: CasbIntegrationsCreateResponseAuthorizationLink;
-  /** When the integration was created. */
-  created: string;
-  /** Credentials expiry time. */
-  credentialsExpiry: string;
-  /** DLP Profiles enabled for the integration. */
-  dlpProfiles: CasbIntegrationsCreateResponseDlpProfilesList;
-  /** Health details with remediation hints. */
-  healthDetails: CasbIntegrationsCreateResponseHealthDetailsList;
-  /** Whether the user paused the integration. */
-  isPaused: boolean;
-  /** Last time the integration was hydrated. */
-  lastHydrated: string;
-  /** Name of the integration. */
-  name: string;
-  /** Organization ID. */
-  organizationId: number;
-  /** Integration status. */
-  status: string;
-  /** When the integration was last updated. */
-  updated: string;
-  /** Use cases enabled for the integration. */
-  useCases: CasbIntegrationsCreateResponseUseCasesList;
-}
-export const CasbIntegrationsCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    application: CasbIntegrationsCreateResponseApplicationMap,
-    authMethod: CasbIntegrationsCreateResponseAuthMethodMap.pipe(
-      T.Body("auth_method"),
-    ),
-    authorizationLink: CasbIntegrationsCreateResponseAuthorizationLink.pipe(
-      T.Body("authorization_link"),
-    ),
-    created: S.String,
-    credentialsExpiry: S.String.pipe(T.Body("credentials_expiry")),
-    dlpProfiles: CasbIntegrationsCreateResponseDlpProfilesList.pipe(
-      T.Body("dlp_profiles"),
-    ),
-    healthDetails: CasbIntegrationsCreateResponseHealthDetailsList.pipe(
-      T.Body("health_details"),
-    ),
-    isPaused: S.Boolean.pipe(T.Body("is_paused")),
-    lastHydrated: S.String.pipe(T.Body("last_hydrated")),
-    name: S.String,
-    organizationId: S.Number.pipe(T.Body("organization_id")),
-    status: S.String,
-    updated: S.String,
-    useCases: CasbIntegrationsCreateResponseUseCasesList.pipe(
-      T.Body("use_cases"),
-    ),
-  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "CasbIntegrationsCreateResponse",
-}) as any as S.Schema<CasbIntegrationsCreateResponse>;
-
-export interface CasbIntegrationsDeleteRequest {
-  accountId: string;
-  id: string;
-}
-export const CasbIntegrationsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountId: S.String.pipe(T.Label("account_id")),
-    id: S.String.pipe(T.Label()),
-  })
-    .pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/accounts/{account_id}/one/integrations/{id}",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "CasbIntegrationsDeleteRequest",
-}) as any as S.Schema<CasbIntegrationsDeleteRequest>;
-
-export interface CasbIntegrationsDeleteResponse {}
-export const CasbIntegrationsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "CasbIntegrationsDeleteResponse",
-}) as any as S.Schema<CasbIntegrationsDeleteResponse>;
-
-export interface CasbIntegrationsGetRequest {
-  accountId: string;
-  id: string;
-}
-export const CasbIntegrationsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountId: S.String.pipe(T.Label("account_id")),
-    id: S.String.pipe(T.Label()),
-  })
-    .pipe(
-      T.Http({
-        method: "GET",
-        uri: "/accounts/{account_id}/one/integrations/{id}",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "CasbIntegrationsGetRequest",
-}) as any as S.Schema<CasbIntegrationsGetRequest>;
-
-export type CasbIntegrationsGetResponseApplicationMap = {
-  [key: string]: string | undefined;
-};
-export const CasbIntegrationsGetResponseApplicationMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<CasbIntegrationsGetResponseApplicationMap>;
-
-export type CasbIntegrationsGetResponseAuthMethodMap = {
-  [key: string]: string | undefined;
-};
-export const CasbIntegrationsGetResponseAuthMethodMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<CasbIntegrationsGetResponseAuthMethodMap>;
-
-export type CasbIntegrationsGetResponseAuthorizationLinkComponentsMap = {
-  [key: string]: unknown | undefined;
-};
-export const CasbIntegrationsGetResponseAuthorizationLinkComponentsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<CasbIntegrationsGetResponseAuthorizationLinkComponentsMap>;
-
-export interface CasbIntegrationsGetResponseAuthorizationLink {
-  components: CasbIntegrationsGetResponseAuthorizationLinkComponentsMap;
-  link: string;
-}
-export const CasbIntegrationsGetResponseAuthorizationLink =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      components: CasbIntegrationsGetResponseAuthorizationLinkComponentsMap,
-      link: S.String,
-    }),
-  ).annotate({
-    identifier: "CasbIntegrationsGetResponseAuthorizationLink",
-  }) as any as S.Schema<CasbIntegrationsGetResponseAuthorizationLink>;
-
-export type CasbIntegrationsGetResponseDlpProfilesList = Array<string>;
-export const CasbIntegrationsGetResponseDlpProfilesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<CasbIntegrationsGetResponseDlpProfilesList>;
-
-export type CasbIntegrationsGetResponseHealthDetailsItemMap = {
-  [key: string]: unknown | undefined;
-};
-export const CasbIntegrationsGetResponseHealthDetailsItemMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<CasbIntegrationsGetResponseHealthDetailsItemMap>;
-
-export type CasbIntegrationsGetResponseHealthDetailsList =
-  Array<CasbIntegrationsGetResponseHealthDetailsItemMap>;
-export const CasbIntegrationsGetResponseHealthDetailsList =
-  /*@__PURE__*/ S.Array(
-    CasbIntegrationsGetResponseHealthDetailsItemMap,
-  ) as any as S.Schema<CasbIntegrationsGetResponseHealthDetailsList>;
-
-export type CasbIntegrationsGetResponseUseCasesItemMap = {
-  [key: string]: unknown | undefined;
-};
-export const CasbIntegrationsGetResponseUseCasesItemMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<CasbIntegrationsGetResponseUseCasesItemMap>;
-
-export type CasbIntegrationsGetResponseUseCasesList =
-  Array<CasbIntegrationsGetResponseUseCasesItemMap>;
-export const CasbIntegrationsGetResponseUseCasesList = /*@__PURE__*/ S.Array(
-  CasbIntegrationsGetResponseUseCasesItemMap,
-) as any as S.Schema<CasbIntegrationsGetResponseUseCasesList>;
-
-/** Raw response payload (operation does not use the standard v4 result envelope). */
-export interface CasbIntegrationsGetResponse {
-  /** Integration ID. */
-  id: string;
-  application: CasbIntegrationsGetResponseApplicationMap;
-  /** The integration's authentication method. */
-  authMethod: CasbIntegrationsGetResponseAuthMethodMap;
-  /** Authorization link for the integration. */
-  authorizationLink: CasbIntegrationsGetResponseAuthorizationLink;
-  /** When the integration was created. */
-  created: string;
-  /** Credentials expiry time. */
-  credentialsExpiry: string;
-  /** DLP Profiles enabled for the integration. */
-  dlpProfiles: CasbIntegrationsGetResponseDlpProfilesList;
-  /** Health details with remediation hints. */
-  healthDetails: CasbIntegrationsGetResponseHealthDetailsList;
-  /** Whether the user paused the integration. */
-  isPaused: boolean;
-  /** Last time the integration was hydrated. */
-  lastHydrated: string;
-  /** Name of the integration. */
-  name: string;
-  /** Organization ID. */
-  organizationId: number;
-  /** Integration status. */
-  status: string;
-  /** When the integration was last updated. */
-  updated: string;
-  /** Use cases enabled for the integration. */
-  useCases: CasbIntegrationsGetResponseUseCasesList;
-}
-export const CasbIntegrationsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    application: CasbIntegrationsGetResponseApplicationMap,
-    authMethod: CasbIntegrationsGetResponseAuthMethodMap.pipe(
-      T.Body("auth_method"),
-    ),
-    authorizationLink: CasbIntegrationsGetResponseAuthorizationLink.pipe(
-      T.Body("authorization_link"),
-    ),
-    created: S.String,
-    credentialsExpiry: S.String.pipe(T.Body("credentials_expiry")),
-    dlpProfiles: CasbIntegrationsGetResponseDlpProfilesList.pipe(
-      T.Body("dlp_profiles"),
-    ),
-    healthDetails: CasbIntegrationsGetResponseHealthDetailsList.pipe(
-      T.Body("health_details"),
-    ),
-    isPaused: S.Boolean.pipe(T.Body("is_paused")),
-    lastHydrated: S.String.pipe(T.Body("last_hydrated")),
-    name: S.String,
-    organizationId: S.Number.pipe(T.Body("organization_id")),
-    status: S.String,
-    updated: S.String,
-    useCases: CasbIntegrationsGetResponseUseCasesList.pipe(T.Body("use_cases")),
-  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "CasbIntegrationsGetResponse",
-}) as any as S.Schema<CasbIntegrationsGetResponse>;
-
-export type CasbIntegrationsListRequestDirection = "asc" | "desc";
-export const CasbIntegrationsListRequestDirection = /*@__PURE__*/ S.String;
-
-export type CasbIntegrationsListRequestOrder =
-  | "application"
-  | "created"
-  | "name"
-  | "status";
-export const CasbIntegrationsListRequestOrder = /*@__PURE__*/ S.String;
-
-export type CasbIntegrationsListRequestStatus =
-  | "Healthy"
-  | "Initializing"
-  | "Offline"
-  | "Unhealthy";
-export const CasbIntegrationsListRequestStatus = /*@__PURE__*/ S.String;
-
-export interface CasbIntegrationsListRequest {
-  accountId: string;
-  /** Filter by application/vendor (e.g., GOOGLE_WORKSPACE, MICROSOFT_INTERNAL). */
-  application?: string;
-  /** Direction to order results. */
-  direction?: CasbIntegrationsListRequestDirection | (string & {});
-  /** Filter by DLP enabled status (true/false). */
-  dlpEnabled?: boolean;
-  /** Field to order results by. */
-  order?: CasbIntegrationsListRequestOrder | (string & {});
-  /** Page number within the paginated result set. */
-  page?: number;
-  /** Number of results per page. */
-  pageSize?: number;
-  /** Search integrations by name or application. */
-  search?: string;
-  /** Filter by integration status. */
-  status?: CasbIntegrationsListRequestStatus | (string & {});
-  /** Filter by enabled use cases (e.g., casb, ces). Matches integrations enrolled in any of the specified values. Can be specified multiple times. */
-  useCases?: string;
-}
-export const CasbIntegrationsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountId: S.String.pipe(T.Label("account_id")),
-    application: S.optional(S.String.pipe(T.Query())),
-    direction: S.optional(CasbIntegrationsListRequestDirection.pipe(T.Query())),
-    dlpEnabled: S.optional(S.Boolean.pipe(T.Query("dlp_enabled"))),
-    order: S.optional(CasbIntegrationsListRequestOrder.pipe(T.Query())),
-    page: S.optional(S.Number.pipe(T.Query())),
-    pageSize: S.optional(S.Number.pipe(T.Query("page_size"))),
-    search: S.optional(S.String.pipe(T.Query())),
-    status: S.optional(CasbIntegrationsListRequestStatus.pipe(T.Query())),
-    useCases: S.optional(S.String.pipe(T.Query("use_cases"))),
-  })
-    .pipe(
-      T.Http({
-        method: "GET",
-        uri: "/accounts/{account_id}/one/integrations",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "CasbIntegrationsListRequest",
-}) as any as S.Schema<CasbIntegrationsListRequest>;
-
-export interface CasbIntegrationsListResponse {}
-export const CasbIntegrationsListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "CasbIntegrationsListResponse",
-}) as any as S.Schema<CasbIntegrationsListResponse>;
-
-export interface CasbIntegrationsPauseRequest {
-  accountId: string;
-  id: string;
-}
-export const CasbIntegrationsPauseRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountId: S.String.pipe(T.Label("account_id")),
-    id: S.String.pipe(T.Label()),
-  })
-    .pipe(
-      T.Http({
-        method: "POST",
-        uri: "/accounts/{account_id}/one/integrations/{id}/pause",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "CasbIntegrationsPauseRequest",
-}) as any as S.Schema<CasbIntegrationsPauseRequest>;
-
-export type CasbIntegrationsPauseResponseApplicationMap = {
-  [key: string]: string | undefined;
-};
-export const CasbIntegrationsPauseResponseApplicationMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<CasbIntegrationsPauseResponseApplicationMap>;
-
-export type CasbIntegrationsPauseResponseAuthMethodMap = {
-  [key: string]: string | undefined;
-};
-export const CasbIntegrationsPauseResponseAuthMethodMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<CasbIntegrationsPauseResponseAuthMethodMap>;
-
-export type CasbIntegrationsPauseResponseAuthorizationLinkComponentsMap = {
-  [key: string]: unknown | undefined;
-};
-export const CasbIntegrationsPauseResponseAuthorizationLinkComponentsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<CasbIntegrationsPauseResponseAuthorizationLinkComponentsMap>;
-
-export interface CasbIntegrationsPauseResponseAuthorizationLink {
-  components: CasbIntegrationsPauseResponseAuthorizationLinkComponentsMap;
-  link: string;
-}
-export const CasbIntegrationsPauseResponseAuthorizationLink =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      components: CasbIntegrationsPauseResponseAuthorizationLinkComponentsMap,
-      link: S.String,
-    }),
-  ).annotate({
-    identifier: "CasbIntegrationsPauseResponseAuthorizationLink",
-  }) as any as S.Schema<CasbIntegrationsPauseResponseAuthorizationLink>;
-
-export type CasbIntegrationsPauseResponseDlpProfilesList = Array<string>;
-export const CasbIntegrationsPauseResponseDlpProfilesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<CasbIntegrationsPauseResponseDlpProfilesList>;
-
-export type CasbIntegrationsPauseResponseHealthDetailsItemMap = {
-  [key: string]: unknown | undefined;
-};
-export const CasbIntegrationsPauseResponseHealthDetailsItemMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<CasbIntegrationsPauseResponseHealthDetailsItemMap>;
-
-export type CasbIntegrationsPauseResponseHealthDetailsList =
-  Array<CasbIntegrationsPauseResponseHealthDetailsItemMap>;
-export const CasbIntegrationsPauseResponseHealthDetailsList =
-  /*@__PURE__*/ S.Array(
-    CasbIntegrationsPauseResponseHealthDetailsItemMap,
-  ) as any as S.Schema<CasbIntegrationsPauseResponseHealthDetailsList>;
-
-export type CasbIntegrationsPauseResponseUseCasesItemMap = {
-  [key: string]: unknown | undefined;
-};
-export const CasbIntegrationsPauseResponseUseCasesItemMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<CasbIntegrationsPauseResponseUseCasesItemMap>;
-
-export type CasbIntegrationsPauseResponseUseCasesList =
-  Array<CasbIntegrationsPauseResponseUseCasesItemMap>;
-export const CasbIntegrationsPauseResponseUseCasesList = /*@__PURE__*/ S.Array(
-  CasbIntegrationsPauseResponseUseCasesItemMap,
-) as any as S.Schema<CasbIntegrationsPauseResponseUseCasesList>;
-
-/** Raw response payload (operation does not use the standard v4 result envelope). */
-export interface CasbIntegrationsPauseResponse {
-  /** Integration ID. */
-  id: string;
-  application: CasbIntegrationsPauseResponseApplicationMap;
-  /** The integration's authentication method. */
-  authMethod: CasbIntegrationsPauseResponseAuthMethodMap;
-  /** Authorization link for the integration. */
-  authorizationLink: CasbIntegrationsPauseResponseAuthorizationLink;
-  /** When the integration was created. */
-  created: string;
-  /** Credentials expiry time. */
-  credentialsExpiry: string;
-  /** DLP Profiles enabled for the integration. */
-  dlpProfiles: CasbIntegrationsPauseResponseDlpProfilesList;
-  /** Health details with remediation hints. */
-  healthDetails: CasbIntegrationsPauseResponseHealthDetailsList;
-  /** Whether the user paused the integration. */
-  isPaused: boolean;
-  /** Last time the integration was hydrated. */
-  lastHydrated: string;
-  /** Name of the integration. */
-  name: string;
-  /** Organization ID. */
-  organizationId: number;
-  /** Integration status. */
-  status: string;
-  /** When the integration was last updated. */
-  updated: string;
-  /** Use cases enabled for the integration. */
-  useCases: CasbIntegrationsPauseResponseUseCasesList;
-}
-export const CasbIntegrationsPauseResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    application: CasbIntegrationsPauseResponseApplicationMap,
-    authMethod: CasbIntegrationsPauseResponseAuthMethodMap.pipe(
-      T.Body("auth_method"),
-    ),
-    authorizationLink: CasbIntegrationsPauseResponseAuthorizationLink.pipe(
-      T.Body("authorization_link"),
-    ),
-    created: S.String,
-    credentialsExpiry: S.String.pipe(T.Body("credentials_expiry")),
-    dlpProfiles: CasbIntegrationsPauseResponseDlpProfilesList.pipe(
-      T.Body("dlp_profiles"),
-    ),
-    healthDetails: CasbIntegrationsPauseResponseHealthDetailsList.pipe(
-      T.Body("health_details"),
-    ),
-    isPaused: S.Boolean.pipe(T.Body("is_paused")),
-    lastHydrated: S.String.pipe(T.Body("last_hydrated")),
-    name: S.String,
-    organizationId: S.Number.pipe(T.Body("organization_id")),
-    status: S.String,
-    updated: S.String,
-    useCases: CasbIntegrationsPauseResponseUseCasesList.pipe(
-      T.Body("use_cases"),
-    ),
-  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "CasbIntegrationsPauseResponse",
-}) as any as S.Schema<CasbIntegrationsPauseResponse>;
-
-export interface CasbIntegrationsResumeRequest {
-  accountId: string;
-  id: string;
-}
-export const CasbIntegrationsResumeRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountId: S.String.pipe(T.Label("account_id")),
-    id: S.String.pipe(T.Label()),
-  })
-    .pipe(
-      T.Http({
-        method: "POST",
-        uri: "/accounts/{account_id}/one/integrations/{id}/resume",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "CasbIntegrationsResumeRequest",
-}) as any as S.Schema<CasbIntegrationsResumeRequest>;
-
-export type CasbIntegrationsResumeResponseApplicationMap = {
-  [key: string]: string | undefined;
-};
-export const CasbIntegrationsResumeResponseApplicationMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<CasbIntegrationsResumeResponseApplicationMap>;
-
-export type CasbIntegrationsResumeResponseAuthMethodMap = {
-  [key: string]: string | undefined;
-};
-export const CasbIntegrationsResumeResponseAuthMethodMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<CasbIntegrationsResumeResponseAuthMethodMap>;
-
-export type CasbIntegrationsResumeResponseAuthorizationLinkComponentsMap = {
-  [key: string]: unknown | undefined;
-};
-export const CasbIntegrationsResumeResponseAuthorizationLinkComponentsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<CasbIntegrationsResumeResponseAuthorizationLinkComponentsMap>;
-
-export interface CasbIntegrationsResumeResponseAuthorizationLink {
-  components: CasbIntegrationsResumeResponseAuthorizationLinkComponentsMap;
-  link: string;
-}
-export const CasbIntegrationsResumeResponseAuthorizationLink =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      components: CasbIntegrationsResumeResponseAuthorizationLinkComponentsMap,
-      link: S.String,
-    }),
-  ).annotate({
-    identifier: "CasbIntegrationsResumeResponseAuthorizationLink",
-  }) as any as S.Schema<CasbIntegrationsResumeResponseAuthorizationLink>;
-
-export type CasbIntegrationsResumeResponseDlpProfilesList = Array<string>;
-export const CasbIntegrationsResumeResponseDlpProfilesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<CasbIntegrationsResumeResponseDlpProfilesList>;
-
-export type CasbIntegrationsResumeResponseHealthDetailsItemMap = {
-  [key: string]: unknown | undefined;
-};
-export const CasbIntegrationsResumeResponseHealthDetailsItemMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<CasbIntegrationsResumeResponseHealthDetailsItemMap>;
-
-export type CasbIntegrationsResumeResponseHealthDetailsList =
-  Array<CasbIntegrationsResumeResponseHealthDetailsItemMap>;
-export const CasbIntegrationsResumeResponseHealthDetailsList =
-  /*@__PURE__*/ S.Array(
-    CasbIntegrationsResumeResponseHealthDetailsItemMap,
-  ) as any as S.Schema<CasbIntegrationsResumeResponseHealthDetailsList>;
-
-export type CasbIntegrationsResumeResponseUseCasesItemMap = {
-  [key: string]: unknown | undefined;
-};
-export const CasbIntegrationsResumeResponseUseCasesItemMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<CasbIntegrationsResumeResponseUseCasesItemMap>;
-
-export type CasbIntegrationsResumeResponseUseCasesList =
-  Array<CasbIntegrationsResumeResponseUseCasesItemMap>;
-export const CasbIntegrationsResumeResponseUseCasesList = /*@__PURE__*/ S.Array(
-  CasbIntegrationsResumeResponseUseCasesItemMap,
-) as any as S.Schema<CasbIntegrationsResumeResponseUseCasesList>;
-
-/** Raw response payload (operation does not use the standard v4 result envelope). */
-export interface CasbIntegrationsResumeResponse {
-  /** Integration ID. */
-  id: string;
-  application: CasbIntegrationsResumeResponseApplicationMap;
-  /** The integration's authentication method. */
-  authMethod: CasbIntegrationsResumeResponseAuthMethodMap;
-  /** Authorization link for the integration. */
-  authorizationLink: CasbIntegrationsResumeResponseAuthorizationLink;
-  /** When the integration was created. */
-  created: string;
-  /** Credentials expiry time. */
-  credentialsExpiry: string;
-  /** DLP Profiles enabled for the integration. */
-  dlpProfiles: CasbIntegrationsResumeResponseDlpProfilesList;
-  /** Health details with remediation hints. */
-  healthDetails: CasbIntegrationsResumeResponseHealthDetailsList;
-  /** Whether the user paused the integration. */
-  isPaused: boolean;
-  /** Last time the integration was hydrated. */
-  lastHydrated: string;
-  /** Name of the integration. */
-  name: string;
-  /** Organization ID. */
-  organizationId: number;
-  /** Integration status. */
-  status: string;
-  /** When the integration was last updated. */
-  updated: string;
-  /** Use cases enabled for the integration. */
-  useCases: CasbIntegrationsResumeResponseUseCasesList;
-}
-export const CasbIntegrationsResumeResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    application: CasbIntegrationsResumeResponseApplicationMap,
-    authMethod: CasbIntegrationsResumeResponseAuthMethodMap.pipe(
-      T.Body("auth_method"),
-    ),
-    authorizationLink: CasbIntegrationsResumeResponseAuthorizationLink.pipe(
-      T.Body("authorization_link"),
-    ),
-    created: S.String,
-    credentialsExpiry: S.String.pipe(T.Body("credentials_expiry")),
-    dlpProfiles: CasbIntegrationsResumeResponseDlpProfilesList.pipe(
-      T.Body("dlp_profiles"),
-    ),
-    healthDetails: CasbIntegrationsResumeResponseHealthDetailsList.pipe(
-      T.Body("health_details"),
-    ),
-    isPaused: S.Boolean.pipe(T.Body("is_paused")),
-    lastHydrated: S.String.pipe(T.Body("last_hydrated")),
-    name: S.String,
-    organizationId: S.Number.pipe(T.Body("organization_id")),
-    status: S.String,
-    updated: S.String,
-    useCases: CasbIntegrationsResumeResponseUseCasesList.pipe(
-      T.Body("use_cases"),
-    ),
-  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "CasbIntegrationsResumeResponse",
-}) as any as S.Schema<CasbIntegrationsResumeResponse>;
-
-export type CasbIntegrationsUpdateRequestCredentialsMap = {
-  [key: string]: unknown | undefined;
-};
-export const CasbIntegrationsUpdateRequestCredentialsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<CasbIntegrationsUpdateRequestCredentialsMap>;
-
-export type CasbIntegrationsUpdateRequestDlpProfilesList = Array<string>;
-export const CasbIntegrationsUpdateRequestDlpProfilesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<CasbIntegrationsUpdateRequestDlpProfilesList>;
-
-export type CasbIntegrationsUpdateRequestPermissionsList = Array<string>;
-export const CasbIntegrationsUpdateRequestPermissionsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<CasbIntegrationsUpdateRequestPermissionsList>;
-
-export type CasbIntegrationsUpdateRequestUseCasesItem =
-  | "casb"
-  | "ces"
-  | "auto_remediation";
-export const CasbIntegrationsUpdateRequestUseCasesItem = /*@__PURE__*/ S.String;
-
-export type CasbIntegrationsUpdateRequestUseCasesList = Array<
-  CasbIntegrationsUpdateRequestUseCasesItem | (string & {})
->;
-export const CasbIntegrationsUpdateRequestUseCasesList = /*@__PURE__*/ S.Array(
-  CasbIntegrationsUpdateRequestUseCasesItem,
-) as any as S.Schema<CasbIntegrationsUpdateRequestUseCasesList>;
-
-export interface CasbIntegrationsUpdateRequest {
-  accountId: string;
-  id: string;
-  /** Partial credential fields to merge with existing. */
-  credentials?: CasbIntegrationsUpdateRequestCredentialsMap;
-  /** List of DLP profile IDs to associate with the integration. */
-  dlpProfiles?: CasbIntegrationsUpdateRequestDlpProfilesList;
-  /** Name of the integration. */
-  name?: string;
-  /** List of permission scopes granted to the integration. */
-  permissions?: CasbIntegrationsUpdateRequestPermissionsList;
-  /** List of use case or feature slugs to enroll (e.g., ['casb', 'ces', 'auto_remediation']). */
-  useCases?: CasbIntegrationsUpdateRequestUseCasesList;
-}
-export const CasbIntegrationsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountId: S.String.pipe(T.Label("account_id")),
-    id: S.String.pipe(T.Label()),
-    credentials: S.optional(CasbIntegrationsUpdateRequestCredentialsMap),
-    dlpProfiles: S.optional(
-      CasbIntegrationsUpdateRequestDlpProfilesList.pipe(T.Body("dlp_profiles")),
-    ),
-    name: S.optional(S.String),
-    permissions: S.optional(CasbIntegrationsUpdateRequestPermissionsList),
-    useCases: S.optional(
-      CasbIntegrationsUpdateRequestUseCasesList.pipe(T.Body("use_cases")),
-    ),
-  })
-    .pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/accounts/{account_id}/one/integrations/{id}",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "CasbIntegrationsUpdateRequest",
-}) as any as S.Schema<CasbIntegrationsUpdateRequest>;
-
-export type CasbIntegrationsUpdateResponseApplicationMap = {
-  [key: string]: string | undefined;
-};
-export const CasbIntegrationsUpdateResponseApplicationMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<CasbIntegrationsUpdateResponseApplicationMap>;
-
-export type CasbIntegrationsUpdateResponseAuthMethodMap = {
-  [key: string]: string | undefined;
-};
-export const CasbIntegrationsUpdateResponseAuthMethodMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<CasbIntegrationsUpdateResponseAuthMethodMap>;
-
-export type CasbIntegrationsUpdateResponseAuthorizationLinkComponentsMap = {
-  [key: string]: unknown | undefined;
-};
-export const CasbIntegrationsUpdateResponseAuthorizationLinkComponentsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<CasbIntegrationsUpdateResponseAuthorizationLinkComponentsMap>;
-
-export interface CasbIntegrationsUpdateResponseAuthorizationLink {
-  components: CasbIntegrationsUpdateResponseAuthorizationLinkComponentsMap;
-  link: string;
-}
-export const CasbIntegrationsUpdateResponseAuthorizationLink =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      components: CasbIntegrationsUpdateResponseAuthorizationLinkComponentsMap,
-      link: S.String,
-    }),
-  ).annotate({
-    identifier: "CasbIntegrationsUpdateResponseAuthorizationLink",
-  }) as any as S.Schema<CasbIntegrationsUpdateResponseAuthorizationLink>;
-
-export type CasbIntegrationsUpdateResponseDlpProfilesList = Array<string>;
-export const CasbIntegrationsUpdateResponseDlpProfilesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<CasbIntegrationsUpdateResponseDlpProfilesList>;
-
-export type CasbIntegrationsUpdateResponseHealthDetailsItemMap = {
-  [key: string]: unknown | undefined;
-};
-export const CasbIntegrationsUpdateResponseHealthDetailsItemMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<CasbIntegrationsUpdateResponseHealthDetailsItemMap>;
-
-export type CasbIntegrationsUpdateResponseHealthDetailsList =
-  Array<CasbIntegrationsUpdateResponseHealthDetailsItemMap>;
-export const CasbIntegrationsUpdateResponseHealthDetailsList =
-  /*@__PURE__*/ S.Array(
-    CasbIntegrationsUpdateResponseHealthDetailsItemMap,
-  ) as any as S.Schema<CasbIntegrationsUpdateResponseHealthDetailsList>;
-
-export type CasbIntegrationsUpdateResponseUseCasesItemMap = {
-  [key: string]: unknown | undefined;
-};
-export const CasbIntegrationsUpdateResponseUseCasesItemMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<CasbIntegrationsUpdateResponseUseCasesItemMap>;
-
-export type CasbIntegrationsUpdateResponseUseCasesList =
-  Array<CasbIntegrationsUpdateResponseUseCasesItemMap>;
-export const CasbIntegrationsUpdateResponseUseCasesList = /*@__PURE__*/ S.Array(
-  CasbIntegrationsUpdateResponseUseCasesItemMap,
-) as any as S.Schema<CasbIntegrationsUpdateResponseUseCasesList>;
-
-/** Raw response payload (operation does not use the standard v4 result envelope). */
-export interface CasbIntegrationsUpdateResponse {
-  /** Integration ID. */
-  id: string;
-  application: CasbIntegrationsUpdateResponseApplicationMap;
-  /** The integration's authentication method. */
-  authMethod: CasbIntegrationsUpdateResponseAuthMethodMap;
-  /** Authorization link for the integration. */
-  authorizationLink: CasbIntegrationsUpdateResponseAuthorizationLink;
-  /** When the integration was created. */
-  created: string;
-  /** Credentials expiry time. */
-  credentialsExpiry: string;
-  /** DLP Profiles enabled for the integration. */
-  dlpProfiles: CasbIntegrationsUpdateResponseDlpProfilesList;
-  /** Health details with remediation hints. */
-  healthDetails: CasbIntegrationsUpdateResponseHealthDetailsList;
-  /** Whether the user paused the integration. */
-  isPaused: boolean;
-  /** Last time the integration was hydrated. */
-  lastHydrated: string;
-  /** Name of the integration. */
-  name: string;
-  /** Organization ID. */
-  organizationId: number;
-  /** Integration status. */
-  status: string;
-  /** When the integration was last updated. */
-  updated: string;
-  /** Use cases enabled for the integration. */
-  useCases: CasbIntegrationsUpdateResponseUseCasesList;
-}
-export const CasbIntegrationsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    application: CasbIntegrationsUpdateResponseApplicationMap,
-    authMethod: CasbIntegrationsUpdateResponseAuthMethodMap.pipe(
-      T.Body("auth_method"),
-    ),
-    authorizationLink: CasbIntegrationsUpdateResponseAuthorizationLink.pipe(
-      T.Body("authorization_link"),
-    ),
-    created: S.String,
-    credentialsExpiry: S.String.pipe(T.Body("credentials_expiry")),
-    dlpProfiles: CasbIntegrationsUpdateResponseDlpProfilesList.pipe(
-      T.Body("dlp_profiles"),
-    ),
-    healthDetails: CasbIntegrationsUpdateResponseHealthDetailsList.pipe(
-      T.Body("health_details"),
-    ),
-    isPaused: S.Boolean.pipe(T.Body("is_paused")),
-    lastHydrated: S.String.pipe(T.Body("last_hydrated")),
-    name: S.String,
-    organizationId: S.Number.pipe(T.Body("organization_id")),
-    status: S.String,
-    updated: S.String,
-    useCases: CasbIntegrationsUpdateResponseUseCasesList.pipe(
-      T.Body("use_cases"),
-    ),
-  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "CasbIntegrationsUpdateResponse",
-}) as any as S.Schema<CasbIntegrationsUpdateResponse>;
-
 export interface AccessAiControlsMcpPortalsCreateRequestServersItemUpdatedPromptsItem {
   name: string;
   alias?: string;
@@ -31361,6 +29644,234 @@ export const CreateAccessUserResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateAccessUserResponse",
 }) as any as S.Schema<CreateAccessUserResponse>;
 
+export type CreateCasbIntegrationRequestApplication =
+  | "GITHUB"
+  | "GOOGLE_WORKSPACE"
+  | "MICROSOFT_INTERNAL"
+  | "SALESFORCE"
+  | "SLACK";
+export const CreateCasbIntegrationRequestApplication = /*@__PURE__*/ S.String;
+
+export type CreateCasbIntegrationRequestCredentialsMap = {
+  [key: string]: unknown | undefined;
+};
+export const CreateCasbIntegrationRequestCredentialsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Unknown,
+  ) as any as S.Schema<CreateCasbIntegrationRequestCredentialsMap>;
+
+export type CreateCasbIntegrationRequestDlpProfilesList = Array<string>;
+export const CreateCasbIntegrationRequestDlpProfilesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateCasbIntegrationRequestDlpProfilesList>;
+
+export type CreateCasbIntegrationRequestPermissionsList = Array<string>;
+export const CreateCasbIntegrationRequestPermissionsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateCasbIntegrationRequestPermissionsList>;
+
+export type CreateCasbIntegrationRequestUseCasesItem =
+  | "casb"
+  | "ces"
+  | "auto_remediation";
+export const CreateCasbIntegrationRequestUseCasesItem = /*@__PURE__*/ S.String;
+
+export type CreateCasbIntegrationRequestUseCasesList = Array<
+  CreateCasbIntegrationRequestUseCasesItem | (string & {})
+>;
+export const CreateCasbIntegrationRequestUseCasesList = /*@__PURE__*/ S.Array(
+  CreateCasbIntegrationRequestUseCasesItem,
+) as any as S.Schema<CreateCasbIntegrationRequestUseCasesList>;
+
+export interface CreateCasbIntegrationRequest {
+  accountId: string;
+  /** Vendor/application slug (e.g., GOOGLE_WORKSPACE). */
+  application: CreateCasbIntegrationRequestApplication | (string & {});
+  /** Credentials for the integration. */
+  credentials: CreateCasbIntegrationRequestCredentialsMap;
+  /** Name of the integration. */
+  name: string;
+  /** Authentication method slug (uses default if omitted). */
+  authMethod?: string;
+  /** List of DLP profile IDs to associate. */
+  dlpProfiles?: CreateCasbIntegrationRequestDlpProfilesList;
+  /** List of permission scopes (uses policy defaults if empty). */
+  permissions?: CreateCasbIntegrationRequestPermissionsList;
+  /** List of use case or feature slugs to enroll (e.g., ['casb', 'ces', 'auto_remediation']). */
+  useCases?: CreateCasbIntegrationRequestUseCasesList;
+}
+export const CreateCasbIntegrationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountId: S.String.pipe(T.Label("account_id")),
+    application: CreateCasbIntegrationRequestApplication,
+    credentials: CreateCasbIntegrationRequestCredentialsMap,
+    name: S.String,
+    authMethod: S.optional(S.String.pipe(T.Body("auth_method"))),
+    dlpProfiles: S.optional(
+      CreateCasbIntegrationRequestDlpProfilesList.pipe(T.Body("dlp_profiles")),
+    ),
+    permissions: S.optional(CreateCasbIntegrationRequestPermissionsList),
+    useCases: S.optional(
+      CreateCasbIntegrationRequestUseCasesList.pipe(T.Body("use_cases")),
+    ),
+  })
+    .pipe(
+      T.Http({
+        method: "POST",
+        uri: "/accounts/{account_id}/one/integrations",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "CreateCasbIntegrationRequest",
+}) as any as S.Schema<CreateCasbIntegrationRequest>;
+
+export type CreateCasbIntegrationResponseApplicationMap = {
+  [key: string]: string | undefined;
+};
+export const CreateCasbIntegrationResponseApplicationMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<CreateCasbIntegrationResponseApplicationMap>;
+
+export type CreateCasbIntegrationResponseAuthMethodMap = {
+  [key: string]: string | undefined;
+};
+export const CreateCasbIntegrationResponseAuthMethodMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<CreateCasbIntegrationResponseAuthMethodMap>;
+
+export type CreateCasbIntegrationResponseAuthorizationLinkComponentsMap = {
+  [key: string]: unknown | undefined;
+};
+export const CreateCasbIntegrationResponseAuthorizationLinkComponentsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Unknown,
+  ) as any as S.Schema<CreateCasbIntegrationResponseAuthorizationLinkComponentsMap>;
+
+export interface CreateCasbIntegrationResponseAuthorizationLink {
+  components: CreateCasbIntegrationResponseAuthorizationLinkComponentsMap;
+  link: string;
+}
+export const CreateCasbIntegrationResponseAuthorizationLink =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      components: CreateCasbIntegrationResponseAuthorizationLinkComponentsMap,
+      link: S.String,
+    }),
+  ).annotate({
+    identifier: "CreateCasbIntegrationResponseAuthorizationLink",
+  }) as any as S.Schema<CreateCasbIntegrationResponseAuthorizationLink>;
+
+export type CreateCasbIntegrationResponseDlpProfilesList = Array<string>;
+export const CreateCasbIntegrationResponseDlpProfilesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateCasbIntegrationResponseDlpProfilesList>;
+
+export type CreateCasbIntegrationResponseHealthDetailsItemMap = {
+  [key: string]: unknown | undefined;
+};
+export const CreateCasbIntegrationResponseHealthDetailsItemMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Unknown,
+  ) as any as S.Schema<CreateCasbIntegrationResponseHealthDetailsItemMap>;
+
+export type CreateCasbIntegrationResponseHealthDetailsList =
+  Array<CreateCasbIntegrationResponseHealthDetailsItemMap>;
+export const CreateCasbIntegrationResponseHealthDetailsList =
+  /*@__PURE__*/ S.Array(
+    CreateCasbIntegrationResponseHealthDetailsItemMap,
+  ) as any as S.Schema<CreateCasbIntegrationResponseHealthDetailsList>;
+
+export type CreateCasbIntegrationResponseUseCasesItemMap = {
+  [key: string]: unknown | undefined;
+};
+export const CreateCasbIntegrationResponseUseCasesItemMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Unknown,
+  ) as any as S.Schema<CreateCasbIntegrationResponseUseCasesItemMap>;
+
+export type CreateCasbIntegrationResponseUseCasesList =
+  Array<CreateCasbIntegrationResponseUseCasesItemMap>;
+export const CreateCasbIntegrationResponseUseCasesList = /*@__PURE__*/ S.Array(
+  CreateCasbIntegrationResponseUseCasesItemMap,
+) as any as S.Schema<CreateCasbIntegrationResponseUseCasesList>;
+
+/** Raw response payload (operation does not use the standard v4 result envelope). */
+export interface CreateCasbIntegrationResponse {
+  /** Integration ID. */
+  id: string;
+  application: CreateCasbIntegrationResponseApplicationMap;
+  /** The integration's authentication method. */
+  authMethod: CreateCasbIntegrationResponseAuthMethodMap;
+  /** Authorization link for the integration. */
+  authorizationLink: CreateCasbIntegrationResponseAuthorizationLink;
+  /** When the integration was created. */
+  created: string;
+  /** Credentials expiry time. */
+  credentialsExpiry: string;
+  /** DLP Profiles enabled for the integration. */
+  dlpProfiles: CreateCasbIntegrationResponseDlpProfilesList;
+  /** Health details with remediation hints. */
+  healthDetails: CreateCasbIntegrationResponseHealthDetailsList;
+  /** Whether the user paused the integration. */
+  isPaused: boolean;
+  /** Last time the integration was hydrated. */
+  lastHydrated: string;
+  /** Name of the integration. */
+  name: string;
+  /** Organization ID. */
+  organizationId: number;
+  /** Integration status. */
+  status: string;
+  /** When the integration was last updated. */
+  updated: string;
+  /** Use cases enabled for the integration. */
+  useCases: CreateCasbIntegrationResponseUseCasesList;
+}
+export const CreateCasbIntegrationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    application: CreateCasbIntegrationResponseApplicationMap,
+    authMethod: CreateCasbIntegrationResponseAuthMethodMap.pipe(
+      T.Body("auth_method"),
+    ),
+    authorizationLink: CreateCasbIntegrationResponseAuthorizationLink.pipe(
+      T.Body("authorization_link"),
+    ),
+    created: S.String,
+    credentialsExpiry: S.String.pipe(T.Body("credentials_expiry")),
+    dlpProfiles: CreateCasbIntegrationResponseDlpProfilesList.pipe(
+      T.Body("dlp_profiles"),
+    ),
+    healthDetails: CreateCasbIntegrationResponseHealthDetailsList.pipe(
+      T.Body("health_details"),
+    ),
+    isPaused: S.Boolean.pipe(T.Body("is_paused")),
+    lastHydrated: S.String.pipe(T.Body("last_hydrated")),
+    name: S.String,
+    organizationId: S.Number.pipe(T.Body("organization_id")),
+    status: S.String,
+    updated: S.String,
+    useCases: CreateCasbIntegrationResponseUseCasesList.pipe(
+      T.Body("use_cases"),
+    ),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "CreateCasbIntegrationResponse",
+}) as any as S.Schema<CreateCasbIntegrationResponse>;
+
 export interface DevicesDeploymentGroupsCreateRequestVersionConfigItem {
   /** The target environment for the client version (e.g., windows, macos). */
   targetEnvironment: string;
@@ -35055,6 +33566,97 @@ export const CreateDexRuleResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "CreateDexRuleResponse",
 }) as any as S.Schema<CreateDexRuleResponse>;
+
+export type CreateDlpCustomEntryRequestPatternValidation = "luhn";
+export const CreateDlpCustomEntryRequestPatternValidation =
+  /*@__PURE__*/ S.String;
+
+export interface CreateDlpCustomEntryRequestPattern {
+  regex: string;
+  validation?: CreateDlpCustomEntryRequestPatternValidation | (string & {});
+}
+export const CreateDlpCustomEntryRequestPattern = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    regex: S.String,
+    validation: S.optional(CreateDlpCustomEntryRequestPatternValidation),
+  }),
+).annotate({
+  identifier: "CreateDlpCustomEntryRequestPattern",
+}) as any as S.Schema<CreateDlpCustomEntryRequestPattern>;
+
+export interface CreateDlpCustomEntryRequest {
+  accountId: string;
+  enabled: boolean;
+  name: string;
+  pattern: CreateDlpCustomEntryRequestPattern;
+  description?: string;
+  profileId?: string;
+}
+export const CreateDlpCustomEntryRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountId: S.String.pipe(T.Label("account_id")),
+    enabled: S.Boolean,
+    name: S.String,
+    pattern: CreateDlpCustomEntryRequestPattern,
+    description: S.optional(S.String),
+    profileId: S.optional(S.String.pipe(T.Body("profile_id"))),
+  })
+    .pipe(
+      T.Http({
+        method: "POST",
+        uri: "/accounts/{account_id}/dlp/entries",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "CreateDlpCustomEntryRequest",
+}) as any as S.Schema<CreateDlpCustomEntryRequest>;
+
+export type CreateDlpCustomEntryResponsePatternValidation = "luhn";
+export const CreateDlpCustomEntryResponsePatternValidation =
+  /*@__PURE__*/ S.String;
+
+export interface CreateDlpCustomEntryResponsePattern {
+  regex: string;
+  validation?: CreateDlpCustomEntryResponsePatternValidation | null;
+}
+export const CreateDlpCustomEntryResponsePattern = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    regex: S.String,
+    validation: S.optional(
+      S.NullOr(CreateDlpCustomEntryResponsePatternValidation),
+    ),
+  }),
+).annotate({
+  identifier: "CreateDlpCustomEntryResponsePattern",
+}) as any as S.Schema<CreateDlpCustomEntryResponsePattern>;
+
+/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
+export interface CreateDlpCustomEntryResponse {
+  id: string;
+  createdAt: string;
+  enabled: boolean;
+  name: string;
+  pattern: CreateDlpCustomEntryResponsePattern;
+  updatedAt: string;
+  description?: string | null;
+  profileId?: string | null;
+}
+export const CreateDlpCustomEntryResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    createdAt: S.String.pipe(T.Body("created_at")),
+    enabled: S.Boolean,
+    name: S.String,
+    pattern: CreateDlpCustomEntryResponsePattern,
+    updatedAt: S.String.pipe(T.Body("updated_at")),
+    description: S.optional(S.NullOr(S.String)),
+    profileId: S.optional(S.NullOr(S.String).pipe(T.Body("profile_id"))),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "CreateDlpCustomEntryResponse",
+}) as any as S.Schema<CreateDlpCustomEntryResponse>;
 
 export interface CreateDlpCustomPromptTopicRequest {
   accountId: string;
@@ -45940,6 +44542,34 @@ export const DeleteAccessUserResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteAccessUserResponse",
 }) as any as S.Schema<DeleteAccessUserResponse>;
 
+export interface DeleteCasbIntegrationRequest {
+  accountId: string;
+  id: string;
+}
+export const DeleteCasbIntegrationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountId: S.String.pipe(T.Label("account_id")),
+    id: S.String.pipe(T.Label()),
+  })
+    .pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/accounts/{account_id}/one/integrations/{id}",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "DeleteCasbIntegrationRequest",
+}) as any as S.Schema<DeleteCasbIntegrationRequest>;
+
+export interface DeleteCasbIntegrationResponse {}
+export const DeleteCasbIntegrationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "DeleteCasbIntegrationResponse",
+}) as any as S.Schema<DeleteCasbIntegrationResponse>;
+
 export interface DeleteDeviceDeploymentGroupRequest {
   accountId: string;
   groupId: string;
@@ -46818,6 +45448,34 @@ export const DeleteDexRuleResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DeleteDexRuleResponse",
 }) as any as S.Schema<DeleteDexRuleResponse>;
+
+export interface DeleteDlpCustomEntryRequest {
+  accountId: string;
+  entryId: string;
+}
+export const DeleteDlpCustomEntryRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountId: S.String.pipe(T.Label("account_id")),
+    entryId: S.String.pipe(T.Label("entry_id")),
+  })
+    .pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/accounts/{account_id}/dlp/entries/{entry_id}",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "DeleteDlpCustomEntryRequest",
+}) as any as S.Schema<DeleteDlpCustomEntryRequest>;
+
+export type DeleteDlpCustomEntryResponse = unknown;
+export const DeleteDlpCustomEntryResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Unknown.pipe(T.EnvelopePayloadRoot(), T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "DeleteDlpCustomEntryResponse",
+}) as any as S.Schema<DeleteDlpCustomEntryResponse>;
 
 export interface DeleteDlpCustomPromptTopicRequest {
   accountId: string;
@@ -48244,3611 +46902,6 @@ export const DeleteTunnelWarpConnectorResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DeleteTunnelWarpConnectorResponse",
 }) as any as S.Schema<DeleteTunnelWarpConnectorResponse>;
-
-export type DlpEntriesCustomCreateRequestPatternValidation = "luhn";
-export const DlpEntriesCustomCreateRequestPatternValidation =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesCustomCreateRequestPattern {
-  regex: string;
-  validation?: DlpEntriesCustomCreateRequestPatternValidation | (string & {});
-}
-export const DlpEntriesCustomCreateRequestPattern = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      regex: S.String,
-      validation: S.optional(DlpEntriesCustomCreateRequestPatternValidation),
-    }),
-).annotate({
-  identifier: "DlpEntriesCustomCreateRequestPattern",
-}) as any as S.Schema<DlpEntriesCustomCreateRequestPattern>;
-
-export interface DlpEntriesCustomCreateRequest {
-  accountId: string;
-  enabled: boolean;
-  name: string;
-  pattern: DlpEntriesCustomCreateRequestPattern;
-  description?: string;
-  profileId?: string;
-}
-export const DlpEntriesCustomCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountId: S.String.pipe(T.Label("account_id")),
-    enabled: S.Boolean,
-    name: S.String,
-    pattern: DlpEntriesCustomCreateRequestPattern,
-    description: S.optional(S.String),
-    profileId: S.optional(S.String.pipe(T.Body("profile_id"))),
-  })
-    .pipe(
-      T.Http({
-        method: "POST",
-        uri: "/accounts/{account_id}/dlp/entries",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "DlpEntriesCustomCreateRequest",
-}) as any as S.Schema<DlpEntriesCustomCreateRequest>;
-
-export type DlpEntriesCustomCreateResponsePatternValidation = "luhn";
-export const DlpEntriesCustomCreateResponsePatternValidation =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesCustomCreateResponsePattern {
-  regex: string;
-  validation?: DlpEntriesCustomCreateResponsePatternValidation | null;
-}
-export const DlpEntriesCustomCreateResponsePattern = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      regex: S.String,
-      validation: S.optional(
-        S.NullOr(DlpEntriesCustomCreateResponsePatternValidation),
-      ),
-    }),
-).annotate({
-  identifier: "DlpEntriesCustomCreateResponsePattern",
-}) as any as S.Schema<DlpEntriesCustomCreateResponsePattern>;
-
-/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
-export interface DlpEntriesCustomCreateResponse {
-  id: string;
-  createdAt: string;
-  enabled: boolean;
-  name: string;
-  pattern: DlpEntriesCustomCreateResponsePattern;
-  updatedAt: string;
-  description?: string | null;
-  profileId?: string | null;
-}
-export const DlpEntriesCustomCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    createdAt: S.String.pipe(T.Body("created_at")),
-    enabled: S.Boolean,
-    name: S.String,
-    pattern: DlpEntriesCustomCreateResponsePattern,
-    updatedAt: S.String.pipe(T.Body("updated_at")),
-    description: S.optional(S.NullOr(S.String)),
-    profileId: S.optional(S.NullOr(S.String).pipe(T.Body("profile_id"))),
-  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "DlpEntriesCustomCreateResponse",
-}) as any as S.Schema<DlpEntriesCustomCreateResponse>;
-
-export interface DlpEntriesCustomDeleteRequest {
-  accountId: string;
-  entryId: string;
-}
-export const DlpEntriesCustomDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountId: S.String.pipe(T.Label("account_id")),
-    entryId: S.String.pipe(T.Label("entry_id")),
-  })
-    .pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/accounts/{account_id}/dlp/entries/{entry_id}",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "DlpEntriesCustomDeleteRequest",
-}) as any as S.Schema<DlpEntriesCustomDeleteRequest>;
-
-export type DlpEntriesCustomDeleteResponse = unknown;
-export const DlpEntriesCustomDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Unknown.pipe(T.EnvelopePayloadRoot(), T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "DlpEntriesCustomDeleteResponse",
-}) as any as S.Schema<DlpEntriesCustomDeleteResponse>;
-
-export interface DlpEntriesCustomGetRequest {
-  accountId: string;
-  entryId: string;
-}
-export const DlpEntriesCustomGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountId: S.String.pipe(T.Label("account_id")),
-    entryId: S.String.pipe(T.Label("entry_id")),
-  })
-    .pipe(
-      T.Http({
-        method: "GET",
-        uri: "/accounts/{account_id}/dlp/entries/{entry_id}",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "DlpEntriesCustomGetRequest",
-}) as any as S.Schema<DlpEntriesCustomGetRequest>;
-
-export type DlpEntriesCustomGetResultCase0PatternValidation = "luhn";
-export const DlpEntriesCustomGetResultCase0PatternValidation =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesCustomGetResultCase0Pattern {
-  regex: string;
-  validation?: DlpEntriesCustomGetResultCase0PatternValidation | null;
-}
-export const DlpEntriesCustomGetResultCase0Pattern = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      regex: S.String,
-      validation: S.optional(
-        S.NullOr(DlpEntriesCustomGetResultCase0PatternValidation),
-      ),
-    }),
-).annotate({
-  identifier: "DlpEntriesCustomGetResultCase0Pattern",
-}) as any as S.Schema<DlpEntriesCustomGetResultCase0Pattern>;
-
-export type DlpEntriesCustomGetResultCase0Type = "custom";
-export const DlpEntriesCustomGetResultCase0Type = /*@__PURE__*/ S.String;
-
-export interface DlpEntriesCustomGetResultCase0ProfilesItem {
-  id: string;
-  name: string;
-}
-export const DlpEntriesCustomGetResultCase0ProfilesItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.String,
-      name: S.String,
-    }),
-  ).annotate({
-    identifier: "DlpEntriesCustomGetResultCase0ProfilesItem",
-  }) as any as S.Schema<DlpEntriesCustomGetResultCase0ProfilesItem>;
-
-export type DlpEntriesCustomGetResultCase0ProfilesList =
-  Array<DlpEntriesCustomGetResultCase0ProfilesItem>;
-export const DlpEntriesCustomGetResultCase0ProfilesList = /*@__PURE__*/ S.Array(
-  DlpEntriesCustomGetResultCase0ProfilesItem,
-) as any as S.Schema<DlpEntriesCustomGetResultCase0ProfilesList>;
-
-export type DlpEntriesCustomGetResultCase0UploadStatus =
-  | "empty"
-  | "uploading"
-  | "pending"
-  | "processing"
-  | "failed"
-  | "complete";
-export const DlpEntriesCustomGetResultCase0UploadStatus =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesCustomGetResultCase0 {
-  id: string;
-  createdAt: string;
-  enabled: boolean;
-  name: string;
-  pattern: DlpEntriesCustomGetResultCase0Pattern;
-  type: DlpEntriesCustomGetResultCase0Type;
-  updatedAt: string;
-  description?: string | null;
-  profileId?: string | null;
-  profiles?: DlpEntriesCustomGetResultCase0ProfilesList | null;
-  uploadStatus?: DlpEntriesCustomGetResultCase0UploadStatus | null;
-}
-export const DlpEntriesCustomGetResultCase0 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    createdAt: S.String.pipe(T.Body("created_at")),
-    enabled: S.Boolean,
-    name: S.String,
-    pattern: DlpEntriesCustomGetResultCase0Pattern,
-    type: DlpEntriesCustomGetResultCase0Type,
-    updatedAt: S.String.pipe(T.Body("updated_at")),
-    description: S.optional(S.NullOr(S.String)),
-    profileId: S.optional(S.NullOr(S.String).pipe(T.Body("profile_id"))),
-    profiles: S.optional(S.NullOr(DlpEntriesCustomGetResultCase0ProfilesList)),
-    uploadStatus: S.optional(
-      S.NullOr(DlpEntriesCustomGetResultCase0UploadStatus).pipe(
-        T.Body("upload_status"),
-      ),
-    ),
-  }),
-).annotate({
-  identifier: "DlpEntriesCustomGetResultCase0",
-}) as any as S.Schema<DlpEntriesCustomGetResultCase0>;
-
-export type DlpEntriesCustomGetResultCase1Type = "custom_prompt_topic";
-export const DlpEntriesCustomGetResultCase1Type = /*@__PURE__*/ S.String;
-
-export type DlpEntriesCustomGetResultCase1ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
-export const DlpEntriesCustomGetResultCase1ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
-
-export type DlpEntriesCustomGetResultCase1ProfilesList =
-  Array<DlpEntriesCustomGetResultCase0ProfilesItem>;
-export const DlpEntriesCustomGetResultCase1ProfilesList = /*@__PURE__*/ S.Array(
-  DlpEntriesCustomGetResultCase0ProfilesItem,
-) as any as S.Schema<DlpEntriesCustomGetResultCase1ProfilesList>;
-
-export type DlpEntriesCustomGetResultCase1UploadStatus =
-  | "empty"
-  | "uploading"
-  | "pending"
-  | "processing"
-  | "failed"
-  | "complete";
-export const DlpEntriesCustomGetResultCase1UploadStatus =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesCustomGetResultCase1 {
-  id: string;
-  createdAt: string;
-  enabled: boolean;
-  name: string;
-  type: DlpEntriesCustomGetResultCase1Type;
-  updatedAt: string;
-  /** The optional description of the custom prompt topic entry. */
-  description?: string | null;
-  profiles?: DlpEntriesCustomGetResultCase1ProfilesList | null;
-  uploadStatus?: DlpEntriesCustomGetResultCase1UploadStatus | null;
-}
-export const DlpEntriesCustomGetResultCase1 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    createdAt: S.String.pipe(T.Body("created_at")),
-    enabled: S.Boolean,
-    name: S.String,
-    type: DlpEntriesCustomGetResultCase1Type,
-    updatedAt: S.String.pipe(T.Body("updated_at")),
-    description: S.optional(S.NullOr(S.String)),
-    profiles: S.optional(S.NullOr(DlpEntriesCustomGetResultCase1ProfilesList)),
-    uploadStatus: S.optional(
-      S.NullOr(DlpEntriesCustomGetResultCase1UploadStatus).pipe(
-        T.Body("upload_status"),
-      ),
-    ),
-  }),
-).annotate({
-  identifier: "DlpEntriesCustomGetResultCase1",
-}) as any as S.Schema<DlpEntriesCustomGetResultCase1>;
-
-export type DlpEntriesCustomGetResultCase2Confidence =
-  DlpEntriesPredefinedCreateResponseConfidence;
-export const DlpEntriesCustomGetResultCase2Confidence =
-  DlpEntriesPredefinedCreateResponseConfidence;
-
-export type DlpEntriesCustomGetResultCase2Type = "predefined";
-export const DlpEntriesCustomGetResultCase2Type = /*@__PURE__*/ S.String;
-
-export type DlpEntriesCustomGetResultCase2ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
-export const DlpEntriesCustomGetResultCase2ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
-
-export type DlpEntriesCustomGetResultCase2ProfilesList =
-  Array<DlpEntriesCustomGetResultCase0ProfilesItem>;
-export const DlpEntriesCustomGetResultCase2ProfilesList = /*@__PURE__*/ S.Array(
-  DlpEntriesCustomGetResultCase0ProfilesItem,
-) as any as S.Schema<DlpEntriesCustomGetResultCase2ProfilesList>;
-
-export type DlpEntriesCustomGetResultCase2UploadStatus =
-  | "empty"
-  | "uploading"
-  | "pending"
-  | "processing"
-  | "failed"
-  | "complete";
-export const DlpEntriesCustomGetResultCase2UploadStatus =
-  /*@__PURE__*/ S.String;
-
-export type DlpEntriesCustomGetResultCase2VariantCase0TopicType =
-  | "Intent"
-  | "Content";
-export const DlpEntriesCustomGetResultCase2VariantCase0TopicType =
-  /*@__PURE__*/ S.String;
-
-export type DlpEntriesCustomGetResultCase2VariantCase0Type = "PromptTopic";
-export const DlpEntriesCustomGetResultCase2VariantCase0Type =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesCustomGetResultCase2VariantCase0 {
-  topicType: DlpEntriesCustomGetResultCase2VariantCase0TopicType;
-  type: DlpEntriesCustomGetResultCase2VariantCase0Type;
-  /** A customer-facing explanation of what this predefined AI prompt topic represents. */
-  description?: string | null;
-}
-export const DlpEntriesCustomGetResultCase2VariantCase0 =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      topicType: DlpEntriesCustomGetResultCase2VariantCase0TopicType.pipe(
-        T.Body("topic_type"),
-      ),
-      type: DlpEntriesCustomGetResultCase2VariantCase0Type,
-      description: S.optional(S.NullOr(S.String)),
-    }),
-  ).annotate({
-    identifier: "DlpEntriesCustomGetResultCase2VariantCase0",
-  }) as any as S.Schema<DlpEntriesCustomGetResultCase2VariantCase0>;
-
-export type DlpEntriesCustomGetResultCase2VariantCase1Type = "General";
-export const DlpEntriesCustomGetResultCase2VariantCase1Type =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesCustomGetResultCase2VariantCase1 {
-  type: DlpEntriesCustomGetResultCase2VariantCase1Type;
-  /** A customer-facing explanation of what this predefined entry represents. */
-  description?: string | null;
-}
-export const DlpEntriesCustomGetResultCase2VariantCase1 =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: DlpEntriesCustomGetResultCase2VariantCase1Type,
-      description: S.optional(S.NullOr(S.String)),
-    }),
-  ).annotate({
-    identifier: "DlpEntriesCustomGetResultCase2VariantCase1",
-  }) as any as S.Schema<DlpEntriesCustomGetResultCase2VariantCase1>;
-
-export type DlpEntriesCustomGetResultCase2Variant =
-  | DlpEntriesCustomGetResultCase2VariantCase0
-  | DlpEntriesCustomGetResultCase2VariantCase1;
-export const DlpEntriesCustomGetResultCase2Variant =
-  /*@__PURE__*/ S.Unknown.pipe(
-    T.UnionCases([
-      ["topicType", "type", "description"],
-      ["type", "description"],
-    ]),
-  );
-
-export interface DlpEntriesCustomGetResultCase2 {
-  id: string;
-  confidence: DlpEntriesPredefinedCreateResponseConfidence;
-  enabled: boolean;
-  name: string;
-  type: DlpEntriesCustomGetResultCase2Type;
-  profileId?: string | null;
-  profiles?: DlpEntriesCustomGetResultCase2ProfilesList | null;
-  uploadStatus?: DlpEntriesCustomGetResultCase2UploadStatus | null;
-  /** A Predefined AI prompt classification topic entry. */
-  variant?: DlpEntriesCustomGetResultCase2Variant | null;
-}
-export const DlpEntriesCustomGetResultCase2 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    confidence: DlpEntriesPredefinedCreateResponseConfidence,
-    enabled: S.Boolean,
-    name: S.String,
-    type: DlpEntriesCustomGetResultCase2Type,
-    profileId: S.optional(S.NullOr(S.String).pipe(T.Body("profile_id"))),
-    profiles: S.optional(S.NullOr(DlpEntriesCustomGetResultCase2ProfilesList)),
-    uploadStatus: S.optional(
-      S.NullOr(DlpEntriesCustomGetResultCase2UploadStatus).pipe(
-        T.Body("upload_status"),
-      ),
-    ),
-    variant: S.optional(S.NullOr(DlpEntriesCustomGetResultCase2Variant)),
-  }),
-).annotate({
-  identifier: "DlpEntriesCustomGetResultCase2",
-}) as any as S.Schema<DlpEntriesCustomGetResultCase2>;
-
-export type DlpEntriesCustomGetResultCase3Type = "integration";
-export const DlpEntriesCustomGetResultCase3Type = /*@__PURE__*/ S.String;
-
-export type DlpEntriesCustomGetResultCase3ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
-export const DlpEntriesCustomGetResultCase3ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
-
-export type DlpEntriesCustomGetResultCase3ProfilesList =
-  Array<DlpEntriesCustomGetResultCase0ProfilesItem>;
-export const DlpEntriesCustomGetResultCase3ProfilesList = /*@__PURE__*/ S.Array(
-  DlpEntriesCustomGetResultCase0ProfilesItem,
-) as any as S.Schema<DlpEntriesCustomGetResultCase3ProfilesList>;
-
-export type DlpEntriesCustomGetResultCase3UploadStatus =
-  | "empty"
-  | "uploading"
-  | "pending"
-  | "processing"
-  | "failed"
-  | "complete";
-export const DlpEntriesCustomGetResultCase3UploadStatus =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesCustomGetResultCase3 {
-  id: string;
-  createdAt: string;
-  enabled: boolean;
-  name: string;
-  type: DlpEntriesCustomGetResultCase3Type;
-  updatedAt: string;
-  profileId?: string | null;
-  profiles?: DlpEntriesCustomGetResultCase3ProfilesList | null;
-  uploadStatus?: DlpEntriesCustomGetResultCase3UploadStatus | null;
-}
-export const DlpEntriesCustomGetResultCase3 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    createdAt: S.String.pipe(T.Body("created_at")),
-    enabled: S.Boolean,
-    name: S.String,
-    type: DlpEntriesCustomGetResultCase3Type,
-    updatedAt: S.String.pipe(T.Body("updated_at")),
-    profileId: S.optional(S.NullOr(S.String).pipe(T.Body("profile_id"))),
-    profiles: S.optional(S.NullOr(DlpEntriesCustomGetResultCase3ProfilesList)),
-    uploadStatus: S.optional(
-      S.NullOr(DlpEntriesCustomGetResultCase3UploadStatus).pipe(
-        T.Body("upload_status"),
-      ),
-    ),
-  }),
-).annotate({
-  identifier: "DlpEntriesCustomGetResultCase3",
-}) as any as S.Schema<DlpEntriesCustomGetResultCase3>;
-
-export type DlpEntriesCustomGetResultCase4Type = "exact_data";
-export const DlpEntriesCustomGetResultCase4Type = /*@__PURE__*/ S.String;
-
-export type DlpEntriesCustomGetResultCase4ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
-export const DlpEntriesCustomGetResultCase4ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
-
-export type DlpEntriesCustomGetResultCase4ProfilesList =
-  Array<DlpEntriesCustomGetResultCase0ProfilesItem>;
-export const DlpEntriesCustomGetResultCase4ProfilesList = /*@__PURE__*/ S.Array(
-  DlpEntriesCustomGetResultCase0ProfilesItem,
-) as any as S.Schema<DlpEntriesCustomGetResultCase4ProfilesList>;
-
-export type DlpEntriesCustomGetResultCase4UploadStatus =
-  | "empty"
-  | "uploading"
-  | "pending"
-  | "processing"
-  | "failed"
-  | "complete";
-export const DlpEntriesCustomGetResultCase4UploadStatus =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesCustomGetResultCase4 {
-  id: string;
-  /** Only applies to custom word lists. */
-  caseSensitive: boolean;
-  createdAt: string;
-  enabled: boolean;
-  name: string;
-  secret: boolean;
-  type: DlpEntriesCustomGetResultCase4Type;
-  updatedAt: string;
-  /** The optional description of the exact data entry. */
-  description?: string | null;
-  profiles?: DlpEntriesCustomGetResultCase4ProfilesList | null;
-  uploadStatus?: DlpEntriesCustomGetResultCase4UploadStatus | null;
-}
-export const DlpEntriesCustomGetResultCase4 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    caseSensitive: S.Boolean.pipe(T.Body("case_sensitive")),
-    createdAt: S.String.pipe(T.Body("created_at")),
-    enabled: S.Boolean,
-    name: S.String,
-    secret: S.Boolean,
-    type: DlpEntriesCustomGetResultCase4Type,
-    updatedAt: S.String.pipe(T.Body("updated_at")),
-    description: S.optional(S.NullOr(S.String)),
-    profiles: S.optional(S.NullOr(DlpEntriesCustomGetResultCase4ProfilesList)),
-    uploadStatus: S.optional(
-      S.NullOr(DlpEntriesCustomGetResultCase4UploadStatus).pipe(
-        T.Body("upload_status"),
-      ),
-    ),
-  }),
-).annotate({
-  identifier: "DlpEntriesCustomGetResultCase4",
-}) as any as S.Schema<DlpEntriesCustomGetResultCase4>;
-
-export type DlpEntriesCustomGetResultCase5Type = "document_fingerprint";
-export const DlpEntriesCustomGetResultCase5Type = /*@__PURE__*/ S.String;
-
-export type DlpEntriesCustomGetResultCase5ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
-export const DlpEntriesCustomGetResultCase5ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
-
-export type DlpEntriesCustomGetResultCase5ProfilesList =
-  Array<DlpEntriesCustomGetResultCase0ProfilesItem>;
-export const DlpEntriesCustomGetResultCase5ProfilesList = /*@__PURE__*/ S.Array(
-  DlpEntriesCustomGetResultCase0ProfilesItem,
-) as any as S.Schema<DlpEntriesCustomGetResultCase5ProfilesList>;
-
-export type DlpEntriesCustomGetResultCase5UploadStatus =
-  | "empty"
-  | "uploading"
-  | "pending"
-  | "processing"
-  | "failed"
-  | "complete";
-export const DlpEntriesCustomGetResultCase5UploadStatus =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesCustomGetResultCase5 {
-  id: string;
-  createdAt: string;
-  enabled: boolean;
-  name: string;
-  type: DlpEntriesCustomGetResultCase5Type;
-  updatedAt: string;
-  /** The optional description of the document fingerprint entry. */
-  description?: string | null;
-  profiles?: DlpEntriesCustomGetResultCase5ProfilesList | null;
-  uploadStatus?: DlpEntriesCustomGetResultCase5UploadStatus | null;
-}
-export const DlpEntriesCustomGetResultCase5 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    createdAt: S.String.pipe(T.Body("created_at")),
-    enabled: S.Boolean,
-    name: S.String,
-    type: DlpEntriesCustomGetResultCase5Type,
-    updatedAt: S.String.pipe(T.Body("updated_at")),
-    description: S.optional(S.NullOr(S.String)),
-    profiles: S.optional(S.NullOr(DlpEntriesCustomGetResultCase5ProfilesList)),
-    uploadStatus: S.optional(
-      S.NullOr(DlpEntriesCustomGetResultCase5UploadStatus).pipe(
-        T.Body("upload_status"),
-      ),
-    ),
-  }),
-).annotate({
-  identifier: "DlpEntriesCustomGetResultCase5",
-}) as any as S.Schema<DlpEntriesCustomGetResultCase5>;
-
-export type DlpEntriesCustomGetResultCase6Type = "word_list";
-export const DlpEntriesCustomGetResultCase6Type = /*@__PURE__*/ S.String;
-
-export type DlpEntriesCustomGetResultCase6ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
-export const DlpEntriesCustomGetResultCase6ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
-
-export type DlpEntriesCustomGetResultCase6ProfilesList =
-  Array<DlpEntriesCustomGetResultCase0ProfilesItem>;
-export const DlpEntriesCustomGetResultCase6ProfilesList = /*@__PURE__*/ S.Array(
-  DlpEntriesCustomGetResultCase0ProfilesItem,
-) as any as S.Schema<DlpEntriesCustomGetResultCase6ProfilesList>;
-
-export type DlpEntriesCustomGetResultCase6UploadStatus =
-  | "empty"
-  | "uploading"
-  | "pending"
-  | "processing"
-  | "failed"
-  | "complete";
-export const DlpEntriesCustomGetResultCase6UploadStatus =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesCustomGetResultCase6 {
-  id: string;
-  createdAt: string;
-  enabled: boolean;
-  name: string;
-  type: DlpEntriesCustomGetResultCase6Type;
-  updatedAt: string;
-  wordList: unknown;
-  profileId?: string | null;
-  profiles?: DlpEntriesCustomGetResultCase6ProfilesList | null;
-  uploadStatus?: DlpEntriesCustomGetResultCase6UploadStatus | null;
-}
-export const DlpEntriesCustomGetResultCase6 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    createdAt: S.String.pipe(T.Body("created_at")),
-    enabled: S.Boolean,
-    name: S.String,
-    type: DlpEntriesCustomGetResultCase6Type,
-    updatedAt: S.String.pipe(T.Body("updated_at")),
-    wordList: S.Unknown.pipe(T.Body("word_list")),
-    profileId: S.optional(S.NullOr(S.String).pipe(T.Body("profile_id"))),
-    profiles: S.optional(S.NullOr(DlpEntriesCustomGetResultCase6ProfilesList)),
-    uploadStatus: S.optional(
-      S.NullOr(DlpEntriesCustomGetResultCase6UploadStatus).pipe(
-        T.Body("upload_status"),
-      ),
-    ),
-  }),
-).annotate({
-  identifier: "DlpEntriesCustomGetResultCase6",
-}) as any as S.Schema<DlpEntriesCustomGetResultCase6>;
-
-export type DlpEntriesCustomGetResult =
-  | DlpEntriesCustomGetResultCase0
-  | DlpEntriesCustomGetResultCase1
-  | DlpEntriesCustomGetResultCase2
-  | DlpEntriesCustomGetResultCase3
-  | DlpEntriesCustomGetResultCase4
-  | DlpEntriesCustomGetResultCase5
-  | DlpEntriesCustomGetResultCase6;
-export const DlpEntriesCustomGetResult = /*@__PURE__*/ S.Unknown.pipe(
-  T.UnionCases([
-    [
-      "id",
-      "createdAt",
-      "enabled",
-      "name",
-      "pattern",
-      "type",
-      "updatedAt",
-      "description",
-      "profileId",
-      "profiles",
-      "uploadStatus",
-    ],
-    [
-      "id",
-      "createdAt",
-      "enabled",
-      "name",
-      "type",
-      "updatedAt",
-      "description",
-      "profiles",
-      "uploadStatus",
-    ],
-    [
-      "id",
-      "confidence",
-      "enabled",
-      "name",
-      "type",
-      "profileId",
-      "profiles",
-      "uploadStatus",
-      "variant",
-    ],
-    [
-      "id",
-      "createdAt",
-      "enabled",
-      "name",
-      "type",
-      "updatedAt",
-      "profileId",
-      "profiles",
-      "uploadStatus",
-    ],
-    [
-      "id",
-      "caseSensitive",
-      "createdAt",
-      "enabled",
-      "name",
-      "secret",
-      "type",
-      "updatedAt",
-      "description",
-      "profiles",
-      "uploadStatus",
-    ],
-    [
-      "id",
-      "createdAt",
-      "enabled",
-      "name",
-      "type",
-      "updatedAt",
-      "description",
-      "profiles",
-      "uploadStatus",
-    ],
-    [
-      "id",
-      "createdAt",
-      "enabled",
-      "name",
-      "type",
-      "updatedAt",
-      "wordList",
-      "profileId",
-      "profiles",
-      "uploadStatus",
-    ],
-  ]),
-);
-
-export type DlpEntriesCustomGetResponse = DlpEntriesCustomGetResult;
-export const DlpEntriesCustomGetResponse = /*@__PURE__*/ S.suspend(() =>
-  DlpEntriesCustomGetResult.pipe(
-    T.EnvelopePayloadRoot(),
-    T.KeyDictionary(KEY_DICTIONARY),
-  ),
-).annotate({
-  identifier: "DlpEntriesCustomGetResponse",
-}) as any as S.Schema<DlpEntriesCustomGetResponse>;
-
-export interface DlpEntriesCustomListRequest {
-  accountId: string;
-}
-export const DlpEntriesCustomListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountId: S.String.pipe(T.Label("account_id")),
-  })
-    .pipe(
-      T.Http({
-        method: "GET",
-        uri: "/accounts/{account_id}/dlp/entries",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "DlpEntriesCustomListRequest",
-}) as any as S.Schema<DlpEntriesCustomListRequest>;
-
-export type DlpEntriesCustomListResultItemCase0PatternValidation = "luhn";
-export const DlpEntriesCustomListResultItemCase0PatternValidation =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesCustomListResultItemCase0Pattern {
-  regex: string;
-  validation?: DlpEntriesCustomListResultItemCase0PatternValidation | null;
-}
-export const DlpEntriesCustomListResultItemCase0Pattern =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      regex: S.String,
-      validation: S.optional(
-        S.NullOr(DlpEntriesCustomListResultItemCase0PatternValidation),
-      ),
-    }),
-  ).annotate({
-    identifier: "DlpEntriesCustomListResultItemCase0Pattern",
-  }) as any as S.Schema<DlpEntriesCustomListResultItemCase0Pattern>;
-
-export type DlpEntriesCustomListResultItemCase0Type = "custom";
-export const DlpEntriesCustomListResultItemCase0Type = /*@__PURE__*/ S.String;
-
-export type DlpEntriesCustomListResultItemCase0UploadStatus =
-  | "empty"
-  | "uploading"
-  | "pending"
-  | "processing"
-  | "failed"
-  | "complete";
-export const DlpEntriesCustomListResultItemCase0UploadStatus =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesCustomListResultItemCase0 {
-  id: string;
-  createdAt: string;
-  enabled: boolean;
-  name: string;
-  pattern: DlpEntriesCustomListResultItemCase0Pattern;
-  type: DlpEntriesCustomListResultItemCase0Type;
-  updatedAt: string;
-  description?: string | null;
-  profileId?: string | null;
-  uploadStatus?: DlpEntriesCustomListResultItemCase0UploadStatus | null;
-}
-export const DlpEntriesCustomListResultItemCase0 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    createdAt: S.String.pipe(T.Body("created_at")),
-    enabled: S.Boolean,
-    name: S.String,
-    pattern: DlpEntriesCustomListResultItemCase0Pattern,
-    type: DlpEntriesCustomListResultItemCase0Type,
-    updatedAt: S.String.pipe(T.Body("updated_at")),
-    description: S.optional(S.NullOr(S.String)),
-    profileId: S.optional(S.NullOr(S.String).pipe(T.Body("profile_id"))),
-    uploadStatus: S.optional(
-      S.NullOr(DlpEntriesCustomListResultItemCase0UploadStatus).pipe(
-        T.Body("upload_status"),
-      ),
-    ),
-  }),
-).annotate({
-  identifier: "DlpEntriesCustomListResultItemCase0",
-}) as any as S.Schema<DlpEntriesCustomListResultItemCase0>;
-
-export type DlpEntriesCustomListResultItemCase1Type = "custom_prompt_topic";
-export const DlpEntriesCustomListResultItemCase1Type = /*@__PURE__*/ S.String;
-
-export type DlpEntriesCustomListResultItemCase1UploadStatus =
-  | "empty"
-  | "uploading"
-  | "pending"
-  | "processing"
-  | "failed"
-  | "complete";
-export const DlpEntriesCustomListResultItemCase1UploadStatus =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesCustomListResultItemCase1 {
-  id: string;
-  createdAt: string;
-  enabled: boolean;
-  name: string;
-  type: DlpEntriesCustomListResultItemCase1Type;
-  updatedAt: string;
-  /** The optional description of the custom prompt topic entry. */
-  description?: string | null;
-  uploadStatus?: DlpEntriesCustomListResultItemCase1UploadStatus | null;
-}
-export const DlpEntriesCustomListResultItemCase1 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    createdAt: S.String.pipe(T.Body("created_at")),
-    enabled: S.Boolean,
-    name: S.String,
-    type: DlpEntriesCustomListResultItemCase1Type,
-    updatedAt: S.String.pipe(T.Body("updated_at")),
-    description: S.optional(S.NullOr(S.String)),
-    uploadStatus: S.optional(
-      S.NullOr(DlpEntriesCustomListResultItemCase1UploadStatus).pipe(
-        T.Body("upload_status"),
-      ),
-    ),
-  }),
-).annotate({
-  identifier: "DlpEntriesCustomListResultItemCase1",
-}) as any as S.Schema<DlpEntriesCustomListResultItemCase1>;
-
-export type DlpEntriesCustomListResultItemCase2Confidence =
-  DlpEntriesPredefinedCreateResponseConfidence;
-export const DlpEntriesCustomListResultItemCase2Confidence =
-  DlpEntriesPredefinedCreateResponseConfidence;
-
-export type DlpEntriesCustomListResultItemCase2Type = "predefined";
-export const DlpEntriesCustomListResultItemCase2Type = /*@__PURE__*/ S.String;
-
-export type DlpEntriesCustomListResultItemCase2UploadStatus =
-  | "empty"
-  | "uploading"
-  | "pending"
-  | "processing"
-  | "failed"
-  | "complete";
-export const DlpEntriesCustomListResultItemCase2UploadStatus =
-  /*@__PURE__*/ S.String;
-
-export type DlpEntriesCustomListResultItemCase2VariantCase0TopicType =
-  | "Intent"
-  | "Content";
-export const DlpEntriesCustomListResultItemCase2VariantCase0TopicType =
-  /*@__PURE__*/ S.String;
-
-export type DlpEntriesCustomListResultItemCase2VariantCase0Type = "PromptTopic";
-export const DlpEntriesCustomListResultItemCase2VariantCase0Type =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesCustomListResultItemCase2VariantCase0 {
-  topicType: DlpEntriesCustomListResultItemCase2VariantCase0TopicType;
-  type: DlpEntriesCustomListResultItemCase2VariantCase0Type;
-  /** A customer-facing explanation of what this predefined AI prompt topic represents. */
-  description?: string | null;
-}
-export const DlpEntriesCustomListResultItemCase2VariantCase0 =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      topicType: DlpEntriesCustomListResultItemCase2VariantCase0TopicType.pipe(
-        T.Body("topic_type"),
-      ),
-      type: DlpEntriesCustomListResultItemCase2VariantCase0Type,
-      description: S.optional(S.NullOr(S.String)),
-    }),
-  ).annotate({
-    identifier: "DlpEntriesCustomListResultItemCase2VariantCase0",
-  }) as any as S.Schema<DlpEntriesCustomListResultItemCase2VariantCase0>;
-
-export type DlpEntriesCustomListResultItemCase2VariantCase1Type = "General";
-export const DlpEntriesCustomListResultItemCase2VariantCase1Type =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesCustomListResultItemCase2VariantCase1 {
-  type: DlpEntriesCustomListResultItemCase2VariantCase1Type;
-  /** A customer-facing explanation of what this predefined entry represents. */
-  description?: string | null;
-}
-export const DlpEntriesCustomListResultItemCase2VariantCase1 =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: DlpEntriesCustomListResultItemCase2VariantCase1Type,
-      description: S.optional(S.NullOr(S.String)),
-    }),
-  ).annotate({
-    identifier: "DlpEntriesCustomListResultItemCase2VariantCase1",
-  }) as any as S.Schema<DlpEntriesCustomListResultItemCase2VariantCase1>;
-
-export type DlpEntriesCustomListResultItemCase2Variant =
-  | DlpEntriesCustomListResultItemCase2VariantCase0
-  | DlpEntriesCustomListResultItemCase2VariantCase1;
-export const DlpEntriesCustomListResultItemCase2Variant =
-  /*@__PURE__*/ S.Unknown.pipe(
-    T.UnionCases([
-      ["topicType", "type", "description"],
-      ["type", "description"],
-    ]),
-  );
-
-export interface DlpEntriesCustomListResultItemCase2 {
-  id: string;
-  confidence: DlpEntriesPredefinedCreateResponseConfidence;
-  enabled: boolean;
-  name: string;
-  type: DlpEntriesCustomListResultItemCase2Type;
-  profileId?: string | null;
-  uploadStatus?: DlpEntriesCustomListResultItemCase2UploadStatus | null;
-  /** A Predefined AI prompt classification topic entry. */
-  variant?: DlpEntriesCustomListResultItemCase2Variant | null;
-}
-export const DlpEntriesCustomListResultItemCase2 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    confidence: DlpEntriesPredefinedCreateResponseConfidence,
-    enabled: S.Boolean,
-    name: S.String,
-    type: DlpEntriesCustomListResultItemCase2Type,
-    profileId: S.optional(S.NullOr(S.String).pipe(T.Body("profile_id"))),
-    uploadStatus: S.optional(
-      S.NullOr(DlpEntriesCustomListResultItemCase2UploadStatus).pipe(
-        T.Body("upload_status"),
-      ),
-    ),
-    variant: S.optional(S.NullOr(DlpEntriesCustomListResultItemCase2Variant)),
-  }),
-).annotate({
-  identifier: "DlpEntriesCustomListResultItemCase2",
-}) as any as S.Schema<DlpEntriesCustomListResultItemCase2>;
-
-export type DlpEntriesCustomListResultItemCase3Type = "integration";
-export const DlpEntriesCustomListResultItemCase3Type = /*@__PURE__*/ S.String;
-
-export type DlpEntriesCustomListResultItemCase3UploadStatus =
-  | "empty"
-  | "uploading"
-  | "pending"
-  | "processing"
-  | "failed"
-  | "complete";
-export const DlpEntriesCustomListResultItemCase3UploadStatus =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesCustomListResultItemCase3 {
-  id: string;
-  createdAt: string;
-  enabled: boolean;
-  name: string;
-  type: DlpEntriesCustomListResultItemCase3Type;
-  updatedAt: string;
-  profileId?: string | null;
-  uploadStatus?: DlpEntriesCustomListResultItemCase3UploadStatus | null;
-}
-export const DlpEntriesCustomListResultItemCase3 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    createdAt: S.String.pipe(T.Body("created_at")),
-    enabled: S.Boolean,
-    name: S.String,
-    type: DlpEntriesCustomListResultItemCase3Type,
-    updatedAt: S.String.pipe(T.Body("updated_at")),
-    profileId: S.optional(S.NullOr(S.String).pipe(T.Body("profile_id"))),
-    uploadStatus: S.optional(
-      S.NullOr(DlpEntriesCustomListResultItemCase3UploadStatus).pipe(
-        T.Body("upload_status"),
-      ),
-    ),
-  }),
-).annotate({
-  identifier: "DlpEntriesCustomListResultItemCase3",
-}) as any as S.Schema<DlpEntriesCustomListResultItemCase3>;
-
-export type DlpEntriesCustomListResultItemCase4Type = "exact_data";
-export const DlpEntriesCustomListResultItemCase4Type = /*@__PURE__*/ S.String;
-
-export type DlpEntriesCustomListResultItemCase4UploadStatus =
-  | "empty"
-  | "uploading"
-  | "pending"
-  | "processing"
-  | "failed"
-  | "complete";
-export const DlpEntriesCustomListResultItemCase4UploadStatus =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesCustomListResultItemCase4 {
-  id: string;
-  /** Only applies to custom word lists. */
-  caseSensitive: boolean;
-  createdAt: string;
-  enabled: boolean;
-  name: string;
-  secret: boolean;
-  type: DlpEntriesCustomListResultItemCase4Type;
-  updatedAt: string;
-  /** The optional description of the exact data entry. */
-  description?: string | null;
-  uploadStatus?: DlpEntriesCustomListResultItemCase4UploadStatus | null;
-}
-export const DlpEntriesCustomListResultItemCase4 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    caseSensitive: S.Boolean.pipe(T.Body("case_sensitive")),
-    createdAt: S.String.pipe(T.Body("created_at")),
-    enabled: S.Boolean,
-    name: S.String,
-    secret: S.Boolean,
-    type: DlpEntriesCustomListResultItemCase4Type,
-    updatedAt: S.String.pipe(T.Body("updated_at")),
-    description: S.optional(S.NullOr(S.String)),
-    uploadStatus: S.optional(
-      S.NullOr(DlpEntriesCustomListResultItemCase4UploadStatus).pipe(
-        T.Body("upload_status"),
-      ),
-    ),
-  }),
-).annotate({
-  identifier: "DlpEntriesCustomListResultItemCase4",
-}) as any as S.Schema<DlpEntriesCustomListResultItemCase4>;
-
-export type DlpEntriesCustomListResultItemCase5Type = "document_fingerprint";
-export const DlpEntriesCustomListResultItemCase5Type = /*@__PURE__*/ S.String;
-
-export type DlpEntriesCustomListResultItemCase5UploadStatus =
-  | "empty"
-  | "uploading"
-  | "pending"
-  | "processing"
-  | "failed"
-  | "complete";
-export const DlpEntriesCustomListResultItemCase5UploadStatus =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesCustomListResultItemCase5 {
-  id: string;
-  createdAt: string;
-  enabled: boolean;
-  name: string;
-  type: DlpEntriesCustomListResultItemCase5Type;
-  updatedAt: string;
-  /** The optional description of the document fingerprint entry. */
-  description?: string | null;
-  uploadStatus?: DlpEntriesCustomListResultItemCase5UploadStatus | null;
-}
-export const DlpEntriesCustomListResultItemCase5 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    createdAt: S.String.pipe(T.Body("created_at")),
-    enabled: S.Boolean,
-    name: S.String,
-    type: DlpEntriesCustomListResultItemCase5Type,
-    updatedAt: S.String.pipe(T.Body("updated_at")),
-    description: S.optional(S.NullOr(S.String)),
-    uploadStatus: S.optional(
-      S.NullOr(DlpEntriesCustomListResultItemCase5UploadStatus).pipe(
-        T.Body("upload_status"),
-      ),
-    ),
-  }),
-).annotate({
-  identifier: "DlpEntriesCustomListResultItemCase5",
-}) as any as S.Schema<DlpEntriesCustomListResultItemCase5>;
-
-export type DlpEntriesCustomListResultItemCase6Type = "word_list";
-export const DlpEntriesCustomListResultItemCase6Type = /*@__PURE__*/ S.String;
-
-export type DlpEntriesCustomListResultItemCase6UploadStatus =
-  | "empty"
-  | "uploading"
-  | "pending"
-  | "processing"
-  | "failed"
-  | "complete";
-export const DlpEntriesCustomListResultItemCase6UploadStatus =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesCustomListResultItemCase6 {
-  id: string;
-  createdAt: string;
-  enabled: boolean;
-  name: string;
-  type: DlpEntriesCustomListResultItemCase6Type;
-  updatedAt: string;
-  wordList: unknown;
-  profileId?: string | null;
-  uploadStatus?: DlpEntriesCustomListResultItemCase6UploadStatus | null;
-}
-export const DlpEntriesCustomListResultItemCase6 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    createdAt: S.String.pipe(T.Body("created_at")),
-    enabled: S.Boolean,
-    name: S.String,
-    type: DlpEntriesCustomListResultItemCase6Type,
-    updatedAt: S.String.pipe(T.Body("updated_at")),
-    wordList: S.Unknown.pipe(T.Body("word_list")),
-    profileId: S.optional(S.NullOr(S.String).pipe(T.Body("profile_id"))),
-    uploadStatus: S.optional(
-      S.NullOr(DlpEntriesCustomListResultItemCase6UploadStatus).pipe(
-        T.Body("upload_status"),
-      ),
-    ),
-  }),
-).annotate({
-  identifier: "DlpEntriesCustomListResultItemCase6",
-}) as any as S.Schema<DlpEntriesCustomListResultItemCase6>;
-
-export type DlpEntriesCustomListResultItem =
-  | DlpEntriesCustomListResultItemCase0
-  | DlpEntriesCustomListResultItemCase1
-  | DlpEntriesCustomListResultItemCase2
-  | DlpEntriesCustomListResultItemCase3
-  | DlpEntriesCustomListResultItemCase4
-  | DlpEntriesCustomListResultItemCase5
-  | DlpEntriesCustomListResultItemCase6;
-export const DlpEntriesCustomListResultItem = /*@__PURE__*/ S.Unknown.pipe(
-  T.UnionCases([
-    [
-      "id",
-      "createdAt",
-      "enabled",
-      "name",
-      "pattern",
-      "type",
-      "updatedAt",
-      "description",
-      "profileId",
-      "uploadStatus",
-    ],
-    [
-      "id",
-      "createdAt",
-      "enabled",
-      "name",
-      "type",
-      "updatedAt",
-      "description",
-      "uploadStatus",
-    ],
-    [
-      "id",
-      "confidence",
-      "enabled",
-      "name",
-      "type",
-      "profileId",
-      "uploadStatus",
-      "variant",
-    ],
-    [
-      "id",
-      "createdAt",
-      "enabled",
-      "name",
-      "type",
-      "updatedAt",
-      "profileId",
-      "uploadStatus",
-    ],
-    [
-      "id",
-      "caseSensitive",
-      "createdAt",
-      "enabled",
-      "name",
-      "secret",
-      "type",
-      "updatedAt",
-      "description",
-      "uploadStatus",
-    ],
-    [
-      "id",
-      "createdAt",
-      "enabled",
-      "name",
-      "type",
-      "updatedAt",
-      "description",
-      "uploadStatus",
-    ],
-    [
-      "id",
-      "createdAt",
-      "enabled",
-      "name",
-      "type",
-      "updatedAt",
-      "wordList",
-      "profileId",
-      "uploadStatus",
-    ],
-  ]),
-);
-
-export type DlpEntriesCustomListResultList =
-  Array<DlpEntriesCustomListResultItem>;
-export const DlpEntriesCustomListResultList = /*@__PURE__*/ S.Array(
-  DlpEntriesCustomListResultItem,
-) as any as S.Schema<DlpEntriesCustomListResultList>;
-
-export interface DlpEntriesCustomListResponse {
-  /** The unwrapped `result` payload of the v4 response envelope. */
-  result: DlpEntriesCustomListResultList;
-  /** Pagination info from the envelope's `result_info`. */
-  resultInfo?: ResultInfo | null;
-}
-export const DlpEntriesCustomListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    result: DlpEntriesCustomListResultList.pipe(T.EnvelopePayload()),
-    resultInfo: S.optional(S.NullOr(ResultInfo).pipe(T.ResultInfo())),
-  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "DlpEntriesCustomListResponse",
-}) as any as S.Schema<DlpEntriesCustomListResponse>;
-
-export interface DlpEntriesIntegrationGetRequest {
-  accountId: string;
-  entryId: string;
-}
-export const DlpEntriesIntegrationGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountId: S.String.pipe(T.Label("account_id")),
-    entryId: S.String.pipe(T.Label("entry_id")),
-  })
-    .pipe(
-      T.Http({
-        method: "GET",
-        uri: "/accounts/{account_id}/dlp/entries/{entry_id}",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "DlpEntriesIntegrationGetRequest",
-}) as any as S.Schema<DlpEntriesIntegrationGetRequest>;
-
-export type DlpEntriesIntegrationGetResultCase0PatternValidation = "luhn";
-export const DlpEntriesIntegrationGetResultCase0PatternValidation =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesIntegrationGetResultCase0Pattern {
-  regex: string;
-  validation?: DlpEntriesIntegrationGetResultCase0PatternValidation | null;
-}
-export const DlpEntriesIntegrationGetResultCase0Pattern =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      regex: S.String,
-      validation: S.optional(
-        S.NullOr(DlpEntriesIntegrationGetResultCase0PatternValidation),
-      ),
-    }),
-  ).annotate({
-    identifier: "DlpEntriesIntegrationGetResultCase0Pattern",
-  }) as any as S.Schema<DlpEntriesIntegrationGetResultCase0Pattern>;
-
-export type DlpEntriesIntegrationGetResultCase0Type = "custom";
-export const DlpEntriesIntegrationGetResultCase0Type = /*@__PURE__*/ S.String;
-
-export type DlpEntriesIntegrationGetResultCase0ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
-export const DlpEntriesIntegrationGetResultCase0ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
-
-export type DlpEntriesIntegrationGetResultCase0ProfilesList =
-  Array<DlpEntriesCustomGetResultCase0ProfilesItem>;
-export const DlpEntriesIntegrationGetResultCase0ProfilesList =
-  /*@__PURE__*/ S.Array(
-    DlpEntriesCustomGetResultCase0ProfilesItem,
-  ) as any as S.Schema<DlpEntriesIntegrationGetResultCase0ProfilesList>;
-
-export type DlpEntriesIntegrationGetResultCase0UploadStatus =
-  | "empty"
-  | "uploading"
-  | "pending"
-  | "processing"
-  | "failed"
-  | "complete";
-export const DlpEntriesIntegrationGetResultCase0UploadStatus =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesIntegrationGetResultCase0 {
-  id: string;
-  createdAt: string;
-  enabled: boolean;
-  name: string;
-  pattern: DlpEntriesIntegrationGetResultCase0Pattern;
-  type: DlpEntriesIntegrationGetResultCase0Type;
-  updatedAt: string;
-  description?: string | null;
-  profileId?: string | null;
-  profiles?: DlpEntriesIntegrationGetResultCase0ProfilesList | null;
-  uploadStatus?: DlpEntriesIntegrationGetResultCase0UploadStatus | null;
-}
-export const DlpEntriesIntegrationGetResultCase0 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    createdAt: S.String.pipe(T.Body("created_at")),
-    enabled: S.Boolean,
-    name: S.String,
-    pattern: DlpEntriesIntegrationGetResultCase0Pattern,
-    type: DlpEntriesIntegrationGetResultCase0Type,
-    updatedAt: S.String.pipe(T.Body("updated_at")),
-    description: S.optional(S.NullOr(S.String)),
-    profileId: S.optional(S.NullOr(S.String).pipe(T.Body("profile_id"))),
-    profiles: S.optional(
-      S.NullOr(DlpEntriesIntegrationGetResultCase0ProfilesList),
-    ),
-    uploadStatus: S.optional(
-      S.NullOr(DlpEntriesIntegrationGetResultCase0UploadStatus).pipe(
-        T.Body("upload_status"),
-      ),
-    ),
-  }),
-).annotate({
-  identifier: "DlpEntriesIntegrationGetResultCase0",
-}) as any as S.Schema<DlpEntriesIntegrationGetResultCase0>;
-
-export type DlpEntriesIntegrationGetResultCase1Type = "custom_prompt_topic";
-export const DlpEntriesIntegrationGetResultCase1Type = /*@__PURE__*/ S.String;
-
-export type DlpEntriesIntegrationGetResultCase1ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
-export const DlpEntriesIntegrationGetResultCase1ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
-
-export type DlpEntriesIntegrationGetResultCase1ProfilesList =
-  Array<DlpEntriesCustomGetResultCase0ProfilesItem>;
-export const DlpEntriesIntegrationGetResultCase1ProfilesList =
-  /*@__PURE__*/ S.Array(
-    DlpEntriesCustomGetResultCase0ProfilesItem,
-  ) as any as S.Schema<DlpEntriesIntegrationGetResultCase1ProfilesList>;
-
-export type DlpEntriesIntegrationGetResultCase1UploadStatus =
-  | "empty"
-  | "uploading"
-  | "pending"
-  | "processing"
-  | "failed"
-  | "complete";
-export const DlpEntriesIntegrationGetResultCase1UploadStatus =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesIntegrationGetResultCase1 {
-  id: string;
-  createdAt: string;
-  enabled: boolean;
-  name: string;
-  type: DlpEntriesIntegrationGetResultCase1Type;
-  updatedAt: string;
-  /** The optional description of the custom prompt topic entry. */
-  description?: string | null;
-  profiles?: DlpEntriesIntegrationGetResultCase1ProfilesList | null;
-  uploadStatus?: DlpEntriesIntegrationGetResultCase1UploadStatus | null;
-}
-export const DlpEntriesIntegrationGetResultCase1 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    createdAt: S.String.pipe(T.Body("created_at")),
-    enabled: S.Boolean,
-    name: S.String,
-    type: DlpEntriesIntegrationGetResultCase1Type,
-    updatedAt: S.String.pipe(T.Body("updated_at")),
-    description: S.optional(S.NullOr(S.String)),
-    profiles: S.optional(
-      S.NullOr(DlpEntriesIntegrationGetResultCase1ProfilesList),
-    ),
-    uploadStatus: S.optional(
-      S.NullOr(DlpEntriesIntegrationGetResultCase1UploadStatus).pipe(
-        T.Body("upload_status"),
-      ),
-    ),
-  }),
-).annotate({
-  identifier: "DlpEntriesIntegrationGetResultCase1",
-}) as any as S.Schema<DlpEntriesIntegrationGetResultCase1>;
-
-export type DlpEntriesIntegrationGetResultCase2Confidence =
-  DlpEntriesPredefinedCreateResponseConfidence;
-export const DlpEntriesIntegrationGetResultCase2Confidence =
-  DlpEntriesPredefinedCreateResponseConfidence;
-
-export type DlpEntriesIntegrationGetResultCase2Type = "predefined";
-export const DlpEntriesIntegrationGetResultCase2Type = /*@__PURE__*/ S.String;
-
-export type DlpEntriesIntegrationGetResultCase2ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
-export const DlpEntriesIntegrationGetResultCase2ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
-
-export type DlpEntriesIntegrationGetResultCase2ProfilesList =
-  Array<DlpEntriesCustomGetResultCase0ProfilesItem>;
-export const DlpEntriesIntegrationGetResultCase2ProfilesList =
-  /*@__PURE__*/ S.Array(
-    DlpEntriesCustomGetResultCase0ProfilesItem,
-  ) as any as S.Schema<DlpEntriesIntegrationGetResultCase2ProfilesList>;
-
-export type DlpEntriesIntegrationGetResultCase2UploadStatus =
-  | "empty"
-  | "uploading"
-  | "pending"
-  | "processing"
-  | "failed"
-  | "complete";
-export const DlpEntriesIntegrationGetResultCase2UploadStatus =
-  /*@__PURE__*/ S.String;
-
-export type DlpEntriesIntegrationGetResultCase2VariantCase0TopicType =
-  | "Intent"
-  | "Content";
-export const DlpEntriesIntegrationGetResultCase2VariantCase0TopicType =
-  /*@__PURE__*/ S.String;
-
-export type DlpEntriesIntegrationGetResultCase2VariantCase0Type = "PromptTopic";
-export const DlpEntriesIntegrationGetResultCase2VariantCase0Type =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesIntegrationGetResultCase2VariantCase0 {
-  topicType: DlpEntriesIntegrationGetResultCase2VariantCase0TopicType;
-  type: DlpEntriesIntegrationGetResultCase2VariantCase0Type;
-  /** A customer-facing explanation of what this predefined AI prompt topic represents. */
-  description?: string | null;
-}
-export const DlpEntriesIntegrationGetResultCase2VariantCase0 =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      topicType: DlpEntriesIntegrationGetResultCase2VariantCase0TopicType.pipe(
-        T.Body("topic_type"),
-      ),
-      type: DlpEntriesIntegrationGetResultCase2VariantCase0Type,
-      description: S.optional(S.NullOr(S.String)),
-    }),
-  ).annotate({
-    identifier: "DlpEntriesIntegrationGetResultCase2VariantCase0",
-  }) as any as S.Schema<DlpEntriesIntegrationGetResultCase2VariantCase0>;
-
-export type DlpEntriesIntegrationGetResultCase2VariantCase1Type = "General";
-export const DlpEntriesIntegrationGetResultCase2VariantCase1Type =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesIntegrationGetResultCase2VariantCase1 {
-  type: DlpEntriesIntegrationGetResultCase2VariantCase1Type;
-  /** A customer-facing explanation of what this predefined entry represents. */
-  description?: string | null;
-}
-export const DlpEntriesIntegrationGetResultCase2VariantCase1 =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: DlpEntriesIntegrationGetResultCase2VariantCase1Type,
-      description: S.optional(S.NullOr(S.String)),
-    }),
-  ).annotate({
-    identifier: "DlpEntriesIntegrationGetResultCase2VariantCase1",
-  }) as any as S.Schema<DlpEntriesIntegrationGetResultCase2VariantCase1>;
-
-export type DlpEntriesIntegrationGetResultCase2Variant =
-  | DlpEntriesIntegrationGetResultCase2VariantCase0
-  | DlpEntriesIntegrationGetResultCase2VariantCase1;
-export const DlpEntriesIntegrationGetResultCase2Variant =
-  /*@__PURE__*/ S.Unknown.pipe(
-    T.UnionCases([
-      ["topicType", "type", "description"],
-      ["type", "description"],
-    ]),
-  );
-
-export interface DlpEntriesIntegrationGetResultCase2 {
-  id: string;
-  confidence: DlpEntriesPredefinedCreateResponseConfidence;
-  enabled: boolean;
-  name: string;
-  type: DlpEntriesIntegrationGetResultCase2Type;
-  profileId?: string | null;
-  profiles?: DlpEntriesIntegrationGetResultCase2ProfilesList | null;
-  uploadStatus?: DlpEntriesIntegrationGetResultCase2UploadStatus | null;
-  /** A Predefined AI prompt classification topic entry. */
-  variant?: DlpEntriesIntegrationGetResultCase2Variant | null;
-}
-export const DlpEntriesIntegrationGetResultCase2 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    confidence: DlpEntriesPredefinedCreateResponseConfidence,
-    enabled: S.Boolean,
-    name: S.String,
-    type: DlpEntriesIntegrationGetResultCase2Type,
-    profileId: S.optional(S.NullOr(S.String).pipe(T.Body("profile_id"))),
-    profiles: S.optional(
-      S.NullOr(DlpEntriesIntegrationGetResultCase2ProfilesList),
-    ),
-    uploadStatus: S.optional(
-      S.NullOr(DlpEntriesIntegrationGetResultCase2UploadStatus).pipe(
-        T.Body("upload_status"),
-      ),
-    ),
-    variant: S.optional(S.NullOr(DlpEntriesIntegrationGetResultCase2Variant)),
-  }),
-).annotate({
-  identifier: "DlpEntriesIntegrationGetResultCase2",
-}) as any as S.Schema<DlpEntriesIntegrationGetResultCase2>;
-
-export type DlpEntriesIntegrationGetResultCase3Type = "integration";
-export const DlpEntriesIntegrationGetResultCase3Type = /*@__PURE__*/ S.String;
-
-export type DlpEntriesIntegrationGetResultCase3ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
-export const DlpEntriesIntegrationGetResultCase3ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
-
-export type DlpEntriesIntegrationGetResultCase3ProfilesList =
-  Array<DlpEntriesCustomGetResultCase0ProfilesItem>;
-export const DlpEntriesIntegrationGetResultCase3ProfilesList =
-  /*@__PURE__*/ S.Array(
-    DlpEntriesCustomGetResultCase0ProfilesItem,
-  ) as any as S.Schema<DlpEntriesIntegrationGetResultCase3ProfilesList>;
-
-export type DlpEntriesIntegrationGetResultCase3UploadStatus =
-  | "empty"
-  | "uploading"
-  | "pending"
-  | "processing"
-  | "failed"
-  | "complete";
-export const DlpEntriesIntegrationGetResultCase3UploadStatus =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesIntegrationGetResultCase3 {
-  id: string;
-  createdAt: string;
-  enabled: boolean;
-  name: string;
-  type: DlpEntriesIntegrationGetResultCase3Type;
-  updatedAt: string;
-  profileId?: string | null;
-  profiles?: DlpEntriesIntegrationGetResultCase3ProfilesList | null;
-  uploadStatus?: DlpEntriesIntegrationGetResultCase3UploadStatus | null;
-}
-export const DlpEntriesIntegrationGetResultCase3 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    createdAt: S.String.pipe(T.Body("created_at")),
-    enabled: S.Boolean,
-    name: S.String,
-    type: DlpEntriesIntegrationGetResultCase3Type,
-    updatedAt: S.String.pipe(T.Body("updated_at")),
-    profileId: S.optional(S.NullOr(S.String).pipe(T.Body("profile_id"))),
-    profiles: S.optional(
-      S.NullOr(DlpEntriesIntegrationGetResultCase3ProfilesList),
-    ),
-    uploadStatus: S.optional(
-      S.NullOr(DlpEntriesIntegrationGetResultCase3UploadStatus).pipe(
-        T.Body("upload_status"),
-      ),
-    ),
-  }),
-).annotate({
-  identifier: "DlpEntriesIntegrationGetResultCase3",
-}) as any as S.Schema<DlpEntriesIntegrationGetResultCase3>;
-
-export type DlpEntriesIntegrationGetResultCase4Type = "exact_data";
-export const DlpEntriesIntegrationGetResultCase4Type = /*@__PURE__*/ S.String;
-
-export type DlpEntriesIntegrationGetResultCase4ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
-export const DlpEntriesIntegrationGetResultCase4ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
-
-export type DlpEntriesIntegrationGetResultCase4ProfilesList =
-  Array<DlpEntriesCustomGetResultCase0ProfilesItem>;
-export const DlpEntriesIntegrationGetResultCase4ProfilesList =
-  /*@__PURE__*/ S.Array(
-    DlpEntriesCustomGetResultCase0ProfilesItem,
-  ) as any as S.Schema<DlpEntriesIntegrationGetResultCase4ProfilesList>;
-
-export type DlpEntriesIntegrationGetResultCase4UploadStatus =
-  | "empty"
-  | "uploading"
-  | "pending"
-  | "processing"
-  | "failed"
-  | "complete";
-export const DlpEntriesIntegrationGetResultCase4UploadStatus =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesIntegrationGetResultCase4 {
-  id: string;
-  /** Only applies to custom word lists. */
-  caseSensitive: boolean;
-  createdAt: string;
-  enabled: boolean;
-  name: string;
-  secret: boolean;
-  type: DlpEntriesIntegrationGetResultCase4Type;
-  updatedAt: string;
-  /** The optional description of the exact data entry. */
-  description?: string | null;
-  profiles?: DlpEntriesIntegrationGetResultCase4ProfilesList | null;
-  uploadStatus?: DlpEntriesIntegrationGetResultCase4UploadStatus | null;
-}
-export const DlpEntriesIntegrationGetResultCase4 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    caseSensitive: S.Boolean.pipe(T.Body("case_sensitive")),
-    createdAt: S.String.pipe(T.Body("created_at")),
-    enabled: S.Boolean,
-    name: S.String,
-    secret: S.Boolean,
-    type: DlpEntriesIntegrationGetResultCase4Type,
-    updatedAt: S.String.pipe(T.Body("updated_at")),
-    description: S.optional(S.NullOr(S.String)),
-    profiles: S.optional(
-      S.NullOr(DlpEntriesIntegrationGetResultCase4ProfilesList),
-    ),
-    uploadStatus: S.optional(
-      S.NullOr(DlpEntriesIntegrationGetResultCase4UploadStatus).pipe(
-        T.Body("upload_status"),
-      ),
-    ),
-  }),
-).annotate({
-  identifier: "DlpEntriesIntegrationGetResultCase4",
-}) as any as S.Schema<DlpEntriesIntegrationGetResultCase4>;
-
-export type DlpEntriesIntegrationGetResultCase5Type = "document_fingerprint";
-export const DlpEntriesIntegrationGetResultCase5Type = /*@__PURE__*/ S.String;
-
-export type DlpEntriesIntegrationGetResultCase5ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
-export const DlpEntriesIntegrationGetResultCase5ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
-
-export type DlpEntriesIntegrationGetResultCase5ProfilesList =
-  Array<DlpEntriesCustomGetResultCase0ProfilesItem>;
-export const DlpEntriesIntegrationGetResultCase5ProfilesList =
-  /*@__PURE__*/ S.Array(
-    DlpEntriesCustomGetResultCase0ProfilesItem,
-  ) as any as S.Schema<DlpEntriesIntegrationGetResultCase5ProfilesList>;
-
-export type DlpEntriesIntegrationGetResultCase5UploadStatus =
-  | "empty"
-  | "uploading"
-  | "pending"
-  | "processing"
-  | "failed"
-  | "complete";
-export const DlpEntriesIntegrationGetResultCase5UploadStatus =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesIntegrationGetResultCase5 {
-  id: string;
-  createdAt: string;
-  enabled: boolean;
-  name: string;
-  type: DlpEntriesIntegrationGetResultCase5Type;
-  updatedAt: string;
-  /** The optional description of the document fingerprint entry. */
-  description?: string | null;
-  profiles?: DlpEntriesIntegrationGetResultCase5ProfilesList | null;
-  uploadStatus?: DlpEntriesIntegrationGetResultCase5UploadStatus | null;
-}
-export const DlpEntriesIntegrationGetResultCase5 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    createdAt: S.String.pipe(T.Body("created_at")),
-    enabled: S.Boolean,
-    name: S.String,
-    type: DlpEntriesIntegrationGetResultCase5Type,
-    updatedAt: S.String.pipe(T.Body("updated_at")),
-    description: S.optional(S.NullOr(S.String)),
-    profiles: S.optional(
-      S.NullOr(DlpEntriesIntegrationGetResultCase5ProfilesList),
-    ),
-    uploadStatus: S.optional(
-      S.NullOr(DlpEntriesIntegrationGetResultCase5UploadStatus).pipe(
-        T.Body("upload_status"),
-      ),
-    ),
-  }),
-).annotate({
-  identifier: "DlpEntriesIntegrationGetResultCase5",
-}) as any as S.Schema<DlpEntriesIntegrationGetResultCase5>;
-
-export type DlpEntriesIntegrationGetResultCase6Type = "word_list";
-export const DlpEntriesIntegrationGetResultCase6Type = /*@__PURE__*/ S.String;
-
-export type DlpEntriesIntegrationGetResultCase6ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
-export const DlpEntriesIntegrationGetResultCase6ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
-
-export type DlpEntriesIntegrationGetResultCase6ProfilesList =
-  Array<DlpEntriesCustomGetResultCase0ProfilesItem>;
-export const DlpEntriesIntegrationGetResultCase6ProfilesList =
-  /*@__PURE__*/ S.Array(
-    DlpEntriesCustomGetResultCase0ProfilesItem,
-  ) as any as S.Schema<DlpEntriesIntegrationGetResultCase6ProfilesList>;
-
-export type DlpEntriesIntegrationGetResultCase6UploadStatus =
-  | "empty"
-  | "uploading"
-  | "pending"
-  | "processing"
-  | "failed"
-  | "complete";
-export const DlpEntriesIntegrationGetResultCase6UploadStatus =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesIntegrationGetResultCase6 {
-  id: string;
-  createdAt: string;
-  enabled: boolean;
-  name: string;
-  type: DlpEntriesIntegrationGetResultCase6Type;
-  updatedAt: string;
-  wordList: unknown;
-  profileId?: string | null;
-  profiles?: DlpEntriesIntegrationGetResultCase6ProfilesList | null;
-  uploadStatus?: DlpEntriesIntegrationGetResultCase6UploadStatus | null;
-}
-export const DlpEntriesIntegrationGetResultCase6 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    createdAt: S.String.pipe(T.Body("created_at")),
-    enabled: S.Boolean,
-    name: S.String,
-    type: DlpEntriesIntegrationGetResultCase6Type,
-    updatedAt: S.String.pipe(T.Body("updated_at")),
-    wordList: S.Unknown.pipe(T.Body("word_list")),
-    profileId: S.optional(S.NullOr(S.String).pipe(T.Body("profile_id"))),
-    profiles: S.optional(
-      S.NullOr(DlpEntriesIntegrationGetResultCase6ProfilesList),
-    ),
-    uploadStatus: S.optional(
-      S.NullOr(DlpEntriesIntegrationGetResultCase6UploadStatus).pipe(
-        T.Body("upload_status"),
-      ),
-    ),
-  }),
-).annotate({
-  identifier: "DlpEntriesIntegrationGetResultCase6",
-}) as any as S.Schema<DlpEntriesIntegrationGetResultCase6>;
-
-export type DlpEntriesIntegrationGetResult =
-  | DlpEntriesIntegrationGetResultCase0
-  | DlpEntriesIntegrationGetResultCase1
-  | DlpEntriesIntegrationGetResultCase2
-  | DlpEntriesIntegrationGetResultCase3
-  | DlpEntriesIntegrationGetResultCase4
-  | DlpEntriesIntegrationGetResultCase5
-  | DlpEntriesIntegrationGetResultCase6;
-export const DlpEntriesIntegrationGetResult = /*@__PURE__*/ S.Unknown.pipe(
-  T.UnionCases([
-    [
-      "id",
-      "createdAt",
-      "enabled",
-      "name",
-      "pattern",
-      "type",
-      "updatedAt",
-      "description",
-      "profileId",
-      "profiles",
-      "uploadStatus",
-    ],
-    [
-      "id",
-      "createdAt",
-      "enabled",
-      "name",
-      "type",
-      "updatedAt",
-      "description",
-      "profiles",
-      "uploadStatus",
-    ],
-    [
-      "id",
-      "confidence",
-      "enabled",
-      "name",
-      "type",
-      "profileId",
-      "profiles",
-      "uploadStatus",
-      "variant",
-    ],
-    [
-      "id",
-      "createdAt",
-      "enabled",
-      "name",
-      "type",
-      "updatedAt",
-      "profileId",
-      "profiles",
-      "uploadStatus",
-    ],
-    [
-      "id",
-      "caseSensitive",
-      "createdAt",
-      "enabled",
-      "name",
-      "secret",
-      "type",
-      "updatedAt",
-      "description",
-      "profiles",
-      "uploadStatus",
-    ],
-    [
-      "id",
-      "createdAt",
-      "enabled",
-      "name",
-      "type",
-      "updatedAt",
-      "description",
-      "profiles",
-      "uploadStatus",
-    ],
-    [
-      "id",
-      "createdAt",
-      "enabled",
-      "name",
-      "type",
-      "updatedAt",
-      "wordList",
-      "profileId",
-      "profiles",
-      "uploadStatus",
-    ],
-  ]),
-);
-
-export type DlpEntriesIntegrationGetResponse = DlpEntriesIntegrationGetResult;
-export const DlpEntriesIntegrationGetResponse = /*@__PURE__*/ S.suspend(() =>
-  DlpEntriesIntegrationGetResult.pipe(
-    T.EnvelopePayloadRoot(),
-    T.KeyDictionary(KEY_DICTIONARY),
-  ),
-).annotate({
-  identifier: "DlpEntriesIntegrationGetResponse",
-}) as any as S.Schema<DlpEntriesIntegrationGetResponse>;
-
-export interface DlpEntriesIntegrationListRequest {
-  accountId: string;
-}
-export const DlpEntriesIntegrationListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountId: S.String.pipe(T.Label("account_id")),
-  })
-    .pipe(
-      T.Http({
-        method: "GET",
-        uri: "/accounts/{account_id}/dlp/entries",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "DlpEntriesIntegrationListRequest",
-}) as any as S.Schema<DlpEntriesIntegrationListRequest>;
-
-export type DlpEntriesIntegrationListResultItemCase0PatternValidation = "luhn";
-export const DlpEntriesIntegrationListResultItemCase0PatternValidation =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesIntegrationListResultItemCase0Pattern {
-  regex: string;
-  validation?: DlpEntriesIntegrationListResultItemCase0PatternValidation | null;
-}
-export const DlpEntriesIntegrationListResultItemCase0Pattern =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      regex: S.String,
-      validation: S.optional(
-        S.NullOr(DlpEntriesIntegrationListResultItemCase0PatternValidation),
-      ),
-    }),
-  ).annotate({
-    identifier: "DlpEntriesIntegrationListResultItemCase0Pattern",
-  }) as any as S.Schema<DlpEntriesIntegrationListResultItemCase0Pattern>;
-
-export type DlpEntriesIntegrationListResultItemCase0Type = "custom";
-export const DlpEntriesIntegrationListResultItemCase0Type =
-  /*@__PURE__*/ S.String;
-
-export type DlpEntriesIntegrationListResultItemCase0UploadStatus =
-  | "empty"
-  | "uploading"
-  | "pending"
-  | "processing"
-  | "failed"
-  | "complete";
-export const DlpEntriesIntegrationListResultItemCase0UploadStatus =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesIntegrationListResultItemCase0 {
-  id: string;
-  createdAt: string;
-  enabled: boolean;
-  name: string;
-  pattern: DlpEntriesIntegrationListResultItemCase0Pattern;
-  type: DlpEntriesIntegrationListResultItemCase0Type;
-  updatedAt: string;
-  description?: string | null;
-  profileId?: string | null;
-  uploadStatus?: DlpEntriesIntegrationListResultItemCase0UploadStatus | null;
-}
-export const DlpEntriesIntegrationListResultItemCase0 = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.String,
-      createdAt: S.String.pipe(T.Body("created_at")),
-      enabled: S.Boolean,
-      name: S.String,
-      pattern: DlpEntriesIntegrationListResultItemCase0Pattern,
-      type: DlpEntriesIntegrationListResultItemCase0Type,
-      updatedAt: S.String.pipe(T.Body("updated_at")),
-      description: S.optional(S.NullOr(S.String)),
-      profileId: S.optional(S.NullOr(S.String).pipe(T.Body("profile_id"))),
-      uploadStatus: S.optional(
-        S.NullOr(DlpEntriesIntegrationListResultItemCase0UploadStatus).pipe(
-          T.Body("upload_status"),
-        ),
-      ),
-    }),
-).annotate({
-  identifier: "DlpEntriesIntegrationListResultItemCase0",
-}) as any as S.Schema<DlpEntriesIntegrationListResultItemCase0>;
-
-export type DlpEntriesIntegrationListResultItemCase1Type =
-  "custom_prompt_topic";
-export const DlpEntriesIntegrationListResultItemCase1Type =
-  /*@__PURE__*/ S.String;
-
-export type DlpEntriesIntegrationListResultItemCase1UploadStatus =
-  | "empty"
-  | "uploading"
-  | "pending"
-  | "processing"
-  | "failed"
-  | "complete";
-export const DlpEntriesIntegrationListResultItemCase1UploadStatus =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesIntegrationListResultItemCase1 {
-  id: string;
-  createdAt: string;
-  enabled: boolean;
-  name: string;
-  type: DlpEntriesIntegrationListResultItemCase1Type;
-  updatedAt: string;
-  /** The optional description of the custom prompt topic entry. */
-  description?: string | null;
-  uploadStatus?: DlpEntriesIntegrationListResultItemCase1UploadStatus | null;
-}
-export const DlpEntriesIntegrationListResultItemCase1 = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.String,
-      createdAt: S.String.pipe(T.Body("created_at")),
-      enabled: S.Boolean,
-      name: S.String,
-      type: DlpEntriesIntegrationListResultItemCase1Type,
-      updatedAt: S.String.pipe(T.Body("updated_at")),
-      description: S.optional(S.NullOr(S.String)),
-      uploadStatus: S.optional(
-        S.NullOr(DlpEntriesIntegrationListResultItemCase1UploadStatus).pipe(
-          T.Body("upload_status"),
-        ),
-      ),
-    }),
-).annotate({
-  identifier: "DlpEntriesIntegrationListResultItemCase1",
-}) as any as S.Schema<DlpEntriesIntegrationListResultItemCase1>;
-
-export type DlpEntriesIntegrationListResultItemCase2Confidence =
-  DlpEntriesPredefinedCreateResponseConfidence;
-export const DlpEntriesIntegrationListResultItemCase2Confidence =
-  DlpEntriesPredefinedCreateResponseConfidence;
-
-export type DlpEntriesIntegrationListResultItemCase2Type = "predefined";
-export const DlpEntriesIntegrationListResultItemCase2Type =
-  /*@__PURE__*/ S.String;
-
-export type DlpEntriesIntegrationListResultItemCase2UploadStatus =
-  | "empty"
-  | "uploading"
-  | "pending"
-  | "processing"
-  | "failed"
-  | "complete";
-export const DlpEntriesIntegrationListResultItemCase2UploadStatus =
-  /*@__PURE__*/ S.String;
-
-export type DlpEntriesIntegrationListResultItemCase2VariantCase0TopicType =
-  | "Intent"
-  | "Content";
-export const DlpEntriesIntegrationListResultItemCase2VariantCase0TopicType =
-  /*@__PURE__*/ S.String;
-
-export type DlpEntriesIntegrationListResultItemCase2VariantCase0Type =
-  "PromptTopic";
-export const DlpEntriesIntegrationListResultItemCase2VariantCase0Type =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesIntegrationListResultItemCase2VariantCase0 {
-  topicType: DlpEntriesIntegrationListResultItemCase2VariantCase0TopicType;
-  type: DlpEntriesIntegrationListResultItemCase2VariantCase0Type;
-  /** A customer-facing explanation of what this predefined AI prompt topic represents. */
-  description?: string | null;
-}
-export const DlpEntriesIntegrationListResultItemCase2VariantCase0 =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      topicType:
-        DlpEntriesIntegrationListResultItemCase2VariantCase0TopicType.pipe(
-          T.Body("topic_type"),
-        ),
-      type: DlpEntriesIntegrationListResultItemCase2VariantCase0Type,
-      description: S.optional(S.NullOr(S.String)),
-    }),
-  ).annotate({
-    identifier: "DlpEntriesIntegrationListResultItemCase2VariantCase0",
-  }) as any as S.Schema<DlpEntriesIntegrationListResultItemCase2VariantCase0>;
-
-export type DlpEntriesIntegrationListResultItemCase2VariantCase1Type =
-  "General";
-export const DlpEntriesIntegrationListResultItemCase2VariantCase1Type =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesIntegrationListResultItemCase2VariantCase1 {
-  type: DlpEntriesIntegrationListResultItemCase2VariantCase1Type;
-  /** A customer-facing explanation of what this predefined entry represents. */
-  description?: string | null;
-}
-export const DlpEntriesIntegrationListResultItemCase2VariantCase1 =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: DlpEntriesIntegrationListResultItemCase2VariantCase1Type,
-      description: S.optional(S.NullOr(S.String)),
-    }),
-  ).annotate({
-    identifier: "DlpEntriesIntegrationListResultItemCase2VariantCase1",
-  }) as any as S.Schema<DlpEntriesIntegrationListResultItemCase2VariantCase1>;
-
-export type DlpEntriesIntegrationListResultItemCase2Variant =
-  | DlpEntriesIntegrationListResultItemCase2VariantCase0
-  | DlpEntriesIntegrationListResultItemCase2VariantCase1;
-export const DlpEntriesIntegrationListResultItemCase2Variant =
-  /*@__PURE__*/ S.Unknown.pipe(
-    T.UnionCases([
-      ["topicType", "type", "description"],
-      ["type", "description"],
-    ]),
-  );
-
-export interface DlpEntriesIntegrationListResultItemCase2 {
-  id: string;
-  confidence: DlpEntriesPredefinedCreateResponseConfidence;
-  enabled: boolean;
-  name: string;
-  type: DlpEntriesIntegrationListResultItemCase2Type;
-  profileId?: string | null;
-  uploadStatus?: DlpEntriesIntegrationListResultItemCase2UploadStatus | null;
-  /** A Predefined AI prompt classification topic entry. */
-  variant?: DlpEntriesIntegrationListResultItemCase2Variant | null;
-}
-export const DlpEntriesIntegrationListResultItemCase2 = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.String,
-      confidence: DlpEntriesPredefinedCreateResponseConfidence,
-      enabled: S.Boolean,
-      name: S.String,
-      type: DlpEntriesIntegrationListResultItemCase2Type,
-      profileId: S.optional(S.NullOr(S.String).pipe(T.Body("profile_id"))),
-      uploadStatus: S.optional(
-        S.NullOr(DlpEntriesIntegrationListResultItemCase2UploadStatus).pipe(
-          T.Body("upload_status"),
-        ),
-      ),
-      variant: S.optional(
-        S.NullOr(DlpEntriesIntegrationListResultItemCase2Variant),
-      ),
-    }),
-).annotate({
-  identifier: "DlpEntriesIntegrationListResultItemCase2",
-}) as any as S.Schema<DlpEntriesIntegrationListResultItemCase2>;
-
-export type DlpEntriesIntegrationListResultItemCase3Type = "integration";
-export const DlpEntriesIntegrationListResultItemCase3Type =
-  /*@__PURE__*/ S.String;
-
-export type DlpEntriesIntegrationListResultItemCase3UploadStatus =
-  | "empty"
-  | "uploading"
-  | "pending"
-  | "processing"
-  | "failed"
-  | "complete";
-export const DlpEntriesIntegrationListResultItemCase3UploadStatus =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesIntegrationListResultItemCase3 {
-  id: string;
-  createdAt: string;
-  enabled: boolean;
-  name: string;
-  type: DlpEntriesIntegrationListResultItemCase3Type;
-  updatedAt: string;
-  profileId?: string | null;
-  uploadStatus?: DlpEntriesIntegrationListResultItemCase3UploadStatus | null;
-}
-export const DlpEntriesIntegrationListResultItemCase3 = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.String,
-      createdAt: S.String.pipe(T.Body("created_at")),
-      enabled: S.Boolean,
-      name: S.String,
-      type: DlpEntriesIntegrationListResultItemCase3Type,
-      updatedAt: S.String.pipe(T.Body("updated_at")),
-      profileId: S.optional(S.NullOr(S.String).pipe(T.Body("profile_id"))),
-      uploadStatus: S.optional(
-        S.NullOr(DlpEntriesIntegrationListResultItemCase3UploadStatus).pipe(
-          T.Body("upload_status"),
-        ),
-      ),
-    }),
-).annotate({
-  identifier: "DlpEntriesIntegrationListResultItemCase3",
-}) as any as S.Schema<DlpEntriesIntegrationListResultItemCase3>;
-
-export type DlpEntriesIntegrationListResultItemCase4Type = "exact_data";
-export const DlpEntriesIntegrationListResultItemCase4Type =
-  /*@__PURE__*/ S.String;
-
-export type DlpEntriesIntegrationListResultItemCase4UploadStatus =
-  | "empty"
-  | "uploading"
-  | "pending"
-  | "processing"
-  | "failed"
-  | "complete";
-export const DlpEntriesIntegrationListResultItemCase4UploadStatus =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesIntegrationListResultItemCase4 {
-  id: string;
-  /** Only applies to custom word lists. */
-  caseSensitive: boolean;
-  createdAt: string;
-  enabled: boolean;
-  name: string;
-  secret: boolean;
-  type: DlpEntriesIntegrationListResultItemCase4Type;
-  updatedAt: string;
-  /** The optional description of the exact data entry. */
-  description?: string | null;
-  uploadStatus?: DlpEntriesIntegrationListResultItemCase4UploadStatus | null;
-}
-export const DlpEntriesIntegrationListResultItemCase4 = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.String,
-      caseSensitive: S.Boolean.pipe(T.Body("case_sensitive")),
-      createdAt: S.String.pipe(T.Body("created_at")),
-      enabled: S.Boolean,
-      name: S.String,
-      secret: S.Boolean,
-      type: DlpEntriesIntegrationListResultItemCase4Type,
-      updatedAt: S.String.pipe(T.Body("updated_at")),
-      description: S.optional(S.NullOr(S.String)),
-      uploadStatus: S.optional(
-        S.NullOr(DlpEntriesIntegrationListResultItemCase4UploadStatus).pipe(
-          T.Body("upload_status"),
-        ),
-      ),
-    }),
-).annotate({
-  identifier: "DlpEntriesIntegrationListResultItemCase4",
-}) as any as S.Schema<DlpEntriesIntegrationListResultItemCase4>;
-
-export type DlpEntriesIntegrationListResultItemCase5Type =
-  "document_fingerprint";
-export const DlpEntriesIntegrationListResultItemCase5Type =
-  /*@__PURE__*/ S.String;
-
-export type DlpEntriesIntegrationListResultItemCase5UploadStatus =
-  | "empty"
-  | "uploading"
-  | "pending"
-  | "processing"
-  | "failed"
-  | "complete";
-export const DlpEntriesIntegrationListResultItemCase5UploadStatus =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesIntegrationListResultItemCase5 {
-  id: string;
-  createdAt: string;
-  enabled: boolean;
-  name: string;
-  type: DlpEntriesIntegrationListResultItemCase5Type;
-  updatedAt: string;
-  /** The optional description of the document fingerprint entry. */
-  description?: string | null;
-  uploadStatus?: DlpEntriesIntegrationListResultItemCase5UploadStatus | null;
-}
-export const DlpEntriesIntegrationListResultItemCase5 = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.String,
-      createdAt: S.String.pipe(T.Body("created_at")),
-      enabled: S.Boolean,
-      name: S.String,
-      type: DlpEntriesIntegrationListResultItemCase5Type,
-      updatedAt: S.String.pipe(T.Body("updated_at")),
-      description: S.optional(S.NullOr(S.String)),
-      uploadStatus: S.optional(
-        S.NullOr(DlpEntriesIntegrationListResultItemCase5UploadStatus).pipe(
-          T.Body("upload_status"),
-        ),
-      ),
-    }),
-).annotate({
-  identifier: "DlpEntriesIntegrationListResultItemCase5",
-}) as any as S.Schema<DlpEntriesIntegrationListResultItemCase5>;
-
-export type DlpEntriesIntegrationListResultItemCase6Type = "word_list";
-export const DlpEntriesIntegrationListResultItemCase6Type =
-  /*@__PURE__*/ S.String;
-
-export type DlpEntriesIntegrationListResultItemCase6UploadStatus =
-  | "empty"
-  | "uploading"
-  | "pending"
-  | "processing"
-  | "failed"
-  | "complete";
-export const DlpEntriesIntegrationListResultItemCase6UploadStatus =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesIntegrationListResultItemCase6 {
-  id: string;
-  createdAt: string;
-  enabled: boolean;
-  name: string;
-  type: DlpEntriesIntegrationListResultItemCase6Type;
-  updatedAt: string;
-  wordList: unknown;
-  profileId?: string | null;
-  uploadStatus?: DlpEntriesIntegrationListResultItemCase6UploadStatus | null;
-}
-export const DlpEntriesIntegrationListResultItemCase6 = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.String,
-      createdAt: S.String.pipe(T.Body("created_at")),
-      enabled: S.Boolean,
-      name: S.String,
-      type: DlpEntriesIntegrationListResultItemCase6Type,
-      updatedAt: S.String.pipe(T.Body("updated_at")),
-      wordList: S.Unknown.pipe(T.Body("word_list")),
-      profileId: S.optional(S.NullOr(S.String).pipe(T.Body("profile_id"))),
-      uploadStatus: S.optional(
-        S.NullOr(DlpEntriesIntegrationListResultItemCase6UploadStatus).pipe(
-          T.Body("upload_status"),
-        ),
-      ),
-    }),
-).annotate({
-  identifier: "DlpEntriesIntegrationListResultItemCase6",
-}) as any as S.Schema<DlpEntriesIntegrationListResultItemCase6>;
-
-export type DlpEntriesIntegrationListResultItem =
-  | DlpEntriesIntegrationListResultItemCase0
-  | DlpEntriesIntegrationListResultItemCase1
-  | DlpEntriesIntegrationListResultItemCase2
-  | DlpEntriesIntegrationListResultItemCase3
-  | DlpEntriesIntegrationListResultItemCase4
-  | DlpEntriesIntegrationListResultItemCase5
-  | DlpEntriesIntegrationListResultItemCase6;
-export const DlpEntriesIntegrationListResultItem = /*@__PURE__*/ S.Unknown.pipe(
-  T.UnionCases([
-    [
-      "id",
-      "createdAt",
-      "enabled",
-      "name",
-      "pattern",
-      "type",
-      "updatedAt",
-      "description",
-      "profileId",
-      "uploadStatus",
-    ],
-    [
-      "id",
-      "createdAt",
-      "enabled",
-      "name",
-      "type",
-      "updatedAt",
-      "description",
-      "uploadStatus",
-    ],
-    [
-      "id",
-      "confidence",
-      "enabled",
-      "name",
-      "type",
-      "profileId",
-      "uploadStatus",
-      "variant",
-    ],
-    [
-      "id",
-      "createdAt",
-      "enabled",
-      "name",
-      "type",
-      "updatedAt",
-      "profileId",
-      "uploadStatus",
-    ],
-    [
-      "id",
-      "caseSensitive",
-      "createdAt",
-      "enabled",
-      "name",
-      "secret",
-      "type",
-      "updatedAt",
-      "description",
-      "uploadStatus",
-    ],
-    [
-      "id",
-      "createdAt",
-      "enabled",
-      "name",
-      "type",
-      "updatedAt",
-      "description",
-      "uploadStatus",
-    ],
-    [
-      "id",
-      "createdAt",
-      "enabled",
-      "name",
-      "type",
-      "updatedAt",
-      "wordList",
-      "profileId",
-      "uploadStatus",
-    ],
-  ]),
-);
-
-export type DlpEntriesIntegrationListResultList =
-  Array<DlpEntriesIntegrationListResultItem>;
-export const DlpEntriesIntegrationListResultList = /*@__PURE__*/ S.Array(
-  DlpEntriesIntegrationListResultItem,
-) as any as S.Schema<DlpEntriesIntegrationListResultList>;
-
-export interface DlpEntriesIntegrationListResponse {
-  /** The unwrapped `result` payload of the v4 response envelope. */
-  result: DlpEntriesIntegrationListResultList;
-  /** Pagination info from the envelope's `result_info`. */
-  resultInfo?: ResultInfo | null;
-}
-export const DlpEntriesIntegrationListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    result: DlpEntriesIntegrationListResultList.pipe(T.EnvelopePayload()),
-    resultInfo: S.optional(S.NullOr(ResultInfo).pipe(T.ResultInfo())),
-  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "DlpEntriesIntegrationListResponse",
-}) as any as S.Schema<DlpEntriesIntegrationListResponse>;
-
-export interface DlpEntriesPredefinedGetRequest {
-  accountId: string;
-  entryId: string;
-}
-export const DlpEntriesPredefinedGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountId: S.String.pipe(T.Label("account_id")),
-    entryId: S.String.pipe(T.Label("entry_id")),
-  })
-    .pipe(
-      T.Http({
-        method: "GET",
-        uri: "/accounts/{account_id}/dlp/entries/{entry_id}",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "DlpEntriesPredefinedGetRequest",
-}) as any as S.Schema<DlpEntriesPredefinedGetRequest>;
-
-export type DlpEntriesPredefinedGetResultCase0PatternValidation = "luhn";
-export const DlpEntriesPredefinedGetResultCase0PatternValidation =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesPredefinedGetResultCase0Pattern {
-  regex: string;
-  validation?: DlpEntriesPredefinedGetResultCase0PatternValidation | null;
-}
-export const DlpEntriesPredefinedGetResultCase0Pattern =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      regex: S.String,
-      validation: S.optional(
-        S.NullOr(DlpEntriesPredefinedGetResultCase0PatternValidation),
-      ),
-    }),
-  ).annotate({
-    identifier: "DlpEntriesPredefinedGetResultCase0Pattern",
-  }) as any as S.Schema<DlpEntriesPredefinedGetResultCase0Pattern>;
-
-export type DlpEntriesPredefinedGetResultCase0Type = "custom";
-export const DlpEntriesPredefinedGetResultCase0Type = /*@__PURE__*/ S.String;
-
-export type DlpEntriesPredefinedGetResultCase0ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
-export const DlpEntriesPredefinedGetResultCase0ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
-
-export type DlpEntriesPredefinedGetResultCase0ProfilesList =
-  Array<DlpEntriesCustomGetResultCase0ProfilesItem>;
-export const DlpEntriesPredefinedGetResultCase0ProfilesList =
-  /*@__PURE__*/ S.Array(
-    DlpEntriesCustomGetResultCase0ProfilesItem,
-  ) as any as S.Schema<DlpEntriesPredefinedGetResultCase0ProfilesList>;
-
-export type DlpEntriesPredefinedGetResultCase0UploadStatus =
-  | "empty"
-  | "uploading"
-  | "pending"
-  | "processing"
-  | "failed"
-  | "complete";
-export const DlpEntriesPredefinedGetResultCase0UploadStatus =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesPredefinedGetResultCase0 {
-  id: string;
-  createdAt: string;
-  enabled: boolean;
-  name: string;
-  pattern: DlpEntriesPredefinedGetResultCase0Pattern;
-  type: DlpEntriesPredefinedGetResultCase0Type;
-  updatedAt: string;
-  description?: string | null;
-  profileId?: string | null;
-  profiles?: DlpEntriesPredefinedGetResultCase0ProfilesList | null;
-  uploadStatus?: DlpEntriesPredefinedGetResultCase0UploadStatus | null;
-}
-export const DlpEntriesPredefinedGetResultCase0 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    createdAt: S.String.pipe(T.Body("created_at")),
-    enabled: S.Boolean,
-    name: S.String,
-    pattern: DlpEntriesPredefinedGetResultCase0Pattern,
-    type: DlpEntriesPredefinedGetResultCase0Type,
-    updatedAt: S.String.pipe(T.Body("updated_at")),
-    description: S.optional(S.NullOr(S.String)),
-    profileId: S.optional(S.NullOr(S.String).pipe(T.Body("profile_id"))),
-    profiles: S.optional(
-      S.NullOr(DlpEntriesPredefinedGetResultCase0ProfilesList),
-    ),
-    uploadStatus: S.optional(
-      S.NullOr(DlpEntriesPredefinedGetResultCase0UploadStatus).pipe(
-        T.Body("upload_status"),
-      ),
-    ),
-  }),
-).annotate({
-  identifier: "DlpEntriesPredefinedGetResultCase0",
-}) as any as S.Schema<DlpEntriesPredefinedGetResultCase0>;
-
-export type DlpEntriesPredefinedGetResultCase1Type = "custom_prompt_topic";
-export const DlpEntriesPredefinedGetResultCase1Type = /*@__PURE__*/ S.String;
-
-export type DlpEntriesPredefinedGetResultCase1ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
-export const DlpEntriesPredefinedGetResultCase1ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
-
-export type DlpEntriesPredefinedGetResultCase1ProfilesList =
-  Array<DlpEntriesCustomGetResultCase0ProfilesItem>;
-export const DlpEntriesPredefinedGetResultCase1ProfilesList =
-  /*@__PURE__*/ S.Array(
-    DlpEntriesCustomGetResultCase0ProfilesItem,
-  ) as any as S.Schema<DlpEntriesPredefinedGetResultCase1ProfilesList>;
-
-export type DlpEntriesPredefinedGetResultCase1UploadStatus =
-  | "empty"
-  | "uploading"
-  | "pending"
-  | "processing"
-  | "failed"
-  | "complete";
-export const DlpEntriesPredefinedGetResultCase1UploadStatus =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesPredefinedGetResultCase1 {
-  id: string;
-  createdAt: string;
-  enabled: boolean;
-  name: string;
-  type: DlpEntriesPredefinedGetResultCase1Type;
-  updatedAt: string;
-  /** The optional description of the custom prompt topic entry. */
-  description?: string | null;
-  profiles?: DlpEntriesPredefinedGetResultCase1ProfilesList | null;
-  uploadStatus?: DlpEntriesPredefinedGetResultCase1UploadStatus | null;
-}
-export const DlpEntriesPredefinedGetResultCase1 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    createdAt: S.String.pipe(T.Body("created_at")),
-    enabled: S.Boolean,
-    name: S.String,
-    type: DlpEntriesPredefinedGetResultCase1Type,
-    updatedAt: S.String.pipe(T.Body("updated_at")),
-    description: S.optional(S.NullOr(S.String)),
-    profiles: S.optional(
-      S.NullOr(DlpEntriesPredefinedGetResultCase1ProfilesList),
-    ),
-    uploadStatus: S.optional(
-      S.NullOr(DlpEntriesPredefinedGetResultCase1UploadStatus).pipe(
-        T.Body("upload_status"),
-      ),
-    ),
-  }),
-).annotate({
-  identifier: "DlpEntriesPredefinedGetResultCase1",
-}) as any as S.Schema<DlpEntriesPredefinedGetResultCase1>;
-
-export type DlpEntriesPredefinedGetResultCase2Confidence =
-  DlpEntriesPredefinedCreateResponseConfidence;
-export const DlpEntriesPredefinedGetResultCase2Confidence =
-  DlpEntriesPredefinedCreateResponseConfidence;
-
-export type DlpEntriesPredefinedGetResultCase2Type = "predefined";
-export const DlpEntriesPredefinedGetResultCase2Type = /*@__PURE__*/ S.String;
-
-export type DlpEntriesPredefinedGetResultCase2ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
-export const DlpEntriesPredefinedGetResultCase2ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
-
-export type DlpEntriesPredefinedGetResultCase2ProfilesList =
-  Array<DlpEntriesCustomGetResultCase0ProfilesItem>;
-export const DlpEntriesPredefinedGetResultCase2ProfilesList =
-  /*@__PURE__*/ S.Array(
-    DlpEntriesCustomGetResultCase0ProfilesItem,
-  ) as any as S.Schema<DlpEntriesPredefinedGetResultCase2ProfilesList>;
-
-export type DlpEntriesPredefinedGetResultCase2UploadStatus =
-  | "empty"
-  | "uploading"
-  | "pending"
-  | "processing"
-  | "failed"
-  | "complete";
-export const DlpEntriesPredefinedGetResultCase2UploadStatus =
-  /*@__PURE__*/ S.String;
-
-export type DlpEntriesPredefinedGetResultCase2VariantCase0TopicType =
-  | "Intent"
-  | "Content";
-export const DlpEntriesPredefinedGetResultCase2VariantCase0TopicType =
-  /*@__PURE__*/ S.String;
-
-export type DlpEntriesPredefinedGetResultCase2VariantCase0Type = "PromptTopic";
-export const DlpEntriesPredefinedGetResultCase2VariantCase0Type =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesPredefinedGetResultCase2VariantCase0 {
-  topicType: DlpEntriesPredefinedGetResultCase2VariantCase0TopicType;
-  type: DlpEntriesPredefinedGetResultCase2VariantCase0Type;
-  /** A customer-facing explanation of what this predefined AI prompt topic represents. */
-  description?: string | null;
-}
-export const DlpEntriesPredefinedGetResultCase2VariantCase0 =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      topicType: DlpEntriesPredefinedGetResultCase2VariantCase0TopicType.pipe(
-        T.Body("topic_type"),
-      ),
-      type: DlpEntriesPredefinedGetResultCase2VariantCase0Type,
-      description: S.optional(S.NullOr(S.String)),
-    }),
-  ).annotate({
-    identifier: "DlpEntriesPredefinedGetResultCase2VariantCase0",
-  }) as any as S.Schema<DlpEntriesPredefinedGetResultCase2VariantCase0>;
-
-export type DlpEntriesPredefinedGetResultCase2VariantCase1Type = "General";
-export const DlpEntriesPredefinedGetResultCase2VariantCase1Type =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesPredefinedGetResultCase2VariantCase1 {
-  type: DlpEntriesPredefinedGetResultCase2VariantCase1Type;
-  /** A customer-facing explanation of what this predefined entry represents. */
-  description?: string | null;
-}
-export const DlpEntriesPredefinedGetResultCase2VariantCase1 =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: DlpEntriesPredefinedGetResultCase2VariantCase1Type,
-      description: S.optional(S.NullOr(S.String)),
-    }),
-  ).annotate({
-    identifier: "DlpEntriesPredefinedGetResultCase2VariantCase1",
-  }) as any as S.Schema<DlpEntriesPredefinedGetResultCase2VariantCase1>;
-
-export type DlpEntriesPredefinedGetResultCase2Variant =
-  | DlpEntriesPredefinedGetResultCase2VariantCase0
-  | DlpEntriesPredefinedGetResultCase2VariantCase1;
-export const DlpEntriesPredefinedGetResultCase2Variant =
-  /*@__PURE__*/ S.Unknown.pipe(
-    T.UnionCases([
-      ["topicType", "type", "description"],
-      ["type", "description"],
-    ]),
-  );
-
-export interface DlpEntriesPredefinedGetResultCase2 {
-  id: string;
-  confidence: DlpEntriesPredefinedCreateResponseConfidence;
-  enabled: boolean;
-  name: string;
-  type: DlpEntriesPredefinedGetResultCase2Type;
-  profileId?: string | null;
-  profiles?: DlpEntriesPredefinedGetResultCase2ProfilesList | null;
-  uploadStatus?: DlpEntriesPredefinedGetResultCase2UploadStatus | null;
-  /** A Predefined AI prompt classification topic entry. */
-  variant?: DlpEntriesPredefinedGetResultCase2Variant | null;
-}
-export const DlpEntriesPredefinedGetResultCase2 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    confidence: DlpEntriesPredefinedCreateResponseConfidence,
-    enabled: S.Boolean,
-    name: S.String,
-    type: DlpEntriesPredefinedGetResultCase2Type,
-    profileId: S.optional(S.NullOr(S.String).pipe(T.Body("profile_id"))),
-    profiles: S.optional(
-      S.NullOr(DlpEntriesPredefinedGetResultCase2ProfilesList),
-    ),
-    uploadStatus: S.optional(
-      S.NullOr(DlpEntriesPredefinedGetResultCase2UploadStatus).pipe(
-        T.Body("upload_status"),
-      ),
-    ),
-    variant: S.optional(S.NullOr(DlpEntriesPredefinedGetResultCase2Variant)),
-  }),
-).annotate({
-  identifier: "DlpEntriesPredefinedGetResultCase2",
-}) as any as S.Schema<DlpEntriesPredefinedGetResultCase2>;
-
-export type DlpEntriesPredefinedGetResultCase3Type = "integration";
-export const DlpEntriesPredefinedGetResultCase3Type = /*@__PURE__*/ S.String;
-
-export type DlpEntriesPredefinedGetResultCase3ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
-export const DlpEntriesPredefinedGetResultCase3ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
-
-export type DlpEntriesPredefinedGetResultCase3ProfilesList =
-  Array<DlpEntriesCustomGetResultCase0ProfilesItem>;
-export const DlpEntriesPredefinedGetResultCase3ProfilesList =
-  /*@__PURE__*/ S.Array(
-    DlpEntriesCustomGetResultCase0ProfilesItem,
-  ) as any as S.Schema<DlpEntriesPredefinedGetResultCase3ProfilesList>;
-
-export type DlpEntriesPredefinedGetResultCase3UploadStatus =
-  | "empty"
-  | "uploading"
-  | "pending"
-  | "processing"
-  | "failed"
-  | "complete";
-export const DlpEntriesPredefinedGetResultCase3UploadStatus =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesPredefinedGetResultCase3 {
-  id: string;
-  createdAt: string;
-  enabled: boolean;
-  name: string;
-  type: DlpEntriesPredefinedGetResultCase3Type;
-  updatedAt: string;
-  profileId?: string | null;
-  profiles?: DlpEntriesPredefinedGetResultCase3ProfilesList | null;
-  uploadStatus?: DlpEntriesPredefinedGetResultCase3UploadStatus | null;
-}
-export const DlpEntriesPredefinedGetResultCase3 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    createdAt: S.String.pipe(T.Body("created_at")),
-    enabled: S.Boolean,
-    name: S.String,
-    type: DlpEntriesPredefinedGetResultCase3Type,
-    updatedAt: S.String.pipe(T.Body("updated_at")),
-    profileId: S.optional(S.NullOr(S.String).pipe(T.Body("profile_id"))),
-    profiles: S.optional(
-      S.NullOr(DlpEntriesPredefinedGetResultCase3ProfilesList),
-    ),
-    uploadStatus: S.optional(
-      S.NullOr(DlpEntriesPredefinedGetResultCase3UploadStatus).pipe(
-        T.Body("upload_status"),
-      ),
-    ),
-  }),
-).annotate({
-  identifier: "DlpEntriesPredefinedGetResultCase3",
-}) as any as S.Schema<DlpEntriesPredefinedGetResultCase3>;
-
-export type DlpEntriesPredefinedGetResultCase4Type = "exact_data";
-export const DlpEntriesPredefinedGetResultCase4Type = /*@__PURE__*/ S.String;
-
-export type DlpEntriesPredefinedGetResultCase4ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
-export const DlpEntriesPredefinedGetResultCase4ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
-
-export type DlpEntriesPredefinedGetResultCase4ProfilesList =
-  Array<DlpEntriesCustomGetResultCase0ProfilesItem>;
-export const DlpEntriesPredefinedGetResultCase4ProfilesList =
-  /*@__PURE__*/ S.Array(
-    DlpEntriesCustomGetResultCase0ProfilesItem,
-  ) as any as S.Schema<DlpEntriesPredefinedGetResultCase4ProfilesList>;
-
-export type DlpEntriesPredefinedGetResultCase4UploadStatus =
-  | "empty"
-  | "uploading"
-  | "pending"
-  | "processing"
-  | "failed"
-  | "complete";
-export const DlpEntriesPredefinedGetResultCase4UploadStatus =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesPredefinedGetResultCase4 {
-  id: string;
-  /** Only applies to custom word lists. */
-  caseSensitive: boolean;
-  createdAt: string;
-  enabled: boolean;
-  name: string;
-  secret: boolean;
-  type: DlpEntriesPredefinedGetResultCase4Type;
-  updatedAt: string;
-  /** The optional description of the exact data entry. */
-  description?: string | null;
-  profiles?: DlpEntriesPredefinedGetResultCase4ProfilesList | null;
-  uploadStatus?: DlpEntriesPredefinedGetResultCase4UploadStatus | null;
-}
-export const DlpEntriesPredefinedGetResultCase4 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    caseSensitive: S.Boolean.pipe(T.Body("case_sensitive")),
-    createdAt: S.String.pipe(T.Body("created_at")),
-    enabled: S.Boolean,
-    name: S.String,
-    secret: S.Boolean,
-    type: DlpEntriesPredefinedGetResultCase4Type,
-    updatedAt: S.String.pipe(T.Body("updated_at")),
-    description: S.optional(S.NullOr(S.String)),
-    profiles: S.optional(
-      S.NullOr(DlpEntriesPredefinedGetResultCase4ProfilesList),
-    ),
-    uploadStatus: S.optional(
-      S.NullOr(DlpEntriesPredefinedGetResultCase4UploadStatus).pipe(
-        T.Body("upload_status"),
-      ),
-    ),
-  }),
-).annotate({
-  identifier: "DlpEntriesPredefinedGetResultCase4",
-}) as any as S.Schema<DlpEntriesPredefinedGetResultCase4>;
-
-export type DlpEntriesPredefinedGetResultCase5Type = "document_fingerprint";
-export const DlpEntriesPredefinedGetResultCase5Type = /*@__PURE__*/ S.String;
-
-export type DlpEntriesPredefinedGetResultCase5ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
-export const DlpEntriesPredefinedGetResultCase5ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
-
-export type DlpEntriesPredefinedGetResultCase5ProfilesList =
-  Array<DlpEntriesCustomGetResultCase0ProfilesItem>;
-export const DlpEntriesPredefinedGetResultCase5ProfilesList =
-  /*@__PURE__*/ S.Array(
-    DlpEntriesCustomGetResultCase0ProfilesItem,
-  ) as any as S.Schema<DlpEntriesPredefinedGetResultCase5ProfilesList>;
-
-export type DlpEntriesPredefinedGetResultCase5UploadStatus =
-  | "empty"
-  | "uploading"
-  | "pending"
-  | "processing"
-  | "failed"
-  | "complete";
-export const DlpEntriesPredefinedGetResultCase5UploadStatus =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesPredefinedGetResultCase5 {
-  id: string;
-  createdAt: string;
-  enabled: boolean;
-  name: string;
-  type: DlpEntriesPredefinedGetResultCase5Type;
-  updatedAt: string;
-  /** The optional description of the document fingerprint entry. */
-  description?: string | null;
-  profiles?: DlpEntriesPredefinedGetResultCase5ProfilesList | null;
-  uploadStatus?: DlpEntriesPredefinedGetResultCase5UploadStatus | null;
-}
-export const DlpEntriesPredefinedGetResultCase5 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    createdAt: S.String.pipe(T.Body("created_at")),
-    enabled: S.Boolean,
-    name: S.String,
-    type: DlpEntriesPredefinedGetResultCase5Type,
-    updatedAt: S.String.pipe(T.Body("updated_at")),
-    description: S.optional(S.NullOr(S.String)),
-    profiles: S.optional(
-      S.NullOr(DlpEntriesPredefinedGetResultCase5ProfilesList),
-    ),
-    uploadStatus: S.optional(
-      S.NullOr(DlpEntriesPredefinedGetResultCase5UploadStatus).pipe(
-        T.Body("upload_status"),
-      ),
-    ),
-  }),
-).annotate({
-  identifier: "DlpEntriesPredefinedGetResultCase5",
-}) as any as S.Schema<DlpEntriesPredefinedGetResultCase5>;
-
-export type DlpEntriesPredefinedGetResultCase6Type = "word_list";
-export const DlpEntriesPredefinedGetResultCase6Type = /*@__PURE__*/ S.String;
-
-export type DlpEntriesPredefinedGetResultCase6ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
-export const DlpEntriesPredefinedGetResultCase6ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
-
-export type DlpEntriesPredefinedGetResultCase6ProfilesList =
-  Array<DlpEntriesCustomGetResultCase0ProfilesItem>;
-export const DlpEntriesPredefinedGetResultCase6ProfilesList =
-  /*@__PURE__*/ S.Array(
-    DlpEntriesCustomGetResultCase0ProfilesItem,
-  ) as any as S.Schema<DlpEntriesPredefinedGetResultCase6ProfilesList>;
-
-export type DlpEntriesPredefinedGetResultCase6UploadStatus =
-  | "empty"
-  | "uploading"
-  | "pending"
-  | "processing"
-  | "failed"
-  | "complete";
-export const DlpEntriesPredefinedGetResultCase6UploadStatus =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesPredefinedGetResultCase6 {
-  id: string;
-  createdAt: string;
-  enabled: boolean;
-  name: string;
-  type: DlpEntriesPredefinedGetResultCase6Type;
-  updatedAt: string;
-  wordList: unknown;
-  profileId?: string | null;
-  profiles?: DlpEntriesPredefinedGetResultCase6ProfilesList | null;
-  uploadStatus?: DlpEntriesPredefinedGetResultCase6UploadStatus | null;
-}
-export const DlpEntriesPredefinedGetResultCase6 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    createdAt: S.String.pipe(T.Body("created_at")),
-    enabled: S.Boolean,
-    name: S.String,
-    type: DlpEntriesPredefinedGetResultCase6Type,
-    updatedAt: S.String.pipe(T.Body("updated_at")),
-    wordList: S.Unknown.pipe(T.Body("word_list")),
-    profileId: S.optional(S.NullOr(S.String).pipe(T.Body("profile_id"))),
-    profiles: S.optional(
-      S.NullOr(DlpEntriesPredefinedGetResultCase6ProfilesList),
-    ),
-    uploadStatus: S.optional(
-      S.NullOr(DlpEntriesPredefinedGetResultCase6UploadStatus).pipe(
-        T.Body("upload_status"),
-      ),
-    ),
-  }),
-).annotate({
-  identifier: "DlpEntriesPredefinedGetResultCase6",
-}) as any as S.Schema<DlpEntriesPredefinedGetResultCase6>;
-
-export type DlpEntriesPredefinedGetResult =
-  | DlpEntriesPredefinedGetResultCase0
-  | DlpEntriesPredefinedGetResultCase1
-  | DlpEntriesPredefinedGetResultCase2
-  | DlpEntriesPredefinedGetResultCase3
-  | DlpEntriesPredefinedGetResultCase4
-  | DlpEntriesPredefinedGetResultCase5
-  | DlpEntriesPredefinedGetResultCase6;
-export const DlpEntriesPredefinedGetResult = /*@__PURE__*/ S.Unknown.pipe(
-  T.UnionCases([
-    [
-      "id",
-      "createdAt",
-      "enabled",
-      "name",
-      "pattern",
-      "type",
-      "updatedAt",
-      "description",
-      "profileId",
-      "profiles",
-      "uploadStatus",
-    ],
-    [
-      "id",
-      "createdAt",
-      "enabled",
-      "name",
-      "type",
-      "updatedAt",
-      "description",
-      "profiles",
-      "uploadStatus",
-    ],
-    [
-      "id",
-      "confidence",
-      "enabled",
-      "name",
-      "type",
-      "profileId",
-      "profiles",
-      "uploadStatus",
-      "variant",
-    ],
-    [
-      "id",
-      "createdAt",
-      "enabled",
-      "name",
-      "type",
-      "updatedAt",
-      "profileId",
-      "profiles",
-      "uploadStatus",
-    ],
-    [
-      "id",
-      "caseSensitive",
-      "createdAt",
-      "enabled",
-      "name",
-      "secret",
-      "type",
-      "updatedAt",
-      "description",
-      "profiles",
-      "uploadStatus",
-    ],
-    [
-      "id",
-      "createdAt",
-      "enabled",
-      "name",
-      "type",
-      "updatedAt",
-      "description",
-      "profiles",
-      "uploadStatus",
-    ],
-    [
-      "id",
-      "createdAt",
-      "enabled",
-      "name",
-      "type",
-      "updatedAt",
-      "wordList",
-      "profileId",
-      "profiles",
-      "uploadStatus",
-    ],
-  ]),
-);
-
-export type DlpEntriesPredefinedGetResponse = DlpEntriesPredefinedGetResult;
-export const DlpEntriesPredefinedGetResponse = /*@__PURE__*/ S.suspend(() =>
-  DlpEntriesPredefinedGetResult.pipe(
-    T.EnvelopePayloadRoot(),
-    T.KeyDictionary(KEY_DICTIONARY),
-  ),
-).annotate({
-  identifier: "DlpEntriesPredefinedGetResponse",
-}) as any as S.Schema<DlpEntriesPredefinedGetResponse>;
-
-export interface DlpEntriesPredefinedListRequest {
-  accountId: string;
-}
-export const DlpEntriesPredefinedListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountId: S.String.pipe(T.Label("account_id")),
-  })
-    .pipe(
-      T.Http({
-        method: "GET",
-        uri: "/accounts/{account_id}/dlp/entries",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "DlpEntriesPredefinedListRequest",
-}) as any as S.Schema<DlpEntriesPredefinedListRequest>;
-
-export type DlpEntriesPredefinedListResultItemCase0PatternValidation = "luhn";
-export const DlpEntriesPredefinedListResultItemCase0PatternValidation =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesPredefinedListResultItemCase0Pattern {
-  regex: string;
-  validation?: DlpEntriesPredefinedListResultItemCase0PatternValidation | null;
-}
-export const DlpEntriesPredefinedListResultItemCase0Pattern =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      regex: S.String,
-      validation: S.optional(
-        S.NullOr(DlpEntriesPredefinedListResultItemCase0PatternValidation),
-      ),
-    }),
-  ).annotate({
-    identifier: "DlpEntriesPredefinedListResultItemCase0Pattern",
-  }) as any as S.Schema<DlpEntriesPredefinedListResultItemCase0Pattern>;
-
-export type DlpEntriesPredefinedListResultItemCase0Type = "custom";
-export const DlpEntriesPredefinedListResultItemCase0Type =
-  /*@__PURE__*/ S.String;
-
-export type DlpEntriesPredefinedListResultItemCase0UploadStatus =
-  | "empty"
-  | "uploading"
-  | "pending"
-  | "processing"
-  | "failed"
-  | "complete";
-export const DlpEntriesPredefinedListResultItemCase0UploadStatus =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesPredefinedListResultItemCase0 {
-  id: string;
-  createdAt: string;
-  enabled: boolean;
-  name: string;
-  pattern: DlpEntriesPredefinedListResultItemCase0Pattern;
-  type: DlpEntriesPredefinedListResultItemCase0Type;
-  updatedAt: string;
-  description?: string | null;
-  profileId?: string | null;
-  uploadStatus?: DlpEntriesPredefinedListResultItemCase0UploadStatus | null;
-}
-export const DlpEntriesPredefinedListResultItemCase0 = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.String,
-      createdAt: S.String.pipe(T.Body("created_at")),
-      enabled: S.Boolean,
-      name: S.String,
-      pattern: DlpEntriesPredefinedListResultItemCase0Pattern,
-      type: DlpEntriesPredefinedListResultItemCase0Type,
-      updatedAt: S.String.pipe(T.Body("updated_at")),
-      description: S.optional(S.NullOr(S.String)),
-      profileId: S.optional(S.NullOr(S.String).pipe(T.Body("profile_id"))),
-      uploadStatus: S.optional(
-        S.NullOr(DlpEntriesPredefinedListResultItemCase0UploadStatus).pipe(
-          T.Body("upload_status"),
-        ),
-      ),
-    }),
-).annotate({
-  identifier: "DlpEntriesPredefinedListResultItemCase0",
-}) as any as S.Schema<DlpEntriesPredefinedListResultItemCase0>;
-
-export type DlpEntriesPredefinedListResultItemCase1Type = "custom_prompt_topic";
-export const DlpEntriesPredefinedListResultItemCase1Type =
-  /*@__PURE__*/ S.String;
-
-export type DlpEntriesPredefinedListResultItemCase1UploadStatus =
-  | "empty"
-  | "uploading"
-  | "pending"
-  | "processing"
-  | "failed"
-  | "complete";
-export const DlpEntriesPredefinedListResultItemCase1UploadStatus =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesPredefinedListResultItemCase1 {
-  id: string;
-  createdAt: string;
-  enabled: boolean;
-  name: string;
-  type: DlpEntriesPredefinedListResultItemCase1Type;
-  updatedAt: string;
-  /** The optional description of the custom prompt topic entry. */
-  description?: string | null;
-  uploadStatus?: DlpEntriesPredefinedListResultItemCase1UploadStatus | null;
-}
-export const DlpEntriesPredefinedListResultItemCase1 = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.String,
-      createdAt: S.String.pipe(T.Body("created_at")),
-      enabled: S.Boolean,
-      name: S.String,
-      type: DlpEntriesPredefinedListResultItemCase1Type,
-      updatedAt: S.String.pipe(T.Body("updated_at")),
-      description: S.optional(S.NullOr(S.String)),
-      uploadStatus: S.optional(
-        S.NullOr(DlpEntriesPredefinedListResultItemCase1UploadStatus).pipe(
-          T.Body("upload_status"),
-        ),
-      ),
-    }),
-).annotate({
-  identifier: "DlpEntriesPredefinedListResultItemCase1",
-}) as any as S.Schema<DlpEntriesPredefinedListResultItemCase1>;
-
-export type DlpEntriesPredefinedListResultItemCase2Confidence =
-  DlpEntriesPredefinedCreateResponseConfidence;
-export const DlpEntriesPredefinedListResultItemCase2Confidence =
-  DlpEntriesPredefinedCreateResponseConfidence;
-
-export type DlpEntriesPredefinedListResultItemCase2Type = "predefined";
-export const DlpEntriesPredefinedListResultItemCase2Type =
-  /*@__PURE__*/ S.String;
-
-export type DlpEntriesPredefinedListResultItemCase2UploadStatus =
-  | "empty"
-  | "uploading"
-  | "pending"
-  | "processing"
-  | "failed"
-  | "complete";
-export const DlpEntriesPredefinedListResultItemCase2UploadStatus =
-  /*@__PURE__*/ S.String;
-
-export type DlpEntriesPredefinedListResultItemCase2VariantCase0TopicType =
-  | "Intent"
-  | "Content";
-export const DlpEntriesPredefinedListResultItemCase2VariantCase0TopicType =
-  /*@__PURE__*/ S.String;
-
-export type DlpEntriesPredefinedListResultItemCase2VariantCase0Type =
-  "PromptTopic";
-export const DlpEntriesPredefinedListResultItemCase2VariantCase0Type =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesPredefinedListResultItemCase2VariantCase0 {
-  topicType: DlpEntriesPredefinedListResultItemCase2VariantCase0TopicType;
-  type: DlpEntriesPredefinedListResultItemCase2VariantCase0Type;
-  /** A customer-facing explanation of what this predefined AI prompt topic represents. */
-  description?: string | null;
-}
-export const DlpEntriesPredefinedListResultItemCase2VariantCase0 =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      topicType:
-        DlpEntriesPredefinedListResultItemCase2VariantCase0TopicType.pipe(
-          T.Body("topic_type"),
-        ),
-      type: DlpEntriesPredefinedListResultItemCase2VariantCase0Type,
-      description: S.optional(S.NullOr(S.String)),
-    }),
-  ).annotate({
-    identifier: "DlpEntriesPredefinedListResultItemCase2VariantCase0",
-  }) as any as S.Schema<DlpEntriesPredefinedListResultItemCase2VariantCase0>;
-
-export type DlpEntriesPredefinedListResultItemCase2VariantCase1Type = "General";
-export const DlpEntriesPredefinedListResultItemCase2VariantCase1Type =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesPredefinedListResultItemCase2VariantCase1 {
-  type: DlpEntriesPredefinedListResultItemCase2VariantCase1Type;
-  /** A customer-facing explanation of what this predefined entry represents. */
-  description?: string | null;
-}
-export const DlpEntriesPredefinedListResultItemCase2VariantCase1 =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: DlpEntriesPredefinedListResultItemCase2VariantCase1Type,
-      description: S.optional(S.NullOr(S.String)),
-    }),
-  ).annotate({
-    identifier: "DlpEntriesPredefinedListResultItemCase2VariantCase1",
-  }) as any as S.Schema<DlpEntriesPredefinedListResultItemCase2VariantCase1>;
-
-export type DlpEntriesPredefinedListResultItemCase2Variant =
-  | DlpEntriesPredefinedListResultItemCase2VariantCase0
-  | DlpEntriesPredefinedListResultItemCase2VariantCase1;
-export const DlpEntriesPredefinedListResultItemCase2Variant =
-  /*@__PURE__*/ S.Unknown.pipe(
-    T.UnionCases([
-      ["topicType", "type", "description"],
-      ["type", "description"],
-    ]),
-  );
-
-export interface DlpEntriesPredefinedListResultItemCase2 {
-  id: string;
-  confidence: DlpEntriesPredefinedCreateResponseConfidence;
-  enabled: boolean;
-  name: string;
-  type: DlpEntriesPredefinedListResultItemCase2Type;
-  profileId?: string | null;
-  uploadStatus?: DlpEntriesPredefinedListResultItemCase2UploadStatus | null;
-  /** A Predefined AI prompt classification topic entry. */
-  variant?: DlpEntriesPredefinedListResultItemCase2Variant | null;
-}
-export const DlpEntriesPredefinedListResultItemCase2 = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.String,
-      confidence: DlpEntriesPredefinedCreateResponseConfidence,
-      enabled: S.Boolean,
-      name: S.String,
-      type: DlpEntriesPredefinedListResultItemCase2Type,
-      profileId: S.optional(S.NullOr(S.String).pipe(T.Body("profile_id"))),
-      uploadStatus: S.optional(
-        S.NullOr(DlpEntriesPredefinedListResultItemCase2UploadStatus).pipe(
-          T.Body("upload_status"),
-        ),
-      ),
-      variant: S.optional(
-        S.NullOr(DlpEntriesPredefinedListResultItemCase2Variant),
-      ),
-    }),
-).annotate({
-  identifier: "DlpEntriesPredefinedListResultItemCase2",
-}) as any as S.Schema<DlpEntriesPredefinedListResultItemCase2>;
-
-export type DlpEntriesPredefinedListResultItemCase3Type = "integration";
-export const DlpEntriesPredefinedListResultItemCase3Type =
-  /*@__PURE__*/ S.String;
-
-export type DlpEntriesPredefinedListResultItemCase3UploadStatus =
-  | "empty"
-  | "uploading"
-  | "pending"
-  | "processing"
-  | "failed"
-  | "complete";
-export const DlpEntriesPredefinedListResultItemCase3UploadStatus =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesPredefinedListResultItemCase3 {
-  id: string;
-  createdAt: string;
-  enabled: boolean;
-  name: string;
-  type: DlpEntriesPredefinedListResultItemCase3Type;
-  updatedAt: string;
-  profileId?: string | null;
-  uploadStatus?: DlpEntriesPredefinedListResultItemCase3UploadStatus | null;
-}
-export const DlpEntriesPredefinedListResultItemCase3 = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.String,
-      createdAt: S.String.pipe(T.Body("created_at")),
-      enabled: S.Boolean,
-      name: S.String,
-      type: DlpEntriesPredefinedListResultItemCase3Type,
-      updatedAt: S.String.pipe(T.Body("updated_at")),
-      profileId: S.optional(S.NullOr(S.String).pipe(T.Body("profile_id"))),
-      uploadStatus: S.optional(
-        S.NullOr(DlpEntriesPredefinedListResultItemCase3UploadStatus).pipe(
-          T.Body("upload_status"),
-        ),
-      ),
-    }),
-).annotate({
-  identifier: "DlpEntriesPredefinedListResultItemCase3",
-}) as any as S.Schema<DlpEntriesPredefinedListResultItemCase3>;
-
-export type DlpEntriesPredefinedListResultItemCase4Type = "exact_data";
-export const DlpEntriesPredefinedListResultItemCase4Type =
-  /*@__PURE__*/ S.String;
-
-export type DlpEntriesPredefinedListResultItemCase4UploadStatus =
-  | "empty"
-  | "uploading"
-  | "pending"
-  | "processing"
-  | "failed"
-  | "complete";
-export const DlpEntriesPredefinedListResultItemCase4UploadStatus =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesPredefinedListResultItemCase4 {
-  id: string;
-  /** Only applies to custom word lists. */
-  caseSensitive: boolean;
-  createdAt: string;
-  enabled: boolean;
-  name: string;
-  secret: boolean;
-  type: DlpEntriesPredefinedListResultItemCase4Type;
-  updatedAt: string;
-  /** The optional description of the exact data entry. */
-  description?: string | null;
-  uploadStatus?: DlpEntriesPredefinedListResultItemCase4UploadStatus | null;
-}
-export const DlpEntriesPredefinedListResultItemCase4 = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.String,
-      caseSensitive: S.Boolean.pipe(T.Body("case_sensitive")),
-      createdAt: S.String.pipe(T.Body("created_at")),
-      enabled: S.Boolean,
-      name: S.String,
-      secret: S.Boolean,
-      type: DlpEntriesPredefinedListResultItemCase4Type,
-      updatedAt: S.String.pipe(T.Body("updated_at")),
-      description: S.optional(S.NullOr(S.String)),
-      uploadStatus: S.optional(
-        S.NullOr(DlpEntriesPredefinedListResultItemCase4UploadStatus).pipe(
-          T.Body("upload_status"),
-        ),
-      ),
-    }),
-).annotate({
-  identifier: "DlpEntriesPredefinedListResultItemCase4",
-}) as any as S.Schema<DlpEntriesPredefinedListResultItemCase4>;
-
-export type DlpEntriesPredefinedListResultItemCase5Type =
-  "document_fingerprint";
-export const DlpEntriesPredefinedListResultItemCase5Type =
-  /*@__PURE__*/ S.String;
-
-export type DlpEntriesPredefinedListResultItemCase5UploadStatus =
-  | "empty"
-  | "uploading"
-  | "pending"
-  | "processing"
-  | "failed"
-  | "complete";
-export const DlpEntriesPredefinedListResultItemCase5UploadStatus =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesPredefinedListResultItemCase5 {
-  id: string;
-  createdAt: string;
-  enabled: boolean;
-  name: string;
-  type: DlpEntriesPredefinedListResultItemCase5Type;
-  updatedAt: string;
-  /** The optional description of the document fingerprint entry. */
-  description?: string | null;
-  uploadStatus?: DlpEntriesPredefinedListResultItemCase5UploadStatus | null;
-}
-export const DlpEntriesPredefinedListResultItemCase5 = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.String,
-      createdAt: S.String.pipe(T.Body("created_at")),
-      enabled: S.Boolean,
-      name: S.String,
-      type: DlpEntriesPredefinedListResultItemCase5Type,
-      updatedAt: S.String.pipe(T.Body("updated_at")),
-      description: S.optional(S.NullOr(S.String)),
-      uploadStatus: S.optional(
-        S.NullOr(DlpEntriesPredefinedListResultItemCase5UploadStatus).pipe(
-          T.Body("upload_status"),
-        ),
-      ),
-    }),
-).annotate({
-  identifier: "DlpEntriesPredefinedListResultItemCase5",
-}) as any as S.Schema<DlpEntriesPredefinedListResultItemCase5>;
-
-export type DlpEntriesPredefinedListResultItemCase6Type = "word_list";
-export const DlpEntriesPredefinedListResultItemCase6Type =
-  /*@__PURE__*/ S.String;
-
-export type DlpEntriesPredefinedListResultItemCase6UploadStatus =
-  | "empty"
-  | "uploading"
-  | "pending"
-  | "processing"
-  | "failed"
-  | "complete";
-export const DlpEntriesPredefinedListResultItemCase6UploadStatus =
-  /*@__PURE__*/ S.String;
-
-export interface DlpEntriesPredefinedListResultItemCase6 {
-  id: string;
-  createdAt: string;
-  enabled: boolean;
-  name: string;
-  type: DlpEntriesPredefinedListResultItemCase6Type;
-  updatedAt: string;
-  wordList: unknown;
-  profileId?: string | null;
-  uploadStatus?: DlpEntriesPredefinedListResultItemCase6UploadStatus | null;
-}
-export const DlpEntriesPredefinedListResultItemCase6 = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.String,
-      createdAt: S.String.pipe(T.Body("created_at")),
-      enabled: S.Boolean,
-      name: S.String,
-      type: DlpEntriesPredefinedListResultItemCase6Type,
-      updatedAt: S.String.pipe(T.Body("updated_at")),
-      wordList: S.Unknown.pipe(T.Body("word_list")),
-      profileId: S.optional(S.NullOr(S.String).pipe(T.Body("profile_id"))),
-      uploadStatus: S.optional(
-        S.NullOr(DlpEntriesPredefinedListResultItemCase6UploadStatus).pipe(
-          T.Body("upload_status"),
-        ),
-      ),
-    }),
-).annotate({
-  identifier: "DlpEntriesPredefinedListResultItemCase6",
-}) as any as S.Schema<DlpEntriesPredefinedListResultItemCase6>;
-
-export type DlpEntriesPredefinedListResultItem =
-  | DlpEntriesPredefinedListResultItemCase0
-  | DlpEntriesPredefinedListResultItemCase1
-  | DlpEntriesPredefinedListResultItemCase2
-  | DlpEntriesPredefinedListResultItemCase3
-  | DlpEntriesPredefinedListResultItemCase4
-  | DlpEntriesPredefinedListResultItemCase5
-  | DlpEntriesPredefinedListResultItemCase6;
-export const DlpEntriesPredefinedListResultItem = /*@__PURE__*/ S.Unknown.pipe(
-  T.UnionCases([
-    [
-      "id",
-      "createdAt",
-      "enabled",
-      "name",
-      "pattern",
-      "type",
-      "updatedAt",
-      "description",
-      "profileId",
-      "uploadStatus",
-    ],
-    [
-      "id",
-      "createdAt",
-      "enabled",
-      "name",
-      "type",
-      "updatedAt",
-      "description",
-      "uploadStatus",
-    ],
-    [
-      "id",
-      "confidence",
-      "enabled",
-      "name",
-      "type",
-      "profileId",
-      "uploadStatus",
-      "variant",
-    ],
-    [
-      "id",
-      "createdAt",
-      "enabled",
-      "name",
-      "type",
-      "updatedAt",
-      "profileId",
-      "uploadStatus",
-    ],
-    [
-      "id",
-      "caseSensitive",
-      "createdAt",
-      "enabled",
-      "name",
-      "secret",
-      "type",
-      "updatedAt",
-      "description",
-      "uploadStatus",
-    ],
-    [
-      "id",
-      "createdAt",
-      "enabled",
-      "name",
-      "type",
-      "updatedAt",
-      "description",
-      "uploadStatus",
-    ],
-    [
-      "id",
-      "createdAt",
-      "enabled",
-      "name",
-      "type",
-      "updatedAt",
-      "wordList",
-      "profileId",
-      "uploadStatus",
-    ],
-  ]),
-);
-
-export type DlpEntriesPredefinedListResultList =
-  Array<DlpEntriesPredefinedListResultItem>;
-export const DlpEntriesPredefinedListResultList = /*@__PURE__*/ S.Array(
-  DlpEntriesPredefinedListResultItem,
-) as any as S.Schema<DlpEntriesPredefinedListResultList>;
-
-export interface DlpEntriesPredefinedListResponse {
-  /** The unwrapped `result` payload of the v4 response envelope. */
-  result: DlpEntriesPredefinedListResultList;
-  /** Pagination info from the envelope's `result_info`. */
-  resultInfo?: ResultInfo | null;
-}
-export const DlpEntriesPredefinedListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    result: DlpEntriesPredefinedListResultList.pipe(T.EnvelopePayload()),
-    resultInfo: S.optional(S.NullOr(ResultInfo).pipe(T.ResultInfo())),
-  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "DlpEntriesPredefinedListResponse",
-}) as any as S.Schema<DlpEntriesPredefinedListResponse>;
 
 export interface EditDlpDatasetUploadRequest {
   accountId: string;
@@ -73000,6 +68053,408 @@ export const GetAccessUserLastSeenIdentityResponse = /*@__PURE__*/ S.suspend(
   identifier: "GetAccessUserLastSeenIdentityResponse",
 }) as any as S.Schema<GetAccessUserLastSeenIdentityResponse>;
 
+export type GetCasbApplicationRequestSlug =
+  | "GITHUB"
+  | "GOOGLE_WORKSPACE"
+  | "MICROSOFT_INTERNAL"
+  | "SALESFORCE"
+  | "SLACK";
+export const GetCasbApplicationRequestSlug = /*@__PURE__*/ S.String;
+
+export interface GetCasbApplicationRequest {
+  accountId: string;
+  slug: GetCasbApplicationRequestSlug | (string & {});
+}
+export const GetCasbApplicationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountId: S.String.pipe(T.Label("account_id")),
+    slug: GetCasbApplicationRequestSlug.pipe(T.Label()),
+  })
+    .pipe(
+      T.Http({
+        method: "GET",
+        uri: "/accounts/{account_id}/one/applications/{slug}",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "GetCasbApplicationRequest",
+}) as any as S.Schema<GetCasbApplicationRequest>;
+
+export type GetCasbApplicationResponseAuthMethodsItemSupportedEnvironmentsList =
+  Array<string>;
+export const GetCasbApplicationResponseAuthMethodsItemSupportedEnvironmentsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<GetCasbApplicationResponseAuthMethodsItemSupportedEnvironmentsList>;
+
+export interface GetCasbApplicationResponseAuthMethodsItem {
+  /** Human-readable auth method name. */
+  displayName: string;
+  /** Whether this is the default auth method. */
+  isDefault: boolean;
+  /** Auth method identifier. */
+  slug: string;
+  /** Environments this auth method supports. */
+  supportedEnvironments: GetCasbApplicationResponseAuthMethodsItemSupportedEnvironmentsList;
+}
+export const GetCasbApplicationResponseAuthMethodsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      displayName: S.String.pipe(T.Body("display_name")),
+      isDefault: S.Boolean.pipe(T.Body("is_default")),
+      slug: S.String,
+      supportedEnvironments:
+        GetCasbApplicationResponseAuthMethodsItemSupportedEnvironmentsList.pipe(
+          T.Body("supported_environments"),
+        ),
+    }),
+  ).annotate({
+    identifier: "GetCasbApplicationResponseAuthMethodsItem",
+  }) as any as S.Schema<GetCasbApplicationResponseAuthMethodsItem>;
+
+export type GetCasbApplicationResponseAuthMethodsList =
+  Array<GetCasbApplicationResponseAuthMethodsItem>;
+export const GetCasbApplicationResponseAuthMethodsList = /*@__PURE__*/ S.Array(
+  GetCasbApplicationResponseAuthMethodsItem,
+) as any as S.Schema<GetCasbApplicationResponseAuthMethodsList>;
+
+export type GetCasbApplicationResponseSlug =
+  | "GITHUB"
+  | "GOOGLE_WORKSPACE"
+  | "MICROSOFT_INTERNAL"
+  | "SALESFORCE"
+  | "SLACK";
+export const GetCasbApplicationResponseSlug = /*@__PURE__*/ S.String;
+
+export type GetCasbApplicationResponseUseCasesItemBaseScopesItemSeverity =
+  | "low"
+  | "medium"
+  | "high"
+  | "critical";
+export const GetCasbApplicationResponseUseCasesItemBaseScopesItemSeverity =
+  /*@__PURE__*/ S.String;
+
+export interface GetCasbApplicationResponseUseCasesItemBaseScopesItem {
+  /** Human-readable permission name. */
+  displayName: string;
+  /** Vendor-native scope identifier. */
+  scope: string;
+  /** Permission sensitivity level. */
+  severity: GetCasbApplicationResponseUseCasesItemBaseScopesItemSeverity;
+}
+export const GetCasbApplicationResponseUseCasesItemBaseScopesItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      displayName: S.String.pipe(T.Body("display_name")),
+      scope: S.String,
+      severity: GetCasbApplicationResponseUseCasesItemBaseScopesItemSeverity,
+    }),
+  ).annotate({
+    identifier: "GetCasbApplicationResponseUseCasesItemBaseScopesItem",
+  }) as any as S.Schema<GetCasbApplicationResponseUseCasesItemBaseScopesItem>;
+
+export type GetCasbApplicationResponseUseCasesItemBaseScopesList =
+  Array<GetCasbApplicationResponseUseCasesItemBaseScopesItem>;
+export const GetCasbApplicationResponseUseCasesItemBaseScopesList =
+  /*@__PURE__*/ S.Array(
+    GetCasbApplicationResponseUseCasesItemBaseScopesItem,
+  ) as any as S.Schema<GetCasbApplicationResponseUseCasesItemBaseScopesList>;
+
+export type GetCasbApplicationResponseUseCasesItemFeaturesItemScopesItemSeverity =
+  | "low"
+  | "medium"
+  | "high"
+  | "critical";
+export const GetCasbApplicationResponseUseCasesItemFeaturesItemScopesItemSeverity =
+  /*@__PURE__*/ S.String;
+
+export interface GetCasbApplicationResponseUseCasesItemFeaturesItemScopesItem {
+  /** Human-readable permission name. */
+  displayName: string;
+  /** Vendor-native scope identifier. */
+  scope: string;
+  /** Permission sensitivity level. */
+  severity: GetCasbApplicationResponseUseCasesItemFeaturesItemScopesItemSeverity;
+}
+export const GetCasbApplicationResponseUseCasesItemFeaturesItemScopesItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      displayName: S.String.pipe(T.Body("display_name")),
+      scope: S.String,
+      severity:
+        GetCasbApplicationResponseUseCasesItemFeaturesItemScopesItemSeverity,
+    }),
+  ).annotate({
+    identifier: "GetCasbApplicationResponseUseCasesItemFeaturesItemScopesItem",
+  }) as any as S.Schema<GetCasbApplicationResponseUseCasesItemFeaturesItemScopesItem>;
+
+export type GetCasbApplicationResponseUseCasesItemFeaturesItemScopesList =
+  Array<GetCasbApplicationResponseUseCasesItemFeaturesItemScopesItem>;
+export const GetCasbApplicationResponseUseCasesItemFeaturesItemScopesList =
+  /*@__PURE__*/ S.Array(
+    GetCasbApplicationResponseUseCasesItemFeaturesItemScopesItem,
+  ) as any as S.Schema<GetCasbApplicationResponseUseCasesItemFeaturesItemScopesList>;
+
+export interface GetCasbApplicationResponseUseCasesItemFeaturesItem {
+  /** Feature description. */
+  description: string;
+  /** Human-readable feature name. */
+  displayName: string;
+  /** Additional scopes when feature is enabled. */
+  scopes: GetCasbApplicationResponseUseCasesItemFeaturesItemScopesList;
+  /** Feature identifier. */
+  slug: string;
+}
+export const GetCasbApplicationResponseUseCasesItemFeaturesItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      description: S.String,
+      displayName: S.String.pipe(T.Body("display_name")),
+      scopes: GetCasbApplicationResponseUseCasesItemFeaturesItemScopesList,
+      slug: S.String,
+    }),
+  ).annotate({
+    identifier: "GetCasbApplicationResponseUseCasesItemFeaturesItem",
+  }) as any as S.Schema<GetCasbApplicationResponseUseCasesItemFeaturesItem>;
+
+export type GetCasbApplicationResponseUseCasesItemFeaturesList =
+  Array<GetCasbApplicationResponseUseCasesItemFeaturesItem>;
+export const GetCasbApplicationResponseUseCasesItemFeaturesList =
+  /*@__PURE__*/ S.Array(
+    GetCasbApplicationResponseUseCasesItemFeaturesItem,
+  ) as any as S.Schema<GetCasbApplicationResponseUseCasesItemFeaturesList>;
+
+export interface GetCasbApplicationResponseUseCasesItem {
+  /** Scopes always required for this use case. */
+  baseScopes: GetCasbApplicationResponseUseCasesItemBaseScopesList;
+  /** Use case description. */
+  description: string;
+  /** Human-readable use case name. */
+  displayName: string;
+  /** Optional features with extra scopes. */
+  features: GetCasbApplicationResponseUseCasesItemFeaturesList;
+  /** Use case identifier. */
+  slug: string;
+}
+export const GetCasbApplicationResponseUseCasesItem = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      baseScopes: GetCasbApplicationResponseUseCasesItemBaseScopesList.pipe(
+        T.Body("base_scopes"),
+      ),
+      description: S.String,
+      displayName: S.String.pipe(T.Body("display_name")),
+      features: GetCasbApplicationResponseUseCasesItemFeaturesList,
+      slug: S.String,
+    }),
+).annotate({
+  identifier: "GetCasbApplicationResponseUseCasesItem",
+}) as any as S.Schema<GetCasbApplicationResponseUseCasesItem>;
+
+export type GetCasbApplicationResponseUseCasesList =
+  Array<GetCasbApplicationResponseUseCasesItem>;
+export const GetCasbApplicationResponseUseCasesList = /*@__PURE__*/ S.Array(
+  GetCasbApplicationResponseUseCasesItem,
+) as any as S.Schema<GetCasbApplicationResponseUseCasesList>;
+
+/** Raw response payload (operation does not use the standard v4 result envelope). */
+export interface GetCasbApplicationResponse {
+  /** Available authentication methods. */
+  authMethods: GetCasbApplicationResponseAuthMethodsList;
+  /** Vendor category. */
+  category: string;
+  /** Brief description. */
+  description: string;
+  /** Human-readable vendor name. */
+  displayName: string;
+  /** Whether DLP scanning is supported. */
+  dlpEnabled: boolean;
+  /** Setup instructions for the user. */
+  instructions: string;
+  /** Logo path. */
+  logo: string;
+  /** Vendor identifier. */
+  slug: GetCasbApplicationResponseSlug;
+  /** Use cases with full scope details. */
+  useCases: GetCasbApplicationResponseUseCasesList;
+}
+export const GetCasbApplicationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    authMethods: GetCasbApplicationResponseAuthMethodsList.pipe(
+      T.Body("auth_methods"),
+    ),
+    category: S.String,
+    description: S.String,
+    displayName: S.String.pipe(T.Body("display_name")),
+    dlpEnabled: S.Boolean.pipe(T.Body("dlp_enabled")),
+    instructions: S.String,
+    logo: S.String,
+    slug: GetCasbApplicationResponseSlug,
+    useCases: GetCasbApplicationResponseUseCasesList.pipe(T.Body("use_cases")),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "GetCasbApplicationResponse",
+}) as any as S.Schema<GetCasbApplicationResponse>;
+
+export interface GetCasbIntegrationRequest {
+  accountId: string;
+  id: string;
+}
+export const GetCasbIntegrationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountId: S.String.pipe(T.Label("account_id")),
+    id: S.String.pipe(T.Label()),
+  })
+    .pipe(
+      T.Http({
+        method: "GET",
+        uri: "/accounts/{account_id}/one/integrations/{id}",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "GetCasbIntegrationRequest",
+}) as any as S.Schema<GetCasbIntegrationRequest>;
+
+export type GetCasbIntegrationResponseApplicationMap = {
+  [key: string]: string | undefined;
+};
+export const GetCasbIntegrationResponseApplicationMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetCasbIntegrationResponseApplicationMap>;
+
+export type GetCasbIntegrationResponseAuthMethodMap = {
+  [key: string]: string | undefined;
+};
+export const GetCasbIntegrationResponseAuthMethodMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetCasbIntegrationResponseAuthMethodMap>;
+
+export type GetCasbIntegrationResponseAuthorizationLinkComponentsMap = {
+  [key: string]: unknown | undefined;
+};
+export const GetCasbIntegrationResponseAuthorizationLinkComponentsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Unknown,
+  ) as any as S.Schema<GetCasbIntegrationResponseAuthorizationLinkComponentsMap>;
+
+export interface GetCasbIntegrationResponseAuthorizationLink {
+  components: GetCasbIntegrationResponseAuthorizationLinkComponentsMap;
+  link: string;
+}
+export const GetCasbIntegrationResponseAuthorizationLink =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      components: GetCasbIntegrationResponseAuthorizationLinkComponentsMap,
+      link: S.String,
+    }),
+  ).annotate({
+    identifier: "GetCasbIntegrationResponseAuthorizationLink",
+  }) as any as S.Schema<GetCasbIntegrationResponseAuthorizationLink>;
+
+export type GetCasbIntegrationResponseDlpProfilesList = Array<string>;
+export const GetCasbIntegrationResponseDlpProfilesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<GetCasbIntegrationResponseDlpProfilesList>;
+
+export type GetCasbIntegrationResponseHealthDetailsItemMap = {
+  [key: string]: unknown | undefined;
+};
+export const GetCasbIntegrationResponseHealthDetailsItemMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Unknown,
+  ) as any as S.Schema<GetCasbIntegrationResponseHealthDetailsItemMap>;
+
+export type GetCasbIntegrationResponseHealthDetailsList =
+  Array<GetCasbIntegrationResponseHealthDetailsItemMap>;
+export const GetCasbIntegrationResponseHealthDetailsList =
+  /*@__PURE__*/ S.Array(
+    GetCasbIntegrationResponseHealthDetailsItemMap,
+  ) as any as S.Schema<GetCasbIntegrationResponseHealthDetailsList>;
+
+export type GetCasbIntegrationResponseUseCasesItemMap = {
+  [key: string]: unknown | undefined;
+};
+export const GetCasbIntegrationResponseUseCasesItemMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<GetCasbIntegrationResponseUseCasesItemMap>;
+
+export type GetCasbIntegrationResponseUseCasesList =
+  Array<GetCasbIntegrationResponseUseCasesItemMap>;
+export const GetCasbIntegrationResponseUseCasesList = /*@__PURE__*/ S.Array(
+  GetCasbIntegrationResponseUseCasesItemMap,
+) as any as S.Schema<GetCasbIntegrationResponseUseCasesList>;
+
+/** Raw response payload (operation does not use the standard v4 result envelope). */
+export interface GetCasbIntegrationResponse {
+  /** Integration ID. */
+  id: string;
+  application: GetCasbIntegrationResponseApplicationMap;
+  /** The integration's authentication method. */
+  authMethod: GetCasbIntegrationResponseAuthMethodMap;
+  /** Authorization link for the integration. */
+  authorizationLink: GetCasbIntegrationResponseAuthorizationLink;
+  /** When the integration was created. */
+  created: string;
+  /** Credentials expiry time. */
+  credentialsExpiry: string;
+  /** DLP Profiles enabled for the integration. */
+  dlpProfiles: GetCasbIntegrationResponseDlpProfilesList;
+  /** Health details with remediation hints. */
+  healthDetails: GetCasbIntegrationResponseHealthDetailsList;
+  /** Whether the user paused the integration. */
+  isPaused: boolean;
+  /** Last time the integration was hydrated. */
+  lastHydrated: string;
+  /** Name of the integration. */
+  name: string;
+  /** Organization ID. */
+  organizationId: number;
+  /** Integration status. */
+  status: string;
+  /** When the integration was last updated. */
+  updated: string;
+  /** Use cases enabled for the integration. */
+  useCases: GetCasbIntegrationResponseUseCasesList;
+}
+export const GetCasbIntegrationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    application: GetCasbIntegrationResponseApplicationMap,
+    authMethod: GetCasbIntegrationResponseAuthMethodMap.pipe(
+      T.Body("auth_method"),
+    ),
+    authorizationLink: GetCasbIntegrationResponseAuthorizationLink.pipe(
+      T.Body("authorization_link"),
+    ),
+    created: S.String,
+    credentialsExpiry: S.String.pipe(T.Body("credentials_expiry")),
+    dlpProfiles: GetCasbIntegrationResponseDlpProfilesList.pipe(
+      T.Body("dlp_profiles"),
+    ),
+    healthDetails: GetCasbIntegrationResponseHealthDetailsList.pipe(
+      T.Body("health_details"),
+    ),
+    isPaused: S.Boolean.pipe(T.Body("is_paused")),
+    lastHydrated: S.String.pipe(T.Body("last_hydrated")),
+    name: S.String,
+    organizationId: S.Number.pipe(T.Body("organization_id")),
+    status: S.String,
+    updated: S.String,
+    useCases: GetCasbIntegrationResponseUseCasesList.pipe(T.Body("use_cases")),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "GetCasbIntegrationResponse",
+}) as any as S.Schema<GetCasbIntegrationResponse>;
+
 export interface GetConnectivitySettingRequest {
   /** Cloudflare account ID */
   accountId: string;
@@ -77688,6 +73143,616 @@ export const GetDexWarpChangeEventResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetDexWarpChangeEventResponse",
 }) as any as S.Schema<GetDexWarpChangeEventResponse>;
 
+export interface GetDlpCustomEntryRequest {
+  accountId: string;
+  entryId: string;
+}
+export const GetDlpCustomEntryRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountId: S.String.pipe(T.Label("account_id")),
+    entryId: S.String.pipe(T.Label("entry_id")),
+  })
+    .pipe(
+      T.Http({
+        method: "GET",
+        uri: "/accounts/{account_id}/dlp/entries/{entry_id}",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "GetDlpCustomEntryRequest",
+}) as any as S.Schema<GetDlpCustomEntryRequest>;
+
+export type GetDlpCustomEntryResultCase0PatternValidation = "luhn";
+export const GetDlpCustomEntryResultCase0PatternValidation =
+  /*@__PURE__*/ S.String;
+
+export interface GetDlpCustomEntryResultCase0Pattern {
+  regex: string;
+  validation?: GetDlpCustomEntryResultCase0PatternValidation | null;
+}
+export const GetDlpCustomEntryResultCase0Pattern = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    regex: S.String,
+    validation: S.optional(
+      S.NullOr(GetDlpCustomEntryResultCase0PatternValidation),
+    ),
+  }),
+).annotate({
+  identifier: "GetDlpCustomEntryResultCase0Pattern",
+}) as any as S.Schema<GetDlpCustomEntryResultCase0Pattern>;
+
+export type GetDlpCustomEntryResultCase0Type = "custom";
+export const GetDlpCustomEntryResultCase0Type = /*@__PURE__*/ S.String;
+
+export interface GetDlpCustomEntryResultCase0ProfilesItem {
+  id: string;
+  name: string;
+}
+export const GetDlpCustomEntryResultCase0ProfilesItem = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.String,
+      name: S.String,
+    }),
+).annotate({
+  identifier: "GetDlpCustomEntryResultCase0ProfilesItem",
+}) as any as S.Schema<GetDlpCustomEntryResultCase0ProfilesItem>;
+
+export type GetDlpCustomEntryResultCase0ProfilesList =
+  Array<GetDlpCustomEntryResultCase0ProfilesItem>;
+export const GetDlpCustomEntryResultCase0ProfilesList = /*@__PURE__*/ S.Array(
+  GetDlpCustomEntryResultCase0ProfilesItem,
+) as any as S.Schema<GetDlpCustomEntryResultCase0ProfilesList>;
+
+export type GetDlpCustomEntryResultCase0UploadStatus =
+  | "empty"
+  | "uploading"
+  | "pending"
+  | "processing"
+  | "failed"
+  | "complete";
+export const GetDlpCustomEntryResultCase0UploadStatus = /*@__PURE__*/ S.String;
+
+export interface GetDlpCustomEntryResultCase0 {
+  id: string;
+  createdAt: string;
+  enabled: boolean;
+  name: string;
+  pattern: GetDlpCustomEntryResultCase0Pattern;
+  type: GetDlpCustomEntryResultCase0Type;
+  updatedAt: string;
+  description?: string | null;
+  profileId?: string | null;
+  profiles?: GetDlpCustomEntryResultCase0ProfilesList | null;
+  uploadStatus?: GetDlpCustomEntryResultCase0UploadStatus | null;
+}
+export const GetDlpCustomEntryResultCase0 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    createdAt: S.String.pipe(T.Body("created_at")),
+    enabled: S.Boolean,
+    name: S.String,
+    pattern: GetDlpCustomEntryResultCase0Pattern,
+    type: GetDlpCustomEntryResultCase0Type,
+    updatedAt: S.String.pipe(T.Body("updated_at")),
+    description: S.optional(S.NullOr(S.String)),
+    profileId: S.optional(S.NullOr(S.String).pipe(T.Body("profile_id"))),
+    profiles: S.optional(S.NullOr(GetDlpCustomEntryResultCase0ProfilesList)),
+    uploadStatus: S.optional(
+      S.NullOr(GetDlpCustomEntryResultCase0UploadStatus).pipe(
+        T.Body("upload_status"),
+      ),
+    ),
+  }),
+).annotate({
+  identifier: "GetDlpCustomEntryResultCase0",
+}) as any as S.Schema<GetDlpCustomEntryResultCase0>;
+
+export type GetDlpCustomEntryResultCase1Type = "custom_prompt_topic";
+export const GetDlpCustomEntryResultCase1Type = /*@__PURE__*/ S.String;
+
+export type GetDlpCustomEntryResultCase1ProfilesItem =
+  GetDlpCustomEntryResultCase0ProfilesItem;
+export const GetDlpCustomEntryResultCase1ProfilesItem =
+  GetDlpCustomEntryResultCase0ProfilesItem;
+
+export type GetDlpCustomEntryResultCase1ProfilesList =
+  Array<GetDlpCustomEntryResultCase0ProfilesItem>;
+export const GetDlpCustomEntryResultCase1ProfilesList = /*@__PURE__*/ S.Array(
+  GetDlpCustomEntryResultCase0ProfilesItem,
+) as any as S.Schema<GetDlpCustomEntryResultCase1ProfilesList>;
+
+export type GetDlpCustomEntryResultCase1UploadStatus =
+  | "empty"
+  | "uploading"
+  | "pending"
+  | "processing"
+  | "failed"
+  | "complete";
+export const GetDlpCustomEntryResultCase1UploadStatus = /*@__PURE__*/ S.String;
+
+export interface GetDlpCustomEntryResultCase1 {
+  id: string;
+  createdAt: string;
+  enabled: boolean;
+  name: string;
+  type: GetDlpCustomEntryResultCase1Type;
+  updatedAt: string;
+  /** The optional description of the custom prompt topic entry. */
+  description?: string | null;
+  profiles?: GetDlpCustomEntryResultCase1ProfilesList | null;
+  uploadStatus?: GetDlpCustomEntryResultCase1UploadStatus | null;
+}
+export const GetDlpCustomEntryResultCase1 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    createdAt: S.String.pipe(T.Body("created_at")),
+    enabled: S.Boolean,
+    name: S.String,
+    type: GetDlpCustomEntryResultCase1Type,
+    updatedAt: S.String.pipe(T.Body("updated_at")),
+    description: S.optional(S.NullOr(S.String)),
+    profiles: S.optional(S.NullOr(GetDlpCustomEntryResultCase1ProfilesList)),
+    uploadStatus: S.optional(
+      S.NullOr(GetDlpCustomEntryResultCase1UploadStatus).pipe(
+        T.Body("upload_status"),
+      ),
+    ),
+  }),
+).annotate({
+  identifier: "GetDlpCustomEntryResultCase1",
+}) as any as S.Schema<GetDlpCustomEntryResultCase1>;
+
+export type GetDlpCustomEntryResultCase2Confidence =
+  DlpEntriesPredefinedCreateResponseConfidence;
+export const GetDlpCustomEntryResultCase2Confidence =
+  DlpEntriesPredefinedCreateResponseConfidence;
+
+export type GetDlpCustomEntryResultCase2Type = "predefined";
+export const GetDlpCustomEntryResultCase2Type = /*@__PURE__*/ S.String;
+
+export type GetDlpCustomEntryResultCase2ProfilesItem =
+  GetDlpCustomEntryResultCase0ProfilesItem;
+export const GetDlpCustomEntryResultCase2ProfilesItem =
+  GetDlpCustomEntryResultCase0ProfilesItem;
+
+export type GetDlpCustomEntryResultCase2ProfilesList =
+  Array<GetDlpCustomEntryResultCase0ProfilesItem>;
+export const GetDlpCustomEntryResultCase2ProfilesList = /*@__PURE__*/ S.Array(
+  GetDlpCustomEntryResultCase0ProfilesItem,
+) as any as S.Schema<GetDlpCustomEntryResultCase2ProfilesList>;
+
+export type GetDlpCustomEntryResultCase2UploadStatus =
+  | "empty"
+  | "uploading"
+  | "pending"
+  | "processing"
+  | "failed"
+  | "complete";
+export const GetDlpCustomEntryResultCase2UploadStatus = /*@__PURE__*/ S.String;
+
+export type GetDlpCustomEntryResultCase2VariantCase0TopicType =
+  | "Intent"
+  | "Content";
+export const GetDlpCustomEntryResultCase2VariantCase0TopicType =
+  /*@__PURE__*/ S.String;
+
+export type GetDlpCustomEntryResultCase2VariantCase0Type = "PromptTopic";
+export const GetDlpCustomEntryResultCase2VariantCase0Type =
+  /*@__PURE__*/ S.String;
+
+export interface GetDlpCustomEntryResultCase2VariantCase0 {
+  topicType: GetDlpCustomEntryResultCase2VariantCase0TopicType;
+  type: GetDlpCustomEntryResultCase2VariantCase0Type;
+  /** A customer-facing explanation of what this predefined AI prompt topic represents. */
+  description?: string | null;
+}
+export const GetDlpCustomEntryResultCase2VariantCase0 = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      topicType: GetDlpCustomEntryResultCase2VariantCase0TopicType.pipe(
+        T.Body("topic_type"),
+      ),
+      type: GetDlpCustomEntryResultCase2VariantCase0Type,
+      description: S.optional(S.NullOr(S.String)),
+    }),
+).annotate({
+  identifier: "GetDlpCustomEntryResultCase2VariantCase0",
+}) as any as S.Schema<GetDlpCustomEntryResultCase2VariantCase0>;
+
+export type GetDlpCustomEntryResultCase2VariantCase1Type = "General";
+export const GetDlpCustomEntryResultCase2VariantCase1Type =
+  /*@__PURE__*/ S.String;
+
+export interface GetDlpCustomEntryResultCase2VariantCase1 {
+  type: GetDlpCustomEntryResultCase2VariantCase1Type;
+  /** A customer-facing explanation of what this predefined entry represents. */
+  description?: string | null;
+}
+export const GetDlpCustomEntryResultCase2VariantCase1 = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      type: GetDlpCustomEntryResultCase2VariantCase1Type,
+      description: S.optional(S.NullOr(S.String)),
+    }),
+).annotate({
+  identifier: "GetDlpCustomEntryResultCase2VariantCase1",
+}) as any as S.Schema<GetDlpCustomEntryResultCase2VariantCase1>;
+
+export type GetDlpCustomEntryResultCase2Variant =
+  | GetDlpCustomEntryResultCase2VariantCase0
+  | GetDlpCustomEntryResultCase2VariantCase1;
+export const GetDlpCustomEntryResultCase2Variant = /*@__PURE__*/ S.Unknown.pipe(
+  T.UnionCases([
+    ["topicType", "type", "description"],
+    ["type", "description"],
+  ]),
+);
+
+export interface GetDlpCustomEntryResultCase2 {
+  id: string;
+  confidence: DlpEntriesPredefinedCreateResponseConfidence;
+  enabled: boolean;
+  name: string;
+  type: GetDlpCustomEntryResultCase2Type;
+  profileId?: string | null;
+  profiles?: GetDlpCustomEntryResultCase2ProfilesList | null;
+  uploadStatus?: GetDlpCustomEntryResultCase2UploadStatus | null;
+  /** A Predefined AI prompt classification topic entry. */
+  variant?: GetDlpCustomEntryResultCase2Variant | null;
+}
+export const GetDlpCustomEntryResultCase2 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    confidence: DlpEntriesPredefinedCreateResponseConfidence,
+    enabled: S.Boolean,
+    name: S.String,
+    type: GetDlpCustomEntryResultCase2Type,
+    profileId: S.optional(S.NullOr(S.String).pipe(T.Body("profile_id"))),
+    profiles: S.optional(S.NullOr(GetDlpCustomEntryResultCase2ProfilesList)),
+    uploadStatus: S.optional(
+      S.NullOr(GetDlpCustomEntryResultCase2UploadStatus).pipe(
+        T.Body("upload_status"),
+      ),
+    ),
+    variant: S.optional(S.NullOr(GetDlpCustomEntryResultCase2Variant)),
+  }),
+).annotate({
+  identifier: "GetDlpCustomEntryResultCase2",
+}) as any as S.Schema<GetDlpCustomEntryResultCase2>;
+
+export type GetDlpCustomEntryResultCase3Type = "integration";
+export const GetDlpCustomEntryResultCase3Type = /*@__PURE__*/ S.String;
+
+export type GetDlpCustomEntryResultCase3ProfilesItem =
+  GetDlpCustomEntryResultCase0ProfilesItem;
+export const GetDlpCustomEntryResultCase3ProfilesItem =
+  GetDlpCustomEntryResultCase0ProfilesItem;
+
+export type GetDlpCustomEntryResultCase3ProfilesList =
+  Array<GetDlpCustomEntryResultCase0ProfilesItem>;
+export const GetDlpCustomEntryResultCase3ProfilesList = /*@__PURE__*/ S.Array(
+  GetDlpCustomEntryResultCase0ProfilesItem,
+) as any as S.Schema<GetDlpCustomEntryResultCase3ProfilesList>;
+
+export type GetDlpCustomEntryResultCase3UploadStatus =
+  | "empty"
+  | "uploading"
+  | "pending"
+  | "processing"
+  | "failed"
+  | "complete";
+export const GetDlpCustomEntryResultCase3UploadStatus = /*@__PURE__*/ S.String;
+
+export interface GetDlpCustomEntryResultCase3 {
+  id: string;
+  createdAt: string;
+  enabled: boolean;
+  name: string;
+  type: GetDlpCustomEntryResultCase3Type;
+  updatedAt: string;
+  profileId?: string | null;
+  profiles?: GetDlpCustomEntryResultCase3ProfilesList | null;
+  uploadStatus?: GetDlpCustomEntryResultCase3UploadStatus | null;
+}
+export const GetDlpCustomEntryResultCase3 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    createdAt: S.String.pipe(T.Body("created_at")),
+    enabled: S.Boolean,
+    name: S.String,
+    type: GetDlpCustomEntryResultCase3Type,
+    updatedAt: S.String.pipe(T.Body("updated_at")),
+    profileId: S.optional(S.NullOr(S.String).pipe(T.Body("profile_id"))),
+    profiles: S.optional(S.NullOr(GetDlpCustomEntryResultCase3ProfilesList)),
+    uploadStatus: S.optional(
+      S.NullOr(GetDlpCustomEntryResultCase3UploadStatus).pipe(
+        T.Body("upload_status"),
+      ),
+    ),
+  }),
+).annotate({
+  identifier: "GetDlpCustomEntryResultCase3",
+}) as any as S.Schema<GetDlpCustomEntryResultCase3>;
+
+export type GetDlpCustomEntryResultCase4Type = "exact_data";
+export const GetDlpCustomEntryResultCase4Type = /*@__PURE__*/ S.String;
+
+export type GetDlpCustomEntryResultCase4ProfilesItem =
+  GetDlpCustomEntryResultCase0ProfilesItem;
+export const GetDlpCustomEntryResultCase4ProfilesItem =
+  GetDlpCustomEntryResultCase0ProfilesItem;
+
+export type GetDlpCustomEntryResultCase4ProfilesList =
+  Array<GetDlpCustomEntryResultCase0ProfilesItem>;
+export const GetDlpCustomEntryResultCase4ProfilesList = /*@__PURE__*/ S.Array(
+  GetDlpCustomEntryResultCase0ProfilesItem,
+) as any as S.Schema<GetDlpCustomEntryResultCase4ProfilesList>;
+
+export type GetDlpCustomEntryResultCase4UploadStatus =
+  | "empty"
+  | "uploading"
+  | "pending"
+  | "processing"
+  | "failed"
+  | "complete";
+export const GetDlpCustomEntryResultCase4UploadStatus = /*@__PURE__*/ S.String;
+
+export interface GetDlpCustomEntryResultCase4 {
+  id: string;
+  /** Only applies to custom word lists. */
+  caseSensitive: boolean;
+  createdAt: string;
+  enabled: boolean;
+  name: string;
+  secret: boolean;
+  type: GetDlpCustomEntryResultCase4Type;
+  updatedAt: string;
+  /** The optional description of the exact data entry. */
+  description?: string | null;
+  profiles?: GetDlpCustomEntryResultCase4ProfilesList | null;
+  uploadStatus?: GetDlpCustomEntryResultCase4UploadStatus | null;
+}
+export const GetDlpCustomEntryResultCase4 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    caseSensitive: S.Boolean.pipe(T.Body("case_sensitive")),
+    createdAt: S.String.pipe(T.Body("created_at")),
+    enabled: S.Boolean,
+    name: S.String,
+    secret: S.Boolean,
+    type: GetDlpCustomEntryResultCase4Type,
+    updatedAt: S.String.pipe(T.Body("updated_at")),
+    description: S.optional(S.NullOr(S.String)),
+    profiles: S.optional(S.NullOr(GetDlpCustomEntryResultCase4ProfilesList)),
+    uploadStatus: S.optional(
+      S.NullOr(GetDlpCustomEntryResultCase4UploadStatus).pipe(
+        T.Body("upload_status"),
+      ),
+    ),
+  }),
+).annotate({
+  identifier: "GetDlpCustomEntryResultCase4",
+}) as any as S.Schema<GetDlpCustomEntryResultCase4>;
+
+export type GetDlpCustomEntryResultCase5Type = "document_fingerprint";
+export const GetDlpCustomEntryResultCase5Type = /*@__PURE__*/ S.String;
+
+export type GetDlpCustomEntryResultCase5ProfilesItem =
+  GetDlpCustomEntryResultCase0ProfilesItem;
+export const GetDlpCustomEntryResultCase5ProfilesItem =
+  GetDlpCustomEntryResultCase0ProfilesItem;
+
+export type GetDlpCustomEntryResultCase5ProfilesList =
+  Array<GetDlpCustomEntryResultCase0ProfilesItem>;
+export const GetDlpCustomEntryResultCase5ProfilesList = /*@__PURE__*/ S.Array(
+  GetDlpCustomEntryResultCase0ProfilesItem,
+) as any as S.Schema<GetDlpCustomEntryResultCase5ProfilesList>;
+
+export type GetDlpCustomEntryResultCase5UploadStatus =
+  | "empty"
+  | "uploading"
+  | "pending"
+  | "processing"
+  | "failed"
+  | "complete";
+export const GetDlpCustomEntryResultCase5UploadStatus = /*@__PURE__*/ S.String;
+
+export interface GetDlpCustomEntryResultCase5 {
+  id: string;
+  createdAt: string;
+  enabled: boolean;
+  name: string;
+  type: GetDlpCustomEntryResultCase5Type;
+  updatedAt: string;
+  /** The optional description of the document fingerprint entry. */
+  description?: string | null;
+  profiles?: GetDlpCustomEntryResultCase5ProfilesList | null;
+  uploadStatus?: GetDlpCustomEntryResultCase5UploadStatus | null;
+}
+export const GetDlpCustomEntryResultCase5 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    createdAt: S.String.pipe(T.Body("created_at")),
+    enabled: S.Boolean,
+    name: S.String,
+    type: GetDlpCustomEntryResultCase5Type,
+    updatedAt: S.String.pipe(T.Body("updated_at")),
+    description: S.optional(S.NullOr(S.String)),
+    profiles: S.optional(S.NullOr(GetDlpCustomEntryResultCase5ProfilesList)),
+    uploadStatus: S.optional(
+      S.NullOr(GetDlpCustomEntryResultCase5UploadStatus).pipe(
+        T.Body("upload_status"),
+      ),
+    ),
+  }),
+).annotate({
+  identifier: "GetDlpCustomEntryResultCase5",
+}) as any as S.Schema<GetDlpCustomEntryResultCase5>;
+
+export type GetDlpCustomEntryResultCase6Type = "word_list";
+export const GetDlpCustomEntryResultCase6Type = /*@__PURE__*/ S.String;
+
+export type GetDlpCustomEntryResultCase6ProfilesItem =
+  GetDlpCustomEntryResultCase0ProfilesItem;
+export const GetDlpCustomEntryResultCase6ProfilesItem =
+  GetDlpCustomEntryResultCase0ProfilesItem;
+
+export type GetDlpCustomEntryResultCase6ProfilesList =
+  Array<GetDlpCustomEntryResultCase0ProfilesItem>;
+export const GetDlpCustomEntryResultCase6ProfilesList = /*@__PURE__*/ S.Array(
+  GetDlpCustomEntryResultCase0ProfilesItem,
+) as any as S.Schema<GetDlpCustomEntryResultCase6ProfilesList>;
+
+export type GetDlpCustomEntryResultCase6UploadStatus =
+  | "empty"
+  | "uploading"
+  | "pending"
+  | "processing"
+  | "failed"
+  | "complete";
+export const GetDlpCustomEntryResultCase6UploadStatus = /*@__PURE__*/ S.String;
+
+export interface GetDlpCustomEntryResultCase6 {
+  id: string;
+  createdAt: string;
+  enabled: boolean;
+  name: string;
+  type: GetDlpCustomEntryResultCase6Type;
+  updatedAt: string;
+  wordList: unknown;
+  profileId?: string | null;
+  profiles?: GetDlpCustomEntryResultCase6ProfilesList | null;
+  uploadStatus?: GetDlpCustomEntryResultCase6UploadStatus | null;
+}
+export const GetDlpCustomEntryResultCase6 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    createdAt: S.String.pipe(T.Body("created_at")),
+    enabled: S.Boolean,
+    name: S.String,
+    type: GetDlpCustomEntryResultCase6Type,
+    updatedAt: S.String.pipe(T.Body("updated_at")),
+    wordList: S.Unknown.pipe(T.Body("word_list")),
+    profileId: S.optional(S.NullOr(S.String).pipe(T.Body("profile_id"))),
+    profiles: S.optional(S.NullOr(GetDlpCustomEntryResultCase6ProfilesList)),
+    uploadStatus: S.optional(
+      S.NullOr(GetDlpCustomEntryResultCase6UploadStatus).pipe(
+        T.Body("upload_status"),
+      ),
+    ),
+  }),
+).annotate({
+  identifier: "GetDlpCustomEntryResultCase6",
+}) as any as S.Schema<GetDlpCustomEntryResultCase6>;
+
+export type GetDlpCustomEntryResult =
+  | GetDlpCustomEntryResultCase0
+  | GetDlpCustomEntryResultCase1
+  | GetDlpCustomEntryResultCase2
+  | GetDlpCustomEntryResultCase3
+  | GetDlpCustomEntryResultCase4
+  | GetDlpCustomEntryResultCase5
+  | GetDlpCustomEntryResultCase6;
+export const GetDlpCustomEntryResult = /*@__PURE__*/ S.Unknown.pipe(
+  T.UnionCases([
+    [
+      "id",
+      "createdAt",
+      "enabled",
+      "name",
+      "pattern",
+      "type",
+      "updatedAt",
+      "description",
+      "profileId",
+      "profiles",
+      "uploadStatus",
+    ],
+    [
+      "id",
+      "createdAt",
+      "enabled",
+      "name",
+      "type",
+      "updatedAt",
+      "description",
+      "profiles",
+      "uploadStatus",
+    ],
+    [
+      "id",
+      "confidence",
+      "enabled",
+      "name",
+      "type",
+      "profileId",
+      "profiles",
+      "uploadStatus",
+      "variant",
+    ],
+    [
+      "id",
+      "createdAt",
+      "enabled",
+      "name",
+      "type",
+      "updatedAt",
+      "profileId",
+      "profiles",
+      "uploadStatus",
+    ],
+    [
+      "id",
+      "caseSensitive",
+      "createdAt",
+      "enabled",
+      "name",
+      "secret",
+      "type",
+      "updatedAt",
+      "description",
+      "profiles",
+      "uploadStatus",
+    ],
+    [
+      "id",
+      "createdAt",
+      "enabled",
+      "name",
+      "type",
+      "updatedAt",
+      "description",
+      "profiles",
+      "uploadStatus",
+    ],
+    [
+      "id",
+      "createdAt",
+      "enabled",
+      "name",
+      "type",
+      "updatedAt",
+      "wordList",
+      "profileId",
+      "profiles",
+      "uploadStatus",
+    ],
+  ]),
+);
+
+export type GetDlpCustomEntryResponse = GetDlpCustomEntryResult;
+export const GetDlpCustomEntryResponse = /*@__PURE__*/ S.suspend(() =>
+  GetDlpCustomEntryResult.pipe(
+    T.EnvelopePayloadRoot(),
+    T.KeyDictionary(KEY_DICTIONARY),
+  ),
+).annotate({
+  identifier: "GetDlpCustomEntryResponse",
+}) as any as S.Schema<GetDlpCustomEntryResponse>;
+
 export interface GetDlpCustomPromptTopicRequest {
   accountId: string;
   entryId: string;
@@ -78238,6 +74303,1268 @@ export const GetDlpEmailRuleResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetDlpEmailRuleResponse",
 }) as any as S.Schema<GetDlpEmailRuleResponse>;
 
+export interface GetDlpEntriesIntegrationRequest {
+  accountId: string;
+  entryId: string;
+}
+export const GetDlpEntriesIntegrationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountId: S.String.pipe(T.Label("account_id")),
+    entryId: S.String.pipe(T.Label("entry_id")),
+  })
+    .pipe(
+      T.Http({
+        method: "GET",
+        uri: "/accounts/{account_id}/dlp/entries/{entry_id}",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "GetDlpEntriesIntegrationRequest",
+}) as any as S.Schema<GetDlpEntriesIntegrationRequest>;
+
+export type GetDlpEntriesIntegrationResultCase0PatternValidation = "luhn";
+export const GetDlpEntriesIntegrationResultCase0PatternValidation =
+  /*@__PURE__*/ S.String;
+
+export interface GetDlpEntriesIntegrationResultCase0Pattern {
+  regex: string;
+  validation?: GetDlpEntriesIntegrationResultCase0PatternValidation | null;
+}
+export const GetDlpEntriesIntegrationResultCase0Pattern =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      regex: S.String,
+      validation: S.optional(
+        S.NullOr(GetDlpEntriesIntegrationResultCase0PatternValidation),
+      ),
+    }),
+  ).annotate({
+    identifier: "GetDlpEntriesIntegrationResultCase0Pattern",
+  }) as any as S.Schema<GetDlpEntriesIntegrationResultCase0Pattern>;
+
+export type GetDlpEntriesIntegrationResultCase0Type = "custom";
+export const GetDlpEntriesIntegrationResultCase0Type = /*@__PURE__*/ S.String;
+
+export type GetDlpEntriesIntegrationResultCase0ProfilesItem =
+  GetDlpCustomEntryResultCase0ProfilesItem;
+export const GetDlpEntriesIntegrationResultCase0ProfilesItem =
+  GetDlpCustomEntryResultCase0ProfilesItem;
+
+export type GetDlpEntriesIntegrationResultCase0ProfilesList =
+  Array<GetDlpCustomEntryResultCase0ProfilesItem>;
+export const GetDlpEntriesIntegrationResultCase0ProfilesList =
+  /*@__PURE__*/ S.Array(
+    GetDlpCustomEntryResultCase0ProfilesItem,
+  ) as any as S.Schema<GetDlpEntriesIntegrationResultCase0ProfilesList>;
+
+export type GetDlpEntriesIntegrationResultCase0UploadStatus =
+  | "empty"
+  | "uploading"
+  | "pending"
+  | "processing"
+  | "failed"
+  | "complete";
+export const GetDlpEntriesIntegrationResultCase0UploadStatus =
+  /*@__PURE__*/ S.String;
+
+export interface GetDlpEntriesIntegrationResultCase0 {
+  id: string;
+  createdAt: string;
+  enabled: boolean;
+  name: string;
+  pattern: GetDlpEntriesIntegrationResultCase0Pattern;
+  type: GetDlpEntriesIntegrationResultCase0Type;
+  updatedAt: string;
+  description?: string | null;
+  profileId?: string | null;
+  profiles?: GetDlpEntriesIntegrationResultCase0ProfilesList | null;
+  uploadStatus?: GetDlpEntriesIntegrationResultCase0UploadStatus | null;
+}
+export const GetDlpEntriesIntegrationResultCase0 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    createdAt: S.String.pipe(T.Body("created_at")),
+    enabled: S.Boolean,
+    name: S.String,
+    pattern: GetDlpEntriesIntegrationResultCase0Pattern,
+    type: GetDlpEntriesIntegrationResultCase0Type,
+    updatedAt: S.String.pipe(T.Body("updated_at")),
+    description: S.optional(S.NullOr(S.String)),
+    profileId: S.optional(S.NullOr(S.String).pipe(T.Body("profile_id"))),
+    profiles: S.optional(
+      S.NullOr(GetDlpEntriesIntegrationResultCase0ProfilesList),
+    ),
+    uploadStatus: S.optional(
+      S.NullOr(GetDlpEntriesIntegrationResultCase0UploadStatus).pipe(
+        T.Body("upload_status"),
+      ),
+    ),
+  }),
+).annotate({
+  identifier: "GetDlpEntriesIntegrationResultCase0",
+}) as any as S.Schema<GetDlpEntriesIntegrationResultCase0>;
+
+export type GetDlpEntriesIntegrationResultCase1Type = "custom_prompt_topic";
+export const GetDlpEntriesIntegrationResultCase1Type = /*@__PURE__*/ S.String;
+
+export type GetDlpEntriesIntegrationResultCase1ProfilesItem =
+  GetDlpCustomEntryResultCase0ProfilesItem;
+export const GetDlpEntriesIntegrationResultCase1ProfilesItem =
+  GetDlpCustomEntryResultCase0ProfilesItem;
+
+export type GetDlpEntriesIntegrationResultCase1ProfilesList =
+  Array<GetDlpCustomEntryResultCase0ProfilesItem>;
+export const GetDlpEntriesIntegrationResultCase1ProfilesList =
+  /*@__PURE__*/ S.Array(
+    GetDlpCustomEntryResultCase0ProfilesItem,
+  ) as any as S.Schema<GetDlpEntriesIntegrationResultCase1ProfilesList>;
+
+export type GetDlpEntriesIntegrationResultCase1UploadStatus =
+  | "empty"
+  | "uploading"
+  | "pending"
+  | "processing"
+  | "failed"
+  | "complete";
+export const GetDlpEntriesIntegrationResultCase1UploadStatus =
+  /*@__PURE__*/ S.String;
+
+export interface GetDlpEntriesIntegrationResultCase1 {
+  id: string;
+  createdAt: string;
+  enabled: boolean;
+  name: string;
+  type: GetDlpEntriesIntegrationResultCase1Type;
+  updatedAt: string;
+  /** The optional description of the custom prompt topic entry. */
+  description?: string | null;
+  profiles?: GetDlpEntriesIntegrationResultCase1ProfilesList | null;
+  uploadStatus?: GetDlpEntriesIntegrationResultCase1UploadStatus | null;
+}
+export const GetDlpEntriesIntegrationResultCase1 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    createdAt: S.String.pipe(T.Body("created_at")),
+    enabled: S.Boolean,
+    name: S.String,
+    type: GetDlpEntriesIntegrationResultCase1Type,
+    updatedAt: S.String.pipe(T.Body("updated_at")),
+    description: S.optional(S.NullOr(S.String)),
+    profiles: S.optional(
+      S.NullOr(GetDlpEntriesIntegrationResultCase1ProfilesList),
+    ),
+    uploadStatus: S.optional(
+      S.NullOr(GetDlpEntriesIntegrationResultCase1UploadStatus).pipe(
+        T.Body("upload_status"),
+      ),
+    ),
+  }),
+).annotate({
+  identifier: "GetDlpEntriesIntegrationResultCase1",
+}) as any as S.Schema<GetDlpEntriesIntegrationResultCase1>;
+
+export type GetDlpEntriesIntegrationResultCase2Confidence =
+  DlpEntriesPredefinedCreateResponseConfidence;
+export const GetDlpEntriesIntegrationResultCase2Confidence =
+  DlpEntriesPredefinedCreateResponseConfidence;
+
+export type GetDlpEntriesIntegrationResultCase2Type = "predefined";
+export const GetDlpEntriesIntegrationResultCase2Type = /*@__PURE__*/ S.String;
+
+export type GetDlpEntriesIntegrationResultCase2ProfilesItem =
+  GetDlpCustomEntryResultCase0ProfilesItem;
+export const GetDlpEntriesIntegrationResultCase2ProfilesItem =
+  GetDlpCustomEntryResultCase0ProfilesItem;
+
+export type GetDlpEntriesIntegrationResultCase2ProfilesList =
+  Array<GetDlpCustomEntryResultCase0ProfilesItem>;
+export const GetDlpEntriesIntegrationResultCase2ProfilesList =
+  /*@__PURE__*/ S.Array(
+    GetDlpCustomEntryResultCase0ProfilesItem,
+  ) as any as S.Schema<GetDlpEntriesIntegrationResultCase2ProfilesList>;
+
+export type GetDlpEntriesIntegrationResultCase2UploadStatus =
+  | "empty"
+  | "uploading"
+  | "pending"
+  | "processing"
+  | "failed"
+  | "complete";
+export const GetDlpEntriesIntegrationResultCase2UploadStatus =
+  /*@__PURE__*/ S.String;
+
+export type GetDlpEntriesIntegrationResultCase2VariantCase0TopicType =
+  | "Intent"
+  | "Content";
+export const GetDlpEntriesIntegrationResultCase2VariantCase0TopicType =
+  /*@__PURE__*/ S.String;
+
+export type GetDlpEntriesIntegrationResultCase2VariantCase0Type = "PromptTopic";
+export const GetDlpEntriesIntegrationResultCase2VariantCase0Type =
+  /*@__PURE__*/ S.String;
+
+export interface GetDlpEntriesIntegrationResultCase2VariantCase0 {
+  topicType: GetDlpEntriesIntegrationResultCase2VariantCase0TopicType;
+  type: GetDlpEntriesIntegrationResultCase2VariantCase0Type;
+  /** A customer-facing explanation of what this predefined AI prompt topic represents. */
+  description?: string | null;
+}
+export const GetDlpEntriesIntegrationResultCase2VariantCase0 =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      topicType: GetDlpEntriesIntegrationResultCase2VariantCase0TopicType.pipe(
+        T.Body("topic_type"),
+      ),
+      type: GetDlpEntriesIntegrationResultCase2VariantCase0Type,
+      description: S.optional(S.NullOr(S.String)),
+    }),
+  ).annotate({
+    identifier: "GetDlpEntriesIntegrationResultCase2VariantCase0",
+  }) as any as S.Schema<GetDlpEntriesIntegrationResultCase2VariantCase0>;
+
+export type GetDlpEntriesIntegrationResultCase2VariantCase1Type = "General";
+export const GetDlpEntriesIntegrationResultCase2VariantCase1Type =
+  /*@__PURE__*/ S.String;
+
+export interface GetDlpEntriesIntegrationResultCase2VariantCase1 {
+  type: GetDlpEntriesIntegrationResultCase2VariantCase1Type;
+  /** A customer-facing explanation of what this predefined entry represents. */
+  description?: string | null;
+}
+export const GetDlpEntriesIntegrationResultCase2VariantCase1 =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: GetDlpEntriesIntegrationResultCase2VariantCase1Type,
+      description: S.optional(S.NullOr(S.String)),
+    }),
+  ).annotate({
+    identifier: "GetDlpEntriesIntegrationResultCase2VariantCase1",
+  }) as any as S.Schema<GetDlpEntriesIntegrationResultCase2VariantCase1>;
+
+export type GetDlpEntriesIntegrationResultCase2Variant =
+  | GetDlpEntriesIntegrationResultCase2VariantCase0
+  | GetDlpEntriesIntegrationResultCase2VariantCase1;
+export const GetDlpEntriesIntegrationResultCase2Variant =
+  /*@__PURE__*/ S.Unknown.pipe(
+    T.UnionCases([
+      ["topicType", "type", "description"],
+      ["type", "description"],
+    ]),
+  );
+
+export interface GetDlpEntriesIntegrationResultCase2 {
+  id: string;
+  confidence: DlpEntriesPredefinedCreateResponseConfidence;
+  enabled: boolean;
+  name: string;
+  type: GetDlpEntriesIntegrationResultCase2Type;
+  profileId?: string | null;
+  profiles?: GetDlpEntriesIntegrationResultCase2ProfilesList | null;
+  uploadStatus?: GetDlpEntriesIntegrationResultCase2UploadStatus | null;
+  /** A Predefined AI prompt classification topic entry. */
+  variant?: GetDlpEntriesIntegrationResultCase2Variant | null;
+}
+export const GetDlpEntriesIntegrationResultCase2 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    confidence: DlpEntriesPredefinedCreateResponseConfidence,
+    enabled: S.Boolean,
+    name: S.String,
+    type: GetDlpEntriesIntegrationResultCase2Type,
+    profileId: S.optional(S.NullOr(S.String).pipe(T.Body("profile_id"))),
+    profiles: S.optional(
+      S.NullOr(GetDlpEntriesIntegrationResultCase2ProfilesList),
+    ),
+    uploadStatus: S.optional(
+      S.NullOr(GetDlpEntriesIntegrationResultCase2UploadStatus).pipe(
+        T.Body("upload_status"),
+      ),
+    ),
+    variant: S.optional(S.NullOr(GetDlpEntriesIntegrationResultCase2Variant)),
+  }),
+).annotate({
+  identifier: "GetDlpEntriesIntegrationResultCase2",
+}) as any as S.Schema<GetDlpEntriesIntegrationResultCase2>;
+
+export type GetDlpEntriesIntegrationResultCase3Type = "integration";
+export const GetDlpEntriesIntegrationResultCase3Type = /*@__PURE__*/ S.String;
+
+export type GetDlpEntriesIntegrationResultCase3ProfilesItem =
+  GetDlpCustomEntryResultCase0ProfilesItem;
+export const GetDlpEntriesIntegrationResultCase3ProfilesItem =
+  GetDlpCustomEntryResultCase0ProfilesItem;
+
+export type GetDlpEntriesIntegrationResultCase3ProfilesList =
+  Array<GetDlpCustomEntryResultCase0ProfilesItem>;
+export const GetDlpEntriesIntegrationResultCase3ProfilesList =
+  /*@__PURE__*/ S.Array(
+    GetDlpCustomEntryResultCase0ProfilesItem,
+  ) as any as S.Schema<GetDlpEntriesIntegrationResultCase3ProfilesList>;
+
+export type GetDlpEntriesIntegrationResultCase3UploadStatus =
+  | "empty"
+  | "uploading"
+  | "pending"
+  | "processing"
+  | "failed"
+  | "complete";
+export const GetDlpEntriesIntegrationResultCase3UploadStatus =
+  /*@__PURE__*/ S.String;
+
+export interface GetDlpEntriesIntegrationResultCase3 {
+  id: string;
+  createdAt: string;
+  enabled: boolean;
+  name: string;
+  type: GetDlpEntriesIntegrationResultCase3Type;
+  updatedAt: string;
+  profileId?: string | null;
+  profiles?: GetDlpEntriesIntegrationResultCase3ProfilesList | null;
+  uploadStatus?: GetDlpEntriesIntegrationResultCase3UploadStatus | null;
+}
+export const GetDlpEntriesIntegrationResultCase3 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    createdAt: S.String.pipe(T.Body("created_at")),
+    enabled: S.Boolean,
+    name: S.String,
+    type: GetDlpEntriesIntegrationResultCase3Type,
+    updatedAt: S.String.pipe(T.Body("updated_at")),
+    profileId: S.optional(S.NullOr(S.String).pipe(T.Body("profile_id"))),
+    profiles: S.optional(
+      S.NullOr(GetDlpEntriesIntegrationResultCase3ProfilesList),
+    ),
+    uploadStatus: S.optional(
+      S.NullOr(GetDlpEntriesIntegrationResultCase3UploadStatus).pipe(
+        T.Body("upload_status"),
+      ),
+    ),
+  }),
+).annotate({
+  identifier: "GetDlpEntriesIntegrationResultCase3",
+}) as any as S.Schema<GetDlpEntriesIntegrationResultCase3>;
+
+export type GetDlpEntriesIntegrationResultCase4Type = "exact_data";
+export const GetDlpEntriesIntegrationResultCase4Type = /*@__PURE__*/ S.String;
+
+export type GetDlpEntriesIntegrationResultCase4ProfilesItem =
+  GetDlpCustomEntryResultCase0ProfilesItem;
+export const GetDlpEntriesIntegrationResultCase4ProfilesItem =
+  GetDlpCustomEntryResultCase0ProfilesItem;
+
+export type GetDlpEntriesIntegrationResultCase4ProfilesList =
+  Array<GetDlpCustomEntryResultCase0ProfilesItem>;
+export const GetDlpEntriesIntegrationResultCase4ProfilesList =
+  /*@__PURE__*/ S.Array(
+    GetDlpCustomEntryResultCase0ProfilesItem,
+  ) as any as S.Schema<GetDlpEntriesIntegrationResultCase4ProfilesList>;
+
+export type GetDlpEntriesIntegrationResultCase4UploadStatus =
+  | "empty"
+  | "uploading"
+  | "pending"
+  | "processing"
+  | "failed"
+  | "complete";
+export const GetDlpEntriesIntegrationResultCase4UploadStatus =
+  /*@__PURE__*/ S.String;
+
+export interface GetDlpEntriesIntegrationResultCase4 {
+  id: string;
+  /** Only applies to custom word lists. */
+  caseSensitive: boolean;
+  createdAt: string;
+  enabled: boolean;
+  name: string;
+  secret: boolean;
+  type: GetDlpEntriesIntegrationResultCase4Type;
+  updatedAt: string;
+  /** The optional description of the exact data entry. */
+  description?: string | null;
+  profiles?: GetDlpEntriesIntegrationResultCase4ProfilesList | null;
+  uploadStatus?: GetDlpEntriesIntegrationResultCase4UploadStatus | null;
+}
+export const GetDlpEntriesIntegrationResultCase4 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    caseSensitive: S.Boolean.pipe(T.Body("case_sensitive")),
+    createdAt: S.String.pipe(T.Body("created_at")),
+    enabled: S.Boolean,
+    name: S.String,
+    secret: S.Boolean,
+    type: GetDlpEntriesIntegrationResultCase4Type,
+    updatedAt: S.String.pipe(T.Body("updated_at")),
+    description: S.optional(S.NullOr(S.String)),
+    profiles: S.optional(
+      S.NullOr(GetDlpEntriesIntegrationResultCase4ProfilesList),
+    ),
+    uploadStatus: S.optional(
+      S.NullOr(GetDlpEntriesIntegrationResultCase4UploadStatus).pipe(
+        T.Body("upload_status"),
+      ),
+    ),
+  }),
+).annotate({
+  identifier: "GetDlpEntriesIntegrationResultCase4",
+}) as any as S.Schema<GetDlpEntriesIntegrationResultCase4>;
+
+export type GetDlpEntriesIntegrationResultCase5Type = "document_fingerprint";
+export const GetDlpEntriesIntegrationResultCase5Type = /*@__PURE__*/ S.String;
+
+export type GetDlpEntriesIntegrationResultCase5ProfilesItem =
+  GetDlpCustomEntryResultCase0ProfilesItem;
+export const GetDlpEntriesIntegrationResultCase5ProfilesItem =
+  GetDlpCustomEntryResultCase0ProfilesItem;
+
+export type GetDlpEntriesIntegrationResultCase5ProfilesList =
+  Array<GetDlpCustomEntryResultCase0ProfilesItem>;
+export const GetDlpEntriesIntegrationResultCase5ProfilesList =
+  /*@__PURE__*/ S.Array(
+    GetDlpCustomEntryResultCase0ProfilesItem,
+  ) as any as S.Schema<GetDlpEntriesIntegrationResultCase5ProfilesList>;
+
+export type GetDlpEntriesIntegrationResultCase5UploadStatus =
+  | "empty"
+  | "uploading"
+  | "pending"
+  | "processing"
+  | "failed"
+  | "complete";
+export const GetDlpEntriesIntegrationResultCase5UploadStatus =
+  /*@__PURE__*/ S.String;
+
+export interface GetDlpEntriesIntegrationResultCase5 {
+  id: string;
+  createdAt: string;
+  enabled: boolean;
+  name: string;
+  type: GetDlpEntriesIntegrationResultCase5Type;
+  updatedAt: string;
+  /** The optional description of the document fingerprint entry. */
+  description?: string | null;
+  profiles?: GetDlpEntriesIntegrationResultCase5ProfilesList | null;
+  uploadStatus?: GetDlpEntriesIntegrationResultCase5UploadStatus | null;
+}
+export const GetDlpEntriesIntegrationResultCase5 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    createdAt: S.String.pipe(T.Body("created_at")),
+    enabled: S.Boolean,
+    name: S.String,
+    type: GetDlpEntriesIntegrationResultCase5Type,
+    updatedAt: S.String.pipe(T.Body("updated_at")),
+    description: S.optional(S.NullOr(S.String)),
+    profiles: S.optional(
+      S.NullOr(GetDlpEntriesIntegrationResultCase5ProfilesList),
+    ),
+    uploadStatus: S.optional(
+      S.NullOr(GetDlpEntriesIntegrationResultCase5UploadStatus).pipe(
+        T.Body("upload_status"),
+      ),
+    ),
+  }),
+).annotate({
+  identifier: "GetDlpEntriesIntegrationResultCase5",
+}) as any as S.Schema<GetDlpEntriesIntegrationResultCase5>;
+
+export type GetDlpEntriesIntegrationResultCase6Type = "word_list";
+export const GetDlpEntriesIntegrationResultCase6Type = /*@__PURE__*/ S.String;
+
+export type GetDlpEntriesIntegrationResultCase6ProfilesItem =
+  GetDlpCustomEntryResultCase0ProfilesItem;
+export const GetDlpEntriesIntegrationResultCase6ProfilesItem =
+  GetDlpCustomEntryResultCase0ProfilesItem;
+
+export type GetDlpEntriesIntegrationResultCase6ProfilesList =
+  Array<GetDlpCustomEntryResultCase0ProfilesItem>;
+export const GetDlpEntriesIntegrationResultCase6ProfilesList =
+  /*@__PURE__*/ S.Array(
+    GetDlpCustomEntryResultCase0ProfilesItem,
+  ) as any as S.Schema<GetDlpEntriesIntegrationResultCase6ProfilesList>;
+
+export type GetDlpEntriesIntegrationResultCase6UploadStatus =
+  | "empty"
+  | "uploading"
+  | "pending"
+  | "processing"
+  | "failed"
+  | "complete";
+export const GetDlpEntriesIntegrationResultCase6UploadStatus =
+  /*@__PURE__*/ S.String;
+
+export interface GetDlpEntriesIntegrationResultCase6 {
+  id: string;
+  createdAt: string;
+  enabled: boolean;
+  name: string;
+  type: GetDlpEntriesIntegrationResultCase6Type;
+  updatedAt: string;
+  wordList: unknown;
+  profileId?: string | null;
+  profiles?: GetDlpEntriesIntegrationResultCase6ProfilesList | null;
+  uploadStatus?: GetDlpEntriesIntegrationResultCase6UploadStatus | null;
+}
+export const GetDlpEntriesIntegrationResultCase6 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    createdAt: S.String.pipe(T.Body("created_at")),
+    enabled: S.Boolean,
+    name: S.String,
+    type: GetDlpEntriesIntegrationResultCase6Type,
+    updatedAt: S.String.pipe(T.Body("updated_at")),
+    wordList: S.Unknown.pipe(T.Body("word_list")),
+    profileId: S.optional(S.NullOr(S.String).pipe(T.Body("profile_id"))),
+    profiles: S.optional(
+      S.NullOr(GetDlpEntriesIntegrationResultCase6ProfilesList),
+    ),
+    uploadStatus: S.optional(
+      S.NullOr(GetDlpEntriesIntegrationResultCase6UploadStatus).pipe(
+        T.Body("upload_status"),
+      ),
+    ),
+  }),
+).annotate({
+  identifier: "GetDlpEntriesIntegrationResultCase6",
+}) as any as S.Schema<GetDlpEntriesIntegrationResultCase6>;
+
+export type GetDlpEntriesIntegrationResult =
+  | GetDlpEntriesIntegrationResultCase0
+  | GetDlpEntriesIntegrationResultCase1
+  | GetDlpEntriesIntegrationResultCase2
+  | GetDlpEntriesIntegrationResultCase3
+  | GetDlpEntriesIntegrationResultCase4
+  | GetDlpEntriesIntegrationResultCase5
+  | GetDlpEntriesIntegrationResultCase6;
+export const GetDlpEntriesIntegrationResult = /*@__PURE__*/ S.Unknown.pipe(
+  T.UnionCases([
+    [
+      "id",
+      "createdAt",
+      "enabled",
+      "name",
+      "pattern",
+      "type",
+      "updatedAt",
+      "description",
+      "profileId",
+      "profiles",
+      "uploadStatus",
+    ],
+    [
+      "id",
+      "createdAt",
+      "enabled",
+      "name",
+      "type",
+      "updatedAt",
+      "description",
+      "profiles",
+      "uploadStatus",
+    ],
+    [
+      "id",
+      "confidence",
+      "enabled",
+      "name",
+      "type",
+      "profileId",
+      "profiles",
+      "uploadStatus",
+      "variant",
+    ],
+    [
+      "id",
+      "createdAt",
+      "enabled",
+      "name",
+      "type",
+      "updatedAt",
+      "profileId",
+      "profiles",
+      "uploadStatus",
+    ],
+    [
+      "id",
+      "caseSensitive",
+      "createdAt",
+      "enabled",
+      "name",
+      "secret",
+      "type",
+      "updatedAt",
+      "description",
+      "profiles",
+      "uploadStatus",
+    ],
+    [
+      "id",
+      "createdAt",
+      "enabled",
+      "name",
+      "type",
+      "updatedAt",
+      "description",
+      "profiles",
+      "uploadStatus",
+    ],
+    [
+      "id",
+      "createdAt",
+      "enabled",
+      "name",
+      "type",
+      "updatedAt",
+      "wordList",
+      "profileId",
+      "profiles",
+      "uploadStatus",
+    ],
+  ]),
+);
+
+export type GetDlpEntriesIntegrationResponse = GetDlpEntriesIntegrationResult;
+export const GetDlpEntriesIntegrationResponse = /*@__PURE__*/ S.suspend(() =>
+  GetDlpEntriesIntegrationResult.pipe(
+    T.EnvelopePayloadRoot(),
+    T.KeyDictionary(KEY_DICTIONARY),
+  ),
+).annotate({
+  identifier: "GetDlpEntriesIntegrationResponse",
+}) as any as S.Schema<GetDlpEntriesIntegrationResponse>;
+
+export interface GetDlpEntriesPredefinedRequest {
+  accountId: string;
+  entryId: string;
+}
+export const GetDlpEntriesPredefinedRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountId: S.String.pipe(T.Label("account_id")),
+    entryId: S.String.pipe(T.Label("entry_id")),
+  })
+    .pipe(
+      T.Http({
+        method: "GET",
+        uri: "/accounts/{account_id}/dlp/entries/{entry_id}",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "GetDlpEntriesPredefinedRequest",
+}) as any as S.Schema<GetDlpEntriesPredefinedRequest>;
+
+export type GetDlpEntriesPredefinedResultCase0PatternValidation = "luhn";
+export const GetDlpEntriesPredefinedResultCase0PatternValidation =
+  /*@__PURE__*/ S.String;
+
+export interface GetDlpEntriesPredefinedResultCase0Pattern {
+  regex: string;
+  validation?: GetDlpEntriesPredefinedResultCase0PatternValidation | null;
+}
+export const GetDlpEntriesPredefinedResultCase0Pattern =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      regex: S.String,
+      validation: S.optional(
+        S.NullOr(GetDlpEntriesPredefinedResultCase0PatternValidation),
+      ),
+    }),
+  ).annotate({
+    identifier: "GetDlpEntriesPredefinedResultCase0Pattern",
+  }) as any as S.Schema<GetDlpEntriesPredefinedResultCase0Pattern>;
+
+export type GetDlpEntriesPredefinedResultCase0Type = "custom";
+export const GetDlpEntriesPredefinedResultCase0Type = /*@__PURE__*/ S.String;
+
+export type GetDlpEntriesPredefinedResultCase0ProfilesItem =
+  GetDlpCustomEntryResultCase0ProfilesItem;
+export const GetDlpEntriesPredefinedResultCase0ProfilesItem =
+  GetDlpCustomEntryResultCase0ProfilesItem;
+
+export type GetDlpEntriesPredefinedResultCase0ProfilesList =
+  Array<GetDlpCustomEntryResultCase0ProfilesItem>;
+export const GetDlpEntriesPredefinedResultCase0ProfilesList =
+  /*@__PURE__*/ S.Array(
+    GetDlpCustomEntryResultCase0ProfilesItem,
+  ) as any as S.Schema<GetDlpEntriesPredefinedResultCase0ProfilesList>;
+
+export type GetDlpEntriesPredefinedResultCase0UploadStatus =
+  | "empty"
+  | "uploading"
+  | "pending"
+  | "processing"
+  | "failed"
+  | "complete";
+export const GetDlpEntriesPredefinedResultCase0UploadStatus =
+  /*@__PURE__*/ S.String;
+
+export interface GetDlpEntriesPredefinedResultCase0 {
+  id: string;
+  createdAt: string;
+  enabled: boolean;
+  name: string;
+  pattern: GetDlpEntriesPredefinedResultCase0Pattern;
+  type: GetDlpEntriesPredefinedResultCase0Type;
+  updatedAt: string;
+  description?: string | null;
+  profileId?: string | null;
+  profiles?: GetDlpEntriesPredefinedResultCase0ProfilesList | null;
+  uploadStatus?: GetDlpEntriesPredefinedResultCase0UploadStatus | null;
+}
+export const GetDlpEntriesPredefinedResultCase0 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    createdAt: S.String.pipe(T.Body("created_at")),
+    enabled: S.Boolean,
+    name: S.String,
+    pattern: GetDlpEntriesPredefinedResultCase0Pattern,
+    type: GetDlpEntriesPredefinedResultCase0Type,
+    updatedAt: S.String.pipe(T.Body("updated_at")),
+    description: S.optional(S.NullOr(S.String)),
+    profileId: S.optional(S.NullOr(S.String).pipe(T.Body("profile_id"))),
+    profiles: S.optional(
+      S.NullOr(GetDlpEntriesPredefinedResultCase0ProfilesList),
+    ),
+    uploadStatus: S.optional(
+      S.NullOr(GetDlpEntriesPredefinedResultCase0UploadStatus).pipe(
+        T.Body("upload_status"),
+      ),
+    ),
+  }),
+).annotate({
+  identifier: "GetDlpEntriesPredefinedResultCase0",
+}) as any as S.Schema<GetDlpEntriesPredefinedResultCase0>;
+
+export type GetDlpEntriesPredefinedResultCase1Type = "custom_prompt_topic";
+export const GetDlpEntriesPredefinedResultCase1Type = /*@__PURE__*/ S.String;
+
+export type GetDlpEntriesPredefinedResultCase1ProfilesItem =
+  GetDlpCustomEntryResultCase0ProfilesItem;
+export const GetDlpEntriesPredefinedResultCase1ProfilesItem =
+  GetDlpCustomEntryResultCase0ProfilesItem;
+
+export type GetDlpEntriesPredefinedResultCase1ProfilesList =
+  Array<GetDlpCustomEntryResultCase0ProfilesItem>;
+export const GetDlpEntriesPredefinedResultCase1ProfilesList =
+  /*@__PURE__*/ S.Array(
+    GetDlpCustomEntryResultCase0ProfilesItem,
+  ) as any as S.Schema<GetDlpEntriesPredefinedResultCase1ProfilesList>;
+
+export type GetDlpEntriesPredefinedResultCase1UploadStatus =
+  | "empty"
+  | "uploading"
+  | "pending"
+  | "processing"
+  | "failed"
+  | "complete";
+export const GetDlpEntriesPredefinedResultCase1UploadStatus =
+  /*@__PURE__*/ S.String;
+
+export interface GetDlpEntriesPredefinedResultCase1 {
+  id: string;
+  createdAt: string;
+  enabled: boolean;
+  name: string;
+  type: GetDlpEntriesPredefinedResultCase1Type;
+  updatedAt: string;
+  /** The optional description of the custom prompt topic entry. */
+  description?: string | null;
+  profiles?: GetDlpEntriesPredefinedResultCase1ProfilesList | null;
+  uploadStatus?: GetDlpEntriesPredefinedResultCase1UploadStatus | null;
+}
+export const GetDlpEntriesPredefinedResultCase1 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    createdAt: S.String.pipe(T.Body("created_at")),
+    enabled: S.Boolean,
+    name: S.String,
+    type: GetDlpEntriesPredefinedResultCase1Type,
+    updatedAt: S.String.pipe(T.Body("updated_at")),
+    description: S.optional(S.NullOr(S.String)),
+    profiles: S.optional(
+      S.NullOr(GetDlpEntriesPredefinedResultCase1ProfilesList),
+    ),
+    uploadStatus: S.optional(
+      S.NullOr(GetDlpEntriesPredefinedResultCase1UploadStatus).pipe(
+        T.Body("upload_status"),
+      ),
+    ),
+  }),
+).annotate({
+  identifier: "GetDlpEntriesPredefinedResultCase1",
+}) as any as S.Schema<GetDlpEntriesPredefinedResultCase1>;
+
+export type GetDlpEntriesPredefinedResultCase2Confidence =
+  DlpEntriesPredefinedCreateResponseConfidence;
+export const GetDlpEntriesPredefinedResultCase2Confidence =
+  DlpEntriesPredefinedCreateResponseConfidence;
+
+export type GetDlpEntriesPredefinedResultCase2Type = "predefined";
+export const GetDlpEntriesPredefinedResultCase2Type = /*@__PURE__*/ S.String;
+
+export type GetDlpEntriesPredefinedResultCase2ProfilesItem =
+  GetDlpCustomEntryResultCase0ProfilesItem;
+export const GetDlpEntriesPredefinedResultCase2ProfilesItem =
+  GetDlpCustomEntryResultCase0ProfilesItem;
+
+export type GetDlpEntriesPredefinedResultCase2ProfilesList =
+  Array<GetDlpCustomEntryResultCase0ProfilesItem>;
+export const GetDlpEntriesPredefinedResultCase2ProfilesList =
+  /*@__PURE__*/ S.Array(
+    GetDlpCustomEntryResultCase0ProfilesItem,
+  ) as any as S.Schema<GetDlpEntriesPredefinedResultCase2ProfilesList>;
+
+export type GetDlpEntriesPredefinedResultCase2UploadStatus =
+  | "empty"
+  | "uploading"
+  | "pending"
+  | "processing"
+  | "failed"
+  | "complete";
+export const GetDlpEntriesPredefinedResultCase2UploadStatus =
+  /*@__PURE__*/ S.String;
+
+export type GetDlpEntriesPredefinedResultCase2VariantCase0TopicType =
+  | "Intent"
+  | "Content";
+export const GetDlpEntriesPredefinedResultCase2VariantCase0TopicType =
+  /*@__PURE__*/ S.String;
+
+export type GetDlpEntriesPredefinedResultCase2VariantCase0Type = "PromptTopic";
+export const GetDlpEntriesPredefinedResultCase2VariantCase0Type =
+  /*@__PURE__*/ S.String;
+
+export interface GetDlpEntriesPredefinedResultCase2VariantCase0 {
+  topicType: GetDlpEntriesPredefinedResultCase2VariantCase0TopicType;
+  type: GetDlpEntriesPredefinedResultCase2VariantCase0Type;
+  /** A customer-facing explanation of what this predefined AI prompt topic represents. */
+  description?: string | null;
+}
+export const GetDlpEntriesPredefinedResultCase2VariantCase0 =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      topicType: GetDlpEntriesPredefinedResultCase2VariantCase0TopicType.pipe(
+        T.Body("topic_type"),
+      ),
+      type: GetDlpEntriesPredefinedResultCase2VariantCase0Type,
+      description: S.optional(S.NullOr(S.String)),
+    }),
+  ).annotate({
+    identifier: "GetDlpEntriesPredefinedResultCase2VariantCase0",
+  }) as any as S.Schema<GetDlpEntriesPredefinedResultCase2VariantCase0>;
+
+export type GetDlpEntriesPredefinedResultCase2VariantCase1Type = "General";
+export const GetDlpEntriesPredefinedResultCase2VariantCase1Type =
+  /*@__PURE__*/ S.String;
+
+export interface GetDlpEntriesPredefinedResultCase2VariantCase1 {
+  type: GetDlpEntriesPredefinedResultCase2VariantCase1Type;
+  /** A customer-facing explanation of what this predefined entry represents. */
+  description?: string | null;
+}
+export const GetDlpEntriesPredefinedResultCase2VariantCase1 =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: GetDlpEntriesPredefinedResultCase2VariantCase1Type,
+      description: S.optional(S.NullOr(S.String)),
+    }),
+  ).annotate({
+    identifier: "GetDlpEntriesPredefinedResultCase2VariantCase1",
+  }) as any as S.Schema<GetDlpEntriesPredefinedResultCase2VariantCase1>;
+
+export type GetDlpEntriesPredefinedResultCase2Variant =
+  | GetDlpEntriesPredefinedResultCase2VariantCase0
+  | GetDlpEntriesPredefinedResultCase2VariantCase1;
+export const GetDlpEntriesPredefinedResultCase2Variant =
+  /*@__PURE__*/ S.Unknown.pipe(
+    T.UnionCases([
+      ["topicType", "type", "description"],
+      ["type", "description"],
+    ]),
+  );
+
+export interface GetDlpEntriesPredefinedResultCase2 {
+  id: string;
+  confidence: DlpEntriesPredefinedCreateResponseConfidence;
+  enabled: boolean;
+  name: string;
+  type: GetDlpEntriesPredefinedResultCase2Type;
+  profileId?: string | null;
+  profiles?: GetDlpEntriesPredefinedResultCase2ProfilesList | null;
+  uploadStatus?: GetDlpEntriesPredefinedResultCase2UploadStatus | null;
+  /** A Predefined AI prompt classification topic entry. */
+  variant?: GetDlpEntriesPredefinedResultCase2Variant | null;
+}
+export const GetDlpEntriesPredefinedResultCase2 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    confidence: DlpEntriesPredefinedCreateResponseConfidence,
+    enabled: S.Boolean,
+    name: S.String,
+    type: GetDlpEntriesPredefinedResultCase2Type,
+    profileId: S.optional(S.NullOr(S.String).pipe(T.Body("profile_id"))),
+    profiles: S.optional(
+      S.NullOr(GetDlpEntriesPredefinedResultCase2ProfilesList),
+    ),
+    uploadStatus: S.optional(
+      S.NullOr(GetDlpEntriesPredefinedResultCase2UploadStatus).pipe(
+        T.Body("upload_status"),
+      ),
+    ),
+    variant: S.optional(S.NullOr(GetDlpEntriesPredefinedResultCase2Variant)),
+  }),
+).annotate({
+  identifier: "GetDlpEntriesPredefinedResultCase2",
+}) as any as S.Schema<GetDlpEntriesPredefinedResultCase2>;
+
+export type GetDlpEntriesPredefinedResultCase3Type = "integration";
+export const GetDlpEntriesPredefinedResultCase3Type = /*@__PURE__*/ S.String;
+
+export type GetDlpEntriesPredefinedResultCase3ProfilesItem =
+  GetDlpCustomEntryResultCase0ProfilesItem;
+export const GetDlpEntriesPredefinedResultCase3ProfilesItem =
+  GetDlpCustomEntryResultCase0ProfilesItem;
+
+export type GetDlpEntriesPredefinedResultCase3ProfilesList =
+  Array<GetDlpCustomEntryResultCase0ProfilesItem>;
+export const GetDlpEntriesPredefinedResultCase3ProfilesList =
+  /*@__PURE__*/ S.Array(
+    GetDlpCustomEntryResultCase0ProfilesItem,
+  ) as any as S.Schema<GetDlpEntriesPredefinedResultCase3ProfilesList>;
+
+export type GetDlpEntriesPredefinedResultCase3UploadStatus =
+  | "empty"
+  | "uploading"
+  | "pending"
+  | "processing"
+  | "failed"
+  | "complete";
+export const GetDlpEntriesPredefinedResultCase3UploadStatus =
+  /*@__PURE__*/ S.String;
+
+export interface GetDlpEntriesPredefinedResultCase3 {
+  id: string;
+  createdAt: string;
+  enabled: boolean;
+  name: string;
+  type: GetDlpEntriesPredefinedResultCase3Type;
+  updatedAt: string;
+  profileId?: string | null;
+  profiles?: GetDlpEntriesPredefinedResultCase3ProfilesList | null;
+  uploadStatus?: GetDlpEntriesPredefinedResultCase3UploadStatus | null;
+}
+export const GetDlpEntriesPredefinedResultCase3 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    createdAt: S.String.pipe(T.Body("created_at")),
+    enabled: S.Boolean,
+    name: S.String,
+    type: GetDlpEntriesPredefinedResultCase3Type,
+    updatedAt: S.String.pipe(T.Body("updated_at")),
+    profileId: S.optional(S.NullOr(S.String).pipe(T.Body("profile_id"))),
+    profiles: S.optional(
+      S.NullOr(GetDlpEntriesPredefinedResultCase3ProfilesList),
+    ),
+    uploadStatus: S.optional(
+      S.NullOr(GetDlpEntriesPredefinedResultCase3UploadStatus).pipe(
+        T.Body("upload_status"),
+      ),
+    ),
+  }),
+).annotate({
+  identifier: "GetDlpEntriesPredefinedResultCase3",
+}) as any as S.Schema<GetDlpEntriesPredefinedResultCase3>;
+
+export type GetDlpEntriesPredefinedResultCase4Type = "exact_data";
+export const GetDlpEntriesPredefinedResultCase4Type = /*@__PURE__*/ S.String;
+
+export type GetDlpEntriesPredefinedResultCase4ProfilesItem =
+  GetDlpCustomEntryResultCase0ProfilesItem;
+export const GetDlpEntriesPredefinedResultCase4ProfilesItem =
+  GetDlpCustomEntryResultCase0ProfilesItem;
+
+export type GetDlpEntriesPredefinedResultCase4ProfilesList =
+  Array<GetDlpCustomEntryResultCase0ProfilesItem>;
+export const GetDlpEntriesPredefinedResultCase4ProfilesList =
+  /*@__PURE__*/ S.Array(
+    GetDlpCustomEntryResultCase0ProfilesItem,
+  ) as any as S.Schema<GetDlpEntriesPredefinedResultCase4ProfilesList>;
+
+export type GetDlpEntriesPredefinedResultCase4UploadStatus =
+  | "empty"
+  | "uploading"
+  | "pending"
+  | "processing"
+  | "failed"
+  | "complete";
+export const GetDlpEntriesPredefinedResultCase4UploadStatus =
+  /*@__PURE__*/ S.String;
+
+export interface GetDlpEntriesPredefinedResultCase4 {
+  id: string;
+  /** Only applies to custom word lists. */
+  caseSensitive: boolean;
+  createdAt: string;
+  enabled: boolean;
+  name: string;
+  secret: boolean;
+  type: GetDlpEntriesPredefinedResultCase4Type;
+  updatedAt: string;
+  /** The optional description of the exact data entry. */
+  description?: string | null;
+  profiles?: GetDlpEntriesPredefinedResultCase4ProfilesList | null;
+  uploadStatus?: GetDlpEntriesPredefinedResultCase4UploadStatus | null;
+}
+export const GetDlpEntriesPredefinedResultCase4 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    caseSensitive: S.Boolean.pipe(T.Body("case_sensitive")),
+    createdAt: S.String.pipe(T.Body("created_at")),
+    enabled: S.Boolean,
+    name: S.String,
+    secret: S.Boolean,
+    type: GetDlpEntriesPredefinedResultCase4Type,
+    updatedAt: S.String.pipe(T.Body("updated_at")),
+    description: S.optional(S.NullOr(S.String)),
+    profiles: S.optional(
+      S.NullOr(GetDlpEntriesPredefinedResultCase4ProfilesList),
+    ),
+    uploadStatus: S.optional(
+      S.NullOr(GetDlpEntriesPredefinedResultCase4UploadStatus).pipe(
+        T.Body("upload_status"),
+      ),
+    ),
+  }),
+).annotate({
+  identifier: "GetDlpEntriesPredefinedResultCase4",
+}) as any as S.Schema<GetDlpEntriesPredefinedResultCase4>;
+
+export type GetDlpEntriesPredefinedResultCase5Type = "document_fingerprint";
+export const GetDlpEntriesPredefinedResultCase5Type = /*@__PURE__*/ S.String;
+
+export type GetDlpEntriesPredefinedResultCase5ProfilesItem =
+  GetDlpCustomEntryResultCase0ProfilesItem;
+export const GetDlpEntriesPredefinedResultCase5ProfilesItem =
+  GetDlpCustomEntryResultCase0ProfilesItem;
+
+export type GetDlpEntriesPredefinedResultCase5ProfilesList =
+  Array<GetDlpCustomEntryResultCase0ProfilesItem>;
+export const GetDlpEntriesPredefinedResultCase5ProfilesList =
+  /*@__PURE__*/ S.Array(
+    GetDlpCustomEntryResultCase0ProfilesItem,
+  ) as any as S.Schema<GetDlpEntriesPredefinedResultCase5ProfilesList>;
+
+export type GetDlpEntriesPredefinedResultCase5UploadStatus =
+  | "empty"
+  | "uploading"
+  | "pending"
+  | "processing"
+  | "failed"
+  | "complete";
+export const GetDlpEntriesPredefinedResultCase5UploadStatus =
+  /*@__PURE__*/ S.String;
+
+export interface GetDlpEntriesPredefinedResultCase5 {
+  id: string;
+  createdAt: string;
+  enabled: boolean;
+  name: string;
+  type: GetDlpEntriesPredefinedResultCase5Type;
+  updatedAt: string;
+  /** The optional description of the document fingerprint entry. */
+  description?: string | null;
+  profiles?: GetDlpEntriesPredefinedResultCase5ProfilesList | null;
+  uploadStatus?: GetDlpEntriesPredefinedResultCase5UploadStatus | null;
+}
+export const GetDlpEntriesPredefinedResultCase5 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    createdAt: S.String.pipe(T.Body("created_at")),
+    enabled: S.Boolean,
+    name: S.String,
+    type: GetDlpEntriesPredefinedResultCase5Type,
+    updatedAt: S.String.pipe(T.Body("updated_at")),
+    description: S.optional(S.NullOr(S.String)),
+    profiles: S.optional(
+      S.NullOr(GetDlpEntriesPredefinedResultCase5ProfilesList),
+    ),
+    uploadStatus: S.optional(
+      S.NullOr(GetDlpEntriesPredefinedResultCase5UploadStatus).pipe(
+        T.Body("upload_status"),
+      ),
+    ),
+  }),
+).annotate({
+  identifier: "GetDlpEntriesPredefinedResultCase5",
+}) as any as S.Schema<GetDlpEntriesPredefinedResultCase5>;
+
+export type GetDlpEntriesPredefinedResultCase6Type = "word_list";
+export const GetDlpEntriesPredefinedResultCase6Type = /*@__PURE__*/ S.String;
+
+export type GetDlpEntriesPredefinedResultCase6ProfilesItem =
+  GetDlpCustomEntryResultCase0ProfilesItem;
+export const GetDlpEntriesPredefinedResultCase6ProfilesItem =
+  GetDlpCustomEntryResultCase0ProfilesItem;
+
+export type GetDlpEntriesPredefinedResultCase6ProfilesList =
+  Array<GetDlpCustomEntryResultCase0ProfilesItem>;
+export const GetDlpEntriesPredefinedResultCase6ProfilesList =
+  /*@__PURE__*/ S.Array(
+    GetDlpCustomEntryResultCase0ProfilesItem,
+  ) as any as S.Schema<GetDlpEntriesPredefinedResultCase6ProfilesList>;
+
+export type GetDlpEntriesPredefinedResultCase6UploadStatus =
+  | "empty"
+  | "uploading"
+  | "pending"
+  | "processing"
+  | "failed"
+  | "complete";
+export const GetDlpEntriesPredefinedResultCase6UploadStatus =
+  /*@__PURE__*/ S.String;
+
+export interface GetDlpEntriesPredefinedResultCase6 {
+  id: string;
+  createdAt: string;
+  enabled: boolean;
+  name: string;
+  type: GetDlpEntriesPredefinedResultCase6Type;
+  updatedAt: string;
+  wordList: unknown;
+  profileId?: string | null;
+  profiles?: GetDlpEntriesPredefinedResultCase6ProfilesList | null;
+  uploadStatus?: GetDlpEntriesPredefinedResultCase6UploadStatus | null;
+}
+export const GetDlpEntriesPredefinedResultCase6 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    createdAt: S.String.pipe(T.Body("created_at")),
+    enabled: S.Boolean,
+    name: S.String,
+    type: GetDlpEntriesPredefinedResultCase6Type,
+    updatedAt: S.String.pipe(T.Body("updated_at")),
+    wordList: S.Unknown.pipe(T.Body("word_list")),
+    profileId: S.optional(S.NullOr(S.String).pipe(T.Body("profile_id"))),
+    profiles: S.optional(
+      S.NullOr(GetDlpEntriesPredefinedResultCase6ProfilesList),
+    ),
+    uploadStatus: S.optional(
+      S.NullOr(GetDlpEntriesPredefinedResultCase6UploadStatus).pipe(
+        T.Body("upload_status"),
+      ),
+    ),
+  }),
+).annotate({
+  identifier: "GetDlpEntriesPredefinedResultCase6",
+}) as any as S.Schema<GetDlpEntriesPredefinedResultCase6>;
+
+export type GetDlpEntriesPredefinedResult =
+  | GetDlpEntriesPredefinedResultCase0
+  | GetDlpEntriesPredefinedResultCase1
+  | GetDlpEntriesPredefinedResultCase2
+  | GetDlpEntriesPredefinedResultCase3
+  | GetDlpEntriesPredefinedResultCase4
+  | GetDlpEntriesPredefinedResultCase5
+  | GetDlpEntriesPredefinedResultCase6;
+export const GetDlpEntriesPredefinedResult = /*@__PURE__*/ S.Unknown.pipe(
+  T.UnionCases([
+    [
+      "id",
+      "createdAt",
+      "enabled",
+      "name",
+      "pattern",
+      "type",
+      "updatedAt",
+      "description",
+      "profileId",
+      "profiles",
+      "uploadStatus",
+    ],
+    [
+      "id",
+      "createdAt",
+      "enabled",
+      "name",
+      "type",
+      "updatedAt",
+      "description",
+      "profiles",
+      "uploadStatus",
+    ],
+    [
+      "id",
+      "confidence",
+      "enabled",
+      "name",
+      "type",
+      "profileId",
+      "profiles",
+      "uploadStatus",
+      "variant",
+    ],
+    [
+      "id",
+      "createdAt",
+      "enabled",
+      "name",
+      "type",
+      "updatedAt",
+      "profileId",
+      "profiles",
+      "uploadStatus",
+    ],
+    [
+      "id",
+      "caseSensitive",
+      "createdAt",
+      "enabled",
+      "name",
+      "secret",
+      "type",
+      "updatedAt",
+      "description",
+      "profiles",
+      "uploadStatus",
+    ],
+    [
+      "id",
+      "createdAt",
+      "enabled",
+      "name",
+      "type",
+      "updatedAt",
+      "description",
+      "profiles",
+      "uploadStatus",
+    ],
+    [
+      "id",
+      "createdAt",
+      "enabled",
+      "name",
+      "type",
+      "updatedAt",
+      "wordList",
+      "profileId",
+      "profiles",
+      "uploadStatus",
+    ],
+  ]),
+);
+
+export type GetDlpEntriesPredefinedResponse = GetDlpEntriesPredefinedResult;
+export const GetDlpEntriesPredefinedResponse = /*@__PURE__*/ S.suspend(() =>
+  GetDlpEntriesPredefinedResult.pipe(
+    T.EnvelopePayloadRoot(),
+    T.KeyDictionary(KEY_DICTIONARY),
+  ),
+).annotate({
+  identifier: "GetDlpEntriesPredefinedResponse",
+}) as any as S.Schema<GetDlpEntriesPredefinedResponse>;
+
 export interface GetDlpEntryRequest {
   accountId: string;
   entryId: string;
@@ -78279,14 +75606,14 @@ export type DlpEntriesGetResultCase0Type = "custom";
 export const DlpEntriesGetResultCase0Type = /*@__PURE__*/ S.String;
 
 export type DlpEntriesGetResultCase0ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
+  GetDlpCustomEntryResultCase0ProfilesItem;
 export const DlpEntriesGetResultCase0ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
+  GetDlpCustomEntryResultCase0ProfilesItem;
 
 export type DlpEntriesGetResultCase0ProfilesList =
-  Array<DlpEntriesCustomGetResultCase0ProfilesItem>;
+  Array<GetDlpCustomEntryResultCase0ProfilesItem>;
 export const DlpEntriesGetResultCase0ProfilesList = /*@__PURE__*/ S.Array(
-  DlpEntriesCustomGetResultCase0ProfilesItem,
+  GetDlpCustomEntryResultCase0ProfilesItem,
 ) as any as S.Schema<DlpEntriesGetResultCase0ProfilesList>;
 
 export type DlpEntriesGetResultCase0UploadStatus =
@@ -78337,14 +75664,14 @@ export type DlpEntriesGetResultCase1Type = "custom_prompt_topic";
 export const DlpEntriesGetResultCase1Type = /*@__PURE__*/ S.String;
 
 export type DlpEntriesGetResultCase1ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
+  GetDlpCustomEntryResultCase0ProfilesItem;
 export const DlpEntriesGetResultCase1ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
+  GetDlpCustomEntryResultCase0ProfilesItem;
 
 export type DlpEntriesGetResultCase1ProfilesList =
-  Array<DlpEntriesCustomGetResultCase0ProfilesItem>;
+  Array<GetDlpCustomEntryResultCase0ProfilesItem>;
 export const DlpEntriesGetResultCase1ProfilesList = /*@__PURE__*/ S.Array(
-  DlpEntriesCustomGetResultCase0ProfilesItem,
+  GetDlpCustomEntryResultCase0ProfilesItem,
 ) as any as S.Schema<DlpEntriesGetResultCase1ProfilesList>;
 
 export type DlpEntriesGetResultCase1UploadStatus =
@@ -78397,14 +75724,14 @@ export type DlpEntriesGetResultCase2Type = "predefined";
 export const DlpEntriesGetResultCase2Type = /*@__PURE__*/ S.String;
 
 export type DlpEntriesGetResultCase2ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
+  GetDlpCustomEntryResultCase0ProfilesItem;
 export const DlpEntriesGetResultCase2ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
+  GetDlpCustomEntryResultCase0ProfilesItem;
 
 export type DlpEntriesGetResultCase2ProfilesList =
-  Array<DlpEntriesCustomGetResultCase0ProfilesItem>;
+  Array<GetDlpCustomEntryResultCase0ProfilesItem>;
 export const DlpEntriesGetResultCase2ProfilesList = /*@__PURE__*/ S.Array(
-  DlpEntriesCustomGetResultCase0ProfilesItem,
+  GetDlpCustomEntryResultCase0ProfilesItem,
 ) as any as S.Schema<DlpEntriesGetResultCase2ProfilesList>;
 
 export type DlpEntriesGetResultCase2UploadStatus =
@@ -78508,14 +75835,14 @@ export type DlpEntriesGetResultCase3Type = "integration";
 export const DlpEntriesGetResultCase3Type = /*@__PURE__*/ S.String;
 
 export type DlpEntriesGetResultCase3ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
+  GetDlpCustomEntryResultCase0ProfilesItem;
 export const DlpEntriesGetResultCase3ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
+  GetDlpCustomEntryResultCase0ProfilesItem;
 
 export type DlpEntriesGetResultCase3ProfilesList =
-  Array<DlpEntriesCustomGetResultCase0ProfilesItem>;
+  Array<GetDlpCustomEntryResultCase0ProfilesItem>;
 export const DlpEntriesGetResultCase3ProfilesList = /*@__PURE__*/ S.Array(
-  DlpEntriesCustomGetResultCase0ProfilesItem,
+  GetDlpCustomEntryResultCase0ProfilesItem,
 ) as any as S.Schema<DlpEntriesGetResultCase3ProfilesList>;
 
 export type DlpEntriesGetResultCase3UploadStatus =
@@ -78562,14 +75889,14 @@ export type DlpEntriesGetResultCase4Type = "exact_data";
 export const DlpEntriesGetResultCase4Type = /*@__PURE__*/ S.String;
 
 export type DlpEntriesGetResultCase4ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
+  GetDlpCustomEntryResultCase0ProfilesItem;
 export const DlpEntriesGetResultCase4ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
+  GetDlpCustomEntryResultCase0ProfilesItem;
 
 export type DlpEntriesGetResultCase4ProfilesList =
-  Array<DlpEntriesCustomGetResultCase0ProfilesItem>;
+  Array<GetDlpCustomEntryResultCase0ProfilesItem>;
 export const DlpEntriesGetResultCase4ProfilesList = /*@__PURE__*/ S.Array(
-  DlpEntriesCustomGetResultCase0ProfilesItem,
+  GetDlpCustomEntryResultCase0ProfilesItem,
 ) as any as S.Schema<DlpEntriesGetResultCase4ProfilesList>;
 
 export type DlpEntriesGetResultCase4UploadStatus =
@@ -78622,14 +75949,14 @@ export type DlpEntriesGetResultCase5Type = "document_fingerprint";
 export const DlpEntriesGetResultCase5Type = /*@__PURE__*/ S.String;
 
 export type DlpEntriesGetResultCase5ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
+  GetDlpCustomEntryResultCase0ProfilesItem;
 export const DlpEntriesGetResultCase5ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
+  GetDlpCustomEntryResultCase0ProfilesItem;
 
 export type DlpEntriesGetResultCase5ProfilesList =
-  Array<DlpEntriesCustomGetResultCase0ProfilesItem>;
+  Array<GetDlpCustomEntryResultCase0ProfilesItem>;
 export const DlpEntriesGetResultCase5ProfilesList = /*@__PURE__*/ S.Array(
-  DlpEntriesCustomGetResultCase0ProfilesItem,
+  GetDlpCustomEntryResultCase0ProfilesItem,
 ) as any as S.Schema<DlpEntriesGetResultCase5ProfilesList>;
 
 export type DlpEntriesGetResultCase5UploadStatus =
@@ -78677,14 +76004,14 @@ export type DlpEntriesGetResultCase6Type = "word_list";
 export const DlpEntriesGetResultCase6Type = /*@__PURE__*/ S.String;
 
 export type DlpEntriesGetResultCase6ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
+  GetDlpCustomEntryResultCase0ProfilesItem;
 export const DlpEntriesGetResultCase6ProfilesItem =
-  DlpEntriesCustomGetResultCase0ProfilesItem;
+  GetDlpCustomEntryResultCase0ProfilesItem;
 
 export type DlpEntriesGetResultCase6ProfilesList =
-  Array<DlpEntriesCustomGetResultCase0ProfilesItem>;
+  Array<GetDlpCustomEntryResultCase0ProfilesItem>;
 export const DlpEntriesGetResultCase6ProfilesList = /*@__PURE__*/ S.Array(
-  DlpEntriesCustomGetResultCase0ProfilesItem,
+  GetDlpCustomEntryResultCase0ProfilesItem,
 ) as any as S.Schema<DlpEntriesGetResultCase6ProfilesList>;
 
 export type DlpEntriesGetResultCase6UploadStatus =
@@ -111444,6 +108771,522 @@ export const ListAccessUsersResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListAccessUsersResponse",
 }) as any as S.Schema<ListAccessUsersResponse>;
 
+export interface ListCasbApplicationsRequest {
+  accountId: string;
+  /** Filter by supported environment (standard, fedramp). */
+  environment?: string;
+}
+export const ListCasbApplicationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountId: S.String.pipe(T.Label("account_id")),
+    environment: S.optional(S.String.pipe(T.Query())),
+  })
+    .pipe(
+      T.Http({
+        method: "GET",
+        uri: "/accounts/{account_id}/one/applications",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "ListCasbApplicationsRequest",
+}) as any as S.Schema<ListCasbApplicationsRequest>;
+
+export interface ListCasbApplicationsResponseAuthMethodsItem {
+  /** Human-readable auth method name. */
+  displayName: string;
+  /** Auth method identifier. */
+  slug: string;
+}
+export const ListCasbApplicationsResponseAuthMethodsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      displayName: S.String.pipe(T.Body("display_name")),
+      slug: S.String,
+    }),
+  ).annotate({
+    identifier: "ListCasbApplicationsResponseAuthMethodsItem",
+  }) as any as S.Schema<ListCasbApplicationsResponseAuthMethodsItem>;
+
+export type ListCasbApplicationsResponseAuthMethodsList =
+  Array<ListCasbApplicationsResponseAuthMethodsItem>;
+export const ListCasbApplicationsResponseAuthMethodsList =
+  /*@__PURE__*/ S.Array(
+    ListCasbApplicationsResponseAuthMethodsItem,
+  ) as any as S.Schema<ListCasbApplicationsResponseAuthMethodsList>;
+
+export type ListCasbApplicationsResponsePermissionsItemSeverity =
+  | "low"
+  | "medium"
+  | "high"
+  | "critical";
+export const ListCasbApplicationsResponsePermissionsItemSeverity =
+  /*@__PURE__*/ S.String;
+
+export interface ListCasbApplicationsResponsePermissionsItem {
+  /** Human-readable permission name. */
+  displayName: string;
+  /** Vendor-native scope identifier. */
+  scope: string;
+  /** Permission sensitivity level. */
+  severity: ListCasbApplicationsResponsePermissionsItemSeverity;
+}
+export const ListCasbApplicationsResponsePermissionsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      displayName: S.String.pipe(T.Body("display_name")),
+      scope: S.String,
+      severity: ListCasbApplicationsResponsePermissionsItemSeverity,
+    }),
+  ).annotate({
+    identifier: "ListCasbApplicationsResponsePermissionsItem",
+  }) as any as S.Schema<ListCasbApplicationsResponsePermissionsItem>;
+
+export type ListCasbApplicationsResponsePermissionsList =
+  Array<ListCasbApplicationsResponsePermissionsItem>;
+export const ListCasbApplicationsResponsePermissionsList =
+  /*@__PURE__*/ S.Array(
+    ListCasbApplicationsResponsePermissionsItem,
+  ) as any as S.Schema<ListCasbApplicationsResponsePermissionsList>;
+
+export type ListCasbApplicationsResponseSlug =
+  | "GITHUB"
+  | "GOOGLE_WORKSPACE"
+  | "MICROSOFT_INTERNAL"
+  | "SALESFORCE"
+  | "SLACK";
+export const ListCasbApplicationsResponseSlug = /*@__PURE__*/ S.String;
+
+export type ListCasbApplicationsResponseSupportedEnvironmentsList =
+  Array<string>;
+export const ListCasbApplicationsResponseSupportedEnvironmentsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ListCasbApplicationsResponseSupportedEnvironmentsList>;
+
+export interface ListCasbApplicationsResponseUseCasesItem {
+  /** Human-readable use case name. */
+  displayName: string;
+  /** Use case identifier (e.g. casb, ces). */
+  slug: string;
+}
+export const ListCasbApplicationsResponseUseCasesItem = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      displayName: S.String.pipe(T.Body("display_name")),
+      slug: S.String,
+    }),
+).annotate({
+  identifier: "ListCasbApplicationsResponseUseCasesItem",
+}) as any as S.Schema<ListCasbApplicationsResponseUseCasesItem>;
+
+export type ListCasbApplicationsResponseUseCasesList =
+  Array<ListCasbApplicationsResponseUseCasesItem>;
+export const ListCasbApplicationsResponseUseCasesList = /*@__PURE__*/ S.Array(
+  ListCasbApplicationsResponseUseCasesItem,
+) as any as S.Schema<ListCasbApplicationsResponseUseCasesList>;
+
+/** Raw response payload (operation does not use the standard v4 result envelope). */
+export interface ListCasbApplicationsResponse {
+  /** Available auth methods. */
+  authMethods: ListCasbApplicationsResponseAuthMethodsList;
+  /** Vendor category (e.g. Productivity, AI). */
+  category: string;
+  /** Brief description of the integration. */
+  description: string;
+  /** Human-readable vendor name. */
+  displayName: string;
+  /** Whether DLP scanning is supported. */
+  dlpEnabled: boolean;
+  /** Logo path. */
+  logo: string;
+  /** All permissions with severity. */
+  permissions: ListCasbApplicationsResponsePermissionsList;
+  /** Vendor identifier (e.g. microsoft_internal, google_workspace). */
+  slug: ListCasbApplicationsResponseSlug;
+  /** Environments this vendor supports (standard, fedramp). */
+  supportedEnvironments: ListCasbApplicationsResponseSupportedEnvironmentsList;
+  /** Supported use cases. */
+  useCases: ListCasbApplicationsResponseUseCasesList;
+}
+export const ListCasbApplicationsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    authMethods: ListCasbApplicationsResponseAuthMethodsList.pipe(
+      T.Body("auth_methods"),
+    ),
+    category: S.String,
+    description: S.String,
+    displayName: S.String.pipe(T.Body("display_name")),
+    dlpEnabled: S.Boolean.pipe(T.Body("dlp_enabled")),
+    logo: S.String,
+    permissions: ListCasbApplicationsResponsePermissionsList,
+    slug: ListCasbApplicationsResponseSlug,
+    supportedEnvironments:
+      ListCasbApplicationsResponseSupportedEnvironmentsList.pipe(
+        T.Body("supported_environments"),
+      ),
+    useCases: ListCasbApplicationsResponseUseCasesList.pipe(
+      T.Body("use_cases"),
+    ),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "ListCasbApplicationsResponse",
+}) as any as S.Schema<ListCasbApplicationsResponse>;
+
+export type ListCasbApplicationsSetupFlowsRequestEnvironment =
+  | "fedramp"
+  | "standard";
+export const ListCasbApplicationsSetupFlowsRequestEnvironment =
+  /*@__PURE__*/ S.String;
+
+export interface ListCasbApplicationsSetupFlowsRequest {
+  accountId: string;
+  slug: string;
+  /** Filter by auth method slug. Get available slugs from GET /v2/applications. */
+  authMethod?: string;
+  /** Filter by environment. */
+  environment?:
+    | ListCasbApplicationsSetupFlowsRequestEnvironment
+    | (string & {});
+}
+export const ListCasbApplicationsSetupFlowsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      accountId: S.String.pipe(T.Label("account_id")),
+      slug: S.String.pipe(T.Label()),
+      authMethod: S.optional(S.String.pipe(T.Query("auth_method"))),
+      environment: S.optional(
+        ListCasbApplicationsSetupFlowsRequestEnvironment.pipe(T.Query()),
+      ),
+    })
+      .pipe(
+        T.Http({
+          method: "GET",
+          uri: "/accounts/{account_id}/one/applications/{slug}/setup-flows",
+          code: 200,
+        }),
+      )
+      .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "ListCasbApplicationsSetupFlowsRequest",
+}) as any as S.Schema<ListCasbApplicationsSetupFlowsRequest>;
+
+export type ListCasbApplicationsSetupFlowsResponseStepsItemType =
+  | "component"
+  | "instruction"
+  | "form_input"
+  | "oauth_redirect";
+export const ListCasbApplicationsSetupFlowsResponseStepsItemType =
+  /*@__PURE__*/ S.String;
+
+export type ListCasbApplicationsSetupFlowsResponseStepsItemDynamicContentItemType =
+  | "copy_block"
+  | "external_link";
+export const ListCasbApplicationsSetupFlowsResponseStepsItemDynamicContentItemType =
+  /*@__PURE__*/ S.String;
+
+export interface ListCasbApplicationsSetupFlowsResponseStepsItemDynamicContentItem {
+  /** Display label. */
+  label: string;
+  /** Content type. */
+  type: ListCasbApplicationsSetupFlowsResponseStepsItemDynamicContentItemType;
+  /** URL template with {{ variable }} interpolation (for external_link). */
+  urlTemplate?: string | null;
+  /** Field path to get value from (for copy_block). */
+  valueFrom?: string | null;
+}
+export const ListCasbApplicationsSetupFlowsResponseStepsItemDynamicContentItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      label: S.String,
+      type: ListCasbApplicationsSetupFlowsResponseStepsItemDynamicContentItemType,
+      urlTemplate: S.optional(S.NullOr(S.String).pipe(T.Body("url_template"))),
+      valueFrom: S.optional(S.NullOr(S.String).pipe(T.Body("value_from"))),
+    }),
+  ).annotate({
+    identifier:
+      "ListCasbApplicationsSetupFlowsResponseStepsItemDynamicContentItem",
+  }) as any as S.Schema<ListCasbApplicationsSetupFlowsResponseStepsItemDynamicContentItem>;
+
+export type ListCasbApplicationsSetupFlowsResponseStepsItemDynamicContentList =
+  Array<ListCasbApplicationsSetupFlowsResponseStepsItemDynamicContentItem>;
+export const ListCasbApplicationsSetupFlowsResponseStepsItemDynamicContentList =
+  /*@__PURE__*/ S.Array(
+    ListCasbApplicationsSetupFlowsResponseStepsItemDynamicContentItem,
+  ) as any as S.Schema<ListCasbApplicationsSetupFlowsResponseStepsItemDynamicContentList>;
+
+export type ListCasbApplicationsSetupFlowsResponseStepsItemFormFieldsItemSupportedFileTypesList =
+  Array<string>;
+export const ListCasbApplicationsSetupFlowsResponseStepsItemFormFieldsItemSupportedFileTypesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ListCasbApplicationsSetupFlowsResponseStepsItemFormFieldsItemSupportedFileTypesList>;
+
+export type ListCasbApplicationsSetupFlowsResponseStepsItemFormFieldsItemType =
+  | "text"
+  | "password"
+  | "email"
+  | "file_upload";
+export const ListCasbApplicationsSetupFlowsResponseStepsItemFormFieldsItemType =
+  /*@__PURE__*/ S.String;
+
+export interface ListCasbApplicationsSetupFlowsResponseStepsItemFormFieldsItem {
+  /** Human-readable field label. */
+  label: string;
+  /** Field identifier (maps to credentials key). */
+  name: string;
+  /** Placeholder text. */
+  placeholder: string;
+  /** Whether field is required. */
+  required: boolean;
+  /** Allowed file extensions for file_upload type. */
+  supportedFileTypes: ListCasbApplicationsSetupFlowsResponseStepsItemFormFieldsItemSupportedFileTypesList;
+  /** Field input type. */
+  type: ListCasbApplicationsSetupFlowsResponseStepsItemFormFieldsItemType;
+}
+export const ListCasbApplicationsSetupFlowsResponseStepsItemFormFieldsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      label: S.String,
+      name: S.String,
+      placeholder: S.String,
+      required: S.Boolean,
+      supportedFileTypes:
+        ListCasbApplicationsSetupFlowsResponseStepsItemFormFieldsItemSupportedFileTypesList.pipe(
+          T.Body("supported_file_types"),
+        ),
+      type: ListCasbApplicationsSetupFlowsResponseStepsItemFormFieldsItemType,
+    }),
+  ).annotate({
+    identifier: "ListCasbApplicationsSetupFlowsResponseStepsItemFormFieldsItem",
+  }) as any as S.Schema<ListCasbApplicationsSetupFlowsResponseStepsItemFormFieldsItem>;
+
+export type ListCasbApplicationsSetupFlowsResponseStepsItemFormFieldsList =
+  Array<ListCasbApplicationsSetupFlowsResponseStepsItemFormFieldsItem>;
+export const ListCasbApplicationsSetupFlowsResponseStepsItemFormFieldsList =
+  /*@__PURE__*/ S.Array(
+    ListCasbApplicationsSetupFlowsResponseStepsItemFormFieldsItem,
+  ) as any as S.Schema<ListCasbApplicationsSetupFlowsResponseStepsItemFormFieldsList>;
+
+export type ListCasbApplicationsSetupFlowsResponseStepsItemParametersMap = {
+  [key: string]: string | undefined;
+};
+export const ListCasbApplicationsSetupFlowsResponseStepsItemParametersMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<ListCasbApplicationsSetupFlowsResponseStepsItemParametersMap>;
+
+export interface ListCasbApplicationsSetupFlowsResponseStepsItem {
+  /** Step type. */
+  type: ListCasbApplicationsSetupFlowsResponseStepsItemType;
+  /** Component identifier (for component type). */
+  componentId?: string | null;
+  /** Step description with markdown support. */
+  description?: string | null;
+  /** Dynamic content blocks (for instruction/form_input). */
+  dynamicContent?: ListCasbApplicationsSetupFlowsResponseStepsItemDynamicContentList | null;
+  /** Form fields (for form_input). */
+  formFields?: ListCasbApplicationsSetupFlowsResponseStepsItemFormFieldsList | null;
+  /** Whether step is required (for form_input). */
+  isRequired?: boolean | null;
+  /** Component parameters (for component type). */
+  parameters?: ListCasbApplicationsSetupFlowsResponseStepsItemParametersMap | null;
+  /** Step title (for instruction/form_input/oauth_redirect). */
+  title?: string | null;
+}
+export const ListCasbApplicationsSetupFlowsResponseStepsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: ListCasbApplicationsSetupFlowsResponseStepsItemType,
+      componentId: S.optional(S.NullOr(S.String).pipe(T.Body("component_id"))),
+      description: S.optional(S.NullOr(S.String)),
+      dynamicContent: S.optional(
+        S.NullOr(
+          ListCasbApplicationsSetupFlowsResponseStepsItemDynamicContentList,
+        ).pipe(T.Body("dynamic_content")),
+      ),
+      formFields: S.optional(
+        S.NullOr(
+          ListCasbApplicationsSetupFlowsResponseStepsItemFormFieldsList,
+        ).pipe(T.Body("form_fields")),
+      ),
+      isRequired: S.optional(S.NullOr(S.Boolean).pipe(T.Body("is_required"))),
+      parameters: S.optional(
+        S.NullOr(ListCasbApplicationsSetupFlowsResponseStepsItemParametersMap),
+      ),
+      title: S.optional(S.NullOr(S.String)),
+    }),
+  ).annotate({
+    identifier: "ListCasbApplicationsSetupFlowsResponseStepsItem",
+  }) as any as S.Schema<ListCasbApplicationsSetupFlowsResponseStepsItem>;
+
+export type ListCasbApplicationsSetupFlowsResponseStepsList =
+  Array<ListCasbApplicationsSetupFlowsResponseStepsItem>;
+export const ListCasbApplicationsSetupFlowsResponseStepsList =
+  /*@__PURE__*/ S.Array(
+    ListCasbApplicationsSetupFlowsResponseStepsItem,
+  ) as any as S.Schema<ListCasbApplicationsSetupFlowsResponseStepsList>;
+
+export type ListCasbApplicationsSetupFlowsResponseSupportedEnvironmentsList =
+  Array<string>;
+export const ListCasbApplicationsSetupFlowsResponseSupportedEnvironmentsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ListCasbApplicationsSetupFlowsResponseSupportedEnvironmentsList>;
+
+export type ListCasbApplicationsSetupFlowsResponseAuthConfigScopesList =
+  Array<string>;
+export const ListCasbApplicationsSetupFlowsResponseAuthConfigScopesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ListCasbApplicationsSetupFlowsResponseAuthConfigScopesList>;
+
+export type ListCasbApplicationsSetupFlowsResponseAuthConfigUrlPlaceholdersList =
+  Array<string>;
+export const ListCasbApplicationsSetupFlowsResponseAuthConfigUrlPlaceholdersList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ListCasbApplicationsSetupFlowsResponseAuthConfigUrlPlaceholdersList>;
+
+export interface ListCasbApplicationsSetupFlowsResponseAuthConfig {
+  /** Authorization URL for the requested environment. */
+  authorizationUrl: string;
+  /** OAuth client ID. */
+  clientId: string;
+  /** Whether PKCE is required. */
+  requiresPkce: boolean;
+  /** OAuth scopes to request. */
+  scopes: ListCasbApplicationsSetupFlowsResponseAuthConfigScopesList;
+  /** Placeholders in authorization URL that frontend must fill. */
+  urlPlaceholders: ListCasbApplicationsSetupFlowsResponseAuthConfigUrlPlaceholdersList;
+}
+export const ListCasbApplicationsSetupFlowsResponseAuthConfig =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      authorizationUrl: S.String.pipe(T.Body("authorization_url")),
+      clientId: S.String.pipe(T.Body("client_id")),
+      requiresPkce: S.Boolean.pipe(T.Body("requires_pkce")),
+      scopes: ListCasbApplicationsSetupFlowsResponseAuthConfigScopesList,
+      urlPlaceholders:
+        ListCasbApplicationsSetupFlowsResponseAuthConfigUrlPlaceholdersList.pipe(
+          T.Body("url_placeholders"),
+        ),
+    }),
+  ).annotate({
+    identifier: "ListCasbApplicationsSetupFlowsResponseAuthConfig",
+  }) as any as S.Schema<ListCasbApplicationsSetupFlowsResponseAuthConfig>;
+
+/** Raw response payload (operation does not use the standard v4 result envelope). */
+export interface ListCasbApplicationsSetupFlowsResponse {
+  /** Setup flow identifier. */
+  id: string;
+  /** Whether this is the default auth method. */
+  default: boolean;
+  /** Flow description. */
+  description: string;
+  /** Human-readable flow name. */
+  name: string;
+  /** Ordered list of setup steps. */
+  steps: ListCasbApplicationsSetupFlowsResponseStepsList;
+  /** Environments this auth method supports (standard, fedramp). */
+  supportedEnvironments: ListCasbApplicationsSetupFlowsResponseSupportedEnvironmentsList;
+  /** OAuth configuration (present for OAuth-based flows). */
+  authConfig?: ListCasbApplicationsSetupFlowsResponseAuthConfig | null;
+}
+export const ListCasbApplicationsSetupFlowsResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.String,
+      default: S.Boolean,
+      description: S.String,
+      name: S.String,
+      steps: ListCasbApplicationsSetupFlowsResponseStepsList,
+      supportedEnvironments:
+        ListCasbApplicationsSetupFlowsResponseSupportedEnvironmentsList.pipe(
+          T.Body("supported_environments"),
+        ),
+      authConfig: S.optional(
+        S.NullOr(ListCasbApplicationsSetupFlowsResponseAuthConfig).pipe(
+          T.Body("auth_config"),
+        ),
+      ),
+    }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "ListCasbApplicationsSetupFlowsResponse",
+}) as any as S.Schema<ListCasbApplicationsSetupFlowsResponse>;
+
+export type ListCasbIntegrationsRequestDirection = "asc" | "desc";
+export const ListCasbIntegrationsRequestDirection = /*@__PURE__*/ S.String;
+
+export type ListCasbIntegrationsRequestOrder =
+  | "application"
+  | "created"
+  | "name"
+  | "status";
+export const ListCasbIntegrationsRequestOrder = /*@__PURE__*/ S.String;
+
+export type ListCasbIntegrationsRequestStatus =
+  | "Healthy"
+  | "Initializing"
+  | "Offline"
+  | "Unhealthy";
+export const ListCasbIntegrationsRequestStatus = /*@__PURE__*/ S.String;
+
+export interface ListCasbIntegrationsRequest {
+  accountId: string;
+  /** Filter by application/vendor (e.g., GOOGLE_WORKSPACE, MICROSOFT_INTERNAL). */
+  application?: string;
+  /** Direction to order results. */
+  direction?: ListCasbIntegrationsRequestDirection | (string & {});
+  /** Filter by DLP enabled status (true/false). */
+  dlpEnabled?: boolean;
+  /** Field to order results by. */
+  order?: ListCasbIntegrationsRequestOrder | (string & {});
+  /** Page number within the paginated result set. */
+  page?: number;
+  /** Number of results per page. */
+  pageSize?: number;
+  /** Search integrations by name or application. */
+  search?: string;
+  /** Filter by integration status. */
+  status?: ListCasbIntegrationsRequestStatus | (string & {});
+  /** Filter by enabled use cases (e.g., casb, ces). Matches integrations enrolled in any of the specified values. Can be specified multiple times. */
+  useCases?: string;
+}
+export const ListCasbIntegrationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountId: S.String.pipe(T.Label("account_id")),
+    application: S.optional(S.String.pipe(T.Query())),
+    direction: S.optional(ListCasbIntegrationsRequestDirection.pipe(T.Query())),
+    dlpEnabled: S.optional(S.Boolean.pipe(T.Query("dlp_enabled"))),
+    order: S.optional(ListCasbIntegrationsRequestOrder.pipe(T.Query())),
+    page: S.optional(S.Number.pipe(T.Query())),
+    pageSize: S.optional(S.Number.pipe(T.Query("page_size"))),
+    search: S.optional(S.String.pipe(T.Query())),
+    status: S.optional(ListCasbIntegrationsRequestStatus.pipe(T.Query())),
+    useCases: S.optional(S.String.pipe(T.Query("use_cases"))),
+  })
+    .pipe(
+      T.Http({
+        method: "GET",
+        uri: "/accounts/{account_id}/one/integrations",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "ListCasbIntegrationsRequest",
+}) as any as S.Schema<ListCasbIntegrationsRequest>;
+
+export interface ListCasbIntegrationsResponse {}
+export const ListCasbIntegrationsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "ListCasbIntegrationsResponse",
+}) as any as S.Schema<ListCasbIntegrationsResponse>;
+
 export interface ListDeviceDeploymentGroupsRequest {
   accountId: string;
   /** The page number to return. */
@@ -115338,6 +113181,527 @@ export const ListDexTestUniqueDevicesResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListDexTestUniqueDevicesResponse",
 }) as any as S.Schema<ListDexTestUniqueDevicesResponse>;
 
+export interface ListDlpCustomEntriesRequest {
+  accountId: string;
+}
+export const ListDlpCustomEntriesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountId: S.String.pipe(T.Label("account_id")),
+  })
+    .pipe(
+      T.Http({
+        method: "GET",
+        uri: "/accounts/{account_id}/dlp/entries",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "ListDlpCustomEntriesRequest",
+}) as any as S.Schema<ListDlpCustomEntriesRequest>;
+
+export type ListDlpCustomEntriesResultItemCase0PatternValidation = "luhn";
+export const ListDlpCustomEntriesResultItemCase0PatternValidation =
+  /*@__PURE__*/ S.String;
+
+export interface ListDlpCustomEntriesResultItemCase0Pattern {
+  regex: string;
+  validation?: ListDlpCustomEntriesResultItemCase0PatternValidation | null;
+}
+export const ListDlpCustomEntriesResultItemCase0Pattern =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      regex: S.String,
+      validation: S.optional(
+        S.NullOr(ListDlpCustomEntriesResultItemCase0PatternValidation),
+      ),
+    }),
+  ).annotate({
+    identifier: "ListDlpCustomEntriesResultItemCase0Pattern",
+  }) as any as S.Schema<ListDlpCustomEntriesResultItemCase0Pattern>;
+
+export type ListDlpCustomEntriesResultItemCase0Type = "custom";
+export const ListDlpCustomEntriesResultItemCase0Type = /*@__PURE__*/ S.String;
+
+export type ListDlpCustomEntriesResultItemCase0UploadStatus =
+  | "empty"
+  | "uploading"
+  | "pending"
+  | "processing"
+  | "failed"
+  | "complete";
+export const ListDlpCustomEntriesResultItemCase0UploadStatus =
+  /*@__PURE__*/ S.String;
+
+export interface ListDlpCustomEntriesResultItemCase0 {
+  id: string;
+  createdAt: string;
+  enabled: boolean;
+  name: string;
+  pattern: ListDlpCustomEntriesResultItemCase0Pattern;
+  type: ListDlpCustomEntriesResultItemCase0Type;
+  updatedAt: string;
+  description?: string | null;
+  profileId?: string | null;
+  uploadStatus?: ListDlpCustomEntriesResultItemCase0UploadStatus | null;
+}
+export const ListDlpCustomEntriesResultItemCase0 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    createdAt: S.String.pipe(T.Body("created_at")),
+    enabled: S.Boolean,
+    name: S.String,
+    pattern: ListDlpCustomEntriesResultItemCase0Pattern,
+    type: ListDlpCustomEntriesResultItemCase0Type,
+    updatedAt: S.String.pipe(T.Body("updated_at")),
+    description: S.optional(S.NullOr(S.String)),
+    profileId: S.optional(S.NullOr(S.String).pipe(T.Body("profile_id"))),
+    uploadStatus: S.optional(
+      S.NullOr(ListDlpCustomEntriesResultItemCase0UploadStatus).pipe(
+        T.Body("upload_status"),
+      ),
+    ),
+  }),
+).annotate({
+  identifier: "ListDlpCustomEntriesResultItemCase0",
+}) as any as S.Schema<ListDlpCustomEntriesResultItemCase0>;
+
+export type ListDlpCustomEntriesResultItemCase1Type = "custom_prompt_topic";
+export const ListDlpCustomEntriesResultItemCase1Type = /*@__PURE__*/ S.String;
+
+export type ListDlpCustomEntriesResultItemCase1UploadStatus =
+  | "empty"
+  | "uploading"
+  | "pending"
+  | "processing"
+  | "failed"
+  | "complete";
+export const ListDlpCustomEntriesResultItemCase1UploadStatus =
+  /*@__PURE__*/ S.String;
+
+export interface ListDlpCustomEntriesResultItemCase1 {
+  id: string;
+  createdAt: string;
+  enabled: boolean;
+  name: string;
+  type: ListDlpCustomEntriesResultItemCase1Type;
+  updatedAt: string;
+  /** The optional description of the custom prompt topic entry. */
+  description?: string | null;
+  uploadStatus?: ListDlpCustomEntriesResultItemCase1UploadStatus | null;
+}
+export const ListDlpCustomEntriesResultItemCase1 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    createdAt: S.String.pipe(T.Body("created_at")),
+    enabled: S.Boolean,
+    name: S.String,
+    type: ListDlpCustomEntriesResultItemCase1Type,
+    updatedAt: S.String.pipe(T.Body("updated_at")),
+    description: S.optional(S.NullOr(S.String)),
+    uploadStatus: S.optional(
+      S.NullOr(ListDlpCustomEntriesResultItemCase1UploadStatus).pipe(
+        T.Body("upload_status"),
+      ),
+    ),
+  }),
+).annotate({
+  identifier: "ListDlpCustomEntriesResultItemCase1",
+}) as any as S.Schema<ListDlpCustomEntriesResultItemCase1>;
+
+export type ListDlpCustomEntriesResultItemCase2Confidence =
+  DlpEntriesPredefinedCreateResponseConfidence;
+export const ListDlpCustomEntriesResultItemCase2Confidence =
+  DlpEntriesPredefinedCreateResponseConfidence;
+
+export type ListDlpCustomEntriesResultItemCase2Type = "predefined";
+export const ListDlpCustomEntriesResultItemCase2Type = /*@__PURE__*/ S.String;
+
+export type ListDlpCustomEntriesResultItemCase2UploadStatus =
+  | "empty"
+  | "uploading"
+  | "pending"
+  | "processing"
+  | "failed"
+  | "complete";
+export const ListDlpCustomEntriesResultItemCase2UploadStatus =
+  /*@__PURE__*/ S.String;
+
+export type ListDlpCustomEntriesResultItemCase2VariantCase0TopicType =
+  | "Intent"
+  | "Content";
+export const ListDlpCustomEntriesResultItemCase2VariantCase0TopicType =
+  /*@__PURE__*/ S.String;
+
+export type ListDlpCustomEntriesResultItemCase2VariantCase0Type = "PromptTopic";
+export const ListDlpCustomEntriesResultItemCase2VariantCase0Type =
+  /*@__PURE__*/ S.String;
+
+export interface ListDlpCustomEntriesResultItemCase2VariantCase0 {
+  topicType: ListDlpCustomEntriesResultItemCase2VariantCase0TopicType;
+  type: ListDlpCustomEntriesResultItemCase2VariantCase0Type;
+  /** A customer-facing explanation of what this predefined AI prompt topic represents. */
+  description?: string | null;
+}
+export const ListDlpCustomEntriesResultItemCase2VariantCase0 =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      topicType: ListDlpCustomEntriesResultItemCase2VariantCase0TopicType.pipe(
+        T.Body("topic_type"),
+      ),
+      type: ListDlpCustomEntriesResultItemCase2VariantCase0Type,
+      description: S.optional(S.NullOr(S.String)),
+    }),
+  ).annotate({
+    identifier: "ListDlpCustomEntriesResultItemCase2VariantCase0",
+  }) as any as S.Schema<ListDlpCustomEntriesResultItemCase2VariantCase0>;
+
+export type ListDlpCustomEntriesResultItemCase2VariantCase1Type = "General";
+export const ListDlpCustomEntriesResultItemCase2VariantCase1Type =
+  /*@__PURE__*/ S.String;
+
+export interface ListDlpCustomEntriesResultItemCase2VariantCase1 {
+  type: ListDlpCustomEntriesResultItemCase2VariantCase1Type;
+  /** A customer-facing explanation of what this predefined entry represents. */
+  description?: string | null;
+}
+export const ListDlpCustomEntriesResultItemCase2VariantCase1 =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: ListDlpCustomEntriesResultItemCase2VariantCase1Type,
+      description: S.optional(S.NullOr(S.String)),
+    }),
+  ).annotate({
+    identifier: "ListDlpCustomEntriesResultItemCase2VariantCase1",
+  }) as any as S.Schema<ListDlpCustomEntriesResultItemCase2VariantCase1>;
+
+export type ListDlpCustomEntriesResultItemCase2Variant =
+  | ListDlpCustomEntriesResultItemCase2VariantCase0
+  | ListDlpCustomEntriesResultItemCase2VariantCase1;
+export const ListDlpCustomEntriesResultItemCase2Variant =
+  /*@__PURE__*/ S.Unknown.pipe(
+    T.UnionCases([
+      ["topicType", "type", "description"],
+      ["type", "description"],
+    ]),
+  );
+
+export interface ListDlpCustomEntriesResultItemCase2 {
+  id: string;
+  confidence: DlpEntriesPredefinedCreateResponseConfidence;
+  enabled: boolean;
+  name: string;
+  type: ListDlpCustomEntriesResultItemCase2Type;
+  profileId?: string | null;
+  uploadStatus?: ListDlpCustomEntriesResultItemCase2UploadStatus | null;
+  /** A Predefined AI prompt classification topic entry. */
+  variant?: ListDlpCustomEntriesResultItemCase2Variant | null;
+}
+export const ListDlpCustomEntriesResultItemCase2 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    confidence: DlpEntriesPredefinedCreateResponseConfidence,
+    enabled: S.Boolean,
+    name: S.String,
+    type: ListDlpCustomEntriesResultItemCase2Type,
+    profileId: S.optional(S.NullOr(S.String).pipe(T.Body("profile_id"))),
+    uploadStatus: S.optional(
+      S.NullOr(ListDlpCustomEntriesResultItemCase2UploadStatus).pipe(
+        T.Body("upload_status"),
+      ),
+    ),
+    variant: S.optional(S.NullOr(ListDlpCustomEntriesResultItemCase2Variant)),
+  }),
+).annotate({
+  identifier: "ListDlpCustomEntriesResultItemCase2",
+}) as any as S.Schema<ListDlpCustomEntriesResultItemCase2>;
+
+export type ListDlpCustomEntriesResultItemCase3Type = "integration";
+export const ListDlpCustomEntriesResultItemCase3Type = /*@__PURE__*/ S.String;
+
+export type ListDlpCustomEntriesResultItemCase3UploadStatus =
+  | "empty"
+  | "uploading"
+  | "pending"
+  | "processing"
+  | "failed"
+  | "complete";
+export const ListDlpCustomEntriesResultItemCase3UploadStatus =
+  /*@__PURE__*/ S.String;
+
+export interface ListDlpCustomEntriesResultItemCase3 {
+  id: string;
+  createdAt: string;
+  enabled: boolean;
+  name: string;
+  type: ListDlpCustomEntriesResultItemCase3Type;
+  updatedAt: string;
+  profileId?: string | null;
+  uploadStatus?: ListDlpCustomEntriesResultItemCase3UploadStatus | null;
+}
+export const ListDlpCustomEntriesResultItemCase3 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    createdAt: S.String.pipe(T.Body("created_at")),
+    enabled: S.Boolean,
+    name: S.String,
+    type: ListDlpCustomEntriesResultItemCase3Type,
+    updatedAt: S.String.pipe(T.Body("updated_at")),
+    profileId: S.optional(S.NullOr(S.String).pipe(T.Body("profile_id"))),
+    uploadStatus: S.optional(
+      S.NullOr(ListDlpCustomEntriesResultItemCase3UploadStatus).pipe(
+        T.Body("upload_status"),
+      ),
+    ),
+  }),
+).annotate({
+  identifier: "ListDlpCustomEntriesResultItemCase3",
+}) as any as S.Schema<ListDlpCustomEntriesResultItemCase3>;
+
+export type ListDlpCustomEntriesResultItemCase4Type = "exact_data";
+export const ListDlpCustomEntriesResultItemCase4Type = /*@__PURE__*/ S.String;
+
+export type ListDlpCustomEntriesResultItemCase4UploadStatus =
+  | "empty"
+  | "uploading"
+  | "pending"
+  | "processing"
+  | "failed"
+  | "complete";
+export const ListDlpCustomEntriesResultItemCase4UploadStatus =
+  /*@__PURE__*/ S.String;
+
+export interface ListDlpCustomEntriesResultItemCase4 {
+  id: string;
+  /** Only applies to custom word lists. */
+  caseSensitive: boolean;
+  createdAt: string;
+  enabled: boolean;
+  name: string;
+  secret: boolean;
+  type: ListDlpCustomEntriesResultItemCase4Type;
+  updatedAt: string;
+  /** The optional description of the exact data entry. */
+  description?: string | null;
+  uploadStatus?: ListDlpCustomEntriesResultItemCase4UploadStatus | null;
+}
+export const ListDlpCustomEntriesResultItemCase4 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    caseSensitive: S.Boolean.pipe(T.Body("case_sensitive")),
+    createdAt: S.String.pipe(T.Body("created_at")),
+    enabled: S.Boolean,
+    name: S.String,
+    secret: S.Boolean,
+    type: ListDlpCustomEntriesResultItemCase4Type,
+    updatedAt: S.String.pipe(T.Body("updated_at")),
+    description: S.optional(S.NullOr(S.String)),
+    uploadStatus: S.optional(
+      S.NullOr(ListDlpCustomEntriesResultItemCase4UploadStatus).pipe(
+        T.Body("upload_status"),
+      ),
+    ),
+  }),
+).annotate({
+  identifier: "ListDlpCustomEntriesResultItemCase4",
+}) as any as S.Schema<ListDlpCustomEntriesResultItemCase4>;
+
+export type ListDlpCustomEntriesResultItemCase5Type = "document_fingerprint";
+export const ListDlpCustomEntriesResultItemCase5Type = /*@__PURE__*/ S.String;
+
+export type ListDlpCustomEntriesResultItemCase5UploadStatus =
+  | "empty"
+  | "uploading"
+  | "pending"
+  | "processing"
+  | "failed"
+  | "complete";
+export const ListDlpCustomEntriesResultItemCase5UploadStatus =
+  /*@__PURE__*/ S.String;
+
+export interface ListDlpCustomEntriesResultItemCase5 {
+  id: string;
+  createdAt: string;
+  enabled: boolean;
+  name: string;
+  type: ListDlpCustomEntriesResultItemCase5Type;
+  updatedAt: string;
+  /** The optional description of the document fingerprint entry. */
+  description?: string | null;
+  uploadStatus?: ListDlpCustomEntriesResultItemCase5UploadStatus | null;
+}
+export const ListDlpCustomEntriesResultItemCase5 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    createdAt: S.String.pipe(T.Body("created_at")),
+    enabled: S.Boolean,
+    name: S.String,
+    type: ListDlpCustomEntriesResultItemCase5Type,
+    updatedAt: S.String.pipe(T.Body("updated_at")),
+    description: S.optional(S.NullOr(S.String)),
+    uploadStatus: S.optional(
+      S.NullOr(ListDlpCustomEntriesResultItemCase5UploadStatus).pipe(
+        T.Body("upload_status"),
+      ),
+    ),
+  }),
+).annotate({
+  identifier: "ListDlpCustomEntriesResultItemCase5",
+}) as any as S.Schema<ListDlpCustomEntriesResultItemCase5>;
+
+export type ListDlpCustomEntriesResultItemCase6Type = "word_list";
+export const ListDlpCustomEntriesResultItemCase6Type = /*@__PURE__*/ S.String;
+
+export type ListDlpCustomEntriesResultItemCase6UploadStatus =
+  | "empty"
+  | "uploading"
+  | "pending"
+  | "processing"
+  | "failed"
+  | "complete";
+export const ListDlpCustomEntriesResultItemCase6UploadStatus =
+  /*@__PURE__*/ S.String;
+
+export interface ListDlpCustomEntriesResultItemCase6 {
+  id: string;
+  createdAt: string;
+  enabled: boolean;
+  name: string;
+  type: ListDlpCustomEntriesResultItemCase6Type;
+  updatedAt: string;
+  wordList: unknown;
+  profileId?: string | null;
+  uploadStatus?: ListDlpCustomEntriesResultItemCase6UploadStatus | null;
+}
+export const ListDlpCustomEntriesResultItemCase6 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    createdAt: S.String.pipe(T.Body("created_at")),
+    enabled: S.Boolean,
+    name: S.String,
+    type: ListDlpCustomEntriesResultItemCase6Type,
+    updatedAt: S.String.pipe(T.Body("updated_at")),
+    wordList: S.Unknown.pipe(T.Body("word_list")),
+    profileId: S.optional(S.NullOr(S.String).pipe(T.Body("profile_id"))),
+    uploadStatus: S.optional(
+      S.NullOr(ListDlpCustomEntriesResultItemCase6UploadStatus).pipe(
+        T.Body("upload_status"),
+      ),
+    ),
+  }),
+).annotate({
+  identifier: "ListDlpCustomEntriesResultItemCase6",
+}) as any as S.Schema<ListDlpCustomEntriesResultItemCase6>;
+
+export type ListDlpCustomEntriesResultItem =
+  | ListDlpCustomEntriesResultItemCase0
+  | ListDlpCustomEntriesResultItemCase1
+  | ListDlpCustomEntriesResultItemCase2
+  | ListDlpCustomEntriesResultItemCase3
+  | ListDlpCustomEntriesResultItemCase4
+  | ListDlpCustomEntriesResultItemCase5
+  | ListDlpCustomEntriesResultItemCase6;
+export const ListDlpCustomEntriesResultItem = /*@__PURE__*/ S.Unknown.pipe(
+  T.UnionCases([
+    [
+      "id",
+      "createdAt",
+      "enabled",
+      "name",
+      "pattern",
+      "type",
+      "updatedAt",
+      "description",
+      "profileId",
+      "uploadStatus",
+    ],
+    [
+      "id",
+      "createdAt",
+      "enabled",
+      "name",
+      "type",
+      "updatedAt",
+      "description",
+      "uploadStatus",
+    ],
+    [
+      "id",
+      "confidence",
+      "enabled",
+      "name",
+      "type",
+      "profileId",
+      "uploadStatus",
+      "variant",
+    ],
+    [
+      "id",
+      "createdAt",
+      "enabled",
+      "name",
+      "type",
+      "updatedAt",
+      "profileId",
+      "uploadStatus",
+    ],
+    [
+      "id",
+      "caseSensitive",
+      "createdAt",
+      "enabled",
+      "name",
+      "secret",
+      "type",
+      "updatedAt",
+      "description",
+      "uploadStatus",
+    ],
+    [
+      "id",
+      "createdAt",
+      "enabled",
+      "name",
+      "type",
+      "updatedAt",
+      "description",
+      "uploadStatus",
+    ],
+    [
+      "id",
+      "createdAt",
+      "enabled",
+      "name",
+      "type",
+      "updatedAt",
+      "wordList",
+      "profileId",
+      "uploadStatus",
+    ],
+  ]),
+);
+
+export type ListDlpCustomEntriesResultList =
+  Array<ListDlpCustomEntriesResultItem>;
+export const ListDlpCustomEntriesResultList = /*@__PURE__*/ S.Array(
+  ListDlpCustomEntriesResultItem,
+) as any as S.Schema<ListDlpCustomEntriesResultList>;
+
+export interface ListDlpCustomEntriesResponse {
+  /** The unwrapped `result` payload of the v4 response envelope. */
+  result: ListDlpCustomEntriesResultList;
+  /** Pagination info from the envelope's `result_info`. */
+  resultInfo?: ResultInfo | null;
+}
+export const ListDlpCustomEntriesResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    result: ListDlpCustomEntriesResultList.pipe(T.EnvelopePayload()),
+    resultInfo: S.optional(S.NullOr(ResultInfo).pipe(T.ResultInfo())),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "ListDlpCustomEntriesResponse",
+}) as any as S.Schema<ListDlpCustomEntriesResponse>;
+
 export interface ListDlpCustomPromptTopicsRequest {
   accountId: string;
 }
@@ -116389,6 +114753,1088 @@ export const ListDlpEntriesResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListDlpEntriesResponse",
 }) as any as S.Schema<ListDlpEntriesResponse>;
+
+export interface ListDlpEntriesIntegrationRequest {
+  accountId: string;
+}
+export const ListDlpEntriesIntegrationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountId: S.String.pipe(T.Label("account_id")),
+  })
+    .pipe(
+      T.Http({
+        method: "GET",
+        uri: "/accounts/{account_id}/dlp/entries",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "ListDlpEntriesIntegrationRequest",
+}) as any as S.Schema<ListDlpEntriesIntegrationRequest>;
+
+export type ListDlpEntriesIntegrationResultItemCase0PatternValidation = "luhn";
+export const ListDlpEntriesIntegrationResultItemCase0PatternValidation =
+  /*@__PURE__*/ S.String;
+
+export interface ListDlpEntriesIntegrationResultItemCase0Pattern {
+  regex: string;
+  validation?: ListDlpEntriesIntegrationResultItemCase0PatternValidation | null;
+}
+export const ListDlpEntriesIntegrationResultItemCase0Pattern =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      regex: S.String,
+      validation: S.optional(
+        S.NullOr(ListDlpEntriesIntegrationResultItemCase0PatternValidation),
+      ),
+    }),
+  ).annotate({
+    identifier: "ListDlpEntriesIntegrationResultItemCase0Pattern",
+  }) as any as S.Schema<ListDlpEntriesIntegrationResultItemCase0Pattern>;
+
+export type ListDlpEntriesIntegrationResultItemCase0Type = "custom";
+export const ListDlpEntriesIntegrationResultItemCase0Type =
+  /*@__PURE__*/ S.String;
+
+export type ListDlpEntriesIntegrationResultItemCase0UploadStatus =
+  | "empty"
+  | "uploading"
+  | "pending"
+  | "processing"
+  | "failed"
+  | "complete";
+export const ListDlpEntriesIntegrationResultItemCase0UploadStatus =
+  /*@__PURE__*/ S.String;
+
+export interface ListDlpEntriesIntegrationResultItemCase0 {
+  id: string;
+  createdAt: string;
+  enabled: boolean;
+  name: string;
+  pattern: ListDlpEntriesIntegrationResultItemCase0Pattern;
+  type: ListDlpEntriesIntegrationResultItemCase0Type;
+  updatedAt: string;
+  description?: string | null;
+  profileId?: string | null;
+  uploadStatus?: ListDlpEntriesIntegrationResultItemCase0UploadStatus | null;
+}
+export const ListDlpEntriesIntegrationResultItemCase0 = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.String,
+      createdAt: S.String.pipe(T.Body("created_at")),
+      enabled: S.Boolean,
+      name: S.String,
+      pattern: ListDlpEntriesIntegrationResultItemCase0Pattern,
+      type: ListDlpEntriesIntegrationResultItemCase0Type,
+      updatedAt: S.String.pipe(T.Body("updated_at")),
+      description: S.optional(S.NullOr(S.String)),
+      profileId: S.optional(S.NullOr(S.String).pipe(T.Body("profile_id"))),
+      uploadStatus: S.optional(
+        S.NullOr(ListDlpEntriesIntegrationResultItemCase0UploadStatus).pipe(
+          T.Body("upload_status"),
+        ),
+      ),
+    }),
+).annotate({
+  identifier: "ListDlpEntriesIntegrationResultItemCase0",
+}) as any as S.Schema<ListDlpEntriesIntegrationResultItemCase0>;
+
+export type ListDlpEntriesIntegrationResultItemCase1Type =
+  "custom_prompt_topic";
+export const ListDlpEntriesIntegrationResultItemCase1Type =
+  /*@__PURE__*/ S.String;
+
+export type ListDlpEntriesIntegrationResultItemCase1UploadStatus =
+  | "empty"
+  | "uploading"
+  | "pending"
+  | "processing"
+  | "failed"
+  | "complete";
+export const ListDlpEntriesIntegrationResultItemCase1UploadStatus =
+  /*@__PURE__*/ S.String;
+
+export interface ListDlpEntriesIntegrationResultItemCase1 {
+  id: string;
+  createdAt: string;
+  enabled: boolean;
+  name: string;
+  type: ListDlpEntriesIntegrationResultItemCase1Type;
+  updatedAt: string;
+  /** The optional description of the custom prompt topic entry. */
+  description?: string | null;
+  uploadStatus?: ListDlpEntriesIntegrationResultItemCase1UploadStatus | null;
+}
+export const ListDlpEntriesIntegrationResultItemCase1 = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.String,
+      createdAt: S.String.pipe(T.Body("created_at")),
+      enabled: S.Boolean,
+      name: S.String,
+      type: ListDlpEntriesIntegrationResultItemCase1Type,
+      updatedAt: S.String.pipe(T.Body("updated_at")),
+      description: S.optional(S.NullOr(S.String)),
+      uploadStatus: S.optional(
+        S.NullOr(ListDlpEntriesIntegrationResultItemCase1UploadStatus).pipe(
+          T.Body("upload_status"),
+        ),
+      ),
+    }),
+).annotate({
+  identifier: "ListDlpEntriesIntegrationResultItemCase1",
+}) as any as S.Schema<ListDlpEntriesIntegrationResultItemCase1>;
+
+export type ListDlpEntriesIntegrationResultItemCase2Confidence =
+  DlpEntriesPredefinedCreateResponseConfidence;
+export const ListDlpEntriesIntegrationResultItemCase2Confidence =
+  DlpEntriesPredefinedCreateResponseConfidence;
+
+export type ListDlpEntriesIntegrationResultItemCase2Type = "predefined";
+export const ListDlpEntriesIntegrationResultItemCase2Type =
+  /*@__PURE__*/ S.String;
+
+export type ListDlpEntriesIntegrationResultItemCase2UploadStatus =
+  | "empty"
+  | "uploading"
+  | "pending"
+  | "processing"
+  | "failed"
+  | "complete";
+export const ListDlpEntriesIntegrationResultItemCase2UploadStatus =
+  /*@__PURE__*/ S.String;
+
+export type ListDlpEntriesIntegrationResultItemCase2VariantCase0TopicType =
+  | "Intent"
+  | "Content";
+export const ListDlpEntriesIntegrationResultItemCase2VariantCase0TopicType =
+  /*@__PURE__*/ S.String;
+
+export type ListDlpEntriesIntegrationResultItemCase2VariantCase0Type =
+  "PromptTopic";
+export const ListDlpEntriesIntegrationResultItemCase2VariantCase0Type =
+  /*@__PURE__*/ S.String;
+
+export interface ListDlpEntriesIntegrationResultItemCase2VariantCase0 {
+  topicType: ListDlpEntriesIntegrationResultItemCase2VariantCase0TopicType;
+  type: ListDlpEntriesIntegrationResultItemCase2VariantCase0Type;
+  /** A customer-facing explanation of what this predefined AI prompt topic represents. */
+  description?: string | null;
+}
+export const ListDlpEntriesIntegrationResultItemCase2VariantCase0 =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      topicType:
+        ListDlpEntriesIntegrationResultItemCase2VariantCase0TopicType.pipe(
+          T.Body("topic_type"),
+        ),
+      type: ListDlpEntriesIntegrationResultItemCase2VariantCase0Type,
+      description: S.optional(S.NullOr(S.String)),
+    }),
+  ).annotate({
+    identifier: "ListDlpEntriesIntegrationResultItemCase2VariantCase0",
+  }) as any as S.Schema<ListDlpEntriesIntegrationResultItemCase2VariantCase0>;
+
+export type ListDlpEntriesIntegrationResultItemCase2VariantCase1Type =
+  "General";
+export const ListDlpEntriesIntegrationResultItemCase2VariantCase1Type =
+  /*@__PURE__*/ S.String;
+
+export interface ListDlpEntriesIntegrationResultItemCase2VariantCase1 {
+  type: ListDlpEntriesIntegrationResultItemCase2VariantCase1Type;
+  /** A customer-facing explanation of what this predefined entry represents. */
+  description?: string | null;
+}
+export const ListDlpEntriesIntegrationResultItemCase2VariantCase1 =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: ListDlpEntriesIntegrationResultItemCase2VariantCase1Type,
+      description: S.optional(S.NullOr(S.String)),
+    }),
+  ).annotate({
+    identifier: "ListDlpEntriesIntegrationResultItemCase2VariantCase1",
+  }) as any as S.Schema<ListDlpEntriesIntegrationResultItemCase2VariantCase1>;
+
+export type ListDlpEntriesIntegrationResultItemCase2Variant =
+  | ListDlpEntriesIntegrationResultItemCase2VariantCase0
+  | ListDlpEntriesIntegrationResultItemCase2VariantCase1;
+export const ListDlpEntriesIntegrationResultItemCase2Variant =
+  /*@__PURE__*/ S.Unknown.pipe(
+    T.UnionCases([
+      ["topicType", "type", "description"],
+      ["type", "description"],
+    ]),
+  );
+
+export interface ListDlpEntriesIntegrationResultItemCase2 {
+  id: string;
+  confidence: DlpEntriesPredefinedCreateResponseConfidence;
+  enabled: boolean;
+  name: string;
+  type: ListDlpEntriesIntegrationResultItemCase2Type;
+  profileId?: string | null;
+  uploadStatus?: ListDlpEntriesIntegrationResultItemCase2UploadStatus | null;
+  /** A Predefined AI prompt classification topic entry. */
+  variant?: ListDlpEntriesIntegrationResultItemCase2Variant | null;
+}
+export const ListDlpEntriesIntegrationResultItemCase2 = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.String,
+      confidence: DlpEntriesPredefinedCreateResponseConfidence,
+      enabled: S.Boolean,
+      name: S.String,
+      type: ListDlpEntriesIntegrationResultItemCase2Type,
+      profileId: S.optional(S.NullOr(S.String).pipe(T.Body("profile_id"))),
+      uploadStatus: S.optional(
+        S.NullOr(ListDlpEntriesIntegrationResultItemCase2UploadStatus).pipe(
+          T.Body("upload_status"),
+        ),
+      ),
+      variant: S.optional(
+        S.NullOr(ListDlpEntriesIntegrationResultItemCase2Variant),
+      ),
+    }),
+).annotate({
+  identifier: "ListDlpEntriesIntegrationResultItemCase2",
+}) as any as S.Schema<ListDlpEntriesIntegrationResultItemCase2>;
+
+export type ListDlpEntriesIntegrationResultItemCase3Type = "integration";
+export const ListDlpEntriesIntegrationResultItemCase3Type =
+  /*@__PURE__*/ S.String;
+
+export type ListDlpEntriesIntegrationResultItemCase3UploadStatus =
+  | "empty"
+  | "uploading"
+  | "pending"
+  | "processing"
+  | "failed"
+  | "complete";
+export const ListDlpEntriesIntegrationResultItemCase3UploadStatus =
+  /*@__PURE__*/ S.String;
+
+export interface ListDlpEntriesIntegrationResultItemCase3 {
+  id: string;
+  createdAt: string;
+  enabled: boolean;
+  name: string;
+  type: ListDlpEntriesIntegrationResultItemCase3Type;
+  updatedAt: string;
+  profileId?: string | null;
+  uploadStatus?: ListDlpEntriesIntegrationResultItemCase3UploadStatus | null;
+}
+export const ListDlpEntriesIntegrationResultItemCase3 = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.String,
+      createdAt: S.String.pipe(T.Body("created_at")),
+      enabled: S.Boolean,
+      name: S.String,
+      type: ListDlpEntriesIntegrationResultItemCase3Type,
+      updatedAt: S.String.pipe(T.Body("updated_at")),
+      profileId: S.optional(S.NullOr(S.String).pipe(T.Body("profile_id"))),
+      uploadStatus: S.optional(
+        S.NullOr(ListDlpEntriesIntegrationResultItemCase3UploadStatus).pipe(
+          T.Body("upload_status"),
+        ),
+      ),
+    }),
+).annotate({
+  identifier: "ListDlpEntriesIntegrationResultItemCase3",
+}) as any as S.Schema<ListDlpEntriesIntegrationResultItemCase3>;
+
+export type ListDlpEntriesIntegrationResultItemCase4Type = "exact_data";
+export const ListDlpEntriesIntegrationResultItemCase4Type =
+  /*@__PURE__*/ S.String;
+
+export type ListDlpEntriesIntegrationResultItemCase4UploadStatus =
+  | "empty"
+  | "uploading"
+  | "pending"
+  | "processing"
+  | "failed"
+  | "complete";
+export const ListDlpEntriesIntegrationResultItemCase4UploadStatus =
+  /*@__PURE__*/ S.String;
+
+export interface ListDlpEntriesIntegrationResultItemCase4 {
+  id: string;
+  /** Only applies to custom word lists. */
+  caseSensitive: boolean;
+  createdAt: string;
+  enabled: boolean;
+  name: string;
+  secret: boolean;
+  type: ListDlpEntriesIntegrationResultItemCase4Type;
+  updatedAt: string;
+  /** The optional description of the exact data entry. */
+  description?: string | null;
+  uploadStatus?: ListDlpEntriesIntegrationResultItemCase4UploadStatus | null;
+}
+export const ListDlpEntriesIntegrationResultItemCase4 = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.String,
+      caseSensitive: S.Boolean.pipe(T.Body("case_sensitive")),
+      createdAt: S.String.pipe(T.Body("created_at")),
+      enabled: S.Boolean,
+      name: S.String,
+      secret: S.Boolean,
+      type: ListDlpEntriesIntegrationResultItemCase4Type,
+      updatedAt: S.String.pipe(T.Body("updated_at")),
+      description: S.optional(S.NullOr(S.String)),
+      uploadStatus: S.optional(
+        S.NullOr(ListDlpEntriesIntegrationResultItemCase4UploadStatus).pipe(
+          T.Body("upload_status"),
+        ),
+      ),
+    }),
+).annotate({
+  identifier: "ListDlpEntriesIntegrationResultItemCase4",
+}) as any as S.Schema<ListDlpEntriesIntegrationResultItemCase4>;
+
+export type ListDlpEntriesIntegrationResultItemCase5Type =
+  "document_fingerprint";
+export const ListDlpEntriesIntegrationResultItemCase5Type =
+  /*@__PURE__*/ S.String;
+
+export type ListDlpEntriesIntegrationResultItemCase5UploadStatus =
+  | "empty"
+  | "uploading"
+  | "pending"
+  | "processing"
+  | "failed"
+  | "complete";
+export const ListDlpEntriesIntegrationResultItemCase5UploadStatus =
+  /*@__PURE__*/ S.String;
+
+export interface ListDlpEntriesIntegrationResultItemCase5 {
+  id: string;
+  createdAt: string;
+  enabled: boolean;
+  name: string;
+  type: ListDlpEntriesIntegrationResultItemCase5Type;
+  updatedAt: string;
+  /** The optional description of the document fingerprint entry. */
+  description?: string | null;
+  uploadStatus?: ListDlpEntriesIntegrationResultItemCase5UploadStatus | null;
+}
+export const ListDlpEntriesIntegrationResultItemCase5 = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.String,
+      createdAt: S.String.pipe(T.Body("created_at")),
+      enabled: S.Boolean,
+      name: S.String,
+      type: ListDlpEntriesIntegrationResultItemCase5Type,
+      updatedAt: S.String.pipe(T.Body("updated_at")),
+      description: S.optional(S.NullOr(S.String)),
+      uploadStatus: S.optional(
+        S.NullOr(ListDlpEntriesIntegrationResultItemCase5UploadStatus).pipe(
+          T.Body("upload_status"),
+        ),
+      ),
+    }),
+).annotate({
+  identifier: "ListDlpEntriesIntegrationResultItemCase5",
+}) as any as S.Schema<ListDlpEntriesIntegrationResultItemCase5>;
+
+export type ListDlpEntriesIntegrationResultItemCase6Type = "word_list";
+export const ListDlpEntriesIntegrationResultItemCase6Type =
+  /*@__PURE__*/ S.String;
+
+export type ListDlpEntriesIntegrationResultItemCase6UploadStatus =
+  | "empty"
+  | "uploading"
+  | "pending"
+  | "processing"
+  | "failed"
+  | "complete";
+export const ListDlpEntriesIntegrationResultItemCase6UploadStatus =
+  /*@__PURE__*/ S.String;
+
+export interface ListDlpEntriesIntegrationResultItemCase6 {
+  id: string;
+  createdAt: string;
+  enabled: boolean;
+  name: string;
+  type: ListDlpEntriesIntegrationResultItemCase6Type;
+  updatedAt: string;
+  wordList: unknown;
+  profileId?: string | null;
+  uploadStatus?: ListDlpEntriesIntegrationResultItemCase6UploadStatus | null;
+}
+export const ListDlpEntriesIntegrationResultItemCase6 = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.String,
+      createdAt: S.String.pipe(T.Body("created_at")),
+      enabled: S.Boolean,
+      name: S.String,
+      type: ListDlpEntriesIntegrationResultItemCase6Type,
+      updatedAt: S.String.pipe(T.Body("updated_at")),
+      wordList: S.Unknown.pipe(T.Body("word_list")),
+      profileId: S.optional(S.NullOr(S.String).pipe(T.Body("profile_id"))),
+      uploadStatus: S.optional(
+        S.NullOr(ListDlpEntriesIntegrationResultItemCase6UploadStatus).pipe(
+          T.Body("upload_status"),
+        ),
+      ),
+    }),
+).annotate({
+  identifier: "ListDlpEntriesIntegrationResultItemCase6",
+}) as any as S.Schema<ListDlpEntriesIntegrationResultItemCase6>;
+
+export type ListDlpEntriesIntegrationResultItem =
+  | ListDlpEntriesIntegrationResultItemCase0
+  | ListDlpEntriesIntegrationResultItemCase1
+  | ListDlpEntriesIntegrationResultItemCase2
+  | ListDlpEntriesIntegrationResultItemCase3
+  | ListDlpEntriesIntegrationResultItemCase4
+  | ListDlpEntriesIntegrationResultItemCase5
+  | ListDlpEntriesIntegrationResultItemCase6;
+export const ListDlpEntriesIntegrationResultItem = /*@__PURE__*/ S.Unknown.pipe(
+  T.UnionCases([
+    [
+      "id",
+      "createdAt",
+      "enabled",
+      "name",
+      "pattern",
+      "type",
+      "updatedAt",
+      "description",
+      "profileId",
+      "uploadStatus",
+    ],
+    [
+      "id",
+      "createdAt",
+      "enabled",
+      "name",
+      "type",
+      "updatedAt",
+      "description",
+      "uploadStatus",
+    ],
+    [
+      "id",
+      "confidence",
+      "enabled",
+      "name",
+      "type",
+      "profileId",
+      "uploadStatus",
+      "variant",
+    ],
+    [
+      "id",
+      "createdAt",
+      "enabled",
+      "name",
+      "type",
+      "updatedAt",
+      "profileId",
+      "uploadStatus",
+    ],
+    [
+      "id",
+      "caseSensitive",
+      "createdAt",
+      "enabled",
+      "name",
+      "secret",
+      "type",
+      "updatedAt",
+      "description",
+      "uploadStatus",
+    ],
+    [
+      "id",
+      "createdAt",
+      "enabled",
+      "name",
+      "type",
+      "updatedAt",
+      "description",
+      "uploadStatus",
+    ],
+    [
+      "id",
+      "createdAt",
+      "enabled",
+      "name",
+      "type",
+      "updatedAt",
+      "wordList",
+      "profileId",
+      "uploadStatus",
+    ],
+  ]),
+);
+
+export type ListDlpEntriesIntegrationResultList =
+  Array<ListDlpEntriesIntegrationResultItem>;
+export const ListDlpEntriesIntegrationResultList = /*@__PURE__*/ S.Array(
+  ListDlpEntriesIntegrationResultItem,
+) as any as S.Schema<ListDlpEntriesIntegrationResultList>;
+
+export interface ListDlpEntriesIntegrationResponse {
+  /** The unwrapped `result` payload of the v4 response envelope. */
+  result: ListDlpEntriesIntegrationResultList;
+  /** Pagination info from the envelope's `result_info`. */
+  resultInfo?: ResultInfo | null;
+}
+export const ListDlpEntriesIntegrationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    result: ListDlpEntriesIntegrationResultList.pipe(T.EnvelopePayload()),
+    resultInfo: S.optional(S.NullOr(ResultInfo).pipe(T.ResultInfo())),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "ListDlpEntriesIntegrationResponse",
+}) as any as S.Schema<ListDlpEntriesIntegrationResponse>;
+
+export interface ListDlpEntriesPredefinedRequest {
+  accountId: string;
+}
+export const ListDlpEntriesPredefinedRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountId: S.String.pipe(T.Label("account_id")),
+  })
+    .pipe(
+      T.Http({
+        method: "GET",
+        uri: "/accounts/{account_id}/dlp/entries",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "ListDlpEntriesPredefinedRequest",
+}) as any as S.Schema<ListDlpEntriesPredefinedRequest>;
+
+export type ListDlpEntriesPredefinedResultItemCase0PatternValidation = "luhn";
+export const ListDlpEntriesPredefinedResultItemCase0PatternValidation =
+  /*@__PURE__*/ S.String;
+
+export interface ListDlpEntriesPredefinedResultItemCase0Pattern {
+  regex: string;
+  validation?: ListDlpEntriesPredefinedResultItemCase0PatternValidation | null;
+}
+export const ListDlpEntriesPredefinedResultItemCase0Pattern =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      regex: S.String,
+      validation: S.optional(
+        S.NullOr(ListDlpEntriesPredefinedResultItemCase0PatternValidation),
+      ),
+    }),
+  ).annotate({
+    identifier: "ListDlpEntriesPredefinedResultItemCase0Pattern",
+  }) as any as S.Schema<ListDlpEntriesPredefinedResultItemCase0Pattern>;
+
+export type ListDlpEntriesPredefinedResultItemCase0Type = "custom";
+export const ListDlpEntriesPredefinedResultItemCase0Type =
+  /*@__PURE__*/ S.String;
+
+export type ListDlpEntriesPredefinedResultItemCase0UploadStatus =
+  | "empty"
+  | "uploading"
+  | "pending"
+  | "processing"
+  | "failed"
+  | "complete";
+export const ListDlpEntriesPredefinedResultItemCase0UploadStatus =
+  /*@__PURE__*/ S.String;
+
+export interface ListDlpEntriesPredefinedResultItemCase0 {
+  id: string;
+  createdAt: string;
+  enabled: boolean;
+  name: string;
+  pattern: ListDlpEntriesPredefinedResultItemCase0Pattern;
+  type: ListDlpEntriesPredefinedResultItemCase0Type;
+  updatedAt: string;
+  description?: string | null;
+  profileId?: string | null;
+  uploadStatus?: ListDlpEntriesPredefinedResultItemCase0UploadStatus | null;
+}
+export const ListDlpEntriesPredefinedResultItemCase0 = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.String,
+      createdAt: S.String.pipe(T.Body("created_at")),
+      enabled: S.Boolean,
+      name: S.String,
+      pattern: ListDlpEntriesPredefinedResultItemCase0Pattern,
+      type: ListDlpEntriesPredefinedResultItemCase0Type,
+      updatedAt: S.String.pipe(T.Body("updated_at")),
+      description: S.optional(S.NullOr(S.String)),
+      profileId: S.optional(S.NullOr(S.String).pipe(T.Body("profile_id"))),
+      uploadStatus: S.optional(
+        S.NullOr(ListDlpEntriesPredefinedResultItemCase0UploadStatus).pipe(
+          T.Body("upload_status"),
+        ),
+      ),
+    }),
+).annotate({
+  identifier: "ListDlpEntriesPredefinedResultItemCase0",
+}) as any as S.Schema<ListDlpEntriesPredefinedResultItemCase0>;
+
+export type ListDlpEntriesPredefinedResultItemCase1Type = "custom_prompt_topic";
+export const ListDlpEntriesPredefinedResultItemCase1Type =
+  /*@__PURE__*/ S.String;
+
+export type ListDlpEntriesPredefinedResultItemCase1UploadStatus =
+  | "empty"
+  | "uploading"
+  | "pending"
+  | "processing"
+  | "failed"
+  | "complete";
+export const ListDlpEntriesPredefinedResultItemCase1UploadStatus =
+  /*@__PURE__*/ S.String;
+
+export interface ListDlpEntriesPredefinedResultItemCase1 {
+  id: string;
+  createdAt: string;
+  enabled: boolean;
+  name: string;
+  type: ListDlpEntriesPredefinedResultItemCase1Type;
+  updatedAt: string;
+  /** The optional description of the custom prompt topic entry. */
+  description?: string | null;
+  uploadStatus?: ListDlpEntriesPredefinedResultItemCase1UploadStatus | null;
+}
+export const ListDlpEntriesPredefinedResultItemCase1 = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.String,
+      createdAt: S.String.pipe(T.Body("created_at")),
+      enabled: S.Boolean,
+      name: S.String,
+      type: ListDlpEntriesPredefinedResultItemCase1Type,
+      updatedAt: S.String.pipe(T.Body("updated_at")),
+      description: S.optional(S.NullOr(S.String)),
+      uploadStatus: S.optional(
+        S.NullOr(ListDlpEntriesPredefinedResultItemCase1UploadStatus).pipe(
+          T.Body("upload_status"),
+        ),
+      ),
+    }),
+).annotate({
+  identifier: "ListDlpEntriesPredefinedResultItemCase1",
+}) as any as S.Schema<ListDlpEntriesPredefinedResultItemCase1>;
+
+export type ListDlpEntriesPredefinedResultItemCase2Confidence =
+  DlpEntriesPredefinedCreateResponseConfidence;
+export const ListDlpEntriesPredefinedResultItemCase2Confidence =
+  DlpEntriesPredefinedCreateResponseConfidence;
+
+export type ListDlpEntriesPredefinedResultItemCase2Type = "predefined";
+export const ListDlpEntriesPredefinedResultItemCase2Type =
+  /*@__PURE__*/ S.String;
+
+export type ListDlpEntriesPredefinedResultItemCase2UploadStatus =
+  | "empty"
+  | "uploading"
+  | "pending"
+  | "processing"
+  | "failed"
+  | "complete";
+export const ListDlpEntriesPredefinedResultItemCase2UploadStatus =
+  /*@__PURE__*/ S.String;
+
+export type ListDlpEntriesPredefinedResultItemCase2VariantCase0TopicType =
+  | "Intent"
+  | "Content";
+export const ListDlpEntriesPredefinedResultItemCase2VariantCase0TopicType =
+  /*@__PURE__*/ S.String;
+
+export type ListDlpEntriesPredefinedResultItemCase2VariantCase0Type =
+  "PromptTopic";
+export const ListDlpEntriesPredefinedResultItemCase2VariantCase0Type =
+  /*@__PURE__*/ S.String;
+
+export interface ListDlpEntriesPredefinedResultItemCase2VariantCase0 {
+  topicType: ListDlpEntriesPredefinedResultItemCase2VariantCase0TopicType;
+  type: ListDlpEntriesPredefinedResultItemCase2VariantCase0Type;
+  /** A customer-facing explanation of what this predefined AI prompt topic represents. */
+  description?: string | null;
+}
+export const ListDlpEntriesPredefinedResultItemCase2VariantCase0 =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      topicType:
+        ListDlpEntriesPredefinedResultItemCase2VariantCase0TopicType.pipe(
+          T.Body("topic_type"),
+        ),
+      type: ListDlpEntriesPredefinedResultItemCase2VariantCase0Type,
+      description: S.optional(S.NullOr(S.String)),
+    }),
+  ).annotate({
+    identifier: "ListDlpEntriesPredefinedResultItemCase2VariantCase0",
+  }) as any as S.Schema<ListDlpEntriesPredefinedResultItemCase2VariantCase0>;
+
+export type ListDlpEntriesPredefinedResultItemCase2VariantCase1Type = "General";
+export const ListDlpEntriesPredefinedResultItemCase2VariantCase1Type =
+  /*@__PURE__*/ S.String;
+
+export interface ListDlpEntriesPredefinedResultItemCase2VariantCase1 {
+  type: ListDlpEntriesPredefinedResultItemCase2VariantCase1Type;
+  /** A customer-facing explanation of what this predefined entry represents. */
+  description?: string | null;
+}
+export const ListDlpEntriesPredefinedResultItemCase2VariantCase1 =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: ListDlpEntriesPredefinedResultItemCase2VariantCase1Type,
+      description: S.optional(S.NullOr(S.String)),
+    }),
+  ).annotate({
+    identifier: "ListDlpEntriesPredefinedResultItemCase2VariantCase1",
+  }) as any as S.Schema<ListDlpEntriesPredefinedResultItemCase2VariantCase1>;
+
+export type ListDlpEntriesPredefinedResultItemCase2Variant =
+  | ListDlpEntriesPredefinedResultItemCase2VariantCase0
+  | ListDlpEntriesPredefinedResultItemCase2VariantCase1;
+export const ListDlpEntriesPredefinedResultItemCase2Variant =
+  /*@__PURE__*/ S.Unknown.pipe(
+    T.UnionCases([
+      ["topicType", "type", "description"],
+      ["type", "description"],
+    ]),
+  );
+
+export interface ListDlpEntriesPredefinedResultItemCase2 {
+  id: string;
+  confidence: DlpEntriesPredefinedCreateResponseConfidence;
+  enabled: boolean;
+  name: string;
+  type: ListDlpEntriesPredefinedResultItemCase2Type;
+  profileId?: string | null;
+  uploadStatus?: ListDlpEntriesPredefinedResultItemCase2UploadStatus | null;
+  /** A Predefined AI prompt classification topic entry. */
+  variant?: ListDlpEntriesPredefinedResultItemCase2Variant | null;
+}
+export const ListDlpEntriesPredefinedResultItemCase2 = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.String,
+      confidence: DlpEntriesPredefinedCreateResponseConfidence,
+      enabled: S.Boolean,
+      name: S.String,
+      type: ListDlpEntriesPredefinedResultItemCase2Type,
+      profileId: S.optional(S.NullOr(S.String).pipe(T.Body("profile_id"))),
+      uploadStatus: S.optional(
+        S.NullOr(ListDlpEntriesPredefinedResultItemCase2UploadStatus).pipe(
+          T.Body("upload_status"),
+        ),
+      ),
+      variant: S.optional(
+        S.NullOr(ListDlpEntriesPredefinedResultItemCase2Variant),
+      ),
+    }),
+).annotate({
+  identifier: "ListDlpEntriesPredefinedResultItemCase2",
+}) as any as S.Schema<ListDlpEntriesPredefinedResultItemCase2>;
+
+export type ListDlpEntriesPredefinedResultItemCase3Type = "integration";
+export const ListDlpEntriesPredefinedResultItemCase3Type =
+  /*@__PURE__*/ S.String;
+
+export type ListDlpEntriesPredefinedResultItemCase3UploadStatus =
+  | "empty"
+  | "uploading"
+  | "pending"
+  | "processing"
+  | "failed"
+  | "complete";
+export const ListDlpEntriesPredefinedResultItemCase3UploadStatus =
+  /*@__PURE__*/ S.String;
+
+export interface ListDlpEntriesPredefinedResultItemCase3 {
+  id: string;
+  createdAt: string;
+  enabled: boolean;
+  name: string;
+  type: ListDlpEntriesPredefinedResultItemCase3Type;
+  updatedAt: string;
+  profileId?: string | null;
+  uploadStatus?: ListDlpEntriesPredefinedResultItemCase3UploadStatus | null;
+}
+export const ListDlpEntriesPredefinedResultItemCase3 = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.String,
+      createdAt: S.String.pipe(T.Body("created_at")),
+      enabled: S.Boolean,
+      name: S.String,
+      type: ListDlpEntriesPredefinedResultItemCase3Type,
+      updatedAt: S.String.pipe(T.Body("updated_at")),
+      profileId: S.optional(S.NullOr(S.String).pipe(T.Body("profile_id"))),
+      uploadStatus: S.optional(
+        S.NullOr(ListDlpEntriesPredefinedResultItemCase3UploadStatus).pipe(
+          T.Body("upload_status"),
+        ),
+      ),
+    }),
+).annotate({
+  identifier: "ListDlpEntriesPredefinedResultItemCase3",
+}) as any as S.Schema<ListDlpEntriesPredefinedResultItemCase3>;
+
+export type ListDlpEntriesPredefinedResultItemCase4Type = "exact_data";
+export const ListDlpEntriesPredefinedResultItemCase4Type =
+  /*@__PURE__*/ S.String;
+
+export type ListDlpEntriesPredefinedResultItemCase4UploadStatus =
+  | "empty"
+  | "uploading"
+  | "pending"
+  | "processing"
+  | "failed"
+  | "complete";
+export const ListDlpEntriesPredefinedResultItemCase4UploadStatus =
+  /*@__PURE__*/ S.String;
+
+export interface ListDlpEntriesPredefinedResultItemCase4 {
+  id: string;
+  /** Only applies to custom word lists. */
+  caseSensitive: boolean;
+  createdAt: string;
+  enabled: boolean;
+  name: string;
+  secret: boolean;
+  type: ListDlpEntriesPredefinedResultItemCase4Type;
+  updatedAt: string;
+  /** The optional description of the exact data entry. */
+  description?: string | null;
+  uploadStatus?: ListDlpEntriesPredefinedResultItemCase4UploadStatus | null;
+}
+export const ListDlpEntriesPredefinedResultItemCase4 = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.String,
+      caseSensitive: S.Boolean.pipe(T.Body("case_sensitive")),
+      createdAt: S.String.pipe(T.Body("created_at")),
+      enabled: S.Boolean,
+      name: S.String,
+      secret: S.Boolean,
+      type: ListDlpEntriesPredefinedResultItemCase4Type,
+      updatedAt: S.String.pipe(T.Body("updated_at")),
+      description: S.optional(S.NullOr(S.String)),
+      uploadStatus: S.optional(
+        S.NullOr(ListDlpEntriesPredefinedResultItemCase4UploadStatus).pipe(
+          T.Body("upload_status"),
+        ),
+      ),
+    }),
+).annotate({
+  identifier: "ListDlpEntriesPredefinedResultItemCase4",
+}) as any as S.Schema<ListDlpEntriesPredefinedResultItemCase4>;
+
+export type ListDlpEntriesPredefinedResultItemCase5Type =
+  "document_fingerprint";
+export const ListDlpEntriesPredefinedResultItemCase5Type =
+  /*@__PURE__*/ S.String;
+
+export type ListDlpEntriesPredefinedResultItemCase5UploadStatus =
+  | "empty"
+  | "uploading"
+  | "pending"
+  | "processing"
+  | "failed"
+  | "complete";
+export const ListDlpEntriesPredefinedResultItemCase5UploadStatus =
+  /*@__PURE__*/ S.String;
+
+export interface ListDlpEntriesPredefinedResultItemCase5 {
+  id: string;
+  createdAt: string;
+  enabled: boolean;
+  name: string;
+  type: ListDlpEntriesPredefinedResultItemCase5Type;
+  updatedAt: string;
+  /** The optional description of the document fingerprint entry. */
+  description?: string | null;
+  uploadStatus?: ListDlpEntriesPredefinedResultItemCase5UploadStatus | null;
+}
+export const ListDlpEntriesPredefinedResultItemCase5 = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.String,
+      createdAt: S.String.pipe(T.Body("created_at")),
+      enabled: S.Boolean,
+      name: S.String,
+      type: ListDlpEntriesPredefinedResultItemCase5Type,
+      updatedAt: S.String.pipe(T.Body("updated_at")),
+      description: S.optional(S.NullOr(S.String)),
+      uploadStatus: S.optional(
+        S.NullOr(ListDlpEntriesPredefinedResultItemCase5UploadStatus).pipe(
+          T.Body("upload_status"),
+        ),
+      ),
+    }),
+).annotate({
+  identifier: "ListDlpEntriesPredefinedResultItemCase5",
+}) as any as S.Schema<ListDlpEntriesPredefinedResultItemCase5>;
+
+export type ListDlpEntriesPredefinedResultItemCase6Type = "word_list";
+export const ListDlpEntriesPredefinedResultItemCase6Type =
+  /*@__PURE__*/ S.String;
+
+export type ListDlpEntriesPredefinedResultItemCase6UploadStatus =
+  | "empty"
+  | "uploading"
+  | "pending"
+  | "processing"
+  | "failed"
+  | "complete";
+export const ListDlpEntriesPredefinedResultItemCase6UploadStatus =
+  /*@__PURE__*/ S.String;
+
+export interface ListDlpEntriesPredefinedResultItemCase6 {
+  id: string;
+  createdAt: string;
+  enabled: boolean;
+  name: string;
+  type: ListDlpEntriesPredefinedResultItemCase6Type;
+  updatedAt: string;
+  wordList: unknown;
+  profileId?: string | null;
+  uploadStatus?: ListDlpEntriesPredefinedResultItemCase6UploadStatus | null;
+}
+export const ListDlpEntriesPredefinedResultItemCase6 = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.String,
+      createdAt: S.String.pipe(T.Body("created_at")),
+      enabled: S.Boolean,
+      name: S.String,
+      type: ListDlpEntriesPredefinedResultItemCase6Type,
+      updatedAt: S.String.pipe(T.Body("updated_at")),
+      wordList: S.Unknown.pipe(T.Body("word_list")),
+      profileId: S.optional(S.NullOr(S.String).pipe(T.Body("profile_id"))),
+      uploadStatus: S.optional(
+        S.NullOr(ListDlpEntriesPredefinedResultItemCase6UploadStatus).pipe(
+          T.Body("upload_status"),
+        ),
+      ),
+    }),
+).annotate({
+  identifier: "ListDlpEntriesPredefinedResultItemCase6",
+}) as any as S.Schema<ListDlpEntriesPredefinedResultItemCase6>;
+
+export type ListDlpEntriesPredefinedResultItem =
+  | ListDlpEntriesPredefinedResultItemCase0
+  | ListDlpEntriesPredefinedResultItemCase1
+  | ListDlpEntriesPredefinedResultItemCase2
+  | ListDlpEntriesPredefinedResultItemCase3
+  | ListDlpEntriesPredefinedResultItemCase4
+  | ListDlpEntriesPredefinedResultItemCase5
+  | ListDlpEntriesPredefinedResultItemCase6;
+export const ListDlpEntriesPredefinedResultItem = /*@__PURE__*/ S.Unknown.pipe(
+  T.UnionCases([
+    [
+      "id",
+      "createdAt",
+      "enabled",
+      "name",
+      "pattern",
+      "type",
+      "updatedAt",
+      "description",
+      "profileId",
+      "uploadStatus",
+    ],
+    [
+      "id",
+      "createdAt",
+      "enabled",
+      "name",
+      "type",
+      "updatedAt",
+      "description",
+      "uploadStatus",
+    ],
+    [
+      "id",
+      "confidence",
+      "enabled",
+      "name",
+      "type",
+      "profileId",
+      "uploadStatus",
+      "variant",
+    ],
+    [
+      "id",
+      "createdAt",
+      "enabled",
+      "name",
+      "type",
+      "updatedAt",
+      "profileId",
+      "uploadStatus",
+    ],
+    [
+      "id",
+      "caseSensitive",
+      "createdAt",
+      "enabled",
+      "name",
+      "secret",
+      "type",
+      "updatedAt",
+      "description",
+      "uploadStatus",
+    ],
+    [
+      "id",
+      "createdAt",
+      "enabled",
+      "name",
+      "type",
+      "updatedAt",
+      "description",
+      "uploadStatus",
+    ],
+    [
+      "id",
+      "createdAt",
+      "enabled",
+      "name",
+      "type",
+      "updatedAt",
+      "wordList",
+      "profileId",
+      "uploadStatus",
+    ],
+  ]),
+);
+
+export type ListDlpEntriesPredefinedResultList =
+  Array<ListDlpEntriesPredefinedResultItem>;
+export const ListDlpEntriesPredefinedResultList = /*@__PURE__*/ S.Array(
+  ListDlpEntriesPredefinedResultItem,
+) as any as S.Schema<ListDlpEntriesPredefinedResultList>;
+
+export interface ListDlpEntriesPredefinedResponse {
+  /** The unwrapped `result` payload of the v4 response envelope. */
+  result: ListDlpEntriesPredefinedResultList;
+  /** Pagination info from the envelope's `result_info`. */
+  resultInfo?: ResultInfo | null;
+}
+export const ListDlpEntriesPredefinedResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    result: ListDlpEntriesPredefinedResultList.pipe(T.EnvelopePayload()),
+    resultInfo: S.optional(S.NullOr(ResultInfo).pipe(T.ResultInfo())),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "ListDlpEntriesPredefinedResponse",
+}) as any as S.Schema<ListDlpEntriesPredefinedResponse>;
 
 export interface ListDlpLimitsRequest {
   accountId: string;
@@ -124634,149 +124080,6 @@ export const LiveDexFleetStatusResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "LiveDexFleetStatusResponse",
 }) as any as S.Schema<LiveDexFleetStatusResponse>;
 
-export type DexTracerouteTestsNetworkPathRequestInterval = "minute" | "hour";
-export const DexTracerouteTestsNetworkPathRequestInterval =
-  /*@__PURE__*/ S.String;
-
-export interface NetworkPathDexTracerouteTestRequest {
-  /** Unique identifier linked to an account. */
-  accountId: string;
-  /** API Resource UUID tag. */
-  testId: string;
-  /** Device to filter traceroute result runs to. */
-  deviceId: string;
-  /** Start time for aggregate metrics in ISO ms. */
-  from: string;
-  /** Time interval for aggregate time slots. */
-  interval: DexTracerouteTestsNetworkPathRequestInterval | (string & {});
-  /** End time for aggregate metrics in ISO ms. */
-  to: string;
-}
-export const NetworkPathDexTracerouteTestRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountId: S.String.pipe(T.Label("account_id")),
-    testId: S.String.pipe(T.Label("test_id")),
-    deviceId: S.String.pipe(T.Query()),
-    from: S.String.pipe(T.Query()),
-    interval: DexTracerouteTestsNetworkPathRequestInterval.pipe(T.Query()),
-    to: S.String.pipe(T.Query()),
-  })
-    .pipe(
-      T.Http({
-        method: "GET",
-        uri: "/accounts/{account_id}/dex/traceroute-tests/{test_id}/network-path",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "NetworkPathDexTracerouteTestRequest",
-}) as any as S.Schema<NetworkPathDexTracerouteTestRequest>;
-
-export type DexTracerouteTestsNetworkPathResponseKind = "traceroute";
-export const DexTracerouteTestsNetworkPathResponseKind = /*@__PURE__*/ S.String;
-
-export interface DexTracerouteTestsNetworkPathResponseNetworkPathSlotsItem {
-  /** API Resource UUID tag. */
-  id: string;
-  /** Round trip time in ms of the client to app mile */
-  clientToAppRttMs: number;
-  /** Round trip time in ms of the client to Cloudflare egress mile */
-  clientToCfEgressRttMs: number;
-  /** Round trip time in ms of the client to Cloudflare ingress mile */
-  clientToCfIngressRttMs: number;
-  timestamp: string;
-  /** Round trip time in ms of the client to ISP mile */
-  clientToIspRttMs?: number | null;
-}
-export const DexTracerouteTestsNetworkPathResponseNetworkPathSlotsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.String,
-      clientToAppRttMs: S.Number,
-      clientToCfEgressRttMs: S.Number,
-      clientToCfIngressRttMs: S.Number,
-      timestamp: S.String,
-      clientToIspRttMs: S.optional(S.NullOr(S.Number)),
-    }),
-  ).annotate({
-    identifier: "DexTracerouteTestsNetworkPathResponseNetworkPathSlotsItem",
-  }) as any as S.Schema<DexTracerouteTestsNetworkPathResponseNetworkPathSlotsItem>;
-
-export type DexTracerouteTestsNetworkPathResponseNetworkPathSlotsList =
-  Array<DexTracerouteTestsNetworkPathResponseNetworkPathSlotsItem>;
-export const DexTracerouteTestsNetworkPathResponseNetworkPathSlotsList =
-  /*@__PURE__*/ S.Array(
-    DexTracerouteTestsNetworkPathResponseNetworkPathSlotsItem,
-  ) as any as S.Schema<DexTracerouteTestsNetworkPathResponseNetworkPathSlotsList>;
-
-export type DexTracerouteTestsNetworkPathResponseNetworkPathSamplingUnit =
-  "hours";
-export const DexTracerouteTestsNetworkPathResponseNetworkPathSamplingUnit =
-  /*@__PURE__*/ S.String;
-
-export interface DexTracerouteTestsNetworkPathResponseNetworkPathSampling {
-  unit: DexTracerouteTestsNetworkPathResponseNetworkPathSamplingUnit;
-  value: number;
-}
-export const DexTracerouteTestsNetworkPathResponseNetworkPathSampling =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      unit: DexTracerouteTestsNetworkPathResponseNetworkPathSamplingUnit,
-      value: S.Number,
-    }),
-  ).annotate({
-    identifier: "DexTracerouteTestsNetworkPathResponseNetworkPathSampling",
-  }) as any as S.Schema<DexTracerouteTestsNetworkPathResponseNetworkPathSampling>;
-
-export interface DexTracerouteTestsNetworkPathResponseNetworkPath {
-  slots: DexTracerouteTestsNetworkPathResponseNetworkPathSlotsList;
-  /** Specifies the sampling applied, if any, to the slots response. When sampled, results shown represent the first test run to the start of each sampling interval. */
-  sampling?: DexTracerouteTestsNetworkPathResponseNetworkPathSampling | null;
-}
-export const DexTracerouteTestsNetworkPathResponseNetworkPath =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      slots: DexTracerouteTestsNetworkPathResponseNetworkPathSlotsList,
-      sampling: S.optional(
-        S.NullOr(DexTracerouteTestsNetworkPathResponseNetworkPathSampling),
-      ),
-    }),
-  ).annotate({
-    identifier: "DexTracerouteTestsNetworkPathResponseNetworkPath",
-  }) as any as S.Schema<DexTracerouteTestsNetworkPathResponseNetworkPath>;
-
-/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
-export interface NetworkPathDexTracerouteTestResponse {
-  /** API Resource UUID tag. */
-  id: string;
-  /** Name of the device that ran the test. */
-  deviceName?: string | null;
-  /** The interval at which the Traceroute synthetic application test is set to run. */
-  interval?: string | null;
-  kind?: DexTracerouteTestsNetworkPathResponseKind | null;
-  name?: string | null;
-  networkPath?: DexTracerouteTestsNetworkPathResponseNetworkPath | null;
-  /** The host of the Traceroute synthetic application test. */
-  url?: string | null;
-}
-export const NetworkPathDexTracerouteTestResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.String,
-      deviceName: S.optional(S.NullOr(S.String)),
-      interval: S.optional(S.NullOr(S.String)),
-      kind: S.optional(S.NullOr(DexTracerouteTestsNetworkPathResponseKind)),
-      name: S.optional(S.NullOr(S.String)),
-      networkPath: S.optional(
-        S.NullOr(DexTracerouteTestsNetworkPathResponseNetworkPath),
-      ),
-      url: S.optional(S.NullOr(S.String)),
-    }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "NetworkPathDexTracerouteTestResponse",
-}) as any as S.Schema<NetworkPathDexTracerouteTestResponse>;
-
 export interface OverTimeDexFleetStatusRequest {
   /** Unique identifier linked to an account. */
   accountId: string;
@@ -128552,76 +127855,167 @@ export const PatchTunnelWarpConnectorResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "PatchTunnelWarpConnectorResponse",
 }) as any as S.Schema<PatchTunnelWarpConnectorResponse>;
 
-export type DexTracerouteTestsPercentilesRequestDeviceIdList = Array<string>;
-export const DexTracerouteTestsPercentilesRequestDeviceIdList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<DexTracerouteTestsPercentilesRequestDeviceIdList>;
-
-export interface PercentilesDexTracerouteTestRequest {
-  /** Unique identifier linked to an account. */
+export interface PauseCasbIntegrationRequest {
   accountId: string;
-  /** API Resource UUID tag. */
-  testId: string;
-  /** Start time for the query in ISO (RFC3339 - ISO 8601) format. */
-  from: string;
-  /** End time for the query in ISO (RFC3339 - ISO 8601) format. */
-  to: string;
-  /** Optionally filter result stats to a Cloudflare colo. Cannot be used in combination with deviceId param. */
-  colo?: string;
-  /** Optionally filter result stats to a specific device(s). Cannot be used in combination with colo param. */
-  deviceId?: DexTracerouteTestsPercentilesRequestDeviceIdList;
+  id: string;
 }
-export const PercentilesDexTracerouteTestRequest = /*@__PURE__*/ S.suspend(() =>
+export const PauseCasbIntegrationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     accountId: S.String.pipe(T.Label("account_id")),
-    testId: S.String.pipe(T.Label("test_id")),
-    from: S.String.pipe(T.Query()),
-    to: S.String.pipe(T.Query()),
-    colo: S.optional(S.String.pipe(T.Query())),
-    deviceId: S.optional(
-      DexTracerouteTestsPercentilesRequestDeviceIdList.pipe(T.Query()),
-    ),
+    id: S.String.pipe(T.Label()),
   })
     .pipe(
       T.Http({
-        method: "GET",
-        uri: "/accounts/{account_id}/dex/traceroute-tests/{test_id}/percentiles",
+        method: "POST",
+        uri: "/accounts/{account_id}/one/integrations/{id}/pause",
         code: 200,
       }),
     )
     .pipe(T.KeyDictionary(KEY_DICTIONARY)),
 ).annotate({
-  identifier: "PercentilesDexTracerouteTestRequest",
-}) as any as S.Schema<PercentilesDexTracerouteTestRequest>;
+  identifier: "PauseCasbIntegrationRequest",
+}) as any as S.Schema<PauseCasbIntegrationRequest>;
 
-export type DexTracerouteTestsPercentilesResponseHopsCount =
-  DexHttpTestsPercentilesGetResponseDnsResponseTimeMs;
-export const DexTracerouteTestsPercentilesResponseHopsCount =
-  DexHttpTestsPercentilesGetResponseDnsResponseTimeMs;
+export type PauseCasbIntegrationResponseApplicationMap = {
+  [key: string]: string | undefined;
+};
+export const PauseCasbIntegrationResponseApplicationMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<PauseCasbIntegrationResponseApplicationMap>;
 
-/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
-export interface PercentilesDexTracerouteTestResponse {
-  hopsCount?: DexHttpTestsPercentilesGetResponseDnsResponseTimeMs | null;
-  packetLossPct?: DexHttpTestsPercentilesGetResponseDnsResponseTimeMs | null;
-  roundTripTimeMs?: DexHttpTestsPercentilesGetResponseDnsResponseTimeMs | null;
+export type PauseCasbIntegrationResponseAuthMethodMap = {
+  [key: string]: string | undefined;
+};
+export const PauseCasbIntegrationResponseAuthMethodMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<PauseCasbIntegrationResponseAuthMethodMap>;
+
+export type PauseCasbIntegrationResponseAuthorizationLinkComponentsMap = {
+  [key: string]: unknown | undefined;
+};
+export const PauseCasbIntegrationResponseAuthorizationLinkComponentsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Unknown,
+  ) as any as S.Schema<PauseCasbIntegrationResponseAuthorizationLinkComponentsMap>;
+
+export interface PauseCasbIntegrationResponseAuthorizationLink {
+  components: PauseCasbIntegrationResponseAuthorizationLinkComponentsMap;
+  link: string;
 }
-export const PercentilesDexTracerouteTestResponse = /*@__PURE__*/ S.suspend(
-  () =>
+export const PauseCasbIntegrationResponseAuthorizationLink =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      hopsCount: S.optional(
-        S.NullOr(DexHttpTestsPercentilesGetResponseDnsResponseTimeMs),
-      ),
-      packetLossPct: S.optional(
-        S.NullOr(DexHttpTestsPercentilesGetResponseDnsResponseTimeMs),
-      ),
-      roundTripTimeMs: S.optional(
-        S.NullOr(DexHttpTestsPercentilesGetResponseDnsResponseTimeMs),
-      ),
-    }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+      components: PauseCasbIntegrationResponseAuthorizationLinkComponentsMap,
+      link: S.String,
+    }),
+  ).annotate({
+    identifier: "PauseCasbIntegrationResponseAuthorizationLink",
+  }) as any as S.Schema<PauseCasbIntegrationResponseAuthorizationLink>;
+
+export type PauseCasbIntegrationResponseDlpProfilesList = Array<string>;
+export const PauseCasbIntegrationResponseDlpProfilesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PauseCasbIntegrationResponseDlpProfilesList>;
+
+export type PauseCasbIntegrationResponseHealthDetailsItemMap = {
+  [key: string]: unknown | undefined;
+};
+export const PauseCasbIntegrationResponseHealthDetailsItemMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Unknown,
+  ) as any as S.Schema<PauseCasbIntegrationResponseHealthDetailsItemMap>;
+
+export type PauseCasbIntegrationResponseHealthDetailsList =
+  Array<PauseCasbIntegrationResponseHealthDetailsItemMap>;
+export const PauseCasbIntegrationResponseHealthDetailsList =
+  /*@__PURE__*/ S.Array(
+    PauseCasbIntegrationResponseHealthDetailsItemMap,
+  ) as any as S.Schema<PauseCasbIntegrationResponseHealthDetailsList>;
+
+export type PauseCasbIntegrationResponseUseCasesItemMap = {
+  [key: string]: unknown | undefined;
+};
+export const PauseCasbIntegrationResponseUseCasesItemMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Unknown,
+  ) as any as S.Schema<PauseCasbIntegrationResponseUseCasesItemMap>;
+
+export type PauseCasbIntegrationResponseUseCasesList =
+  Array<PauseCasbIntegrationResponseUseCasesItemMap>;
+export const PauseCasbIntegrationResponseUseCasesList = /*@__PURE__*/ S.Array(
+  PauseCasbIntegrationResponseUseCasesItemMap,
+) as any as S.Schema<PauseCasbIntegrationResponseUseCasesList>;
+
+/** Raw response payload (operation does not use the standard v4 result envelope). */
+export interface PauseCasbIntegrationResponse {
+  /** Integration ID. */
+  id: string;
+  application: PauseCasbIntegrationResponseApplicationMap;
+  /** The integration's authentication method. */
+  authMethod: PauseCasbIntegrationResponseAuthMethodMap;
+  /** Authorization link for the integration. */
+  authorizationLink: PauseCasbIntegrationResponseAuthorizationLink;
+  /** When the integration was created. */
+  created: string;
+  /** Credentials expiry time. */
+  credentialsExpiry: string;
+  /** DLP Profiles enabled for the integration. */
+  dlpProfiles: PauseCasbIntegrationResponseDlpProfilesList;
+  /** Health details with remediation hints. */
+  healthDetails: PauseCasbIntegrationResponseHealthDetailsList;
+  /** Whether the user paused the integration. */
+  isPaused: boolean;
+  /** Last time the integration was hydrated. */
+  lastHydrated: string;
+  /** Name of the integration. */
+  name: string;
+  /** Organization ID. */
+  organizationId: number;
+  /** Integration status. */
+  status: string;
+  /** When the integration was last updated. */
+  updated: string;
+  /** Use cases enabled for the integration. */
+  useCases: PauseCasbIntegrationResponseUseCasesList;
+}
+export const PauseCasbIntegrationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    application: PauseCasbIntegrationResponseApplicationMap,
+    authMethod: PauseCasbIntegrationResponseAuthMethodMap.pipe(
+      T.Body("auth_method"),
+    ),
+    authorizationLink: PauseCasbIntegrationResponseAuthorizationLink.pipe(
+      T.Body("authorization_link"),
+    ),
+    created: S.String,
+    credentialsExpiry: S.String.pipe(T.Body("credentials_expiry")),
+    dlpProfiles: PauseCasbIntegrationResponseDlpProfilesList.pipe(
+      T.Body("dlp_profiles"),
+    ),
+    healthDetails: PauseCasbIntegrationResponseHealthDetailsList.pipe(
+      T.Body("health_details"),
+    ),
+    isPaused: S.Boolean.pipe(T.Body("is_paused")),
+    lastHydrated: S.String.pipe(T.Body("last_hydrated")),
+    name: S.String,
+    organizationId: S.Number.pipe(T.Body("organization_id")),
+    status: S.String,
+    updated: S.String,
+    useCases: PauseCasbIntegrationResponseUseCasesList.pipe(
+      T.Body("use_cases"),
+    ),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
 ).annotate({
-  identifier: "PercentilesDexTracerouteTestResponse",
-}) as any as S.Schema<PercentilesDexTracerouteTestResponse>;
+  identifier: "PauseCasbIntegrationResponse",
+}) as any as S.Schema<PauseCasbIntegrationResponse>;
 
 export interface PutAccessApplicationSettingForAccountRequest {
   /** The Account ID to use for this endpoint. Mutually exclusive with the Zone ID. */
@@ -133036,6 +132430,169 @@ export const ResetRiskScoringResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ResetRiskScoringResponse",
 }) as any as S.Schema<ResetRiskScoringResponse>;
 
+export interface ResumeCasbIntegrationRequest {
+  accountId: string;
+  id: string;
+}
+export const ResumeCasbIntegrationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountId: S.String.pipe(T.Label("account_id")),
+    id: S.String.pipe(T.Label()),
+  })
+    .pipe(
+      T.Http({
+        method: "POST",
+        uri: "/accounts/{account_id}/one/integrations/{id}/resume",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "ResumeCasbIntegrationRequest",
+}) as any as S.Schema<ResumeCasbIntegrationRequest>;
+
+export type ResumeCasbIntegrationResponseApplicationMap = {
+  [key: string]: string | undefined;
+};
+export const ResumeCasbIntegrationResponseApplicationMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<ResumeCasbIntegrationResponseApplicationMap>;
+
+export type ResumeCasbIntegrationResponseAuthMethodMap = {
+  [key: string]: string | undefined;
+};
+export const ResumeCasbIntegrationResponseAuthMethodMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<ResumeCasbIntegrationResponseAuthMethodMap>;
+
+export type ResumeCasbIntegrationResponseAuthorizationLinkComponentsMap = {
+  [key: string]: unknown | undefined;
+};
+export const ResumeCasbIntegrationResponseAuthorizationLinkComponentsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Unknown,
+  ) as any as S.Schema<ResumeCasbIntegrationResponseAuthorizationLinkComponentsMap>;
+
+export interface ResumeCasbIntegrationResponseAuthorizationLink {
+  components: ResumeCasbIntegrationResponseAuthorizationLinkComponentsMap;
+  link: string;
+}
+export const ResumeCasbIntegrationResponseAuthorizationLink =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      components: ResumeCasbIntegrationResponseAuthorizationLinkComponentsMap,
+      link: S.String,
+    }),
+  ).annotate({
+    identifier: "ResumeCasbIntegrationResponseAuthorizationLink",
+  }) as any as S.Schema<ResumeCasbIntegrationResponseAuthorizationLink>;
+
+export type ResumeCasbIntegrationResponseDlpProfilesList = Array<string>;
+export const ResumeCasbIntegrationResponseDlpProfilesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ResumeCasbIntegrationResponseDlpProfilesList>;
+
+export type ResumeCasbIntegrationResponseHealthDetailsItemMap = {
+  [key: string]: unknown | undefined;
+};
+export const ResumeCasbIntegrationResponseHealthDetailsItemMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Unknown,
+  ) as any as S.Schema<ResumeCasbIntegrationResponseHealthDetailsItemMap>;
+
+export type ResumeCasbIntegrationResponseHealthDetailsList =
+  Array<ResumeCasbIntegrationResponseHealthDetailsItemMap>;
+export const ResumeCasbIntegrationResponseHealthDetailsList =
+  /*@__PURE__*/ S.Array(
+    ResumeCasbIntegrationResponseHealthDetailsItemMap,
+  ) as any as S.Schema<ResumeCasbIntegrationResponseHealthDetailsList>;
+
+export type ResumeCasbIntegrationResponseUseCasesItemMap = {
+  [key: string]: unknown | undefined;
+};
+export const ResumeCasbIntegrationResponseUseCasesItemMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Unknown,
+  ) as any as S.Schema<ResumeCasbIntegrationResponseUseCasesItemMap>;
+
+export type ResumeCasbIntegrationResponseUseCasesList =
+  Array<ResumeCasbIntegrationResponseUseCasesItemMap>;
+export const ResumeCasbIntegrationResponseUseCasesList = /*@__PURE__*/ S.Array(
+  ResumeCasbIntegrationResponseUseCasesItemMap,
+) as any as S.Schema<ResumeCasbIntegrationResponseUseCasesList>;
+
+/** Raw response payload (operation does not use the standard v4 result envelope). */
+export interface ResumeCasbIntegrationResponse {
+  /** Integration ID. */
+  id: string;
+  application: ResumeCasbIntegrationResponseApplicationMap;
+  /** The integration's authentication method. */
+  authMethod: ResumeCasbIntegrationResponseAuthMethodMap;
+  /** Authorization link for the integration. */
+  authorizationLink: ResumeCasbIntegrationResponseAuthorizationLink;
+  /** When the integration was created. */
+  created: string;
+  /** Credentials expiry time. */
+  credentialsExpiry: string;
+  /** DLP Profiles enabled for the integration. */
+  dlpProfiles: ResumeCasbIntegrationResponseDlpProfilesList;
+  /** Health details with remediation hints. */
+  healthDetails: ResumeCasbIntegrationResponseHealthDetailsList;
+  /** Whether the user paused the integration. */
+  isPaused: boolean;
+  /** Last time the integration was hydrated. */
+  lastHydrated: string;
+  /** Name of the integration. */
+  name: string;
+  /** Organization ID. */
+  organizationId: number;
+  /** Integration status. */
+  status: string;
+  /** When the integration was last updated. */
+  updated: string;
+  /** Use cases enabled for the integration. */
+  useCases: ResumeCasbIntegrationResponseUseCasesList;
+}
+export const ResumeCasbIntegrationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    application: ResumeCasbIntegrationResponseApplicationMap,
+    authMethod: ResumeCasbIntegrationResponseAuthMethodMap.pipe(
+      T.Body("auth_method"),
+    ),
+    authorizationLink: ResumeCasbIntegrationResponseAuthorizationLink.pipe(
+      T.Body("authorization_link"),
+    ),
+    created: S.String,
+    credentialsExpiry: S.String.pipe(T.Body("credentials_expiry")),
+    dlpProfiles: ResumeCasbIntegrationResponseDlpProfilesList.pipe(
+      T.Body("dlp_profiles"),
+    ),
+    healthDetails: ResumeCasbIntegrationResponseHealthDetailsList.pipe(
+      T.Body("health_details"),
+    ),
+    isPaused: S.Boolean.pipe(T.Body("is_paused")),
+    lastHydrated: S.String.pipe(T.Body("last_hydrated")),
+    name: S.String,
+    organizationId: S.Number.pipe(T.Body("organization_id")),
+    status: S.String,
+    updated: S.String,
+    useCases: ResumeCasbIntegrationResponseUseCasesList.pipe(
+      T.Body("use_cases"),
+    ),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "ResumeCasbIntegrationResponse",
+}) as any as S.Schema<ResumeCasbIntegrationResponse>;
+
 export interface RevokeDeviceDevicesRequest {
   accountId: string;
   deviceId: string;
@@ -133476,6 +133033,220 @@ export const SyncAccessAiControlMcpServerResponse = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "SyncAccessAiControlMcpServerResponse",
 }) as any as S.Schema<SyncAccessAiControlMcpServerResponse>;
+
+export type DexTracerouteTestsNetworkPathRequestInterval = "minute" | "hour";
+export const DexTracerouteTestsNetworkPathRequestInterval =
+  /*@__PURE__*/ S.String;
+
+export interface TestNetworkPathDexTracerouteRequest {
+  /** Unique identifier linked to an account. */
+  accountId: string;
+  /** API Resource UUID tag. */
+  testId: string;
+  /** Device to filter traceroute result runs to. */
+  deviceId: string;
+  /** Start time for aggregate metrics in ISO ms. */
+  from: string;
+  /** Time interval for aggregate time slots. */
+  interval: DexTracerouteTestsNetworkPathRequestInterval | (string & {});
+  /** End time for aggregate metrics in ISO ms. */
+  to: string;
+}
+export const TestNetworkPathDexTracerouteRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountId: S.String.pipe(T.Label("account_id")),
+    testId: S.String.pipe(T.Label("test_id")),
+    deviceId: S.String.pipe(T.Query()),
+    from: S.String.pipe(T.Query()),
+    interval: DexTracerouteTestsNetworkPathRequestInterval.pipe(T.Query()),
+    to: S.String.pipe(T.Query()),
+  })
+    .pipe(
+      T.Http({
+        method: "GET",
+        uri: "/accounts/{account_id}/dex/traceroute-tests/{test_id}/network-path",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "TestNetworkPathDexTracerouteRequest",
+}) as any as S.Schema<TestNetworkPathDexTracerouteRequest>;
+
+export type DexTracerouteTestsNetworkPathResponseKind = "traceroute";
+export const DexTracerouteTestsNetworkPathResponseKind = /*@__PURE__*/ S.String;
+
+export interface DexTracerouteTestsNetworkPathResponseNetworkPathSlotsItem {
+  /** API Resource UUID tag. */
+  id: string;
+  /** Round trip time in ms of the client to app mile */
+  clientToAppRttMs: number;
+  /** Round trip time in ms of the client to Cloudflare egress mile */
+  clientToCfEgressRttMs: number;
+  /** Round trip time in ms of the client to Cloudflare ingress mile */
+  clientToCfIngressRttMs: number;
+  timestamp: string;
+  /** Round trip time in ms of the client to ISP mile */
+  clientToIspRttMs?: number | null;
+}
+export const DexTracerouteTestsNetworkPathResponseNetworkPathSlotsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.String,
+      clientToAppRttMs: S.Number,
+      clientToCfEgressRttMs: S.Number,
+      clientToCfIngressRttMs: S.Number,
+      timestamp: S.String,
+      clientToIspRttMs: S.optional(S.NullOr(S.Number)),
+    }),
+  ).annotate({
+    identifier: "DexTracerouteTestsNetworkPathResponseNetworkPathSlotsItem",
+  }) as any as S.Schema<DexTracerouteTestsNetworkPathResponseNetworkPathSlotsItem>;
+
+export type DexTracerouteTestsNetworkPathResponseNetworkPathSlotsList =
+  Array<DexTracerouteTestsNetworkPathResponseNetworkPathSlotsItem>;
+export const DexTracerouteTestsNetworkPathResponseNetworkPathSlotsList =
+  /*@__PURE__*/ S.Array(
+    DexTracerouteTestsNetworkPathResponseNetworkPathSlotsItem,
+  ) as any as S.Schema<DexTracerouteTestsNetworkPathResponseNetworkPathSlotsList>;
+
+export type DexTracerouteTestsNetworkPathResponseNetworkPathSamplingUnit =
+  "hours";
+export const DexTracerouteTestsNetworkPathResponseNetworkPathSamplingUnit =
+  /*@__PURE__*/ S.String;
+
+export interface DexTracerouteTestsNetworkPathResponseNetworkPathSampling {
+  unit: DexTracerouteTestsNetworkPathResponseNetworkPathSamplingUnit;
+  value: number;
+}
+export const DexTracerouteTestsNetworkPathResponseNetworkPathSampling =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      unit: DexTracerouteTestsNetworkPathResponseNetworkPathSamplingUnit,
+      value: S.Number,
+    }),
+  ).annotate({
+    identifier: "DexTracerouteTestsNetworkPathResponseNetworkPathSampling",
+  }) as any as S.Schema<DexTracerouteTestsNetworkPathResponseNetworkPathSampling>;
+
+export interface DexTracerouteTestsNetworkPathResponseNetworkPath {
+  slots: DexTracerouteTestsNetworkPathResponseNetworkPathSlotsList;
+  /** Specifies the sampling applied, if any, to the slots response. When sampled, results shown represent the first test run to the start of each sampling interval. */
+  sampling?: DexTracerouteTestsNetworkPathResponseNetworkPathSampling | null;
+}
+export const DexTracerouteTestsNetworkPathResponseNetworkPath =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      slots: DexTracerouteTestsNetworkPathResponseNetworkPathSlotsList,
+      sampling: S.optional(
+        S.NullOr(DexTracerouteTestsNetworkPathResponseNetworkPathSampling),
+      ),
+    }),
+  ).annotate({
+    identifier: "DexTracerouteTestsNetworkPathResponseNetworkPath",
+  }) as any as S.Schema<DexTracerouteTestsNetworkPathResponseNetworkPath>;
+
+/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
+export interface TestNetworkPathDexTracerouteResponse {
+  /** API Resource UUID tag. */
+  id: string;
+  /** Name of the device that ran the test. */
+  deviceName?: string | null;
+  /** The interval at which the Traceroute synthetic application test is set to run. */
+  interval?: string | null;
+  kind?: DexTracerouteTestsNetworkPathResponseKind | null;
+  name?: string | null;
+  networkPath?: DexTracerouteTestsNetworkPathResponseNetworkPath | null;
+  /** The host of the Traceroute synthetic application test. */
+  url?: string | null;
+}
+export const TestNetworkPathDexTracerouteResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.String,
+      deviceName: S.optional(S.NullOr(S.String)),
+      interval: S.optional(S.NullOr(S.String)),
+      kind: S.optional(S.NullOr(DexTracerouteTestsNetworkPathResponseKind)),
+      name: S.optional(S.NullOr(S.String)),
+      networkPath: S.optional(
+        S.NullOr(DexTracerouteTestsNetworkPathResponseNetworkPath),
+      ),
+      url: S.optional(S.NullOr(S.String)),
+    }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "TestNetworkPathDexTracerouteResponse",
+}) as any as S.Schema<TestNetworkPathDexTracerouteResponse>;
+
+export type DexTracerouteTestsPercentilesRequestDeviceIdList = Array<string>;
+export const DexTracerouteTestsPercentilesRequestDeviceIdList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<DexTracerouteTestsPercentilesRequestDeviceIdList>;
+
+export interface TestPercentilesDexTracerouteRequest {
+  /** Unique identifier linked to an account. */
+  accountId: string;
+  /** API Resource UUID tag. */
+  testId: string;
+  /** Start time for the query in ISO (RFC3339 - ISO 8601) format. */
+  from: string;
+  /** End time for the query in ISO (RFC3339 - ISO 8601) format. */
+  to: string;
+  /** Optionally filter result stats to a Cloudflare colo. Cannot be used in combination with deviceId param. */
+  colo?: string;
+  /** Optionally filter result stats to a specific device(s). Cannot be used in combination with colo param. */
+  deviceId?: DexTracerouteTestsPercentilesRequestDeviceIdList;
+}
+export const TestPercentilesDexTracerouteRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountId: S.String.pipe(T.Label("account_id")),
+    testId: S.String.pipe(T.Label("test_id")),
+    from: S.String.pipe(T.Query()),
+    to: S.String.pipe(T.Query()),
+    colo: S.optional(S.String.pipe(T.Query())),
+    deviceId: S.optional(
+      DexTracerouteTestsPercentilesRequestDeviceIdList.pipe(T.Query()),
+    ),
+  })
+    .pipe(
+      T.Http({
+        method: "GET",
+        uri: "/accounts/{account_id}/dex/traceroute-tests/{test_id}/percentiles",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "TestPercentilesDexTracerouteRequest",
+}) as any as S.Schema<TestPercentilesDexTracerouteRequest>;
+
+export type DexTracerouteTestsPercentilesResponseHopsCount =
+  DexHttpTestsPercentilesGetResponseDnsResponseTimeMs;
+export const DexTracerouteTestsPercentilesResponseHopsCount =
+  DexHttpTestsPercentilesGetResponseDnsResponseTimeMs;
+
+/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
+export interface TestPercentilesDexTracerouteResponse {
+  hopsCount?: DexHttpTestsPercentilesGetResponseDnsResponseTimeMs | null;
+  packetLossPct?: DexHttpTestsPercentilesGetResponseDnsResponseTimeMs | null;
+  roundTripTimeMs?: DexHttpTestsPercentilesGetResponseDnsResponseTimeMs | null;
+}
+export const TestPercentilesDexTracerouteResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      hopsCount: S.optional(
+        S.NullOr(DexHttpTestsPercentilesGetResponseDnsResponseTimeMs),
+      ),
+      packetLossPct: S.optional(
+        S.NullOr(DexHttpTestsPercentilesGetResponseDnsResponseTimeMs),
+      ),
+      roundTripTimeMs: S.optional(
+        S.NullOr(DexHttpTestsPercentilesGetResponseDnsResponseTimeMs),
+      ),
+    }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "TestPercentilesDexTracerouteResponse",
+}) as any as S.Schema<TestPercentilesDexTracerouteResponse>;
 
 export type DevicesRegistrationsUnrevokeRequestIdList = Array<string>;
 export const DevicesRegistrationsUnrevokeRequestIdList = /*@__PURE__*/ S.Array(
@@ -158705,6 +158476,222 @@ export const UpdateAccessUserResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateAccessUserResponse",
 }) as any as S.Schema<UpdateAccessUserResponse>;
 
+export type UpdateCasbIntegrationRequestCredentialsMap = {
+  [key: string]: unknown | undefined;
+};
+export const UpdateCasbIntegrationRequestCredentialsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Unknown,
+  ) as any as S.Schema<UpdateCasbIntegrationRequestCredentialsMap>;
+
+export type UpdateCasbIntegrationRequestDlpProfilesList = Array<string>;
+export const UpdateCasbIntegrationRequestDlpProfilesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<UpdateCasbIntegrationRequestDlpProfilesList>;
+
+export type UpdateCasbIntegrationRequestPermissionsList = Array<string>;
+export const UpdateCasbIntegrationRequestPermissionsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<UpdateCasbIntegrationRequestPermissionsList>;
+
+export type UpdateCasbIntegrationRequestUseCasesItem =
+  | "casb"
+  | "ces"
+  | "auto_remediation";
+export const UpdateCasbIntegrationRequestUseCasesItem = /*@__PURE__*/ S.String;
+
+export type UpdateCasbIntegrationRequestUseCasesList = Array<
+  UpdateCasbIntegrationRequestUseCasesItem | (string & {})
+>;
+export const UpdateCasbIntegrationRequestUseCasesList = /*@__PURE__*/ S.Array(
+  UpdateCasbIntegrationRequestUseCasesItem,
+) as any as S.Schema<UpdateCasbIntegrationRequestUseCasesList>;
+
+export interface UpdateCasbIntegrationRequest {
+  accountId: string;
+  id: string;
+  /** Partial credential fields to merge with existing. */
+  credentials?: UpdateCasbIntegrationRequestCredentialsMap;
+  /** List of DLP profile IDs to associate with the integration. */
+  dlpProfiles?: UpdateCasbIntegrationRequestDlpProfilesList;
+  /** Name of the integration. */
+  name?: string;
+  /** List of permission scopes granted to the integration. */
+  permissions?: UpdateCasbIntegrationRequestPermissionsList;
+  /** List of use case or feature slugs to enroll (e.g., ['casb', 'ces', 'auto_remediation']). */
+  useCases?: UpdateCasbIntegrationRequestUseCasesList;
+}
+export const UpdateCasbIntegrationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountId: S.String.pipe(T.Label("account_id")),
+    id: S.String.pipe(T.Label()),
+    credentials: S.optional(UpdateCasbIntegrationRequestCredentialsMap),
+    dlpProfiles: S.optional(
+      UpdateCasbIntegrationRequestDlpProfilesList.pipe(T.Body("dlp_profiles")),
+    ),
+    name: S.optional(S.String),
+    permissions: S.optional(UpdateCasbIntegrationRequestPermissionsList),
+    useCases: S.optional(
+      UpdateCasbIntegrationRequestUseCasesList.pipe(T.Body("use_cases")),
+    ),
+  })
+    .pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/accounts/{account_id}/one/integrations/{id}",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "UpdateCasbIntegrationRequest",
+}) as any as S.Schema<UpdateCasbIntegrationRequest>;
+
+export type UpdateCasbIntegrationResponseApplicationMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateCasbIntegrationResponseApplicationMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<UpdateCasbIntegrationResponseApplicationMap>;
+
+export type UpdateCasbIntegrationResponseAuthMethodMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateCasbIntegrationResponseAuthMethodMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<UpdateCasbIntegrationResponseAuthMethodMap>;
+
+export type UpdateCasbIntegrationResponseAuthorizationLinkComponentsMap = {
+  [key: string]: unknown | undefined;
+};
+export const UpdateCasbIntegrationResponseAuthorizationLinkComponentsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Unknown,
+  ) as any as S.Schema<UpdateCasbIntegrationResponseAuthorizationLinkComponentsMap>;
+
+export interface UpdateCasbIntegrationResponseAuthorizationLink {
+  components: UpdateCasbIntegrationResponseAuthorizationLinkComponentsMap;
+  link: string;
+}
+export const UpdateCasbIntegrationResponseAuthorizationLink =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      components: UpdateCasbIntegrationResponseAuthorizationLinkComponentsMap,
+      link: S.String,
+    }),
+  ).annotate({
+    identifier: "UpdateCasbIntegrationResponseAuthorizationLink",
+  }) as any as S.Schema<UpdateCasbIntegrationResponseAuthorizationLink>;
+
+export type UpdateCasbIntegrationResponseDlpProfilesList = Array<string>;
+export const UpdateCasbIntegrationResponseDlpProfilesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<UpdateCasbIntegrationResponseDlpProfilesList>;
+
+export type UpdateCasbIntegrationResponseHealthDetailsItemMap = {
+  [key: string]: unknown | undefined;
+};
+export const UpdateCasbIntegrationResponseHealthDetailsItemMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Unknown,
+  ) as any as S.Schema<UpdateCasbIntegrationResponseHealthDetailsItemMap>;
+
+export type UpdateCasbIntegrationResponseHealthDetailsList =
+  Array<UpdateCasbIntegrationResponseHealthDetailsItemMap>;
+export const UpdateCasbIntegrationResponseHealthDetailsList =
+  /*@__PURE__*/ S.Array(
+    UpdateCasbIntegrationResponseHealthDetailsItemMap,
+  ) as any as S.Schema<UpdateCasbIntegrationResponseHealthDetailsList>;
+
+export type UpdateCasbIntegrationResponseUseCasesItemMap = {
+  [key: string]: unknown | undefined;
+};
+export const UpdateCasbIntegrationResponseUseCasesItemMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Unknown,
+  ) as any as S.Schema<UpdateCasbIntegrationResponseUseCasesItemMap>;
+
+export type UpdateCasbIntegrationResponseUseCasesList =
+  Array<UpdateCasbIntegrationResponseUseCasesItemMap>;
+export const UpdateCasbIntegrationResponseUseCasesList = /*@__PURE__*/ S.Array(
+  UpdateCasbIntegrationResponseUseCasesItemMap,
+) as any as S.Schema<UpdateCasbIntegrationResponseUseCasesList>;
+
+/** Raw response payload (operation does not use the standard v4 result envelope). */
+export interface UpdateCasbIntegrationResponse {
+  /** Integration ID. */
+  id: string;
+  application: UpdateCasbIntegrationResponseApplicationMap;
+  /** The integration's authentication method. */
+  authMethod: UpdateCasbIntegrationResponseAuthMethodMap;
+  /** Authorization link for the integration. */
+  authorizationLink: UpdateCasbIntegrationResponseAuthorizationLink;
+  /** When the integration was created. */
+  created: string;
+  /** Credentials expiry time. */
+  credentialsExpiry: string;
+  /** DLP Profiles enabled for the integration. */
+  dlpProfiles: UpdateCasbIntegrationResponseDlpProfilesList;
+  /** Health details with remediation hints. */
+  healthDetails: UpdateCasbIntegrationResponseHealthDetailsList;
+  /** Whether the user paused the integration. */
+  isPaused: boolean;
+  /** Last time the integration was hydrated. */
+  lastHydrated: string;
+  /** Name of the integration. */
+  name: string;
+  /** Organization ID. */
+  organizationId: number;
+  /** Integration status. */
+  status: string;
+  /** When the integration was last updated. */
+  updated: string;
+  /** Use cases enabled for the integration. */
+  useCases: UpdateCasbIntegrationResponseUseCasesList;
+}
+export const UpdateCasbIntegrationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    application: UpdateCasbIntegrationResponseApplicationMap,
+    authMethod: UpdateCasbIntegrationResponseAuthMethodMap.pipe(
+      T.Body("auth_method"),
+    ),
+    authorizationLink: UpdateCasbIntegrationResponseAuthorizationLink.pipe(
+      T.Body("authorization_link"),
+    ),
+    created: S.String,
+    credentialsExpiry: S.String.pipe(T.Body("credentials_expiry")),
+    dlpProfiles: UpdateCasbIntegrationResponseDlpProfilesList.pipe(
+      T.Body("dlp_profiles"),
+    ),
+    healthDetails: UpdateCasbIntegrationResponseHealthDetailsList.pipe(
+      T.Body("health_details"),
+    ),
+    isPaused: S.Boolean.pipe(T.Body("is_paused")),
+    lastHydrated: S.String.pipe(T.Body("last_hydrated")),
+    name: S.String,
+    organizationId: S.Number.pipe(T.Body("organization_id")),
+    status: S.String,
+    updated: S.String,
+    useCases: UpdateCasbIntegrationResponseUseCasesList.pipe(
+      T.Body("use_cases"),
+    ),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "UpdateCasbIntegrationResponse",
+}) as any as S.Schema<UpdateCasbIntegrationResponse>;
+
 export type DevicesDexTestsUpdateRequestDataKind = "http" | "traceroute";
 export const DevicesDexTestsUpdateRequestDataKind = /*@__PURE__*/ S.String;
 
@@ -169221,156 +169208,6 @@ export const bulkPutAccessInfrastructureTargets: API.PaginatedOperationMethod<
   cloudflarePaginate,
 ) as any;
 
-export type CasbApplicationsGetError = CloudflareOpError;
-/** Returns full application details including auth methods, use cases, and permissions. */
-export const casbApplicationsGet: API.OperationMethod<
-  CasbApplicationsGetRequest,
-  CasbApplicationsGetResponse,
-  CasbApplicationsGetError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CasbApplicationsGetRequest,
-  output: CasbApplicationsGetResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CasbApplicationsListError = CloudflareOpError;
-/** Returns a list of available applications with use cases and permissions. */
-export const casbApplicationsList: API.OperationMethod<
-  CasbApplicationsListRequest,
-  CasbApplicationsListResponse,
-  CasbApplicationsListError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CasbApplicationsListRequest,
-  output: CasbApplicationsListResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CasbApplicationsSetupFlowsListError = CloudflareOpError;
-/** Returns all available setup flows for the application, one per auth method. */
-export const casbApplicationsSetupFlowsList: API.OperationMethod<
-  CasbApplicationsSetupFlowsListRequest,
-  CasbApplicationsSetupFlowsListResponse,
-  CasbApplicationsSetupFlowsListError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CasbApplicationsSetupFlowsListRequest,
-  output: CasbApplicationsSetupFlowsListResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CasbIntegrationsCreateError = CloudflareOpError;
-/** Creates a new integration for the specified application. */
-export const casbIntegrationsCreate: API.OperationMethod<
-  CasbIntegrationsCreateRequest,
-  CasbIntegrationsCreateResponse,
-  CasbIntegrationsCreateError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CasbIntegrationsCreateRequest,
-  output: CasbIntegrationsCreateResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CasbIntegrationsDeleteError = CloudflareOpError;
-/** Delete an integration by soft-deleting it. */
-export const casbIntegrationsDelete: API.OperationMethod<
-  CasbIntegrationsDeleteRequest,
-  CasbIntegrationsDeleteResponse,
-  CasbIntegrationsDeleteError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CasbIntegrationsDeleteRequest,
-  output: CasbIntegrationsDeleteResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CasbIntegrationsGetError = CloudflareOpError;
-/** Returns full integration details including use cases and permissions. */
-export const casbIntegrationsGet: API.OperationMethod<
-  CasbIntegrationsGetRequest,
-  CasbIntegrationsGetResponse,
-  CasbIntegrationsGetError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CasbIntegrationsGetRequest,
-  output: CasbIntegrationsGetResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CasbIntegrationsListError = CloudflareOpError;
-/** Returns a paginated list of integrations for the account. */
-export const casbIntegrationsList: API.OperationMethod<
-  CasbIntegrationsListRequest,
-  CasbIntegrationsListResponse,
-  CasbIntegrationsListError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CasbIntegrationsListRequest,
-  output: CasbIntegrationsListResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CasbIntegrationsPauseError = CloudflareOpError;
-/** Pauses an integration, stopping all crawlers. */
-export const casbIntegrationsPause: API.OperationMethod<
-  CasbIntegrationsPauseRequest,
-  CasbIntegrationsPauseResponse,
-  CasbIntegrationsPauseError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CasbIntegrationsPauseRequest,
-  output: CasbIntegrationsPauseResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CasbIntegrationsResumeError = CloudflareOpError;
-/** Resumes a paused integration, restarting crawlers. */
-export const casbIntegrationsResume: API.OperationMethod<
-  CasbIntegrationsResumeRequest,
-  CasbIntegrationsResumeResponse,
-  CasbIntegrationsResumeError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CasbIntegrationsResumeRequest,
-  output: CasbIntegrationsResumeResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CasbIntegrationsUpdateError = CloudflareOpError;
-/** Updates an integration's name, permissions, DLP profiles, use cases, or credentials. */
-export const casbIntegrationsUpdate: API.OperationMethod<
-  CasbIntegrationsUpdateRequest,
-  CasbIntegrationsUpdateResponse,
-  CasbIntegrationsUpdateError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CasbIntegrationsUpdateRequest,
-  output: CasbIntegrationsUpdateResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
 export type CreateAccessAiControlMcpPortalError =
   | McpPortalHostnameInUse
   | Forbidden
@@ -169756,6 +169593,21 @@ export const createAccessUser: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type CreateCasbIntegrationError = CloudflareOpError;
+/** Creates a new integration for the specified application. */
+export const createCasbIntegration: API.OperationMethod<
+  CreateCasbIntegrationRequest,
+  CreateCasbIntegrationResponse,
+  CreateCasbIntegrationError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateCasbIntegrationRequest,
+  output: CreateCasbIntegrationResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
 export type CreateDeviceDeploymentGroupError = CloudflareOpError;
 /** Creates a new deployment group. Policy IDs must be unique across all deployment groups. This endpoint is in Beta. */
 export const createDeviceDeploymentGroup: API.OperationMethod<
@@ -169939,6 +169791,21 @@ export const createDexRule: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: CreateDexRuleRequest,
   output: CreateDexRuleResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateDlpCustomEntryError = CloudflareOpError;
+/** Creates a DLP custom entry. */
+export const createDlpCustomEntry: API.OperationMethod<
+  CreateDlpCustomEntryRequest,
+  CreateDlpCustomEntryResponse,
+  CreateDlpCustomEntryError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateDlpCustomEntryRequest,
+  output: CreateDlpCustomEntryResponse,
   errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
@@ -170924,6 +170791,21 @@ export const deleteAccessUser: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type DeleteCasbIntegrationError = CloudflareOpError;
+/** Delete an integration by soft-deleting it. */
+export const deleteCasbIntegration: API.OperationMethod<
+  DeleteCasbIntegrationRequest,
+  DeleteCasbIntegrationResponse,
+  DeleteCasbIntegrationError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteCasbIntegrationRequest,
+  output: DeleteCasbIntegrationResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
 export type DeleteDeviceDeploymentGroupError = CloudflareOpError;
 /** Deletes a deployment group. Associated policies no longer apply and devices stop receiving version targets. This endpoint is in Beta. */
 export const deleteDeviceDeploymentGroup: API.OperationMethod<
@@ -171129,6 +171011,21 @@ export const deleteDexRule: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DeleteDexRuleRequest,
   output: DeleteDexRuleResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteDlpCustomEntryError = CloudflareOpError;
+/** Deletes a DLP custom entry. */
+export const deleteDlpCustomEntry: API.OperationMethod<
+  DeleteDlpCustomEntryRequest,
+  DeleteDlpCustomEntryResponse,
+  DeleteDlpCustomEntryError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteDlpCustomEntryRequest,
+  output: DeleteDlpCustomEntryResponse,
   errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
@@ -171666,141 +171563,6 @@ export const deleteTunnelWarpConnector: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DlpEntriesCustomCreateError = CloudflareOpError;
-/** Creates a DLP custom entry. */
-export const dlpEntriesCustomCreate: API.OperationMethod<
-  DlpEntriesCustomCreateRequest,
-  DlpEntriesCustomCreateResponse,
-  DlpEntriesCustomCreateError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DlpEntriesCustomCreateRequest,
-  output: DlpEntriesCustomCreateResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DlpEntriesCustomDeleteError = CloudflareOpError;
-/** Deletes a DLP custom entry. */
-export const dlpEntriesCustomDelete: API.OperationMethod<
-  DlpEntriesCustomDeleteRequest,
-  DlpEntriesCustomDeleteResponse,
-  DlpEntriesCustomDeleteError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DlpEntriesCustomDeleteRequest,
-  output: DlpEntriesCustomDeleteResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DlpEntriesCustomGetError = CloudflareOpError;
-/** Fetches a DLP entry by ID. */
-export const dlpEntriesCustomGet: API.OperationMethod<
-  DlpEntriesCustomGetRequest,
-  DlpEntriesCustomGetResponse,
-  DlpEntriesCustomGetError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DlpEntriesCustomGetRequest,
-  output: DlpEntriesCustomGetResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DlpEntriesCustomListError = CloudflareOpError;
-/** Lists all DLP entries in an account. */
-export const dlpEntriesCustomList: API.PaginatedOperationMethod<
-  DlpEntriesCustomListRequest,
-  DlpEntriesCustomListResponse,
-  DlpEntriesCustomListError,
-  CloudflareOpContext,
-  DlpEntriesCustomListResultItem
-> = /*@__PURE__*/ API.makePaginated(
-  () => ({
-    input: DlpEntriesCustomListRequest,
-    output: DlpEntriesCustomListResponse,
-    errors: [CloudflareRateLimited, CloudflareError],
-    protocol: CloudflarePaginatedProtocol,
-    retry: Retry.Retry,
-    pagination: { mode: "single", items: "result" } as const,
-  }),
-  cloudflarePaginate,
-) as any;
-
-export type DlpEntriesIntegrationGetError = CloudflareOpError;
-/** Fetches a DLP entry by ID. */
-export const dlpEntriesIntegrationGet: API.OperationMethod<
-  DlpEntriesIntegrationGetRequest,
-  DlpEntriesIntegrationGetResponse,
-  DlpEntriesIntegrationGetError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DlpEntriesIntegrationGetRequest,
-  output: DlpEntriesIntegrationGetResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DlpEntriesIntegrationListError = CloudflareOpError;
-/** Lists all DLP entries in an account. */
-export const dlpEntriesIntegrationList: API.PaginatedOperationMethod<
-  DlpEntriesIntegrationListRequest,
-  DlpEntriesIntegrationListResponse,
-  DlpEntriesIntegrationListError,
-  CloudflareOpContext,
-  DlpEntriesIntegrationListResultItem
-> = /*@__PURE__*/ API.makePaginated(
-  () => ({
-    input: DlpEntriesIntegrationListRequest,
-    output: DlpEntriesIntegrationListResponse,
-    errors: [CloudflareRateLimited, CloudflareError],
-    protocol: CloudflarePaginatedProtocol,
-    retry: Retry.Retry,
-    pagination: { mode: "single", items: "result" } as const,
-  }),
-  cloudflarePaginate,
-) as any;
-
-export type DlpEntriesPredefinedGetError = CloudflareOpError;
-/** Fetches a DLP entry by ID. */
-export const dlpEntriesPredefinedGet: API.OperationMethod<
-  DlpEntriesPredefinedGetRequest,
-  DlpEntriesPredefinedGetResponse,
-  DlpEntriesPredefinedGetError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DlpEntriesPredefinedGetRequest,
-  output: DlpEntriesPredefinedGetResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DlpEntriesPredefinedListError = CloudflareOpError;
-/** Lists all DLP entries in an account. */
-export const dlpEntriesPredefinedList: API.PaginatedOperationMethod<
-  DlpEntriesPredefinedListRequest,
-  DlpEntriesPredefinedListResponse,
-  DlpEntriesPredefinedListError,
-  CloudflareOpContext,
-  DlpEntriesPredefinedListResultItem
-> = /*@__PURE__*/ API.makePaginated(
-  () => ({
-    input: DlpEntriesPredefinedListRequest,
-    output: DlpEntriesPredefinedListResponse,
-    errors: [CloudflareRateLimited, CloudflareError],
-    protocol: CloudflarePaginatedProtocol,
-    retry: Retry.Retry,
-    pagination: { mode: "single", items: "result" } as const,
-  }),
-  cloudflarePaginate,
-) as any;
-
 export type EditDlpDatasetUploadError = CloudflareOpError;
 /** This is used for single-column EDMv1 and Custom Word Lists. The EDM format can only be created in the Cloudflare dashboard. For other clients, this operation can only be used for non-secret Custom Word Lists. The body must be a UTF-8 encoded, newline (NL or CRNL) separated list of words to be matched. */
 export const editDlpDatasetUpload: API.OperationMethod<
@@ -172236,6 +171998,36 @@ export const getAccessUserLastSeenIdentity: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetAccessUserLastSeenIdentityRequest,
   output: GetAccessUserLastSeenIdentityResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCasbApplicationError = CloudflareOpError;
+/** Returns full application details including auth methods, use cases, and permissions. */
+export const getCasbApplication: API.OperationMethod<
+  GetCasbApplicationRequest,
+  GetCasbApplicationResponse,
+  GetCasbApplicationError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCasbApplicationRequest,
+  output: GetCasbApplicationResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCasbIntegrationError = CloudflareOpError;
+/** Returns full integration details including use cases and permissions. */
+export const getCasbIntegration: API.OperationMethod<
+  GetCasbIntegrationRequest,
+  GetCasbIntegrationResponse,
+  GetCasbIntegrationError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCasbIntegrationRequest,
+  output: GetCasbIntegrationResponse,
   errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
@@ -172795,6 +172587,21 @@ export const getDexWarpChangeEvent: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetDlpCustomEntryError = CloudflareOpError;
+/** Fetches a DLP entry by ID. */
+export const getDlpCustomEntry: API.OperationMethod<
+  GetDlpCustomEntryRequest,
+  GetDlpCustomEntryResponse,
+  GetDlpCustomEntryError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDlpCustomEntryRequest,
+  output: GetDlpCustomEntryResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetDlpCustomPromptTopicError = CloudflareOpError;
 /** Fetches a DLP custom prompt topic entry by ID. */
 export const getDlpCustomPromptTopic: API.OperationMethod<
@@ -172895,6 +172702,36 @@ export const getDlpEmailRule: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetDlpEmailRuleRequest,
   output: GetDlpEmailRuleResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDlpEntriesIntegrationError = CloudflareOpError;
+/** Fetches a DLP entry by ID. */
+export const getDlpEntriesIntegration: API.OperationMethod<
+  GetDlpEntriesIntegrationRequest,
+  GetDlpEntriesIntegrationResponse,
+  GetDlpEntriesIntegrationError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDlpEntriesIntegrationRequest,
+  output: GetDlpEntriesIntegrationResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDlpEntriesPredefinedError = CloudflareOpError;
+/** Fetches a DLP entry by ID. */
+export const getDlpEntriesPredefined: API.OperationMethod<
+  GetDlpEntriesPredefinedRequest,
+  GetDlpEntriesPredefinedResponse,
+  GetDlpEntriesPredefinedError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDlpEntriesPredefinedRequest,
+  output: GetDlpEntriesPredefinedResponse,
   errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
@@ -174395,6 +174232,51 @@ export const listAccessUsers: API.PaginatedOperationMethod<
   cloudflarePaginate,
 ) as any;
 
+export type ListCasbApplicationsError = CloudflareOpError;
+/** Returns a list of available applications with use cases and permissions. */
+export const listCasbApplications: API.OperationMethod<
+  ListCasbApplicationsRequest,
+  ListCasbApplicationsResponse,
+  ListCasbApplicationsError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListCasbApplicationsRequest,
+  output: ListCasbApplicationsResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListCasbApplicationsSetupFlowsError = CloudflareOpError;
+/** Returns all available setup flows for the application, one per auth method. */
+export const listCasbApplicationsSetupFlows: API.OperationMethod<
+  ListCasbApplicationsSetupFlowsRequest,
+  ListCasbApplicationsSetupFlowsResponse,
+  ListCasbApplicationsSetupFlowsError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListCasbApplicationsSetupFlowsRequest,
+  output: ListCasbApplicationsSetupFlowsResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListCasbIntegrationsError = CloudflareOpError;
+/** Returns a paginated list of integrations for the account. */
+export const listCasbIntegrations: API.OperationMethod<
+  ListCasbIntegrationsRequest,
+  ListCasbIntegrationsResponse,
+  ListCasbIntegrationsError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListCasbIntegrationsRequest,
+  output: ListCasbIntegrationsResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListDeviceDeploymentGroupsError = CloudflareOpError;
 /** Lists all deployment groups for an account. Use deployment groups to assign target WARP client versions to specific devices. This endpoint is in Beta. */
 export const listDeviceDeploymentGroups: API.PaginatedOperationMethod<
@@ -174781,6 +174663,26 @@ export const listDexTestUniqueDevices: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ListDlpCustomEntriesError = CloudflareOpError;
+/** Lists all DLP entries in an account. */
+export const listDlpCustomEntries: API.PaginatedOperationMethod<
+  ListDlpCustomEntriesRequest,
+  ListDlpCustomEntriesResponse,
+  ListDlpCustomEntriesError,
+  CloudflareOpContext,
+  ListDlpCustomEntriesResultItem
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: ListDlpCustomEntriesRequest,
+    output: ListDlpCustomEntriesResponse,
+    errors: [CloudflareRateLimited, CloudflareError],
+    protocol: CloudflarePaginatedProtocol,
+    retry: Retry.Retry,
+    pagination: { mode: "single", items: "result" } as const,
+  }),
+  cloudflarePaginate,
+) as any;
+
 export type ListDlpCustomPromptTopicsError = CloudflareOpError;
 /** Lists all DLP custom prompt topic entries in an account. */
 export const listDlpCustomPromptTopics: API.PaginatedOperationMethod<
@@ -174908,6 +174810,46 @@ export const listDlpEntries: API.PaginatedOperationMethod<
   () => ({
     input: ListDlpEntriesRequest,
     output: ListDlpEntriesResponse,
+    errors: [CloudflareRateLimited, CloudflareError],
+    protocol: CloudflarePaginatedProtocol,
+    retry: Retry.Retry,
+    pagination: { mode: "single", items: "result" } as const,
+  }),
+  cloudflarePaginate,
+) as any;
+
+export type ListDlpEntriesIntegrationError = CloudflareOpError;
+/** Lists all DLP entries in an account. */
+export const listDlpEntriesIntegration: API.PaginatedOperationMethod<
+  ListDlpEntriesIntegrationRequest,
+  ListDlpEntriesIntegrationResponse,
+  ListDlpEntriesIntegrationError,
+  CloudflareOpContext,
+  ListDlpEntriesIntegrationResultItem
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: ListDlpEntriesIntegrationRequest,
+    output: ListDlpEntriesIntegrationResponse,
+    errors: [CloudflareRateLimited, CloudflareError],
+    protocol: CloudflarePaginatedProtocol,
+    retry: Retry.Retry,
+    pagination: { mode: "single", items: "result" } as const,
+  }),
+  cloudflarePaginate,
+) as any;
+
+export type ListDlpEntriesPredefinedError = CloudflareOpError;
+/** Lists all DLP entries in an account. */
+export const listDlpEntriesPredefined: API.PaginatedOperationMethod<
+  ListDlpEntriesPredefinedRequest,
+  ListDlpEntriesPredefinedResponse,
+  ListDlpEntriesPredefinedError,
+  CloudflareOpContext,
+  ListDlpEntriesPredefinedResultItem
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: ListDlpEntriesPredefinedRequest,
+    output: ListDlpEntriesPredefinedResponse,
     errors: [CloudflareRateLimited, CloudflareError],
     protocol: CloudflarePaginatedProtocol,
     retry: Retry.Retry,
@@ -175597,21 +175539,6 @@ export const liveDexFleetStatus: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type NetworkPathDexTracerouteTestError = CloudflareOpError;
-/** Get a breakdown of metrics by hop for individual traceroute test runs. */
-export const networkPathDexTracerouteTest: API.OperationMethod<
-  NetworkPathDexTracerouteTestRequest,
-  NetworkPathDexTracerouteTestResponse,
-  NetworkPathDexTracerouteTestError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NetworkPathDexTracerouteTestRequest,
-  output: NetworkPathDexTracerouteTestResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
 export type OverTimeDexFleetStatusError = CloudflareOpError;
 /** Get aggregate details for devices using WARP, up to 7 days. */
 export const overTimeDexFleetStatus: API.OperationMethod<
@@ -176042,16 +175969,16 @@ export const patchTunnelWarpConnector: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PercentilesDexTracerouteTestError = CloudflareOpError;
-/** Get percentiles for a traceroute test for a given time period between 1 hour and 7 days. */
-export const percentilesDexTracerouteTest: API.OperationMethod<
-  PercentilesDexTracerouteTestRequest,
-  PercentilesDexTracerouteTestResponse,
-  PercentilesDexTracerouteTestError,
+export type PauseCasbIntegrationError = CloudflareOpError;
+/** Pauses an integration, stopping all crawlers. */
+export const pauseCasbIntegration: API.OperationMethod<
+  PauseCasbIntegrationRequest,
+  PauseCasbIntegrationResponse,
+  PauseCasbIntegrationError,
   CloudflareOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PercentilesDexTracerouteTestRequest,
-  output: PercentilesDexTracerouteTestResponse,
+  input: PauseCasbIntegrationRequest,
+  output: PauseCasbIntegrationResponse,
   errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
@@ -176566,6 +176493,21 @@ export const resetRiskScoring: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ResumeCasbIntegrationError = CloudflareOpError;
+/** Resumes a paused integration, restarting crawlers. */
+export const resumeCasbIntegration: API.OperationMethod<
+  ResumeCasbIntegrationRequest,
+  ResumeCasbIntegrationResponse,
+  ResumeCasbIntegrationError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ResumeCasbIntegrationRequest,
+  output: ResumeCasbIntegrationResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
 export type RevokeDeviceDevicesError = CloudflareOpError;
 /** Revokes all WARP registrations associated with the specified device. */
 export const revokeDeviceDevices: API.OperationMethod<
@@ -176726,6 +176668,36 @@ export const syncAccessAiControlMcpServer: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: SyncAccessAiControlMcpServerRequest,
   output: SyncAccessAiControlMcpServerResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
+export type TestNetworkPathDexTracerouteError = CloudflareOpError;
+/** Get a breakdown of metrics by hop for individual traceroute test runs. */
+export const testNetworkPathDexTraceroute: API.OperationMethod<
+  TestNetworkPathDexTracerouteRequest,
+  TestNetworkPathDexTracerouteResponse,
+  TestNetworkPathDexTracerouteError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: TestNetworkPathDexTracerouteRequest,
+  output: TestNetworkPathDexTracerouteResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
+export type TestPercentilesDexTracerouteError = CloudflareOpError;
+/** Get percentiles for a traceroute test for a given time period between 1 hour and 7 days. */
+export const testPercentilesDexTraceroute: API.OperationMethod<
+  TestPercentilesDexTracerouteRequest,
+  TestPercentilesDexTracerouteResponse,
+  TestPercentilesDexTracerouteError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: TestPercentilesDexTracerouteRequest,
+  output: TestPercentilesDexTracerouteResponse,
   errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
@@ -177036,6 +177008,21 @@ export const updateAccessUser: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: UpdateAccessUserRequest,
   output: UpdateAccessUserResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateCasbIntegrationError = CloudflareOpError;
+/** Updates an integration's name, permissions, DLP profiles, use cases, or credentials. */
+export const updateCasbIntegration: API.OperationMethod<
+  UpdateCasbIntegrationRequest,
+  UpdateCasbIntegrationResponse,
+  UpdateCasbIntegrationError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateCasbIntegrationRequest,
+  output: UpdateCasbIntegrationResponse,
   errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,

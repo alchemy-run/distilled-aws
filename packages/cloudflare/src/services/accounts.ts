@@ -235,118 +235,6 @@ export class ValidationError
     [{ code: 1001 }],
   ) {}
 
-export interface AccountOrganizationsCreateRequest {
-  accountId: string;
-  destinationOrganizationId: string;
-}
-export const AccountOrganizationsCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountId: S.String.pipe(T.Label("account_id")),
-    destinationOrganizationId: S.String.pipe(
-      T.Body("destination_organization_id"),
-    ),
-  })
-    .pipe(
-      T.Http({ method: "POST", uri: "/accounts/{account_id}/move", code: 200 }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "AccountOrganizationsCreateRequest",
-}) as any as S.Schema<AccountOrganizationsCreateRequest>;
-
-/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
-export interface AccountOrganizationsCreateResponse {
-  accountId: string;
-  destinationOrganizationId: string;
-  sourceOrganizationId: string;
-}
-export const AccountOrganizationsCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountId: S.String.pipe(T.Body("account_id")),
-    destinationOrganizationId: S.String.pipe(
-      T.Body("destination_organization_id"),
-    ),
-    sourceOrganizationId: S.String.pipe(T.Body("source_organization_id")),
-  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "AccountOrganizationsCreateResponse",
-}) as any as S.Schema<AccountOrganizationsCreateResponse>;
-
-export interface AccountProfileGetRequest {
-  accountId: string;
-}
-export const AccountProfileGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountId: S.String.pipe(T.Label("account_id")),
-  })
-    .pipe(
-      T.Http({
-        method: "GET",
-        uri: "/accounts/{account_id}/profile",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "AccountProfileGetRequest",
-}) as any as S.Schema<AccountProfileGetRequest>;
-
-/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
-export interface AccountProfileGetResponse {
-  businessAddress: string;
-  businessEmail: string;
-  businessName: string;
-  businessPhone: string;
-  externalMetadata: string;
-}
-export const AccountProfileGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    businessAddress: S.String.pipe(T.Body("business_address")),
-    businessEmail: S.String.pipe(T.Body("business_email")),
-    businessName: S.String.pipe(T.Body("business_name")),
-    businessPhone: S.String.pipe(T.Body("business_phone")),
-    externalMetadata: S.String.pipe(T.Body("external_metadata")),
-  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "AccountProfileGetResponse",
-}) as any as S.Schema<AccountProfileGetResponse>;
-
-export interface AccountProfileUpdateRequest {
-  accountId: string;
-  businessAddress: string;
-  businessEmail: string;
-  businessName: string;
-  businessPhone: string;
-  externalMetadata: string;
-}
-export const AccountProfileUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountId: S.String.pipe(T.Label("account_id")),
-    businessAddress: S.String.pipe(T.Body("business_address")),
-    businessEmail: S.String.pipe(T.Body("business_email")),
-    businessName: S.String.pipe(T.Body("business_name")),
-    businessPhone: S.String.pipe(T.Body("business_phone")),
-    externalMetadata: S.String.pipe(T.Body("external_metadata")),
-  })
-    .pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/accounts/{account_id}/profile",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "AccountProfileUpdateRequest",
-}) as any as S.Schema<AccountProfileUpdateRequest>;
-
-export interface AccountProfileUpdateResponse {}
-export const AccountProfileUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "AccountProfileUpdateResponse",
-}) as any as S.Schema<AccountProfileUpdateResponse>;
-
 export type CreateRequestType = "standard" | "enterprise";
 export const CreateRequestType = /*@__PURE__*/ S.String;
 
@@ -448,6 +336,43 @@ export const CreateAccountResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "CreateAccountResponse",
 }) as any as S.Schema<CreateAccountResponse>;
+
+export interface CreateAccountOrganizationRequest {
+  accountId: string;
+  destinationOrganizationId: string;
+}
+export const CreateAccountOrganizationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountId: S.String.pipe(T.Label("account_id")),
+    destinationOrganizationId: S.String.pipe(
+      T.Body("destination_organization_id"),
+    ),
+  })
+    .pipe(
+      T.Http({ method: "POST", uri: "/accounts/{account_id}/move", code: 200 }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "CreateAccountOrganizationRequest",
+}) as any as S.Schema<CreateAccountOrganizationRequest>;
+
+/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
+export interface CreateAccountOrganizationResponse {
+  accountId: string;
+  destinationOrganizationId: string;
+  sourceOrganizationId: string;
+}
+export const CreateAccountOrganizationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountId: S.String.pipe(T.Body("account_id")),
+    destinationOrganizationId: S.String.pipe(
+      T.Body("destination_organization_id"),
+    ),
+    sourceOrganizationId: S.String.pipe(T.Body("source_organization_id")),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "CreateAccountOrganizationResponse",
+}) as any as S.Schema<CreateAccountOrganizationResponse>;
 
 export type MembersCreateRequestRolesList = Array<string>;
 export const MembersCreateRequestRolesList = /*@__PURE__*/ S.Array(
@@ -1590,6 +1515,45 @@ export const GetAccountResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetAccountResponse",
 }) as any as S.Schema<GetAccountResponse>;
+
+export interface GetAccountProfileRequest {
+  accountId: string;
+}
+export const GetAccountProfileRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountId: S.String.pipe(T.Label("account_id")),
+  })
+    .pipe(
+      T.Http({
+        method: "GET",
+        uri: "/accounts/{account_id}/profile",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "GetAccountProfileRequest",
+}) as any as S.Schema<GetAccountProfileRequest>;
+
+/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
+export interface GetAccountProfileResponse {
+  businessAddress: string;
+  businessEmail: string;
+  businessName: string;
+  businessPhone: string;
+  externalMetadata: string;
+}
+export const GetAccountProfileResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    businessAddress: S.String.pipe(T.Body("business_address")),
+    businessEmail: S.String.pipe(T.Body("business_email")),
+    businessName: S.String.pipe(T.Body("business_name")),
+    businessPhone: S.String.pipe(T.Body("business_phone")),
+    externalMetadata: S.String.pipe(T.Body("external_metadata")),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "GetAccountProfileResponse",
+}) as any as S.Schema<GetAccountProfileResponse>;
 
 export interface GetMemberRequest {
   /** Account identifier tag. */
@@ -3670,6 +3634,107 @@ export const ListTokensResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListTokensResponse",
 }) as any as S.Schema<ListTokensResponse>;
 
+export interface ListTokensPermissionGroupsRequest {
+  /** Account identifier tag. */
+  accountId: string;
+  /** Filter by the name of the permission group. */
+  name?: string;
+  /** Filter by the scope of the permission group. */
+  scope?: string;
+}
+export const ListTokensPermissionGroupsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountId: S.String.pipe(T.Label("account_id")),
+    name: S.optional(S.String.pipe(T.Query())),
+    scope: S.optional(S.String.pipe(T.Query())),
+  })
+    .pipe(
+      T.Http({
+        method: "GET",
+        uri: "/accounts/{account_id}/tokens/permission_groups",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "ListTokensPermissionGroupsRequest",
+}) as any as S.Schema<ListTokensPermissionGroupsRequest>;
+
+export type ListTokensPermissionGroupsResultItemCategory =
+  | "developer_platform"
+  | "ai_and_machine_learning"
+  | "dns_and_zones"
+  | "app_security"
+  | "rules_and_configuration"
+  | "cloudflare_one_and_zero_trust"
+  | "analytics_and_logs"
+  | "network_services"
+  | "media"
+  | "email_and_messaging"
+  | "cache_and_performance"
+  | "account_and_billing"
+  | "other";
+export const ListTokensPermissionGroupsResultItemCategory =
+  /*@__PURE__*/ S.String;
+
+export type ListTokensPermissionGroupsResultItemScopesItem =
+  | "com.cloudflare.api.account"
+  | "com.cloudflare.api.account.zone"
+  | "com.cloudflare.api.user"
+  | "com.cloudflare.edge.r2.bucket";
+export const ListTokensPermissionGroupsResultItemScopesItem =
+  /*@__PURE__*/ S.String;
+
+export type ListTokensPermissionGroupsResultItemScopesList =
+  Array<ListTokensPermissionGroupsResultItemScopesItem>;
+export const ListTokensPermissionGroupsResultItemScopesList =
+  /*@__PURE__*/ S.Array(
+    ListTokensPermissionGroupsResultItemScopesItem,
+  ) as any as S.Schema<ListTokensPermissionGroupsResultItemScopesList>;
+
+export interface ListTokensPermissionGroupsResultItem {
+  /** Public ID. */
+  id?: string | null;
+  /** Product category that this permission group belongs to. */
+  category?: ListTokensPermissionGroupsResultItemCategory | null;
+  /** Permission Group Name */
+  name?: string | null;
+  /** Resources to which the Permission Group is scoped */
+  scopes?: ListTokensPermissionGroupsResultItemScopesList | null;
+}
+export const ListTokensPermissionGroupsResultItem = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.NullOr(S.String)),
+      category: S.optional(
+        S.NullOr(ListTokensPermissionGroupsResultItemCategory),
+      ),
+      name: S.optional(S.NullOr(S.String)),
+      scopes: S.optional(
+        S.NullOr(ListTokensPermissionGroupsResultItemScopesList),
+      ),
+    }),
+).annotate({
+  identifier: "ListTokensPermissionGroupsResultItem",
+}) as any as S.Schema<ListTokensPermissionGroupsResultItem>;
+
+export type ListTokensPermissionGroupsResultList =
+  Array<ListTokensPermissionGroupsResultItem>;
+export const ListTokensPermissionGroupsResultList = /*@__PURE__*/ S.Array(
+  ListTokensPermissionGroupsResultItem,
+) as any as S.Schema<ListTokensPermissionGroupsResultList>;
+
+export type ListTokensPermissionGroupsResponse =
+  ListTokensPermissionGroupsResultList;
+export const ListTokensPermissionGroupsResponse = /*@__PURE__*/ S.suspend(() =>
+  ListTokensPermissionGroupsResultList.pipe(
+    T.EnvelopePayloadRoot(),
+    T.KeyDictionary(KEY_DICTIONARY),
+  ),
+).annotate({
+  identifier: "ListTokensPermissionGroupsResponse",
+}) as any as S.Schema<ListTokensPermissionGroupsResponse>;
+
 export interface PutTokenValueRequest {
   /** Account identifier tag. */
   accountId: string;
@@ -3699,107 +3764,6 @@ export const PutTokenValueResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "PutTokenValueResponse",
 }) as any as S.Schema<PutTokenValueResponse>;
-
-export interface TokensPermissionGroupsListRequest {
-  /** Account identifier tag. */
-  accountId: string;
-  /** Filter by the name of the permission group. */
-  name?: string;
-  /** Filter by the scope of the permission group. */
-  scope?: string;
-}
-export const TokensPermissionGroupsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountId: S.String.pipe(T.Label("account_id")),
-    name: S.optional(S.String.pipe(T.Query())),
-    scope: S.optional(S.String.pipe(T.Query())),
-  })
-    .pipe(
-      T.Http({
-        method: "GET",
-        uri: "/accounts/{account_id}/tokens/permission_groups",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "TokensPermissionGroupsListRequest",
-}) as any as S.Schema<TokensPermissionGroupsListRequest>;
-
-export type TokensPermissionGroupsListResultItemCategory =
-  | "developer_platform"
-  | "ai_and_machine_learning"
-  | "dns_and_zones"
-  | "app_security"
-  | "rules_and_configuration"
-  | "cloudflare_one_and_zero_trust"
-  | "analytics_and_logs"
-  | "network_services"
-  | "media"
-  | "email_and_messaging"
-  | "cache_and_performance"
-  | "account_and_billing"
-  | "other";
-export const TokensPermissionGroupsListResultItemCategory =
-  /*@__PURE__*/ S.String;
-
-export type TokensPermissionGroupsListResultItemScopesItem =
-  | "com.cloudflare.api.account"
-  | "com.cloudflare.api.account.zone"
-  | "com.cloudflare.api.user"
-  | "com.cloudflare.edge.r2.bucket";
-export const TokensPermissionGroupsListResultItemScopesItem =
-  /*@__PURE__*/ S.String;
-
-export type TokensPermissionGroupsListResultItemScopesList =
-  Array<TokensPermissionGroupsListResultItemScopesItem>;
-export const TokensPermissionGroupsListResultItemScopesList =
-  /*@__PURE__*/ S.Array(
-    TokensPermissionGroupsListResultItemScopesItem,
-  ) as any as S.Schema<TokensPermissionGroupsListResultItemScopesList>;
-
-export interface TokensPermissionGroupsListResultItem {
-  /** Public ID. */
-  id?: string | null;
-  /** Product category that this permission group belongs to. */
-  category?: TokensPermissionGroupsListResultItemCategory | null;
-  /** Permission Group Name */
-  name?: string | null;
-  /** Resources to which the Permission Group is scoped */
-  scopes?: TokensPermissionGroupsListResultItemScopesList | null;
-}
-export const TokensPermissionGroupsListResultItem = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.NullOr(S.String)),
-      category: S.optional(
-        S.NullOr(TokensPermissionGroupsListResultItemCategory),
-      ),
-      name: S.optional(S.NullOr(S.String)),
-      scopes: S.optional(
-        S.NullOr(TokensPermissionGroupsListResultItemScopesList),
-      ),
-    }),
-).annotate({
-  identifier: "TokensPermissionGroupsListResultItem",
-}) as any as S.Schema<TokensPermissionGroupsListResultItem>;
-
-export type TokensPermissionGroupsListResultList =
-  Array<TokensPermissionGroupsListResultItem>;
-export const TokensPermissionGroupsListResultList = /*@__PURE__*/ S.Array(
-  TokensPermissionGroupsListResultItem,
-) as any as S.Schema<TokensPermissionGroupsListResultList>;
-
-export type TokensPermissionGroupsListResponse =
-  TokensPermissionGroupsListResultList;
-export const TokensPermissionGroupsListResponse = /*@__PURE__*/ S.suspend(() =>
-  TokensPermissionGroupsListResultList.pipe(
-    T.EnvelopePayloadRoot(),
-    T.KeyDictionary(KEY_DICTIONARY),
-  ),
-).annotate({
-  identifier: "TokensPermissionGroupsListResponse",
-}) as any as S.Schema<TokensPermissionGroupsListResponse>;
 
 export type UpdateRequestType = "standard" | "enterprise";
 export const UpdateRequestType = /*@__PURE__*/ S.String;
@@ -3899,6 +3863,42 @@ export const UpdateAccountResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "UpdateAccountResponse",
 }) as any as S.Schema<UpdateAccountResponse>;
+
+export interface UpdateAccountProfileRequest {
+  accountId: string;
+  businessAddress: string;
+  businessEmail: string;
+  businessName: string;
+  businessPhone: string;
+  externalMetadata: string;
+}
+export const UpdateAccountProfileRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountId: S.String.pipe(T.Label("account_id")),
+    businessAddress: S.String.pipe(T.Body("business_address")),
+    businessEmail: S.String.pipe(T.Body("business_email")),
+    businessName: S.String.pipe(T.Body("business_name")),
+    businessPhone: S.String.pipe(T.Body("business_phone")),
+    externalMetadata: S.String.pipe(T.Body("external_metadata")),
+  })
+    .pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/accounts/{account_id}/profile",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "UpdateAccountProfileRequest",
+}) as any as S.Schema<UpdateAccountProfileRequest>;
+
+export interface UpdateAccountProfileResponse {}
+export const UpdateAccountProfileResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "UpdateAccountProfileResponse",
+}) as any as S.Schema<UpdateAccountProfileResponse>;
 
 export interface MembersUpdateRequestRolesItemPermissionsAnalytics {
   read?: boolean;
@@ -4850,51 +4850,6 @@ export const VerifyTokenResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "VerifyTokenResponse",
 }) as any as S.Schema<VerifyTokenResponse>;
 
-export type AccountOrganizationsCreateError = CloudflareOpError;
-/** Move an account within an organization hierarchy or an account outside an organization. (Currently in Public Beta - see https://developers.cloudflare.com/fundamentals/organizations/) */
-export const accountOrganizationsCreate: API.OperationMethod<
-  AccountOrganizationsCreateRequest,
-  AccountOrganizationsCreateResponse,
-  AccountOrganizationsCreateError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountOrganizationsCreateRequest,
-  output: AccountOrganizationsCreateResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccountProfileGetError = CloudflareOpError;
-/** Retrieves the profile information for a specific Cloudflare account, including organization details, settings, and metadata. This endpoint is commonly used to verify account access and retrieve account-level configuration. */
-export const accountProfileGet: API.OperationMethod<
-  AccountProfileGetRequest,
-  AccountProfileGetResponse,
-  AccountProfileGetError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountProfileGetRequest,
-  output: AccountProfileGetResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccountProfileUpdateError = CloudflareOpError;
-/** Updates the profile information for a Cloudflare account. Allows modification of account-level settings and organizational details. Requires Account Settings Write permission. */
-export const accountProfileUpdate: API.OperationMethod<
-  AccountProfileUpdateRequest,
-  AccountProfileUpdateResponse,
-  AccountProfileUpdateError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountProfileUpdateRequest,
-  output: AccountProfileUpdateResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
 export type CreateAccountError =
   | AccountCreationForbidden
   | MissingName
@@ -4914,6 +4869,21 @@ export const createAccount: API.OperationMethod<
     CloudflareRateLimited,
     CloudflareError,
   ],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateAccountOrganizationError = CloudflareOpError;
+/** Move an account within an organization hierarchy or an account outside an organization. (Currently in Public Beta - see https://developers.cloudflare.com/fundamentals/organizations/) */
+export const createAccountOrganization: API.OperationMethod<
+  CreateAccountOrganizationRequest,
+  CreateAccountOrganizationResponse,
+  CreateAccountOrganizationError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateAccountOrganizationRequest,
+  output: CreateAccountOrganizationResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
 }));
@@ -5098,6 +5068,21 @@ export const getAccount: API.OperationMethod<
   input: GetAccountRequest,
   output: GetAccountResponse,
   errors: [InvalidRoute, CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAccountProfileError = CloudflareOpError;
+/** Retrieves the profile information for a specific Cloudflare account, including organization details, settings, and metadata. This endpoint is commonly used to verify account access and retrieve account-level configuration. */
+export const getAccountProfile: API.OperationMethod<
+  GetAccountProfileRequest,
+  GetAccountProfileResponse,
+  GetAccountProfileError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAccountProfileRequest,
+  output: GetAccountProfileResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
 }));
@@ -5316,6 +5301,21 @@ export const listTokens: API.PaginatedOperationMethod<
   cloudflarePaginate,
 ) as any;
 
+export type ListTokensPermissionGroupsError = InvalidRoute | CloudflareOpError;
+/** Find all available permission groups for Account Owned API Tokens */
+export const listTokensPermissionGroups: API.OperationMethod<
+  ListTokensPermissionGroupsRequest,
+  ListTokensPermissionGroupsResponse,
+  ListTokensPermissionGroupsError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListTokensPermissionGroupsRequest,
+  output: ListTokensPermissionGroupsResponse,
+  errors: [InvalidRoute, CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
 export type PutTokenValueError =
   | InvalidRoute
   | TokenNotFound
@@ -5330,21 +5330,6 @@ export const putTokenValue: API.OperationMethod<
   input: PutTokenValueRequest,
   output: PutTokenValueResponse,
   errors: [InvalidRoute, TokenNotFound, CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TokensPermissionGroupsListError = InvalidRoute | CloudflareOpError;
-/** Find all available permission groups for Account Owned API Tokens */
-export const tokensPermissionGroupsList: API.OperationMethod<
-  TokensPermissionGroupsListRequest,
-  TokensPermissionGroupsListResponse,
-  TokensPermissionGroupsListError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TokensPermissionGroupsListRequest,
-  output: TokensPermissionGroupsListResponse,
-  errors: [InvalidRoute, CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
 }));
@@ -5374,6 +5359,21 @@ export const updateAccount: API.OperationMethod<
     CloudflareRateLimited,
     CloudflareError,
   ],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateAccountProfileError = CloudflareOpError;
+/** Updates the profile information for a Cloudflare account. Allows modification of account-level settings and organizational details. Requires Account Settings Write permission. */
+export const updateAccountProfile: API.OperationMethod<
+  UpdateAccountProfileRequest,
+  UpdateAccountProfileResponse,
+  UpdateAccountProfileError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateAccountProfileRequest,
+  output: UpdateAccountProfileResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
 }));

@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.customer_insights#PredictionsListByHub": {
+    "com.azure.customer_insights#ListPredictionByHub": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#PredictionsListByHubRequest"
+        "target": "com.azure.customer_insights#ListPredictionByHubRequest"
       },
       "output": {
         "target": "com.azure.customer_insights#PredictionListResult"
@@ -426,7 +427,7 @@
         "smithy.api#documentation": "Description of the prediction."
       }
     },
-    "com.azure.customer_insights#PredictionsListByHubRequest": {
+    "com.azure.customer_insights#ListPredictionByHubRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -640,10 +641,10 @@
         "smithy.api#documentation": "Prediction model life cycle.  When prediction is in PendingModelConfirmation status, it is allowed to update the status to PendingFeaturing or Active through API."
       }
     },
-    "com.azure.customer_insights#PredictionsGetModelStatus": {
+    "com.azure.customer_insights#GetPredictionModelStatus": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#PredictionsGetModelStatusRequest"
+        "target": "com.azure.customer_insights#GetPredictionModelStatusRequest"
       },
       "output": {
         "target": "com.azure.customer_insights#PredictionModelStatus"
@@ -850,7 +851,7 @@
         "smithy.api#documentation": "Prediction model life cycle.  When prediction is in PendingModelConfirmation status, it is allowed to update the status to PendingFeaturing or Active through API."
       }
     },
-    "com.azure.customer_insights#PredictionsGetModelStatusRequest": {
+    "com.azure.customer_insights#GetPredictionModelStatusRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -890,10 +891,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.customer_insights#PredictionsGetTrainingResults": {
+    "com.azure.customer_insights#GetPredictionTrainingResults": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#PredictionsGetTrainingResultsRequest"
+        "target": "com.azure.customer_insights#GetPredictionTrainingResultsRequest"
       },
       "output": {
         "target": "com.azure.customer_insights#PredictionTrainingResults"
@@ -1128,7 +1129,7 @@
         "smithy.api#documentation": "The definition of a prediction distribution."
       }
     },
-    "com.azure.customer_insights#PredictionsGetTrainingResultsRequest": {
+    "com.azure.customer_insights#GetPredictionTrainingResultsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1168,10 +1169,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.customer_insights#PredictionsDelete": {
+    "com.azure.customer_insights#DeletePrediction": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#PredictionsDeleteRequest"
+        "target": "com.azure.customer_insights#DeletePredictionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1187,7 +1188,7 @@
         "com.distilled.openapi#apiVersion": "2017-04-26"
       }
     },
-    "com.azure.customer_insights#PredictionsDeleteRequest": {
+    "com.azure.customer_insights#DeletePredictionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1532,13 +1533,13 @@
         "smithy.api#documentation": "Description of the prediction."
       }
     },
-    "com.azure.customer_insights#PredictionsGet": {
+    "com.azure.customer_insights#GetPrediction": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#PredictionsGetRequest"
+        "target": "com.azure.customer_insights#GetPredictionRequest"
       },
       "output": {
-        "target": "com.azure.customer_insights#PredictionsGetResponse"
+        "target": "com.azure.customer_insights#GetPredictionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1551,7 +1552,7 @@
         "com.distilled.openapi#apiVersion": "2017-04-26"
       }
     },
-    "com.azure.customer_insights#PredictionsGetResponse": {
+    "com.azure.customer_insights#GetPredictionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1580,7 +1581,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.customer_insights#PredictionsGetRequest": {
+    "com.azure.customer_insights#GetPredictionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1784,10 +1785,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.customer_insights#RoleAssignmentsDelete": {
+    "com.azure.customer_insights#DeleteRoleAssignment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#RoleAssignmentsDeleteRequest"
+        "target": "com.azure.customer_insights#DeleteRoleAssignmentRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1803,7 +1804,7 @@
         "com.distilled.openapi#apiVersion": "2017-04-26"
       }
     },
-    "com.azure.customer_insights#RoleAssignmentsDeleteRequest": {
+    "com.azure.customer_insights#DeleteRoleAssignmentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2408,13 +2409,13 @@
         "smithy.api#documentation": "Localized display names for the metadata."
       }
     },
-    "com.azure.customer_insights#RoleAssignmentsGet": {
+    "com.azure.customer_insights#GetRoleAssignment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#RoleAssignmentsGetRequest"
+        "target": "com.azure.customer_insights#GetRoleAssignmentRequest"
       },
       "output": {
-        "target": "com.azure.customer_insights#RoleAssignmentsGetResponse"
+        "target": "com.azure.customer_insights#GetRoleAssignmentResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2427,7 +2428,7 @@
         "com.distilled.openapi#apiVersion": "2017-04-26"
       }
     },
-    "com.azure.customer_insights#RoleAssignmentsGetResponse": {
+    "com.azure.customer_insights#GetRoleAssignmentResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2456,7 +2457,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.customer_insights#RoleAssignmentsGetRequest": {
+    "com.azure.customer_insights#GetRoleAssignmentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2496,10 +2497,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.customer_insights#RoleAssignmentsListByHub": {
+    "com.azure.customer_insights#ListRoleAssignmentByHub": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#RoleAssignmentsListByHubRequest"
+        "target": "com.azure.customer_insights#ListRoleAssignmentByHubRequest"
       },
       "output": {
         "target": "com.azure.customer_insights#RoleAssignmentListResult"
@@ -2573,7 +2574,7 @@
         "smithy.api#documentation": "The Role Assignment resource format."
       }
     },
-    "com.azure.customer_insights#RoleAssignmentsListByHubRequest": {
+    "com.azure.customer_insights#ListRoleAssignmentByHubRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2605,10 +2606,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.customer_insights#RolesListByHub": {
+    "com.azure.customer_insights#ListRoleByHub": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#RolesListByHubRequest"
+        "target": "com.azure.customer_insights#ListRoleByHubRequest"
       },
       "output": {
         "target": "com.azure.customer_insights#RoleListResult"
@@ -2702,7 +2703,7 @@
         "smithy.api#documentation": "The Role definition."
       }
     },
-    "com.azure.customer_insights#RolesListByHubRequest": {
+    "com.azure.customer_insights#ListRoleByHubRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2734,10 +2735,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.customer_insights#LinksListByHub": {
+    "com.azure.customer_insights#ListLinkByHub": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#LinksListByHubRequest"
+        "target": "com.azure.customer_insights#ListLinkByHubRequest"
       },
       "output": {
         "target": "com.azure.customer_insights#LinkListResult"
@@ -3098,7 +3099,7 @@
         "smithy.api#documentation": "Type of source entity."
       }
     },
-    "com.azure.customer_insights#LinksListByHubRequest": {
+    "com.azure.customer_insights#ListLinkByHubRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3130,10 +3131,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.customer_insights#LinksDelete": {
+    "com.azure.customer_insights#DeleteLink": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#LinksDeleteRequest"
+        "target": "com.azure.customer_insights#DeleteLinkRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3149,7 +3150,7 @@
         "com.distilled.openapi#apiVersion": "2017-04-26"
       }
     },
-    "com.azure.customer_insights#LinksDeleteRequest": {
+    "com.azure.customer_insights#DeleteLinkRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3479,13 +3480,13 @@
         "smithy.api#documentation": "Type of source entity."
       }
     },
-    "com.azure.customer_insights#LinksGet": {
+    "com.azure.customer_insights#GetLink": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#LinksGetRequest"
+        "target": "com.azure.customer_insights#GetLinkRequest"
       },
       "output": {
-        "target": "com.azure.customer_insights#LinksGetResponse"
+        "target": "com.azure.customer_insights#GetLinkResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3498,7 +3499,7 @@
         "com.distilled.openapi#apiVersion": "2017-04-26"
       }
     },
-    "com.azure.customer_insights#LinksGetResponse": {
+    "com.azure.customer_insights#GetLinkResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3527,7 +3528,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.customer_insights#LinksGetRequest": {
+    "com.azure.customer_insights#GetLinkRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3567,10 +3568,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.customer_insights#ViewsDelete": {
+    "com.azure.customer_insights#DeleteView": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#ViewsDeleteRequest"
+        "target": "com.azure.customer_insights#DeleteViewRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3586,7 +3587,7 @@
         "com.distilled.openapi#apiVersion": "2017-04-26"
       }
     },
-    "com.azure.customer_insights#ViewsDeleteRequest": {
+    "com.azure.customer_insights#DeleteViewRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3827,13 +3828,13 @@
         "smithy.api#documentation": "Localized display name for the view."
       }
     },
-    "com.azure.customer_insights#ViewsGet": {
+    "com.azure.customer_insights#GetView": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#ViewsGetRequest"
+        "target": "com.azure.customer_insights#GetViewRequest"
       },
       "output": {
-        "target": "com.azure.customer_insights#ViewsGetResponse"
+        "target": "com.azure.customer_insights#GetViewResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3846,7 +3847,7 @@
         "com.distilled.openapi#apiVersion": "2017-04-26"
       }
     },
-    "com.azure.customer_insights#ViewsGetResponse": {
+    "com.azure.customer_insights#GetViewResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3875,7 +3876,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.customer_insights#ViewsGetRequest": {
+    "com.azure.customer_insights#GetViewRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3923,10 +3924,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.customer_insights#ViewsListByHub": {
+    "com.azure.customer_insights#ListViewByHub": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#ViewsListByHubRequest"
+        "target": "com.azure.customer_insights#ListViewByHubRequest"
       },
       "output": {
         "target": "com.azure.customer_insights#ViewListResult"
@@ -4000,7 +4001,7 @@
         "smithy.api#documentation": "The view resource format."
       }
     },
-    "com.azure.customer_insights#ViewsListByHubRequest": {
+    "com.azure.customer_insights#ListViewByHubRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4040,13 +4041,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.customer_insights#WidgetTypesGet": {
+    "com.azure.customer_insights#GetWidgetType": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#WidgetTypesGetRequest"
+        "target": "com.azure.customer_insights#GetWidgetTypeRequest"
       },
       "output": {
-        "target": "com.azure.customer_insights#WidgetTypesGetResponse"
+        "target": "com.azure.customer_insights#GetWidgetTypeResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4059,7 +4060,7 @@
         "com.distilled.openapi#apiVersion": "2017-04-26"
       }
     },
-    "com.azure.customer_insights#WidgetTypesGetResponse": {
+    "com.azure.customer_insights#GetWidgetTypeResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4163,7 +4164,7 @@
         "smithy.api#documentation": "Localized display name for the widget type."
       }
     },
-    "com.azure.customer_insights#WidgetTypesGetRequest": {
+    "com.azure.customer_insights#GetWidgetTypeRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4203,10 +4204,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.customer_insights#WidgetTypesListByHub": {
+    "com.azure.customer_insights#ListWidgetTypeByHub": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#WidgetTypesListByHubRequest"
+        "target": "com.azure.customer_insights#ListWidgetTypeByHubRequest"
       },
       "output": {
         "target": "com.azure.customer_insights#WidgetTypeListResult"
@@ -4280,7 +4281,7 @@
         "smithy.api#documentation": "The WidgetTypeResourceFormat"
       }
     },
-    "com.azure.customer_insights#WidgetTypesListByHubRequest": {
+    "com.azure.customer_insights#ListWidgetTypeByHubRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4312,10 +4313,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.customer_insights#KpiListByHub": {
+    "com.azure.customer_insights#ListKpiByHub": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#KpiListByHubRequest"
+        "target": "com.azure.customer_insights#ListKpiByHubRequest"
       },
       "output": {
         "target": "com.azure.customer_insights#KpiListResult"
@@ -4837,7 +4838,7 @@
         "smithy.api#documentation": "The mapping entity type."
       }
     },
-    "com.azure.customer_insights#KpiListByHubRequest": {
+    "com.azure.customer_insights#ListKpiByHubRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4928,10 +4929,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.customer_insights#KpiDelete": {
+    "com.azure.customer_insights#DeleteKpi": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#KpiDeleteRequest"
+        "target": "com.azure.customer_insights#DeleteKpiRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4947,7 +4948,7 @@
         "com.distilled.openapi#apiVersion": "2017-04-26"
       }
     },
-    "com.azure.customer_insights#KpiDeleteRequest": {
+    "com.azure.customer_insights#DeleteKpiRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5352,13 +5353,13 @@
         "smithy.api#documentation": "The mapping entity type."
       }
     },
-    "com.azure.customer_insights#KpiGet": {
+    "com.azure.customer_insights#GetKpi": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#KpiGetRequest"
+        "target": "com.azure.customer_insights#GetKpiRequest"
       },
       "output": {
-        "target": "com.azure.customer_insights#KpiGetResponse"
+        "target": "com.azure.customer_insights#GetKpiResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5371,7 +5372,7 @@
         "com.distilled.openapi#apiVersion": "2017-04-26"
       }
     },
-    "com.azure.customer_insights#KpiGetResponse": {
+    "com.azure.customer_insights#GetKpiResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5400,7 +5401,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.customer_insights#KpiGetRequest": {
+    "com.azure.customer_insights#GetKpiRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5440,10 +5441,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.customer_insights#ConnectorMappingsListByConnector": {
+    "com.azure.customer_insights#ListConnectorMappingByConnector": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#ConnectorMappingsListByConnectorRequest"
+        "target": "com.azure.customer_insights#ListConnectorMappingByConnectorRequest"
       },
       "output": {
         "target": "com.azure.customer_insights#ConnectorMappingListResult"
@@ -6059,7 +6060,7 @@
         "smithy.api#documentation": "Type of connector."
       }
     },
-    "com.azure.customer_insights#ConnectorMappingsListByConnectorRequest": {
+    "com.azure.customer_insights#ListConnectorMappingByConnectorRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6099,10 +6100,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.customer_insights#ConnectorMappingsDelete": {
+    "com.azure.customer_insights#DeleteConnectorMapping": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#ConnectorMappingsDeleteRequest"
+        "target": "com.azure.customer_insights#DeleteConnectorMappingRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -6118,7 +6119,7 @@
         "com.distilled.openapi#apiVersion": "2017-04-26"
       }
     },
-    "com.azure.customer_insights#ConnectorMappingsDeleteRequest": {
+    "com.azure.customer_insights#DeleteConnectorMappingRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6344,13 +6345,13 @@
         "smithy.api#documentation": "Defines which entity type the file should map to."
       }
     },
-    "com.azure.customer_insights#ConnectorMappingsGet": {
+    "com.azure.customer_insights#GetConnectorMapping": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#ConnectorMappingsGetRequest"
+        "target": "com.azure.customer_insights#GetConnectorMappingRequest"
       },
       "output": {
-        "target": "com.azure.customer_insights#ConnectorMappingsGetResponse"
+        "target": "com.azure.customer_insights#GetConnectorMappingResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6363,7 +6364,7 @@
         "com.distilled.openapi#apiVersion": "2017-04-26"
       }
     },
-    "com.azure.customer_insights#ConnectorMappingsGetResponse": {
+    "com.azure.customer_insights#GetConnectorMappingResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -6392,7 +6393,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.customer_insights#ConnectorMappingsGetRequest": {
+    "com.azure.customer_insights#GetConnectorMappingRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6440,10 +6441,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.customer_insights#ConnectorsListByHub": {
+    "com.azure.customer_insights#ListConnectorByHub": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#ConnectorsListByHubRequest"
+        "target": "com.azure.customer_insights#ListConnectorByHubRequest"
       },
       "output": {
         "target": "com.azure.customer_insights#ConnectorListResult"
@@ -6649,7 +6650,7 @@
         "smithy.api#documentation": "The connector properties."
       }
     },
-    "com.azure.customer_insights#ConnectorsListByHubRequest": {
+    "com.azure.customer_insights#ListConnectorByHubRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6681,10 +6682,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.customer_insights#ConnectorsDelete": {
+    "com.azure.customer_insights#DeleteConnector": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#ConnectorsDeleteRequest"
+        "target": "com.azure.customer_insights#DeleteConnectorRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -6700,7 +6701,7 @@
         "com.distilled.openapi#apiVersion": "2017-04-26"
       }
     },
-    "com.azure.customer_insights#ConnectorsDeleteRequest": {
+    "com.azure.customer_insights#DeleteConnectorRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6889,13 +6890,13 @@
         "smithy.api#documentation": "The connector properties."
       }
     },
-    "com.azure.customer_insights#ConnectorsGet": {
+    "com.azure.customer_insights#GetConnector": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#ConnectorsGetRequest"
+        "target": "com.azure.customer_insights#GetConnectorRequest"
       },
       "output": {
-        "target": "com.azure.customer_insights#ConnectorsGetResponse"
+        "target": "com.azure.customer_insights#GetConnectorResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6908,7 +6909,7 @@
         "com.distilled.openapi#apiVersion": "2017-04-26"
       }
     },
-    "com.azure.customer_insights#ConnectorsGetResponse": {
+    "com.azure.customer_insights#GetConnectorResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -6937,7 +6938,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.customer_insights#ConnectorsGetRequest": {
+    "com.azure.customer_insights#GetConnectorRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6977,10 +6978,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.customer_insights#AuthorizationPoliciesRegenerateSecondaryKey": {
+    "com.azure.customer_insights#RegenerateAuthorizationPolicySecondaryKey": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#AuthorizationPoliciesRegenerateSecondaryKeyRequest"
+        "target": "com.azure.customer_insights#RegenerateAuthorizationPolicySecondaryKeyRequest"
       },
       "output": {
         "target": "com.azure.customer_insights#AuthorizationPolicy"
@@ -7064,7 +7065,7 @@
         "smithy.api#documentation": "Supported permission types."
       }
     },
-    "com.azure.customer_insights#AuthorizationPoliciesRegenerateSecondaryKeyRequest": {
+    "com.azure.customer_insights#RegenerateAuthorizationPolicySecondaryKeyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7104,10 +7105,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.customer_insights#AuthorizationPoliciesRegeneratePrimaryKey": {
+    "com.azure.customer_insights#RegenerateAuthorizationPolicyPrimaryKey": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#AuthorizationPoliciesRegeneratePrimaryKeyRequest"
+        "target": "com.azure.customer_insights#RegenerateAuthorizationPolicyPrimaryKeyRequest"
       },
       "output": {
         "target": "com.azure.customer_insights#AuthorizationPolicy"
@@ -7123,7 +7124,7 @@
         "com.distilled.openapi#apiVersion": "2017-04-26"
       }
     },
-    "com.azure.customer_insights#AuthorizationPoliciesRegeneratePrimaryKeyRequest": {
+    "com.azure.customer_insights#RegenerateAuthorizationPolicyPrimaryKeyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7163,10 +7164,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.customer_insights#AuthorizationPoliciesListByHub": {
+    "com.azure.customer_insights#ListAuthorizationPolicyByHub": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#AuthorizationPoliciesListByHubRequest"
+        "target": "com.azure.customer_insights#ListAuthorizationPolicyByHubRequest"
       },
       "output": {
         "target": "com.azure.customer_insights#AuthorizationPolicyListResult"
@@ -7240,7 +7241,7 @@
         "smithy.api#documentation": "The authorization policy resource format."
       }
     },
-    "com.azure.customer_insights#AuthorizationPoliciesListByHubRequest": {
+    "com.azure.customer_insights#ListAuthorizationPolicyByHubRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7399,13 +7400,13 @@
         "smithy.api#documentation": "The permissions associated with the policy."
       }
     },
-    "com.azure.customer_insights#AuthorizationPoliciesGet": {
+    "com.azure.customer_insights#GetAuthorizationPolicy": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#AuthorizationPoliciesGetRequest"
+        "target": "com.azure.customer_insights#GetAuthorizationPolicyRequest"
       },
       "output": {
-        "target": "com.azure.customer_insights#AuthorizationPoliciesGetResponse"
+        "target": "com.azure.customer_insights#GetAuthorizationPolicyResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7418,7 +7419,7 @@
         "com.distilled.openapi#apiVersion": "2017-04-26"
       }
     },
-    "com.azure.customer_insights#AuthorizationPoliciesGetResponse": {
+    "com.azure.customer_insights#GetAuthorizationPolicyResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -7447,7 +7448,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.customer_insights#AuthorizationPoliciesGetRequest": {
+    "com.azure.customer_insights#GetAuthorizationPolicyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7487,10 +7488,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.customer_insights#RelationshipLinksListByHub": {
+    "com.azure.customer_insights#ListRelationshipLinkByHub": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#RelationshipLinksListByHubRequest"
+        "target": "com.azure.customer_insights#ListRelationshipLinkByHubRequest"
       },
       "output": {
         "target": "com.azure.customer_insights#RelationshipLinkListResult"
@@ -7763,7 +7764,7 @@
         "smithy.api#documentation": "Localized display name for the Relationship Link."
       }
     },
-    "com.azure.customer_insights#RelationshipLinksListByHubRequest": {
+    "com.azure.customer_insights#ListRelationshipLinkByHubRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7795,10 +7796,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.customer_insights#RelationshipLinksDelete": {
+    "com.azure.customer_insights#DeleteRelationshipLink": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#RelationshipLinksDeleteRequest"
+        "target": "com.azure.customer_insights#DeleteRelationshipLinkRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7814,7 +7815,7 @@
         "com.distilled.openapi#apiVersion": "2017-04-26"
       }
     },
-    "com.azure.customer_insights#RelationshipLinksDeleteRequest": {
+    "com.azure.customer_insights#DeleteRelationshipLinkRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8050,13 +8051,13 @@
         "smithy.api#documentation": "Localized display name for the Relationship Link."
       }
     },
-    "com.azure.customer_insights#RelationshipLinksGet": {
+    "com.azure.customer_insights#GetRelationshipLink": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#RelationshipLinksGetRequest"
+        "target": "com.azure.customer_insights#GetRelationshipLinkRequest"
       },
       "output": {
-        "target": "com.azure.customer_insights#RelationshipLinksGetResponse"
+        "target": "com.azure.customer_insights#GetRelationshipLinkResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8069,7 +8070,7 @@
         "com.distilled.openapi#apiVersion": "2017-04-26"
       }
     },
-    "com.azure.customer_insights#RelationshipLinksGetResponse": {
+    "com.azure.customer_insights#GetRelationshipLinkResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -8098,7 +8099,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.customer_insights#RelationshipLinksGetRequest": {
+    "com.azure.customer_insights#GetRelationshipLinkRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8138,10 +8139,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.customer_insights#RelationshipsListByHub": {
+    "com.azure.customer_insights#ListRelationshipByHub": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#RelationshipsListByHubRequest"
+        "target": "com.azure.customer_insights#ListRelationshipByHubRequest"
       },
       "output": {
         "target": "com.azure.customer_insights#RelationshipListResult"
@@ -8674,7 +8675,7 @@
         "smithy.api#documentation": "The Relationship Cardinality."
       }
     },
-    "com.azure.customer_insights#RelationshipsListByHubRequest": {
+    "com.azure.customer_insights#ListRelationshipByHubRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8706,10 +8707,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.customer_insights#RelationshipsDelete": {
+    "com.azure.customer_insights#DeleteRelationship": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#RelationshipsDeleteRequest"
+        "target": "com.azure.customer_insights#DeleteRelationshipRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8725,7 +8726,7 @@
         "com.distilled.openapi#apiVersion": "2017-04-26"
       }
     },
-    "com.azure.customer_insights#RelationshipsDeleteRequest": {
+    "com.azure.customer_insights#DeleteRelationshipRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9091,13 +9092,13 @@
         "smithy.api#documentation": "The Relationship Cardinality."
       }
     },
-    "com.azure.customer_insights#RelationshipsGet": {
+    "com.azure.customer_insights#GetRelationship": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#RelationshipsGetRequest"
+        "target": "com.azure.customer_insights#GetRelationshipRequest"
       },
       "output": {
-        "target": "com.azure.customer_insights#RelationshipsGetResponse"
+        "target": "com.azure.customer_insights#GetRelationshipResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9110,7 +9111,7 @@
         "com.distilled.openapi#apiVersion": "2017-04-26"
       }
     },
-    "com.azure.customer_insights#RelationshipsGetResponse": {
+    "com.azure.customer_insights#GetRelationshipResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -9139,7 +9140,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.customer_insights#RelationshipsGetRequest": {
+    "com.azure.customer_insights#GetRelationshipRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9323,10 +9324,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.customer_insights#InteractionsListByHub": {
+    "com.azure.customer_insights#ListInteractionByHub": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#InteractionsListByHubRequest"
+        "target": "com.azure.customer_insights#ListInteractionByHubRequest"
       },
       "output": {
         "target": "com.azure.customer_insights#InteractionListResult"
@@ -9759,7 +9760,7 @@
       },
       "traits": {}
     },
-    "com.azure.customer_insights#InteractionsListByHubRequest": {
+    "com.azure.customer_insights#ListInteractionByHubRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10142,13 +10143,13 @@
       },
       "traits": {}
     },
-    "com.azure.customer_insights#InteractionsGet": {
+    "com.azure.customer_insights#GetInteraction": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#InteractionsGetRequest"
+        "target": "com.azure.customer_insights#GetInteractionRequest"
       },
       "output": {
-        "target": "com.azure.customer_insights#InteractionsGetResponse"
+        "target": "com.azure.customer_insights#GetInteractionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10161,7 +10162,7 @@
         "com.distilled.openapi#apiVersion": "2017-04-26"
       }
     },
-    "com.azure.customer_insights#InteractionsGetResponse": {
+    "com.azure.customer_insights#GetInteractionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -10190,7 +10191,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.customer_insights#InteractionsGetRequest": {
+    "com.azure.customer_insights#GetInteractionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10237,13 +10238,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.customer_insights#ProfilesGetEnrichingKpis": {
+    "com.azure.customer_insights#GetProfileEnrichingKpis": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#ProfilesGetEnrichingKpisRequest"
+        "target": "com.azure.customer_insights#GetProfileEnrichingKpisRequest"
       },
       "output": {
-        "target": "com.azure.customer_insights#ProfilesGetEnrichingKpisResponse"
+        "target": "com.azure.customer_insights#GetProfileEnrichingKpisResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10256,11 +10257,11 @@
         "com.distilled.openapi#apiVersion": "2017-04-26"
       }
     },
-    "com.azure.customer_insights#ProfilesGetEnrichingKpisResponse": {
+    "com.azure.customer_insights#GetProfileEnrichingKpisResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.azure.customer_insights#ProfilesGetEnrichingKpisResponseBodyList",
+          "target": "com.azure.customer_insights#GetProfileEnrichingKpisResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -10271,14 +10272,14 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.customer_insights#ProfilesGetEnrichingKpisResponseBodyList": {
+    "com.azure.customer_insights#GetProfileEnrichingKpisResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.azure.customer_insights#KpiDefinition"
       },
       "traits": {}
     },
-    "com.azure.customer_insights#ProfilesGetEnrichingKpisRequest": {
+    "com.azure.customer_insights#GetProfileEnrichingKpisRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10318,10 +10319,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.customer_insights#ProfilesListByHub": {
+    "com.azure.customer_insights#ListProfileByHub": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#ProfilesListByHubRequest"
+        "target": "com.azure.customer_insights#ListProfileByHubRequest"
       },
       "output": {
         "target": "com.azure.customer_insights#ProfileListResult"
@@ -10693,7 +10694,7 @@
       },
       "traits": {}
     },
-    "com.azure.customer_insights#ProfilesListByHubRequest": {
+    "com.azure.customer_insights#ListProfileByHubRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10732,10 +10733,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.customer_insights#ProfilesDelete": {
+    "com.azure.customer_insights#DeleteProfile": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#ProfilesDeleteRequest"
+        "target": "com.azure.customer_insights#DeleteProfileRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -10751,7 +10752,7 @@
         "com.distilled.openapi#apiVersion": "2017-04-26"
       }
     },
-    "com.azure.customer_insights#ProfilesDeleteRequest": {
+    "com.azure.customer_insights#DeleteProfileRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11102,13 +11103,13 @@
       },
       "traits": {}
     },
-    "com.azure.customer_insights#ProfilesGet": {
+    "com.azure.customer_insights#GetProfile": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#ProfilesGetRequest"
+        "target": "com.azure.customer_insights#GetProfileRequest"
       },
       "output": {
-        "target": "com.azure.customer_insights#ProfilesGetResponse"
+        "target": "com.azure.customer_insights#GetProfileResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11121,7 +11122,7 @@
         "com.distilled.openapi#apiVersion": "2017-04-26"
       }
     },
-    "com.azure.customer_insights#ProfilesGetResponse": {
+    "com.azure.customer_insights#GetProfileResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -11150,7 +11151,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.customer_insights#ProfilesGetRequest": {
+    "com.azure.customer_insights#GetProfileRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11197,10 +11198,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.customer_insights#HubsList": {
+    "com.azure.customer_insights#ListHubs": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#HubsListRequest"
+        "target": "com.azure.customer_insights#ListHubsRequest"
       },
       "output": {
         "target": "com.azure.customer_insights#HubListResult"
@@ -11362,7 +11363,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.customer_insights#HubsListRequest": {
+    "com.azure.customer_insights#ListHubsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11378,10 +11379,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.customer_insights#HubsListByResourceGroup": {
+    "com.azure.customer_insights#ListHubByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#HubsListByResourceGroupRequest"
+        "target": "com.azure.customer_insights#ListHubByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.customer_insights#HubListResult"
@@ -11397,7 +11398,7 @@
         "com.distilled.openapi#apiVersion": "2017-04-26"
       }
     },
-    "com.azure.customer_insights#HubsListByResourceGroupRequest": {
+    "com.azure.customer_insights#ListHubByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11421,10 +11422,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.customer_insights#HubsDelete": {
+    "com.azure.customer_insights#DeleteHub": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#HubsDeleteRequest"
+        "target": "com.azure.customer_insights#DeleteHubRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -11440,7 +11441,7 @@
         "com.distilled.openapi#apiVersion": "2017-04-26"
       }
     },
-    "com.azure.customer_insights#HubsDeleteRequest": {
+    "com.azure.customer_insights#DeleteHubRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11472,13 +11473,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.customer_insights#HubsUpdate": {
+    "com.azure.customer_insights#UpdateHub": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#HubsUpdateRequest"
+        "target": "com.azure.customer_insights#UpdateHubRequest"
       },
       "output": {
-        "target": "com.azure.customer_insights#HubsUpdateResponse"
+        "target": "com.azure.customer_insights#UpdateHubResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11491,7 +11492,7 @@
         "com.distilled.openapi#apiVersion": "2017-04-26"
       }
     },
-    "com.azure.customer_insights#HubsUpdateResponse": {
+    "com.azure.customer_insights#UpdateHubResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -11519,7 +11520,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.customer_insights#HubsUpdateResponseTagsMap",
+          "target": "com.azure.customer_insights#UpdateHubResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -11532,7 +11533,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.customer_insights#HubsUpdateResponseTagsMap": {
+    "com.azure.customer_insights#UpdateHubResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -11544,7 +11545,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.customer_insights#HubsUpdateRequest": {
+    "com.azure.customer_insights#UpdateHubRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11578,7 +11579,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.customer_insights#HubsUpdateRequestTagsMap",
+          "target": "com.azure.customer_insights#UpdateHubRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -11611,7 +11612,7 @@
         "smithy.api#documentation": "Properties of hub."
       }
     },
-    "com.azure.customer_insights#HubsUpdateRequestTagsMap": {
+    "com.azure.customer_insights#UpdateHubRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -11754,13 +11755,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.customer_insights#HubsGet": {
+    "com.azure.customer_insights#GetHub": {
       "type": "operation",
       "input": {
-        "target": "com.azure.customer_insights#HubsGetRequest"
+        "target": "com.azure.customer_insights#GetHubRequest"
       },
       "output": {
-        "target": "com.azure.customer_insights#HubsGetResponse"
+        "target": "com.azure.customer_insights#GetHubResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11773,7 +11774,7 @@
         "com.distilled.openapi#apiVersion": "2017-04-26"
       }
     },
-    "com.azure.customer_insights#HubsGetResponse": {
+    "com.azure.customer_insights#GetHubResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -11801,7 +11802,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.customer_insights#HubsGetResponseTagsMap",
+          "target": "com.azure.customer_insights#GetHubResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -11814,7 +11815,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.customer_insights#HubsGetResponseTagsMap": {
+    "com.azure.customer_insights#GetHubResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -11826,7 +11827,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.customer_insights#HubsGetRequest": {
+    "com.azure.customer_insights#GetHubRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11858,7 +11859,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.customer_insights#OperationsList": {
+    "com.azure.customer_insights#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -11957,25 +11958,25 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.customer_insights#PredictionsListByHub"
+          "target": "com.azure.customer_insights#ListPredictionByHub"
         },
         {
           "target": "com.azure.customer_insights#PredictionsModelStatus"
         },
         {
-          "target": "com.azure.customer_insights#PredictionsGetModelStatus"
+          "target": "com.azure.customer_insights#GetPredictionModelStatus"
         },
         {
-          "target": "com.azure.customer_insights#PredictionsGetTrainingResults"
+          "target": "com.azure.customer_insights#GetPredictionTrainingResults"
         },
         {
-          "target": "com.azure.customer_insights#PredictionsDelete"
+          "target": "com.azure.customer_insights#DeletePrediction"
         },
         {
           "target": "com.azure.customer_insights#PredictionsCreateOrUpdate"
         },
         {
-          "target": "com.azure.customer_insights#PredictionsGet"
+          "target": "com.azure.customer_insights#GetPrediction"
         },
         {
           "target": "com.azure.customer_insights#ImagesGetUploadUrlForData"
@@ -11984,175 +11985,175 @@
           "target": "com.azure.customer_insights#ImagesGetUploadUrlForEntityType"
         },
         {
-          "target": "com.azure.customer_insights#RoleAssignmentsDelete"
+          "target": "com.azure.customer_insights#DeleteRoleAssignment"
         },
         {
           "target": "com.azure.customer_insights#RoleAssignmentsCreateOrUpdate"
         },
         {
-          "target": "com.azure.customer_insights#RoleAssignmentsGet"
+          "target": "com.azure.customer_insights#GetRoleAssignment"
         },
         {
-          "target": "com.azure.customer_insights#RoleAssignmentsListByHub"
+          "target": "com.azure.customer_insights#ListRoleAssignmentByHub"
         },
         {
-          "target": "com.azure.customer_insights#RolesListByHub"
+          "target": "com.azure.customer_insights#ListRoleByHub"
         },
         {
-          "target": "com.azure.customer_insights#LinksListByHub"
+          "target": "com.azure.customer_insights#ListLinkByHub"
         },
         {
-          "target": "com.azure.customer_insights#LinksDelete"
+          "target": "com.azure.customer_insights#DeleteLink"
         },
         {
           "target": "com.azure.customer_insights#LinksCreateOrUpdate"
         },
         {
-          "target": "com.azure.customer_insights#LinksGet"
+          "target": "com.azure.customer_insights#GetLink"
         },
         {
-          "target": "com.azure.customer_insights#ViewsDelete"
+          "target": "com.azure.customer_insights#DeleteView"
         },
         {
           "target": "com.azure.customer_insights#ViewsCreateOrUpdate"
         },
         {
-          "target": "com.azure.customer_insights#ViewsGet"
+          "target": "com.azure.customer_insights#GetView"
         },
         {
-          "target": "com.azure.customer_insights#ViewsListByHub"
+          "target": "com.azure.customer_insights#ListViewByHub"
         },
         {
-          "target": "com.azure.customer_insights#WidgetTypesGet"
+          "target": "com.azure.customer_insights#GetWidgetType"
         },
         {
-          "target": "com.azure.customer_insights#WidgetTypesListByHub"
+          "target": "com.azure.customer_insights#ListWidgetTypeByHub"
         },
         {
-          "target": "com.azure.customer_insights#KpiListByHub"
+          "target": "com.azure.customer_insights#ListKpiByHub"
         },
         {
           "target": "com.azure.customer_insights#KpiReprocess"
         },
         {
-          "target": "com.azure.customer_insights#KpiDelete"
+          "target": "com.azure.customer_insights#DeleteKpi"
         },
         {
           "target": "com.azure.customer_insights#KpiCreateOrUpdate"
         },
         {
-          "target": "com.azure.customer_insights#KpiGet"
+          "target": "com.azure.customer_insights#GetKpi"
         },
         {
-          "target": "com.azure.customer_insights#ConnectorMappingsListByConnector"
+          "target": "com.azure.customer_insights#ListConnectorMappingByConnector"
         },
         {
-          "target": "com.azure.customer_insights#ConnectorMappingsDelete"
+          "target": "com.azure.customer_insights#DeleteConnectorMapping"
         },
         {
           "target": "com.azure.customer_insights#ConnectorMappingsCreateOrUpdate"
         },
         {
-          "target": "com.azure.customer_insights#ConnectorMappingsGet"
+          "target": "com.azure.customer_insights#GetConnectorMapping"
         },
         {
-          "target": "com.azure.customer_insights#ConnectorsListByHub"
+          "target": "com.azure.customer_insights#ListConnectorByHub"
         },
         {
-          "target": "com.azure.customer_insights#ConnectorsDelete"
+          "target": "com.azure.customer_insights#DeleteConnector"
         },
         {
           "target": "com.azure.customer_insights#ConnectorsCreateOrUpdate"
         },
         {
-          "target": "com.azure.customer_insights#ConnectorsGet"
+          "target": "com.azure.customer_insights#GetConnector"
         },
         {
-          "target": "com.azure.customer_insights#AuthorizationPoliciesRegenerateSecondaryKey"
+          "target": "com.azure.customer_insights#RegenerateAuthorizationPolicySecondaryKey"
         },
         {
-          "target": "com.azure.customer_insights#AuthorizationPoliciesRegeneratePrimaryKey"
+          "target": "com.azure.customer_insights#RegenerateAuthorizationPolicyPrimaryKey"
         },
         {
-          "target": "com.azure.customer_insights#AuthorizationPoliciesListByHub"
+          "target": "com.azure.customer_insights#ListAuthorizationPolicyByHub"
         },
         {
           "target": "com.azure.customer_insights#AuthorizationPoliciesCreateOrUpdate"
         },
         {
-          "target": "com.azure.customer_insights#AuthorizationPoliciesGet"
+          "target": "com.azure.customer_insights#GetAuthorizationPolicy"
         },
         {
-          "target": "com.azure.customer_insights#RelationshipLinksListByHub"
+          "target": "com.azure.customer_insights#ListRelationshipLinkByHub"
         },
         {
-          "target": "com.azure.customer_insights#RelationshipLinksDelete"
+          "target": "com.azure.customer_insights#DeleteRelationshipLink"
         },
         {
           "target": "com.azure.customer_insights#RelationshipLinksCreateOrUpdate"
         },
         {
-          "target": "com.azure.customer_insights#RelationshipLinksGet"
+          "target": "com.azure.customer_insights#GetRelationshipLink"
         },
         {
-          "target": "com.azure.customer_insights#RelationshipsListByHub"
+          "target": "com.azure.customer_insights#ListRelationshipByHub"
         },
         {
-          "target": "com.azure.customer_insights#RelationshipsDelete"
+          "target": "com.azure.customer_insights#DeleteRelationship"
         },
         {
           "target": "com.azure.customer_insights#RelationshipsCreateOrUpdate"
         },
         {
-          "target": "com.azure.customer_insights#RelationshipsGet"
+          "target": "com.azure.customer_insights#GetRelationship"
         },
         {
           "target": "com.azure.customer_insights#InteractionsSuggestRelationshipLinks"
         },
         {
-          "target": "com.azure.customer_insights#InteractionsListByHub"
+          "target": "com.azure.customer_insights#ListInteractionByHub"
         },
         {
           "target": "com.azure.customer_insights#InteractionsCreateOrUpdate"
         },
         {
-          "target": "com.azure.customer_insights#InteractionsGet"
+          "target": "com.azure.customer_insights#GetInteraction"
         },
         {
-          "target": "com.azure.customer_insights#ProfilesGetEnrichingKpis"
+          "target": "com.azure.customer_insights#GetProfileEnrichingKpis"
         },
         {
-          "target": "com.azure.customer_insights#ProfilesListByHub"
+          "target": "com.azure.customer_insights#ListProfileByHub"
         },
         {
-          "target": "com.azure.customer_insights#ProfilesDelete"
+          "target": "com.azure.customer_insights#DeleteProfile"
         },
         {
           "target": "com.azure.customer_insights#ProfilesCreateOrUpdate"
         },
         {
-          "target": "com.azure.customer_insights#ProfilesGet"
+          "target": "com.azure.customer_insights#GetProfile"
         },
         {
-          "target": "com.azure.customer_insights#HubsList"
+          "target": "com.azure.customer_insights#ListHubs"
         },
         {
-          "target": "com.azure.customer_insights#HubsListByResourceGroup"
+          "target": "com.azure.customer_insights#ListHubByResourceGroup"
         },
         {
-          "target": "com.azure.customer_insights#HubsDelete"
+          "target": "com.azure.customer_insights#DeleteHub"
         },
         {
-          "target": "com.azure.customer_insights#HubsUpdate"
+          "target": "com.azure.customer_insights#UpdateHub"
         },
         {
           "target": "com.azure.customer_insights#HubsCreateOrUpdate"
         },
         {
-          "target": "com.azure.customer_insights#HubsGet"
+          "target": "com.azure.customer_insights#GetHub"
         },
         {
-          "target": "com.azure.customer_insights#OperationsList"
+          "target": "com.azure.customer_insights#ListOperations"
         }
       ],
       "traits": {

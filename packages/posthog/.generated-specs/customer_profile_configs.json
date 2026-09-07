@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.customer_profile_configs#CustomerProfileConfigsListRequest": {
+    "com.posthog.customer_profile_configs#ListCustomerProfileConfigsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -149,10 +150,10 @@
       },
       "traits": {}
     },
-    "com.posthog.customer_profile_configs#CustomerProfileConfigsList": {
+    "com.posthog.customer_profile_configs#ListCustomerProfileConfigs": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.customer_profile_configs#CustomerProfileConfigsListRequest"
+        "target": "com.posthog.customer_profile_configs#ListCustomerProfileConfigsRequest"
       },
       "output": {
         "target": "com.posthog.customer_profile_configs#PaginatedCustomerProfileConfigList"
@@ -165,7 +166,7 @@
         }
       }
     },
-    "com.posthog.customer_profile_configs#CustomerProfileConfigsCreateRequest": {
+    "com.posthog.customer_profile_configs#CreateCustomerProfileConfigRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -190,10 +191,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.customer_profile_configs#CustomerProfileConfigsCreate": {
+    "com.posthog.customer_profile_configs#CreateCustomerProfileConfig": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.customer_profile_configs#CustomerProfileConfigsCreateRequest"
+        "target": "com.posthog.customer_profile_configs#CreateCustomerProfileConfigRequest"
       },
       "output": {
         "target": "com.posthog.customer_profile_configs#CustomerProfileConfig"
@@ -206,7 +207,7 @@
         }
       }
     },
-    "com.posthog.customer_profile_configs#CustomerProfileConfigsRetrieveRequest": {
+    "com.posthog.customer_profile_configs#GetCustomerProfileConfigRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -229,10 +230,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.customer_profile_configs#CustomerProfileConfigsRetrieve": {
+    "com.posthog.customer_profile_configs#GetCustomerProfileConfig": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.customer_profile_configs#CustomerProfileConfigsRetrieveRequest"
+        "target": "com.posthog.customer_profile_configs#GetCustomerProfileConfigRequest"
       },
       "output": {
         "target": "com.posthog.customer_profile_configs#CustomerProfileConfig"
@@ -245,7 +246,7 @@
         }
       }
     },
-    "com.posthog.customer_profile_configs#CustomerProfileConfigsUpdateRequest": {
+    "com.posthog.customer_profile_configs#UpdateCustomerProfileConfigRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -277,10 +278,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.customer_profile_configs#CustomerProfileConfigsUpdate": {
+    "com.posthog.customer_profile_configs#UpdateCustomerProfileConfig": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.customer_profile_configs#CustomerProfileConfigsUpdateRequest"
+        "target": "com.posthog.customer_profile_configs#UpdateCustomerProfileConfigRequest"
       },
       "output": {
         "target": "com.posthog.customer_profile_configs#CustomerProfileConfig"
@@ -293,7 +294,7 @@
         }
       }
     },
-    "com.posthog.customer_profile_configs#CustomerProfileConfigsPartialUpdateRequest": {
+    "com.posthog.customer_profile_configs#UpdateCustomerProfileConfigsPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -325,10 +326,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.customer_profile_configs#CustomerProfileConfigsPartialUpdate": {
+    "com.posthog.customer_profile_configs#UpdateCustomerProfileConfigsPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.customer_profile_configs#CustomerProfileConfigsPartialUpdateRequest"
+        "target": "com.posthog.customer_profile_configs#UpdateCustomerProfileConfigsPartialRequest"
       },
       "output": {
         "target": "com.posthog.customer_profile_configs#CustomerProfileConfig"
@@ -385,19 +386,19 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.customer_profile_configs#CustomerProfileConfigsList"
+          "target": "com.posthog.customer_profile_configs#ListCustomerProfileConfigs"
         },
         {
-          "target": "com.posthog.customer_profile_configs#CustomerProfileConfigsCreate"
+          "target": "com.posthog.customer_profile_configs#CreateCustomerProfileConfig"
         },
         {
-          "target": "com.posthog.customer_profile_configs#CustomerProfileConfigsRetrieve"
+          "target": "com.posthog.customer_profile_configs#GetCustomerProfileConfig"
         },
         {
-          "target": "com.posthog.customer_profile_configs#CustomerProfileConfigsUpdate"
+          "target": "com.posthog.customer_profile_configs#UpdateCustomerProfileConfig"
         },
         {
-          "target": "com.posthog.customer_profile_configs#CustomerProfileConfigsPartialUpdate"
+          "target": "com.posthog.customer_profile_configs#UpdateCustomerProfileConfigsPartial"
         },
         {
           "target": "com.posthog.customer_profile_configs#CustomerProfileConfigsDestroy"

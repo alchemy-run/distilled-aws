@@ -12,6 +12,514 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
+/** The action type in requests for bulk upload or download of a DNS resolver domain list. */
+export type Action = "Upload" | "Download";
+export const Action = /*@__PURE__*/ S.String;
+
+/** Describes DNS resolver domain list properties for bulk UPLOAD or DOWNLOAD operations. */
+export interface DnsResolverDomainListBulkProperties {
+  /** The storage account blob file URL to be used in the bulk upload or download request of DNS resolver domain list. */
+  storageUrl: string;
+  /** The action to take in the request, Upload or Download. */
+  action: Action | (string & {});
+}
+export const DnsResolverDomainListBulkProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    storageUrl: S.String,
+    action: Action,
+  }),
+).annotate({
+  identifier: "DnsResolverDomainListBulkProperties",
+}) as any as S.Schema<DnsResolverDomainListBulkProperties>;
+
+export interface BulkDnsResolverDomainListRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the DNS resolver domain list. */
+  dnsResolverDomainListName: string;
+  /** Properties of the DNS resolver domain list upload or download request. */
+  properties: DnsResolverDomainListBulkProperties;
+}
+export const BulkDnsResolverDomainListRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    dnsResolverDomainListName: S.String.pipe(T.Label()),
+    properties: DnsResolverDomainListBulkProperties,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolverDomainLists/{dnsResolverDomainListName}/bulk",
+      code: 200,
+      apiVersion: "2025-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "BulkDnsResolverDomainListRequest",
+}) as any as S.Schema<BulkDnsResolverDomainListRequest>;
+
+/** The type of identity that created the resource. */
+export type SystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type SystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface SystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: SystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: SystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const SystemData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdBy: S.optional(S.String),
+    createdByType: S.optional(SystemDataCreatedByType),
+    createdAt: S.optional(S.String),
+    lastModifiedBy: S.optional(S.String),
+    lastModifiedByType: S.optional(SystemDataLastModifiedByType),
+    lastModifiedAt: S.optional(S.String),
+  }),
+).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
+
+/** Resource tags. */
+export type BulkDnsResolverDomainListResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const BulkDnsResolverDomainListResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<BulkDnsResolverDomainListResponseTagsMap>;
+
+/** The domains in the domain list. Will be null if user is using large domain list. */
+export type DnsResolverDomainListPropertiesDomainsList = Array<string>;
+export const DnsResolverDomainListPropertiesDomainsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<DnsResolverDomainListPropertiesDomainsList>;
+
+/** The current provisioning state of the resource. */
+export type ProvisioningState =
+  | "Creating"
+  | "Updating"
+  | "Deleting"
+  | "Succeeded"
+  | "Failed"
+  | "Canceled";
+export const ProvisioningState = /*@__PURE__*/ S.String;
+
+/** Represents the properties of a DNS resolver domain list. */
+export interface DnsResolverDomainListProperties {
+  /** The domains in the domain list. Will be null if user is using large domain list. */
+  domains?: DnsResolverDomainListPropertiesDomainsList;
+  /** The URL for bulk upload or download for domain lists containing larger set of domains. This will be populated if domains is empty or null. */
+  domainsUrl?: string;
+  /** The current provisioning state of the DNS resolver domain list. This is a read-only property and any attempt to set this value will be ignored. */
+  provisioningState?: ProvisioningState;
+  /** The resourceGuid property of the DNS resolver domain list resource. */
+  resourceGuid?: string;
+}
+export const DnsResolverDomainListProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    domains: S.optional(DnsResolverDomainListPropertiesDomainsList),
+    domainsUrl: S.optional(S.String),
+    provisioningState: S.optional(ProvisioningState),
+    resourceGuid: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DnsResolverDomainListProperties",
+}) as any as S.Schema<DnsResolverDomainListProperties>;
+
+export interface BulkDnsResolverDomainListResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: BulkDnsResolverDomainListResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the DNS resolver domain list. */
+  properties?: DnsResolverDomainListProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const BulkDnsResolverDomainListResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(BulkDnsResolverDomainListResponseTagsMap),
+    location: S.String,
+    properties: S.optional(DnsResolverDomainListProperties),
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "BulkDnsResolverDomainListResponse",
+}) as any as S.Schema<BulkDnsResolverDomainListResponse>;
+
+export interface DeleteDnsForwardingRulesetRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the DNS forwarding ruleset. */
+  dnsForwardingRulesetName: string;
+}
+export const DeleteDnsForwardingRulesetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    dnsForwardingRulesetName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsForwardingRulesets/{dnsForwardingRulesetName}",
+      code: 200,
+      apiVersion: "2025-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteDnsForwardingRulesetRequest",
+}) as any as S.Schema<DeleteDnsForwardingRulesetRequest>;
+
+export interface DeleteDnsForwardingRulesetResponse {}
+export const DeleteDnsForwardingRulesetResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteDnsForwardingRulesetResponse",
+}) as any as S.Schema<DeleteDnsForwardingRulesetResponse>;
+
+export interface DeleteDnsResolverRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the DNS resolver. */
+  dnsResolverName: string;
+}
+export const DeleteDnsResolverRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    dnsResolverName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolvers/{dnsResolverName}",
+      code: 200,
+      apiVersion: "2025-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteDnsResolverRequest",
+}) as any as S.Schema<DeleteDnsResolverRequest>;
+
+export interface DeleteDnsResolverResponse {}
+export const DeleteDnsResolverResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteDnsResolverResponse",
+}) as any as S.Schema<DeleteDnsResolverResponse>;
+
+export interface DeleteDnsResolverDomainListRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the DNS resolver domain list. */
+  dnsResolverDomainListName: string;
+}
+export const DeleteDnsResolverDomainListRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    dnsResolverDomainListName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolverDomainLists/{dnsResolverDomainListName}",
+      code: 200,
+      apiVersion: "2025-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteDnsResolverDomainListRequest",
+}) as any as S.Schema<DeleteDnsResolverDomainListRequest>;
+
+export interface DeleteDnsResolverDomainListResponse {}
+export const DeleteDnsResolverDomainListResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteDnsResolverDomainListResponse",
+}) as any as S.Schema<DeleteDnsResolverDomainListResponse>;
+
+export interface DeleteDnsResolverPolicyRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the DNS resolver policy. */
+  dnsResolverPolicyName: string;
+}
+export const DeleteDnsResolverPolicyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    dnsResolverPolicyName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolverPolicies/{dnsResolverPolicyName}",
+      code: 200,
+      apiVersion: "2025-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteDnsResolverPolicyRequest",
+}) as any as S.Schema<DeleteDnsResolverPolicyRequest>;
+
+export interface DeleteDnsResolverPolicyResponse {}
+export const DeleteDnsResolverPolicyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteDnsResolverPolicyResponse",
+}) as any as S.Schema<DeleteDnsResolverPolicyResponse>;
+
+export interface DeleteDnsResolverPolicyVirtualNetworkLinkRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the DNS resolver policy. */
+  dnsResolverPolicyName: string;
+  /** The name of the DNS resolver policy virtual network link for the DNS resolver policy. */
+  dnsResolverPolicyVirtualNetworkLinkName: string;
+}
+export const DeleteDnsResolverPolicyVirtualNetworkLinkRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      dnsResolverPolicyName: S.String.pipe(T.Label()),
+      dnsResolverPolicyVirtualNetworkLinkName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolverPolicies/{dnsResolverPolicyName}/virtualNetworkLinks/{dnsResolverPolicyVirtualNetworkLinkName}",
+        code: 200,
+        apiVersion: "2025-05-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "DeleteDnsResolverPolicyVirtualNetworkLinkRequest",
+  }) as any as S.Schema<DeleteDnsResolverPolicyVirtualNetworkLinkRequest>;
+
+export interface DeleteDnsResolverPolicyVirtualNetworkLinkResponse {}
+export const DeleteDnsResolverPolicyVirtualNetworkLinkResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "DeleteDnsResolverPolicyVirtualNetworkLinkResponse",
+  }) as any as S.Schema<DeleteDnsResolverPolicyVirtualNetworkLinkResponse>;
+
+export interface DeleteDnsSecurityRuleRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the DNS resolver policy. */
+  dnsResolverPolicyName: string;
+  /** The name of the DNS security rule. */
+  dnsSecurityRuleName: string;
+}
+export const DeleteDnsSecurityRuleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    dnsResolverPolicyName: S.String.pipe(T.Label()),
+    dnsSecurityRuleName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolverPolicies/{dnsResolverPolicyName}/dnsSecurityRules/{dnsSecurityRuleName}",
+      code: 200,
+      apiVersion: "2025-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteDnsSecurityRuleRequest",
+}) as any as S.Schema<DeleteDnsSecurityRuleRequest>;
+
+export interface DeleteDnsSecurityRuleResponse {}
+export const DeleteDnsSecurityRuleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteDnsSecurityRuleResponse",
+}) as any as S.Schema<DeleteDnsSecurityRuleResponse>;
+
+export interface DeleteForwardingRuleRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the DNS forwarding ruleset. */
+  dnsForwardingRulesetName: string;
+  /** The name of the forwarding rule. */
+  forwardingRuleName: string;
+}
+export const DeleteForwardingRuleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    dnsForwardingRulesetName: S.String.pipe(T.Label()),
+    forwardingRuleName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsForwardingRulesets/{dnsForwardingRulesetName}/forwardingRules/{forwardingRuleName}",
+      code: 200,
+      apiVersion: "2025-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteForwardingRuleRequest",
+}) as any as S.Schema<DeleteForwardingRuleRequest>;
+
+export interface DeleteForwardingRuleResponse {}
+export const DeleteForwardingRuleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteForwardingRuleResponse",
+}) as any as S.Schema<DeleteForwardingRuleResponse>;
+
+export interface DeleteInboundEndpointRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the DNS resolver. */
+  dnsResolverName: string;
+  /** The name of the inbound endpoint for the DNS resolver. */
+  inboundEndpointName: string;
+}
+export const DeleteInboundEndpointRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    dnsResolverName: S.String.pipe(T.Label()),
+    inboundEndpointName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolvers/{dnsResolverName}/inboundEndpoints/{inboundEndpointName}",
+      code: 200,
+      apiVersion: "2025-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteInboundEndpointRequest",
+}) as any as S.Schema<DeleteInboundEndpointRequest>;
+
+export interface DeleteInboundEndpointResponse {}
+export const DeleteInboundEndpointResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteInboundEndpointResponse",
+}) as any as S.Schema<DeleteInboundEndpointResponse>;
+
+export interface DeleteOutboundEndpointRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the DNS resolver. */
+  dnsResolverName: string;
+  /** The name of the outbound endpoint for the DNS resolver. */
+  outboundEndpointName: string;
+}
+export const DeleteOutboundEndpointRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    dnsResolverName: S.String.pipe(T.Label()),
+    outboundEndpointName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolvers/{dnsResolverName}/outboundEndpoints/{outboundEndpointName}",
+      code: 200,
+      apiVersion: "2025-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteOutboundEndpointRequest",
+}) as any as S.Schema<DeleteOutboundEndpointRequest>;
+
+export interface DeleteOutboundEndpointResponse {}
+export const DeleteOutboundEndpointResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteOutboundEndpointResponse",
+}) as any as S.Schema<DeleteOutboundEndpointResponse>;
+
+export interface DeleteVirtualNetworkLinkRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the DNS forwarding ruleset. */
+  dnsForwardingRulesetName: string;
+  /** The name of the virtual network link. */
+  virtualNetworkLinkName: string;
+}
+export const DeleteVirtualNetworkLinkRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    dnsForwardingRulesetName: S.String.pipe(T.Label()),
+    virtualNetworkLinkName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsForwardingRulesets/{dnsForwardingRulesetName}/virtualNetworkLinks/{virtualNetworkLinkName}",
+      code: 200,
+      apiVersion: "2025-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteVirtualNetworkLinkRequest",
+}) as any as S.Schema<DeleteVirtualNetworkLinkRequest>;
+
+export interface DeleteVirtualNetworkLinkResponse {}
+export const DeleteVirtualNetworkLinkResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteVirtualNetworkLinkResponse",
+}) as any as S.Schema<DeleteVirtualNetworkLinkResponse>;
+
 /** Resource tags. */
 export type DnsForwardingRulesetsCreateOrUpdateRequestTagsMap = {
   [key: string]: string | undefined;
@@ -90,48 +598,6 @@ export const DnsForwardingRulesetsCreateOrUpdateRequest =
     identifier: "DnsForwardingRulesetsCreateOrUpdateRequest",
   }) as any as S.Schema<DnsForwardingRulesetsCreateOrUpdateRequest>;
 
-/** The type of identity that created the resource. */
-export type SystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type SystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface SystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: SystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: SystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const SystemData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createdBy: S.optional(S.String),
-    createdByType: S.optional(SystemDataCreatedByType),
-    createdAt: S.optional(S.String),
-    lastModifiedBy: S.optional(S.String),
-    lastModifiedByType: S.optional(SystemDataLastModifiedByType),
-    lastModifiedAt: S.optional(S.String),
-  }),
-).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
-
 /** Resource tags. */
 export type DnsForwardingRulesetsCreateOrUpdateResponseTagsMap = {
   [key: string]: string | undefined;
@@ -149,16 +615,6 @@ export const DnsForwardingRulesetPropertiesDnsResolverOutboundEndpointsList =
   /*@__PURE__*/ S.Array(
     SubResource,
   ) as any as S.Schema<DnsForwardingRulesetPropertiesDnsResolverOutboundEndpointsList>;
-
-/** The current provisioning state of the resource. */
-export type ProvisioningState =
-  | "Creating"
-  | "Updating"
-  | "Deleting"
-  | "Succeeded"
-  | "Failed"
-  | "Canceled";
-export const ProvisioningState = /*@__PURE__*/ S.String;
 
 /** Represents the properties of a DNS forwarding ruleset. */
 export interface DnsForwardingRulesetProperties {
@@ -213,512 +669,6 @@ export const DnsForwardingRulesetsCreateOrUpdateResponse =
   ).annotate({
     identifier: "DnsForwardingRulesetsCreateOrUpdateResponse",
   }) as any as S.Schema<DnsForwardingRulesetsCreateOrUpdateResponse>;
-
-export interface DnsForwardingRulesetsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the DNS forwarding ruleset. */
-  dnsForwardingRulesetName: string;
-}
-export const DnsForwardingRulesetsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    dnsForwardingRulesetName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsForwardingRulesets/{dnsForwardingRulesetName}",
-      code: 200,
-      apiVersion: "2025-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "DnsForwardingRulesetsDeleteRequest",
-}) as any as S.Schema<DnsForwardingRulesetsDeleteRequest>;
-
-export interface DnsForwardingRulesetsDeleteResponse {}
-export const DnsForwardingRulesetsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DnsForwardingRulesetsDeleteResponse",
-}) as any as S.Schema<DnsForwardingRulesetsDeleteResponse>;
-
-export interface DnsForwardingRulesetsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the DNS forwarding ruleset. */
-  dnsForwardingRulesetName: string;
-}
-export const DnsForwardingRulesetsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    dnsForwardingRulesetName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsForwardingRulesets/{dnsForwardingRulesetName}",
-      code: 200,
-      apiVersion: "2025-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "DnsForwardingRulesetsGetRequest",
-}) as any as S.Schema<DnsForwardingRulesetsGetRequest>;
-
-/** Resource tags. */
-export type DnsForwardingRulesetsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DnsForwardingRulesetsGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DnsForwardingRulesetsGetResponseTagsMap>;
-
-export interface DnsForwardingRulesetsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: DnsForwardingRulesetsGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the DNS forwarding ruleset. */
-  properties: DnsForwardingRulesetProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const DnsForwardingRulesetsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(DnsForwardingRulesetsGetResponseTagsMap),
-    location: S.String,
-    properties: DnsForwardingRulesetProperties,
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DnsForwardingRulesetsGetResponse",
-}) as any as S.Schema<DnsForwardingRulesetsGetResponse>;
-
-export interface DnsForwardingRulesetsListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The maximum number of results to return. If not specified, returns up to 100 results. */
-  _top?: number;
-}
-export const DnsForwardingRulesetsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Network/dnsForwardingRulesets",
-      code: 200,
-      apiVersion: "2025-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "DnsForwardingRulesetsListRequest",
-}) as any as S.Schema<DnsForwardingRulesetsListRequest>;
-
-/** Resource tags. */
-export type DnsForwardingRulesetTagsMap = { [key: string]: string | undefined };
-export const DnsForwardingRulesetTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DnsForwardingRulesetTagsMap>;
-
-/** Describes a DNS forwarding ruleset. */
-export interface DnsForwardingRuleset {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: DnsForwardingRulesetTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the DNS forwarding ruleset. */
-  properties: DnsForwardingRulesetProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const DnsForwardingRuleset = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(DnsForwardingRulesetTagsMap),
-    location: S.String,
-    properties: DnsForwardingRulesetProperties,
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DnsForwardingRuleset",
-}) as any as S.Schema<DnsForwardingRuleset>;
-
-/** The DnsForwardingRuleset items on this page */
-export type DnsForwardingRulesetListResultValueList =
-  Array<DnsForwardingRuleset>;
-export const DnsForwardingRulesetListResultValueList = /*@__PURE__*/ S.Array(
-  DnsForwardingRuleset,
-) as any as S.Schema<DnsForwardingRulesetListResultValueList>;
-
-/** The response of a DnsForwardingRuleset list operation. */
-export interface DnsForwardingRulesetListResult {
-  /** The DnsForwardingRuleset items on this page */
-  value: DnsForwardingRulesetListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const DnsForwardingRulesetListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: DnsForwardingRulesetListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DnsForwardingRulesetListResult",
-}) as any as S.Schema<DnsForwardingRulesetListResult>;
-
-export interface DnsForwardingRulesetsListByResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The maximum number of results to return. If not specified, returns up to 100 results. */
-  _top?: number;
-}
-export const DnsForwardingRulesetsListByResourceGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsForwardingRulesets",
-        code: 200,
-        apiVersion: "2025-05-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "DnsForwardingRulesetsListByResourceGroupRequest",
-  }) as any as S.Schema<DnsForwardingRulesetsListByResourceGroupRequest>;
-
-export interface DnsForwardingRulesetsListByVirtualNetworkRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VirtualNetwork */
-  virtualNetworkName: string;
-  /** The maximum number of results to return. If not specified, returns up to 100 results. */
-  _top?: number;
-}
-export const DnsForwardingRulesetsListByVirtualNetworkRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      virtualNetworkName: S.String.pipe(T.Label()),
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{virtualNetworkName}/listDnsForwardingRulesets",
-        code: 200,
-        apiVersion: "2025-05-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "DnsForwardingRulesetsListByVirtualNetworkRequest",
-  }) as any as S.Schema<DnsForwardingRulesetsListByVirtualNetworkRequest>;
-
-/** The reference to the virtual network link that associates between the DNS forwarding ruleset and virtual network. */
-export interface VirtualNetworkLinkSubResourceProperties {
-  /** The reference to the virtual network link. */
-  virtualNetworkLink?: SubResource;
-}
-export const VirtualNetworkLinkSubResourceProperties = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      virtualNetworkLink: S.optional(SubResource),
-    }),
-).annotate({
-  identifier: "VirtualNetworkLinkSubResourceProperties",
-}) as any as S.Schema<VirtualNetworkLinkSubResourceProperties>;
-
-/** Reference to DNS forwarding ruleset and associated virtual network link. */
-export interface VirtualNetworkDnsForwardingRuleset {
-  /** DNS Forwarding Ruleset Resource ID. */
-  id?: string;
-  /** Properties of the virtual network link sub-resource reference. */
-  properties?: VirtualNetworkLinkSubResourceProperties;
-}
-export const VirtualNetworkDnsForwardingRuleset = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    properties: S.optional(VirtualNetworkLinkSubResourceProperties),
-  }),
-).annotate({
-  identifier: "VirtualNetworkDnsForwardingRuleset",
-}) as any as S.Schema<VirtualNetworkDnsForwardingRuleset>;
-
-/** The VirtualNetworkDnsForwardingRuleset items on this page */
-export type VirtualNetworkDnsForwardingRulesetListResultValueList =
-  Array<VirtualNetworkDnsForwardingRuleset>;
-export const VirtualNetworkDnsForwardingRulesetListResultValueList =
-  /*@__PURE__*/ S.Array(
-    VirtualNetworkDnsForwardingRuleset,
-  ) as any as S.Schema<VirtualNetworkDnsForwardingRulesetListResultValueList>;
-
-/** The response to an enumeration operation on Virtual Network DNS Forwarding Ruleset. */
-export interface VirtualNetworkDnsForwardingRulesetListResult {
-  /** The VirtualNetworkDnsForwardingRuleset items on this page */
-  value: VirtualNetworkDnsForwardingRulesetListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const VirtualNetworkDnsForwardingRulesetListResult =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      value: VirtualNetworkDnsForwardingRulesetListResultValueList,
-      nextLink: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "VirtualNetworkDnsForwardingRulesetListResult",
-  }) as any as S.Schema<VirtualNetworkDnsForwardingRulesetListResult>;
-
-/** The reference to the DNS resolver outbound endpoints that are used to route DNS queries matching the forwarding rules in the ruleset to the target DNS servers. */
-export type DnsForwardingRulesetsUpdateRequestDnsResolverOutboundEndpointsList =
-  Array<SubResource>;
-export const DnsForwardingRulesetsUpdateRequestDnsResolverOutboundEndpointsList =
-  /*@__PURE__*/ S.Array(
-    SubResource,
-  ) as any as S.Schema<DnsForwardingRulesetsUpdateRequestDnsResolverOutboundEndpointsList>;
-
-/** Tags for DNS Resolver. */
-export type DnsForwardingRulesetsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DnsForwardingRulesetsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DnsForwardingRulesetsUpdateRequestTagsMap>;
-
-export interface DnsForwardingRulesetsUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the DNS forwarding ruleset. */
-  dnsForwardingRulesetName: string;
-  /** The reference to the DNS resolver outbound endpoints that are used to route DNS queries matching the forwarding rules in the ruleset to the target DNS servers. */
-  dnsResolverOutboundEndpoints?: DnsForwardingRulesetsUpdateRequestDnsResolverOutboundEndpointsList;
-  /** Tags for DNS Resolver. */
-  tags?: DnsForwardingRulesetsUpdateRequestTagsMap;
-}
-export const DnsForwardingRulesetsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    dnsForwardingRulesetName: S.String.pipe(T.Label()),
-    dnsResolverOutboundEndpoints: S.optional(
-      DnsForwardingRulesetsUpdateRequestDnsResolverOutboundEndpointsList,
-    ),
-    tags: S.optional(DnsForwardingRulesetsUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsForwardingRulesets/{dnsForwardingRulesetName}",
-      code: 200,
-      apiVersion: "2025-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "DnsForwardingRulesetsUpdateRequest",
-}) as any as S.Schema<DnsForwardingRulesetsUpdateRequest>;
-
-/** Resource tags. */
-export type DnsForwardingRulesetsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DnsForwardingRulesetsUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<DnsForwardingRulesetsUpdateResponseTagsMap>;
-
-export interface DnsForwardingRulesetsUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: DnsForwardingRulesetsUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the DNS forwarding ruleset. */
-  properties: DnsForwardingRulesetProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const DnsForwardingRulesetsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(DnsForwardingRulesetsUpdateResponseTagsMap),
-    location: S.String,
-    properties: DnsForwardingRulesetProperties,
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DnsForwardingRulesetsUpdateResponse",
-}) as any as S.Schema<DnsForwardingRulesetsUpdateResponse>;
-
-/** The action type in requests for bulk upload or download of a DNS resolver domain list. */
-export type Action = "Upload" | "Download";
-export const Action = /*@__PURE__*/ S.String;
-
-/** Describes DNS resolver domain list properties for bulk UPLOAD or DOWNLOAD operations. */
-export interface DnsResolverDomainListBulkProperties {
-  /** The storage account blob file URL to be used in the bulk upload or download request of DNS resolver domain list. */
-  storageUrl: string;
-  /** The action to take in the request, Upload or Download. */
-  action: Action | (string & {});
-}
-export const DnsResolverDomainListBulkProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    storageUrl: S.String,
-    action: Action,
-  }),
-).annotate({
-  identifier: "DnsResolverDomainListBulkProperties",
-}) as any as S.Schema<DnsResolverDomainListBulkProperties>;
-
-export interface DnsResolverDomainListsBulkRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the DNS resolver domain list. */
-  dnsResolverDomainListName: string;
-  /** Properties of the DNS resolver domain list upload or download request. */
-  properties: DnsResolverDomainListBulkProperties;
-}
-export const DnsResolverDomainListsBulkRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    dnsResolverDomainListName: S.String.pipe(T.Label()),
-    properties: DnsResolverDomainListBulkProperties,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolverDomainLists/{dnsResolverDomainListName}/bulk",
-      code: 200,
-      apiVersion: "2025-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "DnsResolverDomainListsBulkRequest",
-}) as any as S.Schema<DnsResolverDomainListsBulkRequest>;
-
-/** Resource tags. */
-export type DnsResolverDomainListsBulkResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DnsResolverDomainListsBulkResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DnsResolverDomainListsBulkResponseTagsMap>;
-
-/** The domains in the domain list. Will be null if user is using large domain list. */
-export type DnsResolverDomainListPropertiesDomainsList = Array<string>;
-export const DnsResolverDomainListPropertiesDomainsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<DnsResolverDomainListPropertiesDomainsList>;
-
-/** Represents the properties of a DNS resolver domain list. */
-export interface DnsResolverDomainListProperties {
-  /** The domains in the domain list. Will be null if user is using large domain list. */
-  domains?: DnsResolverDomainListPropertiesDomainsList;
-  /** The URL for bulk upload or download for domain lists containing larger set of domains. This will be populated if domains is empty or null. */
-  domainsUrl?: string;
-  /** The current provisioning state of the DNS resolver domain list. This is a read-only property and any attempt to set this value will be ignored. */
-  provisioningState?: ProvisioningState;
-  /** The resourceGuid property of the DNS resolver domain list resource. */
-  resourceGuid?: string;
-}
-export const DnsResolverDomainListProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    domains: S.optional(DnsResolverDomainListPropertiesDomainsList),
-    domainsUrl: S.optional(S.String),
-    provisioningState: S.optional(ProvisioningState),
-    resourceGuid: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DnsResolverDomainListProperties",
-}) as any as S.Schema<DnsResolverDomainListProperties>;
-
-export interface DnsResolverDomainListsBulkResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: DnsResolverDomainListsBulkResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the DNS resolver domain list. */
-  properties?: DnsResolverDomainListProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const DnsResolverDomainListsBulkResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(DnsResolverDomainListsBulkResponseTagsMap),
-    location: S.String,
-    properties: S.optional(DnsResolverDomainListProperties),
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DnsResolverDomainListsBulkResponse",
-}) as any as S.Schema<DnsResolverDomainListsBulkResponse>;
 
 /** Resource tags. */
 export type DnsResolverDomainListsCreateOrUpdateRequestTagsMap = {
@@ -829,325 +779,6 @@ export const DnsResolverDomainListsCreateOrUpdateResponse =
   ).annotate({
     identifier: "DnsResolverDomainListsCreateOrUpdateResponse",
   }) as any as S.Schema<DnsResolverDomainListsCreateOrUpdateResponse>;
-
-export interface DnsResolverDomainListsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the DNS resolver domain list. */
-  dnsResolverDomainListName: string;
-}
-export const DnsResolverDomainListsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    dnsResolverDomainListName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolverDomainLists/{dnsResolverDomainListName}",
-      code: 200,
-      apiVersion: "2025-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "DnsResolverDomainListsDeleteRequest",
-}) as any as S.Schema<DnsResolverDomainListsDeleteRequest>;
-
-export interface DnsResolverDomainListsDeleteResponse {}
-export const DnsResolverDomainListsDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "DnsResolverDomainListsDeleteResponse",
-}) as any as S.Schema<DnsResolverDomainListsDeleteResponse>;
-
-export interface DnsResolverDomainListsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the DNS resolver domain list. */
-  dnsResolverDomainListName: string;
-}
-export const DnsResolverDomainListsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    dnsResolverDomainListName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolverDomainLists/{dnsResolverDomainListName}",
-      code: 200,
-      apiVersion: "2025-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "DnsResolverDomainListsGetRequest",
-}) as any as S.Schema<DnsResolverDomainListsGetRequest>;
-
-/** Resource tags. */
-export type DnsResolverDomainListsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DnsResolverDomainListsGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DnsResolverDomainListsGetResponseTagsMap>;
-
-export interface DnsResolverDomainListsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: DnsResolverDomainListsGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the DNS resolver domain list. */
-  properties?: DnsResolverDomainListProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const DnsResolverDomainListsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(DnsResolverDomainListsGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(DnsResolverDomainListProperties),
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DnsResolverDomainListsGetResponse",
-}) as any as S.Schema<DnsResolverDomainListsGetResponse>;
-
-export interface DnsResolverDomainListsListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The maximum number of results to return. If not specified, returns up to 100 results. */
-  _top?: number;
-}
-export const DnsResolverDomainListsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Network/dnsResolverDomainLists",
-      code: 200,
-      apiVersion: "2025-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "DnsResolverDomainListsListRequest",
-}) as any as S.Schema<DnsResolverDomainListsListRequest>;
-
-/** Resource tags. */
-export type DnsResolverDomainListTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DnsResolverDomainListTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DnsResolverDomainListTagsMap>;
-
-/** Describes a DNS resolver domain list. */
-export interface DnsResolverDomainList {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: DnsResolverDomainListTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the DNS resolver domain list. */
-  properties?: DnsResolverDomainListProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const DnsResolverDomainList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(DnsResolverDomainListTagsMap),
-    location: S.String,
-    properties: S.optional(DnsResolverDomainListProperties),
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DnsResolverDomainList",
-}) as any as S.Schema<DnsResolverDomainList>;
-
-/** The DnsResolverDomainList items on this page */
-export type DnsResolverDomainListListResultValueList =
-  Array<DnsResolverDomainList>;
-export const DnsResolverDomainListListResultValueList = /*@__PURE__*/ S.Array(
-  DnsResolverDomainList,
-) as any as S.Schema<DnsResolverDomainListListResultValueList>;
-
-/** The response of a DnsResolverDomainList list operation. */
-export interface DnsResolverDomainListListResult {
-  /** The DnsResolverDomainList items on this page */
-  value: DnsResolverDomainListListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const DnsResolverDomainListListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: DnsResolverDomainListListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DnsResolverDomainListListResult",
-}) as any as S.Schema<DnsResolverDomainListListResult>;
-
-export interface DnsResolverDomainListsListByResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The maximum number of results to return. If not specified, returns up to 100 results. */
-  _top?: number;
-}
-export const DnsResolverDomainListsListByResourceGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolverDomainLists",
-        code: 200,
-        apiVersion: "2025-05-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "DnsResolverDomainListsListByResourceGroupRequest",
-  }) as any as S.Schema<DnsResolverDomainListsListByResourceGroupRequest>;
-
-/** The domains in the domain list. */
-export type DnsResolverDomainListPatchPropertiesDomainsList = Array<string>;
-export const DnsResolverDomainListPatchPropertiesDomainsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<DnsResolverDomainListPatchPropertiesDomainsList>;
-
-/** Represents the updatable properties of a DNS resolver domain list. */
-export interface DnsResolverDomainListPatchProperties {
-  /** The domains in the domain list. */
-  domains?: DnsResolverDomainListPatchPropertiesDomainsList;
-}
-export const DnsResolverDomainListPatchProperties = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      domains: S.optional(DnsResolverDomainListPatchPropertiesDomainsList),
-    }),
-).annotate({
-  identifier: "DnsResolverDomainListPatchProperties",
-}) as any as S.Schema<DnsResolverDomainListPatchProperties>;
-
-/** Tags for DNS resolver domain list. */
-export type DnsResolverDomainListsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DnsResolverDomainListsUpdateRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<DnsResolverDomainListsUpdateRequestTagsMap>;
-
-export interface DnsResolverDomainListsUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the DNS resolver domain list. */
-  dnsResolverDomainListName: string;
-  /** Updatable properties of the DNS resolver domain list. */
-  properties?: DnsResolverDomainListPatchProperties;
-  /** Tags for DNS resolver domain list. */
-  tags?: DnsResolverDomainListsUpdateRequestTagsMap;
-}
-export const DnsResolverDomainListsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    dnsResolverDomainListName: S.String.pipe(T.Label()),
-    properties: S.optional(DnsResolverDomainListPatchProperties),
-    tags: S.optional(DnsResolverDomainListsUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolverDomainLists/{dnsResolverDomainListName}",
-      code: 200,
-      apiVersion: "2025-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "DnsResolverDomainListsUpdateRequest",
-}) as any as S.Schema<DnsResolverDomainListsUpdateRequest>;
-
-/** Resource tags. */
-export type DnsResolverDomainListsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DnsResolverDomainListsUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<DnsResolverDomainListsUpdateResponseTagsMap>;
-
-export interface DnsResolverDomainListsUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: DnsResolverDomainListsUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the DNS resolver domain list. */
-  properties?: DnsResolverDomainListProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const DnsResolverDomainListsUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(DnsResolverDomainListsUpdateResponseTagsMap),
-      location: S.String,
-      properties: S.optional(DnsResolverDomainListProperties),
-      etag: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "DnsResolverDomainListsUpdateResponse",
-}) as any as S.Schema<DnsResolverDomainListsUpdateResponse>;
 
 /** Resource tags. */
 export type DnsResolverPoliciesCreateOrUpdateRequestTagsMap = {
@@ -1262,343 +893,6 @@ export const DnsResolverPoliciesCreateOrUpdateResponse =
     identifier: "DnsResolverPoliciesCreateOrUpdateResponse",
   }) as any as S.Schema<DnsResolverPoliciesCreateOrUpdateResponse>;
 
-export interface DnsResolverPoliciesDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the DNS resolver policy. */
-  dnsResolverPolicyName: string;
-}
-export const DnsResolverPoliciesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    dnsResolverPolicyName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolverPolicies/{dnsResolverPolicyName}",
-      code: 200,
-      apiVersion: "2025-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "DnsResolverPoliciesDeleteRequest",
-}) as any as S.Schema<DnsResolverPoliciesDeleteRequest>;
-
-export interface DnsResolverPoliciesDeleteResponse {}
-export const DnsResolverPoliciesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DnsResolverPoliciesDeleteResponse",
-}) as any as S.Schema<DnsResolverPoliciesDeleteResponse>;
-
-export interface DnsResolverPoliciesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the DNS resolver policy. */
-  dnsResolverPolicyName: string;
-}
-export const DnsResolverPoliciesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    dnsResolverPolicyName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolverPolicies/{dnsResolverPolicyName}",
-      code: 200,
-      apiVersion: "2025-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "DnsResolverPoliciesGetRequest",
-}) as any as S.Schema<DnsResolverPoliciesGetRequest>;
-
-/** Resource tags. */
-export type DnsResolverPoliciesGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DnsResolverPoliciesGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DnsResolverPoliciesGetResponseTagsMap>;
-
-export interface DnsResolverPoliciesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: DnsResolverPoliciesGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the DNS resolver policy. */
-  properties?: DnsResolverPolicyProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const DnsResolverPoliciesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(DnsResolverPoliciesGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(DnsResolverPolicyProperties),
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DnsResolverPoliciesGetResponse",
-}) as any as S.Schema<DnsResolverPoliciesGetResponse>;
-
-export interface DnsResolverPoliciesListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The maximum number of results to return. If not specified, returns up to 100 results. */
-  _top?: number;
-}
-export const DnsResolverPoliciesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Network/dnsResolverPolicies",
-      code: 200,
-      apiVersion: "2025-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "DnsResolverPoliciesListRequest",
-}) as any as S.Schema<DnsResolverPoliciesListRequest>;
-
-/** Resource tags. */
-export type DnsResolverPolicyTagsMap = { [key: string]: string | undefined };
-export const DnsResolverPolicyTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DnsResolverPolicyTagsMap>;
-
-/** Describes a DNS resolver policy. */
-export interface DnsResolverPolicy {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: DnsResolverPolicyTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the DNS resolver policy. */
-  properties?: DnsResolverPolicyProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const DnsResolverPolicy = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(DnsResolverPolicyTagsMap),
-    location: S.String,
-    properties: S.optional(DnsResolverPolicyProperties),
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DnsResolverPolicy",
-}) as any as S.Schema<DnsResolverPolicy>;
-
-/** The DnsResolverPolicy items on this page */
-export type DnsResolverPolicyListResultValueList = Array<DnsResolverPolicy>;
-export const DnsResolverPolicyListResultValueList = /*@__PURE__*/ S.Array(
-  DnsResolverPolicy,
-) as any as S.Schema<DnsResolverPolicyListResultValueList>;
-
-/** The response of a DnsResolverPolicy list operation. */
-export interface DnsResolverPolicyListResult {
-  /** The DnsResolverPolicy items on this page */
-  value: DnsResolverPolicyListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const DnsResolverPolicyListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: DnsResolverPolicyListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DnsResolverPolicyListResult",
-}) as any as S.Schema<DnsResolverPolicyListResult>;
-
-export interface DnsResolverPoliciesListByResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The maximum number of results to return. If not specified, returns up to 100 results. */
-  _top?: number;
-}
-export const DnsResolverPoliciesListByResourceGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolverPolicies",
-        code: 200,
-        apiVersion: "2025-05-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "DnsResolverPoliciesListByResourceGroupRequest",
-  }) as any as S.Schema<DnsResolverPoliciesListByResourceGroupRequest>;
-
-export interface DnsResolverPoliciesListByVirtualNetworkRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VirtualNetwork */
-  virtualNetworkName: string;
-}
-export const DnsResolverPoliciesListByVirtualNetworkRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      virtualNetworkName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{virtualNetworkName}/listDnsResolverPolicies",
-        code: 200,
-        apiVersion: "2025-05-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "DnsResolverPoliciesListByVirtualNetworkRequest",
-  }) as any as S.Schema<DnsResolverPoliciesListByVirtualNetworkRequest>;
-
-/** The SubResource items on this page */
-export type SubResourceListResultValueList = Array<SubResource>;
-export const SubResourceListResultValueList = /*@__PURE__*/ S.Array(
-  SubResource,
-) as any as S.Schema<SubResourceListResultValueList>;
-
-/** The response to an enumeration operation on sub-resources. */
-export interface SubResourceListResult {
-  /** The SubResource items on this page */
-  value: SubResourceListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const SubResourceListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: SubResourceListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SubResourceListResult",
-}) as any as S.Schema<SubResourceListResult>;
-
-/** Tags for DNS resolver policy. */
-export type DnsResolverPoliciesUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DnsResolverPoliciesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DnsResolverPoliciesUpdateRequestTagsMap>;
-
-export interface DnsResolverPoliciesUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the DNS resolver policy. */
-  dnsResolverPolicyName: string;
-  /** Tags for DNS resolver policy. */
-  tags?: DnsResolverPoliciesUpdateRequestTagsMap;
-}
-export const DnsResolverPoliciesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    dnsResolverPolicyName: S.String.pipe(T.Label()),
-    tags: S.optional(DnsResolverPoliciesUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolverPolicies/{dnsResolverPolicyName}",
-      code: 200,
-      apiVersion: "2025-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "DnsResolverPoliciesUpdateRequest",
-}) as any as S.Schema<DnsResolverPoliciesUpdateRequest>;
-
-/** Resource tags. */
-export type DnsResolverPoliciesUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DnsResolverPoliciesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DnsResolverPoliciesUpdateResponseTagsMap>;
-
-export interface DnsResolverPoliciesUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: DnsResolverPoliciesUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the DNS resolver policy. */
-  properties?: DnsResolverPolicyProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const DnsResolverPoliciesUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(DnsResolverPoliciesUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(DnsResolverPolicyProperties),
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DnsResolverPoliciesUpdateResponse",
-}) as any as S.Schema<DnsResolverPoliciesUpdateResponse>;
-
 /** Resource tags. */
 export type DnsResolverPolicyVirtualNetworkLinksCreateOrUpdateRequestTagsMap = {
   [key: string]: string | undefined;
@@ -1710,302 +1004,6 @@ export const DnsResolverPolicyVirtualNetworkLinksCreateOrUpdateResponse =
   ).annotate({
     identifier: "DnsResolverPolicyVirtualNetworkLinksCreateOrUpdateResponse",
   }) as any as S.Schema<DnsResolverPolicyVirtualNetworkLinksCreateOrUpdateResponse>;
-
-export interface DnsResolverPolicyVirtualNetworkLinksDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the DNS resolver policy. */
-  dnsResolverPolicyName: string;
-  /** The name of the DNS resolver policy virtual network link for the DNS resolver policy. */
-  dnsResolverPolicyVirtualNetworkLinkName: string;
-}
-export const DnsResolverPolicyVirtualNetworkLinksDeleteRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      dnsResolverPolicyName: S.String.pipe(T.Label()),
-      dnsResolverPolicyVirtualNetworkLinkName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolverPolicies/{dnsResolverPolicyName}/virtualNetworkLinks/{dnsResolverPolicyVirtualNetworkLinkName}",
-        code: 200,
-        apiVersion: "2025-05-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "DnsResolverPolicyVirtualNetworkLinksDeleteRequest",
-  }) as any as S.Schema<DnsResolverPolicyVirtualNetworkLinksDeleteRequest>;
-
-export interface DnsResolverPolicyVirtualNetworkLinksDeleteResponse {}
-export const DnsResolverPolicyVirtualNetworkLinksDeleteResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DnsResolverPolicyVirtualNetworkLinksDeleteResponse",
-  }) as any as S.Schema<DnsResolverPolicyVirtualNetworkLinksDeleteResponse>;
-
-export interface DnsResolverPolicyVirtualNetworkLinksGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the DNS resolver policy. */
-  dnsResolverPolicyName: string;
-  /** The name of the DNS resolver policy virtual network link for the DNS resolver policy. */
-  dnsResolverPolicyVirtualNetworkLinkName: string;
-}
-export const DnsResolverPolicyVirtualNetworkLinksGetRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      dnsResolverPolicyName: S.String.pipe(T.Label()),
-      dnsResolverPolicyVirtualNetworkLinkName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolverPolicies/{dnsResolverPolicyName}/virtualNetworkLinks/{dnsResolverPolicyVirtualNetworkLinkName}",
-        code: 200,
-        apiVersion: "2025-05-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "DnsResolverPolicyVirtualNetworkLinksGetRequest",
-  }) as any as S.Schema<DnsResolverPolicyVirtualNetworkLinksGetRequest>;
-
-/** Resource tags. */
-export type DnsResolverPolicyVirtualNetworkLinksGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DnsResolverPolicyVirtualNetworkLinksGetResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<DnsResolverPolicyVirtualNetworkLinksGetResponseTagsMap>;
-
-export interface DnsResolverPolicyVirtualNetworkLinksGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: DnsResolverPolicyVirtualNetworkLinksGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the DNS resolver policy virtual network link. */
-  properties: DnsResolverPolicyVirtualNetworkLinkProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const DnsResolverPolicyVirtualNetworkLinksGetResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(DnsResolverPolicyVirtualNetworkLinksGetResponseTagsMap),
-      location: S.String,
-      properties: DnsResolverPolicyVirtualNetworkLinkProperties,
-      etag: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "DnsResolverPolicyVirtualNetworkLinksGetResponse",
-  }) as any as S.Schema<DnsResolverPolicyVirtualNetworkLinksGetResponse>;
-
-export interface DnsResolverPolicyVirtualNetworkLinksListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the DNS resolver policy. */
-  dnsResolverPolicyName: string;
-  /** The maximum number of results to return. If not specified, returns up to 100 results. */
-  _top?: number;
-}
-export const DnsResolverPolicyVirtualNetworkLinksListRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      dnsResolverPolicyName: S.String.pipe(T.Label()),
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolverPolicies/{dnsResolverPolicyName}/virtualNetworkLinks",
-        code: 200,
-        apiVersion: "2025-05-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "DnsResolverPolicyVirtualNetworkLinksListRequest",
-  }) as any as S.Schema<DnsResolverPolicyVirtualNetworkLinksListRequest>;
-
-/** Resource tags. */
-export type DnsResolverPolicyVirtualNetworkLinkTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DnsResolverPolicyVirtualNetworkLinkTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<DnsResolverPolicyVirtualNetworkLinkTagsMap>;
-
-/** Describes a DNS resolver policy virtual network link. */
-export interface DnsResolverPolicyVirtualNetworkLink {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: DnsResolverPolicyVirtualNetworkLinkTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the DNS resolver policy virtual network link. */
-  properties: DnsResolverPolicyVirtualNetworkLinkProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const DnsResolverPolicyVirtualNetworkLink = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(DnsResolverPolicyVirtualNetworkLinkTagsMap),
-    location: S.String,
-    properties: DnsResolverPolicyVirtualNetworkLinkProperties,
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DnsResolverPolicyVirtualNetworkLink",
-}) as any as S.Schema<DnsResolverPolicyVirtualNetworkLink>;
-
-/** The DnsResolverPolicyVirtualNetworkLink items on this page */
-export type DnsResolverPolicyVirtualNetworkLinkListResultValueList =
-  Array<DnsResolverPolicyVirtualNetworkLink>;
-export const DnsResolverPolicyVirtualNetworkLinkListResultValueList =
-  /*@__PURE__*/ S.Array(
-    DnsResolverPolicyVirtualNetworkLink,
-  ) as any as S.Schema<DnsResolverPolicyVirtualNetworkLinkListResultValueList>;
-
-/** The response of a DnsResolverPolicyVirtualNetworkLink list operation. */
-export interface DnsResolverPolicyVirtualNetworkLinkListResult {
-  /** The DnsResolverPolicyVirtualNetworkLink items on this page */
-  value: DnsResolverPolicyVirtualNetworkLinkListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const DnsResolverPolicyVirtualNetworkLinkListResult =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      value: DnsResolverPolicyVirtualNetworkLinkListResultValueList,
-      nextLink: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "DnsResolverPolicyVirtualNetworkLinkListResult",
-  }) as any as S.Schema<DnsResolverPolicyVirtualNetworkLinkListResult>;
-
-/** Tags for the DNS resolver policy virtual network link. */
-export type DnsResolverPolicyVirtualNetworkLinksUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DnsResolverPolicyVirtualNetworkLinksUpdateRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<DnsResolverPolicyVirtualNetworkLinksUpdateRequestTagsMap>;
-
-export interface DnsResolverPolicyVirtualNetworkLinksUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the DNS resolver policy. */
-  dnsResolverPolicyName: string;
-  /** The name of the DNS resolver policy virtual network link for the DNS resolver policy. */
-  dnsResolverPolicyVirtualNetworkLinkName: string;
-  /** Tags for the DNS resolver policy virtual network link. */
-  tags?: DnsResolverPolicyVirtualNetworkLinksUpdateRequestTagsMap;
-}
-export const DnsResolverPolicyVirtualNetworkLinksUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      dnsResolverPolicyName: S.String.pipe(T.Label()),
-      dnsResolverPolicyVirtualNetworkLinkName: S.String.pipe(T.Label()),
-      tags: S.optional(
-        DnsResolverPolicyVirtualNetworkLinksUpdateRequestTagsMap,
-      ),
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolverPolicies/{dnsResolverPolicyName}/virtualNetworkLinks/{dnsResolverPolicyVirtualNetworkLinkName}",
-        code: 200,
-        apiVersion: "2025-05-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "DnsResolverPolicyVirtualNetworkLinksUpdateRequest",
-  }) as any as S.Schema<DnsResolverPolicyVirtualNetworkLinksUpdateRequest>;
-
-/** Resource tags. */
-export type DnsResolverPolicyVirtualNetworkLinksUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DnsResolverPolicyVirtualNetworkLinksUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<DnsResolverPolicyVirtualNetworkLinksUpdateResponseTagsMap>;
-
-export interface DnsResolverPolicyVirtualNetworkLinksUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: DnsResolverPolicyVirtualNetworkLinksUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the DNS resolver policy virtual network link. */
-  properties: DnsResolverPolicyVirtualNetworkLinkProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const DnsResolverPolicyVirtualNetworkLinksUpdateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(
-        DnsResolverPolicyVirtualNetworkLinksUpdateResponseTagsMap,
-      ),
-      location: S.String,
-      properties: DnsResolverPolicyVirtualNetworkLinkProperties,
-      etag: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "DnsResolverPolicyVirtualNetworkLinksUpdateResponse",
-  }) as any as S.Schema<DnsResolverPolicyVirtualNetworkLinksUpdateResponse>;
 
 /** Resource tags. */
 export type DnsResolversCreateOrUpdateRequestTagsMap = {
@@ -2130,322 +1128,6 @@ export const DnsResolversCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DnsResolversCreateOrUpdateResponse",
 }) as any as S.Schema<DnsResolversCreateOrUpdateResponse>;
-
-export interface DnsResolversDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the DNS resolver. */
-  dnsResolverName: string;
-}
-export const DnsResolversDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    dnsResolverName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolvers/{dnsResolverName}",
-      code: 200,
-      apiVersion: "2025-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "DnsResolversDeleteRequest",
-}) as any as S.Schema<DnsResolversDeleteRequest>;
-
-export interface DnsResolversDeleteResponse {}
-export const DnsResolversDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DnsResolversDeleteResponse",
-}) as any as S.Schema<DnsResolversDeleteResponse>;
-
-export interface DnsResolversGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the DNS resolver. */
-  dnsResolverName: string;
-}
-export const DnsResolversGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    dnsResolverName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolvers/{dnsResolverName}",
-      code: 200,
-      apiVersion: "2025-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "DnsResolversGetRequest",
-}) as any as S.Schema<DnsResolversGetRequest>;
-
-/** Resource tags. */
-export type DnsResolversGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DnsResolversGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DnsResolversGetResponseTagsMap>;
-
-export interface DnsResolversGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: DnsResolversGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the DNS resolver. */
-  properties: DnsResolverProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const DnsResolversGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(DnsResolversGetResponseTagsMap),
-    location: S.String,
-    properties: DnsResolverProperties,
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DnsResolversGetResponse",
-}) as any as S.Schema<DnsResolversGetResponse>;
-
-export interface DnsResolversListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The maximum number of results to return. If not specified, returns up to 100 results. */
-  _top?: number;
-}
-export const DnsResolversListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Network/dnsResolvers",
-      code: 200,
-      apiVersion: "2025-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "DnsResolversListRequest",
-}) as any as S.Schema<DnsResolversListRequest>;
-
-/** Resource tags. */
-export type DnsResolverTagsMap = { [key: string]: string | undefined };
-export const DnsResolverTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DnsResolverTagsMap>;
-
-/** Describes a DNS resolver. */
-export interface DnsResolver {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: DnsResolverTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the DNS resolver. */
-  properties: DnsResolverProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const DnsResolver = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(DnsResolverTagsMap),
-    location: S.String,
-    properties: DnsResolverProperties,
-    etag: S.optional(S.String),
-  }),
-).annotate({ identifier: "DnsResolver" }) as any as S.Schema<DnsResolver>;
-
-/** The DnsResolver items on this page */
-export type DnsResolverListResultValueList = Array<DnsResolver>;
-export const DnsResolverListResultValueList = /*@__PURE__*/ S.Array(
-  DnsResolver,
-) as any as S.Schema<DnsResolverListResultValueList>;
-
-/** The response of a DnsResolver list operation. */
-export interface DnsResolverListResult {
-  /** The DnsResolver items on this page */
-  value: DnsResolverListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const DnsResolverListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: DnsResolverListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DnsResolverListResult",
-}) as any as S.Schema<DnsResolverListResult>;
-
-export interface DnsResolversListByResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The maximum number of results to return. If not specified, returns up to 100 results. */
-  _top?: number;
-}
-export const DnsResolversListByResourceGroupRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolvers",
-        code: 200,
-        apiVersion: "2025-05-01",
-      }),
-    ),
-).annotate({
-  identifier: "DnsResolversListByResourceGroupRequest",
-}) as any as S.Schema<DnsResolversListByResourceGroupRequest>;
-
-export interface DnsResolversListByVirtualNetworkRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VirtualNetwork */
-  virtualNetworkName: string;
-  /** The maximum number of results to return. If not specified, returns up to 100 results. */
-  _top?: number;
-}
-export const DnsResolversListByVirtualNetworkRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      virtualNetworkName: S.String.pipe(T.Label()),
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{virtualNetworkName}/listDnsResolvers",
-        code: 200,
-        apiVersion: "2025-05-01",
-      }),
-    ),
-).annotate({
-  identifier: "DnsResolversListByVirtualNetworkRequest",
-}) as any as S.Schema<DnsResolversListByVirtualNetworkRequest>;
-
-/** Tags for DNS Resolver. */
-export type DnsResolversUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DnsResolversUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DnsResolversUpdateRequestTagsMap>;
-
-export interface DnsResolversUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the DNS resolver. */
-  dnsResolverName: string;
-  /** Tags for DNS Resolver. */
-  tags?: DnsResolversUpdateRequestTagsMap;
-}
-export const DnsResolversUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    dnsResolverName: S.String.pipe(T.Label()),
-    tags: S.optional(DnsResolversUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolvers/{dnsResolverName}",
-      code: 200,
-      apiVersion: "2025-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "DnsResolversUpdateRequest",
-}) as any as S.Schema<DnsResolversUpdateRequest>;
-
-/** Resource tags. */
-export type DnsResolversUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DnsResolversUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DnsResolversUpdateResponseTagsMap>;
-
-export interface DnsResolversUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: DnsResolversUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the DNS resolver. */
-  properties: DnsResolverProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const DnsResolversUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(DnsResolversUpdateResponseTagsMap),
-    location: S.String,
-    properties: DnsResolverProperties,
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DnsResolversUpdateResponse",
-}) as any as S.Schema<DnsResolversUpdateResponse>;
 
 /** Resource tags. */
 export type DnsSecurityRulesCreateOrUpdateRequestTagsMap = {
@@ -2593,319 +1275,6 @@ export const DnsSecurityRulesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "DnsSecurityRulesCreateOrUpdateResponse",
 }) as any as S.Schema<DnsSecurityRulesCreateOrUpdateResponse>;
 
-export interface DnsSecurityRulesDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the DNS resolver policy. */
-  dnsResolverPolicyName: string;
-  /** The name of the DNS security rule. */
-  dnsSecurityRuleName: string;
-}
-export const DnsSecurityRulesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    dnsResolverPolicyName: S.String.pipe(T.Label()),
-    dnsSecurityRuleName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolverPolicies/{dnsResolverPolicyName}/dnsSecurityRules/{dnsSecurityRuleName}",
-      code: 200,
-      apiVersion: "2025-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "DnsSecurityRulesDeleteRequest",
-}) as any as S.Schema<DnsSecurityRulesDeleteRequest>;
-
-export interface DnsSecurityRulesDeleteResponse {}
-export const DnsSecurityRulesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DnsSecurityRulesDeleteResponse",
-}) as any as S.Schema<DnsSecurityRulesDeleteResponse>;
-
-export interface DnsSecurityRulesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the DNS resolver policy. */
-  dnsResolverPolicyName: string;
-  /** The name of the DNS security rule. */
-  dnsSecurityRuleName: string;
-}
-export const DnsSecurityRulesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    dnsResolverPolicyName: S.String.pipe(T.Label()),
-    dnsSecurityRuleName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolverPolicies/{dnsResolverPolicyName}/dnsSecurityRules/{dnsSecurityRuleName}",
-      code: 200,
-      apiVersion: "2025-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "DnsSecurityRulesGetRequest",
-}) as any as S.Schema<DnsSecurityRulesGetRequest>;
-
-/** Resource tags. */
-export type DnsSecurityRulesGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DnsSecurityRulesGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DnsSecurityRulesGetResponseTagsMap>;
-
-export interface DnsSecurityRulesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: DnsSecurityRulesGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the DNS security rule. */
-  properties: DnsSecurityRuleProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const DnsSecurityRulesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(DnsSecurityRulesGetResponseTagsMap),
-    location: S.String,
-    properties: DnsSecurityRuleProperties,
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DnsSecurityRulesGetResponse",
-}) as any as S.Schema<DnsSecurityRulesGetResponse>;
-
-export interface DnsSecurityRulesListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the DNS resolver policy. */
-  dnsResolverPolicyName: string;
-  /** The maximum number of results to return. If not specified, returns up to 100 results. */
-  _top?: number;
-}
-export const DnsSecurityRulesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    dnsResolverPolicyName: S.String.pipe(T.Label()),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolverPolicies/{dnsResolverPolicyName}/dnsSecurityRules",
-      code: 200,
-      apiVersion: "2025-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "DnsSecurityRulesListRequest",
-}) as any as S.Schema<DnsSecurityRulesListRequest>;
-
-/** Resource tags. */
-export type DnsSecurityRuleTagsMap = { [key: string]: string | undefined };
-export const DnsSecurityRuleTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DnsSecurityRuleTagsMap>;
-
-/** Describes a DNS security rule. */
-export interface DnsSecurityRule {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: DnsSecurityRuleTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the DNS security rule. */
-  properties: DnsSecurityRuleProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const DnsSecurityRule = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(DnsSecurityRuleTagsMap),
-    location: S.String,
-    properties: DnsSecurityRuleProperties,
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DnsSecurityRule",
-}) as any as S.Schema<DnsSecurityRule>;
-
-/** The DnsSecurityRule items on this page */
-export type DnsSecurityRuleListResultValueList = Array<DnsSecurityRule>;
-export const DnsSecurityRuleListResultValueList = /*@__PURE__*/ S.Array(
-  DnsSecurityRule,
-) as any as S.Schema<DnsSecurityRuleListResultValueList>;
-
-/** The response of a DnsSecurityRule list operation. */
-export interface DnsSecurityRuleListResult {
-  /** The DnsSecurityRule items on this page */
-  value: DnsSecurityRuleListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const DnsSecurityRuleListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: DnsSecurityRuleListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DnsSecurityRuleListResult",
-}) as any as S.Schema<DnsSecurityRuleListResult>;
-
-/** DNS resolver policy domains lists that the DNS security rule applies to. */
-export type DnsSecurityRulePatchPropertiesDnsResolverDomainListsList =
-  Array<SubResource>;
-export const DnsSecurityRulePatchPropertiesDnsResolverDomainListsList =
-  /*@__PURE__*/ S.Array(
-    SubResource,
-  ) as any as S.Schema<DnsSecurityRulePatchPropertiesDnsResolverDomainListsList>;
-
-/** Represents the updatable properties of a DNS security rule. */
-export interface DnsSecurityRulePatchProperties {
-  /** The action to take on DNS requests that match the DNS security rule. */
-  action?: DnsSecurityRuleAction;
-  /** DNS resolver policy domains lists that the DNS security rule applies to. */
-  dnsResolverDomainLists?: DnsSecurityRulePatchPropertiesDnsResolverDomainListsList;
-  /** The state of DNS security rule. */
-  dnsSecurityRuleState?: DnsSecurityRuleState | (string & {});
-  /** The priority of the DNS security rule. */
-  priority?: number;
-}
-export const DnsSecurityRulePatchProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    action: S.optional(DnsSecurityRuleAction),
-    dnsResolverDomainLists: S.optional(
-      DnsSecurityRulePatchPropertiesDnsResolverDomainListsList,
-    ),
-    dnsSecurityRuleState: S.optional(DnsSecurityRuleState),
-    priority: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "DnsSecurityRulePatchProperties",
-}) as any as S.Schema<DnsSecurityRulePatchProperties>;
-
-/** Tags for DNS security rule. */
-export type DnsSecurityRulesUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DnsSecurityRulesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DnsSecurityRulesUpdateRequestTagsMap>;
-
-export interface DnsSecurityRulesUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the DNS resolver policy. */
-  dnsResolverPolicyName: string;
-  /** The name of the DNS security rule. */
-  dnsSecurityRuleName: string;
-  /** Updatable properties of the DNS security rule. */
-  properties?: DnsSecurityRulePatchProperties;
-  /** Tags for DNS security rule. */
-  tags?: DnsSecurityRulesUpdateRequestTagsMap;
-}
-export const DnsSecurityRulesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    dnsResolverPolicyName: S.String.pipe(T.Label()),
-    dnsSecurityRuleName: S.String.pipe(T.Label()),
-    properties: S.optional(DnsSecurityRulePatchProperties),
-    tags: S.optional(DnsSecurityRulesUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolverPolicies/{dnsResolverPolicyName}/dnsSecurityRules/{dnsSecurityRuleName}",
-      code: 200,
-      apiVersion: "2025-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "DnsSecurityRulesUpdateRequest",
-}) as any as S.Schema<DnsSecurityRulesUpdateRequest>;
-
-/** Resource tags. */
-export type DnsSecurityRulesUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DnsSecurityRulesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DnsSecurityRulesUpdateResponseTagsMap>;
-
-export interface DnsSecurityRulesUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: DnsSecurityRulesUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the DNS security rule. */
-  properties: DnsSecurityRuleProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const DnsSecurityRulesUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(DnsSecurityRulesUpdateResponseTagsMap),
-    location: S.String,
-    properties: DnsSecurityRuleProperties,
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DnsSecurityRulesUpdateResponse",
-}) as any as S.Schema<DnsSecurityRulesUpdateResponse>;
-
 /** Describes a server to forward the DNS queries to. */
 export interface TargetDnsServer {
   /** DNS server IP address. */
@@ -3028,288 +1397,508 @@ export const ForwardingRulesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "ForwardingRulesCreateOrUpdateResponse",
 }) as any as S.Schema<ForwardingRulesCreateOrUpdateResponse>;
 
-export interface ForwardingRulesDeleteRequest {
+export interface GetDnsForwardingRulesetRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the DNS forwarding ruleset. */
   dnsForwardingRulesetName: string;
-  /** The name of the forwarding rule. */
-  forwardingRuleName: string;
 }
-export const ForwardingRulesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDnsForwardingRulesetRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     dnsForwardingRulesetName: S.String.pipe(T.Label()),
-    forwardingRuleName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsForwardingRulesets/{dnsForwardingRulesetName}/forwardingRules/{forwardingRuleName}",
-      code: 200,
-      apiVersion: "2025-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "ForwardingRulesDeleteRequest",
-}) as any as S.Schema<ForwardingRulesDeleteRequest>;
-
-export interface ForwardingRulesDeleteResponse {}
-export const ForwardingRulesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ForwardingRulesDeleteResponse",
-}) as any as S.Schema<ForwardingRulesDeleteResponse>;
-
-export interface ForwardingRulesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the DNS forwarding ruleset. */
-  dnsForwardingRulesetName: string;
-  /** The name of the forwarding rule. */
-  forwardingRuleName: string;
-}
-export const ForwardingRulesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    dnsForwardingRulesetName: S.String.pipe(T.Label()),
-    forwardingRuleName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsForwardingRulesets/{dnsForwardingRulesetName}/forwardingRules/{forwardingRuleName}",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsForwardingRulesets/{dnsForwardingRulesetName}",
       code: 200,
       apiVersion: "2025-05-01",
     }),
   ),
 ).annotate({
-  identifier: "ForwardingRulesGetRequest",
-}) as any as S.Schema<ForwardingRulesGetRequest>;
-
-export interface ForwardingRulesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of the forwarding rule. */
-  properties: ForwardingRuleProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const ForwardingRulesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: ForwardingRuleProperties,
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ForwardingRulesGetResponse",
-}) as any as S.Schema<ForwardingRulesGetResponse>;
-
-export interface ForwardingRulesListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the DNS forwarding ruleset. */
-  dnsForwardingRulesetName: string;
-  /** The maximum number of results to return. If not specified, returns up to 100 results. */
-  _top?: number;
-}
-export const ForwardingRulesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    dnsForwardingRulesetName: S.String.pipe(T.Label()),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsForwardingRulesets/{dnsForwardingRulesetName}/forwardingRules",
-      code: 200,
-      apiVersion: "2025-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "ForwardingRulesListRequest",
-}) as any as S.Schema<ForwardingRulesListRequest>;
-
-/** Describes a forwarding rule within a DNS forwarding ruleset. */
-export interface ForwardingRule {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of the forwarding rule. */
-  properties: ForwardingRuleProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const ForwardingRule = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: ForwardingRuleProperties,
-    etag: S.optional(S.String),
-  }),
-).annotate({ identifier: "ForwardingRule" }) as any as S.Schema<ForwardingRule>;
-
-/** The ForwardingRule items on this page */
-export type ForwardingRuleListResultValueList = Array<ForwardingRule>;
-export const ForwardingRuleListResultValueList = /*@__PURE__*/ S.Array(
-  ForwardingRule,
-) as any as S.Schema<ForwardingRuleListResultValueList>;
-
-/** The response of a ForwardingRule list operation. */
-export interface ForwardingRuleListResult {
-  /** The ForwardingRule items on this page */
-  value: ForwardingRuleListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ForwardingRuleListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: ForwardingRuleListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ForwardingRuleListResult",
-}) as any as S.Schema<ForwardingRuleListResult>;
-
-/** DNS servers to forward the DNS query to. */
-export type ForwardingRulePatchPropertiesTargetDnsServersList =
-  Array<TargetDnsServer>;
-export const ForwardingRulePatchPropertiesTargetDnsServersList =
-  /*@__PURE__*/ S.Array(
-    TargetDnsServer,
-  ) as any as S.Schema<ForwardingRulePatchPropertiesTargetDnsServersList>;
-
-/** Metadata attached to the forwarding rule. */
-export type ForwardingRulePatchPropertiesMetadataMap = {
-  [key: string]: string | undefined;
-};
-export const ForwardingRulePatchPropertiesMetadataMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ForwardingRulePatchPropertiesMetadataMap>;
-
-/** The state of forwarding rule. */
-export type ForwardingRulePatchPropertiesForwardingRuleState =
-  | "Enabled"
-  | "Disabled";
-export const ForwardingRulePatchPropertiesForwardingRuleState =
-  /*@__PURE__*/ S.String;
-
-/** Represents the updatable properties of a forwarding rule within a DNS forwarding ruleset. */
-export interface ForwardingRulePatchProperties {
-  /** DNS servers to forward the DNS query to. */
-  targetDnsServers?: ForwardingRulePatchPropertiesTargetDnsServersList;
-  /** Metadata attached to the forwarding rule. */
-  metadata?: ForwardingRulePatchPropertiesMetadataMap;
-  /** The state of forwarding rule. */
-  forwardingRuleState?:
-    | ForwardingRulePatchPropertiesForwardingRuleState
-    | (string & {});
-}
-export const ForwardingRulePatchProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    targetDnsServers: S.optional(
-      ForwardingRulePatchPropertiesTargetDnsServersList,
-    ),
-    metadata: S.optional(ForwardingRulePatchPropertiesMetadataMap),
-    forwardingRuleState: S.optional(
-      ForwardingRulePatchPropertiesForwardingRuleState,
-    ),
-  }),
-).annotate({
-  identifier: "ForwardingRulePatchProperties",
-}) as any as S.Schema<ForwardingRulePatchProperties>;
-
-export interface ForwardingRulesUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the DNS forwarding ruleset. */
-  dnsForwardingRulesetName: string;
-  /** The name of the forwarding rule. */
-  forwardingRuleName: string;
-  /** Updatable properties of the forwarding rule. */
-  properties?: ForwardingRulePatchProperties;
-}
-export const ForwardingRulesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    dnsForwardingRulesetName: S.String.pipe(T.Label()),
-    forwardingRuleName: S.String.pipe(T.Label()),
-    properties: S.optional(ForwardingRulePatchProperties),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsForwardingRulesets/{dnsForwardingRulesetName}/forwardingRules/{forwardingRuleName}",
-      code: 200,
-      apiVersion: "2025-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "ForwardingRulesUpdateRequest",
-}) as any as S.Schema<ForwardingRulesUpdateRequest>;
-
-export interface ForwardingRulesUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of the forwarding rule. */
-  properties: ForwardingRuleProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const ForwardingRulesUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: ForwardingRuleProperties,
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ForwardingRulesUpdateResponse",
-}) as any as S.Schema<ForwardingRulesUpdateResponse>;
+  identifier: "GetDnsForwardingRulesetRequest",
+}) as any as S.Schema<GetDnsForwardingRulesetRequest>;
 
 /** Resource tags. */
-export type InboundEndpointsCreateOrUpdateRequestTagsMap = {
+export type GetDnsForwardingRulesetResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const InboundEndpointsCreateOrUpdateRequestTagsMap =
+export const GetDnsForwardingRulesetResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetDnsForwardingRulesetResponseTagsMap>;
+
+export interface GetDnsForwardingRulesetResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetDnsForwardingRulesetResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the DNS forwarding ruleset. */
+  properties: DnsForwardingRulesetProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const GetDnsForwardingRulesetResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetDnsForwardingRulesetResponseTagsMap),
+    location: S.String,
+    properties: DnsForwardingRulesetProperties,
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetDnsForwardingRulesetResponse",
+}) as any as S.Schema<GetDnsForwardingRulesetResponse>;
+
+export interface GetDnsResolverRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the DNS resolver. */
+  dnsResolverName: string;
+}
+export const GetDnsResolverRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    dnsResolverName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolvers/{dnsResolverName}",
+      code: 200,
+      apiVersion: "2025-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetDnsResolverRequest",
+}) as any as S.Schema<GetDnsResolverRequest>;
+
+/** Resource tags. */
+export type GetDnsResolverResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetDnsResolverResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetDnsResolverResponseTagsMap>;
+
+export interface GetDnsResolverResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetDnsResolverResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the DNS resolver. */
+  properties: DnsResolverProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const GetDnsResolverResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetDnsResolverResponseTagsMap),
+    location: S.String,
+    properties: DnsResolverProperties,
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetDnsResolverResponse",
+}) as any as S.Schema<GetDnsResolverResponse>;
+
+export interface GetDnsResolverDomainListRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the DNS resolver domain list. */
+  dnsResolverDomainListName: string;
+}
+export const GetDnsResolverDomainListRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    dnsResolverDomainListName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolverDomainLists/{dnsResolverDomainListName}",
+      code: 200,
+      apiVersion: "2025-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetDnsResolverDomainListRequest",
+}) as any as S.Schema<GetDnsResolverDomainListRequest>;
+
+/** Resource tags. */
+export type GetDnsResolverDomainListResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetDnsResolverDomainListResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetDnsResolverDomainListResponseTagsMap>;
+
+export interface GetDnsResolverDomainListResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetDnsResolverDomainListResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the DNS resolver domain list. */
+  properties?: DnsResolverDomainListProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const GetDnsResolverDomainListResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetDnsResolverDomainListResponseTagsMap),
+    location: S.String,
+    properties: S.optional(DnsResolverDomainListProperties),
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetDnsResolverDomainListResponse",
+}) as any as S.Schema<GetDnsResolverDomainListResponse>;
+
+export interface GetDnsResolverPolicyRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the DNS resolver policy. */
+  dnsResolverPolicyName: string;
+}
+export const GetDnsResolverPolicyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    dnsResolverPolicyName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolverPolicies/{dnsResolverPolicyName}",
+      code: 200,
+      apiVersion: "2025-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetDnsResolverPolicyRequest",
+}) as any as S.Schema<GetDnsResolverPolicyRequest>;
+
+/** Resource tags. */
+export type GetDnsResolverPolicyResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetDnsResolverPolicyResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetDnsResolverPolicyResponseTagsMap>;
+
+export interface GetDnsResolverPolicyResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetDnsResolverPolicyResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the DNS resolver policy. */
+  properties?: DnsResolverPolicyProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const GetDnsResolverPolicyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetDnsResolverPolicyResponseTagsMap),
+    location: S.String,
+    properties: S.optional(DnsResolverPolicyProperties),
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetDnsResolverPolicyResponse",
+}) as any as S.Schema<GetDnsResolverPolicyResponse>;
+
+export interface GetDnsResolverPolicyVirtualNetworkLinkRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the DNS resolver policy. */
+  dnsResolverPolicyName: string;
+  /** The name of the DNS resolver policy virtual network link for the DNS resolver policy. */
+  dnsResolverPolicyVirtualNetworkLinkName: string;
+}
+export const GetDnsResolverPolicyVirtualNetworkLinkRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      dnsResolverPolicyName: S.String.pipe(T.Label()),
+      dnsResolverPolicyVirtualNetworkLinkName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolverPolicies/{dnsResolverPolicyName}/virtualNetworkLinks/{dnsResolverPolicyVirtualNetworkLinkName}",
+        code: 200,
+        apiVersion: "2025-05-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetDnsResolverPolicyVirtualNetworkLinkRequest",
+  }) as any as S.Schema<GetDnsResolverPolicyVirtualNetworkLinkRequest>;
+
+/** Resource tags. */
+export type GetDnsResolverPolicyVirtualNetworkLinkResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetDnsResolverPolicyVirtualNetworkLinkResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<InboundEndpointsCreateOrUpdateRequestTagsMap>;
+  ) as any as S.Schema<GetDnsResolverPolicyVirtualNetworkLinkResponseTagsMap>;
+
+export interface GetDnsResolverPolicyVirtualNetworkLinkResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetDnsResolverPolicyVirtualNetworkLinkResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the DNS resolver policy virtual network link. */
+  properties: DnsResolverPolicyVirtualNetworkLinkProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const GetDnsResolverPolicyVirtualNetworkLinkResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(GetDnsResolverPolicyVirtualNetworkLinkResponseTagsMap),
+      location: S.String,
+      properties: DnsResolverPolicyVirtualNetworkLinkProperties,
+      etag: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "GetDnsResolverPolicyVirtualNetworkLinkResponse",
+  }) as any as S.Schema<GetDnsResolverPolicyVirtualNetworkLinkResponse>;
+
+export interface GetDnsSecurityRuleRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the DNS resolver policy. */
+  dnsResolverPolicyName: string;
+  /** The name of the DNS security rule. */
+  dnsSecurityRuleName: string;
+}
+export const GetDnsSecurityRuleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    dnsResolverPolicyName: S.String.pipe(T.Label()),
+    dnsSecurityRuleName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolverPolicies/{dnsResolverPolicyName}/dnsSecurityRules/{dnsSecurityRuleName}",
+      code: 200,
+      apiVersion: "2025-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetDnsSecurityRuleRequest",
+}) as any as S.Schema<GetDnsSecurityRuleRequest>;
+
+/** Resource tags. */
+export type GetDnsSecurityRuleResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetDnsSecurityRuleResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetDnsSecurityRuleResponseTagsMap>;
+
+export interface GetDnsSecurityRuleResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetDnsSecurityRuleResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the DNS security rule. */
+  properties: DnsSecurityRuleProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const GetDnsSecurityRuleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetDnsSecurityRuleResponseTagsMap),
+    location: S.String,
+    properties: DnsSecurityRuleProperties,
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetDnsSecurityRuleResponse",
+}) as any as S.Schema<GetDnsSecurityRuleResponse>;
+
+export interface GetForwardingRuleRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the DNS forwarding ruleset. */
+  dnsForwardingRulesetName: string;
+  /** The name of the forwarding rule. */
+  forwardingRuleName: string;
+}
+export const GetForwardingRuleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    dnsForwardingRulesetName: S.String.pipe(T.Label()),
+    forwardingRuleName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsForwardingRulesets/{dnsForwardingRulesetName}/forwardingRules/{forwardingRuleName}",
+      code: 200,
+      apiVersion: "2025-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetForwardingRuleRequest",
+}) as any as S.Schema<GetForwardingRuleRequest>;
+
+export interface GetForwardingRuleResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of the forwarding rule. */
+  properties: ForwardingRuleProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const GetForwardingRuleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: ForwardingRuleProperties,
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetForwardingRuleResponse",
+}) as any as S.Schema<GetForwardingRuleResponse>;
+
+export interface GetInboundEndpointRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the DNS resolver. */
+  dnsResolverName: string;
+  /** The name of the inbound endpoint for the DNS resolver. */
+  inboundEndpointName: string;
+}
+export const GetInboundEndpointRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    dnsResolverName: S.String.pipe(T.Label()),
+    inboundEndpointName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolvers/{dnsResolverName}/inboundEndpoints/{inboundEndpointName}",
+      code: 200,
+      apiVersion: "2025-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetInboundEndpointRequest",
+}) as any as S.Schema<GetInboundEndpointRequest>;
+
+/** Resource tags. */
+export type GetInboundEndpointResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetInboundEndpointResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetInboundEndpointResponseTagsMap>;
 
 /** Private IP address allocation method. */
 export type IpConfigurationPrivateIpAllocationMethod = "Static" | "Dynamic";
@@ -3337,6 +1926,248 @@ export const IpConfiguration = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "IpConfiguration",
 }) as any as S.Schema<IpConfiguration>;
+
+/** IP configurations for the inbound endpoint. */
+export type InboundEndpointPropertiesIpConfigurationsList =
+  Array<IpConfiguration>;
+export const InboundEndpointPropertiesIpConfigurationsList =
+  /*@__PURE__*/ S.Array(
+    IpConfiguration,
+  ) as any as S.Schema<InboundEndpointPropertiesIpConfigurationsList>;
+
+/** Represents the properties of an inbound endpoint for a DNS resolver. */
+export interface InboundEndpointProperties {
+  /** IP configurations for the inbound endpoint. */
+  ipConfigurations: InboundEndpointPropertiesIpConfigurationsList;
+  /** The current provisioning state of the inbound endpoint. This is a read-only property and any attempt to set this value will be ignored. */
+  provisioningState?: ProvisioningState;
+  /** The resourceGuid property of the inbound endpoint resource. */
+  resourceGuid?: string;
+}
+export const InboundEndpointProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ipConfigurations: InboundEndpointPropertiesIpConfigurationsList,
+    provisioningState: S.optional(ProvisioningState),
+    resourceGuid: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "InboundEndpointProperties",
+}) as any as S.Schema<InboundEndpointProperties>;
+
+export interface GetInboundEndpointResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetInboundEndpointResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the inbound endpoint. */
+  properties: InboundEndpointProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const GetInboundEndpointResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetInboundEndpointResponseTagsMap),
+    location: S.String,
+    properties: InboundEndpointProperties,
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetInboundEndpointResponse",
+}) as any as S.Schema<GetInboundEndpointResponse>;
+
+export interface GetOutboundEndpointRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the DNS resolver. */
+  dnsResolverName: string;
+  /** The name of the outbound endpoint for the DNS resolver. */
+  outboundEndpointName: string;
+}
+export const GetOutboundEndpointRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    dnsResolverName: S.String.pipe(T.Label()),
+    outboundEndpointName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolvers/{dnsResolverName}/outboundEndpoints/{outboundEndpointName}",
+      code: 200,
+      apiVersion: "2025-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetOutboundEndpointRequest",
+}) as any as S.Schema<GetOutboundEndpointRequest>;
+
+/** Resource tags. */
+export type GetOutboundEndpointResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetOutboundEndpointResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetOutboundEndpointResponseTagsMap>;
+
+/** Represents the properties of an outbound endpoint for a DNS resolver. */
+export interface OutboundEndpointProperties {
+  /** The reference to the subnet used for the outbound endpoint. */
+  subnet: SubResource;
+  /** The current provisioning state of the outbound endpoint. This is a read-only property and any attempt to set this value will be ignored. */
+  provisioningState?: ProvisioningState;
+  /** The resourceGuid property of the outbound endpoint resource. */
+  resourceGuid?: string;
+}
+export const OutboundEndpointProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subnet: SubResource,
+    provisioningState: S.optional(ProvisioningState),
+    resourceGuid: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OutboundEndpointProperties",
+}) as any as S.Schema<OutboundEndpointProperties>;
+
+export interface GetOutboundEndpointResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetOutboundEndpointResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the outbound endpoint. */
+  properties: OutboundEndpointProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const GetOutboundEndpointResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetOutboundEndpointResponseTagsMap),
+    location: S.String,
+    properties: OutboundEndpointProperties,
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetOutboundEndpointResponse",
+}) as any as S.Schema<GetOutboundEndpointResponse>;
+
+export interface GetVirtualNetworkLinkRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the DNS forwarding ruleset. */
+  dnsForwardingRulesetName: string;
+  /** The name of the virtual network link. */
+  virtualNetworkLinkName: string;
+}
+export const GetVirtualNetworkLinkRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    dnsForwardingRulesetName: S.String.pipe(T.Label()),
+    virtualNetworkLinkName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsForwardingRulesets/{dnsForwardingRulesetName}/virtualNetworkLinks/{virtualNetworkLinkName}",
+      code: 200,
+      apiVersion: "2025-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetVirtualNetworkLinkRequest",
+}) as any as S.Schema<GetVirtualNetworkLinkRequest>;
+
+/** Metadata attached to the virtual network link. */
+export type VirtualNetworkLinkPropertiesMetadataMap = {
+  [key: string]: string | undefined;
+};
+export const VirtualNetworkLinkPropertiesMetadataMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<VirtualNetworkLinkPropertiesMetadataMap>;
+
+/** Represents the properties of a virtual network link. */
+export interface VirtualNetworkLinkProperties {
+  /** The reference to the virtual network. This cannot be changed after creation. */
+  virtualNetwork: SubResource;
+  /** Metadata attached to the virtual network link. */
+  metadata?: VirtualNetworkLinkPropertiesMetadataMap;
+  /** The current provisioning state of the virtual network link. This is a read-only property and any attempt to set this value will be ignored. */
+  provisioningState?: ProvisioningState | (string & {});
+}
+export const VirtualNetworkLinkProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    virtualNetwork: SubResource,
+    metadata: S.optional(VirtualNetworkLinkPropertiesMetadataMap),
+    provisioningState: S.optional(ProvisioningState),
+  }),
+).annotate({
+  identifier: "VirtualNetworkLinkProperties",
+}) as any as S.Schema<VirtualNetworkLinkProperties>;
+
+export interface GetVirtualNetworkLinkResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of the virtual network link. */
+  properties: VirtualNetworkLinkProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const GetVirtualNetworkLinkResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: VirtualNetworkLinkProperties,
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetVirtualNetworkLinkResponse",
+}) as any as S.Schema<GetVirtualNetworkLinkResponse>;
+
+/** Resource tags. */
+export type InboundEndpointsCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const InboundEndpointsCreateOrUpdateRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<InboundEndpointsCreateOrUpdateRequestTagsMap>;
 
 /** IP configurations for the inbound endpoint. */
 export type InboundEndpointPropertiesInputIpConfigurationsList =
@@ -3407,33 +2238,6 @@ export const InboundEndpointsCreateOrUpdateResponseTagsMap =
     S.String,
   ) as any as S.Schema<InboundEndpointsCreateOrUpdateResponseTagsMap>;
 
-/** IP configurations for the inbound endpoint. */
-export type InboundEndpointPropertiesIpConfigurationsList =
-  Array<IpConfiguration>;
-export const InboundEndpointPropertiesIpConfigurationsList =
-  /*@__PURE__*/ S.Array(
-    IpConfiguration,
-  ) as any as S.Schema<InboundEndpointPropertiesIpConfigurationsList>;
-
-/** Represents the properties of an inbound endpoint for a DNS resolver. */
-export interface InboundEndpointProperties {
-  /** IP configurations for the inbound endpoint. */
-  ipConfigurations: InboundEndpointPropertiesIpConfigurationsList;
-  /** The current provisioning state of the inbound endpoint. This is a read-only property and any attempt to set this value will be ignored. */
-  provisioningState?: ProvisioningState;
-  /** The resourceGuid property of the inbound endpoint resource. */
-  resourceGuid?: string;
-}
-export const InboundEndpointProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ipConfigurations: InboundEndpointPropertiesIpConfigurationsList,
-    provisioningState: S.optional(ProvisioningState),
-    resourceGuid: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "InboundEndpointProperties",
-}) as any as S.Schema<InboundEndpointProperties>;
-
 export interface InboundEndpointsCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
@@ -3468,79 +2272,41 @@ export const InboundEndpointsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "InboundEndpointsCreateOrUpdateResponse",
 }) as any as S.Schema<InboundEndpointsCreateOrUpdateResponse>;
 
-export interface InboundEndpointsDeleteRequest {
+export interface ListDnsForwardingRulesetByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** The name of the DNS resolver. */
-  dnsResolverName: string;
-  /** The name of the inbound endpoint for the DNS resolver. */
-  inboundEndpointName: string;
+  /** The maximum number of results to return. If not specified, returns up to 100 results. */
+  _top?: number;
 }
-export const InboundEndpointsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    dnsResolverName: S.String.pipe(T.Label()),
-    inboundEndpointName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolvers/{dnsResolverName}/inboundEndpoints/{inboundEndpointName}",
-      code: 200,
-      apiVersion: "2025-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "InboundEndpointsDeleteRequest",
-}) as any as S.Schema<InboundEndpointsDeleteRequest>;
-
-export interface InboundEndpointsDeleteResponse {}
-export const InboundEndpointsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "InboundEndpointsDeleteResponse",
-}) as any as S.Schema<InboundEndpointsDeleteResponse>;
-
-export interface InboundEndpointsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the DNS resolver. */
-  dnsResolverName: string;
-  /** The name of the inbound endpoint for the DNS resolver. */
-  inboundEndpointName: string;
-}
-export const InboundEndpointsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    dnsResolverName: S.String.pipe(T.Label()),
-    inboundEndpointName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolvers/{dnsResolverName}/inboundEndpoints/{inboundEndpointName}",
-      code: 200,
-      apiVersion: "2025-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "InboundEndpointsGetRequest",
-}) as any as S.Schema<InboundEndpointsGetRequest>;
+export const ListDnsForwardingRulesetByResourceGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsForwardingRulesets",
+        code: 200,
+        apiVersion: "2025-05-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListDnsForwardingRulesetByResourceGroupRequest",
+  }) as any as S.Schema<ListDnsForwardingRulesetByResourceGroupRequest>;
 
 /** Resource tags. */
-export type InboundEndpointsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const InboundEndpointsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type DnsForwardingRulesetTagsMap = { [key: string]: string | undefined };
+export const DnsForwardingRulesetTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<InboundEndpointsGetResponseTagsMap>;
+) as any as S.Schema<DnsForwardingRulesetTagsMap>;
 
-export interface InboundEndpointsGetResponse {
+/** Describes a DNS forwarding ruleset. */
+export interface DnsForwardingRuleset {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -3550,30 +2316,835 @@ export interface InboundEndpointsGetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: InboundEndpointsGetResponseTagsMap;
+  tags?: DnsForwardingRulesetTagsMap;
   /** The geo-location where the resource lives */
   location: string;
-  /** Properties of the inbound endpoint. */
-  properties: InboundEndpointProperties;
+  /** Properties of the DNS forwarding ruleset. */
+  properties: DnsForwardingRulesetProperties;
   /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
   etag?: string;
 }
-export const InboundEndpointsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const DnsForwardingRuleset = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(InboundEndpointsGetResponseTagsMap),
+    tags: S.optional(DnsForwardingRulesetTagsMap),
     location: S.String,
-    properties: InboundEndpointProperties,
+    properties: DnsForwardingRulesetProperties,
     etag: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "InboundEndpointsGetResponse",
-}) as any as S.Schema<InboundEndpointsGetResponse>;
+  identifier: "DnsForwardingRuleset",
+}) as any as S.Schema<DnsForwardingRuleset>;
 
-export interface InboundEndpointsListRequest {
+/** The DnsForwardingRuleset items on this page */
+export type DnsForwardingRulesetListResultValueList =
+  Array<DnsForwardingRuleset>;
+export const DnsForwardingRulesetListResultValueList = /*@__PURE__*/ S.Array(
+  DnsForwardingRuleset,
+) as any as S.Schema<DnsForwardingRulesetListResultValueList>;
+
+/** The response of a DnsForwardingRuleset list operation. */
+export interface DnsForwardingRulesetListResult {
+  /** The DnsForwardingRuleset items on this page */
+  value: DnsForwardingRulesetListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const DnsForwardingRulesetListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: DnsForwardingRulesetListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DnsForwardingRulesetListResult",
+}) as any as S.Schema<DnsForwardingRulesetListResult>;
+
+export interface ListDnsForwardingRulesetByVirtualNetworkRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VirtualNetwork */
+  virtualNetworkName: string;
+  /** The maximum number of results to return. If not specified, returns up to 100 results. */
+  _top?: number;
+}
+export const ListDnsForwardingRulesetByVirtualNetworkRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      virtualNetworkName: S.String.pipe(T.Label()),
+      _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{virtualNetworkName}/listDnsForwardingRulesets",
+        code: 200,
+        apiVersion: "2025-05-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListDnsForwardingRulesetByVirtualNetworkRequest",
+  }) as any as S.Schema<ListDnsForwardingRulesetByVirtualNetworkRequest>;
+
+/** The reference to the virtual network link that associates between the DNS forwarding ruleset and virtual network. */
+export interface VirtualNetworkLinkSubResourceProperties {
+  /** The reference to the virtual network link. */
+  virtualNetworkLink?: SubResource;
+}
+export const VirtualNetworkLinkSubResourceProperties = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      virtualNetworkLink: S.optional(SubResource),
+    }),
+).annotate({
+  identifier: "VirtualNetworkLinkSubResourceProperties",
+}) as any as S.Schema<VirtualNetworkLinkSubResourceProperties>;
+
+/** Reference to DNS forwarding ruleset and associated virtual network link. */
+export interface VirtualNetworkDnsForwardingRuleset {
+  /** DNS Forwarding Ruleset Resource ID. */
+  id?: string;
+  /** Properties of the virtual network link sub-resource reference. */
+  properties?: VirtualNetworkLinkSubResourceProperties;
+}
+export const VirtualNetworkDnsForwardingRuleset = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    properties: S.optional(VirtualNetworkLinkSubResourceProperties),
+  }),
+).annotate({
+  identifier: "VirtualNetworkDnsForwardingRuleset",
+}) as any as S.Schema<VirtualNetworkDnsForwardingRuleset>;
+
+/** The VirtualNetworkDnsForwardingRuleset items on this page */
+export type VirtualNetworkDnsForwardingRulesetListResultValueList =
+  Array<VirtualNetworkDnsForwardingRuleset>;
+export const VirtualNetworkDnsForwardingRulesetListResultValueList =
+  /*@__PURE__*/ S.Array(
+    VirtualNetworkDnsForwardingRuleset,
+  ) as any as S.Schema<VirtualNetworkDnsForwardingRulesetListResultValueList>;
+
+/** The response to an enumeration operation on Virtual Network DNS Forwarding Ruleset. */
+export interface VirtualNetworkDnsForwardingRulesetListResult {
+  /** The VirtualNetworkDnsForwardingRuleset items on this page */
+  value: VirtualNetworkDnsForwardingRulesetListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const VirtualNetworkDnsForwardingRulesetListResult =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      value: VirtualNetworkDnsForwardingRulesetListResultValueList,
+      nextLink: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "VirtualNetworkDnsForwardingRulesetListResult",
+  }) as any as S.Schema<VirtualNetworkDnsForwardingRulesetListResult>;
+
+export interface ListDnsForwardingRulesetsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The maximum number of results to return. If not specified, returns up to 100 results. */
+  _top?: number;
+}
+export const ListDnsForwardingRulesetsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Network/dnsForwardingRulesets",
+      code: 200,
+      apiVersion: "2025-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListDnsForwardingRulesetsRequest",
+}) as any as S.Schema<ListDnsForwardingRulesetsRequest>;
+
+export interface ListDnsResolverByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The maximum number of results to return. If not specified, returns up to 100 results. */
+  _top?: number;
+}
+export const ListDnsResolverByResourceGroupRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolvers",
+        code: 200,
+        apiVersion: "2025-05-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListDnsResolverByResourceGroupRequest",
+}) as any as S.Schema<ListDnsResolverByResourceGroupRequest>;
+
+/** Resource tags. */
+export type DnsResolverTagsMap = { [key: string]: string | undefined };
+export const DnsResolverTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<DnsResolverTagsMap>;
+
+/** Describes a DNS resolver. */
+export interface DnsResolver {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: DnsResolverTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the DNS resolver. */
+  properties: DnsResolverProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const DnsResolver = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(DnsResolverTagsMap),
+    location: S.String,
+    properties: DnsResolverProperties,
+    etag: S.optional(S.String),
+  }),
+).annotate({ identifier: "DnsResolver" }) as any as S.Schema<DnsResolver>;
+
+/** The DnsResolver items on this page */
+export type DnsResolverListResultValueList = Array<DnsResolver>;
+export const DnsResolverListResultValueList = /*@__PURE__*/ S.Array(
+  DnsResolver,
+) as any as S.Schema<DnsResolverListResultValueList>;
+
+/** The response of a DnsResolver list operation. */
+export interface DnsResolverListResult {
+  /** The DnsResolver items on this page */
+  value: DnsResolverListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const DnsResolverListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: DnsResolverListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DnsResolverListResult",
+}) as any as S.Schema<DnsResolverListResult>;
+
+export interface ListDnsResolverByVirtualNetworkRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VirtualNetwork */
+  virtualNetworkName: string;
+  /** The maximum number of results to return. If not specified, returns up to 100 results. */
+  _top?: number;
+}
+export const ListDnsResolverByVirtualNetworkRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      virtualNetworkName: S.String.pipe(T.Label()),
+      _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{virtualNetworkName}/listDnsResolvers",
+        code: 200,
+        apiVersion: "2025-05-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListDnsResolverByVirtualNetworkRequest",
+}) as any as S.Schema<ListDnsResolverByVirtualNetworkRequest>;
+
+/** The SubResource items on this page */
+export type SubResourceListResultValueList = Array<SubResource>;
+export const SubResourceListResultValueList = /*@__PURE__*/ S.Array(
+  SubResource,
+) as any as S.Schema<SubResourceListResultValueList>;
+
+/** The response to an enumeration operation on sub-resources. */
+export interface SubResourceListResult {
+  /** The SubResource items on this page */
+  value: SubResourceListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const SubResourceListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: SubResourceListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SubResourceListResult",
+}) as any as S.Schema<SubResourceListResult>;
+
+export interface ListDnsResolverDomainListByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The maximum number of results to return. If not specified, returns up to 100 results. */
+  _top?: number;
+}
+export const ListDnsResolverDomainListByResourceGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolverDomainLists",
+        code: 200,
+        apiVersion: "2025-05-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListDnsResolverDomainListByResourceGroupRequest",
+  }) as any as S.Schema<ListDnsResolverDomainListByResourceGroupRequest>;
+
+/** Resource tags. */
+export type DnsResolverDomainListTagsMap = {
+  [key: string]: string | undefined;
+};
+export const DnsResolverDomainListTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<DnsResolverDomainListTagsMap>;
+
+/** Describes a DNS resolver domain list. */
+export interface DnsResolverDomainList {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: DnsResolverDomainListTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the DNS resolver domain list. */
+  properties?: DnsResolverDomainListProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const DnsResolverDomainList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(DnsResolverDomainListTagsMap),
+    location: S.String,
+    properties: S.optional(DnsResolverDomainListProperties),
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DnsResolverDomainList",
+}) as any as S.Schema<DnsResolverDomainList>;
+
+/** The DnsResolverDomainList items on this page */
+export type DnsResolverDomainListListResultValueList =
+  Array<DnsResolverDomainList>;
+export const DnsResolverDomainListListResultValueList = /*@__PURE__*/ S.Array(
+  DnsResolverDomainList,
+) as any as S.Schema<DnsResolverDomainListListResultValueList>;
+
+/** The response of a DnsResolverDomainList list operation. */
+export interface DnsResolverDomainListListResult {
+  /** The DnsResolverDomainList items on this page */
+  value: DnsResolverDomainListListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const DnsResolverDomainListListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: DnsResolverDomainListListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DnsResolverDomainListListResult",
+}) as any as S.Schema<DnsResolverDomainListListResult>;
+
+export interface ListDnsResolverDomainListsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The maximum number of results to return. If not specified, returns up to 100 results. */
+  _top?: number;
+}
+export const ListDnsResolverDomainListsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Network/dnsResolverDomainLists",
+      code: 200,
+      apiVersion: "2025-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListDnsResolverDomainListsRequest",
+}) as any as S.Schema<ListDnsResolverDomainListsRequest>;
+
+export interface ListDnsResolverPoliciesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The maximum number of results to return. If not specified, returns up to 100 results. */
+  _top?: number;
+}
+export const ListDnsResolverPoliciesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Network/dnsResolverPolicies",
+      code: 200,
+      apiVersion: "2025-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListDnsResolverPoliciesRequest",
+}) as any as S.Schema<ListDnsResolverPoliciesRequest>;
+
+/** Resource tags. */
+export type DnsResolverPolicyTagsMap = { [key: string]: string | undefined };
+export const DnsResolverPolicyTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<DnsResolverPolicyTagsMap>;
+
+/** Describes a DNS resolver policy. */
+export interface DnsResolverPolicy {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: DnsResolverPolicyTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the DNS resolver policy. */
+  properties?: DnsResolverPolicyProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const DnsResolverPolicy = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(DnsResolverPolicyTagsMap),
+    location: S.String,
+    properties: S.optional(DnsResolverPolicyProperties),
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DnsResolverPolicy",
+}) as any as S.Schema<DnsResolverPolicy>;
+
+/** The DnsResolverPolicy items on this page */
+export type DnsResolverPolicyListResultValueList = Array<DnsResolverPolicy>;
+export const DnsResolverPolicyListResultValueList = /*@__PURE__*/ S.Array(
+  DnsResolverPolicy,
+) as any as S.Schema<DnsResolverPolicyListResultValueList>;
+
+/** The response of a DnsResolverPolicy list operation. */
+export interface DnsResolverPolicyListResult {
+  /** The DnsResolverPolicy items on this page */
+  value: DnsResolverPolicyListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const DnsResolverPolicyListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: DnsResolverPolicyListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DnsResolverPolicyListResult",
+}) as any as S.Schema<DnsResolverPolicyListResult>;
+
+export interface ListDnsResolverPolicyByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The maximum number of results to return. If not specified, returns up to 100 results. */
+  _top?: number;
+}
+export const ListDnsResolverPolicyByResourceGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolverPolicies",
+        code: 200,
+        apiVersion: "2025-05-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListDnsResolverPolicyByResourceGroupRequest",
+  }) as any as S.Schema<ListDnsResolverPolicyByResourceGroupRequest>;
+
+export interface ListDnsResolverPolicyByVirtualNetworkRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VirtualNetwork */
+  virtualNetworkName: string;
+}
+export const ListDnsResolverPolicyByVirtualNetworkRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      virtualNetworkName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{virtualNetworkName}/listDnsResolverPolicies",
+        code: 200,
+        apiVersion: "2025-05-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListDnsResolverPolicyByVirtualNetworkRequest",
+  }) as any as S.Schema<ListDnsResolverPolicyByVirtualNetworkRequest>;
+
+export interface ListDnsResolverPolicyVirtualNetworkLinksRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the DNS resolver policy. */
+  dnsResolverPolicyName: string;
+  /** The maximum number of results to return. If not specified, returns up to 100 results. */
+  _top?: number;
+}
+export const ListDnsResolverPolicyVirtualNetworkLinksRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      dnsResolverPolicyName: S.String.pipe(T.Label()),
+      _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolverPolicies/{dnsResolverPolicyName}/virtualNetworkLinks",
+        code: 200,
+        apiVersion: "2025-05-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListDnsResolverPolicyVirtualNetworkLinksRequest",
+  }) as any as S.Schema<ListDnsResolverPolicyVirtualNetworkLinksRequest>;
+
+/** Resource tags. */
+export type DnsResolverPolicyVirtualNetworkLinkTagsMap = {
+  [key: string]: string | undefined;
+};
+export const DnsResolverPolicyVirtualNetworkLinkTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<DnsResolverPolicyVirtualNetworkLinkTagsMap>;
+
+/** Describes a DNS resolver policy virtual network link. */
+export interface DnsResolverPolicyVirtualNetworkLink {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: DnsResolverPolicyVirtualNetworkLinkTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the DNS resolver policy virtual network link. */
+  properties: DnsResolverPolicyVirtualNetworkLinkProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const DnsResolverPolicyVirtualNetworkLink = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(DnsResolverPolicyVirtualNetworkLinkTagsMap),
+    location: S.String,
+    properties: DnsResolverPolicyVirtualNetworkLinkProperties,
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DnsResolverPolicyVirtualNetworkLink",
+}) as any as S.Schema<DnsResolverPolicyVirtualNetworkLink>;
+
+/** The DnsResolverPolicyVirtualNetworkLink items on this page */
+export type DnsResolverPolicyVirtualNetworkLinkListResultValueList =
+  Array<DnsResolverPolicyVirtualNetworkLink>;
+export const DnsResolverPolicyVirtualNetworkLinkListResultValueList =
+  /*@__PURE__*/ S.Array(
+    DnsResolverPolicyVirtualNetworkLink,
+  ) as any as S.Schema<DnsResolverPolicyVirtualNetworkLinkListResultValueList>;
+
+/** The response of a DnsResolverPolicyVirtualNetworkLink list operation. */
+export interface DnsResolverPolicyVirtualNetworkLinkListResult {
+  /** The DnsResolverPolicyVirtualNetworkLink items on this page */
+  value: DnsResolverPolicyVirtualNetworkLinkListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const DnsResolverPolicyVirtualNetworkLinkListResult =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      value: DnsResolverPolicyVirtualNetworkLinkListResultValueList,
+      nextLink: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "DnsResolverPolicyVirtualNetworkLinkListResult",
+  }) as any as S.Schema<DnsResolverPolicyVirtualNetworkLinkListResult>;
+
+export interface ListDnsResolversRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The maximum number of results to return. If not specified, returns up to 100 results. */
+  _top?: number;
+}
+export const ListDnsResolversRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Network/dnsResolvers",
+      code: 200,
+      apiVersion: "2025-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListDnsResolversRequest",
+}) as any as S.Schema<ListDnsResolversRequest>;
+
+export interface ListDnsSecurityRulesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the DNS resolver policy. */
+  dnsResolverPolicyName: string;
+  /** The maximum number of results to return. If not specified, returns up to 100 results. */
+  _top?: number;
+}
+export const ListDnsSecurityRulesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    dnsResolverPolicyName: S.String.pipe(T.Label()),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolverPolicies/{dnsResolverPolicyName}/dnsSecurityRules",
+      code: 200,
+      apiVersion: "2025-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListDnsSecurityRulesRequest",
+}) as any as S.Schema<ListDnsSecurityRulesRequest>;
+
+/** Resource tags. */
+export type DnsSecurityRuleTagsMap = { [key: string]: string | undefined };
+export const DnsSecurityRuleTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<DnsSecurityRuleTagsMap>;
+
+/** Describes a DNS security rule. */
+export interface DnsSecurityRule {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: DnsSecurityRuleTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the DNS security rule. */
+  properties: DnsSecurityRuleProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const DnsSecurityRule = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(DnsSecurityRuleTagsMap),
+    location: S.String,
+    properties: DnsSecurityRuleProperties,
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DnsSecurityRule",
+}) as any as S.Schema<DnsSecurityRule>;
+
+/** The DnsSecurityRule items on this page */
+export type DnsSecurityRuleListResultValueList = Array<DnsSecurityRule>;
+export const DnsSecurityRuleListResultValueList = /*@__PURE__*/ S.Array(
+  DnsSecurityRule,
+) as any as S.Schema<DnsSecurityRuleListResultValueList>;
+
+/** The response of a DnsSecurityRule list operation. */
+export interface DnsSecurityRuleListResult {
+  /** The DnsSecurityRule items on this page */
+  value: DnsSecurityRuleListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const DnsSecurityRuleListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: DnsSecurityRuleListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DnsSecurityRuleListResult",
+}) as any as S.Schema<DnsSecurityRuleListResult>;
+
+export interface ListForwardingRulesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the DNS forwarding ruleset. */
+  dnsForwardingRulesetName: string;
+  /** The maximum number of results to return. If not specified, returns up to 100 results. */
+  _top?: number;
+}
+export const ListForwardingRulesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    dnsForwardingRulesetName: S.String.pipe(T.Label()),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsForwardingRulesets/{dnsForwardingRulesetName}/forwardingRules",
+      code: 200,
+      apiVersion: "2025-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListForwardingRulesRequest",
+}) as any as S.Schema<ListForwardingRulesRequest>;
+
+/** Describes a forwarding rule within a DNS forwarding ruleset. */
+export interface ForwardingRule {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of the forwarding rule. */
+  properties: ForwardingRuleProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const ForwardingRule = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: ForwardingRuleProperties,
+    etag: S.optional(S.String),
+  }),
+).annotate({ identifier: "ForwardingRule" }) as any as S.Schema<ForwardingRule>;
+
+/** The ForwardingRule items on this page */
+export type ForwardingRuleListResultValueList = Array<ForwardingRule>;
+export const ForwardingRuleListResultValueList = /*@__PURE__*/ S.Array(
+  ForwardingRule,
+) as any as S.Schema<ForwardingRuleListResultValueList>;
+
+/** The response of a ForwardingRule list operation. */
+export interface ForwardingRuleListResult {
+  /** The ForwardingRule items on this page */
+  value: ForwardingRuleListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ForwardingRuleListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ForwardingRuleListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ForwardingRuleListResult",
+}) as any as S.Schema<ForwardingRuleListResult>;
+
+export interface ListInboundEndpointsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3583,7 +3154,7 @@ export interface InboundEndpointsListRequest {
   /** The maximum number of results to return. If not specified, returns up to 100 results. */
   _top?: number;
 }
-export const InboundEndpointsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListInboundEndpointsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -3598,8 +3169,8 @@ export const InboundEndpointsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "InboundEndpointsListRequest",
-}) as any as S.Schema<InboundEndpointsListRequest>;
+  identifier: "ListInboundEndpointsRequest",
+}) as any as S.Schema<ListInboundEndpointsRequest>;
 
 /** Resource tags. */
 export type InboundEndpointTagsMap = { [key: string]: string | undefined };
@@ -3664,56 +3235,43 @@ export const InboundEndpointListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "InboundEndpointListResult",
 }) as any as S.Schema<InboundEndpointListResult>;
 
-/** Tags for inbound endpoint. */
-export type InboundEndpointsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const InboundEndpointsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<InboundEndpointsUpdateRequestTagsMap>;
-
-export interface InboundEndpointsUpdateRequest {
+export interface ListOutboundEndpointsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the DNS resolver. */
   dnsResolverName: string;
-  /** The name of the inbound endpoint for the DNS resolver. */
-  inboundEndpointName: string;
-  /** Tags for inbound endpoint. */
-  tags?: InboundEndpointsUpdateRequestTagsMap;
+  /** The maximum number of results to return. If not specified, returns up to 100 results. */
+  _top?: number;
 }
-export const InboundEndpointsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListOutboundEndpointsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     dnsResolverName: S.String.pipe(T.Label()),
-    inboundEndpointName: S.String.pipe(T.Label()),
-    tags: S.optional(InboundEndpointsUpdateRequestTagsMap),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
   }).pipe(
     T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolvers/{dnsResolverName}/inboundEndpoints/{inboundEndpointName}",
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolvers/{dnsResolverName}/outboundEndpoints",
       code: 200,
       apiVersion: "2025-05-01",
     }),
   ),
 ).annotate({
-  identifier: "InboundEndpointsUpdateRequest",
-}) as any as S.Schema<InboundEndpointsUpdateRequest>;
+  identifier: "ListOutboundEndpointsRequest",
+}) as any as S.Schema<ListOutboundEndpointsRequest>;
 
 /** Resource tags. */
-export type InboundEndpointsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const InboundEndpointsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type OutboundEndpointTagsMap = { [key: string]: string | undefined };
+export const OutboundEndpointTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<InboundEndpointsUpdateResponseTagsMap>;
+) as any as S.Schema<OutboundEndpointTagsMap>;
 
-export interface InboundEndpointsUpdateResponse {
+/** Describes an outbound endpoint for a DNS resolver. */
+export interface OutboundEndpoint {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -3723,28 +3281,128 @@ export interface InboundEndpointsUpdateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: InboundEndpointsUpdateResponseTagsMap;
+  tags?: OutboundEndpointTagsMap;
   /** The geo-location where the resource lives */
   location: string;
-  /** Properties of the inbound endpoint. */
-  properties: InboundEndpointProperties;
+  /** Properties of the outbound endpoint. */
+  properties: OutboundEndpointProperties;
   /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
   etag?: string;
 }
-export const InboundEndpointsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const OutboundEndpoint = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(InboundEndpointsUpdateResponseTagsMap),
+    tags: S.optional(OutboundEndpointTagsMap),
     location: S.String,
-    properties: InboundEndpointProperties,
+    properties: OutboundEndpointProperties,
     etag: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "InboundEndpointsUpdateResponse",
-}) as any as S.Schema<InboundEndpointsUpdateResponse>;
+  identifier: "OutboundEndpoint",
+}) as any as S.Schema<OutboundEndpoint>;
+
+/** The OutboundEndpoint items on this page */
+export type OutboundEndpointListResultValueList = Array<OutboundEndpoint>;
+export const OutboundEndpointListResultValueList = /*@__PURE__*/ S.Array(
+  OutboundEndpoint,
+) as any as S.Schema<OutboundEndpointListResultValueList>;
+
+/** The response of a OutboundEndpoint list operation. */
+export interface OutboundEndpointListResult {
+  /** The OutboundEndpoint items on this page */
+  value: OutboundEndpointListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const OutboundEndpointListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: OutboundEndpointListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OutboundEndpointListResult",
+}) as any as S.Schema<OutboundEndpointListResult>;
+
+export interface ListVirtualNetworkLinksRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the DNS forwarding ruleset. */
+  dnsForwardingRulesetName: string;
+  /** The maximum number of results to return. If not specified, returns up to 100 results. */
+  _top?: number;
+}
+export const ListVirtualNetworkLinksRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    dnsForwardingRulesetName: S.String.pipe(T.Label()),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsForwardingRulesets/{dnsForwardingRulesetName}/virtualNetworkLinks",
+      code: 200,
+      apiVersion: "2025-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListVirtualNetworkLinksRequest",
+}) as any as S.Schema<ListVirtualNetworkLinksRequest>;
+
+/** Describes a virtual network link. */
+export interface VirtualNetworkLink {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of the virtual network link. */
+  properties: VirtualNetworkLinkProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const VirtualNetworkLink = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: VirtualNetworkLinkProperties,
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "VirtualNetworkLink",
+}) as any as S.Schema<VirtualNetworkLink>;
+
+/** The VirtualNetworkLink items on this page */
+export type VirtualNetworkLinkListResultValueList = Array<VirtualNetworkLink>;
+export const VirtualNetworkLinkListResultValueList = /*@__PURE__*/ S.Array(
+  VirtualNetworkLink,
+) as any as S.Schema<VirtualNetworkLinkListResultValueList>;
+
+/** The response of a VirtualNetworkLink list operation. */
+export interface VirtualNetworkLinkListResult {
+  /** The VirtualNetworkLink items on this page */
+  value: VirtualNetworkLinkListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const VirtualNetworkLinkListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: VirtualNetworkLinkListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "VirtualNetworkLinkListResult",
+}) as any as S.Schema<VirtualNetworkLinkListResult>;
 
 /** Resource tags. */
 export type OutboundEndpointsCreateOrUpdateRequestTagsMap = {
@@ -3817,25 +3475,6 @@ export const OutboundEndpointsCreateOrUpdateResponseTagsMap =
     S.String,
   ) as any as S.Schema<OutboundEndpointsCreateOrUpdateResponseTagsMap>;
 
-/** Represents the properties of an outbound endpoint for a DNS resolver. */
-export interface OutboundEndpointProperties {
-  /** The reference to the subnet used for the outbound endpoint. */
-  subnet: SubResource;
-  /** The current provisioning state of the outbound endpoint. This is a read-only property and any attempt to set this value will be ignored. */
-  provisioningState?: ProvisioningState;
-  /** The resourceGuid property of the outbound endpoint resource. */
-  resourceGuid?: string;
-}
-export const OutboundEndpointProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subnet: SubResource,
-    provisioningState: S.optional(ProvisioningState),
-    resourceGuid: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OutboundEndpointProperties",
-}) as any as S.Schema<OutboundEndpointProperties>;
-
 export interface OutboundEndpointsCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
@@ -3870,79 +3509,66 @@ export const OutboundEndpointsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "OutboundEndpointsCreateOrUpdateResponse",
 }) as any as S.Schema<OutboundEndpointsCreateOrUpdateResponse>;
 
-export interface OutboundEndpointsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the DNS resolver. */
-  dnsResolverName: string;
-  /** The name of the outbound endpoint for the DNS resolver. */
-  outboundEndpointName: string;
-}
-export const OutboundEndpointsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    dnsResolverName: S.String.pipe(T.Label()),
-    outboundEndpointName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolvers/{dnsResolverName}/outboundEndpoints/{outboundEndpointName}",
-      code: 200,
-      apiVersion: "2025-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "OutboundEndpointsDeleteRequest",
-}) as any as S.Schema<OutboundEndpointsDeleteRequest>;
+/** The reference to the DNS resolver outbound endpoints that are used to route DNS queries matching the forwarding rules in the ruleset to the target DNS servers. */
+export type UpdateDnsForwardingRulesetRequestDnsResolverOutboundEndpointsList =
+  Array<SubResource>;
+export const UpdateDnsForwardingRulesetRequestDnsResolverOutboundEndpointsList =
+  /*@__PURE__*/ S.Array(
+    SubResource,
+  ) as any as S.Schema<UpdateDnsForwardingRulesetRequestDnsResolverOutboundEndpointsList>;
 
-export interface OutboundEndpointsDeleteResponse {}
-export const OutboundEndpointsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "OutboundEndpointsDeleteResponse",
-}) as any as S.Schema<OutboundEndpointsDeleteResponse>;
-
-export interface OutboundEndpointsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the DNS resolver. */
-  dnsResolverName: string;
-  /** The name of the outbound endpoint for the DNS resolver. */
-  outboundEndpointName: string;
-}
-export const OutboundEndpointsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    dnsResolverName: S.String.pipe(T.Label()),
-    outboundEndpointName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolvers/{dnsResolverName}/outboundEndpoints/{outboundEndpointName}",
-      code: 200,
-      apiVersion: "2025-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "OutboundEndpointsGetRequest",
-}) as any as S.Schema<OutboundEndpointsGetRequest>;
-
-/** Resource tags. */
-export type OutboundEndpointsGetResponseTagsMap = {
+/** Tags for DNS Resolver. */
+export type UpdateDnsForwardingRulesetRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const OutboundEndpointsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateDnsForwardingRulesetRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<OutboundEndpointsGetResponseTagsMap>;
+) as any as S.Schema<UpdateDnsForwardingRulesetRequestTagsMap>;
 
-export interface OutboundEndpointsGetResponse {
+export interface UpdateDnsForwardingRulesetRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the DNS forwarding ruleset. */
+  dnsForwardingRulesetName: string;
+  /** The reference to the DNS resolver outbound endpoints that are used to route DNS queries matching the forwarding rules in the ruleset to the target DNS servers. */
+  dnsResolverOutboundEndpoints?: UpdateDnsForwardingRulesetRequestDnsResolverOutboundEndpointsList;
+  /** Tags for DNS Resolver. */
+  tags?: UpdateDnsForwardingRulesetRequestTagsMap;
+}
+export const UpdateDnsForwardingRulesetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    dnsForwardingRulesetName: S.String.pipe(T.Label()),
+    dnsResolverOutboundEndpoints: S.optional(
+      UpdateDnsForwardingRulesetRequestDnsResolverOutboundEndpointsList,
+    ),
+    tags: S.optional(UpdateDnsForwardingRulesetRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsForwardingRulesets/{dnsForwardingRulesetName}",
+      code: 200,
+      apiVersion: "2025-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateDnsForwardingRulesetRequest",
+}) as any as S.Schema<UpdateDnsForwardingRulesetRequest>;
+
+/** Resource tags. */
+export type UpdateDnsForwardingRulesetResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateDnsForwardingRulesetResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateDnsForwardingRulesetResponseTagsMap>;
+
+export interface UpdateDnsForwardingRulesetResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -3952,66 +3578,76 @@ export interface OutboundEndpointsGetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: OutboundEndpointsGetResponseTagsMap;
+  tags?: UpdateDnsForwardingRulesetResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
-  /** Properties of the outbound endpoint. */
-  properties: OutboundEndpointProperties;
+  /** Properties of the DNS forwarding ruleset. */
+  properties: DnsForwardingRulesetProperties;
   /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
   etag?: string;
 }
-export const OutboundEndpointsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateDnsForwardingRulesetResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(OutboundEndpointsGetResponseTagsMap),
+    tags: S.optional(UpdateDnsForwardingRulesetResponseTagsMap),
     location: S.String,
-    properties: OutboundEndpointProperties,
+    properties: DnsForwardingRulesetProperties,
     etag: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "OutboundEndpointsGetResponse",
-}) as any as S.Schema<OutboundEndpointsGetResponse>;
+  identifier: "UpdateDnsForwardingRulesetResponse",
+}) as any as S.Schema<UpdateDnsForwardingRulesetResponse>;
 
-export interface OutboundEndpointsListRequest {
+/** Tags for DNS Resolver. */
+export type UpdateDnsResolverRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateDnsResolverRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateDnsResolverRequestTagsMap>;
+
+export interface UpdateDnsResolverRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the DNS resolver. */
   dnsResolverName: string;
-  /** The maximum number of results to return. If not specified, returns up to 100 results. */
-  _top?: number;
+  /** Tags for DNS Resolver. */
+  tags?: UpdateDnsResolverRequestTagsMap;
 }
-export const OutboundEndpointsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateDnsResolverRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     dnsResolverName: S.String.pipe(T.Label()),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    tags: S.optional(UpdateDnsResolverRequestTagsMap),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolvers/{dnsResolverName}/outboundEndpoints",
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolvers/{dnsResolverName}",
       code: 200,
       apiVersion: "2025-05-01",
     }),
   ),
 ).annotate({
-  identifier: "OutboundEndpointsListRequest",
-}) as any as S.Schema<OutboundEndpointsListRequest>;
+  identifier: "UpdateDnsResolverRequest",
+}) as any as S.Schema<UpdateDnsResolverRequest>;
 
 /** Resource tags. */
-export type OutboundEndpointTagsMap = { [key: string]: string | undefined };
-export const OutboundEndpointTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateDnsResolverResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateDnsResolverResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<OutboundEndpointTagsMap>;
+) as any as S.Schema<UpdateDnsResolverResponseTagsMap>;
 
-/** Describes an outbound endpoint for a DNS resolver. */
-export interface OutboundEndpoint {
+export interface UpdateDnsResolverResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -4021,61 +3657,616 @@ export interface OutboundEndpoint {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: OutboundEndpointTagsMap;
+  tags?: UpdateDnsResolverResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
-  /** Properties of the outbound endpoint. */
-  properties: OutboundEndpointProperties;
+  /** Properties of the DNS resolver. */
+  properties: DnsResolverProperties;
   /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
   etag?: string;
 }
-export const OutboundEndpoint = /*@__PURE__*/ S.suspend(() =>
+export const UpdateDnsResolverResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(OutboundEndpointTagsMap),
+    tags: S.optional(UpdateDnsResolverResponseTagsMap),
     location: S.String,
-    properties: OutboundEndpointProperties,
+    properties: DnsResolverProperties,
     etag: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "OutboundEndpoint",
-}) as any as S.Schema<OutboundEndpoint>;
+  identifier: "UpdateDnsResolverResponse",
+}) as any as S.Schema<UpdateDnsResolverResponse>;
 
-/** The OutboundEndpoint items on this page */
-export type OutboundEndpointListResultValueList = Array<OutboundEndpoint>;
-export const OutboundEndpointListResultValueList = /*@__PURE__*/ S.Array(
-  OutboundEndpoint,
-) as any as S.Schema<OutboundEndpointListResultValueList>;
+/** The domains in the domain list. */
+export type DnsResolverDomainListPatchPropertiesDomainsList = Array<string>;
+export const DnsResolverDomainListPatchPropertiesDomainsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<DnsResolverDomainListPatchPropertiesDomainsList>;
 
-/** The response of a OutboundEndpoint list operation. */
-export interface OutboundEndpointListResult {
-  /** The OutboundEndpoint items on this page */
-  value: OutboundEndpointListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
+/** Represents the updatable properties of a DNS resolver domain list. */
+export interface DnsResolverDomainListPatchProperties {
+  /** The domains in the domain list. */
+  domains?: DnsResolverDomainListPatchPropertiesDomainsList;
 }
-export const OutboundEndpointListResult = /*@__PURE__*/ S.suspend(() =>
+export const DnsResolverDomainListPatchProperties = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      domains: S.optional(DnsResolverDomainListPatchPropertiesDomainsList),
+    }),
+).annotate({
+  identifier: "DnsResolverDomainListPatchProperties",
+}) as any as S.Schema<DnsResolverDomainListPatchProperties>;
+
+/** Tags for DNS resolver domain list. */
+export type UpdateDnsResolverDomainListRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateDnsResolverDomainListRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateDnsResolverDomainListRequestTagsMap>;
+
+export interface UpdateDnsResolverDomainListRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the DNS resolver domain list. */
+  dnsResolverDomainListName: string;
+  /** Updatable properties of the DNS resolver domain list. */
+  properties?: DnsResolverDomainListPatchProperties;
+  /** Tags for DNS resolver domain list. */
+  tags?: UpdateDnsResolverDomainListRequestTagsMap;
+}
+export const UpdateDnsResolverDomainListRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: OutboundEndpointListResultValueList,
-    nextLink: S.optional(S.String),
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    dnsResolverDomainListName: S.String.pipe(T.Label()),
+    properties: S.optional(DnsResolverDomainListPatchProperties),
+    tags: S.optional(UpdateDnsResolverDomainListRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolverDomainLists/{dnsResolverDomainListName}",
+      code: 200,
+      apiVersion: "2025-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateDnsResolverDomainListRequest",
+}) as any as S.Schema<UpdateDnsResolverDomainListRequest>;
+
+/** Resource tags. */
+export type UpdateDnsResolverDomainListResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateDnsResolverDomainListResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<UpdateDnsResolverDomainListResponseTagsMap>;
+
+export interface UpdateDnsResolverDomainListResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateDnsResolverDomainListResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the DNS resolver domain list. */
+  properties?: DnsResolverDomainListProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const UpdateDnsResolverDomainListResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateDnsResolverDomainListResponseTagsMap),
+    location: S.String,
+    properties: S.optional(DnsResolverDomainListProperties),
+    etag: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "OutboundEndpointListResult",
-}) as any as S.Schema<OutboundEndpointListResult>;
+  identifier: "UpdateDnsResolverDomainListResponse",
+}) as any as S.Schema<UpdateDnsResolverDomainListResponse>;
+
+/** Tags for DNS resolver policy. */
+export type UpdateDnsResolverPolicyRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateDnsResolverPolicyRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateDnsResolverPolicyRequestTagsMap>;
+
+export interface UpdateDnsResolverPolicyRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the DNS resolver policy. */
+  dnsResolverPolicyName: string;
+  /** Tags for DNS resolver policy. */
+  tags?: UpdateDnsResolverPolicyRequestTagsMap;
+}
+export const UpdateDnsResolverPolicyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    dnsResolverPolicyName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateDnsResolverPolicyRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolverPolicies/{dnsResolverPolicyName}",
+      code: 200,
+      apiVersion: "2025-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateDnsResolverPolicyRequest",
+}) as any as S.Schema<UpdateDnsResolverPolicyRequest>;
+
+/** Resource tags. */
+export type UpdateDnsResolverPolicyResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateDnsResolverPolicyResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateDnsResolverPolicyResponseTagsMap>;
+
+export interface UpdateDnsResolverPolicyResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateDnsResolverPolicyResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the DNS resolver policy. */
+  properties?: DnsResolverPolicyProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const UpdateDnsResolverPolicyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateDnsResolverPolicyResponseTagsMap),
+    location: S.String,
+    properties: S.optional(DnsResolverPolicyProperties),
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "UpdateDnsResolverPolicyResponse",
+}) as any as S.Schema<UpdateDnsResolverPolicyResponse>;
+
+/** Tags for the DNS resolver policy virtual network link. */
+export type UpdateDnsResolverPolicyVirtualNetworkLinkRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateDnsResolverPolicyVirtualNetworkLinkRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<UpdateDnsResolverPolicyVirtualNetworkLinkRequestTagsMap>;
+
+export interface UpdateDnsResolverPolicyVirtualNetworkLinkRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the DNS resolver policy. */
+  dnsResolverPolicyName: string;
+  /** The name of the DNS resolver policy virtual network link for the DNS resolver policy. */
+  dnsResolverPolicyVirtualNetworkLinkName: string;
+  /** Tags for the DNS resolver policy virtual network link. */
+  tags?: UpdateDnsResolverPolicyVirtualNetworkLinkRequestTagsMap;
+}
+export const UpdateDnsResolverPolicyVirtualNetworkLinkRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      dnsResolverPolicyName: S.String.pipe(T.Label()),
+      dnsResolverPolicyVirtualNetworkLinkName: S.String.pipe(T.Label()),
+      tags: S.optional(UpdateDnsResolverPolicyVirtualNetworkLinkRequestTagsMap),
+    }).pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolverPolicies/{dnsResolverPolicyName}/virtualNetworkLinks/{dnsResolverPolicyVirtualNetworkLinkName}",
+        code: 200,
+        apiVersion: "2025-05-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "UpdateDnsResolverPolicyVirtualNetworkLinkRequest",
+  }) as any as S.Schema<UpdateDnsResolverPolicyVirtualNetworkLinkRequest>;
+
+/** Resource tags. */
+export type UpdateDnsResolverPolicyVirtualNetworkLinkResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateDnsResolverPolicyVirtualNetworkLinkResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<UpdateDnsResolverPolicyVirtualNetworkLinkResponseTagsMap>;
+
+export interface UpdateDnsResolverPolicyVirtualNetworkLinkResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateDnsResolverPolicyVirtualNetworkLinkResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the DNS resolver policy virtual network link. */
+  properties: DnsResolverPolicyVirtualNetworkLinkProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const UpdateDnsResolverPolicyVirtualNetworkLinkResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(
+        UpdateDnsResolverPolicyVirtualNetworkLinkResponseTagsMap,
+      ),
+      location: S.String,
+      properties: DnsResolverPolicyVirtualNetworkLinkProperties,
+      etag: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "UpdateDnsResolverPolicyVirtualNetworkLinkResponse",
+  }) as any as S.Schema<UpdateDnsResolverPolicyVirtualNetworkLinkResponse>;
+
+/** DNS resolver policy domains lists that the DNS security rule applies to. */
+export type DnsSecurityRulePatchPropertiesDnsResolverDomainListsList =
+  Array<SubResource>;
+export const DnsSecurityRulePatchPropertiesDnsResolverDomainListsList =
+  /*@__PURE__*/ S.Array(
+    SubResource,
+  ) as any as S.Schema<DnsSecurityRulePatchPropertiesDnsResolverDomainListsList>;
+
+/** Represents the updatable properties of a DNS security rule. */
+export interface DnsSecurityRulePatchProperties {
+  /** The action to take on DNS requests that match the DNS security rule. */
+  action?: DnsSecurityRuleAction;
+  /** DNS resolver policy domains lists that the DNS security rule applies to. */
+  dnsResolverDomainLists?: DnsSecurityRulePatchPropertiesDnsResolverDomainListsList;
+  /** The state of DNS security rule. */
+  dnsSecurityRuleState?: DnsSecurityRuleState | (string & {});
+  /** The priority of the DNS security rule. */
+  priority?: number;
+}
+export const DnsSecurityRulePatchProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    action: S.optional(DnsSecurityRuleAction),
+    dnsResolverDomainLists: S.optional(
+      DnsSecurityRulePatchPropertiesDnsResolverDomainListsList,
+    ),
+    dnsSecurityRuleState: S.optional(DnsSecurityRuleState),
+    priority: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "DnsSecurityRulePatchProperties",
+}) as any as S.Schema<DnsSecurityRulePatchProperties>;
+
+/** Tags for DNS security rule. */
+export type UpdateDnsSecurityRuleRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateDnsSecurityRuleRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateDnsSecurityRuleRequestTagsMap>;
+
+export interface UpdateDnsSecurityRuleRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the DNS resolver policy. */
+  dnsResolverPolicyName: string;
+  /** The name of the DNS security rule. */
+  dnsSecurityRuleName: string;
+  /** Updatable properties of the DNS security rule. */
+  properties?: DnsSecurityRulePatchProperties;
+  /** Tags for DNS security rule. */
+  tags?: UpdateDnsSecurityRuleRequestTagsMap;
+}
+export const UpdateDnsSecurityRuleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    dnsResolverPolicyName: S.String.pipe(T.Label()),
+    dnsSecurityRuleName: S.String.pipe(T.Label()),
+    properties: S.optional(DnsSecurityRulePatchProperties),
+    tags: S.optional(UpdateDnsSecurityRuleRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolverPolicies/{dnsResolverPolicyName}/dnsSecurityRules/{dnsSecurityRuleName}",
+      code: 200,
+      apiVersion: "2025-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateDnsSecurityRuleRequest",
+}) as any as S.Schema<UpdateDnsSecurityRuleRequest>;
+
+/** Resource tags. */
+export type UpdateDnsSecurityRuleResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateDnsSecurityRuleResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateDnsSecurityRuleResponseTagsMap>;
+
+export interface UpdateDnsSecurityRuleResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateDnsSecurityRuleResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the DNS security rule. */
+  properties: DnsSecurityRuleProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const UpdateDnsSecurityRuleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateDnsSecurityRuleResponseTagsMap),
+    location: S.String,
+    properties: DnsSecurityRuleProperties,
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "UpdateDnsSecurityRuleResponse",
+}) as any as S.Schema<UpdateDnsSecurityRuleResponse>;
+
+/** DNS servers to forward the DNS query to. */
+export type ForwardingRulePatchPropertiesTargetDnsServersList =
+  Array<TargetDnsServer>;
+export const ForwardingRulePatchPropertiesTargetDnsServersList =
+  /*@__PURE__*/ S.Array(
+    TargetDnsServer,
+  ) as any as S.Schema<ForwardingRulePatchPropertiesTargetDnsServersList>;
+
+/** Metadata attached to the forwarding rule. */
+export type ForwardingRulePatchPropertiesMetadataMap = {
+  [key: string]: string | undefined;
+};
+export const ForwardingRulePatchPropertiesMetadataMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ForwardingRulePatchPropertiesMetadataMap>;
+
+/** The state of forwarding rule. */
+export type ForwardingRulePatchPropertiesForwardingRuleState =
+  | "Enabled"
+  | "Disabled";
+export const ForwardingRulePatchPropertiesForwardingRuleState =
+  /*@__PURE__*/ S.String;
+
+/** Represents the updatable properties of a forwarding rule within a DNS forwarding ruleset. */
+export interface ForwardingRulePatchProperties {
+  /** DNS servers to forward the DNS query to. */
+  targetDnsServers?: ForwardingRulePatchPropertiesTargetDnsServersList;
+  /** Metadata attached to the forwarding rule. */
+  metadata?: ForwardingRulePatchPropertiesMetadataMap;
+  /** The state of forwarding rule. */
+  forwardingRuleState?:
+    | ForwardingRulePatchPropertiesForwardingRuleState
+    | (string & {});
+}
+export const ForwardingRulePatchProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    targetDnsServers: S.optional(
+      ForwardingRulePatchPropertiesTargetDnsServersList,
+    ),
+    metadata: S.optional(ForwardingRulePatchPropertiesMetadataMap),
+    forwardingRuleState: S.optional(
+      ForwardingRulePatchPropertiesForwardingRuleState,
+    ),
+  }),
+).annotate({
+  identifier: "ForwardingRulePatchProperties",
+}) as any as S.Schema<ForwardingRulePatchProperties>;
+
+export interface UpdateForwardingRuleRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the DNS forwarding ruleset. */
+  dnsForwardingRulesetName: string;
+  /** The name of the forwarding rule. */
+  forwardingRuleName: string;
+  /** Updatable properties of the forwarding rule. */
+  properties?: ForwardingRulePatchProperties;
+}
+export const UpdateForwardingRuleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    dnsForwardingRulesetName: S.String.pipe(T.Label()),
+    forwardingRuleName: S.String.pipe(T.Label()),
+    properties: S.optional(ForwardingRulePatchProperties),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsForwardingRulesets/{dnsForwardingRulesetName}/forwardingRules/{forwardingRuleName}",
+      code: 200,
+      apiVersion: "2025-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateForwardingRuleRequest",
+}) as any as S.Schema<UpdateForwardingRuleRequest>;
+
+export interface UpdateForwardingRuleResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of the forwarding rule. */
+  properties: ForwardingRuleProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const UpdateForwardingRuleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: ForwardingRuleProperties,
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "UpdateForwardingRuleResponse",
+}) as any as S.Schema<UpdateForwardingRuleResponse>;
+
+/** Tags for inbound endpoint. */
+export type UpdateInboundEndpointRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateInboundEndpointRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateInboundEndpointRequestTagsMap>;
+
+export interface UpdateInboundEndpointRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the DNS resolver. */
+  dnsResolverName: string;
+  /** The name of the inbound endpoint for the DNS resolver. */
+  inboundEndpointName: string;
+  /** Tags for inbound endpoint. */
+  tags?: UpdateInboundEndpointRequestTagsMap;
+}
+export const UpdateInboundEndpointRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    dnsResolverName: S.String.pipe(T.Label()),
+    inboundEndpointName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateInboundEndpointRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsResolvers/{dnsResolverName}/inboundEndpoints/{inboundEndpointName}",
+      code: 200,
+      apiVersion: "2025-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateInboundEndpointRequest",
+}) as any as S.Schema<UpdateInboundEndpointRequest>;
+
+/** Resource tags. */
+export type UpdateInboundEndpointResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateInboundEndpointResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateInboundEndpointResponseTagsMap>;
+
+export interface UpdateInboundEndpointResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateInboundEndpointResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the inbound endpoint. */
+  properties: InboundEndpointProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const UpdateInboundEndpointResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateInboundEndpointResponseTagsMap),
+    location: S.String,
+    properties: InboundEndpointProperties,
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "UpdateInboundEndpointResponse",
+}) as any as S.Schema<UpdateInboundEndpointResponse>;
 
 /** Tags for outbound endpoint. */
-export type OutboundEndpointsUpdateRequestTagsMap = {
+export type UpdateOutboundEndpointRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const OutboundEndpointsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateOutboundEndpointRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<OutboundEndpointsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateOutboundEndpointRequestTagsMap>;
 
-export interface OutboundEndpointsUpdateRequest {
+export interface UpdateOutboundEndpointRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4085,15 +4276,15 @@ export interface OutboundEndpointsUpdateRequest {
   /** The name of the outbound endpoint for the DNS resolver. */
   outboundEndpointName: string;
   /** Tags for outbound endpoint. */
-  tags?: OutboundEndpointsUpdateRequestTagsMap;
+  tags?: UpdateOutboundEndpointRequestTagsMap;
 }
-export const OutboundEndpointsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateOutboundEndpointRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     dnsResolverName: S.String.pipe(T.Label()),
     outboundEndpointName: S.String.pipe(T.Label()),
-    tags: S.optional(OutboundEndpointsUpdateRequestTagsMap),
+    tags: S.optional(UpdateOutboundEndpointRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -4103,19 +4294,19 @@ export const OutboundEndpointsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OutboundEndpointsUpdateRequest",
-}) as any as S.Schema<OutboundEndpointsUpdateRequest>;
+  identifier: "UpdateOutboundEndpointRequest",
+}) as any as S.Schema<UpdateOutboundEndpointRequest>;
 
 /** Resource tags. */
-export type OutboundEndpointsUpdateResponseTagsMap = {
+export type UpdateOutboundEndpointResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const OutboundEndpointsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateOutboundEndpointResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<OutboundEndpointsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateOutboundEndpointResponseTagsMap>;
 
-export interface OutboundEndpointsUpdateResponse {
+export interface UpdateOutboundEndpointResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -4125,7 +4316,7 @@ export interface OutboundEndpointsUpdateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: OutboundEndpointsUpdateResponseTagsMap;
+  tags?: UpdateOutboundEndpointResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of the outbound endpoint. */
@@ -4133,48 +4324,101 @@ export interface OutboundEndpointsUpdateResponse {
   /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
   etag?: string;
 }
-export const OutboundEndpointsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateOutboundEndpointResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(OutboundEndpointsUpdateResponseTagsMap),
+    tags: S.optional(UpdateOutboundEndpointResponseTagsMap),
     location: S.String,
     properties: OutboundEndpointProperties,
     etag: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "OutboundEndpointsUpdateResponse",
-}) as any as S.Schema<OutboundEndpointsUpdateResponse>;
+  identifier: "UpdateOutboundEndpointResponse",
+}) as any as S.Schema<UpdateOutboundEndpointResponse>;
 
 /** Metadata attached to the virtual network link. */
-export type VirtualNetworkLinkPropertiesMetadataMap = {
+export type VirtualNetworkLinkPatchPropertiesMetadataMap = {
   [key: string]: string | undefined;
 };
-export const VirtualNetworkLinkPropertiesMetadataMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<VirtualNetworkLinkPropertiesMetadataMap>;
+export const VirtualNetworkLinkPatchPropertiesMetadataMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<VirtualNetworkLinkPatchPropertiesMetadataMap>;
 
-/** Represents the properties of a virtual network link. */
-export interface VirtualNetworkLinkProperties {
-  /** The reference to the virtual network. This cannot be changed after creation. */
-  virtualNetwork: SubResource;
+/** Represents the updatable properties of the virtual network link. */
+export interface VirtualNetworkLinkPatchProperties {
   /** Metadata attached to the virtual network link. */
-  metadata?: VirtualNetworkLinkPropertiesMetadataMap;
-  /** The current provisioning state of the virtual network link. This is a read-only property and any attempt to set this value will be ignored. */
-  provisioningState?: ProvisioningState | (string & {});
+  metadata?: VirtualNetworkLinkPatchPropertiesMetadataMap;
 }
-export const VirtualNetworkLinkProperties = /*@__PURE__*/ S.suspend(() =>
+export const VirtualNetworkLinkPatchProperties = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    virtualNetwork: SubResource,
-    metadata: S.optional(VirtualNetworkLinkPropertiesMetadataMap),
-    provisioningState: S.optional(ProvisioningState),
+    metadata: S.optional(VirtualNetworkLinkPatchPropertiesMetadataMap),
   }),
 ).annotate({
-  identifier: "VirtualNetworkLinkProperties",
-}) as any as S.Schema<VirtualNetworkLinkProperties>;
+  identifier: "VirtualNetworkLinkPatchProperties",
+}) as any as S.Schema<VirtualNetworkLinkPatchProperties>;
+
+export interface UpdateVirtualNetworkLinkRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the DNS forwarding ruleset. */
+  dnsForwardingRulesetName: string;
+  /** The name of the virtual network link. */
+  virtualNetworkLinkName: string;
+  /** Updatable properties of the virtual network link. */
+  properties?: VirtualNetworkLinkPatchProperties;
+}
+export const UpdateVirtualNetworkLinkRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    dnsForwardingRulesetName: S.String.pipe(T.Label()),
+    virtualNetworkLinkName: S.String.pipe(T.Label()),
+    properties: S.optional(VirtualNetworkLinkPatchProperties),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsForwardingRulesets/{dnsForwardingRulesetName}/virtualNetworkLinks/{virtualNetworkLinkName}",
+      code: 200,
+      apiVersion: "2025-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateVirtualNetworkLinkRequest",
+}) as any as S.Schema<UpdateVirtualNetworkLinkRequest>;
+
+export interface UpdateVirtualNetworkLinkResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of the virtual network link. */
+  properties: VirtualNetworkLinkProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const UpdateVirtualNetworkLinkResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: VirtualNetworkLinkProperties,
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "UpdateVirtualNetworkLinkResponse",
+}) as any as S.Schema<UpdateVirtualNetworkLinkResponse>;
 
 export interface VirtualNetworkLinksCreateOrUpdateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -4236,254 +4480,170 @@ export const VirtualNetworkLinksCreateOrUpdateResponse =
     identifier: "VirtualNetworkLinksCreateOrUpdateResponse",
   }) as any as S.Schema<VirtualNetworkLinksCreateOrUpdateResponse>;
 
-export interface VirtualNetworkLinksDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the DNS forwarding ruleset. */
-  dnsForwardingRulesetName: string;
-  /** The name of the virtual network link. */
-  virtualNetworkLinkName: string;
-}
-export const VirtualNetworkLinksDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    dnsForwardingRulesetName: S.String.pipe(T.Label()),
-    virtualNetworkLinkName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsForwardingRulesets/{dnsForwardingRulesetName}/virtualNetworkLinks/{virtualNetworkLinkName}",
-      code: 200,
-      apiVersion: "2025-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "VirtualNetworkLinksDeleteRequest",
-}) as any as S.Schema<VirtualNetworkLinksDeleteRequest>;
+export type BulkDnsResolverDomainListError = AzureOpError;
+/** Uploads or downloads the list of domains for a DNS Resolver Domain List from a storage link. */
+export const BulkDnsResolverDomainList: API.OperationMethod<
+  BulkDnsResolverDomainListRequest,
+  BulkDnsResolverDomainListResponse,
+  BulkDnsResolverDomainListError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BulkDnsResolverDomainListRequest,
+  output: BulkDnsResolverDomainListResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-export interface VirtualNetworkLinksDeleteResponse {}
-export const VirtualNetworkLinksDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "VirtualNetworkLinksDeleteResponse",
-}) as any as S.Schema<VirtualNetworkLinksDeleteResponse>;
+export type DeleteDnsForwardingRulesetError = AzureOpError;
+/** Deletes a DNS forwarding ruleset. WARNING: This operation cannot be undone. All forwarding rules within the ruleset will be deleted. */
+export const DeleteDnsForwardingRuleset: API.OperationMethod<
+  DeleteDnsForwardingRulesetRequest,
+  DeleteDnsForwardingRulesetResponse,
+  DeleteDnsForwardingRulesetError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteDnsForwardingRulesetRequest,
+  output: DeleteDnsForwardingRulesetResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-export interface VirtualNetworkLinksGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the DNS forwarding ruleset. */
-  dnsForwardingRulesetName: string;
-  /** The name of the virtual network link. */
-  virtualNetworkLinkName: string;
-}
-export const VirtualNetworkLinksGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    dnsForwardingRulesetName: S.String.pipe(T.Label()),
-    virtualNetworkLinkName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsForwardingRulesets/{dnsForwardingRulesetName}/virtualNetworkLinks/{virtualNetworkLinkName}",
-      code: 200,
-      apiVersion: "2025-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "VirtualNetworkLinksGetRequest",
-}) as any as S.Schema<VirtualNetworkLinksGetRequest>;
+export type DeleteDnsResolverError = AzureOpError;
+/** Deletes a DNS resolver. WARNING: This operation cannot be undone. */
+export const DeleteDnsResolver: API.OperationMethod<
+  DeleteDnsResolverRequest,
+  DeleteDnsResolverResponse,
+  DeleteDnsResolverError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteDnsResolverRequest,
+  output: DeleteDnsResolverResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-export interface VirtualNetworkLinksGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of the virtual network link. */
-  properties: VirtualNetworkLinkProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const VirtualNetworkLinksGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: VirtualNetworkLinkProperties,
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "VirtualNetworkLinksGetResponse",
-}) as any as S.Schema<VirtualNetworkLinksGetResponse>;
+export type DeleteDnsResolverDomainListError = AzureOpError;
+/** Deletes a DNS resolver domain list. WARNING: This operation cannot be undone. */
+export const DeleteDnsResolverDomainList: API.OperationMethod<
+  DeleteDnsResolverDomainListRequest,
+  DeleteDnsResolverDomainListResponse,
+  DeleteDnsResolverDomainListError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteDnsResolverDomainListRequest,
+  output: DeleteDnsResolverDomainListResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-export interface VirtualNetworkLinksListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the DNS forwarding ruleset. */
-  dnsForwardingRulesetName: string;
-  /** The maximum number of results to return. If not specified, returns up to 100 results. */
-  _top?: number;
-}
-export const VirtualNetworkLinksListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    dnsForwardingRulesetName: S.String.pipe(T.Label()),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsForwardingRulesets/{dnsForwardingRulesetName}/virtualNetworkLinks",
-      code: 200,
-      apiVersion: "2025-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "VirtualNetworkLinksListRequest",
-}) as any as S.Schema<VirtualNetworkLinksListRequest>;
+export type DeleteDnsResolverPolicyError = AzureOpError;
+/** Deletes a DNS resolver policy. WARNING: This operation cannot be undone. */
+export const DeleteDnsResolverPolicy: API.OperationMethod<
+  DeleteDnsResolverPolicyRequest,
+  DeleteDnsResolverPolicyResponse,
+  DeleteDnsResolverPolicyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteDnsResolverPolicyRequest,
+  output: DeleteDnsResolverPolicyResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-/** Describes a virtual network link. */
-export interface VirtualNetworkLink {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of the virtual network link. */
-  properties: VirtualNetworkLinkProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const VirtualNetworkLink = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: VirtualNetworkLinkProperties,
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "VirtualNetworkLink",
-}) as any as S.Schema<VirtualNetworkLink>;
+export type DeleteDnsResolverPolicyVirtualNetworkLinkError = AzureOpError;
+/** Deletes a DNS resolver policy virtual network link. WARNING: This operation cannot be undone. */
+export const DeleteDnsResolverPolicyVirtualNetworkLink: API.OperationMethod<
+  DeleteDnsResolverPolicyVirtualNetworkLinkRequest,
+  DeleteDnsResolverPolicyVirtualNetworkLinkResponse,
+  DeleteDnsResolverPolicyVirtualNetworkLinkError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteDnsResolverPolicyVirtualNetworkLinkRequest,
+  output: DeleteDnsResolverPolicyVirtualNetworkLinkResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-/** The VirtualNetworkLink items on this page */
-export type VirtualNetworkLinkListResultValueList = Array<VirtualNetworkLink>;
-export const VirtualNetworkLinkListResultValueList = /*@__PURE__*/ S.Array(
-  VirtualNetworkLink,
-) as any as S.Schema<VirtualNetworkLinkListResultValueList>;
+export type DeleteDnsSecurityRuleError = AzureOpError;
+/** Deletes a DNS security rule for a DNS resolver policy. WARNING: This operation cannot be undone. */
+export const DeleteDnsSecurityRule: API.OperationMethod<
+  DeleteDnsSecurityRuleRequest,
+  DeleteDnsSecurityRuleResponse,
+  DeleteDnsSecurityRuleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteDnsSecurityRuleRequest,
+  output: DeleteDnsSecurityRuleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-/** The response of a VirtualNetworkLink list operation. */
-export interface VirtualNetworkLinkListResult {
-  /** The VirtualNetworkLink items on this page */
-  value: VirtualNetworkLinkListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const VirtualNetworkLinkListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: VirtualNetworkLinkListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "VirtualNetworkLinkListResult",
-}) as any as S.Schema<VirtualNetworkLinkListResult>;
+export type DeleteForwardingRuleError = AzureOpError;
+/** Deletes a forwarding rule in a DNS forwarding ruleset. WARNING: This operation cannot be undone. */
+export const DeleteForwardingRule: API.OperationMethod<
+  DeleteForwardingRuleRequest,
+  DeleteForwardingRuleResponse,
+  DeleteForwardingRuleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteForwardingRuleRequest,
+  output: DeleteForwardingRuleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-/** Metadata attached to the virtual network link. */
-export type VirtualNetworkLinkPatchPropertiesMetadataMap = {
-  [key: string]: string | undefined;
-};
-export const VirtualNetworkLinkPatchPropertiesMetadataMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<VirtualNetworkLinkPatchPropertiesMetadataMap>;
+export type DeleteInboundEndpointError = AzureOpError;
+/** Deletes an inbound endpoint for a DNS resolver. WARNING: This operation cannot be undone. */
+export const DeleteInboundEndpoint: API.OperationMethod<
+  DeleteInboundEndpointRequest,
+  DeleteInboundEndpointResponse,
+  DeleteInboundEndpointError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteInboundEndpointRequest,
+  output: DeleteInboundEndpointResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-/** Represents the updatable properties of the virtual network link. */
-export interface VirtualNetworkLinkPatchProperties {
-  /** Metadata attached to the virtual network link. */
-  metadata?: VirtualNetworkLinkPatchPropertiesMetadataMap;
-}
-export const VirtualNetworkLinkPatchProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    metadata: S.optional(VirtualNetworkLinkPatchPropertiesMetadataMap),
-  }),
-).annotate({
-  identifier: "VirtualNetworkLinkPatchProperties",
-}) as any as S.Schema<VirtualNetworkLinkPatchProperties>;
+export type DeleteOutboundEndpointError = AzureOpError;
+/** Deletes an outbound endpoint for a DNS resolver. WARNING: This operation cannot be undone. */
+export const DeleteOutboundEndpoint: API.OperationMethod<
+  DeleteOutboundEndpointRequest,
+  DeleteOutboundEndpointResponse,
+  DeleteOutboundEndpointError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteOutboundEndpointRequest,
+  output: DeleteOutboundEndpointResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-export interface VirtualNetworkLinksUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the DNS forwarding ruleset. */
-  dnsForwardingRulesetName: string;
-  /** The name of the virtual network link. */
-  virtualNetworkLinkName: string;
-  /** Updatable properties of the virtual network link. */
-  properties?: VirtualNetworkLinkPatchProperties;
-}
-export const VirtualNetworkLinksUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    dnsForwardingRulesetName: S.String.pipe(T.Label()),
-    virtualNetworkLinkName: S.String.pipe(T.Label()),
-    properties: S.optional(VirtualNetworkLinkPatchProperties),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/dnsForwardingRulesets/{dnsForwardingRulesetName}/virtualNetworkLinks/{virtualNetworkLinkName}",
-      code: 200,
-      apiVersion: "2025-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "VirtualNetworkLinksUpdateRequest",
-}) as any as S.Schema<VirtualNetworkLinksUpdateRequest>;
-
-export interface VirtualNetworkLinksUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of the virtual network link. */
-  properties: VirtualNetworkLinkProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const VirtualNetworkLinksUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: VirtualNetworkLinkProperties,
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "VirtualNetworkLinksUpdateResponse",
-}) as any as S.Schema<VirtualNetworkLinksUpdateResponse>;
+export type DeleteVirtualNetworkLinkError = AzureOpError;
+/** Deletes a virtual network link to a DNS forwarding ruleset. WARNING: This operation cannot be undone. */
+export const DeleteVirtualNetworkLink: API.OperationMethod<
+  DeleteVirtualNetworkLinkRequest,
+  DeleteVirtualNetworkLinkResponse,
+  DeleteVirtualNetworkLinkError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteVirtualNetworkLinkRequest,
+  output: DeleteVirtualNetworkLinkResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
 export type DnsForwardingRulesetsCreateOrUpdateError = AzureOpError;
 /** Creates or updates a DNS forwarding ruleset. */
@@ -4495,111 +4655,6 @@ export const DnsForwardingRulesetsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DnsForwardingRulesetsCreateOrUpdateRequest,
   output: DnsForwardingRulesetsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DnsForwardingRulesetsDeleteError = AzureOpError;
-/** Deletes a DNS forwarding ruleset. WARNING: This operation cannot be undone. All forwarding rules within the ruleset will be deleted. */
-export const DnsForwardingRulesetsDelete: API.OperationMethod<
-  DnsForwardingRulesetsDeleteRequest,
-  DnsForwardingRulesetsDeleteResponse,
-  DnsForwardingRulesetsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DnsForwardingRulesetsDeleteRequest,
-  output: DnsForwardingRulesetsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DnsForwardingRulesetsGetError = AzureOpError;
-/** Gets a DNS forwarding ruleset properties. */
-export const DnsForwardingRulesetsGet: API.OperationMethod<
-  DnsForwardingRulesetsGetRequest,
-  DnsForwardingRulesetsGetResponse,
-  DnsForwardingRulesetsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DnsForwardingRulesetsGetRequest,
-  output: DnsForwardingRulesetsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DnsForwardingRulesetsListError = AzureOpError;
-/** Lists DNS forwarding rulesets in all resource groups of a subscription. */
-export const DnsForwardingRulesetsList: API.OperationMethod<
-  DnsForwardingRulesetsListRequest,
-  DnsForwardingRulesetListResult,
-  DnsForwardingRulesetsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DnsForwardingRulesetsListRequest,
-  output: DnsForwardingRulesetListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DnsForwardingRulesetsListByResourceGroupError = AzureOpError;
-/** Lists DNS forwarding rulesets within a resource group. */
-export const DnsForwardingRulesetsListByResourceGroup: API.OperationMethod<
-  DnsForwardingRulesetsListByResourceGroupRequest,
-  DnsForwardingRulesetListResult,
-  DnsForwardingRulesetsListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DnsForwardingRulesetsListByResourceGroupRequest,
-  output: DnsForwardingRulesetListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DnsForwardingRulesetsListByVirtualNetworkError = AzureOpError;
-/** Lists DNS forwarding ruleset resource IDs attached to a virtual network. */
-export const DnsForwardingRulesetsListByVirtualNetwork: API.OperationMethod<
-  DnsForwardingRulesetsListByVirtualNetworkRequest,
-  VirtualNetworkDnsForwardingRulesetListResult,
-  DnsForwardingRulesetsListByVirtualNetworkError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DnsForwardingRulesetsListByVirtualNetworkRequest,
-  output: VirtualNetworkDnsForwardingRulesetListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DnsForwardingRulesetsUpdateError = AzureOpError;
-/** Updates a DNS forwarding ruleset. */
-export const DnsForwardingRulesetsUpdate: API.OperationMethod<
-  DnsForwardingRulesetsUpdateRequest,
-  DnsForwardingRulesetsUpdateResponse,
-  DnsForwardingRulesetsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DnsForwardingRulesetsUpdateRequest,
-  output: DnsForwardingRulesetsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DnsResolverDomainListsBulkError = AzureOpError;
-/** Uploads or downloads the list of domains for a DNS Resolver Domain List from a storage link. */
-export const DnsResolverDomainListsBulk: API.OperationMethod<
-  DnsResolverDomainListsBulkRequest,
-  DnsResolverDomainListsBulkResponse,
-  DnsResolverDomainListsBulkError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DnsResolverDomainListsBulkRequest,
-  output: DnsResolverDomainListsBulkResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -4620,81 +4675,6 @@ export const DnsResolverDomainListsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DnsResolverDomainListsDeleteError = AzureOpError;
-/** Deletes a DNS resolver domain list. WARNING: This operation cannot be undone. */
-export const DnsResolverDomainListsDelete: API.OperationMethod<
-  DnsResolverDomainListsDeleteRequest,
-  DnsResolverDomainListsDeleteResponse,
-  DnsResolverDomainListsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DnsResolverDomainListsDeleteRequest,
-  output: DnsResolverDomainListsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DnsResolverDomainListsGetError = AzureOpError;
-/** Gets properties of a DNS resolver domain list. */
-export const DnsResolverDomainListsGet: API.OperationMethod<
-  DnsResolverDomainListsGetRequest,
-  DnsResolverDomainListsGetResponse,
-  DnsResolverDomainListsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DnsResolverDomainListsGetRequest,
-  output: DnsResolverDomainListsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DnsResolverDomainListsListError = AzureOpError;
-/** Lists DNS resolver domain lists in all resource groups of a subscription. */
-export const DnsResolverDomainListsList: API.OperationMethod<
-  DnsResolverDomainListsListRequest,
-  DnsResolverDomainListListResult,
-  DnsResolverDomainListsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DnsResolverDomainListsListRequest,
-  output: DnsResolverDomainListListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DnsResolverDomainListsListByResourceGroupError = AzureOpError;
-/** Lists DNS resolver domain lists within a resource group. */
-export const DnsResolverDomainListsListByResourceGroup: API.OperationMethod<
-  DnsResolverDomainListsListByResourceGroupRequest,
-  DnsResolverDomainListListResult,
-  DnsResolverDomainListsListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DnsResolverDomainListsListByResourceGroupRequest,
-  output: DnsResolverDomainListListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DnsResolverDomainListsUpdateError = AzureOpError;
-/** Updates a DNS resolver domain list. */
-export const DnsResolverDomainListsUpdate: API.OperationMethod<
-  DnsResolverDomainListsUpdateRequest,
-  DnsResolverDomainListsUpdateResponse,
-  DnsResolverDomainListsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DnsResolverDomainListsUpdateRequest,
-  output: DnsResolverDomainListsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type DnsResolverPoliciesCreateOrUpdateError = AzureOpError;
 /** Creates or updates a DNS resolver policy. */
 export const DnsResolverPoliciesCreateOrUpdate: API.OperationMethod<
@@ -4705,96 +4685,6 @@ export const DnsResolverPoliciesCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DnsResolverPoliciesCreateOrUpdateRequest,
   output: DnsResolverPoliciesCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DnsResolverPoliciesDeleteError = AzureOpError;
-/** Deletes a DNS resolver policy. WARNING: This operation cannot be undone. */
-export const DnsResolverPoliciesDelete: API.OperationMethod<
-  DnsResolverPoliciesDeleteRequest,
-  DnsResolverPoliciesDeleteResponse,
-  DnsResolverPoliciesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DnsResolverPoliciesDeleteRequest,
-  output: DnsResolverPoliciesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DnsResolverPoliciesGetError = AzureOpError;
-/** Gets properties of a DNS resolver policy. */
-export const DnsResolverPoliciesGet: API.OperationMethod<
-  DnsResolverPoliciesGetRequest,
-  DnsResolverPoliciesGetResponse,
-  DnsResolverPoliciesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DnsResolverPoliciesGetRequest,
-  output: DnsResolverPoliciesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DnsResolverPoliciesListError = AzureOpError;
-/** Lists DNS resolver policies in all resource groups of a subscription. */
-export const DnsResolverPoliciesList: API.OperationMethod<
-  DnsResolverPoliciesListRequest,
-  DnsResolverPolicyListResult,
-  DnsResolverPoliciesListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DnsResolverPoliciesListRequest,
-  output: DnsResolverPolicyListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DnsResolverPoliciesListByResourceGroupError = AzureOpError;
-/** Lists DNS resolver policies within a resource group. */
-export const DnsResolverPoliciesListByResourceGroup: API.OperationMethod<
-  DnsResolverPoliciesListByResourceGroupRequest,
-  DnsResolverPolicyListResult,
-  DnsResolverPoliciesListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DnsResolverPoliciesListByResourceGroupRequest,
-  output: DnsResolverPolicyListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DnsResolverPoliciesListByVirtualNetworkError = AzureOpError;
-/** Lists DNS resolver policy resource IDs linked to a virtual network. */
-export const DnsResolverPoliciesListByVirtualNetwork: API.OperationMethod<
-  DnsResolverPoliciesListByVirtualNetworkRequest,
-  SubResourceListResult,
-  DnsResolverPoliciesListByVirtualNetworkError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DnsResolverPoliciesListByVirtualNetworkRequest,
-  output: SubResourceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DnsResolverPoliciesUpdateError = AzureOpError;
-/** Updates a DNS resolver policy. */
-export const DnsResolverPoliciesUpdate: API.OperationMethod<
-  DnsResolverPoliciesUpdateRequest,
-  DnsResolverPoliciesUpdateResponse,
-  DnsResolverPoliciesUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DnsResolverPoliciesUpdateRequest,
-  output: DnsResolverPoliciesUpdateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -4816,66 +4706,6 @@ export const DnsResolverPolicyVirtualNetworkLinksCreateOrUpdate: API.OperationMe
   retry: Retry.Retry,
 }));
 
-export type DnsResolverPolicyVirtualNetworkLinksDeleteError = AzureOpError;
-/** Deletes a DNS resolver policy virtual network link. WARNING: This operation cannot be undone. */
-export const DnsResolverPolicyVirtualNetworkLinksDelete: API.OperationMethod<
-  DnsResolverPolicyVirtualNetworkLinksDeleteRequest,
-  DnsResolverPolicyVirtualNetworkLinksDeleteResponse,
-  DnsResolverPolicyVirtualNetworkLinksDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DnsResolverPolicyVirtualNetworkLinksDeleteRequest,
-  output: DnsResolverPolicyVirtualNetworkLinksDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DnsResolverPolicyVirtualNetworkLinksGetError = AzureOpError;
-/** Gets properties of a DNS resolver policy virtual network link. */
-export const DnsResolverPolicyVirtualNetworkLinksGet: API.OperationMethod<
-  DnsResolverPolicyVirtualNetworkLinksGetRequest,
-  DnsResolverPolicyVirtualNetworkLinksGetResponse,
-  DnsResolverPolicyVirtualNetworkLinksGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DnsResolverPolicyVirtualNetworkLinksGetRequest,
-  output: DnsResolverPolicyVirtualNetworkLinksGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DnsResolverPolicyVirtualNetworkLinksListError = AzureOpError;
-/** Lists DNS resolver policy virtual network links. */
-export const DnsResolverPolicyVirtualNetworkLinksList: API.OperationMethod<
-  DnsResolverPolicyVirtualNetworkLinksListRequest,
-  DnsResolverPolicyVirtualNetworkLinkListResult,
-  DnsResolverPolicyVirtualNetworkLinksListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DnsResolverPolicyVirtualNetworkLinksListRequest,
-  output: DnsResolverPolicyVirtualNetworkLinkListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DnsResolverPolicyVirtualNetworkLinksUpdateError = AzureOpError;
-/** Updates a DNS resolver policy virtual network link. */
-export const DnsResolverPolicyVirtualNetworkLinksUpdate: API.OperationMethod<
-  DnsResolverPolicyVirtualNetworkLinksUpdateRequest,
-  DnsResolverPolicyVirtualNetworkLinksUpdateResponse,
-  DnsResolverPolicyVirtualNetworkLinksUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DnsResolverPolicyVirtualNetworkLinksUpdateRequest,
-  output: DnsResolverPolicyVirtualNetworkLinksUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type DnsResolversCreateOrUpdateError = AzureOpError;
 /** Creates or updates a DNS resolver. */
 export const DnsResolversCreateOrUpdate: API.OperationMethod<
@@ -4886,96 +4716,6 @@ export const DnsResolversCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DnsResolversCreateOrUpdateRequest,
   output: DnsResolversCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DnsResolversDeleteError = AzureOpError;
-/** Deletes a DNS resolver. WARNING: This operation cannot be undone. */
-export const DnsResolversDelete: API.OperationMethod<
-  DnsResolversDeleteRequest,
-  DnsResolversDeleteResponse,
-  DnsResolversDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DnsResolversDeleteRequest,
-  output: DnsResolversDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DnsResolversGetError = AzureOpError;
-/** Gets properties of a DNS resolver. */
-export const DnsResolversGet: API.OperationMethod<
-  DnsResolversGetRequest,
-  DnsResolversGetResponse,
-  DnsResolversGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DnsResolversGetRequest,
-  output: DnsResolversGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DnsResolversListError = AzureOpError;
-/** Lists DNS resolvers in all resource groups of a subscription. */
-export const DnsResolversList: API.OperationMethod<
-  DnsResolversListRequest,
-  DnsResolverListResult,
-  DnsResolversListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DnsResolversListRequest,
-  output: DnsResolverListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DnsResolversListByResourceGroupError = AzureOpError;
-/** Lists DNS resolvers within a resource group. */
-export const DnsResolversListByResourceGroup: API.OperationMethod<
-  DnsResolversListByResourceGroupRequest,
-  DnsResolverListResult,
-  DnsResolversListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DnsResolversListByResourceGroupRequest,
-  output: DnsResolverListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DnsResolversListByVirtualNetworkError = AzureOpError;
-/** Lists DNS resolver resource IDs linked to a virtual network. */
-export const DnsResolversListByVirtualNetwork: API.OperationMethod<
-  DnsResolversListByVirtualNetworkRequest,
-  SubResourceListResult,
-  DnsResolversListByVirtualNetworkError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DnsResolversListByVirtualNetworkRequest,
-  output: SubResourceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DnsResolversUpdateError = AzureOpError;
-/** Updates a DNS resolver. */
-export const DnsResolversUpdate: API.OperationMethod<
-  DnsResolversUpdateRequest,
-  DnsResolversUpdateResponse,
-  DnsResolversUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DnsResolversUpdateRequest,
-  output: DnsResolversUpdateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -4996,66 +4736,6 @@ export const DnsSecurityRulesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DnsSecurityRulesDeleteError = AzureOpError;
-/** Deletes a DNS security rule for a DNS resolver policy. WARNING: This operation cannot be undone. */
-export const DnsSecurityRulesDelete: API.OperationMethod<
-  DnsSecurityRulesDeleteRequest,
-  DnsSecurityRulesDeleteResponse,
-  DnsSecurityRulesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DnsSecurityRulesDeleteRequest,
-  output: DnsSecurityRulesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DnsSecurityRulesGetError = AzureOpError;
-/** Gets properties of a DNS security rule for a DNS resolver policy. */
-export const DnsSecurityRulesGet: API.OperationMethod<
-  DnsSecurityRulesGetRequest,
-  DnsSecurityRulesGetResponse,
-  DnsSecurityRulesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DnsSecurityRulesGetRequest,
-  output: DnsSecurityRulesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DnsSecurityRulesListError = AzureOpError;
-/** Lists DNS security rules for a DNS resolver policy. */
-export const DnsSecurityRulesList: API.OperationMethod<
-  DnsSecurityRulesListRequest,
-  DnsSecurityRuleListResult,
-  DnsSecurityRulesListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DnsSecurityRulesListRequest,
-  output: DnsSecurityRuleListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DnsSecurityRulesUpdateError = AzureOpError;
-/** Updates a DNS security rule. */
-export const DnsSecurityRulesUpdate: API.OperationMethod<
-  DnsSecurityRulesUpdateRequest,
-  DnsSecurityRulesUpdateResponse,
-  DnsSecurityRulesUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DnsSecurityRulesUpdateRequest,
-  output: DnsSecurityRulesUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ForwardingRulesCreateOrUpdateError = AzureOpError;
 /** Creates or updates a forwarding rule in a DNS forwarding ruleset. */
 export const ForwardingRulesCreateOrUpdate: API.OperationMethod<
@@ -5071,61 +4751,151 @@ export const ForwardingRulesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ForwardingRulesDeleteError = AzureOpError;
-/** Deletes a forwarding rule in a DNS forwarding ruleset. WARNING: This operation cannot be undone. */
-export const ForwardingRulesDelete: API.OperationMethod<
-  ForwardingRulesDeleteRequest,
-  ForwardingRulesDeleteResponse,
-  ForwardingRulesDeleteError,
+export type GetDnsForwardingRulesetError = AzureOpError;
+/** Gets a DNS forwarding ruleset properties. */
+export const GetDnsForwardingRuleset: API.OperationMethod<
+  GetDnsForwardingRulesetRequest,
+  GetDnsForwardingRulesetResponse,
+  GetDnsForwardingRulesetError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ForwardingRulesDeleteRequest,
-  output: ForwardingRulesDeleteResponse,
+  input: GetDnsForwardingRulesetRequest,
+  output: GetDnsForwardingRulesetResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ForwardingRulesGetError = AzureOpError;
+export type GetDnsResolverError = AzureOpError;
+/** Gets properties of a DNS resolver. */
+export const GetDnsResolver: API.OperationMethod<
+  GetDnsResolverRequest,
+  GetDnsResolverResponse,
+  GetDnsResolverError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDnsResolverRequest,
+  output: GetDnsResolverResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDnsResolverDomainListError = AzureOpError;
+/** Gets properties of a DNS resolver domain list. */
+export const GetDnsResolverDomainList: API.OperationMethod<
+  GetDnsResolverDomainListRequest,
+  GetDnsResolverDomainListResponse,
+  GetDnsResolverDomainListError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDnsResolverDomainListRequest,
+  output: GetDnsResolverDomainListResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDnsResolverPolicyError = AzureOpError;
+/** Gets properties of a DNS resolver policy. */
+export const GetDnsResolverPolicy: API.OperationMethod<
+  GetDnsResolverPolicyRequest,
+  GetDnsResolverPolicyResponse,
+  GetDnsResolverPolicyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDnsResolverPolicyRequest,
+  output: GetDnsResolverPolicyResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDnsResolverPolicyVirtualNetworkLinkError = AzureOpError;
+/** Gets properties of a DNS resolver policy virtual network link. */
+export const GetDnsResolverPolicyVirtualNetworkLink: API.OperationMethod<
+  GetDnsResolverPolicyVirtualNetworkLinkRequest,
+  GetDnsResolverPolicyVirtualNetworkLinkResponse,
+  GetDnsResolverPolicyVirtualNetworkLinkError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDnsResolverPolicyVirtualNetworkLinkRequest,
+  output: GetDnsResolverPolicyVirtualNetworkLinkResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDnsSecurityRuleError = AzureOpError;
+/** Gets properties of a DNS security rule for a DNS resolver policy. */
+export const GetDnsSecurityRule: API.OperationMethod<
+  GetDnsSecurityRuleRequest,
+  GetDnsSecurityRuleResponse,
+  GetDnsSecurityRuleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDnsSecurityRuleRequest,
+  output: GetDnsSecurityRuleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetForwardingRuleError = AzureOpError;
 /** Gets properties of a forwarding rule in a DNS forwarding ruleset. */
-export const ForwardingRulesGet: API.OperationMethod<
-  ForwardingRulesGetRequest,
-  ForwardingRulesGetResponse,
-  ForwardingRulesGetError,
+export const GetForwardingRule: API.OperationMethod<
+  GetForwardingRuleRequest,
+  GetForwardingRuleResponse,
+  GetForwardingRuleError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ForwardingRulesGetRequest,
-  output: ForwardingRulesGetResponse,
+  input: GetForwardingRuleRequest,
+  output: GetForwardingRuleResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ForwardingRulesListError = AzureOpError;
-/** Lists forwarding rules in a DNS forwarding ruleset. */
-export const ForwardingRulesList: API.OperationMethod<
-  ForwardingRulesListRequest,
-  ForwardingRuleListResult,
-  ForwardingRulesListError,
+export type GetInboundEndpointError = AzureOpError;
+/** Gets properties of an inbound endpoint for a DNS resolver. */
+export const GetInboundEndpoint: API.OperationMethod<
+  GetInboundEndpointRequest,
+  GetInboundEndpointResponse,
+  GetInboundEndpointError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ForwardingRulesListRequest,
-  output: ForwardingRuleListResult,
+  input: GetInboundEndpointRequest,
+  output: GetInboundEndpointResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ForwardingRulesUpdateError = AzureOpError;
-/** Updates a forwarding rule in a DNS forwarding ruleset. */
-export const ForwardingRulesUpdate: API.OperationMethod<
-  ForwardingRulesUpdateRequest,
-  ForwardingRulesUpdateResponse,
-  ForwardingRulesUpdateError,
+export type GetOutboundEndpointError = AzureOpError;
+/** Gets properties of an outbound endpoint for a DNS resolver. */
+export const GetOutboundEndpoint: API.OperationMethod<
+  GetOutboundEndpointRequest,
+  GetOutboundEndpointResponse,
+  GetOutboundEndpointError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ForwardingRulesUpdateRequest,
-  output: ForwardingRulesUpdateResponse,
+  input: GetOutboundEndpointRequest,
+  output: GetOutboundEndpointResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetVirtualNetworkLinkError = AzureOpError;
+/** Gets properties of a virtual network link to a DNS forwarding ruleset. */
+export const GetVirtualNetworkLink: API.OperationMethod<
+  GetVirtualNetworkLinkRequest,
+  GetVirtualNetworkLinkResponse,
+  GetVirtualNetworkLinkError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetVirtualNetworkLinkRequest,
+  output: GetVirtualNetworkLinkResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -5146,61 +4916,256 @@ export const InboundEndpointsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type InboundEndpointsDeleteError = AzureOpError;
-/** Deletes an inbound endpoint for a DNS resolver. WARNING: This operation cannot be undone. */
-export const InboundEndpointsDelete: API.OperationMethod<
-  InboundEndpointsDeleteRequest,
-  InboundEndpointsDeleteResponse,
-  InboundEndpointsDeleteError,
+export type ListDnsForwardingRulesetByResourceGroupError = AzureOpError;
+/** Lists DNS forwarding rulesets within a resource group. */
+export const ListDnsForwardingRulesetByResourceGroup: API.OperationMethod<
+  ListDnsForwardingRulesetByResourceGroupRequest,
+  DnsForwardingRulesetListResult,
+  ListDnsForwardingRulesetByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: InboundEndpointsDeleteRequest,
-  output: InboundEndpointsDeleteResponse,
+  input: ListDnsForwardingRulesetByResourceGroupRequest,
+  output: DnsForwardingRulesetListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type InboundEndpointsGetError = AzureOpError;
-/** Gets properties of an inbound endpoint for a DNS resolver. */
-export const InboundEndpointsGet: API.OperationMethod<
-  InboundEndpointsGetRequest,
-  InboundEndpointsGetResponse,
-  InboundEndpointsGetError,
+export type ListDnsForwardingRulesetByVirtualNetworkError = AzureOpError;
+/** Lists DNS forwarding ruleset resource IDs attached to a virtual network. */
+export const ListDnsForwardingRulesetByVirtualNetwork: API.OperationMethod<
+  ListDnsForwardingRulesetByVirtualNetworkRequest,
+  VirtualNetworkDnsForwardingRulesetListResult,
+  ListDnsForwardingRulesetByVirtualNetworkError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: InboundEndpointsGetRequest,
-  output: InboundEndpointsGetResponse,
+  input: ListDnsForwardingRulesetByVirtualNetworkRequest,
+  output: VirtualNetworkDnsForwardingRulesetListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type InboundEndpointsListError = AzureOpError;
+export type ListDnsForwardingRulesetsError = AzureOpError;
+/** Lists DNS forwarding rulesets in all resource groups of a subscription. */
+export const ListDnsForwardingRulesets: API.OperationMethod<
+  ListDnsForwardingRulesetsRequest,
+  DnsForwardingRulesetListResult,
+  ListDnsForwardingRulesetsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDnsForwardingRulesetsRequest,
+  output: DnsForwardingRulesetListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDnsResolverByResourceGroupError = AzureOpError;
+/** Lists DNS resolvers within a resource group. */
+export const ListDnsResolverByResourceGroup: API.OperationMethod<
+  ListDnsResolverByResourceGroupRequest,
+  DnsResolverListResult,
+  ListDnsResolverByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDnsResolverByResourceGroupRequest,
+  output: DnsResolverListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDnsResolverByVirtualNetworkError = AzureOpError;
+/** Lists DNS resolver resource IDs linked to a virtual network. */
+export const ListDnsResolverByVirtualNetwork: API.OperationMethod<
+  ListDnsResolverByVirtualNetworkRequest,
+  SubResourceListResult,
+  ListDnsResolverByVirtualNetworkError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDnsResolverByVirtualNetworkRequest,
+  output: SubResourceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDnsResolverDomainListByResourceGroupError = AzureOpError;
+/** Lists DNS resolver domain lists within a resource group. */
+export const ListDnsResolverDomainListByResourceGroup: API.OperationMethod<
+  ListDnsResolverDomainListByResourceGroupRequest,
+  DnsResolverDomainListListResult,
+  ListDnsResolverDomainListByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDnsResolverDomainListByResourceGroupRequest,
+  output: DnsResolverDomainListListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDnsResolverDomainListsError = AzureOpError;
+/** Lists DNS resolver domain lists in all resource groups of a subscription. */
+export const ListDnsResolverDomainLists: API.OperationMethod<
+  ListDnsResolverDomainListsRequest,
+  DnsResolverDomainListListResult,
+  ListDnsResolverDomainListsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDnsResolverDomainListsRequest,
+  output: DnsResolverDomainListListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDnsResolverPoliciesError = AzureOpError;
+/** Lists DNS resolver policies in all resource groups of a subscription. */
+export const ListDnsResolverPolicies: API.OperationMethod<
+  ListDnsResolverPoliciesRequest,
+  DnsResolverPolicyListResult,
+  ListDnsResolverPoliciesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDnsResolverPoliciesRequest,
+  output: DnsResolverPolicyListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDnsResolverPolicyByResourceGroupError = AzureOpError;
+/** Lists DNS resolver policies within a resource group. */
+export const ListDnsResolverPolicyByResourceGroup: API.OperationMethod<
+  ListDnsResolverPolicyByResourceGroupRequest,
+  DnsResolverPolicyListResult,
+  ListDnsResolverPolicyByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDnsResolverPolicyByResourceGroupRequest,
+  output: DnsResolverPolicyListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDnsResolverPolicyByVirtualNetworkError = AzureOpError;
+/** Lists DNS resolver policy resource IDs linked to a virtual network. */
+export const ListDnsResolverPolicyByVirtualNetwork: API.OperationMethod<
+  ListDnsResolverPolicyByVirtualNetworkRequest,
+  SubResourceListResult,
+  ListDnsResolverPolicyByVirtualNetworkError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDnsResolverPolicyByVirtualNetworkRequest,
+  output: SubResourceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDnsResolverPolicyVirtualNetworkLinksError = AzureOpError;
+/** Lists DNS resolver policy virtual network links. */
+export const ListDnsResolverPolicyVirtualNetworkLinks: API.OperationMethod<
+  ListDnsResolverPolicyVirtualNetworkLinksRequest,
+  DnsResolverPolicyVirtualNetworkLinkListResult,
+  ListDnsResolverPolicyVirtualNetworkLinksError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDnsResolverPolicyVirtualNetworkLinksRequest,
+  output: DnsResolverPolicyVirtualNetworkLinkListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDnsResolversError = AzureOpError;
+/** Lists DNS resolvers in all resource groups of a subscription. */
+export const ListDnsResolvers: API.OperationMethod<
+  ListDnsResolversRequest,
+  DnsResolverListResult,
+  ListDnsResolversError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDnsResolversRequest,
+  output: DnsResolverListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDnsSecurityRulesError = AzureOpError;
+/** Lists DNS security rules for a DNS resolver policy. */
+export const ListDnsSecurityRules: API.OperationMethod<
+  ListDnsSecurityRulesRequest,
+  DnsSecurityRuleListResult,
+  ListDnsSecurityRulesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDnsSecurityRulesRequest,
+  output: DnsSecurityRuleListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListForwardingRulesError = AzureOpError;
+/** Lists forwarding rules in a DNS forwarding ruleset. */
+export const ListForwardingRules: API.OperationMethod<
+  ListForwardingRulesRequest,
+  ForwardingRuleListResult,
+  ListForwardingRulesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListForwardingRulesRequest,
+  output: ForwardingRuleListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListInboundEndpointsError = AzureOpError;
 /** Lists inbound endpoints for a DNS resolver. */
-export const InboundEndpointsList: API.OperationMethod<
-  InboundEndpointsListRequest,
+export const ListInboundEndpoints: API.OperationMethod<
+  ListInboundEndpointsRequest,
   InboundEndpointListResult,
-  InboundEndpointsListError,
+  ListInboundEndpointsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: InboundEndpointsListRequest,
+  input: ListInboundEndpointsRequest,
   output: InboundEndpointListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type InboundEndpointsUpdateError = AzureOpError;
-/** Updates an inbound endpoint for a DNS resolver. */
-export const InboundEndpointsUpdate: API.OperationMethod<
-  InboundEndpointsUpdateRequest,
-  InboundEndpointsUpdateResponse,
-  InboundEndpointsUpdateError,
+export type ListOutboundEndpointsError = AzureOpError;
+/** Lists outbound endpoints for a DNS resolver. */
+export const ListOutboundEndpoints: API.OperationMethod<
+  ListOutboundEndpointsRequest,
+  OutboundEndpointListResult,
+  ListOutboundEndpointsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: InboundEndpointsUpdateRequest,
-  output: InboundEndpointsUpdateResponse,
+  input: ListOutboundEndpointsRequest,
+  output: OutboundEndpointListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVirtualNetworkLinksError = AzureOpError;
+/** Lists virtual network links to a DNS forwarding ruleset. */
+export const ListVirtualNetworkLinks: API.OperationMethod<
+  ListVirtualNetworkLinksRequest,
+  VirtualNetworkLinkListResult,
+  ListVirtualNetworkLinksError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVirtualNetworkLinksRequest,
+  output: VirtualNetworkLinkListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -5221,61 +5186,151 @@ export const OutboundEndpointsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type OutboundEndpointsDeleteError = AzureOpError;
-/** Deletes an outbound endpoint for a DNS resolver. WARNING: This operation cannot be undone. */
-export const OutboundEndpointsDelete: API.OperationMethod<
-  OutboundEndpointsDeleteRequest,
-  OutboundEndpointsDeleteResponse,
-  OutboundEndpointsDeleteError,
+export type UpdateDnsForwardingRulesetError = AzureOpError;
+/** Updates a DNS forwarding ruleset. */
+export const UpdateDnsForwardingRuleset: API.OperationMethod<
+  UpdateDnsForwardingRulesetRequest,
+  UpdateDnsForwardingRulesetResponse,
+  UpdateDnsForwardingRulesetError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OutboundEndpointsDeleteRequest,
-  output: OutboundEndpointsDeleteResponse,
+  input: UpdateDnsForwardingRulesetRequest,
+  output: UpdateDnsForwardingRulesetResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OutboundEndpointsGetError = AzureOpError;
-/** Gets properties of an outbound endpoint for a DNS resolver. */
-export const OutboundEndpointsGet: API.OperationMethod<
-  OutboundEndpointsGetRequest,
-  OutboundEndpointsGetResponse,
-  OutboundEndpointsGetError,
+export type UpdateDnsResolverError = AzureOpError;
+/** Updates a DNS resolver. */
+export const UpdateDnsResolver: API.OperationMethod<
+  UpdateDnsResolverRequest,
+  UpdateDnsResolverResponse,
+  UpdateDnsResolverError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OutboundEndpointsGetRequest,
-  output: OutboundEndpointsGetResponse,
+  input: UpdateDnsResolverRequest,
+  output: UpdateDnsResolverResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OutboundEndpointsListError = AzureOpError;
-/** Lists outbound endpoints for a DNS resolver. */
-export const OutboundEndpointsList: API.OperationMethod<
-  OutboundEndpointsListRequest,
-  OutboundEndpointListResult,
-  OutboundEndpointsListError,
+export type UpdateDnsResolverDomainListError = AzureOpError;
+/** Updates a DNS resolver domain list. */
+export const UpdateDnsResolverDomainList: API.OperationMethod<
+  UpdateDnsResolverDomainListRequest,
+  UpdateDnsResolverDomainListResponse,
+  UpdateDnsResolverDomainListError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OutboundEndpointsListRequest,
-  output: OutboundEndpointListResult,
+  input: UpdateDnsResolverDomainListRequest,
+  output: UpdateDnsResolverDomainListResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OutboundEndpointsUpdateError = AzureOpError;
+export type UpdateDnsResolverPolicyError = AzureOpError;
+/** Updates a DNS resolver policy. */
+export const UpdateDnsResolverPolicy: API.OperationMethod<
+  UpdateDnsResolverPolicyRequest,
+  UpdateDnsResolverPolicyResponse,
+  UpdateDnsResolverPolicyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateDnsResolverPolicyRequest,
+  output: UpdateDnsResolverPolicyResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateDnsResolverPolicyVirtualNetworkLinkError = AzureOpError;
+/** Updates a DNS resolver policy virtual network link. */
+export const UpdateDnsResolverPolicyVirtualNetworkLink: API.OperationMethod<
+  UpdateDnsResolverPolicyVirtualNetworkLinkRequest,
+  UpdateDnsResolverPolicyVirtualNetworkLinkResponse,
+  UpdateDnsResolverPolicyVirtualNetworkLinkError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateDnsResolverPolicyVirtualNetworkLinkRequest,
+  output: UpdateDnsResolverPolicyVirtualNetworkLinkResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateDnsSecurityRuleError = AzureOpError;
+/** Updates a DNS security rule. */
+export const UpdateDnsSecurityRule: API.OperationMethod<
+  UpdateDnsSecurityRuleRequest,
+  UpdateDnsSecurityRuleResponse,
+  UpdateDnsSecurityRuleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateDnsSecurityRuleRequest,
+  output: UpdateDnsSecurityRuleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateForwardingRuleError = AzureOpError;
+/** Updates a forwarding rule in a DNS forwarding ruleset. */
+export const UpdateForwardingRule: API.OperationMethod<
+  UpdateForwardingRuleRequest,
+  UpdateForwardingRuleResponse,
+  UpdateForwardingRuleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateForwardingRuleRequest,
+  output: UpdateForwardingRuleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateInboundEndpointError = AzureOpError;
+/** Updates an inbound endpoint for a DNS resolver. */
+export const UpdateInboundEndpoint: API.OperationMethod<
+  UpdateInboundEndpointRequest,
+  UpdateInboundEndpointResponse,
+  UpdateInboundEndpointError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateInboundEndpointRequest,
+  output: UpdateInboundEndpointResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateOutboundEndpointError = AzureOpError;
 /** Updates an outbound endpoint for a DNS resolver. */
-export const OutboundEndpointsUpdate: API.OperationMethod<
-  OutboundEndpointsUpdateRequest,
-  OutboundEndpointsUpdateResponse,
-  OutboundEndpointsUpdateError,
+export const UpdateOutboundEndpoint: API.OperationMethod<
+  UpdateOutboundEndpointRequest,
+  UpdateOutboundEndpointResponse,
+  UpdateOutboundEndpointError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OutboundEndpointsUpdateRequest,
-  output: OutboundEndpointsUpdateResponse,
+  input: UpdateOutboundEndpointRequest,
+  output: UpdateOutboundEndpointResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateVirtualNetworkLinkError = AzureOpError;
+/** Updates a virtual network link to a DNS forwarding ruleset. */
+export const UpdateVirtualNetworkLink: API.OperationMethod<
+  UpdateVirtualNetworkLinkRequest,
+  UpdateVirtualNetworkLinkResponse,
+  UpdateVirtualNetworkLinkError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateVirtualNetworkLinkRequest,
+  output: UpdateVirtualNetworkLinkResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -5291,66 +5346,6 @@ export const VirtualNetworkLinksCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: VirtualNetworkLinksCreateOrUpdateRequest,
   output: VirtualNetworkLinksCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualNetworkLinksDeleteError = AzureOpError;
-/** Deletes a virtual network link to a DNS forwarding ruleset. WARNING: This operation cannot be undone. */
-export const VirtualNetworkLinksDelete: API.OperationMethod<
-  VirtualNetworkLinksDeleteRequest,
-  VirtualNetworkLinksDeleteResponse,
-  VirtualNetworkLinksDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualNetworkLinksDeleteRequest,
-  output: VirtualNetworkLinksDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualNetworkLinksGetError = AzureOpError;
-/** Gets properties of a virtual network link to a DNS forwarding ruleset. */
-export const VirtualNetworkLinksGet: API.OperationMethod<
-  VirtualNetworkLinksGetRequest,
-  VirtualNetworkLinksGetResponse,
-  VirtualNetworkLinksGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualNetworkLinksGetRequest,
-  output: VirtualNetworkLinksGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualNetworkLinksListError = AzureOpError;
-/** Lists virtual network links to a DNS forwarding ruleset. */
-export const VirtualNetworkLinksList: API.OperationMethod<
-  VirtualNetworkLinksListRequest,
-  VirtualNetworkLinkListResult,
-  VirtualNetworkLinksListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualNetworkLinksListRequest,
-  output: VirtualNetworkLinkListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualNetworkLinksUpdateError = AzureOpError;
-/** Updates a virtual network link to a DNS forwarding ruleset. */
-export const VirtualNetworkLinksUpdate: API.OperationMethod<
-  VirtualNetworkLinksUpdateRequest,
-  VirtualNetworkLinksUpdateResponse,
-  VirtualNetworkLinksUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualNetworkLinksUpdateRequest,
-  output: VirtualNetworkLinksUpdateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

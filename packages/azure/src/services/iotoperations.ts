@@ -257,181 +257,6 @@ export const AkriConnectorCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "AkriConnectorCreateOrUpdateResponse",
 }) as any as S.Schema<AkriConnectorCreateOrUpdateResponse>;
 
-export interface AkriConnectorDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of instance. */
-  instanceName: string;
-  /** Name of AkriConnectorTemplate resource. */
-  akriConnectorTemplateName: string;
-  /** Name of AkriConnector resource. */
-  connectorName: string;
-}
-export const AkriConnectorDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    instanceName: S.String.pipe(T.Label()),
-    akriConnectorTemplateName: S.String.pipe(T.Label()),
-    connectorName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/akriConnectorTemplates/{akriConnectorTemplateName}/connectors/{connectorName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "AkriConnectorDeleteRequest",
-}) as any as S.Schema<AkriConnectorDeleteRequest>;
-
-export interface AkriConnectorDeleteResponse {}
-export const AkriConnectorDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "AkriConnectorDeleteResponse",
-}) as any as S.Schema<AkriConnectorDeleteResponse>;
-
-export interface AkriConnectorGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of instance. */
-  instanceName: string;
-  /** Name of AkriConnectorTemplate resource. */
-  akriConnectorTemplateName: string;
-  /** Name of AkriConnector resource. */
-  connectorName: string;
-}
-export const AkriConnectorGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    instanceName: S.String.pipe(T.Label()),
-    akriConnectorTemplateName: S.String.pipe(T.Label()),
-    connectorName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/akriConnectorTemplates/{akriConnectorTemplateName}/connectors/{connectorName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "AkriConnectorGetRequest",
-}) as any as S.Schema<AkriConnectorGetRequest>;
-
-export interface AkriConnectorGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: AkriConnectorProperties;
-  /** Edge location of the resource. */
-  extendedLocation?: ExtendedLocation;
-}
-export const AkriConnectorGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(AkriConnectorProperties),
-    extendedLocation: S.optional(ExtendedLocation),
-  }),
-).annotate({
-  identifier: "AkriConnectorGetResponse",
-}) as any as S.Schema<AkriConnectorGetResponse>;
-
-export interface AkriConnectorListByTemplateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of instance. */
-  instanceName: string;
-  /** Name of AkriConnectorTemplate resource. */
-  akriConnectorTemplateName: string;
-}
-export const AkriConnectorListByTemplateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    instanceName: S.String.pipe(T.Label()),
-    akriConnectorTemplateName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/akriConnectorTemplates/{akriConnectorTemplateName}/connectors",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "AkriConnectorListByTemplateRequest",
-}) as any as S.Schema<AkriConnectorListByTemplateRequest>;
-
-/** AkriConnector resource. */
-export interface AkriConnectorResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: AkriConnectorProperties;
-  /** Edge location of the resource. */
-  extendedLocation?: ExtendedLocation;
-}
-export const AkriConnectorResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(AkriConnectorProperties),
-    extendedLocation: S.optional(ExtendedLocation),
-  }),
-).annotate({
-  identifier: "AkriConnectorResource",
-}) as any as S.Schema<AkriConnectorResource>;
-
-/** The AkriConnectorResource items on this page */
-export type AkriConnectorResourceListResultValueList =
-  Array<AkriConnectorResource>;
-export const AkriConnectorResourceListResultValueList = /*@__PURE__*/ S.Array(
-  AkriConnectorResource,
-) as any as S.Schema<AkriConnectorResourceListResultValueList>;
-
-/** The response of a AkriConnectorResource list operation. */
-export interface AkriConnectorResourceListResult {
-  /** The AkriConnectorResource items on this page */
-  value: AkriConnectorResourceListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const AkriConnectorResourceListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: AkriConnectorResourceListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AkriConnectorResourceListResult",
-}) as any as S.Schema<AkriConnectorResourceListResult>;
-
 /** AkriConnectorTemplateAioMetadata properties. */
 export interface AkriConnectorTemplateAioMetadata {
   /** The minimum version of AIO required for the connector. */
@@ -744,175 +569,6 @@ export const AkriConnectorTemplateCreateOrUpdateResponse =
     identifier: "AkriConnectorTemplateCreateOrUpdateResponse",
   }) as any as S.Schema<AkriConnectorTemplateCreateOrUpdateResponse>;
 
-export interface AkriConnectorTemplateDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of instance. */
-  instanceName: string;
-  /** Name of AkriConnectorTemplate resource. */
-  akriConnectorTemplateName: string;
-}
-export const AkriConnectorTemplateDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    instanceName: S.String.pipe(T.Label()),
-    akriConnectorTemplateName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/akriConnectorTemplates/{akriConnectorTemplateName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "AkriConnectorTemplateDeleteRequest",
-}) as any as S.Schema<AkriConnectorTemplateDeleteRequest>;
-
-export interface AkriConnectorTemplateDeleteResponse {}
-export const AkriConnectorTemplateDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "AkriConnectorTemplateDeleteResponse",
-}) as any as S.Schema<AkriConnectorTemplateDeleteResponse>;
-
-export interface AkriConnectorTemplateGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of instance. */
-  instanceName: string;
-  /** Name of AkriConnectorTemplate resource. */
-  akriConnectorTemplateName: string;
-}
-export const AkriConnectorTemplateGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    instanceName: S.String.pipe(T.Label()),
-    akriConnectorTemplateName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/akriConnectorTemplates/{akriConnectorTemplateName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "AkriConnectorTemplateGetRequest",
-}) as any as S.Schema<AkriConnectorTemplateGetRequest>;
-
-export interface AkriConnectorTemplateGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: AkriConnectorTemplateProperties;
-  /** Edge location of the resource. */
-  extendedLocation?: ExtendedLocation;
-}
-export const AkriConnectorTemplateGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(AkriConnectorTemplateProperties),
-    extendedLocation: S.optional(ExtendedLocation),
-  }),
-).annotate({
-  identifier: "AkriConnectorTemplateGetResponse",
-}) as any as S.Schema<AkriConnectorTemplateGetResponse>;
-
-export interface AkriConnectorTemplateListByInstanceResourceRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of instance. */
-  instanceName: string;
-}
-export const AkriConnectorTemplateListByInstanceResourceRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      instanceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/akriConnectorTemplates",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "AkriConnectorTemplateListByInstanceResourceRequest",
-  }) as any as S.Schema<AkriConnectorTemplateListByInstanceResourceRequest>;
-
-/** AkriConnectorTemplate resource. */
-export interface AkriConnectorTemplateResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: AkriConnectorTemplateProperties;
-  /** Edge location of the resource. */
-  extendedLocation?: ExtendedLocation;
-}
-export const AkriConnectorTemplateResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(AkriConnectorTemplateProperties),
-    extendedLocation: S.optional(ExtendedLocation),
-  }),
-).annotate({
-  identifier: "AkriConnectorTemplateResource",
-}) as any as S.Schema<AkriConnectorTemplateResource>;
-
-/** The AkriConnectorTemplateResource items on this page */
-export type AkriConnectorTemplateResourceListResultValueList =
-  Array<AkriConnectorTemplateResource>;
-export const AkriConnectorTemplateResourceListResultValueList =
-  /*@__PURE__*/ S.Array(
-    AkriConnectorTemplateResource,
-  ) as any as S.Schema<AkriConnectorTemplateResourceListResultValueList>;
-
-/** The response of a AkriConnectorTemplateResource list operation. */
-export interface AkriConnectorTemplateResourceListResult {
-  /** The AkriConnectorTemplateResource items on this page */
-  value: AkriConnectorTemplateResourceListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const AkriConnectorTemplateResourceListResult = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      value: AkriConnectorTemplateResourceListResultValueList,
-      nextLink: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "AkriConnectorTemplateResourceListResult",
-}) as any as S.Schema<AkriConnectorTemplateResourceListResult>;
-
 /** AkriService properties. */
 export type AkriServicePropertiesInput = AkriConnectorPropertiesInput;
 export const AkriServicePropertiesInput = AkriConnectorPropertiesInput;
@@ -1006,172 +662,6 @@ export const AkriServiceCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "AkriServiceCreateOrUpdateResponse",
 }) as any as S.Schema<AkriServiceCreateOrUpdateResponse>;
-
-export interface AkriServiceDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of instance. */
-  instanceName: string;
-  /** Name of AkriService resource. */
-  akriServiceName: string;
-}
-export const AkriServiceDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    instanceName: S.String.pipe(T.Label()),
-    akriServiceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/akriServices/{akriServiceName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "AkriServiceDeleteRequest",
-}) as any as S.Schema<AkriServiceDeleteRequest>;
-
-export interface AkriServiceDeleteResponse {}
-export const AkriServiceDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "AkriServiceDeleteResponse",
-}) as any as S.Schema<AkriServiceDeleteResponse>;
-
-export interface AkriServiceGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of instance. */
-  instanceName: string;
-  /** Name of AkriService resource. */
-  akriServiceName: string;
-}
-export const AkriServiceGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    instanceName: S.String.pipe(T.Label()),
-    akriServiceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/akriServices/{akriServiceName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "AkriServiceGetRequest",
-}) as any as S.Schema<AkriServiceGetRequest>;
-
-export interface AkriServiceGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: AkriServiceProperties;
-  /** Edge location of the resource. */
-  extendedLocation?: ExtendedLocation;
-}
-export const AkriServiceGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(AkriServiceProperties),
-    extendedLocation: S.optional(ExtendedLocation),
-  }),
-).annotate({
-  identifier: "AkriServiceGetResponse",
-}) as any as S.Schema<AkriServiceGetResponse>;
-
-export interface AkriServiceListByInstanceResourceRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of instance. */
-  instanceName: string;
-}
-export const AkriServiceListByInstanceResourceRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      instanceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/akriServices",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "AkriServiceListByInstanceResourceRequest",
-}) as any as S.Schema<AkriServiceListByInstanceResourceRequest>;
-
-/** AkriService resource. */
-export interface AkriServiceResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: AkriServiceProperties;
-  /** Edge location of the resource. */
-  extendedLocation?: ExtendedLocation;
-}
-export const AkriServiceResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(AkriServiceProperties),
-    extendedLocation: S.optional(ExtendedLocation),
-  }),
-).annotate({
-  identifier: "AkriServiceResource",
-}) as any as S.Schema<AkriServiceResource>;
-
-/** The AkriServiceResource items on this page */
-export type AkriServiceResourceListResultValueList = Array<AkriServiceResource>;
-export const AkriServiceResourceListResultValueList = /*@__PURE__*/ S.Array(
-  AkriServiceResource,
-) as any as S.Schema<AkriServiceResourceListResultValueList>;
-
-/** The response of a AkriServiceResource list operation. */
-export interface AkriServiceResourceListResult {
-  /** The AkriServiceResource items on this page */
-  value: AkriServiceResourceListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const AkriServiceResourceListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: AkriServiceResourceListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AkriServiceResourceListResult",
-}) as any as S.Schema<AkriServiceResourceListResult>;
 
 /** Broker Authentication Mode */
 export type BrokerAuthenticationMethod =
@@ -1466,184 +956,6 @@ export const BrokerAuthenticationCreateOrUpdateResponse =
     identifier: "BrokerAuthenticationCreateOrUpdateResponse",
   }) as any as S.Schema<BrokerAuthenticationCreateOrUpdateResponse>;
 
-export interface BrokerAuthenticationDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of instance. */
-  instanceName: string;
-  /** Name of broker. */
-  brokerName: string;
-  /** Name of Instance broker authentication resource */
-  authenticationName: string;
-}
-export const BrokerAuthenticationDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    instanceName: S.String.pipe(T.Label()),
-    brokerName: S.String.pipe(T.Label()),
-    authenticationName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/brokers/{brokerName}/authentications/{authenticationName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "BrokerAuthenticationDeleteRequest",
-}) as any as S.Schema<BrokerAuthenticationDeleteRequest>;
-
-export interface BrokerAuthenticationDeleteResponse {}
-export const BrokerAuthenticationDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "BrokerAuthenticationDeleteResponse",
-}) as any as S.Schema<BrokerAuthenticationDeleteResponse>;
-
-export interface BrokerAuthenticationGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of instance. */
-  instanceName: string;
-  /** Name of broker. */
-  brokerName: string;
-  /** Name of Instance broker authentication resource */
-  authenticationName: string;
-}
-export const BrokerAuthenticationGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    instanceName: S.String.pipe(T.Label()),
-    brokerName: S.String.pipe(T.Label()),
-    authenticationName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/brokers/{brokerName}/authentications/{authenticationName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "BrokerAuthenticationGetRequest",
-}) as any as S.Schema<BrokerAuthenticationGetRequest>;
-
-export interface BrokerAuthenticationGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: BrokerAuthenticationProperties;
-  /** Edge location of the resource. */
-  extendedLocation?: ExtendedLocation;
-}
-export const BrokerAuthenticationGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(BrokerAuthenticationProperties),
-    extendedLocation: S.optional(ExtendedLocation),
-  }),
-).annotate({
-  identifier: "BrokerAuthenticationGetResponse",
-}) as any as S.Schema<BrokerAuthenticationGetResponse>;
-
-export interface BrokerAuthenticationListByResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of instance. */
-  instanceName: string;
-  /** Name of broker. */
-  brokerName: string;
-}
-export const BrokerAuthenticationListByResourceGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      instanceName: S.String.pipe(T.Label()),
-      brokerName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/brokers/{brokerName}/authentications",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "BrokerAuthenticationListByResourceGroupRequest",
-  }) as any as S.Schema<BrokerAuthenticationListByResourceGroupRequest>;
-
-/** Instance broker authentication resource */
-export interface BrokerAuthenticationResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: BrokerAuthenticationProperties;
-  /** Edge location of the resource. */
-  extendedLocation?: ExtendedLocation;
-}
-export const BrokerAuthenticationResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(BrokerAuthenticationProperties),
-    extendedLocation: S.optional(ExtendedLocation),
-  }),
-).annotate({
-  identifier: "BrokerAuthenticationResource",
-}) as any as S.Schema<BrokerAuthenticationResource>;
-
-/** The BrokerAuthenticationResource items on this page */
-export type BrokerAuthenticationResourceListResultValueList =
-  Array<BrokerAuthenticationResource>;
-export const BrokerAuthenticationResourceListResultValueList =
-  /*@__PURE__*/ S.Array(
-    BrokerAuthenticationResource,
-  ) as any as S.Schema<BrokerAuthenticationResourceListResultValueList>;
-
-/** The response of a BrokerAuthenticationResource list operation. */
-export interface BrokerAuthenticationResourceListResult {
-  /** The BrokerAuthenticationResource items on this page */
-  value: BrokerAuthenticationResourceListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const BrokerAuthenticationResourceListResult = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      value: BrokerAuthenticationResourceListResultValueList,
-      nextLink: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "BrokerAuthenticationResourceListResult",
-}) as any as S.Schema<BrokerAuthenticationResourceListResult>;
-
 /** Enable caching of the authorization rules. */
 export type AuthorizationConfigCache = "Enabled" | "Disabled";
 export const AuthorizationConfigCache = /*@__PURE__*/ S.String;
@@ -1927,184 +1239,6 @@ export const BrokerAuthorizationCreateOrUpdateResponse =
   ).annotate({
     identifier: "BrokerAuthorizationCreateOrUpdateResponse",
   }) as any as S.Schema<BrokerAuthorizationCreateOrUpdateResponse>;
-
-export interface BrokerAuthorizationDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of instance. */
-  instanceName: string;
-  /** Name of broker. */
-  brokerName: string;
-  /** Name of Instance broker authorization resource */
-  authorizationName: string;
-}
-export const BrokerAuthorizationDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    instanceName: S.String.pipe(T.Label()),
-    brokerName: S.String.pipe(T.Label()),
-    authorizationName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/brokers/{brokerName}/authorizations/{authorizationName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "BrokerAuthorizationDeleteRequest",
-}) as any as S.Schema<BrokerAuthorizationDeleteRequest>;
-
-export interface BrokerAuthorizationDeleteResponse {}
-export const BrokerAuthorizationDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "BrokerAuthorizationDeleteResponse",
-}) as any as S.Schema<BrokerAuthorizationDeleteResponse>;
-
-export interface BrokerAuthorizationGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of instance. */
-  instanceName: string;
-  /** Name of broker. */
-  brokerName: string;
-  /** Name of Instance broker authorization resource */
-  authorizationName: string;
-}
-export const BrokerAuthorizationGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    instanceName: S.String.pipe(T.Label()),
-    brokerName: S.String.pipe(T.Label()),
-    authorizationName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/brokers/{brokerName}/authorizations/{authorizationName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "BrokerAuthorizationGetRequest",
-}) as any as S.Schema<BrokerAuthorizationGetRequest>;
-
-export interface BrokerAuthorizationGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: BrokerAuthorizationProperties;
-  /** Edge location of the resource. */
-  extendedLocation?: ExtendedLocation;
-}
-export const BrokerAuthorizationGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(BrokerAuthorizationProperties),
-    extendedLocation: S.optional(ExtendedLocation),
-  }),
-).annotate({
-  identifier: "BrokerAuthorizationGetResponse",
-}) as any as S.Schema<BrokerAuthorizationGetResponse>;
-
-export interface BrokerAuthorizationListByResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of instance. */
-  instanceName: string;
-  /** Name of broker. */
-  brokerName: string;
-}
-export const BrokerAuthorizationListByResourceGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      instanceName: S.String.pipe(T.Label()),
-      brokerName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/brokers/{brokerName}/authorizations",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "BrokerAuthorizationListByResourceGroupRequest",
-  }) as any as S.Schema<BrokerAuthorizationListByResourceGroupRequest>;
-
-/** Instance broker authorizations resource */
-export interface BrokerAuthorizationResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: BrokerAuthorizationProperties;
-  /** Edge location of the resource. */
-  extendedLocation?: ExtendedLocation;
-}
-export const BrokerAuthorizationResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(BrokerAuthorizationProperties),
-    extendedLocation: S.optional(ExtendedLocation),
-  }),
-).annotate({
-  identifier: "BrokerAuthorizationResource",
-}) as any as S.Schema<BrokerAuthorizationResource>;
-
-/** The BrokerAuthorizationResource items on this page */
-export type BrokerAuthorizationResourceListResultValueList =
-  Array<BrokerAuthorizationResource>;
-export const BrokerAuthorizationResourceListResultValueList =
-  /*@__PURE__*/ S.Array(
-    BrokerAuthorizationResource,
-  ) as any as S.Schema<BrokerAuthorizationResourceListResultValueList>;
-
-/** The response of a BrokerAuthorizationResource list operation. */
-export interface BrokerAuthorizationResourceListResult {
-  /** The BrokerAuthorizationResource items on this page */
-  value: BrokerAuthorizationResourceListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const BrokerAuthorizationResourceListResult = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      value: BrokerAuthorizationResourceListResultValueList,
-      nextLink: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "BrokerAuthorizationResourceListResult",
-}) as any as S.Schema<BrokerAuthorizationResourceListResult>;
 
 /** The strategy to use for dropping messages from the queue. */
 export type SubscriberQueueLimitStrategy = "None" | "DropOldest";
@@ -2879,169 +2013,6 @@ export const BrokerCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "BrokerCreateOrUpdateResponse",
 }) as any as S.Schema<BrokerCreateOrUpdateResponse>;
 
-export interface BrokerDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of instance. */
-  instanceName: string;
-  /** Name of broker. */
-  brokerName: string;
-}
-export const BrokerDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    instanceName: S.String.pipe(T.Label()),
-    brokerName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/brokers/{brokerName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "BrokerDeleteRequest",
-}) as any as S.Schema<BrokerDeleteRequest>;
-
-export interface BrokerDeleteResponse {}
-export const BrokerDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "BrokerDeleteResponse",
-}) as any as S.Schema<BrokerDeleteResponse>;
-
-export interface BrokerGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of instance. */
-  instanceName: string;
-  /** Name of broker. */
-  brokerName: string;
-}
-export const BrokerGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    instanceName: S.String.pipe(T.Label()),
-    brokerName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/brokers/{brokerName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "BrokerGetRequest",
-}) as any as S.Schema<BrokerGetRequest>;
-
-export interface BrokerGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: BrokerProperties;
-  /** Edge location of the resource. */
-  extendedLocation?: ExtendedLocation;
-}
-export const BrokerGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(BrokerProperties),
-    extendedLocation: S.optional(ExtendedLocation),
-  }),
-).annotate({
-  identifier: "BrokerGetResponse",
-}) as any as S.Schema<BrokerGetResponse>;
-
-export interface BrokerListByResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of instance. */
-  instanceName: string;
-}
-export const BrokerListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    instanceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/brokers",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "BrokerListByResourceGroupRequest",
-}) as any as S.Schema<BrokerListByResourceGroupRequest>;
-
-/** Instance broker resource */
-export interface BrokerResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: BrokerProperties;
-  /** Edge location of the resource. */
-  extendedLocation?: ExtendedLocation;
-}
-export const BrokerResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(BrokerProperties),
-    extendedLocation: S.optional(ExtendedLocation),
-  }),
-).annotate({ identifier: "BrokerResource" }) as any as S.Schema<BrokerResource>;
-
-/** The BrokerResource items on this page */
-export type BrokerResourceListResultValueList = Array<BrokerResource>;
-export const BrokerResourceListResultValueList = /*@__PURE__*/ S.Array(
-  BrokerResource,
-) as any as S.Schema<BrokerResourceListResultValueList>;
-
-/** The response of a BrokerResource list operation. */
-export interface BrokerResourceListResult {
-  /** The BrokerResource items on this page */
-  value: BrokerResourceListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const BrokerResourceListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: BrokerResourceListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "BrokerResourceListResult",
-}) as any as S.Schema<BrokerResourceListResult>;
-
 /** Protocol to use for client connections. */
 export type ListenerPortProtocol = "Mqtt" | "WebSockets";
 export const ListenerPortProtocol = /*@__PURE__*/ S.String;
@@ -3312,182 +2283,6 @@ export const BrokerListenerCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "BrokerListenerCreateOrUpdateResponse",
 }) as any as S.Schema<BrokerListenerCreateOrUpdateResponse>;
-
-export interface BrokerListenerDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of instance. */
-  instanceName: string;
-  /** Name of broker. */
-  brokerName: string;
-  /** Name of Instance broker listener resource */
-  listenerName: string;
-}
-export const BrokerListenerDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    instanceName: S.String.pipe(T.Label()),
-    brokerName: S.String.pipe(T.Label()),
-    listenerName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/brokers/{brokerName}/listeners/{listenerName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "BrokerListenerDeleteRequest",
-}) as any as S.Schema<BrokerListenerDeleteRequest>;
-
-export interface BrokerListenerDeleteResponse {}
-export const BrokerListenerDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "BrokerListenerDeleteResponse",
-}) as any as S.Schema<BrokerListenerDeleteResponse>;
-
-export interface BrokerListenerGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of instance. */
-  instanceName: string;
-  /** Name of broker. */
-  brokerName: string;
-  /** Name of Instance broker listener resource */
-  listenerName: string;
-}
-export const BrokerListenerGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    instanceName: S.String.pipe(T.Label()),
-    brokerName: S.String.pipe(T.Label()),
-    listenerName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/brokers/{brokerName}/listeners/{listenerName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "BrokerListenerGetRequest",
-}) as any as S.Schema<BrokerListenerGetRequest>;
-
-export interface BrokerListenerGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: BrokerListenerProperties;
-  /** Edge location of the resource. */
-  extendedLocation?: ExtendedLocation;
-}
-export const BrokerListenerGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(BrokerListenerProperties),
-    extendedLocation: S.optional(ExtendedLocation),
-  }),
-).annotate({
-  identifier: "BrokerListenerGetResponse",
-}) as any as S.Schema<BrokerListenerGetResponse>;
-
-export interface BrokerListenerListByResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of instance. */
-  instanceName: string;
-  /** Name of broker. */
-  brokerName: string;
-}
-export const BrokerListenerListByResourceGroupRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      instanceName: S.String.pipe(T.Label()),
-      brokerName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/brokers/{brokerName}/listeners",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "BrokerListenerListByResourceGroupRequest",
-}) as any as S.Schema<BrokerListenerListByResourceGroupRequest>;
-
-/** Instance broker resource */
-export interface BrokerListenerResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: BrokerListenerProperties;
-  /** Edge location of the resource. */
-  extendedLocation?: ExtendedLocation;
-}
-export const BrokerListenerResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(BrokerListenerProperties),
-    extendedLocation: S.optional(ExtendedLocation),
-  }),
-).annotate({
-  identifier: "BrokerListenerResource",
-}) as any as S.Schema<BrokerListenerResource>;
-
-/** The BrokerListenerResource items on this page */
-export type BrokerListenerResourceListResultValueList =
-  Array<BrokerListenerResource>;
-export const BrokerListenerResourceListResultValueList = /*@__PURE__*/ S.Array(
-  BrokerListenerResource,
-) as any as S.Schema<BrokerListenerResourceListResultValueList>;
-
-/** The response of a BrokerListenerResource list operation. */
-export interface BrokerListenerResourceListResult {
-  /** The BrokerListenerResource items on this page */
-  value: BrokerListenerResourceListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const BrokerListenerResourceListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: BrokerListenerResourceListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "BrokerListenerResourceListResult",
-}) as any as S.Schema<BrokerListenerResourceListResult>;
 
 /** Mode for Dataflow. Optional; defaults to Enabled. */
 export type DataflowPropertiesInputMode = "Enabled" | "Disabled";
@@ -3926,44 +2721,6 @@ export const DataflowCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DataflowCreateOrUpdateResponse",
 }) as any as S.Schema<DataflowCreateOrUpdateResponse>;
-
-export interface DataflowDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of instance. */
-  instanceName: string;
-  /** Name of Instance dataflowProfile resource */
-  dataflowProfileName: string;
-  /** Name of Instance dataflowProfile dataflow resource */
-  dataflowName: string;
-}
-export const DataflowDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    instanceName: S.String.pipe(T.Label()),
-    dataflowProfileName: S.String.pipe(T.Label()),
-    dataflowName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/dataflowProfiles/{dataflowProfileName}/dataflows/{dataflowName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "DataflowDeleteRequest",
-}) as any as S.Schema<DataflowDeleteRequest>;
-
-export interface DataflowDeleteResponse {}
-export const DataflowDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DataflowDeleteResponse",
-}) as any as S.Schema<DataflowDeleteResponse>;
 
 /** DataflowEndpoint Type properties */
 export type EndpointType =
@@ -4687,232 +3444,6 @@ export const DataflowEndpointCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "DataflowEndpointCreateOrUpdateResponse",
 }) as any as S.Schema<DataflowEndpointCreateOrUpdateResponse>;
 
-export interface DataflowEndpointDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of instance. */
-  instanceName: string;
-  /** Name of Instance dataflowEndpoint resource */
-  dataflowEndpointName: string;
-}
-export const DataflowEndpointDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    instanceName: S.String.pipe(T.Label()),
-    dataflowEndpointName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/dataflowEndpoints/{dataflowEndpointName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "DataflowEndpointDeleteRequest",
-}) as any as S.Schema<DataflowEndpointDeleteRequest>;
-
-export interface DataflowEndpointDeleteResponse {}
-export const DataflowEndpointDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DataflowEndpointDeleteResponse",
-}) as any as S.Schema<DataflowEndpointDeleteResponse>;
-
-export interface DataflowEndpointGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of instance. */
-  instanceName: string;
-  /** Name of Instance dataflowEndpoint resource */
-  dataflowEndpointName: string;
-}
-export const DataflowEndpointGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    instanceName: S.String.pipe(T.Label()),
-    dataflowEndpointName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/dataflowEndpoints/{dataflowEndpointName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "DataflowEndpointGetRequest",
-}) as any as S.Schema<DataflowEndpointGetRequest>;
-
-export interface DataflowEndpointGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: DataflowEndpointProperties;
-  /** Edge location of the resource. */
-  extendedLocation?: ExtendedLocation;
-}
-export const DataflowEndpointGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(DataflowEndpointProperties),
-    extendedLocation: S.optional(ExtendedLocation),
-  }),
-).annotate({
-  identifier: "DataflowEndpointGetResponse",
-}) as any as S.Schema<DataflowEndpointGetResponse>;
-
-export interface DataflowEndpointListByResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of instance. */
-  instanceName: string;
-}
-export const DataflowEndpointListByResourceGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      instanceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/dataflowEndpoints",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "DataflowEndpointListByResourceGroupRequest",
-  }) as any as S.Schema<DataflowEndpointListByResourceGroupRequest>;
-
-/** Instance dataflowEndpoint resource */
-export interface DataflowEndpointResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: DataflowEndpointProperties;
-  /** Edge location of the resource. */
-  extendedLocation?: ExtendedLocation;
-}
-export const DataflowEndpointResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(DataflowEndpointProperties),
-    extendedLocation: S.optional(ExtendedLocation),
-  }),
-).annotate({
-  identifier: "DataflowEndpointResource",
-}) as any as S.Schema<DataflowEndpointResource>;
-
-/** The DataflowEndpointResource items on this page */
-export type DataflowEndpointResourceListResultValueList =
-  Array<DataflowEndpointResource>;
-export const DataflowEndpointResourceListResultValueList =
-  /*@__PURE__*/ S.Array(
-    DataflowEndpointResource,
-  ) as any as S.Schema<DataflowEndpointResourceListResultValueList>;
-
-/** The response of a DataflowEndpointResource list operation. */
-export interface DataflowEndpointResourceListResult {
-  /** The DataflowEndpointResource items on this page */
-  value: DataflowEndpointResourceListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const DataflowEndpointResourceListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: DataflowEndpointResourceListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DataflowEndpointResourceListResult",
-}) as any as S.Schema<DataflowEndpointResourceListResult>;
-
-export interface DataflowGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of instance. */
-  instanceName: string;
-  /** Name of Instance dataflowProfile resource */
-  dataflowProfileName: string;
-  /** Name of Instance dataflowProfile dataflow resource */
-  dataflowName: string;
-}
-export const DataflowGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    instanceName: S.String.pipe(T.Label()),
-    dataflowProfileName: S.String.pipe(T.Label()),
-    dataflowName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/dataflowProfiles/{dataflowProfileName}/dataflows/{dataflowName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "DataflowGetRequest",
-}) as any as S.Schema<DataflowGetRequest>;
-
-export interface DataflowGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: DataflowProperties;
-  /** Edge location of the resource. */
-  extendedLocation?: ExtendedLocation;
-}
-export const DataflowGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(DataflowProperties),
-    extendedLocation: S.optional(ExtendedLocation),
-  }),
-).annotate({
-  identifier: "DataflowGetResponse",
-}) as any as S.Schema<DataflowGetResponse>;
-
 /** The mode of the dataflow graph. */
 export type DataflowGraphPropertiesInputMode = "Enabled" | "Disabled";
 export const DataflowGraphPropertiesInputMode = /*@__PURE__*/ S.String;
@@ -5181,261 +3712,6 @@ export const DataflowGraphCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DataflowGraphCreateOrUpdateResponse",
 }) as any as S.Schema<DataflowGraphCreateOrUpdateResponse>;
 
-export interface DataflowGraphDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of instance. */
-  instanceName: string;
-  /** Name of Instance dataflowProfile resource */
-  dataflowProfileName: string;
-  /** Name of Instance dataflowEndpoint resource. */
-  dataflowGraphName: string;
-}
-export const DataflowGraphDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    instanceName: S.String.pipe(T.Label()),
-    dataflowProfileName: S.String.pipe(T.Label()),
-    dataflowGraphName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/dataflowProfiles/{dataflowProfileName}/dataflowGraphs/{dataflowGraphName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "DataflowGraphDeleteRequest",
-}) as any as S.Schema<DataflowGraphDeleteRequest>;
-
-export interface DataflowGraphDeleteResponse {}
-export const DataflowGraphDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DataflowGraphDeleteResponse",
-}) as any as S.Schema<DataflowGraphDeleteResponse>;
-
-export interface DataflowGraphGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of instance. */
-  instanceName: string;
-  /** Name of Instance dataflowProfile resource */
-  dataflowProfileName: string;
-  /** Name of Instance dataflowEndpoint resource. */
-  dataflowGraphName: string;
-}
-export const DataflowGraphGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    instanceName: S.String.pipe(T.Label()),
-    dataflowProfileName: S.String.pipe(T.Label()),
-    dataflowGraphName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/dataflowProfiles/{dataflowProfileName}/dataflowGraphs/{dataflowGraphName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "DataflowGraphGetRequest",
-}) as any as S.Schema<DataflowGraphGetRequest>;
-
-export interface DataflowGraphGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: DataflowGraphProperties;
-  /** Edge location of the resource. */
-  extendedLocation?: ExtendedLocation;
-}
-export const DataflowGraphGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(DataflowGraphProperties),
-    extendedLocation: S.optional(ExtendedLocation),
-  }),
-).annotate({
-  identifier: "DataflowGraphGetResponse",
-}) as any as S.Schema<DataflowGraphGetResponse>;
-
-export interface DataflowGraphListByDataflowProfileRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of instance. */
-  instanceName: string;
-  /** Name of Instance dataflowProfile resource */
-  dataflowProfileName: string;
-}
-export const DataflowGraphListByDataflowProfileRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      instanceName: S.String.pipe(T.Label()),
-      dataflowProfileName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/dataflowProfiles/{dataflowProfileName}/dataflowGraphs",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "DataflowGraphListByDataflowProfileRequest",
-  }) as any as S.Schema<DataflowGraphListByDataflowProfileRequest>;
-
-/** Instance dataflowEndpoint resource. */
-export interface DataflowGraphResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: DataflowGraphProperties;
-  /** Edge location of the resource. */
-  extendedLocation?: ExtendedLocation;
-}
-export const DataflowGraphResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(DataflowGraphProperties),
-    extendedLocation: S.optional(ExtendedLocation),
-  }),
-).annotate({
-  identifier: "DataflowGraphResource",
-}) as any as S.Schema<DataflowGraphResource>;
-
-/** The DataflowGraphResource items on this page */
-export type DataflowGraphResourceListResultValueList =
-  Array<DataflowGraphResource>;
-export const DataflowGraphResourceListResultValueList = /*@__PURE__*/ S.Array(
-  DataflowGraphResource,
-) as any as S.Schema<DataflowGraphResourceListResultValueList>;
-
-/** The response of a DataflowGraphResource list operation. */
-export interface DataflowGraphResourceListResult {
-  /** The DataflowGraphResource items on this page */
-  value: DataflowGraphResourceListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const DataflowGraphResourceListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: DataflowGraphResourceListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DataflowGraphResourceListResult",
-}) as any as S.Schema<DataflowGraphResourceListResult>;
-
-export interface DataflowListByProfileResourceRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of instance. */
-  instanceName: string;
-  /** Name of Instance dataflowProfile resource */
-  dataflowProfileName: string;
-}
-export const DataflowListByProfileResourceRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      instanceName: S.String.pipe(T.Label()),
-      dataflowProfileName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/dataflowProfiles/{dataflowProfileName}/dataflows",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "DataflowListByProfileResourceRequest",
-}) as any as S.Schema<DataflowListByProfileResourceRequest>;
-
-/** Instance dataflowProfile dataflow resource */
-export interface DataflowResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: DataflowProperties;
-  /** Edge location of the resource. */
-  extendedLocation?: ExtendedLocation;
-}
-export const DataflowResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(DataflowProperties),
-    extendedLocation: S.optional(ExtendedLocation),
-  }),
-).annotate({
-  identifier: "DataflowResource",
-}) as any as S.Schema<DataflowResource>;
-
-/** The DataflowResource items on this page */
-export type DataflowResourceListResultValueList = Array<DataflowResource>;
-export const DataflowResourceListResultValueList = /*@__PURE__*/ S.Array(
-  DataflowResource,
-) as any as S.Schema<DataflowResourceListResultValueList>;
-
-/** The response of a DataflowResource list operation. */
-export interface DataflowResourceListResult {
-  /** The DataflowResource items on this page */
-  value: DataflowResourceListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const DataflowResourceListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: DataflowResourceListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DataflowResourceListResult",
-}) as any as S.Schema<DataflowResourceListResult>;
-
 /** DataflowProfile Diagnostics properties */
 export interface ProfileDiagnostics {
   /** Diagnostic log settings for the resource. */
@@ -5577,7 +3853,375 @@ export const DataflowProfileCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "DataflowProfileCreateOrUpdateResponse",
 }) as any as S.Schema<DataflowProfileCreateOrUpdateResponse>;
 
-export interface DataflowProfileDeleteRequest {
+export interface DeleteAkriConnectorRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of instance. */
+  instanceName: string;
+  /** Name of AkriConnectorTemplate resource. */
+  akriConnectorTemplateName: string;
+  /** Name of AkriConnector resource. */
+  connectorName: string;
+}
+export const DeleteAkriConnectorRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    instanceName: S.String.pipe(T.Label()),
+    akriConnectorTemplateName: S.String.pipe(T.Label()),
+    connectorName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/akriConnectorTemplates/{akriConnectorTemplateName}/connectors/{connectorName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteAkriConnectorRequest",
+}) as any as S.Schema<DeleteAkriConnectorRequest>;
+
+export interface DeleteAkriConnectorResponse {}
+export const DeleteAkriConnectorResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteAkriConnectorResponse",
+}) as any as S.Schema<DeleteAkriConnectorResponse>;
+
+export interface DeleteAkriConnectorTemplateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of instance. */
+  instanceName: string;
+  /** Name of AkriConnectorTemplate resource. */
+  akriConnectorTemplateName: string;
+}
+export const DeleteAkriConnectorTemplateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    instanceName: S.String.pipe(T.Label()),
+    akriConnectorTemplateName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/akriConnectorTemplates/{akriConnectorTemplateName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteAkriConnectorTemplateRequest",
+}) as any as S.Schema<DeleteAkriConnectorTemplateRequest>;
+
+export interface DeleteAkriConnectorTemplateResponse {}
+export const DeleteAkriConnectorTemplateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteAkriConnectorTemplateResponse",
+}) as any as S.Schema<DeleteAkriConnectorTemplateResponse>;
+
+export interface DeleteAkriServiceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of instance. */
+  instanceName: string;
+  /** Name of AkriService resource. */
+  akriServiceName: string;
+}
+export const DeleteAkriServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    instanceName: S.String.pipe(T.Label()),
+    akriServiceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/akriServices/{akriServiceName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteAkriServiceRequest",
+}) as any as S.Schema<DeleteAkriServiceRequest>;
+
+export interface DeleteAkriServiceResponse {}
+export const DeleteAkriServiceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteAkriServiceResponse",
+}) as any as S.Schema<DeleteAkriServiceResponse>;
+
+export interface DeleteBrokerRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of instance. */
+  instanceName: string;
+  /** Name of broker. */
+  brokerName: string;
+}
+export const DeleteBrokerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    instanceName: S.String.pipe(T.Label()),
+    brokerName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/brokers/{brokerName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteBrokerRequest",
+}) as any as S.Schema<DeleteBrokerRequest>;
+
+export interface DeleteBrokerResponse {}
+export const DeleteBrokerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteBrokerResponse",
+}) as any as S.Schema<DeleteBrokerResponse>;
+
+export interface DeleteBrokerAuthenticationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of instance. */
+  instanceName: string;
+  /** Name of broker. */
+  brokerName: string;
+  /** Name of Instance broker authentication resource */
+  authenticationName: string;
+}
+export const DeleteBrokerAuthenticationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    instanceName: S.String.pipe(T.Label()),
+    brokerName: S.String.pipe(T.Label()),
+    authenticationName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/brokers/{brokerName}/authentications/{authenticationName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteBrokerAuthenticationRequest",
+}) as any as S.Schema<DeleteBrokerAuthenticationRequest>;
+
+export interface DeleteBrokerAuthenticationResponse {}
+export const DeleteBrokerAuthenticationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteBrokerAuthenticationResponse",
+}) as any as S.Schema<DeleteBrokerAuthenticationResponse>;
+
+export interface DeleteBrokerAuthorizationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of instance. */
+  instanceName: string;
+  /** Name of broker. */
+  brokerName: string;
+  /** Name of Instance broker authorization resource */
+  authorizationName: string;
+}
+export const DeleteBrokerAuthorizationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    instanceName: S.String.pipe(T.Label()),
+    brokerName: S.String.pipe(T.Label()),
+    authorizationName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/brokers/{brokerName}/authorizations/{authorizationName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteBrokerAuthorizationRequest",
+}) as any as S.Schema<DeleteBrokerAuthorizationRequest>;
+
+export interface DeleteBrokerAuthorizationResponse {}
+export const DeleteBrokerAuthorizationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteBrokerAuthorizationResponse",
+}) as any as S.Schema<DeleteBrokerAuthorizationResponse>;
+
+export interface DeleteBrokerListenerRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of instance. */
+  instanceName: string;
+  /** Name of broker. */
+  brokerName: string;
+  /** Name of Instance broker listener resource */
+  listenerName: string;
+}
+export const DeleteBrokerListenerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    instanceName: S.String.pipe(T.Label()),
+    brokerName: S.String.pipe(T.Label()),
+    listenerName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/brokers/{brokerName}/listeners/{listenerName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteBrokerListenerRequest",
+}) as any as S.Schema<DeleteBrokerListenerRequest>;
+
+export interface DeleteBrokerListenerResponse {}
+export const DeleteBrokerListenerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteBrokerListenerResponse",
+}) as any as S.Schema<DeleteBrokerListenerResponse>;
+
+export interface DeleteDataflowRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of instance. */
+  instanceName: string;
+  /** Name of Instance dataflowProfile resource */
+  dataflowProfileName: string;
+  /** Name of Instance dataflowProfile dataflow resource */
+  dataflowName: string;
+}
+export const DeleteDataflowRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    instanceName: S.String.pipe(T.Label()),
+    dataflowProfileName: S.String.pipe(T.Label()),
+    dataflowName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/dataflowProfiles/{dataflowProfileName}/dataflows/{dataflowName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteDataflowRequest",
+}) as any as S.Schema<DeleteDataflowRequest>;
+
+export interface DeleteDataflowResponse {}
+export const DeleteDataflowResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteDataflowResponse",
+}) as any as S.Schema<DeleteDataflowResponse>;
+
+export interface DeleteDataflowEndpointRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of instance. */
+  instanceName: string;
+  /** Name of Instance dataflowEndpoint resource */
+  dataflowEndpointName: string;
+}
+export const DeleteDataflowEndpointRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    instanceName: S.String.pipe(T.Label()),
+    dataflowEndpointName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/dataflowEndpoints/{dataflowEndpointName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteDataflowEndpointRequest",
+}) as any as S.Schema<DeleteDataflowEndpointRequest>;
+
+export interface DeleteDataflowEndpointResponse {}
+export const DeleteDataflowEndpointResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteDataflowEndpointResponse",
+}) as any as S.Schema<DeleteDataflowEndpointResponse>;
+
+export interface DeleteDataflowGraphRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of instance. */
+  instanceName: string;
+  /** Name of Instance dataflowProfile resource */
+  dataflowProfileName: string;
+  /** Name of Instance dataflowEndpoint resource. */
+  dataflowGraphName: string;
+}
+export const DeleteDataflowGraphRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    instanceName: S.String.pipe(T.Label()),
+    dataflowProfileName: S.String.pipe(T.Label()),
+    dataflowGraphName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/dataflowProfiles/{dataflowProfileName}/dataflowGraphs/{dataflowGraphName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteDataflowGraphRequest",
+}) as any as S.Schema<DeleteDataflowGraphRequest>;
+
+export interface DeleteDataflowGraphResponse {}
+export const DeleteDataflowGraphResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteDataflowGraphResponse",
+}) as any as S.Schema<DeleteDataflowGraphResponse>;
+
+export interface DeleteDataflowProfileRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5587,7 +4231,7 @@ export interface DataflowProfileDeleteRequest {
   /** Name of Instance dataflowProfile resource */
   dataflowProfileName: string;
 }
-export const DataflowProfileDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteDataflowProfileRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -5602,17 +4246,652 @@ export const DataflowProfileDeleteRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DataflowProfileDeleteRequest",
-}) as any as S.Schema<DataflowProfileDeleteRequest>;
+  identifier: "DeleteDataflowProfileRequest",
+}) as any as S.Schema<DeleteDataflowProfileRequest>;
 
-export interface DataflowProfileDeleteResponse {}
-export const DataflowProfileDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteDataflowProfileResponse {}
+export const DeleteDataflowProfileResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DataflowProfileDeleteResponse",
-}) as any as S.Schema<DataflowProfileDeleteResponse>;
+  identifier: "DeleteDataflowProfileResponse",
+}) as any as S.Schema<DeleteDataflowProfileResponse>;
 
-export interface DataflowProfileGetRequest {
+export interface DeleteInstanceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of instance. */
+  instanceName: string;
+}
+export const DeleteInstanceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    instanceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteInstanceRequest",
+}) as any as S.Schema<DeleteInstanceRequest>;
+
+export interface DeleteInstanceResponse {}
+export const DeleteInstanceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteInstanceResponse",
+}) as any as S.Schema<DeleteInstanceResponse>;
+
+export interface DeleteRegistryEndpointRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of instance. */
+  instanceName: string;
+  /** Name of RegistryEndpoint resource */
+  registryEndpointName: string;
+}
+export const DeleteRegistryEndpointRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    instanceName: S.String.pipe(T.Label()),
+    registryEndpointName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/registryEndpoints/{registryEndpointName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteRegistryEndpointRequest",
+}) as any as S.Schema<DeleteRegistryEndpointRequest>;
+
+export interface DeleteRegistryEndpointResponse {}
+export const DeleteRegistryEndpointResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteRegistryEndpointResponse",
+}) as any as S.Schema<DeleteRegistryEndpointResponse>;
+
+export interface GetAkriConnectorRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of instance. */
+  instanceName: string;
+  /** Name of AkriConnectorTemplate resource. */
+  akriConnectorTemplateName: string;
+  /** Name of AkriConnector resource. */
+  connectorName: string;
+}
+export const GetAkriConnectorRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    instanceName: S.String.pipe(T.Label()),
+    akriConnectorTemplateName: S.String.pipe(T.Label()),
+    connectorName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/akriConnectorTemplates/{akriConnectorTemplateName}/connectors/{connectorName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetAkriConnectorRequest",
+}) as any as S.Schema<GetAkriConnectorRequest>;
+
+export interface GetAkriConnectorResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: AkriConnectorProperties;
+  /** Edge location of the resource. */
+  extendedLocation?: ExtendedLocation;
+}
+export const GetAkriConnectorResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(AkriConnectorProperties),
+    extendedLocation: S.optional(ExtendedLocation),
+  }),
+).annotate({
+  identifier: "GetAkriConnectorResponse",
+}) as any as S.Schema<GetAkriConnectorResponse>;
+
+export interface GetAkriConnectorTemplateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of instance. */
+  instanceName: string;
+  /** Name of AkriConnectorTemplate resource. */
+  akriConnectorTemplateName: string;
+}
+export const GetAkriConnectorTemplateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    instanceName: S.String.pipe(T.Label()),
+    akriConnectorTemplateName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/akriConnectorTemplates/{akriConnectorTemplateName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetAkriConnectorTemplateRequest",
+}) as any as S.Schema<GetAkriConnectorTemplateRequest>;
+
+export interface GetAkriConnectorTemplateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: AkriConnectorTemplateProperties;
+  /** Edge location of the resource. */
+  extendedLocation?: ExtendedLocation;
+}
+export const GetAkriConnectorTemplateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(AkriConnectorTemplateProperties),
+    extendedLocation: S.optional(ExtendedLocation),
+  }),
+).annotate({
+  identifier: "GetAkriConnectorTemplateResponse",
+}) as any as S.Schema<GetAkriConnectorTemplateResponse>;
+
+export interface GetAkriServiceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of instance. */
+  instanceName: string;
+  /** Name of AkriService resource. */
+  akriServiceName: string;
+}
+export const GetAkriServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    instanceName: S.String.pipe(T.Label()),
+    akriServiceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/akriServices/{akriServiceName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetAkriServiceRequest",
+}) as any as S.Schema<GetAkriServiceRequest>;
+
+export interface GetAkriServiceResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: AkriServiceProperties;
+  /** Edge location of the resource. */
+  extendedLocation?: ExtendedLocation;
+}
+export const GetAkriServiceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(AkriServiceProperties),
+    extendedLocation: S.optional(ExtendedLocation),
+  }),
+).annotate({
+  identifier: "GetAkriServiceResponse",
+}) as any as S.Schema<GetAkriServiceResponse>;
+
+export interface GetBrokerRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of instance. */
+  instanceName: string;
+  /** Name of broker. */
+  brokerName: string;
+}
+export const GetBrokerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    instanceName: S.String.pipe(T.Label()),
+    brokerName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/brokers/{brokerName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetBrokerRequest",
+}) as any as S.Schema<GetBrokerRequest>;
+
+export interface GetBrokerResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: BrokerProperties;
+  /** Edge location of the resource. */
+  extendedLocation?: ExtendedLocation;
+}
+export const GetBrokerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(BrokerProperties),
+    extendedLocation: S.optional(ExtendedLocation),
+  }),
+).annotate({
+  identifier: "GetBrokerResponse",
+}) as any as S.Schema<GetBrokerResponse>;
+
+export interface GetBrokerAuthenticationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of instance. */
+  instanceName: string;
+  /** Name of broker. */
+  brokerName: string;
+  /** Name of Instance broker authentication resource */
+  authenticationName: string;
+}
+export const GetBrokerAuthenticationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    instanceName: S.String.pipe(T.Label()),
+    brokerName: S.String.pipe(T.Label()),
+    authenticationName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/brokers/{brokerName}/authentications/{authenticationName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetBrokerAuthenticationRequest",
+}) as any as S.Schema<GetBrokerAuthenticationRequest>;
+
+export interface GetBrokerAuthenticationResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: BrokerAuthenticationProperties;
+  /** Edge location of the resource. */
+  extendedLocation?: ExtendedLocation;
+}
+export const GetBrokerAuthenticationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(BrokerAuthenticationProperties),
+    extendedLocation: S.optional(ExtendedLocation),
+  }),
+).annotate({
+  identifier: "GetBrokerAuthenticationResponse",
+}) as any as S.Schema<GetBrokerAuthenticationResponse>;
+
+export interface GetBrokerAuthorizationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of instance. */
+  instanceName: string;
+  /** Name of broker. */
+  brokerName: string;
+  /** Name of Instance broker authorization resource */
+  authorizationName: string;
+}
+export const GetBrokerAuthorizationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    instanceName: S.String.pipe(T.Label()),
+    brokerName: S.String.pipe(T.Label()),
+    authorizationName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/brokers/{brokerName}/authorizations/{authorizationName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetBrokerAuthorizationRequest",
+}) as any as S.Schema<GetBrokerAuthorizationRequest>;
+
+export interface GetBrokerAuthorizationResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: BrokerAuthorizationProperties;
+  /** Edge location of the resource. */
+  extendedLocation?: ExtendedLocation;
+}
+export const GetBrokerAuthorizationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(BrokerAuthorizationProperties),
+    extendedLocation: S.optional(ExtendedLocation),
+  }),
+).annotate({
+  identifier: "GetBrokerAuthorizationResponse",
+}) as any as S.Schema<GetBrokerAuthorizationResponse>;
+
+export interface GetBrokerListenerRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of instance. */
+  instanceName: string;
+  /** Name of broker. */
+  brokerName: string;
+  /** Name of Instance broker listener resource */
+  listenerName: string;
+}
+export const GetBrokerListenerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    instanceName: S.String.pipe(T.Label()),
+    brokerName: S.String.pipe(T.Label()),
+    listenerName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/brokers/{brokerName}/listeners/{listenerName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetBrokerListenerRequest",
+}) as any as S.Schema<GetBrokerListenerRequest>;
+
+export interface GetBrokerListenerResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: BrokerListenerProperties;
+  /** Edge location of the resource. */
+  extendedLocation?: ExtendedLocation;
+}
+export const GetBrokerListenerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(BrokerListenerProperties),
+    extendedLocation: S.optional(ExtendedLocation),
+  }),
+).annotate({
+  identifier: "GetBrokerListenerResponse",
+}) as any as S.Schema<GetBrokerListenerResponse>;
+
+export interface GetDataflowRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of instance. */
+  instanceName: string;
+  /** Name of Instance dataflowProfile resource */
+  dataflowProfileName: string;
+  /** Name of Instance dataflowProfile dataflow resource */
+  dataflowName: string;
+}
+export const GetDataflowRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    instanceName: S.String.pipe(T.Label()),
+    dataflowProfileName: S.String.pipe(T.Label()),
+    dataflowName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/dataflowProfiles/{dataflowProfileName}/dataflows/{dataflowName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetDataflowRequest",
+}) as any as S.Schema<GetDataflowRequest>;
+
+export interface GetDataflowResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: DataflowProperties;
+  /** Edge location of the resource. */
+  extendedLocation?: ExtendedLocation;
+}
+export const GetDataflowResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(DataflowProperties),
+    extendedLocation: S.optional(ExtendedLocation),
+  }),
+).annotate({
+  identifier: "GetDataflowResponse",
+}) as any as S.Schema<GetDataflowResponse>;
+
+export interface GetDataflowEndpointRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of instance. */
+  instanceName: string;
+  /** Name of Instance dataflowEndpoint resource */
+  dataflowEndpointName: string;
+}
+export const GetDataflowEndpointRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    instanceName: S.String.pipe(T.Label()),
+    dataflowEndpointName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/dataflowEndpoints/{dataflowEndpointName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetDataflowEndpointRequest",
+}) as any as S.Schema<GetDataflowEndpointRequest>;
+
+export interface GetDataflowEndpointResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: DataflowEndpointProperties;
+  /** Edge location of the resource. */
+  extendedLocation?: ExtendedLocation;
+}
+export const GetDataflowEndpointResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(DataflowEndpointProperties),
+    extendedLocation: S.optional(ExtendedLocation),
+  }),
+).annotate({
+  identifier: "GetDataflowEndpointResponse",
+}) as any as S.Schema<GetDataflowEndpointResponse>;
+
+export interface GetDataflowGraphRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of instance. */
+  instanceName: string;
+  /** Name of Instance dataflowProfile resource */
+  dataflowProfileName: string;
+  /** Name of Instance dataflowEndpoint resource. */
+  dataflowGraphName: string;
+}
+export const GetDataflowGraphRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    instanceName: S.String.pipe(T.Label()),
+    dataflowProfileName: S.String.pipe(T.Label()),
+    dataflowGraphName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/dataflowProfiles/{dataflowProfileName}/dataflowGraphs/{dataflowGraphName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetDataflowGraphRequest",
+}) as any as S.Schema<GetDataflowGraphRequest>;
+
+export interface GetDataflowGraphResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: DataflowGraphProperties;
+  /** Edge location of the resource. */
+  extendedLocation?: ExtendedLocation;
+}
+export const GetDataflowGraphResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(DataflowGraphProperties),
+    extendedLocation: S.optional(ExtendedLocation),
+  }),
+).annotate({
+  identifier: "GetDataflowGraphResponse",
+}) as any as S.Schema<GetDataflowGraphResponse>;
+
+export interface GetDataflowProfileRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5622,7 +4901,7 @@ export interface DataflowProfileGetRequest {
   /** Name of Instance dataflowProfile resource */
   dataflowProfileName: string;
 }
-export const DataflowProfileGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDataflowProfileRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -5637,10 +4916,10 @@ export const DataflowProfileGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DataflowProfileGetRequest",
-}) as any as S.Schema<DataflowProfileGetRequest>;
+  identifier: "GetDataflowProfileRequest",
+}) as any as S.Schema<GetDataflowProfileRequest>;
 
-export interface DataflowProfileGetResponse {
+export interface GetDataflowProfileResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -5654,7 +4933,7 @@ export interface DataflowProfileGetResponse {
   /** Edge location of the resource. */
   extendedLocation?: ExtendedLocation;
 }
-export const DataflowProfileGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetDataflowProfileResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -5664,10 +4943,10 @@ export const DataflowProfileGetResponse = /*@__PURE__*/ S.suspend(() =>
     extendedLocation: S.optional(ExtendedLocation),
   }),
 ).annotate({
-  identifier: "DataflowProfileGetResponse",
-}) as any as S.Schema<DataflowProfileGetResponse>;
+  identifier: "GetDataflowProfileResponse",
+}) as any as S.Schema<GetDataflowProfileResponse>;
 
-export interface DataflowProfileListByResourceGroupRequest {
+export interface GetInstanceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5675,83 +4954,29 @@ export interface DataflowProfileListByResourceGroupRequest {
   /** Name of instance. */
   instanceName: string;
 }
-export const DataflowProfileListByResourceGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      instanceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/dataflowProfiles",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "DataflowProfileListByResourceGroupRequest",
-  }) as any as S.Schema<DataflowProfileListByResourceGroupRequest>;
-
-/** Instance dataflowProfile resource */
-export interface DataflowProfileResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: DataflowProfileProperties;
-  /** Edge location of the resource. */
-  extendedLocation?: ExtendedLocation;
-}
-export const DataflowProfileResource = /*@__PURE__*/ S.suspend(() =>
+export const GetInstanceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(DataflowProfileProperties),
-    extendedLocation: S.optional(ExtendedLocation),
-  }),
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    instanceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
 ).annotate({
-  identifier: "DataflowProfileResource",
-}) as any as S.Schema<DataflowProfileResource>;
-
-/** The DataflowProfileResource items on this page */
-export type DataflowProfileResourceListResultValueList =
-  Array<DataflowProfileResource>;
-export const DataflowProfileResourceListResultValueList = /*@__PURE__*/ S.Array(
-  DataflowProfileResource,
-) as any as S.Schema<DataflowProfileResourceListResultValueList>;
-
-/** The response of a DataflowProfileResource list operation. */
-export interface DataflowProfileResourceListResult {
-  /** The DataflowProfileResource items on this page */
-  value: DataflowProfileResourceListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const DataflowProfileResourceListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: DataflowProfileResourceListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DataflowProfileResourceListResult",
-}) as any as S.Schema<DataflowProfileResourceListResult>;
+  identifier: "GetInstanceRequest",
+}) as any as S.Schema<GetInstanceRequest>;
 
 /** Resource tags. */
-export type InstanceCreateOrUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const InstanceCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type GetInstanceResponseTagsMap = { [key: string]: string | undefined };
+export const GetInstanceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<InstanceCreateOrUpdateRequestTagsMap>;
+) as any as S.Schema<GetInstanceResponseTagsMap>;
 
 /** The reference to the Schema Registry for this AIO Instance. */
 export interface SchemaRegistryRef {
@@ -5809,13 +5034,13 @@ export const InstanceFeature = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<InstanceFeature>;
 
 /** The features of the AIO Instance. */
-export type InstancePropertiesInputFeaturesMap = {
+export type InstancePropertiesFeaturesMap = {
   [key: string]: InstanceFeature | undefined;
 };
-export const InstancePropertiesInputFeaturesMap = /*@__PURE__*/ S.Record(
+export const InstancePropertiesFeaturesMap = /*@__PURE__*/ S.Record(
   S.String,
   InstanceFeature,
-) as any as S.Schema<InstancePropertiesInputFeaturesMap>;
+) as any as S.Schema<InstancePropertiesFeaturesMap>;
 
 /** Azure Device Registry Namespace reference. */
 export interface AzureDeviceRegistryNamespaceRef {
@@ -5829,6 +5054,289 @@ export const AzureDeviceRegistryNamespaceRef = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "AzureDeviceRegistryNamespaceRef",
 }) as any as S.Schema<AzureDeviceRegistryNamespaceRef>;
+
+/** The health state of the resource. */
+export type InstancePropertiesHealthState =
+  | "Available"
+  | "Degraded"
+  | "Unavailable"
+  | "Unknown";
+export const InstancePropertiesHealthState = /*@__PURE__*/ S.String;
+
+/** The properties of the Instance resource. */
+export interface InstanceProperties {
+  /** Detailed description of the Instance. */
+  description?: string;
+  /** The status of the last operation. */
+  provisioningState?: ProvisioningState;
+  /** The Azure IoT Operations version. */
+  version?: string;
+  /** The reference to the Schema Registry for this AIO Instance. */
+  schemaRegistryRef: SchemaRegistryRef;
+  /** The reference to the AIO Secret provider class. */
+  defaultSecretProviderClassRef?: SecretProviderClassRef;
+  /** The features of the AIO Instance. */
+  features?: InstancePropertiesFeaturesMap;
+  /** The Azure Device Registry Namespace used by Assets, Discovered Assets and devices */
+  adrNamespaceRef?: AzureDeviceRegistryNamespaceRef;
+  /** The health state of the resource. */
+  healthState?: InstancePropertiesHealthState;
+}
+export const InstanceProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    description: S.optional(S.String),
+    provisioningState: S.optional(ProvisioningState),
+    version: S.optional(S.String),
+    schemaRegistryRef: SchemaRegistryRef,
+    defaultSecretProviderClassRef: S.optional(SecretProviderClassRef),
+    features: S.optional(InstancePropertiesFeaturesMap),
+    adrNamespaceRef: S.optional(AzureDeviceRegistryNamespaceRef),
+    healthState: S.optional(InstancePropertiesHealthState),
+  }),
+).annotate({
+  identifier: "InstanceProperties",
+}) as any as S.Schema<InstanceProperties>;
+
+/** Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed). */
+export type ManagedServiceIdentityType =
+  | "None"
+  | "SystemAssigned"
+  | "UserAssigned"
+  | "SystemAssigned,UserAssigned";
+export const ManagedServiceIdentityType = /*@__PURE__*/ S.String;
+
+/** User assigned identity properties */
+export interface UserAssignedIdentity {
+  /** The principal ID of the assigned identity. */
+  principalId?: string;
+  /** The client ID of the assigned identity. */
+  clientId?: string;
+}
+export const UserAssignedIdentity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    principalId: S.optional(S.String),
+    clientId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "UserAssignedIdentity",
+}) as any as S.Schema<UserAssignedIdentity>;
+
+/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+export type UserAssignedIdentities = {
+  [key: string]: UserAssignedIdentity | undefined;
+};
+export const UserAssignedIdentities = /*@__PURE__*/ S.Record(
+  S.String,
+  UserAssignedIdentity,
+) as any as S.Schema<UserAssignedIdentities>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export interface GetInstanceResponseIdentity {
+  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  principalId?: string;
+  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  tenantId?: string;
+  type: ManagedServiceIdentityType;
+  userAssignedIdentities?: UserAssignedIdentities;
+}
+export const GetInstanceResponseIdentity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    principalId: S.optional(S.String),
+    tenantId: S.optional(S.String),
+    type: ManagedServiceIdentityType,
+    userAssignedIdentities: S.optional(UserAssignedIdentities),
+  }),
+).annotate({
+  identifier: "GetInstanceResponseIdentity",
+}) as any as S.Schema<GetInstanceResponseIdentity>;
+
+export interface GetInstanceResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetInstanceResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: InstanceProperties;
+  /** Edge location of the resource. */
+  extendedLocation: ExtendedLocation;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: GetInstanceResponseIdentity;
+}
+export const GetInstanceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetInstanceResponseTagsMap),
+    location: S.String,
+    properties: S.optional(InstanceProperties),
+    extendedLocation: ExtendedLocation,
+    identity: S.optional(GetInstanceResponseIdentity),
+  }),
+).annotate({
+  identifier: "GetInstanceResponse",
+}) as any as S.Schema<GetInstanceResponse>;
+
+export interface GetRegistryEndpointRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of instance. */
+  instanceName: string;
+  /** Name of RegistryEndpoint resource */
+  registryEndpointName: string;
+}
+export const GetRegistryEndpointRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    instanceName: S.String.pipe(T.Label()),
+    registryEndpointName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/registryEndpoints/{registryEndpointName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetRegistryEndpointRequest",
+}) as any as S.Schema<GetRegistryEndpointRequest>;
+
+/** The authentication method. */
+export type RegistryEndpointAuthenticationMethod =
+  | "SystemAssignedManagedIdentity"
+  | "UserAssignedManagedIdentity"
+  | "Anonymous"
+  | "ArtifactPullSecret";
+export const RegistryEndpointAuthenticationMethod = /*@__PURE__*/ S.String;
+
+/** Model for RegistryEndpointAuthentication */
+export interface RegistryEndpointAuthentication {
+  /** The authentication method. */
+  method: RegistryEndpointAuthenticationMethod | (string & {});
+}
+export const RegistryEndpointAuthentication = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    method: RegistryEndpointAuthenticationMethod,
+  }),
+).annotate({
+  identifier: "RegistryEndpointAuthentication",
+}) as any as S.Schema<RegistryEndpointAuthentication>;
+
+/** The health state of the resource. */
+export type RegistryEndpointPropertiesHealthState =
+  | "Available"
+  | "Degraded"
+  | "Unavailable"
+  | "Unknown";
+export const RegistryEndpointPropertiesHealthState = /*@__PURE__*/ S.String;
+
+/** RegistryEndpointTrustedSigningKeyType values */
+export type RegistryEndpointTrustedSigningKeyType = "Secret" | "ConfigMap";
+export const RegistryEndpointTrustedSigningKeyType = /*@__PURE__*/ S.String;
+
+/** RegistryEndpoint Trust properties */
+export interface RegistryEndpointTrustedSigningKey {
+  /** The trust type for the registry endpoint. */
+  type: RegistryEndpointTrustedSigningKeyType | (string & {});
+}
+export const RegistryEndpointTrustedSigningKey = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: RegistryEndpointTrustedSigningKeyType,
+  }),
+).annotate({
+  identifier: "RegistryEndpointTrustedSigningKey",
+}) as any as S.Schema<RegistryEndpointTrustedSigningKey>;
+
+/** The signing certificate authorities used by artifacts in the registry endpoint */
+export type RegistryEndpointPropertiesCodeSigningCasList =
+  Array<RegistryEndpointTrustedSigningKey>;
+export const RegistryEndpointPropertiesCodeSigningCasList =
+  /*@__PURE__*/ S.Array(
+    RegistryEndpointTrustedSigningKey,
+  ) as any as S.Schema<RegistryEndpointPropertiesCodeSigningCasList>;
+
+/** RegistryEndpoint properties */
+export interface RegistryEndpointProperties {
+  /** The Container Registry endpoint hostname. */
+  host: string;
+  /** The authentication settings for the Azure Container Registry. */
+  authentication: RegistryEndpointAuthentication;
+  /** The status of the last operation. */
+  provisioningState?: ProvisioningState;
+  /** The health state of the resource. */
+  healthState?: RegistryEndpointPropertiesHealthState;
+  /** The signing certificate authorities used by artifacts in the registry endpoint */
+  codeSigningCas?: RegistryEndpointPropertiesCodeSigningCasList;
+}
+export const RegistryEndpointProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    host: S.String,
+    authentication: RegistryEndpointAuthentication,
+    provisioningState: S.optional(ProvisioningState),
+    healthState: S.optional(RegistryEndpointPropertiesHealthState),
+    codeSigningCas: S.optional(RegistryEndpointPropertiesCodeSigningCasList),
+  }),
+).annotate({
+  identifier: "RegistryEndpointProperties",
+}) as any as S.Schema<RegistryEndpointProperties>;
+
+export interface GetRegistryEndpointResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: RegistryEndpointProperties;
+  /** Edge location of the resource. */
+  extendedLocation?: ExtendedLocation;
+}
+export const GetRegistryEndpointResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(RegistryEndpointProperties),
+    extendedLocation: S.optional(ExtendedLocation),
+  }),
+).annotate({
+  identifier: "GetRegistryEndpointResponse",
+}) as any as S.Schema<GetRegistryEndpointResponse>;
+
+/** Resource tags. */
+export type InstanceCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const InstanceCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<InstanceCreateOrUpdateRequestTagsMap>;
+
+/** The features of the AIO Instance. */
+export type InstancePropertiesInputFeaturesMap = {
+  [key: string]: InstanceFeature | undefined;
+};
+export const InstancePropertiesInputFeaturesMap = /*@__PURE__*/ S.Record(
+  S.String,
+  InstanceFeature,
+) as any as S.Schema<InstancePropertiesInputFeaturesMap>;
 
 /** The properties of the Instance resource. */
 export interface InstancePropertiesInput {
@@ -5854,14 +5362,6 @@ export const InstancePropertiesInput = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "InstancePropertiesInput",
 }) as any as S.Schema<InstancePropertiesInput>;
-
-/** Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed). */
-export type ManagedServiceIdentityType =
-  | "None"
-  | "SystemAssigned"
-  | "UserAssigned"
-  | "SystemAssigned,UserAssigned";
-export const ManagedServiceIdentityType = /*@__PURE__*/ S.String;
 
 /** User assigned identity properties */
 export type UserAssignedIdentityInput = AkriConnectorPropertiesInput;
@@ -5940,102 +5440,11 @@ export const InstanceCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
 ) as any as S.Schema<InstanceCreateOrUpdateResponseTagsMap>;
 
-/** The features of the AIO Instance. */
-export type InstancePropertiesFeaturesMap = {
-  [key: string]: InstanceFeature | undefined;
-};
-export const InstancePropertiesFeaturesMap = /*@__PURE__*/ S.Record(
-  S.String,
-  InstanceFeature,
-) as any as S.Schema<InstancePropertiesFeaturesMap>;
-
-/** The health state of the resource. */
-export type InstancePropertiesHealthState =
-  | "Available"
-  | "Degraded"
-  | "Unavailable"
-  | "Unknown";
-export const InstancePropertiesHealthState = /*@__PURE__*/ S.String;
-
-/** The properties of the Instance resource. */
-export interface InstanceProperties {
-  /** Detailed description of the Instance. */
-  description?: string;
-  /** The status of the last operation. */
-  provisioningState?: ProvisioningState;
-  /** The Azure IoT Operations version. */
-  version?: string;
-  /** The reference to the Schema Registry for this AIO Instance. */
-  schemaRegistryRef: SchemaRegistryRef;
-  /** The reference to the AIO Secret provider class. */
-  defaultSecretProviderClassRef?: SecretProviderClassRef;
-  /** The features of the AIO Instance. */
-  features?: InstancePropertiesFeaturesMap;
-  /** The Azure Device Registry Namespace used by Assets, Discovered Assets and devices */
-  adrNamespaceRef?: AzureDeviceRegistryNamespaceRef;
-  /** The health state of the resource. */
-  healthState?: InstancePropertiesHealthState;
-}
-export const InstanceProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    description: S.optional(S.String),
-    provisioningState: S.optional(ProvisioningState),
-    version: S.optional(S.String),
-    schemaRegistryRef: SchemaRegistryRef,
-    defaultSecretProviderClassRef: S.optional(SecretProviderClassRef),
-    features: S.optional(InstancePropertiesFeaturesMap),
-    adrNamespaceRef: S.optional(AzureDeviceRegistryNamespaceRef),
-    healthState: S.optional(InstancePropertiesHealthState),
-  }),
-).annotate({
-  identifier: "InstanceProperties",
-}) as any as S.Schema<InstanceProperties>;
-
-/** User assigned identity properties */
-export interface UserAssignedIdentity {
-  /** The principal ID of the assigned identity. */
-  principalId?: string;
-  /** The client ID of the assigned identity. */
-  clientId?: string;
-}
-export const UserAssignedIdentity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    principalId: S.optional(S.String),
-    clientId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "UserAssignedIdentity",
-}) as any as S.Schema<UserAssignedIdentity>;
-
-/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type UserAssignedIdentities = {
-  [key: string]: UserAssignedIdentity | undefined;
-};
-export const UserAssignedIdentities = /*@__PURE__*/ S.Record(
-  S.String,
-  UserAssignedIdentity,
-) as any as S.Schema<UserAssignedIdentities>;
-
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface InstanceCreateOrUpdateResponseIdentity {
-  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  principalId?: string;
-  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  tenantId?: string;
-  type: ManagedServiceIdentityType;
-  userAssignedIdentities?: UserAssignedIdentities;
-}
-export const InstanceCreateOrUpdateResponseIdentity = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      principalId: S.optional(S.String),
-      tenantId: S.optional(S.String),
-      type: ManagedServiceIdentityType,
-      userAssignedIdentities: S.optional(UserAssignedIdentities),
-    }),
-).annotate({
-  identifier: "InstanceCreateOrUpdateResponseIdentity",
-}) as any as S.Schema<InstanceCreateOrUpdateResponseIdentity>;
+export type InstanceCreateOrUpdateResponseIdentity =
+  GetInstanceResponseIdentity;
+export const InstanceCreateOrUpdateResponseIdentity =
+  GetInstanceResponseIdentity;
 
 export interface InstanceCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -6055,7 +5464,7 @@ export interface InstanceCreateOrUpdateResponse {
   /** Edge location of the resource. */
   extendedLocation: ExtendedLocation;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: InstanceCreateOrUpdateResponseIdentity;
+  identity?: GetInstanceResponseIdentity;
 }
 export const InstanceCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -6067,83 +5476,42 @@ export const InstanceCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
     location: S.String,
     properties: S.optional(InstanceProperties),
     extendedLocation: ExtendedLocation,
-    identity: S.optional(InstanceCreateOrUpdateResponseIdentity),
+    identity: S.optional(GetInstanceResponseIdentity),
   }),
 ).annotate({
   identifier: "InstanceCreateOrUpdateResponse",
 }) as any as S.Schema<InstanceCreateOrUpdateResponse>;
 
-export interface InstanceDeleteRequest {
+export interface ListAkriConnectorByTemplateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** Name of instance. */
   instanceName: string;
+  /** Name of AkriConnectorTemplate resource. */
+  akriConnectorTemplateName: string;
 }
-export const InstanceDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListAkriConnectorByTemplateRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     instanceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "InstanceDeleteRequest",
-}) as any as S.Schema<InstanceDeleteRequest>;
-
-export interface InstanceDeleteResponse {}
-export const InstanceDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "InstanceDeleteResponse",
-}) as any as S.Schema<InstanceDeleteResponse>;
-
-export interface InstanceGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of instance. */
-  instanceName: string;
-}
-export const InstanceGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    instanceName: S.String.pipe(T.Label()),
+    akriConnectorTemplateName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/akriConnectorTemplates/{akriConnectorTemplateName}/connectors",
       code: 200,
       apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
-  identifier: "InstanceGetRequest",
-}) as any as S.Schema<InstanceGetRequest>;
+  identifier: "ListAkriConnectorByTemplateRequest",
+}) as any as S.Schema<ListAkriConnectorByTemplateRequest>;
 
-/** Resource tags. */
-export type InstanceGetResponseTagsMap = { [key: string]: string | undefined };
-export const InstanceGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<InstanceGetResponseTagsMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export type InstanceGetResponseIdentity =
-  InstanceCreateOrUpdateResponseIdentity;
-export const InstanceGetResponseIdentity =
-  InstanceCreateOrUpdateResponseIdentity;
-
-export interface InstanceGetResponse {
+/** AkriConnector resource. */
+export interface AkriConnectorResource {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -6152,40 +5520,840 @@ export interface InstanceGetResponse {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
-  /** Resource tags. */
-  tags?: InstanceGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
   /** The resource-specific properties for this resource. */
-  properties?: InstanceProperties;
+  properties?: AkriConnectorProperties;
   /** Edge location of the resource. */
-  extendedLocation: ExtendedLocation;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: InstanceCreateOrUpdateResponseIdentity;
+  extendedLocation?: ExtendedLocation;
 }
-export const InstanceGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const AkriConnectorResource = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(InstanceGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(InstanceProperties),
-    extendedLocation: ExtendedLocation,
-    identity: S.optional(InstanceCreateOrUpdateResponseIdentity),
+    properties: S.optional(AkriConnectorProperties),
+    extendedLocation: S.optional(ExtendedLocation),
   }),
 ).annotate({
-  identifier: "InstanceGetResponse",
-}) as any as S.Schema<InstanceGetResponse>;
+  identifier: "AkriConnectorResource",
+}) as any as S.Schema<AkriConnectorResource>;
 
-export interface InstanceListByResourceGroupRequest {
+/** The AkriConnectorResource items on this page */
+export type AkriConnectorResourceListResultValueList =
+  Array<AkriConnectorResource>;
+export const AkriConnectorResourceListResultValueList = /*@__PURE__*/ S.Array(
+  AkriConnectorResource,
+) as any as S.Schema<AkriConnectorResourceListResultValueList>;
+
+/** The response of a AkriConnectorResource list operation. */
+export interface AkriConnectorResourceListResult {
+  /** The AkriConnectorResource items on this page */
+  value: AkriConnectorResourceListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const AkriConnectorResourceListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: AkriConnectorResourceListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AkriConnectorResourceListResult",
+}) as any as S.Schema<AkriConnectorResourceListResult>;
+
+export interface ListAkriConnectorTemplateByInstanceResourceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of instance. */
+  instanceName: string;
+}
+export const ListAkriConnectorTemplateByInstanceResourceRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      instanceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/akriConnectorTemplates",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListAkriConnectorTemplateByInstanceResourceRequest",
+  }) as any as S.Schema<ListAkriConnectorTemplateByInstanceResourceRequest>;
+
+/** AkriConnectorTemplate resource. */
+export interface AkriConnectorTemplateResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: AkriConnectorTemplateProperties;
+  /** Edge location of the resource. */
+  extendedLocation?: ExtendedLocation;
+}
+export const AkriConnectorTemplateResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(AkriConnectorTemplateProperties),
+    extendedLocation: S.optional(ExtendedLocation),
+  }),
+).annotate({
+  identifier: "AkriConnectorTemplateResource",
+}) as any as S.Schema<AkriConnectorTemplateResource>;
+
+/** The AkriConnectorTemplateResource items on this page */
+export type AkriConnectorTemplateResourceListResultValueList =
+  Array<AkriConnectorTemplateResource>;
+export const AkriConnectorTemplateResourceListResultValueList =
+  /*@__PURE__*/ S.Array(
+    AkriConnectorTemplateResource,
+  ) as any as S.Schema<AkriConnectorTemplateResourceListResultValueList>;
+
+/** The response of a AkriConnectorTemplateResource list operation. */
+export interface AkriConnectorTemplateResourceListResult {
+  /** The AkriConnectorTemplateResource items on this page */
+  value: AkriConnectorTemplateResourceListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const AkriConnectorTemplateResourceListResult = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      value: AkriConnectorTemplateResourceListResultValueList,
+      nextLink: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "AkriConnectorTemplateResourceListResult",
+}) as any as S.Schema<AkriConnectorTemplateResourceListResult>;
+
+export interface ListAkriServiceByInstanceResourceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of instance. */
+  instanceName: string;
+}
+export const ListAkriServiceByInstanceResourceRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      instanceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/akriServices",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListAkriServiceByInstanceResourceRequest",
+}) as any as S.Schema<ListAkriServiceByInstanceResourceRequest>;
+
+/** AkriService resource. */
+export interface AkriServiceResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: AkriServiceProperties;
+  /** Edge location of the resource. */
+  extendedLocation?: ExtendedLocation;
+}
+export const AkriServiceResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(AkriServiceProperties),
+    extendedLocation: S.optional(ExtendedLocation),
+  }),
+).annotate({
+  identifier: "AkriServiceResource",
+}) as any as S.Schema<AkriServiceResource>;
+
+/** The AkriServiceResource items on this page */
+export type AkriServiceResourceListResultValueList = Array<AkriServiceResource>;
+export const AkriServiceResourceListResultValueList = /*@__PURE__*/ S.Array(
+  AkriServiceResource,
+) as any as S.Schema<AkriServiceResourceListResultValueList>;
+
+/** The response of a AkriServiceResource list operation. */
+export interface AkriServiceResourceListResult {
+  /** The AkriServiceResource items on this page */
+  value: AkriServiceResourceListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const AkriServiceResourceListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: AkriServiceResourceListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AkriServiceResourceListResult",
+}) as any as S.Schema<AkriServiceResourceListResult>;
+
+export interface ListBrokerAuthenticationByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of instance. */
+  instanceName: string;
+  /** Name of broker. */
+  brokerName: string;
+}
+export const ListBrokerAuthenticationByResourceGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      instanceName: S.String.pipe(T.Label()),
+      brokerName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/brokers/{brokerName}/authentications",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListBrokerAuthenticationByResourceGroupRequest",
+  }) as any as S.Schema<ListBrokerAuthenticationByResourceGroupRequest>;
+
+/** Instance broker authentication resource */
+export interface BrokerAuthenticationResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: BrokerAuthenticationProperties;
+  /** Edge location of the resource. */
+  extendedLocation?: ExtendedLocation;
+}
+export const BrokerAuthenticationResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(BrokerAuthenticationProperties),
+    extendedLocation: S.optional(ExtendedLocation),
+  }),
+).annotate({
+  identifier: "BrokerAuthenticationResource",
+}) as any as S.Schema<BrokerAuthenticationResource>;
+
+/** The BrokerAuthenticationResource items on this page */
+export type BrokerAuthenticationResourceListResultValueList =
+  Array<BrokerAuthenticationResource>;
+export const BrokerAuthenticationResourceListResultValueList =
+  /*@__PURE__*/ S.Array(
+    BrokerAuthenticationResource,
+  ) as any as S.Schema<BrokerAuthenticationResourceListResultValueList>;
+
+/** The response of a BrokerAuthenticationResource list operation. */
+export interface BrokerAuthenticationResourceListResult {
+  /** The BrokerAuthenticationResource items on this page */
+  value: BrokerAuthenticationResourceListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const BrokerAuthenticationResourceListResult = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      value: BrokerAuthenticationResourceListResultValueList,
+      nextLink: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "BrokerAuthenticationResourceListResult",
+}) as any as S.Schema<BrokerAuthenticationResourceListResult>;
+
+export interface ListBrokerAuthorizationByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of instance. */
+  instanceName: string;
+  /** Name of broker. */
+  brokerName: string;
+}
+export const ListBrokerAuthorizationByResourceGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      instanceName: S.String.pipe(T.Label()),
+      brokerName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/brokers/{brokerName}/authorizations",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListBrokerAuthorizationByResourceGroupRequest",
+  }) as any as S.Schema<ListBrokerAuthorizationByResourceGroupRequest>;
+
+/** Instance broker authorizations resource */
+export interface BrokerAuthorizationResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: BrokerAuthorizationProperties;
+  /** Edge location of the resource. */
+  extendedLocation?: ExtendedLocation;
+}
+export const BrokerAuthorizationResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(BrokerAuthorizationProperties),
+    extendedLocation: S.optional(ExtendedLocation),
+  }),
+).annotate({
+  identifier: "BrokerAuthorizationResource",
+}) as any as S.Schema<BrokerAuthorizationResource>;
+
+/** The BrokerAuthorizationResource items on this page */
+export type BrokerAuthorizationResourceListResultValueList =
+  Array<BrokerAuthorizationResource>;
+export const BrokerAuthorizationResourceListResultValueList =
+  /*@__PURE__*/ S.Array(
+    BrokerAuthorizationResource,
+  ) as any as S.Schema<BrokerAuthorizationResourceListResultValueList>;
+
+/** The response of a BrokerAuthorizationResource list operation. */
+export interface BrokerAuthorizationResourceListResult {
+  /** The BrokerAuthorizationResource items on this page */
+  value: BrokerAuthorizationResourceListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const BrokerAuthorizationResourceListResult = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      value: BrokerAuthorizationResourceListResultValueList,
+      nextLink: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "BrokerAuthorizationResourceListResult",
+}) as any as S.Schema<BrokerAuthorizationResourceListResult>;
+
+export interface ListBrokerByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of instance. */
+  instanceName: string;
+}
+export const ListBrokerByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    instanceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/brokers",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListBrokerByResourceGroupRequest",
+}) as any as S.Schema<ListBrokerByResourceGroupRequest>;
+
+/** Instance broker resource */
+export interface BrokerResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: BrokerProperties;
+  /** Edge location of the resource. */
+  extendedLocation?: ExtendedLocation;
+}
+export const BrokerResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(BrokerProperties),
+    extendedLocation: S.optional(ExtendedLocation),
+  }),
+).annotate({ identifier: "BrokerResource" }) as any as S.Schema<BrokerResource>;
+
+/** The BrokerResource items on this page */
+export type BrokerResourceListResultValueList = Array<BrokerResource>;
+export const BrokerResourceListResultValueList = /*@__PURE__*/ S.Array(
+  BrokerResource,
+) as any as S.Schema<BrokerResourceListResultValueList>;
+
+/** The response of a BrokerResource list operation. */
+export interface BrokerResourceListResult {
+  /** The BrokerResource items on this page */
+  value: BrokerResourceListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const BrokerResourceListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: BrokerResourceListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "BrokerResourceListResult",
+}) as any as S.Schema<BrokerResourceListResult>;
+
+export interface ListBrokerListenerByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of instance. */
+  instanceName: string;
+  /** Name of broker. */
+  brokerName: string;
+}
+export const ListBrokerListenerByResourceGroupRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      instanceName: S.String.pipe(T.Label()),
+      brokerName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/brokers/{brokerName}/listeners",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListBrokerListenerByResourceGroupRequest",
+}) as any as S.Schema<ListBrokerListenerByResourceGroupRequest>;
+
+/** Instance broker resource */
+export interface BrokerListenerResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: BrokerListenerProperties;
+  /** Edge location of the resource. */
+  extendedLocation?: ExtendedLocation;
+}
+export const BrokerListenerResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(BrokerListenerProperties),
+    extendedLocation: S.optional(ExtendedLocation),
+  }),
+).annotate({
+  identifier: "BrokerListenerResource",
+}) as any as S.Schema<BrokerListenerResource>;
+
+/** The BrokerListenerResource items on this page */
+export type BrokerListenerResourceListResultValueList =
+  Array<BrokerListenerResource>;
+export const BrokerListenerResourceListResultValueList = /*@__PURE__*/ S.Array(
+  BrokerListenerResource,
+) as any as S.Schema<BrokerListenerResourceListResultValueList>;
+
+/** The response of a BrokerListenerResource list operation. */
+export interface BrokerListenerResourceListResult {
+  /** The BrokerListenerResource items on this page */
+  value: BrokerListenerResourceListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const BrokerListenerResourceListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: BrokerListenerResourceListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "BrokerListenerResourceListResult",
+}) as any as S.Schema<BrokerListenerResourceListResult>;
+
+export interface ListDataflowByProfileResourceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of instance. */
+  instanceName: string;
+  /** Name of Instance dataflowProfile resource */
+  dataflowProfileName: string;
+}
+export const ListDataflowByProfileResourceRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      instanceName: S.String.pipe(T.Label()),
+      dataflowProfileName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/dataflowProfiles/{dataflowProfileName}/dataflows",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListDataflowByProfileResourceRequest",
+}) as any as S.Schema<ListDataflowByProfileResourceRequest>;
+
+/** Instance dataflowProfile dataflow resource */
+export interface DataflowResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: DataflowProperties;
+  /** Edge location of the resource. */
+  extendedLocation?: ExtendedLocation;
+}
+export const DataflowResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(DataflowProperties),
+    extendedLocation: S.optional(ExtendedLocation),
+  }),
+).annotate({
+  identifier: "DataflowResource",
+}) as any as S.Schema<DataflowResource>;
+
+/** The DataflowResource items on this page */
+export type DataflowResourceListResultValueList = Array<DataflowResource>;
+export const DataflowResourceListResultValueList = /*@__PURE__*/ S.Array(
+  DataflowResource,
+) as any as S.Schema<DataflowResourceListResultValueList>;
+
+/** The response of a DataflowResource list operation. */
+export interface DataflowResourceListResult {
+  /** The DataflowResource items on this page */
+  value: DataflowResourceListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const DataflowResourceListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: DataflowResourceListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DataflowResourceListResult",
+}) as any as S.Schema<DataflowResourceListResult>;
+
+export interface ListDataflowEndpointByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of instance. */
+  instanceName: string;
+}
+export const ListDataflowEndpointByResourceGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      instanceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/dataflowEndpoints",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListDataflowEndpointByResourceGroupRequest",
+  }) as any as S.Schema<ListDataflowEndpointByResourceGroupRequest>;
+
+/** Instance dataflowEndpoint resource */
+export interface DataflowEndpointResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: DataflowEndpointProperties;
+  /** Edge location of the resource. */
+  extendedLocation?: ExtendedLocation;
+}
+export const DataflowEndpointResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(DataflowEndpointProperties),
+    extendedLocation: S.optional(ExtendedLocation),
+  }),
+).annotate({
+  identifier: "DataflowEndpointResource",
+}) as any as S.Schema<DataflowEndpointResource>;
+
+/** The DataflowEndpointResource items on this page */
+export type DataflowEndpointResourceListResultValueList =
+  Array<DataflowEndpointResource>;
+export const DataflowEndpointResourceListResultValueList =
+  /*@__PURE__*/ S.Array(
+    DataflowEndpointResource,
+  ) as any as S.Schema<DataflowEndpointResourceListResultValueList>;
+
+/** The response of a DataflowEndpointResource list operation. */
+export interface DataflowEndpointResourceListResult {
+  /** The DataflowEndpointResource items on this page */
+  value: DataflowEndpointResourceListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const DataflowEndpointResourceListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: DataflowEndpointResourceListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DataflowEndpointResourceListResult",
+}) as any as S.Schema<DataflowEndpointResourceListResult>;
+
+export interface ListDataflowGraphByDataflowProfileRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of instance. */
+  instanceName: string;
+  /** Name of Instance dataflowProfile resource */
+  dataflowProfileName: string;
+}
+export const ListDataflowGraphByDataflowProfileRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      instanceName: S.String.pipe(T.Label()),
+      dataflowProfileName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/dataflowProfiles/{dataflowProfileName}/dataflowGraphs",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListDataflowGraphByDataflowProfileRequest",
+  }) as any as S.Schema<ListDataflowGraphByDataflowProfileRequest>;
+
+/** Instance dataflowEndpoint resource. */
+export interface DataflowGraphResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: DataflowGraphProperties;
+  /** Edge location of the resource. */
+  extendedLocation?: ExtendedLocation;
+}
+export const DataflowGraphResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(DataflowGraphProperties),
+    extendedLocation: S.optional(ExtendedLocation),
+  }),
+).annotate({
+  identifier: "DataflowGraphResource",
+}) as any as S.Schema<DataflowGraphResource>;
+
+/** The DataflowGraphResource items on this page */
+export type DataflowGraphResourceListResultValueList =
+  Array<DataflowGraphResource>;
+export const DataflowGraphResourceListResultValueList = /*@__PURE__*/ S.Array(
+  DataflowGraphResource,
+) as any as S.Schema<DataflowGraphResourceListResultValueList>;
+
+/** The response of a DataflowGraphResource list operation. */
+export interface DataflowGraphResourceListResult {
+  /** The DataflowGraphResource items on this page */
+  value: DataflowGraphResourceListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const DataflowGraphResourceListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: DataflowGraphResourceListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DataflowGraphResourceListResult",
+}) as any as S.Schema<DataflowGraphResourceListResult>;
+
+export interface ListDataflowProfileByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of instance. */
+  instanceName: string;
+}
+export const ListDataflowProfileByResourceGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      instanceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/dataflowProfiles",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListDataflowProfileByResourceGroupRequest",
+  }) as any as S.Schema<ListDataflowProfileByResourceGroupRequest>;
+
+/** Instance dataflowProfile resource */
+export interface DataflowProfileResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: DataflowProfileProperties;
+  /** Edge location of the resource. */
+  extendedLocation?: ExtendedLocation;
+}
+export const DataflowProfileResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(DataflowProfileProperties),
+    extendedLocation: S.optional(ExtendedLocation),
+  }),
+).annotate({
+  identifier: "DataflowProfileResource",
+}) as any as S.Schema<DataflowProfileResource>;
+
+/** The DataflowProfileResource items on this page */
+export type DataflowProfileResourceListResultValueList =
+  Array<DataflowProfileResource>;
+export const DataflowProfileResourceListResultValueList = /*@__PURE__*/ S.Array(
+  DataflowProfileResource,
+) as any as S.Schema<DataflowProfileResourceListResultValueList>;
+
+/** The response of a DataflowProfileResource list operation. */
+export interface DataflowProfileResourceListResult {
+  /** The DataflowProfileResource items on this page */
+  value: DataflowProfileResourceListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const DataflowProfileResourceListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: DataflowProfileResourceListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DataflowProfileResourceListResult",
+}) as any as S.Schema<DataflowProfileResourceListResult>;
+
+export interface ListInstanceByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
 }
-export const InstanceListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListInstanceByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -6198,8 +6366,8 @@ export const InstanceListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "InstanceListByResourceGroupRequest",
-}) as any as S.Schema<InstanceListByResourceGroupRequest>;
+  identifier: "ListInstanceByResourceGroupRequest",
+}) as any as S.Schema<ListInstanceByResourceGroupRequest>;
 
 /** Resource tags. */
 export type InstanceResourceTagsMap = { [key: string]: string | undefined };
@@ -6209,8 +6377,8 @@ export const InstanceResourceTagsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<InstanceResourceTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type InstanceResourceIdentity = InstanceCreateOrUpdateResponseIdentity;
-export const InstanceResourceIdentity = InstanceCreateOrUpdateResponseIdentity;
+export type InstanceResourceIdentity = GetInstanceResponseIdentity;
+export const InstanceResourceIdentity = GetInstanceResponseIdentity;
 
 /** A Instance resource is a logical container for a set of child resources. */
 export interface InstanceResource {
@@ -6231,7 +6399,7 @@ export interface InstanceResource {
   /** Edge location of the resource. */
   extendedLocation: ExtendedLocation;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: InstanceCreateOrUpdateResponseIdentity;
+  identity?: GetInstanceResponseIdentity;
 }
 export const InstanceResource = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -6243,7 +6411,7 @@ export const InstanceResource = /*@__PURE__*/ S.suspend(() =>
     location: S.String,
     properties: S.optional(InstanceProperties),
     extendedLocation: ExtendedLocation,
-    identity: S.optional(InstanceCreateOrUpdateResponseIdentity),
+    identity: S.optional(GetInstanceResponseIdentity),
   }),
 ).annotate({
   identifier: "InstanceResource",
@@ -6271,11 +6439,11 @@ export const InstanceResourceListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "InstanceResourceListResult",
 }) as any as S.Schema<InstanceResourceListResult>;
 
-export interface InstanceListBySubscriptionRequest {
+export interface ListInstanceBySubscriptionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
 }
-export const InstanceListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListInstanceBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
   }).pipe(
@@ -6287,108 +6455,11 @@ export const InstanceListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "InstanceListBySubscriptionRequest",
-}) as any as S.Schema<InstanceListBySubscriptionRequest>;
+  identifier: "ListInstanceBySubscriptionRequest",
+}) as any as S.Schema<ListInstanceBySubscriptionRequest>;
 
-/** Resource tags. */
-export type InstanceUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const InstanceUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<InstanceUpdateRequestTagsMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export type InstanceUpdateRequestIdentity =
-  InstanceCreateOrUpdateRequestIdentity;
-export const InstanceUpdateRequestIdentity =
-  InstanceCreateOrUpdateRequestIdentity;
-
-export interface InstanceUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of instance. */
-  instanceName: string;
-  /** Resource tags. */
-  tags?: InstanceUpdateRequestTagsMap;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: InstanceCreateOrUpdateRequestIdentity;
-}
-export const InstanceUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    instanceName: S.String.pipe(T.Label()),
-    tags: S.optional(InstanceUpdateRequestTagsMap),
-    identity: S.optional(InstanceCreateOrUpdateRequestIdentity),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "InstanceUpdateRequest",
-}) as any as S.Schema<InstanceUpdateRequest>;
-
-/** Resource tags. */
-export type InstanceUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const InstanceUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<InstanceUpdateResponseTagsMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export type InstanceUpdateResponseIdentity =
-  InstanceCreateOrUpdateResponseIdentity;
-export const InstanceUpdateResponseIdentity =
-  InstanceCreateOrUpdateResponseIdentity;
-
-export interface InstanceUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: InstanceUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: InstanceProperties;
-  /** Edge location of the resource. */
-  extendedLocation: ExtendedLocation;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: InstanceCreateOrUpdateResponseIdentity;
-}
-export const InstanceUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(InstanceUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(InstanceProperties),
-    extendedLocation: ExtendedLocation,
-    identity: S.optional(InstanceCreateOrUpdateResponseIdentity),
-  }),
-).annotate({
-  identifier: "InstanceUpdateResponse",
-}) as any as S.Schema<InstanceUpdateResponse>;
-
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({
       method: "GET",
@@ -6398,8 +6469,8 @@ export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
 
 /** Localized display information for this particular operation. */
 export interface OperationDisplay {
@@ -6455,63 +6526,103 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
-export interface OperationsListResponse {
+export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
-export const OperationsListResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "OperationsListResponse",
-}) as any as S.Schema<OperationsListResponse>;
+  identifier: "ListOperationsResponse",
+}) as any as S.Schema<ListOperationsResponse>;
 
-/** The authentication method. */
-export type RegistryEndpointAuthenticationMethod =
-  | "SystemAssignedManagedIdentity"
-  | "UserAssignedManagedIdentity"
-  | "Anonymous"
-  | "ArtifactPullSecret";
-export const RegistryEndpointAuthenticationMethod = /*@__PURE__*/ S.String;
-
-/** Model for RegistryEndpointAuthentication */
-export interface RegistryEndpointAuthentication {
-  /** The authentication method. */
-  method: RegistryEndpointAuthenticationMethod | (string & {});
+export interface ListRegistryEndpointByInstanceResourceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of instance. */
+  instanceName: string;
 }
-export const RegistryEndpointAuthentication = /*@__PURE__*/ S.suspend(() =>
+export const ListRegistryEndpointByInstanceResourceRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      instanceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/registryEndpoints",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListRegistryEndpointByInstanceResourceRequest",
+  }) as any as S.Schema<ListRegistryEndpointByInstanceResourceRequest>;
+
+/** RegistryEndpoint resource */
+export interface RegistryEndpointResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: RegistryEndpointProperties;
+  /** Edge location of the resource. */
+  extendedLocation?: ExtendedLocation;
+}
+export const RegistryEndpointResource = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    method: RegistryEndpointAuthenticationMethod,
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(RegistryEndpointProperties),
+    extendedLocation: S.optional(ExtendedLocation),
   }),
 ).annotate({
-  identifier: "RegistryEndpointAuthentication",
-}) as any as S.Schema<RegistryEndpointAuthentication>;
+  identifier: "RegistryEndpointResource",
+}) as any as S.Schema<RegistryEndpointResource>;
 
-/** RegistryEndpointTrustedSigningKeyType values */
-export type RegistryEndpointTrustedSigningKeyType = "Secret" | "ConfigMap";
-export const RegistryEndpointTrustedSigningKeyType = /*@__PURE__*/ S.String;
+/** The RegistryEndpointResource items on this page */
+export type RegistryEndpointResourceListResultValueList =
+  Array<RegistryEndpointResource>;
+export const RegistryEndpointResourceListResultValueList =
+  /*@__PURE__*/ S.Array(
+    RegistryEndpointResource,
+  ) as any as S.Schema<RegistryEndpointResourceListResultValueList>;
 
-/** RegistryEndpoint Trust properties */
-export interface RegistryEndpointTrustedSigningKey {
-  /** The trust type for the registry endpoint. */
-  type: RegistryEndpointTrustedSigningKeyType | (string & {});
+/** The response of a RegistryEndpointResource list operation. */
+export interface RegistryEndpointResourceListResult {
+  /** The RegistryEndpointResource items on this page */
+  value: RegistryEndpointResourceListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
 }
-export const RegistryEndpointTrustedSigningKey = /*@__PURE__*/ S.suspend(() =>
+export const RegistryEndpointResourceListResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    type: RegistryEndpointTrustedSigningKeyType,
+    value: RegistryEndpointResourceListResultValueList,
+    nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "RegistryEndpointTrustedSigningKey",
-}) as any as S.Schema<RegistryEndpointTrustedSigningKey>;
+  identifier: "RegistryEndpointResourceListResult",
+}) as any as S.Schema<RegistryEndpointResourceListResult>;
 
 /** The signing certificate authorities used by artifacts in the registry endpoint */
 export type RegistryEndpointPropertiesInputCodeSigningCasList =
@@ -6577,47 +6688,6 @@ export const RegistryEndpointCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
   identifier: "RegistryEndpointCreateOrUpdateRequest",
 }) as any as S.Schema<RegistryEndpointCreateOrUpdateRequest>;
 
-/** The health state of the resource. */
-export type RegistryEndpointPropertiesHealthState =
-  | "Available"
-  | "Degraded"
-  | "Unavailable"
-  | "Unknown";
-export const RegistryEndpointPropertiesHealthState = /*@__PURE__*/ S.String;
-
-/** The signing certificate authorities used by artifacts in the registry endpoint */
-export type RegistryEndpointPropertiesCodeSigningCasList =
-  Array<RegistryEndpointTrustedSigningKey>;
-export const RegistryEndpointPropertiesCodeSigningCasList =
-  /*@__PURE__*/ S.Array(
-    RegistryEndpointTrustedSigningKey,
-  ) as any as S.Schema<RegistryEndpointPropertiesCodeSigningCasList>;
-
-/** RegistryEndpoint properties */
-export interface RegistryEndpointProperties {
-  /** The Container Registry endpoint hostname. */
-  host: string;
-  /** The authentication settings for the Azure Container Registry. */
-  authentication: RegistryEndpointAuthentication;
-  /** The status of the last operation. */
-  provisioningState?: ProvisioningState;
-  /** The health state of the resource. */
-  healthState?: RegistryEndpointPropertiesHealthState;
-  /** The signing certificate authorities used by artifacts in the registry endpoint */
-  codeSigningCas?: RegistryEndpointPropertiesCodeSigningCasList;
-}
-export const RegistryEndpointProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    host: S.String,
-    authentication: RegistryEndpointAuthentication,
-    provisioningState: S.optional(ProvisioningState),
-    healthState: S.optional(RegistryEndpointPropertiesHealthState),
-    codeSigningCas: S.optional(RegistryEndpointPropertiesCodeSigningCasList),
-  }),
-).annotate({
-  identifier: "RegistryEndpointProperties",
-}) as any as S.Schema<RegistryEndpointProperties>;
-
 export interface RegistryEndpointCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
@@ -6646,70 +6716,66 @@ export const RegistryEndpointCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "RegistryEndpointCreateOrUpdateResponse",
 }) as any as S.Schema<RegistryEndpointCreateOrUpdateResponse>;
 
-export interface RegistryEndpointDeleteRequest {
+/** Resource tags. */
+export type UpdateInstanceRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateInstanceRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateInstanceRequestTagsMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export type UpdateInstanceRequestIdentity =
+  InstanceCreateOrUpdateRequestIdentity;
+export const UpdateInstanceRequestIdentity =
+  InstanceCreateOrUpdateRequestIdentity;
+
+export interface UpdateInstanceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** Name of instance. */
   instanceName: string;
-  /** Name of RegistryEndpoint resource */
-  registryEndpointName: string;
+  /** Resource tags. */
+  tags?: UpdateInstanceRequestTagsMap;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: InstanceCreateOrUpdateRequestIdentity;
 }
-export const RegistryEndpointDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateInstanceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     instanceName: S.String.pipe(T.Label()),
-    registryEndpointName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateInstanceRequestTagsMap),
+    identity: S.optional(InstanceCreateOrUpdateRequestIdentity),
   }).pipe(
     T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/registryEndpoints/{registryEndpointName}",
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}",
       code: 200,
       apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
-  identifier: "RegistryEndpointDeleteRequest",
-}) as any as S.Schema<RegistryEndpointDeleteRequest>;
+  identifier: "UpdateInstanceRequest",
+}) as any as S.Schema<UpdateInstanceRequest>;
 
-export interface RegistryEndpointDeleteResponse {}
-export const RegistryEndpointDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "RegistryEndpointDeleteResponse",
-}) as any as S.Schema<RegistryEndpointDeleteResponse>;
+/** Resource tags. */
+export type UpdateInstanceResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateInstanceResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateInstanceResponseTagsMap>;
 
-export interface RegistryEndpointGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of instance. */
-  instanceName: string;
-  /** Name of RegistryEndpoint resource */
-  registryEndpointName: string;
-}
-export const RegistryEndpointGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    instanceName: S.String.pipe(T.Label()),
-    registryEndpointName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/registryEndpoints/{registryEndpointName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "RegistryEndpointGetRequest",
-}) as any as S.Schema<RegistryEndpointGetRequest>;
+/** Managed service identity (system assigned and/or user assigned identities) */
+export type UpdateInstanceResponseIdentity = GetInstanceResponseIdentity;
+export const UpdateInstanceResponseIdentity = GetInstanceResponseIdentity;
 
-export interface RegistryEndpointGetResponse {
+export interface UpdateInstanceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -6718,101 +6784,32 @@ export interface RegistryEndpointGetResponse {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateInstanceResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
   /** The resource-specific properties for this resource. */
-  properties?: RegistryEndpointProperties;
+  properties?: InstanceProperties;
   /** Edge location of the resource. */
-  extendedLocation?: ExtendedLocation;
+  extendedLocation: ExtendedLocation;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: GetInstanceResponseIdentity;
 }
-export const RegistryEndpointGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateInstanceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    properties: S.optional(RegistryEndpointProperties),
-    extendedLocation: S.optional(ExtendedLocation),
+    tags: S.optional(UpdateInstanceResponseTagsMap),
+    location: S.String,
+    properties: S.optional(InstanceProperties),
+    extendedLocation: ExtendedLocation,
+    identity: S.optional(GetInstanceResponseIdentity),
   }),
 ).annotate({
-  identifier: "RegistryEndpointGetResponse",
-}) as any as S.Schema<RegistryEndpointGetResponse>;
-
-export interface RegistryEndpointListByInstanceResourceRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of instance. */
-  instanceName: string;
-}
-export const RegistryEndpointListByInstanceResourceRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      instanceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTOperations/instances/{instanceName}/registryEndpoints",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "RegistryEndpointListByInstanceResourceRequest",
-  }) as any as S.Schema<RegistryEndpointListByInstanceResourceRequest>;
-
-/** RegistryEndpoint resource */
-export interface RegistryEndpointResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: RegistryEndpointProperties;
-  /** Edge location of the resource. */
-  extendedLocation?: ExtendedLocation;
-}
-export const RegistryEndpointResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(RegistryEndpointProperties),
-    extendedLocation: S.optional(ExtendedLocation),
-  }),
-).annotate({
-  identifier: "RegistryEndpointResource",
-}) as any as S.Schema<RegistryEndpointResource>;
-
-/** The RegistryEndpointResource items on this page */
-export type RegistryEndpointResourceListResultValueList =
-  Array<RegistryEndpointResource>;
-export const RegistryEndpointResourceListResultValueList =
-  /*@__PURE__*/ S.Array(
-    RegistryEndpointResource,
-  ) as any as S.Schema<RegistryEndpointResourceListResultValueList>;
-
-/** The response of a RegistryEndpointResource list operation. */
-export interface RegistryEndpointResourceListResult {
-  /** The RegistryEndpointResource items on this page */
-  value: RegistryEndpointResourceListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const RegistryEndpointResourceListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: RegistryEndpointResourceListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "RegistryEndpointResourceListResult",
-}) as any as S.Schema<RegistryEndpointResourceListResult>;
+  identifier: "UpdateInstanceResponse",
+}) as any as S.Schema<UpdateInstanceResponse>;
 
 export type AkriConnectorCreateOrUpdateError = AzureOpError;
 /** Create a AkriConnectorResource */
@@ -6824,51 +6821,6 @@ export const AkriConnectorCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: AkriConnectorCreateOrUpdateRequest,
   output: AkriConnectorCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AkriConnectorDeleteError = AzureOpError;
-/** Delete a AkriConnectorResource */
-export const AkriConnectorDelete: API.OperationMethod<
-  AkriConnectorDeleteRequest,
-  AkriConnectorDeleteResponse,
-  AkriConnectorDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AkriConnectorDeleteRequest,
-  output: AkriConnectorDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AkriConnectorGetError = AzureOpError;
-/** Get a AkriConnectorResource */
-export const AkriConnectorGet: API.OperationMethod<
-  AkriConnectorGetRequest,
-  AkriConnectorGetResponse,
-  AkriConnectorGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AkriConnectorGetRequest,
-  output: AkriConnectorGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AkriConnectorListByTemplateError = AzureOpError;
-/** List AkriConnectorResource resources by AkriConnectorTemplateResource */
-export const AkriConnectorListByTemplate: API.OperationMethod<
-  AkriConnectorListByTemplateRequest,
-  AkriConnectorResourceListResult,
-  AkriConnectorListByTemplateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AkriConnectorListByTemplateRequest,
-  output: AkriConnectorResourceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -6889,51 +6841,6 @@ export const AkriConnectorTemplateCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type AkriConnectorTemplateDeleteError = AzureOpError;
-/** Delete a AkriConnectorTemplateResource */
-export const AkriConnectorTemplateDelete: API.OperationMethod<
-  AkriConnectorTemplateDeleteRequest,
-  AkriConnectorTemplateDeleteResponse,
-  AkriConnectorTemplateDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AkriConnectorTemplateDeleteRequest,
-  output: AkriConnectorTemplateDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AkriConnectorTemplateGetError = AzureOpError;
-/** Get a AkriConnectorTemplateResource */
-export const AkriConnectorTemplateGet: API.OperationMethod<
-  AkriConnectorTemplateGetRequest,
-  AkriConnectorTemplateGetResponse,
-  AkriConnectorTemplateGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AkriConnectorTemplateGetRequest,
-  output: AkriConnectorTemplateGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AkriConnectorTemplateListByInstanceResourceError = AzureOpError;
-/** List AkriConnectorTemplateResource resources by InstanceResource */
-export const AkriConnectorTemplateListByInstanceResource: API.OperationMethod<
-  AkriConnectorTemplateListByInstanceResourceRequest,
-  AkriConnectorTemplateResourceListResult,
-  AkriConnectorTemplateListByInstanceResourceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AkriConnectorTemplateListByInstanceResourceRequest,
-  output: AkriConnectorTemplateResourceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type AkriServiceCreateOrUpdateError = AzureOpError;
 /** Create a AkriServiceResource */
 export const AkriServiceCreateOrUpdate: API.OperationMethod<
@@ -6944,51 +6851,6 @@ export const AkriServiceCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: AkriServiceCreateOrUpdateRequest,
   output: AkriServiceCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AkriServiceDeleteError = AzureOpError;
-/** Delete a AkriServiceResource */
-export const AkriServiceDelete: API.OperationMethod<
-  AkriServiceDeleteRequest,
-  AkriServiceDeleteResponse,
-  AkriServiceDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AkriServiceDeleteRequest,
-  output: AkriServiceDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AkriServiceGetError = AzureOpError;
-/** Get a AkriServiceResource */
-export const AkriServiceGet: API.OperationMethod<
-  AkriServiceGetRequest,
-  AkriServiceGetResponse,
-  AkriServiceGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AkriServiceGetRequest,
-  output: AkriServiceGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AkriServiceListByInstanceResourceError = AzureOpError;
-/** List AkriServiceResource resources by InstanceResource */
-export const AkriServiceListByInstanceResource: API.OperationMethod<
-  AkriServiceListByInstanceResourceRequest,
-  AkriServiceResourceListResult,
-  AkriServiceListByInstanceResourceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AkriServiceListByInstanceResourceRequest,
-  output: AkriServiceResourceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -7009,51 +6871,6 @@ export const BrokerAuthenticationCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type BrokerAuthenticationDeleteError = AzureOpError;
-/** Delete a BrokerAuthenticationResource */
-export const BrokerAuthenticationDelete: API.OperationMethod<
-  BrokerAuthenticationDeleteRequest,
-  BrokerAuthenticationDeleteResponse,
-  BrokerAuthenticationDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BrokerAuthenticationDeleteRequest,
-  output: BrokerAuthenticationDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BrokerAuthenticationGetError = AzureOpError;
-/** Get a BrokerAuthenticationResource */
-export const BrokerAuthenticationGet: API.OperationMethod<
-  BrokerAuthenticationGetRequest,
-  BrokerAuthenticationGetResponse,
-  BrokerAuthenticationGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BrokerAuthenticationGetRequest,
-  output: BrokerAuthenticationGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BrokerAuthenticationListByResourceGroupError = AzureOpError;
-/** List BrokerAuthenticationResource resources by BrokerResource */
-export const BrokerAuthenticationListByResourceGroup: API.OperationMethod<
-  BrokerAuthenticationListByResourceGroupRequest,
-  BrokerAuthenticationResourceListResult,
-  BrokerAuthenticationListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BrokerAuthenticationListByResourceGroupRequest,
-  output: BrokerAuthenticationResourceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type BrokerAuthorizationCreateOrUpdateError = AzureOpError;
 /** Create a BrokerAuthorizationResource */
 export const BrokerAuthorizationCreateOrUpdate: API.OperationMethod<
@@ -7064,51 +6881,6 @@ export const BrokerAuthorizationCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: BrokerAuthorizationCreateOrUpdateRequest,
   output: BrokerAuthorizationCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BrokerAuthorizationDeleteError = AzureOpError;
-/** Delete a BrokerAuthorizationResource */
-export const BrokerAuthorizationDelete: API.OperationMethod<
-  BrokerAuthorizationDeleteRequest,
-  BrokerAuthorizationDeleteResponse,
-  BrokerAuthorizationDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BrokerAuthorizationDeleteRequest,
-  output: BrokerAuthorizationDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BrokerAuthorizationGetError = AzureOpError;
-/** Get a BrokerAuthorizationResource */
-export const BrokerAuthorizationGet: API.OperationMethod<
-  BrokerAuthorizationGetRequest,
-  BrokerAuthorizationGetResponse,
-  BrokerAuthorizationGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BrokerAuthorizationGetRequest,
-  output: BrokerAuthorizationGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BrokerAuthorizationListByResourceGroupError = AzureOpError;
-/** List BrokerAuthorizationResource resources by BrokerResource */
-export const BrokerAuthorizationListByResourceGroup: API.OperationMethod<
-  BrokerAuthorizationListByResourceGroupRequest,
-  BrokerAuthorizationResourceListResult,
-  BrokerAuthorizationListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BrokerAuthorizationListByResourceGroupRequest,
-  output: BrokerAuthorizationResourceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -7129,51 +6901,6 @@ export const BrokerCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type BrokerDeleteError = AzureOpError;
-/** Delete a BrokerResource */
-export const BrokerDelete: API.OperationMethod<
-  BrokerDeleteRequest,
-  BrokerDeleteResponse,
-  BrokerDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BrokerDeleteRequest,
-  output: BrokerDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BrokerGetError = AzureOpError;
-/** Get a BrokerResource */
-export const BrokerGet: API.OperationMethod<
-  BrokerGetRequest,
-  BrokerGetResponse,
-  BrokerGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BrokerGetRequest,
-  output: BrokerGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BrokerListByResourceGroupError = AzureOpError;
-/** List BrokerResource resources by InstanceResource */
-export const BrokerListByResourceGroup: API.OperationMethod<
-  BrokerListByResourceGroupRequest,
-  BrokerResourceListResult,
-  BrokerListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BrokerListByResourceGroupRequest,
-  output: BrokerResourceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type BrokerListenerCreateOrUpdateError = AzureOpError;
 /** Create a BrokerListenerResource */
 export const BrokerListenerCreateOrUpdate: API.OperationMethod<
@@ -7184,51 +6911,6 @@ export const BrokerListenerCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: BrokerListenerCreateOrUpdateRequest,
   output: BrokerListenerCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BrokerListenerDeleteError = AzureOpError;
-/** Delete a BrokerListenerResource */
-export const BrokerListenerDelete: API.OperationMethod<
-  BrokerListenerDeleteRequest,
-  BrokerListenerDeleteResponse,
-  BrokerListenerDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BrokerListenerDeleteRequest,
-  output: BrokerListenerDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BrokerListenerGetError = AzureOpError;
-/** Get a BrokerListenerResource */
-export const BrokerListenerGet: API.OperationMethod<
-  BrokerListenerGetRequest,
-  BrokerListenerGetResponse,
-  BrokerListenerGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BrokerListenerGetRequest,
-  output: BrokerListenerGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BrokerListenerListByResourceGroupError = AzureOpError;
-/** List BrokerListenerResource resources by BrokerResource */
-export const BrokerListenerListByResourceGroup: API.OperationMethod<
-  BrokerListenerListByResourceGroupRequest,
-  BrokerListenerResourceListResult,
-  BrokerListenerListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BrokerListenerListByResourceGroupRequest,
-  output: BrokerListenerResourceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -7249,21 +6931,6 @@ export const DataflowCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DataflowDeleteError = AzureOpError;
-/** Delete a DataflowResource */
-export const DataflowDelete: API.OperationMethod<
-  DataflowDeleteRequest,
-  DataflowDeleteResponse,
-  DataflowDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DataflowDeleteRequest,
-  output: DataflowDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type DataflowEndpointCreateOrUpdateError = AzureOpError;
 /** Create a DataflowEndpointResource */
 export const DataflowEndpointCreateOrUpdate: API.OperationMethod<
@@ -7274,66 +6941,6 @@ export const DataflowEndpointCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DataflowEndpointCreateOrUpdateRequest,
   output: DataflowEndpointCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DataflowEndpointDeleteError = AzureOpError;
-/** Delete a DataflowEndpointResource */
-export const DataflowEndpointDelete: API.OperationMethod<
-  DataflowEndpointDeleteRequest,
-  DataflowEndpointDeleteResponse,
-  DataflowEndpointDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DataflowEndpointDeleteRequest,
-  output: DataflowEndpointDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DataflowEndpointGetError = AzureOpError;
-/** Get a DataflowEndpointResource */
-export const DataflowEndpointGet: API.OperationMethod<
-  DataflowEndpointGetRequest,
-  DataflowEndpointGetResponse,
-  DataflowEndpointGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DataflowEndpointGetRequest,
-  output: DataflowEndpointGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DataflowEndpointListByResourceGroupError = AzureOpError;
-/** List DataflowEndpointResource resources by InstanceResource */
-export const DataflowEndpointListByResourceGroup: API.OperationMethod<
-  DataflowEndpointListByResourceGroupRequest,
-  DataflowEndpointResourceListResult,
-  DataflowEndpointListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DataflowEndpointListByResourceGroupRequest,
-  output: DataflowEndpointResourceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DataflowGetError = AzureOpError;
-/** Get a DataflowResource */
-export const DataflowGet: API.OperationMethod<
-  DataflowGetRequest,
-  DataflowGetResponse,
-  DataflowGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DataflowGetRequest,
-  output: DataflowGetResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -7354,66 +6961,6 @@ export const DataflowGraphCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DataflowGraphDeleteError = AzureOpError;
-/** Delete a DataflowGraphResource */
-export const DataflowGraphDelete: API.OperationMethod<
-  DataflowGraphDeleteRequest,
-  DataflowGraphDeleteResponse,
-  DataflowGraphDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DataflowGraphDeleteRequest,
-  output: DataflowGraphDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DataflowGraphGetError = AzureOpError;
-/** Get a DataflowGraphResource */
-export const DataflowGraphGet: API.OperationMethod<
-  DataflowGraphGetRequest,
-  DataflowGraphGetResponse,
-  DataflowGraphGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DataflowGraphGetRequest,
-  output: DataflowGraphGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DataflowGraphListByDataflowProfileError = AzureOpError;
-/** List DataflowGraphResource resources by DataflowProfileResource */
-export const DataflowGraphListByDataflowProfile: API.OperationMethod<
-  DataflowGraphListByDataflowProfileRequest,
-  DataflowGraphResourceListResult,
-  DataflowGraphListByDataflowProfileError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DataflowGraphListByDataflowProfileRequest,
-  output: DataflowGraphResourceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DataflowListByProfileResourceError = AzureOpError;
-/** List DataflowResource resources by DataflowProfileResource */
-export const DataflowListByProfileResource: API.OperationMethod<
-  DataflowListByProfileResourceRequest,
-  DataflowResourceListResult,
-  DataflowListByProfileResourceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DataflowListByProfileResourceRequest,
-  output: DataflowResourceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type DataflowProfileCreateOrUpdateError = AzureOpError;
 /** Create a DataflowProfileResource */
 export const DataflowProfileCreateOrUpdate: API.OperationMethod<
@@ -7429,46 +6976,391 @@ export const DataflowProfileCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DataflowProfileDeleteError = AzureOpError;
+export type DeleteAkriConnectorError = AzureOpError;
+/** Delete a AkriConnectorResource */
+export const DeleteAkriConnector: API.OperationMethod<
+  DeleteAkriConnectorRequest,
+  DeleteAkriConnectorResponse,
+  DeleteAkriConnectorError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteAkriConnectorRequest,
+  output: DeleteAkriConnectorResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteAkriConnectorTemplateError = AzureOpError;
+/** Delete a AkriConnectorTemplateResource */
+export const DeleteAkriConnectorTemplate: API.OperationMethod<
+  DeleteAkriConnectorTemplateRequest,
+  DeleteAkriConnectorTemplateResponse,
+  DeleteAkriConnectorTemplateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteAkriConnectorTemplateRequest,
+  output: DeleteAkriConnectorTemplateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteAkriServiceError = AzureOpError;
+/** Delete a AkriServiceResource */
+export const DeleteAkriService: API.OperationMethod<
+  DeleteAkriServiceRequest,
+  DeleteAkriServiceResponse,
+  DeleteAkriServiceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteAkriServiceRequest,
+  output: DeleteAkriServiceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteBrokerError = AzureOpError;
+/** Delete a BrokerResource */
+export const DeleteBroker: API.OperationMethod<
+  DeleteBrokerRequest,
+  DeleteBrokerResponse,
+  DeleteBrokerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteBrokerRequest,
+  output: DeleteBrokerResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteBrokerAuthenticationError = AzureOpError;
+/** Delete a BrokerAuthenticationResource */
+export const DeleteBrokerAuthentication: API.OperationMethod<
+  DeleteBrokerAuthenticationRequest,
+  DeleteBrokerAuthenticationResponse,
+  DeleteBrokerAuthenticationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteBrokerAuthenticationRequest,
+  output: DeleteBrokerAuthenticationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteBrokerAuthorizationError = AzureOpError;
+/** Delete a BrokerAuthorizationResource */
+export const DeleteBrokerAuthorization: API.OperationMethod<
+  DeleteBrokerAuthorizationRequest,
+  DeleteBrokerAuthorizationResponse,
+  DeleteBrokerAuthorizationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteBrokerAuthorizationRequest,
+  output: DeleteBrokerAuthorizationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteBrokerListenerError = AzureOpError;
+/** Delete a BrokerListenerResource */
+export const DeleteBrokerListener: API.OperationMethod<
+  DeleteBrokerListenerRequest,
+  DeleteBrokerListenerResponse,
+  DeleteBrokerListenerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteBrokerListenerRequest,
+  output: DeleteBrokerListenerResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteDataflowError = AzureOpError;
+/** Delete a DataflowResource */
+export const DeleteDataflow: API.OperationMethod<
+  DeleteDataflowRequest,
+  DeleteDataflowResponse,
+  DeleteDataflowError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteDataflowRequest,
+  output: DeleteDataflowResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteDataflowEndpointError = AzureOpError;
+/** Delete a DataflowEndpointResource */
+export const DeleteDataflowEndpoint: API.OperationMethod<
+  DeleteDataflowEndpointRequest,
+  DeleteDataflowEndpointResponse,
+  DeleteDataflowEndpointError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteDataflowEndpointRequest,
+  output: DeleteDataflowEndpointResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteDataflowGraphError = AzureOpError;
+/** Delete a DataflowGraphResource */
+export const DeleteDataflowGraph: API.OperationMethod<
+  DeleteDataflowGraphRequest,
+  DeleteDataflowGraphResponse,
+  DeleteDataflowGraphError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteDataflowGraphRequest,
+  output: DeleteDataflowGraphResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteDataflowProfileError = AzureOpError;
 /** Delete a DataflowProfileResource */
-export const DataflowProfileDelete: API.OperationMethod<
-  DataflowProfileDeleteRequest,
-  DataflowProfileDeleteResponse,
-  DataflowProfileDeleteError,
+export const DeleteDataflowProfile: API.OperationMethod<
+  DeleteDataflowProfileRequest,
+  DeleteDataflowProfileResponse,
+  DeleteDataflowProfileError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DataflowProfileDeleteRequest,
-  output: DataflowProfileDeleteResponse,
+  input: DeleteDataflowProfileRequest,
+  output: DeleteDataflowProfileResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DataflowProfileGetError = AzureOpError;
+export type DeleteInstanceError = AzureOpError;
+/** Delete a InstanceResource */
+export const DeleteInstance: API.OperationMethod<
+  DeleteInstanceRequest,
+  DeleteInstanceResponse,
+  DeleteInstanceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteInstanceRequest,
+  output: DeleteInstanceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteRegistryEndpointError = AzureOpError;
+/** Delete a RegistryEndpointResource */
+export const DeleteRegistryEndpoint: API.OperationMethod<
+  DeleteRegistryEndpointRequest,
+  DeleteRegistryEndpointResponse,
+  DeleteRegistryEndpointError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteRegistryEndpointRequest,
+  output: DeleteRegistryEndpointResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAkriConnectorError = AzureOpError;
+/** Get a AkriConnectorResource */
+export const GetAkriConnector: API.OperationMethod<
+  GetAkriConnectorRequest,
+  GetAkriConnectorResponse,
+  GetAkriConnectorError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAkriConnectorRequest,
+  output: GetAkriConnectorResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAkriConnectorTemplateError = AzureOpError;
+/** Get a AkriConnectorTemplateResource */
+export const GetAkriConnectorTemplate: API.OperationMethod<
+  GetAkriConnectorTemplateRequest,
+  GetAkriConnectorTemplateResponse,
+  GetAkriConnectorTemplateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAkriConnectorTemplateRequest,
+  output: GetAkriConnectorTemplateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAkriServiceError = AzureOpError;
+/** Get a AkriServiceResource */
+export const GetAkriService: API.OperationMethod<
+  GetAkriServiceRequest,
+  GetAkriServiceResponse,
+  GetAkriServiceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAkriServiceRequest,
+  output: GetAkriServiceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBrokerError = AzureOpError;
+/** Get a BrokerResource */
+export const GetBroker: API.OperationMethod<
+  GetBrokerRequest,
+  GetBrokerResponse,
+  GetBrokerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBrokerRequest,
+  output: GetBrokerResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBrokerAuthenticationError = AzureOpError;
+/** Get a BrokerAuthenticationResource */
+export const GetBrokerAuthentication: API.OperationMethod<
+  GetBrokerAuthenticationRequest,
+  GetBrokerAuthenticationResponse,
+  GetBrokerAuthenticationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBrokerAuthenticationRequest,
+  output: GetBrokerAuthenticationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBrokerAuthorizationError = AzureOpError;
+/** Get a BrokerAuthorizationResource */
+export const GetBrokerAuthorization: API.OperationMethod<
+  GetBrokerAuthorizationRequest,
+  GetBrokerAuthorizationResponse,
+  GetBrokerAuthorizationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBrokerAuthorizationRequest,
+  output: GetBrokerAuthorizationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBrokerListenerError = AzureOpError;
+/** Get a BrokerListenerResource */
+export const GetBrokerListener: API.OperationMethod<
+  GetBrokerListenerRequest,
+  GetBrokerListenerResponse,
+  GetBrokerListenerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBrokerListenerRequest,
+  output: GetBrokerListenerResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDataflowError = AzureOpError;
+/** Get a DataflowResource */
+export const GetDataflow: API.OperationMethod<
+  GetDataflowRequest,
+  GetDataflowResponse,
+  GetDataflowError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDataflowRequest,
+  output: GetDataflowResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDataflowEndpointError = AzureOpError;
+/** Get a DataflowEndpointResource */
+export const GetDataflowEndpoint: API.OperationMethod<
+  GetDataflowEndpointRequest,
+  GetDataflowEndpointResponse,
+  GetDataflowEndpointError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDataflowEndpointRequest,
+  output: GetDataflowEndpointResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDataflowGraphError = AzureOpError;
+/** Get a DataflowGraphResource */
+export const GetDataflowGraph: API.OperationMethod<
+  GetDataflowGraphRequest,
+  GetDataflowGraphResponse,
+  GetDataflowGraphError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDataflowGraphRequest,
+  output: GetDataflowGraphResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDataflowProfileError = AzureOpError;
 /** Get a DataflowProfileResource */
-export const DataflowProfileGet: API.OperationMethod<
-  DataflowProfileGetRequest,
-  DataflowProfileGetResponse,
-  DataflowProfileGetError,
+export const GetDataflowProfile: API.OperationMethod<
+  GetDataflowProfileRequest,
+  GetDataflowProfileResponse,
+  GetDataflowProfileError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DataflowProfileGetRequest,
-  output: DataflowProfileGetResponse,
+  input: GetDataflowProfileRequest,
+  output: GetDataflowProfileResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DataflowProfileListByResourceGroupError = AzureOpError;
-/** List DataflowProfileResource resources by InstanceResource */
-export const DataflowProfileListByResourceGroup: API.OperationMethod<
-  DataflowProfileListByResourceGroupRequest,
-  DataflowProfileResourceListResult,
-  DataflowProfileListByResourceGroupError,
+export type GetInstanceError = AzureOpError;
+/** Get a InstanceResource */
+export const GetInstance: API.OperationMethod<
+  GetInstanceRequest,
+  GetInstanceResponse,
+  GetInstanceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DataflowProfileListByResourceGroupRequest,
-  output: DataflowProfileResourceListResult,
+  input: GetInstanceRequest,
+  output: GetInstanceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetRegistryEndpointError = AzureOpError;
+/** Get a RegistryEndpointResource */
+export const GetRegistryEndpoint: API.OperationMethod<
+  GetRegistryEndpointRequest,
+  GetRegistryEndpointResponse,
+  GetRegistryEndpointError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetRegistryEndpointRequest,
+  output: GetRegistryEndpointResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -7489,91 +7381,226 @@ export const InstanceCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type InstanceDeleteError = AzureOpError;
-/** Delete a InstanceResource */
-export const InstanceDelete: API.OperationMethod<
-  InstanceDeleteRequest,
-  InstanceDeleteResponse,
-  InstanceDeleteError,
+export type ListAkriConnectorByTemplateError = AzureOpError;
+/** List AkriConnectorResource resources by AkriConnectorTemplateResource */
+export const ListAkriConnectorByTemplate: API.OperationMethod<
+  ListAkriConnectorByTemplateRequest,
+  AkriConnectorResourceListResult,
+  ListAkriConnectorByTemplateError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: InstanceDeleteRequest,
-  output: InstanceDeleteResponse,
+  input: ListAkriConnectorByTemplateRequest,
+  output: AkriConnectorResourceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type InstanceGetError = AzureOpError;
-/** Get a InstanceResource */
-export const InstanceGet: API.OperationMethod<
-  InstanceGetRequest,
-  InstanceGetResponse,
-  InstanceGetError,
+export type ListAkriConnectorTemplateByInstanceResourceError = AzureOpError;
+/** List AkriConnectorTemplateResource resources by InstanceResource */
+export const ListAkriConnectorTemplateByInstanceResource: API.OperationMethod<
+  ListAkriConnectorTemplateByInstanceResourceRequest,
+  AkriConnectorTemplateResourceListResult,
+  ListAkriConnectorTemplateByInstanceResourceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: InstanceGetRequest,
-  output: InstanceGetResponse,
+  input: ListAkriConnectorTemplateByInstanceResourceRequest,
+  output: AkriConnectorTemplateResourceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type InstanceListByResourceGroupError = AzureOpError;
+export type ListAkriServiceByInstanceResourceError = AzureOpError;
+/** List AkriServiceResource resources by InstanceResource */
+export const ListAkriServiceByInstanceResource: API.OperationMethod<
+  ListAkriServiceByInstanceResourceRequest,
+  AkriServiceResourceListResult,
+  ListAkriServiceByInstanceResourceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAkriServiceByInstanceResourceRequest,
+  output: AkriServiceResourceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListBrokerAuthenticationByResourceGroupError = AzureOpError;
+/** List BrokerAuthenticationResource resources by BrokerResource */
+export const ListBrokerAuthenticationByResourceGroup: API.OperationMethod<
+  ListBrokerAuthenticationByResourceGroupRequest,
+  BrokerAuthenticationResourceListResult,
+  ListBrokerAuthenticationByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListBrokerAuthenticationByResourceGroupRequest,
+  output: BrokerAuthenticationResourceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListBrokerAuthorizationByResourceGroupError = AzureOpError;
+/** List BrokerAuthorizationResource resources by BrokerResource */
+export const ListBrokerAuthorizationByResourceGroup: API.OperationMethod<
+  ListBrokerAuthorizationByResourceGroupRequest,
+  BrokerAuthorizationResourceListResult,
+  ListBrokerAuthorizationByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListBrokerAuthorizationByResourceGroupRequest,
+  output: BrokerAuthorizationResourceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListBrokerByResourceGroupError = AzureOpError;
+/** List BrokerResource resources by InstanceResource */
+export const ListBrokerByResourceGroup: API.OperationMethod<
+  ListBrokerByResourceGroupRequest,
+  BrokerResourceListResult,
+  ListBrokerByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListBrokerByResourceGroupRequest,
+  output: BrokerResourceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListBrokerListenerByResourceGroupError = AzureOpError;
+/** List BrokerListenerResource resources by BrokerResource */
+export const ListBrokerListenerByResourceGroup: API.OperationMethod<
+  ListBrokerListenerByResourceGroupRequest,
+  BrokerListenerResourceListResult,
+  ListBrokerListenerByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListBrokerListenerByResourceGroupRequest,
+  output: BrokerListenerResourceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDataflowByProfileResourceError = AzureOpError;
+/** List DataflowResource resources by DataflowProfileResource */
+export const ListDataflowByProfileResource: API.OperationMethod<
+  ListDataflowByProfileResourceRequest,
+  DataflowResourceListResult,
+  ListDataflowByProfileResourceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDataflowByProfileResourceRequest,
+  output: DataflowResourceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDataflowEndpointByResourceGroupError = AzureOpError;
+/** List DataflowEndpointResource resources by InstanceResource */
+export const ListDataflowEndpointByResourceGroup: API.OperationMethod<
+  ListDataflowEndpointByResourceGroupRequest,
+  DataflowEndpointResourceListResult,
+  ListDataflowEndpointByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDataflowEndpointByResourceGroupRequest,
+  output: DataflowEndpointResourceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDataflowGraphByDataflowProfileError = AzureOpError;
+/** List DataflowGraphResource resources by DataflowProfileResource */
+export const ListDataflowGraphByDataflowProfile: API.OperationMethod<
+  ListDataflowGraphByDataflowProfileRequest,
+  DataflowGraphResourceListResult,
+  ListDataflowGraphByDataflowProfileError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDataflowGraphByDataflowProfileRequest,
+  output: DataflowGraphResourceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDataflowProfileByResourceGroupError = AzureOpError;
+/** List DataflowProfileResource resources by InstanceResource */
+export const ListDataflowProfileByResourceGroup: API.OperationMethod<
+  ListDataflowProfileByResourceGroupRequest,
+  DataflowProfileResourceListResult,
+  ListDataflowProfileByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDataflowProfileByResourceGroupRequest,
+  output: DataflowProfileResourceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListInstanceByResourceGroupError = AzureOpError;
 /** List InstanceResource resources by resource group */
-export const InstanceListByResourceGroup: API.OperationMethod<
-  InstanceListByResourceGroupRequest,
+export const ListInstanceByResourceGroup: API.OperationMethod<
+  ListInstanceByResourceGroupRequest,
   InstanceResourceListResult,
-  InstanceListByResourceGroupError,
+  ListInstanceByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: InstanceListByResourceGroupRequest,
+  input: ListInstanceByResourceGroupRequest,
   output: InstanceResourceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type InstanceListBySubscriptionError = AzureOpError;
+export type ListInstanceBySubscriptionError = AzureOpError;
 /** List InstanceResource resources by subscription ID */
-export const InstanceListBySubscription: API.OperationMethod<
-  InstanceListBySubscriptionRequest,
+export const ListInstanceBySubscription: API.OperationMethod<
+  ListInstanceBySubscriptionRequest,
   InstanceResourceListResult,
-  InstanceListBySubscriptionError,
+  ListInstanceBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: InstanceListBySubscriptionRequest,
+  input: ListInstanceBySubscriptionRequest,
   output: InstanceResourceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type InstanceUpdateError = AzureOpError;
-/** Update a InstanceResource */
-export const InstanceUpdate: API.OperationMethod<
-  InstanceUpdateRequest,
-  InstanceUpdateResponse,
-  InstanceUpdateError,
+export type ListOperationsError = AzureOpError;
+/** List the operations for the provider */
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  ListOperationsResponse,
+  ListOperationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: InstanceUpdateRequest,
-  output: InstanceUpdateResponse,
+  input: ListOperationsRequest,
+  output: ListOperationsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OperationsListError = AzureOpError;
-/** List the operations for the provider */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationsListResponse,
-  OperationsListError,
+export type ListRegistryEndpointByInstanceResourceError = AzureOpError;
+/** List RegistryEndpointResource resources by InstanceResource */
+export const ListRegistryEndpointByInstanceResource: API.OperationMethod<
+  ListRegistryEndpointByInstanceResourceRequest,
+  RegistryEndpointResourceListResult,
+  ListRegistryEndpointByInstanceResourceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
-  output: OperationsListResponse,
+  input: ListRegistryEndpointByInstanceResourceRequest,
+  output: RegistryEndpointResourceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -7594,46 +7621,16 @@ export const RegistryEndpointCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type RegistryEndpointDeleteError = AzureOpError;
-/** Delete a RegistryEndpointResource */
-export const RegistryEndpointDelete: API.OperationMethod<
-  RegistryEndpointDeleteRequest,
-  RegistryEndpointDeleteResponse,
-  RegistryEndpointDeleteError,
+export type UpdateInstanceError = AzureOpError;
+/** Update a InstanceResource */
+export const UpdateInstance: API.OperationMethod<
+  UpdateInstanceRequest,
+  UpdateInstanceResponse,
+  UpdateInstanceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RegistryEndpointDeleteRequest,
-  output: RegistryEndpointDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RegistryEndpointGetError = AzureOpError;
-/** Get a RegistryEndpointResource */
-export const RegistryEndpointGet: API.OperationMethod<
-  RegistryEndpointGetRequest,
-  RegistryEndpointGetResponse,
-  RegistryEndpointGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RegistryEndpointGetRequest,
-  output: RegistryEndpointGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RegistryEndpointListByInstanceResourceError = AzureOpError;
-/** List RegistryEndpointResource resources by InstanceResource */
-export const RegistryEndpointListByInstanceResource: API.OperationMethod<
-  RegistryEndpointListByInstanceResourceRequest,
-  RegistryEndpointResourceListResult,
-  RegistryEndpointListByInstanceResourceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RegistryEndpointListByInstanceResourceRequest,
-  output: RegistryEndpointResourceListResult,
+  input: UpdateInstanceRequest,
+  output: UpdateInstanceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

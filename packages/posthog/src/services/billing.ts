@@ -84,453 +84,6 @@ export const BillingActivateCreateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "BillingActivateCreateResponse",
 }) as any as S.Schema<BillingActivateCreateResponse>;
 
-export interface BillingAlertsCheckNowCreateRequest {
-  /** ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/. */
-  organization_id: string;
-  /** A UUID string identifying this billing alert configuration. */
-  id: string;
-}
-export const BillingAlertsCheckNowCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    organization_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/organizations/{organization_id}/billing/alerts/{id}/check_now/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "BillingAlertsCheckNowCreateRequest",
-}) as any as S.Schema<BillingAlertsCheckNowCreateRequest>;
-
-/** * `check` - Check * `firing` - Firing * `resolved` - Resolved * `errored` - Errored * `broken_config` - Broken config */
-export type BillingAlertEventKindEnum =
-  | "check"
-  | "firing"
-  | "resolved"
-  | "errored"
-  | "broken_config";
-export const BillingAlertEventKindEnum = /*@__PURE__*/ S.String;
-
-/** * `scheduled` - Scheduled * `manual` - Manual */
-export type BillingAlertEventSourceEnum = "scheduled" | "manual";
-export const BillingAlertEventSourceEnum = /*@__PURE__*/ S.String;
-
-/** * `spend` - Spend * `projected_spend` - Projected spend */
-export type BillingAlertMetricEnum = "spend" | "projected_spend";
-export const BillingAlertMetricEnum = /*@__PURE__*/ S.String;
-
-/** * `not_firing` - Not firing * `firing` - Firing * `errored` - Errored * `snoozed` - Snoozed * `broken` - Broken */
-export type BillingAlertStateEnum =
-  | "not_firing"
-  | "firing"
-  | "errored"
-  | "snoozed"
-  | "broken";
-export const BillingAlertStateEnum = /*@__PURE__*/ S.String;
-
-export interface BillingAlertEvent {
-  /** Unique identifier for this billing alert event. */
-  id: string;
-  /** Event kind for a check, state transition, or delivery-worthy alert event. * `check` - Check * `firing` - Firing * `resolved` - Resolved * `errored` - Errored * `broken_config` - Broken config */
-  kind: BillingAlertEventKindEnum;
-  /** Whether this evaluation was scheduled or manually requested. * `scheduled` - Scheduled * `manual` - Manual */
-  source: BillingAlertEventSourceEnum;
-  /** Attempt number for this billing date and configuration revision. */
-  attempt_number: number;
-  /** When this event was recorded. */
-  created_at: string;
-  /** Billing data date evaluated by this event. */
-  evaluation_date: string | null;
-  /** Configuration revision used for this evaluation. */
-  configuration_revision: number;
-  /** Start of the evaluated billing period. */
-  period_start: string | null;
-  /** End of the evaluated billing period. */
-  period_end: string | null;
-  /** Billing metric evaluated by this event. * `spend` - Spend * `projected_spend` - Projected spend */
-  metric: BillingAlertMetricEnum;
-  /** Metric value for the evaluated billing date. */
-  current_value: string | null;
-  /** Average metric value across the baseline window. */
-  baseline_value: string | null;
-  /** Current value minus the baseline value. */
-  absolute_delta: string | null;
-  /** Percentage change against the baseline value. */
-  relative_delta_percentage: string | null;
-  /** Whether the evaluated value breached the configured threshold. */
-  threshold_breached: boolean;
-  /** Alert state before this event was applied. * `not_firing` - Not firing * `firing` - Firing * `errored` - Errored * `snoozed` - Snoozed * `broken` - Broken */
-  state_before: BillingAlertStateEnum | null;
-  /** Alert state after this event was applied. * `not_firing` - Not firing * `firing` - Firing * `errored` - Errored * `snoozed` - Snoozed * `broken` - Broken */
-  state_after: BillingAlertStateEnum | null;
-  /** When notifications for this event were delivered. */
-  notification_sent_at: string | null;
-  /** Notification targets recorded for this event. */
-  targets_notified: unknown;
-  /** Milliseconds spent fetching billing data for this evaluation. */
-  query_duration_ms: number | null;
-  /** Exception class name recorded when the evaluation failed. */
-  error_code: string | null;
-  /** Failure description recorded when the evaluation failed. */
-  error_message: string | null;
-  /** Human-readable explanation of the evaluation outcome. */
-  reason: string;
-}
-export const BillingAlertEvent = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    kind: BillingAlertEventKindEnum,
-    source: BillingAlertEventSourceEnum,
-    attempt_number: S.Number,
-    created_at: S.String,
-    evaluation_date: S.NullOr(S.String),
-    configuration_revision: S.Number,
-    period_start: S.NullOr(S.String),
-    period_end: S.NullOr(S.String),
-    metric: BillingAlertMetricEnum,
-    current_value: S.NullOr(S.String),
-    baseline_value: S.NullOr(S.String),
-    absolute_delta: S.NullOr(S.String),
-    relative_delta_percentage: S.NullOr(S.String),
-    threshold_breached: S.Boolean,
-    state_before: S.NullOr(BillingAlertStateEnum),
-    state_after: S.NullOr(BillingAlertStateEnum),
-    notification_sent_at: S.NullOr(S.String),
-    targets_notified: S.Unknown,
-    query_duration_ms: S.NullOr(S.Number),
-    error_code: S.NullOr(S.String),
-    error_message: S.NullOr(S.String),
-    reason: S.String,
-  }),
-).annotate({
-  identifier: "BillingAlertEvent",
-}) as any as S.Schema<BillingAlertEvent>;
-
-export interface BillingAlertCheckNowResponse {
-  /** Evaluation event recorded by the manual check, or null for a paused preview. */
-  event?: BillingAlertEvent | null;
-  /** Number of destination HogFunctions queued. */
-  dispatched_destinations: number;
-  /** True when the alert is paused: it was evaluated but no notifications were sent. */
-  preview: boolean;
-  /** Whether the evaluated billing-period total breached the configured threshold. */
-  threshold_breached: boolean;
-  /** Evaluated billing-period total, or null when billing data was not available. */
-  current_value?: string | null;
-}
-export const BillingAlertCheckNowResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    event: S.optional(S.NullOr(BillingAlertEvent)),
-    dispatched_destinations: S.Number,
-    preview: S.Boolean,
-    threshold_breached: S.Boolean,
-    current_value: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({
-  identifier: "BillingAlertCheckNowResponse",
-}) as any as S.Schema<BillingAlertCheckNowResponse>;
-
-/** * `relative_increase` - Relative increase * `absolute_value` - Absolute value * `absolute_increase` - Absolute increase */
-export type ThresholdTypeEnum =
-  | "relative_increase"
-  | "absolute_value"
-  | "absolute_increase";
-export const ThresholdTypeEnum = /*@__PURE__*/ S.String;
-
-export type BillingAlertDestinationChangesDeleteItemList = Array<string>;
-export const BillingAlertDestinationChangesDeleteItemList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<BillingAlertDestinationChangesDeleteItemList>;
-
-export type BillingAlertDestinationChangesDeleteList =
-  Array<BillingAlertDestinationChangesDeleteItemList>;
-export const BillingAlertDestinationChangesDeleteList = /*@__PURE__*/ S.Array(
-  BillingAlertDestinationChangesDeleteItemList,
-) as any as S.Schema<BillingAlertDestinationChangesDeleteList>;
-
-/** * `slack` - slack * `webhook` - webhook * `teams` - teams */
-export type NotificationDestinationTypeEnum = "slack" | "webhook" | "teams";
-export const NotificationDestinationTypeEnum = /*@__PURE__*/ S.String;
-
-export interface BillingAlertDestinationCreateData {
-  /** Destination type. * `slack` - slack * `webhook` - webhook * `teams` - teams */
-  type: NotificationDestinationTypeEnum | (string & {});
-  /** Slack integration ID in the alert execution project. */
-  slack_workspace_id?: number;
-  /** Slack channel ID for alert delivery. */
-  slack_channel_id?: string;
-  /** Optional Slack channel name shown in the UI. */
-  slack_channel_name?: string;
-  /** HTTPS webhook URL for webhook or Microsoft Teams delivery. */
-  webhook_url?: string;
-}
-export const BillingAlertDestinationCreateData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: NotificationDestinationTypeEnum,
-    slack_workspace_id: S.optional(S.Number),
-    slack_channel_id: S.optional(S.String),
-    slack_channel_name: S.optional(S.String),
-    webhook_url: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "BillingAlertDestinationCreateData",
-}) as any as S.Schema<BillingAlertDestinationCreateData>;
-
-export type BillingAlertDestinationChangesCreateList =
-  Array<BillingAlertDestinationCreateData>;
-export const BillingAlertDestinationChangesCreateList = /*@__PURE__*/ S.Array(
-  BillingAlertDestinationCreateData,
-) as any as S.Schema<BillingAlertDestinationChangesCreateList>;
-
-export interface BillingAlertDestinationChanges {
-  delete?: BillingAlertDestinationChangesDeleteList;
-  create?: BillingAlertDestinationChangesCreateList;
-}
-export const BillingAlertDestinationChanges = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    delete: S.optional(BillingAlertDestinationChangesDeleteList),
-    create: S.optional(BillingAlertDestinationChangesCreateList),
-  }),
-).annotate({
-  identifier: "BillingAlertDestinationChanges",
-}) as any as S.Schema<BillingAlertDestinationChanges>;
-
-export interface BillingAlertsCreateRequest {
-  /** ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/. */
-  organization_id: string;
-  /** Display name for this billing alert. */
-  name: string;
-  /** Optional internal description. */
-  description?: string;
-  /** Whether scheduled checks should evaluate this alert. */
-  enabled?: boolean;
-  /** Billing-period total to evaluate: current spend so far, or projected period-end spend. * `spend` - Spend * `projected_spend` - Projected spend */
-  metric?: BillingAlertMetricEnum | (string & {});
-  /** Threshold rule type. The first version supports absolute value only. * `relative_increase` - Relative increase * `absolute_value` - Absolute value * `absolute_increase` - Absolute increase */
-  threshold_type?: ThresholdTypeEnum | (string & {});
-  /** Reserved for future increase-over-baseline rules. Not used by absolute value alerts. */
-  threshold_percentage?: string | null;
-  /** Absolute value or absolute increase that triggers absolute threshold alerts. */
-  threshold_value?: string | null;
-  /** Minimum current value before the alert can fire. */
-  minimum_value?: string;
-  /** Reserved for future increase-over-baseline rules. Not used by absolute value alerts. */
-  baseline_window_days?: number;
-  /** Hours after a UTC billing date ends before it becomes eligible for evaluation. */
-  evaluation_delay_hours?: number;
-  /** Minimum hours between repeated firing notifications. */
-  cooldown_hours?: number;
-  /** ISO 8601 timestamp until which evaluation and notifications are snoozed, or null to resume. */
-  snoozed_until?: string | null;
-  /** Destination groups to create or delete in the same transaction as this configuration write. */
-  destination_changes?: BillingAlertDestinationChanges;
-}
-export const BillingAlertsCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    organization_id: S.String.pipe(T.Label()),
-    name: S.String,
-    description: S.optional(S.String),
-    enabled: S.optional(S.Boolean),
-    metric: S.optional(BillingAlertMetricEnum),
-    threshold_type: S.optional(ThresholdTypeEnum),
-    threshold_percentage: S.optional(S.NullOr(S.String)),
-    threshold_value: S.optional(S.NullOr(S.String)),
-    minimum_value: S.optional(S.String),
-    baseline_window_days: S.optional(S.Number),
-    evaluation_delay_hours: S.optional(S.Number),
-    cooldown_hours: S.optional(S.Number),
-    snoozed_until: S.optional(S.NullOr(S.String)),
-    destination_changes: S.optional(BillingAlertDestinationChanges),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/organizations/{organization_id}/billing/alerts/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "BillingAlertsCreateRequest",
-}) as any as S.Schema<BillingAlertsCreateRequest>;
-
-/** * `USD` - USD */
-export type CurrencyEnum = "USD";
-export const CurrencyEnum = /*@__PURE__*/ S.String;
-
-export type BillingAlertDestinationSummaryHogFunctionIdsList = Array<string>;
-export const BillingAlertDestinationSummaryHogFunctionIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<BillingAlertDestinationSummaryHogFunctionIdsList>;
-
-export interface BillingAlertDestinationSummary {
-  type: NotificationDestinationTypeEnum;
-  hog_function_ids: BillingAlertDestinationSummaryHogFunctionIdsList;
-}
-export const BillingAlertDestinationSummary = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: NotificationDestinationTypeEnum,
-    hog_function_ids: BillingAlertDestinationSummaryHogFunctionIdsList,
-  }),
-).annotate({
-  identifier: "BillingAlertDestinationSummary",
-}) as any as S.Schema<BillingAlertDestinationSummary>;
-
-/** Notification destination groups configured for this alert, including their shared HogFunctions. */
-export type BillingAlertConfigurationOutputDestinationsList =
-  Array<BillingAlertDestinationSummary>;
-export const BillingAlertConfigurationOutputDestinationsList =
-  /*@__PURE__*/ S.Array(
-    BillingAlertDestinationSummary,
-  ) as any as S.Schema<BillingAlertConfigurationOutputDestinationsList>;
-
-export interface BillingAlertConfigurationOutput {
-  /** Unique identifier for this billing alert. */
-  id: string;
-  /** Organization this billing alert belongs to. */
-  organization_id: string;
-  /** Team used as the execution context for internal notification destinations. */
-  execution_team_id: number | null;
-  /** User ID that created this alert. */
-  created_by_id: number | null;
-  /** User ID that last updated this alert. */
-  updated_by_id: number | null;
-  /** Display name for this billing alert. */
-  name: string;
-  /** Optional internal description. */
-  description?: string;
-  /** Whether scheduled checks should evaluate this alert. */
-  enabled?: boolean;
-  /** Billing-period total to evaluate: current spend so far, or projected period-end spend. * `spend` - Spend * `projected_spend` - Projected spend */
-  metric?: BillingAlertMetricEnum;
-  /** Server-controlled currency for spend values. * `USD` - USD */
-  currency: CurrencyEnum;
-  /** Revision incremented whenever evaluation behavior changes. */
-  configuration_revision: number;
-  /** Threshold rule type. The first version supports absolute value only. * `relative_increase` - Relative increase * `absolute_value` - Absolute value * `absolute_increase` - Absolute increase */
-  threshold_type?: ThresholdTypeEnum;
-  /** Reserved for future increase-over-baseline rules. Not used by absolute value alerts. */
-  threshold_percentage?: string | null;
-  /** Absolute value or absolute increase that triggers absolute threshold alerts. */
-  threshold_value?: string | null;
-  /** Minimum current value before the alert can fire. */
-  minimum_value?: string;
-  /** Reserved for future increase-over-baseline rules. Not used by absolute value alerts. */
-  baseline_window_days?: number;
-  /** Hours after a UTC billing date ends before it becomes eligible for evaluation. */
-  evaluation_delay_hours?: number;
-  /** Current lifecycle state of this alert. * `not_firing` - Not firing * `firing` - Firing * `errored` - Errored * `snoozed` - Snoozed * `broken` - Broken */
-  state: BillingAlertStateEnum;
-  /** Minimum hours between repeated firing notifications. */
-  cooldown_hours?: number;
-  /** ISO 8601 timestamp until which evaluation and notifications are snoozed, or null to resume. */
-  snoozed_until?: string | null;
-  /** When the next scheduled evaluation is due. */
-  next_check_at: string | null;
-  /** When this alert was last evaluated. */
-  last_checked_at: string | null;
-  /** When notifications were last delivered for this alert. */
-  last_notified_at: string | null;
-  /** Number of consecutive failed evaluations. */
-  consecutive_failures: number;
-  /** Notification destination groups configured for this alert, including their shared HogFunctions. */
-  destinations: BillingAlertConfigurationOutputDestinationsList;
-  /** When this alert was created. */
-  created_at: string;
-  /** When this alert was last updated. */
-  updated_at: string | null;
-}
-export const BillingAlertConfigurationOutput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    organization_id: S.String,
-    execution_team_id: S.NullOr(S.Number),
-    created_by_id: S.NullOr(S.Number),
-    updated_by_id: S.NullOr(S.Number),
-    name: S.String,
-    description: S.optional(S.String),
-    enabled: S.optional(S.Boolean),
-    metric: S.optional(BillingAlertMetricEnum),
-    currency: CurrencyEnum,
-    configuration_revision: S.Number,
-    threshold_type: S.optional(ThresholdTypeEnum),
-    threshold_percentage: S.optional(S.NullOr(S.String)),
-    threshold_value: S.optional(S.NullOr(S.String)),
-    minimum_value: S.optional(S.String),
-    baseline_window_days: S.optional(S.Number),
-    evaluation_delay_hours: S.optional(S.Number),
-    state: BillingAlertStateEnum,
-    cooldown_hours: S.optional(S.Number),
-    snoozed_until: S.optional(S.NullOr(S.String)),
-    next_check_at: S.NullOr(S.String),
-    last_checked_at: S.NullOr(S.String),
-    last_notified_at: S.NullOr(S.String),
-    consecutive_failures: S.Number,
-    destinations: BillingAlertConfigurationOutputDestinationsList,
-    created_at: S.String,
-    updated_at: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "BillingAlertConfigurationOutput",
-}) as any as S.Schema<BillingAlertConfigurationOutput>;
-
-export interface BillingAlertsDestinationsCreateRequest {
-  /** ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/. */
-  organization_id: string;
-  /** A UUID string identifying this billing alert configuration. */
-  id: string;
-  /** Destination type. * `slack` - slack * `webhook` - webhook * `teams` - teams */
-  type: NotificationDestinationTypeEnum | (string & {});
-  /** Slack integration ID in the alert execution project. */
-  slack_workspace_id?: number;
-  /** Slack channel ID for alert delivery. */
-  slack_channel_id?: string;
-  /** Optional Slack channel name shown in the UI. */
-  slack_channel_name?: string;
-  /** HTTPS webhook URL for webhook or Microsoft Teams delivery. */
-  webhook_url?: string;
-}
-export const BillingAlertsDestinationsCreateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      organization_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-      type: NotificationDestinationTypeEnum,
-      slack_workspace_id: S.optional(S.Number),
-      slack_channel_id: S.optional(S.String),
-      slack_channel_name: S.optional(S.String),
-      webhook_url: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/organizations/{organization_id}/billing/alerts/{id}/destinations/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "BillingAlertsDestinationsCreateRequest",
-}) as any as S.Schema<BillingAlertsDestinationsCreateRequest>;
-
-export type BillingAlertDestinationResponseHogFunctionIdsList = Array<string>;
-export const BillingAlertDestinationResponseHogFunctionIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<BillingAlertDestinationResponseHogFunctionIdsList>;
-
-export interface BillingAlertDestinationResponse {
-  hog_function_ids: BillingAlertDestinationResponseHogFunctionIdsList;
-}
-export const BillingAlertDestinationResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    hog_function_ids: BillingAlertDestinationResponseHogFunctionIdsList,
-  }),
-).annotate({
-  identifier: "BillingAlertDestinationResponse",
-}) as any as S.Schema<BillingAlertDestinationResponse>;
-
 /** HogFunction IDs to delete as one atomic destination group. */
 export type BillingAlertsDestinationsDeleteCreateRequestHogFunctionIdsList =
   Array<string>;
@@ -599,336 +152,6 @@ export const BillingAlertsDestroyResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "BillingAlertsDestroyResponse",
 }) as any as S.Schema<BillingAlertsDestroyResponse>;
 
-export interface BillingAlertsEventsListRequest {
-  /** ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/. */
-  organization_id: string;
-  /** A UUID string identifying this billing alert configuration. */
-  id: string;
-  /** Number of results to return per page. */
-  limit?: number;
-  /** The initial index from which to return the results. */
-  offset?: number;
-}
-export const BillingAlertsEventsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    organization_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    offset: S.optional(S.Number.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/organizations/{organization_id}/billing/alerts/{id}/events/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "BillingAlertsEventsListRequest",
-}) as any as S.Schema<BillingAlertsEventsListRequest>;
-
-export type PaginatedBillingAlertEventListResultsList =
-  Array<BillingAlertEvent>;
-export const PaginatedBillingAlertEventListResultsList = /*@__PURE__*/ S.Array(
-  BillingAlertEvent,
-) as any as S.Schema<PaginatedBillingAlertEventListResultsList>;
-
-export interface PaginatedBillingAlertEventList {
-  count: number;
-  next?: string | null;
-  previous?: string | null;
-  results: PaginatedBillingAlertEventListResultsList;
-}
-export const PaginatedBillingAlertEventList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    count: S.Number,
-    next: S.optional(S.NullOr(S.String)),
-    previous: S.optional(S.NullOr(S.String)),
-    results: PaginatedBillingAlertEventListResultsList,
-  }),
-).annotate({
-  identifier: "PaginatedBillingAlertEventList",
-}) as any as S.Schema<PaginatedBillingAlertEventList>;
-
-export interface BillingAlertsListRequest {
-  /** ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/. */
-  organization_id: string;
-  /** Number of results to return per page. */
-  limit?: number;
-  /** The initial index from which to return the results. */
-  offset?: number;
-}
-export const BillingAlertsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    organization_id: S.String.pipe(T.Label()),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    offset: S.optional(S.Number.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/organizations/{organization_id}/billing/alerts/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "BillingAlertsListRequest",
-}) as any as S.Schema<BillingAlertsListRequest>;
-
-export type PaginatedBillingAlertConfigurationListOutputResultsList =
-  Array<BillingAlertConfigurationOutput>;
-export const PaginatedBillingAlertConfigurationListOutputResultsList =
-  /*@__PURE__*/ S.Array(
-    BillingAlertConfigurationOutput,
-  ) as any as S.Schema<PaginatedBillingAlertConfigurationListOutputResultsList>;
-
-export interface PaginatedBillingAlertConfigurationListOutput {
-  count: number;
-  next?: string | null;
-  previous?: string | null;
-  results: PaginatedBillingAlertConfigurationListOutputResultsList;
-}
-export const PaginatedBillingAlertConfigurationListOutput =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      count: S.Number,
-      next: S.optional(S.NullOr(S.String)),
-      previous: S.optional(S.NullOr(S.String)),
-      results: PaginatedBillingAlertConfigurationListOutputResultsList,
-    }),
-  ).annotate({
-    identifier: "PaginatedBillingAlertConfigurationListOutput",
-  }) as any as S.Schema<PaginatedBillingAlertConfigurationListOutput>;
-
-export interface BillingAlertsPartialUpdateRequest {
-  /** ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/. */
-  organization_id: string;
-  /** A UUID string identifying this billing alert configuration. */
-  id: string;
-  /** Display name for this billing alert. */
-  name?: string;
-  /** Optional internal description. */
-  description?: string;
-  /** Whether scheduled checks should evaluate this alert. */
-  enabled?: boolean;
-  /** Billing-period total to evaluate: current spend so far, or projected period-end spend. * `spend` - Spend * `projected_spend` - Projected spend */
-  metric?: BillingAlertMetricEnum | (string & {});
-  /** Threshold rule type. The first version supports absolute value only. * `relative_increase` - Relative increase * `absolute_value` - Absolute value * `absolute_increase` - Absolute increase */
-  threshold_type?: ThresholdTypeEnum | (string & {});
-  /** Reserved for future increase-over-baseline rules. Not used by absolute value alerts. */
-  threshold_percentage?: string | null;
-  /** Absolute value or absolute increase that triggers absolute threshold alerts. */
-  threshold_value?: string | null;
-  /** Minimum current value before the alert can fire. */
-  minimum_value?: string;
-  /** Reserved for future increase-over-baseline rules. Not used by absolute value alerts. */
-  baseline_window_days?: number;
-  /** Hours after a UTC billing date ends before it becomes eligible for evaluation. */
-  evaluation_delay_hours?: number;
-  /** Minimum hours between repeated firing notifications. */
-  cooldown_hours?: number;
-  /** ISO 8601 timestamp until which evaluation and notifications are snoozed, or null to resume. */
-  snoozed_until?: string | null;
-  /** Destination groups to create or delete in the same transaction as this configuration write. */
-  destination_changes?: BillingAlertDestinationChanges;
-}
-export const BillingAlertsPartialUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    organization_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    name: S.optional(S.String),
-    description: S.optional(S.String),
-    enabled: S.optional(S.Boolean),
-    metric: S.optional(BillingAlertMetricEnum),
-    threshold_type: S.optional(ThresholdTypeEnum),
-    threshold_percentage: S.optional(S.NullOr(S.String)),
-    threshold_value: S.optional(S.NullOr(S.String)),
-    minimum_value: S.optional(S.String),
-    baseline_window_days: S.optional(S.Number),
-    evaluation_delay_hours: S.optional(S.Number),
-    cooldown_hours: S.optional(S.Number),
-    snoozed_until: S.optional(S.NullOr(S.String)),
-    destination_changes: S.optional(BillingAlertDestinationChanges),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/api/organizations/{organization_id}/billing/alerts/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "BillingAlertsPartialUpdateRequest",
-}) as any as S.Schema<BillingAlertsPartialUpdateRequest>;
-
-export interface BillingAlertsRetrieveRequest {
-  /** ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/. */
-  organization_id: string;
-  /** A UUID string identifying this billing alert configuration. */
-  id: string;
-}
-export const BillingAlertsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    organization_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/organizations/{organization_id}/billing/alerts/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "BillingAlertsRetrieveRequest",
-}) as any as S.Schema<BillingAlertsRetrieveRequest>;
-
-export interface BillingAlertsUpdateRequest {
-  /** ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/. */
-  organization_id: string;
-  /** A UUID string identifying this billing alert configuration. */
-  id: string;
-  /** Display name for this billing alert. */
-  name: string;
-  /** Optional internal description. */
-  description?: string;
-  /** Whether scheduled checks should evaluate this alert. */
-  enabled?: boolean;
-  /** Billing-period total to evaluate: current spend so far, or projected period-end spend. * `spend` - Spend * `projected_spend` - Projected spend */
-  metric?: BillingAlertMetricEnum | (string & {});
-  /** Threshold rule type. The first version supports absolute value only. * `relative_increase` - Relative increase * `absolute_value` - Absolute value * `absolute_increase` - Absolute increase */
-  threshold_type?: ThresholdTypeEnum | (string & {});
-  /** Reserved for future increase-over-baseline rules. Not used by absolute value alerts. */
-  threshold_percentage?: string | null;
-  /** Absolute value or absolute increase that triggers absolute threshold alerts. */
-  threshold_value?: string | null;
-  /** Minimum current value before the alert can fire. */
-  minimum_value?: string;
-  /** Reserved for future increase-over-baseline rules. Not used by absolute value alerts. */
-  baseline_window_days?: number;
-  /** Hours after a UTC billing date ends before it becomes eligible for evaluation. */
-  evaluation_delay_hours?: number;
-  /** Minimum hours between repeated firing notifications. */
-  cooldown_hours?: number;
-  /** ISO 8601 timestamp until which evaluation and notifications are snoozed, or null to resume. */
-  snoozed_until?: string | null;
-  /** Destination groups to create or delete in the same transaction as this configuration write. */
-  destination_changes?: BillingAlertDestinationChanges;
-}
-export const BillingAlertsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    organization_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    name: S.String,
-    description: S.optional(S.String),
-    enabled: S.optional(S.Boolean),
-    metric: S.optional(BillingAlertMetricEnum),
-    threshold_type: S.optional(ThresholdTypeEnum),
-    threshold_percentage: S.optional(S.NullOr(S.String)),
-    threshold_value: S.optional(S.NullOr(S.String)),
-    minimum_value: S.optional(S.String),
-    baseline_window_days: S.optional(S.Number),
-    evaluation_delay_hours: S.optional(S.Number),
-    cooldown_hours: S.optional(S.Number),
-    snoozed_until: S.optional(S.NullOr(S.String)),
-    destination_changes: S.optional(BillingAlertDestinationChanges),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/api/organizations/{organization_id}/billing/alerts/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "BillingAlertsUpdateRequest",
-}) as any as S.Schema<BillingAlertsUpdateRequest>;
-
-export interface BillingCouponsClaimCreateRequest {
-  plan: string;
-  billing_limit: number;
-}
-export const BillingCouponsClaimCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    plan: S.String,
-    billing_limit: S.Number,
-  }).pipe(
-    T.Http({ method: "POST", uri: "/api/billing/coupons/claim/", code: 200 }),
-  ),
-).annotate({
-  identifier: "BillingCouponsClaimCreateRequest",
-}) as any as S.Schema<BillingCouponsClaimCreateRequest>;
-
-export interface BillingCouponsClaimCreateResponse {}
-export const BillingCouponsClaimCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "BillingCouponsClaimCreateResponse",
-}) as any as S.Schema<BillingCouponsClaimCreateResponse>;
-
-export interface BillingCouponsOverviewRetrieveRequest {}
-export const BillingCouponsOverviewRetrieveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({}).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/billing/coupons/overview/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "BillingCouponsOverviewRetrieveRequest",
-}) as any as S.Schema<BillingCouponsOverviewRetrieveRequest>;
-
-export interface BillingCouponsOverviewRetrieveResponse {}
-export const BillingCouponsOverviewRetrieveResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "BillingCouponsOverviewRetrieveResponse",
-}) as any as S.Schema<BillingCouponsOverviewRetrieveResponse>;
-
-export interface BillingCreditsOverviewRetrieveRequest {}
-export const BillingCreditsOverviewRetrieveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({}).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/billing/credits/overview/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "BillingCreditsOverviewRetrieveRequest",
-}) as any as S.Schema<BillingCreditsOverviewRetrieveRequest>;
-
-export interface BillingCreditsOverviewRetrieveResponse {}
-export const BillingCreditsOverviewRetrieveResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "BillingCreditsOverviewRetrieveResponse",
-}) as any as S.Schema<BillingCreditsOverviewRetrieveResponse>;
-
-export interface BillingCreditsPurchaseCreateRequest {
-  plan: string;
-  billing_limit: number;
-}
-export const BillingCreditsPurchaseCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    plan: S.String,
-    billing_limit: S.Number,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/billing/credits/purchase/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "BillingCreditsPurchaseCreateRequest",
-}) as any as S.Schema<BillingCreditsPurchaseCreateRequest>;
-
-export interface BillingCreditsPurchaseCreateResponse {}
-export const BillingCreditsPurchaseCreateResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "BillingCreditsPurchaseCreateResponse",
-}) as any as S.Schema<BillingCreditsPurchaseCreateResponse>;
-
 export interface BillingDeactivateCreateRequest {
   plan: string;
   billing_limit: number;
@@ -967,138 +190,655 @@ export const BillingGetInvoicesRetrieveResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "BillingGetInvoicesRetrieveResponse",
 }) as any as S.Schema<BillingGetInvoicesRetrieveResponse>;
 
-export interface BillingLicensePartialUpdateRequest {
-  plan?: string;
-  billing_limit?: number;
+export interface BillingStartupsApplyCreateRequest {
+  plan: string;
+  billing_limit: number;
 }
-export const BillingLicensePartialUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const BillingStartupsApplyCreateRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    plan: S.optional(S.String),
-    billing_limit: S.optional(S.Number),
-  }).pipe(T.Http({ method: "PATCH", uri: "/api/billing/license/", code: 200 })),
+    plan: S.String,
+    billing_limit: S.Number,
+  }).pipe(
+    T.Http({ method: "POST", uri: "/api/billing/startups/apply/", code: 200 }),
+  ),
 ).annotate({
-  identifier: "BillingLicensePartialUpdateRequest",
-}) as any as S.Schema<BillingLicensePartialUpdateRequest>;
+  identifier: "BillingStartupsApplyCreateRequest",
+}) as any as S.Schema<BillingStartupsApplyCreateRequest>;
 
-export interface BillingLicensePartialUpdateResponse {}
-export const BillingLicensePartialUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export interface BillingStartupsApplyCreateResponse {}
+export const BillingStartupsApplyCreateResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "BillingLicensePartialUpdateResponse",
-}) as any as S.Schema<BillingLicensePartialUpdateResponse>;
+  identifier: "BillingStartupsApplyCreateResponse",
+}) as any as S.Schema<BillingStartupsApplyCreateResponse>;
 
-export interface BillingListRequest {}
-export const BillingListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(T.Http({ method: "GET", uri: "/api/billing/", code: 200 })),
+export interface BillingTrialsActivateCreateRequest {
+  plan: string;
+  billing_limit: number;
+}
+export const BillingTrialsActivateCreateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    plan: S.String,
+    billing_limit: S.Number,
+  }).pipe(
+    T.Http({ method: "POST", uri: "/api/billing/trials/activate/", code: 200 }),
+  ),
 ).annotate({
-  identifier: "BillingListRequest",
-}) as any as S.Schema<BillingListRequest>;
+  identifier: "BillingTrialsActivateCreateRequest",
+}) as any as S.Schema<BillingTrialsActivateCreateRequest>;
 
-export type BillingOverviewResponseProductsItemMap = {
-  [key: string]: unknown | undefined;
-};
-export const BillingOverviewResponseProductsItemMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<BillingOverviewResponseProductsItemMap>;
+export interface BillingTrialsActivateCreateResponse {}
+export const BillingTrialsActivateCreateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "BillingTrialsActivateCreateResponse",
+}) as any as S.Schema<BillingTrialsActivateCreateResponse>;
 
-/** Subscribed and available products/addons with pricing, plan, limit, usage, and entitlement metadata. */
-export type BillingOverviewResponseProductsList =
-  Array<BillingOverviewResponseProductsItemMap>;
-export const BillingOverviewResponseProductsList = /*@__PURE__*/ S.Array(
-  BillingOverviewResponseProductsItemMap,
-) as any as S.Schema<BillingOverviewResponseProductsList>;
+export interface BillingTrialsCancelCreateRequest {
+  plan: string;
+  billing_limit: number;
+}
+export const BillingTrialsCancelCreateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    plan: S.String,
+    billing_limit: S.Number,
+  }).pipe(
+    T.Http({ method: "POST", uri: "/api/billing/trials/cancel/", code: 200 }),
+  ),
+).annotate({
+  identifier: "BillingTrialsCancelCreateRequest",
+}) as any as S.Schema<BillingTrialsCancelCreateRequest>;
 
-export type BillingOverviewResponseAvailableProductFeaturesList = Array<string>;
-export const BillingOverviewResponseAvailableProductFeaturesList =
+export interface BillingTrialsCancelCreateResponse {}
+export const BillingTrialsCancelCreateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "BillingTrialsCancelCreateResponse",
+}) as any as S.Schema<BillingTrialsCancelCreateResponse>;
+
+/** * `spend` - Spend * `projected_spend` - Projected spend */
+export type BillingAlertConfigurationMetricEnum = "spend" | "projected_spend";
+export const BillingAlertConfigurationMetricEnum = /*@__PURE__*/ S.String;
+
+/** * `relative_increase` - Relative increase * `absolute_value` - Absolute value * `absolute_increase` - Absolute increase */
+export type BillingAlertConfigurationThresholdTypeEnum =
+  | "relative_increase"
+  | "absolute_value"
+  | "absolute_increase";
+export const BillingAlertConfigurationThresholdTypeEnum =
+  /*@__PURE__*/ S.String;
+
+export type BillingAlertDestinationChangesDeleteItemList = Array<string>;
+export const BillingAlertDestinationChangesDeleteItemList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<BillingOverviewResponseAvailableProductFeaturesList>;
+  ) as any as S.Schema<BillingAlertDestinationChangesDeleteItemList>;
 
-export interface BillingOverviewResponse {
-  customer_id?: string | null;
-  billing_plan?: string | null;
-  subscription_level?: string | null;
-  has_active_subscription?: boolean;
-  deactivated?: boolean;
-  is_annual_plan_customer?: boolean;
-  free_trial_until?: string | null;
-  current_total_amount_usd?: string | null;
-  current_total_amount_usd_after_discount?: string | null;
-  projected_total_amount_usd?: string | null;
-  projected_total_amount_usd_after_discount?: string | null;
-  projected_total_amount_usd_with_limit?: string | null;
-  projected_total_amount_usd_with_limit_after_discount?: string | null;
-  discount_amount_usd?: string | null;
-  discount_percent?: number | null;
-  amount_off_expires_at?: string | null;
-  startup_program_label?: string | null;
-  startup_program_label_previous?: string | null;
-  stripe_portal_url?: string | null;
-  external_billing_provider_invoices_url?: string | null;
-  /** Subscribed and available products/addons with pricing, plan, limit, usage, and entitlement metadata. */
-  products?: BillingOverviewResponseProductsList;
-  available_product_features?: BillingOverviewResponseAvailableProductFeaturesList;
-  usage_summary?: unknown;
-  billing_period?: unknown;
-  custom_limits_usd?: unknown;
-  next_period_custom_limits_usd?: unknown;
-  trial?: unknown;
-  license?: unknown;
-  account_owner?: unknown;
-  customer_trust_scores?: unknown;
-  never_drop_data?: boolean;
+export type BillingAlertDestinationChangesDeleteList =
+  Array<BillingAlertDestinationChangesDeleteItemList>;
+export const BillingAlertDestinationChangesDeleteList = /*@__PURE__*/ S.Array(
+  BillingAlertDestinationChangesDeleteItemList,
+) as any as S.Schema<BillingAlertDestinationChangesDeleteList>;
+
+/** * `slack` - slack * `webhook` - webhook * `teams` - teams */
+export type NotificationDestinationTypeEnum = "slack" | "webhook" | "teams";
+export const NotificationDestinationTypeEnum = /*@__PURE__*/ S.String;
+
+export interface BillingAlertDestinationCreateData {
+  /** Destination type. * `slack` - slack * `webhook` - webhook * `teams` - teams */
+  type: NotificationDestinationTypeEnum | (string & {});
+  /** Slack integration ID in the alert execution project. */
+  slack_workspace_id?: number;
+  /** Slack channel ID for alert delivery. */
+  slack_channel_id?: string;
+  /** Optional Slack channel name shown in the UI. */
+  slack_channel_name?: string;
+  /** HTTPS webhook URL for webhook or Microsoft Teams delivery. */
+  webhook_url?: string;
 }
-export const BillingOverviewResponse = /*@__PURE__*/ S.suspend(() =>
+export const BillingAlertDestinationCreateData = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    customer_id: S.optional(S.NullOr(S.String)),
-    billing_plan: S.optional(S.NullOr(S.String)),
-    subscription_level: S.optional(S.NullOr(S.String)),
-    has_active_subscription: S.optional(S.Boolean),
-    deactivated: S.optional(S.Boolean),
-    is_annual_plan_customer: S.optional(S.Boolean),
-    free_trial_until: S.optional(S.NullOr(S.String)),
-    current_total_amount_usd: S.optional(S.NullOr(S.String)),
-    current_total_amount_usd_after_discount: S.optional(S.NullOr(S.String)),
-    projected_total_amount_usd: S.optional(S.NullOr(S.String)),
-    projected_total_amount_usd_after_discount: S.optional(S.NullOr(S.String)),
-    projected_total_amount_usd_with_limit: S.optional(S.NullOr(S.String)),
-    projected_total_amount_usd_with_limit_after_discount: S.optional(
-      S.NullOr(S.String),
-    ),
-    discount_amount_usd: S.optional(S.NullOr(S.String)),
-    discount_percent: S.optional(S.NullOr(S.Number)),
-    amount_off_expires_at: S.optional(S.NullOr(S.String)),
-    startup_program_label: S.optional(S.NullOr(S.String)),
-    startup_program_label_previous: S.optional(S.NullOr(S.String)),
-    stripe_portal_url: S.optional(S.NullOr(S.String)),
-    external_billing_provider_invoices_url: S.optional(S.NullOr(S.String)),
-    products: S.optional(BillingOverviewResponseProductsList),
-    available_product_features: S.optional(
-      BillingOverviewResponseAvailableProductFeaturesList,
-    ),
-    usage_summary: S.optional(S.Unknown),
-    billing_period: S.optional(S.Unknown),
-    custom_limits_usd: S.optional(S.Unknown),
-    next_period_custom_limits_usd: S.optional(S.Unknown),
-    trial: S.optional(S.Unknown),
-    license: S.optional(S.Unknown),
-    account_owner: S.optional(S.Unknown),
-    customer_trust_scores: S.optional(S.Unknown),
-    never_drop_data: S.optional(S.Boolean),
+    type: NotificationDestinationTypeEnum,
+    slack_workspace_id: S.optional(S.Number),
+    slack_channel_id: S.optional(S.String),
+    slack_channel_name: S.optional(S.String),
+    webhook_url: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "BillingOverviewResponse",
-}) as any as S.Schema<BillingOverviewResponse>;
+  identifier: "BillingAlertDestinationCreateData",
+}) as any as S.Schema<BillingAlertDestinationCreateData>;
 
-export interface BillingPeriodRetrieveRequest {}
-export const BillingPeriodRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
+export type BillingAlertDestinationChangesCreateList =
+  Array<BillingAlertDestinationCreateData>;
+export const BillingAlertDestinationChangesCreateList = /*@__PURE__*/ S.Array(
+  BillingAlertDestinationCreateData,
+) as any as S.Schema<BillingAlertDestinationChangesCreateList>;
+
+export interface BillingAlertDestinationChanges {
+  delete?: BillingAlertDestinationChangesDeleteList;
+  create?: BillingAlertDestinationChangesCreateList;
+}
+export const BillingAlertDestinationChanges = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    delete: S.optional(BillingAlertDestinationChangesDeleteList),
+    create: S.optional(BillingAlertDestinationChangesCreateList),
+  }),
+).annotate({
+  identifier: "BillingAlertDestinationChanges",
+}) as any as S.Schema<BillingAlertDestinationChanges>;
+
+export interface CreateBillingAlertRequest {
+  /** ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/. */
+  organization_id: string;
+  /** Display name for this billing alert. */
+  name: string;
+  /** Optional internal description. */
+  description?: string;
+  /** Whether scheduled checks should evaluate this alert. */
+  enabled?: boolean;
+  /** Billing-period total to evaluate: current spend so far, or projected period-end spend. * `spend` - Spend * `projected_spend` - Projected spend */
+  metric?: BillingAlertConfigurationMetricEnum | (string & {});
+  /** Threshold rule type. The first version supports absolute value only. * `relative_increase` - Relative increase * `absolute_value` - Absolute value * `absolute_increase` - Absolute increase */
+  threshold_type?: BillingAlertConfigurationThresholdTypeEnum | (string & {});
+  /** Reserved for future increase-over-baseline rules. Not used by absolute value alerts. */
+  threshold_percentage?: string | null;
+  /** Absolute value or absolute increase that triggers absolute threshold alerts. */
+  threshold_value?: string | null;
+  /** Minimum current value before the alert can fire. */
+  minimum_value?: string;
+  /** Reserved for future increase-over-baseline rules. Not used by absolute value alerts. */
+  baseline_window_days?: number;
+  /** Hours after a UTC billing date ends before it becomes eligible for evaluation. */
+  evaluation_delay_hours?: number;
+  /** Minimum hours between repeated firing notifications. */
+  cooldown_hours?: number;
+  /** ISO 8601 timestamp until which evaluation and notifications are snoozed, or null to resume. */
+  snoozed_until?: string | null;
+  /** Destination groups to create or delete in the same transaction as this configuration write. */
+  destination_changes?: BillingAlertDestinationChanges;
+}
+export const CreateBillingAlertRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    organization_id: S.String.pipe(T.Label()),
+    name: S.String,
+    description: S.optional(S.String),
+    enabled: S.optional(S.Boolean),
+    metric: S.optional(BillingAlertConfigurationMetricEnum),
+    threshold_type: S.optional(BillingAlertConfigurationThresholdTypeEnum),
+    threshold_percentage: S.optional(S.NullOr(S.String)),
+    threshold_value: S.optional(S.NullOr(S.String)),
+    minimum_value: S.optional(S.String),
+    baseline_window_days: S.optional(S.Number),
+    evaluation_delay_hours: S.optional(S.Number),
+    cooldown_hours: S.optional(S.Number),
+    snoozed_until: S.optional(S.NullOr(S.String)),
+    destination_changes: S.optional(BillingAlertDestinationChanges),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/organizations/{organization_id}/billing/alerts/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateBillingAlertRequest",
+}) as any as S.Schema<CreateBillingAlertRequest>;
+
+/** * `USD` - USD */
+export type CurrencyEnum = "USD";
+export const CurrencyEnum = /*@__PURE__*/ S.String;
+
+/** * `not_firing` - Not firing * `firing` - Firing * `errored` - Errored * `snoozed` - Snoozed * `broken` - Broken */
+export type BillingAlertConfigurationStateEnum =
+  | "not_firing"
+  | "firing"
+  | "errored"
+  | "snoozed"
+  | "broken";
+export const BillingAlertConfigurationStateEnum = /*@__PURE__*/ S.String;
+
+export type BillingAlertDestinationSummaryHogFunctionIdsList = Array<string>;
+export const BillingAlertDestinationSummaryHogFunctionIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<BillingAlertDestinationSummaryHogFunctionIdsList>;
+
+export interface BillingAlertDestinationSummary {
+  type: NotificationDestinationTypeEnum;
+  hog_function_ids: BillingAlertDestinationSummaryHogFunctionIdsList;
+}
+export const BillingAlertDestinationSummary = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: NotificationDestinationTypeEnum,
+    hog_function_ids: BillingAlertDestinationSummaryHogFunctionIdsList,
+  }),
+).annotate({
+  identifier: "BillingAlertDestinationSummary",
+}) as any as S.Schema<BillingAlertDestinationSummary>;
+
+/** Notification destination groups configured for this alert, including their shared HogFunctions. */
+export type BillingAlertConfigurationOutputDestinationsList =
+  Array<BillingAlertDestinationSummary>;
+export const BillingAlertConfigurationOutputDestinationsList =
+  /*@__PURE__*/ S.Array(
+    BillingAlertDestinationSummary,
+  ) as any as S.Schema<BillingAlertConfigurationOutputDestinationsList>;
+
+export interface BillingAlertConfigurationOutput {
+  /** Unique identifier for this billing alert. */
+  id: string;
+  /** Organization this billing alert belongs to. */
+  organization_id: string;
+  /** Team used as the execution context for internal notification destinations. */
+  execution_team_id: number | null;
+  /** User ID that created this alert. */
+  created_by_id: number | null;
+  /** User ID that last updated this alert. */
+  updated_by_id: number | null;
+  /** Display name for this billing alert. */
+  name: string;
+  /** Optional internal description. */
+  description?: string;
+  /** Whether scheduled checks should evaluate this alert. */
+  enabled?: boolean;
+  /** Billing-period total to evaluate: current spend so far, or projected period-end spend. * `spend` - Spend * `projected_spend` - Projected spend */
+  metric?: BillingAlertConfigurationMetricEnum;
+  /** Server-controlled currency for spend values. * `USD` - USD */
+  currency: CurrencyEnum;
+  /** Revision incremented whenever evaluation behavior changes. */
+  configuration_revision: number;
+  /** Threshold rule type. The first version supports absolute value only. * `relative_increase` - Relative increase * `absolute_value` - Absolute value * `absolute_increase` - Absolute increase */
+  threshold_type?: BillingAlertConfigurationThresholdTypeEnum;
+  /** Reserved for future increase-over-baseline rules. Not used by absolute value alerts. */
+  threshold_percentage?: string | null;
+  /** Absolute value or absolute increase that triggers absolute threshold alerts. */
+  threshold_value?: string | null;
+  /** Minimum current value before the alert can fire. */
+  minimum_value?: string;
+  /** Reserved for future increase-over-baseline rules. Not used by absolute value alerts. */
+  baseline_window_days?: number;
+  /** Hours after a UTC billing date ends before it becomes eligible for evaluation. */
+  evaluation_delay_hours?: number;
+  /** Current lifecycle state of this alert. * `not_firing` - Not firing * `firing` - Firing * `errored` - Errored * `snoozed` - Snoozed * `broken` - Broken */
+  state: BillingAlertConfigurationStateEnum;
+  /** Minimum hours between repeated firing notifications. */
+  cooldown_hours?: number;
+  /** ISO 8601 timestamp until which evaluation and notifications are snoozed, or null to resume. */
+  snoozed_until?: string | null;
+  /** When the next scheduled evaluation is due. */
+  next_check_at: string | null;
+  /** When this alert was last evaluated. */
+  last_checked_at: string | null;
+  /** When notifications were last delivered for this alert. */
+  last_notified_at: string | null;
+  /** Number of consecutive failed evaluations. */
+  consecutive_failures: number;
+  /** Notification destination groups configured for this alert, including their shared HogFunctions. */
+  destinations: BillingAlertConfigurationOutputDestinationsList;
+  /** When this alert was created. */
+  created_at: string;
+  /** When this alert was last updated. */
+  updated_at: string | null;
+}
+export const BillingAlertConfigurationOutput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    organization_id: S.String,
+    execution_team_id: S.NullOr(S.Number),
+    created_by_id: S.NullOr(S.Number),
+    updated_by_id: S.NullOr(S.Number),
+    name: S.String,
+    description: S.optional(S.String),
+    enabled: S.optional(S.Boolean),
+    metric: S.optional(BillingAlertConfigurationMetricEnum),
+    currency: CurrencyEnum,
+    configuration_revision: S.Number,
+    threshold_type: S.optional(BillingAlertConfigurationThresholdTypeEnum),
+    threshold_percentage: S.optional(S.NullOr(S.String)),
+    threshold_value: S.optional(S.NullOr(S.String)),
+    minimum_value: S.optional(S.String),
+    baseline_window_days: S.optional(S.Number),
+    evaluation_delay_hours: S.optional(S.Number),
+    state: BillingAlertConfigurationStateEnum,
+    cooldown_hours: S.optional(S.Number),
+    snoozed_until: S.optional(S.NullOr(S.String)),
+    next_check_at: S.NullOr(S.String),
+    last_checked_at: S.NullOr(S.String),
+    last_notified_at: S.NullOr(S.String),
+    consecutive_failures: S.Number,
+    destinations: BillingAlertConfigurationOutputDestinationsList,
+    created_at: S.String,
+    updated_at: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "BillingAlertConfigurationOutput",
+}) as any as S.Schema<BillingAlertConfigurationOutput>;
+
+export interface CreateBillingAlertsCheckNowRequest {
+  /** ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/. */
+  organization_id: string;
+  /** A UUID string identifying this billing alert configuration. */
+  id: string;
+}
+export const CreateBillingAlertsCheckNowRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    organization_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/organizations/{organization_id}/billing/alerts/{id}/check_now/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateBillingAlertsCheckNowRequest",
+}) as any as S.Schema<CreateBillingAlertsCheckNowRequest>;
+
+/** * `check` - Check * `firing` - Firing * `resolved` - Resolved * `errored` - Errored * `broken_config` - Broken config */
+export type BillingAlertEventKindEnum =
+  | "check"
+  | "firing"
+  | "resolved"
+  | "errored"
+  | "broken_config";
+export const BillingAlertEventKindEnum = /*@__PURE__*/ S.String;
+
+/** * `scheduled` - Scheduled * `manual` - Manual */
+export type BillingAlertEventSourceEnum = "scheduled" | "manual";
+export const BillingAlertEventSourceEnum = /*@__PURE__*/ S.String;
+
+export interface BillingAlertEvent {
+  /** Unique identifier for this billing alert event. */
+  id: string;
+  /** Event kind for a check, state transition, or delivery-worthy alert event. * `check` - Check * `firing` - Firing * `resolved` - Resolved * `errored` - Errored * `broken_config` - Broken config */
+  kind: BillingAlertEventKindEnum;
+  /** Whether this evaluation was scheduled or manually requested. * `scheduled` - Scheduled * `manual` - Manual */
+  source: BillingAlertEventSourceEnum;
+  /** Attempt number for this billing date and configuration revision. */
+  attempt_number: number;
+  /** When this event was recorded. */
+  created_at: string;
+  /** Billing data date evaluated by this event. */
+  evaluation_date: string | null;
+  /** Configuration revision used for this evaluation. */
+  configuration_revision: number;
+  /** Start of the evaluated billing period. */
+  period_start: string | null;
+  /** End of the evaluated billing period. */
+  period_end: string | null;
+  /** Billing metric evaluated by this event. * `spend` - Spend * `projected_spend` - Projected spend */
+  metric: BillingAlertConfigurationMetricEnum;
+  /** Metric value for the evaluated billing date. */
+  current_value: string | null;
+  /** Average metric value across the baseline window. */
+  baseline_value: string | null;
+  /** Current value minus the baseline value. */
+  absolute_delta: string | null;
+  /** Percentage change against the baseline value. */
+  relative_delta_percentage: string | null;
+  /** Whether the evaluated value breached the configured threshold. */
+  threshold_breached: boolean;
+  /** Alert state before this event was applied. * `not_firing` - Not firing * `firing` - Firing * `errored` - Errored * `snoozed` - Snoozed * `broken` - Broken */
+  state_before: BillingAlertConfigurationStateEnum | null;
+  /** Alert state after this event was applied. * `not_firing` - Not firing * `firing` - Firing * `errored` - Errored * `snoozed` - Snoozed * `broken` - Broken */
+  state_after: BillingAlertConfigurationStateEnum | null;
+  /** When notifications for this event were delivered. */
+  notification_sent_at: string | null;
+  /** Notification targets recorded for this event. */
+  targets_notified: unknown;
+  /** Milliseconds spent fetching billing data for this evaluation. */
+  query_duration_ms: number | null;
+  /** Exception class name recorded when the evaluation failed. */
+  error_code: string | null;
+  /** Failure description recorded when the evaluation failed. */
+  error_message: string | null;
+  /** Human-readable explanation of the evaluation outcome. */
+  reason: string;
+}
+export const BillingAlertEvent = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    kind: BillingAlertEventKindEnum,
+    source: BillingAlertEventSourceEnum,
+    attempt_number: S.Number,
+    created_at: S.String,
+    evaluation_date: S.NullOr(S.String),
+    configuration_revision: S.Number,
+    period_start: S.NullOr(S.String),
+    period_end: S.NullOr(S.String),
+    metric: BillingAlertConfigurationMetricEnum,
+    current_value: S.NullOr(S.String),
+    baseline_value: S.NullOr(S.String),
+    absolute_delta: S.NullOr(S.String),
+    relative_delta_percentage: S.NullOr(S.String),
+    threshold_breached: S.Boolean,
+    state_before: S.NullOr(BillingAlertConfigurationStateEnum),
+    state_after: S.NullOr(BillingAlertConfigurationStateEnum),
+    notification_sent_at: S.NullOr(S.String),
+    targets_notified: S.Unknown,
+    query_duration_ms: S.NullOr(S.Number),
+    error_code: S.NullOr(S.String),
+    error_message: S.NullOr(S.String),
+    reason: S.String,
+  }),
+).annotate({
+  identifier: "BillingAlertEvent",
+}) as any as S.Schema<BillingAlertEvent>;
+
+export interface BillingAlertCheckNowResponse {
+  /** Evaluation event recorded by the manual check, or null for a paused preview. */
+  event?: BillingAlertEvent | null;
+  /** Number of destination HogFunctions queued. */
+  dispatched_destinations: number;
+  /** True when the alert is paused: it was evaluated but no notifications were sent. */
+  preview: boolean;
+  /** Whether the evaluated billing-period total breached the configured threshold. */
+  threshold_breached: boolean;
+  /** Evaluated billing-period total, or null when billing data was not available. */
+  current_value?: string | null;
+}
+export const BillingAlertCheckNowResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    event: S.optional(S.NullOr(BillingAlertEvent)),
+    dispatched_destinations: S.Number,
+    preview: S.Boolean,
+    threshold_breached: S.Boolean,
+    current_value: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({
+  identifier: "BillingAlertCheckNowResponse",
+}) as any as S.Schema<BillingAlertCheckNowResponse>;
+
+export interface CreateBillingAlertsDestinationRequest {
+  /** ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/. */
+  organization_id: string;
+  /** A UUID string identifying this billing alert configuration. */
+  id: string;
+  /** Destination type. * `slack` - slack * `webhook` - webhook * `teams` - teams */
+  type: NotificationDestinationTypeEnum | (string & {});
+  /** Slack integration ID in the alert execution project. */
+  slack_workspace_id?: number;
+  /** Slack channel ID for alert delivery. */
+  slack_channel_id?: string;
+  /** Optional Slack channel name shown in the UI. */
+  slack_channel_name?: string;
+  /** HTTPS webhook URL for webhook or Microsoft Teams delivery. */
+  webhook_url?: string;
+}
+export const CreateBillingAlertsDestinationRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      organization_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+      type: NotificationDestinationTypeEnum,
+      slack_workspace_id: S.optional(S.Number),
+      slack_channel_id: S.optional(S.String),
+      slack_channel_name: S.optional(S.String),
+      webhook_url: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/organizations/{organization_id}/billing/alerts/{id}/destinations/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateBillingAlertsDestinationRequest",
+}) as any as S.Schema<CreateBillingAlertsDestinationRequest>;
+
+export type BillingAlertDestinationResponseHogFunctionIdsList = Array<string>;
+export const BillingAlertDestinationResponseHogFunctionIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<BillingAlertDestinationResponseHogFunctionIdsList>;
+
+export interface BillingAlertDestinationResponse {
+  hog_function_ids: BillingAlertDestinationResponseHogFunctionIdsList;
+}
+export const BillingAlertDestinationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    hog_function_ids: BillingAlertDestinationResponseHogFunctionIdsList,
+  }),
+).annotate({
+  identifier: "BillingAlertDestinationResponse",
+}) as any as S.Schema<BillingAlertDestinationResponse>;
+
+export interface CreateBillingCouponsClaimRequest {
+  plan: string;
+  billing_limit: number;
+}
+export const CreateBillingCouponsClaimRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    plan: S.String,
+    billing_limit: S.Number,
+  }).pipe(
+    T.Http({ method: "POST", uri: "/api/billing/coupons/claim/", code: 200 }),
+  ),
+).annotate({
+  identifier: "CreateBillingCouponsClaimRequest",
+}) as any as S.Schema<CreateBillingCouponsClaimRequest>;
+
+export interface CreateBillingCouponsClaimResponse {}
+export const CreateBillingCouponsClaimResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "CreateBillingCouponsClaimResponse",
+}) as any as S.Schema<CreateBillingCouponsClaimResponse>;
+
+export interface CreateBillingCreditsPurchaseRequest {
+  plan: string;
+  billing_limit: number;
+}
+export const CreateBillingCreditsPurchaseRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    plan: S.String,
+    billing_limit: S.Number,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/billing/credits/purchase/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateBillingCreditsPurchaseRequest",
+}) as any as S.Schema<CreateBillingCreditsPurchaseRequest>;
+
+export interface CreateBillingCreditsPurchaseResponse {}
+export const CreateBillingCreditsPurchaseResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "CreateBillingCreditsPurchaseResponse",
+}) as any as S.Schema<CreateBillingCreditsPurchaseResponse>;
+
+export interface CreateBillingSubscriptionSwitchPlanRequest {
+  plan: string;
+  billing_limit: number;
+}
+export const CreateBillingSubscriptionSwitchPlanRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      plan: S.String,
+      billing_limit: S.Number,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/billing/subscription/switch-plan/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CreateBillingSubscriptionSwitchPlanRequest",
+  }) as any as S.Schema<CreateBillingSubscriptionSwitchPlanRequest>;
+
+export interface CreateBillingSubscriptionSwitchPlanResponse {}
+export const CreateBillingSubscriptionSwitchPlanResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "CreateBillingSubscriptionSwitchPlanResponse",
+  }) as any as S.Schema<CreateBillingSubscriptionSwitchPlanResponse>;
+
+export interface GetBillingAlertRequest {
+  /** ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/. */
+  organization_id: string;
+  /** A UUID string identifying this billing alert configuration. */
+  id: string;
+}
+export const GetBillingAlertRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    organization_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/organizations/{organization_id}/billing/alerts/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetBillingAlertRequest",
+}) as any as S.Schema<GetBillingAlertRequest>;
+
+export interface GetBillingCouponsOverviewRequest {}
+export const GetBillingCouponsOverviewRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({ method: "GET", uri: "/api/billing/coupons/overview/", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetBillingCouponsOverviewRequest",
+}) as any as S.Schema<GetBillingCouponsOverviewRequest>;
+
+export interface GetBillingCouponsOverviewResponse {}
+export const GetBillingCouponsOverviewResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "GetBillingCouponsOverviewResponse",
+}) as any as S.Schema<GetBillingCouponsOverviewResponse>;
+
+export interface GetBillingCreditsOverviewRequest {}
+export const GetBillingCreditsOverviewRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({ method: "GET", uri: "/api/billing/credits/overview/", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetBillingCreditsOverviewRequest",
+}) as any as S.Schema<GetBillingCreditsOverviewRequest>;
+
+export interface GetBillingCreditsOverviewResponse {}
+export const GetBillingCreditsOverviewResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "GetBillingCreditsOverviewResponse",
+}) as any as S.Schema<GetBillingCreditsOverviewResponse>;
+
+export interface GetBillingPeriodRequest {}
+export const GetBillingPeriodRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({ method: "GET", uri: "/api/billing/period/", code: 200 }),
   ),
 ).annotate({
-  identifier: "BillingPeriodRetrieveRequest",
-}) as any as S.Schema<BillingPeriodRetrieveRequest>;
+  identifier: "GetBillingPeriodRequest",
+}) as any as S.Schema<GetBillingPeriodRequest>;
 
 export interface BillingPeriodResponse {
   /** Start of the organization's current billing period, or null when billing has not synced a period. */
@@ -1115,23 +855,23 @@ export const BillingPeriodResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "BillingPeriodResponse",
 }) as any as S.Schema<BillingPeriodResponse>;
 
-export interface BillingPortalRetrieveRequest {}
-export const BillingPortalRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
+export interface GetBillingPortalRequest {}
+export const GetBillingPortalRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({ method: "GET", uri: "/api/billing/portal/", code: 200 }),
   ),
 ).annotate({
-  identifier: "BillingPortalRetrieveRequest",
-}) as any as S.Schema<BillingPortalRetrieveRequest>;
+  identifier: "GetBillingPortalRequest",
+}) as any as S.Schema<GetBillingPortalRequest>;
 
-export interface BillingPortalRetrieveResponse {}
-export const BillingPortalRetrieveResponse = /*@__PURE__*/ S.suspend(() =>
+export interface GetBillingPortalResponse {}
+export const GetBillingPortalResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "BillingPortalRetrieveResponse",
-}) as any as S.Schema<BillingPortalRetrieveResponse>;
+  identifier: "GetBillingPortalResponse",
+}) as any as S.Schema<GetBillingPortalResponse>;
 
-export interface BillingSpendRetrieveRequest {
+export interface GetBillingSpendRequest {
   /** JSON-encoded array of breakdown dimensions. Valid values are "type" and "team", for example ["type","team"]. Omit for a single aggregate series. */
   breakdowns?: string;
   end_date?: string;
@@ -1142,7 +882,7 @@ export interface BillingSpendRetrieveRequest {
   /** JSON-encoded array of usage type identifiers to filter on. Valid values: event_count_in_period, exceptions_captured_in_period, recording_count_in_period, rows_synced_in_period, free_historical_rows_synced_in_period, survey_responses_count_in_period, mobile_recording_count_in_period, billable_feature_flag_requests_count_in_period, enhanced_persons_event_count_in_period, ai_event_count_in_period, cdp_billable_invocations_in_period, rows_exported_in_period, ai_credits_used_in_period, signals_credits_used_in_period, posthog_code_credits_used_in_period, posthog_code_token_credits_used_in_period, sandbox_compute_credits_used_in_period, sandbox_compute_cpu_millicore_seconds_in_period, sandbox_compute_memory_mib_seconds_in_period, workflow_emails_sent_in_period, workflow_billable_invocations_in_period, logs_mb_in_period, logs_retention_30d_mb_in_period, replay_vision_credits_used_in_period, data_pipelines, group_analytics. E.g. ["event_count_in_period","recording_count_in_period"]. Omit for all types. */
   usage_types?: string;
 }
-export const BillingSpendRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetBillingSpendRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     breakdowns: S.optional(S.String.pipe(T.Query())),
     end_date: S.optional(S.String.pipe(T.Query())),
@@ -1152,8 +892,8 @@ export const BillingSpendRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
     usage_types: S.optional(S.String.pipe(T.Query())),
   }).pipe(T.Http({ method: "GET", uri: "/api/billing/spend/", code: 200 })),
 ).annotate({
-  identifier: "BillingSpendRetrieveRequest",
-}) as any as S.Schema<BillingSpendRetrieveRequest>;
+  identifier: "GetBillingSpendRequest",
+}) as any as S.Schema<GetBillingSpendRequest>;
 
 export type BillingTimeSeriesPointDataList = Array<number>;
 export const BillingTimeSeriesPointDataList = /*@__PURE__*/ S.Array(
@@ -1222,99 +962,7 @@ export const BillingTimeSeriesResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "BillingTimeSeriesResponse",
 }) as any as S.Schema<BillingTimeSeriesResponse>;
 
-export interface BillingStartupsApplyCreateRequest {
-  plan: string;
-  billing_limit: number;
-}
-export const BillingStartupsApplyCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    plan: S.String,
-    billing_limit: S.Number,
-  }).pipe(
-    T.Http({ method: "POST", uri: "/api/billing/startups/apply/", code: 200 }),
-  ),
-).annotate({
-  identifier: "BillingStartupsApplyCreateRequest",
-}) as any as S.Schema<BillingStartupsApplyCreateRequest>;
-
-export interface BillingStartupsApplyCreateResponse {}
-export const BillingStartupsApplyCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "BillingStartupsApplyCreateResponse",
-}) as any as S.Schema<BillingStartupsApplyCreateResponse>;
-
-export interface BillingSubscriptionSwitchPlanCreateRequest {
-  plan: string;
-  billing_limit: number;
-}
-export const BillingSubscriptionSwitchPlanCreateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      plan: S.String,
-      billing_limit: S.Number,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/billing/subscription/switch-plan/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "BillingSubscriptionSwitchPlanCreateRequest",
-  }) as any as S.Schema<BillingSubscriptionSwitchPlanCreateRequest>;
-
-export interface BillingSubscriptionSwitchPlanCreateResponse {}
-export const BillingSubscriptionSwitchPlanCreateResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "BillingSubscriptionSwitchPlanCreateResponse",
-  }) as any as S.Schema<BillingSubscriptionSwitchPlanCreateResponse>;
-
-export interface BillingTrialsActivateCreateRequest {
-  plan: string;
-  billing_limit: number;
-}
-export const BillingTrialsActivateCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    plan: S.String,
-    billing_limit: S.Number,
-  }).pipe(
-    T.Http({ method: "POST", uri: "/api/billing/trials/activate/", code: 200 }),
-  ),
-).annotate({
-  identifier: "BillingTrialsActivateCreateRequest",
-}) as any as S.Schema<BillingTrialsActivateCreateRequest>;
-
-export interface BillingTrialsActivateCreateResponse {}
-export const BillingTrialsActivateCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "BillingTrialsActivateCreateResponse",
-}) as any as S.Schema<BillingTrialsActivateCreateResponse>;
-
-export interface BillingTrialsCancelCreateRequest {
-  plan: string;
-  billing_limit: number;
-}
-export const BillingTrialsCancelCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    plan: S.String,
-    billing_limit: S.Number,
-  }).pipe(
-    T.Http({ method: "POST", uri: "/api/billing/trials/cancel/", code: 200 }),
-  ),
-).annotate({
-  identifier: "BillingTrialsCancelCreateRequest",
-}) as any as S.Schema<BillingTrialsCancelCreateRequest>;
-
-export interface BillingTrialsCancelCreateResponse {}
-export const BillingTrialsCancelCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "BillingTrialsCancelCreateResponse",
-}) as any as S.Schema<BillingTrialsCancelCreateResponse>;
-
-export interface BillingUsageRetrieveRequest {
+export interface GetBillingUsageRequest {
   /** JSON-encoded array of breakdown dimensions. Valid values are "type" and "team", for example ["type","team"]. Omit for a single aggregate series. */
   breakdowns?: string;
   end_date?: string;
@@ -1325,7 +973,7 @@ export interface BillingUsageRetrieveRequest {
   /** JSON-encoded array of usage type identifiers to filter on. Valid values: event_count_in_period, exceptions_captured_in_period, recording_count_in_period, rows_synced_in_period, free_historical_rows_synced_in_period, survey_responses_count_in_period, mobile_recording_count_in_period, billable_feature_flag_requests_count_in_period, enhanced_persons_event_count_in_period, ai_event_count_in_period, cdp_billable_invocations_in_period, rows_exported_in_period, ai_credits_used_in_period, signals_credits_used_in_period, posthog_code_credits_used_in_period, posthog_code_token_credits_used_in_period, sandbox_compute_credits_used_in_period, sandbox_compute_cpu_millicore_seconds_in_period, sandbox_compute_memory_mib_seconds_in_period, workflow_emails_sent_in_period, workflow_billable_invocations_in_period, logs_mb_in_period, logs_retention_30d_mb_in_period, replay_vision_credits_used_in_period, data_pipelines, group_analytics. E.g. ["event_count_in_period","recording_count_in_period"]. Omit for all types. */
   usage_types?: string;
 }
-export const BillingUsageRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetBillingUsageRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     breakdowns: S.optional(S.String.pipe(T.Query())),
     end_date: S.optional(S.String.pipe(T.Query())),
@@ -1335,8 +983,351 @@ export const BillingUsageRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
     usage_types: S.optional(S.String.pipe(T.Query())),
   }).pipe(T.Http({ method: "GET", uri: "/api/billing/usage/", code: 200 })),
 ).annotate({
-  identifier: "BillingUsageRetrieveRequest",
-}) as any as S.Schema<BillingUsageRetrieveRequest>;
+  identifier: "GetBillingUsageRequest",
+}) as any as S.Schema<GetBillingUsageRequest>;
+
+export interface ListBillingRequest {}
+export const ListBillingRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(T.Http({ method: "GET", uri: "/api/billing/", code: 200 })),
+).annotate({
+  identifier: "ListBillingRequest",
+}) as any as S.Schema<ListBillingRequest>;
+
+export type BillingOverviewResponseProductsItemMap = {
+  [key: string]: unknown | undefined;
+};
+export const BillingOverviewResponseProductsItemMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<BillingOverviewResponseProductsItemMap>;
+
+/** Subscribed and available products/addons with pricing, plan, limit, usage, and entitlement metadata. */
+export type BillingOverviewResponseProductsList =
+  Array<BillingOverviewResponseProductsItemMap>;
+export const BillingOverviewResponseProductsList = /*@__PURE__*/ S.Array(
+  BillingOverviewResponseProductsItemMap,
+) as any as S.Schema<BillingOverviewResponseProductsList>;
+
+export type BillingOverviewResponseAvailableProductFeaturesList = Array<string>;
+export const BillingOverviewResponseAvailableProductFeaturesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<BillingOverviewResponseAvailableProductFeaturesList>;
+
+export interface BillingOverviewResponse {
+  customer_id?: string | null;
+  billing_plan?: string | null;
+  subscription_level?: string | null;
+  has_active_subscription?: boolean;
+  deactivated?: boolean;
+  is_annual_plan_customer?: boolean;
+  free_trial_until?: string | null;
+  current_total_amount_usd?: string | null;
+  current_total_amount_usd_after_discount?: string | null;
+  projected_total_amount_usd?: string | null;
+  projected_total_amount_usd_after_discount?: string | null;
+  projected_total_amount_usd_with_limit?: string | null;
+  projected_total_amount_usd_with_limit_after_discount?: string | null;
+  discount_amount_usd?: string | null;
+  discount_percent?: number | null;
+  amount_off_expires_at?: string | null;
+  startup_program_label?: string | null;
+  startup_program_label_previous?: string | null;
+  stripe_portal_url?: string;
+  external_billing_provider_invoices_url?: string;
+  /** Subscribed and available products/addons with pricing, plan, limit, usage, and entitlement metadata. */
+  products?: BillingOverviewResponseProductsList;
+  available_product_features?: BillingOverviewResponseAvailableProductFeaturesList;
+  usage_summary?: unknown;
+  billing_period?: unknown;
+  custom_limits_usd?: unknown;
+  next_period_custom_limits_usd?: unknown;
+  trial?: unknown;
+  license?: unknown;
+  account_owner?: unknown;
+  customer_trust_scores?: unknown;
+  never_drop_data?: boolean;
+}
+export const BillingOverviewResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    customer_id: S.optional(S.NullOr(S.String)),
+    billing_plan: S.optional(S.NullOr(S.String)),
+    subscription_level: S.optional(S.NullOr(S.String)),
+    has_active_subscription: S.optional(S.Boolean),
+    deactivated: S.optional(S.Boolean),
+    is_annual_plan_customer: S.optional(S.Boolean),
+    free_trial_until: S.optional(S.NullOr(S.String)),
+    current_total_amount_usd: S.optional(S.NullOr(S.String)),
+    current_total_amount_usd_after_discount: S.optional(S.NullOr(S.String)),
+    projected_total_amount_usd: S.optional(S.NullOr(S.String)),
+    projected_total_amount_usd_after_discount: S.optional(S.NullOr(S.String)),
+    projected_total_amount_usd_with_limit: S.optional(S.NullOr(S.String)),
+    projected_total_amount_usd_with_limit_after_discount: S.optional(
+      S.NullOr(S.String),
+    ),
+    discount_amount_usd: S.optional(S.NullOr(S.String)),
+    discount_percent: S.optional(S.NullOr(S.Number)),
+    amount_off_expires_at: S.optional(S.NullOr(S.String)),
+    startup_program_label: S.optional(S.NullOr(S.String)),
+    startup_program_label_previous: S.optional(S.NullOr(S.String)),
+    stripe_portal_url: S.optional(S.String),
+    external_billing_provider_invoices_url: S.optional(S.String),
+    products: S.optional(BillingOverviewResponseProductsList),
+    available_product_features: S.optional(
+      BillingOverviewResponseAvailableProductFeaturesList,
+    ),
+    usage_summary: S.optional(S.Unknown),
+    billing_period: S.optional(S.Unknown),
+    custom_limits_usd: S.optional(S.Unknown),
+    next_period_custom_limits_usd: S.optional(S.Unknown),
+    trial: S.optional(S.Unknown),
+    license: S.optional(S.Unknown),
+    account_owner: S.optional(S.Unknown),
+    customer_trust_scores: S.optional(S.Unknown),
+    never_drop_data: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "BillingOverviewResponse",
+}) as any as S.Schema<BillingOverviewResponse>;
+
+export interface ListBillingAlertsRequest {
+  /** ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/. */
+  organization_id: string;
+  /** Number of results to return per page. */
+  limit?: number;
+  /** The initial index from which to return the results. */
+  offset?: number;
+}
+export const ListBillingAlertsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    organization_id: S.String.pipe(T.Label()),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/organizations/{organization_id}/billing/alerts/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListBillingAlertsRequest",
+}) as any as S.Schema<ListBillingAlertsRequest>;
+
+export type PaginatedBillingAlertConfigurationListOutputResultsList =
+  Array<BillingAlertConfigurationOutput>;
+export const PaginatedBillingAlertConfigurationListOutputResultsList =
+  /*@__PURE__*/ S.Array(
+    BillingAlertConfigurationOutput,
+  ) as any as S.Schema<PaginatedBillingAlertConfigurationListOutputResultsList>;
+
+export interface PaginatedBillingAlertConfigurationListOutput {
+  count: number;
+  next?: string | null;
+  previous?: string | null;
+  results: PaginatedBillingAlertConfigurationListOutputResultsList;
+}
+export const PaginatedBillingAlertConfigurationListOutput =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      count: S.Number,
+      next: S.optional(S.NullOr(S.String)),
+      previous: S.optional(S.NullOr(S.String)),
+      results: PaginatedBillingAlertConfigurationListOutputResultsList,
+    }),
+  ).annotate({
+    identifier: "PaginatedBillingAlertConfigurationListOutput",
+  }) as any as S.Schema<PaginatedBillingAlertConfigurationListOutput>;
+
+export interface ListBillingAlertsEventsRequest {
+  /** ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/. */
+  organization_id: string;
+  /** A UUID string identifying this billing alert configuration. */
+  id: string;
+  /** Number of results to return per page. */
+  limit?: number;
+  /** The initial index from which to return the results. */
+  offset?: number;
+}
+export const ListBillingAlertsEventsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    organization_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/organizations/{organization_id}/billing/alerts/{id}/events/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListBillingAlertsEventsRequest",
+}) as any as S.Schema<ListBillingAlertsEventsRequest>;
+
+export type PaginatedBillingAlertEventListResultsList =
+  Array<BillingAlertEvent>;
+export const PaginatedBillingAlertEventListResultsList = /*@__PURE__*/ S.Array(
+  BillingAlertEvent,
+) as any as S.Schema<PaginatedBillingAlertEventListResultsList>;
+
+export interface PaginatedBillingAlertEventList {
+  count: number;
+  next?: string | null;
+  previous?: string | null;
+  results: PaginatedBillingAlertEventListResultsList;
+}
+export const PaginatedBillingAlertEventList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    count: S.Number,
+    next: S.optional(S.NullOr(S.String)),
+    previous: S.optional(S.NullOr(S.String)),
+    results: PaginatedBillingAlertEventListResultsList,
+  }),
+).annotate({
+  identifier: "PaginatedBillingAlertEventList",
+}) as any as S.Schema<PaginatedBillingAlertEventList>;
+
+export interface UpdateBillingAlertRequest {
+  /** ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/. */
+  organization_id: string;
+  /** A UUID string identifying this billing alert configuration. */
+  id: string;
+  /** Display name for this billing alert. */
+  name: string;
+  /** Optional internal description. */
+  description?: string;
+  /** Whether scheduled checks should evaluate this alert. */
+  enabled?: boolean;
+  /** Billing-period total to evaluate: current spend so far, or projected period-end spend. * `spend` - Spend * `projected_spend` - Projected spend */
+  metric?: BillingAlertConfigurationMetricEnum | (string & {});
+  /** Threshold rule type. The first version supports absolute value only. * `relative_increase` - Relative increase * `absolute_value` - Absolute value * `absolute_increase` - Absolute increase */
+  threshold_type?: BillingAlertConfigurationThresholdTypeEnum | (string & {});
+  /** Reserved for future increase-over-baseline rules. Not used by absolute value alerts. */
+  threshold_percentage?: string | null;
+  /** Absolute value or absolute increase that triggers absolute threshold alerts. */
+  threshold_value?: string | null;
+  /** Minimum current value before the alert can fire. */
+  minimum_value?: string;
+  /** Reserved for future increase-over-baseline rules. Not used by absolute value alerts. */
+  baseline_window_days?: number;
+  /** Hours after a UTC billing date ends before it becomes eligible for evaluation. */
+  evaluation_delay_hours?: number;
+  /** Minimum hours between repeated firing notifications. */
+  cooldown_hours?: number;
+  /** ISO 8601 timestamp until which evaluation and notifications are snoozed, or null to resume. */
+  snoozed_until?: string | null;
+  /** Destination groups to create or delete in the same transaction as this configuration write. */
+  destination_changes?: BillingAlertDestinationChanges;
+}
+export const UpdateBillingAlertRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    organization_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    name: S.String,
+    description: S.optional(S.String),
+    enabled: S.optional(S.Boolean),
+    metric: S.optional(BillingAlertConfigurationMetricEnum),
+    threshold_type: S.optional(BillingAlertConfigurationThresholdTypeEnum),
+    threshold_percentage: S.optional(S.NullOr(S.String)),
+    threshold_value: S.optional(S.NullOr(S.String)),
+    minimum_value: S.optional(S.String),
+    baseline_window_days: S.optional(S.Number),
+    evaluation_delay_hours: S.optional(S.Number),
+    cooldown_hours: S.optional(S.Number),
+    snoozed_until: S.optional(S.NullOr(S.String)),
+    destination_changes: S.optional(BillingAlertDestinationChanges),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/api/organizations/{organization_id}/billing/alerts/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UpdateBillingAlertRequest",
+}) as any as S.Schema<UpdateBillingAlertRequest>;
+
+export interface UpdateBillingAlertsPartialRequest {
+  /** ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/. */
+  organization_id: string;
+  /** A UUID string identifying this billing alert configuration. */
+  id: string;
+  /** Display name for this billing alert. */
+  name?: string;
+  /** Optional internal description. */
+  description?: string;
+  /** Whether scheduled checks should evaluate this alert. */
+  enabled?: boolean;
+  /** Billing-period total to evaluate: current spend so far, or projected period-end spend. * `spend` - Spend * `projected_spend` - Projected spend */
+  metric?: BillingAlertConfigurationMetricEnum | (string & {});
+  /** Threshold rule type. The first version supports absolute value only. * `relative_increase` - Relative increase * `absolute_value` - Absolute value * `absolute_increase` - Absolute increase */
+  threshold_type?: BillingAlertConfigurationThresholdTypeEnum | (string & {});
+  /** Reserved for future increase-over-baseline rules. Not used by absolute value alerts. */
+  threshold_percentage?: string | null;
+  /** Absolute value or absolute increase that triggers absolute threshold alerts. */
+  threshold_value?: string | null;
+  /** Minimum current value before the alert can fire. */
+  minimum_value?: string;
+  /** Reserved for future increase-over-baseline rules. Not used by absolute value alerts. */
+  baseline_window_days?: number;
+  /** Hours after a UTC billing date ends before it becomes eligible for evaluation. */
+  evaluation_delay_hours?: number;
+  /** Minimum hours between repeated firing notifications. */
+  cooldown_hours?: number;
+  /** ISO 8601 timestamp until which evaluation and notifications are snoozed, or null to resume. */
+  snoozed_until?: string | null;
+  /** Destination groups to create or delete in the same transaction as this configuration write. */
+  destination_changes?: BillingAlertDestinationChanges;
+}
+export const UpdateBillingAlertsPartialRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    organization_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    name: S.optional(S.String),
+    description: S.optional(S.String),
+    enabled: S.optional(S.Boolean),
+    metric: S.optional(BillingAlertConfigurationMetricEnum),
+    threshold_type: S.optional(BillingAlertConfigurationThresholdTypeEnum),
+    threshold_percentage: S.optional(S.NullOr(S.String)),
+    threshold_value: S.optional(S.NullOr(S.String)),
+    minimum_value: S.optional(S.String),
+    baseline_window_days: S.optional(S.Number),
+    evaluation_delay_hours: S.optional(S.Number),
+    cooldown_hours: S.optional(S.Number),
+    snoozed_until: S.optional(S.NullOr(S.String)),
+    destination_changes: S.optional(BillingAlertDestinationChanges),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/api/organizations/{organization_id}/billing/alerts/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UpdateBillingAlertsPartialRequest",
+}) as any as S.Schema<UpdateBillingAlertsPartialRequest>;
+
+export interface UpdateBillingLicensePartialRequest {
+  plan?: string;
+  billing_limit?: number;
+}
+export const UpdateBillingLicensePartialRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    plan: S.optional(S.String),
+    billing_limit: S.optional(S.Number),
+  }).pipe(T.Http({ method: "PATCH", uri: "/api/billing/license/", code: 200 })),
+).annotate({
+  identifier: "UpdateBillingLicensePartialRequest",
+}) as any as S.Schema<UpdateBillingLicensePartialRequest>;
+
+export interface UpdateBillingLicensePartialResponse {}
+export const UpdateBillingLicensePartialResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "UpdateBillingLicensePartialResponse",
+}) as any as S.Schema<UpdateBillingLicensePartialResponse>;
 
 export type BillingActivateAuthorizeCreateError = PosthogOpError;
 export const billingActivateAuthorizeCreate: API.OperationMethod<
@@ -1380,50 +1371,6 @@ export const billingActivateCreate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type BillingAlertsCheckNowCreateError = PosthogOpError;
-/** Evaluate this billing alert immediately against real billing spend data. An enabled alert can send notifications when the evaluation records a dispatchable event. A paused alert is evaluated as a preview only: it reports the current spend and would-be outcome without sending notifications or recording an evaluation. */
-export const billingAlertsCheckNowCreate: API.OperationMethod<
-  BillingAlertsCheckNowCreateRequest,
-  BillingAlertCheckNowResponse,
-  BillingAlertsCheckNowCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BillingAlertsCheckNowCreateRequest,
-  output: BillingAlertCheckNowResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BillingAlertsCreateError = PosthogOpError;
-export const billingAlertsCreate: API.OperationMethod<
-  BillingAlertsCreateRequest,
-  BillingAlertConfigurationOutput,
-  BillingAlertsCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BillingAlertsCreateRequest,
-  output: BillingAlertConfigurationOutput,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BillingAlertsDestinationsCreateError = PosthogOpError;
-/** Create a notification destination for this alert. One HogFunction is created per alert event kind. */
-export const billingAlertsDestinationsCreate: API.OperationMethod<
-  BillingAlertsDestinationsCreateRequest,
-  BillingAlertDestinationResponse,
-  BillingAlertsDestinationsCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BillingAlertsDestinationsCreateRequest,
-  output: BillingAlertDestinationResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
 export type BillingAlertsDestinationsDeleteCreateError = PosthogOpError;
 /** Delete a notification destination by deleting its HogFunction group atomically. */
 export const billingAlertsDestinationsDeleteCreate: API.OperationMethod<
@@ -1448,133 +1395,6 @@ export const billingAlertsDestroy: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: BillingAlertsDestroyRequest,
   output: BillingAlertsDestroyResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BillingAlertsEventsListError = PosthogOpError;
-/** List evaluation and notification events for this billing alert, newest first. */
-export const billingAlertsEventsList: API.OperationMethod<
-  BillingAlertsEventsListRequest,
-  PaginatedBillingAlertEventList,
-  BillingAlertsEventsListError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BillingAlertsEventsListRequest,
-  output: PaginatedBillingAlertEventList,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BillingAlertsListError = PosthogOpError;
-export const billingAlertsList: API.OperationMethod<
-  BillingAlertsListRequest,
-  PaginatedBillingAlertConfigurationListOutput,
-  BillingAlertsListError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BillingAlertsListRequest,
-  output: PaginatedBillingAlertConfigurationListOutput,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BillingAlertsPartialUpdateError = PosthogOpError;
-export const billingAlertsPartialUpdate: API.OperationMethod<
-  BillingAlertsPartialUpdateRequest,
-  BillingAlertConfigurationOutput,
-  BillingAlertsPartialUpdateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BillingAlertsPartialUpdateRequest,
-  output: BillingAlertConfigurationOutput,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BillingAlertsRetrieveError = PosthogOpError;
-export const billingAlertsRetrieve: API.OperationMethod<
-  BillingAlertsRetrieveRequest,
-  BillingAlertConfigurationOutput,
-  BillingAlertsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BillingAlertsRetrieveRequest,
-  output: BillingAlertConfigurationOutput,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BillingAlertsUpdateError = PosthogOpError;
-export const billingAlertsUpdate: API.OperationMethod<
-  BillingAlertsUpdateRequest,
-  BillingAlertConfigurationOutput,
-  BillingAlertsUpdateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BillingAlertsUpdateRequest,
-  output: BillingAlertConfigurationOutput,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BillingCouponsClaimCreateError = PosthogOpError;
-export const billingCouponsClaimCreate: API.OperationMethod<
-  BillingCouponsClaimCreateRequest,
-  BillingCouponsClaimCreateResponse,
-  BillingCouponsClaimCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BillingCouponsClaimCreateRequest,
-  output: BillingCouponsClaimCreateResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BillingCouponsOverviewRetrieveError = PosthogOpError;
-export const billingCouponsOverviewRetrieve: API.OperationMethod<
-  BillingCouponsOverviewRetrieveRequest,
-  BillingCouponsOverviewRetrieveResponse,
-  BillingCouponsOverviewRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BillingCouponsOverviewRetrieveRequest,
-  output: BillingCouponsOverviewRetrieveResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BillingCreditsOverviewRetrieveError = PosthogOpError;
-export const billingCreditsOverviewRetrieve: API.OperationMethod<
-  BillingCreditsOverviewRetrieveRequest,
-  BillingCreditsOverviewRetrieveResponse,
-  BillingCreditsOverviewRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BillingCreditsOverviewRetrieveRequest,
-  output: BillingCreditsOverviewRetrieveResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BillingCreditsPurchaseCreateError = PosthogOpError;
-export const billingCreditsPurchaseCreate: API.OperationMethod<
-  BillingCreditsPurchaseCreateRequest,
-  BillingCreditsPurchaseCreateResponse,
-  BillingCreditsPurchaseCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BillingCreditsPurchaseCreateRequest,
-  output: BillingCreditsPurchaseCreateResponse,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
@@ -1608,78 +1428,6 @@ export const billingGetInvoicesRetrieve: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type BillingLicensePartialUpdateError = PosthogOpError;
-export const billingLicensePartialUpdate: API.OperationMethod<
-  BillingLicensePartialUpdateRequest,
-  BillingLicensePartialUpdateResponse,
-  BillingLicensePartialUpdateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BillingLicensePartialUpdateRequest,
-  output: BillingLicensePartialUpdateResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BillingListError = PosthogOpError;
-export const billingList: API.OperationMethod<
-  BillingListRequest,
-  BillingOverviewResponse,
-  BillingListError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BillingListRequest,
-  output: BillingOverviewResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BillingPeriodRetrieveError = PosthogOpError;
-/** Get the current organization billing period */
-export const billingPeriodRetrieve: API.OperationMethod<
-  BillingPeriodRetrieveRequest,
-  BillingPeriodResponse,
-  BillingPeriodRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BillingPeriodRetrieveRequest,
-  output: BillingPeriodResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BillingPortalRetrieveError = PosthogOpError;
-export const billingPortalRetrieve: API.OperationMethod<
-  BillingPortalRetrieveRequest,
-  BillingPortalRetrieveResponse,
-  BillingPortalRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BillingPortalRetrieveRequest,
-  output: BillingPortalRetrieveResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BillingSpendRetrieveError = PosthogOpError;
-/** Endpoint to fetch spend data (proxy to billing service). */
-export const billingSpendRetrieve: API.OperationMethod<
-  BillingSpendRetrieveRequest,
-  BillingTimeSeriesResponse,
-  BillingSpendRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BillingSpendRetrieveRequest,
-  output: BillingTimeSeriesResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
 export type BillingStartupsApplyCreateError = PosthogOpError;
 export const billingStartupsApplyCreate: API.OperationMethod<
   BillingStartupsApplyCreateRequest,
@@ -1689,20 +1437,6 @@ export const billingStartupsApplyCreate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: BillingStartupsApplyCreateRequest,
   output: BillingStartupsApplyCreateResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BillingSubscriptionSwitchPlanCreateError = PosthogOpError;
-export const billingSubscriptionSwitchPlanCreate: API.OperationMethod<
-  BillingSubscriptionSwitchPlanCreateRequest,
-  BillingSubscriptionSwitchPlanCreateResponse,
-  BillingSubscriptionSwitchPlanCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BillingSubscriptionSwitchPlanCreateRequest,
-  output: BillingSubscriptionSwitchPlanCreateResponse,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
@@ -1736,15 +1470,272 @@ export const billingTrialsCancelCreate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type BillingUsageRetrieveError = PosthogOpError;
-export const billingUsageRetrieve: API.OperationMethod<
-  BillingUsageRetrieveRequest,
-  BillingTimeSeriesResponse,
-  BillingUsageRetrieveError,
+export type CreateBillingAlertError = PosthogOpError;
+export const createBillingAlert: API.OperationMethod<
+  CreateBillingAlertRequest,
+  BillingAlertConfigurationOutput,
+  CreateBillingAlertError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: BillingUsageRetrieveRequest,
+  input: CreateBillingAlertRequest,
+  output: BillingAlertConfigurationOutput,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateBillingAlertsCheckNowError = PosthogOpError;
+/** Evaluate this billing alert immediately against real billing spend data. An enabled alert can send notifications when the evaluation records a dispatchable event. A paused alert is evaluated as a preview only: it reports the current spend and would-be outcome without sending notifications or recording an evaluation. */
+export const createBillingAlertsCheckNow: API.OperationMethod<
+  CreateBillingAlertsCheckNowRequest,
+  BillingAlertCheckNowResponse,
+  CreateBillingAlertsCheckNowError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateBillingAlertsCheckNowRequest,
+  output: BillingAlertCheckNowResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateBillingAlertsDestinationError = PosthogOpError;
+/** Create a notification destination for this alert. One HogFunction is created per alert event kind. */
+export const createBillingAlertsDestination: API.OperationMethod<
+  CreateBillingAlertsDestinationRequest,
+  BillingAlertDestinationResponse,
+  CreateBillingAlertsDestinationError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateBillingAlertsDestinationRequest,
+  output: BillingAlertDestinationResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateBillingCouponsClaimError = PosthogOpError;
+export const createBillingCouponsClaim: API.OperationMethod<
+  CreateBillingCouponsClaimRequest,
+  CreateBillingCouponsClaimResponse,
+  CreateBillingCouponsClaimError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateBillingCouponsClaimRequest,
+  output: CreateBillingCouponsClaimResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateBillingCreditsPurchaseError = PosthogOpError;
+export const createBillingCreditsPurchase: API.OperationMethod<
+  CreateBillingCreditsPurchaseRequest,
+  CreateBillingCreditsPurchaseResponse,
+  CreateBillingCreditsPurchaseError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateBillingCreditsPurchaseRequest,
+  output: CreateBillingCreditsPurchaseResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateBillingSubscriptionSwitchPlanError = PosthogOpError;
+export const createBillingSubscriptionSwitchPlan: API.OperationMethod<
+  CreateBillingSubscriptionSwitchPlanRequest,
+  CreateBillingSubscriptionSwitchPlanResponse,
+  CreateBillingSubscriptionSwitchPlanError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateBillingSubscriptionSwitchPlanRequest,
+  output: CreateBillingSubscriptionSwitchPlanResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBillingAlertError = PosthogOpError;
+export const getBillingAlert: API.OperationMethod<
+  GetBillingAlertRequest,
+  BillingAlertConfigurationOutput,
+  GetBillingAlertError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBillingAlertRequest,
+  output: BillingAlertConfigurationOutput,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBillingCouponsOverviewError = PosthogOpError;
+export const getBillingCouponsOverview: API.OperationMethod<
+  GetBillingCouponsOverviewRequest,
+  GetBillingCouponsOverviewResponse,
+  GetBillingCouponsOverviewError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBillingCouponsOverviewRequest,
+  output: GetBillingCouponsOverviewResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBillingCreditsOverviewError = PosthogOpError;
+export const getBillingCreditsOverview: API.OperationMethod<
+  GetBillingCreditsOverviewRequest,
+  GetBillingCreditsOverviewResponse,
+  GetBillingCreditsOverviewError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBillingCreditsOverviewRequest,
+  output: GetBillingCreditsOverviewResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBillingPeriodError = PosthogOpError;
+/** Get the current organization billing period */
+export const getBillingPeriod: API.OperationMethod<
+  GetBillingPeriodRequest,
+  BillingPeriodResponse,
+  GetBillingPeriodError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBillingPeriodRequest,
+  output: BillingPeriodResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBillingPortalError = PosthogOpError;
+export const getBillingPortal: API.OperationMethod<
+  GetBillingPortalRequest,
+  GetBillingPortalResponse,
+  GetBillingPortalError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBillingPortalRequest,
+  output: GetBillingPortalResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBillingSpendError = PosthogOpError;
+/** Endpoint to fetch spend data (proxy to billing service). */
+export const getBillingSpend: API.OperationMethod<
+  GetBillingSpendRequest,
+  BillingTimeSeriesResponse,
+  GetBillingSpendError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBillingSpendRequest,
   output: BillingTimeSeriesResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBillingUsageError = PosthogOpError;
+export const getBillingUsage: API.OperationMethod<
+  GetBillingUsageRequest,
+  BillingTimeSeriesResponse,
+  GetBillingUsageError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBillingUsageRequest,
+  output: BillingTimeSeriesResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListBillingError = PosthogOpError;
+export const listBilling: API.OperationMethod<
+  ListBillingRequest,
+  BillingOverviewResponse,
+  ListBillingError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListBillingRequest,
+  output: BillingOverviewResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListBillingAlertsError = PosthogOpError;
+export const listBillingAlerts: API.OperationMethod<
+  ListBillingAlertsRequest,
+  PaginatedBillingAlertConfigurationListOutput,
+  ListBillingAlertsError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListBillingAlertsRequest,
+  output: PaginatedBillingAlertConfigurationListOutput,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListBillingAlertsEventsError = PosthogOpError;
+/** List evaluation and notification events for this billing alert, newest first. */
+export const listBillingAlertsEvents: API.OperationMethod<
+  ListBillingAlertsEventsRequest,
+  PaginatedBillingAlertEventList,
+  ListBillingAlertsEventsError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListBillingAlertsEventsRequest,
+  output: PaginatedBillingAlertEventList,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateBillingAlertError = PosthogOpError;
+export const updateBillingAlert: API.OperationMethod<
+  UpdateBillingAlertRequest,
+  BillingAlertConfigurationOutput,
+  UpdateBillingAlertError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateBillingAlertRequest,
+  output: BillingAlertConfigurationOutput,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateBillingAlertsPartialError = PosthogOpError;
+export const updateBillingAlertsPartial: API.OperationMethod<
+  UpdateBillingAlertsPartialRequest,
+  BillingAlertConfigurationOutput,
+  UpdateBillingAlertsPartialError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateBillingAlertsPartialRequest,
+  output: BillingAlertConfigurationOutput,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateBillingLicensePartialError = PosthogOpError;
+export const updateBillingLicensePartial: API.OperationMethod<
+  UpdateBillingLicensePartialRequest,
+  UpdateBillingLicensePartialResponse,
+  UpdateBillingLicensePartialError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateBillingLicensePartialRequest,
+  output: UpdateBillingLicensePartialResponse,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,

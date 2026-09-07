@@ -4,14 +4,60 @@
     "service": "playgrouping",
     "version": "v1alpha1",
     "title": "Google Play Grouping API",
-    "baseUrl": "https://playgrouping.googleapis.com/"
+    "baseUrl": "https://playgrouping.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.gcp.playgrouping_v1alpha1#VerifyTokenResponse": {
+    "com.gcp.playgrouping_v1alpha1#VerifyTokenRequest": {
       "type": "structure",
-      "members": {},
+      "members": {
+        "persona": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Persona represented by the token. Format: personas/{persona}"
+          }
+        }
+      },
       "traits": {
-        "smithy.api#documentation": "Response message for VerifyToken."
+        "smithy.api#documentation": "Request message for VerifyToken."
+      }
+    },
+    "com.gcp.playgrouping_v1alpha1#Tag": {
+      "type": "structure",
+      "members": {
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Key for the tag."
+          }
+        },
+        "booleanValue": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "A boolean value of the tag."
+          }
+        },
+        "int64Value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A signed 64-bit integer value of the tag."
+          }
+        },
+        "timeValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A time value of the tag."
+          }
+        },
+        "stringValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A string value of the tag."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A tag is associated with exactly one package name and user."
       }
     },
     "com.gcp.playgrouping_v1alpha1#CreateOrUpdateTagsResponse": {
@@ -48,56 +94,11 @@
         "smithy.api#documentation": "Request message for CreateOrUpdateTags. VerifyToken."
       }
     },
-    "com.gcp.playgrouping_v1alpha1#VerifyTokenRequest": {
+    "com.gcp.playgrouping_v1alpha1#VerifyTokenResponse": {
       "type": "structure",
-      "members": {
-        "persona": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Persona represented by the token. Format: personas/{persona}"
-          }
-        }
-      },
+      "members": {},
       "traits": {
-        "smithy.api#documentation": "Request message for VerifyToken."
-      }
-    },
-    "com.gcp.playgrouping_v1alpha1#Tag": {
-      "type": "structure",
-      "members": {
-        "stringValue": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A string value of the tag."
-          }
-        },
-        "booleanValue": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "A boolean value of the tag."
-          }
-        },
-        "timeValue": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A time value of the tag."
-          }
-        },
-        "key": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Key for the tag."
-          }
-        },
-        "int64Value": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A signed 64-bit integer value of the tag."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A tag is associated with exactly one package name and user."
+        "smithy.api#documentation": "Response message for VerifyToken."
       }
     },
     "com.gcp.playgrouping_v1alpha1#VerifyAppsTokensRequest": {

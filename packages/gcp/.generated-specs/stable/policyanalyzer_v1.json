@@ -4,68 +4,28 @@
     "service": "policyanalyzer",
     "version": "v1",
     "title": "Policy Analyzer API",
-    "baseUrl": "https://policyanalyzer.googleapis.com/"
+    "baseUrl": "https://policyanalyzer.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
     "com.gcp.policyanalyzer_v1#GoogleCloudPolicyanalyzerV1ObservationPeriod": {
       "type": "structure",
       "members": {
-        "endTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The observation end time. The time in this timestamp is always `07:00:00Z`."
-          }
-        },
         "startTime": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "The observation start time. The time in this timestamp is always `07:00:00Z`."
           }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The observation end time. The time in this timestamp is always `07:00:00Z`."
+          }
         }
       },
       "traits": {
         "smithy.api#documentation": "Represents data observation period."
-      }
-    },
-    "com.gcp.policyanalyzer_v1#GoogleCloudPolicyanalyzerV1Activity": {
-      "type": "structure",
-      "members": {
-        "observationPeriod": {
-          "target": "com.gcp.policyanalyzer_v1#GoogleCloudPolicyanalyzerV1ObservationPeriod",
-          "traits": {
-            "smithy.api#documentation": "The data observation period to build the activity."
-          }
-        },
-        "fullResourceName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The full resource name that identifies the resource. For examples of full resource names for Google Cloud services, see https://cloud.google.com/iam/help/troubleshooter/full-resource-names."
-          }
-        },
-        "activityType": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The type of the activity."
-          }
-        },
-        "activity": {
-          "target": "com.gcp.policyanalyzer_v1#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "A struct of custom fields to explain the activity."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Represents Activity on a GCP resource over specific observation period."
-      }
-    },
-    "com.gcp.policyanalyzer_v1#DocumentMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "smithy.api#Document"
       }
     },
     "com.gcp.policyanalyzer_v1#GoogleCloudPolicyanalyzerV1QueryActivityResponse": {
@@ -94,7 +54,48 @@
         "target": "com.gcp.policyanalyzer_v1#GoogleCloudPolicyanalyzerV1Activity"
       }
     },
-    "com.gcp.policyanalyzer_v1#QueryOrganizationsLocationsActivityTypesActivitiesRequest": {
+    "com.gcp.policyanalyzer_v1#GoogleCloudPolicyanalyzerV1Activity": {
+      "type": "structure",
+      "members": {
+        "activityType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the activity."
+          }
+        },
+        "activity": {
+          "target": "com.gcp.policyanalyzer_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "A struct of custom fields to explain the activity."
+          }
+        },
+        "observationPeriod": {
+          "target": "com.gcp.policyanalyzer_v1#GoogleCloudPolicyanalyzerV1ObservationPeriod",
+          "traits": {
+            "smithy.api#documentation": "The data observation period to build the activity."
+          }
+        },
+        "fullResourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The full resource name that identifies the resource. For examples of full resource names for Google Cloud services, see https://cloud.google.com/iam/help/troubleshooter/full-resource-names."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents Activity on a GCP resource over specific observation period."
+      }
+    },
+    "com.gcp.policyanalyzer_v1#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.policyanalyzer_v1#QueryFoldersLocationsActivityTypesActivitiesRequest": {
       "type": "structure",
       "members": {
         "pageSize": {
@@ -104,11 +105,11 @@
             "smithy.api#httpQuery": "pageSize"
           }
         },
-        "pageToken": {
+        "filter": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. If present, then retrieve the next batch of results from the preceding call to this method. `pageToken` must be the value of `nextPageToken` from the previous response. The values of other method parameters should be identical to those in the previous call.",
-            "smithy.api#httpQuery": "pageToken"
+            "smithy.api#documentation": "Optional. Filter expression to restrict the activities returned. For serviceAccountLastAuthentication activities, supported filters are: - `activities.full_resource_name {=} [STRING]` - `activities.fullResourceName {=} [STRING]` where `[STRING]` is the full resource name of the service account. For serviceAccountKeyLastAuthentication activities, supported filters are: - `activities.full_resource_name {=} [STRING]` - `activities.fullResourceName {=} [STRING]` where `[STRING]` is the full resource name of the service account key.",
+            "smithy.api#httpQuery": "filter"
           }
         },
         "parent": {
@@ -119,11 +120,11 @@
             "smithy.api#required": {}
           }
         },
-        "filter": {
+        "pageToken": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. Filter expression to restrict the activities returned. For serviceAccountLastAuthentication activities, supported filters are: - `activities.full_resource_name {=} [STRING]` - `activities.fullResourceName {=} [STRING]` where `[STRING]` is the full resource name of the service account. For serviceAccountKeyLastAuthentication activities, supported filters are: - `activities.full_resource_name {=} [STRING]` - `activities.fullResourceName {=} [STRING]` where `[STRING]` is the full resource name of the service account key.",
-            "smithy.api#httpQuery": "filter"
+            "smithy.api#documentation": "Optional. If present, then retrieve the next batch of results from the preceding call to this method. `pageToken` must be the value of `nextPageToken` from the previous response. The values of other method parameters should be identical to those in the previous call.",
+            "smithy.api#httpQuery": "pageToken"
           }
         }
       }
@@ -154,10 +155,10 @@
         ]
       }
     },
-    "com.gcp.policyanalyzer_v1#QueryOrganizationsLocationsActivityTypesActivities": {
+    "com.gcp.policyanalyzer_v1#QueryFoldersLocationsActivityTypesActivities": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.policyanalyzer_v1#QueryOrganizationsLocationsActivityTypesActivitiesRequest"
+        "target": "com.gcp.policyanalyzer_v1#QueryFoldersLocationsActivityTypesActivitiesRequest"
       },
       "output": {
         "target": "com.gcp.policyanalyzer_v1#GoogleCloudPolicyanalyzerV1QueryActivityResponse"
@@ -185,11 +186,11 @@
     "com.gcp.policyanalyzer_v1#QueryProjectsLocationsActivityTypesActivitiesRequest": {
       "type": "structure",
       "members": {
-        "pageSize": {
-          "target": "smithy.api#Integer",
+        "filter": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. The maximum number of results to return from this request. Max limit is 1000. Non-positive values are ignored. The presence of `nextPageToken` in the response indicates that more results might be available.",
-            "smithy.api#httpQuery": "pageSize"
+            "smithy.api#documentation": "Optional. Filter expression to restrict the activities returned. For serviceAccountLastAuthentication activities, supported filters are: - `activities.full_resource_name {=} [STRING]` - `activities.fullResourceName {=} [STRING]` where `[STRING]` is the full resource name of the service account. For serviceAccountKeyLastAuthentication activities, supported filters are: - `activities.full_resource_name {=} [STRING]` - `activities.fullResourceName {=} [STRING]` where `[STRING]` is the full resource name of the service account key.",
+            "smithy.api#httpQuery": "filter"
           }
         },
         "parent": {
@@ -200,18 +201,18 @@
             "smithy.api#required": {}
           }
         },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of results to return from this request. Max limit is 1000. Non-positive values are ignored. The presence of `nextPageToken` in the response indicates that more results might be available.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
         "pageToken": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Optional. If present, then retrieve the next batch of results from the preceding call to this method. `pageToken` must be the value of `nextPageToken` from the previous response. The values of other method parameters should be identical to those in the previous call.",
             "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Filter expression to restrict the activities returned. For serviceAccountLastAuthentication activities, supported filters are: - `activities.full_resource_name {=} [STRING]` - `activities.fullResourceName {=} [STRING]` where `[STRING]` is the full resource name of the service account. For serviceAccountKeyLastAuthentication activities, supported filters are: - `activities.full_resource_name {=} [STRING]` - `activities.fullResourceName {=} [STRING]` where `[STRING]` is the full resource name of the service account key.",
-            "smithy.api#httpQuery": "filter"
           }
         }
       }
@@ -244,28 +245,14 @@
         }
       }
     },
-    "com.gcp.policyanalyzer_v1#QueryFoldersLocationsActivityTypesActivitiesRequest": {
+    "com.gcp.policyanalyzer_v1#QueryOrganizationsLocationsActivityTypesActivitiesRequest": {
       "type": "structure",
       "members": {
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Filter expression to restrict the activities returned. For serviceAccountLastAuthentication activities, supported filters are: - `activities.full_resource_name {=} [STRING]` - `activities.fullResourceName {=} [STRING]` where `[STRING]` is the full resource name of the service account. For serviceAccountKeyLastAuthentication activities, supported filters are: - `activities.full_resource_name {=} [STRING]` - `activities.fullResourceName {=} [STRING]` where `[STRING]` is the full resource name of the service account key.",
-            "smithy.api#httpQuery": "filter"
-          }
-        },
         "pageToken": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Optional. If present, then retrieve the next batch of results from the preceding call to this method. `pageToken` must be the value of `nextPageToken` from the previous response. The values of other method parameters should be identical to those in the previous call.",
             "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. The maximum number of results to return from this request. Max limit is 1000. Non-positive values are ignored. The presence of `nextPageToken` in the response indicates that more results might be available.",
-            "smithy.api#httpQuery": "pageSize"
           }
         },
         "parent": {
@@ -275,13 +262,27 @@
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of results to return from this request. Max limit is 1000. Non-positive values are ignored. The presence of `nextPageToken` in the response indicates that more results might be available.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Filter expression to restrict the activities returned. For serviceAccountLastAuthentication activities, supported filters are: - `activities.full_resource_name {=} [STRING]` - `activities.fullResourceName {=} [STRING]` where `[STRING]` is the full resource name of the service account. For serviceAccountKeyLastAuthentication activities, supported filters are: - `activities.full_resource_name {=} [STRING]` - `activities.fullResourceName {=} [STRING]` where `[STRING]` is the full resource name of the service account key.",
+            "smithy.api#httpQuery": "filter"
+          }
         }
       }
     },
-    "com.gcp.policyanalyzer_v1#QueryFoldersLocationsActivityTypesActivities": {
+    "com.gcp.policyanalyzer_v1#QueryOrganizationsLocationsActivityTypesActivities": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.policyanalyzer_v1#QueryFoldersLocationsActivityTypesActivitiesRequest"
+        "target": "com.gcp.policyanalyzer_v1#QueryOrganizationsLocationsActivityTypesActivitiesRequest"
       },
       "output": {
         "target": "com.gcp.policyanalyzer_v1#GoogleCloudPolicyanalyzerV1QueryActivityResponse"

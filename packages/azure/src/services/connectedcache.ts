@@ -12,6 +12,140 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
+export interface DeleteEnterpriseMccCacheNodesOperationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Customer resource */
+  customerResourceName: string;
+  /** Name of the ConnectedCache resource */
+  cacheNodeResourceName: string;
+}
+export const DeleteEnterpriseMccCacheNodesOperationRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      customerResourceName: S.String.pipe(T.Label()),
+      cacheNodeResourceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedCache/enterpriseMccCustomers/{customerResourceName}/enterpriseMccCacheNodes/{cacheNodeResourceName}",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "DeleteEnterpriseMccCacheNodesOperationRequest",
+  }) as any as S.Schema<DeleteEnterpriseMccCacheNodesOperationRequest>;
+
+export interface DeleteEnterpriseMccCacheNodesOperationResponse {}
+export const DeleteEnterpriseMccCacheNodesOperationResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "DeleteEnterpriseMccCacheNodesOperationResponse",
+  }) as any as S.Schema<DeleteEnterpriseMccCacheNodesOperationResponse>;
+
+export interface DeleteEnterpriseMccCustomerRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Customer resource */
+  customerResourceName: string;
+}
+export const DeleteEnterpriseMccCustomerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    customerResourceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedCache/enterpriseMccCustomers/{customerResourceName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteEnterpriseMccCustomerRequest",
+}) as any as S.Schema<DeleteEnterpriseMccCustomerRequest>;
+
+export interface DeleteEnterpriseMccCustomerResponse {}
+export const DeleteEnterpriseMccCustomerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteEnterpriseMccCustomerResponse",
+}) as any as S.Schema<DeleteEnterpriseMccCustomerResponse>;
+
+export interface DeleteIspCacheNodesOperationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Customer resource */
+  customerResourceName: string;
+  /** Name of the ConnectedCache resource */
+  cacheNodeResourceName: string;
+}
+export const DeleteIspCacheNodesOperationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    customerResourceName: S.String.pipe(T.Label()),
+    cacheNodeResourceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedCache/ispCustomers/{customerResourceName}/ispCacheNodes/{cacheNodeResourceName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteIspCacheNodesOperationRequest",
+}) as any as S.Schema<DeleteIspCacheNodesOperationRequest>;
+
+export interface DeleteIspCacheNodesOperationResponse {}
+export const DeleteIspCacheNodesOperationResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteIspCacheNodesOperationResponse",
+}) as any as S.Schema<DeleteIspCacheNodesOperationResponse>;
+
+export interface DeleteIspCustomerRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Customer resource */
+  customerResourceName: string;
+}
+export const DeleteIspCustomerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    customerResourceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedCache/ispCustomers/{customerResourceName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteIspCustomerRequest",
+}) as any as S.Schema<DeleteIspCustomerRequest>;
+
+export interface DeleteIspCustomerResponse {}
+export const DeleteIspCustomerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteIspCustomerResponse",
+}) as any as S.Schema<DeleteIspCustomerResponse>;
+
 /** Resource tags. */
 export type EnterpriseMccCacheNodesOperationsCreateOrUpdateRequestTagsMap = {
   [key: string]: string | undefined;
@@ -1022,111 +1156,6 @@ export const EnterpriseMccCacheNodesOperationsCreateOrUpdateResponse =
     identifier: "EnterpriseMccCacheNodesOperationsCreateOrUpdateResponse",
   }) as any as S.Schema<EnterpriseMccCacheNodesOperationsCreateOrUpdateResponse>;
 
-export interface EnterpriseMccCacheNodesOperationsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Customer resource */
-  customerResourceName: string;
-  /** Name of the ConnectedCache resource */
-  cacheNodeResourceName: string;
-}
-export const EnterpriseMccCacheNodesOperationsDeleteRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      customerResourceName: S.String.pipe(T.Label()),
-      cacheNodeResourceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedCache/enterpriseMccCustomers/{customerResourceName}/enterpriseMccCacheNodes/{cacheNodeResourceName}",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "EnterpriseMccCacheNodesOperationsDeleteRequest",
-  }) as any as S.Schema<EnterpriseMccCacheNodesOperationsDeleteRequest>;
-
-export interface EnterpriseMccCacheNodesOperationsDeleteResponse {}
-export const EnterpriseMccCacheNodesOperationsDeleteResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "EnterpriseMccCacheNodesOperationsDeleteResponse",
-  }) as any as S.Schema<EnterpriseMccCacheNodesOperationsDeleteResponse>;
-
-export interface EnterpriseMccCacheNodesOperationsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Customer resource */
-  customerResourceName: string;
-  /** Name of the ConnectedCache resource */
-  cacheNodeResourceName: string;
-}
-export const EnterpriseMccCacheNodesOperationsGetRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      customerResourceName: S.String.pipe(T.Label()),
-      cacheNodeResourceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedCache/enterpriseMccCustomers/{customerResourceName}/enterpriseMccCacheNodes/{cacheNodeResourceName}",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "EnterpriseMccCacheNodesOperationsGetRequest",
-  }) as any as S.Schema<EnterpriseMccCacheNodesOperationsGetRequest>;
-
-/** Resource tags. */
-export type EnterpriseMccCacheNodesOperationsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const EnterpriseMccCacheNodesOperationsGetResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<EnterpriseMccCacheNodesOperationsGetResponseTagsMap>;
-
-export interface EnterpriseMccCacheNodesOperationsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: EnterpriseMccCacheNodesOperationsGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: CacheNodeProperty;
-}
-export const EnterpriseMccCacheNodesOperationsGetResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(EnterpriseMccCacheNodesOperationsGetResponseTagsMap),
-      location: S.String,
-      properties: S.optional(CacheNodeProperty),
-    }),
-  ).annotate({
-    identifier: "EnterpriseMccCacheNodesOperationsGetResponse",
-  }) as any as S.Schema<EnterpriseMccCacheNodesOperationsGetResponse>;
-
 export interface EnterpriseMccCacheNodesOperationsGetCacheNodeAutoUpdateHistoryRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -1346,412 +1375,6 @@ export const EnterpriseMccCacheNodesOperationsGetCacheNodeInstallDetailsResponse
     identifier:
       "EnterpriseMccCacheNodesOperationsGetCacheNodeInstallDetailsResponse",
   }) as any as S.Schema<EnterpriseMccCacheNodesOperationsGetCacheNodeInstallDetailsResponse>;
-
-export interface EnterpriseMccCacheNodesOperationsGetCacheNodeMccIssueDetailsHistoryRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Customer resource */
-  customerResourceName: string;
-  /** Name of the ConnectedCache resource */
-  cacheNodeResourceName: string;
-}
-export const EnterpriseMccCacheNodesOperationsGetCacheNodeMccIssueDetailsHistoryRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      customerResourceName: S.String.pipe(T.Label()),
-      cacheNodeResourceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedCache/enterpriseMccCustomers/{customerResourceName}/enterpriseMccCacheNodes/{cacheNodeResourceName}/getCacheNodeMccIssueDetailsHistory",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "EnterpriseMccCacheNodesOperationsGetCacheNodeMccIssueDetailsHistoryRequest",
-  }) as any as S.Schema<EnterpriseMccCacheNodesOperationsGetCacheNodeMccIssueDetailsHistoryRequest>;
-
-/** Resource tags. */
-export type EnterpriseMccCacheNodesOperationsGetCacheNodeMccIssueDetailsHistoryResponseTagsMap =
-  { [key: string]: string | undefined };
-export const EnterpriseMccCacheNodesOperationsGetCacheNodeMccIssueDetailsHistoryResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<EnterpriseMccCacheNodesOperationsGetCacheNodeMccIssueDetailsHistoryResponseTagsMap>;
-
-/** Mcc cache node resource issue properties. */
-export interface MccIssue {
-  /** Mcc cache node issue type. */
-  mccIssueType?: string;
-  /** Mcc cache node issues toastString. */
-  toastString?: string;
-  /** Mcc cache node issue detail string. */
-  detailString?: string;
-  /** Mcc cache node issue related help link. */
-  helpLink?: string;
-  /** Mcc cache node issue start date. */
-  issueStartDate?: string;
-  /** Mcc cache node issue end date. */
-  issueEndDate?: string;
-}
-export const MccIssue = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    mccIssueType: S.optional(S.String),
-    toastString: S.optional(S.String),
-    detailString: S.optional(S.String),
-    helpLink: S.optional(S.String),
-    issueStartDate: S.optional(S.String),
-    issueEndDate: S.optional(S.String),
-  }),
-).annotate({ identifier: "MccIssue" }) as any as S.Schema<MccIssue>;
-
-/** Cache node resource issue details history. */
-export type MccCacheNodeIssueHistoryPropertiesMccIssueHistoryList =
-  Array<MccIssue>;
-export const MccCacheNodeIssueHistoryPropertiesMccIssueHistoryList =
-  /*@__PURE__*/ S.Array(
-    MccIssue,
-  ) as any as S.Schema<MccCacheNodeIssueHistoryPropertiesMccIssueHistoryList>;
-
-/** Mcc cache node resource issue history properties. */
-export interface MccCacheNodeIssueHistoryProperties {
-  /** Mcc customer resource Id. */
-  customerId?: string;
-  /** Mcc cache node resource Id. */
-  cacheNodeId?: string;
-  /** Cache node resource issue details history. */
-  mccIssueHistory?: MccCacheNodeIssueHistoryPropertiesMccIssueHistoryList;
-}
-export const MccCacheNodeIssueHistoryProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    customerId: S.optional(S.String),
-    cacheNodeId: S.optional(S.String),
-    mccIssueHistory: S.optional(
-      MccCacheNodeIssueHistoryPropertiesMccIssueHistoryList,
-    ),
-  }),
-).annotate({
-  identifier: "MccCacheNodeIssueHistoryProperties",
-}) as any as S.Schema<MccCacheNodeIssueHistoryProperties>;
-
-export interface EnterpriseMccCacheNodesOperationsGetCacheNodeMccIssueDetailsHistoryResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: EnterpriseMccCacheNodesOperationsGetCacheNodeMccIssueDetailsHistoryResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Mcc cache node resource issue history properties. */
-  properties?: MccCacheNodeIssueHistoryProperties;
-}
-export const EnterpriseMccCacheNodesOperationsGetCacheNodeMccIssueDetailsHistoryResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(
-        EnterpriseMccCacheNodesOperationsGetCacheNodeMccIssueDetailsHistoryResponseTagsMap,
-      ),
-      location: S.String,
-      properties: S.optional(MccCacheNodeIssueHistoryProperties),
-    }),
-  ).annotate({
-    identifier:
-      "EnterpriseMccCacheNodesOperationsGetCacheNodeMccIssueDetailsHistoryResponse",
-  }) as any as S.Schema<EnterpriseMccCacheNodesOperationsGetCacheNodeMccIssueDetailsHistoryResponse>;
-
-export interface EnterpriseMccCacheNodesOperationsGetCacheNodeTlsCertificateHistoryRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Customer resource */
-  customerResourceName: string;
-  /** Name of the ConnectedCache resource */
-  cacheNodeResourceName: string;
-}
-export const EnterpriseMccCacheNodesOperationsGetCacheNodeTlsCertificateHistoryRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      customerResourceName: S.String.pipe(T.Label()),
-      cacheNodeResourceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedCache/enterpriseMccCustomers/{customerResourceName}/enterpriseMccCacheNodes/{cacheNodeResourceName}/getCacheNodeTlsCertificateHistory",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "EnterpriseMccCacheNodesOperationsGetCacheNodeTlsCertificateHistoryRequest",
-  }) as any as S.Schema<EnterpriseMccCacheNodesOperationsGetCacheNodeTlsCertificateHistoryRequest>;
-
-/** Resource tags. */
-export type EnterpriseMccCacheNodesOperationsGetCacheNodeTlsCertificateHistoryResponseTagsMap =
-  { [key: string]: string | undefined };
-export const EnterpriseMccCacheNodesOperationsGetCacheNodeTlsCertificateHistoryResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<EnterpriseMccCacheNodesOperationsGetCacheNodeTlsCertificateHistoryResponseTagsMap>;
-
-/** Cache node resource tls certificate history details. */
-export type MccCacheNodeTlsCertificatePropertiesTlsCertificateHistoryList =
-  Array<MccCacheNodeTlsCertificate>;
-export const MccCacheNodeTlsCertificatePropertiesTlsCertificateHistoryList =
-  /*@__PURE__*/ S.Array(
-    MccCacheNodeTlsCertificate,
-  ) as any as S.Schema<MccCacheNodeTlsCertificatePropertiesTlsCertificateHistoryList>;
-
-/** Mcc cache node resource auto update properties. */
-export interface MccCacheNodeTlsCertificateProperties {
-  /** Mcc customer resource Id. */
-  customerId?: string;
-  /** Mcc cache node resource Id. */
-  cacheNodeId?: string;
-  /** Cache node resource tls certificate history details. */
-  tlsCertificateHistory?: MccCacheNodeTlsCertificatePropertiesTlsCertificateHistoryList;
-}
-export const MccCacheNodeTlsCertificateProperties = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      customerId: S.optional(S.String),
-      cacheNodeId: S.optional(S.String),
-      tlsCertificateHistory: S.optional(
-        MccCacheNodeTlsCertificatePropertiesTlsCertificateHistoryList,
-      ),
-    }),
-).annotate({
-  identifier: "MccCacheNodeTlsCertificateProperties",
-}) as any as S.Schema<MccCacheNodeTlsCertificateProperties>;
-
-export interface EnterpriseMccCacheNodesOperationsGetCacheNodeTlsCertificateHistoryResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: EnterpriseMccCacheNodesOperationsGetCacheNodeTlsCertificateHistoryResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Mcc cache node resource Tls certificate details. */
-  properties?: MccCacheNodeTlsCertificateProperties;
-}
-export const EnterpriseMccCacheNodesOperationsGetCacheNodeTlsCertificateHistoryResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(
-        EnterpriseMccCacheNodesOperationsGetCacheNodeTlsCertificateHistoryResponseTagsMap,
-      ),
-      location: S.String,
-      properties: S.optional(MccCacheNodeTlsCertificateProperties),
-    }),
-  ).annotate({
-    identifier:
-      "EnterpriseMccCacheNodesOperationsGetCacheNodeTlsCertificateHistoryResponse",
-  }) as any as S.Schema<EnterpriseMccCacheNodesOperationsGetCacheNodeTlsCertificateHistoryResponse>;
-
-export interface EnterpriseMccCacheNodesOperationsListByEnterpriseMccCustomerResourceRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Customer resource */
-  customerResourceName: string;
-}
-export const EnterpriseMccCacheNodesOperationsListByEnterpriseMccCustomerResourceRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      customerResourceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedCache/enterpriseMccCustomers/{customerResourceName}/enterpriseMccCacheNodes",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "EnterpriseMccCacheNodesOperationsListByEnterpriseMccCustomerResourceRequest",
-  }) as any as S.Schema<EnterpriseMccCacheNodesOperationsListByEnterpriseMccCustomerResourceRequest>;
-
-/** Resource tags. */
-export type EnterpriseMccCacheNodeResourceTagsMap = {
-  [key: string]: string | undefined;
-};
-export const EnterpriseMccCacheNodeResourceTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<EnterpriseMccCacheNodeResourceTagsMap>;
-
-/** Represents the high level Nodes needed to provision cache node resources */
-export interface EnterpriseMccCacheNodeResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: EnterpriseMccCacheNodeResourceTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: CacheNodeProperty;
-}
-export const EnterpriseMccCacheNodeResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(EnterpriseMccCacheNodeResourceTagsMap),
-    location: S.String,
-    properties: S.optional(CacheNodeProperty),
-  }),
-).annotate({
-  identifier: "EnterpriseMccCacheNodeResource",
-}) as any as S.Schema<EnterpriseMccCacheNodeResource>;
-
-/** The EnterpriseMccCacheNodeResource items on this page */
-export type EnterpriseMccCacheNodeResourceListResultValueList =
-  Array<EnterpriseMccCacheNodeResource>;
-export const EnterpriseMccCacheNodeResourceListResultValueList =
-  /*@__PURE__*/ S.Array(
-    EnterpriseMccCacheNodeResource,
-  ) as any as S.Schema<EnterpriseMccCacheNodeResourceListResultValueList>;
-
-/** The response of a EnterpriseMccCacheNodeResource list operation. */
-export interface EnterpriseMccCacheNodeResourceListResult {
-  /** The EnterpriseMccCacheNodeResource items on this page */
-  value: EnterpriseMccCacheNodeResourceListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const EnterpriseMccCacheNodeResourceListResult = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      value: EnterpriseMccCacheNodeResourceListResultValueList,
-      nextLink: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "EnterpriseMccCacheNodeResourceListResult",
-}) as any as S.Schema<EnterpriseMccCacheNodeResourceListResult>;
-
-/** Resource tags. */
-export type EnterpriseMccCacheNodesOperationsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const EnterpriseMccCacheNodesOperationsUpdateRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<EnterpriseMccCacheNodesOperationsUpdateRequestTagsMap>;
-
-export interface EnterpriseMccCacheNodesOperationsUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Customer resource */
-  customerResourceName: string;
-  /** Name of the ConnectedCache resource */
-  cacheNodeResourceName: string;
-  /** Resource tags. */
-  tags?: EnterpriseMccCacheNodesOperationsUpdateRequestTagsMap;
-}
-export const EnterpriseMccCacheNodesOperationsUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      customerResourceName: S.String.pipe(T.Label()),
-      cacheNodeResourceName: S.String.pipe(T.Label()),
-      tags: S.optional(EnterpriseMccCacheNodesOperationsUpdateRequestTagsMap),
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedCache/enterpriseMccCustomers/{customerResourceName}/enterpriseMccCacheNodes/{cacheNodeResourceName}",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "EnterpriseMccCacheNodesOperationsUpdateRequest",
-  }) as any as S.Schema<EnterpriseMccCacheNodesOperationsUpdateRequest>;
-
-/** Resource tags. */
-export type EnterpriseMccCacheNodesOperationsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const EnterpriseMccCacheNodesOperationsUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<EnterpriseMccCacheNodesOperationsUpdateResponseTagsMap>;
-
-export interface EnterpriseMccCacheNodesOperationsUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: EnterpriseMccCacheNodesOperationsUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: CacheNodeProperty;
-}
-export const EnterpriseMccCacheNodesOperationsUpdateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(EnterpriseMccCacheNodesOperationsUpdateResponseTagsMap),
-      location: S.String,
-      properties: S.optional(CacheNodeProperty),
-    }),
-  ).annotate({
-    identifier: "EnterpriseMccCacheNodesOperationsUpdateResponse",
-  }) as any as S.Schema<EnterpriseMccCacheNodesOperationsUpdateResponse>;
 
 /** Resource tags. */
 export type EnterpriseMccCustomersCreateOrUpdateRequestTagsMap = {
@@ -2201,39 +1824,308 @@ export const EnterpriseMccCustomersCreateOrUpdateResponse =
     identifier: "EnterpriseMccCustomersCreateOrUpdateResponse",
   }) as any as S.Schema<EnterpriseMccCustomersCreateOrUpdateResponse>;
 
-export interface EnterpriseMccCustomersDeleteRequest {
+export interface GetEnterpriseMccCacheNodesOperationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** Name of the Customer resource */
   customerResourceName: string;
+  /** Name of the ConnectedCache resource */
+  cacheNodeResourceName: string;
 }
-export const EnterpriseMccCustomersDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    customerResourceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedCache/enterpriseMccCustomers/{customerResourceName}",
-      code: 200,
-      apiVersion: "2026-06-01",
+export const GetEnterpriseMccCacheNodesOperationRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      customerResourceName: S.String.pipe(T.Label()),
+      cacheNodeResourceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedCache/enterpriseMccCustomers/{customerResourceName}/enterpriseMccCacheNodes/{cacheNodeResourceName}",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetEnterpriseMccCacheNodesOperationRequest",
+  }) as any as S.Schema<GetEnterpriseMccCacheNodesOperationRequest>;
+
+/** Resource tags. */
+export type GetEnterpriseMccCacheNodesOperationResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetEnterpriseMccCacheNodesOperationResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<GetEnterpriseMccCacheNodesOperationResponseTagsMap>;
+
+export interface GetEnterpriseMccCacheNodesOperationResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetEnterpriseMccCacheNodesOperationResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: CacheNodeProperty;
+}
+export const GetEnterpriseMccCacheNodesOperationResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(GetEnterpriseMccCacheNodesOperationResponseTagsMap),
+      location: S.String,
+      properties: S.optional(CacheNodeProperty),
     }),
-  ),
-).annotate({
-  identifier: "EnterpriseMccCustomersDeleteRequest",
-}) as any as S.Schema<EnterpriseMccCustomersDeleteRequest>;
+  ).annotate({
+    identifier: "GetEnterpriseMccCacheNodesOperationResponse",
+  }) as any as S.Schema<GetEnterpriseMccCacheNodesOperationResponse>;
 
-export interface EnterpriseMccCustomersDeleteResponse {}
-export const EnterpriseMccCustomersDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "EnterpriseMccCustomersDeleteResponse",
-}) as any as S.Schema<EnterpriseMccCustomersDeleteResponse>;
+export interface GetEnterpriseMccCacheNodesOperationCacheNodeMccIssueDetailsHistoryRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Customer resource */
+  customerResourceName: string;
+  /** Name of the ConnectedCache resource */
+  cacheNodeResourceName: string;
+}
+export const GetEnterpriseMccCacheNodesOperationCacheNodeMccIssueDetailsHistoryRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      customerResourceName: S.String.pipe(T.Label()),
+      cacheNodeResourceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedCache/enterpriseMccCustomers/{customerResourceName}/enterpriseMccCacheNodes/{cacheNodeResourceName}/getCacheNodeMccIssueDetailsHistory",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier:
+      "GetEnterpriseMccCacheNodesOperationCacheNodeMccIssueDetailsHistoryRequest",
+  }) as any as S.Schema<GetEnterpriseMccCacheNodesOperationCacheNodeMccIssueDetailsHistoryRequest>;
 
-export interface EnterpriseMccCustomersGetRequest {
+/** Resource tags. */
+export type GetEnterpriseMccCacheNodesOperationCacheNodeMccIssueDetailsHistoryResponseTagsMap =
+  { [key: string]: string | undefined };
+export const GetEnterpriseMccCacheNodesOperationCacheNodeMccIssueDetailsHistoryResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<GetEnterpriseMccCacheNodesOperationCacheNodeMccIssueDetailsHistoryResponseTagsMap>;
+
+/** Mcc cache node resource issue properties. */
+export interface MccIssue {
+  /** Mcc cache node issue type. */
+  mccIssueType?: string;
+  /** Mcc cache node issues toastString. */
+  toastString?: string;
+  /** Mcc cache node issue detail string. */
+  detailString?: string;
+  /** Mcc cache node issue related help link. */
+  helpLink?: string;
+  /** Mcc cache node issue start date. */
+  issueStartDate?: string;
+  /** Mcc cache node issue end date. */
+  issueEndDate?: string;
+}
+export const MccIssue = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    mccIssueType: S.optional(S.String),
+    toastString: S.optional(S.String),
+    detailString: S.optional(S.String),
+    helpLink: S.optional(S.String),
+    issueStartDate: S.optional(S.String),
+    issueEndDate: S.optional(S.String),
+  }),
+).annotate({ identifier: "MccIssue" }) as any as S.Schema<MccIssue>;
+
+/** Cache node resource issue details history. */
+export type MccCacheNodeIssueHistoryPropertiesMccIssueHistoryList =
+  Array<MccIssue>;
+export const MccCacheNodeIssueHistoryPropertiesMccIssueHistoryList =
+  /*@__PURE__*/ S.Array(
+    MccIssue,
+  ) as any as S.Schema<MccCacheNodeIssueHistoryPropertiesMccIssueHistoryList>;
+
+/** Mcc cache node resource issue history properties. */
+export interface MccCacheNodeIssueHistoryProperties {
+  /** Mcc customer resource Id. */
+  customerId?: string;
+  /** Mcc cache node resource Id. */
+  cacheNodeId?: string;
+  /** Cache node resource issue details history. */
+  mccIssueHistory?: MccCacheNodeIssueHistoryPropertiesMccIssueHistoryList;
+}
+export const MccCacheNodeIssueHistoryProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    customerId: S.optional(S.String),
+    cacheNodeId: S.optional(S.String),
+    mccIssueHistory: S.optional(
+      MccCacheNodeIssueHistoryPropertiesMccIssueHistoryList,
+    ),
+  }),
+).annotate({
+  identifier: "MccCacheNodeIssueHistoryProperties",
+}) as any as S.Schema<MccCacheNodeIssueHistoryProperties>;
+
+export interface GetEnterpriseMccCacheNodesOperationCacheNodeMccIssueDetailsHistoryResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetEnterpriseMccCacheNodesOperationCacheNodeMccIssueDetailsHistoryResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Mcc cache node resource issue history properties. */
+  properties?: MccCacheNodeIssueHistoryProperties;
+}
+export const GetEnterpriseMccCacheNodesOperationCacheNodeMccIssueDetailsHistoryResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(
+        GetEnterpriseMccCacheNodesOperationCacheNodeMccIssueDetailsHistoryResponseTagsMap,
+      ),
+      location: S.String,
+      properties: S.optional(MccCacheNodeIssueHistoryProperties),
+    }),
+  ).annotate({
+    identifier:
+      "GetEnterpriseMccCacheNodesOperationCacheNodeMccIssueDetailsHistoryResponse",
+  }) as any as S.Schema<GetEnterpriseMccCacheNodesOperationCacheNodeMccIssueDetailsHistoryResponse>;
+
+export interface GetEnterpriseMccCacheNodesOperationCacheNodeTlsCertificateHistoryRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Customer resource */
+  customerResourceName: string;
+  /** Name of the ConnectedCache resource */
+  cacheNodeResourceName: string;
+}
+export const GetEnterpriseMccCacheNodesOperationCacheNodeTlsCertificateHistoryRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      customerResourceName: S.String.pipe(T.Label()),
+      cacheNodeResourceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedCache/enterpriseMccCustomers/{customerResourceName}/enterpriseMccCacheNodes/{cacheNodeResourceName}/getCacheNodeTlsCertificateHistory",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier:
+      "GetEnterpriseMccCacheNodesOperationCacheNodeTlsCertificateHistoryRequest",
+  }) as any as S.Schema<GetEnterpriseMccCacheNodesOperationCacheNodeTlsCertificateHistoryRequest>;
+
+/** Resource tags. */
+export type GetEnterpriseMccCacheNodesOperationCacheNodeTlsCertificateHistoryResponseTagsMap =
+  { [key: string]: string | undefined };
+export const GetEnterpriseMccCacheNodesOperationCacheNodeTlsCertificateHistoryResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<GetEnterpriseMccCacheNodesOperationCacheNodeTlsCertificateHistoryResponseTagsMap>;
+
+/** Cache node resource tls certificate history details. */
+export type MccCacheNodeTlsCertificatePropertiesTlsCertificateHistoryList =
+  Array<MccCacheNodeTlsCertificate>;
+export const MccCacheNodeTlsCertificatePropertiesTlsCertificateHistoryList =
+  /*@__PURE__*/ S.Array(
+    MccCacheNodeTlsCertificate,
+  ) as any as S.Schema<MccCacheNodeTlsCertificatePropertiesTlsCertificateHistoryList>;
+
+/** Mcc cache node resource auto update properties. */
+export interface MccCacheNodeTlsCertificateProperties {
+  /** Mcc customer resource Id. */
+  customerId?: string;
+  /** Mcc cache node resource Id. */
+  cacheNodeId?: string;
+  /** Cache node resource tls certificate history details. */
+  tlsCertificateHistory?: MccCacheNodeTlsCertificatePropertiesTlsCertificateHistoryList;
+}
+export const MccCacheNodeTlsCertificateProperties = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      customerId: S.optional(S.String),
+      cacheNodeId: S.optional(S.String),
+      tlsCertificateHistory: S.optional(
+        MccCacheNodeTlsCertificatePropertiesTlsCertificateHistoryList,
+      ),
+    }),
+).annotate({
+  identifier: "MccCacheNodeTlsCertificateProperties",
+}) as any as S.Schema<MccCacheNodeTlsCertificateProperties>;
+
+export interface GetEnterpriseMccCacheNodesOperationCacheNodeTlsCertificateHistoryResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetEnterpriseMccCacheNodesOperationCacheNodeTlsCertificateHistoryResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Mcc cache node resource Tls certificate details. */
+  properties?: MccCacheNodeTlsCertificateProperties;
+}
+export const GetEnterpriseMccCacheNodesOperationCacheNodeTlsCertificateHistoryResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(
+        GetEnterpriseMccCacheNodesOperationCacheNodeTlsCertificateHistoryResponseTagsMap,
+      ),
+      location: S.String,
+      properties: S.optional(MccCacheNodeTlsCertificateProperties),
+    }),
+  ).annotate({
+    identifier:
+      "GetEnterpriseMccCacheNodesOperationCacheNodeTlsCertificateHistoryResponse",
+  }) as any as S.Schema<GetEnterpriseMccCacheNodesOperationCacheNodeTlsCertificateHistoryResponse>;
+
+export interface GetEnterpriseMccCustomerRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2241,7 +2133,7 @@ export interface EnterpriseMccCustomersGetRequest {
   /** Name of the Customer resource */
   customerResourceName: string;
 }
-export const EnterpriseMccCustomersGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetEnterpriseMccCustomerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2255,19 +2147,19 @@ export const EnterpriseMccCustomersGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "EnterpriseMccCustomersGetRequest",
-}) as any as S.Schema<EnterpriseMccCustomersGetRequest>;
+  identifier: "GetEnterpriseMccCustomerRequest",
+}) as any as S.Schema<GetEnterpriseMccCustomerRequest>;
 
 /** Resource tags. */
-export type EnterpriseMccCustomersGetResponseTagsMap = {
+export type GetEnterpriseMccCustomerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const EnterpriseMccCustomersGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetEnterpriseMccCustomerResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<EnterpriseMccCustomersGetResponseTagsMap>;
+) as any as S.Schema<GetEnterpriseMccCustomerResponseTagsMap>;
 
-export interface EnterpriseMccCustomersGetResponse {
+export interface GetEnterpriseMccCustomerResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -2277,183 +2169,64 @@ export interface EnterpriseMccCustomersGetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: EnterpriseMccCustomersGetResponseTagsMap;
+  tags?: GetEnterpriseMccCustomerResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: CustomerProperty;
 }
-export const EnterpriseMccCustomersGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetEnterpriseMccCustomerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(EnterpriseMccCustomersGetResponseTagsMap),
+    tags: S.optional(GetEnterpriseMccCustomerResponseTagsMap),
     location: S.String,
     properties: S.optional(CustomerProperty),
   }),
 ).annotate({
-  identifier: "EnterpriseMccCustomersGetResponse",
-}) as any as S.Schema<EnterpriseMccCustomersGetResponse>;
+  identifier: "GetEnterpriseMccCustomerResponse",
+}) as any as S.Schema<GetEnterpriseMccCustomerResponse>;
 
-export interface EnterpriseMccCustomersListByResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const EnterpriseMccCustomersListByResourceGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedCache/enterpriseMccCustomers",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "EnterpriseMccCustomersListByResourceGroupRequest",
-  }) as any as S.Schema<EnterpriseMccCustomersListByResourceGroupRequest>;
-
-/** Resource tags. */
-export type EnterpriseMccCustomerResourceTagsMap = {
-  [key: string]: string | undefined;
-};
-export const EnterpriseMccCustomerResourceTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<EnterpriseMccCustomerResourceTagsMap>;
-
-/** Represents the high level Nodes needed to provision customer resources */
-export interface EnterpriseMccCustomerResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: EnterpriseMccCustomerResourceTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: CustomerProperty;
-}
-export const EnterpriseMccCustomerResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(EnterpriseMccCustomerResourceTagsMap),
-    location: S.String,
-    properties: S.optional(CustomerProperty),
-  }),
-).annotate({
-  identifier: "EnterpriseMccCustomerResource",
-}) as any as S.Schema<EnterpriseMccCustomerResource>;
-
-/** The EnterpriseMccCustomerResource items on this page */
-export type EnterpriseMccCustomerResourceListResultValueList =
-  Array<EnterpriseMccCustomerResource>;
-export const EnterpriseMccCustomerResourceListResultValueList =
-  /*@__PURE__*/ S.Array(
-    EnterpriseMccCustomerResource,
-  ) as any as S.Schema<EnterpriseMccCustomerResourceListResultValueList>;
-
-/** The response of a EnterpriseMccCustomerResource list operation. */
-export interface EnterpriseMccCustomerResourceListResult {
-  /** The EnterpriseMccCustomerResource items on this page */
-  value: EnterpriseMccCustomerResourceListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const EnterpriseMccCustomerResourceListResult = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      value: EnterpriseMccCustomerResourceListResultValueList,
-      nextLink: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "EnterpriseMccCustomerResourceListResult",
-}) as any as S.Schema<EnterpriseMccCustomerResourceListResult>;
-
-export interface EnterpriseMccCustomersListBySubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-}
-export const EnterpriseMccCustomersListBySubscriptionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ConnectedCache/enterpriseMccCustomers",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "EnterpriseMccCustomersListBySubscriptionRequest",
-  }) as any as S.Schema<EnterpriseMccCustomersListBySubscriptionRequest>;
-
-/** Resource tags. */
-export type EnterpriseMccCustomersUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const EnterpriseMccCustomersUpdateRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<EnterpriseMccCustomersUpdateRequestTagsMap>;
-
-export interface EnterpriseMccCustomersUpdateRequest {
+export interface GetIspCacheNodesOperationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** Name of the Customer resource */
   customerResourceName: string;
-  /** Resource tags. */
-  tags?: EnterpriseMccCustomersUpdateRequestTagsMap;
+  /** Name of the ConnectedCache resource */
+  cacheNodeResourceName: string;
 }
-export const EnterpriseMccCustomersUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetIspCacheNodesOperationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     customerResourceName: S.String.pipe(T.Label()),
-    tags: S.optional(EnterpriseMccCustomersUpdateRequestTagsMap),
+    cacheNodeResourceName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedCache/enterpriseMccCustomers/{customerResourceName}",
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedCache/ispCustomers/{customerResourceName}/ispCacheNodes/{cacheNodeResourceName}",
       code: 200,
       apiVersion: "2026-06-01",
     }),
   ),
 ).annotate({
-  identifier: "EnterpriseMccCustomersUpdateRequest",
-}) as any as S.Schema<EnterpriseMccCustomersUpdateRequest>;
+  identifier: "GetIspCacheNodesOperationRequest",
+}) as any as S.Schema<GetIspCacheNodesOperationRequest>;
 
 /** Resource tags. */
-export type EnterpriseMccCustomersUpdateResponseTagsMap = {
+export type GetIspCacheNodesOperationResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const EnterpriseMccCustomersUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<EnterpriseMccCustomersUpdateResponseTagsMap>;
+export const GetIspCacheNodesOperationResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetIspCacheNodesOperationResponseTagsMap>;
 
-export interface EnterpriseMccCustomersUpdateResponse {
+export interface GetIspCacheNodesOperationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -2463,26 +2236,251 @@ export interface EnterpriseMccCustomersUpdateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: EnterpriseMccCustomersUpdateResponseTagsMap;
+  tags?: GetIspCacheNodesOperationResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
-  properties?: CustomerProperty;
+  properties?: CacheNodeProperty;
 }
-export const EnterpriseMccCustomersUpdateResponse = /*@__PURE__*/ S.suspend(
+export const GetIspCacheNodesOperationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetIspCacheNodesOperationResponseTagsMap),
+    location: S.String,
+    properties: S.optional(CacheNodeProperty),
+  }),
+).annotate({
+  identifier: "GetIspCacheNodesOperationResponse",
+}) as any as S.Schema<GetIspCacheNodesOperationResponse>;
+
+export interface GetIspCacheNodesOperationBgpCidrsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Customer resource */
+  customerResourceName: string;
+  /** Name of the ConnectedCache resource */
+  cacheNodeResourceName: string;
+}
+export const GetIspCacheNodesOperationBgpCidrsRequest = /*@__PURE__*/ S.suspend(
   () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      customerResourceName: S.String.pipe(T.Label()),
+      cacheNodeResourceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedCache/ispCustomers/{customerResourceName}/ispCacheNodes/{cacheNodeResourceName}/getBgpCidrs",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "GetIspCacheNodesOperationBgpCidrsRequest",
+}) as any as S.Schema<GetIspCacheNodesOperationBgpCidrsRequest>;
+
+/** Resource tags. */
+export type GetIspCacheNodesOperationBgpCidrsResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetIspCacheNodesOperationBgpCidrsResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<GetIspCacheNodesOperationBgpCidrsResponseTagsMap>;
+
+/** Mcc cache node Bgp Cidr details. */
+export type BgpCidrsConfigurationBgpCidrsList = Array<string>;
+export const BgpCidrsConfigurationBgpCidrsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<BgpCidrsConfigurationBgpCidrsList>;
+
+/** Mcc cache node Bgp Cidr details. */
+export interface BgpCidrsConfiguration {
+  /** Mcc cache node Bgp Cidr details. */
+  bgpCidrs?: BgpCidrsConfigurationBgpCidrsList;
+}
+export const BgpCidrsConfiguration = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    bgpCidrs: S.optional(BgpCidrsConfigurationBgpCidrsList),
+  }),
+).annotate({
+  identifier: "BgpCidrsConfiguration",
+}) as any as S.Schema<BgpCidrsConfiguration>;
+
+export interface GetIspCacheNodesOperationBgpCidrsResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetIspCacheNodesOperationBgpCidrsResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Mcc cache node resource Bgp Cidr properties. */
+  properties?: BgpCidrsConfiguration;
+}
+export const GetIspCacheNodesOperationBgpCidrsResponse =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      tags: S.optional(EnterpriseMccCustomersUpdateResponseTagsMap),
+      tags: S.optional(GetIspCacheNodesOperationBgpCidrsResponseTagsMap),
       location: S.String,
-      properties: S.optional(CustomerProperty),
+      properties: S.optional(BgpCidrsConfiguration),
     }),
+  ).annotate({
+    identifier: "GetIspCacheNodesOperationBgpCidrsResponse",
+  }) as any as S.Schema<GetIspCacheNodesOperationBgpCidrsResponse>;
+
+export interface GetIspCacheNodesOperationCacheNodeMccIssueDetailsHistoryRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Customer resource */
+  customerResourceName: string;
+  /** Name of the ConnectedCache resource */
+  cacheNodeResourceName: string;
+}
+export const GetIspCacheNodesOperationCacheNodeMccIssueDetailsHistoryRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      customerResourceName: S.String.pipe(T.Label()),
+      cacheNodeResourceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedCache/ispCustomers/{customerResourceName}/ispCacheNodes/{cacheNodeResourceName}/getCacheNodeMccIssueDetailsHistory",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier:
+      "GetIspCacheNodesOperationCacheNodeMccIssueDetailsHistoryRequest",
+  }) as any as S.Schema<GetIspCacheNodesOperationCacheNodeMccIssueDetailsHistoryRequest>;
+
+/** Resource tags. */
+export type GetIspCacheNodesOperationCacheNodeMccIssueDetailsHistoryResponseTagsMap =
+  { [key: string]: string | undefined };
+export const GetIspCacheNodesOperationCacheNodeMccIssueDetailsHistoryResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<GetIspCacheNodesOperationCacheNodeMccIssueDetailsHistoryResponseTagsMap>;
+
+export interface GetIspCacheNodesOperationCacheNodeMccIssueDetailsHistoryResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetIspCacheNodesOperationCacheNodeMccIssueDetailsHistoryResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Mcc cache node resource issue history properties. */
+  properties?: MccCacheNodeIssueHistoryProperties;
+}
+export const GetIspCacheNodesOperationCacheNodeMccIssueDetailsHistoryResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(
+        GetIspCacheNodesOperationCacheNodeMccIssueDetailsHistoryResponseTagsMap,
+      ),
+      location: S.String,
+      properties: S.optional(MccCacheNodeIssueHistoryProperties),
+    }),
+  ).annotate({
+    identifier:
+      "GetIspCacheNodesOperationCacheNodeMccIssueDetailsHistoryResponse",
+  }) as any as S.Schema<GetIspCacheNodesOperationCacheNodeMccIssueDetailsHistoryResponse>;
+
+export interface GetIspCustomerRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Customer resource */
+  customerResourceName: string;
+}
+export const GetIspCustomerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    customerResourceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedCache/ispCustomers/{customerResourceName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
 ).annotate({
-  identifier: "EnterpriseMccCustomersUpdateResponse",
-}) as any as S.Schema<EnterpriseMccCustomersUpdateResponse>;
+  identifier: "GetIspCustomerRequest",
+}) as any as S.Schema<GetIspCustomerRequest>;
+
+/** Resource tags. */
+export type GetIspCustomerResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetIspCustomerResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetIspCustomerResponseTagsMap>;
+
+export interface GetIspCustomerResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetIspCustomerResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: CustomerProperty;
+}
+export const GetIspCustomerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetIspCustomerResponseTagsMap),
+    location: S.String,
+    properties: S.optional(CustomerProperty),
+  }),
+).annotate({
+  identifier: "GetIspCustomerResponse",
+}) as any as S.Schema<GetIspCustomerResponse>;
 
 /** Resource tags. */
 export type IspCacheNodesOperationsCreateOrUpdateRequestTagsMap = {
@@ -2572,198 +2570,6 @@ export const IspCacheNodesOperationsCreateOrUpdateResponse =
   ).annotate({
     identifier: "IspCacheNodesOperationsCreateOrUpdateResponse",
   }) as any as S.Schema<IspCacheNodesOperationsCreateOrUpdateResponse>;
-
-export interface IspCacheNodesOperationsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Customer resource */
-  customerResourceName: string;
-  /** Name of the ConnectedCache resource */
-  cacheNodeResourceName: string;
-}
-export const IspCacheNodesOperationsDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      customerResourceName: S.String.pipe(T.Label()),
-      cacheNodeResourceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedCache/ispCustomers/{customerResourceName}/ispCacheNodes/{cacheNodeResourceName}",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "IspCacheNodesOperationsDeleteRequest",
-}) as any as S.Schema<IspCacheNodesOperationsDeleteRequest>;
-
-export interface IspCacheNodesOperationsDeleteResponse {}
-export const IspCacheNodesOperationsDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "IspCacheNodesOperationsDeleteResponse",
-}) as any as S.Schema<IspCacheNodesOperationsDeleteResponse>;
-
-export interface IspCacheNodesOperationsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Customer resource */
-  customerResourceName: string;
-  /** Name of the ConnectedCache resource */
-  cacheNodeResourceName: string;
-}
-export const IspCacheNodesOperationsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    customerResourceName: S.String.pipe(T.Label()),
-    cacheNodeResourceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedCache/ispCustomers/{customerResourceName}/ispCacheNodes/{cacheNodeResourceName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "IspCacheNodesOperationsGetRequest",
-}) as any as S.Schema<IspCacheNodesOperationsGetRequest>;
-
-/** Resource tags. */
-export type IspCacheNodesOperationsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const IspCacheNodesOperationsGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<IspCacheNodesOperationsGetResponseTagsMap>;
-
-export interface IspCacheNodesOperationsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: IspCacheNodesOperationsGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: CacheNodeProperty;
-}
-export const IspCacheNodesOperationsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(IspCacheNodesOperationsGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(CacheNodeProperty),
-  }),
-).annotate({
-  identifier: "IspCacheNodesOperationsGetResponse",
-}) as any as S.Schema<IspCacheNodesOperationsGetResponse>;
-
-export interface IspCacheNodesOperationsGetBgpCidrsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Customer resource */
-  customerResourceName: string;
-  /** Name of the ConnectedCache resource */
-  cacheNodeResourceName: string;
-}
-export const IspCacheNodesOperationsGetBgpCidrsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      customerResourceName: S.String.pipe(T.Label()),
-      cacheNodeResourceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedCache/ispCustomers/{customerResourceName}/ispCacheNodes/{cacheNodeResourceName}/getBgpCidrs",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "IspCacheNodesOperationsGetBgpCidrsRequest",
-  }) as any as S.Schema<IspCacheNodesOperationsGetBgpCidrsRequest>;
-
-/** Resource tags. */
-export type IspCacheNodesOperationsGetBgpCidrsResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const IspCacheNodesOperationsGetBgpCidrsResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<IspCacheNodesOperationsGetBgpCidrsResponseTagsMap>;
-
-/** Mcc cache node Bgp Cidr details. */
-export type BgpCidrsConfigurationBgpCidrsList = Array<string>;
-export const BgpCidrsConfigurationBgpCidrsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<BgpCidrsConfigurationBgpCidrsList>;
-
-/** Mcc cache node Bgp Cidr details. */
-export interface BgpCidrsConfiguration {
-  /** Mcc cache node Bgp Cidr details. */
-  bgpCidrs?: BgpCidrsConfigurationBgpCidrsList;
-}
-export const BgpCidrsConfiguration = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    bgpCidrs: S.optional(BgpCidrsConfigurationBgpCidrsList),
-  }),
-).annotate({
-  identifier: "BgpCidrsConfiguration",
-}) as any as S.Schema<BgpCidrsConfiguration>;
-
-export interface IspCacheNodesOperationsGetBgpCidrsResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: IspCacheNodesOperationsGetBgpCidrsResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Mcc cache node resource Bgp Cidr properties. */
-  properties?: BgpCidrsConfiguration;
-}
-export const IspCacheNodesOperationsGetBgpCidrsResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(IspCacheNodesOperationsGetBgpCidrsResponseTagsMap),
-      location: S.String,
-      properties: S.optional(BgpCidrsConfiguration),
-    }),
-  ).annotate({
-    identifier: "IspCacheNodesOperationsGetBgpCidrsResponse",
-  }) as any as S.Schema<IspCacheNodesOperationsGetBgpCidrsResponse>;
 
 export interface IspCacheNodesOperationsGetCacheNodeAutoUpdateHistoryRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -2908,249 +2714,6 @@ export const IspCacheNodesOperationsGetCacheNodeInstallDetailsResponse =
     identifier: "IspCacheNodesOperationsGetCacheNodeInstallDetailsResponse",
   }) as any as S.Schema<IspCacheNodesOperationsGetCacheNodeInstallDetailsResponse>;
 
-export interface IspCacheNodesOperationsGetCacheNodeMccIssueDetailsHistoryRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Customer resource */
-  customerResourceName: string;
-  /** Name of the ConnectedCache resource */
-  cacheNodeResourceName: string;
-}
-export const IspCacheNodesOperationsGetCacheNodeMccIssueDetailsHistoryRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      customerResourceName: S.String.pipe(T.Label()),
-      cacheNodeResourceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedCache/ispCustomers/{customerResourceName}/ispCacheNodes/{cacheNodeResourceName}/getCacheNodeMccIssueDetailsHistory",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "IspCacheNodesOperationsGetCacheNodeMccIssueDetailsHistoryRequest",
-  }) as any as S.Schema<IspCacheNodesOperationsGetCacheNodeMccIssueDetailsHistoryRequest>;
-
-/** Resource tags. */
-export type IspCacheNodesOperationsGetCacheNodeMccIssueDetailsHistoryResponseTagsMap =
-  { [key: string]: string | undefined };
-export const IspCacheNodesOperationsGetCacheNodeMccIssueDetailsHistoryResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<IspCacheNodesOperationsGetCacheNodeMccIssueDetailsHistoryResponseTagsMap>;
-
-export interface IspCacheNodesOperationsGetCacheNodeMccIssueDetailsHistoryResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: IspCacheNodesOperationsGetCacheNodeMccIssueDetailsHistoryResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Mcc cache node resource issue history properties. */
-  properties?: MccCacheNodeIssueHistoryProperties;
-}
-export const IspCacheNodesOperationsGetCacheNodeMccIssueDetailsHistoryResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(
-        IspCacheNodesOperationsGetCacheNodeMccIssueDetailsHistoryResponseTagsMap,
-      ),
-      location: S.String,
-      properties: S.optional(MccCacheNodeIssueHistoryProperties),
-    }),
-  ).annotate({
-    identifier:
-      "IspCacheNodesOperationsGetCacheNodeMccIssueDetailsHistoryResponse",
-  }) as any as S.Schema<IspCacheNodesOperationsGetCacheNodeMccIssueDetailsHistoryResponse>;
-
-export interface IspCacheNodesOperationsListByIspCustomerResourceRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Customer resource */
-  customerResourceName: string;
-}
-export const IspCacheNodesOperationsListByIspCustomerResourceRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      customerResourceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedCache/ispCustomers/{customerResourceName}/ispCacheNodes",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "IspCacheNodesOperationsListByIspCustomerResourceRequest",
-  }) as any as S.Schema<IspCacheNodesOperationsListByIspCustomerResourceRequest>;
-
-/** Resource tags. */
-export type IspCacheNodeResourceTagsMap = { [key: string]: string | undefined };
-export const IspCacheNodeResourceTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<IspCacheNodeResourceTagsMap>;
-
-/** Represents the high level Nodes needed to provision cache node resources */
-export interface IspCacheNodeResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: IspCacheNodeResourceTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: CacheNodeProperty;
-}
-export const IspCacheNodeResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(IspCacheNodeResourceTagsMap),
-    location: S.String,
-    properties: S.optional(CacheNodeProperty),
-  }),
-).annotate({
-  identifier: "IspCacheNodeResource",
-}) as any as S.Schema<IspCacheNodeResource>;
-
-/** The IspCacheNodeResource items on this page */
-export type IspCacheNodeResourceListResultValueList =
-  Array<IspCacheNodeResource>;
-export const IspCacheNodeResourceListResultValueList = /*@__PURE__*/ S.Array(
-  IspCacheNodeResource,
-) as any as S.Schema<IspCacheNodeResourceListResultValueList>;
-
-/** The response of a IspCacheNodeResource list operation. */
-export interface IspCacheNodeResourceListResult {
-  /** The IspCacheNodeResource items on this page */
-  value: IspCacheNodeResourceListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const IspCacheNodeResourceListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: IspCacheNodeResourceListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "IspCacheNodeResourceListResult",
-}) as any as S.Schema<IspCacheNodeResourceListResult>;
-
-/** Resource tags. */
-export type IspCacheNodesOperationsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const IspCacheNodesOperationsUpdateRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<IspCacheNodesOperationsUpdateRequestTagsMap>;
-
-export interface IspCacheNodesOperationsUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Customer resource */
-  customerResourceName: string;
-  /** Name of the ConnectedCache resource */
-  cacheNodeResourceName: string;
-  /** Resource tags. */
-  tags?: IspCacheNodesOperationsUpdateRequestTagsMap;
-}
-export const IspCacheNodesOperationsUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      customerResourceName: S.String.pipe(T.Label()),
-      cacheNodeResourceName: S.String.pipe(T.Label()),
-      tags: S.optional(IspCacheNodesOperationsUpdateRequestTagsMap),
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedCache/ispCustomers/{customerResourceName}/ispCacheNodes/{cacheNodeResourceName}",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "IspCacheNodesOperationsUpdateRequest",
-}) as any as S.Schema<IspCacheNodesOperationsUpdateRequest>;
-
-/** Resource tags. */
-export type IspCacheNodesOperationsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const IspCacheNodesOperationsUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<IspCacheNodesOperationsUpdateResponseTagsMap>;
-
-export interface IspCacheNodesOperationsUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: IspCacheNodesOperationsUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: CacheNodeProperty;
-}
-export const IspCacheNodesOperationsUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(IspCacheNodesOperationsUpdateResponseTagsMap),
-      location: S.String,
-      properties: S.optional(CacheNodeProperty),
-    }),
-).annotate({
-  identifier: "IspCacheNodesOperationsUpdateResponse",
-}) as any as S.Schema<IspCacheNodesOperationsUpdateResponse>;
-
 /** Resource tags. */
 export type IspCustomersCreateOrUpdateRequestTagsMap = {
   [key: string]: string | undefined;
@@ -3233,7 +2796,7 @@ export const IspCustomersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "IspCustomersCreateOrUpdateResponse",
 }) as any as S.Schema<IspCustomersCreateOrUpdateResponse>;
 
-export interface IspCustomersDeleteRequest {
+export interface ListEnterpriseMccCacheNodesOperationByEnterpriseMccCustomerResourceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3241,65 +2804,36 @@ export interface IspCustomersDeleteRequest {
   /** Name of the Customer resource */
   customerResourceName: string;
 }
-export const IspCustomersDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    customerResourceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedCache/ispCustomers/{customerResourceName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "IspCustomersDeleteRequest",
-}) as any as S.Schema<IspCustomersDeleteRequest>;
-
-export interface IspCustomersDeleteResponse {}
-export const IspCustomersDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "IspCustomersDeleteResponse",
-}) as any as S.Schema<IspCustomersDeleteResponse>;
-
-export interface IspCustomersGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Customer resource */
-  customerResourceName: string;
-}
-export const IspCustomersGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    customerResourceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedCache/ispCustomers/{customerResourceName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "IspCustomersGetRequest",
-}) as any as S.Schema<IspCustomersGetRequest>;
+export const ListEnterpriseMccCacheNodesOperationByEnterpriseMccCustomerResourceRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      customerResourceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedCache/enterpriseMccCustomers/{customerResourceName}/enterpriseMccCacheNodes",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier:
+      "ListEnterpriseMccCacheNodesOperationByEnterpriseMccCustomerResourceRequest",
+  }) as any as S.Schema<ListEnterpriseMccCacheNodesOperationByEnterpriseMccCustomerResourceRequest>;
 
 /** Resource tags. */
-export type IspCustomersGetResponseTagsMap = {
+export type EnterpriseMccCacheNodeResourceTagsMap = {
   [key: string]: string | undefined;
 };
-export const IspCustomersGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const EnterpriseMccCacheNodeResourceTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<IspCustomersGetResponseTagsMap>;
+) as any as S.Schema<EnterpriseMccCacheNodeResourceTagsMap>;
 
-export interface IspCustomersGetResponse {
+/** Represents the high level Nodes needed to provision cache node resources */
+export interface EnterpriseMccCacheNodeResource {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -3309,33 +2843,253 @@ export interface IspCustomersGetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: IspCustomersGetResponseTagsMap;
+  tags?: EnterpriseMccCacheNodeResourceTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
-  properties?: CustomerProperty;
+  properties?: CacheNodeProperty;
 }
-export const IspCustomersGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const EnterpriseMccCacheNodeResource = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(IspCustomersGetResponseTagsMap),
+    tags: S.optional(EnterpriseMccCacheNodeResourceTagsMap),
     location: S.String,
-    properties: S.optional(CustomerProperty),
+    properties: S.optional(CacheNodeProperty),
   }),
 ).annotate({
-  identifier: "IspCustomersGetResponse",
-}) as any as S.Schema<IspCustomersGetResponse>;
+  identifier: "EnterpriseMccCacheNodeResource",
+}) as any as S.Schema<EnterpriseMccCacheNodeResource>;
 
-export interface IspCustomersListByResourceGroupRequest {
+/** The EnterpriseMccCacheNodeResource items on this page */
+export type EnterpriseMccCacheNodeResourceListResultValueList =
+  Array<EnterpriseMccCacheNodeResource>;
+export const EnterpriseMccCacheNodeResourceListResultValueList =
+  /*@__PURE__*/ S.Array(
+    EnterpriseMccCacheNodeResource,
+  ) as any as S.Schema<EnterpriseMccCacheNodeResourceListResultValueList>;
+
+/** The response of a EnterpriseMccCacheNodeResource list operation. */
+export interface EnterpriseMccCacheNodeResourceListResult {
+  /** The EnterpriseMccCacheNodeResource items on this page */
+  value: EnterpriseMccCacheNodeResourceListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const EnterpriseMccCacheNodeResourceListResult = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      value: EnterpriseMccCacheNodeResourceListResultValueList,
+      nextLink: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "EnterpriseMccCacheNodeResourceListResult",
+}) as any as S.Schema<EnterpriseMccCacheNodeResourceListResult>;
+
+export interface ListEnterpriseMccCustomerByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
 }
-export const IspCustomersListByResourceGroupRequest = /*@__PURE__*/ S.suspend(
+export const ListEnterpriseMccCustomerByResourceGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedCache/enterpriseMccCustomers",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListEnterpriseMccCustomerByResourceGroupRequest",
+  }) as any as S.Schema<ListEnterpriseMccCustomerByResourceGroupRequest>;
+
+/** Resource tags. */
+export type EnterpriseMccCustomerResourceTagsMap = {
+  [key: string]: string | undefined;
+};
+export const EnterpriseMccCustomerResourceTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<EnterpriseMccCustomerResourceTagsMap>;
+
+/** Represents the high level Nodes needed to provision customer resources */
+export interface EnterpriseMccCustomerResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: EnterpriseMccCustomerResourceTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: CustomerProperty;
+}
+export const EnterpriseMccCustomerResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(EnterpriseMccCustomerResourceTagsMap),
+    location: S.String,
+    properties: S.optional(CustomerProperty),
+  }),
+).annotate({
+  identifier: "EnterpriseMccCustomerResource",
+}) as any as S.Schema<EnterpriseMccCustomerResource>;
+
+/** The EnterpriseMccCustomerResource items on this page */
+export type EnterpriseMccCustomerResourceListResultValueList =
+  Array<EnterpriseMccCustomerResource>;
+export const EnterpriseMccCustomerResourceListResultValueList =
+  /*@__PURE__*/ S.Array(
+    EnterpriseMccCustomerResource,
+  ) as any as S.Schema<EnterpriseMccCustomerResourceListResultValueList>;
+
+/** The response of a EnterpriseMccCustomerResource list operation. */
+export interface EnterpriseMccCustomerResourceListResult {
+  /** The EnterpriseMccCustomerResource items on this page */
+  value: EnterpriseMccCustomerResourceListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const EnterpriseMccCustomerResourceListResult = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      value: EnterpriseMccCustomerResourceListResultValueList,
+      nextLink: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "EnterpriseMccCustomerResourceListResult",
+}) as any as S.Schema<EnterpriseMccCustomerResourceListResult>;
+
+export interface ListEnterpriseMccCustomerBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+}
+export const ListEnterpriseMccCustomerBySubscriptionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ConnectedCache/enterpriseMccCustomers",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListEnterpriseMccCustomerBySubscriptionRequest",
+  }) as any as S.Schema<ListEnterpriseMccCustomerBySubscriptionRequest>;
+
+export interface ListIspCacheNodesOperationByIspCustomerResourceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Customer resource */
+  customerResourceName: string;
+}
+export const ListIspCacheNodesOperationByIspCustomerResourceRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      customerResourceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedCache/ispCustomers/{customerResourceName}/ispCacheNodes",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListIspCacheNodesOperationByIspCustomerResourceRequest",
+  }) as any as S.Schema<ListIspCacheNodesOperationByIspCustomerResourceRequest>;
+
+/** Resource tags. */
+export type IspCacheNodeResourceTagsMap = { [key: string]: string | undefined };
+export const IspCacheNodeResourceTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<IspCacheNodeResourceTagsMap>;
+
+/** Represents the high level Nodes needed to provision cache node resources */
+export interface IspCacheNodeResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: IspCacheNodeResourceTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: CacheNodeProperty;
+}
+export const IspCacheNodeResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(IspCacheNodeResourceTagsMap),
+    location: S.String,
+    properties: S.optional(CacheNodeProperty),
+  }),
+).annotate({
+  identifier: "IspCacheNodeResource",
+}) as any as S.Schema<IspCacheNodeResource>;
+
+/** The IspCacheNodeResource items on this page */
+export type IspCacheNodeResourceListResultValueList =
+  Array<IspCacheNodeResource>;
+export const IspCacheNodeResourceListResultValueList = /*@__PURE__*/ S.Array(
+  IspCacheNodeResource,
+) as any as S.Schema<IspCacheNodeResourceListResultValueList>;
+
+/** The response of a IspCacheNodeResource list operation. */
+export interface IspCacheNodeResourceListResult {
+  /** The IspCacheNodeResource items on this page */
+  value: IspCacheNodeResourceListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const IspCacheNodeResourceListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: IspCacheNodeResourceListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "IspCacheNodeResourceListResult",
+}) as any as S.Schema<IspCacheNodeResourceListResult>;
+
+export interface ListIspCustomerByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const ListIspCustomerByResourceGroupRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -3349,8 +3103,8 @@ export const IspCustomersListByResourceGroupRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "IspCustomersListByResourceGroupRequest",
-}) as any as S.Schema<IspCustomersListByResourceGroupRequest>;
+  identifier: "ListIspCustomerByResourceGroupRequest",
+}) as any as S.Schema<ListIspCustomerByResourceGroupRequest>;
 
 /** Resource tags. */
 export type IspCustomerResourceTagsMap = { [key: string]: string | undefined };
@@ -3412,11 +3166,11 @@ export const IspCustomerResourceListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "IspCustomerResourceListResult",
 }) as any as S.Schema<IspCustomerResourceListResult>;
 
-export interface IspCustomersListBySubscriptionRequest {
+export interface ListIspCustomerBySubscriptionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
 }
-export const IspCustomersListBySubscriptionRequest = /*@__PURE__*/ S.suspend(
+export const ListIspCustomerBySubscriptionRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -3429,87 +3183,11 @@ export const IspCustomersListBySubscriptionRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "IspCustomersListBySubscriptionRequest",
-}) as any as S.Schema<IspCustomersListBySubscriptionRequest>;
+  identifier: "ListIspCustomerBySubscriptionRequest",
+}) as any as S.Schema<ListIspCustomerBySubscriptionRequest>;
 
-/** Resource tags. */
-export type IspCustomersUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const IspCustomersUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<IspCustomersUpdateRequestTagsMap>;
-
-export interface IspCustomersUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Customer resource */
-  customerResourceName: string;
-  /** Resource tags. */
-  tags?: IspCustomersUpdateRequestTagsMap;
-}
-export const IspCustomersUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    customerResourceName: S.String.pipe(T.Label()),
-    tags: S.optional(IspCustomersUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedCache/ispCustomers/{customerResourceName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "IspCustomersUpdateRequest",
-}) as any as S.Schema<IspCustomersUpdateRequest>;
-
-/** Resource tags. */
-export type IspCustomersUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const IspCustomersUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<IspCustomersUpdateResponseTagsMap>;
-
-export interface IspCustomersUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: IspCustomersUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: CustomerProperty;
-}
-export const IspCustomersUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(IspCustomersUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(CustomerProperty),
-  }),
-).annotate({
-  identifier: "IspCustomersUpdateResponse",
-}) as any as S.Schema<IspCustomersUpdateResponse>;
-
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({
       method: "GET",
@@ -3519,8 +3197,8 @@ export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
 
 /** Localized display information for this particular operation. */
 export interface OperationDisplay {
@@ -3576,25 +3254,403 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
-export interface OperationsListResponse {
+export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
-export const OperationsListResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "OperationsListResponse",
-}) as any as S.Schema<OperationsListResponse>;
+  identifier: "ListOperationsResponse",
+}) as any as S.Schema<ListOperationsResponse>;
+
+/** Resource tags. */
+export type UpdateEnterpriseMccCacheNodesOperationRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateEnterpriseMccCacheNodesOperationRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<UpdateEnterpriseMccCacheNodesOperationRequestTagsMap>;
+
+export interface UpdateEnterpriseMccCacheNodesOperationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Customer resource */
+  customerResourceName: string;
+  /** Name of the ConnectedCache resource */
+  cacheNodeResourceName: string;
+  /** Resource tags. */
+  tags?: UpdateEnterpriseMccCacheNodesOperationRequestTagsMap;
+}
+export const UpdateEnterpriseMccCacheNodesOperationRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      customerResourceName: S.String.pipe(T.Label()),
+      cacheNodeResourceName: S.String.pipe(T.Label()),
+      tags: S.optional(UpdateEnterpriseMccCacheNodesOperationRequestTagsMap),
+    }).pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedCache/enterpriseMccCustomers/{customerResourceName}/enterpriseMccCacheNodes/{cacheNodeResourceName}",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "UpdateEnterpriseMccCacheNodesOperationRequest",
+  }) as any as S.Schema<UpdateEnterpriseMccCacheNodesOperationRequest>;
+
+/** Resource tags. */
+export type UpdateEnterpriseMccCacheNodesOperationResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateEnterpriseMccCacheNodesOperationResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<UpdateEnterpriseMccCacheNodesOperationResponseTagsMap>;
+
+export interface UpdateEnterpriseMccCacheNodesOperationResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateEnterpriseMccCacheNodesOperationResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: CacheNodeProperty;
+}
+export const UpdateEnterpriseMccCacheNodesOperationResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(UpdateEnterpriseMccCacheNodesOperationResponseTagsMap),
+      location: S.String,
+      properties: S.optional(CacheNodeProperty),
+    }),
+  ).annotate({
+    identifier: "UpdateEnterpriseMccCacheNodesOperationResponse",
+  }) as any as S.Schema<UpdateEnterpriseMccCacheNodesOperationResponse>;
+
+/** Resource tags. */
+export type UpdateEnterpriseMccCustomerRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateEnterpriseMccCustomerRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateEnterpriseMccCustomerRequestTagsMap>;
+
+export interface UpdateEnterpriseMccCustomerRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Customer resource */
+  customerResourceName: string;
+  /** Resource tags. */
+  tags?: UpdateEnterpriseMccCustomerRequestTagsMap;
+}
+export const UpdateEnterpriseMccCustomerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    customerResourceName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateEnterpriseMccCustomerRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedCache/enterpriseMccCustomers/{customerResourceName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateEnterpriseMccCustomerRequest",
+}) as any as S.Schema<UpdateEnterpriseMccCustomerRequest>;
+
+/** Resource tags. */
+export type UpdateEnterpriseMccCustomerResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateEnterpriseMccCustomerResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<UpdateEnterpriseMccCustomerResponseTagsMap>;
+
+export interface UpdateEnterpriseMccCustomerResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateEnterpriseMccCustomerResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: CustomerProperty;
+}
+export const UpdateEnterpriseMccCustomerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateEnterpriseMccCustomerResponseTagsMap),
+    location: S.String,
+    properties: S.optional(CustomerProperty),
+  }),
+).annotate({
+  identifier: "UpdateEnterpriseMccCustomerResponse",
+}) as any as S.Schema<UpdateEnterpriseMccCustomerResponse>;
+
+/** Resource tags. */
+export type UpdateIspCacheNodesOperationRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateIspCacheNodesOperationRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<UpdateIspCacheNodesOperationRequestTagsMap>;
+
+export interface UpdateIspCacheNodesOperationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Customer resource */
+  customerResourceName: string;
+  /** Name of the ConnectedCache resource */
+  cacheNodeResourceName: string;
+  /** Resource tags. */
+  tags?: UpdateIspCacheNodesOperationRequestTagsMap;
+}
+export const UpdateIspCacheNodesOperationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    customerResourceName: S.String.pipe(T.Label()),
+    cacheNodeResourceName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateIspCacheNodesOperationRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedCache/ispCustomers/{customerResourceName}/ispCacheNodes/{cacheNodeResourceName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateIspCacheNodesOperationRequest",
+}) as any as S.Schema<UpdateIspCacheNodesOperationRequest>;
+
+/** Resource tags. */
+export type UpdateIspCacheNodesOperationResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateIspCacheNodesOperationResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<UpdateIspCacheNodesOperationResponseTagsMap>;
+
+export interface UpdateIspCacheNodesOperationResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateIspCacheNodesOperationResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: CacheNodeProperty;
+}
+export const UpdateIspCacheNodesOperationResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(UpdateIspCacheNodesOperationResponseTagsMap),
+      location: S.String,
+      properties: S.optional(CacheNodeProperty),
+    }),
+).annotate({
+  identifier: "UpdateIspCacheNodesOperationResponse",
+}) as any as S.Schema<UpdateIspCacheNodesOperationResponse>;
+
+/** Resource tags. */
+export type UpdateIspCustomerRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateIspCustomerRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateIspCustomerRequestTagsMap>;
+
+export interface UpdateIspCustomerRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Customer resource */
+  customerResourceName: string;
+  /** Resource tags. */
+  tags?: UpdateIspCustomerRequestTagsMap;
+}
+export const UpdateIspCustomerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    customerResourceName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateIspCustomerRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedCache/ispCustomers/{customerResourceName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateIspCustomerRequest",
+}) as any as S.Schema<UpdateIspCustomerRequest>;
+
+/** Resource tags. */
+export type UpdateIspCustomerResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateIspCustomerResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateIspCustomerResponseTagsMap>;
+
+export interface UpdateIspCustomerResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateIspCustomerResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: CustomerProperty;
+}
+export const UpdateIspCustomerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateIspCustomerResponseTagsMap),
+    location: S.String,
+    properties: S.optional(CustomerProperty),
+  }),
+).annotate({
+  identifier: "UpdateIspCustomerResponse",
+}) as any as S.Schema<UpdateIspCustomerResponse>;
+
+export type DeleteEnterpriseMccCacheNodesOperationError = AzureOpError;
+/** This api deletes an existing ispCacheNode resource */
+export const DeleteEnterpriseMccCacheNodesOperation: API.OperationMethod<
+  DeleteEnterpriseMccCacheNodesOperationRequest,
+  DeleteEnterpriseMccCacheNodesOperationResponse,
+  DeleteEnterpriseMccCacheNodesOperationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteEnterpriseMccCacheNodesOperationRequest,
+  output: DeleteEnterpriseMccCacheNodesOperationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteEnterpriseMccCustomerError = AzureOpError;
+/** This api deletes an existing enterprise mcc customer resource */
+export const DeleteEnterpriseMccCustomer: API.OperationMethod<
+  DeleteEnterpriseMccCustomerRequest,
+  DeleteEnterpriseMccCustomerResponse,
+  DeleteEnterpriseMccCustomerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteEnterpriseMccCustomerRequest,
+  output: DeleteEnterpriseMccCustomerResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteIspCacheNodesOperationError = AzureOpError;
+/** This api deletes an existing ispCacheNode resource */
+export const DeleteIspCacheNodesOperation: API.OperationMethod<
+  DeleteIspCacheNodesOperationRequest,
+  DeleteIspCacheNodesOperationResponse,
+  DeleteIspCacheNodesOperationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteIspCacheNodesOperationRequest,
+  output: DeleteIspCacheNodesOperationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteIspCustomerError = AzureOpError;
+/** This api deletes an existing ispCustomer resource */
+export const DeleteIspCustomer: API.OperationMethod<
+  DeleteIspCustomerRequest,
+  DeleteIspCustomerResponse,
+  DeleteIspCustomerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteIspCustomerRequest,
+  output: DeleteIspCustomerResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
 export type EnterpriseMccCacheNodesOperationsCreateOrUpdateError = AzureOpError;
 /** This api creates an ispCacheNode with the specified create parameters */
@@ -3606,36 +3662,6 @@ export const EnterpriseMccCacheNodesOperationsCreateOrUpdate: API.OperationMetho
 > = /*@__PURE__*/ API.make(() => ({
   input: EnterpriseMccCacheNodesOperationsCreateOrUpdateRequest,
   output: EnterpriseMccCacheNodesOperationsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type EnterpriseMccCacheNodesOperationsDeleteError = AzureOpError;
-/** This api deletes an existing ispCacheNode resource */
-export const EnterpriseMccCacheNodesOperationsDelete: API.OperationMethod<
-  EnterpriseMccCacheNodesOperationsDeleteRequest,
-  EnterpriseMccCacheNodesOperationsDeleteResponse,
-  EnterpriseMccCacheNodesOperationsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: EnterpriseMccCacheNodesOperationsDeleteRequest,
-  output: EnterpriseMccCacheNodesOperationsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type EnterpriseMccCacheNodesOperationsGetError = AzureOpError;
-/** This api gets ispCacheNode resource information */
-export const EnterpriseMccCacheNodesOperationsGet: API.OperationMethod<
-  EnterpriseMccCacheNodesOperationsGetRequest,
-  EnterpriseMccCacheNodesOperationsGetResponse,
-  EnterpriseMccCacheNodesOperationsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: EnterpriseMccCacheNodesOperationsGetRequest,
-  output: EnterpriseMccCacheNodesOperationsGetResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3674,74 +3700,6 @@ export const EnterpriseMccCacheNodesOperationsGetCacheNodeInstallDetails: API.Op
   retry: Retry.Retry,
 }));
 
-export type EnterpriseMccCacheNodesOperationsGetCacheNodeMccIssueDetailsHistoryError =
-  AzureOpError;
-/** This api gets ispCacheNode resource issues details histrory information */
-export const EnterpriseMccCacheNodesOperationsGetCacheNodeMccIssueDetailsHistory: API.OperationMethod<
-  EnterpriseMccCacheNodesOperationsGetCacheNodeMccIssueDetailsHistoryRequest,
-  EnterpriseMccCacheNodesOperationsGetCacheNodeMccIssueDetailsHistoryResponse,
-  EnterpriseMccCacheNodesOperationsGetCacheNodeMccIssueDetailsHistoryError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input:
-    EnterpriseMccCacheNodesOperationsGetCacheNodeMccIssueDetailsHistoryRequest,
-  output:
-    EnterpriseMccCacheNodesOperationsGetCacheNodeMccIssueDetailsHistoryResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type EnterpriseMccCacheNodesOperationsGetCacheNodeTlsCertificateHistoryError =
-  AzureOpError;
-/** This api gets ispCacheNode resource tls certificate histrory information */
-export const EnterpriseMccCacheNodesOperationsGetCacheNodeTlsCertificateHistory: API.OperationMethod<
-  EnterpriseMccCacheNodesOperationsGetCacheNodeTlsCertificateHistoryRequest,
-  EnterpriseMccCacheNodesOperationsGetCacheNodeTlsCertificateHistoryResponse,
-  EnterpriseMccCacheNodesOperationsGetCacheNodeTlsCertificateHistoryError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input:
-    EnterpriseMccCacheNodesOperationsGetCacheNodeTlsCertificateHistoryRequest,
-  output:
-    EnterpriseMccCacheNodesOperationsGetCacheNodeTlsCertificateHistoryResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type EnterpriseMccCacheNodesOperationsListByEnterpriseMccCustomerResourceError =
-  AzureOpError;
-/** This api retrieves information about all ispCacheNode resources under the given subscription and resource group */
-export const EnterpriseMccCacheNodesOperationsListByEnterpriseMccCustomerResource: API.OperationMethod<
-  EnterpriseMccCacheNodesOperationsListByEnterpriseMccCustomerResourceRequest,
-  EnterpriseMccCacheNodeResourceListResult,
-  EnterpriseMccCacheNodesOperationsListByEnterpriseMccCustomerResourceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input:
-    EnterpriseMccCacheNodesOperationsListByEnterpriseMccCustomerResourceRequest,
-  output: EnterpriseMccCacheNodeResourceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type EnterpriseMccCacheNodesOperationsUpdateError = AzureOpError;
-/** This api updates an existing ispCacheNode resource */
-export const EnterpriseMccCacheNodesOperationsUpdate: API.OperationMethod<
-  EnterpriseMccCacheNodesOperationsUpdateRequest,
-  EnterpriseMccCacheNodesOperationsUpdateResponse,
-  EnterpriseMccCacheNodesOperationsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: EnterpriseMccCacheNodesOperationsUpdateRequest,
-  output: EnterpriseMccCacheNodesOperationsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type EnterpriseMccCustomersCreateOrUpdateError = AzureOpError;
 /** This api creates an enterprise mcc customer with the specified create parameters */
 export const EnterpriseMccCustomersCreateOrUpdate: API.OperationMethod<
@@ -3757,76 +3715,128 @@ export const EnterpriseMccCustomersCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type EnterpriseMccCustomersDeleteError = AzureOpError;
-/** This api deletes an existing enterprise mcc customer resource */
-export const EnterpriseMccCustomersDelete: API.OperationMethod<
-  EnterpriseMccCustomersDeleteRequest,
-  EnterpriseMccCustomersDeleteResponse,
-  EnterpriseMccCustomersDeleteError,
+export type GetEnterpriseMccCacheNodesOperationError = AzureOpError;
+/** This api gets ispCacheNode resource information */
+export const GetEnterpriseMccCacheNodesOperation: API.OperationMethod<
+  GetEnterpriseMccCacheNodesOperationRequest,
+  GetEnterpriseMccCacheNodesOperationResponse,
+  GetEnterpriseMccCacheNodesOperationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EnterpriseMccCustomersDeleteRequest,
-  output: EnterpriseMccCustomersDeleteResponse,
+  input: GetEnterpriseMccCacheNodesOperationRequest,
+  output: GetEnterpriseMccCacheNodesOperationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type EnterpriseMccCustomersGetError = AzureOpError;
+export type GetEnterpriseMccCacheNodesOperationCacheNodeMccIssueDetailsHistoryError =
+  AzureOpError;
+/** This api gets ispCacheNode resource issues details histrory information */
+export const GetEnterpriseMccCacheNodesOperationCacheNodeMccIssueDetailsHistory: API.OperationMethod<
+  GetEnterpriseMccCacheNodesOperationCacheNodeMccIssueDetailsHistoryRequest,
+  GetEnterpriseMccCacheNodesOperationCacheNodeMccIssueDetailsHistoryResponse,
+  GetEnterpriseMccCacheNodesOperationCacheNodeMccIssueDetailsHistoryError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input:
+    GetEnterpriseMccCacheNodesOperationCacheNodeMccIssueDetailsHistoryRequest,
+  output:
+    GetEnterpriseMccCacheNodesOperationCacheNodeMccIssueDetailsHistoryResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEnterpriseMccCacheNodesOperationCacheNodeTlsCertificateHistoryError =
+  AzureOpError;
+/** This api gets ispCacheNode resource tls certificate histrory information */
+export const GetEnterpriseMccCacheNodesOperationCacheNodeTlsCertificateHistory: API.OperationMethod<
+  GetEnterpriseMccCacheNodesOperationCacheNodeTlsCertificateHistoryRequest,
+  GetEnterpriseMccCacheNodesOperationCacheNodeTlsCertificateHistoryResponse,
+  GetEnterpriseMccCacheNodesOperationCacheNodeTlsCertificateHistoryError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input:
+    GetEnterpriseMccCacheNodesOperationCacheNodeTlsCertificateHistoryRequest,
+  output:
+    GetEnterpriseMccCacheNodesOperationCacheNodeTlsCertificateHistoryResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEnterpriseMccCustomerError = AzureOpError;
 /** Gets the enterprise mcc customer resource information using this get call */
-export const EnterpriseMccCustomersGet: API.OperationMethod<
-  EnterpriseMccCustomersGetRequest,
-  EnterpriseMccCustomersGetResponse,
-  EnterpriseMccCustomersGetError,
+export const GetEnterpriseMccCustomer: API.OperationMethod<
+  GetEnterpriseMccCustomerRequest,
+  GetEnterpriseMccCustomerResponse,
+  GetEnterpriseMccCustomerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EnterpriseMccCustomersGetRequest,
-  output: EnterpriseMccCustomersGetResponse,
+  input: GetEnterpriseMccCustomerRequest,
+  output: GetEnterpriseMccCustomerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type EnterpriseMccCustomersListByResourceGroupError = AzureOpError;
-/** This api gets the information about all enterprise mcc customer resources under the given subscription and resource group */
-export const EnterpriseMccCustomersListByResourceGroup: API.OperationMethod<
-  EnterpriseMccCustomersListByResourceGroupRequest,
-  EnterpriseMccCustomerResourceListResult,
-  EnterpriseMccCustomersListByResourceGroupError,
+export type GetIspCacheNodesOperationError = AzureOpError;
+/** This api gets ispCacheNode resource information */
+export const GetIspCacheNodesOperation: API.OperationMethod<
+  GetIspCacheNodesOperationRequest,
+  GetIspCacheNodesOperationResponse,
+  GetIspCacheNodesOperationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EnterpriseMccCustomersListByResourceGroupRequest,
-  output: EnterpriseMccCustomerResourceListResult,
+  input: GetIspCacheNodesOperationRequest,
+  output: GetIspCacheNodesOperationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type EnterpriseMccCustomersListBySubscriptionError = AzureOpError;
-/** This api gets information about all enterpriseMccCustomer resources under the given subscription */
-export const EnterpriseMccCustomersListBySubscription: API.OperationMethod<
-  EnterpriseMccCustomersListBySubscriptionRequest,
-  EnterpriseMccCustomerResourceListResult,
-  EnterpriseMccCustomersListBySubscriptionError,
+export type GetIspCacheNodesOperationBgpCidrsError = AzureOpError;
+/** This api gets ispCacheNode resource information */
+export const GetIspCacheNodesOperationBgpCidrs: API.OperationMethod<
+  GetIspCacheNodesOperationBgpCidrsRequest,
+  GetIspCacheNodesOperationBgpCidrsResponse,
+  GetIspCacheNodesOperationBgpCidrsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EnterpriseMccCustomersListBySubscriptionRequest,
-  output: EnterpriseMccCustomerResourceListResult,
+  input: GetIspCacheNodesOperationBgpCidrsRequest,
+  output: GetIspCacheNodesOperationBgpCidrsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type EnterpriseMccCustomersUpdateError = AzureOpError;
-/** This api updates an existing enterprise mcc customer resource */
-export const EnterpriseMccCustomersUpdate: API.OperationMethod<
-  EnterpriseMccCustomersUpdateRequest,
-  EnterpriseMccCustomersUpdateResponse,
-  EnterpriseMccCustomersUpdateError,
+export type GetIspCacheNodesOperationCacheNodeMccIssueDetailsHistoryError =
+  AzureOpError;
+/** This api gets ispCacheNode resource issues details histrory information */
+export const GetIspCacheNodesOperationCacheNodeMccIssueDetailsHistory: API.OperationMethod<
+  GetIspCacheNodesOperationCacheNodeMccIssueDetailsHistoryRequest,
+  GetIspCacheNodesOperationCacheNodeMccIssueDetailsHistoryResponse,
+  GetIspCacheNodesOperationCacheNodeMccIssueDetailsHistoryError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EnterpriseMccCustomersUpdateRequest,
-  output: EnterpriseMccCustomersUpdateResponse,
+  input: GetIspCacheNodesOperationCacheNodeMccIssueDetailsHistoryRequest,
+  output: GetIspCacheNodesOperationCacheNodeMccIssueDetailsHistoryResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetIspCustomerError = AzureOpError;
+/** Gets the ispCustomer resource information using this get call */
+export const GetIspCustomer: API.OperationMethod<
+  GetIspCustomerRequest,
+  GetIspCustomerResponse,
+  GetIspCustomerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetIspCustomerRequest,
+  output: GetIspCustomerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3842,51 +3852,6 @@ export const IspCacheNodesOperationsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: IspCacheNodesOperationsCreateOrUpdateRequest,
   output: IspCacheNodesOperationsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IspCacheNodesOperationsDeleteError = AzureOpError;
-/** This api deletes an existing ispCacheNode resource */
-export const IspCacheNodesOperationsDelete: API.OperationMethod<
-  IspCacheNodesOperationsDeleteRequest,
-  IspCacheNodesOperationsDeleteResponse,
-  IspCacheNodesOperationsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IspCacheNodesOperationsDeleteRequest,
-  output: IspCacheNodesOperationsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IspCacheNodesOperationsGetError = AzureOpError;
-/** This api gets ispCacheNode resource information */
-export const IspCacheNodesOperationsGet: API.OperationMethod<
-  IspCacheNodesOperationsGetRequest,
-  IspCacheNodesOperationsGetResponse,
-  IspCacheNodesOperationsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IspCacheNodesOperationsGetRequest,
-  output: IspCacheNodesOperationsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IspCacheNodesOperationsGetBgpCidrsError = AzureOpError;
-/** This api gets ispCacheNode resource information */
-export const IspCacheNodesOperationsGetBgpCidrs: API.OperationMethod<
-  IspCacheNodesOperationsGetBgpCidrsRequest,
-  IspCacheNodesOperationsGetBgpCidrsResponse,
-  IspCacheNodesOperationsGetBgpCidrsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IspCacheNodesOperationsGetBgpCidrsRequest,
-  output: IspCacheNodesOperationsGetBgpCidrsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3924,53 +3889,6 @@ export const IspCacheNodesOperationsGetCacheNodeInstallDetails: API.OperationMet
   retry: Retry.Retry,
 }));
 
-export type IspCacheNodesOperationsGetCacheNodeMccIssueDetailsHistoryError =
-  AzureOpError;
-/** This api gets ispCacheNode resource issues details histrory information */
-export const IspCacheNodesOperationsGetCacheNodeMccIssueDetailsHistory: API.OperationMethod<
-  IspCacheNodesOperationsGetCacheNodeMccIssueDetailsHistoryRequest,
-  IspCacheNodesOperationsGetCacheNodeMccIssueDetailsHistoryResponse,
-  IspCacheNodesOperationsGetCacheNodeMccIssueDetailsHistoryError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IspCacheNodesOperationsGetCacheNodeMccIssueDetailsHistoryRequest,
-  output: IspCacheNodesOperationsGetCacheNodeMccIssueDetailsHistoryResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IspCacheNodesOperationsListByIspCustomerResourceError =
-  AzureOpError;
-/** This api retrieves information about all ispCacheNode resources under the given subscription and resource group */
-export const IspCacheNodesOperationsListByIspCustomerResource: API.OperationMethod<
-  IspCacheNodesOperationsListByIspCustomerResourceRequest,
-  IspCacheNodeResourceListResult,
-  IspCacheNodesOperationsListByIspCustomerResourceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IspCacheNodesOperationsListByIspCustomerResourceRequest,
-  output: IspCacheNodeResourceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IspCacheNodesOperationsUpdateError = AzureOpError;
-/** This api updates an existing ispCacheNode resource */
-export const IspCacheNodesOperationsUpdate: API.OperationMethod<
-  IspCacheNodesOperationsUpdateRequest,
-  IspCacheNodesOperationsUpdateResponse,
-  IspCacheNodesOperationsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IspCacheNodesOperationsUpdateRequest,
-  output: IspCacheNodesOperationsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type IspCustomersCreateOrUpdateError = AzureOpError;
 /** This api creates an ispCustomer with the specified create parameters */
 export const IspCustomersCreateOrUpdate: API.OperationMethod<
@@ -3986,91 +3904,168 @@ export const IspCustomersCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type IspCustomersDeleteError = AzureOpError;
-/** This api deletes an existing ispCustomer resource */
-export const IspCustomersDelete: API.OperationMethod<
-  IspCustomersDeleteRequest,
-  IspCustomersDeleteResponse,
-  IspCustomersDeleteError,
+export type ListEnterpriseMccCacheNodesOperationByEnterpriseMccCustomerResourceError =
+  AzureOpError;
+/** This api retrieves information about all ispCacheNode resources under the given subscription and resource group */
+export const ListEnterpriseMccCacheNodesOperationByEnterpriseMccCustomerResource: API.OperationMethod<
+  ListEnterpriseMccCacheNodesOperationByEnterpriseMccCustomerResourceRequest,
+  EnterpriseMccCacheNodeResourceListResult,
+  ListEnterpriseMccCacheNodesOperationByEnterpriseMccCustomerResourceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: IspCustomersDeleteRequest,
-  output: IspCustomersDeleteResponse,
+  input:
+    ListEnterpriseMccCacheNodesOperationByEnterpriseMccCustomerResourceRequest,
+  output: EnterpriseMccCacheNodeResourceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type IspCustomersGetError = AzureOpError;
-/** Gets the ispCustomer resource information using this get call */
-export const IspCustomersGet: API.OperationMethod<
-  IspCustomersGetRequest,
-  IspCustomersGetResponse,
-  IspCustomersGetError,
+export type ListEnterpriseMccCustomerByResourceGroupError = AzureOpError;
+/** This api gets the information about all enterprise mcc customer resources under the given subscription and resource group */
+export const ListEnterpriseMccCustomerByResourceGroup: API.OperationMethod<
+  ListEnterpriseMccCustomerByResourceGroupRequest,
+  EnterpriseMccCustomerResourceListResult,
+  ListEnterpriseMccCustomerByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: IspCustomersGetRequest,
-  output: IspCustomersGetResponse,
+  input: ListEnterpriseMccCustomerByResourceGroupRequest,
+  output: EnterpriseMccCustomerResourceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type IspCustomersListByResourceGroupError = AzureOpError;
+export type ListEnterpriseMccCustomerBySubscriptionError = AzureOpError;
+/** This api gets information about all enterpriseMccCustomer resources under the given subscription */
+export const ListEnterpriseMccCustomerBySubscription: API.OperationMethod<
+  ListEnterpriseMccCustomerBySubscriptionRequest,
+  EnterpriseMccCustomerResourceListResult,
+  ListEnterpriseMccCustomerBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListEnterpriseMccCustomerBySubscriptionRequest,
+  output: EnterpriseMccCustomerResourceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListIspCacheNodesOperationByIspCustomerResourceError = AzureOpError;
+/** This api retrieves information about all ispCacheNode resources under the given subscription and resource group */
+export const ListIspCacheNodesOperationByIspCustomerResource: API.OperationMethod<
+  ListIspCacheNodesOperationByIspCustomerResourceRequest,
+  IspCacheNodeResourceListResult,
+  ListIspCacheNodesOperationByIspCustomerResourceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListIspCacheNodesOperationByIspCustomerResourceRequest,
+  output: IspCacheNodeResourceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListIspCustomerByResourceGroupError = AzureOpError;
 /** This api gets the information about all ispCustomer resources under the given subscription and resource group */
-export const IspCustomersListByResourceGroup: API.OperationMethod<
-  IspCustomersListByResourceGroupRequest,
+export const ListIspCustomerByResourceGroup: API.OperationMethod<
+  ListIspCustomerByResourceGroupRequest,
   IspCustomerResourceListResult,
-  IspCustomersListByResourceGroupError,
+  ListIspCustomerByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: IspCustomersListByResourceGroupRequest,
+  input: ListIspCustomerByResourceGroupRequest,
   output: IspCustomerResourceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type IspCustomersListBySubscriptionError = AzureOpError;
+export type ListIspCustomerBySubscriptionError = AzureOpError;
 /** This api gets information about all ispCustomer resources under the given subscription */
-export const IspCustomersListBySubscription: API.OperationMethod<
-  IspCustomersListBySubscriptionRequest,
+export const ListIspCustomerBySubscription: API.OperationMethod<
+  ListIspCustomerBySubscriptionRequest,
   IspCustomerResourceListResult,
-  IspCustomersListBySubscriptionError,
+  ListIspCustomerBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: IspCustomersListBySubscriptionRequest,
+  input: ListIspCustomerBySubscriptionRequest,
   output: IspCustomerResourceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type IspCustomersUpdateError = AzureOpError;
-/** This api updates an existing ispCustomer resource */
-export const IspCustomersUpdate: API.OperationMethod<
-  IspCustomersUpdateRequest,
-  IspCustomersUpdateResponse,
-  IspCustomersUpdateError,
+export type ListOperationsError = AzureOpError;
+/** List the operations for the provider */
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  ListOperationsResponse,
+  ListOperationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: IspCustomersUpdateRequest,
-  output: IspCustomersUpdateResponse,
+  input: ListOperationsRequest,
+  output: ListOperationsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OperationsListError = AzureOpError;
-/** List the operations for the provider */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationsListResponse,
-  OperationsListError,
+export type UpdateEnterpriseMccCacheNodesOperationError = AzureOpError;
+/** This api updates an existing ispCacheNode resource */
+export const UpdateEnterpriseMccCacheNodesOperation: API.OperationMethod<
+  UpdateEnterpriseMccCacheNodesOperationRequest,
+  UpdateEnterpriseMccCacheNodesOperationResponse,
+  UpdateEnterpriseMccCacheNodesOperationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
-  output: OperationsListResponse,
+  input: UpdateEnterpriseMccCacheNodesOperationRequest,
+  output: UpdateEnterpriseMccCacheNodesOperationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateEnterpriseMccCustomerError = AzureOpError;
+/** This api updates an existing enterprise mcc customer resource */
+export const UpdateEnterpriseMccCustomer: API.OperationMethod<
+  UpdateEnterpriseMccCustomerRequest,
+  UpdateEnterpriseMccCustomerResponse,
+  UpdateEnterpriseMccCustomerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateEnterpriseMccCustomerRequest,
+  output: UpdateEnterpriseMccCustomerResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateIspCacheNodesOperationError = AzureOpError;
+/** This api updates an existing ispCacheNode resource */
+export const UpdateIspCacheNodesOperation: API.OperationMethod<
+  UpdateIspCacheNodesOperationRequest,
+  UpdateIspCacheNodesOperationResponse,
+  UpdateIspCacheNodesOperationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateIspCacheNodesOperationRequest,
+  output: UpdateIspCacheNodesOperationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateIspCustomerError = AzureOpError;
+/** This api updates an existing ispCustomer resource */
+export const UpdateIspCustomer: API.OperationMethod<
+  UpdateIspCustomerRequest,
+  UpdateIspCustomerResponse,
+  UpdateIspCustomerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateIspCustomerRequest,
+  output: UpdateIspCustomerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

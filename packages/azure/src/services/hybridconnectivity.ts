@@ -12,6 +12,278 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
+/** Name of the service. */
+export type ServiceName = "SSH" | "WAC";
+export const ServiceName = /*@__PURE__*/ S.String;
+
+/** Service configuration details */
+export interface ServiceConfigurationPropertiesInput {
+  /** Name of the service. */
+  serviceName: ServiceName | (string & {});
+  /** The resource Id of the connectivity endpoint (optional). */
+  resourceId?: string;
+  /** The port on which service is enabled. */
+  port?: number;
+}
+export const ServiceConfigurationPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: ServiceName,
+    resourceId: S.optional(S.String),
+    port: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "ServiceConfigurationPropertiesInput",
+}) as any as S.Schema<ServiceConfigurationPropertiesInput>;
+
+export interface CreateServiceConfigurationOrupdateRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  resourceUri: string;
+  /** The endpoint name. */
+  endpointName: string;
+  /** The service name. */
+  serviceConfigurationName: string;
+  /** The service configuration properties. */
+  properties?: ServiceConfigurationPropertiesInput;
+}
+export const CreateServiceConfigurationOrupdateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      resourceUri: S.String.pipe(T.Label()),
+      endpointName: S.String.pipe(T.Label()),
+      serviceConfigurationName: S.String.pipe(T.Label()),
+      properties: S.optional(ServiceConfigurationPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/{resourceUri}/providers/Microsoft.HybridConnectivity/endpoints/{endpointName}/serviceConfigurations/{serviceConfigurationName}",
+        code: 200,
+        apiVersion: "2027-01-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "CreateServiceConfigurationOrupdateRequest",
+  }) as any as S.Schema<CreateServiceConfigurationOrupdateRequest>;
+
+/** The type of identity that created the resource. */
+export type SystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type SystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface SystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: SystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: SystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const SystemData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdBy: S.optional(S.String),
+    createdByType: S.optional(SystemDataCreatedByType),
+    createdAt: S.optional(S.String),
+    lastModifiedBy: S.optional(S.String),
+    lastModifiedByType: S.optional(SystemDataLastModifiedByType),
+    lastModifiedAt: S.optional(S.String),
+  }),
+).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
+
+/** The resource provisioning state. */
+export type ProvisioningState =
+  | "Succeeded"
+  | "Creating"
+  | "Updating"
+  | "Failed"
+  | "Canceled";
+export const ProvisioningState = /*@__PURE__*/ S.String;
+
+/** Service configuration details */
+export interface ServiceConfigurationProperties {
+  /** Name of the service. */
+  serviceName: ServiceName;
+  /** The resource Id of the connectivity endpoint (optional). */
+  resourceId?: string;
+  /** The port on which service is enabled. */
+  port?: number;
+  /** The resource provisioning state. */
+  provisioningState?: ProvisioningState;
+}
+export const ServiceConfigurationProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceName: ServiceName,
+    resourceId: S.optional(S.String),
+    port: S.optional(S.Number),
+    provisioningState: S.optional(ProvisioningState),
+  }),
+).annotate({
+  identifier: "ServiceConfigurationProperties",
+}) as any as S.Schema<ServiceConfigurationProperties>;
+
+export interface CreateServiceConfigurationOrupdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The service configuration properties. */
+  properties?: ServiceConfigurationProperties;
+}
+export const CreateServiceConfigurationOrupdateResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(ServiceConfigurationProperties),
+    }),
+  ).annotate({
+    identifier: "CreateServiceConfigurationOrupdateResponse",
+  }) as any as S.Schema<CreateServiceConfigurationOrupdateResponse>;
+
+export interface DeleteEndpointRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  resourceUri: string;
+  /** The endpoint name. */
+  endpointName: string;
+}
+export const DeleteEndpointRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceUri: S.String.pipe(T.Label()),
+    endpointName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/{resourceUri}/providers/Microsoft.HybridConnectivity/endpoints/{endpointName}",
+      code: 200,
+      apiVersion: "2027-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteEndpointRequest",
+}) as any as S.Schema<DeleteEndpointRequest>;
+
+export interface DeleteEndpointResponse {}
+export const DeleteEndpointResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteEndpointResponse",
+}) as any as S.Schema<DeleteEndpointResponse>;
+
+export interface DeletePublicCloudConnectorRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Represent public cloud connectors resource. */
+  publicCloudConnector: string;
+}
+export const DeletePublicCloudConnectorRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    publicCloudConnector: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridConnectivity/publicCloudConnectors/{publicCloudConnector}",
+      code: 200,
+      apiVersion: "2027-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeletePublicCloudConnectorRequest",
+}) as any as S.Schema<DeletePublicCloudConnectorRequest>;
+
+export interface DeletePublicCloudConnectorResponse {}
+export const DeletePublicCloudConnectorResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeletePublicCloudConnectorResponse",
+}) as any as S.Schema<DeletePublicCloudConnectorResponse>;
+
+export interface DeleteServiceConfigurationRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  resourceUri: string;
+  /** The endpoint name. */
+  endpointName: string;
+  /** The service name. */
+  serviceConfigurationName: string;
+}
+export const DeleteServiceConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceUri: S.String.pipe(T.Label()),
+    endpointName: S.String.pipe(T.Label()),
+    serviceConfigurationName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/{resourceUri}/providers/Microsoft.HybridConnectivity/endpoints/{endpointName}/serviceConfigurations/{serviceConfigurationName}",
+      code: 200,
+      apiVersion: "2027-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteServiceConfigurationRequest",
+}) as any as S.Schema<DeleteServiceConfigurationRequest>;
+
+export interface DeleteServiceConfigurationResponse {}
+export const DeleteServiceConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteServiceConfigurationResponse",
+}) as any as S.Schema<DeleteServiceConfigurationResponse>;
+
+export interface DeleteSolutionConfigurationRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  resourceUri: string;
+  /** Represent Solution Configuration Resource. */
+  solutionConfiguration: string;
+}
+export const DeleteSolutionConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceUri: S.String.pipe(T.Label()),
+    solutionConfiguration: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/{resourceUri}/providers/Microsoft.HybridConnectivity/solutionConfigurations/{solutionConfiguration}",
+      code: 200,
+      apiVersion: "2027-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteSolutionConfigurationRequest",
+}) as any as S.Schema<DeleteSolutionConfigurationRequest>;
+
+export interface DeleteSolutionConfigurationResponse {}
+export const DeleteSolutionConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteSolutionConfigurationResponse",
+}) as any as S.Schema<DeleteSolutionConfigurationResponse>;
+
 /** The type of endpoint. */
 export type Type = "default" | "custom";
 export const Type = /*@__PURE__*/ S.String;
@@ -57,48 +329,6 @@ export const EndpointsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "EndpointsCreateOrUpdateRequest",
 }) as any as S.Schema<EndpointsCreateOrUpdateRequest>;
 
-/** The type of identity that created the resource. */
-export type SystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type SystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface SystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: SystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: SystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const SystemData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createdBy: S.optional(S.String),
-    createdByType: S.optional(SystemDataCreatedByType),
-    createdAt: S.optional(S.String),
-    lastModifiedBy: S.optional(S.String),
-    lastModifiedByType: S.optional(SystemDataLastModifiedByType),
-    lastModifiedAt: S.optional(S.String),
-  }),
-).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
-
 /** Endpoint details */
 export interface EndpointProperties {
   /** The type of endpoint. */
@@ -142,42 +372,13 @@ export const EndpointsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "EndpointsCreateOrUpdateResponse",
 }) as any as S.Schema<EndpointsCreateOrUpdateResponse>;
 
-export interface EndpointsDeleteRequest {
+export interface GetEndpointRequest {
   /** The fully qualified Azure Resource manager identifier of the resource. */
   resourceUri: string;
   /** The endpoint name. */
   endpointName: string;
 }
-export const EndpointsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceUri: S.String.pipe(T.Label()),
-    endpointName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/{resourceUri}/providers/Microsoft.HybridConnectivity/endpoints/{endpointName}",
-      code: 200,
-      apiVersion: "2027-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "EndpointsDeleteRequest",
-}) as any as S.Schema<EndpointsDeleteRequest>;
-
-export interface EndpointsDeleteResponse {}
-export const EndpointsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "EndpointsDeleteResponse",
-}) as any as S.Schema<EndpointsDeleteResponse>;
-
-export interface EndpointsGetRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  resourceUri: string;
-  /** The endpoint name. */
-  endpointName: string;
-}
-export const EndpointsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetEndpointRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     resourceUri: S.String.pipe(T.Label()),
     endpointName: S.String.pipe(T.Label()),
@@ -190,10 +391,10 @@ export const EndpointsGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "EndpointsGetRequest",
-}) as any as S.Schema<EndpointsGetRequest>;
+  identifier: "GetEndpointRequest",
+}) as any as S.Schema<GetEndpointRequest>;
 
-export interface EndpointsGetResponse {
+export interface GetEndpointResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -205,7 +406,7 @@ export interface EndpointsGetResponse {
   /** The endpoint properties. */
   properties?: EndpointProperties;
 }
-export const EndpointsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetEndpointResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -214,30 +415,85 @@ export const EndpointsGetResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(EndpointProperties),
   }),
 ).annotate({
-  identifier: "EndpointsGetResponse",
-}) as any as S.Schema<EndpointsGetResponse>;
+  identifier: "GetEndpointResponse",
+}) as any as S.Schema<GetEndpointResponse>;
 
-export interface EndpointsListRequest {
+export interface GetInventoryRequest {
   /** The fully qualified Azure Resource manager identifier of the resource. */
   resourceUri: string;
+  /** Represent Solution Configuration Resource. */
+  solutionConfiguration: string;
+  /** Inventory resource */
+  inventoryId: string;
 }
-export const EndpointsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetInventoryRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     resourceUri: S.String.pipe(T.Label()),
+    solutionConfiguration: S.String.pipe(T.Label()),
+    inventoryId: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/{resourceUri}/providers/Microsoft.HybridConnectivity/endpoints",
+      uri: "/{resourceUri}/providers/Microsoft.HybridConnectivity/solutionConfigurations/{solutionConfiguration}/inventory/{inventoryId}",
       code: 200,
       apiVersion: "2027-01-01",
     }),
   ),
 ).annotate({
-  identifier: "EndpointsListRequest",
-}) as any as S.Schema<EndpointsListRequest>;
+  identifier: "GetInventoryRequest",
+}) as any as S.Schema<GetInventoryRequest>;
 
-/** The endpoint for the target resource. */
-export interface EndpointResource {
+/** Cloud Native Type enum. */
+export type CloudNativeType = "ec2";
+export const CloudNativeType = /*@__PURE__*/ S.String;
+
+/** Solution Configuration Status. */
+export type SolutionConfigurationStatus =
+  | "New"
+  | "InProgress"
+  | "Completed"
+  | "Failed";
+export const SolutionConfigurationStatus = /*@__PURE__*/ S.String;
+
+/** The provisioning state of a resource type. */
+export type AzureResourceManagerResourceProvisioningState =
+  | "Succeeded"
+  | "Failed"
+  | "Canceled";
+export const AzureResourceManagerResourceProvisioningState =
+  /*@__PURE__*/ S.String;
+
+/** Definition of inventory. */
+export interface InventoryProperties {
+  /** Gets or sets the cloud native resource type. */
+  cloudNativeType?: CloudNativeType;
+  /** Gets or sets the cloud native resource name. */
+  cloudNativeResourceId?: string;
+  /** Gets or sets the mapped azure resource id. */
+  azureResourceId?: string;
+  /** Gets or sets the status of the inventory. */
+  status?: SolutionConfigurationStatus;
+  /** Gets or sets the status details. */
+  statusDetails?: string;
+  /** The resource provisioning state. */
+  provisioningState?: AzureResourceManagerResourceProvisioningState;
+}
+export const InventoryProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    cloudNativeType: S.optional(CloudNativeType),
+    cloudNativeResourceId: S.optional(S.String),
+    azureResourceId: S.optional(S.String),
+    status: S.optional(SolutionConfigurationStatus),
+    statusDetails: S.optional(S.String),
+    provisioningState: S.optional(
+      AzureResourceManagerResourceProvisioningState,
+    ),
+  }),
+).annotate({
+  identifier: "InventoryProperties",
+}) as any as S.Schema<InventoryProperties>;
+
+export interface GetInventoryResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -246,358 +502,79 @@ export interface EndpointResource {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
-  /** The endpoint properties. */
-  properties?: EndpointProperties;
+  /** The resource-specific properties for this resource. */
+  properties?: InventoryProperties;
 }
-export const EndpointResource = /*@__PURE__*/ S.suspend(() =>
+export const GetInventoryResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    properties: S.optional(EndpointProperties),
+    properties: S.optional(InventoryProperties),
   }),
 ).annotate({
-  identifier: "EndpointResource",
-}) as any as S.Schema<EndpointResource>;
+  identifier: "GetInventoryResponse",
+}) as any as S.Schema<GetInventoryResponse>;
 
-/** The list of endpoint. */
-export type EndpointsListValueList = Array<EndpointResource>;
-export const EndpointsListValueList = /*@__PURE__*/ S.Array(
-  EndpointResource,
-) as any as S.Schema<EndpointsListValueList>;
-
-/** The list of endpoints. */
-export interface EndpointsList {
-  /** The list of endpoint. */
-  value: EndpointsListValueList;
-  /** The link used to get the next page of endpoints list. */
-  nextLink?: string;
-}
-export const EndpointsList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: EndpointsListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "EndpointsList" }) as any as S.Schema<EndpointsList>;
-
-/** Name of the service. */
-export type ServiceName = "SSH" | "WAC";
-export const ServiceName = /*@__PURE__*/ S.String;
-
-export interface EndpointsListCredentialsRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  resourceUri: string;
-  /** The endpoint name. */
-  endpointName: string;
-  /** The is how long the endpoint access token is valid (in seconds). */
-  expiresin?: number;
-  /** The name of the service. If not provided, the request will by pass the generation of service configuration token */
-  serviceName?: ServiceName | (string & {});
-}
-export const EndpointsListCredentialsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceUri: S.String.pipe(T.Label()),
-    endpointName: S.String.pipe(T.Label()),
-    expiresin: S.optional(S.Number.pipe(T.Query())),
-    serviceName: S.optional(ServiceName),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/{resourceUri}/providers/Microsoft.HybridConnectivity/endpoints/{endpointName}/listCredentials",
-      code: 200,
-      apiVersion: "2027-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "EndpointsListCredentialsRequest",
-}) as any as S.Schema<EndpointsListCredentialsRequest>;
-
-/** Azure relay hybrid connection access properties */
-export interface RelayNamespaceAccessProperties {
-  /** The namespace name. */
-  namespaceName: string;
-  /** The suffix domain name of relay namespace. */
-  namespaceNameSuffix: string;
-  /** Azure Relay hybrid connection name for the resource. */
-  hybridConnectionName: string;
-  /** Access key for hybrid connection. */
-  accessKey?: string;
-  /** The expiration of access key in unix time. */
-  expiresOn?: number;
-  /** The token to access the enabled service. */
-  serviceConfigurationToken?: string;
-}
-export const RelayNamespaceAccessProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    namespaceName: S.String,
-    namespaceNameSuffix: S.String,
-    hybridConnectionName: S.String,
-    accessKey: S.optional(S.String),
-    expiresOn: S.optional(S.Number),
-    serviceConfigurationToken: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "RelayNamespaceAccessProperties",
-}) as any as S.Schema<RelayNamespaceAccessProperties>;
-
-/** The endpoint access for the target resource. */
-export interface EndpointAccessResource {
-  /** Azure relay hybrid connection access properties */
-  relay?: RelayNamespaceAccessProperties;
-}
-export const EndpointAccessResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    relay: S.optional(RelayNamespaceAccessProperties),
-  }),
-).annotate({
-  identifier: "EndpointAccessResource",
-}) as any as S.Schema<EndpointAccessResource>;
-
-export interface EndpointsListIngressGatewayCredentialsRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  resourceUri: string;
-  /** The endpoint name. */
-  endpointName: string;
-  /** The is how long the endpoint access token is valid (in seconds). */
-  expiresin?: number;
-  /** The name of the service. If not provided, the request will by pass the generation of service configuration token. */
-  serviceName?: ServiceName | (string & {});
-}
-export const EndpointsListIngressGatewayCredentialsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      resourceUri: S.String.pipe(T.Label()),
-      endpointName: S.String.pipe(T.Label()),
-      expiresin: S.optional(S.Number.pipe(T.Query())),
-      serviceName: S.optional(ServiceName),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/{resourceUri}/providers/Microsoft.HybridConnectivity/endpoints/{endpointName}/listIngressGatewayCredentials",
-        code: 200,
-        apiVersion: "2027-01-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "EndpointsListIngressGatewayCredentialsRequest",
-  }) as any as S.Schema<EndpointsListIngressGatewayCredentialsRequest>;
-
-/** The AAD Profile */
-export interface AADProfileProperties {
-  /** The arc ingress gateway server app id. */
-  serverId: string;
-  /** The target resource home tenant id. */
-  tenantId: string;
-}
-export const AADProfileProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serverId: S.String,
-    tenantId: S.String,
-  }),
-).annotate({
-  identifier: "AADProfileProperties",
-}) as any as S.Schema<AADProfileProperties>;
-
-/** Ingress gateway profile */
-export interface IngressProfileProperties {
-  /** The ingress hostname. */
-  hostname: string;
-  /** The AAD Profile */
-  aadProfile: AADProfileProperties;
-}
-export const IngressProfileProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    hostname: S.String,
-    aadProfile: AADProfileProperties,
-  }),
-).annotate({
-  identifier: "IngressProfileProperties",
-}) as any as S.Schema<IngressProfileProperties>;
-
-/** The ingress gateway access credentials */
-export interface IngressGatewayResource {
-  /** Azure relay hybrid connection access properties */
-  relay?: RelayNamespaceAccessProperties;
-  /** Ingress gateway profile */
-  ingress?: IngressProfileProperties;
-}
-export const IngressGatewayResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    relay: S.optional(RelayNamespaceAccessProperties),
-    ingress: S.optional(IngressProfileProperties),
-  }),
-).annotate({
-  identifier: "IngressGatewayResource",
-}) as any as S.Schema<IngressGatewayResource>;
-
-export interface EndpointsListManagedProxyDetailsRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  resourceUri: string;
-  /** The endpoint name. */
-  endpointName: string;
-  /** The name of the service. */
-  service: string;
-  /** The target host name. */
-  hostname?: string;
-  /** The name of the service. It is an optional property, if not provided, service configuration tokens issue code would be by passed. */
-  serviceName?: ServiceName | (string & {});
-}
-export const EndpointsListManagedProxyDetailsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      resourceUri: S.String.pipe(T.Label()),
-      endpointName: S.String.pipe(T.Label()),
-      service: S.String,
-      hostname: S.optional(S.String),
-      serviceName: S.optional(ServiceName),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/{resourceUri}/providers/Microsoft.HybridConnectivity/endpoints/{endpointName}/listManagedProxyDetails",
-        code: 200,
-        apiVersion: "2027-01-01",
-      }),
-    ),
-).annotate({
-  identifier: "EndpointsListManagedProxyDetailsRequest",
-}) as any as S.Schema<EndpointsListManagedProxyDetailsRequest>;
-
-/** Managed Proxy */
-export interface ManagedProxyResource {
-  /** The short lived proxy name. */
-  proxy: string;
-  /** The expiration time of short lived proxy name in unix epoch. */
-  expiresOn: number;
-}
-export const ManagedProxyResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    proxy: S.String,
-    expiresOn: S.Number,
-  }),
-).annotate({
-  identifier: "ManagedProxyResource",
-}) as any as S.Schema<ManagedProxyResource>;
-
-export interface EndpointsUpdateRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  resourceUri: string;
-  /** The endpoint name. */
-  endpointName: string;
-  /** The endpoint properties. */
-  properties?: EndpointPropertiesInput;
-}
-export const EndpointsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceUri: S.String.pipe(T.Label()),
-    endpointName: S.String.pipe(T.Label()),
-    properties: S.optional(EndpointPropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/{resourceUri}/providers/Microsoft.HybridConnectivity/endpoints/{endpointName}",
-      code: 200,
-      apiVersion: "2027-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "EndpointsUpdateRequest",
-}) as any as S.Schema<EndpointsUpdateRequest>;
-
-export interface EndpointsUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The endpoint properties. */
-  properties?: EndpointProperties;
-}
-export const EndpointsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(EndpointProperties),
-  }),
-).annotate({
-  identifier: "EndpointsUpdateResponse",
-}) as any as S.Schema<EndpointsUpdateResponse>;
-
-/** Solution settings */
-export type SolutionSettings = { [key: string]: string | undefined };
-export const SolutionSettings = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<SolutionSettings>;
-
-/** The properties of Solution Type */
-export interface SolutionTypeSettings {
-  /** The type of the solution */
-  solutionType: string;
-  /** Solution settings */
-  solutionSettings?: SolutionSettings;
-}
-export const SolutionTypeSettings = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    solutionType: S.String,
-    solutionSettings: S.optional(SolutionSettings),
-  }),
-).annotate({
-  identifier: "SolutionTypeSettings",
-}) as any as S.Schema<SolutionTypeSettings>;
-
-/** The list of solution types and their settings */
-export type GenerateAwsTemplatePostRequestSolutionTypesList =
-  Array<SolutionTypeSettings>;
-export const GenerateAwsTemplatePostRequestSolutionTypesList =
-  /*@__PURE__*/ S.Array(
-    SolutionTypeSettings,
-  ) as any as S.Schema<GenerateAwsTemplatePostRequestSolutionTypesList>;
-
-export interface GenerateAwsTemplatePostRequest {
+export interface GetPublicCloudConnectorRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
-  /** The name of public cloud connector */
-  connectorId: string;
-  /** The list of solution types and their settings */
-  solutionTypes?: GenerateAwsTemplatePostRequestSolutionTypesList;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Represent public cloud connectors resource. */
+  publicCloudConnector: string;
 }
-export const GenerateAwsTemplatePostRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetPublicCloudConnectorRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
-    connectorId: S.String,
-    solutionTypes: S.optional(GenerateAwsTemplatePostRequestSolutionTypesList),
+    resourceGroupName: S.String.pipe(T.Label()),
+    publicCloudConnector: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.HybridConnectivity/generateAwsTemplate",
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridConnectivity/publicCloudConnectors/{publicCloudConnector}",
       code: 200,
       apiVersion: "2027-01-01",
     }),
   ),
 ).annotate({
-  identifier: "GenerateAwsTemplatePostRequest",
-}) as any as S.Schema<GenerateAwsTemplatePostRequest>;
+  identifier: "GetPublicCloudConnectorRequest",
+}) as any as S.Schema<GetPublicCloudConnectorRequest>;
 
-export type GenerateAwsTemplatePostResponse = unknown;
-export const GenerateAwsTemplatePostResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Unknown.pipe(T.RawResponseRoot()),
+/** Resource tags. */
+export type GetPublicCloudConnectorResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetPublicCloudConnectorResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetPublicCloudConnectorResponseTagsMap>;
+
+/** List of AWS accounts which need to be excluded. */
+export type AwsCloudProfileExcludedAccountsList = Array<string>;
+export const AwsCloudProfileExcludedAccountsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<AwsCloudProfileExcludedAccountsList>;
+
+/** cloud profile for AWS. */
+export interface AwsCloudProfile {
+  /** Account id for the AWS account. */
+  accountId: string;
+  /** List of AWS accounts which need to be excluded. */
+  excludedAccounts?: AwsCloudProfileExcludedAccountsList;
+  /** Boolean value that indicates whether the account is organizational or not. True represents organization account, whereas false represents a single account. */
+  isOrganizationalAccount?: boolean;
+}
+export const AwsCloudProfile = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountId: S.String,
+    excludedAccounts: S.optional(AwsCloudProfileExcludedAccountsList),
+    isOrganizationalAccount: S.optional(S.Boolean),
+  }),
 ).annotate({
-  identifier: "GenerateAwsTemplatePostResponse",
-}) as any as S.Schema<GenerateAwsTemplatePostResponse>;
-
-/** The list of solution types and their settings */
-export type GenerateGcpTemplatePostRequestSolutionTypesList =
-  Array<SolutionTypeSettings>;
-export const GenerateGcpTemplatePostRequestSolutionTypesList =
-  /*@__PURE__*/ S.Array(
-    SolutionTypeSettings,
-  ) as any as S.Schema<GenerateGcpTemplatePostRequestSolutionTypesList>;
+  identifier: "AwsCloudProfile",
+}) as any as S.Schema<AwsCloudProfile>;
 
 /** GCP project properties. */
 export interface GcpProjectProperties {
@@ -674,124 +651,179 @@ export const GcpCloudProfile = /*@__PURE__*/ S.suspend(() =>
   identifier: "GcpCloudProfile",
 }) as any as S.Schema<GcpCloudProfile>;
 
-/** GCP template format. */
-export type GcpTemplateFormat = "terraform" | "shellscript";
-export const GcpTemplateFormat = /*@__PURE__*/ S.String;
+/** Enum of host cloud the public cloud connector is referencing. */
+export type HostType = "AWS" | "GCP";
+export const HostType = /*@__PURE__*/ S.String;
 
-export interface GenerateGcpTemplatePostRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of public cloud connector */
-  connectorId: string;
-  /** The list of solution types and their settings */
-  solutionTypes?: GenerateGcpTemplatePostRequestSolutionTypesList;
-  /** The GCP cloud profile. */
+/** Properties of public cloud connectors. */
+export interface PublicCloudConnectorProperties {
+  /** Cloud profile for AWS. */
+  awsCloudProfile?: AwsCloudProfile;
+  /** Cloud profile for GCP. */
   gcpCloudProfile?: GcpCloudProfile;
-  /** Optional template output format. Defaults to 'terraform' if not provided */
-  gcpTemplateFormat?: GcpTemplateFormat | (string & {});
+  /** Host cloud the public cloud connector. */
+  hostType: HostType;
+  /** The resource provisioning state. */
+  provisioningState?: AzureResourceManagerResourceProvisioningState;
+  /** Connector primary identifier. */
+  connectorPrimaryIdentifier?: string;
 }
-export const GenerateGcpTemplatePostRequest = /*@__PURE__*/ S.suspend(() =>
+export const PublicCloudConnectorProperties = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    connectorId: S.String,
-    solutionTypes: S.optional(GenerateGcpTemplatePostRequestSolutionTypesList),
+    awsCloudProfile: S.optional(AwsCloudProfile),
     gcpCloudProfile: S.optional(GcpCloudProfile),
-    gcpTemplateFormat: S.optional(GcpTemplateFormat),
+    hostType: HostType,
+    provisioningState: S.optional(
+      AzureResourceManagerResourceProvisioningState,
+    ),
+    connectorPrimaryIdentifier: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PublicCloudConnectorProperties",
+}) as any as S.Schema<PublicCloudConnectorProperties>;
+
+export interface GetPublicCloudConnectorResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetPublicCloudConnectorResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: PublicCloudConnectorProperties;
+  /** The kind of the public cloud connector. */
+  kind?: HostType;
+}
+export const GetPublicCloudConnectorResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetPublicCloudConnectorResponseTagsMap),
+    location: S.String,
+    properties: S.optional(PublicCloudConnectorProperties),
+    kind: S.optional(HostType),
+  }),
+).annotate({
+  identifier: "GetPublicCloudConnectorResponse",
+}) as any as S.Schema<GetPublicCloudConnectorResponse>;
+
+export interface GetServiceConfigurationRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  resourceUri: string;
+  /** The endpoint name. */
+  endpointName: string;
+  /** The service name. */
+  serviceConfigurationName: string;
+}
+export const GetServiceConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceUri: S.String.pipe(T.Label()),
+    endpointName: S.String.pipe(T.Label()),
+    serviceConfigurationName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.HybridConnectivity/generateGcpTemplate",
+      method: "GET",
+      uri: "/{resourceUri}/providers/Microsoft.HybridConnectivity/endpoints/{endpointName}/serviceConfigurations/{serviceConfigurationName}",
       code: 200,
       apiVersion: "2027-01-01",
     }),
   ),
 ).annotate({
-  identifier: "GenerateGcpTemplatePostRequest",
-}) as any as S.Schema<GenerateGcpTemplatePostRequest>;
+  identifier: "GetServiceConfigurationRequest",
+}) as any as S.Schema<GetServiceConfigurationRequest>;
 
-export type GenerateGcpTemplatePostResponse = unknown;
-export const GenerateGcpTemplatePostResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Unknown.pipe(T.RawResponseRoot()),
+export interface GetServiceConfigurationResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The service configuration properties. */
+  properties?: ServiceConfigurationProperties;
+}
+export const GetServiceConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ServiceConfigurationProperties),
+  }),
 ).annotate({
-  identifier: "GenerateGcpTemplatePostResponse",
-}) as any as S.Schema<GenerateGcpTemplatePostResponse>;
+  identifier: "GetServiceConfigurationResponse",
+}) as any as S.Schema<GetServiceConfigurationResponse>;
 
-export interface InventoryGetRequest {
+export interface GetSolutionConfigurationRequest {
   /** The fully qualified Azure Resource manager identifier of the resource. */
   resourceUri: string;
   /** Represent Solution Configuration Resource. */
   solutionConfiguration: string;
-  /** Inventory resource */
-  inventoryId: string;
 }
-export const InventoryGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetSolutionConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     resourceUri: S.String.pipe(T.Label()),
     solutionConfiguration: S.String.pipe(T.Label()),
-    inventoryId: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/{resourceUri}/providers/Microsoft.HybridConnectivity/solutionConfigurations/{solutionConfiguration}/inventory/{inventoryId}",
+      uri: "/{resourceUri}/providers/Microsoft.HybridConnectivity/solutionConfigurations/{solutionConfiguration}",
       code: 200,
       apiVersion: "2027-01-01",
     }),
   ),
 ).annotate({
-  identifier: "InventoryGetRequest",
-}) as any as S.Schema<InventoryGetRequest>;
+  identifier: "GetSolutionConfigurationRequest",
+}) as any as S.Schema<GetSolutionConfigurationRequest>;
 
-/** Cloud Native Type enum. */
-export type CloudNativeType = "ec2";
-export const CloudNativeType = /*@__PURE__*/ S.String;
+/** Solution settings */
+export type SolutionSettings = { [key: string]: string | undefined };
+export const SolutionSettings = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<SolutionSettings>;
 
-/** Solution Configuration Status. */
-export type SolutionConfigurationStatus =
-  | "New"
-  | "InProgress"
-  | "Completed"
-  | "Failed";
-export const SolutionConfigurationStatus = /*@__PURE__*/ S.String;
-
-/** The provisioning state of a resource type. */
-export type AzureResourceManagerResourceProvisioningState =
-  | "Succeeded"
-  | "Failed"
-  | "Canceled";
-export const AzureResourceManagerResourceProvisioningState =
-  /*@__PURE__*/ S.String;
-
-/** Definition of inventory. */
-export interface InventoryProperties {
-  /** Gets or sets the cloud native resource type. */
-  cloudNativeType?: CloudNativeType;
-  /** Gets or sets the cloud native resource name. */
-  cloudNativeResourceId?: string;
-  /** Gets or sets the mapped azure resource id. */
-  azureResourceId?: string;
-  /** Gets or sets the status of the inventory. */
-  status?: SolutionConfigurationStatus;
-  /** Gets or sets the status details. */
-  statusDetails?: string;
+/** Solution configuration resource. */
+export interface SolutionConfigurationProperties {
   /** The resource provisioning state. */
   provisioningState?: AzureResourceManagerResourceProvisioningState;
+  /** The type of the solution */
+  solutionType: string;
+  /** Solution settings */
+  solutionSettings?: SolutionSettings;
+  /** The status of solution configurations */
+  status?: SolutionConfigurationStatus;
+  /** The detailed message of status details */
+  statusDetails?: string;
+  /** The last time resources were inventoried */
+  lastSyncTime?: string;
 }
-export const InventoryProperties = /*@__PURE__*/ S.suspend(() =>
+export const SolutionConfigurationProperties = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    cloudNativeType: S.optional(CloudNativeType),
-    cloudNativeResourceId: S.optional(S.String),
-    azureResourceId: S.optional(S.String),
-    status: S.optional(SolutionConfigurationStatus),
-    statusDetails: S.optional(S.String),
     provisioningState: S.optional(
       AzureResourceManagerResourceProvisioningState,
     ),
+    solutionType: S.String,
+    solutionSettings: S.optional(SolutionSettings),
+    status: S.optional(SolutionConfigurationStatus),
+    statusDetails: S.optional(S.String),
+    lastSyncTime: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "InventoryProperties",
-}) as any as S.Schema<InventoryProperties>;
+  identifier: "SolutionConfigurationProperties",
+}) as any as S.Schema<SolutionConfigurationProperties>;
 
-export interface InventoryGetResponse {
+export interface GetSolutionConfigurationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -801,27 +833,426 @@ export interface InventoryGetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** The resource-specific properties for this resource. */
-  properties?: InventoryProperties;
+  properties?: SolutionConfigurationProperties;
 }
-export const InventoryGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetSolutionConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    properties: S.optional(InventoryProperties),
+    properties: S.optional(SolutionConfigurationProperties),
   }),
 ).annotate({
-  identifier: "InventoryGetResponse",
-}) as any as S.Schema<InventoryGetResponse>;
+  identifier: "GetSolutionConfigurationResponse",
+}) as any as S.Schema<GetSolutionConfigurationResponse>;
 
-export interface InventoryListBySolutionConfigurationRequest {
+export interface GetSolutionTypeRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Solution Type resource */
+  solutionType: string;
+}
+export const GetSolutionTypeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    solutionType: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridConnectivity/solutionTypes/{solutionType}",
+      code: 200,
+      apiVersion: "2027-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetSolutionTypeRequest",
+}) as any as S.Schema<GetSolutionTypeRequest>;
+
+/** The locations this solution is supported in. */
+export type SolutionTypePropertiesSupportedAzureRegionsList = Array<string>;
+export const SolutionTypePropertiesSupportedAzureRegionsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<SolutionTypePropertiesSupportedAzureRegionsList>;
+
+/** The supported host types for the current solution type. */
+export type SolutionTypePropertiesHostTypesList = Array<HostType>;
+export const SolutionTypePropertiesHostTypesList = /*@__PURE__*/ S.Array(
+  HostType,
+) as any as S.Schema<SolutionTypePropertiesHostTypesList>;
+
+/** Array of allowed values for this solution settings property. */
+export type SolutionTypeSettingsPropertiesAllowedValuesList = Array<string>;
+export const SolutionTypeSettingsPropertiesAllowedValuesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<SolutionTypeSettingsPropertiesAllowedValuesList>;
+
+/** The supported host types for the current solution setting */
+export type SolutionTypeSettingsPropertiesHostTypesList = Array<HostType>;
+export const SolutionTypeSettingsPropertiesHostTypesList =
+  /*@__PURE__*/ S.Array(
+    HostType,
+  ) as any as S.Schema<SolutionTypeSettingsPropertiesHostTypesList>;
+
+/** Represent Solution settings properties description array. */
+export interface SolutionTypeSettingsProperties {
+  /** The name of the solution setting property. */
+  name: string;
+  /** The UI friendly name of the solution setting property. */
+  displayName: string;
+  /** Type of the solution setting property, represented as a string. */
+  type: string;
+  /** Description of solution setting property. */
+  description: string;
+  /** Array of allowed values for this solution settings property. */
+  allowedValues: SolutionTypeSettingsPropertiesAllowedValuesList;
+  /** The supported host types for the current solution setting */
+  hostTypes: SolutionTypeSettingsPropertiesHostTypesList;
+  /** Default value for this solution settings property. */
+  defaultValue: string;
+}
+export const SolutionTypeSettingsProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    displayName: S.String,
+    type: S.String,
+    description: S.String,
+    allowedValues: SolutionTypeSettingsPropertiesAllowedValuesList,
+    hostTypes: SolutionTypeSettingsPropertiesHostTypesList,
+    defaultValue: S.String,
+  }),
+).annotate({
+  identifier: "SolutionTypeSettingsProperties",
+}) as any as S.Schema<SolutionTypeSettingsProperties>;
+
+/** Array of solution settings and its description. */
+export type SolutionTypePropertiesSolutionSettingsList =
+  Array<SolutionTypeSettingsProperties>;
+export const SolutionTypePropertiesSolutionSettingsList = /*@__PURE__*/ S.Array(
+  SolutionTypeSettingsProperties,
+) as any as S.Schema<SolutionTypePropertiesSolutionSettingsList>;
+
+/** Definition of Solution type resource. */
+export interface SolutionTypeProperties {
+  /** The name of the solution type. */
+  solutionType?: string;
+  /** Short description of solution type. */
+  description?: string;
+  /** The locations this solution is supported in. */
+  supportedAzureRegions?: SolutionTypePropertiesSupportedAzureRegionsList;
+  /** The supported host types for the current solution type. */
+  hostTypes?: SolutionTypePropertiesHostTypesList;
+  /** Array of solution settings and its description. */
+  solutionSettings?: SolutionTypePropertiesSolutionSettingsList;
+}
+export const SolutionTypeProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    solutionType: S.optional(S.String),
+    description: S.optional(S.String),
+    supportedAzureRegions: S.optional(
+      SolutionTypePropertiesSupportedAzureRegionsList,
+    ),
+    hostTypes: S.optional(SolutionTypePropertiesHostTypesList),
+    solutionSettings: S.optional(SolutionTypePropertiesSolutionSettingsList),
+  }),
+).annotate({
+  identifier: "SolutionTypeProperties",
+}) as any as S.Schema<SolutionTypeProperties>;
+
+export interface GetSolutionTypeResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: SolutionTypeProperties;
+}
+export const GetSolutionTypeResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(SolutionTypeProperties),
+  }),
+).annotate({
+  identifier: "GetSolutionTypeResponse",
+}) as any as S.Schema<GetSolutionTypeResponse>;
+
+export interface ListEndpointCredentialsRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  resourceUri: string;
+  /** The endpoint name. */
+  endpointName: string;
+  /** The is how long the endpoint access token is valid (in seconds). */
+  expiresin?: number;
+  /** The name of the service. If not provided, the request will by pass the generation of service configuration token */
+  serviceName?: ServiceName | (string & {});
+}
+export const ListEndpointCredentialsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceUri: S.String.pipe(T.Label()),
+    endpointName: S.String.pipe(T.Label()),
+    expiresin: S.optional(S.Number.pipe(T.Query())),
+    serviceName: S.optional(ServiceName),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/{resourceUri}/providers/Microsoft.HybridConnectivity/endpoints/{endpointName}/listCredentials",
+      code: 200,
+      apiVersion: "2027-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListEndpointCredentialsRequest",
+}) as any as S.Schema<ListEndpointCredentialsRequest>;
+
+/** Azure relay hybrid connection access properties */
+export interface RelayNamespaceAccessProperties {
+  /** The namespace name. */
+  namespaceName: string;
+  /** The suffix domain name of relay namespace. */
+  namespaceNameSuffix: string;
+  /** Azure Relay hybrid connection name for the resource. */
+  hybridConnectionName: string;
+  /** Access key for hybrid connection. */
+  accessKey?: string;
+  /** The expiration of access key in unix time. */
+  expiresOn?: number;
+  /** The token to access the enabled service. */
+  serviceConfigurationToken?: string;
+}
+export const RelayNamespaceAccessProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    namespaceName: S.String,
+    namespaceNameSuffix: S.String,
+    hybridConnectionName: S.String,
+    accessKey: S.optional(S.String),
+    expiresOn: S.optional(S.Number),
+    serviceConfigurationToken: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "RelayNamespaceAccessProperties",
+}) as any as S.Schema<RelayNamespaceAccessProperties>;
+
+/** The endpoint access for the target resource. */
+export interface EndpointAccessResource {
+  /** Azure relay hybrid connection access properties */
+  relay?: RelayNamespaceAccessProperties;
+}
+export const EndpointAccessResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    relay: S.optional(RelayNamespaceAccessProperties),
+  }),
+).annotate({
+  identifier: "EndpointAccessResource",
+}) as any as S.Schema<EndpointAccessResource>;
+
+export interface ListEndpointIngressGatewayCredentialsRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  resourceUri: string;
+  /** The endpoint name. */
+  endpointName: string;
+  /** The is how long the endpoint access token is valid (in seconds). */
+  expiresin?: number;
+  /** The name of the service. If not provided, the request will by pass the generation of service configuration token. */
+  serviceName?: ServiceName | (string & {});
+}
+export const ListEndpointIngressGatewayCredentialsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      resourceUri: S.String.pipe(T.Label()),
+      endpointName: S.String.pipe(T.Label()),
+      expiresin: S.optional(S.Number.pipe(T.Query())),
+      serviceName: S.optional(ServiceName),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/{resourceUri}/providers/Microsoft.HybridConnectivity/endpoints/{endpointName}/listIngressGatewayCredentials",
+        code: 200,
+        apiVersion: "2027-01-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListEndpointIngressGatewayCredentialsRequest",
+  }) as any as S.Schema<ListEndpointIngressGatewayCredentialsRequest>;
+
+/** The AAD Profile */
+export interface AADProfileProperties {
+  /** The arc ingress gateway server app id. */
+  serverId: string;
+  /** The target resource home tenant id. */
+  tenantId: string;
+}
+export const AADProfileProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serverId: S.String,
+    tenantId: S.String,
+  }),
+).annotate({
+  identifier: "AADProfileProperties",
+}) as any as S.Schema<AADProfileProperties>;
+
+/** Ingress gateway profile */
+export interface IngressProfileProperties {
+  /** The ingress hostname. */
+  hostname: string;
+  /** The AAD Profile */
+  aadProfile: AADProfileProperties;
+}
+export const IngressProfileProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    hostname: S.String,
+    aadProfile: AADProfileProperties,
+  }),
+).annotate({
+  identifier: "IngressProfileProperties",
+}) as any as S.Schema<IngressProfileProperties>;
+
+/** The ingress gateway access credentials */
+export interface IngressGatewayResource {
+  /** Azure relay hybrid connection access properties */
+  relay?: RelayNamespaceAccessProperties;
+  /** Ingress gateway profile */
+  ingress?: IngressProfileProperties;
+}
+export const IngressGatewayResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    relay: S.optional(RelayNamespaceAccessProperties),
+    ingress: S.optional(IngressProfileProperties),
+  }),
+).annotate({
+  identifier: "IngressGatewayResource",
+}) as any as S.Schema<IngressGatewayResource>;
+
+export interface ListEndpointManagedProxyDetailsRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  resourceUri: string;
+  /** The endpoint name. */
+  endpointName: string;
+  /** The name of the service. */
+  service: string;
+  /** The target host name. */
+  hostname?: string;
+  /** The name of the service. It is an optional property, if not provided, service configuration tokens issue code would be by passed. */
+  serviceName?: ServiceName | (string & {});
+}
+export const ListEndpointManagedProxyDetailsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      resourceUri: S.String.pipe(T.Label()),
+      endpointName: S.String.pipe(T.Label()),
+      service: S.String,
+      hostname: S.optional(S.String),
+      serviceName: S.optional(ServiceName),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/{resourceUri}/providers/Microsoft.HybridConnectivity/endpoints/{endpointName}/listManagedProxyDetails",
+        code: 200,
+        apiVersion: "2027-01-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListEndpointManagedProxyDetailsRequest",
+}) as any as S.Schema<ListEndpointManagedProxyDetailsRequest>;
+
+/** Managed Proxy */
+export interface ManagedProxyResource {
+  /** The short lived proxy name. */
+  proxy: string;
+  /** The expiration time of short lived proxy name in unix epoch. */
+  expiresOn: number;
+}
+export const ManagedProxyResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    proxy: S.String,
+    expiresOn: S.Number,
+  }),
+).annotate({
+  identifier: "ManagedProxyResource",
+}) as any as S.Schema<ManagedProxyResource>;
+
+export interface ListEndpointsRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  resourceUri: string;
+}
+export const ListEndpointsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceUri: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/{resourceUri}/providers/Microsoft.HybridConnectivity/endpoints",
+      code: 200,
+      apiVersion: "2027-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListEndpointsRequest",
+}) as any as S.Schema<ListEndpointsRequest>;
+
+/** The endpoint for the target resource. */
+export interface EndpointResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The endpoint properties. */
+  properties?: EndpointProperties;
+}
+export const EndpointResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(EndpointProperties),
+  }),
+).annotate({
+  identifier: "EndpointResource",
+}) as any as S.Schema<EndpointResource>;
+
+/** The list of endpoint. */
+export type EndpointsListValueList = Array<EndpointResource>;
+export const EndpointsListValueList = /*@__PURE__*/ S.Array(
+  EndpointResource,
+) as any as S.Schema<EndpointsListValueList>;
+
+/** The list of endpoints. */
+export interface EndpointsList {
+  /** The list of endpoint. */
+  value: EndpointsListValueList;
+  /** The link used to get the next page of endpoints list. */
+  nextLink?: string;
+}
+export const EndpointsList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: EndpointsListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "EndpointsList" }) as any as S.Schema<EndpointsList>;
+
+export interface ListInventoryBySolutionConfigurationRequest {
   /** The fully qualified Azure Resource manager identifier of the resource. */
   resourceUri: string;
   /** Represent Solution Configuration Resource. */
   solutionConfiguration: string;
 }
-export const InventoryListBySolutionConfigurationRequest =
+export const ListInventoryBySolutionConfigurationRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       resourceUri: S.String.pipe(T.Label()),
@@ -835,8 +1266,8 @@ export const InventoryListBySolutionConfigurationRequest =
       }),
     ),
   ).annotate({
-    identifier: "InventoryListBySolutionConfigurationRequest",
-  }) as any as S.Schema<InventoryListBySolutionConfigurationRequest>;
+    identifier: "ListInventoryBySolutionConfigurationRequest",
+  }) as any as S.Schema<ListInventoryBySolutionConfigurationRequest>;
 
 /** Concrete proxy resource types can be created by aliasing this type using a specific property type. */
 export interface InventoryResource {
@@ -885,8 +1316,8 @@ export const InventoryResourceListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "InventoryResourceListResult",
 }) as any as S.Schema<InventoryResourceListResult>;
 
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({
       method: "GET",
@@ -896,8 +1327,8 @@ export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
 
 /** Localized display information for this particular operation. */
 export interface OperationDisplay {
@@ -953,296 +1384,33 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
-export interface OperationsListResponse {
+export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
-export const OperationsListResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "OperationsListResponse",
-}) as any as S.Schema<OperationsListResponse>;
+  identifier: "ListOperationsResponse",
+}) as any as S.Schema<ListOperationsResponse>;
 
-/** Resource tags. */
-export type PublicCloudConnectorsCreateOrUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const PublicCloudConnectorsCreateOrUpdateRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<PublicCloudConnectorsCreateOrUpdateRequestTagsMap>;
-
-/** List of AWS accounts which need to be excluded. */
-export type AwsCloudProfileExcludedAccountsList = Array<string>;
-export const AwsCloudProfileExcludedAccountsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<AwsCloudProfileExcludedAccountsList>;
-
-/** cloud profile for AWS. */
-export interface AwsCloudProfile {
-  /** Account id for the AWS account. */
-  accountId: string;
-  /** List of AWS accounts which need to be excluded. */
-  excludedAccounts?: AwsCloudProfileExcludedAccountsList;
-  /** Boolean value that indicates whether the account is organizational or not. True represents organization account, whereas false represents a single account. */
-  isOrganizationalAccount?: boolean;
-}
-export const AwsCloudProfile = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountId: S.String,
-    excludedAccounts: S.optional(AwsCloudProfileExcludedAccountsList),
-    isOrganizationalAccount: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "AwsCloudProfile",
-}) as any as S.Schema<AwsCloudProfile>;
-
-/** Enum of host cloud the public cloud connector is referencing. */
-export type HostType = "AWS" | "GCP";
-export const HostType = /*@__PURE__*/ S.String;
-
-/** Properties of public cloud connectors. */
-export interface PublicCloudConnectorPropertiesInput {
-  /** Cloud profile for AWS. */
-  awsCloudProfile?: AwsCloudProfile;
-  /** Cloud profile for GCP. */
-  gcpCloudProfile?: GcpCloudProfile;
-  /** Host cloud the public cloud connector. */
-  hostType: HostType | (string & {});
-}
-export const PublicCloudConnectorPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    awsCloudProfile: S.optional(AwsCloudProfile),
-    gcpCloudProfile: S.optional(GcpCloudProfile),
-    hostType: HostType,
-  }),
-).annotate({
-  identifier: "PublicCloudConnectorPropertiesInput",
-}) as any as S.Schema<PublicCloudConnectorPropertiesInput>;
-
-export interface PublicCloudConnectorsCreateOrUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Represent public cloud connectors resource. */
-  publicCloudConnector: string;
-  /** Resource tags. */
-  tags?: PublicCloudConnectorsCreateOrUpdateRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: PublicCloudConnectorPropertiesInput;
-}
-export const PublicCloudConnectorsCreateOrUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      publicCloudConnector: S.String.pipe(T.Label()),
-      tags: S.optional(PublicCloudConnectorsCreateOrUpdateRequestTagsMap),
-      location: S.String,
-      properties: S.optional(PublicCloudConnectorPropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridConnectivity/publicCloudConnectors/{publicCloudConnector}",
-        code: 200,
-        apiVersion: "2027-01-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "PublicCloudConnectorsCreateOrUpdateRequest",
-  }) as any as S.Schema<PublicCloudConnectorsCreateOrUpdateRequest>;
-
-/** Resource tags. */
-export type PublicCloudConnectorsCreateOrUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const PublicCloudConnectorsCreateOrUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<PublicCloudConnectorsCreateOrUpdateResponseTagsMap>;
-
-/** Properties of public cloud connectors. */
-export interface PublicCloudConnectorProperties {
-  /** Cloud profile for AWS. */
-  awsCloudProfile?: AwsCloudProfile;
-  /** Cloud profile for GCP. */
-  gcpCloudProfile?: GcpCloudProfile;
-  /** Host cloud the public cloud connector. */
-  hostType: HostType;
-  /** The resource provisioning state. */
-  provisioningState?: AzureResourceManagerResourceProvisioningState;
-  /** Connector primary identifier. */
-  connectorPrimaryIdentifier?: string;
-}
-export const PublicCloudConnectorProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    awsCloudProfile: S.optional(AwsCloudProfile),
-    gcpCloudProfile: S.optional(GcpCloudProfile),
-    hostType: HostType,
-    provisioningState: S.optional(
-      AzureResourceManagerResourceProvisioningState,
-    ),
-    connectorPrimaryIdentifier: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PublicCloudConnectorProperties",
-}) as any as S.Schema<PublicCloudConnectorProperties>;
-
-export interface PublicCloudConnectorsCreateOrUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: PublicCloudConnectorsCreateOrUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: PublicCloudConnectorProperties;
-  /** The kind of the public cloud connector. */
-  kind?: HostType;
-}
-export const PublicCloudConnectorsCreateOrUpdateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(PublicCloudConnectorsCreateOrUpdateResponseTagsMap),
-      location: S.String,
-      properties: S.optional(PublicCloudConnectorProperties),
-      kind: S.optional(HostType),
-    }),
-  ).annotate({
-    identifier: "PublicCloudConnectorsCreateOrUpdateResponse",
-  }) as any as S.Schema<PublicCloudConnectorsCreateOrUpdateResponse>;
-
-export interface PublicCloudConnectorsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Represent public cloud connectors resource. */
-  publicCloudConnector: string;
-}
-export const PublicCloudConnectorsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    publicCloudConnector: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridConnectivity/publicCloudConnectors/{publicCloudConnector}",
-      code: 200,
-      apiVersion: "2027-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "PublicCloudConnectorsDeleteRequest",
-}) as any as S.Schema<PublicCloudConnectorsDeleteRequest>;
-
-export interface PublicCloudConnectorsDeleteResponse {}
-export const PublicCloudConnectorsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "PublicCloudConnectorsDeleteResponse",
-}) as any as S.Schema<PublicCloudConnectorsDeleteResponse>;
-
-export interface PublicCloudConnectorsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Represent public cloud connectors resource. */
-  publicCloudConnector: string;
-}
-export const PublicCloudConnectorsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    publicCloudConnector: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridConnectivity/publicCloudConnectors/{publicCloudConnector}",
-      code: 200,
-      apiVersion: "2027-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "PublicCloudConnectorsGetRequest",
-}) as any as S.Schema<PublicCloudConnectorsGetRequest>;
-
-/** Resource tags. */
-export type PublicCloudConnectorsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const PublicCloudConnectorsGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<PublicCloudConnectorsGetResponseTagsMap>;
-
-export interface PublicCloudConnectorsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: PublicCloudConnectorsGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: PublicCloudConnectorProperties;
-  /** The kind of the public cloud connector. */
-  kind?: HostType;
-}
-export const PublicCloudConnectorsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(PublicCloudConnectorsGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(PublicCloudConnectorProperties),
-    kind: S.optional(HostType),
-  }),
-).annotate({
-  identifier: "PublicCloudConnectorsGetResponse",
-}) as any as S.Schema<PublicCloudConnectorsGetResponse>;
-
-export interface PublicCloudConnectorsListByResourceGroupRequest {
+export interface ListPublicCloudConnectorByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
 }
-export const PublicCloudConnectorsListByResourceGroupRequest =
+export const ListPublicCloudConnectorByResourceGroupRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -1256,8 +1424,8 @@ export const PublicCloudConnectorsListByResourceGroupRequest =
       }),
     ),
   ).annotate({
-    identifier: "PublicCloudConnectorsListByResourceGroupRequest",
-  }) as any as S.Schema<PublicCloudConnectorsListByResourceGroupRequest>;
+    identifier: "ListPublicCloudConnectorByResourceGroupRequest",
+  }) as any as S.Schema<ListPublicCloudConnectorByResourceGroupRequest>;
 
 /** Resource tags. */
 export type PublicCloudConnectorTagsMap = { [key: string]: string | undefined };
@@ -1323,11 +1491,11 @@ export const PublicCloudConnectorListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "PublicCloudConnectorListResult",
 }) as any as S.Schema<PublicCloudConnectorListResult>;
 
-export interface PublicCloudConnectorsListBySubscriptionRequest {
+export interface ListPublicCloudConnectorBySubscriptionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
 }
-export const PublicCloudConnectorsListBySubscriptionRequest =
+export const ListPublicCloudConnectorBySubscriptionRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -1340,34 +1508,528 @@ export const PublicCloudConnectorsListBySubscriptionRequest =
       }),
     ),
   ).annotate({
-    identifier: "PublicCloudConnectorsListBySubscriptionRequest",
-  }) as any as S.Schema<PublicCloudConnectorsListBySubscriptionRequest>;
+    identifier: "ListPublicCloudConnectorBySubscriptionRequest",
+  }) as any as S.Schema<ListPublicCloudConnectorBySubscriptionRequest>;
 
-export interface PublicCloudConnectorsTestPermissionsRequest {
+export interface ListServiceConfigurationByEndpointResourceRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  resourceUri: string;
+  /** The endpoint name. */
+  endpointName: string;
+}
+export const ListServiceConfigurationByEndpointResourceRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      resourceUri: S.String.pipe(T.Label()),
+      endpointName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/{resourceUri}/providers/Microsoft.HybridConnectivity/endpoints/{endpointName}/serviceConfigurations",
+        code: 200,
+        apiVersion: "2027-01-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListServiceConfigurationByEndpointResourceRequest",
+  }) as any as S.Schema<ListServiceConfigurationByEndpointResourceRequest>;
+
+/** The service configuration details associated with the target resource. */
+export interface ServiceConfigurationResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The service configuration properties. */
+  properties?: ServiceConfigurationProperties;
+}
+export const ServiceConfigurationResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ServiceConfigurationProperties),
+  }),
+).annotate({
+  identifier: "ServiceConfigurationResource",
+}) as any as S.Schema<ServiceConfigurationResource>;
+
+/** The list of service configuration */
+export type ServiceConfigurationListValueList =
+  Array<ServiceConfigurationResource>;
+export const ServiceConfigurationListValueList = /*@__PURE__*/ S.Array(
+  ServiceConfigurationResource,
+) as any as S.Schema<ServiceConfigurationListValueList>;
+
+/** The paginated list of serviceConfigurations */
+export interface ServiceConfigurationList {
+  /** The list of service configuration */
+  value: ServiceConfigurationListValueList;
+  /** The link to fetch the next page of connected cluster */
+  nextLink?: string;
+}
+export const ServiceConfigurationList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ServiceConfigurationListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ServiceConfigurationList",
+}) as any as S.Schema<ServiceConfigurationList>;
+
+export interface ListSolutionConfigurationsRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  resourceUri: string;
+}
+export const ListSolutionConfigurationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceUri: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/{resourceUri}/providers/Microsoft.HybridConnectivity/solutionConfigurations",
+      code: 200,
+      apiVersion: "2027-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListSolutionConfigurationsRequest",
+}) as any as S.Schema<ListSolutionConfigurationsRequest>;
+
+/** Solution Configuration */
+export interface SolutionConfiguration {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: SolutionConfigurationProperties;
+}
+export const SolutionConfiguration = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(SolutionConfigurationProperties),
+  }),
+).annotate({
+  identifier: "SolutionConfiguration",
+}) as any as S.Schema<SolutionConfiguration>;
+
+/** The SolutionConfiguration items on this page */
+export type SolutionConfigurationListResultValueList =
+  Array<SolutionConfiguration>;
+export const SolutionConfigurationListResultValueList = /*@__PURE__*/ S.Array(
+  SolutionConfiguration,
+) as any as S.Schema<SolutionConfigurationListResultValueList>;
+
+/** The response of a SolutionConfiguration list operation. */
+export interface SolutionConfigurationListResult {
+  /** The SolutionConfiguration items on this page */
+  value: SolutionConfigurationListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const SolutionConfigurationListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: SolutionConfigurationListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SolutionConfigurationListResult",
+}) as any as S.Schema<SolutionConfigurationListResult>;
+
+export interface ListSolutionTypeByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const ListSolutionTypeByResourceGroupRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridConnectivity/solutionTypes",
+        code: 200,
+        apiVersion: "2027-01-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListSolutionTypeByResourceGroupRequest",
+}) as any as S.Schema<ListSolutionTypeByResourceGroupRequest>;
+
+/** Concrete proxy resource types can be created by aliasing this type using a specific property type. */
+export interface SolutionTypeResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: SolutionTypeProperties;
+}
+export const SolutionTypeResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(SolutionTypeProperties),
+  }),
+).annotate({
+  identifier: "SolutionTypeResource",
+}) as any as S.Schema<SolutionTypeResource>;
+
+/** The SolutionTypeResource items on this page */
+export type SolutionTypeResourceListResultValueList =
+  Array<SolutionTypeResource>;
+export const SolutionTypeResourceListResultValueList = /*@__PURE__*/ S.Array(
+  SolutionTypeResource,
+) as any as S.Schema<SolutionTypeResourceListResultValueList>;
+
+/** The response of a SolutionTypeResource list operation. */
+export interface SolutionTypeResourceListResult {
+  /** The SolutionTypeResource items on this page */
+  value: SolutionTypeResourceListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const SolutionTypeResourceListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: SolutionTypeResourceListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SolutionTypeResourceListResult",
+}) as any as S.Schema<SolutionTypeResourceListResult>;
+
+export interface ListSolutionTypeBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+}
+export const ListSolutionTypeBySubscriptionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.HybridConnectivity/solutionTypes",
+        code: 200,
+        apiVersion: "2027-01-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListSolutionTypeBySubscriptionRequest",
+}) as any as S.Schema<ListSolutionTypeBySubscriptionRequest>;
+
+/** The properties of Solution Type */
+export interface SolutionTypeSettings {
+  /** The type of the solution */
+  solutionType: string;
+  /** Solution settings */
+  solutionSettings?: SolutionSettings;
+}
+export const SolutionTypeSettings = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    solutionType: S.String,
+    solutionSettings: S.optional(SolutionSettings),
+  }),
+).annotate({
+  identifier: "SolutionTypeSettings",
+}) as any as S.Schema<SolutionTypeSettings>;
+
+/** The list of solution types and their settings */
+export type PostGenerateAwsTemplateRequestSolutionTypesList =
+  Array<SolutionTypeSettings>;
+export const PostGenerateAwsTemplateRequestSolutionTypesList =
+  /*@__PURE__*/ S.Array(
+    SolutionTypeSettings,
+  ) as any as S.Schema<PostGenerateAwsTemplateRequestSolutionTypesList>;
+
+export interface PostGenerateAwsTemplateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of public cloud connector */
+  connectorId: string;
+  /** The list of solution types and their settings */
+  solutionTypes?: PostGenerateAwsTemplateRequestSolutionTypesList;
+}
+export const PostGenerateAwsTemplateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    connectorId: S.String,
+    solutionTypes: S.optional(PostGenerateAwsTemplateRequestSolutionTypesList),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.HybridConnectivity/generateAwsTemplate",
+      code: 200,
+      apiVersion: "2027-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "PostGenerateAwsTemplateRequest",
+}) as any as S.Schema<PostGenerateAwsTemplateRequest>;
+
+export type PostGenerateAwsTemplateResponse = unknown;
+export const PostGenerateAwsTemplateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Unknown.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "PostGenerateAwsTemplateResponse",
+}) as any as S.Schema<PostGenerateAwsTemplateResponse>;
+
+/** The list of solution types and their settings */
+export type PostGenerateGcpTemplateRequestSolutionTypesList =
+  Array<SolutionTypeSettings>;
+export const PostGenerateGcpTemplateRequestSolutionTypesList =
+  /*@__PURE__*/ S.Array(
+    SolutionTypeSettings,
+  ) as any as S.Schema<PostGenerateGcpTemplateRequestSolutionTypesList>;
+
+/** GCP template format. */
+export type GcpTemplateFormat = "terraform" | "shellscript";
+export const GcpTemplateFormat = /*@__PURE__*/ S.String;
+
+export interface PostGenerateGcpTemplateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of public cloud connector */
+  connectorId: string;
+  /** The list of solution types and their settings */
+  solutionTypes?: PostGenerateGcpTemplateRequestSolutionTypesList;
+  /** The GCP cloud profile. */
+  gcpCloudProfile?: GcpCloudProfile;
+  /** Optional template output format. Defaults to 'terraform' if not provided */
+  gcpTemplateFormat?: GcpTemplateFormat | (string & {});
+}
+export const PostGenerateGcpTemplateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    connectorId: S.String,
+    solutionTypes: S.optional(PostGenerateGcpTemplateRequestSolutionTypesList),
+    gcpCloudProfile: S.optional(GcpCloudProfile),
+    gcpTemplateFormat: S.optional(GcpTemplateFormat),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.HybridConnectivity/generateGcpTemplate",
+      code: 200,
+      apiVersion: "2027-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "PostGenerateGcpTemplateRequest",
+}) as any as S.Schema<PostGenerateGcpTemplateRequest>;
+
+export type PostGenerateGcpTemplateResponse = unknown;
+export const PostGenerateGcpTemplateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Unknown.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "PostGenerateGcpTemplateResponse",
+}) as any as S.Schema<PostGenerateGcpTemplateResponse>;
+
+/** Resource tags. */
+export type PublicCloudConnectorsCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const PublicCloudConnectorsCreateOrUpdateRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<PublicCloudConnectorsCreateOrUpdateRequestTagsMap>;
+
+/** Properties of public cloud connectors. */
+export interface PublicCloudConnectorPropertiesInput {
+  /** Cloud profile for AWS. */
+  awsCloudProfile?: AwsCloudProfile;
+  /** Cloud profile for GCP. */
+  gcpCloudProfile?: GcpCloudProfile;
+  /** Host cloud the public cloud connector. */
+  hostType: HostType | (string & {});
+}
+export const PublicCloudConnectorPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    awsCloudProfile: S.optional(AwsCloudProfile),
+    gcpCloudProfile: S.optional(GcpCloudProfile),
+    hostType: HostType,
+  }),
+).annotate({
+  identifier: "PublicCloudConnectorPropertiesInput",
+}) as any as S.Schema<PublicCloudConnectorPropertiesInput>;
+
+export interface PublicCloudConnectorsCreateOrUpdateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** Represent public cloud connectors resource. */
   publicCloudConnector: string;
+  /** Resource tags. */
+  tags?: PublicCloudConnectorsCreateOrUpdateRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: PublicCloudConnectorPropertiesInput;
 }
-export const PublicCloudConnectorsTestPermissionsRequest =
+export const PublicCloudConnectorsCreateOrUpdateRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       publicCloudConnector: S.String.pipe(T.Label()),
+      tags: S.optional(PublicCloudConnectorsCreateOrUpdateRequestTagsMap),
+      location: S.String,
+      properties: S.optional(PublicCloudConnectorPropertiesInput),
     }).pipe(
       T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridConnectivity/publicCloudConnectors/{publicCloudConnector}/testPermissions",
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridConnectivity/publicCloudConnectors/{publicCloudConnector}",
         code: 200,
         apiVersion: "2027-01-01",
       }),
     ),
   ).annotate({
-    identifier: "PublicCloudConnectorsTestPermissionsRequest",
-  }) as any as S.Schema<PublicCloudConnectorsTestPermissionsRequest>;
+    identifier: "PublicCloudConnectorsCreateOrUpdateRequest",
+  }) as any as S.Schema<PublicCloudConnectorsCreateOrUpdateRequest>;
+
+/** Resource tags. */
+export type PublicCloudConnectorsCreateOrUpdateResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const PublicCloudConnectorsCreateOrUpdateResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<PublicCloudConnectorsCreateOrUpdateResponseTagsMap>;
+
+export interface PublicCloudConnectorsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: PublicCloudConnectorsCreateOrUpdateResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: PublicCloudConnectorProperties;
+  /** The kind of the public cloud connector. */
+  kind?: HostType;
+}
+export const PublicCloudConnectorsCreateOrUpdateResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(PublicCloudConnectorsCreateOrUpdateResponseTagsMap),
+      location: S.String,
+      properties: S.optional(PublicCloudConnectorProperties),
+      kind: S.optional(HostType),
+    }),
+  ).annotate({
+    identifier: "PublicCloudConnectorsCreateOrUpdateResponse",
+  }) as any as S.Schema<PublicCloudConnectorsCreateOrUpdateResponse>;
+
+/** Solution configuration resource. */
+export type SolutionConfigurationPropertiesInput = SolutionTypeSettings;
+export const SolutionConfigurationPropertiesInput = SolutionTypeSettings;
+
+export interface SolutionConfigurationsCreateOrUpdateRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  resourceUri: string;
+  /** Represent Solution Configuration Resource. */
+  solutionConfiguration: string;
+  /** The resource-specific properties for this resource. */
+  properties?: SolutionTypeSettings;
+}
+export const SolutionConfigurationsCreateOrUpdateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      resourceUri: S.String.pipe(T.Label()),
+      solutionConfiguration: S.String.pipe(T.Label()),
+      properties: S.optional(SolutionTypeSettings),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/{resourceUri}/providers/Microsoft.HybridConnectivity/solutionConfigurations/{solutionConfiguration}",
+        code: 200,
+        apiVersion: "2027-01-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "SolutionConfigurationsCreateOrUpdateRequest",
+  }) as any as S.Schema<SolutionConfigurationsCreateOrUpdateRequest>;
+
+export interface SolutionConfigurationsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: SolutionConfigurationProperties;
+}
+export const SolutionConfigurationsCreateOrUpdateResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(SolutionConfigurationProperties),
+    }),
+  ).annotate({
+    identifier: "SolutionConfigurationsCreateOrUpdateResponse",
+  }) as any as S.Schema<SolutionConfigurationsCreateOrUpdateResponse>;
+
+export interface SyncSolutionConfigurationNowRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  resourceUri: string;
+  /** Represent Solution Configuration Resource. */
+  solutionConfiguration: string;
+}
+export const SyncSolutionConfigurationNowRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceUri: S.String.pipe(T.Label()),
+    solutionConfiguration: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/{resourceUri}/providers/Microsoft.HybridConnectivity/solutionConfigurations/{solutionConfiguration}/syncNow",
+      code: 200,
+      apiVersion: "2027-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "SyncSolutionConfigurationNowRequest",
+}) as any as S.Schema<SyncSolutionConfigurationNowRequest>;
 
 /** The operations list. */
 export type OperationStatusResultOperationsList = Array<OperationStatusResult>;
@@ -1464,14 +2126,14 @@ export const OperationStatusResult = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<OperationStatusResult>;
 
 /** The operations list. */
-export type PublicCloudConnectorsTestPermissionsResponseOperationsList =
+export type SyncSolutionConfigurationNowResponseOperationsList =
   Array<OperationStatusResult>;
-export const PublicCloudConnectorsTestPermissionsResponseOperationsList =
+export const SyncSolutionConfigurationNowResponseOperationsList =
   /*@__PURE__*/ S.Array(
     OperationStatusResult,
-  ) as any as S.Schema<PublicCloudConnectorsTestPermissionsResponseOperationsList>;
+  ) as any as S.Schema<SyncSolutionConfigurationNowResponseOperationsList>;
 
-export interface PublicCloudConnectorsTestPermissionsResponse {
+export interface SyncSolutionConfigurationNowResponse {
   /** Fully qualified ID for the async operation. */
   id?: string;
   /** Fully qualified ID of the resource against which the original async operation was started. */
@@ -1487,11 +2149,84 @@ export interface PublicCloudConnectorsTestPermissionsResponse {
   /** The end time of the operation. */
   endTime?: string;
   /** The operations list. */
-  operations?: PublicCloudConnectorsTestPermissionsResponseOperationsList;
+  operations?: SyncSolutionConfigurationNowResponseOperationsList;
   /** If present, details of the operation error. */
   error?: ErrorDetail;
 }
-export const PublicCloudConnectorsTestPermissionsResponse =
+export const SyncSolutionConfigurationNowResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      resourceId: S.optional(S.String),
+      name: S.optional(S.String),
+      status: S.String,
+      percentComplete: S.optional(S.Number),
+      startTime: S.optional(S.String),
+      endTime: S.optional(S.String),
+      operations: S.optional(
+        SyncSolutionConfigurationNowResponseOperationsList,
+      ),
+      error: S.optional(ErrorDetail),
+    }),
+).annotate({
+  identifier: "SyncSolutionConfigurationNowResponse",
+}) as any as S.Schema<SyncSolutionConfigurationNowResponse>;
+
+export interface TestPublicCloudConnectorPermissionsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Represent public cloud connectors resource. */
+  publicCloudConnector: string;
+}
+export const TestPublicCloudConnectorPermissionsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      publicCloudConnector: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridConnectivity/publicCloudConnectors/{publicCloudConnector}/testPermissions",
+        code: 200,
+        apiVersion: "2027-01-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "TestPublicCloudConnectorPermissionsRequest",
+  }) as any as S.Schema<TestPublicCloudConnectorPermissionsRequest>;
+
+/** The operations list. */
+export type TestPublicCloudConnectorPermissionsResponseOperationsList =
+  Array<OperationStatusResult>;
+export const TestPublicCloudConnectorPermissionsResponseOperationsList =
+  /*@__PURE__*/ S.Array(
+    OperationStatusResult,
+  ) as any as S.Schema<TestPublicCloudConnectorPermissionsResponseOperationsList>;
+
+export interface TestPublicCloudConnectorPermissionsResponse {
+  /** Fully qualified ID for the async operation. */
+  id?: string;
+  /** Fully qualified ID of the resource against which the original async operation was started. */
+  resourceId?: string;
+  /** Name of the async operation. */
+  name?: string;
+  /** Operation status. */
+  status: string;
+  /** Percent of the operation that is complete. */
+  percentComplete?: number;
+  /** The start time of the operation. */
+  startTime?: string;
+  /** The end time of the operation. */
+  endTime?: string;
+  /** The operations list. */
+  operations?: TestPublicCloudConnectorPermissionsResponseOperationsList;
+  /** If present, details of the operation error. */
+  error?: ErrorDetail;
+}
+export const TestPublicCloudConnectorPermissionsResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -1502,22 +2237,71 @@ export const PublicCloudConnectorsTestPermissionsResponse =
       startTime: S.optional(S.String),
       endTime: S.optional(S.String),
       operations: S.optional(
-        PublicCloudConnectorsTestPermissionsResponseOperationsList,
+        TestPublicCloudConnectorPermissionsResponseOperationsList,
       ),
       error: S.optional(ErrorDetail),
     }),
   ).annotate({
-    identifier: "PublicCloudConnectorsTestPermissionsResponse",
-  }) as any as S.Schema<PublicCloudConnectorsTestPermissionsResponse>;
+    identifier: "TestPublicCloudConnectorPermissionsResponse",
+  }) as any as S.Schema<TestPublicCloudConnectorPermissionsResponse>;
+
+export interface UpdateEndpointRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  resourceUri: string;
+  /** The endpoint name. */
+  endpointName: string;
+  /** The endpoint properties. */
+  properties?: EndpointPropertiesInput;
+}
+export const UpdateEndpointRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceUri: S.String.pipe(T.Label()),
+    endpointName: S.String.pipe(T.Label()),
+    properties: S.optional(EndpointPropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/{resourceUri}/providers/Microsoft.HybridConnectivity/endpoints/{endpointName}",
+      code: 200,
+      apiVersion: "2027-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateEndpointRequest",
+}) as any as S.Schema<UpdateEndpointRequest>;
+
+export interface UpdateEndpointResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The endpoint properties. */
+  properties?: EndpointProperties;
+}
+export const UpdateEndpointResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(EndpointProperties),
+  }),
+).annotate({
+  identifier: "UpdateEndpointResponse",
+}) as any as S.Schema<UpdateEndpointResponse>;
 
 /** Resource tags. */
-export type PublicCloudConnectorsUpdateRequestTagsMap = {
+export type UpdatePublicCloudConnectorRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const PublicCloudConnectorsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdatePublicCloudConnectorRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<PublicCloudConnectorsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdatePublicCloudConnectorRequestTagsMap>;
 
 /** List of AWS accounts which need to be excluded. */
 export type AwsCloudProfileUpdateExcludedAccountsList = Array<string>;
@@ -1604,7 +2388,7 @@ export const PublicCloudConnectorPropertiesUpdate = /*@__PURE__*/ S.suspend(
   identifier: "PublicCloudConnectorPropertiesUpdate",
 }) as any as S.Schema<PublicCloudConnectorPropertiesUpdate>;
 
-export interface PublicCloudConnectorsUpdateRequest {
+export interface UpdatePublicCloudConnectorRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1612,16 +2396,16 @@ export interface PublicCloudConnectorsUpdateRequest {
   /** Represent public cloud connectors resource. */
   publicCloudConnector: string;
   /** Resource tags. */
-  tags?: PublicCloudConnectorsUpdateRequestTagsMap;
+  tags?: UpdatePublicCloudConnectorRequestTagsMap;
   /** The resource-specific properties for this resource. */
   properties?: PublicCloudConnectorPropertiesUpdate;
 }
-export const PublicCloudConnectorsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdatePublicCloudConnectorRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     publicCloudConnector: S.String.pipe(T.Label()),
-    tags: S.optional(PublicCloudConnectorsUpdateRequestTagsMap),
+    tags: S.optional(UpdatePublicCloudConnectorRequestTagsMap),
     properties: S.optional(PublicCloudConnectorPropertiesUpdate),
   }).pipe(
     T.Http({
@@ -1632,20 +2416,19 @@ export const PublicCloudConnectorsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "PublicCloudConnectorsUpdateRequest",
-}) as any as S.Schema<PublicCloudConnectorsUpdateRequest>;
+  identifier: "UpdatePublicCloudConnectorRequest",
+}) as any as S.Schema<UpdatePublicCloudConnectorRequest>;
 
 /** Resource tags. */
-export type PublicCloudConnectorsUpdateResponseTagsMap = {
+export type UpdatePublicCloudConnectorResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const PublicCloudConnectorsUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<PublicCloudConnectorsUpdateResponseTagsMap>;
+export const UpdatePublicCloudConnectorResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdatePublicCloudConnectorResponseTagsMap>;
 
-export interface PublicCloudConnectorsUpdateResponse {
+export interface UpdatePublicCloudConnectorResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1655,7 +2438,7 @@ export interface PublicCloudConnectorsUpdateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: PublicCloudConnectorsUpdateResponseTagsMap;
+  tags?: UpdatePublicCloudConnectorResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -1663,276 +2446,20 @@ export interface PublicCloudConnectorsUpdateResponse {
   /** The kind of the public cloud connector. */
   kind?: HostType;
 }
-export const PublicCloudConnectorsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdatePublicCloudConnectorResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(PublicCloudConnectorsUpdateResponseTagsMap),
+    tags: S.optional(UpdatePublicCloudConnectorResponseTagsMap),
     location: S.String,
     properties: S.optional(PublicCloudConnectorProperties),
     kind: S.optional(HostType),
   }),
 ).annotate({
-  identifier: "PublicCloudConnectorsUpdateResponse",
-}) as any as S.Schema<PublicCloudConnectorsUpdateResponse>;
-
-/** Service configuration details */
-export interface ServiceConfigurationPropertiesInput {
-  /** Name of the service. */
-  serviceName: ServiceName | (string & {});
-  /** The resource Id of the connectivity endpoint (optional). */
-  resourceId?: string;
-  /** The port on which service is enabled. */
-  port?: number;
-}
-export const ServiceConfigurationPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceName: ServiceName,
-    resourceId: S.optional(S.String),
-    port: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "ServiceConfigurationPropertiesInput",
-}) as any as S.Schema<ServiceConfigurationPropertiesInput>;
-
-export interface ServiceConfigurationsCreateOrupdateRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  resourceUri: string;
-  /** The endpoint name. */
-  endpointName: string;
-  /** The service name. */
-  serviceConfigurationName: string;
-  /** The service configuration properties. */
-  properties?: ServiceConfigurationPropertiesInput;
-}
-export const ServiceConfigurationsCreateOrupdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      resourceUri: S.String.pipe(T.Label()),
-      endpointName: S.String.pipe(T.Label()),
-      serviceConfigurationName: S.String.pipe(T.Label()),
-      properties: S.optional(ServiceConfigurationPropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/{resourceUri}/providers/Microsoft.HybridConnectivity/endpoints/{endpointName}/serviceConfigurations/{serviceConfigurationName}",
-        code: 200,
-        apiVersion: "2027-01-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ServiceConfigurationsCreateOrupdateRequest",
-  }) as any as S.Schema<ServiceConfigurationsCreateOrupdateRequest>;
-
-/** The resource provisioning state. */
-export type ProvisioningState =
-  | "Succeeded"
-  | "Creating"
-  | "Updating"
-  | "Failed"
-  | "Canceled";
-export const ProvisioningState = /*@__PURE__*/ S.String;
-
-/** Service configuration details */
-export interface ServiceConfigurationProperties {
-  /** Name of the service. */
-  serviceName: ServiceName;
-  /** The resource Id of the connectivity endpoint (optional). */
-  resourceId?: string;
-  /** The port on which service is enabled. */
-  port?: number;
-  /** The resource provisioning state. */
-  provisioningState?: ProvisioningState;
-}
-export const ServiceConfigurationProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceName: ServiceName,
-    resourceId: S.optional(S.String),
-    port: S.optional(S.Number),
-    provisioningState: S.optional(ProvisioningState),
-  }),
-).annotate({
-  identifier: "ServiceConfigurationProperties",
-}) as any as S.Schema<ServiceConfigurationProperties>;
-
-export interface ServiceConfigurationsCreateOrupdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The service configuration properties. */
-  properties?: ServiceConfigurationProperties;
-}
-export const ServiceConfigurationsCreateOrupdateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(ServiceConfigurationProperties),
-    }),
-  ).annotate({
-    identifier: "ServiceConfigurationsCreateOrupdateResponse",
-  }) as any as S.Schema<ServiceConfigurationsCreateOrupdateResponse>;
-
-export interface ServiceConfigurationsDeleteRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  resourceUri: string;
-  /** The endpoint name. */
-  endpointName: string;
-  /** The service name. */
-  serviceConfigurationName: string;
-}
-export const ServiceConfigurationsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceUri: S.String.pipe(T.Label()),
-    endpointName: S.String.pipe(T.Label()),
-    serviceConfigurationName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/{resourceUri}/providers/Microsoft.HybridConnectivity/endpoints/{endpointName}/serviceConfigurations/{serviceConfigurationName}",
-      code: 200,
-      apiVersion: "2027-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "ServiceConfigurationsDeleteRequest",
-}) as any as S.Schema<ServiceConfigurationsDeleteRequest>;
-
-export interface ServiceConfigurationsDeleteResponse {}
-export const ServiceConfigurationsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ServiceConfigurationsDeleteResponse",
-}) as any as S.Schema<ServiceConfigurationsDeleteResponse>;
-
-export interface ServiceConfigurationsGetRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  resourceUri: string;
-  /** The endpoint name. */
-  endpointName: string;
-  /** The service name. */
-  serviceConfigurationName: string;
-}
-export const ServiceConfigurationsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceUri: S.String.pipe(T.Label()),
-    endpointName: S.String.pipe(T.Label()),
-    serviceConfigurationName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/{resourceUri}/providers/Microsoft.HybridConnectivity/endpoints/{endpointName}/serviceConfigurations/{serviceConfigurationName}",
-      code: 200,
-      apiVersion: "2027-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "ServiceConfigurationsGetRequest",
-}) as any as S.Schema<ServiceConfigurationsGetRequest>;
-
-export interface ServiceConfigurationsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The service configuration properties. */
-  properties?: ServiceConfigurationProperties;
-}
-export const ServiceConfigurationsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ServiceConfigurationProperties),
-  }),
-).annotate({
-  identifier: "ServiceConfigurationsGetResponse",
-}) as any as S.Schema<ServiceConfigurationsGetResponse>;
-
-export interface ServiceConfigurationsListByEndpointResourceRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  resourceUri: string;
-  /** The endpoint name. */
-  endpointName: string;
-}
-export const ServiceConfigurationsListByEndpointResourceRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      resourceUri: S.String.pipe(T.Label()),
-      endpointName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/{resourceUri}/providers/Microsoft.HybridConnectivity/endpoints/{endpointName}/serviceConfigurations",
-        code: 200,
-        apiVersion: "2027-01-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ServiceConfigurationsListByEndpointResourceRequest",
-  }) as any as S.Schema<ServiceConfigurationsListByEndpointResourceRequest>;
-
-/** The service configuration details associated with the target resource. */
-export interface ServiceConfigurationResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The service configuration properties. */
-  properties?: ServiceConfigurationProperties;
-}
-export const ServiceConfigurationResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ServiceConfigurationProperties),
-  }),
-).annotate({
-  identifier: "ServiceConfigurationResource",
-}) as any as S.Schema<ServiceConfigurationResource>;
-
-/** The list of service configuration */
-export type ServiceConfigurationListValueList =
-  Array<ServiceConfigurationResource>;
-export const ServiceConfigurationListValueList = /*@__PURE__*/ S.Array(
-  ServiceConfigurationResource,
-) as any as S.Schema<ServiceConfigurationListValueList>;
-
-/** The paginated list of serviceConfigurations */
-export interface ServiceConfigurationList {
-  /** The list of service configuration */
-  value: ServiceConfigurationListValueList;
-  /** The link to fetch the next page of connected cluster */
-  nextLink?: string;
-}
-export const ServiceConfigurationList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: ServiceConfigurationListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ServiceConfigurationList",
-}) as any as S.Schema<ServiceConfigurationList>;
+  identifier: "UpdatePublicCloudConnectorResponse",
+}) as any as S.Schema<UpdatePublicCloudConnectorResponse>;
 
 /** Service configuration details */
 export interface ServiceConfigurationPropertiesPatch {
@@ -1947,7 +2474,7 @@ export const ServiceConfigurationPropertiesPatch = /*@__PURE__*/ S.suspend(() =>
   identifier: "ServiceConfigurationPropertiesPatch",
 }) as any as S.Schema<ServiceConfigurationPropertiesPatch>;
 
-export interface ServiceConfigurationsUpdateRequest {
+export interface UpdateServiceConfigurationRequest {
   /** The fully qualified Azure Resource manager identifier of the resource. */
   resourceUri: string;
   /** The endpoint name. */
@@ -1957,7 +2484,7 @@ export interface ServiceConfigurationsUpdateRequest {
   /** The service configuration properties. */
   properties?: ServiceConfigurationPropertiesPatch;
 }
-export const ServiceConfigurationsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateServiceConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     resourceUri: S.String.pipe(T.Label()),
     endpointName: S.String.pipe(T.Label()),
@@ -1972,10 +2499,10 @@ export const ServiceConfigurationsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ServiceConfigurationsUpdateRequest",
-}) as any as S.Schema<ServiceConfigurationsUpdateRequest>;
+  identifier: "UpdateServiceConfigurationRequest",
+}) as any as S.Schema<UpdateServiceConfigurationRequest>;
 
-export interface ServiceConfigurationsUpdateResponse {
+export interface UpdateServiceConfigurationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1987,7 +2514,7 @@ export interface ServiceConfigurationsUpdateResponse {
   /** The service configuration properties. */
   properties?: ServiceConfigurationProperties;
 }
-export const ServiceConfigurationsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateServiceConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -1996,305 +2523,8 @@ export const ServiceConfigurationsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(ServiceConfigurationProperties),
   }),
 ).annotate({
-  identifier: "ServiceConfigurationsUpdateResponse",
-}) as any as S.Schema<ServiceConfigurationsUpdateResponse>;
-
-/** Solution configuration resource. */
-export type SolutionConfigurationPropertiesInput = SolutionTypeSettings;
-export const SolutionConfigurationPropertiesInput = SolutionTypeSettings;
-
-export interface SolutionConfigurationsCreateOrUpdateRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  resourceUri: string;
-  /** Represent Solution Configuration Resource. */
-  solutionConfiguration: string;
-  /** The resource-specific properties for this resource. */
-  properties?: SolutionTypeSettings;
-}
-export const SolutionConfigurationsCreateOrUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      resourceUri: S.String.pipe(T.Label()),
-      solutionConfiguration: S.String.pipe(T.Label()),
-      properties: S.optional(SolutionTypeSettings),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/{resourceUri}/providers/Microsoft.HybridConnectivity/solutionConfigurations/{solutionConfiguration}",
-        code: 200,
-        apiVersion: "2027-01-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "SolutionConfigurationsCreateOrUpdateRequest",
-  }) as any as S.Schema<SolutionConfigurationsCreateOrUpdateRequest>;
-
-/** Solution configuration resource. */
-export interface SolutionConfigurationProperties {
-  /** The resource provisioning state. */
-  provisioningState?: AzureResourceManagerResourceProvisioningState;
-  /** The type of the solution */
-  solutionType: string;
-  /** Solution settings */
-  solutionSettings?: SolutionSettings;
-  /** The status of solution configurations */
-  status?: SolutionConfigurationStatus;
-  /** The detailed message of status details */
-  statusDetails?: string;
-  /** The last time resources were inventoried */
-  lastSyncTime?: string;
-}
-export const SolutionConfigurationProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisioningState: S.optional(
-      AzureResourceManagerResourceProvisioningState,
-    ),
-    solutionType: S.String,
-    solutionSettings: S.optional(SolutionSettings),
-    status: S.optional(SolutionConfigurationStatus),
-    statusDetails: S.optional(S.String),
-    lastSyncTime: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SolutionConfigurationProperties",
-}) as any as S.Schema<SolutionConfigurationProperties>;
-
-export interface SolutionConfigurationsCreateOrUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: SolutionConfigurationProperties;
-}
-export const SolutionConfigurationsCreateOrUpdateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(SolutionConfigurationProperties),
-    }),
-  ).annotate({
-    identifier: "SolutionConfigurationsCreateOrUpdateResponse",
-  }) as any as S.Schema<SolutionConfigurationsCreateOrUpdateResponse>;
-
-export interface SolutionConfigurationsDeleteRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  resourceUri: string;
-  /** Represent Solution Configuration Resource. */
-  solutionConfiguration: string;
-}
-export const SolutionConfigurationsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceUri: S.String.pipe(T.Label()),
-    solutionConfiguration: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/{resourceUri}/providers/Microsoft.HybridConnectivity/solutionConfigurations/{solutionConfiguration}",
-      code: 200,
-      apiVersion: "2027-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "SolutionConfigurationsDeleteRequest",
-}) as any as S.Schema<SolutionConfigurationsDeleteRequest>;
-
-export interface SolutionConfigurationsDeleteResponse {}
-export const SolutionConfigurationsDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "SolutionConfigurationsDeleteResponse",
-}) as any as S.Schema<SolutionConfigurationsDeleteResponse>;
-
-export interface SolutionConfigurationsGetRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  resourceUri: string;
-  /** Represent Solution Configuration Resource. */
-  solutionConfiguration: string;
-}
-export const SolutionConfigurationsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceUri: S.String.pipe(T.Label()),
-    solutionConfiguration: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/{resourceUri}/providers/Microsoft.HybridConnectivity/solutionConfigurations/{solutionConfiguration}",
-      code: 200,
-      apiVersion: "2027-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "SolutionConfigurationsGetRequest",
-}) as any as S.Schema<SolutionConfigurationsGetRequest>;
-
-export interface SolutionConfigurationsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: SolutionConfigurationProperties;
-}
-export const SolutionConfigurationsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(SolutionConfigurationProperties),
-  }),
-).annotate({
-  identifier: "SolutionConfigurationsGetResponse",
-}) as any as S.Schema<SolutionConfigurationsGetResponse>;
-
-export interface SolutionConfigurationsListRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  resourceUri: string;
-}
-export const SolutionConfigurationsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceUri: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/{resourceUri}/providers/Microsoft.HybridConnectivity/solutionConfigurations",
-      code: 200,
-      apiVersion: "2027-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "SolutionConfigurationsListRequest",
-}) as any as S.Schema<SolutionConfigurationsListRequest>;
-
-/** Solution Configuration */
-export interface SolutionConfiguration {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: SolutionConfigurationProperties;
-}
-export const SolutionConfiguration = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(SolutionConfigurationProperties),
-  }),
-).annotate({
-  identifier: "SolutionConfiguration",
-}) as any as S.Schema<SolutionConfiguration>;
-
-/** The SolutionConfiguration items on this page */
-export type SolutionConfigurationListResultValueList =
-  Array<SolutionConfiguration>;
-export const SolutionConfigurationListResultValueList = /*@__PURE__*/ S.Array(
-  SolutionConfiguration,
-) as any as S.Schema<SolutionConfigurationListResultValueList>;
-
-/** The response of a SolutionConfiguration list operation. */
-export interface SolutionConfigurationListResult {
-  /** The SolutionConfiguration items on this page */
-  value: SolutionConfigurationListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const SolutionConfigurationListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: SolutionConfigurationListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SolutionConfigurationListResult",
-}) as any as S.Schema<SolutionConfigurationListResult>;
-
-export interface SolutionConfigurationsSyncNowRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  resourceUri: string;
-  /** Represent Solution Configuration Resource. */
-  solutionConfiguration: string;
-}
-export const SolutionConfigurationsSyncNowRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      resourceUri: S.String.pipe(T.Label()),
-      solutionConfiguration: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/{resourceUri}/providers/Microsoft.HybridConnectivity/solutionConfigurations/{solutionConfiguration}/syncNow",
-        code: 200,
-        apiVersion: "2027-01-01",
-      }),
-    ),
-).annotate({
-  identifier: "SolutionConfigurationsSyncNowRequest",
-}) as any as S.Schema<SolutionConfigurationsSyncNowRequest>;
-
-/** The operations list. */
-export type SolutionConfigurationsSyncNowResponseOperationsList =
-  Array<OperationStatusResult>;
-export const SolutionConfigurationsSyncNowResponseOperationsList =
-  /*@__PURE__*/ S.Array(
-    OperationStatusResult,
-  ) as any as S.Schema<SolutionConfigurationsSyncNowResponseOperationsList>;
-
-export interface SolutionConfigurationsSyncNowResponse {
-  /** Fully qualified ID for the async operation. */
-  id?: string;
-  /** Fully qualified ID of the resource against which the original async operation was started. */
-  resourceId?: string;
-  /** Name of the async operation. */
-  name?: string;
-  /** Operation status. */
-  status: string;
-  /** Percent of the operation that is complete. */
-  percentComplete?: number;
-  /** The start time of the operation. */
-  startTime?: string;
-  /** The end time of the operation. */
-  endTime?: string;
-  /** The operations list. */
-  operations?: SolutionConfigurationsSyncNowResponseOperationsList;
-  /** If present, details of the operation error. */
-  error?: ErrorDetail;
-}
-export const SolutionConfigurationsSyncNowResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      resourceId: S.optional(S.String),
-      name: S.optional(S.String),
-      status: S.String,
-      percentComplete: S.optional(S.Number),
-      startTime: S.optional(S.String),
-      endTime: S.optional(S.String),
-      operations: S.optional(
-        SolutionConfigurationsSyncNowResponseOperationsList,
-      ),
-      error: S.optional(ErrorDetail),
-    }),
-).annotate({
-  identifier: "SolutionConfigurationsSyncNowResponse",
-}) as any as S.Schema<SolutionConfigurationsSyncNowResponse>;
+  identifier: "UpdateServiceConfigurationResponse",
+}) as any as S.Schema<UpdateServiceConfigurationResponse>;
 
 /** Solution configuration resource. */
 export interface SolutionConfigurationPropertiesUpdate {
@@ -2313,7 +2543,7 @@ export const SolutionConfigurationPropertiesUpdate = /*@__PURE__*/ S.suspend(
   identifier: "SolutionConfigurationPropertiesUpdate",
 }) as any as S.Schema<SolutionConfigurationPropertiesUpdate>;
 
-export interface SolutionConfigurationsUpdateRequest {
+export interface UpdateSolutionConfigurationRequest {
   /** The fully qualified Azure Resource manager identifier of the resource. */
   resourceUri: string;
   /** Represent Solution Configuration Resource. */
@@ -2321,7 +2551,7 @@ export interface SolutionConfigurationsUpdateRequest {
   /** The resource-specific properties for this resource. */
   properties?: SolutionConfigurationPropertiesUpdate;
 }
-export const SolutionConfigurationsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateSolutionConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     resourceUri: S.String.pipe(T.Label()),
     solutionConfiguration: S.String.pipe(T.Label()),
@@ -2335,10 +2565,10 @@ export const SolutionConfigurationsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "SolutionConfigurationsUpdateRequest",
-}) as any as S.Schema<SolutionConfigurationsUpdateRequest>;
+  identifier: "UpdateSolutionConfigurationRequest",
+}) as any as S.Schema<UpdateSolutionConfigurationRequest>;
 
-export interface SolutionConfigurationsUpdateResponse {
+export interface UpdateSolutionConfigurationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -2350,250 +2580,92 @@ export interface SolutionConfigurationsUpdateResponse {
   /** The resource-specific properties for this resource. */
   properties?: SolutionConfigurationProperties;
 }
-export const SolutionConfigurationsUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(SolutionConfigurationProperties),
-    }),
-).annotate({
-  identifier: "SolutionConfigurationsUpdateResponse",
-}) as any as S.Schema<SolutionConfigurationsUpdateResponse>;
-
-export interface SolutionTypesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Solution Type resource */
-  solutionType: string;
-}
-export const SolutionTypesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    solutionType: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridConnectivity/solutionTypes/{solutionType}",
-      code: 200,
-      apiVersion: "2027-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "SolutionTypesGetRequest",
-}) as any as S.Schema<SolutionTypesGetRequest>;
-
-/** The locations this solution is supported in. */
-export type SolutionTypePropertiesSupportedAzureRegionsList = Array<string>;
-export const SolutionTypePropertiesSupportedAzureRegionsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<SolutionTypePropertiesSupportedAzureRegionsList>;
-
-/** The supported host types for the current solution type. */
-export type SolutionTypePropertiesHostTypesList = Array<HostType>;
-export const SolutionTypePropertiesHostTypesList = /*@__PURE__*/ S.Array(
-  HostType,
-) as any as S.Schema<SolutionTypePropertiesHostTypesList>;
-
-/** Array of allowed values for this solution settings property. */
-export type SolutionTypeSettingsPropertiesAllowedValuesList = Array<string>;
-export const SolutionTypeSettingsPropertiesAllowedValuesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<SolutionTypeSettingsPropertiesAllowedValuesList>;
-
-/** The supported host types for the current solution setting */
-export type SolutionTypeSettingsPropertiesHostTypesList = Array<HostType>;
-export const SolutionTypeSettingsPropertiesHostTypesList =
-  /*@__PURE__*/ S.Array(
-    HostType,
-  ) as any as S.Schema<SolutionTypeSettingsPropertiesHostTypesList>;
-
-/** Represent Solution settings properties description array. */
-export interface SolutionTypeSettingsProperties {
-  /** The name of the solution setting property. */
-  name: string;
-  /** The UI friendly name of the solution setting property. */
-  displayName: string;
-  /** Type of the solution setting property, represented as a string. */
-  type: string;
-  /** Description of solution setting property. */
-  description: string;
-  /** Array of allowed values for this solution settings property. */
-  allowedValues: SolutionTypeSettingsPropertiesAllowedValuesList;
-  /** The supported host types for the current solution setting */
-  hostTypes: SolutionTypeSettingsPropertiesHostTypesList;
-  /** Default value for this solution settings property. */
-  defaultValue: string;
-}
-export const SolutionTypeSettingsProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-    displayName: S.String,
-    type: S.String,
-    description: S.String,
-    allowedValues: SolutionTypeSettingsPropertiesAllowedValuesList,
-    hostTypes: SolutionTypeSettingsPropertiesHostTypesList,
-    defaultValue: S.String,
-  }),
-).annotate({
-  identifier: "SolutionTypeSettingsProperties",
-}) as any as S.Schema<SolutionTypeSettingsProperties>;
-
-/** Array of solution settings and its description. */
-export type SolutionTypePropertiesSolutionSettingsList =
-  Array<SolutionTypeSettingsProperties>;
-export const SolutionTypePropertiesSolutionSettingsList = /*@__PURE__*/ S.Array(
-  SolutionTypeSettingsProperties,
-) as any as S.Schema<SolutionTypePropertiesSolutionSettingsList>;
-
-/** Definition of Solution type resource. */
-export interface SolutionTypeProperties {
-  /** The name of the solution type. */
-  solutionType?: string;
-  /** Short description of solution type. */
-  description?: string;
-  /** The locations this solution is supported in. */
-  supportedAzureRegions?: SolutionTypePropertiesSupportedAzureRegionsList;
-  /** The supported host types for the current solution type. */
-  hostTypes?: SolutionTypePropertiesHostTypesList;
-  /** Array of solution settings and its description. */
-  solutionSettings?: SolutionTypePropertiesSolutionSettingsList;
-}
-export const SolutionTypeProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    solutionType: S.optional(S.String),
-    description: S.optional(S.String),
-    supportedAzureRegions: S.optional(
-      SolutionTypePropertiesSupportedAzureRegionsList,
-    ),
-    hostTypes: S.optional(SolutionTypePropertiesHostTypesList),
-    solutionSettings: S.optional(SolutionTypePropertiesSolutionSettingsList),
-  }),
-).annotate({
-  identifier: "SolutionTypeProperties",
-}) as any as S.Schema<SolutionTypeProperties>;
-
-export interface SolutionTypesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: SolutionTypeProperties;
-}
-export const SolutionTypesGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateSolutionConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    properties: S.optional(SolutionTypeProperties),
+    properties: S.optional(SolutionConfigurationProperties),
   }),
 ).annotate({
-  identifier: "SolutionTypesGetResponse",
-}) as any as S.Schema<SolutionTypesGetResponse>;
+  identifier: "UpdateSolutionConfigurationResponse",
+}) as any as S.Schema<UpdateSolutionConfigurationResponse>;
 
-export interface SolutionTypesListByResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const SolutionTypesListByResourceGroupRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridConnectivity/solutionTypes",
-        code: 200,
-        apiVersion: "2027-01-01",
-      }),
-    ),
-).annotate({
-  identifier: "SolutionTypesListByResourceGroupRequest",
-}) as any as S.Schema<SolutionTypesListByResourceGroupRequest>;
+export type CreateServiceConfigurationOrupdateError = AzureOpError;
+/** Create or update a service in serviceConfiguration for the endpoint resource. */
+export const CreateServiceConfigurationOrupdate: API.OperationMethod<
+  CreateServiceConfigurationOrupdateRequest,
+  CreateServiceConfigurationOrupdateResponse,
+  CreateServiceConfigurationOrupdateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateServiceConfigurationOrupdateRequest,
+  output: CreateServiceConfigurationOrupdateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-/** Concrete proxy resource types can be created by aliasing this type using a specific property type. */
-export interface SolutionTypeResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: SolutionTypeProperties;
-}
-export const SolutionTypeResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(SolutionTypeProperties),
-  }),
-).annotate({
-  identifier: "SolutionTypeResource",
-}) as any as S.Schema<SolutionTypeResource>;
+export type DeleteEndpointError = AzureOpError;
+/** Deletes the endpoint access to the target resource. */
+export const DeleteEndpoint: API.OperationMethod<
+  DeleteEndpointRequest,
+  DeleteEndpointResponse,
+  DeleteEndpointError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteEndpointRequest,
+  output: DeleteEndpointResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-/** The SolutionTypeResource items on this page */
-export type SolutionTypeResourceListResultValueList =
-  Array<SolutionTypeResource>;
-export const SolutionTypeResourceListResultValueList = /*@__PURE__*/ S.Array(
-  SolutionTypeResource,
-) as any as S.Schema<SolutionTypeResourceListResultValueList>;
+export type DeletePublicCloudConnectorError = AzureOpError;
+/** Delete a PublicCloudConnector */
+export const DeletePublicCloudConnector: API.OperationMethod<
+  DeletePublicCloudConnectorRequest,
+  DeletePublicCloudConnectorResponse,
+  DeletePublicCloudConnectorError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeletePublicCloudConnectorRequest,
+  output: DeletePublicCloudConnectorResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-/** The response of a SolutionTypeResource list operation. */
-export interface SolutionTypeResourceListResult {
-  /** The SolutionTypeResource items on this page */
-  value: SolutionTypeResourceListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const SolutionTypeResourceListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: SolutionTypeResourceListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SolutionTypeResourceListResult",
-}) as any as S.Schema<SolutionTypeResourceListResult>;
+export type DeleteServiceConfigurationError = AzureOpError;
+/** Deletes the service details to the target resource. */
+export const DeleteServiceConfiguration: API.OperationMethod<
+  DeleteServiceConfigurationRequest,
+  DeleteServiceConfigurationResponse,
+  DeleteServiceConfigurationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteServiceConfigurationRequest,
+  output: DeleteServiceConfigurationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-export interface SolutionTypesListBySubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-}
-export const SolutionTypesListBySubscriptionRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.HybridConnectivity/solutionTypes",
-        code: 200,
-        apiVersion: "2027-01-01",
-      }),
-    ),
-).annotate({
-  identifier: "SolutionTypesListBySubscriptionRequest",
-}) as any as S.Schema<SolutionTypesListBySubscriptionRequest>;
+export type DeleteSolutionConfigurationError = AzureOpError;
+/** Delete a SolutionConfiguration */
+export const DeleteSolutionConfiguration: API.OperationMethod<
+  DeleteSolutionConfigurationRequest,
+  DeleteSolutionConfigurationResponse,
+  DeleteSolutionConfigurationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteSolutionConfigurationRequest,
+  output: DeleteSolutionConfigurationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
 export type EndpointsCreateOrUpdateError = AzureOpError;
 /** Create or update the endpoint to the target resource. */
@@ -2610,181 +2682,301 @@ export const EndpointsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type EndpointsDeleteError = AzureOpError;
-/** Deletes the endpoint access to the target resource. */
-export const EndpointsDelete: API.OperationMethod<
-  EndpointsDeleteRequest,
-  EndpointsDeleteResponse,
-  EndpointsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: EndpointsDeleteRequest,
-  output: EndpointsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type EndpointsGetError = AzureOpError;
+export type GetEndpointError = AzureOpError;
 /** Gets the endpoint to the resource. */
-export const EndpointsGet: API.OperationMethod<
-  EndpointsGetRequest,
-  EndpointsGetResponse,
-  EndpointsGetError,
+export const GetEndpoint: API.OperationMethod<
+  GetEndpointRequest,
+  GetEndpointResponse,
+  GetEndpointError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EndpointsGetRequest,
-  output: EndpointsGetResponse,
+  input: GetEndpointRequest,
+  output: GetEndpointResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type EndpointsList2Error = AzureOpError;
-/** List of endpoints to the target resource. */
-export const EndpointsList2: API.OperationMethod<
-  EndpointsListRequest,
-  EndpointsList,
-  EndpointsList2Error,
+export type GetInventoryError = AzureOpError;
+/** Get a InventoryResource */
+export const GetInventory: API.OperationMethod<
+  GetInventoryRequest,
+  GetInventoryResponse,
+  GetInventoryError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EndpointsListRequest,
-  output: EndpointsList,
+  input: GetInventoryRequest,
+  output: GetInventoryResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type EndpointsListCredentialsError = AzureOpError;
+export type GetPublicCloudConnectorError = AzureOpError;
+/** Get a PublicCloudConnector */
+export const GetPublicCloudConnector: API.OperationMethod<
+  GetPublicCloudConnectorRequest,
+  GetPublicCloudConnectorResponse,
+  GetPublicCloudConnectorError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPublicCloudConnectorRequest,
+  output: GetPublicCloudConnectorResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetServiceConfigurationError = AzureOpError;
+/** Gets the details about the service to the resource. */
+export const GetServiceConfiguration: API.OperationMethod<
+  GetServiceConfigurationRequest,
+  GetServiceConfigurationResponse,
+  GetServiceConfigurationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetServiceConfigurationRequest,
+  output: GetServiceConfigurationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSolutionConfigurationError = AzureOpError;
+/** Get a SolutionConfiguration */
+export const GetSolutionConfiguration: API.OperationMethod<
+  GetSolutionConfigurationRequest,
+  GetSolutionConfigurationResponse,
+  GetSolutionConfigurationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSolutionConfigurationRequest,
+  output: GetSolutionConfigurationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSolutionTypeError = AzureOpError;
+/** Get a SolutionTypeResource */
+export const GetSolutionType: API.OperationMethod<
+  GetSolutionTypeRequest,
+  GetSolutionTypeResponse,
+  GetSolutionTypeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSolutionTypeRequest,
+  output: GetSolutionTypeResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListEndpointCredentialsError = AzureOpError;
 /** Gets the endpoint access credentials to the resource. */
-export const EndpointsListCredentials: API.OperationMethod<
-  EndpointsListCredentialsRequest,
+export const ListEndpointCredentials: API.OperationMethod<
+  ListEndpointCredentialsRequest,
   EndpointAccessResource,
-  EndpointsListCredentialsError,
+  ListEndpointCredentialsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EndpointsListCredentialsRequest,
+  input: ListEndpointCredentialsRequest,
   output: EndpointAccessResource,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type EndpointsListIngressGatewayCredentialsError = AzureOpError;
+export type ListEndpointIngressGatewayCredentialsError = AzureOpError;
 /** Gets the ingress gateway endpoint credentials */
-export const EndpointsListIngressGatewayCredentials: API.OperationMethod<
-  EndpointsListIngressGatewayCredentialsRequest,
+export const ListEndpointIngressGatewayCredentials: API.OperationMethod<
+  ListEndpointIngressGatewayCredentialsRequest,
   IngressGatewayResource,
-  EndpointsListIngressGatewayCredentialsError,
+  ListEndpointIngressGatewayCredentialsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EndpointsListIngressGatewayCredentialsRequest,
+  input: ListEndpointIngressGatewayCredentialsRequest,
   output: IngressGatewayResource,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type EndpointsListManagedProxyDetailsError = AzureOpError;
+export type ListEndpointManagedProxyDetailsError = AzureOpError;
 /** Fetches the managed proxy details */
-export const EndpointsListManagedProxyDetails: API.OperationMethod<
-  EndpointsListManagedProxyDetailsRequest,
+export const ListEndpointManagedProxyDetails: API.OperationMethod<
+  ListEndpointManagedProxyDetailsRequest,
   ManagedProxyResource,
-  EndpointsListManagedProxyDetailsError,
+  ListEndpointManagedProxyDetailsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EndpointsListManagedProxyDetailsRequest,
+  input: ListEndpointManagedProxyDetailsRequest,
   output: ManagedProxyResource,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type EndpointsUpdateError = AzureOpError;
-/** Update the endpoint to the target resource. */
-export const EndpointsUpdate: API.OperationMethod<
-  EndpointsUpdateRequest,
-  EndpointsUpdateResponse,
-  EndpointsUpdateError,
+export type ListEndpointsError = AzureOpError;
+/** List of endpoints to the target resource. */
+export const ListEndpoints: API.OperationMethod<
+  ListEndpointsRequest,
+  EndpointsList,
+  ListEndpointsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EndpointsUpdateRequest,
-  output: EndpointsUpdateResponse,
+  input: ListEndpointsRequest,
+  output: EndpointsList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GenerateAwsTemplatePostError = AzureOpError;
-/** Retrieve AWS Cloud Formation template */
-export const GenerateAwsTemplatePost: API.OperationMethod<
-  GenerateAwsTemplatePostRequest,
-  GenerateAwsTemplatePostResponse,
-  GenerateAwsTemplatePostError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GenerateAwsTemplatePostRequest,
-  output: GenerateAwsTemplatePostResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GenerateGcpTemplatePostError = AzureOpError;
-/** Retrieve GCP Access Control template */
-export const GenerateGcpTemplatePost: API.OperationMethod<
-  GenerateGcpTemplatePostRequest,
-  GenerateGcpTemplatePostResponse,
-  GenerateGcpTemplatePostError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GenerateGcpTemplatePostRequest,
-  output: GenerateGcpTemplatePostResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type InventoryGetError = AzureOpError;
-/** Get a InventoryResource */
-export const InventoryGet: API.OperationMethod<
-  InventoryGetRequest,
-  InventoryGetResponse,
-  InventoryGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: InventoryGetRequest,
-  output: InventoryGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type InventoryListBySolutionConfigurationError = AzureOpError;
+export type ListInventoryBySolutionConfigurationError = AzureOpError;
 /** List InventoryResource resources by SolutionConfiguration */
-export const InventoryListBySolutionConfiguration: API.OperationMethod<
-  InventoryListBySolutionConfigurationRequest,
+export const ListInventoryBySolutionConfiguration: API.OperationMethod<
+  ListInventoryBySolutionConfigurationRequest,
   InventoryResourceListResult,
-  InventoryListBySolutionConfigurationError,
+  ListInventoryBySolutionConfigurationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: InventoryListBySolutionConfigurationRequest,
+  input: ListInventoryBySolutionConfigurationRequest,
   output: InventoryResourceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OperationsListError = AzureOpError;
+export type ListOperationsError = AzureOpError;
 /** List the operations for the provider */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationsListResponse,
-  OperationsListError,
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  ListOperationsResponse,
+  ListOperationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
-  output: OperationsListResponse,
+  input: ListOperationsRequest,
+  output: ListOperationsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPublicCloudConnectorByResourceGroupError = AzureOpError;
+/** List PublicCloudConnector resources by resource group */
+export const ListPublicCloudConnectorByResourceGroup: API.OperationMethod<
+  ListPublicCloudConnectorByResourceGroupRequest,
+  PublicCloudConnectorListResult,
+  ListPublicCloudConnectorByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPublicCloudConnectorByResourceGroupRequest,
+  output: PublicCloudConnectorListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPublicCloudConnectorBySubscriptionError = AzureOpError;
+/** List PublicCloudConnector resources by subscription ID */
+export const ListPublicCloudConnectorBySubscription: API.OperationMethod<
+  ListPublicCloudConnectorBySubscriptionRequest,
+  PublicCloudConnectorListResult,
+  ListPublicCloudConnectorBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPublicCloudConnectorBySubscriptionRequest,
+  output: PublicCloudConnectorListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListServiceConfigurationByEndpointResourceError = AzureOpError;
+/** Lists of all the services associated with endpoint resource. API to enumerate registered services in service configurations under a Endpoint Resource */
+export const ListServiceConfigurationByEndpointResource: API.OperationMethod<
+  ListServiceConfigurationByEndpointResourceRequest,
+  ServiceConfigurationList,
+  ListServiceConfigurationByEndpointResourceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListServiceConfigurationByEndpointResourceRequest,
+  output: ServiceConfigurationList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSolutionConfigurationsError = AzureOpError;
+/** List SolutionConfiguration resources by parent */
+export const ListSolutionConfigurations: API.OperationMethod<
+  ListSolutionConfigurationsRequest,
+  SolutionConfigurationListResult,
+  ListSolutionConfigurationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSolutionConfigurationsRequest,
+  output: SolutionConfigurationListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSolutionTypeByResourceGroupError = AzureOpError;
+/** List SolutionTypeResource resources by resource group */
+export const ListSolutionTypeByResourceGroup: API.OperationMethod<
+  ListSolutionTypeByResourceGroupRequest,
+  SolutionTypeResourceListResult,
+  ListSolutionTypeByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSolutionTypeByResourceGroupRequest,
+  output: SolutionTypeResourceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSolutionTypeBySubscriptionError = AzureOpError;
+/** List SolutionTypeResource resources by subscription ID */
+export const ListSolutionTypeBySubscription: API.OperationMethod<
+  ListSolutionTypeBySubscriptionRequest,
+  SolutionTypeResourceListResult,
+  ListSolutionTypeBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSolutionTypeBySubscriptionRequest,
+  output: SolutionTypeResourceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PostGenerateAwsTemplateError = AzureOpError;
+/** Retrieve AWS Cloud Formation template */
+export const PostGenerateAwsTemplate: API.OperationMethod<
+  PostGenerateAwsTemplateRequest,
+  PostGenerateAwsTemplateResponse,
+  PostGenerateAwsTemplateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PostGenerateAwsTemplateRequest,
+  output: PostGenerateAwsTemplateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PostGenerateGcpTemplateError = AzureOpError;
+/** Retrieve GCP Access Control template */
+export const PostGenerateGcpTemplate: API.OperationMethod<
+  PostGenerateGcpTemplateRequest,
+  PostGenerateGcpTemplateResponse,
+  PostGenerateGcpTemplateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PostGenerateGcpTemplateRequest,
+  output: PostGenerateGcpTemplateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2805,171 +2997,6 @@ export const PublicCloudConnectorsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PublicCloudConnectorsDeleteError = AzureOpError;
-/** Delete a PublicCloudConnector */
-export const PublicCloudConnectorsDelete: API.OperationMethod<
-  PublicCloudConnectorsDeleteRequest,
-  PublicCloudConnectorsDeleteResponse,
-  PublicCloudConnectorsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PublicCloudConnectorsDeleteRequest,
-  output: PublicCloudConnectorsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PublicCloudConnectorsGetError = AzureOpError;
-/** Get a PublicCloudConnector */
-export const PublicCloudConnectorsGet: API.OperationMethod<
-  PublicCloudConnectorsGetRequest,
-  PublicCloudConnectorsGetResponse,
-  PublicCloudConnectorsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PublicCloudConnectorsGetRequest,
-  output: PublicCloudConnectorsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PublicCloudConnectorsListByResourceGroupError = AzureOpError;
-/** List PublicCloudConnector resources by resource group */
-export const PublicCloudConnectorsListByResourceGroup: API.OperationMethod<
-  PublicCloudConnectorsListByResourceGroupRequest,
-  PublicCloudConnectorListResult,
-  PublicCloudConnectorsListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PublicCloudConnectorsListByResourceGroupRequest,
-  output: PublicCloudConnectorListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PublicCloudConnectorsListBySubscriptionError = AzureOpError;
-/** List PublicCloudConnector resources by subscription ID */
-export const PublicCloudConnectorsListBySubscription: API.OperationMethod<
-  PublicCloudConnectorsListBySubscriptionRequest,
-  PublicCloudConnectorListResult,
-  PublicCloudConnectorsListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PublicCloudConnectorsListBySubscriptionRequest,
-  output: PublicCloudConnectorListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PublicCloudConnectorsTestPermissionsError = AzureOpError;
-/** A long-running resource action. */
-export const PublicCloudConnectorsTestPermissions: API.OperationMethod<
-  PublicCloudConnectorsTestPermissionsRequest,
-  PublicCloudConnectorsTestPermissionsResponse,
-  PublicCloudConnectorsTestPermissionsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PublicCloudConnectorsTestPermissionsRequest,
-  output: PublicCloudConnectorsTestPermissionsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PublicCloudConnectorsUpdateError = AzureOpError;
-/** Update a PublicCloudConnector */
-export const PublicCloudConnectorsUpdate: API.OperationMethod<
-  PublicCloudConnectorsUpdateRequest,
-  PublicCloudConnectorsUpdateResponse,
-  PublicCloudConnectorsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PublicCloudConnectorsUpdateRequest,
-  output: PublicCloudConnectorsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ServiceConfigurationsCreateOrupdateError = AzureOpError;
-/** Create or update a service in serviceConfiguration for the endpoint resource. */
-export const ServiceConfigurationsCreateOrupdate: API.OperationMethod<
-  ServiceConfigurationsCreateOrupdateRequest,
-  ServiceConfigurationsCreateOrupdateResponse,
-  ServiceConfigurationsCreateOrupdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ServiceConfigurationsCreateOrupdateRequest,
-  output: ServiceConfigurationsCreateOrupdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ServiceConfigurationsDeleteError = AzureOpError;
-/** Deletes the service details to the target resource. */
-export const ServiceConfigurationsDelete: API.OperationMethod<
-  ServiceConfigurationsDeleteRequest,
-  ServiceConfigurationsDeleteResponse,
-  ServiceConfigurationsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ServiceConfigurationsDeleteRequest,
-  output: ServiceConfigurationsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ServiceConfigurationsGetError = AzureOpError;
-/** Gets the details about the service to the resource. */
-export const ServiceConfigurationsGet: API.OperationMethod<
-  ServiceConfigurationsGetRequest,
-  ServiceConfigurationsGetResponse,
-  ServiceConfigurationsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ServiceConfigurationsGetRequest,
-  output: ServiceConfigurationsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ServiceConfigurationsListByEndpointResourceError = AzureOpError;
-/** Lists of all the services associated with endpoint resource. API to enumerate registered services in service configurations under a Endpoint Resource */
-export const ServiceConfigurationsListByEndpointResource: API.OperationMethod<
-  ServiceConfigurationsListByEndpointResourceRequest,
-  ServiceConfigurationList,
-  ServiceConfigurationsListByEndpointResourceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ServiceConfigurationsListByEndpointResourceRequest,
-  output: ServiceConfigurationList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ServiceConfigurationsUpdateError = AzureOpError;
-/** Update the service details in the service configurations of the target resource. */
-export const ServiceConfigurationsUpdate: API.OperationMethod<
-  ServiceConfigurationsUpdateRequest,
-  ServiceConfigurationsUpdateResponse,
-  ServiceConfigurationsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ServiceConfigurationsUpdateRequest,
-  output: ServiceConfigurationsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type SolutionConfigurationsCreateOrUpdateError = AzureOpError;
 /** Create a SolutionConfiguration */
 export const SolutionConfigurationsCreateOrUpdate: API.OperationMethod<
@@ -2985,121 +3012,91 @@ export const SolutionConfigurationsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SolutionConfigurationsDeleteError = AzureOpError;
-/** Delete a SolutionConfiguration */
-export const SolutionConfigurationsDelete: API.OperationMethod<
-  SolutionConfigurationsDeleteRequest,
-  SolutionConfigurationsDeleteResponse,
-  SolutionConfigurationsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SolutionConfigurationsDeleteRequest,
-  output: SolutionConfigurationsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SolutionConfigurationsGetError = AzureOpError;
-/** Get a SolutionConfiguration */
-export const SolutionConfigurationsGet: API.OperationMethod<
-  SolutionConfigurationsGetRequest,
-  SolutionConfigurationsGetResponse,
-  SolutionConfigurationsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SolutionConfigurationsGetRequest,
-  output: SolutionConfigurationsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SolutionConfigurationsListError = AzureOpError;
-/** List SolutionConfiguration resources by parent */
-export const SolutionConfigurationsList: API.OperationMethod<
-  SolutionConfigurationsListRequest,
-  SolutionConfigurationListResult,
-  SolutionConfigurationsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SolutionConfigurationsListRequest,
-  output: SolutionConfigurationListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SolutionConfigurationsSyncNowError = AzureOpError;
+export type SyncSolutionConfigurationNowError = AzureOpError;
 /** Trigger immediate sync with source cloud */
-export const SolutionConfigurationsSyncNow: API.OperationMethod<
-  SolutionConfigurationsSyncNowRequest,
-  SolutionConfigurationsSyncNowResponse,
-  SolutionConfigurationsSyncNowError,
+export const SyncSolutionConfigurationNow: API.OperationMethod<
+  SyncSolutionConfigurationNowRequest,
+  SyncSolutionConfigurationNowResponse,
+  SyncSolutionConfigurationNowError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SolutionConfigurationsSyncNowRequest,
-  output: SolutionConfigurationsSyncNowResponse,
+  input: SyncSolutionConfigurationNowRequest,
+  output: SyncSolutionConfigurationNowResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type SolutionConfigurationsUpdateError = AzureOpError;
+export type TestPublicCloudConnectorPermissionsError = AzureOpError;
+/** A long-running resource action. */
+export const TestPublicCloudConnectorPermissions: API.OperationMethod<
+  TestPublicCloudConnectorPermissionsRequest,
+  TestPublicCloudConnectorPermissionsResponse,
+  TestPublicCloudConnectorPermissionsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: TestPublicCloudConnectorPermissionsRequest,
+  output: TestPublicCloudConnectorPermissionsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateEndpointError = AzureOpError;
+/** Update the endpoint to the target resource. */
+export const UpdateEndpoint: API.OperationMethod<
+  UpdateEndpointRequest,
+  UpdateEndpointResponse,
+  UpdateEndpointError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateEndpointRequest,
+  output: UpdateEndpointResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdatePublicCloudConnectorError = AzureOpError;
+/** Update a PublicCloudConnector */
+export const UpdatePublicCloudConnector: API.OperationMethod<
+  UpdatePublicCloudConnectorRequest,
+  UpdatePublicCloudConnectorResponse,
+  UpdatePublicCloudConnectorError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdatePublicCloudConnectorRequest,
+  output: UpdatePublicCloudConnectorResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateServiceConfigurationError = AzureOpError;
+/** Update the service details in the service configurations of the target resource. */
+export const UpdateServiceConfiguration: API.OperationMethod<
+  UpdateServiceConfigurationRequest,
+  UpdateServiceConfigurationResponse,
+  UpdateServiceConfigurationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateServiceConfigurationRequest,
+  output: UpdateServiceConfigurationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateSolutionConfigurationError = AzureOpError;
 /** Update a SolutionConfiguration */
-export const SolutionConfigurationsUpdate: API.OperationMethod<
-  SolutionConfigurationsUpdateRequest,
-  SolutionConfigurationsUpdateResponse,
-  SolutionConfigurationsUpdateError,
+export const UpdateSolutionConfiguration: API.OperationMethod<
+  UpdateSolutionConfigurationRequest,
+  UpdateSolutionConfigurationResponse,
+  UpdateSolutionConfigurationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SolutionConfigurationsUpdateRequest,
-  output: SolutionConfigurationsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SolutionTypesGetError = AzureOpError;
-/** Get a SolutionTypeResource */
-export const SolutionTypesGet: API.OperationMethod<
-  SolutionTypesGetRequest,
-  SolutionTypesGetResponse,
-  SolutionTypesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SolutionTypesGetRequest,
-  output: SolutionTypesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SolutionTypesListByResourceGroupError = AzureOpError;
-/** List SolutionTypeResource resources by resource group */
-export const SolutionTypesListByResourceGroup: API.OperationMethod<
-  SolutionTypesListByResourceGroupRequest,
-  SolutionTypeResourceListResult,
-  SolutionTypesListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SolutionTypesListByResourceGroupRequest,
-  output: SolutionTypeResourceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SolutionTypesListBySubscriptionError = AzureOpError;
-/** List SolutionTypeResource resources by subscription ID */
-export const SolutionTypesListBySubscription: API.OperationMethod<
-  SolutionTypesListBySubscriptionRequest,
-  SolutionTypeResourceListResult,
-  SolutionTypesListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SolutionTypesListBySubscriptionRequest,
-  output: SolutionTypeResourceListResult,
+  input: UpdateSolutionConfigurationRequest,
+  output: UpdateSolutionConfigurationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

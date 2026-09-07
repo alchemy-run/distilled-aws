@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.securityinsights#WatchlistItemsDelete": {
+    "com.azure.securityinsights#DeleteWatchlistItem": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#WatchlistItemsDeleteRequest"
+        "target": "com.azure.securityinsights#DeleteWatchlistItemRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -36,7 +37,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#WatchlistItemsDeleteRequest": {
+    "com.azure.securityinsights#DeleteWatchlistItemRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -495,13 +496,13 @@
         "smithy.api#documentation": "User information that made some action"
       }
     },
-    "com.azure.securityinsights#WatchlistItemsGet": {
+    "com.azure.securityinsights#GetWatchlistItem": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#WatchlistItemsGetRequest"
+        "target": "com.azure.securityinsights#GetWatchlistItemRequest"
       },
       "output": {
-        "target": "com.azure.securityinsights#WatchlistItemsGetResponse"
+        "target": "com.azure.securityinsights#GetWatchlistItemResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -514,7 +515,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#WatchlistItemsGetResponse": {
+    "com.azure.securityinsights#GetWatchlistItemResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -558,7 +559,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.securityinsights#WatchlistItemsGetRequest": {
+    "com.azure.securityinsights#GetWatchlistItemRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -606,10 +607,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#WatchlistItemsList": {
+    "com.azure.securityinsights#ListWatchlistItems": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#WatchlistItemsListRequest"
+        "target": "com.azure.securityinsights#ListWatchlistItemsRequest"
       },
       "output": {
         "target": "com.azure.securityinsights#WatchlistItemList"
@@ -699,7 +700,7 @@
         "smithy.api#documentation": "Represents a Watchlist Item in Azure Security Insights."
       }
     },
-    "com.azure.securityinsights#WatchlistItemsListRequest": {
+    "com.azure.securityinsights#ListWatchlistItemsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -746,10 +747,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#WatchlistsDelete": {
+    "com.azure.securityinsights#DeleteWatchlist": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#WatchlistsDeleteRequest"
+        "target": "com.azure.securityinsights#DeleteWatchlistRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -765,7 +766,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#WatchlistsDeleteRequest": {
+    "com.azure.securityinsights#DeleteWatchlistRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1288,13 +1289,13 @@
         "smithy.api#documentation": "List of labels relevant to this watchlist"
       }
     },
-    "com.azure.securityinsights#WatchlistsGet": {
+    "com.azure.securityinsights#GetWatchlist": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#WatchlistsGetRequest"
+        "target": "com.azure.securityinsights#GetWatchlistRequest"
       },
       "output": {
-        "target": "com.azure.securityinsights#WatchlistsGetResponse"
+        "target": "com.azure.securityinsights#GetWatchlistResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1307,7 +1308,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#WatchlistsGetResponse": {
+    "com.azure.securityinsights#GetWatchlistResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1351,7 +1352,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.securityinsights#WatchlistsGetRequest": {
+    "com.azure.securityinsights#GetWatchlistRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1391,10 +1392,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#WatchlistsList": {
+    "com.azure.securityinsights#ListWatchlists": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#WatchlistsListRequest"
+        "target": "com.azure.securityinsights#ListWatchlistsRequest"
       },
       "output": {
         "target": "com.azure.securityinsights#WatchlistList"
@@ -1484,7 +1485,7 @@
         "smithy.api#documentation": "Represents a Watchlist in Azure Security Insights."
       }
     },
-    "com.azure.securityinsights#WatchlistsListRequest": {
+    "com.azure.securityinsights#ListWatchlistsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1841,10 +1842,10 @@
         "smithy.api#documentation": "Sorting order (ascending/descending/unsorted)."
       }
     },
-    "com.azure.securityinsights#ThreatIntelligenceIndicatorMetricsList": {
+    "com.azure.securityinsights#ListThreatIntelligenceIndicatorMetrics": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#ThreatIntelligenceIndicatorMetricsListRequest"
+        "target": "com.azure.securityinsights#ListThreatIntelligenceIndicatorMetricsRequest"
       },
       "output": {
         "target": "com.azure.securityinsights#ThreatIntelligenceMetricsList"
@@ -1977,7 +1978,7 @@
         "smithy.api#documentation": "Threat type metrics"
       }
     },
-    "com.azure.securityinsights#ThreatIntelligenceIndicatorMetricsListRequest": {
+    "com.azure.securityinsights#ListThreatIntelligenceIndicatorMetricsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2009,13 +2010,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#ThreatIntelligenceIndicatorReplaceTags": {
+    "com.azure.securityinsights#ReplaceThreatIntelligenceIndicatorTags": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#ThreatIntelligenceIndicatorReplaceTagsRequest"
+        "target": "com.azure.securityinsights#ReplaceThreatIntelligenceIndicatorTagsRequest"
       },
       "output": {
-        "target": "com.azure.securityinsights#ThreatIntelligenceIndicatorReplaceTagsResponse"
+        "target": "com.azure.securityinsights#ReplaceThreatIntelligenceIndicatorTagsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2028,7 +2029,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#ThreatIntelligenceIndicatorReplaceTagsResponse": {
+    "com.azure.securityinsights#ReplaceThreatIntelligenceIndicatorTagsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2073,7 +2074,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.securityinsights#ThreatIntelligenceIndicatorReplaceTagsRequest": {
+    "com.azure.securityinsights#ReplaceThreatIntelligenceIndicatorTagsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2629,10 +2630,10 @@
         "smithy.api#documentation": "List of tags to be appended."
       }
     },
-    "com.azure.securityinsights#ThreatIntelligenceIndicatorDelete": {
+    "com.azure.securityinsights#DeleteThreatIntelligenceIndicator": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#ThreatIntelligenceIndicatorDeleteRequest"
+        "target": "com.azure.securityinsights#DeleteThreatIntelligenceIndicatorRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2648,7 +2649,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#ThreatIntelligenceIndicatorDeleteRequest": {
+    "com.azure.securityinsights#DeleteThreatIntelligenceIndicatorRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2688,13 +2689,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#ThreatIntelligenceIndicatorCreate": {
+    "com.azure.securityinsights#CreateThreatIntelligenceIndicator": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#ThreatIntelligenceIndicatorCreateRequest"
+        "target": "com.azure.securityinsights#CreateThreatIntelligenceIndicatorRequest"
       },
       "output": {
-        "target": "com.azure.securityinsights#ThreatIntelligenceIndicatorCreateResponse"
+        "target": "com.azure.securityinsights#CreateThreatIntelligenceIndicatorResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2707,7 +2708,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#ThreatIntelligenceIndicatorCreateResponse": {
+    "com.azure.securityinsights#CreateThreatIntelligenceIndicatorResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2752,7 +2753,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.securityinsights#ThreatIntelligenceIndicatorCreateRequest": {
+    "com.azure.securityinsights#CreateThreatIntelligenceIndicatorRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2811,13 +2812,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#ThreatIntelligenceIndicatorGet": {
+    "com.azure.securityinsights#GetThreatIntelligenceIndicator": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#ThreatIntelligenceIndicatorGetRequest"
+        "target": "com.azure.securityinsights#GetThreatIntelligenceIndicatorRequest"
       },
       "output": {
-        "target": "com.azure.securityinsights#ThreatIntelligenceIndicatorGetResponse"
+        "target": "com.azure.securityinsights#GetThreatIntelligenceIndicatorResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2830,7 +2831,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#ThreatIntelligenceIndicatorGetResponse": {
+    "com.azure.securityinsights#GetThreatIntelligenceIndicatorResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2875,7 +2876,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.securityinsights#ThreatIntelligenceIndicatorGetRequest": {
+    "com.azure.securityinsights#GetThreatIntelligenceIndicatorRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2915,10 +2916,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#ThreatIntelligenceIndicatorsList": {
+    "com.azure.securityinsights#ListThreatIntelligenceIndicators": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#ThreatIntelligenceIndicatorsListRequest"
+        "target": "com.azure.securityinsights#ListThreatIntelligenceIndicatorsRequest"
       },
       "output": {
         "target": "com.azure.securityinsights#ThreatIntelligenceInformationList"
@@ -2934,7 +2935,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#ThreatIntelligenceIndicatorsListRequest": {
+    "com.azure.securityinsights#ListThreatIntelligenceIndicatorsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2994,13 +2995,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#ThreatIntelligenceIndicatorCreateIndicator": {
+    "com.azure.securityinsights#CreateThreatIntelligenceIndicatorIndicator": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#ThreatIntelligenceIndicatorCreateIndicatorRequest"
+        "target": "com.azure.securityinsights#CreateThreatIntelligenceIndicatorIndicatorRequest"
       },
       "output": {
-        "target": "com.azure.securityinsights#ThreatIntelligenceIndicatorCreateIndicatorResponse"
+        "target": "com.azure.securityinsights#CreateThreatIntelligenceIndicatorIndicatorResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3013,7 +3014,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#ThreatIntelligenceIndicatorCreateIndicatorResponse": {
+    "com.azure.securityinsights#CreateThreatIntelligenceIndicatorIndicatorResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3058,7 +3059,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.securityinsights#ThreatIntelligenceIndicatorCreateIndicatorRequest": {
+    "com.azure.securityinsights#CreateThreatIntelligenceIndicatorIndicatorRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3109,10 +3110,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#SourceControlsDelete": {
+    "com.azure.securityinsights#DeleteSourceControl": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#SourceControlsDeleteRequest"
+        "target": "com.azure.securityinsights#DeleteSourceControlRequest"
       },
       "output": {
         "target": "com.azure.securityinsights#Warning"
@@ -3210,7 +3211,7 @@
         "smithy.api#documentation": "The type of repository."
       }
     },
-    "com.azure.securityinsights#SourceControlsDeleteRequest": {
+    "com.azure.securityinsights#DeleteSourceControlRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3343,13 +3344,13 @@
         "smithy.api#documentation": "The kind of repository access credentials"
       }
     },
-    "com.azure.securityinsights#SourceControlsCreate": {
+    "com.azure.securityinsights#CreateSourceControl": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#SourceControlsCreateRequest"
+        "target": "com.azure.securityinsights#CreateSourceControlRequest"
       },
       "output": {
-        "target": "com.azure.securityinsights#SourceControlsCreateResponse"
+        "target": "com.azure.securityinsights#CreateSourceControlResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3362,7 +3363,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#SourceControlsCreateResponse": {
+    "com.azure.securityinsights#CreateSourceControlResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3974,7 +3975,7 @@
         "smithy.api#documentation": "The version of the source control."
       }
     },
-    "com.azure.securityinsights#SourceControlsCreateRequest": {
+    "com.azure.securityinsights#CreateSourceControlRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4166,13 +4167,13 @@
         "smithy.api#documentation": "Array of source control content types."
       }
     },
-    "com.azure.securityinsights#SourceControlsGet": {
+    "com.azure.securityinsights#GetSourceControl": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#SourceControlsGetRequest"
+        "target": "com.azure.securityinsights#GetSourceControlRequest"
       },
       "output": {
-        "target": "com.azure.securityinsights#SourceControlsGetResponse"
+        "target": "com.azure.securityinsights#GetSourceControlResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4185,7 +4186,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#SourceControlsGetResponse": {
+    "com.azure.securityinsights#GetSourceControlResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4230,7 +4231,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.securityinsights#SourceControlsGetRequest": {
+    "com.azure.securityinsights#GetSourceControlRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4270,10 +4271,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#SourceControlsList": {
+    "com.azure.securityinsights#ListSourceControls": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#SourceControlsListRequest"
+        "target": "com.azure.securityinsights#ListSourceControlsRequest"
       },
       "output": {
         "target": "com.azure.securityinsights#SourceControlList"
@@ -4364,7 +4365,7 @@
         "smithy.api#documentation": "Represents a SourceControl in Azure Security Insights."
       }
     },
-    "com.azure.securityinsights#SourceControlsListRequest": {
+    "com.azure.securityinsights#ListSourceControlsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4396,10 +4397,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#SecurityMLAnalyticsSettingsDelete": {
+    "com.azure.securityinsights#DeleteSecurityMLAnalyticsSettings": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#SecurityMLAnalyticsSettingsDeleteRequest"
+        "target": "com.azure.securityinsights#DeleteSecurityMLAnalyticsSettingsRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4415,7 +4416,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#SecurityMLAnalyticsSettingsDeleteRequest": {
+    "com.azure.securityinsights#DeleteSecurityMLAnalyticsSettingsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4586,13 +4587,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#SecurityMLAnalyticsSettingsGet": {
+    "com.azure.securityinsights#GetSecurityMLAnalyticsSettings": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#SecurityMLAnalyticsSettingsGetRequest"
+        "target": "com.azure.securityinsights#GetSecurityMLAnalyticsSettingsRequest"
       },
       "output": {
-        "target": "com.azure.securityinsights#SecurityMLAnalyticsSettingsGetResponse"
+        "target": "com.azure.securityinsights#GetSecurityMLAnalyticsSettingsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4605,7 +4606,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#SecurityMLAnalyticsSettingsGetResponse": {
+    "com.azure.securityinsights#GetSecurityMLAnalyticsSettingsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4650,7 +4651,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.securityinsights#SecurityMLAnalyticsSettingsGetRequest": {
+    "com.azure.securityinsights#GetSecurityMLAnalyticsSettingsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4690,10 +4691,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#SecurityMLAnalyticsSettingsList2": {
+    "com.azure.securityinsights#ListSecurityMLAnalyticsSettings": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#SecurityMLAnalyticsSettingsListRequest"
+        "target": "com.azure.securityinsights#ListSecurityMLAnalyticsSettingsRequest"
       },
       "output": {
         "target": "com.azure.securityinsights#SecurityMLAnalyticsSettingsList"
@@ -4784,7 +4785,7 @@
         "smithy.api#documentation": "Security ML Analytics Setting"
       }
     },
-    "com.azure.securityinsights#SecurityMLAnalyticsSettingsListRequest": {
+    "com.azure.securityinsights#ListSecurityMLAnalyticsSettingsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4816,10 +4817,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#SentinelOnboardingStatesDelete": {
+    "com.azure.securityinsights#DeleteSentinelOnboardingState": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#SentinelOnboardingStatesDeleteRequest"
+        "target": "com.azure.securityinsights#DeleteSentinelOnboardingStateRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4835,7 +4836,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#SentinelOnboardingStatesDeleteRequest": {
+    "com.azure.securityinsights#DeleteSentinelOnboardingStateRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4875,13 +4876,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#SentinelOnboardingStatesCreate": {
+    "com.azure.securityinsights#CreateSentinelOnboardingState": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#SentinelOnboardingStatesCreateRequest"
+        "target": "com.azure.securityinsights#CreateSentinelOnboardingStateRequest"
       },
       "output": {
-        "target": "com.azure.securityinsights#SentinelOnboardingStatesCreateResponse"
+        "target": "com.azure.securityinsights#CreateSentinelOnboardingStateResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4894,7 +4895,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#SentinelOnboardingStatesCreateResponse": {
+    "com.azure.securityinsights#CreateSentinelOnboardingStateResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4952,7 +4953,7 @@
         "smithy.api#documentation": "The Sentinel onboarding state properties"
       }
     },
-    "com.azure.securityinsights#SentinelOnboardingStatesCreateRequest": {
+    "com.azure.securityinsights#CreateSentinelOnboardingStateRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5004,13 +5005,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#SentinelOnboardingStatesGet": {
+    "com.azure.securityinsights#GetSentinelOnboardingState": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#SentinelOnboardingStatesGetRequest"
+        "target": "com.azure.securityinsights#GetSentinelOnboardingStateRequest"
       },
       "output": {
-        "target": "com.azure.securityinsights#SentinelOnboardingStatesGetResponse"
+        "target": "com.azure.securityinsights#GetSentinelOnboardingStateResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5023,7 +5024,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#SentinelOnboardingStatesGetResponse": {
+    "com.azure.securityinsights#GetSentinelOnboardingStateResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5067,7 +5068,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.securityinsights#SentinelOnboardingStatesGetRequest": {
+    "com.azure.securityinsights#GetSentinelOnboardingStateRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5107,10 +5108,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#SentinelOnboardingStatesList2": {
+    "com.azure.securityinsights#ListSentinelOnboardingStates": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#SentinelOnboardingStatesListRequest"
+        "target": "com.azure.securityinsights#ListSentinelOnboardingStatesRequest"
       },
       "output": {
         "target": "com.azure.securityinsights#SentinelOnboardingStatesList"
@@ -5194,7 +5195,7 @@
         "smithy.api#documentation": "Sentinel onboarding state"
       }
     },
-    "com.azure.securityinsights#SentinelOnboardingStatesListRequest": {
+    "com.azure.securityinsights#ListSentinelOnboardingStatesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5226,10 +5227,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#MetadataDelete": {
+    "com.azure.securityinsights#DeleteMetadata": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#MetadataDeleteRequest"
+        "target": "com.azure.securityinsights#DeleteMetadataRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5245,7 +5246,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#MetadataDeleteRequest": {
+    "com.azure.securityinsights#DeleteMetadataRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5285,13 +5286,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#MetadataUpdate": {
+    "com.azure.securityinsights#UpdateMetadata": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#MetadataUpdateRequest"
+        "target": "com.azure.securityinsights#UpdateMetadataRequest"
       },
       "output": {
-        "target": "com.azure.securityinsights#MetadataUpdateResponse"
+        "target": "com.azure.securityinsights#UpdateMetadataResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5304,7 +5305,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#MetadataUpdateResponse": {
+    "com.azure.securityinsights#UpdateMetadataResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5906,7 +5907,7 @@
         "smithy.api#documentation": "Source type of the content"
       }
     },
-    "com.azure.securityinsights#MetadataUpdateRequest": {
+    "com.azure.securityinsights#UpdateMetadataRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6125,13 +6126,13 @@
         "smithy.api#documentation": "Providers for the solution content item"
       }
     },
-    "com.azure.securityinsights#MetadataCreate": {
+    "com.azure.securityinsights#CreateMetadata": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#MetadataCreateRequest"
+        "target": "com.azure.securityinsights#CreateMetadataRequest"
       },
       "output": {
-        "target": "com.azure.securityinsights#MetadataCreateResponse"
+        "target": "com.azure.securityinsights#CreateMetadataResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6144,7 +6145,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#MetadataCreateResponse": {
+    "com.azure.securityinsights#CreateMetadataResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -6188,7 +6189,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.securityinsights#MetadataCreateRequest": {
+    "com.azure.securityinsights#CreateMetadataRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6240,13 +6241,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#MetadataGet": {
+    "com.azure.securityinsights#GetMetadata": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#MetadataGetRequest"
+        "target": "com.azure.securityinsights#GetMetadataRequest"
       },
       "output": {
-        "target": "com.azure.securityinsights#MetadataGetResponse"
+        "target": "com.azure.securityinsights#GetMetadataResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6259,7 +6260,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#MetadataGetResponse": {
+    "com.azure.securityinsights#GetMetadataResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -6303,7 +6304,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.securityinsights#MetadataGetRequest": {
+    "com.azure.securityinsights#GetMetadataRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6343,10 +6344,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#MetadataList2": {
+    "com.azure.securityinsights#ListMetadata": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#MetadataListRequest"
+        "target": "com.azure.securityinsights#ListMetadataRequest"
       },
       "output": {
         "target": "com.azure.securityinsights#MetadataList"
@@ -6436,7 +6437,7 @@
         "smithy.api#documentation": "Metadata resource definition."
       }
     },
-    "com.azure.securityinsights#MetadataListRequest": {
+    "com.azure.securityinsights#ListMetadataRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6496,10 +6497,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#SourceControlListRepositories": {
+    "com.azure.securityinsights#ListSourceControlRepositories": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#SourceControlListRepositoriesRequest"
+        "target": "com.azure.securityinsights#ListSourceControlRepositoriesRequest"
       },
       "output": {
         "target": "com.azure.securityinsights#RepoList"
@@ -6586,7 +6587,7 @@
         "smithy.api#documentation": "Array of branches."
       }
     },
-    "com.azure.securityinsights#SourceControlListRepositoriesRequest": {
+    "com.azure.securityinsights#ListSourceControlRepositoriesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6625,10 +6626,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#IncidentTasksDelete": {
+    "com.azure.securityinsights#DeleteIncidentTask": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#IncidentTasksDeleteRequest"
+        "target": "com.azure.securityinsights#DeleteIncidentTaskRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -6644,7 +6645,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#IncidentTasksDeleteRequest": {
+    "com.azure.securityinsights#DeleteIncidentTaskRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6961,13 +6962,13 @@
         "smithy.api#documentation": "Describes the properties of an incident task"
       }
     },
-    "com.azure.securityinsights#IncidentTasksGet": {
+    "com.azure.securityinsights#GetIncidentTask": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#IncidentTasksGetRequest"
+        "target": "com.azure.securityinsights#GetIncidentTaskRequest"
       },
       "output": {
-        "target": "com.azure.securityinsights#IncidentTasksGetResponse"
+        "target": "com.azure.securityinsights#GetIncidentTaskResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6980,7 +6981,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#IncidentTasksGetResponse": {
+    "com.azure.securityinsights#GetIncidentTaskResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -7025,7 +7026,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.securityinsights#IncidentTasksGetRequest": {
+    "com.azure.securityinsights#GetIncidentTaskRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7073,10 +7074,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#IncidentTasksList": {
+    "com.azure.securityinsights#ListIncidentTasks": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#IncidentTasksListRequest"
+        "target": "com.azure.securityinsights#ListIncidentTasksRequest"
       },
       "output": {
         "target": "com.azure.securityinsights#IncidentTaskList"
@@ -7166,7 +7167,7 @@
         "smithy.api#documentation": "Describes incident task properties"
       }
     },
-    "com.azure.securityinsights#IncidentTasksListRequest": {
+    "com.azure.securityinsights#ListIncidentTasksRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7206,10 +7207,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#IncidentsRunPlaybook": {
+    "com.azure.securityinsights#RunIncidentPlaybook": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#IncidentsRunPlaybookRequest"
+        "target": "com.azure.securityinsights#RunIncidentPlaybookRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7225,7 +7226,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#IncidentsRunPlaybookRequest": {
+    "com.azure.securityinsights#RunIncidentPlaybookRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7275,10 +7276,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#IncidentRelationsDelete": {
+    "com.azure.securityinsights#DeleteIncidentRelation": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#IncidentRelationsDeleteRequest"
+        "target": "com.azure.securityinsights#DeleteIncidentRelationRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7294,7 +7295,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#IncidentRelationsDeleteRequest": {
+    "com.azure.securityinsights#DeleteIncidentRelationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7513,13 +7514,13 @@
         "smithy.api#documentation": "Relation property bag."
       }
     },
-    "com.azure.securityinsights#IncidentRelationsGet": {
+    "com.azure.securityinsights#GetIncidentRelation": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#IncidentRelationsGetRequest"
+        "target": "com.azure.securityinsights#GetIncidentRelationRequest"
       },
       "output": {
-        "target": "com.azure.securityinsights#IncidentRelationsGetResponse"
+        "target": "com.azure.securityinsights#GetIncidentRelationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7532,7 +7533,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#IncidentRelationsGetResponse": {
+    "com.azure.securityinsights#GetIncidentRelationResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -7576,7 +7577,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.securityinsights#IncidentRelationsGetRequest": {
+    "com.azure.securityinsights#GetIncidentRelationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7624,10 +7625,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#IncidentRelationsList": {
+    "com.azure.securityinsights#ListIncidentRelations": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#IncidentRelationsListRequest"
+        "target": "com.azure.securityinsights#ListIncidentRelationsRequest"
       },
       "output": {
         "target": "com.azure.securityinsights#RelationList"
@@ -7717,7 +7718,7 @@
         "smithy.api#documentation": "Represents a relation between two resources"
       }
     },
-    "com.azure.securityinsights#IncidentRelationsListRequest": {
+    "com.azure.securityinsights#ListIncidentRelationsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7785,10 +7786,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#IncidentsListEntities": {
+    "com.azure.securityinsights#ListIncidentEntities": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#IncidentsListEntitiesRequest"
+        "target": "com.azure.securityinsights#ListIncidentEntitiesRequest"
       },
       "output": {
         "target": "com.azure.securityinsights#IncidentEntitiesResponse"
@@ -8037,7 +8038,7 @@
         "smithy.api#documentation": "Specific entity."
       }
     },
-    "com.azure.securityinsights#IncidentsListEntitiesRequest": {
+    "com.azure.securityinsights#ListIncidentEntitiesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8077,10 +8078,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#IncidentCommentsDelete": {
+    "com.azure.securityinsights#DeleteIncidentComment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#IncidentCommentsDeleteRequest"
+        "target": "com.azure.securityinsights#DeleteIncidentCommentRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8096,7 +8097,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#IncidentCommentsDeleteRequest": {
+    "com.azure.securityinsights#DeleteIncidentCommentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8315,13 +8316,13 @@
         "smithy.api#documentation": "Incident comment property bag."
       }
     },
-    "com.azure.securityinsights#IncidentCommentsGet": {
+    "com.azure.securityinsights#GetIncidentComment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#IncidentCommentsGetRequest"
+        "target": "com.azure.securityinsights#GetIncidentCommentRequest"
       },
       "output": {
-        "target": "com.azure.securityinsights#IncidentCommentsGetResponse"
+        "target": "com.azure.securityinsights#GetIncidentCommentResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8334,7 +8335,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#IncidentCommentsGetResponse": {
+    "com.azure.securityinsights#GetIncidentCommentResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -8378,7 +8379,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.securityinsights#IncidentCommentsGetRequest": {
+    "com.azure.securityinsights#GetIncidentCommentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8426,10 +8427,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#IncidentCommentsList": {
+    "com.azure.securityinsights#ListIncidentComments": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#IncidentCommentsListRequest"
+        "target": "com.azure.securityinsights#ListIncidentCommentsRequest"
       },
       "output": {
         "target": "com.azure.securityinsights#IncidentCommentList"
@@ -8519,7 +8520,7 @@
         "smithy.api#documentation": "Represents an incident comment"
       }
     },
-    "com.azure.securityinsights#IncidentCommentsListRequest": {
+    "com.azure.securityinsights#ListIncidentCommentsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8587,10 +8588,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#IncidentsListBookmarks": {
+    "com.azure.securityinsights#ListIncidentBookmarks": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#IncidentsListBookmarksRequest"
+        "target": "com.azure.securityinsights#ListIncidentBookmarksRequest"
       },
       "output": {
         "target": "com.azure.securityinsights#IncidentBookmarkList"
@@ -8848,7 +8849,7 @@
         "smithy.api#documentation": "A bag of custom fields that should be part of the entity and will be presented to the user."
       }
     },
-    "com.azure.securityinsights#IncidentsListBookmarksRequest": {
+    "com.azure.securityinsights#ListIncidentBookmarksRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8888,10 +8889,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#IncidentsListAlerts": {
+    "com.azure.securityinsights#ListIncidentAlerts": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#IncidentsListAlertsRequest"
+        "target": "com.azure.securityinsights#ListIncidentAlertsRequest"
       },
       "output": {
         "target": "com.azure.securityinsights#IncidentAlertList"
@@ -9544,7 +9545,7 @@
         "smithy.api#documentation": "A bag of custom fields that should be part of the entity and will be presented to the user."
       }
     },
-    "com.azure.securityinsights#IncidentsListAlertsRequest": {
+    "com.azure.securityinsights#ListIncidentAlertsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9584,10 +9585,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#IncidentsDelete": {
+    "com.azure.securityinsights#DeleteIncident": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#IncidentsDeleteRequest"
+        "target": "com.azure.securityinsights#DeleteIncidentRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -9603,7 +9604,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#IncidentsDeleteRequest": {
+    "com.azure.securityinsights#DeleteIncidentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10244,13 +10245,13 @@
         "smithy.api#documentation": "List of labels relevant to this incident"
       }
     },
-    "com.azure.securityinsights#IncidentsGet": {
+    "com.azure.securityinsights#GetIncident": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#IncidentsGetRequest"
+        "target": "com.azure.securityinsights#GetIncidentRequest"
       },
       "output": {
-        "target": "com.azure.securityinsights#IncidentsGetResponse"
+        "target": "com.azure.securityinsights#GetIncidentResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10263,7 +10264,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#IncidentsGetResponse": {
+    "com.azure.securityinsights#GetIncidentResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -10307,7 +10308,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.securityinsights#IncidentsGetRequest": {
+    "com.azure.securityinsights#GetIncidentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10347,10 +10348,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#IncidentsList": {
+    "com.azure.securityinsights#ListIncidents": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#IncidentsListRequest"
+        "target": "com.azure.securityinsights#ListIncidentsRequest"
       },
       "output": {
         "target": "com.azure.securityinsights#IncidentList"
@@ -10440,7 +10441,7 @@
         "smithy.api#documentation": "Represents an incident in Azure Security Insights."
       }
     },
-    "com.azure.securityinsights#IncidentsListRequest": {
+    "com.azure.securityinsights#ListIncidentsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10500,10 +10501,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#EntitiesRunPlaybook": {
+    "com.azure.securityinsights#RunEntityPlaybook": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#EntitiesRunPlaybookRequest"
+        "target": "com.azure.securityinsights#RunEntityPlaybookRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -10519,7 +10520,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#EntitiesRunPlaybookRequest": {
+    "com.azure.securityinsights#RunEntityPlaybookRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10578,10 +10579,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#DataConnectorsDelete": {
+    "com.azure.securityinsights#DeleteDataConnector": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#DataConnectorsDeleteRequest"
+        "target": "com.azure.securityinsights#DeleteDataConnectorRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -10597,7 +10598,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#DataConnectorsDeleteRequest": {
+    "com.azure.securityinsights#DeleteDataConnectorRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10828,13 +10829,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#DataConnectorsGet": {
+    "com.azure.securityinsights#GetDataConnector": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#DataConnectorsGetRequest"
+        "target": "com.azure.securityinsights#GetDataConnectorRequest"
       },
       "output": {
-        "target": "com.azure.securityinsights#DataConnectorsGetResponse"
+        "target": "com.azure.securityinsights#GetDataConnectorResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10847,7 +10848,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#DataConnectorsGetResponse": {
+    "com.azure.securityinsights#GetDataConnectorResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -10892,7 +10893,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.securityinsights#DataConnectorsGetRequest": {
+    "com.azure.securityinsights#GetDataConnectorRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10932,10 +10933,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#DataConnectorsList": {
+    "com.azure.securityinsights#ListDataConnectors": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#DataConnectorsListRequest"
+        "target": "com.azure.securityinsights#ListDataConnectorsRequest"
       },
       "output": {
         "target": "com.azure.securityinsights#DataConnectorList"
@@ -11026,7 +11027,7 @@
         "smithy.api#documentation": "Data connector"
       }
     },
-    "com.azure.securityinsights#DataConnectorsListRequest": {
+    "com.azure.securityinsights#ListDataConnectorsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11058,10 +11059,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#DataConnectorDefinitionsDelete": {
+    "com.azure.securityinsights#DeleteDataConnectorDefinition": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#DataConnectorDefinitionsDeleteRequest"
+        "target": "com.azure.securityinsights#DeleteDataConnectorDefinitionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -11077,7 +11078,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#DataConnectorDefinitionsDeleteRequest": {
+    "com.azure.securityinsights#DeleteDataConnectorDefinitionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11248,13 +11249,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#DataConnectorDefinitionsGet": {
+    "com.azure.securityinsights#GetDataConnectorDefinition": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#DataConnectorDefinitionsGetRequest"
+        "target": "com.azure.securityinsights#GetDataConnectorDefinitionRequest"
       },
       "output": {
-        "target": "com.azure.securityinsights#DataConnectorDefinitionsGetResponse"
+        "target": "com.azure.securityinsights#GetDataConnectorDefinitionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11267,7 +11268,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#DataConnectorDefinitionsGetResponse": {
+    "com.azure.securityinsights#GetDataConnectorDefinitionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -11312,7 +11313,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.securityinsights#DataConnectorDefinitionsGetRequest": {
+    "com.azure.securityinsights#GetDataConnectorDefinitionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11352,10 +11353,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#DataConnectorDefinitionsList": {
+    "com.azure.securityinsights#ListDataConnectorDefinitions": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#DataConnectorDefinitionsListRequest"
+        "target": "com.azure.securityinsights#ListDataConnectorDefinitionsRequest"
       },
       "output": {
         "target": "com.azure.securityinsights#DataConnectorDefinitionArmCollectionWrapper"
@@ -11445,7 +11446,7 @@
         "smithy.api#documentation": "An Azure resource, which encapsulate the entire info requires to display a data connector page in Azure portal,\nand the info required to define data connections."
       }
     },
-    "com.azure.securityinsights#DataConnectorDefinitionsListRequest": {
+    "com.azure.securityinsights#ListDataConnectorDefinitionsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11477,13 +11478,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#ProductTemplateGet": {
+    "com.azure.securityinsights#GetProductTemplate": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#ProductTemplateGetRequest"
+        "target": "com.azure.securityinsights#GetProductTemplateRequest"
       },
       "output": {
-        "target": "com.azure.securityinsights#ProductTemplateGetResponse"
+        "target": "com.azure.securityinsights#GetProductTemplateResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11496,7 +11497,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#ProductTemplateGetResponse": {
+    "com.azure.securityinsights#GetProductTemplateResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -11789,7 +11790,7 @@
         "smithy.api#documentation": "Providers for the content item"
       }
     },
-    "com.azure.securityinsights#ProductTemplateGetRequest": {
+    "com.azure.securityinsights#GetProductTemplateRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11829,10 +11830,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#ContentTemplateDelete": {
+    "com.azure.securityinsights#DeleteContentTemplate": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#ContentTemplateDeleteRequest"
+        "target": "com.azure.securityinsights#DeleteContentTemplateRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -11848,7 +11849,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#ContentTemplateDeleteRequest": {
+    "com.azure.securityinsights#DeleteContentTemplateRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11888,13 +11889,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#ContentTemplateInstall": {
+    "com.azure.securityinsights#InstallContentTemplate": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#ContentTemplateInstallRequest"
+        "target": "com.azure.securityinsights#InstallContentTemplateRequest"
       },
       "output": {
-        "target": "com.azure.securityinsights#ContentTemplateInstallResponse"
+        "target": "com.azure.securityinsights#InstallContentTemplateResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11907,7 +11908,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#ContentTemplateInstallResponse": {
+    "com.azure.securityinsights#InstallContentTemplateResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -12175,7 +12176,7 @@
         "smithy.api#documentation": "Providers for the content item"
       }
     },
-    "com.azure.securityinsights#ContentTemplateInstallRequest": {
+    "com.azure.securityinsights#InstallContentTemplateRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12430,13 +12431,13 @@
         "smithy.api#documentation": "Providers for the content item"
       }
     },
-    "com.azure.securityinsights#ContentTemplateGet": {
+    "com.azure.securityinsights#GetContentTemplate": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#ContentTemplateGetRequest"
+        "target": "com.azure.securityinsights#GetContentTemplateRequest"
       },
       "output": {
-        "target": "com.azure.securityinsights#ContentTemplateGetResponse"
+        "target": "com.azure.securityinsights#GetContentTemplateResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -12449,7 +12450,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#ContentTemplateGetResponse": {
+    "com.azure.securityinsights#GetContentTemplateResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -12493,7 +12494,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.securityinsights#ContentTemplateGetRequest": {
+    "com.azure.securityinsights#GetContentTemplateRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12533,10 +12534,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#ContentTemplatesList": {
+    "com.azure.securityinsights#ListContentTemplates": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#ContentTemplatesListRequest"
+        "target": "com.azure.securityinsights#ListContentTemplatesRequest"
       },
       "output": {
         "target": "com.azure.securityinsights#TemplateList"
@@ -12626,7 +12627,7 @@
         "smithy.api#documentation": "Template resource definition."
       }
     },
-    "com.azure.securityinsights#ContentTemplatesListRequest": {
+    "com.azure.securityinsights#ListContentTemplatesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12714,10 +12715,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#ProductTemplatesList": {
+    "com.azure.securityinsights#ListProductTemplates": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#ProductTemplatesListRequest"
+        "target": "com.azure.securityinsights#ListProductTemplatesRequest"
       },
       "output": {
         "target": "com.azure.securityinsights#ProductTemplateList"
@@ -12807,7 +12808,7 @@
         "smithy.api#documentation": "Template resource definition."
       }
     },
-    "com.azure.securityinsights#ProductTemplatesListRequest": {
+    "com.azure.securityinsights#ListProductTemplatesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12888,13 +12889,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#ProductPackageGet": {
+    "com.azure.securityinsights#GetProductPackage": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#ProductPackageGetRequest"
+        "target": "com.azure.securityinsights#GetProductPackageRequest"
       },
       "output": {
-        "target": "com.azure.securityinsights#ProductPackageGetResponse"
+        "target": "com.azure.securityinsights#GetProductPackageResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -12907,7 +12908,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#ProductPackageGetResponse": {
+    "com.azure.securityinsights#GetProductPackageResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -13142,7 +13143,7 @@
         "smithy.api#documentation": "Providers for the package item"
       }
     },
-    "com.azure.securityinsights#ProductPackageGetRequest": {
+    "com.azure.securityinsights#GetProductPackageRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13182,10 +13183,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#ProductPackagesList": {
+    "com.azure.securityinsights#ListProductPackages": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#ProductPackagesListRequest"
+        "target": "com.azure.securityinsights#ListProductPackagesRequest"
       },
       "output": {
         "target": "com.azure.securityinsights#ProductPackageList"
@@ -13275,7 +13276,7 @@
         "smithy.api#documentation": "Represents a Package in Azure Security Insights."
       }
     },
-    "com.azure.securityinsights#ProductPackagesListRequest": {
+    "com.azure.securityinsights#ListProductPackagesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13342,10 +13343,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#ContentPackageUninstall": {
+    "com.azure.securityinsights#UninstallContentPackage": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#ContentPackageUninstallRequest"
+        "target": "com.azure.securityinsights#UninstallContentPackageRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -13361,7 +13362,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#ContentPackageUninstallRequest": {
+    "com.azure.securityinsights#UninstallContentPackageRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13401,13 +13402,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#ContentPackageInstall": {
+    "com.azure.securityinsights#InstallContentPackage": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#ContentPackageInstallRequest"
+        "target": "com.azure.securityinsights#InstallContentPackageRequest"
       },
       "output": {
-        "target": "com.azure.securityinsights#ContentPackageInstallResponse"
+        "target": "com.azure.securityinsights#InstallContentPackageResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -13420,7 +13421,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#ContentPackageInstallResponse": {
+    "com.azure.securityinsights#InstallContentPackageResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -13637,7 +13638,7 @@
         "smithy.api#documentation": "Providers for the package item"
       }
     },
-    "com.azure.securityinsights#ContentPackageInstallRequest": {
+    "com.azure.securityinsights#InstallContentPackageRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13689,13 +13690,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#ContentPackagesGet": {
+    "com.azure.securityinsights#GetContentPackage": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#ContentPackagesGetRequest"
+        "target": "com.azure.securityinsights#GetContentPackageRequest"
       },
       "output": {
-        "target": "com.azure.securityinsights#ContentPackagesGetResponse"
+        "target": "com.azure.securityinsights#GetContentPackageResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -13708,7 +13709,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#ContentPackagesGetResponse": {
+    "com.azure.securityinsights#GetContentPackageResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -13752,7 +13753,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.securityinsights#ContentPackagesGetRequest": {
+    "com.azure.securityinsights#GetContentPackageRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13792,10 +13793,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#ContentPackagesList": {
+    "com.azure.securityinsights#ListContentPackages": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#ContentPackagesListRequest"
+        "target": "com.azure.securityinsights#ListContentPackagesRequest"
       },
       "output": {
         "target": "com.azure.securityinsights#PackageList"
@@ -13885,7 +13886,7 @@
         "smithy.api#documentation": "Represents a Package in Azure Security Insights."
       }
     },
-    "com.azure.securityinsights#ContentPackagesListRequest": {
+    "com.azure.securityinsights#ListContentPackagesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13966,10 +13967,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#BookmarksDelete": {
+    "com.azure.securityinsights#DeleteBookmark": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#BookmarksDeleteRequest"
+        "target": "com.azure.securityinsights#DeleteBookmarkRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -13985,7 +13986,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#BookmarksDeleteRequest": {
+    "com.azure.securityinsights#DeleteBookmarkRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -14334,13 +14335,13 @@
         "smithy.api#documentation": "List of labels relevant to this bookmark"
       }
     },
-    "com.azure.securityinsights#BookmarksGet": {
+    "com.azure.securityinsights#GetBookmark": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#BookmarksGetRequest"
+        "target": "com.azure.securityinsights#GetBookmarkRequest"
       },
       "output": {
-        "target": "com.azure.securityinsights#BookmarksGetResponse"
+        "target": "com.azure.securityinsights#GetBookmarkResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -14353,7 +14354,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#BookmarksGetResponse": {
+    "com.azure.securityinsights#GetBookmarkResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -14397,7 +14398,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.securityinsights#BookmarksGetRequest": {
+    "com.azure.securityinsights#GetBookmarkRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -14437,10 +14438,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#BookmarksList": {
+    "com.azure.securityinsights#ListBookmarks": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#BookmarksListRequest"
+        "target": "com.azure.securityinsights#ListBookmarksRequest"
       },
       "output": {
         "target": "com.azure.securityinsights#BookmarkList"
@@ -14530,7 +14531,7 @@
         "smithy.api#documentation": "Represents a bookmark in Azure Security Insights."
       }
     },
-    "com.azure.securityinsights#BookmarksListRequest": {
+    "com.azure.securityinsights#ListBookmarksRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -14562,13 +14563,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#AutomationRulesDelete": {
+    "com.azure.securityinsights#DeleteAutomationRule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#AutomationRulesDeleteRequest"
+        "target": "com.azure.securityinsights#DeleteAutomationRuleRequest"
       },
       "output": {
-        "target": "com.azure.securityinsights#AutomationRulesDeleteResponse"
+        "target": "com.azure.securityinsights#DeleteAutomationRuleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -14581,7 +14582,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#AutomationRulesDeleteResponse": {
+    "com.azure.securityinsights#DeleteAutomationRuleResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -14596,7 +14597,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.securityinsights#AutomationRulesDeleteRequest": {
+    "com.azure.securityinsights#DeleteAutomationRuleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15048,13 +15049,13 @@
         "smithy.api#documentation": "The actions to execute when the automation rule is triggered."
       }
     },
-    "com.azure.securityinsights#AutomationRulesGet": {
+    "com.azure.securityinsights#GetAutomationRule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#AutomationRulesGetRequest"
+        "target": "com.azure.securityinsights#GetAutomationRuleRequest"
       },
       "output": {
-        "target": "com.azure.securityinsights#AutomationRulesGetResponse"
+        "target": "com.azure.securityinsights#GetAutomationRuleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -15067,7 +15068,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#AutomationRulesGetResponse": {
+    "com.azure.securityinsights#GetAutomationRuleResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -15112,7 +15113,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.securityinsights#AutomationRulesGetRequest": {
+    "com.azure.securityinsights#GetAutomationRuleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15152,10 +15153,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#AutomationRulesList2": {
+    "com.azure.securityinsights#ListAutomationRules": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#AutomationRulesListRequest"
+        "target": "com.azure.securityinsights#ListAutomationRulesRequest"
       },
       "output": {
         "target": "com.azure.securityinsights#AutomationRulesList"
@@ -15243,7 +15244,7 @@
         "smithy.api#documentation": "Concrete proxy resource types can be created by aliasing this type using a specific property type."
       }
     },
-    "com.azure.securityinsights#AutomationRulesListRequest": {
+    "com.azure.securityinsights#ListAutomationRulesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15275,10 +15276,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#ActionsDelete": {
+    "com.azure.securityinsights#DeleteAction": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#ActionsDeleteRequest"
+        "target": "com.azure.securityinsights#DeleteActionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -15294,7 +15295,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#ActionsDeleteRequest": {
+    "com.azure.securityinsights#DeleteActionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15508,13 +15509,13 @@
         "smithy.api#documentation": "Action property bag."
       }
     },
-    "com.azure.securityinsights#ActionsGet": {
+    "com.azure.securityinsights#GetAction": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#ActionsGetRequest"
+        "target": "com.azure.securityinsights#GetActionRequest"
       },
       "output": {
-        "target": "com.azure.securityinsights#ActionsGetResponse"
+        "target": "com.azure.securityinsights#GetActionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -15527,7 +15528,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#ActionsGetResponse": {
+    "com.azure.securityinsights#GetActionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -15571,7 +15572,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.securityinsights#ActionsGetRequest": {
+    "com.azure.securityinsights#GetActionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15619,10 +15620,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#ActionsListByAlertRule": {
+    "com.azure.securityinsights#ListActionByAlertRule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#ActionsListByAlertRuleRequest"
+        "target": "com.azure.securityinsights#ListActionByAlertRuleRequest"
       },
       "output": {
         "target": "com.azure.securityinsights#ActionsList"
@@ -15712,7 +15713,7 @@
         "smithy.api#documentation": "Action for alert rule."
       }
     },
-    "com.azure.securityinsights#ActionsListByAlertRuleRequest": {
+    "com.azure.securityinsights#ListActionByAlertRuleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15752,10 +15753,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#AlertRulesDelete": {
+    "com.azure.securityinsights#DeleteAlertRule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#AlertRulesDeleteRequest"
+        "target": "com.azure.securityinsights#DeleteAlertRuleRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -15771,7 +15772,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#AlertRulesDeleteRequest": {
+    "com.azure.securityinsights#DeleteAlertRuleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15954,13 +15955,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#AlertRulesGet": {
+    "com.azure.securityinsights#GetAlertRule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#AlertRulesGetRequest"
+        "target": "com.azure.securityinsights#GetAlertRuleRequest"
       },
       "output": {
-        "target": "com.azure.securityinsights#AlertRulesGetResponse"
+        "target": "com.azure.securityinsights#GetAlertRuleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -15973,7 +15974,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#AlertRulesGetResponse": {
+    "com.azure.securityinsights#GetAlertRuleResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -16018,7 +16019,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.securityinsights#AlertRulesGetRequest": {
+    "com.azure.securityinsights#GetAlertRuleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16058,10 +16059,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#AlertRulesList2": {
+    "com.azure.securityinsights#ListAlertRules": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#AlertRulesListRequest"
+        "target": "com.azure.securityinsights#ListAlertRulesRequest"
       },
       "output": {
         "target": "com.azure.securityinsights#AlertRulesList"
@@ -16152,7 +16153,7 @@
         "smithy.api#documentation": "Alert rule."
       }
     },
-    "com.azure.securityinsights#AlertRulesListRequest": {
+    "com.azure.securityinsights#ListAlertRulesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16184,13 +16185,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#AlertRuleTemplatesGet": {
+    "com.azure.securityinsights#GetAlertRuleTemplate": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#AlertRuleTemplatesGetRequest"
+        "target": "com.azure.securityinsights#GetAlertRuleTemplateRequest"
       },
       "output": {
-        "target": "com.azure.securityinsights#AlertRuleTemplatesGetResponse"
+        "target": "com.azure.securityinsights#GetAlertRuleTemplateResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -16203,7 +16204,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.securityinsights#AlertRuleTemplatesGetResponse": {
+    "com.azure.securityinsights#GetAlertRuleTemplateResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -16242,7 +16243,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.securityinsights#AlertRuleTemplatesGetRequest": {
+    "com.azure.securityinsights#GetAlertRuleTemplateRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16282,10 +16283,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#AlertRuleTemplatesList2": {
+    "com.azure.securityinsights#ListAlertRuleTemplates": {
       "type": "operation",
       "input": {
-        "target": "com.azure.securityinsights#AlertRuleTemplatesListRequest"
+        "target": "com.azure.securityinsights#ListAlertRuleTemplatesRequest"
       },
       "output": {
         "target": "com.azure.securityinsights#AlertRuleTemplatesList"
@@ -16370,7 +16371,7 @@
         "smithy.api#documentation": "Alert rule template."
       }
     },
-    "com.azure.securityinsights#AlertRuleTemplatesListRequest": {
+    "com.azure.securityinsights#ListAlertRuleTemplatesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16402,7 +16403,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.securityinsights#OperationsList2": {
+    "com.azure.securityinsights#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -16520,289 +16521,289 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.securityinsights#WatchlistItemsDelete"
+          "target": "com.azure.securityinsights#DeleteWatchlistItem"
         },
         {
           "target": "com.azure.securityinsights#WatchlistItemsCreateOrUpdate"
         },
         {
-          "target": "com.azure.securityinsights#WatchlistItemsGet"
+          "target": "com.azure.securityinsights#GetWatchlistItem"
         },
         {
-          "target": "com.azure.securityinsights#WatchlistItemsList"
+          "target": "com.azure.securityinsights#ListWatchlistItems"
         },
         {
-          "target": "com.azure.securityinsights#WatchlistsDelete"
+          "target": "com.azure.securityinsights#DeleteWatchlist"
         },
         {
           "target": "com.azure.securityinsights#WatchlistsCreateOrUpdate"
         },
         {
-          "target": "com.azure.securityinsights#WatchlistsGet"
+          "target": "com.azure.securityinsights#GetWatchlist"
         },
         {
-          "target": "com.azure.securityinsights#WatchlistsList"
+          "target": "com.azure.securityinsights#ListWatchlists"
         },
         {
           "target": "com.azure.securityinsights#ThreatIntelligenceIndicatorQueryIndicators"
         },
         {
-          "target": "com.azure.securityinsights#ThreatIntelligenceIndicatorMetricsList"
+          "target": "com.azure.securityinsights#ListThreatIntelligenceIndicatorMetrics"
         },
         {
-          "target": "com.azure.securityinsights#ThreatIntelligenceIndicatorReplaceTags"
+          "target": "com.azure.securityinsights#ReplaceThreatIntelligenceIndicatorTags"
         },
         {
           "target": "com.azure.securityinsights#ThreatIntelligenceIndicatorAppendTags"
         },
         {
-          "target": "com.azure.securityinsights#ThreatIntelligenceIndicatorDelete"
+          "target": "com.azure.securityinsights#DeleteThreatIntelligenceIndicator"
         },
         {
-          "target": "com.azure.securityinsights#ThreatIntelligenceIndicatorCreate"
+          "target": "com.azure.securityinsights#CreateThreatIntelligenceIndicator"
         },
         {
-          "target": "com.azure.securityinsights#ThreatIntelligenceIndicatorGet"
+          "target": "com.azure.securityinsights#GetThreatIntelligenceIndicator"
         },
         {
-          "target": "com.azure.securityinsights#ThreatIntelligenceIndicatorsList"
+          "target": "com.azure.securityinsights#ListThreatIntelligenceIndicators"
         },
         {
-          "target": "com.azure.securityinsights#ThreatIntelligenceIndicatorCreateIndicator"
+          "target": "com.azure.securityinsights#CreateThreatIntelligenceIndicatorIndicator"
         },
         {
-          "target": "com.azure.securityinsights#SourceControlsDelete"
+          "target": "com.azure.securityinsights#DeleteSourceControl"
         },
         {
-          "target": "com.azure.securityinsights#SourceControlsCreate"
+          "target": "com.azure.securityinsights#CreateSourceControl"
         },
         {
-          "target": "com.azure.securityinsights#SourceControlsGet"
+          "target": "com.azure.securityinsights#GetSourceControl"
         },
         {
-          "target": "com.azure.securityinsights#SourceControlsList"
+          "target": "com.azure.securityinsights#ListSourceControls"
         },
         {
-          "target": "com.azure.securityinsights#SecurityMLAnalyticsSettingsDelete"
+          "target": "com.azure.securityinsights#DeleteSecurityMLAnalyticsSettings"
         },
         {
           "target": "com.azure.securityinsights#SecurityMLAnalyticsSettingsCreateOrUpdate"
         },
         {
-          "target": "com.azure.securityinsights#SecurityMLAnalyticsSettingsGet"
+          "target": "com.azure.securityinsights#GetSecurityMLAnalyticsSettings"
         },
         {
-          "target": "com.azure.securityinsights#SecurityMLAnalyticsSettingsList2"
+          "target": "com.azure.securityinsights#ListSecurityMLAnalyticsSettings"
         },
         {
-          "target": "com.azure.securityinsights#SentinelOnboardingStatesDelete"
+          "target": "com.azure.securityinsights#DeleteSentinelOnboardingState"
         },
         {
-          "target": "com.azure.securityinsights#SentinelOnboardingStatesCreate"
+          "target": "com.azure.securityinsights#CreateSentinelOnboardingState"
         },
         {
-          "target": "com.azure.securityinsights#SentinelOnboardingStatesGet"
+          "target": "com.azure.securityinsights#GetSentinelOnboardingState"
         },
         {
-          "target": "com.azure.securityinsights#SentinelOnboardingStatesList2"
+          "target": "com.azure.securityinsights#ListSentinelOnboardingStates"
         },
         {
-          "target": "com.azure.securityinsights#MetadataDelete"
+          "target": "com.azure.securityinsights#DeleteMetadata"
         },
         {
-          "target": "com.azure.securityinsights#MetadataUpdate"
+          "target": "com.azure.securityinsights#UpdateMetadata"
         },
         {
-          "target": "com.azure.securityinsights#MetadataCreate"
+          "target": "com.azure.securityinsights#CreateMetadata"
         },
         {
-          "target": "com.azure.securityinsights#MetadataGet"
+          "target": "com.azure.securityinsights#GetMetadata"
         },
         {
-          "target": "com.azure.securityinsights#MetadataList2"
+          "target": "com.azure.securityinsights#ListMetadata"
         },
         {
-          "target": "com.azure.securityinsights#SourceControlListRepositories"
+          "target": "com.azure.securityinsights#ListSourceControlRepositories"
         },
         {
-          "target": "com.azure.securityinsights#IncidentTasksDelete"
+          "target": "com.azure.securityinsights#DeleteIncidentTask"
         },
         {
           "target": "com.azure.securityinsights#IncidentTasksCreateOrUpdate"
         },
         {
-          "target": "com.azure.securityinsights#IncidentTasksGet"
+          "target": "com.azure.securityinsights#GetIncidentTask"
         },
         {
-          "target": "com.azure.securityinsights#IncidentTasksList"
+          "target": "com.azure.securityinsights#ListIncidentTasks"
         },
         {
-          "target": "com.azure.securityinsights#IncidentsRunPlaybook"
+          "target": "com.azure.securityinsights#RunIncidentPlaybook"
         },
         {
-          "target": "com.azure.securityinsights#IncidentRelationsDelete"
+          "target": "com.azure.securityinsights#DeleteIncidentRelation"
         },
         {
           "target": "com.azure.securityinsights#IncidentRelationsCreateOrUpdate"
         },
         {
-          "target": "com.azure.securityinsights#IncidentRelationsGet"
+          "target": "com.azure.securityinsights#GetIncidentRelation"
         },
         {
-          "target": "com.azure.securityinsights#IncidentRelationsList"
+          "target": "com.azure.securityinsights#ListIncidentRelations"
         },
         {
-          "target": "com.azure.securityinsights#IncidentsListEntities"
+          "target": "com.azure.securityinsights#ListIncidentEntities"
         },
         {
-          "target": "com.azure.securityinsights#IncidentCommentsDelete"
+          "target": "com.azure.securityinsights#DeleteIncidentComment"
         },
         {
           "target": "com.azure.securityinsights#IncidentCommentsCreateOrUpdate"
         },
         {
-          "target": "com.azure.securityinsights#IncidentCommentsGet"
+          "target": "com.azure.securityinsights#GetIncidentComment"
         },
         {
-          "target": "com.azure.securityinsights#IncidentCommentsList"
+          "target": "com.azure.securityinsights#ListIncidentComments"
         },
         {
-          "target": "com.azure.securityinsights#IncidentsListBookmarks"
+          "target": "com.azure.securityinsights#ListIncidentBookmarks"
         },
         {
-          "target": "com.azure.securityinsights#IncidentsListAlerts"
+          "target": "com.azure.securityinsights#ListIncidentAlerts"
         },
         {
-          "target": "com.azure.securityinsights#IncidentsDelete"
+          "target": "com.azure.securityinsights#DeleteIncident"
         },
         {
           "target": "com.azure.securityinsights#IncidentsCreateOrUpdate"
         },
         {
-          "target": "com.azure.securityinsights#IncidentsGet"
+          "target": "com.azure.securityinsights#GetIncident"
         },
         {
-          "target": "com.azure.securityinsights#IncidentsList"
+          "target": "com.azure.securityinsights#ListIncidents"
         },
         {
-          "target": "com.azure.securityinsights#EntitiesRunPlaybook"
+          "target": "com.azure.securityinsights#RunEntityPlaybook"
         },
         {
-          "target": "com.azure.securityinsights#DataConnectorsDelete"
+          "target": "com.azure.securityinsights#DeleteDataConnector"
         },
         {
           "target": "com.azure.securityinsights#DataConnectorsCreateOrUpdate"
         },
         {
-          "target": "com.azure.securityinsights#DataConnectorsGet"
+          "target": "com.azure.securityinsights#GetDataConnector"
         },
         {
-          "target": "com.azure.securityinsights#DataConnectorsList"
+          "target": "com.azure.securityinsights#ListDataConnectors"
         },
         {
-          "target": "com.azure.securityinsights#DataConnectorDefinitionsDelete"
+          "target": "com.azure.securityinsights#DeleteDataConnectorDefinition"
         },
         {
           "target": "com.azure.securityinsights#DataConnectorDefinitionsCreateOrUpdate"
         },
         {
-          "target": "com.azure.securityinsights#DataConnectorDefinitionsGet"
+          "target": "com.azure.securityinsights#GetDataConnectorDefinition"
         },
         {
-          "target": "com.azure.securityinsights#DataConnectorDefinitionsList"
+          "target": "com.azure.securityinsights#ListDataConnectorDefinitions"
         },
         {
-          "target": "com.azure.securityinsights#ProductTemplateGet"
+          "target": "com.azure.securityinsights#GetProductTemplate"
         },
         {
-          "target": "com.azure.securityinsights#ContentTemplateDelete"
+          "target": "com.azure.securityinsights#DeleteContentTemplate"
         },
         {
-          "target": "com.azure.securityinsights#ContentTemplateInstall"
+          "target": "com.azure.securityinsights#InstallContentTemplate"
         },
         {
-          "target": "com.azure.securityinsights#ContentTemplateGet"
+          "target": "com.azure.securityinsights#GetContentTemplate"
         },
         {
-          "target": "com.azure.securityinsights#ContentTemplatesList"
+          "target": "com.azure.securityinsights#ListContentTemplates"
         },
         {
-          "target": "com.azure.securityinsights#ProductTemplatesList"
+          "target": "com.azure.securityinsights#ListProductTemplates"
         },
         {
-          "target": "com.azure.securityinsights#ProductPackageGet"
+          "target": "com.azure.securityinsights#GetProductPackage"
         },
         {
-          "target": "com.azure.securityinsights#ProductPackagesList"
+          "target": "com.azure.securityinsights#ListProductPackages"
         },
         {
-          "target": "com.azure.securityinsights#ContentPackageUninstall"
+          "target": "com.azure.securityinsights#UninstallContentPackage"
         },
         {
-          "target": "com.azure.securityinsights#ContentPackageInstall"
+          "target": "com.azure.securityinsights#InstallContentPackage"
         },
         {
-          "target": "com.azure.securityinsights#ContentPackagesGet"
+          "target": "com.azure.securityinsights#GetContentPackage"
         },
         {
-          "target": "com.azure.securityinsights#ContentPackagesList"
+          "target": "com.azure.securityinsights#ListContentPackages"
         },
         {
-          "target": "com.azure.securityinsights#BookmarksDelete"
+          "target": "com.azure.securityinsights#DeleteBookmark"
         },
         {
           "target": "com.azure.securityinsights#BookmarksCreateOrUpdate"
         },
         {
-          "target": "com.azure.securityinsights#BookmarksGet"
+          "target": "com.azure.securityinsights#GetBookmark"
         },
         {
-          "target": "com.azure.securityinsights#BookmarksList"
+          "target": "com.azure.securityinsights#ListBookmarks"
         },
         {
-          "target": "com.azure.securityinsights#AutomationRulesDelete"
+          "target": "com.azure.securityinsights#DeleteAutomationRule"
         },
         {
           "target": "com.azure.securityinsights#AutomationRulesCreateOrUpdate"
         },
         {
-          "target": "com.azure.securityinsights#AutomationRulesGet"
+          "target": "com.azure.securityinsights#GetAutomationRule"
         },
         {
-          "target": "com.azure.securityinsights#AutomationRulesList2"
+          "target": "com.azure.securityinsights#ListAutomationRules"
         },
         {
-          "target": "com.azure.securityinsights#ActionsDelete"
+          "target": "com.azure.securityinsights#DeleteAction"
         },
         {
           "target": "com.azure.securityinsights#ActionsCreateOrUpdate"
         },
         {
-          "target": "com.azure.securityinsights#ActionsGet"
+          "target": "com.azure.securityinsights#GetAction"
         },
         {
-          "target": "com.azure.securityinsights#ActionsListByAlertRule"
+          "target": "com.azure.securityinsights#ListActionByAlertRule"
         },
         {
-          "target": "com.azure.securityinsights#AlertRulesDelete"
+          "target": "com.azure.securityinsights#DeleteAlertRule"
         },
         {
           "target": "com.azure.securityinsights#AlertRulesCreateOrUpdate"
         },
         {
-          "target": "com.azure.securityinsights#AlertRulesGet"
+          "target": "com.azure.securityinsights#GetAlertRule"
         },
         {
-          "target": "com.azure.securityinsights#AlertRulesList2"
+          "target": "com.azure.securityinsights#ListAlertRules"
         },
         {
-          "target": "com.azure.securityinsights#AlertRuleTemplatesGet"
+          "target": "com.azure.securityinsights#GetAlertRuleTemplate"
         },
         {
-          "target": "com.azure.securityinsights#AlertRuleTemplatesList2"
+          "target": "com.azure.securityinsights#ListAlertRuleTemplates"
         },
         {
-          "target": "com.azure.securityinsights#OperationsList2"
+          "target": "com.azure.securityinsights#ListOperations"
         }
       ],
       "traits": {

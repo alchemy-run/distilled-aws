@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.vercel.access_groups#ReadAccessGroupRequest": {
@@ -71,6 +72,18 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "AiGatewaySettings"
+          }
+        },
+        "AIGATEWAYTRANSCRIPTSMANAGER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AiGatewayTranscriptsManager"
+          }
+        },
+        "AIGATEWAYTRANSCRIPTSVIEWER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AiGatewayTranscriptsViewer"
           }
         },
         "CONNECTORMANAGER": {

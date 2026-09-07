@@ -4,22 +4,23 @@
     "service": "groupsmigration",
     "version": "v1",
     "title": "Groups Migration API",
-    "baseUrl": "https://groupsmigration.googleapis.com/"
+    "baseUrl": "https://groupsmigration.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
     "com.gcp.groupsmigration_v1#Groups": {
       "type": "structure",
       "members": {
-        "responseCode": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The status of the insert request."
-          }
-        },
         "kind": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "The kind of insert resource this is."
+          }
+        },
+        "responseCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The status of the insert request."
           }
         }
       },

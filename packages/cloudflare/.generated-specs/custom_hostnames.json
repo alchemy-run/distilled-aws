@@ -14,7 +14,41 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "keyDictionary": {
+      "bundleMethod": "bundle_method",
+      "certificateAuthority": "certificate_authority",
+      "cloudflareBranding": "cloudflare_branding",
+      "cnameTarget": "cname_target",
+      "createdAt": "created_at",
+      "customCertBundle": "custom_cert_bundle",
+      "customCertificate": "custom_certificate",
+      "customCsrId": "custom_csr_id",
+      "customKey": "custom_key",
+      "customMetadata": "custom_metadata",
+      "customOriginServer": "custom_origin_server",
+      "customOriginSni": "custom_origin_sni",
+      "dcvDelegationRecords": "dcv_delegation_records",
+      "earlyHints": "early_hints",
+      "expiresOn": "expires_on",
+      "httpBody": "http_body",
+      "httpUrl": "http_url",
+      "minTlsVersion": "min_tls_version",
+      "ownershipVerification": "ownership_verification",
+      "ownershipVerificationHttp": "ownership_verification_http",
+      "perPage": "per_page",
+      "resultInfo": "result_info",
+      "serialNumber": "serial_number",
+      "totalCount": "total_count",
+      "txtName": "txt_name",
+      "txtValue": "txt_value",
+      "updatedAt": "updated_at",
+      "uploadedOn": "uploaded_on",
+      "validationErrors": "validation_errors",
+      "validationRecords": "validation_records",
+      "verificationErrors": "verification_errors"
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.custom_hostnames#CreateRequestCustomMetadataMap": {
@@ -23,7 +57,7 @@
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "smithy.api#String"
+        "target": "smithy.api#Document"
       }
     },
     "com.cloudflare.custom_hostnames#CreateRequestSslBundleMethod": {
@@ -329,48 +363,13 @@
         }
       }
     },
-    "com.cloudflare.custom_hostnames#CreateRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "hostname": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The custom hostname that will point to your hostname via CNAME.",
-            "smithy.api#required": {}
-          }
-        },
-        "custom_metadata": {
-          "target": "com.cloudflare.custom_hostnames#CreateRequestCustomMetadataMap",
-          "traits": {
-            "smithy.api#documentation": "Unique key/value metadata for this hostname. These are per-hostname (customer) settings."
-          }
-        },
-        "ssl": {
-          "target": "com.cloudflare.custom_hostnames#CreateRequestSsl",
-          "traits": {
-            "smithy.api#documentation": "SSL properties used when creating the custom hostname."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.custom_hostnames#CreateResponseCustomMetadataMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "smithy.api#String"
+        "target": "smithy.api#Document"
       }
     },
     "com.cloudflare.custom_hostnames#CreateResponseOwnershipVerificationType": {
@@ -1141,161 +1140,13 @@
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.custom_hostnames#CreateResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#required": {}
-          }
-        },
-        "hostname": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The custom hostname that will point to your hostname via CNAME.",
-            "smithy.api#required": {}
-          }
-        },
-        "created_at": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "This is the time the hostname was created."
-          }
-        },
-        "custom_metadata": {
-          "target": "com.cloudflare.custom_hostnames#CreateResponseCustomMetadataMap",
-          "traits": {
-            "smithy.api#documentation": "Unique key/value metadata for this hostname. These are per-hostname (customer) settings."
-          }
-        },
-        "custom_origin_server": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "a valid hostname that’s been added to your DNS zone as an A, AAAA, or CNAME record."
-          }
-        },
-        "custom_origin_sni": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A hostname that will be sent to your custom origin server as SNI for TLS handshake. This can be a valid subdomain of the zone or custom origin server name or the string ':request_host_header:' which will cause the host header in the request to be used as SNI. Not configurable with default/fallback origin server."
-          }
-        },
-        "ownership_verification": {
-          "target": "com.cloudflare.custom_hostnames#CreateResponseOwnershipVerification",
-          "traits": {
-            "smithy.api#documentation": "This is a record which can be placed to activate a hostname."
-          }
-        },
-        "ownership_verification_http": {
-          "target": "com.cloudflare.custom_hostnames#CreateResponseOwnershipVerificationHttp",
-          "traits": {
-            "smithy.api#documentation": "This presents the token to be served by the given http url to activate a hostname."
-          }
-        },
-        "ssl": {
-          "target": "com.cloudflare.custom_hostnames#CreateResponseSsl"
-        },
-        "status": {
-          "target": "com.cloudflare.custom_hostnames#CreateResponseStatus",
-          "traits": {
-            "smithy.api#documentation": "Status of the hostname's activation."
-          }
-        },
-        "verification_errors": {
-          "target": "com.cloudflare.custom_hostnames#CreateResponseVerificationErrorsList",
-          "traits": {
-            "smithy.api#documentation": "These are errors that were encountered while trying to activate a hostname."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.custom_hostnames#Create": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.custom_hostnames#CreateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.custom_hostnames#CreateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "/zones/{zone_id}/custom_hostnames",
-          "code": 200
-        },
-        "smithy.api#documentation": "Add a new custom hostname and request that an SSL certificate be issued for it. One of three validation methods—http, txt, email—should be used, with 'http' recommended if the CNAME is already in place (or will be soon). Specifying 'email' will send an email to the WHOIS contacts on file for the base domain plus hostmaster, postmaster, webmaster, admin, administrator. If http is used and the domain is not already pointing to the Managed CNAME host, the PATCH method must be used once it is (to complete validation).  Enable bundling of certificates using the custom_cert_bundle field. The bundling process requires the following condition One certificate in the bundle must use an RSA, and the other must use an ECDSA."
-      }
-    },
-    "com.cloudflare.custom_hostnames#DeleteRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "custom_hostname_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.custom_hostnames#DeleteResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Raw response payload (operation does not use the standard v4 result envelope)."
-      }
-    },
-    "com.cloudflare.custom_hostnames#Delete": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.custom_hostnames#DeleteRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.custom_hostnames#DeleteResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "/zones/{zone_id}/custom_hostnames/{custom_hostname_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Permanently deletes a custom hostname and revokes any SSL certificates that were issued for it. This action cannot be undone.",
-        "smithy.api#idempotent": {}
-      }
-    },
     "com.cloudflare.custom_hostnames#EditRequestCustomMetadataMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "smithy.api#String"
+        "target": "smithy.api#Document"
       }
     },
     "com.cloudflare.custom_hostnames#EditRequestSslBundleMethod": {
@@ -1601,61 +1452,13 @@
         }
       }
     },
-    "com.cloudflare.custom_hostnames#EditRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "custom_hostname_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "custom_metadata": {
-          "target": "com.cloudflare.custom_hostnames#EditRequestCustomMetadataMap",
-          "traits": {
-            "smithy.api#documentation": "Unique key/value metadata for this hostname. These are per-hostname (customer) settings."
-          }
-        },
-        "custom_origin_server": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "a valid hostname that’s been added to your DNS zone as an A, AAAA, or CNAME record."
-          }
-        },
-        "custom_origin_sni": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A hostname that will be sent to your custom origin server as SNI for TLS handshake. This can be a valid subdomain of the zone or custom origin server name or the string ':request_host_header:' which will cause the host header in the request to be used as SNI. Not configurable with default/fallback origin server."
-          }
-        },
-        "ssl": {
-          "target": "com.cloudflare.custom_hostnames#EditRequestSsl",
-          "traits": {
-            "smithy.api#documentation": "SSL properties used when creating the custom hostname."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.custom_hostnames#EditResponseCustomMetadataMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "smithy.api#String"
+        "target": "smithy.api#Document"
       }
     },
     "com.cloudflare.custom_hostnames#EditResponseOwnershipVerificationType": {
@@ -2426,128 +2229,13 @@
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.custom_hostnames#EditResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#required": {}
-          }
-        },
-        "hostname": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The custom hostname that will point to your hostname via CNAME.",
-            "smithy.api#required": {}
-          }
-        },
-        "created_at": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "This is the time the hostname was created."
-          }
-        },
-        "custom_metadata": {
-          "target": "com.cloudflare.custom_hostnames#EditResponseCustomMetadataMap",
-          "traits": {
-            "smithy.api#documentation": "Unique key/value metadata for this hostname. These are per-hostname (customer) settings."
-          }
-        },
-        "custom_origin_server": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "a valid hostname that’s been added to your DNS zone as an A, AAAA, or CNAME record."
-          }
-        },
-        "custom_origin_sni": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A hostname that will be sent to your custom origin server as SNI for TLS handshake. This can be a valid subdomain of the zone or custom origin server name or the string ':request_host_header:' which will cause the host header in the request to be used as SNI. Not configurable with default/fallback origin server."
-          }
-        },
-        "ownership_verification": {
-          "target": "com.cloudflare.custom_hostnames#EditResponseOwnershipVerification",
-          "traits": {
-            "smithy.api#documentation": "This is a record which can be placed to activate a hostname."
-          }
-        },
-        "ownership_verification_http": {
-          "target": "com.cloudflare.custom_hostnames#EditResponseOwnershipVerificationHttp",
-          "traits": {
-            "smithy.api#documentation": "This presents the token to be served by the given http url to activate a hostname."
-          }
-        },
-        "ssl": {
-          "target": "com.cloudflare.custom_hostnames#EditResponseSsl"
-        },
-        "status": {
-          "target": "com.cloudflare.custom_hostnames#EditResponseStatus",
-          "traits": {
-            "smithy.api#documentation": "Status of the hostname's activation."
-          }
-        },
-        "verification_errors": {
-          "target": "com.cloudflare.custom_hostnames#EditResponseVerificationErrorsList",
-          "traits": {
-            "smithy.api#documentation": "These are errors that were encountered while trying to activate a hostname."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.custom_hostnames#Edit": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.custom_hostnames#EditRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.custom_hostnames#EditResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PATCH",
-          "uri": "/zones/{zone_id}/custom_hostnames/{custom_hostname_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Modify SSL configuration for a custom hostname. When sent with SSL config that matches existing config, used to indicate that hostname should pass domain control validation (DCV). Can also be used to change validation type, e.g., from 'http' to 'email'. Bundle an existing certificate with another certificate by using the \"custom_cert_bundle\" field. The bundling process supports combining certificates as long as the following condition is met. One certificate must use the RSA algorithm, and the other must use the ECDSA algorithm."
-      }
-    },
-    "com.cloudflare.custom_hostnames#GetRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "custom_hostname_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.custom_hostnames#GetResponseCustomMetadataMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "smithy.api#String"
+        "target": "smithy.api#Document"
       }
     },
     "com.cloudflare.custom_hostnames#GetResponseOwnershipVerificationType": {
@@ -3318,98 +3006,6 @@
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.custom_hostnames#GetResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#required": {}
-          }
-        },
-        "hostname": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The custom hostname that will point to your hostname via CNAME.",
-            "smithy.api#required": {}
-          }
-        },
-        "created_at": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "This is the time the hostname was created."
-          }
-        },
-        "custom_metadata": {
-          "target": "com.cloudflare.custom_hostnames#GetResponseCustomMetadataMap",
-          "traits": {
-            "smithy.api#documentation": "Unique key/value metadata for this hostname. These are per-hostname (customer) settings."
-          }
-        },
-        "custom_origin_server": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "a valid hostname that’s been added to your DNS zone as an A, AAAA, or CNAME record."
-          }
-        },
-        "custom_origin_sni": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A hostname that will be sent to your custom origin server as SNI for TLS handshake. This can be a valid subdomain of the zone or custom origin server name or the string ':request_host_header:' which will cause the host header in the request to be used as SNI. Not configurable with default/fallback origin server."
-          }
-        },
-        "ownership_verification": {
-          "target": "com.cloudflare.custom_hostnames#GetResponseOwnershipVerification",
-          "traits": {
-            "smithy.api#documentation": "This is a record which can be placed to activate a hostname."
-          }
-        },
-        "ownership_verification_http": {
-          "target": "com.cloudflare.custom_hostnames#GetResponseOwnershipVerificationHttp",
-          "traits": {
-            "smithy.api#documentation": "This presents the token to be served by the given http url to activate a hostname."
-          }
-        },
-        "ssl": {
-          "target": "com.cloudflare.custom_hostnames#GetResponseSsl"
-        },
-        "status": {
-          "target": "com.cloudflare.custom_hostnames#GetResponseStatus",
-          "traits": {
-            "smithy.api#documentation": "Status of the hostname's activation."
-          }
-        },
-        "verification_errors": {
-          "target": "com.cloudflare.custom_hostnames#GetResponseVerificationErrorsList",
-          "traits": {
-            "smithy.api#documentation": "These are errors that were encountered while trying to activate a hostname."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.custom_hostnames#Get": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.custom_hostnames#GetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.custom_hostnames#GetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/custom_hostnames/{custom_hostname_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Retrieves detailed information about a specific custom hostname, including SSL certificate status, ownership verification, and origin configuration.",
-        "smithy.api#readonly": {}
-      }
-    },
     "com.cloudflare.custom_hostnames#ListRequestCertificateAuthority": {
       "type": "enum",
       "members": {
@@ -3722,112 +3318,13 @@
         }
       }
     },
-    "com.cloudflare.custom_hostnames#ListRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Hostname ID to match against. This ID was generated and returned during the initial custom_hostname creation. This parameter cannot be used with the 'hostname', 'hostname.exact', 'hostname.contain', or 'hostname.startsWith' parameters.",
-            "smithy.api#httpQuery": "id"
-          }
-        },
-        "certificate_authority": {
-          "target": "com.cloudflare.custom_hostnames#ListRequestCertificateAuthority",
-          "traits": {
-            "smithy.api#documentation": "Filter by the certificate authority that issued the SSL certificate.",
-            "smithy.api#httpQuery": "certificate_authority"
-          }
-        },
-        "custom_origin_server": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Filter by custom origin server name.",
-            "smithy.api#httpQuery": "custom_origin_server"
-          }
-        },
-        "direction": {
-          "target": "com.cloudflare.custom_hostnames#ListRequestDirection",
-          "traits": {
-            "smithy.api#documentation": "Direction to order hostnames.",
-            "smithy.api#httpQuery": "direction"
-          }
-        },
-        "hostname": {
-          "target": "com.cloudflare.custom_hostnames#ListRequestHostname",
-          "traits": {
-            "com.cloudflare.protocols#deepQuery": "hostname"
-          }
-        },
-        "hostname_status": {
-          "target": "com.cloudflare.custom_hostnames#ListRequestHostnameStatus",
-          "traits": {
-            "smithy.api#documentation": "Filter by the hostname's activation status.",
-            "smithy.api#httpQuery": "hostname_status"
-          }
-        },
-        "order": {
-          "target": "com.cloudflare.custom_hostnames#ListRequestOrder",
-          "traits": {
-            "smithy.api#documentation": "Field to order hostnames by.",
-            "smithy.api#httpQuery": "order"
-          }
-        },
-        "page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Page number of paginated results.",
-            "smithy.api#httpQuery": "page"
-          }
-        },
-        "per_page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Number of hostnames per page.",
-            "smithy.api#httpQuery": "per_page"
-          }
-        },
-        "ssl": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Whether to filter hostnames based on if they have SSL enabled.",
-            "smithy.api#httpQuery": "ssl"
-          }
-        },
-        "ssl_status": {
-          "target": "com.cloudflare.custom_hostnames#ListRequestSslStatus",
-          "traits": {
-            "smithy.api#documentation": "Filter by SSL certificate status.",
-            "smithy.api#httpQuery": "ssl_status"
-          }
-        },
-        "wildcard": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Filter by whether the custom hostname is a wildcard hostname.",
-            "smithy.api#httpQuery": "wildcard"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.custom_hostnames#ListResultItemCustomMetadataMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "smithy.api#String"
+        "target": "smithy.api#Document"
       }
     },
     "com.cloudflare.custom_hostnames#ListResultItemOwnershipVerificationType": {
@@ -4674,173 +4171,13 @@
         "target": "com.cloudflare.custom_hostnames#ListResultItem"
       }
     },
-    "com.cloudflare.custom_hostnames#ListResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.custom_hostnames#ListResultList",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.custom_hostnames#List": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.custom_hostnames#ListRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.custom_hostnames#ListResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/custom_hostnames",
-          "code": 200
-        },
-        "smithy.api#documentation": "List, search, sort, and filter all of your custom hostnames.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.custom_hostnames#CertificatePackCertificatesDeleteRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "custom_hostname_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "certificate_pack_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "certificate_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.custom_hostnames#CertificatePackCertificatesDeleteResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Raw response payload (operation does not use the standard v4 result envelope)."
-      }
-    },
-    "com.cloudflare.custom_hostnames#CertificatePackCertificatesDelete": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.custom_hostnames#CertificatePackCertificatesDeleteRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.custom_hostnames#CertificatePackCertificatesDeleteResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "/zones/{zone_id}/custom_hostnames/{custom_hostname_id}/certificate_pack/{certificate_pack_id}/certificates/{certificate_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Delete a single custom certificate from a certificate pack that contains two bundled certificates. Deletion is subject to the following constraints. You cannot delete a certificate if it is the only remaining certificate in the pack. At least one certificate must remain in the pack.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.custom_hostnames#CertificatePackCertificatesUpdateRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "custom_hostname_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "certificate_pack_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "certificate_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "custom_certificate": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "If a custom uploaded certificate is used.",
-            "smithy.api#required": {}
-          }
-        },
-        "custom_key": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The key for a custom uploaded certificate.",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.custom_hostnames#CertificatePackCertificatesUpdateResponseCustomMetadataMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "smithy.api#String"
+        "target": "smithy.api#Document"
       }
     },
     "com.cloudflare.custom_hostnames#CertificatePackCertificatesUpdateResponseOwnershipVerificationType": {
@@ -5611,7 +4948,1215 @@
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.custom_hostnames#CertificatePackCertificatesUpdateResponse": {
+    "com.cloudflare.custom_hostnames#FallbackOriginDeleteResponseErrorsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.custom_hostnames#FallbackOriginDeleteResponseStatus": {
+      "type": "enum",
+      "members": {
+        "INITIALIZING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "initializing"
+          }
+        },
+        "PENDING_DEPLOYMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending_deployment"
+          }
+        },
+        "PENDING_DELETION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending_deletion"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "active"
+          }
+        },
+        "DEPLOYMENT_TIMED_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment_timed_out"
+          }
+        },
+        "DELETION_TIMED_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deletion_timed_out"
+          }
+        }
+      }
+    },
+    "com.cloudflare.custom_hostnames#FallbackOriginGetResponseErrorsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.custom_hostnames#FallbackOriginGetResponseStatus": {
+      "type": "enum",
+      "members": {
+        "INITIALIZING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "initializing"
+          }
+        },
+        "PENDING_DEPLOYMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending_deployment"
+          }
+        },
+        "PENDING_DELETION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending_deletion"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "active"
+          }
+        },
+        "DEPLOYMENT_TIMED_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment_timed_out"
+          }
+        },
+        "DELETION_TIMED_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deletion_timed_out"
+          }
+        }
+      }
+    },
+    "com.cloudflare.custom_hostnames#FallbackOriginUpdateResponseErrorsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.custom_hostnames#FallbackOriginUpdateResponseStatus": {
+      "type": "enum",
+      "members": {
+        "INITIALIZING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "initializing"
+          }
+        },
+        "PENDING_DEPLOYMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending_deployment"
+          }
+        },
+        "PENDING_DELETION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending_deletion"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "active"
+          }
+        },
+        "DEPLOYMENT_TIMED_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment_timed_out"
+          }
+        },
+        "DELETION_TIMED_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deletion_timed_out"
+          }
+        }
+      }
+    },
+    "com.cloudflare.custom_hostnames#CustomHostnames": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.custom_hostnames#CreateCustomHostname"
+        },
+        {
+          "target": "com.cloudflare.custom_hostnames#DeleteCertificatePackCertificate"
+        },
+        {
+          "target": "com.cloudflare.custom_hostnames#DeleteCustomHostname"
+        },
+        {
+          "target": "com.cloudflare.custom_hostnames#DeleteFallbackOrigin"
+        },
+        {
+          "target": "com.cloudflare.custom_hostnames#GetCustomHostname"
+        },
+        {
+          "target": "com.cloudflare.custom_hostnames#GetFallbackOrigin"
+        },
+        {
+          "target": "com.cloudflare.custom_hostnames#ListCustomHostnames"
+        },
+        {
+          "target": "com.cloudflare.custom_hostnames#PatchCustomHostname"
+        },
+        {
+          "target": "com.cloudflare.custom_hostnames#PutCertificatePackCertificate"
+        },
+        {
+          "target": "com.cloudflare.custom_hostnames#PutFallbackOrigin"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare CustomHostnames",
+        "smithy.api#documentation": "Cloudflare API — custom_hostnames resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    },
+    "com.cloudflare.custom_hostnames#CustomHostnameNotFound": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 1436
+          },
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.cloudflare.custom_hostnames#FallbackOriginNotFound": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.cloudflare.custom_hostnames#Forbidden": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.cloudflare.custom_hostnames#SaasAccessNotGranted": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 1456
+          }
+        ]
+      }
+    },
+    "com.cloudflare.custom_hostnames#SaasQuotaNotAllocated": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 1404,
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.cloudflare.custom_hostnames#CreateCustomHostname": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.custom_hostnames#CreateCustomHostnameRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.custom_hostnames#CreateCustomHostnameResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/zones/{zone_id}/custom_hostnames",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add a new custom hostname and request that an SSL certificate be issued for it. One of three validation methods—http, txt, email—should be used, with 'http' recommended if the CNAME is already in place (or will be soon). Specifying 'email' will send an email to the WHOIS contacts on file for the base domain plus hostmaster, postmaster, webmaster, admin, administrator. If http is used and the domain is not already pointing to the Managed CNAME host, the PATCH method must be used once it is (to complete validation).  Enable bundling of certificates using the custom_cert_bundle field. The bundling process requires the following condition One certificate in the bundle must use an RSA, and the other must use an ECDSA."
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.custom_hostnames#SaasQuotaNotAllocated"
+        }
+      ]
+    },
+    "com.cloudflare.custom_hostnames#CreateCustomHostnameRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "hostname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The custom hostname that will point to your hostname via CNAME.",
+            "smithy.api#required": {}
+          }
+        },
+        "custom_metadata": {
+          "target": "com.cloudflare.custom_hostnames#CreateRequestCustomMetadataMap",
+          "traits": {
+            "smithy.api#documentation": "Unique key/value metadata for this hostname. These are per-hostname (customer) settings."
+          }
+        },
+        "ssl": {
+          "target": "com.cloudflare.custom_hostnames#CreateRequestSsl",
+          "traits": {
+            "smithy.api#documentation": "SSL properties used when creating the custom hostname."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.custom_hostnames#CreateCustomHostnameResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "hostname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The custom hostname that will point to your hostname via CNAME.",
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is the time the hostname was created."
+          }
+        },
+        "custom_metadata": {
+          "target": "com.cloudflare.custom_hostnames#CreateResponseCustomMetadataMap",
+          "traits": {
+            "smithy.api#documentation": "Unique key/value metadata for this hostname. These are per-hostname (customer) settings."
+          }
+        },
+        "custom_origin_server": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "a valid hostname that’s been added to your DNS zone as an A, AAAA, or CNAME record."
+          }
+        },
+        "custom_origin_sni": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A hostname that will be sent to your custom origin server as SNI for TLS handshake. This can be a valid subdomain of the zone or custom origin server name or the string ':request_host_header:' which will cause the host header in the request to be used as SNI. Not configurable with default/fallback origin server."
+          }
+        },
+        "ownership_verification": {
+          "target": "com.cloudflare.custom_hostnames#CreateResponseOwnershipVerification",
+          "traits": {
+            "smithy.api#documentation": "This is a record which can be placed to activate a hostname."
+          }
+        },
+        "ownership_verification_http": {
+          "target": "com.cloudflare.custom_hostnames#CreateResponseOwnershipVerificationHttp",
+          "traits": {
+            "smithy.api#documentation": "This presents the token to be served by the given http url to activate a hostname."
+          }
+        },
+        "ssl": {
+          "target": "com.cloudflare.custom_hostnames#CreateResponseSsl"
+        },
+        "status": {
+          "target": "com.cloudflare.custom_hostnames#CreateResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the hostname's activation."
+          }
+        },
+        "verification_errors": {
+          "target": "com.cloudflare.custom_hostnames#CreateResponseVerificationErrorsList",
+          "traits": {
+            "smithy.api#documentation": "These are errors that were encountered while trying to activate a hostname."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.custom_hostnames#DeleteCertificatePackCertificate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.custom_hostnames#DeleteCertificatePackCertificateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.custom_hostnames#DeleteCertificatePackCertificateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/zones/{zone_id}/custom_hostnames/{custom_hostname_id}/certificate_pack/{certificate_pack_id}/certificates/{certificate_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a single custom certificate from a certificate pack that contains two bundled certificates. Deletion is subject to the following constraints. You cannot delete a certificate if it is the only remaining certificate in the pack. At least one certificate must remain in the pack.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.custom_hostnames#DeleteCertificatePackCertificateRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "custom_hostname_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "certificate_pack_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "certificate_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.custom_hostnames#DeleteCertificatePackCertificateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Raw response payload (operation does not use the standard v4 result envelope)."
+      }
+    },
+    "com.cloudflare.custom_hostnames#DeleteCustomHostname": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.custom_hostnames#DeleteCustomHostnameRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.custom_hostnames#DeleteCustomHostnameResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/zones/{zone_id}/custom_hostnames/{custom_hostname_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Permanently deletes a custom hostname and revokes any SSL certificates that were issued for it. This action cannot be undone.",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.custom_hostnames#CustomHostnameNotFound"
+        },
+        {
+          "target": "com.cloudflare.custom_hostnames#SaasQuotaNotAllocated"
+        }
+      ]
+    },
+    "com.cloudflare.custom_hostnames#DeleteCustomHostnameRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "custom_hostname_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.custom_hostnames#DeleteCustomHostnameResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Raw response payload (operation does not use the standard v4 result envelope)."
+      }
+    },
+    "com.cloudflare.custom_hostnames#DeleteFallbackOrigin": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.custom_hostnames#DeleteFallbackOriginRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.custom_hostnames#DeleteFallbackOriginResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/zones/{zone_id}/custom_hostnames/fallback_origin",
+          "code": 200
+        },
+        "smithy.api#documentation": "Removes the fallback origin configuration for custom hostnames on a zone. Custom hostnames without specific origins will no longer have a fallback.",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.custom_hostnames#FallbackOriginNotFound"
+        },
+        {
+          "target": "com.cloudflare.custom_hostnames#SaasAccessNotGranted"
+        }
+      ]
+    },
+    "com.cloudflare.custom_hostnames#DeleteFallbackOriginRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.custom_hostnames#DeleteFallbackOriginResponse": {
+      "type": "structure",
+      "members": {
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is the time the fallback origin was created."
+          }
+        },
+        "errors": {
+          "target": "com.cloudflare.custom_hostnames#FallbackOriginDeleteResponseErrorsList",
+          "traits": {
+            "smithy.api#documentation": "These are errors that were encountered while trying to activate a fallback origin."
+          }
+        },
+        "origin": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Your origin hostname that requests to your custom hostnames will be sent to."
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.custom_hostnames#FallbackOriginDeleteResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the fallback origin's activation."
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is the time the fallback origin was updated."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.custom_hostnames#GetCustomHostname": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.custom_hostnames#GetCustomHostnameRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.custom_hostnames#GetCustomHostnameResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/custom_hostnames/{custom_hostname_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieves detailed information about a specific custom hostname, including SSL certificate status, ownership verification, and origin configuration.",
+        "smithy.api#readonly": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.custom_hostnames#CustomHostnameNotFound"
+        },
+        {
+          "target": "com.cloudflare.custom_hostnames#SaasQuotaNotAllocated"
+        },
+        {
+          "target": "com.cloudflare.custom_hostnames#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.custom_hostnames#GetCustomHostnameRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "custom_hostname_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.custom_hostnames#GetCustomHostnameResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "hostname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The custom hostname that will point to your hostname via CNAME.",
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is the time the hostname was created."
+          }
+        },
+        "custom_metadata": {
+          "target": "com.cloudflare.custom_hostnames#GetResponseCustomMetadataMap",
+          "traits": {
+            "smithy.api#documentation": "Unique key/value metadata for this hostname. These are per-hostname (customer) settings."
+          }
+        },
+        "custom_origin_server": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "a valid hostname that’s been added to your DNS zone as an A, AAAA, or CNAME record."
+          }
+        },
+        "custom_origin_sni": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A hostname that will be sent to your custom origin server as SNI for TLS handshake. This can be a valid subdomain of the zone or custom origin server name or the string ':request_host_header:' which will cause the host header in the request to be used as SNI. Not configurable with default/fallback origin server."
+          }
+        },
+        "ownership_verification": {
+          "target": "com.cloudflare.custom_hostnames#GetResponseOwnershipVerification",
+          "traits": {
+            "smithy.api#documentation": "This is a record which can be placed to activate a hostname."
+          }
+        },
+        "ownership_verification_http": {
+          "target": "com.cloudflare.custom_hostnames#GetResponseOwnershipVerificationHttp",
+          "traits": {
+            "smithy.api#documentation": "This presents the token to be served by the given http url to activate a hostname."
+          }
+        },
+        "ssl": {
+          "target": "com.cloudflare.custom_hostnames#GetResponseSsl"
+        },
+        "status": {
+          "target": "com.cloudflare.custom_hostnames#GetResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the hostname's activation."
+          }
+        },
+        "verification_errors": {
+          "target": "com.cloudflare.custom_hostnames#GetResponseVerificationErrorsList",
+          "traits": {
+            "smithy.api#documentation": "These are errors that were encountered while trying to activate a hostname."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.custom_hostnames#GetFallbackOrigin": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.custom_hostnames#GetFallbackOriginRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.custom_hostnames#GetFallbackOriginResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/custom_hostnames/fallback_origin",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieves the current fallback origin configuration for custom hostnames on a zone. The fallback origin handles traffic when specific custom hostname origins are unavailable.",
+        "smithy.api#readonly": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.custom_hostnames#FallbackOriginNotFound"
+        },
+        {
+          "target": "com.cloudflare.custom_hostnames#SaasAccessNotGranted"
+        },
+        {
+          "target": "com.cloudflare.custom_hostnames#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.custom_hostnames#GetFallbackOriginRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.custom_hostnames#GetFallbackOriginResponse": {
+      "type": "structure",
+      "members": {
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is the time the fallback origin was created."
+          }
+        },
+        "errors": {
+          "target": "com.cloudflare.custom_hostnames#FallbackOriginGetResponseErrorsList",
+          "traits": {
+            "smithy.api#documentation": "These are errors that were encountered while trying to activate a fallback origin."
+          }
+        },
+        "origin": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Your origin hostname that requests to your custom hostnames will be sent to."
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.custom_hostnames#FallbackOriginGetResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the fallback origin's activation."
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is the time the fallback origin was updated."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.custom_hostnames#ListCustomHostnames": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.custom_hostnames#ListCustomHostnamesRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.custom_hostnames#ListCustomHostnamesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/custom_hostnames",
+          "code": 200
+        },
+        "smithy.api#documentation": "List, search, sort, and filter all of your custom hostnames.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "page",
+          "inputToken": "page",
+          "outputToken": "resultInfo.page",
+          "items": "result",
+          "pageSize": "perPage"
+        }
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.custom_hostnames#SaasQuotaNotAllocated"
+        },
+        {
+          "target": "com.cloudflare.custom_hostnames#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.custom_hostnames#ListCustomHostnamesRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Hostname ID to match against. This ID was generated and returned during the initial custom_hostname creation. This parameter cannot be used with the 'hostname', 'hostname.exact', 'hostname.contain', or 'hostname.startsWith' parameters.",
+            "smithy.api#httpQuery": "id"
+          }
+        },
+        "certificate_authority": {
+          "target": "com.cloudflare.custom_hostnames#ListRequestCertificateAuthority",
+          "traits": {
+            "smithy.api#documentation": "Filter by the certificate authority that issued the SSL certificate.",
+            "smithy.api#httpQuery": "certificate_authority"
+          }
+        },
+        "custom_origin_server": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filter by custom origin server name.",
+            "smithy.api#httpQuery": "custom_origin_server"
+          }
+        },
+        "direction": {
+          "target": "com.cloudflare.custom_hostnames#ListRequestDirection",
+          "traits": {
+            "smithy.api#documentation": "Direction to order hostnames.",
+            "smithy.api#httpQuery": "direction"
+          }
+        },
+        "hostname": {
+          "target": "com.cloudflare.custom_hostnames#ListRequestHostname",
+          "traits": {
+            "com.cloudflare.protocols#deepQuery": "hostname"
+          }
+        },
+        "hostname_status": {
+          "target": "com.cloudflare.custom_hostnames#ListRequestHostnameStatus",
+          "traits": {
+            "smithy.api#documentation": "Filter by the hostname's activation status.",
+            "smithy.api#httpQuery": "hostname_status"
+          }
+        },
+        "order": {
+          "target": "com.cloudflare.custom_hostnames#ListRequestOrder",
+          "traits": {
+            "smithy.api#documentation": "Field to order hostnames by.",
+            "smithy.api#httpQuery": "order"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Page number of paginated results.",
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of hostnames per page.",
+            "smithy.api#httpQuery": "per_page"
+          }
+        },
+        "ssl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Whether to filter hostnames based on if they have SSL enabled.",
+            "smithy.api#httpQuery": "ssl"
+          }
+        },
+        "ssl_status": {
+          "target": "com.cloudflare.custom_hostnames#ListRequestSslStatus",
+          "traits": {
+            "smithy.api#documentation": "Filter by SSL certificate status.",
+            "smithy.api#httpQuery": "ssl_status"
+          }
+        },
+        "wildcard": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Filter by whether the custom hostname is a wildcard hostname.",
+            "smithy.api#httpQuery": "wildcard"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.custom_hostnames#ListCustomHostnamesResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.custom_hostnames#ListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.custom_hostnames#PatchCustomHostname": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.custom_hostnames#PatchCustomHostnameRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.custom_hostnames#PatchCustomHostnameResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/zones/{zone_id}/custom_hostnames/{custom_hostname_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Modify SSL configuration for a custom hostname. When sent with SSL config that matches existing config, used to indicate that hostname should pass domain control validation (DCV). Can also be used to change validation type, e.g., from 'http' to 'email'. Bundle an existing certificate with another certificate by using the \"custom_cert_bundle\" field. The bundling process supports combining certificates as long as the following condition is met. One certificate must use the RSA algorithm, and the other must use the ECDSA algorithm."
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.custom_hostnames#CustomHostnameNotFound"
+        },
+        {
+          "target": "com.cloudflare.custom_hostnames#SaasQuotaNotAllocated"
+        }
+      ]
+    },
+    "com.cloudflare.custom_hostnames#PatchCustomHostnameRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "custom_hostname_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "custom_metadata": {
+          "target": "com.cloudflare.custom_hostnames#EditRequestCustomMetadataMap",
+          "traits": {
+            "smithy.api#documentation": "Unique key/value metadata for this hostname. These are per-hostname (customer) settings."
+          }
+        },
+        "custom_origin_server": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "a valid hostname that’s been added to your DNS zone as an A, AAAA, or CNAME record."
+          }
+        },
+        "custom_origin_sni": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A hostname that will be sent to your custom origin server as SNI for TLS handshake. This can be a valid subdomain of the zone or custom origin server name or the string ':request_host_header:' which will cause the host header in the request to be used as SNI. Not configurable with default/fallback origin server."
+          }
+        },
+        "ssl": {
+          "target": "com.cloudflare.custom_hostnames#EditRequestSsl",
+          "traits": {
+            "smithy.api#documentation": "SSL properties used when creating the custom hostname."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.custom_hostnames#PatchCustomHostnameResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "hostname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The custom hostname that will point to your hostname via CNAME.",
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is the time the hostname was created."
+          }
+        },
+        "custom_metadata": {
+          "target": "com.cloudflare.custom_hostnames#EditResponseCustomMetadataMap",
+          "traits": {
+            "smithy.api#documentation": "Unique key/value metadata for this hostname. These are per-hostname (customer) settings."
+          }
+        },
+        "custom_origin_server": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "a valid hostname that’s been added to your DNS zone as an A, AAAA, or CNAME record."
+          }
+        },
+        "custom_origin_sni": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A hostname that will be sent to your custom origin server as SNI for TLS handshake. This can be a valid subdomain of the zone or custom origin server name or the string ':request_host_header:' which will cause the host header in the request to be used as SNI. Not configurable with default/fallback origin server."
+          }
+        },
+        "ownership_verification": {
+          "target": "com.cloudflare.custom_hostnames#EditResponseOwnershipVerification",
+          "traits": {
+            "smithy.api#documentation": "This is a record which can be placed to activate a hostname."
+          }
+        },
+        "ownership_verification_http": {
+          "target": "com.cloudflare.custom_hostnames#EditResponseOwnershipVerificationHttp",
+          "traits": {
+            "smithy.api#documentation": "This presents the token to be served by the given http url to activate a hostname."
+          }
+        },
+        "ssl": {
+          "target": "com.cloudflare.custom_hostnames#EditResponseSsl"
+        },
+        "status": {
+          "target": "com.cloudflare.custom_hostnames#EditResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the hostname's activation."
+          }
+        },
+        "verification_errors": {
+          "target": "com.cloudflare.custom_hostnames#EditResponseVerificationErrorsList",
+          "traits": {
+            "smithy.api#documentation": "These are errors that were encountered while trying to activate a hostname."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.custom_hostnames#PutCertificatePackCertificate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.custom_hostnames#PutCertificatePackCertificateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.custom_hostnames#PutCertificatePackCertificateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/zones/{zone_id}/custom_hostnames/{custom_hostname_id}/certificate_pack/{certificate_pack_id}/certificates/{certificate_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Replace a single custom certificate within a certificate pack that contains two bundled certificates. The replacement must adhere to the following constraints. You can only replace an RSA certificate with another RSA certificate or an ECDSA certificate with another ECDSA certificate.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.custom_hostnames#PutCertificatePackCertificateRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "custom_hostname_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "certificate_pack_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "certificate_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "custom_certificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If a custom uploaded certificate is used.",
+            "smithy.api#required": {}
+          }
+        },
+        "custom_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The key for a custom uploaded certificate.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.custom_hostnames#PutCertificatePackCertificateResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5685,265 +6230,30 @@
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     },
-    "com.cloudflare.custom_hostnames#CertificatePackCertificatesUpdate": {
+    "com.cloudflare.custom_hostnames#PutFallbackOrigin": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.custom_hostnames#CertificatePackCertificatesUpdateRequest"
+        "target": "com.cloudflare.custom_hostnames#PutFallbackOriginRequest"
       },
       "output": {
-        "target": "com.cloudflare.custom_hostnames#CertificatePackCertificatesUpdateResponse"
+        "target": "com.cloudflare.custom_hostnames#PutFallbackOriginResponse"
       },
       "traits": {
         "smithy.api#http": {
           "method": "PUT",
-          "uri": "/zones/{zone_id}/custom_hostnames/{custom_hostname_id}/certificate_pack/{certificate_pack_id}/certificates/{certificate_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Replace a single custom certificate within a certificate pack that contains two bundled certificates. The replacement must adhere to the following constraints. You can only replace an RSA certificate with another RSA certificate or an ECDSA certificate with another ECDSA certificate.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.custom_hostnames#FallbackOriginDeleteRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.custom_hostnames#FallbackOriginDeleteResponseErrorsList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
-      }
-    },
-    "com.cloudflare.custom_hostnames#FallbackOriginDeleteResponseStatus": {
-      "type": "enum",
-      "members": {
-        "INITIALIZING": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "initializing"
-          }
-        },
-        "PENDING_DEPLOYMENT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "pending_deployment"
-          }
-        },
-        "PENDING_DELETION": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "pending_deletion"
-          }
-        },
-        "ACTIVE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "active"
-          }
-        },
-        "DEPLOYMENT_TIMED_OUT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "deployment_timed_out"
-          }
-        },
-        "DELETION_TIMED_OUT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "deletion_timed_out"
-          }
-        }
-      }
-    },
-    "com.cloudflare.custom_hostnames#FallbackOriginDeleteResponse": {
-      "type": "structure",
-      "members": {
-        "created_at": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "This is the time the fallback origin was created."
-          }
-        },
-        "errors": {
-          "target": "com.cloudflare.custom_hostnames#FallbackOriginDeleteResponseErrorsList",
-          "traits": {
-            "smithy.api#documentation": "These are errors that were encountered while trying to activate a fallback origin."
-          }
-        },
-        "origin": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Your origin hostname that requests to your custom hostnames will be sent to."
-          }
-        },
-        "status": {
-          "target": "com.cloudflare.custom_hostnames#FallbackOriginDeleteResponseStatus",
-          "traits": {
-            "smithy.api#documentation": "Status of the fallback origin's activation."
-          }
-        },
-        "updated_at": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "This is the time the fallback origin was updated."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.custom_hostnames#FallbackOriginDelete": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.custom_hostnames#FallbackOriginDeleteRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.custom_hostnames#FallbackOriginDeleteResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
           "uri": "/zones/{zone_id}/custom_hostnames/fallback_origin",
           "code": 200
         },
-        "smithy.api#documentation": "Removes the fallback origin configuration for custom hostnames on a zone. Custom hostnames without specific origins will no longer have a fallback.",
+        "smithy.api#documentation": "Updates the fallback origin configuration for custom hostnames on a zone. Sets the default origin server for custom hostname traffic.",
         "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.custom_hostnames#FallbackOriginGetRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.custom_hostnames#SaasAccessNotGranted"
         }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
+      ]
     },
-    "com.cloudflare.custom_hostnames#FallbackOriginGetResponseErrorsList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
-      }
-    },
-    "com.cloudflare.custom_hostnames#FallbackOriginGetResponseStatus": {
-      "type": "enum",
-      "members": {
-        "INITIALIZING": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "initializing"
-          }
-        },
-        "PENDING_DEPLOYMENT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "pending_deployment"
-          }
-        },
-        "PENDING_DELETION": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "pending_deletion"
-          }
-        },
-        "ACTIVE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "active"
-          }
-        },
-        "DEPLOYMENT_TIMED_OUT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "deployment_timed_out"
-          }
-        },
-        "DELETION_TIMED_OUT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "deletion_timed_out"
-          }
-        }
-      }
-    },
-    "com.cloudflare.custom_hostnames#FallbackOriginGetResponse": {
-      "type": "structure",
-      "members": {
-        "created_at": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "This is the time the fallback origin was created."
-          }
-        },
-        "errors": {
-          "target": "com.cloudflare.custom_hostnames#FallbackOriginGetResponseErrorsList",
-          "traits": {
-            "smithy.api#documentation": "These are errors that were encountered while trying to activate a fallback origin."
-          }
-        },
-        "origin": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Your origin hostname that requests to your custom hostnames will be sent to."
-          }
-        },
-        "status": {
-          "target": "com.cloudflare.custom_hostnames#FallbackOriginGetResponseStatus",
-          "traits": {
-            "smithy.api#documentation": "Status of the fallback origin's activation."
-          }
-        },
-        "updated_at": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "This is the time the fallback origin was updated."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.custom_hostnames#FallbackOriginGet": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.custom_hostnames#FallbackOriginGetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.custom_hostnames#FallbackOriginGetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/custom_hostnames/fallback_origin",
-          "code": 200
-        },
-        "smithy.api#documentation": "Retrieves the current fallback origin configuration for custom hostnames on a zone. The fallback origin handles traffic when specific custom hostname origins are unavailable.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.custom_hostnames#FallbackOriginUpdateRequest": {
+    "com.cloudflare.custom_hostnames#PutFallbackOriginRequest": {
       "type": "structure",
       "members": {
         "zone_id": {
@@ -5966,54 +6276,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.custom_hostnames#FallbackOriginUpdateResponseErrorsList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
-      }
-    },
-    "com.cloudflare.custom_hostnames#FallbackOriginUpdateResponseStatus": {
-      "type": "enum",
-      "members": {
-        "INITIALIZING": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "initializing"
-          }
-        },
-        "PENDING_DEPLOYMENT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "pending_deployment"
-          }
-        },
-        "PENDING_DELETION": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "pending_deletion"
-          }
-        },
-        "ACTIVE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "active"
-          }
-        },
-        "DEPLOYMENT_TIMED_OUT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "deployment_timed_out"
-          }
-        },
-        "DELETION_TIMED_OUT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "deletion_timed_out"
-          }
-        }
-      }
-    },
-    "com.cloudflare.custom_hostnames#FallbackOriginUpdateResponse": {
+    "com.cloudflare.custom_hostnames#PutFallbackOriginResponse": {
       "type": "structure",
       "members": {
         "created_at": {
@@ -6050,65 +6313,6 @@
       "traits": {
         "smithy.api#output": {},
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.custom_hostnames#FallbackOriginUpdate": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.custom_hostnames#FallbackOriginUpdateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.custom_hostnames#FallbackOriginUpdateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PUT",
-          "uri": "/zones/{zone_id}/custom_hostnames/fallback_origin",
-          "code": 200
-        },
-        "smithy.api#documentation": "Updates the fallback origin configuration for custom hostnames on a zone. Sets the default origin server for custom hostname traffic.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.custom_hostnames#CustomHostnames": {
-      "type": "service",
-      "version": "4.0",
-      "operations": [
-        {
-          "target": "com.cloudflare.custom_hostnames#Create"
-        },
-        {
-          "target": "com.cloudflare.custom_hostnames#Delete"
-        },
-        {
-          "target": "com.cloudflare.custom_hostnames#Edit"
-        },
-        {
-          "target": "com.cloudflare.custom_hostnames#Get"
-        },
-        {
-          "target": "com.cloudflare.custom_hostnames#List"
-        },
-        {
-          "target": "com.cloudflare.custom_hostnames#CertificatePackCertificatesDelete"
-        },
-        {
-          "target": "com.cloudflare.custom_hostnames#CertificatePackCertificatesUpdate"
-        },
-        {
-          "target": "com.cloudflare.custom_hostnames#FallbackOriginDelete"
-        },
-        {
-          "target": "com.cloudflare.custom_hostnames#FallbackOriginGet"
-        },
-        {
-          "target": "com.cloudflare.custom_hostnames#FallbackOriginUpdate"
-        }
-      ],
-      "traits": {
-        "com.cloudflare.protocols#v4Json": {},
-        "smithy.api#title": "Cloudflare CustomHostnames",
-        "smithy.api#documentation": "Cloudflare API — custom_hostnames resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
       }
     }
   }
